@@ -154,6 +154,12 @@ for (const set of SETS) {
         .filter((r) => r.mathErrors > 0)
         .map((r) => `${r.part} ${r.form} p${r.page}: ${r.mathErrors}`),
     ).toEqual([]);
+    // 은행 글이 마크다운 꾸밈(기울임 · 지운 글 · 목록 …)으로 읽힌 자리 0
+    expect(
+      reports.flatMap((r) =>
+        r.markdown.map((t) => `${r.part} ${r.form} p${r.page}: ${t}`),
+      ),
+    ).toEqual([]);
     // ② 넘침 0 — 빈 공간보다 먼저다
     expect(overflow, JSON.stringify(overflow, null, 2)).toEqual([]);
     // ③ 세로로 빈 틈이 장의 1/4 을 넘지 않는다

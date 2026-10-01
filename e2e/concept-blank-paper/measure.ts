@@ -33,6 +33,11 @@ export type PageReport = {
   leaks: string[];
   /** KaTeX 가 못 읽어 붉게 그린 수식 수. */
   mathErrors: number;
+  /**
+   * 은행 글이 마크다운 꾸밈으로 읽힌 자리 — 제품 수식 경로(`MathText`)는 마크다운 렌더러라, 글 속 `*` · `_` · `~` ·
+   * 줄 머리의 `-` · `1.` 이 기울임 · 굵게 · 지운 글 · 목록으로 바뀔 수 있다. 지면은 그런 요소를 스스로 쓰지 않는다.
+   */
+  markdown: string[];
   align: {
     /** 번호 열 폭(모두 같아야 한다) · 왼쪽 끝이 흩어진 폭. */
     qnWidths: number[];
@@ -325,6 +330,15 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
       const mathErrors = sheet.querySelectorAll(
         '.katex-error, .katex [style*="cc0000"]',
       ).length;
+      // 지면이 쓰는 목록은 문장 목록 `ol > li` 하나뿐이다 — 그 안의 목록 · 그 밖의 꾸밈 요소는 마크다운이 만든 것
+      const markdown = [
+        ...sheet.querySelectorAll(
+          "ul, li li, li ol, em, strong, del, code, pre, blockquote, hr, h1, h4, h5, h6, a, img",
+        ),
+      ].map(
+        (el) =>
+          `${el.tagName.toLowerCase()}: ${(el.textContent ?? "").slice(0, 40)}`,
+      );
 
       const same = sheets.filter(
         (s) =>
@@ -350,6 +364,7 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
             next.dataset.cbPart !== sheet.dataset.cbPart),
         leaks,
         mathErrors,
+        markdown,
         align: {
           qnWidths: [...new Set(qnRects.map((r) => round(r.width)))],
           qnLeftSpread: round(qnLeftSpread),

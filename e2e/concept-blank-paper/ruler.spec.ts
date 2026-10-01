@@ -161,6 +161,19 @@ test("자가 문다 — 새는 마크업 · 수식 오류", async ({ page }) => 
   const again = await measurePages(page);
   expect(again.flatMap((r) => r.leaks)).toEqual([String.raw`\times`]);
   expect(again.reduce((n, r) => n + r.mathErrors, 0)).toBe(1);
+  // 마크다운 꾸밈 — 멀쩡하면 0(지면의 문장 목록 `ol > li` 는 세지 않는다), 지운 글 · 속 목록을 끼우면 잡는다
+  expect(clean.flatMap((r) => r.markdown)).toEqual([]);
+  await page.evaluate(() => {
+    const [a] = document.querySelectorAll<HTMLElement>("[data-cb-ruler-probe]");
+    a!.innerHTML = "<del>9~10</del><ul><li>목록</li></ul>";
+  });
+  const marked = await measurePages(page);
+  // 문장 목록의 `li` 안에 끼웠으므로 속 목록의 `li` 도 잡힌다
+  expect(marked.flatMap((r) => r.markdown)).toEqual([
+    "del: 9~10",
+    "ul: 목록",
+    "li: 목록",
+  ]);
   // KaTeX 가 같이 넣는 MathML(annotation 에 TeX 원문이 있다)은 새는 것이 아니다 — 수식이 있는데도 0 이었다
   expect(clean.reduce((n, r) => n + r.align.katex, 0)).toBeGreaterThan(10);
 });
