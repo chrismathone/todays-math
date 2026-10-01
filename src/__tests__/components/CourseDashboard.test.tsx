@@ -513,6 +513,7 @@ describe("CourseDashboard", () => {
     saveApi.mockResolvedValueOnce({
       ok: false,
       status: 409,
+      code: "REVISION_MISMATCH",
       message: "다른 기기에서 변경됨",
     });
     render(<CourseDashboard />);
@@ -525,6 +526,9 @@ describe("CourseDashboard", () => {
     );
     await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
     expect(await panel.findByText("다른 기기에서 변경됨")).toBeInTheDocument();
+    expect(
+      panel.getByText(/다른 곳에서 기록이 변경되었습니다/),
+    ).toBeInTheDocument();
     expect(saveApi).toHaveBeenCalledTimes(1);
     const revised = student({
       revision: 9,
@@ -559,6 +563,33 @@ describe("CourseDashboard", () => {
         expectedRevision: 9,
       }),
     );
+  });
+
+  it("shows mission guard guidance without treating it as a stale revision", async () => {
+    const user = userEvent.setup();
+    saveApi.mockResolvedValueOnce({
+      ok: false,
+      status: 409,
+      code: "CONFLICT",
+      message: "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
+    });
+    render(<CourseDashboard />);
+    const panel = await openStudent(user);
+    await user.click(panel.getByRole("button", { name: "학습 설정" }));
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
+    expect(await panel.findByRole("alert")).toHaveTextContent(
+      "진행 중인 학습을 마친 뒤 시작 소단원을 바꿔 주세요.",
+    );
+    expect(
+      panel.queryByText(/다른 곳에서 기록이 변경되었습니다/),
+    ).not.toBeInTheDocument();
+    expect(
+      panel.queryByRole("button", { name: "최신 기록 불러오기 · 입력 유지" }),
+    ).not.toBeInTheDocument();
+    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(panel.getByLabelText("하루 학습량")).toBeEnabled();
+    expect(panel.getByRole("button", { name: "학습 계획 저장" })).toBeEnabled();
   });
 
   it("ignores a late detail response after selecting another student and returns focus on Escape", async () => {

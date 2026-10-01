@@ -1,0 +1,1079 @@
+/* 개념 백지 A4 지면(D-150 · 26 §6) — 시안 `D:\tmp\concept-blank\paper.css` + `paper2.css` 의 모양 · 여백 · 글꼴 · 색을
+   옮겼다(저장소 밖 · 읽기만). 🔴 시안 채점표의 «교재 문장» 칸은 옮기지 않았다(교재 원문).
+
+   A4 경계(210×297mm) · 종이색 · 서체 변수 · 인쇄 `@page { size: A4; margin: 0 }` · 장마다 나눔은 제품 `A4Page`
+   (TestPrint.module.css `.a4Page` + `PAPER_CSS_VARIABLES`)가 준다 — 여기서 `@page` 를 다시 선언하지 않는다
+   (영어 지면과 같은 까닭 — 같은 창에 `@page` 가 둘이면 늦게 실린 쪽이 이긴다).
+   서체 — 본문은 지면 명조 `--paper-font-serif`, 라벨 · 머리 딱지 · 발은 `--paper-font-sans`(05 §8.5).
+
+   줄맞춤(원장님 2026-09-30 «A4 에 맞게 · 줄맞춤») —
+   · 안쪽 여백은 시험지 지면과 같은 값(`.jaseupFirst` 36/50/20 · `.jaseupContinuation` 24/50/20).
+   · 줄 긋기 간격은 `--cb-rule` 한 값(쓰기 줄 · 까닭 줄 · 그림 줄 · 지도 줄이 모두 같은 간격).
+   · 문항 번호 열은 `--cb-num` 고정 폭(«문 1» 과 «문 12» 뒤 글이 같은 자리에서 시작한다) · 첫 줄과 기준선을 맞춘다.
+   · 낱말 사이에서만 줄을 바꾼다(`word-break: keep-all`) · 숫자는 같은 폭(`tabular-nums`).
+   · 칸은 장의 남는 높이를 나눠 채운다(flex) — 장 아래가 비지 않는다.
+
+   ⚠️ 치수를 바꾸면 `paginate.ts` 의 `GEOMETRY`(쪽 나누기 어림)도 같이 바꾼다 — 넘침 · 어림은 Playwright 가 잰다
+      (`e2e/concept-blank-paper`). */
+
+.paper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.empty {
+  margin: 0;
+  padding: 24px;
+  color: #6b6b72;
+  font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 14px;
+}
+
+.page {
+  --ink70: #3a3a40;
+  --ink90: #1f1f23;
+  --ink50: #6b6b72;
+  --ink30: #a0a0a8;
+  --ink15: #d4d4d8;
+  --ink08: #e8e8eb;
+  --cb-key-strong: #8a3b12;
+  /* 줄 긋기 간격 — 지면의 모든 쓰기 줄이 이 값 하나로 그어진다 */
+  --cb-rule: 30px;
+  /* 문항 번호 열 — 지면 하나 안에서 한 값. 번호가 세 자리인 지면은 52px(`numberColumnWidth` 가 장에 건다) */
+  --cb-num: 44px;
+  /* 빈칸 밑줄이 글자 기준선에서 내려앉는 깊이 — 한글 글자 아래 끝 바로 밑 */
+  --cb-blank-drop: 0.2em;
+  font-variant-numeric: tabular-nums;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* 수식은 둘레 글의 굵기를 따른다 — KaTeX 는 제 글꼴 선언(`font: normal …`)으로 굵기를 지워, 굵은 용어 · 굵은 핵심어 안의
+   수식만 가늘게 나온다(`{$1\,\mathrm{km}$}` 가 핵심어인데 굵지 않으면 흑백 인쇄에서 핵심어인지 알 수 없다).
+   KaTeX 글꼴에는 굵은 벌(Main-Bold · Math-BoldItalic)이 있다. */
+.page :global(.katex) {
+  font-weight: inherit;
+}
+
+/* 화면에서는 줄여 보인다(시안 0.58배). 부르는 쪽이 `--cb-paper-scale` 로 바꾼다. 인쇄에서는 늘 1배. */
+@media screen {
+  .page {
+    zoom: var(--cb-paper-scale, 0.58);
+  }
+}
+
+.sheet {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* 시험지 지면과 같은 안쪽 여백(05 §8.5 — TestPrint.module.css `.jaseupFirst` · `.jaseupContinuation`) */
+.pageFirst .sheet {
+  padding: 36px 50px 20px;
+}
+
+.pageNext .sheet {
+  padding: 24px 50px 20px;
+}
+
+/* ── 머리(05 §8.5) ─────────────────────────── */
+
+.head {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.headMain {
+  min-width: 0;
+}
+
+.brand {
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+}
+
+.kicker {
+  margin: 3px 0 4px;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+}
+
+.title {
+  margin: 0;
+  color: var(--paper-ink);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  /* 제목은 두 줄까지 — 머리 높이가 늘면 몸이 줄어 쪽 나누기 어림(`GEOMETRY.bodyFirst`)이 어긋난다.
+     띄어쓰기 없는 아주 긴 제목만 잘린다(고르기 상한 40자 · 글씨도 세 단계로 준다) */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.titleMid {
+  font-size: 20px;
+}
+
+.titleSmall {
+  font-size: 17px;
+}
+
+.goal {
+  margin-top: 4px;
+  color: var(--ink70);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+
+.headSide {
+  flex: none;
+  max-width: 250px;
+  font-family: var(--paper-font-sans);
+  text-align: right;
+}
+
+.sideLabel {
+  margin-bottom: 2px;
+  color: var(--ink50);
+  font-size: 9.5px;
+}
+
+.sideDate {
+  min-height: 19px;
+  font-family: var(--paper-font-serif);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.dateBlank {
+  display: inline-block;
+  width: 120px;
+  height: 16px;
+  border-bottom: 1px solid var(--ink30);
+}
+
+.nameLine {
+  margin-top: 8px;
+  color: var(--ink70);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.nameLine b {
+  margin-right: 4px;
+  color: var(--ink50);
+  font-weight: 700;
+}
+
+.nameBlank,
+.classBlank {
+  display: inline-block;
+  height: 11px;
+  border-bottom: 1px solid var(--ink50);
+  vertical-align: calc(-1 * var(--cb-blank-drop));
+}
+
+.nameBlank {
+  width: 64px;
+}
+
+.classBlank {
+  width: 36px;
+}
+
+.unit {
+  margin-top: 6px;
+  color: var(--paper-gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+/* 이어지는 장 — «오늘의수학 · 제목» + p. N */
+.miniHead {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--paper-gold);
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+
+.miniHead > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.miniHead b {
+  color: var(--paper-gold);
+  letter-spacing: 0.12em;
+}
+
+.pageNo {
+  flex: none;
+}
+
+.howto {
+  flex: none;
+  margin-bottom: 14px;
+  padding: 9px 14px;
+  border: 1px solid var(--paper-gold);
+  border-left: 5px solid var(--paper-gold);
+  background: #fff;
+  color: var(--ink70);
+  font-family: var(--paper-font-sans);
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.howto b {
+  color: var(--paper-ink);
+}
+
+/* ── 발 ─────────────────────────────────── */
+
+.foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 12px;
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+
+.tally {
+  flex: none;
+  padding: 4px 10px;
+  border: 1px solid var(--ink30);
+  color: var(--ink90);
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.memo {
+  flex: none;
+  color: var(--paper-gold);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.dash {
+  flex: 1;
+  height: 1px;
+  border-bottom: 1px dashed var(--ink30);
+}
+
+/* ── 공통 조각 ─────────────────────────────── */
+
+/* 문항 번호 — 고정 폭 열. 번호 자릿수가 달라도 뒤 글의 왼쪽 끝이 한 줄에 선다 */
+.qn {
+  flex: none;
+  box-sizing: border-box;
+  width: var(--cb-num);
+  color: var(--paper-gold);
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.qline {
+  display: flex;
+  align-items: baseline;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+.term {
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.statement {
+  min-width: 0;
+}
+
+/* 쓰기 줄 — 위에서부터 `--cb-rule` 간격으로 긋는다(남는 자투리는 맨 아래 줄 밑에 남는다) */
+.ruled {
+  background-image: linear-gradient(
+    to bottom,
+    transparent calc(var(--cb-rule) - 1px),
+    var(--ink15) calc(var(--cb-rule) - 1px)
+  );
+  background-repeat: repeat-y;
+  background-size: 100% var(--cb-rule);
+}
+
+.r1 {
+  min-height: var(--cb-rule);
+}
+
+.r2 {
+  min-height: calc(var(--cb-rule) * 2);
+}
+
+.field {
+  flex: 1;
+  display: inline-flex;
+  align-items: flex-end;
+  height: 26px;
+  padding-bottom: 3px;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--ink30);
+  color: var(--ink30);
+  font-family: var(--paper-font-sans);
+  font-size: 9.5px;
+  font-weight: 400;
+}
+
+/* 빈칸 — 밑줄이 글자 기준선 바로 아래(`--cb-blank-drop`)에 앉는다. 글씨 크기가 달라도 같은 비율 */
+.blank {
+  display: inline-block;
+  /* 좁은 칸(지도의 예)에서도 좌우 여백까지 칸 안에 든다 */
+  max-width: calc(100% - 6px);
+  height: 1.25em;
+  margin: 0 3px;
+  box-sizing: border-box;
+  border-bottom: 1.5px solid var(--ink70);
+  vertical-align: calc(-1 * var(--cb-blank-drop));
+}
+
+/* 빈칸 + 바로 뒤에 붙은 조사 · 마침표 — 한 줄에 묶는다(«____ / .» 처럼 떨어지지 않게) */
+.keep {
+  white-space: nowrap;
+}
+
+/* ── A 완전 백지 ───────────────────────────── */
+
+.zones {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.zone {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.zoneHead {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid var(--paper-gold);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.zoneNo {
+  flex: none;
+  color: var(--paper-gold);
+}
+
+.zoneTitle {
+  min-width: 0;
+}
+
+.zoneHint {
+  flex: none;
+  max-width: 45%;
+  margin-left: auto;
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+  font-weight: 400;
+  text-align: right;
+}
+
+/* 왼쪽 쓰기 줄과 오른쪽 칸 — 윗선이 같은 높이에서 시작하고, 오른쪽 칸의 아랫변은 왼쪽 마지막 줄에 맞춘다 */
+.zoneBody {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 12px;
+  min-height: 0;
+  padding-top: 6px;
+}
+
+.zoneBody .ruled {
+  height: 100%;
+}
+
+.gridBox,
+.exBox {
+  position: relative;
+  box-sizing: border-box;
+  align-self: start;
+  height: 100%;
+  height: round(down, 100%, var(--cb-rule));
+}
+
+.gridBox {
+  border: 1px solid var(--ink15);
+  background-color: #fff;
+  background-image:
+    linear-gradient(var(--ink08) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ink08) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.exBox {
+  border: 1px dashed var(--ink30);
+  background: #fff;
+}
+
+.boxLabel {
+  position: absolute;
+  top: 5px;
+  right: 7px;
+  color: var(--ink30);
+  font-family: var(--paper-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.exBox .boxLabel {
+  right: auto;
+  left: 8px;
+  color: var(--paper-gold);
+  font-size: 9.5px;
+  font-weight: 700;
+}
+
+/* ── B 용어 → 뜻 (+ ○×) ─────────────────────── */
+
+/* 문항마다 쓰기 줄이 늘어나 장을 채운다 — 문항 수가 적을수록 쓸 자리가 넓다 */
+.termList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.termItem {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 4px 0 6px;
+  border-bottom: 1px dashed var(--ink15);
+}
+
+.termItem .ruled {
+  flex: 1 1 auto;
+  margin-top: 2px;
+}
+
+.oxPart {
+  flex: none;
+  margin: 6px 0 4px;
+  font-family: var(--paper-font-sans);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.oxRow {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: var(--cb-rule);
+  margin-top: 8px;
+}
+
+.oxMark {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink30);
+  border-radius: 50%;
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 까닭 줄 — 첫 줄이 ○ × 동그라미 아래 끝과 같은 높이 */
+.termItem .oxWhy {
+  position: relative;
+  flex: 1;
+  align-self: stretch;
+  min-height: var(--cb-rule);
+  margin-top: 0;
+}
+
+.oxWhyLabel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  height: calc(var(--cb-rule) - 1px);
+  padding-bottom: 3px;
+  box-sizing: border-box;
+  color: var(--ink30);
+  font-family: var(--paper-font-sans);
+  font-size: 9.5px;
+}
+
+/* ── C 문장 빈칸 (+ 나 · 적용) ──────────────── */
+
+.clozeBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.part {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0 8px;
+  font-family: var(--paper-font-sans);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.part span {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  background: var(--paper-gold);
+  color: #fff;
+  font-size: 11.5px;
+}
+
+.sent {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.sent li {
+  display: flex;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--ink15);
+}
+
+/* 적용이 없는 장 — 문장 칸이 늘어나 장을 채운다(문장 아래는 다시 써 볼 자리) */
+.sentFill {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.sentFill li {
+  flex: 1 1 auto;
+}
+
+.sentText {
+  min-width: 0;
+  font-size: 14px;
+  line-height: 2.15;
+}
+
+.apply {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* 적용 칸 — 풀 자리가 있게 가장 낮아도 120px(`GEOMETRY.apply.min`), 남는 높이는 칸이 나눠 가진다 */
+.ap {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: 120px;
+  padding: 12px 14px;
+  border: 1px solid var(--ink15);
+  background: #fff;
+}
+
+.apPrompt {
+  display: flex;
+  align-items: baseline;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.apPrompt > span:last-child {
+  min-width: 0;
+}
+
+.apAnswer {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+  /* 답 줄은 물음 글과 같은 자리에서 시작한다(번호 열만큼 들여 쓴다) */
+  padding-left: var(--cb-num);
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.apAnswer .field {
+  flex: 0 1 60%;
+}
+
+/* ── D 개념 지도 ───────────────────────────── */
+
+/* 가운데 원 양옆으로 가지 기둥 둘 — 기둥마다 가지가 높이를 나눠 채운다(가지가 적으면 칸이 커진다) */
+.map {
+  position: relative;
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 170px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+}
+
+/* 가지가 하나뿐이면 오른쪽 기둥이 없다 — 가지가 넓게, 원은 오른쪽에 */
+.mapSingle {
+  grid-template-columns: minmax(0, 1fr) 170px;
+}
+
+.mapSide {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+}
+
+.wires {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hub {
+  z-index: 1;
+  align-self: center;
+  justify-self: center;
+  display: grid;
+  place-items: center;
+  width: 132px;
+  height: 132px;
+  padding: 12px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--paper-gold);
+  color: #fff;
+  font-weight: 900;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.node {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--ink15);
+  border-top: 3px solid var(--paper-gold);
+  background: #fff;
+}
+
+.nodeTitle {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.nodeTitle > span:last-child {
+  min-width: 0;
+}
+
+.done {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--ink30);
+  border-radius: 50%;
+}
+
+.nodeLabel {
+  flex: none;
+  margin-top: 8px;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.nodeRuled {
+  flex: 1;
+  min-height: var(--cb-rule);
+}
+
+.nodeExample {
+  flex: none;
+  min-height: 46px;
+  margin-top: 3px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+  border: 1px dashed var(--ink15);
+  background: var(--paper-warm);
+  color: var(--ink90);
+  font-size: 12.5px;
+  line-height: 1.8;
+}
+
+/* ── E 그림 보고 쓰기 ───────────────────────── */
+
+/* 카드가 장을 나눠 채운다 — 넷부터 두 줄기(2×2 · 2×3), 셋까지는 한 줄기(넓은 카드). 줄 수는 부르는 쪽이 준다 */
+.cards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  min-height: 0;
+}
+
+.cardsOne {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+  padding: 9px 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--ink15);
+  background: #fff;
+}
+
+.cardWide {
+  grid-column: 1 / -1;
+}
+
+.cardHead {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.cardHead > span:last-child {
+  min-width: 0;
+}
+
+.cardBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* 넓은 카드 — 그림은 왼쪽, 줄은 오른쪽 */
+.cardWide .cardBody {
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.figure {
+  display: block;
+  flex: 0 1 auto;
+  width: 100%;
+  height: auto;
+  min-height: 56px;
+  max-height: var(--cb-figure-max, 118px);
+  margin: 2px 0 4px;
+}
+
+.cardWide .figure {
+  align-self: start;
+  max-height: min(100%, 180px);
+  margin: 0;
+}
+
+.cardWrite {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* 이름 · 성질 줄 — 쓰기 줄과 같은 간격 */
+.cardLine {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: var(--cb-rule);
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+.cardLine > span:first-child {
+  white-space: nowrap;
+}
+
+.cardFill {
+  flex: 1 1 0;
+  min-height: var(--cb-rule);
+}
+
+/* ── 교사용 채점표 ─────────────────────────── */
+
+.keyHead {
+  flex: none;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--paper-gold);
+}
+
+.keyKicker {
+  margin-bottom: 4px;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.keyHead h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.3;
+  /* 학생지 제목과 같은 까닭 — 두 줄까지 */
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.keyHead h3.titleMid {
+  font-size: 17px;
+}
+
+.keyHead h3.titleSmall {
+  font-size: 15px;
+}
+
+.keySource {
+  margin-top: 3px;
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+
+.keyBody {
+  flex: 1;
+  min-height: 0;
+}
+
+.key {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+/* 열 폭 고정 — 번호 · 개념 · 채점 기준(나머지) */
+.keyColNo {
+  width: 44px;
+}
+
+.keyColConcept {
+  width: 130px;
+}
+
+.key th {
+  padding: 5px 6px;
+  border-bottom: 1.5px solid var(--paper-gold);
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: left;
+}
+
+.key td {
+  padding: 7px 6px;
+  border-bottom: 1px solid var(--ink08);
+  vertical-align: baseline;
+}
+
+.keyNo {
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.keyConcept {
+  font-weight: 800;
+}
+
+.keyPlace {
+  display: block;
+  margin-top: 2px;
+  color: var(--ink30);
+  font-family: var(--paper-font-sans);
+  font-size: 9px;
+  font-weight: 400;
+}
+
+.keyText {
+  color: var(--ink90);
+}
+
+.keyText b {
+  color: var(--cb-key-strong);
+}
+
+.keyEx {
+  display: block;
+  margin-top: 2px;
+  padding-left: 8px;
+  border-left: 2px solid var(--paper-gold);
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+
+.keyPrompt {
+  display: block;
+  color: var(--ink50);
+  font-family: var(--paper-font-sans);
+  font-size: 10px;
+}
+
+/* 그림 줄 — 작은 그림이 있어 위 맞춤 */
+.keyFigureRow td {
+  vertical-align: top;
+}
+
+.keyFigure {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.keySvg {
+  flex: none;
+  width: 150px;
+  height: auto;
+  max-height: 96px;
+  border: 1px solid var(--ink08);
+  background: #fff;
+}
+
+.keyLine {
+  display: block;
+}
+
+.tagAnswer {
+  fill: var(--cb-key-strong);
+  font-family: var(--paper-font-serif);
+  font-weight: 700;
+}
+
+.notes {
+  flex: none;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--ink15);
+  background: #fff;
+  color: var(--ink70);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.notes p {
+  margin: 0;
+}
+
+.notesLabel {
+  margin-bottom: 4px;
+  color: var(--paper-gold);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+/* 인쇄 — 장 나눔은 A4Page(.a4Page) 가 한다. 늘어놓기(flex)는 장 나눔을 흐리므로 블록으로. */
+@media print {
+  .paper {
+    display: block;
+  }
+}

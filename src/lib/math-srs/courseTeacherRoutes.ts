@@ -8,6 +8,7 @@ import {
 } from "@/contracts/mathSrsCourse.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
+import { recordAudit } from "@/lib/audit";
 import {
   jsonError,
   jsonOk,
@@ -27,7 +28,8 @@ import {
 } from "./courseServer";
 import { changeSrsState } from "./serverStore";
 
-async function teacherGate(request: Request) {
+/** «오늘의 기억» 교사 끝점의 문지기 — 탐험 교사 보기(`math-explorers/teacherRoutes.ts`)도 이것을 지난다. */
+export async function teacherGate(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access;
   const path = new URL(request.url).pathname;
@@ -84,21 +86,45 @@ export async function handleCourseTeacherStudent(
       await request.json().catch(() => undefined),
     );
     if (!input.success) return noStore(validationError(input.error));
+    let changes: Record<string, string | number | boolean | null> = {};
     const saved = await changeSrsState(
       student.id,
-      (state) => ({
-        ...state,
-        course: setCoursePlan(
-          state.course ?? emptyCourseState(),
-          input.data,
-          now,
-        ),
-      }),
+      (state) => {
+        const previous = state.course ?? emptyCourseState();
+        const course = setCoursePlan(previous, input.data, now);
+        // The save may retry: compare against that attempt's snapshot, then
+        // record only after the atomic write has actually succeeded.
+        changes = {};
+        for (const [field, suffix] of [
+          ["startSectionId", "StartSectionId"],
+          ["dailyQuestionCount", "DailyQuestionCount"],
+          ["enabled", "Enabled"],
+        ] as const) {
+          const before = previous.plan?.[field] ?? null;
+          const after = input.data[field];
+          if (before !== after) {
+            changes[`before${suffix}`] = before;
+            changes[`after${suffix}`] = after;
+          }
+        }
+        return Object.keys(changes).length ? { ...state, course } : state;
+      },
       undefined,
       input.data.expectedRevision,
       // A frozen student mission must not lock the teacher out of the plan.
       { teacher: true },
     );
+    if (Object.keys(changes).length)
+      await recordAudit({
+        actorId: access.account.id,
+        action: "math_srs.course_plan_changed",
+        outcome: "success",
+        details: {
+          studentId: student.id,
+          revision: saved.revision,
+          ...changes,
+        },
+      });
     return noStore(
       jsonOk(courseRosterStudentResponseSchema, {
         data: courseRosterDto(student, saved, now),

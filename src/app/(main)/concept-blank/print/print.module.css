@@ -1,0 +1,29 @@
+/* 개념 백지 인쇄 페이지의 화면 틀 — 회색 바탕에 A4 를 1배로 세로로 늘어놓는다. 인쇄에서는 틀이 사라진다. */
+.shell {
+  --cb-paper-scale: 1;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding: 28px 16px 80px;
+  background: #c9c9c7;
+}
+
+.shell > * {
+  flex-direction: column;
+  align-items: center;
+}
+
+.notice {
+  margin: 0;
+  padding: 24px;
+  color: #3a3a40;
+  font-family: Pretendard, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 14px;
+}
+
+@media print {
+  .shell {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+  }
+}

@@ -203,13 +203,15 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     1단 · 배점 없음 · 문단·문항 높이로 쪽 나눔. 라우트는 base 병합 뒤).
     // 81: english-teacher-a4 추가 (2026-09-30 트랙 english-print — 교사용 A4. 정답·해설·근거 상자의 회색 면이
     //     종이에 찍히는지가 핵심).
-    // 82: english-bundle-sheets 추가 (2026-10-01 D-151 — 영어 학생용이 순서가 있는 묶음으로 갈려 하나씩 뽑힌다.
+    // 82~87: concept-blank-recall · term · cloze · map · figure · key-a4 추가 (2026-09-30 트랙 cb-paper —
+    //     개념 백지(D-150) 새 지면 다섯 형식 + 채점표. 은행이 차기 전에는 하네스로 뽑는다).
+    // 88: english-bundle-sheets 추가 (2026-10-01 D-151 — 영어 학생용이 순서가 있는 묶음으로 갈려 하나씩 뽑힌다.
     //     변형 묶음에 원 지문이 없는지 · 머리의 «문제 묶음 1 · 3~4번» · 고른 묶음만 나오는지).
-    // 83: english-grammar-underline 추가 (2026-10-01 D-151 — 어법의 `<u>` 를 글자 밑줄로. 1px · 0.3em 은
+    // 89: english-grammar-underline 추가 (2026-10-01 D-151 — 어법의 `<u>` 를 글자 밑줄로. 1px · 0.3em 은
     //     검수 시작값 — g · y · p 와 닿는지는 종이에서만 정한다).
-    // 84: english-teacher-head-notes 추가 (2026-10-01 D-151 — 교사용 첫 쪽 머리의 배부 순서 · 답이 보이는 문항).
-    // 85: english-bare-choice-marks 추가 (2026-10-01 D-151 — 번호뿐인 보기는 보기 줄을 찍지 않는다).
-    expect(ITEMS.length).toBe(85);
+    // 90: english-teacher-head-notes 추가 (2026-10-01 D-151 — 교사용 첫 쪽 머리의 배부 순서 · 답이 보이는 문항).
+    // 91: english-bare-choice-marks 추가 (2026-10-01 D-151 — 번호뿐인 보기는 보기 줄을 찍지 않는다).
+    expect(ITEMS.length).toBe(91);
   });
 
   /**

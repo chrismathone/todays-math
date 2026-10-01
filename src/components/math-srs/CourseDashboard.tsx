@@ -642,7 +642,7 @@ function StudentDetail({
     setBusy(false);
     if (!result.ok) {
       setSaveError(result);
-      if (result.status === 409) setConflict(true);
+      if (result.code === "REVISION_MISMATCH") setConflict(true);
       return;
     }
     if (result.data.id !== student.id) {

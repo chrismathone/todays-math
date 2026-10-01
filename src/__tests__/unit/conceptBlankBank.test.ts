@@ -6,10 +6,19 @@ import { describe, expect, it } from "vitest";
 import {
   blankKeywords,
   conceptBlankBankSchema,
+  splitBlankSentence,
 } from "@/contracts/conceptBlank.contract";
-import { BANK_PARTS, CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import {
+  BANK_PARTS,
+  CONCEPT_BLANK_BANK,
+  sectionStock,
+} from "@/lib/concept-blank/bank";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
-import { getBlankSection } from "@/lib/concept-blank/sections";
+import {
+  bankNotationFaults,
+  notationFaults,
+} from "@/lib/concept-blank/notation";
+import { BLANK_SECTIONS, getBlankSection } from "@/lib/concept-blank/sections";
 
 const PART_GRADES: Record<string, readonly string[]> = {
   e3: ["초3"],
@@ -54,6 +63,55 @@ describe("concept blank bank", () => {
     },
   );
 
+  // 채우기 시작한 학년은 소단원을 하나도 빼먹지 않는다(브리프 cb-bank 의 최소 재고) — 빈 뼈대 학년은 건너뛴다.
+  it.each(Object.keys(BANK_PARTS))(
+    "%s, once filled, stocks every section of its grade",
+    (part) => {
+      const bank = BANK_PARTS[part]!;
+      if (everyItem(bank).length === 0) return;
+      const sections = BLANK_SECTIONS.filter((s) =>
+        PART_GRADES[part]!.includes(s.grade),
+      );
+      expect(sections.length, `${part}: 교육과정 소단원`).toBeGreaterThan(0);
+      const thin = sections.flatMap((s) => {
+        const stock = sectionStock(s.key, bank);
+        const short = [
+          stock.concepts.length < 2 && `개념 ${stock.concepts.length}`,
+          stock.ox.length < 1 && "○× 0",
+          stock.apply.length < 1 && "적용 0",
+        ].filter(Boolean);
+        return short.length ? [`${s.key} — ${short.join(" · ")}`] : [];
+      });
+      expect(thin).toEqual([]);
+    },
+  );
+
+  // 원장님 2026-09-30 «카텍스 사용할 것» — 은행 2차가 0건으로 만든 표기를 잠근다(자: `concept-blank/notation.ts`).
+  it.each(Object.keys(BANK_PARTS))(
+    "%s keeps numbers, units and symbols inside KaTeX",
+    (part) => {
+      const faults = bankNotationFaults(BANK_PARTS[part]!).map(
+        (f) => `${f.id} (${f.field}) [${f.rule}] ${f.what}`,
+      );
+      expect(faults.slice(0, 20)).toEqual([]);
+    },
+  );
+
+  it("the notation ruler says both yes and no", () => {
+    const rules = (s: string, sentence = false) =>
+      notationFaults(s, sentence).map((f) => f.rule);
+    expect(rules("구슬 20개를 5개씩 묶는다.")).toContain("수식 밖 숫자");
+    expect(rules("구슬 $20$개를 $5$개씩 묶는다.")).toEqual([]);
+    expect(rules("∠A의 크기는 직각이다.")).toContain("수식 밖 기호");
+    expect(rules(String.raw`$\angle A=50^\circ$이다.`)).toEqual([]);
+    expect(rules("$8$각형의 대각선")).toContain("아라비아 도형 이름");
+    expect(rules("팔각형의 대각선")).toEqual([]);
+    expect(rules(String.raw`값은 $\frac{1}{2$ 이다.`)).toContain("수식 오류");
+    expect(
+      rules(String.raw`$\cos 30^\circ=$ {$\frac{\sqrt{3}}{2}$}이다.`, true),
+    ).toEqual([]);
+  });
+
   it("ids are unique across the whole bank and the fixture", () => {
     const ids = [...everyItem(), ...everyItem(FIXTURE_BANK)].map((x) => x.id);
     const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
@@ -67,7 +125,11 @@ describe("concept blank bank", () => {
     ]) {
       const keys = blankKeywords(c.definition);
       expect(keys.length, c.id).toBeGreaterThan(0);
-      const rest = c.definition.replace(/\{[^{}]+\}/g, "").replace(/\s+/g, "");
+      const rest = splitBlankSentence(c.definition)
+        .filter((p) => p.kind === "text")
+        .map((p) => p.text)
+        .join("")
+        .replace(/\s+/g, "");
       expect(
         rest.length,
         `${c.id}: 빈칸을 빼면 문장이 거의 없다`,

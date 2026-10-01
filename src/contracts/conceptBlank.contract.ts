@@ -49,37 +49,122 @@ const idSchema = z
   .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "id 는 소문자 · 숫자 · 붙임표");
 const levelSchema = z.enum(CONCEPT_BLANK_LEVELS);
 
+/** 뜻 문장 조각 — 글(수식 `$...$` 이 섞일 수 있다) 또는 핵심어(`{ }` 안). */
+export type BlankSentencePiece =
+  { kind: "text"; text: string } | { kind: "key"; text: string };
+
+/**
+ * `open` 자리의 `{` 가 여는 핵심어의 닫는 `}` 자리. 핵심어 안의 `$...$` 는 통째로 건너뛴다(그 안의 `{ }` 는 TeX 묶음).
+ * 수식 밖에서 `{` 를 또 만나거나(겹침) 수식 · 괄호가 안 닫히면 -1.
+ */
+function keywordEnd(sentence: string, open: number): number {
+  let j = open + 1;
+  while (j < sentence.length) {
+    const ch = sentence[j]!;
+    if (ch === "$") {
+      const close = sentence.indexOf("$", j + 1);
+      if (close < 0) return -1;
+      j = close + 1;
+      continue;
+    }
+    if (ch === "{") return -1;
+    if (ch === "}") return j;
+    j += 1;
+  }
+  return -1;
+}
+
+/**
+ * 뜻 문장을 글 · 핵심어 조각으로 나눈다 — 핵심어를 가르는 **하나뿐인 자리**다(계약 · 은행 시험 · 지면이 같이 쓴다).
+ * 🔴 `$...$` 안의 `{ }` 는 TeX 묶음(`\frac{1}{2}`)이라 핵심어가 아니다 — 글에 그대로 둔다.
+ * 핵심어는 수식을 품을 수 있다(`{$\frac{\sqrt{3}}{2}$}` — 원장님 2026-09-30 «카텍스 사용할 것»).
+ * 짝이 없거나 겹친 `{` 는 핵심어로 치지 않고 글에 남긴다(스키마가 그 남은 괄호를 거절한다).
+ */
+export function splitBlankSentence(sentence: string): BlankSentencePiece[] {
+  const pieces: BlankSentencePiece[] = [];
+  let text = "";
+  let i = 0;
+  while (i < sentence.length) {
+    const ch = sentence[i]!;
+    if (ch === "$") {
+      const close = sentence.indexOf("$", i + 1);
+      const end = close < 0 ? sentence.length : close + 1;
+      text += sentence.slice(i, end);
+      i = end;
+      continue;
+    }
+    if (ch === "{") {
+      const close = keywordEnd(sentence, i);
+      const inner = close < 0 ? "" : sentence.slice(i + 1, close);
+      if (inner.trim()) {
+        if (text) pieces.push({ kind: "text", text });
+        text = "";
+        pieces.push({ kind: "key", text: inner.trim() });
+        i = close + 1;
+        continue;
+      }
+    }
+    text += ch;
+    i += 1;
+  }
+  if (text) pieces.push({ kind: "text", text });
+  return pieces;
+}
+
+/** 지면에 아무것도 찍지 않는 TeX 명령(묶음 · 글꼴 · 크기) — 보이는 글자 수에서 뺀다. 그 밖의 명령은 한 글자로 센다. */
+const SILENT_TEX =
+  /\\(?:d?frac|tfrac|overline|underline|mathrm|mathit|mathbf|text|left|right|displaystyle|dot|bar|hat|widehat|overrightarrow|overleftrightarrow|overset|underset)(?![A-Za-z])/g;
+
+/**
+ * 지면에 **보이는 글자 수** 어림 — 글자 수 상한을 재는 자다. `$...$` 의 KaTeX 마크업(명령 · 묶음 · 간격)과
+ * 핵심어 괄호는 세지 않는다. 수식으로 옮겼다고 같은 글이 상한에 걸리면 말을 돌려 쓰게 된다(2026-09-30 은행 2차).
+ * 폭을 재는 자가 아니다 — 폭은 지면(cb-paper `textEm`)이 잰다.
+ */
+export function visibleLength(text: string): number {
+  const shown = text.replace(/\$([^$]*)\$/g, (_, math: string) =>
+    math
+      .replace(SILENT_TEX, "")
+      .replace(/\\[A-Za-z]+/g, "·")
+      .replace(/\\[,;:! ]/g, "")
+      .replace(/[{}^_\s]/g, ""),
+  );
+  return [...shown.replace(/[{}]/g, "")].length;
+}
+
+/** 지면 글 한 칸 — 상한은 보이는 글자로 잰다(마크업까지 친 길이는 그 네 배에서 막는다). */
+const paperText = (min: number, max: number) =>
+  z
+    .string()
+    .min(min)
+    .max(max * 4)
+    .refine((s) => visibleLength(s) <= max, `보이는 글자 ${max}자 이내`);
+
 /**
  * 뜻 문장 — 핵심어를 `{ }` 로 감싼다(1~4곳). 빈칸 형식은 `{ }` 자리를 비우고, 채점표는 `{ }` 를 핵심어로 굵게 쓴다.
- * 수식은 `$...$`(KaTeX). `{ }` 안에 `$` 를 넣지 않는다.
+ * 수식은 `$...$`(KaTeX) — 수식 안의 `{ }` 는 TeX 묶음이라 핵심어로 세지 않는다. 답이 식이면 핵심어에 수식을 싣는다(`{$...$}`).
  */
-export const blankSentenceSchema = z
-  .string()
-  .min(8)
-  .max(160)
-  .refine((s) => {
-    const n = (s.match(/\{[^{}]+\}/g) ?? []).length;
-    return (
-      n >= 1 &&
-      n <= 4 &&
-      !/\{[^}]*\{|\}[^{]*\}/.test(s.replace(/\{[^{}]+\}/g, ""))
-    );
-  }, "핵심어 { } 는 1~4곳, 겹치거나 짝이 안 맞으면 안 된다")
-  .refine((s) => !/\{[^}]*\$[^}]*\}/.test(s), "{ } 안에 수식($)을 넣지 않는다");
+export const blankSentenceSchema = paperText(8, 160).refine((s) => {
+  const pieces = splitBlankSentence(s);
+  const n = pieces.filter((p) => p.kind === "key").length;
+  const stray = pieces.some(
+    (p) => p.kind === "text" && /[{}]/.test(p.text.replace(/\$[^$]*\$/g, "")),
+  );
+  return n >= 1 && n <= 4 && !stray;
+}, "핵심어 { } 는 1~4곳, 겹치거나 짝이 안 맞으면 안 된다");
 
 /** 개념 한 장 — B · C 문항, A 의 채점 항목, D 의 가지가 모두 여기서 나온다. */
 export const conceptEntrySchema = z.strictObject({
   id: idSchema,
   section: sectionKeySchema,
-  term: z.string().min(1).max(40),
+  term: paperText(1, 40),
   kind: z.enum(CONCEPT_KINDS),
   level: levelSchema,
   definition: blankSentenceSchema,
   /** D 가지의 «예» — 짧은 물음과 답(없으면 빈 예 칸). */
   example: z
     .strictObject({
-      prompt: z.string().min(4).max(80),
-      answer: z.string().min(1).max(60),
+      prompt: paperText(4, 80),
+      answer: paperText(1, 60),
     })
     .optional(),
 });
@@ -90,10 +175,10 @@ export const oxItemSchema = z.strictObject({
   id: idSchema,
   section: sectionKeySchema,
   level: levelSchema,
-  statement: z.string().min(6).max(120),
+  statement: paperText(6, 120),
   answer: z.boolean(),
   /** 채점표의 까닭 한 줄. */
-  why: z.string().min(4).max(120),
+  why: paperText(4, 120),
 });
 export type OxItem = z.infer<typeof oxItemSchema>;
 
@@ -102,8 +187,8 @@ export const applyItemSchema = z.strictObject({
   id: idSchema,
   section: sectionKeySchema,
   level: levelSchema,
-  prompt: z.string().min(6).max(120),
-  answer: z.string().min(1).max(80),
+  prompt: paperText(6, 120),
+  answer: paperText(1, 80),
 });
 export type ApplyItem = z.infer<typeof applyItemSchema>;
 
@@ -116,7 +201,7 @@ export const figureItemSchema = z.strictObject({
   id: idSchema,
   section: sectionKeySchema,
   level: levelSchema,
-  prompt: z.string().min(2).max(60),
+  prompt: paperText(2, 60),
   viewBox: z.string().regex(/^0 0 \d{2,3} \d{2,3}$/),
   svg: z
     .string()
@@ -141,8 +226,8 @@ export const figureItemSchema = z.strictObject({
   lines: z
     .array(
       z.strictObject({
-        label: z.string().min(1).max(24),
-        answer: z.string().min(2).max(120),
+        label: paperText(1, 24),
+        answer: paperText(2, 120),
       }),
     )
     .min(1)
@@ -232,5 +317,7 @@ export type ConceptBlankSheet =
 
 /** 핵심어 꺼내기 — `{ }` 안 글. */
 export function blankKeywords(sentence: string): string[] {
-  return [...sentence.matchAll(/\{([^{}]+)\}/g)].map((m) => m[1]!.trim());
+  return splitBlankSentence(sentence)
+    .filter((p) => p.kind === "key")
+    .map((p) => p.text);
 }

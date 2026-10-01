@@ -130,27 +130,22 @@ export async function loadSrsStudentContext(
   };
 }
 
-/** A single roster/progress/state batch, using real Student IDs and the existing Class owner gate upstream. */
-export async function loadSrsClassDashboard(
-  cls: { id: string; name: string },
-  now: Date,
-): Promise<MathSrsClassDashboard> {
-  const [students, progress] = await Promise.all([
-    db.student.findMany({
-      where: { classId: cls.id, eywaWithdrawnAt: null },
-      orderBy: { createdAt: "asc" },
-      include: { studentAccount: { select: { id: true, disabledAt: true } } },
-    }),
-    db.progress.findMany({
-      where: {
-        classId: cls.id,
-        recordedAt: { lte: new Date(`${kstDateOf(now)}T00:00:00.000Z`) },
+/**
+ * 반 명단(탈퇴 제외 · 만든 날 순)과 그 학생들의 저장된 기록 — 반 복습 현황과 탐험 교사 보기
+ * (`math-explorers/teacherRoutes.ts`)가 **같은 길**로 읽는다. 반 소유 검사는 부르는 쪽이 먼저 한다.
+ */
+export async function loadSrsClassRoster(classId: string) {
+  const students = await db.student.findMany({
+    where: { classId, eywaWithdrawnAt: null },
+    orderBy: { createdAt: "asc" },
+    include: {
+      // `createdAt` — 탐험 교사 보기의 «시작 전»이 계정을 만든 날부터 센다(27번 문서 §4.2)
+      studentAccount: {
+        select: { id: true, disabledAt: true, createdAt: true },
       },
-      select: progressSelect,
-    }),
-  ]);
+    },
+  });
   const ids = students.map((s) => s.id);
-  const unitIds = [...new Set(progress.map((p) => p.unitId))];
   let stored;
   try {
     const table = srsStateTable();
@@ -164,14 +159,35 @@ export async function loadSrsClassDashboard(
       throw new SrsUnavailable("학생 학습 기록 저장소를 준비 중입니다.");
     throw error;
   }
+  return {
+    students,
+    states: new Map(
+      stored.map((row) => [row.studentId, parseSrsState(row.payload)]),
+    ),
+  };
+}
+
+/** A single roster/progress/state batch, using real Student IDs and the existing Class owner gate upstream. */
+export async function loadSrsClassDashboard(
+  cls: { id: string; name: string },
+  now: Date,
+): Promise<MathSrsClassDashboard> {
+  const [{ students, states }, progress] = await Promise.all([
+    loadSrsClassRoster(cls.id),
+    db.progress.findMany({
+      where: {
+        classId: cls.id,
+        recordedAt: { lte: new Date(`${kstDateOf(now)}T00:00:00.000Z`) },
+      },
+      select: progressSelect,
+    }),
+  ]);
+  const unitIds = [...new Set(progress.map((p) => p.unitId))];
   const units = unitIds.length
     ? await db.unit.findMany({ where: { id: { in: unitIds } } })
     : [];
   const sections = new Map(units.map((u) => [u.id, u.section]));
   const shaped = progress.map(shapeProgress);
-  const states = new Map(
-    stored.map((row) => [row.studentId, parseSrsState(row.payload)]),
-  );
   return {
     class: { id: cls.id, name: cls.name },
     available: true,

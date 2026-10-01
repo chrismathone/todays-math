@@ -53,6 +53,9 @@ export function accountRouteAllowed(
   if (path === "/api/math-srs/course") return method === "GET" && any("srs");
   if (/^\/api\/students\/[^/]+\/math-srs\/course$/.test(path))
     return ["GET", "POST"].includes(method) && any("srs");
+  // 개념 카드(탐험) 기록의 교사 보기(27번 문서) — 읽기만, 메뉴는 위 줄과 같다. 반 쪽은 아래 `/api/classes` 줄이 연다.
+  if (/^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path))
+    return method === "GET" && any("srs");
   if (
     under(path, "/api/problems/transform") ||
     path === "/api/problems/generate"

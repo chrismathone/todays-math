@@ -4,7 +4,7 @@ import type { CourseProblem } from "./types";
 
 type Rational = { numerator: bigint; denominator: bigint };
 type Unit = { name: string; dimension: string; multiplier: number };
-type Quantity = { value: Rational; unit?: Unit };
+type Quantity = { value: Rational; unit?: Unit; notation: string };
 type AnswerSource = Pick<CourseProblem, "answer" | "content">;
 
 const ZERO = BigInt(0);
@@ -149,21 +149,23 @@ function number(text: string): Rational | null {
   return scalar(text);
 }
 
-function quantity(raw: string): Quantity | null {
+/** Keeps the written numeric notation (before reduction) for optional form checks. */
+export function parseCourseAnswerQuantity(raw: string): Quantity | null {
   const text = normalize(raw);
   if (!text) return null;
   const plain = number(text);
-  if (plain) return { value: plain };
+  if (plain) return { value: plain, notation: text };
   for (const unit of UNITS) {
     if (!text.endsWith(unit.name)) continue;
-    const value = number(text.slice(0, -unit.name.length).trim());
-    if (value) return { value, unit };
+    const notation = text.slice(0, -unit.name.length).trim();
+    const value = number(notation);
+    if (value) return { value, unit, notation };
   }
   return null;
 }
 
 /** A value alone cannot assess a required drawing, explanation, or changed notation. */
-function needsComparison(problem: AnswerSource): boolean {
+export function needsComparison(problem: AnswerSource): boolean {
   return /(?:대분수|가분수|기약분수|소수|분수)\s*(?:로|꼴로)\s*(?:고치|고쳐|고쳤|나타내|나타냈|쓰|바꾸)|약분(?:하|해)|통분(?:하|해)|그리시오|그려\s*보|이유를|설명하|식을\s*(?:쓰|만드)/.test(
     problem.content,
   );
@@ -172,7 +174,7 @@ function needsComparison(problem: AnswerSource): boolean {
 export function getCourseProblemInput(
   problem: AnswerSource,
 ): CourseProblem["input"] {
-  const expected = quantity(problem.answer);
+  const expected = parseCourseAnswerQuantity(problem.answer);
   if (!expected || needsComparison(problem)) {
     return {
       mode: "self-check",
@@ -207,8 +209,8 @@ export function validateCourseAnswer(
 ): string | null {
   if (getCourseProblemInput(problem).mode === "self-check") return null;
   if (!input.trim()) return "연습장에 푼 답을 입력해 주세요.";
-  const expected = quantity(problem.answer);
-  const actual = quantity(input);
+  const expected = parseCourseAnswerQuantity(problem.answer);
+  const actual = parseCourseAnswerQuantity(input);
   if (!actual)
     return "수 하나를 입력해 주세요. 분수는 1/2, 대분수는 1 1/2로 쓸 수 있어요.";
   if (actual.unit && actual.unit.dimension !== expected?.unit?.dimension) {
@@ -226,8 +228,20 @@ export function gradeCourseAnswer(
 ): boolean | null {
   if (getCourseProblemInput(problem).mode === "self-check") return null;
   if (validateCourseAnswer(problem, input)) return false;
-  const expected = quantity(problem.answer)!;
-  const actual = quantity(input)!;
+  return sameCourseAnswerValue(
+    parseCourseAnswerQuantity(problem.answer),
+    parseCourseAnswerQuantity(input),
+  );
+}
+
+/** Shared exact value comparison; independent of any requested notation. */
+export function sameCourseAnswerValue(
+  expected: Quantity | null,
+  actual: Quantity | null,
+): boolean {
+  if (!expected || !actual) return false;
+  if (actual.unit && actual.unit.dimension !== expected.unit?.dimension)
+    return false;
   const expectedScale = BigInt(expected.unit?.multiplier ?? 1);
   const actualScale = BigInt(
     actual.unit?.multiplier ?? expected.unit?.multiplier ?? 1,
