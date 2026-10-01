@@ -1,0 +1,92 @@
+{
+  "recordedAt": "2026-10-01T17:02:13.599Z",
+  "semantic": {
+    "model": "jev-latest",
+    "provider": "typesafe",
+    "transport": "TypeSafe direct HTTP API",
+    "responseModels": ["jev-1.13.0"],
+    "mode": "semantic",
+    "total": 12,
+    "completed": 12,
+    "matches": 12,
+    "medianMs": 193.5,
+    "inputTokens": 7806,
+    "outputTokens": 624,
+    "caveat": "Synthetic text-only rubric pilot, not handwriting accuracy."
+  },
+  "ocr": {
+    "model": "jev-latest",
+    "provider": "typesafe",
+    "transport": "TypeSafe direct HTTP API",
+    "responseModels": ["jev-1.13.0"],
+    "mode": "ocr",
+    "total": 40,
+    "completed": 40,
+    "matches": 35,
+    "medianMs": 199.5,
+    "inputTokens": 31741,
+    "outputTokens": 2080,
+    "bySourceModel": [
+      {
+        "sourceModel": "gemini-3.8-flash-low",
+        "total": 10,
+        "matches": 10,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 9
+        },
+        "upstreamReviewOverrides": 0
+      },
+      {
+        "sourceModel": "gemini-3.8-flash-medium",
+        "total": 10,
+        "matches": 9,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 8
+        },
+        "upstreamReviewOverrides": 0
+      },
+      {
+        "sourceModel": "gpt-6-luna",
+        "total": 10,
+        "matches": 6,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 6
+        },
+        "upstreamReviewOverrides": 0
+      },
+      {
+        "sourceModel": "gpt-6.1-sol",
+        "total": 10,
+        "matches": 10,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 9
+        },
+        "upstreamReviewOverrides": 0
+      }
+    ],
+    "caveat": "End-to-end decisions from upstream extracted text; Jev has no access to source images."
+  },
+  "totalRequests": 52,
+  "inputTokens": 39547,
+  "outputTokens": 2704,
+  "actualBilledCost": null,
+  "limitations": [
+    "Synthetic concept cases with explicit rubrics; no independently teacher-validated free-response benchmark.",
+    "No semantic head-to-head comparison with other models.",
+    "One run per case; matching choice-check rules does not demonstrate added accuracy.",
+    "Jev confidence is not end-to-end correctness, and no confidence threshold was used for automatic grading."
+  ],
+  "artifacts": {
+    "semantic": ".qa-artifacts/concept-photo-bench/typesafe-semantic-1/summary.json",
+    "ocr": ".qa-artifacts/concept-photo-bench/typesafe-ocr-1/summary.json",
+    "html": ".qa-artifacts/concept-photo-bench/results/report.html"
+  }
+}

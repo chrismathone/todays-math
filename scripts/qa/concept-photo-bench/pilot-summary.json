@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-10-01T16:36:31.385Z",
+  "createdAt": "2026-10-01T17:01:18.002Z",
   "labelStatus": "assistant-reviewed pilot; teacher verification pending",
   "stats": [
     {
@@ -64,22 +64,101 @@
     }
   ],
   "jev": {
-    "completed": 0,
-    "total": 1,
-    "accessError": "Free tier users do not have access to this model. Upgrade to paid credits at https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai%3Fmodal%3Dtop-up for unrestricted access.",
-    "diagnosis": "사용자 화면에서 Injaewon의 Pro 팀과 활성 키 확인. 화면의 키 끝자리도 로컬 키와 일치. CLI의 옛 로그인은 Gateway 키 직접 호출과 무관함. 실제 Jev 요청은 Gateway 무료 등급 제한으로 거절됨. Vercel Pro와 별개인 Gateway 크레딧 구매 및 유료 등급 반영 상태를 확인해야 함."
+    "model": "jev-latest",
+    "provider": "typesafe",
+    "transport": "TypeSafe direct HTTP API",
+    "responseModels": ["jev-1.13.0"],
+    "mode": "semantic",
+    "total": 12,
+    "completed": 12,
+    "matches": 12,
+    "medianMs": 193.5,
+    "inputTokens": 7806,
+    "outputTokens": 624,
+    "caveat": "Synthetic text-only rubric pilot, not handwriting accuracy.",
+    "accessError": null,
+    "diagnosis": null
   },
   "limitations": [
     "Small convenience sample from three middle-school exam scans; only two contain handwriting. Original authorship and correction timing are unknown.",
     "Assistant-reviewed labels, not teacher-validated ground truth. Agreement below is not a population accuracy estimate.",
     "Choice selection, blank detection and conflict routing only; full handwritten transcription, concept semantics and partial credit are not scored.",
     "CLI timing includes agent initialization and image-tool overhead; APIs may behave differently. One run per case, with model groups running concurrently.",
-    "No API charges measured. API token unit prices and hypothetical estimates are separate from subscription usage."
+    "No API charges measured. API token unit prices and hypothetical estimates are separate from subscription usage.",
+    "Direct Jev results, when included, use synthetic concept text and existing extracted answers. Their HTTP timings are separate from vision CLI timings; token counts are not billing receipts."
   ],
   "artifacts": {
     "html": ".qa-artifacts/concept-photo-bench/results/report.html",
     "rawResults": ".qa-artifacts/concept-photo-bench/results/raw",
-    "privateManifest": ".qa-artifacts/concept-photo-bench/samples/manifest.json"
+    "privateManifest": ".qa-artifacts/concept-photo-bench/samples/manifest.json",
+    "semantic": ".qa-artifacts/concept-photo-bench/typesafe-semantic-1/summary.json",
+    "ocr": ".qa-artifacts/concept-photo-bench/typesafe-ocr-1/summary.json"
   },
-  "methodologyNote": "blank-q6 was excluded post hoc in the sensitivity analysis because its provisional label is uncertain. Original model responses and labels were preserved."
+  "methodologyNote": "blank-q6 was excluded post hoc in the sensitivity analysis because its provisional label is uncertain. Original model responses and labels were preserved.",
+  "jevOcr": {
+    "model": "jev-latest",
+    "provider": "typesafe",
+    "transport": "TypeSafe direct HTTP API",
+    "responseModels": ["jev-1.13.0"],
+    "mode": "ocr",
+    "total": 40,
+    "completed": 40,
+    "matches": 35,
+    "medianMs": 199.5,
+    "inputTokens": 31741,
+    "outputTokens": 2080,
+    "bySourceModel": [
+      {
+        "sourceModel": "gemini-3.8-flash-low",
+        "total": 10,
+        "matches": 10,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 9
+        },
+        "upstreamReviewOverrides": 0
+      },
+      {
+        "sourceModel": "gemini-3.8-flash-medium",
+        "total": 10,
+        "matches": 9,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 8
+        },
+        "upstreamReviewOverrides": 0
+      },
+      {
+        "sourceModel": "gpt-6-luna",
+        "total": 10,
+        "matches": 6,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 6
+        },
+        "upstreamReviewOverrides": 0
+      },
+      {
+        "sourceModel": "gpt-6.1-sol",
+        "total": 10,
+        "matches": 10,
+        "ruleMatches": 10,
+        "excludingUncertainLabels": {
+          "total": 9,
+          "matches": 9
+        },
+        "upstreamReviewOverrides": 0
+      }
+    ],
+    "caveat": "End-to-end decisions from upstream extracted text; Jev has no access to source images."
+  },
+  "jevGatewayAttempt": {
+    "completed": 0,
+    "total": 1,
+    "accessError": "Free tier users do not have access to this model. Upgrade to paid credits at https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai%3Fmodal%3Dtop-up for unrestricted access.",
+    "diagnosis": "사용자 화면에서 Injaewon의 Pro 팀과 활성 키 확인. 화면의 키 끝자리도 로컬 키와 일치. CLI의 옛 로그인은 Gateway 키 직접 호출과 무관함. 실제 Jev 요청은 Gateway 무료 등급 제한으로 거절됨. Vercel Pro와 별개인 Gateway 크레딧 구매 및 유료 등급 반영 상태를 확인해야 함."
+  }
 }

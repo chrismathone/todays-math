@@ -24,9 +24,26 @@
 
 ## Jev / Vercel
 
-`jev.mjs`는 AI SDK 7의 `experimental_evaluate`와 `createGateway().evaluationModel('typesafe-ai/jev')`를 사용한다. 서로 다른 학생 답안은 별도 요청으로 보낸다. 루브릭과 모범 답안을 주되, 실험용 기대 분류는 전달하지 않는다.
+`jev.mjs`는 `--provider typesafe`로 공식 HTTP API(`https://api.typesafe.ai/v1/systemone`)를 직접 호출한다. 기본 `--provider gateway`는 AI SDK 7의 `experimental_evaluate`와 `createGateway().evaluationModel('typesafe-ai/jev')`를 사용한다. 서로 다른 학생 답안은 별도 요청으로 보낸다. 루브릭과 모범 답안을 주되, 실험용 기대 분류는 전달하지 않는다.
 
-실제 요청은 로컬 Gateway 키로 호출했으며 반복 확인에서도 `Free tier users do not have access to this model`로 거절됐다. 완료된 Jev 평가 결과는 **0개**다. 사용자 화면은 `Injaewon's projects · Pro`와 활성 키를 보여 주며, 화면의 키 끝자리도 로컬 키와 일치한다. 따라서 잘못된 팀의 키라고 추정했던 초기 진단은 철회한다. CLI는 예전 계정이지만, Gateway 키로 직접 호출할 때 CLI 로그인은 필요하지 않다.
+### TypeSafe 직접 연결 결과
+
+사용자가 제공한 `TYPESAFE_API_KEY`로 **52개 요청이 성공**했다. `jev-latest`를 요청했고 전부 `jev-1.13.0`으로 응답했다.
+
+| 실험                       | 결과                                         | HTTP 중앙 시간 |
+| -------------------------- | -------------------------------------------- | -------------: |
+| 합성 한국어 개념 답안 12개 | 기대 분류 12/12 일치                         |        0.194초 |
+| 기존 사진 판독 결과 40개   | 임시 기준 35/40, 결정적 비교 규칙 40/40 일치 |        0.200초 |
+
+표현이 다른 정답, 약수/배수 혼동, 1을 소수로 보는 오개념, 조건 누락의 부분점수, 기약분수 형식, 빈 답, 판독 불가, 답안에 섞인 명령을 모두 준비한 기준대로 분류했다. 이는 명시적인 루브릭을 둔 합성 예시의 기능 확인이며, 실제 학생 개념 답안 정확도나 Gemini/Luna 대비 우위를 증명하지 않는다.
+
+사진 후속 채점은 Flash low 10/10, Flash medium 9/10, Luna 6/10, Sol 10/10으로 기존 규칙의 결과와 같았다. 판독기가 요청한 검토를 다른 분류로 바꾼 경우는 0건이다. 이 선택형 표본에서는 Jev 추가로 얻는 정확도 개선이 관찰되지 않았다. 개념 서술 채점 후보로는 후속 검증 가치가 있다.
+
+합계 입력 39,547토큰, 출력 2,704토큰을 기록했다. 청구 금액은 확인하지 않았다. confidence는 정답률이 아니며 교사 확인 없이 자동 승인하는 임계값으로 사용하지 않았다. 상세 결과는 HTML 보고서와 `typesafe-direct-summary.json`에 보존했다.
+
+### 앞선 Gateway 접근 실패 이력
+
+앞선 Gateway 요청은 로컬 Gateway 키로 호출했으며 반복 확인에서도 `Free tier users do not have access to this model`로 거절됐다. Gateway 경유로 완료된 Jev 평가 결과는 **0개**다. 사용자 화면은 `Injaewon's projects · Pro`와 활성 키를 보여 주며, 화면의 키 끝자리도 로컬 키와 일치한다. 따라서 잘못된 팀의 키라고 추정했던 초기 진단은 철회한다. CLI는 예전 계정이지만, Gateway 키로 직접 호출할 때 CLI 로그인은 필요하지 않다.
 
 **Vercel Pro 구독과 AI Gateway의 무료/유료 크레딧 등급은 별개다.** [공식 가격 문서](https://vercel.com/docs/ai-gateway/pricing)에 따르면 무료 등급은 일부 모델만 지원하며 Gateway 크레딧 구매로 유료 등급으로 전환된다. 확인된 사실은 이 키의 Jev 요청이 Gateway 무료 등급으로 판정된다는 것이다. 다음 확인 대상은 해당 팀의 Gateway 크레딧 구매 이력과 유료 등급 반영 상태다. 이미 구매했다면 Vercel 측 상태 확인이 필요하다. 결제·키 교체·프로젝트 재연결은 수행하지 않았다.
 
@@ -51,7 +68,7 @@ Jev는 텍스트 평가 모델이므로 사진 판독기를 대체하지 않는�
 
 ## 다시 실행하기
 
-저장소 루트에서 실행한다. Node 24, PyMuPDF, 로그인된 Codex / Antigravity CLI가 필요하다. Codex는 기존 ChatGPT 로그인으로 강제하고 자식 프로세스에서 `OPENAI_API_KEY`를 제거한다. Jev만 프로젝트의 기존 `AI_GATEWAY_API_KEY`를 사용한다.
+저장소 루트에서 실행한다. Node 24, PyMuPDF, 로그인된 Codex / Antigravity CLI가 필요하다. Codex는 기존 ChatGPT 로그인으로 강제하고 자식 프로세스에서 `OPENAI_API_KEY`를 제거한다. Jev 직접 호출은 `TYPESAFE_API_KEY`, Gateway 호출은 `AI_GATEWAY_API_KEY`를 사용하며 서로 자동 대체하지 않는다.
 
 원본 경로·라벨·이미지·모델 원문은 Git에서 제외된 `.qa-artifacts/concept-photo-bench/` 아래에 둔다. 예시 레시피:
 
@@ -83,7 +100,15 @@ node scripts/qa/concept-photo-bench/run.mjs .qa-artifacts/concept-photo-bench/sa
 node scripts/qa/concept-photo-bench/report.mjs .qa-artifacts/concept-photo-bench/samples/manifest.json .qa-artifacts/concept-photo-bench/run-2
 ```
 
-Jev 접근이 해결된 뒤 새 출력 폴더로 실행:
+TypeSafe에서 직접 발급받은 키를 `.env`의 `TYPESAFE_API_KEY`에 저장하고 실행:
+
+```powershell
+node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs semantic scripts/qa/concept-photo-bench/semantic-cases.json .qa-artifacts/concept-photo-bench/typesafe-semantic-2 --provider typesafe
+node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs ocr .qa-artifacts/concept-photo-bench/results .qa-artifacts/concept-photo-bench/typesafe-ocr-2 all .qa-artifacts/concept-photo-bench/samples/manifest.json --provider typesafe
+node scripts/qa/concept-photo-bench/report.mjs .qa-artifacts/concept-photo-bench/samples/manifest.json .qa-artifacts/concept-photo-bench/results .qa-artifacts/concept-photo-bench/typesafe-semantic-2/summary.json .qa-artifacts/concept-photo-bench/typesafe-ocr-2/summary.json
+```
+
+기존 Gateway 경로는 해당 서비스의 접근이 해결된 뒤 새 출력 폴더로 실행:
 
 ```powershell
 node --env-file=.env scripts/qa/concept-photo-bench/jev.mjs semantic scripts/qa/concept-photo-bench/semantic-cases.json .qa-artifacts/concept-photo-bench/jev-semantic-2
