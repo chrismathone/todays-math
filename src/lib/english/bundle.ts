@@ -15,12 +15,9 @@
  *
  * 순수 함수다(서버 · 클라이언트 같이). 화면 · 교사용 머리의 문장도 여기서 짓는다 — 두 곳의 말이 갈리지 않게.
  */
-import type {
-  EnglishQuestionType,
-  EnglishSet,
-} from "@/contracts/english.contract";
+import type { EnglishSet } from "@/contracts/english.contract";
 
-import { findVariantLeaks, type EnglishLeak } from "./leak";
+import { findVariantLeaks, VARIANT_TYPES, type EnglishLeak } from "./leak";
 
 export type EnglishBundleKind = "변형" | "독해";
 
@@ -54,14 +51,6 @@ export interface PlanEnglishBundlesOptions {
   /** 변형 문항을 한 묶음으로 합친다(선생님이 영향을 읽고 누른 뒤) */
   merge?: boolean;
 }
-
-/** 발문 안에 문제용 지문이 따로 드는 유형 — `leak.ts` 의 대상과 같다 */
-const VARIANT_TYPES: readonly EnglishQuestionType[] = [
-  "어법",
-  "빈칸 추론",
-  "문장 삽입",
-  "원문 복원",
-];
 
 /** `from` 에서 누출 화살표(답 → 그 답을 보여 주는 지문)를 따라 `to` 에 닿는가 — `within` 안에서만 */
 function reaches(

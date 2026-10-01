@@ -24,7 +24,13 @@ export function normalizeEnglishText(text: string): string {
 export type EnglishDraftExpectation = Pick<
   EnglishGenerateRequest,
   "mode" | "passage" | "count" | "types"
->;
+> & {
+  /**
+   * 붙여넣기 · 수정 요청문만. 고른 쪽이 어법이면 어휘를, 어휘이면 어법을 결과에 허용한다.
+   * 그 짝은 필수가 아니다. 다른 미선택 유형 · 요청 유형 누락 · 문항 수는 그대로 본다.
+   */
+  allowUnderlineCompanion?: boolean;
+};
 
 export type EnglishDraftVerdict =
   | { ok: true; draft: EnglishDraft }
@@ -109,8 +115,13 @@ export function validateEnglishDraft(
         message: `요청한 문항 수(${expect.count})와 다릅니다 (${draft.questions.length}문항).`,
       });
     const wanted = new Set<EnglishQuestionType>(expect.types);
+    const allowed = new Set(wanted);
+    if (expect.allowUnderlineCompanion) {
+      if (wanted.has("어법")) allowed.add("어휘");
+      if (wanted.has("어휘")) allowed.add("어법");
+    }
     draft.questions.forEach((question, index) => {
-      if (!wanted.has(question.type))
+      if (!allowed.has(question.type))
         issues.push({
           question: index,
           message: `고르지 않은 유형입니다: ${question.type}.`,

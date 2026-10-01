@@ -14,6 +14,15 @@
  */
 import type { EnglishQuestion } from "@/contracts/english.contract";
 
+/** 밑줄을 그리는 유형 — 어법과 어휘가 같은 지면 규칙을 쓴다 */
+export const ENGLISH_UNDERLINE_TYPES = ["어법", "어휘"] as const;
+
+export function isEnglishUnderlineType(
+  type: string,
+): type is (typeof ENGLISH_UNDERLINE_TYPES)[number] {
+  return (ENGLISH_UNDERLINE_TYPES as readonly string[]).includes(type);
+}
+
 export interface EnglishUnderlinePart {
   text: string;
   underline: boolean;
@@ -76,7 +85,7 @@ export function findEnglishUnderlineProblems(
 ): EnglishUnderlineProblems {
   const problems: EnglishUnderlineProblems = { blocking: [], warnings: [] };
   questions.forEach((question, index) => {
-    if (question.type !== "어법") {
+    if (!isEnglishUnderlineType(question.type)) {
       TAG.lastIndex = 0;
       if (TAG.test(question.prompt)) problems.warnings.push(index);
       TAG.lastIndex = 0;
@@ -122,16 +131,16 @@ export function englishUnderlineNotices(
   const errors: string[] = [];
   if (none.length)
     errors.push(
-      `${list(none)} 어법 문항에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.`,
+      `${list(none)} 밑줄 문항(어법 · 어휘)에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.`,
     );
   if (unbalanced.length)
     errors.push(
-      `${list(unbalanced)} 어법 문항의 밑줄 시작 · 끝 표기가 맞지 않습니다. 문항을 고친 뒤 학생용을 인쇄하십시오.`,
+      `${list(unbalanced)} 밑줄 문항(어법 · 어휘)의 밑줄 시작 · 끝 표기가 맞지 않습니다. 문항을 고친 뒤 학생용을 인쇄하십시오.`,
     );
   return {
     errors,
     warning: problems.warnings.length
-      ? `${list(problems.warnings)} 문항의 발문에 밑줄 표기(<u>)가 있습니다. 어법 문항이 아니어서 글자 그대로 찍힙니다.`
+      ? `${list(problems.warnings)} 문항의 발문에 밑줄 표기(<u>)가 있습니다. 밑줄 문항(어법 · 어휘)이 아니어서 글자 그대로 찍힙니다.`
       : null,
     teacherNote: problems.blocking.length
       ? problems.blocking

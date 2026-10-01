@@ -48,6 +48,7 @@ export const ENGLISH_ROUTE_MESSAGES = {
   draftRejected: "문항이 규칙에 맞지 않습니다. 표시된 자리를 고쳐 주세요.",
   revisionMismatch:
     "다른 곳에서 먼저 저장됐습니다. 다시 불러온 뒤 고쳐 주세요.",
+  clientKeyConflict: "같은 저장 키인데 내용이 다릅니다. 새로 저장해 주세요.",
   unsupportedFile: "pdf · docx · txt · png · jpg 파일만 올릴 수 있습니다.",
   emptyFile: "파일이 비어 있습니다.",
   fileFieldMissing: "file 칸에 파일을 넣어 주세요.",
@@ -70,6 +71,10 @@ export const draftRejected = (issues: EnglishDraftIssue[]) =>
 /** 409 — revision CAS 가 어긋났다 */
 export const revisionMismatch = () =>
   jsonError("REVISION_MISMATCH", ENGLISH_ROUTE_MESSAGES.revisionMismatch, 409);
+
+/** 409 — 같은 clientKey 인데 저장할 본문이 다르다. 기존 행은 그대로 둔다 */
+export const clientKeyConflict = () =>
+  jsonError("CONFLICT", ENGLISH_ROUTE_MESSAGES.clientKeyConflict, 409);
 
 // ─────────────────────────────────────────────
 // 자료 파일 규칙 (25 §3 — pdf · docx · txt · png · jpg ≤ ENGLISH_MATERIAL_MAX_BYTES, 4MB — Vercel 본문 상한 4.5MB 아래)

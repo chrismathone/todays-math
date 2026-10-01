@@ -46,8 +46,8 @@ export const englishGradeSchema = z.enum(ENGLISH_GRADES);
 export type EnglishGrade = z.infer<typeof englishGradeSchema>;
 
 /**
- * 문항 유형 — 앞 여섯은 AI·ChatGPT 가 만드는 유형, «원문 복원»은 규칙 기반(25 §4.2)이라
- * 생성 요청(`englishGenerateRequestSchema.types`)에는 들어가지 않는다.
+ * 문항 유형 — 어휘를 포함한 앞의 유형은 AI·ChatGPT 가 만든다.
+ * «원문 복원»은 규칙 기반(25 §4.2)이라 생성 요청에는 들어가지 않는다.
  */
 export const ENGLISH_QUESTION_TYPES = [
   "주제",
@@ -56,6 +56,7 @@ export const ENGLISH_QUESTION_TYPES = [
   "빈칸 추론",
   "문장 삽입",
   "서술형",
+  "어휘",
   "원문 복원",
 ] as const;
 export const englishQuestionTypeSchema = z.enum(ENGLISH_QUESTION_TYPES);
@@ -237,9 +238,14 @@ export const englishSetMetaSchema = z.strictObject({
     .array(englishGeneratedTypeSchema)
     .max(ENGLISH_GENERATED_TYPES.length)
     .optional(),
-  materialName: z.string().trim().max(200).optional(),
+  materialName: z.string().trim().max(255).optional(),
   model: z.string().trim().max(80).optional(),
   promptVersion: z.string().trim().max(16).optional(),
+  /**
+   * 저장 재시도 키 — 만들기 화면이 검증을 통과한 초안마다 하나 짓는다.
+   * 같은 시험·같은 키·같은 본문은 그 행을 돌려주고, 본문이 다르면 409. 없으면 매번 새 행.
+   */
+  clientKey: uuidSchema.optional(),
 });
 export type EnglishSetMeta = z.infer<typeof englishSetMetaSchema>;
 

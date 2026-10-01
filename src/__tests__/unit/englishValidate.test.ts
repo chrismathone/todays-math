@@ -140,6 +140,85 @@ describe("validateEnglishDraft — 생성 요청과 견주기", () => {
   });
 });
 
+describe("validateEnglishDraft — 어법 · 어휘 붙여넣기 허용", () => {
+  const grammar = { ...good.questions[0]!, type: "어법" as const };
+  const vocab = {
+    ...good.questions[0]!,
+    type: "어휘" as const,
+    prompt: "밑줄 친 부분 중 어휘상 틀린 것은?",
+  };
+  const expectGrammar = {
+    mode: "new" as const,
+    passage: "",
+    count: 2,
+    types: ["어법" as const],
+    allowUnderlineCompanion: true,
+  };
+
+  it("고른 어법 옆에 어휘가 있어도 통과하고, 어휘는 필수가 아니다", () => {
+    expect(
+      validateEnglishDraft(
+        { ...good, questions: [grammar, vocab] },
+        expectGrammar,
+      ).ok,
+    ).toBe(true);
+    expect(
+      validateEnglishDraft(
+        { ...good, questions: [grammar] },
+        { ...expectGrammar, count: 1 },
+      ).ok,
+    ).toBe(true);
+    expect(
+      validateEnglishDraft(
+        { ...good, questions: [vocab, grammar] },
+        { ...expectGrammar, types: ["어휘"] },
+      ).ok,
+    ).toBe(true);
+  });
+
+  it("허용을 끄면 어휘는 고르지 않은 유형이고, 짝이 아닌 유형과 요청 누락은 그대로 거절한다", () => {
+    const strict = validateEnglishDraft(
+      { ...good, questions: [grammar, vocab] },
+      { ...expectGrammar, allowUnderlineCompanion: false },
+    );
+    expect(strict.ok).toBe(false);
+    if (!strict.ok)
+      expect(strict.issues.map((issue) => issue.message).join(" ")).toContain(
+        "고르지 않은 유형입니다: 어휘",
+      );
+
+    const other = validateEnglishDraft(
+      { ...good, questions: [grammar, good.questions[1]!] },
+      expectGrammar,
+    );
+    expect(other.ok).toBe(false);
+    if (!other.ok)
+      expect(other.issues.map((issue) => issue.message).join(" ")).toContain(
+        "고르지 않은 유형입니다: 서술형",
+      );
+
+    const missing = validateEnglishDraft(
+      { ...good, questions: [vocab, vocab] },
+      expectGrammar,
+    );
+    expect(missing.ok).toBe(false);
+    if (!missing.ok)
+      expect(missing.issues.map((issue) => issue.message).join(" ")).toContain(
+        "요청한 유형이 빠졌습니다: 어법",
+      );
+
+    const topicOnly = validateEnglishDraft(
+      { ...good, questions: [good.questions[0]!, vocab] },
+      { ...expectGrammar, types: ["주제"] },
+    );
+    expect(topicOnly.ok).toBe(false);
+    if (!topicOnly.ok)
+      expect(
+        topicOnly.issues.map((issue) => issue.message).join(" "),
+      ).toContain("고르지 않은 유형입니다: 어휘");
+  });
+});
+
 describe("makeCloze — 규칙 기반 원문 복원", () => {
   it("문장을 나누고 7단어 이상 문장에서 6글자 이상 가장 긴 단어를 빈칸으로 만든다", () => {
     expect(splitEnglishSentences(passage)).toHaveLength(3);

@@ -30,8 +30,10 @@ export interface EnglishLeak {
   snippet: string;
 }
 
-const VARIANT_TYPES: readonly EnglishQuestionType[] = [
+/** 문제용 지문이 발문 안에 드는 유형 — `bundle.ts` 도 이 목록을 쓴다 */
+export const VARIANT_TYPES: readonly EnglishQuestionType[] = [
   "어법",
+  "어휘",
   "빈칸 추론",
   "문장 삽입",
   "원문 복원",
@@ -80,7 +82,7 @@ function withContext(tokens: string[], span: Span): Span {
 function answerSpan(question: EnglishQuestion, p: string[]): Span | null {
   const tok = tokenizeEnglish(question.prompt);
   const alignment = alignTokens(p, tok.tokens);
-  if (question.type === "어법") {
+  if (question.type === "어법" || question.type === "어휘") {
     const at = tok.markers[Number(question.answer) - 1];
     if (at === null || at === undefined) return null;
     // 정답 밑줄에 닿은 고친 곳 — `quality.ts` 의 «정답 밑줄이 원문에서 고친 곳» 과 같은 조건. 발췌 앞뒤 세 낱말 안의

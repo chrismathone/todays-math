@@ -180,6 +180,56 @@ describe("planEnglishBundles — 묶음을 짓는 규칙", () => {
     expect(plan.leaks.length).toBeGreaterThan(0);
     expect(plan.bundles.map((b) => b.questions)).toEqual([[0], [1]]);
   });
+
+  it("어휘는 변형이다 — 유형 이름만으로 어법과 갈라지지 않고, 독해 원 지문과도 나뉜다", () => {
+    const mixed = {
+      passage: "P",
+      questions: [q("어휘"), q("주제")],
+    };
+    expect(shape(planEnglishBundles(mixed, { leaks: [] }))).toEqual([
+      [1, "변형", [0], false],
+      [2, "독해", [1], true],
+    ]);
+    const together = {
+      passage: "P",
+      questions: [q("어법"), q("어휘")],
+    };
+    expect(shape(planEnglishBundles(together, { leaks: [] }))).toEqual([
+      [1, "변형", [0, 1], false],
+    ]);
+  });
+
+  it("어휘와 빈칸이 서로의 원래 표현을 보여 주면 묶음이 나뉘고, 순환으로 남는 짝은 open 에 남는다", () => {
+    const S1 = "Many students think that talent decides success.";
+    const S2 = "However, research shows that steady practice matters more.";
+    const S3 =
+      "A pianist who practices every day improves faster than one who waits for inspiration.";
+    const S4 = "Small efforts, repeated over time, build real skill.";
+    const S5 = "Therefore, habits are more important than gifts.";
+    const set = {
+      passage: [S1, S2, S3, S4, S5].join(" "),
+      questions: [
+        {
+          ...q("어휘"),
+          prompt: `밑줄 친 부분 중 어휘상 틀린 것은?\nMany students ①<u>think</u> that talent decides success. However, research ②<u>shows</u> that steady practice matters more. A pianist who ③<u>practices</u> every day improves faster than one who waits for ④<u>ideas</u>. Small efforts, ⑤<u>repeated</u> over time, build real skill. Therefore, habits are more important than gifts.`,
+          options: ["think", "shows", "practices", "ideas", "repeated"],
+          answer: "4",
+        },
+        {
+          ...q("빈칸 추론"),
+          prompt: `다음 빈칸에 들어갈 말로 가장 적절한 것은?\n${S1} However, research shows that ________ matters more. ${S3} ${S4} ${S5}`,
+          options: ["steady practice", "b", "c", "d", "e"],
+        },
+      ],
+    };
+    const plan = planEnglishBundles(set);
+    expect(plan.leaks.some((item) => item.kind === "어휘")).toBe(true);
+    expect(plan.bundles.every((bundle) => bundle.kind === "변형")).toBe(true);
+    expect(plan.open.length).toBeGreaterThan(0);
+    expect(englishBundleNotices(plan).shown).not.toBe(
+      "검사에서 찾은 누출 없음",
+    );
+  });
 });
 
 describe("묶음 이름 · 수록 문항", () => {

@@ -562,7 +562,54 @@ function variantChecks(
       "정답 밑줄이 원문에서 고친 곳이어야 합니다.",
     ),
   );
+  if (question.type === "어휘") out.push(...vocabUnderlineChecks(question));
   return out;
+}
+
+const VOCAB_MARKS = ["①", "②", "③", "④", "⑤"] as const;
+
+/** 어휘만 — 밑줄 다섯이 보기와 같은지. 어법 문장은 바꾸지 않는다. */
+function vocabUnderlineChecks(question: EnglishQuestion): EnglishCheck[] {
+  const pairs = [...question.prompt.matchAll(/([①-⑤])\s*<u>([\s\S]*?)<\/u>/gi)];
+  const marks = pairs.map((match) => match[1] ?? "");
+  const unique = new Set(marks);
+  const markersOk =
+    pairs.length === VOCAB_MARKS.length &&
+    unique.size === VOCAB_MARKS.length &&
+    VOCAB_MARKS.every((mark) => unique.has(mark));
+  const texts = new Map(
+    pairs.map((match) => [
+      match[1],
+      (match[2] ?? "").replace(/\s+/g, " ").trim().toLowerCase(),
+    ]),
+  );
+  const optionsOk =
+    markersOk &&
+    question.options.length === VOCAB_MARKS.length &&
+    question.options.every((option, index) => {
+      const underlined = texts.get(VOCAB_MARKS[index]);
+      const value = stripOptionMarker(stripMarkup(option))
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+      return (
+        underlined !== undefined && value === underlined && value.length > 0
+      );
+    });
+  return [
+    check(
+      "vocab.markers",
+      "structure",
+      markersOk,
+      "어휘 밑줄 ①~⑤ 가 각각 한 번씩 <u> 구간과 대응해야 합니다.",
+    ),
+    check(
+      "vocab.options-match",
+      "structure",
+      optionsOk,
+      "어휘 보기는 그 번호의 밑줄과 같아야 합니다.",
+    ),
+  ];
 }
 
 /** 원문 문장마다의 단어 토큰 — 토큰에는 문장 끝 표시가 없어 원문 글에서 나눈다 */
@@ -596,6 +643,7 @@ function questionChecks(
   );
   if (
     question.type === "어법" ||
+    question.type === "어휘" ||
     question.type === "빈칸 추론" ||
     question.type === "문장 삽입"
   )

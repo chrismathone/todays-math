@@ -128,10 +128,10 @@ const writeText = vi.fn();
 const onSaved = vi.fn();
 const onNotice = vi.fn();
 
-function setup() {
+function setup(nextExam: EnglishExam = exam) {
   return render(
     <EnglishMakerView
-      exam={exam}
+      exam={nextExam}
       materials={materials}
       onSaved={onSaved}
       onNotice={onNotice}
@@ -370,7 +370,11 @@ describe("ChatGPT 로 제작", () => {
       count: 3,
       words: 200,
       types: ["주제", "어법"],
+      clientKey: expect.any(String),
     });
+    expect((body.meta as { clientKey: string }).clientKey).toMatch(
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i,
+    );
     expect(onSaved).toHaveBeenCalledWith("set-1");
     expect(onNotice).toHaveBeenCalledWith(
       expect.stringContaining("초안"),
@@ -575,6 +579,7 @@ describe("원문 복원", () => {
       path: "cloze",
       count: 3,
       materialName: "3과 지문",
+      clientKey: expect.any(String),
     });
     expect(onSaved).toHaveBeenCalledWith("set-2");
   });
@@ -619,6 +624,7 @@ describe("API 직접 생성", () => {
       "AI 연결이 설정되지 않았습니다.",
     );
     expect(onSaved).not.toHaveBeenCalled();
+    expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
   });
 
   it("200 이면 초안을 세트로 저장하고 onSaved — 상태 줄은 «AI 연결됨»", async () => {
@@ -666,6 +672,7 @@ describe("API 직접 생성", () => {
       types: ["주제", "어법"],
       model: "gpt-6-luna",
       promptVersion: "v3",
+      clientKey: expect.any(String),
     });
     expect(onSaved).toHaveBeenCalledWith("set-3");
     expect(screen.getByRole("status")).toHaveTextContent("AI 연결됨");
@@ -700,5 +707,217 @@ describe("API 직접 생성", () => {
     expect(alert).toHaveTextContent("5개");
     expect(button("AI 지문·문제 생성")).not.toBeDisabled();
     expect(onSaved).not.toHaveBeenCalled();
+    expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
+  });
+
+  it("저장이 503 이어도 연결 대기로 바꾸지 않고, 다시 저장은 생성을 다시 하지 않는다", async () => {
+    fetchMock
+      .mockResolvedValueOnce(
+        jsonResponse({
+          data: { ...goodDraft, source: "deepseek" },
+          model: { name: "gpt-6-luna", promptVersion: "v3" },
+        }),
+      )
+      .mockResolvedValueOnce(
+        jsonResponse(
+          { error: { code: "INTERNAL", message: "저장 응답이 끊겼습니다." } },
+          503,
+        ),
+      )
+      .mockResolvedValueOnce(jsonResponse(savedSet("set-4", "deepseek"), 201));
+    setup();
+    fireEvent.click(tab("API 직접 생성"));
+    fillTopic("등굣길의 놀이");
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    await act(async () => {
+      fireEvent.click(button("AI 지문·문제 생성"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.getByRole("status")).toHaveTextContent("AI 연결됨");
+    expect(screen.queryByText(/연결 대기/)).toBeNull();
+    const first = await lastRequestBody();
+    fillTopic("바꾼 소재");
+    await act(async () => {
+      fireEvent.click(button("다시 저장"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+    expect(fetchMock.mock.calls[0]?.[0]).toBe("/api/english/generate");
+    expect(fetchMock.mock.calls[2]?.[0]).toBe(
+      `/api/english/exams/${exam.id}/sets`,
+    );
+    const retryInit = fetchMock.mock.calls[2]?.[1] as RequestInit;
+    expect(JSON.parse(String(retryInit.body))).toEqual(first);
+    expect(
+      (JSON.parse(String(retryInit.body)) as { meta: { topic: string } }).meta
+        .topic,
+    ).toBe("등굣길의 놀이");
+    expect(onSaved).toHaveBeenCalledWith("set-4");
+    expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
+  });
+});
+
+describe("문항 수", () => {
+  const six = [
+    "주제",
+    "내용 일치",
+    "어법",
+    "빈칸 추론",
+    "문장 삽입",
+    "서술형",
+  ] as const;
+
+  it("유형이 여섯이면 처음 문항 수는 6이고 선택지에 6문항이 있다", () => {
+    setup({ ...exam, types: [...six] });
+    expect(screen.getByLabelText("문항 수")).toHaveValue("6");
+    expect(screen.getByRole("option", { name: "6문항" })).toBeInTheDocument();
+  });
+
+  it("출제 설정을 불러오면 유형 수를 담도록 문항 수를 올린다", () => {
+    setup({ ...exam, types: [...six] });
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.click(button("이 시험의 출제 설정 불러오기"));
+    expect(screen.getByLabelText("문항 수")).toHaveValue("6");
+    for (const type of six) expect(screen.getByLabelText(type)).toBeChecked();
+  });
+
+  it("유형을 더 고르면 그 수를 담는 가장 작은 문항 수로 올린다", () => {
+    setup();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.click(screen.getByLabelText("내용 일치"));
+    expect(screen.getByLabelText("문항 수")).toHaveValue("3");
+    fireEvent.click(screen.getByLabelText("빈칸 추론"));
+    expect(screen.getByLabelText("문항 수")).toHaveValue("5");
+    fireEvent.click(screen.getByLabelText("문장 삽입"));
+    expect(screen.getByLabelText("문항 수")).toHaveValue("5");
+    fireEvent.click(screen.getByLabelText("서술형"));
+    expect(screen.getByLabelText("문항 수")).toHaveValue("6");
+  });
+});
+
+describe("어법과 어휘", () => {
+  it("어법이 선택된 채 어휘를 누르면 선택을 받지 않고 알린다", () => {
+    setup();
+    fireEvent.click(screen.getByLabelText("어휘"));
+    expect(screen.getByLabelText("어휘")).not.toBeChecked();
+    expect(screen.getByLabelText("어법")).toBeChecked();
+    expect(onNotice).toHaveBeenCalledWith(
+      "어법과 어휘는 한 세트에 넣지 않습니다",
+      "alert",
+    );
+  });
+
+  it("출제 설정에 둘이 같이 있으면 상수 순서에서 앞인 어법만 남긴다", () => {
+    setup({ ...exam, types: ["어휘", "어법", "주제"] });
+    expect(screen.getByLabelText("어법")).toBeChecked();
+    expect(screen.getByLabelText("어휘")).not.toBeChecked();
+    expect(screen.getByLabelText("주제")).toBeChecked();
+    fireEvent.click(screen.getByLabelText("어법"));
+    expect(screen.getByLabelText("어법")).not.toBeChecked();
+    fireEvent.click(button("이 시험의 출제 설정 불러오기"));
+    expect(screen.getByLabelText("어법")).toBeChecked();
+    expect(screen.getByLabelText("어휘")).not.toBeChecked();
+    expect(onNotice).not.toHaveBeenCalled();
+  });
+
+  it("붙여넣기 단추로 어법과 어휘가 같이 든 세트를 저장한다", async () => {
+    fetchMock.mockResolvedValue(
+      jsonResponse(savedSet("set-vocab", "chatgpt"), 201),
+    );
+    setup();
+    fillTopic();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    const mixed = {
+      ...goodDraft,
+      questions: [
+        goodDraft.questions[0],
+        goodDraft.questions[1],
+        { ...goodDraft.questions[2], type: "어휘" },
+      ],
+    };
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: JSON.stringify(mixed) },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    const body = await lastRequestBody();
+    expect(
+      (body.questions as { type: string }[]).map((question) => question.type),
+    ).toEqual(["주제", "어법", "어휘"]);
+    expect(onSaved).toHaveBeenCalledWith("set-vocab");
+  });
+
+  it("붙여넣기의 어휘 허용은 다른 미선택 유형까지 열지 않는다", async () => {
+    setup();
+    fillTopic();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    const extra = {
+      ...goodDraft,
+      questions: [
+        goodDraft.questions[0],
+        goodDraft.questions[1],
+        {
+          type: "서술형",
+          prompt: "등굣길에서 한 놀이를 우리말로 쓰시오.",
+          options: [],
+          answer: "빨간 차 세기",
+          explanation: "소재(1점)",
+          evidence: "they count the red cars",
+        },
+      ],
+    };
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: JSON.stringify(extra) },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "고르지 않은 유형입니다: 서술형",
+    );
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+});
+
+describe("붙여넣기 재시도", () => {
+  it("저장이 끊긴 뒤 가져오기를 다시 누르면 같은 clientKey 를 보낸다", async () => {
+    fetchMock
+      .mockResolvedValueOnce(
+        jsonResponse({ error: { message: "저장 응답이 끊겼습니다." } }, 503),
+      )
+      .mockResolvedValueOnce(jsonResponse(savedSet("set-5", "chatgpt"), 201));
+    setup();
+    fillTopic();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: JSON.stringify(goodDraft) },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    const first = await lastRequestBody();
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+    const second = await lastRequestBody();
+    expect((second.meta as { clientKey: string }).clientKey).toBe(
+      (first.meta as { clientKey: string }).clientKey,
+    );
+    expect(second).toEqual(first);
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(onSaved).toHaveBeenCalledWith("set-5");
   });
 });
