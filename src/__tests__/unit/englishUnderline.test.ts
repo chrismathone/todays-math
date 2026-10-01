@@ -161,8 +161,8 @@ describe("englishUnderlineNotices — 화면의 막는 줄 · 교사용 머리�
       ["어법", "D ①x</u>"],
     );
     expect(result.errors).toEqual([
-      "1번 · 3번 어법 문항에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.",
-      "2번 · 4번 어법 문항의 밑줄 시작 · 끝 표기가 맞지 않습니다. 문항을 고친 뒤 학생용을 인쇄하십시오.",
+      "1번 · 3번 밑줄 문항(어법 · 어휘)에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.",
+      "2번 · 4번 밑줄 문항(어법 · 어휘)의 밑줄 시작 · 끝 표기가 맞지 않습니다. 문항을 고친 뒤 학생용을 인쇄하십시오.",
     ]);
     // 교사용 종이에도 남긴다 — 밑줄 구간이 아예 없는 오류는 종이에서 스스로 보이지 않는다
     expect(result.teacherNote).toBe(
@@ -174,8 +174,16 @@ describe("englishUnderlineNotices — 화면의 막는 줄 · 교사용 머리�
     const result = notices(["서술형", "밑줄 친 <u>this</u> 를 쓰시오."]);
     expect(result.errors).toEqual([]);
     expect(result.warning).toBe(
-      "1번 문항의 발문에 밑줄 표기(<u>)가 있습니다. 어법 문항이 아니어서 글자 그대로 찍힙니다.",
+      "1번 문항의 발문에 밑줄 표기(<u>)가 있습니다. 밑줄 문항(어법 · 어휘)이 아니어서 글자 그대로 찍힙니다.",
     );
     expect(result.teacherNote).toBeNull();
+  });
+
+  it("어휘 문항의 깨진 밑줄도 막고, 알림은 어법 문항이라고 부르지 않는다", () => {
+    const result = notices(["어휘", "A ① think"]);
+    expect(result.warning).toBeNull();
+    expect(result.errors).toEqual([
+      "1번 밑줄 문항(어법 · 어휘)에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.",
+    ]);
   });
 });

@@ -1,6 +1,6 @@
 /**
  * 검토 화면의 문항 읽기 모양 — **지면과 같은 규칙**(원장님 2026-10-01 «후보정» · 같은 문제는 같은 뷰).
- * 발문은 `EnglishPromptText`(어법의 `<u>` 를 밑줄로), 보기는 `englishOptionLayout`(번호뿐인 보기 · 겹친 번호), 정답은 번호 글자.
+ * 발문은 `EnglishPromptText`(어법 · 어휘의 `<u>` 를 밑줄로), 보기는 `englishOptionLayout`(번호뿐인 보기 · 겹친 번호), 정답은 번호 글자.
  * 지면과 다른 것은 글꼴뿐이다 — 화면은 앱 글꼴 하나(원장님 «웹앱 안에서는 모든 곳에서 일정한 폰트»), 지면은 지면 명조.
  */
 import type { ReactNode } from "react";

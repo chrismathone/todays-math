@@ -2824,6 +2824,29 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-01",
   },
   {
+    id: "english-vocab-underline",
+    title: "오늘의 영어 — 어휘의 밑줄 (어법과 같은 글자 밑줄 1px · 0.3em)",
+    changed:
+      "어휘 문항도 어법과 같이 `①<u>표현</u>` 를 글자 밑줄로 그린다. 굵기 1px · 기준선 아래 0.3em · " +
+      "내림 글자에서 선을 끊지 않는다. 번호 ①~⑤ 는 선 밖. 꺾쇠 글자는 종이에 보이지 않아야 한다.",
+    look:
+      "(제안) 어휘 문항이 든 묶음을 뽑아 ① **꺾쇠 `<u>` · `</u>` 글자가 한 글자라도 보이면 불합격**. ② 밑줄이 g · y · p " +
+      "의 **아래 끝과 닿거나 겹치는가**. ③ 번호 ①~⑤ 아래에 선이 있는가(있으면 불합격). 어법 밑줄 항목과 같은 출력에서 같이 본다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/english-upgrade-20261001/plan-final.md",
+      "src/lib/english/underline.ts",
+      "src/components/english/print/EnglishPaper.tsx (PromptText)",
+      "src/components/english/print/EnglishPrint.module.css (.underline)",
+    ],
+    scale:
+      "어휘 문항이 든 세트. 밑줄 구간에 g · y · p 가 하나는 있어야 ② 가 보인다.",
+    status: "대기",
+    needs:
+      "어휘 밑줄이 든 학생용 · 교사용 한 부. 어법 밑줄 항목(english-grammar-underline)과 같이 본다.",
+    changedOn: "2026-10-01",
+  },
+  {
     id: "english-teacher-head-notes",
     title: "오늘의 영어 — 교사용 머리의 안내 줄 (배부 순서 · 답이 보이는 문항)",
     changed:

@@ -659,6 +659,16 @@ Claude 가 물러선 곳 둘: 누출의 기본값(«알리기만» → **기본�
 
 기각: F2(다음 할 일 카드 — 요청문 10,801자 가운데 여섯 줄만 늘 보이고 +325px) · F3(창 — 한 번 더 누름) · F4(위쪽 단추 옆 — 사유와 301px 떨어짐) · Q2(문항 머리 딱지 — «세트 머리에 한 줄» 합의를 되돌림) · Q3(위쪽 요약 상자) · Q4(눌러서 보기 — 안 누르면 안 읽힌다).
 
+### 12.14 어휘 유형 — 읽기 검사 뒤 생성 (D-153, 2026-10-01)
+
+Claude · Codex 가 D1~D8 을 모두 «가»로 닫은 뒤의 구현이다. 계획 `docs/planning/tracks/reports/english-upgrade-20261001/plan-final.md`.
+
+- 첫 새 유형은 **어휘**다. 글의 순서 · 무관한 문장은 이번 계약에 이름을 넣지 않는다.
+- 지면은 어법과 같은 글자 밑줄이다. 새 시안은 없다. `print-check` 의 `english-vocab-underline` 은 «대기».
+- 생성 목록과 `ENGLISH_TYPE_GUIDE` 의 어휘 줄은 같이 있다. 프롬프트 판은 **v5** 다. 벤치에서 탈락한 이름 v4 는 쓰지 않았다. 지난 벤치 `promptV1`~`V3` · `score.ts` · `tasks.ts` · `compare.ts` 는 여섯 유형에 고정했다. 공통 규칙 1·4·5·10 과 어법 안내 줄은 고치지 않았다.
+- 만들기 화면에서 어법과 어휘를 한 세트의 **새 생성**으로 같이 고르지 못한다. 출제 설정 대화상자는 둘 다 기억할 수 있다. 붙여넣기는 고른 쪽의 짝(어법이면 어휘, 어휘이면 어법)이 같이 있어도 저장한다. 세트 POST 에 조합 금지는 없다.
+- 저장 재시도는 검증된 초안 · `clientKey` 만 다시 보낸다. 문항 수 선택은 3·5·6·8 이다. `materialName` 상한은 255 다. 데이터베이스 마이그레이션은 없다.
+
 **구현(2026-10-01)** — `src/lib/english/notes.ts`(판정은 `quality.ts` 의 공용 함수 — `aotaMatch` · `absoluteOnlyDistractors` · `answerSpread` · `explanationNumber` — 벤치가 잰 것과 화면이 같다) ·
 편집 화면(`EnglishEditor` — 칸을 벗어날 때 · 불러올 때 · 저장한 뒤 · «수정 끝»에 다시 센다, 기각은 `localStorage` 의 `english-notes-ack:{세트 id}`) ·
 만들기 화면(`EnglishMakerView` — 거절된 그때의 글 · 조건을 붙잡아 `buildChatgptFixRequest` 로 짓는다. JSON 을 못 찾으면 그 함수가 null). 시험: `englishNotes`(9) · 편집 +5 · 만들기 +6 · `englishChatgpt`(갈래 2 → null).

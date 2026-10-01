@@ -518,4 +518,33 @@ describe("EnglishPaper — 묶음 · 어법의 밑줄 · 교사용 안내 (D-151
     expect(question.querySelector("u")).toBeNull();
     expect(question.textContent).toContain("<u>this</u>");
   });
+
+  it("어휘 문항의 ①<u> 는 밑줄로 그리고, 번호뿐인 보기는 줄을 찍지 않는다", () => {
+    const vocab = {
+      ...SAMPLE_SET,
+      questions: SAMPLE_SET.questions.map((question) =>
+        question.type === "어법"
+          ? {
+              ...question,
+              type: "어휘" as const,
+              prompt:
+                "밑줄 친 부분 중 어휘상 틀린 것은?\nGroups ①<u>took</u> turns, ②<u>recorded</u> height, ③<u>appeared</u> early, ④<u>looking</u> up, ⑤<u>avoided</u> spray.",
+              options: ["①", "②", "③", "④", "⑤"],
+            }
+          : question,
+      ),
+    };
+    const { container } = bundled(
+      "student",
+      { no: null, questions: [0, 1, 2, 3], passage: true },
+      { set: vocab },
+    );
+    const question = container.querySelector(
+      '[data-english-question="2"]',
+    ) as HTMLElement;
+    expect(question.querySelectorAll("u")).toHaveLength(5);
+    expect(question.textContent).not.toContain("<u>");
+    expect(within(question).queryByRole("list")).toBeNull();
+    expect(question.textContent).not.toContain("① ①");
+  });
 });

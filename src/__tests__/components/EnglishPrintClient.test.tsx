@@ -361,7 +361,7 @@ describe("EnglishPrintClient — 어법의 밑줄 표기가 깨졌을 때 (3자 
     client({ set: BROKEN });
     const alert = await screen.findByRole("alert");
     expect(alert).toHaveTextContent(
-      "4번 어법 문항에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.",
+      "4번 밑줄 문항(어법 · 어휘)에 밑줄 구간이 없습니다. 발문에서 밑줄 칠 곳을 <u> 와 </u> 로 감싼 뒤 학생용을 인쇄하십시오.",
     );
     await waitFor(() =>
       expect(
@@ -387,7 +387,9 @@ describe("EnglishPrintClient — 어법의 밑줄 표기가 깨졌을 때 (3자 
       name: "인쇄하기 — 교사용",
     });
     expect(print).toBeEnabled();
-    expect(screen.getByRole("alert")).toHaveTextContent("4번 어법 문항");
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      "4번 밑줄 문항(어법 · 어휘)",
+    );
     const paper = within(gallery());
     expect(paper.getByText("밑줄 표기")).toBeInTheDocument();
     expect(paper.getByText("4번: 밑줄 구간 없음")).toBeInTheDocument();
@@ -417,7 +419,7 @@ describe("EnglishPrintClient — 어법의 밑줄 표기가 깨졌을 때 (3자 
     });
     expect(
       screen.getByText(
-        "3번 문항의 발문에 밑줄 표기(<u>)가 있습니다. 어법 문항이 아니어서 글자 그대로 찍힙니다.",
+        "3번 문항의 발문에 밑줄 표기(<u>)가 있습니다. 밑줄 문항(어법 · 어휘)이 아니어서 글자 그대로 찍힙니다.",
       ),
     ).toBeInTheDocument();
     expect(

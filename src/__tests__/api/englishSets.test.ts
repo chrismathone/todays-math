@@ -247,6 +247,85 @@ describe("POST /api/english/exams/[id]/sets — 저장", () => {
     expect(wrong.status).toBe(400);
   });
 
+  it("clientKey 가 같고 본문이 같으면 200 으로 그 행을 돌려준다 · 본문이 다르면 409 · 키가 없으면 201 · 다른 시험은 별개", async () => {
+    const key = "11111111-1111-4111-8111-111111111111";
+    const meta = {
+      path: "chatgpt" as const,
+      clientKey: key,
+      materialName: "가".repeat(255),
+    };
+    const first = await createSet(
+      jsonRequest(setsUrl(examId), "POST", { ...DRAFT, meta }),
+      withId(examId),
+    );
+    expect(first.status).toBe(201);
+    const created = englishSetResponseSchema.parse(await first.json());
+    expect(created.data.meta).toEqual(meta);
+
+    const edited = await putSet(
+      jsonRequest(setUrl(created.data.id), "PUT", {
+        title: DRAFT.title,
+        status: "검토 중",
+        passage: DRAFT.passage,
+        questions: DRAFT.questions,
+        revision: 1,
+      }),
+      withId(created.data.id),
+    );
+    expect(edited.status).toBe(200);
+
+    const again = await createSet(
+      jsonRequest(setsUrl(examId), "POST", { ...DRAFT, meta }),
+      withId(examId),
+    );
+    expect(again.status).toBe(200);
+    const kept = englishSetResponseSchema.parse(await again.json());
+    expect(kept.data.id).toBe(created.data.id);
+    expect(kept.data.status).toBe("검토 중");
+    expect(kept.data.revision).toBe(2);
+    expect(kept.data.meta).toEqual(meta);
+    expect(englishRows.sets()).toHaveLength(1);
+
+    const clash = await createSet(
+      jsonRequest(setsUrl(examId), "POST", {
+        ...DRAFT,
+        title: "다른 제목",
+        meta,
+      }),
+      withId(examId),
+    );
+    expect(clash.status).toBe(409);
+    expect(errorResponseSchema.parse(await clash.json()).error).toMatchObject({
+      code: "CONFLICT",
+      message: "같은 저장 키인데 내용이 다릅니다. 새로 저장해 주세요.",
+    });
+    expect(englishRows.sets()).toHaveLength(1);
+    expect(englishRows.sets()[0]?.title).toBe(DRAFT.title);
+
+    const bare = await createSet(
+      jsonRequest(setsUrl(examId), "POST", DRAFT),
+      withId(examId),
+    );
+    expect(bare.status).toBe(201);
+    expect(englishRows.sets()).toHaveLength(2);
+
+    const secondExamId = seedEnglishExam({
+      userId: USER_TEACHER_ID,
+      school: "한빛중학교",
+      grade: "중2",
+      title: "기말",
+    }).id;
+    const otherExam = await createSet(
+      jsonRequest(setsUrl(secondExamId), "POST", { ...DRAFT, meta }),
+      withId(secondExamId),
+    );
+    expect(otherExam.status).toBe(201);
+    const otherBody = englishSetResponseSchema.parse(await otherExam.json());
+    expect(otherBody.data.id).not.toBe(created.data.id);
+    expect(otherBody.data.examId).toBe(secondExamId);
+    expect(englishRows.sets()).toHaveLength(3);
+  });
+
   it("상태를 «검토 완료»로 보내도 계약이 거절한다(400) — 저장은 늘 초안", async () => {
     const res = await createSet(
       jsonRequest(setsUrl(examId), "POST", { ...DRAFT, status: "검토 완료" }),

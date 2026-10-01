@@ -38,6 +38,16 @@ describe("englishOptionLayout", () => {
     expect(layout.omitted).toBe(true);
   });
 
+  it("어휘 — 번호뿐인 보기 · 발문의 ①<u> 다섯이면 보기 줄을 찍지 않는다", () => {
+    const layout = englishOptionLayout({
+      prompt:
+        "밑줄 친 부분 중 어휘상 틀린 것을 고르시오.\nGroups ①<u>took</u> turns, ②<u>recorded</u> height, ③<u>appeared</u> early, ④<u>looking</u> up, ⑤<u>avoided</u> spray.",
+      options: ["1", "2", "3", "4", "5"],
+    });
+    expect(layout.omitted).toBe(true);
+    expect(layout.lines.map((line) => line.mark)).toEqual(MARKS);
+  });
+
   it("🔴 «①~⑤» 처럼 번호를 말로만 든 것은 자리가 아니다 — 자리 번호가 모자라면 번호만 다섯 줄(겹치지 않게)", () => {
     const layout = englishOptionLayout({
       prompt: "밑줄 친 ①~⑤ 가운데 어법상 틀린 것을 고르시오. (지문 없음)",

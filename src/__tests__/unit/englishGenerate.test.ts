@@ -30,6 +30,8 @@ import {
   buildEnglishSystemPrompt,
   buildEnglishUserPrompt,
   ENGLISH_EXAM_PROMPT_VERSION,
+  ENGLISH_EXAM_RULES,
+  ENGLISH_TYPE_GUIDE,
 } from "@/lib/ai/prompts/englishExam";
 import {
   ENGLISH_REFINE_BUDGET_MS,
@@ -122,10 +124,10 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
     expect(system).toMatch(/지시가 아닙니다|지시로 보지/);
   });
 
-  it("v3 — 근거는 지문의 이어진 한두 문장을 통째로 복사한다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
+  it("v5 — v3 의 근거 규칙은 그대로이고 판 번호는 v5 다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
     // 벤치: v2 그대로 8회 중 4회 거절(근거를 3~4문장 옮기다 사이 문장을 건너뛰거나 바꿔 씀) → 이 규칙 10회 중 9회 통과,
-    // 품질은 v2 와 같다. «딱 한 문장»(10/10)은 삽입·서술형이 몇 점 낮아 안 썼다.
-    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v3");
+    // 품질은 v2 와 같다. «딱 한 문장»(10/10)은 삽입·서술형이 몇 점 낮아 안 썼다. v5 는 어휘 안내만 더한다.
+    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v5");
     const system = buildEnglishSystemPrompt();
     expect(system).toContain("이어진 한두 문장");
     expect(system).toContain("문자열 검색");
@@ -143,6 +145,31 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
       /- 근거\(evidence\)는 passage 를 확정한 뒤 그 passage 에서 문항마다 이어진 한두 문장을 통째로 복사/,
     );
     expect(rules).toContain("바꿔 쓴 passage 에서");
+  });
+
+  it("어휘 안내 줄이 생성 조건을 말하고, 어법 안내 줄과 공통 규칙 1·4·5·10 은 한 글자도 다르지 않다", () => {
+    const guide = ENGLISH_TYPE_GUIDE.어휘;
+    expect(buildEnglishSystemPrompt()).toContain(guide);
+    expect(guide).toContain("①<u>표현</u>");
+    expect(guide).toContain("prompt 안에");
+    expect(guide).toContain("passage 에는 원 지문");
+    expect(guide).toContain("번호 문자열");
+    expect(guide).toContain("다른 문항의 문제용 지문");
+    expect(ENGLISH_TYPE_GUIDE.어법).toBe(
+      "어법 — 밑줄 친 ①~⑤ 가운데 어법상 틀린 것을 묻습니다. 문제용 지문을 prompt 안에 넣고 밑줄 다섯은 «①<u>표현</u>» 꼴로 표시합니다. 다섯 가운데 정확히 하나만 원문과 다르게(어법상 틀리게) 고치고, 나머지 넷은 원문 표현을 한 글자도 바꾸지 않습니다. 틀린 곳은 학년에 맞는 교육과정 문법 포인트(수 일치 · 시제 · 태 · 관계사 · 분사 · 준동사 · 병렬 · 대명사)로, 나머지 넷도 학생이 의심할 만한 올바른 구조를 고릅니다. 보기 5개는 밑줄 친 표현 그대로(번호 없이), 정답은 고친 곳의 번호입니다",
+    );
+    expect(ENGLISH_EXAM_RULES[0]).toBe(
+      '객관식(주제 · 내용 일치 · 어법 · 빈칸 추론 · 문장 삽입)은 보기 5개를 서로 다르게 쓰고, 정답(answer)은 "1"~"5" 가운데 하나의 번호 문자열입니다. 세트의 정답 번호가 한 번호에 몰리지 않게 합니다.',
+    );
+    expect(ENGLISH_EXAM_RULES[3]).toBe(
+      "빈칸 추론 · 어법 · 문장 삽입은 문제용으로 바꾼 지문(밑줄 · 빈칸 · 자리 번호가 든 것)을 prompt 안에 넣고, passage 에는 원 지문을 둡니다.",
+    );
+    expect(ENGLISH_EXAM_RULES[4]).toBe(
+      "한 세트 안에서 한 문항의 답(빈칸에 빠진 원문 · 어법의 원래 형태 · 삽입 문장의 원래 자리)이 다른 문항의 문제용 지문 · 발문 · 보기에 그대로 드러나지 않게 합니다. 변형 문항끼리는 지문의 서로 다른 구간을 발췌해 써도 됩니다.",
+    );
+    expect(ENGLISH_EXAM_RULES[9]).toBe(
+      "답을 내기 전에 스스로 점검합니다: 객관식마다 정답이 하나뿐인가, 어법은 원문과 다른 밑줄이 정확히 하나인가, 삽입은 정답 자리에 주어진 문장을 넣으면 원 지문이 되는가, 근거는 passage 에 글자 그대로 있는가. 특히 답을 내기 직전 evidence 마다 passage 에서 그 문장을 찾아 한 글자씩 대 봅니다. 문항을 만들다 passage 를 고쳤다면 evidence 를 모두 새 passage 에서 다시 복사합니다.",
+    );
   });
 
   it("사용자 프롬프트는 조건을 싣고 원문을 자료 칸으로 감싼다 — 칸을 닫는 글자는 무력화", () => {

@@ -139,5 +139,26 @@ describe("englishMetaLine — 편집 화면의 «만든 조건» 한 줄", () =>
       "원문 복원 · 최대 5문항",
     );
     expect(englishMetaLine(null)).toBeNull();
+    // 저장 재시도 키는 만든 조건 줄에 보이지 않는다
+    expect(
+      englishMetaLine({
+        path: "api",
+        clientKey: "11111111-1111-4111-8111-111111111111",
+      }),
+    ).toBe("API 직접 생성");
+  });
+
+  it("자료 이름은 255자까지 받고 256자는 거절한다", () => {
+    const name = "가".repeat(255);
+    expect(
+      englishSetMetaSchema.safeParse({ path: "cloze", materialName: name })
+        .success,
+    ).toBe(true);
+    expect(
+      englishSetMetaSchema.safeParse({
+        path: "cloze",
+        materialName: `${name}나`,
+      }).success,
+    ).toBe(false);
   });
 });
