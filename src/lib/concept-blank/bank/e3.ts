@@ -182,7 +182,7 @@ export const bank: ConceptBlankBank = {
       term: "직선",
       kind: "정의",
       definition:
-        "곧은 선을 어느 쪽으로도 계속 늘일 수 있으면 {직선}이라 한다.",
+        "양쪽 어디에도 끝점이 없이 한없이 뻗어 나가는 곧은 선을 {직선}이라 한다.",
     },
     {
       id: "e3-1-2-1-c6",
@@ -293,7 +293,8 @@ export const bank: ConceptBlankBank = {
       level: "하",
       term: "직사각형",
       kind: "정의",
-      definition: "사각형의 네 모서리 각이 모두 {직각}이면 직사각형이라 한다.",
+      definition:
+        "사각형의 꼭짓점마다 생기는 각이 모두 {직각}이면 직사각형이라 한다.",
       example: {
         prompt:
           "직사각형의 위쪽 변이 $7\\,\\mathrm{cm}$이면 아래쪽 변의 길이는 얼마인가?",
@@ -474,7 +475,7 @@ export const bank: ConceptBlankBank = {
       term: "몫 찾기",
       kind: "방법",
       definition:
-        "$35\\div5$의 몫은 $5\\times\\square=35$의 {빈칸에 들어갈 수}이다.",
+        "$35\\div5$의 몫은 곱셈식 $5\\times\\square=35$에서 $\\square$에 알맞은 수와 같으므로 {$7$}이다.",
     },
     {
       id: "e3-1-3-3-c3",
@@ -932,7 +933,7 @@ export const bank: ConceptBlankBank = {
       term: "분수가 기준으로 삼는 전체",
       kind: "성질",
       definition:
-        "분수로 부분을 나타내기 전에 {무엇을 전체로 볼지} 정해야 한다.",
+        "같은 조각이라도 무엇을 {전체}로 보느냐에 따라 그 조각을 나타내는 분수가 달라진다.",
     },
     {
       id: "e3-1-6-3-c1",
@@ -951,7 +952,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-3-c2",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "중",
-      term: "단위분수의 모임",
+      term: "분자가 $1$인 분수가 모인 크기",
       kind: "성질",
       definition: "$\\frac{4}{7}$는 $\\frac{1}{7}$이 {$4$개} 모인 크기이다.",
     },
@@ -1013,7 +1014,8 @@ export const bank: ConceptBlankBank = {
       level: "상",
       term: "단위분수 크기 비교",
       kind: "성질",
-      definition: "같은 전체를 더 많은 조각으로 나눌수록 한 조각은 {작아진다}.",
+      definition:
+        "같은 전체를 똑같이 나눌 때, 조각 수가 많을수록 한 조각의 크기는 {작아진다}.",
     },
     {
       id: "e3-1-6-5-c3",
@@ -1081,7 +1083,7 @@ export const bank: ConceptBlankBank = {
       term: "소수 한 자리 비교",
       kind: "방법",
       definition:
-        "소수점 왼쪽의 수가 같으면 소수 첫째 자리 숫자가 {큰} 쪽이 더 크다.",
+        "소수점 왼쪽의 수가 같으면 소수점 바로 오른쪽 숫자가 {큰} 쪽이 더 크다.",
     },
     {
       id: "e3-1-6-7-c3",
@@ -1342,7 +1344,7 @@ export const bank: ConceptBlankBank = {
       term: "몫의 가운데 $0$",
       kind: "방법",
       definition:
-        "어느 자리에서 나눌 수가 나누는 수보다 작으면 몫의 그 자리에 {$0$}을 쓴다.",
+        "몫을 쓰기 시작한 뒤에 어느 자리에서 나눌 수가 나누는 수보다 작으면 몫의 그 자리에 {$0$}을 쓴다.",
     },
     {
       id: "e3-2-2-4-c3",
@@ -1908,7 +1910,7 @@ export const bank: ConceptBlankBank = {
       term: "그림 한 개의 값",
       kind: "방법",
       definition:
-        "그림그래프를 읽기 전에 {그림 하나가 나타내는 수}를 확인한다.",
+        "그림 $3$개가 $30$명일 수도 $3$명일 수도 있으므로, 그림그래프를 읽기 전에 {그림 하나가 나타내는 수}를 확인한다.",
     },
     {
       id: "e3-2-6-1-c4",
@@ -1917,7 +1919,7 @@ export const bank: ConceptBlankBank = {
       term: "큰 그림과 작은 그림",
       kind: "방법",
       definition:
-        "큰 그림과 작은 그림의 값이 다르면 각각 나타내는 수를 구해 {더한다}.",
+        "한 항목에 큰 그림과 작은 그림이 함께 있으면, 큰 그림들이 나타내는 수와 작은 그림들이 나타내는 수를 각각 구해 {더한다}.",
     },
     {
       id: "e3-2-6-2-c1",
@@ -2418,7 +2420,7 @@ export const bank: ConceptBlankBank = {
       statement:
         "그림 한 개를 $10$명으로 정했다면 $40$명은 그림 $4$개로 나타낸다.",
       answer: true,
-      why: "$40\\div10=4$이므로 그림을 네 개 그린다.",
+      why: "$10\\times4=40$이므로 그림을 네 개 그린다.",
     },
   ],
   apply: [

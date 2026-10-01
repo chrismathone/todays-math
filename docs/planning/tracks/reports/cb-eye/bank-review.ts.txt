@@ -1,0 +1,109 @@
+// 개념 백지 은행 전수 내용 검수 — 학년 파일을 소단원 묶음으로 잘라 codex · grok 에게 글로 보인다(그림 SVG 는 따로 눈검수).
+// 사용(저장소 뿌리): npx tsx <이 파일> [--dump-only] [--only codex|grok] [--conc 2]
+// 결과: scratchpad/bank-review/chunks/*.txt · out/<chunk>-{codex,grok}.md (있으면 건너뛴다 — 다시 돌리면 이어서)
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { BANK_PARTS } from "D:/todays-math/src/lib/concept-blank/bank/index";
+import { BLANK_TREE } from "D:/todays-math/src/lib/concept-blank/sections";
+import { runCli } from "D:/todays-math/scripts/qa/english-bench/cli";
+
+const argv = process.argv.slice(2);
+const flag = (name: string) => {
+  const i = argv.indexOf(name);
+  return i >= 0 ? argv[i + 1] : undefined;
+};
+const DUMP_ONLY = argv.includes("--dump-only");
+const ONLY = flag("--only");
+const CONC = Number(flag("--conc") ?? 2);
+const ROOT = path.join(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Z]:)/, "$1")), "bank-review");
+const CHUNKS = path.join(ROOT, "chunks");
+const OUT = path.join(ROOT, "out");
+mkdirSync(CHUNKS, { recursive: true });
+mkdirSync(OUT, { recursive: true });
+
+const MAX_ITEMS = 150;
+const order = new Map<string, number>();
+let n = 0;
+for (const g of BLANK_TREE) for (const c of g.chapters) for (const s of c.sections) order.set(s.key, n++);
+
+type Line = { section: string; text: string };
+const chunks: { name: string; body: string; count: number }[] = [];
+for (const [part, bank] of Object.entries(BANK_PARTS)) {
+  const bySection = new Map<string, string[]>();
+  const push = (section: string, text: string) => {
+    if (!bySection.has(section)) bySection.set(section, []);
+    bySection.get(section)!.push(text);
+  };
+  for (const c of bank.concepts) {
+    const ex = c.example ? ` | 예: ${c.example.prompt} → ${c.example.answer}` : "";
+    push(c.section, `C ${c.id} [${c.level}·${c.kind}] 용어: ${c.term} | 뜻: ${c.definition}${ex}`);
+  }
+  for (const o of bank.ox) push(o.section, `O ${o.id} [${o.level}] 문장: ${o.statement} | 답: ${o.answer ? "○" : "×"} | 까닭: ${o.why}`);
+  for (const a of bank.apply) push(a.section, `A ${a.id} [${a.level}] 물음: ${a.prompt} | 답: ${a.answer}`);
+  for (const f of bank.figures) {
+    const tags = f.tags.map((t) => t.answer).join(", ");
+    const lines = f.lines.map((l) => `${l.label} → ${l.answer}`).join(" / ");
+    push(f.section, `F ${f.id} [${f.level}] 그림 물음: ${f.prompt} | 그림 속 빈 이름표 답: ${tags || "없음"} | 줄: ${lines} (그림 자체는 글로 안 보인다)`);
+  }
+  const sections = [...bySection.keys()].sort((a, b) => (order.get(a) ?? 1e9) - (order.get(b) ?? 1e9));
+  let cur: Line[] = [];
+  let k = 1;
+  const flush = () => {
+    if (!cur.length) return;
+    const body: string[] = [];
+    let last = "";
+    for (const l of cur) {
+      if (l.section !== last) {
+        body.push(`\n## ${l.section.replaceAll("::", " › ")}`);
+        last = l.section;
+      }
+      body.push(l.text);
+    }
+    chunks.push({ name: `${part}-${String(k++).padStart(2, "0")}`, body: body.join("\n").trim(), count: cur.length });
+    cur = [];
+  };
+  for (const s of sections) {
+    const items = bySection.get(s)!;
+    if (cur.length && cur.length + items.length > MAX_ITEMS) flush();
+    for (const t of items) cur.push({ section: s, text: t });
+  }
+  flush();
+}
+for (const c of chunks) writeFileSync(path.join(CHUNKS, `${c.name}.txt`), c.body + "\n", "utf8");
+console.log(`묶음 ${chunks.length} · 항목 ${chunks.reduce((s, c) => s + c.count, 0)}`);
+if (DUMP_ONLY) process.exit(0);
+
+const system =
+  "너는 초3~중3 수학 개념 학습지의 문항 은행을 검수하는 독립 검토자다. 도구를 쓰지 말고, 파일을 만들거나 고치지 말고, 답만 한국어 마크다운으로 써라.";
+const brief = readFileSync(path.join(ROOT, "brief.md"), "utf8");
+const MODELS = [
+  { name: "codex", provider: "codex" as const, model: "gpt-6-astra", effort: "high" },
+  { name: "grok", provider: "grok" as const, model: "grok-4.7", effort: "medium" },
+].filter((m) => !ONLY || m.name === ONLY);
+const cwd = path.join(os.tmpdir(), "bank-review");
+mkdirSync(cwd, { recursive: true });
+
+const jobs = chunks.flatMap((c) => MODELS.map((m) => ({ c, m })));
+let next = 0;
+async function worker() {
+  for (;;) {
+    const job = jobs[next++];
+    if (!job) return;
+    const file = path.join(OUT, `${job.c.name}-${job.m.name}.md`);
+    if (existsSync(file)) continue;
+    const prompt = `${brief}\n\n---\n\n# 검수할 묶음 ${job.c.name} (${job.c.count}항목)\n\n${job.c.body}\n`;
+    const started = Date.now();
+    try {
+      const r = await runCli({ provider: job.m.provider, model: job.m.model, effort: job.m.effort, system, prompt, cwd, timeoutMs: 25 * 60_000 });
+      writeFileSync(file, r.text.trim() + "\n", "utf8");
+      console.log(`${new Date().toISOString().slice(11, 19)} ${job.c.name} ${job.m.name}: ${Math.round((Date.now() - started) / 1000)}초`);
+    } catch (e) {
+      console.log(`${job.c.name} ${job.m.name}: 실패 — ${String((e as Error).message).slice(0, 300)}`);
+    }
+  }
+}
+(async () => {
+  await Promise.all(Array.from({ length: CONC }, worker));
+  console.log("끝");
+})();
