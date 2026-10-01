@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>도움이 필요한 학생 Hi-fi</title>
+<style>
+/* ════════════════════════════════════════════════════════════════════════════════
+   도움이 필요한 학생 — 교사 화면 Hi-fi 5안 (트랙 me-hifi · 2026-10-01 · 27번 문서 공백 3)
+
+   한 파일 · 두 얼굴
+     주소에 ?view= 가 없으면  → 안내 쪽(안 다섯 · 축 표 · 화면을 액자로)
+     ?view=H1..H5|empty|entry → 제품 화면 한 장(창 크기 그대로). &state=open 이면 밀린 카드 14장인 학생을 펼친다.
+   그림(hifi-explorers-teacher-shots/)은 전부 둘째 얼굴을 1280×900 · 390×844 로 뜬 것이다.
+
+   ── 값의 출처 (새 색 · 새 그림자를 짓지 않았다) ─────────────────────────────────
+   [G]  src/app/globals.css :root  --learn-* (05 §8.9 작업실 팔레트) · --text-* · --control-radius
+   [W]  src/components/unified/Workroom.module.css          옆 메뉴 · 윗줄 · 폰 아래 메뉴 · 쪽 여백
+   [WA] src/components/unified/WorkspaceAccount.module.css  윗줄의 계정 칸
+   [PH] src/components/unified/WorkspacePageHeader.module.css  «수업 관리» 머리
+   [T]  src/components/unified/TeachingView.module.css      탭 · 구역 머리 · 계정 · 로그아웃 단추
+   [CD] src/components/math-srs/course-dashboard.module.css 요약 칸 넷 · 거르개 · 표 · 이름 단추 · 상태 딱지 ·
+                                                            줄 단추 · 상세 칸 · 빈 상태 · 계정 확인 링크
+   [CM] src/components/class/ClassManage.module.css · [A] math-srs/authenticated.module.css  (entry 화면만)
+   [x]  이 시안에서 새로 짠 «배치»(격자 · 여백). 색 · 글자 크기 · 모서리는 위 값만 쓴다.
+   글꼴: 제품과 같은 파일 public/fonts/PretendardVariable.woff2 (src/app/fonts.ts)
+   ════════════════════════════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: "Pretendard Variable";
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: block;
+  src: url("../../../public/fonts/PretendardVariable.woff2") format("woff2-variations"), local("Pretendard Variable"), local("Pretendard");
+}
+:root {
+  color-scheme: light;
+  /* [G] globals.css:80-103 */
+  --learn-ink: #172b4d; --learn-muted: #596c86; --learn-accent: #3159df; --learn-accent-hover: #2448bd;
+  --learn-bg: #f4f6fa; --learn-surface: #ffffff; --learn-nav: #14243d; --learn-soft: #edf2ff; --learn-soft-hover: #e1e9ff;
+  --learn-neutral: #edf0f6; --learn-track: #dde3ec; --learn-control: #b8c4d6; --learn-focus: #82a1ff;
+  --learn-done: #1d7550; --learn-done-bg: #e9f5ee; --learn-warning: #8a5a06; --learn-warning-bg: #fff4df;
+  --learn-danger: #b42318; --learn-danger-bg: #fff0ee; --learn-on-accent: #ffffff;
+  --learn-radius: 14px; --learn-radius-sm: 10px;
+  /* [G] globals.css:22-26 */
+  --control-radius: 8px; --text-caption: 12px; --text-body: 14px; --text-section: 18px; --text-title: 24px;
+  --font-pretendard: "Pretendard Variable";
+}
+/* Tailwind preflight 가 제품에 거는 바탕(단추 · 머리글 · 목록의 기본값을 지운다) — 치수를 제품과 맞추려고 옮겼다 */
+*, *::before, *::after { box-sizing: border-box; border: 0 solid; }
+html { line-height: 1.5; -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+h1, h2, h3, h4 { margin: 0; font-size: inherit; font-weight: inherit; }
+p, dl, dd, figure { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+button, select, input { font: inherit; color: inherit; letter-spacing: inherit; margin: 0; }
+button { background: transparent; padding: 0; text-align: inherit; }
+a { color: inherit; text-decoration: inherit; }
+b, strong { font-weight: bolder; }
+small { font-size: 80%; }
+svg { display: block; flex-shrink: 0; }
+table { border-collapse: collapse; text-indent: 0; }
+[hidden] { display: none !important; }
+/* [G] globals.css:228-248 — 손가락은 실제로 누르는 것에만(D-30) */
+a[href], button:not(:disabled), select:not(:disabled), summary { cursor: pointer; }
+
+/* ═══ 제품 틀 — 옆 메뉴 · 윗줄 [W] ═══════════════════════════════════════════════ */
+body[data-mode="app"] { background: #f4f6fa; color: #172b4d; font-family: var(--font-pretendard), "Malgun Gothic", system-ui, sans-serif; }
+.workspace { /* [W]:1-24 · 1591-1594 */
+  --workspace-page-padding: 16px 20px; --workspace-sticky-inset: 68px; --control-height: 44px;
+  --ink: #172b4d; --muted: #596c86; --accent: #3159df;
+  min-height: 100dvh; background: #f4f6fa; color: var(--ink);
+  font-family: var(--font-pretendard), Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: var(--text-body); line-height: 1.5;
+}
+.workspace button { font-family: inherit; font-size: var(--text-body); font-weight: 600; line-height: 1.4; border-radius: var(--control-radius); } /* [W]:25-32 */
+.workspace button:not([role="tab"]):not([role="radio"]) { min-height: var(--control-height); } /* [W]:1595 */
+.workspace :is(button, input, select, a):focus-visible { outline: 3px solid #82a1ff; outline-offset: 3px; }
+.sidebar { position: fixed; inset: 0 auto 0 0; width: 240px; z-index: 45; display: flex; flex-direction: column; padding: 18px; overflow-y: auto;
+  scrollbar-width: thin; background: #14243d; color: #c5d0e4; border-right: 1px solid #172e4f; } /* [W]:58-73 */
+.sideHeader { display: flex; align-items: center; justify-content: space-between; gap: 4px; min-height: 44px; } /* [W]:1522 */
+.brand { display: flex; gap: 7px; align-items: center; color: #fff; } /* [W]:74 · 1529 · 1615 */
+.brand > span:last-child { font-size: 20px; font-weight: 780; letter-spacing: -0.8px; line-height: 1.4; white-space: nowrap; } /* [W]:83 · 1534 · 1618 */
+.brandMark, .brandMark svg { width: 32px; height: 32px; flex-shrink: 0; } /* [W]:1621 */
+.sidebarToggle { display: grid; place-items: center; width: 44px; min-width: 44px; height: 44px; color: #8fa4c7; } /* [W]:1539 · 1610 */
+.newButton { display: flex; justify-content: center; align-items: center; gap: 9px; height: 44px; flex-shrink: 0; margin: 16px 0 14px;
+  border: 1px solid #5778ec; background: #3b60df; color: #fff; box-shadow: 0 4px 12px #0000000d; } /* [W]:115-130 */
+.navigation { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; } /* [W]:134 */
+.navigation button { position: relative; display: flex; align-items: center; gap: 11px; width: 100%; padding: 0 12px; color: #b9c7dd; } /* [W]:147 */
+.navigation button svg { color: #8ca1c4; }
+.navigation button.navActive { background: #304362; color: #fff; } /* [W]:168 · 1413 */
+.navigation button.navActive svg { color: #a2b9ff; }
+.navShort { display: none; }
+.teachingNav { margin-top: 16px; padding-top: 12px; border-top: 1px solid #2c3c55; } /* [W]:198 */
+.sidebarFooter { margin-top: auto; padding-top: 8px; flex-shrink: 0; } /* [W]:246 */
+.sidebarFooter > button:first-child { display: flex; align-items: center; gap: 9px; width: 100%; padding: 0 10px; color: #97aac8; } /* [W]:261 */
+.sidebarFooter > button:first-child > svg:last-child { margin-left: auto; }
+.accountButton { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 7px 0; margin-top: 6px; border-top: 1px solid #2c3c55; } /* [W]:274 */
+.accountButton > span:first-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: #364b6b; color: #e0e9fa; font-size: 12px; font-weight: 700; }
+.accountButton strong { display: block; font-size: 12px; color: #d2def1; font-weight: 600; }
+.accountButton small { display: block; font-size: 12px; color: #8196b7; margin-top: 3px; max-width: 135px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 400; }
+.accountButton > svg { margin-left: auto; color: #8fa3c0; }
+.main { margin-left: 240px; min-height: 100dvh; } /* [W]:372 */
+.topbar { position: sticky; top: 0; z-index: 35; display: grid; grid-template-columns: auto minmax(44px, 1fr) auto; align-items: center; gap: 16px;
+  height: 52px; padding: 0 20px; background: #ffffffed; backdrop-filter: blur(16px); border-bottom: 1px solid #dce3ed; } /* [W]:376-403 · 1584 — 지금 윗줄 그대로 */
+.breadcrumb { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-size: 14px; min-width: 0; } /* [W]:389 */
+.breadcrumb > span, .breadcrumb > svg { color: #596c86; }
+.breadcrumb strong { font-weight: 650; color: #2b4265; overflow: hidden; text-overflow: ellipsis; }
+.searchTrigger { display: flex; align-items: center; justify-content: center; gap: 9px; height: 44px; padding: 0 11px; border: 1px solid #e0e6f0; color: #596c86; background: #f8fafd; justify-self: start; } /* [W]:439 */
+.searchTrigger kbd { font-size: 12px; padding: 1px 4px; margin-left: 12px; border: 1px solid #dce3ee; background: #fff; border-radius: 3px; font-family: inherit; }
+.accountSlot { min-width: 0; justify-self: end; }
+.account { display: flex; align-items: center; justify-content: flex-end; gap: 12px; min-width: 0; } /* [WA] */
+.identity { display: grid; min-width: 0; max-width: 200px; line-height: 1.4; }
+.identity strong { font-size: 13px; font-weight: 650; }
+.identity span { color: #596c86; font-size: 12px; }
+.identity span, .identity strong { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+@media (max-width: 1320px) { /* [W]:407 · 1680 */
+  .searchTrigger { width: 44px; padding: 0; }
+  .searchTrigger span, .searchTrigger kbd { display: none; }
+}
+@media (min-width: 761px) and (max-width: 1320px) { .topbar { grid-template-columns: auto minmax(44px, 1fr) minmax(130px, 220px); gap: 10px; } }
+@media (max-height: 850px) and (min-width: 761px) { .sidebar { padding-top: 16px; } }
+@media (max-width: 1050px) and (min-width: 761px) { /* [W]:1070 */
+  .sidebar { width: 212px; padding-inline: 13px; } .main { margin-left: 212px; }
+  .brand > span:last-child { font-size: 18px; } .brandMark, .brandMark svg { width: 27px; height: 27px; }
+  .breadcrumb { font-size: 12px; }
+}
+@media (max-width: 760px) { /* [W]:418 · 1104-1248 · 1391 · 1496 · 1575 · 1648 · 1693 · 1707 · 1746 — 폰: 위 남색 띠 + 아래 메뉴 */
+  .workspace { --workspace-page-padding: 14px 16px; padding-bottom: calc(77px + env(safe-area-inset-bottom)); }
+  .sidebar { position: relative; width: 100%; height: 65px; padding: 0 18px; flex-direction: row; justify-content: space-between; align-items: center; border: 0; overflow: visible; }
+  .brand > span:last-child { font-size: 21px; }
+  .brandMark, .brandMark svg { width: 31px; height: 31px; }
+  .sidebarToggle { display: none; }
+  .newButton { margin: 0 50px 0 0; padding: 0 10px; gap: 5px; background: #2e4773; border-color: #49608c; }
+  .newButton svg { width: 16px; }
+  .navigation { position: fixed; inset: auto 0 0; z-index: 50; display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 0;
+    padding: 5px 4px calc(7px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid #d5dfed; box-shadow: 0 -3px 14px #152f5906; }
+  .navigation > div { min-width: 0; }
+  .navLabel { display: none; }
+  .teachingNav { margin: 0; padding: 0; border: 0; }
+  .navigation button { flex-direction: column; justify-content: center; gap: 5px; padding: 7px 0 5px; color: #73849e; }
+  .navigation button svg { color: #788da9; }
+  .navigation button.navActive { background: #eef3ff; color: #3159df; }
+  .navigation button.navActive svg { color: #3159df; }
+  .navShort { display: inline; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .main { margin: 0; min-height: calc(100dvh - 140px); }
+  .topbar { grid-template-columns: minmax(0, 1fr) 44px; gap: 0 8px; height: auto; padding: 4px 12px; }
+  .breadcrumb { font-size: 12px; gap: 6px; }
+  .breadcrumb > span, .breadcrumb > svg { display: none; }
+  .searchTrigger { width: 44px; background: #fff; }
+  .accountSlot { grid-column: 1 / -1; justify-self: stretch; padding-top: 4px; border-top: 1px solid #e4e9f1; }
+  .account { gap: 8px; } .identity { flex: 1; max-width: none; }
+  .sidebarFooter { position: absolute; z-index: 55; top: 10px; right: 12px; margin: 0; padding: 0; }
+  .sidebarFooter > button:first-child { display: none; }
+  .accountButton { justify-content: center; width: 44px; height: 44px; margin: 0; padding: 0; border: 0; }
+  .accountButton > span:nth-child(2), .accountButton > svg { display: none; }
+}
+@media (max-width: 420px) { .newButton { width: 44px; } .newButton > span { display: none; } }
+
+/* ═══ 수업 관리 — 머리 [PH] · 탭과 구역 머리 [T] ════════════════════════════════ */
+.teaching { padding: var(--workspace-page-padding, 16px 20px); min-width: 0; color: #172b4d; font-size: var(--text-body); line-height: 1.65; } /* [T]:1-18 */
+.teaching button { min-height: 44px; border-radius: 8px; font-size: var(--text-body); font-weight: 600; line-height: 1.4; } /* [T]:24 */
+.pageHeader { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 16px; min-height: 60px; margin: 0 0 16px; } /* [PH] */
+.pageHeader h1 { color: #172b4d; font-size: var(--text-title); font-weight: 750; line-height: 1.3; letter-spacing: -0.035em; }
+.pageHeader .copy p { margin: 4px 0 0; color: #52617a; font-size: var(--text-body); line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+.pageHeader .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 8px; min-height: 44px; }
+@media (max-width: 1050px) { .pageHeader { grid-template-columns: minmax(0, 1fr); gap: 12px; } .pageHeader .actions { justify-self: end; } }
+.tAccount { display: flex; align-items: center; gap: 12px; min-width: 0; } /* [T]:51 .account */
+.tAccount strong { display: block; font-size: var(--text-body); overflow-wrap: anywhere; }
+.tAccount small { display: block; color: #52617a; font-size: var(--text-caption); }
+.avatar { display: grid; place-items: center; flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%; color: #3159df; background: #e9efff; font-size: var(--text-body); font-weight: 800; } /* [T]:67 */
+.teaching .secondaryButton { display: inline-flex; align-items: center; justify-content: center; height: 44px; padding: 0 18px; border: 1px solid #d4dce8; background: #fff; color: #52617a; white-space: nowrap; } /* [T]:275 · 300 */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; border-bottom: 1px solid #d4dce8; } /* [T]:79 */
+.tabs button { position: relative; height: 44px; padding: 0 20px; color: #52617a; white-space: nowrap; }
+.tabs button[aria-selected="true"] { color: #3159df; }
+.tabs button[aria-selected="true"]::after { position: absolute; right: 16px; bottom: -1px; left: 16px; height: 3px; border-radius: 3px 3px 0 0; background: #3159df; content: ""; }
+/* 탭 옆 사람 수 — [CD]:247-259 거르개 단추의 숫자 칸과 같은 값 */
+.tabs button > span { display: inline-block; min-width: 20px; margin-left: 6px; padding: 1px 5px; border-radius: 5px; background: #edf0f6; color: #596c86; font-size: 12px; font-variant-numeric: tabular-nums; text-align: center; }
+.tabs button[aria-selected="true"] > span { background: #3159df; color: #fff; }
+.sectionHeading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; } /* [T]:347 */
+.sectionHeading h2 { font-size: var(--text-section); font-weight: 800; letter-spacing: -0.03em; }
+.sectionHeading p { margin: 6px 0 0; color: #52617a; font-size: var(--text-body); word-break: keep-all; }
+.sectionHeading p b { color: #172b4d; font-weight: 650; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .tAccount { width: 100%; } .tAccount .secondaryButton { margin-left: auto; } .tabs button { padding-inline: 12px; } } /* [T]:606 */
+
+/* ═══ 이 화면 — 부품은 «오늘의 기억 · SRS» 교사 화면 [CD] 의 것 ═══════════════════ */
+.dashboard { --ink: var(--learn-ink); --muted: var(--learn-muted); --line: var(--learn-track); --accent: var(--learn-accent);
+  width: 100%; min-width: 0; color: var(--ink); font-size: var(--text-body); line-height: 1.5; container: hd / inline-size; word-break: keep-all; overflow-wrap: anywhere; } /* [CD]:1-20 */
+.dashboard h3 { font-size: var(--text-section); font-weight: 700; line-height: 1.4; letter-spacing: -0.025em; } /* [CD]:37 */
+/* 구역 머리의 «새로고침»도 같은 단추 — 제품은 머리가 .dashboard 안에 있다([CD] .header). 여기는 머리가 밖이라 고른 이를 넓혔다 */
+:is(.dashboard, .sectionHeading) .button { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; gap: 8px; min-height: 44px; padding: 9px 14px;
+  border: 1px solid var(--learn-control); border-radius: var(--control-radius); background: #fff; color: var(--learn-ink); font-weight: 600; white-space: nowrap; } /* [CD]:96 */
+:is(.dashboard, .sectionHeading) .button:hover, .dashboard .rowButton:hover { background: var(--learn-soft); border-color: var(--learn-accent); color: var(--learn-accent); }
+.totals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 16px 0; margin-bottom: 16px; background: #fff; border: 1px solid var(--line); border-radius: var(--learn-radius-sm); } /* [CD]:126 */
+.totals > div { padding: 0 20px; border-right: 1px solid var(--line); }
+.totals > div:last-child { border: 0; }
+.totals dt { font-size: var(--text-body); color: var(--muted); }
+.totals dd { margin-top: 4px; font-size: 24px; font-weight: 750; font-variant-numeric: tabular-nums; line-height: 1.3; }
+.totals small { margin-left: 4px; font-size: var(--text-body); font-weight: 500; color: var(--muted); }
+.controls { min-width: 0; border: 1px solid var(--line); border-radius: var(--learn-radius-sm); background: #fff; } /* [CD]:159 */
+.filters { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: thin; } /* [CD]:201 */
+.dashboard .filters button { display: inline-flex; justify-content: center; align-items: center; flex-shrink: 0; gap: 6px; min-height: 44px; padding: 10px 12px;
+  border-bottom: 2px solid transparent; border-radius: 0; font-size: var(--text-body); font-weight: 600; white-space: nowrap; color: var(--muted); } /* [CD]:214 */
+.filters button[aria-pressed="true"] { background: var(--learn-soft); border-bottom-color: var(--accent); color: var(--accent); }
+.filters button:hover:not([aria-pressed="true"]) { background: var(--learn-bg); color: var(--ink); }
+.filters span { min-width: 20px; padding: 1px 5px; border-radius: 5px; background: var(--learn-neutral); color: var(--muted); font-size: var(--text-caption); font-variant-numeric: tabular-nums; } /* [CD]:247 */
+.filters button[aria-pressed="true"] span { background: var(--accent); color: #fff; }
+.dashboard select { min-height: 44px; border: 1px solid var(--learn-control); border-radius: var(--control-radius); background: #fff; color: var(--ink); padding: 9px 12px; min-width: 160px; max-width: 260px; font-weight: 400; } /* [CD]:178 · 196 */
+.subline { display: block; color: var(--muted); font-size: var(--text-caption); font-weight: 400; margin-top: 2px; } /* [CD]:353 · 457 */
+.dashboard .studentButton { display: flex; align-items: center; gap: 12px; max-width: 100%; min-height: 44px; padding: 4px 8px; margin-left: -8px; color: var(--ink); text-align: left; font-weight: 400; } /* [CD]:331 */
+.studentIdentity { min-width: 0; }
+/* 운영 확인 줄의 이름 — 열 기록이 없어 단추로 두지 않는다(D-30). 자리 · 글자는 이름 단추와 같게 */
+.x-staticName { display: flex; align-items: center; max-width: 100%; min-height: 44px; padding: 4px 8px; margin-left: -8px; color: var(--ink); line-height: 1.4; } /* [W]:25-32 단추의 줄 높이 */
+.studentIdentity > strong { font-size: 15px; font-weight: 700; } /* [CD]:349 */
+.dashboard .studentButton:hover, .dashboard .studentButton[aria-expanded="true"] { color: var(--accent); background: var(--learn-soft); }
+.studentButton:is(:hover, [aria-expanded="true"]) .studentIdentity > strong { text-decoration: underline; text-underline-offset: 4px; }
+.status { display: inline-flex; align-items: center; white-space: nowrap; gap: 6px; min-height: 26px; border-radius: 6px; padding: 4px 9px; background: var(--learn-soft); color: var(--accent); font-size: var(--text-caption); font-weight: 650; line-height: 1.5; } /* [CD]:464 */
+.status::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.status[data-status="paused"] { background: var(--learn-neutral); color: var(--muted); } /* [CD]:497 */
+.status[data-status="review"] { background: var(--learn-warning-bg); color: var(--learn-warning); } /* [CD]:502 */
+.dashboard .rowButton { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--learn-bg); color: var(--ink); font-weight: 600; white-space: nowrap; } /* [CD]:532 · 548 */
+.dashboard .rowButton svg { color: var(--muted); }
+.dashboard .textButton { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 8px 10px; border-radius: var(--control-radius); color: var(--accent); font-weight: 600; white-space: nowrap; } /* [CD]:532 */
+.dashboard .textButton:hover { background: var(--learn-soft); }
+.dashboard a.accountLink { display: inline-flex; align-items: center; gap: 5px; min-height: 32px; padding: 4px 8px; border: 1px solid #e6d7b7; border-radius: 6px; background: #fffbf2;
+  color: var(--learn-warning); font-size: var(--text-caption); font-weight: 600; white-space: nowrap; } /* [CD]:374 */
+.dashboard a.accountLink:hover { background: var(--learn-warning-bg); border-color: currentColor; }
+.empty { padding: 40px 24px; border: 1px dashed var(--learn-control); border-radius: var(--learn-radius-sm); background: #fff; text-align: center; } /* [CD]:647 */
+.empty p { margin: 10px 0 0; color: var(--muted); }
+.tableScroll { width: 100%; max-width: 100%; min-width: 0; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--learn-radius-sm); background: #fff; scrollbar-width: thin; } /* [CD]:289 */
+.reportTable { width: 100%; min-width: 520px; font-size: var(--text-body); text-align: left; } /* [CD]:301 · 751 */
+.reportTable th, .reportTable td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.reportTable thead th { background: var(--learn-bg); color: var(--muted); font-size: var(--text-caption); font-weight: 600; white-space: nowrap; }
+.reportTable tbody th { font-weight: 550; }
+.reportTable td { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.reportTable tbody tr:last-child > * { border-bottom: 0; }
+.due { color: var(--learn-danger); font-weight: 650; } /* [CD]:579 */
+.detail { min-width: 0; overflow-wrap: anywhere; border: 1px solid var(--line); border-radius: var(--learn-radius); background: #fff; scrollbar-width: thin; } /* [CD]:658 */
+.detailHeader { display: flex; align-items: start; justify-content: space-between; gap: 12px; padding: 20px 20px 8px; } /* [CD]:667 */
+.detailHeader h2 { margin-bottom: 4px; font-size: var(--text-section); font-weight: 750; line-height: 1.4; letter-spacing: -0.025em; }
+.detailHeader > div { min-width: 0; }
+.muted { color: var(--muted); }
+.detailHint { padding: 0 20px 12px; color: var(--muted); font-size: var(--text-caption); border-bottom: 1px solid var(--line); } /* [CD]:682 */
+.detailBody { padding: 16px 20px 20px; min-width: 0; } /* [CD]:696 */
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+@container hd (max-width: 600px) { /* [CD]:901 */
+  .totals { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
+  .totals > div { padding: 0 16px; }
+  .totals > div:nth-child(2) { border: 0; }
+  .detailHeader { padding: 16px 16px 8px; } .detailBody { padding: 16px; } .detailHint { padding-inline: 16px; }
+}
+
+/* ═══ [x] 이 시안에서 새로 짠 배치 — 색 · 글자 크기 · 모서리는 전부 위 값 ═══════════ */
+.x-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 12px; margin-bottom: 16px; }
+.x-controls.boxed { padding: 0 8px 0 12px; } /* 요약 칸 넷 안: 거르개 상자 [CD].controls 한 줄 */
+.x-controls.boxed select { margin-block: 6px; }
+.x-work { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 20px; min-width: 0; }
+.x-sec + .x-sec { margin-top: 20px; }
+.x-sechead { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 12px; min-height: 28px; margin-bottom: 8px; }
+.x-sechead > p { color: var(--muted); font-size: var(--text-caption); flex: 1 1 240px; min-width: 0; }
+.x-sechead .textButton, .x-sechead .rowButton { margin-left: auto; }
+.x-crit { color: var(--muted); font-size: var(--text-caption); }
+.x-crit b { color: var(--ink); font-weight: 650; }
+.x-crit.above { margin: -2px 0 10px; }
+.x-crit.below { padding: 10px 16px; border-top: 1px solid var(--line); background: var(--learn-bg); }
+.x-list { border: 1px solid var(--line); border-radius: var(--learn-radius-sm); background: #fff; overflow: hidden; min-width: 0; }
+.x-row { border-top: 1px solid var(--line); min-width: 0; }
+.x-list > .x-row:first-child { border-top: 0; }
+.x-row[data-open="true"] > .x-line { background: var(--learn-soft); } /* [CD]:397 고른 줄 = 옅은 코발트 면 · 왼쪽 색 막대는 두지 않았다(05 §8.9) */
+.x-line { display: grid; align-items: center; gap: 2px 16px; padding: 10px 16px; min-width: 0; }
+.x-slot { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 8px 16px; border-bottom: 1px dashed var(--learn-control); background: var(--learn-bg); color: var(--muted); font-size: var(--text-caption); }
+.x-slot b { color: var(--ink); font-weight: 650; }
+.x-stage { display: inline-block; padding: 1px 6px; border: 1px solid var(--learn-control); border-radius: 5px; background: #fff; color: var(--muted); font-size: 12px; font-weight: 600; }
+.x-ghead { display: flex; align-items: baseline; gap: 8px; padding: 6px 16px; border-top: 1px solid var(--line); background: var(--learn-bg); color: var(--muted); font-size: var(--text-caption); font-weight: 600; }
+.x-ghead b { color: var(--ink); font-weight: 700; }
+.x-slot + .x-ghead { border-top: 0; }
+.x-say { min-width: 0; }
+.x-say b { font-weight: 650; }
+.x-say .num, .x-val { font-variant-numeric: tabular-nums; }
+.x-also { color: var(--muted); font-size: var(--text-caption); }
+.x-also::before { content: "그 밖 "; }
+.x-side { color: var(--muted); font-size: var(--text-caption); min-width: 0; }
+.x-val { font-weight: 700; white-space: nowrap; }
+.x-ctx { min-width: 0; }
+.x-tags { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+/* (가) 문장 — PC 는 이름 칸 | 문장 | 단추, 좁으면 이름 · 단추 한 줄 아래 문장 */
+.x-line.say { grid-template-columns: 208px minmax(0, 1fr) auto; }
+.x-line.say .x-also { display: block; margin-top: 1px; }
+/* (나) 칸 — 딱지 | 값 | 단원 · 카드 */
+.x-colhead, .x-line.cols { grid-template-columns: 208px minmax(0, 1fr) auto; } /* 끝 칸은 단추 · 계정 확인 링크 폭대로 — 딱지 · 값 칸은 x-reasons 안에서 왼쪽부터 맞는다 */
+.x-colhead { display: grid; gap: 0 16px; padding: 10px 16px; background: var(--learn-bg); color: var(--muted); font-size: var(--text-caption); font-weight: 600; border-bottom: 1px solid var(--line); } /* [CD]:319 표 머리 */
+.x-reasons { display: grid; grid-template-columns: 112px 108px minmax(0, 1fr); gap: 6px 12px; align-items: center; min-width: 0; }
+.x-colhead .x-reasons { align-items: baseline; }
+.x-rsn, .x-vc { display: contents; } /* PC 에서는 칸마다 격자에 선다 — 좁으면 한 줄로 흐른다(아래) */
+.x-line.cols .rowButton, .x-line.colsH .rowButton, .x-line.say .rowButton { justify-self: end; }
+/* (나) + 사유 머리 — 머리가 사유를 말하므로 줄은 값 | 단원 · 카드 | 그 밖 딱지 */
+.x-line.colsH { grid-template-columns: 208px 116px minmax(0, 1fr) auto auto; }
+/* 세 줄 블록 — 이름 줄 · 문장 줄 · 곁 줄 */
+.x-line.stack { grid-template-columns: minmax(0, 1fr) auto; gap: 0 12px; }
+.x-line.stack .x-say, .x-line.stack .x-side { grid-column: 1 / -1; }
+.x-line.stack .x-side { margin-top: 2px; }
+.x-line.stack .studentIdentity { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
+.x-line.stack .studentIdentity .subline { margin-top: 0; }
+/* 펼친 자리 — 밀린 · 막힌 카드만 */
+.x-open { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 14px 16px 16px; border-top: 1px solid var(--line); background: var(--learn-bg); min-width: 0; }
+.detailBody.x-open { padding: 16px 20px 20px; border-top: 0; background: transparent; }
+.x-nums { font-variant-numeric: tabular-nums; }
+.x-nums b { font-weight: 700; }
+.x-nums span { color: var(--muted); }
+.x-flags { display: grid; gap: 2px; }
+.x-flags b { font-weight: 650; }
+.x-sub { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; font-size: var(--text-body); font-weight: 700; }
+.x-sub small { color: var(--muted); font-size: var(--text-caption); font-weight: 500; }
+.x-open .reportTable.tight { min-width: 0; }
+.x-open .reportTable.tight th, .x-open .reportTable.tight td { padding: 9px 10px; }
+.x-units { display: grid; grid-template-columns: minmax(96px, max-content) minmax(0, 1fr); border: 1px solid var(--line); border-radius: var(--learn-radius-sm); background: #fff; overflow: hidden; }
+.x-units > dt, .x-units > dd { padding: 9px 12px; border-top: 1px solid var(--line); }
+.x-units > dt:first-of-type, .x-units > dt:first-of-type + dd { border-top: 0; }
+.x-units > dt { font-weight: 650; background: var(--learn-bg); }
+.x-units > dt small { display: block; color: var(--muted); font-size: var(--text-caption); font-weight: 400; }
+.x-units > dd { display: flex; flex-wrap: wrap; gap: 2px 14px; font-variant-numeric: tabular-nums; }
+.x-units > dd span { white-space: nowrap; }
+.x-units > dd b { font-weight: 650; }
+.x-sess { display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.x-note { color: var(--muted); font-size: var(--text-caption); }
+.x-quiet { padding: 12px 16px; display: grid; gap: 6px; }
+.x-quiet b { font-weight: 650; }
+.x-link { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; } /* [CD]:47 · ClassManage.tsx:90 글 링크 */
+/* 오른쪽 칸 — 지금 초등 상세는 본문 1400px 부터 오른쪽([CD]:886). 이 시안은 960px 부터 세운다(1280 창에서 보이게) */
+@container hd (min-width: 960px) {
+  .x-work[data-detail="true"] { grid-template-columns: minmax(0, 1fr) 420px; }
+  .x-work .detail { position: sticky; top: var(--workspace-sticky-inset, 68px); max-height: calc(100dvh - var(--workspace-sticky-inset, 68px) - 16px); overflow-y: auto; overflow-x: hidden; }
+}
+@container hd (max-width: 959px) { .x-work .detail { display: none; } } /* 좁으면 줄 안에서 펼친다 */
+@container hd (min-width: 960px) { .x-row .x-open.forNarrow { display: none; } }
+/* 오른쪽 칸 안의 줄 단추 — PC 는 «기록 보기 >», 좁으면 줄 안에서 펼치므로 «펼치기 ∨ / 접기 ∧» */
+.rowButton > .x-wide, .rowButton > .x-narrow { display: inline-flex; align-items: center; gap: 6px; }
+@container hd (min-width: 960px) { .rowButton > .x-narrow { display: none; } }
+@container hd (max-width: 959px) { .rowButton > .x-wide { display: none; } }
+/* 목록 칸이 좁아질 때(폰 · 오른쪽 칸이 선 PC) — 이름 · 단추 한 줄, 그 아래 사유 */
+.x-list { container: xl / inline-size; }
+@container xl (max-width: 700px) {
+  .x-line.say, .x-line.cols, .x-line.colsH { grid-template-columns: minmax(0, 1fr) auto; }
+  .x-line.say .x-say, .x-line.cols .x-reasons, .x-line.colsH .x-ctx, .x-line.colsH .x-tags { grid-column: 1 / -1; }
+  .x-line.say .studentIdentity, .x-line.cols .studentIdentity, .x-line.colsH .studentIdentity { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; }
+  .x-line.say .studentIdentity .subline, .x-line.cols .studentIdentity .subline, .x-line.colsH .studentIdentity .subline { margin-top: 0; }
+  .x-line.say .rowButton, .x-line.cols .rowButton, .x-line.colsH .rowButton, .x-line > .x-act { grid-column: 2; grid-row: 1; } /* 운영 확인 줄의 계정 확인 링크도 이름 줄 오른쪽 */
+  .x-colhead { display: none; }
+  .x-reasons { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .x-rsn { display: block; } /* 딱지 · 값 · 단원이 한 줄로 흐르고 넘치면 꺾인다 */
+  .x-rsn .status { vertical-align: 1px; margin-right: 2px; }
+  .x-vc { display: block; grid-column: 1 / -1; }
+  .x-line.colsH .x-tags { margin-top: 4px; }
+  .x-line.colsH .x-tags:empty { display: none; }
+}
+@container xl (max-width: 420px) {
+  .x-units { grid-template-columns: minmax(0, 1fr); }
+  .x-units > dt:first-of-type + dd { border-top: 1px solid var(--line); }
+  .x-units > dt small { display: inline; margin-left: 6px; }
+}
+@container hd (max-width: 600px) {
+  .x-line, .x-ghead, .x-slot, .x-colhead, .x-quiet { padding-inline: 12px; }
+  .x-open { padding: 12px; }
+  .x-crit.below { padding-inline: 12px; }
+  .x-controls select { min-width: 0; flex: 1 1 150px; max-width: none; }
+}
+/* entry 화면 — 시안 표지(제품 모양이 아니다): 새로 넣는 줄을 점선으로 두른다 */
+.x-new { position: relative; outline: 2px dashed #172b4d; outline-offset: 4px; border-radius: 4px; }
+.x-new::after { content: "새 줄"; position: absolute; top: -13px; right: 8px; padding: 0 6px; border-radius: 4px; background: #172b4d; color: #fff; font-size: 11px; font-weight: 700; line-height: 18px; }
+.x-cap { margin: 0 0 8px; color: #596c86; font-size: 12px; }
+.cmGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 320px); gap: 24px; align-items: start; } /* ClassManage.tsx:71 · [T]:374 */
+.cmPanel { min-width: 0; padding: 22px; border: 1px solid #d4dce8; border-radius: 14px; background: #fff; } /* [T]:377 · [CM]:9 */
+.cmPanel h2 { margin-bottom: 14px; font-size: 18px; font-weight: 800; letter-spacing: -0.025em; } /* [T]:390 */
+.cmPanel table { width: 100%; table-layout: fixed; font-size: 14px; }
+.cmPanel th { padding: 0 12px 14px; border-bottom: 1px solid #d4dce8; color: #596c86; font-size: 12px; font-weight: 700; text-align: left; } /* [T]:398 · [CM]:38 */
+.cmPanel td { padding: 10px 12px; border-bottom: 1px solid #dde3ec; } /* [T]:404 */
+.cmPanel td button { padding: 10px 12px; width: fit-content; } /* [T]:412 */
+.cmPanel td button[aria-current="true"] { background: #3159df; color: #fff; } /* [T]:449 */
+.cmLink { display: inline-flex; align-items: center; min-height: 44px; color: #3159df; font-size: 14px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; } /* ClassManage.tsx:88-92 · [T]:385 */
+.cmStudents li { display: flex; align-items: center; min-height: 44px; border-bottom: 1px solid #dde3ec; font-weight: 700; }
+.srsHead { padding: 22px; border: 1px solid #d4dce8; border-radius: 14px; background: #f4f6fa; } /* 반 현황 화면의 바탕 */
+.srsHead .eyebrow { color: #3159df; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; } /* [A]:650 */
+.srsHead h1 { margin: 4px 0 6px; font-size: 28px; font-weight: 740; letter-spacing: -0.055em; line-height: 1.2; } /* [A]:646 */
+.srsHead p.m { color: #52617a; font-size: 14px; line-height: 1.7; } /* [A]:655 */
+
+/* ═══ 안내 쪽(?view 없음) — 제품이 아니다 ═══════════════════════════════════════ */
+body[data-mode="doc"] { background: #f4f6fa; color: #172b4d; font-family: var(--font-pretendard), "Malgun Gothic", system-ui, sans-serif; font-size: 14px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+.doc { max-width: 1320px; margin: 0 auto; padding: 28px 20px 80px; }
+.doc h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.3; }
+.doc h2 { margin: 28px 0 8px; font-size: 20px; font-weight: 800; letter-spacing: -0.025em; }
+.doc .lede { margin-top: 8px; max-width: 86ch; color: #52617a; font-size: 15px; }
+.doc .lede b, .doc li b, .doc td b { color: #172b4d; }
+.doc ul.facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin-top: 10px; color: #52617a; font-size: 13px; }
+.doc .tw { overflow-x: auto; }
+.doc table.t { min-width: 860px; background: #fff; font-size: 13px; }
+.doc table.t th, .doc table.t td { border: 1px solid #dde3ec; padding: 7px 10px; text-align: left; vertical-align: top; }
+.doc table.t th { background: #edf0f6; font-weight: 700; white-space: nowrap; }
+.doc nav { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 4px; margin-top: 26px; padding: 8px 0; background: #f4f6fa; border-block: 1px solid #dde3ec; }
+.doc nav button { padding: 8px 14px; border-radius: 8px; color: #52617a; font-weight: 600; }
+.doc nav button[aria-selected="true"] { background: #fff; color: #3159df; box-shadow: inset 0 -2px 0 #3159df; }
+.doc .thesis { margin-top: 20px; max-width: 90ch; color: #52617a; }
+.doc .thesis b { color: #172b4d; }
+.doc dl.axes { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 14px; margin-top: 10px; font-size: 13px; }
+.doc dl.axes dt { font-weight: 700; } .doc dl.axes dd { color: #52617a; }
+.doc .frames { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; margin-top: 16px; } /* 1280 액자의 iframe 이 칸을 1280 으로 밀지 않게 */
+.doc figure figcaption { margin-bottom: 6px; color: #52617a; font-size: 13px; }
+.doc figure figcaption a { color: #3159df; text-decoration: underline; text-underline-offset: 3px; }
+.doc .scale { position: relative; overflow: hidden; border: 1px solid #b8c4d6; border-radius: 8px; background: #fff; }
+.doc .scale iframe { display: block; border: 0; transform-origin: 0 0; }
+.doc .phones { display: flex; flex-wrap: wrap; gap: 18px; }
+.doc .phones iframe { display: block; width: 390px; height: 844px; border: 1px solid #b8c4d6; border-radius: 8px; background: #fff; }
+.doc ul.list { margin-top: 12px; padding-left: 18px; list-style: disc; color: #52617a; max-width: 96ch; }
+.doc ul.list li + li { margin-top: 4px; }
+.doc code { padding: 0 4px; border-radius: 4px; background: #edf0f6; font-size: 12px; }
+</style>
+<body>
+<script>
+// ── 표본 — me-wire 의 29명 그대로 + 브리프가 더하라고 한 것(긴 반 이름 · 밀린 카드 14장 · 긴 단원 · 긴 카드 이름 · 계정 없음 + 기록 사유).
+//    이름은 전부 지어낸 것. 단원 · 카드 이름은 제품 카탈로그(src/lib/math-explorers/definition-content.ts · definition-cards.ts) 그대로.
+//    칸은 교사 끝점(me-teacher) 출력 안에서만 — 요약: 모은 카드 · 오늘 복습 · 밀린 카드(수 · 가장 오래) · 최근 세션 · 열린 임무 · 마지막으로 끝낸 날 · 사유.
+//    상세: 카드마다 단계 · 복습 예정일 · 마지막 복습 · 복습 간격 · 밀린 날. 문항 글 · 학생 답 · 종합 점수 · 순위는 없다.
+const WD = ["일", "월", "화", "수", "목", "금", "토"];
+const md = (s) => { const d = new Date(s + "T00:00:00Z"); return (d.getUTCMonth() + 1) + "/" + d.getUTCDate() + "(" + WD[d.getUTCDay()] + ")"; };
+const C = { m1a: { name: "중1 심화 A(월수금)", lv: "중" }, e5b: { name: "초5 B", lv: "초" }, m2c: { name: "중2 C", lv: "중" } };
+const U1 = "소인수분해", U2 = "정수와 유리수", U3 = "문자와 식";
+// 카드: [이름, 단원, 단계, 복습 간격(일), 복습 예정일, 마지막 복습, 밀린 날]   세션: [날짜, 단원, 첫 시도 정답(15개 중), 미해결]
+const S = [
+  { n: "강다인", c: "m1a" },
+  { n: "김도윤", c: "m1a", col: 18, ov: [0, 0], last: "2026-09-29",
+    fl: [{ k: "unres", v: 3, d: "2026-09-30", u: "일차방정식", f: 9, cards: ["이항", "일차방정식"] }], cards: [],
+    sess: [["2026-09-30", "일차방정식", 9, 3], ["2026-09-29", "기억 복습", 13, 0], ["2026-09-26", "문자와 식", 12, 0]] },
+  { n: "김서연", c: "m1a" },
+  { n: "박지호", c: "m1a", col: 15, ov: [7, 5], last: "2026-09-29",
+    fl: [{ k: "stuck", v: 3, d: "2026-09-29", cards: ["소인수", "절댓값", "동류항"] }, { k: "over", v: 4, max: 5, cards: ["서로소", "정수", "유리수", "일차식"] }],
+    cards: [["서로소", U1, 1, 3, "2026-09-26", "기억함", 5], ["정수", U2, 1, 3, "2026-09-27", "기억함", 4], ["유리수", U2, 1, 3, "2026-09-27", "기억함", 4], ["일차식", U3, 1, 1, "2026-09-28", "처음", 3],
+      ["소인수", U1, 1, 1, "2026-09-30", "막힘", 1], ["절댓값", U2, 1, 1, "2026-09-30", "막힘", 1], ["동류항", U3, 1, 1, "2026-09-30", "막힘", 1]],
+    sess: [["2026-09-29", "기억 복습", 10, 0], ["2026-09-25", "문자와 식", 11, 0], ["2026-09-24", "기억 복습", 12, 0]] },
+  { n: "박하린", c: "m1a" },
+  { n: "서준우", c: "m1a", col: 5, ov: [1, 2], last: "2026-09-25",
+    fl: [{ k: "carried", v: 3, d: "2026-09-28", u: "정수와 유리수", solved: 8 }],
+    cards: [["서로소", U1, 1, 3, "2026-09-29", "기억함", 2]], sess: [["2026-09-25", "소인수분해", 11, 0]] },
+  { n: "이수아", c: "m1a" },
+  { n: "이예준", c: "m1a", col: 15, ov: [14, 8], last: "2026-09-21",
+    fl: [{ k: "over", v: 14, max: 8, cards: ["소수", "합성수", "소인수", "소인수분해", "서로소", "양수", "음수", "정수", "유리수", "절댓값", "항", "상수항", "계수", "동류항"] }, { k: "idle", v: 10, d: "2026-09-21" }],
+    cards: [["소수", U1, 2, 3, "2026-09-23", "기억함", 8], ["합성수", U1, 2, 3, "2026-09-23", "기억함", 8], ["소인수", U1, 2, 3, "2026-09-23", "기억함", 8],
+      ["소인수분해", U1, 2, 3, "2026-09-24", "기억함", 7], ["서로소", U1, 2, 3, "2026-09-24", "기억함", 7],
+      ["양수", U2, 1, 3, "2026-09-25", "기억함", 6], ["음수", U2, 1, 3, "2026-09-25", "기억함", 6], ["정수", U2, 1, 3, "2026-09-26", "기억함", 5],
+      ["유리수", U2, 1, 3, "2026-09-26", "기억함", 5], ["절댓값", U2, 1, 3, "2026-09-26", "기억함", 5],
+      ["항", U3, 1, 7, "2026-09-28", "기억함", 3], ["상수항", U3, 1, 7, "2026-09-28", "기억함", 3], ["계수", U3, 1, 7, "2026-09-28", "기억함", 3], ["동류항", U3, 1, 7, "2026-09-28", "기억함", 3]],
+    sess: [["2026-09-21", "기억 복습", 12, 0], ["2026-09-18", "문자와 식", 11, 0], ["2026-09-17", "기억 복습", 13, 0]] },
+  { n: "정민서", c: "m1a" }, { n: "최시우", c: "m1a" },
+  { n: "한유나", c: "m1a", op: { k: "notStarted", d: "2026-09-24", v: 7 } },
+  { n: "홍지안", c: "m1a", op: { k: "noAccount" }, rec: [{ k: "over", v: 5, max: 12, cards: [] }, { k: "idle", v: 14, d: "2026-09-17" }] },
+
+  { n: "고은채", c: "e5b" }, { n: "김민준", c: "e5b" },
+  { n: "남궁하람", c: "e5b", col: 10, ov: [2, 9], last: "2026-09-30",
+    fl: [{ k: "over", v: 1, max: 9, seven: true, cards: ["통분"] }],
+    cards: [["통분", "약분·통분과 분수 계산", 1, 3, "2026-09-22", "기억함", 9], ["약분", "약분·통분과 분수 계산", 2, 7, "2026-09-30", "기억함", 1]],
+    sess: [["2026-09-22", "약분·통분과 분수 계산", 11, 0], ["2026-09-18", "기억 복습", 12, 0], ["2026-09-16", "약수·배수와 혼합 계산", 10, 0]] },
+  { n: "문소율", c: "e5b" }, { n: "배지우", c: "e5b" }, { n: "송하준", c: "e5b" }, { n: "오서윤", c: "e5b" }, { n: "장태오", c: "e5b" }, { n: "황보라", c: "e5b" },
+
+  { n: "권나윤", c: "m2c" },
+  { n: "김건우", c: "m2c", col: 14, ov: [1, 1], last: "2026-09-28",
+    fl: [{ k: "unres", v: 1, d: "2026-09-29", u: "식의 계산과 일차부등식", f: 13, cards: ["음수와 부등호"] }],
+    cards: [["분배법칙", "식의 계산과 일차부등식", 1, 1, "2026-09-30", "기억함", 1]],
+    sess: [["2026-09-29", "식의 계산과 일차부등식", 13, 1], ["2026-09-26", "기억 복습", 12, 0], ["2026-09-24", "유리수·순환소수와 지수", 11, 0]] },
+  { n: "노은호", c: "m2c" },
+  { n: "류하은", c: "m2c", col: 15, ov: [2, 1], last: "2026-09-30",
+    fl: [{ k: "stuck", v: 2, d: "2026-09-30", cards: ["부등식의 해", "미지수가 두 개인 일차방정식"] }],
+    cards: [["유한소수", "유리수·순환소수와 지수", 2, 3, "2026-09-30", "기억함", 1], ["순환소수", "유리수·순환소수와 지수", 2, 3, "2026-09-30", "기억함", 1],
+      ["부등식의 해", "식의 계산과 일차부등식", 1, 1, "2026-10-01", "막힘", 0], ["미지수가 두 개인 일차방정식", "연립일차방정식", 1, 1, "2026-10-01", "막힘", 0]],
+    sess: [["2026-09-30", "기억 복습", 11, 0], ["2026-09-28", "연립일차방정식", 12, 0], ["2026-09-25", "기억 복습", 13, 0]] },
+  { n: "신동현", c: "m2c" },
+  { n: "안채원", c: "m2c", op: { k: "notStarted", d: "2026-09-15", v: 16 } },
+  { n: "임주원", c: "m2c" }, { n: "제갈서진", c: "m2c" },
+];
+S.forEach((s) => { s.fl = s.fl || []; });
+const cap = (names, n) => names.length > n ? names.slice(0, n).join(" · ") + " 외 " + (names.length - n) + "장" : names.join(" · ");
+const over3 = (f) => (f.seven ? "7일" : "3일") + " 이상 지난 카드 " + f.v + "장 · 가장 오래 " + f.max + "일";
+// 사유 v1.1 — 차례(o) · 표시 이름 · 딱지 · 값 · 곁 · 문장 · 머리 아래 문장 · «그 밖» · 곁 줄 · 딱지 색(지금 상태 딱지의 셋: 기본 = 임무 기록, review = 복습 기록, paused = 쉼)
+const R = {
+  unres: { o: 1, name: "미해결을 남기고 끝냄", tag: "미해결", st: "", key: (f) => f.v, val: (f) => f.v + "개",
+    ctx: (f) => md(f.d) + " " + f.u, lead: (f) => "미해결 " + f.v + "개를 남기고 끝냄.", rest: (f) => md(f.d) + " " + f.u + ".",
+    bare: (f) => md(f.d) + " " + f.u + "에서 " + f.v + "개.", also: (f) => "미해결 " + f.v + "개",
+    side: (f) => "남은 카드 " + f.cards.join(" · ") + " · 첫 시도 15개 중 " + f.f + "개 맞힘", full: (f) => md(f.d) + " " + f.u + " · 남은 카드 " + f.cards.join(" · ") },
+  stuck: { o: 2, name: "최근 복습에서 막힘", tag: "복습 막힘", st: "review", key: (f) => f.v, val: (f) => f.v + "장",
+    ctx: (f) => cap(f.cards, 3), lead: (f) => "최근 복습에서 " + f.v + "장이 막힘.", rest: (f) => cap(f.cards, 3) + ".",
+    bare: (f) => f.v + "장. " + cap(f.cards, 3) + ".", also: (f) => "복습 막힘 " + f.v + "장",
+    side: (f) => md(f.d) + " 복습", full: (f) => f.v + "장 · " + f.cards.join(" · ") + " · " + md(f.d) + " 복습" },
+  over: { o: 3, name: "복습이 밀림", tag: "복습 밀림", st: "review", key: (f) => f.max, val: (f) => f.v + "장 · " + f.max + "일",
+    ctx: (f) => cap(f.cards, 3), lead: () => "복습이 밀림.", rest: (f) => over3(f) + ".",
+    bare: (f) => over3(f) + ".", also: (f) => "복습 밀림 " + f.v + "장 · " + f.max + "일",
+    side: (f) => cap(f.cards, 4), full: (f) => over3(f) },
+  carried: { o: 4, name: "임무가 날을 넘김", tag: "날 넘김", st: "", key: (f) => f.v, val: (f) => f.v + "일째",
+    ctx: (f) => md(f.d) + "에 연 " + f.u, lead: () => "임무가 날을 넘김.", rest: (f) => md(f.d) + "에 연 " + f.u + " · " + f.v + "일째.",
+    bare: (f) => md(f.d) + "에 연 " + f.u + " · " + f.v + "일째.", also: (f) => "날 넘김 " + f.v + "일",
+    side: (f) => "15개 중 " + f.solved + "개 해결", full: (f) => md(f.d) + "에 연 " + f.u + " · " + f.v + "일째 · 15개 중 " + f.solved + "개 해결" },
+  idle: { o: 5, name: "오래 쉼", tag: "오래 쉼", st: "paused", key: (f) => f.v, val: (f) => f.v + "일",
+    ctx: (f) => "마지막으로 끝낸 날 " + md(f.d), lead: () => "오래 쉼.", rest: (f) => "마지막으로 끝낸 날 " + md(f.d) + " · " + f.v + "일 전.",
+    bare: (f) => "마지막으로 끝낸 날 " + md(f.d) + " · " + f.v + "일 전.", also: (f) => "오래 쉼 " + f.v + "일",
+    side: (f) => "마지막으로 끝낸 날 " + md(f.d), full: (f) => "마지막으로 끝낸 날 " + md(f.d) + " · " + f.v + "일 전" },
+};
+const OP = {
+  notStarted: { o: 1, name: "시작 전", rest: (f) => "계정을 만든 날 " + md(f.d) + " · " + f.v + "일째 탐험 기록 없음.", val: (f) => f.v + "일째", ctx: (f) => "계정을 만든 날 " + md(f.d) + " · 탐험 기록 없음" },
+  noAccount: { o: 2, name: "계정 없음", rest: () => "", val: () => "", ctx: () => "" },
+};
+const flagsOf = (s) => [...s.fl].sort((a, b) => R[a.k].o - R[b.k].o);
+const LEARN = ["unres", "stuck", "over", "carried", "idle"];
+
+// ── 안 다섯 — 축 다섯의 조합
+const V = {
+  H1: { shape: "say", sum: "cells", grain: "flat", open: "inline", dens: 2, cards: "table", crit: "above",
+    title: "H1 · 문장 한 줄 — 지금 교사 화면의 틀 그대로", short: "문장 · 요약 칸 넷 · 줄 안 펼침" },
+  H2: { shape: "cols", sum: "cells", grain: "flat", open: "panel", dens: 2, cards: "table", crit: "above",
+    title: "H2 · 칸 — 딱지 · 값 · 단원(지금 초등 표의 결) + 오른쪽 칸", short: "칸 · 요약 칸 넷 · 오른쪽 칸" },
+  H3: { shape: "say", sum: "line", grain: "heads", open: "inline", dens: 2, cards: "units", crit: "below",
+    title: "H3 · 사유 머리 아래 짧은 문장 — 이름이 먼저", short: "문장 · 한 줄 요약 · 사유 머리 · 줄 안 펼침" },
+  H4: { shape: "cols", sum: "line", grain: "heads", open: "panel", dens: 2, cards: "units", crit: "below",
+    title: "H4 · 사유 머리 아래 값과 단원 — 칸 + 오른쪽 칸", short: "칸 · 한 줄 요약 · 사유 머리 · 오른쪽 칸" },
+  H5: { shape: "say", sum: "line", grain: "flat", open: "panel", dens: 3, cards: "table", crit: "below",
+    title: "H5 · 세 줄 블록 — 이름 · 문장 · 곁 줄 + 오른쪽 칸", short: "문장 · 한 줄 요약 · 세 줄 · 오른쪽 칸" },
+};
+
+// ── 그림 조각 [W] WorkspaceIcon.tsx 의 길 그대로
+const IC = {
+  home: '<path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/>',
+  bank: '<rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="16" rx="1"/><path d="m18 4 3 15M4 8h3m4 0h3"/>',
+  crop: '<path d="M7 3v14h14M3 7h14v14M11 3v4m10 4h-4"/><path d="m11 13 10-10"/>',
+  paper: '<path d="M5 3h10l4 4v14H5Z"/><path d="M14 3v5h5M9 12h6m-6 4h6"/>',
+  folder: '<path d="M3 7V4h7l3 3h8v13H3Zm0 3h18"/>',
+  class: '<circle cx="9" cy="8" r="3"/><path d="M3 21v-4a6 6 0 0 1 12 0v4M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v2"/>',
+  play: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3Z"/>',
+  pen: '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',
+  plus: '<path d="M12 4v16M4 12h16"/>', chevron: '<path d="m9 5 7 7-7 7"/>', down: '<path d="m6 9 6 6 6-6"/>', up: '<path d="m6 15 6-6 6 6"/>',
+  search: '<circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/>',
+  help: '<circle cx="12" cy="12" r="9"/><path d="M9 8a3 3 0 1 1 5 3l-2 2v1m0 3h.01"/>',
+};
+const icon = (name, size = 20) => '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + IC[name] + "</svg>";
+const MARK = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true"><path fill="#ffffff" d="M6 10L23 14Q27 15 30 18V54L23 50L6 46Q4 45.5 4 43.5V12Q4 9.5 6 10Z"/><path fill="#ffffff" fill-rule="evenodd" d="M34 18Q37 15 41 14L58 10Q60 9.5 60 12V43.5Q60 45.5 58 46L41 50L34 54Z M44 22H50V28H56V34H50V40H44V34H38V28H44Z"/></svg>';
+const NAV = [["home", "오늘의 작업", "홈"], ["bank", "시험지 만들기", "만들기"], ["crop", "문제 추출", "문제 추출"], ["paper", "시험지 · 내보내기", "시험지"], ["folder", "내 시험지", "보관함"],
+  ["class", "수업 · 학생 관리", "수업·학생"], ["play", "오늘의 개념", "개념"], ["pen", "개념 백지", "백지"], ["clock", "오늘의 기억 · SRS", "기억 학습"]];
+
+// ── 제품 틀 — 옆 메뉴 · 윗줄 · «수업 관리» 머리 · 탭 셋
+function shell(panel, tab, count) {
+  const nav = NAV.map(([ic, label, short]) => '<div class="' + (ic === "class" ? "teachingNav" : "") + '"><button class="' + (ic === "class" ? "navActive" : "") + '">' + icon(ic) +
+    '<span class="navLabel">' + label + '</span><span class="navShort">' + short + "</span></button></div>").join("");
+  const tabs = [["classes", "반 · 학생 관리"], ["lessons", "수업 진행"], ["help", "도움이 필요한 학생"]].map(([id, label]) =>
+    '<button type="button" role="tab" aria-selected="' + (id === tab) + '">' + label + (id === "help" && count ? "<span>" + count + "</span>" : "") + "</button>").join("");
+  return '<div class="workspace"><aside class="sidebar">' +
+    '<div class="sideHeader"><button class="brand" aria-label="오늘의수학 홈"><span class="brandMark">' + MARK + '</span><span>오늘의수학</span></button>' +
+    '<button class="sidebarToggle" aria-label="왼쪽 메뉴 접기"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m19 6-6 6 6 6m-7-12-6 6 6 6"/></svg></button></div>' +
+    '<button class="newButton" aria-label="새 시험지 만들기">' + icon("plus") + "<span>새 시험지 만들기</span></button>" +
+    '<nav class="navigation" aria-label="작업실 메뉴">' + nav + "</nav>" +
+    '<div class="sidebarFooter"><button>' + icon("help", 19) + "작업실 사용 안내" + icon("chevron", 15) + "</button>" +
+    '<button type="button" class="accountButton" aria-label="내정보 메뉴"><span aria-hidden="true">강</span><span><strong>내정보</strong><small>프로필 · 비밀번호 설정</small></span>' + icon("chevron", 16) + "</button></div></aside>" +
+    '<div class="main"><header class="topbar"><div class="breadcrumb"><span>작업실</span>' + icon("chevron", 14) + "<strong>수업 · 학생 관리</strong></div>" +
+    '<button class="searchTrigger" aria-label="빠른 검색 열기">' + icon("search", 18) + "<span>문제 · 작업 빠르게 찾기</span><kbd>Ctrl K</kbd></button>" +
+    '<div class="accountSlot"><div class="account"><div class="identity"><strong>강선생</strong><span>kang@example.com</span></div></div></div></header>' +
+    '<div class="content"><div class="teaching"><header class="pageHeader"><div class="copy"><h1>수업 관리</h1><p>반과 학생을 살피고, 오늘의 수업을 준비하세요.</p></div>' +
+    '<div class="actions"><div class="tAccount"><span class="avatar" aria-hidden="true">강</span><span><strong>강선생</strong><small>내 수업 공간</small></span><button type="button" class="secondaryButton">로그아웃</button></div></div></header>' +
+    '<div role="tablist" aria-label="수업 관리 메뉴" class="tabs">' + tabs + "</div>" +
+    '<section role="tabpanel">' + panel + "</section></div></div></div></div>";
+}
+
+// ── 화면의 조각
+const nameBtn = (s, expanded) => '<button type="button" class="studentButton x-name" data-act="toggle" data-student="' + s.n + '"' + (expanded === undefined ? "" : ' aria-expanded="' + expanded + '"') +
+  '><span class="studentIdentity"><strong>' + s.n + '</strong><span class="subline">' + C[s.c].name + "</span></span></button>";
+const tagOf = (f, withVal) => '<span class="status"' + (R[f.k].st ? ' data-status="' + R[f.k].st + '"' : "") + ">" + (withVal ? R[f.k].also(f) : R[f.k].tag) + "</span>";
+const actBtn = (s, v, isOpen) => v.open === "inline"
+  ? '<button type="button" class="rowButton" data-act="toggle" data-student="' + s.n + '" aria-expanded="' + isOpen + '">' + (isOpen ? "접기" : "펼치기") + icon(isOpen ? "up" : "down", 16) + "</button>"
+  : '<button type="button" class="rowButton" data-act="toggle" data-student="' + s.n + '" aria-expanded="' + isOpen + '"><span class="x-wide">기록 보기' + icon("chevron", 15) + '</span><span class="x-narrow">' +
+    (isOpen ? "접기" : "펼치기") + icon(isOpen ? "up" : "down", 16) + "</span></button>";
+
+function lineOf(s, v, isOpen) {
+  const fl = flagsOf(s), first = fl[0], rest = fl.slice(1), r = R[first.k];
+  const also = rest.map((f) => R[f.k].also(f)).join(" · ");
+  if (v.dens === 3) // 세 줄 — 이름 줄 · 문장 줄 · 곁 줄
+    return '<div class="x-line stack">' + nameBtn(s, isOpen) + actBtn(s, v, isOpen) + '<p class="x-say"><b>' + r.lead(first) + "</b> " + r.rest(first) + "</p>" +
+      '<p class="x-side">' + r.side(first) + (also ? " · 그 밖 " + also : "") + "</p></div>";
+  if (v.shape === "say") {
+    const text = v.grain === "heads" ? r.bare(first) : "<b>" + r.lead(first) + "</b> " + r.rest(first);
+    return '<div class="x-line say">' + nameBtn(s, isOpen) + '<p class="x-say">' + text + (also ? ' <span class="x-also">' + also + "</span>" : "") + "</p>" + actBtn(s, v, isOpen) + "</div>";
+  }
+  if (v.grain === "heads") // 칸 + 사유 머리 — 값 | 곁 | 그 밖 딱지
+    return '<div class="x-line colsH">' + nameBtn(s, isOpen) + '<span class="x-vc"><span class="x-val">' + r.val(first) + '</span> <span class="x-ctx">' + r.ctx(first) + "</span></span>" +
+      '<span class="x-tags">' + rest.map((f) => tagOf(f, true)).join("") + "</span>" + actBtn(s, v, isOpen) + "</div>";
+  return '<div class="x-line cols">' + nameBtn(s, isOpen) + '<div class="x-reasons">' +
+    fl.map((f) => '<div class="x-rsn">' + tagOf(f) + ' <span class="x-val">' + R[f.k].val(f) + '</span> <span class="x-ctx">' + R[f.k].ctx(f) + "</span></div>").join("") + "</div>" + actBtn(s, v, isOpen) + "</div>";
+}
+
+// 펼친 자리 — 숫자 한 줄 · 사유 · 밀린/막힌 카드만 · 최근 세션
+function openBody(s, v, forPanel) {
+  const fl = flagsOf(s);
+  const cards = [...s.cards].sort((a, b) => b[6] - a[6]);
+  const stuck = cards.filter((c) => c[5] === "막힘").length;
+  const nums = '<p class="x-nums"><span>모은 카드</span> <b>' + s.col + '</b> / 230 <span>· 밀린 카드</span> <b>' + (s.ov[0] ? s.ov[0] + "장" : "없음") + "</b>" +
+    (s.ov[0] ? " <span>· 가장 오래</span> <b>" + s.ov[1] + "일</b>" : "") + ' <span>· 막힌 카드</span> <b>' + (stuck ? stuck + "장" : "없음") + "</b></p>";
+  const flags = '<div class="x-flags">' + fl.map((f) => "<p><b>" + R[f.k].name + "</b> — " + R[f.k].full(f) + "</p>").join("") + "</div>";
+  let list;
+  if (!cards.length) list = '<p class="muted">밀린 카드 · 막힌 카드 없음</p>';
+  else if (v.cards === "units") {
+    const units = [...new Set(cards.map((c) => c[1]))];
+    list = '<dl class="x-units">' + units.map((u) => { const cs = cards.filter((c) => c[1] === u);
+      return "<dt>" + u + "<small>" + cs.length + "장</small></dt><dd>" + cs.map((c) => "<span>" + c[0] + " " + (c[5] === "막힘" ? '<b class="due">막힘</b>' : "<b>" + c[6] + "일</b>") + "</span>").join("") + "</dd>"; }).join("") + "</dl>";
+  } else if (forPanel)
+    list = '<div class="tableScroll"><table class="reportTable tight"><thead><tr><th>카드 · 단원</th><th>밀린 날</th><th>마지막 복습</th><th>복습 예정일</th></tr></thead><tbody>' +
+      cards.map((c) => '<tr><th scope="row">' + c[0] + '<span class="subline">' + c[1] + "</span></th><td>" + (c[6] ? c[6] + "일" : "—") + "</td><td>" + (c[5] === "막힘" ? '<span class="due">막힘</span>' : c[5]) + "</td><td>" + md(c[4]) + "</td></tr>").join("") + "</tbody></table></div>";
+  else
+    list = '<div class="tableScroll"><table class="reportTable"><thead><tr><th>카드</th><th>단원</th><th>밀린 날</th><th>마지막 복습</th><th>복습 예정일</th><th>복습 간격</th></tr></thead><tbody>' +
+      cards.map((c) => '<tr><th scope="row">' + c[0] + "</th><td>" + c[1] + "</td><td>" + (c[6] ? c[6] + "일" : "—") + "</td><td>" + (c[5] === "막힘" ? '<span class="due">막힘</span>' : c[5]) + "</td><td>" + md(c[4]) + "</td><td>" + c[3] + "일</td></tr>").join("") + "</tbody></table></div>";
+  const sess = '<div class="x-sess">' + s.sess.map((x) => "<p>" + md(x[0]) + " " + x[1] + ' <span class="muted">· 첫 시도 15개 중 ' + x[2] + "개 맞힘 · 미해결 " + (x[3] ? x[3] + "개" : "없음") + "</span></p>").join("") + "</div>";
+  const n = cards.length;
+  return '<div class="' + (forPanel ? "detailBody " : "") + "x-open" + (!forPanel && v.open === "panel" ? " forNarrow" : "") + '">' + nums + flags +
+    '<div><p class="x-sub">밀린 · 막힌 카드' + (n ? " " + n + "장" : "") + "<small>오래 밀린 차례</small></p>" + list + "</div>" +
+    '<div><p class="x-sub">최근 세션<small>' + s.sess.length + "건</small></p>" + sess + "</div>" +
+    (forPanel ? "" : '<p class="x-note">문항 글과 학생이 고른 답은 싣지 않습니다.</p>') + "</div>";
+}
+
+const CRIT = "<b>기준 v1.1 · 잠정</b> — 미해결 1개 이상 · 복습 막힘 2장 이상 · 복습 밀림 3일 3장 또는 7일 1장 · 날 넘김 2일 · 쉼 7일. 2주 써 본 뒤 다시 잽니다.";
+const SLOT = '<span class="x-stage">2단계</span><span><b>상한에 닿아 선생님과 확인</b> · 자료 없음 — 상한이 들어온 뒤 이 자리에 섭니다.</span>';
+
+function screen(key, st) {
+  const v = V[key];
+  const learners = st.empty ? [] : S.filter((s) => s.fl.length).sort((a, b) => { const x = flagsOf(a)[0], y = flagsOf(b)[0]; return R[x.k].o - R[y.k].o || R[y.k].key(y) - R[x.k].key(x); });
+  const ops = S.filter((s) => s.op).sort((a, b) => OP[a.op.k].o - OP[b.op.k].o);
+  const quiet = S.filter((s) => !s.op && (st.empty || !s.fl.length));
+  const sel = st.open ? learners.find((s) => s.n === st.open) : null;
+  const nL = learners.length, nO = ops.length, nQ = quiet.length;
+
+  const refresh = '<button type="button" class="button">새로고침</button>';
+  const scope = "담당 반 3 · 학생 29명 · 2026-10-01(목) 한국 시간 기준 · 개념 카드(탐험) 기록에서 읽습니다.";
+  const head = v.sum === "line"
+    ? '<div class="sectionHeading"><div><h2>도움이 필요한 학생</h2><p>학습 개입 <b>' + nL + "명</b> · 운영 확인 <b>" + nO + "명</b> · 기준 아래 <b>" + nQ + "명</b> — 담당 반 3 · 29명 · 10/1(목) 기준</p></div>" + refresh + "</div>"
+    : '<div class="sectionHeading"><div><h2>도움이 필요한 학생</h2><p>' + scope + "</p></div>" + refresh + "</div>";
+  const totals = v.sum === "cells" ? '<dl class="totals" aria-label="담당 반 요약"><div><dt>학생</dt><dd>29<small>명</small></dd></div><div><dt>학습 개입</dt><dd>' + nL +
+    "<small>명</small></dd></div><div><dt>운영 확인</dt><dd>" + nO + "<small>명</small></dd></div><div><dt>기준 아래</dt><dd>" + nQ + "<small>명</small></dd></div></dl>" : "";
+  const controls = '<div class="x-controls' + (v.sum === "cells" ? " controls boxed" : "") + '"><div class="filters" role="group" aria-label="학교급">' +
+    '<button type="button" aria-pressed="true">전체 <span>29</span></button><button type="button" aria-pressed="false">초등 <span>9</span></button><button type="button" aria-pressed="false">중등 <span>20</span></button></div>' +
+    '<label><span class="srOnly">범위</span><select aria-label="범위"><option>담당 반 전체 (3)</option><option>중1 심화 A(월수금)</option><option>초5 B</option><option>중2 C</option></select></label></div>';
+
+  // 학습 개입
+  let rows = "";
+  if (!nL) rows = "";
+  else if (v.grain === "heads") rows = LEARN.map((k) => { const g = learners.filter((s) => flagsOf(s)[0].k === k); // 0명인 사유는 숨긴다
+    return g.length ? '<div class="x-ghead"><b>' + R[k].name + "</b><span>" + g.length + "명</span></div>" + g.map(rowOf).join("") : ""; }).join("");
+  else rows = learners.map(rowOf).join("");
+  function rowOf(s) { const isOpen = !!sel && sel === s;
+    return '<div class="x-row" data-row="' + s.n + '" data-open="' + isOpen + '">' + lineOf(s, v, isOpen) + (isOpen ? openBody(s, v, false) : "") + "</div>"; }
+  const colhead = v.shape === "cols" && v.grain === "flat" && nL ? '<div class="x-colhead"><span>학생 / 반</span><div class="x-reasons"><span>사유</span><span>값</span><span>단원 · 카드</span></div><span></span></div>' : "";
+  const learnSec = '<section class="x-sec" data-sec="learn"><div class="x-sechead"><h3>학습 개입 ' + nL + "명</h3>" +
+    (v.crit === "below" ? '<span class="x-stage">잠정 기준 v1.1</span>' : "") + "<p>" + (nL ? "사유의 차례대로 · 학생은 한 번씩" : "") + "</p></div>" +
+    (v.crit === "above" ? '<p class="x-crit above">' + CRIT + "</p>" : "") +
+    (nL ? '<div class="x-list"><div class="x-slot">' + SLOT + "</div>" + colhead + rows + (v.crit === "below" ? '<p class="x-crit below">' + CRIT + "</p>" : "") + "</div>"
+      : '<div class="empty"><h3>학습 개입이 필요한 학생이 없습니다</h3><p>잠정 기준 v1.1 에 걸린 학생이 없습니다. 기준 아래 ' + nQ + "명의 이름은 아래에서 펼칩니다.</p></div>") + "</section>";
+
+  // 운영 확인 — 계정 없는 학생의 기록 사유는 딱지로 같이
+  const opRows = ops.map((s) => { const o = OP[s.op.k], rec = (s.rec || []).map((f) => tagOf(f, true)).join("");
+    const act = s.op.k === "noAccount" ? '<a class="accountLink x-act" href="#">반 관리에서 계정 확인 →</a>' : '<span class="x-act"></span>';
+    // 이름은 단추가 아니다 — 운영 확인 줄에서 할 일은 계정 확인 링크 하나다(D-30)
+    const name = '<span class="x-staticName"><span class="studentIdentity"><strong>' + s.n + '</strong><span class="subline">' + C[s.c].name + "</span></span></span>";
+    if (v.dens === 3) return '<div class="x-row"><div class="x-line stack">' + name + act + '<p class="x-say"><b>' + o.name + ".</b> " + o.rest(s.op) + "</p>" + (rec ? '<p class="x-side x-tags">' + rec + "</p>" : "") + "</div></div>";
+    if (v.shape === "say") return '<div class="x-row"><div class="x-line say">' + name + '<p class="x-say"><b>' + o.name + ".</b> " + o.rest(s.op) + (rec ? ' <span class="x-tags" style="display:inline-flex;vertical-align:middle">' + rec + "</span>" : "") + "</p>" + act + "</div></div>";
+    // 칸 — 학습 개입 줄과 같은 x-rsn 묶음(넓으면 칸마다, 좁으면 딱지 · 값 · 자리가 한 줄로 흐른다)
+    return '<div class="x-row"><div class="x-line cols">' + name + '<div class="x-reasons"><div class="x-rsn"><span class="status" data-status="paused">' + o.name + '</span> <span class="x-val">' + o.val(s.op) + '</span> <span class="x-ctx">' +
+      (o.ctx(s.op) || '<span class="x-tags" style="display:inline-flex;vertical-align:middle">' + rec + "</span>") + "</span></div></div>" + act + "</div></div>"; }).join("");
+  const opSec = '<section class="x-sec" data-sec="ops"><div class="x-sechead"><h3>운영 확인 ' + nO + "명</h3><p>계정 · 시작 여부 — 학습 개입과 따로 셉니다</p></div><div class=\"x-list\">" + opRows + "</div></section>";
+
+  // 기준 아래 — 접어 둔다
+  const byClass = Object.keys(C).map((c) => { const g = quiet.filter((s) => s.c === c); return g.length ? "<p><b>" + C[c].name + "</b> " + g.length + "명 — " + g.map((s) => s.n).join(" · ") + "</p>" : ""; }).join("");
+  const quietSec = '<section class="x-sec" data-sec="quiet"><div class="x-sechead"><h3>기준 아래 ' + nQ + "명</h3><p>기준에 걸리지 않은 학생 — 살필 일이 없다는 뜻은 아닙니다</p>" +
+    '<button type="button" class="rowButton" data-act="quiet" aria-expanded="' + !!st.quiet + '">' + (st.quiet ? "이름 접기" : "이름 펼치기") + icon(st.quiet ? "up" : "down", 16) + "</button></div>" +
+    (st.quiet ? '<div class="x-list"><div class="x-quiet">' + byClass + "</div></div>" : "") + "</section>";
+
+  const detail = sel && v.open === "panel" ? '<aside class="detail" aria-label="' + sel.n + ' 개념 카드 기록"><header class="detailHeader"><div><h2>' + sel.n + '</h2><p class="muted">' + C[sel.c].name +
+    ' · 학생 계정 있음</p></div><button type="button" class="button" data-act="close">닫기</button></header><p class="detailHint">문항 글과 학생이 고른 답은 싣지 않습니다.</p>' + openBody(sel, v, true) + "</aside>" : "";
+  return head + '<div class="dashboard">' + totals + controls + '<div class="x-work" data-detail="' + !!detail + '"><div>' + learnSec + opSec + quietSec + "</div>" + detail + "</div></div>";
+}
+
+// ── 기존 화면에서 들어오는 한 줄 — 셋째 탭 · 반 카드 · 반 현황 머리
+function entryPanel() {
+  const names = S.filter((s) => s.c === "m1a").slice(0, 7).map((s) => "<li>" + s.n + "</li>").join("");
+  return '<div class="sectionHeading"><div><h2>우리 반 관리</h2><p>반을 선택하면 학생 명단과 수업 진도를 함께 확인할 수 있습니다.</p></div></div>' +
+    '<div class="cmGrid"><div style="display:grid;gap:24px;min-width:0"><section class="cmPanel"><table><thead><tr><th>반</th><th style="width:30%">학년</th></tr></thead><tbody>' +
+    '<tr><td><button type="button" aria-current="true">중1 심화 A(월수금)</button></td><td>중1</td></tr><tr><td><button type="button">초5 B</button></td><td>초5</td></tr><tr><td><button type="button">중2 C</button></td><td>중2</td></tr></tbody></table></section>' +
+    '<div><p class="x-cap">반 현황 화면의 머리 — 중등 «반 수학 복습» · 초등 «SRS 현황»에도 같은 한 줄. 목록은 여기서 되풀이하지 않는다.</p>' +
+    '<div class="srsHead"><p class="eyebrow">CLASS PRACTICE</p><h1>중1 심화 A(월수금) · 수학 복습</h1><p class="m">등록된 학생들의 실제 풀이 기록과 현재 진도를 확인합니다.</p>' +
+    '<p style="margin-top:10px"><span class="x-new" style="display:inline-block"><a class="cmLink" href="#">이 반에서 도움이 필요한 학생 4명 →</a> <span style="color:#596c86;font-size:12px;margin-left:8px">운영 확인 2명</span></span></p></div></div></div>' +
+    '<section class="cmPanel"><a class="cmLink" href="#">중1 심화 A(월수금) 수학 복습 현황 →</a>' +
+    '<p style="margin:6px 0 14px"><span class="x-new" style="display:inline-block"><a class="cmLink" href="#">도움이 필요한 학생 4명 →</a> <span style="color:#596c86;font-size:12px;margin-left:8px">운영 확인 2명</span></span></p>' +
+    '<h2>학생</h2><p style="margin-bottom:8px;font-weight:700">중1 심화 A(월수금)</p><ul class="cmStudents">' + names + "</ul></section></div>";
+}
+
+// ── 화면 한 장(?view=) — 그림은 이 얼굴을 뜬다
+function mountApp(view, stateName) {
+  document.body.dataset.mode = "app";
+  const st = { open: null, quiet: false, empty: view === "empty" };
+  const key = V[view] ? view : "H1";
+  const draw = () => {
+    const y = window.scrollY;
+    document.getElementById("root").innerHTML = view === "entry" ? shell(entryPanel(), "classes", 7) : shell(screen(key, st), "help", st.empty ? 0 : 7);
+    window.scrollTo(0, y);
+  };
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-act]"); if (e.target.closest("a")) e.preventDefault(); if (!b) return;
+    if (b.dataset.act === "toggle") st.open = st.open === b.dataset.student ? null : b.dataset.student;
+    if (b.dataset.act === "close") st.open = null;
+    if (b.dataset.act === "quiet") st.quiet = !st.quiet;
+    draw();
+  });
+  draw();
+  if (stateName === "open") { // 밀린 카드 14장인 학생을 펼치고 그 줄을 윗줄 바로 아래로
+    st.open = "이예준"; draw();
+    const place = () => { const row = document.querySelector('[data-row="이예준"]'), bar = document.querySelector(".topbar");
+      if (row) window.scrollTo(0, row.getBoundingClientRect().top + window.scrollY - bar.getBoundingClientRect().height - 8); };
+    place(); if (document.fonts) document.fonts.ready.then(place);
+  }
+}
+
+// ── 안내 쪽
+function mountDoc() {
+  document.body.dataset.mode = "doc";
+  const here = location.pathname.split("/").pop();
+  const src = (v, s) => here + "?view=" + v + (s ? "&state=" + s : "");
+  const NOTES = {
+    H1: { thesis: "Wire B 를 <b>지금 초등 교사 화면(SRS 현황)의 틀</b>에 그대로 얹었다. 요약 칸 넷 → 거르개 상자 → 목록. 학생마다 한 줄 문장이고, 펼치면 그 줄 아래에 밀린 · 막힌 카드 표가 선다.",
+      axes: [["사유의 모양", "(가) 한 줄 문장 — 앞 문장(굵게)이 사유와 핵심 수, 뒤가 언제 · 어디. 둘째 사유는 아래 작은 줄 «그 밖»"], ["위쪽 요약", "요약 칸 넷(학생 · 학습 개입 · 운영 확인 · 기준 아래)"], ["목록의 결", "차례대로 이어진 한 목록"], ["펼침", "줄 안 — 카드 표 6열(지금 상세 표와 같은 표)"], ["밀도", "두 줄(이름 · 반 | 문장 · 그 밖)"], ["기준", "목록 위 한 줄"]],
+      good: "지금 교사 화면과 읽는 법이 같다. 문장이 사유를 직접 말해 딱지를 풀어 읽을 일이 없다.", bad: "요약 칸 넷과 기준 줄이 위를 먹어 1280 첫 화면에 다섯 명. 폰에서는 요약 칸이 2 × 2 로 서서 첫 화면에 이름이 하나도 없다. 14장 표가 길어 펼치면 다음 학생이 화면 밖으로 간다." },
+    H2: { thesis: "grok 의 반대안을 가장 자연스러운 자리에 — <b>지금 초등 표의 결</b>. 줄마다 딱지 · 값 · 단원(카드) 세 칸이 서고, 사유가 둘이면 두 줄이 같은 칸에 맞춰 선다. 기록은 오른쪽 칸에서 연다.",
+      axes: [["사유의 모양", "(나) 딱지 + 값 + 단원 · 카드를 칸으로 — 딱지 색은 지금 상태 딱지의 셋(임무 기록 · 복습 기록 · 쉼)"], ["위쪽 요약", "요약 칸 넷"], ["목록의 결", "이어진 한 목록 · 표 머리"], ["펼침", "PC 는 오른쪽 칸(목록이 남는다) · 폰은 줄 안"], ["밀도", "두 줄(사유가 둘이면 두 줄)"], ["기준", "목록 위 한 줄"]],
+      good: "값이 세로로 줄을 서서 견주기 쉽다. 문장 틀 없이 자료의 칸을 그대로 보인다. PC 에서는 펼쳐도 다음 학생이 그대로 보인다.", bad: "딱지를 읽는 법을 배워야 한다. 표 머리까지 더해 1280 첫 화면에 네 명으로 가장 적다 · 폰은 H1 과 같이 첫 화면에 이름이 없다. 오른쪽 칸이 서면 목록이 좁아져 칸이 풀린다(1280 창). 폰에서는 세 칸이 꺾인다." },
+    H3: { thesis: "폰에서 이름이 먼저 보이게. 요약은 <b>구역 머리의 한 줄</b>로 올리고, 가장 앞선 사유가 바뀌는 자리에 <b>얇은 머리</b>를 둔다. 머리가 사유를 말하므로 줄의 문장은 값과 자리만 남아 짧다.",
+      axes: [["사유의 모양", "(가) 문장 — 머리 아래에서는 «언제 · 어디에서 · 얼마나»만"], ["위쪽 요약", "한 줄 요약(구역 머리 아래 한 줄)"], ["목록의 결", "사유가 바뀌는 자리에 얇은 머리 · 학생은 한 번씩 · 0명인 사유는 숨김"], ["펼침", "줄 안 — 카드를 단원별 한 줄로 묶는다(14장이 세 줄)"], ["밀도", "두 줄"], ["기준", "딱지 «잠정 기준 v1.1» + 목록 발치에 풀어 씀"]],
+      good: "1280 첫 화면에 여섯 명이 다 선다(일곱째는 접힌 아래). 문장이 짧아 폰에서 덜 꺾인다. 1280 에서는 14장을 펼쳐도 다음 학생이 남는다(390 에서는 안 남는다).", bad: "머리가 다섯까지 늘면 줄이 그만큼 는다. 단원별 묶음은 복습 예정일 · 간격을 버린다(밀린 날과 막힘만)." },
+    H4: { thesis: "H3 의 머리에 <b>칸</b>을 얹었다. 머리가 사유를 말하니 줄은 값 · 단원(카드) · 그 밖 딱지 셋이다. 기록은 오른쪽 칸.",
+      axes: [["사유의 모양", "(나) 값 + 단원 · 카드를 칸으로 — 사유는 머리가, 둘째 사유만 딱지"], ["위쪽 요약", "한 줄 요약"], ["목록의 결", "얇은 머리"], ["펼침", "PC 오른쪽 칸 · 폰 줄 안 — 단원별 묶음"], ["밀도", "두 줄"], ["기준", "딱지 + 목록 발치"]],
+      good: "가장 촘촘하다 — 딱지가 둘째 사유에만 쓰여 색이 적다. 값이 한 칸에 선다.", bad: "값의 단위가 머리마다 달라(개 · 장 · 일째) 머리를 놓치면 값이 뜻을 잃는다. 폰에서 값과 단원이 따로 꺾인다." },
+    H5: { thesis: "줄을 <b>세 줄 블록</b>으로 — 이름 줄 · 문장 줄 · 곁 줄(남은 카드 · 첫 시도 · 둘째 사유). 펼치지 않아도 곁 정보가 보인다. 기록은 오른쪽 칸.",
+      axes: [["사유의 모양", "(가) 문장 + 곁 줄"], ["위쪽 요약", "한 줄 요약"], ["목록의 결", "이어진 한 목록"], ["펼침", "PC 오른쪽 칸 · 폰 줄 안 — 카드 표 4열"], ["밀도", "세 줄"], ["기준", "딱지 + 목록 발치"]],
+      good: "폰과 PC 의 모양이 같다(쌓인 블록). 오른쪽 칸이 서도 줄이 무너지지 않는다. 펼칠 일이 가장 적다.", bad: "블록이 가장 높다(105px). 폰에서 카드 이름이 긴 줄은 문장이 꺾여 네 줄이 된다(류하은 126px). codex 가 «곁 정보는 펼침으로»라고 한 것과 반대다." },
+  };
+  const tabs = ["H1", "H2", "H3", "H4", "H5", "공통"];
+  const fig = (cap, v, s, w, h) => '<figure><figcaption>' + cap + ' · <a href="' + src(v, s) + '" target="_blank">새 창</a></figcaption>' +
+    (w === 1280 ? '<div class="scale" data-w="1280" data-h="900"><iframe loading="lazy" width="1280" height="900" src="' + src(v, s) + '" title="' + v + " " + cap + '"></iframe></div>'
+      : '<iframe loading="lazy" src="' + src(v, s) + '" title="' + v + " " + cap + '"></iframe>') + "</figure>";
+  const panels = Object.keys(V).map((k) => { const n = NOTES[k];
+    return '<section data-panel="' + k + '" hidden><h2>' + V[k].title + '</h2><p class="thesis">' + n.thesis + '</p><dl class="axes">' + n.axes.map(([a, b]) => "<dt>" + a + "</dt><dd>" + b + "</dd>").join("") + "</dl>" +
+      '<ul class="list"><li><b>좋은 점</b> — ' + n.good + "</li><li><b>걸리는 점</b> — " + n.bad + "</li></ul>" +
+      '<div class="frames">' + fig("1280 × 900 첫 화면", k, "", 1280) + fig("1280 × 900 · 밀린 카드 14장인 이예준을 연 상태", k, "open", 1280) +
+      '<div class="phones">' + fig("390 × 844 첫 화면", k, "", 390) + fig("390 × 844 · 이예준을 연 상태", k, "open", 390) + "</div></div></section>"; }).join("") +
+    '<section data-panel="공통" hidden><h2>공통 — 학습 개입 0명 · 기존 화면에서 들어오는 한 줄</h2><p class="thesis">빈 상태는 H1 의 틀에 그렸다(문구만 본다). 들어오는 줄은 셋 — 수업 관리의 셋째 탭 · 반 카드의 글 링크 · 반 현황의 머리. 점선 «새 줄»은 시안 표지다.</p>' +
+    '<div class="frames">' + fig("학습 개입 0명 · 1280 × 900", "empty", "", 1280) + fig("기존 화면에서 들어오는 한 줄 · 1280 × 900", "entry", "", 1280) + "</div></section>";
+  document.getElementById("root").innerHTML = '<main class="doc"><h1>«도움이 필요한 학생» 교사 화면 — Hi-fi 다섯 안</h1>' +
+    '<p class="lede">Wire 는 3자 합의로 골랐다(새 화면 · 사유 목록이 주인 · 학생은 한 번씩 · 펼치면 밀린 · 막힌 카드만). 이 시안은 그 뼈대를 <b>제품의 실제 토큰과 지금 교사 화면의 CSS 값</b>으로 그린 다섯 안이다. ' +
+    "고르는 것은 3자 눈검수 — 그림은 <code>hifi-explorers-teacher-shots/</code> 에 화면 한 장씩 있다. 아래 액자는 같은 화면을 그대로 띄운 것이라 단추가 눌린다.</p>" +
+    '<ul class="facts"><li>표본 <b>담당 반 3 · 29명</b> · 학습 개입 7 · 운영 확인 3 · 기준 아래 19</li><li>오늘 = <b>2026-10-01(목)</b></li><li>이름은 전부 지어낸 것 · 단원 · 카드 이름은 제품 카탈로그 그대로</li><li>문항 글 · 학생 답 · 종합 점수 · 순위 없음</li></ul>' +
+    '<h2>안을 가르는 축</h2><div class="tw"><table class="t"><thead><tr><th>안</th><th>① 사유의 모양</th><th>② 위쪽 요약</th><th>③ 목록의 결</th><th>④ 펼침</th><th>⑤ 밀도</th><th>펼친 카드</th><th>기준 v1.1 · 잠정</th></tr></thead><tbody>' +
+    "<tr><th>H1</th><td>문장</td><td>요약 칸 넷</td><td>이어진 목록</td><td>줄 안</td><td>두 줄</td><td>표 6열</td><td>목록 위 한 줄</td></tr>" +
+    "<tr><th>H2</th><td>칸(딱지 · 값 · 단원)</td><td>요약 칸 넷</td><td>이어진 목록</td><td>오른쪽 칸(폰은 줄 안)</td><td>두 줄</td><td>표 4열</td><td>목록 위 한 줄</td></tr>" +
+    "<tr><th>H3</th><td>문장(머리 아래 짧게)</td><td>한 줄 요약</td><td>사유 머리</td><td>줄 안</td><td>두 줄</td><td>단원별 묶음</td><td>딱지 + 목록 발치</td></tr>" +
+    "<tr><th>H4</th><td>칸(값 · 단원 · 그 밖 딱지)</td><td>한 줄 요약</td><td>사유 머리</td><td>오른쪽 칸(폰은 줄 안)</td><td>두 줄</td><td>단원별 묶음</td><td>딱지 + 목록 발치</td></tr>" +
+    "<tr><th>H5</th><td>문장 + 곁 줄</td><td>한 줄 요약</td><td>이어진 목록</td><td>오른쪽 칸(폰은 줄 안)</td><td>세 줄</td><td>표 4열</td><td>딱지 + 목록 발치</td></tr></tbody></table></div>" +
+    '<ul class="list"><li>어느 두 안도 <b>축 둘 이상</b>이 다르다. 색은 다섯 안이 같다(제품 토큰).</li><li>모든 안에 같이 있는 것 — 차례 0 «상한에 닿아 선생님과 확인» 2단계 빈 자리 · 0명인 사유 숨김 · 운영 확인은 따로 · 계정 없는 학생의 기록 사유는 딱지 · «기준 아래»는 접어 둠 · 갈래 거르개 없음(학교급과 반) · «봤음» 닫기 없음.</li>' +
+    "<li>누르는 자리는 이름 · 펼치기(기록 보기) 단추 · 거르개 · 탭 · 링크뿐이다(D-30). 줄 · 딱지는 눌리지 않는다.</li></ul>" +
+    '<nav role="tablist">' + tabs.map((t, i) => '<button type="button" role="tab" aria-selected="' + (i === 0) + '" data-tab="' + t + '">' + (V[t] ? t + " · " + V[t].short : t) + "</button>").join("") + "</nav>" + panels + "</main>";
+  const show = (t) => { document.querySelectorAll("[data-panel]").forEach((p) => { p.hidden = p.dataset.panel !== t; });
+    document.querySelectorAll("[data-tab]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === t))); fit(); };
+  const fit = () => document.querySelectorAll(".scale").forEach((box) => { const w = box.clientWidth; if (!w) return; const k = Math.min(1, w / 1280);
+    box.firstElementChild.style.transform = "scale(" + k + ")"; box.style.height = 900 * k + "px"; });
+  document.querySelector(".doc nav").addEventListener("click", (e) => { const b = e.target.closest("[data-tab]"); if (b) show(b.dataset.tab); });
+  window.addEventListener("resize", fit);
+  show("H1");
+}
+
+const root = document.createElement("div"); root.id = "root"; document.body.appendChild(root);
+const q = new URLSearchParams(location.search);
+if (q.get("view")) mountApp(q.get("view"), q.get("state")); else mountDoc();
+</script>
+</body>
+</html>
