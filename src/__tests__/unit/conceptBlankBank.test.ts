@@ -11,6 +11,7 @@ import {
 import {
   BANK_PARTS,
   CONCEPT_BLANK_BANK,
+  PLUS_OF,
   sectionStock,
 } from "@/lib/concept-blank/bank";
 import { FIXTURE_BANK } from "@/lib/concept-blank/fixture";
@@ -28,7 +29,20 @@ const PART_GRADES: Record<string, readonly string[]> = {
   m1: ["중1"],
   m2: ["중2"],
   m3: ["중3"],
+  e3plus: ["초3"],
+  e4plus: ["초4"],
+  e5plus: ["초5"],
+  e6plus: ["초6"],
+  m1plus: ["중1"],
+  m2plus: ["중2"],
+  m3plus: ["중3"],
 };
+const BASE_PARTS = Object.keys(BANK_PARTS).filter((p) => !(p in PLUS_OF));
+const PLUS_PARTS = Object.keys(PLUS_OF);
+/** 은행 3차 — 소단원마다 개념 · ○× · 적용이 난이도별 이만큼(원장님 2026-10-01 «하/중/상 10문제씩»). */
+const PER_LEVEL = 10;
+const LEVELS = ["하", "중", "상"] as const;
+const squash = (s: string) => s.replace(/\s+/g, "");
 
 const everyItem = (b = CONCEPT_BLANK_BANK) => [
   ...b.concepts,
@@ -64,7 +78,7 @@ describe("concept blank bank", () => {
   );
 
   // 채우기 시작한 학년은 소단원을 하나도 빼먹지 않는다(브리프 cb-bank 의 최소 재고) — 빈 뼈대 학년은 건너뛴다.
-  it.each(Object.keys(BANK_PARTS))(
+  it.each(BASE_PARTS)(
     "%s, once filled, stocks every section of its grade",
     (part) => {
       const bank = BANK_PARTS[part]!;
@@ -85,6 +99,97 @@ describe("concept blank bank", () => {
       expect(thin).toEqual([]);
     },
   );
+
+  // 은행 3차(브리프 cb-ten) — 보강을 시작한 학년은 소단원마다 원래 + 보강이 개념 · ○× · 적용 모두 하 · 중 · 상 10개 이상.
+  it.each(PLUS_PARTS)(
+    "%s, once filled, brings every section to ten per level",
+    (part) => {
+      const plus = BANK_PARTS[part]!;
+      if (everyItem(plus).length === 0) return;
+      const base = BANK_PARTS[PLUS_OF[part]!]!;
+      const both = {
+        concepts: [...base.concepts, ...plus.concepts],
+        ox: [...base.ox, ...plus.ox],
+        apply: [...base.apply, ...plus.apply],
+        figures: [...base.figures, ...plus.figures],
+      };
+      const short = BLANK_SECTIONS.filter((s) =>
+        PART_GRADES[part]!.includes(s.grade),
+      ).flatMap((s) => {
+        const stock = sectionStock(s.key, both);
+        return (["concepts", "ox", "apply"] as const).flatMap((kind) =>
+          LEVELS.flatMap((level) => {
+            const n = stock[kind].filter((x) => x.level === level).length;
+            return n < PER_LEVEL ? [`${s.key} ${kind} ${level} ${n}`] : [];
+          }),
+        );
+      });
+      expect(short.slice(0, 20), `모자람 ${short.length}칸`).toEqual([]);
+    },
+  );
+
+  it.each(PLUS_PARTS)(
+    "%s adds no figures and marks its ids as additions",
+    (part) => {
+      const plus = BANK_PARTS[part]!;
+      expect(plus.figures).toEqual([]);
+      // id 머리 = 그 소단원 원래 문항 id 의 앞부분(`e3-1-1-1-c1` → `e3-1-1-1`).
+      const heads = new Map<string, Set<string>>();
+      for (const item of everyItem(BANK_PARTS[PLUS_OF[part]!]))
+        heads
+          .set(item.section, heads.get(item.section) ?? new Set())
+          .get(item.section)!
+          .add(item.id.replace(/-[coaf]\d+$/, ""));
+      const mark = { concepts: "xc", ox: "xo", apply: "xa" } as const;
+      for (const kind of ["concepts", "ox", "apply"] as const)
+        for (const item of plus[kind]) {
+          expect(item.id, `${item.id}: 보강 id 꼴`).toMatch(
+            new RegExp(`-${mark[kind]}\\d+$`),
+          );
+          expect(
+            [...(heads.get(item.section) ?? [])],
+            `${item.id}: 그 소단원 원래 id 머리와 다르다`,
+          ).toContain(item.id.replace(/-x[coa]\d+$/, ""));
+        }
+    },
+  );
+
+  // «같은 개념이어도 난이도에 따라 구분» — 같은 개념을 다른 난이도로 다시 물어도 되지만, 한 소단원 안에 같은 글이 두 번 찍히면 안 된다.
+  it("no section repeats a term, sentence, ○× statement or apply question", () => {
+    const repeated = (
+      label: string,
+      items: readonly { id: string; section: string; text: string }[],
+    ) => {
+      const seen = new Map<string, string>();
+      return items.flatMap((x) => {
+        const key = `${x.section}|${squash(x.text)}`;
+        const first = seen.get(key);
+        if (first) return [`${label} ${first} = ${x.id}`];
+        seen.set(key, x.id);
+        return [];
+      });
+    };
+    const { concepts, ox, apply } = CONCEPT_BLANK_BANK;
+    const repeats = [
+      ...repeated(
+        "용어",
+        concepts.map((c) => ({ ...c, text: c.term })),
+      ),
+      ...repeated(
+        "뜻",
+        concepts.map((c) => ({ ...c, text: c.definition })),
+      ),
+      ...repeated(
+        "○×",
+        ox.map((c) => ({ ...c, text: c.statement })),
+      ),
+      ...repeated(
+        "적용",
+        apply.map((c) => ({ ...c, text: c.prompt })),
+      ),
+    ];
+    expect(repeats.slice(0, 20), `겹침 ${repeats.length}`).toEqual([]);
+  });
 
   // 원장님 2026-09-30 «카텍스 사용할 것» — 은행 2차가 0건으로 만든 표기를 잠근다(자: `concept-blank/notation.ts`).
   it.each(Object.keys(BANK_PARTS))(
