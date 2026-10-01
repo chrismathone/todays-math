@@ -191,6 +191,24 @@ describe("concept blank bank", () => {
     expect(repeats.slice(0, 20), `겹침 ${repeats.length}`).toEqual([]);
   });
 
+  // 칸을 건넌 같은 글(트랙 cb-ten-e5 가 찾았다) — ○× 문장이 같은 소단원의 뜻 문장과 글자 그대로 같으면 «용어 → 뜻» 지면에서
+  // ○× 줄이 뜻의 답을 그대로 보여 준다. 핵심어 괄호 · 빈칸 · 끝 마침표는 빼고 잰다. 고칠 자리: scripts/qa/concept-blank/check-cross.ts
+  it("no ○× statement repeats a definition of its section", () => {
+    const key = (text: string) =>
+      text.replace(/[{}\s]/g, "").replace(/[.。]$/, "");
+    const definitions = new Map(
+      CONCEPT_BLANK_BANK.concepts.map((c) => [
+        `${c.section}|${key(c.definition)}`,
+        c.id,
+      ]),
+    );
+    const hits = CONCEPT_BLANK_BANK.ox.flatMap((o) => {
+      const id = definitions.get(`${o.section}|${key(o.statement)}`);
+      return id ? [`${id} = ${o.id}`] : [];
+    });
+    expect(hits.slice(0, 20), `겹침 ${hits.length}`).toEqual([]);
+  });
+
   // 원장님 2026-09-30 «카텍스 사용할 것» — 은행 2차가 0건으로 만든 표기를 잠근다(자: `concept-blank/notation.ts`).
   it.each(Object.keys(BANK_PARTS))(
     "%s keeps numbers, units and symbols inside KaTeX",
