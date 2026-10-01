@@ -9,7 +9,12 @@ import {
   sheetHasContent,
   type SheetPlan,
 } from "./paper/paginate";
-import { ContinuationHead, SheetFoot, SheetHead } from "./paper/PaperParts";
+import {
+  ContinuationHead,
+  SheetCodeLine,
+  SheetFoot,
+  SheetHead,
+} from "./paper/PaperParts";
 import { StudentBody } from "./paper/StudentBody";
 import styles from "./paper/paper.module.css";
 
@@ -25,16 +30,24 @@ import styles from "./paper/paper.module.css";
  * - 장은 아래가 비지 않게 칸이 늘어나 채운다 · 번호 열 · 줄 간격 · 기준선을 맞춘다(`paper/paper.module.css` 머리 주석).
  * - «둘 다»는 학생지를 모두 먼저, 채점표를 그 뒤에 — 인쇄한 묶음에서 학생지만 떼어 복사하기 쉽게.
  * - 화면에서는 줄여 보인다(시안처럼 0.58배). 부르는 쪽이 CSS 변수 `--cb-paper-scale` 로 바꾼다(인쇄에서는 늘 1배).
+ * - 지면 코드(트랙 cb-code) — `code` 를 주면 모든 장 맨 아래에 «코드 · 쪽/전체쪽 · 학생지|채점표». 쪽은 몫(학생지 · 채점표)마다
+ *   형식을 넘어 1 부터 센다(머리의 «p. N» 은 형식 안 번호 그대로). view 와 상관없이 같은 장에는 같은 번호다.
  */
 export type ConceptBlankPaperProps = {
   sheets: ConceptBlankSheet[];
   /** 학생지만 · 채점표만 · 둘 다(학생지 뒤에 채점표). */
   view: "student" | "key" | "both";
+  /** 지면 코드(`encodeSheetCode` — 고르기 · 은행 지문). 없으면 코드 줄을 안 그린다. */
+  code?: string;
 };
+
+/** 코드 줄 하나에 들어갈 것 — 그 장의 몫 안 번호는 `start + 장 차례 + 1`. */
+type CodeSpot = { code: string; start: number; total: number };
 
 export default function ConceptBlankPaper({
   sheets,
   view,
+  code,
 }: ConceptBlankPaperProps) {
   const plans = sheets.filter(sheetHasContent).map(planSheet);
   if (plans.length === 0)
@@ -43,15 +56,50 @@ export default function ConceptBlankPaper({
         담을 문항이 없습니다.
       </p>
     );
+  /** 몫마다 지면의 첫 장 앞까지 센 장 수 — 학생지 · 채점표 따로. */
+  const spots = (pages: (plan: SheetPlan) => number) => {
+    const total = plans.reduce((n, plan) => n + pages(plan), 0);
+    let start = 0;
+    return plans.map((plan): CodeSpot | null => {
+      const spot = code ? { code, start, total } : null;
+      start += pages(plan);
+      return spot;
+    });
+  };
+  const studentSpots = spots((plan) => plan.student.length);
+  const keySpots = spots((plan) => plan.key.length);
   return (
     <div className={styles.paper} data-concept-blank-paper={view}>
-      {view !== "key" ? plans.map((plan, i) => studentPages(plan, i)) : null}
-      {view !== "student" ? plans.map((plan, i) => keyPages(plan, i)) : null}
+      {view !== "key"
+        ? plans.map((plan, i) => studentPages(plan, i, studentSpots[i] ?? null))
+        : null}
+      {view !== "student"
+        ? plans.map((plan, i) => keyPages(plan, i, keySpots[i] ?? null))
+        : null}
     </div>
   );
 }
 
-function studentPages(plan: SheetPlan, sheetIndex: number) {
+function codeLine(
+  spot: CodeSpot | null,
+  pageIndex: number,
+  part: "student" | "key",
+) {
+  return spot ? (
+    <SheetCodeLine
+      code={spot.code}
+      page={spot.start + pageIndex + 1}
+      part={part}
+      total={spot.total}
+    />
+  ) : null;
+}
+
+function studentPages(
+  plan: SheetPlan,
+  sheetIndex: number,
+  spot: CodeSpot | null,
+) {
   const { sheet } = plan;
   return plan.student.map((page, i) => (
     <A4Page
@@ -74,12 +122,13 @@ function studentPages(plan: SheetPlan, sheetIndex: number) {
         )}
         <StudentBody first={i === 0} page={page} />
         <SheetFoot page={i + 1} tally={i === 0 ? plan.tally : undefined} />
+        {codeLine(spot, i, "student")}
       </div>
     </A4Page>
   ));
 }
 
-function keyPages(plan: SheetPlan, sheetIndex: number) {
+function keyPages(plan: SheetPlan, sheetIndex: number, spot: CodeSpot | null) {
   const { sheet } = plan;
   return plan.key.map((rows, i) => (
     <A4Page
@@ -107,6 +156,7 @@ function keyPages(plan: SheetPlan, sheetIndex: number) {
           <KeyTable rows={rows} />
         </div>
         {i === plan.key.length - 1 ? <KeyNotes sheet={sheet} /> : null}
+        {codeLine(spot, i, "key")}
       </div>
     </A4Page>
   ));

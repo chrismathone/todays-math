@@ -23,7 +23,9 @@ import type {
 } from "../../src/contracts/conceptBlank.contract";
 import { composeSheets } from "../../src/lib/concept-blank/compose";
 import { FIXTURE_BANK } from "../../src/lib/concept-blank/fixture";
+import { encodeSheetCode } from "../../src/lib/concept-blank/sheetCode";
 import { CAL_MATH, calSheets } from "./calibrate";
+import { LONGEST_CODE_SYMBOLS, syntheticCode } from "./code";
 import { fuzzSheets } from "./fuzz";
 import {
   countSheets,
@@ -38,7 +40,8 @@ import {
 import { STRESS_SHEETS } from "./stress";
 
 /**
- * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` —
+ * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` ·
+ * `?code=none|<글>|<글자 수>`(지면 코드 줄 — 기본은 fixture 면 제품 코드, 그 밖은 가장 긴 코드) —
  * 지면만 그린다(화면 축소 없이 1배).
  * fixture = 시험 · 미리보기용 작은 은행 전부(시안 두 단원) · stress = 계약 상한 · math = 수식 문장 ·
  * fuzz = 시드 고정 무작위 길이(`fuzz.ts`) · real-* = main 의 실제 은행 한 학년 전부 · worst(초등) · worst-m(중학) = 실제 은행에서 가장 긴 것끼리 ·
@@ -127,6 +130,20 @@ function sheetsFor(set: string | null): ConceptBlankSheet[] {
 }
 
 const sheets = sheetsFor(params.get("set"));
+
+/**
+ * 지면 코드 줄(트랙 cb-code) — fixture 는 제품 함수로 묶은 코드, 다른 표본은 한 줄에 싣는 가장 긴 코드(가장 넓은 글자)를 단다.
+ * `?code=none` 이면 줄 없음 · `?code=<글>` 이면 그 글 · `?code=<수>` 면 그 글자 수의 지은 코드.
+ */
+function codeFor(set: string | null): string | undefined {
+  const asked = params.get("code");
+  if (asked === "none") return undefined;
+  if (asked) return /^\d+$/.test(asked) ? syntheticCode(Number(asked)) : asked;
+  if (!set || set === "fixture")
+    return encodeSheetCode(fixtureSelection, FIXTURE_BANK);
+  return syntheticCode(LONGEST_CODE_SYMBOLS);
+}
+const code = codeFor(params.get("set"));
 const plans = sheets.filter(sheetHasContent).map(planSheet);
 
 /** 덩이마다의 어림 높이 — 지면 DOM 순서 그대로(학생지 문항 · 채점표 줄). 머리글(«가» · ○× 안내)은 뺀 값. */
@@ -184,6 +201,7 @@ createRoot(document.getElementById("root")!).render(
         <InkProbe />
       ) : (
         <ConceptBlankPaper
+          code={code}
           sheets={sheets}
           view={parseConceptBlankView(params.get("view") ?? undefined)}
         />

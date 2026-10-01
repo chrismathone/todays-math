@@ -15,11 +15,12 @@ import {
   decodeSelection,
   encodeSelection,
 } from "@/lib/concept-blank/selectionCodec";
+import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 
 vi.mock("@/components/concept-blank/ConceptBlankPaper", () => ({
-  default: function PaperProbe({ sheets, view }: ConceptBlankPaperProps) {
+  default: function PaperProbe({ sheets, view, code }: ConceptBlankPaperProps) {
     return (
-      <div data-testid="paper" data-view={view}>
+      <div data-code={code} data-testid="paper" data-view={view}>
         {sheets.map((sheet) => sheet.form).join(",")}
       </div>
     );
@@ -296,6 +297,18 @@ describe("인쇄 · 미리보기", () => {
     expect(key).toHaveAttribute("aria-pressed", "true");
     expect(student).toHaveAttribute("aria-pressed", "false");
     expect(screen.getByTestId("paper")).toHaveAttribute("data-view", "key");
+  });
+
+  it("미리보기 지면에도 인쇄와 같은 지면 코드를 넘긴다(cb-code) — 제목을 바꿔도 코드는 그대로", () => {
+    renderView();
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    const code = screen.getByTestId("paper").getAttribute("data-code");
+    expect(code).toBe(encodeSheetCode(printedSelection()!, FIXTURE_BANK));
+    fireEvent.change(screen.getByRole("textbox", { name: "제목" }), {
+      target: { value: "김철수 보충" },
+    });
+    expect(screen.getByTestId("paper")).toHaveAttribute("data-code", code!);
   });
 });
 

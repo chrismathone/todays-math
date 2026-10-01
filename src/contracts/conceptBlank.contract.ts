@@ -279,6 +279,40 @@ export const conceptBlankSelectionSchema = z.strictObject({
 });
 export type ConceptBlankSelection = z.infer<typeof conceptBlankSelectionSchema>;
 
+/* ───────── 지면 코드(사진 채점의 첫 걸음 — 트랙 cb-code · 26 §8) ───────── */
+
+/**
+ * 지면 코드 글자표 — Crockford base32. 대문자 + 숫자에서 헷갈리는 `I` · `L` · `O` · `U` 를 뺐다(값 = 글자의 차례).
+ * 읽을 때는 소문자 · `O`(→ 0) · `I` · `L`(→ 1)도 받는다 — 손으로 옮기거나 사진에서 읽은 글을 너그럽게.
+ */
+export const SHEET_CODE_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+/** 꼴 판 번호 — 코드 맨 앞 글자(`1`). 꼴을 바꾸면 올린다(옛 지면은 옛 판으로 읽는다). */
+export const SHEET_CODE_VERSION = 1;
+/** 은행 지문 글자 수(20비트) — 그 고르기로 지면에 찍힌 문항에서 낸다. */
+export const SHEET_CODE_DIGEST_LENGTH = 4;
+
+/** 찍힌 꼴 — `1` 로 시작해 네 글자마다 점(마지막 묶음은 1~4글자). */
+export const sheetCodeSchema = z
+  .string()
+  .regex(
+    /^1[0-9A-HJKMNP-TV-Z]{3}(?:\.[0-9A-HJKMNP-TV-Z]{4})*(?:\.[0-9A-HJKMNP-TV-Z]{1,3})?$/,
+    "지면 코드는 «1» 로 시작하는 Crockford base32, 네 글자마다 점",
+  );
+
+/**
+ * 코드를 읽은 것 — 🔴 코드는 **지면을 가리킬 뿐 학생을 가리키지 않는다**(이름 · 번호 · 제목 · 날짜를 싣지 않는다).
+ * 그래서 `selection` 에는 제목 · 날짜가 없다(문항 · 쪽 나눔을 안 바꾸는 값이다).
+ * `bankChanged` — 코드의 지문이 지금 은행으로 낸 지문과 다르다(선택은 그대로 돌려준다 — 옛 지면이다).
+ */
+export type SheetCodeReading = {
+  selection: ConceptBlankSelection;
+  bankDigest: string;
+  bankChanged: boolean;
+};
+
+/** 지면 발 라벨의 몫 이름 — «코드 · 쪽/전체쪽 · 학생지|채점표». */
+export const SHEET_PART_LABELS = { student: "학생지", key: "채점표" } as const;
+
 /* ───────── 지면 모델(합치기 → 인쇄) ───────── */
 
 export type SheetHeader = {

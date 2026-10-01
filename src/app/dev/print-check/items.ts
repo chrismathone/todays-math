@@ -2708,6 +2708,32 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-01",
   },
   {
+    id: "concept-blank-sheet-code",
+    title: "개념 백지 지면 코드 — 폰으로 찍어 읽히는가",
+    changed:
+      "학생지 · 채점표 **모든 장** 맨 아래에 작은 고딕 한 줄 «1ABC.DEFG.… · 쪽/전체쪽 · 학생지|채점표»(오른쪽 맞춤 · 9px). 사진 채점의 첫 걸음(3자 합의 안건 7 · 26 §8) — 지금은 코드만 찍고 올리기 · AI 는 없다. 코드는 Crockford base32 글자(헷갈리는 I · L · O · U 없음 · 네 글자마다 점)로 고르기(소단원 · 형식 · 수)와 은행 지문을 싣는다 — 학생 이름 · 제목 · 날짜는 싣지 않는다. 쪽 번호는 몫(학생지 · 채점표)마다 형식을 넘어 1 부터 센다(머리의 «p. N» 은 형식 안의 번호 그대로). 줄 한 줄만큼 장의 몸 높이 예산을 낮췄다.",
+    look: "(제안) ① 코드 줄이 **모든 장**의 맨 아래에 있고 프린터가 자르지 않는가(종이 끝에서 5mm 넘게 떨어져 있다). ② **폰으로 장을 통째로 찍어**(평소 채점할 때처럼 책상 위에서 한 장씩) 사진을 확대했을 때 코드 글자를 하나도 틀리지 않고 옮겨 적을 수 있는가 — 특히 `8`/`B` · `5`/`S` · `2`/`Z` · `0`/`D` 가 갈리는가. 옮겨 적은 코드를 하네스 · 시험에서 `decodeSheetCode` 에 넣어 고르기가 돌아오면 통과. ③ 학생지 묶음 · 채점표 묶음에서 «n/N» 이 1 부터 빠짐없이 이어지는가. ④ 코드 줄이 발(맞은 개수 · 오늘의 메모) · 채점 안내 상자와 겹치지 않는가. ⑤ 글씨가 너무 옅어 흑백 프린터에서 회색으로 뭉개지면 불합격.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/26-concept-blank.md §8",
+      "docs/planning/tracks/briefs/cb-code.md",
+      "docs/planning/tracks/reports/cb-code.md (코드 꼴 · 길이 실측 · 지면 자리 캡처)",
+      "docs/planning/tracks/reports/consult-27/consensus.md §1 안건 7",
+      "src/lib/concept-blank/sheetCode.ts (encodeSheetCode · decodeSheetCode)",
+      "src/components/concept-blank/paper/PaperParts.tsx (SheetCodeLine)",
+      "src/components/concept-blank/ConceptBlankPaper.tsx",
+      "src/components/concept-blank/paper/paginate.ts (GEOMETRY — 코드 줄만큼 낮춘 몸 높이)",
+      "src/__tests__/unit/conceptBlankSheetCode.test.ts",
+      "src/__tests__/components/ConceptBlankPaperCode.test.tsx",
+      "e2e/concept-blank-paper/overflow.spec.ts",
+    ],
+    scale: "개념 백지 지면 전부",
+    status: "대기",
+    needs:
+      "«개념 백지» 탭에서 형식 둘 이상 · 장이 여럿 나오게 골라 «인쇄하기»(`?view=both`) → Ctrl+P(여백 없음 · 배율 100% · 배경 그래픽 켬). 긴 코드를 보려면 학년을 넘어 소단원 열 개를 띄엄띄엄 고른다.",
+    changedOn: "2026-10-01",
+  },
+  {
     id: "english-bundle-sheets",
     title:
       "오늘의 영어 — 학생용 묶음 분리 (묶음마다 따로 뽑기 · 머리의 묶음 줄)",
