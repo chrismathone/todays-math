@@ -31,6 +31,7 @@ import { LONGEST_CODE_SYMBOLS, syntheticCode } from "./code";
 import { fuzzSheets } from "./fuzz";
 import {
   countSheets,
+  figureSheets,
   inkProbeTexts,
   realSheets,
   showSheets,
@@ -42,7 +43,7 @@ import {
 import { STRESS_SHEETS } from "./stress";
 
 /**
- * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` ·
+ * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|figures-e3 … figures-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` ·
  * `?code=none|<글>|<글자 수>`(지면 코드 줄 — 기본은 fixture 면 제품 코드, 그 밖은 가장 긴 코드) —
  * 지면만 그린다(화면 축소 없이 1배).
  * fixture = 시험 · 미리보기용 작은 은행 전부(시안 두 단원) · stress = 계약 상한 · math = 수식 문장 ·
@@ -128,6 +129,8 @@ function sheetsFor(set: string | null): ConceptBlankSheet[] {
   if (set === "show") return showSheets();
   if (set === "cal") return calSheets();
   if (set?.startsWith("real-")) return realSheets(set.slice(5) as RealGrade);
+  if (set?.startsWith("figures-"))
+    return figureSheets(set.slice(8) as RealGrade);
   return composeSheets(fixtureSelection, FIXTURE_BANK);
 }
 

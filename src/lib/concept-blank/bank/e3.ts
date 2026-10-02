@@ -3043,7 +3043,7 @@ export const bank: ConceptBlankBank = {
       level: "상",
       prompt: "이어 걸린 두 시간을 더하시오.",
       viewBox: "0 0 200 125",
-      svg: '<line x1="23" y1="64" x2="177" y2="64" stroke="#1F1F23" stroke-width="1.6"/><path d="M23 59 V69 M94 59 V69 M177 59 V69" fill="none" stroke="#1F1F23" stroke-width="1.6" /><text x="58" y="45" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">1분 40초</text><text x="137" y="45" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">50초</text><text x="23" y="87" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">출발</text><text x="94" y="87" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">중간</text><text x="177" y="87" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">도착</text>',
+      svg: '<line x1="23" y1="64" x2="177" y2="64" stroke="#1F1F23" stroke-width="1.6"/><path d="M23 59 V69 M126 59 V69 M177 59 V69" fill="none" stroke="#1F1F23" stroke-width="1.6" /><text x="74" y="45" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">1분 40초</text><text x="152" y="45" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">50초</text><text x="23" y="87" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">출발</text><text x="126" y="87" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">중간</text><text x="177" y="87" fill="#1F1F23" font-size="11" font-family="sans-serif" text-anchor="middle">도착</text>',
       tags: [],
       lines: [
         {
@@ -3071,7 +3071,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-3-1-f1",
       section: "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
       level: "하",
-      prompt: "점과 금색 선분의 이름을 쓰시오.",
+      prompt: "이름표가 가리키는 점과 선분의 이름을 쓰시오.",
       viewBox: "0 0 200 125",
       svg: '<circle cx="70" cy="58" r="38" fill="none" stroke="#1F1F23" stroke-width="1.6"/><line x1="70" y1="58" x2="108" y2="58" stroke="#A57F00" stroke-width="1.6"/><circle cx="70" cy="58" r="2.5" fill="#A57F00" stroke="#1F1F23" stroke-width="1.6"/><path d="M70 61 V100 H57" fill="none" stroke="#6B6B72" stroke-width="1.6" /><path d="M91 55 L119 38 H130" fill="none" stroke="#6B6B72" stroke-width="1.6" />',
       tags: [

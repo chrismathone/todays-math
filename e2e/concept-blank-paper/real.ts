@@ -68,6 +68,27 @@ export function realSheets(part: RealGrade): ConceptBlankSheet[] {
 }
 
 /**
+ * 그 학년의 그림 문항 **전부**를 «그림 보고 쓰기» 한 벌로 — 그림을 눈으로 훑는 감사용(전수 검토 2026-10-02 · 26 §10).
+ * 🔴 지면 코드로 이 고르기를 되살릴 수 없다(소단원 60 · 난이도별 40 상한을 넘는 합본이다) — 실제 고르기가 아니다.
+ */
+export function figureSheets(part: RealGrade): ConceptBlankSheet[] {
+  const figures = BANK_PARTS[part]!.figures;
+  if (!figures.length) return [];
+  return [
+    {
+      form: "figure",
+      header: {
+        title: `${REAL_GRADES[part]} 그림 전체`,
+        unitLabel: `${REAL_GRADES[part]} · 그림 ${figures.length}개`,
+        date: "2026-10-02",
+        form: "figure",
+      },
+      figures: [...figures],
+    },
+  ];
+}
+
+/**
  * 보고서에 싣는 본보기 — 실제 은행의 한 대단원(초5 · 2-3 합동과 대칭, 그림 소단원이 있다)을 원장님이 흔히 고를 만한
  * 문항 수로: A 전부 · B 용어 9 + ○× · C 문장 8 + 적용(○× · 적용은 하 · 중 하나씩 — 은행에 있는 만큼) · D 가지 전부 · E 그림 전부.
  */
