@@ -22751,8 +22751,8 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          r`원주가 지름의 $3$배보다 길고 $4$배보다 짧음을 이용할 때, $14\,\mathrm{cm}$, $15.7\,\mathrm{cm}$, $21\,\mathrm{cm}$ 가운데 지름이 $5\,\mathrm{cm}$인 원의 원주에 가까운 길이는?`,
-          r`$15.7\,\mathrm{cm}$`,
+          r`지름이 $5\,\mathrm{cm}$인 원의 원주를 세 번 재어 $14\,\mathrm{cm}$, $16\,\mathrm{cm}$, $21\,\mathrm{cm}$가 나왔다. 원주가 지름의 $3$배보다 길고 $4$배보다 짧음에 비추어 잘못 잰 것이 분명한 값을 모두 쓰시오.`,
+          r`$14\,\mathrm{cm}$, $21\,\mathrm{cm}$`,
         ],
         [
           "상",
