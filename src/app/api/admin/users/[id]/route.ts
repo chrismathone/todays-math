@@ -238,6 +238,18 @@ async function handlePatch(request: Request, context: Context) {
               409,
             ),
           };
+        if (branchMoving) {
+          // Leaving and later rejoining a branch must not republish an old
+          // sharing choice. Keep every document, but require a fresh consent.
+          await tx.workspaceDocument.updateMany({
+            where: { userId: id, visibility: "branch" },
+            data: {
+              visibility: "private",
+              sharedBranchId: null,
+              revision: { increment: 1 },
+            },
+          });
+        }
         const user = await tx.user.findUniqueOrThrow({
           where: { id },
           select: managedAccountSelect,

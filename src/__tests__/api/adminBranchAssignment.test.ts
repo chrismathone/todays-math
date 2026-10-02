@@ -15,6 +15,7 @@ const state = vi.hoisted(() => ({
   userUpdateMany: vi.fn(),
   userFindUniqueOrThrow: vi.fn(),
   userCount: vi.fn(),
+  documentUpdateMany: vi.fn(),
   auditCreate: vi.fn(),
   transaction: vi.fn(),
 }));
@@ -95,6 +96,7 @@ beforeEach(() => {
   );
   state.userFindUniqueOrThrow.mockImplementation(async () => state.updated);
   state.userCount.mockResolvedValue(1);
+  state.documentUpdateMany.mockResolvedValue({ count: 0 });
   state.auditCreate.mockResolvedValue({});
   state.transaction.mockImplementation(
     async (run: (tx: unknown) => Promise<unknown>) =>
@@ -107,12 +109,82 @@ beforeEach(() => {
         },
         branch: { findUnique: state.branchFindUnique },
         class: { count: state.classCount },
+        workspaceDocument: { updateMany: state.documentUpdateMany },
         accountAuditLog: { create: state.auditCreate },
       }),
   );
 });
 
 describe("최고관리자의 기존 계정 지점 배정", () => {
+  it.each([null, otherBranchId])(
+    "withdraws old sharing on transfer to %s and does not republish it on return",
+    async (target) => {
+      const docs = [
+        {
+          userId: id,
+          visibility: "branch",
+          sharedBranchId: branchId,
+          revision: 3,
+          title: "공유 자료",
+        },
+        {
+          userId: id,
+          visibility: "private",
+          sharedBranchId: null,
+          revision: 2,
+          title: "개인 자료",
+        },
+        {
+          userId: "another-owner",
+          visibility: "branch",
+          sharedBranchId: branchId,
+          revision: 1,
+          title: "동료 자료",
+        },
+      ];
+      state.documentUpdateMany.mockImplementation(async ({ where, data }) => {
+        const matched = docs.filter(
+          (doc) =>
+            doc.userId === where.userId && doc.visibility === where.visibility,
+        );
+        matched.forEach((doc) => {
+          doc.visibility = data.visibility;
+          doc.sharedBranchId = data.sharedBranchId;
+          doc.revision += data.revision.increment;
+        });
+        return { count: matched.length };
+      });
+      state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+      expect(
+        (await patch({
+          branchId: target,
+          ...(target ? { branchRole: "teacher" } : {}),
+        }))!.status,
+      ).toBe(200);
+      expect(docs[0]).toMatchObject({
+        visibility: "private",
+        sharedBranchId: null,
+        revision: 4,
+        title: "공유 자료",
+      });
+      expect(docs[1]).toMatchObject({ visibility: "private", revision: 2 });
+      expect(docs[2]).toMatchObject({
+        visibility: "branch",
+        sharedBranchId: branchId,
+        revision: 1,
+      });
+      state.previous = { ...state.previous, branchId: target };
+      expect((await patch({ branchId, branchRole: "teacher" }))!.status).toBe(
+        200,
+      );
+      expect(docs[0]).toMatchObject({
+        visibility: "private",
+        sharedBranchId: null,
+        revision: 4,
+      });
+    },
+  );
+
   it("detaches a branch manager, clears branch privileges, and expires the old session", async () => {
     state.previous = {
       ...state.previous,
@@ -241,6 +313,7 @@ describe("최고관리자의 기존 계정 지점 배정", () => {
       200,
     );
     expect(state.classCount).not.toHaveBeenCalled();
+    expect(state.documentUpdateMany).not.toHaveBeenCalled();
   });
 
   it("rejects stale membership changes and transaction write conflicts", async () => {

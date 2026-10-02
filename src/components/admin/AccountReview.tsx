@@ -458,7 +458,7 @@ export default function AccountReview({
           )}
           <p className="text-xs text-slate-600">
             운영 중인 반이 없는 계정만 소속을 변경할 수 있습니다. 소속 변경 시
-            기존 로그인이 종료됩니다.
+            기존 로그인이 종료되고, 학원에 공개했던 자료는 비공개로 전환됩니다.
           </p>
         </div>
       ) : null}
