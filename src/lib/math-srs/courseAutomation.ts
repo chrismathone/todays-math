@@ -32,6 +32,15 @@ import {
   recordCourseAttempt,
 } from "./elementary/progress";
 import type { CourseSession } from "./elementary/types";
+import {
+  coursePrerequisiteDecision,
+  prerequisiteRecommendation,
+} from "@/lib/math-prerequisite/courseIntegration";
+import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
+import {
+  heldCheckSections,
+  type PrerequisiteSessionChoice,
+} from "@/lib/math-prerequisite/policy";
 
 const DAY = 86_400_000;
 const clamp = (n: number, min: number, max: number) =>
@@ -272,8 +281,14 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
     state.dailyGoalSnapshot?.date === today && (activity?.answered ?? 0) > 0
       ? state.dailyGoalSnapshot.goal
       : (state.plan?.dailyQuestionCount ?? 10);
+  const held = new Set<string>(
+    heldCheckSections(state, now, mathPrerequisiteEnabled()).sectionIds,
+  );
   const due = Object.values(state.memories)
-    .filter((m) => Date.parse(m.nextReviewAt) <= now.getTime())
+    .filter(
+      (m) =>
+        Date.parse(m.nextReviewAt) <= now.getTime() && !held.has(m.sectionId),
+    )
     .sort(
       (a, b) =>
         a.nextReviewAt.localeCompare(b.nextReviewAt) ||
@@ -285,6 +300,10 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
     session &&
     (!session.completedAt || (session.retry && !session.retry.completedAt));
   const next = nextLearning(state);
+  const prerequisite = coursePrerequisiteDecision(state, now, {
+    answered: activity?.answered ?? 0,
+    goal: todayGoal,
+  });
   const learnedToday = [
     ...state.history.map((s) => s.session),
     ...(session ? [session] : []),
@@ -304,19 +323,21 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
       }
     : !state.plan?.enabled || (activity?.answered ?? 0) >= todayGoal
       ? null
-      : due.length
-        ? {
-            sectionId: due[0].sectionId,
-            mode: "review",
-            reason: "복습 날짜가 가장 오래 지난 소단원이에요.",
-          }
-        : next && !learnedToday
+      : prerequisite
+        ? prerequisiteRecommendation(prerequisite)
+        : due.length
           ? {
-              sectionId: next.id,
-              mode: "learn",
-              reason: "선택한 진도에서 다음 소단원을 학습해요.",
+              sectionId: due[0].sectionId,
+              mode: "review",
+              reason: "복습 날짜가 가장 오래 지난 소단원이에요.",
             }
-          : null;
+          : next && !learnedToday
+            ? {
+                sectionId: next.id,
+                mode: "learn",
+                reason: "선택한 진도에서 다음 소단원을 학습해요.",
+              }
+            : null;
   const memories = Object.values(state.memories);
   return {
     status: !state.plan
@@ -331,9 +352,11 @@ export function courseSummary(state: StoredCourse, now: Date): CourseSummary {
             ? "review"
             : recommendation
               ? "ready"
-              : !next
-                ? "complete"
-                : "done",
+              : prerequisite?.kind === "unavailable"
+                ? "ready"
+                : !next
+                  ? "complete"
+                  : "done",
     currentSectionId: !state.plan
       ? null
       : active
@@ -361,7 +384,16 @@ export function startAutomaticCourse(
   newId: () => string,
   bankCandidates: readonly BankCourseCandidate[] = [],
 ): StoredCourse {
-  return startRecommendedCourse(state, courseSummary(state, now).recommendation, now, seed, newId, bankCandidates);
+  const prerequisite = coursePrerequisiteDecision(state, now);
+  return startRecommendedCourse(
+    state,
+    courseSummary(state, now).recommendation,
+    now,
+    seed,
+    newId,
+    bankCandidates,
+    prerequisite?.session ?? undefined,
+  );
 }
 
 /** Server-owned recommendation also supports a frozen expedition spanning days. */
@@ -372,9 +404,14 @@ export function startRecommendedCourse(
   seed: number,
   newId: () => string,
   bankCandidates: readonly BankCourseCandidate[] = [],
+  supplied?: PrerequisiteSessionChoice,
 ): StoredCourse {
   const active = state.learner.session;
-  if (active && (!active.completedAt || (active.retry && !active.retry.completedAt))) return state;
+  if (
+    active &&
+    (!active.completedAt || (active.retry && !active.retry.completedAt))
+  )
+    return state;
   if (!next || next.mode === "resume") return state;
   const previous = state.learner.session;
   const startedAt = new Date(
@@ -383,13 +420,28 @@ export function startRecommendedCourse(
       Date.parse(previous?.completedAt ?? now.toISOString()),
     ),
   );
-  const generated = generateCourseSession(
-    next.sectionId,
-    seed,
-    startedAt,
-    next.mode,
-    bankCandidates,
-  );
+  if (
+    supplied &&
+    (supplied.sectionId !== next.sectionId || supplied.mode !== next.mode)
+  )
+    throw new CourseConflict("추천한 확인 문제를 다시 불러와 주세요.");
+  const generated = supplied
+    ? {
+        id: "pending",
+        sectionId: supplied.sectionId,
+        mode: supplied.mode,
+        problems: supplied.problems,
+        attempts: [],
+        startedAt: startedAt.toISOString(),
+        completedAt: null,
+      }
+    : generateCourseSession(
+        next.sectionId,
+        seed,
+        startedAt,
+        next.mode,
+        bankCandidates,
+      );
   const session = sessionSchema.parse({
     ...generated,
     id: newId(),

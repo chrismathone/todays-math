@@ -48,6 +48,8 @@ import {
   startExpedition,
 } from "./expeditionStart";
 import { loadCourseBankCandidates } from "@/lib/math-srs/courseBank";
+import { requestIdAllocator } from "@/lib/math-prerequisite/requestIds";
+import { expeditionInitialPrerequisiteDecision } from "./expeditionStart";
 
 const responseSchema = dataResponseSchema(explorerStateSchema);
 
@@ -104,10 +106,16 @@ async function changeExplorer(
       plan.kind === "elementary"
         ? expeditionInitialCourseRecommendation(previous.state, plan, now)
         : null;
-    if (recommendation && recommendation.mode !== "resume")
+    const prerequisite = expeditionInitialPrerequisiteDecision(
+      previous.state,
+      plan,
+      now,
+    );
+    if (recommendation && recommendation.mode !== "resume" && !prerequisite)
       candidates = await loadCourseBankCandidates(recommendation.sectionId);
   }
   const seed = randomInt(0, 0x1_0000_0000);
+  const idAttempt = requestIdAllocator(randomUUID);
   let feedback: ExplorerFeedback | null = null;
   try {
     const saved = await changeSrsState(
@@ -121,7 +129,7 @@ async function changeExplorer(
             now,
             input.requestId,
             seed,
-            randomUUID,
+            idAttempt(),
             recommendation
               ? { sectionId: recommendation.sectionId, candidates }
               : null,
