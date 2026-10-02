@@ -450,6 +450,10 @@ button.secondaryButton:disabled {
   font-size: 13px;
   font-weight: 600;
 }
+/* 작업실 공통 버튼의 최소 44px보다 우선한다. 테두리와 안쪽 여백은 부모 높이에 포함된다. */
+.view .printBar .printSegment > button[aria-pressed] {
+  min-height: 0;
+}
 .printSegment button:hover {
   color: var(--b-ink);
 }
