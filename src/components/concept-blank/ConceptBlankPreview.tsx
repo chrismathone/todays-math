@@ -19,19 +19,22 @@ import {
 import s from "./preview.module.css";
 
 /** 쪽 수와 관계없이 같은 배율. 작은 화면에서만 가로 폭에 맞춘다. */
-function usePageScroll(maxScale: number) {
+function usePageScroll(maxScale: number, horizontal = false) {
   const ref = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(maxScale);
-  const [edges, setEdges] = useState({ above: false, below: false });
+  const [edges, setEdges] = useState({ before: false, after: false });
   const measureEdges = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    const above = el.scrollTop > 2;
-    const below = el.scrollTop + el.clientHeight < el.scrollHeight - 2;
+    const position = horizontal ? el.scrollLeft : el.scrollTop;
+    const viewport = horizontal ? el.clientWidth : el.clientHeight;
+    const extent = horizontal ? el.scrollWidth : el.scrollHeight;
+    const before = position > 2;
+    const after = position + viewport < extent - 2;
     setEdges((old) =>
-      old.above === above && old.below === below ? old : { above, below },
+      old.before === before && old.after === after ? old : { before, after },
     );
-  }, []);
+  }, [horizontal]);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -48,6 +51,29 @@ function usePageScroll(maxScale: number) {
     measure();
     return () => observer.disconnect();
   }, [maxScale, measureEdges]);
+  useEffect(() => {
+    const el = ref.current;
+    if (!horizontal || !el) return;
+    const scrollHorizontally = (event: WheelEvent) => {
+      if (
+        event.ctrlKey ||
+        event.shiftKey ||
+        Math.abs(event.deltaX) >= Math.abs(event.deltaY)
+      )
+        return;
+      const unit =
+        event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? el.clientWidth : 1;
+      const delta = event.deltaY * unit;
+      const end = el.scrollWidth - el.clientWidth;
+      const next = Math.max(0, Math.min(end, el.scrollLeft + delta));
+      // Release the wheel to the surrounding page when the strip reaches an end.
+      if (Math.abs(next - el.scrollLeft) < 1) return;
+      event.preventDefault();
+      el.scrollLeft = next;
+    };
+    el.addEventListener("wheel", scrollHorizontally, { passive: false });
+    return () => el.removeEventListener("wheel", scrollHorizontally);
+  }, [horizontal]);
   return {
     ref,
     edges,
@@ -57,18 +83,26 @@ function usePageScroll(maxScale: number) {
   };
 }
 
-function Fades({ above, below }: { above: boolean; below: boolean }) {
+function Fades({
+  before,
+  after,
+  horizontal = false,
+}: {
+  before: boolean;
+  after: boolean;
+  horizontal?: boolean;
+}) {
   return (
     <>
       <span
         aria-hidden="true"
-        className={`${s.fade} ${s.fadeTop}`}
-        data-visible={above}
+        className={`${s.fade} ${horizontal ? s.fadeLeft : s.fadeTop}`}
+        data-visible={before}
       />
       <span
         aria-hidden="true"
-        className={`${s.fade} ${s.fadeBottom}`}
-        data-visible={below}
+        className={`${s.fade} ${horizontal ? s.fadeRight : s.fadeBottom}`}
+        data-visible={after}
       />
     </>
   );
@@ -83,18 +117,24 @@ export default function ConceptBlankPreview({
     () => conceptBlankPages({ sheets, view, code }),
     [sheets, view, code],
   );
-  const { ref: deskRef, style, edges, measureEdges } = usePageScroll(0.58);
+  const {
+    ref: deskRef,
+    style,
+    edges,
+    measureEdges,
+  } = usePageScroll(0.46, true);
   const [expanded, setExpanded] = useState<number | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
   return (
     <>
       <p className={s.hint}>
-        페이지를 누르면 크게 볼 수 있습니다. · {pages.length}쪽
+        좌우로 넘겨 보고, 페이지를 누르면 크게 볼 수 있습니다. · {pages.length}
+        쪽
       </p>
       <div className={s.frame}>
         <div
           ref={deskRef}
-          className={s.desk}
+          className={`${s.desk} ${s.thumbnailDesk}`}
           style={style}
           onScroll={measureEdges}
           tabIndex={0}
@@ -102,24 +142,30 @@ export default function ConceptBlankPreview({
           aria-label="지면 미리보기"
           data-paper-desk=""
         >
-          <div className={s.pages}>
+          <div className={`${s.pages} ${s.thumbnailPages}`}>
             {pages.map((page, i) => (
-              <div className={s.thumbnail} key={page.key}>
-                {page}
-                <button
-                  type="button"
-                  className={s.enlarge}
-                  aria-label={`${i + 1}쪽 확대`}
-                  onClick={(event) => {
-                    opener.current = event.currentTarget;
-                    setExpanded(i);
-                  }}
-                />
-              </div>
+              <figure className={s.pageItem} key={page.key}>
+                <div className={s.thumbnail}>
+                  {page}
+                  <button
+                    type="button"
+                    className={s.enlarge}
+                    aria-label={`${i + 1}쪽 확대`}
+                    onClick={(event) => {
+                      opener.current = event.currentTarget;
+                      setExpanded(i);
+                    }}
+                  />
+                </div>
+                <figcaption className={s.pageNumber}>
+                  <strong>{i + 1}</strong>
+                  <span>/ {pages.length}쪽</span>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
-        <Fades {...edges} />
+        <Fades {...edges} horizontal />
       </div>
       {expanded !== null && (
         <ExpandedPages

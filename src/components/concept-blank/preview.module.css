@@ -1,7 +1,8 @@
 .hint {
   margin: 12px 0 8px;
   color: var(--learn-muted, #61738c);
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.5;
 }
 .frame {
   position: relative;
@@ -26,6 +27,41 @@
   flex-direction: column;
   align-items: center;
   gap: 18px;
+}
+.thumbnailDesk {
+  max-height: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-gutter: auto;
+  overscroll-behavior: contain auto;
+  scroll-padding-inline: 16px;
+}
+.thumbnailPages {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  width: max-content;
+  min-width: 100%;
+}
+.pageItem {
+  flex: none;
+  margin: 0;
+}
+.pageNumber {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  padding: 12px 0 2px;
+  color: var(--learn-muted, #61738c);
+  font-size: 14px;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+}
+.pageNumber strong {
+  color: var(--learn-ink, #152b49);
+  font-size: 16px;
+  font-weight: 700;
 }
 .thumbnail,
 .expandedPage {
@@ -72,6 +108,29 @@
 .fadeBottom {
   bottom: 0;
   background: linear-gradient(transparent, var(--learn-neutral, #edf0f6));
+}
+.fadeLeft,
+.fadeRight {
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  height: auto;
+}
+.fadeLeft {
+  right: auto;
+  background: linear-gradient(
+    to right,
+    var(--learn-neutral, #edf0f6),
+    transparent
+  );
+}
+.fadeRight {
+  left: auto;
+  background: linear-gradient(
+    to left,
+    var(--learn-neutral, #edf0f6),
+    transparent
+  );
 }
 .dialog {
   box-sizing: border-box;
