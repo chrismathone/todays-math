@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import {
-  WORKSPACE_MENUS,
+  ALL_WORKSPACE_MENUS,
+  normalizeWorkspaceMenus,
+  workspaceMenuInSidebar,
+  workspaceMenuOptionsOf,
   type ManagedAccount,
   type WorkspaceMenu,
+  type WorkspaceProduct,
 } from "@/contracts/accountAccess.contract";
 import {
   AccountRequestError,
@@ -19,6 +23,11 @@ export const STATUS_LABELS = {
   approved: "승인 완료",
   rejected: "승인 거절",
 } as const;
+
+const MENU_TABS = [
+  { id: "math", label: "오늘의 수학" },
+  { id: "english", label: "오늘의 영어" },
+] as const;
 
 export function AccountStatus({ account }: { account: ManagedAccount }) {
   return (
@@ -53,7 +62,11 @@ export default function AccountReview({
   onUpdate: (account: ManagedAccount) => void;
   autoFocus?: boolean;
 }) {
-  const [menus, setMenus] = useState<WorkspaceMenu[]>(account.menus);
+  const originalMenus = normalizeWorkspaceMenus(account.menus);
+  const [menus, setMenus] = useState<WorkspaceMenu[]>(() => originalMenus);
+  const [menuProduct, setMenuProduct] = useState<WorkspaceProduct>("math");
+  const menuId = useId();
+  const menuTabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [name, setName] = useState(account.name);
   const [email, setEmail] = useState(account.email);
   const [branchManager, setBranchManager] = useState(account.isAdmin);
@@ -72,13 +85,21 @@ export default function AccountReview({
   const [notice, setNotice] = useState<string | null>(null);
   const [confirmReject, setConfirmReject] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const effectiveMenus = branchManager ? ALL_WORKSPACE_MENUS : menus;
+  const menuEditingDisabled =
+    busy ||
+    conflict ||
+    authError ||
+    account.isSuperAdmin ||
+    Boolean(account.deletedAt) ||
+    branchManager;
   const dirty =
     name !== account.name ||
     email !== account.email ||
     branchManager !== account.isAdmin ||
     branchId !== (account.branchId ?? "") ||
-    menus.length !== account.menus.length ||
-    menus.some((menu) => !account.menus.includes(menu));
+    menus.length !== originalMenus.length ||
+    menus.some((menu) => !originalMenus.includes(menu));
 
   useEffect(() => {
     if (autoFocus) headingRef.current?.focus();
@@ -107,8 +128,11 @@ export default function AccountReview({
     setMenus(next);
     setNotice(null);
     onLockChange(
-      next.length !== account.menus.length ||
-        next.some((item) => !account.menus.includes(item)) ||
+      name !== account.name ||
+        email !== account.email ||
+        branchManager !== account.isAdmin ||
+        next.length !== originalMenus.length ||
+        next.some((item) => !originalMenus.includes(item)) ||
         branchId !== (account.branchId ?? ""),
     );
   }
@@ -144,7 +168,7 @@ export default function AccountReview({
           }),
         },
       );
-      setMenus(result.data.menus);
+      setMenus(normalizeWorkspaceMenus(result.data.menus));
       setName(result.data.name);
       setEmail(result.data.email);
       setBranchManager(result.data.isAdmin);
@@ -185,7 +209,7 @@ export default function AccountReview({
     onLockChange(true);
     try {
       const latest = await reloadManagedAccount(account);
-      setMenus(latest.menus);
+      setMenus(normalizeWorkspaceMenus(latest.menus));
       setName(latest.name);
       setEmail(latest.email);
       setBranchManager(latest.isAdmin);
@@ -421,40 +445,112 @@ export default function AccountReview({
           </p>
         </div>
       ) : null}
-      <fieldset
-        className={s.menuFieldset}
-        disabled={
-          busy ||
-          conflict ||
-          authError ||
-          account.isSuperAdmin ||
-          Boolean(account.deletedAt) ||
-          branchManager
-        }
+      <h3 id={`${menuId}-heading`} className={s.menuHeading}>
+        사용 가능한 메뉴
+      </h3>
+      <p className={s.help}>승인된 계정은 선택한 메뉴만 이용할 수 있습니다.</p>
+      <div
+        className={s.menuTabs}
+        role="tablist"
+        aria-labelledby={`${menuId}-heading`}
       >
-        <legend>
-          사용 가능한 메뉴{" "}
-          <span>
-            {branchManager ? WORKSPACE_MENUS.length : menus.length} /{" "}
-            {WORKSPACE_MENUS.length}
-          </span>
-        </legend>
-        <p className={s.help}>
-          승인된 계정은 선택한 메뉴만 이용할 수 있습니다.
-        </p>
-        <div className={s.menuGrid}>
-          {WORKSPACE_MENUS.map((menu) => (
-            <label key={menu.id} className={s.menuOption}>
-              <input
-                type="checkbox"
-                checked={branchManager || menus.includes(menu.id)}
-                onChange={() => changeMenus(menu.id)}
-              />
-              <span>{menu.label}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
+        {MENU_TABS.map((tab, index) => (
+          <button
+            key={tab.id}
+            type="button"
+            role="tab"
+            id={`${menuId}-tab-${tab.id}`}
+            aria-controls={`${menuId}-panel-${tab.id}`}
+            aria-selected={menuProduct === tab.id}
+            tabIndex={menuProduct === tab.id ? 0 : -1}
+            ref={(element) => {
+              menuTabRefs.current[index] = element;
+            }}
+            onClick={() => setMenuProduct(tab.id)}
+            onKeyDown={(event) => {
+              let next: number;
+              if (event.key === "ArrowRight")
+                next = (index + 1) % MENU_TABS.length;
+              else if (event.key === "ArrowLeft")
+                next = (index + MENU_TABS.length - 1) % MENU_TABS.length;
+              else if (event.key === "Home") next = 0;
+              else if (event.key === "End") next = MENU_TABS.length - 1;
+              else return;
+              event.preventDefault();
+              setMenuProduct(MENU_TABS[next].id);
+              menuTabRefs.current[next]?.focus();
+            }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      {MENU_TABS.map((tab) => {
+        const options = workspaceMenuOptionsOf(tab.id, branchId);
+        const sidebarOptions = options.filter((option) =>
+          workspaceMenuInSidebar(option.permission, effectiveMenus),
+        );
+        const nestedOptions = options.filter(
+          (option) =>
+            !workspaceMenuInSidebar(option.permission, effectiveMenus),
+        );
+        return (
+          <div
+            key={tab.id}
+            role="tabpanel"
+            id={`${menuId}-panel-${tab.id}`}
+            aria-labelledby={`${menuId}-tab-${tab.id}`}
+            hidden={menuProduct !== tab.id}
+          >
+            <fieldset className={s.menuFieldset} disabled={menuEditingDisabled}>
+              <legend>
+                {tab.label}{" "}
+                <span>
+                  {
+                    sidebarOptions.filter((option) =>
+                      effectiveMenus.includes(option.permission),
+                    ).length
+                  }
+                  {" / "}
+                  {sidebarOptions.length}
+                </span>
+              </legend>
+              <div className={s.menuGrid}>
+                {sidebarOptions.map((option) => (
+                  <label key={option.id} className={s.menuOption}>
+                    <input
+                      type="checkbox"
+                      checked={effectiveMenus.includes(option.permission)}
+                      onChange={() => changeMenus(option.permission)}
+                    />
+                    <span>{option.label}</span>
+                  </label>
+                ))}
+              </div>
+              {nestedOptions.length > 0 ? (
+                <div className={s.menuExtras}>
+                  <h4>추가 기능 권한</h4>
+                  <p id={`${menuId}-export-help`} className={s.help}>
+                    내보내기는 시험지 만들기·문제 추출·시험지 보관함에서 이어서
+                    이용합니다. 이 메뉴가 모두 해제되면 좌측 메뉴에 표시됩니다.
+                  </p>
+                  {nestedOptions.map((option) => (
+                    <label key={option.id} className={s.menuOption}>
+                      <input
+                        type="checkbox"
+                        checked={effectiveMenus.includes(option.permission)}
+                        aria-describedby={`${menuId}-export-help`}
+                        onChange={() => changeMenus(option.permission)}
+                      />
+                      <span>{option.label}</span>
+                    </label>
+                  ))}
+                </div>
+              ) : null}
+            </fieldset>
+          </div>
+        );
+      })}
       {!branchManager && menus.length === 0 ? (
         <p className={s.note}>
           선택한 메뉴가 없습니다. 승인해도 작업실에서 사용할 수 있는 메뉴가
@@ -515,7 +611,7 @@ export default function AccountReview({
                 type="button"
                 disabled={busy}
                 onClick={() => {
-                  setMenus(account.menus);
+                  setMenus(originalMenus);
                   setName(account.name);
                   setEmail(account.email);
                   setBranchManager(account.isAdmin);

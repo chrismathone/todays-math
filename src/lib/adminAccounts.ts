@@ -2,6 +2,7 @@ import "server-only";
 import type { Prisma } from "@prisma/client";
 import {
   ALL_WORKSPACE_MENUS,
+  workspaceMenusFromDisabled,
   type ManagedAccount,
 } from "@/contracts/accountAccess.contract";
 
@@ -39,7 +40,7 @@ export function managedAccount(
     branchName: branch?.name ?? null,
     menus: user.isAdmin
       ? ALL_WORKSPACE_MENUS
-      : ALL_WORKSPACE_MENUS.filter((menu) => !disabledMenus.includes(menu)),
+      : workspaceMenusFromDisabled(disabledMenus),
     createdAt: createdAt.toISOString(),
     updatedAt: updatedAt.toISOString(),
     suspendedAt: suspendedAt?.toISOString() ?? null,

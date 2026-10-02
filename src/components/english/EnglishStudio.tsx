@@ -5,12 +5,17 @@
  *
  * 시험 목록(`GET /api/english/exams`)을 **한 번** 읽어 학교 칩 + 시험 고르기 상태를 세 뷰(학교별 내신 대비 ·
  * 문제 만들기 · 문제 보관함)가 나눠 쓴다 — 셸이 `hidden` 으로 마운트를 유지하므로 뷰를 오가도 상태가 산다.
- * 고른 시험은 localStorage(`today-english-exam`)에 남긴다. 편집 화면은 라우트가 아니라 «학교별 내신 대비» 뷰 안
+ * 고른 시험은 localStorage(`today-english-exam`)에 남긴다. 편집 화면은 라우트가 아니라 «문제 보관함» 뷰 안
  * 상태(`editor`)다. 알림은 셸의 알림 줄(`onNotice`)로 — 토스트 없음.
  *
  * 🔴 이 화면은 서버가 낸 것을 그린다 — 오류 문구도 서버 것을 그대로 올린다(`englishClient.ts`).
  */
 import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  ALL_WORKSPACE_MENUS,
+  normalizeWorkspaceMenus,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
 
 import Icon from "@/components/unified/WorkspaceIcon";
 import WorkProgress from "@/components/unified/WorkProgress";
@@ -52,6 +57,7 @@ export type { EnglishNotice, EnglishView } from "./views";
 
 export type EnglishStudioProps = {
   view: EnglishView;
+  allowedMenus?: WorkspaceMenu[];
   onNavigate: (view: EnglishView) => void;
   /** 셸 modal «english-exam» — 창은 여기서 그린다(셸 `<dialog>` 가 아니다) */
   newExamOpen: boolean;
@@ -82,6 +88,7 @@ const HEADERS: Record<EnglishView, { title: string; description: string }> = {
 
 export default function EnglishStudio({
   view,
+  allowedMenus = ALL_WORKSPACE_MENUS,
   onNavigate,
   newExamOpen,
   onNewExam,
@@ -90,6 +97,11 @@ export default function EnglishStudio({
   onSetOpened,
   onNotice,
 }: EnglishStudioProps) {
+  const menus = normalizeWorkspaceMenus(allowedMenus);
+  const canSchool = menus.includes("english-school");
+  const canMake = menus.includes("english-maker");
+  const canLibrary = menus.includes("english-library");
+  const canReadMaterials = canSchool || canMake;
   const [exams, setExams] = useState<Load<EnglishExam[]>>({
     status: "loading",
   });
@@ -192,9 +204,16 @@ export default function EnglishStudio({
   const setsLoad = examId ? sets[examId] : undefined;
   useEffect(() => {
     if (!examId) return;
-    if (!materialsLoad) void loadMaterials(examId);
+    if (canReadMaterials && !materialsLoad) void loadMaterials(examId);
     if (!setsLoad) void loadSets(examId);
-  }, [examId, materialsLoad, setsLoad, loadMaterials, loadSets]);
+  }, [
+    examId,
+    materialsLoad,
+    setsLoad,
+    loadMaterials,
+    loadSets,
+    canReadMaterials,
+  ]);
 
   const refreshMaterials = useCallback(
     (id: string) => {
@@ -215,7 +234,7 @@ export default function EnglishStudio({
   const linkedId = openSetRequest?.id;
   const linkedVersion = openSetRequest?.version;
   useEffect(() => {
-    if (!linkedId || !linkedVersion) return;
+    if (!linkedId || !linkedVersion || !canLibrary) return;
     let cancelled = false;
     (async () => {
       try {
@@ -225,7 +244,7 @@ export default function EnglishStudio({
         if (cancelled) return;
         selectExam(body.data.examId);
         setEditor({ id: body.data.id, set: body.data });
-        callbacks.current.onNavigate("english");
+        callbacks.current.onNavigate("english-library");
       } catch (error) {
         if (cancelled) return;
         callbacks.current.onNotice(
@@ -241,14 +260,15 @@ export default function EnglishStudio({
     return () => {
       cancelled = true;
     };
-  }, [linkedId, linkedVersion, selectExam]);
+  }, [linkedId, linkedVersion, selectExam, canLibrary]);
 
   const openSet = useCallback(
     (id: string) => {
+      if (!canLibrary) return;
       setEditor({ id });
-      onNavigate("english");
+      onNavigate("english-library");
     },
-    [onNavigate],
+    [onNavigate, canLibrary],
   );
 
   const patchExam = useCallback((next: EnglishExam) => {
@@ -267,7 +287,7 @@ export default function EnglishStudio({
   const header = HEADERS[view];
 
   // «새 시험 등록» 창은 목록이 «읽는 중»·«오류»여도 그린다(등록은 목록 없이도 된다 — 검토 #5).
-  const newExamDialog = newExamOpen && (
+  const newExamDialog = canSchool && newExamOpen && (
     <NewExamDialog
       onClose={onNewExamClose}
       onCreated={(created) => {
@@ -330,31 +350,38 @@ export default function EnglishStudio({
             title={header.title}
             description={header.description}
           >
-            <button
-              type="button"
-              className={w.primaryButton}
-              onClick={onNewExam}
-            >
-              <Icon name="plus" size={18} />새 시험 등록
-            </button>
+            {canSchool && (
+              <button
+                type="button"
+                className={w.primaryButton}
+                onClick={onNewExam}
+              >
+                <Icon name="plus" size={18} />새 시험 등록
+              </button>
+            )}
           </WorkspacePageHeader>
           <section className={`${s.card} ${s.empty}`}>
-            <h2>첫 시험을 등록해 주세요</h2>
+            <h2>
+              {canSchool ? "첫 시험을 등록해 주세요" : "등록된 시험이 없습니다"}
+            </h2>
             <p>
-              학교 · 학년 · 시험 이름을 적으면 자료와 문제 세트를 모을 자리가
-              생깁니다.
+              {canSchool
+                ? "학교 · 학년 · 시험 이름을 적으면 자료와 문제 세트를 모을 자리가 생깁니다."
+                : "학교별 내신 대비 권한이 있는 계정에서 시험을 등록해 주세요."}
             </p>
-            <button
-              type="button"
-              className={w.primaryButton}
-              onClick={onNewExam}
-            >
-              새 시험 등록
-              <Icon name="arrow" size={18} />
-            </button>
+            {canSchool && (
+              <button
+                type="button"
+                className={w.primaryButton}
+                onClick={onNewExam}
+              >
+                새 시험 등록
+                <Icon name="arrow" size={18} />
+              </button>
+            )}
           </section>
         </>
-      ) : view === "english" && editor ? (
+      ) : view === "english-library" && canLibrary && editor ? (
         <EnglishEditor
           key={editor.id}
           setId={editor.id}
@@ -453,6 +480,8 @@ export default function EnglishStudio({
           }}
           onOpenSet={openSet}
           onNavigate={onNavigate}
+          canMake={canMake}
+          canLibrary={canLibrary}
         />
       ) : view === "english-library" ? (
         <EnglishLibraryView
@@ -462,7 +491,7 @@ export default function EnglishStudio({
           sets={setsLoad ?? { status: "loading" }}
           onRefresh={() => refreshSets(exam.id)}
           onOpen={openSet}
-          onMake={() => onNavigate("english-maker")}
+          onMake={canMake ? () => onNavigate("english-maker") : undefined}
         />
       ) : (
         <>
@@ -482,7 +511,8 @@ export default function EnglishStudio({
             }
             onSaved={(id) => {
               refreshSets(exam.id);
-              openSet(id);
+              if (canLibrary) openSet(id);
+              else onNotice("문제 세트를 저장했습니다.");
             }}
             onNotice={(message, tone) => onNotice(message, tone)}
           />

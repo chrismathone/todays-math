@@ -823,6 +823,50 @@
   margin: 0;
   font-weight: 600;
 }
+.menuHeading {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 750;
+}
+.menuTabs {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background: var(--learn-soft);
+}
+.menuTabs button {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+.menuTabs button[aria-selected="true"] {
+  background: var(--learn-surface);
+  border-color: var(--learn-track);
+  color: var(--cobalt);
+}
+.menuTabs button:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 2px;
+}
+.menuExtras {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--learn-track);
+}
+.menuExtras h4 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 650;
+}
 .menuFieldset {
   margin: 0;
   padding: 0;
@@ -838,6 +882,9 @@
   float: right;
   color: var(--cobalt);
   font-size: 12px;
+}
+.menuFieldset legend + .menuGrid {
+  margin-top: 12px;
 }
 .help {
   color: var(--muted);

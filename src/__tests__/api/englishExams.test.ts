@@ -15,6 +15,7 @@ type Viewer = {
   email: string;
   name: string;
   isAdmin: boolean;
+  menus?: import("@/contracts/accountAccess.contract").WorkspaceMenu[];
   isSuperAdmin?: boolean;
   branchId?: string | null;
   branchRole?: "owner" | "manager" | "teacher" | null;
@@ -68,12 +69,14 @@ const TEACHER: Viewer = {
   email: "teacher@example.com",
   name: "김원장",
   isAdmin: false,
+  menus: ["english"],
 };
 const BRANCH_TEACHER: Viewer = {
   id: BRANCH_TEACHER_ID,
   email: "branch-teacher@example.com",
   name: "지점 강사",
   isAdmin: false,
+  menus: ["english"],
   branchId: BRANCH_A,
   branchRole: "teacher",
 };

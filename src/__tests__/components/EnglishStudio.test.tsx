@@ -471,7 +471,7 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     });
   });
 
-  it("세트 카드의 «열기»는 같은 뷰 안 편집 화면으로 가고 «목록»으로 돌아온다", async () => {
+  it("세트 카드의 «열기»는 보관함 편집 화면으로 가고 «목록»으로 돌아온다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);
     await screen.findByRole("heading", { name: "학교별 내신 대비" });
@@ -483,13 +483,13 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     expect(
       await screen.findByRole("textbox", { name: "세트 이름" }),
     ).toHaveValue("협력의 가치 · 외부지문 기본 훈련");
-    expect(currentView()).toBe("english");
+    expect(currentView()).toBe("english-library");
     expect(
       screen.queryByRole("heading", { name: "학교별 내신 대비" }),
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "목록" }));
     expect(
-      await screen.findByRole("heading", { name: "학교별 내신 대비" }),
+      await screen.findByRole("heading", { name: "문제 보관함" }),
     ).toBeVisible();
   });
 
@@ -609,6 +609,65 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     expect(
       await screen.findByRole("button", { name: "침산중학교" }),
     ).toHaveAttribute("aria-pressed", "true");
+  });
+
+  it("school-only access hides creation and library actions", async () => {
+    render(<Harness log={makeLog()} allowedMenus={["english-school"]} />);
+    await screen.findByRole("button", { name: "침산중학교" });
+    expect(screen.getByRole("button", { name: "자료 추가" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: /문제 제작/ })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /검토 및 인쇄/ })).toBeDisabled();
+    expect(
+      screen.queryByRole("button", { name: "전체 보기" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /학교 맞춤 문제 만들기/ }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: / 열기$/ }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("library-only access opens an editor without school access or material requests", async () => {
+    const requests = requestLog();
+    render(
+      <Harness
+        initialView="english-library"
+        log={makeLog()}
+        allowedMenus={["english-library"]}
+        openSetId={ENGLISH_SET_DRAFT_ID}
+      />,
+    );
+    expect(
+      await screen.findByRole("textbox", { name: "세트 이름" }),
+    ).toBeVisible();
+    expect(
+      requests.seen.some((request) => request.url.endsWith("/materials")),
+    ).toBe(false);
+    requests.off();
+  });
+
+  it("ignores a set deep link without library access", async () => {
+    const requests = requestLog();
+    render(
+      <Harness
+        initialView="english-maker"
+        log={makeLog()}
+        allowedMenus={["english-maker"]}
+        openSetId={ENGLISH_SET_DRAFT_ID}
+      />,
+    );
+    await screen.findByRole("heading", { name: "문제 만들기" });
+    expect(
+      requests.seen.some(
+        (request) =>
+          request.url === `/api/english/sets/${ENGLISH_SET_DRAFT_ID}`,
+      ),
+    ).toBe(false);
+    expect(
+      screen.queryByRole("textbox", { name: "세트 이름" }),
+    ).not.toBeInTheDocument();
+    requests.off();
   });
 
   it("없는 세트의 딥링크는 «찾을 수 없습니다» 알림을 올리고 목록에 머문다", async () => {

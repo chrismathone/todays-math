@@ -19,7 +19,11 @@ import {
   type WorkspaceMenu,
   type WorkspaceProduct,
 } from "@/contracts/accountAccess.contract";
-import { isEnglishView, type EnglishView } from "@/components/english/views";
+import {
+  englishViewMenu,
+  isEnglishView,
+  type EnglishView,
+} from "@/components/english/views";
 import { useWorkspaceAccess } from "./useWorkspaceAccess";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
@@ -114,10 +118,10 @@ const EnglishStudio = dynamic(
   },
 );
 /**
- * 뷰 = 메뉴 + 영어 뷰 셋(D-148 · 25 §1.2). 영어 뷰 셋은 메뉴 `english` 하나에 딸린다(`menuOf`).
+ * 영어 학교 메뉴는 기존 english 주소를 유지하고, 각 뷰는 개별 메뉴 권한을 본다.
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
  */
-type View = WorkspaceMenu | EnglishView;
+type View = Exclude<WorkspaceMenu, "english-school"> | EnglishView;
 type NavItem = {
   id: View;
   label: string;
@@ -161,12 +165,12 @@ const allNavItems = [...mathNav, ...englishNav];
 const menuValid = (value: string): value is WorkspaceMenu =>
   WORKSPACE_MENUS.some((item) => item.id === value);
 const viewValid = (value: string): value is View =>
-  menuValid(value) || isEnglishView(value);
+  allNavItems.some((item) => item.id === value);
 /** 뷰가 딸린 메뉴 — 권한은 이것으로 본다 */
 const menuOf = (view: View): WorkspaceMenu =>
-  isEnglishView(view) ? "english" : view;
+  isEnglishView(view) ? englishViewMenu(view) : view;
 const productOf = (view: View | null): WorkspaceProduct =>
-  view && menuOf(view) === "english" ? "english" : "math";
+  view && isEnglishView(view) ? "english" : "math";
 /** 세트 딥링크 `/?set=<uuid>#english` 의 id 모양 */
 const SET_LINK = /^[0-9a-f-]{36}$/i;
 
@@ -223,10 +227,14 @@ function UnifiedWorkspaceContent({
     (view: View) => enabledMenus.has(menuOf(view)),
     [enabledMenus],
   );
-  const defaultView: View | null = [...enabledMenus][0] ?? null;
+  const firstMenu = [...enabledMenus][0];
+  const defaultView: View | null =
+    firstMenu === "english-school" ? "english" : (firstMenu ?? null);
   const hasMenus = enabledMenus.size > 0;
   const canCreate = can("bank") || can("studio") || can("export");
-  const canEnglish = can("english");
+  const canEnglish = englishNav.some((item) => can(item.id));
+  const canCreateEnglishExam = can("english");
+  const canOpenEnglishSet = can("english-library");
   const [requestedView, setView] = useState<View | null>(defaultView);
   const [navigationReady, setNavigationReady] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
@@ -434,12 +442,12 @@ function UnifiedWorkspaceContent({
     document.addEventListener("mousedown", away);
     return () => document.removeEventListener("mousedown", away);
   }, [pickerOpen]);
-  /** 고르면 그 제품의 첫 뷰 — 수학은 `defaultView`(지금 규칙), 영어는 «학교별 내신 대비» */
+  /** 고르면 그 제품의 첫 허용 뷰로 이동한다. */
   const chooseProduct = (next: WorkspaceProduct) => {
     setPickerOpen(false);
     const target: View | null =
       next === "english"
-        ? "english"
+        ? (englishNav.find((item) => can(item.id))?.id ?? null)
         : defaultView && productOf(defaultView) === "math"
           ? defaultView
           : (mathNav.find((item) => can(item.id))?.id ?? null);
@@ -491,9 +499,9 @@ function UnifiedWorkspaceContent({
       // 세트 딥링크(D-148) — `extraction` 처럼 검색 인수를 읽는다. 영어 권한이 없으면 무시한다.
       const setId = url.searchParams.get("set");
       const setLinked = Boolean(
-        setId && SET_LINK.test(setId) && can("english"),
+        setId && SET_LINK.test(setId) && can("english-library"),
       );
-      if (setLinked && productOf(next) !== "english") next = "english";
+      if (setLinked) next = "english-library";
       setView(next);
       setNavigationReady(true);
       setOpened(
@@ -538,11 +546,11 @@ function UnifiedWorkspaceContent({
     setModal((current) =>
       !hasMenus ||
       (current === "new" && !canCreate) ||
-      (current === "english-exam" && !canEnglish)
+      (current === "english-exam" && !canCreateEnglishExam)
         ? null
         : current,
     );
-  }, [hasMenus, canCreate, canEnglish]);
+  }, [hasMenus, canCreate, canCreateEnglishExam]);
   /** 셸의 <dialog> 가 그리는 창만 — «새 시험 등록»은 영어 뷰가 제 창을 그린다 */
   const shellModal = modal === "english-exam" ? null : modal;
   useEffect(() => {
@@ -988,7 +996,7 @@ function UnifiedWorkspaceContent({
           )}
         </div>
         {product === "english"
-          ? canEnglish && (
+          ? canCreateEnglishExam && (
               <button
                 className={s.newButton}
                 aria-label="새 시험 등록"
@@ -1314,13 +1322,17 @@ function UnifiedWorkspaceContent({
               product === "english") && (
               <main hidden={product !== "english"} className={s.viewContent}>
                 <EnglishStudio
+                  key={workspaceMenusOf("english")
+                    .filter((menu) => enabledMenus.has(menu))
+                    .join(",")}
                   view={englishView}
+                  allowedMenus={allowedMenus}
                   onNavigate={navigate}
                   newExamOpen={modal === "english-exam"}
                   onNewExam={openNewExam}
                   onNewExamClose={closeModal}
                   openSetRequest={
-                    openSet.id
+                    canOpenEnglishSet && openSet.id
                       ? (openSet as { id: string; version: number })
                       : undefined
                   }

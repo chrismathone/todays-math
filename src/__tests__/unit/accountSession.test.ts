@@ -47,6 +47,25 @@ beforeEach(() => {
   mocks.findUnique.mockResolvedValue(user);
 });
 describe("existing session access refresh", () => {
+  it("keeps legacy English denials and immediately applies individual menu revocation", async () => {
+    mocks.findUnique.mockResolvedValue({ ...user, disabledMenus: ["english"] });
+    const blocked = await mocks.configuration.value.callbacks.jwt({
+      token: { sub: "u1" },
+    });
+    expect(blocked?.menus).toEqual(
+      ALL_WORKSPACE_MENUS.filter((menu) => !menu.startsWith("english")),
+    );
+    mocks.findUnique.mockResolvedValue({
+      ...user,
+      disabledMenus: ["english-maker"],
+    });
+    const partial = await mocks.configuration.value.callbacks.jwt({
+      token: blocked!,
+    });
+    expect(partial?.menus).toContain("english-school");
+    expect(partial?.menus).toContain("english-library");
+    expect(partial?.menus).not.toContain("english-maker");
+  });
   it("replaces forged client update claims with current DB access", async () => {
     mocks.findUnique.mockResolvedValue({
       ...user,

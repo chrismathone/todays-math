@@ -11,6 +11,7 @@ import {
   type EnglishDraftIssue,
 } from "@/contracts/english.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
+import { englishRouteAllowed } from "@/lib/accountRouteAccess";
 import { jsonError, unauthorizedError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { getSessionUser, type SessionUser } from "@/lib/session";
@@ -31,6 +32,22 @@ export async function requireEnglishSession(
 ): Promise<EnglishGate> {
   const session = await getSessionUser();
   if (!session) return { session: null, response: unauthorizedError() };
+  if (
+    !session.isAdmin &&
+    !englishRouteAllowed(
+      session.menus ?? [],
+      request.method,
+      new URL(request.url).pathname,
+    )
+  )
+    return {
+      session: null,
+      response: jsonError(
+        "FORBIDDEN",
+        "이 영어 메뉴를 사용할 권한이 없습니다.",
+        403,
+      ),
+    };
   if (options.mutation && !sameOriginMutation(request))
     return {
       session: null,
