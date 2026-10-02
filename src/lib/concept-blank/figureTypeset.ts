@@ -42,10 +42,28 @@ const decodeText = (value: string) =>
     .replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&");
 
+/**
+ * 수 뒤에 빈칸을 두고 온 한 글자 단위(`650 m` · `850 g` · `2 kg 100 g`)는 정자체다. 그림 편집기의 라벨 규칙은 홑 소문자를
+ * 변수로 보아 기울인다(`l` · `m` 은 직선 이름) — 그래서 `1 km` 은 서고 `650 m` 만 기울어 찍혔다(전수 검토 2026-10-02, 초3 다섯 곳).
+ * 수 바로 뒤에 붙은 글자(`2a` · `3x`)와 홀로 선 글자는 그대로 변수다.
+ */
+export function uprightUnits(label: string): string {
+  if (label.startsWith("$") || label.includes("\\") || CJK.test(label))
+    return label;
+  if (!/\d [a-z](?= |$)/.test(label)) return label;
+  return label
+    .replace(/[A-Za-z]{2,}|[A-Z]/g, (word) => `\\mathrm{${word}}`)
+    .replace(/(\d) ([a-z])(?= |$)/g, "$1 \\mathrm{$2}")
+    .replace(/ +/g, "\\,");
+}
+
 function mathLabel(text: string, bold = false, textFont = "inherit") {
   // Bank tags contain plain roots (√2) and mixed names (x축). Keep Korean as
   // text while laying out the math run; wholly Korean/circled labels stay text.
-  let label = text.replace(/√(\d+(?:\.\d+)?|[A-Za-z])/g, "\\sqrt{$1}");
+  let label = uprightUnits(text).replace(
+    /√(\d+(?:\.\d+)?|[A-Za-z])/g,
+    "\\sqrt{$1}",
+  );
   if (CJK.test(label) && /[A-Za-z0-9\\]/.test(label) && !label.startsWith("$"))
     label = `$${label}$`;
   // A bank answer such as ab denotes a product, not an English word/unit.

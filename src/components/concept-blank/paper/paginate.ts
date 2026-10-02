@@ -522,17 +522,26 @@ export function keyRowCost(row: KeyRow): number {
   }
 }
 
-/** 채점 안내(채점표 마지막 장 아래) — 우리 말. */
+/** 뜻을 문장으로 쓰는 칸(B · D)의 기준 — 굵은 부분은 내용 기준이고, 느슨한 것은 말 · 식 · 단위의 꼴이다. */
+const MEANING_RULE =
+  "굵은 부분의 뜻이 모두 있어야 ○. 말 · 식 · 단위의 꼴이 달라도 된다.";
+
+/**
+ * 채점 안내(채점표 마지막 장 아래) — 우리 말.
+ * 🔴 «굵은 핵심어가 다 들어가야 ○»라고 쓰지 않는다(전수 검토 2026-10-02 · 26 §10) — 같은 뜻의 다른 말 · 같은 값의 다른 꼴이
+ * 오답이 된다. «본보기 답»이라고도 쓰지 않는다 — 굵은 내용을 빼도 되게 읽혀 교사마다 ○× 가 갈린다.
+ */
 export function keyNotes(sheet: ConceptBlankSheet): string[] {
   switch (sheet.form) {
     case "recall":
       return [
-        `칸에 적힌 것을 아래 ${sheet.key.length}개와 맞춰 본다. 굵은 핵심어가 다 있으면 ○, 하나 빠지면 △, 없으면 ×.`,
+        `칸에 적힌 것을 아래 ${sheet.key.length}개와 맞춰 본다. 굵은 부분의 뜻이 다 있으면 ○, 하나 빠지면 △, 없으면 ×.`,
+        "말 · 식의 꼴이 달라도 뜻이 같으면 있는 것으로 본다.",
         "«떠올린 개념»에는 ○ 개수를 적는다. 그림 · 예 칸은 채점하지 않고 뜻이 모자랄 때 보탬으로 본다.",
       ];
     case "term":
       return [
-        "문항 하나가 한 개. 뜻은 굵은 핵심어가 다 들어가야 ○.",
+        `문항 하나가 한 개. ${MEANING_RULE}`,
         ...(sheet.ox.length ? ["○× 는 표시와 까닭이 둘 다 맞아야 한 개."] : []),
       ];
     case "cloze": {
@@ -542,7 +551,9 @@ export function keyNotes(sheet: ConceptBlankSheet): string[] {
       );
       return [
         ...(sheet.sentences.length
-          ? [`가 — 빈칸 하나가 한 개(${blanks}개). 굵은 글이 빈칸의 답이다.`]
+          ? [
+              `가 — 빈칸 하나가 한 개(${blanks}개). 굵은 글이 빈칸의 답이다. 같은 값 · 같은 뜻의 다른 꼴도 ○.`,
+            ]
           : []),
         ...(sheet.apply.length
           ? [`나 — 문항 하나가 한 개(${sheet.apply.length}개).`]
@@ -553,6 +564,7 @@ export function keyNotes(sheet: ConceptBlankSheet): string[] {
       const nodes = sheet.maps.reduce((s, m) => s + m.nodes.length, 0);
       return [
         `가지마다 «뜻» 한 칸 + «예» 한 칸 — 모두 ${nodes * 2}칸.`,
+        `«뜻»은 ${MEANING_RULE}`,
         "예 칸이 비어 있던 가지는 학생이 든 예가 뜻에 맞으면 ○.",
       ];
     }

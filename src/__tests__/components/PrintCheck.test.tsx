@@ -216,7 +216,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 93: english-vocab-underline 추가 (2026-10-01 — 어휘 밑줄은 어법과 같은 규칙. 실물 검수 대기).
     // 94: concept-blank-ten-per-level 추가 (2026-10-01 D-150 은행 3차 — 하 · 중 · 상 10개씩. 그 커밋이 이 수를
     //     안 올려 main 이 92 ≠ 93 으로 빨갰고, 영어 93 과 따로 갈라져 병합에서 겹쳤다 — 2026-10-02 리드가 맞춤).
-    expect(ITEMS.length).toBe(94);
+    // 95: concept-blank-review-key-notes 추가 (2026-10-02 전수 검토 반영 — 채점 안내 문구 · 그림 속 한 글자 단위).
+    expect(ITEMS.length).toBe(95);
   });
 
   /**
