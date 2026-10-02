@@ -167,6 +167,13 @@ export const conceptEntrySchema = z.strictObject({
       answer: paperText(1, 60),
     })
     .optional(),
+  /**
+   * 사례 문항 — 굵은 답이 **용어에 주어진 값**으로 정해진다(«$4\,\mathrm{m}$의 $0.3$배 구하기» → `{$1.2\,\mathrm{m}$}`).
+   * A(완전 백지)는 소단원 이름만 보여 주므로 이런 카드는 떠올릴 수도, 채점표 줄과 맞춰 볼 수도 없다 — A 채점표에 싣지 않는다
+   * (전수 검토 2026-10-02 합의 안건 11 · 26 §10). 답이 낱말이어도 해당한다. 단위 환산 · 자리값 · 직각 $90^\circ$처럼
+   * 수 자체가 개념인 카드는 사례가 아니다. 읽는 곳은 A 를 고르는 `composeSheets` 하나다.
+   */
+  givenCase: z.literal(true).optional(),
 });
 export type ConceptEntry = z.infer<typeof conceptEntrySchema>;
 

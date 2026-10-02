@@ -96,4 +96,34 @@ describe("concept blank key notes", () => {
     expect(notes("cloze")).toContain("굵은 글이 빈칸의 답이다");
     expect(notes("cloze")).toContain("같은 값 · 같은 뜻의 다른 꼴도 ○");
   });
+
+  // 합의 안건 11 — 사례 문항은 A 채점표에 없다. 교사가 줄 수가 왜 다른지 알게 한 줄.
+  it("A says case cards are left off its key", () => {
+    expect(notes("recall")).toContain(
+      "용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다",
+    );
+  });
+
+  // 합의 안건 12 — 굵은 글이 용어 이름뿐인 줄이 있을 때만 그 기준을 적는다(핵심어 표기는 늘리지 않는다).
+  it("B · D add the name rule only when a row bolds nothing but its own term", () => {
+    const NAME = "굵은 글이 용어와 같으면 그 이름은 답이 아니다";
+    for (const form of ["term", "map"]) expect(notes(form)).not.toContain(NAME);
+    const named: ConceptEntry = {
+      ...entry,
+      id: "t-c2",
+      term: "세로셈",
+      kind: "정의",
+      definition:
+        "수를 자리에 맞추어 위아래로 적고 계산하는 방법을 {세로셈}이라 한다.",
+    };
+    const term = sheets.term!;
+    const map = sheets.map!;
+    if (term.form !== "term" || map.form !== "map") throw new Error("꼴");
+    expect(keyNotes({ ...term, terms: [entry, named] }).join("\n")).toContain(
+      NAME,
+    );
+    expect(
+      keyNotes({ ...map, maps: [{ hub: "덧셈", nodes: [named] }] }).join("\n"),
+    ).toContain(NAME);
+  });
 });

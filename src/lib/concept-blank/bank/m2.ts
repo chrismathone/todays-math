@@ -5,6 +5,7 @@ import type {
   FigureItem,
   OxItem,
 } from "@/contracts/conceptBlank.contract";
+import { markGivenCases } from "./plus";
 
 /**
  * 개념 백지 은행 — 중2. 트랙 cb-m2 (D-150 · 26번 문서 §5).
@@ -6444,3 +6445,9 @@ section("09-04", "확률의 계산", {
     ],
   ],
 });
+
+/**
+ * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
+ * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
+ */
+markGivenCases(bank, []);

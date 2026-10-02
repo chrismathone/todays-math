@@ -7668,7 +7668,7 @@ export const bank = joinBanks([
         "방법",
         r`$\{x+y=5,\ ax+y=8\}$과 $\{x-y=1,\ x+by=5\}$의 해가 같으면 {$x+y=5$}와 {$x-y=1$}을 먼저 풀어 $(3,\ 2)$를 얻는다.`,
         [
-          r`$\{x+y=5,\ ax+y=8\}$과 $\{x-y=1,\ x+by=5\}$의 해가 같을 때 $a$, $b$`,
+          r`$\{x+y=5,\ ax+y=8\}$과 $\{x-y=1,\ x+by=5\}$가 같은 해 한 쌍을 가질 때 $a$, $b$`,
           r`$a=2,\ b=1$`,
         ],
       ],
@@ -19290,7 +19290,7 @@ export const bank = joinBanks([
         "방법",
         "이등분선이 나눈 넓이는 전체 넓이를 두 변의 {비}로 {나누어} 구한다.",
         [
-          r`넓이 $21$, $\overline{AB}=8$, $\overline{AC}=6$일 때 $\triangle ABD$`,
+          r`넓이 $21$인 $\triangle ABC$에서 $\angle A$의 이등분선이 $\overline{BC}$와 $D$에서 만나고 $\overline{AB}=8$, $\overline{AC}=6$일 때 $\triangle ABD$의 넓이`,
           "$12$",
         ],
       ],

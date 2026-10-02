@@ -78,6 +78,11 @@ for (const row of ledger.rows) {
     console.log(
       `  ${c.level} · ${c.kind} · 용어 ${visibleLength(c.term)}/40자 · 뜻 ${visibleLength(c.definition)}/160자`,
     );
+    console.log(
+      c.givenCase
+        ? "  A 채점표  없음(사례 문항)"
+        : "  A 채점표  실린다 — 소단원 이름만 보고 이 뜻 문장을 떠올릴 수 있어야 한다",
+    );
     console.log(`  B 학생  ${c.term}`);
     console.log(`  C 학생  ${blanked(c.definition)}`);
     console.log(`    굵은 답  ${keys(c.definition)}`);

@@ -49,6 +49,9 @@ export function takeByLevel<
   });
 }
 
+/** A(완전 백지) 채점표에 실을 수 있는 개념 — 사례 문항(`givenCase`)이 아닌 것. */
+export const recallable = (concept: ConceptEntry) => !concept.givenCase;
+
 /** 소단원 열쇠를 교육과정 순서로(모르는 열쇠는 버린다). */
 export function orderedSections(keys: readonly string[]): string[] {
   return [...new Set(keys)]
@@ -106,7 +109,8 @@ export function composeSheets(
     ({ form, counts, extras }): ConceptBlankSheet[] => {
       switch (form) {
         case "recall": {
-          const key = takeByLevel(all("concepts"), counts);
+          // 사례 문항은 A 채점표에 싣지 않는다 — 소단원 이름만 보고는 그 수를 떠올릴 수도, 줄과 맞춰 볼 수도 없다(26 §10).
+          const key = takeByLevel(all("concepts").filter(recallable), counts);
           return [
             {
               form,
@@ -217,6 +221,7 @@ export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
       const zero = () => ({ 하: 0, 중: 0, 상: 0 });
       r = {
         concepts: zero(),
+        recall: zero(),
         ox: zero(),
         apply: zero(),
         figures: zero(),
@@ -232,6 +237,8 @@ export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
       r[kind][item.level] += 1;
       r.total += 1;
     }
+  for (const concept of bank.concepts)
+    if (recallable(concept)) row(concept.section).recall[concept.level] += 1;
   return table;
 }
 
@@ -244,6 +251,8 @@ export function stockCounts(key: string, bank: ConceptBlankBank) {
     ) as LevelCounts;
   return {
     concepts: byLevel(s.concepts),
+    /** A(완전 백지)에 실을 수 있는 개념 — 사례 문항을 뺀 수(`total` 에는 더하지 않는다). */
+    recall: byLevel(s.concepts.filter(recallable)),
     ox: byLevel(s.ox),
     apply: byLevel(s.apply),
     figures: byLevel(s.figures),

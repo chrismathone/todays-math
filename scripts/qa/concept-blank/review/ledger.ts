@@ -12,6 +12,7 @@ import {
   blankKeywords,
   type ConceptBlankBank,
 } from "../../../../src/contracts/conceptBlank.contract";
+import { keywordsInsideTerm } from "../../../../src/lib/concept-blank/audit";
 
 export const REVIEW_GRADES = [
   "e3",
@@ -61,6 +62,8 @@ export function itemText(entry: BankItem): string {
         c.definition,
         c.example?.prompt ?? "",
         c.example?.answer ?? "",
+        // 사례 표지를 단 것도 «고침»이다 — 검토 시점에는 표지가 없었으니 그때의 지문은 그대로다.
+        ...(c.givenCase ? ["사례"] : []),
       ].join("\n");
     }
     case "ox":
@@ -162,18 +165,11 @@ export function writeLedger(ledger: Ledger): void {
   );
 }
 
-const squash = (s: string) => s.replace(/[\s$\\{}]/g, "");
-
 /** 핵심어에 숫자가 든 개념인가(`num`). */
 export const hasNumberKeyword = (definition: string) =>
   blankKeywords(definition).some((k) => /\d/.test(k));
 
-/** 핵심어가 전부 용어 안에 든 개념인가(`copy`) — 한 글자 핵심어는 견주지 않는다. */
-export function keywordsInsideTerm(term: string, definition: string): boolean {
-  const keys = blankKeywords(definition)
-    .map(squash)
-    .filter((k) => k.length >= 2);
-  return keys.length > 0 && keys.every((k) => squash(term).includes(k));
-}
+/** 핵심어가 전부 용어 안에 든 개념인가(`copy`) — 자는 제품 쪽에 있다(채점 안내도 같이 쓴다). */
+export { keywordsInsideTerm };
 
 export const gradeOfId = (id: string) => id.slice(0, 2) as ReviewGrade;

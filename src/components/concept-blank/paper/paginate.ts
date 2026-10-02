@@ -6,6 +6,7 @@ import {
   type FigureItem,
   type OxItem,
 } from "@/contracts/conceptBlank.contract";
+import { keywordsInsideTerm } from "@/lib/concept-blank/audit";
 
 import {
   BOLD_MATH,
@@ -525,6 +526,9 @@ export function keyRowCost(row: KeyRow): number {
 /** 뜻을 문장으로 쓰는 칸(B · D)의 기준 — 굵은 부분은 내용 기준이고, 느슨한 것은 말 · 식 · 단위의 꼴이다. */
 const MEANING_RULE =
   "굵은 부분의 뜻이 모두 있어야 ○. 말 · 식 · 단위의 꼴이 달라도 된다.";
+/** 굵은 글이 용어 이름뿐인 줄의 기준(합의 안건 12) — 핵심어 표기를 늘리지 않고 채점 안내로 가른다. */
+const NAME_RULE =
+  "굵은 글이 용어와 같으면 그 이름은 답이 아니다 — 이름을 뺀 나머지 뜻이 문장과 같으면 ○.";
 
 /**
  * 채점 안내(채점표 마지막 장 아래) — 우리 말.
@@ -532,16 +536,22 @@ const MEANING_RULE =
  * 오답이 된다. «본보기 답»이라고도 쓰지 않는다 — 굵은 내용을 빼도 되게 읽혀 교사마다 ○× 가 갈린다.
  */
 export function keyNotes(sheet: ConceptBlankSheet): string[] {
+  // 굵은 글이 용어 이름뿐인 줄(`…을 {세로셈}이라 한다`)이 있을 때만 — 그 이름은 학생이 본 글이라 답이 아니다.
+  const nameOnly = (entries: readonly ConceptEntry[]) =>
+    entries.some((c) => keywordsInsideTerm(c.term, c.definition))
+      ? [NAME_RULE]
+      : [];
   switch (sheet.form) {
     case "recall":
       return [
         `칸에 적힌 것을 아래 ${sheet.key.length}개와 맞춰 본다. 굵은 부분의 뜻이 다 있으면 ○, 하나 빠지면 △, 없으면 ×.`,
-        "말 · 식의 꼴이 달라도 뜻이 같으면 있는 것으로 본다.",
+        "말 · 식의 꼴이 달라도 뜻이 같으면 있는 것으로 본다. 용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다.",
         "«떠올린 개념»에는 ○ 개수를 적는다. 그림 · 예 칸은 채점하지 않고 뜻이 모자랄 때 보탬으로 본다.",
       ];
     case "term":
       return [
         `문항 하나가 한 개. ${MEANING_RULE}`,
+        ...nameOnly(sheet.terms),
         ...(sheet.ox.length ? ["○× 는 표시와 까닭이 둘 다 맞아야 한 개."] : []),
       ];
     case "cloze": {
@@ -565,6 +575,7 @@ export function keyNotes(sheet: ConceptBlankSheet): string[] {
       return [
         `가지마다 «뜻» 한 칸 + «예» 한 칸 — 모두 ${nodes * 2}칸.`,
         `«뜻»은 ${MEANING_RULE}`,
+        ...nameOnly(sheet.maps.flatMap((m) => m.nodes)),
         "예 칸이 비어 있던 가지는 학생이 든 예가 뜻에 맞으면 ○.",
       ];
     }

@@ -5,6 +5,7 @@ import type {
   OxItem,
   ApplyItem,
 } from "@/contracts/conceptBlank.contract";
+import { markGivenCases } from "./plus";
 
 /** 초6 고정 은행. 교재는 용어 배치만 참고하고, 문장·예시·그림은 자체 작성했다. */
 type SectionBank = {
@@ -2604,3 +2605,9 @@ export const bank: ConceptBlankBank = {
   })),
   figures,
 };
+
+/**
+ * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
+ * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
+ */
+markGivenCases(bank, []);

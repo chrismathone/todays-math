@@ -12,6 +12,21 @@ import {
  * - 개념 지도(D)는 **용어와 예 물음만** 찍는다(뜻 문장은 채점표에만). 예 물음이 «이때 · 이 부등식의 · 구한»으로 뜻 문장을 가리키면 풀 수 없다.
  */
 
+const squash = (s: string) => s.replace(/[\s$\\{}]/g, "");
+
+/**
+ * 굵은 글이 용어뿐인 개념인가 — 핵심어가 전부 용어 안에 들어 있다(한 글자 핵심어는 견주지 않는다).
+ * 둘로 갈린다: 이름 대기 문장(`…을 {세로셈}이라 한다` — C 의 빈칸으로 자연스럽다. B 에서는 그 이름이 답이 아니다)과
+ * 답이 새는 문장(뜻의 말이 용어 안에 그대로 보인다 — 빈칸을 옮겨야 한다). 이 자는 둘을 가르지 못한다(읽어서 가른다).
+ */
+export function keywordsInsideTerm(term: string, definition: string): boolean {
+  const keys = splitBlankSentence(definition)
+    .filter((p) => p.kind === "key")
+    .map((p) => squash(p.text))
+    .filter((k) => k.length >= 2);
+  return keys.length > 0 && keys.every((k) => squash(term).includes(k));
+}
+
 /** 문장 빈칸 지면에 찍히는 글 — 핵심어 자리를 `□` 로 비우고 공백을 뺀 꼴(견주는 열쇠). */
 export function blankedSentence(definition: string): string {
   return splitBlankSentence(definition)

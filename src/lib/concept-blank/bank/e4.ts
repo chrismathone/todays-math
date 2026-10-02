@@ -3,6 +3,7 @@ import type {
   ConceptEntry,
   FigureItem,
 } from "@/contracts/conceptBlank.contract";
+import { markGivenCases } from "./plus";
 
 /** 초4 고정 은행. 용어와 차례만 참고하고, 설명·물음·그림은 새로 작성했다(D-150). */
 export const bank: ConceptBlankBank = {
@@ -2426,3 +2427,9 @@ figure(
     },
   ],
 );
+
+/**
+ * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
+ * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
+ */
+markGivenCases(bank, []);
