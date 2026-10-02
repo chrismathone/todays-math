@@ -58,6 +58,28 @@ function setup(exam = false) {
 }
 
 describe("server-clock attempt transitions", () => {
+  it("rejects foreign server context identity before new commands and receipt replay", () => {
+    const { publication, assignment, started, answer, context } = setup();
+    const foreign = { ...context, studentId: listeningFixtureIds.retry };
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        assignment,
+        started,
+        answer,
+        foreign,
+      ),
+    ).toThrow(/student binding/i);
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        assignment,
+        started,
+        { kind: "start", expectedRevision: 1, idempotencyKey: "start" },
+        foreign,
+      ),
+    ).toThrow(/student binding/i);
+  });
   it("records release at initial-answer save and reports known exposure separately", () => {
     const { publication, assignment, started, context, answer } = setup(true);
     assignment.releasePolicy = { kind: "at_time", at: context.now };

@@ -115,6 +115,8 @@ export function transitionListeningAttempt(
   const attempt = englishListeningAttemptSchema.parse(attemptInput);
   const command = listeningAttemptCommandSchema.parse(commandInput);
   const context = transitionContextSchema.parse(contextInput);
+  if (context.studentId && context.studentId !== attempt.studentId)
+    throw new Error("Attempt student binding mismatch");
   // Only an independently authorized administrative cancellation may record revocation.
   // Reads, answers and submissions continue to reject revoked state, including receipt replay.
   assertListeningBinding(publication, assignment, attempt, {
@@ -174,12 +176,12 @@ export function transitionListeningAttempt(
           if (
             broadcast.assignmentId !== assignment.id ||
             broadcast.publicationId !== publication.id ||
-            !broadcast.participantStudentIds.includes(attempt.studentId) ||
-            broadcast.participantStudentIds.some(
-              (studentId) => !assignment.targetStudentIds.includes(studentId),
-            )
+            !broadcast.participantStudentIds.includes(attempt.studentId)
           )
             throw new Error("Broadcast binding mismatch");
+          // The server authorizes all participants against the current target roster when
+          // creating this trusted broadcast. This attempt may use an older assignment
+          // revision that legitimately predates other participants joining the class.
           const start = Date.parse(broadcast.startedAt);
           const end = Date.parse(broadcast.deadlineAt);
           const limit = Math.min(

@@ -14,6 +14,66 @@ import {
 } from "@/mocks/englishListeningFixture";
 
 describe("immutable assignment target additions", () => {
+  it("starts an old attempt in a trusted broadcast that also includes newly added students", () => {
+    const original = {
+      ...englishListeningAssignmentFixture(),
+      audioSource: "teacher_device" as const,
+    };
+    const publication = englishListeningPublicationFixture();
+    const attempt = createListeningAttempt(publication, original, {
+      id: listeningFixtureIds.attempt,
+      studentId: listeningFixtureIds.student,
+      now: listeningFixtureNow,
+    });
+    const result = appendListeningAssignmentTargets(original, {
+      expectedRevision: original.revision,
+      addedStudentIds: [listeningFixtureIds.retry],
+      addedBy: listeningFixtureIds.owner,
+      addedAt: listeningFixtureNow,
+      reason: "전입",
+    });
+    const context = {
+      now: listeningFixtureNow,
+      broadcast: {
+        schemaVersion: 1 as const,
+        id: listeningFixtureIds.retry,
+        assignmentId: original.id,
+        publicationId: publication.id,
+        participantStudentIds: result.assignment.targetStudentIds,
+        startedAt: listeningFixtureNow,
+        deadlineAt: "2026-10-03T00:07:00.000Z",
+      },
+    };
+    const command = {
+      kind: "start",
+      expectedRevision: attempt.revision,
+      idempotencyKey: "broadcast",
+    };
+    const started = transitionListeningAttempt(
+      publication,
+      result.previous,
+      attempt,
+      command,
+      context,
+    );
+    expect(started.status).toBe("in_progress");
+    expect(started.deadlineAt).toBe(context.broadcast.deadlineAt);
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        result.previous,
+        attempt,
+        command,
+        {
+          ...context,
+          broadcast: {
+            ...context.broadcast,
+            participantStudentIds: [listeningFixtureIds.retry],
+          },
+        },
+      ),
+    ).toThrow(/broadcast binding/i);
+  });
   it("preserves the revision used by existing attempts and audits new recipients", () => {
     const original = englishListeningAssignmentFixture();
     const publication = englishListeningPublicationFixture();

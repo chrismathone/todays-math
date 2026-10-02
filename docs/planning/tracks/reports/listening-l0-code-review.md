@@ -110,6 +110,12 @@ root 의 `14eed6db7`(assignment.ts 추가 · attempt/release 수정)·`33e7fde18
 
 - `transitionListeningAttempt` 는 `context.studentId` 를 받지만(전이 컨텍스트가 공개 컨텍스트 모양을 펼침) 응시의 학생과 대조하지 않고 조용히 무시한다(probe: 다른 학생 id 로 start → in_progress). 라우트가 인가하므로 구멍은 아니지만, `context.studentId !== undefined && context.studentId !== attempt.studentId` → throw 한 줄이면 F5 의 단언과 결이 맞는다.
 
+### 후속 수정 확인 (root, 2026-10-03)
+
+위 F3-a와 F5 보강 제안을 실패 시험으로 재현한 뒤 수정했다. F3-a는 신뢰된 방송 참여 명단에 응시 학생이 있는지 확인하며, 이전 배정 스냅샷으로 다른 참여자 전체를 제한하지 않는다. 서버가 방송을 생성할 때 현재 배정·소속으로 모든 참여자를 인가해야 한다. 기존 응시의 정확한 개정 묶음과 방송·발행본·시작/마감 검사는 유지한다. 전입 추가 이후 이전 개정 응시도 같은 방송 시각으로 시작하고, 참여 명단에서 빠진 학생은 거절하는 회귀 시험이 통과했다.
+
+F5 보강은 `context.studentId`가 응시 학생과 다르면 새 명령과 이미 접수된 명령 재전송 모두 거절한다. 수정 후 배정·응시 시험 2개 파일 16건이 통과했다. 아래 probe는 **수정 이전 관측 기록**으로 보존한다.
+
 ### root 검토 probe 출력
 
 ```text
