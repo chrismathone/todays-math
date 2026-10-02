@@ -687,8 +687,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "$1\\,\\mathrm{cm}$를 같은 길이 $10$칸으로 나눌 때 한 칸은 {$1\\,\\mathrm{mm}$}이며 $1$ 밀리미터라고 읽는다.",
       example: {
-        prompt: "$4\\,\\mathrm{cm}\\ 7\\,\\mathrm{mm}$는 몇 mm인지 쓰시오.",
-        answer: "$47\\,\\mathrm{mm}$",
+        prompt:
+          "$1\\,\\mathrm{cm}$를 같은 길이 $10$칸으로 나눈 것 가운데 $3$칸의 길이를 쓰시오.",
+        answer: "$3\\,\\mathrm{mm}$",
       },
     },
     {
@@ -707,7 +708,7 @@ export const bank: ConceptBlankBank = {
       term: "자의 시작 눈금",
       kind: "방법",
       definition:
-        "물건의 끝이 $0$에 맞지 않으면 마지막 눈금에서 {시작 눈금}을 빼어 길이를 구한다.",
+        "물건의 끝이 $0$에 맞지 않으면 {마지막 눈금}에서 시작 눈금을 빼어 길이를 구한다.",
     },
     {
       id: "e3-1-5-2-c1",
@@ -718,15 +719,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "먼 거리를 나타낼 때 km를 쓰며, $1\\,\\mathrm{km}$는 {$1000\\,\\mathrm{m}$}에 해당한다.",
       example: {
-        prompt: "$3\\,\\mathrm{km}\\ 80\\,\\mathrm{m}$를 m만 써서 나타내시오.",
-        answer: "$3080\\,\\mathrm{m}$",
+        prompt: "걸어서 $1000\\,\\mathrm{m}$를 간 거리는 몇 km인가?",
+        answer: "$1\\,\\mathrm{km}$",
       },
     },
     {
       id: "e3-1-5-2-c2",
       section: "초3::1-5 길이와 시간::1-5-2 1m보다 큰 단위",
       level: "중",
-      term: "킬로미터와 미터 바꾸기",
+      term: "$2\\,\\mathrm{km}\\ 350\\,\\mathrm{m}$를 미터로 바꾸기",
       kind: "방법",
       definition:
         "$2\\,\\mathrm{km}\\ 350\\,\\mathrm{m}$는 $2000\\,\\mathrm{m}$에 $350\\,\\mathrm{m}$를 더한 {$2350\\,\\mathrm{m}$}이다.",
@@ -750,8 +751,8 @@ export const bank: ConceptBlankBank = {
         "잰 값과 꼭 같지는 않은 {어림한 값}임을 알릴 때 수 앞에 약을 붙인다.",
       example: {
         prompt:
-          "약 $90\\,\\mathrm{cm}$로 어림한 끈을 재니 $94\\,\\mathrm{cm}$였다면 두 값의 차이는 얼마인가?",
-        answer: "$4\\,\\mathrm{cm}$",
+          "책상의 길이를 재니 $2\\,\\mathrm{m}\\ 3\\,\\mathrm{cm}$였다. 약 몇 m라고 말할 수 있는가?",
+        answer: "약 $2\\,\\mathrm{m}$",
       },
     },
     {
@@ -781,8 +782,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "짧은 시간을 나타내는 단위가 초이며, {$60$초}를 모으면 $1$분이다.",
       example: {
-        prompt: "$135$초는 몇 분 몇 초인지 쓰시오.",
-        answer: "$2$분 $15$초",
+        prompt: "$1$분보다 $20$초 더 긴 시간은 모두 몇 초인가?",
+        answer: "$80$초",
       },
     },
     {
@@ -811,8 +812,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "시간을 더할 때에는 시·분·초를 {같은 단위끼리} 모아 더한다.",
       example: {
-        prompt: "$2$분 $45$초와 $1$분 $30$초를 더하시오.",
-        answer: "$4$분 $15$초",
+        prompt:
+          "$3$분 $20$초와 $2$분 $15$초를 더할 때 $20$초와 더하는 것은 무엇인가?",
+        answer: "$15$초",
       },
     },
     {
@@ -840,8 +842,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "시간의 차를 구할 때에는 {같은 단위}의 수끼리 뺀다.",
       example: {
-        prompt: "$6$분 $10$초에서 $2$분 $35$초를 빼시오.",
-        answer: "$3$분 $35$초",
+        prompt:
+          "$7$분 $50$초에서 $3$분 $20$초를 뺄 때 $50$초에서 빼는 것은 무엇인가?",
+        answer: "$20$초",
       },
     },
     {
@@ -3290,4 +3293,5 @@ markGivenCases(bank, [
   "e3-1-3-4-c2",
   "e3-1-4-1-c1",
   "e3-1-4-1-c3",
+  "e3-1-5-2-c2",
 ]);
