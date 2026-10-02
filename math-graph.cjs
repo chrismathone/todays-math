@@ -15,8 +15,11 @@
 
 "use strict";
 
+/* eslint-disable @typescript-eslint/no-require-imports -- Standalone CommonJS CLI uses Node core only. */
 const fs = require("node:fs");
 const path = require("node:path");
+const { createHash } = require("node:crypto");
+/* eslint-enable @typescript-eslint/no-require-imports */
 
 // 형식: ID | 편집 단원명 | 학습 요소(;로 구분)
 const UNIT_DATA = `
@@ -64,7 +67,7 @@ M1-R03|좌표평면과 그래프|순서쌍;좌표축;사분면;표와 그래프;
 M1-G01|기본 도형|점·직선·평면;교점·교선;각;맞꼭지각·엇각·동위각;평행·수직
 M1-G02|작도와 합동|각의 이등분선;수직이등분선;삼각형 작도;삼각형 합동
 M1-G03|평면·입체도형|다각형;원·부채꼴;다면체·회전체;겉넓이·부피
-M1-D01|자료 정리와 대표값|자료 수집;표·그래프;평균·중앙값·최빈값;도수분포표·상대도수
+M1-D01|자료 정리와 대푯값|자료 수집;표·그래프;평균·중앙값·최빈값;도수분포표·상대도수
 M2-N01|유리수와 순환소수|유한소수·순환소수;순환소수와 분수의 관계
 M2-R01|식의 계산|단항식·다항식 계산;지수법칙의 기초
 M2-R02|일차부등식|부등식의 성질;풀이;수직선;활용
@@ -240,42 +243,42 @@ const COURSE = {
   CAL1: ["미적분Ⅰ", "일반 선택"],
   PS: ["확률과 통계", "일반 선택"],
   CAL2: ["미적분Ⅱ", "진로 선택"],
-  GEO: ["기하", "진로 선택"]
+  GEO: ["기하", "진로 선택"],
 };
 
 const DOMAIN = {
   N: "수와 연산",
   R: "변화와 관계",
   G: "도형과 측정",
-  D: "자료와 가능성"
+  D: "자료와 가능성",
 };
 
-const lines = text =>
+const lines = (text) =>
   text
     .trim()
     .split(/\r?\n/)
-    .map(s => s.trim())
+    .map((s) => s.trim())
     .filter(Boolean);
 
 // 노드 ID에서 학교급·학년군·과목 정보를 만든다.
 function metadata(id) {
-  const elementary = id.match(/^E(12|34|56)-([NRGD])/);
+  const elementary = id.match(/^E(12|34|56)-([NRGD])\d{2}$/);
   if (elementary) {
     return {
       schoolLevel: "elementary",
       gradeBand: {
         12: "초1-2",
         34: "초3-4",
-        56: "초5-6"
+        56: "초5-6",
       }[elementary[1]],
       suggestedGrade: null,
       course: "수학",
       courseGroup: "초등 수학",
-      domain: DOMAIN[elementary[2]]
+      domain: DOMAIN[elementary[2]],
     };
   }
 
-  const middle = id.match(/^M([123])-([NRGD])/);
+  const middle = id.match(/^M([123])-([NRGD])\d{2}$/);
 
   if (middle) {
     return {
@@ -287,10 +290,13 @@ function metadata(id) {
 
       course: "수학",
       courseGroup: "중학교 수학",
-      domain: DOMAIN[middle[2]]
+      domain: DOMAIN[middle[2]],
     };
   }
 
+  if (!/^H-(?:C[12]|BAS[12]|ALG|CAL[12]|PS|GEO)-\d{2}$/.test(id)) {
+    throw new Error("알 수 없는 단원 ID: " + id);
+  }
   const code = id.slice(2).replace(/-\d+$/, "");
   const course = COURSE[code];
 
@@ -309,10 +315,9 @@ function metadata(id) {
   }
 
   if (["C2", "BAS2"].includes(code)) {
-    domain =
-      (code === "C2" ? number <= 3 : number === 1)
-        ? "도형과 측정"
-        : "변화와 관계";
+    domain = (code === "C2" ? number <= 3 : number === 1)
+      ? "도형과 측정"
+      : "변화와 관계";
   }
 
   if (["ALG", "CAL1", "CAL2"].includes(code)) {
@@ -327,550 +332,507 @@ function metadata(id) {
     domain = "자료와 가능성";
   }
 
-
   return {
     schoolLevel: "high",
     gradeBand: "고등학교 과목 단위",
     suggestedGrade: null,
     course: course[0],
     courseGroup: course[1],
-    domain
+    domain,
   };
 }
 
 // 단원 생성
 // 학습 요소의 배열 순서를 선수 관계로 자동 변환하지 않는다.
-const units = lines(UNIT_DATA).map(line => {
-  const parts = line.split("|");
-
-  if (parts.length !== 3) {
-    throw new Error("단원 데이터 형식 오류: " + line);
+// test data overrides never change the canonical source or write files.
+function buildGraph({ unitData = UNIT_DATA, edgeData = EDGE_DATA } = {}) {
+  if (typeof unitData !== "string" || typeof edgeData !== "string") {
+    throw new Error("단원·관계 데이터는 문자열이어야 합니다.");
   }
+  const units = lines(unitData).map((line) => {
+    const parts = line.split("|").map((part) => part.trim());
 
-  const [id, title, topicText] = parts;
-
-  return {
-    id,
-    nodeType: "unit",
-    title,
-    ...metadata(id),
-
-    topics: topicText
-      .split(";")
-      .map(s => s.trim())
-      .filter(Boolean),
-
-    officialBasis: "editorial_curriculum_summary",
-
-    // 원문 성취기준 번호와 전수 대조하지 않은 상태를 표시한다.
-    achievementStandardIds: [],
-    needsCurriculumAudit: true,
-
-    detailConfidence: "editorial_summary"
-  };
-});
-
-const unitById = new Map(
-  units.map(unit => [unit.id, unit])
-);
-
-if (unitById.size !== units.length) {
-  throw new Error("중복 단원 ID");
-}
-
-// 단원 사이 관계 생성과 ID 검증
-const unitEdges = [];
-const edgeKeys = new Set();
-
-for (const line of lines(EDGE_DATA)) {
-  const parts = line.split("|");
-
-  if (parts.length !== 4) {
-    throw new Error("관계 데이터 형식 오류: " + line);
-  }
-
-  const [to, fromText, type, reason] = parts;
-
-  if (!["P", "S"].includes(type)) {
-    throw new Error("알 수 없는 관계 유형: " + type);
-  }
-
-  const relation =
-    type === "P" ? "prerequisite" : "support";
-
-  for (const from of fromText.split(",")) {
-    if (!unitById.has(from) || !unitById.has(to)) {
-      throw new Error(
-        "존재하지 않는 ID: " + from + " -> " + to
-      );
+    if (parts.length !== 3) {
+      throw new Error("단원 데이터 형식 오류: " + line);
     }
 
-    if (from === to) {
-      throw new Error(
-        "자기 자신을 선수로 연결: " + from
-      );
+    const [id, title, topicText] = parts;
+    const topicTitles = topicText.split(";").map((s) => s.trim());
+    if (!id || !title || topicTitles.some((topic) => !topic)) {
+      throw new Error("빈 단원명 또는 학습 요소: " + line);
     }
 
-    const key = [from, to, relation].join("|");
+    return {
+      id,
+      nodeType: "unit",
+      title,
+      ...metadata(id),
 
-    if (edgeKeys.has(key)) {
-      throw new Error("중복 관계: " + key);
+      topics: topicTitles,
+
+      officialBasis: "editorial_curriculum_summary",
+
+      // 원문 성취기준 번호와 전수 대조하지 않은 상태를 표시한다.
+      achievementStandardIds: [],
+      needsCurriculumAudit: true,
+
+      detailConfidence: "editorial_summary",
+    };
+  });
+
+  if (!units.length || (unitData === UNIT_DATA && units.length !== 100)) {
+    throw new Error("단원 수 오류: " + units.length);
+  }
+
+  const unitById = new Map(units.map((unit) => [unit.id, unit]));
+
+  if (unitById.size !== units.length) {
+    throw new Error("중복 단원 ID");
+  }
+
+  // 단원 사이 관계 생성과 ID 검증
+  const unitEdges = [];
+  const edgeKeys = new Set();
+
+  for (const line of lines(edgeData)) {
+    const parts = line.split("|").map((part) => part.trim());
+
+    if (parts.length !== 4) {
+      throw new Error("관계 데이터 형식 오류: " + line);
     }
 
-    edgeKeys.add(key);
-
-    unitEdges.push({
-      from,
-      to,
-      relation,
-      reason,
-      officialBasis: "pedagogical_inference",
-      confidence:
-        relation === "prerequisite"
-          ? "strong_inference"
-          : "support_inference",
-      isOfficialEnrollmentRequirement: false
-    });
-  }
-}
-
-// 각 학습 요소를 개별 노드로 생성한다.
-// 예: M3-R02.t01, M3-R02.t02
-const topics = units.flatMap(unit =>
-  unit.topics.map((title, index) => ({
-    id:
-      unit.id +
-      ".t" +
-      String(index + 1).padStart(2, "0"),
-
-    nodeType: "topic",
-    parentId: unit.id,
-    title,
-    order: index + 1,
-    schoolLevel: unit.schoolLevel,
-    gradeBand: unit.gradeBand,
-    course: unit.course,
-    domain: unit.domain,
-    officialBasis: "editorial_learning_element",
-    achievementStandardIds: []
-  }))
-);
-
-// 단원 -> 학습 요소 포함 관계
-const containsEdges = topics.map(topic => ({
-  from: topic.parentId,
-  to: topic.id,
-  relation: "contains",
-  confidence: "structural"
-}));
-
-const prerequisites = unitEdges.filter(
-  edge => edge.relation === "prerequisite"
-);
-
-// Kahn 위상 정렬로 선수 관계의 순환을 검사한다.
-// 순환이 있으면 결과 파일을 쓰기 전에 중단한다.
-const indegree = new Map(
-  units.map(unit => [unit.id, 0])
-);
-
-const next = new Map(
-  units.map(unit => [unit.id, []])
-);
-
-for (const edge of prerequisites) {
-  indegree.set(
-    edge.to,
-    indegree.get(edge.to) + 1
-  );
-
-  next.get(edge.from).push(edge.to);
-}
-
-const queue = units
-  .filter(unit => indegree.get(unit.id) === 0)
-  .map(unit => unit.id);
-
-const topologicalOrder = [];
-
-for (let index = 0; index < queue.length; index++) {
-  const id = queue[index];
-  topologicalOrder.push(id);
-
-  for (const to of next.get(id)) {
-    indegree.set(to, indegree.get(to) - 1);
-
-    if (indegree.get(to) === 0) {
-      queue.push(to);
+    const [to, fromText, type, reason] = parts;
+    if (!to || !fromText || !reason) {
+      throw new Error("빈 관계 끝점 또는 이유: " + line);
     }
-  }
-}
 
-if (topologicalOrder.length !== units.length) {
-  const unresolved = [...indegree]
-    .filter(([, degree]) => degree > 0)
-    .map(([id]) => id);
-
-  throw new Error(
-    "선수 관계 순환: " + unresolved.join(", ")
-  );
-}
-
-// 과목 관계는 개념 선수 관계와 별도로 관리한다.
-const courseRelations = [
-  ["공통수학1", "공통수학2", "course_sequence"],
-  ["기본수학1", "기본수학2", "course_sequence"],
-  [
-    "기본수학1+기본수학2",
-    "공통수학1+공통수학2",
-    "alternative_track"
-  ],
-  [
-    "공통수학1+공통수학2",
-    "선택 수학 과목",
-    "recommended_foundation"
-  ],
-  [
-    "대수",
-    "미적분Ⅰ",
-    "recommended_before_or_concurrent"
-  ],
-  ["미적분Ⅰ", "미적분Ⅱ", "course_sequence"]
-].map(([from, to, relation]) => ({
-  from,
-  to,
-  relation,
-  entityType: "course",
-  note:
-    "과목 관계는 개념 선수와 분리하고, " +
-    "개별 학교의 이수 안내를 확인한다."
-}));
-
-/**
- * 목표 단원의 선수 관계를 역추적한다.
- *
- * masteredIds에 있는 단원은 복습 후보에서 제외한다.
- * 숙달한 단원의 선수도 추가로 역추적하지 않는다.
- *
- * 반환값은 실제 결손 진단 결과가 아니라
- * 교사가 확인할 복습 후보 목록이다.
- */
-function reviewCandidates(targetId, masteredIds = []) {
-  if (!unitById.has(targetId)) {
-    throw new Error(
-      "알 수 없는 목표 단원: " + targetId
-    );
-  }
-
-  for (const id of masteredIds) {
-    if (!unitById.has(id)) {
-      throw new Error(
-        "알 수 없는 숙달 단원: " + id
-      );
+    if (!["P", "S"].includes(type)) {
+      throw new Error("알 수 없는 관계 유형: " + type);
     }
-  }
 
-  const mastered = new Set(masteredIds);
+    const relation = type === "P" ? "prerequisite" : "support";
 
-  if (mastered.has(targetId)) {
-    return [];
-  }
-
-  const incoming = new Map(
-    units.map(unit => [unit.id, []])
-  );
-
-  for (const edge of prerequisites) {
-    incoming.get(edge.to).push(edge.from);
-  }
-
-  const candidates = new Set();
-
-  function visit(id) {
-    for (const parent of incoming.get(id)) {
-      if (
-        mastered.has(parent) ||
-        candidates.has(parent)
-      ) {
-        continue;
+    for (const from of fromText.split(",").map((id) => id.trim())) {
+      if (!unitById.has(from) || !unitById.has(to)) {
+        throw new Error("존재하지 않는 ID: " + from + " -> " + to);
       }
 
+      if (from === to) {
+        throw new Error("자기 자신을 선수로 연결: " + from);
+      }
+
+      const key = [from, to, relation].join("|");
+
+      if (edgeKeys.has(key)) {
+        throw new Error("중복 관계: " + key);
+      }
+
+      edgeKeys.add(key);
+
+      unitEdges.push({
+        from,
+        to,
+        relation,
+        reason,
+        officialBasis: "pedagogical_inference",
+        confidence:
+          relation === "prerequisite"
+            ? "strong_inference"
+            : "support_inference",
+        isOfficialEnrollmentRequirement: false,
+      });
+    }
+  }
+
+  // 각 학습 요소를 개별 노드로 생성한다.
+  // 예: M3-R02.t01, M3-R02.t02
+  const topics = units.flatMap((unit) =>
+    unit.topics.map((title, index) => ({
+      id: unit.id + ".t" + String(index + 1).padStart(2, "0"),
+
+      nodeType: "topic",
+      parentId: unit.id,
+      title,
+      order: index + 1,
+      schoolLevel: unit.schoolLevel,
+      gradeBand: unit.gradeBand,
+      course: unit.course,
+      domain: unit.domain,
+      officialBasis: "editorial_learning_element",
+      achievementStandardIds: [],
+    })),
+  );
+
+  // 단원 -> 학습 요소 포함 관계
+  const containsEdges = topics.map((topic) => ({
+    from: topic.parentId,
+    to: topic.id,
+    relation: "contains",
+    confidence: "structural",
+  }));
+
+  const prerequisites = unitEdges.filter(
+    (edge) => edge.relation === "prerequisite",
+  );
+
+  // Kahn 위상 정렬로 선수 관계의 순환을 검사한다.
+  // 순환이 있으면 결과 파일을 쓰기 전에 중단한다.
+  const indegree = new Map(units.map((unit) => [unit.id, 0]));
+
+  const next = new Map(units.map((unit) => [unit.id, []]));
+
+  for (const edge of prerequisites) {
+    indegree.set(edge.to, indegree.get(edge.to) + 1);
+
+    next.get(edge.from).push(edge.to);
+  }
+
+  const queue = units
+    .filter((unit) => indegree.get(unit.id) === 0)
+    .map((unit) => unit.id);
+
+  const topologicalOrder = [];
+
+  for (let index = 0; index < queue.length; index++) {
+    const id = queue[index];
+    topologicalOrder.push(id);
+
+    for (const to of next.get(id)) {
+      indegree.set(to, indegree.get(to) - 1);
+
+      if (indegree.get(to) === 0) {
+        queue.push(to);
+      }
+    }
+  }
+
+  if (topologicalOrder.length !== units.length) {
+    const unresolved = [...indegree]
+      .filter(([, degree]) => degree > 0)
+      .map(([id]) => id);
+
+    throw new Error("선수 관계 순환: " + unresolved.join(", "));
+  }
+
+  // 과목 관계는 개념 선수 관계와 별도로 관리한다.
+  const courseRelations = [
+    ["공통수학1", "공통수학2", "course_sequence"],
+    ["기본수학1", "기본수학2", "course_sequence"],
+    ["기본수학1+기본수학2", "공통수학1+공통수학2", "alternative_track"],
+    ["공통수학1+공통수학2", "선택 수학 과목", "recommended_foundation"],
+    ["대수", "미적분Ⅰ", "recommended_before_or_concurrent"],
+    ["미적분Ⅰ", "미적분Ⅱ", "course_sequence"],
+  ].map(([from, to, relation]) => ({
+    from,
+    to,
+    relation,
+    entityType: "course",
+    note:
+      "과목 관계는 개념 선수와 분리하고, " +
+      "개별 학교의 이수 안내를 확인한다.",
+  }));
+
+  // 최종 그래프 데이터
+  const graph = {
+    schemaVersion: "1.1.0",
+
+    title: "2022 개정 수학 학습 연결도 편집 데이터",
+
+    dataStatus:
+      "단원 선수 그래프와 소단원 목록; " + "성취기준 전수 대조 미완료",
+
+    scope: {
+      included: [
+        "초등 수학",
+        "중학교 수학",
+        "고등 공통수학·기본수학",
+        "대수·미적분Ⅰ·미적분Ⅱ·확률과 통계·기하",
+      ],
+
+      excluded: [
+        "경제 수학",
+        "인공지능 수학",
+        "직무 수학",
+        "수학과 문화",
+        "실용 통계",
+        "수학과제 탐구",
+        "전문 수학",
+        "이산 수학",
+        "고급 대수",
+        "고급 미적분",
+        "고급 기하",
+        "직업계고 전문교과별 전공 수학",
+        "학교별 인정 과목",
+      ],
+
+      topicPrerequisiteEdgesIncluded: false,
+
+      note: "단원 관계를 모든 소단원 사이의 " + "선수 관계로 확대하지 않는다.",
+    },
+
+    units,
+    topics,
+    edges: [...unitEdges, ...containsEdges],
+    courseRelations,
+    topologicalOrder,
+
+    validation: {
+      unitCount: units.length,
+      topicCount: topics.length,
+      prerequisiteEdgeCount: prerequisites.length,
+      supportEdgeCount: unitEdges.length - prerequisites.length,
+      containmentEdgeCount: containsEdges.length,
+      duplicateUnitIdCount: 0,
+      danglingUnitEdgeCount: 0,
+      prerequisiteCycleCount: 0,
+    },
+
+    sources: [
+      {
+        title: "교육부 고시 제2022-33호 " + "별책 8 수학과 교육과정",
+
+        url:
+          "https://www.moe.go.kr/boardCnts/viewRenew.do" +
+          "?boardID=141&boardSeq=93458",
+
+        role:
+          "공식 교육과정 대조를 위한 기준 문서. " +
+          "편집 노드와 공식 단원명을 동일시하지 않는다.",
+      },
+    ],
+  };
+
+  return { ...graph, graphContentHash: graphContentHash(graph) };
+}
+
+// Object keys are sorted recursively; authored array order remains significant.
+function canonicalJson(value) {
+  if (Array.isArray(value)) {
+    return "[" + value.map(canonicalJson).join(",") + "]";
+  }
+  if (value !== null && typeof value === "object") {
+    return (
+      "{" +
+      Object.keys(value)
+        .sort()
+        .map((key) => JSON.stringify(key) + ":" + canonicalJson(value[key]))
+        .join(",") +
+      "}"
+    );
+  }
+  return JSON.stringify(value);
+}
+
+/** Hash all graph content and metadata, excluding only the hash itself. */
+function graphContentHash(graph) {
+  const content = Object.fromEntries(
+    Object.entries(graph).filter(([key]) => key !== "graphContentHash"),
+  );
+  return createHash("sha256")
+    .update(canonicalJson(content), "utf8")
+    .digest("hex");
+}
+
+/** Teacher lookup only: mastery stops this traversal, never propagates to ancestors. */
+function reviewCandidates(targetId, masteredIds = [], graph = buildGraph()) {
+  const unitById = new Map(graph.units.map((unit) => [unit.id, unit]));
+  if (!unitById.has(targetId)) {
+    throw new Error("알 수 없는 목표 단원: " + targetId);
+  }
+  for (const id of masteredIds) {
+    if (!unitById.has(id)) {
+      throw new Error("알 수 없는 숙달 단원: " + id);
+    }
+  }
+  const mastered = new Set(masteredIds);
+  if (mastered.has(targetId)) return [];
+  const incoming = new Map(graph.units.map((unit) => [unit.id, []]));
+  for (const edge of graph.edges) {
+    if (edge.relation === "prerequisite") incoming.get(edge.to).push(edge.from);
+  }
+  const candidates = new Set();
+  function visit(id) {
+    for (const parent of incoming.get(id)) {
+      if (mastered.has(parent) || candidates.has(parent)) continue;
       candidates.add(parent);
       visit(parent);
     }
   }
-
   visit(targetId);
-
-  return topologicalOrder
-    .filter(id => candidates.has(id))
-    .map(id => ({
-      id,
-      title: unitById.get(id).title,
-      course: unitById.get(id).course,
-      topics: unitById.get(id).topics
-    }));
+  return graph.topologicalOrder
+    .filter((id) => candidates.has(id))
+    .map((id) => {
+      const unit = unitById.get(id);
+      return {
+        id,
+        title: unit.title,
+        course: unit.course,
+        topics: [...unit.topics],
+      };
+    });
 }
 
-// 최종 그래프 데이터
-const graph = {
-  schemaVersion: "1.1.0",
-
-  title: "2022 개정 수학 학습 연결도 편집 데이터",
-
-  dataStatus:
-    "단원 선수 그래프와 소단원 목록; " +
-    "성취기준 전수 대조 미완료",
-
-  scope: {
-    included: [
-      "초등 수학",
-      "중학교 수학",
-      "고등 공통수학·기본수학",
-      "대수·미적분Ⅰ·미적분Ⅱ·확률과 통계·기하"
-    ],
-
-    excluded: [
-      "경제 수학",
-      "인공지능 수학",
-      "직무 수학",
-      "수학과 문화",
-      "실용 통계",
-      "수학과제 탐구",
-      "전문 수학",
-      "이산 수학",
-      "고급 대수",
-      "고급 미적분",
-      "고급 기하",
-      "직업계고 전문교과별 전공 수학",
-      "학교별 인정 과목"
-    ],
-
-    topicPrerequisiteEdgesIncluded: false,
-
-    note:
-      "단원 관계를 모든 소단원 사이의 " +
-      "선수 관계로 확대하지 않는다."
-  },
-
-  units,
-  topics,
-  edges: [...unitEdges, ...containsEdges],
-  courseRelations,
-  topologicalOrder,
-
-  validation: {
-    unitCount: units.length,
-    topicCount: topics.length,
-    prerequisiteEdgeCount: prerequisites.length,
-    supportEdgeCount:
-      unitEdges.length - prerequisites.length,
-    containmentEdgeCount: containsEdges.length,
-    duplicateUnitIdCount: 0,
-    danglingUnitEdgeCount: 0,
-    prerequisiteCycleCount: 0
-  },
-
-  sources: [
-    {
-      title:
-        "교육부 고시 제2022-33호 " +
-        "별책 8 수학과 교육과정",
-
-      url:
-        "https://www.moe.go.kr/boardCnts/viewRenew.do" +
-        "?boardID=141&boardSeq=93458",
-
-      role:
-        "공식 교육과정 대조를 위한 기준 문서. " +
-        "편집 노드와 공식 단원명을 동일시하지 않는다."
-    }
-  ]
-};
-
 // Markdown 표에서 구분자와 줄바꿈을 처리한다.
-const safe = value =>
-  String(value)
-    .replace(/\|/g, "\\|")
-    .replace(/\r?\n/g, " ");
+const safe = (value) =>
+  String(value).replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
 
 // 상세 문서 생성
-const markdown = [
-  "# 2022 개정 수학 학습 연결도",
-  "",
-
-  "단원 사이 선수 관계와 소단원 목록을 포함한 편집 데이터다.",
-  "범위는 초등·중학교 수학과 고등 공통·기본수학, 대수, 미적분Ⅰ·Ⅱ, 확률과 통계, 기하다.",
-  "선수·도움 관계는 교육적 추론이며 공식 필수 이수 조건을 뜻하지 않는다.",
-  "학생별 풀이·숙달 기록은 별도로 저장하고, 선수 역추적 결과는 복습 확인 후보로 사용한다.",
-  "소단원 사이의 직접 선수 간선과 성취기준 번호별 전수 대조는 포함하지 않는다.",
-  "중학교 ID의 학년은 화면 배치 제안이며 공식 성취기준 학년군과 구별한다.",
-
-  "",
-  "## 집계",
-  "",
-
-  ...Object.entries(graph.validation).map(
-    ([key, value]) => "- " + key + ": " + value
-  ),
-
-  "",
-  "## 전체 단원과 소단원",
-  "",
-
-  ...units.flatMap(unit => [
-    "### " +
-      unit.id +
-      " | " +
-      unit.course +
-      " | " +
-      unit.title,
-
+function graphMarkdown(graph) {
+  const { units, courseRelations } = graph;
+  const unitById = new Map(units.map((unit) => [unit.id, unit]));
+  const unitEdges = graph.edges.filter((edge) => edge.relation !== "contains");
+  const prerequisites = unitEdges.filter(
+    (edge) => edge.relation === "prerequisite",
+  );
+  return [
+    "# 2022 개정 수학 학습 연결도",
     "",
 
-    "- 학년군: " + unit.gradeBand,
-    "- 영역: " + unit.domain,
+    "단원 사이 선수 관계와 소단원 목록을 포함한 편집 데이터다.",
+    "범위는 초등·중학교 수학과 고등 공통·기본수학, 대수, 미적분Ⅰ·Ⅱ, 확률과 통계, 기하다.",
+    "선수·도움 관계는 교육적 추론이며 공식 필수 이수 조건을 뜻하지 않는다.",
+    "학생별 풀이·숙달 기록은 별도로 저장하고, 선수 역추적 결과는 복습 확인 후보로 사용한다.",
+    "소단원 사이의 직접 선수 간선과 성취기준 번호별 전수 대조는 포함하지 않는다.",
+    "중학교 ID의 학년은 화면 배치 제안이며 공식 성취기준 학년군과 구별한다.",
+    "고등 영역은 편집 분류이며 공식 영역 배치를 확정한 것이 아니다.",
 
     "",
+    "## 집계",
+    "",
+    "- graphContentHash: " + graph.graphContentHash,
 
-    ...unit.topics.map(
-      (topic, index) => index + 1 + ". " + topic
+    ...Object.entries(graph.validation).map(
+      ([key, value]) => "- " + key + ": " + value,
     ),
 
     "",
+    "## 전체 단원과 소단원",
+    "",
 
-    "- 직접 선수: " +
-      (
-        prerequisites
-          .filter(edge => edge.to === unit.id)
-          .map(
-            edge =>
-              edge.from +
-              " " +
-              unitById.get(edge.from).title
-          )
-          .join(", ") ||
-        "목록에 없음"
-      ),
+    ...units.flatMap((unit) => [
+      "### " + unit.id + " | " + unit.course + " | " + unit.title,
 
-    "- 도움 관계: " +
-      (
-        unitEdges
-          .filter(
-            edge =>
-              edge.to === unit.id &&
-              edge.relation === "support"
-          )
-          .map(edge => edge.from)
-          .join(", ") ||
-        "목록에 없음"
-      ),
+      "",
 
-    ""
-  ]),
+      "- 학년군: " + unit.gradeBand,
+      "- 영역" +
+        (unit.schoolLevel === "high" ? " (편집 분류)" : "") +
+        ": " +
+        unit.domain,
+      ...(unit.suggestedGrade === null
+        ? []
+        : [
+            "- 화면 배치 제안: 중" +
+              unit.suggestedGrade +
+              " (공식 학년 배치 아님)",
+          ]),
 
-  "## 전체 단원 관계",
-  "",
-  "| 선수 | 대상 | 유형 | 이유 |",
-  "|---|---|---|---|",
+      "",
 
-  ...unitEdges.map(
-    edge =>
-      "|" +
-      [
-        edge.from,
-        edge.to,
-        edge.relation,
-        edge.reason
-      ]
-        .map(safe)
-        .join("|") +
-      "|"
-  ),
+      ...unit.topics.map((topic, index) => index + 1 + ". " + topic),
 
-  "",
-  "## 과목 관계",
-  "",
+      "",
 
-  "| 선행·기준 과목 | 후속·대체 과목 | 유형 |",
-  "|---|---|---|",
+      "- 직접 선수: " +
+        (prerequisites
+          .filter((edge) => edge.to === unit.id)
+          .map((edge) => edge.from + " " + unitById.get(edge.from).title)
+          .join(", ") || "목록에 없음"),
 
-  ...courseRelations.map(
-    edge =>
-      "|" +
-      [edge.from, edge.to, edge.relation]
-        .map(safe)
-        .join("|") +
-      "|"
-  ),
+      "- 도움 관계: " +
+        (unitEdges
+          .filter((edge) => edge.to === unit.id && edge.relation === "support")
+          .map((edge) => edge.from)
+          .join(", ") || "목록에 없음"),
 
-  ""
-].join("\n");
+      "",
+    ]),
 
-// 명령행 옵션 읽기
-function option(name) {
-  const index = process.argv.indexOf(name);
+    "## 전체 단원 관계",
+    "",
+    "| 선수 | 대상 | 유형 | 이유 |",
+    "|---|---|---|---|",
 
-  if (index < 0) {
-    return null;
-  }
+    ...unitEdges.map(
+      (edge) =>
+        "|" +
+        [edge.from, edge.to, edge.relation, edge.reason].map(safe).join("|") +
+        "|",
+    ),
 
-  const value = process.argv[index + 1];
+    "",
+    "## 과목 관계",
+    "",
 
-  if (!value || value.startsWith("--")) {
-    throw new Error("옵션 값 누락: " + name);
-  }
+    "| 선행·기준 과목 | 후속·대체 과목 | 유형 |",
+    "|---|---|---|",
 
-  return value;
+    ...courseRelations.map(
+      (edge) =>
+        "|" + [edge.from, edge.to, edge.relation].map(safe).join("|") + "|",
+    ),
+
+    "",
+  ].join("\n");
 }
 
-// 결과 저장
-const outputDirectory = path.resolve(
-  option("--out") || process.cwd()
-);
-
-fs.mkdirSync(outputDirectory, {
-  recursive: true
-});
-
-fs.writeFileSync(
-  path.join(outputDirectory, "math_graph_2022.json"),
-  JSON.stringify(graph, null, 2) + "\n",
-  "utf8"
-);
-
-fs.writeFileSync(
-  path.join(outputDirectory, "math_graph_2022.md"),
-  markdown,
-  "utf8"
-);
-
-// 디버깅 및 검증 로그
-console.log("[생성 완료]", outputDirectory);
-
-console.log(
-  "[검증]",
-  JSON.stringify(graph.validation, null, 2)
-);
-
-// 목표 단원이 지정된 경우 복습 확인 후보 출력
-const target = option("--target");
-
-if (target) {
-  const mastered = (
-    option("--mastered") || ""
-  )
+// 명령행 옵션 읽기
+function runCli(argv = process.argv.slice(2)) {
+  const options = new Map();
+  for (let index = 0; index < argv.length; index += 2) {
+    const name = argv[index];
+    if (!["--out", "--target", "--mastered"].includes(name)) {
+      throw new Error("알 수 없는 옵션: " + name);
+    }
+    const value = argv[index + 1];
+    if (!value || value.startsWith("--"))
+      throw new Error("옵션 값 누락: " + name);
+    if (options.has(name)) throw new Error("중복 옵션: " + name);
+    options.set(name, value);
+  }
+  if (options.has("--mastered") && !options.has("--target")) {
+    throw new Error("--mastered에는 --target이 필요합니다.");
+  }
+  const graph = buildGraph();
+  const target = options.get("--target");
+  const mastered = (options.get("--mastered") || "")
     .split(",")
-    .map(id => id.trim())
+    .map((id) => id.trim())
     .filter(Boolean);
-
-  console.log("[선수 확인 후보]", target);
-
-  console.log(
-    JSON.stringify(
-      reviewCandidates(target, mastered),
-      null,
-      2
-    )
+  // Validate all IDs before creating an output directory or writing either file.
+  const candidates = target ? reviewCandidates(target, mastered, graph) : null;
+  const outputDirectory = path.resolve(options.get("--out") || process.cwd());
+  fs.mkdirSync(outputDirectory, { recursive: true });
+  fs.writeFileSync(
+    path.join(outputDirectory, "math_graph_2022.json"),
+    JSON.stringify(graph, null, 2) + "\n",
+    "utf8",
   );
+  fs.writeFileSync(
+    path.join(outputDirectory, "math_graph_2022.md"),
+    graphMarkdown(graph),
+    "utf8",
+  );
+  console.log("[생성 완료]", outputDirectory);
+  console.log("[검증]", JSON.stringify(graph.validation, null, 2));
+  if (target) {
+    console.log("[선수 확인 후보]", target);
+    console.log(JSON.stringify(candidates, null, 2));
+  }
+}
+
+module.exports = {
+  buildGraph,
+  reviewCandidates,
+  graphContentHash,
+  graphMarkdown,
+};
+
+if (require.main === module) {
+  try {
+    runCli();
+  } catch (error) {
+    console.error("[오류]", error.message);
+    process.exitCode = 1;
+  }
 }
