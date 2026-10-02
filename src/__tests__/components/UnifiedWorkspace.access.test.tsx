@@ -276,6 +276,104 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it("uses the branch library name without a sidebar count and confirms worksheet scope before publishing", async () => {
+    const cloud = privateServer();
+    cloud.switchAccount("teacher-one");
+    cloud.documents.set("teacher-one:saved-draft", {
+      id: "saved-draft",
+      kind: "draft",
+      title: "공유할 시험지",
+      problemCount: 1,
+      revision: 1,
+      visibility: "private",
+      sharedBranchId: null,
+      createdAt: "2026-10-02T00:00:00Z",
+      updatedAt: "2026-10-02T00:00:00Z",
+      payload: {
+        version: 1,
+        title: "공유할 시험지",
+        problems: [{ id: "p1", content: "1+1" }],
+        columns: 1,
+        answers: false,
+      },
+    });
+    const branchId = "30000000-0000-4000-8000-000000000003";
+    fetchMock.mockImplementation(async () =>
+      response(["export", "library"], { branchId }),
+    );
+    vi.stubGlobal("fetch", (url: RequestInfo | URL, init?: RequestInit) =>
+      String(url).startsWith("/api/library/")
+        ? cloud.transport(url, init)
+        : fetchMock(url, init),
+    );
+    window.history.replaceState(null, "", "/#export");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["export", "library"]}
+        currentUser={{ ...user, branchId }}
+        storageScope="teacher-one"
+      />,
+    );
+    const save = await screen.findByRole("button", {
+      name: "우리학원 시험지에 저장",
+    });
+    expect(
+      nav().getByRole("button", { name: "우리학원 시험지" }).textContent,
+    ).toBe("우리학원 시험지보관함");
+    fireEvent.click(save);
+    expect(
+      screen.getByRole("dialog", { name: "우리학원 시험지에 저장" }),
+    ).toBeVisible();
+    expect(screen.getByRole("radio", { name: "학원에 비공개" })).toBeChecked();
+    expect(cloud.documents.get("teacher-one:saved-draft")?.visibility).toBe(
+      "private",
+    );
+    fireEvent.click(screen.getByRole("radio", { name: "학원에 공개" }));
+    fireEvent.click(screen.getByRole("button", { name: "저장 확인" }));
+    await waitFor(() =>
+      expect(cloud.documents.get("teacher-one:saved-draft")?.visibility).toBe(
+        "branch",
+      ),
+    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    fireEvent.click(save);
+    expect(screen.getByRole("radio", { name: "학원에 공개" })).toBeChecked();
+    fireEvent.click(screen.getByRole("button", { name: "취소" }));
+    // A new membership must not carry the old branch's public default forward.
+    fetchMock.mockImplementation(async () =>
+      response(["export", "library"], {
+        branchId: "40000000-0000-4000-8000-000000000004",
+      }),
+    );
+    await act(async () => {
+      nextCheck();
+      fireEvent.focus(window);
+    });
+    fireEvent.click(save);
+    expect(screen.getByRole("radio", { name: "학원에 비공개" })).toBeChecked();
+    fireEvent.click(screen.getByRole("radio", { name: "학원에 비공개" }));
+    fireEvent.click(screen.getByRole("button", { name: "저장 확인" }));
+    await waitFor(() =>
+      expect(cloud.documents.get("teacher-one:saved-draft")?.visibility).toBe(
+        "private",
+      ),
+    );
+    await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    fetchMock.mockImplementation(async () =>
+      response(["export", "library"], { branchId: null }),
+    );
+    await act(async () => {
+      nextCheck();
+      fireEvent.focus(window);
+    });
+    expect(nav().getByRole("button", { name: "내 시험지" })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: "내 시험지에 저장" }),
+    ).toBeVisible();
+    expect(cloud.documents.has("teacher-one:saved-draft")).toBe(true);
+  });
+
   it.each(["home", "teaching", "concept", "srs"] as const)(
     "does not load or save worksheets when entering %s directly",
     async (tab) => {

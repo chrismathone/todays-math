@@ -2,6 +2,7 @@ import type { StudioCrop } from "./studioHelpers";
 import type { SchoolLevel } from "./types";
 import type { StudioAiPageJob } from "./useStudioAi";
 import { PrivateStudioSessionStore } from "./privateStudioSessionStore";
+import type { DocumentSharing } from "@/contracts/privateWorkspace.contract";
 
 export interface StoredStudioSource {
   id: string;
@@ -239,8 +240,24 @@ export class StudioSessionStore {
   load() {
     return this.store.load();
   }
-  save(data: StudioSessionData, originals: Map<string, Blob>) {
-    return this.store.save(data, originals);
+  save(
+    data: StudioSessionData,
+    originals: Map<string, Blob>,
+    sharing?: DocumentSharing,
+  ) {
+    return this.store instanceof PrivateStudioSessionStore
+      ? this.store.save(data, originals, sharing)
+      : this.store.save(data, originals);
+  }
+  get visibility() {
+    return this.store instanceof PrivateStudioSessionStore
+      ? this.store.visibility
+      : ("private" as const);
+  }
+  get sharedBranchId() {
+    return this.store instanceof PrivateStudioSessionStore
+      ? this.store.sharedBranchId
+      : null;
   }
   clear() {
     return this.store.clear();

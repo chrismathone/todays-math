@@ -1,10 +1,14 @@
 import "server-only";
+import { z } from "zod";
+import { documentIdSchema } from "@/contracts/privateWorkspace.contract";
 import { createHash } from "node:crypto";
 import { db } from "@/lib/db";
 import {
   authorizePrivate,
   privateError,
   privateHeaders,
+  sharedDocumentWhere,
+  mutationOwnerError,
 } from "@/lib/privateWorkspace";
 import { auditData } from "@/lib/audit";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
@@ -29,9 +33,37 @@ export async function readPrivateAsset(
   const access = await authorizePrivate(request, owner);
   if (access.response) return access.response;
   if (!validId(id)) return privateError("파일을 찾지 못했습니다.", 404);
-  const asset = await db.workspaceAsset.findUnique({
-    where: { userId_id: { userId: access.ownerId!, id } },
-  });
+  const url = new URL(request.url);
+  const requestedOwner = url.searchParams.get("ownerId");
+  const sharedOwner =
+    !owner && requestedOwner && requestedOwner !== access.ownerId
+      ? requestedOwner
+      : null;
+  if (sharedOwner) {
+    const documentId = url.searchParams.get("documentId");
+    if (
+      !documentIdSchema.safeParse(documentId).success ||
+      !z.uuid().safeParse(sharedOwner).success
+    )
+      return privateError("파일을 찾지 못했습니다.", 404);
+  }
+  // Scope and bytes are read together, including the viewer's current branch.
+  const asset = sharedOwner
+    ? await db.workspaceAsset.findFirst({
+        where: {
+          userId: sharedOwner,
+          id,
+          documents: {
+            some: {
+              documentId: url.searchParams.get("documentId")!,
+              document: sharedDocumentWhere(access.account!),
+            },
+          },
+        },
+      })
+    : await db.workspaceAsset.findUnique({
+        where: { userId_id: { userId: access.ownerId!, id } },
+      });
   if (!asset || asset.bytes.byteLength !== asset.size)
     return privateError("파일을 찾지 못했습니다.", 404);
   return new Response(new Uint8Array(asset.bytes), {
@@ -47,6 +79,8 @@ export async function readPrivateAsset(
 export async function writePrivateAsset(request: Request, id: string) {
   const access = await authorizePrivate(request);
   if (access.response) return access.response;
+  const ownerError = mutationOwnerError(request, access.ownerId!);
+  if (ownerError) return ownerError;
   if (
     !access.account!.isAdmin &&
     !access.account!.menus.some(

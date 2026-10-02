@@ -9,6 +9,7 @@ export function useWorkspaceDrafts(
   storageScope?: string,
   enabled = true,
   active = true,
+  branchId?: string | null,
 ) {
   const store = useMemo(
     () =>
@@ -61,6 +62,10 @@ export function useWorkspaceDrafts(
     setPrintOptions: store.setPrintOptions,
     setPrintMeta: store.setPrintMeta,
     saveNow: storageScope && !enabled ? () => false : store.saveNow,
+    visibility:
+      "getVisibility" in store && store.getSharedBranchId() === branchId
+        ? store.getVisibility()
+        : ("private" as const),
     createDraft: store.createDraft,
     openDraft: store.openDraft,
     renameDraft: store.renameDraft,

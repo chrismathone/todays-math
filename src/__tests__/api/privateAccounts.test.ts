@@ -19,6 +19,7 @@ const mocks = vi.hoisted(() => ({
     deleteMany: vi.fn(),
   },
   asset: { findUnique: vi.fn(), create: vi.fn(), updateMany: vi.fn() },
+  documentAsset: { deleteMany: vi.fn(), createMany: vi.fn() },
   audit: { create: vi.fn(), createMany: vi.fn() },
 }));
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
@@ -27,6 +28,7 @@ vi.mock("@/lib/db", () => {
     user: mocks.user,
     workspaceDocument: mocks.doc,
     workspaceAsset: mocks.asset,
+    workspaceDocumentAsset: mocks.documentAsset,
     accountAuditLog: mocks.audit,
   };
   return {
@@ -173,6 +175,7 @@ describe("private material ownership and revision control", () => {
     );
     expect(mocks.doc.findUnique).toHaveBeenCalledWith({
       where: { userId_id: { userId, id: "draft-1" } },
+      include: { user: { select: { name: true } } },
     });
     expect((await response.json()).data).not.toHaveProperty("userId");
     expect(response.headers.get("cache-control")).toContain("no-store");
@@ -189,6 +192,7 @@ describe("private material ownership and revision control", () => {
     );
     expect(mocks.doc.findUnique).toHaveBeenCalledWith({
       where: { userId_id: { userId, id: "draft-1" } },
+      include: { user: { select: { name: true } } },
     });
     // 남의 자료를 여는 길은 감사 기록을 남기는 관리자 점검(ownerId 지정) 하나뿐이다
     expect(mocks.audit.create).not.toHaveBeenCalled();
@@ -209,6 +213,7 @@ describe("private material ownership and revision control", () => {
     const response = await readDocument(request(), "draft-1", otherId);
     expect(mocks.doc.findUnique).toHaveBeenCalledWith({
       where: { userId_id: { userId: otherId, id: "draft-1" } },
+      include: { user: { select: { name: true } } },
     });
     expect((await response.json()).data.payload.image).toBe(
       `/api/admin/users/${otherId}/assets/abc`,

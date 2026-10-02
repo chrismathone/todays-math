@@ -80,6 +80,92 @@ const titles = () =>
     .map((button) => button.textContent);
 
 describe("private library board", () => {
+  it("shows branch authors, separates colliding IDs, opens a private copy, and filters to mine", async () => {
+    const mine = {
+      ...boardItems[0],
+      ownerId: "owner-a",
+      ownerName: "나",
+      visibility: "private" as const,
+    };
+    const colleague = {
+      ...boardItems[0],
+      ownerId: "owner-b",
+      ownerName: "동료",
+      visibility: "branch" as const,
+      title: "공개 시험지",
+    };
+    const transport = vi.fn<typeof fetch>(async (url, init) => {
+      if (init?.method === "POST")
+        return Response.json({
+          data: {
+            ...colleague,
+            id: "new-copy",
+            ownerId: "owner-a",
+            visibility: "private",
+          },
+        });
+      return listResponse(
+        String(url).includes("mine=true") ? [mine] : [mine, colleague],
+      );
+    });
+    vi.stubGlobal("fetch", transport);
+    const props = boardProps();
+    render(<PrivateLibrary {...props} branchId="branch-a" />);
+    expect(
+      screen.getByRole("heading", { name: "우리학원 시험지" }),
+    ).toBeVisible();
+    const shared = await screen.findByRole("button", {
+      name: "공개 시험지 사본으로 열기",
+    });
+    expect(screen.getByText(/작성자: 동료/)).toBeVisible();
+    expect(
+      within(shared.closest("tr")!).queryByRole("button", {
+        name: /이름 변경|삭제/,
+      }),
+    ).toBeNull();
+    expect(
+      boardRow(mine.title).getByRole("button", { name: /이름 변경/ }),
+    ).toBeVisible();
+    fireEvent.click(shared);
+    await waitFor(() =>
+      expect(props.onOpenDraft).toHaveBeenCalledWith("new-copy"),
+    );
+    expect(
+      transport.mock.calls.find(([, init]) => init?.method === "POST")?.[0],
+    ).toBe("/api/library/documents/alpha?ownerId=owner-b");
+    fireEvent.click(screen.getByRole("checkbox", { name: "내 시험지만 보기" }));
+    await waitFor(() =>
+      expect(
+        screen.queryByRole("button", { name: "공개 시험지 사본으로 열기" }),
+      ).toBeNull(),
+    );
+    expect(screen.getByText(/저장한 자료/)).toHaveTextContent(
+      "저장한 자료 1개",
+    );
+  });
+
+  it("drops shared rows and branch controls when membership changes", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async (url) =>
+        listResponse(
+          String(url).includes("mine=true")
+            ? []
+            : [{ ...boardItems[0], ownerId: "owner-b", ownerName: "동료" }],
+        ),
+      ),
+    );
+    const props = boardProps();
+    const view = render(<PrivateLibrary {...props} branchId="branch-a" />);
+    await screen.findByText(/작성자: 동료/);
+    view.rerender(<PrivateLibrary {...props} branchId={null} />);
+    expect(screen.getByRole("heading", { name: "내 시험지" })).toBeVisible();
+    expect(screen.queryByText(/작성자: 동료/)).toBeNull();
+    expect(
+      screen.queryByRole("checkbox", { name: "내 시험지만 보기" }),
+    ).toBeNull();
+  });
+
   it("shows six columns, counts, newest order and client-side search, kind and sorting without writes", async () => {
     const transport = vi.fn<typeof fetch>(async () => listResponse(boardItems));
     vi.stubGlobal("fetch", transport);

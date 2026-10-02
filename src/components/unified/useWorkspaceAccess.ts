@@ -84,6 +84,7 @@ export function useWorkspaceAccess(
             (access.isAdmin || access.role !== "reviewer"),
         );
         const user = {
+          branchId: access.branchId ?? null,
           name: access.name,
           email: access.email,
           isAdmin: access.isAdmin === true,
@@ -106,18 +107,26 @@ export function useWorkspaceAccess(
       }
     }
     const onFocus = () => void refresh();
+    const onAccessChange = () => {
+      inFlight?.abort();
+      inFlight = undefined;
+      lastStarted = -Infinity;
+      void refresh();
+    };
     const onVisible = () => {
       if (document.visibilityState === "visible") void refresh();
     };
     void refresh();
     const interval = window.setInterval(onFocus, ACCESS_REFRESH_MS);
     window.addEventListener("focus", onFocus);
+    window.addEventListener("workspace-access-change", onAccessChange);
     document.addEventListener("visibilitychange", onVisible);
     return () => {
       disposed = true;
       inFlight?.abort();
       window.clearInterval(interval);
       window.removeEventListener("focus", onFocus);
+      window.removeEventListener("workspace-access-change", onAccessChange);
       document.removeEventListener("visibilitychange", onVisible);
     };
   }, [authenticated, router, source, storageScope]);

@@ -11,9 +11,18 @@ import {
   PrivateCloudClient,
   PrivateCloudError,
 } from "./privateCloudClient";
-import type { PrivateDocument } from "@/contracts/privateWorkspace.contract";
+import type {
+  PrivateDocument,
+  DocumentSharing,
+  DocumentVisibility,
+} from "@/contracts/privateWorkspace.contract";
 
-type Base = { revision: number | null; acknowledged?: string };
+type Base = {
+  revision: number | null;
+  acknowledged?: string;
+  visibility?: DocumentVisibility;
+  sharedBranchId?: string | null;
+};
 type Recovery = { envelope: string | null; bases: Record<string, Base> };
 const fingerprint = (draft: WorkspaceDraft) => JSON.stringify(draft);
 const fromDocument = (doc: PrivateDocument): WorkspaceDraft => ({
@@ -128,7 +137,12 @@ export function createPrivateDraftStore(
             throw cause;
           });
         // An acknowledgment only covers the captured version, never newer editor changes.
-        bases[draft.id] = { revision: saved.revision, acknowledged: signature };
+        bases[draft.id] = {
+          revision: saved.revision,
+          acknowledged: signature,
+          visibility: saved.visibility,
+          sharedBranchId: saved.sharedBranchId,
+        };
         if (
           raw &&
           parseEnvelope(raw).drafts.every(
@@ -208,6 +222,8 @@ export function createPrivateDraftStore(
             merged.set(draft.id, displayed);
             bases[draft.id] = {
               revision: document.revision,
+              visibility: document.visibility,
+              sharedBranchId: document.sharedBranchId,
               acknowledged: fingerprint(displayed),
             };
           }
@@ -240,7 +256,7 @@ export function createPrivateDraftStore(
     })();
     return hydration;
   };
-  const saveNow = async () => {
+  const saveNow = async (sharing?: DocumentSharing) => {
     await hydrate();
     if (!local.saveNow()) return false;
     if (loadError) {
@@ -257,6 +273,8 @@ export function createPrivateDraftStore(
           envelope.drafts.push(displayed);
           bases[summary.id] = {
             revision: document.revision,
+            visibility: document.visibility,
+            sharedBranchId: document.sharedBranchId,
             acknowledged: fingerprint(displayed),
           };
         }
@@ -272,6 +290,36 @@ export function createPrivateDraftStore(
     }
     enqueue();
     try {
+      if (sharing) {
+        // Queue alongside autosaves so a failed scope-only request can be
+        // retried without changing worksheet content or adopting a newer base.
+        void run(async () => {
+          const draft = local.getSnapshot().draft;
+          const payload = await client.externalize({ ...draft, version: 1 });
+          const saved = await client.save(
+            draft.id,
+            "draft",
+            draft.title,
+            payload,
+            bases[draft.id]?.revision ?? null,
+            sharing,
+          );
+          bases[draft.id] = {
+            revision: saved.revision,
+            acknowledged: fingerprint(draft),
+            visibility: saved.visibility,
+            sharedBranchId: saved.sharedBranchId,
+          };
+          if (
+            raw &&
+            parseEnvelope(raw).drafts.every(
+              (item) => bases[item.id]?.acknowledged === fingerprint(item),
+            )
+          )
+            error = null;
+          persist();
+        });
+      }
       let waiting;
       do {
         waiting = tail;
@@ -301,6 +349,8 @@ export function createPrivateDraftStore(
       raw = JSON.stringify(envelope);
       bases[id] = {
         revision: document.revision,
+        visibility: document.visibility,
+        sharedBranchId: document.sharedBranchId,
         acknowledged: fingerprint(draft),
       };
       persist();
@@ -338,6 +388,10 @@ export function createPrivateDraftStore(
       };
     },
     saveNow,
+    getVisibility: () =>
+      bases[local.getSnapshot().draft.id]?.visibility ?? "private",
+    getSharedBranchId: () =>
+      bases[local.getSnapshot().draft.id]?.sharedBranchId ?? null,
     openDraft,
     forgetDraft: (id: string) => {
       // Called only after the API confirms deletion; queued saves keep their old revision.

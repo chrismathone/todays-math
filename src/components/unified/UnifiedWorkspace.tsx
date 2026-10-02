@@ -4,6 +4,9 @@ import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
 import SavedWorksheetActions from "./SavedWorksheetActions";
 import PrivateLibrary from "./PrivateLibrary";
+import { useLibrarySaveConfirmation } from "./LibrarySaveDialog";
+import { workspaceLibraryLabel } from "@/contracts/accountAccess.contract";
+import type { DocumentSharing } from "@/contracts/privateWorkspace.contract";
 import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
@@ -219,6 +222,8 @@ function UnifiedWorkspaceContent({
   allowedMenus: WorkspaceMenu[];
 }) {
   const menuKey = allowedMenus.join(",");
+  const branchId = currentUser?.branchId;
+  const libraryLabel = workspaceLibraryLabel(branchId);
   const enabledMenus = useMemo(
     () => new Set(menuKey.split(",").filter(menuValid)),
     [menuKey],
@@ -254,11 +259,17 @@ function UnifiedWorkspaceContent({
   // 계정(내보내기만 켠 계정)에만 줄을 남긴다.
   const hiddenInSidebar = (id: View) =>
     id === "export" && (can("studio") || can("bank") || can("library"));
-  const availableNav = navItemsOf[product].filter(
-    (item) => can(item.id) && !hiddenInSidebar(item.id),
-  );
+  const availableNav = navItemsOf[product]
+    .filter((item) => can(item.id) && !hiddenInSidebar(item.id))
+    .map((item) =>
+      item.id === "library" ? { ...item, label: libraryLabel } : item,
+    );
   /** 빠른 검색(Ctrl K)에는 두 제품이 다 선다 */
-  const quickNav = allNavItems.filter((item) => can(item.id));
+  const quickNav = allNavItems
+    .filter((item) => can(item.id))
+    .map((item) =>
+      item.id === "library" ? { ...item, label: libraryLabel } : item,
+    );
   const englishView: EnglishView =
     view && isEnglishView(view) ? view : "english";
   const worksheetView =
@@ -285,6 +296,7 @@ function UnifiedWorkspaceContent({
     setPrintOptions,
     setPrintMeta,
     saveNow,
+    visibility,
     createDraft,
     openDraft,
     renameDraft,
@@ -295,6 +307,7 @@ function UnifiedWorkspaceContent({
     storageScope,
     can("library") || can("studio") || can("export"),
     navigationReady && worksheetView,
+    branchId,
   );
   /**
    * `removed` — 이 시험지에서 뺀 문항과 그 자리. 어느 화면에서 뺐든(④·문제은행·작업실 목록) 여기 남는다.
@@ -385,7 +398,10 @@ function UnifiedWorkspaceContent({
   const fileRef = useRef<HTMLInputElement>(null);
   const draftFileRef = useRef<HTMLInputElement>(null);
   const label =
-    allNavItems.find((item) => item.id === view)?.label ?? "메뉴 이용 안내";
+    view === "library"
+      ? libraryLabel
+      : (allNavItems.find((item) => item.id === view)?.label ??
+        "메뉴 이용 안내");
   const navigate = useCallback(
     (next: View) => {
       if (!can(next)) return;
@@ -722,15 +738,22 @@ function UnifiedWorkspaceContent({
       return next;
     });
   }
-  async function save() {
+  const { requestSave: save, dialog: saveDialog } = useLibrarySaveConfirmation(
+    branchId,
+    persistWorksheet,
+    visibility,
+  );
+  async function persistWorksheet(sharing?: DocumentSharing) {
     setDismissedSaveError(null);
     setUndo(null);
-    if (await saveNow())
+    const saved = await saveNow(sharing);
+    if (saved)
       setNotice(
         storageScope
           ? "내 계정에 작업을 저장했습니다."
           : "이 브라우저에 작업을 저장했습니다.",
       );
+    return saved;
   }
   async function openSaved(id: string) {
     if (!can("export")) return;
@@ -824,6 +847,7 @@ function UnifiedWorkspaceContent({
       // 영어일 때만 붙는 표지(D-148 · 05 §8.23 ⑷) — 접힌 옆 메뉴의 마크·딱지 배치가 이것을 본다. 수학은 표지 없이 기준 그대로
       data-product={product === "english" ? "english" : undefined}
     >
+      {saveDialog}
       <a
         className={s.skipLink}
         href="#workspace-content"
@@ -1037,9 +1061,6 @@ function UnifiedWorkspaceContent({
                 <span className={s.navShort}>{item.short}</span>
                 {item.id === "export" && selected.length > 0 && (
                   <span className={s.navCount}>{selected.length}</span>
-                )}
-                {item.id === "library" && recent.length > 0 && (
-                  <span className={s.libraryCount}>{recent.length}</span>
                 )}
               </button>
             </div>
@@ -1280,6 +1301,7 @@ function UnifiedWorkspaceContent({
                   restoreRequest={studioRestoreRequest}
                   storageScope={storageScope}
                   documentId={extraction.id}
+                  branchId={branchId}
                   onDocumentChange={(id) => {
                     if (!storageScope) return;
                     const url = new URL(window.location.href);
@@ -1308,6 +1330,7 @@ function UnifiedWorkspaceContent({
                   active={view === "conceptBlank"}
                   storageScope={storageScope}
                   openDocument={blankDocument}
+                  branchId={branchId}
                 />
               </main>
             )}
@@ -1367,6 +1390,7 @@ function UnifiedWorkspaceContent({
               setColumns={setColumns}
               setAnswers={setAnswers}
               save={save}
+              libraryLabel={libraryLabel}
               restore={restore}
               download={download}
               toggle={toggle}
@@ -1408,6 +1432,7 @@ function UnifiedWorkspaceContent({
           {view === "library" && storageScope && (
             <PrivateLibrary
               storageScope={storageScope}
+              branchId={branchId}
               canExport={can("export")}
               canStudio={can("studio")}
               onOpenDraft={openSaved}

@@ -33,6 +33,7 @@ export default function ConfirmDialog({
   returnFocus,
   onConfirm,
   onCancel,
+  children,
 }: {
   title: string;
   description?: string;
@@ -49,6 +50,7 @@ export default function ConfirmDialog({
   returnFocus: RefObject<HTMLElement | null>;
   onConfirm: () => void;
   onCancel: () => void;
+  children?: React.ReactNode;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const cancelRef = useRef<HTMLButtonElement>(null);
@@ -130,6 +132,7 @@ export default function ConfirmDialog({
             />
           </label>
         )}
+        {children}
         {error && (
           <p className={w.modalError} role="alert">
             {error}

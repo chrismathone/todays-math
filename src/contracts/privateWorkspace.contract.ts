@@ -15,13 +15,27 @@ export const documentKindSchema = z.enum([
   "conceptBlank",
 ]);
 export type DocumentKind = z.infer<typeof documentKindSchema>;
+export const documentVisibilitySchema = z.enum(["private", "branch"]);
+export type DocumentVisibility = z.infer<typeof documentVisibilitySchema>;
+export type DocumentSharing = {
+  visibility: DocumentVisibility;
+  sharedBranchId: string | null;
+};
 export const saveDocumentSchema = z.strictObject({
   kind: documentKindSchema,
   title: z.string().trim().min(1).max(200),
   payload: z.record(z.string(), z.unknown()),
   expectedRevision: z.number().int().min(0).nullable(),
+  // Omission preserves an existing scope; new documents default to private.
+  visibility: documentVisibilitySchema.optional(),
+  sharedBranchId: z.uuid().nullable().optional(),
 });
 export type PrivateDocumentSummary = {
+  ownerId?: string;
+  ownerName?: string;
+  isOwner?: boolean;
+  visibility?: DocumentVisibility;
+  sharedBranchId?: string | null;
   id: string;
   kind: DocumentKind;
   title: string;
@@ -30,6 +44,8 @@ export type PrivateDocumentSummary = {
   createdAt: string;
   updatedAt: string;
 };
+export const documentKey = (document: PrivateDocumentSummary) =>
+  `${document.ownerId ?? ""}:${document.id}`;
 export type PrivateDocument = PrivateDocumentSummary & {
   payload: Record<string, unknown>;
 };

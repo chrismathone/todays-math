@@ -126,6 +126,11 @@ export function privateServer() {
     }
     const date = new Date().toISOString();
     const document: PrivateDocument = {
+      visibility: body.visibility ?? previous?.visibility ?? "private",
+      sharedBranchId:
+        body.visibility === "private"
+          ? null
+          : (body.sharedBranchId ?? previous?.sharedBranchId ?? null),
       id: url.pathname.split("/").at(-1)!,
       kind: body.kind,
       title: body.title,

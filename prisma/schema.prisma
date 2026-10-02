@@ -156,6 +156,7 @@ model Branch {
   name      String   @db.VarChar(100)
   createdAt DateTime @default(now()) @map("created_at")
   users     User[]
+  sharedDocuments WorkspaceDocument[]
 
   @@map("branch")
 }
@@ -237,13 +238,18 @@ model WorkspaceDocument {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  visibility String @default("private") @db.VarChar(20)
+  sharedBranchId String? @map("shared_branch_id") @db.Uuid
+  sharedBranch Branch? @relation(fields: [sharedBranchId], references: [id], onDelete: Restrict)
+  assets WorkspaceDocumentAsset[]
 
   @@id([userId, id])
   @@index([userId, kind, updatedAt])
+  @@index([sharedBranchId, visibility, updatedAt])
   @@map("workspace_document")
 }
 
-/// Original files are kept private; their download endpoint requires the owner session.
+/// Files require the owner session or an explicitly shared document's current scope.
 model WorkspaceAsset {
   userId    String   @map("user_id") @db.Uuid
   id        String   @db.VarChar(100)
@@ -253,9 +259,23 @@ model WorkspaceAsset {
   size      Int      @default(0)
   createdAt DateTime @default(now()) @map("created_at")
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documents WorkspaceDocumentAsset[]
 
   @@id([userId, id])
   @@map("workspace_asset")
+}
+
+/// Only explicitly referenced assets inherit a document's current read scope.
+model WorkspaceDocumentAsset {
+  userId String @map("user_id") @db.Uuid
+  documentId String @map("document_id") @db.VarChar(100)
+  assetId String @map("asset_id") @db.VarChar(100)
+  document WorkspaceDocument @relation(fields: [userId, documentId], references: [userId, id], onDelete: Cascade)
+  asset WorkspaceAsset @relation(fields: [userId, assetId], references: [userId, id], onDelete: Cascade)
+
+  @@id([userId, documentId, assetId])
+  @@index([userId, assetId])
+  @@map("workspace_document_asset")
 }
 
 model AccountAuditLog {

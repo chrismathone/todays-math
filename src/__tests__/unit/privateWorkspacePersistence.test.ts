@@ -29,6 +29,41 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 describe("cloud worksheet persistence", () => {
+  it("retries a failed visibility-only save without edits and keeps its original optimistic base", async () => {
+    const server = privateServer();
+    const client = new PrivateCloudClient("owner-a", server.transport);
+    const cloud = createPrivateDraftStore("owner-a", client);
+    await cloud.hydrate();
+    cloud.setProblems([problem()]);
+    expect(await cloud.saveNow()).toBe(true);
+    const share = {
+      visibility: "branch" as const,
+      sharedBranchId: "30000000-0000-4000-8000-000000000003",
+    };
+    server.fail(503);
+    expect(await cloud.saveNow(share)).toBe(false);
+    server.fail(0);
+    expect(await cloud.saveNow(share)).toBe(true);
+    expect([...server.documents.values()][0]).toMatchObject({
+      ...share,
+      revision: 2,
+    });
+    cloud.setTitle("공개 후 자동 저장");
+    expect(await cloud.saveNow()).toBe(true);
+    expect([...server.documents.values()][0]).toMatchObject({
+      ...share,
+      revision: 3,
+    });
+    expect(
+      await cloud.saveNow({ visibility: "private", sharedBranchId: null }),
+    ).toBe(true);
+    expect([...server.documents.values()][0]).toMatchObject({
+      visibility: "private",
+      sharedBranchId: null,
+      revision: 4,
+    });
+  });
+
   it("waits for a departing worksheet instance before reopening its recovery", async () => {
     const server = privateServer();
     let complete!: () => void;

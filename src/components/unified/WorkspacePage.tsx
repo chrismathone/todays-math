@@ -38,6 +38,7 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
       storageScope={user.id}
       currentUser={{
         ...user,
+        branchId: account?.branchId ?? null,
         isAdmin: account?.isAdmin ?? false,
         isSuperAdmin: account?.isSuperAdmin ?? false,
         canManageClasses: account?.menus.includes("teaching") ?? false,
