@@ -14,6 +14,8 @@ import {
   type EnglishQuestion,
 } from "@/contracts/english.contract";
 import { ENGLISH_TYPE_GUIDE } from "@/lib/ai/prompts/englishExam";
+import { englishDraftFeedback } from "@/lib/english/feedback";
+import { englishQualityNotes } from "@/lib/english/notes";
 import { reviewEnglishDraft } from "@/lib/english/quality";
 
 const passage =
@@ -262,7 +264,7 @@ describe("reviewEnglishDraft — 문장 삽입", () => {
   });
 });
 
-describe("reviewEnglishDraft — 주제 · 내용 일치 · 서술형 · IWF", () => {
+describe("reviewEnglishDraft — 주제 · 내용 일치 · IWF", () => {
   it("주제 — 영어 보기 · 표면 단서 없음", () => {
     const c = checks(draftOf(topic));
     expect(c["topic.english-options"]).toBe(true);
@@ -311,22 +313,97 @@ describe("reviewEnglishDraft — 주제 · 내용 일치 · 서술형 · IWF", (
       ],
     ).toBe(false);
   });
+});
 
-  it("서술형 — 채점 요소 둘 이상", () => {
-    const open: EnglishQuestion = {
-      type: "서술형",
-      prompt: "글의 요지를 우리말로 쓰시오.",
-      options: [],
-      answer: "꾸준한 습관이 타고난 재능보다 중요하다.",
-      explanation: "습관·연습 언급(2점) · 재능보다 중요하다는 비교(2점)",
-      evidence: "Therefore, habits are more important than gifts.",
-    };
-    expect(checks(draftOf(open))["open.criteria"]).toBe(true);
-    expect(
-      checks(draftOf({ ...open, explanation: "요지를 쓰면 정답." }))[
-        "open.criteria"
-      ],
-    ).toBe(false);
+/**
+ * 서술형의 채점 기준(배점 · 부분점수 · 감점)은 재지 않는다 (프롬프트 v6, 2026-10-02).
+ * 전에는 `open.criteria` 가 «부분점수 요소가 둘 이상»을 요구했고, 그 실패 줄이 고쳐 쓰기 되먹임으로 모델에 돌아가
+ * 주어진 기준이 없는데도 배점을 지어내게 했다. 없다고도 있다고도 결함이 아니다 — 반대 방향 규칙도 만들지 않는다.
+ */
+describe("reviewEnglishDraft — 서술형: 채점 기준을 요구하지도, 탓하지도 않는다", () => {
+  const open: EnglishQuestion = {
+    type: "서술형",
+    prompt: "글의 요지를 우리말로 쓰시오.",
+    options: [],
+    answer: "꾸준한 습관이 타고난 재능보다 중요하다.",
+    explanation:
+      "마지막 문장이 글의 결론이다. 습관이 타고난 재능보다 중요하다고 말한다.",
+    evidence: "Therefore, habits are more important than gifts.",
+  };
+  /** 옛 판(v2~v5)이 쓰라고 해서 저장돼 있는 해설 — 배점 · 부분점수 · 감점이 다 들었다 */
+  const storedRubric =
+    "습관·연습 언급(2점) · 재능보다 중요하다는 비교(2점) · 어법 오류 하나당 1점 감점";
+  const request = {
+    mode: "original" as const,
+    passage,
+    count: 1,
+    types: ["서술형" as const],
+    words: 60,
+  };
+  const report = (question: EnglishQuestion) =>
+    reviewEnglishDraft(draftOf(question)).questions[0]!;
+
+  it("채점 기준 없이 근거와 해설만 갖추면 실패 검사가 없다 — `open.criteria` 는 없는 검사다", () => {
+    const { checks: list } = report(open);
+    expect(list.filter((c) => !c.ok)).toEqual([]);
+    // 서술형이 재는 것은 이 넷뿐이다 — 채점 기준을 보는 검사가 (어느 방향으로든) 다시 생기면 여기서 운다
+    expect(list.map((c) => c.code).sort()).toEqual([
+      "evidence.quote",
+      "evidence.substantive",
+      "format.escape-residue",
+      "open.answer",
+    ]);
+    expect(list.map((c) => c.message).join(" ")).not.toMatch(
+      /채점 기준|부분점수|감점|배점/,
+    );
+    // 고쳐 쓰기 되먹임에도 «채점 기준을 쓰라»는 줄이 없다
+    expect(englishDraftFeedback(draftOf(open), request)).toEqual([]);
+  });
+
+  it("부분점수가 든 옛 저장 해설도 결함으로 다시 가르지 않고, 문항을 한 글자도 바꾸지 않는다", () => {
+    const stored = draftOf({ ...open, explanation: storedRubric });
+    const before = JSON.stringify(stored);
+
+    const withRubric = reviewEnglishDraft(stored).questions[0]!;
+    // 해설에 배점이 있든 없든 판정이 같다 — 검사 목록 · 통과 여부 · 문구까지
+    expect(withRubric.checks).toEqual(report(open).checks);
+    expect(withRubric.checks.filter((c) => !c.ok)).toEqual([]);
+    // 편집 화면의 «확인해 볼 곳»과 고쳐 쓰기 되먹임도 그 해설을 짚지 않는다
+    expect(englishQualityNotes(stored.questions)).toEqual([]);
+    expect(englishDraftFeedback(stored, request)).toEqual([]);
+
+    expect(JSON.stringify(stored)).toBe(before);
+    expect(stored.questions[0]!.explanation).toBe(storedRubric);
+  });
+
+  it("모범 답안이 너무 짧으면 그대로 잡는다 — 채점 기준이 있어도 덮이지 않는다", () => {
+    expect(checks(draftOf({ ...open, answer: "습관" }))["open.answer"]).toBe(
+      false,
+    );
+    const short = draftOf({
+      ...open,
+      answer: "습관",
+      explanation: storedRubric,
+    });
+    expect(checks(short)["open.answer"]).toBe(false);
+    expect(englishDraftFeedback(short, request)).toEqual([
+      "q1 (서술형): 모범 답안이 너무 짧습니다.",
+    ]);
+  });
+
+  it("근거 검사는 그대로 운다 — 지문에 없는 근거 · 너무 짧은 근거", () => {
+    const rewritten = checks(
+      draftOf({
+        ...open,
+        evidence: "Therefore, habits are more important than talents.",
+      }),
+    );
+    expect(rewritten["evidence.quote"]).toBe(false);
+    expect(rewritten["evidence.substantive"]).toBe(true);
+
+    const clipped = checks(draftOf({ ...open, evidence: "habits are more" }));
+    expect(clipped["evidence.quote"]).toBe(true);
+    expect(clipped["evidence.substantive"]).toBe(false);
   });
 });
 

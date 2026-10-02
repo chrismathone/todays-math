@@ -356,16 +356,6 @@ export function explanationNumber(explanation: string): string | null {
   return circled >= 0 ? String(circled + 1) : mark;
 }
 
-function scoringElements(explanation: string): boolean {
-  const points = (explanation.match(/\d+(?:\.\d+)?\s*점/g) ?? []).length;
-  if (points >= 2) return true;
-  const parts = explanation
-    .split(/[·\n•;]|\(\d\)|[①-⑤]|\d\)/)
-    .map((part) => part.trim())
-    .filter((part) => part.length >= 2);
-  return parts.length >= 2 && /점|요소|포함|채점|감점|인정/.test(explanation);
-}
-
 /** 문항 속 지문으로 인정할 분량 — 원문의 절반, 또는 40단어(발췌 지문 — 내신 변형에서 흔하다) */
 function enoughPassage(passageTokens: string[]): number {
   return Math.min(passageTokens.length * 0.5, 40);
@@ -673,14 +663,10 @@ function questionChecks(
         "발문에 «일치하는» 또는 «일치하지 않는»을 밝혀야 합니다.",
       ),
     );
+  // 서술형 해설의 채점 기준(배점 · 부분점수 · 감점)은 재지 않는다 — 없다고도, 있다고도 결함으로 보지 않는다.
+  // 주어진 기준이 없는데 «있어야 한다»고 재면 고쳐 쓰기 되먹임(`feedback.ts`)이 모델에게 배점을 지어내게 한다(프롬프트 v6).
   if (question.type === "서술형")
     out.push(
-      check(
-        "open.criteria",
-        "structure",
-        scoringElements(question.explanation),
-        "채점 기준에 부분점수 요소가 둘 이상 있어야 합니다.",
-      ),
       check(
         "open.answer",
         "structure",
