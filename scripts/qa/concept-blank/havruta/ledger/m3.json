@@ -1,6 +1,6 @@
 {
   "name": "m3",
-  "complete": false,
+  "complete": true,
   "rows": [
     {"id":"m3-01-01-xc4","queue":"case","sha":"67f1f8a94e47","at":{"section":"중3::1. 실수와 그 계산::제곱근의 뜻과 성질","type":"concepts","level":"하"}},
     {"id":"m3-01-01-xc7","queue":"case","sha":"5cad8e0b73cc","at":{"section":"중3::1. 실수와 그 계산::제곱근의 뜻과 성질","type":"concepts","level":"중"}},
@@ -674,7 +674,7 @@
     {"id":"m3-07-03-xo16","queue":"num","sha":"1907deccf2b1","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"중"},"gone":"변량이 홀수 개일 때의 사분위수는 xc7 이 말하고 a2 가 묻는다 — 값을 확인하는 문장"},
     {"id":"m3-07-03-xo18","queue":"num","sha":"9f723080129c","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"중"},"gone":"상자의 길이는 c7 이 말하고 o2 가 가른다 — 값을 확인하는 문장"},
     {"id":"m3-07-03-xo21","queue":"num","sha":"ffa277b5545a","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"상"}},
-    {"id":"m3-07-03-xo22","queue":"num","sha":"bba5f3e65c77","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"상"},"kept":""},
+    {"id":"m3-07-03-xo22","queue":"num","sha":"bba5f3e65c77","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"상"},"kept":"","gone":"최댓값만 커질 때 사분위수가 그대로이고 오른쪽 수염만 길어진다는 것은 xc16 이 그대로 말한다 — codex 검산: 같은 장면 · 같은 근거"},
     {"id":"m3-07-03-xo23","queue":"num","sha":"af28ee86cf0b","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"상"}},
     {"id":"m3-07-03-xo24","queue":"num","sha":"b724d8f67b92","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"상"},"gone":"사분위수로 비율을 읽는 것은 xc11 이 말하고 xo13 이 같은 잘못을 가른다"},
     {"id":"m3-07-03-xo25","queue":"num","sha":"d56f07802d06","at":{"section":"중3::7. 통계::상자그림","type":"ox","level":"상"},"gone":"겹치지 않는 두 상자그림은 xc19 가 그대로 말한다"},
@@ -1292,8 +1292,8 @@
     {"id":"m3-07-03-xa18","queue":"calc","sha":"8d30eab89e48","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"중"},"gone":"사분위수로 비율을 읽는 것은 xc11 이 말한다 — 값을 구하는 계산"},
     {"id":"m3-07-03-xa19","queue":"calc","sha":"8de39d73ce26","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"},"gone":"변량이 짝수 개일 때의 사분위수는 xc8 이 말한다 — 값을 구하는 계산"},
     {"id":"m3-07-03-xa20","queue":"calc","sha":"a456bcc9b96f","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"}},
-    {"id":"m3-07-03-xa21","queue":"calc","sha":"1081a6a97515","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"},"gone":"최댓값만 커질 때 사분위수가 변하지 않는다는 것은 xc16 이 말하고 a3 이 그 까닭을 묻는다"},
-    {"id":"m3-07-03-xa22","queue":"calc","sha":"172236cc904d","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"}},
+    {"id":"m3-07-03-xa21","queue":"calc","sha":"1081a6a97515","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"}},
+    {"id":"m3-07-03-xa22","queue":"calc","sha":"172236cc904d","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"},"gone":"제1사분위수가 다른 자료의 최댓값보다 클 때는 xc19 가 그대로 말한다 — codex 검산: 수만 넣은 같은 주장"},
     {"id":"m3-07-03-xa23","queue":"calc","sha":"4ac6555f2e87","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"},"gone":"구간의 폭으로 촘촘한 정도를 읽는 것은 c10 이 말하고 xa16 이 같은 근거로 묻는다"},
     {"id":"m3-07-03-xa24","queue":"calc","sha":"05b7f62d3340","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"},"gone":"사분위수로 비율을 읽는 것은 xc11 이 말한다 — 값을 구하는 계산"},
     {"id":"m3-07-03-xa25","queue":"calc","sha":"c630381d304e","at":{"section":"중3::7. 통계::상자그림","type":"apply","level":"상"},"gone":"중앙값이 같은 두 반의 상자는 xc17 이 그대로 말한다"},
