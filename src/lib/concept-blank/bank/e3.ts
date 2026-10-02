@@ -1689,9 +1689,8 @@ export const bank: ConceptBlankBank = {
       kind: "정의",
       definition: "그릇을 {가득 채운 양}으로 나타낸 것이 그 그릇의 들이이다.",
       example: {
-        prompt:
-          "같은 컵으로 가득 채우니 가는 $4$컵, 나는 $6$컵이었다면 들이가 큰 그릇은?",
-        answer: "나",
+        prompt: "물을 반만 담은 컵의 들이는 담긴 물의 양과 같은가?",
+        answer: "아니다. 가득 채운 양이 들이이다.",
       },
     },
     {
@@ -1728,8 +1727,9 @@ export const bank: ConceptBlankBank = {
       kind: "단위",
       definition: "들이를 나타내는 단위 리터는 {L}로 적는다.",
       example: {
-        prompt: "$2\\,\\mathrm{L}\\ 75\\,\\mathrm{mL}$를 mL로만 나타내시오.",
-        answer: "$2075\\,\\mathrm{mL}$",
+        prompt:
+          "주스 한 병과 약 한 숟가락 가운데 들이를 리터로 나타내기 알맞은 것은?",
+        answer: "주스 한 병",
       },
     },
     {
@@ -1768,8 +1768,8 @@ export const bank: ConceptBlankBank = {
         "들이의 덧셈과 뺄셈에서는 L끼리, mL끼리처럼 {같은 단위}를 맞춘다.",
       example: {
         prompt:
-          "$2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}$에서 $850\\,\\mathrm{mL}$를 빼시오.",
-        answer: "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$",
+          "$4\\,\\mathrm{L}\\ 200\\,\\mathrm{mL}$와 $3\\,\\mathrm{L}\\ 500\\,\\mathrm{mL}$를 더할 때 $200$과 더하는 수는?",
+        answer: "$500$",
       },
     },
     {
@@ -1799,8 +1799,8 @@ export const bank: ConceptBlankBank = {
       definition: "물건이 얼마나 {무거운지} 나타내는 양을 무게라 한다.",
       example: {
         prompt:
-          "양팔저울에서 가 쪽은 내려가고 나 쪽은 올라갔다면 더 무거운 것은?",
-        answer: "가",
+          "큰 풍선과 작은 쇠구슬 중 더 무거운 것을 크기만 보고 정할 수 있는가?",
+        answer: "없다. 무게는 크기와 다른 양이다.",
       },
     },
     {
@@ -1829,8 +1829,9 @@ export const bank: ConceptBlankBank = {
       kind: "단위",
       definition: "무게를 나타내는 단위 킬로그램은 {kg}로 적는다.",
       example: {
-        prompt: "$2\\,\\mathrm{t}\\ 60\\,\\mathrm{kg}$을 kg으로만 나타내시오.",
-        answer: "$2060\\,\\mathrm{kg}$",
+        prompt:
+          "수박 한 통과 연필 한 자루 가운데 무게를 킬로그램으로 나타내기 알맞은 것은?",
+        answer: "수박 한 통",
       },
     },
     {
@@ -1878,8 +1879,8 @@ export const bank: ConceptBlankBank = {
         "무게를 더하고 뺄 때에는 kg과 g을 {단위별로} 맞추어 계산한다.",
       example: {
         prompt:
-          "$4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}$에서 $1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}$을 빼시오.",
-        answer: "$2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}$",
+          "$3\\,\\mathrm{kg}\\ 400\\,\\mathrm{g}$과 $2\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$을 더할 때 $400$과 더하는 수는?",
+        answer: "$100$",
       },
     },
     {
