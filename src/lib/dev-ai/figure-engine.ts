@@ -261,9 +261,10 @@ export async function redrawDevAiFigure(
       let rendered = await render(spec);
       check();
       if (!rendered.ok) log.engineErrors.push(rendered.error);
-      // 25(2026-09-19 운영 로그): 치수 하나·라벨 하나·직각 표시 하나 때문에 그림 전체를 버렸다.
+      // 25(2026-09-19 운영 로그): 치수·라벨의 배치 실패는 기계적으로 교정한다.
       // 기계적으로 고쳐지는 사유는 AI 를 다시 부르기 전에 고쳐 바로 다시 그리고, 사유가 가리키는 요소 빼기는
-      // 마지막 시도에서만 한다(figure-repair.ts). 고친 그림도 아래 원본 대조를 거친다.
+      // 마지막 시도에서만 한다(figure-repair.ts). 직각 불일치·각의 변 누락은 조건을 보존해 모델에 되묻는다.
+      // 고친 그림도 아래 원본 대조를 거친다.
       const repaired: string[] = [];
       for (
         let step = 0, dropped = 0;
@@ -295,6 +296,8 @@ export async function redrawDevAiFigure(
       if (log.repairs.length)
         log.specAfterRepairs = JSON.stringify(spec).slice(0, TRAIL_TEXT_MAX);
       if (!rendered.ok) {
+        // A successful generation response (or an earlier render that failed
+        // source review) cannot turn this final engine rejection into success.
         finish(
           rendered.error.startsWith(ENGINE_REJECTED)
             ? "engine-rejected"

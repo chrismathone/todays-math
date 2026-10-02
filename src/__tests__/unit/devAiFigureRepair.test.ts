@@ -342,19 +342,18 @@ describe("cheap fixes run before asking the model again", () => {
     expect(await engineError(fix!.spec)).toBe("");
   });
 
-  it("drops only the right-angle mark of a nearly right angle and says so — the geometry is not forced", async () => {
+  it("preserves a nearly right angle for source-aware correction instead of removing the condition", async () => {
+    const before = structuredClone(FIXTURES.rightAngleOff);
     const fix = repairFigureSpec(
       FIXTURES.rightAngleOff,
       await engineError(FIXTURES.rightAngleOff),
       false,
     );
-    expect(fix?.spec.points).toEqual(FIXTURES.rightAngleOff.points);
-    expect(fix?.spec.angles).toEqual({});
-    expect(fix?.warning).toBe("∠B 의 직각 표시를 뺐습니다(그린 각 85.2°).");
-    expect(await engineError(fix!.spec)).toBe("");
+    expect(fix).toBeUndefined();
+    expect(FIXTURES.rightAngleOff).toEqual(before);
   });
 
-  it("keeps the arc and its label when a labelled right angle is off", () => {
+  it("does not turn a labelled right angle into a non-right arc", () => {
     const spec = triangle({
       angles: {
         rtB: { vertex: "B", points: ["A", "C"], right: true, label: "90°" },
@@ -365,21 +364,16 @@ describe("cheap fixes run before asking the model again", () => {
       "도형을 그리지 못했습니다: angle 'rtB' is marked right but measures 86.00° — fix the geometry, not the mark",
       false,
     );
-    expect(fix?.spec.angles).toEqual({
-      rtB: { vertex: "B", points: ["A", "C"], label: "90°" },
-    });
+    expect(fix).toBeUndefined();
   });
 
-  it("leaves a far-off right angle to the model until the last attempt", () => {
+  it("preserves a far-off right angle even on the last attempt", () => {
     const far =
       "도형을 그리지 못했습니다: angle 'rtB' is marked right but measures 106.70° — fix the geometry, not the mark";
     expect(
       repairFigureSpec(FIXTURES.rightAngleOff, far, false),
     ).toBeUndefined();
-    expect(repairFigureSpec(FIXTURES.rightAngleOff, far, true)).toMatchObject({
-      dropped: true,
-      warning: "∠B 의 직각 표시를 뺐습니다(그린 각 106.7°).",
-    });
+    expect(repairFigureSpec(FIXTURES.rightAngleOff, far, true)).toBeUndefined();
   });
 
   it("frees a label the model pinned with dx/dy before dropping anything", async () => {
@@ -734,7 +728,6 @@ describe("the last attempt drops only the element the engine names", () => {
       "labelNoRoom",
       "이름표 O 를 놓을 자리가 없어 뺐습니다. 그림 편집에서 넣어 주세요.",
     ],
-    ["rayNotDrawn", "∠B 표시를 그릴 변이 없어 뺐습니다."],
   ] as const)("%s", async (key, warning) => {
     const error = await engineError(FIXTURES[key]);
     expect(repairFigureSpec(FIXTURES[key], error, false)).toBeUndefined();
@@ -794,15 +787,19 @@ describe("one element no longer throws away the whole figure", () => {
     },
   );
 
-  it("drops a nearly right angle's mark on the first attempt and says so", async () => {
-    always(FIXTURES.rightAngleOff);
-    const result = await redrawDevAiFigure(input);
-    expect(phases()).toEqual(["generate", "review"]);
-    expect(result.warnings).toEqual([
-      "∠B 의 직각 표시를 뺐습니다(그린 각 85.2°).",
-    ]);
-    expect(result.spec?.angles).toEqual({});
-  });
+  it.each(["rightAngleOff", "rayNotDrawn"] as const)(
+    "keeps %s through bounded retries and rejects when the model cannot fix it",
+    async (key) => {
+      always(FIXTURES[key]);
+      await expect(redrawDevAiFigure(input)).rejects.toThrow(
+        "원본은 유지됩니다",
+      );
+      expect(phases()).toEqual(["generate", "generate", "generate"]);
+      expect(run.mock.calls[1][0].prompt).toContain(
+        "Do not remove a printed right-angle marker",
+      );
+    },
+  );
 
   it.each([
     ["dimensionNoRoom", "치수 CA 표시를 넣을 자리가 없어 뺐습니다."],
@@ -810,7 +807,6 @@ describe("one element no longer throws away the whole figure", () => {
       "labelNoRoom",
       "이름표 O 를 놓을 자리가 없어 뺐습니다. 그림 편집에서 넣어 주세요.",
     ],
-    ["rayNotDrawn", "∠B 표시를 그릴 변이 없어 뺐습니다."],
   ] as const)(
     "asks the model twice, then draws %s without the named element",
     async (key, warning) => {

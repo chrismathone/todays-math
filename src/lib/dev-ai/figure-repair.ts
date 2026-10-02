@@ -2,10 +2,10 @@ import type { DevAiFigureSpec } from "./contracts";
 
 /**
  * 엔진 검증 실패 **한 요소** 때문에 그림 전체를 버리지 않는다(원장님 운영 로그 2026-09-19 00:19~00:27 — 전부 502).
- * 치수 하나·라벨 하나·직각 표시 하나 때문에 삼각형 전체가 원본 크롭으로 남았다.
+ * 치수·라벨 배치 오류는 교정하되, 직각·각의 변 같은 수학 조건은 지워서 통과시키지 않는다.
  *
  * - `cheap`: 사유가 기계적으로 고쳐지는 것 — AI 를 다시 부르기 **전에**, 어느 시도에서든 고쳐 바로 다시 그린다.
- * - `drop`: 마지막 시도에서도 떨어질 때만 — 사유가 가리키는 요소 **하나만** 빼고 다시 그린다. 무엇을 뺐는지 경고에 적는다.
+ * - `drop`: 기존 치수·이름표 배치의 마지막 대안. 직각 불일치·각의 변 누락에는 적용하지 않는다.
  *
  * 🔴 엔진 사유 문자열에 기대는 판정은 **이 표 한 곳**이다(`vendor/figure-engine/core/figure_scene.py` 의 문구).
  *    시험이 실제 엔진으로 사유마다 실패를 만들어 이 표에 대 본다 — 엔진 문구가 바뀌면 거기서 빨개진다
@@ -81,8 +81,6 @@ export function engineRejectionReason(error: string) {
   return FIGURE_REDRAW_FAILED;
 }
 
-/** 직각 표시가 이만큼 안쪽이면 모델의 어림이 조금 빗나간 것 — 표시만 바꾼다(기하를 억지로 90° 로 만들지 않는다). */
-export const NEAR_RIGHT_DEGREES = 15;
 /** 한 번의 시도에서 뺄 수 있는 요소 수 — 그 이상이면 그림이 원본과 너무 달라진다. */
 export const MAX_DROPPED = 3;
 
@@ -261,8 +259,6 @@ function ends(item: unknown, fallback: string) {
     : [item.p1, item.p2].filter((p) => p !== undefined);
   return points.length === 2 ? points.join("") : fallback;
 }
-const vertex = (item: unknown, fallback: string) =>
-  isItem(item) && typeof item.vertex === "string" ? item.vertex : fallback;
 
 /**
  * 엔진 사유 하나를 보고 사양을 한 걸음 고친다. 못 고치면 `undefined`.
@@ -274,6 +270,16 @@ export function repairFigureSpec(
   allowDrop: boolean,
 ): FigureFix | undefined {
   if (spec.version !== 2) return undefined;
+  // An engine error proves the coordinates/segments disagree with an angle,
+  // not that the printed angle is dispensable. Even 99.33° is not a safe
+  // reason to erase right:true. Which point/segment to correct requires the
+  // source image, so retain the full spec for the existing model retry; the
+  // final rejection keeps the original crop instead of weakening constraints.
+  if (
+    ENGINE_FAILURES.rightAngleOff.test(error) ||
+    ENGINE_FAILURES.rayNotDrawn.test(error)
+  )
+    return undefined;
   if (ENGINE_FAILURES.offsetAndCurvature.test(error)) {
     // 엔진에서 curvature 는 offset 의 옛 이름이다(figure_scene.py add_dimension) — 정식 이름을 남긴다.
     const table = spec.dimensions;
@@ -308,23 +314,6 @@ export function repairFigureSpec(
         note: `치수 ${hit[1]} 의 0 이하 offset 을 빼고 엔진 배치에 맡겼습니다.`,
       }
     );
-  }
-  hit = ENGINE_FAILURES.rightAngleOff.exec(error);
-  if (hit) {
-    const measured = Number(hit[2]);
-    const near = Math.abs(measured - 90) <= NEAR_RIGHT_DEGREES;
-    if (!near && !allowDrop) return undefined;
-    let label = "";
-    const next = editRecord(spec, "angles", hit[1]!, (item) => {
-      if (!isItem(item)) return undefined;
-      label = vertex(item, hit![1]!);
-      // 이름표가 있으면 호와 이름표를 남기고, 없으면 표시째 뺀다(이름 없는 호는 «같은 각» 표시로 읽힌다).
-      return typeof item.label === "string" && item.label.trim()
-        ? without(item, "right")
-        : null;
-    });
-    const warning = `∠${label} 의 직각 표시를 뺐습니다(그린 각 ${measured.toFixed(1)}°).`;
-    return next && { spec: next, warning, note: warning, dropped: !near };
   }
   hit = ENGINE_FAILURES.dimensionNoRoom.exec(error);
   if (hit) {
@@ -378,17 +367,6 @@ export function repairFigureSpec(
       return null;
     });
     const warning = `이름표 ${text} 를 놓을 자리가 없어 뺐습니다. 그림 편집에서 넣어 주세요.`;
-    return next && { spec: next, warning, note: warning, dropped: true };
-  }
-  hit = ENGINE_FAILURES.rayNotDrawn.exec(error);
-  if (hit) {
-    if (!allowDrop) return undefined;
-    let label = hit[1]!;
-    const next = editRecord(spec, "angles", hit[1]!, (item) => {
-      label = vertex(item, hit![1]!);
-      return null;
-    });
-    const warning = `∠${label} 표시를 그릴 변이 없어 뺐습니다.`;
     return next && { spec: next, warning, note: warning, dropped: true };
   }
   hit = ENGINE_FAILURES.unknownFields.exec(error);

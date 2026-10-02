@@ -33,6 +33,7 @@ ${JSON.stringify(catalog)}
     repair
       ? `
 Previous engine validation failed. Correct the spec using the same original figure; preserve printed labels and geometry.
+Do not remove a printed right-angle marker, angle, or its label merely to pass validation. For a right-angle mismatch, recheck the original construction and correct the coordinates so the two rays are perpendicular; do not merely unset right:true. For a ray not covered by a rendered segment, recheck the angle's vertex/endpoints and the actual printed segments, preserving solid/dashed styling; never delete the angle or invent a new construction line just to silence the error. If the source does not support a faithful correction, return spec:null with a short Korean reason.
 <previous-spec-data>${dataBlock(repair.spec)}</previous-spec-data>
 <engine-error-data>${dataBlock(repair.error.slice(0, 1500))}</engine-error-data>`
       : ""
