@@ -526,12 +526,12 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-4-1-c1",
       section: "초3::1-4 곱셈::1-4-1 (몇십)×(몇)",
       level: "하",
-      term: "몇십의 뜻",
+      term: "$40$을 십의 묶음으로 보기",
       kind: "정의",
       definition: "$40$은 낱개 $40$개이며, 십의 묶음으로는 {$4$개}이다.",
       example: {
-        prompt: "$70\\times6$을 계산하시오.",
-        answer: "$420$",
+        prompt: "$60$은 십의 묶음이 몇 개인 수인가?",
+        answer: "$6$개",
       },
     },
     {
@@ -547,7 +547,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-4-1-c3",
       section: "초3::1-4 곱셈::1-4-1 (몇십)×(몇)",
       level: "상",
-      term: "곱의 자리값",
+      term: "$30\\times4$에서 $3\\times4=12$가 뜻하는 것",
       kind: "성질",
       definition:
         "$30\\times4$에서 $3\\times4=12$는 낱개 $12$개가 아니라 {십의 묶음 $12$개}를 뜻한다.",
@@ -560,8 +560,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "세로 곱셈에서는 {일의 자리}부터 차례로 곱한다.",
       example: {
-        prompt: "$21\\times4$를 계산하시오.",
-        answer: "$84$",
+        prompt: "$32\\times3$을 세로로 계산할 때 먼저 곱하는 두 수를 쓰시오.",
+        answer: "$2$와 $3$",
       },
     },
     {
@@ -591,8 +591,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "곱한 값이 한 자리의 묶음 $10$개를 채우면 {윗자리}의 묶음으로 바꾼다.",
       example: {
-        prompt: "$42\\times3$을 계산하시오.",
-        answer: "$126$",
+        prompt:
+          "$52\\times4$에서 십의 자리 곱인 십의 묶음 $20$개는 백의 묶음 몇 개가 되는가?",
+        answer: "$2$개",
       },
     },
     {
@@ -621,8 +622,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "일의 자리끼리 곱한 값이 $10$ 이상이면 십의 묶음을 {십의 자리}로 올린다.",
       example: {
-        prompt: "$18\\times4$를 계산하시오.",
-        answer: "$72$",
+        prompt:
+          "$26\\times3$에서 일의 자리 곱 $18$ 가운데 십의 자리로 올리는 수를 쓰시오.",
+        answer: "$1$",
       },
     },
     {
@@ -650,10 +652,10 @@ export const bank: ConceptBlankBank = {
       term: "두 자리에서 올림",
       kind: "방법",
       definition:
-        "일의 자리와 십의 자리에서 곱한 값이 각각 $10$ 이상이면 두 자리 모두에서 {올림}한다.",
+        "일의 자리와 십의 자리에서 곱한 값이 각각 {$10$ 이상}이면 두 자리 모두에서 올림한다.",
       example: {
-        prompt: "$67\\times8$을 계산하시오.",
-        answer: "$536$",
+        prompt: "$46\\times7$은 올림이 몇 번 있는 곱셈인가?",
+        answer: "$2$번",
       },
     },
     {
@@ -3282,4 +3284,10 @@ export const bank: ConceptBlankBank = {
  * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
  * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
  */
-markGivenCases(bank, ["e3-1-3-2-c2", "e3-1-3-3-c2", "e3-1-3-4-c2"]);
+markGivenCases(bank, [
+  "e3-1-3-2-c2",
+  "e3-1-3-3-c2",
+  "e3-1-3-4-c2",
+  "e3-1-4-1-c1",
+  "e3-1-4-1-c3",
+]);
