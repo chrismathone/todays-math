@@ -495,13 +495,15 @@ function repairOneMeaning(
     const textOf = (item: unknown, point: string): string | undefined =>
       typeof item === "string"
         ? item
-        : isItem(item)
-          ? item.text == null
-            ? point
-            : typeof item.text === "string"
-              ? item.text
-              : undefined
-          : undefined;
+        : item === null
+          ? point
+          : isItem(item)
+            ? item.text == null
+              ? point
+              : typeof item.text === "string"
+                ? item.text
+                : undefined
+            : undefined;
     const redundant = [...moves].filter(
       ([key, to]) =>
         !points.has(key) &&
