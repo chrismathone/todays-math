@@ -27,6 +27,19 @@ export function keywordsInsideTerm(term: string, definition: string): boolean {
   return keys.length > 0 && keys.every((k) => squash(term).includes(k));
 }
 
+/**
+ * 굵은 글 가운데 용어 **그 자체**가 있는가 — 이름 대기 문장(`…을 {각}이라 한다`). B · D 채점 안내가 «그 이름은 답이 아니다»를
+ * 적는 조건이다. 위의 자(`keywordsInsideTerm`)로 켜면 둘이 어긋난다(다른 모델의 코드 검토 2026-10-02 · 은행에 댄 수):
+ * 한 글자 이름(각 · 합 · 몫 · 밑 — 아홉)과 이름 곁에 뜻의 말도 굵은 줄(«정비례» — 일흔넷)에서는 안 켜지고,
+ * 굵은 글이 용어의 한 토막일 뿐인 줄(«직각삼각형»의 `{직각}` — 구백여)에서는 켜져 뜻의 알맹이를 빼고 채점하게 읽힌다.
+ */
+export function termIsKeyword(term: string, definition: string): boolean {
+  const name = squash(term);
+  return splitBlankSentence(definition).some(
+    (p) => p.kind === "key" && squash(p.text) === name,
+  );
+}
+
 /** 문장 빈칸 지면에 찍히는 글 — 핵심어 자리를 `□` 로 비우고 공백을 뺀 꼴(견주는 열쇠). */
 export function blankedSentence(definition: string): string {
   return splitBlankSentence(definition)
@@ -54,11 +67,13 @@ export function blankClashes(bank: ConceptBlankBank): ConceptEntry[][] {
 }
 
 /**
- * 예 물음이 지면에 없는 글을 가리키는 꼴 — 글머리의 «이때 · 이 … · 그 … · 구한 …»과 «이/같은 방법으로».
- * 🔴 좁게 잡은 자다: «같은 컵으로» · «그래프 위에서»처럼 물음 안에서 뜻이 닫히는 말은 안 건드린다. 조건이 빠진 예를
- * 다 잡지는 못한다(0 은 «가리킴말로 시작하는 예가 없다»까지만 말한다).
+ * 예 물음이 지면에 없는 글을 가리키는 꼴 — 글머리의 «이때 · 그때 · 이렇게 · 이 … · 그 … · 구한 …»과 «이/같은 방법으로».
+ * 🔴 좁게 잡은 자다: «같은 컵으로» · «그래프 위에서» · 물음 가운데의 «그때»처럼 물음 안에서 뜻이 닫히는 말은 안 건드린다.
+ * 조건이 빠진 예를 다 잡지는 못한다(0 은 «가리킴말로 시작하는 예가 없다»까지만 말한다).
+ * 거꾸로 «이 직사각형의 가로가 …일 때»처럼 조건을 다 적고도 «이 »로 여는 물음은 걸린다 — 글머리를 바꿔 쓴다.
  */
-export const DANGLING_EXAMPLE = /^(?:이때|이 |그 |구한 )|(?:이|같은) 방법으로/;
+export const DANGLING_EXAMPLE =
+  /^(?:이때|그때|이렇게|이것|이와 같|이 |그 |구한 )|(?:이|같은) 방법으로/;
 
 /** 개념 지도의 예 물음이 찍히지 않는 뜻 문장에 기대는 개념. */
 export function danglingExamples(bank: ConceptBlankBank): ConceptEntry[] {

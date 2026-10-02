@@ -3,6 +3,7 @@ import path from "node:path";
 
 import { expect, test } from "@playwright/test";
 
+import { gradeChapters, REAL_GRADES, type RealGrade } from "./grades";
 import { measurePages, openSet, type PageReport } from "./measure";
 
 /**
@@ -12,7 +13,9 @@ import { measurePages, openSet, type PageReport } from "./measure";
  * 표본 — fixture(시안 두 단원) · stress(계약 상한) · math(수식) · fuzz 8(시드 고정 무작위 길이) ·
  * **real-e3 · e4 · e5 · e6 · m1 · m2 · m3(main 의 실제 은행 한 학년 전부 — 은행 2차부터 모든 숫자 · 단위 · 분수가 KaTeX)** ·
  * **worst · worst-m(실제 은행에서 가장 긴 것끼리 — 초등 · 중학)** · counts(문항 수 1 ~ 정원 + 1) ·
- * show(보고서 본보기 — 실제 은행 한 대단원).
+ * show(보고서 본보기 — 실제 은행 한 대단원) ·
+ * **plus-<학년>-<대단원>(원래 + 3차 보강 은행을 소단원마다 — 일흔둘 · 12,500장쯤. 은행의 아홉이 보강 쪽에 있다)** —
+ * 🔴 `CB_PLUS=1` 일 때만 돈다(한 시간 남짓 — 444장짜리 대단원 하나가 4분). **은행 글을 고쳤으면 밀기 전에 돌린다.**
  * 캡처는 장마다 `test-results/concept-blank-paper/<set>/…png`, 표는 `report-<set>.json`.
  * 실제 은행 세 벌은 장이 수백이라 걸린 장만 찍는다(`CB_SHOTS=all` 이면 모두).
  */
@@ -37,7 +40,15 @@ const SETS = [
   "real-m2",
   "real-m3",
   ...[1, 2, 3, 4, 5, 6, 7, 8].map((seed) => `fuzz&seed=${seed}`),
-] as const;
+  ...(process.env.CB_PLUS
+    ? (Object.keys(REAL_GRADES) as RealGrade[]).flatMap((part) =>
+        Array.from(
+          { length: gradeChapters(part) },
+          (_, chapter) => `plus-${part}&chapter=${chapter}`,
+        ),
+      )
+    : []),
+];
 
 /**
  * 빈 공간 1/4 을 **재기만 하고 막지 않는** 장 — 채점표의 마지막 장. 표는 줄이 늘어나지 않고 채점 안내 상자는
@@ -48,13 +59,16 @@ const mayBeEmpty = (r: PageReport) => r.part === "key" && r.last;
 /**
  * 빈 틈의 한도 — 장의 1/4. 다만 **수식이 낱말 여섯에 하나꼴로 박힌 무작위 표본(fuzz)의 채점표**는 1/3 까지 본다:
  * 수식 줄의 높이 · 폭은 DOM 을 재지 않고 넉넉히 어림해(리드 조건 ⑴ · 넘침 0 이 먼저) 줄이 실제보다 덜 담긴다
- * (잰 값 최대 366px). 실제 은행 · 최악 조합 · 계약 상한 표본과 학생지는 모두 1/4 로 잠근다.
+ * (잰 값 최대 366px). **보강 은행을 지나는 표본(plus-* · worst · worst-m)의 채점표**도 같은 까닭으로 1/3 까지다 — 분수가 든
+ * 줄이 많은 소단원에서 어림 929px 인 열두 줄이 실제로는 그보다 훨씬 낮아 아래가 빈다(2026-10-02 잰 값: 중1 방정식 지도 채점표 315px ·
+ * 최악 조합 ○× 채점표 289px. 넘침은 0 — 교사용 장의 빈 틈이고, 어림을 조이는 일은 넘침 0 을 걸어야 해서 따로 한다).
+ * 원래 은행(real-*) · 계약 상한 표본과 **학생지는 모두 1/4** 로 잠근다.
  */
 const emptyLimit = (name: string, r: PageReport) =>
-  name.startsWith("fuzz") && r.part === "key" ? 1123 / 3 : QUARTER;
+  /^(?:fuzz|plus|worst)/.test(name) && r.part === "key" ? 1123 / 3 : QUARTER;
 
 for (const set of SETS) {
-  const name = set.replace("&seed=", "-");
+  const name = set.replace(/&(?:seed|chapter)=/, "-");
   test(`${name} — 인쇄 매체에서 장마다 A4 · 넘침 0 · 빈 공간 · 줄맞춤`, async ({
     page,
   }) => {
@@ -86,8 +100,7 @@ for (const set of SETS) {
       (r) => r.emptyPx > emptyLimit(name, r) && !mayBeEmpty(r),
     );
     const all =
-      process.env.CB_SHOTS === "all" ||
-      !(name.startsWith("real-") || name.startsWith("fuzz"));
+      process.env.CB_SHOTS === "all" || !/^(?:real|plus|fuzz)-/.test(name);
     const pages = page.locator("[data-print-page]");
     for (let i = 0; i < reports.length; i++) {
       const r = reports[i]!;

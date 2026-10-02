@@ -11,6 +11,7 @@ import type {
   SheetHeader,
 } from "@/contracts/conceptBlank.contract";
 
+const r = String.raw;
 const SECTION = "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(소수)";
 const header = (form: SheetHeader["form"]): SheetHeader => ({
   title: "소수의 곱셈",
@@ -97,33 +98,65 @@ describe("concept blank key notes", () => {
     expect(notes("cloze")).toContain("같은 값 · 같은 뜻의 다른 꼴도 ○");
   });
 
-  // 합의 안건 11 — 사례 문항은 A 채점표에 없다. 교사가 줄 수가 왜 다른지 알게 한 줄.
-  it("A says case cards are left off its key", () => {
-    expect(notes("recall")).toContain(
-      "용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다",
+  // 합의 안건 11 — 사례 문항은 A 채점표에 없다. 교사가 줄 수가 왜 다른지 알게 한 줄 — 실제로 뺀 것이 있을 때만.
+  it("A says case cards are left off its key only when some were", () => {
+    const CASES = "용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다";
+    const recall = sheets.recall!;
+    if (recall.form !== "recall") throw new Error("꼴");
+    expect(notes("recall")).not.toContain(CASES);
+    expect(keyNotes({ ...recall, omittedCases: 0 }).join("\n")).not.toContain(
+      CASES,
     );
+    const withCases = keyNotes({ ...recall, omittedCases: 3 });
+    expect(withCases.join("\n")).toContain(CASES);
+    // 줄 수는 그대로 셋 — 스물넷 줄 채점표 장에 안내 상자가 같이 들어가야 한다
+    expect(withCases).toHaveLength(3);
+    expect(keyNotes(recall)).toHaveLength(3);
   });
 
-  // 합의 안건 12 — 굵은 글이 용어 이름뿐인 줄이 있을 때만 그 기준을 적는다(핵심어 표기는 늘리지 않는다).
-  it("B · D add the name rule only when a row bolds nothing but its own term", () => {
+  // 합의 안건 12 — 굵은 글이 용어 이름인 줄이 있을 때만 그 기준을 적는다(핵심어 표기는 늘리지 않는다).
+  it("B · D add the name rule only when a row bolds its own term", () => {
     const NAME = "굵은 글이 용어와 같으면 그 이름은 답이 아니다";
     for (const form of ["term", "map"]) expect(notes(form)).not.toContain(NAME);
-    const named: ConceptEntry = {
+    const named = (term: string, definition: string): ConceptEntry => ({
       ...entry,
       id: "t-c2",
-      term: "세로셈",
+      term,
       kind: "정의",
-      definition:
-        "수를 자리에 맞추어 위아래로 적고 계산하는 방법을 {세로셈}이라 한다.",
-    };
+      definition,
+    });
     const term = sheets.term!;
     const map = sheets.map!;
     if (term.form !== "term" || map.form !== "map") throw new Error("꼴");
-    expect(keyNotes({ ...term, terms: [entry, named] }).join("\n")).toContain(
-      NAME,
-    );
-    expect(
-      keyNotes({ ...map, maps: [{ hub: "덧셈", nodes: [named] }] }).join("\n"),
-    ).toContain(NAME);
+    const both = (row: ConceptEntry) => [
+      keyNotes({ ...term, terms: [entry, row] }).join("\n"),
+      keyNotes({ ...map, maps: [{ hub: "덧셈", nodes: [row] }] }).join("\n"),
+    ];
+    const on = [
+      named(
+        "세로셈",
+        "수를 자리에 맞추어 위아래로 적고 계산하는 방법을 {세로셈}이라 한다.",
+      ),
+      // 한 글자 이름(각 · 합 · 몫 · 밑 …) — 은행에 아홉
+      named("각", "한 점에서 출발한 두 반직선이 만드는 모양을 {각}이라 한다."),
+      // 이름과 함께 뜻의 말도 굵은 줄 — 이름만 답에서 뺀다
+      named(
+        "정비례",
+        "$x$가 $2$배가 될 때 $y$도 {$2$배}가 되면 $y$는 $x$에 {정비례}한다.",
+      ),
+      named(r`$\%$`, r`백분율의 숫자 뒤에는 {$\%$}를 붙인다.`),
+    ];
+    for (const row of on)
+      for (const text of both(row)) expect(text, row.term).toContain(NAME);
+    const off = [
+      // 굵은 글이 용어의 한 토막일 뿐 — 이름이 아니라 뜻의 알맹이다(안내를 붙이면 «직각»을 빼고 채점하게 읽힌다)
+      named(
+        "직각삼각형",
+        "삼각형의 세 각 가운데 {직각}이 있는 것을 직각삼각형이라 한다.",
+      ),
+      named("$2$의 배수", "일의 자리 숫자가 짝수이면 {$2$}로 나누어떨어진다."),
+    ];
+    for (const row of off)
+      for (const text of both(row)) expect(text, row.term).not.toContain(NAME);
   });
 });

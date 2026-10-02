@@ -110,6 +110,9 @@ describe("concept blank given-case cards", () => {
     expect(ids("recall")).toEqual(["t-2-4-3-xc1", "t-2-4-3-xc4"]);
     for (const form of ["term", "cloze", "map"])
       expect(ids(form), form).toHaveLength(4);
+    // 뺀 사례 문항 수를 지면에 실어 채점 안내가 «뺀 것이 있을 때만» 그 말을 한다
+    const recall = sheets.find((s) => s.form === "recall")!;
+    expect(recall.form === "recall" && recall.omittedCases).toBe(2);
   });
 
   it("counts the recallable stock apart, so the screen caps A by it", () => {

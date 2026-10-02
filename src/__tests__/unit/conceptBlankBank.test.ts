@@ -240,6 +240,10 @@ describe("concept blank bank", () => {
     );
     expect(rules(String.raw`한 층의 높이가 $3\,\mathrm{m}$이다.`)).toEqual([]);
     expect(rules(String.raw`$\triangle ABC$의 넓이`)).toEqual([]);
+    // 앞 글자가 붙은 꼴(`dfrac`)도 같은 결함이고, 글 명령 안의 낱말은 명령이 아니다
+    expect(rules("값은 $dfrac{1}{2}$이다.")).toContain("역슬래시 빠진 명령");
+    expect(rules(String.raw`값은 $\dfrac{1}{2}$이다.`)).toEqual([]);
+    expect(rules(String.raw`$\text{parallel lines}$`)).toEqual([]);
   });
 
   // 문장 빈칸(C)은 뜻 문장만 찍는다 — 빈칸을 비운 글이 같고 답이 다르면 학생지에서 가를 수 없다(인쇄 검토 2026-10-02).
@@ -291,14 +295,25 @@ describe("concept blank bank", () => {
           concept("c", "양변에 {같은 수}를 곱한다.", "같은 방법으로 구하면?"),
           concept("d", "양변에 {같은 수}를 곱한다.", "같은 컵으로 부으면?"),
           concept("e", "양변에 {같은 수}를 곱한다.", "$2x=4$의 해는?"),
+          // 글머리의 «그때 · 이렇게»도 뜻 문장을 가리킨다(다른 모델의 코드 검토 2026-10-02 — 은행에 다섯)
+          concept("f", "양변에 {같은 수}를 곱한다.", "그때 가로의 길이"),
+          concept("g", "양변에 {같은 수}를 곱한다.", "이렇게 그리면 무엇을?"),
+          // 물음 안에서 닫히는 «그때»는 가리킴말이 아니다
+          concept(
+            "h",
+            "양변에 {같은 수}를 곱한다.",
+            "$A$가 $B$보다 위에 있으면 그때 더 멀리 간 사람은?",
+          ),
         ]),
       ).map((c) => c.id),
-    ).toEqual(["a", "b", "c"]);
+    ).toEqual(["a", "b", "c", "f", "g"]);
   });
 
   it("ids are unique across the whole bank and the fixture", () => {
     const ids = [...everyItem(), ...everyItem(FIXTURE_BANK)].map((x) => x.id);
-    const dup = ids.filter((id, i) => ids.indexOf(id) !== i);
+    // 한 번 훑어 센다 — `indexOf` 로 견주면 3만 개의 제곱이라 기계가 바쁠 때 시간 초과로 빨개진다(가드가 아니라 소음)
+    const seen = new Set<string>();
+    const dup = ids.filter((id) => seen.size === seen.add(id).size);
     expect(dup).toEqual([]);
   });
 

@@ -6,7 +6,7 @@ import {
   type FigureItem,
   type OxItem,
 } from "@/contracts/conceptBlank.contract";
-import { keywordsInsideTerm } from "@/lib/concept-blank/audit";
+import { termIsKeyword } from "@/lib/concept-blank/audit";
 
 import {
   BOLD_MATH,
@@ -449,9 +449,17 @@ export function keyRowCost(row: KeyRow): number {
     const lines = estimateLines(text, 10, k.textWidth - 10, scale(bold));
     return k.subGap + lines * k.sub + mathExtra(text, lines, 10, k.sub);
   };
-  const concept = (label: string, place?: string) =>
-    main(label, k.conceptWidth, true) +
-    (place ? k.subGap + estimateLines(place, 9, k.conceptWidth) * k.place : 0);
+  /** 개념 칸 — 굵은 용어 + 그 아래 자리 줄(소단원 이름 · 지도 이름). 소단원 이름에도 수식이 있다(`sectionTitleTex` — 분수면 줄이 높다). */
+  const concept = (label: string, place?: string) => {
+    if (!place) return main(label, k.conceptWidth, true);
+    const lines = estimateLines(place, 9, k.conceptWidth);
+    return (
+      main(label, k.conceptWidth, true) +
+      k.subGap +
+      lines * k.place +
+      mathExtra(place, lines, 9, k.place)
+    );
+  };
   /**
    * 칸들은 첫 줄 기준선을 맞춘다 — 한 칸의 첫 줄에 수식이 있어 높으면 **옆 칸**이 그만큼 내려온다. 그래서 줄 높이는
    * «칸 높이 + 옆 칸 첫 줄이 높아진 만큼» 가운데 큰 쪽이다(수식이 든 칸 자신은 내려오지 않는다 — 두 번 세지 않는다).
@@ -526,9 +534,12 @@ export function keyRowCost(row: KeyRow): number {
 /** 뜻을 문장으로 쓰는 칸(B · D)의 기준 — 굵은 부분은 내용 기준이고, 느슨한 것은 말 · 식 · 단위의 꼴이다. */
 const MEANING_RULE =
   "굵은 부분의 뜻이 모두 있어야 ○. 말 · 식 · 단위의 꼴이 달라도 된다.";
-/** 굵은 글이 용어 이름뿐인 줄의 기준(합의 안건 12) — 핵심어 표기를 늘리지 않고 채점 안내로 가른다. */
+/** 굵은 글이 용어 이름인 줄의 기준(합의 안건 12) — 핵심어 표기를 늘리지 않고 채점 안내로 가른다. */
 const NAME_RULE =
   "굵은 글이 용어와 같으면 그 이름은 답이 아니다 — 이름을 뺀 나머지 뜻이 문장과 같으면 ○.";
+/** A 채점표에서 사례 문항을 뺐을 때만 붙이는 말(합의 안건 11) — 뺀 것이 없는 지면에는 헛말이다. */
+const CASES_LEFT_OFF =
+  " 용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다.";
 
 /**
  * 채점 안내(채점표 마지막 장 아래) — 우리 말.
@@ -536,16 +547,14 @@ const NAME_RULE =
  * 오답이 된다. «본보기 답»이라고도 쓰지 않는다 — 굵은 내용을 빼도 되게 읽혀 교사마다 ○× 가 갈린다.
  */
 export function keyNotes(sheet: ConceptBlankSheet): string[] {
-  // 굵은 글이 용어 이름뿐인 줄(`…을 {세로셈}이라 한다`)이 있을 때만 — 그 이름은 학생이 본 글이라 답이 아니다.
+  // 굵은 글이 용어 이름인 줄(`…을 {세로셈}이라 한다`)이 있을 때만 — 그 이름은 학생이 본 글이라 답이 아니다.
   const nameOnly = (entries: readonly ConceptEntry[]) =>
-    entries.some((c) => keywordsInsideTerm(c.term, c.definition))
-      ? [NAME_RULE]
-      : [];
+    entries.some((c) => termIsKeyword(c.term, c.definition)) ? [NAME_RULE] : [];
   switch (sheet.form) {
     case "recall":
       return [
         `칸에 적힌 것을 아래 ${sheet.key.length}개와 맞춰 본다. 굵은 부분의 뜻이 다 있으면 ○, 하나 빠지면 △, 없으면 ×.`,
-        "말 · 식의 꼴이 달라도 뜻이 같으면 있는 것으로 본다. 용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다.",
+        `말 · 식의 꼴이 달라도 뜻이 같으면 있는 것으로 본다.${sheet.omittedCases ? CASES_LEFT_OFF : ""}`,
         "«떠올린 개념»에는 ○ 개수를 적는다. 그림 · 예 칸은 채점하지 않고 뜻이 모자랄 때 보탬으로 본다.",
       ];
     case "term":

@@ -68,11 +68,21 @@ describe("concept blank figure math typography", () => {
     expect(glyphs("650 m")).toEqual(["36", "35", "30", "6D"]);
     expect(glyphs("2 kg 100 g").filter((c) => c === "67")).toHaveLength(2);
     expect(glyphs("2 kg 100 g")).not.toContain("1D454");
-    // 홀로 선 글자 · 수에 붙은 글자는 변수 그대로
-    for (const label of ["m", "x", "2a", "$650 m$", "x축"])
+    // 홀로 선 글자 · 수에 붙은 글자는 변수 그대로. 수 뒤에 띄어 쓴 글자도 단위(m · g · t)가 아니면 변수다
+    for (const label of ["m", "x", "2a", "3 x", "$650 m$", "x축"])
       expect(uprightUnits(label)).toBe(label);
     expect(glyphs("m")).toEqual(["1D45A"]);
     expect(glyphs("2a")).toContain("1D44E");
+    expect(glyphs("3 x")).toContain("1D465");
+    // 한글이 섞인 라벨도 같다(초6 «한 모서리 1 m» — 다른 모델의 코드 검토 2026-10-02). 두 글자 단위는 원래 선다
+    expect(uprightUnits("한 모서리 1 m")).toBe(
+      String.raw`한 모서리 1\,\mathrm{m}`,
+    );
+    expect(uprightUnits("추 2 kg 100 g")).toBe(
+      String.raw`추 2\,\mathrm{kg}\,100\,\mathrm{g}`,
+    );
+    expect(uprightUnits("가로 대각선 8 cm")).toBe("가로 대각선 8 cm");
+    expect(glyphs("한 모서리 1 m")).toEqual(["31", "6D"]);
   });
 
   it("typesets answer tags, fits real glyph bounds and preserves mixed Korean", () => {

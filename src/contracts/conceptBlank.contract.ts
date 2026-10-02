@@ -354,6 +354,8 @@ export type ConceptBlankSheet =
         side: "그림" | "예";
       }[];
       key: ConceptEntry[];
+      /** 고른 소단원의 사례 문항(`givenCase`) 수 — 채점표에 안 실린 것. 0 이 아니면 채점 안내가 그 말을 한다. */
+      omittedCases?: number;
     }
   | { form: "term"; header: SheetHeader; terms: ConceptEntry[]; ox: OxItem[] }
   | {

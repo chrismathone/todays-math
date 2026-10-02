@@ -110,11 +110,13 @@ export function composeSheets(
       switch (form) {
         case "recall": {
           // 사례 문항은 A 채점표에 싣지 않는다 — 소단원 이름만 보고는 그 수를 떠올릴 수도, 줄과 맞춰 볼 수도 없다(26 §10).
-          const key = takeByLevel(all("concepts").filter(recallable), counts);
+          const recallables = all("concepts").filter(recallable);
+          const key = takeByLevel(recallables, counts);
           return [
             {
               form,
               header: header(form),
+              omittedCases: all("concepts").length - recallables.length,
               zones: stock.map((s) => {
                 const kinds = [...new Set(s.concepts.map((c) => c.kind))];
                 return {

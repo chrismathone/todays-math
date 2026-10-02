@@ -440,7 +440,10 @@ export function mathInkEm(segment: string): number {
       const delimiter = tex[i] === "\\" ? tex.slice(i, i + 2) : (tex[i] ?? "");
       i += delimiter.length;
       opens = name === "left";
-      return delimiter === "." ? 0 : 0.55;
+      // 0.75em — 분수를 감싼 큰 괄호는 보통 괄호(0.39)의 두 배쯤이고 분수 좌우의 틈도 따라온다. 0.55 로 세던 때 괄호 넷짜리
+      // 답 둘이 그려진 폭보다 1.1~1.2em 좁게 어림됐다(2026-10-02 `ink.spec` — 은행 3차의 `\left(\frac{1}{2}x+3\right)…`).
+      // 0.75 면 그런 답 열하나의 차가 −0.41 ~ +0.73em(평균 +0.05)이다.
+      return delimiter === "." ? 0 : 0.75;
     }
     const space = INK_SPACE.get(name);
     if (space !== undefined) return space;
