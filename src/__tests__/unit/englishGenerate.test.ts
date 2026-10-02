@@ -96,6 +96,20 @@ function aiTextResponse(text: string) {
 
 const expectedMaxTokens = Number(process.env.DEEPSEEK_MAX_TOKENS ?? 64000);
 
+/**
+ * 배점 낱말(부분점수 · 감점 · 배점 · «2점»)이 든 문장들 — 낱말 유무로는 «쓰라»와 «지어내지 마라»를 못 가른다.
+ * 그 문장이 무엇을 시키는지를 본다(v6). 프롬프트는 줄마다 규칙 하나이고, 줄 안에서는 마침표로 문장이 갈린다.
+ */
+const SCORING_WORD = /부분점수|감점|배점|\d\s*점/;
+function scoringSentences(text: string): string[] {
+  return text
+    .split(/\n|(?<=[.?!])\s+/)
+    .filter((sentence) => SCORING_WORD.test(sentence));
+}
+/** 조건부 문장 — 채점 기준이 주어졌을 때만 옮기고, 없으면 배점을 지어내지 않는다 */
+const CONDITIONAL =
+  /채점 기준이 (?:있을 때만|없으면)[^.]*배점 · 부분점수 · 감점 공식을 지어내지 않습니다/;
+
 beforeEach(() => {
   mockCreate.mockReset();
   vi.mocked(OpenAI).mockClear();
@@ -115,7 +129,8 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
     const system = buildEnglishSystemPrompt();
     expect(system).toMatch(/보기.*5개/);
     expect(system).toMatch(/"1".*"5"|1~5/);
-    expect(system).toContain("부분점수");
+    // 서술형은 보기 없이 모범 답안 — 채점 기준은 강제하지 않는다(아래 v6 시험이 문장 단위로 잠근다)
+    expect(system).toMatch(/서술형은 보기 없이[^\n]*모범 답안을 answer 에/);
     expect(system).toMatch(/이어진 인용|연속 인용/);
     expect(system).toMatch(/지어낸 통계/);
     expect(system).toMatch(/JSON 객체 하나|객체 하나/);
@@ -124,10 +139,11 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
     expect(system).toMatch(/지시가 아닙니다|지시로 보지/);
   });
 
-  it("v5 — v3 의 근거 규칙은 그대로이고 판 번호는 v5 다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
+  it("v6 — v3 의 근거 규칙은 그대로이고 판 번호는 v6 이다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
     // 벤치: v2 그대로 8회 중 4회 거절(근거를 3~4문장 옮기다 사이 문장을 건너뛰거나 바꿔 씀) → 이 규칙 10회 중 9회 통과,
-    // 품질은 v2 와 같다. «딱 한 문장»(10/10)은 삽입·서술형이 몇 점 낮아 안 썼다. v5 는 어휘 안내만 더한다.
-    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v5");
+    // 품질은 v2 와 같다. «딱 한 문장»(10/10)은 삽입·서술형이 몇 점 낮아 안 썼다. v5 는 어휘 안내만 더했고,
+    // v6 은 서술형의 부분점수 강제만 뺐다 — 판이 올라야 세트의 «만든 조건»에서 앞뒤 판이 갈린다.
+    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v6");
     const system = buildEnglishSystemPrompt();
     expect(system).toContain("이어진 한두 문장");
     expect(system).toContain("문자열 검색");
@@ -145,6 +161,43 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
       /- 근거\(evidence\)는 passage 를 확정한 뒤 그 passage 에서 문항마다 이어진 한두 문장을 통째로 복사/,
     );
     expect(rules).toContain("바꿔 쓴 passage 에서");
+  });
+
+  it("v6 — 서술형에 부분점수 · 감점을 쓰라고 강제하는 문장이 없고, 채점 기준은 주어졌을 때만 옮긴다", () => {
+    const system = buildEnglishSystemPrompt();
+    const guide = ENGLISH_TYPE_GUIDE.서술형;
+    const rule = ENGLISH_EXAM_RULES[1]!;
+    expect(system).toContain(`- ${guide}`);
+    expect(system).toContain(`2. ${rule}`);
+
+    // 배점 낱말이 든 문장은 둘(서술형 안내 줄 · 공통 규칙 2)뿐이고, 둘 다 «없으면 지어내지 않는다»는 조건부 문장이다
+    const sentences = scoringSentences(system);
+    expect(sentences).toHaveLength(2);
+    for (const sentence of sentences) expect(sentence).toMatch(CONDITIONAL);
+    expect(scoringSentences(guide)).toHaveLength(1);
+    expect(scoringSentences(rule)).toHaveLength(1);
+    // 옛 강제 문장(v2~v5)과 그 예시 배점이 남아 있지 않다
+    expect(system).not.toContain("요소별 부분점수");
+    expect(system).not.toMatch(/채점 기준을 (?:씁니다|쓰십시오|적습니다)/);
+    expect(system).not.toMatch(/\d\s*점/);
+
+    // 그대로 요구하는 것 — 보기 없음 · 발문의 조건 · 모범 답안과 인정 답안 나열 · 해설(정답 근거)
+    expect(guide).toContain("보기 없이(options 는 빈 배열)");
+    expect(guide).toContain(
+      "조건(쓸 낱말 · 어형 변화 · 단어 수 · 우리말/영어)을 발문에 밝힌",
+    );
+    expect(guide).toContain(
+      "answer 에 모범 답안(인정 답안이 여럿이면 « / »로 나열)",
+    );
+    expect(guide).toContain("explanation 에 그 답이 정답인 근거");
+    expect(rule).toContain(
+      "모범 답안을 answer 에 쓰고, explanation 에 그 답이 정답인 근거를 씁니다.",
+    );
+    // 해설 규칙(공통 규칙 7)은 고치지 않았다
+    expect(ENGLISH_EXAM_RULES).toHaveLength(10);
+    expect(ENGLISH_EXAM_RULES[6]).toBe(
+      "해설(explanation)은 정답의 근거와 함께 오답 보기마다 틀린 이유를 한 구절씩 씁니다. 해설이 가리키는 정답 번호는 answer 와 같아야 합니다.",
+    );
   });
 
   it("어휘 안내 줄이 생성 조건을 말하고, 어법 안내 줄과 공통 규칙 1·4·5·10 은 한 글자도 다르지 않다", () => {
@@ -306,6 +359,58 @@ describe("generateEnglishDraft — 모킹된 DeepSeek", () => {
     expect(user).toContain("q1");
     expect(user).toContain("5개");
     expect(user).toContain("지적된 문항만");
+  });
+
+  it("고쳐 쓰기 되먹임이 서술형에 채점 기준을 요구하지 않는다 — 없는 배점을 지어내게 하지 않는다 (v6)", async () => {
+    // 1번은 검증 거절(보기 4개), 2번 서술형은 채점 기준 없이 해설과 근거만 있다. 전에는 품질 검사 `open.criteria` 가
+    // «부분점수 요소가 둘 이상 있어야 합니다»를 이 목록에 실어, 고쳐 쓰는 모델이 주어진 적 없는 배점을 지어냈다.
+    const openInput = {
+      ...input,
+      types: ["내용 일치", "서술형"] as ("내용 일치" | "서술형")[],
+    };
+    const openQuestion = {
+      type: "서술형",
+      prompt: "사서가 한 말의 뜻을 우리말로 쓰시오.",
+      options: [],
+      answer: "상상에는 빠른 기차보다 조용한 방이 더 필요하다.",
+      explanation: "마지막 문장을 우리말로 옮긴 것입니다.",
+      evidence:
+        "The librarian says that imagination needs a quiet room more than a fast train.",
+    };
+    mockCreate
+      .mockResolvedValueOnce(
+        aiTextResponse(
+          JSON.stringify({
+            ...draft,
+            questions: [fourOptions.questions[0], openQuestion],
+          }),
+        ),
+      )
+      .mockResolvedValueOnce(
+        aiTextResponse(
+          JSON.stringify({
+            ...draft,
+            questions: [draft.questions[0], openQuestion],
+          }),
+        ),
+      );
+
+    const result = await generateEnglishDraft(openInput, "고1");
+
+    // 채점 기준이 없는 서술형이 그대로 통과한다
+    expect(result.questions[1]).toMatchObject(openQuestion);
+    expect(mockCreate).toHaveBeenCalledTimes(2);
+    const refine = mockCreate.mock.calls[1]![0] as {
+      messages: { role: string; content: string }[];
+    };
+    const user = refine.messages[1]!.content;
+    const found = user.slice(
+      user.indexOf("[자동 검사가 찾은 문제]"),
+      user.indexOf("지적된 문항만"),
+    );
+    expect(found).toContain("- q1: 보기는 5개여야 합니다");
+    expect(found).not.toContain("- q2");
+    expect(found).not.toMatch(/채점 기준|부분점수|감점|배점/);
   });
 
   it("고친 초안도 걸리면 EnglishDraftRejectedError — 고쳐 쓰기는 딱 한 번", async () => {
