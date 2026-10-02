@@ -55,8 +55,6 @@ const KNOWN_WIDE_EXAMPLES: readonly string[] = [
   "e3-1-1-2-c1",
   "e3-1-2-4-c1",
   "e3-1-2-5-c1",
-  "m1-04-03-xc9",
-  "m1-04-03-xc20",
 ];
 const squash = (s: string) => s.replace(/\s+/g, "");
 
