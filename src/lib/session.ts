@@ -13,6 +13,10 @@
  */
 import { auth } from "@/lib/auth";
 import { noteErrorLog } from "@/lib/errorLog/scope";
+import {
+  normalizeWorkspaceMenus,
+  type WorkspaceMenu,
+} from "@/contracts/accountAccess.contract";
 
 export type SessionUser = {
   id: string;
@@ -27,6 +31,7 @@ export type SessionUser = {
   isSuperAdmin?: boolean;
   branchId?: string | null;
   branchRole?: "owner" | "manager" | "teacher" | null;
+  menus?: WorkspaceMenu[];
 };
 
 /** 현재 요청의 로그인 사용자를 반환한다. 미인증이면 null. */
@@ -47,5 +52,6 @@ export async function getSessionUser(): Promise<SessionUser | null> {
     isSuperAdmin: session.user.isSuperAdmin === true,
     branchId: session.user.branchId ?? null,
     branchRole: session.user.branchRole ?? null,
+    menus: normalizeWorkspaceMenus(session.user.menus ?? []),
   };
 }

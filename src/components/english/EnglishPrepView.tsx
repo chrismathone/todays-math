@@ -71,6 +71,8 @@ export default function EnglishPrepView({
   onExamDeleted,
   onOpenSet,
   onNavigate,
+  canMake = true,
+  canLibrary = true,
 }: {
   exam: EnglishExam;
   exams: EnglishExam[];
@@ -86,6 +88,8 @@ export default function EnglishPrepView({
   onExamDeleted: (id: string) => void;
   onOpenSet: (id: string) => void;
   onNavigate: (view: EnglishView) => void;
+  canMake?: boolean;
+  canLibrary?: boolean;
 }) {
   const [materialDialog, setMaterialDialog] = useState(false);
   const [settingsDialog, setSettingsDialog] = useState(false);
@@ -112,18 +116,21 @@ export default function EnglishPrepView({
       meta: `${materialCount}개 자료`,
       done: materialCount > 0,
       onClick: () => setMaterialDialog(true),
+      enabled: true,
     },
     {
       label: "문제 제작",
       meta: `${setCount}개 세트`,
       done: setCount > 0,
       onClick: () => onNavigate("english-maker"),
+      enabled: canMake,
     },
     {
       label: "검토 및 인쇄",
       meta: `${reviewedCount}개 검토 완료`,
       done: reviewedCount > 0,
       onClick: () => onNavigate("english-library"),
+      enabled: canLibrary,
     },
   ];
 
@@ -184,6 +191,7 @@ export default function EnglishPrepView({
                 className={s.step}
                 data-done={step.done}
                 onClick={step.onClick}
+                disabled={!step.enabled}
               >
                 <span className={s.dot} aria-hidden="true">
                   {step.done ? "✓" : index + 1}
@@ -324,14 +332,16 @@ export default function EnglishPrepView({
             <h2 className={s.sectionTitle}>
               대비 문제 세트 <span className={s.num}>{setCount}</span>
             </h2>
-            <button
-              type="button"
-              className={s.quiet}
-              onClick={() => onNavigate("english-library")}
-            >
-              전체 보기
-              <Icon name="chevron" size={14} />
-            </button>
+            {canLibrary && (
+              <button
+                type="button"
+                className={s.quiet}
+                onClick={() => onNavigate("english-library")}
+              >
+                전체 보기
+                <Icon name="chevron" size={14} />
+              </button>
+            )}
           </div>
           <p className={s.desc}>
             초안을 만들고, 검토를 마친 문제를 수업에 씁니다.
@@ -373,27 +383,31 @@ export default function EnglishPrepView({
                 <span className={s.count}>
                   <b>{set.questionCount}</b>문항
                 </span>
-                <button
-                  type="button"
-                  className={w.outlineButton}
-                  aria-label={`${set.title} 열기`}
-                  onClick={() => onOpenSet(set.id)}
-                >
-                  열기
-                </button>
+                {canLibrary && (
+                  <button
+                    type="button"
+                    className={w.outlineButton}
+                    aria-label={`${set.title} 열기`}
+                    onClick={() => onOpenSet(set.id)}
+                  >
+                    열기
+                  </button>
+                )}
               </article>
             ))
           ) : (
             <p className={s.footnote}>아직 만든 문제 세트가 없습니다.</p>
           )}
-          <button
-            type="button"
-            className={`${w.primaryButton} ${s.wide}`}
-            onClick={() => onNavigate("english-maker")}
-          >
-            학교 맞춤 문제 만들기
-            <Icon name="arrow" size={18} />
-          </button>
+          {canMake && (
+            <button
+              type="button"
+              className={`${w.primaryButton} ${s.wide}`}
+              onClick={() => onNavigate("english-maker")}
+            >
+              학교 맞춤 문제 만들기
+              <Icon name="arrow" size={18} />
+            </button>
+          )}
           <p className={s.under}>모든 문제는 강사 검토 뒤에 씁니다.</p>
         </section>
       </div>

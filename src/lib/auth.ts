@@ -49,6 +49,7 @@ import type { UserRole } from "@/contracts/problemReport.contract";
 import { db } from "@/lib/db";
 import {
   ALL_WORKSPACE_MENUS,
+  workspaceMenusFromDisabled,
   type ApprovalStatus,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
@@ -256,9 +257,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       token.approvalStatus = current.approvalStatus;
       token.menus = token.isAdmin
         ? ALL_WORKSPACE_MENUS
-        : ALL_WORKSPACE_MENUS.filter(
-            (menu) => !current.disabledMenus.includes(menu),
-          );
+        : workspaceMenusFromDisabled(current.disabledMenus);
       return token;
     },
     async session({ session, token }) {

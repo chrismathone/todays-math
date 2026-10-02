@@ -22,9 +22,9 @@ export const WORKSPACE_MENUS = [
   // D-150 — «오늘의 개념» 바로 아래(원장님 캡처). 고정 문항 개념 백지 · 인쇄 페이지 관문 `/concept-blank`.
   { id: "conceptBlank", label: "개념 백지" },
   { id: "srs", label: "오늘의 기억 · SRS" },
-  // D-148 — 둘째 제품 «오늘의 영어». 권한은 이 하나로, 그 아래 탭 셋(학교별 내신 대비 · 문제 만들기 ·
-  // 문제 보관함)은 화면이 나눈다(25 §1.2). 관문은 `/api/english` · `/english`(인쇄 페이지).
-  { id: "english", label: "오늘의 영어", product: "english" },
+  { id: "english-school", label: "학교별 내신 대비", product: "english" },
+  { id: "english-maker", label: "문제 만들기", product: "english" },
+  { id: "english-library", label: "문제 보관함", product: "english" },
 ] as const;
 // ⚠️ 아래 enum 은 위 배열에서 파생되지 않는다 — 메뉴를 더하면 두 곳을 같이 고친다.
 export const workspaceMenuSchema = z.enum([
@@ -38,13 +38,43 @@ export const workspaceMenuSchema = z.enum([
   "conceptBlank",
   "srs",
   "english",
+  "english-school",
+  "english-maker",
+  "english-library",
 ]);
 export type WorkspaceMenu = z.infer<typeof workspaceMenuSchema>;
 export const ALL_WORKSPACE_MENUS: WorkspaceMenu[] = WORKSPACE_MENUS.map(
   (menu) => menu.id,
 );
+/** 이전 english 허용/차단 값은 세 권한으로 확장한다. 새 저장값에는 통합 키를 남기지 않는다. */
+export function normalizeWorkspaceMenus(
+  menus: readonly string[],
+): WorkspaceMenu[] {
+  return [
+    ...new Set(
+      menus.flatMap((menu) =>
+        menu === "english"
+          ? ([
+              "english-school",
+              "english-maker",
+              "english-library",
+            ] as WorkspaceMenu[])
+          : ALL_WORKSPACE_MENUS.filter((item) => item === menu),
+      ),
+    ),
+  ];
+}
+
+/** 기존 english 차단은 세 메뉴 모두 차단한다. 새 세부 차단은 해당 메뉴에만 적용한다. */
+export function workspaceMenusFromDisabled(
+  disabledMenus: readonly string[],
+): WorkspaceMenu[] {
+  const disabled = new Set(normalizeWorkspaceMenus(disabledMenus));
+  return ALL_WORKSPACE_MENUS.filter((menu) => !disabled.has(menu));
+}
 /** 메뉴가 딸린 제품 — `product` 가 없으면 수학 */
 export function workspaceMenuProduct(menu: WorkspaceMenu): WorkspaceProduct {
+  if (menu === "english") return "english";
   const found = WORKSPACE_MENUS.find((item) => item.id === menu);
   return found && "product" in found ? found.product : "math";
 }
@@ -54,10 +84,56 @@ export function workspaceMenusOf(product: WorkspaceProduct): WorkspaceMenu[] {
     (menu) => workspaceMenuProduct(menu) === product,
   );
 }
+
 export function workspaceLibraryLabel(branchId?: string | null): string {
   return branchId ? "우리학원 시험지" : "내 시험지";
 }
 
+/** 표시 항목과 저장 권한을 연결한다. 학교별 내신 대비의 기존 화면 주소는 english이다. */
+export function workspaceMenuOptionsOf(
+  product: WorkspaceProduct,
+  branchId?: string | null,
+): { id: string; label: string; permission: WorkspaceMenu }[] {
+  if (product === "english") {
+    return [
+      {
+        id: "english",
+        label: "학교별 내신 대비",
+        permission: "english-school",
+      },
+      {
+        id: "english-maker",
+        label: "문제 만들기",
+        permission: "english-maker",
+      },
+      {
+        id: "english-library",
+        label: "문제 보관함",
+        permission: "english-library",
+      },
+    ];
+  }
+  return WORKSPACE_MENUS.filter(
+    (menu) => workspaceMenuProduct(menu.id) === product,
+  ).map((menu) => ({
+    id: menu.id,
+    label: menu.id === "library" ? workspaceLibraryLabel(branchId) : menu.label,
+    permission: menu.id,
+  }));
+}
+
+/** 내보내기는 진입 메뉴가 없을 때만 좌측 메뉴에 표시된다. 권한 자체는 유지한다. */
+export function workspaceMenuInSidebar(
+  menu: WorkspaceMenu,
+  allowedMenus: readonly WorkspaceMenu[],
+): boolean {
+  return (
+    menu !== "export" ||
+    !allowedMenus.some(
+      (item) => item === "bank" || item === "studio" || item === "library",
+    )
+  );
+}
 export const approvalStatusSchema = z.enum(["pending", "approved", "rejected"]);
 export type ApprovalStatus = z.infer<typeof approvalStatusSchema>;
 export type AccountAccess = {
@@ -107,8 +183,9 @@ export const accountUpdateSchema = z
     menus: z
       .array(workspaceMenuSchema)
       // 손으로 적은 6 은 메뉴가 늘면 «전부 켜기»를 거절한다 — 메뉴 목록에서 센다.
-      .max(WORKSPACE_MENUS.length)
+      .max(workspaceMenuSchema.options.length)
       .refine((menus) => new Set(menus).size === menus.length)
+      .transform(normalizeWorkspaceMenus)
       .optional(),
     expectedUpdatedAt: z.iso.datetime(),
   })

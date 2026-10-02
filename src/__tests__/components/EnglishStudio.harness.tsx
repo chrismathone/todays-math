@@ -6,6 +6,7 @@
 import { useState } from "react";
 import { screen } from "@testing-library/react";
 import { vi, type Mock } from "vitest";
+import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
 
 import EnglishStudio, {
   type EnglishView,
@@ -47,10 +48,12 @@ export function Harness({
   initialView = "english",
   openSetId,
   log,
+  allowedMenus,
 }: {
   initialView?: EnglishView;
   openSetId?: string;
   log: HarnessLog;
+  allowedMenus?: WorkspaceMenu[];
 }) {
   const [view, setView] = useState<EnglishView>(initialView);
   const [newExamOpen, setNewExamOpen] = useState(false);
@@ -65,6 +68,7 @@ export function Harness({
       </button>
       <EnglishStudio
         view={view}
+        allowedMenus={allowedMenus}
         onNavigate={setView}
         newExamOpen={newExamOpen}
         onNewExam={() => setNewExamOpen(true)}

@@ -44,6 +44,7 @@ const ORIGIN = "http://localhost";
 const EXAM_ID = "20000000-0000-4000-8000-000000000001";
 
 const teacher = {
+  menus: ["english"],
   id: USER_TEACHER_ID,
   email: "teacher@todaysmath.test",
   name: "테스트 강사",

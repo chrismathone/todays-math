@@ -8,12 +8,18 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import AdminAccounts from "@/components/admin/AdminAccounts";
+import AccountReview from "@/components/admin/AccountReview";
 import { signOutAction } from "@/app/actions/auth";
 import {
   accountsResponse,
   adminIdentity,
+  adminAccount,
   pendingAccount,
 } from "./adminFixtures";
+import {
+  accountUpdateSchema,
+  type ManagedAccount,
+} from "@/contracts/accountAccess.contract";
 
 const fetchMock = vi.fn<typeof fetch>();
 const json = (body: unknown, status = 200) =>
@@ -27,6 +33,311 @@ beforeEach(() => {
   fetchMock.mockResolvedValue(json(accountsResponse()));
 });
 afterEach(() => vi.unstubAllGlobals());
+
+describe("account menu product tabs", () => {
+  const mathLabels = [
+    "오늘의 작업",
+    "시험지 만들기",
+    "문제 추출",
+    "내 시험지",
+    "수업 · 학생 관리",
+    "오늘의 개념",
+    "개념 백지",
+    "오늘의 기억 · SRS",
+  ];
+  function review(account: ManagedAccount = pendingAccount) {
+    const onLockChange = vi.fn();
+    const onUpdate = vi.fn();
+    render(
+      <AccountReview
+        account={account}
+        onLockChange={onLockChange}
+        onUpdate={onUpdate}
+      />,
+    );
+    return { onLockChange, onUpdate };
+  }
+  const tab = (name: string) => screen.getByRole("tab", { name });
+  const panel = () => within(screen.getByRole("tabpanel"));
+  const labels = () =>
+    panel()
+      .getAllByRole("checkbox")
+      .map((input) => input.closest("label")?.textContent);
+
+  it.each([
+    [null, "내 시험지"],
+    ["branch-id", "우리학원 시험지"],
+  ])(
+    "uses the target branch %s for library labels in sidebar order",
+    (branchId, libraryLabel) => {
+      review({ ...pendingAccount, branchId });
+      expect(tab("오늘의 수학")).toHaveAttribute("aria-selected", "true");
+      expect(labels()).toEqual([
+        ...mathLabels.map((label) =>
+          label === "내 시험지" ? libraryLabel : label,
+        ),
+        "시험지 · 내보내기",
+      ]);
+      expect(
+        panel().getByRole("heading", { name: "추가 기능 권한" }),
+      ).toBeInTheDocument();
+      expect(panel().getByRole("group")).toHaveAccessibleName(
+        "오늘의 수학 2 / 8",
+      );
+    },
+  );
+
+  it("expands the legacy grant into three independently editable English menus", () => {
+    const { onLockChange } = review({ ...pendingAccount, menus: ["english"] });
+    fireEvent.click(tab("오늘의 영어"));
+    expect(labels()).toEqual([
+      "학교별 내신 대비",
+      "문제 만들기",
+      "문제 보관함",
+    ]);
+    panel()
+      .getAllByRole("checkbox")
+      .forEach((input) => expect(input).toBeChecked());
+    expect(panel().getByRole("group")).toHaveAccessibleName(
+      "오늘의 영어 3 / 3",
+    );
+    expect(onLockChange).not.toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
+    expect(
+      screen.getByRole("checkbox", { name: "문제 만들기" }),
+    ).not.toBeChecked();
+    expect(
+      screen.getByRole("checkbox", { name: "학교별 내신 대비" }),
+    ).toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "문제 보관함" })).toBeChecked();
+  });
+
+  it("preserves both product drafts and hidden export when approving", async () => {
+    const account: ManagedAccount = {
+      ...pendingAccount,
+      menus: ["home", "bank", "export"],
+    };
+    fetchMock.mockImplementation(async (_url, init) =>
+      init?.method === "PATCH"
+        ? json({ data: { ...account, ...JSON.parse(String(init.body)) } })
+        : json({ data: [] }),
+    );
+    const { onLockChange } = review(account);
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
+    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
+    fireEvent.click(tab("오늘의 수학"));
+    expect(screen.getByRole("checkbox", { name: "문제 추출" })).toBeChecked();
+    expect(
+      screen.getByRole("checkbox", { name: "시험지 · 내보내기" }),
+    ).toBeChecked();
+    expect(onLockChange).toHaveBeenLastCalledWith(true);
+    fireEvent.click(tab("오늘의 영어"));
+    expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeChecked();
+    expect(
+      fetchMock.mock.calls.filter(([, init]) => init?.method === "PATCH"),
+    ).toHaveLength(0);
+    fireEvent.click(
+      screen.getByRole("button", { name: "계정 승인 · 메뉴 저장" }),
+    );
+    await screen.findByText("계정을 승인하고 선택한 메뉴를 저장했습니다.");
+    const patch = fetchMock.mock.calls.find(
+      ([, init]) => init?.method === "PATCH",
+    )!;
+    expect(
+      accountUpdateSchema.parse(JSON.parse(String(patch[1]?.body))),
+    ).toEqual({
+      expectedUpdatedAt: account.updatedAt,
+      approvalStatus: "approved",
+      menus: ["home", "bank", "export", "studio", "english-maker"],
+    });
+  });
+
+  it("moves export to its sidebar position when every entry menu is off", () => {
+    review({ ...pendingAccount, menus: ["export"] });
+    expect(labels()).toEqual([
+      ...mathLabels.slice(0, 3),
+      "시험지 · 내보내기",
+      ...mathLabels.slice(3),
+    ]);
+    expect(
+      panel().queryByRole("heading", { name: "추가 기능 권한" }),
+    ).not.toBeInTheDocument();
+    for (const name of ["시험지 만들기", "문제 추출", "내 시험지"]) {
+      fireEvent.click(screen.getByRole("checkbox", { name }));
+      expect(labels()).toEqual([...mathLabels, "시험지 · 내보내기"]);
+      expect(
+        screen.getByRole("checkbox", { name: "시험지 · 내보내기" }),
+      ).toBeChecked();
+      fireEvent.click(screen.getByRole("checkbox", { name }));
+    }
+    expect(
+      panel().queryByRole("heading", { name: "추가 기능 권한" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
+  });
+
+  it("updates the library label immediately with a branch draft and saves it with English permissions", async () => {
+    const branchId = "22222222-2222-4222-8222-222222222222";
+    fetchMock.mockImplementation(async (_url, init) =>
+      init?.method === "PATCH"
+        ? json({
+            data: { ...pendingAccount, ...JSON.parse(String(init.body)) },
+          })
+        : json({ data: [{ id: branchId, name: "새 지점" }] }),
+    );
+    review();
+    await screen.findByRole("option", { name: "새 지점" });
+    fireEvent.change(screen.getByRole("combobox", { name: "지점" }), {
+      target: { value: branchId },
+    });
+    expect(
+      screen.getByRole("checkbox", { name: "우리학원 시험지" }),
+    ).toBeInTheDocument();
+    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    const patch = fetchMock.mock.calls.find(
+      ([, init]) => init?.method === "PATCH",
+    )!;
+    expect(JSON.parse(String(patch[1]?.body))).toMatchObject({
+      expectedUpdatedAt: pendingAccount.updatedAt,
+      branchId,
+      branchRole: "teacher",
+      menus: ["home", "bank", "english-library"],
+    });
+  });
+
+  it("saves a revoked legacy sub-menu without regranting it through english", async () => {
+    const account: ManagedAccount = { ...pendingAccount, menus: ["english"] };
+    fetchMock.mockImplementation(async (_url, init) =>
+      init?.method === "PATCH"
+        ? json({ data: { ...account, ...JSON.parse(String(init.body)) } })
+        : json({ data: [] }),
+    );
+    review(account);
+    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    const patch = fetchMock.mock.calls.find(
+      ([, init]) => init?.method === "PATCH",
+    )!;
+    expect(JSON.parse(String(patch[1]?.body)).menus).toEqual([
+      "english-school",
+      "english-library",
+    ]);
+  });
+
+  it("supports arrow and boundary keys without dirtying the account", () => {
+    const { onLockChange } = review();
+    fireEvent.keyDown(tab("오늘의 수학"), { key: "ArrowRight" });
+    expect(tab("오늘의 영어")).toHaveFocus();
+    expect(tab("오늘의 영어")).toHaveAttribute("aria-selected", "true");
+    expect(tab("오늘의 수학")).toHaveAttribute("tabindex", "-1");
+    fireEvent.keyDown(tab("오늘의 영어"), { key: "ArrowRight" });
+    expect(tab("오늘의 수학")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘의 수학"), { key: "End" });
+    expect(tab("오늘의 영어")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘의 영어"), { key: "Home" });
+    expect(tab("오늘의 수학")).toHaveFocus();
+    fireEvent.keyDown(tab("오늘의 수학"), { key: "ArrowLeft" });
+    expect(tab("오늘의 영어")).toHaveFocus();
+    expect(onLockChange).not.toHaveBeenCalled();
+  });
+
+  it("cancels menu edits in both tabs", () => {
+    review();
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
+    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 취소" }));
+    expect(
+      screen.getByRole("checkbox", { name: "문제 만들기" }),
+    ).not.toBeChecked();
+    fireEvent.click(tab("오늘의 수학"));
+    expect(
+      screen.getByRole("checkbox", { name: "문제 추출" }),
+    ).not.toBeChecked();
+    expect(
+      screen.getByRole("checkbox", { name: "시험지 만들기" }),
+    ).toBeChecked();
+  });
+
+  it("keeps other account edits locked when a menu toggle is undone", () => {
+    const { onLockChange } = review();
+    fireEvent.change(screen.getByRole("textbox", { name: "이름" }), {
+      target: { value: "새 이름" },
+    });
+    fireEvent.click(tab("오늘의 영어"));
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
+    expect(onLockChange).toHaveBeenLastCalledWith(true);
+    expect(screen.getByRole("button", { name: "변경 저장" })).toBeEnabled();
+  });
+
+  it.each([
+    ["super admin", adminAccount],
+    [
+      "branch manager",
+      { ...pendingAccount, isAdmin: true, branchId: "branch-id" },
+    ],
+    [
+      "deleted account",
+      { ...pendingAccount, deletedAt: pendingAccount.updatedAt },
+    ],
+  ])(
+    "allows inspecting both products for %s while keeping permissions disabled",
+    (_name, account) => {
+      review(account);
+      panel()
+        .getAllByRole("checkbox")
+        .forEach((input) => expect(input).toBeDisabled());
+      fireEvent.click(tab("오늘의 영어"));
+      expect(
+        screen.getByRole("checkbox", { name: "문제 만들기" }),
+      ).toBeDisabled();
+      expect(tab("오늘의 영어")).toHaveAttribute("aria-selected", "true");
+    },
+  );
+
+  it("blocks both tabs after a conflict and reloads the latest English grant", async () => {
+    fetchMock.mockImplementation(async (url, init) =>
+      init?.method === "PATCH"
+        ? json({ error: { message: "changed" } }, 409)
+        : String(url).endsWith(pendingAccount.id)
+          ? json({
+              data: {
+                ...pendingAccount,
+                menus: ["english"],
+                updatedAt: "2026-09-14T11:00:00.000Z",
+              },
+            })
+          : json({ data: [] }),
+    );
+    review();
+    fireEvent.click(screen.getByRole("checkbox", { name: "문제 추출" }));
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+    await screen.findByText(/다른 관리자가 이 계정을 변경했습니다/);
+    fireEvent.click(tab("오늘의 영어"));
+    expect(
+      screen.getByRole("checkbox", { name: "문제 만들기" }),
+    ).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "최신 정보 불러오기" }));
+    await screen.findByText(/최신 정보를 불러왔습니다/);
+    expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeEnabled();
+    expect(screen.getByRole("checkbox", { name: "문제 만들기" })).toBeChecked();
+    fireEvent.click(tab("오늘의 수학"));
+    expect(
+      screen.getByRole("checkbox", { name: "문제 추출" }),
+    ).not.toBeChecked();
+    expect(
+      screen.getByRole("checkbox", { name: "시험지 만들기" }),
+    ).not.toBeChecked();
+  });
+});
 
 describe("admin account management", () => {
   it("closes review with Escape and returns focus without discarding edited permissions", async () => {

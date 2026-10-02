@@ -243,7 +243,7 @@ describe("[EnglishEditor] 검토·편집", () => {
     );
     fireEvent.click(dialog.getByRole("button", { name: "삭제" }));
     expect(
-      await screen.findByRole("heading", { name: "학교별 내신 대비" }),
+      await screen.findByRole("heading", { name: "문제 보관함" }),
     ).toBeVisible();
     expect(
       screen.queryByText("협력의 가치 · 외부지문 기본 훈련"),
@@ -307,7 +307,7 @@ describe("[EnglishEditor] 검토·편집", () => {
     ).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "목록" }));
     expect(
-      await screen.findByRole("heading", { name: "학교별 내신 대비" }),
+      await screen.findByRole("heading", { name: "문제 보관함" }),
     ).toBeVisible();
   });
 });

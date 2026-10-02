@@ -34,12 +34,26 @@ describe("getSessionUser — isAdmin", () => {
       isSuperAdmin: false,
       branchId: null,
       branchRole: null,
+      menus: [],
     });
   });
 
   it("관리자가 아니면 false", async () => {
     mocks.auth.mockResolvedValue({ user: { ...base, isAdmin: false } });
     expect((await getSessionUser())?.isAdmin).toBe(false);
+  });
+
+  it("passes current English grants to route handlers and expands legacy grants", async () => {
+    mocks.auth.mockResolvedValue({ user: { ...base, menus: ["english"] } });
+    expect((await getSessionUser())?.menus).toEqual([
+      "english-school",
+      "english-maker",
+      "english-library",
+    ]);
+    mocks.auth.mockResolvedValue({
+      user: { ...base, menus: ["english-library"] },
+    });
+    expect((await getSessionUser())?.menus).toEqual(["english-library"]);
   });
 
   it("🔴 표시가 없거나 boolean true 가 아니면 false — 세션 모양 하나 틀린 날 전원이 관리자가 되지 않게", async () => {

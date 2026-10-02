@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   WORKSPACE_MENUS,
+  normalizeWorkspaceMenus,
   type AccountAccess,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
@@ -77,9 +78,9 @@ export function useWorkspaceAccess(
           access.menus.includes("bank")
         )
           return deny("/review");
-        const menus = [...new Set(access.menus)].filter(
+        const menus = normalizeWorkspaceMenus(access.menus).filter(
           (menu) =>
-            ALL_MENUS.includes(menu) &&
+            ALL_MENUS.some((item) => item === menu) &&
             (access.isAdmin || access.role !== "reviewer"),
         );
         const user = {
@@ -123,5 +124,8 @@ export function useWorkspaceAccess(
 
   return snapshot?.source === source
     ? { currentUser: snapshot.user, allowedMenus: snapshot.menus }
-    : { currentUser, allowedMenus: allowedMenus ?? ALL_MENUS };
+    : {
+        currentUser,
+        allowedMenus: normalizeWorkspaceMenus(allowedMenus ?? ALL_MENUS),
+      };
 }

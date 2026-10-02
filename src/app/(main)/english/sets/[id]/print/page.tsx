@@ -4,7 +4,7 @@
  *
  * 서버 컴포넌트 · **크롬 없음** — `EnglishPrintClient` 하나만 그린다(작업실 CSS 의 `@page { margin: 14mm }` 이
  * 같은 창에 실리면 지면 여백이 뒤바뀐다 — 보고서 english-print §5). 관문은 `accountRouteAccess.ts` 가
- * `/english` → `english` 메뉴로 잠갔다(25 §3 — `/api` 밖 경로는 기본 통과라 여기 적지 않으면 메뉴 꺼진 계정도 연다).
+ * `/english` → `english-library` 메뉴로 잠그고 페이지에서도 다시 확인한다.
  *
  * 세션 없음 → `/login` · 세트 없음·부모 시험 범위 밖 → 404(`requireOwnedEnglishExam` — 지점 관리자는 지점 전체,
  * 강사는 자기 것 · D-130). 크롬 없는 지면이라 403 화면이 따로 없다 — 범위 밖도 «없다»로 답한다.
@@ -24,6 +24,7 @@ import { db } from "@/lib/db";
 import { serializeEnglishSet } from "@/lib/english/serialize";
 import { requireOwnedEnglishExam } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
+import { englishRouteAllowed } from "@/lib/accountRouteAccess";
 
 export const metadata = { title: "오늘의 영어 · 인쇄" };
 
@@ -49,6 +50,15 @@ export default async function EnglishSetPrintPage({
     searchParams,
   ]);
   if (!session) redirect("/login");
+  if (
+    !session.isAdmin &&
+    !englishRouteAllowed(
+      session.menus ?? [],
+      "GET",
+      `/english/sets/${routeParams.id}/print`,
+    )
+  )
+    notFound();
 
   const parsed = idParamSchema.safeParse(routeParams);
   if (!parsed.success) notFound();

@@ -52,11 +52,24 @@ const BRANCH_A = "30000000-0000-4000-8000-00000000000a";
 const BRANCH_B = "30000000-0000-4000-8000-00000000000b";
 
 const OWNER = {
+  menus: ["english"],
   id: OWNER_ID,
   email: "owner@example.com",
   name: "김원장",
   isAdmin: false,
 };
+
+it("denies direct print page access without library permission before reading a set", async () => {
+  mocks.setFindUnique.mockClear();
+  mocks.session.mockResolvedValue({ ...OWNER, menus: ["english-maker"] });
+  await expect(
+    EnglishSetPrintPage({
+      params: Promise.resolve({ id: SET_ID }),
+      searchParams: Promise.resolve({}),
+    }),
+  ).rejects.toThrow("NOT_FOUND");
+  expect(mocks.setFindUnique).not.toHaveBeenCalled();
+});
 
 const now = new Date("2026-09-30T00:00:00.000Z");
 const setRow = {

@@ -35,7 +35,7 @@ export default function EnglishLibraryView({
   sets: Load<EnglishSetSummary[]>;
   onRefresh: () => void;
   onOpen: (id: string) => void;
-  onMake: () => void;
+  onMake?: () => void;
 }) {
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<"all" | EnglishSetSummary["status"]>(
@@ -105,11 +105,17 @@ export default function EnglishLibraryView({
         ) : sets.data.length === 0 ? (
           <div className={s.empty}>
             <h2>아직 만든 문제 세트가 없습니다.</h2>
-            <p>자료를 등록하고 학교에 맞는 문제를 만들어 보세요.</p>
-            <button type="button" className={w.primaryButton} onClick={onMake}>
-              문제 만들기
-              <Icon name="arrow" size={18} />
-            </button>
+            {onMake && <p>자료를 등록하고 학교에 맞는 문제를 만들어 보세요.</p>}
+            {onMake && (
+              <button
+                type="button"
+                className={w.primaryButton}
+                onClick={onMake}
+              >
+                문제 만들기
+                <Icon name="arrow" size={18} />
+              </button>
+            )}
           </div>
         ) : filtered.length === 0 ? (
           <p className={s.footnote}>조건에 맞는 문제 세트가 없습니다.</p>

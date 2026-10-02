@@ -973,6 +973,78 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
   const ENGLISH_NAV = ["학교별 내신 대비", "문제 만들기", "문제 보관함"];
   const SET_ID = "73000000-0000-4000-8000-000000000001";
 
+  it.each([
+    ["english-school", "english", "학교별 내신 대비"],
+    ["english-maker", "english-maker", "문제 만들기"],
+    ["english-library", "english-library", "문제 보관함"],
+  ] as const)(
+    "opens only the allowed English menu %s even from a forbidden hash",
+    async (menu, view, label) => {
+      window.history.replaceState(null, "", "/#english");
+      render(
+        <UnifiedWorkspace initialData={initialData} allowedMenus={[menu]} />,
+      );
+      expect(await screen.findByTestId("english-view")).toHaveTextContent(view);
+      const nav = within(
+        screen.getByRole("navigation", { name: "작업실 메뉴" }),
+      );
+      expect(nav.getAllByRole("button")).toHaveLength(1);
+      expect(nav.getByRole("button", { name: label })).toHaveAttribute(
+        "aria-current",
+        "page",
+      );
+      if (menu !== "english-school")
+        expect(
+          screen.queryByRole("button", { name: "새 시험 등록" }),
+        ).not.toBeInTheDocument();
+    },
+  );
+
+  it("switches products to the first allowed English view", async () => {
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "english-maker"]}
+      />,
+    );
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    expect(await screen.findByTestId("english-view")).toHaveTextContent(
+      "english-maker",
+    );
+    expect(window.location.hash).toBe("#english-maker");
+  });
+
+  it("does not send a set deep link without library access and removes a revoked view", async () => {
+    window.history.replaceState(null, "", `/?set=${SET_ID}#english-library`);
+    const { rerender } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-library", "english-maker"]}
+      />,
+    );
+    expect(await screen.findByTestId("english-open-set")).toHaveTextContent(
+      SET_ID,
+    );
+    rerender(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-maker"]}
+      />,
+    );
+    await waitFor(() =>
+      expect(screen.getByTestId("english-view")).toHaveTextContent(
+        "english-maker",
+      ),
+    );
+    expect(screen.getByTestId("english-open-set")).toBeEmptyDOMElement();
+    expect(
+      within(
+        screen.getByRole("navigation", { name: "작업실 메뉴" }),
+      ).queryByRole("button", { name: "문제 보관함" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("제품 목록은 권한 있는 제품만 — 영어 메뉴가 없으면 지금 모습 그대로(▾ 없음 · 목록 없음)", () => {
     const { unmount } = render(
       <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
@@ -1166,7 +1238,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(window.location.search).toBe(`?set=${SET_ID}`);
     fireEvent.click(screen.getByRole("button", { name: "세트 열림 알림" }));
     expect(window.location.search).toBe("");
-    expect(window.location.hash).toBe("#english");
+    expect(window.location.hash).toBe("#english-library");
   });
 
   it("?set= 은 해시가 없어도 영어 뷰를 열고, 모양이 틀리면 넘기지 않는다", async () => {
@@ -1177,7 +1249,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(await screen.findByTestId("english-open-set")).toHaveTextContent(
       SET_ID,
     );
-    expect(window.location.hash).toBe("#english");
+    expect(window.location.hash).toBe("#english-library");
     unmount();
     mocks.englishMount.mockClear();
 

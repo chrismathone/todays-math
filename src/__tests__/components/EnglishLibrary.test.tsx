@@ -116,7 +116,7 @@ describe("[EnglishLibrary] 문제 보관함", () => {
   it("행을 누르면 «학교별 내신 대비» 뷰의 편집 화면으로 간다", async () => {
     await openLibrary();
     fireEvent.click(screen.getByRole("button", { name: /원문 복원 연습/ }));
-    expect(currentView()).toBe("english");
+    expect(currentView()).toBe("english-library");
     expect(
       await screen.findByRole("textbox", { name: "세트 이름" }),
     ).toHaveValue("원문 복원 연습");

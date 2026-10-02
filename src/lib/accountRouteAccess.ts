@@ -1,10 +1,39 @@
-import type {
-  AccountAccess,
-  WorkspaceMenu,
+import {
+  normalizeWorkspaceMenus,
+  type AccountAccess,
+  type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
 
 const under = (path: string, base: string) =>
   path === base || path.startsWith(`${base}/`);
+
+/** 공통 목록 읽기와 각 메뉴의 전용 쓰기를 구분한다. 알 수 없는 영어 경로는 거절한다. */
+export function englishRouteAllowed(
+  menus: readonly WorkspaceMenu[],
+  method: string,
+  path: string,
+): boolean {
+  const allowed = normalizeWorkspaceMenus(menus);
+  const school = allowed.includes("english-school");
+  const maker = allowed.includes("english-maker");
+  const library = allowed.includes("english-library");
+  const read = method === "GET" || method === "HEAD";
+  if (/^\/english\/sets\/[^/]+\/print$/.test(path)) return read && library;
+  if (path === "/api/english/generate") return method === "POST" && maker;
+  if (path === "/api/english/exams")
+    return read ? school || maker || library : method === "POST" && school;
+  if (/^\/api\/english\/exams\/[^/]+$/.test(path))
+    return (method === "PATCH" || method === "DELETE") && school;
+  if (/^\/api\/english\/exams\/[^/]+\/materials$/.test(path))
+    return read ? school || maker : method === "POST" && school;
+  if (/^\/api\/english\/materials\/[^/]+$/.test(path))
+    return read ? school || maker : method === "DELETE" && school;
+  if (/^\/api\/english\/exams\/[^/]+\/sets$/.test(path))
+    return read ? school || maker || library : method === "POST" && maker;
+  if (/^\/api\/english\/sets\/[^/]+$/.test(path))
+    return (read || method === "PUT" || method === "DELETE") && library;
+  return false;
+}
 export function accountRouteAllowed(
   account: AccountAccess,
   method: string,
@@ -102,7 +131,7 @@ export function accountRouteAllowed(
   // 오늘의 영어(D-148) — 자료·세트·생성 API 와 크롬 없는 인쇄 페이지(`/english/sets/{id}/print`) 둘 다.
   // `/api` 밖 경로는 아래에서 기본 통과라, 인쇄 페이지를 여기 적지 않으면 메뉴를 끈 계정도 연다.
   if (under(path, "/api/english") || under(path, "/english"))
-    return any("english");
+    return englishRouteAllowed(account.menus, method, path);
   // 개념 백지(D-150) — 크롬 없는 인쇄 페이지(`/concept-blank/print`). API 는 없다(은행이 코드 데이터).
   // `/api` 밖 경로는 아래에서 기본 통과라, 여기 적지 않으면 메뉴를 끈 계정도 인쇄 페이지를 연다.
   if (under(path, "/concept-blank")) return any("conceptBlank");
