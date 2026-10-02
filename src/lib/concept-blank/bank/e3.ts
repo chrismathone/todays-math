@@ -1239,8 +1239,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "세로 나눗셈에서 몫은 {위쪽}, 나누는 수는 {왼쪽}에 적는다.",
       example: {
-        prompt: "$96\\div3$을 계산하시오.",
-        answer: "$32$",
+        prompt: "$84\\div4$를 세로로 쓸 때 가로줄 위쪽에 적는 것은 무엇인가?",
+        answer: "몫",
       },
     },
     {
@@ -1268,8 +1268,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "십의 묶음을 나누고 남은 것은 {낱개}로 바꾸어 일의 자리와 함께 나눈다.",
       example: {
-        prompt: "$84\\div7$을 계산하시오.",
-        answer: "$12$",
+        prompt:
+          "$52\\div4$에서 십의 묶음 $5$개를 $4$로 나누고 남은 $1$개는 낱개 몇 개로 바꾸는가?",
+        answer: "$10$개",
       },
     },
     {
@@ -1298,8 +1299,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "같은 수씩 더는 나눌 수 없을 때 마지막으로 {남은 수}가 나머지이다.",
       example: {
-        prompt: "$47\\div6$의 몫과 나머지를 쓰시오.",
-        answer: "몫 $7$, 나머지 $5$",
+        prompt: "$20$을 $6$으로 나누면 몫이 $3$이다. 나머지를 쓰시오.",
+        answer: "$2$",
       },
     },
     {
@@ -1346,8 +1347,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "윗자리에서 나누고 남은 수에 다음 자리의 숫자를 {내려 붙여} 계속 나눈다.",
       example: {
-        prompt: "$725\\div4$의 몫과 나머지를 쓰시오.",
-        answer: "몫 $181$, 나머지 $1$",
+        prompt:
+          "$532\\div4$에서 백의 자리를 나누고 남은 $1$에 다음 자리 숫자를 내려 붙여 만든 수를 쓰시오.",
+        answer: "$13$",
       },
     },
     {
@@ -1357,7 +1359,7 @@ export const bank: ConceptBlankBank = {
       term: "몫의 가운데 $0$",
       kind: "방법",
       definition:
-        "몫을 쓰기 시작한 뒤에 어느 자리에서 나눌 수가 나누는 수보다 작으면 몫의 그 자리에 {$0$}을 쓴다.",
+        "몫을 쓰기 시작한 뒤에 어느 자리에서 {나눌 수가 나누는 수보다 작으면} 몫의 그 자리에 $0$을 쓴다.",
     },
     {
       id: "e3-2-2-4-c3",
