@@ -617,12 +617,6 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     screen.getByRole("button", { name: /내 시험지에 저장|저장됨|저장 중/ });
 
   it("지점 계정은 공개 확인 전에는 저장하지 않고 기본 비공개를 유지하며 공개 철회도 저장한다", async () => {
-    Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
-      configurable: true,
-      value: function (this: HTMLDialogElement) {
-        this.setAttribute("open", "");
-      },
-    });
     const { puts } = cloud();
     render(
       <ConceptBlankView
@@ -662,7 +656,6 @@ describe("내 시험지에 저장 · 다시 열기", () => {
       visibility: "private",
       sharedBranchId: null,
     });
-    Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
   });
 
   it("내 시험지가 없으면(계정 범위 없음) 저장 단추가 없다", () => {
