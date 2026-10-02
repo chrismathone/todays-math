@@ -170,7 +170,7 @@ export const accountUpdateSchema = z
   .strictObject({
     approvalStatus: approvalStatusSchema.optional(),
     isAdmin: z.boolean().optional(),
-    branchId: z.uuid().optional(),
+    branchId: z.uuid().nullable().optional(),
     branchRole: z.enum(["owner", "manager", "teacher"]).optional(),
     name: z.string().trim().min(1).max(50).optional(),
     email: z

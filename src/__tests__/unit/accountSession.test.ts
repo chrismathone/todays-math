@@ -47,6 +47,31 @@ beforeEach(() => {
   mocks.findUnique.mockResolvedValue(user);
 });
 describe("existing session access refresh", () => {
+  it.each([null, "branch-b"])(
+    "invalidates the old session after membership changes to %s",
+    async (branchId) => {
+      mocks.findUnique.mockResolvedValue({
+        ...user,
+        branchId,
+        branchRole: branchId ? "teacher" : null,
+        sessionVersion: 2,
+      });
+      expect(
+        await mocks.configuration.value.callbacks.jwt({
+          token: { id: "u1", branchId: "branch-a", sessionVersion: 1 },
+        }),
+      ).toBeNull();
+      expect(
+        await mocks.configuration.value.callbacks.jwt({
+          token: { id: "u1", sessionVersion: 2 },
+        }),
+      ).toMatchObject({
+        branchId,
+        branchRole: branchId ? "teacher" : null,
+        isAdmin: false,
+      });
+    },
+  );
   it("keeps legacy English denials and immediately applies individual menu revocation", async () => {
     mocks.findUnique.mockResolvedValue({ ...user, disabledMenus: ["english"] });
     const blocked = await mocks.configuration.value.callbacks.jwt({
