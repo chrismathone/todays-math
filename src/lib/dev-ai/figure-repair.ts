@@ -246,7 +246,7 @@ function withoutCanvas(spec: DevAiFigureSpec): DevAiFigureSpec {
  */
 function editRecord(
   spec: DevAiFigureSpec,
-  key: "dimensions" | "angles" | "labels" | "segments" | "points",
+  key: "dimensions" | "angles" | "labels" | "segments" | "arcs" | "points",
   name: string,
   edit: (item: unknown) => unknown | null | undefined,
 ): DevAiFigureSpec | undefined {
