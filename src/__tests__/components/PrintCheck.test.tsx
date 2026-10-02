@@ -218,7 +218,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     안 올려 main 이 92 ≠ 93 으로 빨갰고, 영어 93 과 따로 갈라져 병합에서 겹쳤다 — 2026-10-02 리드가 맞춤).
     // 95: concept-blank-review-key-notes 추가 (2026-10-02 전수 검토 반영 — 채점 안내 문구 · 그림 속 한 글자 단위).
     // 96: concept-blank-review-terms 추가 (2026-10-03 전수 검토 반영 — 용어 칸에 조건을 실어 용어가 길어졌다).
-    expect(ITEMS.length).toBe(96);
+    // 97: concept-blank-havruta-apply 추가 (2026-10-03 «개념을 묻는다» — «나» 머리말 · 채점 안내 · 문장 답).
+    expect(ITEMS.length).toBe(97);
   });
 
   /**

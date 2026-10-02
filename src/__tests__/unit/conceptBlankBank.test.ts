@@ -21,6 +21,10 @@ import {
   notationFaults,
 } from "@/lib/concept-blank/notation";
 import { BLANK_SECTIONS, getBlankSection } from "@/lib/concept-blank/sections";
+import {
+  retiredCounts,
+  retiredKey,
+} from "../../../scripts/qa/concept-blank/havruta/ledger";
 
 const PART_GRADES: Record<string, readonly string[]> = {
   e3: ["초3"],
@@ -42,6 +46,8 @@ const BASE_PARTS = Object.keys(BANK_PARTS).filter((p) => !(p in PLUS_OF));
 const PLUS_PARTS = Object.keys(PLUS_OF);
 /** 은행 3차 — 소단원마다 개념 · ○× · 적용이 난이도별 이만큼(원장님 2026-10-01 «하/중/상 10문제씩»). */
 const PER_LEVEL = 10;
+/** 까닭을 적고 빼더라도 난이도 한 칸에 남아야 하는 장수(26 §11). */
+const MIN_PER_LEVEL = 1;
 const LEVELS = ["하", "중", "상"] as const;
 const squash = (s: string) => s.replace(/\s+/g, "");
 
@@ -102,9 +108,12 @@ describe("concept blank bank", () => {
   );
 
   // 은행 3차(브리프 cb-ten) — 보강을 시작한 학년은 소단원마다 원래 + 보강이 개념 · ○× · 적용 모두 하 · 중 · 상 10개 이상.
+  // «개념을 묻는다»(26 §11 · 원장님 2026-10-03 «정말 추가할 만한 게 없으면 그렇게 해»)에서 **까닭을 적고 뺀** 자리만큼은 봐준다 —
+  // 그래도 난이도 한 칸에 MIN_PER_LEVEL 장은 남아야 한다(그보다 얇아지면 소단원을 고를 수 없는 칸이 생긴다).
   it.each(PLUS_PARTS)(
     "%s, once filled, brings every section to ten per level",
     (part) => {
+      const retired = retiredCounts(CONCEPT_BLANK_BANK);
       const plus = BANK_PARTS[part]!;
       if (everyItem(plus).length === 0) return;
       const base = BANK_PARTS[PLUS_OF[part]!]!;
@@ -121,7 +130,10 @@ describe("concept blank bank", () => {
         return (["concepts", "ox", "apply"] as const).flatMap((kind) =>
           LEVELS.flatMap((level) => {
             const n = stock[kind].filter((x) => x.level === level).length;
-            return n < PER_LEVEL ? [`${s.key} ${kind} ${level} ${n}`] : [];
+            const gone = retired.get(retiredKey(s.key, kind, level)) ?? 0;
+            return n + gone < PER_LEVEL || n < MIN_PER_LEVEL
+              ? [`${s.key} ${kind} ${level} ${n}${gone ? ` (뺀 것 ${gone})` : ""}`]
+              : [];
           }),
         );
       });

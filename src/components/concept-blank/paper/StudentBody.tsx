@@ -177,7 +177,7 @@ function ClozeBody({
       {apply.length ? (
         <>
           <div className={styles.part}>
-            <span>나</span>방금 쓴 뜻으로 풀어 보시오.
+            <span>나</span>방금 쓴 뜻으로 답하고, 까닭을 쓰시오.
           </div>
           <div className={styles.apply}>
             {apply.map((b) => (

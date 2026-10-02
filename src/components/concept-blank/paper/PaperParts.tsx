@@ -114,7 +114,7 @@ export const FORM_FACE = {
   cloze: {
     label: "CONCEPT RECALL",
     prefix: "개념 백지",
-    goal: "뜻 문장에서 빠진 말을 채우고, 방금 쓴 뜻으로 풀어 본다.",
+    goal: "뜻 문장에서 빠진 말을 채우고, 방금 쓴 뜻으로 까닭을 설명한다.",
   },
   map: {
     label: "CONCEPT MAP",

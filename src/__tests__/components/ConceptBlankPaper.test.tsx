@@ -212,7 +212,8 @@ describe("ConceptBlankPaper — 형식 다섯", () => {
     expect(document.querySelectorAll('[data-cb-item="apply"]')).toHaveLength(
       cloze.apply.length,
     );
-    expect(screen.getByText("방금 쓴 뜻으로 풀어 보시오.")).toBeTruthy();
+    // 적용은 값을 구하는 칸이 아니라 설명하는 칸이다(26 §11 — «풀어 보시오»는 계산하라는 말로 읽힌다)
+    expect(screen.getByText("방금 쓴 뜻으로 답하고, 까닭을 쓰시오.")).toBeTruthy();
   });
 
   it("빈칸 길이는 핵심어 글자 수에 비례한다", () => {
