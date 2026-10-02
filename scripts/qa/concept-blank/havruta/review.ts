@@ -75,8 +75,8 @@ for (const row of now) {
   const old = before[row.id];
   const was = old ? textOf(old.type, old) : null;
   const head = `${row.id} [${LABEL[row.type]} ${row.level}]`;
-  if (was !== null && was !== row.text)
-    changed.push(`- ${head}\n  - 전: ${was}\n  - 후: ${row.text}`);
+  // 요청서가 25KB 를 넘으면 답이 느려지고 시간을 넘긴다 — 고치기 전 글은 싣지 않는다(검토자가 볼 것은 지금 글이다).
+  if (was !== null && was !== row.text) changed.push(`- ${head} ${row.text}`);
   else kept.push(`- ${head} ${row.text}`);
 }
 const alive = new Set(now.map((r) => r.id));
@@ -84,7 +84,8 @@ const gone = ledger.rows
   .filter((r) => r.at.section === section && !alive.has(r.id))
   .map((r) => {
     const old = before[r.id];
-    return `- ${r.id} [${LABEL[r.at.type]} ${r.at.level}] ${old ? textOf(old.type, old) : ""}\n  - 뺀 까닭: ${r.gone ?? "(안 적음)"}`;
+    const was = old ? textOf(old.type, old) : "";
+    return `- ${r.id} [${LABEL[r.at.type]} ${r.at.level}] ${was.length > 110 ? `${was.slice(0, 110)}…` : was} — 뺀 까닭: ${r.gone ?? "(안 적음)"}`;
   });
 
 const brief = `# 검산 요청 — «개념 백지» 한 소단원의 고친 문항
@@ -99,7 +100,7 @@ const brief = `# 검산 요청 — «개념 백지» 한 소단원의 고친 문
 - **○×**: 학생은 ○ / × 에 표시하고 **까닭을 쓴다**. 표시와 까닭이 둘 다 맞아야 정답이다.
 - **적용**: «방금 쓴 뜻으로 답하고, 까닭을 쓰시오» 칸. 채점은 «결론과 까닭이 다 있어야 ○ — 말이 달라도 뜻이 같으면 된다».
 
-아래 소단원의 계산형 문항을 작업자가 개념을 묻는 물음으로 다시 썼다(전 → 후). 글자 상한: 용어 40 · 뜻 160 · ○× 문장과 까닭 120 · 적용 물음 120 · 답 80 · 예 물음 80 · 예 답 60(수식은 \`$…$\`).
+아래 소단원의 계산형 문항을 작업자가 개념을 묻는 물음으로 다시 썼다. 글자 상한: 용어 40 · 뜻 160 · ○× 문장과 까닭 120 · 적용 물음 120 · 답 80 · 예 물음 80 · 예 답 60(수식은 \`$…$\`).
 
 ## 판정 기준
 
@@ -111,7 +112,7 @@ const brief = `# 검산 요청 — «개념 백지» 한 소단원의 고친 문
 
 ## 할 일
 
-**«후»의 글과 «그대로 둔 문항»을 문항마다 읽고**, 아래에 해당하는 것만 적어라(해당 없으면 적지 않는다 — 칭찬 · 요약은 쓰지 않는다):
+**«다시 쓴 문항»과 «그대로 둔 문항»을 문항마다 읽고**, 아래에 해당하는 것만 적어라(해당 없으면 적지 않는다 — 칭찬 · 요약은 쓰지 않는다):
 
 \`- <id> · <갈래> · 무엇이 문제인가(반례 · 계산을 한 줄로) · 고칠 글\`
 
@@ -122,7 +123,7 @@ const brief = `# 검산 요청 — «개념 백지» 한 소단원의 고친 문
 
 ${section}
 
-### 고친 문항 — 전 → 후 (${changed.length})
+### 다시 쓴 문항 (${changed.length})
 
 ${changed.join("\n") || "(없음)"}
 
