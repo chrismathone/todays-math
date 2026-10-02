@@ -58,6 +58,48 @@ function setup(exam = false) {
 }
 
 describe("server-clock attempt transitions", () => {
+  it("records release at initial-answer save and reports known exposure separately", () => {
+    const { publication, assignment, started, context, answer } = setup(true);
+    assignment.releasePolicy = { kind: "at_time", at: context.now };
+    const saved = transitionListeningAttempt(
+      publication,
+      assignment,
+      started,
+      answer,
+      context,
+    );
+    expect(saved.firstAnswers[0].savedAfterRelease).toBe(true);
+    expect(
+      gradeListeningAnswers(publication, saved.firstAnswers),
+    ).toMatchObject({ savedAfterRelease: 1, releaseStatusUnknown: 0 });
+    const hidden = setup();
+    const unexposed = transitionListeningAttempt(
+      hidden.publication,
+      hidden.assignment,
+      hidden.started,
+      hidden.answer,
+      hidden.context,
+    );
+    expect(unexposed.firstAnswers[0].savedAfterRelease).toBe(false);
+    const legacyAnswer = {
+      questionId: saved.firstAnswers[0].questionId,
+      choiceId: saved.firstAnswers[0].choiceId,
+      savedAt: saved.firstAnswers[0].savedAt,
+    };
+    expect(gradeListeningAnswers(publication, [legacyAnswer])).toMatchObject({
+      savedAfterRelease: 0,
+      releaseStatusUnknown: 1,
+    });
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        assignment,
+        started,
+        { ...answer, savedAfterRelease: false },
+        context,
+      ),
+    ).toThrow();
+  });
   it("records administrative cancellation after assignment revocation while denying answer writes", () => {
     const { publication, assignment, started, context, answer } = setup();
     const revoked = { ...assignment, cancelledAt: context.now };

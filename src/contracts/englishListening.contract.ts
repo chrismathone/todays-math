@@ -231,6 +231,9 @@ export const listeningAnswerSchema = z.strictObject({
   questionId: id,
   choiceId: id,
   savedAt: time,
+  /** Server-computed disclosure in this assignment at save time; absent older data is unknown.
+   * False does not prove the student has never encountered this material elsewhere. */
+  savedAfterRelease: z.boolean().optional(),
 });
 export type ListeningAnswer = z.infer<typeof listeningAnswerSchema>;
 export const listeningInterruptionReasonSchema = z.enum([

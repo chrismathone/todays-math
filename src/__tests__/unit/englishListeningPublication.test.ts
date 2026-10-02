@@ -21,6 +21,14 @@ function publish(document = englishListeningFixture()) {
 }
 
 describe("review-bound immutable publication", () => {
+  it("requires rights and provenance confirmation before content/audio/alignment reviews", () => {
+    const draft = englishListeningFixture();
+    draft.rightsReview!.basis = "권리 확인 근거 변경";
+    expect(() => publish(draft)).toThrow(/stale review/i);
+    const source = englishListeningFixture();
+    source.provenance.basis = "출처 확인 변경";
+    expect(() => publish(source)).toThrow(/stale review/i);
+  });
   it("snapshots fixed question/choice order and recursively freezes an independent copy", () => {
     const draft = englishListeningFixture();
     const publication = publish(draft);

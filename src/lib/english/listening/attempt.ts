@@ -241,6 +241,19 @@ export function transitionListeningAttempt(
             questionId: command.questionId,
             choiceId: command.choiceId,
             savedAt: context.now,
+            savedAfterRelease: decideListeningRelease(
+              publication,
+              assignment,
+              attempt,
+              {
+                now: context.now,
+                studentId: attempt.studentId,
+                manualRelease: context.manualRelease,
+                releaseHistory: context.releaseHistory,
+              },
+            ).some(
+              (release) => release.groupId === group!.id && release.released,
+            ),
           });
         } else {
           const releases = decideListeningRelease(
@@ -271,6 +284,7 @@ export function transitionListeningAttempt(
               questionId: command.questionId,
               choiceId: command.choiceId,
               savedAt: context.now,
+              savedAfterRelease: true,
             },
           ];
         }
@@ -347,6 +361,12 @@ export function gradeListeningAnswers(
     correct: items.filter((item) => item.result === "correct").length,
     incorrect: items.filter((item) => item.result === "incorrect").length,
     unanswered: items.filter((item) => item.result === "unanswered").length,
+    savedAfterRelease: answers.filter(
+      (answer) => answer.savedAfterRelease === true,
+    ).length,
+    releaseStatusUnknown: answers.filter(
+      (answer) => answer.savedAfterRelease === undefined,
+    ).length,
     items,
   });
 }
