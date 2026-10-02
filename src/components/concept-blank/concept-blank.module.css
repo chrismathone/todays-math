@@ -555,8 +555,7 @@ button.secondaryButton:disabled {
 }
 .formTable {
   width: 100%;
-  min-width: 740px;
-  table-layout: fixed;
+  min-width: 1200px;
   border-collapse: collapse;
 }
 .formTable th,
@@ -564,14 +563,14 @@ button.secondaryButton:disabled {
   padding: 10px;
   border-right: 1px solid var(--b-line);
   border-bottom: 1px solid var(--b-line);
-  vertical-align: top;
+  vertical-align: middle;
 }
 .formTable thead tr:first-child > th:first-child,
 .formTable tbody th {
-  width: 58px;
+  width: 64px;
   text-align: center;
   vertical-align: middle;
-  font-size: 12px;
+  font-size: 15px;
   white-space: nowrap;
 }
 .formTable th:last-child,
@@ -595,60 +594,78 @@ button.secondaryButton:disabled {
 .tableColumnTitle {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: 32px;
+  gap: 8px;
+  min-height: 44px;
 }
 .tableColumnTitle h3 {
   margin: 0;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 1.5;
-  word-break: keep-all;
+  white-space: nowrap;
 }
 .formTable .letter {
-  width: 22px;
-  height: 22px;
-  font-size: 12px;
+  width: 26px;
+  height: 26px;
+  font-size: 14px;
 }
 .formTable .switch {
-  display: flex;
-  margin: 2px auto 0;
+  flex-shrink: 0;
+  margin: 0 0 0 auto;
 }
 .tableHint {
   color: var(--b-muted);
-  font-size: 12px;
+  font-size: 14px;
   margin-left: auto;
 }
+.tableReasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 20px;
+  margin-top: 10px;
+}
 .tableReason {
-  margin: 4px 0 0;
-  font-size: 11px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0;
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 400;
   color: var(--learn-warning, #8a5a06);
 }
 .formTable .tableSubheads th {
   color: var(--b-muted);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   text-align: center;
-  padding-block: 6px;
+  padding-block: 8px;
 }
 .tableField .levelField {
-  gap: 4px;
+  display: grid;
+  grid-template-columns: 72px 5ch;
+  gap: 8px;
   justify-content: center;
+  font-size: 14px;
 }
 .tableField input {
-  max-width: 66px;
-  min-height: 36px;
-  padding: 0 5px;
-  font-size: 13px;
+  width: 72px;
+  max-width: none;
+  min-height: 40px;
+  padding: 0 8px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
 }
 .tableField .levelMax {
-  font-size: 11px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
 }
 .formGuide {
   margin-top: 12px;
   color: var(--b-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .formGuide summary {
   cursor: pointer;
