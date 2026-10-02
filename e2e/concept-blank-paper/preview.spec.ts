@@ -70,13 +70,16 @@ test("페이지 수와 무관한 축소, 내부 스크롤과 확대 페이지 �
   const widths = await pages.evaluateAll((nodes) =>
     nodes.map((el) => el.getBoundingClientRect().width),
   );
-  expect(widths.every((width) => width > 450 && width < 465)).toBeTruthy();
+  // 미리보기는 가로 띠다(`13db4fca1` — 배율 0.46 · A4 794px → 365px). 쪽이 늘어도 배율은 그대로이고 옆으로만 넘긴다.
+  expect(widths.every((width) => width > 360 && width < 370)).toBeTruthy();
   const initial = await desk.evaluate((el) => ({
+    width: el.clientWidth,
+    content: el.scrollWidth,
     height: el.clientHeight,
-    content: el.scrollHeight,
+    tall: el.scrollHeight,
   }));
-  expect(initial.height).toBeLessThanOrEqual(612);
-  expect(initial.content).toBeGreaterThan(initial.height);
+  expect(initial.content).toBeGreaterThan(initial.width);
+  expect(initial.tall).toBeLessThanOrEqual(initial.height + 1);
   await expect(desk.locator("..").locator('[data-visible="true"]')).toHaveCount(
     1,
   );
@@ -118,10 +121,17 @@ test("페이지 수와 무관한 축소, 내부 스크롤과 확대 페이지 �
     path: "test-results/concept-blank-paper/preview-desktop.png",
   });
 
+  // 좁은 화면 — 한 쪽이 띠의 폭 안에 다 들어오게 줄고(좌우 16px), 띠 밖으로 화면이 옆으로 밀리지 않는다.
   await page.setViewportSize({ width: 390, height: 844 });
   await expect
     .poll(async () =>
-      desk.evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
+      desk.evaluate(
+        (el) =>
+          el.querySelector("[data-print-page]")!.getBoundingClientRect()
+            .width <=
+            el.clientWidth - 32 + 1 &&
+          document.documentElement.scrollWidth <= window.innerWidth + 1,
+      ),
     )
     .toBe(true);
   await opener.click();

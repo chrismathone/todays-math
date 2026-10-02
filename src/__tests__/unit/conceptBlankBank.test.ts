@@ -3,6 +3,7 @@
  * 꼴(계약) · 열쇠가 교육과정에 있나 · 파일이 제 학년만 담나 · id 겹침 · 핵심어 · 그림 이름표 자리.
  */
 import { describe, expect, it } from "vitest";
+import { BLANK_WIDTH, inkEm } from "@/components/concept-blank/paper/text";
 import {
   blankKeywords,
   conceptBlankBankSchema,
@@ -49,6 +50,14 @@ const PER_LEVEL = 10;
 /** 까닭을 적고 빼더라도 난이도 한 칸에 남아야 하는 장수(26 §11). */
 const MIN_PER_LEVEL = 1;
 const LEVELS = ["하", "중", "상"] as const;
+/** 예의 답이 D 지면 빈칸보다 넓은 채 남은 것 — 그 학년 트랙(cb-havruta)이 줄이면서 지운다. 새로 넣지 않는다. */
+const KNOWN_WIDE_EXAMPLES: readonly string[] = [
+  "e3-1-1-2-c1",
+  "e3-1-2-4-c1",
+  "e3-1-2-5-c1",
+  "m1-04-03-xc9",
+  "m1-04-03-xc20",
+];
 const squash = (s: string) => s.replace(/\s+/g, "");
 
 const everyItem = (b = CONCEPT_BLANK_BANK) => [
@@ -272,6 +281,17 @@ describe("concept blank bank", () => {
       (c) => `${c.id} «${c.example!.prompt}»`,
     );
     expect(hits.slice(0, 20), `가리킴말 ${hits.length}건`).toEqual([]);
+  });
+
+  // 개념 지도(D)는 예 물음 뒤에 빈칸 하나만 준다 — 빈칸은 답의 보이는 폭만큼이고 `BLANK_WIDTH.max` 에서 잘린다.
+  // 답이 그보다 넓으면 손으로 쓸 자리가 없다(2026-10-03 — 예의 답을 «…때문이다» 문장으로 쓰다가 드러났다 · 26 §11).
+  it("every map example answer fits the blank the sheet gives it", () => {
+    const { perEm, pad, max } = BLANK_WIDTH;
+    const wide = CONCEPT_BLANK_BANK.concepts
+      .filter((c) => c.example && inkEm(c.example.answer) * perEm + pad > max)
+      .map((c) => c.id);
+    // 넘는 것은 이 자를 세우기 전부터 넘던 것뿐이다 — 줄였는데 목록에 남아 있어도 빨갛다(목록은 줄기만 한다).
+    expect(wide.sort()).toEqual([...KNOWN_WIDE_EXAMPLES].sort());
   });
 
   it("the cross-form ruler says both yes and no", () => {
