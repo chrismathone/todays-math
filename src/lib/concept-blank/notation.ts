@@ -26,6 +26,12 @@ export type NotationFault = {
 /** 수식 밖에 있으면 안 되는 유니코드 수학 글자 — 제품 표기는 `\sqrt` · `^2` · `\times` · `\angle` · `^\circ` … 다. */
 const UNICODE_MATH = /[√∛²³⁴⁵⁶⁷⁸⁹⁰¹⁻⁺ⁿπ±≤≥≠×÷−∠△□°∥⊥≡∽∞]/g;
 const stripMath = (s: string) => s.replace(/\$[^$]*\$/g, " ");
+/**
+ * 수식 안에 역슬래시 없이 남은 명령 이름 — 은행 글을 `r` 없이 보통 따옴표로 쓰면 `\,\mathrm{m}` 이 `,mathrm{m}` 이 된다.
+ * KaTeX 는 낱글자의 곱으로 읽어 오류를 내지 않고, 지면에는 `3, mathrmm` 이 찍힌다(2026-10-02 전수 검토 — `e5-1-3-3-xc28`).
+ */
+const BARE_COMMAND =
+  /(?<![\\A-Za-z])(?:mathrm|frac|times|circ|angle|overline|triangle|sqrt|square|cdot|parallel|perp|text|quad)(?![A-Za-z])/g;
 
 /** 글 한 칸의 표기 결함. 뜻 문장(`sentence`)은 핵심어 괄호를 걷어 읽는 글로 본다 — 핵심어 안의 수식은 그대로 수식이다. */
 export function notationFaults(
@@ -51,6 +57,10 @@ export function notationFaults(
         `${m[1]} — ${String((e as Error).message).slice(0, 60)}`,
       ]);
     }
+    add(
+      "역슬래시 빠진 명령",
+      (m[1]!.match(BARE_COMMAND) ?? []).map((name) => `${name} — $${m[1]}$`),
+    );
   }
   add("수식 밖 숫자", bareNumbers(text));
   add("수식 밖 기호", stripMath(text).match(UNICODE_MATH) ?? []);
