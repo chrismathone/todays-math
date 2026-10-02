@@ -7,6 +7,10 @@ import {
   uuidSchema,
 } from "./common.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
+import {
+  prerequisiteContextSchema,
+  prerequisiteTeacherEvidenceSchema,
+} from "./mathPrerequisite.contract";
 
 export const courseSectionIdSchema = z
   .string()
@@ -123,6 +127,7 @@ export const courseAttemptInputSchema = courseHintInputSchema.extend({
 export type CourseAttemptInput = z.infer<typeof courseAttemptInputSchema>;
 export const courseStudentStateSchema = z.strictObject({
   journey: mathSrsJourneySchema.optional(),
+  prerequisiteContext: prerequisiteContextSchema.optional(),
   student: z.strictObject({
     id: uuidSchema,
     name: z.string(),
@@ -139,7 +144,12 @@ export const courseStudentResponseSchema = dataResponseSchema(
   courseStudentStateSchema,
 );
 export const courseRosterStudentSchema = courseStudentStateSchema
-  .omit({ student: true, session: true, journey: true })
+  .omit({
+    student: true,
+    session: true,
+    journey: true,
+    prerequisiteContext: true,
+  })
   .extend({
     id: uuidSchema,
     name: z.string(),
@@ -200,6 +210,7 @@ export const courseRecentAttemptSchema = coursePublicAttemptSchema.extend({
 });
 export const courseStudentDetailSchema = z.strictObject({
   student: courseRosterStudentSchema,
+  prerequisite: prerequisiteTeacherEvidenceSchema.optional(),
   sections: z.array(courseSectionReportSchema),
   activity: z.array(courseActivityDaySchema),
   recentSessions: z.array(courseSessionReportSchema),
