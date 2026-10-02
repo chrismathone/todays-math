@@ -2,7 +2,7 @@
 
 검토 기준: main `6ee028522`. 대상은 `docs/planning/english-listening-plan-20261003.md`, `src/contracts/englishListening*.ts`, `src/lib/english/listening/**`, `src/__tests__/unit/englishListening*.ts`, `englishFence.test.ts`. 검토 시점에 시험 8파일 100건이 main 에서 초록이었고, 재현은 읽기 전용 probe(tsx, 소스 무변경)로 확인했다. 행 번호는 검토 시점 main 기준이다.
 
-처리 현황: **F2 와 F10 은 이 문서와 같은 트랙(`listening-l0-contract` 워크트리)에서 구현했다** — 각 절의 «처리» 항목. F1·F4 는 root 가 main `296403be1` 에 넣었다(`canReadListeningAssignment(facts, action, mediaTarget?)` · `publication.setId/audioAssetIds`). F3·F5~F8 은 root 의 release/attempt/contracts 트랙이 맡는다. F9 는 결정 대기.
+처리 현황(2026-10-03 갱신): **F2·F9·F10 은 이 문서와 같은 트랙(`listening-l0-contract` 워크트리)에서 구현했다** — 각 절의 «처리» 항목. F1·F4 는 root 가 main `296403be1` 에 넣었다(`canReadListeningAssignment(facts, action, mediaTarget?)` · `publication.setId/audioAssetIds`). F3·F5·F6·F7 은 root 가 `14eed6db7`·`33e7fde18` 로 넣었고 F8 은 «의도된 보수적 해시»로 회귀 시험을 더해 닫았다 — 읽기 검토 결과는 맨 아래 «root 수정 검토» 절. 거기서 **F3-a(교사 방송 + 전입 학생) 한 건이 root 에 남아 있다.**
 
 ## F1 · 높음 — 학생 미디어 인가에 «자산 ↔ 발행본» 묶음이 없다 (바이트 누출)
 
@@ -62,9 +62,11 @@
 
 - `publication.ts:200-212` + `239-244`. 보안 구멍은 아니고(더 엄격) 운영 함정이다. 수정: 권리 확인은 219-231행에서 따로 검사하므로 digest 에서 `rightsReview` 를 뺀다. 아니면 «권리 확인 → 검수» 순서를 문서에 적는다.
 
-## F9 · 낮음 — Range 문법 오류를 416 으로 낸다
+## F9 · 낮음 — Range 문법 오류를 416 으로 낸다 — **구현됨(정정 포함)**
 
-- `media/range.ts:6,13`, `service.ts` serve: `items=0-2`, `bytes=+1-2` → 416. RFC 9110 §14.2 는 모르는 단위·문법은 무시(200)다. 브라우저는 안 보내므로 유지해도 되지만 시험(`englishListeningMedia.test.ts` 416 묶음)이 현재 동작을 고정한다. 결정 대기.
+- 검토 시점 `media/range.ts`·`service.ts` serve: `items=0-2`, `bytes=+1-2`, `bytes=0-1,4-5` 전부 416.
+- **정정**: 검토 보고서의 «문법 오류는 무시(200)»는 부정확했다. 코디네이터가 확인한 [RFC 9110 §14.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.2) 원문은 셋을 가른다 — (1) «An origin server **MUST ignore** a Range header field that contains a range unit it does not understand», (2) «A server that supports range requests **MAY ignore or reject** a Range header field that contains an invalid ranges-specifier …, a ranges-specifier with more than two overlapping ranges, or a set of many small ranges», (3) 유효하나 만족 불가면 «**SHOULD** send a 416». §14.1: «All range unit names are case-insensitive».
+- 처리(이 트랙, `decideListeningRange`): 모르는 단위 → 무시(인가된 전체 200) · 유효한 다중 범위 → 무시(200 — multipart/byteranges 를 만들지 않으므로 전체 표현이 늘 올바른 답이고 416 은 규격대로 요청한 클라이언트를 깨뜨린다) · `bytes` 문법 오류(`bytes=`, `bytes=9-1`, `bytes=+1-2`, `bytes= 0-1`, `bytes=0-1,x-y`, `unit=` 꼴이 아닌 값) → 416 유지(거부 선택) · 만족 불가(`bytes=204-`, `bytes=-0`) → 416 · HEAD 는 Range 무시 · 단위 이름 대소문자 무시 · 빈 목록 원소 무시(§5.6.1). 무시해도 인가는 그대로다(취소 뒤 `items=0-2` → 404). 선택 근거는 `listening-media-l0.md` 의 표에 적었다.
 
 ## F10 · 낮음 — 길이 0 조각을 결함으로 읽는다 — **구현됨**
 
@@ -85,6 +87,53 @@
 - 멱등성: 키+명령 해시 묶음, 다른 본문 재사용 거절, 마감 뒤 재생 허용. 서버 시계 역행 거절, 종단 상태 고정.
 - WAV 검사 엄격(헤더·크기·정렬·길이 상한), MP3 는 신호만. 404 균일, `private, no-store`.
 - 울타리: `englishFence.test.ts` 가 리스닝 교사 계약 셋을 금지하고 학생 계약만 허용.
+
+## root 수정 검토 — F3·F5·F6·F7·F8 (main `93f81c0c6`, 읽기 전용)
+
+root 의 `14eed6db7`(assignment.ts 추가 · attempt/release 수정)·`33e7fde18`(`savedAfterRelease` · F8 회귀)을 읽고 scratchpad probe 로 돌려 봤다.
+
+| 결함 | root 의 처리 | 판정 |
+| --- | --- | --- |
+| F3 | 등호 묶음은 유지하고 `appendListeningAssignmentTargets` 가 «옛 스냅샷 + 새 개정 + 감사 행»을 돌려준다. 어댑터는 응시의 `assignmentRevision` 스냅샷을 정확히 읽는다. | 재현 해소: 옛 스냅샷으로 start·재생·투영·수동 공개 전부 OK. **단, 아래 F3-a 가 남는다.** |
+| F5 | `listeningReleaseContextSchema.studentId`(선택) — 대상 포함·응시 일치를 단언하고 이력은 그 학생에 묶는다. | 해소: 응시 없는 학생 + 이력 → `["already_released","locked"]`; 다른 학생 id → throw; id 없이 이력만 → throw. |
+| F6 | `listeningAnswerSchema.savedAfterRelease`(선택, 서버 계산). initial 은 저장 직전 공개 판정, review 는 항상 true. `gradeListeningAnswers` 가 `savedAfterRelease`·`releaseStatusUnknown` 을 따로 센다. 요청 본문의 `savedAfterRelease` 는 거절. | 해소: 연습 묶음을 완성하는 마지막 initial 답은 false(공개 전), 이력으로 열린 묶음의 재응시 initial 답은 true, 옛 데이터는 unknown 으로 셈. «false 가 앱 밖 비노출을 뜻하지 않는다»가 계약 주석에 있다. |
+| F7 | `assertListeningBinding(…, {allowCancellationTransition: command.kind === "cancel"})` — 취소 명령만 철회된 배정·취소된 응시를 지나간다. | 해소: 철회 뒤 in_progress·ready 응시 모두 cancel → cancelled, 재생 OK, 두 번째 cancel 은 종단 거절. `expire`·`interrupt`·답·읽기는 계속 «Assignment revoked». 의도대로 «cancel-only». |
+| F8 | 전체 해시(권리·출처 포함)는 의도된 보수성 — «권리·출처 확인이 모든 검수에 앞선다». 회귀 시험 추가(`rightsReview.basis`·`provenance.basis` 변경 → stale review). | 수용: 보안상 더 엄격하고 순서가 문서·시험으로 고정됐다. |
+
+### F3-a · 중간 — root 에 남은 한 건: 교사 방송이 전입 학생을 포함하면 옛 개정의 응시는 시작할 수 없다
+
+- `attempt.ts` start(teacher_device): `broadcast.participantStudentIds.some(id => !assignment.targetStudentIds.includes(id))` → «Broadcast binding mismatch». 어댑터 규칙대로 옛 응시에 **개정 1 스냅샷**을 실으면, 전입 학생을 더한 뒤 교사가 반 전체(전입 포함)로 방송을 시작하는 순간 개정 1 학생 전원이 시작을 거절당한다.
+- 재현(probe F3-a): 개정 1 응시 + 개정 1 스냅샷 + 참여자 `[기존, 전입]` 방송 → THREW «Broadcast binding mismatch»; 같은 응시에 개정 2 를 실으면 «Attempt binding mismatch»(어댑터 규칙 위반); 전입 학생의 개정 2 응시는 OK.
+- 최소 수정(택일): ① 방송은 서버가 **현재** 배정에서 만드는 신뢰 기록이므로 부분집합 검사를 빼고 `participantStudentIds.includes(attempt.studentId)` 만 남긴다, ② 또는 전이 컨텍스트에 `currentTargetStudentIds`(현재 개정의 대상)를 받아 그것과 대조한다. 회귀 시험: 전입 뒤 방송으로 옛 응시 start → in_progress.
+
+### 낮음 — F5 보강 제안
+
+- `transitionListeningAttempt` 는 `context.studentId` 를 받지만(전이 컨텍스트가 공개 컨텍스트 모양을 펼침) 응시의 학생과 대조하지 않고 조용히 무시한다(probe: 다른 학생 id 로 start → in_progress). 라우트가 인가하므로 구멍은 아니지만, `context.studentId !== undefined && context.studentId !== attempt.studentId` → throw 한 줄이면 F5 의 단언과 결이 맞는다.
+
+### root 검토 probe 출력
+
+```text
+[F3-a old attempt start w/ rev-1 snapshot + broadcast incl. transfer student] THREW -> Broadcast binding mismatch
+[F3-a same start w/ current rev-2 assignment (adapter rule says not to do this)] THREW -> Attempt binding mismatch
+[F3-a new student's attempt start w/ rev-2 + same broadcast] OK -> in_progress
+[F3-b old attempt start w/ preserved snapshot] OK -> in_progress
+[F3-b projection w/ preserved snapshot] OK -> 2
+[F3-b release w/ preserved snapshot + manualRelease] OK -> manual
+[F5 context.studentId != attempt.studentId] THREW -> Release student binding mismatch
+[F5 context.studentId not a target (attempt null)] THREW -> Release student binding mismatch
+[F5 projection attempt null + studentId + history] OK -> ["review","locked"]
+[F5 transition w/ foreign context.studentId] OK -> in_progress
+[F6 practice] firstAnswers savedAfterRelease: [ false, false ]
+[F6 practice] reviewAnswers savedAfterRelease: [ true ]
+[F6 grade keys] total,correct,incorrect,unanswered,savedAfterRelease,releaseStatusUnknown,items savedAfterRelease: 0 unknown: 0
+[F6 retry w/ history] savedAfterRelease: true
+[F7 expire under revoked (after deadline)] THREW -> Assignment revoked
+[F7 interrupt under revoked] THREW -> Assignment revoked
+[F7 cancel under revoked] OK -> cancelled
+[F7 cancel again (new key) on cancelled attempt] THREW -> Terminal attempt cannot change
+[F7 release decision under revoked] THREW -> Assignment revoked
+[F7 cancel ready attempt under revoked] OK -> cancelled
+```
 
 ## 재현 probe 출력 (검토 시점 main `6ee028522`, 소스 무변경)
 

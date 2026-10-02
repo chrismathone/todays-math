@@ -14,7 +14,7 @@ import {
 } from "../../../../contracts/englishListeningMedia.contract";
 import { ListeningMediaError } from "./errors";
 import { inspectListeningMedia } from "./inspect";
-import { parseListeningByteRange } from "./range";
+import { decideListeningRange } from "./range";
 import type { ListeningMediaRecord, ListeningMediaStore } from "./store";
 
 export interface ListeningMediaLimits {
@@ -479,16 +479,22 @@ export function createListeningMediaService<Context>(
       "Content-Type": "audio/wav",
       "Content-Disposition": `inline; filename="audio-${record.assetId}.wav"`,
     });
-    // RFC 9110 §14.2: Range is ignored for HEAD; HEAD never opens a blob.
-    const range =
+    // RFC 9110 §14.2: Range applies to GET only (HEAD ignores it and never opens a blob). An
+    // unknown range unit or an unsupported multi-range set is ignored and the authorized full
+    // representation is sent; an invalid or unsatisfiable `bytes` specifier is rejected with 416.
+    const decision =
       request.method === "GET" && request.range != null
-        ? parseListeningByteRange(request.range, record.totalBytes)
-        : { start: 0, endExclusive: record.totalBytes };
-    if (!range) {
+        ? decideListeningRange(request.range, record.totalBytes)
+        : null;
+    if (decision?.kind === "reject") {
       headers.set("Content-Range", `bytes */${record.totalBytes}`);
       return new Response(null, { status: 416, headers });
     }
-    const partial = request.method === "GET" && request.range != null;
+    const partial = decision?.kind === "single";
+    const range =
+      decision?.kind === "single"
+        ? decision.range
+        : { start: 0, endExclusive: record.totalBytes };
     headers.set("Content-Length", String(range.endExclusive - range.start));
     if (partial)
       headers.set(
