@@ -275,3 +275,11 @@ The project TypeSafe skill and its live documentation index and
 [verification cookbook](https://docs.typesafe.ai/cookbooks/citation_check)
 were read. Its separation of deterministic checks from semantic judgments
 informed the review; the existing Gemini/Python architecture remains intact.
+
+## 통합 확인
+
+- main에 두 검증 작업을 병합한 뒤 도형 관련 6개 테스트 파일, **282개 테스트가 모두 통과**했다.
+- 점선 검증 작업은 실제 Python 엔진으로 86개 사례를 확인했다. 빈 값·0 패턴·숫자 배열·호·별칭 우선순위·원본 사양 보존과 보정 뒤 원본 대조를 포함한다.
+- 운영 실패 사양 `src/__tests__/fixtures/figure-redraw-axis-empty-dash.json`에서 두 축의 빈 점선은 보정되며 보조선의 `4 3` 패턴은 유지된다. 이후에는 원 위의 점에 들어간 음수 각도로 캔버스 밖 좌표가 만들어져 거절된다. 좌표를 임의로 반전하거나 캔버스 검증을 완화하지 않았다.
+- 실제 AI 재생성이나 사진 대조 성공을 주장하는 검증은 아니다. 추론은 모킹했고, 각도·도형 비율 안내 수정은 이후 생성 요청에 적용된다.
+- 검증용 두 워크트리는 병합 후 제거하고 가지는 보존했다. 기존 다른 워크트리와 공유 `node_modules`는 유지했다.
