@@ -2,6 +2,7 @@
  * GET  /api/english/exams/{id}/sets — 세트 요약 목록(id · title · status · source · 문항 수 · 유형들 · updatedAt)
  * POST /api/english/exams/{id}/sets — `{title, source, passage, questions}` → 검증기(25 §4.4) 통과해야
  *      저장 · 항상 «초안» · `revision: 1` → 201. 실패는 422 ENGLISH_DRAFT_REJECTED + `details.issues`.
+ *      1판 경로다 — 2판 · 모르는 형식 판의 본문은 400(1판으로 줄여 저장하지 않는다).
  * 대응 계약: src/contracts/english.contract.ts (D-148 · 25 §3)
  */
 import type { NextRequest } from "next/server";
@@ -17,7 +18,7 @@ import { db } from "@/lib/db";
 import {
   clientKeyConflict,
   draftRejected,
-  readJson,
+  readEnglishV1Body,
   requireEnglishSession,
 } from "@/lib/english/routeSupport";
 import {
@@ -125,7 +126,11 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
   const owned = await requireOwnedEnglishExam(gate.session, id);
   if (!owned.ok) return owned.response;
 
-  const parsed = englishSetCreateSchema.safeParse(await readJson(request));
+  // 형식 판 관문 — 이 POST 는 1판 경로다. 2판 · 모르는 판의 본문을 1판 칸만 골라 저장하지 않는다.
+  const v1 = await readEnglishV1Body(request);
+  if (v1.response) return v1.response;
+
+  const parsed = englishSetCreateSchema.safeParse(v1.body);
   if (!parsed.success) return validationError(parsed.error);
 
   // 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek)이 같은 규칙을 지난다 — 검증 통과 ≠ 검토 완료

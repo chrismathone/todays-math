@@ -16,6 +16,11 @@ import {
   type EnglishQuestionType,
   type EnglishSetSource,
 } from "@/contracts/english.contract";
+import {
+  ENGLISH_SCHEMA_VERSION_V1,
+  ENGLISH_V2_ONLY_DOCUMENT_KEYS,
+  ENGLISH_V2_ONLY_ITEM_KEYS,
+} from "@/contracts/englishV2.contract";
 import { AiParseError } from "@/lib/ai/errors";
 import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
 import {
@@ -29,6 +34,7 @@ import {
 } from "@/lib/ai/prompts/englishExam";
 
 import { englishRejectionReasons } from "./feedback";
+import { englishV1PayloadIssues } from "./v2/versionGate";
 import {
   type EnglishDraftExpectation,
   type EnglishDraftVerdict,
@@ -130,12 +136,27 @@ function unescapeLiteralBreaks(value: unknown): unknown {
   return value.replace(/\\r\\n|\\n|\\r/g, "\n").replace(/\\t/g, " ");
 }
 
+/**
+ * 🔴 «모르는 열쇠는 버린다»의 예외 — 형식 판 표지와 2판에만 있는 칸은 **버리지 않고 실어 넘긴다.**
+ * 버리면 표적과 표적별 정답이 사라진 1판 초안이 조용히 통과한다. 실어 넘기면 검증기(`validateEnglishDraft`)가
+ * 그 값을 사유와 함께 거절한다. `schemaVersion: 1` 은 «1판»이라는 표지일 뿐이라 뗀다.
+ */
+function carried(
+  value: Record<string, unknown>,
+  keys: readonly string[],
+): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  for (const key of keys) if (Object.hasOwn(value, key)) out[key] = value[key];
+  return out;
+}
+
 function coerceQuestion(question: unknown): unknown {
   if (!isRecord(question)) return question;
   const open =
     typeof question.type === "string" &&
     ENGLISH_OPEN_TYPES.includes(question.type as EnglishQuestionType);
   return {
+    ...carried(question, ENGLISH_V2_ONLY_ITEM_KEYS),
     type: question.type,
     prompt: unescapeLiteralBreaks(question.prompt),
     options:
@@ -159,7 +180,8 @@ function coerceQuestion(question: unknown): unknown {
 }
 
 /**
- * ChatGPT · DeepSeek 가 흔히 덧붙이는 **모양**을 받아 준다 — 모르는 열쇠(번호 · 난이도)는 버리고, 서술형의 빠진
+ * ChatGPT · DeepSeek 가 흔히 덧붙이는 **모양**을 받아 준다 — 모르는 열쇠(번호 · 난이도)는 버리고(형식 판 표지와
+ * 2판 칸은 예외 — `carried`), 서술형의 빠진
  * `options` 는 빈 배열로, 빠진 `explanation`·`evidence` 는 빈 글로, 정답의 원문자·숫자는 번호 문자열로,
  * 글자 그대로의 `\n` 은 줄바꿈으로(`unescapeLiteralBreaks`).
  * **뜻은 손대지 않는다** — 보기 수 · 정답 범위 · 근거 대조는 검증기가 그대로 본다. `source` 는 부르는 쪽이 정한다.
@@ -170,6 +192,11 @@ export function coerceEnglishDraftShape(
 ): unknown {
   if (!isRecord(value)) return value;
   return {
+    ...carried(value, ENGLISH_V2_ONLY_DOCUMENT_KEYS),
+    ...(Object.hasOwn(value, "schemaVersion") &&
+    value.schemaVersion !== ENGLISH_SCHEMA_VERSION_V1
+      ? { schemaVersion: value.schemaVersion }
+      : {}),
     title:
       typeof value.title === "string"
         ? value.title.trim().slice(0, TITLE_MAX)
@@ -241,6 +268,8 @@ export function buildChatgptFixRequest({
   } catch {
     return null;
   }
+  // 2판 · 모르는 판의 값이면 요청문을 만들지 않는다 — «1판 꼴로 다시 써 달라»는 요청이 곧 표적을 버리는 일이다
+  if (englishV1PayloadIssues(value).length) return null;
   const reasons = englishRejectionReasons(value, {
     ...request,
     allowUnderlineCompanion: true,
