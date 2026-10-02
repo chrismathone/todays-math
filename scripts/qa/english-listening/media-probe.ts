@@ -59,9 +59,14 @@ async function main() {
       yield part;
     }
   };
+  // Trusted set row as the server would read it; the probe reassigns it to prove fail-closed.
+  const owner = randomUUID();
+  const branch = randomUUID();
+  let scope: unknown = { ownerId: owner, branchId: branch };
   const service = createListeningMediaService({
     store,
     authorize: async () => allowed,
+    resolveScope: async () => scope,
     now: () => now,
   });
   const context = { actor: "offline-probe" };
@@ -145,6 +150,35 @@ async function main() {
       completion,
     );
     check("whole-file SHA256 and verified readiness");
+    assert.equal(completion.ownerId, owner);
+    assert.equal(completion.branchId, branch);
+    assert.equal(completion.verifiedAt, now);
+    for (const reassigned of [
+      { ownerId: randomUUID(), branchId: branch },
+      { ownerId: owner, branchId: randomUUID() },
+      null,
+    ]) {
+      scope = reassigned;
+      const readsBefore = { metadataReads, byteReads };
+      assert.equal(
+        (await service.serve(context, { ...target, method: "HEAD" })).status,
+        404,
+      );
+      await assert.rejects(service.getVerifiedReadiness(context, target), {
+        code: "not_found",
+      });
+      assert.equal(byteReads, readsBefore.byteReads);
+      if (reassigned === null)
+        assert.equal(metadataReads, readsBefore.metadataReads);
+    }
+    scope = { ownerId: owner, branchId: branch };
+    assert.equal(
+      (await service.serve(context, { ...target, method: "HEAD" })).status,
+      200,
+    );
+    check(
+      "stored owner/branch and server verification time; reassignment or unresolvable set fails closed",
+    );
     const full = await service.serve(context, { ...target, method: "GET" });
     assert.equal(full.status, 200);
     const downloadHash = createHash("sha256");

@@ -1,6 +1,7 @@
 import type {
   ListeningMediaBlocker,
   ListeningMediaCompletion,
+  ListeningMediaScope,
   ListeningMediaUpload,
 } from "../../../../contracts/englishListeningMedia.contract";
 
@@ -12,8 +13,11 @@ export interface ListeningMediaChunkRecord {
   /** Exact request revision retained for idempotent retry checks. */
   expectedRevision: number;
 }
-/** Internal metadata. Never serialize this as a student or teacher response. */
-export interface ListeningMediaRecord extends ListeningMediaUpload {
+/** Internal metadata. Never serialize this as a student or teacher response.
+ * `ownerId`/`branchId` are the set scope the server resolved at upload start; every later
+ * operation re-resolves the current scope and refuses the record when it no longer matches. */
+export interface ListeningMediaRecord
+  extends ListeningMediaUpload, ListeningMediaScope {
   assetId: string;
   revision: number;
   receivedBytes: number;

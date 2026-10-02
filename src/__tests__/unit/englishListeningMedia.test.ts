@@ -37,10 +37,20 @@ async function fixture() {
   stores.push(store);
   let now = 1000;
   let allowed = true;
+  const owner = randomUUID();
+  const branch = randomUUID();
+  // Trusted set row as the server would read it; tests mutate it to simulate reassignment.
+  let scope: unknown = { ownerId: owner, branchId: branch };
   const authorize = vi.fn(async () => allowed);
+  const setId = randomUUID();
+  const resolveScope = vi.fn(async (_context: unknown, requested: string) => {
+    if (requested !== setId) return null;
+    return typeof scope === "function" ? (scope as () => unknown)() : scope;
+  });
   const service = createListeningMediaService({
     store,
     authorize,
+    resolveScope,
     now: () => now,
     limits: {
       chunkBytes: 128,
@@ -50,7 +60,6 @@ async function fixture() {
       maxDurationMs: 1000,
     },
   });
-  const setId = randomUUID();
   const context = { actor: "teacher" };
   async function begin(
     bytes = wav(),
@@ -96,6 +105,16 @@ async function fixture() {
     },
     advance: () => {
       now += 501;
+    },
+    tick: () => {
+      now += 7;
+    },
+    clock: () => now,
+    owner,
+    branch,
+    resolveScope,
+    reassign: (next: unknown) => {
+      scope = next;
     },
   };
 }
@@ -307,6 +326,89 @@ describe("listening media upload boundary", () => {
       code: "too_large",
     });
   });
+  it("skips empty stream frames on upload and playback while keeping byte totals exact and bounded", async () => {
+    const f = await fixture();
+    const bytes = wav();
+    const receipt = await f.begin(bytes);
+    const part = bytes.subarray(0, 128);
+    const tail = bytes.subarray(128);
+    const request = {
+      setId: f.setId,
+      assetId: receipt.assetId,
+      offset: 0,
+      expectedRevision: 0,
+      byteLength: part.length,
+      sha256: sha(part),
+    };
+    async function* framed() {
+      yield Buffer.alloc(0);
+      yield part.subarray(0, 50);
+      yield Buffer.alloc(0);
+      yield part.subarray(50);
+      yield Buffer.alloc(0);
+    }
+    const first = await f.service.appendChunk(f.context, request, framed());
+    expect(first.receivedBytes).toBe(128);
+    const next = {
+      ...request,
+      offset: 128,
+      expectedRevision: first.revision,
+      byteLength: tail.length,
+      sha256: sha(tail),
+    };
+    async function* onlyEmpty() {
+      yield Buffer.alloc(0);
+    }
+    await expect(
+      f.service.appendChunk(f.context, next, onlyEmpty()),
+    ).rejects.toMatchObject({ code: "body_size" });
+    let frames = 0;
+    async function* endless() {
+      while (true) {
+        frames++;
+        yield Buffer.alloc(0);
+      }
+    }
+    await expect(
+      f.service.appendChunk(f.context, next, endless()),
+    ).rejects.toMatchObject({ code: "body_size" });
+    expect(frames).toBeLessThanOrEqual(4097);
+    async function* overflowBetweenEmpties() {
+      yield Buffer.alloc(0);
+      yield tail;
+      yield Buffer.alloc(0);
+      yield Buffer.alloc(1);
+    }
+    await expect(
+      f.service.appendChunk(f.context, next, overflowBetweenEmpties()),
+    ).rejects.toMatchObject({ code: "body_size" });
+    const last = await f.service.appendChunk(f.context, next, body(tail));
+    await f.service.completeUpload(f.context, {
+      setId: f.setId,
+      assetId: receipt.assetId,
+      expectedRevision: last.revision,
+    });
+    const original = f.store.readBlob.bind(f.store);
+    vi.spyOn(f.store, "readBlob").mockImplementation(
+      async function* (key, read) {
+        yield Buffer.alloc(0);
+        for await (const piece of original(key, read)) {
+          yield piece;
+          yield Buffer.alloc(0);
+        }
+      },
+    );
+    const response = await f.service.serve(f.context, {
+      setId: f.setId,
+      assetId: receipt.assetId,
+      method: "GET",
+      range: "bytes=100-150",
+    });
+    expect(response.status).toBe(206);
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(
+      bytes.subarray(100, 151),
+    );
+  });
   it("fails closed for chunk and whole-file hashes, mismatched MIME, tags, and missing MP3 decoder", async () => {
     const f = await fixture();
     const bytes = wav();
@@ -468,6 +570,7 @@ describe("listening media upload boundary", () => {
     const service = createListeningMediaService({
       store,
       authorize: async () => true,
+      resolveScope: async () => ({ ownerId: f.owner, branchId: f.branch }),
       limits: { maxDurationMs: 1 },
     });
     const bytes = wav();
@@ -717,5 +820,246 @@ describe("listening media authenticated responses", () => {
     await expect(
       (await f.service.serve(f.context, request)).arrayBuffer(),
     ).rejects.toMatchObject({ code: "storage_integrity" });
+  });
+});
+
+describe("listening media trusted scope", () => {
+  async function ready(f: Awaited<ReturnType<typeof fixture>>) {
+    const r = await f.upload();
+    const completion = await f.service.completeUpload(f.context, {
+      setId: f.setId,
+      assetId: r.assetId,
+      expectedRevision: r.revision,
+    });
+    return { assetId: r.assetId, completion };
+  }
+  it("stores the server-resolved owner/branch, rejects scope in the request body, and resolves after authorization but before metadata", async () => {
+    const f = await fixture();
+    expect(() =>
+      createListeningMediaService({
+        store: f.store,
+        authorize: async () => true,
+      } as never),
+    ).toThrow("invalid_request");
+    await expect(
+      f.service.beginUpload(f.context, {
+        setId: f.setId,
+        totalBytes: 50,
+        mimeType: "audio/wav",
+        expectedSha256: "a".repeat(64),
+        ownerId: randomUUID(),
+      }),
+    ).rejects.toMatchObject({ code: "invalid_request" });
+    const { assetId, completion } = await ready(f);
+    expect(completion).toMatchObject({
+      state: "ready",
+      ownerId: f.owner,
+      branchId: f.branch,
+      verifiedAt: f.clock(),
+    });
+    expect(await f.store.get(assetId)).toMatchObject({
+      ownerId: f.owner,
+      branchId: f.branch,
+    });
+    expect(
+      await f.service.getVerifiedReadiness(f.context, {
+        setId: f.setId,
+        assetId,
+      }),
+    ).toEqual(completion);
+    const get = vi.spyOn(f.store, "get");
+    for (const run of [
+      () =>
+        f.service.serve(f.context, { setId: f.setId, assetId, method: "HEAD" }),
+      () =>
+        f.service.getVerifiedReadiness(f.context, { setId: f.setId, assetId }),
+    ]) {
+      f.authorize.mockClear();
+      f.resolveScope.mockClear();
+      get.mockClear();
+      await run();
+      expect(f.resolveScope).toHaveBeenCalledWith(f.context, f.setId);
+      expect(f.authorize.mock.invocationCallOrder[0]).toBeLessThan(
+        f.resolveScope.mock.invocationCallOrder[0],
+      );
+      expect(f.resolveScope.mock.invocationCallOrder[0]).toBeLessThan(
+        get.mock.invocationCallOrder[0],
+      );
+    }
+    f.revoke();
+    f.resolveScope.mockClear();
+    expect(
+      (
+        await f.service.serve(f.context, {
+          setId: f.setId,
+          assetId,
+          method: "HEAD",
+        })
+      ).status,
+    ).toBe(404);
+    expect(f.resolveScope).not.toHaveBeenCalled();
+  });
+  it("fails closed for every operation once the set resolves to another owner or branch, or stops resolving", async () => {
+    const f = await fixture();
+    const { assetId, completion } = await ready(f);
+    const pending = await f.begin();
+    const before = await f.store.get(assetId);
+    const target = { setId: f.setId, assetId };
+    const cases: { scope: unknown; readsMetadata: boolean }[] = [
+      {
+        scope: { ownerId: randomUUID(), branchId: f.branch },
+        readsMetadata: true,
+      },
+      {
+        scope: { ownerId: f.owner, branchId: randomUUID() },
+        readsMetadata: true,
+      },
+      { scope: { ownerId: f.owner, branchId: null }, readsMetadata: true },
+      { scope: null, readsMetadata: false },
+      {
+        scope: { ownerId: "not-a-uuid", branchId: f.branch },
+        readsMetadata: false,
+      },
+      {
+        scope: () => {
+          throw new Error("scope lookup unavailable");
+        },
+        readsMetadata: false,
+      },
+    ];
+    for (const { scope, readsMetadata } of cases) {
+      f.reassign(scope);
+      const get = vi.spyOn(f.store, "get");
+      get.mockClear();
+      for (const method of ["HEAD", "GET"])
+        expect(
+          (await f.service.serve(f.context, { ...target, method })).status,
+        ).toBe(404);
+      await expect(
+        f.service.getVerifiedReadiness(f.context, target),
+      ).rejects.toMatchObject({ code: "not_found" });
+      const part = wav().subarray(0, 128);
+      await expect(
+        f.service.appendChunk(
+          f.context,
+          {
+            setId: f.setId,
+            assetId: pending.assetId,
+            expectedRevision: 0,
+            offset: 0,
+            byteLength: part.length,
+            sha256: sha(part),
+          },
+          body(part),
+        ),
+      ).rejects.toMatchObject({ code: "not_found" });
+      await expect(
+        f.service.completeUpload(f.context, {
+          setId: f.setId,
+          assetId: pending.assetId,
+          expectedRevision: 0,
+        }),
+      ).rejects.toMatchObject({ code: "not_found" });
+      // An unresolvable or malformed scope denies before any media metadata is touched.
+      if (readsMetadata) expect(get).toHaveBeenCalled();
+      else expect(get).not.toHaveBeenCalled();
+      get.mockRestore();
+    }
+    expect(await f.store.get(assetId)).toEqual(before);
+    expect(await f.store.get(pending.assetId)).toMatchObject({
+      state: "uploading",
+      receivedBytes: 0,
+    });
+    f.reassign({ ownerId: f.owner, branchId: f.branch });
+    expect(
+      (await f.service.serve(f.context, { ...target, method: "HEAD" })).status,
+    ).toBe(200);
+    expect(await f.service.getVerifiedReadiness(f.context, target)).toEqual(
+      completion,
+    );
+  });
+  it("refuses server-ready media whose stored owner/branch was mutated behind the service", async () => {
+    const f = await fixture();
+    const { assetId } = await ready(f);
+    for (const mutation of [
+      { ownerId: randomUUID() },
+      { branchId: randomUUID() },
+      { branchId: null },
+    ]) {
+      const record = (await f.store.get(assetId))!;
+      expect(
+        await f.store.compareAndSwap(assetId, record.revision, {
+          ...record,
+          ...mutation,
+          revision: record.revision + 1,
+        }),
+      ).toBe(true);
+      expect(
+        (
+          await f.service.serve(f.context, {
+            setId: f.setId,
+            assetId,
+            method: "GET",
+          })
+        ).status,
+      ).toBe(404);
+      await expect(
+        f.service.getVerifiedReadiness(f.context, { setId: f.setId, assetId }),
+      ).rejects.toMatchObject({ code: "not_found" });
+      const tampered = (await f.store.get(assetId))!;
+      await f.store.compareAndSwap(assetId, tampered.revision, {
+        ...tampered,
+        ownerId: f.owner,
+        branchId: f.branch,
+        revision: tampered.revision + 1,
+      });
+    }
+    expect(
+      (
+        await f.service.serve(f.context, {
+          setId: f.setId,
+          assetId,
+          method: "HEAD",
+        })
+      ).status,
+    ).toBe(200);
+  });
+  it("stamps the server verification time at completion and replays it unchanged", async () => {
+    const f = await fixture();
+    const r = await f.upload();
+    const uploadedAt = f.clock();
+    f.tick();
+    const target = {
+      setId: f.setId,
+      assetId: r.assetId,
+      expectedRevision: r.revision,
+    };
+    const completion = await f.service.completeUpload(f.context, target);
+    expect(completion.verifiedAt).toBe(uploadedAt + 7);
+    expect(completion.verifiedAt).toBeGreaterThan(uploadedAt);
+    f.tick();
+    expect(await f.service.completeUpload(f.context, target)).toEqual(
+      completion,
+    );
+    expect(
+      await f.service.getVerifiedReadiness(f.context, {
+        setId: f.setId,
+        assetId: r.assetId,
+      }),
+    ).toEqual(completion);
+    const blocked = await f.upload(wav(), "audio/mpeg");
+    f.tick();
+    expect(
+      await f.service.completeUpload(f.context, {
+        setId: f.setId,
+        assetId: blocked.assetId,
+        expectedRevision: blocked.revision,
+      }),
+    ).toMatchObject({
+      state: "publish_blocked",
+      ownerId: f.owner,
+      branchId: f.branch,
+      verifiedAt: f.clock(),
+    });
   });
 });
