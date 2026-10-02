@@ -1484,10 +1484,10 @@ export const bank: ConceptBlankBank = {
       term: "묶음 전체의 분수",
       kind: "방법",
       definition:
-        "물건을 같은 수씩 묶으면 전체 중 몇 묶음인지 {분수}로 나타낼 수 있다.",
+        "물건을 {같은 수씩 묶으면} 전체 중 몇 묶음인지 분수로 나타낼 수 있다.",
       example: {
-        prompt: "공 $15$개를 $5$개씩 묶을 때 한 묶음은 전체의 얼마인지 쓰시오.",
-        answer: "$\\frac{1}{3}$",
+        prompt: "딸기 $18$개를 $6$개씩 묶으면 전체는 몇 묶음이 되는가?",
+        answer: "$3$묶음",
       },
     },
     {
@@ -1496,7 +1496,7 @@ export const bank: ConceptBlankBank = {
       level: "중",
       term: "분모가 세는 묶음",
       kind: "성질",
-      definition: "전체를 똑같이 나눈 묶음 수는 분수의 {분모}가 된다.",
+      definition: "전체를 똑같이 나눈 {묶음 수}는 분수의 분모가 된다.",
     },
     {
       id: "e3-2-4-1-c3",
@@ -1516,15 +1516,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "전체를 똑같이 $4$묶음으로 나눈 {한 묶음}이 전체의 $\\frac{1}{4}$이다.",
       example: {
-        prompt: "$28$개의 $\\frac{1}{7}$은 몇 개인지 쓰시오.",
-        answer: "$4$개",
+        prompt: "$12$개를 똑같이 $4$묶음으로 나눈 한 묶음은 전체의 얼마인가?",
+        answer: "$\\frac{1}{4}$",
       },
     },
     {
       id: "e3-2-4-2-c2",
       section: "초3::2-4 분수::2-4-2 분수만큼은 얼마인지 알아보기 (1)",
       level: "중",
-      term: "한 묶음의 수",
+      term: "전체의 $\\frac{1}{5}$만큼 구하기",
       kind: "방법",
       definition: "전체의 $\\frac{1}{5}$만큼은 전체 수를 {$5$로 나눈} 값이다.",
     },
@@ -1541,13 +1541,14 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-4-3-c1",
       section: "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
       level: "하",
-      term: "전체의 분수만큼",
+      term: "전체의 $\\frac{3}{5}$만큼",
       kind: "방법",
       definition:
         "전체를 똑같이 $5$묶음으로 나누어 {$3$묶음}을 모으면 전체의 $\\frac{3}{5}$만큼이다.",
       example: {
-        prompt: "사탕 $24$개의 $\\frac{5}{8}$는 몇 개인지 쓰시오.",
-        answer: "$15$개",
+        prompt:
+          "전체를 똑같이 $7$묶음으로 나눈 것 중 $4$묶음은 전체의 얼마인가?",
+        answer: "$\\frac{4}{7}$",
       },
     },
     {
@@ -1563,7 +1564,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-4-3-c3",
       section: "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
       level: "상",
-      term: "남은 양의 분수",
+      term: "전체의 $\\frac{2}{7}$를 쓰고 남은 양의 분수",
       kind: "성질",
       definition:
         "전체의 $\\frac{2}{7}$를 쓰면 남은 양은 전체의 {$\\frac{5}{7}$}이다.",
@@ -1577,8 +1578,8 @@ export const bank: ConceptBlankBank = {
       definition: "분자가 분모에 못 미치는 분수는 {진분수}이며 $1$보다 작다.",
       example: {
         prompt:
-          "$\\frac{3}{5}$, $\\frac{5}{5}$, $\\frac{8}{5}$ 중 가분수를 모두 쓰시오.",
-        answer: "$\\frac{5}{5}$, $\\frac{8}{5}$",
+          "$\\frac{2}{7}$, $\\frac{7}{7}$, $\\frac{9}{7}$ 중 진분수를 찾아 쓰시오.",
+        answer: "$\\frac{2}{7}$",
       },
     },
     {
@@ -1588,7 +1589,7 @@ export const bank: ConceptBlankBank = {
       term: "가분수",
       kind: "정의",
       definition:
-        "분모보다 분자가 작지 않은 분수는 {가분수}이며 그 값도 $1$보다 작지 않다.",
+        "분자가 분모보다 크거나 분모와 꼭 같은 분수는 {가분수}이며 그 값은 $1$이거나 $1$보다 크다.",
     },
     {
       id: "e3-2-4-4-c3",
@@ -1626,8 +1627,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "$1\\frac{3}{4}$처럼 자연수와 {진분수}를 함께 적은 수를 대분수라 한다.",
       example: {
-        prompt: "$\\frac{11}{4}$을 대분수로 나타내시오.",
-        answer: "$2\\frac{3}{4}$",
+        prompt:
+          "$3\\frac{1}{2}$, $\\frac{7}{2}$, $2\\frac{5}{4}$ 중 대분수를 찾아 쓰시오.",
+        answer: "$3\\frac{1}{2}$",
       },
     },
     {
@@ -1656,8 +1658,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "분모가 같은 가분수끼리는 {분자}가 큰 쪽이 더 크다.",
       example: {
-        prompt: "$\\frac{12}{5}$와 $2\\frac{3}{5}$ 중 큰 수를 쓰시오.",
-        answer: "$2\\frac{3}{5}$",
+        prompt:
+          "$\\frac{9}{7}$와 $\\frac{13}{7}$의 크기를 비교할 때 견주는 두 수를 쓰시오.",
+        answer: "분자 $9$와 $13$",
       },
     },
     {
@@ -3307,4 +3310,7 @@ markGivenCases(bank, [
   "e3-1-6-6-c4",
   "e3-2-1-1-c3",
   "e3-2-1-3-c3",
+  "e3-2-4-2-c2",
+  "e3-2-4-3-c1",
+  "e3-2-4-3-c3",
 ]);
