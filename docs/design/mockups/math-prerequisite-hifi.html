@@ -1,0 +1,1586 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>교육과정 연결도 하이파이</title>
+  <style>
+:root {
+  --learn-ink: #172b4d;
+  --learn-muted: #596c86;
+  --learn-accent: #3159df;
+  --learn-accent-hover: #2448bd;
+  --learn-bg: #f4f6fa;
+  --learn-surface: #ffffff;
+  --learn-soft: #edf2ff;
+  --learn-soft-hover: #e1e9ff;
+  --learn-neutral: #edf0f6;
+  --learn-track: #dde3ec;
+  --learn-control: #b8c4d6;
+  --learn-focus: #82a1ff;
+  --learn-done: #1d7550;
+  --learn-done-bg: #e9f5ee;
+  --learn-warning: #8a5a06;
+  --learn-warning-bg: #fff4df;
+  --learn-danger: #b42318;
+  --learn-danger-bg: #fff0ee;
+  --learn-on-accent: #ffffff;
+  --learn-radius: 14px;
+  --learn-radius-sm: 10px;
+  --control-radius: 8px;
+  --text-caption: 12px;
+  --text-body: 14px;
+  --text-section: 18px;
+  --text-title: 24px;
+  --line: var(--learn-track);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  font-family: "Pretendard", "Malgun Gothic", system-ui, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; }
+a.jump { cursor: pointer; }
+:where(a, button, input, select):focus-visible,
+[data-focus="true"] {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 3px;
+}
+.page { max-width: 1200px; margin: 0 auto; padding: 16px 16px 48px; }
+.doc-head { margin: 0 0 20px; color: var(--learn-muted); font-size: var(--text-caption); }
+article { margin-top: 28px; }
+.cap { margin: 0 0 8px; font-size: var(--text-caption); font-weight: 700; letter-spacing: 0.04em; }
+.dash, .detail, .roster, .optional, .player, .mission, .srs {
+  background: var(--learn-surface);
+  border: 1px solid var(--line);
+  border-radius: var(--learn-radius);
+}
+.dash {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 16px 20px;
+  min-height: 60px;
+}
+.dash h2 { margin: 0; font-size: var(--text-title); font-weight: 750; letter-spacing: -0.03em; }
+.dash p, .open-note, .muted { color: var(--learn-muted); }
+.dash p { margin: 4px 0 0; font-size: var(--text-body); }
+.dash button, .close, .reset, .mini-nav button {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--learn-ink);
+  border-radius: var(--control-radius);
+  background: var(--learn-soft);
+  font-weight: 700;
+}
+.open-note { margin: 8px 0; font-size: var(--text-body); }
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 520px;
+  gap: 20px;
+  align-items: start;
+}
+.roster, .detail { min-width: 0; }
+.roster { padding: 16px; }
+.roster h2 { margin: 0; font-size: var(--text-section); font-weight: 750; }
+.roster ol { list-style: none; margin: 12px 0 0; padding: 0; }
+.roster li { padding: 8px 0; border-top: 1px solid var(--line); font-weight: 700; }
+.roster li span { display: block; color: var(--learn-muted); font-weight: 400; font-size: var(--text-caption); }
+.detail-head, .detail-body { padding: 20px 20px 0; }
+.detail-body { padding-bottom: 20px; }
+.detail-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.detail-head h2 { margin: 0; font-size: var(--text-section); font-weight: 750; }
+.detail-head p { margin: 4px 0 0; color: var(--learn-muted); font-size: var(--text-caption); }
+.status, .choices, .note { margin: 8px 0 0; color: var(--learn-muted); font-size: var(--text-caption); }
+.filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 12px;
+}
+.filters label, .search label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  font-size: var(--text-caption);
+  font-weight: 700;
+}
+.search { grid-column: 1 / -1; }
+input, select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 0 8px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  background: var(--learn-surface);
+}
+.reset { margin-top: 8px; }
+.catalog { margin-top: 12px; border: 1px solid var(--line); border-radius: var(--learn-radius-sm); overflow: hidden; }
+.catalog h3 {
+  margin: 0;
+  padding: 8px 12px;
+  background: var(--learn-bg);
+  font-size: var(--text-body);
+  font-weight: 750;
+}
+.unit { border-top: 1px solid var(--line); background: var(--learn-surface); }
+.unit > .row {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+}
+.unit.is-open > .row { background: var(--learn-soft); }
+.name { display: block; font-weight: 700; }
+.meta { display: block; margin-top: 2px; color: var(--learn-muted); font-size: var(--text-caption); font-weight: 400; }
+.pill { display: none; }
+.more { display: none; padding: 8px 16px 16px; background: var(--learn-bg); }
+.unit.is-open .more { display: block; }
+.more h4 {
+  margin: 12px 0 4px;
+  font-size: var(--text-caption);
+  font-weight: 700;
+}
+.more ul, .more ol { margin: 0; padding-left: 18px; }
+.more li { margin: 2px 0; }
+.jumps { display: grid; gap: 8px; margin-top: 4px; }
+a.jump {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+a.jump:hover { background: var(--learn-soft-hover); }
+.optional { margin-top: 12px; padding: 16px 20px 20px; }
+.optional h3 { margin: 0; font-size: var(--text-body); font-weight: 750; }
+.mini-nav { display: flex; flex-wrap: wrap; gap: 0; margin-top: 8px; border-bottom: 1px solid var(--line); }
+.mini-nav button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+}
+.mini-nav button[aria-current="true"] { border-bottom-color: var(--learn-ink); background: var(--learn-soft); }
+.evidence { margin: 12px 0 0; }
+.evidence > div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.evidence dt { color: var(--learn-muted); font-size: var(--text-caption); }
+.evidence dd { margin: 0; font-weight: 600; }
+.pair, .supply { display: grid; gap: 12px; margin-top: 12px; }
+.player { max-width: 640px; padding: 16px 16px 12px; border-radius: var(--learn-radius); }
+.player-head, .progress {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+.back {
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--learn-ink);
+  font-size: 14px;
+  font-weight: 700;
+}
+.crumb { color: var(--learn-muted); font-size: 13px; text-align: right; line-height: 1.6; }
+.progress { margin-top: 6px; color: var(--learn-muted); font-size: 13px; }
+.progress b { color: var(--learn-accent); font-weight: 750; }
+.track { display: block; height: 5px; margin-top: 6px; border-radius: 8px; background: var(--learn-neutral); }
+.track > span { display: block; width: 20%; height: 100%; border-radius: inherit; background: var(--learn-accent); }
+.player h3 {
+  margin: 12px 0 0;
+  font-size: clamp(21px, 2.6vw, 28px);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.45;
+}
+.reason { margin: 8px 0 0; font-weight: 700; }
+.foot { margin: 12px 0 0; color: var(--learn-muted); font-size: var(--text-caption); }
+.mission, .srs { max-width: 680px; padding: 20px; }
+.mission-meta, .srs-eye {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--learn-accent);
+  font-size: 13px;
+  font-weight: 750;
+}
+.mission .sub, .srs .section { margin: 14px 0 5px; color: var(--learn-muted); font-size: 12px; }
+.mission h3, .srs h3 {
+  margin: 0;
+  font-size: clamp(20px, 5.8vw, 28px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 1.35;
+}
+.bar { height: 7px; margin: 16px 0; border-radius: 8px; background: var(--learn-neutral); overflow: hidden; }
+.bar > span { display: block; width: 20%; height: 100%; background: var(--learn-accent); }
+.notice {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-radius: var(--learn-radius-sm);
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
+  font-weight: 700;
+}
+.notice.warn { background: var(--learn-warning-bg); color: var(--learn-warning); }
+.start {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 13px;
+  border: 0;
+  border-radius: 13px;
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
+  font-size: 15px;
+  font-weight: 750;
+  box-shadow: 0 3px 0 var(--learn-accent-hover);
+}
+.start:disabled {
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  box-shadow: none;
+  opacity: 1;
+}
+.srs { margin-top: 0; }
+.srs .eye { margin: 0 0 10px; color: var(--learn-accent); font-size: 12px; font-weight: 700; }
+.srs h3 { font-size: clamp(23px, 3vw, 30px); letter-spacing: -0.035em; line-height: 1.5; }
+.srs .why { margin: 20px 0; color: var(--learn-muted); font-size: 14px; line-height: 1.85; font-weight: 400; }
+.h2 .unit:not(.is-open) .meta, .h2 .unit:not(.is-open) .pill { display: none; }
+.h2 .unit.is-open > .row .name { font-size: 12px; color: var(--learn-accent); font-weight: 700; }
+.lead { display: none; }
+.h2 .lead {
+  display: block;
+  margin: 4px 0 0;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.4;
+}
+.h2 .more { padding-top: 16px; padding-bottom: 20px; }
+.h2 .more h4 { margin-top: 20px; font-size: var(--text-body); }
+.h3 .unit > .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.h3 .name { flex: 1 1 auto; }
+.h3 .meta { flex: 1 1 40%; margin-top: 0; }
+.h3 .pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: var(--text-caption);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.h3 .pill.ok { background: var(--learn-done-bg); color: var(--learn-done); }
+.h3 .pill.no { background: var(--learn-warning-bg); color: var(--learn-warning); }
+.h3 .pill.shut { background: var(--learn-neutral); color: var(--learn-muted); }
+.h4 .catalog, .h4 .unit, .h4 .more, .h4 .optional { border-radius: 0; }
+.h4 .catalog { border-radius: var(--control-radius); }
+.h4 .unit > .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 8px 10px;
+}
+.h4 .name, .h4 .meta, .h4 .pill { display: inline; margin: 0; }
+.h4 .pill { background: transparent; color: var(--learn-muted); font-size: var(--text-body); font-weight: 400; }
+.h4 .pill.no { color: var(--learn-warning); font-weight: 700; }
+.h4 .more { background: transparent; padding: 0 10px 12px; }
+.h4 .more h4 { font-size: var(--text-section); font-weight: 750; }
+.h4 .evidence > div { grid-template-columns: 1fr; gap: 4px; }
+@media (max-width: 600px) {
+  .page { padding: 8px 8px 32px; }
+  .dash { flex-direction: column; align-items: stretch; }
+  .workspace { grid-template-columns: 1fr; }
+  .roster { display: none; }
+  .detail-head, .detail-body { padding-left: 16px; padding-right: 16px; }
+  .h3 .unit > .row { flex-wrap: wrap; }
+  .h3 .meta { flex-basis: 100%; }
+}
+</style>
+</head>
+<body>
+  <div class="page">
+    <p class="doc-head">SRS 현황 안의 교육과정 연결도. 구조는 한 열 펼침 하나이고, 네 칸은 글자 위계와 행 밀도만 다릅니다. 학생을 고르지 않아도 조회가 열립니다. 회색 와이어가 아니며 제품 화면은 아닙니다.</p>
+    
+    <article id="h1" class="h1">
+      <p class="cap">H1 · 안 2의 글자 처리 · 학생 없음</p>
+      <div data-shot="teacher">
+        <header class="dash">
+          <div>
+            <h2>SRS 현황</h2>
+            <p>지원 교육과정 초3–초6 · 한국 시간 기준</p>
+          </div>
+          <button type="button" aria-expanded="true">교육과정 연결도</button>
+        </header>
+        <p class="open-note">선택된 학생 없음. 이 버튼만으로 조회가 열립니다.</p>
+        <div class="workspace">
+          <aside class="roster">
+            <h2>학생</h2>
+            <p class="muted">아무도 고르지 않음</p>
+            <ol>
+              <li>예시 학생 A (픽스처)<span>고르지 않음</span></li>
+              <li>예시 학생 B (픽스처)<span>고르지 않음</span></li>
+            </ol>
+          </aside>
+          <section class="detail" aria-label="교육과정 연결도">
+            <div class="detail-head">
+              <div>
+                <h2>교육과정 연결도</h2>
+                <p>100단원 · 읽기 전용 · 학생 없이 조회</p>
+              </div>
+              <button type="button" class="close">접기</button>
+            </div>
+            <div class="detail-body">
+              <p class="status">성취기준 대조는 끝나지 않았습니다. 문제는 일부 단원만 낼 수 있습니다.</p>
+              <div class="filters">
+                <label>학교급<select><option>전체</option><option>초등</option><option>중학교</option><option>고등학교</option></select></label>
+                <label>학년군<select><option>전체</option><option>초1-2</option><option>초3-4</option><option>초5-6</option><option>중학교 1-3학년군</option><option>고등학교 과목 단위</option></select></label>
+                <label>과목<select><option>전체</option><option>수학</option><option>공통수학1</option><option>공통수학2</option><option>기본수학1</option><option>기본수학2</option><option>대수</option><option>미적분Ⅰ</option><option>미적분Ⅱ</option><option>확률과 통계</option><option>기하</option></select></label>
+                <label>영역<select><option>전체</option><option>수와 연산</option><option>변화와 관계</option><option>도형과 측정</option><option>자료와 가능성</option></select></label>
+                <label class="search">검색<input type="search" placeholder="단원 이름 또는 코드" /></label>
+              </div>
+              <button type="button" class="reset">필터 초기화</button>
+              <p class="choices">고를 수 없는 과목: 경제 수학, 인공지능 수학, 직무 수학, 수학과 문화, 실용 통계, 수학과제 탐구, 전문 수학, 이산 수학, 고급 대수, 고급 미적분, 고급 기하. 직업계고 전문교과별 전공 수학, 학교별 인정 과목도 없습니다. 고등학교 단원의 분류 칸은 편집분류이며 공식 영역 이름이 아닙니다.</p>
+              <div class="catalog">
+                <h3>단원 16 / 100 · 두 단원을 펼침</h3>
+                <div class="unit" id="h1-E34-N04">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E34-N04 분수</span>
+                    <span class="meta">초3-4 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h1-E56-N04">
+                  <button type="button" class="row" aria-expanded="true" aria-current="true" data-focus="true">
+                    <span class="name">E56-N04 분수 곱셈·나눗셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill ok">문제를 낼 수 있음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">분수 곱셈·나눗셈</p>
+                    <p class="reason">분수의 의미와 통분·분수 덧셈뺄셈 경험을 곱셈·나눗셈으로 확장한다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>분수의 곱셈</li>
+                      <li>분수의 나눗셈과 의미</li>
+                      <li>실생활 문제</li>
+                    </ul>
+                    <h4>문제를 낼 수 있는 소단원</h4>
+                    <ul>
+                      <li>5-2-2-1 (분수)×(자연수)의 계산</li>
+                      <li>5-2-2-2 (자연수)×(분수)의 계산</li>
+                    </ul>
+                    <p class="note">밖: 5-2-2-3, 5-2-2-4. 확인: 5-1-5-4 대분수의 뺄셈 다음 5-1-5-3 진분수의 뺄셈. 단원 전체를 아는 것으로 보지 않습니다.</p>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h1-E34-N04">E34-N04 분수</a>
+                      <a class="jump" href="#h1-E56-N03">E56-N03 분수 덧셈·뺄셈</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h1-E56-R02">E56-R02 비와 비율</a>
+                      <a class="jump" href="#h1-M1-N02">M1-N02 정수와 유리수</a>
+                    </div>
+                    <h4>도움</h4>
+                    <p>적힌 도움이 없습니다. 배울 필요가 없다는 뜻은 아닙니다.</p>
+                    <h4>과목 관계</h4>
+                    <p>초등 수학에 붙은 과목 관계는 없습니다. 공통수학1 다음은 공통수학2이며, 과목 순서의 예이고 여기 배정하지 않습니다.</p>
+                    <h4>다시 볼 후보 · 진단 아님</h4>
+                    <p>보이는 후보 2 / 9.</p>
+                    <ul>
+                      <li>E56-N01 약수와 배수</li>
+                      <li>E34-N03 자연수의 곱셈·나눗셈</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="unit" id="h1-E56-N03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-N03 분수 덧셈·뺄셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-E56-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-R02 비와 비율</span>
+                    <span class="meta">초5-6 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-M1-N02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-N02 정수와 유리수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-M3-R01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R01 다항식의 곱셈과 인수분해</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-M1-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-R02 일차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-M3-N01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-N01 제곱근과 실수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h1-M3-R02">
+                  <button type="button" class="row" aria-expanded="true">
+                    <span class="name">M3-R02 이차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill no">자동으로 내지 않음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">이차방정식</p>
+                    <p>화면의 3학년 자리는 공식 학년이 아닙니다. 찾을 수는 있고 자동으로 내지 않습니다. 시범 소단원은 없습니다. 낼 문제가 없고, 성취기준 대조도 끝나지 않았습니다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>풀이</li>
+                      <li>근의 의미</li>
+                      <li>인수분해와 방정식 활용</li>
+                      <li>완전제곱식으로 풀기</li>
+                      <li>근의 공식</li>
+                    </ul>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h1-M3-R01">M3-R01 다항식의 곱셈과 인수분해</a>
+                      <a class="jump" href="#h1-M1-R02">M1-R02 일차방정식</a>
+                      <a class="jump" href="#h1-M3-N01">M3-N01 제곱근과 실수</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h1-M3-R03">M3-R03 이차함수</a>
+                      <a class="jump" href="#h1-H-C1-02">H-C1-02 복소수와 이차방정식</a>
+                      <a class="jump" href="#h1-H-C1-03">H-C1-03 이차방정식과 이차함수</a>
+                      <a class="jump" href="#h1-H-BAS1-02">H-BAS1-02 방정식·부등식</a>
+                    </div>
+                    <p>도움은 없습니다. 다시 볼 후보는 일부이며 진단이 아닙니다. M2-R01 식의 계산.</p>
+                  </div>
+                </div>
+                <div class="unit" id="h1-M3-R03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R03 이차함수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-H-C1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-02 복소수와 이차방정식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-H-C1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-03 이차방정식과 이차함수</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-H-BAS1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-02 방정식·부등식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 기본수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-H-C1-05">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-05 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 공통수학1 · 공식 이름 아님</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-H-PS-01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-PS-01 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 확률과 통계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h1-H-BAS1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-03 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 기본수학1</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+              </div>
+              <p class="note">같은 이름은 과목으로 가릅니다. 접힌 단원으로 가는 앞·뒤 링크는 이 목록 안의 읽기 이동입니다.</p>
+            </div>
+          </section>
+        </div>
+        <section class="optional">
+          <h3>학생을 고른 경우에만 덧붙는 줄</h3>
+          <p class="note">위 연결도는 그대로입니다. 아래는 예시 학생 A (픽스처)의 일부입니다. 실존 학생이 아닙니다. 학생을 고르지 않으면 이 줄은 없습니다. 점수, 확률, 단원 숙달은 보이지 않고 다른 학생과 합치지 않습니다.</p>
+          <div class="mini-nav" aria-label="기존 학생 상세">
+            <button type="button" aria-current="true">개요</button>
+            <button type="button">소단원 분석</button>
+            <button type="button">일별 활동</button>
+            <button type="button">풀이 기록</button>
+            <button type="button">학습 설정</button>
+          </div>
+          <dl class="evidence">
+            <div>
+              <dt>최근 완료</dt>
+              <dd>보고 있는 곳 5-2-2-1. 최근 완료된 첫 통과가 둘이고, 둘 다 직접 틀렸습니다. 답 두 개가 아닙니다.</dd>
+            </div>
+            <div>
+              <dt>확인과 보류</dt>
+              <dd>5-1-5-4 의 직접 실패는 이 예시에서 1회입니다. 그 소단원의 다시 풀 시기는 보류입니다. 확인을 하루에 거듭하지 않으려고 일반 다시 풀기를 잠시 멈추며, 숙달로 보지 않습니다.</dd>
+            </div>
+            <div>
+              <dt>문제 공급</dt>
+              <dd>새 문제가 부족하면 시작을 멈추고 선생님께 알립니다. 확인 문제만 없고 분수의 곱셈 문제를 낼 수 있으면 그 학습을 이어 갑니다.</dd>
+            </div>
+            <div>
+              <dt>끄기 · 계획</dt>
+              <dd>자동 확인을 끄거나 허용된 계획 변경을 하면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <div data-shot="reason">
+        <p class="cap">H1 · 확인</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 1학기 · 분수의 덧셈과 뺄셈</p>
+          </div>
+          <div class="progress"><span>기억을 꺼내는 복습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>대분수의 뺄셈</h3>
+          <p class="reason">분수의 곱셈에 쓰이는 분수의 뺄셈을 먼저 확인해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+        <p class="cap" style="margin-top:12px">H1 · 복귀</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 2학기 · 분수의 곱셈</p>
+          </div>
+          <div class="progress"><span>차근차근 새 학습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>(분수)×(자연수)의 계산</h3>
+          <p class="reason">분수의 뺄셈 확인 범위를 본 뒤, 분수의 곱셈을 다시 학습해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+      </div>
+      <div data-shot="supply">
+        <p class="cap">H1 · 새 문제 없음</p>
+        <section class="mission" aria-label="오늘의 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="추천 학습">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>지금은 새 문제를 열 수 없어요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 추천 학습 시작</button>
+        </section>
+        <p class="cap">H1 · 확인은 없고 목표는 있음</p>
+        <section class="mission" aria-label="목표를 이어 가는 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice warn">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="목표를 이어 가는 추천">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>오늘도 한 걸음 배워요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 추천 학습 시작</button>
+        </section>
+      </div>
+    </article>
+
+    <article id="h2" class="h2">
+      <p class="cap">H2 · 안 2의 글자 처리 · 학생 없음</p>
+      <div data-shot="teacher">
+        <header class="dash">
+          <div>
+            <h2>SRS 현황</h2>
+            <p>지원 교육과정 초3–초6 · 한국 시간 기준</p>
+          </div>
+          <button type="button" aria-expanded="true">교육과정 연결도</button>
+        </header>
+        <p class="open-note">선택된 학생 없음. 이 버튼만으로 조회가 열립니다.</p>
+        <div class="workspace">
+          <aside class="roster">
+            <h2>학생</h2>
+            <p class="muted">아무도 고르지 않음</p>
+            <ol>
+              <li>예시 학생 A (픽스처)<span>고르지 않음</span></li>
+              <li>예시 학생 B (픽스처)<span>고르지 않음</span></li>
+            </ol>
+          </aside>
+          <section class="detail" aria-label="교육과정 연결도">
+            <div class="detail-head">
+              <div>
+                <h2>교육과정 연결도</h2>
+                <p>100단원 · 읽기 전용 · 학생 없이 조회</p>
+              </div>
+              <button type="button" class="close">접기</button>
+            </div>
+            <div class="detail-body">
+              <p class="status">성취기준 대조는 끝나지 않았습니다. 문제는 일부 단원만 낼 수 있습니다.</p>
+              <div class="filters">
+                <label>학교급<select><option>전체</option><option>초등</option><option>중학교</option><option>고등학교</option></select></label>
+                <label>학년군<select><option>전체</option><option>초1-2</option><option>초3-4</option><option>초5-6</option><option>중학교 1-3학년군</option><option>고등학교 과목 단위</option></select></label>
+                <label>과목<select><option>전체</option><option>수학</option><option>공통수학1</option><option>공통수학2</option><option>기본수학1</option><option>기본수학2</option><option>대수</option><option>미적분Ⅰ</option><option>미적분Ⅱ</option><option>확률과 통계</option><option>기하</option></select></label>
+                <label>영역<select><option>전체</option><option>수와 연산</option><option>변화와 관계</option><option>도형과 측정</option><option>자료와 가능성</option></select></label>
+                <label class="search">검색<input type="search" placeholder="단원 이름 또는 코드" /></label>
+              </div>
+              <button type="button" class="reset">필터 초기화</button>
+              <p class="choices">고를 수 없는 과목: 경제 수학, 인공지능 수학, 직무 수학, 수학과 문화, 실용 통계, 수학과제 탐구, 전문 수학, 이산 수학, 고급 대수, 고급 미적분, 고급 기하. 직업계고 전문교과별 전공 수학, 학교별 인정 과목도 없습니다. 고등학교 단원의 분류 칸은 편집분류이며 공식 영역 이름이 아닙니다.</p>
+              <div class="catalog">
+                <h3>단원 16 / 100 · 두 단원을 펼침</h3>
+                <div class="unit" id="h2-E34-N04">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E34-N04 분수</span>
+                    <span class="meta">초3-4 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h2-E56-N04">
+                  <button type="button" class="row" aria-expanded="true" aria-current="true" data-focus="true">
+                    <span class="name">E56-N04 분수 곱셈·나눗셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill ok">문제를 낼 수 있음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">분수 곱셈·나눗셈</p>
+                    <p class="reason">분수의 의미와 통분·분수 덧셈뺄셈 경험을 곱셈·나눗셈으로 확장한다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>분수의 곱셈</li>
+                      <li>분수의 나눗셈과 의미</li>
+                      <li>실생활 문제</li>
+                    </ul>
+                    <h4>문제를 낼 수 있는 소단원</h4>
+                    <ul>
+                      <li>5-2-2-1 (분수)×(자연수)의 계산</li>
+                      <li>5-2-2-2 (자연수)×(분수)의 계산</li>
+                    </ul>
+                    <p class="note">밖: 5-2-2-3, 5-2-2-4. 확인: 5-1-5-4 대분수의 뺄셈 다음 5-1-5-3 진분수의 뺄셈. 단원 전체를 아는 것으로 보지 않습니다.</p>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h2-E34-N04">E34-N04 분수</a>
+                      <a class="jump" href="#h2-E56-N03">E56-N03 분수 덧셈·뺄셈</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h2-E56-R02">E56-R02 비와 비율</a>
+                      <a class="jump" href="#h2-M1-N02">M1-N02 정수와 유리수</a>
+                    </div>
+                    <h4>도움</h4>
+                    <p>적힌 도움이 없습니다. 배울 필요가 없다는 뜻은 아닙니다.</p>
+                    <h4>과목 관계</h4>
+                    <p>초등 수학에 붙은 과목 관계는 없습니다. 공통수학1 다음은 공통수학2이며, 과목 순서의 예이고 여기 배정하지 않습니다.</p>
+                    <h4>다시 볼 후보 · 진단 아님</h4>
+                    <p>보이는 후보 2 / 9.</p>
+                    <ul>
+                      <li>E56-N01 약수와 배수</li>
+                      <li>E34-N03 자연수의 곱셈·나눗셈</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="unit" id="h2-E56-N03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-N03 분수 덧셈·뺄셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-E56-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-R02 비와 비율</span>
+                    <span class="meta">초5-6 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-M1-N02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-N02 정수와 유리수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-M3-R01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R01 다항식의 곱셈과 인수분해</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-M1-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-R02 일차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-M3-N01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-N01 제곱근과 실수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h2-M3-R02">
+                  <button type="button" class="row" aria-expanded="true">
+                    <span class="name">M3-R02 이차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill no">자동으로 내지 않음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">이차방정식</p>
+                    <p>화면의 3학년 자리는 공식 학년이 아닙니다. 찾을 수는 있고 자동으로 내지 않습니다. 시범 소단원은 없습니다. 낼 문제가 없고, 성취기준 대조도 끝나지 않았습니다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>풀이</li>
+                      <li>근의 의미</li>
+                      <li>인수분해와 방정식 활용</li>
+                      <li>완전제곱식으로 풀기</li>
+                      <li>근의 공식</li>
+                    </ul>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h2-M3-R01">M3-R01 다항식의 곱셈과 인수분해</a>
+                      <a class="jump" href="#h2-M1-R02">M1-R02 일차방정식</a>
+                      <a class="jump" href="#h2-M3-N01">M3-N01 제곱근과 실수</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h2-M3-R03">M3-R03 이차함수</a>
+                      <a class="jump" href="#h2-H-C1-02">H-C1-02 복소수와 이차방정식</a>
+                      <a class="jump" href="#h2-H-C1-03">H-C1-03 이차방정식과 이차함수</a>
+                      <a class="jump" href="#h2-H-BAS1-02">H-BAS1-02 방정식·부등식</a>
+                    </div>
+                    <p>도움은 없습니다. 다시 볼 후보는 일부이며 진단이 아닙니다. M2-R01 식의 계산.</p>
+                  </div>
+                </div>
+                <div class="unit" id="h2-M3-R03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R03 이차함수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-H-C1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-02 복소수와 이차방정식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-H-C1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-03 이차방정식과 이차함수</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-H-BAS1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-02 방정식·부등식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 기본수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-H-C1-05">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-05 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 공통수학1 · 공식 이름 아님</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-H-PS-01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-PS-01 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 확률과 통계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h2-H-BAS1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-03 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 기본수학1</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+              </div>
+              <p class="note">같은 이름은 과목으로 가릅니다. 접힌 단원으로 가는 앞·뒤 링크는 이 목록 안의 읽기 이동입니다.</p>
+            </div>
+          </section>
+        </div>
+        <section class="optional">
+          <h3>학생을 고른 경우에만 덧붙는 줄</h3>
+          <p class="note">위 연결도는 그대로입니다. 아래는 예시 학생 A (픽스처)의 일부입니다. 실존 학생이 아닙니다. 학생을 고르지 않으면 이 줄은 없습니다. 점수, 확률, 단원 숙달은 보이지 않고 다른 학생과 합치지 않습니다.</p>
+          <div class="mini-nav" aria-label="기존 학생 상세">
+            <button type="button" aria-current="true">개요</button>
+            <button type="button">소단원 분석</button>
+            <button type="button">일별 활동</button>
+            <button type="button">풀이 기록</button>
+            <button type="button">학습 설정</button>
+          </div>
+          <dl class="evidence">
+            <div>
+              <dt>최근 완료</dt>
+              <dd>보고 있는 곳 5-2-2-1. 최근 완료된 첫 통과가 둘이고, 둘 다 직접 틀렸습니다. 답 두 개가 아닙니다.</dd>
+            </div>
+            <div>
+              <dt>확인과 보류</dt>
+              <dd>5-1-5-4 의 직접 실패는 이 예시에서 1회입니다. 그 소단원의 다시 풀 시기는 보류입니다. 확인을 하루에 거듭하지 않으려고 일반 다시 풀기를 잠시 멈추며, 숙달로 보지 않습니다.</dd>
+            </div>
+            <div>
+              <dt>문제 공급</dt>
+              <dd>새 문제가 부족하면 시작을 멈추고 선생님께 알립니다. 확인 문제만 없고 분수의 곱셈 문제를 낼 수 있으면 그 학습을 이어 갑니다.</dd>
+            </div>
+            <div>
+              <dt>끄기 · 계획</dt>
+              <dd>자동 확인을 끄거나 허용된 계획 변경을 하면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <div data-shot="reason">
+        <p class="cap">H2 · 확인</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 1학기 · 분수의 덧셈과 뺄셈</p>
+          </div>
+          <div class="progress"><span>기억을 꺼내는 복습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>대분수의 뺄셈</h3>
+          <p class="reason">분수의 곱셈에 쓰이는 분수의 뺄셈을 먼저 확인해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+        <p class="cap" style="margin-top:12px">H2 · 복귀</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 2학기 · 분수의 곱셈</p>
+          </div>
+          <div class="progress"><span>차근차근 새 학습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>(분수)×(자연수)의 계산</h3>
+          <p class="reason">분수의 뺄셈 확인 범위를 본 뒤, 분수의 곱셈을 다시 학습해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+      </div>
+      <div data-shot="supply">
+        <p class="cap">H2 · 새 문제 없음</p>
+        <section class="mission" aria-label="오늘의 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="추천 학습">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>지금은 새 문제를 열 수 없어요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 추천 학습 시작</button>
+        </section>
+        <p class="cap">H2 · 확인은 없고 목표는 있음</p>
+        <section class="mission" aria-label="목표를 이어 가는 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice warn">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="목표를 이어 가는 추천">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>오늘도 한 걸음 배워요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 추천 학습 시작</button>
+        </section>
+      </div>
+    </article>
+
+    <article id="h3" class="h3">
+      <p class="cap">H3 · 안 2의 글자 처리 · 학생 없음</p>
+      <div data-shot="teacher">
+        <header class="dash">
+          <div>
+            <h2>SRS 현황</h2>
+            <p>지원 교육과정 초3–초6 · 한국 시간 기준</p>
+          </div>
+          <button type="button" aria-expanded="true">교육과정 연결도</button>
+        </header>
+        <p class="open-note">선택된 학생 없음. 이 버튼만으로 조회가 열립니다.</p>
+        <div class="workspace">
+          <aside class="roster">
+            <h2>학생</h2>
+            <p class="muted">아무도 고르지 않음</p>
+            <ol>
+              <li>예시 학생 A (픽스처)<span>고르지 않음</span></li>
+              <li>예시 학생 B (픽스처)<span>고르지 않음</span></li>
+            </ol>
+          </aside>
+          <section class="detail" aria-label="교육과정 연결도">
+            <div class="detail-head">
+              <div>
+                <h2>교육과정 연결도</h2>
+                <p>100단원 · 읽기 전용 · 학생 없이 조회</p>
+              </div>
+              <button type="button" class="close">접기</button>
+            </div>
+            <div class="detail-body">
+              <p class="status">성취기준 대조는 끝나지 않았습니다. 문제는 일부 단원만 낼 수 있습니다.</p>
+              <div class="filters">
+                <label>학교급<select><option>전체</option><option>초등</option><option>중학교</option><option>고등학교</option></select></label>
+                <label>학년군<select><option>전체</option><option>초1-2</option><option>초3-4</option><option>초5-6</option><option>중학교 1-3학년군</option><option>고등학교 과목 단위</option></select></label>
+                <label>과목<select><option>전체</option><option>수학</option><option>공통수학1</option><option>공통수학2</option><option>기본수학1</option><option>기본수학2</option><option>대수</option><option>미적분Ⅰ</option><option>미적분Ⅱ</option><option>확률과 통계</option><option>기하</option></select></label>
+                <label>영역<select><option>전체</option><option>수와 연산</option><option>변화와 관계</option><option>도형과 측정</option><option>자료와 가능성</option></select></label>
+                <label class="search">검색<input type="search" placeholder="단원 이름 또는 코드" /></label>
+              </div>
+              <button type="button" class="reset">필터 초기화</button>
+              <p class="choices">고를 수 없는 과목: 경제 수학, 인공지능 수학, 직무 수학, 수학과 문화, 실용 통계, 수학과제 탐구, 전문 수학, 이산 수학, 고급 대수, 고급 미적분, 고급 기하. 직업계고 전문교과별 전공 수학, 학교별 인정 과목도 없습니다. 고등학교 단원의 분류 칸은 편집분류이며 공식 영역 이름이 아닙니다.</p>
+              <div class="catalog">
+                <h3>단원 16 / 100 · 두 단원을 펼침</h3>
+                <div class="unit" id="h3-E34-N04">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E34-N04 분수</span>
+                    <span class="meta">초3-4 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h3-E56-N04">
+                  <button type="button" class="row" aria-expanded="true" aria-current="true" data-focus="true">
+                    <span class="name">E56-N04 분수 곱셈·나눗셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill ok">문제를 낼 수 있음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">분수 곱셈·나눗셈</p>
+                    <p class="reason">분수의 의미와 통분·분수 덧셈뺄셈 경험을 곱셈·나눗셈으로 확장한다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>분수의 곱셈</li>
+                      <li>분수의 나눗셈과 의미</li>
+                      <li>실생활 문제</li>
+                    </ul>
+                    <h4>문제를 낼 수 있는 소단원</h4>
+                    <ul>
+                      <li>5-2-2-1 (분수)×(자연수)의 계산</li>
+                      <li>5-2-2-2 (자연수)×(분수)의 계산</li>
+                    </ul>
+                    <p class="note">밖: 5-2-2-3, 5-2-2-4. 확인: 5-1-5-4 대분수의 뺄셈 다음 5-1-5-3 진분수의 뺄셈. 단원 전체를 아는 것으로 보지 않습니다.</p>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h3-E34-N04">E34-N04 분수</a>
+                      <a class="jump" href="#h3-E56-N03">E56-N03 분수 덧셈·뺄셈</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h3-E56-R02">E56-R02 비와 비율</a>
+                      <a class="jump" href="#h3-M1-N02">M1-N02 정수와 유리수</a>
+                    </div>
+                    <h4>도움</h4>
+                    <p>적힌 도움이 없습니다. 배울 필요가 없다는 뜻은 아닙니다.</p>
+                    <h4>과목 관계</h4>
+                    <p>초등 수학에 붙은 과목 관계는 없습니다. 공통수학1 다음은 공통수학2이며, 과목 순서의 예이고 여기 배정하지 않습니다.</p>
+                    <h4>다시 볼 후보 · 진단 아님</h4>
+                    <p>보이는 후보 2 / 9.</p>
+                    <ul>
+                      <li>E56-N01 약수와 배수</li>
+                      <li>E34-N03 자연수의 곱셈·나눗셈</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="unit" id="h3-E56-N03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-N03 분수 덧셈·뺄셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-E56-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-R02 비와 비율</span>
+                    <span class="meta">초5-6 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-M1-N02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-N02 정수와 유리수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-M3-R01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R01 다항식의 곱셈과 인수분해</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-M1-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-R02 일차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-M3-N01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-N01 제곱근과 실수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h3-M3-R02">
+                  <button type="button" class="row" aria-expanded="true">
+                    <span class="name">M3-R02 이차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill no">자동으로 내지 않음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">이차방정식</p>
+                    <p>화면의 3학년 자리는 공식 학년이 아닙니다. 찾을 수는 있고 자동으로 내지 않습니다. 시범 소단원은 없습니다. 낼 문제가 없고, 성취기준 대조도 끝나지 않았습니다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>풀이</li>
+                      <li>근의 의미</li>
+                      <li>인수분해와 방정식 활용</li>
+                      <li>완전제곱식으로 풀기</li>
+                      <li>근의 공식</li>
+                    </ul>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h3-M3-R01">M3-R01 다항식의 곱셈과 인수분해</a>
+                      <a class="jump" href="#h3-M1-R02">M1-R02 일차방정식</a>
+                      <a class="jump" href="#h3-M3-N01">M3-N01 제곱근과 실수</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h3-M3-R03">M3-R03 이차함수</a>
+                      <a class="jump" href="#h3-H-C1-02">H-C1-02 복소수와 이차방정식</a>
+                      <a class="jump" href="#h3-H-C1-03">H-C1-03 이차방정식과 이차함수</a>
+                      <a class="jump" href="#h3-H-BAS1-02">H-BAS1-02 방정식·부등식</a>
+                    </div>
+                    <p>도움은 없습니다. 다시 볼 후보는 일부이며 진단이 아닙니다. M2-R01 식의 계산.</p>
+                  </div>
+                </div>
+                <div class="unit" id="h3-M3-R03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R03 이차함수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-H-C1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-02 복소수와 이차방정식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-H-C1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-03 이차방정식과 이차함수</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-H-BAS1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-02 방정식·부등식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 기본수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-H-C1-05">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-05 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 공통수학1 · 공식 이름 아님</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-H-PS-01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-PS-01 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 확률과 통계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h3-H-BAS1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-03 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 기본수학1</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+              </div>
+              <p class="note">같은 이름은 과목으로 가릅니다. 접힌 단원으로 가는 앞·뒤 링크는 이 목록 안의 읽기 이동입니다.</p>
+            </div>
+          </section>
+        </div>
+        <section class="optional">
+          <h3>학생을 고른 경우에만 덧붙는 줄</h3>
+          <p class="note">위 연결도는 그대로입니다. 아래는 예시 학생 A (픽스처)의 일부입니다. 실존 학생이 아닙니다. 학생을 고르지 않으면 이 줄은 없습니다. 점수, 확률, 단원 숙달은 보이지 않고 다른 학생과 합치지 않습니다.</p>
+          <div class="mini-nav" aria-label="기존 학생 상세">
+            <button type="button" aria-current="true">개요</button>
+            <button type="button">소단원 분석</button>
+            <button type="button">일별 활동</button>
+            <button type="button">풀이 기록</button>
+            <button type="button">학습 설정</button>
+          </div>
+          <dl class="evidence">
+            <div>
+              <dt>최근 완료</dt>
+              <dd>보고 있는 곳 5-2-2-1. 최근 완료된 첫 통과가 둘이고, 둘 다 직접 틀렸습니다. 답 두 개가 아닙니다.</dd>
+            </div>
+            <div>
+              <dt>확인과 보류</dt>
+              <dd>5-1-5-4 의 직접 실패는 이 예시에서 1회입니다. 그 소단원의 다시 풀 시기는 보류입니다. 확인을 하루에 거듭하지 않으려고 일반 다시 풀기를 잠시 멈추며, 숙달로 보지 않습니다.</dd>
+            </div>
+            <div>
+              <dt>문제 공급</dt>
+              <dd>새 문제가 부족하면 시작을 멈추고 선생님께 알립니다. 확인 문제만 없고 분수의 곱셈 문제를 낼 수 있으면 그 학습을 이어 갑니다.</dd>
+            </div>
+            <div>
+              <dt>끄기 · 계획</dt>
+              <dd>자동 확인을 끄거나 허용된 계획 변경을 하면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <div data-shot="reason">
+        <p class="cap">H3 · 확인</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 1학기 · 분수의 덧셈과 뺄셈</p>
+          </div>
+          <div class="progress"><span>기억을 꺼내는 복습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>대분수의 뺄셈</h3>
+          <p class="reason">분수의 곱셈에 쓰이는 분수의 뺄셈을 먼저 확인해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+        <p class="cap" style="margin-top:12px">H3 · 복귀</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 2학기 · 분수의 곱셈</p>
+          </div>
+          <div class="progress"><span>차근차근 새 학습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>(분수)×(자연수)의 계산</h3>
+          <p class="reason">분수의 뺄셈 확인 범위를 본 뒤, 분수의 곱셈을 다시 학습해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+      </div>
+      <div data-shot="supply">
+        <p class="cap">H3 · 새 문제 없음</p>
+        <section class="mission" aria-label="오늘의 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="추천 학습">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>지금은 새 문제를 열 수 없어요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 추천 학습 시작</button>
+        </section>
+        <p class="cap">H3 · 확인은 없고 목표는 있음</p>
+        <section class="mission" aria-label="목표를 이어 가는 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice warn">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="목표를 이어 가는 추천">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>오늘도 한 걸음 배워요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 추천 학습 시작</button>
+        </section>
+      </div>
+    </article>
+
+    <article id="h4" class="h4">
+      <p class="cap">H4 · 안 2의 글자 처리 · 학생 없음</p>
+      <div data-shot="teacher">
+        <header class="dash">
+          <div>
+            <h2>SRS 현황</h2>
+            <p>지원 교육과정 초3–초6 · 한국 시간 기준</p>
+          </div>
+          <button type="button" aria-expanded="true">교육과정 연결도</button>
+        </header>
+        <p class="open-note">선택된 학생 없음. 이 버튼만으로 조회가 열립니다.</p>
+        <div class="workspace">
+          <aside class="roster">
+            <h2>학생</h2>
+            <p class="muted">아무도 고르지 않음</p>
+            <ol>
+              <li>예시 학생 A (픽스처)<span>고르지 않음</span></li>
+              <li>예시 학생 B (픽스처)<span>고르지 않음</span></li>
+            </ol>
+          </aside>
+          <section class="detail" aria-label="교육과정 연결도">
+            <div class="detail-head">
+              <div>
+                <h2>교육과정 연결도</h2>
+                <p>100단원 · 읽기 전용 · 학생 없이 조회</p>
+              </div>
+              <button type="button" class="close">접기</button>
+            </div>
+            <div class="detail-body">
+              <p class="status">성취기준 대조는 끝나지 않았습니다. 문제는 일부 단원만 낼 수 있습니다.</p>
+              <div class="filters">
+                <label>학교급<select><option>전체</option><option>초등</option><option>중학교</option><option>고등학교</option></select></label>
+                <label>학년군<select><option>전체</option><option>초1-2</option><option>초3-4</option><option>초5-6</option><option>중학교 1-3학년군</option><option>고등학교 과목 단위</option></select></label>
+                <label>과목<select><option>전체</option><option>수학</option><option>공통수학1</option><option>공통수학2</option><option>기본수학1</option><option>기본수학2</option><option>대수</option><option>미적분Ⅰ</option><option>미적분Ⅱ</option><option>확률과 통계</option><option>기하</option></select></label>
+                <label>영역<select><option>전체</option><option>수와 연산</option><option>변화와 관계</option><option>도형과 측정</option><option>자료와 가능성</option></select></label>
+                <label class="search">검색<input type="search" placeholder="단원 이름 또는 코드" /></label>
+              </div>
+              <button type="button" class="reset">필터 초기화</button>
+              <p class="choices">고를 수 없는 과목: 경제 수학, 인공지능 수학, 직무 수학, 수학과 문화, 실용 통계, 수학과제 탐구, 전문 수학, 이산 수학, 고급 대수, 고급 미적분, 고급 기하. 직업계고 전문교과별 전공 수학, 학교별 인정 과목도 없습니다. 고등학교 단원의 분류 칸은 편집분류이며 공식 영역 이름이 아닙니다.</p>
+              <div class="catalog">
+                <h3>단원 16 / 100 · 두 단원을 펼침</h3>
+                <div class="unit" id="h4-E34-N04">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E34-N04 분수</span>
+                    <span class="meta">초3-4 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h4-E56-N04">
+                  <button type="button" class="row" aria-expanded="true" aria-current="true" data-focus="true">
+                    <span class="name">E56-N04 분수 곱셈·나눗셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill ok">문제를 낼 수 있음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">분수 곱셈·나눗셈</p>
+                    <p class="reason">분수의 의미와 통분·분수 덧셈뺄셈 경험을 곱셈·나눗셈으로 확장한다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>분수의 곱셈</li>
+                      <li>분수의 나눗셈과 의미</li>
+                      <li>실생활 문제</li>
+                    </ul>
+                    <h4>문제를 낼 수 있는 소단원</h4>
+                    <ul>
+                      <li>5-2-2-1 (분수)×(자연수)의 계산</li>
+                      <li>5-2-2-2 (자연수)×(분수)의 계산</li>
+                    </ul>
+                    <p class="note">밖: 5-2-2-3, 5-2-2-4. 확인: 5-1-5-4 대분수의 뺄셈 다음 5-1-5-3 진분수의 뺄셈. 단원 전체를 아는 것으로 보지 않습니다.</p>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h4-E34-N04">E34-N04 분수</a>
+                      <a class="jump" href="#h4-E56-N03">E56-N03 분수 덧셈·뺄셈</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h4-E56-R02">E56-R02 비와 비율</a>
+                      <a class="jump" href="#h4-M1-N02">M1-N02 정수와 유리수</a>
+                    </div>
+                    <h4>도움</h4>
+                    <p>적힌 도움이 없습니다. 배울 필요가 없다는 뜻은 아닙니다.</p>
+                    <h4>과목 관계</h4>
+                    <p>초등 수학에 붙은 과목 관계는 없습니다. 공통수학1 다음은 공통수학2이며, 과목 순서의 예이고 여기 배정하지 않습니다.</p>
+                    <h4>다시 볼 후보 · 진단 아님</h4>
+                    <p>보이는 후보 2 / 9.</p>
+                    <ul>
+                      <li>E56-N01 약수와 배수</li>
+                      <li>E34-N03 자연수의 곱셈·나눗셈</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="unit" id="h4-E56-N03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-N03 분수 덧셈·뺄셈</span>
+                    <span class="meta">초5-6 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-E56-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">E56-R02 비와 비율</span>
+                    <span class="meta">초5-6 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-M1-N02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-N02 정수와 유리수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-M3-R01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R01 다항식의 곱셈과 인수분해</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-M1-R02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M1-R02 일차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-M3-N01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-N01 제곱근과 실수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 수와 연산</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit is-open" id="h4-M3-R02">
+                  <button type="button" class="row" aria-expanded="true">
+                    <span class="name">M3-R02 이차방정식</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계</span>
+                    <span class="pill no">자동으로 내지 않음</span>
+                  </button>
+                  <div class="more">
+                    <p class="lead">이차방정식</p>
+                    <p>화면의 3학년 자리는 공식 학년이 아닙니다. 찾을 수는 있고 자동으로 내지 않습니다. 시범 소단원은 없습니다. 낼 문제가 없고, 성취기준 대조도 끝나지 않았습니다.</p>
+                    <h4>학습 요소</h4>
+                    <ul>
+                      <li>풀이</li>
+                      <li>근의 의미</li>
+                      <li>인수분해와 방정식 활용</li>
+                      <li>완전제곱식으로 풀기</li>
+                      <li>근의 공식</li>
+                    </ul>
+                    <h4>바로 앞 단원</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h4-M3-R01">M3-R01 다항식의 곱셈과 인수분해</a>
+                      <a class="jump" href="#h4-M1-R02">M1-R02 일차방정식</a>
+                      <a class="jump" href="#h4-M3-N01">M3-N01 제곱근과 실수</a>
+                    </div>
+                    <h4>다음 · 배정하지 않음</h4>
+                    <div class="jumps">
+                      <a class="jump" href="#h4-M3-R03">M3-R03 이차함수</a>
+                      <a class="jump" href="#h4-H-C1-02">H-C1-02 복소수와 이차방정식</a>
+                      <a class="jump" href="#h4-H-C1-03">H-C1-03 이차방정식과 이차함수</a>
+                      <a class="jump" href="#h4-H-BAS1-02">H-BAS1-02 방정식·부등식</a>
+                    </div>
+                    <p>도움은 없습니다. 다시 볼 후보는 일부이며 진단이 아닙니다. M2-R01 식의 계산.</p>
+                  </div>
+                </div>
+                <div class="unit" id="h4-M3-R03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">M3-R03 이차함수</span>
+                    <span class="meta">중학교 1-3학년군 · 수학 · 변화와 관계 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-H-C1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-02 복소수와 이차방정식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-H-C1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-03 이차방정식과 이차함수</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 공통수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-H-BAS1-02">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-02 방정식·부등식</span>
+                    <span class="meta">편집분류 · 변화와 관계 · 기본수학1 · 배정하지 않음</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-H-C1-05">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-C1-05 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 공통수학1 · 공식 이름 아님</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-H-PS-01">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-PS-01 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 확률과 통계</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+                <div class="unit" id="h4-H-BAS1-03">
+                  <button type="button" class="row" aria-expanded="false">
+                    <span class="name">H-BAS1-03 경우의 수</span>
+                    <span class="meta">편집분류 · 자료와 가능성 · 기본수학1</span>
+                    <span class="pill shut">접힘</span>
+                  </button>
+                </div>
+              </div>
+              <p class="note">같은 이름은 과목으로 가릅니다. 접힌 단원으로 가는 앞·뒤 링크는 이 목록 안의 읽기 이동입니다.</p>
+            </div>
+          </section>
+        </div>
+        <section class="optional">
+          <h3>학생을 고른 경우에만 덧붙는 줄</h3>
+          <p class="note">위 연결도는 그대로입니다. 아래는 예시 학생 A (픽스처)의 일부입니다. 실존 학생이 아닙니다. 학생을 고르지 않으면 이 줄은 없습니다. 점수, 확률, 단원 숙달은 보이지 않고 다른 학생과 합치지 않습니다.</p>
+          <div class="mini-nav" aria-label="기존 학생 상세">
+            <button type="button" aria-current="true">개요</button>
+            <button type="button">소단원 분석</button>
+            <button type="button">일별 활동</button>
+            <button type="button">풀이 기록</button>
+            <button type="button">학습 설정</button>
+          </div>
+          <dl class="evidence">
+            <div>
+              <dt>최근 완료</dt>
+              <dd>보고 있는 곳 5-2-2-1. 최근 완료된 첫 통과가 둘이고, 둘 다 직접 틀렸습니다. 답 두 개가 아닙니다.</dd>
+            </div>
+            <div>
+              <dt>확인과 보류</dt>
+              <dd>5-1-5-4 의 직접 실패는 이 예시에서 1회입니다. 그 소단원의 다시 풀 시기는 보류입니다. 확인을 하루에 거듭하지 않으려고 일반 다시 풀기를 잠시 멈추며, 숙달로 보지 않습니다.</dd>
+            </div>
+            <div>
+              <dt>문제 공급</dt>
+              <dd>새 문제가 부족하면 시작을 멈추고 선생님께 알립니다. 확인 문제만 없고 분수의 곱셈 문제를 낼 수 있으면 그 학습을 이어 갑니다.</dd>
+            </div>
+            <div>
+              <dt>끄기 · 계획</dt>
+              <dd>자동 확인을 끄거나 허용된 계획 변경을 하면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+      <div data-shot="reason">
+        <p class="cap">H4 · 확인</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 1학기 · 분수의 덧셈과 뺄셈</p>
+          </div>
+          <div class="progress"><span>기억을 꺼내는 복습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>대분수의 뺄셈</h3>
+          <p class="reason">분수의 곱셈에 쓰이는 분수의 뺄셈을 먼저 확인해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+        <p class="cap" style="margin-top:12px">H4 · 복귀</p>
+        <section class="player">
+          <div class="player-head">
+            <button type="button" class="back">← 학습 홈</button>
+            <p class="crumb">초5 · 2학기 · 분수의 곱셈</p>
+          </div>
+          <div class="progress"><span>차근차근 새 학습</span><b>1 / 5 문제</b></div>
+          <span class="track" aria-hidden="true"><span></span></span>
+          <h3>(분수)×(자연수)의 계산</h3>
+          <p class="reason">분수의 뺄셈 확인 범위를 본 뒤, 분수의 곱셈을 다시 학습해요.</p>
+          <p class="foot">종이와 펜으로 편하게 풀어요. 시간은 재지 않아요.</p>
+        </section>
+      </div>
+      <div data-shot="supply">
+        <p class="cap">H4 · 새 문제 없음</p>
+        <section class="mission" aria-label="오늘의 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="추천 학습">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>지금은 새 문제를 열 수 없어요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">새 문제를 준비하지 못했어요. 선생님께 알려 주세요.</p>
+          <button type="button" class="start" disabled>오늘의 추천 학습 시작</button>
+        </section>
+        <p class="cap">H4 · 확인은 없고 목표는 있음</p>
+        <section class="mission" aria-label="목표를 이어 가는 탐험">
+          <div class="mission-meta"><span>오늘의 한 칸</span><span>1 / 5 문제</span></div>
+          <p class="sub">초5</p>
+          <h3>분수의 곱셈</h3>
+          <div class="bar" aria-hidden="true"><span></span></div>
+          <p class="notice warn">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 탐험 시작</button>
+        </section>
+        <section class="srs" aria-label="목표를 이어 가는 추천">
+          <p class="eye">오늘의 추천 학습</p>
+          <h3>오늘도 한 걸음 배워요.</h3>
+          <p class="section">초5 · 2학기 · 분수의 곱셈</p>
+          <p class="why">확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.</p>
+          <button type="button" class="start">오늘의 추천 학습 시작</button>
+        </section>
+      </div>
+    </article>
+  </div>
+</body>
+</html>
