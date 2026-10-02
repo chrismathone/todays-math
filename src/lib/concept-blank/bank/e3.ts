@@ -614,7 +614,7 @@ export const bank: ConceptBlankBank = {
       example: {
         prompt:
           "$52\\times4$에서 십의 묶음 $20$개를 백의 묶음 $2$개로 바꾸는 까닭은?",
-        answer: "십의 묶음 $10$개가 백의 묶음 $1$개이기 때문이다",
+        answer: "십의 묶음 $10$개가 백 $1$개라서",
       },
     },
     {
