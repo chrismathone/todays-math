@@ -28,6 +28,8 @@
 .source-math-editor .visual-figure:not([role="button"]) { cursor: default; }
 .source-math-editor.visual-editor-loading { padding: 16px; color: #64748b; }
 .source-math-editor button { font-family: inherit; }
+/* 저장된 TeX 안의 한글도 본문 글꼴로 읽는다. 수식의 숫자·기호 글꼴은 KaTeX가 맡는다. */
+.source-math-editor .katex .hangul_fallback { font-family: var(--font-pretendard), "Malgun Gothic", system-ui, sans-serif; font-size: calc(1em / 1.21); }
 .source-math-editor .figure-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: 12px; margin: 10px 0; width: 100%; }
 .source-math-editor .figure-row > .visual-figure { margin: 0; }
 .source-math-editor .visual-figure:is(span) { display: inline-block; vertical-align: middle; }

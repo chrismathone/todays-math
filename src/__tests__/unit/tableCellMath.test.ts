@@ -63,6 +63,26 @@ describe("tableCellMarkdown — 칸 하나", () => {
     expect(tableCellMarkdown("$a$ 또는 3")).toBe("$a$ 또는 3");
   });
 
+  it.each([
+    ["사인(\\sin)", "사인$(\\sin)$"],
+    ["코사인(\\cos)", "코사인$(\\cos)$"],
+    ["탄젠트(\\tan)", "탄젠트$(\\tan)$"],
+    ["각도 28^\\circ", "각도 $28^\\circ$"],
+    ["x^2의 값", "$x^2$의 값"],
+    ["평균 속력=\\frac{거리}{시간}", "평균 속력$=\\frac{거리}{시간}$"],
+  ])("한글 설명과 수식을 따로 표시한다: %j", (cell, expected) => {
+    expect(tableCellMarkdown(cell)).toBe(expected);
+  });
+
+  it.each([
+    "\\frac{\\text{거리}}{\\text{시간}}",
+    "\\left(한글\\right)",
+    "x_한글",
+    "\\begin{array}{c}한글\\end{array}",
+  ])("한글이 든 수식 구조를 끊지 않는다: %j", (cell) => {
+    expect(tableCellMarkdown(cell)).toBe(`$${cell}$`);
+  });
+
   it("빈 칸은 빈 칸이다", () => {
     expect(tableCellMarkdown("")).toBe("");
     expect(tableCellMarkdown("   ")).toBe("");

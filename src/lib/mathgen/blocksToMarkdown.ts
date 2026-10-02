@@ -71,6 +71,37 @@ const isBareMath = (cell: string): boolean =>
   /[0-9A-Za-z]/.test(cell) &&
   !/[A-Za-z]{2,}/.test(cell);
 
+/** 한글 설명은 셀의 일반 글자로, 수식은 별도 토큰으로 둔다. TeX 인수 안의 글은 건드리지 않는다. */
+const mixedTableCell = (cell: string): string | undefined => {
+  // 환경·짝 구분자·첨자 중간을 끊으면 수식 구조가 달라진다.
+  if (/\\(?:begin|end|left|right)\b|[_^]\s*[가-힣]/.test(cell))
+    return undefined;
+  let depth = 0;
+  let start = 0;
+  let result = "";
+  const math = (value: string) => {
+    const inner = value.trim();
+    return inner && (needsMathWrap(inner) || isBareMath(inner))
+      ? value.replace(inner, () => `$${inner}$`)
+      : value;
+  };
+  for (let i = 0; i < cell.length; i++) {
+    if (cell[i] === "\\") {
+      i++;
+      continue;
+    }
+    if (cell[i] === "{") depth++;
+    else if (cell[i] === "}") depth--;
+    else if (depth === 0 && /[가-힣]/.test(cell[i]!)) {
+      const prose = cell.slice(i).match(/^[가-힣]+(?:[ \t]+[가-힣]+)*/)![0];
+      result += math(cell.slice(start, i)) + prose;
+      i += prose.length - 1;
+      start = i + 1;
+    }
+  }
+  return start > 0 ? result + math(cell.slice(start)) : undefined;
+};
+
 /**
  * 인식한 표의 칸 하나 → 그 칸의 글(수식이면 `$…$` 로 감싼). 검수 카드·편집기(`tableToGfm`)와 지면(`NativeProblem`)이
  * **같이** 쓴다 — 전에는 같은 판정(`[\\^_{}]`)이 두 파일에 따로 있었다.
@@ -78,7 +109,7 @@ const isBareMath = (cell: string): boolean =>
 export const tableCellMath = (raw: string): string => {
   const cell = (raw ?? "").trim();
   if (!cell || cell.includes("$")) return cell;
-  if (needsMathWrap(cell)) return `$${cell}$`;
+  if (needsMathWrap(cell)) return mixedTableCell(cell) ?? `$${cell}$`;
   if (!isBareMath(cell)) return cell;
   const grouped = THOUSANDS.test(cell) ? cell.replace(/,/g, "{,}") : cell;
   return `$${grouped.replace(/%/g, "\\%")}$`;
