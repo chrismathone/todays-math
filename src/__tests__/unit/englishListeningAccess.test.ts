@@ -19,6 +19,7 @@ const teacher: AccountAccess = {
   menus: [],
 };
 const pilot = { enabled: true, grantedUserIds: [teacher.id] };
+const mediaTarget = { setId: "set-a", assetId: "asset-a" };
 function facts(): ListeningStudentAccessFacts {
   return {
     session: {
@@ -57,6 +58,8 @@ function facts(): ListeningStudentAccessFacts {
     },
     publication: {
       id: "publication-a",
+      setId: "set-a",
+      audioAssetIds: ["asset-a"],
       ownerUserId: "teacher-a",
       branchId: "branch-a",
       withdrawnAt: null,
@@ -67,6 +70,24 @@ function facts(): ListeningStudentAccessFacts {
 }
 
 describe("listening pilot teacher access", () => {
+  it("preserves the stored normalized legacy English block until explicitly overridden", () => {
+    const disabled = ["english-school", "english-maker", "english-library"];
+    expect(canUseListeningTeacher(teacher, pilot, disabled)).toBe(false);
+    expect(
+      canUseListeningTeacher(
+        teacher,
+        { ...pilot, legacyBlockOverrideUserIds: [teacher.id] },
+        disabled,
+      ),
+    ).toBe(true);
+    expect(
+      canUseListeningTeacher(
+        teacher,
+        { ...pilot, legacyBlockOverrideUserIds: [teacher.id] },
+        [...disabled, "english-listening"],
+      ),
+    ).toBe(false);
+  });
   it("requires explicit pilot grant, including for administrators", () => {
     expect(canUseListeningTeacher(teacher, pilot, [])).toBe(true);
     expect(
@@ -134,6 +155,23 @@ describe("listening pilot teacher access", () => {
 });
 
 describe("listening fresh student access facts", () => {
+  it("binds media to the immutable publication, not every ready audio in its set", () => {
+    const f = facts();
+    expect(canReadListeningAssignment(f, "media", mediaTarget)).toBe(true);
+    expect(canReadListeningAssignment(f, "media")).toBe(false);
+    expect(
+      canReadListeningAssignment(f, "media", {
+        ...mediaTarget,
+        assetId: "unpublished-audio",
+      }),
+    ).toBe(false);
+    expect(
+      canReadListeningAssignment(f, "media", {
+        ...mediaTarget,
+        setId: "another-set",
+      }),
+    ).toBe(false);
+  });
   it("allows this student's active assignment and keeps review readable after answer deadlines", () => {
     expect(canReadListeningAssignment(facts(), "read")).toBe(true);
     expect(
@@ -308,7 +346,7 @@ describe("listening fresh student access facts", () => {
     const f = facts();
     change(f);
     expect(canReadListeningAssignment(f, "read")).toBe(false);
-    expect(canReadListeningAssignment(f, "media")).toBe(false);
+    expect(canReadListeningAssignment(f, "media", mediaTarget)).toBe(false);
   });
   it("teacher broadcast students have no audio access, even with a valid attempt", () => {
     const f = facts();
@@ -317,9 +355,9 @@ describe("listening fresh student access facts", () => {
       assignmentId: "assignment-a",
       publicationId: "publication-a",
     };
-    expect(canReadListeningAssignment(f, "media")).toBe(true);
+    expect(canReadListeningAssignment(f, "media", mediaTarget)).toBe(true);
     f.assignment.audioSource = "teacher_device";
     expect(canReadListeningAssignment(f, "read")).toBe(true);
-    expect(canReadListeningAssignment(f, "media")).toBe(false);
+    expect(canReadListeningAssignment(f, "media", mediaTarget)).toBe(false);
   });
 });

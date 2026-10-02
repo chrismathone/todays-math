@@ -5,6 +5,8 @@ import { withinOwnerScope } from "@/lib/ownerScope";
 export interface ListeningPilotAccess {
   enabled: boolean;
   grantedUserIds: readonly string[];
+  /** Explicit permission transition for listening-only teachers; never inferred from a pilot grant. */
+  legacyBlockOverrideUserIds?: readonly string[];
 }
 
 /** L0 policy only. Route adapters must load these grants and raw disabled menus server-side. */
@@ -13,12 +15,18 @@ export function canUseListeningTeacher(
   pilot: ListeningPilotAccess,
   disabledMenus: readonly string[],
 ): boolean {
+  const legacyBlocked =
+    disabledMenus.includes("english") ||
+    ["english-school", "english-maker", "english-library"].every((menu) =>
+      disabledMenus.includes(menu),
+    );
   return (
     !!account?.id &&
     account.approvalStatus === "approved" &&
     pilot.enabled === true &&
     pilot.grantedUserIds.includes(account.id) &&
-    !disabledMenus.includes("english") &&
+    (!legacyBlocked ||
+      pilot.legacyBlockOverrideUserIds?.includes(account.id) === true) &&
     !disabledMenus.includes("english-listening")
   );
 }
@@ -72,6 +80,8 @@ export interface ListeningStudentAccessFacts {
   };
   publication: {
     id: string;
+    setId: string;
+    audioAssetIds: readonly string[];
     ownerUserId: string;
     branchId: string | null;
     withdrawnAt: number | null;
@@ -92,6 +102,7 @@ export interface ListeningStudentAccessFacts {
 export function canReadListeningAssignment(
   facts: ListeningStudentAccessFacts,
   action: "read" | "media",
+  mediaTarget?: { setId: string; assetId: string },
 ): boolean {
   const {
     session,
@@ -155,6 +166,13 @@ export function canReadListeningAssignment(
       attempt.publicationId !== publication.id)
   )
     return false;
-  if (action === "media") return assignment.audioSource === "student_device";
+  if (action === "media")
+    return (
+      assignment.audioSource === "student_device" &&
+      !!mediaTarget?.setId &&
+      !!mediaTarget.assetId &&
+      mediaTarget.setId === publication.setId &&
+      publication.audioAssetIds.includes(mediaTarget.assetId)
+    );
   return action === "read";
 }
