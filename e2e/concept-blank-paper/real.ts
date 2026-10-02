@@ -16,6 +16,9 @@ import {
   BLANK_TREE,
   getBlankSection,
 } from "../../src/lib/concept-blank/sections";
+import { REAL_GRADES, type RealGrade } from "./grades";
+
+export { REAL_GRADES, type RealGrade };
 
 /**
  * 실제 은행으로 세운 지면 — 손으로 고른 채움 글(`stress.ts` · `fuzz.ts`)이 아니라 main 의 은행(`bank/e3 … m3`)을
@@ -38,17 +41,6 @@ const FORMS: ConceptBlankSelection["forms"] = [
   { form: "figure", counts: ALL, extras: NONE },
 ];
 
-export const REAL_GRADES = {
-  e3: "초3",
-  e4: "초4",
-  e5: "초5",
-  e6: "초6",
-  m1: "중1",
-  m2: "중2",
-  m3: "중3",
-} as const;
-export type RealGrade = keyof typeof REAL_GRADES;
-
 export function realSheets(part: RealGrade): ConceptBlankSheet[] {
   const bank = BANK_PARTS[part]!;
   const stocked = new Set(
@@ -65,6 +57,56 @@ export function realSheets(part: RealGrade): ConceptBlankSheet[] {
       ? composeSheets({ sections, forms: FORMS, date: "2026-10-01" }, bank)
       : [];
   });
+}
+
+/**
+ * 원래 은행 + 3차 보강(`*-plus`)을 합친 그 학년의 **대단원 하나** — 소단원마다 따로 골라 형식 다섯을 문항 수 최대로.
+ * `realSheets` 는 원래 파일만 본다 — 은행의 아홉이 보강 쪽에 있어 지면 자가 문항 대부분을 안 지나고 있었다(전수 검토 2026-10-02 ·
+ * 26 §10 — 용어 칸에 조건을 싣는 고침은 거의 다 보강 쪽이다). 소단원 하나가 난이도마다 열 장이라 대단원으로 고르면 40 상한에
+ * 잘린다 — 소단원으로 골라야 모든 문항이 한 번은 지면에 오른다. 한 학년이 1,900장 안팎이라 대단원으로 나눠 연다.
+ */
+export function plusSheets(
+  part: RealGrade,
+  chapter: number,
+): ConceptBlankSheet[] {
+  const bank = merged([part, `${part}plus`]);
+  const stocked = new Set(
+    [...bank.concepts, ...bank.ox, ...bank.apply, ...bank.figures].map(
+      (x) => x.section,
+    ),
+  );
+  const sections =
+    BLANK_TREE.find((g) => g.grade === REAL_GRADES[part])?.chapters[chapter]
+      ?.sections ?? [];
+  return sections
+    .filter((s) => stocked.has(s.key))
+    .flatMap((s) =>
+      composeSheets(
+        { sections: [s.key], forms: FORMS, date: "2026-10-02" },
+        bank,
+      ),
+    );
+}
+
+/**
+ * 그 학년의 그림 문항 **전부**를 «그림 보고 쓰기» 한 벌로 — 그림을 눈으로 훑는 감사용(전수 검토 2026-10-02 · 26 §10).
+ * 🔴 지면 코드로 이 고르기를 되살릴 수 없다(소단원 60 · 난이도별 40 상한을 넘는 합본이다) — 실제 고르기가 아니다.
+ */
+export function figureSheets(part: RealGrade): ConceptBlankSheet[] {
+  const figures = BANK_PARTS[part]!.figures;
+  if (!figures.length) return [];
+  return [
+    {
+      form: "figure",
+      header: {
+        title: `${REAL_GRADES[part]} 그림 전체`,
+        unitLabel: `${REAL_GRADES[part]} · 그림 ${figures.length}개`,
+        date: "2026-10-02",
+        form: "figure",
+      },
+      figures: [...figures],
+    },
+  ];
 }
 
 /**
@@ -97,14 +139,17 @@ export function showSheets(): ConceptBlankSheet[] {
   );
 }
 
-/** 최악 조합을 고르는 은행 묶음 — 초등(숫자 · 단위 · 분수)과 중학(식 · 근호 · 기호)을 따로 세운다. */
+/**
+ * 최악 조합을 고르는 은행 묶음 — 초등(숫자 · 단위 · 분수)과 중학(식 · 근호 · 기호)을 따로 세운다.
+ * 보강 파일까지 넣는다 — «가장 긴 것»은 은행 전체에서 골라야 최악이다(원래 파일만 보면 문항의 열에 하나에서 고른다).
+ */
 export const WORST_PARTS = {
-  worst: ["e3", "e4", "e5", "e6"],
-  "worst-m": ["m1", "m2", "m3"],
-} as const satisfies Record<string, readonly RealGrade[]>;
+  worst: ["e3", "e4", "e5", "e6", "e3plus", "e4plus", "e5plus", "e6plus"],
+  "worst-m": ["m1", "m2", "m3", "m1plus", "m2plus", "m3plus"],
+} as const satisfies Record<string, readonly string[]>;
 export type WorstSet = keyof typeof WORST_PARTS;
 
-const merged = (parts: readonly RealGrade[]): ConceptBlankBank => ({
+const merged = (parts: readonly string[]): ConceptBlankBank => ({
   concepts: parts.flatMap((p) => BANK_PARTS[p]!.concepts),
   ox: parts.flatMap((p) => BANK_PARTS[p]!.ox),
   apply: parts.flatMap((p) => BANK_PARTS[p]!.apply),

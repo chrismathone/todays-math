@@ -91,6 +91,26 @@ export async function openSet(
   );
   if (!serif)
     throw new Error("지면 명조(cb-harness-noto-serif-kr)가 안 실렸다");
+  // 수식 글꼴도 같다 — 못 실리면 대체 글꼴로 그려져 괄호 · 기호의 폭이 달라지고, 넘침 · 어림을 잰 값이 전부 헛돈다.
+  // 🔴 응답은 200 인데 내용이 HTML 일 수 있다(2026-10-02 — C: 워크트리의 `node_modules` 가 D: 로 가는 정션일 때 Vite 가
+  //    다른 드라이브의 파일을 못 주고 index.html 을 준다). 같은 글의 폭이 8.25em(대체 글꼴) · 11.11em(KaTeX)으로 갈렸다.
+  const mathFonts = await page.evaluate(() => {
+    const faces = [...document.fonts].filter((f) => f.family.includes("KaTeX"));
+    return {
+      used: document.querySelector(".katex") !== null,
+      failed: [
+        ...new Set(
+          faces.filter((f) => f.status === "error").map((f) => f.family),
+        ),
+      ],
+      main: document.fonts.check('16px "KaTeX_Main"', "(1)"),
+    };
+  });
+  if (mathFonts.failed.length || (mathFonts.used && !mathFonts.main))
+    throw new Error(
+      `수식 글꼴(KaTeX)이 안 실렸다 — ${mathFonts.failed.join(" · ") || "KaTeX_Main"}. ` +
+        "잰 값을 믿을 수 없다(vite.config.mts 의 preserveSymlinks · 글꼴 응답의 내용을 볼 것)",
+    );
 }
 
 export async function measurePages(page: Page): Promise<PageReport[]> {

@@ -42,10 +42,45 @@ const decodeText = (value: string) =>
     .replace(/&gt;/g, ">")
     .replace(/&amp;/g, "&");
 
+/**
+ * 수 뒤에 빈칸을 두고 온 한 글자 단위(`650 m` · `850 g` · `2 kg 100 g`)는 정자체다. 그림 편집기의 라벨 규칙은 홑 소문자를
+ * 변수로 보아 기울인다(`l` · `m` 은 직선 이름) — 그래서 `1 km` 은 서고 `650 m` 만 기울어 찍혔다(전수 검토 2026-10-02, 초3 다섯 곳).
+ * 수 바로 뒤에 붙은 글자(`2a` · `3x`)와 홀로 선 글자는 그대로 변수다. 띄어 쓴 글자도 단위(미터 · 그램 · 톤)가 아니면 변수다(`3 x`).
+ * 한글이 섞인 라벨(초6 «한 모서리 1 m»)은 한글 사이의 조각마다 본다 — 그 조각은 수식으로 조판되므로 두 글자 낱말만 세운다
+ * (홑 대문자는 그 길의 규칙 그대로 둔다).
+ */
+const ONE_LETTER_UNIT = /(\d) ([mgt])(?= |$)/;
+const CJK_RUNS = new RegExp(`(${CJK.source}+)`);
+const uprightRun = (run: string, words: RegExp) =>
+  run
+    .replace(words, (word) => `\\mathrm{${word}}`)
+    .replace(new RegExp(ONE_LETTER_UNIT, "g"), "$1 \\mathrm{$2}")
+    .replace(/ +/g, "\\,");
+
+export function uprightUnits(label: string): string {
+  if (label.startsWith("$") || label.includes("\\")) return label;
+  if (!CJK.test(label))
+    return ONE_LETTER_UNIT.test(label)
+      ? uprightRun(label, /[A-Za-z]{2,}|[A-Z]/g)
+      : label;
+  return label
+    .split(CJK_RUNS)
+    .map((part, index) => {
+      const core = part.trim();
+      if (index % 2 === 1 || !ONE_LETTER_UNIT.test(core)) return part;
+      // 조각 앞뒤의 빈칸은 한글과의 사이 띄기다 — 그대로 둔다
+      return part.replace(core, () => uprightRun(core, /[A-Za-z]{2,}/g));
+    })
+    .join("");
+}
+
 function mathLabel(text: string, bold = false, textFont = "inherit") {
   // Bank tags contain plain roots (√2) and mixed names (x축). Keep Korean as
   // text while laying out the math run; wholly Korean/circled labels stay text.
-  let label = text.replace(/√(\d+(?:\.\d+)?|[A-Za-z])/g, "\\sqrt{$1}");
+  let label = uprightUnits(text).replace(
+    /√(\d+(?:\.\d+)?|[A-Za-z])/g,
+    "\\sqrt{$1}",
+  );
   if (CJK.test(label) && /[A-Za-z0-9\\]/.test(label) && !label.startsWith("$"))
     label = `$${label}$`;
   // A bank answer such as ab denotes a product, not an English word/unit.

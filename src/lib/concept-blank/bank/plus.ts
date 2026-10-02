@@ -17,13 +17,29 @@ import type {
  */
 export const RETIRED = null;
 
-export type PlusConcept = readonly [
-  level: ConceptEntry["level"],
-  term: string,
-  kind: ConceptEntry["kind"],
-  definition: string,
-  example?: readonly [prompt: string, answer: string],
-];
+/**
+ * 사례 문항 표지 — 굵은 답이 용어에 주어진 값으로 정해지는 개념(계약 `givenCase`). A(완전 백지) 채점표에 안 실린다.
+ * 개념 줄의 **끝**에 적는다: `["하", 용어, 갈래, 뜻문장, CASE]` 또는 `[…, 뜻문장, [예 물음, 예 답], CASE]`.
+ */
+export const CASE = "사례" as const;
+
+export type PlusExample = readonly [prompt: string, answer: string];
+export type PlusConcept =
+  | readonly [
+      level: ConceptEntry["level"],
+      term: string,
+      kind: ConceptEntry["kind"],
+      definition: string,
+      example?: PlusExample | typeof CASE,
+    ]
+  | readonly [
+      level: ConceptEntry["level"],
+      term: string,
+      kind: ConceptEntry["kind"],
+      definition: string,
+      example: PlusExample,
+      mark: typeof CASE,
+    ];
 export type PlusOx = readonly [
   level: OxItem["level"],
   statement: string,
@@ -53,7 +69,9 @@ export function plusSection(
   const apply: ApplyItem[] = [];
   (items.concepts ?? []).forEach((entry, i) => {
     if (entry === RETIRED) return;
-    const [level, term, kind, definition, example] = entry;
+    const [level, term, kind, definition, fifth] = entry;
+    const sixth: unknown = (entry as readonly unknown[])[5];
+    const example = fifth === CASE ? undefined : fifth;
     concepts.push({
       id: `${idHead}-xc${i + 1}`,
       section,
@@ -64,6 +82,7 @@ export function plusSection(
       ...(example
         ? { example: { prompt: example[0], answer: example[1] } }
         : {}),
+      ...(fifth === CASE || sixth === CASE ? { givenCase: true } : {}),
     });
   });
   (items.ox ?? []).forEach((entry, i) => {
@@ -84,6 +103,22 @@ export function plusSection(
     apply.push({ id: `${idHead}-xa${i + 1}`, section, level, prompt, answer });
   });
   return { concepts, ox, apply, figures: [] };
+}
+
+/**
+ * 원래 은행 파일(`e3.ts` …)의 사례 문항에 표지를 단다 — 파일마다 적는 꼴이 달라, 표지는 파일 끝에서 id 로 단다
+ * (`markGivenCases(bank, ["e3-1-3-3-c2"])`). 은행에 없는 id 나 개념이 아닌 id 는 던진다(오타가 조용히 빠지지 않게).
+ */
+export function markGivenCases(
+  bank: ConceptBlankBank,
+  ids: readonly string[],
+): void {
+  const byId = new Map(bank.concepts.map((c) => [c.id, c]));
+  for (const id of ids) {
+    const concept = byId.get(id);
+    if (!concept) throw new Error(`사례 표지: 은행에 없는 개념 ${id}`);
+    concept.givenCase = true;
+  }
 }
 
 /** 소단원 보강을 파일 순서대로 잇는다. */

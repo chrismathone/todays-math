@@ -896,6 +896,30 @@ describe("줄맞춤 · 채우기 — 번호 열 · 줄 어림 · 가지 · 카�
     ).toBeCloseTo(grow);
   });
 
+  // 소단원 이름이 수식으로 찍힌 뒤(«반비례 관계 $y=\dfrac{a}{x}$의 그래프» — 2026-10-01) 개념 칸의 자리 줄이 분수만큼 높아졌는데
+  // 어림은 글줄 높이만 셌다 — 인쇄 매체에서 중1 채점표 세 줄이 어림보다 2.5~4.6px 높았다(`estimate.spec` real-m1).
+  it("채점표 줄 — 개념 칸 아래 자리 줄(소단원 이름)의 수식도 줄을 높인다", () => {
+    const row = (place: string): KeyRow => ({
+      kind: "concept",
+      n: "1",
+      // 개념 칸이 더 높아야 자리 줄이 줄 높이를 정한다 — 용어를 세 줄로
+      entry: {
+        ...entry(1, "짧은 뜻에는 {핵심어}가 있다."),
+        term: "아주 긴 용어 이름이 좁은 칸에서 세 줄로 접힌다 이렇게",
+      },
+      place,
+    });
+    // 줄 수가 같은 두 글(한 줄) — 접힌 줄 수가 아니라 분수의 높이가 차이를 낸다
+    const plain = keyRowCost(row("⑤ 그래프"));
+    const fraction = keyRowCost(row("⑤ $y=\\dfrac{a}{x}$"));
+    expect(fraction - plain).toBeCloseTo(
+      mathExtra("$y=\\dfrac{a}{x}$", 1, 9, GEOMETRY.key.place),
+    );
+    expect(fraction - plain).toBeGreaterThan(4.6);
+    // 수식이 낮으면(첨자 · 분수 없음) 그대로다
+    expect(keyRowCost(row("⑤ $y=ax$")) - plain).toBeLessThan(4);
+  });
+
   it("빈칸 뒤에 붙은 조사 · 마침표는 빈칸과 한 줄에 묶는다 — 어림도 같은 묶음으로 센다", () => {
     expect(blankTail("이다.")).toBe("이다.");
     expect(blankTail(", 다음 글")).toBe(",");

@@ -5,6 +5,7 @@ import type {
   OxItem,
   ApplyItem,
 } from "@/contracts/conceptBlank.contract";
+import { markGivenCases } from "./plus";
 
 /** 초6 고정 은행. 교재는 용어 배치만 참고하고, 문장·예시·그림은 자체 작성했다. */
 type SectionBank = {
@@ -2226,7 +2227,7 @@ const figures: FigureItem[] = [
   figure(
     "1-2-1",
     "하",
-    "금색 면의 이름과 옆면의 모양을 쓰시오.",
+    "이름표가 가리키는 면의 이름과 옆면의 모양을 쓰시오.",
     prism + leader("82,35 148,35 165,35"),
     [{ x: 170, y: 26, w: 60, answer: "밑면" }],
     [{ label: "옆면의 모양", answer: "직사각형" }],
@@ -2234,7 +2235,7 @@ const figures: FigureItem[] = [
   figure(
     "1-2-2",
     "중",
-    "금색 점의 이름과 이 입체의 모서리 수를 쓰시오.",
+    "이름표가 가리키는 점의 이름과 이 입체의 모서리 수를 쓰시오.",
     prism +
       `<circle cx="70" cy="20" r="3" fill="#A57F00"/>` +
       leader("75,20 165,20"),
@@ -2268,7 +2269,7 @@ const figures: FigureItem[] = [
   figure(
     "1-2-5",
     "상",
-    "밑면에 수직인 금색 점선의 이름을 쓰시오.",
+    "이름표가 가리키는, 밑면에 수직인 점선의 이름을 쓰시오.",
     pyramid +
       `<path d="M80 17V96" fill="none" stroke="#A57F00" stroke-width="1.8" stroke-dasharray="4 3"/>` +
       ink(`<path d="M80 88H88V96" stroke="#A57F00"/>`) +
@@ -2335,7 +2336,7 @@ const figures: FigureItem[] = [
   figure(
     "1-5-5",
     "상",
-    "두 반에서 금색 항목의 인원을 비교하시오.",
+    "두 반에서 색칠한 항목의 인원을 비교하시오.",
     ink(
       `<rect x="30" y="36" width="160" height="24"/><rect x="30" y="36" width="80" height="24" fill="#F7F3E6"/><rect x="30" y="92" width="160" height="24"/><rect x="30" y="92" width="40" height="24" fill="#F7F3E6"/>`,
     ) +
@@ -2435,7 +2436,7 @@ const figures: FigureItem[] = [
   figure(
     "2-3-4",
     "중",
-    "위에서 본 칸의 수는 쌓은 개수이다. 전체 개수를 쓰시오.",
+    "위에서 본 모양의 칸마다 적힌 수는 그 자리에 쌓은 개수이다. 전체 개수를 쓰시오.",
     heightGrid,
     [],
     [
@@ -2480,7 +2481,7 @@ const figures: FigureItem[] = [
   figure(
     "2-5-1",
     "하",
-    "금색 선분의 이름과 원주율의 뜻을 쓰시오.",
+    "이름표가 가리키는 선분의 이름과 원주율의 뜻을 쓰시오.",
     circle +
       `<path d="M36 72H128" stroke="#A57F00" stroke-width="2"/>` +
       leader("131,72 151,72 165,72"),
@@ -2533,7 +2534,7 @@ const figures: FigureItem[] = [
   figure(
     "2-6-2",
     "중",
-    "높이 방향으로 자른 전개도에서 금색 변의 길이는 무엇과 같은가?",
+    "높이 방향으로 자른 전개도에서 이름표가 가리키는 변의 길이는 무엇과 같은가?",
     ink(
       `<rect x="20" y="55" width="125.66" height="40" fill="#F7F3E6"/><circle cx="80" cy="35" r="20"/><circle cx="80" cy="115" r="20"/>`,
     ) +
@@ -2545,7 +2546,7 @@ const figures: FigureItem[] = [
   figure(
     "2-6-3",
     "중",
-    "금색 점선의 이름과 모선과의 차이를 쓰시오.",
+    "이름표가 가리키는 점선의 이름과 모선과의 차이를 쓰시오.",
     cone +
       `<path d="M80 18V110" stroke="#A57F00" stroke-width="1.8" stroke-dasharray="4 3"/>` +
       ink(`<path d="M80 102H88V110" stroke="#A57F00"/>`) +
@@ -2561,7 +2562,7 @@ const figures: FigureItem[] = [
   figure(
     "2-6-4",
     "중",
-    "구의 중심에서 표면까지 이은 금색 선분의 이름을 쓰시오.",
+    "구의 중심에서 표면까지 이은 선분의 이름을 쓰시오.",
     ink(
       `<circle cx="80" cy="73" r="46" fill="#F7F3E6"/><path d="M34 73A46 6.9 0 0 0 126 73"/><path d="M34 73A46 6.9 0 0 1 126 73" stroke-dasharray="4 3"/>`,
     ) +
@@ -2604,3 +2605,9 @@ export const bank: ConceptBlankBank = {
   })),
   figures,
 };
+
+/**
+ * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
+ * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
+ */
+markGivenCases(bank, []);

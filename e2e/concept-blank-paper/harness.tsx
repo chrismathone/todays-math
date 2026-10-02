@@ -31,7 +31,9 @@ import { LONGEST_CODE_SYMBOLS, syntheticCode } from "./code";
 import { fuzzSheets } from "./fuzz";
 import {
   countSheets,
+  figureSheets,
   inkProbeTexts,
+  plusSheets,
   realSheets,
   showSheets,
   worstPicks,
@@ -42,11 +44,12 @@ import {
 import { STRESS_SHEETS } from "./stress";
 
 /**
- * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` ·
+ * `?set=fixture|stress|math|fuzz&seed=N|real-e3 … real-m3|plus-e3 … plus-m3&chapter=N|figures-e3 … figures-m3|worst|worst-m|counts|show|cal` · `?view=student|key|both` ·
  * `?code=none|<글>|<글자 수>`(지면 코드 줄 — 기본은 fixture 면 제품 코드, 그 밖은 가장 긴 코드) —
  * 지면만 그린다(화면 축소 없이 1배).
  * fixture = 시험 · 미리보기용 작은 은행 전부(시안 두 단원) · stress = 계약 상한 · math = 수식 문장 ·
- * fuzz = 시드 고정 무작위 길이(`fuzz.ts`) · real-* = main 의 실제 은행 한 학년 전부 · worst(초등) · worst-m(중학) = 실제 은행에서 가장 긴 것끼리 ·
+ * fuzz = 시드 고정 무작위 길이(`fuzz.ts`) · real-* = main 의 실제 은행 한 학년 전부(원래 파일) · plus-* = 원래 + 보강 은행의 대단원 하나(소단원마다) ·
+ * worst(초등) · worst-m(중학) = 실제 은행에서 가장 긴 것끼리 ·
  * counts = 문항 수 1 ~ 정원 + 1 · show = 보고서 본보기(`real.ts`) · cal = 수식 갈래마다 한 줄(`calibrate.ts`) ·
  * ink = 빈칸 폭 어림 맞대기(지면이 아니라 글 한 줄씩). `?scale=0.58` 이면 화면 미리보기 축소를 본다(인쇄에는 안 먹는다).
  *
@@ -128,6 +131,13 @@ function sheetsFor(set: string | null): ConceptBlankSheet[] {
   if (set === "show") return showSheets();
   if (set === "cal") return calSheets();
   if (set?.startsWith("real-")) return realSheets(set.slice(5) as RealGrade);
+  if (set?.startsWith("plus-"))
+    return plusSheets(
+      set.slice(5) as RealGrade,
+      Number(params.get("chapter") ?? 0),
+    );
+  if (set?.startsWith("figures-"))
+    return figureSheets(set.slice(8) as RealGrade);
   return composeSheets(fixtureSelection, FIXTURE_BANK);
 }
 
