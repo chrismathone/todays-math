@@ -1,0 +1,336 @@
+.view {
+  max-width: 1040px;
+  margin: 24px auto;
+  padding: 28px 40px;
+  border: 1px solid var(--learn-track);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.view :where(h1, h2, p, ol) {
+  margin: 0;
+}
+.view :where(button, input) {
+  font: inherit;
+}
+.view button {
+  min-height: 44px;
+  padding: 9px 14px;
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font-weight: 700;
+}
+.view button:not(:disabled) {
+  cursor: pointer;
+}
+.view button:not(:disabled):hover {
+  background: var(--learn-neutral);
+}
+.view button.primary {
+  border-color: var(--learn-accent);
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
+}
+.view button.primary:not(:disabled):hover {
+  background: var(--learn-accent-hover);
+}
+.view button:disabled {
+  background: var(--learn-neutral);
+  border-color: var(--learn-track);
+  color: var(--learn-muted);
+}
+.view :where(button, input):focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 3px;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.heading h1 {
+  margin: 6px 0;
+  font-size: 27px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.eyebrow {
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.muted {
+  color: var(--learn-muted);
+}
+.time {
+  flex-shrink: 0;
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+.time small {
+  display: block;
+}
+.focus {
+  max-width: 560px;
+  margin: 0 auto;
+}
+.steps {
+  display: flex;
+  gap: 24px;
+  padding: 0;
+  border-bottom: 1px solid var(--learn-track);
+  list-style: none;
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.steps li {
+  padding-bottom: 18px;
+}
+.steps li[aria-current="step"] {
+  margin-bottom: -1px;
+  border-bottom: 3px solid var(--learn-accent);
+  color: var(--learn-accent);
+  font-weight: 700;
+}
+.player {
+  margin: 22px 0 12px;
+  padding: 20px;
+  background: var(--learn-soft);
+  border: 1px solid var(--learn-control);
+  border-radius: 4px;
+}
+.playerMain {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.playerMain button {
+  min-width: 76px;
+  color: var(--learn-accent);
+  border-color: var(--learn-accent);
+}
+.playerPosition {
+  flex: 1;
+  min-width: 40px;
+}
+.playerPosition :where(input, progress) {
+  display: block;
+  width: 100%;
+  accent-color: var(--learn-accent);
+}
+.playerPosition input {
+  min-height: 44px;
+}
+.playerPosition progress {
+  height: 5px;
+}
+.player > p {
+  margin-top: 10px;
+  font-size: 12px;
+}
+.player .repeat {
+  margin-top: 12px;
+}
+.progress {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 24px 0 12px !important;
+  list-style: none;
+}
+.progress li {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid var(--learn-track);
+  font-size: 13px;
+}
+.progress li[data-saved="true"] {
+  border-bottom: 3px solid var(--learn-done);
+}
+.progress li[aria-current="step"] {
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
+  border-color: var(--learn-accent);
+  font-weight: 700;
+}
+.question {
+  border-top: 1px solid var(--learn-track);
+  border-bottom: 1px solid var(--learn-track);
+  padding: 22px 0;
+}
+.fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.fieldset legend {
+  padding: 0;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  overflow-wrap: anywhere;
+}
+.questionNumber {
+  margin-right: 4px;
+}
+.choices {
+  display: grid;
+  gap: 8px;
+}
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 11px 14px;
+  border: 1px solid var(--learn-control);
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+.choice input {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  accent-color: var(--learn-accent);
+}
+.choice:has(input:checked) {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: -2px;
+  background: var(--learn-soft);
+}
+label.choice:has(input[type="radio"]:enabled) {
+  cursor: pointer;
+}
+label.choice:has(input[type="radio"]:enabled):hover {
+  background: var(--learn-soft-hover);
+}
+.choiceNumber {
+  color: var(--learn-muted);
+}
+.answerActions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+.answerActions p {
+  font-size: 12px;
+}
+.answerActions button {
+  flex-shrink: 0;
+}
+.saved {
+  color: var(--learn-done);
+}
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 20px;
+}
+.notice {
+  background: var(--learn-bg);
+  color: var(--learn-muted);
+  padding: 12px 16px;
+  margin: 18px 0 !important;
+  font-size: 13px;
+}
+.review {
+  padding: 16px;
+  margin-top: 20px;
+  background: var(--learn-soft);
+  border-left: 3px solid var(--learn-accent);
+}
+.review h2 {
+  font-size: 16px;
+}
+.review p {
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
+.transcript {
+  white-space: pre-wrap;
+}
+.error {
+  padding: 14px 16px;
+  margin-top: 16px;
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
+}
+.error button {
+  margin-top: 10px;
+}
+.playError {
+  color: var(--learn-danger);
+}
+.footer {
+  margin-top: 26px;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 18px;
+}
+.actions .primary {
+  min-width: 150px;
+}
+
+@media (max-width: 650px) {
+  .view {
+    margin: 14px 0;
+    padding: 22px 18px;
+  }
+  .heading {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .heading h1 {
+    font-size: 23px;
+  }
+  .steps {
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+  .player {
+    padding: 14px;
+  }
+  .playerMain {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .playerMain .time {
+    width: 100%;
+    text-align: right;
+  }
+  .answerActions {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .meta {
+    flex-wrap: wrap;
+  }
+}
