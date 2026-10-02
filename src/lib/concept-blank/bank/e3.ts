@@ -14,8 +14,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "어느 자리의 합이 $10$을 채우면, $10$개를 {윗자리의 $1$개}로 바꾸어 더한다.",
       example: {
-        prompt: "$286+153$을 계산하시오.",
-        answer: "$439$",
+        prompt:
+          "$147+235$에서 일의 자리의 합 $12$ 가운데 $10$은 어느 자리의 $1$이 되는가?",
+        answer: "십의 자리",
       },
     },
     {
@@ -36,7 +37,7 @@ export const bank: ConceptBlankBank = {
       term: "받아올린 수 더하기",
       kind: "방법",
       definition:
-        "윗자리를 더할 때에는 두 숫자와 {받아올린 수}를 빠짐없이 더한다.",
+        "{윗자리}를 더할 때에는 두 숫자와 받아올린 수를 빠짐없이 더한다.",
     },
     {
       id: "e3-1-1-2-c1",
@@ -46,10 +47,11 @@ export const bank: ConceptBlankBank = {
       term: "연속 받아올림",
       kind: "방법",
       definition:
-        "한 자리에서 올린 수 때문에 다음 자리에서도 {받아올림}이 생길 수 있다.",
+        "한 자리에서 {올린 수} 때문에 다음 자리에서도 받아올림이 생길 수 있다.",
       example: {
-        prompt: "$568+767$을 계산하시오.",
-        answer: "$1335$",
+        prompt:
+          "$275+128$에서 십의 자리는 $7+2=9$인데도 받아올림이 생기는 까닭을 쓰시오.",
+        answer: "일의 자리에서 올린 $1$을 더하면 $10$이 되기 때문이다.",
       },
     },
     {
@@ -81,8 +83,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "어느 자리에서 뺄 수 없으면 {윗자리의 $1$개}를 그 자리의 {$10$개}로 바꾸어 쓴다.",
       example: {
-        prompt: "$572-248$을 계산하시오.",
-        answer: "$324$",
+        prompt:
+          "$461-135$에서 일의 자리 $1$에서 $5$를 뺄 수 없을 때 어느 자리에서 받아내리는가?",
+        answer: "십의 자리",
       },
     },
     {
@@ -112,10 +115,10 @@ export const bank: ConceptBlankBank = {
       term: "두 번 받아내림",
       kind: "방법",
       definition:
-        "일과 십의 자리에서 각각 뺄 수 없으면 {받아내림}을 두 번 한다.",
+        "{일과 십의 자리}에서 각각 뺄 수 없으면 받아내림을 두 번 한다.",
       example: {
-        prompt: "$604-278$을 계산하시오.",
-        answer: "$326$",
+        prompt: "$532-268$에서 받아내림은 모두 몇 번 하는가?",
+        answer: "$2$번",
       },
     },
     {
@@ -147,8 +150,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "두 끝이 정해져 있고 그 사이가 {곧게} 이어진 선을 선분이라 한다.",
       example: {
-        prompt: "끝점이 하나이며 한쪽으로 계속 뻗는 곧은 선의 이름을 쓰시오.",
-        answer: "반직선",
+        prompt: "두 점 ㄱ, ㄴ을 이은 선분의 끝점은 모두 몇 개인가?",
+        answer: "$2$개",
       },
     },
     {
@@ -211,8 +214,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "한 점에서 출발한 두 반직선이 만드는 벌어진 모양을 {각}이라 한다.",
       example: {
-        prompt: "각에서 두 변이 만나는 점의 이름을 쓰시오.",
-        answer: "꼭짓점",
+        prompt: "각 ㄱㄴㄷ을 이루는 두 반직선을 쓰시오.",
+        answer: "반직선 ㄴㄱ, 반직선 ㄴㄷ",
       },
     },
     {
@@ -267,8 +270,8 @@ export const bank: ConceptBlankBank = {
         "삼각형의 세 각 가운데 {직각}이 있는 것을 직각삼각형이라 한다.",
       example: {
         prompt:
-          "삼각형에 작은 네모로 표시한 각이 있다면 이 삼각형의 이름은 무엇인가?",
-        answer: "직각삼각형",
+          "한 각만 직각인 삼각형과 직각이 없는 삼각형 가운데 직각삼각형은 어느 것인가?",
+        answer: "한 각만 직각인 삼각형",
       },
     },
     {
@@ -286,7 +289,7 @@ export const bank: ConceptBlankBank = {
       term: "직각삼각형의 방향",
       kind: "성질",
       definition:
-        "직각삼각형을 돌려 놓아도 각의 크기는 같으므로 여전히 {직각삼각형}이다.",
+        "직각삼각형을 돌려 놓아도 {각의 크기는 같으므로} 여전히 직각삼각형이다.",
     },
     {
       id: "e3-1-2-4-c1",
@@ -297,9 +300,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "사각형의 꼭짓점마다 생기는 각이 모두 {직각}이면 직사각형이라 한다.",
       example: {
-        prompt:
-          "직사각형의 위쪽 변이 $7\\,\\mathrm{cm}$이면 아래쪽 변의 길이는 얼마인가?",
-        answer: "$7\\,\\mathrm{cm}$",
+        prompt: "마주 보는 두 각만 직각인 사각형은 직사각형인가?",
+        answer: "아니다. 네 각이 모두 직각이어야 한다.",
       },
     },
     {
@@ -329,8 +331,8 @@ export const bank: ConceptBlankBank = {
         "사각형에서 변의 길이가 넷 다 같고 각도 모두 {직각}이면 정사각형이다.",
       example: {
         prompt:
-          "정사각형의 한 변이 $6\\,\\mathrm{cm}$이면 네 변의 길이를 모두 더한 값은 얼마인가?",
-        answer: "$24\\,\\mathrm{cm}$",
+          "네 변의 길이가 모두 같지만 각이 직각이 아닌 사각형은 정사각형인가?",
+        answer: "아니다. 네 각도 모두 직각이어야 한다.",
       },
     },
     {
@@ -340,7 +342,7 @@ export const bank: ConceptBlankBank = {
       term: "직사각형과 정사각형의 관계",
       kind: "성질",
       definition:
-        "정사각형은 네 각이 직각이므로 {직사각형}으로도 부를 수 있다.",
+        "정사각형은 {네 각이 직각}이므로 직사각형으로도 부를 수 있다.",
     },
     {
       id: "e3-1-2-5-c3",
