@@ -4643,7 +4643,7 @@ section("06-01", "닮은 도형", {
       "닮음비 — 입체도형",
       "정의",
       "중",
-      "닮은 입체도형 둘에서 대응하는 {모서리}끼리 길이를 견준 비가 {닮음비}이다.",
+      "닮은 입체도형 둘에서 대응하는 {모서리}끼리 길이를 견준 비가 {닮음비}이다. 모서리가 없는 구는 반지름끼리 견준다.",
       ["모서리의 길이가 $2$인 정육면체와 $5$인 정육면체의 닮음비", "$2:5$"],
     ],
     [
@@ -4782,14 +4782,20 @@ section("06-02", "삼각형의 닮음 조건", {
       "공식",
       "상",
       "직각인 꼭짓점에서 빗변에 수선을 그으면, 직각을 낀 한 변의 길이의 {제곱}은 그 변 쪽 빗변 조각과 {빗변 전체}의 길이의 곱과 같다.",
-      [r`$\overline{BH}=4,\ \overline{BC}=9$일 때 $\overline{AB}$`, "$6$"],
+      [
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 $\overline{BC}$에 내린 수선의 발 $H$에 대해 $\overline{BH}=4,\ \overline{BC}=9$일 때 $\overline{AB}$`,
+        "$6$",
+      ],
     ],
     [
       "직각삼각형의 닮음의 응용 — 수선",
       "공식",
       "상",
       "직각인 꼭짓점에서 빗변에 그은 수선의 길이의 {제곱}은 수선의 발이 빗변을 나눈 {두 조각}의 길이의 곱과 같다.",
-      [r`$\overline{BH}=4,\ \overline{CH}=9$일 때 $\overline{AH}$`, "$6$"],
+      [
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 $\overline{BC}$에 내린 수선의 발 $H$에 대해 $\overline{BH}=4,\ \overline{CH}=9$일 때 $\overline{AH}$`,
+        "$6$",
+      ],
     ],
     [
       "겹쳐 있는 삼각형에서 닮음 찾기",
@@ -4926,7 +4932,7 @@ section("07-01", "삼각형에서 평행선 사이의 선분의 길이의 비", 
       "중",
       "밑변에 평행한 선을 그으면, 꼭짓점에서 잰 두 변 위의 길이의 비와 {평행한 두 선분}의 길이의 비가 모두 {닮음비}로 같다.",
       [
-        r`$\overline{AD}=2,\ \overline{AB}=6,\ \overline{DE}=3$일 때 $\overline{BC}$`,
+        r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}=2,\ \overline{AB}=6,\ \overline{DE}=3$일 때 $\overline{BC}$`,
         "$9$",
       ],
     ],
@@ -4936,7 +4942,7 @@ section("07-01", "삼각형에서 평행선 사이의 선분의 길이의 비", 
       "중",
       "밑변에 평행한 선은 두 변을 {같은 비}로 나눈다. 곧 한 변의 위 · 아래 조각의 비와 다른 변의 위 · 아래 조각의 비가 {같다}.",
       [
-        r`$\overline{AD}:\overline{DB}=2:3,\ \overline{AE}=4$일 때 $\overline{EC}$`,
+        r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=2:3,\ \overline{AE}=4$일 때 $\overline{EC}$`,
         "$6$",
       ],
     ],
@@ -4944,7 +4950,7 @@ section("07-01", "삼각형에서 평행선 사이의 선분의 길이의 비", 
       "연장선 위의 평행선",
       "성질",
       "중",
-      r`평행한 선이 두 변의 {연장선}과 만나도 같은 비의 관계가 성립한다. 두 삼각형이 {맞꼭지각}으로 $\mathrm{AA}$ 닮음이기 때문이다.`,
+      r`밑변에 평행한 선이 꼭짓점을 지나 늘인 두 변의 {연장선}과 만나도 같은 비의 관계가 성립한다. 두 삼각형이 {맞꼭지각}과 엇각으로 $\mathrm{AA}$ 닮음이기 때문이다.`,
     ],
     [
       "평행선이 되는 조건",
@@ -4962,25 +4968,25 @@ section("07-01", "삼각형에서 평행선 사이의 선분의 길이의 비", 
   o: [
     [
       "하",
-      "삼각형의 한 변에 평행한 직선을 그으면 처음 삼각형과 닮은 삼각형이 생긴다.",
+      "삼각형의 한 변에 평행한 직선이 나머지 두 변과 만나면 처음 삼각형과 닮은 삼각형이 생긴다.",
       true,
       r`동위각이 같아 $\mathrm{AA}$ 닮음이다.`,
     ],
     [
       "중",
-      r`$\overline{BC}\parallel\overline{DE}$일 때 $\overline{AD}:\overline{DB}=\overline{AE}:\overline{EC}$이다.`,
+      r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{BC}\parallel\overline{DE}$일 때 $\overline{AD}:\overline{DB}=\overline{AE}:\overline{EC}$이다.`,
       true,
       "평행선은 두 변을 같은 비로 나눈다.",
     ],
     [
       "중",
-      r`$\overline{BC}\parallel\overline{DE}$일 때 $\overline{AD}:\overline{DB}=\overline{DE}:\overline{BC}$이다.`,
+      r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{BC}\parallel\overline{DE}$일 때 $\overline{AD}:\overline{DB}=\overline{DE}:\overline{BC}$이다.`,
       false,
       r`$\overline{DE}:\overline{BC}$와 같은 것은 $\overline{AD}:\overline{AB}$이다.`,
     ],
     [
       "상",
-      r`$\overline{AD}:\overline{DB}=\overline{AE}:\overline{EC}$이면 $\overline{BC}\parallel\overline{DE}$이다.`,
+      r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{AD}:\overline{DB}=\overline{AE}:\overline{EC}$이면 $\overline{BC}\parallel\overline{DE}$이다.`,
       true,
       "두 변을 같은 비로 나누는 점을 이은 선분은 나머지 변과 평행하다.",
     ],
@@ -4993,7 +4999,7 @@ section("07-01", "삼각형에서 평행선 사이의 선분의 길이의 비", 
     ],
     [
       "중",
-      r`$\overline{BC}\parallel\overline{DE}$이고 $\overline{AD}=4,\ \overline{AB}=10,\ \overline{BC}=15$일 때 $\overline{DE}$는?`,
+      r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{BC}\parallel\overline{DE}$이다. $\overline{AD}=4,\ \overline{AB}=10,\ \overline{BC}=15$일 때 $\overline{DE}$는?`,
       "$6$",
     ],
     [
@@ -5067,7 +5073,7 @@ section("07-02", "삼각형의 각의 이등분선", {
       "중",
       "삼각형에서 한 내각의 이등분선은 마주 보는 변을 그 각을 낀 {두 변의 길이의 비}로 {나눈다}.",
       [
-        r`$\overline{AB}=6,\ \overline{AC}=4,\ \overline{BD}=3$일 때 $\overline{DC}$`,
+        r`$\triangle ABC$에서 $\angle A$의 이등분선이 변 $BC$와 $D$에서 만난다. $\overline{AB}=6,\ \overline{AC}=4,\ \overline{BD}=3$일 때 $\overline{DC}$`,
         "$2$",
       ],
     ],
@@ -5083,7 +5089,7 @@ section("07-02", "삼각형의 각의 이등분선", {
       "상",
       "한 외각의 이등분선이 대변의 {연장선}과 만나는 점은, 대변의 두 끝에서 잰 거리의 비가 그 각을 낀 {두 변의 길이의 비}로 정해진다.",
       [
-        r`$\overline{AB}=6,\ \overline{AC}=4,\ \overline{BC}=5$일 때 $\overline{CD}$`,
+        r`$\triangle ABC$에서 $\angle A$의 외각의 이등분선이 변 $BC$의 연장선과 $D$에서 만난다. $\overline{AB}=6,\ \overline{AC}=4,\ \overline{BC}=5$일 때 $\overline{CD}$`,
         "$10$",
       ],
     ],
@@ -5195,7 +5201,7 @@ section("07-03", "평행선 사이의 선분의 길이의 비", {
       "중",
       "서로 평행한 직선 셋을 두 직선이 가로지르면, 평행선 사이에 끼인 조각들의 길이의 {비}가 두 직선에서 {똑같다}.",
       [
-        "한 직선의 조각이 $2$, $3$이고 다른 직선의 첫 조각이 $4$일 때 둘째 조각",
+        "평행한 세 직선을 가로지르는 두 직선에서 한 직선의 조각이 차례로 $2$, $3$이고 다른 직선의 첫 조각이 $4$일 때 둘째 조각",
         "$6$",
       ],
     ],
@@ -5239,9 +5245,9 @@ section("07-03", "평행선 사이의 선분의 길이의 비", {
     ],
     [
       "상",
-      "세 직선이 평행하지 않아도 가로지르는 두 직선은 같은 비로 나뉜다.",
+      "세 직선이 평행하지 않아도 가로지르는 두 직선은 언제나 같은 비로 나뉜다.",
       false,
-      "세 직선이 평행할 때만 성립한다.",
+      "같은 비로 나뉜다고 말할 수 있는 것은 세 직선이 평행할 때이다.",
     ],
   ],
   a: [
@@ -5325,7 +5331,10 @@ section("07-04", "삼각형의 두 변의 중점을 연결한 선분", {
       "성질",
       "중",
       "두 변의 중점끼리 이으면 그 선분은 셋째 변과 {평행}하며, 길이가 셋째 변의 {절반}이 된다.",
-      ["셋째 변이 $10$일 때 두 중점을 이은 선분의 길이", "$5$"],
+      [
+        "삼각형의 한 변의 길이가 $10$일 때 나머지 두 변의 중점을 이은 선분의 길이",
+        "$5$",
+      ],
     ],
     [
       "한 변의 중점을 지나는 평행선",
@@ -5487,7 +5496,7 @@ section("07-05", "삼각형의 무게중심", {
       "평행사변형과 무게중심",
       "성질",
       "상",
-      "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 대각선을 {삼등분}한다. 교점이 삼각형의 {무게중심}이기 때문이다.",
+      "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 {삼등분}한다. 교점이 삼각형의 {무게중심}이기 때문이다.",
     ],
   ],
   o: [

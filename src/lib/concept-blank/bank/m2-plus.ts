@@ -18265,7 +18265,7 @@ export const bank = joinBanks([
         "성질",
         "닮은 두 도형에서 대응각끼리는 크기가 {같다}.",
         [
-          r`$\angle A$의 대응각이 $\angle D$이고 $\angle A=50^\circ$일 때 $\angle D$`,
+          r`닮은 두 도형에서 $\angle A$의 대응각이 $\angle D$이고 $\angle A=50^\circ$일 때 $\angle D$`,
           r`$50^\circ$`,
         ],
       ],
@@ -18273,7 +18273,7 @@ export const bank = joinBanks([
         "하",
         "확대와 축소",
         "정의",
-        "도형의 모든 변을 같은 비율로 늘린 것을 {확대}, 줄인 것을 {축소}라 하며, 어느 쪽이든 처음 도형과 닮음이다.",
+        "도형을 모양은 그대로 두고 일정한 비율로 늘린 것을 {확대}, 줄인 것을 {축소}라 하며, 어느 쪽이든 처음 도형과 닮음이다.",
       ],
       [
         "하",
@@ -18283,9 +18283,10 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "닮음비가 뜻하는 것",
+        "닮음비 $1:3$이 뜻하는 것",
         "성질",
         r`닮음비가 $1:3$이면 큰 도형의 변은 작은 도형의 대응변의 {$3$}배이다.`,
+        CASE,
       ],
       [
         "하",
@@ -18351,15 +18352,16 @@ export const bank = joinBanks([
         "방법",
         "두 직사각형은 가로끼리, 세로끼리 견준 {비}가 {같을} 때만 닮음이다.",
         [
-          r`가로 $4$, 세로 $6$인 직사각형과 닮고 가로가 $6$인 직사각형의 세로`,
+          r`가로 $4$, 세로 $6$인 직사각형과 가로끼리 대응하게 닮고 가로가 $6$인 직사각형의 세로`,
           "$9$",
         ],
       ],
       [
         "상",
-        "닮음비 이어 붙이기",
+        "닮음비 $2:3$과 $3:5$ 이어 붙이기",
         "방법",
         r`도형 $P$와 $Q$의 닮음비가 $2:3$, $Q$와 $R$의 닮음비가 $3:5$이면 $P$와 $R$의 닮음비는 {$2:5$}이다.`,
+        CASE,
       ],
       [
         "상",
@@ -18586,7 +18588,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        r`어떤 도형의 모든 변을 $3$배로 늘렸다. 처음 도형과 늘린 도형의 닮음비를 구하시오.`,
+        r`어떤 도형을 모양은 그대로 두고 모든 길이가 $3$배가 되게 확대했다. 처음 도형과 확대한 도형의 닮음비를 구하시오.`,
         "$1:3$",
       ],
       [
@@ -18606,7 +18608,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`닮은 두 직육면체의 닮음비가 $2:3$이다. 작은 직육면체의 높이가 $8\,\mathrm{cm}$일 때 큰 직육면체의 높이를 구하시오.`,
+        r`닮은 두 직육면체의 닮음비가 $2:3$이고 높이끼리 대응한다. 작은 직육면체의 높이가 $8\,\mathrm{cm}$일 때 큰 직육면체의 높이를 구하시오.`,
         r`$12\,\mathrm{cm}$`,
       ],
       [
@@ -18636,7 +18638,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`가로 $8\,\mathrm{cm}$, 세로 $12\,\mathrm{cm}$인 직사각형과 닮은 직사각형의 가로가 $10\,\mathrm{cm}$일 때 세로의 길이를 구하시오.`,
+        r`가로 $8\,\mathrm{cm}$, 세로 $12\,\mathrm{cm}$인 직사각형과 가로끼리 대응하게 닮은 직사각형의 가로가 $10\,\mathrm{cm}$일 때 세로의 길이를 구하시오.`,
         r`$15\,\mathrm{cm}$`,
       ],
       [
@@ -18782,7 +18784,10 @@ export const bank = joinBanks([
         "넓이로 빗변 위의 수선 구하기",
         "방법",
         r`직각삼각형의 넓이를 두 가지로 나타내면 빗변에 그은 수선의 길이는 (직각을 낀 두 변의 곱)$\div$({빗변})이다.`,
-        [r`직각을 낀 두 변 $6$, $8$, 빗변 $10$일 때`, r`$\frac{24}{5}$`],
+        [
+          "직각을 낀 두 변이 $6$, $8$이고 빗변이 $10$인 직각삼각형에서 빗변에 그은 수선의 길이",
+          r`$\frac{24}{5}$`,
+        ],
       ],
       [
         "상",
@@ -18794,7 +18799,7 @@ export const bank = joinBanks([
         "상",
         "평행선이 만든 닮음과 길이",
         "방법",
-        r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=$ {$\overline{DE}:\overline{BC}$}이다.`,
+        r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=$ {$\overline{DE}:\overline{BC}$}이다.`,
       ],
       [
         "상",
@@ -18812,8 +18817,11 @@ export const bank = joinBanks([
         "상",
         "수선과 다른 한 변",
         "성질",
-        r`$\angle A=90^\circ$인 $\triangle ABC$에서 $\overline{AH}\perp\overline{BC}$이면 $\overline{AC}^2=\overline{CH}\times$ {$\overline{CB}$}이다.`,
-        [r`$\overline{CH}=4$, $\overline{CB}=25$일 때 $\overline{AC}$`, "$10$"],
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 할 때 $\overline{AC}^2=\overline{CH}\times$ {$\overline{CB}$}이다.`,
+        [
+          r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발 $H$에 대해 $\overline{CH}=4$, $\overline{CB}=25$일 때 $\overline{AC}$`,
+          "$10$",
+        ],
       ],
     ],
     ox: [
@@ -18885,7 +18893,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\angle A=90^\circ$인 $\triangle ABC$에서 $\overline{AH}\perp\overline{BC}$이면 $\triangle HBA\backsim\triangle ABC$이다.`,
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 할 때 $\triangle HBA\backsim\triangle ABC$이다.`,
         true,
         r`$\angle B$가 공통이고 직각이 같다.`,
       ],
@@ -19032,7 +19040,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\angle A=90^\circ$인 $\triangle ABC$에서 $\overline{AH}\perp\overline{BC}$이다. $\angle B=35^\circ$일 때 $\angle HAC$의 크기를 구하시오.`,
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하자. $\angle B=35^\circ$일 때 $\angle HAC$의 크기를 구하시오.`,
         r`$35^\circ$`,
       ],
       [
@@ -19062,17 +19070,17 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`$\angle A=90^\circ$인 $\triangle ABC$에서 $\overline{AH}\perp\overline{BC}$, $\overline{BH}=3$, $\overline{CH}=12$일 때 $\overline{AH}$의 길이를 구하시오.`,
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하자. $\overline{BH}=3$, $\overline{CH}=12$일 때 $\overline{AH}$의 길이를 구하시오.`,
         "$6$",
       ],
       [
         "상",
-        r`$\angle A=90^\circ$인 $\triangle ABC$에서 $\overline{AH}\perp\overline{BC}$, $\overline{BH}=4$, $\overline{BC}=16$일 때 $\overline{AB}$의 길이를 구하시오.`,
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하자. $\overline{BH}=4$, $\overline{BC}=16$일 때 $\overline{AB}$의 길이를 구하시오.`,
         "$8$",
       ],
       [
         "상",
-        r`$\angle A=90^\circ$인 $\triangle ABC$에서 $\overline{AH}\perp\overline{BC}$, $\overline{CH}=9$, $\overline{AC}=15$일 때 $\overline{BC}$의 길이를 구하시오.`,
+        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 하자. $\overline{CH}=9$, $\overline{AC}=15$일 때 $\overline{BC}$의 길이를 구하시오.`,
         "$25$",
       ],
       [
@@ -19092,7 +19100,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`길이 $1.5\,\mathrm{m}$인 막대의 그림자가 $2\,\mathrm{m}$일 때, 같은 시각 그림자가 $12\,\mathrm{m}$인 나무의 높이를 구하시오.`,
+        r`땅에 수직으로 세운 길이 $1.5\,\mathrm{m}$인 막대의 그림자가 $2\,\mathrm{m}$일 때, 같은 시각 같은 곳에 수직으로 선 나무의 그림자가 $12\,\mathrm{m}$이면 나무의 높이를 구하시오.`,
         r`$9\,\mathrm{m}$`,
       ],
       [
@@ -19123,33 +19131,34 @@ export const bank = joinBanks([
           "하",
           "꼭짓점에서 잰 두 변의 비",
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=\overline{AE}:$ {$\overline{AC}$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=\overline{AE}:$ {$\overline{AC}$}이다.`,
         ],
         [
           "하",
           "평행한 두 선분의 비",
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=\overline{DE}:$ {$\overline{BC}$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=\overline{DE}:$ {$\overline{BC}$}이다.`,
         ],
         [
           "하",
           "위아래 조각의 비",
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{DB}=\overline{AE}:$ {$\overline{EC}$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{DB}=\overline{AE}:$ {$\overline{EC}$}이다.`,
         ],
         [
           "하",
-          "같은 비로 나뉘는 두 변",
+          r`한 변을 $2:1$로 나누는 평행선이 다른 변을 나누는 비`,
           "성질",
-          r`한 변이 꼭짓점 쪽부터 $2:1$로 나뉘면 평행선은 다른 변도 {$2:1$}로 나눈다.`,
+          r`삼각형의 한 변이 꼭짓점 쪽부터 $2:1$로 나뉘면 밑변에 평행한 직선은 다른 변도 꼭짓점 쪽부터 {$2:1$}로 나눈다.`,
+          CASE,
         ],
         [
           "하",
           "닮음비로 평행한 선분 구하기",
           "방법",
-          "평행한 선분의 길이는 꼭짓점에서 잰 {닮음비}로 구한다.",
+          "밑변에 평행한 선분의 길이는 밑변의 길이에 {꼭짓점}에서 잰 닮음비를 곱해 구한다.",
           [
-            r`$\overline{AD}:\overline{AB}=1:3$, $\overline{BC}=12$일 때 $\overline{DE}$`,
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{AB}=1:3$, $\overline{BC}=12$일 때 $\overline{DE}$`,
             "$4$",
           ],
         ],
@@ -19171,7 +19180,7 @@ export const bank = joinBanks([
           "방법",
           "한 변의 조각의 비를 알면 다른 변 전체를 그 {비}로 {나누어} 조각을 구한다.",
           [
-            r`$\overline{AD}:\overline{DB}=3:2$, $\overline{AC}=10$일 때 $\overline{AE}$`,
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=3:2$, $\overline{AC}=10$일 때 $\overline{AE}$`,
             "$6$",
           ],
         ],
@@ -19191,7 +19200,7 @@ export const bank = joinBanks([
           "중",
           "조각의 비에서 평행한 선분의 비로",
           "방법",
-          r`$\overline{AD}:\overline{DB}=m:n$이면 $\overline{DE}:\overline{BC}=m:$ {$(m+n)$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=m:n$이면 $\overline{DE}:\overline{BC}=m:$ {$(m+n)$}이다.`,
         ],
         [
           "중",
@@ -19203,13 +19212,14 @@ export const bank = joinBanks([
           "중",
           "평행이 아님을 보이기",
           "성질",
-          r`$\overline{AD}:\overline{DB}$와 $\overline{AE}:\overline{EC}$가 {다르면} $\overline{DE}$와 $\overline{BC}$는 평행하지 {않다}.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{AD}:\overline{DB}$와 $\overline{AE}:\overline{EC}$가 {다르면} $\overline{DE}$와 $\overline{BC}$는 평행하지 {않다}.`,
         ],
         [
           "중",
-          "두 삼각형의 둘레의 비",
+          r`$\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{AB}=2:5$일 때 둘레의 비`,
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=2:5$이면 $\triangle ADE$와 $\triangle ABC$의 둘레의 비는 {$2:5$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=2:5$이면 $\triangle ADE$와 $\triangle ABC$의 둘레의 비는 {$2:5$}이다.`,
+          CASE,
         ],
         [
           "중",
@@ -19223,7 +19233,7 @@ export const bank = joinBanks([
           "성질",
           r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$, $\overline{BC}$가 $O$에서 만나면 $\overline{OA}:\overline{OD}=$ {$\overline{AB}:\overline{DC}$}이다.`,
           [
-            r`$\overline{OA}=3$, $\overline{OD}=5$, $\overline{AB}=6$일 때 $\overline{DC}$`,
+            r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$, $\overline{BC}$가 $O$에서 만난다. $\overline{OA}=3$, $\overline{OD}=5$, $\overline{AB}=6$일 때 $\overline{DC}$`,
             "$10$",
           ],
         ],
@@ -19231,7 +19241,7 @@ export const bank = joinBanks([
           "상",
           "평행선을 두 번 그은 사각형",
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$($F$는 $\overline{BC}$ 위)이면 $\square DBFE$는 {평행사변형}이라 $\overline{DE}=$ {$\overline{BF}$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$, $BC$ 위의 점 $D$, $E$, $F$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$이면 $\square DBFE$는 {평행사변형}이라 $\overline{DE}=$ {$\overline{BF}$}이다.`,
         ],
         [
           "상",
@@ -19239,7 +19249,7 @@ export const bank = joinBanks([
           "방법",
           "평행선이 두 번 있으면 같은 길이를 {미지수}로 놓고 {비례식}을 세운다.",
           [
-            r`$\overline{AB}=6$, $\overline{BC}=9$인 $\triangle ABC$ 안에 $B$를 같이 쓰는 마름모의 한 변`,
+            r`$\overline{AB}=6$, $\overline{BC}=9$인 $\triangle ABC$의 변 $AB$, $BC$, $CA$ 위에 꼭짓점 $D$, $F$, $E$가 있는 마름모 $DBFE$의 한 변`,
             r`$\frac{18}{5}$`,
           ],
         ],
@@ -19247,49 +19257,51 @@ export const bank = joinBanks([
           "상",
           "평행선이 셋째 변을 나누는 비",
           "성질",
-          r`$\overline{DF}\parallel\overline{AC}$이고 $F$가 $\overline{BC}$ 위에 있으면 $\overline{BF}:\overline{FC}=$ {$\overline{BD}:\overline{DA}$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $BC$ 위의 점 $D$, $F$에 대해 $\overline{DF}\parallel\overline{AC}$이면 $\overline{BF}:\overline{FC}=$ {$\overline{BD}:\overline{DA}$}이다.`,
         ],
         [
           "상",
           "꼭짓점에서 잰 비가 같으면",
           "성질",
-          r`$\overline{AD}:\overline{AB}=\overline{AE}:\overline{AC}$이면 $\triangle ADE\backsim\triangle ABC$({$\mathrm{SAS}$} 닮음)이어서 $\overline{DE}\parallel\overline{BC}$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{AD}:\overline{AB}=\overline{AE}:\overline{AC}$이면 $\triangle ADE\backsim\triangle ABC$({$\mathrm{SAS}$} 닮음)이어서 $\overline{DE}\parallel\overline{BC}$이다.`,
         ],
         [
           "상",
-          "평행한 선분 셋의 비",
+          "한 변을 삼등분해 그은 평행한 선분 셋의 비",
           "성질",
-          r`$\overline{DE}\parallel\overline{FG}\parallel\overline{BC}$이고 $\overline{AD}=\overline{DF}=\overline{FB}$이면 $\overline{DE}:\overline{FG}:\overline{BC}=$ {$1:2:3$}이다.`,
+          r`$\triangle ABC$의 변 $AB$ 위에 $D$, $F$가, 변 $AC$ 위에 $E$, $G$가 차례로 있고 $\overline{DE}\parallel\overline{FG}\parallel\overline{BC}$, $\overline{AD}=\overline{DF}=\overline{FB}$이면 $\overline{DE}:\overline{FG}:\overline{BC}=$ {$1:2:3$}이다.`,
+          CASE,
         ],
         [
           "상",
-          "조각의 비로 평행한 선분 구하기",
+          r`$\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=3:5$, $\overline{BC}=16$일 때 $\overline{DE}$`,
           "방법",
-          r`$\overline{AD}:\overline{DB}=3:5$, $\overline{BC}=16$이면 $\overline{DE}=$ {$6$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=3:5$, $\overline{BC}=16$이면 $\overline{DE}=$ {$6$}이다.`,
+          CASE,
         ],
         [
           "상",
           "두 변의 남은 조각의 비",
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\overline{DB}:\overline{EC}=\overline{AB}:$ {$\overline{AC}$}이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{DB}:\overline{EC}=\overline{AB}:$ {$\overline{AC}$}이다.`,
         ],
       ],
       ox: [
         [
           "하",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\angle ADE=\angle ABC$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\angle ADE=\angle ABC$이다.`,
           true,
           "동위각이다.",
         ],
         [
           "하",
-          r`$\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=1:3$이면 $\overline{DE}:\overline{BC}=1:2$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=1:3$이면 $\overline{DE}:\overline{BC}=1:2$이다.`,
           false,
           r`$1:3$이다.`,
         ],
         [
           "하",
-          r`$\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=2:1$이면 $\overline{AE}:\overline{EC}=2:1$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=2:1$이면 $\overline{AE}:\overline{EC}=2:1$이다.`,
           true,
           "두 변을 같은 비로 나눈다.",
         ],
@@ -19301,13 +19313,13 @@ export const bank = joinBanks([
         ],
         [
           "하",
-          r`$\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{AB}=1:3$, $\overline{BC}=12$이면 $\overline{DE}=4$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{AB}=1:3$, $\overline{BC}=12$이면 $\overline{DE}=4$이다.`,
           true,
           r`$12\times\frac{1}{3}=4$이다.`,
         ],
         [
           "하",
-          r`$\overline{DE}\parallel\overline{BC}$에서 $\overline{AD}=2$, $\overline{DB}=4$, $\overline{AE}=3$이면 $\overline{EC}=5$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=2$, $\overline{DB}=4$, $\overline{AE}=3$이면 $\overline{EC}=5$이다.`,
           false,
           r`$2:4=3:6$이라 $6$이다.`,
         ],
@@ -19319,9 +19331,9 @@ export const bank = joinBanks([
         ],
         [
           "하",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\angle AED=\angle ABC$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 언제나 $\angle AED=\angle ABC$이다.`,
           false,
-          r`$\angle AED=\angle ACB$이다.`,
+          r`$\angle AED$와 언제나 같은 각은 동위각인 $\angle ACB$이다.`,
         ],
         [
           "하",
@@ -19337,7 +19349,7 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          r`$\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=2:3$이면 $\overline{DE}:\overline{BC}=2:3$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=2:3$이면 $\overline{DE}:\overline{BC}=2:3$이다.`,
           false,
           r`$2:5$이다.`,
         ],
@@ -19349,19 +19361,19 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          r`$\overline{AD}=3$, $\overline{DB}=2$, $\overline{AE}=4$, $\overline{EC}=3$이면 $\overline{DE}\parallel\overline{BC}$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{AD}=3$, $\overline{DB}=2$, $\overline{AE}=4$, $\overline{EC}=3$이면 $\overline{DE}\parallel\overline{BC}$이다.`,
           false,
           r`$3:2$와 $4:3$은 같은 비가 아니다.`,
         ],
         [
           "중",
-          r`$\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=2:5$이면 두 삼각형의 둘레의 비는 $2:5$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=2:5$이면 $\triangle ADE$의 둘레는 $\triangle ABC$의 둘레의 $\frac{2}{5}$배이다.`,
           true,
           "둘레의 비는 닮음비와 같다.",
         ],
         [
           "중",
-          r`$\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=3:2$, $\overline{AC}=10$이면 $\overline{AE}=6$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=3:2$, $\overline{AC}=10$이면 $\overline{AE}=6$이다.`,
           true,
           r`$10\times\frac{3}{5}=6$이다.`,
         ],
@@ -19373,7 +19385,7 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          r`$\overline{DE}\parallel\overline{BC}$, $\overline{AD}=4$, $\overline{AB}=6$, $\overline{DE}=6$이면 $\overline{BC}=8$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}=4$, $\overline{AB}=6$, $\overline{DE}=6$이면 $\overline{BC}=8$이다.`,
           false,
           r`$4:6=6:9$라 $9$이다.`,
         ],
@@ -19385,49 +19397,49 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          r`$\overline{AB}\parallel\overline{CD}$, $\overline{OA}=3$, $\overline{OD}=5$, $\overline{AB}=6$이면 $\overline{DC}=8$이다.`,
+          r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$, $\overline{BC}$가 $O$에서 만난다. $\overline{OA}=3$, $\overline{OD}=5$, $\overline{AB}=6$이면 $\overline{DC}=8$이다.`,
           false,
           r`$3:5=6:10$이라 $10$이다.`,
         ],
         [
           "상",
-          r`$\overline{DE}\parallel\overline{FG}\parallel\overline{BC}$이고 $\overline{AD}=\overline{DF}=\overline{FB}$이면 $\overline{DE}:\overline{FG}:\overline{BC}=1:2:3$이다.`,
+          r`$\triangle ABC$의 변 $AB$ 위에 $D$, $F$가, 변 $AC$ 위에 $E$, $G$가 차례로 있고 $\overline{DE}\parallel\overline{FG}\parallel\overline{BC}$, $\overline{AD}=\overline{DF}=\overline{FB}$이면 $\overline{DE}:\overline{FG}:\overline{BC}=1:2:3$이다.`,
           true,
           "꼭짓점에서 잰 비가 $1:2:3$이다.",
         ],
         [
           "상",
-          r`$\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=3:5$, $\overline{BC}=16$이면 $\overline{DE}=10$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=3:5$, $\overline{BC}=16$이면 $\overline{DE}=10$이다.`,
           false,
           r`$16\times\frac{3}{8}=6$이다.`,
         ],
         [
           "상",
-          r`$\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$이고 $F$가 $\overline{BC}$ 위에 있으면 $\overline{DE}=\overline{BF}$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$, $BC$ 위의 점 $D$, $E$, $F$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$이면 $\overline{DE}=\overline{BF}$이다.`,
           true,
           r`$\square DBFE$가 평행사변형이다.`,
         ],
         [
           "상",
-          r`$\overline{AD}:\overline{AB}=\overline{AE}:\overline{AC}$이어도 $\overline{DE}$와 $\overline{BC}$는 평행하지 않을 수 있다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{AD}:\overline{AB}=\overline{AE}:\overline{AC}$이어도 $\overline{DE}$와 $\overline{BC}$는 평행하지 않을 수 있다.`,
           false,
           r`$\mathrm{SAS}$ 닮음으로 동위각이 같아 평행하다.`,
         ],
         [
           "상",
-          r`$\overline{DF}\parallel\overline{AC}$이고 $F$가 $\overline{BC}$ 위에 있으면 $\overline{BF}:\overline{FC}=\overline{BD}:\overline{DA}$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $BC$ 위의 점 $D$, $F$에 대해 $\overline{DF}\parallel\overline{AC}$이면 $\overline{BF}:\overline{FC}=\overline{BD}:\overline{DA}$이다.`,
           true,
           r`$\triangle BAC$에서 평행선이 두 변을 같은 비로 나눈다.`,
         ],
         [
           "상",
-          r`$\overline{DE}\parallel\overline{BC}$이면 $\overline{DB}:\overline{EC}=\overline{AB}:\overline{BC}$이다.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 언제나 $\overline{DB}:\overline{EC}=\overline{AB}:\overline{BC}$이다.`,
           false,
           r`$\overline{DB}:\overline{EC}=\overline{AB}:\overline{AC}$이다.`,
         ],
         [
           "상",
-          r`$\overline{AB}=6$, $\overline{BC}=9$인 $\triangle ABC$ 안에 $B$를 같이 쓰는 마름모 $DBFE$가 있으면 한 변은 $3$이다.`,
+          r`$\overline{AB}=6$, $\overline{BC}=9$인 $\triangle ABC$의 변 $AB$, $BC$, $CA$ 위에 꼭짓점 $D$, $F$, $E$가 있는 마름모 $DBFE$의 한 변은 $3$이다.`,
           false,
           r`$\frac{x}{9}=\frac{6-x}{6}$에서 $\frac{18}{5}$이다.`,
         ],
@@ -19435,42 +19447,42 @@ export const bank = joinBanks([
       apply: [
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=2$, $\overline{AB}=6$, $\overline{BC}=12$일 때 $\overline{DE}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}=2$, $\overline{AB}=6$, $\overline{BC}=12$일 때 $\overline{DE}$의 길이를 구하시오.`,
           "$4$",
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=4$, $\overline{DB}=2$, $\overline{AE}=6$일 때 $\overline{EC}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}=4$, $\overline{DB}=2$, $\overline{AE}=6$일 때 $\overline{EC}$의 길이를 구하시오.`,
           "$3$",
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=1:2$, $\overline{AC}=9$일 때 $\overline{AE}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}:\overline{DB}=1:2$, $\overline{AC}=9$일 때 $\overline{AE}$의 길이를 구하시오.`,
           "$3$",
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\angle B=65^\circ$일 때 $\angle ADE$의 크기를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\angle B=65^\circ$일 때 $\angle ADE$의 크기를 구하시오.`,
           r`$65^\circ$`,
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=2:3$일 때 $\overline{DE}:\overline{BC}$를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}:\overline{AB}=2:3$일 때 $\overline{DE}:\overline{BC}$를 구하시오.`,
           "$2:3$",
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AE}=5$, $\overline{EC}=5$, $\overline{AB}=12$일 때 $\overline{AD}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AE}=5$, $\overline{EC}=5$, $\overline{AB}=12$일 때 $\overline{AD}$의 길이를 구하시오.`,
           "$6$",
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{DE}=3$, $\overline{BC}=9$일 때 $\triangle ADE$와 $\triangle ABC$의 닮음비를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{DE}=3$, $\overline{BC}=9$일 때 $\triangle ADE$와 $\triangle ABC$의 닮음비를 구하시오.`,
           "$1:3$",
         ],
         [
           "하",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\angle C=50^\circ$일 때 $\angle AED$의 크기를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\angle C=50^\circ$일 때 $\angle AED$의 크기를 구하시오.`,
           r`$50^\circ$`,
         ],
         [
@@ -19480,12 +19492,12 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=6$, $\overline{DB}=4$, $\overline{BC}=15$일 때 $\overline{DE}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}=6$, $\overline{DB}=4$, $\overline{BC}=15$일 때 $\overline{DE}$의 길이를 구하시오.`,
           "$9$",
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=x$, $\overline{DB}=6$, $\overline{AE}=4$, $\overline{EC}=8$일 때 $x$의 값을 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}=x$, $\overline{DB}=6$, $\overline{AE}=4$, $\overline{EC}=8$일 때 $x$의 값을 구하시오.`,
           "$3$",
         ],
         [
@@ -19500,27 +19512,27 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{AB}=3:4$이다. $\triangle ABC$의 둘레가 $32$일 때 $\triangle ADE$의 둘레를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{AB}=3:4$이다. $\triangle ABC$의 둘레가 $32$일 때 $\triangle ADE$의 둘레를 구하시오.`,
           "$24$",
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AE}=6$, $\overline{AC}=15$, $\overline{AB}=10$일 때 $\overline{DB}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AE}=6$, $\overline{AC}=15$, $\overline{AB}=10$일 때 $\overline{DB}$의 길이를 구하시오.`,
           "$6$",
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{DE}=4$, $\overline{BC}=10$, $\overline{AB}=15$일 때 $\overline{AD}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{DE}=4$, $\overline{BC}=10$, $\overline{AB}=15$일 때 $\overline{AD}$의 길이를 구하시오.`,
           "$6$",
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=5$, $\overline{DB}=3$, $\overline{AE}=10$일 때 $\overline{AC}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}=5$, $\overline{DB}=3$, $\overline{AE}=10$일 때 $\overline{AC}$의 길이를 구하시오.`,
           "$16$",
         ],
         [
           "중",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\angle A=60^\circ$, $\angle AED=70^\circ$일 때 $\angle B$의 크기를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\angle A=60^\circ$, $\angle AED=70^\circ$일 때 $\angle B$의 크기를 구하시오.`,
           r`$50^\circ$`,
         ],
         [
@@ -19530,7 +19542,7 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$이고 $F$는 $\overline{BC}$ 위에 있다. $\overline{AE}=4$, $\overline{EC}=6$, $\overline{BC}=15$일 때 $\overline{BF}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$, $BC$ 위에 각각 점 $D$, $E$, $F$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$이다. $\overline{AE}=4$, $\overline{EC}=6$, $\overline{BC}=15$일 때 $\overline{BF}$의 길이를 구하시오.`,
           "$6$",
         ],
         [
@@ -19540,17 +19552,17 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{FG}\parallel\overline{BC}$이고 $\overline{AD}=\overline{DF}=\overline{FB}$, $\overline{BC}=12$일 때 $\overline{DE}+\overline{FG}$를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$ 위에 $D$, $F$가, 변 $AC$ 위에 $E$, $G$가 차례로 있고 $\overline{DE}\parallel\overline{FG}\parallel\overline{BC}$, $\overline{AD}=\overline{DF}=\overline{FB}$, $\overline{BC}=12$일 때 $\overline{DE}+\overline{FG}$를 구하시오.`,
           "$12$",
         ],
         [
           "상",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$, $\overline{DF}\parallel\overline{AC}$이고 $F$는 $\overline{BC}$ 위에 있다. $\overline{AD}=3$, $\overline{DB}=6$, $\overline{BC}=12$일 때 $\overline{FC}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$, $BC$ 위에 각각 점 $D$, $E$, $F$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{DF}\parallel\overline{AC}$이다. $\overline{AD}=3$, $\overline{DB}=6$, $\overline{BC}=12$일 때 $\overline{FC}$의 길이를 구하시오.`,
           "$4$",
         ],
         [
           "상",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}:\overline{DB}=2:3$이다. $\overline{DE}=6$일 때 $\overline{BC}$의 길이를 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=2:3$이다. $\overline{DE}=6$일 때 $\overline{BC}$의 길이를 구하시오.`,
           "$15$",
         ],
         [
@@ -19560,12 +19572,12 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          r`$\triangle ABC$에서 $\overline{DE}\parallel\overline{BC}$이고 $\overline{AD}=x$, $\overline{DB}=x+2$, $\overline{AE}=3$, $\overline{EC}=5$일 때 $x$의 값을 구하시오.`,
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이다. $\overline{AD}=x$, $\overline{DB}=x+2$, $\overline{AE}=3$, $\overline{EC}=5$일 때 $x$의 값을 구하시오.`,
           "$3$",
         ],
         [
           "상",
-          r`수아는 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{DB}=\overline{DE}:\overline{BC}$라고 했다. 옳은지 판단하시오.`,
+          r`수아는 $\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{DB}=\overline{DE}:\overline{BC}$라고 했다. 옳은지 판단하시오.`,
           r`옳지 않다. $\overline{AD}:\overline{AB}=\overline{DE}:\overline{BC}$이다.`,
         ],
       ],
@@ -19575,9 +19587,10 @@ export const bank = joinBanks([
     concepts: [
       [
         "하",
-        "이등분선이 만든 두 각",
+        r`$80^\circ$인 각의 이등분선이 만든 두 각`,
         "성질",
         r`$\angle A=80^\circ$일 때 $\angle A$의 이등분선은 {$40^\circ$}인 두 각을 만든다.`,
+        CASE,
       ],
       [
         "하",
@@ -19597,15 +19610,16 @@ export const bank = joinBanks([
         "방법",
         "이등분선이 나눈 대변의 조각은 대변을 각을 낀 두 변의 {비}로 {나누어} 구한다.",
         [
-          r`$\overline{AB}=6$, $\overline{AC}=3$, $\overline{BC}=6$일 때 $\overline{BD}$`,
+          r`$\triangle ABC$에서 $\angle A$의 이등분선이 변 $BC$와 $D$에서 만난다. $\overline{AB}=6$, $\overline{AC}=3$, $\overline{BC}=6$일 때 $\overline{BD}$`,
           "$4$",
         ],
       ],
       [
         "하",
-        "조각의 비 예",
+        r`$\overline{AB}=10$, $\overline{AC}=5$일 때 $\angle A$의 이등분선이 나눈 조각의 비`,
         "성질",
-        r`$\overline{AB}=10$, $\overline{AC}=5$이면 $\angle A$의 이등분선이 나눈 $\overline{BD}:\overline{DC}=$ {$2:1$}이다.`,
+        r`$\triangle ABC$에서 $\overline{AB}=10$, $\overline{AC}=5$이면 $\angle A$의 이등분선이 변 $BC$와 만나는 점 $D$에 대해 $\overline{BD}:\overline{DC}=$ {$2:1$}이다.`,
+        CASE,
       ],
       [
         "하",
@@ -19641,9 +19655,9 @@ export const bank = joinBanks([
         "중",
         "대변 전체에서 조각 구하기",
         "방법",
-        r`$\overline{BD}$는 $\overline{BC}$의 {$\frac{\overline{AB}}{\overline{AB}+\overline{AC}}$}배이다.`,
+        r`$\angle A$의 이등분선이 변 $BC$와 $D$에서 만나면 $\overline{BD}$는 $\overline{BC}$의 {$\frac{\overline{AB}}{\overline{AB}+\overline{AC}}$}배이다.`,
         [
-          r`$\overline{AB}=8$, $\overline{AC}=12$, $\overline{BC}=10$일 때 $\overline{BD}$`,
+          r`$\triangle ABC$에서 $\angle A$의 이등분선이 변 $BC$와 $D$에서 만난다. $\overline{AB}=8$, $\overline{AC}=12$, $\overline{BC}=10$일 때 $\overline{BD}$`,
           "$4$",
         ],
       ],
@@ -19671,7 +19685,7 @@ export const bank = joinBanks([
         "성질",
         "직각삼각형에서도 직각의 이등분선은 빗변을 직각을 낀 두 변의 {비}로 나눈다.",
         [
-          r`직각을 낀 두 변 $6$, $8$, 빗변 $10$일 때 $6$ 쪽 조각`,
+          r`직각을 낀 두 변이 $6$, $8$, 빗변이 $10$인 직각삼각형에서 직각의 이등분선이 나눈 빗변의 $6$ 쪽 조각`,
           r`$\frac{30}{7}$`,
         ],
       ],
@@ -19691,7 +19705,7 @@ export const bank = joinBanks([
         "방법",
         r`조각 $\overline{BD}$, $\overline{DC}$와 한 변을 알면 다른 한 변을 {비례식}으로 구한다.`,
         [
-          r`$\overline{BD}=3$, $\overline{DC}=2$, $\overline{AC}=4$일 때 $\overline{AB}$`,
+          r`$\triangle ABC$에서 $\angle A$의 이등분선이 변 $BC$와 $D$에서 만난다. $\overline{BD}=3$, $\overline{DC}=2$, $\overline{AC}=4$일 때 $\overline{AB}$`,
           "$6$",
         ],
       ],
@@ -19723,15 +19737,15 @@ export const bank = joinBanks([
         "상",
         "비가 맞으면 이등분선",
         "성질",
-        r`$\overline{BC}$ 위의 점 $D$가 $\overline{BD}:\overline{DC}=\overline{AB}:\overline{AC}$를 만족하면 $\overline{AD}$는 $\angle A$를 {이등분}한다.`,
+        r`$\triangle ABC$의 변 $BC$ 위의 점 $D$가 $\overline{BD}:\overline{DC}=$ {$\overline{AB}:\overline{AC}$}를 만족하면 $\overline{AD}$는 $\angle A$를 이등분한다.`,
       ],
       [
         "상",
         "이등분선 성질을 두 번",
         "방법",
-        "두 이등분선이 만나는 점에서는 {이등분선}의 성질을 두 번 써서 비를 구한다.",
+        "두 내각의 이등분선이 만나는 점이 한 이등분선을 나누는 비는, 먼저 {대변}의 조각을 구하고 그 조각을 한 변으로 하는 삼각형에서 성질을 한 번 더 써서 구한다.",
         [
-          r`$\overline{AB}=12$, $\overline{AC}=8$, $\overline{BC}=10$에서 $\angle B$의 이등분선이 $\overline{AD}$와 만나는 점 $I$의 $\overline{AI}:\overline{ID}$`,
+          r`$\overline{AB}=12$, $\overline{AC}=8$, $\overline{BC}=10$이고 $\angle A$의 이등분선이 변 $BC$와 $D$에서, $\angle B$의 이등분선이 $\overline{AD}$와 $I$에서 만날 때 $\overline{AI}:\overline{ID}$`,
           "$2:1$",
         ],
       ],
@@ -19741,7 +19755,7 @@ export const bank = joinBanks([
         "방법",
         r`$\overline{AB}>\overline{AC}$일 때 $\overline{CD}=x$로 놓고 $\overline{BD}=$ {$\overline{BC}+x$}로 비례식을 세운다.`,
         [
-          r`$\overline{AB}=6$, $\overline{AC}=3$, $\overline{BC}=4$일 때 $\overline{CD}$`,
+          r`$\triangle ABC$에서 $\angle A$의 외각의 이등분선이 변 $BC$의 연장선과 $D$에서 만난다. $\overline{AB}=6$, $\overline{AC}=3$, $\overline{BC}=4$일 때 $\overline{CD}$`,
           "$4$",
         ],
       ],
@@ -19821,7 +19835,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\triangle ABD$와 $\triangle ADC$는 꼭짓점 $A$에서의 높이가 같아 넓이의 비가 $\overline{BD}:\overline{DC}$이다.`,
+        r`$\triangle ABC$의 변 $BC$ 위의 점 $D$에 대해 $\triangle ABD$와 $\triangle ADC$는 꼭짓점 $A$에서의 높이가 같아 넓이의 비가 $\overline{BD}:\overline{DC}$이다.`,
         true,
         "높이가 같으면 넓이는 밑변에 비례한다.",
       ],
@@ -19833,7 +19847,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\overline{AD}$가 $\angle A$의 이등분선이고 $\overline{BD}=3$, $\overline{DC}=2$, $\overline{AC}=4$이면 $\overline{AB}=6$이다.`,
+        r`$\triangle ABC$에서 $\angle A$의 이등분선이 변 $BC$와 $D$에서 만난다. $\overline{BD}=3$, $\overline{DC}=2$, $\overline{AC}=4$이면 $\overline{AB}=6$이다.`,
         true,
         r`$3:2=6:4$이다.`,
       ],
@@ -19948,7 +19962,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "세 꼭짓점의 각을 각각 반으로 나눈 세 직선이 만나는 점의 이름을 쓰시오.",
+        "삼각형의 세 내각을 각각 반으로 나눈 세 직선이 만나는 점의 이름을 쓰시오.",
         "내심",
       ],
       [
@@ -20069,7 +20083,7 @@ export const bank = joinBanks([
           "하",
           "조각을 적는 차례",
           "방법",
-          "평행선 사이의 조각을 비로 쓸 때 두 직선에서 평행선을 만나는 {차례}를 맞춘다.",
+          "평행선 사이의 조각을 비로 쓸 때는 두 직선 모두 {같은 평행선}에서 시작해 만나는 차례대로 적는다.",
         ],
         [
           "하",
@@ -20087,7 +20101,7 @@ export const bank = joinBanks([
           "하",
           "두 배인 대응 조각",
           "성질",
-          "세 평행선을 지나는 한 직선의 두 조각이 두 배 관계이면 다른 직선의 대응 조각도 {두 배} 관계이다.",
+          "서로 {평행}한 세 직선을 지나는 한 직선의 두 조각이 두 배 관계이면 다른 직선의 대응하는 두 조각도 두 배 관계이다.",
         ],
         [
           "하",
@@ -20109,9 +20123,10 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          "비에서 한 조각 구하기",
+          "조각의 비가 $2:5$일 때 앞 조각으로 뒤 조각 구하기",
           "방법",
           r`대응하는 조각의 비가 $2:5$이면 앞 조각을 {$\frac{5}{2}$}배 하여 뒤 조각을 구한다.`,
+          CASE,
         ],
         [
           "중",
@@ -20309,7 +20324,7 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          "밑변 길이가 $4$, $12$인 사다리꼴에서 옆변을 위부터 $1:3$으로 나누는 평행한 폭은 $6$이다.",
+          "윗변이 $4$, 아랫변이 $12$인 사다리꼴에서 옆변을 위부터 $1:3$으로 나누는 점을 지나 밑변에 평행하게 그은 선분의 길이는 $6$이다.",
           true,
           r`$4+(12-4)\times\frac{1}{4}=6$이다.`,
         ],
@@ -20375,7 +20390,7 @@ export const bank = joinBanks([
         ],
         [
           "하",
-          "같은 간격의 네 평행선을 지나는 직선에서 이웃한 선 사이의 한 조각이 $5$이다. 바깥 두 선 사이의 길이를 구하시오.",
+          "같은 간격의 네 평행선을 지나는 직선에서 이웃한 선 사이의 한 조각이 $5$이다. 이 직선에서 바깥 두 평행선 사이에 놓인 선분의 길이를 구하시오.",
           "$15$",
         ],
         [
@@ -20385,7 +20400,7 @@ export const bank = joinBanks([
         ],
         [
           "하",
-          "평행선 셋을 지나는 직선의 연속한 두 조각이 $5$, $8$이다. 바깥 두 평행선 사이의 길이를 구하시오.",
+          "평행선 셋을 지나는 직선의 연속한 두 조각이 $5$, $8$이다. 이 직선에서 바깥 두 평행선 사이에 놓인 선분의 길이를 구하시오.",
           "$13$",
         ],
         [
@@ -20450,37 +20465,37 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          "같은 간격의 평행선 다섯 개를 지나는 직선의 바깥 두 선 사이 길이가 $28$이다. 이웃한 선 사이 조각의 길이를 구하시오.",
+          "같은 간격의 평행선 다섯 개를 지나는 직선에서 바깥 두 평행선 사이에 놓인 선분의 길이가 $28$이다. 이웃한 선 사이 조각의 길이를 구하시오.",
           "$7$",
         ],
         [
           "상",
-          "윗변 $3$, 아랫변 $15$인 사다리꼴의 옆변을 위부터 $1:3$으로 나누는 밑변과 평행한 선분의 길이를 구하시오.",
+          "윗변이 $3$, 아랫변이 $15$인 사다리꼴에서 한 옆변을 위부터 $1:3$으로 나누는 점을 지나 밑변에 평행하게 그어 다른 옆변과 만나는 선분의 길이를 구하시오.",
           "$6$",
         ],
         [
           "상",
-          "윗변 $6$, 아랫변 $18$인 사다리꼴에서 평행한 폭이 $14$인 선분은 옆변을 위부터 어떤 비로 나누는가?",
+          "윗변이 $6$, 아랫변이 $18$인 사다리꼴에서 밑변에 평행하고 양 끝이 두 옆변 위에 있는 길이 $14$인 선분은 옆변을 위부터 어떤 비로 나누는가?",
           "$2:1$",
         ],
         [
           "상",
-          "사다리꼴의 옆변을 위부터 $2:1$로 나눈 평행한 선분의 길이가 $12$이고 윗변이 $4$이다. 아랫변의 길이를 구하시오.",
+          "사다리꼴의 한 옆변을 위부터 $2:1$로 나누는 점을 지나 밑변에 평행하게 그어 다른 옆변과 만나는 선분의 길이가 $12$이고 윗변이 $4$이다. 아랫변의 길이를 구하시오.",
           "$16$",
         ],
         [
           "상",
-          "윗변 $2$, 아랫변 $14$인 사다리꼴에서 옆변의 삼등분점을 지나는 두 평행한 선분의 길이의 합을 구하시오.",
+          "윗변이 $2$, 아랫변이 $14$인 사다리꼴에서 한 옆변의 삼등분점을 지나 밑변에 평행하게 그어 다른 옆변과 만나는 두 선분의 길이의 합을 구하시오.",
           "$16$",
         ],
         [
           "상",
-          "윗변 $5$, 아랫변 $25$인 사다리꼴에서 옆변의 오등분점을 지나는 네 평행한 폭 중 가장 긴 것과 가장 짧은 것의 차를 구하시오.",
+          "윗변이 $5$, 아랫변이 $25$인 사다리꼴에서 한 옆변의 오등분점을 지나 밑변에 평행하게 그어 다른 옆변과 만나는 네 선분 중 가장 긴 것과 가장 짧은 것의 차를 구하시오.",
           "$12$",
         ],
         [
           "상",
-          "밑변 길이가 $4$, $16$인 사다리꼴의 옆변을 위부터 $1:2$로 나눈 평행한 폭을 $12$라고 했다. 바르게 고치시오.",
+          "윗변이 $4$, 아랫변이 $16$인 사다리꼴에서 한 옆변을 위부터 $1:2$로 나누는 점을 지나 밑변에 평행하게 그어 다른 옆변과 만나는 선분의 길이를 $12$라고 했다. 바르게 고치시오.",
           "$8$",
         ],
         [
@@ -20898,7 +20913,7 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          "한 변의 중점을 지나는 평행선이 다른 변을 $3$, $5$로 나누었다는 기록이 있다. 중점 성질과 맞는지 판단하시오.",
+          r`$\triangle ABC$에서 변 $AB$의 중점을 지나 변 $BC$에 평행한 직선이 변 $AC$를 길이 $3$, $5$인 두 조각으로 나누었다는 기록이 있다. 중점 성질과 맞는지 판단하시오.`,
           "맞지 않다",
         ],
         [
@@ -21038,7 +21053,7 @@ export const bank = joinBanks([
         "중",
         "같은 중선 안에서 비 비교",
         "방법",
-        "무게중심의 길이 비를 쓸 때는 서로 다른 중선의 조각을 섞지 않고 {같은 중선}의 두 조각을 비교한다.",
+        "무게중심의 길이 비를 쓸 때는 {서로 다른 중선}의 조각을 섞지 않고 같은 중선의 두 조각을 비교한다.",
       ],
       [
         "중",
@@ -21074,7 +21089,7 @@ export const bank = joinBanks([
         "상",
         "넓이로 무게중심 판별",
         "성질",
-        "삼각형 내부의 점과 세 꼭짓점을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 {무게중심}이다.",
+        "삼각형 내부의 점과 {세 꼭짓점}을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
       ],
       [
         "상",
@@ -21092,7 +21107,7 @@ export const bank = joinBanks([
         "상",
         "합동과 같은 넓이 구별",
         "성질",
-        "세 중선이 나눈 여섯 삼각형은 넓이가 같아도 변과 각까지 같다는 {합동}을 뜻하지는 않는다.",
+        "세 중선이 나눈 여섯 삼각형은 넓이가 같아도 {변과 각}까지 같다는 합동을 뜻하지는 않는다.",
       ],
     ],
     ox: [
@@ -21134,7 +21149,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "중선 위에서 무게중심은 변의 중점보다 꼭짓점에서 더 멀다.",
+        "같은 중선 위에서 무게중심에서 꼭짓점까지의 거리는 무게중심에서 변의 중점까지의 거리보다 길다.",
         true,
         "꼭짓점 쪽 길이가 중점 쪽 길이의 두 배이다.",
       ],
@@ -21266,7 +21281,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "한 중선에서 꼭짓점 쪽 조각과 변의 중점 쪽 조각의 길이 비를 쓰시오.",
+        "삼각형의 무게중심이 한 중선을 나눌 때 꼭짓점 쪽 조각과 변의 중점 쪽 조각의 길이 비를 쓰시오.",
         "$2:1$",
       ],
       [
@@ -21412,7 +21427,7 @@ export const bank = joinBanks([
           "하",
           "축도와 실제의 길이 단위",
           "방법",
-          "축도와 실제 길이를 비교하기 전에 두 길이의 {단위}부터 같게 맞춘다.",
+          "축도와 실제 길이를 비교하기 전에 두 길이의 단위부터 {같게} 맞춘다.",
         ],
         [
           "하",
@@ -21443,12 +21458,14 @@ export const bank = joinBanks([
           "길이를 세 배 한 넓이",
           "성질",
           "닮은 평면도형에서 대응 길이가 세 배이면 넓이는 {$9$배}가 된다.",
+          CASE,
         ],
         [
           "중",
           "길이를 반으로 한 부피",
           "성질",
-          r`입체를 길이마다 절반으로 줄이면 부피는 원래의 {$\frac{1}{8}$}이다.`,
+          r`입체를 닮은 꼴로 모든 길이를 절반으로 줄이면 부피는 원래의 {$\frac{1}{8}$}이다.`,
+          CASE,
         ],
         [
           "중",
@@ -21472,7 +21489,7 @@ export const bank = joinBanks([
           "중",
           "겉넓이와 넓이의 배율",
           "성질",
-          "닮은 입체에서는 각 면의 넓이가 같은 배수로 변하므로 그 합인 {겉넓이}에도 같은 넓이 배율이 적용된다.",
+          "닮은 입체에서는 {각 면}의 넓이가 같은 배수로 변하므로 그 합인 겉넓이에도 같은 넓이 배율이 적용된다.",
         ],
         [
           "중",
@@ -21791,7 +21808,7 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          "도형의 길이를 세 배로 키운 뒤 길이를 삼분의 이로 줄였다. 최종 넓이는 처음의 몇 배인가?",
+          "평면도형을 닮은 꼴로 모든 길이를 세 배로 키운 뒤 다시 모든 길이를 삼분의 이로 줄였다. 최종 넓이는 처음의 몇 배인가?",
           "$4$배",
         ],
         [
