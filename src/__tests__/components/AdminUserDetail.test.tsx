@@ -29,6 +29,43 @@ const draft = {
     ],
   },
 };
+function auditResponse(category: string, page = 1, total = 31) {
+  return Response.json({
+    data:
+      total === 0
+        ? []
+        : [
+            {
+              id: `${category}-${page}`,
+              action:
+                category === "admin-access"
+                  ? "admin.account_view"
+                  : "account.settings_changed",
+              outcome: "success",
+              actorName: "관리자",
+              createdAt: draft.updatedAt,
+              details: { title: `${category} ${page}쪽` },
+            },
+          ],
+    meta: { page, pageSize: 30, total },
+  });
+}
+function mockAuditRequests(
+  respond: (url: URL) => Response | Promise<Response>,
+) {
+  fetchMock.mockImplementation(async (input) => {
+    const url = new URL(String(input), "http://localhost");
+    if (url.pathname.endsWith("/audit")) return respond(url);
+    if (url.pathname.endsWith("/documents"))
+      return Response.json({
+        data: [],
+        meta: { page: 1, pageSize: 20, total: 0 },
+      });
+    if (url.pathname === "/api/admin/branches")
+      return Response.json({ data: [] });
+    return Response.json({ data: pendingAccount });
+  });
+}
 beforeEach(() => {
   vi.clearAllMocks();
   vi.stubGlobal("fetch", fetchMock);
@@ -235,8 +272,8 @@ describe("administrator user detail", () => {
   it("shows readable changes and keeps complete raw details in a closed, keyboard-accessible disclosure", async () => {
     const account = {
       ...pendingAccount,
-      branchId: "branch-1",
-      branchName: "강남점",
+      branchId: "current-branch",
+      branchName: "현재 소속 강남학원",
     };
     const details = {
       previousStatus: "pending",
@@ -291,6 +328,9 @@ describe("administrator user detail", () => {
     expect(visibleDetails).toHaveTextContent("이전 승인 대기현재 승인됨");
     expect(visibleDetails).toHaveTextContent("이전 없음현재 있음");
     expect(visibleDetails).toHaveTextContent("우리학원 시험지, 개념 백지");
+    expect(visibleDetails).toHaveTextContent("이전 내 시험지");
+    expect(visibleDetails).toHaveTextContent("지점 소속 (이름 미기록)");
+    expect(visibleDetails).not.toHaveTextContent("현재 소속 강남학원");
     expect(visibleDetails).toHaveTextContent("정지 안 됨");
     expect(visibleDetails).not.toHaveTextContent(
       /branch-1|conceptBlank|approved|false|\/api\//,
@@ -316,6 +356,131 @@ describe("administrator user detail", () => {
         ([, init]) => !init?.method || init.method === "GET",
       ),
     ).toBe(true);
+  });
+
+  it("defaults to activity and fetches each tab with its own server count and page one", async () => {
+    mockAuditRequests((url) =>
+      auditResponse(
+        url.searchParams.get("category")!,
+        Number(url.searchParams.get("page")),
+        url.searchParams.get("category") === "admin-access" ? 61 : 31,
+      ),
+    );
+    render(
+      <AdminUserDetail
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+        initialAccount={pendingAccount}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "활동 기록" }));
+    const activity = screen.getByRole("tab", { name: "활동" });
+    const access = screen.getByRole("tab", { name: "관리자 접근" });
+    expect(activity).toHaveAttribute("aria-selected", "true");
+    expect(access).toHaveAttribute("tabindex", "-1");
+    await screen.findByText("계정 설정 변경");
+    expect(screen.getByText("총 31개")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "다음" }));
+    await screen.findByText("activity 2쪽");
+    fireEvent.click(access);
+    expect(screen.queryByText("activity 2쪽")).not.toBeInTheDocument();
+    await screen.findByText("관리자 계정 열람");
+    expect(screen.getByText("admin-access 1쪽")).toBeInTheDocument();
+    expect(screen.getByText("총 61개")).toBeInTheDocument();
+    expect(screen.getByText("1 / 3")).toBeInTheDocument();
+    expect(access).toHaveAttribute("aria-selected", "true");
+    expect(
+      screen.getByRole("tabpanel", { name: "관리자 접근" }),
+    ).toHaveAttribute("id", access.getAttribute("aria-controls"));
+    fireEvent.click(screen.getByRole("button", { name: "다음" }));
+    await screen.findByText("admin-access 2쪽");
+    fireEvent.click(activity);
+    await screen.findByText("activity 1쪽");
+    const queries = fetchMock.mock.calls
+      .map(([url]) => new URL(String(url), "http://localhost"))
+      .filter((url) => url.pathname.endsWith("/audit"));
+    expect(
+      queries.map((url) => [
+        url.searchParams.get("category"),
+        url.searchParams.get("page"),
+      ]),
+    ).toEqual([
+      ["activity", "1"],
+      ["activity", "2"],
+      ["admin-access", "1"],
+      ["admin-access", "2"],
+      ["activity", "1"],
+    ]);
+  });
+
+  it("supports roving keyboard tabs and distinct empty states", async () => {
+    mockAuditRequests((url) =>
+      auditResponse(url.searchParams.get("category")!, 1, 0),
+    );
+    render(
+      <AdminUserDetail
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+        initialAccount={pendingAccount}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "활동 기록" }));
+    await screen.findByText("아직 활동 기록이 없습니다.");
+    const activity = screen.getByRole("tab", { name: "활동" });
+    const access = screen.getByRole("tab", { name: "관리자 접근" });
+    activity.focus();
+    fireEvent.keyDown(activity, { key: "ArrowRight" });
+    expect(access).toHaveFocus();
+    expect(access).toHaveAttribute("tabindex", "0");
+    expect(activity).toHaveAttribute("tabindex", "-1");
+    await screen.findByText("아직 관리자 접근 기록이 없습니다.");
+    fireEvent.keyDown(access, { key: "Home" });
+    expect(activity).toHaveFocus();
+    await screen.findByText("아직 활동 기록이 없습니다.");
+    fireEvent.keyDown(activity, { key: "End" });
+    expect(access).toHaveFocus();
+    await screen.findByText("아직 관리자 접근 기록이 없습니다.");
+    fireEvent.keyDown(access, { key: "ArrowRight" });
+    expect(activity).toHaveFocus();
+    fireEvent.keyDown(activity, { key: "ArrowLeft" });
+    expect(access).toHaveFocus();
+    await screen.findByText("아직 관리자 접근 기록이 없습니다.");
+    expect(screen.getByText("총 0개")).toBeInTheDocument();
+  });
+
+  it("ignores a stale tab response and retries the selected category", async () => {
+    let resolveActivity!: (response: Response) => void;
+    let accessCalls = 0;
+    mockAuditRequests((url) => {
+      if (url.searchParams.get("category") === "activity")
+        return new Promise((resolve) => {
+          resolveActivity = resolve;
+        });
+      return ++accessCalls === 1
+        ? Response.json(
+            { error: { message: "다시 연결해 주세요." } },
+            { status: 503 },
+          )
+        : auditResponse("admin-access");
+    });
+    render(
+      <AdminUserDetail
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+        initialAccount={pendingAccount}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "활동 기록" }));
+    fireEvent.click(screen.getByRole("tab", { name: "관리자 접근" }));
+    await screen.findByRole("alert");
+    resolveActivity(auditResponse("activity"));
+    fireEvent.click(screen.getByRole("button", { name: "다시 시도" }));
+    await screen.findByText("관리자 계정 열람");
+    expect(screen.queryByText("계정 설정 변경")).not.toBeInTheDocument();
+    expect(screen.getByRole("tab", { name: "관리자 접근" })).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
   });
 
   it("reports account read failures and retries", async () => {

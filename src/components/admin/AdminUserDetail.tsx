@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useId, useRef, useState } from "react";
 import type { ManagedAccount } from "@/contracts/accountAccess.contract";
 import AdminHeader from "./AdminHeader";
 import { AccountStatus, accountDate } from "./AccountReview";
@@ -252,14 +252,8 @@ function Documents({ userId }: { userId: string }) {
   );
 }
 
-function AuditDetails({
-  entry,
-  account,
-}: {
-  entry: AuditEntry;
-  account: ManagedAccount;
-}) {
-  const rows = auditDetailRows(entry.details, account);
+function AuditDetails({ entry }: { entry: AuditEntry }) {
+  const rows = auditDetailRows(entry.details);
   return (
     <>
       {rows.length ? (
@@ -305,16 +299,24 @@ function AuditDetails({
   );
 }
 
-function Audit({
-  userId,
-  account,
-}: {
-  userId: string;
-  account: ManagedAccount;
-}) {
-  const [page, setPage] = useState(1);
+const AUDIT_TABS = [
+  { id: "activity", label: "활동" },
+  { id: "admin-access", label: "관리자 접근" },
+] as const;
+type AuditCategory = (typeof AUDIT_TABS)[number]["id"];
+
+function Audit({ userId }: { userId: string }) {
+  const [{ category, page }, setQuery] = useState<{
+    category: AuditCategory;
+    page: number;
+  }>({ category: "activity", page: 1 });
+  const tabId = useId();
+  const tabs = useRef<Array<HTMLButtonElement | null>>([]);
+  const selectCategory = (next: AuditCategory) => {
+    if (next !== category) setQuery({ category: next, page: 1 });
+  };
   const resource = useAdminResource<PageResult<AuditEntry>>(
-    `/api/admin/users/${encodeURIComponent(userId)}/audit?page=${page}&pageSize=30`,
+    `/api/admin/users/${encodeURIComponent(userId)}/audit?page=${page}&pageSize=30&category=${category}`,
   );
   return (
     <section className={d.audit} aria-label="계정 활동 기록">
@@ -324,45 +326,113 @@ function Audit({
           새로고침
         </button>
       </div>
-      {resource.error ? (
-        <ResourceError message={resource.error} retry={resource.reload} />
-      ) : !resource.data ? (
-        <div className={s.empty} role="status">
-          활동 기록을 불러오는 중입니다.
-        </div>
-      ) : resource.data.data.length === 0 ? (
-        <div className={s.empty} role="status">
-          <strong>아직 활동 기록이 없습니다.</strong>
-          <p>기록된 계정 활동이 이곳에 표시됩니다.</p>
-        </div>
-      ) : (
-        <>
-          <ol className={d.auditItems}>
-            {resource.data.data.map((entry) => (
-              <li key={entry.id}>
-                <div className={d.auditHeading}>
-                  <strong>{auditActionLabel(entry, account)}</strong>
-                  <span className={d.outcome}>
-                    {auditOutcomeLabel(entry.outcome)}
-                  </span>
-                </div>
-                <p className={d.auditMeta}>
-                  {entry.actorName || "시스템"} ·{" "}
-                  <time dateTime={entry.createdAt}>
-                    {new Intl.DateTimeFormat("ko-KR", {
-                      dateStyle: "medium",
-                      timeStyle: "medium",
-                      timeZone: "Asia/Seoul",
-                    }).format(new Date(entry.createdAt))}
-                  </time>
-                </p>
-                <AuditDetails entry={entry} account={account} />
-              </li>
-            ))}
-          </ol>
-          <Pagination meta={resource.data.meta} page={page} onPage={setPage} />
-        </>
-      )}
+      <div
+        className={`${d.tabs} ${d.auditTabs}`}
+        role="tablist"
+        aria-label="활동 기록 분류"
+      >
+        {AUDIT_TABS.map((tab, index) => (
+          <button
+            key={tab.id}
+            ref={(element) => {
+              tabs.current[index] = element;
+            }}
+            type="button"
+            role="tab"
+            id={`${tabId}-${tab.id}`}
+            aria-selected={category === tab.id}
+            aria-controls={`${tabId}-panel`}
+            tabIndex={category === tab.id ? 0 : -1}
+            onClick={() => selectCategory(tab.id)}
+            onKeyDown={(event) => {
+              const next =
+                event.key === "Home"
+                  ? 0
+                  : event.key === "End"
+                    ? AUDIT_TABS.length - 1
+                    : event.key === "ArrowRight"
+                      ? (index + 1) % AUDIT_TABS.length
+                      : event.key === "ArrowLeft"
+                        ? (index + AUDIT_TABS.length - 1) % AUDIT_TABS.length
+                        : undefined;
+              if (next === undefined) return;
+              event.preventDefault();
+              selectCategory(AUDIT_TABS[next].id);
+              tabs.current[next]?.focus();
+            }}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      <div
+        role="tabpanel"
+        id={`${tabId}-panel`}
+        aria-labelledby={`${tabId}-${category}`}
+        tabIndex={0}
+        aria-busy={!resource.data && !resource.error}
+      >
+        <p className={d.auditDescription}>
+          {category === "activity"
+            ? "계정 사용과 설정·승인·권한 변경 기록입니다."
+            : "관리자의 계정 정보·자료·활동 기록 조회 내역입니다."}
+        </p>
+        {resource.error ? (
+          <ResourceError message={resource.error} retry={resource.reload} />
+        ) : !resource.data ? (
+          <div className={s.empty} role="status">
+            {category === "activity"
+              ? "활동 기록을 불러오는 중입니다."
+              : "관리자 접근 기록을 불러오는 중입니다."}
+          </div>
+        ) : resource.data.data.length === 0 ? (
+          <div className={s.empty} role="status">
+            <strong>
+              {category === "activity"
+                ? "아직 활동 기록이 없습니다."
+                : "아직 관리자 접근 기록이 없습니다."}
+            </strong>
+            <p>
+              {category === "activity"
+                ? "계정 사용과 설정 변경이 기록되면 이곳에 표시됩니다."
+                : "관리자가 이 계정의 정보나 자료를 조회하면 이곳에 표시됩니다."}
+            </p>
+          </div>
+        ) : (
+          <>
+            <ol className={d.auditItems}>
+              {resource.data.data.map((entry) => (
+                <li key={entry.id}>
+                  <div className={d.auditHeading}>
+                    <strong>{auditActionLabel(entry)}</strong>
+                    <span className={d.outcome}>
+                      {auditOutcomeLabel(entry.outcome)}
+                    </span>
+                  </div>
+                  <p className={d.auditMeta}>
+                    {entry.actorName || "시스템"} ·{" "}
+                    <time dateTime={entry.createdAt}>
+                      {new Intl.DateTimeFormat("ko-KR", {
+                        dateStyle: "medium",
+                        timeStyle: "medium",
+                        timeZone: "Asia/Seoul",
+                      }).format(new Date(entry.createdAt))}
+                    </time>
+                  </p>
+                  <AuditDetails entry={entry} />
+                </li>
+              ))}
+            </ol>
+          </>
+        )}
+        {resource.data ? (
+          <Pagination
+            meta={resource.data.meta}
+            page={page}
+            onPage={(next) => setQuery({ category, page: next })}
+          />
+        ) : null}
+      </div>
     </section>
   );
 }
@@ -513,7 +583,7 @@ export default function AdminUserDetail({
                 {tab === "documents" ? (
                   <Documents userId={userId} />
                 ) : (
-                  <Audit userId={userId} account={account} />
+                  <Audit key={userId} userId={userId} />
                 )}
               </div>
               <aside

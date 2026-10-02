@@ -19,18 +19,20 @@ const entry: AuditEntry = {
 
 describe("audit presentation", () => {
   it.each([null, "branch-1"])(
-    "uses workspace menu labels for the target account branch %s",
+    "uses workspace menu labels for the recorded branch %s",
     (branchId) => {
-      const rows = auditDetailRows(
-        { menus: WORKSPACE_MENUS.map((menu) => menu.id) },
-        { branchId },
-      );
+      const rows = auditDetailRows({
+        menus: WORKSPACE_MENUS.map((menu) => menu.id),
+        branchId,
+      });
       for (const menu of WORKSPACE_MENUS) {
-        expect(rows[0].value).toContain(
+        expect(rows.find((row) => row.label === "메뉴 권한")?.value).toContain(
           menu.id === "library" && branchId ? "우리학원 시험지" : menu.label,
         );
       }
-      expect(rows[0].value).not.toContain("conceptBlank");
+      expect(
+        rows.find((row) => row.label === "메뉴 권한")?.value,
+      ).not.toContain("conceptBlank");
     },
   );
 
@@ -42,15 +44,14 @@ describe("audit presentation", () => {
       branchManager: true,
       previousBranchId: null,
       branchId: "branch-1",
+      branchName: "당시 강남점",
       previousMenus: Object.freeze([]),
       menus: Object.freeze(["library", "conceptBlank"]),
       suspended: false,
       deleted: false,
     });
     const before = JSON.stringify(details);
-    expect(
-      auditDetailRows(details, { branchId: "branch-1", branchName: "강남점" }),
-    ).toEqual(
+    expect(auditDetailRows(details)).toEqual(
       expect.arrayContaining([
         {
           label: "승인 상태",
@@ -67,7 +68,7 @@ describe("audit presentation", () => {
         {
           label: "소속 지점",
           previous: "독립 계정",
-          value: "강남점",
+          value: "당시 강남점",
           unchanged: false,
         },
         {
@@ -84,16 +85,13 @@ describe("audit presentation", () => {
   });
 
   it("distinguishes missing history, unchanged values and an unresolved historical branch", () => {
-    const rows = auditDetailRows(
-      {
-        previousBranchId: "old-branch",
-        branchId: "new-branch",
-        previousStatus: "approved",
-        status: "approved",
-        previousMenus: ["bank"],
-      },
-      { branchId: "new-branch", branchName: "현재 지점" },
-    );
+    const rows = auditDetailRows({
+      previousBranchId: "old-branch",
+      branchId: "new-branch",
+      previousStatus: "approved",
+      status: "approved",
+      previousMenus: ["bank"],
+    });
     expect(rows).toContainEqual({
       label: "승인 상태",
       previous: "승인됨",
@@ -103,7 +101,7 @@ describe("audit presentation", () => {
     expect(rows).toContainEqual({
       label: "소속 지점",
       previous: "지점 소속 (이름 미기록)",
-      value: "현재 지점",
+      value: "지점 소속 (이름 미기록)",
       unchanged: false,
     });
     expect(rows).toContainEqual({
@@ -131,17 +129,19 @@ describe("audit presentation", () => {
         requestUrl: "/api/admin/users/unknown/audit",
       },
     };
-    expect(auditActionLabel(unknown, {})).toBe("기타 활동");
+    expect(auditActionLabel(unknown)).toBe("기타 활동");
     expect(auditOutcomeLabel(unknown.outcome)).toBe("기타 결과");
     expect(JSON.parse(auditTechnicalDetails(unknown))).toEqual({
       action: unknown.action,
       outcome: unknown.outcome,
       details: unknown.details,
     });
-    expect(
-      auditDetailRows(unknown.details, {}).map((row) => row.value),
-    ).toEqual(["알 수 없는 상태", "기록 확인 필요", "미등록 메뉴"]);
-    expect(auditDetailRows(null, {})).toEqual([]);
+    expect(auditDetailRows(unknown.details).map((row) => row.value)).toEqual([
+      "알 수 없는 상태",
+      "기록 확인 필요",
+      "미등록 메뉴",
+    ]);
+    expect(auditDetailRows(null)).toEqual([]);
   });
 
   it.each([
@@ -163,11 +163,78 @@ describe("audit presentation", () => {
     "labels %s on %s without exposing the request URL",
     (action, path, label) => {
       expect(
-        auditActionLabel(
-          { ...entry, action, details: { path } },
-          { branchId: "branch-1" },
-        ),
+        auditActionLabel({
+          ...entry,
+          action,
+          details: { path, branchId: "branch-1" },
+        }),
       ).toBe(label);
     },
   );
+
+  it.each([
+    [null, "new-branch", "내 시험지", "우리학원 시험지"],
+    ["old-branch", null, "우리학원 시험지", "내 시험지"],
+  ])(
+    "uses each side's historical membership even when menu IDs are unchanged",
+    (previousBranchId, branchId, previous, value) => {
+      expect(
+        auditDetailRows({
+          previousBranchId,
+          branchId,
+          previousMenus: ["library"],
+          menus: ["library"],
+        }),
+      ).toContainEqual({
+        label: "메뉴 권한",
+        previous,
+        value,
+        unchanged: false,
+      });
+    },
+  );
+
+  it("does not infer missing historical membership or branch names", () => {
+    const details = {
+      previousMenus: ["library"],
+      menus: ["library"],
+      branchId: "historical-branch-uuid",
+    };
+    const rows = auditDetailRows(details);
+    expect(rows).toContainEqual({
+      label: "메뉴 권한",
+      previous: "시험지 보관함 (소속 미기록)",
+      value: "우리학원 시험지",
+      unchanged: false,
+    });
+    expect(rows).toContainEqual({
+      label: "소속 지점",
+      value: "지점 소속 (이름 미기록)",
+    });
+    expect(JSON.stringify(rows)).not.toContain("historical-branch-uuid");
+    expect(auditTechnicalDetails({ ...entry, details })).toContain(
+      "historical-branch-uuid",
+    );
+    expect(auditDetailRows({ menus: ["library"] })).toEqual([
+      { label: "메뉴 권한", value: "시험지 보관함 (소속 미기록)" },
+    ]);
+  });
+
+  it("keeps legacy English permission history understandable after menus split", () => {
+    expect(auditDetailRows({ previousMenus: ["english"], menus: [] })).toEqual([
+      {
+        label: "메뉴 권한",
+        previous: "오늘의 영어 전체",
+        value: "허용된 메뉴 없음",
+        unchanged: false,
+      },
+    ]);
+    expect(
+      auditActionLabel({
+        ...entry,
+        action: "ui.navigate",
+        details: { path: "/#english" },
+      }),
+    ).toBe("오늘의 영어 전체 · 화면 이동");
+  });
 });

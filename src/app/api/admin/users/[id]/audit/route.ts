@@ -1,5 +1,10 @@
-import { authorizePrivate, privateHeaders } from "@/lib/privateWorkspace";
+import {
+  authorizePrivate,
+  privateError,
+  privateHeaders,
+} from "@/lib/privateWorkspace";
 import { pagination } from "@/lib/adminAccounts";
+import { accountAuditWhere, auditCategorySchema } from "@/lib/adminAudit";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 async function handleGet(
@@ -9,8 +14,15 @@ async function handleGet(
   const { id } = await context.params;
   const access = await authorizePrivate(request, id);
   if (access.response) return access.response;
-  const { page, pageSize } = pagination(new URL(request.url), 30);
-  const where = { userId: id };
+  const url = new URL(request.url);
+  // Unfiltered reads remain compatible with existing API consumers.
+  const category = auditCategorySchema.safeParse(
+    url.searchParams.get("category") ?? "all",
+  );
+  if (!category.success)
+    return privateError("활동 기록 분류를 확인해 주세요.", 400);
+  const { page, pageSize } = pagination(url, 30);
+  const where = accountAuditWhere(id, category.data);
   const [items, total] = await Promise.all([
     db.accountAuditLog.findMany({
       where,
