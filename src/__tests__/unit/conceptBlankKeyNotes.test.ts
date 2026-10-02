@@ -98,6 +98,29 @@ describe("concept blank key notes", () => {
     expect(notes("cloze")).toContain("같은 값 · 같은 뜻의 다른 꼴도 ○");
   });
 
+  // «개념을 묻는다»(26 §11) — 적용의 답은 까닭이 든 문장이다. 문장이 같아야 ○ 가 아니라 결론과 까닭이 다 있어야 ○.
+  it("C grades an apply answer on its conclusion and its reason, not on the wording", () => {
+    const cloze = sheets.cloze!;
+    if (cloze.form !== "cloze") throw new Error("꼴");
+    expect(notes("cloze")).not.toContain("나 —");
+    const withApply = keyNotes({
+      ...cloze,
+      apply: [
+        {
+          id: "t-a1",
+          section: SECTION,
+          level: "하",
+          prompt: r`$4\,\mathrm{m}$의 $0.3$배가 $4\,\mathrm{m}$보다 짧은 까닭을 쓰시오.`,
+          answer: "$1$보다 작은 수를 곱했기 때문이다.",
+        },
+      ],
+    }).join("\n");
+    expect(withApply).toContain("나 — 문항 하나가 한 개(1개)");
+    expect(withApply).toContain("결론과 까닭이 다 있어야 ○");
+    expect(withApply).toContain("말이 달라도 뜻이 같으면 된다");
+    expect(withApply).not.toMatch(/!/);
+  });
+
   // 합의 안건 11 — 사례 문항은 A 채점표에 없다. 교사가 줄 수가 왜 다른지 알게 한 줄 — 실제로 뺀 것이 있을 때만.
   it("A says case cards are left off its key only when some were", () => {
     const CASES = "용어에 주어진 값으로 답이 정해지는 사례 문항은 싣지 않았다";
