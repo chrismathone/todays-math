@@ -1,7 +1,7 @@
 import { defineConfig } from "@playwright/test";
 export default defineConfig({
   testDir: ".",
-  testMatch: "admin.spec.ts",
+  testMatch: ["admin.spec.ts", "audit.spec.ts"],
   workers: 1,
   timeout: 60000,
   expect: { timeout: 20000 },
@@ -10,6 +10,9 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:4318",
     browserName: "chromium",
+    ...(process.env.ADMIN_UI_CHANNEL
+      ? { channel: process.env.ADMIN_UI_CHANNEL }
+      : {}),
     headless: true,
   },
   webServer: {

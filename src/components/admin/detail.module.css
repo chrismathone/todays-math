@@ -131,9 +131,25 @@
   font-size: 14px;
   font-weight: 700;
 }
-.tabs button[aria-pressed="true"] {
+.tabs button[aria-pressed="true"],
+.tabs button[aria-selected="true"] {
   border-bottom-color: var(--learn-accent);
   color: var(--learn-accent);
+}
+.auditTabs {
+  margin-bottom: 0;
+  padding-inline: 8px;
+}
+.auditTabs button:focus-visible {
+  outline: 2px solid var(--learn-accent);
+  outline-offset: -4px;
+}
+.auditDescription {
+  margin: 0;
+  padding: 16px 24px 0;
+  color: var(--learn-muted);
+  font-size: 12px;
+  line-height: 1.6;
 }
 .documents {
   display: grid;

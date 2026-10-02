@@ -1,11 +1,9 @@
 import {
   WORKSPACE_MENUS,
   workspaceLibraryLabel,
-  type ManagedAccount,
 } from "@/contracts/accountAccess.contract";
 import { ADMIN_KIND_LABEL, type AuditEntry } from "./documentTypes";
 
-type AccountContext = Pick<ManagedAccount, "branchId" | "branchName">;
 export type AuditDetailRow = {
   label: string;
   value: string;
@@ -84,14 +82,19 @@ function labelFrom(labels: Readonly<Record<string, string>>, value: unknown) {
     : undefined;
 }
 
-function menuLabel(value: unknown, account: AccountContext) {
-  if (value === "library") return workspaceLibraryLabel(account.branchId);
+function menuLabel(value: unknown, branchId: unknown) {
+  // This historical permission covered all English menus before they split.
+  if (value === "english") return "오늘의 영어 전체";
+  if (value === "library")
+    return typeof branchId === "string" || branchId === null
+      ? workspaceLibraryLabel(branchId)
+      : "시험지 보관함 (소속 미기록)";
   return (
     WORKSPACE_MENUS.find((menu) => menu.id === value)?.label ?? "미등록 메뉴"
   );
 }
 
-function locationLabel(value: unknown, account: AccountContext) {
+function locationLabel(value: unknown, branchId: unknown) {
   if (typeof value !== "string") return undefined;
   const [path, hash] = value.split("?")[0].split("#");
   if (/^\/api\/admin\/users\/[^/]+\/audit\/?$/.test(path))
@@ -104,8 +107,12 @@ function locationLabel(value: unknown, account: AccountContext) {
     return "계정 원본 자료";
   if (/^\/(?:api\/)?admin\/users\/[^/]+\/?$/.test(path))
     return "계정 상세 정보";
-  if (path === "/" && hash && WORKSPACE_MENUS.some((menu) => menu.id === hash))
-    return menuLabel(hash, account);
+  if (
+    path === "/" &&
+    hash &&
+    (hash === "english" || WORKSPACE_MENUS.some((menu) => menu.id === hash))
+  )
+    return menuLabel(hash, branchId);
   if (path === "/") return "작업실";
   if (path === "/admin" || path === "/api/admin/users") return "계정 관리";
   if (/^\/(?:api\/)?concept-blank(?:\/|$)/.test(path)) return "개념 백지";
@@ -113,12 +120,12 @@ function locationLabel(value: unknown, account: AccountContext) {
   if (/^\/(?:api\/)?test\/[^/]+\/print\/?$/.test(path))
     return "시험지 인쇄 화면";
   if (/^\/api\/library(?:\/|$)/.test(path))
-    return menuLabel("library", account);
+    return menuLabel("library", branchId);
   return undefined;
 }
 
-export function auditActionLabel(entry: AuditEntry, account: AccountContext) {
-  const location = locationLabel(entry.details?.path, account);
+export function auditActionLabel(entry: AuditEntry) {
+  const location = locationLabel(entry.details?.path, entry.details?.branchId);
   if (entry.action === "admin.private_material_view" && location)
     return `관리자 ${location} 조회 요청`;
   if (entry.action === "request" && location) return `${location} 이용 요청`;
@@ -133,10 +140,7 @@ export function auditOutcomeLabel(outcome: string) {
 }
 
 /** Presentation only: never normalize or mutate the audit record itself. */
-export function auditDetailRows(
-  details: AuditEntry["details"],
-  account: AccountContext,
-) {
+export function auditDetailRows(details: AuditEntry["details"]) {
   const data = details ?? {};
   const rows: AuditDetailRow[] = [];
   const has = (key: string) => Object.hasOwn(data, key);
@@ -145,6 +149,7 @@ export function auditDetailRows(
     label: string,
     format: (value: unknown) => string,
     previous?: string,
+    previousFormat = format,
   ) => {
     if (!has(key) && !(previous && has(previous))) return;
     const current = has(key) ? format(data[key]) : "기록 없음";
@@ -152,10 +157,11 @@ export function auditDetailRows(
       rows.push({
         label,
         value: current,
-        previous: format(data[previous]),
+        previous: previousFormat(data[previous]),
         unchanged:
           has(key) &&
-          JSON.stringify(data[key]) === JSON.stringify(data[previous]),
+          JSON.stringify(data[key]) === JSON.stringify(data[previous]) &&
+          current === previousFormat(data[previous]),
       });
     } else rows.push({ label, value: current });
   };
@@ -163,18 +169,18 @@ export function auditDetailRows(
     labelFrom(STATUS_LABELS, value) ?? "알 수 없는 상태";
   const boolean = (yes: string, no: string) => (value: unknown) =>
     value === true ? yes : value === false ? no : "기록 확인 필요";
-  const menus = (value: unknown) =>
+  const menus = (value: unknown, branchId: unknown) =>
     Array.isArray(value)
       ? value.length
-        ? value.map((item) => menuLabel(item, account)).join(", ")
+        ? value.map((item) => menuLabel(item, branchId)).join(", ")
         : "허용된 메뉴 없음"
       : "기록 확인 필요";
-  const branch = (value: unknown) =>
+  const branch = (value: unknown, name: unknown) =>
     value === null || value === ""
       ? "독립 계정"
       : typeof value === "string"
-        ? value === account.branchId && account.branchName
-          ? account.branchName
+        ? typeof name === "string" && name.trim()
+          ? name
           : "지점 소속 (이름 미기록)"
         : "기록 확인 필요";
   add(
@@ -189,8 +195,21 @@ export function auditDetailRows(
     boolean("있음", "없음"),
     "previousBranchManager",
   );
-  add("branchId", "소속 지점", branch, "previousBranchId");
-  add("menus", "메뉴 권한", menus, "previousMenus");
+  // Use each side's recorded membership, never the account's present branch.
+  add(
+    "branchId",
+    "소속 지점",
+    (value) => branch(value, data.branchName),
+    "previousBranchId",
+    (value) => branch(value, data.previousBranchName),
+  );
+  add(
+    "menus",
+    "메뉴 권한",
+    (value) => menus(value, data.branchId),
+    "previousMenus",
+    (value) => menus(value, data.previousBranchId),
+  );
   add(
     "suspended",
     "이용 정지",
@@ -235,7 +254,7 @@ export function auditDetailRows(
     if (typeof data[key] === "string" || typeof data[key] === "number")
       rows.push({ label, value: String(data[key]) || "없음" });
   }
-  const location = locationLabel(data.path, account);
+  const location = locationLabel(data.path, data.branchId);
   if (location) rows.push({ label: "이용 화면", value: location });
   return rows;
 }
