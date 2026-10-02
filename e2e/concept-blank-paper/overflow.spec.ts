@@ -63,9 +63,20 @@ const mayBeEmpty = (r: PageReport) => r.part === "key" && r.last;
  * 줄이 많은 소단원에서 어림 929px 인 열두 줄이 실제로는 그보다 훨씬 낮아 아래가 빈다(2026-10-02 잰 값: 중1 방정식 지도 채점표 315px ·
  * 최악 조합 ○× 채점표 289px. 넘침은 0 — 교사용 장의 빈 틈이고, 어림을 조이는 일은 넘침 0 을 걸어야 해서 따로 한다).
  * 원래 은행(real-*) · 계약 상한 표본과 **학생지는 모두 1/4** 로 잠근다.
+ *
+ * 🔴 보강 은행 전수(plus-*)의 채점표는 **장의 2/5** 까지다 — 전수 검토로 용어 칸에 조건을 실으면서(«$\frac{1}{2}$시간의 $\frac{1}{3}$ 구하기»)
+ * 굵은 분수가 든 용어가 좁은 «개념» 칸(118px)에 들어갔고, 그 칸의 어림은 실제의 두 배쯤이다(초5 분수의 곱셈: 어림 88~132px 인 줄이
+ * 실제 42~62px). 네 학년 6,461장을 재니 1/4 을 넘는 채점표 장 46 · 가장 큰 틈 377px(장의 33.6%). 넘침은 0 이다.
+ * 이 어림을 조이는 일은 남은 빚이다(26 §10.4) — 조이면 이 한도를 1/4 로 되돌린다.
  */
 const emptyLimit = (name: string, r: PageReport) =>
-  /^(?:fuzz|plus|worst)/.test(name) && r.part === "key" ? 1123 / 3 : QUARTER;
+  r.part !== "key"
+    ? QUARTER
+    : name.startsWith("plus-")
+      ? (1123 * 2) / 5
+      : /^(?:fuzz|worst)/.test(name)
+        ? 1123 / 3
+        : QUARTER;
 
 for (const set of SETS) {
   const name = set.replace(/&(?:seed|chapter)=/, "-");
