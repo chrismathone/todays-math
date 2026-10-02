@@ -3,6 +3,7 @@
  * 꼴(계약) · 열쇠가 교육과정에 있나 · 파일이 제 학년만 담나 · id 겹침 · 핵심어 · 그림 이름표 자리.
  */
 import { describe, expect, it } from "vitest";
+import { BLANK_WIDTH, inkEm } from "@/components/concept-blank/paper/text";
 import {
   blankKeywords,
   conceptBlankBankSchema,
@@ -21,6 +22,10 @@ import {
   notationFaults,
 } from "@/lib/concept-blank/notation";
 import { BLANK_SECTIONS, getBlankSection } from "@/lib/concept-blank/sections";
+import {
+  retiredCounts,
+  retiredKey,
+} from "../../../scripts/qa/concept-blank/havruta/ledger";
 
 const PART_GRADES: Record<string, readonly string[]> = {
   e3: ["초3"],
@@ -42,7 +47,17 @@ const BASE_PARTS = Object.keys(BANK_PARTS).filter((p) => !(p in PLUS_OF));
 const PLUS_PARTS = Object.keys(PLUS_OF);
 /** 은행 3차 — 소단원마다 개념 · ○× · 적용이 난이도별 이만큼(원장님 2026-10-01 «하/중/상 10문제씩»). */
 const PER_LEVEL = 10;
+/** 까닭을 적고 빼더라도 난이도 한 칸에 남아야 하는 장수(26 §11). */
+const MIN_PER_LEVEL = 1;
 const LEVELS = ["하", "중", "상"] as const;
+/** 예의 답이 D 지면 빈칸보다 넓은 채 남은 것 — 그 학년 트랙(cb-havruta)이 줄이면서 지운다. 새로 넣지 않는다. */
+const KNOWN_WIDE_EXAMPLES: readonly string[] = [
+  "e3-1-1-2-c1",
+  "e3-1-2-4-c1",
+  "e3-1-2-5-c1",
+  "m1-04-03-xc9",
+  "m1-04-03-xc20",
+];
 const squash = (s: string) => s.replace(/\s+/g, "");
 
 const everyItem = (b = CONCEPT_BLANK_BANK) => [
@@ -102,9 +117,12 @@ describe("concept blank bank", () => {
   );
 
   // 은행 3차(브리프 cb-ten) — 보강을 시작한 학년은 소단원마다 원래 + 보강이 개념 · ○× · 적용 모두 하 · 중 · 상 10개 이상.
+  // «개념을 묻는다»(26 §11 · 원장님 2026-10-03 «정말 추가할 만한 게 없으면 그렇게 해»)에서 **까닭을 적고 뺀** 자리만큼은 봐준다 —
+  // 그래도 난이도 한 칸에 MIN_PER_LEVEL 장은 남아야 한다(그보다 얇아지면 소단원을 고를 수 없는 칸이 생긴다).
   it.each(PLUS_PARTS)(
     "%s, once filled, brings every section to ten per level",
     (part) => {
+      const retired = retiredCounts(CONCEPT_BLANK_BANK);
       const plus = BANK_PARTS[part]!;
       if (everyItem(plus).length === 0) return;
       const base = BANK_PARTS[PLUS_OF[part]!]!;
@@ -121,7 +139,10 @@ describe("concept blank bank", () => {
         return (["concepts", "ox", "apply"] as const).flatMap((kind) =>
           LEVELS.flatMap((level) => {
             const n = stock[kind].filter((x) => x.level === level).length;
-            return n < PER_LEVEL ? [`${s.key} ${kind} ${level} ${n}`] : [];
+            const gone = retired.get(retiredKey(s.key, kind, level)) ?? 0;
+            return n + gone < PER_LEVEL || n < MIN_PER_LEVEL
+              ? [`${s.key} ${kind} ${level} ${n}${gone ? ` (뺀 것 ${gone})` : ""}`]
+              : [];
           }),
         );
       });
@@ -260,6 +281,17 @@ describe("concept blank bank", () => {
       (c) => `${c.id} «${c.example!.prompt}»`,
     );
     expect(hits.slice(0, 20), `가리킴말 ${hits.length}건`).toEqual([]);
+  });
+
+  // 개념 지도(D)는 예 물음 뒤에 빈칸 하나만 준다 — 빈칸은 답의 보이는 폭만큼이고 `BLANK_WIDTH.max` 에서 잘린다.
+  // 답이 그보다 넓으면 손으로 쓸 자리가 없다(2026-10-03 — 예의 답을 «…때문이다» 문장으로 쓰다가 드러났다 · 26 §11).
+  it("every map example answer fits the blank the sheet gives it", () => {
+    const { perEm, pad, max } = BLANK_WIDTH;
+    const wide = CONCEPT_BLANK_BANK.concepts
+      .filter((c) => c.example && inkEm(c.example.answer) * perEm + pad > max)
+      .map((c) => c.id);
+    // 넘는 것은 이 자를 세우기 전부터 넘던 것뿐이다 — 줄였는데 목록에 남아 있어도 빨갛다(목록은 줄기만 한다).
+    expect(wide.sort()).toEqual([...KNOWN_WIDE_EXAMPLES].sort());
   });
 
   it("the cross-form ruler says both yes and no", () => {

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { prerequisiteContextSchema } from "./mathPrerequisite.contract";
 import {
   mathSrsJourneyDaySchema,
   mathSrsJourneySchema,
@@ -76,6 +77,7 @@ export const expeditionTileStarsSchema = z.strictObject({
 });
 export type ExpeditionTileStars = z.infer<typeof expeditionTileStarsSchema>;
 export const mathExpeditionSchema = z.strictObject({
+  prerequisiteContext: prerequisiteContextSchema.optional(),
   mission: expeditionMissionSchema.nullable(),
   next: expeditionPlanSchema.nullable(),
   completedToday: z.boolean(),
