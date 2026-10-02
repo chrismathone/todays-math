@@ -5,6 +5,7 @@ import {
   createListeningAttempt,
   transitionListeningAttempt,
 } from "@/lib/english/listening/attempt";
+import { projectListeningStudentView } from "@/lib/english/listening/projection";
 import {
   englishListeningAssignmentFixture,
   englishListeningPublicationFixture,
@@ -57,6 +58,27 @@ describe("immutable assignment target additions", () => {
       command,
       context,
     );
+    const question = publication.document.groups[0].questions[0];
+    const saved = transitionListeningAttempt(
+      publication,
+      result.previous,
+      started,
+      {
+        kind: "answer",
+        phase: "initial",
+        questionId: question.id,
+        choiceId: question.choices[0].id,
+        expectedRevision: started.revision,
+        idempotencyKey: "answer-after-target-addition",
+      },
+      context,
+    );
+    expect(saved.firstAnswers).toHaveLength(1);
+    expect(
+      projectListeningStudentView(publication, result.previous, saved, {
+        now: context.now,
+      }).groups[0].state,
+    ).toBe("locked");
     expect(
       transitionListeningAttempt(
         publication,
