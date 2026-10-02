@@ -1378,8 +1378,8 @@ export const bank: ConceptBlankBank = {
       kind: "정의",
       definition: "원을 그릴 때 움직이지 않게 고정한 점이 {원의 중심}이다.",
       example: {
-        prompt: "원의 중심과 원 위의 점을 곧게 이은 선분의 이름을 쓰시오.",
-        answer: "반지름",
+        prompt: "컴퍼스로 원을 그릴 때 원의 중심이 되는 곳은 어디인가?",
+        answer: "컴퍼스의 침을 꽂은 자리",
       },
     },
     {
@@ -1425,8 +1425,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "한 원의 중심에서 원 위까지 잰 거리는 어느 방향에서나 {같다}.",
       example: {
-        prompt: "지름이 $18\\,\\mathrm{cm}$인 원의 반지름은 몇 cm인가?",
-        answer: "$9\\,\\mathrm{cm}$",
+        prompt:
+          "중심에서 원 위의 한 점까지 $6\\,\\mathrm{cm}$인 원이 있다. 중심에서 원 위의 다른 점까지의 거리를 쓰시오.",
+        answer: "$6\\,\\mathrm{cm}$",
       },
     },
     {
@@ -1456,8 +1457,8 @@ export const bank: ConceptBlankBank = {
         "컴퍼스로 원을 그릴 때 침을 꽂아 고정한 자리가 {중심}이 된다.",
       example: {
         prompt:
-          "반지름 $5\\,\\mathrm{cm}$인 원을 그릴 때 컴퍼스 두 끝 사이 거리를 쓰시오.",
-        answer: "$5\\,\\mathrm{cm}$",
+          "컴퍼스의 침을 점 ㅇ에 꽂고 원을 그렸다. 이 원의 중심은 어느 점인가?",
+        answer: "점 ㅇ",
       },
     },
     {
