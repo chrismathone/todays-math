@@ -362,8 +362,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "물건을 {같은 수씩} 나누거나 묶어 한 몫 또는 묶음 수를 구하는 계산이 나눗셈이다.",
       example: {
-        prompt: "구슬 $20$개를 $5$개씩 묶으면 몇 묶음인가?",
-        answer: "$4$묶음",
+        prompt:
+          "사탕 $28$개를 $4$명에게 똑같이 나누어 줄 때 한 사람이 받는 수를 구하는 나눗셈식을 쓰시오.",
+        answer: "$28\\div4=7$",
       },
     },
     {
@@ -436,15 +437,16 @@ export const bank: ConceptBlankBank = {
       definition:
         "곱셈에서 구한 전체를 한 묶음의 수로 나누면 {묶음 수}가 나온다.",
       example: {
-        prompt: "$8\\times3=24$를 이용하여 $24\\div8$의 몫을 쓰시오.",
-        answer: "$3$",
+        prompt:
+          "$5$개씩 $9$묶음이 $45$개일 때, $45$개를 $5$개씩 묶으면 몇 묶음인가?",
+        answer: "$9$묶음",
       },
     },
     {
       id: "e3-1-3-2-c2",
       section: "초3::1-3 나눗셈::1-3-2 곱셈과 나눗셈의 관계",
       level: "중",
-      term: "곱셈식에서 나눗셈식 만들기",
+      term: "$4\\times7=28$에서 나눗셈식 만들기",
       kind: "방법",
       definition:
         "$4\\times7=28$을 보면 $28\\div4$의 몫은 {$7$}, $28\\div7$의 몫은 {$4$}이다.",
@@ -467,15 +469,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "나눗셈의 몫을 찾을 때 나누는 수와 {몫}을 곱한 값이 전체가 되게 한다.",
       example: {
-        prompt: "$6\\times\\square=54$를 이용하여 $54\\div6$을 구하시오.",
-        answer: "$9$",
+        prompt: "$32\\div8$의 몫을 구하려고 만드는 빈칸 곱셈식을 쓰시오.",
+        answer: "$8\\times\\square=32$",
       },
     },
     {
       id: "e3-1-3-3-c2",
       section: "초3::1-3 나눗셈::1-3-3 나눗셈의 몫을 곱셈식으로 구하기",
       level: "중",
-      term: "몫 찾기",
+      term: "$35\\div5$의 몫을 곱셈식으로 찾기",
       kind: "방법",
       definition:
         "$35\\div5$의 몫은 곱셈식 $5\\times\\square=35$에서 $\\square$에 알맞은 수와 같으므로 {$7$}이다.",
@@ -498,15 +500,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "나누는 수의 단에서 전체 수가 나오는 곱셈을 찾아 {몫}을 구한다.",
       example: {
-        prompt: "$72\\div9$의 몫을 곱셈구구로 구하시오.",
-        answer: "$8$",
+        prompt: "$45\\div5$의 몫은 몇 단 곱셈구구에서 찾는가?",
+        answer: "$5$단",
       },
     },
     {
       id: "e3-1-3-4-c2",
       section: "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
       level: "중",
-      term: "구구의 단 고르기",
+      term: "$48\\div6$에서 구구의 단 고르기",
       kind: "방법",
       definition:
         "$48\\div6$을 계산할 때에는 {$6$단}에서 $48$이 나오는 식을 찾는다.",
@@ -3280,4 +3282,4 @@ export const bank: ConceptBlankBank = {
  * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
  * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
  */
-markGivenCases(bank, []);
+markGivenCases(bank, ["e3-1-3-2-c2", "e3-1-3-3-c2", "e3-1-3-4-c2"]);
