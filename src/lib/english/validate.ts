@@ -72,6 +72,13 @@ function questionIssues(
         message: "정답은 보기 번호 1~5 여야 합니다.",
       });
   }
+  // passage 는 원 지문이다. 빈칸은 학생에게 보이는 이 문항의 문제용 지문(prompt)에 있어야 한다.
+  // 품질 검사(quality.ts)와 같은 표지: 밑줄 네 개 이상. 다른 문항이나 해설의 표지는 세지 않는다.
+  if (question.type === "빈칸 추론" && !/_{4,}/.test(question.prompt))
+    issues.push({
+      question: index,
+      message: "빈칸 추론 문항의 문제용 지문에 실제 빈칸(____)을 넣어 주세요.",
+    });
   const evidence = normalizeEnglishText(question.evidence);
   if (!evidence)
     issues.push({ question: index, message: "지문 속 근거가 비어 있습니다." });

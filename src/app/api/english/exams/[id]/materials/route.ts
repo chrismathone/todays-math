@@ -20,6 +20,7 @@ import {
 } from "@/contracts/english.contract";
 import { jsonError, jsonOk, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { decodeEnglishTextMaterial } from "@/lib/english/decodeTextMaterial";
 import {
   ENGLISH_MATERIAL_MIME_BY_EXTENSION,
   ENGLISH_ROUTE_MESSAGES,
@@ -102,13 +103,15 @@ async function createFromMultipart(request: NextRequest, examId: string) {
   if (bytes.byteLength > ENGLISH_MATERIAL_MAX_BYTES) return payloadTooLarge();
   // .txt 는 지문 글도 같이 — 문제 제작이 바로 쓴다. 계약 상한(30,000자)을 넘는 뒷부분은 싣지 않는다(원본은 bytes 에 그대로).
   // 서로게이트 쌍 가운데를 끊지 않는다(검토 E — 고립 서로게이트가 DB 로 가지 않게)
-  const content =
-    ext === "txt"
-      ? clampUtf16(
-          new TextDecoder("utf-8").decode(bytes).trim(),
-          ENGLISH_MATERIAL_CONTENT_MAX,
-        )
-      : null;
+  let content: string | null = null;
+  if (ext === "txt") {
+    const text = decodeEnglishTextMaterial(bytes);
+    if (text === null)
+      return BAD_REQUEST(
+        "TXT 파일을 읽을 수 없습니다. 파일을 UTF-8 텍스트로 다시 저장한 뒤 올려 주세요.",
+      );
+    content = clampUtf16(text.trim(), ENGLISH_MATERIAL_CONTENT_MAX);
+  }
 
   const created = await db.englishMaterial.create({
     data: {

@@ -92,6 +92,47 @@ describe("validateEnglishDraft — 모양 · 뜻", () => {
     });
     expect(verdict.ok).toBe(true);
   });
+
+  it("빈칸 추론에 빈칸이 없으면 해당 문항을 거절한다 — 다른 칸의 표지는 대신하지 못한다", () => {
+    const verdict = validateEnglishDraft({
+      ...good,
+      title: "빈칸 ____",
+      passage: `${passage} ____`,
+      questions: [
+        good.questions[1],
+        {
+          ...good.questions[0],
+          type: "빈칸 추론",
+          prompt: `다음 빈칸에 들어갈 말로 가장 적절한 것은?\n${passage}`,
+          options: ["____", ...good.questions[0].options.slice(1)],
+          explanation: "____에 협력이 들어갑니다.",
+        },
+      ],
+    });
+    expect(verdict.ok).toBe(false);
+    if (!verdict.ok)
+      expect(verdict.issues).toEqual([
+        { question: 1, message: expect.stringMatching(/빈칸.*____/) },
+      ]);
+  });
+
+  it.each(["____", "________", "(________)"])(
+    "빈칸 추론의 문제용 지문에 %s 표지가 있으면 원 지문을 유지하며 통과한다",
+    (blank) => {
+      const draft = {
+        ...good,
+        questions: [
+          {
+            ...good.questions[0],
+            type: "빈칸 추론",
+            prompt: `다음 빈칸에 들어갈 말로 가장 적절한 것은?\n${passage.replace("cooperation", blank)}`,
+          },
+        ],
+      };
+      const verdict = validateEnglishDraft(draft);
+      expect(verdict).toEqual({ ok: true, draft });
+    },
+  );
 });
 
 describe("validateEnglishDraft — 생성 요청과 견주기", () => {
