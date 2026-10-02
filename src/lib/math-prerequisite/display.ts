@@ -108,7 +108,8 @@ export function coursePrerequisiteContext(
       kind: "return",
       targetSectionId: target,
       sectionId: target,
-      reason: "확인을 마쳤어요. 다음 학습 때 분수의 곱셈으로 돌아가요.",
+      reason:
+        "분수의 뺄셈 확인 범위를 본 뒤, 다음 학습 때 분수의 곱셈으로 돌아가요.",
       canStart: false,
       partial: true,
       versions: displayVersions(),

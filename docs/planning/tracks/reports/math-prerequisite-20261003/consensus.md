@@ -47,6 +47,18 @@ Orca Run: `run_d1d13bf94c6c`
 
 ## 작업 상태
 
+### 실제 최종 시각 합의 — 2026-10-03
+
+네 시각 시안 중 **H1**을 세 모델이 독립적으로 선택해 승인했다. 동일 HTML blob SHA-256은 `fd9b495022a954025143062675e96b71249322fd162eaa307b9dd82ae1c39869`이다.
+
+| 실제 검토자 | 판단 | 증거 |
+|---|---|---|
+| Codex | H1, approve | msg_bae85bfa868a · [hifi-codex-vote.md](./hifi-codex-vote.md) |
+| Grok | H1 | msg_c1eed3e4b25a · [hifi-grok.md](./hifi-grok.md) |
+| Claude | H1, approve | msg_8aeb6f0c6ef2 · [hifi-claude-vote.md](./hifi-claude-vote.md) |
+
+실제 PC·320·390 PNG와 같은 해시의 HTML을 검토했다. `msg_5a57634294df`로 최종 합의를 전달한 뒤 제품 UI 구현을 시작했다. 구현 조건은 실제 학생 근거·공급 상태·보류 사유로 표시하고, 시범 범위 밖에 문제 공급이나 단원 전체 숙달을 표시하지 않는 것이다. 학생의 뒤로 단추는 320에서도 한 줄을 유지한다. 최종 구현과 브라우저 검사는 별도로 기록한다.
+
 ### 실제 화면 구조 합의 — 2026-10-03
 
 네 구조 시안 중 **W2(한 열 목록에서 단원 상세 펼침)**를 세 모델이 독립적으로 선택했다. 승인한 개정 HTML SHA-256은 `8109a7ee826b9a6ed7d5b8f5bbfeb6e46b4d005a24ea8dfe0eb85537e7e04423`이다. 학생을 선택하지 않아도 기존 CourseDashboard에서 연결도를 열고, 선택된 학생의 부분 근거는 별도로 덧붙인다.

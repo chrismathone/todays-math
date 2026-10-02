@@ -13,7 +13,10 @@
  */
 import { kstDateOf } from "@/lib/kstDate";
 import type { StoredCourse } from "@/lib/math-srs/courseAutomation";
-import type { CourseProblem, CourseSession } from "@/lib/math-srs/elementary/types";
+import type {
+  CourseProblem,
+  CourseSession,
+} from "@/lib/math-srs/elementary/types";
 import {
   currentPlanSessions,
   EVIDENCE_WINDOW_MS,
@@ -50,10 +53,7 @@ export interface PrerequisiteSessionChoice {
 }
 
 export type PrerequisiteDecisionKind =
-  | "check"
-  | "return"
-  | "fallback"
-  | "unavailable";
+  "check" | "return" | "fallback" | "unavailable";
 
 export interface PrerequisiteDecision {
   kind: PrerequisiteDecisionKind;
@@ -75,12 +75,12 @@ export const PREREQUISITE_REASONS = Object.freeze({
   check: "분수의 곱셈에 쓰이는 분수의 뺄셈을 먼저 확인해요.",
   checkTeacher:
     "목표 소단원의 최근 끝낸 세션 둘이 모두 실패해 선수 범위를 한 세션 확인합니다.",
-  return: "확인을 마쳤어요. 분수의 곱셈을 다시 학습해요.",
+  return: "분수의 뺄셈 확인 범위를 본 뒤, 분수의 곱셈을 다시 학습해요.",
   returnTeacher: "확인 범위를 푼 뒤 목표 소단원으로 한 번 돌아갑니다.",
-  fallback: "안전한 확인 문제를 준비하지 못해 목표 학습을 이어갑니다.",
+  fallback: "확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.",
   fallbackTeacher:
     "확인 범위에서 본 적 없는 문제 다섯을 만들지 못해 목표 연습으로 이어갑니다.",
-  unavailable: "지금 낼 수 있는 새 문제가 없어요. 선생님께 알려 주세요.",
+  unavailable: "새 문제를 준비하지 못했어요. 선생님께 알려 주세요.",
   unavailableTeacher:
     "목표와 확인 범위 모두 본 적 없는 문제 다섯을 만들지 못했습니다. 같은 탐험 범위에서 시작 소단원을 바꾸거나 선수 확인 기능을 끄면 다시 이어집니다.",
   held: "확인 범위를 최근 14일 안에 풀어, 목표를 마치거나 14일이 지날 때까지 그 복습을 미뤄요. 숙달 판정이 아니에요.",
@@ -128,7 +128,9 @@ function triggeringFailure(
   if (newestObservedAt(course, target) > time(lastTwo.at(-1)!.completedAt!))
     return null;
   if (
-    !lastTwo.every((session) => sessionOutcome(course, session).outcome === "failed")
+    !lastTwo.every(
+      (session) => sessionOutcome(course, session).outcome === "failed",
+    )
   )
     return null;
   return lastTwo.at(-1)!.id;
