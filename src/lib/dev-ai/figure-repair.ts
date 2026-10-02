@@ -309,10 +309,23 @@ export function repairFigureSpec(
   )
     return undefined;
   if (ENGINE_FAILURES.offsetAndCurvature.test(error)) {
-    // 엔진에서 curvature 는 offset 의 옛 이름이다(figure_scene.py add_dimension) — 정식 이름을 남긴다.
+    // Python only conflicts when both aliases are non-null. Keep unrelated
+    // null aliases intact, and never choose between different distances.
     const table = spec.dimensions;
     const both = (item: unknown): item is Item =>
-      isItem(item) && "offset" in item && "curvature" in item;
+      isItem(item) && item.offset != null && item.curvature != null;
+    const conflicts = records(table)
+      .map(([, item]) => item)
+      .filter(both);
+    if (
+      conflicts.some(
+        (item) =>
+          typeof item.offset !== "number" ||
+          !Number.isFinite(item.offset) ||
+          item.offset !== item.curvature,
+      )
+    )
+      return undefined;
     const fix = (item: unknown) =>
       both(item) ? without(item, "curvature") : item;
     const note = "치수의 offset·curvature 중 옛 이름 curvature 를 뺐습니다.";
@@ -474,15 +487,21 @@ function repairOneMeaning(
       )
         moves.set(key, String(item.point));
     // 그 점에 이름표가 **이미 있는데** 또 하나(`dot_E` → E)를 적은 경우 — 덧붙은 쪽이 `point`·`text` 말고는 아무것도
-    // 안 적었고 글이 비었거나 같으면, 어느 쪽을 남겨도 **그림이 같다**. 덧붙은 쪽을 뺀다(운영 콘솔 2026-09-21
+    // 안 적었고 실제 표시될 글이 같으면, 어느 쪽을 남겨도 **그림이 같다**. 덧붙은 쪽을 뺀다(운영 콘솔 2026-09-21
     // `labels.dot_E.point conflicts with its key` — 되물어도 세 번 다 같은 사양이 와서 422 로 끝났다).
     // 글이 같은데 자리(dx·dy·position)를 적었으면 어느 쪽 자리가 맞는지 몰라 되묻는다. 글이 다르면 아래 기준점으로.
-    const textOf = (item: unknown) =>
+    // Omitted/null text means the target point's name in Python, not an
+    // empty label. Resolve before deduplicating or creating a new anchor.
+    const textOf = (item: unknown, point: string): string | undefined =>
       typeof item === "string"
-        ? item.trim()
-        : isItem(item) && typeof item.text === "string"
-          ? item.text.trim()
-          : "";
+        ? item
+        : isItem(item)
+          ? item.text == null
+            ? point
+            : typeof item.text === "string"
+              ? item.text
+              : undefined
+          : undefined;
     const redundant = [...moves].filter(
       ([key, to]) =>
         !points.has(key) &&
@@ -492,7 +511,8 @@ function repairOneMeaning(
         Object.keys(labels[key]).every((field) =>
           ["point", "text"].includes(field),
         ) &&
-        ["", textOf(labels[to])].includes(textOf(labels[key])),
+        !!textOf(labels[key], to) &&
+        textOf(labels[key], to) === textOf(labels[to], to),
     );
     if (redundant.length) {
       const drop = new Set(redundant.map(([key]) => key));
@@ -522,8 +542,8 @@ function repairOneMeaning(
         named.has(key) ||
         !isItem(pointTable) ||
         !(to in pointTable) ||
-        !textOf(labels[key]) ||
-        textOf(labels[key]) === (textOf(labels[to]) || to)
+        !textOf(labels[key], to) ||
+        textOf(labels[key], to) === textOf(labels[to], to)
       )
         return undefined;
     const renames = new Map([...moves].filter(([key]) => !anchors.has(key)));
@@ -563,7 +583,13 @@ function repairOneMeaning(
         labels: Object.fromEntries(
           Object.entries(labels).map(([key, item]) =>
             anchors.has(key)
-              ? [key, without(item as Item, "point")]
+              ? [
+                  key,
+                  {
+                    ...without(item as Item, "point"),
+                    text: textOf(item, anchors.get(key)!),
+                  },
+                ]
               : [renames.get(key) ?? key, item],
           ),
         ),

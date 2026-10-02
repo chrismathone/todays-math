@@ -283,12 +283,12 @@ describe("운영 콘솔 2026-09-21 — 문법에서 살짝 어긋난 사양은 �
     expect(await engineError(fix!.spec)).toBe("");
   });
 
-  it("같은 점의 이름표가 둘이면(E + dot_E) 글이 비었거나 같은 쪽을 뺀다 — 글이 다르면 따로 선 기준점으로", async () => {
-    const withDot = (text: string) =>
+  it("같은 점의 이름표가 둘이면 실제 표시할 글이 같을 때만 합친다 — 글이 다르면 따로 선 기준점으로", async () => {
+    const withDot = (text: string | null | undefined) =>
       triangle({
         labels: { A: "A", B: "B", C: "C", dot_C: { point: "C", text } },
       });
-    for (const text of ["", "C"]) {
+    for (const text of [undefined, null, "C"]) {
       const spec = withDot(text);
       const fix = repairFigureSpec(spec, await engineError(spec), false);
       expect(fix?.warning).toBeUndefined();
@@ -304,6 +304,10 @@ describe("운영 콘솔 2026-09-21 — 문법에서 살짝 어긋난 사양은 �
       dot_C: { text: "P" },
     });
     expect(await engineError(moved!.spec)).toBe("");
+    const empty = withDot("");
+    expect(
+      repairFigureSpec(empty, await engineError(empty), false),
+    ).toBeUndefined();
   });
 
   it("없는 최상위 칸(points_dots)은 마지막 시도에서만 빼고, 무엇을 뺐는지 원장님께 알린다 (운영 2026-09-22)", async () => {
