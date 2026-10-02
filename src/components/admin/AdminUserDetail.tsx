@@ -14,6 +14,12 @@ import {
   type PageResult,
   type UserDocument,
 } from "./documentTypes";
+import {
+  auditActionLabel,
+  auditDetailRows,
+  auditOutcomeLabel,
+  auditTechnicalDetails,
+} from "./auditPresentation";
 import s from "./admin.module.css";
 import d from "./detail.module.css";
 
@@ -246,93 +252,66 @@ function Documents({ userId }: { userId: string }) {
   );
 }
 
-const ACTION_LABELS: Record<string, string> = {
-  "account.settings_changed": "계정 승인·메뉴 변경",
-  "admin.private_material_view": "관리자 자료 열람",
-  "material.created": "자료 생성",
-  "material.saved": "자료 저장",
-  "material.deleted": "자료 삭제",
-  "material.asset_uploaded": "원본 자료 업로드",
-  "material.file_uploaded": "원본 자료 업로드",
-  "material.renamed": "자료 제목 변경",
-  "admin.account_view": "관리자 계정 열람",
-  "admin.bootstrap": "관리자 계정 설정",
-  "account.admin_bootstrap": "관리자 계정 설정",
-  "ai.execute": "AI 작업 실행",
-  "admin.material_view": "관리자 자료 열람",
-  request: "서비스 요청",
-  "ui.click": "버튼·링크 선택",
-  "ui.change": "입력 항목 변경",
-  "ui.submit": "양식 제출",
-  "ui.navigate": "화면 이동",
-  "ui.print": "인쇄 요청",
-  "account.approved": "계정 승인",
-  "account.rejected": "가입 승인 거절",
-  "account.updated": "계정 권한 변경",
-  "auth.login": "로그인",
-  "auth.logout": "로그아웃",
-  "auth.signup": "회원 가입",
-  "document.created": "자료 생성",
-  "document.updated": "자료 저장",
-  "document.deleted": "자료 삭제",
-  "document.read": "자료 열람",
-  "draft.created": "시험지 생성",
-  "draft.updated": "시험지 저장",
-  "draft.deleted": "시험지 삭제",
-  "extraction.created": "추출 자료 생성",
-  "extraction.updated": "추출 자료 저장",
-};
-const DETAIL_LABELS: Record<string, string> = {
-  documentId: "자료 ID",
-  title: "자료 제목",
-  kind: "자료 유형",
-  revision: "자료 버전",
-  approvalStatus: "승인 상태",
-  status: "승인 상태",
-  previousStatus: "이전 승인 상태",
-  previousMenus: "이전 메뉴",
-  menus: "메뉴 권한",
-  changedFields: "변경 항목",
-  targetId: "대상 계정",
-  page: "페이지",
-  count: "개수",
-  problemCount: "문항 수",
-  label: "작업",
-  method: "요청 방식",
-  path: "요청 경로",
-  httpStatus: "응답 코드",
-};
-
-function AuditDetails({ details }: { details: AuditEntry["details"] }) {
-  const entries = Object.entries(details ?? {}).flatMap(([key, value]) => {
-    if (
-      typeof value === "string" ||
-      typeof value === "number" ||
-      typeof value === "boolean"
-    )
-      return [[key, String(value)]];
-    if (
-      Array.isArray(value) &&
-      value.every((item) =>
-        ["string", "number", "boolean"].includes(typeof item),
-      )
-    )
-      return [[key, value.join(", ")]];
-    return [];
-  });
-  return entries.length ? (
-    <dl className={d.auditDetails}>
-      {entries.map(([key, value]) => (
-        <div key={key}>
-          <dt>{DETAIL_LABELS[key] || key}</dt>
-          <dd>{value || "없음"}</dd>
-        </div>
-      ))}
-    </dl>
-  ) : null;
+function AuditDetails({
+  entry,
+  account,
+}: {
+  entry: AuditEntry;
+  account: ManagedAccount;
+}) {
+  const rows = auditDetailRows(entry.details, account);
+  return (
+    <>
+      {rows.length ? (
+        <dl className={d.auditDetails}>
+          {rows.map((row) => (
+            <div key={row.label}>
+              <dt>{row.label}</dt>
+              <dd>
+                {row.previous !== undefined ? (
+                  row.unchanged ? (
+                    <>
+                      {row.value}{" "}
+                      <span className={d.auditHint}>(변경 없음)</span>
+                    </>
+                  ) : (
+                    <span className={d.auditChange}>
+                      <span>
+                        <span className={d.auditHint}>이전</span> {row.previous}
+                      </span>
+                      <span>
+                        <span className={d.auditHint}>현재</span> {row.value}
+                      </span>
+                    </span>
+                  )
+                ) : (
+                  row.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
+      <details className={d.auditTechnical}>
+        <summary>
+          <span className={d.auditChevron} aria-hidden="true">
+            ›
+          </span>
+          기술 상세
+        </summary>
+        <pre>{auditTechnicalDetails(entry)}</pre>
+      </details>
+    </>
+  );
 }
 
-function Audit({ userId }: { userId: string }) {
+function Audit({
+  userId,
+  account,
+}: {
+  userId: string;
+  account: ManagedAccount;
+}) {
   const [page, setPage] = useState(1);
   const resource = useAdminResource<PageResult<AuditEntry>>(
     `/api/admin/users/${encodeURIComponent(userId)}/audit?page=${page}&pageSize=30`,
@@ -362,21 +341,9 @@ function Audit({ userId }: { userId: string }) {
             {resource.data.data.map((entry) => (
               <li key={entry.id}>
                 <div className={d.auditHeading}>
-                  <strong>
-                    {ACTION_LABELS[entry.action] ||
-                      entry.action.replace(/[._]/g, " ")}
-                  </strong>
+                  <strong>{auditActionLabel(entry, account)}</strong>
                   <span className={d.outcome}>
-                    {(
-                      {
-                        success: "완료",
-                        succeeded: "완료",
-                        failure: "실패",
-                        failed: "실패",
-                        denied: "차단",
-                        requested: "요청",
-                      } as Record<string, string>
-                    )[entry.outcome] || entry.outcome}
+                    {auditOutcomeLabel(entry.outcome)}
                   </span>
                 </div>
                 <p className={d.auditMeta}>
@@ -389,7 +356,7 @@ function Audit({ userId }: { userId: string }) {
                     }).format(new Date(entry.createdAt))}
                   </time>
                 </p>
-                <AuditDetails details={entry.details} />
+                <AuditDetails entry={entry} account={account} />
               </li>
             ))}
           </ol>
@@ -546,10 +513,14 @@ export default function AdminUserDetail({
                 {tab === "documents" ? (
                   <Documents userId={userId} />
                 ) : (
-                  <Audit userId={userId} />
+                  <Audit userId={userId} account={account} />
                 )}
               </div>
-              <aside className={d.settings} aria-label="계정 관리 설정">
+              <aside
+                className={d.settings}
+                aria-label="계정 관리 설정"
+                tabIndex={0}
+              >
                 <AccountReview
                   key={account.id}
                   account={account}
