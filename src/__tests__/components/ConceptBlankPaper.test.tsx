@@ -1562,7 +1562,7 @@ describe("모든 칸 수식 경로 — `$` · 역슬래시가 종이에 새지 �
     expect(visibleText(rows("cloze", "apply")[1]!)).toMatch(/9~10시.*10~11시/);
   });
 
-  it("지도의 가운데 · A 소단원 이름 · 채점표 자리 글 · 이름표 목록도 수식 경로 — 그림 속 이름표(SVG 글자)만 예외", () => {
+  it("지도의 가운데 · A 소단원 이름 · 채점표 자리 글 · 이름표 목록과 SVG 답도 수식 조판", () => {
     const figure = MATH_BANK.figures[0]!;
     const hub = String.raw`분수 $\frac{1}{2}$ 알아보기`;
     const sheets: ConceptBlankSheet[] = [
@@ -1607,11 +1607,18 @@ describe("모든 칸 수식 경로 — `$` · 역슬래시가 종이에 새지 �
     expect(places).toHaveLength(2);
     for (const place of places)
       expect(place.querySelector(".katex")).not.toBeNull();
-    // 이름표 — 채점표의 목록은 KaTeX, 그림 속 네모 안 글자는 은행 글 그대로(SVG 에는 KaTeX 를 못 쓴다)
+    // 이름표 — 채점표의 목록은 KaTeX, 그림 속 네모 안 답은 MathJax SVG 경로.
     const figureRow = document.querySelector('tr[data-cb-key-row="figure"]')!;
     expect(figureRow.querySelector("[data-cb-tag-list] .katex")).not.toBeNull();
-    expect(figureRow.querySelector("[data-cb-tag] text")!.textContent).toBe(
-      String.raw`$\angle A$`,
+    expect(
+      figureRow
+        .querySelector("[data-cb-tag] [data-label]")
+        ?.getAttribute("data-label"),
+    ).toBe(String.raw`$\angle A$`);
+    expect(figureRow.querySelector("[data-cb-tag] path")).not.toBeNull();
+    expect(figureRow.querySelector("[data-cb-tag] text")).toBeNull();
+    expect(figureRow.querySelector("[data-cb-tag] title")?.textContent).toBe(
+      "∠A",
     );
   });
 

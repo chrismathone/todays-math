@@ -1,10 +1,12 @@
 import type { FigureItem } from "@/contracts/conceptBlank.contract";
+import {
+  typesetConceptFigure,
+  typesetConceptTag,
+} from "@/lib/concept-blank/figureTypeset";
 
 import styles from "./paper.module.css";
 import { plainText } from "./text";
 
-/** 계약(`figureItemSchema`)과 같은 거름 — 은행 시험이 먼저 막지만, 지면도 한 번 더 본다. */
-const UNSAFE_SVG = /<script|\son\w+=|href=|<image|<foreignObject/i;
 const TAG_HEIGHT = 18;
 const GOLD = "#A57F00";
 
@@ -22,7 +24,8 @@ export function FigureSvg({
   answers?: boolean;
   className?: string;
 }) {
-  if (UNSAFE_SVG.test(item.svg)) return null;
+  const svg = typesetConceptFigure(item.svg);
+  if (svg === null) return null;
   return (
     <svg
       aria-label={plainText(item.prompt)}
@@ -31,36 +34,46 @@ export function FigureSvg({
       role="img"
       viewBox={item.viewBox}
     >
-      <g dangerouslySetInnerHTML={{ __html: item.svg }} />
-      {item.tags.map((tag, i) => (
-        <g data-cb-tag="" key={i}>
-          <rect
-            fill="#fff"
-            height={TAG_HEIGHT}
-            rx={3}
-            stroke={GOLD}
-            strokeDasharray="3 2"
-            strokeWidth={1.1}
-            width={tag.w}
-            x={tag.x}
-            y={tag.y}
-          />
-          {answers ? (
-            <text
-              className={styles.tagAnswer}
-              fontSize={Math.min(
-                11,
-                (tag.w - 4) / Math.max(1, [...tag.answer].length),
-              )}
-              textAnchor="middle"
-              x={tag.x + tag.w / 2}
-              y={tag.y + 12.5}
-            >
-              {tag.answer}
-            </text>
-          ) : null}
-        </g>
-      ))}
+      <g dangerouslySetInnerHTML={{ __html: svg }} />
+      {item.tags.map((tag, i) => {
+        const answerSvg = answers
+          ? typesetConceptTag(tag.answer, tag.x, tag.y, tag.w, TAG_HEIGHT)
+          : null;
+        return (
+          <g data-cb-tag="" key={i}>
+            <rect
+              fill="#fff"
+              height={TAG_HEIGHT}
+              rx={3}
+              stroke={GOLD}
+              strokeDasharray="3 2"
+              strokeWidth={1.1}
+              width={tag.w}
+              x={tag.x}
+              y={tag.y}
+            />
+            {answers && answerSvg ? (
+              <g className={styles.tagAnswer}>
+                <title>{plainText(tag.answer)}</title>
+                <g dangerouslySetInnerHTML={{ __html: answerSvg }} />
+              </g>
+            ) : answers ? (
+              <text
+                className={styles.tagAnswer}
+                fontSize={Math.min(
+                  11,
+                  (tag.w - 4) / Math.max(1, [...tag.answer].length),
+                )}
+                textAnchor="middle"
+                x={tag.x + tag.w / 2}
+                y={tag.y + 12.5}
+              >
+                {tag.answer}
+              </text>
+            ) : null}
+          </g>
+        );
+      })}
     </svg>
   );
 }
