@@ -115,7 +115,11 @@ export function transitionListeningAttempt(
   const attempt = englishListeningAttemptSchema.parse(attemptInput);
   const command = listeningAttemptCommandSchema.parse(commandInput);
   const context = transitionContextSchema.parse(contextInput);
-  assertListeningBinding(publication, assignment, attempt);
+  // Only an independently authorized administrative cancellation may record revocation.
+  // Reads, answers and submissions continue to reject revoked state, including receipt replay.
+  assertListeningBinding(publication, assignment, attempt, {
+    allowCancellationTransition: command.kind === "cancel",
+  });
   const commandHash = listeningValueHash(command);
   const receipt = attempt.receipts.find(
     (receipt) => receipt.key === command.idempotencyKey,

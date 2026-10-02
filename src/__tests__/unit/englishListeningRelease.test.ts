@@ -38,6 +38,46 @@ function setup() {
 }
 
 describe("single server release decision and student allowlist projection", () => {
+  it("preserves a known student's pre-attempt disclosure without confusing another student", () => {
+    const { publication, assignment, context } = setup();
+    assignment.mode = "exam";
+    assignment.releasePolicy = { kind: "never" };
+    const input = {
+      now: context.now,
+      studentId: listeningFixtureIds.student,
+      releaseHistory: [
+        {
+          assignmentId: assignment.id,
+          publicationId: publication.id,
+          studentId: listeningFixtureIds.student,
+          groupId: publication.document.groups[0].id,
+          releasedAt: context.now,
+        },
+      ],
+    };
+    const releases = decideListeningRelease(
+      publication,
+      assignment,
+      null,
+      input,
+    );
+    expect(releases.map((unit) => unit.reason)).toEqual([
+      "already_released",
+      "locked",
+    ]);
+    expect(() =>
+      decideListeningRelease(publication, assignment, null, {
+        ...input,
+        studentId: listeningFixtureIds.owner,
+      }),
+    ).toThrow();
+    expect(() =>
+      decideListeningRelease(publication, assignment, null, {
+        now: context.now,
+        releaseHistory: input.releaseHistory,
+      }),
+    ).toThrow();
+  });
   it("keeps the complete shared group locked until all initial answers exist", () => {
     const { publication, assignment, context, attempt } = setup();
     const group = publication.document.groups[0];

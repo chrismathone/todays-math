@@ -16,6 +16,8 @@ const binding = {
 };
 export const listeningReleaseContextSchema = z.strictObject({
   now: z.iso.datetime(),
+  /** Authenticated identity is needed to bind disclosure that happened before an attempt existed. */
+  studentId: z.uuid().optional(),
   manualRelease: z
     .strictObject({ ...binding, releasedBy: z.uuid() })
     .nullable()
@@ -48,6 +50,7 @@ export function assertListeningBinding(
   publication: EnglishListeningPublication,
   assignment: EnglishListeningAssignment,
   attempt: EnglishListeningAttempt | null,
+  options: { allowCancellationTransition?: boolean } = {},
 ) {
   if (
     assignment.publicationId !== publication.id ||
@@ -55,7 +58,8 @@ export function assertListeningBinding(
     assignment.branchId !== publication.document.branchId
   )
     throw new Error("Assignment/publication scope mismatch");
-  if (assignment.cancelledAt) throw new Error("Assignment revoked");
+  if (assignment.cancelledAt && !options.allowCancellationTransition)
+    throw new Error("Assignment revoked");
   if (attempt) {
     if (
       attempt.assignmentId !== assignment.id ||
@@ -64,7 +68,8 @@ export function assertListeningBinding(
       !assignment.targetStudentIds.includes(attempt.studentId)
     )
       throw new Error("Attempt binding mismatch");
-    if (attempt.status === "cancelled") throw new Error("Attempt revoked");
+    if (attempt.status === "cancelled" && !options.allowCancellationTransition)
+      throw new Error("Attempt revoked");
     for (const answer of [...attempt.firstAnswers, ...attempt.reviewAnswers]) {
       const question = publication.document.groups
         .flatMap((group) => group.questions)
@@ -92,6 +97,13 @@ export function decideListeningRelease(
       : englishListeningAttemptSchema.parse(attemptInput);
   const context = listeningReleaseContextSchema.parse(contextInput);
   assertListeningBinding(publication, assignment, attempt);
+  if (
+    context.studentId &&
+    (!assignment.targetStudentIds.includes(context.studentId) ||
+      (attempt && attempt.studentId !== context.studentId))
+  )
+    throw new Error("Release student binding mismatch");
+  const studentId = attempt?.studentId ?? context.studentId;
   const now = Date.parse(context.now);
   if (now < Date.parse(assignment.opensAt))
     throw new Error("Assignment not open");
@@ -111,7 +123,7 @@ export function decideListeningRelease(
       (!publication.document.groups.some(
         (group) => group.id === record.groupId,
       ) ||
-        record.studentId !== attempt?.studentId)
+        record.studentId !== studentId)
     )
       throw new Error("Release history binding mismatch");
   }

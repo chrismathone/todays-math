@@ -58,6 +58,51 @@ function setup(exam = false) {
 }
 
 describe("server-clock attempt transitions", () => {
+  it("records administrative cancellation after assignment revocation while denying answer writes", () => {
+    const { publication, assignment, started, context, answer } = setup();
+    const revoked = { ...assignment, cancelledAt: context.now };
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        revoked,
+        started,
+        answer,
+        context,
+      ),
+    ).toThrow(/revoked/i);
+    const command = {
+      kind: "cancel",
+      expectedRevision: started.revision,
+      idempotencyKey: "revoke",
+    };
+    const cancelled = transitionListeningAttempt(
+      publication,
+      revoked,
+      started,
+      command,
+      context,
+    );
+    expect(cancelled.status).toBe("cancelled");
+    expect(cancelled.firstAnswers).toEqual(started.firstAnswers);
+    expect(
+      transitionListeningAttempt(
+        publication,
+        revoked,
+        cancelled,
+        command,
+        context,
+      ),
+    ).toEqual(cancelled);
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        revoked,
+        cancelled,
+        answer,
+        context,
+      ),
+    ).toThrow();
+  });
   it("does not start the timer before sound readiness; reload/start cannot extend it", () => {
     const { publication, assignment, attempt, context, started } = setup();
     expect(attempt.deadlineAt).toBeNull();
