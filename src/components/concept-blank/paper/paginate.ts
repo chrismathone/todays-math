@@ -575,7 +575,10 @@ export function keyNotes(sheet: ConceptBlankSheet): string[] {
             ]
           : []),
         ...(sheet.apply.length
-          ? [`나 — 문항 하나가 한 개(${sheet.apply.length}개).`]
+          ? [
+              // 적용의 답은 까닭이 든 문장이다(26 §11) — 문장이 같아야 ○ 가 아니다
+              `나 — 문항 하나가 한 개(${sheet.apply.length}개). 결론과 까닭이 다 있어야 ○ — 말이 달라도 뜻이 같으면 된다.`,
+            ]
           : []),
       ];
     }
