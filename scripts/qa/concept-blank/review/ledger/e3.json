@@ -1,6 +1,6 @@
 {
   "name": "e3",
-  "complete": false,
+  "complete": true,
   "rows": [
     {"id":"e3-1-1-1-c1","queues":["num","rewrite"],"sha":"06edeb0f9f35"},
     {"id":"e3-1-1-1-c3","queues":["copy"],"sha":"d7f04caabf8a"},
@@ -1165,8 +1165,8 @@
     {"id":"e3-2-6-1-xc1","queues":["num","example"],"sha":"a3005ecbe3de"},
     {"id":"e3-2-6-1-xc2","queues":["num"],"sha":"ca7c27c5447c"},
     {"id":"e3-2-6-1-xc3","queues":["packet:review_candidate","copy"],"sha":"43cf6ef0afc6"},
-    {"id":"e3-2-6-1-xc4","queues":["copy"],"sha":"87af4a3cddc4"},
-    {"id":"e3-2-6-1-xc6","queues":["copy"],"sha":"565bf6c365ce"},
+    {"id":"e3-2-6-1-xc4","queues":["copy"],"sha":"87af4a3cddc4","kept":""},
+    {"id":"e3-2-6-1-xc6","queues":["copy"],"sha":"565bf6c365ce","kept":""},
     {"id":"e3-2-6-1-xc8","queues":["num"],"sha":"f4d945417a81"},
     {"id":"e3-2-6-1-xc9","queues":["num","example"],"sha":"5b0a47a67d80"},
     {"id":"e3-2-6-1-xc11","queues":["copy"],"sha":"8bcde92f9247"},
