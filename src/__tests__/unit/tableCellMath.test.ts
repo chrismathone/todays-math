@@ -69,6 +69,7 @@ describe("tableCellMarkdown — 칸 하나", () => {
     ["탄젠트(\\tan)", "탄젠트$(\\tan)$"],
     ["각도 28^\\circ", "각도 $28^\\circ$"],
     ["x^2의 값", "$x^2$의 값"],
+    ["비율 50% 및 x^2", "비율 $50\\%$ 및 $x^2$"],
     ["평균 속력=\\frac{거리}{시간}", "평균 속력$=\\frac{거리}{시간}$"],
   ])("한글 설명과 수식을 따로 표시한다: %j", (cell, expected) => {
     expect(tableCellMarkdown(cell)).toBe(expected);

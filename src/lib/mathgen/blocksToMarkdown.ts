@@ -81,9 +81,13 @@ const mixedTableCell = (cell: string): string | undefined => {
   let result = "";
   const math = (value: string) => {
     const inner = value.trim();
-    return inner && (needsMathWrap(inner) || isBareMath(inner))
-      ? value.replace(inner, () => `$${inner}$`)
-      : value;
+    if (!inner) return value;
+    const wrapped = needsMathWrap(inner)
+      ? `$${inner}$`
+      : isBareMath(inner)
+        ? tableCellMath(inner)
+        : inner;
+    return value.replace(inner, () => wrapped);
   };
   for (let i = 0; i < cell.length; i++) {
     if (cell[i] === "\\") {
