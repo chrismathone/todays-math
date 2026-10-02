@@ -3160,8 +3160,8 @@ section(
   [
     [
       "하",
-      r`$\triangle ABC$에서 $\angle B$의 대변과 변 $AB$의 대각을 차례로 쓰시오.`,
-      r`변 $AC$, $\angle C$`,
+      r`$\triangle ABC$에서 $\angle B$의 대변이 변 $AC$인 까닭을 쓰시오.`,
+      "대변은 각과 마주 보는 변이고, 꼭짓점 $B$와 마주 보는 변이 변 $AC$이기 때문이다.",
     ],
     [
       "중",
@@ -3258,14 +3258,14 @@ section(
       "상",
       "두 변의 길이와 한 각의 크기가 각각 같은 두 삼각형은 항상 합동이다.",
       false,
-      r`그 각이 두 변의 끼인각일 때에만 $\mathrm{SAS}$ 합동이다.`,
+      r`그 각이 두 변의 끼인각이 아니면 $\mathrm{SAS}$를 쓸 수 없고, 같은 두 변과 각으로 모양이 다른 삼각형이 둘 그려지기도 한다.`,
     ],
   ],
   [
     [
       "하",
-      r`$\triangle ABC\equiv\triangle DEF$일 때 변 $AB$의 대응변과 $\angle C$의 대응각을 쓰시오.`,
-      r`변 $DE$, $\angle F$`,
+      r`$\triangle ABC\equiv\triangle DEF$일 때 변 $AB$의 대응변이 변 $DE$인 까닭을 쓰시오.`,
+      "합동 기호의 앞뒤에서 같은 자리의 꼭짓점끼리 대응하므로, $A$는 $D$와, $B$는 $E$와 짝이기 때문이다.",
     ],
     [
       "중",
@@ -3274,8 +3274,8 @@ section(
     ],
     [
       "상",
-      r`$\overline{AB}=\overline{DE}$, $\angle B=\angle E$일 때 조건 하나를 더해 $\mathrm{SAS}$ 합동이 되게 하려면 무엇이 필요한가?`,
-      r`$\overline{BC}=\overline{EF}$`,
+      r`$\overline{AB}=\overline{DE}$, $\angle B=\angle E$일 때 $\mathrm{SAS}$ 합동이 되게 하려면 더할 조건과 그 까닭을 쓰시오.`,
+      r`$\overline{BC}=\overline{EF}$이다. $\angle B$가 두 변 $AB$와 $BC$의 끼인각이 되어야 하기 때문이다.`,
     ],
   ],
 );
