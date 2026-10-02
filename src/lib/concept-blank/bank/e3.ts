@@ -874,8 +874,8 @@ export const bank: ConceptBlankBank = {
       definition: "한 전체를 나눌 때 각 부분의 {크기}가 같도록 나눈다.",
       example: {
         prompt:
-          "빵 하나를 같은 크기 $6$조각으로 나누어 $2$조각 먹었다면 몇 조각이 남는가?",
-        answer: "$4$조각",
+          "피자를 큰 조각 하나와 작은 조각 둘로 잘랐다면 똑같이 나눈 것인가?",
+        answer: "아니다. 조각의 크기가 같지 않다.",
       },
     },
     {
@@ -906,8 +906,8 @@ export const bank: ConceptBlankBank = {
         "전체를 같은 크기로 나눈 뒤 그중 몇 부분인지 나타내는 수를 {분수}라 한다.",
       example: {
         prompt:
-          "전체를 같은 크기 $8$조각으로 나누어 $3$조각 고른 것을 분수로 쓰시오.",
-        answer: "$\\frac{3}{8}$",
+          "$\\frac{2}{7}$는 전체를 똑같이 몇으로 나눈 것 중 몇을 나타내는가?",
+        answer: "똑같이 $7$로 나눈 것 중 $2$",
       },
     },
     {
@@ -943,26 +943,26 @@ export const bank: ConceptBlankBank = {
       term: "분수가 기준으로 삼는 전체",
       kind: "성질",
       definition:
-        "같은 조각이라도 무엇을 {전체}로 보느냐에 따라 그 조각을 나타내는 분수가 달라진다.",
+        "같은 조각이라도 무엇을 전체로 보느냐에 따라 그 조각을 나타내는 {분수가 달라진다}.",
     },
     {
       id: "e3-1-6-3-c1",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "하",
-      term: "분수와 단위 조각",
+      term: "$\\frac{3}{5}$과 단위 조각",
       kind: "정의",
       definition:
         "$\\frac{3}{5}$은 전체를 $5$등분한 조각을 {$3$개} 모은 만큼이다.",
       example: {
-        prompt: "$\\frac{5}{8}$는 $\\frac{1}{8}$이 몇 개인지 쓰시오.",
-        answer: "$5$개",
+        prompt: "전체를 $6$등분한 조각을 $5$개 모은 만큼을 분수로 쓰시오.",
+        answer: "$\\frac{5}{6}$",
       },
     },
     {
       id: "e3-1-6-3-c2",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "중",
-      term: "분자가 $1$인 분수가 모인 크기",
+      term: "$\\frac{4}{7}$를 $\\frac{1}{7}$이 모인 크기로 보기",
       kind: "성질",
       definition: "$\\frac{4}{7}$는 $\\frac{1}{7}$이 {$4$개} 모인 크기이다.",
     },
@@ -970,7 +970,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-3-c3",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "상",
-      term: "한 전체를 채우는 조각",
+      term: "$6$조각 가운데 $6$조각을 모두 모은 분수",
       kind: "성질",
       definition:
         "같은 크기 $6$조각 중 $6$조각을 모두 모으면 분수 {$\\frac{6}{6}$}이고 전체 {$1$}이 된다.",
@@ -983,8 +983,9 @@ export const bank: ConceptBlankBank = {
       kind: "성질",
       definition: "같은 전체를 기준으로 분모가 같으면 한 조각의 {크기}가 같다.",
       example: {
-        prompt: "$\\frac{3}{11}$과 $\\frac{8}{11}$ 중 더 큰 수를 쓰시오.",
-        answer: "$\\frac{8}{11}$",
+        prompt:
+          "같은 전체에서 $\\frac{2}{9}$와 $\\frac{5}{9}$의 한 조각의 크기는 같은가, 다른가?",
+        answer: "같다",
       },
     },
     {
@@ -1014,8 +1015,8 @@ export const bank: ConceptBlankBank = {
       definition: "분수 중에서 분자가 {$1$}인 것을 단위분수라 한다.",
       example: {
         prompt:
-          "$\\frac{1}{3}$, $\\frac{1}{7}$, $\\frac{1}{5}$ 중 가장 작은 수를 쓰시오.",
-        answer: "$\\frac{1}{7}$",
+          "$\\frac{2}{5}$, $\\frac{1}{6}$, $\\frac{3}{4}$ 가운데 단위분수를 찾아 쓰시오.",
+        answer: "$\\frac{1}{6}$",
       },
     },
     {
@@ -1045,8 +1046,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "$0.1$처럼 점을 넣어 $1$보다 작은 부분까지 나타낼 수 있는 수를 {소수}라 한다.",
       example: {
-        prompt: "$0.1$이 $17$개인 수를 소수로 쓰시오.",
-        answer: "$1.7$",
+        prompt: "$0.4$, $7$, $\\frac{3}{10}$ 가운데 소수를 찾아 쓰시오.",
+        answer: "$0.4$",
       },
     },
     {
@@ -1061,7 +1062,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-6-c3",
       section: "초3::1-6 분수와 소수::1-6-6 소수 알아보기",
       level: "중",
-      term: "소수 한 자리의 뜻",
+      term: "$0.6$의 뜻",
       kind: "성질",
       definition: "$0.6$은 {$0.1$}을 {$6$개} 모은 수이다.",
     },
@@ -1069,7 +1070,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-6-c4",
       section: "초3::1-6 분수와 소수::1-6-6 소수 알아보기",
       level: "상",
-      term: "$1$과 소수의 관계",
+      term: "$1.3$과 $0.1$의 관계",
       kind: "성질",
       definition:
         "$0.1$을 $10$개 모으면 {$1$}이 되므로 $1.3$은 $0.1$을 {$13$개} 모은 수이다.",
@@ -1082,8 +1083,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "소수의 크기는 먼저 소수점 {왼쪽}의 수부터 비교한다.",
       example: {
-        prompt: "$0.9$, $1.2$, $1.1$을 작은 수부터 쓰시오.",
-        answer: "$0.9$, $1.1$, $1.2$",
+        prompt: "$2.3$과 $1.9$를 비교할 때 먼저 견주는 두 숫자를 쓰시오.",
+        answer: "$2$와 $1$",
       },
     },
     {
@@ -3294,4 +3295,9 @@ markGivenCases(bank, [
   "e3-1-4-1-c1",
   "e3-1-4-1-c3",
   "e3-1-5-2-c2",
+  "e3-1-6-3-c1",
+  "e3-1-6-3-c2",
+  "e3-1-6-3-c3",
+  "e3-1-6-6-c3",
+  "e3-1-6-6-c4",
 ]);
