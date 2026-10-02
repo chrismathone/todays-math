@@ -183,4 +183,48 @@ describe("[EnglishStudio] 저장과 메뉴 이동 중 초안 보존", () => {
     expect(posts[1]).toEqual(posts[0]);
     expect(posts[1]).toMatchObject({ meta: { clientKey: expect.any(String) } });
   });
+
+  it("다른 메뉴에서 끝난 생성 저장은 열어 둔 세트의 미저장 편집을 교체하지 않는다", async () => {
+    let finish!: () => void;
+    const responseGate = new Promise<void>((resolve) => {
+      finish = resolve;
+    });
+    let requested = false;
+    server.use(
+      http.post(`/api/english/exams/${base.examId}/sets`, async () => {
+        requested = true;
+        await responseGate;
+        return HttpResponse.json(
+          { data: { id: ENGLISH_MOCK_SETS[1].id } },
+          { status: 201 },
+        );
+      }),
+    );
+    const log = makeLog();
+    render(<Harness log={log} openSetId={base.id} />);
+    fireEvent.change(
+      await screen.findByRole("textbox", { name: "세트 이름" }),
+      { target: { value: "계속 편집할 초안" } },
+    );
+    navigate("만들기 메뉴");
+    fireEvent.click(screen.getByRole("tab", { name: "원문 복원" }));
+    fireEvent.change(screen.getByRole("textbox", { name: "복원할 원문" }), {
+      target: { value: base.passage },
+    });
+    navigate("연습문제 만들기");
+    await waitFor(() => expect(requested).toBe(true));
+    navigate("보관함 메뉴");
+    await act(async () => {
+      finish();
+    });
+    await waitFor(() =>
+      expect(log.notices).toContainEqual({
+        message: "문제 세트를 저장했습니다.",
+        tone: "status",
+      }),
+    );
+    expect(screen.getByRole("textbox", { name: "세트 이름" })).toHaveValue(
+      "계속 편집할 초안",
+    );
+  });
 });

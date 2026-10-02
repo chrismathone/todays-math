@@ -137,9 +137,9 @@ export default function EnglishStudio({
   const examsVersion = useRef(0);
   const inflight = useRef(new Set<string>());
   // 셸이 주는 콜백은 렌더마다 바뀔 수 있다 — 딥링크 효과가 그것 때문에 다시 돌지 않게 최신 것을 ref 로 본다.
-  const callbacks = useRef({ onNotice, onSetOpened, onNavigate });
+  const callbacks = useRef({ onNotice, onSetOpened, onNavigate, view });
   useEffect(() => {
-    callbacks.current = { onNotice, onSetOpened, onNavigate };
+    callbacks.current = { onNotice, onSetOpened, onNavigate, view };
   });
 
   const loadExams = useCallback(async () => {
@@ -552,7 +552,8 @@ export default function EnglishStudio({
                 }
                 onSaved={(id) => {
                   refreshSets(exam.id);
-                  if (canLibrary) openSet(id);
+                  if (canLibrary && callbacks.current.view === "english-maker")
+                    openSet(id);
                   else onNotice("문제 세트를 저장했습니다.");
                 }}
                 onNotice={(message, tone) => onNotice(message, tone)}
