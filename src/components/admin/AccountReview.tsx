@@ -63,6 +63,9 @@ export default function AccountReview({
   autoFocus?: boolean;
 }) {
   const originalMenus = normalizeWorkspaceMenus(account.menus);
+  const originalBranchRole =
+    account.branchRole ??
+    (account.branchId && account.isAdmin ? "manager" : "teacher");
   const [menus, setMenus] = useState<WorkspaceMenu[]>(() => originalMenus);
   const [menuProduct, setMenuProduct] = useState<WorkspaceProduct>("math");
   const menuId = useId();
@@ -72,7 +75,7 @@ export default function AccountReview({
   const [branchManager, setBranchManager] = useState(account.isAdmin);
   const [branchId, setBranchId] = useState(account.branchId ?? "");
   const [branchRole, setBranchRole] = useState<"owner" | "manager" | "teacher">(
-    "teacher",
+    originalBranchRole,
   );
   const [branches, setBranches] = useState<{ id: string; name: string }[]>([]);
   const [confirmDelete, setConfirmDelete] = useState(false);
@@ -86,6 +89,9 @@ export default function AccountReview({
   const [confirmReject, setConfirmReject] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const effectiveMenus = branchManager ? ALL_WORKSPACE_MENUS : menus;
+  const branchChanged = branchId !== (account.branchId ?? "");
+  const branchRoleChanged =
+    Boolean(branchId) && branchRole !== originalBranchRole;
   const menuEditingDisabled =
     busy ||
     conflict ||
@@ -93,20 +99,30 @@ export default function AccountReview({
     account.isSuperAdmin ||
     Boolean(account.deletedAt) ||
     branchManager;
-  const dirty =
-    name !== account.name ||
-    email !== account.email ||
-    branchManager !== account.isAdmin ||
-    branchId !== (account.branchId ?? "") ||
-    menus.length !== originalMenus.length ||
-    menus.some((menu) => !originalMenus.includes(menu));
+  function isDraftDirty(
+    nextMenus = menus,
+    nextBranchId = branchId,
+    nextRole = branchRole,
+    nextManager = branchManager,
+  ) {
+    return (
+      name !== account.name ||
+      email !== account.email ||
+      nextManager !== account.isAdmin ||
+      nextBranchId !== (account.branchId ?? "") ||
+      (Boolean(nextBranchId) && nextRole !== originalBranchRole) ||
+      nextMenus.length !== originalMenus.length ||
+      nextMenus.some((menu) => !originalMenus.includes(menu))
+    );
+  }
+  const dirty = isDraftDirty();
 
   useEffect(() => {
     if (autoFocus) headingRef.current?.focus();
   }, [autoFocus]);
 
   useEffect(() => {
-    if (account.branchId || account.isSuperAdmin) return;
+    if (account.isSuperAdmin || account.deletedAt) return;
     const controller = new AbortController();
     accountRequest<{ data: { id: string; name: string }[] }>(
       "/api/admin/branches",
@@ -119,7 +135,7 @@ export default function AccountReview({
         /* Account editing remains available when branch options cannot load. */
       });
     return () => controller.abort();
-  }, [account.branchId, account.isSuperAdmin]);
+  }, [account.isSuperAdmin, account.deletedAt]);
 
   function changeMenus(menu: WorkspaceMenu) {
     const next = menus.includes(menu)
@@ -127,14 +143,7 @@ export default function AccountReview({
       : [...menus, menu];
     setMenus(next);
     setNotice(null);
-    onLockChange(
-      name !== account.name ||
-        email !== account.email ||
-        branchManager !== account.isAdmin ||
-        next.length !== originalMenus.length ||
-        next.some((item) => !originalMenus.includes(item)) ||
-        branchId !== (account.branchId ?? ""),
-    );
+    onLockChange(isDraftDirty(next));
   }
 
   async function save(approvalStatus?: "approved" | "rejected") {
@@ -161,8 +170,14 @@ export default function AccountReview({
             expectedUpdatedAt: account.updatedAt,
             ...(name !== account.name ? { name } : {}),
             ...(email !== account.email ? { email } : {}),
-            ...(account.branchId ? { isAdmin: branchManager } : {}),
-            ...(!account.branchId && branchId ? { branchId, branchRole } : {}),
+            ...(branchChanged || branchRoleChanged
+              ? {
+                  branchId: branchId || null,
+                  ...(branchId ? { branchRole } : {}),
+                }
+              : account.branchId
+                ? { isAdmin: branchManager }
+                : {}),
             ...(approvalStatus ? { approvalStatus } : {}),
             ...(approvalStatus !== "rejected" ? { menus } : {}),
           }),
@@ -173,6 +188,7 @@ export default function AccountReview({
       setEmail(result.data.email);
       setBranchManager(result.data.isAdmin);
       setBranchId(result.data.branchId ?? "");
+      setBranchRole(result.data.branchRole ?? "teacher");
       onUpdate(result.data);
       setNotice(
         approvalStatus === "approved"
@@ -214,6 +230,7 @@ export default function AccountReview({
       setEmail(latest.email);
       setBranchManager(latest.isAdmin);
       setBranchId(latest.branchId ?? "");
+      setBranchRole(latest.branchRole ?? "teacher");
       onUpdate(latest);
       setConflict(false);
       setError(null);
@@ -381,22 +398,7 @@ export default function AccountReview({
           변경할 수 없습니다.
         </p>
       ) : null}
-      {!account.isSuperAdmin && account.branchId ? (
-        <label className={s.menuOption}>
-          <input
-            type="checkbox"
-            checked={branchManager}
-            disabled={busy || conflict || authError}
-            onChange={(event) => {
-              setBranchManager(event.target.checked);
-              setNotice(null);
-              onLockChange(true);
-            }}
-          />
-          <span>지점관리 권한 (반·학생 운영)</span>
-        </label>
-      ) : null}
-      {!account.isSuperAdmin && !account.branchId && !account.deletedAt ? (
+      {!account.isSuperAdmin && !account.deletedAt ? (
         <div className="mb-4 grid gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3">
           <p className="text-sm font-semibold">지점 소속 지정</p>
           <label className="grid gap-1 text-sm">
@@ -404,16 +406,25 @@ export default function AccountReview({
             <select
               className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
               value={branchId}
-              disabled={busy || conflict}
+              disabled={busy || conflict || authError}
               onChange={(event) => {
-                setBranchId(event.target.value);
-                setBranchManager(
-                  Boolean(event.target.value) && branchRole !== "teacher",
+                const nextId = event.target.value;
+                const nextManager = Boolean(nextId) && branchRole !== "teacher";
+                setBranchId(nextId);
+                setBranchManager(nextManager);
+                setNotice(null);
+                onLockChange(
+                  isDraftDirty(menus, nextId, branchRole, nextManager),
                 );
-                onLockChange(true);
               }}
             >
               <option value="">독립 계정</option>
+              {account.branchId &&
+              !branches.some((branch) => branch.id === account.branchId) ? (
+                <option value={account.branchId}>
+                  {account.branchName || "현재 지점"}
+                </option>
+              ) : null}
               {branches.map((branch) => (
                 <option key={branch.id} value={branch.id}>
                   {branch.name}
@@ -427,11 +438,16 @@ export default function AccountReview({
               <select
                 className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
                 value={branchRole}
-                disabled={busy || conflict}
+                disabled={busy || conflict || authError}
                 onChange={(event) => {
-                  setBranchRole(event.target.value as typeof branchRole);
-                  setBranchManager(event.target.value !== "teacher");
-                  onLockChange(true);
+                  const nextRole = event.target.value as typeof branchRole;
+                  const nextManager = nextRole !== "teacher";
+                  setBranchRole(nextRole);
+                  setBranchManager(nextManager);
+                  setNotice(null);
+                  onLockChange(
+                    isDraftDirty(menus, branchId, nextRole, nextManager),
+                  );
                 }}
               >
                 <option value="teacher">강사</option>
@@ -441,7 +457,8 @@ export default function AccountReview({
             </label>
           )}
           <p className="text-xs text-slate-600">
-            운영 중인 반이 없는 독립 계정만 지점에 소속시킬 수 있습니다.
+            운영 중인 반이 없는 계정만 소속을 변경할 수 있습니다. 소속 변경 시
+            기존 로그인이 종료됩니다.
           </p>
         </div>
       ) : null}
@@ -616,7 +633,7 @@ export default function AccountReview({
                   setEmail(account.email);
                   setBranchManager(account.isAdmin);
                   setBranchId(account.branchId ?? "");
-                  setBranchRole("teacher");
+                  setBranchRole(originalBranchRole);
                   onLockChange(false);
                   setNotice(null);
                 }}

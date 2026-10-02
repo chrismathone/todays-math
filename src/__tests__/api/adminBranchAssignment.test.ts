@@ -1,5 +1,7 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { Prisma } from "@prisma/client";
+import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 
 vi.mock("server-only", () => ({}));
 
@@ -42,9 +44,11 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 
 import { PATCH } from "@/app/api/admin/users/[id]/route";
+import { authorizeAccount } from "@/lib/accountAccess";
 
 const id = "20000000-0000-4000-8000-000000000002";
 const branchId = "30000000-0000-4000-8000-000000000003";
+const otherBranchId = "40000000-0000-4000-8000-000000000004";
 const updatedAt = "2026-09-23T00:00:00.000Z";
 const patch = (data: Record<string, unknown>) =>
   PATCH(
@@ -109,6 +113,193 @@ beforeEach(() => {
 });
 
 describe("최고관리자의 기존 계정 지점 배정", () => {
+  it("detaches a branch manager, clears branch privileges, and expires the old session", async () => {
+    state.previous = {
+      ...state.previous,
+      branchId,
+      branchRole: "manager",
+      isAdmin: true,
+    };
+    const response = (await patch({ branchId: null }))!;
+    expect(response.status).toBe(200);
+    expect((await response.json()).data).toMatchObject({
+      branchId: null,
+      branchRole: null,
+      isAdmin: false,
+    });
+    expect(state.userUpdateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({
+          id,
+          updatedAt: new Date(updatedAt),
+          isSuperAdmin: false,
+        }),
+        data: expect.objectContaining({
+          branchId: null,
+          branchRole: null,
+          isAdmin: false,
+          sessionVersion: { increment: 1 },
+        }),
+      }),
+    );
+    expect(state.branchFindUnique).not.toHaveBeenCalled();
+    expect(state.auditCreate).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          details: expect.objectContaining({
+            previousBranchId: branchId,
+            branchId: null,
+          }),
+        }),
+      }),
+    );
+  });
+
+  it("moves A to B with a selected role and granular permissions in one revision", async () => {
+    state.previous = {
+      ...state.previous,
+      branchId,
+      branchRole: "manager",
+      isAdmin: true,
+    };
+    const response = (await patch({
+      branchId: otherBranchId,
+      branchRole: "teacher",
+      menus: ["english-maker"],
+    }))!;
+    expect(response.status).toBe(200);
+    expect((await response.json()).data).toMatchObject({
+      branchId: otherBranchId,
+      branchRole: "teacher",
+      isAdmin: false,
+      menus: ["english-maker"],
+    });
+    expect(state.userUpdateMany).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          branchId: otherBranchId,
+          disabledMenus: ALL_WORKSPACE_MENUS.filter(
+            (menu) => menu !== "english-maker",
+          ),
+          sessionVersion: { increment: 1 },
+        }),
+      }),
+    );
+    expect(state.transaction).toHaveBeenCalledWith(expect.any(Function), {
+      isolationLevel: "Serializable",
+    });
+  });
+
+  it.each([null, otherBranchId])(
+    "blocks moving an account with classes to %s",
+    async (target) => {
+      state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+      state.classCount.mockResolvedValue(1);
+      expect(
+        (await patch({
+          branchId: target,
+          ...(target ? { branchRole: "teacher" } : {}),
+        }))!.status,
+      ).toBe(403);
+      expect(state.userUpdateMany).not.toHaveBeenCalled();
+    },
+  );
+
+  it.each([
+    { branchId: null },
+    { branchId: otherBranchId, branchRole: "owner" },
+    { branchId, branchRole: "manager" },
+  ])(
+    "protects the last active owner from membership change %j",
+    async (change) => {
+      state.previous = {
+        ...state.previous,
+        branchId,
+        branchRole: "owner",
+        isAdmin: true,
+      };
+      expect((await patch(change))!.status).toBe(403);
+      expect(state.userUpdateMany).not.toHaveBeenCalled();
+    },
+  );
+
+  it("allows an owner to detach when another active owner remains", async () => {
+    state.previous = {
+      ...state.previous,
+      branchId,
+      branchRole: "owner",
+      isAdmin: true,
+    };
+    state.userCount.mockResolvedValue(2);
+    expect((await patch({ branchId: null }))!.status).toBe(200);
+  });
+
+  it("keeps role-only changes available to accounts with classes", async () => {
+    state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+    state.classCount.mockResolvedValue(1);
+    expect((await patch({ branchId, branchRole: "manager" }))!.status).toBe(
+      200,
+    );
+    expect(state.classCount).not.toHaveBeenCalled();
+  });
+
+  it("rejects stale membership changes and transaction write conflicts", async () => {
+    state.previous = {
+      ...state.previous,
+      updatedAt: new Date("2026-09-24T00:00:00.000Z"),
+    };
+    expect((await patch({ branchId, branchRole: "teacher" }))!.status).toBe(
+      409,
+    );
+    expect(state.userUpdateMany).not.toHaveBeenCalled();
+    state.transaction.mockRejectedValueOnce(
+      new Prisma.PrismaClientKnownRequestError("write conflict", {
+        code: "P2034",
+        clientVersion: "6.19.3",
+      }),
+    );
+    expect((await patch({ branchId, branchRole: "teacher" }))!.status).toBe(
+      409,
+    );
+    expect(state.auditCreate).not.toHaveBeenCalled();
+  });
+
+  it("rejects a missing destination and conflicting independent branch roles", async () => {
+    state.branchFindUnique.mockResolvedValue(null);
+    expect((await patch({ branchId, branchRole: "teacher" }))!.status).toBe(
+      404,
+    );
+    expect((await patch({ branchId: null, branchRole: "owner" }))!.status).toBe(
+      403,
+    );
+    expect(state.userUpdateMany).not.toHaveBeenCalled();
+  });
+
+  it.each([null, otherBranchId])(
+    "requires highest-admin authorization for transfer to %s",
+    async (target) => {
+      state.superadmin = false;
+      state.previous = {
+        ...state.previous,
+        branchId,
+        branchRole: "manager",
+        isAdmin: true,
+      };
+      expect(
+        (await patch({
+          branchId: target,
+          ...(target ? { branchRole: "owner" } : {}),
+        }))!.status,
+      ).toBe(403);
+      expect(authorizeAccount).toHaveBeenCalledWith(
+        expect.any(Request),
+        true,
+        true,
+      );
+      expect(state.transaction).not.toHaveBeenCalled();
+    },
+  );
+
   it("반이 없는 독립 계정을 지점 강사로 소속시키고 세션을 갱신한다", async () => {
     const response = (await patch({ branchId, branchRole: "teacher" }))!;
     expect(response.status).toBe(200);

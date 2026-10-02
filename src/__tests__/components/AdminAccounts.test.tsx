@@ -231,6 +231,149 @@ describe("account menu product tabs", () => {
     ]);
   });
 
+  it.each([
+    ["", "내 시험지", null],
+    [
+      "33333333-3333-4333-8333-333333333333",
+      "우리학원 시험지",
+      "33333333-3333-4333-8333-333333333333",
+    ],
+  ])(
+    "saves branch membership change to %s together with the selected English menus",
+    async (value, label, nextBranchId) => {
+      const account: ManagedAccount = {
+        ...pendingAccount,
+        branchId: "22222222-2222-4222-8222-222222222222",
+        branchName: "현재 학원",
+        branchRole: "manager",
+        isAdmin: true,
+      };
+      fetchMock.mockImplementation(async (_url, init) =>
+        init?.method === "PATCH"
+          ? json({
+              data: {
+                ...account,
+                ...JSON.parse(String(init.body)),
+                isAdmin: false,
+                branchRole: nextBranchId ? "teacher" : null,
+              },
+            })
+          : json({
+              data: [
+                {
+                  id: "33333333-3333-4333-8333-333333333333",
+                  name: "다른 학원",
+                },
+              ],
+            }),
+      );
+      review(account);
+      await screen.findByRole("option", { name: "다른 학원" });
+      expect(screen.getByRole("combobox", { name: "계정 유형" })).toHaveValue(
+        "manager",
+      );
+      fireEvent.change(screen.getByRole("combobox", { name: "지점" }), {
+        target: { value },
+      });
+      if (nextBranchId)
+        fireEvent.change(screen.getByRole("combobox", { name: "계정 유형" }), {
+          target: { value: "teacher" },
+        });
+      expect(screen.getByRole("checkbox", { name: label! })).toBeEnabled();
+      fireEvent.click(tab("오늘의 영어"));
+      fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
+      fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+      await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+      const payload = JSON.parse(
+        String(
+          fetchMock.mock.calls.find(([, init]) => init?.method === "PATCH")![1]
+            ?.body,
+        ),
+      );
+      expect(payload).toEqual({
+        expectedUpdatedAt: account.updatedAt,
+        branchId: nextBranchId,
+        ...(nextBranchId ? { branchRole: "teacher" } : {}),
+        menus: ["home", "bank", "english-library"],
+      });
+    },
+  );
+
+  it("restores the original branch role and library label when a transfer is cancelled", async () => {
+    review({
+      ...pendingAccount,
+      branchId: "branch-id",
+      branchName: "현재 학원",
+      branchRole: "owner",
+      isAdmin: true,
+    });
+    fireEvent.change(screen.getByRole("combobox", { name: "지점" }), {
+      target: { value: "" },
+    });
+    expect(screen.getByRole("checkbox", { name: "내 시험지" })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "변경 취소" }));
+    expect(screen.getByRole("combobox", { name: "지점" })).toHaveValue(
+      "branch-id",
+    );
+    expect(screen.getByRole("combobox", { name: "계정 유형" })).toHaveValue(
+      "owner",
+    );
+    expect(
+      screen.getByRole("checkbox", { name: "우리학원 시험지" }),
+    ).toBeDisabled();
+  });
+
+  it("unlocks the review when a membership draft returns to its original value", () => {
+    const { onLockChange } = review({
+      ...pendingAccount,
+      branchId: "branch-id",
+      branchName: "현재 학원",
+      branchRole: "teacher",
+    });
+    const branch = screen.getByRole("combobox", { name: "지점" });
+    fireEvent.change(branch, { target: { value: "" } });
+    expect(onLockChange).toHaveBeenLastCalledWith(true);
+    fireEvent.change(branch, { target: { value: "branch-id" } });
+    expect(onLockChange).toHaveBeenLastCalledWith(false);
+    expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
+  });
+
+  it("saves a same-branch role change without mixing legacy isAdmin into the payload", async () => {
+    const account: ManagedAccount = {
+      ...pendingAccount,
+      branchId: "22222222-2222-4222-8222-222222222222",
+      branchRole: "teacher",
+    };
+    fetchMock.mockImplementation(async (_url, init) =>
+      init?.method === "PATCH"
+        ? json({
+            data: {
+              ...account,
+              ...JSON.parse(String(init.body)),
+              isAdmin: true,
+            },
+          })
+        : json({ data: [] }),
+    );
+    review(account);
+    fireEvent.change(screen.getByRole("combobox", { name: "계정 유형" }), {
+      target: { value: "manager" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    const payload = JSON.parse(
+      String(
+        fetchMock.mock.calls.find(([, init]) => init?.method === "PATCH")![1]
+          ?.body,
+      ),
+    );
+    expect(payload).toMatchObject({
+      branchId: account.branchId,
+      branchRole: "manager",
+    });
+    expect(payload).not.toHaveProperty("isAdmin");
+  });
+
   it("supports arrow and boundary keys without dirtying the account", () => {
     const { onLockChange } = review();
     fireEvent.keyDown(tab("오늘의 수학"), { key: "ArrowRight" });
