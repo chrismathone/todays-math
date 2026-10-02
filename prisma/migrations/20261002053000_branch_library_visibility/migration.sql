@@ -1,4 +1,5 @@
 -- Existing and new documents remain private until their author explicitly shares.
+BEGIN;
 ALTER TABLE "workspace_document"
   ADD COLUMN "visibility" VARCHAR(20) NOT NULL DEFAULT 'private',
   ADD COLUMN "shared_branch_id" UUID;
@@ -34,3 +35,4 @@ BEGIN
   END IF;
 END;
 $$;
+COMMIT;
