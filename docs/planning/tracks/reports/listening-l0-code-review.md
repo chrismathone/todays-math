@@ -2,7 +2,7 @@
 
 검토 기준: main `6ee028522`. 대상은 `docs/planning/english-listening-plan-20261003.md`, `src/contracts/englishListening*.ts`, `src/lib/english/listening/**`, `src/__tests__/unit/englishListening*.ts`, `englishFence.test.ts`. 검토 시점에 시험 8파일 100건이 main 에서 초록이었고, 재현은 읽기 전용 probe(tsx, 소스 무변경)로 확인했다. 행 번호는 검토 시점 main 기준이다.
 
-처리 현황(2026-10-03 갱신): **F2·F9·F10 은 이 문서와 같은 트랙(`listening-l0-contract` 워크트리)에서 구현했다** — 각 절의 «처리» 항목. F1·F4 는 root 가 main `296403be1` 에 넣었다(`canReadListeningAssignment(facts, action, mediaTarget?)` · `publication.setId/audioAssetIds`). F3·F5·F6·F7 은 root 가 `14eed6db7`·`33e7fde18` 로 넣었고 F8 은 «의도된 보수적 해시»로 회귀 시험을 더해 닫았다 — 읽기 검토 결과는 맨 아래 «root 수정 검토» 절. 거기서 **F3-a(교사 방송 + 전입 학생) 한 건이 root 에 남아 있다.**
+처리 현황(2026-10-03 갱신): **F2·F9·F10 은 `listening-l0-contract` 트랙에서 구현했다** — 각 절의 «처리» 항목. F1·F4 는 root 가 main `296403be1` 에 넣었다(`canReadListeningAssignment(facts, action, mediaTarget?)` · `publication.setId/audioAssetIds`). F3·F5·F6·F7 은 root 가 `14eed6db7`·`33e7fde18` 로 넣었고 F8 은 «의도된 보수적 해시»로 회귀 시험을 더해 닫았다. 후속 검토의 F3-a(교사 방송 + 전입 학생)와 F5 학생 식별자 보강도 root `9ded74404`에서 수정했다. 아래는 검토 시점의 재현을 보존하며, 최신 결과는 «후속 수정 확인» 절을 따른다. 운영 어댑터·영속 저장·MP3의 알려진 한계는 여전히 남아 있다.
 
 ## F1 · 높음 — 학생 미디어 인가에 «자산 ↔ 발행본» 묶음이 없다 (바이트 누출)
 

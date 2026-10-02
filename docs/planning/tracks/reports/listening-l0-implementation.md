@@ -9,6 +9,7 @@
 - [Hi-fi 4안](../../../design/mockups/english-listening-hifi.html)은 확정 배치에 H1 기존 화면 연결, H2 큰 글자, H3 재생 강조, H4 문서 중심을 적용했다. **사용자가 H1을 선택해 상세 모양도 확정했다.** 공통 색은 현재 `globals.css`의 Workroom 값을 따른다.
 - 각 시안은 교사 제작·수업·학생 자습·평가를 전환한다. 실제 저장·제출·음성 재생이 없는 독립 HTML임을 표시했다. 교사 방송 평가에는 학생 재생 버튼이 없다.
 - Chromium의 1440px·390px에서 각 32개 화면 조합, 문항 이동·부분 응답 차단·두 문항 후 복습 공개를 확인했다. 실제 기기의 미디어 호환성 검증을 대신하지 않는다.
+- 실제 React 화면도 별도 [브라우저 검증 환경](../../../../e2e/english-listening/README.md)에서 확인했다. 교사 선택·대본 보기, 학생 소리 확인·답 확정·같은 요청 재시도·서버 공개 응답·제출, 교사 방송의 학생 음원 부재를 1440px·390px에서 검증한다. 이 환경은 실제 도메인 함수와 임시 메모리 상태를 사용하며 저장·인증은 운영 연결이 없는 대역임을 화면에 표시한다.
 
 ## 구현된 코드
 
@@ -58,6 +59,8 @@ Claude의 [10개 지적과 재현](listening-l0-code-review.md)을 코드와 회
 - 응시 생성 전 공개 이력은 인증된 `context.studentId`에 묶는다. 배정 취소 후에도 인가된 관리자의 취소 전이만 기록할 수 있고 일반 읽기·답안 쓰기는 거절한다.
 - 최초 답의 `savedAfterRelease`는 **그 배정에서 저장 직전 공개 여부**다. 옛 데이터에 값이 없으면 미상으로 세고, `false`를 다른 자료나 과거 응시까지 포함한 무노출 증거로 해석하지 않는다. 점수와 공개 후 답의 수를 별도 반환한다.
 - 내용 해시는 권리·출처까지 포함하는 보수적 정책을 유지한다. 제작 절차는 **권리·출처 확인 → 내용·음성·정렬 검수 → 발행**이다. 앞선 확인을 바꾸면 검수를 다시 해야 한다.
+- 전입 학생을 포함한 방송도 기존 학생은 보존된 배정 개정으로 같은 시각에 시작할 수 있다. 방송을 만들 때 현재 명단 전체를 인가하고, 응시 전이에서는 해당 학생의 참여 여부·발행본·시각을 확인한다.
+- HTTP 부분 전송은 모르는 단위와 지원하지 않는 유효한 다중 범위를 무시하고 전체를 보내며, 잘못된 바이트 범위는 416으로 거절한다. HEAD에는 Range를 적용하지 않는다. 이 경우에도 같은 인가 검사를 수행한다. [RFC 9110 §14.2](https://www.rfc-editor.org/rfc/rfc9110.html#section-14.2)
 
 실제 API는 취소 명령의 관리자 권한, 배정 개정 CAS, 공개 이력과 최초 노출 감사 기록을 영속 저장해야 한다. UI 재생 제한만으로 평가의 청취 횟수나 이미 내려받은 음원의 재생을 강제할 수는 없다.
 
@@ -65,15 +68,18 @@ Claude의 [10개 지적과 재현](listening-l0-code-review.md)을 코드와 회
 
 | 실행 | 결과 |
 | --- | --- |
-| `npx vitest run src/__tests__/unit/english src/__tests__/unit/accountRouteAccess.test.ts src/__tests__/unit/studentRouteAccess.test.ts` | 화면 통합 뒤 34개 파일 · 567개 테스트 통과 |
+| `npx vitest run src/__tests__/unit/english src/__tests__/unit/accountRouteAccess.test.ts src/__tests__/unit/studentRouteAccess.test.ts` | 최종 도메인·화면 수정 뒤 34개 파일 · 569개 테스트 통과 |
 | `npx tsc --noEmit --incremental false` | 통과. 최신 pull 이후 낡은 Prisma 생성 타입의 기존 오류 15개는 `prisma generate`로 해소. DB 변경 없음 |
 | 변경한 듣기 코드·계약·검사·도구의 ESLint | 통과 |
 | `npm run lint:affordance` | 통과. 기존 보관함의 `.mineFilter`를 실제 `label.mineFilter`로 좁힌 한 줄 수정 포함 |
 | `node scripts/qa/english-listening/wire-probe.mjs` 및 `--hifi` | 각 32개 화면 조합 확인. 페이지 오류·가로 넘침 0 |
+| `node node_modules/@playwright/test/cli.js test --config e2e/english-listening/playwright.config.ts` | 실제 컴포넌트 6개 시나리오 통과(1440px·390px). 네이티브 WAV 재생·일시정지·탐색·재시작, 저장 응답 유실 뒤 중복 없는 재시도, 공개·제출, 교사 방송 학생의 미디어 요소/요청 0. 브라우저 오류·가로 넘침 0 |
 | `npx tsx scripts/qa/english-listening/media-probe.ts` | 자체 생성 PCM 5,760,044바이트·6청크, 전체 해시·청크 경계 탐색·취소·만료·실패·HEAD·416 확인. 저장소 읽기 최대 65,536바이트 |
 | 새 모듈 간 통합 시험 | 실제 임시 음원 → 준비 상태 → 발행본 → 학생 응답 → 묶음 공개 → 취소 후 새 HEAD/Range 거절 확인 |
 
 학생 화면의 교사 코드 간접 참조, 미구현 접근 정책/발행 연결, 정수가 아닌 음원 길이를 먼저 실패로 재현한 뒤 고쳤다. 합성 음원은 전송용 표본이며 영어 대화의 청취 품질이나 교육 효과를 입증하지 않는다.
+
+브라우저 캡처는 OS 임시 폴더 `english-listening-playwright`에 저장한다. 교사 데스크톱·모바일, 학생 재시도·복습, 교사 방송 학생 복습 화면을 직접 열어 시각적으로 확인했다. 헤드리스 브라우저의 재생 성공은 실제 스피커의 청취 확인이나 iOS/Safari 검증을 대신하지 않는다. 수동 실행은 위 README의 Vite 명령과 `http://127.0.0.1:4198/`를 사용한다.
 
 ## 다음 구현의 조건
 
