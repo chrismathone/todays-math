@@ -54,6 +54,10 @@ export function workspaceMenusOf(product: WorkspaceProduct): WorkspaceMenu[] {
     (menu) => workspaceMenuProduct(menu) === product,
   );
 }
+export function workspaceLibraryLabel(branchId?: string | null): string {
+  return branchId ? "우리학원 시험지" : "내 시험지";
+}
+
 export const approvalStatusSchema = z.enum(["pending", "approved", "rejected"]);
 export type ApprovalStatus = z.infer<typeof approvalStatusSchema>;
 export type AccountAccess = {
