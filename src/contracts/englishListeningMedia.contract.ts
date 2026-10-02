@@ -40,6 +40,15 @@ export const listeningMediaBlockerSchema = z.enum([
   "unsupported_or_invalid_wave",
   "duration_limit",
 ]);
+/**
+ * Owner/branch of the listening set an asset belongs to, as the server reads it from the
+ * trusted set row. It is never accepted from an upload or playback request body.
+ */
+export const listeningMediaScopeSchema = z.strictObject({
+  ownerId: listeningMediaIdSchema,
+  branchId: listeningMediaIdSchema.nullable(),
+});
+export type ListeningMediaScope = z.infer<typeof listeningMediaScopeSchema>;
 const receiptFields = {
   setId: listeningMediaIdSchema,
   assetId: listeningMediaIdSchema,
@@ -53,9 +62,15 @@ export const listeningMediaUploadReceiptSchema = z.strictObject({
   ...receiptFields,
   state: z.literal("uploading"),
 });
+/** Completion carries the stored scope and the server clock at verification, not request data. */
+const completionFields = {
+  ...receiptFields,
+  ...listeningMediaScopeSchema.shape,
+  verifiedAt: safeInteger,
+};
 export const listeningMediaCompletionSchema = z.discriminatedUnion("state", [
   z.strictObject({
-    ...receiptFields,
+    ...completionFields,
     state: z.literal("ready"),
     publishable: z.literal(true),
     mimeType: z.literal("audio/wav"),
@@ -63,7 +78,7 @@ export const listeningMediaCompletionSchema = z.discriminatedUnion("state", [
     durationMs: safeInteger.min(1),
   }),
   z.strictObject({
-    ...receiptFields,
+    ...completionFields,
     state: z.literal("publish_blocked"),
     publishable: z.literal(false),
     blocker: listeningMediaBlockerSchema,

@@ -7,7 +7,9 @@ import {
   listeningMediaCompleteSchema,
   listeningMediaCompletionSchema,
   listeningMediaRequestSchema,
+  listeningMediaScopeSchema,
   listeningMediaUploadSchema,
+  type ListeningMediaScope,
   type ListeningMediaUploadReceipt,
 } from "../../../../contracts/englishListeningMedia.contract";
 import { ListeningMediaError } from "./errors";
@@ -49,6 +51,15 @@ export interface ListeningMediaDependencies<Context> {
     context: Context,
     target: ListeningMediaAuthorizationTarget,
   ): Promise<boolean>;
+  /**
+   * Trusted owner/branch of the listening set, read from server storage (the set row),
+   * never from a request body or a client receipt. Called after `authorize` and before
+   * any media metadata on EVERY operation. The result is stored on new uploads and
+   * compared against the stored scope afterwards: a set that was reassigned, revoked or
+   * no longer resolves fails closed (`not_found`). Must resolve to
+   * `{ ownerId, branchId }` or null/throw to deny.
+   */
+  resolveScope(context: Context, setId: string): Promise<unknown>;
   now?: () => number;
   limits?: Partial<ListeningMediaLimits>;
 }
@@ -77,16 +88,22 @@ function receipt(record: ListeningMediaRecord): ListeningMediaUploadReceipt {
     state: "uploading",
   };
 }
+/** Streams may frame zero-length pieces; they carry no bytes but must not spin forever. */
+const MAX_EMPTY_PIECES = 4096;
 async function collectBody(body: AsyncIterable<Uint8Array>, length: number) {
   // At most one configured upload chunk is buffered, never the complete asset.
   const result = Buffer.alloc(length);
   let offset = 0;
+  let empty = 0;
   for await (const piece of body) {
-    if (
-      !(piece instanceof Uint8Array) ||
-      piece.byteLength === 0 ||
-      piece.byteLength > length - offset
-    )
+    if (!(piece instanceof Uint8Array))
+      throw new ListeningMediaError("body_size");
+    if (piece.byteLength === 0) {
+      if (++empty > MAX_EMPTY_PIECES)
+        throw new ListeningMediaError("body_size");
+      continue;
+    }
+    if (piece.byteLength > length - offset)
       throw new ListeningMediaError("body_size");
     result.set(piece, offset);
     offset += piece.byteLength;
@@ -108,17 +125,20 @@ async function* readAsset(
     const to = Math.min(end, chunk.offset + chunk.byteLength);
     if (from >= to) continue;
     let chunkRemaining = to - from;
+    let empty = 0;
     for await (const piece of store.readBlob(chunk.key, {
       start: from - chunk.offset,
       endExclusive: to - chunk.offset,
       maxChunkBytes: max,
     })) {
-      if (
-        !(piece instanceof Uint8Array) ||
-        piece.byteLength === 0 ||
-        piece.byteLength > max ||
-        piece.byteLength > chunkRemaining
-      )
+      if (!(piece instanceof Uint8Array))
+        throw new ListeningMediaError("storage_integrity");
+      if (piece.byteLength === 0) {
+        if (++empty > MAX_EMPTY_PIECES)
+          throw new ListeningMediaError("storage_integrity");
+        continue;
+      }
+      if (piece.byteLength > max || piece.byteLength > chunkRemaining)
         throw new ListeningMediaError("storage_integrity");
       chunkRemaining -= piece.byteLength;
       remaining -= piece.byteLength;
@@ -154,10 +174,11 @@ function responseStream(source: AsyncIterable<Uint8Array>) {
 export function createListeningMediaService<Context>(
   dependencies: ListeningMediaDependencies<Context>,
 ) {
-  const { store, authorize } = dependencies;
+  const { store, authorize, resolveScope } = dependencies;
   const now = dependencies.now ?? Date.now;
   const limits = { ...LISTENING_MEDIA_L0_LIMITS, ...dependencies.limits };
   if (
+    typeof resolveScope !== "function" ||
     !Object.values(limits).every((n) => Number.isSafeInteger(n) && n > 0) ||
     limits.chunkBytes > 1024 * 1024 ||
     limits.readChunkBytes > 1024 * 1024 ||
@@ -176,10 +197,42 @@ export function createListeningMediaService<Context>(
     }
     throw new ListeningMediaError("not_found");
   }
+  /** Current trusted scope of the set; invalid, missing or failing lookups deny opaquely. */
+  async function scope(
+    context: Context,
+    setId: string,
+  ): Promise<ListeningMediaScope> {
+    let value: unknown;
+    try {
+      value = await resolveScope(context, setId);
+    } catch {
+      throw new ListeningMediaError("not_found");
+    }
+    const result = listeningMediaScopeSchema.safeParse(value);
+    if (!result.success) throw new ListeningMediaError("not_found");
+    return result.data;
+  }
+  function assertScope(
+    record: ListeningMediaRecord,
+    current: ListeningMediaScope,
+  ) {
+    if (
+      record.ownerId !== current.ownerId ||
+      record.branchId !== current.branchId
+    )
+      throw new ListeningMediaError("not_found");
+  }
   async function find(assetId: string, setId: string) {
     const record = await store.get(assetId);
     if (!record || record.setId !== setId)
       throw new ListeningMediaError("not_found");
+    return record;
+  }
+  /** Order on every operation: authorize → current set scope → metadata → scope match. */
+  async function findScoped(context: Context, assetId: string, setId: string) {
+    const current = await scope(context, setId);
+    const record = await find(assetId, setId);
+    assertScope(record, current);
     return record;
   }
   function unexpired(record: ListeningMediaRecord) {
@@ -189,6 +242,7 @@ export function createListeningMediaService<Context>(
   async function beginUpload(context: Context, input: unknown) {
     const data = parse(listeningMediaUploadSchema, input);
     await check(context, { action: "store_original", setId: data.setId });
+    const current = await scope(context, data.setId);
     if (
       data.totalBytes > limits.maxTotalBytes ||
       Math.ceil(data.totalBytes / limits.chunkBytes) > 4096
@@ -196,6 +250,8 @@ export function createListeningMediaService<Context>(
       throw new ListeningMediaError("too_large");
     const record: ListeningMediaRecord = {
       ...data,
+      ownerId: current.ownerId,
+      branchId: current.branchId,
       assetId: randomUUID(),
       state: "uploading",
       revision: 0,
@@ -220,7 +276,7 @@ export function createListeningMediaService<Context>(
       assetId: data.assetId,
     };
     await check(context, target);
-    const record = await find(data.assetId, data.setId);
+    const record = await findScoped(context, data.assetId, data.setId);
     unexpired(record);
     if (record.state !== "uploading") throw new ListeningMediaError("conflict");
     const prior = record.chunks.find((chunk) => chunk.offset === data.offset);
@@ -255,6 +311,7 @@ export function createListeningMediaService<Context>(
     let committed = false;
     try {
       await check(context, target);
+      assertScope(record, await scope(context, data.setId));
       unexpired(record);
       const next: ListeningMediaRecord = {
         ...record,
@@ -306,7 +363,7 @@ export function createListeningMediaService<Context>(
       assetId: data.assetId,
     };
     await check(context, target);
-    const record = await find(data.assetId, data.setId);
+    const record = await findScoped(context, data.assetId, data.setId);
     if (
       record.completion &&
       record.finalizedFromRevision === data.expectedRevision
@@ -340,6 +397,7 @@ export function createListeningMediaService<Context>(
       }
     }
     await check(context, target);
+    assertScope(record, await scope(context, data.setId));
     unexpired(record);
     if (hash.digest("hex") !== record.expectedSha256) {
       await store.compareAndSwap(record.assetId, record.revision, {
@@ -355,7 +413,13 @@ export function createListeningMediaService<Context>(
       record.mimeType,
       limits.maxDurationMs,
     );
-    const fields = receipt({ ...record, revision: record.revision + 1 });
+    // Stored scope and the server clock at verification; never request-supplied values.
+    const fields = {
+      ...receipt({ ...record, revision: record.revision + 1 }),
+      ownerId: record.ownerId,
+      branchId: record.branchId,
+      verifiedAt: now(),
+    };
     const completion = listeningMediaCompletionSchema.parse(
       inspection.playable
         ? {
@@ -402,7 +466,7 @@ export function createListeningMediaService<Context>(
         setId: request.setId,
         assetId: request.assetId,
       });
-      record = await find(request.assetId, request.setId);
+      record = await findScoped(context, request.assetId, request.setId);
     } catch (error) {
       if (error instanceof ListeningMediaError) return unavailable();
       throw error;
@@ -454,7 +518,7 @@ export function createListeningMediaService<Context>(
   async function getVerifiedReadiness(context: Context, input: unknown) {
     const data = parse(listeningMediaAssetSchema, input);
     await check(context, { action: "publish", ...data });
-    const record = await find(data.assetId, data.setId);
+    const record = await findScoped(context, data.assetId, data.setId);
     return record.state === "ready" && record.completion?.state === "ready"
       ? record.completion
       : null;
