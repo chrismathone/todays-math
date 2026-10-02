@@ -20,6 +20,8 @@ import {
   StudioSessionStore,
   type StudioSessionData,
 } from "./studioSessionStore";
+import { useLibrarySaveConfirmation } from "./LibrarySaveDialog";
+import { workspaceLibraryLabel } from "@/contracts/accountAccess.contract";
 import { resolveStudioGrade, studioGradeLevel } from "./studioGrade";
 import {
   lazy,
@@ -296,6 +298,7 @@ export default function StudioView({
   active = true,
   restoreRequest,
   storageScope,
+  branchId,
   documentId,
   onDocumentChange,
   onCropCountChange,
@@ -332,6 +335,7 @@ export default function StudioView({
   onCropCountChange?: (count: number) => void;
   restoreRequest?: { id: number; crops: StudioCrop[] };
   storageScope?: string;
+  branchId?: string | null;
   documentId?: string;
   onDocumentChange?: (id?: string) => void;
 }) {
@@ -1168,6 +1172,40 @@ export default function StudioView({
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
   }, [sessionStatus]);
+
+  const { requestSave: saveLibrary, dialog: saveDialog } =
+    useLibrarySaveConfirmation(
+      branchId,
+      async (sharing) => {
+        if (!storageReady.current || restoring || importingBusy) return false;
+        setSessionSave("저장 중");
+        try {
+          await sessionStore.save(
+            sessionData,
+            new Map(
+              sources
+                .filter((source) => source.original)
+                .map((source) => [source.id, source.original!]),
+            ),
+            sharing,
+          );
+          onDocumentChange?.(sessionStore.documentId);
+          setSessionSave("저장됨");
+          return true;
+        } catch (cause) {
+          setSessionSave("저장 실패");
+          setError(
+            cause instanceof Error
+              ? cause.message
+              : "자료를 저장하지 못했습니다.",
+          );
+          throw cause;
+        }
+      },
+      sessionStore.sharedBranchId === branchId
+        ? sessionStore.visibility
+        : "private",
+    );
 
   async function startOver() {
     if (storageScope) {
@@ -3374,6 +3412,12 @@ export default function StudioView({
         </Suspense>
       )}
       <footer className={styles.actionBar} aria-label="문제 제작 주요 작업">
+        {saveDialog}
+        {storageScope && (
+          <button onClick={saveLibrary} disabled={busy || !sources.length}>
+            {workspaceLibraryLabel(branchId)}에 저장
+          </button>
+        )}
         <span role="status" aria-label="문제 추출 저장 상태">
           {storageScope && sessionStatus === "저장됨"
             ? sources.length

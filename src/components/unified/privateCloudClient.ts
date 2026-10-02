@@ -1,6 +1,7 @@
 import type {
   PrivateDocument,
   PrivateDocumentSummary,
+  DocumentSharing,
 } from "@/contracts/privateWorkspace.contract";
 import { svgDataUrl } from "@/lib/svgDataUrl";
 
@@ -8,6 +9,7 @@ export class PrivateCloudError extends Error {
   constructor(
     message: string,
     readonly status = 0,
+    readonly code?: string,
   ) {
     super(message);
   }
@@ -200,24 +202,31 @@ export class PrivateCloudClient {
     }
     if (!response.ok) {
       const body = await response.json().catch(() => null);
+      if (
+        body?.error?.code === "BRANCH_CHANGED" &&
+        typeof window !== "undefined"
+      )
+        window.dispatchEvent(new Event("workspace-access-change"));
       const message =
         response.status === 409
-          ? "다른 창이나 기기에서 자료가 변경되었습니다. 현재 작업을 보관한 뒤 내 시험지에서 다시 열어 주세요."
+          ? body?.error?.message ||
+            "다른 창이나 기기에서 자료가 변경되었습니다. 현재 작업을 보관한 뒤 내 시험지에서 다시 열어 주세요."
           : response.status === 401
             ? "로그인이 만료되었습니다. 다시 로그인한 뒤 저장해 주세요."
             : body?.error?.message ||
               "자료를 불러오거나 저장하지 못했습니다. 다시 시도해 주세요.";
-      throw new PrivateCloudError(message, response.status);
+      throw new PrivateCloudError(message, response.status, body?.error?.code);
     }
     return response;
   }
   async list(
     kind?: PrivateDocumentSummary["kind"],
+    mine = true,
   ): Promise<PrivateDocumentSummary[]> {
     const items: PrivateDocumentSummary[] = [];
     for (let page = 1; ; page++) {
       const response = await this.request(
-        `/api/library/documents?page=${page}&pageSize=100${kind ? `&kind=${kind}` : ""}`,
+        `/api/library/documents?page=${page}&pageSize=100${kind ? `&kind=${kind}` : ""}${mine ? "&mine=true" : ""}`,
       );
       const body = await response.json();
       if (!Array.isArray(body.data) || !Number.isInteger(body.meta?.total))
@@ -228,8 +237,23 @@ export class PrivateCloudClient {
         throw new Error("자료 목록이 변경되었습니다. 다시 불러와 주세요.");
     }
   }
-  async get(id: string): Promise<PrivateDocument> {
-    return (await (await this.request(documentPath(id))).json()).data;
+  async get(id: string, ownerId?: string): Promise<PrivateDocument> {
+    return (
+      await (
+        await this.request(
+          `${documentPath(id)}${ownerId ? `?ownerId=${encodeURIComponent(ownerId)}` : ""}`,
+        )
+      ).json()
+    ).data;
+  }
+  async copy(id: string, ownerId: string): Promise<PrivateDocument> {
+    const response = await this.request(
+      `${documentPath(id)}?ownerId=${encodeURIComponent(ownerId)}`,
+      { method: "POST" },
+    );
+    const document = (await response.json()).data;
+    this.changed();
+    return document;
   }
   async save(
     id: string,
@@ -237,12 +261,14 @@ export class PrivateCloudClient {
     title: string,
     payload: Record<string, unknown>,
     expectedRevision: number | null,
+    sharing?: DocumentSharing,
   ): Promise<PrivateDocument> {
     const body = JSON.stringify({
       kind,
       title: title.trim().slice(0, 200) || "제목 없는 자료",
       payload,
       expectedRevision,
+      ...sharing,
     });
     if (new TextEncoder().encode(body).byteLength > 3_500_000)
       throw new Error("자료 내용이 너무 큽니다. 자료를 나누어 저장해 주세요.");
@@ -260,6 +286,8 @@ export class PrivateCloudClient {
       if (!saved || saved.id !== id || !Number.isInteger(saved.revision))
         throw new Error("자료 저장을 확인하지 못했습니다. 다시 시도해 주세요.");
     } catch (cause) {
+      if (cause instanceof PrivateCloudError && cause.code === "BRANCH_CHANGED")
+        throw cause;
       if (
         cause instanceof PrivateCloudError &&
         cause.status > 0 &&
@@ -278,6 +306,9 @@ export class PrivateCloudClient {
         current.kind !== kind ||
         current.revision !== (expectedRevision ?? 0) + 1 ||
         current.title !== submitted.title ||
+        (sharing &&
+          (current.visibility !== sharing.visibility ||
+            current.sharedBranchId !== sharing.sharedBranchId)) ||
         !sameJson(current.payload, submitted.payload)
       )
         throw cause;
@@ -440,14 +471,20 @@ export class PrivateCloudClient {
   private download(path: string, hash: string): Promise<Download> {
     let pending = this.downloads.get(path);
     if (!pending) {
-      pending = this.original(hash).then(async (blob) => {
+      pending = (
+        path.includes("?")
+          ? this.transfer(async () => (await this.request(path)).blob())
+          : this.original(hash)
+      ).then(async (blob) => {
         const url = URL.createObjectURL(blob);
-        this.conversions.set(url, Promise.resolve(path));
-        this.portable.set(url, path);
+        if (!path.includes("?")) {
+          this.conversions.set(url, Promise.resolve(path));
+          this.portable.set(url, path);
+        }
         this.objectUrls.add(url);
         const pool = activeAssetPools.get(this.scope);
         pool?.urls.add(url);
-        pool?.portable.set(url, path);
+        if (!path.includes("?")) pool?.portable.set(url, path);
         if (!/^image\/svg\+xml/i.test(blob.type)) return { url };
         const text = await blob.text();
         return looksLikeSvg(text) && !wholeSvg(text)
@@ -465,7 +502,7 @@ export class PrivateCloudClient {
       let out = "";
       let at = 0;
       for (const match of text.matchAll(
-        /\/api\/library\/assets\/([a-f0-9]{64})\b/g,
+        /\/api\/library\/assets\/([a-f0-9]{64})\b(?:\?ownerId=[A-Za-z0-9%_-]+&documentId=[A-Za-z0-9%_-]+)?/g,
       )) {
         if (match.index < at) continue;
         const { url, truncated } = await this.download(match[0], match[1]);

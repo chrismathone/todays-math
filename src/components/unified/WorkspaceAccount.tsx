@@ -5,6 +5,7 @@ import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import s from "./WorkspaceAccount.module.css";
 
 export type WorkspaceIdentity = {
+  branchId?: string | null;
   name: string;
   email: string;
   isAdmin?: boolean;

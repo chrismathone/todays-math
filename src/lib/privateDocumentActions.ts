@@ -1,4 +1,5 @@
 import type { Prisma } from "@prisma/client";
+import { randomUUID } from "node:crypto";
 import { db } from "@/lib/db";
 import { auditData } from "@/lib/audit";
 import {
@@ -7,6 +8,10 @@ import {
   privateHeaders,
   privateError,
   adminAssetUrls,
+  sharedAssetUrls,
+  sharedDocumentWhere,
+  mutationOwnerError,
+  documentAssetIds,
 } from "@/lib/privateWorkspace";
 import {
   documentIdSchema,
@@ -65,16 +70,35 @@ export async function readDocument(
   if (access.response) return access.response;
   if (!documentIdSchema.safeParse(id).success)
     return privateError("자료를 찾지 못했습니다.", 404);
-  const document = await db.workspaceDocument.findUnique({
-    where: { userId_id: { userId: access.ownerId!, id } },
-  });
+  const requestedOwner = new URL(request.url).searchParams.get("ownerId");
+  if (requestedOwner && !z.uuid().safeParse(requestedOwner).success)
+    return privateError("자료를 찾지 못했습니다.", 404);
+  const sharedOwner =
+    !owner && requestedOwner && requestedOwner !== access.ownerId
+      ? requestedOwner
+      : null;
+  const document = sharedOwner
+    ? await db.workspaceDocument.findFirst({
+        where: {
+          ...sharedDocumentWhere(access.account!),
+          userId: sharedOwner,
+          id,
+        },
+        include: { user: { select: { name: true } } },
+      })
+    : await db.workspaceDocument.findUnique({
+        where: { userId_id: { userId: access.ownerId!, id } },
+        include: { user: { select: { name: true } } },
+      });
   if (!document) return privateError("자료를 찾지 못했습니다.", 404);
-  const dto = documentDto(document);
+  const dto = documentDto(document, access.account!.id);
   return Response.json(
     {
       data: owner
         ? { ...dto, payload: adminAssetUrls(dto.payload, owner) }
-        : dto,
+        : sharedOwner
+          ? { ...dto, payload: sharedAssetUrls(dto.payload, sharedOwner, id) }
+          : dto,
     },
     { headers: privateHeaders },
   );
@@ -83,6 +107,8 @@ export async function readDocument(
 export async function saveDocument(request: Request, id: string) {
   const access = await authorizePrivate(request);
   if (access.response) return access.response;
+  const ownerError = mutationOwnerError(request, access.ownerId!);
+  if (ownerError) return ownerError;
   if (!documentIdSchema.safeParse(id).success)
     return privateError("자료 이름을 확인해 주세요.", 400);
   const text = await request.text();
@@ -102,7 +128,23 @@ export async function saveDocument(request: Request, id: string) {
   );
   if (!parsed.success)
     return privateError("저장할 자료 형식을 확인해 주세요.", 400);
-  const { kind, title, payload, expectedRevision } = parsed.data;
+  const { kind, title, payload, expectedRevision, visibility, sharedBranchId } =
+    parsed.data;
+  if (
+    visibility === "branch" &&
+    (!access.account!.branchId || sharedBranchId !== access.account!.branchId)
+  )
+    return privateError(
+      "학원 소속이 변경되었습니다. 새로고침한 뒤 공개 범위를 확인해 주세요.",
+      409,
+      "BRANCH_CHANGED",
+    );
+  let assetIds: string[];
+  try {
+    assetIds = documentAssetIds(payload);
+  } catch (cause) {
+    return privateError((cause as Error).message, 400);
+  }
   const problemCount = await problemCountOf(kind, payload);
   if (problemCount === null)
     return privateError(
@@ -134,11 +176,28 @@ export async function saveDocument(request: Request, id: string) {
       )
         return null;
       if (previous && previous.kind !== kind) return null;
+      // A stale autosave may not carry a share into a new branch.
+      const branchId = access.account!.branchId;
+      const nextVisibility =
+        visibility ??
+        (previous?.sharedBranchId === branchId
+          ? previous?.visibility
+          : "private") ??
+        "private";
+      for (const assetId of assetIds) {
+        const asset = await tx.workspaceAsset.findUnique({
+          where: { userId_id: { userId, id: assetId } },
+        });
+        if (!asset || asset.bytes.byteLength !== asset.size)
+          return "invalid-asset" as const;
+      }
       const data = {
         kind,
         title,
         payload: payload as Prisma.InputJsonObject,
         problemCount,
+        visibility: nextVisibility,
+        sharedBranchId: nextVisibility === "branch" ? branchId : null,
       };
       if (previous) {
         const changed = await tx.workspaceDocument.updateMany({
@@ -148,8 +207,20 @@ export async function saveDocument(request: Request, id: string) {
         if (changed.count !== 1) return null;
       } else
         await tx.workspaceDocument.create({ data: { ...data, userId, id } });
+      await tx.workspaceDocumentAsset.deleteMany({
+        where: { userId, documentId: id },
+      });
+      if (assetIds.length)
+        await tx.workspaceDocumentAsset.createMany({
+          data: assetIds.map((assetId) => ({
+            userId,
+            documentId: id,
+            assetId,
+          })),
+        });
       const document = await tx.workspaceDocument.findUniqueOrThrow({
         where: { userId_id: { userId, id } },
+        include: { user: { select: { name: true } } },
       });
       await tx.accountAuditLog.create({
         data: auditData({
@@ -168,9 +239,11 @@ export async function saveDocument(request: Request, id: string) {
       });
       return document;
     });
+    if (result === "invalid-asset")
+      return privateError("저장할 파일을 먼저 업로드해 주세요.", 400);
     return result
       ? Response.json(
-          { data: documentDto(result) },
+          { data: documentDto(result, userId) },
           { headers: privateHeaders },
         )
       : privateError(
@@ -186,6 +259,8 @@ export async function saveDocument(request: Request, id: string) {
 export async function deleteDocument(request: Request, id: string) {
   const access = await authorizePrivate(request);
   if (access.response) return access.response;
+  const ownerError = mutationOwnerError(request, access.ownerId!);
+  if (ownerError) return ownerError;
   const revision = Number(new URL(request.url).searchParams.get("revision"));
   if (
     !documentIdSchema.safeParse(id).success ||
@@ -227,6 +302,8 @@ export async function deleteDocument(request: Request, id: string) {
 export async function renameDocument(request: Request, id: string) {
   const access = await authorizePrivate(request);
   if (access.response) return access.response;
+  const ownerError = mutationOwnerError(request, access.ownerId!);
+  if (ownerError) return ownerError;
   if (!access.account!.isAdmin && !access.account!.menus.includes("library"))
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const parsed = z
@@ -280,6 +357,7 @@ export async function renameDocument(request: Request, id: string) {
     });
     return tx.workspaceDocument.findUniqueOrThrow({
       where: { userId_id: { userId, id } },
+      include: { user: { select: { name: true } } },
     });
   });
   if (document === "too-long")
@@ -289,11 +367,116 @@ export async function renameDocument(request: Request, id: string) {
     );
   return document
     ? Response.json(
-        { data: documentDto(document) },
+        { data: documentDto(document, userId) },
         { headers: privateHeaders },
       )
     : privateError(
         "자료가 변경됐습니다. 다시 불러온 뒤 이름을 바꿔 주세요.",
         409,
+      );
+}
+
+/** Opening a colleague's document creates an independent, private snapshot. */
+export async function copyDocument(request: Request, id: string) {
+  const access = await authorizePrivate(request);
+  if (access.response) return access.response;
+  const ownerId = new URL(request.url).searchParams.get("ownerId");
+  if (
+    !documentIdSchema.safeParse(id).success ||
+    !z.uuid().safeParse(ownerId).success
+  )
+    return privateError("자료를 찾지 못했습니다.", 404);
+  const userId = access.ownerId!;
+  const copied = await db.$transaction(async (tx) => {
+    const source = await tx.workspaceDocument.findFirst({
+      where: { ...sharedDocumentWhere(access.account!), userId: ownerId!, id },
+    });
+    if (!source) return null;
+    if (
+      !access.account!.isAdmin &&
+      !access.account!.menus.includes(EDITOR_MENU[source.kind as DocumentKind])
+    )
+      return "forbidden" as const;
+    const assetIds = documentAssetIds(
+      source.payload as Record<string, unknown>,
+    );
+    for (const assetId of assetIds) {
+      const asset = await tx.workspaceAsset.findUnique({
+        where: { userId_id: { userId: ownerId!, id: assetId } },
+      });
+      if (!asset || asset.bytes.byteLength !== asset.size)
+        return "invalid-asset" as const;
+      await tx.workspaceAsset.upsert({
+        where: { userId_id: { userId, id: assetId } },
+        create: { ...asset, userId },
+        update: {
+          bytes: asset.bytes,
+          size: asset.size,
+          mimeType: asset.mimeType,
+          name: asset.name,
+        },
+      });
+    }
+    const copyId = randomUUID();
+    const title = `${source.title.slice(0, source.kind === "conceptBlank" ? CONCEPT_BLANK_TITLE_MAX - 5 : 75)} (사본)`;
+    const payload = source.payload as Prisma.JsonObject;
+    const document = await tx.workspaceDocument.create({
+      data: {
+        userId,
+        id: copyId,
+        kind: source.kind,
+        title,
+        payload: {
+          ...payload,
+          ...(source.kind === "draft" ? { id: copyId, title } : {}),
+          ...(source.kind === "conceptBlank"
+            ? {
+                selection: {
+                  ...(payload.selection as Prisma.JsonObject),
+                  title,
+                },
+              }
+            : {}),
+        } as Prisma.InputJsonObject,
+        problemCount: source.problemCount,
+        visibility: "private",
+        sharedBranchId: null,
+      },
+    });
+    if (assetIds.length)
+      await tx.workspaceDocumentAsset.createMany({
+        data: assetIds.map((assetId) => ({
+          userId,
+          documentId: copyId,
+          assetId,
+        })),
+      });
+    await tx.accountAuditLog.create({
+      data: auditData({
+        userId,
+        actorId: userId,
+        action: "material.copied",
+        outcome: "success",
+        details: {
+          documentId: copyId,
+          sourceOwnerId: ownerId,
+          sourceDocumentId: id,
+        },
+      }),
+    });
+    return document;
+  });
+  if (copied === "forbidden")
+    return privateError("이 자료를 편집할 권한이 없습니다.", 403);
+  if (copied === "invalid-asset")
+    return privateError("원본 파일을 찾지 못했습니다.", 404);
+  return copied
+    ? Response.json(
+        { data: documentDto(copied, userId) },
+        { headers: privateHeaders },
+      )
+    : privateError(
+        "자료를 찾지 못했습니다. 공개 범위나 학원 소속이 변경되었을 수 있습니다.",
+        404,
       );
 }

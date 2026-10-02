@@ -6,6 +6,8 @@ import type {
   DocumentKind,
   PrivateDocumentSummary,
 } from "@/contracts/privateWorkspace.contract";
+import { documentKey } from "@/contracts/privateWorkspace.contract";
+import { workspaceLibraryLabel } from "@/contracts/accountAccess.contract";
 import ConfirmDialog from "./ConfirmDialog";
 import { PrivateCloudClient, cloudError } from "./privateCloudClient";
 import WorkspacePageHeader from "./WorkspacePageHeader";
@@ -22,6 +24,7 @@ const KIND_LABEL: Readonly<Record<DocumentKind, string>> = {
 
 type PrivateLibraryProps = {
   storageScope: string;
+  branchId?: string | null;
   canExport: boolean;
   canStudio: boolean;
   onOpenDraft: (id: string) => void | Promise<void>;
@@ -36,11 +39,17 @@ type PrivateLibraryProps = {
 
 export default function PrivateLibrary(props: PrivateLibraryProps) {
   // Account changes must discard the previous owner's rows and pending dialogs.
-  return <PrivateLibraryContent key={props.storageScope} {...props} />;
+  return (
+    <PrivateLibraryContent
+      key={`${props.storageScope}:${props.branchId ?? ""}`}
+      {...props}
+    />
+  );
 }
 
 function PrivateLibraryContent({
   storageScope,
+  branchId,
   canExport,
   canStudio,
   onOpenDraft,
@@ -61,6 +70,7 @@ function PrivateLibraryContent({
   const [query, setQuery] = useState("");
   const [kind, setKind] = useState("all");
   const [sort, setSort] = useState("newest");
+  const [mineOnly, setMineOnly] = useState(false);
   const requestId = useRef(0);
   const invalidateReads = useCallback(() => ++requestId.current, []);
   // Background refreshes preserve rows and dialogs. Only the latest read may
@@ -70,7 +80,7 @@ function PrivateLibraryContent({
       const request = invalidateReads();
       if (!quiet) setLoading(true);
       try {
-        const next = await client.list();
+        const next = await client.list(undefined, !branchId || mineOnly);
         if (request !== requestId.current) return;
         setItems(next);
         setError("");
@@ -80,7 +90,7 @@ function PrivateLibraryContent({
         if (request === requestId.current) setLoading(false);
       }
     },
-    [client, invalidateReads],
+    [client, invalidateReads, branchId, mineOnly],
   );
   useEffect(() => {
     // This effect starts the account's remote library subscription.
@@ -117,12 +127,26 @@ function PrivateLibraryContent({
         );
       });
   }, [items, kind, query, sort]);
-  const hasFilters = Boolean(query.trim()) || kind !== "all";
+  const hasFilters = Boolean(query.trim()) || kind !== "all" || mineOnly;
+  const openDocument = async (
+    item: PrivateDocumentSummary,
+    open: (id: string) => void | Promise<void>,
+  ) => {
+    const owned = item.ownerId
+      ? item.ownerId === storageScope
+      : item.isOwner !== false;
+    const document = owned ? item : await client.copy(item.id, item.ownerId!);
+    await open(document.id);
+  };
   return (
     <main className={s.library}>
       <WorkspacePageHeader
-        title="내 시험지"
-        description="내 계정에 저장한 시험지와 추출 자료를 어느 기기에서든 이어서 작업하세요."
+        title={workspaceLibraryLabel(branchId)}
+        description={
+          branchId
+            ? "내 자료와 같은 학원 선생님들이 공개한 자료를 함께 볼 수 있습니다."
+            : "내 계정에 저장한 시험지와 추출 자료를 어느 기기에서든 이어서 작업하세요."
+        }
       >
         {canExport && onImport && (
           <button onClick={onImport}>작업 파일 불러오기</button>
@@ -130,6 +154,16 @@ function PrivateLibraryContent({
         {onNew && <button onClick={onNew}>새 시험지</button>}
       </WorkspacePageHeader>
       <div className={s.tools}>
+        {branchId && (
+          <label className={s.mineFilter}>
+            <input
+              type="checkbox"
+              checked={mineOnly}
+              onChange={(event) => setMineOnly(event.target.checked)}
+            />
+            내 시험지만 보기
+          </label>
+        )}
         <input
           type="search"
           aria-label="저장한 자료 검색"
@@ -212,8 +246,14 @@ function PrivateLibraryContent({
             <tbody role="rowgroup">
               {filtered.map((item, index) => (
                 <LibraryItem
-                  key={item.id}
+                  key={documentKey(item)}
                   item={item}
+                  owned={
+                    item.ownerId
+                      ? item.ownerId === storageScope
+                      : item.isOwner !== false
+                  }
+                  showAuthor={Boolean(branchId)}
                   number={index + 1}
                   client={client}
                   onDeleted={async () => {
@@ -224,22 +264,26 @@ function PrivateLibraryContent({
                     setItems((previous) =>
                       next
                         ? previous.map((value) =>
-                            value.id === next.id ? next : value,
+                            documentKey(value) === documentKey(next)
+                              ? next
+                              : value,
                           )
-                        : previous.filter((value) => value.id !== item.id),
+                        : previous.filter(
+                            (value) => documentKey(value) !== documentKey(item),
+                          ),
                     );
                   }}
                   onOpen={
                     item.kind === "draft"
                       ? canExport
-                        ? () => onOpenDraft(item.id)
+                        ? () => openDocument(item, onOpenDraft)
                         : undefined
                       : item.kind === "conceptBlank"
                         ? canConceptBlank && onOpenConceptBlank
-                          ? () => onOpenConceptBlank(item.id)
+                          ? () => openDocument(item, onOpenConceptBlank)
                           : undefined
                         : canStudio
-                          ? () => onOpenExtraction(item.id)
+                          ? () => openDocument(item, onOpenExtraction)
                           : undefined
                   }
                 />
@@ -272,6 +316,7 @@ function PrivateLibraryContent({
                 onClick={() => {
                   setQuery("");
                   setKind("all");
+                  setMineOnly(false);
                 }}
               >
                 검색 조건 초기화
@@ -286,8 +331,9 @@ function PrivateLibraryContent({
         )}
       </div>
       <p className={s.note}>
-        이 계정의 비공개 자료입니다. 저장이 완료되면 다른 브라우저나 기기에서도
-        열 수 있습니다.
+        {branchId
+          ? "비공개 자료는 작성자만 볼 수 있습니다. 동료의 공개 자료는 사본으로 열어 내 계정에 비공개 저장합니다."
+          : "이 계정의 비공개 자료입니다. 저장이 완료되면 다른 브라우저나 기기에서도 열 수 있습니다."}
       </p>
     </main>
   );
@@ -295,6 +341,8 @@ function PrivateLibraryContent({
 
 function LibraryItem({
   item,
+  owned,
+  showAuthor,
   number,
   client,
   onOpen,
@@ -302,6 +350,8 @@ function LibraryItem({
   onDeleted,
 }: {
   item: PrivateDocumentSummary;
+  owned: boolean;
+  showAuthor: boolean;
   number: number;
   client: PrivateCloudClient;
   onOpen?: () => void | Promise<void>;
@@ -351,7 +401,7 @@ function LibraryItem({
         {onOpen ? (
           <button
             className={s.titleButton}
-            aria-label={`${item.title} 열기`}
+            aria-label={`${item.title} ${owned ? "열기" : "사본으로 열기"}`}
             disabled={busy}
             onClick={() =>
               void perform(async () => {
@@ -365,6 +415,14 @@ function LibraryItem({
           <span className={s.titleText}>{item.title}</span>
         )}
         {!onOpen && <small>열기 권한 없음</small>}
+        {showAuthor && (
+          <small>
+            작성자: {item.ownerName ?? "선생님"}
+            {owned ? " (나)" : ""} ·{" "}
+            {item.visibility === "branch" ? "학원에 공개" : "학원에 비공개"}
+            {!owned ? " · 사본으로 열기" : ""}
+          </small>
+        )}
         {busy && !dialogOpen && <small role="status">처리 중…</small>}
         {error && !dialogOpen && (
           <p className={s.error} role="alert">
@@ -381,39 +439,41 @@ function LibraryItem({
         <time dateTime={item.updatedAt}>{formatDraftDate(item.updatedAt)}</time>
       </td>
       <td className={s.actionsCell} role="cell">
-        <div className={s.actions}>
-          <button
-            ref={renameButton}
-            aria-label={`${item.title} 이름 변경`}
-            disabled={busy}
-            onClick={() => {
-              setName(item.title);
-              setError("");
-              setAction({
-                kind: "rename",
-                revision: item.revision,
-                title: item.title,
-              });
-            }}
-          >
-            이름 변경
-          </button>
-          <button
-            ref={deleteButton}
-            aria-label={`${item.title} 삭제`}
-            disabled={busy}
-            onClick={() => {
-              setError("");
-              setAction({
-                kind: "delete",
-                revision: item.revision,
-                title: item.title,
-              });
-            }}
-          >
-            삭제
-          </button>
-        </div>
+        {owned && (
+          <div className={s.actions}>
+            <button
+              ref={renameButton}
+              aria-label={`${item.title} 이름 변경`}
+              disabled={busy}
+              onClick={() => {
+                setName(item.title);
+                setError("");
+                setAction({
+                  kind: "rename",
+                  revision: item.revision,
+                  title: item.title,
+                });
+              }}
+            >
+              이름 변경
+            </button>
+            <button
+              ref={deleteButton}
+              aria-label={`${item.title} 삭제`}
+              disabled={busy}
+              onClick={() => {
+                setError("");
+                setAction({
+                  kind: "delete",
+                  revision: item.revision,
+                  title: item.title,
+                });
+              }}
+            >
+              삭제
+            </button>
+          </div>
+        )}
         {action?.kind === "rename" && (
           <ConfirmDialog
             title="이름 변경"

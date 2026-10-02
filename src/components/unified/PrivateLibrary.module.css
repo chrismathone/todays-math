@@ -33,6 +33,17 @@
   font-size: 13px;
   white-space: nowrap;
 }
+.tools .mineFilter {
+  min-height: 44px;
+  cursor: pointer;
+}
+.tools input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  accent-color: var(--library-accent);
+}
 .library input,
 .library select {
   border: 1px solid var(--library-control);

@@ -623,6 +623,55 @@ describe("내 시험지에 저장 · 다시 열기", () => {
   const saveButton = () =>
     screen.getByRole("button", { name: /내 시험지에 저장|저장됨|저장 중/ });
 
+  it("지점 계정은 공개 확인 전에는 저장하지 않고 기본 비공개를 유지하며 공개 철회도 저장한다", async () => {
+    Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.setAttribute("open", "");
+      },
+    });
+    const { puts } = cloud();
+    render(
+      <ConceptBlankView
+        bank={FIXTURE_BANK}
+        active
+        storageScope="owner-a"
+        branchId="30000000-0000-4000-8000-000000000003"
+      />,
+    );
+    openGrade("초5");
+    fireEvent.click(box("2-3 합동과 대칭"));
+    const button = screen.getByRole("button", {
+      name: "우리학원 시험지에 저장",
+    });
+    fireEvent.click(button);
+    expect(puts).toHaveLength(0);
+    expect(screen.getByRole("radio", { name: "학원에 비공개" })).toBeChecked();
+    fireEvent.click(screen.getByRole("button", { name: "취소" }));
+    expect(puts).toHaveLength(0);
+    fireEvent.click(button);
+    fireEvent.click(screen.getByRole("radio", { name: "학원에 공개" }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "저장 확인" }));
+    });
+    expect(puts[0].body).toMatchObject({
+      visibility: "branch",
+      sharedBranchId: "30000000-0000-4000-8000-000000000003",
+    });
+    expect(button).toBeEnabled();
+    fireEvent.click(button);
+    fireEvent.click(screen.getByRole("radio", { name: "학원에 비공개" }));
+    await act(async () => {
+      fireEvent.click(screen.getByRole("button", { name: "저장 확인" }));
+    });
+    expect(puts[1].body).toMatchObject({
+      expectedRevision: 1,
+      visibility: "private",
+      sharedBranchId: null,
+    });
+    Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal");
+  });
+
   it("내 시험지가 없으면(계정 범위 없음) 저장 단추가 없다", () => {
     renderView();
     expect(

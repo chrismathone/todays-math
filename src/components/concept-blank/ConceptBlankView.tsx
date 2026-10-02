@@ -30,6 +30,12 @@ import {
   privateDocumentId,
 } from "@/components/unified/privateCloudClient";
 import Icon from "@/components/unified/WorkspaceIcon";
+import { useLibrarySaveConfirmation } from "@/components/unified/LibrarySaveDialog";
+import { workspaceLibraryLabel } from "@/contracts/accountAccess.contract";
+import type {
+  DocumentSharing,
+  DocumentVisibility,
+} from "@/contracts/privateWorkspace.contract";
 import WorkspacePageHeader from "@/components/unified/WorkspacePageHeader";
 import {
   CONCEPT_BLANK_FORM_LABELS,
@@ -211,6 +217,8 @@ const selectionKey = (selection: ConceptBlankDocument["selection"]) =>
 
 /** 내 시험지에 있는 그 자료 — 판 · 고르기 열쇠 · 자료의 지면 제목(내 시험지에서 이름을 바꾸면 이것이 바뀐다). */
 type SavedDocument = {
+  visibility?: DocumentVisibility;
+  sharedBranchId?: string | null;
   id: string;
   revision: number;
   key: string;
@@ -218,6 +226,8 @@ type SavedDocument = {
 };
 type BlankDocument = Awaited<ReturnType<typeof readBlankDocument>>;
 const savedFrom = (document: BlankDocument): SavedDocument => ({
+  visibility: document.visibility,
+  sharedBranchId: document.sharedBranchId,
   id: document.id,
   revision: document.revision,
   key: selectionKey(document.selection),
@@ -237,6 +247,8 @@ async function readBlankDocument(client: PrivateCloudClient, id: string) {
   if (!parsed?.success) throw new Error("저장한 개념 백지를 열지 못했습니다.");
   return {
     id: document.id,
+    visibility: document.visibility,
+    sharedBranchId: document.sharedBranchId,
     revision: document.revision,
     selection: parsed.data.selection,
   };
@@ -374,6 +386,7 @@ export type ConceptBlankViewProps = {
   active?: boolean;
   /** 내 시험지의 계정 범위 — 있으면 [내 시험지에 저장]이 선다(26 §9 ⑾). */
   storageScope?: string;
+  branchId?: string | null;
   /** 내 시험지에서 연 개념 백지 — 판(version)이 바뀔 때마다 그 자료를 불러와 고르기를 되살린다. */
   openDocument?: { id: string; version: number } | null;
 };
@@ -382,6 +395,7 @@ export default function ConceptBlankView({
   bank: fixedBank,
   active = true,
   storageScope,
+  branchId,
   openDocument,
 }: ConceptBlankViewProps) {
   const uid = useId();
@@ -689,8 +703,8 @@ export default function ConceptBlankView({
   const saved =
     !!toSave && !!savedDocument && savedDocument.key === selectionKey(toSave);
   /** [내 시험지에 저장] — 처음이면 새 자료, 내 시험지에 있는 자료면 그 다음 판. 자료 이름은 지면 제목. */
-  const save = async () => {
-    if (!client || !toSave || saving) return;
+  const save = async (sharing?: DocumentSharing) => {
+    if (!client || !toSave || saving) return false;
     setSaving(true);
     setSaveError("");
     const title = (
@@ -699,7 +713,14 @@ export default function ConceptBlankView({
       "개념 백지"
     ).slice(0, TITLE_MAX);
     const put = (id: string, revision: number | null) =>
-      client.save(id, "conceptBlank", title, { selection: toSave }, revision);
+      client.save(
+        id,
+        "conceptBlank",
+        title,
+        { selection: toSave },
+        revision,
+        sharing,
+      );
     try {
       let document;
       try {
@@ -712,7 +733,8 @@ export default function ConceptBlankView({
         // 다른 곳에서 먼저 저장했으면 새 판을 받고 알린다 — 다시 누르면 이 화면의 고르기로 저장한다.
         if (
           !savedDocument ||
-          !(cause instanceof PrivateCloudError && cause.status === 409)
+          !(cause instanceof PrivateCloudError && cause.status === 409) ||
+          cause.code === "BRANCH_CHANGED"
         )
           throw cause;
         const latest = await readBlankDocument(client, savedDocument.id).catch(
@@ -729,16 +751,27 @@ export default function ConceptBlankView({
       }
       setSavedDocument({
         id: document.id,
+        visibility: document.visibility,
+        sharedBranchId: document.sharedBranchId,
         revision: document.revision,
         key: selectionKey(toSave),
         title: toSave.title ?? "",
       });
+      return true;
     } catch (cause) {
       setSaveError(cloudError(cause));
+      return false;
     } finally {
       setSaving(false);
     }
   };
+  const { requestSave, dialog: saveDialog } = useLibrarySaveConfirmation(
+    branchId,
+    save,
+    savedDocument?.sharedBranchId === branchId
+      ? savedDocument?.visibility
+      : "private",
+  );
   // `print=1` — 인쇄 페이지가 지면을 다 그린 뒤 인쇄 창을 바로 띄운다(원장님 2026-10-01 «ctrl+p 말고 인쇄버튼으로»)
   const printHref = code
     ? `${PRINT_PATH}?s=${code}&view=${printView}&print=1`
@@ -746,6 +779,7 @@ export default function ConceptBlankView({
 
   return (
     <div className={s.view}>
+      {saveDialog}
       <WorkspacePageHeader
         title="개념 백지"
         description="학년 · 대단원 · 소단원을 고르고 형식마다 난이도별 문항 수를 정합니다. 같은 고르기는 언제나 같은 지면입니다."
@@ -786,10 +820,14 @@ export default function ConceptBlankView({
             <button
               type="button"
               className={s.secondaryButton}
-              disabled={!toSave || saving || saved}
-              onClick={() => void save()}
+              disabled={!toSave || saving || (saved && !branchId)}
+              onClick={requestSave}
             >
-              {saving ? "저장 중…" : saved ? "저장됨" : "내 시험지에 저장"}
+              {saving
+                ? "저장 중…"
+                : saved && !branchId
+                  ? "저장됨"
+                  : `${workspaceLibraryLabel(branchId)}에 저장`}
             </button>
           )}
           {printHref ? (

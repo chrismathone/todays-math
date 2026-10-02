@@ -3,9 +3,15 @@ import {
   saveDocument,
   deleteDocument,
   renameDocument,
+  copyDocument,
 } from "@/lib/privateDocumentActions";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 type Context = { params: Promise<{ documentId: string }> };
+export const POST = withErrorLog(
+  "/api/library/documents/[documentId]",
+  async (r: Request, c: Context) =>
+    copyDocument(r, (await c.params).documentId),
+);
 export const GET = withErrorLog(
   "/api/library/documents/[documentId]",
   async (r: Request, c: Context) =>

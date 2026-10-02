@@ -23,6 +23,7 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  libraryLabel?: string;
   cloudSaveStatus?: string;
   allowedMenus?: WorkspaceMenu[];
   selected: StudioProblem[];
@@ -63,6 +64,7 @@ export default function WorksheetEditor({
   answers,
   savedAt,
   cloudSaveStatus,
+  libraryLabel,
   printOptions,
   printMeta,
   setPrintOptions,
@@ -210,7 +212,8 @@ export default function WorksheetEditor({
           onClick={save}
           disabled={!selected.length}
         >
-          <Icon name="save" size={18} /> 작업 저장
+          <Icon name="save" size={18} />{" "}
+          {libraryLabel ? `${libraryLabel}에 저장` : "작업 저장"}
         </button>
         <button
           className={s.primaryButton}

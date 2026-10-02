@@ -1,4 +1,8 @@
 import type { StudioSessionData } from "./studioSessionStore";
+import type {
+  DocumentSharing,
+  DocumentVisibility,
+} from "@/contracts/privateWorkspace.contract";
 import {
   PrivateCloudClient,
   PrivateCloudError,
@@ -102,6 +106,8 @@ function validate(value: unknown): StudioSessionData {
 
 /** Each extraction owns a document ID. Reset only changes the local current selection. */
 export class PrivateStudioSessionStore {
+  visibility: DocumentVisibility = "private";
+  sharedBranchId: string | null = null;
   private id?: string;
   private revision: number | null = null;
   private title = "";
@@ -220,6 +226,8 @@ export class PrivateStudioSessionStore {
         originals.set(source.id, await this.client.original(assets[source.id]));
     }
     this.revision = document.revision;
+    this.visibility = document.visibility ?? "private";
+    this.sharedBranchId = document.sharedBranchId ?? null;
     this.title = document.title;
     this.assets = assets;
     const displayed = await this.client.materialize(data);
@@ -227,7 +235,11 @@ export class PrivateStudioSessionStore {
     if (!this.released) await this.recovery.put("current", { id: this.id });
     return { data: displayed, originals };
   }
-  save(data: StudioSessionData, originals: Map<string, Blob>): Promise<void> {
+  save(
+    data: StudioSessionData,
+    originals: Map<string, Blob>,
+    sharing?: DocumentSharing,
+  ): Promise<void> {
     if (!data.sources.length && !data.crops.length) return Promise.resolve();
     this.id ??= privateDocumentId();
     const id = this.id;
@@ -239,7 +251,7 @@ export class PrivateStudioSessionStore {
         if (await this.recovery.get(`deleted:${id}`))
           throw new Error("삭제한 자료입니다. 새 자료로 시작해 주세요.");
         const signature = JSON.stringify(captured);
-        if (signature === this.lastSaved && !this.lastError) return;
+        if (signature === this.lastSaved && !this.lastError && !sharing) return;
         this.title ||= captured.sources[0]?.name || "추출한 자료";
         const portable = JSON.parse(
           this.client.recoveryText(JSON.stringify(captured)),
@@ -281,9 +293,12 @@ export class PrivateStudioSessionStore {
           this.title,
           { data: externalized, assets },
           this.revision,
+          sharing,
         );
         this.assets = assets;
         this.revision = saved.revision;
+        this.visibility = saved.visibility ?? "private";
+        this.sharedBranchId = saved.sharedBranchId ?? null;
         this.lastSaved = signature;
         this.lastError = null;
         // Cache portable URLs after acknowledgment; no expiring object URLs are needed to recover.
@@ -296,7 +311,11 @@ export class PrivateStudioSessionStore {
         });
       })
       .catch((cause) => {
-        if (cause instanceof PrivateCloudError && cause.status === 409)
+        if (
+          cause instanceof PrivateCloudError &&
+          cause.status === 409 &&
+          cause.code !== "BRANCH_CHANGED"
+        )
           this.conflictError = cause;
         this.lastError = cause;
         throw cause;
@@ -320,6 +339,8 @@ export class PrivateStudioSessionStore {
     await this.recovery.put("current", { id: null });
     this.id = undefined;
     this.revision = null;
+    this.visibility = "private";
+    this.sharedBranchId = null;
     this.title = "";
     this.assets = {};
     this.lastSaved = "";
