@@ -368,6 +368,15 @@ describe("POST /api/english/exams/[id]/sets — 저장", () => {
     ],
     ["정답 번호 범위 밖", { ...QUESTIONS[0], answer: "6" }, /1~5/],
     [
+      "빈칸 추론에 실제 빈칸 없음",
+      {
+        ...QUESTIONS[0],
+        type: "빈칸 추론",
+        prompt: `다음 빈칸에 들어갈 말로 가장 적절한 것은?\n${PASSAGE}`,
+      },
+      /빈칸.*____/,
+    ],
+    [
       "서술형에 보기",
       { ...QUESTIONS[1], options: ["a", "b", "c", "d", "e"] },
       /보기가 없어야/,
@@ -582,6 +591,61 @@ describe("PUT /api/english/sets/[id] — revision CAS", () => {
     body: unknown,
     headers?: Record<string, string>,
   ) => putSet(jsonRequest(setUrl(id), "PUT", body, headers), withId(id));
+
+  it("빈칸이 있는 추론은 저장하고, 수정에서 빈칸을 지우면 원본과 revision 을 보존한다", async () => {
+    const question: EnglishQuestion = {
+      ...QUESTIONS[0],
+      type: "빈칸 추론",
+      prompt: `다음 빈칸에 들어갈 말로 가장 적절한 것은?\n${PASSAGE.replace("cooperation", "________")}`,
+    };
+    const created = await createSet(
+      jsonRequest(setsUrl(examId), "POST", { ...DRAFT, questions: [question] }),
+      withId(examId),
+    );
+    expect(created.status).toBe(201);
+    const { data: set } = englishSetResponseSchema.parse(await created.json());
+    expect(set.questions).toEqual([question]);
+
+    const removed = await update(set.id, {
+      title: "거절할 수정",
+      status: "검토 완료",
+      passage: PASSAGE,
+      questions: [
+        {
+          ...question,
+          prompt: question.prompt.replace("________", "cooperation"),
+        },
+      ],
+      revision: 1,
+    });
+    expect(removed.status).toBe(422);
+    const error = errorResponseSchema.parse(await removed.json()).error;
+    expect(error.code).toBe("ENGLISH_DRAFT_REJECTED");
+    expect(issuesSchema.parse(error.details).issues).toEqual([
+      { question: 0, message: expect.stringMatching(/빈칸.*____/) },
+    ]);
+    expect(englishRows.sets()[0]).toMatchObject({
+      title: DRAFT.title,
+      status: "초안",
+      questions: [question],
+      revision: 1,
+    });
+
+    const valid = await update(set.id, {
+      title: "빈칸 유지",
+      status: "검토 중",
+      passage: PASSAGE,
+      questions: [question],
+      revision: 1,
+    });
+    expect(valid.status).toBe(200);
+    expect(
+      englishSetResponseSchema.parse(await valid.json()).data,
+    ).toMatchObject({
+      questions: [question],
+      revision: 2,
+    });
+  });
 
   it("맞는 revision 이면 저장하고 revision 이 하나 오른다 · 상태·제목·지문·문항이 바뀐다", async () => {
     const set = seedEnglishQuestionSet({

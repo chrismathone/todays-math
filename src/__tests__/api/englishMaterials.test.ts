@@ -300,6 +300,71 @@ describe("POST materials — multipart 파일", () => {
     });
   });
 
+  it.each([
+    ["CP949 한글", [0xc7, 0xd1, 0xb1, 0xdb]],
+    ["Windows-1252 따옴표", [0x93, 0x48, 0x69, 0x94]],
+    ["UTF-16LE BOM", [0xff, 0xfe, 0x41, 0x00]],
+    ["UTF-16BE BOM", [0xfe, 0xff, 0x00, 0x41]],
+    ["BOM 없는 UTF-16", [0x41, 0x00, 0x42, 0x00]],
+    ["잘린 UTF-8", [0x61, 0xe2, 0x82]],
+    ["잘못된 UTF-8 서로게이트", [0xed, 0xa0, 0x80]],
+  ])(
+    "%s TXT 는 변환 안내와 함께 400 · 깨진 글이나 원본 행을 저장하지 않는다",
+    async (_label, data) => {
+      const res = await createMaterial(
+        fileRequest(materialsUrl(examId), {
+          name: "passage.txt",
+          bytes: new Uint8Array(data),
+          type: "text/plain; charset=utf-8",
+        }),
+        withId(examId),
+      );
+      expect(res.status).toBe(400);
+      expect(errorResponseSchema.parse(await res.json()).error).toMatchObject({
+        code: "VALIDATION_ERROR",
+        message: expect.stringMatching(/UTF-8.*다시 저장/),
+      });
+      expect(englishRows.materials()).toHaveLength(0);
+    },
+  );
+
+  it.each([false, true])(
+    "유효한 UTF-8 한글·이모지·명시적 U+FFFD 는 보존한다 (BOM: %s)",
+    async (bom) => {
+      const content = `${PASSAGE}\n한글과 café 😀 — \uFFFD`;
+      const bytes = new TextEncoder().encode(
+        `${bom ? "\uFEFF" : ""}  ${content}\n`,
+      );
+      const res = await createMaterial(
+        fileRequest(materialsUrl(examId), { name: "passage.txt", bytes }),
+        withId(examId),
+      );
+      expect(res.status).toBe(201);
+      expect(
+        englishMaterialResponseSchema.parse(await res.json()).data.content,
+      ).toBe(content);
+      expect(englishRows.materials()[0]?.bytes).toEqual(bytes);
+    },
+  );
+
+  it("content 상한 뒤에 깨진 바이트가 있어도 TXT 전체를 거절한다", async () => {
+    const prefix = new TextEncoder().encode(
+      "a".repeat(ENGLISH_MATERIAL_CONTENT_MAX + 1),
+    );
+    const res = await createMaterial(
+      fileRequest(materialsUrl(examId), {
+        name: "long.txt",
+        bytes: new Uint8Array([...prefix, 0xff]),
+      }),
+      withId(examId),
+    );
+    expect(res.status).toBe(400);
+    expect(errorResponseSchema.parse(await res.json()).error.code).toBe(
+      "VALIDATION_ERROR",
+    );
+    expect(englishRows.materials()).toHaveLength(0);
+  });
+
   it.each(["exe", "hwp", "zip", "svg", "js"])(
     "허용 목록 밖 확장자 .%s 는 400",
     async (ext) => {
