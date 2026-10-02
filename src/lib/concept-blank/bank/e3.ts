@@ -1113,8 +1113,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "세 자리 수를 세로로 곱할 때에도 {일의 자리}부터 계산한다.",
       example: {
-        prompt: "$213\\times3$을 계산하시오.",
-        answer: "$639$",
+        prompt: "$324\\times2$를 세로로 곱할 때 맨 먼저 곱하는 두 수를 쓰시오.",
+        answer: "$4$와 $2$",
       },
     },
     {
@@ -1130,7 +1130,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-1-1-c3",
       section: "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
       level: "상",
-      term: "자리의 $0$과 곱셈",
+      term: "$302\\times2$에서 십의 자리에 쓰는 숫자",
       kind: "성질",
       definition:
         "$302\\times2$에서는 십의 묶음이 없으므로 결과의 십의 자리에 {$0$}을 쓴다.",
@@ -1144,8 +1144,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "각 자리의 곱에서 묶음 $10$개가 생길 때마다 {바로 윗자리}로 옮긴다.",
       example: {
-        prompt: "$347\\times6$을 계산하시오.",
-        answer: "$2082$",
+        prompt:
+          "$236\\times4$에서 일의 자리 곱 $24$ 가운데 십의 자리로 옮기는 수를 쓰시오.",
+        answer: "$2$",
       },
     },
     {
@@ -1176,8 +1177,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "한 수에 $30$을 곱할 때에는 $3$을 곱한 값의 {$10$배}를 구한다.",
       example: {
-        prompt: "$24\\times30$을 계산하시오.",
-        answer: "$720$",
+        prompt: "$12\\times40$은 $12\\times4$의 몇 배인가?",
+        answer: "$10$배",
       },
     },
     {
@@ -1194,7 +1195,7 @@ export const bank: ConceptBlankBank = {
       section:
         "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
       level: "상",
-      term: "몇십끼리의 곱",
+      term: "$20\\times30$에서 $2\\times3=6$이 뜻하는 수",
       kind: "성질",
       definition:
         "$20\\times30$에서 $2\\times3=6$은 십의 묶음끼리 곱한 것이므로 {$600$}을 뜻한다.",
@@ -1207,8 +1208,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "곱하는 두 자리 수를 {몇십과 몇}으로 나누어 각각 곱한다.",
       example: {
-        prompt: "$27\\times34$를 계산하시오.",
-        answer: "$918$",
+        prompt:
+          "$15\\times23$을 계산하려고 한다. $23$을 몇십과 몇으로 나누어 쓰시오.",
+        answer: "$20$과 $3$",
       },
     },
     {
@@ -3300,4 +3302,6 @@ markGivenCases(bank, [
   "e3-1-6-3-c3",
   "e3-1-6-6-c3",
   "e3-1-6-6-c4",
+  "e3-2-1-1-c3",
+  "e3-2-1-3-c3",
 ]);
