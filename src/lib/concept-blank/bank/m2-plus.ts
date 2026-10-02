@@ -14443,7 +14443,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "밑각으로 꼭지각 구하기",
+        r`한 밑각이 $a^\circ$인 이등변삼각형의 꼭지각`,
         "방법",
         r`한 밑각이 $a^\circ$이면 꼭지각은 {$(180-2a)^\circ$}이다.`,
         [r`한 밑각이 $35^\circ$일 때 꼭지각`, r`$110^\circ$`],
@@ -14456,9 +14456,10 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "각으로 이등변삼각형 알아보기",
+        r`두 내각이 $40^\circ$, $70^\circ$인 삼각형의 종류`,
         "방법",
         r`두 내각이 $40^\circ$, $70^\circ$인 삼각형은 나머지 각이 {$70^\circ$}이므로 {이등변삼각형}이다.`,
+        CASE,
       ],
       [
         "중",
@@ -14482,7 +14483,7 @@ export const bank = joinBanks([
         "상",
         "접은 종이 속 이등변삼각형",
         "성질",
-        "직사각형 종이를 비스듬히 접으면 접힌 부분에 생기는 삼각형은 {엇각}과 접은 각이 같아 {이등변삼각형}이 된다.",
+        "직사각형 종이를 대각선을 따라 접으면 두 겹으로 겹친 부분에 생기는 삼각형은 {엇각}과 접은 각이 같아 {이등변삼각형}이 된다.",
       ],
       [
         "상",
@@ -14517,10 +14518,14 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "밑각과 꼭지각의 관계식",
+        "한 밑각이 꼭지각의 $2$배인 이등변삼각형의 식",
         "방법",
         r`이등변삼각형에서 한 밑각이 꼭지각의 $2$배이면 꼭지각을 $x$로 놓아 {$x+4x=180$}을 푼다.`,
-        ["꼭지각의 크기", r`$36^\circ$`],
+        [
+          "한 밑각이 꼭지각의 $2$배인 이등변삼각형의 꼭지각의 크기",
+          r`$36^\circ$`,
+        ],
+        CASE,
       ],
     ],
     ox: [
@@ -14670,9 +14675,9 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "직사각형 종이를 접었을 때 생기는 삼각형은 언제나 정삼각형이다.",
+        "직사각형 종이를 대각선을 따라 접었을 때 겹친 부분에 생기는 삼각형은 언제나 정삼각형이다.",
         false,
-        "두 각이 같은 이등변삼각형이 생긴다.",
+        "엇각과 접은 각이 같은 이등변삼각형이 생긴다.",
       ],
       [
         "상",
@@ -14790,7 +14795,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`$\overline{AB}=\overline{AC}$인 $\triangle ABC$의 변 $AC$ 위에 $\overline{BD}=\overline{BC}$인 점 $D$를 잡았다. $\angle A=36^\circ$일 때 $\angle ABD$의 크기를 구하시오.`,
+        r`$\overline{AB}=\overline{AC}$인 $\triangle ABC$의 변 $AC$ 위에 $\overline{BD}=\overline{BC}$인 점 $D$를 $C$가 아닌 곳에 잡았다. $\angle A=36^\circ$일 때 $\angle ABD$의 크기를 구하시오.`,
         r`$36^\circ$`,
       ],
       [
@@ -14937,7 +14942,7 @@ export const bank = joinBanks([
         "상",
         "같은 거리에 있는 점과 이등분선의 증명",
         "성질",
-        r`점 $P$에서 각의 두 변까지의 거리가 같으면 $\mathrm{RHS}$ 합동으로 $P$가 각의 {이등분선} 위에 있음이 {증명}된다.`,
+        r`각의 내부의 점 $P$에서 각의 두 변까지의 거리가 같으면 $\mathrm{RHS}$ 합동으로 $P$가 각의 {이등분선} 위에 있음이 {증명}된다.`,
       ],
       [
         "상",
@@ -15093,9 +15098,9 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`빗변이 아닌 두 변의 길이가 각각 같은 두 직각삼각형은 $\mathrm{RHS}$ 합동이다.`,
+        r`빗변이 아닌 두 변의 길이가 각각 같은 두 직각삼각형에 바로 쓰는 합동 조건은 $\mathrm{RHS}$이다.`,
         false,
-        r`빗변이 같은 것이 아니므로 $\mathrm{SAS}$ 합동이다.`,
+        r`주어진 것은 두 변과 그 끼인각인 직각이므로 $\mathrm{SAS}$ 합동이다.`,
       ],
     ],
     apply: [
@@ -15221,7 +15226,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`점 $P$에서 $\angle XOY$의 두 변까지의 거리가 모두 $5\,\mathrm{cm}$이고 $\angle XOY=70^\circ$일 때 $\angle XOP$의 크기를 구하시오.`,
+        r`$\angle XOY$의 내부의 점 $P$에서 두 변까지의 거리가 모두 $5\,\mathrm{cm}$이고 $\angle XOY=70^\circ$일 때 $\angle XOP$의 크기를 구하시오.`,
         r`$35^\circ$`,
       ],
       [
@@ -15268,10 +15273,10 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "외접원의 둘레",
+        "반지름이 $r$인 외접원의 둘레",
         "공식",
         r`외접원의 반지름이 $r$이면 외접원의 둘레는 {$2\pi r$}이다.`,
-        [r`반지름이 $5$일 때 둘레`, r`$10\pi$`],
+        [r`외접원의 반지름이 $5$일 때 외접원의 둘레`, r`$10\pi$`],
       ],
       [
         "하",
@@ -15289,15 +15294,15 @@ export const bank = joinBanks([
         "중",
         "외심이 만드는 세 이등변삼각형",
         "성질",
-        r`외심과 세 꼭짓점을 이으면 $\triangle OAB$, $\triangle OBC$, $\triangle OCA$가 모두 {이등변삼각형}이라 각각 {밑각}이 같다.`,
+        r`예각삼각형 $ABC$의 외심 $O$와 세 꼭짓점을 이으면 $\triangle OAB$, $\triangle OBC$, $\triangle OCA$가 모두 {이등변삼각형}이라 각각 {밑각}이 같다.`,
       ],
       [
         "중",
-        "외심에서 나뉜 세 각의 합",
+        "예각삼각형의 외심에서 나뉜 세 각의 합",
         "성질",
-        r`외심 $O$에서 $\angle OAB+\angle OBC+\angle OCA$는 {$90^\circ$}이다.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB+\angle OBC+\angle OCA$는 {$90^\circ$}이다.`,
         [
-          r`$\angle OAB=25^\circ$, $\angle OBC=35^\circ$일 때 $\angle OCA$`,
+          r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=25^\circ$, $\angle OBC=35^\circ$일 때 $\angle OCA$`,
           r`$30^\circ$`,
         ],
       ],
@@ -15306,7 +15311,10 @@ export const bank = joinBanks([
         "외심에서 본 변의 각",
         "성질",
         r`예각삼각형의 외심 $O$에 대해 $\angle BOC$는 $\angle A$의 {$2$배}이다.`,
-        [r`$\angle A=50^\circ$일 때 $\angle BOC$`, r`$100^\circ$`],
+        [
+          r`예각삼각형 $ABC$의 외심 $O$에서 $\angle A=50^\circ$일 때 $\angle BOC$`,
+          r`$100^\circ$`,
+        ],
       ],
       [
         "중",
@@ -15319,14 +15327,17 @@ export const bank = joinBanks([
         "빗변의 중점까지의 거리",
         "성질",
         "직각삼각형에서 빗변의 중점과 직각인 꼭짓점을 이은 선분의 길이는 빗변의 {절반}이다.",
-        [r`빗변이 $10$일 때 그 선분의 길이`, "$5$"],
+        [
+          "빗변이 $10$인 직각삼각형에서 빗변의 중점과 직각인 꼭짓점 사이의 거리",
+          "$5$",
+        ],
       ],
       [
         "중",
-        "외접원의 넓이",
+        "외심에서 꼭짓점까지 $r$일 때 외접원의 넓이",
         "공식",
         r`외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 {$\pi r^2$}이다.`,
-        [r`$r=4$일 때 넓이`, r`$16\pi$`],
+        [r`외심에서 꼭짓점까지의 거리가 $4$일 때 외접원의 넓이`, r`$16\pi$`],
       ],
       [
         "중",
@@ -15336,9 +15347,9 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`$\angle BOC$가 $\angle A$의 두 배인 까닭`,
+        r`예각삼각형에서 $\angle BOC$가 $\angle A$의 두 배인 까닭`,
         "성질",
-        r`$\overline{AO}$를 늘인 선이 만드는 두 외각이 각각 이등변삼각형 밑각의 {$2$배}여서 $\angle BOC$는 $\angle A$의 {$2$배}가 된다.`,
+        r`예각삼각형 $ABC$의 외심 $O$에 대해 $\overline{AO}$를 늘인 선이 만드는 두 외각이 각각 이등변삼각형 밑각의 {$2$배}여서 $\angle BOC$는 $\angle A$의 {$2$배}가 된다.`,
       ],
       [
         "상",
@@ -15350,14 +15361,14 @@ export const bank = joinBanks([
         "상",
         "나뉜 각으로 내각 구하기",
         "방법",
-        r`$\angle OAB=x$, $\angle OBC=y$, $\angle OCA=z$이면 $x+y+z=$ {$90^\circ$}이고 $\angle A=x+z$이다.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=x$, $\angle OBC=y$, $\angle OCA=z$이면 $x+y+z=$ {$90^\circ$}이고 $\angle A=x+z$이다.`,
       ],
       [
         "상",
-        "직각삼각형의 외접원의 넓이",
+        "빗변이 $c$인 직각삼각형의 외접원의 넓이",
         "공식",
         r`빗변이 $c$인 직각삼각형의 외접원의 넓이는 {$\frac{\pi c^2}{4}$}이다.`,
-        [r`빗변이 $8$일 때 넓이`, r`$16\pi$`],
+        [r`빗변이 $8$인 직각삼각형의 외접원의 넓이`, r`$16\pi$`],
       ],
       [
         "상",
@@ -15369,7 +15380,7 @@ export const bank = joinBanks([
         "상",
         "외심과 내심을 헷갈리는 잘못",
         "성질",
-        "세 변까지 거리가 같은 점은 {내심}이고, 세 꼭짓점까지 거리가 같은 점이 {외심}이다.",
+        "삼각형 안에서 세 변까지 거리가 같은 점은 {내심}이고, 세 꼭짓점까지 거리가 같은 점이 {외심}이다.",
       ],
       [
         "상",
@@ -15435,13 +15446,13 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "외심과 세 꼭짓점을 이으면 이등변삼각형이 세 개 생긴다.",
+        "예각삼각형의 외심과 세 꼭짓점을 이으면 이등변삼각형이 세 개 생긴다.",
         true,
         "두 변이 모두 반지름이다.",
       ],
       [
         "중",
-        r`외심 $O$에서 $\angle OAB=25^\circ$, $\angle OBC=35^\circ$이면 $\angle OCA=30^\circ$이다.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=25^\circ$, $\angle OBC=35^\circ$이면 $\angle OCA=30^\circ$이다.`,
         true,
         r`세 각의 합이 $90^\circ$이다.`,
       ],
@@ -15489,7 +15500,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`$\angle OAB=x$, $\angle OBC=y$, $\angle OCA=z$이면 $x+y+z=180^\circ$이다.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=x$, $\angle OBC=y$, $\angle OCA=z$이면 $x+y+z=180^\circ$이다.`,
         false,
         r`$2(x+y+z)=180^\circ$이므로 $90^\circ$이다.`,
       ],
@@ -15501,7 +15512,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "세 변까지의 거리가 같은 점은 외심이다.",
+        "삼각형의 내부에서 세 변까지의 거리가 같은 점은 외심이다.",
         false,
         "그 점은 내심이다.",
       ],
@@ -15569,7 +15580,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        r`외심 $O$에서 $\overline{OA}$와 $\overline{OB}$의 길이가 같은 까닭을 쓰시오.`,
+        r`$\triangle ABC$의 외심 $O$에서 $\overline{OA}$와 $\overline{OB}$의 길이가 같은 까닭을 쓰시오.`,
         "둘 다 외접원의 반지름이다",
       ],
       [
@@ -15584,7 +15595,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`외심 $O$에서 $\angle OAB=30^\circ$, $\angle OBC=20^\circ$일 때 $\angle OCA$의 크기를 구하시오.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=30^\circ$, $\angle OBC=20^\circ$일 때 $\angle OCA$의 크기를 구하시오.`,
         r`$40^\circ$`,
       ],
       [
@@ -15594,12 +15605,12 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`외심 $O$에서 $\angle BOC=110^\circ$일 때 $\angle OBC$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 외심 $O$에서 $\angle BOC=110^\circ$일 때 $\angle OBC$의 크기를 구하시오.`,
         r`$35^\circ$`,
       ],
       [
         "중",
-        r`외심 $O$에서 $\angle OAB=40^\circ$일 때 $\angle AOB$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 외심 $O$에서 $\angle OAB=40^\circ$일 때 $\angle AOB$의 크기를 구하시오.`,
         r`$100^\circ$`,
       ],
       [
@@ -15609,7 +15620,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`외심 $O$에서 $\overline{OA}=6\,\mathrm{cm}$이고 $\overline{AB}=6\,\mathrm{cm}$일 때 $\angle AOB$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 외심 $O$에서 $\overline{OA}=6\,\mathrm{cm}$이고 $\overline{AB}=6\,\mathrm{cm}$일 때 $\angle AOB$의 크기를 구하시오.`,
         r`$60^\circ$`,
       ],
       [
@@ -15619,17 +15630,17 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`예각삼각형의 외심 $O$에서 $\angle BOC=140^\circ$일 때 $\angle A$의 크기를 구하시오.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle BOC=140^\circ$일 때 $\angle A$의 크기를 구하시오.`,
         r`$70^\circ$`,
       ],
       [
         "중",
-        r`외심 $O$에서 $\angle OBC=15^\circ$, $\angle OCA=35^\circ$일 때 $\angle OAB$의 크기를 구하시오.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OBC=15^\circ$, $\angle OCA=35^\circ$일 때 $\angle OAB$의 크기를 구하시오.`,
         r`$40^\circ$`,
       ],
       [
         "상",
-        r`외심 $O$에서 $\angle OAB=20^\circ$, $\angle OCA=30^\circ$일 때 $\angle BAC$의 크기를 구하시오.`,
+        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=20^\circ$, $\angle OCA=30^\circ$일 때 $\angle BAC$의 크기를 구하시오.`,
         r`$50^\circ$`,
       ],
       [
@@ -15644,7 +15655,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "도경이는 세 변에서 같은 거리에 있는 점을 외심이라 했다. 바르게 고치시오.",
+        "도경이는 삼각형의 내부에서 세 변까지의 거리가 같은 점을 외심이라 했다. 바르게 고치시오.",
         "내심이다 (외심은 세 꼭짓점에서 같은 거리)",
       ],
       [
@@ -15688,7 +15699,10 @@ export const bank = joinBanks([
         "내심과 꼭짓점을 이은 선분",
         "성질",
         "내심과 꼭짓점을 이은 선분은 그 꼭짓점의 각을 {이등분}한다.",
-        [r`$\angle B=60^\circ$일 때 $\angle IBC$`, r`$30^\circ$`],
+        [
+          r`$\triangle ABC$의 내심 $I$에서 $\angle B=60^\circ$일 때 $\angle IBC$`,
+          r`$30^\circ$`,
+        ],
       ],
       [
         "하",
@@ -15700,9 +15714,9 @@ export const bank = joinBanks([
         "중",
         "내심에서 나뉜 세 각의 합",
         "성질",
-        r`내심 $I$에서 $\angle IAB+\angle IBC+\angle ICA$는 세 내각의 절반의 합이라 {$90^\circ$}이다.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle IAB+\angle IBC+\angle ICA$는 세 내각의 절반의 합이라 {$90^\circ$}이다.`,
         [
-          r`$\angle IAB=30^\circ$, $\angle IBC=25^\circ$일 때 $\angle ICA$`,
+          r`$\triangle ABC$의 내심 $I$에서 $\angle IAB=30^\circ$, $\angle IBC=25^\circ$일 때 $\angle ICA$`,
           r`$35^\circ$`,
         ],
       ],
@@ -15716,9 +15730,9 @@ export const bank = joinBanks([
         "중",
         "꼭짓점과 접점 사이 길이 구하기",
         "방법",
-        r`한 꼭짓점에서 두 접점까지의 거리가 같음을 써서 변의 길이를 {나누어} 구한다. $A$에서의 거리는 $\frac{\overline{AB}+\overline{AC}-\overline{BC}}{2}$이다.`,
+        r`한 꼭짓점에서 내접원의 {두 접점}까지의 거리가 같음을 써서 변의 길이를 나누어 구한다. $A$에서의 거리는 $\frac{\overline{AB}+\overline{AC}-\overline{BC}}{2}$이다.`,
         [
-          r`$\overline{AB}=7$, $\overline{AC}=5$, $\overline{BC}=6$일 때 $A$에서 접점까지`,
+          r`$\overline{AB}=7$, $\overline{AC}=5$, $\overline{BC}=6$인 $\triangle ABC$에서 $A$와 내접원의 접점 사이의 거리`,
           "$3$",
         ],
       ],
@@ -15733,7 +15747,7 @@ export const bank = joinBanks([
         "직각삼각형의 내접원의 반지름",
         "방법",
         r`직각삼각형의 내접원의 반지름은 직각을 낀 두 변의 {합}에서 빗변을 빼고 {$2$}로 나눈 값이다.`,
-        [r`세 변이 $5$, $12$, $13$일 때 반지름`, "$2$"],
+        [r`세 변이 $5$, $12$, $13$인 직각삼각형의 내접원의 반지름`, "$2$"],
       ],
       [
         "중",
@@ -15743,16 +15757,17 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "넓이와 둘레로 반지름 구하기",
+        "넓이 $S$, 둘레 $l$인 삼각형의 내접원의 반지름",
         "공식",
         r`넓이가 $S$, 둘레가 $l$인 삼각형의 내접원의 반지름은 {$\frac{2S}{l}$}이다.`,
-        [r`$S=30$, $l=30$일 때 반지름`, "$2$"],
+        ["넓이 $30$, 둘레 $30$인 삼각형의 내접원의 반지름", "$2$"],
       ],
       [
         "상",
-        r`$\angle BIC$로 $\angle A$ 구하기`,
+        r`$\angle BIC=120^\circ$일 때 $\angle A$ 구하기`,
         "방법",
-        r`$\angle BIC=120^\circ$이면 $90^\circ+\frac{1}{2}\angle A=120^\circ$에서 {$\angle A=60^\circ$}이다.`,
+        r`내심 $I$에서 $\angle BIC=120^\circ$이면 $90^\circ+\frac{1}{2}\angle A=120^\circ$에서 {$\angle A=60^\circ$}이다.`,
+        CASE,
       ],
       [
         "상",
@@ -15765,17 +15780,20 @@ export const bank = joinBanks([
         "내심을 지나는 평행선",
         "성질",
         r`내심 $I$를 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$, $\overline{AC}$와 만나는 점을 $D$, $E$라 하면 $\overline{DE}=\overline{DB}+$ {$\overline{EC}$}이다.`,
-        [r`$\overline{DB}=3$, $\overline{EC}=4$일 때 $\overline{DE}$`, "$7$"],
+        [
+          r`내심을 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$, $\overline{AC}$와 $D$, $E$에서 만난다. $\overline{DB}=3$, $\overline{EC}=4$일 때 $\overline{DE}$`,
+          "$7$",
+        ],
       ],
       [
         "상",
         "평행선이 만드는 이등변삼각형",
         "성질",
-        r`그 평행선에서 $\angle DIB$와 $\angle IBC$가 엇각으로 같아 $\triangle DBI$는 $\overline{DB}=$ {$\overline{DI}$}인 {이등변삼각형}이다.`,
+        r`$\triangle ABC$의 내심 $I$를 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$와 만나는 점을 $D$라 하면, $\angle DIB$와 $\angle IBC$가 엇각으로 같아 $\triangle DBI$는 $\overline{DB}=$ {$\overline{DI}$}인 {이등변삼각형}이다.`,
       ],
       [
         "상",
-        "접점까지의 거리와 둘레",
+        "꼭짓점에서 접점까지 $a$, $b$, $c$일 때 삼각형의 둘레",
         "성질",
         r`각 꼭짓점과 가까운 접점 사이의 길이가 $a$, $b$, $c$이면 삼각형의 둘레는 {$2(a+b+c)$}이다.`,
       ],
@@ -15834,7 +15852,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "내심과 세 꼭짓점을 이어 만든 세 삼각형의 높이는 모두 같다.",
+        "내심과 세 꼭짓점을 이어 만든 세 삼각형에서 원래 삼각형의 변을 밑변으로 한 높이는 모두 같다.",
         true,
         "모두 내접원의 반지름이다.",
       ],
@@ -15894,7 +15912,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`내심을 지나고 $\overline{BC}$에 평행한 직선이 두 변과 $D$, $E$에서 만나면 $\overline{DE}=\overline{DB}+\overline{EC}$이다.`,
+        r`$\triangle ABC$의 내심을 지나고 $\overline{BC}$에 평행한 직선이 변 $AB$, $AC$와 각각 $D$, $E$에서 만나면 $\overline{DE}=\overline{DB}+\overline{EC}$이다.`,
         true,
         "두 이등변삼각형이 생긴다.",
       ],
@@ -15926,12 +15944,12 @@ export const bank = joinBanks([
     apply: [
       [
         "하",
-        r`내심 $I$에서 $\angle IAC=25^\circ$일 때 $\angle BAC$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle IAC=25^\circ$일 때 $\angle BAC$의 크기를 구하시오.`,
         r`$50^\circ$`,
       ],
       [
         "하",
-        r`내심 $I$에서 $\angle ABC=70^\circ$일 때 $\angle IBC$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle ABC=70^\circ$일 때 $\angle IBC$의 크기를 구하시오.`,
         r`$35^\circ$`,
       ],
       [
@@ -15951,7 +15969,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        r`내심 $I$에서 $\angle ICB=18^\circ$일 때 $\angle ACB$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle ICB=18^\circ$일 때 $\angle ACB$의 크기를 구하시오.`,
         r`$36^\circ$`,
       ],
       [
@@ -15971,12 +15989,12 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`내심 $I$에서 $\angle IAB=30^\circ$, $\angle IBC=25^\circ$일 때 $\angle ICA$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle IAB=30^\circ$, $\angle IBC=25^\circ$일 때 $\angle ICA$의 크기를 구하시오.`,
         r`$35^\circ$`,
       ],
       [
         "중",
-        r`내심 $I$에서 $\angle A=50^\circ$일 때 $\angle BIC$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle A=50^\circ$일 때 $\angle BIC$의 크기를 구하시오.`,
         r`$115^\circ$`,
       ],
       [
@@ -15996,7 +16014,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`내심 $I$에서 $\angle B=50^\circ$, $\angle C=70^\circ$일 때 $\angle BIC$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle B=50^\circ$, $\angle C=70^\circ$일 때 $\angle BIC$의 크기를 구하시오.`,
         r`$120^\circ$`,
       ],
       [
@@ -16006,7 +16024,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`내심 $I$에서 $\angle BIC=110^\circ$일 때 $\angle A$의 크기를 구하시오.`,
+        r`$\triangle ABC$의 내심 $I$에서 $\angle BIC=110^\circ$일 때 $\angle A$의 크기를 구하시오.`,
         r`$40^\circ$`,
       ],
       [
@@ -16031,7 +16049,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`수호는 $\angle A=60^\circ$이면 내심 $I$에 대해 $\angle BIC=60^\circ$라 했다. 바른 값을 구하시오.`,
+        r`수호는 $\triangle ABC$에서 $\angle A=60^\circ$이면 내심 $I$에 대해 $\angle BIC=60^\circ$라 했다. 바른 값을 구하시오.`,
         r`$120^\circ$`,
       ],
       [
@@ -16069,7 +16087,7 @@ export const bank = joinBanks([
         "평행사변형의 둘레",
         "방법",
         r`평행사변형의 둘레는 이웃한 두 변의 길이를 더해 {$2$}배 한 값이다.`,
-        [r`이웃한 두 변이 $4$, $6$일 때 둘레`, "$20$"],
+        ["이웃한 두 변이 $4$, $6$인 평행사변형의 둘레", "$20$"],
       ],
       [
         "하",
@@ -16097,27 +16115,31 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "대각의 성질로 각 구하기",
+        r`$\angle A=70^\circ$인 평행사변형 $ABCD$의 $\angle C$`,
         "방법",
         r`$\angle A=70^\circ$인 평행사변형 $ABCD$에서 $\angle C$는 $\angle A$와 마주 보아 {$70^\circ$}이다.`,
+        CASE,
       ],
       [
         "중",
-        "이웃한 각으로 각 구하기",
+        r`$\angle B=125^\circ$인 평행사변형 $ABCD$의 $\angle A$`,
         "방법",
         r`평행사변형 $ABCD$에서 $\angle B=125^\circ$이면 이웃한 $\angle A$는 {$55^\circ$}이다.`,
+        CASE,
       ],
       [
         "중",
-        "대각선의 절반",
+        r`대각선 $\overline{AC}=12$인 평행사변형의 $\overline{OA}$`,
         "방법",
-        r`평행사변형에서 대각선 $\overline{AC}=12$이면 교점 $O$까지의 길이 $\overline{OA}$는 {$6$}이다.`,
+        r`평행사변형에서 대각선 $\overline{AC}=12$이면 두 대각선의 교점 $O$까지의 길이 $\overline{OA}$는 {$6$}이다.`,
+        CASE,
       ],
       [
         "중",
-        "마주 보는 변을 식으로",
+        r`평행사변형에서 $\overline{AB}=x+3$, $\overline{DC}=2x-1$일 때 $x$`,
         "방법",
-        r`$\overline{AB}=x+3$, $\overline{DC}=2x-1$이면 {$x+3=2x-1$}로 놓아 {$x=4$}를 얻는다.`,
+        r`평행사변형 $ABCD$에서 $\overline{AB}=x+3$, $\overline{DC}=2x-1$이면 {$x+3=2x-1$}로 놓아 {$x=4$}를 얻는다.`,
+        CASE,
       ],
       [
         "중",
@@ -16154,13 +16176,17 @@ export const bank = joinBanks([
         "이등분선이 자르는 길이",
         "방법",
         r`평행사변형 $ABCD$에서 $\angle A$의 이등분선이 $\overline{BC}$와 만나는 점이 $E$이면 $\overline{BE}=$ {$\overline{AB}$}이다.`,
-        [r`$\overline{AB}=5$, $\overline{BC}=8$일 때 $\overline{EC}$`, "$3$"],
+        [
+          r`평행사변형 $ABCD$에서 $\angle A$의 이등분선이 $\overline{BC}$와 $E$에서 만난다. $\overline{AB}=5$, $\overline{BC}=8$일 때 $\overline{EC}$`,
+          "$3$",
+        ],
       ],
       [
         "상",
-        "이웃한 두 각의 비",
+        r`$\angle A:\angle B=2:3$인 평행사변형의 $\angle A$`,
         "방법",
         r`평행사변형에서 $\angle A:\angle B=2:3$이면 두 각의 합이 $180^\circ$이므로 {$\angle A=72^\circ$}이다.`,
+        CASE,
       ],
       [
         "상",
@@ -16170,9 +16196,10 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "둘레와 변의 비",
+        r`둘레 $30$, $\overline{AB}:\overline{BC}=2:3$인 평행사변형의 $\overline{AB}$`,
         "방법",
-        r`둘레가 $30$이고 $\overline{AB}:\overline{BC}=2:3$이면 $\overline{AB}+\overline{BC}=15$에서 {$\overline{AB}=6$}이다.`,
+        r`평행사변형 $ABCD$의 둘레가 $30$이고 $\overline{AB}:\overline{BC}=2:3$이면 $\overline{AB}+\overline{BC}=15$에서 {$\overline{AB}=6$}이다.`,
+        CASE,
       ],
       [
         "상",
@@ -16256,7 +16283,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`대각선 $\overline{AC}=12$이면 교점 $O$에 대해 $\overline{OA}=6$이다.`,
+        r`평행사변형 $ABCD$의 두 대각선의 교점을 $O$라 할 때, $\overline{AC}=12$이면 $\overline{OA}=6$이다.`,
         true,
         "대각선이 이등분된다.",
       ],
@@ -16298,7 +16325,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`$\angle A$의 이등분선이 $\overline{BC}$와 $E$에서 만나고 $\overline{AB}=5$, $\overline{BC}=8$이면 $\overline{EC}=5$이다.`,
+        r`평행사변형 $ABCD$에서 $\angle A$의 이등분선이 $\overline{BC}$와 $E$에서 만나고 $\overline{AB}=5$, $\overline{BC}=8$이면 $\overline{EC}=5$이다.`,
         false,
         r`$\overline{BE}=5$이므로 $\overline{EC}=3$이다.`,
       ],
@@ -16543,15 +16570,17 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "변의 길이를 식으로 맞추기",
+        r`$\overline{AB}=x+2$, $\overline{DC}=8$, $\overline{AD}=y$, $\overline{BC}=5$로 평행사변형 만들기`,
         "방법",
-        r`$\overline{AB}=x+2$, $\overline{DC}=8$, $\overline{AD}=y$, $\overline{BC}=5$일 때 평행사변형이 되려면 {$x=6$}, {$y=5$}이다.`,
+        r`$\square ABCD$에서 $\overline{AB}=x+2$, $\overline{DC}=8$, $\overline{AD}=y$, $\overline{BC}=5$일 때 평행사변형이 되려면 {$x=6$}, {$y=5$}이다.`,
+        CASE,
       ],
       [
         "중",
-        "대각선의 반으로 맞추기",
+        r`$\overline{OA}=3$, $\overline{OC}=x$, $\overline{OB}=4$, $\overline{OD}=y$로 평행사변형 만들기`,
         "방법",
-        r`$\overline{OA}=3$, $\overline{OC}=x$, $\overline{OB}=4$, $\overline{OD}=y$이면 {$x=3$}, {$y=4$}일 때 평행사변형이다.`,
+        r`두 대각선의 교점 $O$에 대해 $\overline{OA}=3$, $\overline{OC}=x$, $\overline{OB}=4$, $\overline{OD}=y$이면 {$x=3$}, {$y=4$}일 때 평행사변형이다.`,
+        CASE,
       ],
       [
         "중",
@@ -16605,7 +16634,7 @@ export const bank = joinBanks([
         "상",
         "두 각의 이등분선이 만드는 평행사변형",
         "성질",
-        r`평행사변형 $ABCD$에서 $\angle A$와 $\angle C$의 이등분선이 $\overline{BC}$, $\overline{AD}$와 만나는 점을 $E$, $F$라 하면 $\square AECF$는 {평행사변형}이다.`,
+        r`$\overline{AB}<\overline{BC}$인 평행사변형 $ABCD$에서 $\angle A$와 $\angle C$의 이등분선이 $\overline{BC}$, $\overline{AD}$와 만나는 점을 $E$, $F$라 하면 $\square AECF$는 {평행사변형}이다.`,
       ],
       [
         "상",
@@ -16629,7 +16658,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        r`$\overline{OA}=\overline{OC}$, $\overline{OB}=\overline{OD}$인 사각형은 평행사변형이 아니다.`,
+        r`두 대각선의 교점 $O$에 대해 $\overline{OA}=\overline{OC}$, $\overline{OB}=\overline{OD}$인 사각형은 평행사변형이 아니다.`,
         false,
         "대각선이 서로 이등분하므로 평행사변형이다.",
       ],
@@ -16707,7 +16736,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\overline{OA}=3$, $\overline{OC}=3$, $\overline{OB}=4$, $\overline{OD}=5$이면 평행사변형이다.`,
+        r`두 대각선의 교점 $O$에 대해 $\overline{OA}=3$, $\overline{OC}=3$, $\overline{OB}=4$, $\overline{OD}=5$인 사각형은 평행사변형이다.`,
         false,
         r`$\overline{OB}\ne\overline{OD}$이다.`,
       ],
@@ -16761,7 +16790,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`평행사변형에서 $\angle A$, $\angle C$의 이등분선과 두 변으로 만든 사각형은 평행사변형이 아니다.`,
+        r`$\overline{AB}<\overline{BC}$인 평행사변형 $ABCD$에서 $\angle A$, $\angle C$의 이등분선이 $\overline{BC}$, $\overline{AD}$와 만나는 점을 $E$, $F$라 하면 $\square AECF$는 평행사변형이 아니다.`,
         false,
         "두 이등분선이 평행하여 평행사변형이다.",
       ],
@@ -16779,7 +16808,7 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        r`$\square ABCD$의 두 대각선이 $O$에서 만나고 $\overline{OB}=6$일 때 평행사변형이 되게 하는 $\overline{OD}$의 길이를 구하시오.`,
+        r`$\square ABCD$의 두 대각선이 $O$에서 만나고 $\overline{OA}=\overline{OC}$, $\overline{OB}=6$일 때 평행사변형이 되게 하는 $\overline{OD}$의 길이를 구하시오.`,
         "$6$",
       ],
       [
@@ -16788,7 +16817,11 @@ export const bank = joinBanks([
         "$7$",
       ],
       ["하", "한 쌍의 대변만 평행한 사각형의 이름을 쓰시오.", "사다리꼴"],
-      ["하", "평행사변형이 되는 조건은 모두 몇 가지인지 쓰시오.", r`$5$가지`],
+      [
+        "하",
+        "교과서가 정리한 평행사변형이 되는 조건은 모두 몇 가지인지 쓰시오.",
+        r`$5$가지`,
+      ],
       [
         "하",
         r`$\overline{AB}\parallel\overline{DC}$, $\overline{AD}\parallel\overline{BC}$인 사각형의 이름을 쓰시오.`,
@@ -16816,7 +16849,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\square ABCD$에서 $\angle A=(2x+10)^\circ$, $\angle C=(3x-20)^\circ$일 때 평행사변형이 되게 하는 $x$의 값을 구하시오.`,
+        r`$\angle B=\angle D$인 $\square ABCD$에서 $\angle A=(2x+10)^\circ$, $\angle C=(3x-20)^\circ$일 때 평행사변형이 되게 하는 $x$의 값을 구하시오.`,
         "$30$",
       ],
       [
@@ -16912,9 +16945,10 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "직사각형의 대각선의 절반",
+        r`대각선 $\overline{AC}=10$인 직사각형의 $\overline{OA}$, $\overline{OB}$`,
         "방법",
-        r`직사각형에서 $\overline{AC}=10$이면 교점 $O$에 대해 $\overline{OA}=\overline{OB}=$ {$5$}이다.`,
+        r`직사각형에서 $\overline{AC}=10$이면 두 대각선의 교점 $O$에 대해 $\overline{OA}=\overline{OB}=$ {$5$}이다.`,
+        CASE,
       ],
       [
         "하",
@@ -16947,7 +16981,10 @@ export const bank = joinBanks([
         "직사각형의 대각선과 이등변삼각형",
         "성질",
         r`직사각형의 두 대각선의 교점 $O$에 대해 $\triangle OAB$는 $\overline{OA}=\overline{OB}$인 {이등변삼각형}이다.`,
-        [r`$\angle OAB=35^\circ$일 때 $\angle AOB$`, r`$110^\circ$`],
+        [
+          r`직사각형 $ABCD$의 두 대각선의 교점 $O$에서 $\angle OAB=35^\circ$일 때 $\angle AOB$`,
+          r`$110^\circ$`,
+        ],
       ],
       [
         "중",
@@ -16960,7 +16997,10 @@ export const bank = joinBanks([
         "마름모의 대각선과 꼭짓점의 각",
         "성질",
         "마름모의 대각선은 꼭짓점의 각을 {이등분}한다.",
-        [r`$\angle A=120^\circ$일 때 $\angle BAC$`, r`$60^\circ$`],
+        [
+          r`마름모 $ABCD$에서 $\angle A=120^\circ$일 때 $\angle BAC$`,
+          r`$60^\circ$`,
+        ],
       ],
       [
         "중",
@@ -16973,7 +17013,10 @@ export const bank = joinBanks([
         "마름모의 이웃한 각",
         "성질",
         r`마름모도 평행사변형이므로 이웃한 두 각을 더하면 {$180^\circ$}이다.`,
-        [r`$\angle A=70^\circ$일 때 $\angle B$`, r`$110^\circ$`],
+        [
+          r`마름모 $ABCD$에서 $\angle A=70^\circ$일 때 $\angle B$`,
+          r`$110^\circ$`,
+        ],
       ],
       [
         "상",
@@ -17004,7 +17047,10 @@ export const bank = joinBanks([
         "마름모의 높이 구하기",
         "방법",
         r`마름모의 넓이는 (한 변)$\times$({높이})로도 구하므로 대각선으로 구한 넓이와 {같게} 놓아 높이를 구한다.`,
-        [r`대각선 $6$, $8$, 한 변 $5$일 때 높이`, r`$\frac{24}{5}$`],
+        [
+          "대각선이 $6$, $8$이고 한 변이 $5$인 마름모의 높이",
+          r`$\frac{24}{5}$`,
+        ],
       ],
       [
         "상",
@@ -17319,28 +17365,34 @@ export const bank = joinBanks([
         ],
         [
           "하",
-          "등변사다리꼴의 밑의 두 각",
+          r`$\overline{AD}\parallel\overline{BC}$, $\angle B=65^\circ$인 등변사다리꼴의 $\angle C$`,
           "성질",
           r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\angle B=65^\circ$이면 $\angle C=$ {$65^\circ$}이다.`,
+          CASE,
         ],
         [
           "하",
           "등변사다리꼴의 윗변 쪽 두 각",
           "성질",
           "등변사다리꼴은 {윗변}의 양 끝에 있는 두 각도 크기가 {같다}.",
-          [r`$\angle A=110^\circ$일 때 $\angle D$`, r`$110^\circ$`],
+          [
+            r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\angle A=110^\circ$일 때 $\angle D$`,
+            r`$110^\circ$`,
+          ],
         ],
         [
           "하",
-          "등변사다리꼴의 옆의 두 변",
+          r`$\overline{AD}\parallel\overline{BC}$, $\overline{AB}=6$인 등변사다리꼴의 $\overline{DC}$`,
           "성질",
           r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\overline{AB}=6$이면 $\overline{DC}=$ {$6$}이다.`,
+          CASE,
         ],
         [
           "하",
-          "등변사다리꼴의 대각선 둘",
+          r`$\overline{AC}=9$인 등변사다리꼴 $ABCD$의 $\overline{BD}$`,
           "성질",
           r`등변사다리꼴 $ABCD$에서 $\overline{AC}=9$이면 $\overline{BD}=$ {$9$}이다.`,
+          CASE,
         ],
         [
           "하",
@@ -17353,7 +17405,10 @@ export const bank = joinBanks([
           "사다리꼴의 넓이",
           "공식",
           r`사다리꼴의 넓이는 (윗변$+$아랫변)$\times$(높이)$\div$ {$2$}이다.`,
-          [r`윗변 $3$, 아랫변 $7$, 높이 $4$`, "$20$"],
+          [
+            "윗변 $3$, 아랫변 $7$, 높이 $4$인 사다리꼴의 넓이를 구하면?",
+            "$20$",
+          ],
         ],
         [
           "중",
@@ -17361,7 +17416,7 @@ export const bank = joinBanks([
           "성질",
           r`$\overline{AD}\parallel\overline{BC}$인 사다리꼴에서 $\angle A+\angle B=$ {$180^\circ$}이다.`,
           [
-            r`등변사다리꼴에서 $\angle B=70^\circ$일 때 $\angle A$`,
+            r`$\overline{AD}\parallel\overline{BC}$인 사다리꼴 $ABCD$에서 $\angle B=70^\circ$일 때 $\angle A$`,
             r`$110^\circ$`,
           ],
         ],
@@ -17376,14 +17431,20 @@ export const bank = joinBanks([
           "대각선 교점과 이등변삼각형",
           "성질",
           r`등변사다리꼴 $ABCD$에서 $\overline{AD}\parallel\overline{BC}$이고 두 대각선의 교점이 $O$이면 $\triangle OBC$는 {이등변삼각형}이다.`,
-          [r`$\angle OBC=25^\circ$일 때 $\angle BOC$`, r`$130^\circ$`],
+          [
+            r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$의 대각선의 교점 $O$에서 $\angle OBC=25^\circ$일 때 $\angle BOC$`,
+            r`$130^\circ$`,
+          ],
         ],
         [
           "중",
           "윗변 양 끝에서 수선 내리기",
           "방법",
           "등변사다리꼴의 윗변 양 끝에서 아랫변에 {수선}을 그으면 양쪽에 {합동}인 직각삼각형이 생긴다.",
-          [r`윗변 $4$, 아랫변 $10$일 때 한쪽 조각의 길이`, "$3$"],
+          [
+            "윗변 $4$, 아랫변 $10$인 등변사다리꼴에서 수선의 발 바깥쪽에 남는 아랫변 한 조각의 길이",
+            "$3$",
+          ],
         ],
         [
           "중",
@@ -17438,7 +17499,10 @@ export const bank = joinBanks([
           "대각선이 각을 이등분하는 등변사다리꼴",
           "성질",
           r`$\overline{AD}\parallel\overline{BC}$이고 $\overline{AB}=\overline{AD}=\overline{DC}$인 등변사다리꼴에서 대각선 $\overline{BD}$는 $\angle B$를 {이등분}한다. $\angle ADB$와 $\angle DBC$가 {엇각}이기 때문이다.`,
-          [r`$\angle C=80^\circ$일 때 $\angle DBC$`, r`$40^\circ$`],
+          [
+            r`$\overline{AD}\parallel\overline{BC}$, $\overline{AB}=\overline{AD}=\overline{DC}$인 등변사다리꼴에서 $\angle C=80^\circ$일 때 $\angle DBC$`,
+            r`$40^\circ$`,
+          ],
         ],
       ],
       ox: [
@@ -17529,7 +17593,7 @@ export const bank = joinBanks([
         ],
         [
           "중",
-          r`윗변 $4$, 아랫변 $10$인 등변사다리꼴의 윗변 양 끝에서 수선을 그으면 양쪽 조각은 각각 $3$이다.`,
+          r`윗변 $4$, 아랫변 $10$인 등변사다리꼴의 윗변 양 끝에서 아랫변에 수선을 그으면 수선의 발 바깥쪽에 남는 아랫변의 두 조각은 각각 $3$이다.`,
           true,
           r`$\frac{10-4}{2}=3$이다.`,
         ],
@@ -17745,9 +17809,10 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "삼각형 넓이 셈",
+        "밑변 $10$, 높이 $3$인 삼각형의 넓이",
         "공식",
         r`밑변이 $10$, 높이가 $3$인 삼각형의 넓이는 {$15$}이다.`,
+        CASE,
       ],
       [
         "하",
@@ -17779,7 +17844,10 @@ export const bank = joinBanks([
         "대각선으로 나눈 평행사변형",
         "성질",
         "평행사변형을 대각선 하나로 나눈 두 삼각형은 넓이가 각각 평행사변형의 {절반}이다.",
-        [r`넓이 $40$인 평행사변형의 한 조각`, "$20$"],
+        [
+          "넓이 $40$인 평행사변형을 대각선 하나로 나눈 한 삼각형의 넓이",
+          "$20$",
+        ],
       ],
       [
         "중",
@@ -17793,7 +17861,7 @@ export const bank = joinBanks([
         "방법",
         r`$\overline{BC}$ 위의 점 $D$에 대해 $\triangle ABD$와 $\triangle ADC$는 높이가 같으므로 넓이를 $\overline{BD}:\overline{DC}$의 {비}로 {나눈다}.`,
         [
-          r`$\overline{BD}:\overline{DC}=1:3$, $\triangle ABC=24$일 때 $\triangle ADC$`,
+          r`변 $BC$ 위의 점 $D$에 대해 $\overline{BD}:\overline{DC}=1:3$, $\triangle ABC=24$일 때 $\triangle ADC$의 넓이`,
           "$18$",
         ],
       ],
@@ -17815,7 +17883,7 @@ export const bank = joinBanks([
         "성질",
         r`평행사변형 $ABCD$의 내부의 점 $P$에 대해 $\triangle PAB+\triangle PCD$는 평행사변형 넓이의 {절반}이다.`,
         [
-          r`평행사변형의 넓이가 $40$일 때 $\triangle PAB+\triangle PCD$`,
+          r`넓이가 $40$인 평행사변형 $ABCD$의 내부의 점 $P$에 대해 $\triangle PAB+\triangle PCD$`,
           "$20$",
         ],
       ],
@@ -17830,7 +17898,7 @@ export const bank = joinBanks([
         "높이를 견준 비",
         "성질",
         "밑변을 같이 쓰는 삼각형 둘은 넓이를 견준 비가 {높이}를 견준 비와 {같다}.",
-        [r`높이가 $3$, $5$일 때 넓이의 비`, "$3:5$"],
+        ["밑변이 같고 높이가 $3$, $5$인 두 삼각형의 넓이의 비", "$3:5$"],
       ],
       [
         "상",
@@ -17850,7 +17918,7 @@ export const bank = joinBanks([
         "방법",
         r`점이 변을 두 번 나누면 밑변의 {비}를 차례로 {곱하여} 넓이를 구한다.`,
         [
-          r`$\triangle ABC=36$, $\overline{BD}:\overline{DC}=2:1$, $\overline{AD}$의 중점 $E$일 때 $\triangle EBD$`,
+          r`$\triangle ABC=36$, 변 $BC$ 위의 점 $D$에 대해 $\overline{BD}:\overline{DC}=2:1$, $\overline{AD}$의 중점 $E$일 때 $\triangle EBD$`,
           "$12$",
         ],
       ],
@@ -17954,7 +18022,7 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        r`$\overline{BD}:\overline{DC}=1:3$이고 $\triangle ABC=24$이면 $\triangle ABD=8$이다.`,
+        r`$\triangle ABC$의 변 $BC$ 위의 점 $D$에 대해 $\overline{BD}:\overline{DC}=1:3$이고 $\triangle ABC=24$이면 $\triangle ABD=8$이다.`,
         false,
         r`$24\times\frac{1}{4}=6$이다.`,
       ],
@@ -17996,7 +18064,7 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        r`$\triangle ABC=36$, $\overline{BD}:\overline{DC}=2:1$이고 $E$가 $\overline{AD}$의 중점이면 $\triangle EBD=24$이다.`,
+        r`$\triangle ABC=36$이고 변 $BC$ 위의 점 $D$에 대해 $\overline{BD}:\overline{DC}=2:1$, $E$가 $\overline{AD}$의 중점이면 $\triangle EBD=24$이다.`,
         false,
         r`$\triangle ABD=24$의 절반인 $12$이다.`,
       ],
