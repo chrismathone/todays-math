@@ -168,6 +168,12 @@ const FIXTURES: Record<keyof typeof ENGINE_FAILURES, DevAiFigureSpec> = {
       CA: ["C", "A"],
     },
   }),
+  arcDash: {
+    version: 2,
+    points: { O: [100, 100], A: [160, 100], B: [100, 40] },
+    circles: { c: { center: "O", radius: 60 } },
+    arcs: { arcAB: { circle: "c", from: "A", to: "B", dash: "" } },
+  },
 };
 const engineError = async (spec: DevAiFigureSpec) => {
   const rendered = await renderFigureSpec(spec, {

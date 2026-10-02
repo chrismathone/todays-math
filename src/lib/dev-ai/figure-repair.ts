@@ -42,13 +42,40 @@ export const ENGINE_FAILURES = {
   unknownSpecFields: /\bFigureSpec: unknown field\(s\): (.+)$/,
   dimensionSide: /dimension side must be 'auto', 'left', or 'right'/,
   labelPosition: /label '([^']+)' has unknown position '([^']*)'/,
-  segmentDash: /segment '([^']+)' dash must be a numeric list/,
+  segmentDash:
+    /segment (?:'([^']+)'|"([^"]+)") dash must (?:be a numeric list|contain non-negative lengths and at least one positive length)/,
+  arcDash:
+    /arc (?:'([^']+)'|"([^"]+)") dash must (?:be a numeric list|contain non-negative lengths and at least one positive length)/,
 } as const;
 
 /** 프롬프트가 모델에 가르치는 점선 값(`figure-prompt.ts` — «A dashed v2 segment is {…,"dashed":"5 3"}»). */
 const DASHED = "5 3";
 const SAYS_DASHED = /^(?:true|yes|dash|dashed|dot|dotted)$/i;
 const SAYS_SOLID = /^(?:false|no|none|solid)$/i;
+const DASH_NUMBER = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i;
+
+/** Preserve dash meaning; invalid lengths need source-aware model correction. */
+function canonicalDash(value: unknown): { value: string | null } | undefined {
+  if (value == null || value === false) return { value: null };
+  if (value === true) return { value: DASHED };
+  let lengths: number[];
+  if (typeof value === "string") {
+    const text = value.trim();
+    if (!text || SAYS_SOLID.test(text)) return { value: null };
+    if (SAYS_DASHED.test(text)) return { value: DASHED };
+    const parts = text.split(/[\s,]+/).filter(Boolean);
+    if (!parts.length || !parts.every((part) => DASH_NUMBER.test(part)))
+      return undefined;
+    lengths = parts.map(Number);
+  } else if (typeof value === "number") lengths = [value];
+  else if (Array.isArray(value) && value.every((n) => typeof n === "number"))
+    lengths = value;
+  else return undefined;
+  if (lengths.some((n) => !Number.isFinite(n) || n < 0)) return undefined;
+  // SVG specifies an all-zero dash pattern as a solid line. The Python
+  // contract expresses solid strokes by omitting the dash field instead.
+  return { value: lengths.some((n) => n > 0) ? lengths.join(" ") : null };
+}
 
 /**
  * 원장님 화면에 나가는 엔진 거절 사유(D-08 — 간결·사무적 한국어 한 줄, 원장님 2026-09-21 «영어 엔진 오류가 그대로 나갔다»).
@@ -71,6 +98,7 @@ const REASONS: Partial<Record<keyof typeof ENGINE_FAILURES, string>> = {
   dimensionSide: "치수 표시 설정이 맞지 않아",
   labelPosition: "점 이름표 자리 설정이 맞지 않아",
   segmentDash: "점선 설정이 맞지 않아",
+  arcDash: "호의 점선 설정이 맞지 않아",
 };
 export function engineRejectionReason(error: string) {
   for (const [key, pattern] of Object.entries(ENGINE_FAILURES)) {
@@ -644,21 +672,26 @@ function repairOneMeaning(
       }
     );
   }
-  hit = ENGINE_FAILURES.segmentDash.exec(error);
+  const segmentDash = ENGINE_FAILURES.segmentDash.exec(error);
+  hit = segmentDash ?? ENGINE_FAILURES.arcDash.exec(error);
   if (hit) {
-    // 엔진의 점선은 길이 목록(«5 3»)이다. 모델이 `dash:true`·«dashed» 로 «점선이다»만 적으면 프롬프트가 가르치는 값으로,
-    // `false`·«solid» 면 실선으로 — 뜻은 그대로다. 그 밖의 값은 무슨 뜻인지 몰라 되묻는다.
-    const next = editRecord(spec, "segments", hit[1]!, (item) => {
+    const name = (hit[1] ?? hit[2])!;
+    const table = segmentDash ? "segments" : "arcs";
+    const next = editRecord(spec, table, name, (item) => {
       if (!isItem(item)) return undefined;
-      const said = String(item.dash ?? item.dashed).trim();
+      // Match Python's get(dash, get(dashed)): an explicit null dash wins.
+      const value = Object.hasOwn(item, "dash") ? item.dash : item.dashed;
+      const normalized = canonicalDash(value);
+      if (!normalized) return undefined;
       const rest = without(item, "dash", "dashed");
-      if (SAYS_DASHED.test(said)) return { ...rest, dashed: DASHED };
-      return SAYS_SOLID.test(said) ? rest : undefined;
+      return normalized.value === null
+        ? rest
+        : { ...rest, [segmentDash ? "dashed" : "dash"]: normalized.value };
     });
     return (
       next && {
         spec: next,
-        note: `선분 ${hit[1]} 의 점선 표기를 엔진 값으로 옮겼습니다.`,
+        note: `${segmentDash ? "선분" : "호"} ${name} 의 선 모양 표기를 엔진 값으로 옮겼습니다.`,
       }
     );
   }
