@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import AdminUserDetail from "@/components/admin/AdminUserDetail";
 import AdminDocumentPreview from "@/components/admin/AdminDocumentPreview";
@@ -224,6 +230,92 @@ describe("administrator user detail", () => {
     expect(
       screen.getByRole("heading", { name: "문항 21" }),
     ).toBeInTheDocument();
+  });
+
+  it("shows readable changes and keeps complete raw details in a closed, keyboard-accessible disclosure", async () => {
+    const account = {
+      ...pendingAccount,
+      branchId: "branch-1",
+      branchName: "강남점",
+    };
+    const details = {
+      previousStatus: "pending",
+      status: "approved",
+      previousBranchManager: false,
+      branchManager: true,
+      previousMenus: ["library"],
+      menus: ["library", "conceptBlank"],
+      previousBranchId: null,
+      branchId: "branch-1",
+      path: `/api/admin/users/${account.id}/audit`,
+      suspended: false,
+      deleted: false,
+      future: { nested: [null, false, '<img src=x onerror="alert(1)">'] },
+    };
+    fetchMock.mockImplementation(async (url) => {
+      const path = String(url);
+      if (path.includes("/api/admin/branches"))
+        return Response.json({ data: [] });
+      if (path.includes("/documents?"))
+        return Response.json({
+          data: [],
+          meta: { page: 1, pageSize: 20, total: 0 },
+        });
+      if (path.includes("/audit?"))
+        return Response.json({
+          data: [
+            {
+              id: "change-1",
+              action: "account.settings_changed",
+              outcome: "success",
+              actorName: "관리자",
+              createdAt: account.updatedAt,
+              details,
+            },
+          ],
+          meta: { page: 1, pageSize: 30, total: 1 },
+        });
+      return Response.json({ data: account });
+    });
+    const { container } = render(
+      <AdminUserDetail
+        userId={account.id}
+        identity={adminIdentity}
+        initialAccount={account}
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "활동 기록" }));
+    await screen.findByText("계정 설정 변경");
+    const audit = screen.getByRole("region", { name: "계정 활동 기록" });
+    const visibleDetails = audit.querySelector("dl")!;
+    expect(visibleDetails).toHaveTextContent("이전 승인 대기현재 승인됨");
+    expect(visibleDetails).toHaveTextContent("이전 없음현재 있음");
+    expect(visibleDetails).toHaveTextContent("우리학원 시험지, 개념 백지");
+    expect(visibleDetails).toHaveTextContent("정지 안 됨");
+    expect(visibleDetails).not.toHaveTextContent(
+      /branch-1|conceptBlank|approved|false|\/api\//,
+    );
+    const disclosure = within(audit).getByText("기술 상세").closest("details")!;
+    expect(disclosure).not.toHaveAttribute("open");
+    expect(JSON.parse(disclosure.querySelector("pre")!.textContent!)).toEqual({
+      action: "account.settings_changed",
+      outcome: "success",
+      details,
+    });
+    const summary = disclosure.querySelector("summary")!;
+    summary.focus();
+    expect(summary).toHaveFocus();
+    fireEvent.click(summary);
+    expect(disclosure).toHaveAttribute("open");
+    expect(container.querySelector("img[src=x]")).toBeNull();
+    expect(
+      screen.getByRole("complementary", { name: "계정 관리 설정" }),
+    ).toHaveAttribute("tabindex", "0");
+    expect(
+      fetchMock.mock.calls.every(
+        ([, init]) => !init?.method || init.method === "GET",
+      ),
+    ).toBe(true);
   });
 
   it("reports account read failures and retries", async () => {
