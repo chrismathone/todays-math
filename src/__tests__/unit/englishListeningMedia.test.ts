@@ -730,15 +730,21 @@ describe("listening media authenticated responses", () => {
     expect(head.body).toBeNull();
     expect(head.headers.get("Content-Length")).toBe("204");
     expect(read).not.toHaveBeenCalled(); // HTTP Range only applies to GET.
+    // RFC 9110 §14.2: invalid or unsatisfiable `bytes` specifiers are rejected with 416.
     for (const range of [
       "bytes=204-",
       "bytes=9-1",
       "bytes=-0",
-      "bytes=0-1,4-5",
       "bytes=",
+      "bytes=,",
       "bytes=9007199254740993-",
       "bytes=+1-2",
-      "items=0-2",
+      "bytes= 0-1",
+      "bytes=0-1 ",
+      "bytes=0-1,x-y",
+      "bytes=0-1;4-5",
+      "0-100",
+      "bytes 0-100",
     ]) {
       const response = await f.service.serve(f.context, {
         setId: f.setId,
@@ -746,10 +752,68 @@ describe("listening media authenticated responses", () => {
         method: "GET",
         range,
       });
-      expect(response.status).toBe(416);
+      expect(response.status, range).toBe(416);
       expect(response.headers.get("Content-Range")).toBe("bytes */204");
       expect(response.body).toBeNull();
     }
+    // RFC 9110 §14.2: an unknown range unit MUST be ignored; valid multiple ranges MAY be ignored
+    // (no multipart/byteranges here). Both yield the authorized full representation.
+    for (const range of [
+      "items=0-2",
+      "pages=1-3",
+      "x-chunks=0",
+      "bytes=0-1,4-5",
+      "bytes=0-1, 4-5",
+      "bytes=0-1 ,\t4-5",
+      "bytes=10-20,5-8",
+    ]) {
+      read.mockClear();
+      const response = await f.service.serve(f.context, {
+        setId: f.setId,
+        assetId: r.assetId,
+        method: "GET",
+        range,
+      });
+      expect(response.status, range).toBe(200);
+      expect(response.headers.get("Content-Range")).toBeNull();
+      expect(response.headers.get("Content-Length")).toBe("204");
+      expect(response.headers.get("Accept-Ranges")).toBe("bytes");
+      expect(Buffer.from(await response.arrayBuffer())).toEqual(bytes);
+    }
+    // Range unit names are case-insensitive (§14.1); empty list elements are ignored (§5.6.1).
+    for (const [range, start, end] of [
+      ["BYTES=0-9", 0, 10],
+      ["Bytes=200-", 200, 204],
+      ["bytes=0-9,", 0, 10],
+      ["bytes=,0-9", 0, 10],
+      ["bytes=0-9,,", 0, 10],
+    ] as const) {
+      const response = await f.service.serve(f.context, {
+        setId: f.setId,
+        assetId: r.assetId,
+        method: "GET",
+        range,
+      });
+      expect(response.status, range).toBe(206);
+      expect(response.headers.get("Content-Range")).toBe(
+        `bytes ${start}-${end - 1}/204`,
+      );
+      expect(Buffer.from(await response.arrayBuffer())).toEqual(
+        bytes.subarray(start, end),
+      );
+    }
+    // Ignoring a Range never bypasses authorization.
+    f.revoke();
+    expect(
+      (
+        await f.service.serve(f.context, {
+          setId: f.setId,
+          assetId: r.assetId,
+          method: "GET",
+          range: "items=0-2",
+        })
+      ).status,
+    ).toBe(404);
   });
   it("rejects another set reference and fails closed when authorization throws", async () => {
     const f = await fixture();

@@ -247,6 +247,20 @@ async function main() {
       `bytes */${tone.length}`,
     );
     check("HEAD has no byte reads; 416 and neutral private response headers");
+    for (const range of ["items=0-2", "bytes=0-1,4-5"]) {
+      const ignored = await service.serve(context, {
+        ...target,
+        method: "GET",
+        range,
+      });
+      assert.equal(ignored.status, 200);
+      assert.equal(ignored.headers.get("Content-Range"), null);
+      assert.equal(ignored.headers.get("Content-Length"), String(tone.length));
+      await ignored.body!.cancel();
+    }
+    check(
+      "unknown range unit and multi-range sets are ignored with the full 200 representation",
+    );
     allowed = false;
     const readsBeforeRevoke = { metadataReads, byteReads };
     for (const method of ["HEAD", "GET"])
