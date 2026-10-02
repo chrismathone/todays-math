@@ -1,3 +1,4 @@
+import { useId } from "react";
 import {
   CONCEPT_BLANK_LEVELS,
   type ConceptBlankForm,
@@ -36,6 +37,8 @@ export default function ConceptBlankFormTable({
     value: string,
   ) => void;
 }) {
+  const uid = useId();
+
   return (
     <section className={s.card} aria-label="형식과 난이도별 문항 수">
       <div className={s.cardHead}>
@@ -64,21 +67,23 @@ export default function ConceptBlankFormTable({
                   <div className={s.tableColumnTitle}>
                     <span className={s.letter}>{column.letter}</span>
                     <h3>{column.label}</h3>
+                    <button
+                      type="button"
+                      role="switch"
+                      className={s.switch}
+                      aria-label={`${column.label} 켜기`}
+                      aria-checked={column.on}
+                      aria-describedby={
+                        column.reason
+                          ? `${uid}-${column.form}-reason`
+                          : undefined
+                      }
+                      disabled={!column.available}
+                      onClick={() => onToggle(column.form)}
+                    >
+                      <span className={s.track} aria-hidden="true" />
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    role="switch"
-                    className={s.switch}
-                    aria-label={`${column.label} 켜기`}
-                    aria-checked={column.on}
-                    disabled={!column.available}
-                    onClick={() => onToggle(column.form)}
-                  >
-                    <span className={s.track} aria-hidden="true" />
-                  </button>
-                  {column.reason && (
-                    <p className={s.tableReason}>{column.reason}</p>
-                  )}
                 </th>
               ))}
             </tr>
@@ -132,6 +137,22 @@ export default function ConceptBlankFormTable({
           </tbody>
         </table>
       </div>
+      {columns.some((column) => column.reason) && (
+        <div className={s.tableReasons}>
+          {columns.map((column) =>
+            column.reason ? (
+              <p
+                key={column.form}
+                id={`${uid}-${column.form}-reason`}
+                className={s.tableReason}
+              >
+                <strong>{column.letter}</strong>
+                <span>{column.reason}</span>
+              </p>
+            ) : null,
+          )}
+        </div>
+      )}
       <details className={s.formGuide}>
         <summary>형식별 안내</summary>
         <dl>
