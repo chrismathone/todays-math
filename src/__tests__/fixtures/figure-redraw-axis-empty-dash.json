@@ -1,0 +1,211 @@
+{
+  "version": 2,
+  "canvas": {
+    "width": 380,
+    "height": 360
+  },
+  "points": {
+    "O": {
+      "type": "raw",
+      "x": 60,
+      "y": 300
+    },
+    "X": {
+      "type": "raw",
+      "x": 340,
+      "y": 300
+    },
+    "Y": {
+      "type": "raw",
+      "x": 60,
+      "y": 20
+    },
+    "Y1": {
+      "type": "raw",
+      "x": 60,
+      "y": 80
+    },
+    "D": {
+      "type": "raw",
+      "x": 280,
+      "y": 300
+    },
+    "A": {
+      "type": "on_circle",
+      "circle": "c",
+      "angle": -29
+    },
+    "B": {
+      "type": "raw",
+      "x": 252.4,
+      "y": 300
+    },
+    "C": {
+      "type": "raw",
+      "x": 280,
+      "y": 178.1
+    },
+    "Y_sin": {
+      "type": "raw",
+      "x": 60,
+      "y": 193.3
+    },
+    "arc_p1": {
+      "type": "raw",
+      "x": 100,
+      "y": 300
+    },
+    "arc_p2": {
+      "type": "on_circle",
+      "circle": "c_small",
+      "angle": -29
+    },
+    "lbl_1x": {
+      "type": "raw",
+      "x": 280,
+      "y": 300
+    }
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 220,
+      "draw": false
+    },
+    "c_small": {
+      "center": "O",
+      "radius": 40,
+      "draw": false
+    }
+  },
+  "arcs": {
+    "quarter": {
+      "circle": "c",
+      "from": "Y1",
+      "to": "D",
+      "dir": "cw"
+    },
+    "angle_arc": {
+      "circle": "c_small",
+      "from": "arc_p1",
+      "to": "arc_p2",
+      "dir": "ccw"
+    }
+  },
+  "segments": {
+    "xAxis": {
+      "points": [
+        "O",
+        "X"
+      ],
+      "dash": ""
+    },
+    "yAxis": {
+      "points": [
+        "O",
+        "Y"
+      ],
+      "dash": ""
+    },
+    "OC": {
+      "points": [
+        "O",
+        "C"
+      ]
+    },
+    "AB": {
+      "points": [
+        "A",
+        "B"
+      ]
+    },
+    "CD": {
+      "points": [
+        "C",
+        "D"
+      ]
+    },
+    "dash_y": {
+      "points": [
+        "Y_sin",
+        "A"
+      ],
+      "dashed": "4 3"
+    }
+  },
+  "angles": {
+    "rB": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "O"
+      ],
+      "right": true
+    },
+    "rD": {
+      "vertex": "D",
+      "points": [
+        "C",
+        "O"
+      ],
+      "right": true
+    }
+  },
+  "labels": {
+    "O": {
+      "text": "O",
+      "dx": -12,
+      "dy": 14
+    },
+    "X": {
+      "point": "X",
+      "text": "x",
+      "dx": 10,
+      "dy": 2
+    },
+    "Y": {
+      "point": "Y",
+      "text": "y",
+      "dx": -12,
+      "dy": -10
+    },
+    "Y1": {
+      "point": "Y1",
+      "text": "1",
+      "dx": -12,
+      "dy": 4
+    },
+    "Y_sin": {
+      "point": "Y_sin",
+      "text": "0.4848",
+      "dx": -26,
+      "dy": 4
+    },
+    "lbl_1x": {
+      "text": "1",
+      "dx": 0,
+      "dy": 18
+    },
+    "A": {
+      "text": "A",
+      "dx": -4,
+      "dy": -12
+    },
+    "B": {
+      "text": "B",
+      "dx": -4,
+      "dy": 18
+    },
+    "C": {
+      "text": "C",
+      "dx": 8,
+      "dy": -6
+    },
+    "D": {
+      "text": "D",
+      "dx": 14,
+      "dy": 4
+    }
+  },
+  "background": "transparent"
+}
