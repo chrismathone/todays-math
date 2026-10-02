@@ -254,7 +254,7 @@ export default function EnglishEditor({
     );
 
   const save = async () => {
-    if (!draft) return;
+    if (!draft || saving) return;
     // 빈 보기 칸은 «없는 보기»다 — 다섯 칸을 늘 그리므로 비운 칸을 걷어낸 뒤 공용 검증기를 지난다(보기 수 규칙이 사유를 낸다)
     const questions = draft.questions.map((question) => ({
       ...question,
@@ -287,9 +287,28 @@ export default function EnglishEditor({
           }),
         ),
       );
-      setDraft(body.data);
-      setSettled(body.data.questions);
+      // The response acknowledges the submitted snapshot. Edits made while it
+      // was in flight still need saving, but must use the acknowledged revision.
+      const editedWhileSaving = latest.current !== draft;
+      setDraft((current) =>
+        current && current !== draft
+          ? {
+              ...current,
+              revision: body.data.revision,
+              updatedAt: body.data.updatedAt,
+            }
+          : body.data,
+      );
+      setSettled(
+        editedWhileSaving
+          ? (latest.current?.questions ?? null)
+          : body.data.questions,
+      );
       onSaved(body.data);
+      if (editedWhileSaving)
+        onNotice?.(
+          "저장 중 입력한 내용은 그대로 남아 있습니다. 추가 변경을 저장해 주세요.",
+        );
     } catch (caught) {
       if (statusOf(caught) === 409) setConflict(messageOf(caught));
       else if (caught instanceof EnglishRequestError && caught.issues?.length) {

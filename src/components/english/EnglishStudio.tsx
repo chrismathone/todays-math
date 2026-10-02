@@ -10,7 +10,13 @@
  *
  * 🔴 이 화면은 서버가 낸 것을 그린다 — 오류 문구도 서버 것을 그대로 올린다(`englishClient.ts`).
  */
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   ALL_WORKSPACE_MENUS,
   normalizeWorkspaceMenus,
@@ -69,7 +75,20 @@ export type EnglishStudioProps = {
   onNotice: EnglishNotice;
 };
 
-type EditorSeed = { id: string; set?: EnglishSet };
+type EditorSeed = { id: string; examId: string; set?: EnglishSet };
+
+/** Mount on first visit, then keep drafts and in-flight saves across menu changes. */
+function PersistentView({
+  active,
+  children,
+}: {
+  active: boolean;
+  children: ReactNode;
+}) {
+  const [visited, setVisited] = useState(active);
+  if (active && !visited) setVisited(true);
+  return <div hidden={!active}>{active || visited ? children : null}</div>;
+}
 
 const HEADERS: Record<EnglishView, { title: string; description: string }> = {
   english: {
@@ -243,7 +262,11 @@ export default function EnglishStudio({
         );
         if (cancelled) return;
         selectExam(body.data.examId);
-        setEditor({ id: body.data.id, set: body.data });
+        setEditor({
+          id: body.data.id,
+          examId: body.data.examId,
+          set: body.data,
+        });
         callbacks.current.onNavigate("english-library");
       } catch (error) {
         if (cancelled) return;
@@ -264,11 +287,11 @@ export default function EnglishStudio({
 
   const openSet = useCallback(
     (id: string) => {
-      if (!canLibrary) return;
-      setEditor({ id });
+      if (!canLibrary || !examId) return;
+      setEditor({ id, examId });
       onNavigate("english-library");
     },
-    [onNavigate, canLibrary],
+    [onNavigate, canLibrary, examId],
   );
 
   const patchExam = useCallback((next: EnglishExam) => {
@@ -381,141 +404,161 @@ export default function EnglishStudio({
             )}
           </section>
         </>
-      ) : view === "english-library" && canLibrary && editor ? (
-        <EnglishEditor
-          key={editor.id}
-          setId={editor.id}
-          initialSet={editor.set}
-          exam={exam}
-          onBack={() => setEditor(null)}
-          onNotice={(message) => onNotice(message)}
-          onSaved={(saved) => {
-            setSets((current) => {
-              const list = current[saved.examId];
-              if (!list || list.status !== "ready") return current;
-              const {
-                passage: _passage,
-                questions: _questions,
-                ...summary
-              } = saved;
-              void _passage;
-              void _questions;
-              return {
-                ...current,
-                [saved.examId]: {
-                  status: "ready",
-                  data: list.data.map((item) =>
-                    item.id === saved.id ? summary : item,
-                  ),
-                },
-              };
-            });
-            onNotice("저장했습니다.");
-          }}
-          onDeleted={(id) => {
-            setSets((current) => {
-              const list = current[exam.id];
-              if (!list || list.status !== "ready") return current;
-              return {
-                ...current,
-                [exam.id]: {
-                  status: "ready",
-                  data: list.data.filter((item) => item.id !== id),
-                },
-              };
-            });
-            setEditor(null);
-            onNotice("문제 세트를 삭제했습니다.");
-          }}
-        />
-      ) : view === "english" ? (
-        <EnglishPrepView
-          exam={exam}
-          exams={examList}
-          onSelectExam={selectExam}
-          onNewExam={onNewExam}
-          materials={materialsLoad ?? { status: "loading" }}
-          onRetryMaterials={() => refreshMaterials(exam.id)}
-          sets={setsLoad ?? { status: "loading" }}
-          onRetrySets={() => refreshSets(exam.id)}
-          onMaterialAdded={(material) => {
-            setMaterials((current) => {
-              const list = current[material.examId];
-              return {
-                ...current,
-                [material.examId]: {
-                  status: "ready",
-                  data: [
-                    material,
-                    ...(list?.status === "ready" ? list.data : []),
-                  ],
-                },
-              };
-            });
-            onNotice("자료를 더했습니다.");
-          }}
-          onMaterialRemoved={(id) => {
-            setMaterials((current) => {
-              const list = current[exam.id];
-              if (!list || list.status !== "ready") return current;
-              return {
-                ...current,
-                [exam.id]: {
-                  status: "ready",
-                  data: list.data.filter((item) => item.id !== id),
-                },
-              };
-            });
-            onNotice("자료를 삭제했습니다.");
-          }}
-          onExamChange={(next) => {
-            patchExam(next);
-            onNotice("출제 설정을 저장했습니다.");
-          }}
-          onExamDeleted={(id) => {
-            const remaining = examList.filter((item) => item.id !== id);
-            setExams({ status: "ready", data: remaining });
-            selectExam(remaining[0]?.id ?? null);
-            onNotice("시험을 삭제했습니다.");
-          }}
-          onOpenSet={openSet}
-          onNavigate={onNavigate}
-          canMake={canMake}
-          canLibrary={canLibrary}
-        />
-      ) : view === "english-library" ? (
-        <EnglishLibraryView
-          exam={exam}
-          exams={examList}
-          onSelectExam={selectExam}
-          sets={setsLoad ?? { status: "loading" }}
-          onRefresh={() => refreshSets(exam.id)}
-          onOpen={openSet}
-          onMake={canMake ? () => onNavigate("english-maker") : undefined}
-        />
       ) : (
         <>
-          <WorkspacePageHeader
-            title={header.title}
-            description={header.description}
-          />
-          <EnglishExamPicker
-            exams={examList}
-            exam={exam}
-            onSelect={selectExam}
-          />
-          <EnglishMakerView
-            exam={exam}
-            materials={
-              materialsLoad?.status === "ready" ? materialsLoad.data : []
-            }
-            onSaved={(id) => {
-              refreshSets(exam.id);
-              if (canLibrary) openSet(id);
-              else onNotice("문제 세트를 저장했습니다.");
-            }}
-            onNotice={(message, tone) => onNotice(message, tone)}
-          />
+          {canLibrary && editor && (
+            <div hidden={view !== "english-library"}>
+              <EnglishEditor
+                key={editor.id}
+                setId={editor.id}
+                initialSet={editor.set}
+                exam={
+                  examList.find((item) => item.id === editor.examId) ?? exam
+                }
+                onBack={() => setEditor(null)}
+                onNotice={(message) => onNotice(message)}
+                onSaved={(saved) => {
+                  setEditor((current) =>
+                    current?.id === saved.id
+                      ? { ...current, set: saved }
+                      : current,
+                  );
+                  setSets((current) => {
+                    const list = current[saved.examId];
+                    if (!list || list.status !== "ready") return current;
+                    const {
+                      passage: _passage,
+                      questions: _questions,
+                      ...summary
+                    } = saved;
+                    void _passage;
+                    void _questions;
+                    return {
+                      ...current,
+                      [saved.examId]: {
+                        status: "ready",
+                        data: list.data.map((item) =>
+                          item.id === saved.id ? summary : item,
+                        ),
+                      },
+                    };
+                  });
+                  onNotice("저장했습니다.");
+                }}
+                onDeleted={(id) => {
+                  setSets((current) => {
+                    const list = current[editor.examId];
+                    if (!list || list.status !== "ready") return current;
+                    return {
+                      ...current,
+                      [editor.examId]: {
+                        status: "ready",
+                        data: list.data.filter((item) => item.id !== id),
+                      },
+                    };
+                  });
+                  setEditor(null);
+                  onNotice("문제 세트를 삭제했습니다.");
+                }}
+              />
+            </div>
+          )}
+          {canSchool && (
+            <PersistentView active={view === "english"}>
+              <EnglishPrepView
+                exam={exam}
+                exams={examList}
+                onSelectExam={selectExam}
+                onNewExam={onNewExam}
+                materials={materialsLoad ?? { status: "loading" }}
+                onRetryMaterials={() => refreshMaterials(exam.id)}
+                sets={setsLoad ?? { status: "loading" }}
+                onRetrySets={() => refreshSets(exam.id)}
+                onMaterialAdded={(material) => {
+                  setMaterials((current) => {
+                    const list = current[material.examId];
+                    return {
+                      ...current,
+                      [material.examId]: {
+                        status: "ready",
+                        data: [
+                          material,
+                          ...(list?.status === "ready" ? list.data : []),
+                        ],
+                      },
+                    };
+                  });
+                  onNotice("자료를 더했습니다.");
+                }}
+                onMaterialRemoved={(id) => {
+                  setMaterials((current) => {
+                    const list = current[exam.id];
+                    if (!list || list.status !== "ready") return current;
+                    return {
+                      ...current,
+                      [exam.id]: {
+                        status: "ready",
+                        data: list.data.filter((item) => item.id !== id),
+                      },
+                    };
+                  });
+                  onNotice("자료를 삭제했습니다.");
+                }}
+                onExamChange={(next) => {
+                  patchExam(next);
+                  onNotice("출제 설정을 저장했습니다.");
+                }}
+                onExamDeleted={(id) => {
+                  const remaining = examList.filter((item) => item.id !== id);
+                  setExams({ status: "ready", data: remaining });
+                  selectExam(remaining[0]?.id ?? null);
+                  onNotice("시험을 삭제했습니다.");
+                }}
+                onOpenSet={openSet}
+                onNavigate={onNavigate}
+                canMake={canMake}
+                canLibrary={canLibrary}
+              />
+            </PersistentView>
+          )}
+          {canLibrary && (
+            <PersistentView active={view === "english-library" && !editor}>
+              <EnglishLibraryView
+                exam={exam}
+                exams={examList}
+                onSelectExam={selectExam}
+                sets={setsLoad ?? { status: "loading" }}
+                onRefresh={() => refreshSets(exam.id)}
+                onOpen={openSet}
+                onMake={canMake ? () => onNavigate("english-maker") : undefined}
+              />
+            </PersistentView>
+          )}
+          {canMake && (
+            <PersistentView active={view === "english-maker"}>
+              <WorkspacePageHeader
+                title={HEADERS["english-maker"].title}
+                description={HEADERS["english-maker"].description}
+              />
+              <EnglishExamPicker
+                exams={examList}
+                exam={exam}
+                onSelect={selectExam}
+              />
+              <EnglishMakerView
+                exam={exam}
+                materials={
+                  materialsLoad?.status === "ready" ? materialsLoad.data : []
+                }
+                onSaved={(id) => {
+                  refreshSets(exam.id);
+                  if (canLibrary) openSet(id);
+                  else onNotice("문제 세트를 저장했습니다.");
+                }}
+                onNotice={(message, tone) => onNotice(message, tone)}
+              />
+            </PersistentView>
+          )}
         </>
       )}
       {newExamDialog}
