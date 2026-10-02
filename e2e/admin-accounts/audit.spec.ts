@@ -62,7 +62,9 @@ for (const width of [320, 390, 1440]) {
     await page.getByRole("button", { name: "활동 기록", exact: true }).click();
     const activity = page.getByRole("tab", { name: "활동", exact: true });
     const access = page.getByRole("tab", { name: "관리자 접근", exact: true });
-    const panel = page.getByRole("tabpanel");
+    const panel = page
+      .getByRole("region", { name: "계정 활동 기록", exact: true })
+      .getByRole("tabpanel");
     await expect(activity).toHaveAttribute("aria-selected", "true");
     await expect(panel.getByText("계정 설정 변경").first()).toBeVisible();
     await expect(
