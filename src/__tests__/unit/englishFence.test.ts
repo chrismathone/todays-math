@@ -114,6 +114,10 @@ const TABLE_ALLOWED = [
   // 세트의 «만든 조건» 칸(2026-10-01 원장님 «메타데이터 기억되게») — 마이그레이션과 그 적용 도구
   "prisma/migrations/20261001120000_english_set_meta/",
   "scripts/qa/apply-english-set-meta-migration.ts",
+  // 세트의 «형식 판» 칸 — 🔴 미적용 SQL 초안과 그 검사 도구(자료 개선 M0, 2026-10-02). 영어 모듈을 import 하지 않고 표 이름만 안다
+  "prisma/drafts/english-set-schema-version/",
+  "scripts/qa/check-english-schema-version-draft.ts",
+  "scripts/qa/english-schema-version/",
   "src/lib/english/",
   "src/lib/ownership.ts",
   "src/app/api/english/",

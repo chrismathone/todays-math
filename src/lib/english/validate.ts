@@ -15,6 +15,8 @@ import {
   type EnglishQuestionType,
 } from "@/contracts/english.contract";
 
+import { englishV1PayloadIssues } from "./v2/versionGate";
+
 /** 공백을 하나로 접고 앞뒤를 지운다 — 근거 대조·보기 중복 판정의 자 */
 export function normalizeEnglishText(text: string): string {
   return text.replace(/\s+/g, " ").trim();
@@ -95,6 +97,10 @@ export function validateEnglishDraft(
   value: unknown,
   expect?: EnglishDraftExpectation,
 ): EnglishDraftVerdict {
+  // 🔴 이 검증기는 1판 규칙이다. 2판 · 모르는 판 · 2판 칸이 든 값은 1판 규칙으로 재지 않고 그 사유 하나로 거절한다 —
+  //    세 길(붙여넣기 · 서버 AI · 저장 라우트)이 다 여기를 지나므로 어느 길로도 표적이 버려진 채 저장되지 않는다.
+  const versionIssues = englishV1PayloadIssues(value);
+  if (versionIssues.length) return { ok: false, issues: versionIssues };
   const parsed = englishDraftSchema.safeParse(value);
   if (!parsed.success)
     return {

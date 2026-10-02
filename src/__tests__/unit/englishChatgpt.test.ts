@@ -12,13 +12,18 @@ import { z } from "zod";
 
 import { AiParseError } from "@/lib/ai/errors";
 import { parseAiJsonObject } from "@/lib/ai/jsonRepair";
-import { ENGLISH_EXAM_PROMPT_VERSION } from "@/lib/ai/prompts/englishExam";
+import {
+  ENGLISH_EXAM_PROMPT_VERSION,
+  ENGLISH_EXAM_RULES,
+  ENGLISH_TYPE_GUIDE,
+} from "@/lib/ai/prompts/englishExam";
 import {
   buildChatgptFixRequest,
   buildChatgptRequest,
   coerceEnglishDraftShape,
   parseChatgptResult,
 } from "@/lib/english/chatgpt";
+import { englishDraftFeedback } from "@/lib/english/feedback";
 
 const passage =
   "Mina keeps a small notebook in her bag. Every evening she writes three things that went well during the day. After a month she noticed that she complained less and laughed more. Her teacher said the habit trains the mind to look for good moments.";
@@ -100,17 +105,46 @@ describe("buildChatgptRequest — 요청문에 조건 · 규칙 · 답 형식이
     expect(text.split("[규칙]")[0]).not.toContain("문장 삽입");
   });
 
-  it("규칙 — 보기 5개 서로 다름 · 정답 1~5 · 서술형 보기 없음 + 부분점수 · 연속 인용 · 고른 유형만 · 변형 지문은 발문 안 · 지어낸 통계 금지", () => {
+  it("규칙 — 보기 5개 서로 다름 · 정답 1~5 · 서술형 보기 없음 + 모범 답안 · 연속 인용 · 고른 유형만 · 변형 지문은 발문 안 · 지어낸 통계 금지", () => {
     expect(text).toMatch(/보기.*5개/);
     expect(text).toMatch(/서로 다르/);
     expect(text).toMatch(/"1".*"5"|1~5/);
     expect(text).toMatch(/서술형.*보기 없이|서술형.*보기가 없/);
-    expect(text).toContain("부분점수");
+    expect(text).toMatch(/서술형은 보기 없이[^\n]*모범 답안을 answer 에/);
     expect(text).toMatch(/이어진 인용|연속 인용/);
     expect(text).toMatch(/고른 유형만/);
     expect(text).toMatch(/각각 하나 이상|각 하나 이상/);
     expect(text).toMatch(/빈칸 추론 · 어법 · 문장 삽입[^\n]*prompt 안에/);
     expect(text).toMatch(/지어낸 통계/);
+  });
+
+  it("v6 — 서술형에 부분점수 · 감점을 쓰라고 강제하는 문장이 없고, 채점 기준은 주어졌을 때만 옮긴다", () => {
+    // 요청문은 프롬프트 파일의 규칙 한 벌을 그대로 싣는다 — 따로 쓴 문장이 없다
+    expect(text).toContain(`- ${ENGLISH_TYPE_GUIDE.서술형}`);
+    expect(text).toContain(ENGLISH_EXAM_RULES[1]!);
+
+    // 배점 낱말(부분점수 · 감점 · 배점 · «2점»)이 든 문장 — 낱말 유무가 아니라 그 문장이 무엇을 시키는지를 본다
+    const scoring = text
+      .split(/\n|(?<=[.?!])\s+/)
+      .filter((sentence) => /부분점수|감점|배점|\d\s*점/.test(sentence));
+    // 서술형 안내 줄 · 공통 규칙 줄 하나씩, 둘 다 «없으면 지어내지 않는다»는 조건부 문장이다
+    expect(scoring).toHaveLength(2);
+    for (const sentence of scoring)
+      expect(sentence).toMatch(
+        /채점 기준이 (?:있을 때만|없으면)[^.]*배점 · 부분점수 · 감점 공식을 지어내지 않습니다/,
+      );
+    expect(text).not.toContain("요소별 부분점수");
+    expect(text).not.toMatch(/채점 기준을 (?:씁니다|쓰십시오|적습니다)/);
+
+    // 그대로 요구하는 것 — 발문의 조건 · 모범 답안과 인정 답안 나열 · 해설(정답 근거)
+    expect(text).toContain(
+      "조건(쓸 낱말 · 어형 변화 · 단어 수 · 우리말/영어)을 발문에 밝힌",
+    );
+    expect(text).toContain(
+      "answer 에 모범 답안(인정 답안이 여럿이면 « / »로 나열)",
+    );
+    expect(text).toContain("explanation 에 그 답이 정답인 근거");
+    expect(text).toMatch(/해설\(explanation\)은 정답의 근거와 함께/);
   });
 
   it("답 형식 — JSON 하나를 코드펜스로, 다른 말 없이", () => {
@@ -160,6 +194,10 @@ describe("buildChatgptRequest — 요청문에 조건 · 규칙 · 답 형식이
 
   it("요청문과 DeepSeek 프롬프트는 같은 규칙 한 벌을 쓴다 — 버전이 프롬프트 파일에 있다", () => {
     expect(ENGLISH_EXAM_PROMPT_VERSION).toMatch(/^v\d+$/);
+    // v6 — 서술형의 부분점수 강제를 뺀 판. 요청문도 같은 판의 규칙을 싣는다
+    expect(Number(ENGLISH_EXAM_PROMPT_VERSION.slice(1))).toBeGreaterThanOrEqual(
+      6,
+    );
   });
 });
 
@@ -439,15 +477,30 @@ describe("buildChatgptFixRequest — 거절됐을 때만 «고쳐 달라 요청�
   });
 
   it("🔴 막지 않는 품질 검사의 지적은 싣지 않는다 — 정밀도 낮은 의심을 고치라 하면 맞는 답을 틀리게 바꾼다", () => {
-    // 1번은 검증 거절(보기 4개), 2번 서술형은 채점 기준에 부분점수 요소가 없다(품질 검사만 걸림)
+    // 1번은 검증 거절(보기 4개), 3번은 «정답 없음» 보기(품질 검사만 걸림 — 검증기는 지난다).
+    // 2번 서술형은 채점 기준 없이 해설만 있다 — v6 부터는 품질 검사도 이것을 탓하지 않는다.
     const mixed = {
       ...fourOptions,
       questions: [
         fourOptions.questions[0],
         { ...goodDraft.questions[1], explanation: "맞으면 정답" },
-        goodDraft.questions[2],
+        {
+          ...goodDraft.questions[2],
+          options: [
+            ...goodDraft.questions[2]!.options.slice(0, 4),
+            "정답 없음",
+          ],
+        },
       ],
     };
+    // 품질 검사는 3번을 실제로 짚는다(아래 «안 싣는다»가 헛단정이 아니다) · 2번에는 지적이 없다
+    const feedback = englishDraftFeedback(mixed, conditions);
+    expect(feedback).toContain(
+      "q3 (주제): «모두 옳다 / 정답 없음» 같은 보기를 쓰지 않습니다.",
+    );
+    expect(feedback.filter((line) => line.startsWith("q2"))).toEqual([]);
+    expect(feedback.join("\n")).not.toMatch(/채점 기준|부분점수|감점|배점/);
+
     const text = buildChatgptFixRequest({
       request: conditions,
       pasted: JSON.stringify(mixed),
@@ -458,7 +511,9 @@ describe("buildChatgptFixRequest — 거절됐을 때만 «고쳐 달라 요청�
     );
     expect(where).toContain("q1");
     expect(where).not.toContain("q2");
-    expect(where).not.toContain("부분점수");
+    expect(where).not.toContain("q3");
+    expect(where).not.toContain("정답 없음");
+    expect(where).not.toMatch(/채점 기준|부분점수|감점|배점/);
   });
 
   it("🔴 JSON 을 못 읽은 붙여넣기에는 요청문을 짓지 않는다 — 일부만 복사한 글이면 고칠 대상이 없다(3자 합의 25 §12.13)", () => {

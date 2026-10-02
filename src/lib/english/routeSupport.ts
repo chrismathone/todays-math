@@ -10,6 +10,7 @@ import {
   ENGLISH_MATERIAL_MAX_LABEL,
   type EnglishDraftIssue,
 } from "@/contracts/english.contract";
+import { ENGLISH_SCHEMA_VERSION_V2 } from "@/contracts/englishV2.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
 import { englishRouteAllowed } from "@/lib/accountRouteAccess";
 import { jsonError, unauthorizedError } from "@/lib/apiResponse";
@@ -17,6 +18,7 @@ import { db } from "@/lib/db";
 import { getSessionUser, type SessionUser } from "@/lib/session";
 
 import { serializeEnglishExam, type EnglishExamCounts } from "./serialize";
+import { ENGLISH_VERSION_MESSAGES, gateEnglishV1Write } from "./v2/versionGate";
 
 // ─────────────────────────────────────────────
 // 관문 — 세션 401 · 쓰기는 같은 출처(`authorizeAccount` 결)
@@ -92,6 +94,44 @@ export const revisionMismatch = () =>
 /** 409 — 같은 clientKey 인데 저장할 본문이 다르다. 기존 행은 그대로 둔다 */
 export const clientKeyConflict = () =>
   jsonError("CONFLICT", ENGLISH_ROUTE_MESSAGES.clientKeyConflict, 409);
+
+// ─────────────────────────────────────────────
+// 형식 판 관문 — 세트 저장 라우트(POST · PUT)는 1판 경로다 (자료 개선 M0 · `v2/versionGate.ts`)
+// ─────────────────────────────────────────────
+
+export type EnglishV1Body =
+  { body: unknown; response: null } | { body: null; response: Response };
+
+/**
+ * 요청 본문을 1판 계약에 넘기기 전에 판을 본다. 2판 · 모르는 판 · 2판 칸이 든 본문은 400 으로 사유를 밝혀 거절한다 —
+ * 계약의 «모르는 칸» 400 과 같은 코드지만 문구와 `details` 가 «형식 판» 을 짚는다.
+ * 지나면 `schemaVersion: 1` 표지만 뗀 본문을 돌려준다. `revision`(CAS)은 여기서 보지 않는다 — 다른 칸이다.
+ */
+export async function readEnglishV1Body(
+  request: Request,
+): Promise<EnglishV1Body> {
+  const gate = gateEnglishV1Write(await readJson(request));
+  if (gate.ok) return { body: gate.body, response: null };
+  // 판을 밝힌 요청이면 그 칸을, 판 표지 없이 2판 칸만 든 요청이면 그 칸들의 자리를 짚는다
+  const fields =
+    gate.reason === "unsupported_version" ||
+    gate.schemaVersion === ENGLISH_SCHEMA_VERSION_V2
+      ? ["schemaVersion"]
+      : gate.markers;
+  return {
+    body: null,
+    response: jsonError(
+      "VALIDATION_ERROR",
+      gate.message,
+      400,
+      fields.map((field) => ({ field, message: gate.message })),
+    ),
+  };
+}
+
+/** 409 — 저장된 행이 1판이 아니다. 1판 PUT 으로 덮어쓰면 표적이 든 본문이 사라진다 */
+export const storedSetNotV1 = () =>
+  jsonError("CONFLICT", ENGLISH_VERSION_MESSAGES.storedNotV1, 409);
 
 // ─────────────────────────────────────────────
 // 자료 파일 규칙 (25 §3 — pdf · docx · txt · png · jpg ≤ ENGLISH_MATERIAL_MAX_BYTES, 4MB — Vercel 본문 상한 4.5MB 아래)
