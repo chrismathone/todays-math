@@ -44,18 +44,13 @@ export type ConceptBlankPaperProps = {
 /** 코드 줄 하나에 들어갈 것 — 그 장의 몫 안 번호는 `start + 장 차례 + 1`. */
 type CodeSpot = { code: string; start: number; total: number };
 
-export default function ConceptBlankPaper({
+/** 미리보기와 인쇄가 같은 쪽 나누기와 코드 번호를 사용한다. */
+export function conceptBlankPages({
   sheets,
   view,
   code,
 }: ConceptBlankPaperProps) {
   const plans = sheets.filter(sheetHasContent).map(planSheet);
-  if (plans.length === 0)
-    return (
-      <p className={styles.empty} data-concept-blank-paper={view} role="status">
-        담을 문항이 없습니다.
-      </p>
-    );
   /** 몫마다 지면의 첫 장 앞까지 센 장 수 — 학생지 · 채점표 따로. */
   const spots = (pages: (plan: SheetPlan) => number) => {
     const total = plans.reduce((n, plan) => n + pages(plan), 0);
@@ -68,14 +63,33 @@ export default function ConceptBlankPaper({
   };
   const studentSpots = spots((plan) => plan.student.length);
   const keySpots = spots((plan) => plan.key.length);
+  return [
+    ...(view !== "key"
+      ? plans.flatMap((plan, i) =>
+          studentPages(plan, i, studentSpots[i] ?? null),
+        )
+      : []),
+    ...(view !== "student"
+      ? plans.flatMap((plan, i) => keyPages(plan, i, keySpots[i] ?? null))
+      : []),
+  ];
+}
+
+export default function ConceptBlankPaper(props: ConceptBlankPaperProps) {
+  const pages = conceptBlankPages(props);
+  if (!pages.length)
+    return (
+      <p
+        className={styles.empty}
+        data-concept-blank-paper={props.view}
+        role="status"
+      >
+        담을 문항이 없습니다.
+      </p>
+    );
   return (
-    <div className={styles.paper} data-concept-blank-paper={view}>
-      {view !== "key"
-        ? plans.map((plan, i) => studentPages(plan, i, studentSpots[i] ?? null))
-        : null}
-      {view !== "student"
-        ? plans.map((plan, i) => keyPages(plan, i, keySpots[i] ?? null))
-        : null}
+    <div className={styles.paper} data-concept-blank-paper={props.view}>
+      {pages}
     </div>
   );
 }

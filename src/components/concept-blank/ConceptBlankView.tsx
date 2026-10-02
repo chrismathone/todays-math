@@ -21,7 +21,7 @@ import {
   useState,
 } from "react";
 
-import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
+import ConceptBlankPreview from "@/components/concept-blank/ConceptBlankPreview";
 import { PaperText } from "@/components/concept-blank/paper/PaperParts";
 import {
   PrivateCloudClient,
@@ -276,51 +276,6 @@ function availableOf(chosen: string[], caps: Caps, form: ConceptBlankForm) {
 }
 
 /**
- * 미리보기 축소 — 지면(`ConceptBlankPaper`)을 제 폭(A4)으로 그린 뒤 칸 폭에 맞춰 가로 · 세로를 **같은 배율**로 줄인다
- * (원장님 «A4 사이즈에 맞게»). 지면의 속은 건드리지 않는다 — 배율만 씌운다. 칸보다 좁으면 그대로(키우지 않는다).
- * transform 은 차지하는 자리를 안 줄이므로, 바깥 칸에 줄인 폭 · 높이를 적어 자리를 맞춘다.
- */
-function usePaperFit(enabled: boolean) {
-  const deskRef = useRef<HTMLDivElement>(null);
-  const paperRef = useRef<HTMLDivElement>(null);
-  const [fit, setFit] = useState<{ k: number; w: number; h: number } | null>(
-    null,
-  );
-  useEffect(() => {
-    const desk = deskRef.current;
-    const paper = paperRef.current;
-    if (!enabled || !desk || !paper || typeof ResizeObserver === "undefined")
-      return;
-    const measure = () => {
-      const w = paper.offsetWidth;
-      const h = paper.offsetHeight;
-      const style = getComputedStyle(desk);
-      const room =
-        desk.clientWidth -
-        (parseFloat(style.paddingLeft) || 0) -
-        (parseFloat(style.paddingRight) || 0);
-      const next =
-        w > 0 && room > 0 ? { k: Math.min(1, room / w), w, h } : null;
-      setFit((current) =>
-        current &&
-        next &&
-        current.k === next.k &&
-        current.w === next.w &&
-        current.h === next.h
-          ? current
-          : next,
-      );
-    };
-    const observer = new ResizeObserver(measure);
-    observer.observe(desk);
-    observer.observe(paper);
-    measure();
-    return () => observer.disconnect();
-  }, [enabled]);
-  return { deskRef, paperRef, fit };
-}
-
-/**
  * 학년 은행을 늦게 불러온다(은행 3차 · `bank/load.ts`) — 소단원마다 10개씩이라 은행이 열 배, 화면 조각에 은행 전체를 싣지 않는다.
  * `grades` 의 학년만 부르고, 한 번 부른 학년은 다시 부르지 않는다. `null` 이면 부르지 않는다(은행을 props 로 받은 시험 · 시안).
  */
@@ -531,7 +486,6 @@ export default function ConceptBlankView({
     [selection, sheets.length, bank],
   );
   const items = sheets.reduce((n, sheet) => n + sheetItemCount(sheet), 0);
-  const { deskRef, paperRef, fit } = usePaperFit(sheets.length > 0);
 
   // 주소 `?blank=` — 이 뷰가 보일 때만 싣고, 떠나면 지운다. replaceState 라 셸의 해시 동기화(popstate)는 안 깨운다.
   // 학년 은행이 오는 동안은 건드리지 않는다 — 오기 전의 빈 고르기로 주소의 고르기를 지우면 새로 고침이 고르기를 잃는다.
@@ -1107,33 +1061,12 @@ export default function ConceptBlankView({
           </div>
         </div>
         {sheets.length > 0 ? (
-          <div ref={deskRef} className={s.paperDesk} data-paper-desk="">
-            <div
-              className={s.paperFit}
-              style={
-                fit
-                  ? { width: fit.w * fit.k, height: fit.h * fit.k }
-                  : undefined
-              }
-            >
-              <div
-                ref={paperRef}
-                className={s.paperScale}
-                data-paper-scale=""
-                style={
-                  fit && fit.k < 1
-                    ? { transform: `scale(${fit.k})` }
-                    : undefined
-                }
-              >
-                <ConceptBlankPaper
-                  code={sheetCode}
-                  sheets={sheets}
-                  view={paperView}
-                />
-              </div>
-            </div>
-          </div>
+          <ConceptBlankPreview
+            key={`${paperView}-${sheetCode}`}
+            code={sheetCode}
+            sheets={sheets}
+            view={paperView}
+          />
         ) : (
           <p className={s.empty}>
             {ready

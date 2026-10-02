@@ -5,6 +5,7 @@ import "katex/dist/katex.min.css";
 import "../../src/app/globals.css";
 import "./harness.css";
 
+import ConceptBlankPreview from "../../src/components/concept-blank/ConceptBlankPreview";
 import ConceptBlankPaper from "../../src/components/concept-blank/ConceptBlankPaper";
 import {
   clozeCost,
@@ -199,6 +200,12 @@ createRoot(document.getElementById("root")!).render(
     <main style={{ ["--cb-paper-scale" as string]: params.get("scale") ?? 1 }}>
       {params.get("set") === "ink" ? (
         <InkProbe />
+      ) : params.has("preview") ? (
+        <ConceptBlankPreview
+          code={code}
+          sheets={sheets}
+          view={parseConceptBlankView(params.get("view") ?? undefined)}
+        />
       ) : (
         <ConceptBlankPaper
           code={code}

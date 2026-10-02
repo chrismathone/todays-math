@@ -19,7 +19,7 @@ import {
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 import { kstDateOf } from "@/lib/kstDate";
 
-vi.mock("@/components/concept-blank/ConceptBlankPaper", () => ({
+vi.mock("@/components/concept-blank/ConceptBlankPreview", () => ({
   default: function PaperProbe({ sheets, view, code }: ConceptBlankPaperProps) {
     return (
       <div data-code={code} data-testid="paper" data-view={view}>
@@ -442,55 +442,6 @@ describe("인쇄 · 미리보기", () => {
       target: { value: "김철수 보충" },
     });
     expect(screen.getByTestId("paper")).toHaveAttribute("data-code", code!);
-  });
-});
-
-describe("미리보기 축소 — A4 비율 그대로 칸에 맞춘다", () => {
-  afterEach(() => {
-    vi.unstubAllGlobals();
-    vi.restoreAllMocks();
-  });
-
-  it("지면의 제 폭이 칸보다 넓으면 가로 · 세로를 같은 배율로 줄이고, 좁으면 그대로 둔다", () => {
-    let paperWidth = 794;
-    vi.stubGlobal(
-      "ResizeObserver",
-      class {
-        observe() {}
-        disconnect() {}
-      },
-    );
-    vi.spyOn(HTMLElement.prototype, "offsetWidth", "get").mockImplementation(
-      function (this: HTMLElement) {
-        return this.hasAttribute("data-paper-scale") ? paperWidth : 0;
-      },
-    );
-    vi.spyOn(HTMLElement.prototype, "offsetHeight", "get").mockImplementation(
-      function (this: HTMLElement) {
-        return this.hasAttribute("data-paper-scale") ? 2246 : 0;
-      },
-    );
-    vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockImplementation(
-      function (this: HTMLElement) {
-        return this.hasAttribute("data-paper-desk") ? 397 : 0;
-      },
-    );
-    const { unmount } = renderView();
-    openGrade("초5");
-    fireEvent.click(box("2-3 합동과 대칭"));
-    const scaled = screen.getByTestId("paper").parentElement!;
-    expect(scaled).toHaveAttribute("data-paper-scale");
-    expect(scaled.style.transform).toBe("scale(0.5)");
-    expect(scaled.parentElement!.style.width).toBe("397px");
-    expect(scaled.parentElement!.style.height).toBe("1123px");
-    unmount();
-
-    paperWidth = 300;
-    window.history.replaceState(null, "", "/#conceptBlank");
-    renderView();
-    openGrade("초5");
-    fireEvent.click(box("2-3 합동과 대칭"));
-    expect(screen.getByTestId("paper").parentElement!.style.transform).toBe("");
   });
 });
 

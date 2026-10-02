@@ -514,25 +514,6 @@ button.secondaryButton:disabled {
   color: var(--b-accent);
   box-shadow: 0 0 0 1px var(--b-line);
 }
-.paperDesk {
-  margin-top: 14px;
-  padding: 16px;
-  overflow-x: auto;
-  border-radius: 10px;
-  background: var(--learn-neutral, #edf0f6);
-}
-/* 지면은 제 폭(A4)으로 그리고 배율만 씌운다 — 자리는 바깥 .paperFit 이 줄인 크기로 잡는다 */
-.paperFit {
-  margin: 0 auto;
-  overflow: hidden;
-}
-.paperScale {
-  /* 지면 트랙(cb-paper)은 화면에서 쪽마다 `zoom: var(--cb-paper-scale, 0.58)` 로 줄인다 — 여기서 1 로 두어
-     지면을 제 A4 크기로 그리게 하고, 배율은 칸 맞춤(usePaperFit) 한 곳에서만 정한다(두 번 줄지 않게). */
-  --cb-paper-scale: 1;
-  width: max-content;
-  transform-origin: top left;
-}
 .empty {
   margin: 14px 0 0;
   padding: 28px 16px;
