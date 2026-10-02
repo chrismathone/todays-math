@@ -14,8 +14,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "어느 자리의 합이 $10$을 채우면, $10$개를 {윗자리의 $1$개}로 바꾸어 더한다.",
       example: {
-        prompt: "$286+153$을 계산하시오.",
-        answer: "$439$",
+        prompt:
+          "$147+235$에서 일의 자리의 합 $12$ 가운데 $10$은 어느 자리의 $1$이 되는가?",
+        answer: "십의 자리",
       },
     },
     {
@@ -36,7 +37,7 @@ export const bank: ConceptBlankBank = {
       term: "받아올린 수 더하기",
       kind: "방법",
       definition:
-        "윗자리를 더할 때에는 두 숫자와 {받아올린 수}를 빠짐없이 더한다.",
+        "{윗자리}를 더할 때에는 두 숫자와 받아올린 수를 빠짐없이 더한다.",
     },
     {
       id: "e3-1-1-2-c1",
@@ -46,10 +47,11 @@ export const bank: ConceptBlankBank = {
       term: "연속 받아올림",
       kind: "방법",
       definition:
-        "한 자리에서 올린 수 때문에 다음 자리에서도 {받아올림}이 생길 수 있다.",
+        "한 자리에서 {올린 수} 때문에 다음 자리에서도 받아올림이 생길 수 있다.",
       example: {
-        prompt: "$568+767$을 계산하시오.",
-        answer: "$1335$",
+        prompt:
+          "$275+128$에서 십의 자리는 $7+2=9$인데도 받아올림이 생기는 까닭을 쓰시오.",
+        answer: "일의 자리에서 올린 $1$을 더하면 $10$이 되기 때문이다.",
       },
     },
     {
@@ -81,8 +83,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "어느 자리에서 뺄 수 없으면 {윗자리의 $1$개}를 그 자리의 {$10$개}로 바꾸어 쓴다.",
       example: {
-        prompt: "$572-248$을 계산하시오.",
-        answer: "$324$",
+        prompt:
+          "$461-135$에서 일의 자리 $1$에서 $5$를 뺄 수 없을 때 어느 자리에서 받아내리는가?",
+        answer: "십의 자리",
       },
     },
     {
@@ -112,10 +115,10 @@ export const bank: ConceptBlankBank = {
       term: "두 번 받아내림",
       kind: "방법",
       definition:
-        "일과 십의 자리에서 각각 뺄 수 없으면 {받아내림}을 두 번 한다.",
+        "{일과 십의 자리}에서 각각 뺄 수 없으면 받아내림을 두 번 한다.",
       example: {
-        prompt: "$604-278$을 계산하시오.",
-        answer: "$326$",
+        prompt: "$532-268$에서 받아내림은 모두 몇 번 하는가?",
+        answer: "$2$번",
       },
     },
     {
@@ -147,8 +150,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "두 끝이 정해져 있고 그 사이가 {곧게} 이어진 선을 선분이라 한다.",
       example: {
-        prompt: "끝점이 하나이며 한쪽으로 계속 뻗는 곧은 선의 이름을 쓰시오.",
-        answer: "반직선",
+        prompt: "두 점 ㄱ, ㄴ을 이은 선분의 끝점은 모두 몇 개인가?",
+        answer: "$2$개",
       },
     },
     {
@@ -211,8 +214,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "한 점에서 출발한 두 반직선이 만드는 벌어진 모양을 {각}이라 한다.",
       example: {
-        prompt: "각에서 두 변이 만나는 점의 이름을 쓰시오.",
-        answer: "꼭짓점",
+        prompt: "각 ㄱㄴㄷ을 이루는 두 반직선을 쓰시오.",
+        answer: "반직선 ㄴㄱ, 반직선 ㄴㄷ",
       },
     },
     {
@@ -267,8 +270,8 @@ export const bank: ConceptBlankBank = {
         "삼각형의 세 각 가운데 {직각}이 있는 것을 직각삼각형이라 한다.",
       example: {
         prompt:
-          "삼각형에 작은 네모로 표시한 각이 있다면 이 삼각형의 이름은 무엇인가?",
-        answer: "직각삼각형",
+          "한 각만 직각인 삼각형과 직각이 없는 삼각형 가운데 직각삼각형은 어느 것인가?",
+        answer: "한 각만 직각인 삼각형",
       },
     },
     {
@@ -286,7 +289,7 @@ export const bank: ConceptBlankBank = {
       term: "직각삼각형의 방향",
       kind: "성질",
       definition:
-        "직각삼각형을 돌려 놓아도 각의 크기는 같으므로 여전히 {직각삼각형}이다.",
+        "직각삼각형을 돌려 놓아도 {각의 크기는 같으므로} 여전히 직각삼각형이다.",
     },
     {
       id: "e3-1-2-4-c1",
@@ -297,9 +300,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "사각형의 꼭짓점마다 생기는 각이 모두 {직각}이면 직사각형이라 한다.",
       example: {
-        prompt:
-          "직사각형의 위쪽 변이 $7\\,\\mathrm{cm}$이면 아래쪽 변의 길이는 얼마인가?",
-        answer: "$7\\,\\mathrm{cm}$",
+        prompt: "마주 보는 두 각만 직각인 사각형은 직사각형인가?",
+        answer: "아니다. 네 각이 모두 직각이어야 한다.",
       },
     },
     {
@@ -329,8 +331,8 @@ export const bank: ConceptBlankBank = {
         "사각형에서 변의 길이가 넷 다 같고 각도 모두 {직각}이면 정사각형이다.",
       example: {
         prompt:
-          "정사각형의 한 변이 $6\\,\\mathrm{cm}$이면 네 변의 길이를 모두 더한 값은 얼마인가?",
-        answer: "$24\\,\\mathrm{cm}$",
+          "네 변의 길이가 모두 같지만 각이 직각이 아닌 사각형은 정사각형인가?",
+        answer: "아니다. 네 각도 모두 직각이어야 한다.",
       },
     },
     {
@@ -340,7 +342,7 @@ export const bank: ConceptBlankBank = {
       term: "직사각형과 정사각형의 관계",
       kind: "성질",
       definition:
-        "정사각형은 네 각이 직각이므로 {직사각형}으로도 부를 수 있다.",
+        "정사각형은 {네 각이 직각}이므로 직사각형으로도 부를 수 있다.",
     },
     {
       id: "e3-1-2-5-c3",
@@ -360,8 +362,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "물건을 {같은 수씩} 나누거나 묶어 한 몫 또는 묶음 수를 구하는 계산이 나눗셈이다.",
       example: {
-        prompt: "구슬 $20$개를 $5$개씩 묶으면 몇 묶음인가?",
-        answer: "$4$묶음",
+        prompt:
+          "사탕 $28$개를 $4$명에게 똑같이 나누어 줄 때 한 사람이 받는 수를 구하는 나눗셈식을 쓰시오.",
+        answer: "$28\\div4=7$",
       },
     },
     {
@@ -434,15 +437,16 @@ export const bank: ConceptBlankBank = {
       definition:
         "곱셈에서 구한 전체를 한 묶음의 수로 나누면 {묶음 수}가 나온다.",
       example: {
-        prompt: "$8\\times3=24$를 이용하여 $24\\div8$의 몫을 쓰시오.",
-        answer: "$3$",
+        prompt:
+          "$5$개씩 $9$묶음이 $45$개일 때, $45$개를 $5$개씩 묶으면 몇 묶음인가?",
+        answer: "$9$묶음",
       },
     },
     {
       id: "e3-1-3-2-c2",
       section: "초3::1-3 나눗셈::1-3-2 곱셈과 나눗셈의 관계",
       level: "중",
-      term: "곱셈식에서 나눗셈식 만들기",
+      term: "$4\\times7=28$에서 나눗셈식 만들기",
       kind: "방법",
       definition:
         "$4\\times7=28$을 보면 $28\\div4$의 몫은 {$7$}, $28\\div7$의 몫은 {$4$}이다.",
@@ -465,15 +469,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "나눗셈의 몫을 찾을 때 나누는 수와 {몫}을 곱한 값이 전체가 되게 한다.",
       example: {
-        prompt: "$6\\times\\square=54$를 이용하여 $54\\div6$을 구하시오.",
-        answer: "$9$",
+        prompt: "$32\\div8$의 몫을 구하려고 만드는 빈칸 곱셈식을 쓰시오.",
+        answer: "$8\\times\\square=32$",
       },
     },
     {
       id: "e3-1-3-3-c2",
       section: "초3::1-3 나눗셈::1-3-3 나눗셈의 몫을 곱셈식으로 구하기",
       level: "중",
-      term: "몫 찾기",
+      term: "$35\\div5$의 몫을 곱셈식으로 찾기",
       kind: "방법",
       definition:
         "$35\\div5$의 몫은 곱셈식 $5\\times\\square=35$에서 $\\square$에 알맞은 수와 같으므로 {$7$}이다.",
@@ -496,15 +500,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "나누는 수의 단에서 전체 수가 나오는 곱셈을 찾아 {몫}을 구한다.",
       example: {
-        prompt: "$72\\div9$의 몫을 곱셈구구로 구하시오.",
-        answer: "$8$",
+        prompt: "$45\\div5$의 몫은 몇 단 곱셈구구에서 찾는가?",
+        answer: "$5$단",
       },
     },
     {
       id: "e3-1-3-4-c2",
       section: "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
       level: "중",
-      term: "구구의 단 고르기",
+      term: "$48\\div6$에서 구구의 단 고르기",
       kind: "방법",
       definition:
         "$48\\div6$을 계산할 때에는 {$6$단}에서 $48$이 나오는 식을 찾는다.",
@@ -522,12 +526,12 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-4-1-c1",
       section: "초3::1-4 곱셈::1-4-1 (몇십)×(몇)",
       level: "하",
-      term: "몇십의 뜻",
+      term: "$40$을 십의 묶음으로 보기",
       kind: "정의",
       definition: "$40$은 낱개 $40$개이며, 십의 묶음으로는 {$4$개}이다.",
       example: {
-        prompt: "$70\\times6$을 계산하시오.",
-        answer: "$420$",
+        prompt: "$60$은 십의 묶음이 몇 개인 수인가?",
+        answer: "$6$개",
       },
     },
     {
@@ -543,7 +547,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-4-1-c3",
       section: "초3::1-4 곱셈::1-4-1 (몇십)×(몇)",
       level: "상",
-      term: "곱의 자리값",
+      term: "$30\\times4$에서 $3\\times4=12$가 뜻하는 것",
       kind: "성질",
       definition:
         "$30\\times4$에서 $3\\times4=12$는 낱개 $12$개가 아니라 {십의 묶음 $12$개}를 뜻한다.",
@@ -556,8 +560,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "세로 곱셈에서는 {일의 자리}부터 차례로 곱한다.",
       example: {
-        prompt: "$21\\times4$를 계산하시오.",
-        answer: "$84$",
+        prompt: "$32\\times3$을 세로로 계산할 때 먼저 곱하는 두 수를 쓰시오.",
+        answer: "$2$와 $3$",
       },
     },
     {
@@ -587,8 +591,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "곱한 값이 한 자리의 묶음 $10$개를 채우면 {윗자리}의 묶음으로 바꾼다.",
       example: {
-        prompt: "$42\\times3$을 계산하시오.",
-        answer: "$126$",
+        prompt:
+          "$52\\times4$에서 십의 자리 곱인 십의 묶음 $20$개는 백의 묶음 몇 개가 되는가?",
+        answer: "$2$개",
       },
     },
     {
@@ -617,8 +622,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "일의 자리끼리 곱한 값이 $10$ 이상이면 십의 묶음을 {십의 자리}로 올린다.",
       example: {
-        prompt: "$18\\times4$를 계산하시오.",
-        answer: "$72$",
+        prompt:
+          "$26\\times3$에서 일의 자리 곱 $18$ 가운데 십의 자리로 올리는 수를 쓰시오.",
+        answer: "$1$",
       },
     },
     {
@@ -646,10 +652,10 @@ export const bank: ConceptBlankBank = {
       term: "두 자리에서 올림",
       kind: "방법",
       definition:
-        "일의 자리와 십의 자리에서 곱한 값이 각각 $10$ 이상이면 두 자리 모두에서 {올림}한다.",
+        "일의 자리와 십의 자리에서 곱한 값이 각각 {$10$ 이상}이면 두 자리 모두에서 올림한다.",
       example: {
-        prompt: "$67\\times8$을 계산하시오.",
-        answer: "$536$",
+        prompt: "$46\\times7$은 올림이 몇 번 있는 곱셈인가?",
+        answer: "$2$번",
       },
     },
     {
@@ -681,8 +687,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "$1\\,\\mathrm{cm}$를 같은 길이 $10$칸으로 나눌 때 한 칸은 {$1\\,\\mathrm{mm}$}이며 $1$ 밀리미터라고 읽는다.",
       example: {
-        prompt: "$4\\,\\mathrm{cm}\\ 7\\,\\mathrm{mm}$는 몇 mm인지 쓰시오.",
-        answer: "$47\\,\\mathrm{mm}$",
+        prompt:
+          "$1\\,\\mathrm{cm}$를 같은 길이 $10$칸으로 나눈 것 가운데 $3$칸의 길이를 쓰시오.",
+        answer: "$3\\,\\mathrm{mm}$",
       },
     },
     {
@@ -701,7 +708,7 @@ export const bank: ConceptBlankBank = {
       term: "자의 시작 눈금",
       kind: "방법",
       definition:
-        "물건의 끝이 $0$에 맞지 않으면 마지막 눈금에서 {시작 눈금}을 빼어 길이를 구한다.",
+        "물건의 끝이 $0$에 맞지 않으면 {마지막 눈금}에서 시작 눈금을 빼어 길이를 구한다.",
     },
     {
       id: "e3-1-5-2-c1",
@@ -712,15 +719,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "먼 거리를 나타낼 때 km를 쓰며, $1\\,\\mathrm{km}$는 {$1000\\,\\mathrm{m}$}에 해당한다.",
       example: {
-        prompt: "$3\\,\\mathrm{km}\\ 80\\,\\mathrm{m}$를 m만 써서 나타내시오.",
-        answer: "$3080\\,\\mathrm{m}$",
+        prompt: "걸어서 $1000\\,\\mathrm{m}$를 간 거리는 몇 km인가?",
+        answer: "$1\\,\\mathrm{km}$",
       },
     },
     {
       id: "e3-1-5-2-c2",
       section: "초3::1-5 길이와 시간::1-5-2 1m보다 큰 단위",
       level: "중",
-      term: "킬로미터와 미터 바꾸기",
+      term: "$2\\,\\mathrm{km}\\ 350\\,\\mathrm{m}$를 미터로 바꾸기",
       kind: "방법",
       definition:
         "$2\\,\\mathrm{km}\\ 350\\,\\mathrm{m}$는 $2000\\,\\mathrm{m}$에 $350\\,\\mathrm{m}$를 더한 {$2350\\,\\mathrm{m}$}이다.",
@@ -744,8 +751,8 @@ export const bank: ConceptBlankBank = {
         "잰 값과 꼭 같지는 않은 {어림한 값}임을 알릴 때 수 앞에 약을 붙인다.",
       example: {
         prompt:
-          "약 $90\\,\\mathrm{cm}$로 어림한 끈을 재니 $94\\,\\mathrm{cm}$였다면 두 값의 차이는 얼마인가?",
-        answer: "$4\\,\\mathrm{cm}$",
+          "책상의 길이를 재니 $2\\,\\mathrm{m}\\ 3\\,\\mathrm{cm}$였다. 약 몇 m라고 말할 수 있는가?",
+        answer: "약 $2\\,\\mathrm{m}$",
       },
     },
     {
@@ -775,8 +782,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "짧은 시간을 나타내는 단위가 초이며, {$60$초}를 모으면 $1$분이다.",
       example: {
-        prompt: "$135$초는 몇 분 몇 초인지 쓰시오.",
-        answer: "$2$분 $15$초",
+        prompt: "$1$분보다 $20$초 더 긴 시간은 모두 몇 초인가?",
+        answer: "$80$초",
       },
     },
     {
@@ -805,8 +812,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "시간을 더할 때에는 시·분·초를 {같은 단위끼리} 모아 더한다.",
       example: {
-        prompt: "$2$분 $45$초와 $1$분 $30$초를 더하시오.",
-        answer: "$4$분 $15$초",
+        prompt:
+          "$3$분 $20$초와 $2$분 $15$초를 더할 때 $20$초와 더하는 것은 무엇인가?",
+        answer: "$15$초",
       },
     },
     {
@@ -834,8 +842,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "시간의 차를 구할 때에는 {같은 단위}의 수끼리 뺀다.",
       example: {
-        prompt: "$6$분 $10$초에서 $2$분 $35$초를 빼시오.",
-        answer: "$3$분 $35$초",
+        prompt:
+          "$7$분 $50$초에서 $3$분 $20$초를 뺄 때 $50$초에서 빼는 것은 무엇인가?",
+        answer: "$20$초",
       },
     },
     {
@@ -865,8 +874,8 @@ export const bank: ConceptBlankBank = {
       definition: "한 전체를 나눌 때 각 부분의 {크기}가 같도록 나눈다.",
       example: {
         prompt:
-          "빵 하나를 같은 크기 $6$조각으로 나누어 $2$조각 먹었다면 몇 조각이 남는가?",
-        answer: "$4$조각",
+          "피자를 큰 조각 하나와 작은 조각 둘로 잘랐다면 똑같이 나눈 것인가?",
+        answer: "아니다. 조각의 크기가 같지 않다.",
       },
     },
     {
@@ -897,8 +906,8 @@ export const bank: ConceptBlankBank = {
         "전체를 같은 크기로 나눈 뒤 그중 몇 부분인지 나타내는 수를 {분수}라 한다.",
       example: {
         prompt:
-          "전체를 같은 크기 $8$조각으로 나누어 $3$조각 고른 것을 분수로 쓰시오.",
-        answer: "$\\frac{3}{8}$",
+          "$\\frac{2}{7}$는 전체를 똑같이 몇으로 나눈 것 중 몇을 나타내는가?",
+        answer: "똑같이 $7$로 나눈 것 중 $2$",
       },
     },
     {
@@ -934,26 +943,26 @@ export const bank: ConceptBlankBank = {
       term: "분수가 기준으로 삼는 전체",
       kind: "성질",
       definition:
-        "같은 조각이라도 무엇을 {전체}로 보느냐에 따라 그 조각을 나타내는 분수가 달라진다.",
+        "같은 조각이라도 무엇을 전체로 보느냐에 따라 그 조각을 나타내는 {분수가 달라진다}.",
     },
     {
       id: "e3-1-6-3-c1",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "하",
-      term: "분수와 단위 조각",
+      term: "$\\frac{3}{5}$과 단위 조각",
       kind: "정의",
       definition:
         "$\\frac{3}{5}$은 전체를 $5$등분한 조각을 {$3$개} 모은 만큼이다.",
       example: {
-        prompt: "$\\frac{5}{8}$는 $\\frac{1}{8}$이 몇 개인지 쓰시오.",
-        answer: "$5$개",
+        prompt: "전체를 $6$등분한 조각을 $5$개 모은 만큼을 분수로 쓰시오.",
+        answer: "$\\frac{5}{6}$",
       },
     },
     {
       id: "e3-1-6-3-c2",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "중",
-      term: "분자가 $1$인 분수가 모인 크기",
+      term: "$\\frac{4}{7}$를 $\\frac{1}{7}$이 모인 크기로 보기",
       kind: "성질",
       definition: "$\\frac{4}{7}$는 $\\frac{1}{7}$이 {$4$개} 모인 크기이다.",
     },
@@ -961,7 +970,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-3-c3",
       section: "초3::1-6 분수와 소수::1-6-3 분수 알아보기(2)",
       level: "상",
-      term: "한 전체를 채우는 조각",
+      term: "$6$조각 가운데 $6$조각을 모두 모은 분수",
       kind: "성질",
       definition:
         "같은 크기 $6$조각 중 $6$조각을 모두 모으면 분수 {$\\frac{6}{6}$}이고 전체 {$1$}이 된다.",
@@ -974,8 +983,9 @@ export const bank: ConceptBlankBank = {
       kind: "성질",
       definition: "같은 전체를 기준으로 분모가 같으면 한 조각의 {크기}가 같다.",
       example: {
-        prompt: "$\\frac{3}{11}$과 $\\frac{8}{11}$ 중 더 큰 수를 쓰시오.",
-        answer: "$\\frac{8}{11}$",
+        prompt:
+          "같은 전체에서 $\\frac{2}{9}$와 $\\frac{5}{9}$의 한 조각의 크기는 같은가, 다른가?",
+        answer: "같다",
       },
     },
     {
@@ -1005,8 +1015,8 @@ export const bank: ConceptBlankBank = {
       definition: "분수 중에서 분자가 {$1$}인 것을 단위분수라 한다.",
       example: {
         prompt:
-          "$\\frac{1}{3}$, $\\frac{1}{7}$, $\\frac{1}{5}$ 중 가장 작은 수를 쓰시오.",
-        answer: "$\\frac{1}{7}$",
+          "$\\frac{2}{5}$, $\\frac{1}{6}$, $\\frac{3}{4}$ 가운데 단위분수를 찾아 쓰시오.",
+        answer: "$\\frac{1}{6}$",
       },
     },
     {
@@ -1036,8 +1046,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "$0.1$처럼 점을 넣어 $1$보다 작은 부분까지 나타낼 수 있는 수를 {소수}라 한다.",
       example: {
-        prompt: "$0.1$이 $17$개인 수를 소수로 쓰시오.",
-        answer: "$1.7$",
+        prompt: "$0.4$, $7$, $\\frac{3}{10}$ 가운데 소수를 찾아 쓰시오.",
+        answer: "$0.4$",
       },
     },
     {
@@ -1052,7 +1062,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-6-c3",
       section: "초3::1-6 분수와 소수::1-6-6 소수 알아보기",
       level: "중",
-      term: "소수 한 자리의 뜻",
+      term: "$0.6$의 뜻",
       kind: "성질",
       definition: "$0.6$은 {$0.1$}을 {$6$개} 모은 수이다.",
     },
@@ -1060,7 +1070,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-1-6-6-c4",
       section: "초3::1-6 분수와 소수::1-6-6 소수 알아보기",
       level: "상",
-      term: "$1$과 소수의 관계",
+      term: "$1.3$과 $0.1$의 관계",
       kind: "성질",
       definition:
         "$0.1$을 $10$개 모으면 {$1$}이 되므로 $1.3$은 $0.1$을 {$13$개} 모은 수이다.",
@@ -1073,8 +1083,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "소수의 크기는 먼저 소수점 {왼쪽}의 수부터 비교한다.",
       example: {
-        prompt: "$0.9$, $1.2$, $1.1$을 작은 수부터 쓰시오.",
-        answer: "$0.9$, $1.1$, $1.2$",
+        prompt: "$2.3$과 $1.9$를 비교할 때 먼저 견주는 두 숫자를 쓰시오.",
+        answer: "$2$와 $1$",
       },
     },
     {
@@ -1103,8 +1113,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "세 자리 수를 세로로 곱할 때에도 {일의 자리}부터 계산한다.",
       example: {
-        prompt: "$213\\times3$을 계산하시오.",
-        answer: "$639$",
+        prompt: "$324\\times2$를 세로로 곱할 때 맨 먼저 곱하는 두 수를 쓰시오.",
+        answer: "$4$와 $2$",
       },
     },
     {
@@ -1120,7 +1130,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-1-1-c3",
       section: "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
       level: "상",
-      term: "자리의 $0$과 곱셈",
+      term: "$302\\times2$에서 십의 자리에 쓰는 숫자",
       kind: "성질",
       definition:
         "$302\\times2$에서는 십의 묶음이 없으므로 결과의 십의 자리에 {$0$}을 쓴다.",
@@ -1134,8 +1144,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "각 자리의 곱에서 묶음 $10$개가 생길 때마다 {바로 윗자리}로 옮긴다.",
       example: {
-        prompt: "$347\\times6$을 계산하시오.",
-        answer: "$2082$",
+        prompt:
+          "$236\\times4$에서 일의 자리 곱 $24$ 가운데 십의 자리로 옮기는 수를 쓰시오.",
+        answer: "$2$",
       },
     },
     {
@@ -1166,8 +1177,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "한 수에 $30$을 곱할 때에는 $3$을 곱한 값의 {$10$배}를 구한다.",
       example: {
-        prompt: "$24\\times30$을 계산하시오.",
-        answer: "$720$",
+        prompt: "$12\\times40$은 $12\\times4$의 몇 배인가?",
+        answer: "$10$배",
       },
     },
     {
@@ -1184,7 +1195,7 @@ export const bank: ConceptBlankBank = {
       section:
         "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
       level: "상",
-      term: "몇십끼리의 곱",
+      term: "$20\\times30$에서 $2\\times3=6$이 뜻하는 수",
       kind: "성질",
       definition:
         "$20\\times30$에서 $2\\times3=6$은 십의 묶음끼리 곱한 것이므로 {$600$}을 뜻한다.",
@@ -1197,8 +1208,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "곱하는 두 자리 수를 {몇십과 몇}으로 나누어 각각 곱한다.",
       example: {
-        prompt: "$27\\times34$를 계산하시오.",
-        answer: "$918$",
+        prompt:
+          "$15\\times23$을 계산하려고 한다. $23$을 몇십과 몇으로 나누어 쓰시오.",
+        answer: "$20$과 $3$",
       },
     },
     {
@@ -1227,8 +1239,8 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "세로 나눗셈에서 몫은 {위쪽}, 나누는 수는 {왼쪽}에 적는다.",
       example: {
-        prompt: "$96\\div3$을 계산하시오.",
-        answer: "$32$",
+        prompt: "$84\\div4$를 세로로 쓸 때 가로줄 위쪽에 적는 것은 무엇인가?",
+        answer: "몫",
       },
     },
     {
@@ -1256,8 +1268,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "십의 묶음을 나누고 남은 것은 {낱개}로 바꾸어 일의 자리와 함께 나눈다.",
       example: {
-        prompt: "$84\\div7$을 계산하시오.",
-        answer: "$12$",
+        prompt:
+          "$52\\div4$에서 십의 묶음 $5$개를 $4$로 나누고 남은 $1$개는 낱개 몇 개로 바꾸는가?",
+        answer: "$10$개",
       },
     },
     {
@@ -1286,8 +1299,8 @@ export const bank: ConceptBlankBank = {
       definition:
         "같은 수씩 더는 나눌 수 없을 때 마지막으로 {남은 수}가 나머지이다.",
       example: {
-        prompt: "$47\\div6$의 몫과 나머지를 쓰시오.",
-        answer: "몫 $7$, 나머지 $5$",
+        prompt: "$20$을 $6$으로 나누면 몫이 $3$이다. 나머지를 쓰시오.",
+        answer: "$2$",
       },
     },
     {
@@ -1334,8 +1347,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "윗자리에서 나누고 남은 수에 다음 자리의 숫자를 {내려 붙여} 계속 나눈다.",
       example: {
-        prompt: "$725\\div4$의 몫과 나머지를 쓰시오.",
-        answer: "몫 $181$, 나머지 $1$",
+        prompt:
+          "$532\\div4$에서 백의 자리를 나누고 남은 $1$에 다음 자리 숫자를 내려 붙여 만든 수를 쓰시오.",
+        answer: "$13$",
       },
     },
     {
@@ -1345,7 +1359,7 @@ export const bank: ConceptBlankBank = {
       term: "몫의 가운데 $0$",
       kind: "방법",
       definition:
-        "몫을 쓰기 시작한 뒤에 어느 자리에서 나눌 수가 나누는 수보다 작으면 몫의 그 자리에 {$0$}을 쓴다.",
+        "몫을 쓰기 시작한 뒤에 어느 자리에서 {나눌 수가 나누는 수보다 작으면} 몫의 그 자리에 $0$을 쓴다.",
     },
     {
       id: "e3-2-2-4-c3",
@@ -1364,8 +1378,8 @@ export const bank: ConceptBlankBank = {
       kind: "정의",
       definition: "원을 그릴 때 움직이지 않게 고정한 점이 {원의 중심}이다.",
       example: {
-        prompt: "원의 중심과 원 위의 점을 곧게 이은 선분의 이름을 쓰시오.",
-        answer: "반지름",
+        prompt: "컴퍼스로 원을 그릴 때 원의 중심이 되는 곳은 어디인가?",
+        answer: "컴퍼스의 침을 꽂은 자리",
       },
     },
     {
@@ -1411,8 +1425,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "한 원의 중심에서 원 위까지 잰 거리는 어느 방향에서나 {같다}.",
       example: {
-        prompt: "지름이 $18\\,\\mathrm{cm}$인 원의 반지름은 몇 cm인가?",
-        answer: "$9\\,\\mathrm{cm}$",
+        prompt:
+          "중심에서 원 위의 한 점까지 $6\\,\\mathrm{cm}$인 원이 있다. 중심에서 원 위의 다른 점까지의 거리를 쓰시오.",
+        answer: "$6\\,\\mathrm{cm}$",
       },
     },
     {
@@ -1442,8 +1457,8 @@ export const bank: ConceptBlankBank = {
         "컴퍼스로 원을 그릴 때 침을 꽂아 고정한 자리가 {중심}이 된다.",
       example: {
         prompt:
-          "반지름 $5\\,\\mathrm{cm}$인 원을 그릴 때 컴퍼스 두 끝 사이 거리를 쓰시오.",
-        answer: "$5\\,\\mathrm{cm}$",
+          "컴퍼스의 침을 점 ㅇ에 꽂고 원을 그렸다. 이 원의 중심은 어느 점인가?",
+        answer: "점 ㅇ",
       },
     },
     {
@@ -1469,10 +1484,10 @@ export const bank: ConceptBlankBank = {
       term: "묶음 전체의 분수",
       kind: "방법",
       definition:
-        "물건을 같은 수씩 묶으면 전체 중 몇 묶음인지 {분수}로 나타낼 수 있다.",
+        "물건을 {같은 수씩 묶으면} 전체 중 몇 묶음인지 분수로 나타낼 수 있다.",
       example: {
-        prompt: "공 $15$개를 $5$개씩 묶을 때 한 묶음은 전체의 얼마인지 쓰시오.",
-        answer: "$\\frac{1}{3}$",
+        prompt: "딸기 $18$개를 $6$개씩 묶으면 전체는 몇 묶음이 되는가?",
+        answer: "$3$묶음",
       },
     },
     {
@@ -1481,7 +1496,7 @@ export const bank: ConceptBlankBank = {
       level: "중",
       term: "분모가 세는 묶음",
       kind: "성질",
-      definition: "전체를 똑같이 나눈 묶음 수는 분수의 {분모}가 된다.",
+      definition: "전체를 똑같이 나눈 {묶음 수}는 분수의 분모가 된다.",
     },
     {
       id: "e3-2-4-1-c3",
@@ -1501,15 +1516,15 @@ export const bank: ConceptBlankBank = {
       definition:
         "전체를 똑같이 $4$묶음으로 나눈 {한 묶음}이 전체의 $\\frac{1}{4}$이다.",
       example: {
-        prompt: "$28$개의 $\\frac{1}{7}$은 몇 개인지 쓰시오.",
-        answer: "$4$개",
+        prompt: "$12$개를 똑같이 $4$묶음으로 나눈 한 묶음은 전체의 얼마인가?",
+        answer: "$\\frac{1}{4}$",
       },
     },
     {
       id: "e3-2-4-2-c2",
       section: "초3::2-4 분수::2-4-2 분수만큼은 얼마인지 알아보기 (1)",
       level: "중",
-      term: "한 묶음의 수",
+      term: "전체의 $\\frac{1}{5}$만큼 구하기",
       kind: "방법",
       definition: "전체의 $\\frac{1}{5}$만큼은 전체 수를 {$5$로 나눈} 값이다.",
     },
@@ -1526,13 +1541,14 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-4-3-c1",
       section: "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
       level: "하",
-      term: "전체의 분수만큼",
+      term: "전체의 $\\frac{3}{5}$만큼",
       kind: "방법",
       definition:
         "전체를 똑같이 $5$묶음으로 나누어 {$3$묶음}을 모으면 전체의 $\\frac{3}{5}$만큼이다.",
       example: {
-        prompt: "사탕 $24$개의 $\\frac{5}{8}$는 몇 개인지 쓰시오.",
-        answer: "$15$개",
+        prompt:
+          "전체를 똑같이 $7$묶음으로 나눈 것 중 $4$묶음은 전체의 얼마인가?",
+        answer: "$\\frac{4}{7}$",
       },
     },
     {
@@ -1548,7 +1564,7 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-4-3-c3",
       section: "초3::2-4 분수::2-4-3 분수만큼은 얼마인지 알아보기 (2)",
       level: "상",
-      term: "남은 양의 분수",
+      term: "전체의 $\\frac{2}{7}$를 쓰고 남은 양의 분수",
       kind: "성질",
       definition:
         "전체의 $\\frac{2}{7}$를 쓰면 남은 양은 전체의 {$\\frac{5}{7}$}이다.",
@@ -1562,8 +1578,8 @@ export const bank: ConceptBlankBank = {
       definition: "분자가 분모에 못 미치는 분수는 {진분수}이며 $1$보다 작다.",
       example: {
         prompt:
-          "$\\frac{3}{5}$, $\\frac{5}{5}$, $\\frac{8}{5}$ 중 가분수를 모두 쓰시오.",
-        answer: "$\\frac{5}{5}$, $\\frac{8}{5}$",
+          "$\\frac{2}{7}$, $\\frac{7}{7}$, $\\frac{9}{7}$ 중 진분수를 찾아 쓰시오.",
+        answer: "$\\frac{2}{7}$",
       },
     },
     {
@@ -1573,7 +1589,7 @@ export const bank: ConceptBlankBank = {
       term: "가분수",
       kind: "정의",
       definition:
-        "분모보다 분자가 작지 않은 분수는 {가분수}이며 그 값도 $1$보다 작지 않다.",
+        "분자가 분모보다 크거나 분모와 꼭 같은 분수는 {가분수}이며 그 값은 $1$이거나 $1$보다 크다.",
     },
     {
       id: "e3-2-4-4-c3",
@@ -1611,8 +1627,9 @@ export const bank: ConceptBlankBank = {
       definition:
         "$1\\frac{3}{4}$처럼 자연수와 {진분수}를 함께 적은 수를 대분수라 한다.",
       example: {
-        prompt: "$\\frac{11}{4}$을 대분수로 나타내시오.",
-        answer: "$2\\frac{3}{4}$",
+        prompt:
+          "$3\\frac{1}{2}$, $\\frac{7}{2}$, $2\\frac{5}{4}$ 중 대분수를 찾아 쓰시오.",
+        answer: "$3\\frac{1}{2}$",
       },
     },
     {
@@ -1641,8 +1658,9 @@ export const bank: ConceptBlankBank = {
       kind: "방법",
       definition: "분모가 같은 가분수끼리는 {분자}가 큰 쪽이 더 크다.",
       example: {
-        prompt: "$\\frac{12}{5}$와 $2\\frac{3}{5}$ 중 큰 수를 쓰시오.",
-        answer: "$2\\frac{3}{5}$",
+        prompt:
+          "$\\frac{9}{7}$와 $\\frac{13}{7}$의 크기를 비교할 때 견주는 두 수를 쓰시오.",
+        answer: "분자 $9$와 $13$",
       },
     },
     {
@@ -1671,9 +1689,8 @@ export const bank: ConceptBlankBank = {
       kind: "정의",
       definition: "그릇을 {가득 채운 양}으로 나타낸 것이 그 그릇의 들이이다.",
       example: {
-        prompt:
-          "같은 컵으로 가득 채우니 가는 $4$컵, 나는 $6$컵이었다면 들이가 큰 그릇은?",
-        answer: "나",
+        prompt: "물을 반만 담은 컵의 들이는 담긴 물의 양과 같은가?",
+        answer: "아니다. 가득 채운 양이 들이이다.",
       },
     },
     {
@@ -1710,8 +1727,9 @@ export const bank: ConceptBlankBank = {
       kind: "단위",
       definition: "들이를 나타내는 단위 리터는 {L}로 적는다.",
       example: {
-        prompt: "$2\\,\\mathrm{L}\\ 75\\,\\mathrm{mL}$를 mL로만 나타내시오.",
-        answer: "$2075\\,\\mathrm{mL}$",
+        prompt:
+          "주스 한 병과 약 한 숟가락 가운데 들이를 리터로 나타내기 알맞은 것은?",
+        answer: "주스 한 병",
       },
     },
     {
@@ -1750,8 +1768,8 @@ export const bank: ConceptBlankBank = {
         "들이의 덧셈과 뺄셈에서는 L끼리, mL끼리처럼 {같은 단위}를 맞춘다.",
       example: {
         prompt:
-          "$2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}$에서 $850\\,\\mathrm{mL}$를 빼시오.",
-        answer: "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$",
+          "$4\\,\\mathrm{L}\\ 200\\,\\mathrm{mL}$와 $3\\,\\mathrm{L}\\ 500\\,\\mathrm{mL}$를 더할 때 $200$과 더하는 수는?",
+        answer: "$500$",
       },
     },
     {
@@ -1781,8 +1799,8 @@ export const bank: ConceptBlankBank = {
       definition: "물건이 얼마나 {무거운지} 나타내는 양을 무게라 한다.",
       example: {
         prompt:
-          "양팔저울에서 가 쪽은 내려가고 나 쪽은 올라갔다면 더 무거운 것은?",
-        answer: "가",
+          "큰 풍선과 작은 쇠구슬 중 더 무거운 것을 크기만 보고 정할 수 있는가?",
+        answer: "없다. 무게는 크기와 다른 양이다.",
       },
     },
     {
@@ -1811,8 +1829,9 @@ export const bank: ConceptBlankBank = {
       kind: "단위",
       definition: "무게를 나타내는 단위 킬로그램은 {kg}로 적는다.",
       example: {
-        prompt: "$2\\,\\mathrm{t}\\ 60\\,\\mathrm{kg}$을 kg으로만 나타내시오.",
-        answer: "$2060\\,\\mathrm{kg}$",
+        prompt:
+          "수박 한 통과 연필 한 자루 가운데 무게를 킬로그램으로 나타내기 알맞은 것은?",
+        answer: "수박 한 통",
       },
     },
     {
@@ -1860,8 +1879,8 @@ export const bank: ConceptBlankBank = {
         "무게를 더하고 뺄 때에는 kg과 g을 {단위별로} 맞추어 계산한다.",
       example: {
         prompt:
-          "$4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}$에서 $1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}$을 빼시오.",
-        answer: "$2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}$",
+          "$3\\,\\mathrm{kg}\\ 400\\,\\mathrm{g}$과 $2\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$을 더할 때 $400$과 더하는 수는?",
+        answer: "$100$",
       },
     },
     {
@@ -1892,8 +1911,8 @@ export const bank: ConceptBlankBank = {
         "자료의 수를 정해 둔 {그림의 개수}로 보여 주는 그래프가 그림그래프이다.",
       example: {
         prompt:
-          "큰 동그라미가 $10$명, 작은 동그라미가 $1$명이면 큰 것 $3$개와 작은 것 $4$개는 몇 명인가?",
-        answer: "$34$명",
+          "그림그래프에서 항목의 수가 많고 적음은 그림의 무엇을 보고 아는가?",
+        answer: "그림의 크기와 개수",
       },
     },
     {
@@ -1932,15 +1951,15 @@ export const bank: ConceptBlankBank = {
         "조사한 자료는 같은 항목끼리 모으고 {개수}를 세어 표에 적는다.",
       example: {
         prompt:
-          "그림 하나가 $5$권을 뜻할 때 $35$권을 나타내려면 그림이 몇 개 필요한가?",
-        answer: "$7$개",
+          "좋아하는 과일을 조사했더니 사과, 배, 사과, 사과, 배였다. 표에 적을 사과의 수는?",
+        answer: "$3$명",
       },
     },
     {
       id: "e3-2-6-2-c2",
       section: "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
       level: "중",
-      term: "그림 수 정하기",
+      term: "한 그림이 $5$개를 뜻할 때 자료 $20$개의 그림 수",
       kind: "방법",
       definition:
         "한 그림이 $5$개를 뜻하면 자료 $20$개는 같은 그림 {$4$개}로 나타낸다.",
@@ -3278,4 +3297,22 @@ export const bank: ConceptBlankBank = {
  * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
  * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
  */
-markGivenCases(bank, []);
+markGivenCases(bank, [
+  "e3-1-3-2-c2",
+  "e3-1-3-3-c2",
+  "e3-1-3-4-c2",
+  "e3-1-4-1-c1",
+  "e3-1-4-1-c3",
+  "e3-1-5-2-c2",
+  "e3-1-6-3-c1",
+  "e3-1-6-3-c2",
+  "e3-1-6-3-c3",
+  "e3-1-6-6-c3",
+  "e3-1-6-6-c4",
+  "e3-2-1-1-c3",
+  "e3-2-1-3-c3",
+  "e3-2-4-2-c2",
+  "e3-2-4-3-c1",
+  "e3-2-4-3-c3",
+  "e3-2-6-2-c2",
+]);

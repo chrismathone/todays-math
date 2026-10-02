@@ -171,6 +171,17 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
           where = `${kind} ${describe(el)}`;
         }
       };
+      // KaTeX 의 `vlist-t2`(근호 · 분수 · 첨자의 세로 쌓기)는 사파리용 2px 받침 칸(`vlist-s`)을 품고 `margin-right:-2px` 로 되돌린다 —
+      // 그 표 · 줄 · 받침의 상자는 글자가 놓이는 폭보다 2px 넓지만 잉크가 아니다. 줄 끝에 온 `\sqrt{2}` 가 1.5px «넘친» 것으로 잡혔다(중3 · 2026-10-03).
+      const strutOf = (el: Element) =>
+        el.matches(
+          ".katex .vlist-t2, .katex .vlist-t2 > .vlist-r, .katex .vlist-s",
+        )
+          ? 2
+          : 0;
+      // KaTeX 가 숨겨 둔 긴 근호 SVG 등 잘린 조각은 잉크가 아니다
+      const hidden = (el: Element) =>
+        el.closest(".katex-html svg, .katex-mathml") !== null;
       for (const el of [
         sheet,
         ...sheet.querySelectorAll(
@@ -178,15 +189,26 @@ export async function measurePages(page: Page): Promise<PageReport[]> {
         ),
       ]) {
         bump(el.scrollHeight - el.clientHeight, el, "칸 세로");
-        bump(el.scrollWidth - el.clientWidth, el, "칸 가로");
+        let wide = el.scrollWidth - el.clientWidth;
+        if (wide > 0 && wide <= 2) {
+          // 2px 이하의 가로 넘침은 위의 받침 칸일 수 있다 — 받침을 뺀 상자로 다시 잰다(잉크가 넘쳤으면 그대로 잡힌다)
+          const box = el.getBoundingClientRect();
+          const right = box.left + el.clientLeft + el.clientWidth;
+          wide = 0;
+          for (const inner of el.querySelectorAll("*")) {
+            const r = inner.getBoundingClientRect();
+            if ((r.width === 0 && r.height === 0) || hidden(inner)) continue;
+            wide = Math.max(wide, r.right - strutOf(inner) - right);
+          }
+        }
+        bump(wide, el, "칸 가로");
       }
       for (const el of sheet.querySelectorAll("*")) {
         const r = el.getBoundingClientRect();
         if (r.width === 0 && r.height === 0) continue;
-        // KaTeX 가 숨겨 둔 긴 근호 SVG 등 잘린 조각은 잉크가 아니다
-        if (el.closest(".katex-html svg, .katex-mathml")) continue;
+        if (hidden(el)) continue;
         bump(r.bottom - innerBottom, el, "아래");
-        bump(r.right - innerRight, el, "오른쪽");
+        bump(r.right - strutOf(el) - innerRight, el, "오른쪽");
       }
 
       /* ③ 빈 공간 — 덩이들의 세로 구간을 이어 붙이고 가장 큰 틈을 찾는다 */
