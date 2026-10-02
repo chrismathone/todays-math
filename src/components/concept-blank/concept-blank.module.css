@@ -90,7 +90,7 @@ button.secondaryButton:disabled {
 /* ── 카드 · 두 칸 ───────────────────────────────────────────── */
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(220px, 0.3fr) minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
@@ -523,27 +523,12 @@ button.secondaryButton:disabled {
   text-align: center;
 }
 
-/* 나무는 제 칸 안에서 굴린다 — 넓은 화면은 형식 카드가 옆에 그대로 보이게, 폰은 펼친 학년이 형식 카드를 한참 밀어내지 않게 */
-.treeCard .grades {
-  max-height: min(68vh, 720px);
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-}
-@media (min-width: 761px) {
-  .treeCard {
-    position: sticky;
-    top: 16px;
-  }
-}
 @media (max-width: 760px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
   }
   .card {
     padding: 16px;
-  }
-  .treeCard .grades {
-    max-height: 60vh;
   }
   .metaGrid {
     grid-template-columns: minmax(0, 1fr);
@@ -558,5 +543,132 @@ button.secondaryButton:disabled {
   }
   .levelField {
     gap: 4px;
+  }
+}
+
+/* 형식은 열, 난이도는 행 — B/C의 추가 문항도 같은 열에서 조절한다. */
+.formTableScroll {
+  margin-top: 14px;
+  overflow-x: auto;
+  border: 1px solid var(--b-line);
+  border-radius: 9px;
+}
+.formTable {
+  width: 100%;
+  min-width: 740px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+.formTable th,
+.formTable td {
+  padding: 10px;
+  border-right: 1px solid var(--b-line);
+  border-bottom: 1px solid var(--b-line);
+  vertical-align: top;
+}
+.formTable thead tr:first-child > th:first-child,
+.formTable tbody th {
+  width: 58px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.formTable th:last-child,
+.formTable td:last-child {
+  border-right: 0;
+}
+.formTable tr:last-child td,
+.formTable tbody tr:last-child th {
+  border-bottom: 0;
+}
+.formTable thead th {
+  background: var(--learn-bg, #f4f6fa);
+  text-align: left;
+}
+.formTable tbody th {
+  background: var(--learn-bg, #f4f6fa);
+}
+.formTable [data-on="false"] {
+  color: var(--b-muted);
+}
+.tableColumnTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+}
+.tableColumnTitle h3 {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+.formTable .letter {
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+}
+.formTable .switch {
+  display: flex;
+  margin: 2px auto 0;
+}
+.tableHint {
+  color: var(--b-muted);
+  font-size: 12px;
+  margin-left: auto;
+}
+.tableReason {
+  margin: 4px 0 0;
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--learn-warning, #8a5a06);
+}
+.formTable .tableSubheads th {
+  color: var(--b-muted);
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  padding-block: 6px;
+}
+.tableField .levelField {
+  gap: 4px;
+  justify-content: center;
+}
+.tableField input {
+  max-width: 66px;
+  min-height: 36px;
+  padding: 0 5px;
+  font-size: 13px;
+}
+.tableField .levelMax {
+  font-size: 11px;
+}
+.formGuide {
+  margin-top: 12px;
+  color: var(--b-muted);
+  font-size: 12px;
+}
+.formGuide summary {
+  cursor: pointer;
+  width: fit-content;
+  padding: 6px 0;
+}
+.formGuide dl {
+  display: grid;
+  gap: 8px;
+  margin: 8px 0 0;
+}
+.formGuide dt {
+  font-weight: 600;
+}
+.formGuide dd {
+  margin: 3px 0 0;
+  line-height: 1.6;
+}
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

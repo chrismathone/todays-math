@@ -5,6 +5,7 @@ import "katex/dist/katex.min.css";
 import "../../src/app/globals.css";
 import "./harness.css";
 
+import ConceptBlankView from "../../src/components/concept-blank/ConceptBlankView";
 import ConceptBlankPreview from "../../src/components/concept-blank/ConceptBlankPreview";
 import ConceptBlankPaper from "../../src/components/concept-blank/ConceptBlankPaper";
 import {
@@ -198,7 +199,9 @@ function InkProbe() {
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <main style={{ ["--cb-paper-scale" as string]: params.get("scale") ?? 1 }}>
-      {params.get("set") === "ink" ? (
+      {params.has("builder") ? (
+        <ConceptBlankView bank={FIXTURE_BANK} active />
+      ) : params.get("set") === "ink" ? (
         <InkProbe />
       ) : params.has("preview") ? (
         <ConceptBlankPreview

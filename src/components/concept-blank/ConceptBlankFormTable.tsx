@@ -1,0 +1,150 @@
+import {
+  CONCEPT_BLANK_LEVELS,
+  type ConceptBlankForm,
+  type ConceptBlankLevel,
+  type LevelCounts,
+} from "@/contracts/conceptBlank.contract";
+import s from "./concept-blank.module.css";
+
+export type FormColumn = {
+  form: ConceptBlankForm;
+  letter: string;
+  label: string;
+  help: string;
+  on: boolean;
+  available: boolean;
+  reason: string | null;
+  fields: {
+    row: "main" | "extra";
+    label: string;
+    max: LevelCounts;
+    value: LevelCounts;
+  }[];
+};
+
+export default function ConceptBlankFormTable({
+  columns,
+  onToggle,
+  onCount,
+}: {
+  columns: FormColumn[];
+  onToggle: (form: ConceptBlankForm) => void;
+  onCount: (
+    form: ConceptBlankForm,
+    row: "main" | "extra",
+    level: ConceptBlankLevel,
+    value: string,
+  ) => void;
+}) {
+  return (
+    <section className={s.card} aria-label="형식과 난이도별 문항 수">
+      <div className={s.cardHead}>
+        <h2 className={s.cardTitle}>형식 · 문항 수</h2>
+        <span className={s.tableHint}>입력 수 / 선택 가능한 수</span>
+      </div>
+      <div
+        className={s.formTableScroll}
+        tabIndex={0}
+        role="region"
+        aria-label="형식별 문항 수 표"
+      >
+        <table className={s.formTable}>
+          <thead>
+            <tr>
+              <th scope="col" rowSpan={2}>
+                난이도
+              </th>
+              {columns.map((column) => (
+                <th
+                  key={column.form}
+                  scope={column.fields.length > 1 ? "colgroup" : "col"}
+                  colSpan={column.fields.length}
+                  data-on={column.on}
+                >
+                  <div className={s.tableColumnTitle}>
+                    <span className={s.letter}>{column.letter}</span>
+                    <h3>{column.label}</h3>
+                  </div>
+                  <button
+                    type="button"
+                    role="switch"
+                    className={s.switch}
+                    aria-label={`${column.label} 켜기`}
+                    aria-checked={column.on}
+                    disabled={!column.available}
+                    onClick={() => onToggle(column.form)}
+                  >
+                    <span className={s.track} aria-hidden="true" />
+                  </button>
+                  {column.reason && (
+                    <p className={s.tableReason}>{column.reason}</p>
+                  )}
+                </th>
+              ))}
+            </tr>
+            <tr className={s.tableSubheads}>
+              {columns.flatMap((column) =>
+                column.fields.map((field) => (
+                  <th scope="col" key={`${column.form}-${field.row}`}>
+                    {field.label}
+                  </th>
+                )),
+              )}
+            </tr>
+          </thead>
+          <tbody>
+            {CONCEPT_BLANK_LEVELS.map((level) => (
+              <tr key={level}>
+                <th scope="row">{level}</th>
+                {columns.flatMap((column) =>
+                  column.fields.map((field) => (
+                    <td
+                      key={`${column.form}-${field.row}`}
+                      data-on={column.on}
+                      className={s.tableField}
+                    >
+                      <span className={s.levelField}>
+                        <input
+                          type="number"
+                          inputMode="numeric"
+                          min={0}
+                          max={field.max[level]}
+                          step={1}
+                          value={field.value[level]}
+                          disabled={!column.on || field.max[level] === 0}
+                          aria-label={`${column.label} ${field.label} ${level}`}
+                          onChange={(event) =>
+                            onCount(
+                              column.form,
+                              field.row,
+                              level,
+                              event.target.value,
+                            )
+                          }
+                        />
+                        <span className={s.levelMax}>/ {field.max[level]}</span>
+                      </span>
+                    </td>
+                  )),
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <details className={s.formGuide}>
+        <summary>형식별 안내</summary>
+        <dl>
+          {columns.map((column) => (
+            <div key={column.form}>
+              <dt>
+                {column.letter} · {column.label}
+              </dt>
+              <dd>{column.help}</dd>
+            </div>
+          ))}
+        </dl>
+      </details>
+    </section>
+  );
+}

@@ -5,7 +5,16 @@
  * 지면(`ConceptBlankPaper`)은 트랙 cb-paper 가 속을 만든다 — 여기서는 겉(props)만 보는 탐침으로 바꾼다.
  */
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 
 import ConceptBlankView from "@/components/concept-blank/ConceptBlankView";
 import type { ConceptBlankPaperProps } from "@/components/concept-blank/ConceptBlankPaper";
@@ -56,10 +65,43 @@ const S = {
 } as const;
 const ZERO = { 하: 0, 중: 0, 상: 0 };
 
+// jsdom에는 모달 API가 없다. 실제 초점 잠금·복귀는 preview.spec.ts에서 브라우저로 확인한다.
+const dialogMethods = ["showModal", "close"] as const;
+const originalDialogMethods = dialogMethods.map((name) =>
+  Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, name),
+);
+beforeAll(() => {
+  Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
+    configurable: true,
+    value: function (this: HTMLDialogElement) {
+      this.setAttribute("open", "");
+    },
+  });
+  Object.defineProperty(HTMLDialogElement.prototype, "close", {
+    configurable: true,
+    value: function (this: HTMLDialogElement) {
+      this.removeAttribute("open");
+    },
+  });
+});
+afterAll(() =>
+  dialogMethods.forEach((name, i) => {
+    const original = originalDialogMethods[i];
+    if (original)
+      Object.defineProperty(HTMLDialogElement.prototype, name, original);
+    else
+      delete (HTMLDialogElement.prototype as Partial<HTMLDialogElement>)[name];
+  }),
+);
+
 function renderView(active = true) {
   return render(<ConceptBlankView bank={FIXTURE_BANK} active={active} />);
 }
-const tree = () => within(screen.getByRole("region", { name: "단원 고르기" }));
+const tree = () => {
+  if (!screen.queryByRole("dialog", { name: "단원 선택" }))
+    fireEvent.click(screen.getByRole("button", { name: "단원 고르기 열기" }));
+  return within(screen.getByRole("region", { name: "단원 고르기" }));
+};
 function openGrade(grade: string) {
   const button = tree().getByRole("button", { name: new RegExp(`^${grade}`) });
   if (button.getAttribute("aria-expanded") !== "true") fireEvent.click(button);

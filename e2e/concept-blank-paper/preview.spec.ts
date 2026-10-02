@@ -1,5 +1,62 @@
 import { expect, test } from "@playwright/test";
 
+test("단원 오버레이가 문항 수 표를 늘리지 않고 선택을 유지한다", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/?builder");
+  const table = page.getByRole("table");
+  const before = await table.boundingBox();
+  const opener = page.getByRole("button", { name: "단원 고르기 열기" });
+  await opener.click();
+  const dialog = page.getByRole("dialog", { name: "단원 선택" });
+  await expect(dialog).toBeVisible();
+  await dialog.getByRole("button", { name: /^초5/ }).click();
+  const after = await table.boundingBox();
+  expect(after?.height).toBeCloseTo(before!.height, 0);
+  expect(after?.width).toBeCloseTo(before!.width, 0);
+  await dialog
+    .getByRole("checkbox", { name: "2-3 합동과 대칭", exact: true })
+    .check();
+  await dialog.getByRole("button", { name: "선택 완료" }).click();
+  await expect(opener).toBeFocused();
+  await expect(
+    page.getByRole("spinbutton", { name: "용어 → 뜻 ○× 중" }),
+  ).toBeEnabled();
+  await page.getByRole("spinbutton", { name: "용어 → 뜻 ○× 중" }).fill("0");
+  await opener.click();
+  await expect(
+    dialog.getByRole("checkbox", { name: "2-3 합동과 대칭", exact: true }),
+  ).toBeChecked();
+  await page.keyboard.press("Escape");
+  await expect(
+    page.getByRole("spinbutton", { name: "용어 → 뜻 ○× 중" }),
+  ).toHaveValue("0");
+  await page.screenshot({
+    path: "test-results/concept-blank-paper/builder-desktop.png",
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  const tableRegion = page.getByRole("region", {
+    name: "형식별 문항 수 표",
+    exact: true,
+  });
+  expect(
+    await tableRegion.evaluate((el) => el.scrollWidth > el.clientWidth),
+  ).toBeTruthy();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBeTruthy();
+  await opener.click();
+  await expect(dialog).toBeVisible();
+  const rect = await dialog.boundingBox();
+  expect(rect!.width).toBeLessThanOrEqual(390);
+  await page.screenshot({
+    path: "test-results/concept-blank-paper/units-mobile.png",
+  });
+});
+
 test("페이지 수와 무관한 축소, 내부 스크롤과 확대 페이지 이동", async ({
   page,
 }) => {

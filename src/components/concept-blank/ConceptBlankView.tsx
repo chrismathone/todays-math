@@ -67,6 +67,8 @@ import {
 import { encodeSheetCode } from "@/lib/concept-blank/sheetCode";
 import { kstDateOf } from "@/lib/kstDate";
 
+import ConceptBlankFormTable from "./ConceptBlankFormTable";
+import ConceptBlankUnitPicker from "./ConceptBlankUnitPicker";
 import s from "./concept-blank.module.css";
 
 /** 계약의 상한(`conceptBlankSelectionSchema`) — 형식 · 난이도마다 40, 소단원 60, 제목 40자. */
@@ -776,234 +778,189 @@ export default function ConceptBlankView({
       )}
 
       <div className={s.grid}>
-        <section
-          className={`${s.card} ${s.treeCard}`}
-          aria-labelledby={`${uid}-tree`}
-        >
-          <div className={s.cardHead}>
-            <h2 id={`${uid}-tree`} className={s.cardTitle}>
-              단원 고르기
-            </h2>
-            <span className={s.num}>고른 소단원 {chosen.length}</span>
-            {chosen.length > 0 && (
-              <button
-                type="button"
-                className={s.quietButton}
-                onClick={() => changeSections([])}
-              >
-                모두 풀기
-              </button>
-            )}
-          </div>
-          <p className={s.desc}>
-            학년을 펼쳐 대단원이나 소단원을 고릅니다. 학년을 넘어 여러 개를 고를
-            수 있습니다.
-          </p>
-          {capHit && (
-            <p className={s.note} role="status">
-              소단원은 {SECTION_CAP}개까지 고를 수 있습니다.
-            </p>
+        <ConceptBlankUnitPicker
+          selected={chosen.map((key) =>
+            sectionTitleTex(getBlankSection(key)?.title ?? key),
           )}
-          <ul className={s.grades}>
-            {BLANK_TREE.map((grade, gi) => {
-              if (!isReadyGrade(grade.grade))
+        >
+          <section
+            className={`${s.card} ${s.treeCard}`}
+            aria-labelledby={`${uid}-tree`}
+          >
+            <div className={s.cardHead}>
+              <h2 id={`${uid}-tree`} className={s.cardTitle}>
+                단원 고르기
+              </h2>
+              <span className={s.num}>고른 소단원 {chosen.length}</span>
+              {chosen.length > 0 && (
+                <button
+                  type="button"
+                  className={s.quietButton}
+                  onClick={() => changeSections([])}
+                >
+                  모두 풀기
+                </button>
+              )}
+            </div>
+            <p className={s.desc}>
+              학년을 펼쳐 대단원이나 소단원을 고릅니다. 학년을 넘어 여러 개를
+              고를 수 있습니다.
+            </p>
+            {capHit && (
+              <p className={s.note} role="status">
+                소단원은 {SECTION_CAP}개까지 고를 수 있습니다.
+              </p>
+            )}
+            <ul className={s.grades}>
+              {BLANK_TREE.map((grade, gi) => {
+                if (!isReadyGrade(grade.grade))
+                  return (
+                    <li key={grade.grade} className={s.grade}>
+                      <div className={s.gradePending}>
+                        <span className={s.gradeName}>{grade.grade}</span>
+                        <span className={s.pending}>준비 중</span>
+                      </div>
+                    </li>
+                  );
+                const open = openGrade === grade.grade;
+                const picked = grade.chapters.reduce(
+                  (n, c) =>
+                    n + c.sections.filter((x) => chosenSet.has(x.key)).length,
+                  0,
+                );
+                const panelId = `${uid}-g${gi}`;
                 return (
                   <li key={grade.grade} className={s.grade}>
-                    <div className={s.gradePending}>
+                    <button
+                      type="button"
+                      className={s.gradeButton}
+                      aria-expanded={open}
+                      aria-controls={open ? panelId : undefined}
+                      onClick={() => setOpenGrade(open ? null : grade.grade)}
+                    >
                       <span className={s.gradeName}>{grade.grade}</span>
-                      <span className={s.pending}>준비 중</span>
-                    </div>
+                      {picked > 0 && (
+                        <span className={s.picked}>{picked}개 고름</span>
+                      )}
+                      <span className={s.chevron}>
+                        <Icon name="chevron" size={16} />
+                      </span>
+                    </button>
+                    {open && (
+                      <ul id={panelId} className={s.chapters}>
+                        {grade.chapters.map((chapter, ci) => {
+                          const keys = chapter.sections
+                            .map((x) => x.key)
+                            .filter(selectable);
+                          const count = keys.filter((k) =>
+                            chosenSet.has(k),
+                          ).length;
+                          const all = keys.length > 0 && count === keys.length;
+                          return (
+                            <li
+                              key={chapter.key}
+                              className={s.chapter}
+                              data-empty={keys.length ? undefined : "true"}
+                            >
+                              <label className={`${s.check} ${s.chapterLabel}`}>
+                                <input
+                                  type="checkbox"
+                                  checked={all}
+                                  disabled={!keys.length}
+                                  ref={(el) => {
+                                    if (el)
+                                      el.indeterminate = count > 0 && !all;
+                                  }}
+                                  onChange={() => toggleChapter(chapter)}
+                                />
+                                <span>{chapter.title}</span>
+                              </label>
+                              <ul className={s.sections}>
+                                {chapter.sections.map((section, si) => {
+                                  const stock = stockIndex.get(section.key);
+                                  const loading = !hasGrade(grade.grade);
+                                  const empty = !stock || stock.total === 0;
+                                  const stockId = `${uid}-g${gi}c${ci}s${si}`;
+                                  return (
+                                    <li
+                                      key={section.key}
+                                      className={s.section}
+                                      data-empty={
+                                        empty && !loading ? "true" : undefined
+                                      }
+                                    >
+                                      <label className={s.check}>
+                                        <input
+                                          type="checkbox"
+                                          checked={chosenSet.has(section.key)}
+                                          disabled={empty}
+                                          aria-describedby={stockId}
+                                          onChange={() =>
+                                            toggleSection(section.key)
+                                          }
+                                        />
+                                        <span>
+                                          <PaperText
+                                            text={sectionTitleTex(
+                                              section.title,
+                                            )}
+                                          />
+                                        </span>
+                                      </label>
+                                      <span id={stockId} className={s.stock}>
+                                        {loading
+                                          ? "불러오는 중"
+                                          : stockLine(stock)}
+                                      </span>
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
                   </li>
                 );
-              const open = openGrade === grade.grade;
-              const picked = grade.chapters.reduce(
-                (n, c) =>
-                  n + c.sections.filter((x) => chosenSet.has(x.key)).length,
-                0,
-              );
-              const panelId = `${uid}-g${gi}`;
-              return (
-                <li key={grade.grade} className={s.grade}>
-                  <button
-                    type="button"
-                    className={s.gradeButton}
-                    aria-expanded={open}
-                    aria-controls={open ? panelId : undefined}
-                    onClick={() => setOpenGrade(open ? null : grade.grade)}
-                  >
-                    <span className={s.gradeName}>{grade.grade}</span>
-                    {picked > 0 && (
-                      <span className={s.picked}>{picked}개 고름</span>
-                    )}
-                    <span className={s.chevron}>
-                      <Icon name="chevron" size={16} />
-                    </span>
-                  </button>
-                  {open && (
-                    <ul id={panelId} className={s.chapters}>
-                      {grade.chapters.map((chapter, ci) => {
-                        const keys = chapter.sections
-                          .map((x) => x.key)
-                          .filter(selectable);
-                        const count = keys.filter((k) =>
-                          chosenSet.has(k),
-                        ).length;
-                        const all = keys.length > 0 && count === keys.length;
-                        return (
-                          <li
-                            key={chapter.key}
-                            className={s.chapter}
-                            data-empty={keys.length ? undefined : "true"}
-                          >
-                            <label className={`${s.check} ${s.chapterLabel}`}>
-                              <input
-                                type="checkbox"
-                                checked={all}
-                                disabled={!keys.length}
-                                ref={(el) => {
-                                  if (el) el.indeterminate = count > 0 && !all;
-                                }}
-                                onChange={() => toggleChapter(chapter)}
-                              />
-                              <span>{chapter.title}</span>
-                            </label>
-                            <ul className={s.sections}>
-                              {chapter.sections.map((section, si) => {
-                                const stock = stockIndex.get(section.key);
-                                const loading = !hasGrade(grade.grade);
-                                const empty = !stock || stock.total === 0;
-                                const stockId = `${uid}-g${gi}c${ci}s${si}`;
-                                return (
-                                  <li
-                                    key={section.key}
-                                    className={s.section}
-                                    data-empty={
-                                      empty && !loading ? "true" : undefined
-                                    }
-                                  >
-                                    <label className={s.check}>
-                                      <input
-                                        type="checkbox"
-                                        checked={chosenSet.has(section.key)}
-                                        disabled={empty}
-                                        aria-describedby={stockId}
-                                        onChange={() =>
-                                          toggleSection(section.key)
-                                        }
-                                      />
-                                      <span>
-                                        <PaperText
-                                          text={sectionTitleTex(section.title)}
-                                        />
-                                      </span>
-                                    </label>
-                                    <span id={stockId} className={s.stock}>
-                                      {loading
-                                        ? "불러오는 중"
-                                        : stockLine(stock)}
-                                    </span>
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  )}
-                </li>
-              );
-            })}
-            <li className={s.grade}>
-              <div className={s.gradePending}>
-                <span className={s.gradeName}>고등</span>
-                <span className={s.pending}>준비 중</span>
-              </div>
-            </li>
-          </ul>
-        </section>
+              })}
+              <li className={s.grade}>
+                <div className={s.gradePending}>
+                  <span className={s.gradeName}>고등</span>
+                  <span className={s.pending}>준비 중</span>
+                </div>
+              </li>
+            </ul>
+          </section>
+        </ConceptBlankUnitPicker>
 
         <div className={s.column}>
-          {CONCEPT_BLANK_FORMS.map((form) => {
-            const label = CONCEPT_BLANK_FORM_LABELS[form];
-            const on = isOn(form);
-            const available = availableOf(chosen, caps, form);
-            const reason = !chosen.length
-              ? "소단원을 먼저 고르세요."
-              : available
-                ? null
-                : EMPTY_REASON[form];
-            const rows = (["main", "extra"] as const).filter(
-              (row) => row === "main" || ROWS[form].extra,
-            );
-            return (
-              <section
-                key={form}
-                className={s.formCard}
-                data-on={on ? "true" : "false"}
-                aria-labelledby={`${uid}-${form}`}
-              >
-                <div className={s.formHead}>
-                  <span className={s.letter} aria-hidden="true">
-                    {LETTER[form]}
-                  </span>
-                  <h3 id={`${uid}-${form}`} className={s.formTitle}>
-                    {label}
-                  </h3>
-                  <button
-                    type="button"
-                    role="switch"
-                    aria-checked={on}
-                    aria-label={`${label} 켜기`}
-                    className={s.switch}
-                    disabled={!available}
-                    onClick={() => toggleForm(form)}
-                  >
-                    <span className={s.track} aria-hidden="true" />
-                  </button>
-                </div>
-                <p className={s.formHelp}>{HELP[form]}</p>
-                {reason && <p className={s.reason}>{reason}</p>}
-                <div className={s.levels}>
-                  {rows.map((row) => {
-                    const spec =
-                      row === "main" ? ROWS[form].main : ROWS[form].extra!;
-                    const max = maxOf(caps, form, row);
-                    const value = valueOf(draft, caps, form, row);
-                    return (
-                      <div
-                        key={row}
-                        className={s.levelRow}
-                        role="group"
-                        aria-label={`${label} ${spec.label}`}
-                      >
-                        <span className={s.rowLabel}>{spec.label}</span>
-                        {CONCEPT_BLANK_LEVELS.map((level) => (
-                          <label key={level} className={s.levelField}>
-                            <span className={s.levelName}>{level}</span>
-                            <input
-                              type="number"
-                              inputMode="numeric"
-                              min={0}
-                              max={max[level]}
-                              step={1}
-                              value={value[level]}
-                              disabled={!on || max[level] === 0}
-                              aria-label={`${label} ${spec.label} ${level}`}
-                              onChange={(event) =>
-                                setCount(form, row, level, event.target.value)
-                              }
-                            />
-                            <span className={s.levelMax}>/ {max[level]}</span>
-                          </label>
-                        ))}
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
-            );
-          })}
+          <ConceptBlankFormTable
+            columns={CONCEPT_BLANK_FORMS.map((form) => ({
+              form,
+              label: CONCEPT_BLANK_FORM_LABELS[form],
+              letter: LETTER[form],
+              help: HELP[form],
+              on: isOn(form),
+              available: availableOf(chosen, caps, form),
+              reason: !chosen.length
+                ? "소단원을 먼저 고르세요."
+                : availableOf(chosen, caps, form)
+                  ? null
+                  : EMPTY_REASON[form],
+              fields: (["main", "extra"] as const)
+                .filter((row) => row === "main" || ROWS[form].extra)
+                .map((row) => ({
+                  row,
+                  label: (row === "main" ? ROWS[form].main : ROWS[form].extra!)
+                    .label,
+                  max: maxOf(caps, form, row),
+                  value: valueOf(draft, caps, form, row),
+                })),
+            }))}
+            onToggle={toggleForm}
+            onCount={setCount}
+          />
 
           <section className={s.card} aria-labelledby={`${uid}-meta`}>
             <h2 id={`${uid}-meta`} className={s.cardTitle}>
