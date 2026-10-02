@@ -73,7 +73,7 @@ type Operation = (
 ) & { pending: boolean };
 
 const failureText = {
-  answer: "답을 저장하지 못했습니다. 같은 답으로 다시 시도해 주세요.",
+  answer: "답 저장을 확인하지 못했습니다. 같은 답으로 다시 시도해 주세요.",
   start: "시작을 확인하지 못했습니다. 다시 시도해 주세요.",
   submit: "제출을 확인하지 못했습니다. 다시 시도해 주세요.",
 };
@@ -429,9 +429,11 @@ function StudentAttempt({
                   ? "저장 완료 · 확정한 답은 바꿀 수 없습니다."
                   : operation?.kind === "answer" && operation.pending
                     ? "답 저장 중…"
-                    : selected
-                      ? "선택한 답을 확정해 주세요."
-                      : "아직 답하지 않았습니다."}
+                    : operation?.kind === "answer"
+                      ? "저장 확인이 필요합니다. 아래에서 다시 시도해 주세요."
+                      : selected
+                        ? "선택한 답을 확정해 주세요."
+                        : "아직 답하지 않았습니다."}
               </p>
             </div>
           </section>

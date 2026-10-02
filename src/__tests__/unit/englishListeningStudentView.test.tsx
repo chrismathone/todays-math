@@ -153,7 +153,7 @@ describe("ListeningStudentView", () => {
     render(<ListeningStudentView {...props({ onCommitAnswer })} />);
     selectAndCommit();
     expect(
-      await screen.findByText(/답을 저장하지 못했습니다/),
+      await screen.findByText(/답 저장을 확인하지 못했습니다/),
     ).toBeInTheDocument();
     expect(screen.getByRole("radio", { name: /At three/ })).toBeDisabled();
     expect(screen.getByText("0 / 2 답 저장")).toBeInTheDocument();
@@ -178,7 +178,7 @@ describe("ListeningStudentView", () => {
     );
     selectAndCommit();
     expect(
-      await screen.findByText(/답을 저장하지 못했습니다/),
+      await screen.findByText(/답 저장을 확인하지 못했습니다/),
     ).toBeInTheDocument();
     expect(screen.getByText("0 / 2 답 저장")).toBeInTheDocument();
   });
