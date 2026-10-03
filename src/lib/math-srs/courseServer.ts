@@ -6,7 +6,15 @@ import type {
 } from "@/contracts/mathSrsCourse.contract";
 import { db } from "@/lib/db";
 import { dailyJourneyDto, visibleExpeditionMission } from "./dailyJourney";
-import { expeditionCourseRecommendation } from "@/lib/math-explorers/expedition";
+import {
+  expeditionCourseRecommendation,
+  expeditionCoursePrerequisiteDecision,
+} from "@/lib/math-explorers/expedition";
+import {
+  coursePrerequisiteContext,
+  teacherPrerequisiteEvidence,
+} from "@/lib/math-prerequisite/display";
+import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
 import {
   ownedRowsWhere,
   ownedStudentsWhere,
@@ -64,7 +72,16 @@ export function courseStudentDto(
     ? findStoredCourseSession(course, requestedSessionId)
     : course.learner.session;
   const mission = visibleExpeditionMission(saved.state, now);
+  const prerequisiteContext = coursePrerequisiteContext(
+    course,
+    now,
+    expeditionCoursePrerequisiteDecision(saved.state, now),
+  );
   return {
+    ...(prerequisiteContext &&
+    (!requestedSessionId || requestedSessionId === course.learner.session?.id)
+      ? { prerequisiteContext }
+      : {}),
     journey: dailyJourneyDto(saved.state, "elementary", now),
     student: {
       id: student.id,
@@ -111,6 +128,15 @@ export function courseDetailDto(
   const course = saved.state.course ?? emptyCourseState();
   return {
     student: courseRosterDto(student, saved, now),
+    ...(mathPrerequisiteEnabled()
+      ? {
+          prerequisite: teacherPrerequisiteEvidence(
+            course,
+            now,
+            expeditionCoursePrerequisiteDecision(saved.state, now),
+          ),
+        }
+      : {}),
     sections: Object.values(course.memories)
       .map((m) => ({ ...m, estimatedRecall: estimatedCourseRecall(m, now) }))
       .sort(

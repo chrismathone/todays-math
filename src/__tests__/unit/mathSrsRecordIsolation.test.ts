@@ -17,6 +17,8 @@ import {
 
 const root = join(__dirname, "../../..");
 const SKIP = new Set(["node_modules", ".next", "__tests__"]);
+// 이 브라우저 QA 서버도 __tests__와 같은 메모리 DB mock이다. 운영 경로 허용 목록은 넓히지 않는다.
+const TEST_FIXTURES = new Set(["scripts/qa/math-prerequisite/server.test.ts"]);
 function files(dir: string): string[] {
   return readdirSync(join(root, dir), { withFileTypes: true }).flatMap(
     (entry) =>
@@ -32,14 +34,17 @@ function files(dir: string): string[] {
 // 주석 걷기는 `helpers/sourceComments.ts` 한 곳 — 줄 주석을 먼저, 블록 주석은 줄 머리의 `/*` 에서만(까닭은 그 머리말).
 // 파이썬 · SQL 도 훑으므로 `#` 줄도 주석으로 친다.
 const COMMENTS = { hash: true } as const;
-const sources = ["src", "scripts"].flatMap(files).map((path) => {
-  const raw = readFileSync(join(root, path), "utf8");
-  return {
-    path: relative(root, join(root, path)).replaceAll("\\", "/"),
-    raw,
-    text: withoutComments(raw, COMMENTS),
-  };
-});
+const sources = ["src", "scripts"]
+  .flatMap(files)
+  .filter((path) => !TEST_FIXTURES.has(path.replaceAll("\\", "/")))
+  .map((path) => {
+    const raw = readFileSync(join(root, path), "utf8");
+    return {
+      path: relative(root, join(root, path)).replaceAll("\\", "/"),
+      raw,
+      text: withoutComments(raw, COMMENTS),
+    };
+  });
 
 /** 복습 기록(보기형 문항 포함)을 읽거나 학생·강사에게 내보내는 서버 모듈. */
 const RECORD_MODULES = [

@@ -1,0 +1,75 @@
+{
+  "fixture": "isolated mock DB; actual API handlers and React player",
+  "teacherGraphChecked": false,
+  "students": [
+    "A",
+    "B"
+  ],
+  "checkSession": "1a8e3b1e-3d62-4b31-9df5-5b4c5f30f4b6",
+  "returnedSession": "e741a58b-6e8c-4b11-bc9d-ba27d6e86e67",
+  "aAnswered": 5,
+  "bAnswered": 0,
+  "pageErrors": [],
+  "requests": [
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "student": "teacher",
+      "path": "/api/math-srs/course",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course/attempts",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course/attempts",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course/attempts",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course/attempts",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course/attempts",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "student": "A",
+      "path": "/api/learn/math-srs/course",
+      "method": "POST",
+      "status": 200
+    }
+  ]
+}

@@ -7,6 +7,13 @@ import type {
 import type { StoredExplorer } from "@/contracts/mathExplorers.contract";
 import { kstDateOf } from "@/lib/kstDate";
 import {
+  coursePrerequisiteDecision,
+  prerequisiteRecommendation,
+} from "@/lib/math-prerequisite/courseIntegration";
+import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
+import { pilotTargetForCourse } from "@/lib/math-prerequisite/mapping";
+import { contextForDecision } from "@/lib/math-prerequisite/display";
+import {
   courseSummary,
   emptyCourseState,
   findStoredCourseSession,
@@ -422,11 +429,27 @@ export function expeditionDto(
   const today = kstDateOf(now);
   const complete = completionDates(ledger).includes(today);
   const mission = ledger.mission;
-  const canStart = !!open(state) || !!unfinished(state, now) || !complete;
+  const wouldStart = !!open(state) || !!unfinished(state, now) || !complete;
+  const nextPlan =
+    wouldStart && !open(state) ? planExpedition(state, studentId, now) : null;
+  const prerequisite = open(state)
+    ? expeditionCoursePrerequisiteDecision(state, now)
+    : nextPlan
+      ? expeditionInitialPrerequisiteDecision(state, nextPlan, now)
+      : null;
+  const matching =
+    prerequisite &&
+    (!nextPlan ||
+      explorerUnitForSection(prerequisite.sectionId) === nextPlan.unitId)
+      ? prerequisite
+      : null;
+  const prerequisiteContext = contextForDecision(matching);
+  const canStart = wouldStart && matching?.kind !== "unavailable";
   const todayStars = ledger.awards.find(
     (award) => award.day.date === today,
   )?.stars;
   return {
+    ...(prerequisiteContext ? { prerequisiteContext } : {}),
     mission: mission
       ? (({
           awardEligible: _a,
@@ -435,8 +458,7 @@ export function expeditionDto(
           ...publicMission
         }) => publicMission)(mission)
       : null,
-    next:
-      canStart && !open(state) ? planExpedition(state, studentId, now) : null,
+    next: nextPlan,
     completedToday: complete,
     canStart,
     ...(todayStars ? { todayStars } : {}),
@@ -569,6 +591,14 @@ export function expeditionCourseRecommendation(
   if (mission?.kind !== "elementary") return standard;
   if (standard?.mode === "resume") return standard;
   if (mission.answered >= mission.goal) return null;
+  if (
+    mathPrerequisiteEnabled() &&
+    pilotTargetForCourse(course) &&
+    (!course.plan?.enabled || mission.goal - mission.answered < 5)
+  )
+    return null;
+  const prerequisite = expeditionCoursePrerequisiteDecision(state, now);
+  if (prerequisite) return prerequisiteRecommendation(prerequisite);
   if (standard && explorerUnitForSection(standard.sectionId) === mission.unitId)
     return standard;
   const sectionId = course.learner.session?.sectionId;
@@ -578,6 +608,48 @@ export function expeditionCourseRecommendation(
         mode: "review" as const,
         reason: "오늘 시작한 학습의 남은 문제를 이어 풀어요.",
       }
+    : null;
+}
+
+/** The same decision supplies the displayed recommendation and its write guard. */
+export function expeditionCoursePrerequisiteDecision(
+  state: StoredSrsState,
+  now: Date,
+) {
+  const course = state.course;
+  if (!course) return null;
+  const mission = open(state);
+  if (mission && mission.kind !== "elementary") return null;
+  const decision = mission
+    ? coursePrerequisiteDecision(course, now, {
+        goal: mission.goal,
+        answered: mission.answered,
+      })
+    : coursePrerequisiteDecision(course, now);
+  if (
+    mission &&
+    decision &&
+    (explorerUnitForSection(decision.sectionId) !== mission.unitId ||
+      explorerUnitForSection(decision.targetSectionId) !== mission.unitId)
+  )
+    return null;
+  return decision;
+}
+
+export function expeditionInitialPrerequisiteDecision(
+  state: StoredSrsState,
+  plan: ExpeditionPlan,
+  now: Date,
+) {
+  if (plan.kind !== "elementary" || !state.course) return null;
+  const decision = coursePrerequisiteDecision(state.course, now, {
+    goal: plan.goal,
+    answered: 0,
+  });
+  return decision &&
+    explorerUnitForSection(decision.sectionId) === plan.unitId &&
+    explorerUnitForSection(decision.targetSectionId) === plan.unitId
+    ? decision
     : null;
 }
 

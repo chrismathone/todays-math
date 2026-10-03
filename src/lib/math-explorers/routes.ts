@@ -19,6 +19,7 @@ import { kstDateOf } from "@/lib/kstDate";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { learnNow } from "@/lib/learn/testConsoleServer";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import {
@@ -48,6 +49,8 @@ import {
   startExpedition,
 } from "./expeditionStart";
 import { loadCourseBankCandidates } from "@/lib/math-srs/courseBank";
+import { requestIdAllocator } from "@/lib/math-prerequisite/requestIds";
+import { expeditionInitialPrerequisiteDecision } from "./expeditionStart";
 
 const responseSchema = dataResponseSchema(explorerStateSchema);
 
@@ -104,10 +107,16 @@ async function changeExplorer(
       plan.kind === "elementary"
         ? expeditionInitialCourseRecommendation(previous.state, plan, now)
         : null;
-    if (recommendation && recommendation.mode !== "resume")
+    const prerequisite = expeditionInitialPrerequisiteDecision(
+      previous.state,
+      plan,
+      now,
+    );
+    if (recommendation && recommendation.mode !== "resume" && !prerequisite)
       candidates = await loadCourseBankCandidates(recommendation.sectionId);
   }
   const seed = randomInt(0, 0x1_0000_0000);
+  const idAttempt = requestIdAllocator(randomUUID);
   let feedback: ExplorerFeedback | null = null;
   try {
     const saved = await changeSrsState(
@@ -121,7 +130,7 @@ async function changeExplorer(
             now,
             input.requestId,
             seed,
-            randomUUID,
+            idAttempt(),
             recommendation
               ? { sectionId: recommendation.sectionId, candidates }
               : null,
@@ -149,6 +158,8 @@ async function changeExplorer(
       },
       undefined,
       input.expectedRevision,
+      {},
+      now,
     );
     return { ...saved, feedback };
   } catch (error) {
@@ -181,7 +192,7 @@ export async function handleExplorerRequest(
     const student = await loadCourseStudent(studentId);
     if (!student?.studentAccount || student.studentAccount.disabledAt)
       return noStore(unauthorizedError());
-    const now = new Date();
+    const now = await learnNow(studentId, request);
     const date = kstDateOf(now);
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let feedback: ExplorerFeedback | null = null;
