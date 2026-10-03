@@ -48,6 +48,8 @@ export interface ProblemContentProps {
    * 순서는 지면에 나온 순서다. 참조: docs/planning/09-figure-engine-guide.md
    */
   figureUrls?: string[];
+  /** Explicit per-image choice association. Null means unreviewed, never stem or option 1. */
+  choiceFigureIndex?: (number | null)[];
   /**
    * 도형 SVG (엔진 산출물, inline). `figureUrls`(스캔 래스터)와 **다른 갈래**다 —
    * 이쪽은 벡터라 화면·인쇄가 같은 것을 쓰고 해상도 손실이 없다.
@@ -63,7 +65,7 @@ export interface ProblemContentProps {
    * (`Problem.figureDims`). 여기서는 **비율**의 근거로만 쓴다 —
    * 치수를 모르면 물리 폭도 안 쓴다(자와 지면이 같이 모른다).
    */
-  figureDims?: number[];
+  figureDims?: (number | null)[];
   /**
    * `figureUrls` 와 **같은 순서·같은 길이**로 짝지은 **원본 지면 물리 폭(mm)**
    * (`Problem.figureSourceMm`). 「얼마로 그린다」의 유일한 근거다.
@@ -71,7 +73,7 @@ export interface ProblemContentProps {
    * ⚠️ **비면 «모른다»이고, 모르면 오늘 그대로 픽셀로 그린다**(회귀 0).
    *    규칙은 `src/lib/figurePrintSize.ts` 한 곳에 있고 넘침 판정도 같은 함수를 쓴다.
    */
-  figureSourceMm?: number[];
+  figureSourceMm?: (number | null)[];
   className?: string;
   /**
    * 그림을 지연 로딩할지. 화면 목록(문제은행·검수)은 true —
@@ -100,6 +102,7 @@ export interface ProblemContentProps {
 export function ProblemContent({
   content,
   figureUrls,
+  choiceFigureIndex,
   figureSvg,
   figureDims,
   figureSourceMm,
@@ -152,6 +155,37 @@ export function ProblemContent({
   // undefined 면 React 가 속성 자체를 만들지 않는다 — 인쇄 지면은 종전 그대로.
   const figureLoading = deferFigures ? "lazy" : undefined;
   const figureDecoding = deferFigures ? "async" : undefined;
+  const mapped = Boolean(choiceFigureIndex?.length);
+  const associations = figures.map((_, i) => {
+    const n = choiceFigureIndex?.[i];
+    return choiceFigureIndex?.length === figures.length &&
+      n !== null &&
+      Number.isInteger(n) &&
+      n! >= 0 &&
+      n! <= 100
+      ? n!
+      : null;
+  });
+  const mappedFigure = (url: string, index: number) => (
+    <div
+      key={`${index}:${url}`}
+      data-figure-choice={associations[index] ?? "unknown"}
+      className="mt-3 flex flex-col items-center print:break-inside-avoid"
+    >
+      {associations[index] === null || associations[index]! > choices.length ? (
+        <span className="text-xs">그림 대응 확인 필요</span>
+      ) : null}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt={`문항 그림 ${index + 1}`}
+        className={`h-auto w-auto max-w-full ${FIGURE_BLEND_CLASS}`}
+        style={figureWidthStyle(placements[index]?.sourceMm)}
+        loading={figureLoading}
+        decoding={figureDecoding}
+      />
+    </div>
+  );
 
   return (
     <div className={className}>
@@ -174,7 +208,15 @@ export function ProblemContent({
           dangerouslySetInnerHTML={{ __html: figureSvg }}
         />
       ) : null}
-      {figures.length > 0 ? (
+      {mapped ? (
+        figures.map((url, i) =>
+          associations[i] === 0 ||
+          associations[i] === null ||
+          associations[i]! > choices.length
+            ? mappedFigure(url, i)
+            : null,
+        )
+      ) : figures.length > 0 ? (
         // 발문 뒤·보기 앞 — 원본 지면 순서 그대로.
         // 장식 없음(05 §0: 유리·그림자·그라데이션 금지). 그림 자체가 내용이다.
         // `justify-center` — 원장님 지시(2026-08-20): 「그림이 문제 중앙 정렬 되면
@@ -235,6 +277,13 @@ export function ProblemContent({
               </span>
               <div className="min-w-0 flex-1">
                 <MarkdownRenderer content={choice} className="[&_p]:my-0" />
+                {mapped
+                  ? figures.map((url, i) =>
+                      associations[i] === index + 1
+                        ? mappedFigure(url, i)
+                        : null,
+                    )
+                  : null}
               </div>
             </div>
           ))}

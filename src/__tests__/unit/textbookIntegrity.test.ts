@@ -175,4 +175,32 @@ describe("textbook hash projections and cross references", () => {
       }).some((i) => i.code === "SNAPSHOT_EXTENSION_REQUIRED"),
     ).toBe(true);
   });
+  it("extracts only the first inline SVG occurrence and preserves repeated figure placements", () => {
+    const s = textbookFixture().snapshots[0];
+    s.rawSource!.figureSvgAssetId = "same-svg";
+    const fig = {
+      assetId: "same-svg",
+      sha256: "a".repeat(64),
+      altText: null,
+      sourceWidthMm: null,
+      choiceIndex: 0,
+    };
+    s.payload.figures = [
+      fig,
+      { ...fig, choiceIndex: 2 },
+      { ...fig, choiceIndex: null },
+    ];
+    const print = snapshotToPrintable(s, 0, () => ({
+      url: "/fixed.svg",
+      widthPx: null,
+      heightPx: null,
+      svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="2"/></svg>',
+    }));
+    expect(print.figureUrls).toEqual(["/fixed.svg", "/fixed.svg"]);
+    expect(print.choiceFigureIndex).toEqual([2, null]);
+    expect(print.frozenFigures).toHaveLength(3);
+    expect(print.figureSvg).toContain("circle");
+    expect(print.figureDims).toEqual([null, null, null, null]);
+    expect(print.figureSourceMm).toEqual([null, null]);
+  });
 });

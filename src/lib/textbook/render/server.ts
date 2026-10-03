@@ -14,6 +14,7 @@ import {
   A4,
   alignTextbookSpreads,
   paginateTextbookSections,
+  fitTextbookFrozenPages,
   type BlockMeasurement,
   type TextbookPage,
 } from "../layout/paginate";
@@ -55,6 +56,8 @@ export interface RenderTextbookChunkInput {
   browser?: Browser;
   mode?: "publish" | "draft";
   maxPages?: number;
+  /** Answers reuse this server-owned verified student chunk. No submitted placement JSON. */
+  frozenPages?: readonly TextbookPage[];
   onProgress?: (
     phase: "integrity" | "measuring" | "layout" | "pdf" | "qr",
   ) => void;
@@ -341,19 +344,22 @@ export async function renderTextbookChunk(
       exchange.config.print.coverMode === "included" &&
       input.firstPhysicalPageIndex ===
         exchange.config.print.firstPhysicalPageIndex;
-    const layout = paginateTextbookSections(
-      model.sections,
-      measured,
-      model.config,
-      {
-        firstPhysicalPageIndex: input.firstPhysicalPageIndex,
-        includeCover,
-        previousSectionKey:
-          wholeModel.sections[input.sectionIndices[0] - 1]?.sectionKey,
-        maxPages: input.maxPages ?? 32,
-      },
-    );
-    alignTextbookSpreads(layout.pages);
+    const layout = input.frozenPages
+      ? fitTextbookFrozenPages(
+          model.sections,
+          measured,
+          input.frozenPages,
+          model.config,
+          input.firstPhysicalPageIndex,
+        )
+      : paginateTextbookSections(model.sections, measured, model.config, {
+          firstPhysicalPageIndex: input.firstPhysicalPageIndex,
+          includeCover,
+          previousSectionKey:
+            wholeModel.sections[input.sectionIndices[0] - 1]?.sectionKey,
+          maxPages: input.maxPages ?? 32,
+        });
+    if (!input.frozenPages) alignTextbookSpreads(layout.pages);
     const body = layout.pages
       .map((p) => renderPageHtml(p, model, resolver))
       .join("");
@@ -438,7 +444,16 @@ export async function mergeTextbookPdfs(
   const targets: QrPlacement[] = [];
   let offset = 0,
     bytesIn = 0;
+  let expectedPhysical = chunks[0].pages[0]?.physicalPageIndex;
   for (const chunk of chunks) {
+    if (
+      !chunk.pages.length ||
+      chunk.pages.some((p, i) => p.physicalPageIndex !== expectedPhysical! + i)
+    )
+      throw new Error(
+        "PDF chunks are missing, repeated or out of physical order",
+      );
+    expectedPhysical! += chunk.pages.length;
     bytesIn += chunk.pdf.length;
     if (bytesIn > maxBytes)
       throw new Error(

@@ -37,11 +37,11 @@ export function snapshotToPrintable(
     ? figures.find((f) => f.figure.assetId === svgId)?.asset.svg
     : undefined;
   if (svg) assertSafeSvg(svg);
-  const raster = svg
-    ? figures.filter((f) => f.figure.assetId !== svgId)
-    : figures;
-  // Incomplete dimensions/physical widths remain unknown as a whole in the legacy print reader.
-  // Exact per-figure nulls are retained in frozenFigures; they are never assigned to option 1.
+  const inlineIndex = svg
+    ? figures.findIndex((f) => f.figure.assetId === svgId)
+    : -1;
+  const raster = figures.filter((_, i) => i !== inlineIndex);
+  // Keep exact per-figure unknowns. The shared sizing rule treats only that index as unknown.
   return {
     id:
       snapshot.source.system === "todays-math"
@@ -61,14 +61,8 @@ export function snapshotToPrintable(
         ? (snapshot.sourceMetadata?.originalScore ?? null)
         : score,
     figureUrls: raster.map((f) => f.asset.url),
-    figureDims: raster.every(
-      (f) => f.asset.widthPx !== null && f.asset.heightPx !== null,
-    )
-      ? raster.flatMap((f) => [f.asset.widthPx!, f.asset.heightPx!])
-      : [],
-    figureSourceMm: raster.every((f) => f.figure.sourceWidthMm !== null)
-      ? raster.map((f) => f.figure.sourceWidthMm!)
-      : [],
+    figureDims: raster.flatMap((f) => [f.asset.widthPx, f.asset.heightPx]),
+    figureSourceMm: raster.map((f) => f.figure.sourceWidthMm),
     choiceFigureIndex: raster.map((f) => f.figure.choiceIndex),
     figureSvg: svg ?? null,
     frozenFigures: payload.figures,

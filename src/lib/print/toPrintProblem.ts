@@ -32,8 +32,9 @@ export interface PrintableProblemRow {
   solution: string | null;
   questionType?: string | null;
   figureUrls?: string[];
-  figureDims?: number[];
-  figureSourceMm?: number[];
+  choiceFigureIndex?: (number | null)[];
+  figureDims?: (number | null)[];
+  figureSourceMm?: (number | null)[];
   figureSvg?: string | null;
 }
 
@@ -46,6 +47,7 @@ export const PRINT_FIGURE_FIELDS = [
   "figureDims",
   "figureSourceMm",
   "figureSvg",
+  "choiceFigureIndex",
 ] as const satisfies readonly (keyof TestPrintProblem)[];
 
 export function toPrintProblem(
@@ -83,5 +85,8 @@ export function toPrintProblem(
     // 엔진이 그린 인라인 SVG — **엔진 문항의 그림은 이것뿐**이고 `figureUrls` 는
     // 비어 있다. 안 담으면 그림 없는 시험지가 나간다(2026-08-29 까지 그랬다).
     figureSvg: problem.figureSvg,
+    ...(problem.choiceFigureIndex === undefined
+      ? {}
+      : { choiceFigureIndex: problem.choiceFigureIndex }),
   };
 }
