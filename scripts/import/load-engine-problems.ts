@@ -309,6 +309,7 @@ export function buildMiddleRows(t: MiddleTarget, seedBase: number): Row[] {
         content: p.content,
         answer: p.answer,
         solution: p.solution,
+        ...(p.distractors === undefined ? {} : { distractors: p.distractors }),
         familyKey,
         // 유형은 난이도와 **다른 축**이지만 중등 엔진이 유형을 따로 안 내므로
         // 갈래에서 어림한다. 밑 두 칸(연산·기본)은 계산, 위 두 칸은 활용.

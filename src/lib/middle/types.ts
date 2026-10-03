@@ -22,6 +22,8 @@ export type MidProblem = {
   solution: string;
   difficulty: Difficulty;
   facts: Record<string, number>;
+  /** 생성기가 직접 준 오답 넷 — 없으면 공용 객관식 파생기가 만든다. */
+  distractors?: readonly string[];
   /**
    * 도형이 필요한 유형만 채운다 — FigureSpec v2 (09-figure-engine-guide §1 계층 A).
    * 실증 완료 목록(§2)에 있는 도형만 쓸 것. 없는 도형이 필요하면 그 유형을

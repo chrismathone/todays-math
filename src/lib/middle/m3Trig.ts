@@ -237,7 +237,7 @@ const TRIPLES = [
 
 type Body = Pick<
   MidProblem,
-  "content" | "answer" | "solution" | "facts" | "figureSpec"
+  "content" | "answer" | "solution" | "facts" | "figureSpec" | "distractors"
 >;
 
 function def(
@@ -1632,6 +1632,22 @@ export const M3_TRIG: TypeEntry[] = [
         `\\sin ${co}^\\circ+\\cos ${co}^\\circ`,
       ][mode]!;
       const val = [sv, cv, Number((sv + cv).toFixed(4))][mode]!;
+      const candidates = [
+        [cv, 1 - sv, 1 - cv, 1, (sv + cv) / 2, Math.abs(sv - cv), sv * cv],
+        [sv, 1 - cv, 1 - sv, 1, (sv + cv) / 2, Math.abs(sv - cv), sv * cv],
+        [sv, cv, Math.abs(sv - cv), 1, 2 * sv, 2 * cv],
+      ][mode]!;
+      // 실제 보기에 적는 네 자리 값으로 중복을 가른다. 후보 순서대로 골라
+      // 난수를 더 쓰지 않고, 모자라면 공용 파생기의 기존 경로를 남긴다.
+      const seen = new Set([val.toFixed(4)]);
+      const distractors: string[] = [];
+      for (const candidate of candidates) {
+        const shown = candidate.toFixed(4);
+        if (Number(shown) <= 0 || seen.has(shown)) continue;
+        seen.add(shown);
+        distractors.push(`$${shown}$`);
+        if (distractors.length === 4) break;
+      }
       const why = [
         `$\\cos ${co}^\\circ=\\cos(90^\\circ-${a}^\\circ)=\\sin ${a}^\\circ$이다.`,
         `$\\sin ${co}^\\circ=\\sin(90^\\circ-${a}^\\circ)=\\cos ${a}^\\circ$이다.`,
@@ -1643,6 +1659,7 @@ export const M3_TRIG: TypeEntry[] = [
         solution: `${why}\n따라서 $${asked}=${val.toFixed(4)}$이다.`,
         facts: { a, sv, cv, mode, val },
         figureSpec: null,
+        ...(distractors.length === 4 ? { distractors } : {}),
       };
     },
   ),
