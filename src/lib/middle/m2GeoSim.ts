@@ -1617,9 +1617,19 @@ export const M2_GEO_SIM: TypeEntry[] = [
       const m = intBetween(rng, 2, 9);
       const n = intBetween(rng, 2, 9);
       const p = intBetween(rng, 4, 14);
+      let remaining = 120;
       const q = attempt(120, () => {
+        remaining -= 1;
         const v = intBetween(rng, p + 2, p + 20);
-        return (n * p + m * v) % (m + n) === 0 ? v : null;
+        if ((n * p + m * v) % (m + n) === 0) return v;
+        if (remaining > 0) return null;
+        // 정수인 후보의 간격 (m+n)/gcd(m,n)은 최대 17이므로 19칸 안에
+        // 반드시 있다. 마지막 표본으로 고르면 추가 난수 없이 소진만 구제한다.
+        const candidates = Array.from(
+          { length: 19 },
+          (_, i) => p + 2 + i,
+        ).filter((candidate) => (n * p + m * candidate) % (m + n) === 0);
+        return candidates[(v - p - 2) % candidates.length]!;
       });
       const x = (n * p + m * q) / (m + n);
       return {
