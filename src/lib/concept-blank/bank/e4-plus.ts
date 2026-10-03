@@ -1,4 +1,4 @@
-import { CASE, RETIRED, joinBanks, plusSection } from "./plus";
+import { RETIRED, joinBanks, plusSection } from "./plus";
 
 /**
  * 초4 보강(은행 3차) — 소단원마다 개념 · ○× · 적용이 원래 `e4.ts` 와 합쳐 하 · 중 · 상 10개씩 되게 채운다.
