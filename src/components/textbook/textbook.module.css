@@ -215,6 +215,17 @@
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
+.measureHost {
+  grid-column: 1 / -1;
+  overflow: auto;
+}
+.measureHost[data-zoom="fit"] {
+  height: 140mm;
+}
+.measureHost[data-zoom="fit"] :global(.tb-spread) {
+  transform: scale(0.45);
+  transform-origin: top left;
+}
 .page {
   min-height: 180px;
   padding: 12px;

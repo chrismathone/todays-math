@@ -14,7 +14,15 @@ import {
   type TextbookRenderModel,
 } from "@/lib/textbook/render/model";
 
-import type { EditionDetail, SectionBlock, SectionDetail } from "./model";
+import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
+
+import type { PreviewMaterial } from "@/lib/textbook/client";
+import type {
+  ConceptDraft,
+  EditionDetail,
+  SectionBlock,
+  SectionDetail,
+} from "./model";
 
 const EXPORTED_AT = "2026-10-03T00:00:00.000Z";
 const MISSING_SOURCE = "판본 원본이 없어 측정하지 않습니다.";
@@ -25,8 +33,90 @@ export type PreviewResources = {
 };
 
 export type SectionPreview =
-  | { ok: true; model: TextbookRenderModel; resources: PreviewResources }
+  | {
+      ok: true;
+      model: TextbookRenderModel;
+      resources: PreviewResources;
+      /** The exchange has a QR address and no reserved image bytes. */
+      omittedQr: boolean;
+    }
   | { ok: false; message: string };
+
+function linesOf(value: string): string[] {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+}
+
+function conceptBody(draft: ConceptDraft): TextbookConcept["body"] {
+  return {
+    goal: draft.goal,
+    prerequisites: linesOf(draft.prerequisites),
+    definition: draft.definition,
+    conditions: draft.conditions.trim() ? draft.conditions : null,
+    examples: linesOf(draft.examples),
+    counterexamples: linesOf(draft.counterexamples),
+    misconceptions: linesOf(draft.misconceptions),
+    explainPrompt: draft.explainPrompt.trim() ? draft.explainPrompt : null,
+  };
+}
+
+function withDraft(
+  base: TextbookConcept,
+  draft: ConceptDraft,
+): TextbookConcept {
+  const next: TextbookConcept = {
+    ...base,
+    title: draft.title,
+    kind: draft.kind,
+    body: conceptBody(draft),
+  };
+  if (draft.blankForms.length > 0) {
+    next.blankForms = [...draft.blankForms];
+    return next;
+  }
+  delete next.blankForms;
+  return next;
+}
+
+function fromDraft(
+  section: SectionDetail,
+  draft: ConceptDraft,
+): TextbookConcept {
+  const concept: TextbookConcept = {
+    conceptKey: draft.conceptKey,
+    unitKey: section.unitKey,
+    sectionKey: section.sectionKey,
+    title: draft.title,
+    kind: draft.kind,
+    unitId: null,
+    body: conceptBody(draft),
+    blankItems: [],
+    links: [],
+    mappingVersion: "1",
+    derivedFromConceptKey: null,
+    frozen: null,
+  };
+  if (draft.blankForms.length > 0) concept.blankForms = [...draft.blankForms];
+  return concept;
+}
+
+function conceptFor(
+  conceptKey: string,
+  section: SectionDetail,
+  material: PreviewMaterial | null,
+  source: TextbookConcept | null,
+): TextbookConcept | null {
+  const saved =
+    material?.concepts.find((row) => row.conceptKey === conceptKey) ??
+    (source?.conceptKey === conceptKey ? source : null);
+  const draft =
+    section.concept?.conceptKey === conceptKey ? section.concept : null;
+  if (draft && saved) return withDraft(saved, draft);
+  if (draft) return fromDraft(section, draft);
+  return saved;
+}
 
 const EXPRESSION = {
   평온: "neutral",
@@ -41,14 +131,81 @@ function refuse(message: string): { ok: false; message: string } {
 
 function wireBlocks(
   blocks: readonly SectionBlock[],
-): { ok: true; blocks: ManuscriptBlock[] } | { ok: false; message: string } {
+  material: PreviewMaterial | null,
+  section: SectionDetail,
+  conceptSource: TextbookConcept | null,
+):
+  | {
+      ok: true;
+      blocks: ManuscriptBlock[];
+      material: PreviewMaterial;
+      omittedQr: boolean;
+    }
+  | { ok: false; message: string } {
   const wired: ManuscriptBlock[] = [];
+  let omittedQr = false;
+  const used: PreviewMaterial = {
+    items: [],
+    snapshots: [],
+    assets: [],
+    concepts: [],
+    qrTargets: [],
+    conceptQrTargets: [],
+  };
   for (const block of blocks) {
     if (block.kind === "problems") {
-      return refuse("문항 확정본이 이 화면에 없어 측정하지 않습니다.");
+      if (block.itemIds.length !== 1) {
+        return refuse("문항 블록은 한 문항씩 저장합니다.");
+      }
+      const itemId = block.itemIds[0];
+      const item = material?.items.find((row) => row.itemId === itemId);
+      const snapshot = item
+        ? material?.snapshots.find((row) => row.snapshotId === item.snapshotId)
+        : undefined;
+      if (!item || !snapshot) {
+        return refuse("문항 확정본이 이 화면에 없어 측정하지 않습니다.");
+      }
+      used.items.push(item);
+      used.snapshots.push(snapshot);
+      for (const figure of snapshot.payload.figures) {
+        const asset = material?.assets.find(
+          (row) => row.assetId === figure.assetId,
+        );
+        if (
+          asset &&
+          !used.assets.some((row) => row.assetId === asset.assetId)
+        ) {
+          used.assets.push(asset);
+        }
+      }
+      const qr = item.qrTargetId
+        ? material?.qrTargets.find((row) => row.qrTargetId === item.qrTargetId)
+        : undefined;
+      if (qr) omittedQr = true;
+      wired.push({ blockId: block.id, kind: "problem", itemId: item.itemId });
+      continue;
     }
     if (block.kind === "concept") {
-      return refuse("개념 고정본이 이 화면에 없어 측정하지 않습니다.");
+      const concept = conceptFor(
+        block.conceptKey,
+        section,
+        material,
+        conceptSource,
+      );
+      if (!concept) {
+        return refuse("개념 고정본이 이 화면에 없어 측정하지 않습니다.");
+      }
+      used.concepts.push(concept);
+      const qr = material?.conceptQrTargets.find(
+        (row) => row.conceptKey === concept.conceptKey,
+      );
+      if (qr) omittedQr = true;
+      wired.push({
+        blockId: block.id,
+        kind: "concept",
+        conceptKey: concept.conceptKey,
+      });
+      continue;
     }
     if (block.kind === "image") {
       if (!block.assetId) return refuse("그림 자료가 없어 측정하지 않습니다.");
@@ -98,13 +255,15 @@ function wireBlocks(
     }
     wired.push({ blockId: block.id, kind: "text", markdown: block.text });
   }
-  return { ok: true, blocks: wired };
+  return { ok: true, blocks: wired, material: used, omittedQr };
 }
 
 export function buildSectionPreview(input: {
   edition: EditionDetail;
   section: SectionDetail;
   variant: "student" | "answers";
+  material?: PreviewMaterial | null;
+  conceptSource?: TextbookConcept | null;
 }): SectionPreview {
   const source = input.edition.structureSource;
   if (!source?.edition || !source.config?.print) return refuse(MISSING_SOURCE);
@@ -112,7 +271,12 @@ export function buildSectionPreview(input: {
   if (section.parity !== "even-left" && section.parity !== "continue") {
     return refuse("시작 면이 정해지지 않아 측정하지 않습니다.");
   }
-  const wired = wireBlocks(section.blocks);
+  const wired = wireBlocks(
+    section.blocks,
+    input.material ?? null,
+    section,
+    input.conceptSource ?? null,
+  );
   if (!wired.ok) return wired;
   const prior =
     source.outline.find((unit) => unit.unitKey === section.unitKey) ??
@@ -143,17 +307,35 @@ export function buildSectionPreview(input: {
         ],
       },
     ],
-    snapshots: [],
-    items: [],
-    assets: [],
+    snapshots: wired.material.snapshots,
+    items: wired.material.items,
+    assets: wired.material.assets,
     qrTargets: [],
     videoBindings: [],
     pageMap: [],
     rendererVersion: TEXTBOOK_RENDERER_VERSION,
     templateVersion: TEXTBOOK_TEMPLATE_VERSION,
+    ...(wired.material.concepts.length > 0
+      ? {
+          conceptIntegration: {
+            version: "injaewon.textbook.concepts.v1" as const,
+            concepts: wired.material.concepts,
+          },
+        }
+      : {}),
   };
   const parsed = textbookExchangeSchema.safeParse(exchange);
   if (!parsed.success) return refuse("미리보기 원고가 계약과 맞지 않습니다.");
+  let model: TextbookRenderModel;
+  try {
+    model = createTextbookRenderModel(parsed.data, input.variant);
+  } catch (reason) {
+    const message =
+      reason instanceof Error && reason.message
+        ? reason.message
+        : "미리보기 원고가 계약과 맞지 않습니다.";
+    return refuse(message);
+  }
   const resources: PreviewResources = {
     assetUrl: (assetId) =>
       `/api/textbook/editions/${encodeURIComponent(input.edition.editionId)}/assets/${encodeURIComponent(assetId)}`,
@@ -161,9 +343,5 @@ export function buildSectionPreview(input: {
       throw new Error("예약된 QR 이미지가 없습니다.");
     },
   };
-  return {
-    ok: true,
-    model: createTextbookRenderModel(parsed.data, input.variant),
-    resources,
-  };
+  return { ok: true, model, resources, omittedQr: wired.omittedQr };
 }

@@ -1,6 +1,11 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
+const navigation = vi.hoisted(() => ({ push: vi.fn() }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: navigation.push }),
+}));
+
 import type { TextbookStudioApi } from "@/lib/textbook/client";
 import { TextbookRequestError } from "@/lib/textbook/client";
 import type {
@@ -160,6 +165,13 @@ function api(overrides: Partial<TextbookStudioApi> = {}): TextbookStudioApi {
     readItemDetail: unused,
     linkItem: unused,
     registerItem: unused,
+    reissue: unused,
+    listUnits: unused,
+    listClasses: unused,
+    listStudents: unused,
+    listOwnedTests: unused,
+    listUnitProblems: unused,
+    readPreviewMaterial: unused,
     preflight: unused,
     reserve: unused,
     stepPublish: unused,
@@ -287,9 +299,14 @@ describe("TextbookStudioView", () => {
     expect(screen.queryByText("11/12")).not.toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "교사용" }));
+    const teacherPaper = screen.getByRole("region", { name: "지면" });
+    expect(teacherPaper).not.toHaveTextContent("11/12");
+    expect(teacherPaper).toHaveTextContent(
+      "판본 원본이 없어 측정하지 않습니다.",
+    );
     expect(
-      within(screen.getByRole("region", { name: "지면" })).getByText(/11\/12/),
-    ).toBeVisible();
+      screen.queryByRole("textbox", { name: "교사용 정답" }),
+    ).not.toBeInTheDocument();
   });
 
   it("gives a student audience no answer and no teacher preview switch", async () => {
@@ -447,17 +464,33 @@ describe("TextbookStudioView", () => {
       excluded: [],
       aggregateRevision: 10,
     }));
-    await openStudio(api({ getSection, captureItems }));
+    const unitId = "00000000-0000-4000-8000-0000000000a1";
+    const problemId = "00000000-0000-4000-8000-0000000000b1";
+    await openStudio(
+      api({
+        getSection,
+        captureItems,
+        listUnits: vi.fn(async () => [{ id: unitId, label: "초5 분수 통분" }]),
+        listUnitProblems: vi.fn(async () => [
+          { id: problemId, label: "E51402-K7M2" },
+        ]),
+      }),
+    );
     fireEvent.change(screen.getByRole("textbox", { name: "대사" }), {
       target: { value: "고친 문장" },
     });
-    fireEvent.change(screen.getByRole("textbox", { name: "문제 ID" }), {
-      target: { value: "problem-1" },
-    });
+    fireEvent.click(screen.getByRole("button", { name: "문제에서 가져오기" }));
+    fireEvent.click(
+      await screen.findByRole("checkbox", { name: "E51402-K7M2" }),
+    );
     fireEvent.click(screen.getByRole("button", { name: "문항 가져오기" }));
     expect(await screen.findByText("문항 블록")).toBeVisible();
     expect(captureItems).toHaveBeenCalledWith(
-      expect.objectContaining({ expectedRevision: 9 }),
+      expect.objectContaining({
+        expectedRevision: 9,
+        testId: null,
+        problemIds: [problemId],
+      }),
     );
     expect(screen.getByRole("textbox", { name: "대사" })).toHaveValue(
       "고친 문장",
@@ -546,18 +579,11 @@ describe("TextbookStudioView", () => {
         state: "uncompared" as const,
       },
     }));
-    const registerItem = vi.fn(async () => {
-      throw new TextbookRequestError(
-        "등록 계약이 아직 없습니다. 공유 스키마가 오기 전에는 요청을 보내지 않습니다.",
-        400,
-      );
-    });
     await openStudio(
       api({
         getSection: vi.fn(async () => linked),
         readItemDetail,
         linkItem,
-        registerItem,
       }),
     );
     fireEvent.click(screen.getByRole("button", { name: "연결" }));
@@ -573,10 +599,109 @@ describe("TextbookStudioView", () => {
       9,
       problemId,
     );
-    fireEvent.click(screen.getByRole("button", { name: "등록" }));
-    expect(await screen.findByText(/등록 계약이 아직 없습니다/)).toBeVisible();
     expect(screen.getByText(/1 · 연결됨/)).toBeVisible();
-    expect(registerItem).toHaveBeenCalledOnce();
+  });
+
+  it("registers a pending bank item and leaves the placement unlinked", async () => {
+    const placed = section();
+    const unitId = "00000000-0000-4000-8000-0000000000d1";
+    const problemId = "00000000-0000-4000-8000-0000000000c1";
+    placed.items = [
+      {
+        itemId: "item-1",
+        problemId: "",
+        label: "1 · 연결 없음",
+        snapshotHash: null,
+        currentHash: null,
+        state: "uncompared",
+      },
+    ];
+    const linkItem = vi.fn();
+    const registerItem = vi.fn(async () => ({
+      aggregateRevision: 10,
+      item: {
+        itemId: "item-1",
+        problemId: "",
+        label: "1 · 연결 없음",
+        snapshotHash: null,
+        currentHash: null,
+        state: "uncompared" as const,
+      },
+      problem: {
+        problemId,
+        problemCode: "E51402-K7M2",
+        reviewStatus: "pending" as const,
+      },
+      candidates: [{ problemId, problemCode: "E51402-K7M2" }],
+    }));
+    await openStudio(
+      api({
+        getSection: vi.fn(async () => placed),
+        linkItem,
+        registerItem,
+        listUnits: vi.fn(async () => [{ id: unitId, label: "초5 분수 통분" }]),
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "등록" }));
+    expect(
+      await screen.findByRole("option", { name: "초5 분수 통분" }),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "검수 대기로 등록" }));
+    expect(await screen.findByText(/검수 대기 문항 E51402-K7M2/)).toBeVisible();
+    expect(screen.getByText(/1 · 연결 없음/)).toBeVisible();
+    expect(registerItem).toHaveBeenCalledWith(
+      "edition-1",
+      "item-1",
+      expect.any(String),
+      9,
+      { unitId, difficulty: "기본", problemType: "계산" },
+    );
+    expect(linkItem).not.toHaveBeenCalled();
+    expect(
+      await screen.findByRole("option", { name: "E51402-K7M2" }),
+    ).toBeVisible();
+  });
+
+  it("shows the figure refusal and does not mark the placement linked", async () => {
+    const placed = section();
+    placed.items = [
+      {
+        itemId: "item-1",
+        problemId: "",
+        label: "1 · 연결 없음",
+        snapshotHash: null,
+        currentHash: null,
+        state: "uncompared",
+      },
+    ];
+    const registerItem = vi.fn(async () => {
+      throw new TextbookRequestError(
+        "그림이 있는 문항은 여기서 등록하지 않습니다. 문제은행의 등록 화면에서 그림과 함께 등록해 주세요.",
+        422,
+      );
+    });
+    await openStudio(
+      api({
+        getSection: vi.fn(async () => placed),
+        registerItem,
+        listUnits: vi.fn(async () => [
+          {
+            id: "00000000-0000-4000-8000-0000000000d1",
+            label: "초5 분수 통분",
+          },
+        ]),
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "등록" }));
+    expect(
+      await screen.findByRole("option", { name: "초5 분수 통분" }),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "검수 대기로 등록" }));
+    expect(
+      await screen.findByText(/그림이 있는 문항은 여기서 등록하지 않습니다/),
+    ).toBeVisible();
+    expect(screen.getByText(/1 · 연결 없음/)).toBeVisible();
+    expect(screen.queryByText(/연결됨/)).not.toBeInTheDocument();
   });
 
   it("does not post a link when the item has no bank candidates", async () => {
@@ -674,6 +799,24 @@ describe("TextbookStudioView", () => {
     render(<TextbookStudioView api={client} initialEditionId="not-a-uuid" />);
     expect(await screen.findByRole("button", { name: "열기" })).toBeVisible();
     expect(client.openEdition).not.toHaveBeenCalled();
+  });
+
+  it("does not replace a dirty section when the deep link changes", async () => {
+    const client = api();
+    const nextId = "00000000-0000-4000-8000-0000000000bb";
+    const { rerender } = render(
+      <TextbookStudioView
+        api={client}
+        initialEditionId="00000000-0000-4000-8000-0000000000aa"
+      />,
+    );
+    const sentence = await screen.findByRole("textbox", { name: "대사" });
+    fireEvent.change(sentence, { target: { value: "고친 문장" } });
+    rerender(<TextbookStudioView api={client} initialEditionId={nextId} />);
+    expect(screen.getByRole("textbox", { name: "대사" })).toHaveValue(
+      "고친 문장",
+    );
+    expect(client.openEdition).not.toHaveBeenCalledWith(nextId);
   });
 
   it("links a published concept lecture on the unit outline", async () => {
@@ -780,17 +923,23 @@ describe("TextbookStudioView", () => {
     const recordObservation = vi.fn(async () => ({
       reviewStatus: "pending" as const,
     }));
+    const classId = "00000000-0000-4000-8000-0000000000c1";
+    const studentId = "00000000-0000-4000-8000-0000000000ee";
     await openStudio(
       api({
         openEdition: vi.fn(async () => opened),
         getSection: vi.fn(async () => linked),
         recordObservation,
+        listClasses: vi.fn(async () => [
+          { id: classId, label: "월수반 · 초5" },
+        ]),
+        listStudents: vi.fn(async () => [{ id: studentId, label: "김민서" }]),
       }),
     );
     const form = screen.getByRole("form", { name: "종이 활동" });
-    fireEvent.change(within(form).getByRole("textbox", { name: "학생" }), {
-      target: { value: "00000000-0000-4000-8000-0000000000ee" },
-    });
+    expect(
+      await within(form).findByRole("option", { name: "김민서" }),
+    ).toBeVisible();
     fireEvent.change(within(form).getByRole("textbox", { name: "관찰" }), {
       target: { value: "분모를 같게 한다고 말했다." },
     });
@@ -805,5 +954,210 @@ describe("TextbookStudioView", () => {
         observation: "분모를 같게 한다고 말했다.",
       }),
     );
+  });
+
+  it("assigns the chosen student by name", async () => {
+    const classId = "00000000-0000-4000-8000-0000000000c1";
+    const studentId = "00000000-0000-4000-8000-0000000000ee";
+    const createAssignment = vi.fn(async () => ({
+      assignmentId: "00000000-0000-4000-8000-0000000000f1",
+      target: { kind: "student" as const, studentId, label: "김민서" },
+      startsAt: "2026-10-03T00:00:00.000Z",
+      expiresAt: null,
+      revoked: false,
+    }));
+    await openStudio(
+      api({
+        listAssignments: vi.fn(async () => []),
+        listClasses: vi.fn(async () => [
+          { id: classId, label: "월수반 · 초5" },
+        ]),
+        listStudents: vi.fn(async () => [{ id: studentId, label: "김민서" }]),
+        createAssignment,
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "배정" }));
+    const panel = await screen.findByRole("region", { name: "배정" });
+    expect(
+      await within(panel).findByRole("option", { name: "월수반 · 초5" }),
+    ).toBeVisible();
+    fireEvent.change(within(panel).getByRole("combobox", { name: "대상" }), {
+      target: { value: "student" },
+    });
+    expect(
+      await within(panel).findByRole("option", { name: "김민서" }),
+    ).toBeVisible();
+    fireEvent.click(within(panel).getByRole("button", { name: "배정 추가" }));
+    expect(createAssignment).toHaveBeenCalledWith(
+      expect.objectContaining({
+        editionId: "edition-1",
+        target: { kind: "student", studentId, label: "김민서" },
+        expiresAt: null,
+      }),
+    );
+  });
+
+  it("reissues the chosen order and reports a duplicate without opening a test", async () => {
+    navigation.push.mockClear();
+    const source = structuredClone(edition.structureSource);
+    if (!source) throw new Error("fixture");
+    source.edition = {
+      editionId: "00000000-0000-4000-8000-000000000011",
+      label: "1",
+      status: "published",
+      revision: 9,
+      publishedAt: "2026-10-03T00:00:00.000Z",
+      manifestHash: null,
+    };
+    const classId = "00000000-0000-4000-8000-0000000000c1";
+    const unitId = "00000000-0000-4000-8000-0000000000d1";
+    const testId = "00000000-0000-4000-8000-0000000000d2";
+    const item = (itemId: string, displayNumber: string) => ({
+      itemId,
+      editionId: "edition-1",
+      snapshotId: "snap-1",
+      linkStatus: "linked" as const,
+      sourceTestId: null,
+      sourceTestProblemId: null,
+      unitKey: "unit-1",
+      sectionKey: "dialogue",
+      learningStage: "basic" as const,
+      displayNumber,
+      orderIndex: 0,
+      layout: {
+        columnSpan: 1 as const,
+        minWorkLines: 0,
+        preferredWorkLines: 0,
+        maxWorkLines: 0,
+        keepTogether: false,
+      },
+      qrTargetId: null,
+    });
+    const reissue = vi
+      .fn()
+      .mockRejectedValueOnce(
+        new TextbookRequestError(
+          "낼 수 없는 문항 1건이 들어 있습니다. 1(같은 문항을 두 번 골랐습니다.)",
+          422,
+        ),
+      )
+      .mockResolvedValueOnce({
+        testId,
+        problemCount: 3,
+        titlePersisted: false as const,
+        replayed: false,
+      });
+    await openStudio(
+      api({
+        openEdition: vi.fn(async () => ({
+          ...edition,
+          structureSource: source,
+        })),
+        readPreviewMaterial: vi.fn(async () => ({
+          items: [item("item-a", "2"), item("item-b", "1")],
+          snapshots: [],
+          assets: [],
+          concepts: [],
+          qrTargets: [],
+          conceptQrTargets: [],
+        })),
+        listClasses: vi.fn(async () => [
+          { id: classId, label: "월수반 · 초5" },
+        ]),
+        listUnits: vi.fn(async () => [{ id: unitId, label: "초5 분수 통분" }]),
+        reissue,
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "다시 출제" }));
+    const panel = await screen.findByRole("region", { name: "다시 출제" });
+    expect(
+      await within(panel).findByRole("option", { name: "월수반 · 초5" }),
+    ).toBeVisible();
+    expect(
+      await within(panel).findByRole("option", { name: "초5 분수 통분" }),
+    ).toBeVisible();
+    fireEvent.change(within(panel).getByRole("combobox", { name: "반" }), {
+      target: { value: classId },
+    });
+    fireEvent.change(
+      within(panel).getByRole("combobox", { name: "범위 끝 단원" }),
+      { target: { value: unitId } },
+    );
+    fireEvent.click(within(panel).getByRole("button", { name: "2 추가" }));
+    fireEvent.click(within(panel).getByRole("button", { name: "2 추가" }));
+    fireEvent.click(
+      within(panel).getByRole("button", { name: "시험지 만들기" }),
+    );
+    expect(
+      await screen.findByText(/같은 문항을 두 번 골랐습니다/),
+    ).toBeVisible();
+    expect(navigation.push).not.toHaveBeenCalled();
+    expect(reissue).toHaveBeenCalledWith(
+      expect.objectContaining({ itemIds: ["item-a", "item-a"], classId }),
+    );
+    fireEvent.click(within(panel).getByRole("button", { name: "1 추가" }));
+    fireEvent.click(within(panel).getByRole("button", { name: "1 위로" }));
+    fireEvent.click(within(panel).getByRole("button", { name: "1 위로" }));
+    fireEvent.change(within(panel).getByRole("textbox", { name: "제목" }), {
+      target: { value: "복습" },
+    });
+    fireEvent.click(
+      within(panel).getByRole("button", { name: "시험지 만들기" }),
+    );
+    expect(await screen.findByText(/제목은 저장되지 않았습니다/)).toBeVisible();
+    expect(reissue).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        itemIds: ["item-b", "item-a", "item-a"],
+        classId,
+        title: "복습",
+        testType: "daily",
+        rangeEndUnitId: unitId,
+      }),
+    );
+    expect(navigation.push).toHaveBeenCalledWith(`/tests/${testId}`);
+  });
+
+  it("shows the missing snapshot instead of an unmeasured page", async () => {
+    const source = structuredClone(edition.structureSource);
+    if (!source) throw new Error("fixture");
+    source.edition = {
+      editionId: "00000000-0000-4000-8000-000000000011",
+      label: "1",
+      status: "draft",
+      revision: 2,
+      publishedAt: null,
+      manifestHash: null,
+    };
+    source.config = {
+      ...source.config,
+      print: {
+        paper: "A4",
+        innerMarginMm: 15,
+        outerMarginMm: 15,
+        sectionStart: "even-left",
+        coverMode: "separate",
+        firstPhysicalPageIndex: 1,
+      },
+    };
+    const placed = section();
+    placed.blocks = [
+      ...placed.blocks,
+      { id: "block-problem", kind: "problems", itemIds: ["item-1"] },
+    ];
+    await openStudio(
+      api({
+        openEdition: vi.fn(async () => ({
+          ...edition,
+          structureSource: source,
+        })),
+        getSection: vi.fn(async () => placed),
+      }),
+    );
+    expect(
+      await screen.findByText(
+        "문항 확정본이 이 화면에 없어 측정하지 않습니다.",
+      ),
+    ).toBeVisible();
+    expect(screen.queryByText(/공유 지면 렌더러/)).not.toBeInTheDocument();
   });
 });

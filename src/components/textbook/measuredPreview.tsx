@@ -7,7 +7,10 @@ import { measureTextbookPreview } from "@/lib/textbook/render/browser";
 import type { TextbookRenderModel } from "@/lib/textbook/render/model";
 import { TextbookSpread } from "@/components/textbook/paper/TextbookPaper";
 
+import type { ZoomMode } from "./model";
 import type { PreviewResources } from "./previewModel";
+import { measuredSpreadAnchor } from "./model";
+import styles from "./textbook.module.css";
 
 type MeasureState =
   | { status: "pending" }
@@ -31,9 +34,19 @@ function messageOf(reason: unknown): string {
 export function SectionMeasure({
   model,
   resources,
+  zoom,
+  physicalPageIndex,
+  omittedQr,
+  onPages,
 }: {
   model: TextbookRenderModel;
   resources: PreviewResources;
+  zoom: ZoomMode;
+  physicalPageIndex: number | null;
+  omittedQr: boolean;
+  onPages: (
+    pages: { physicalPageIndex: number; printedPageLabel: string }[],
+  ) => void;
 }) {
   const [state, setState] = useState<MeasureState>({ status: "pending" });
 
@@ -47,6 +60,11 @@ export function SectionMeasure({
           setState({ status: "empty" });
           return;
         }
+        const pages = layout.pages.map((page) => ({
+          physicalPageIndex: page.physicalPageIndex,
+          printedPageLabel: page.printedPageLabel,
+        }));
+        onPages(pages);
         setState({
           status: "ready",
           pages: layout.pages,
@@ -64,24 +82,28 @@ export function SectionMeasure({
       cancel = true;
       controller.abort();
     };
-  }, [model, resources]);
+  }, [model, onPages, resources]);
 
   if (state.status === "pending") return <p>지면을 측정하는 중입니다.</p>;
   if (state.status === "empty") return <p>측정된 쪽이 없습니다.</p>;
   if (state.status === "error") return <p>{state.message}</p>;
   const first = state.pages[0];
   if (!first) return <p>측정된 쪽이 없습니다.</p>;
-  const labels = state.pages
-    .map((page) => page.printedPageLabel)
-    .filter((label) => label.length > 0);
+  const anchor =
+    measuredSpreadAnchor(state.pages, physicalPageIndex) ??
+    first.physicalPageIndex;
   return (
-    <div>
-      {labels.length > 0 ? <p>{labels.join(" · ")}</p> : null}
+    <div className={styles.measureHost} data-zoom={zoom}>
+      {omittedQr ? (
+        <p className={styles.muted}>
+          예약된 QR 이미지가 없어 해설 칸은 빼 두었습니다.
+        </p>
+      ) : null}
       <TextbookSpread
         pages={state.pages}
         model={model}
         resources={resources}
-        currentPhysicalPageIndex={first.physicalPageIndex}
+        currentPhysicalPageIndex={anchor}
       />
       {state.issues.length > 0 ? (
         <ul>

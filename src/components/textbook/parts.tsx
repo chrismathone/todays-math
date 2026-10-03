@@ -1,6 +1,8 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import type { ProblemType } from "@/contracts/problem.contract";
 import {
   CONCEPT_KINDS,
   EXPRESSIONS,
@@ -23,10 +25,12 @@ import {
   type BlankPick,
   type BookSummary,
   type ImportMode,
+  type NamedChoice,
   type OutlineUnit,
   type PaperPreviewInput,
   type PreviewMode,
   type PublishStatus,
+  type RegisterFields,
   type SectionDetail,
   type StudioIssue,
   type VideoBinding,
@@ -421,6 +425,11 @@ export function SectionEditor({
   onLoadLinks,
   onLink,
   onRegister,
+  onLoadUnits,
+  onLoadProblems,
+  onLoadClasses,
+  onLoadStudents,
+  onLoadTests,
   onSaveConcept,
   onCreateConcept,
   onSearchCatalog,
@@ -447,7 +456,15 @@ export function SectionEditor({
     itemId: string,
   ) => Promise<{ problemId: string; problemCode: string }[]>;
   onLink: (itemId: string, problemId: string) => void;
-  onRegister: (itemId: string) => void;
+  onRegister: (
+    itemId: string,
+    fields: RegisterFields,
+  ) => Promise<{ problemId: string; problemCode: string }[] | null>;
+  onLoadUnits: () => Promise<NamedChoice[]>;
+  onLoadProblems: (unitId: string) => Promise<NamedChoice[]>;
+  onLoadClasses: () => Promise<NamedChoice[]>;
+  onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
+  onLoadTests: (classId: string, studentId?: string) => Promise<NamedChoice[]>;
   onSaveConcept: () => void;
   onCreateConcept: (conceptKey: string, title: string) => void;
   onSearchCatalog: (query: string) => void;
@@ -846,6 +863,11 @@ export function SectionEditor({
         onLoadLinks={onLoadLinks}
         onLink={onLink}
         onRegister={onRegister}
+        onLoadUnits={onLoadUnits}
+        onLoadProblems={onLoadProblems}
+        onLoadClasses={onLoadClasses}
+        onLoadStudents={onLoadStudents}
+        onLoadTests={onLoadTests}
       />
       <div className={styles.row}>
         <button
@@ -1267,6 +1289,40 @@ function conceptLabel(
   }
 }
 
+const PROBLEM_TYPES = ["계산", "개념", "활용", "서술형"] as const;
+
+function ChoiceSelect({
+  label,
+  value,
+  options,
+  empty,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  options: readonly NamedChoice[];
+  empty: string;
+  onChange: (id: string) => void;
+}) {
+  return (
+    <label className={styles.field}>
+      <span>{label}</span>
+      <select
+        aria-label={label}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+      >
+        {options.length === 0 ? <option value="">{empty}</option> : null}
+        {options.map((option) => (
+          <option key={option.id} value={option.id}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
 function ItemCapture({
   items,
   diffSummary,
@@ -1276,6 +1332,11 @@ function ItemCapture({
   onLoadLinks,
   onLink,
   onRegister,
+  onLoadUnits,
+  onLoadProblems,
+  onLoadClasses,
+  onLoadStudents,
+  onLoadTests,
 }: {
   items: SectionDetail["items"];
   diffSummary: string | null;
@@ -1286,13 +1347,78 @@ function ItemCapture({
     itemId: string,
   ) => Promise<{ problemId: string; problemCode: string }[]>;
   onLink: (itemId: string, problemId: string) => void;
-  onRegister: (itemId: string) => void;
+  onRegister: (
+    itemId: string,
+    fields: RegisterFields,
+  ) => Promise<{ problemId: string; problemCode: string }[] | null>;
+  onLoadUnits: () => Promise<NamedChoice[]>;
+  onLoadProblems: (unitId: string) => Promise<NamedChoice[]>;
+  onLoadClasses: () => Promise<NamedChoice[]>;
+  onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
+  onLoadTests: (classId: string, studentId?: string) => Promise<NamedChoice[]>;
 }) {
   const [links, setLinks] = useState<{
     itemId: string;
     candidates: { problemId: string; problemCode: string }[];
     problemId: string;
   } | null>(null);
+  const [sourceMode, setSourceMode] = useState<"test" | "problems" | null>(
+    null,
+  );
+  const [classes, setClasses] = useState<NamedChoice[]>([]);
+  const [classId, setClassId] = useState("");
+  const [students, setStudents] = useState<NamedChoice[]>([]);
+  const [studentId, setStudentId] = useState("");
+  const [tests, setTests] = useState<NamedChoice[]>([]);
+  const [testId, setTestId] = useState("");
+  const [units, setUnits] = useState<NamedChoice[]>([]);
+  const [unitId, setUnitId] = useState("");
+  const [problems, setProblems] = useState<NamedChoice[]>([]);
+  const [problemIds, setProblemIds] = useState<string[]>([]);
+  const [registerFor, setRegisterFor] = useState<string | null>(null);
+  const [registerUnits, setRegisterUnits] = useState<NamedChoice[]>([]);
+  const [registerUnitId, setRegisterUnitId] = useState("");
+  const [difficulty, setDifficulty] =
+    useState<RegisterFields["difficulty"]>("기본");
+  const [problemType, setProblemType] = useState<ProblemType>("계산");
+
+  useEffect(() => {
+    if (sourceMode !== "test" || !classId) return;
+    let cancel = false;
+    void onLoadStudents(classId).then((rows) => {
+      if (!cancel) setStudents(rows);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [classId, onLoadStudents, sourceMode]);
+
+  useEffect(() => {
+    if (sourceMode !== "test" || !classId) return;
+    let cancel = false;
+    void onLoadTests(classId, studentId || undefined).then((rows) => {
+      if (cancel) return;
+      setTests(rows);
+      setTestId(rows[0]?.id ?? "");
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [classId, onLoadTests, sourceMode, studentId]);
+
+  useEffect(() => {
+    if (sourceMode !== "problems" || !unitId) return;
+    let cancel = false;
+    void onLoadProblems(unitId).then((rows) => {
+      if (cancel) return;
+      setProblems(rows);
+      setProblemIds([]);
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [onLoadProblems, sourceMode, unitId]);
+
   return (
     <fieldset className={styles.stack}>
       <legend>문항</legend>
@@ -1300,23 +1426,112 @@ function ItemCapture({
         className={styles.stack}
         onSubmit={(event) => {
           event.preventDefault();
-          const data = new FormData(event.currentTarget);
-          const testId = String(data.get("testId") ?? "").trim();
-          const problemIds = String(data.get("problemIds") ?? "")
-            .split(/\s+/)
-            .map((item) => item.trim())
-            .filter((item) => item.length > 0);
-          onCapture(testId, problemIds);
+          if (sourceMode === "test") {
+            if (!testId) return;
+            onCapture(testId, []);
+            return;
+          }
+          if (sourceMode === "problems") {
+            if (problemIds.length === 0) return;
+            onCapture("", problemIds);
+          }
         }}
       >
-        <label className={styles.field}>
-          <span>시험지 ID</span>
-          <input name="testId" />
-        </label>
-        <label className={styles.field}>
-          <span>문제 ID</span>
-          <textarea name="problemIds" />
-        </label>
+        <div className={styles.row}>
+          <button
+            type="button"
+            className={styles.button}
+            aria-pressed={sourceMode === "test"}
+            onClick={() => {
+              setSourceMode("test");
+              void onLoadClasses().then((rows) => {
+                setClasses(rows);
+                setClassId(rows[0]?.id ?? "");
+              });
+            }}
+          >
+            시험지에서 가져오기
+          </button>
+          <button
+            type="button"
+            className={styles.button}
+            aria-pressed={sourceMode === "problems"}
+            onClick={() => {
+              setSourceMode("problems");
+              void onLoadUnits().then((rows) => {
+                setUnits(rows);
+                setUnitId(rows[0]?.id ?? "");
+              });
+            }}
+          >
+            문제에서 가져오기
+          </button>
+        </div>
+        {sourceMode === "test" ? (
+          <>
+            <ChoiceSelect
+              label="반"
+              value={classId}
+              options={classes}
+              empty="반이 없습니다"
+              onChange={(id) => {
+                setClassId(id);
+                setStudentId("");
+              }}
+            />
+            <ChoiceSelect
+              label="학생"
+              value={studentId}
+              options={[{ id: "", label: "반 전체" }, ...students]}
+              empty="반 전체"
+              onChange={setStudentId}
+            />
+            <ChoiceSelect
+              label="시험지"
+              value={testId}
+              options={tests}
+              empty="시험지가 없습니다"
+              onChange={setTestId}
+            />
+          </>
+        ) : null}
+        {sourceMode === "problems" ? (
+          <>
+            <ChoiceSelect
+              label="단원"
+              value={unitId}
+              options={units}
+              empty="단원이 없습니다"
+              onChange={setUnitId}
+            />
+            <ul className={styles.list}>
+              {problems.map((problem) => (
+                <li key={problem.id}>
+                  <label>
+                    <input
+                      type="checkbox"
+                      aria-label={problem.label}
+                      checked={problemIds.includes(problem.id)}
+                      onChange={(event) => {
+                        setProblemIds((current) =>
+                          event.target.checked
+                            ? current.includes(problem.id)
+                              ? current
+                              : [...current, problem.id]
+                            : current.filter((id) => id !== problem.id),
+                        );
+                      }}
+                    />
+                    {problem.label}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            {unitId && problems.length === 0 ? (
+              <p className={styles.muted}>이 단원의 문제가 없습니다.</p>
+            ) : null}
+          </>
+        ) : null}
         <button type="submit" className={styles.button}>
           문항 가져오기
         </button>
@@ -1396,10 +1611,86 @@ function ItemCapture({
             <button
               type="button"
               className={styles.button}
-              onClick={() => onRegister(item.itemId)}
+              onClick={() => {
+                setRegisterFor(item.itemId);
+                void onLoadUnits().then((rows) => {
+                  setRegisterUnits(rows);
+                  setRegisterUnitId(rows[0]?.id ?? "");
+                });
+              }}
             >
               등록
             </button>
+            {registerFor === item.itemId ? (
+              <div className={styles.stack}>
+                <ChoiceSelect
+                  label="등록 단원"
+                  value={registerUnitId}
+                  options={registerUnits}
+                  empty="단원이 없습니다"
+                  onChange={setRegisterUnitId}
+                />
+                <label className={styles.field}>
+                  <span>난이도</span>
+                  <select
+                    aria-label="난이도"
+                    value={difficulty}
+                    onChange={(event) =>
+                      setDifficulty(
+                        event.target.value as RegisterFields["difficulty"],
+                      )
+                    }
+                  >
+                    {DIFFICULTY_LADDER.map((tier) => (
+                      <option key={tier} value={tier}>
+                        {tier}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>문제 유형</span>
+                  <select
+                    aria-label="문제 유형"
+                    value={problemType}
+                    onChange={(event) =>
+                      setProblemType(event.target.value as ProblemType)
+                    }
+                  >
+                    {PROBLEM_TYPES.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  className={styles.button}
+                  disabled={!registerUnitId}
+                  onClick={() => {
+                    if (!registerUnitId) return;
+                    void onRegister(item.itemId, {
+                      unitId: registerUnitId,
+                      difficulty,
+                      problemType,
+                    }).then((candidates) => {
+                      if (!candidates || candidates.length === 0) return;
+                      setLinks({
+                        itemId: item.itemId,
+                        candidates,
+                        problemId: candidates[0]?.problemId ?? "",
+                      });
+                    });
+                  }}
+                >
+                  검수 대기로 등록
+                </button>
+                <p className={styles.muted}>
+                  검수 대기로 올라갑니다. 연결은 후보를 고른 뒤에 따로 합니다.
+                </p>
+              </div>
+            ) : null}
           </li>
         ))}
       </ul>
@@ -1520,10 +1811,41 @@ export function LectureLink({
 }
 
 export function ObservationForm({
+  onLoadClasses,
+  onLoadStudents,
   onSubmit,
 }: {
+  onLoadClasses: () => Promise<NamedChoice[]>;
+  onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
   onSubmit: (studentId: string, form: BlankForm, observation: string) => void;
 }) {
+  const [classes, setClasses] = useState<NamedChoice[]>([]);
+  const [classId, setClassId] = useState("");
+  const [students, setStudents] = useState<NamedChoice[]>([]);
+  const [studentId, setStudentId] = useState("");
+  useEffect(() => {
+    let cancel = false;
+    void onLoadClasses().then((rows) => {
+      if (cancel) return;
+      setClasses(rows);
+      setClassId(rows[0]?.id ?? "");
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [onLoadClasses]);
+  useEffect(() => {
+    if (!classId) return;
+    let cancel = false;
+    void onLoadStudents(classId).then((rows) => {
+      if (cancel) return;
+      setStudents(rows);
+      setStudentId(rows[0]?.id ?? "");
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [classId, onLoadStudents]);
   return (
     <form
       className={styles.stack}
@@ -1541,7 +1863,7 @@ export function ObservationForm({
             ? form
             : "recall";
         onSubmit(
-          String(data.get("studentId") ?? "").trim(),
+          studentId,
           chosen,
           String(data.get("observation") ?? "").trim(),
         );
@@ -1549,10 +1871,20 @@ export function ObservationForm({
     >
       <fieldset className={styles.stack}>
         <legend>종이 활동</legend>
-        <label className={styles.field}>
-          <span>학생</span>
-          <input name="studentId" />
-        </label>
+        <ChoiceSelect
+          label="반"
+          value={classId}
+          options={classes}
+          empty="반이 없습니다"
+          onChange={setClassId}
+        />
+        <ChoiceSelect
+          label="학생"
+          value={studentId}
+          options={students}
+          empty="학생이 없습니다"
+          onChange={setStudentId}
+        />
         <label className={styles.field}>
           <span>형식</span>
           <select name="form" defaultValue="term" aria-label="종이 활동 형식">
@@ -1673,37 +2005,15 @@ export function PreviewPane({
       >
         {renderPaper ? (
           renderPaper(input)
+        ) : measured ? (
+          measured
         ) : (
           <article className={styles.page}>
-            {measured ? (
-              measured
-            ) : unavailable ? (
-              <p className={styles.muted}>{unavailable}</p>
-            ) : (
-              <>
-                <p className={styles.muted}>
-                  공유 지면 렌더러가 연결되면 이 자리에 펼침이 나타납니다.
-                  측정된 배치가 오기 전에는 인쇄 쪽 번호를 만들지 않습니다.
-                </p>
-                {input.blocks.map((block) =>
-                  block.kind === "dialogue" ? (
-                    <div key={block.id}>
-                      {block.turns.map((turn) => (
-                        <p key={turn.id}>
-                          {turn.speaker} {turn.text}
-                        </p>
-                      ))}
-                    </div>
-                  ) : null,
-                )}
-              </>
-            )}
-            {input.mode === "draft" ? <p>초안</p> : null}
+            <p className={styles.muted}>
+              {unavailable ?? "이 구획은 측정하지 않습니다."}
+            </p>
             <h3>{input.title}</h3>
             {input.parityMessage ? <p>{input.parityMessage}</p> : null}
-            {input.answerPlacement === "sheet" && input.answer ? (
-              <p>교사용 정답 {input.answer}</p>
-            ) : null}
           </article>
         )}
       </div>
@@ -1857,13 +2167,45 @@ export function PublishPanel({
 
 export function AssignmentPanel({
   rows,
+  onLoadClasses,
+  onLoadStudents,
   onCreate,
   onRevoke,
 }: {
   rows: AssignmentRow[];
+  onLoadClasses: () => Promise<NamedChoice[]>;
+  onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
   onCreate: (kind: "class" | "student", id: string, label: string) => void;
   onRevoke: (assignmentId: string) => void;
 }) {
+  const [kind, setKind] = useState<"class" | "student">("class");
+  const [classes, setClasses] = useState<NamedChoice[]>([]);
+  const [classId, setClassId] = useState("");
+  const [students, setStudents] = useState<NamedChoice[]>([]);
+  const [studentId, setStudentId] = useState("");
+  useEffect(() => {
+    let cancel = false;
+    void onLoadClasses().then((next) => {
+      if (cancel) return;
+      setClasses(next);
+      setClassId(next[0]?.id ?? "");
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [onLoadClasses]);
+  useEffect(() => {
+    if (kind !== "student" || !classId) return;
+    let cancel = false;
+    void onLoadStudents(classId).then((next) => {
+      if (cancel) return;
+      setStudents(next);
+      setStudentId(next[0]?.id ?? "");
+    });
+    return () => {
+      cancel = true;
+    };
+  }, [classId, kind, onLoadStudents]);
   return (
     <section className={styles.panel} aria-label="배정">
       <h2>배정</h2>
@@ -1886,35 +2228,215 @@ export function AssignmentPanel({
         ))}
       </ul>
       <form
-        className={styles.row}
+        className={styles.stack}
         onSubmit={(event) => {
           event.preventDefault();
-          const data = new FormData(event.currentTarget);
-          const kind = data.get("kind") === "student" ? "student" : "class";
-          onCreate(
-            kind,
-            String(data.get("targetId") ?? ""),
-            String(data.get("label") ?? ""),
-          );
+          if (kind === "class") {
+            const chosen = classes.find((row) => row.id === classId);
+            if (!chosen) return;
+            onCreate("class", chosen.id, chosen.label);
+            return;
+          }
+          const chosen = students.find((row) => row.id === studentId);
+          if (!chosen) return;
+          onCreate("student", chosen.id, chosen.label);
         }}
       >
         <label className={styles.field}>
           <span>대상</span>
-          <select name="kind" defaultValue="class">
+          <select
+            aria-label="대상"
+            value={kind}
+            onChange={(event) =>
+              setKind(event.target.value === "student" ? "student" : "class")
+            }
+          >
             <option value="class">반</option>
             <option value="student">학생</option>
           </select>
         </label>
-        <label className={styles.field}>
-          <span>대상 번호</span>
-          <input name="targetId" />
-        </label>
-        <label className={styles.field}>
-          <span>표시 이름</span>
-          <input name="label" />
-        </label>
+        <ChoiceSelect
+          label="반"
+          value={classId}
+          options={classes}
+          empty="반이 없습니다"
+          onChange={setClassId}
+        />
+        {kind === "student" ? (
+          <ChoiceSelect
+            label="학생"
+            value={studentId}
+            options={students}
+            empty="학생이 없습니다"
+            onChange={setStudentId}
+          />
+        ) : null}
         <button type="submit" className={styles.button}>
           배정 추가
+        </button>
+      </form>
+    </section>
+  );
+}
+
+export function ReissuePanel({
+  items,
+  classes,
+  units,
+  onSubmit,
+}: {
+  items: readonly { itemId: string; label: string }[];
+  classes: readonly NamedChoice[];
+  units: readonly NamedChoice[];
+  onSubmit: (input: {
+    itemIds: string[];
+    classId: string;
+    title: string;
+    testType: "daily" | "review";
+    rangeEndUnitId: string;
+  }) => void;
+}) {
+  const [chosen, setChosen] = useState<string[]>([]);
+  const [classId, setClassId] = useState("");
+  const [unitId, setUnitId] = useState("");
+  const selectedClassId = classes.some((row) => row.id === classId)
+    ? classId
+    : (classes[0]?.id ?? "");
+  const selectedUnitId = units.some((row) => row.id === unitId)
+    ? unitId
+    : (units[0]?.id ?? "");
+  const [testType, setTestType] = useState<"daily" | "review">("daily");
+  const [title, setTitle] = useState("");
+  function move(index: number, delta: number) {
+    setChosen((current) => {
+      const next = current.slice();
+      const target = index + delta;
+      const item = next[index];
+      const other = next[target];
+      if (item === undefined || other === undefined) return current;
+      next[index] = other;
+      next[target] = item;
+      return next;
+    });
+  }
+  return (
+    <section className={styles.panel} aria-label="다시 출제">
+      <h2>다시 출제</h2>
+      <p className={styles.muted}>
+        발행본의 배치를 고른 차례대로 이 반의 시험지로 만듭니다. 제목은 시험지에
+        저장되지 않습니다.
+      </p>
+      <form
+        className={styles.stack}
+        onSubmit={(event) => {
+          event.preventDefault();
+          if (chosen.length === 0 || !selectedClassId || !selectedUnitId)
+            return;
+          onSubmit({
+            itemIds: chosen,
+            classId: selectedClassId,
+            title: title.trim(),
+            testType,
+            rangeEndUnitId: selectedUnitId,
+          });
+        }}
+      >
+        <ChoiceSelect
+          label="반"
+          value={selectedClassId}
+          options={classes}
+          empty="반이 없습니다"
+          onChange={setClassId}
+        />
+        <ChoiceSelect
+          label="범위 끝 단원"
+          value={selectedUnitId}
+          options={units}
+          empty="단원이 없습니다"
+          onChange={setUnitId}
+        />
+        <label className={styles.field}>
+          <span>종류</span>
+          <select
+            aria-label="종류"
+            value={testType}
+            onChange={(event) =>
+              setTestType(event.target.value === "review" ? "review" : "daily")
+            }
+          >
+            <option value="daily">일일테스트</option>
+            <option value="review">확인테스트</option>
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>제목</span>
+          <input
+            aria-label="제목"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+        </label>
+        <ul className={styles.list}>
+          {items.map((item) => (
+            <li key={item.itemId}>
+              {item.label}
+              <button
+                type="button"
+                className={styles.button}
+                disabled={chosen.length >= 200}
+                onClick={() =>
+                  setChosen((current) => [...current, item.itemId])
+                }
+              >
+                {item.label} 추가
+              </button>
+            </li>
+          ))}
+        </ul>
+        {chosen.length >= 200 ? (
+          <p className={styles.muted}>한 번에 200문항까지 고릅니다.</p>
+        ) : null}
+        <ol>
+          {chosen.map((itemId, index) => {
+            const label =
+              items.find((item) => item.itemId === itemId)?.label ?? itemId;
+            return (
+              <li key={`${itemId}:${index}`}>
+                {label}
+                <button
+                  type="button"
+                  className={styles.button}
+                  aria-label={`${label} 위로`}
+                  onClick={() => move(index, -1)}
+                >
+                  위로
+                </button>
+                <button
+                  type="button"
+                  className={styles.button}
+                  aria-label={`${label} 아래로`}
+                  onClick={() => move(index, 1)}
+                >
+                  아래로
+                </button>
+                <button
+                  type="button"
+                  className={styles.button}
+                  aria-label={`${label} 빼기`}
+                  onClick={() =>
+                    setChosen((current) =>
+                      current.filter((_, at) => at !== index),
+                    )
+                  }
+                >
+                  빼기
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+        <button type="submit" className={styles.button}>
+          시험지 만들기
         </button>
       </form>
     </section>

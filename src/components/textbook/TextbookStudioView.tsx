@@ -8,11 +8,13 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   TextbookRequestError,
   httpTextbookApi,
   newRequestId,
+  type PreviewMaterial,
   type TextbookStudioApi,
 } from "@/lib/textbook/client";
 import {
@@ -22,6 +24,8 @@ import {
   mergeCapturedSection,
   moveOutlineSection,
   moveOutlineUnit,
+  measuredSpreadAnchor,
+  nextMeasuredSpread,
   orderBlankPicks,
   sourceUnitIdsFor,
   spreadStarts,
@@ -32,6 +36,8 @@ import {
   type ConceptDraft,
   type EditionDetail,
   type ImportMode,
+  type NamedChoice,
+  type MeasuredPageRef,
   type OutlineUnit,
   type PaperPreviewInput,
   type PreviewMode,
@@ -55,6 +61,7 @@ import {
   Outline,
   PreviewPane,
   PublishPanel,
+  ReissuePanel,
   ReviewTable,
   SectionEditor,
   VideoPanel,
@@ -66,7 +73,8 @@ import styles from "@/components/textbook/textbook.module.css";
 
 export type { PaperPreviewInput };
 
-type Panel = "edit" | "review" | "publish" | "assign" | "video" | "import";
+type Panel =
+  "edit" | "review" | "publish" | "assign" | "reissue" | "video" | "import";
 
 function messageOf(reason: unknown): string {
   return reason instanceof Error && reason.message
@@ -105,6 +113,7 @@ export function TextbookStudioView({
   viewport?: "desktop" | "mobile";
   initialEditionId?: string;
 }) {
+  const router = useRouter();
   const [books, setBooks] = useState<BookSummary[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [edition, setEdition] = useState<EditionDetail | null>(null);
@@ -124,6 +133,19 @@ export function TextbookStudioView({
   const [issues, setIssues] = useState<StudioIssue[]>([]);
   const [assignments, setAssignments] = useState<AssignmentRow[]>([]);
   const [videos, setVideos] = useState<VideoBinding[]>([]);
+  const [loadedMaterial, setLoadedMaterial] = useState<{
+    editionId: string;
+    value: PreviewMaterial | null;
+  } | null>(null);
+  const material =
+    edition && loadedMaterial?.editionId === edition.editionId
+      ? loadedMaterial.value
+      : null;
+  const [measuredPages, setMeasuredPages] = useState<MeasuredPageRef[]>([]);
+  const [spreadIndex, setSpreadIndex] = useState<number | null>(null);
+  const [seenMeasureKey, setSeenMeasureKey] = useState<string | null>(null);
+  const [reissueClasses, setReissueClasses] = useState<NamedChoice[]>([]);
+  const [reissueUnits, setReissueUnits] = useState<NamedChoice[]>([]);
   const [diffSummary, setDiffSummary] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(new Set());
@@ -281,6 +303,64 @@ export function TextbookStudioView({
     };
   }, [api, initialEditionId, loadSection]);
 
+  useEffect(() => {
+    if (!edition) return;
+    const editionId = edition.editionId;
+    let cancel = false;
+    api
+      .readPreviewMaterial(editionId)
+      .then((next) => {
+        if (!cancel) setLoadedMaterial({ editionId, value: next });
+      })
+      .catch(() => {
+        if (!cancel) setLoadedMaterial({ editionId, value: null });
+      });
+    return () => {
+      cancel = true;
+    };
+  }, [api, edition]);
+
+  const loadUnits = useCallback(
+    () =>
+      api.listUnits().catch((reason: unknown) => {
+        setNotice(messageOf(reason));
+        return [];
+      }),
+    [api],
+  );
+  const loadProblems = useCallback(
+    (unitId: string) =>
+      api.listUnitProblems(unitId).catch((reason: unknown) => {
+        setNotice(messageOf(reason));
+        return [];
+      }),
+    [api],
+  );
+  const loadClasses = useCallback(
+    () =>
+      api.listClasses().catch((reason: unknown) => {
+        setNotice(messageOf(reason));
+        return [];
+      }),
+    [api],
+  );
+  const loadStudents = useCallback(
+    (classId: string) =>
+      api.listStudents(classId).catch((reason: unknown) => {
+        setNotice(messageOf(reason));
+        return [];
+      }),
+    [api],
+  );
+  const loadTests = useCallback(
+    (classId: string, studentId?: string) =>
+      api.listOwnedTests(classId, studentId).catch((reason: unknown) => {
+        setNotice(messageOf(reason));
+        return [];
+      }),
+    [api],
+  );
+
   async function openBook(book: BookSummary) {
     if (!book.activeEditionId) return;
     setBusy(true);
@@ -369,6 +449,15 @@ export function TextbookStudioView({
     } finally {
       setBusy(false);
     }
+  }
+
+  function movePage(direction: -1 | 1) {
+    const next = nextMeasuredSpread(measuredPages, spreadIndex, direction);
+    if (next !== null) {
+      setSpreadIndex(next);
+      return;
+    }
+    void moveSpread(direction);
   }
 
   async function moveSpread(direction: -1 | 1) {
@@ -492,25 +581,51 @@ export function TextbookStudioView({
   const order = draft
     ? orderBlankPicks(draft.picks)
     : { ok: true as const, groups: [] };
-  const pageLabel = draft
-    ? draft.parity === "even-left"
-      ? "짝수 왼쪽"
-      : draft.parity === "continue"
-        ? "이어짐"
-        : "시작 면 미정"
-    : "쪽 없음";
   const previewVariant =
     audience === "student" || mode === "student" || mode === "draft"
       ? "student"
       : "answers";
+  const measureKey = `${draft?.sectionId ?? ""}:${previewVariant}`;
+  if (seenMeasureKey !== measureKey) {
+    setSeenMeasureKey(measureKey);
+    if (seenMeasureKey !== null) {
+      setMeasuredPages([]);
+      setSpreadIndex(null);
+    }
+  }
+  const onMeasuredPages = useCallback((pages: MeasuredPageRef[]) => {
+    setMeasuredPages(pages);
+    setSpreadIndex((current) => measuredSpreadAnchor(pages, current));
+  }, []);
   const preview = useMemo(() => {
     if (!edition || !draft) return null;
     return buildSectionPreview({
       edition,
       section: draft,
       variant: previewVariant,
+      material,
+      conceptSource,
     });
-  }, [edition, draft, previewVariant]);
+  }, [conceptSource, edition, draft, material, previewVariant]);
+  const pageAnchor = measuredSpreadAnchor(measuredPages, spreadIndex);
+  const pageLabel = (() => {
+    if (pageAnchor !== null) {
+      const labels = measuredPages
+        .filter(
+          (page) =>
+            page.physicalPageIndex === pageAnchor ||
+            page.physicalPageIndex === pageAnchor + 1,
+        )
+        .map((page) => page.printedPageLabel)
+        .filter((label) => label.length > 0);
+      if (labels.length > 0) return labels.join(" · ");
+      return `${pageAnchor}쪽`;
+    }
+    if (!draft) return "쪽 없음";
+    if (draft.parity === "even-left") return "짝수 왼쪽";
+    if (draft.parity === "continue") return "이어짐";
+    return "시작 면 미정";
+  })();
 
   return (
     <div className={styles.studio} data-narrow={narrow ? "true" : "false"}>
@@ -737,6 +852,20 @@ export function TextbookStudioView({
             >
               배정
             </button>
+            {edition.structureSource?.edition?.status === "published" ? (
+              <button
+                type="button"
+                className={styles.button}
+                aria-pressed={panel === "reissue"}
+                onClick={() => {
+                  setPanel("reissue");
+                  void loadClasses().then(setReissueClasses);
+                  void loadUnits().then(setReissueUnits);
+                }}
+              >
+                다시 출제
+              </button>
+            ) : null}
             <button
               type="button"
               className={styles.button}
@@ -1153,17 +1282,30 @@ export function TextbookStudioView({
                       .then((result) => rememberItem(result))
                       .catch((reason: unknown) => setNotice(messageOf(reason)));
                   }}
-                  onRegister={(itemId) => {
-                    api
-                      .registerItem(
+                  onRegister={async (itemId, fields) => {
+                    try {
+                      const result = await api.registerItem(
                         edition.editionId,
                         itemId,
                         newRequestId(),
                         edition.aggregateRevision,
-                      )
-                      .then((result) => rememberItem(result))
-                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                        fields,
+                      );
+                      rememberItem(result);
+                      setNotice(
+                        `검수 대기 문항 ${result.problem.problemCode}을 등록했습니다. 연결은 따로 고릅니다.`,
+                      );
+                      return result.candidates;
+                    } catch (reason) {
+                      setNotice(messageOf(reason));
+                      return null;
+                    }
                   }}
+                  onLoadUnits={loadUnits}
+                  onLoadProblems={loadProblems}
+                  onLoadClasses={loadClasses}
+                  onLoadStudents={loadStudents}
+                  onLoadTests={loadTests}
                   onCreateConcept={(conceptKey, title) => {
                     if (!conceptKey || !title) {
                       setNotice("개념 키와 제목이 필요합니다.");
@@ -1324,6 +1466,8 @@ export function TextbookStudioView({
                       {edition.structureSource?.edition?.status ===
                         "published" && draft.concept ? (
                         <ObservationForm
+                          onLoadClasses={loadClasses}
+                          onLoadStudents={loadStudents}
                           onSubmit={(studentId, form, observation) => {
                             if (!studentId || !observation || !draft.concept) {
                               setNotice("학생과 관찰 내용이 필요합니다.");
@@ -1415,6 +1559,8 @@ export function TextbookStudioView({
               {panel === "assign" ? (
                 <AssignmentPanel
                   rows={assignments}
+                  onLoadClasses={loadClasses}
+                  onLoadStudents={loadStudents}
                   onCreate={(kind, id, label) => {
                     const target =
                       kind === "class"
@@ -1449,6 +1595,46 @@ export function TextbookStudioView({
                           ),
                         ),
                       )
+                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                  }}
+                />
+              ) : null}
+              {panel === "reissue" ? (
+                <ReissuePanel
+                  items={(material?.items ?? []).map((item) => ({
+                    itemId: item.itemId,
+                    label: item.displayNumber,
+                  }))}
+                  classes={reissueClasses}
+                  units={reissueUnits}
+                  onSubmit={(input) => {
+                    if (input.itemIds.length === 0) {
+                      setNotice("문항을 고르세요.");
+                      return;
+                    }
+                    api
+                      .reissue({
+                        editionId: edition.editionId,
+                        requestId: newRequestId(),
+                        itemIds: input.itemIds,
+                        classId: input.classId,
+                        ...(input.title ? { title: input.title } : {}),
+                        testType: input.testType,
+                        rangeEndUnitId: input.rangeEndUnitId,
+                      })
+                      .then((result) => {
+                        setNotice(
+                          `시험지 ${result.problemCount}문항을 만들었습니다. 제목은 저장되지 않았습니다.`,
+                        );
+                        const href = `/tests/${result.testId}`;
+                        if (
+                          /^\/tests\/[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(
+                            href,
+                          )
+                        ) {
+                          router.push(href);
+                        }
+                      })
                       .catch((reason: unknown) => setNotice(messageOf(reason)));
                   }}
                 />
@@ -1532,8 +1718,8 @@ export function TextbookStudioView({
                 showModes={audience === "teacher"}
                 onMode={setMode}
                 onZoom={setZoom}
-                onPrev={() => void moveSpread(-1)}
-                onNext={() => void moveSpread(1)}
+                onPrev={() => movePage(-1)}
+                onNext={() => movePage(1)}
                 renderPaper={renderPaper}
                 measured={
                   preview?.ok && draft ? (
@@ -1541,16 +1727,14 @@ export function TextbookStudioView({
                       key={`${draft.sectionId}:${previewVariant}:${draft.revision}:${draft.parity}:${draft.title}`}
                       model={preview.model}
                       resources={preview.resources}
+                      zoom={zoom}
+                      physicalPageIndex={spreadIndex}
+                      omittedQr={preview.omittedQr}
+                      onPages={onMeasuredPages}
                     />
                   ) : null
                 }
-                unavailable={
-                  preview &&
-                  !preview.ok &&
-                  preview.message !== "판본 원본이 없어 측정하지 않습니다."
-                    ? preview.message
-                    : null
-                }
+                unavailable={preview && !preview.ok ? preview.message : null}
               />
             ) : (
               <p className={styles.muted}>미리볼 구획이 없습니다.</p>
