@@ -1,6 +1,6 @@
 # 관리 콘솔·지점 관리 고도화
 
-상태: 2026-10-03 최종 계획 — Codex·Claude·Grok 3자 합의 완료, 구현 착수. [검토·합의 기록](tracks/reports/admin-branch-consensus-20261003.md).
+상태: 2026-10-03 Codex·Claude·Grok 3자 합의 후 구현·통합 검증 완료. [검토·합의 기록](tracks/reports/admin-branch-consensus-20261003.md), [통합·운영 반영 기록](tracks/reports/admin-branch-integration-20261003.md).
 
 ## 사용자 확정 요구
 
@@ -58,6 +58,8 @@ Hi-fi 후보: H1 현재 흰 패널·절제된 파란 강조·기존 밀도, H2 �
 - 계정 목록 API는 branchId=<UUID>|unassigned 필터를 필수로 검증해 목록·총수·상태·정지/삭제 집계 모두에 적용한다. 누락·빈 값·잘못된 값은 400, 없는 지점은 404이며 전체 목록으로 돌아가지 않는다.
 - 지점 안 계정 상세는 실제 소속을 서버에서 검증한다. 조작된 지점 URL로 타 지점 계정을 표시하지 않는다. 기존 최고관리자 계정 수정 API의 인증·동일 출처·충돌 보호는 유지한다.
 - DB 스키마를 먼저 적용·검증하고 코드를 배포한다. 대상 migration 한 개만 적용하며 다른 미적용 migration을 함께 배포하지 않는다.
+
+통합 시 최신 main에 별도로 추가된 `textbook` 메뉴를 확인했다. 원래 migration을 수정하지 않고 지점 CHECK에 이 메뉴를 추가하는 `20261003230000_branch_menu_textbook`을 후속 적용한다. 따라서 이번 대상은 지점 기능 원본과 이 호환 migration **두 개**이며, 다른 미적용 migration은 여전히 함께 실행하지 않는다. 교재 제작도 원장 메뉴 우회 없이 같은 지점 제한을 따른다.
 
 ### 검토 후 계약 보강
 
