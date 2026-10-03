@@ -114,6 +114,7 @@ export async function findEligibleProblems(
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
     },
   });
 
@@ -130,5 +131,6 @@ export async function findEligibleProblems(
     figureUrls: row.figureUrls,
     figureDims: row.figureDims,
     figureSourceMm: row.figureSourceMm,
+    choiceFigureIndex: row.choiceFigureIndex,
   }));
 }

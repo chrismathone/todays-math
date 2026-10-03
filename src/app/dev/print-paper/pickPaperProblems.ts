@@ -35,6 +35,7 @@ export interface Candidate {
   figureUrls: string[];
   figureDims: number[];
   figureSourceMm: number[];
+  choiceFigureIndex?: number[];
 }
 
 /** 검수 항목 하나를 드러내려면 시험지에 무엇이 있어야 하나. */

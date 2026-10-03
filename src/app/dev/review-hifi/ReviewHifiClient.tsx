@@ -26,6 +26,7 @@ type Row = {
   figureUrls: string[];
   figureDims: number[];
   figureSourceMm: number[];
+  choiceFigureIndex?: number[];
   directUseAllowed: boolean;
   unitName: string;
 };
@@ -177,6 +178,7 @@ function Body({ r }: { r: Row }) {
           figureUrls={r.figureUrls}
           figureDims={r.figureDims}
           figureSourceMm={r.figureSourceMm}
+          choiceFigureIndex={r.choiceFigureIndex}
         />
       </div>
 
@@ -220,6 +222,7 @@ function Body({ r }: { r: Row }) {
                   figureUrls={r.figureUrls.slice(0, 1)}
                   figureDims={r.figureDims.slice(0, 2)}
                   figureSourceMm={r.figureSourceMm.slice(0, 1)}
+                  choiceFigureIndex={r.choiceFigureIndex?.slice(0, 1)}
                 />
               </div>
             </figure>

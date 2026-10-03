@@ -209,6 +209,14 @@ function unfinished(
   return candidates.sort((a, b) => a.at.localeCompare(b.at))[0] ?? null;
 }
 
+/** Read-only access to the same interrupted-activity decision used by expedition planning. */
+export function unfinishedExpeditionSource(state: StoredSrsState, now: Date) {
+  const pending = unfinished(state, now);
+  return pending
+    ? { kind: pending.plan.kind, sourceSessionId: pending.id }
+    : null;
+}
+
 /** Concept units in grade order with the student's collected cards — the unit list the D-142 hand-over walks. */
 export function conceptUnits(
   record: DefinitionRecord | undefined,

@@ -23,6 +23,7 @@ import {
   type ProgressPlanRule,
 } from "@/lib/daily/progressPlan";
 import { applicableProgress } from "@/lib/progressResolver";
+import { metadataOf } from "@/lib/tests/testProblemContent";
 
 import {
   type AchievementInput,
@@ -109,15 +110,28 @@ async function loadResults(
   const testIds = [...new Set(rows.map((r) => r.testId))];
   const testProblems = await db.testProblem.findMany({
     where: { testId: { in: testIds } },
-    select: { testId: true, score: true, problem: { select: { score: true } } },
+    select: {
+      testId: true,
+      problemId: true,
+      snapshotId: true,
+      snapshot: true,
+      score: true,
+      problem: { select: { score: true, unitId: true, difficulty: true } },
+    },
   });
   const pointsByTest = new Map<
     string,
     { adjustedScore: number | null; score: number | null }[]
   >();
+  const frozenMetadata = new Map<string, ReturnType<typeof metadataOf>>();
   for (const tp of testProblems) {
+    const frozen = tp.snapshotId ? metadataOf(tp) : null;
+    if (frozen) frozenMetadata.set(`${tp.testId}:${tp.problemId}`, frozen);
     const list = pointsByTest.get(tp.testId) ?? [];
-    list.push({ adjustedScore: tp.score, score: tp.problem.score });
+    list.push({
+      adjustedScore: tp.score,
+      score: frozen ? frozen.score : tp.problem.score,
+    });
     pointsByTest.set(tp.testId, list);
   }
 
@@ -133,11 +147,26 @@ async function loadResults(
       score: r.score,
       maxScore: testMaxScore(pointsByTest.get(r.testId) ?? []),
       absent: r.absent,
-      items: r.answers.map((a) => ({
-        unitId: a.problem.unitId,
-        difficulty: a.problem.difficulty as Difficulty,
-        isCorrect: a.isCorrect,
-      })),
+      items: r.answers.map((a) => {
+        const frozen = frozenMetadata.get(`${r.testId}:${a.problemId}`);
+        return {
+          unitId: frozen ? frozen.unitId : a.problem.unitId,
+          difficulty: frozen
+            ? frozen.difficulty
+            : (a.problem.difficulty as Difficulty),
+          isCorrect: a.isCorrect,
+          ...(frozen?.unitLabel
+            ? {
+                frozenUnitLabel: {
+                  unitId: frozen.unitId,
+                  grade: frozen.unitLabel.grade ?? "",
+                  chapter: frozen.unitLabel.chapter ?? "",
+                  section: frozen.unitLabel.section ?? "",
+                },
+              }
+            : {}),
+        };
+      }),
       // 🔴 리포트가 없으면 `null` — 빈 배열이 아니다.
       recommendedUnitIds: r.analysisReport?.recommendedUnits ?? null,
     };

@@ -61,6 +61,8 @@ interface Row {
   figureDims: number[] | null;
   /** 그림 원본 지면 물리 폭(mm). 제품 지면이 이걸로 폭을 못 박는다 — 탐침도 같이 받아야 한다. */
   figureSourceMm: number[] | null;
+  /** 보기 그림의 짝 — 알면 제품이 그림을 번호 칸 안에 넣는다(탐침 · 판정이 같이 받아야 한다). */
+  choiceFigureIndex: number[] | null;
   questionType: string | null;
 }
 
@@ -100,6 +102,7 @@ async function measureRows(
             // 제품 인쇄 경로가 넘기는 것과 **같은 것**을 넘긴다(paperProbeParity.test).
             figureDims: row.figureDims ?? undefined,
             figureSourceMm: row.figureSourceMm ?? undefined,
+            choiceFigureIndex: row.choiceFigureIndex ?? undefined,
             essayNumber: row.questionType === "서술형" ? 1 : null,
           },
           i + j + 1,
@@ -180,13 +183,15 @@ async function fetchRows(
   if (only)
     return (await prisma.$queryRawUnsafe(
       `SELECT id, content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
-              figure_source_mm AS "figureSourceMm", question_type AS "questionType"
+              figure_source_mm AS "figureSourceMm", choice_figure_index AS "choiceFigureIndex",
+              question_type AS "questionType"
          FROM problem WHERE id = ANY($1::uuid[]) ORDER BY id`,
       only as string[],
     )) as Row[];
   return (await prisma.$queryRawUnsafe(
     `SELECT id, content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
-            figure_source_mm AS "figureSourceMm", question_type AS "questionType"
+            figure_source_mm AS "figureSourceMm", choice_figure_index AS "choiceFigureIndex",
+              question_type AS "questionType"
        FROM problem ORDER BY id ${take > 0 ? `LIMIT ${take}` : ""}`,
   )) as Row[];
 }
@@ -311,6 +316,7 @@ async function main() {
       figureDims: row.figureDims ?? undefined,
       // ⚠️ mm 를 안 넘기면 판정만 «모른다»로 재서 지면과 갈린다.
       figureSourceMm: row.figureSourceMm ?? undefined,
+      choiceFigureIndex: row.choiceFigureIndex ?? undefined,
     };
     // ⚠️ 판정은 «그 장에 몇 개인가»로 칸을 고른다. 지면은 두 문항으로 그렸으므로
     //    판정에도 짝을 채워 넣어야 같은 칸을 본다(혼자면 칸이 두 배다).
@@ -339,6 +345,8 @@ async function main() {
             row.figureDims ?? undefined,
             row.figureSourceMm ?? undefined,
           ),
+          null,
+          row.choiceFigureIndex ?? undefined,
         ),
       });
     }

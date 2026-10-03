@@ -10,12 +10,13 @@ const paperVariables = PAPER_CSS_VARIABLES as CSSProperties;
 export interface PaperProblemViewProps {
   content: string;
   figureUrls?: string[];
+  choiceFigureIndex?: (number | null)[];
   /** 도형 SVG (엔진 산출물). 스캔 그림과 다른 갈래 — `ProblemContent` 주석 참조. */
   figureSvg?: string | null;
   /** 그림 원본 픽셀 치수 `[w1,h1,…]` — 물리 폭을 쓸 때 **비율**의 근거다. */
-  figureDims?: number[];
+  figureDims?: (number | null)[];
   /** 그림 **원본 지면 물리 폭(mm)**. 모르면 오늘 그대로 픽셀로 그린다(회귀 0). */
-  figureSourceMm?: number[];
+  figureSourceMm?: (number | null)[];
   /** false = 이미 지면(A4Page) 안이라 틀 없이 본문만 그린다 (인쇄 템플릿 전용). */
   framed?: boolean;
 }
@@ -29,6 +30,7 @@ export interface PaperProblemViewProps {
 export function PaperProblemView({
   content,
   figureUrls,
+  choiceFigureIndex,
   figureSvg,
   figureDims,
   figureSourceMm,
@@ -38,6 +40,7 @@ export function PaperProblemView({
     <ProblemContent
       content={content}
       figureUrls={figureUrls}
+      choiceFigureIndex={choiceFigureIndex}
       figureSvg={figureSvg}
       figureDims={figureDims}
       figureSourceMm={figureSourceMm}

@@ -60,6 +60,10 @@ import {
 import { displayWidth, fitsTwoColumns } from "@/lib/math/displayWidth";
 import { EXAM_MEASURED_PX, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
+import {
+  choiceFigureMode,
+  type ChoiceFigurePlan,
+} from "@/lib/problem/choiceFigureIndex";
 import { paginateAnswerKey } from "@/lib/printLayout";
 import {
   normalizeOcrText,
@@ -190,6 +194,20 @@ export function estimateFigureBlockPx(
   return total + figureGap * (rows - 1);
 }
 
+/** Explicitly mapped pictures live in different stem/choice boxes. A conservative
+ * one-image-per-row bound includes unknown labels and cannot hide choice figures. */
+export function estimateMappedFigurePx(
+  figures: readonly (FigureDimensionType | null)[],
+  mapping: readonly (number | null)[] | undefined,
+  ruler: RulerMetrics = JASEUP_RULER,
+): number {
+  if (!mapping?.length) return estimateFigureBlockPx(figures, ruler);
+  return figures.reduce(
+    (sum, figure) => sum + estimateFigureBlockPx([figure], ruler) + ruler.line,
+    0,
+  );
+}
+
 /* ────────────────────────────────────────────────────────────────────────
  * 줄 수 추정 — 폭 총합이 못 보는 것을 본다
  * ──────────────────────────────────────────────────────────────────────── */
@@ -301,6 +319,40 @@ function choicesBlockPx(items: readonly string[], ruler: RulerMetrics): number {
   return choiceGridTop + textLines * line + choiceRowGap * (rows - 1);
 }
 
+/** ProblemContent 의 고정 2열: gap-x-8(32px), 번호+gap-1.5 는 기존 실측 폭 차이. */
+function choiceFigureGridPx(
+  choices: readonly string[],
+  figures: readonly (FigureDimensionType | null)[],
+  plan: ChoiceFigurePlan,
+  ruler: RulerMetrics,
+  imagesOnly = false,
+): number {
+  const cellWidth = (ruler.problemColumn - 32) / 2;
+  const imageWidth = Math.max(
+    1,
+    cellWidth - (ruler.problemColumn - ruler.choiceTextColumn),
+  );
+  let height = ruler.choiceGridTop;
+  for (let index = 0; index < choices.length; index += 2) {
+    const row = choices.slice(index, index + 2).map((choice, offset) => {
+      const imageIndex = plan.byChoice[index + offset + 1];
+      if (imageIndex === undefined)
+        return imagesOnly
+          ? 0
+          : Math.max(1, linesFor(choice, unitsOf(imageWidth, ruler))) *
+              ruler.line;
+      const figure = figures[imageIndex];
+      const imageHeight = figure
+        ? (imageWidth * figure.height) / figure.width
+        : UNKNOWN_FIGURE_HEIGHT_PX;
+      return Math.max(ruler.line, imageHeight);
+    });
+    height += Math.max(...row);
+    if (index > 0) height += ruler.choiceRowGap;
+  }
+  return height;
+}
+
 /**
  * «나란히» 칸 묶음(`<나란히:cols=N>`, 원장님 2026-09-22)이 먹는 **세로 픽셀**.
  *
@@ -389,8 +441,16 @@ export function estimateProblemPx(
   figures: readonly (FigureDimensionType | null)[] = [],
   figureSvg: string | null = null,
   ruler: RulerMetrics = JASEUP_RULER,
+  choiceFigureIndex?: readonly (number | null)[],
 ): number {
   const { question: rawQuestion, choices } = parseProblemContent(content);
+  // 짝을 읽는 갈래 — 지면(`ProblemContent`)과 **같은 함수**로 가른다. 한쪽만 고치면 그 갈래에서만 높이가 어긋난다.
+  const figureMode = choiceFigureMode(
+    figures.length,
+    choiceFigureIndex,
+    choices,
+  );
+  const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
   // 조판이 안 그리는 `[그림]` 자국을 자도 안 센다 — **같은 함수**를 부른다.
   // 한쪽만 고치면 높이가 갈라지고, 갈라진 것은 아무도 못 본다(2026-08-18).
   // 🔴 조건도 지면과 **같아야** 한다: `ProblemContent` 는 인라인 SVG 가 있어도
@@ -485,9 +545,21 @@ export function estimateProblemPx(
   flushPlain();
   flushBox();
 
-  px += estimateFigureBlockPx(figures, ruler);
+  // ㉠ 온전한 짝(발문 그림 + 2열 그림 격자) · ㉡ 덜 된 짝(그림마다 한 줄 — 넉넉히) · ㉢ 그 밖(예전 식).
+  px += choiceFigures
+    ? estimateFigureBlockPx(
+        choiceFigures.stem.map((index) => figures[index]!),
+        ruler,
+      )
+    : estimateMappedFigurePx(
+        figures,
+        figureMode.mode === "loose" ? choiceFigureIndex : undefined,
+        ruler,
+      );
   px += estimateFigureSvgPx(figureSvg, ruler);
-  px += choicesBlockPx(choices, ruler);
+  px += choiceFigures
+    ? choiceFigureGridPx(choices, figures, choiceFigures, ruler)
+    : choicesBlockPx(choices, ruler);
   /**
    * **세로로 쌓이는 수식**은 폭이 아니라 높이를 먹는다. 해설 자에만 있던 항을
    * 여기에도 건다(적대적 리뷰 ④ A). 원문 전체에서 세는 이유는 발문·상자·보기 어디에
@@ -505,9 +577,16 @@ export function estimateProblemLines(
   content: string,
   figures: readonly (FigureDimensionType | null)[] = [],
   figureSvg: string | null = null,
+  choiceFigureIndex?: readonly number[],
 ): number {
   return Math.ceil(
-    estimateProblemPx(content, figures, figureSvg) / JASEUP_MEASURED_PX.line,
+    estimateProblemPx(
+      content,
+      figures,
+      figureSvg,
+      JASEUP_RULER,
+      choiceFigureIndex,
+    ) / JASEUP_MEASURED_PX.line,
   );
 }
 
@@ -733,7 +812,11 @@ export type SeatProblem = Pick<TestPrintProblem, "content"> &
   Partial<
     Pick<
       TestPrintProblem,
-      "figureUrls" | "figureDims" | "figureSourceMm" | "figureSvg"
+      | "figureUrls"
+      | "figureDims"
+      | "figureSourceMm"
+      | "figureSvg"
+      | "choiceFigureIndex"
     >
   >;
 
@@ -761,8 +844,21 @@ export function assessSeat(
   // 🔴 엔진 문항은 그림이 `figureSvg` 한 컬럼에만 있다(`figureUrls` 전량 비었다).
   //    여기서 안 넘기면 그 4,640문항의 그림이 통째로 0으로 세어진다.
   const svg = problem.figureSvg ?? null;
-  const px = estimateProblemPx(problem.content, figures, svg);
-  const lines = estimateProblemLines(problem.content, figures, svg);
+  const px = estimateProblemPx(
+    problem.content,
+    figures,
+    svg,
+    JASEUP_RULER,
+    problem.choiceFigureIndex,
+  );
+  const lines = Math.ceil(px / JASEUP_MEASURED_PX.line);
+  const { choices } = parseProblemContent(problem.content);
+  const figureMode = choiceFigureMode(
+    figureCount,
+    problem.choiceFigureIndex,
+    choices,
+  );
+  const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
   const limit = lineLimitFor(slotPx);
   /**
    * 🔴 **px 를 직접 견준다.** 줄 수로 견주면 `ceil` 이 최대 한 줄을 삼켜, 칸을
@@ -780,7 +876,22 @@ export function assessSeat(
     slotPx,
     lines,
     limit,
-    figurePx: estimateFigureBlockPx(figures) + estimateFigureSvgPx(svg),
+    figurePx:
+      (choiceFigures
+        ? estimateFigureBlockPx(
+            choiceFigures.stem.map((index) => figures[index]!),
+          ) +
+          choiceFigureGridPx(
+            choices,
+            figures,
+            choiceFigures,
+            JASEUP_RULER,
+            true,
+          )
+        : estimateMappedFigurePx(
+            figures,
+            figureMode.mode === "loose" ? problem.choiceFigureIndex : undefined,
+          )) + estimateFigureSvgPx(svg),
     manyFigures,
     risky: tooTall || manyFigures,
   };

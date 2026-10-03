@@ -18,6 +18,8 @@
  * 남이 쓴 것과 내가 지어낸 것을 섞지 않는다.
  */
 
+import { textbookPrintCheck } from "@/lib/textbook/render/printCheck";
+
 export type CheckStatus = "대기" | "통과" | "형태미확정";
 
 export interface PrintCheckItem {
@@ -80,6 +82,30 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  { ...textbookPrintCheck, changedOn: "2026-10-03" },
+  {
+    id: "bank-choice-figures",
+    title: "문제은행 — 그림 보기의 번호와 2열 배치",
+    changed:
+      "짝이 확인된 보기 그림을 해당 번호 칸 안에 배치한다. 발문 그림은 발문 아래에 남고, " +
+      "보기는 설정과 창 폭에 관계없이 두 열이다. 그림 폭은 칸에 맞추며 원본 비율을 유지한다.",
+    look:
+      "①~⑤ 번호가 각 그림의 왼쪽 위에 있고 원본의 짝과 같은가. 다섯째 보기가 홀로 남는 마지막 행, " +
+      "발문 그림과 보기 사이 간격을 확인한다. 쪽 넘김에서 번호와 그림이 갈라지거나 잘리지 않는가. " +
+      "학생지와 교사용에서 그림 순서·폭·비율이 같은가.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/briefs/bank-decide.md §2",
+      "src/components/math/ProblemContent.tsx",
+      "src/lib/printOverflow.ts",
+      "src/__tests__/unit/bankChoiceFigures.test.tsx",
+    ],
+    scale: "choiceFigureIndex 로 보기 그림의 짝이 확인된 문항",
+    status: "대기",
+    needs:
+      "대구일중 3번·신명여중 9번을 학생지와 교사용으로 각각 출력하고, 쪽 끝에도 놓아 본다.",
+    changedOn: "2026-10-03",
+  },
   {
     id: "elementary-bank-net-and-hidden-dimensions",
     title: "초등 원기둥 전개도와 정육면체 역산 그림",

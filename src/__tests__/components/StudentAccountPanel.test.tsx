@@ -2,7 +2,7 @@
  * 원장님 «수업 · 학생 관리 › 학생» 안의 **학생 계정 발급 칸** — 시안 1안 `issue()`(05 §8.9 · D-125 ⑴) ·
  * learn-screens 브리프 §1.3 · §3 ②⑤.
  *
- *   발급 전 — 아이디 칸(비어서 시작 · 자동 제안 없음, D-125 ⑵) + «계정 만들기»
+ *   발급 전 — 아이디 칸(비어서 시작 · 자동 제안 없음, D-125 ⑵) + «계정 생성»
  *   만든 직후 — 아이디 · 발급 날짜 · 발급한 사람 · 마지막 로그인 · 초기 비밀번호(지금 한 번만) · 다시 발급 · 계정 끄기
  *   끈 계정 — «계정 켜기»(시안에 없는 상태 — 최소한으로) · 퇴원 학생 — «퇴원 — 로그인 막힘» 한 줄
  *   남의 반 학생 — 서버가 403 → 칸을 안 그린다
@@ -124,7 +124,7 @@ describe("학생 이름을 누르면 그 학생의 발급 칸이 선다 — 한 
   it("계정 칸 닫기 버튼은 칸을 닫고 학생 이름으로 초점을 돌린다", async () => {
     const user = renderList();
     await open(user, SEO.name);
-    await screen.findByRole("button", { name: "계정 만들기" });
+    await screen.findByRole("button", { name: "계정 생성" });
     await user.click(
       screen.getByRole("button", { name: `${SEO.name} 계정 정보 닫기` }),
     );
@@ -158,13 +158,15 @@ describe("학생 이름을 누르면 그 학생의 발급 칸이 선다 — 한 
 });
 
 describe("🔴 ⑤ 발급 칸 두 상태 (시안 issue())", () => {
-  it("발급 전 — 아이디 칸은 비어서 시작(자동 제안 없음) · 형식 안내 한 줄 · «계정 만들기»", async () => {
+  it("발급 전 — 아이디 칸은 비어서 시작(자동 제안 없음) · 형식 안내 한 줄 · «계정 생성»", async () => {
     const user = renderList();
     await open(user, SEO.name);
-    await screen.findByRole("button", { name: "계정 만들기" });
+    await screen.findByRole("button", { name: "계정 생성" });
     expect(card().getByText("오늘의 개념 로그인")).toBeInTheDocument();
     expect(
-      card().getByText("계정 없음 — 학생은 이 계정으로 들어와 영상만 봅니다."),
+      card().getByText(
+        "아직 로그인 계정이 없습니다. 계정을 생성하면 학생이 로그인할 수 있습니다.",
+      ),
     ).toBeInTheDocument();
     expect(card().getByLabelText("아이디")).toHaveValue("");
     expect(card().getByText("영문·숫자·-·_ 4~20자")).toBeInTheDocument();
@@ -186,7 +188,7 @@ describe("🔴 ⑤ 발급 칸 두 상태 (시안 issue())", () => {
     const user = renderList();
     await open(user, SEO.name);
     await user.type(await card().findByLabelText("아이디"), "m1a-01");
-    await user.click(card().getByRole("button", { name: "계정 만들기" }));
+    await user.click(card().getByRole("button", { name: "계정 생성" }));
     await card().findByText("초기 비밀번호 — 지금 한 번만 보입니다");
     expect(calls.find((c) => c.method === "POST")?.body).toStrictEqual({
       loginId: "m1a-01",
@@ -239,12 +241,12 @@ describe("🔴 ⑤ 발급 칸 두 상태 (시안 issue())", () => {
     await open(user, SEO.name);
     const id = await card().findByLabelText("아이디");
     await user.type(id, "ab");
-    await user.click(card().getByRole("button", { name: "계정 만들기" }));
+    await user.click(card().getByRole("button", { name: "계정 생성" }));
     expect(await card().findByRole("alert")).toHaveTextContent(/아이디는/);
     expect(calls.filter((c) => c.method === "POST")).toEqual([]);
     await user.clear(id);
     await user.type(id, "m1a-02");
-    await user.click(card().getByRole("button", { name: "계정 만들기" }));
+    await user.click(card().getByRole("button", { name: "계정 생성" }));
     await waitFor(() =>
       expect(card().getByRole("alert")).toHaveTextContent(
         "이미 쓰는 아이디입니다.",
@@ -270,7 +272,7 @@ describe("🔴 ② 초기 비밀번호는 그 화면에만 — 저장소 · URL 
     const user = renderList();
     await open(user, SEO.name);
     await user.type(await card().findByLabelText("아이디"), "m1a-01");
-    await user.click(card().getByRole("button", { name: "계정 만들기" }));
+    await user.click(card().getByRole("button", { name: "계정 생성" }));
     // 흔적을 찾을 자리가 **실제로 채워져 있었다** — 번호가 화면에는 있다
     expect(await card().findByText(PIN)).toBeInTheDocument();
     const storage = [localStorage, sessionStorage].flatMap((st) =>
@@ -339,7 +341,7 @@ describe("🔴 ⑤ 끈 계정 · 퇴원 학생 · 남의 반 학생", () => {
     await open(user, SEO.name);
     await card().findByText("퇴원 — 로그인 막힘");
     expect(
-      card().queryByRole("button", { name: "계정 만들기" }),
+      card().queryByRole("button", { name: "계정 생성" }),
     ).not.toBeInTheDocument();
     expect(card().queryByLabelText("아이디")).not.toBeInTheDocument();
   });
@@ -374,7 +376,7 @@ describe("🔴 ⑤ 끈 계정 · 퇴원 학생 · 남의 반 학생", () => {
       screen.queryByRole("region", { name: /오늘의 개념 로그인/ }),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("button", { name: "계정 만들기" }),
+      screen.queryByRole("button", { name: "계정 생성" }),
     ).not.toBeInTheDocument();
   });
 });

@@ -69,6 +69,7 @@ const ORIGIN = "http://localhost:3000";
 const PIN = "7392";
 const PIN2 = "4816";
 const BRANCH_PASSWORD = "q1w2e3r4";
+const BRANCH = "00000000-0000-4000-8000-000000000101";
 
 /** 남의 반(USER_OTHER_ID 소유 CLASS_OTHER) 학생 — 픽스처에 없어 시험이 만든다 */
 let otherStudentId = "";
@@ -96,9 +97,17 @@ beforeEach(async () => {
     email: "teacher@example.test",
     name: "선생님",
     isAdmin: true,
-    branchId: "00000000-0000-4000-8000-000000000101",
+    branchId: BRANCH,
     branchRole: "owner",
   });
+  for (const cls of await prismaTestDouble.class.findMany()) {
+    await prismaTestDouble.class.update({
+      where: { id: cls.id },
+      data: {
+        branchId: cls.userId === USER_TEACHER_ID ? BRANCH : "other-branch",
+      },
+    });
+  }
   const classes = await prismaTestDouble.class.findMany({
     where: { userId: USER_OTHER_ID },
   });
@@ -154,25 +163,20 @@ function scrub(text: string): string {
     .replace(/\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?Z/g, "<time>");
 }
 
-describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
-  // D-140(원장님 2026-09-26)이 뒤집었다 — 예전 단정은 «강사는 담당 반 학생도 발급할 수 없다 · 403».
-  // 남의 반 학생 거부 · 반 만들기 거부 짝은 `teacherRoster.test.ts` 가 본다.
-  it("강사도 담당 반 학생의 로그인 아이디를 발급한다 — 첫 비밀번호는 지점 고정값 (D-140)", async () => {
+describe("발급 — 지점 관리자 이상 · 한 명씩", () => {
+  it("강사는 담당 반 학생이어도 로그인 계정을 발급할 수 없다", async () => {
     vi.mocked(getSessionUser).mockResolvedValue({
       id: USER_TEACHER_ID,
       email: "teacher@example.test",
       name: "선생님",
       isAdmin: false,
-      branchId: "20000000-0000-4000-8000-000000000002",
+      branchId: BRANCH,
       branchRole: "teacher",
     });
     const res = await issue(MOCK_STUDENT_1.id, "teacher-issued");
-    expect(res.status).toBe(201);
-    expect(
-      studentAccountIssueResponseSchema.parse(await res.json()).data
-        .initialPassword,
-    ).toBe(BRANCH_PASSWORD);
-    expect(learnRows.studentAccounts()).toHaveLength(1);
+    expect(res.status).toBe(403);
+    expect(learnRows.studentAccounts()).toEqual([]);
+    expect(learnRows.audits()).toEqual([]);
   });
   it("🔴 로그인 안 한 요청은 401 이고 아무것도 안 만든다", async () => {
     vi.mocked(getSessionUser).mockResolvedValue(null);
@@ -216,7 +220,7 @@ describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
     expect(await compare(BRANCH_PASSWORD, row!.passwordHash)).toBe(true);
   });
 
-  it("지점 밖 독립 운영자가 발급할 때는 기존 4자리 번호를 사용한다", async () => {
+  it("지점 관리자 권한이 없는 독립 계정은 발급할 수 없다", async () => {
     vi.mocked(getSessionUser).mockResolvedValue({
       id: USER_TEACHER_ID,
       email: "teacher@example.test",
@@ -226,9 +230,8 @@ describe("발급 — 원장만 · 한 명씩 (D-124 ⑷)", () => {
       branchRole: null,
     });
     const res = await issue(MOCK_STUDENT_1.id, "seo01");
-    expect(res.status).toBe(201);
-    const body = studentAccountIssueResponseSchema.parse(await res.json());
-    expect(body.data.initialPassword).toBe(PIN);
+    expect(res.status).toBe(403);
+    expect(learnRows.studentAccounts()).toEqual([]);
   });
 
   it("이미 계정이 있으면 409 «이미 계정이 있습니다.»", async () => {

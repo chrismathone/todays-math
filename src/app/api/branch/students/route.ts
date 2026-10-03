@@ -6,6 +6,7 @@ import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { hashStudentPin } from "@/lib/learn/pinHash";
+import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 const createSchema = z.strictObject({
@@ -18,10 +19,7 @@ async function handlePost(request: Request) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   const branchId = access.account?.branchId;
-  if (
-    !branchId ||
-    !["owner", "manager"].includes(access.account?.branchRole ?? "")
-  )
+  if (!branchId || !access.account || !canManageStudentAccounts(access.account))
     return Response.json(
       {
         error: {

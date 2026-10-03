@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { normalizeStudentReturnTo } from "@/lib/learn/studentReturnTo";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type {
   ExplorerAction,
@@ -884,7 +885,18 @@ function ExplorerGame({
             initialView={supReturn ? "collection" : initialView}
             onCloseView={() => {
               setSupReturn(false);
-              if (initialView) router.replace("/learn");
+              if (initialView) {
+                const from = normalizeStudentReturnTo(
+                  new URL(window.location.href).searchParams.get(
+                    "fromTextbook",
+                  ),
+                );
+                router.replace(
+                  from.startsWith("/learn/textbook/")
+                    ? `/learn?${new URLSearchParams({ fromTextbook: from })}`
+                    : "/learn",
+                );
+              }
             }}
             onStartSupplement={(cardId) => startSupplement(cardId, false)}
             onInspectSupplement={(cardId) => {

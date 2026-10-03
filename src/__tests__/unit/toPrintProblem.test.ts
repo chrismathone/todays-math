@@ -24,6 +24,7 @@ const ROW: PrintableProblemRow = {
   figureUrls: ["/figures/a/q1.jpg"],
   figureDims: [400, 300],
   figureSourceMm: [45],
+  choiceFigureIndex: [],
   figureSvg: '<svg viewBox="0 0 160 120"><g/></svg>',
 };
 

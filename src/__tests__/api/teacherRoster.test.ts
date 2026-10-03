@@ -1,10 +1,7 @@
 // @vitest-environment node
 /**
- * 🔴 RED → 🟢 — D-140 강사: 자기 반 학생 등록 · 로그인 발급 · 다시 발급 · 끄기 (원장님 2026-09-26).
- *
- *   요청 원문: «강사가 로그인했을 때 자신의 반이 뜨고, 해당 학생들 리스트가 뜨면서 학생들 계정 생성 가능하게.»
- *   결정: 강사 = **자기 반 학생에 한해** 원장님과 같은 일(등록 · 발급 · 다시 발급 · 끄기).
- *         반 만들기 · 남의 반 학생 · 다른 지점은 여전히 못 한다 · 첫 비밀번호는 원장·관리자와 같은 고정값.
+ * 강사는 자기 반의 학생을 등록하지만 로그인 계정 발급·재발급·변경은 지점 관리자 이상만 한다.
+ * 학생 명부 등록만으로 로그인 계정이 생성되지 않는다.
  *
  * 판정: `ownerScope.ts` 의 `canManageClassStudents`(자기 반 학생) ↔ `canManageRoster`(반 만들기·지점 전체).
  * «자기 반»은 판정이 아니라 **소유 범위**(`withinOwnerScope` — `Class.userId` 가 나)가 정한다.
@@ -164,6 +161,10 @@ beforeEach(async () => {
   ownerStudentId = await makeStudent(ownerClassId, "원장반학생");
   farClassId = await makeClass(FAR_OWNER_ID, "다른 지점 반");
   farStudentId = await makeStudent(farClassId, "다른지점학생");
+  await prismaTestDouble.class.update({
+    where: { id: CLASS_A_ID },
+    data: { branchId: BRANCH },
+  });
   vi.mocked(getSessionUser).mockResolvedValue(TEACHER);
 });
 afterEach(() => {
@@ -214,6 +215,8 @@ describe("학생 등록 — 강사는 자기 반에만 (D-140)", () => {
     expect(after.map((s) => (s as { name: string }).name)).toContain(
       "강사가넣은학생",
     );
+    expect(learnRows.studentAccounts()).toEqual([]);
+    expect(learnRows.audits()).toEqual([]);
   });
 
   it("🔴 같은 지점 남의 반 · 다른 지점 반은 403 — 둘의 응답이 같아 지점을 흘리지 않는다 · 한 명도 안 늘어난다", async () => {
@@ -290,52 +293,46 @@ describe("반 만들기 · 반 설정 · 학생 삭제·이름 바꾸기는 여�
   });
 });
 
-describe("로그인 발급 · 다시 발급 · 끄기 — 강사는 자기 반 학생에만 (D-140)", () => {
-  it("🔴 자기 반 학생 발급 201 — 첫 비밀번호는 원장·관리자와 같은 고정값 · 번호를 안 뽑는다", async () => {
+describe("로그인 발급 · 다시 발급 · 끄기 — 강사는 담당 반 학생이어도 거부", () => {
+  it("자기 반 학생 발급 403 — 계정과 감사 기록이 생기지 않는다", async () => {
     const res = await issue(MOCK_STUDENT_1.id, "kang01");
-    expect(res.status).toBe(201);
-    const body = studentAccountIssueResponseSchema.parse(await res.json());
-    expect(body.data.initialPassword).toBe(BRANCH_INITIAL_PASSWORD);
+    expect(res.status).toBe(403);
     expect(pins.queue).toStrictEqual([PIN]);
+    expect(learnRows.studentAccounts()).toEqual([]);
+    expect(learnRows.audits()).toEqual([]);
+  });
+
+  it("원장은 소속 지점 강사의 반 학생에게 계정을 발급할 수 있다", async () => {
+    vi.mocked(getSessionUser).mockResolvedValue(OWNER);
+    const response = await issue(MOCK_STUDENT_1.id, "kang01");
+    expect(response.status).toBe(201);
+    const body = studentAccountIssueResponseSchema.parse(await response.json());
+    expect(body.data.initialPassword).toBe(BRANCH_INITIAL_PASSWORD);
     const [row] = learnRows.studentAccounts();
     expect(row).toMatchObject({
       studentId: MOCK_STUDENT_1.id,
       loginId: "kang01",
-      issuedById: USER_TEACHER_ID,
+      issuedById: OWNER_ID,
     });
     expect(await compare(BRANCH_INITIAL_PASSWORD, row!.passwordHash)).toBe(
       true,
     );
   });
 
-  it("🔴 첫 비밀번호가 원장 발급과 글자까지 같다", async () => {
+  it("강사는 원장이 발급한 계정의 비밀번호와 로그인 상태를 바꿀 수 없다", async () => {
     vi.mocked(getSessionUser).mockResolvedValue(OWNER);
-    const byOwner = studentAccountIssueResponseSchema.parse(
-      await (await issue(ownerStudentId, "own01")).json(),
-    ).data.initialPassword;
+    expect((await issue(MOCK_STUDENT_1.id, "kang01")).status).toBe(201);
+    const before = structuredClone(learnRows.studentAccounts());
     vi.mocked(getSessionUser).mockResolvedValue(TEACHER);
-    const byTeacher = studentAccountIssueResponseSchema.parse(
-      await (await issue(MOCK_STUDENT_1.id, "kang01")).json(),
-    ).data.initialPassword;
-    expect(byTeacher).toBe(byOwner);
-  });
-
-  it("🔴 다시 발급 · 끄기 · 켜기 · 상태가 된다 — 감사 기록의 발급자·행위자는 강사", async () => {
-    await issue(MOCK_STUDENT_1.id, "kang01");
-    expect((await reissue(MOCK_STUDENT_1.id)).status).toBe(200);
-    expect((await setDisabled(MOCK_STUDENT_1.id, true)).status).toBe(200);
-    expect(learnRows.studentAccounts()[0]!.disabledAt).not.toBeNull();
-    expect((await setDisabled(MOCK_STUDENT_1.id, false)).status).toBe(200);
-    expect(learnRows.studentAccounts()[0]!.disabledAt).toBeNull();
-    expect((await status(MOCK_STUDENT_1.id)).status).toBe(200);
+    expect((await reissue(MOCK_STUDENT_1.id)).status).toBe(403);
+    expect((await setDisabled(MOCK_STUDENT_1.id, true)).status).toBe(403);
+    expect((await setDisabled(MOCK_STUDENT_1.id, false)).status).toBe(403);
+    expect((await status(MOCK_STUDENT_1.id)).status).toBe(403);
+    expect(learnRows.studentAccounts()).toEqual(before);
+    expect(pins.queue).toStrictEqual([PIN]);
     expect(
       learnRows.audits().map((a) => [a.action, a.userId, a.actorId]),
-    ).toStrictEqual([
-      ["student_account.issue", USER_TEACHER_ID, USER_TEACHER_ID],
-      ["student_account.reissue", USER_TEACHER_ID, USER_TEACHER_ID],
-      ["student_account.disable", USER_TEACHER_ID, USER_TEACHER_ID],
-      ["student_account.enable", USER_TEACHER_ID, USER_TEACHER_ID],
-    ]);
+    ).toStrictEqual([["student_account.issue", OWNER_ID, OWNER_ID]]);
   });
 
   it("🔴 남의 반·다른 지점 학생은 발급 · 다시 발급 · 끄기 · 상태 전부 403 — 계정·감사가 안 생긴다", async () => {
@@ -351,9 +348,9 @@ describe("로그인 발급 · 다시 발급 · 끄기 — 강사는 자기 반 �
     expect(learnRows.audits()).toEqual([]);
   });
 
-  it("없는 학생은 404", async () => {
-    expect((await issue(MISSING_ID, "ghost01")).status).toBe(404);
-    expect((await reissue(MISSING_ID)).status).toBe(404);
+  it("강사 권한을 먼저 거부해 학생 존재 여부를 공개하지 않는다", async () => {
+    expect((await issue(MISSING_ID, "ghost01")).status).toBe(403);
+    expect((await reissue(MISSING_ID)).status).toBe(403);
   });
 });
 

@@ -165,6 +165,8 @@ export const problemSchema = z.strictObject({
    * 참조: docs/planning/09-figure-engine-guide.md §5
    */
   figureUrls: z.array(z.string()).default([]),
+  /** 0 = 발문, 1부터 = 보기 번호. 옛 응답/호출자는 생략할 수 있고 파싱 기본값은 []. */
+  choiceFigureIndex: z.array(z.number().int()).default([]).optional(),
   /**
    * 도형 SVG (testchanger figure engine 산출물, inline 렌더). 없으면 null.
    *

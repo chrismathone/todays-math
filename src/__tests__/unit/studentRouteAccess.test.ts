@@ -16,6 +16,13 @@ import {
 describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 빨개져 리뷰에 보인다", () => {
   it("첫 비밀번호를 바꾼 학생", () => {
     expect(STUDENT_CAPABILITIES).toStrictEqual([
+      "GET|HEAD /q/{id}",
+      "GET|HEAD /learn/textbook/{id}/concepts/{id}",
+      "GET /api/learn/textbook/q/{id}",
+      "GET|HEAD /api/learn/textbook/q/{id}/assets/{id}",
+      "GET /api/learn/textbook/editions/{id}/concepts/{id}",
+      "GET|POST /api/learn/textbook/editions/{id}/concepts/{id}/attempts",
+      "POST /api/learn/textbook/editions/{id}/concepts/{id}/review",
       "GET|HEAD /learn/english-listening",
       "GET|HEAD /learn/english-listening/{id}",
       "GET /api/english/learn/listening",

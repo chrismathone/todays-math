@@ -16,6 +16,7 @@ export const WORKSPACE_MENUS = [
   { id: "studio", label: "문제 추출" },
   { id: "export", label: "시험지 · 내보내기" },
   { id: "library", label: "내 시험지" },
+  { id: "textbook", label: "교재 제작" },
   { id: "teaching", label: "수업 · 학생 관리" },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래. 강의 목록은 서비스 공용, 쓰기는 isAdmin 만(⑼).
   { id: "concept", label: "오늘의 개념" },
@@ -35,6 +36,7 @@ export const workspaceMenuSchema = z.enum([
   "studio",
   "export",
   "library",
+  "textbook",
   "teaching",
   "concept",
   "conceptBlank",
@@ -192,6 +194,12 @@ export type AccountAccess = {
   approvalStatus: ApprovalStatus;
   menus: WorkspaceMenu[];
 };
+/** Display-only summary; source identities and control data stay on the server. */
+export type AccountSyncStatus = {
+  status: "linked" | "unlinked";
+  branchName: string | null;
+  reason: string | null;
+};
 export type ManagedAccount = AccountAccess & {
   branchName?: string | null;
   /** Stored personal policy; editors submit this through the existing menus input. */
@@ -201,6 +209,7 @@ export type ManagedAccount = AccountAccess & {
   branchMenuRevision?: number | null;
   /** Independent rollout restrictions, without personal or branch policy applied. */
   unavailableMenus?: WorkspaceMenu[];
+  eywaSync?: AccountSyncStatus;
   createdAt: string;
   updatedAt: string;
   suspendedAt: string | null;

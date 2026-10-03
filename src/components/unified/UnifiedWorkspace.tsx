@@ -71,6 +71,18 @@ const TeachingView = dynamic(() => import("./TeachingView"), {
     />
   ),
 });
+const TextbookView = dynamic(
+  () =>
+    import("@/components/textbook/TextbookStudioView").then(
+      (module) => module.TextbookStudioView,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress className={s.loading} label="교재 제작을 여는 중입니다…" />
+    ),
+  },
+);
 const WorksheetEditor = dynamic(() => import("./WorksheetEditor"), {
   loading: () => (
     <WorkProgress
@@ -156,6 +168,7 @@ const mathNav: NavItem[] = [
   { id: "studio", label: "문제 추출", short: "문제 추출", icon: "crop" },
   { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
   { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
+  { id: "textbook", label: "교재 제작", short: "교재 제작", icon: "paper" },
   {
     id: "teaching",
     label: "수업 · 학생 관리",
@@ -1404,6 +1417,7 @@ function UnifiedWorkspaceContent({
               <main hidden={view !== "conceptBlank"} className={s.viewContent}>
                 <ConceptBlankView
                   active={view === "conceptBlank"}
+                  textbookEnabled={can("textbook")}
                   storageScope={storageScope}
                   openDocument={blankDocument}
                   branchId={branchId}
@@ -1412,9 +1426,15 @@ function UnifiedWorkspaceContent({
             )}
           {can("srs") && (opened.has("srs") || view === "srs") && (
             <main hidden={view !== "srs"} className={s.viewContent}>
-              <CourseDashboard />
+              <CourseDashboard textbookEnabled={can("textbook")} />
             </main>
           )}
+          {can("textbook") &&
+            (opened.has("textbook") || view === "textbook") && (
+              <main hidden={view !== "textbook"} className={s.viewContent}>
+                <TextbookView />
+              </main>
+            )}
           {/* 오늘의 영어(D-148) — 개념·SRS 블록과 같은 결로 마운트를 유지한다. `worksheetView` 에 넣지 않는다 */}
           {canEnglish &&
             ([...opened].some((item) => isEnglishView(item)) ||

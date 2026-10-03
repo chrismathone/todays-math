@@ -22,6 +22,7 @@ import {
   requestMessage,
 } from "./accountRequests";
 import s from "./admin.module.css";
+import AccountSyncBadge from "./AccountSyncBadge";
 
 export const STATUS_LABELS = {
   pending: "승인 대기",
@@ -385,14 +386,17 @@ export default function AccountReview({
         <span className={s.eyebrow}>ACCOUNT REVIEW</span>
         <AccountStatus account={account} />
       </div>
-      <h2
-        id="review-title"
-        className={s.reviewName}
-        tabIndex={-1}
-        ref={headingRef}
-      >
-        {account.name || "이름 미등록"}
-      </h2>
+      <div className={s.accountName}>
+        <h2
+          id="review-title"
+          className={s.reviewName}
+          tabIndex={-1}
+          ref={headingRef}
+        >
+          {account.name || "이름 미등록"}
+        </h2>
+        <AccountSyncBadge sync={account.eywaSync} />
+      </div>
       <p className={s.email}>{account.email}</p>
       <dl className={s.facts}>
         <div>

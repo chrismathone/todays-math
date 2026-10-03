@@ -23,6 +23,8 @@ export interface TestPrintProblem {
   score?: number | null;
   /** 원본 시험지에서 오려 온 그림 경로들. 없으면 빈 배열. */
   figureUrls?: string[];
+  /** 0 = stem, 1..5 = that choice, null = unknown. Absent retains legacy layout. */
+  choiceFigureIndex?: (number | null)[];
   /**
    * 엔진이 그린 **인라인 SVG**(`Problem.figureSvg`). 파일이 아니라 마크업이다.
    *
@@ -43,7 +45,7 @@ export interface TestPrintProblem {
    * ⚠️ 길이가 `figureUrls.length × 2` 가 아니면 **통째로 «모른다»로 받는다**
    *    (`parseFigureDimensions`). 짝이 어긋난 값을 흘리면 판정이 안다고 착각한다.
    */
-  figureDims?: number[];
+  figureDims?: (number | null)[];
   /**
    * `figureUrls` 와 **같은 순서·같은 길이**로 짝지은 **원본 지면 물리 폭(mm)**
    * (`Problem.figureSourceMm`). 「얼마로 그린다」의 유일한 근거다.
@@ -56,7 +58,7 @@ export interface TestPrintProblem {
    * ⚠️ **비면 «모른다»이고, 모르면 지면은 오늘 그대로 픽셀로 그린다**(회귀 0).
    *    규칙 한 곳: `src/lib/figurePrintSize.ts`.
    */
-  figureSourceMm?: number[];
+  figureSourceMm?: (number | null)[];
 }
 
 export interface TestPrintDocument {

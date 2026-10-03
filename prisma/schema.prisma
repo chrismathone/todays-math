@@ -228,6 +228,8 @@ model User {
   errorLogs              ErrorLog[]
   /// 오늘의 영어 — 학교별 내신 시험(D-148). 학원 운영 데이터 — 계정을 지우면 시험과 딸린 자료·세트가 같이 지워진다
   englishExams           EnglishExam[]
+  /// 교재 제작 — 이 계정의 책. 🔴 RESTRICT — 책이 있는 계정은 지워지지 않는다(인쇄된 QR 이 그 행에 달려 있다)
+  textbooks              Textbook[]
   englishPassages        EnglishPassage[]
   englishPassageReceipts EnglishPassageReceipt[]
   listeningSets          EnglishListeningSet[]
@@ -339,7 +341,9 @@ model Class {
   progresses           Progress[]
   tests                Test[]
   /// 진도 계획 — 반 계획 한 줄 + 개별 진도 학생의 학생 계획들(D-129 ⑴)
-  progressPlans        ProgressPlan[]
+  progressPlans ProgressPlan[]
+  /// 교재 배정 — 이 반에 건 판본(반을 지우면 같이 지워진다)
+  textbookAssignments TextbookAssignment[]
 
   @@index([userId])
   @@map("class")
@@ -436,6 +440,10 @@ model Student {
   progressPlans       ProgressPlan[]
   /// Generated daily practice is independent of scored exams and private teacher worksheets.
   srsState            StudentSrsState?
+  /// 교재 배정 — 이 학생 하나에게 건 판본
+  textbookAssignments     TextbookAssignment[]
+  /// 교재 개념의 백지 활동 — 학생을 지우면 그 글도 같이 지워진다
+  textbookConceptAttempts TextbookConceptAttempt[]
 
   @@index([classId])
   @@map("student")
@@ -1064,11 +1072,20 @@ model TestProblem {
   /// 일일테스트는 배점을 표기하지 않으므로(D-28·D-40) NULL 이다.
   score Float?
 
-  test    Test    @relation(fields: [testId], references: [id], onDelete: Cascade)
-  problem Problem @relation(fields: [problemId], references: [id], onDelete: Restrict)
+  /// 교재의 문항으로 다시 출제한 시험지만 값이 있다 — 있으면 본문 · 정답 · 해설 · 그림을
+  /// **확정본에서** 읽는다(`src/lib/tests/testProblemContent.ts` 의 `contentOf`). 없으면 지금처럼 살아 있는 문항이다.
+  /// **SQL 에만 있는 것**: 부분 색인(값이 있는 행만) · 트리거 `test_problem_textbook_snapshot_identity`
+  /// (확정본의 불변 정체 `source_ref.problemId` 가 이 행의 `problem_id` 와 같아야 한다 — 문항을 바꾸면 이 칸을 비운다).
+  /// 🔴 DB 먼저 · 코드 나중 — 마이그레이션 `20261003120100_textbook_test_problem_snapshot`
+  snapshotId String? @map("snapshot_id") @db.Uuid
+
+  test     Test                     @relation(fields: [testId], references: [id], onDelete: Cascade)
+  problem  Problem                  @relation(fields: [problemId], references: [id], onDelete: Restrict)
+  snapshot TextbookProblemSnapshot? @relation(fields: [snapshotId], references: [id], onDelete: Restrict)
 
   @@index([testId, orderIndex])
   @@index([problemId])
+  @@index([snapshotId])
   @@map("test_problem")
 }
 
@@ -1672,6 +1689,526 @@ model AppSetting {
   updatedById String?  @map("updated_by_id") @db.Uuid
 
   @@map("app_setting")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 교재 제작 — 전용 표 20개 (계획 60a508c0 · P1 계약 e94aedb8, docs/planning/textbook-studio-p1-contracts-20261003.md)
+//
+// 부류: **주인 계정의 개인 자료** — 책 · 판본 · 구획 · 배치 · 확정본 · 자산 · 영상은 전부 `userId` 의 것이다.
+// 지점 관리자도 남의 초안을 넘겨다보지 않는다(`ownedRowsWhere` 를 쓰지 않는다). 지점 공유는 책 단위로 주인이 켜고,
+// 동료는 **발행본만** 읽는다. 범위 조건은 `src/lib/textbook/access.ts` 한 곳에 있다.
+// 🔴 `WorkspaceDocument/Asset` 에 얹지 않는다 · 문제은행 `Problem` 을 고치지 않는다(확정본은 사본이다).
+// 계약: src/contracts/textbook*.contract.ts · 마이그레이션: prisma/migrations/20261003120000_textbook_studio
+// (적용은 scripts/qa/apply-textbook-studio-migration.ts — `prisma migrate dev/deploy/db push` 금지).
+//
+// **SQL 에만 있는 것**(이 파일로는 안 보인다 — 마이그레이션이 정본이다):
+//   · 발행 · 종료 판본과 그 자식(구획 · 배치 · 개념 · 자산 색인 · 산출물)을 못 고치게 하는 트리거
+//   · 자식을 쓴 문장마다 `TextbookEdition.revision` 을 올리는 트리거 — **앱이 올리지 않는다**(두 번 오른다)
+//   · 확정본 · 바이트 · QR 대상 · 보관본의 불변 트리거, 영상 연결 · 요청 · 조판 걸음의 상태 전이 트리거
+//   · 같은 판본 · 같은 주인을 보장하는 **복합 FK** — 여기의 관계는 단일 칸으로만 적는다
+//   · 부분 유일 색인: 책마다 초안 하나 · 판본마다 열린 발행 요청 하나 · 확정본마다 게시 영상 하나 · 배치/개념마다 QR 하나
+//   · 값 목록 · JSON 모양 · 해시 글자 CHECK
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// 책 — 1판과 2판이 공유하는 정체. 지면의 제목은 판본 `config` 에 고정되고, 여기의 `title` 은 목록용이다
+model Textbook {
+  id             String    @id @default(uuid()) @db.Uuid
+  userId         String    @map("user_id") @db.Uuid
+  /// elementary · middle · high
+  schoolLevel    String    @map("school_level") @db.VarChar(12)
+  grade          Int       @db.SmallInt
+  semester       Int       @db.SmallInt
+  volume         Int       @db.SmallInt
+  volumeCount    Int       @map("volume_count") @db.SmallInt
+  displayCode    String    @map("display_code") @db.VarChar(40)
+  title          String    @db.VarChar(120)
+  /// private · branch — `sharedBranchId` 와 짝이다(CHECK). 공유해도 동료가 읽는 것은 발행본뿐이다
+  visibility     String    @default("private") @db.VarChar(20)
+  sharedBranchId String?   @map("shared_branch_id") @db.Uuid
+  /// 목록에서 감추기 — 책은 지우지 않는다(인쇄된 QR 이 남는다)
+  archivedAt     DateTime? @map("archived_at")
+  createdAt      DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  user     User              @relation(fields: [userId], references: [id], onDelete: Restrict)
+  editions TextbookEdition[]
+
+  @@index([userId, updatedAt])
+  @@index([sharedBranchId, visibility])
+  @@map("textbook")
+}
+
+/// 판본 — 초안이거나 발행본이다. 발행 뒤에는 종료(`retired`) 말고 아무것도 못 바꾼다(트리거)
+model TextbookEdition {
+  id                   String    @id @default(uuid()) @db.Uuid
+  textbookId           String    @map("textbook_id") @db.Uuid
+  /// 책의 주인과 같다(복합 FK) — 자식이 «같은 주인»을 증명하는 데 쓴다
+  userId               String    @map("user_id") @db.Uuid
+  ordinal              Int
+  label                String    @db.VarChar(40)
+  /// draft · published · retired
+  status               String    @default("draft") @db.VarChar(12)
+  schemaVersion        String    @map("schema_version") @db.VarChar(40)
+  c14nVersion          String    @map("c14n_version") @db.VarChar(40)
+  /// 집계 revision — 판본 안의 모든 변경이 올린다(**DB 트리거가** 올린다). 발행 예약 · 확정이 견준다
+  revision             Int       @default(1)
+  /// 설정 · 목차 · 구획 목록의 CAS
+  structureRevision    Int       @default(1) @map("structure_revision")
+  /// TextbookConfig (계약 `textbookConfigSchema`)
+  config               Json      @db.JsonB
+  /// { units: [{ unitKey, title, sourceUnitIds, prerequisites, goals, conceptLectureRefs }] } — 단원의 차례와 머리말
+  outline              Json      @db.JsonB
+  rendererVersion      String    @map("renderer_version") @db.VarChar(80)
+  templateVersion      String    @map("template_version") @db.VarChar(80)
+  derivedFromEditionId String?   @map("derived_from_edition_id") @db.Uuid
+  /// 발행 때 서버가 계산한다. 그 값을 낸 정본 교환 JSON 은 산출물 `exchange-json` 이다
+  manifestHash         String?   @map("manifest_hash") @db.Char(64)
+  publishedAt          DateTime? @map("published_at")
+  retiredAt            DateTime? @map("retired_at")
+  createdAt            DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+
+  textbook    Textbook                @relation(fields: [textbookId], references: [id], onDelete: Restrict)
+  sections    TextbookSection[]
+  items       TextbookItem[]
+  concepts    TextbookConcept[]
+  assets      TextbookEditionAsset[]
+  qrTargets   TextbookQrTarget[]
+  artifacts   TextbookArtifact[]
+  assignments TextbookAssignment[]
+  requests    TextbookRequest[]
+
+  @@unique([textbookId, ordinal])
+  @@index([userId, status])
+  @@map("textbook_edition")
+}
+
+/// 구획 — 원고 블록. 구획마다 CAS(`revision`). 열쇠는 (단원, 구획) 안에서만 유일해 API 는 `id` 로 부른다
+model TextbookSection {
+  id          String   @id @default(uuid()) @db.Uuid
+  editionId   String   @map("edition_id") @db.Uuid
+  unitKey     String   @map("unit_key") @db.VarChar(80)
+  sectionKey  String   @map("section_key") @db.VarChar(80)
+  /// 단원 안의 차례
+  orderIndex  Int      @default(0) @map("order_index")
+  title       String   @db.VarChar(120)
+  templateKey String   @map("template_key") @db.VarChar(160)
+  /// even-left · continue
+  startPolicy String   @map("start_policy") @db.VarChar(12)
+  /// { blocks: ManuscriptBlock[] } — 배치의 자리는 이 블록 순서 하나가 정한다
+  content     Json     @db.JsonB
+  revision    Int      @default(1)
+  createdAt   DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  edition  TextbookEdition   @relation(fields: [editionId], references: [id], onDelete: Cascade)
+  items    TextbookItem[]
+  concepts TextbookConcept[]
+
+  @@unique([editionId, unitKey, sectionKey])
+  @@map("textbook_section")
+}
+
+/// 문항 확정본 — INSERT 뒤로 불변(트리거). 원문이 바뀌면 새 행을 만든다.
+/// 🔴 내용을 읽을 때 살아 있는 `Problem` 을 섞지 않는다 — 본문 · 정답 · 해설 · 그림은 `payload` 에서만.
+model TextbookProblemSnapshot {
+  id              String    @id @default(uuid()) @db.Uuid
+  userId          String    @map("user_id") @db.Uuid
+  /// todays-math · legacy-studio · studio-authored
+  sourceSystem    String    @map("source_system") @db.VarChar(16)
+  /// 'tm:<problemId>' · 'legacy:<legacyId>' · 'studio:<localId>' — `sourceRef` 에서 나온다(CHECK)
+  sourceKey       String    @map("source_key") @db.VarChar(200)
+  /// 불변 정체(계약 `textbookSourceRefSchema`) — 문항 id · 저장 코드가 여기 고정된다
+  sourceRef       Json      @map("source_ref") @db.JsonB
+  /// 지금 은행 문항과 견줄 때만 쓴다. 원본이 지워지면 **이 칸만** 빈다 — FK(SET NULL)는 SQL 에 있다
+  problemId       String?   @map("problem_id") @db.Uuid
+  sourceUpdatedAt DateTime? @map("source_updated_at")
+  capturedAt      DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("captured_at")
+  unitId          String?   @map("unit_id") @db.Uuid
+  familyKey       String?   @map("family_key") @db.Text
+  difficulty      String?   @db.VarChar(40)
+  problemType     String?   @map("problem_type") @db.VarChar(100)
+  /// ProblemPayload — `contentHash` 의 대상
+  payload         Json      @db.JsonB
+  /// 원본 행의 그림 칸 넷을 글자 그대로 + 원본 SVG 자산 — 해시 밖의 증거. 길이가 안 맞는 배열도 고치지 않는다
+  rawSource       Json      @map("raw_source") @db.JsonB
+  /// 캡처 당시 unitId · 단원명 · 학년 · 난도 · 원본 배점
+  sourceMetadata  Json      @map("source_metadata") @db.JsonB
+  contentHash     String    @map("content_hash") @db.Char(64)
+  /// sourceRef + sourceMetadata + rawSource + contentHash
+  snapshotHash    String    @map("snapshot_hash") @db.Char(64)
+  c14nVersion     String    @map("c14n_version") @db.VarChar(40)
+
+  items         TextbookItem[]
+  videoBindings TextbookVideoBinding[]
+  testProblems  TestProblem[]
+
+  @@unique([userId, sourceKey, snapshotHash])
+  @@index([problemId])
+  @@map("textbook_problem_snapshot")
+}
+
+/// 배치 — 판본 속 문항 한 자리. 같은 문항을 두 번 실으면 두 줄이다
+model TextbookItem {
+  id                  String   @id @default(uuid()) @db.Uuid
+  editionId           String   @map("edition_id") @db.Uuid
+  userId              String   @map("user_id") @db.Uuid
+  snapshotId          String   @map("snapshot_id") @db.Uuid
+  /// unlinked · candidate · linked · needs-review — `linked` 는 실제 은행 문항의 확정본만(트리거)
+  linkStatus          String   @map("link_status") @db.VarChar(12)
+  linkCandidates      Json     @default("[]") @map("link_candidates") @db.JsonB
+  /// 출처 기록 — FK 를 걸지 않는다(시험지는 지워질 수 있다)
+  sourceTestId        String?  @map("source_test_id") @db.Uuid
+  sourceTestProblemId String?  @map("source_test_problem_id") @db.Uuid
+  unitKey             String   @map("unit_key") @db.VarChar(80)
+  /// NULL = 담아 두기만 했다
+  sectionId           String?  @map("section_id") @db.Uuid
+  learningStage       String   @map("learning_stage") @db.VarChar(20)
+  orderIndex          Int      @default(0) @map("order_index")
+  layout              Json     @db.JsonB
+  /// 문항별 정책 덮어쓰기. NULL = 판본 정책을 따른다
+  videoRequired       Boolean? @map("video_required")
+  /// 검수된 개념 열쇠 — 이 판본의 `TextbookConcept.conceptKey`
+  conceptKeys         Json     @default("[]") @map("concept_keys") @db.JsonB
+  derivedFromItemId   String?  @map("derived_from_item_id") @db.Uuid
+  /// 아래 넷은 발행 확정 때 **서버가** 채운다. 초안에서는 계산값이다
+  displayNumber       String?  @map("display_number") @db.VarChar(40)
+  physicalPageIndex   Int?     @map("physical_page_index")
+  printedPageLabel    String?  @map("printed_page_label") @db.VarChar(40)
+  pageColumn          Int?     @map("page_column") @db.SmallInt
+  revision            Int      @default(1)
+  createdAt           DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  edition   TextbookEdition         @relation(fields: [editionId], references: [id], onDelete: Cascade)
+  snapshot  TextbookProblemSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Restrict)
+  section   TextbookSection?        @relation(fields: [sectionId], references: [id], onDelete: NoAction)
+  qrTargets TextbookQrTarget[]
+
+  @@index([editionId, sectionId, orderIndex])
+  @@index([snapshotId])
+  @@map("textbook_item")
+}
+
+/// 바이트 — 내용 해시가 열쇠. 넣을 때 DB 가 해시를 다시 계산하고(트리거), 넣은 뒤로는 못 고친다.
+/// 🔴 `bytes` 를 목록 조회에서 읽지 않는다(`select`). 해시만으로 읽는 경로를 만들지 않는다 — 늘 주인 · 판본 범위를 지난다.
+model TextbookBlob {
+  sha256    String   @id @db.Char(64)
+  size      Int
+  bytes     Bytes
+  createdAt DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  @@map("textbook_blob")
+}
+
+/// 올리는 파일 — 조각이 다 오면 DB 가 이어 붙여 `TextbookBlob` 에 넣고 조각을 지운다.
+/// 끝난 줄(`completedAt`)은 남는다 — 가져오기 · 자산 등록이 `id` 로 그 바이트를 가리킨다
+model TextbookUpload {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  sha256      String    @db.Char(64)
+  /// 끝맺을 때 정해진다
+  size        Int?
+  fileName    String?   @map("file_name") @db.VarChar(255)
+  completedAt DateTime? @map("completed_at")
+  createdAt   DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  chunks TextbookUploadChunk[]
+
+  @@unique([userId, sha256])
+  @@map("textbook_upload")
+}
+
+/// 조각 하나(≤ 1MB) — 열쇠는 파일 안의 바이트 자리다. 끝맺을 때 빈틈 · 겹침 없이 이어지는지 본다
+model TextbookUploadChunk {
+  uploadId   String @map("upload_id") @db.Uuid
+  byteOffset Int    @map("byte_offset")
+  bytes      Bytes
+
+  upload TextbookUpload @relation(fields: [uploadId], references: [id], onDelete: Cascade)
+
+  @@id([uploadId, byteOffset])
+  @@map("textbook_upload_chunk")
+}
+
+/// 자산 — 주인이 가진 손잡이. `id` 는 내용 해시다(= `TextbookBlob.sha256`). 이름만 바꿀 수 있다(트리거)
+model TextbookAsset {
+  userId    String   @map("user_id") @db.Uuid
+  id        String   @db.Char(64)
+  /// figure · image · portrait · font
+  kind      String   @db.VarChar(12)
+  mimeType  String   @map("mime_type") @db.VarChar(40)
+  name      String   @db.VarChar(255)
+  /// 바이트에서 잰 값. 원본 행의 figureDims 는 확정본 `rawSource` 에 따로 있다
+  widthPx   Int?     @map("width_px")
+  heightPx  Int?     @map("height_px")
+  createdAt DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  @@id([userId, id])
+  @@map("textbook_asset")
+}
+
+/// 판본이 가리키는 자산 — 읽기 범위의 색인. 공유본을 여는 동료는 여기 있는 것만 읽는다
+model TextbookEditionAsset {
+  editionId String @map("edition_id") @db.Uuid
+  userId    String @map("user_id") @db.Uuid
+  assetId   String @map("asset_id") @db.Char(64)
+
+  edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Cascade)
+
+  @@id([editionId, assetId])
+  @@index([userId, assetId])
+  @@map("textbook_edition_asset")
+}
+
+/// 교재의 개념 — 판본 속 개념 하나. 발행본의 이 행이 곧 개념 확정본이다(`frozen`)
+model TextbookConcept {
+  editionId             String   @map("edition_id") @db.Uuid
+  conceptKey            String   @map("concept_key") @db.VarChar(80)
+  unitKey               String   @map("unit_key") @db.VarChar(80)
+  /// 개념 블록이 놓인 구획. NULL = 아직 안 놓았다
+  sectionId             String?  @map("section_id") @db.Uuid
+  title                 String   @db.VarChar(120)
+  /// CONCEPT_KINDS — **SQL 에만 있는 것**: CHECK kind IN (...). 가드 시험이 둘을 견준다
+  kind                  String   @db.VarChar(8)
+  /// 이 개념의 차시 — FK(RESTRICT)는 SQL 에 있다
+  unitId                String?  @map("unit_id") @db.Uuid
+  body                  Json     @db.JsonB
+  /// 순서가 지면의 순서다
+  blankItems            Json     @default("[]") @map("blank_items") @db.JsonB
+  /// 백지로 낼 형식(recall · term · cloze · map · figure). NULL = 고르지 않았다 — 빈 배열로 채우지 않는다
+  blankForms            Json?    @map("blank_forms") @db.JsonB
+  links                 Json     @default("[]") @db.JsonB
+  mappingVersion        String   @map("mapping_version") @db.VarChar(80)
+  derivedFromConceptKey String?  @map("derived_from_concept_key") @db.VarChar(80)
+  /// 발행 확정 때 서버가 채운다. 초안에서는 NULL
+  frozen                Json?    @db.JsonB
+  revision              Int      @default(1)
+  createdAt             DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt             DateTime @updatedAt @map("updated_at")
+
+  edition  TextbookEdition          @relation(fields: [editionId], references: [id], onDelete: Cascade)
+  section  TextbookSection?         @relation(fields: [sectionId], references: [id], onDelete: NoAction)
+  attempts TextbookConceptAttempt[]
+
+  @@id([editionId, conceptKey])
+  @@index([unitId])
+  @@map("textbook_concept")
+}
+
+/// QR 대상 — slug · 주소 · 대상은 영구다. 지우지 못한다(트리거). 서버만 짓는다
+model TextbookQrTarget {
+  id          String    @id @default(uuid()) @db.Uuid
+  slug        String    @unique @db.VarChar(100)
+  url         String    @db.VarChar(300)
+  /// item · concept
+  kind        String    @db.VarChar(8)
+  editionId   String    @map("edition_id") @db.Uuid
+  itemId      String?   @map("item_id") @db.Uuid
+  conceptKey  String?   @map("concept_key") @db.VarChar(80)
+  /// reserved → active | void. reserved 는 학생에게 안 보인다
+  state       String    @default("reserved") @db.VarChar(10)
+  /// 발행 뒤 바꿀 수 있는 유일한 칸
+  suspendedAt DateTime? @map("suspended_at")
+  createdAt   DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  activatedAt DateTime? @map("activated_at")
+
+  edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Restrict)
+  item    TextbookItem?   @relation(fields: [itemId], references: [id], onDelete: Restrict)
+
+  @@map("textbook_qr_target")
+}
+
+/// 문제 해설영상 — 공급자와 영상 id 는 안 바뀐다(트리거). 다른 영상은 새 행이다.
+/// 주소를 통째로 받지 않는다 — 서버가 공급자와 id 로 짓는다
+model TextbookVideo {
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String   @map("user_id") @db.Uuid
+  /// youtube
+  provider        String   @db.VarChar(12)
+  providerVideoId String   @map("provider_video_id") @db.VarChar(20)
+  title           String   @db.VarChar(120)
+  createdAt       DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  bindings TextbookVideoBinding[]
+
+  @@unique([userId, provider, providerVideoId])
+  @@map("textbook_video")
+}
+
+/// 확정본 ↔ 영상 연결 — draft → review → published → withdrawn.
+/// 게시는 검수한 것만: `reviewedAgainstHash` 가 확정본의 `contentHash` 와 같아야 한다(트리거)
+model TextbookVideoBinding {
+  id                  String    @id @default(uuid()) @db.Uuid
+  userId              String    @map("user_id") @db.Uuid
+  snapshotId          String    @map("snapshot_id") @db.Uuid
+  videoId             String    @map("video_id") @db.Uuid
+  status              String    @default("draft") @db.VarChar(10)
+  startSeconds        Float     @default(0) @map("start_seconds")
+  endSeconds          Float?    @map("end_seconds")
+  reviewedAgainstHash String?   @map("reviewed_against_hash") @db.Char(64)
+  reviewedBy          String?   @map("reviewed_by") @db.Uuid
+  reviewedAt          DateTime? @map("reviewed_at")
+  publishedAt         DateTime? @map("published_at")
+  withdrawnAt         DateTime? @map("withdrawn_at")
+  createdAt           DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  snapshot TextbookProblemSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Restrict)
+  video    TextbookVideo           @relation(fields: [videoId], references: [id], onDelete: Restrict)
+
+  @@index([snapshotId])
+  @@index([videoId])
+  @@map("textbook_video_binding")
+}
+
+/// 배정 — 반 또는 학생 하나에, 판본 전체 · 구획들 · 배치들을. 발행본에만 건다(트리거). 회수는 `revokedAt`
+model TextbookAssignment {
+  id         String    @id @default(uuid()) @db.Uuid
+  editionId  String    @map("edition_id") @db.Uuid
+  classId    String?   @map("class_id") @db.Uuid
+  studentId  String?   @map("student_id") @db.Uuid
+  /// edition · sections · items (계약 `textbookAssignmentScopeSchema`)
+  scopeKind  String    @map("scope_kind") @db.VarChar(10)
+  /// 구획 id 들 또는 배치 id 들. 판본 전체면 비어 있다 — 빈 범위가 «전체»로 읽히지 않게 CHECK 가 짝을 본다
+  scopeIds   Json      @default("[]") @map("scope_ids") @db.JsonB
+  opensAt    DateTime  @map("opens_at")
+  expiresAt  DateTime? @map("expires_at")
+  revokedAt  DateTime? @map("revoked_at")
+  assignedBy String?   @map("assigned_by") @db.Uuid
+  createdAt  DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Restrict)
+  class   Class?          @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student Student?        @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@index([classId])
+  @@index([studentId])
+  @@index([editionId])
+  @@map("textbook_assignment")
+}
+
+/// 요청 기록 — 같은 `requestId` 는 한 번만 만든다. 같은 id 에 다른 본문(`bodyHash`)이면 409
+model TextbookRequest {
+  userId       String   @map("user_id") @db.Uuid
+  requestId    String   @map("request_id") @db.Uuid
+  operation    String   @db.VarChar(32)
+  editionId    String?  @map("edition_id") @db.Uuid
+  /// open · done · abandoned
+  state        String   @db.VarChar(10)
+  baseRevision Int?     @map("base_revision")
+  bodyHash     String   @map("body_hash") @db.Char(64)
+  result       Json?    @db.JsonB
+  createdAt    DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  edition TextbookEdition?      @relation(fields: [editionId], references: [id], onDelete: Cascade)
+  steps   TextbookPublishStep[]
+
+  @@id([userId, requestId])
+  @@index([editionId, operation])
+  @@map("textbook_request")
+}
+
+/// 발행 조판 걸음 — 서버가 조판하고 결과를 적는다. 끝난 걸음은 안 바뀐다(트리거)
+model TextbookPublishStep {
+  userId         String    @map("user_id") @db.Uuid
+  requestId      String    @map("request_id") @db.Uuid
+  idx            Int
+  /// render(구획 묶음 조판) · merge(조각을 합치고 QR 을 다시 읽는다) · spread(펼침면) · offline(단일 HTML)
+  kind           String    @default("render") @db.VarChar(8)
+  /// student · answers
+  view           String    @db.VarChar(8)
+  sectionIds     Json      @map("section_ids") @db.JsonB
+  /// queued · running · done · failed
+  state          String    @default("queued") @db.VarChar(8)
+  attempts       Int       @default(0) @db.SmallInt
+  leaseUntil     DateTime? @map("lease_until")
+  leaseToken     String?   @map("lease_token") @db.Uuid
+  firstPageIndex Int?      @map("first_page_index")
+  pageCount      Int?      @map("page_count")
+  /// 서버가 만든 PDF 조각의 해시(`TextbookBlob`)
+  sha256         String?   @db.Char(64)
+  /// 쪽 계획 · 배치 자리 · 진단(넘침 · 수식 오류 · 빠진 그림 · 읽힌 QR)
+  result         Json?     @db.JsonB
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  request TextbookRequest @relation(fields: [userId, requestId], references: [userId, requestId], onDelete: Cascade)
+
+  @@id([userId, requestId, idx])
+  @@map("textbook_publish_step")
+}
+
+/// 발행 산출물 — 서버가 만든 PDF · 정본 교환 JSON · 검수 보고 · 매핑표. 판본마다 종류 하나
+model TextbookArtifact {
+  id        String   @id @default(uuid()) @db.Uuid
+  editionId String   @map("edition_id") @db.Uuid
+  /// 계약 `textbookArtifactSchema.kind` — **SQL 에만 있는 것**: CHECK kind IN (...). 가드 시험이 둘을 견준다
+  kind      String   @db.VarChar(16)
+  mimeType  String   @map("mime_type") @db.VarChar(100)
+  sha256    String   @db.Char(64)
+  byteSize  Int      @map("byte_size")
+  pageCount Int?     @map("page_count")
+  /// 조판 걸음의 조각 해시 · 쪽 범위 — 합친 파일이 어디서 왔는지의 기록
+  parts     Json     @default("[]") @db.JsonB
+  createdAt DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Cascade)
+
+  @@unique([editionId, kind])
+  @@map("textbook_artifact")
+}
+
+/// 학생의 백지 활동 — 발행본의 굳은 개념 하나에 대한 한 번. 새 제출은 새 줄이고 낸 글은 덮어쓰지 못한다(트리거)
+model TextbookConceptAttempt {
+  id           String    @id @default(uuid()) @db.Uuid
+  editionId    String    @map("edition_id") @db.Uuid
+  conceptKey   String    @map("concept_key") @db.VarChar(80)
+  studentId    String    @map("student_id") @db.Uuid
+  requestId    String    @map("request_id") @db.Uuid
+  bodyHash     String    @map("body_hash") @db.Char(64)
+  frozenHash   String    @map("frozen_hash") @db.Char(64)
+  /// recall · term · cloze · map · figure
+  form         String    @db.VarChar(8)
+  /// student-text · teacher-observed
+  channel      String    @db.VarChar(16)
+  response     String    @db.Text
+  /// 종이 활동을 본 교사 — `teacher-observed` 일 때만
+  recordedBy   String?   @map("recorded_by") @db.Uuid
+  submittedAt  DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("submitted_at")
+  /// pending · checked · needs-review
+  reviewStatus String    @default("pending") @map("review_status") @db.VarChar(12)
+  reviewedBy   String?   @map("reviewed_by") @db.Uuid
+  reviewedAt   DateTime? @map("reviewed_at")
+  note         String?   @db.VarChar(4000)
+  revision     Int       @default(1)
+
+  concept TextbookConcept @relation(fields: [editionId, conceptKey], references: [editionId, conceptKey], onDelete: Restrict)
+  student Student         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@unique([studentId, requestId])
+  @@index([editionId, conceptKey, studentId, submittedAt], map: "textbook_concept_attempt_concept_student_idx")
+  @@index([studentId, submittedAt])
+  @@map("textbook_concept_attempt")
+}
+
+/// 보관본 — 가져온 패키지를 바이트 그대로 둔다. 원 ID 를 살아 있는 책 · 판본 · QR 표에 넣지 않는다
+model TextbookArchive {
+  id            String   @id @default(uuid()) @db.Uuid
+  userId        String   @map("user_id") @db.Uuid
+  sha256        String   @db.Char(64)
+  byteSize      Int      @map("byte_size")
+  fileName      String   @map("file_name") @db.VarChar(255)
+  title         String   @db.VarChar(120)
+  schemaVersion String   @map("schema_version") @db.VarChar(40)
+  manifestHash  String?  @map("manifest_hash") @db.Char(64)
+  /// 검증 보고와 패키지 요약(원 판본 정체 · 개수)
+  report        Json     @db.JsonB
+  createdAt     DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
+
+  @@unique([userId, sha256])
+  @@index([userId, createdAt])
+  @@map("textbook_archive")
 }
 
 /// Listening is an independent ownership root. Draft document revision differs from row CAS revision.

@@ -106,6 +106,8 @@ interface Row {
    *    이 시뮬레이션이 «제품이 아닌 것»의 성적을 내게 된다.
    */
   figureSourceMm?: number[];
+  /** 보기 그림의 짝 — 알면 지면이 달라진다(2026-10-03 B1). 측정기의 지문과 같이 본다. */
+  choiceFigureIndex?: number[];
   /** 채점의 «참» — 지면을 그려 잰 값이다. 제품은 이 값을 못 본다. */
   neededPx: number;
 }
@@ -117,11 +119,19 @@ function arg(name: string): string | undefined {
 
 /** 엔진이 지면을 못 보던 때 — 지면 셋을 떼고 부른다. */
 function blind(row: Row): Row {
-  const { content, figureUrls, figureDims, figureSourceMm, ...rest } = row;
+  const {
+    content,
+    figureUrls,
+    figureDims,
+    figureSourceMm,
+    choiceFigureIndex,
+    ...rest
+  } = row;
   void content;
   void figureUrls;
   void figureDims;
   void figureSourceMm;
+  void choiceFigureIndex;
   return rest;
 }
 
@@ -135,6 +145,7 @@ const toPrint = (rows: Row[]): TestPrintProblem[] =>
     figureUrls: r.figureUrls ?? [],
     figureDims: r.figureDims ?? [],
     figureSourceMm: r.figureSourceMm ?? [],
+    choiceFigureIndex: r.choiceFigureIndex,
   }));
 
 /**
@@ -263,6 +274,7 @@ async function main() {
     `SELECT id, unit_id AS "unitId", difficulty, problem_type AS "problemType",
             content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
             figure_source_mm AS "figureSourceMm",
+            choice_figure_index AS "choiceFigureIndex",
             question_type AS "questionType",
             (pool = 'shared' AND review_status = 'approved'
              AND direct_use_allowed = TRUE AND answer <> '(정답 없음)') AS eligible
@@ -273,6 +285,7 @@ async function main() {
       figureUrls: string[];
       figureDims: number[];
       figureSourceMm: number[] | null;
+      choiceFigureIndex: number[] | null;
       questionType: string | null;
       eligible: boolean;
     }
@@ -305,6 +318,7 @@ async function main() {
       figureUrls: r.figureUrls,
       figureDims: r.figureDims,
       figureSourceMm: r.figureSourceMm,
+      choiceFigureIndex: r.choiceFigureIndex,
       questionType: r.questionType,
     })),
   );
@@ -463,6 +477,7 @@ async function main() {
       figureUrls: r.figureUrls,
       figureDims: capDims(r.figureUrls, r.figureDims),
       figureSourceMm: r.figureSourceMm ?? undefined,
+      choiceFigureIndex: r.choiceFigureIndex ?? undefined,
       neededPx,
     });
   }

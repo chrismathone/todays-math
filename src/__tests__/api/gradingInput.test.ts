@@ -23,6 +23,7 @@
  * 다름을 단언한 뒤, 구현이 앞엣것과 같은지 본다.
  */
 import { NextRequest } from "next/server";
+vi.mock("server-only", () => ({}));
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/session", () => ({

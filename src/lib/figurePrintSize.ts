@@ -163,7 +163,7 @@ export function checkFigureSourceMm(
  */
 export function parseFigureSourceMm(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
+  flat: readonly (number | null)[] | null | undefined,
 ): (number | null)[] {
   if (figureCount <= 0) return [];
   const unknown = (): (number | null)[] =>
@@ -321,8 +321,8 @@ export function figureSvgUrlPrintMm(
 
 export function parseFigureDimensions(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
-  sourceMmFlat?: readonly number[] | null,
+  flat: readonly (number | null)[] | null | undefined,
+  sourceMmFlat?: readonly (number | null)[] | null,
   /**
    * 그림 경로 — **mm 를 모를 때만** 쓴다(벡터인지 스캔인지 가른다).
    * 안 주면 예전 그대로 «모른다»로 둔다 — 부르는 쪽을 한꺼번에 안 고쳐도 된다.
@@ -345,9 +345,15 @@ export function parseFigureDimensions(
         sourceMm: engine.widthMm,
       };
     if (!paired) return null;
-    const width = flat![index * 2]!;
-    const height = flat![index * 2 + 1]!;
-    if (!Number.isFinite(width) || !Number.isFinite(height)) return null;
+    const width = flat![index * 2];
+    const height = flat![index * 2 + 1];
+    if (
+      typeof width !== "number" ||
+      typeof height !== "number" ||
+      !Number.isFinite(width) ||
+      !Number.isFinite(height)
+    )
+      return null;
     if (width <= 0 || height <= 0) return null;
     const mm = sourceMm[index];
     if (mm != null) return { width, height, sourceMm: mm };

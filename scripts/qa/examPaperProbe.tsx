@@ -38,6 +38,8 @@ export interface ExamSlot {
   figureUrls?: string[];
   figureDims?: number[];
   figureSourceMm?: number[];
+  /** 보기 그림의 짝 — 알면 제품이 그림을 번호 칸 안에 넣는다(`paperProbe.SlotInput` 과 같은 까닭). */
+  choiceFigureIndex?: number[];
   figureSvg?: string | null;
 }
 
@@ -67,6 +69,7 @@ function bodyMarkup(slot: ExamSlot): string {
       deferFigures={false}
       figureDims={slot.figureDims}
       figureSourceMm={slot.figureSourceMm}
+      choiceFigureIndex={slot.choiceFigureIndex}
       figureSvg={slot.figureSvg ?? null}
       figureUrls={(slot.figureUrls ?? []).map((url) =>
         url.startsWith("/") ? FIGURE_ROOT + url : url,

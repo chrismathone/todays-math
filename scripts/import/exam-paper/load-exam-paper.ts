@@ -32,9 +32,15 @@ import { PrismaClient } from "@prisma/client";
 import { mapUnitHint } from "../../../src/lib/import/mapUnit";
 
 import { loadExamConfig } from "./examConfig";
-import { graphFigureFields } from "./graphChoiceFigures";
+import {
+  graphFigureFields,
+  resolveGraphFigureAssignments,
+} from "./graphChoiceFigures";
 import { syncExamMetadata } from "../../../src/lib/import/syncExamMetadata";
 import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
+import { parseProblemContent } from "../../../src/lib/problem/parseProblemContent";
+import { hasUnlinkedFigureChoices } from "../../../src/lib/problem/choiceFigureIndex";
+import { appendSolutionNote, withoutSolutionNote } from "./examDecisions";
 
 const DIR = process.argv[2];
 const APPLY = process.argv.includes("--apply");
@@ -160,7 +166,10 @@ function readSourceFigures(): Map<number, SourceFigure[]> {
     figures: SourceFigure[];
   };
   const by = new Map<number, SourceFigure[]>();
-  for (const f of idx.figures) {
+  for (const f of resolveGraphFigureAssignments(
+    idx.figures,
+    CFG.graphChoices,
+  )) {
     const src = join(FIGURE_SRC_DIR, f.file);
     if (!existsSync(src))
       throw new Error(`[중단] 색인이 가리키는 ${f.file} 이 없다`);
@@ -311,6 +320,7 @@ interface Draft {
   school: string | null;
   subject: string | null;
   examId: string | null;
+  choiceFigureIndex?: number[];
 }
 
 async function revert(): Promise<void> {
@@ -409,6 +419,11 @@ async function main(): Promise<void> {
 
   for (const d of drafts) {
     const n = d.questionNumber!;
+    const excluded = CFG.excludeFromLoad?.[n];
+    if (excluded) {
+      skipped.push(`문${n}: 적재 제외 — ${excluded}`);
+      continue;
+    }
     const want = UNIT_BY_NUMBER[n];
     const unit = bySection.get(want.section);
     if (!unit) {
@@ -430,7 +445,7 @@ async function main(): Promise<void> {
     }
 
     // ── 해설 ──────────────────────────────────────────────────────────────
-    let solution = d.solution;
+    let solution = withoutSolutionNote(d.solution, CFG.solutionNotes?.[n]);
     let solutionSource: "none" | "original" | "ai" = solution
       ? "original"
       : "none";
@@ -457,8 +472,20 @@ async function main(): Promise<void> {
       }
     }
 
+    solution = appendSolutionNote(solution, CFG.solutionNotes?.[n]);
+
     // ── 지면 검사 ─────────────────────────────────────────────────────────
     const figs = sourceFigures.get(n) ?? [];
+    const choiceFigureIndex =
+      graphFigureFields(CFG.graphChoices?.[n], figs).choiceFigureIndex ??
+      d.choiceFigureIndex;
+    const unlinked = hasUnlinkedFigureChoices(
+      figs.length,
+      choiceFigureIndex,
+      parseProblemContent(d.content).choices,
+    );
+    if (unlinked)
+      console.log(`  문${n}: 출제 잠금 — 보기 그림 연결을 확인할 수 없다`);
 
     const faults = [
       ...renderFaults(d.content).map((f) => `본문: ${f}`),
@@ -484,7 +511,7 @@ async function main(): Promise<void> {
       solutionSource,
       // 🔴 원본을 옮긴다. `figureSvg`(우리가 다시 그린 것)는 **안 쓴다**.
       figureUrls: figs.length > 0 ? copyFigures(figs) : [],
-      ...graphFigureFields(CFG.graphChoices?.[n], figs),
+      ...(choiceFigureIndex ? { choiceFigureIndex } : {}),
       figureDims: figs.flatMap((f) => f.px),
       figureSourceMm: figs.map((f) => f.widthMm),
       figureSvg: null,
@@ -497,7 +524,7 @@ async function main(): Promise<void> {
       questionNumber: n,
       score: d.score,
       reviewStatus: "approved",
-      directUseAllowed: true,
+      directUseAllowed: !unlinked,
       pool: "shared",
     });
   }

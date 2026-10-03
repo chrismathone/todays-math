@@ -1,0 +1,121 @@
+.panel {
+  border: 1px solid var(--ws-line, #d9ded9);
+  border-radius: 8px;
+  margin: 16px 0;
+  color: inherit;
+  background: var(--ws-surface, white);
+}
+button.disclosure {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 650;
+  text-align: left;
+  cursor: pointer;
+}
+.content {
+  padding: 0 18px 18px;
+}
+.content p {
+  margin: 8px 0;
+}
+.field {
+  display: grid;
+  gap: 6px;
+  max-width: 620px;
+  font: inherit;
+}
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  border: 1px solid var(--ws-line, #cbd3cd);
+  border-radius: 6px;
+  background: white;
+  color: #202b27;
+}
+.field textarea {
+  resize: vertical;
+}
+.muted {
+  color: var(--muted, #63746a);
+  font-size: 13px;
+}
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+.list > li {
+  padding: 16px 0;
+  border-top: 1px solid var(--ws-line, #d9ded9);
+}
+.row,
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.row {
+  justify-content: space-between;
+}
+.actions {
+  margin-top: 10px;
+}
+.panel button,
+.panel a {
+  min-height: 40px;
+}
+.actions button {
+  padding: 8px 12px;
+  font: inherit;
+  border-radius: 6px;
+  border: 1px solid var(--ws-line, #bccabf);
+  background: white;
+  color: inherit;
+  cursor: pointer;
+}
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ws-accent, #24663d);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.actions button:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+.panel :is(button, select, textarea, a):focus-visible {
+  outline: 3px solid var(--learn-focus, #82a1ff);
+  outline-offset: 3px;
+}
+.response {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  margin: 12px 0;
+  padding: 14px;
+  background: var(--learn-neutral, #f2f5f3);
+  border-radius: 6px;
+}
+.notice {
+  padding: 16px;
+}
+@media (max-width: 520px) {
+  .content {
+    padding: 0 12px 12px;
+  }
+  .disclosure {
+    padding: 14px 12px;
+  }
+  .row {
+    align-items: flex-start;
+  }
+}

@@ -183,6 +183,25 @@ describe("회복 판정 (judgeRescue)", () => {
   });
 
   it("칸에 **글자가 있으면** 여전히 치명이어도 부분이다", () => {
+    // 정답 ④ 의 칸만 비었다 — HWP 팔도 «정답 보기 없음»으로 치명이다. 그래도 글자가 든 칸이 넷이니 «부분».
+    // (2026-10-03 전에는 ① ~ ④ 를 채운 입력을 썼다 — 아래 시험의 머리말.)
+    const filled: HwpQ = {
+      ...IMAGE_CHOICE_HWP,
+      choices: ["$1$", "$2$", "$3$", "", "$5$"],
+    };
+    const r = judgeRescue(
+      base({ content: 표보기.content, answer: 표보기.answer, hwp: filled }),
+    );
+    expect(r.arms.HWP?.verdict).toBe("정답보기없음");
+    expect(r.rescue).toBe("부분");
+  });
+
+  it("발문에 표의 번호가 남아 있어도, 끝의 온전한 보기 묶음이 정답 칸을 주면 치명에서 벗어난다", () => {
+    // 이 발문은 표가 통째로 발문에 들어와 ① ② ③ ⑤ 가 줄머리에 선다(④ 는 유실).
+    // 예전 파서는 그 번호와 뒤의 보기 ① ~ ⑤ 를 한 줄로 세어 «번호 중복»(치명)이었다 — 그래서 위 시험이
+    // ① ~ ④ 를 채운 입력으로도 «부분»이었다. 2026-10-03(3자 합의 B3)부터 파서는 **끝의 온전한 1..n(n ≥ 4)
+    // 묶음만** 보기로 읽는다. 표의 번호는 발문에 남고, 정답 ④ 의 칸이 있으니 학생이 고를 수 있다.
+    // 🔴 전체 시험을 돌리기 전에는 이 판정이 바뀐 줄 몰랐다 — 파서를 고치면 이 판정기도 «관련 시험»이다.
     const filled: HwpQ = {
       ...IMAGE_CHOICE_HWP,
       choices: ["$1$", "$2$", "$3$", "$4$", ""],
@@ -190,7 +209,8 @@ describe("회복 판정 (judgeRescue)", () => {
     const r = judgeRescue(
       base({ content: 표보기.content, answer: 표보기.answer, hwp: filled }),
     );
-    expect(r.rescue).toBe("부분");
+    expect(r.arms.HWP?.verdict).not.toBe("정답번호중복");
+    expect(r.rescue).toBe("치명탈출");
   });
 
   it("**«치명 아님» 을 회복으로 세지 않는다** — 보기를 통째로 잃어 서술형처럼 보이는 것", () => {

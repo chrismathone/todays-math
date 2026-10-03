@@ -51,6 +51,7 @@ async function main(): Promise<number> {
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
     },
   });
   if (rows.length === 0) {
@@ -68,6 +69,7 @@ async function main(): Promise<number> {
     figureUrls: r.figureUrls,
     figureDims: r.figureDims,
     figureSourceMm: r.figureSourceMm,
+    choiceFigureIndex: r.choiceFigureIndex,
   }));
 
   /**

@@ -13,6 +13,7 @@ import AccountReview, {
   STATUS_LABELS,
 } from "./AccountReview";
 import AdminHeader from "./AdminHeader";
+import AccountSyncBadge from "./AccountSyncBadge";
 import {
   AccountRequestError,
   accountRequest,
@@ -336,12 +337,15 @@ export default function AdminAccounts({
                             data-selected={selected?.id === account.id}
                           >
                             <td className={s.accountCell}>
-                              <Link
-                                className={s.accountLink}
-                                href={`/admin/branches/${encodeURIComponent(branchId)}/users/${encodeURIComponent(account.id)}`}
-                              >
-                                {account.name || "이름 미등록"}
-                              </Link>
+                              <div className={s.accountName}>
+                                <Link
+                                  className={s.accountLink}
+                                  href={`/admin/branches/${encodeURIComponent(branchId)}/users/${encodeURIComponent(account.id)}`}
+                                >
+                                  {account.name || "이름 미등록"}
+                                </Link>
+                                <AccountSyncBadge sync={account.eywaSync} />
+                              </div>
                               <span>{account.email}</span>
                             </td>
                             <td>

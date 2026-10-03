@@ -126,6 +126,12 @@ export function accountRouteAllowed(
     return any("studio");
   if (under(path, "/dev") || under(path, "/api/dev")) return false;
   if (path === "/" || path === "/studio") return true; // The shell filters its hash-based panels separately.
+  if (
+    under(path, "/api/textbook") ||
+    under(path, "/textbook") ||
+    under(path, "/q")
+  )
+    return any("textbook");
   if (under(path, "/api/library")) return any("library", "studio", "export");
   if (
     under(path, "/api/studio/ai") ||

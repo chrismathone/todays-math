@@ -21,6 +21,7 @@ import {
 import { fitsTwoColumns } from "@/lib/math/displayWidth";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
+import { choiceFigureMode } from "@/lib/problem/choiceFigureIndex";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 
 /**
@@ -49,6 +50,11 @@ export interface ProblemContentProps {
    */
   figureUrls?: string[];
   /**
+   * 그림 순서대로 0 = 발문, 1부터 = 보기 번호, `null` = 아직 안 봤다(발문도 ① 도 아니다).
+   * 비면 예전 조판 그대로다. 읽는 법은 두 갈래 — 아래 `choiceFigures` · `mapped` 의 주석.
+   */
+  choiceFigureIndex?: (number | null)[];
+  /**
    * 도형 SVG (엔진 산출물, inline). `figureUrls`(스캔 래스터)와 **다른 갈래**다 —
    * 이쪽은 벡터라 화면·인쇄가 같은 것을 쓰고 해상도 손실이 없다.
    * AI 변형이 만드는 도형이 여기로 들어온다(D-55).
@@ -63,7 +69,7 @@ export interface ProblemContentProps {
    * (`Problem.figureDims`). 여기서는 **비율**의 근거로만 쓴다 —
    * 치수를 모르면 물리 폭도 안 쓴다(자와 지면이 같이 모른다).
    */
-  figureDims?: number[];
+  figureDims?: (number | null)[];
   /**
    * `figureUrls` 와 **같은 순서·같은 길이**로 짝지은 **원본 지면 물리 폭(mm)**
    * (`Problem.figureSourceMm`). 「얼마로 그린다」의 유일한 근거다.
@@ -71,7 +77,7 @@ export interface ProblemContentProps {
    * ⚠️ **비면 «모른다»이고, 모르면 오늘 그대로 픽셀로 그린다**(회귀 0).
    *    규칙은 `src/lib/figurePrintSize.ts` 한 곳에 있고 넘침 판정도 같은 함수를 쓴다.
    */
-  figureSourceMm?: number[];
+  figureSourceMm?: (number | null)[];
   className?: string;
   /**
    * 그림을 지연 로딩할지. 화면 목록(문제은행·검수)은 true —
@@ -100,6 +106,7 @@ export interface ProblemContentProps {
 export function ProblemContent({
   content,
   figureUrls,
+  choiceFigureIndex,
   figureSvg,
   figureDims,
   figureSourceMm,
@@ -110,6 +117,21 @@ export function ProblemContent({
 }: ProblemContentProps) {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   const figures = figureUrls ?? [];
+  /**
+   * 보기 그림의 짝을 읽는 갈래 — 규칙은 `choiceFigureMode` 한 곳에 있다(자 `estimateProblemPx` 도 같은 함수를 부른다).
+   *
+   *  ㉠ `choiceFigures`(grid) — 짝이 온전하다(은행 · 3자 합의 B1): 그림이 `[그림]` 자리를 **대신해** 번호 칸 안에 서고 보기는 늘 2열.
+   *  ㉡ `mapped`(loose) — 글 보기에 그림이 딸린 문항의 덜 된 짝(교재 스냅샷): 아는 그림은 그 보기의 글 **아래**에,
+   *     모르는 그림은 «그림 대응 확인 필요»와 함께 발문 자리에.
+   *  ㉢ 그 밖(none) — 예전 조판 그대로(마크업이 한 글자도 안 바뀐다). 그림뿐인 보기가 있는데 짝이 어긋난 문항도 여기다.
+   */
+  const figureMode = choiceFigureMode(
+    figures.length,
+    choiceFigureIndex,
+    choices,
+  );
+  const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
+  const stemFigures = choiceFigures?.stem ?? figures.map((_, index) => index);
   /**
    * 그림이 붙어 있는데 발문에 `[그림]` 자국이 남은 문항이 3,951건 있다
    * (원장님 2026-08-20). 그림은 바로 아래 그려지므로 그 글자는 군더더기다.
@@ -152,6 +174,37 @@ export function ProblemContent({
   // undefined 면 React 가 속성 자체를 만들지 않는다 — 인쇄 지면은 종전 그대로.
   const figureLoading = deferFigures ? "lazy" : undefined;
   const figureDecoding = deferFigures ? "async" : undefined;
+  const mapped = figureMode.mode === "loose";
+  const associations = figures.map((_, i) => {
+    const n = choiceFigureIndex?.[i];
+    return choiceFigureIndex?.length === figures.length &&
+      n !== null &&
+      Number.isInteger(n) &&
+      n! >= 0 &&
+      n! <= 100
+      ? n!
+      : null;
+  });
+  const mappedFigure = (url: string, index: number) => (
+    <div
+      key={`${index}:${url}`}
+      data-figure-choice={associations[index] ?? "unknown"}
+      className="mt-3 flex flex-col items-center print:break-inside-avoid"
+    >
+      {associations[index] === null || associations[index]! > choices.length ? (
+        <span className="text-xs">그림 대응 확인 필요</span>
+      ) : null}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={url}
+        alt={`문항 그림 ${index + 1}`}
+        className={`h-auto w-auto max-w-full ${FIGURE_BLEND_CLASS}`}
+        style={figureWidthStyle(placements[index]?.sourceMm)}
+        loading={figureLoading}
+        decoding={figureDecoding}
+      />
+    </div>
+  );
 
   return (
     <div className={className}>
@@ -174,19 +227,27 @@ export function ProblemContent({
           dangerouslySetInnerHTML={{ __html: figureSvg }}
         />
       ) : null}
-      {figures.length > 0 ? (
+      {mapped ? (
+        figures.map((url, i) =>
+          associations[i] === 0 ||
+          associations[i] === null ||
+          associations[i]! > choices.length
+            ? mappedFigure(url, i)
+            : null,
+        )
+      ) : stemFigures.length > 0 ? (
         // 발문 뒤·보기 앞 — 원본 지면 순서 그대로.
         // 장식 없음(05 §0: 유리·그림자·그라데이션 금지). 그림 자체가 내용이다.
         // `justify-center` — 원장님 지시(2026-08-20): 「그림이 문제 중앙 정렬 되면
         // 좋겠네」. 여러 장이면 줄마다 가운데로 모인다(원본 순서는 그대로).
         <div className="mt-3 flex flex-wrap items-start justify-center gap-4 print:break-inside-avoid">
-          {figures.map((url, index) => (
+          {stemFigures.map((index) => (
             // 원본 비율·자연 크기를 그대로 써야 인쇄물이 원본 시험지와 같아진다.
             // next/image 는 리사이즈·포맷 변환을 하므로 여기선 쓰지 않는다.
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              key={url}
-              src={url}
+              key={figures[index]}
+              src={figures[index]}
               alt={figures.length > 1 ? `문항 그림 ${index + 1}` : "문항 그림"}
               // 원본이 최대 1,423px 이라 자연 크기로 두면 본문을 압도한다(실측 표시폭 1,178px).
               // 작은 그림은 그대로 두고 큰 것만 줄인다.
@@ -214,27 +275,61 @@ export function ProblemContent({
           data-hwpx-grid=""
           // 「자동」은 표식을 안 붙인다 — React 가 속성 자체를 안 만들어 마크업이 오늘 그대로다.
           data-choice-layout={
-            choiceLayout === "auto" ? undefined : choiceLayout
+            choiceFigures
+              ? "3x2"
+              : choiceLayout === "auto"
+                ? undefined
+                : choiceLayout
           }
           // 글 칸은 기준선 맞춤, 그림 보기만 위쪽 — 분수 보기 옆 칸·번호가 분수의 기준선에 선다(트랙 51).
           className={
-            choiceLayout === "auto"
-              ? `mt-4 grid grid-cols-1 items-baseline gap-x-8 gap-y-2${
-                  choicesInTwoColumns ? " md:grid-cols-2 print:grid-cols-2" : ""
-                }`
-              : `mt-4 grid items-baseline gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
+            choiceFigures
+              ? "mt-4 grid grid-cols-2 items-start gap-x-8 gap-y-2"
+              : choiceLayout === "auto"
+                ? `mt-4 grid grid-cols-1 items-baseline gap-x-8 gap-y-2${
+                    choicesInTwoColumns
+                      ? " md:grid-cols-2 print:grid-cols-2"
+                      : ""
+                  }`
+                : `mt-4 grid items-baseline gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
           }
         >
           {choices.map((choice, index) => (
             <div
               key={index}
-              className="flex items-baseline gap-1.5 has-[img]:items-start has-[img]:self-start print:break-inside-avoid"
+              className={
+                choiceFigures
+                  ? "flex items-start gap-1.5 print:break-inside-avoid"
+                  : "flex items-baseline gap-1.5 has-[img]:items-start has-[img]:self-start print:break-inside-avoid"
+              }
             >
               <span className="flex-shrink-0 leading-relaxed">
                 {CHOICE_MARKS[index] ?? `(${index + 1})`}
               </span>
               <div className="min-w-0 flex-1">
-                <MarkdownRenderer content={choice} className="[&_p]:my-0" />
+                {choiceFigures?.byChoice[index + 1] !== undefined ? (
+                  // ㉠ 보기 그림은 통단 mm 폭이 아니라 같은 칸 폭을 쓴다. 높이는 원본 비율대로.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={figures[choiceFigures.byChoice[index + 1]]}
+                    alt={`보기 ${CHOICE_MARKS[index] ?? index + 1} 그림`}
+                    className={`h-auto w-full max-w-full ${FIGURE_BLEND_CLASS}`}
+                    loading={figureLoading}
+                    decoding={figureDecoding}
+                  />
+                ) : (
+                  <>
+                    <MarkdownRenderer content={choice} className="[&_p]:my-0" />
+                    {/* ㉡ 글 보기에 딸린 그림 — 글 아래에 둔다. */}
+                    {mapped
+                      ? figures.map((url, i) =>
+                          associations[i] === index + 1
+                            ? mappedFigure(url, i)
+                            : null,
+                        )
+                      : null}
+                  </>
+                )}
               </div>
             </div>
           ))}

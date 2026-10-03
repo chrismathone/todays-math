@@ -2,6 +2,7 @@ import "server-only";
 import type { Prisma } from "@prisma/client";
 import type { ManagedAccount } from "@/contracts/accountAccess.contract";
 import { effectiveWorkspaceMenuPolicy } from "@/lib/workspaceMenuPolicy.server";
+import { accountSyncStatus, accountSyncSelect } from "./adminAccountSync";
 
 export const managedAccountSelect = {
   id: true,
@@ -13,6 +14,11 @@ export const managedAccountSelect = {
   branchId: true,
   branchRole: true,
   branch: { select: { name: true, disabledMenus: true, menuRevision: true } },
+  eywaUserId: true,
+  eywaManagedAccounts: {
+    select: accountSyncSelect,
+    orderBy: [{ updatedAt: "desc" }, { id: "asc" }],
+  },
   approvalStatus: true,
   disabledMenus: true,
   createdAt: true,
@@ -30,12 +36,15 @@ export function managedAccount(
     suspendedAt,
     deletedAt,
     branch,
+    eywaUserId,
+    eywaManagedAccounts,
     ...data
   } = user;
   return {
     ...data,
     branchName: branch?.name ?? null,
     ...effectiveWorkspaceMenuPolicy({ ...data, disabledMenus, branch }),
+    eywaSync: accountSyncStatus({ ...user, eywaUserId, eywaManagedAccounts }),
     createdAt: createdAt.toISOString(),
     updatedAt: updatedAt.toISOString(),
     suspendedAt: suspendedAt?.toISOString() ?? null,

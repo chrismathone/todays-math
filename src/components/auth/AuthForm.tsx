@@ -12,6 +12,7 @@ import {
 } from "./authErrors";
 import { AuthField } from "./AuthField";
 import { normalizeCallbackUrl } from "@/lib/callbackUrl";
+import { studentLoginDestination } from "@/lib/learn/studentReturnTo";
 import { LOGIN_LANDING } from "@/lib/loginLanding";
 import styles from "./auth.module.css";
 
@@ -112,9 +113,9 @@ export function AuthForm({ mode, callbackUrl, notice }: AuthFormProps) {
           setAlert(result.message);
           return;
         }
-        // 선생님용 callbackUrl은 학생 세션의 목적지로 사용하지 않는다.
+        // 학생에게 허용된 교재 QR만 이어 간다. 선생님용 주소는 /learn으로 돌아간다.
         router.replace(
-          result.data.mustChangePassword ? "/learn/password" : "/learn",
+          studentLoginDestination(callbackUrl, result.data.mustChangePassword),
         );
         router.refresh();
         succeeded = true;

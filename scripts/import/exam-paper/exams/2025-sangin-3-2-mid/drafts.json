@@ -447,7 +447,7 @@
   "problemType": "서술형",
   "content": "[서술형 $7$] 그림과 같이 $50$$\\mathrm{m}$ 떨어진 두 지점 $\\mathrm{A}$, $\\mathrm{B}$에서 건물의 꼭대기 지점 $\\mathrm{C}$를 올려다본 각의 크기가 각각 $30°$, $45°$ 일 때, 이 건물의 높이를 구하는 풀이과정과 답을 쓰시오.",
   "answer": "$25(\\sqrt{3}+1)m$",
-  "solution": "$\\overline{CD}=\\overline{BD}=x$라고 두면, $\\overline{AD}=x+50$이다.$\\tan 30°=\\sqrt{3}$이므로, $\\frac{x}{x}+50=\\frac{1}{\\sqrt{3}}$이 되어야 한다.$x=\\frac{1}{\\sqrt{3}}(x+50)$, $\\sqrt{3}x=x+50$$x$에 대해 정리하면, $x=\\frac{50}{\\sqrt{3}-1}=\\frac{50(\\sqrt{3}+1)}{2}=25(\\sqrt{3}+1)$",
+  "solution": "$\\overline{CD}=\\overline{BD}=x$라고 두면, $\\overline{AD}=x+50$이다.$\\tan 30°=\\frac{1}{\\sqrt{3}}$이므로, $\\frac{x}{x+50}=\\frac{1}{\\sqrt{3}}$이 되어야 한다.$x=\\frac{1}{\\sqrt{3}}(x+50)$, $\\sqrt{3}x=x+50$$x$에 대해 정리하면, $x=\\frac{50}{\\sqrt{3}-1}=\\frac{50(\\sqrt{3}+1)}{2}=25(\\sqrt{3}+1)$\n(제공 자료의 풀이 식을 바로잡음 — 답은 같음)",
   "unitHint": "삼각비의 활용",
   "hasFigure": false,
   "gradeHint": "중3",

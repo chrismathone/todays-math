@@ -80,6 +80,13 @@ const ALLOWED = [
   "scripts/qa/mobile-explorers-qa.mjs",
   "scripts/qa/star-economy/", // 원장님 2026-09-28 허용 · DB 없는 별 경제 시뮬레이터(D-144)
 ];
+// 2026-10-03 교재와 기존 학습 통합 승인: 현재 학생의 읽기·복습 시작·인증 경로만.
+// 교재 원고/문제은행/내보내기에는 학습 미션을 싣지 않는다. textbook/ 전체를 허용하지 않는다.
+const TEXTBOOK_STUDENT_ENTRYPOINTS = new Set([
+  "src/lib/textbook/studentRead.ts",
+  "src/lib/textbook/studentReview.ts",
+  "src/lib/textbook/studentRoutes.ts",
+]);
 // 정적 import · 재수출 · 동적 import · require · QA 의 src("…ts") 까지 — 문자열 안의 경로로 잡는다.
 // «/» 로 시작하는 문자열은 화면·API 주소(`/api/learn/math-srs/replay`)라 모듈 참조가 아니다.
 const recordLiteral = new RegExp(
@@ -136,7 +143,11 @@ describe("보기형 전용 문항이 사는 기록의 격리", () => {
     const outside = sources
       .filter((s) => recordReference.test(s.text))
       .map((s) => s.path)
-      .filter((path) => !ALLOWED.some((prefix) => path.startsWith(prefix)));
+      .filter(
+        (path) =>
+          !ALLOWED.some((prefix) => path.startsWith(prefix)) &&
+          !TEXTBOOK_STUDENT_ENTRYPOINTS.has(path),
+      );
     expect(outside).toEqual([]);
   });
 

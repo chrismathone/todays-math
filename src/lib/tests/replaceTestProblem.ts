@@ -15,6 +15,8 @@ import { familyIdOf } from "@/lib/generator/familyKey";
 import { selectProblems } from "@/lib/generator/selectProblems";
 import { requireOwnedTest } from "@/lib/ownership";
 import { serializeTest, serializeTestProblemItem } from "@/lib/serializers";
+import { contentOf } from "./testProblemContent";
+import { hydrateTestSnapshots } from "./loadSnapshotAssets";
 import type { SessionUser } from "@/lib/session";
 
 import { loadRecentProblemIds } from "./recentProblemIds";
@@ -55,15 +57,19 @@ export async function replaceTestProblemAtSeq(
   // 시험지 소유권(`requireOwnedTest`)은 이미 위에서 통과했다.
   // 최근 출제(D-20)의 열쇠는 **시험지 소유자**다 — 관리자가 남의 시험지를 고쳐도(D-130) 그 계정 기준.
   const today = owned.data.testDate.toISOString().slice(0, 10);
-  const [items, recentFromOtherTests] = await Promise.all([
+  const [storedItems, recentFromOtherTests] = await Promise.all([
     db.testProblem.findMany({
       where: { testId },
-      include: { problem: true },
+      include: { problem: true, snapshot: true },
       orderBy: { orderIndex: "asc" },
     }),
     loadRecentProblemIds(owned.data.userId, today),
   ]);
 
+  const items = (await hydrateTestSnapshots(storedItems)).map((row) => ({
+    ...row,
+    problem: contentOf(row),
+  }));
   const target = items.find((item) => item.orderIndex === seq);
   if (!target?.problem) return notFoundError("문항");
 
@@ -148,7 +154,7 @@ export async function replaceTestProblemAtSeq(
 
     const item = await tx.testProblem.update({
       where: { id: target.id },
-      data: { problemId: replacementId, replaced: true },
+      data: { problemId: replacementId, snapshotId: null, replaced: true },
     });
     const test = await tx.test.findUnique({ where: { id: testId } });
     if (!test) return null;

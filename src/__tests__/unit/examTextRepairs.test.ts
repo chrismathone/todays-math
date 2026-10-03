@@ -15,7 +15,7 @@ function pieces(school: string, file: string): { id: string; text: string }[] {
 }
 
 describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
-  it("새론 8: 셋째 자리 반올림은 9.71, 보기 중 가장 가까운 값은 유일하게 ⑤다", () => {
+  it("새론 8: 셋째 자리 반올림은 9.71이며 보기 ⑤와 같다", () => {
     const ai = JSON.parse(
       readFileSync(
         join(examRoot, "2025-saeron-3-2-mid/sol_ai/q08.json"),
@@ -40,7 +40,7 @@ describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
     );
     expect(nearest).toEqual([5]);
     expect(ai.answer).toBe("⑤");
-    expect(ai.solution).toContain("가장 가까운");
+    expect(values[4]).toBe(rounded);
   });
 
   it("동도 14: 높이와 cos 37도로 둘레 44가 유일하게 결정된다", () => {
@@ -59,8 +59,9 @@ describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
     expect(Number(d.answer.replace(/\$/g, ""))).toBe(perimeter);
   });
 
-  it("전 25편에서 SIM·coc를 걷고 정상 글과 숫자는 한 글자도 바꾸지 않는다", () => {
+  it("전 25편에서 연산자·퍼센트를 복구하고 숫자는 한 글자도 바꾸지 않는다", () => {
     let changed = 0;
+    let operatorChanges = 0;
     for (const school of new Set(readDraftCorpus().map((d) => d.examId))) {
       for (const file of ["hwp_fixed.json", "sol_fixed.json"]) {
         const rows = JSON.parse(
@@ -71,10 +72,13 @@ describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
           expect(fixed).not.toMatch(/SIM|coc/);
           expect(fixed.match(/\d+/g)).toEqual(text.match(/\d+/g));
           if (fixed !== text) changed += 1;
+          if (fixed.replace(/\\%/g, "%") !== text.replace(/\\%/g, "%"))
+            operatorChanges += 1;
         }
       }
     }
-    expect(changed).toBe(4);
+    expect(changed).toBe(17); // 연산자 4조각 + 퍼센트 13조각(초안에서는 7행 17곳).
+    expect(operatorChanges).toBe(4);
     for (const text of [
       "SIMILAR",
       "cocoa",

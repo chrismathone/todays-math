@@ -128,6 +128,12 @@ export interface SlotInput {
    *    `paperProbeParity.test.tsx` 가 잠근다.
    */
   figureSourceMm?: number[];
+  /**
+   * 보기 그림의 짝(0 = 발문 그림 · 1 ~ = 그 번호 보기의 그림). 알면 제품이 그림을 **번호 칸 안**에 넣어
+   * 지면 높이가 달라진다(2026-10-03 B1) — 안 넘기면 탐침만 «여섯 장이 발문 아래에 선» 옛 지면을 잰다.
+   * `probeChoiceFigureParity.test.tsx` 가 잠근다.
+   */
+  choiceFigureIndex?: number[];
   /** 「서술형 n」 배지 번호. 없으면 배지를 안 그린다. */
   essayNumber?: number | null;
 }
@@ -142,6 +148,7 @@ export function renderSlot(row: SlotInput, number: number): string {
       )}
       figureDims={row.figureDims}
       figureSourceMm={row.figureSourceMm}
+      choiceFigureIndex={row.choiceFigureIndex}
       className="problemText"
       // 인쇄 지면은 지연 로딩을 쓰지 않는다(PaperProblemView 와 같다).
       deferFigures={false}

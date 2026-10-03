@@ -78,7 +78,11 @@ describe("[적대④] 지면 상수는 지면 원문에서 나온다", () => {
   it("1열 보기 글자칸은 마커(①)와 `gap-1.5` 만큼 좁다", () => {
     // 2026-09-21 트랙 51: 세로 맞춤만 `items-start` → `items-baseline`(번호가 분수의 기준선에 선다).
     // 가로 폭(`gap-1.5`)은 그대로라 이 상수와 여전히 한 수다.
-    expect(problemContent).toContain('className="flex items-baseline gap-1.5');
+    // 2026-10-03 B1: 보기 그림 격자가 생겨 칸의 class 가 두 갈래(글 보기 · 그림 보기)로 갈렸다.
+    // **두 갈래 다** `gap-1.5` 여야 한다 — 자(`choiceFigureGridPx`)가 그림 폭을 «칸 폭 − (마커 + gap)»으로 잡는다.
+    // 한쪽만 바뀌면 자와 지면이 그 갈래에서만 어긋난다.
+    expect(problemContent).toContain('"flex items-baseline gap-1.5 ');
+    expect(problemContent).toContain('"flex items-start gap-1.5 ');
     const marker = 12.5; // 마커 한 글자 = 본문 글꼴 폭
     const gap = spacing(1.5); // gap-1.5 = 6px
     expect(JASEUP_MEASURED_PX.choiceTextColumn).toBeCloseTo(

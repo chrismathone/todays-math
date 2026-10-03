@@ -211,7 +211,15 @@ describe.skipIf(!dsn)(
         await state.client!.user.findUnique({ where: { id: ids.teacher } }),
       ).toMatchObject({ disabledMenus: ["studio"] });
     });
-    it.each(["english", "unknown", "textbook"])(
+    it("allows disabling every current menu including independently added textbook", async () => {
+      const row = await state.client!.branch.update({
+        where: { id: ids.a },
+        data: { disabledMenus: ALL_WORKSPACE_MENUS },
+      });
+      expect(row.disabledMenus).toContain("textbook");
+      expect(row.disabledMenus).toEqual(ALL_WORKSPACE_MENUS);
+    });
+    it.each(["english", "unknown"])(
       "DB CHECK rejects noncurrent branch menu %s",
       async (menu) => {
         await expect(

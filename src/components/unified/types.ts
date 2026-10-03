@@ -22,6 +22,8 @@ export interface StudioProblem {
   figureSvg: string | null;
   figureDims: number[];
   figureSourceMm: number[];
+  /** 옛 저장본에는 없다. 없는 연결은 렌더러가 [] 와 똑같이 받는다. */
+  choiceFigureIndex?: number[];
   /** Whole-problem image from a local crop; used when text has not been transcribed. */
   croppedImage?: string;
   sourceLabel?: string;

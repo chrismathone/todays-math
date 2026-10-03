@@ -137,8 +137,14 @@ function figureFilesFingerprint(urls: readonly string[]): string {
 function figureSizeBasis(row: {
   figureDims?: readonly number[] | null;
   figureSourceMm?: readonly number[] | null;
+  choiceFigureIndex?: readonly number[] | null;
 }): string {
-  return `${(row.figureDims ?? []).join(",")}|${(row.figureSourceMm ?? []).join(",")}`;
+  const size = `${(row.figureDims ?? []).join(",")}|${(row.figureSourceMm ?? []).join(",")}`;
+  // 보기 그림의 짝(2026-10-03 B1) — 알면 그림이 번호 칸 안으로 들어가 높이가 달라진다.
+  // 🔴 **짝이 없으면 아무것도 덧붙이지 않는다.** 빈 배열은 «모른다»이고 칸이 없던 때와 같은 지면이라,
+  //    여기서 꼴을 바꾸면 10만 행의 캐시가 이유 없이 전부 낡는다.
+  const links = row.choiceFigureIndex ?? [];
+  return links.length > 0 ? `${size}|c${links.join(",")}` : size;
 }
 
 /** 지문이 보는 문항 한 줄. 지면 높이를 바꾸는 것만 담는다. */
@@ -147,6 +153,7 @@ export interface DigestRow {
   figureUrls: readonly string[];
   figureDims?: readonly number[] | null;
   figureSourceMm?: readonly number[] | null;
+  choiceFigureIndex?: readonly number[] | null;
   questionType?: string | null;
 }
 

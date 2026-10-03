@@ -294,6 +294,7 @@ export function ReviewConsole({
                   figureUrls={row.figureUrls}
                   figureDims={row.figureDims}
                   figureSourceMm={row.figureSourceMm}
+                  choiceFigureIndex={row.choiceFigureIndex}
                 />
               </div>
 
