@@ -6,6 +6,7 @@
  * 페이지가 서버 컴포넌트라 db 를 모킹해 where 모양을 짝으로 견준다.
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
+vi.mock("server-only", () => ({}));
 
 const mocks = vi.hoisted(() => ({
   session: vi.fn(),

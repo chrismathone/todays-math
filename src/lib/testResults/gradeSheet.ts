@@ -37,6 +37,8 @@ import { buildAnalysisReport } from "@/lib/testResults/buildAnalysisReport";
 import type { MarkedProblem } from "@/lib/testResults/gradeMarks";
 import { gradeMarks } from "@/lib/testResults/gradeMarks";
 import { rollupScores } from "@/lib/testResults/scoreRollup";
+import { contentOf } from "@/lib/tests/testProblemContent";
+import { hydrateTestSnapshots } from "@/lib/tests/loadSnapshotAssets";
 
 /** 이름을 나열할 때 쓰는 구분자 — 화면 문구(`SaveBar`)와 같다. */
 const NAME_JOIN = " · ";
@@ -63,11 +65,15 @@ async function loadRoster(test: { classId: string; studentId: string | null }) {
 }
 
 async function loadProblems(testId: string) {
-  return db.testProblem.findMany({
+  const rows = await db.testProblem.findMany({
     where: { testId },
-    include: { problem: true },
+    include: { problem: true, snapshot: true },
     orderBy: { orderIndex: "asc" },
   });
+  return (await hydrateTestSnapshots(rows)).map((row) => ({
+    ...row,
+    problem: contentOf(row),
+  }));
 }
 
 // ─────────────────────────────────────────────

@@ -108,7 +108,20 @@ export const testProblemItemSchema = z.strictObject({
   problemId: uuidSchema,
   orderIndex: z.number().int().min(1),
   replaced: z.boolean(),
-  problem: problemSchema,
+  /** Present only when this test reads an immutable textbook capture. */
+  snapshotId: uuidSchema.optional(),
+  // This read model preserves imported text exactly; problem-bank write limits remain unchanged.
+  problem: problemSchema.extend({
+    content: z.string().max(100_000),
+    answer: z.string().max(100_000),
+    solution: z.string().max(100_000).nullable(),
+    figureDims: z.array(z.number()).max(400).optional(),
+    figureSourceMm: z.array(z.number()).max(200).optional(),
+    choiceFigureIndex: z
+      .array(z.number().int().nonnegative().nullable())
+      .max(200)
+      .optional(),
+  }),
 });
 export type TestProblemItem = z.infer<typeof testProblemItemSchema>;
 

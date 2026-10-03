@@ -27,6 +27,7 @@ export const RESULT_SELECT = {
   test: { select: { testDate: true } },
   answers: {
     select: {
+      problemId: true,
       isCorrect: true,
       problem: { select: { unitId: true, difficulty: true } },
     },
