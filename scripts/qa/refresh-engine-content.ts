@@ -278,8 +278,29 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     console.log(
       `고치기로 한 문항류 ${families.size}개 (목록 ${patterns.length}항목)`,
     );
+  // 🔴 **글은 같고 그림만 바뀌는 수리**가 있다(전개도의 밑면 자리 · 답이 적힌 치수 숨김).
+  //    그런 행은 갈래가 «same» 이라 위 판정으로는 영영 안 덮인다 — 2026-10-03 드라이런에서
+  //    원기둥 전개도의 단답형이 통째로 빠져 있었다. 그림을 고친 문항류는 **글이 같아도** 다시 그려 견준다.
+  const figureFile = arg("--figure-families");
+  const figurePatterns = figureFile
+    ? (JSON.parse(readFileSync(figureFile, "utf8")) as string[])
+    : [];
+  const figureScope = expandFamilies(figurePatterns, [
+    ...madeFamilies,
+    ...dbFamilies,
+  ]);
+  if (figureScope.empty.length)
+    throw new Error(
+      `그림 문항류 목록에 한 건도 안 걸리는 항목이 있다: ${figureScope.empty.join(" · ")}`,
+    );
+  const figureFamilies = figureScope.families;
+  if (figurePatterns.length)
+    console.log(
+      `글이 같아도 그림을 다시 그려 견줄 문항류 ${figureFamilies.size}개`,
+    );
 
   // ── 갈래 세기 ─────────────────────────────────────────────────────────────
+  let figureOnly = 0;
   const byClass = new Map<string, number>();
   const stemOutside = new Map<string, number>();
   const stemSamples = new Map<
@@ -347,6 +368,15 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       bump(solutionOutside, row.familyKey ?? "?");
     if (shouldApply(row.familyKey, cls, broken, scope))
       todo.push({ db: row, made: m, cls, broken });
+    else if (
+      cls === "same" &&
+      !!row.familyKey &&
+      figureFamilies.has(row.familyKey) &&
+      m.figureSpec
+    ) {
+      figureOnly += 1;
+      todo.push({ db: row, made: m, cls, broken });
+    }
   }
   const fresh = new Map<string, number>();
   for (const [ext, m] of made)
@@ -389,6 +419,10 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
   console.log(
     `\n덮을 것 ${todo.length}행 — ${[...todoBy.entries()].map(([k, n]) => `${k} ${n}`).join(" · ") || "없음"}`,
   );
+  if (figureOnly > 0)
+    console.log(
+      `   그 가운데 글은 같고 그림만 다시 그려 견줄 행 ${figureOnly}`,
+    );
   const lockUnmatched = has("--lock-unmatched");
   if (toLock.length)
     console.log(
@@ -432,7 +466,9 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       );
     const b = before.get(t.db.id);
     if (!b) return null;
-    const inFamily = !!t.db.familyKey && families.has(t.db.familyKey);
+    const inFamily =
+      !!t.db.familyKey &&
+      (families.has(t.db.familyKey) || figureFamilies.has(t.db.familyKey));
     let figureSvg = b.figureSvg;
     // 그림은 **고치기로 한 문항류에서만** 다시 그린다 — 그 밖은 발문이 같으므로 그림도 그 문항의 것이다.
     if (inFamily) {
