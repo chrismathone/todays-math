@@ -14,6 +14,7 @@
  * `Shown`(발문이 facts 의 수치를 보여 주나 — 다항식·등식·문자열 셋) · `allRoots`(복소 근).
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -999,7 +1000,9 @@ describe("고등 공통수학1 다항식의 연산 — 등록", () => {
     );
     for (const e of H1_POLY_OPS) {
       const row = rowOf(e.rpmType);
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.grade).toBe(BOOK);

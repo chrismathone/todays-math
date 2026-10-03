@@ -13,6 +13,7 @@
  * 지면(수는 수식 안 · 냄새 · 조사) · 난이도 · 형식 · 해설 끝 답은 `highRegistry.test.ts` 가 돈다.
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -561,7 +562,9 @@ describe("고등 공통수학1 이차방정식과 이차함수 — 등록", () =
     for (const e of H1_QUAD_FUNC) {
       const row = catalogRows.find((t) => t.number === e.rpmType);
       expect(row, `${e.key}: 색인에 없는 번호`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.key).toBe(`${BOOK}|${MINOR}|${e.rpmType}`);

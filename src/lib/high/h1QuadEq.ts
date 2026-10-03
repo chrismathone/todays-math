@@ -1997,7 +1997,7 @@ function entry(
   };
 }
 
-/** 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다(시험이 대조한다). */
+/** 색인의 유형 번호는 보존하고, 표시 제목의 어순만 바로잡았다. */
 export const H1_QUAD_EQ: HighTypeEntry[] = [
   entry("01", "이차방정식의 풀이", SEC.풀이, t01),
   entry("02", "한 근이 주어진 이차방정식", SEC.풀이, t02),
@@ -2006,7 +2006,7 @@ export const H1_QUAD_EQ: HighTypeEntry[] = [
   entry("05", "이차방정식의 근의 판별", SEC.판별식, t05),
   entry("06", "계수가 문자인 이차방정식의 근의 판별", SEC.판별식, t06),
   entry("07", "이차식이 완전제곱식이 될 조건", SEC.판별식, t07),
-  // 08·17 의 제목은 색인 추출의 흔적(`( 1 )` · 띄어쓰기)까지 바이트 그대로다 — 계약 1.
+  // 08의 괄호 안 공백은 원본 제목을 유지한다.
   entry(
     "08",
     "이차방정식의 근과 계수의 관계를 이용하여 식의 값 구하기 ( 1 )",
@@ -2031,7 +2031,7 @@ export const H1_QUAD_EQ: HighTypeEntry[] = [
   entry("14", "이차방정식의 켤레근의 성질", SEC.식구하기, t14),
   entry("15", "이차식을 두 일차식의 곱으로 인수분해하기", SEC.판별식, t15),
   entry("16", "잘못 푼 이차방정식", SEC.식구하기, t16),
-  entry("17", "이차방정식 과 f(x)=0 f(ax+b)=0의 관계", SEC.근계수, t17),
+  entry("17", "이차방정식 f(x)=0과 f(ax+b)=0의 관계", SEC.근계수, t17),
 ];
 
 export const H1_QUAD_EQ_HOLD: HighHold[] = [];

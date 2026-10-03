@@ -11,6 +11,7 @@
  * 못했다(보고서의 공용 후보). 제품(`numbers.ts`·`poly.ts`)은 안 부른다.
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -1455,7 +1456,9 @@ describe("고등 공통수학1 이차방정식 — 등록", () => {
     for (const e of H1_QUAD_EQ) {
       const row = catalogRows.find((t) => t.number === e.rpmType);
       expect(row, `${e.key}: 색인에 없는 번호`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.grade).toBe(BOOK);
