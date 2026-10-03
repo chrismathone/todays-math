@@ -1,6 +1,6 @@
 # 오늘의 영어 리스닝 추가 계획
 
-2026-10-03 작성. 기준 코드 `763caff59`. 교사 수업, 학생 자기주도 학습, 중고등 듣기평가 대비를 모두 지원하는 계획이다. 승인한 교사 A·학생 B·H1 배치의 직접 제작·음원 업로드·저장·배정·풀이·짧은 평가를 통합했다. 최신 검증과 운영 반영 대기 사항은 [화면·저장 통합 기록](tracks/reports/listening-integration-20261003.md), 초기 구현 이력은 [L0 기록](tracks/reports/listening-l0-implementation.md)에 남긴다. 운영 DB 적용·배포와 AI/TTS·청취 품질 벤치는 완료되지 않았다.
+2026-10-03 작성. 기준 코드 `763caff59`. 교사 수업, 학생 자기주도 학습, 중고등 듣기평가 대비를 모두 지원하는 계획이다. 승인한 교사 A·학생 B·H1 배치의 직접 제작·음원 업로드·저장·배정·풀이·짧은 평가를 통합했다. 최신 검증은 [화면·저장 통합 기록](tracks/reports/listening-integration-20261003.md), 초기 구현 이력은 [L0 기록](tracks/reports/listening-l0-implementation.md)에 남긴다. 운영 DB 적용·배포는 완료했다. Kokoro-82M 로컬 [청취 샘플 3개](../listening-samples/20261003/README.md)를 생성·등록했으며, 서비스 내 자동 TTS와 사람의 청취 품질 검수는 미완료다. 사용자 추가 요청인 지문은행·듣기은행은 [별도 계획](english-resource-bank-plan-20261003.md)에서 다룬다.
 
 Claude와 Grok의 독립 검토 및 수정본 재검토를 거쳤다. 2차의 문서 보완 조건까지 반영한 최신안이며, 판정 원문과 채택·조정 내역은 [검토 반영 기록](tracks/reports/english-listening-review-20261003.md)에 요약했다. 에이전트의 기획 검토를 구현·실측 통과로 해석하지 않는다.
 
