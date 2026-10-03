@@ -50,14 +50,6 @@ const PER_LEVEL = 10;
 /** 까닭을 적고 빼더라도 난이도 한 칸에 남아야 하는 장수(26 §11). */
 const MIN_PER_LEVEL = 1;
 const LEVELS = ["하", "중", "상"] as const;
-/** 예의 답이 D 지면 빈칸보다 넓은 채 남은 것 — 그 학년 트랙(cb-havruta)이 줄이면서 지운다. 새로 넣지 않는다. */
-const KNOWN_WIDE_EXAMPLES: readonly string[] = [
-  "e3-1-1-2-c1",
-  "e3-1-2-4-c1",
-  "e3-1-2-5-c1",
-  "m1-04-03-xc9",
-  "m1-04-03-xc20",
-];
 const squash = (s: string) => s.replace(/\s+/g, "");
 
 const everyItem = (b = CONCEPT_BLANK_BANK) => [
@@ -290,8 +282,8 @@ describe("concept blank bank", () => {
     const wide = CONCEPT_BLANK_BANK.concepts
       .filter((c) => c.example && inkEm(c.example.answer) * perEm + pad > max)
       .map((c) => c.id);
-    // 넘는 것은 이 자를 세우기 전부터 넘던 것뿐이다 — 줄였는데 목록에 남아 있어도 빨갛다(목록은 줄기만 한다).
-    expect(wide.sort()).toEqual([...KNOWN_WIDE_EXAMPLES].sort());
+    // 자를 세울 때 넘던 다섯(초3 셋 · 중1 둘)은 학년 트랙이 줄였다 — 이제 하나도 없다.
+    expect(wide).toEqual([]);
   });
 
   it("the cross-form ruler says both yes and no", () => {
