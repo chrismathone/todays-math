@@ -14,6 +14,7 @@
  * `Shown`(발문이 facts 의 수치를 보여 주나 — 다항식·등식·문자열 셋) · `allRoots`(복소 근).
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -999,7 +1000,9 @@ describe("고등 공통수학1 다항식의 연산 — 등록", () => {
     );
     for (const e of H1_POLY_OPS) {
       const row = rowOf(e.rpmType);
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.grade).toBe(BOOK);
@@ -1027,6 +1030,95 @@ describe("고등 공통수학1 다항식의 연산 — 등록", () => {
 });
 
 describe("고등 공통수학1 다항식의 연산 — 값", () => {
+  it("HIGH-ALG-002: 씨앗 26을 포함한 300판의 모든 조건을 만족하는 실수 세 수가 있다", () => {
+    const seen = new Map<string, number>();
+    for (let seed = 0; seed < 300; seed += 1) {
+      const p = generateHighProblem(`${BOOK}|${MINOR}|07`, seed);
+      const spans = mathSpans(p.content);
+      const givens = new Map(
+        spans
+          .filter((s) => s.includes("="))
+          .map((s) => {
+            const [name, value] = s.split("=");
+            return [name!, Number(value)] as const;
+          }),
+      );
+      const s = givens.get("a+b+c")!;
+      const e2 =
+        givens.get("ab+bc+ca") ??
+        (s * s - givens.get("a^{2}+b^{2}+c^{2}")!) / 2;
+      const e3 = givens.get("abc");
+      expect(
+        Number.isFinite(s) && Number.isFinite(e2),
+        `seed ${seed}: 조건을 읽었다`,
+      ).toBe(true);
+      let abc: [number, number, number];
+      if (e3 === undefined) {
+        const d = Math.sqrt((s * s) / 3 - e2);
+        abc = [s / 3 - d, s / 3, s / 3 + d];
+      } else {
+        // 세 근의 대칭식으로 만든 삼차함수의 두 극값을 본다.
+        // 생성기의 판별식 공식을 복제하지 않고 세 실근을 직접 구간별로 찾는다.
+        const f = (x: number) => x ** 3 - s * x * x + e2 * x - e3;
+        const d = Math.sqrt(s * s - 3 * e2);
+        expect(Number.isFinite(d), `seed ${seed}: 실수 극점`).toBe(true);
+        const left = (s - d) / 3;
+        const right = (s + d) / 3;
+        expect(
+          f(left),
+          `seed ${seed}: 극대값이 음수면 실근은 하나`,
+        ).toBeGreaterThanOrEqual(-1e-9);
+        expect(
+          f(right),
+          `seed ${seed}: 극소값이 양수면 실근은 하나`,
+        ).toBeLessThanOrEqual(1e-9);
+        const bound = 1 + Math.max(Math.abs(s), Math.abs(e2), Math.abs(e3));
+        const root = (lo: number, hi: number): number => {
+          if (Math.abs(f(lo)) < 1e-9) return lo;
+          if (Math.abs(f(hi)) < 1e-9) return hi;
+          for (let i = 0; i < 80; i += 1) {
+            const mid = (lo + hi) / 2;
+            if (f(mid) > 0 === f(lo) > 0) lo = mid;
+            else hi = mid;
+          }
+          return (lo + hi) / 2;
+        };
+        abc = [root(-bound, left), root(left, right), root(right, bound)];
+      }
+      const [a, b, c] = abc;
+      expect(a + b + c, `seed ${seed}: 합`).toBeCloseTo(s, 7);
+      expect(
+        a * b + b * c + c * a,
+        `seed ${seed}: 두 수씩의 곱의 합`,
+      ).toBeCloseTo(e2, 7);
+      if (e3 !== undefined)
+        expect(a * b * c, `seed ${seed}: 곱`).toBeCloseTo(e3, 7);
+      const values: Record<string, number> = {
+        "a^{2}+b^{2}+c^{2}": a * a + b * b + c * c,
+        "ab+bc+ca": a * b + b * c + c * a,
+        "(a+b)(b+c)(c+a)": (a + b) * (b + c) * (c + a),
+        "a^{4}+b^{4}+c^{4}": a ** 4 + b ** 4 + c ** 4,
+        "a^{2}b^{2}+b^{2}c^{2}+c^{2}a^{2}":
+          (a * b) ** 2 + (b * c) ** 2 + (c * a) ** 2,
+      };
+      expect(
+        readAnswerValues(p.answer)[0]!.re,
+        `seed ${seed}: 실수 해에 직접 대입`,
+      ).toBeCloseTo(values[spans.at(-1)!]!, 7);
+      const label = `${p.facts.mode}/${p.facts.v}`;
+      seen.set(label, (seen.get(label) ?? 0) + 1);
+    }
+    expect([...seen.values()].reduce((a, b) => a + b, 0)).toBe(300);
+    expect([...seen.keys()].sort()).toEqual([
+      "0/0",
+      "0/1",
+      "1/0",
+      "1/1",
+      "2/0",
+      "2/1",
+    ]);
+  });
+
   it("정답을 facts 로 다시 세운 것과 같다", () => {
     eachProblem((p, key, number) => {
       const want = VERIFY[number]!(p.facts);

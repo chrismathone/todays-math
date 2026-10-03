@@ -2053,7 +2053,7 @@ function entry(
   };
 }
 
-/** 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다(시험이 대조한다). */
+/** 색인의 유형 번호는 보존하고, 표시 제목의 OCR 잔재만 바로잡았다. */
 export const H1_PERM: HighTypeEntry[] = [
   entry("01", "합의 법칙", SEC.경우의수, t01),
   entry("02", "방정식과 부등식의 해의 개수", SEC.경우의수, t02),
@@ -2065,7 +2065,7 @@ export const H1_PERM: HighTypeEntry[] = [
   entry("09", "이웃하는 순열의 수", SEC.순열, t09),
   entry("10", "이웃하지 않는 순열의 수", SEC.순열, t10),
   entry("11", "자리에 대한 조건이 있는 순열의 수", SEC.순열, t11),
-  entry("12", "적어도 의 조건이 있는 순열의 수", SEC.순열, t12),
+  entry("12", "‘적어도’의 조건이 있는 순열의 수", SEC.순열, t12),
   entry("13", "순열을 이용한 자연수의 개수", SEC.순열, t13),
   entry("14", "사전식 배열에 의한 경우의 수", SEC.순열, t14),
 ];

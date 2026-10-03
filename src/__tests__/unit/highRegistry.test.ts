@@ -32,6 +32,10 @@ import {
   type HighCatalogRow,
 } from "../helpers/highPage";
 import { pageSmells } from "../helpers/midPage";
+import {
+  HIGH_TITLE_CORRECTIONS,
+  expectedHighTitle,
+} from "../helpers/highTitles";
 
 const SEEDS = [20260913, 1, 7777];
 const VARIANTS = 10;
@@ -69,6 +73,21 @@ function pageParts(p: HighProblem): [string, string][] {
 }
 
 describe("고등 등록부 — 색인과 단원", () => {
+  it("HIGH-META: OCR 잔재가 없는 표시 제목 18개와 원래 유형 키를 보존한다", () => {
+    expect(Object.keys(HIGH_TITLE_CORRECTIONS)).toHaveLength(18);
+    expect(entries).toHaveLength(168);
+    const byKey = new Map(entries.map((e) => [e.key, e]));
+    for (const [key, title] of Object.entries(HIGH_TITLE_CORRECTIONS)) {
+      expect(byKey.get(key)?.rpmTitle, key).toBe(title);
+      expect(
+        generateHighProblem(key, 0).rpmTitle,
+        `${key}: 실제 산출 제목`,
+      ).toBe(title);
+    }
+    for (const e of entries)
+      expect(e.rpmTitle, e.key).not.toMatch(/\.c\d|^[,\-]|_n C_r/);
+  });
+
   it("키는 `과목|중단원|번호` 이고 번호·제목·중단원이 색인 바이트와 같다", () => {
     expect(entries.length).toBeGreaterThan(0);
     for (const e of entries) {
@@ -76,7 +95,9 @@ describe("고등 등록부 — 색인과 단원", () => {
       expect(e.rpmBook, `${e.key} 책`).toBe(e.grade);
       const row = rowOf(e.rpmBook, e.rpmMinor, e.rpmType);
       expect(row, `${e.key}: 색인에 없는 유형`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
     }
   });
 

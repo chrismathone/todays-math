@@ -1253,6 +1253,18 @@ function t06(rng: Rng): Body {
 // 꼴 2 (심화하): $a^2b^2+b^2c^2+c^2a^2$ · $a+b+c=0$ 일 때 $a^4+b^4+c^4$
 // (RPM 대표문제의 $a^3+b^3+c^3$ 꼴은 2022 공식 목록 밖이라 안 냈다 — 머리말)
 
+/** 합·두 수씩의 곱의 합·곱을 갖는 실수 세 수의 존재 조건(중근 포함). */
+function hasRealTriple(s: number, e2: number, e3: number): boolean {
+  // 세 수는 t³-st²+e2*t-e3의 근이다. 실계수 삼차식의 판별식이 음수면 허근이 둘이다.
+  const discriminant =
+    s * s * e2 * e2 -
+    4 * e2 ** 3 -
+    4 * s ** 3 * e3 -
+    27 * e3 * e3 +
+    18 * s * e2 * e3;
+  return discriminant >= 0;
+}
+
 function t07(rng: Rng): Body {
   const mode = randInt(rng, 0, 2);
   if (mode === 0)
@@ -1293,6 +1305,7 @@ function t07(rng: Rng): Body {
       const e2 = nz(rng, -6, 6);
       const e3 = nz(rng, -8, 8);
       if (s * s < 3 * e2) return null;
+      if (!hasRealTriple(s, e2, e3)) return null;
       const value = s * e2 - e3;
       const qq = s * s - 2 * e2;
       const S = paren(s);
@@ -1345,6 +1358,7 @@ function t07(rng: Rng): Body {
     const e2 = nz(rng, -6, 6);
     const e3 = nz(rng, -6, 6);
     if (s * s < 3 * e2) return null;
+    if (!hasRealTriple(s, e2, e3)) return null;
     const qq = s * s - 2 * e2;
     const value = e2 * e2 - 2 * e3 * s;
     if (value === 0) return null;
@@ -2081,14 +2095,14 @@ function entry(
   };
 }
 
-/** 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다(시험이 대조한다). */
+/** 색인의 유형 번호는 보존하고, 표시 제목의 누락된 수식만 바로잡았다. */
 export const H1_POLY_OPS: HighTypeEntry[] = [
   entry("01", "다항식의 덧셈과 뺄셈", SEC.덧셈뺄셈, t01),
   entry("02", "다항식의 전개식에서 계수 구하기", SEC.곱셈, t02),
   entry("03", "곱셈 공식을 이용한 다항식의 전개", SEC.곱셈공식, t03),
   entry("04", "공통부분이 있는 다항식의 전개", SEC.곱셈공식, t04),
   entry("05", "곱셈 공식의 변형 - 문자가 2개", SEC.변형, t05),
-  entry("06", "곱셈 공식의 변형 -x의 꼴", SEC.변형, t06),
+  entry("06", "곱셈 공식의 변형 - x±1/x의 꼴", SEC.변형, t06),
   entry("07", "곱셈 공식의 변형 - 문자가 3개", SEC.변형, t07),
   entry("08", "곱셈 공식을 이용한 수의 계산", SEC.곱셈공식, t08),
   entry("09", "다항식의 나눗셈 - 몫과 나머지", SEC.나눗셈, t09),

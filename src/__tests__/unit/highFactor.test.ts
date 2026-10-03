@@ -390,6 +390,42 @@ function peelRoots(
 
 const isInt = (v: number) => Math.abs(v - Math.round(v)) < 1e-9;
 
+/** 전개된 이변수 이차식에서 지정된 인수 꼴의 실수 계수를 모두 푼다. */
+function factor04Solutions(
+  value: (x: number, y: number) => number,
+  g: number,
+  h: number,
+): [number, number, number][] {
+  const constant = value(0, 0);
+  const ab = (value(1, 0) + value(-1, 0)) / 2 - constant;
+  const c = (value(0, 1) + value(0, -1)) / 2 - constant;
+  const xy = value(1, 1) - value(1, 0) - value(0, 1) + constant;
+  expect(c, "이 꼴의 y² 계수를 읽었다").not.toBe(0);
+  const discriminant = xy * xy - 4 * c * ab;
+  if (discriminant < 0) return [];
+  // b=xy-ac를 ab에 넣은 이차방정식의 두 실근: 정수 범위로 좁히지 않는다.
+  const candidates = [
+    ...new Set([
+      (xy - Math.sqrt(discriminant)) / (2 * c),
+      (xy + Math.sqrt(discriminant)) / (2 * c),
+    ]),
+  ];
+  return candidates
+    .map((a): [number, number, number] => [a, xy - a * c, c])
+    .filter(([a, b, cc]) =>
+      [
+        [0, 0],
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+        [1, 1],
+      ].every(([x, y]) =>
+        close((a * x! + y! + g) * (b * x! + cc * y! + h), value(x!, y!)),
+      ),
+    );
+}
+
 /** 순환식 여섯 — 제품의 문자열을 안 읽고 시험 쪽에서 값으로 다시 적었다. */
 const CYCLIC: ((a: number, b: number, c: number) => number)[] = [
   (a, b, c) =>
@@ -576,20 +612,23 @@ const VERIFY: Record<string, (f: Fact) => Expect> = {
     }
     if (f.mode === 1) {
       const { a, b, c, g, h } = f as Required<Fact>;
-      const coef = (A: number, B: number, Cc: number) =>
-        [A * B, A * Cc + B, Cc, A * h! + B * g!, h! + Cc * g!, g! * h!].join(
-          ",",
-        );
-      const target = coef(a!, b!, c!);
-      const vals = new Set<number>();
-      for (let A = 1; A <= 3; A += 1)
-        for (let B = 1; B <= 3; B += 1)
-          for (let Cc = -3; Cc <= 3; Cc += 1) {
-            if (coef(A, B, Cc) !== target) continue;
-            vals.add([A + B - Cc, A + B + Cc, A * B * Cc][f.exprId!]!);
-          }
-      expect(vals.size, "주어진 꼴로 쪼개는 방법이 하나가 아니다").toBe(1);
-      return { num: [...vals][0]! };
+      const solutions = factor04Solutions(
+        (x, y) => (a! * x + y + g!) * (b! * x + c! * y + h!),
+        g!,
+        h!,
+      );
+      expect(
+        solutions.length,
+        "주어진 꼴의 실수 계수 해가 없다",
+      ).toBeGreaterThan(0);
+      const values = solutions.map(
+        ([A, B, Cc]) => [A + B - Cc, A + B + Cc, A * B * Cc][f.exprId!]!,
+      );
+      expect(
+        values.every((v) => close(v, values[0]!)),
+        "모든 실수 계수 해에서 목표값이 같다",
+      ).toBe(true);
+      return { num: values[0]! };
     }
     const { u, v } = f as Required<Fact>;
     return {
@@ -960,6 +999,47 @@ describe("고등 공통수학1 인수분해 — 등록", () => {
 });
 
 describe("고등 공통수학1 인수분해 — 값", () => {
+  it("HIGH-ALG-001: 씨앗 113을 포함한 300판의 모든 실수 계수 해에서 답이 하나다", () => {
+    let checked = 0;
+    for (let seed = 0; seed < 300; seed += 1) {
+      const p = generateHighProblem(`${BOOK}|${MINOR}|04`, seed);
+      if (p.facts.mode !== 1) continue;
+      checked += 1;
+      const spans = mathSpans(p.content);
+      const form = /^\(ax\+y([+-]\d+)\)\(bx\+cy([+-]\d+)\)$/.exec(spans[1]!);
+      expect(form, `seed ${seed}: 인수의 상수항`).not.toBeNull();
+      const solutions = factor04Solutions(
+        (x, y) => evalTex(spans[0]!, { x, y }),
+        Number(form![1]),
+        Number(form![2]),
+      );
+      expect(
+        solutions.length,
+        `seed ${seed}: 발문을 만족하는 (a,b,c)가 있다`,
+      ).toBeGreaterThan(0);
+      const target = spans.at(-1)!;
+      for (const [a, b, c] of solutions)
+        expect(
+          readAnswerValues(p.answer)[0]!.re,
+          `seed ${seed}: 모든 계수 해의 목표값`,
+        ).toBeCloseTo(evalTex(target, { a, b, c }), 9);
+    }
+    expect(checked, "300판 중 해당 꼴을 실제로 검산한 수").toBeGreaterThan(50);
+  });
+
+  it("HIGH-ALG-001: 정수 조건만으로도 유일해지지 않는 반례를 센다", () => {
+    const solutions = factor04Solutions(
+      (x, y) => (x + y + 1) * (x - y - 1),
+      1,
+      -1,
+    );
+    expect(solutions).toEqual([
+      [1, 1, -1],
+      [-1, -1, -1],
+    ]);
+    expect(new Set(solutions.map(([a, b, c]) => a + b - c)).size).toBe(2);
+  });
+
   it("정답을 facts 로 다시 세운 것과 같다", () => {
     eachProblem((p, key, number) => {
       const want = VERIFY[number]!(p.facts);

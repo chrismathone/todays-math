@@ -2675,12 +2675,12 @@ function entry(
   };
 }
 
-/** 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다(시험이 대조한다). */
+/** 색인의 유형 번호는 보존하고, 표시 제목의 어순만 바로잡았다. */
 export const H1_QUAD_INEQ: HighTypeEntry[] = [
   entry("02", "이차부등식의 풀이", SEC.이차, t02),
   entry("03", "절댓값 기호를 포함한 이차부등식", SEC.절댓값, t03),
   entry("04", "해가 주어진 이차부등식", SEC.이차, t04),
-  entry("05", "부등식 과 f(x)<0 부등식 f(ax+b)<0의 관계", SEC.이차, t05),
+  entry("05", "부등식 f(x)<0과 부등식 f(ax+b)<0의 관계", SEC.이차, t05),
   entry("06", "이차부등식의 해가 한 개일 조건", SEC.조건, t06),
   entry("07", "이차부등식이 해를 가질 조건", SEC.조건, t07),
   entry("08", "이차부등식이 항상 성립할 조건", SEC.조건, t08),
