@@ -1,0 +1,1288 @@
+/**
+ * 교사 교재 API `/api/textbook`.
+ *
+ * 요청·응답은 `src/contracts/textbook.contract.ts`만 파싱한다.
+ * 성공 본문은 공통 `{ data }` 봉투다. 목록과 교환 파일은 그 봉투가 스키마 안에 있다.
+ * 없는 필드는 성공으로 채우지 않는다.
+ */
+import { z } from "zod";
+
+import {
+  planUploadChunks,
+  type AssignmentRow,
+  type BlankForm,
+  type BlankLevel,
+  type BlankPick,
+  type BookSummary,
+  type ConceptDraft,
+  type DialogueTurn,
+  type EditionDetail,
+  type Expression,
+  type ImportMode,
+  type ImportResult,
+  type ItemRow,
+  type PublishJob,
+  type SectionBlock,
+  type SectionDetail,
+  type Speaker,
+  type StudioIssue,
+  type VideoBinding,
+  type VideoPolicy,
+  type VideoStatus,
+} from "@/components/textbook/model";
+import { dataResponseSchema } from "@/contracts/common.contract";
+import {
+  textbookAssignmentSchema,
+  textbookBindingWriteSchema,
+  textbookBookListSchema,
+  textbookBookSummarySchema,
+  textbookCaptureItemsSchema,
+  textbookCaptureResultSchema,
+  textbookConceptCatalogSchema,
+  textbookConceptRecordSchema,
+  textbookCreateAssignmentSchema,
+  textbookCreateBookSchema,
+  textbookCreateEditionSchema,
+  textbookEditionDetailSchema,
+  textbookExportResponseSchema,
+  textbookImportResultSchema,
+  textbookImportSchema,
+  textbookPreflightSchema,
+  textbookPublishJobSchema,
+  textbookPublishReserveSchema,
+  textbookRequestSchema,
+  textbookSaveConceptSchema,
+  textbookSaveSectionResultSchema,
+  textbookSaveSectionSchema,
+  textbookDeleteSectionSchema,
+  textbookSaveStructureSchema,
+  textbookSectionRecordSchema,
+  textbookSnapshotActionSchema,
+  textbookVideoSchema,
+  type TextbookAssignment,
+  type TextbookBookSummary,
+  type TextbookEditionDetail,
+  type TextbookPublishJob,
+  type TextbookSectionRecord,
+} from "@/contracts/textbook.contract";
+import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
+import {
+  textbookItemSchema,
+  textbookVideoBindingSchema,
+  type ManuscriptBlock,
+  type Section,
+} from "@/contracts/textbookExchange.contract";
+import {
+  textbookIssueSchema,
+  type TextbookIssue,
+} from "@/contracts/textbookPrimitives.contract";
+
+const BASE = "/api/textbook";
+const LOAD_ERROR = "교재 응답을 읽지 못했습니다.";
+
+const SPEAKER_ID: Record<Speaker, string> = {
+  선생님: "speaker.teacher",
+  민서: "speaker.minseo",
+  지호: "speaker.jiho",
+};
+const EXPRESSION_WIRE: Record<
+  Expression,
+  "neutral" | "question" | "thinking" | "aha"
+> = {
+  평온: "neutral",
+  질문: "question",
+  생각: "thinking",
+  알아챔: "aha",
+};
+
+export class TextbookRequestError extends Error {
+  readonly status: number;
+  readonly serverRevision: number | null;
+  readonly serverSection: SectionDetail | null;
+  readonly issues: StudioIssue[];
+
+  constructor(
+    message: string,
+    status: number,
+    extras?: {
+      serverRevision?: number | null;
+      serverSection?: SectionDetail | null;
+      issues?: StudioIssue[];
+    },
+  ) {
+    super(message);
+    this.name = "TextbookRequestError";
+    this.status = status;
+    this.serverRevision = extras?.serverRevision ?? null;
+    this.serverSection = extras?.serverSection ?? null;
+    this.issues = extras?.issues ?? [];
+  }
+}
+
+export type SaveSectionResult = {
+  revision: number;
+  aggregateRevision: number;
+};
+
+export type CaptureResult = {
+  items: ItemRow[];
+  excluded: { problemId: string; reason: string }[];
+  aggregateRevision: number;
+};
+
+export type PreflightResult =
+  { ok: true; issues: StudioIssue[] } | { ok: false; issues: StudioIssue[] };
+
+export type SnapshotDiff = { itemId: string; summary: string };
+
+export interface TextbookStudioApi {
+  listBooks(): Promise<BookSummary[]>;
+  createBook(input: {
+    title: string;
+    volumeCode: string;
+    curriculumVersion: string;
+    pageTarget: number;
+    videoPolicy: VideoPolicy;
+    requestId: string;
+  }): Promise<BookSummary>;
+  openEdition(editionId: string): Promise<EditionDetail>;
+  createEdition(
+    bookId: string,
+    sourceEditionId: string,
+    requestId: string,
+  ): Promise<EditionDetail>;
+  getSection(editionId: string, sectionId: string): Promise<SectionDetail>;
+  createSection(input: {
+    editionId: string;
+    unitKey: string;
+    sectionKey: string;
+    templateKey: string;
+    title: string;
+    requestId: string;
+  }): Promise<SectionDetail>;
+  saveSection(input: {
+    editionId: string;
+    sectionId: string;
+    expectedRevision: number;
+    requestId: string;
+    section: SectionDetail;
+  }): Promise<SaveSectionResult>;
+  patchEdition(input: {
+    editionId: string;
+    expectedRevision: number;
+    requestId: string;
+    source: TextbookEditionDetail;
+  }): Promise<EditionDetail>;
+  deleteSection(
+    editionId: string,
+    sectionId: string,
+    expectedRevision: number,
+    requestId: string,
+  ): Promise<void>;
+  captureItems(input: {
+    editionId: string;
+    sectionId: string;
+    expectedRevision: number;
+    requestId: string;
+    testId: string | null;
+    problemIds: string[];
+  }): Promise<CaptureResult>;
+  diffItem(
+    editionId: string,
+    itemId: string,
+    requestId: string,
+    expectedRevision: number,
+  ): Promise<SnapshotDiff>;
+  recaptureItem(
+    editionId: string,
+    itemId: string,
+    requestId: string,
+    expectedRevision: number,
+  ): Promise<ItemRow>;
+  saveConcept(input: {
+    editionId: string;
+    conceptKey: string;
+    expectedRevision: number;
+    requestId: string;
+    concept: ConceptDraft;
+    picks: BlankPick[];
+    source: TextbookConcept;
+  }): Promise<{ revision: number; concept: TextbookConcept }>;
+  searchCatalog(query: string): Promise<BlankPick[]>;
+  readConcept(
+    editionId: string,
+    conceptKey: string,
+  ): Promise<{
+    concept: TextbookConcept;
+    revision: number;
+    draft: ConceptDraft;
+  }>;
+  listAssignments(editionId: string): Promise<AssignmentRow[]>;
+  createAssignment(input: {
+    editionId: string;
+    requestId: string;
+    target: AssignmentRow["target"];
+    startsAt: string;
+    expiresAt: string | null;
+  }): Promise<AssignmentRow>;
+  revokeAssignment(
+    editionId: string,
+    assignmentId: string,
+    requestId: string,
+  ): Promise<void>;
+  listVideos(editionId: string): Promise<VideoBinding[]>;
+  updateVideo(input: {
+    bindingId: string;
+    requestId: string;
+    status: VideoStatus;
+    policy: VideoBinding["policy"];
+    videoId: string;
+    startSeconds: number;
+    endSeconds: number | null;
+    contentHash: string | null;
+  }): Promise<VideoBinding>;
+  preflight(editionId: string, requestId: string): Promise<PreflightResult>;
+  reserve(
+    editionId: string,
+    requestId: string,
+    expectedRevision: number,
+  ): Promise<PublishJob>;
+  stepPublish(editionId: string, requestId: string): Promise<PublishJob>;
+  finalize(editionId: string, requestId: string): Promise<PublishJob>;
+  readJob(editionId: string, jobId: string): Promise<PublishJob>;
+  readExport(editionId: string): Promise<{ href: string; label: string }>;
+  importPackage(input: {
+    mode: ImportMode;
+    file: Blob;
+    fileName: string;
+    requestId: string;
+  }): Promise<ImportResult>;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function fail(message: string, status = 200): never {
+  throw new TextbookRequestError(message, status);
+}
+
+function parseRequest<T extends z.ZodType>(
+  schema: T,
+  value: unknown,
+): z.infer<T> {
+  const parsed = schema.safeParse(value);
+  if (!parsed.success) {
+    const message = parsed.error.issues[0]?.message;
+    fail(
+      message && !message.startsWith("Invalid")
+        ? message
+        : "요청 값이 계약과 맞지 않습니다.",
+      400,
+    );
+  }
+  return parsed.data;
+}
+
+function parseData<T extends z.ZodType>(schema: T, body: unknown): z.infer<T> {
+  const envelope = z.strictObject({ data: z.unknown() }).safeParse(body);
+  if (!envelope.success) fail(LOAD_ERROR);
+  const parsed = schema.safeParse(envelope.data.data);
+  if (!parsed.success) fail(LOAD_ERROR);
+  return parsed.data;
+}
+
+function studioIssues(issues: TextbookIssue[]): StudioIssue[] {
+  return issues.map((issue) => ({
+    severity: issue.severity,
+    message: issue.message,
+    ...(issue.sectionId ? { sectionId: issue.sectionId } : {}),
+  }));
+}
+
+function knownSpeaker(id: string): Speaker | null {
+  if (id === SPEAKER_ID.선생님) return "선생님";
+  if (id === SPEAKER_ID.민서) return "민서";
+  if (id === SPEAKER_ID.지호) return "지호";
+  return null;
+}
+
+function speakerOf(id: string): Speaker {
+  return knownSpeaker(id) ?? "선생님";
+}
+
+function expressionOf(
+  value: "neutral" | "question" | "thinking" | "aha",
+): Expression {
+  if (value === "question") return "질문";
+  if (value === "thinking") return "생각";
+  if (value === "aha") return "알아챔";
+  return "평온";
+}
+
+function linesOf(value: string): string[] {
+  return value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+}
+
+function toBook(row: TextbookBookSummary): BookSummary {
+  return {
+    bookId: row.id,
+    title: row.title,
+    shared: row.visibility === "branch",
+    archived: row.archivedAt !== null,
+    activeEditionId: row.draftEditionId,
+  };
+}
+
+function statusFor(
+  sectionId: string,
+  issues: TextbookIssue[],
+): SectionDetail["status"] {
+  const related = issues.filter((issue) => issue.sectionId === sectionId);
+  if (related.some((issue) => issue.severity === "error")) return "error";
+  if (related.some((issue) => issue.severity === "warning"))
+    return "needs-review";
+  return "saved";
+}
+
+function toEdition(detail: TextbookEditionDetail): EditionDetail {
+  return {
+    editionId: detail.edition.editionId,
+    bookId: detail.book.id,
+    title: detail.config.title,
+    structureRevision: detail.structureRevision,
+    structureSource: detail,
+    config: {
+      paper: "A4",
+      workLineMm: 7,
+      answerPolicy: "never",
+      volumeCode: detail.config.displayCode,
+      videoPolicy: detail.config.videoPolicy,
+    },
+    units: detail.outline.map((unit) => ({
+      unitKey: unit.unitKey,
+      title: unit.title,
+      sections: unit.sections.map((section) => ({
+        sectionId: section.id,
+        title: section.title,
+        status: statusFor(section.id, detail.issues),
+        parity: "unconfirmed" as const,
+      })),
+    })),
+  };
+}
+
+function fromTurn(
+  turn: Extract<ManuscriptBlock, { kind: "dialogue" }>["turns"][number],
+  index: number,
+): DialogueTurn {
+  return {
+    id: `${turn.speakerId}-${index}`,
+    speaker: speakerOf(turn.speakerId),
+    speakerId: turn.speakerId,
+    expression: expressionOf(turn.expression),
+    side: turn.side === "left" ? "왼쪽" : "오른쪽",
+    text: turn.markdown,
+    portraitAssetId: turn.portraitAssetId,
+    mirror: turn.mirrorPortrait,
+  };
+}
+
+function fromBlock(block: ManuscriptBlock): SectionBlock {
+  switch (block.kind) {
+    case "text":
+      return { id: block.blockId, kind: "text", text: block.markdown };
+    case "problem":
+      return { id: block.blockId, kind: "problems", itemIds: [block.itemId] };
+    case "image":
+      return {
+        id: block.blockId,
+        kind: "image",
+        assetId: block.assetId,
+        caption: block.caption ?? "",
+      };
+    case "dialogue":
+      return {
+        id: block.blockId,
+        kind: "dialogue",
+        turns: block.turns.map(fromTurn),
+      };
+    case "concept":
+      return {
+        id: block.blockId,
+        kind: "concept",
+        conceptKey: block.conceptKey,
+      };
+    case "concept-recall":
+      return {
+        id: block.blockId,
+        kind: "concept-recall",
+        conceptKey: block.conceptKey ?? "",
+        phase: block.phase,
+        text: block.markdown,
+        showRepetitionChecks: block.showRepetitionChecks,
+      };
+  }
+}
+
+function fromRecord(
+  record: TextbookSectionRecord,
+  editionId: string,
+): SectionDetail {
+  return {
+    sectionId: record.id,
+    editionId,
+    unitKey: record.unitKey,
+    sectionKey: record.section.sectionKey,
+    templateKey: record.section.templateKey,
+    title: record.section.title,
+    revision: record.revision,
+    aggregateRevision: record.revision,
+    status: "saved",
+    parity: record.section.startPolicy,
+    parityMessage: null,
+    blocks: record.section.blocks.map(fromBlock),
+    answer: "",
+    portraits: [],
+    picks: [],
+    items: record.section.blocks.flatMap((block) =>
+      block.kind === "problem"
+        ? [
+            {
+              itemId: block.itemId,
+              problemId: "",
+              label: "문항",
+              snapshotHash: null,
+              currentHash: null,
+              state: "uncompared" as const,
+            },
+          ]
+        : [],
+    ),
+    concept: null,
+  };
+}
+
+function toWireTurn(turn: DialogueTurn) {
+  if (turn.side === "왼쪽" && turn.mirror)
+    fail("왼쪽 초상은 뒤집지 않습니다.", 400);
+  if (!turn.portraitAssetId) fail("초상화 자료가 없습니다.", 400);
+  return {
+    speakerId: turn.speakerId || SPEAKER_ID[turn.speaker],
+    side: turn.side === "왼쪽" ? ("left" as const) : ("right" as const),
+    expression: EXPRESSION_WIRE[turn.expression],
+    portraitAssetId: turn.portraitAssetId,
+    mirrorPortrait: turn.mirror,
+    markdown: turn.text,
+  };
+}
+
+function toWireBlock(block: SectionBlock): ManuscriptBlock | ManuscriptBlock[] {
+  switch (block.kind) {
+    case "text":
+      return { blockId: block.id, kind: "text", markdown: block.text };
+    case "problems": {
+      const itemId = block.itemIds[0];
+      if (!itemId || block.itemIds.length !== 1)
+        fail("문항 블록은 한 문항씩 저장합니다.", 400);
+      return { blockId: block.id, kind: "problem", itemId };
+    }
+    case "image":
+      return {
+        blockId: block.id,
+        kind: "image",
+        assetId: block.assetId,
+        caption: block.caption.length > 0 ? block.caption : null,
+      };
+    case "dialogue":
+      return {
+        blockId: block.id,
+        kind: "dialogue",
+        turns: block.turns.map(toWireTurn),
+      };
+    case "concept":
+      return {
+        blockId: block.id,
+        kind: "concept",
+        conceptKey: block.conceptKey,
+      };
+    case "concept-recall":
+      if (block.phase !== "study" && block.showRepetitionChecks) {
+        fail("핵심어·문장 단계에는 반복 확인란을 표시하지 않습니다.", 400);
+      }
+      return {
+        blockId: block.id,
+        kind: "concept-recall",
+        phase: block.phase,
+        markdown: block.text,
+        showRepetitionChecks: block.showRepetitionChecks,
+        ...(block.conceptKey ? { conceptKey: block.conceptKey } : {}),
+      };
+  }
+}
+
+function toWireSection(section: SectionDetail): Section {
+  if (section.parity !== "even-left" && section.parity !== "continue") {
+    fail("시작 면이 정해지지 않아 저장하지 않습니다.", 400);
+  }
+  return {
+    sectionKey: section.sectionKey,
+    title: section.title,
+    templateKey: section.templateKey,
+    startPolicy: section.parity,
+    blocks: section.blocks.flatMap(toWireBlock),
+  };
+}
+
+function linkLabel(
+  status: "unlinked" | "candidate" | "linked" | "needs-review",
+): string {
+  if (status === "unlinked") return "연결 없음";
+  if (status === "candidate") return "후보";
+  if (status === "linked") return "연결됨";
+  return "검수 필요";
+}
+
+function toItem(item: z.infer<typeof textbookItemSchema>): ItemRow {
+  return {
+    itemId: item.itemId,
+    problemId: item.sourceTestProblemId ?? "",
+    label: `${item.displayNumber} · ${linkLabel(item.linkStatus)}`,
+    snapshotHash: null,
+    currentHash: null,
+    state: "uncompared",
+  };
+}
+
+function toAssignment(row: TextbookAssignment): AssignmentRow {
+  return {
+    assignmentId: row.id,
+    target:
+      row.subject.kind === "class"
+        ? { kind: "class", classId: row.subject.classId, label: "반" }
+        : { kind: "student", studentId: row.subject.studentId, label: "학생" },
+    startsAt: row.startsAt,
+    expiresAt: row.expiresAt,
+    revoked: row.revokedAt !== null,
+  };
+}
+
+function videoStatusOf(
+  status: "draft" | "review" | "published" | "withdrawn",
+): VideoStatus {
+  if (status === "review") return "pending-review";
+  if (status === "published") return "published";
+  if (status === "withdrawn") return "stopped";
+  return "draft";
+}
+
+function videoStatusWire(
+  status: VideoStatus,
+): "draft" | "review" | "published" | "withdrawn" {
+  if (status === "pending-review") return "review";
+  if (status === "published") return "published";
+  if (status === "stopped") return "withdrawn";
+  return "draft";
+}
+
+function toBinding(
+  row: z.infer<typeof textbookVideoBindingSchema>,
+): VideoBinding {
+  return {
+    bindingId: row.bindingId,
+    videoId: row.videoId,
+    snapshotId: row.snapshotId,
+    role: "problem-solution",
+    status: videoStatusOf(row.status),
+    policy: "unknown",
+    label: "영상",
+    startSeconds: row.startSeconds,
+    endSeconds: row.endSeconds,
+    contentHash: row.reviewedAgainstHash,
+  };
+}
+
+function toVideo(row: z.infer<typeof textbookVideoSchema>): VideoBinding {
+  return {
+    bindingId: row.id,
+    videoId: row.id,
+    snapshotId: "",
+    role: "concept-prep",
+    status: "draft",
+    policy: "unknown",
+    label: row.title,
+    startSeconds: 0,
+    endSeconds: null,
+    contentHash: null,
+  };
+}
+
+function toJob(job: TextbookPublishJob): PublishJob {
+  const status =
+    job.status === "published"
+      ? "finalized"
+      : job.status === "rendering" || job.status === "verifying"
+        ? "running"
+        : job.status === "ready"
+          ? "ready"
+          : job.status === "failed"
+            ? "failed"
+            : "reserved";
+  return { jobId: job.requestId, status, issues: studioIssues(job.issues) };
+}
+
+function toDraft(concept: TextbookConcept): ConceptDraft {
+  return {
+    conceptKey: concept.conceptKey,
+    title: concept.title,
+    kind: concept.kind,
+    goal: concept.body.goal,
+    prerequisites: concept.body.prerequisites.join("\n"),
+    definition: concept.body.definition,
+    conditions: concept.body.conditions ?? "",
+    examples: concept.body.examples.join("\n"),
+    counterexamples: concept.body.counterexamples.join("\n"),
+    misconceptions: concept.body.misconceptions.join("\n"),
+    explainPrompt: concept.body.explainPrompt ?? "",
+  };
+}
+
+function formsFor(
+  entryKind: BlankPick["entryKind"],
+  givenCase: boolean,
+): BlankForm[] {
+  if (entryKind === "ox") return ["term"];
+  if (entryKind === "apply") return ["cloze"];
+  if (entryKind === "figure") return ["figure"];
+  return givenCase ? ["term", "cloze"] : ["term", "cloze"];
+}
+
+function picksFromCatalog(
+  body: z.infer<typeof textbookConceptCatalogSchema>,
+): BlankPick[] {
+  return body.entries.flatMap((entry) => {
+    const givenCase =
+      entry.entryKind === "concept" && entry.payload.givenCase === true;
+    const level: BlankLevel =
+      entry.payload.level === "하" || entry.payload.level === "상"
+        ? entry.payload.level
+        : "중";
+    return formsFor(entry.entryKind, givenCase).map((form) => ({
+      blankSectionKey: entry.payload.section,
+      entryKind: entry.entryKind,
+      entryId: entry.payload.id,
+      form,
+      level,
+      reviewStatus: "candidate" as const,
+    }));
+  });
+}
+
+function applyConceptEdits(
+  source: TextbookConcept,
+  concept: ConceptDraft,
+  picks: BlankPick[],
+): TextbookConcept {
+  const reviews = new Map(
+    picks.map((pick) => [
+      `${pick.entryKind}:${pick.entryId}`,
+      pick.reviewStatus,
+    ]),
+  );
+  const blankItems = source.blankItems.map((item) => {
+    const status = reviews.get(`${item.entryKind}:${item.entryId}`);
+    if (!status || status === "confirmed" || status === item.review.status)
+      return item;
+    return {
+      ...item,
+      review: {
+        status,
+        candidateRule: item.review.candidateRule,
+        reviewedBy: null,
+        reviewedAt: null,
+        targetHash: null,
+      },
+    };
+  });
+  const seen = new Set(
+    blankItems.map((item) => `${item.entryKind}:${item.entryId}`),
+  );
+  for (const pick of picks) {
+    const key = `${pick.entryKind}:${pick.entryId}`;
+    if (seen.has(key) || pick.reviewStatus === "confirmed") continue;
+    seen.add(key);
+    blankItems.push({
+      blankSectionKey: pick.blankSectionKey,
+      entryKind: pick.entryKind,
+      entryId: pick.entryId,
+      review: {
+        status: pick.reviewStatus === "rejected" ? "rejected" : "candidate",
+        candidateRule: "manual",
+        reviewedBy: null,
+        reviewedAt: null,
+        targetHash: null,
+      },
+    });
+  }
+  return {
+    ...source,
+    title: concept.title,
+    kind: concept.kind,
+    body: {
+      ...source.body,
+      goal: concept.goal,
+      prerequisites: linesOf(concept.prerequisites),
+      definition: concept.definition,
+      conditions: concept.conditions.trim() ? concept.conditions : null,
+      examples: linesOf(concept.examples),
+      counterexamples: linesOf(concept.counterexamples),
+      misconceptions: linesOf(concept.misconceptions),
+      explainPrompt: concept.explainPrompt.trim()
+        ? concept.explainPrompt
+        : null,
+    },
+    blankItems,
+  };
+}
+
+function errorMessage(body: unknown, status: number): TextbookRequestError {
+  const row = isRecord(body) ? body : null;
+  const error = row && isRecord(row.error) ? row.error : null;
+  const message =
+    error && typeof error.message === "string" && error.message
+      ? error.message
+      : LOAD_ERROR;
+  const details = error && isRecord(error.details) ? error.details : null;
+  const serverRevision =
+    details &&
+    typeof details.serverRevision === "number" &&
+    Number.isSafeInteger(details.serverRevision)
+      ? details.serverRevision
+      : null;
+  let serverSection: SectionDetail | null = null;
+  if (details && details.serverSection) {
+    const parsed = textbookSectionRecordSchema.safeParse(details.serverSection);
+    if (parsed.success) serverSection = fromRecord(parsed.data, "");
+  }
+  let issues: StudioIssue[] = [];
+  if (details && Array.isArray(details.issues)) {
+    const parsed = z.array(textbookIssueSchema).safeParse(details.issues);
+    if (parsed.success) issues = studioIssues(parsed.data);
+  }
+  return new TextbookRequestError(message, status, {
+    serverRevision,
+    serverSection,
+    issues,
+  });
+}
+
+async function request(
+  fetchImpl: typeof fetch,
+  url: string,
+  init?: RequestInit,
+): Promise<unknown> {
+  const response = await fetchImpl(url, { cache: "no-store", ...init });
+  let body: unknown = null;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+  if (!response.ok) throw errorMessage(body, response.status);
+  return body;
+}
+
+function jsonInit(method: string, payload: unknown): RequestInit {
+  return {
+    method,
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  };
+}
+
+async function sha256Hex(bytes: ArrayBuffer): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", bytes);
+  return [...new Uint8Array(digest)]
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function parseVideoList(body: unknown): VideoBinding[] {
+  const bindings = dataResponseSchema(
+    z.array(textbookVideoBindingSchema),
+  ).safeParse(body);
+  if (bindings.success) return bindings.data.data.map(toBinding);
+  const videos = dataResponseSchema(z.array(textbookVideoSchema)).safeParse(
+    body,
+  );
+  if (videos.success) return videos.data.data.map(toVideo);
+  fail(LOAD_ERROR);
+}
+
+export function createTextbookApi(
+  fetchImpl: typeof fetch = fetch,
+): TextbookStudioApi {
+  return {
+    async listBooks() {
+      const body = await request(fetchImpl, `${BASE}/books`);
+      const parsed = textbookBookListSchema.safeParse(body);
+      if (!parsed.success) fail(LOAD_ERROR);
+      return parsed.data.data.map(toBook);
+    },
+    async createBook(input) {
+      const bookId = crypto.randomUUID();
+      const payload = parseRequest(textbookCreateBookSchema, {
+        requestId: input.requestId,
+        config: {
+          bookId,
+          schoolLevel: "elementary",
+          grade: 5,
+          semester: 1,
+          volume: 1,
+          volumeCount: 1,
+          displayCode: input.volumeCode,
+          title: input.title,
+          curriculumVersion: input.curriculumVersion,
+          mode: "integrated",
+          pageBudget: { target: input.pageTarget, tolerance: 0, strict: false },
+          print: {
+            paper: "A4",
+            innerMarginMm: 15,
+            outerMarginMm: 15,
+            sectionStart: "even-left",
+            coverMode: "separate",
+            firstPhysicalPageIndex: 1,
+          },
+          videoPolicy: input.videoPolicy,
+        },
+      });
+      return toBook(
+        parseData(
+          textbookBookSummarySchema,
+          await request(fetchImpl, `${BASE}/books`, jsonInit("POST", payload)),
+        ),
+      );
+    },
+    async openEdition(editionId) {
+      return toEdition(
+        parseData(
+          textbookEditionDetailSchema,
+          await request(fetchImpl, `${BASE}/editions/${editionId}`),
+        ),
+      );
+    },
+    async createEdition(bookId, sourceEditionId, requestId) {
+      const payload = parseRequest(textbookCreateEditionSchema, {
+        requestId,
+        sourceEditionId,
+        label: "복사본",
+      });
+      return toEdition(
+        parseData(
+          textbookEditionDetailSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/books/${bookId}/editions`,
+            jsonInit("POST", payload),
+          ),
+        ),
+      );
+    },
+    async getSection(editionId, sectionId) {
+      return fromRecord(
+        parseData(
+          textbookSectionRecordSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${editionId}/sections/${sectionId}`,
+          ),
+        ),
+        editionId,
+      );
+    },
+    async createSection(input) {
+      const sectionId = crypto.randomUUID();
+      const payload = parseRequest(textbookSaveSectionSchema, {
+        requestId: input.requestId,
+        expectedRevision: 0,
+        unitKey: input.unitKey,
+        section: {
+          sectionKey: input.sectionKey,
+          title: input.title,
+          templateKey: input.templateKey,
+          startPolicy: "continue",
+          blocks: [],
+        },
+      });
+      const saved = parseData(
+        textbookSaveSectionResultSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${input.editionId}/sections/${sectionId}`,
+          jsonInit("PUT", payload),
+        ),
+      );
+      const detail = fromRecord(saved.section, input.editionId);
+      return {
+        ...detail,
+        aggregateRevision: saved.aggregateRevision,
+        status: "draft",
+      };
+    },
+    async saveSection(input) {
+      const payload = parseRequest(textbookSaveSectionSchema, {
+        requestId: input.requestId,
+        expectedRevision: input.expectedRevision,
+        unitKey: input.section.unitKey,
+        section: toWireSection(input.section),
+      });
+      const saved = parseData(
+        textbookSaveSectionResultSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${input.editionId}/sections/${input.sectionId}`,
+          jsonInit("PUT", payload),
+        ),
+      );
+      return {
+        revision: saved.section.revision,
+        aggregateRevision: saved.aggregateRevision,
+      };
+    },
+    async patchEdition(input) {
+      const payload = parseRequest(textbookSaveStructureSchema, {
+        requestId: input.requestId,
+        expectedRevision: input.expectedRevision,
+        config: input.source.config,
+        outline: input.source.outline,
+      });
+      return toEdition(
+        parseData(
+          textbookEditionDetailSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${input.editionId}`,
+            jsonInit("PATCH", payload),
+          ),
+        ),
+      );
+    },
+    async deleteSection(editionId, sectionId, expectedRevision, requestId) {
+      const payload = parseRequest(textbookDeleteSectionSchema, {
+        requestId,
+        expectedRevision,
+      });
+      await request(
+        fetchImpl,
+        `${BASE}/editions/${editionId}/sections/${sectionId}`,
+        jsonInit("DELETE", payload),
+      );
+    },
+    async captureItems(input) {
+      if (input.testId && input.problemIds.length > 0) {
+        fail("시험지와 문제 목록은 함께 보내지 않습니다.", 400);
+      }
+      const source = input.testId
+        ? { kind: "test" as const, testId: input.testId }
+        : { kind: "problems" as const, problemIds: input.problemIds };
+      const payload = parseRequest(textbookCaptureItemsSchema, {
+        requestId: input.requestId,
+        expectedRevision: input.expectedRevision,
+        sectionId: input.sectionId,
+        source,
+      });
+      const result = parseData(
+        textbookCaptureResultSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${input.editionId}/items`,
+          jsonInit("POST", payload),
+        ),
+      );
+      return {
+        items: result.items.map(toItem),
+        excluded: result.excluded,
+        aggregateRevision: result.aggregateRevision,
+      };
+    },
+    async diffItem(editionId, itemId, requestId, expectedRevision) {
+      const payload = parseRequest(textbookSnapshotActionSchema, {
+        requestId,
+        expectedRevision,
+      });
+      const body = await request(
+        fetchImpl,
+        `${BASE}/editions/${editionId}/items/${itemId}/diff`,
+        jsonInit("POST", payload),
+      );
+      const parsed = dataResponseSchema(
+        z.strictObject({ issues: z.array(textbookIssueSchema).max(20_000) }),
+      ).safeParse(body);
+      if (!parsed.success) fail(LOAD_ERROR);
+      const summary = parsed.data.data.issues
+        .map((issue) => issue.message)
+        .join(" ");
+      return { itemId, summary: summary || "비교할 차이가 응답에 없습니다." };
+    },
+    async recaptureItem(editionId, itemId, requestId, expectedRevision) {
+      const payload = parseRequest(textbookSnapshotActionSchema, {
+        requestId,
+        expectedRevision,
+      });
+      const item = parseData(
+        textbookItemSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${editionId}/items/${itemId}/recapture`,
+          jsonInit("POST", payload),
+        ),
+      );
+      return toItem(item);
+    },
+    async readConcept(editionId, conceptKey) {
+      const record = parseData(
+        textbookConceptRecordSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${editionId}/concepts/${conceptKey}`,
+        ),
+      );
+      return {
+        concept: record.concept,
+        revision: record.revision,
+        draft: toDraft(record.concept),
+      };
+    },
+    async saveConcept(input) {
+      const payload = parseRequest(textbookSaveConceptSchema, {
+        requestId: input.requestId,
+        expectedRevision: input.expectedRevision,
+        concept: applyConceptEdits(input.source, input.concept, input.picks),
+      });
+      const saved = parseData(
+        textbookConceptRecordSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${input.editionId}/concepts/${input.conceptKey}`,
+          jsonInit("PUT", payload),
+        ),
+      );
+      return { revision: saved.revision, concept: saved.concept };
+    },
+    async searchCatalog(query) {
+      const body = await request(
+        fetchImpl,
+        `${BASE}/concepts/catalog?q=${encodeURIComponent(query)}`,
+      );
+      return picksFromCatalog(parseData(textbookConceptCatalogSchema, body));
+    },
+    async listAssignments(editionId) {
+      const rows = parseData(
+        z.array(textbookAssignmentSchema),
+        await request(fetchImpl, `${BASE}/editions/${editionId}/assignments`),
+      );
+      return rows.map(toAssignment);
+    },
+    async createAssignment(input) {
+      const payload = parseRequest(textbookCreateAssignmentSchema, {
+        requestId: input.requestId,
+        subject:
+          input.target.kind === "class"
+            ? { kind: "class", classId: input.target.classId }
+            : { kind: "student", studentId: input.target.studentId },
+        scope: { kind: "edition" },
+        startsAt: input.startsAt,
+        expiresAt: input.expiresAt,
+      });
+      return toAssignment(
+        parseData(
+          textbookAssignmentSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${input.editionId}/assignments`,
+            jsonInit("POST", payload),
+          ),
+        ),
+      );
+    },
+    async revokeAssignment(editionId, assignmentId, requestId) {
+      const payload = parseRequest(textbookRequestSchema, { requestId });
+      await request(
+        fetchImpl,
+        `${BASE}/editions/${editionId}/assignments/${assignmentId}`,
+        jsonInit("DELETE", payload),
+      );
+    },
+    async listVideos() {
+      return parseVideoList(await request(fetchImpl, `${BASE}/videos`));
+    },
+    async updateVideo(input) {
+      if (!input.contentHash) fail("게시 검수용 내용 해시가 없습니다.", 400);
+      const payload = parseRequest(textbookBindingWriteSchema, {
+        requestId: input.requestId,
+        videoId: input.videoId,
+        startSeconds: input.startSeconds,
+        endSeconds: input.endSeconds,
+        status: videoStatusWire(input.status),
+        expectedContentHash: input.contentHash,
+      });
+      return toBinding(
+        parseData(
+          textbookVideoBindingSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/bindings/${input.bindingId}`,
+            jsonInit("PATCH", payload),
+          ),
+        ),
+      );
+    },
+    async preflight(editionId, requestId) {
+      const payload = parseRequest(textbookRequestSchema, { requestId });
+      const result = parseData(
+        textbookPreflightSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${editionId}/publish/preflight`,
+          jsonInit("POST", payload),
+        ),
+      );
+      const issues = studioIssues(result.issues);
+      return result.canPublish ? { ok: true, issues } : { ok: false, issues };
+    },
+    async reserve(editionId, requestId, expectedRevision) {
+      const payload = parseRequest(textbookPublishReserveSchema, {
+        requestId,
+        expectedRevision,
+      });
+      return toJob(
+        parseData(
+          textbookPublishJobSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${editionId}/publish/reserve`,
+            jsonInit("POST", payload),
+          ),
+        ),
+      );
+    },
+    async stepPublish(editionId, requestId) {
+      const payload = parseRequest(textbookRequestSchema, { requestId });
+      return toJob(
+        parseData(
+          textbookPublishJobSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${editionId}/publish/steps/next`,
+            jsonInit("POST", payload),
+          ),
+        ),
+      );
+    },
+    async finalize(editionId, requestId) {
+      const payload = parseRequest(textbookRequestSchema, { requestId });
+      return toJob(
+        parseData(
+          textbookPublishJobSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${editionId}/publish/finalize`,
+            jsonInit("POST", payload),
+          ),
+        ),
+      );
+    },
+    async readJob(editionId, jobId) {
+      return toJob(
+        parseData(
+          textbookPublishJobSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/editions/${editionId}/publish/${jobId}`,
+          ),
+        ),
+      );
+    },
+    async readExport(editionId) {
+      const body = await request(
+        fetchImpl,
+        `${BASE}/editions/${editionId}/export`,
+      );
+      const parsed = textbookExportResponseSchema.safeParse(body);
+      if (!parsed.success) fail(LOAD_ERROR);
+      const href = URL.createObjectURL(
+        new Blob([JSON.stringify(parsed.data.data)], {
+          type: "application/json",
+        }),
+      );
+      return { href, label: "교환 파일" };
+    },
+    async importPackage(input) {
+      const bytes = await input.file.arrayBuffer();
+      const sha256 = await sha256Hex(bytes);
+      let offset = 0;
+      for (const size of planUploadChunks(bytes.byteLength)) {
+        const slice = bytes.slice(offset, offset + size);
+        const response = await fetchImpl(`${BASE}/uploads/${sha256}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/octet-stream",
+            "Content-Range": `bytes ${offset}-${offset + size - 1}/${bytes.byteLength}`,
+          },
+          body: slice,
+        });
+        if (!response.ok) throw errorMessage(null, response.status);
+        offset += size;
+      }
+      const completed = await request(
+        fetchImpl,
+        `${BASE}/uploads/${sha256}/complete`,
+        jsonInit("POST", {
+          requestId: input.requestId,
+          expectedSha256: sha256,
+          byteLength: bytes.byteLength,
+          mimeType: input.file.type || "application/octet-stream",
+        }),
+      );
+      const upload = dataResponseSchema(
+        z.strictObject({ uploadId: z.uuid() }),
+      ).safeParse(completed);
+      if (!upload.success) fail("업로드 응답에 식별자가 없습니다.");
+      const payload = parseRequest(textbookImportSchema, {
+        requestId: input.requestId,
+        mode: input.mode,
+        uploadId: upload.data.data.uploadId,
+        expectedSha256: sha256,
+      });
+      const imported = parseData(
+        textbookImportResultSchema,
+        await request(fetchImpl, `${BASE}/imports`, jsonInit("POST", payload)),
+      );
+      const issues = studioIssues(imported.issues);
+      if (imported.issues.some((issue) => issue.severity === "error")) {
+        return { mode: input.mode, rejected: true, issues };
+      }
+      if (input.mode === "archive")
+        return { mode: "archive", readOnly: true, issues };
+      if (!imported.bookId) fail(LOAD_ERROR);
+      const listed = textbookBookListSchema.safeParse(
+        await request(fetchImpl, `${BASE}/books`),
+      );
+      if (!listed.success) fail(LOAD_ERROR);
+      const book = listed.data.data
+        .map(toBook)
+        .find((item) => item.bookId === imported.bookId);
+      if (!book) fail(LOAD_ERROR);
+      return { mode: "copy", book, issues };
+    },
+  };
+}
+
+export const httpTextbookApi = createTextbookApi();
+
+export function newRequestId(): string {
+  return crypto.randomUUID();
+}

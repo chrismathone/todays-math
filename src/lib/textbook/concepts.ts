@@ -295,13 +295,14 @@ export function freezeTextbookConcept(
     )
       throw new Error(`연결한 개념이 확인 이후 바뀌었습니다: ${link.linkId}`);
   }
-  const forms: readonly ConceptBlankForm[] = selectedForms ?? [
-    "term",
-    "cloze",
-    ...(entries.some((entry) => entry.entryKind === "figure")
-      ? ["figure" as const]
-      : []),
-  ];
+  const forms: readonly ConceptBlankForm[] = selectedForms ??
+    concept.blankForms ?? [
+      "term",
+      "cloze",
+      ...(entries.some((entry) => entry.entryKind === "figure")
+        ? ["figure" as const]
+        : []),
+    ];
   if (!forms.length || forms.length > 5 || new Set(forms).size !== forms.length)
     throw new Error("백지 형식을 중복 없이 선택하세요.");
   const sectionKeys = [

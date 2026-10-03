@@ -126,6 +126,20 @@ describe("reviewed textbook concepts use exact canonical sources", () => {
       entry.definition = original;
     }
   });
+  it("preserves chosen forms when freezing and rejects duplicate forms", () => {
+    const source = { ...reviewed(), blankForms: ["cloze", "term"] as const };
+    const saved = freezeTextbookConcept({
+      ...source,
+      blankForms: [...source.blankForms],
+    });
+    expect(saved.frozen!.selection.map((pick) => pick.form)).toEqual([
+      "cloze",
+      "term",
+    ]);
+    expect(() =>
+      freezeTextbookConcept({ ...reviewed(), blankForms: ["term", "term"] }),
+    ).toThrow();
+  });
   it("rejects wrong source section and recall-incompatible cases instead of substituting", () => {
     const wrong = draft();
     wrong.blankItems[0]!.blankSectionKey = "초5::가짜::가짜";
