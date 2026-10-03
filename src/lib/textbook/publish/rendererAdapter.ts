@@ -45,6 +45,8 @@ export interface MergedPdf {
   pageCount: number;
   /** 합친 파일에서 다시 읽은 QR 전부 */
   qrChecks: QrReadback[];
+  /** 펼침면을 만들 때 조판기가 다시 받는 값(합친 파일의 QR 자리 · 해시) */
+  carry?: unknown;
 }
 
 export interface TextbookRenderer {
@@ -52,6 +54,11 @@ export interface TextbookRenderer {
   templateVersion: string;
   /** 조판기를 쓸 수 없는 까닭 — 있으면 발행 예약이 작업을 만들지 않고 거절한다 */
   unavailableReason?: string;
+  /**
+   * 구획을 조각으로 묶는다(목차 순 자리의 이어진 묶음들). «앞 구획에 이어서» 시작하는 구획은 앞 구획과 한 조각이어야 한다 —
+   * 그 규칙은 조판기가 안다. 없으면 발행 코드의 기본 묶음(`planChunks`)을 쓴다.
+   */
+  planChunks?(exchange: TextbookExchange): number[][];
   renderChunk(input: {
     exchange: TextbookExchange;
     readAsset: ReadEditionAsset;
@@ -60,12 +67,43 @@ export interface TextbookRenderer {
     sectionIndices: number[];
     firstPhysicalPageIndex: number;
     variant: PublishVariant;
+    /**
+     * 해설판을 조판할 때 — **같은 구획 묶음의 학생용 걸음이 남긴 `carry`**. 해설판은 학생용의 쪽 자리를 그대로 쓴다
+     * (같은 문항이 같은 쪽에 있어야 쪽 참조 · QR 이 맞는다). 서버가 걸음 줄에서 읽어 준다 — 요청 본문에서 오지 않는다.
+     */
+    studentCarry?: unknown;
   }): Promise<RenderedChunk>;
   mergeChunks(
     chunks: Array<{ pdf: Uint8Array; pageCount: number; carry: unknown }>,
     maxBytes: number,
   ): Promise<MergedPdf>;
+  /** 합친 학생용을 펼침면(두 쪽을 한 장에)으로 다시 묶고 QR 을 그 파일에서 다시 읽는다. 없으면 펼침면 산출물을 만들지 않는다 */
+  spread?(
+    merged: { pdf: Uint8Array; pageCount: number; carry: unknown },
+    firstPhysicalPageIndex: number,
+  ): Promise<MergedPdf>;
+  /**
+   * 조판한 학생용 쪽들로 단일 HTML 을 만든다(글꼴 · 그림을 안에 싣는다 — 바깥 주소를 부르지 않는다).
+   * 정답 · 해설 · 교사용 원문은 싣지 않는다. 없으면 오프라인 HTML 산출물을 만들지 않는다.
+   */
+  offlineHtml?(input: {
+    exchange: TextbookExchange;
+    readAsset: ReadEditionAsset;
+    officialOrigin: string;
+    /** 학생용 조판 걸음들의 `carry` — 구획 순서대로 */
+    chunkCarries: unknown[];
+  }): Promise<Uint8Array>;
 }
+
+/**
+ * 교환 패키지(ZIP) — 발행한 교환 형식 · 자산 바이트 · 대응표 · 검수 보고를 한 파일로(Codex 의 `createTextbookArchive`).
+ * 받는 것은 전부 서버가 방금 조립한 값이다.
+ */
+export type PackageArchive = (
+  exchange: TextbookExchange,
+  readAsset: ReadEditionAsset,
+  validation: unknown,
+) => Promise<Uint8Array>;
 
 /**
  * 교환 형식 전체의 참조 · 해시 · 자산 바이트 검증(Codex 의 `validateTextbookIntegrity`).
@@ -91,6 +129,8 @@ export interface PublishDeps {
   renderer: TextbookRenderer;
   validate: PublishValidator;
   freezeConcept: ConceptFreezer;
+  /** 없으면 교환 패키지 산출물을 만들지 않는다(내보내기가 그때그때 만든다) */
+  packageArchive?: PackageArchive;
   /** 지면에 찍히는 정식 주소의 출처(`https://…`, 경로 없음). 없으면 발행하지 못한다 */
   officialOrigin: string | null;
   now: () => Date;

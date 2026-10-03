@@ -3,10 +3,11 @@
  * `expectedRevision` 은 판본 집계 revision 이다. 옛 확정본은 지워지지 않는다.
  */
 import { textbookSnapshotActionSchema } from "@/contracts/textbook.contract";
+import { textbookItemMutationResultSchema } from "@/contracts/textbookServer.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { createFigureLoader } from "@/lib/textbook/server/figureBytes";
 import {
-  plain,
+  data,
   readBody,
   requestKeyOf,
   textbookRoute,
@@ -30,7 +31,8 @@ export const POST = withErrorLog(
         itemId: uuidParam(params.itemId, "배치"),
       };
       const body = await readBody(request, textbookSnapshotActionSchema);
-      return plain(
+      return data(
+        textbookItemMutationResultSchema,
         await recaptureItem(
           db,
           actor,

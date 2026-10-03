@@ -61,6 +61,28 @@ export function planChunks(
   return chunks;
 }
 
+/**
+ * 조판기가 낸 묶음(목차 순 자리)을 구획 id 묶음으로 — 모든 구획이 차례대로 정확히 한 번 나와야 한다.
+ * 어긋난 계획으로는 걸음을 만들지 않는다(빠진 구획이 조판되지 않은 채 발행되지 않게).
+ */
+export function chunksFromPlan(
+  plan: readonly (readonly number[])[],
+  orderedIds: readonly string[],
+): string[][] {
+  const flat = plan.flat();
+  if (
+    plan.some((chunk) => chunk.length === 0) ||
+    flat.length !== orderedIds.length ||
+    flat.some((index, at) => index !== at)
+  )
+    throw new TextbookError(
+      500,
+      "INTERNAL_ERROR",
+      "조판 계획이 판본의 구획과 맞지 않습니다.",
+    );
+  return plan.map((chunk) => chunk.map((index) => orderedIds[index]!));
+}
+
 function referencedConcepts(exchange: TextbookExchange): Set<string> {
   const keys = new Set<string>();
   for (const unit of exchange.units) {
@@ -246,7 +268,33 @@ export async function reservePublish(
       id,
       blocks: blocksById.get(id) ?? 0,
     }));
-    const chunks = planChunks(ordered);
+    // 묶는 규칙은 조판기가 안다(«이어서» 시작하는 구획은 앞 구획과 한 조각). 조판기가 안 내면 기본 묶음
+    let chunks: string[][];
+    try {
+      chunks = deps.renderer.planChunks
+        ? chunksFromPlan(
+            deps.renderer.planChunks(exchange),
+            ordered.map((section) => section.id),
+          )
+        : planChunks(ordered);
+    } catch (error) {
+      if (error instanceof TextbookError) throw error;
+      // 조판기가 묶지 못하는 원고다(«이어서» 시작하는 구획이 길게 이어져 한 묶음이 너무 커진다) — 원고를 고쳐야 한다
+      throw new TextbookError(
+        422,
+        "VALIDATION_ERROR",
+        "발행을 막는 사유가 있습니다.",
+        {
+          issues: [
+            issue(
+              "chunk-plan-failed",
+              "조판 묶음 하나가 너무 큽니다. 앞 구획에 이어서 시작하는 구획을 줄이거나 구획을 나눠 주세요.",
+              { path: ["sections"] },
+            ),
+          ],
+        },
+      );
+    }
     const steps: Array<{
       idx: number;
       kind: string;
@@ -263,6 +311,21 @@ export async function reservePublish(
         });
       steps.push({ idx: steps.length, kind: "merge", view, sectionIds: [] });
     }
+    // 펼침면 · 단일 HTML 은 학생용에서 만든다 — 조판기가 할 줄 알 때만 걸음을 만든다(없는 산출물을 있다고 적지 않는다)
+    if (deps.renderer.spread)
+      steps.push({
+        idx: steps.length,
+        kind: "spread",
+        view: "student",
+        sectionIds: [],
+      });
+    if (deps.renderer.offlineHtml)
+      steps.push({
+        idx: steps.length,
+        kind: "offline",
+        view: "student",
+        sectionIds: [],
+      });
 
     // 굳히기 · 판 적기까지 끝난 뒤의 값이 «조판할 판본»이다
     const baseRevision = await aggregateRevision(tx, editionId);
