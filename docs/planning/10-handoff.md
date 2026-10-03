@@ -53,12 +53,19 @@ codex 작업자 셋(조판 · 엔진 · 기출 — orca Run `run_f571c2e15943`, 
   `mathSrsQuickFence`(`scripts/qa/math-prerequisite/server.test.ts` → quick) · `noRmSync`(`englishBank.postgres.test.ts` · `mathPrerequisiteGraphCli.test.ts`) ·
   `accountSession` 6 · `rosterRetainedRecords` 6 · `AdminAccounts` 4 · `StudentProgressBoard` 2 · `DailyReviewSection` 1 · `TodaysExam` 1 · `textbookSqlStatements`(«relation "textbook" already exists»).
   eywa · 영어 자료 은행 · 선수학습 · 교재 세션의 몫이다. 이 트랙이 고친 것은 `decisionLogNumbers` 하나(머리글 괄호 안의 덧말이 판독을 깨고 있었다 — D-155 때 리드가 넣은 것).
-- 🔴 **원장님께 남는 것**
-  0. **그림뿐인 보기에 덜 된 짝이 올 때**를 어떻게 그릴지 — 은행 합의는 «예전 조판 그대로 + 출제에서 뺀다», 교재는 «그림 대응 확인 필요를 지면에 적는다». 지금은 은행식이다(`choiceFigureMode` 의 `none`). 교재 스냅샷에 그런 문항이 생기면 정해야 한다.
-  1. **운영 DB 의 기출 82행**(동도 16 · 강동 21 · 경산여 26 · 정화 19 — 9월에 다시 들여오다 멈춘 것)을 **그대로 둘지 · 격리할지.** 답을 듣기 전이라 이 82행에는 쓰지 않았다.
-     그대로 두면 드라이런을 마친 셋을 돌린다: 경산여 19 잠금(`lock-problems.ts --label exam-lock-gyeongsanyeo19-20261003 --reason "…" 2025-gyeongsanyeo-3-2-mid-19 --apply`) ·
-     동도 16 풀이 식 · 강동 17 의 `%`(`apply-exam-draft-review.ts --review bank-decide-review.json --label exam-draft-review-bank-decide-20261003 --apply`).
-  2. 실물 인쇄 검수 `bank-choice-figures`(`/dev/print-check` «대기» — 지금 DB 에는 짝을 아는 행이 0 이라, 대구일 · 신명여 · 안심을 적재한 뒤에야 실제 시험지에 나온다).
+- 🔵 **남아 있던 둘도 합의로 닫았다**(원장님 «그록 코덱스 등과 협의해서 도출해» — 4 · 5회차 · `consensus.md` §7):
+  - **기출 82행**(동도 16 · 강동 21 · 경산여 26 · 정화 19 — 9월의 시범 적재분): **전부 출제에서 뺐다**(2:1 · 리드 패) + 정해 둔 고침 적용.
+    원장 셋 — `exam-draft-review-bank-decide-20261003`(동도 16 풀이 · 강동 17 `%`) · `exam-lock-gyeongsanyeo19-20261003`(조건 모순 — **재이관이 끝나도 풀지 않는다**) ·
+    `exam-hold-pilot81-20261003`(나머지 81행 — 대량 이관이 같은 관문으로 끝날 때 `lock-problems.ts --label exam-hold-pilot81-20261003 --revert` 로 함께 푼다).
+    지금 기출 82행 가운데 출제 가능 **0**. 경산여 편 설정의 `excludeFromLoad` 에도 19 를 적었다(지우고 다시 적재해도 안 살아난다).
+    🔴 **기출 재이관을 하는 세션에게**: 이 네 편을 «지우고 다시 넣을» 때는 위 원장 셋을 같이 정리한다. 적재기는 이미 있는 `externalId` 를 만나면 멈춘다.
+  - **그림뿐인 보기 + 온전하지 않은 짝**: 그림을 칸에 넣지 않고(예전 조판) 보기 위에 **«보기 그림의 번호를 확인할 수 없는 문항입니다.»**를 한 번 적는다(5회차 3:0).
+    글 보기 문항의 모르는 그림에는 문구를 찍지 않는다(병합 직후에는 거꾸로였다 — 교재 스냅샷이 스캔 그림을 전부 `null` 로 보내 평범한 발문 그림마다 «그림 대응 확인 필요»가 찍혔다).
+    가드 `npm run check:figure-choices`(pre-push ⑶-2 — 출제 가능한데 번호를 모르는 그림 보기 · 지금 0건). 교재 전용 지면(`textbook/render/html.ts`)의 같은 문구는 그 트랙의 몫이다.
+- 🔴 **원장님께 남는 것**: 실물 인쇄 검수 `bank-choice-figures`(`/dev/print-check` «대기» — 지금 DB 에는 짝을 아는 행이 0 이라, 대구일 · 신명여 · 안심을 적재한 뒤에야 실제 시험지에 나온다).
+- **학생 SRS 지시서의 처분도 같은 자리에서 정했다**(D-157 · `tracks/reports/consult-srs-directive/consensus.md`): 지시서는 그대로 넘기지 않는다 ·
+  탐험 «아직 모르겠어요»의 400 을 고쳤다(빈 답 = 모름 = 그 활동의 오답) · 중등 은행 재도전의 요청형 풀이는 **다음 일감**(`tracks/briefs/srs-retry-solution.md` — 학생 화면이 바뀌어 시안이 먼저) ·
+  활동 중 힌트 · 실습 모드 · 답안별 기록은 **보류**(통분 공방 세션 10건 가운데 끝에 못 간 것이 2건 이상이면 재논의).
 - **이어서 할 때**: 안심 · 덕화 두 편은 **초안이 안 섰다** — 빌더의 옛 관문(안심 «배점 합 98» · 덕화 «자료 상자의 첫 항목»)이 9월 대량 이관의 미결이다. 설정과 시험은 서 있다.
   짝수 개의 같은 `[그림]` 보기는 파서의 «통째 중복 제거»가 반으로 줄여 계획이 `null` 이 된다(옛 조판 + 적재 잠금 — 5지선다는 무관).
   «조건 넷 이상 + 보기»는 파서가 여전히 못 가른다. 합의 범위 밖에서 본 것 다섯은 `consensus.md` §5(원과 부채꼴 11 의 각 표시 · 닮음 09 라벨 겹침 · «① ~ ⑤ 중 몇 개» 단답형 120행 · 삼각비 17 · 9월 §0-W.3 아홉 건).
