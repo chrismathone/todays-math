@@ -70,7 +70,11 @@ export function assertListeningBinding(
       throw new Error("Attempt binding mismatch");
     if (attempt.status === "cancelled" && !options.allowCancellationTransition)
       throw new Error("Attempt revoked");
-    for (const answer of [...attempt.firstAnswers, ...attempt.reviewAnswers]) {
+    for (const answer of [
+      ...attempt.firstAnswers,
+      ...(attempt.draftAnswers ?? []),
+      ...attempt.reviewAnswers,
+    ]) {
       const question = publication.document.groups
         .flatMap((group) => group.questions)
         .find((question) => question.id === answer.questionId);

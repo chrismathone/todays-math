@@ -58,6 +58,72 @@ function setup(exam = false) {
 }
 
 describe("server-clock attempt transitions", () => {
+  it("keeps editable exam drafts separate, freezes the final selection on submit, and preserves retries", () => {
+    const { publication, assignment, started, answer, context, question } =
+      setup(true);
+    const saved = transitionListeningAttempt(
+      publication,
+      assignment,
+      started,
+      answer,
+      context,
+    );
+    expect(saved.firstAnswers).toEqual([]);
+    expect(saved.draftAnswers?.[0].choiceId).toBe(question.answerChoiceId);
+    const changedChoice = question.choices.find(
+      (choice) => choice.id !== question.answerChoiceId,
+    )!.id;
+    const changedCommand = {
+      ...answer,
+      choiceId: changedChoice,
+      expectedRevision: saved.revision,
+      idempotencyKey: "exam-change",
+    };
+    const changed = transitionListeningAttempt(
+      publication,
+      assignment,
+      saved,
+      changedCommand,
+      context,
+    );
+    expect(changed.draftAnswers).toHaveLength(1);
+    expect(changed.firstAnswers).toEqual([]);
+    const submitted = transitionListeningAttempt(
+      publication,
+      assignment,
+      changed,
+      {
+        kind: "submit",
+        expectedRevision: changed.revision,
+        idempotencyKey: "exam-submit",
+      },
+      context,
+    );
+    expect(submitted.firstAnswers[0].choiceId).toBe(changedChoice);
+    expect(Object.isFrozen(submitted.firstAnswers[0])).toBe(true);
+    expect(
+      transitionListeningAttempt(
+        publication,
+        assignment,
+        submitted,
+        changedCommand,
+        context,
+      ),
+    ).toEqual(submitted);
+    expect(() =>
+      transitionListeningAttempt(
+        publication,
+        assignment,
+        submitted,
+        {
+          ...answer,
+          expectedRevision: submitted.revision,
+          idempotencyKey: "after-submit",
+        },
+        context,
+      ),
+    ).toThrow(/Terminal/);
+  });
   it("rejects foreign server context identity before new commands and receipt replay", () => {
     const { publication, assignment, started, answer, context } = setup();
     const foreign = { ...context, studentId: listeningFixtureIds.retry };
@@ -83,11 +149,22 @@ describe("server-clock attempt transitions", () => {
   it("records release at initial-answer save and reports known exposure separately", () => {
     const { publication, assignment, started, context, answer } = setup(true);
     assignment.releasePolicy = { kind: "at_time", at: context.now };
-    const saved = transitionListeningAttempt(
+    const draft = transitionListeningAttempt(
       publication,
       assignment,
       started,
       answer,
+      context,
+    );
+    const saved = transitionListeningAttempt(
+      publication,
+      assignment,
+      draft,
+      {
+        kind: "submit",
+        expectedRevision: draft.revision,
+        idempotencyKey: "exposure-submit",
+      },
       context,
     );
     expect(saved.firstAnswers[0].savedAfterRelease).toBe(true);

@@ -265,6 +265,8 @@ export const englishListeningAttemptSchema = z
     submittedAt: time.nullable(),
     broadcastSessionId: id.nullable(),
     firstAnswers: z.array(listeningAnswerSchema).max(900),
+    // Exam selections remain editable until submission; practice first answers do not.
+    draftAnswers: z.array(listeningAnswerSchema).max(900).optional(),
     reviewAnswers: z.array(listeningAnswerSchema).max(900),
     interruption: z
       .strictObject({ reason: listeningInterruptionReasonSchema, at: time })
@@ -294,6 +296,11 @@ export const englishListeningAttemptSchema = z
       attempt.firstAnswers.length
     )
       issue("Duplicate first answer");
+    if (
+      new Set((attempt.draftAnswers ?? []).map((answer) => answer.questionId))
+        .size !== (attempt.draftAnswers ?? []).length
+    )
+      issue("Duplicate draft answer");
     if (
       new Set(attempt.reviewAnswers.map((answer) => answer.questionId)).size !==
       attempt.reviewAnswers.length
@@ -341,7 +348,11 @@ export const englishListeningAttemptSchema = z
         Date.parse(attempt.submittedAt) > Date.parse(attempt.updatedAt))
     )
       issue("Invalid submission clock");
-    for (const answer of [...attempt.firstAnswers, ...attempt.reviewAnswers]) {
+    for (const answer of [
+      ...attempt.firstAnswers,
+      ...(attempt.draftAnswers ?? []),
+      ...attempt.reviewAnswers,
+    ]) {
       if (
         !attempt.startedAt ||
         Date.parse(answer.savedAt) < Date.parse(attempt.startedAt) ||
@@ -350,7 +361,7 @@ export const englishListeningAttemptSchema = z
         issue("Invalid saved answer clock");
     }
     if (
-      attempt.firstAnswers.some(
+      [...attempt.firstAnswers, ...(attempt.draftAnswers ?? [])].some(
         (answer) =>
           !attempt.deadlineAt ||
           Date.parse(answer.savedAt) >= Date.parse(attempt.deadlineAt),

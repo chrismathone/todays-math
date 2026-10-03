@@ -85,6 +85,7 @@ export function createListeningAttempt(
       submittedAt: null,
       broadcastSessionId: null,
       firstAnswers: [],
+      ...(assignment.mode === "exam" ? { draftAnswers: [] } : {}),
       reviewAnswers: [],
       interruption: null,
       receipts: [],
@@ -234,12 +235,13 @@ export function transitionListeningAttempt(
           throw new Error("Invalid answer reference");
         if (command.phase === "initial") {
           if (
+            assignment.mode !== "exam" &&
             attempt.firstAnswers.some(
               (answer) => answer.questionId === command.questionId,
             )
           )
             throw new Error("First answer is immutable");
-          attempt.firstAnswers.push({
+          const saved = {
             questionId: command.questionId,
             choiceId: command.choiceId,
             savedAt: context.now,
@@ -256,7 +258,15 @@ export function transitionListeningAttempt(
             ).some(
               (release) => release.groupId === group!.id && release.released,
             ),
-          });
+          };
+          if (assignment.mode === "exam") {
+            attempt.draftAnswers = [
+              ...(attempt.draftAnswers ?? []).filter(
+                (answer) => answer.questionId !== command.questionId,
+              ),
+              saved,
+            ];
+          } else attempt.firstAnswers.push(saved);
         } else {
           const releases = decideListeningRelease(
             publication,
@@ -295,6 +305,10 @@ export function transitionListeningAttempt(
       case "submit":
         if (attempt.status !== "in_progress")
           throw new Error("Attempt not in progress");
+        if (assignment.mode === "exam")
+          attempt.firstAnswers = (
+            attempt.draftAnswers ?? attempt.firstAnswers
+          ).map((answer) => ({ ...answer }));
         attempt.status = "submitted";
         attempt.submittedAt = context.now;
         break;
