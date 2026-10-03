@@ -406,7 +406,7 @@ export default function BranchAccounts({
                   disabled={busy || !sourceClassId}
                   className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
                 >
-                  학생 등록·발급
+                  학생 등록·계정 생성
                 </button>
               </form>
             )}

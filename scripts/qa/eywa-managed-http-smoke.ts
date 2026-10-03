@@ -306,12 +306,7 @@ async function main() {
     selected = secondId;
     const candidateJar: Jar = new Map();
     response = await sso(candidateJar);
-    assert.ok(
-      response.headers
-        .get("location")
-        ?.includes("/account/eywa-managed?candidate="),
-    );
-    assert.equal((await session(candidateJar))?.user, undefined);
+    assert.equal((await session(candidateJar))?.user?.id, existing.id);
     const csrfResponse = await request(`${origin}/api/auth/csrf`, candidateJar);
     const csrf = await csrfResponse.json();
     response = await request(
@@ -339,24 +334,12 @@ async function main() {
     const mapping = await db.eywaManagedAccount.findFirstOrThrow({
       where: { bindingId, sourceUserId: secondId },
     });
-    response = await request(
-      `${origin}/api/account/eywa-managed`,
-      candidateJar,
-      {
-        method: "POST",
-        headers: { "content-type": "application/json", origin },
-        body: JSON.stringify({
-          id: mapping.id,
-          version: mapping.candidateVersion,
-          password: "http-fixture-password",
-        }),
-      },
-    );
-    assert.equal(response.status, 200);
+    assert.equal(mapping.status, "confirmed");
+    assert.equal(mapping.confirmationMethod, "email_match");
     await sso(candidateJar);
     assert.equal((await session(candidateJar))?.user?.id, existing.id);
     console.log(
-      "PASS existing-account candidate routes through real password confirmation then v2 SSO",
+      "PASS existing-account email migration preserves password login and v2 SSO",
     );
     selected = firstId;
     response = await sso(candidateJar);

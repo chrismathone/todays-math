@@ -1,9 +1,8 @@
 /**
  * 학생 계정 발급(`issueStudentAccount.ts`)에 넣는 **진짜** 부품 — Prisma · 초기 비밀번호 · bcrypt · 감사 기록.
  *
- * 반 소유 조회는 기존 `requireOwnedStudent`(src/lib/ownership.ts)와 **같은 조회**다 — 학생을 반과 함께 한 번에
- * 읽고 `class.userId` 를 본다. 그 헬퍼는 응답(Response)을 돌려주는 모양이라 발급 규칙 안에서 부르지 못해
- * 조회만 같게 두었다(판정은 `issueStudentAccount.ts` 규칙 1).
+ * 발급 역할과 소속 지점을 먼저 확인한다. 연동 학생은 현재 수강 관계로 반을 정하며,
+ * 저장 직전에도 반 접근 권한과 학생·지점·수강 관계를 확인한다.
  */
 import "server-only";
 import type { Prisma } from "@prisma/client";
@@ -23,23 +22,36 @@ import {
 import { studentWithdrawn } from "./accountBlock";
 import type { IssueDeps } from "./issueStudentAccount";
 import { hashStudentPin } from "./pinHash";
+import {
+  canManageStudentAccounts,
+  studentAccountBranchAllowed,
+  studentAccountViewer,
+} from "./studentAccountPolicy";
 
 export function studentIssueDeps(): IssueDeps {
   let permission:
     { viewer: ScopeViewer; studentId: string; classId: string } | undefined;
   const beforeWrite = async (tx: Prisma.TransactionClient) => {
-    if (!permission) throw new ClassAccessDenied();
+    if (!permission || !canManageStudentAccounts(permission.viewer))
+      throw new ClassAccessDenied();
     await assertClassWrite(
       tx,
-      permission.viewer,
+      studentAccountViewer(permission.viewer),
       permission.classId,
       "student:account",
     );
     const student = await tx.student.findUnique({
       where: { id: permission.studentId },
     });
+    const cls = await tx.class.findUnique({
+      where: { id: permission.classId },
+      select: { branchId: true },
+    });
     if (
       !student ||
+      !cls ||
+      !studentAccountBranchAllowed(permission.viewer, cls.branchId) ||
+      (student.branchId != null && student.branchId !== cls.branchId) ||
       (student.classId !== permission.classId && !student.eywaBindingId)
     )
       throw new ClassAccessDenied();
@@ -53,21 +65,32 @@ export function studentIssueDeps(): IssueDeps {
   };
   return {
     async authorizeStudent(viewer, studentId) {
+      permission = undefined;
+      if (!canManageStudentAccounts(viewer)) return false;
       const owned = await requireOwnedStudent(
         studentId,
-        viewer,
+        studentAccountViewer(viewer),
         "student:account",
       );
-      permission = owned.ok
-        ? { viewer, studentId, classId: owned.data.classId }
-        : undefined;
-      return owned.ok;
+      if (!owned.ok) return false;
+      const cls = await db.class.findUnique({
+        where: { id: owned.data.classId },
+        select: { branchId: true },
+      });
+      if (
+        !cls ||
+        !studentAccountBranchAllowed(viewer, cls.branchId) ||
+        (owned.data.branchId != null && owned.data.branchId !== cls.branchId)
+      )
+        return false;
+      permission = { viewer, studentId, classId: owned.data.classId };
+      return true;
     },
     async findStudentOwner(studentId) {
       const student = await db.student.findUnique({
         where: { id: studentId },
         include: {
-          class: { include: { user: { select: { branchId: true } } } },
+          class: true,
         },
       });
       return student

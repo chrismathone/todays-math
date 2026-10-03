@@ -149,10 +149,9 @@ export async function exchangeSso(input: {
   const missing =
     config.provision === "automatic" &&
     !(await db.eywaBinding.findUnique({ where: { id: config.bindingId } }));
-  const { control, started } = await fetchControl(
-    config,
-    missing ? undefined : claims.sub,
-  );
+  // Full control is needed to reject duplicate normalized source emails even
+  // when only the signing-in teacher is being reconciled.
+  const { control, started } = await fetchControl(config);
   if (missing) {
     if (
       claims.sourceEpoch !== control.sourceEpoch ||
@@ -171,8 +170,17 @@ export async function exchangeSso(input: {
       started,
       claims.sub,
     );
-    if (!error) await reconcileManagedAccounts(tx, binding, control, started);
-    if (!error && missing) await enqueueManagedReconcile(tx, control);
+    const changed =
+      !error &&
+      (await reconcileManagedAccounts(
+        tx,
+        binding,
+        control,
+        started,
+        claims.sub,
+      ));
+    if (!error && (missing || changed))
+      await enqueueManagedReconcile(tx, control);
     return error;
   });
   if (issue) throw new EywaAccessError(issue);

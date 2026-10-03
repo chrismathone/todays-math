@@ -5,6 +5,7 @@ import { ClassManage } from "@/components/class/ClassManage";
 import { onlySupportedGrades } from "@/contracts/supportedGrades";
 import { db } from "@/lib/db";
 import { canManageClassStudents, canManageRoster } from "@/lib/ownerScope";
+import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
 import { getSessionUser } from "@/lib/session";
 
 export default async function ClassesPage() {
@@ -30,6 +31,7 @@ export default async function ClassesPage() {
         units={onlySupportedGrades(units)}
         canManageRoster={session ? canManageRoster(session) : false}
         canManageStudents={session ? canManageClassStudents(session) : false}
+        canManageAccounts={session ? canManageStudentAccounts(session) : false}
       />
     </AppChrome>
   );

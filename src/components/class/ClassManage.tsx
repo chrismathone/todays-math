@@ -25,8 +25,10 @@ type ClassManageProps = {
   units: UnitNode[];
   /** 반 추가 — 지점 전체(원장·관리자). `ownerScope.canManageRoster` */
   canManageRoster?: boolean;
-  /** 학생 등록 · 계정 발급 칸 — 자기 반 학생(담당 강사도, D-140). 빼면 위 값을 따른다 */
+  /** 학생 등록 — 담당 강사도 가능. 로그인 계정 권한과 별도로 판정한다. */
   canManageStudents?: boolean;
+  /** 학생 로그인 계정 — 지점 관리자 이상만 가능. */
+  canManageAccounts?: boolean;
 };
 
 type MutationFeedback = {
@@ -39,6 +41,7 @@ export function ClassManage({
   units,
   canManageRoster = false,
   canManageStudents = canManageRoster,
+  canManageAccounts = false,
 }: ClassManageProps) {
   const manage = useClassManage();
   const current = findUnit(units, manage.currentUnitId);
@@ -98,7 +101,7 @@ export function ClassManage({
             selectedClass={selectedClass}
             status={manage.studentsStatus}
             onRetry={manage.retryDetails}
-            canManageAccounts={canManageStudents}
+            canManageAccounts={canManageAccounts}
           />
           {selectedClass && canManageStudents ? (
             <AddStudentForm

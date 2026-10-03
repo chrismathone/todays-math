@@ -6,6 +6,7 @@ import type { ManagedAccount } from "@/contracts/accountAccess.contract";
 import AdminHeader from "./AdminHeader";
 import { AccountStatus, accountDate } from "./AccountReview";
 import AccountReview from "./AccountReview";
+import AccountSyncBadge from "./AccountSyncBadge";
 import { accountRequest, requestMessage } from "./accountRequests";
 import {
   ADMIN_KIND_LABEL,
@@ -489,7 +490,10 @@ export default function AdminUserDetail({
             <div className={d.userHeading}>
               <div>
                 <p className={s.eyebrow}>ACCOUNT WORKSPACE</p>
-                <h1>{account.name || "이름 미등록"}</h1>
+                <div className={s.accountName}>
+                  <h1>{account.name || "이름 미등록"}</h1>
+                  <AccountSyncBadge sync={account.eywaSync} />
+                </div>
                 <p>{account.email}</p>
               </div>
               <AccountStatus account={account} />

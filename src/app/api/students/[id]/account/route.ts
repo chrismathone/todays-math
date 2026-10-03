@@ -5,7 +5,7 @@
  * 대응 계약: src/contracts/studentAccount.contract.ts · 규칙: src/lib/learn/issueStudentAccount.ts
  * 🔴 초기 비밀번호는 발급 응답에 **한 번만** 싣고(캐시 금지) 서버에는 해시만 남긴다.
  * 🔴 그 학생의 반이 이 원장의 소유 범위 안이어야 한다 — 없으면 404, 남의 반이면 403. 관리자는 넘는다(D-130).
- * 원장·관리자와 **담당 강사**가 쓴다(D-140 — 강사는 자기 반 학생만. 판정 `canManageClassStudents` + 소유 범위).
+ * 지점 관리자 이상이 소속 지점 학생의 계정을 발급·관리한다. 강사는 명단만 조회한다.
  * 학생 세션에는 `user` 가 없어 `getSessionUser()` 가 null(401). 관문도 학생을 막는다.
  * GET 은 발급 칸(«수업 · 학생 관리 › 학생»)이 읽는다 — 계정이 없어도 퇴원 여부를 준다(learn-screens 브리프 §1.3).
  */
@@ -34,7 +34,7 @@ import {
   toAccountStatus,
 } from "@/lib/learn/issueStudentAccount";
 import { getSessionUser } from "@/lib/session";
-import { canManageClassStudents } from "@/lib/ownerScope";
+import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -68,7 +68,7 @@ async function handleGet(_request: NextRequest, { params }: RouteContext) {
 async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
-  if (!canManageClassStudents(session))
+  if (!canManageStudentAccounts(session))
     return Response.json(
       {
         error: {
@@ -117,7 +117,7 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
 async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
-  if (!canManageClassStudents(session))
+  if (!canManageStudentAccounts(session))
     return Response.json(
       {
         error: {

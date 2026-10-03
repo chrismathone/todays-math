@@ -107,6 +107,9 @@ describe("managed receiver trust decisions", () => {
   });
   it("matches only normal approved owners and does not approve pending/protected accounts", () => {
     expect(candidateProblem(source, user)).toBeNull();
+    expect(
+      candidateProblem(source, { ...user, passwordHash: null }),
+    ).toBeNull();
     for (const changed of [
       { approvalStatus: "pending" },
       { deletedAt: new Date() },
@@ -122,9 +125,12 @@ describe("managed receiver trust decisions", () => {
     expect(candidateProblem(source, { ...user, isAdmin: true })).toBe(
       "protected_account",
     );
-    expect(candidateProblem(source, { ...user, name: "Someone else" })).toBe(
-      "name_mismatch",
-    );
+    expect(
+      candidateProblem(source, { ...user, name: "Someone else" }),
+    ).toBeNull();
+    expect(
+      candidateProblem(source, { ...user, name: "Teacher 선생님" }),
+    ).toBeNull();
     expect(candidateProblem(source, { ...user, eywaUserId: id(99) })).toBe(
       "identity_conflict",
     );

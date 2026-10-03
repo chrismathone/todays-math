@@ -360,13 +360,27 @@ describe("operational guards use current relationships and immutable branch cont
       ).ok,
     ).toBe(true);
   });
-  it("does not use a managed teacher's old manual-class author identity as a fallback", async () => {
+  it("allows moved local classes only in the current branch and with live source access", async () => {
     fixture.tables.class.push({
       id: "old-manual",
       userId: viewer.id,
       branchId: viewer.branchId,
       eywaBindingId: null,
     });
+    expect((await requireOwnedClass("old-manual", viewer)).ok).toBe(true);
+    const scoped = await fixture.tx.class.findMany({
+      where: await accessibleClassesWhere(viewer),
+    });
+    expect(scoped.map((c) => c.id)).toContain("old-manual");
+    fixture.tables.class.at(-1)!.branchId = "previous-branch";
+    expect((await requireOwnedClass("old-manual", viewer)).ok).toBe(false);
+    fixture.tables.class.at(-1)!.branchId = viewer.branchId;
+    fixture.tables.class.at(-1)!.userId = "another-teacher";
+    expect((await requireOwnedClass("old-manual", viewer)).ok).toBe(false);
+    fixture.tables.class.at(-1)!.userId = viewer.id;
+    vi.mocked(getManagedClassGrants).mockRejectedValue(
+      new Error("source_unavailable"),
+    );
     expect((await requireOwnedClass("old-manual", viewer)).ok).toBe(false);
   });
 });

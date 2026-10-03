@@ -173,6 +173,7 @@ export async function reconcileManagedAccounts(
   binding: EywaBinding,
   control: Control,
   started: number,
+  onlyUserId?: string,
 ) {
   if (
     binding.mode !== "active" ||
@@ -183,8 +184,16 @@ export async function reconcileManagedAccounts(
     leaseExpiry(control, started).getTime() <= Date.now()
   )
     return;
+  let changed = false;
+  const emailOwners = new Map<string, Set<string>>();
   for (const source of control.users) {
-    if (!source.eligible) continue;
+    const email = normalizeEmail(source.email);
+    const owners = emailOwners.get(email) ?? new Set<string>();
+    owners.add(source.id);
+    emailOwners.set(email, owners);
+  }
+  for (const source of control.users) {
+    if (!source.eligible || (onlyUserId && source.id !== onlyUserId)) continue;
     const existing = await tx.eywaManagedAccount.findFirst({
       where: {
         bindingId: binding.id,
@@ -194,24 +203,32 @@ export async function reconcileManagedAccounts(
     });
     if (existing?.status === "confirmed") continue;
     const email = normalizeEmail(source.email);
-    // No fake email and no reclaiming a preexisting address, including pending users.
-    const validProfile =
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
-      email.length <= 255 &&
-      normalizeName(source.name).length > 0 &&
-      normalizeName(source.name).length <= 50;
+    // Never choose one of multiple identities sharing a normalized email.
+    const validEmail =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 255;
+    // Lock candidate users across bindings before checking current ownership.
+    // btrim matches normalizeEmail, including older addresses stored with spaces.
+    const candidateIds = await tx.$queryRaw<{ id: string }[]>`
+      SELECT id FROM "user"
+      WHERE lower(btrim(email)) = ${email} OR eywa_user_id = ${source.id}::uuid
+      ORDER BY id FOR UPDATE`;
     const candidates = await tx.user.findMany({
-      where: {
-        OR: [
-          { email: { equals: email, mode: "insensitive" } },
-          { eywaUserId: source.id },
-        ],
-      },
+      where: { id: { in: candidateIds.map((u) => u.id) } },
     });
+    const validProfile =
+      validEmail &&
+      (candidates.length > 0 ||
+        (normalizeName(source.name).length > 0 &&
+          normalizeName(source.name).length <= 50));
     const currentIdentity = await tx.eywaManagedAccount.findUnique({
       where: { currentSourceUserId: source.id },
     });
-    if (!validProfile || candidates.length > 1 || currentIdentity) {
+    if (
+      !validProfile ||
+      candidates.length > 1 ||
+      currentIdentity ||
+      emailOwners.get(email)!.size > 1
+    ) {
       const identityUser = currentIdentity?.userId
         ? await tx.user.findUnique({ where: { id: currentIdentity.userId } })
         : null;
@@ -246,6 +263,89 @@ export async function reconcileManagedAccounts(
       const problem =
         candidateProblem(source, user) ??
         (occupied ? "managed_elsewhere" : null);
+      if (!problem) {
+        const previousBranchId = user.branchId;
+        if (previousBranchId !== binding.targetBranchId) {
+          await tx.classMembership.updateMany({
+            where: { userId: user.id, revokedAt: null },
+            data: { revokedAt: new Date() },
+          });
+          await tx.workspaceDocument.updateMany({
+            where: { userId: user.id, visibility: "branch" },
+            data: {
+              visibility: "private",
+              sharedBranchId: null,
+              revision: { increment: 1 },
+            },
+          });
+        }
+        // Preserve password/auth source, display name, approval and all history.
+        await tx.user.update({
+          where: { id: user.id },
+          data: {
+            branchId: binding.targetBranchId,
+            branchRole: "teacher",
+            eywaUserId: source.id,
+            eywaLinkedAt: new Date(),
+            sessionVersion: { increment: 1 },
+          },
+        });
+        const data = {
+          userId: user.id,
+          currentUserId: user.id,
+          currentSourceUserId: source.id,
+          sourceEmail: source.email,
+          sourceName: source.name,
+          status: "confirmed",
+          conflictReason: null,
+          candidateVersion: null,
+          blockReasons: [],
+          sourceEpoch: control.sourceEpoch,
+          confirmedAt: new Date(),
+          confirmationMethod: "email_match",
+          sourceClasses: source.classes,
+          securityRevision: BigInt(control.securityRevision),
+          tenantRevocationGeneration: BigInt(
+            control.tenantRevocationGeneration,
+          ),
+          accountRevocationGeneration: BigInt(
+            source.accountRevocationGeneration,
+          ),
+          classListRevision: BigInt(source.classListRevision),
+          leaseExpiresAt: leaseExpiry(control, started),
+        };
+        const mapping = existing
+          ? await tx.eywaManagedAccount.update({
+              where: { id: existing.id },
+              data,
+            })
+          : await tx.eywaManagedAccount.create({
+              data: { ...data, bindingId: binding.id, sourceUserId: source.id },
+            });
+        const [roster] =
+          previousBranchId !== binding.targetBranchId
+            ? await tx.$queryRaw<
+                { classes: number; students: number; held_classes: number }[]
+              >`
+              SELECT * FROM eywa_transfer_owned_roster(
+                ${user.id}::uuid, ${binding.id}::uuid, ${previousBranchId}::uuid)`
+            : [{ classes: 0, students: 0, held_classes: 0 }];
+        await tx.accountAuditLog.create({
+          data: {
+            userId: user.id,
+            action: "eywa.account_migrated",
+            outcome: "success",
+            details: {
+              bindingId: binding.id,
+              mappingId: mapping.id,
+              method: "email_match",
+              ...roster,
+            },
+          },
+        });
+        changed = true;
+        continue;
+      }
       const data = {
         userId: user.id,
         sourceEmail: source.email.slice(0, 255),
@@ -317,7 +417,9 @@ export async function reconcileManagedAccounts(
         details: { bindingId: binding.id, sourceUserId: source.id },
       },
     });
+    changed = true;
   }
+  return changed;
 }
 
 const refreshes = new Map<string, Promise<void>>();
