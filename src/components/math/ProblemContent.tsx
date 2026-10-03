@@ -21,7 +21,10 @@ import {
 import { fitsTwoColumns } from "@/lib/math/displayWidth";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
-import { choiceFigureMode } from "@/lib/problem/choiceFigureIndex";
+import {
+  choiceFigureMode,
+  UNLINKED_FIGURE_CHOICES_NOTICE,
+} from "@/lib/problem/choiceFigureIndex";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 
 /**
@@ -122,8 +125,9 @@ export function ProblemContent({
    *
    *  ㉠ `choiceFigures`(grid) — 짝이 온전하다(은행 · 3자 합의 B1): 그림이 `[그림]` 자리를 **대신해** 번호 칸 안에 서고 보기는 늘 2열.
    *  ㉡ `mapped`(loose) — 글 보기에 그림이 딸린 문항의 덜 된 짝(교재 스냅샷): 아는 그림은 그 보기의 글 **아래**에,
-   *     모르는 그림은 «그림 대응 확인 필요»와 함께 발문 자리에.
-   *  ㉢ 그 밖(none) — 예전 조판 그대로(마크업이 한 글자도 안 바뀐다). 그림뿐인 보기가 있는데 짝이 어긋난 문항도 여기다.
+   *     모르는 그림은 문구 없이 발문 자리에.
+   *  ㉢ 그 밖(none) — 예전 조판 그대로. 그림뿐인 보기가 있는데 짝이 온전하지 않으면(`unlinkedChoices`) 보기 위에
+   *     «번호를 확인할 수 없는 문항»이라고 **한 번** 적는다(3자 합의 A2). 그림 없는 문항 · 글 보기 문항은 한 글자도 안 바뀐다.
    */
   const figureMode = choiceFigureMode(
     figures.length,
@@ -131,6 +135,8 @@ export function ProblemContent({
     choices,
   );
   const choiceFigures = figureMode.mode === "grid" ? figureMode.plan : null;
+  const unlinkedChoices =
+    figureMode.mode === "none" && figureMode.unlinkedFigureChoices;
   const stemFigures = choiceFigures?.stem ?? figures.map((_, index) => index);
   /**
    * 그림이 붙어 있는데 발문에 `[그림]` 자국이 남은 문항이 3,951건 있다
@@ -191,9 +197,6 @@ export function ProblemContent({
       data-figure-choice={associations[index] ?? "unknown"}
       className="mt-3 flex flex-col items-center print:break-inside-avoid"
     >
-      {associations[index] === null || associations[index]! > choices.length ? (
-        <span className="text-xs">그림 대응 확인 필요</span>
-      ) : null}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={url}
@@ -268,6 +271,13 @@ export function ProblemContent({
             />
           ))}
         </div>
+      ) : null}
+      {unlinkedChoices ? (
+        // 어느 그림이 몇 번 보기인지 모른다 — 학생이 못 푸는 문항이다. 감추지 않고 문항에 한 번 적는다.
+        // 은행 적재기는 이런 문항의 출제 허용을 끄므로, 보통은 교사 화면(은행 카드 · 검수)에서만 보인다.
+        <p data-figure-choice-notice="" className="mt-3 text-xs">
+          {UNLINKED_FIGURE_CHOICES_NOTICE}
+        </p>
       ) : null}
       {choices.length > 0 ? (
         <div
