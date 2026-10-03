@@ -38,6 +38,7 @@ import {
 } from "../../../src/lib/import/convertPastExam";
 
 import { loadExamConfig } from "./examConfig";
+import { repairExamPieces, withoutSharedPassage } from "./repairExamPieces";
 import { splitAnswer } from "./splitAnswer";
 
 const DIR = process.argv[2];
@@ -57,15 +58,19 @@ interface HwpQuestion {
   difficulty: string;
   answer: string | null;
   solution: string | null;
+  label?: string | null;
 }
 
 const hwp = read("answers.json") as { questions: HwpQuestion[] };
 const pdf = read("body.json") as PastExamPaper;
-const piece = new Map(
-  (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
-    r.id,
-    r.text,
-  ]),
+const piece = repairExamPieces(
+  new Map(
+    (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
+      r.id,
+      r.text,
+    ]),
+  ),
+  hwp.questions,
 );
 const solFixed = new Map(
   (read("sol_fixed.json") as { id: string; text: string }[]).map((r) => [
@@ -446,7 +451,11 @@ const questions = hwp.questions.map((q) => {
   const scrubbed0 = scrub(piece.get(`${q.number}-stem`) ?? "");
   scrubbed0.out = stripTableCells(scrubbed0.out, q.number);
   const hits = scrubbed0.hits;
-  const stem = restoreBoxMarker(scrubbed0.out, pdfStem, q.number);
+  const stem = restoreBoxMarker(
+    scrubbed0.out,
+    withoutSharedPassage(pdfStem),
+    q.number,
+  );
   if (hits.length > 0) {
     scrubbed += 1;
     console.log(`  문${q.number} 걷음: ${hits.join(" · ")}`);
