@@ -177,6 +177,7 @@ export default function PassageBank({
         <label className={s.field}>
           학년
           <select
+            aria-label="학년"
             value={grade}
             onChange={(event) => setGrade(event.target.value)}
           >
@@ -198,6 +199,7 @@ export default function PassageBank({
         <label className={s.field}>
           보관 상태
           <select
+            aria-label="보관 상태"
             value={archived}
             onChange={(event) => setArchived(event.target.value)}
           >

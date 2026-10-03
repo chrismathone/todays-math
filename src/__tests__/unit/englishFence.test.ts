@@ -118,6 +118,11 @@ const TABLE_ALLOWED = [
   "prisma/migrations/20261001120000_english_set_meta/",
   "prisma/migrations/20261003120000_english_listening/",
   "prisma/migrations/20261003160000_english_passage_bank/",
+  // The managed identity migration adds branch ownership to English exams;
+  // its isolated SQL probe verifies that backfill. Neither imports math logic.
+  "prisma/migrations/20261003085222_eywa_managed_sync/migration.sql",
+  "scripts/qa/eywa-managed-migration-check.sql",
+  "scripts/qa/apply-eywa-managed-migrations.ts",
   "scripts/qa/english-listening/",
   "scripts/qa/apply-english-set-meta-migration.ts",
   // 세트의 «형식 판» 칸 — 🔴 미적용 SQL 초안과 그 검사 도구(자료 개선 M0, 2026-10-02). 영어 모듈을 import 하지 않고 표 이름만 안다
@@ -346,15 +351,15 @@ function learnerLeaks(graph: Graph = SCAN.graph): string[] {
 // ── ⑵ 표·모델 접근 글자 ─────────────────────────────────────────
 
 const TABLE_NAME =
-  /\b(english_exam|english_material|english_question_set|english_listening_(?:set|publication|assignment|assignment_revision|target|attempt|receipt|release|broadcast|audit|media_asset|media_blob))\b/;
+  /\b(english_exam|english_material|english_question_set|english_passage(?:_revision|_use|_receipt)?|english_listening_(?:set|publication|assignment|assignment_revision|target|attempt|receipt|release|broadcast|audit|media_asset|media_blob))\b/;
 const CLIENT_ACCESS =
-  /\.(englishExam|englishMaterial|englishQuestionSet|englishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
+  /\.(englishExam|englishMaterial|englishQuestionSet|englishPassage(?:Revision|Use|Receipt)?|englishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
 const PRISMA_NAMESPACE =
-  /\bPrisma\.(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\w*/;
+  /\bPrisma\.(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishPassage(?:Revision|Use|Receipt)?|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\w*/;
 const PRISMA_IMPORT =
   /\bimport\s+(?:type\s+)?\{([^}]*)\}\s*from\s*["']@prisma\/client["']/g;
 const PRISMA_MODEL =
-  /\b(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
+  /\b(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishPassage(?:Revision|Use|Receipt)?|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
 
 /** 주석을 걷은 글에서 영어 표·모델에 닿는 자리를 찾는다 */
 function tableAccess(text: string): string | null {
@@ -495,6 +500,22 @@ describe("영어 울타리 — 스캐너 자기 시험", () => {
       ),
     ).toBeNull();
     expect(tableAccess(`<EnglishMakerView exam={exam} />`)).toBeNull();
+    for (const suffix of ["", "_revision", "_use", "_receipt"]) {
+      expect(tableAccess(`SELECT * FROM english_passage${suffix}`)).toBe(
+        "표 이름",
+      );
+    }
+    for (const suffix of ["", "Revision", "Use", "Receipt"]) {
+      expect(tableAccess(`db.englishPassage${suffix}.findMany({})`)).toBe(
+        "클라이언트 접근",
+      );
+      expect(tableAccess(`Prisma.EnglishPassage${suffix}WhereInput`)).toBe(
+        "Prisma 형",
+      );
+      expect(
+        tableAccess(`import { EnglishPassage${suffix} } from "@prisma/client"`),
+      ).toBe("@prisma/client 형");
+    }
     // 주석 속 이름은 걷힌다
     expect(
       tableAccess(withoutComments(`// english_exam 표를 읽는다\nconst x = 1;`)),

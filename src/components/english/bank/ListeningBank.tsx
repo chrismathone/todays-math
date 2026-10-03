@@ -109,6 +109,7 @@ export default function ListeningBank({
         <label className={s.field}>
           듣기 학년
           <select
+            aria-label="듣기 학년"
             value={level}
             onChange={(event) => setLevel(event.target.value)}
           >
@@ -121,6 +122,7 @@ export default function ListeningBank({
         <label className={s.field}>
           듣기 출처
           <select
+            aria-label="듣기 출처"
             value={kind}
             onChange={(event) => {
               setKind(event.target.value as typeof kind);

@@ -76,6 +76,7 @@ export function PassageRights({
         <label className={s.field}>
           이용 근거
           <textarea
+            aria-label="이용 근거"
             required
             maxLength={2000}
             value={basis}
@@ -205,6 +206,7 @@ export function PassagePrepare({
         <label className={s.field}>
           제작 경로
           <select
+            aria-label="제작 경로"
             value={path}
             onChange={(event) => setPath(event.target.value as typeof path)}
           >

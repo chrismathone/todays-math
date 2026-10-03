@@ -196,6 +196,7 @@ export default function PassageEditor({
           <label className={s.field}>
             대상 학년
             <select
+              aria-label="대상 학년"
               value={grade}
               onChange={(event) => {
                 changed();
@@ -235,6 +236,7 @@ export default function PassageEditor({
         <label className={s.field}>
           원문
           <textarea
+            aria-label="원문"
             required
             rows={12}
             value={text}

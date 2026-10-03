@@ -161,6 +161,7 @@ export default function PassageImport({
         <label className={s.field}>
           가져올 자료 종류
           <select
+            aria-label="가져올 자료 종류"
             value={kind}
             onChange={(event) => {
               setKind(event.target.value as typeof kind);
@@ -193,6 +194,7 @@ export default function PassageImport({
             <label className={s.field}>
               가져올 항목
               <select
+                aria-label="가져올 항목"
                 value={id}
                 onChange={(event) => {
                   setId(event.target.value);
@@ -240,6 +242,7 @@ export default function PassageImport({
               <label className={s.field}>
                 가져올 지문
                 <select
+                  aria-label="가져올 지문"
                   value={textKind}
                   onChange={(event) => {
                     setTextKind(event.target.value as typeof textKind);

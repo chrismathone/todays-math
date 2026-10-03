@@ -50,6 +50,7 @@ export default function BankExamPicker({
     <label className={s.field}>
       {label}
       <select
+        aria-label={label}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         required
