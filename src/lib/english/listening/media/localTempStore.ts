@@ -73,7 +73,7 @@ export class LocalTempListeningMediaStore implements ListeningMediaStore {
   }
   async *readBlob(
     key: string,
-    { start, endExclusive, maxChunkBytes }: ListeningMediaRead,
+    { start, endExclusive, maxChunkBytes, signal }: ListeningMediaRead,
   ) {
     if (
       ![start, endExclusive, maxChunkBytes].every(Number.isSafeInteger) ||
@@ -87,6 +87,7 @@ export class LocalTempListeningMediaStore implements ListeningMediaStore {
     try {
       let offset = start;
       while (offset < endExclusive) {
+        signal?.throwIfAborted();
         const buffer = Buffer.alloc(
           Math.min(maxChunkBytes, endExclusive - offset),
         );

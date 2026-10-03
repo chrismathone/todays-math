@@ -363,9 +363,7 @@ async function main() {
       ).status,
       404,
     );
-    check(
-      "MP3 full decode/scrub explicitly unavailable and publication blocked",
-    );
+    check("metadata-only fake MP3 rejected by full decoding gate");
     assert(maxReadBytes <= 64 * 1024);
     console.log(
       JSON.stringify(

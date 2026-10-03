@@ -1,4 +1,4 @@
-/** Node-only L0 library; route authentication and rights lookup MUST be injected. */
+/** Node-only media library; route authentication and rights lookup MUST be injected. */
 import { createHash, randomUUID } from "node:crypto";
 import { z } from "zod";
 import {
@@ -14,8 +14,19 @@ import {
 } from "../../../../contracts/englishListeningMedia.contract";
 import { ListeningMediaError } from "./errors";
 import { inspectListeningMedia } from "./inspect";
+import {
+  decodeMp3,
+  MAX_DURATION_MS,
+  MAX_ORIGINAL_BYTES,
+  MAX_PLAYBACK_BYTES,
+  MediaFormatError,
+} from "./mp3";
 import { decideListeningRange } from "./range";
-import type { ListeningMediaRecord, ListeningMediaStore } from "./store";
+import type {
+  ListeningMediaChunkRecord,
+  ListeningMediaRecord,
+  ListeningMediaStore,
+} from "./store";
 
 export interface ListeningMediaLimits {
   chunkBytes: number;
@@ -23,15 +34,17 @@ export interface ListeningMediaLimits {
   readChunkBytes: number;
   uploadTtlMs: number;
   maxDurationMs: number;
+  maxPlaybackBytes: number;
 }
-/** Experimental ceilings, NOT approved production limits. */
+/** Bounded short pilot; long/full-exam audio needs a separate processing path. */
 export const LISTENING_MEDIA_L0_LIMITS: Readonly<ListeningMediaLimits> =
   Object.freeze({
     chunkBytes: 1024 * 1024,
-    maxTotalBytes: 64 * 1024 * 1024,
+    maxTotalBytes: MAX_ORIGINAL_BYTES,
     readChunkBytes: 64 * 1024,
     uploadTtlMs: 60 * 60 * 1000,
-    maxDurationMs: 60 * 60 * 1000,
+    maxDurationMs: MAX_DURATION_MS,
+    maxPlaybackBytes: MAX_PLAYBACK_BYTES,
   });
 export interface ListeningMediaAuthorizationTarget {
   action: "store_original" | "playback" | "publish";
@@ -90,37 +103,72 @@ function receipt(record: ListeningMediaRecord): ListeningMediaUploadReceipt {
 }
 /** Streams may frame zero-length pieces; they carry no bytes but must not spin forever. */
 const MAX_EMPTY_PIECES = 4096;
-async function collectBody(body: AsyncIterable<Uint8Array>, length: number) {
+// Per Node process; cross-process stored bytes are additionally bounded by owner quota.
+let activeFinalizations = 0;
+export interface ListeningMediaOperationOptions {
+  signal?: AbortSignal;
+}
+async function collectBody(
+  body: AsyncIterable<Uint8Array>,
+  length: number,
+  signal?: AbortSignal,
+) {
   // At most one configured upload chunk is buffered, never the complete asset.
   const result = Buffer.alloc(length);
   let offset = 0;
   let empty = 0;
-  for await (const piece of body) {
-    if (!(piece instanceof Uint8Array))
-      throw new ListeningMediaError("body_size");
-    if (piece.byteLength === 0) {
-      if (++empty > MAX_EMPTY_PIECES)
+  const iterator = body[Symbol.asyncIterator]();
+  try {
+    while (true) {
+      signal?.throwIfAborted();
+      let removeAbort = () => {};
+      const item = await (signal
+        ? Promise.race([
+            iterator.next(),
+            new Promise<never>((_, reject) => {
+              const abort = () => reject(signal.reason);
+              signal.addEventListener("abort", abort, { once: true });
+              removeAbort = () => signal.removeEventListener("abort", abort);
+              if (signal.aborted) abort();
+            }),
+          ]).finally(() => removeAbort())
+        : iterator.next());
+      if (item.done) break;
+      const piece = item.value;
+      if (!(piece instanceof Uint8Array))
         throw new ListeningMediaError("body_size");
-      continue;
+      if (piece.byteLength === 0) {
+        if (++empty > MAX_EMPTY_PIECES)
+          throw new ListeningMediaError("body_size");
+        continue;
+      }
+      if (piece.byteLength > length - offset)
+        throw new ListeningMediaError("body_size");
+      result.set(piece, offset);
+      offset += piece.byteLength;
     }
-    if (piece.byteLength > length - offset)
-      throw new ListeningMediaError("body_size");
-    result.set(piece, offset);
-    offset += piece.byteLength;
+    if (offset !== length) throw new ListeningMediaError("body_size");
+    return result;
+  } finally {
+    // A pending application iterator cannot be forcibly interrupted; don't keep the
+    // HTTP operation alive waiting for it after its AbortSignal has fired.
+    if (signal?.aborted) void iterator.return?.().catch(() => {});
+    else await iterator.return?.();
   }
-  if (offset !== length) throw new ListeningMediaError("body_size");
-  return result;
 }
 /** Only committed chunk references can be read; limits also police faulty adapters. */
 async function* readAsset(
   store: ListeningMediaStore,
-  record: ListeningMediaRecord,
+  record: Pick<ListeningMediaRecord, "chunks">,
   start: number,
   end: number,
   max: number,
+  signal?: AbortSignal,
 ) {
+  signal?.throwIfAborted();
   let remaining = end - start;
   for (const chunk of record.chunks) {
+    signal?.throwIfAborted();
     const from = Math.max(start, chunk.offset);
     const to = Math.min(end, chunk.offset + chunk.byteLength);
     if (from >= to) continue;
@@ -130,7 +178,9 @@ async function* readAsset(
       start: from - chunk.offset,
       endExclusive: to - chunk.offset,
       maxChunkBytes: max,
+      signal,
     })) {
+      signal?.throwIfAborted();
       if (!(piece instanceof Uint8Array))
         throw new ListeningMediaError("storage_integrity");
       if (piece.byteLength === 0) {
@@ -149,21 +199,53 @@ async function* readAsset(
   }
   if (remaining !== 0) throw new ListeningMediaError("storage_integrity");
 }
-function responseStream(source: AsyncIterable<Uint8Array>) {
-  const iterator = source[Symbol.asyncIterator]();
+function responseStream(
+  source: (signal: AbortSignal) => AsyncIterable<Uint8Array>,
+  signal?: AbortSignal,
+) {
+  const abort = new AbortController();
+  const combined = signal
+    ? AbortSignal.any([abort.signal, signal])
+    : abort.signal;
+  const iterator = source(combined)[Symbol.asyncIterator]();
+  let ended = false;
+  let removeAbort = () => {};
   return new ReadableStream<Uint8Array>(
     {
+      start(controller) {
+        const onAbort = () => {
+          if (ended) return;
+          ended = true;
+          removeAbort();
+          controller.error(combined.reason);
+          void iterator.return?.().catch(() => {});
+        };
+        combined.addEventListener("abort", onAbort, { once: true });
+        removeAbort = () => combined.removeEventListener("abort", onAbort);
+        if (combined.aborted) onAbort();
+      },
       async pull(controller) {
         try {
           const item = await iterator.next();
-          if (item.done) controller.close();
-          else controller.enqueue(item.value);
+          if (ended) return;
+          if (item.done) {
+            ended = true;
+            removeAbort();
+            controller.close();
+          } else controller.enqueue(item.value);
         } catch (error) {
-          controller.error(error);
+          if (!ended) {
+            ended = true;
+            removeAbort();
+            controller.error(error);
+          }
           await iterator.return?.();
         }
       },
       async cancel() {
+        ended = true;
+        removeAbort();
+        abort.abort();
         await iterator.return?.();
       },
     },
@@ -182,7 +264,9 @@ export function createListeningMediaService<Context>(
     !Object.values(limits).every((n) => Number.isSafeInteger(n) && n > 0) ||
     limits.chunkBytes > 1024 * 1024 ||
     limits.readChunkBytes > 1024 * 1024 ||
-    limits.maxTotalBytes > 256 * 1024 * 1024 ||
+    limits.maxTotalBytes > MAX_ORIGINAL_BYTES ||
+    limits.maxDurationMs > MAX_DURATION_MS ||
+    limits.maxPlaybackBytes > MAX_PLAYBACK_BYTES ||
     limits.uploadTtlMs > 24 * 60 * 60 * 1000
   )
     throw new ListeningMediaError("invalid_request");
@@ -268,7 +352,9 @@ export function createListeningMediaService<Context>(
     context: Context,
     input: unknown,
     body: AsyncIterable<Uint8Array>,
+    { signal }: ListeningMediaOperationOptions = {},
   ) {
+    signal?.throwIfAborted();
     const data = parse(listeningMediaChunkSchema, input);
     const target = {
       action: "store_original" as const,
@@ -296,10 +382,12 @@ export function createListeningMediaService<Context>(
       throw new ListeningMediaError("conflict");
     if (data.byteLength > record.chunkBytes)
       throw new ListeningMediaError("too_large");
-    const bytes = await collectBody(body, data.byteLength);
+    const bytes = await collectBody(body, data.byteLength, signal);
     if (digest(bytes) !== data.sha256)
       throw new ListeningMediaError("hash_mismatch");
     await check(context, target);
+    assertScope(record, await scope(context, data.setId));
+    signal?.throwIfAborted();
     unexpired(record);
     if (isRetry)
       return {
@@ -307,11 +395,12 @@ export function createListeningMediaService<Context>(
         revision: data.expectedRevision + 1,
         receivedBytes: data.offset + data.byteLength,
       };
-    const key = await store.putBlob(bytes);
+    const key = await store.putBlob(bytes, record);
     let committed = false;
     try {
       await check(context, target);
       assertScope(record, await scope(context, data.setId));
+      signal?.throwIfAborted();
       unexpired(record);
       const next: ListeningMediaRecord = {
         ...record,
@@ -334,7 +423,7 @@ export function createListeningMediaService<Context>(
         next,
       );
       if (committed) return receipt(next);
-      const current = await find(data.assetId, data.setId);
+      const current = await findScoped(context, data.assetId, data.setId);
       unexpired(current);
       const accepted = current.chunks.find(
         (chunk) => chunk.offset === data.offset,
@@ -355,7 +444,12 @@ export function createListeningMediaService<Context>(
       if (!committed) await store.deleteBlob(key);
     }
   }
-  async function completeUpload(context: Context, input: unknown) {
+  async function finalizeUpload(
+    context: Context,
+    input: unknown,
+    { signal }: ListeningMediaOperationOptions = {},
+  ) {
+    signal?.throwIfAborted();
     const data = parse(listeningMediaCompleteSchema, input);
     const target = {
       action: "store_original" as const,
@@ -380,21 +474,20 @@ export function createListeningMediaService<Context>(
     if (record.receivedBytes !== record.totalBytes)
       throw new ListeningMediaError("incomplete");
     const hash = createHash("sha256");
-    const prefix = Buffer.alloc(Math.min(44, record.totalBytes));
-    let prefixLength = 0;
+    // Strictly capped at 16MiB. Decoder output is written in bounded chunks, never collected.
+    const original = Buffer.alloc(record.totalBytes);
+    let position = 0;
     for await (const piece of readAsset(
       store,
       record,
       0,
       record.totalBytes,
       limits.readChunkBytes,
+      signal,
     )) {
       hash.update(piece);
-      const take = Math.min(prefix.length - prefixLength, piece.length);
-      if (take > 0) {
-        prefix.set(piece.subarray(0, take), prefixLength);
-        prefixLength += take;
-      }
+      original.set(piece, position);
+      position += piece.length;
     }
     await check(context, target);
     assertScope(record, await scope(context, data.setId));
@@ -407,55 +500,207 @@ export function createListeningMediaService<Context>(
       });
       throw new ListeningMediaError("hash_mismatch");
     }
-    const inspection = inspectListeningMedia(
-      prefix,
+    let inspection = inspectListeningMedia(
+      original.subarray(0, 44),
       record.totalBytes,
       record.mimeType,
       limits.maxDurationMs,
     );
-    // Stored scope and the server clock at verification; never request-supplied values.
-    const fields = {
-      ...receipt({ ...record, revision: record.revision + 1 }),
-      ownerId: record.ownerId,
-      branchId: record.branchId,
-      verifiedAt: now(),
-    };
-    const completion = listeningMediaCompletionSchema.parse(
-      inspection.playable
-        ? {
-            ...fields,
-            state: "ready",
-            publishable: true,
+    let playback: ListeningMediaRecord["playback"];
+    const staged: ListeningMediaChunkRecord[] = [];
+    let committed = false;
+    try {
+      if (
+        record.mimeType === "audio/mpeg" &&
+        !inspection.playable &&
+        inspection.blocker !== "type_signature_mismatch"
+      ) {
+        let offset = 44;
+        try {
+          const outputChunkBytes = Math.max(64 * 1024, limits.chunkBytes);
+          let pending = Buffer.alloc(outputChunkBytes);
+          let pendingLength = 0;
+          const flush = async () => {
+            if (!pendingLength) return;
+            signal?.throwIfAborted();
+            const bytes = pending.subarray(0, pendingLength);
+            const key = await store.putBlob(bytes, record);
+            staged.push({
+              key,
+              offset,
+              byteLength: bytes.length,
+              sha256: digest(bytes),
+              expectedRevision: record.revision,
+            });
+            offset += bytes.length;
+            pending = Buffer.alloc(outputChunkBytes);
+            pendingLength = 0;
+          };
+          const decoded = await decodeMp3(
+            original,
+            limits,
+            async (pcm) => {
+              for (let p = 0; p < pcm.length;) {
+                signal?.throwIfAborted();
+                const take = Math.min(
+                  outputChunkBytes - pendingLength,
+                  pcm.length - p,
+                );
+                pcm.copy(pending, pendingLength, p, p + take);
+                p += take;
+                pendingLength += take;
+                if (pendingLength === outputChunkBytes) await flush();
+              }
+            },
+            signal,
+          );
+          await flush();
+          const key = await store.putBlob(decoded.header, record);
+          staged.unshift({
+            key,
+            offset: 0,
+            byteLength: 44,
+            sha256: digest(decoded.header),
+            expectedRevision: record.revision,
+          });
+          const playbackHash = createHash("sha256");
+          for await (const piece of readAsset(
+            store,
+            { chunks: staged },
+            0,
+            offset,
+            limits.readChunkBytes,
+            signal,
+          ))
+            playbackHash.update(piece);
+          playback = {
+            revision: 1,
+            mimeType: "audio/wav",
+            sha256: playbackHash.digest("hex"),
+            totalBytes: offset,
+            chunks: staged,
+          };
+          inspection = { playable: true, durationMs: decoded.durationMs };
+        } catch (error) {
+          if (!(error instanceof MediaFormatError)) throw error;
+          inspection = { playable: false, blocker: error.blocker };
+        }
+      } else if (inspection.playable) {
+        if (record.totalBytes > limits.maxPlaybackBytes)
+          inspection = { playable: false, blocker: "output_limit" };
+        else
+          playback = {
+            revision: 1,
             mimeType: "audio/wav",
             sha256: record.expectedSha256,
-            durationMs: inspection.durationMs,
-          }
-        : {
-            ...fields,
-            state: "publish_blocked",
-            publishable: false,
-            blocker: inspection.blocker,
-          },
-    );
-    const next: ListeningMediaRecord = {
-      ...record,
-      state: completion.state,
-      revision: completion.revision,
-      completion,
-      finalizedFromRevision: record.revision,
-    };
-    if (!(await store.compareAndSwap(record.assetId, record.revision, next))) {
-      const current = await find(data.assetId, data.setId);
+            totalBytes: record.totalBytes,
+            chunks: record.chunks,
+          };
+      }
+      await check(context, target);
+      assertScope(record, await scope(context, data.setId));
+      signal?.throwIfAborted();
+      unexpired(record);
+      // Stored scope and the server clock at verification; never request-supplied values.
+      const fields = {
+        ...receipt({ ...record, revision: record.revision + 1 }),
+        ownerId: record.ownerId,
+        branchId: record.branchId,
+        verifiedAt: now(),
+      };
+      const completion = listeningMediaCompletionSchema.parse(
+        inspection.playable
+          ? {
+              ...fields,
+              state: "ready",
+              publishable: true,
+              mimeType: "audio/wav",
+              sha256: playback!.sha256,
+              originalSha256: record.expectedSha256,
+              playbackBytes: playback!.totalBytes,
+              playbackRevision: playback!.revision,
+              durationMs: inspection.durationMs,
+            }
+          : {
+              ...fields,
+              state: "publish_blocked",
+              publishable: false,
+              blocker: inspection.blocker,
+            },
+      );
+      const next: ListeningMediaRecord = {
+        ...record,
+        state: completion.state,
+        revision: completion.revision,
+        completion,
+        finalizedFromRevision: record.revision,
+        playback,
+      };
+      committed = await store.compareAndSwap(
+        record.assetId,
+        record.revision,
+        next,
+      );
+      if (!committed) {
+        await check(context, target);
+        const current = await findScoped(context, data.assetId, data.setId);
+        if (
+          current.completion &&
+          current.finalizedFromRevision === data.expectedRevision
+        )
+          return current.completion;
+        throw new ListeningMediaError("conflict");
+      }
+      return completion;
+    } catch (error) {
+      // Another process may have sealed the asset while this decoder staged output.
       if (
-        current.completion &&
-        current.finalizedFromRevision === data.expectedRevision
-      )
-        return current.completion;
-      throw new ListeningMediaError("conflict");
+        error instanceof ListeningMediaError &&
+        ["conflict", "quota_exceeded"].includes(error.code)
+      ) {
+        await check(context, target);
+        const current = await findScoped(context, data.assetId, data.setId);
+        if (
+          current.completion &&
+          current.finalizedFromRevision === data.expectedRevision
+        ) {
+          if (current.state !== "ready") unexpired(current);
+          return current.completion;
+        }
+      }
+      throw error;
+    } finally {
+      // Also removes partial output after malformed input, quota, cancellation or a lost CAS.
+      if (!committed || !playback) {
+        for (const chunk of staged) await store.deleteBlob(chunk.key);
+      }
     }
-    return completion;
   }
-  async function serve(context: Context, input: unknown): Promise<Response> {
+  async function completeUpload(
+    context: Context,
+    input: unknown,
+    options: ListeningMediaOperationOptions = {},
+  ) {
+    const data = parse(listeningMediaCompleteSchema, input);
+    await check(context, {
+      action: "store_original",
+      setId: data.setId,
+      assetId: data.assetId,
+    });
+    if (activeFinalizations >= 2) throw new ListeningMediaError("conflict");
+    activeFinalizations++;
+    try {
+      return await finalizeUpload(context, data, options);
+    } finally {
+      activeFinalizations--;
+    }
+  }
+  async function serve(
+    context: Context,
+    input: unknown,
+    { signal }: ListeningMediaOperationOptions = {},
+  ): Promise<Response> {
+    signal?.throwIfAborted();
     const parsed = listeningMediaRequestSchema.safeParse(input);
     if (!parsed.success) return unavailable();
     const request = parsed.data;
@@ -471,8 +716,14 @@ export function createListeningMediaService<Context>(
       if (error instanceof ListeningMediaError) return unavailable();
       throw error;
     }
-    if (record.state !== "ready" || record.completion?.state !== "ready")
+    if (
+      record.state !== "ready" ||
+      record.completion?.state !== "ready" ||
+      !record.playback ||
+      record.playback.sha256 !== record.completion.sha256
+    )
       return unavailable();
+    const playback = record.playback;
     const headers = new Headers({
       ...securityHeaders,
       "Accept-Ranges": "bytes",
@@ -484,34 +735,37 @@ export function createListeningMediaService<Context>(
     // representation is sent; an invalid or unsatisfiable `bytes` specifier is rejected with 416.
     const decision =
       request.method === "GET" && request.range != null
-        ? decideListeningRange(request.range, record.totalBytes)
+        ? decideListeningRange(request.range, playback.totalBytes)
         : null;
     if (decision?.kind === "reject") {
-      headers.set("Content-Range", `bytes */${record.totalBytes}`);
+      headers.set("Content-Range", `bytes */${playback.totalBytes}`);
       return new Response(null, { status: 416, headers });
     }
     const partial = decision?.kind === "single";
     const range =
       decision?.kind === "single"
         ? decision.range
-        : { start: 0, endExclusive: record.totalBytes };
+        : { start: 0, endExclusive: playback.totalBytes };
     headers.set("Content-Length", String(range.endExclusive - range.start));
     if (partial)
       headers.set(
         "Content-Range",
-        `bytes ${range.start}-${range.endExclusive - 1}/${record.totalBytes}`,
+        `bytes ${range.start}-${range.endExclusive - 1}/${playback.totalBytes}`,
       );
     return new Response(
       request.method === "HEAD"
         ? null
         : responseStream(
-            readAsset(
-              store,
-              record,
-              range.start,
-              range.endExclusive,
-              limits.readChunkBytes,
-            ),
+            (streamSignal) =>
+              readAsset(
+                store,
+                playback,
+                range.start,
+                range.endExclusive,
+                limits.readChunkBytes,
+                streamSignal,
+              ),
+            signal,
           ),
       { status: partial ? 206 : 200, headers },
     );
@@ -525,7 +779,9 @@ export function createListeningMediaService<Context>(
     const data = parse(listeningMediaAssetSchema, input);
     await check(context, { action: "publish", ...data });
     const record = await findScoped(context, data.assetId, data.setId);
-    return record.state === "ready" && record.completion?.state === "ready"
+    return record.state === "ready" &&
+      record.completion?.state === "ready" &&
+      record.playback?.sha256 === record.completion.sha256
       ? record.completion
       : null;
   }
@@ -550,16 +806,23 @@ export function createListeningMediaService<Context>(
         ))
       )
         continue;
-      for (const chunk of record.chunks) await store.deleteBlob(chunk.key);
+      for (const key of new Set(
+        [...record.chunks, ...(record.playback?.chunks ?? [])].map(
+          (chunk) => chunk.key,
+        ),
+      ))
+        await store.deleteBlob(key);
       if (
         await store.compareAndSwap(record.assetId, tombstone.revision, {
           ...tombstone,
           chunks: [],
+          playback: undefined,
           revision: tombstone.revision + 1,
         })
       )
         cleaned++;
     }
+    await store.cleanupOrphanBlobs?.(now(), limit);
     return cleaned;
   }
   return {

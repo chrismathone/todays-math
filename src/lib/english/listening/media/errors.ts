@@ -7,7 +7,8 @@ export type ListeningMediaErrorCode =
   | "incomplete"
   | "expired"
   | "hash_mismatch"
-  | "storage_integrity";
+  | "storage_integrity"
+  | "quota_exceeded";
 
 export class ListeningMediaError extends Error {
   constructor(public readonly code: ListeningMediaErrorCode) {
