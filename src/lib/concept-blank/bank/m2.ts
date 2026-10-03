@@ -3382,19 +3382,19 @@ section("05-01", "이등변삼각형의 성질", {
       "하",
       "이등변삼각형의 꼭지각과 밑각은 크기가 항상 같다.",
       false,
-      "크기가 같은 것은 두 밑각끼리이다.",
+      r`꼭지각이 $80^\circ$, 두 밑각이 $50^\circ$인 이등변삼각형처럼 꼭지각과 밑각이 다른 경우가 있다.`,
     ],
     [
       "중",
-      r`꼭지각의 크기가 $100^\circ$인 이등변삼각형의 한 밑각의 크기는 $40^\circ$이다.`,
+      "이등변삼각형의 꼭지각이 커질수록 한 밑각은 작아진다.",
       true,
-      r`$(180^\circ-100^\circ)\div2=40^\circ$이다.`,
+      r`두 밑각의 합은 $180^\circ$에서 꼭지각을 뺀 값이라 꼭지각이 커지면 줄어든다.`,
     ],
     [
       "중",
       "크기가 같은 각이 두 개 있는 삼각형은 정삼각형이다.",
       false,
-      "이등변삼각형이다. 정삼각형은 세 각이 모두 같아야 한다.",
+      r`세 각이 $50^\circ$, $50^\circ$, $80^\circ$인 삼각형은 두 각이 같지만 정삼각형이 아니다.`,
     ],
     [
       "상",
@@ -3406,18 +3406,18 @@ section("05-01", "이등변삼각형의 성질", {
   a: [
     [
       "하",
-      r`이등변삼각형에서 한 밑각의 크기가 $65^\circ$일 때 꼭지각의 크기를 구하시오.`,
-      r`$50^\circ$`,
+      r`이등변삼각형에서 한 밑각이 $65^\circ$일 때 꼭지각을 $180^\circ-2\times65^\circ$로 구하는 까닭을 쓰시오.`,
+      r`두 밑각의 크기가 같아 둘 다 $65^\circ$이고, 세 내각의 합이 $180^\circ$이기 때문이다.`,
     ],
     [
       "중",
-      r`$\overline{AB}=\overline{AC}$인 $\triangle ABC$에서 $\angle A=80^\circ$일 때 $\angle B$의 크기를 구하시오.`,
-      r`$50^\circ$`,
+      r`$\overline{AB}=\overline{AC}$인 $\triangle ABC$에서 $\angle A=80^\circ$일 때, $\angle B$를 꼭짓점 $A$의 외각 $100^\circ$의 절반으로 구할 수 있는 까닭을 쓰시오.`,
+      r`꼭짓점 $A$의 외각은 이웃하지 않는 두 내각 $\angle B$, $\angle C$의 합이고, 두 밑각이 같기 때문이다.`,
     ],
     [
       "상",
-      r`이등변삼각형 $ABC$에서 꼭지각 $A$의 이등분선이 밑변 $BC$와 점 $D$에서 만난다. $\overline{BC}=10\,\mathrm{cm}$일 때 $\overline{BD}$의 길이를 구하시오.`,
-      r`$5\,\mathrm{cm}$`,
+      r`$\overline{AB}=\overline{AC}$, $\angle A=36^\circ$인 $\triangle ABC$의 변 $AC$ 위에 $C$가 아닌 점 $D$를 $\overline{BD}=\overline{BC}$가 되게 잡았다. $\angle BDC=72^\circ$인 까닭을 쓰시오.`,
+      r`$\triangle BCD$에서 $\overline{BD}=\overline{BC}$라 $\angle BDC=\angle BCD$이고, $\angle BCD$는 $\triangle ABC$의 밑각 $72^\circ$이다.`,
     ],
   ],
   f: [
@@ -3536,9 +3536,9 @@ section("05-02", "직각삼각형의 합동", {
     ],
     [
       "중",
-      r`빗변의 길이가 $5\,\mathrm{cm}$, 다른 한 변의 길이가 $3\,\mathrm{cm}$인 두 직각삼각형은 합동이다.`,
+      r`$\angle C=\angle F=90^\circ$인 두 직각삼각형 $ABC$, $DEF$에서 $\overline{AB}=\overline{DE}$, $\overline{AC}=\overline{EF}$이면 두 삼각형은 합동이다.`,
       true,
-      r`$\mathrm{RHS}$ 합동이다.`,
+      r`빗변끼리, 직각을 낀 한 변끼리 같으므로 $\mathrm{RHS}$ 합동이다. 변의 이름이 아니라 빗변인지로 대응을 정한다.`,
     ],
     [
       "중",
@@ -3556,18 +3556,18 @@ section("05-02", "직각삼각형의 합동", {
   a: [
     [
       "하",
-      r`세 변의 길이가 $6\,\mathrm{cm}$, $8\,\mathrm{cm}$, $10\,\mathrm{cm}$인 직각삼각형에서 빗변의 길이를 쓰시오.`,
-      r`$10\,\mathrm{cm}$`,
+      "직각삼각형이 비스듬히 놓여 있을 때 빗변을 기울어진 변이 아니라 직각과 마주 보는 변으로 찾는 까닭을 쓰시오.",
+      "빗변은 직각과 마주 보는 변이라는 뜻으로 정해지고, 그림이 놓인 방향과는 상관없기 때문이다.",
     ],
     [
       "중",
-      r`$\angle C=\angle F=90^\circ$, $\overline{AB}=\overline{DE}$, $\angle A=\angle D$인 두 삼각형 $ABC,\ DEF$의 합동 조건을 쓰시오.`,
-      r`$\mathrm{RHA}$ 합동`,
+      r`$\angle C=\angle F=90^\circ$, $\overline{AB}=\overline{DE}$, $\angle A=\angle D$인 두 삼각형 $ABC$, $DEF$의 합동 조건을 쓰고 까닭을 쓰시오.`,
+      r`$\mathrm{RHA}$ 합동 — 두 직각삼각형의 빗변과 한 예각이 각각 같다.`,
     ],
     [
       "상",
-      r`$\angle AOB$의 이등분선 위의 점 $P$에서 두 변에 수선을 그어 만나는 점을 $C,\ D$라 하자. $\overline{PC}=4\,\mathrm{cm}$일 때 $\overline{PD}$의 길이를 구하시오.`,
-      r`$4\,\mathrm{cm}$`,
+      r`$\angle C=90^\circ$인 $\triangle ABC$에서 $\angle A$의 이등분선이 $\overline{BC}$와 만나는 점을 $D$라 하자. $\overline{AB}$를 밑변으로 한 $\triangle ABD$의 높이가 $\overline{CD}$와 같은 까닭을 쓰시오.`,
+      r`$D$에서 $\overline{AB}$, $\overline{AC}$까지의 거리가 같고, $\overline{CD}$가 $D$에서 $\overline{AC}$에 내린 수선이기 때문이다.`,
     ],
   ],
   f: [
@@ -3723,7 +3723,7 @@ section("05-03", "삼각형의 외심", {
       "중",
       "외심에서 세 변까지의 거리는 모두 같다.",
       false,
-      "같은 것은 세 꼭짓점까지의 거리이다. 세 변까지가 같은 점은 내심이다.",
+      r`직각삼각형의 외심은 빗변 위에 있어 빗변까지의 거리는 $0$이지만, 다른 두 변까지의 거리는 $0$보다 크다.`,
     ],
     [
       "중",
@@ -3741,23 +3741,23 @@ section("05-03", "삼각형의 외심", {
   a: [
     [
       "하",
-      r`점 $O$가 $\triangle ABC$의 외심이고 $\overline{OA}=6\,\mathrm{cm}$일 때 $\overline{OB}$의 길이를 구하시오.`,
-      r`$6\,\mathrm{cm}$`,
+      r`점 $O$가 $\triangle ABC$의 외심일 때 $\overline{OA}=\overline{OB}$임을 수직이등분선으로 설명하시오.`,
+      r`외심은 $\overline{AB}$의 수직이등분선 위에 있고, 그 위의 점은 $A$와 $B$에서 같은 거리에 있다.`,
     ],
     [
       "중",
-      r`점 $O$가 $\triangle ABC$의 외심이고 $\angle OBC=25^\circ$일 때 $\angle BOC$의 크기를 구하시오.`,
-      r`$130^\circ$`,
+      r`점 $O$가 $\triangle ABC$의 외심이고 $\angle OBC=25^\circ$일 때 $\angle OCB$도 $25^\circ$인 까닭을 쓰시오.`,
+      r`$\overline{OB}=\overline{OC}$라 $\triangle OBC$가 이등변삼각형이고, 두 밑각이 같기 때문이다.`,
     ],
     [
       "상",
-      r`점 $O$가 예각삼각형 $ABC$의 외심이고 $\angle OAB=20^\circ$, $\angle OBC=30^\circ$일 때 $\angle OCA$의 크기를 구하시오.`,
-      r`$40^\circ$`,
+      r`점 $O$가 예각삼각형 $ABC$의 외심이고 $\angle OAB=20^\circ$, $\angle OBC=30^\circ$일 때 $\angle OCA=40^\circ$인 까닭을 쓰시오.`,
+      r`세 이등변삼각형의 밑각이 둘씩 같아 $2(\angle OAB+\angle OBC+\angle OCA)=180^\circ$이므로 세 각의 합이 $90^\circ$이다.`,
     ],
     [
       "상",
-      r`직각삼각형의 빗변의 길이가 $12\,\mathrm{cm}$일 때 외접원의 넓이를 구하시오.`,
-      r`$36\pi\,\mathrm{cm}^2$`,
+      r`직각삼각형의 빗변의 길이가 $12\,\mathrm{cm}$일 때 외접원의 반지름이 $6\,\mathrm{cm}$인 까닭을 쓰시오.`,
+      "직각삼각형의 외심은 빗변의 중점이라, 외심에서 꼭짓점까지의 거리가 빗변의 절반이기 때문이다.",
     ],
   ],
   f: [
@@ -3894,7 +3894,7 @@ section("05-04", "삼각형의 내심", {
       "삼각형의 내접원과 접선의 길이",
       "성질",
       "상",
-      "삼각형의 한 꼭짓점에서 내접원의 두 {접점}까지의 거리는 서로 {같다}.",
+      "삼각형의 한 꼭짓점에서 그 꼭짓점에 맞닿은 두 변 위의 내접원의 두 {접점}까지 잰 거리는 서로 {같다}.",
     ],
     [
       "내심과 각의 크기",
@@ -3918,7 +3918,7 @@ section("05-04", "삼각형의 내심", {
       "중",
       "내심에서 세 꼭짓점까지의 거리는 모두 같다.",
       false,
-      "같은 것은 세 변까지의 거리이다.",
+      "직각삼각형에서 세 꼭짓점까지의 거리가 같은 점은 빗변의 중점인데, 내심은 삼각형의 내부에 있어 그 점이 아니다.",
     ],
     [
       "중",
@@ -3942,23 +3942,23 @@ section("05-04", "삼각형의 내심", {
   a: [
     [
       "하",
-      r`점 $I$가 $\triangle ABC$의 내심이고 $\angle IBC=20^\circ$일 때 $\angle ABC$의 크기를 구하시오.`,
-      r`$40^\circ$`,
+      r`점 $I$가 $\triangle ABC$의 내심이고 $\angle IBC=20^\circ$일 때 $\angle ABC$를 $20^\circ$의 $2$배로 구하는 까닭을 쓰시오.`,
+      r`내심은 세 내각의 이등분선이 만나는 점이라 $\overline{BI}$가 $\angle ABC$를 반으로 나누기 때문이다.`,
     ],
     [
       "중",
-      r`점 $I$가 $\triangle ABC$의 내심이고 $\angle A=70^\circ$일 때 $\angle BIC$의 크기를 구하시오.`,
-      r`$125^\circ$`,
+      r`점 $I$가 $\triangle ABC$의 내심이고 $\angle A=70^\circ$일 때 $\angle BIC=125^\circ$인 까닭을 쓰시오.`,
+      r`$\angle IBC+\angle ICB$는 $\angle B$, $\angle C$의 절반의 합 $\frac{180^\circ-70^\circ}{2}=55^\circ$라 $\angle BIC=180^\circ-55^\circ$이다.`,
     ],
     [
       "상",
-      r`세 변의 길이가 $6\,\mathrm{cm}$, $8\,\mathrm{cm}$, $10\,\mathrm{cm}$인 직각삼각형에 내접하는 원의 반지름은 몇 $\mathrm{cm}$인가?`,
-      r`$2\,\mathrm{cm}$`,
+      r`세 변의 길이가 $6\,\mathrm{cm}$, $8\,\mathrm{cm}$, $10\,\mathrm{cm}$인 직각삼각형의 내접원의 반지름 $r$를 구하려고 $\frac{1}{2}\times6\times8=\frac{1}{2}\times r\times24$로 놓는 까닭을 쓰시오.`,
+      "직각을 낀 두 변으로 구한 넓이와 내접원의 반지름과 둘레로 구한 넓이는 같은 삼각형의 넓이이기 때문이다.",
     ],
     [
       "상",
-      r`세 꼭짓점에서 내접원의 접점까지의 거리가 각각 $3\,\mathrm{cm}$, $4\,\mathrm{cm}$, $5\,\mathrm{cm}$인 삼각형의 둘레의 길이를 구하시오.`,
-      r`$24\,\mathrm{cm}$`,
+      r`삼각형의 세 꼭짓점에서 각각 그 꼭짓점에 맞닿은 변 위의 내접원 접점까지의 거리가 $3$, $4$, $5$일 때 둘레가 $2(3+4+5)$인 까닭을 쓰시오.`,
+      "한 꼭짓점에서 양옆 두 변 위의 접점까지의 거리가 같아, 세 거리가 둘레에 두 번씩 들어가기 때문이다.",
     ],
   ],
   f: [
@@ -4126,9 +4126,9 @@ section("05-05", "평행사변형의 성질", {
     ],
     [
       "중",
-      r`$\square ABCD$가 평행사변형이고 $\angle A=110^\circ$이면 $\angle C=70^\circ$이다.`,
+      r`평행사변형에서 한 쌍의 대각의 크기를 더하면 항상 $180^\circ$이다.`,
       false,
-      r`대각은 크기가 같으므로 $\angle C=110^\circ$이다.`,
+      r`대각은 크기가 같아, $\angle A=110^\circ$인 평행사변형에서는 한 쌍의 대각의 합이 $220^\circ$이다.`,
     ],
     [
       "상",
@@ -4140,18 +4140,18 @@ section("05-05", "평행사변형의 성질", {
   a: [
     [
       "하",
-      r`평행사변형 $ABCD$에서 $\overline{AB}=5\,\mathrm{cm}$, $\overline{BC}=8\,\mathrm{cm}$일 때 둘레의 길이를 구하시오.`,
-      r`$26\,\mathrm{cm}$`,
+      r`평행사변형 $ABCD$에서 $\angle A$의 크기만 알아도 나머지 세 각의 크기를 모두 알 수 있는 까닭을 쓰시오.`,
+      r`$\angle C$는 대각이라 $\angle A$와 같고, $\angle B$와 $\angle D$는 이웃한 각이라 $180^\circ-\angle A$이기 때문이다.`,
     ],
     [
       "중",
-      r`평행사변형 $ABCD$에서 $\angle A=65^\circ$일 때 $\angle B$와 $\angle C$의 크기를 구하시오.`,
-      r`$\angle B=115^\circ$, $\angle C=65^\circ$`,
+      r`평행사변형 $ABCD$에서 $\angle A+\angle B=180^\circ$임을 대각의 성질과 네 내각의 합으로 설명하시오.`,
+      r`$\angle A=\angle C$, $\angle B=\angle D$이고 네 내각의 합이 $360^\circ$라 $2(\angle A+\angle B)=360^\circ$이기 때문이다.`,
     ],
     [
       "상",
-      r`평행사변형 $ABCD$의 두 대각선이 점 $O$에서 만난다. $\overline{AC}=10$, $\overline{BD}=14$일 때 $\overline{OA}+\overline{OB}$의 값은?`,
-      "$12$",
+      r`평행사변형 $ABCD$의 대각선의 교점 $O$를 지나는 직선이 $\overline{AD}$, $\overline{BC}$의 내부에서 $P$, $Q$와 만날 때 $\overline{AP}=\overline{CQ}$인 까닭을 쓰시오.`,
+      r`$\overline{OA}=\overline{OC}$, $\angle OAP=\angle OCQ$(엇각), $\angle AOP=\angle COQ$(맞꼭지각)라 $\triangle OAP\equiv\triangle OCQ$($\mathrm{ASA}$)이다.`,
     ],
   ],
   f: [
@@ -4251,9 +4251,9 @@ section("05-06", "평행사변형이 되는 조건", {
     ],
     [
       "중",
-      r`네 각의 크기가 차례로 $70^\circ$, $110^\circ$, $70^\circ$, $110^\circ$인 사각형은 평행사변형이다.`,
-      true,
-      "두 쌍의 대각의 크기가 각각 같다.",
+      "네 각 가운데 크기가 같은 각이 두 쌍 있는 사각형은 항상 평행사변형이다.",
+      false,
+      r`네 각이 차례로 $80^\circ$, $80^\circ$, $100^\circ$, $100^\circ$이면 같은 각끼리 이웃해 있어 마주 보는 각이 같지 않다.`,
     ],
     [
       "중",
@@ -4269,26 +4269,26 @@ section("05-06", "평행사변형이 되는 조건", {
     ],
     [
       "상",
-      r`$\square ABCD$의 대각선 교점이 $O$이고 $\overline{OA}=\overline{OC}=3$, $\overline{OB}=\overline{OD}=5$이면 대각선 길이가 달라도 평행사변형이다.`,
+      "두 대각선이 서로를 이등분하는 사각형은 두 대각선의 길이가 달라도 평행사변형이다.",
       true,
-      "엇각이 같아져 마주 보는 변끼리 평행해진다.",
+      "대각선에 관한 조건은 서로를 이등분하는 것뿐이고, 두 대각선의 길이가 같아야 한다는 조건은 없다.",
     ],
   ],
   a: [
     [
       "하",
-      r`$\square ABCD$에서 $\overline{AB}=\overline{DC}=6$, $\overline{AD}=7$이다. 평행사변형이 되게 하는 $\overline{BC}$의 길이는?`,
-      "$7$",
+      r`$\square ABCD$에서 $\overline{AB}=\overline{DC}$일 때, 평행사변형이 되려면 더 필요한 조건 하나를 쓰고 까닭을 쓰시오.`,
+      r`$\overline{AD}=\overline{BC}$(또는 $\overline{AB}\parallel\overline{DC}$) — 두 쌍의 대변이 같거나, 한 쌍이 평행하고 같으면 되기 때문이다.`,
     ],
     [
       "중",
-      r`$\square ABCD$의 두 대각선이 점 $O$에서 만나고 $\overline{OB}=\overline{OD}$, $\overline{OA}=4$이다. 평행사변형이 되게 하는 $\overline{OC}$의 길이는?`,
-      "$4$",
+      r`두 대각선의 교점 $O$에 대해 $\overline{OA}=\overline{OC}$, $\overline{OB}=\overline{OD}$인 $\square ABCD$에서 $\overline{AB}\parallel\overline{DC}$인 까닭을 쓰시오.`,
+      r`맞꼭지각이 같아 $\triangle OAB\equiv\triangle OCD$($\mathrm{SAS}$)이고, 그 대응각인 엇각 $\angle OAB$와 $\angle OCD$가 같기 때문이다.`,
     ],
     [
       "상",
-      r`넓이가 $60\,\mathrm{cm}^2$인 평행사변형의 내부에 한 점 $P$를 잡아 네 꼭짓점과 이을 때, 마주 보는 두 삼각형의 넓이의 합을 구하시오.`,
-      r`$30\,\mathrm{cm}^2$`,
+      r`평행사변형 $ABCD$와 $AECF$가 대각선 $\overline{AC}$를 함께 가지고 $E$, $F$가 직선 $BD$ 밖에 있을 때, $\square EBFD$가 평행사변형인 까닭을 쓰시오.`,
+      r`두 평행사변형의 대각선은 모두 $\overline{AC}$의 중점에서 이등분되므로, $\overline{BD}$와 $\overline{EF}$도 그 점에서 서로를 이등분하기 때문이다.`,
     ],
   ],
   f: [
@@ -4403,7 +4403,7 @@ section("05-07", "직사각형, 마름모, 정사각형", {
       "중",
       "직사각형에서는 대각선 둘이 항상 수직으로 만난다.",
       false,
-      "길이가 같고 서로를 이등분할 뿐이다. 수직인 것은 마름모이다.",
+      "대각선이 수직이면 마름모이기도 해서 정사각형이 되는데, 정사각형이 아닌 직사각형도 있다.",
     ],
     [
       "중",
@@ -4421,29 +4421,29 @@ section("05-07", "직사각형, 마름모, 정사각형", {
       "상",
       "두 대각선이 수직인 사각형은 모두 마름모이다.",
       false,
-      "평행사변형이어야 한다. 연 모양 사각형도 대각선이 수직이다.",
+      r`수직인 두 대각선의 교점 $O$에 대해 $\overline{OA}=\overline{OC}=\overline{OB}=1$, $\overline{OD}=2$이면 서로를 이등분하지 않아 마름모가 아니다.`,
     ],
   ],
   a: [
     [
       "하",
-      r`직사각형 $ABCD$의 두 대각선이 점 $O$에서 만나고 $\overline{AC}=12\,\mathrm{cm}$일 때 $\overline{OB}$의 길이를 구하시오.`,
-      r`$6\,\mathrm{cm}$`,
+      r`직사각형 $ABCD$의 두 대각선의 교점을 $O$라 할 때 $\overline{OB}$가 $\overline{AC}$의 절반인 까닭을 쓰시오.`,
+      r`두 대각선의 길이가 같고, 교점 $O$가 각 대각선을 반으로 나누기 때문이다.`,
     ],
     [
       "중",
-      r`두 대각선의 길이가 $6\,\mathrm{cm}$, $8\,\mathrm{cm}$인 마름모의 넓이를 구하시오.`,
-      r`$24\,\mathrm{cm}^2$`,
+      "마름모의 넓이를 두 대각선의 길이의 곱의 절반으로 구할 수 있는 까닭을 쓰시오.",
+      "두 대각선이 수직으로 만나, 마름모가 두 대각선을 두 변으로 하는 직사각형 넓이의 절반이기 때문이다.",
     ],
     [
       "중",
-      r`마름모 $ABCD$에서 $\angle ABD=35^\circ$일 때 $\angle BAC$의 크기를 구하시오.`,
-      r`$55^\circ$`,
+      r`마름모 $ABCD$에서 $\angle ABD+\angle BAC=90^\circ$인 까닭을 쓰시오.`,
+      r`두 대각선이 수직으로 만나, 교점 $O$에 대해 $\triangle ABO$가 $\angle AOB=90^\circ$인 직각삼각형이기 때문이다.`,
     ],
     [
       "상",
-      r`평행사변형 $ABCD$가 $\overline{AB}=\overline{BC}$이고 $\angle A=90^\circ$이면 어떤 사각형인가?`,
-      "정사각형",
+      r`평행사변형 $ABCD$가 $\overline{AB}=\overline{BC}$이고 $\angle A=90^\circ$이면 어떤 사각형인지 쓰고 까닭을 쓰시오.`,
+      "정사각형 — 이웃한 두 변이 같아 마름모이고, 한 내각이 직각이라 직사각형이기도 하다.",
     ],
   ],
   f: [
@@ -4523,7 +4523,7 @@ section("05-08", "등변사다리꼴, 여러 가지 사각형", {
       "등변사다리꼴의 성질 — 변",
       "성질",
       "중",
-      "등변사다리꼴에서는 {평행이 아닌} 두 대변의 길이가 서로 {같다}.",
+      "등변사다리꼴에서는 윗변과 아랫변이 아닌 {나머지} 두 변의 길이가 서로 {같다}.",
     ],
     [
       "등변사다리꼴의 성질 — 대각선",
@@ -4553,7 +4553,7 @@ section("05-08", "등변사다리꼴, 여러 가지 사각형", {
       "여러 가지 사각형의 대각선의 성질",
       "성질",
       "상",
-      "대각선의 길이가 같은 것은 직사각형, 정사각형, {등변사다리꼴}이고, 대각선이 수직인 것은 마름모와 {정사각형}이다.",
+      "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
     ],
     [
       "각 변의 중점을 이어 만든 사각형",
@@ -4571,33 +4571,33 @@ section("05-08", "등변사다리꼴, 여러 가지 사각형", {
     ],
     [
       "중",
-      "등변사다리꼴의 두 대각선은 서로를 이등분한다.",
+      "등변사다리꼴의 두 대각선은 언제나 서로를 이등분한다.",
       false,
-      "길이가 같을 뿐이다. 서로 이등분하면 평행사변형이다.",
+      "윗변과 아랫변의 길이가 다른 등변사다리꼴은 평행사변형이 아니어서 두 대각선이 서로를 이등분하지 않는다.",
     ],
     ["중", "정사각형은 마름모이다.", true, "네 변의 길이가 모두 같다."],
     [
       "상",
       "마름모의 네 변의 중점을 차례로 이으면 마름모가 된다.",
       false,
-      "네 각이 직각인 직사각형이 된다.",
+      "정사각형이 아닌 마름모는 두 대각선의 길이가 달라, 중점을 이은 사각형의 이웃한 두 변의 길이도 다르다.",
     ],
   ],
   a: [
     [
       "하",
-      r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\overline{AB}=5\,\mathrm{cm}$일 때 $\overline{DC}$의 길이를 구하시오.`,
-      r`$5\,\mathrm{cm}$`,
+      r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\angle A=\angle D$인 까닭을 쓰시오.`,
+      r`$\angle A=180^\circ-\angle B$, $\angle D=180^\circ-\angle C$이고 $\angle B=\angle C$이기 때문이다.`,
     ],
     [
       "중",
-      r`$\overline{AD}\parallel\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\angle B=70^\circ$일 때 $\angle D$의 크기를 구하시오.`,
-      r`$110^\circ$`,
+      r`$\overline{AD}\parallel\overline{BC}$, $\overline{AD}<\overline{BC}$인 등변사다리꼴 $ABCD$에서 $D$를 지나 $\overline{AB}$에 평행한 직선이 $\overline{BC}$와 만나는 점을 $E$라 할 때 $\overline{AB}=\overline{DC}$인 까닭을 쓰시오.`,
+      r`$\square ABED$가 평행사변형이라 $\overline{AB}=\overline{DE}$이고, $\angle DEC=\angle B=\angle C$라 $\triangle DEC$가 이등변삼각형이어서 $\overline{DE}=\overline{DC}$이다.`,
     ],
     [
       "상",
-      "두 대각선의 길이가 같고 서로를 수직이등분하는 사각형의 이름을 쓰시오.",
-      "정사각형",
+      "두 대각선의 길이가 같고 서로를 수직이등분하는 사각형의 이름을 쓰고 까닭을 쓰시오.",
+      "정사각형 — 서로를 이등분해 평행사변형이고, 길이가 같아 직사각형, 수직이라 마름모이기도 하다.",
     ],
   ],
   f: [
@@ -4717,9 +4717,9 @@ section("05-09", "평행선과 삼각형의 넓이", {
     ],
     [
       "중",
-      "높이가 같고 밑변의 길이의 비가 $2:3$인 삼각형 둘은 넓이의 비가 $4:9$이다.",
+      "높이가 같은 삼각형 둘에서, 넓이의 비는 밑변 길이의 비를 제곱한 값이다.",
       false,
-      "높이가 같으면 넓이의 비도 $2:3$이다.",
+      r`높이가 같으면 넓이는 밑변에 비례해, 밑변의 비가 $2:3$이면 넓이의 비도 $2:3$이다.`,
     ],
     [
       "상",
@@ -4731,18 +4731,18 @@ section("05-09", "평행선과 삼각형의 넓이", {
   a: [
     [
       "하",
-      r`밑변의 길이가 $8\,\mathrm{cm}$, 높이가 $5\,\mathrm{cm}$인 삼각형의 넓이를 구하시오.`,
-      r`$20\,\mathrm{cm}^2$`,
+      r`삼각형의 넓이를 (밑변)$\times$(높이)$\div 2$로 구하는 까닭을 쓰시오.`,
+      "똑같은 삼각형 두 개를 붙이면 밑변과 높이가 같은 평행사변형이 되고, 삼각형은 그 절반이기 때문이다.",
     ],
     [
       "중",
-      r`변 $BC$ 위의 점 $D$가 $\overline{BD}:\overline{DC}=2:3$이다. $\triangle ABC$의 넓이가 $30$일 때 $\triangle ABD$의 넓이는?`,
-      "$12$",
+      "높이가 서로 다른 두 삼각형의 넓이의 비를 밑변의 길이의 비만으로 정할 수 없는 까닭을 쓰시오.",
+      "넓이는 밑변과 높이에 모두 비례해, 높이가 다르면 높이의 비도 함께 따져야 하기 때문이다.",
     ],
     [
       "상",
-      r`윗변 $AD$와 아랫변 $BC$가 평행한 사다리꼴 $ABCD$의 대각선의 교점이 $O$이다. $\triangle ABO$의 넓이가 $9$이면 $\triangle DCO$의 넓이는?`,
-      "$9$",
+      r`$\triangle ABC$와 $\triangle DBC$의 넓이가 같고 서로 다른 두 점 $A$, $D$가 직선 $BC$에 대해 같은 쪽에 있을 때 $\overline{AD}\parallel\overline{BC}$인 까닭을 쓰시오.`,
+      r`밑변 $\overline{BC}$가 같아 높이가 같고, 같은 쪽의 두 점 $A$, $D$에서 직선 $BC$까지의 거리가 같기 때문이다.`,
     ],
   ],
   f: [
