@@ -7,6 +7,9 @@ const mocks = vi.hoisted(() => ({
   studentCount: vi.fn(),
   classes: vi.fn(),
 }));
+vi.mock("@/lib/eywa/managedAccounts", () => ({
+  getManagedClassGrants: async () => null,
+}));
 vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
 vi.mock("@/lib/db", () => ({
   db: {
@@ -90,13 +93,32 @@ describe("teaching overview access and query boundary", () => {
     expect(response.status).toBe(200);
     expect(response.headers.get("cache-control")).toBe("private, no-store");
     expect(mocks.classCount).toHaveBeenCalledWith({
-      where: { userId: owner.id },
+      where: {
+        userId: owner.id,
+        eywaBindingId: null,
+        OR: [{ branchId: null }],
+      },
     });
     expect(mocks.studentCount).toHaveBeenCalledWith({
-      where: { class: { userId: owner.id } },
+      where: expect.objectContaining({
+        OR: expect.arrayContaining([
+          expect.objectContaining({
+            eywaBindingId: null,
+            class: {
+              userId: owner.id,
+              eywaBindingId: null,
+              OR: [{ branchId: null }],
+            },
+          }),
+        ]),
+      }),
     });
     expect(mocks.classes).toHaveBeenCalledWith({
-      where: { userId: owner.id },
+      where: {
+        userId: owner.id,
+        eywaBindingId: null,
+        OR: [{ branchId: null }],
+      },
       orderBy: [{ createdAt: "desc" }, { id: "asc" }],
       take: 3,
       select: {
@@ -105,7 +127,7 @@ describe("teaching overview access and query boundary", () => {
         grade: true,
         _count: { select: { students: true } },
         progresses: {
-          where: { studentId: null },
+          where: { studentId: null, retiredAt: null },
           orderBy: [{ recordedAt: "desc" }, { createdAt: "desc" }],
           take: 1,
           select: { unit: { select: { chapter: true, section: true } } },
@@ -162,7 +184,13 @@ describe("teaching overview access and query boundary", () => {
     const response = await GET();
     expect(response.status).toBe(200);
     expect(mocks.classCount).toHaveBeenCalledWith({ where: {} });
-    expect(mocks.studentCount).toHaveBeenCalledWith({ where: {} });
+    expect(mocks.studentCount).toHaveBeenCalledWith({
+      where: expect.objectContaining({
+        OR: expect.arrayContaining([
+          expect.objectContaining({ eywaBindingId: null, class: {} }),
+        ]),
+      }),
+    });
     expect(mocks.classes).toHaveBeenCalledWith(
       expect.objectContaining({ where: {}, take: 3 }),
     );
@@ -171,10 +199,25 @@ describe("teaching overview access and query boundary", () => {
     mocks.session.mockResolvedValue({ ...owner, isAdmin: false });
     expect((await GET()).status).toBe(200);
     expect(mocks.classCount).toHaveBeenCalledWith({
-      where: { userId: owner.id },
+      where: {
+        userId: owner.id,
+        eywaBindingId: null,
+        OR: [{ branchId: null }],
+      },
     });
     expect(mocks.studentCount).toHaveBeenCalledWith({
-      where: { class: { userId: owner.id } },
+      where: expect.objectContaining({
+        OR: expect.arrayContaining([
+          expect.objectContaining({
+            eywaBindingId: null,
+            class: {
+              userId: owner.id,
+              eywaBindingId: null,
+              OR: [{ branchId: null }],
+            },
+          }),
+        ]),
+      }),
     });
   });
 
@@ -205,7 +248,7 @@ describe("teaching overview access and query boundary", () => {
     );
     mocks.studentCount.mockImplementation(({ where }) =>
       rows
-        .filter((row) => row.userId === where.class.userId)
+        .filter((row) => row.userId === where.OR[0].class.userId)
         .reduce((total, row) => total + row._count.students, 0),
     );
     const first = await (await GET()).json();

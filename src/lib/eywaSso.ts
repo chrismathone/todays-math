@@ -20,6 +20,10 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 
 import { z } from "zod";
+import {
+  parseAutomaticConfigs,
+  parseBindingConfigs,
+} from "./eywa/sync-contract";
 
 import type { UserRole } from "@/contracts/problemReport.contract";
 
@@ -64,11 +68,19 @@ export type EywaSsoOptions = {
   now: Date;
   /** `EYWA_SSO_TENANT_IDS` — 쉼표로 가른 eywa 지점 id. 비었으면 지점을 가리지 않는다 */
   allowedTenants?: string;
+  managedTenants?: string[];
+  automaticManaged?: boolean;
 };
 
 export function verifyEywaSsoToken(
   token: unknown,
-  { secret, now, allowedTenants }: EywaSsoOptions,
+  {
+    secret,
+    now,
+    allowedTenants,
+    managedTenants,
+    automaticManaged,
+  }: EywaSsoOptions,
 ):
   | { ok: true; claims: EywaSsoClaims }
   | { ok: false; reason: EywaSsoRejection } {
@@ -100,6 +112,8 @@ export function verifyEywaSsoToken(
   const parsed = claimsSchema.safeParse(payload);
   if (!parsed.success) return { ok: false, reason: "claims" };
   const claims = parsed.data;
+  if (automaticManaged || managedTenants?.includes(claims.tenantId))
+    return { ok: false, reason: "tenant" };
   if (
     claims.exp <= claims.iat ||
     claims.exp - claims.iat > MAX_LIFETIME_SECONDS
@@ -184,6 +198,11 @@ export function eywaSsoOptionsFromEnv(now = new Date()): EywaSsoOptions {
   return {
     secret: process.env.EYWA_SSO_SECRET,
     allowedTenants: process.env.EYWA_SSO_TENANT_IDS,
+    managedTenants: parseBindingConfigs(
+      process.env.EYWA_SYNC_BINDINGS_JSON,
+    ).map((c) => c.tenantId),
+    automaticManaged:
+      parseAutomaticConfigs(process.env.EYWA_SYNC_AUTO_JSON).length > 0,
     now,
   };
 }

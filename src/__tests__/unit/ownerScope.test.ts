@@ -49,7 +49,10 @@ describe("crossesOwnerFence — 넘는가", () => {
 
 describe("ownedRowsWhere — 반·시험지(userId 칸) where 조각", () => {
   it("관리자 아님: 자기 것만 — 지금과 글자 그대로 같다", () => {
-    expect(ownedRowsWhere(PLAIN)).toEqual({ userId: ME });
+    expect(ownedRowsWhere(PLAIN)).toEqual({
+      userId: ME,
+      OR: [{ branchId: null }],
+    });
   });
 
   it("관리자: 소유자 조건이 없다", () => {
@@ -58,7 +61,7 @@ describe("ownedRowsWhere — 반·시험지(userId 칸) where 조각", () => {
 
   it("🔴 좁힐 때 userId 가 undefined 로 새지 않는다 — Prisma 는 undefined 조건을 «조건 없음»으로 읽는다", () => {
     const where = ownedRowsWhere({ id: ME });
-    expect(Object.keys(where)).toEqual(["userId"]);
+    expect(Object.keys(where)).toEqual(["userId", "OR"]);
     expect((where as { userId?: string }).userId).toBe(ME);
   });
 });
@@ -91,7 +94,10 @@ describe("personalViewer — 개인 작업물 라우트는 관리자여도 안 �
     expect(viewer.id).toBe(ME);
     expect(crossesOwnerFence(viewer)).toBe(false);
     expect(withinOwnerScope(viewer, ROLE_OWNER)).toBe(false);
-    expect(ownedRowsWhere(viewer)).toEqual({ userId: ME });
+    expect(ownedRowsWhere(viewer)).toEqual({
+      userId: ME,
+      OR: [{ branchId: null }],
+    });
   });
 });
 
@@ -106,13 +112,16 @@ describe("지점별 소유 범위", () => {
     expect(canManageRoster({ id: ME, branchRole: "teacher" })).toBe(false);
   });
   it("지점장은 같은 지점의 반·학생만 조회하고 다른 지점은 거절한다", () => {
-    expect(ownedRowsWhere(MANAGER)).toEqual({ user: { branchId: "branch-1" } });
+    expect(ownedRowsWhere(MANAGER)).toEqual({ branchId: "branch-1" });
     expect(ownedStudentsWhere(MANAGER)).toEqual({
-      class: { user: { branchId: "branch-1" } },
+      class: { branchId: "branch-1" },
     });
     expect(withinOwnerScope(MANAGER, ROLE_OWNER, "branch-1")).toBe(true);
     expect(withinOwnerScope(MANAGER, ROLE_OWNER, "branch-2")).toBe(false);
     expect(withinOwnerScope({ id: ME, isAdmin: true }, ROLE_OWNER)).toBe(false);
+    expect(
+      withinOwnerScope({ id: ME, branchId: "branch-2" }, ME, "branch-1"),
+    ).toBe(false);
   });
 });
 

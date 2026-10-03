@@ -158,8 +158,12 @@ function routeTarget(file: string): {
 
 const ROUTE_FILES = walk(path.join(APP, "api"))
   .filter((f) => /[\\/]route\.ts$/.test(f))
-  // 학생 API 는 학생이 쓰라고 연 곳이다 — 그쪽은 learnRoutes.test.ts 가 본다
-  .filter((f) => !rel(f).startsWith("src/app/api/learn/"));
+  // 학생 API 는 학생이 쓰라고 연 곳이다 — learnRoutes 및 아래 듣기 역할 경계가 본다.
+  .filter(
+    (f) =>
+      !rel(f).startsWith("src/app/api/learn/") &&
+      !rel(f).startsWith("src/app/api/english/learn/"),
+  );
 
 const SRC_FILES = walk(path.join(ROOT, "src")).filter(
   (f) =>
@@ -326,6 +330,42 @@ describe("⓪ 전제 — 학생 쿠키가 정말 학생 세션으로 선다 (아
 });
 
 describe("② 학생 세션 → 기존 API 전수", () => {
+  it("listening student APIs accept a real student session while teacher APIs still reject it", async () => {
+    const { handleListeningHttp } =
+      await import("@/lib/english/listening/runtime/http");
+    for (const method of ["GET", "HEAD", "POST"]) {
+      const learner = (req: NextRequest) =>
+        handleListeningHttp(req, ["a", "b.png"], "student");
+      const teacher = (req: NextRequest) =>
+        handleListeningHttp(req, ["a", "b.png"], "teacher");
+      const anonymous = await callRoute(
+        learner,
+        method,
+        "/api/english/learn/listening/a/b.png",
+        {},
+        null,
+      );
+      const student = await callRoute(
+        learner,
+        method,
+        "/api/english/learn/listening/a/b.png",
+        {},
+        studentCookie,
+      );
+      const denied = await callRoute(
+        teacher,
+        method,
+        "/api/english/listening/a/b.png",
+        {},
+        studentCookie,
+      );
+      expect(anonymous.status).toBe(401);
+      // Malformed input is reached only after the genuine student session passes actorFor.
+      expect(student.status).toBe(400);
+      expect(denied.status).toBe(401);
+      expect([...anonymous.db, ...student.db, ...denied.db]).toEqual([]);
+    }
+  });
   it("🔴 모든 라우트 × 내보낸 메서드 — 학생은 «로그인 안 한 사람» 이상을 못 얻는다", async () => {
     expect(
       ROUTE_FILES.length,
@@ -486,6 +526,8 @@ describe("② 모집단 — auth() 를 부르는 파일은 전부 어딘가에�
       "src/lib/studio-ai/guard.ts",
       "src/lib/devPageAccess.ts",
       "src/lib/learn/studentRequest.ts",
+      // Above: genuine encrypted student session, learner/teacher API role boundary.
+      "src/lib/english/listening/runtime/http.ts",
     ]);
     const uncategorised = callers.filter(
       (f) =>

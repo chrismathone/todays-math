@@ -74,13 +74,17 @@ export function crossesOwnerFence(viewer: ScopeViewer): boolean {
  *
  * ⚠️ 좁힐 때 `userId: undefined` 를 내지 않는다 — Prisma 는 undefined 조건을 «조건 없음»으로 읽는다.
  */
-export function ownedRowsWhere(
-  viewer: ScopeViewer,
-): { userId: string } | { user: { branchId: string } } | Record<string, never> {
+export function ownedRowsWhere(viewer: ScopeViewer) {
   if (viewer.isSuperAdmin === true) return {};
   if (viewer.isAdmin === true && viewer.branchId)
-    return { user: { branchId: viewer.branchId } };
-  return { userId: viewer.id };
+    return { branchId: viewer.branchId };
+  return {
+    userId: viewer.id,
+    OR: [
+      { branchId: null },
+      ...(viewer.branchId ? [{ branchId: viewer.branchId }] : []),
+    ],
+  };
 }
 
 /** 학생(`Student`)의 where 조각 — 학생은 `userId` 가 없어 소속 반을 거쳐 소유자에 닿는다. */
@@ -88,11 +92,11 @@ export function ownedStudentsWhere(
   viewer: ScopeViewer,
 ):
   | { class: { userId: string } }
-  | { class: { user: { branchId: string } } }
+  | { class: { branchId: string } }
   | Record<string, never> {
   if (viewer.isSuperAdmin === true) return {};
   if (viewer.isAdmin === true && viewer.branchId)
-    return { class: { user: { branchId: viewer.branchId } } };
+    return { class: { branchId: viewer.branchId } };
   return { class: { userId: viewer.id } };
 }
 
@@ -104,7 +108,8 @@ export function withinOwnerScope(
 ): boolean {
   return (
     viewer.isSuperAdmin === true ||
-    ownerUserId === viewer.id ||
+    (ownerUserId === viewer.id &&
+      (!ownerBranchId || ownerBranchId === viewer.branchId)) ||
     (viewer.isAdmin === true &&
       Boolean(viewer.branchId) &&
       viewer.branchId === ownerBranchId)
@@ -116,5 +121,10 @@ export function withinOwnerScope(
  * 장바구니에서 시험지를 만드는 길(`api/basket/test`)이 반 소유를 물을 때 쓴다. 넓히려면 리드 결정이 먼저다.
  */
 export function personalViewer(viewer: ScopeViewer): ScopeViewer {
-  return { id: viewer.id, isAdmin: false, isSuperAdmin: false };
+  return {
+    id: viewer.id,
+    isAdmin: false,
+    isSuperAdmin: false,
+    ...(viewer.branchId ? { branchId: viewer.branchId } : {}),
+  };
 }

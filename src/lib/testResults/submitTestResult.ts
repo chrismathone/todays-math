@@ -6,6 +6,7 @@ import type { TestResultSubmitRequest } from "@/contracts/testresult.contract";
 import { testResultSubmitResponseSchema } from "@/contracts/testresult.contract";
 import { jsonError, jsonOk } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
 import { requireOwnedStudentInClass, requireOwnedTest } from "@/lib/ownership";
 import { predictStudentScore } from "@/lib/predictor/predictStudentScore";
 import {
@@ -21,7 +22,7 @@ export async function submitTestResult(
   testId: string,
   input: TestResultSubmitRequest,
 ) {
-  const owned = await requireOwnedTest(testId, session);
+  const owned = await requireOwnedTest(testId, session, "test:write");
   if (!owned.ok) return owned.response;
 
   // 🔴 보안 순서는 그대로다 — **시험지 소유권이 먼저**(위 `requireOwnedTest`) 통과해야
@@ -88,6 +89,10 @@ export async function submitTestResult(
     buildAnalysisReport(graded);
 
   const created = await db.$transaction(async (tx) => {
+    if (!owned.data.predictionRunId) {
+      await assertClassWrite(tx, session, owned.data.classId, "test:write");
+      await assertStudentEnrollment(tx, input.studentId, owned.data.classId);
+    }
     const testResult = await tx.testResult.create({
       data: {
         testId,

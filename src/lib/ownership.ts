@@ -21,28 +21,29 @@ import { db } from "@/lib/db";
 import { forbiddenError, notFoundError } from "@/lib/apiResponse";
 import { type ScopeViewer, withinOwnerScope } from "@/lib/ownerScope";
 import { isProblemAccessible } from "@/lib/problemPool";
+import {
+  accessibleClassesWhere,
+  classAccessAllowed,
+  currentEnrollmentWhere,
+} from "@/lib/classAccess";
+import type { ClassCapability } from "@/lib/eywa/relationPolicy";
 
 export type OwnershipResult<T> =
   { ok: true; data: T } | { ok: false; response: Response };
-
-async function ownerIsInScope(viewer: ScopeViewer, ownerUserId: string) {
-  if (viewer.id === ownerUserId || viewer.isSuperAdmin) return true;
-  if (!viewer.isAdmin || !viewer.branchId) return false;
-  const owner = await db.user.findUnique({
-    where: { id: ownerUserId },
-    select: { branchId: true },
-  });
-  return withinOwnerScope(viewer, ownerUserId, owner?.branchId);
-}
 
 /** 반이 존재하고, 로그인 사용자(viewer)의 소유 범위 안인지 확인한다. */
 export async function requireOwnedClass(
   classId: string,
   viewer: ScopeViewer,
+  capability: ClassCapability = "class:read",
 ): Promise<OwnershipResult<ClassRow>> {
   const cls = await db.class.findUnique({ where: { id: classId } });
   if (!cls) return { ok: false, response: notFoundError("반") };
-  if (!(await ownerIsInScope(viewer, cls.userId))) {
+  if (
+    !(await classAccessAllowed(viewer, cls, capability, {
+      forceRefresh: !capability.endsWith(":read"),
+    }))
+  ) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: cls };
@@ -55,6 +56,7 @@ export async function requireOwnedClass(
 export async function requireOwnedStudent(
   studentId: string,
   viewer: ScopeViewer,
+  capability: ClassCapability = "student:read",
 ): Promise<OwnershipResult<StudentRow>> {
   // 🔴 예전에는 학생을 읽고 **그 다음에** 반을 또 읽었다(순차 2왕복). 반 소유자는
   //    조인 한 번으로 같이 온다. 이 헬퍼는 진도 조회·출제·채점 등 거의 모든 쓰기 경로가
@@ -70,7 +72,33 @@ export async function requireOwnedStudent(
   if (!student) return { ok: false, response: notFoundError("학생") };
 
   const { class: ownerClass, ...row } = student;
-  if (!(await ownerIsInScope(viewer, ownerClass.userId))) {
+  if (student.eywaBindingId) {
+    const enrollment = await db.studentEnrollment.findFirst({
+      where: {
+        studentId,
+        bindingId: student.eywaBindingId,
+        ...currentEnrollmentWhere(
+          undefined,
+          capability.endsWith(":read") || capability === "student:account",
+        ),
+        class: await accessibleClassesWhere(viewer, capability),
+      },
+      orderBy: [{ startsOn: "desc" }, { id: "asc" }],
+    });
+    if (student.isTest || student.eywaWithdrawnAt || !enrollment)
+      return { ok: false, response: forbiddenError() };
+    // Return the authorized context; legacy primary-class pointers may belong to another teacher.
+    return {
+      ok: true,
+      data: {
+        ...row,
+        classId: enrollment.classId,
+        eywaLastReportDate: enrollment.eywaLastReportDate,
+        eywaLastReportText: enrollment.eywaLastReportText,
+      },
+    };
+  }
+  if (!(await classAccessAllowed(viewer, ownerClass, capability))) {
     return { ok: false, response: forbiddenError() };
   }
 
@@ -86,8 +114,42 @@ export async function requireOwnedStudentInClass(
   studentId: string,
   classId: string,
   viewer: ScopeViewer,
+  capability: ClassCapability = "student:read",
 ): Promise<OwnershipResult<StudentRow>> {
-  const owned = await requireOwnedStudent(studentId, viewer);
+  const cls = await requireOwnedClass(classId, viewer, capability);
+  if (!cls.ok) return cls;
+  const row = await db.student.findUnique({ where: { id: studentId } });
+  if (!row) return { ok: false, response: notFoundError("학생") };
+  if (row.eywaBindingId) {
+    const enrollment = await db.studentEnrollment.findFirst({
+      where: {
+        studentId,
+        classId,
+        bindingId: row.eywaBindingId,
+        ...currentEnrollmentWhere(
+          undefined,
+          capability.endsWith(":read") || capability === "student:account",
+        ),
+      },
+    });
+    if (
+      row.isTest ||
+      row.eywaWithdrawnAt ||
+      !enrollment ||
+      row.eywaBindingId !== cls.data.eywaBindingId
+    )
+      return { ok: false, response: notFoundError("학생") };
+    return {
+      ok: true,
+      data: {
+        ...row,
+        classId,
+        eywaLastReportDate: enrollment.eywaLastReportDate,
+        eywaLastReportText: enrollment.eywaLastReportText,
+      },
+    };
+  }
+  const owned = await requireOwnedStudent(studentId, viewer, capability);
   if (!owned.ok) return owned;
   if (owned.data.classId !== classId) {
     return { ok: false, response: notFoundError("학생") };
@@ -121,11 +183,16 @@ export async function requireAccessibleProblem(
 export async function requireOwnedTest(
   testId: string,
   viewer: ScopeViewer,
+  capability: ClassCapability = "test:read",
 ): Promise<OwnershipResult<TestRow>> {
   const test = await db.test.findUnique({ where: { id: testId } });
   if (!test) return { ok: false, response: notFoundError("테스트") };
-  if (!(await ownerIsInScope(viewer, test.userId))) {
-    return { ok: false, response: forbiddenError() };
+  if (test.predictionRunId) {
+    if (test.userId !== viewer.id)
+      return { ok: false, response: forbiddenError() };
+  } else {
+    const cls = await requireOwnedClass(test.classId, viewer, capability);
+    if (!cls.ok) return cls;
   }
   return { ok: true, data: test };
 }
@@ -141,7 +208,7 @@ export async function requireOwnedEnglishExam(
 ): Promise<OwnershipResult<EnglishExamRow>> {
   const exam = await db.englishExam.findUnique({ where: { id: examId } });
   if (!exam) return { ok: false, response: notFoundError("시험") };
-  if (!(await ownerIsInScope(viewer, exam.userId))) {
+  if (!withinOwnerScope(viewer, exam.userId, exam.branchId)) {
     return { ok: false, response: forbiddenError() };
   }
   return { ok: true, data: exam };

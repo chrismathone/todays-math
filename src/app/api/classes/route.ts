@@ -1,3 +1,4 @@
+import { accessibleClassesWhere } from "@/lib/classAccess";
 /**
  * POST/GET /api/classes — 반 생성 · 소유 범위 안의 반 목록 조회(페이지네이션).
  * 대응 계약: src/contracts/class.contract.ts
@@ -31,11 +32,7 @@ import {
   toClassOwner,
 } from "@/lib/class/classOwner";
 import { db } from "@/lib/db";
-import {
-  canManageRoster,
-  ownedRowsWhere,
-  type ScopeViewer,
-} from "@/lib/ownerScope";
+import { canManageRoster, type ScopeViewer } from "@/lib/ownerScope";
 import { serializeClass } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -70,6 +67,7 @@ async function handlePost(request: NextRequest) {
 
   const classData = {
     userId: session.id,
+    branchId: session.branchId ?? null,
     name: parsed.data.name,
     grade: parsed.data.grade,
     defaultProblemCount: parsed.data.defaultProblemCount,
@@ -129,7 +127,7 @@ async function handleGet(request: NextRequest) {
     );
   }
 
-  const where = ownedRowsWhere(session);
+  const where = await accessibleClassesWhere(session);
   const [rows, total] = await Promise.all([
     db.class.findMany({
       where,
@@ -166,8 +164,9 @@ async function listWithOwners(
   page: number,
   pageSize: number,
 ) {
-  const mineWhere = { userId: viewer.id };
-  const othersWhere = { userId: { not: viewer.id }, ...ownedRowsWhere(viewer) };
+  const scope = await accessibleClassesWhere(viewer);
+  const mineWhere = { AND: [{ userId: viewer.id }, scope] };
+  const othersWhere = { AND: [{ userId: { not: viewer.id } }, scope] };
   const orderBy = { createdAt: "desc" as const };
   const skip = (page - 1) * pageSize;
 

@@ -42,6 +42,7 @@ async function handlePost(request: NextRequest) {
   const created = await db.englishExam.create({
     data: {
       userId: gate.session.id,
+      branchId: gate.session.branchId ?? null,
       school: parsed.data.school,
       grade: parsed.data.grade,
       title: parsed.data.title,

@@ -5,6 +5,8 @@ import { afterAll, afterEach, beforeAll, beforeEach, vi } from "vitest";
 import { cleanup, configure } from "@testing-library/react";
 
 import { server } from "@/mocks/server";
+// Route tests execute server modules directly; Next's build-time server boundary is not a Node runtime module.
+vi.mock("server-only", () => ({}));
 
 // findBy*/waitFor 의 기본 상한 1초를 올린다 (성능 수리 C-2).
 //

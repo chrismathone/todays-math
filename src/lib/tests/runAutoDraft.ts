@@ -1,3 +1,7 @@
+import {
+  accessibleClassesWhere,
+  loadOperationalRoster,
+} from "@/lib/classAccess";
 /**
  * 아침 8시 **자동 초안 회차** — 계획이 있는 학생의 그날 확인테스트 초안을 세운다 (D-129 ⑶⑷).
  *
@@ -45,11 +49,11 @@ import {
   type DailyPlanRow,
 } from "@/lib/daily/planDailyReview";
 import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import type { SessionUser } from "@/lib/session";
 import { draftCapacityOf, loadCapacityRows } from "@/lib/tests/draftCapacity";
 import { generateDraftTest } from "@/lib/tests/generateDraftTest";
 import { loadRecentProblemIds } from "@/lib/tests/recentProblemIds";
+import { autoDraftBindingAllowed } from "./autoDraftScope";
 
 const isoDay = (value: Date): string => value.toISOString().slice(0, 10);
 const dayDate = (day: string): Date => new Date(`${day}T00:00:00.000Z`);
@@ -97,10 +101,18 @@ async function draftAll(args: {
   // **읽지도** 않는 쪽이 맞다(2026-09-07 에 새 계정이 남의 학원 상태를 그대로 본 전례).
   // 소유자가 관리자면 전 반을 돈다(D-130 ⑸) — 시험지는 각 반 소유자의 것으로 선다(generateDraftTest).
   const ownClasses = await db.class.findMany({
-    where: ownedRowsWhere(owner),
-    select: { id: true },
+    where: await accessibleClassesWhere(owner),
+    select: {
+      id: true,
+      eywaClassId: true,
+      eywaBindingId: true,
+      active: true,
+      closedAt: true,
+    },
   });
-  const ownClassIds = ownClasses.map((c) => c.id);
+  const ownClassIds: string[] = [];
+  for (const cls of ownClasses)
+    if (await autoDraftBindingAllowed(cls)) ownClassIds.push(cls.id);
 
   const planRows = ownClassIds.length
     ? await db.progressPlan.findMany({
@@ -120,30 +132,7 @@ async function draftAll(args: {
   // 계획이 있는 **반**의 학생만 본다. 계획이 하나도 없으면 여기서 0건으로 끝난다 —
   // 그리고 그 0 은 회차 기록에 남아 「안 돈 것」과 구별된다.
   const planClassIds = [...new Set(planRows.map((p) => p.classId))];
-  const students = planClassIds.length
-    ? await db.student.findMany({
-        where: { classId: { in: planClassIds }, eywaWithdrawnAt: null },
-        select: {
-          id: true,
-          name: true,
-          classId: true,
-          schoolLevel: true,
-          schoolGrade: true,
-          useIndividualProgress: true,
-          eywaLastReportDate: true,
-          eywaLastReportText: true,
-          class: {
-            select: {
-              name: true,
-              grade: true,
-              defaultProblemCount: true,
-              // 최근 출제(D-20)의 열쇠 — 출제(`generateDraftTest`)와 같이 **반 소유자**다(D-130).
-              userId: true,
-            },
-          },
-        },
-      })
-    : [];
+  const students = await loadOperationalRoster(planClassIds);
 
   // 계획이 있는 학생이 없으면 합계 0 으로 끝난다 — 회차 행은 이미 서 있다(«안 돈 것»과 구별).
   if (students.length === 0) return;
@@ -155,7 +144,11 @@ async function draftAll(args: {
   // 제품 함수(`applicableProgress`)가 정한다. 여기서 미리 고르면 규칙이 두 벌이 된다.
   const [ownRows, classRows, units, reviews, todayTests] = await Promise.all([
     db.progress.findMany({
-      where: { studentId: { in: studentIds } },
+      where: {
+        retiredAt: null,
+        classId: { in: planClassIds },
+        studentId: { in: studentIds },
+      },
       select: {
         classId: true,
         studentId: true,
@@ -165,7 +158,11 @@ async function draftAll(args: {
       },
     }),
     db.progress.findMany({
-      where: { classId: { in: planClassIds }, studentId: null },
+      where: {
+        retiredAt: null,
+        classId: { in: planClassIds },
+        studentId: null,
+      },
       select: {
         classId: true,
         studentId: true,
@@ -186,17 +183,25 @@ async function draftAll(args: {
     // 직전 확인테스트 — **실제로 낸 것만**(confirmed·printed, default-range 와 같은 규칙).
     db.test.findMany({
       where: {
+        classId: { in: planClassIds },
+        predictionRunId: null,
         studentId: { in: studentIds },
         testType: "review",
         status: { in: ["confirmed", "printed"] },
       },
       orderBy: [{ testDate: "desc" }, { createdAt: "desc" }],
-      select: { studentId: true, rangeEndUnitId: true },
+      select: { classId: true, studentId: true, rangeEndUnitId: true },
     }),
     // 🔴 중복 금지 — 오늘 그 학생 확인테스트가 있으면(초안 포함) 만들지 않는다.
     db.test.findMany({
-      where: { studentId: { in: studentIds }, testType: "review", testDate },
-      select: { studentId: true },
+      where: {
+        classId: { in: planClassIds },
+        predictionRunId: null,
+        studentId: { in: studentIds },
+        testType: "review",
+        testDate,
+      },
+      select: { classId: true, studentId: true },
     }),
   ]);
 
@@ -206,11 +211,11 @@ async function draftAll(args: {
 
   const lastReviewByStudent = new Map<string, string | null>();
   for (const r of reviews)
-    if (r.studentId && !lastReviewByStudent.has(r.studentId))
-      lastReviewByStudent.set(r.studentId, r.rangeEndUnitId);
+    if (r.studentId && !lastReviewByStudent.has(`${r.classId}/${r.studentId}`))
+      lastReviewByStudent.set(`${r.classId}/${r.studentId}`, r.rangeEndUnitId);
   const alreadyToday = new Set(
     todayTests
-      .map((t) => t.studentId)
+      .map((t) => (t.studentId ? `${t.classId}/${t.studentId}` : null))
       .filter((id): id is string => id !== null),
   );
 
@@ -238,12 +243,11 @@ async function draftAll(args: {
       recordedAt: isoDay(r.recordedAt),
       createdAt: r.createdAt.toISOString(),
     })),
-    lastReviews: [...lastReviewByStudent].map(
-      ([studentId, rangeEndUnitId]) => ({
-        studentId,
-        rangeEndUnitId,
-      }),
-    ),
+    lastReviews: [...lastReviewByStudent].map(([key, rangeEndUnitId]) => ({
+      classId: key.split("/")[0],
+      studentId: key.split("/")[1],
+      rangeEndUnitId,
+    })),
     units,
     plans: planRows.map((p): DailyPlanRow => ({
       classId: p.classId,
@@ -270,14 +274,16 @@ async function draftAll(args: {
     })),
   );
 
-  const classOfStudent = new Map(students.map((s) => [s.id, s.class]));
+  const classOfStudent = new Map(
+    students.map((s) => [`${s.classId}/${s.id}`, s.class]),
+  );
 
   for (const group of plan.groups) {
     // 출제 자격 후보 — 출제 조회와 **같은 where**(D-22·D-31 포함). 묶음마다 한 번 읽는다.
     const capacityRows = await loadCapacityRows(group.unitIds);
 
     for (const st of group.students) {
-      if (alreadyToday.has(st.id)) {
+      if (alreadyToday.has(`${st.classId}/${st.id}`)) {
         tally.skips.push({ studentId: st.id, reason: "already" });
         continue;
       }
@@ -285,7 +291,7 @@ async function draftAll(args: {
       //    (2026-09-18 시뮬레이션 ⑴). 예전의 행 수 문지기는 「부족 아님」이라 해 놓고 출제가
       //    422 를 내 `failed` 로만 남았다. 최근 출제는 출제와 같은 함수·같은 열쇠(반 소유자)로
       //    학생마다 다시 읽는다 — 같은 회차에서 앞 학생이 쓴 문항이 이미 DB 에 있다.
-      const cls = classOfStudent.get(st.id)!;
+      const cls = classOfStudent.get(`${st.classId}/${st.id}`)!;
       const recent = await loadRecentProblemIds(cls.userId, day);
       if (draftCapacityOf(capacityRows, recent) < cls.defaultProblemCount) {
         // 만들지 말고 **기록만** 남긴다 — 화면이 「직접 출제」로 안내한다(D-64 와 같은 결).
@@ -310,7 +316,7 @@ async function draftAll(args: {
         tally.created += 1;
         // 한 회차 안에서도 두 번 만들지 않는다 — 같은 학생이 두 묶음에 들 일은 없지만,
         // 「이미 만들었나」의 답은 한 곳에서 나와야 한다.
-        alreadyToday.add(st.id);
+        alreadyToday.add(`${st.classId}/${st.id}`);
       } else {
         // 422(문항류 부족)·500 — 조용히 삼키지 않는다.
         tally.skips.push({ studentId: st.id, reason: "failed" });

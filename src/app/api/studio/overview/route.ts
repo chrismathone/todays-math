@@ -1,6 +1,9 @@
+import {
+  accessibleClassesWhere,
+  accessibleStudentsWhere,
+} from "@/lib/classAccess";
 import { loadRecentClasses } from "@/lib/class/recentClasses";
 import { db } from "@/lib/db";
-import { ownedRowsWhere, ownedStudentsWhere } from "@/lib/ownerScope";
 import { authorizeStudio } from "@/lib/studio-ai/guard";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -17,8 +20,8 @@ async function handleGet(request: Request) {
     const user = access.user!;
 
     const [classCount, studentCount, classes] = await Promise.all([
-      db.class.count({ where: ownedRowsWhere(user) }),
-      db.student.count({ where: ownedStudentsWhere(user) }),
+      db.class.count({ where: await accessibleClassesWhere(user) }),
+      db.student.count({ where: await accessibleStudentsWhere(user) }),
       // Recent three classes; an admin also gets each class owner (D-132): src/lib/class/recentClasses.ts
       loadRecentClasses(user),
     ]);

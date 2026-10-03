@@ -1,3 +1,4 @@
+import { accessibleTestsWhere } from "@/lib/classAccess";
 /**
  * GET /api/tests — 소유 범위 안의 테스트 목록 (classId/studentId/status 필터, 페이지네이션).
  * 대응 계약: src/contracts/test.contract.ts
@@ -11,7 +12,6 @@ import {
 } from "@/contracts/test.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -27,7 +27,7 @@ async function handleGet(request: NextRequest) {
 
   const { classId, studentId, status, page, pageSize } = parsed.data;
   const where = {
-    ...ownedRowsWhere(session),
+    ...(await accessibleTestsWhere(session)),
     ...(classId ? { classId } : {}),
     ...(studentId ? { studentId } : {}),
     ...(status ? { status } : {}),

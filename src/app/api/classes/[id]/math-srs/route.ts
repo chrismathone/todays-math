@@ -27,7 +27,11 @@ async function handleGet(
     );
   const parsed = idParamSchema.safeParse(await params);
   if (!parsed.success) return noStore(validationError(parsed.error));
-  const owned = await requireOwnedClass(parsed.data.id, access.account);
+  const owned = await requireOwnedClass(
+    parsed.data.id,
+    access.account,
+    "progress:read",
+  );
   if (!owned.ok) return noStore(owned.response);
   try {
     const dashboard = await loadSrsClassDashboard(owned.data, new Date());

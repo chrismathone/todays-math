@@ -307,12 +307,14 @@ describe("GET /api/english/exams — 범위 · 요약 · 차례", () => {
   it("지점 관리자는 지점 강사의 시험을 본다 · 다른 지점 관리자는 못 본다 · 지점 강사는 자기 것만", async () => {
     const mine = seedEnglishExam({
       userId: BRANCH_TEACHER_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "중3",
       title: "지점 강사 시험",
     });
     const admins = seedEnglishExam({
       userId: BRANCH_ADMIN_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "고1",
       title: "지점 관리자 시험",
@@ -349,6 +351,7 @@ describe("PATCH /api/english/exams/[id]", () => {
     });
     const branch = seedEnglishExam({
       userId: BRANCH_TEACHER_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "중3",
       title: "지점 강사 시험",

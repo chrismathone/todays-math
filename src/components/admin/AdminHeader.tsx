@@ -9,7 +9,7 @@ export default function AdminHeader({
   active = "accounts",
 }: {
   identity: { name: string; email: string };
-  active?: "accounts" | "srs" | "branches";
+  active?: "accounts" | "srs" | "branches" | "eywa";
 }) {
   return (
     <header className={s.header}>
@@ -23,6 +23,13 @@ export default function AdminHeader({
       <div className={s.headerRight}>
         <p className={s.navCaption}>운영 메뉴</p>
         <nav className={s.headerNav} aria-label="관리자 메뉴">
+          <Link
+            className={s.workroomLink}
+            href="/admin/eywa-sync"
+            aria-current={active === "eywa" ? "page" : undefined}
+          >
+            에이와 연결
+          </Link>
           <Link
             className={s.workroomLink}
             href="/admin"

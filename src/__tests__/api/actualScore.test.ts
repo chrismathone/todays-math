@@ -102,9 +102,16 @@ vi.mock("@/lib/db", () => {
   };
 
   const db = {
+    eywaManagedAccount: { findUnique: async () => null },
+    user: { findUnique: async () => ({ authSource: "local" }) },
     student: {
       findUnique: async ({ where }: { where: { id: string } }) =>
-        students[where.id] ?? null,
+        students[where.id]
+          ? {
+              ...students[where.id],
+              class: classes[students[where.id].classId],
+            }
+          : null,
       // 소유권 확인이 학생마다 왕복하지 않고 반을 조인해 한 번에 읽는다.
       findMany: async ({ where }: { where: { id: { in: string[] } } }) =>
         where.id.in

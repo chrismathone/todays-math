@@ -19,9 +19,9 @@ async function handlePost(request: Request, context: Context) {
     );
   const target = await db.user.findFirst({
     where: { id, deletedAt: null },
-    select: { id: true, isSuperAdmin: true },
+    select: { id: true, isSuperAdmin: true, authSource: true },
   });
-  if (!target || target.isSuperAdmin)
+  if (!target || target.isSuperAdmin || target.authSource === "eywa")
     return Response.json(
       {
         error: {
@@ -31,6 +31,27 @@ async function handlePost(request: Request, context: Context) {
       },
       { status: 403 },
     );
+  const mapping = await db.eywaManagedAccount.findUnique({
+    where: { currentUserId: id },
+  });
+  let recoveryEvidence: string | undefined;
+  if (mapping) {
+    const input = z
+      .object({ recoveryEvidence: z.string().trim().min(30).max(1000) })
+      .safeParse(await request.json().catch(() => null));
+    if (!input.success)
+      return Response.json(
+        {
+          error: {
+            code: "FORBIDDEN",
+            message:
+              "연동 계정 복구는 독립적인 소유권 확인 근거를 기록해야 합니다.",
+          },
+        },
+        { status: 403 },
+      );
+    recoveryEvidence = input.data.recoveryEvidence;
+  }
   const initialPassword = randomBytes(12).toString("base64url");
   await db.user.update({
     where: { id },
@@ -44,6 +65,9 @@ async function handlePost(request: Request, context: Context) {
     actorId: access.account!.id,
     action: "account.password_reissued",
     outcome: "success",
+    ...(recoveryEvidence
+      ? { details: { recoveryEvidence, bindingId: mapping!.bindingId } }
+      : {}),
   });
   return Response.json(
     { data: { initialPassword } },

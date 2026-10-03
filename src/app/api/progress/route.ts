@@ -1,3 +1,4 @@
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
 /**
  * POST/GET /api/progress — 진도 기록(이력 누적, append-only) · 현재 진도 조회.
  * 대응 계약: src/contracts/class.contract.ts §진도
@@ -37,7 +38,11 @@ async function handlePost(request: NextRequest) {
   const parsed = progressRecordRequestSchema.safeParse(body);
   if (!parsed.success) return validationError(parsed.error);
 
-  const owned = await requireOwnedClass(parsed.data.classId, session);
+  const owned = await requireOwnedClass(
+    parsed.data.classId,
+    session,
+    "progress:write",
+  );
   if (!owned.ok) return owned.response;
 
   if (parsed.data.studentId) {
@@ -52,15 +57,24 @@ async function handlePost(request: NextRequest) {
   const unit = await db.unit.findUnique({ where: { id: parsed.data.unitId } });
   if (!unit) return notFoundError("소단원");
 
-  const created = await db.progress.create({
-    data: {
-      classId: parsed.data.classId,
-      studentId: parsed.data.studentId ?? null,
-      unitId: parsed.data.unitId,
-      recordedAt: parsed.data.recordedAt
-        ? new Date(parsed.data.recordedAt)
-        : new Date(),
-    },
+  const created = await db.$transaction(async (tx) => {
+    await assertClassWrite(tx, session, parsed.data.classId, "progress:write");
+    if (parsed.data.studentId)
+      await assertStudentEnrollment(
+        tx,
+        parsed.data.studentId,
+        parsed.data.classId,
+      );
+    return tx.progress.create({
+      data: {
+        classId: parsed.data.classId,
+        studentId: parsed.data.studentId ?? null,
+        unitId: parsed.data.unitId,
+        recordedAt: parsed.data.recordedAt
+          ? new Date(parsed.data.recordedAt)
+          : new Date(),
+      },
+    });
   });
 
   return jsonOk(
@@ -83,7 +97,7 @@ async function handleGet(request: NextRequest) {
 
   const { classId, studentId } = parsed.data;
 
-  const owned = await requireOwnedClass(classId, session);
+  const owned = await requireOwnedClass(classId, session, "progress:read");
   if (!owned.ok) return owned.response;
 
   let useIndividualProgress = false;
@@ -112,13 +126,13 @@ async function handleGet(request: NextRequest) {
   ];
   const [classProgress, studentProgress] = await Promise.all([
     db.progress.findMany({
-      where: { classId, studentId: null },
+      where: { retiredAt: null, classId, studentId: null },
       orderBy: latestFirst,
       take: 1,
     }),
     studentId
       ? db.progress.findMany({
-          where: { classId, studentId },
+          where: { retiredAt: null, classId, studentId },
           orderBy: latestFirst,
           take: 1,
         })

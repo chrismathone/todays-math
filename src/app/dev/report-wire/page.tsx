@@ -69,6 +69,7 @@ async function pickPeriodAndStudent(): Promise<{
     }),
     db.progress.findMany({
       where: {
+        retiredAt: null,
         recordedAt: {
           gte: new Date(`${period.from}T00:00:00.000Z`),
           lte: new Date(`${period.to}T00:00:00.000Z`),
