@@ -23,6 +23,8 @@
     "Frozen answer placement adapter and page references; first-only inline SVG extraction; nullable choice and dimension mapping through legacy print"
   ],
   "checks": {
+    "wholeWorktreeTypeScript": { "command": "npx tsc --noEmit --pretty false", "passed": true },
+    "normalCommitHooks": { "passed": true, "checks": ["eslint", "prettier", "affordance"] },
     "focusedIntegrityArchiveCanonicalExactPickLayoutTests": { "passed": 63 },
     "legacyPrintAndNullableFigureTests": { "passed": 78 },
     "realChromiumIntegrationTests": { "passed": 2, "largeBenchmarkSeparatelyExecuted": true },
