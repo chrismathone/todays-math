@@ -37,6 +37,8 @@
 
 영어 자료은행은 [지문은행·듣기은행 계획](docs/planning/english-resource-bank-plan-20261003.md)과 [통합·운영 반영 기록](docs/planning/tracks/reports/english-bank-integration-20261003.md)을 따른다. 사용자 승인 A안·기존 스타일 및 Claude·Grok 합의로 구현했다. `/#english-bank`에서 독립 지문과 기존 듣기 자료·EBS 공식 참조를 검색한다. 지문 표 네 개와 메뉴 CHECK는 운영 반영했다. EBS 파일 재호스팅과 이미지 문항 학생 발행은 이번 완료 범위가 아니다.
 
+관리 콘솔·지점 관리는 [지점 관리 고도화 계획](docs/planning/admin-branch-upgrade-20261003.md)과 [Codex·Claude·Grok 합의](docs/planning/tracks/reports/admin-branch-consensus-20261003.md)를 따른다. 계정 관리는 지점 내부로 이동하며, 원장도 지점 사용 메뉴를 따른다. 지점 제한과 개인 설정을 구분해 보존한다. Wire A·H1은 사용자의 3자 합의 후 실행 위임에 따라 선택했다. 지점 메뉴 상한 변경과 관리 콘솔은 최고관리자 전용이고, 기존 `/branch`·소유권·학생 정책은 보존한다. DB 먼저·코드 나중 순서를 지킨다.
+
 > ⚠️ **새 기획 문서 번호를 붙이기 전에 반드시 `ls docs/planning/` 로 확인하고,
 > 원장님께 번호를 먼저 알린다.** 오르카 다중 세션이 동시에 문서를 만들면 번호가 겹친다
 > (2026-08-16 실제 발생: 11번이 둘). 겹치면 **참조가 적은 쪽**을 옮기고,
