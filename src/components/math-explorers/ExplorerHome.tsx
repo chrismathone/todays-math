@@ -310,6 +310,10 @@ export default function ExplorerHome({
   const next = state.expedition?.next;
   const activeReview = !!state.session?.reviewOnly && !state.session.done;
   const active = !!mission && mission.status !== "complete";
+  const prerequisiteContext = state.expedition?.prerequisiteContext;
+  const unavailable =
+    prerequisiteContext?.kind === "unavailable" &&
+    !prerequisiteContext.canStart;
   const pendingRetry =
     !!state.session?.done &&
     state.session.unresolved.length > 0 &&
@@ -402,6 +406,14 @@ export default function ExplorerHome({
             다시 풀 문제 {retryRemaining}개를 마치면 한 칸 전진해요.
           </p>
         ) : null}
+        {prerequisiteContext?.reason ? (
+          <p
+            className={s.missionRetry}
+            role={unavailable ? "status" : undefined}
+          >
+            {prerequisiteContext.reason}
+          </p>
+        ) : null}
         {activeReview || active || pendingRetry || !complete ? (
           <button
             type="button"
@@ -409,6 +421,7 @@ export default function ExplorerHome({
             disabled={
               busy ||
               saving ||
+              (!activeReview && !pendingRetry && unavailable) ||
               (!activeReview &&
                 !active &&
                 !pendingRetry &&

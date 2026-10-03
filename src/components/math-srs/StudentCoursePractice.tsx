@@ -9,6 +9,7 @@ import type {
   CourseSummary,
 } from "@/contracts/mathSrsCourse.contract";
 import type { MathSrsJourney } from "@/contracts/mathSrsJourney.contract";
+import type { PrerequisiteContext } from "@/contracts/mathPrerequisite.contract";
 import { getCourseSection } from "@/lib/math-srs/elementary/catalog";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import CourseProgressBoard from "./CourseProgressBoard";
@@ -29,6 +30,7 @@ interface Props {
   session: CoursePublicSession;
   summary: CourseSummary;
   journey?: MathSrsJourney;
+  prerequisiteContext?: PrerequisiteContext;
   feedbackId: string | null;
   busy: boolean;
   onAnswer: (input: CourseAttemptInput) => void;
@@ -121,6 +123,11 @@ export default function StudentCoursePractice(props: Props) {
         max={inRetry ? initialWrongCount : session.problems.length}
         aria-label={inRetry ? "틀린 문제 다시 풀기 진행" : "이번 학습 진행"}
       />
+      {props.prerequisiteContext?.reason ? (
+        <p className={s.prerequisiteReason}>
+          {props.prerequisiteContext.reason}
+        </p>
+      ) : null}
       <CourseQuestion
         key={`${problem.id}:${inRetry ? retry!.attempts.length - (feedbackId ? 1 : 0) : "first"}`}
         {...props}
@@ -817,10 +824,14 @@ function CourseComplete({
   busy,
   onContinue,
   onExit,
+  prerequisiteContext,
 }: Props) {
   const completeHeading = useRef<HTMLHeadingElement>(null);
   const goalReached = summary.todayAnswered >= summary.todayGoal;
   const done = goalReached || summary.status === "done";
+  const unavailable =
+    prerequisiteContext?.kind === "unavailable" &&
+    !prerequisiteContext.canStart;
   useEffect(() => {
     if (!busy) {
       const next =
@@ -839,22 +850,32 @@ function CourseComplete({
         aria-label="이번 학습 결과"
       >
         <p className={s.completionLabel}>
-          {done ? "오늘의 길을 완주했어요" : "한 걸음 더 앞으로"}
+          {unavailable
+            ? "다음 학습 준비"
+            : done
+              ? "오늘의 길을 완주했어요"
+              : "한 걸음 더 앞으로"}
         </p>
         <h2 id="course-complete-title" ref={completeHeading} tabIndex={-1}>
-          {done ? "오늘의 목표 도착!" : "다음 발걸음이 기다려요"}
+          {unavailable
+            ? "지금은 새 문제를 열 수 없어요."
+            : done
+              ? "오늘의 목표 도착!"
+              : "다음 발걸음이 기다려요"}
         </h2>
         <CourseProgressBoard
           journey={journey}
           summary={summary}
           session={session}
           busy={busy}
-          onNext={onContinue}
+          onNext={unavailable ? undefined : onContinue}
         />
         <p className={s.completeMessage}>
-          {done
-            ? "오늘의 발걸음을 모두 채웠어요."
-            : "길을 따라 다음 5문제로 이어가요."}
+          {unavailable
+            ? prerequisiteContext.reason
+            : done
+              ? "오늘의 발걸음을 모두 채웠어요."
+              : "길을 따라 다음 5문제로 이어가요."}
         </p>
       </div>
       <div className={s.completeActions}>
