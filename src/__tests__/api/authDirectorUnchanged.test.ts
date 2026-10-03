@@ -50,6 +50,10 @@ vi.mock("next/navigation", async (orig) => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
+    eywaManagedAccount: {
+      findUnique: vi.fn(async () => null),
+      findFirst: vi.fn(async () => null),
+    },
     user: {
       findUnique: vi.fn(
         async ({ where }: { where: { id?: string; email?: string } }) => {

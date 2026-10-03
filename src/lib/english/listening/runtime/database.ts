@@ -3,6 +3,12 @@ import type { AccountAccess } from "@/contracts/accountAccess.contract";
 import type { StudentSession } from "@/contracts/studentAccount.contract";
 import { canAccessListeningPilot } from "@/lib/listeningPilot";
 import { withinOwnerScope } from "@/lib/ownerScope";
+import {
+  activeStudentClassIds,
+  accessibleClassesWhere,
+  classAccessAllowed,
+  assertClassWrite,
+} from "@/lib/classAccess";
 import type { ListeningDraft } from "@/contracts/englishListeningHttp.contract";
 import type {
   EnglishListeningAssignment,
@@ -116,6 +122,11 @@ export async function student(tx: ListeningTx, actor: ListeningActor) {
   )
     throw denied();
   const owner = account.student.class.user;
+  if (account.student.eywaBindingId) {
+    if (!(await activeStudentClassIds(account.studentId, tx)).length)
+      throw denied();
+    return account;
+  }
   if (
     owner.deletedAt ||
     owner.suspendedAt ||
@@ -141,17 +152,61 @@ export async function ownedSet(
     throw denied();
   return row;
 }
+/** Published assets follow the operational assignment; draft editing stays with the set owner. */
+export async function readablePublishedSet(
+  tx: ListeningTx,
+  account: AccountAccess,
+  id: string,
+  assetId?: string,
+) {
+  try {
+    return await ownedSet(tx, account, id);
+  } catch (error) {
+    if (!(error instanceof ListeningRuntimeError)) throw error;
+  }
+  const classes = await tx.class.findMany({
+    where: await accessibleClassesWhere(account, "test:read", { client: tx }),
+    select: { id: true },
+  });
+  if (!classes.length) throw denied();
+  const publications = await tx.$queryRaw<
+    { snapshot: EnglishListeningPublication }[]
+  >(
+    Prisma.sql`SELECT p.snapshot FROM english_listening_publication p JOIN english_listening_assignment a ON a.publication_id=p.id WHERE p.set_id=${id}::uuid AND p.withdrawn_at IS NULL AND a.cancelled_at IS NULL AND a.class_id::text IN (${Prisma.join(classes.map((c) => c.id))})`,
+  );
+  if (
+    !publications.some(
+      (p) =>
+        !assetId ||
+        p.snapshot.document.groups.some((g) => g.audio.assetId === assetId),
+    )
+  )
+    throw denied();
+  const row = await one<SetRow>(
+    tx,
+    Prisma.sql`SELECT * FROM english_listening_set WHERE id=${id}::uuid`,
+  );
+  if (!row || row.deleted_at) throw denied();
+  return row;
+}
 export async function ownedAssignment(
   tx: ListeningTx,
   account: AccountAccess,
   id: string,
+  write = false,
 ) {
   const row = await one<AssignmentRow>(
     tx,
     Prisma.sql`SELECT * FROM english_listening_assignment WHERE id=${id}::uuid`,
   );
-  if (!row || !withinOwnerScope(account, row.owner_id, row.branch_id))
+  if (!row) throw denied();
+  const cls = await tx.class.findUnique({ where: { id: row.class_id } });
+  if (
+    !cls ||
+    !(await classAccessAllowed(account, cls, "test:read", { client: tx }))
+  )
     throw denied();
+  if (write) await assertClassWrite(tx, account, row.class_id, "test:write");
   return row;
 }
 export async function audit(

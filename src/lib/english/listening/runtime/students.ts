@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { Prisma } from "@prisma/client";
 import { canAccessListeningPilot } from "@/lib/listeningPilot";
+import { activeStudentClassIds } from "@/lib/classAccess";
 import {
   listeningStudentCommandInputSchema,
   listeningStudentDetailSchema,
@@ -48,6 +49,8 @@ export async function studentState(
     Prisma.sql`SELECT * FROM english_listening_assignment WHERE id=${id}::uuid`,
   );
   if (!row) throw denied();
+  const classIds = await activeStudentClassIds(account.studentId, tx);
+  if (!classIds.includes(row.class_id)) throw denied();
   const pub = await publicationRow(tx, row.publication_id);
   const set = await one<SetRow>(
     tx,
@@ -94,8 +97,8 @@ export async function studentState(
       },
       student: {
         id: account.studentId,
-        classId: account.student.classId,
-        branchId: account.student.class.user.branchId,
+        classId: row.class_id,
+        branchId: account.student.class.branchId,
         enrolled: !account.student.eywaWithdrawnAt,
       },
       assignment: {

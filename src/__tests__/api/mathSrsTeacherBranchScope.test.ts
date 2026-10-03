@@ -37,7 +37,6 @@ import {
   courseStudentDetailResponseSchema,
 } from "@/contracts/mathSrsCourse.contract";
 import {
-  BRANCH_1,
   BRANCH_2,
   ids,
   otherBranchAdmin,
@@ -137,11 +136,8 @@ describe("«오늘의 기억» 명단 — GET /api/math-srs/course", () => {
     const data = await rosterOf();
     expect(data.students).toEqual([]);
     expect(data.classes).toEqual([]);
-    expect(world.studentWhere).toEqual({
-      class: { user: { branchId: BRANCH_2 } },
-      eywaWithdrawnAt: null,
-    });
-    expect(world.classWhere).toEqual({ user: { branchId: BRANCH_2 } });
+    expect(world.studentWhere).toBeNull();
+    expect(world.classWhere).toEqual({ branchId: BRANCH_2 });
   });
 
   it("같은 지점 관리자는 그 지점의 학생을 본다(탈퇴 제외)", async () => {
@@ -151,8 +147,13 @@ describe("«오늘의 기억» 명단 — GET /api/math-srs/course", () => {
       [ids.studied, ids.noAccount, ids.fresh, ids.newAccount].sort(),
     );
     expect(data.classes).toEqual([{ id: ids.classId, name: "중1 A" }]);
-    expect(world.studentWhere).toEqual({
-      class: { user: { branchId: BRANCH_1 } },
+    expect(world.studentWhere).toMatchObject({
+      OR: expect.arrayContaining([
+        expect.objectContaining({
+          eywaBindingId: null,
+          classId: { in: [ids.classId] },
+        }),
+      ]),
       eywaWithdrawnAt: null,
     });
   });
@@ -165,10 +166,7 @@ describe("«오늘의 기억» 명단 — GET /api/math-srs/course", () => {
       world.session = session;
       const data = await rosterOf();
       expect(data.students).toEqual([]);
-      expect(world.studentWhere).toEqual({
-        class: { userId: ids.sameBranchAdmin },
-        eywaWithdrawnAt: null,
-      });
+      expect(world.studentWhere).toBeNull();
     }
     world.session = teacherSession();
     expect((await rosterOf()).students).toHaveLength(4);

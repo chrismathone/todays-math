@@ -37,12 +37,12 @@ async function handleGet(request: NextRequest) {
   if (!parsed.success) return validationError(parsed.error);
 
   const { classId } = parsed.data;
-  const owned = await requireOwnedClass(classId, session);
+  const owned = await requireOwnedClass(classId, session, "progress:read");
   if (!owned.ok) return owned.response;
 
   const [rows, units] = await Promise.all([
     db.progress.findMany({
-      where: { classId, studentId: { not: null } },
+      where: { retiredAt: null, classId, studentId: { not: null } },
       select: { studentId: true, unitId: true },
       // ⚠️ `/api/progress` 와 같은 정렬 — 다르면 「최신」이 두 뜻이 된다.
       orderBy: [{ recordedAt: "desc" }, { createdAt: "desc" }],

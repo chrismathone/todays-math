@@ -574,6 +574,7 @@ describe("GET materials — 목록", () => {
     ).toBe(403);
     const branchExam = seedEnglishExam({
       userId: BRANCH_TEACHER_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "중3",
       title: "지점 시험",
@@ -706,6 +707,7 @@ describe("GET /api/english/materials/[id] — 내려받기", () => {
     ).toBe(403);
     const branchExam = seedEnglishExam({
       userId: BRANCH_TEACHER_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "중3",
       title: "지점 시험",

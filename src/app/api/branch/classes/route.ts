@@ -11,7 +11,7 @@ async function handleGet(request: Request) {
       { status: 403 },
     );
   const classes = await db.class.findMany({
-    where: { user: { branchId: access.account.branchId } },
+    where: { branchId: access.account.branchId },
     select: {
       id: true,
       name: true,

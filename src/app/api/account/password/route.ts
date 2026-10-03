@@ -29,10 +29,11 @@ async function handlePost(request: Request) {
     );
   const user = await db.user.findUnique({
     where: { id: access.account!.id },
-    select: { passwordHash: true },
+    select: { passwordHash: true, authSource: true },
   });
   if (
     !user?.passwordHash ||
+    user.authSource === "eywa" ||
     !(await compare(parsed.data.currentPassword, user.passwordHash))
   )
     return Response.json(

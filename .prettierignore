@@ -7,3 +7,6 @@ playwright-report/
 test-results/
 next-env.d.ts
 package-lock.json
+
+# Frozen shared wire contract: source and receiver copies are verified byte-identical.
+src/lib/eywa/sync-contract.ts

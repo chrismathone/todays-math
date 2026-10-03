@@ -13,7 +13,7 @@ export const REDACTED = "[걸러냄]";
  * 같은 «토큰 수»는 비밀이 아니고, 지우면 패치 재료를 잃는다.
  */
 const SECRET_KEY =
-  /password|passwd|secret|cookie|authorization|credential|signature|api[-_]?key|token$|csrf|^session/i;
+  /password|passwd|secret|cookie|authorization|credential|signature|api[-_]?key|token$|csrf|^session|^code$|^state$|verifier|^ticket$|^assertion$/i;
 
 export const isSecretKey = (key: string) => SECRET_KEY.test(key);
 

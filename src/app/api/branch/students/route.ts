@@ -46,7 +46,7 @@ async function handlePost(request: Request) {
     );
   const { classId, name, loginId } = parsed.data;
   const target = await db.class.findFirst({
-    where: { id: classId, user: { branchId } },
+    where: { id: classId, branchId, eywaBindingId: null },
     select: { id: true },
   });
   if (!target)
@@ -66,6 +66,7 @@ async function handlePost(request: Request) {
     const student = await db.student.create({
       data: {
         classId,
+        branchId,
         name,
         studentAccount: {
           create: {

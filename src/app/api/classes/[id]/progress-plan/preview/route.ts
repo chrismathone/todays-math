@@ -42,7 +42,7 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedClass(id, session);
+  const owned = await requireOwnedClass(id, session, "progress:read");
   if (!owned.ok) return owned.response;
 
   const query = progressPlanQuerySchema.safeParse(

@@ -166,58 +166,62 @@ model Branch {
 // ─────────────────────────────────────────────
 
 model User {
-  id            String    @id @default(uuid()) @db.Uuid
-  email         String    @unique @db.VarChar(255)
+  id                String    @id @default(uuid()) @db.Uuid
+  email             String    @unique @db.VarChar(255)
   /// 이메일 가입 시만 값 존재 (bcrypt 해시). 구글 로그인은 NULL
-  passwordHash  String?   @map("password_hash") @db.VarChar(255)
-  name          String    @db.VarChar(50)
+  passwordHash      String?   @map("password_hash") @db.VarChar(255)
+  name              String    @db.VarChar(50)
   /// Auth.js(@auth/prisma-adapter) 표준 필드 — OAuth 이메일 인증 시각
-  emailVerified DateTime? @map("email_verified")
+  emailVerified     DateTime? @map("email_verified")
   /// Auth.js 표준 필드 — OAuth 프로필 이미지 (최소 수집 원칙과 무관, 로그인 부가 정보)
-  image         String?   @db.VarChar(500)
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @updatedAt @map("updated_at")
+  image             String?   @db.VarChar(500)
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
   /// Soft delete — 탈퇴 후 30일 뒤 배치로 Hard delete (04 §4)
-  deletedAt     DateTime? @map("deleted_at")
-  suspendedAt   DateTime? @map("suspended_at")
-  sessionVersion Int     @default(0) @map("session_version")
+  deletedAt         DateTime? @map("deleted_at")
+  suspendedAt       DateTime? @map("suspended_at")
+  manualSuspendedAt DateTime? @map("manual_suspended_at")
+  authSource        String    @default("local") @map("auth_source") @db.VarChar(20)
+  sessionVersion    Int       @default(0) @map("session_version")
   /// eywa 자동 로그인(D-139 ⑹) — eywa `users.id`(표의 `sub`). 계정 주인이 비밀번호로 로그인한 뒤
   /// 확인 화면에서 [연결]을 눌러야만 채워진다. 🔴 이메일로 채우지 않는다(eywa 이메일은 본인 확인 값이 아니다)
-  eywaUserId    String?   @unique @map("eywa_user_id") @db.Uuid
-  eywaLinkedAt  DateTime? @map("eywa_linked_at")
+  eywaUserId        String?   @unique @map("eywa_user_id") @db.Uuid
+  eywaLinkedAt      DateTime? @map("eywa_linked_at")
 
-  classes        Class[]
-  problems       Problem[]
-  tests          Test[]
+  classes             Class[]
+  classMemberships    ClassMembership[]
+  eywaManagedAccounts EywaManagedAccount[]
+  problems            Problem[]
+  tests               Test[]
   /// '오늘의 시험' 예측 실행 기록 (트랙 E)
-  predictionRuns PredictionRun[]
-  accounts       Account[]
-  sessions       Session[]
+  predictionRuns      PredictionRun[]
+  accounts            Account[]
+  sessions            Session[]
   /// 담기 바구니 (문제은행에서 고른 문항)
-  basketItems    BasketItem[]
+  basketItems         BasketItem[]
 
   /// 계정 역할. 기본값은 director — 기본값이 reviewer 면 기존 계정이 조용히 권한을 잃는다.
-  role            UserRole           @default(director)
-  isAdmin         Boolean            @default(false) @map("is_admin")
+  role                   UserRole              @default(director)
+  isAdmin                Boolean               @default(false) @map("is_admin")
   /// 전체 계정·서비스 관리는 최고관리자만. isAdmin 은 지점 운영 권한이다.
-  isSuperAdmin    Boolean            @default(false) @map("is_super_admin")
-  branchId        String?            @map("branch_id") @db.Uuid
-  branchRole      BranchRole?        @map("branch_role")
-  branch          Branch?            @relation(fields: [branchId], references: [id], onDelete: SetNull)
+  isSuperAdmin           Boolean               @default(false) @map("is_super_admin")
+  branchId               String?               @map("branch_id") @db.Uuid
+  branchRole             BranchRole?           @map("branch_role")
+  branch                 Branch?               @relation(fields: [branchId], references: [id], onDelete: SetNull)
   /// Existing accounts retain access; the signup API explicitly creates pending accounts.
-  approvalStatus  AccountApproval    @default(pending) @map("approval_status")
-  disabledMenus   String[]           @default([]) @map("disabled_menus")
-  workspaceDocuments WorkspaceDocument[]
-  workspaceAssets    WorkspaceAsset[]
-  auditEvents        AccountAuditLog[] @relation("auditSubject")
-  auditActions       AccountAuditLog[] @relation("auditActor")
-  reportsFiled    ProblemReport[]    @relation("reporter")
-  reportsResolved ProblemReport[]    @relation("resolver")
-  reviewLogs      ProblemReviewLog[] @relation("reviewer")
+  approvalStatus         AccountApproval       @default(pending) @map("approval_status")
+  disabledMenus          String[]              @default([]) @map("disabled_menus")
+  workspaceDocuments     WorkspaceDocument[]
+  workspaceAssets        WorkspaceAsset[]
+  auditEvents            AccountAuditLog[]     @relation("auditSubject")
+  auditActions           AccountAuditLog[]     @relation("auditActor")
+  reportsFiled           ProblemReport[]       @relation("reporter")
+  reportsResolved        ProblemReport[]       @relation("resolver")
+  reviewLogs             ProblemReviewLog[]    @relation("reviewer")
   /// 오늘의 개념 강의를 만든 사람 (D-123 ⑥′) — 강의는 공용 목록이라 «소유»가 아니라 기록이다
-  conceptLecturesCreated ConceptLecture[] @relation("conceptLectureCreator")
+  conceptLecturesCreated ConceptLecture[]      @relation("conceptLectureCreator")
   /// 이 원장이 발급한 학생 로그인 계정 (D-124 ⑷) — 계정을 지우면 발급자 칸만 비워진다
-  studentAccountsIssued  StudentAccount[] @relation("studentAccountIssuer")
+  studentAccountsIssued  StudentAccount[]      @relation("studentAccountIssuer")
   /// 이 계정의 요청이 거절·실패한 기록 (오류 기록 표) — 계정을 지우면 기록은 남고 이 칸만 빈다
   errorLogs              ErrorLog[]
   /// 오늘의 영어 — 학교별 내신 시험(D-148). 학원 운영 데이터 — 계정을 지우면 시험과 딸린 자료·세트가 같이 지워진다
@@ -301,15 +305,22 @@ model AccountAuditLog {
 // ─────────────────────────────────────────────
 
 model Class {
-  id                  String   @id @default(uuid()) @db.Uuid
-  userId              String   @map("user_id") @db.Uuid
-  name                String   @db.VarChar(100)
-  grade               String   @db.VarChar(10)
+  id                 String              @id @default(uuid()) @db.Uuid
+  userId             String              @map("user_id") @db.Uuid
+  name               String              @db.VarChar(100)
+  grade              String              @db.VarChar(10)
+  branchId           String?             @map("branch_id") @db.Uuid
+  eywaBindingId      String?             @map("eywa_binding_id") @db.Uuid
+  permissionRevision BigInt              @default(0) @map("permission_revision")
+  active             Boolean             @default(true)
+  closedAt           DateTime?           @map("closed_at")
+  memberships        ClassMembership[]
+  enrollments        StudentEnrollment[]
 
   /// eywa `classes.id` — 진도 연계의 매칭 키. NULL 이면 연계 밖의 반(수동·demo).
   /// unique 는 (userId 무관) 전역 — 같은 eywa 반이 두 원장 계정에 복제되는 일은
   /// 이 제품 범위에 없다(원장 1명).
-  eywaClassId String? @unique @map("eywa_class_id") @db.Uuid
+  eywaClassId         String?  @unique @map("eywa_class_id") @db.Uuid
   /// 기본 문항 수 (기본값 8)
   defaultProblemCount Int      @default(8) @map("default_problem_count")
   /// 난이도 배분 — 예: {"easy":3,"mid":4,"hard":1}
@@ -318,13 +329,13 @@ model Class {
   createdAt           DateTime @default(now()) @map("created_at")
   updatedAt           DateTime @updatedAt @map("updated_at")
 
-  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  students   Student[]
+  user                 User                         @relation(fields: [userId], references: [id], onDelete: Restrict)
+  students             Student[]
   listeningAssignments EnglishListeningAssignment[]
-  progresses Progress[]
-  tests      Test[]
+  progresses           Progress[]
+  tests                Test[]
   /// 진도 계획 — 반 계획 한 줄 + 개별 진도 학생의 학생 계획들(D-129 ⑴)
-  progressPlans ProgressPlan[]
+  progressPlans        ProgressPlan[]
 
   @@index([userId])
   @@map("class")
@@ -368,10 +379,15 @@ model EywaSyncLedger {
 }
 
 model Student {
-  id                    String  @id @default(uuid()) @db.Uuid
-  classId               String  @map("class_id") @db.Uuid
-  name                  String  @db.VarChar(50)
-  useIndividualProgress Boolean @default(false) @map("use_individual_progress")
+  id                    String              @id @default(uuid()) @db.Uuid
+  classId               String              @map("class_id") @db.Uuid
+  branchId              String?             @map("branch_id") @db.Uuid
+  eywaBindingId         String?             @map("eywa_binding_id") @db.Uuid
+  sourceStatus          String?             @map("source_status") @db.VarChar(40)
+  isTest                Boolean             @default(false) @map("is_test")
+  enrollments           StudentEnrollment[]
+  name                  String              @db.VarChar(50)
+  useIndividualProgress Boolean             @default(false) @map("use_individual_progress")
 
   /// eywa `students.id` — 진도 연계의 유일한 매칭 키. **이름 매칭 금지**
   /// (eywa 스스로 「이름-only 매칭 금지, 동명이인 fan-out」이라 못 박아 뒀다).
@@ -400,20 +416,20 @@ model Student {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  class            Class             @relation(fields: [classId], references: [id], onDelete: Cascade)
-  listeningTargets EnglishListeningTarget[]
-  listeningAttempts EnglishListeningAttempt[]
-  progresses       Progress[]
-  tests            Test[]
-  testResults      TestResult[]
+  class               Class                     @relation(fields: [classId], references: [id], onDelete: Cascade)
+  listeningTargets    EnglishListeningTarget[]
+  listeningAttempts   EnglishListeningAttempt[]
+  progresses          Progress[]
+  tests               Test[]
+  testResults         TestResult[]
   /// '오늘의 시험' 실측 내신 점수 — 보정 루프의 입력(트랙 E)
-  actualExamScores ActualExamScore[]
+  actualExamScores    ActualExamScore[]
   /// 오늘의 개념 시청 기록 (D-123 ⑥′) — 한 강의에 한 행
   conceptLectureViews ConceptLectureView[]
   /// 오늘의 개념 학생 로그인 계정 (D-124 ⑶) — 없으면 아직 발급 전. 학생을 지우면 같이 지워진다
   studentAccount      StudentAccount?
   /// 진도 계획 — 개별 진도 학생일 때만 반 계획을 덮는다(D-129 ⑴). 없으면 반 계획을 쓴다
-  progressPlan        ProgressPlan?
+  progressPlans       ProgressPlan[]
   /// Generated daily practice is independent of scored exams and private teacher worksheets.
   srsState            StudentSrsState?
 
@@ -620,6 +636,7 @@ model ProblemFamily {
 // ─────────────────────────────────────────────
 
 model Progress {
+  retiredAt DateTime? @map("retired_at")
   id         String   @id @default(uuid()) @db.Uuid
   classId    String   @map("class_id") @db.Uuid
   /// NULL이면 반 전체 진도, 값이 있으면 해당 학생 개별 진도
@@ -662,10 +679,9 @@ model ProgressPlan {
   id        String  @id @default(uuid()) @db.Uuid
   classId   String  @map("class_id") @db.Uuid
   /// NULL이면 반 계획, 값이 있으면 해당 학생 계획.
-  /// `@unique` 는 **학생 계획이 학생당 하나**라는 뜻이다 — Postgres 는 NULL 을 서로 다른 값으로
-  /// 보므로 반 계획 여러 줄은 이 인덱스에 걸리지 않는다. 반 계획이 반당 하나인 것은
-  /// 마이그레이션의 부분 unique 인덱스가 따로 지킨다.
-  studentId String? @unique @map("student_id") @db.Uuid
+  /// 복수 수강 학생의 계획은 [classId, studentId]별 하나다.
+  /// 반 계획(studentId NULL)은 기존 마이그레이션의 부분 unique 인덱스가 지킨다.
+  studentId String? @map("student_id") @db.Uuid
 
   /// 수업 요일 — 0=일 … 6=토 (`Date.getUTCDay()` 와 같은 번호. 한국식 「월=1」이 아니다).
   /// 비어 있으면 수업일이 하나도 없다 — CHECK 가 막는다.
@@ -688,6 +704,7 @@ model ProgressPlan {
   startUnit Unit     @relation("ProgressPlanStartUnit", fields: [startUnitId], references: [id], onDelete: Restrict)
 
   @@index([classId])
+  @@unique([classId, studentId])
   @@map("progress_plan")
 }
 
@@ -1497,6 +1514,7 @@ model ErrorLogImage {
 
 /// 학교별 내신 시험 하나 — 자료(EnglishMaterial)와 대비 문제 세트(EnglishQuestionSet)의 부모
 model EnglishExam {
+  branchId String? @map("branch_id") @db.Uuid
   id        String    @id @default(uuid()) @db.Uuid
   userId    String    @map("user_id") @db.Uuid
   school    String    @db.VarChar(80)
@@ -1743,4 +1761,167 @@ model EnglishListeningMediaBlob {
   @@index([assetId])
   @@index([committed, createdAt])
   @@map("english_listening_media_blob")
+}
+
+model EywaBinding {
+  id                         String               @id @db.Uuid
+  tenantId                   String               @unique @map("tenant_id") @db.Uuid
+  targetBranchId             String               @unique @map("target_branch_id") @db.Uuid
+  autoProvisionedBranch      Boolean              @default(false) @map("auto_provisioned_branch")
+  archiveOwnerUserId         String?              @map("archive_owner_user_id") @db.Uuid
+  sourceEpoch                String?              @map("source_epoch") @db.Uuid
+  mode                       String               @default("shadow") @db.VarChar(10)
+  enabled                    Boolean              @default(false)
+  healthy                    Boolean              @default(false)
+  securityRevision           BigInt               @default(0) @map("security_revision")
+  tenantRevocationGeneration BigInt               @default(0) @map("tenant_revocation_generation")
+  contentGeneration          BigInt               @default(0) @map("content_generation")
+  validatedAt                DateTime?            @map("validated_at")
+  leaseExpiresAt             DateTime?            @map("lease_expires_at")
+  nextEffectiveAt            DateTime?            @map("next_effective_at")
+  control                    Json                 @default("{}")
+  retiredAt                  DateTime?            @map("retired_at")
+  leaseToken                 String?              @map("lease_token") @db.Uuid
+  leaseUntil                 DateTime?            @map("lease_until")
+  lastError                  String?              @map("last_error") @db.VarChar(100)
+  createdAt                  DateTime             @default(now()) @map("created_at")
+  updatedAt                  DateTime             @updatedAt @map("updated_at")
+  accounts                   EywaManagedAccount[]
+  inbox                      EywaInbox[]
+
+  @@map("eywa_binding")
+}
+
+// Ended and candidate rows retain history but do not occupy a current identity.
+model EywaManagedAccount {
+  id                          String      @id @default(uuid()) @db.Uuid
+  bindingId                   String      @map("binding_id") @db.Uuid
+  sourceUserId                String      @map("source_user_id") @db.Uuid
+  userId                      String?     @map("user_id") @db.Uuid
+  currentUserId               String?     @unique @map("current_user_id") @db.Uuid
+  currentSourceUserId         String?     @unique @map("current_source_user_id") @db.Uuid
+  status                      String      @default("candidate") @db.VarChar(20)
+  sourceEmail                 String      @map("source_email") @db.VarChar(255)
+  sourceName                  String      @map("source_name") @db.VarChar(200)
+  candidateVersion            String?     @map("candidate_version") @db.VarChar(64)
+  conflictReason              String?     @map("conflict_reason") @db.VarChar(100)
+  blockReasons                String[]    @default([]) @map("block_reasons")
+  sourceClasses               Json        @default("[]") @map("source_classes")
+  sourceEpoch                 String?     @map("source_epoch") @db.Uuid
+  securityRevision            BigInt      @default(0) @map("security_revision")
+  accountRevocationGeneration BigInt      @default(0) @map("account_revocation_generation")
+  tenantRevocationGeneration  BigInt      @default(0) @map("tenant_revocation_generation")
+  classListRevision           BigInt      @default(0) @map("class_list_revision")
+  leaseExpiresAt              DateTime?   @map("lease_expires_at")
+  confirmedAt                 DateTime?   @map("confirmed_at")
+  confirmedBy                 String?     @map("confirmed_by") @db.Uuid
+  confirmationMethod          String?     @map("confirmation_method") @db.VarChar(30)
+  confirmationEvidence        String?     @map("confirmation_evidence") @db.VarChar(1000)
+  endedAt                     DateTime?   @map("ended_at")
+  createdAt                   DateTime    @default(now()) @map("created_at")
+  updatedAt                   DateTime    @updatedAt @map("updated_at")
+  binding                     EywaBinding @relation(fields: [bindingId], references: [id], onDelete: Restrict)
+  user                        User?       @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@index([bindingId, sourceUserId, status])
+  @@map("eywa_managed_account")
+}
+
+model EywaInbox {
+  eventId    String      @id @map("event_id") @db.Uuid
+  bindingId  String      @map("binding_id") @db.Uuid
+  bodyHash   String      @map("body_hash") @db.VarChar(64)
+  payload    Json
+  status     String      @default("received") @db.VarChar(20)
+  attempts   Int         @default(0)
+  retryAt    DateTime    @default(now()) @map("retry_at")
+  leaseToken String?     @map("lease_token") @db.Uuid
+  leaseUntil DateTime?   @map("lease_until")
+  errorCode  String?     @map("error_code") @db.VarChar(100)
+  receivedAt DateTime    @default(now()) @map("received_at")
+  appliedAt  DateTime?   @map("applied_at")
+  binding    EywaBinding @relation(fields: [bindingId], references: [id], onDelete: Restrict)
+
+  @@index([bindingId, status, retryAt])
+  @@map("eywa_inbox")
+}
+
+model EywaNonce {
+  bindingId String   @map("binding_id") @db.Uuid
+  nonce     String   @db.Uuid
+  expiresAt DateTime @map("expires_at")
+
+  @@id([bindingId, nonce])
+  @@index([expiresAt])
+  @@map("eywa_nonce")
+}
+
+model EywaSsoUse {
+  jti          String   @id @db.Uuid
+  bindingId    String   @map("binding_id") @db.Uuid
+  sourceUserId String   @map("source_user_id") @db.Uuid
+  expiresAt    DateTime @map("expires_at")
+  consumedAt   DateTime @default(now()) @map("consumed_at")
+
+  @@index([expiresAt])
+  @@map("eywa_sso_use")
+}
+
+// Browser handshake stores only hashes. Assertion stays in a server-only handoff.
+model EywaSsoHandoff {
+  id           String    @id @db.VarChar(64)
+  bindingId    String    @map("binding_id") @db.Uuid
+  stateHash    String    @map("state_hash") @db.VarChar(64)
+  verifierHash String    @map("verifier_hash") @db.VarChar(64)
+  assertion    String?
+  keyId        String?   @map("key_id") @db.VarChar(100)
+  sourceUserId String?   @map("source_user_id") @db.Uuid
+  sourceName   String?   @map("source_name") @db.VarChar(200)
+  expiresAt    DateTime  @map("expires_at")
+  consumedAt   DateTime? @map("consumed_at")
+
+  @@index([expiresAt])
+  @@map("eywa_sso_handoff")
+}
+
+model ClassMembership {
+  id           String    @id @default(uuid()) @db.Uuid
+  bindingId    String    @map("binding_id") @db.Uuid
+  sourceId     String    @map("source_id") @db.VarChar(300)
+  classId      String    @map("class_id") @db.Uuid
+  userId       String    @map("user_id") @db.Uuid
+  sourceUserId String    @map("source_user_id") @db.Uuid
+  role         String    @db.VarChar(20)
+  startsOn     DateTime? @map("starts_on") @db.Date
+  endsOn       DateTime? @map("ends_on") @db.Date
+  revokedAt    DateTime? @map("revoked_at")
+  capabilities String[]  @default([])
+  class        Class     @relation(fields: [classId], references: [id], onDelete: Restrict)
+  user         User      @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  @@unique([bindingId, sourceId])
+  @@index([userId, classId])
+  @@map("class_membership")
+}
+
+model StudentEnrollment {
+  id             String    @id @default(uuid()) @db.Uuid
+  bindingId      String    @map("binding_id") @db.Uuid
+  sourceId       String    @map("source_id") @db.Uuid
+  studentId      String    @map("student_id") @db.Uuid
+  classId        String    @map("class_id") @db.Uuid
+  startsOn       DateTime  @map("starts_on") @db.Date
+  endsOn         DateTime? @map("ends_on") @db.Date
+  onHold         Boolean   @default(false) @map("on_hold")
+  isTransferred  Boolean   @default(false) @map("is_transferred")
+  attendanceDays String[]  @default([]) @map("attendance_days")
+  eywaLastReportDate DateTime? @db.Date @map("eywa_last_report_date")
+  eywaLastReportText String? @db.Text @map("eywa_last_report_text")
+  endedAt        DateTime? @map("ended_at")
+  student        Student   @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  class          Class     @relation(fields: [classId], references: [id], onDelete: Restrict)
+
+  @@unique([bindingId, sourceId])
+  @@index([studentId, classId])
+  @@map("student_enrollment")
 }

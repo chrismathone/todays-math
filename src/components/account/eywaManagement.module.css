@@ -1,0 +1,21 @@
+.panel { display: grid; gap: 24px; color: #14253c; line-height: 1.6; }
+.panel section, .panel > form { background: white; border: 1px solid #dce4ed; border-radius: 14px; padding: 24px; }
+.panel h2 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.panel h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+.panel p { margin: 8px 0 16px; }
+.panel small { overflow-wrap: anywhere; color: #56657a; }
+.panel label { display: block; margin: 12px 0; }
+.panel input:not([type="checkbox"]), .panel select, .panel textarea { display: block; width: 100%; max-width: 640px; background: #fff; border: 1px solid #8999ae; padding: 10px 12px; border-radius: 8px; color: #14253c; }
+.panel input[type="checkbox"] { width: 18px; height: 18px; vertical-align: middle; margin-right: 6px; }
+.panel button { min-height: 44px; border: 1px solid #6583ab; border-radius: 8px; padding: 8px 14px; margin: 4px 8px 4px 0; background: #eef4ff; color: #163d72; font-weight: 600; cursor: pointer; }
+.panel button:hover { background: #dfeaff; }
+.panel button:disabled { cursor: wait; opacity: .5; }
+.panel button:focus-visible, .panel input:focus-visible, .panel select:focus-visible, .panel textarea:focus-visible { outline: 3px solid #1965cf; outline-offset: 3px; }
+.panel dl { display: grid; grid-template-columns: 130px minmax(0,1fr); gap: 6px 12px; margin: 12px 0; }
+.panel dd { overflow-wrap: anywhere; }
+.panel table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+.panel th, .panel td { border-bottom: 1px solid #dce4ed; padding: 12px 8px; overflow-wrap: anywhere; }
+.panel details { margin-top: 16px; }
+.panel summary { cursor: pointer; font-weight: 600; }
+.panel ul { padding-left: 24px; list-style: disc; }
+@media (max-width: 600px) { .panel section, .panel > form { padding: 16px; } .panel dl { grid-template-columns: 1fr; } .panel table { font-size: 12px; } }

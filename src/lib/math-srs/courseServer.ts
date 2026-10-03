@@ -1,3 +1,7 @@
+import {
+  accessibleClassesWhere,
+  loadOperationalRoster,
+} from "@/lib/classAccess";
 import "server-only";
 import type {
   CourseRosterStudent,
@@ -15,11 +19,7 @@ import {
   teacherPrerequisiteEvidence,
 } from "@/lib/math-prerequisite/display";
 import { mathPrerequisiteEnabled } from "@/lib/math-prerequisite/enabled";
-import {
-  ownedRowsWhere,
-  ownedStudentsWhere,
-  type ScopeViewer,
-} from "@/lib/ownerScope";
+import { type ScopeViewer } from "@/lib/ownerScope";
 import {
   courseSummary,
   emptyCourseState,
@@ -53,12 +53,17 @@ type StudentRow = {
 };
 type Saved = { revision: number; state: StoredSrsState };
 
-export async function loadCourseStudent(studentId: string) {
+export async function loadCourseStudent(studentId: string, classId?: string) {
   const student = await db.student.findUnique({
     where: { id: studentId },
     include: studentInclude,
   });
-  return student && !student.eywaWithdrawnAt ? student : null;
+  if (!student || student.eywaWithdrawnAt) return null;
+  if (classId && classId !== student.classId) {
+    const cls = await db.class.findUnique({ where: { id: classId } });
+    return cls ? { ...student, classId: cls.id, class: cls } : null;
+  }
+  return student;
 }
 
 export function courseStudentDto(
@@ -166,18 +171,15 @@ export function courseDetailDto(
 }
 
 export async function loadCourseDashboard(viewer: ScopeViewer, now: Date) {
-  const [students, classes] = await Promise.all([
-    db.student.findMany({
-      where: { ...ownedStudentsWhere(viewer), eywaWithdrawnAt: null },
-      include: studentInclude,
-      orderBy: [{ classId: "asc" }, { name: "asc" }],
-    }),
-    db.class.findMany({
-      where: ownedRowsWhere(viewer),
-      select: { id: true, name: true },
-      orderBy: { name: "asc" },
-    }),
-  ]);
+  const classes = await db.class.findMany({
+    where: await accessibleClassesWhere(viewer),
+    select: { id: true, name: true },
+    orderBy: { name: "asc" },
+  });
+  const students = await loadOperationalRoster(
+    classes.map((c) => c.id),
+    true,
+  );
   try {
     const table = srsStateTable();
     if (!table)

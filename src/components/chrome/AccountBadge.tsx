@@ -78,6 +78,7 @@ export function AccountBadge({
           <div className={s.profilePanel}>
             <p>내 계정</p>
             <Link href="/account">내정보 설정</Link>
+            <Link href="/account/eywa-managed">에이와 연결 확인</Link>
             <form action={signOutAction}>
               <button type="submit" className={s.signOut}>
                 로그아웃

@@ -218,7 +218,10 @@ describe.each(CASES)("GET /api/classes — $who", ({ isAdmin }) => {
 
     await listClasses(req("/api/classes?pageSize=100"));
 
-    expect(userFindUnique).not.toHaveBeenCalled();
+    expect(userFindUnique).toHaveBeenCalledTimes(1);
+    expect(userFindUnique).toHaveBeenCalledWith(
+      expect.objectContaining({ select: { authSource: true } }),
+    );
     expect(userFindFirst).not.toHaveBeenCalled();
     // 내 반 묶음 · 나머지 묶음 — 반이 몇 개든 두 번을 넘지 않는다
     expect(findMany.mock.calls.length).toBeLessThanOrEqual(isAdmin ? 2 : 1);

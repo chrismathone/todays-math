@@ -1,0 +1,49 @@
+Eywa automatic target provisioning — worker handoff, 2026-10-03
+
+Outcome
+Implemented target automatic ON provisioning and automatic binding resolution while preserving the prior staged implementation. Production/schema inputs were frozen for the coordinator before final QA. This worker did not commit, merge, build, deploy, change environment files, access production databases, edit the source checkout, or remove the Docker fixture.
+
+Behavior
+- EYWA_SYNC_AUTO_JSON resolves bindingId = tenantId = targetBranchId from a validated UUID. Explicit EYWA_SYNC_BINDINGS_JSON entries retain priority and reserve their tenant and branch IDs. Rotating automatic keys resolve for receiver processing, account refresh/confirmation, administration and SSO.
+- A receiver request verifies HMAC and fixed target origin before source fetch or provisioning. Absent automatic bindings require live identity-matching control with enabled=true, healthy=true, mode=active, a current lease and a nonblank valid tenantName.
+- A short advisory-locked transaction rechecks absent binding/mappings/branch UUID, inserts the branch and active binding with sourceEpoch and ownership=true, and records exactly one provisioning audit. No network I/O occurs inside this transaction. Concurrent identical deliveries create once.
+- An existing unlinked reserved branch UUID or another persisted mapping conflicts safely. Display names are not identity: distinct tenant UUIDs may have identical names, with separate branches and no adoption or merging. This follows the coordinator's final instruction.
+- Existing shadow/retired bindings are returned without activating, renaming or clearing the local operator block. OFF invalidates access and preserves branch, mappings and history; ON reuses stable IDs. Candidate confirmation, local passwords, transfer rules and manual suspension continue through the existing paths.
+- New autoProvisionedBranch defaults false. Only atomic creation sets it true. Monotonic fresh control may rename an auto-owned branch only while its current name still matches the prior source name; compare-and-set protects a concurrent local rename. Manual-owned/local-renamed branches remain unchanged and receive an audit review record; admin status shows the name mismatch. Same-named distinct branches are allowed.
+- First SSO before the webhook creates only an expiring state/PKCE handoff at start. Callback verifies the source assertion before fetching full live control and provisioning, then enqueues roster reconciliation. A bad assertion creates no branch or binding. The coordinator explicitly approved retaining this tested callback-based approach.
+- Automatic trust fences legacy sync and legacy v1 SSO, including before a persisted dynamic binding exists.
+- /account/eywa-switch delegates expiry evaluation to a server helper, removing Date.now from React render.
+
+Schema
+prisma/schema.prisma includes autoProvisionedBranch -> auto_provisioned_branch.
+The initial managed-sync migration creates the column for fresh fixtures.
+prisma/migrations/20261003103000_eywa_auto_branch/migration.sql uses ADD COLUMN IF NOT EXISTS for installations/fixtures that previously applied the initial migration. It does not backfill existing bindings to true. Repeating the upgrade twice was tested.
+
+Verification (all exited 0)
+1. node --conditions=react-server --import tsx scripts/qa/eywa-automatic-integration.ts
+   11 groups against only 127.0.0.1:55432/eywa_auto_target_test with real PostgreSQL constraints and a signed local HTTP source:
+   - Invalid signature/origin: no source fetch, branch, binding, inbox or provisioning audit.
+   - OFF/unhealthy/shadow, missing/null/blank/control-character/oversize names, wrong identity, stale/future/expired control: no provisioning.
+   - Eight concurrent first signed events: one branch, active binding, ownership marker, audit and event.
+   - Actual staff/class/membership/student/enrollment creation and managed grants.
+   - Dynamic SSO exchange/login plus consumed switch-ticket handling.
+   - OFF/ON stable roster IDs, branch creation timestamp and ownership audit, with preserved local progress, test and audit records and manual suspension.
+   - UUID collision rejection and separate same-name branch creation, including concurrency.
+   - Existing shadow/retired/operator-blocked binding unchanged; ownership upgrade reruns do not adopt it.
+   - Persisted mapping collision and explicit config priority/no identity overlap.
+   - Safe auto rename plus same-name rename, with local/manual name preservation and admin review visibility.
+   - Bad first SSO assertion makes no branch; valid first SSO assertion provisions and queues reconcile.
+2. EYWA_TEST_DATABASE_URL=postgresql://postgres@127.0.0.1:55432/eywa_auto_target_test?sslmode=disable
+   EYWA_SYNC_AUTO_JSON=[]
+   node --conditions=react-server --import tsx scripts/qa/eywa-managed-integration.ts
+   19 existing receiver PG scenarios passed, including candidate/password confirmation, approved transfer, OFF/ON, revocation, manual suspension, DB privilege/password/unlink guards, collision, lease race, nonce, state/PKCE, jti reuse and source outage. Its fixture guard now permits only the two named local target fixture databases on port 55432.
+3. Vitest: 143 tests across 11 focused files passed (new automatic config tests plus managed policy/relations/status, legacy SSO, password, class access, link and unlink APIs).
+4. npm run type-check: passed after final production changes.
+5. Scoped ESLint: no errors or warnings across changed production files, automatic integration harness and automatic config test.
+6. Prisma client generation passed; git diff --check passed.
+
+Expected test logging
+The concurrency and negative guard scenarios deliberately attempt duplicate/forbidden writes. Prisma logs constraint errors for these assertions, while the harness exits successfully. All values are synthetic fixture identities.
+
+Coordinator remaining work
+Commit/merge/final build and the real source-SQL-to-target integration/HTTP smoke remain coordinator-owned. The coordinator owns the shared sync-contract.ts, env documentation, source changes and Docker cleanup. This worker no longer needs the fixture once its completion is reported; cleanup must wait for the coordinator's combined tests. No production rollout or success is claimed here.

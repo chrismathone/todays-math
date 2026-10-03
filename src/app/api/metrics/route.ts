@@ -1,3 +1,4 @@
+import { accessibleTestsWhere } from "@/lib/classAccess";
 /**
  * GET /api/metrics — 주간 사용 지표 요약.
  * 대응 계약: src/contracts/metrics.contract.ts
@@ -16,7 +17,6 @@ import {
   resolveWeekWindow,
   weekWindowInstants,
 } from "@/lib/metrics";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
@@ -39,7 +39,7 @@ async function handleGet(request: NextRequest) {
   const printedWindow = weekWindowInstants(window);
   const rows = await db.test.findMany({
     where: {
-      ...ownedRowsWhere(session),
+      ...(await accessibleTestsWhere(session)),
       status: "printed",
       printedAt: { gte: printedWindow.gte, lt: printedWindow.lt },
     },

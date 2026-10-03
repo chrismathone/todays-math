@@ -1,3 +1,7 @@
+import {
+  accessibleClassesWhere,
+  loadOperationalRoster,
+} from "@/lib/classAccess";
 /**
  * 오늘의 개념 — 원장님 메뉴의 **DB 쪽** (브리프 §1.4). 라우트는 권한만 보고 여기를 부른다.
  *
@@ -27,7 +31,7 @@ import {
 } from "@/lib/class/classOwner";
 import { db } from "@/lib/db";
 import { kstDateOf } from "@/lib/kstDate";
-import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
+import { type ScopeViewer } from "@/lib/ownerScope";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { getCurrentProgress } from "@/lib/progressResolver";
 import { serializeProgress } from "@/lib/serializers";
@@ -137,7 +141,7 @@ const toUnit = (
 async function loadBoardClasses(
   viewer: ScopeViewer,
 ): Promise<BoardClassInput[]> {
-  const where = ownedRowsWhere(viewer);
+  const where = await accessibleClassesWhere(viewer);
   if (!showsClassOwner(viewer))
     return db.class.findMany({
       where,
@@ -177,23 +181,12 @@ export async function loadConceptBoard(
   const classIds = classes.map((c) => c.id);
 
   const [students, latestProgress] = await Promise.all([
-    classIds.length === 0
-      ? Promise.resolve([])
-      : db.student.findMany({
-          where: { classId: { in: classIds } },
-          select: {
-            id: true,
-            name: true,
-            classId: true,
-            eywaWithdrawnAt: true,
-            createdAt: true,
-          },
-        }),
+    loadOperationalRoster(classIds, true),
     // 반 진도 최신 한 건 — `/api/progress` 의 반 진도 조회와 같은 질의·같은 판정.
     Promise.all(
       classIds.map(async (classId) => {
         const rows = await db.progress.findMany({
-          where: { classId, studentId: null },
+          where: { retiredAt: null, classId, studentId: null },
           orderBy: LATEST_FIRST,
           take: 1,
         });

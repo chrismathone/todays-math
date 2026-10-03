@@ -20,6 +20,9 @@ const f = vi.hoisted(() => ({
 }));
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/eywa/managedAccounts", () => ({
+  getManagedClassGrants: async () => null,
+}));
 vi.mock("@/lib/auth", () => ({ auth: async () => f.session }));
 vi.mock("@/lib/errorLog/withErrorLog", () => ({
   withErrorLog: (_path: string, handler: unknown) => handler,
@@ -59,7 +62,9 @@ vi.mock("@/lib/db", () => {
   const student = (id: string) => ({
     id,
     name: id === f.a ? "학생 A" : id === f.b ? "학생 B" : "다른 반 학생",
-    classId: f.classId,
+    classId: id === f.foreign ? f.foreign : f.classId,
+    eywaBindingId: null,
+    enrollments: [],
     eywaWithdrawnAt: f.withdrawn.has(id) ? new Date() : null,
     class: {
       id: f.classId,
@@ -81,12 +86,21 @@ vi.mock("@/lib/db", () => {
           [f.a, f.b, f.foreign].includes(where.id) ? student(where.id) : null,
         ),
         findMany: vi.fn(
-          async ({ where }: { where: { class?: { userId?: string } } }) =>
+          async ({
+            where,
+          }: {
+            where: {
+              class?: { userId?: string };
+              OR?: { classId?: { in: string[] } }[];
+            };
+          }) =>
             [f.a, f.b, f.foreign]
               .map(student)
               .filter(
                 (row) =>
                   !row.eywaWithdrawnAt &&
+                  (!where.OR?.[0]?.classId ||
+                    where.OR[0].classId.in.includes(row.classId)) &&
                   (!where.class?.userId ||
                     row.class.userId === where.class.userId),
               ),

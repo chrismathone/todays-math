@@ -31,6 +31,7 @@ import {
 } from "@/lib/apiResponse";
 import {
   checkStartUnit,
+  deletePlan,
   findPlan,
   loadPlanSchedule,
   parsePlanBody,
@@ -49,7 +50,7 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 type RouteContext = { params: Promise<{ id: string }> };
 
 /** 세션 → 경로 id → 반 소유. 통과하면 반 id 를 돌려준다. */
-async function guard(params: RouteContext["params"]) {
+async function guard(params: RouteContext["params"], method: string) {
   const session = await getSessionUser();
   if (!session) return { ok: false as const, response: unauthorizedError() };
 
@@ -58,14 +59,18 @@ async function guard(params: RouteContext["params"]) {
   if (!idResult.success)
     return { ok: false as const, response: validationError(idResult.error) };
 
-  const owned = await requireOwnedClass(id, session);
+  const owned = await requireOwnedClass(
+    id,
+    session,
+    method === "GET" ? "progress:read" : "progress:write",
+  );
   if (!owned.ok) return owned;
-  return { ok: true as const, classId: id };
+  return { ok: true as const, classId: id, session };
 }
 
 // GET — 반 계획 · 이번 주 예정 · 이 반의 학생 계획들
 async function handleGet(request: NextRequest, { params }: RouteContext) {
-  const g = await guard(params);
+  const g = await guard(params, request.method);
   if (!g.ok) return g.response;
 
   const query = progressPlanQuerySchema.safeParse(
@@ -102,7 +107,7 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
 
 // PUT — 넣기(201) · 덮어쓰기(200)
 async function handlePut(request: NextRequest, { params }: RouteContext) {
-  const g = await guard(params);
+  const g = await guard(params, request.method);
   if (!g.ok) return g.response;
 
   const body = await parsePlanBody(request, progressPlanWriteRequestSchema);
@@ -113,6 +118,7 @@ async function handlePut(request: NextRequest, { params }: RouteContext) {
   const { row, created } = await putPlan(
     { classId: g.classId, studentId: null },
     body.data,
+    g.session,
   );
   return jsonOk(
     progressPlanResponseSchema,
@@ -123,7 +129,7 @@ async function handlePut(request: NextRequest, { params }: RouteContext) {
 
 // PATCH — 일부 고치기 · 켜기/끄기
 async function handlePatch(request: NextRequest, { params }: RouteContext) {
-  const g = await guard(params);
+  const g = await guard(params, request.method);
   if (!g.ok) return g.response;
 
   const body = await parsePlanBody(request, progressPlanPatchRequestSchema);
@@ -134,7 +140,12 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const plan = await findPlan({ classId: g.classId, studentId: null });
   if (!plan) return notFoundError("진도 계획");
 
-  const updated = await patchPlan(plan.id, body.data);
+  const updated = await patchPlan(
+    plan.id,
+    body.data,
+    { classId: g.classId, studentId: null },
+    g.session,
+  );
   return jsonOk(progressPlanResponseSchema, {
     data: serializeProgressPlan(updated),
   });
@@ -142,13 +153,13 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
 
 // DELETE — 반 계획만 지운다. 반 계획을 따르던 학생은 자동 출제에서 빠진다(학생 계획이 있는 개별 진도 학생은 남는다).
 async function handleDelete(request: NextRequest, { params }: RouteContext) {
-  const g = await guard(params);
+  const g = await guard(params, request.method);
   if (!g.ok) return g.response;
 
   const plan = await findPlan({ classId: g.classId, studentId: null });
   if (!plan) return notFoundError("진도 계획");
 
-  await db.progressPlan.delete({ where: { id: plan.id } });
+  await deletePlan(plan.id, { classId: g.classId, studentId: null }, g.session);
   return jsonOk(deleteResponseSchema, { data: { id: plan.id } });
 }
 

@@ -33,7 +33,13 @@ const users = new Map<string, { branchId: string | null }>([
   [ids.sameBranchAdmin, { branchId: BRANCH_1 }],
   [ids.otherBranchAdmin, { branchId: BRANCH_2 }],
 ]);
-const cls = { id: ids.classId, name: "중1 A", userId: ids.owner };
+const cls = {
+  id: ids.classId,
+  name: "중1 A",
+  userId: ids.owner,
+  branchId: BRANCH_1,
+  eywaBindingId: null,
+};
 
 const student = (
   id: string,
@@ -48,6 +54,8 @@ const student = (
   id,
   name,
   classId: ids.classId,
+  eywaBindingId: null,
+  isTest: false,
   useIndividualProgress: false,
   eywaWithdrawnAt: extra.withdrawn ? new Date("2026-09-01") : null,
   createdAt: new Date(`2026-01-0${order}`),
@@ -93,19 +101,26 @@ export const world = {
   },
 };
 
-type OwnerWhere = { userId?: string; user?: { branchId?: string } };
-const ownerMatches = (where: OwnerWhere | undefined) =>
-  !where ||
-  ((where.userId === undefined || where.userId === cls.userId) &&
-    (where.user?.branchId === undefined ||
-      where.user.branchId === users.get(cls.userId)?.branchId));
-type StudentWhere = {
-  classId?: string;
-  eywaWithdrawnAt?: null;
-  class?: OwnerWhere;
-};
-
+type Where = Record<string, unknown>;
+const matches = (row: Record<string, unknown>, where: Where = {}): boolean =>
+  Object.entries(where).every(([key, cond]) => {
+    if (cond === undefined) return true;
+    if (key === "OR" || key === "AND") {
+      const list = (cond as Where[]).map((part) => matches(row, part));
+      return key === "OR" ? list.some(Boolean) : list.every(Boolean);
+    }
+    if (cond && typeof cond === "object") {
+      if ("in" in cond) return (cond.in as unknown[]).includes(row[key]);
+      if ("not" in cond) return row[key] !== cond.not;
+      return matches((row[key] ?? {}) as Where, cond as Where);
+    }
+    return (row[key] ?? null) === cond;
+  });
 export const db = {
+  eywaManagedAccount: { findUnique: async () => null },
+  async $transaction<T>(work: (tx: object) => Promise<T>): Promise<T> {
+    return work(this);
+  },
   user: {
     findUnique: async ({ where }: { where: { id: string } }) =>
       users.get(where.id) ?? null,
@@ -113,22 +128,17 @@ export const db = {
   class: {
     findUnique: async ({ where }: { where: { id: string } }) =>
       where.id === cls.id ? cls : null,
-    findMany: async ({ where }: { where: OwnerWhere }) => {
+    findMany: async ({ where }: { where: Where }) => {
       world.classWhere = where;
-      return ownerMatches(where) ? [{ id: cls.id, name: cls.name }] : [];
+      return matches(cls, where) ? [{ id: cls.id, name: cls.name }] : [];
     },
   },
   student: {
     findUnique: async ({ where }: { where: { id: string } }) =>
       students.find((s) => s.id === where.id) ?? null,
-    findMany: async ({ where }: { where: StudentWhere }) => {
+    findMany: async ({ where }: { where: Where }) => {
       world.studentWhere = where;
-      return students.filter(
-        (s) =>
-          (where.classId === undefined || s.classId === where.classId) &&
-          (where.eywaWithdrawnAt !== null || !s.eywaWithdrawnAt) &&
-          ownerMatches(where.class),
-      );
+      return students.filter((s) => matches(s, where));
     },
   },
   progress: { findMany: async () => [] },
