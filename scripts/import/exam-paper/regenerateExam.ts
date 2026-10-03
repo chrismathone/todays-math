@@ -20,7 +20,8 @@ import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
 import { loadExamConfig } from "./examConfig";
 import { graphFigureFields } from "./graphChoiceFigures";
 
-const REPOSITORY = fileURLToPath(new URL("../../../", import.meta.url));
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
+const REPOSITORY = resolve(MODULE_DIR, "../../..");
 const MANIFEST = "regeneration-manifest.json";
 const RESULTS = "regeneration-results.json";
 const sha256 = (bytes: string | Buffer) =>
@@ -90,7 +91,7 @@ interface MiddleSchoolRules {
 }
 function middleSchoolRules(): MiddleSchoolRules {
   return JSON.parse(
-    readFileSync(new URL("./solver_rules.json", import.meta.url), "utf8"),
+    readFileSync(join(MODULE_DIR, "solver_rules.json"), "utf8"),
   ) as MiddleSchoolRules;
 }
 export interface RegenerationResult {
