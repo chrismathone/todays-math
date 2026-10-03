@@ -129,33 +129,53 @@ export const textbookStudentVideoSchema = z
     "종료 시점은 시작 뒤여야 합니다.",
   );
 /** Assigned QR solution access is explicit and distinct from answerless blank activities. */
-export const textbookStudentQrSchema = z.discriminatedUnion("kind", [
-  z.strictObject({
-    kind: z.literal("problem"),
-    editionId: z.uuid(),
-    itemId: z.uuid(),
-    title: textbookTitleSchema,
-    displayNumber: z.string().max(40),
-    content: z.string().max(100_000),
-    answer: z.string().max(100_000),
-    solution: z.string().max(100_000).nullable(),
-    figures: z.array(textbookStudentAssetSchema).max(200),
-    video: textbookStudentVideoSchema,
-    concepts: z
-      .array(
-        z.strictObject({
-          conceptKey: textbookKeySchema,
-          title: textbookTitleSchema,
-        }),
-      )
-      .max(100),
-  }),
-  z.strictObject({
-    kind: z.literal("concept"),
-    concept: textbookStudentConceptSchema,
-    video: textbookStudentVideoSchema,
-  }),
-]);
+export const textbookStudentQrSchema = z
+  .discriminatedUnion("kind", [
+    z.strictObject({
+      kind: z.literal("problem"),
+      editionId: z.uuid(),
+      itemId: z.uuid(),
+      title: textbookTitleSchema,
+      displayNumber: z.string().max(40),
+      content: z.string().max(100_000),
+      textSolutionAvailable: z.boolean(),
+      answer: z.string().max(100_000).nullable(),
+      solution: z.string().max(100_000).nullable(),
+      figures: z.array(textbookStudentAssetSchema).max(200),
+      video: textbookStudentVideoSchema,
+      concepts: z
+        .array(
+          z.strictObject({
+            conceptKey: textbookKeySchema,
+            title: textbookTitleSchema,
+          }),
+        )
+        .max(100),
+    }),
+    z.strictObject({
+      kind: z.literal("concept"),
+      concept: textbookStudentConceptSchema,
+      video: textbookStudentVideoSchema,
+    }),
+  ])
+  .superRefine((value, ctx) => {
+    if (value.kind !== "problem") return;
+    if (
+      !value.textSolutionAvailable &&
+      (value.answer !== null || value.solution !== null)
+    )
+      ctx.addIssue({
+        code: "custom",
+        path: ["textSolutionAvailable"],
+        message: "공개하지 않은 글 해설과 정답은 학생에게 보낼 수 없습니다.",
+      });
+    if (value.textSolutionAvailable && value.answer === null)
+      ctx.addIssue({
+        code: "custom",
+        path: ["answer"],
+        message: "글 해설 공개 상태를 확인하세요.",
+      });
+  });
 export type TextbookStudentConcept = z.infer<
   typeof textbookStudentConceptSchema
 >;

@@ -86,6 +86,16 @@ describe.each([
   });
 });
 
-it("기존 학생 로그인 주소를 통합 로그인으로 연결한다", () => {
-  expect(() => StudentLoginPage()).toThrow("redirect:/login");
+it("기존 학생 로그인 주소를 통합 로그인으로 연결한다", async () => {
+  await expect(
+    StudentLoginPage({ searchParams: Promise.resolve({}) }),
+  ).rejects.toThrow("redirect:/login");
+});
+
+it("교재 QR로 향하는 학생 로그인 주소를 보존한다", async () => {
+  await expect(
+    StudentLoginPage({
+      searchParams: Promise.resolve({ returnTo: "/q/abcdefghijklmnop" }),
+    }),
+  ).rejects.toThrow("redirect:/login?callbackUrl=%2Fq%2Fabcdefghijklmnop");
 });

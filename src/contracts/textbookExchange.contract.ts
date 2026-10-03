@@ -207,6 +207,8 @@ export const textbookConfigSchema = z
       firstPhysicalPageIndex: z.number().int().min(1).max(1000),
     }),
     videoPolicy: z.enum(["required", "optional"]),
+    // Absence means closed. An explicit assignment and this policy are both required by the QR reader.
+    studentSolutionPolicy: z.enum(["never", "assigned"]).optional(),
   })
   .superRefine((config, ctx) => {
     if (config.volume > config.volumeCount)
