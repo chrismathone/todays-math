@@ -25,6 +25,8 @@
 import { NextRequest } from "next/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+vi.mock("server-only", () => ({}));
+
 const sessionState = vi.hoisted(() => ({
   user: null as {
     id: string;
