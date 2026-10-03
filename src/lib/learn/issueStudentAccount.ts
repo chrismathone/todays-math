@@ -5,15 +5,15 @@
  * 라우트(`/api/students/{id}/account/**`)는 세션·같은 사이트·본문 검사만 하고 여기를 부른다.
  *
  * 규칙:
- *  1. 🔴 **그 학생의 반이 발급하는 원장의 소유 범위 안이어야 한다**(`Class.userId`) — 남의 반 학생은 거부(⑤).
- *     존재하지 않으면 404, 남의 것이면 403 — 기존 `requireOwnedStudent` 와 같은 갈래·같은 판정이다.
- *     **관리자는 넘는다**(D-130 — 원장님 2026-09-16 «발급도 관리자에게 열고»). 판정은 `ownerScope.ts` 한 곳.
+ *  1. 지점 관리자·원장·관리자는 소속 지점 학생만, 최고관리자는 전체 지점 학생을 발급·관리한다.
+ *     일반 강사는 원본의 student:account 권한이 있어도 발급하지 못한다(`studentAccountPolicy.ts`).
+ *     `issueDeps.ts`가 현재 학생·반·지점 관계를 확인하고 저장 직전에 다시 확인한다.
  *  2. **한 명씩**(D-124 ⑷). 이미 계정이 있으면 거부 — «다시 발급»은 비밀번호만 새로.
  *  3. 아이디는 원장님이 적은 것을 정규화해 쓴다(자동 제안 없음 — D-125 ⑵). 겹치면 «이미 쓰는 아이디입니다».
  *  4. 🔴 초기 비밀번호는 **해시만** 저장하고 부르는 쪽에 **한 번** 돌려준다. 감사 기록에 싣지 않는다(⑥).
  *  5. 끄기는 `disabledAt` 만 찍고 지우지 않는다(수맥 규칙). 켜면 비운다.
  *  6. 모두 `AccountAuditLog` 에 남긴다(기존 `recordAudit`) — 발급한 사람이 `userId`·`actorId` 다
- *     (원장 · 관리자 · 담당 강사 — D-140. 강사가 발급하면 강사 계정이 남는다).
+ *     (계정을 발급한 지점 관리자·원장·최고관리자).
  *  7. 상태를 읽을 때 그 학생의 **퇴원 여부**를 같이 준다 — 발급 칸이 «퇴원 — 로그인 막힘»을 그린다
  *     (learn-screens 브리프 §1.3 · D-126 ⑺). 소유 판정과 같은 한 번의 조회에서 나온다.
  *  8. 🔴 **퇴원한 학생에게는 발급 · 다시 발급 · 켜기를 안 한다**(D-127 · 리드 결정) — 409. 끄기는 된다(막는 쪽이다).
@@ -26,7 +26,11 @@ import {
 } from "@/contracts/studentAccount.contract";
 
 import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
-import { type ScopeViewer, withinOwnerScope } from "@/lib/ownerScope";
+import type { ScopeViewer } from "@/lib/ownerScope";
+import {
+  canManageStudentAccounts,
+  studentAccountBranchAllowed,
+} from "./studentAccountPolicy";
 
 import { isLocked } from "./studentLogin";
 
@@ -110,18 +114,19 @@ export type IssueResult<T> =
 
 const fail = (reason: IssueFailure) => ({ ok: false as const, reason });
 
-/** 규칙 1 — 이 학생이 이 원장의 소유 범위 안에 있나. 있으면 퇴원 여부를 같이 돌려준다(규칙 7 · 8) */
+/** 규칙 1 — 발급 역할과 학생의 지점 범위를 확인하고 퇴원 여부를 돌려준다. */
 async function ownedStudent(
   deps: IssueDeps,
   director: ScopeViewer,
   studentId: string,
 ): Promise<{ failure: IssueFailure } | { failure: null; withdrawn: boolean }> {
+  if (!canManageStudentAccounts(director)) return { failure: "not_owner" };
   const owner = await deps.findStudentOwner(studentId);
   if (!owner) return { failure: "student_not_found" };
   if (
     !(deps.authorizeStudent
       ? await deps.authorizeStudent(director, studentId)
-      : withinOwnerScope(director, owner.ownerId, owner.ownerBranchId))
+      : studentAccountBranchAllowed(director, owner.ownerBranchId))
   )
     return { failure: "not_owner" };
   return { failure: null, withdrawn: owner.withdrawn };
@@ -158,12 +163,11 @@ export async function issueStudentAccount(
     return fail("account_exists");
   if (await deps.findAccountByLoginId(loginId)) return fail("login_id_taken");
 
-  // 지점 계정(원장·관리자·강사 — D-140)이 발급하면 고정값, 독립 운영자는 네 자리 번호
+  // 지점 원장·관리자 발급은 지점 초기 비밀번호를 사용한다.
   const initialPassword =
     input.director.branchId &&
     (input.director.branchRole === "owner" ||
-      input.director.branchRole === "manager" ||
-      input.director.branchRole === "teacher")
+      input.director.branchRole === "manager")
       ? BRANCH_INITIAL_PASSWORD
       : deps.generatePin();
   const passwordHash = await deps.hashPin(initialPassword);

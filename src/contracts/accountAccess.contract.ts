@@ -174,8 +174,15 @@ export type AccountAccess = {
   approvalStatus: ApprovalStatus;
   menus: WorkspaceMenu[];
 };
+/** Display-only summary; source identities and control data stay on the server. */
+export type AccountSyncStatus = {
+  status: "linked" | "unlinked";
+  branchName: string | null;
+  reason: string | null;
+};
 export type ManagedAccount = AccountAccess & {
   branchName?: string | null;
+  eywaSync?: AccountSyncStatus;
   createdAt: string;
   updatedAt: string;
   suspendedAt: string | null;

@@ -14,6 +14,7 @@ import {
 } from "react";
 import type { UnitNode } from "@/lib/units/groupUnits";
 import { canManageClassStudents, canManageRoster } from "@/lib/ownerScope";
+import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
 import { TeachingAuthPanel } from "./teachingAuthPanel";
 import WorkProgress from "./WorkProgress";
 import s from "./TeachingView.module.css";
@@ -236,6 +237,7 @@ export default function TeachingView({
                 units={access.data.units}
                 canManageRoster={canManageRoster(access.data.user)}
                 canManageStudents={canManageClassStudents(access.data.user)}
+                canManageAccounts={canManageStudentAccounts(access.data.user)}
               />
             </div>
           </section>

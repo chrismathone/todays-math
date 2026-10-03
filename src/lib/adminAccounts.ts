@@ -5,6 +5,7 @@ import {
   workspaceMenusFromDisabled,
   type ManagedAccount,
 } from "@/contracts/accountAccess.contract";
+import { accountSyncStatus, accountSyncSelect } from "./adminAccountSync";
 
 export const managedAccountSelect = {
   id: true,
@@ -16,6 +17,11 @@ export const managedAccountSelect = {
   branchId: true,
   branchRole: true,
   branch: { select: { name: true } },
+  eywaUserId: true,
+  eywaManagedAccounts: {
+    select: accountSyncSelect,
+    orderBy: [{ updatedAt: "desc" }, { id: "asc" }],
+  },
   approvalStatus: true,
   disabledMenus: true,
   createdAt: true,
@@ -33,11 +39,14 @@ export function managedAccount(
     suspendedAt,
     deletedAt,
     branch,
+    eywaUserId,
+    eywaManagedAccounts,
     ...data
   } = user;
   return {
     ...data,
     branchName: branch?.name ?? null,
+    eywaSync: accountSyncStatus({ ...user, eywaUserId, eywaManagedAccounts }),
     menus: user.isAdmin
       ? ALL_WORKSPACE_MENUS
       : workspaceMenusFromDisabled(disabledMenus),

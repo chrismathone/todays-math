@@ -1,0 +1,41 @@
+button.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--learn-muted, #667085);
+  cursor: pointer;
+}
+.badge[data-linked="true"] {
+  color: #187454;
+}
+.badge:hover,
+.badge:focus-visible {
+  background: var(--learn-soft, #eef2f6);
+}
+.badge:focus-visible {
+  outline: 2px solid var(--learn-accent, #2563eb);
+  outline-offset: 2px;
+}
+.tooltip {
+  position: fixed;
+  z-index: 1000;
+  box-sizing: border-box;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: var(--learn-ink, #172b4d);
+  color: #fff;
+  box-shadow: 0 4px 16px #14243d26;
+  font-family: var(--font-pretendard), sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: normal;
+  overflow-wrap: anywhere;
+}

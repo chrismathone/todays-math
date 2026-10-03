@@ -20,7 +20,7 @@ import {
 import { studentIssueDeps } from "@/lib/learn/issueDeps";
 import { reissueStudentPassword } from "@/lib/learn/issueStudentAccount";
 import { getSessionUser } from "@/lib/session";
-import { canManageClassStudents } from "@/lib/ownerScope";
+import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
 type RouteContext = { params: Promise<{ id: string }> };
@@ -28,7 +28,7 @@ type RouteContext = { params: Promise<{ id: string }> };
 async function handlePost(request: NextRequest, { params }: RouteContext) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
-  if (!canManageClassStudents(session))
+  if (!canManageStudentAccounts(session))
     return Response.json(
       {
         error: {

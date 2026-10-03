@@ -252,7 +252,8 @@ function PanelBody({
     return (
       <>
         <p className={s.sub}>
-          계정 없음 — 학생은 이 계정으로 들어와 영상만 봅니다.
+          아직 로그인 계정이 없습니다. 계정을 생성하면 학생이 로그인할 수
+          있습니다.
         </p>
         <form
           className={s.form}
@@ -279,7 +280,7 @@ function PanelBody({
           {errorLine}
           <div className={s.acts}>
             <button type="submit" className={s.primary} disabled={busy}>
-              계정 만들기
+              계정 생성
             </button>
           </div>
         </form>
