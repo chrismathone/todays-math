@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useEffect, useId, useRef, useState } from "react";
 import type {
   CourseDashboard as DashboardData,
@@ -23,6 +24,16 @@ import {
   saveCourseStudentPlan,
 } from "./courseApi";
 import s from "./course-dashboard.module.css";
+import g from "./curriculum-graph.module.css";
+
+const CurriculumGraphPanel = dynamic(() => import("./CurriculumGraphPanel"), {
+  ssr: false,
+  loading: () => (
+    <p role="status" className={g.loading}>
+      교육과정 연결도를 불러오는 중…
+    </p>
+  ),
+});
 
 const STATUS: Record<CourseSummary["status"], string> = {
   setup: "설정 필요",
@@ -86,9 +97,11 @@ export default function CourseDashboard({
   const [filter, setFilter] = useState<Filter>("all");
   const [selected, setSelected] = useState<CourseRosterStudent | null>(null);
   const [detailView, setDetailView] = useState<DetailView>("overview");
+  const [graphOpen, setGraphOpen] = useState(false);
   const opener = useRef<HTMLButtonElement | null>(null);
   const heading = useRef<HTMLHeadingElement | null>(null);
   const panelId = useId();
+  const graphPanelId = useId();
 
   useEffect(() => {
     let current = true;
@@ -178,15 +191,35 @@ export default function CourseDashboard({
           </h1>
           <p className={s.scope}>지원 교육과정 초3–초6 · 한국 시간 기준</p>
         </div>
-        <button
-          type="button"
-          className={s.button}
-          onClick={refresh}
-          disabled={loading}
-        >
-          목록 새로고침
-        </button>
+        <div className={g.headerActions}>
+          <button
+            type="button"
+            className={g.entryButton}
+            aria-expanded={graphOpen}
+            aria-controls={graphPanelId}
+            onClick={() => setGraphOpen((open) => !open)}
+          >
+            교육과정 연결도
+          </button>
+          <button
+            type="button"
+            className={s.button}
+            onClick={refresh}
+            disabled={loading}
+          >
+            목록 새로고침
+          </button>
+        </div>
       </header>
+      {graphOpen ? (
+        <CurriculumGraphPanel
+          id={graphPanelId}
+          student={
+            selected ? { id: selected.id, revision: selected.revision } : null
+          }
+          onClose={() => setGraphOpen(false)}
+        />
+      ) : null}
 
       {loading ? (
         <p role="status" className={s.notice}>
