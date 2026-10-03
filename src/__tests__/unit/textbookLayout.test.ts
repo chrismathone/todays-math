@@ -98,6 +98,60 @@ describe("measured semantic textbook pagination", () => {
       ).toThrow(/STUDENT_/);
     },
   );
+  it("resumes answer chunks at their own page index while keeping later student page references", () => {
+    const e = textbookFixture(2, 8);
+    const studentModel = createTextbookRenderModel(e, "student");
+    const measurements = studentModel.sections.flatMap((section) =>
+      section.blocks.map((block) => ({
+        blockId: block.id,
+        widthMm: blockWidthMm(e.config, block),
+        heightMm: block.kind === "problem" ? 90 : 14,
+      })),
+    );
+    const student = paginateTextbookSections(
+      studentModel.sections,
+      measurements,
+      e.config,
+      { includeCover: true },
+    );
+    const answerMeasurements = measurements.map((m) => ({
+      ...m,
+      heightMm: m.heightMm === 90 ? 180 : 14,
+    }));
+    const firstAnswers = paginateTextbookSections(
+      studentModel.sections.slice(0, 1),
+      answerMeasurements,
+      e.config,
+      { includeCover: true },
+    );
+    expect(student.pages).toHaveLength(5);
+    expect(firstAnswers.nextPhysicalPageIndex).toBe(6);
+    const sourceMap = studentPageMapFromPages(
+      studentModel.sections.slice(1),
+      student.pages.slice(3),
+      e.config,
+    );
+    const answerModel = createTextbookRenderModel(
+      { ...e, pageMap: sourceMap },
+      "answers",
+    );
+    const secondAnswers = paginateTextbookSections(
+      answerModel.sections.slice(1),
+      answerMeasurements,
+      e.config,
+      { firstPhysicalPageIndex: firstAnswers.nextPhysicalPageIndex },
+    );
+    expect(secondAnswers.pages[0].physicalPageIndex).toBe(6);
+    expect(secondAnswers.nextPhysicalPageIndex).toBe(10);
+    expect(sourceMap.map((p) => p.physicalPageIndex)).toEqual([
+      4, 4, 4, 4, 5, 5, 5, 5,
+    ]);
+    expect(
+      answerModel.sections[1].blocks
+        .filter((block) => block.kind === "problem")
+        .map((block) => block.sourcePageLabel),
+    ).toEqual(sourceMap.map((p) => p.printedPageLabel));
+  });
   it("starts majors on actual even pages and retains every item without filler", () => {
     const { e, model, measurements } = fixture(101),
       layout = paginateTextbookSections(

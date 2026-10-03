@@ -403,6 +403,7 @@ export function studentPageMapFromPages(
     page?: TextbookPage,
     blockId?: string,
   ): never => {
+    const physicalPageIndex = page?.physicalPageIndex ?? firstPhysicalPageIndex;
     throw new TextbookLayoutError([
       {
         code,
@@ -410,10 +411,14 @@ export function studentPageMapFromPages(
         severity: "error",
         path: [
           "studentPages",
-          page?.physicalPageIndex ?? firstPhysicalPageIndex,
+          ...(Number.isSafeInteger(physicalPageIndex)
+            ? [physicalPageIndex]
+            : []),
           ...(blockId ? ["blocks", blockId] : []),
         ],
-        ...(page ? { physicalPageIndex: page.physicalPageIndex } : {}),
+        ...(Number.isSafeInteger(physicalPageIndex)
+          ? { physicalPageIndex }
+          : {}),
       },
     ]);
   };
