@@ -33,26 +33,8 @@ import { normalizeSchoolName } from "../../src/lib/schools/normalizeSchoolName";
 import { schoolLevelFromKey } from "../../src/lib/schools/schoolLevel";
 import { isDirectScript } from "../import/isDirectScript";
 import { writeJson } from "../import/writeJson";
-
-/** 시험지 과목 표기 → 우리 트리 학년 라벨. 10-handoff §4.2 에서 확정된 대응. */
-export const HIGH_SUBJECT: Record<string, string> = {
-  수상: "공통수학1",
-  공수1: "공통수학1",
-  공통수학1: "공통수학1",
-  수하: "공통수학2",
-  공수2: "공통수학2",
-  공통수학2: "공통수학2",
-  수1: "대수",
-  대수: "대수",
-  수2: "미적분1",
-  미적분1: "미적분1",
-  미적분: "미적분2",
-  미적분2: "미적분2",
-  확통: "확률과 통계",
-  "확률과 통계": "확률과 통계",
-  기하: "기하",
-  기벡: "기하",
-};
+import { HIGH_SUBJECT } from "../../src/lib/import/highSubjectAliases";
+export { HIGH_SUBJECT } from "../../src/lib/import/highSubjectAliases";
 
 /** 우리 트리의 고등 학년 라벨 — 라벨만 보고 학교급을 되짚을 때 쓴다. */
 const HIGH_LABELS = new Set(Object.values(HIGH_SUBJECT));
