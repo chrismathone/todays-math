@@ -6,6 +6,7 @@ import { ProblemContent } from "@/components/math/ProblemContent";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { ProblemBody } from "@/components/print/templates/ProblemBody";
 import UnifiedProblem from "@/components/unified/UnifiedProblem";
+import { UNLINKED_FIGURE_CHOICES_NOTICE } from "@/lib/problem/choiceFigureIndex";
 import { BANK_CHOICE_FIGURES } from "../fixtures/bankChoiceFigures";
 import baseline from "../../../docs/planning/tracks/reports/bank-decide-render/before-fingerprint.json";
 
@@ -109,19 +110,20 @@ describe("B1 — 그림과 보기 번호의 대응", () => {
     ).toBe(renderToStaticMarkup(<ProblemContent {...unknown} />));
   });
 
-  it("모르는 문항은 수정 전 HTML 지문 그대로다", () => {
+  it("모르는 문항은 수정 전 HTML 지문 그대로다 — «번호를 확인할 수 없는 문항» 한 줄만 더해졌다", () => {
+    // 2026-10-03 3자 합의 A2: 그림뿐인 보기가 있는데 짝을 모르면 문항에 한 번 적는다.
+    // 그 한 줄을 걷어 내면 **수정 전 HTML 과 한 글자도 다르지 않아야** 한다 — 그림 · 보기의 조판은 그대로다.
+    const notice = `<p data-figure-choice-notice="" class="mt-3 text-xs">${UNLINKED_FIGURE_CHOICES_NOTICE}</p>`;
     expect(
-      BANK_CHOICE_FIGURES.map((problem) =>
-        createHash("sha256")
-          .update(
-            JSON.stringify(
-              renderToStaticMarkup(
-                <ProblemContent {...problem} choiceFigureIndex={undefined} />,
-              ),
-            ),
-          )
-          .digest("hex"),
-      ),
+      BANK_CHOICE_FIGURES.map((problem) => {
+        const html = renderToStaticMarkup(
+          <ProblemContent {...problem} choiceFigureIndex={undefined} />,
+        );
+        expect(html.split(notice)).toHaveLength(2);
+        return createHash("sha256")
+          .update(JSON.stringify(html.replace(notice, "")))
+          .digest("hex");
+      }),
     ).toEqual(baseline.markup);
   });
 
