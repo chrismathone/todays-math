@@ -1548,7 +1548,7 @@ function t13(rng: Rng): Body {
 // 공통인 근을 갖는 방정식
 // 꼴 0 (기본·대표): 계수 자리를 바꾼 두 이차방정식 — 두 식이 같아지는 경우를 뺀다
 // 꼴 1 (기본): 일차항 계수만 다른 두 이차방정식 — 빼면 공통인 근이 바로 나온다
-// 꼴 2 (응용): 오직 한 개의 공통인 근 — 두 식이 일치하는 k 를 뺀다
+// 꼴 2 (응용): 오직 한 개의 공통인 근 — 일치할 때 중근인 조합은 제외한다
 
 function t14(rng: Rng): Body {
   const mode = randInt(rng, 0, 2);
@@ -1608,6 +1608,8 @@ function t14(rng: Rng): Body {
     const Q = -k0 * (w + P) - w * w;
     const R = randInt(rng, -4, 4);
     if (R === k0) return null;
+    // k=R에서 두 식이 일치해도 중근이면 공통근은 하나이므로 두 번째 답이 된다.
+    if (R * R - 4 * (P * R + Q) === 0) return null;
     const sCoef = P - w + R;
     const sConst = Q + R * w;
     const e1 = `x^{2}+kx${termIf(P, "k")}${plusConst(Q)}=0`;
