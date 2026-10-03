@@ -34,6 +34,7 @@ type Row = {
   figureUrls: string[];
   figureDims: number[];
   figureSourceMm: number[];
+  choiceFigureIndex?: number[];
   reviewStatus: string;
   directUseAllowed: boolean;
   unitName: string;
@@ -223,6 +224,7 @@ function Problem({ r }: { r: Row }) {
       figureUrls={r.figureUrls}
       figureDims={r.figureDims}
       figureSourceMm={r.figureSourceMm}
+      choiceFigureIndex={r.choiceFigureIndex}
     />
   );
 }

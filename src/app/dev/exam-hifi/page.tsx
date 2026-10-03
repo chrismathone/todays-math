@@ -128,6 +128,7 @@ export default async function ExamHifiPage() {
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
     },
   });
 
@@ -242,6 +243,9 @@ export default async function ExamHifiPage() {
                                 content={part}
                                 figureDims={i === 0 ? p.figureDims : []}
                                 figureSourceMm={i === 0 ? p.figureSourceMm : []}
+                                choiceFigureIndex={
+                                  i === 0 ? p.choiceFigureIndex : []
+                                }
                                 figureSvg={i === 0 ? p.figureSvg : null}
                                 figureUrls={i === 0 ? p.figureUrls : []}
                                 framed={false}

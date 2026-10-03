@@ -73,6 +73,7 @@ export function risksTightSeat(
       figureUrls: problem.figureUrls,
       figureDims: problem.figureDims,
       figureSourceMm: problem.figureSourceMm,
+      choiceFigureIndex: problem.choiceFigureIndex,
     },
     slotPx,
   ).risky;

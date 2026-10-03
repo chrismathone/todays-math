@@ -23,6 +23,7 @@ export function ProblemExcerpt({
       <PaperProblemView
         content={fractionViewFor({ ...problem, grade })(problem.content)}
         figureUrls={problem.figureUrls}
+        choiceFigureIndex={problem.choiceFigureIndex}
       />
     </div>
   );

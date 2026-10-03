@@ -70,6 +70,7 @@ export default async function PrintPaperPage() {
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
     },
     // 🔴 `problemCode` 순으로 앞에서 자르면 **한 학년·한 단원**만 본다 —
     //    그 편향 때문에 「보기 상자」 자리가 0/2 로 비었다(2026-08-20).
@@ -102,6 +103,7 @@ export default async function PrintPaperPage() {
       figureUrls: p.figureUrls,
       figureDims: p.figureDims,
       figureSourceMm: p.figureSourceMm,
+      choiceFigureIndex: p.choiceFigureIndex,
     })),
   };
 

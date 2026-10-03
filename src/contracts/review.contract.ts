@@ -135,6 +135,7 @@ export const reviewConsoleRowSchema = z.strictObject({
   figureUrls: z.array(z.string()),
   figureDims: z.array(z.number()),
   figureSourceMm: z.array(z.number()),
+  choiceFigureIndex: z.array(z.number().int()).default([]).optional(),
   directUseAllowed: z.boolean(),
   unitName: z.string(),
   /**

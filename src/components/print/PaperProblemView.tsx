@@ -16,6 +16,7 @@ export interface PaperProblemViewProps {
   figureDims?: number[];
   /** 그림 **원본 지면 물리 폭(mm)**. 모르면 오늘 그대로 픽셀로 그린다(회귀 0). */
   figureSourceMm?: number[];
+  choiceFigureIndex?: number[];
   /** false = 이미 지면(A4Page) 안이라 틀 없이 본문만 그린다 (인쇄 템플릿 전용). */
   framed?: boolean;
 }
@@ -32,6 +33,7 @@ export function PaperProblemView({
   figureSvg,
   figureDims,
   figureSourceMm,
+  choiceFigureIndex,
   framed = true,
 }: PaperProblemViewProps) {
   const body = (
@@ -41,6 +43,7 @@ export function PaperProblemView({
       figureSvg={figureSvg}
       figureDims={figureDims}
       figureSourceMm={figureSourceMm}
+      choiceFigureIndex={choiceFigureIndex}
       className={styles.problemText}
       // 인쇄 지면(framed=false)에서는 지연 로딩을 쓰지 않는다 — 인쇄 시점에
       // 아직 안 그려진 그림이 빠지면 학생이 못 푸는 시험지가 나간다(절대 규칙 6).

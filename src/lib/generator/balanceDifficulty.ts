@@ -63,6 +63,7 @@ export interface SelectableProblem {
    * 없으면 오늘처럼 픽셀로 잰다. **넘기지 않으면 출제만 옛 크기로 고른다.**
    */
   figureSourceMm?: number[];
+  choiceFigureIndex?: number[];
 }
 
 export interface SubstitutionRecord {

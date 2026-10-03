@@ -159,6 +159,7 @@ export const UNIFIED_PROBLEM_SELECT = {
   figureSvg: true,
   figureDims: true,
   figureSourceMm: true,
+  choiceFigureIndex: true,
   source: true,
   reviewStatus: true,
   problemType: true,

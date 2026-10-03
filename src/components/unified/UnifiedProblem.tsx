@@ -53,6 +53,7 @@ export default function UnifiedProblem({
       figureSvg={problem.figureSvg}
       figureDims={problem.figureDims}
       figureSourceMm={problem.figureSourceMm}
+      choiceFigureIndex={problem.choiceFigureIndex}
       deferFigures={!print}
       choiceLayout={choiceLayout}
     />

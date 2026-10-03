@@ -56,6 +56,7 @@ export default async function ExamPrintPage() {
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
     },
   });
 
@@ -83,6 +84,7 @@ export default async function ExamPrintPage() {
     figureUrls: r.figureUrls,
     figureDims: r.figureDims,
     figureSourceMm: r.figureSourceMm,
+    choiceFigureIndex: r.choiceFigureIndex,
   }));
 
   const { pages, tooTall, estimatedPx } = packExamPaper(problems);

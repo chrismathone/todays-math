@@ -112,6 +112,7 @@ export default async function ExamWirePage() {
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
     },
   });
 
@@ -192,6 +193,7 @@ export default async function ExamWirePage() {
                           content={p.content}
                           figureDims={p.figureDims}
                           figureSourceMm={p.figureSourceMm}
+                          choiceFigureIndex={p.choiceFigureIndex}
                           figureSvg={p.figureSvg}
                           figureUrls={p.figureUrls}
                           framed={false}
