@@ -16,10 +16,10 @@
 | `src/components/math-explorers/ExplorerHome.tsx` | **approve** | §2.1 · 시험 없음(N6) |
 | `src/components/math-srs/elementary-practice.module.css` | **approve** | C4 를 지킨다 |
 | `src/__tests__/components/StudentCourseSrs.test.tsx` 새 시험 넷 | **approve** | 변이 넷 중 하나만 문다 — 코드가 맞아 막지 않음(§3) |
-| `src/components/math-srs/CourseDashboard.tsx` (Grok `226a0fdba`) | **request_changes** | §5.1 T1 — 계획 저장 뒤 연결도의 학생 기록이 다시 오지 않는다(재현) |
-| `src/components/math-srs/CurriculumGraphPanel.tsx` (Grok `226a0fdba`) | **request_changes** | §5.1 T2 · T3 — 교사에게 학생 문장 · 회복 방법 없음 · «낼 문제가 없고» |
-| `src/components/math-srs/curriculum-graph.module.css` (Grok `226a0fdba`) | **approve** | hover 는 단추에만(D-30) |
-| `src/__tests__/components/CurriculumGraphPanel.test.tsx` (Grok `226a0fdba`) | **approve** · 보강 권고 | T1 을 지키는 시험이 없다 · 옛 문구 픽스처 |
+| `src/components/math-srs/CourseDashboard.tsx` (Grok) | `226a0fdba` **request_changes** → `c0ec1e3d3` **approve** | §5.1 T1 — 계획 저장 뒤 연결도의 학생 기록이 다시 오지 않았다(재현) → 명단의 최신 줄로 고침 · 시험이 지킨다(§5.5) |
+| `src/components/math-srs/CurriculumGraphPanel.tsx` (Grok) | `226a0fdba` **request_changes** → `c0ec1e3d3` **approve** | §5.1 T2 · T3 → 회복 문장 · 시범 밖 문장 고침 · 학생 없으면 칸 없음 |
+| `src/components/math-srs/curriculum-graph.module.css` (Grok) | **approve** | hover 는 단추에만(D-30) · `c0ec1e3d3` 에서 안 바뀜 |
+| `src/__tests__/components/CurriculumGraphPanel.test.tsx` (Grok) | `c0ec1e3d3` **approve** | 저장 → 다시 부르기 시험이 T1 되돌림 변이를 문다 · H1 문구 픽스처 |
 | `src/lib/math-prerequisite/supply.ts` 의 `interactive: null` · 그 시험 · `expeditionStart.ts` 문구 (루트 작업 트리, 커밋 전) | **approve** | §6 — 8파일 114 통과 · 공개 세션 탐침 |
 
 ## 1. 막는 것이었던 것 — 학생 문구가 승인 시안과 달랐다 (풀림)
@@ -125,7 +125,7 @@
 
 대상: Grok 워크트리 커밋 `226a0fdba` «교육과정 연결도를 현황 화면에 연다»(바탕 `7a286033a`). 커밋 전 작업 파일을 먼저 읽어 루트 · Grok 에 알렸고(`msg_778050c47efe` · `msg_6f4a012ef4ff`), 커밋 뒤 다시 읽었다(`msg_819b2b790c9f`). 이 워크트리의 `src/components` · `src/lib` · `src/contracts` 는 `7a286033a` 와 같다.
 
-### 5.1 막는 것
+### 5.1 막는 것 (`226a0fdba` — 셋 다 `c0ec1e3d3` 에서 풀림, §5.5)
 
 | # | 자리 | 무엇 | 확인 | 고칠 길 |
 |---|---|---|---|---|
@@ -154,6 +154,21 @@
 ### 5.4 내가 돌린 것
 
 `226a0fdba` 의 네 파일을 이 워크트리에 잠시 꺼내 `CurriculumGraphPanel.test.tsx` · `CourseDashboard.test.tsx` — **2파일 31 통과**. T1 재현 시험은 따로 만들어 돌리고 지웠다. 되돌린 뒤 `git status` 깨끗. 브라우저로 교사 화면을 열지는 않았다.
+
+### 5.5 `c0ec1e3d3` 다시 보기 — 막는 것 셋이 풀렸다
+
+Grok 커밋 `c0ec1e3d3` «연결도 학생 기록을 최신 개정에 맞춘다»(`226a0fdba` 위).
+
+| # | 고친 것 | 판단 |
+|---|---|---|
+| T1 | `CourseDashboard.tsx` 가 `students.find((row) => row.id === selected.id) ?? selected` 의 `revision` 을 넘긴다. 저장이 `updateRow` 로 명단 줄을 올리면 연결도가 다시 부른다 | **풀림** — 새 시험 «refetches graph evidence when a plan save raises the roster revision». 고침을 `selected` 로 되돌리는 변이를 넣으면 이 시험이 실패한다(내 실행) |
+| T2 | `FROZEN_MISSION` 이 «같은 탐험 단원 안에서 시작 소단원을 바꾸거나, 관리자가 자동 선수 확인을 끄면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.» | **풀림** — H1 조건 C3 의 회복 길 둘이 들어왔다. 선수 확인 끄기는 서버 환경 값이라 «관리자가»가 맞다 |
+| T3 | 시범 밖 단원: «찾을 수는 있고 자동으로 내지 않습니다. 이 시범에서 자동 제시하는 문제 범위를 연결하지 않았습니다.» | **풀림** — 거짓이던 «낼 문제가 없고»가 빠졌다. 앞 문장은 H1 시안 그대로다 |
+| 5.3 | 학생을 고르지 않으면 `StudentRecords` 가 `null`(훅 뒤에서 돌아감) · 픽스처가 H1 문장 | 풀림 |
+
+막지 않는 것 하나: 공급 부족 줄은 여전히 학생 문장(«…선생님께 알려 주세요.»)으로 시작한다. 확인 · 복귀 줄처럼 «이 학생에게 적힌 이유:»를 앞에 붙이면 교사에게 하는 말로 읽히지 않는다.
+
+내 실행: `c0ec1e3d3` 의 네 파일을 이 워크트리에 잠시 꺼내 `CurriculumGraphPanel.test.tsx` · `CourseDashboard.test.tsx` **2파일 34 통과**, T1 되돌림 변이 1 실패, 되돌린 뒤 `git status` 깨끗. 교사 화면 브라우저 · 빌드는 루트가 병합 뒤 돌린다고 했고 나는 돌리지 않았다.
 
 ## 6. 공급 관문의 `interactive` — 루트가 브라우저에서 찾은 것
 
