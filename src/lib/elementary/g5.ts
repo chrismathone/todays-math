@@ -4654,7 +4654,7 @@ function lcm126Deep(unit: UnitSeed, rng: Rng): ElemProblem {
     const r = intBetween(rng, 1, Math.min(a, b) - 1);
     return make(
       unit,
-      `어떤 수를 ${nro(a)} 나누어도 ${nro(b)} 나누어도 나머지가 ${n(r)}입니다. 어떤 수 중에서 가장 작은 수를 구하시오.`,
+      `어떤 수를 ${nro(a)} 나누어도 ${nro(b)} 나누어도 나머지가 ${n(r)}입니다. 어떤 수 중에서 가장 작은 수를 구하시오. 단, 어떤 수는 나누는 두 수보다 큽니다.`,
       n(m + r),
       `나머지 ${nj(r, "을", "를")} 빼면 ${nj(a, "과", "와")} ${nro(b)} 모두 나누어떨어지므로 두 수의 공배수입니다. 가장 작은 공배수는 최소공배수 ${n(m)}이므로 어떤 수는 ${expr(`${m}+${r}=${m + r}`)}입니다.`,
     );
@@ -14407,7 +14407,7 @@ function w2Trap(): W2TrapTask[] {
 
 function area65Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W2TrapTask) =>
-    `높이가 ${n(t.h)} cm인 사다리꼴의 넓이가 ${n(t.area)} cm²입니다. 윗변과 아랫변의 길이가 모두 자연수 cm이고 두 변의 길이의 곱이 ${n(t.prod)}일 때, 아랫변은 몇 cm입니까?`;
+    `높이가 ${n(t.h)} cm인 사다리꼴의 넓이가 ${n(t.area)} cm²입니다. 윗변과 아랫변의 길이가 모두 자연수 cm이고 두 변의 길이의 곱이 ${n(t.prod)}일 때, 아랫변은 몇 cm입니까? 단, 아랫변이 윗변보다 깁니다.`;
   const pool = w2Pool("165top", () =>
     w2Trap().filter((t) => !w2Bad(content(t), w2int(t.y))),
   );
@@ -14419,7 +14419,7 @@ function area65Top(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(unit, content(t), n(t.y), [
     `사다리꼴은 넓이에 ${n(2)}를 곱하고 높이로 나누면 두 변의 길이의 합이므로 ${expr(`${t.area}\\times2\\div${t.h}=${t.sum}`)} cm입니다.`,
     `곱이 ${n(t.prod)}인 자연수 짝은 ${list}입니다. 합을 차례로 구하면 ${sums}입니다.`,
-    `합이 ${n(t.sum)} cm인 것은 ${n(t.x)} cm와 ${n(t.y)} cm이므로 아랫변은 ${n(t.y)} cm입니다.`,
+    `합이 ${n(t.sum)} cm인 것은 ${n(t.x)} cm와 ${n(t.y)} cm이고 아랫변이 윗변보다 길므로 아랫변은 ${n(t.y)} cm입니다.`,
   ]);
 }
 
@@ -14479,7 +14479,7 @@ function w2Avg261(): W2AvgTask[] {
 
 function avg261Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W2AvgTask) =>
-    `가 모둠과 나 모둠의 수학 점수 평균은 ${n(t.low)}점과 ${n(t.high)}점입니다. 가 모둠은 ${W2_COUNT[t.ga]} 명, 나 모둠은 ${W2_COUNT[t.na]} 명이고 두 모둠 전체의 평균은 ${n(t.total)}점입니다. 나 모둠 학생들의 점수의 합은 몇 점입니까?`;
+    `가 모둠과 나 모둠 중 한 모둠의 수학 점수 평균은 ${n(t.low)}점, 다른 모둠의 수학 점수 평균은 ${n(t.high)}점입니다. 가 모둠은 ${W2_COUNT[t.ga]} 명, 나 모둠은 ${W2_COUNT[t.na]} 명이고 두 모둠 전체의 평균은 ${n(t.total)}점입니다. 나 모둠 학생들의 점수의 합은 몇 점입니까?`;
   const pool = w2Pool("261mid", () =>
     w2Avg261().filter((t) => !w2Bad(content(t), w2int(t.ans))),
   );
@@ -15016,7 +15016,7 @@ function w3Rem126(): W3RemTask[] {
 
 function lcm126Top(unit: UnitSeed, rng: Rng): ElemProblem {
   const content = (t: W3RemTask) =>
-    `어떤 수를 ${nro(t.a)} 나누어도 ${nro(t.b)} 나누어도 나머지가 ${n(t.r)}입니다. 어떤 수가 ${n(t.c)}의 배수일 때, 어떤 수 중에서 가장 작은 수를 구하시오.`;
+    `어떤 수를 ${nro(t.a)} 나누어도 ${nro(t.b)} 나누어도 나머지가 ${n(t.r)}입니다. 어떤 수가 ${n(t.c)}의 배수일 때, 어떤 수 중에서 가장 작은 수를 구하시오. 단, 어떤 수는 나누는 두 수보다 큽니다.`;
   const pool = w2Pool("w3-126top", () =>
     w3Rem126().filter((t) => !w3Bad(content(t), w2int(t.k * t.m + t.r))),
   );
@@ -16245,9 +16245,14 @@ function mul221Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = w2Pick(unit, "심화중", rng, pool);
   const P = t.a * t.k;
   const all = w4OneDigitPairs(P);
-  return makeDeep(unit, content(t), n(t.a), [
+  // 수치 후보는 그대로 고르고, 짝 열거가 제외하는 1의 조건을 발문에도 옮긴다.
+  const stem = content(t).replace(
+    "한 자리 자연수",
+    `${n(1)}보다 큰 한 자리 자연수`,
+  );
+  return makeDeep(unit, stem, n(t.a), [
     `분모는 그대로 두고 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
-    `곱이 ${nj(P, "이고", "고")} 곱한 수가 한 자리 자연수인 (분자, 곱한 수) 짝은 ${w4PairList(all)}입니다.`,
+    `곱이 ${nj(P, "이고", "고")} 곱한 수가 ${n(1)}보다 큰 한 자리 자연수인 (분자, 곱한 수) 짝은 ${w4PairList(all)}입니다.`,
     `분자는 ${nj(t.b, "보다", "보다")} 작아야 하므로 짝은 하나뿐입니다. 검산하면 ${expr(`\\frac{${t.a}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 분자는 ${n(t.a)}입니다.`,
   ]);
 }
@@ -16282,9 +16287,13 @@ function mul222Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = w2Pick(unit, "심화중", rng, pool);
   const P = t.a * t.k;
   const all = w4OneDigitPairs(P);
-  return makeDeep(unit, content(t), n(t.k), [
+  const stem = content(t).replace(
+    "한 자리 자연수",
+    `${n(1)}보다 큰 한 자리 자연수`,
+  );
+  return makeDeep(unit, stem, n(t.k), [
     `자연수를 분자에 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 자연수와 진분수의 분자의 곱이 ${nj(P, "입니다", "입니다")}.`,
-    `곱이 ${nj(P, "이고", "고")} 자연수가 한 자리 수인 (진분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다.`,
+    `곱이 ${nj(P, "이고", "고")} 자연수가 ${n(1)}보다 큰 한 자리 수인 (진분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다.`,
     `진분수의 분자는 ${nj(t.b, "보다", "보다")} 작아야 하므로 짝은 하나뿐입니다. 검산하면 ${expr(`${t.k}\\times\\frac{${t.a}}{${t.b}}=${w4FracText(P, t.b)}`)}이므로 어떤 자연수는 ${n(t.k)}입니다.`,
   ]);
 }
@@ -16464,9 +16473,13 @@ function mix224Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const t = w2Pick(unit, "심화중", rng, pool);
   const P = t.p * t.k;
   const all = w4OneDigitPairs(P);
-  return makeDeep(unit, content(t), n(t.p), [
+  const stem = content(t).replace(
+    "한 자리 자연수",
+    `${n(1)}보다 큰 한 자리 자연수`,
+  );
+  return makeDeep(unit, stem, n(t.p), [
     `대분수를 가분수로 고쳐 분자에 자연수를 곱하므로, 곱한 결과를 분모가 ${nj(t.b, "인", "인")} 가분수로 고치면 ${expr(`${w4FracText(P, t.b)}=\\frac{${P}}{${t.b}}`)}입니다. 곧 처음 대분수를 고친 가분수의 분자와 곱한 자연수의 곱이 ${nj(P, "입니다", "입니다")}.`,
-    `자연수가 한 자리 수인 (가분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다. 처음 수가 대분수이므로 가분수로 고치면 분자가 분모 ${nj(t.b, "보다", "보다")} 커야 하고, 그런 짝은 하나뿐입니다.`,
+    `자연수가 ${n(1)}보다 큰 한 자리 수인 (가분수의 분자, 자연수) 짝은 ${w4PairList(all)}입니다. 처음 수가 대분수이므로 가분수로 고치면 분자가 분모 ${nj(t.b, "보다", "보다")} 커야 하고, 그런 짝은 하나뿐입니다.`,
     `그 짝은 ${lj(`\\frac{${t.p}}{${t.b}}`, "이", "가")} 되고, 대분수로 고치면 ${lj(fracLatex(t.p, t.b), "이", "가")} 됩니다. 검산하면 ${expr(`\\frac{${t.p}}{${t.b}}\\times${t.k}=${w4FracText(P, t.b)}`)}이므로 가분수의 분자는 ${n(t.p)}입니다.`,
   ]);
 }
