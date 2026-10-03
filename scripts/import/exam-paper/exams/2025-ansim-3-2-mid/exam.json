@@ -3,10 +3,21 @@
   "school": "안심중",
   "grade": "중3",
   "subject": "수학",
-  "tables": [
-    3,
-    4
-  ],
+  "tables": [3, 4],
   "hand": [],
+  "graphChoices": {
+    "8": {
+      "stem": null,
+      "sourceNumber": 7,
+      "choices": [
+        "q07.png",
+        "q07-2.png",
+        "q07-3.png",
+        "q07-4.png",
+        "q07-5.png"
+      ],
+      "why": "A5: 리드가 원본 PDF에서 7번에 잘못 붙은 다섯 산점도가 8번의 ①~⑤임을 확인했다. 좌표 읽기 차례대로 옮기며 발문 그림은 없고 정답은 음의 상관인 ⑤다."
+    }
+  },
   "units": {}
 }

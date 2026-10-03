@@ -41,8 +41,17 @@ import { loadExamConfig } from "./examConfig";
 import { repairExamPieces, withoutSharedPassage } from "./repairExamPieces";
 import { repairEquationScopes } from "./repairEquationScopes";
 import { repairExamText } from "./repairExamText";
-import { graphFigureFields } from "./graphChoiceFigures";
+import {
+  graphFigureFields,
+  resolveGraphFigureAssignments,
+  restoreGraphChoices,
+} from "./graphChoiceFigures";
 import { splitAnswer } from "./splitAnswer";
+import {
+  appendSolutionNote,
+  correctExamChoices,
+  correctExamSolutions,
+} from "./examDecisions";
 
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
@@ -71,8 +80,12 @@ if (Object.keys(CFG.graphChoices ?? {}).length > 0) {
   const source = read("figures/index.json") as {
     figures: { number: number; file: string }[];
   };
+  const assigned = resolveGraphFigureAssignments(
+    source.figures,
+    CFG.graphChoices,
+  );
   for (const [number, repair] of Object.entries(CFG.graphChoices ?? {})) {
-    const figures = source.figures.filter((f) => f.number === Number(number));
+    const figures = assigned.filter((f) => f.number === Number(number));
     for (const f of figures) {
       if (!existsSync(join(DIR, "figures", f.file)))
         throw new Error(`[중단] 원본 그림 ${f.file}이 없다`);
@@ -80,20 +93,26 @@ if (Object.keys(CFG.graphChoices ?? {}).length > 0) {
     graphFields.set(Number(number), graphFigureFields(repair, figures));
   }
 }
-const piece = repairExamPieces(
+const piece = correctExamChoices(
+  repairExamPieces(
+    new Map(
+      (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
+        r.id,
+        repairExamText(repairEquationScopes(r.text)),
+      ]),
+    ),
+    hwp.questions,
+  ),
+  CFG.choiceCorrections,
+);
+const solFixed = correctExamSolutions(
   new Map(
-    (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
+    (read("sol_fixed.json") as { id: string; text: string }[]).map((r) => [
       r.id,
       repairExamText(repairEquationScopes(r.text)),
     ]),
   ),
-  hwp.questions,
-);
-const solFixed = new Map(
-  (read("sol_fixed.json") as { id: string; text: string }[]).map((r) => [
-    r.id,
-    repairExamText(repairEquationScopes(r.text)),
-  ]),
+  CFG.solutionCorrections,
 );
 
 // ── ㉠ 발문에 붙은 지면 오염을 걷는다 ───────────────────────────────────────
@@ -499,14 +518,15 @@ const questions = hwp.questions.map((q) => {
     choices.push({ number: i, contents: [{ type: "text", value: c }] });
   }
   if (graphFields.has(q.number)) {
-    if (choices.length > 0 || !/^[①-⑤]$/.test(q.answer ?? ""))
-      throw new Error(
-        `[중단] 문${q.number}의 그래프 보기 복구 전제가 바뀌었다`,
-      );
-    for (let i = 1; i <= 5; i += 1)
+    const restored = restoreGraphChoices(
+      choices.map((c) => c.contents.map((v) => v.value).join("")),
+      q.answer ?? "",
+    );
+    choices.length = 0;
+    for (const [i, value] of restored.entries())
       choices.push({
-        number: i,
-        contents: [{ type: "text", value: "[그림]" }],
+        number: i + 1,
+        contents: [{ type: "text", value }],
       });
   }
   return {
@@ -569,7 +589,10 @@ const renamed: string[] = [];
 const drafts = convertPastExamPaper(paper, answers).map((d, i) => {
   const content = rename(d.content)!;
   const answer = rename(d.answer)!;
-  const solution = rename(d.solution);
+  const solution = appendSolutionNote(
+    rename(d.solution),
+    CFG.solutionNotes?.[d.questionNumber!],
+  );
   if (content !== d.content || answer !== d.answer || solution !== d.solution)
     renamed.push(`문${d.questionNumber}`);
   return {

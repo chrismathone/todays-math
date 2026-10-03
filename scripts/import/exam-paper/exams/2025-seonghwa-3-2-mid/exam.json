@@ -5,6 +5,21 @@
   "subject": "수학",
   "tables": [],
   "hand": [],
+  "solutionCorrections": {
+    "22": [
+      {
+        "from": "=14\\sin A",
+        "to": "=14ab\\,\\sin A",
+        "why": "A2: 삼각형 ADE 넓이에서 두 변의 계수 ab가 빠졌다"
+      },
+      {
+        "from": "T=\\triangle ADE-\\triangle ADE",
+        "to": "T=\\triangle ABC-\\triangle ADE",
+        "why": "A2: 사각형 DBCE는 큰 삼각형 ABC에서 ADE를 뺀 넓이"
+      }
+    ]
+  },
+  "solutionNotes": { "22": "(제공 자료의 풀이 식을 바로잡음 — 답은 같음)" },
   "units": {},
   "acceptFix": [
     {

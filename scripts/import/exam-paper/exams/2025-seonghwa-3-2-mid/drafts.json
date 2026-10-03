@@ -427,7 +427,7 @@
   "problemType": "서술형",
   "content": "[서술형 $4$] 그림과 같은 삼각형 $\\mathrm{ABC}$에서 $\\overline{AD}:\\,\\overline{BD}=\\,7:5$, $\\overline{AE}:\\,\\overline{CE}=\\,4:1$이다. 이때 삼각형 $\\mathrm{ADE}$의 넓이를 $S$, 사각형 $\\mathrm{DBCE}$의 넓이를 $T\\,$라고 할 때, $\\frac{T}{S}$의 값을 구하는 풀이 과정과 답을 쓰시오.",
   "answer": "$\\frac{8}{7}$",
-  "solution": "$\\overline{AD}=7a$, $\\overline{BD}=5a$, $\\overline{AE}=4b$, $\\overline{CE}=b$라 하면, $S=\\triangle ADE=\\,\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A=14\\sin A$$T=\\triangle ADE-\\triangle ADE=\\,\\frac{1}{2}\\times 12a\\times 5b\\times \\sin A-\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A$$=30ab\\,\\sin A-14\\,ab\\,\\sin A=16ab\\,\\sin A$$\\frac{T}{S}=\\frac{16ab\\,\\sin A}{14ab\\,\\sin A}=\\frac{8}{7}$",
+  "solution": "$\\overline{AD}=7a$, $\\overline{BD}=5a$, $\\overline{AE}=4b$, $\\overline{CE}=b$라 하면, $S=\\triangle ADE=\\,\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A=14ab\\,\\sin A$$T=\\triangle ABC-\\triangle ADE=\\,\\frac{1}{2}\\times 12a\\times 5b\\times \\sin A-\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A$$=30ab\\,\\sin A-14\\,ab\\,\\sin A=16ab\\,\\sin A$$\\frac{T}{S}=\\frac{16ab\\,\\sin A}{14ab\\,\\sin A}=\\frac{8}{7}$\n(제공 자료의 풀이 식을 바로잡음 — 답은 같음)",
   "unitHint": "삼각비의 활용",
   "hasFigure": false,
   "gradeHint": "중3",

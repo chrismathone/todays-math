@@ -10,6 +10,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { AnswerRepair } from "./splitAnswer";
 import type { GraphChoiceRepair } from "./graphChoiceFigures";
+import type { ChoiceCorrection, TextCorrection } from "./examDecisions";
 
 /** 소단원·문항류 — 사람이 원문과 원본 그림을 보고 정한다(D-120). **원장님 검토 대상.** */
 export interface UnitAssignment {
@@ -44,6 +45,13 @@ export interface ExamConfig {
   answerRepairs?: Record<string, AnswerRepair>;
   /** 원본을 눈으로 확인한 그래프 보기. 파일명 순서가 곧 보기 번호다. */
   graphChoices?: Record<string, GraphChoiceRepair>;
+  /** 합의된 편집 정정. 보기 번호와 변경 전 값, 근거를 모두 명시한다. */
+  choiceCorrections?: Record<string, ChoiceCorrection[]>;
+  solutionCorrections?: Record<string, TextCorrection[]>;
+  /** 풀이가 나중에 채워져도 교사용 해설 맨 끝에 남는 안내. */
+  solutionNotes?: Record<string, string>;
+  /** 초안은 보존하되 출제용 행은 만들지 않는 문항과 사유. */
+  excludeFromLoad?: Record<string, string>;
   /**
    * 5단계(`fix-exam-solutions.ts`)가 **고치고도 남는다**고 신고한 자리 중 사람이 보고 받아들인 것.
    * 대량 이관 드라이버(`batch_import.py`)만 읽는다 — 적힌 자리 말고 다른 결함이 나면 그 편을 멈춘다.
