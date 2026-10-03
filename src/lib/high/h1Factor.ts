@@ -30,7 +30,7 @@ import type { Difficulty } from "@/contracts/difficulty";
 import type { Rng } from "../elementary/types";
 
 import { eul, eun, ga, ira, ro } from "./josa";
-import { surd, surdTex } from "./numbers";
+import { q, qTex, surd, surdTex } from "./numbers";
 import {
   $,
   attempt,
@@ -738,7 +738,9 @@ function t04(rng: Rng): Body {
             ],
             h,
           )})$`,
-          `따라서 $a=${a}$, $b=${b}$, $c=${c}$이므로 $${et}=${ev}$`,
+          h === c * g && b !== a * c
+            ? `따라서 $a=${a}$, $b=${b}$, $c=${c}$ 또는 $a=${qTex(q(b, c))}$, $b=${a * c}$, $c=${c}$이고, 어느 경우에나 $${et}=${ev}$`
+            : `따라서 $a=${a}$, $b=${b}$, $c=${c}$이므로 $${et}=${ev}$`,
         ].join("\n"),
         difficulty: "응용",
         facts: { mode, a, b, c, g, h, exprId },
