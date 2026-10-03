@@ -22,6 +22,7 @@ import {
 } from "./textbookConcept.contract";
 import {
   textbookAssetSchema,
+  textbookExchangeSchema,
   textbookItemSchema,
   textbookVideoBindingSchema,
 } from "./textbookExchange.contract";
@@ -233,6 +234,28 @@ export const textbookConceptLookupSchema = z.strictObject({
   matches: z.array(textbookConceptLookupMatchSchema).max(500),
 });
 
+/**
+ * 구획 미리보기(`GET /api/textbook/editions/{editionId}/sections/{sectionId}/preview`) — 그 구획 하나와, 그 구획이
+ * 가리키는 것(배치 · 확정본 · 자산 · 예약했거나 켜진 QR · 게시 영상 · 개념)만 실은 교환 형식. 발행과 같은 조판기가 받는 모양이다.
+ *
+ * `exchange` 는 판본 전체를 조립한 것의 **부분집합**이다 — 실린 값은 전체에서의 그 값과 같다(`orderIndex` 는 원고 전체의 차례).
+ * 그래서 판본의 manifest 해시와 견줄 수 없다: `manifestVerified` 는 늘 false 다(검증할 때 manifest 확인을 끈다).
+ * 서버는 이 요청으로 아무것도 쓰지 않는다 — QR 을 만들지 않고 개념을 굳혀 적지 않는다. 초안의 개념은 응답 안에서만 굳힌 모양이다.
+ * `aggregateRevision` · `sectionRevision` 으로 화면이 낡은 미리보기를 알아본다.
+ */
+export const textbookSectionPreviewSchema = z.strictObject({
+  kind: z.literal("section-preview"),
+  editionId: z.uuid(),
+  sectionId: z.uuid(),
+  aggregateRevision: textbookRevisionSchema,
+  sectionRevision: textbookRevisionSchema,
+  manifestVerified: z.literal(false),
+  exchange: textbookExchangeSchema,
+});
+
+export type TextbookSectionPreview = z.infer<
+  typeof textbookSectionPreviewSchema
+>;
 export type TextbookConceptLookup = z.infer<typeof textbookConceptLookupSchema>;
 export type TextbookItemDiff = z.infer<typeof textbookItemDiffSchema>;
 export type TextbookItemDetail = z.infer<typeof textbookItemDetailSchema>;

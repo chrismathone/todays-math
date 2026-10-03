@@ -55,6 +55,13 @@ export interface AssembleOptions {
    * 조판기가 지면에 찍을 주소가 필요하다.
    */
   qrStates?: ReadonlyArray<"reserved" | "active">;
+  /**
+   * 구획 하나만 — 편집 화면의 미리보기가 쓴다. 그 구획과, 그 구획이 가리키는 것(배치 · 확정본 · 자산 · QR · 게시 영상 ·
+   * 개념)만 싣는다. **같은 조립의 부분집합**이다: 여기 실리는 값은 판본 전체를 조립했을 때의 그 값과 글자까지 같다
+   * (`orderIndex` 도 원고 전체에서의 차례 그대로다). 다른 구획의 원고 · 확정본의 내용은 DB 에서 읽지도 않는다.
+   * 🔴 잘라 낸 교환 형식은 판본의 manifest 해시와 견줄 수 없다. 내보내기 · 발행은 이 칸을 쓰지 않는다.
+   */
+  onlySectionId?: string;
 }
 
 interface EditionRow {
@@ -96,6 +103,7 @@ export async function assembleExchange(
   options: AssembleOptions,
 ): Promise<TextbookExchange> {
   const qrStates = options.qrStates ?? ["active"];
+  const only = options.onlySectionId ?? null;
   const [edition] = await sql.query<EditionRow>(
     `SELECT "id", "label", "status", "revision", ${isoColumn(`"published_at"`)} AS "publishedAt",
             "manifest_hash" AS "manifestHash", "config", "outline", "renderer_version" AS "rendererVersion",
@@ -114,15 +122,17 @@ export async function assembleExchange(
     startPolicy: "even-left" | "continue";
     content: { blocks: ManuscriptBlock[] };
   }>(
+    // 구획 하나만 볼 때는 다른 구획의 원고를 읽지 않는다(차례를 세우는 데 줄은 필요하다)
     `SELECT "id", "unit_key" AS "unitKey", "section_key" AS "sectionKey", "title", "template_key" AS "templateKey",
-            "start_policy" AS "startPolicy", "content"
+            "start_policy" AS "startPolicy",
+            CASE WHEN $2::uuid IS NULL OR "id" = $2::uuid THEN "content" ELSE '{"blocks": []}'::jsonb END AS "content"
        FROM "textbook_section" WHERE "edition_id" = $1::uuid ORDER BY "order_index", "id"`,
-    [editionId],
+    [editionId, only],
   );
   const unitOrder = new Map(
     edition.outline.units.map((unit, index) => [unit.unitKey, index]),
   );
-  const units: UnitManuscript[] = edition.outline.units.map((unit) => ({
+  const allUnits: UnitManuscript[] = edition.outline.units.map((unit) => ({
     unitKey: unit.unitKey,
     title: unit.title,
     sourceUnitIds: unit.sourceUnitIds,
@@ -130,7 +140,11 @@ export async function assembleExchange(
     goals: unit.goals,
     conceptLectureRefs: unit.conceptLectureRefs,
     sections: sections
-      .filter((section) => section.unitKey === unit.unitKey)
+      .filter(
+        (section) =>
+          section.unitKey === unit.unitKey &&
+          (only === null || section.id === only),
+      )
       .map((section) => ({
         sectionKey: section.sectionKey,
         title: section.title,
@@ -162,6 +176,10 @@ export async function assembleExchange(
       a.orderIndex - b.orderIndex ||
       byCodeUnit(a.itemId, b.itemId),
   );
+  // 원고 전체에서의 자리 — 구획 하나만 실을 때도 이 값을 그대로 쓴다
+  const positionOf = new Map(itemRows.map((row, index) => [row.itemId, index]));
+  const shownRows =
+    only === null ? itemRows : itemRows.filter((row) => row.sectionId === only);
 
   const qrRows = await sql.query<{
     id: string;
@@ -182,7 +200,7 @@ export async function assembleExchange(
 
   // `orderIndex` 는 원고 전체에서의 차례다 — 위에서 세운 차례(단원 → 구획 → 구획 안)의 자리 그대로.
   // 표의 `order_index` 는 구획 안의 차례라 그대로 내면 구획마다 0 이 생긴다
-  const items: TextbookItem[] = itemRows.map((row, position) => ({
+  const items: TextbookItem[] = shownRows.map((row) => ({
     itemId: row.itemId,
     editionId,
     snapshotId: row.snapshotId,
@@ -193,7 +211,7 @@ export async function assembleExchange(
     sectionKey: row.sectionKey,
     learningStage: row.learningStage,
     displayNumber: row.displayNumber ?? String(row.orderIndex + 1),
-    orderIndex: position,
+    orderIndex: positionOf.get(row.itemId)!,
     layout: row.layout,
     qrTargetId: qrByItem.get(row.itemId)?.id ?? null,
     ...(row.conceptKeys.length ? { conceptKeys: row.conceptKeys } : {}),
@@ -221,15 +239,16 @@ export async function assembleExchange(
             s."raw_source" AS "rawSource", s."source_metadata" AS "sourceMetadata", s."snapshot_hash" AS "snapshotHash"
        FROM "textbook_problem_snapshot" s
       WHERE s."id" IN (SELECT i."snapshot_id" FROM "textbook_item" i
-                        WHERE i."edition_id" = $1::uuid AND i."section_id" IS NOT NULL)`,
-    [editionId],
+                        WHERE i."edition_id" = $1::uuid AND i."section_id" IS NOT NULL
+                          AND ($2::uuid IS NULL OR i."section_id" = $2::uuid))`,
+    [editionId, only],
   );
   const snapshotById = new Map(
     snapshotRows.map((row) => [row.snapshotId, row]),
   );
   // 배치가 처음 가리키는 차례대로 — 같은 확정본을 두 번 실어도 한 번만 싣는다
   const snapshots: ProblemSnapshot[] = [
-    ...new Set(itemRows.map((row) => row.snapshotId)),
+    ...new Set(shownRows.map((row) => row.snapshotId)),
   ].map((id) => snapshotById.get(id)!);
 
   const assetRows = await sql.query<{
@@ -253,7 +272,7 @@ export async function assembleExchange(
     heightPx: row.heightPx,
   }));
 
-  const qrTargets: QrTarget[] = itemRows
+  const qrTargets: QrTarget[] = shownRows
     .filter((row) => qrByItem.has(row.itemId))
     .map((row) => {
       const qr = qrByItem.get(row.itemId)!;
@@ -283,12 +302,13 @@ export async function assembleExchange(
        FROM "textbook_video_binding" b
       WHERE b."status" = 'published'
         AND b."snapshot_id" IN (SELECT i."snapshot_id" FROM "textbook_item" i
-                                 WHERE i."edition_id" = $1::uuid AND i."section_id" IS NOT NULL)
+                                 WHERE i."edition_id" = $1::uuid AND i."section_id" IS NOT NULL
+                                   AND ($2::uuid IS NULL OR i."section_id" = $2::uuid))
       ORDER BY b."snapshot_id", b."id"`,
-    [editionId],
+    [editionId, only],
   );
 
-  const pageMap: PagePlacement[] = itemRows
+  const pageMap: PagePlacement[] = shownRows
     .filter(
       (row) =>
         row.physicalPageIndex !== null &&
@@ -302,7 +322,60 @@ export async function assembleExchange(
       column: row.pageColumn!,
     }));
 
-  const concepts = await loadConcepts(sql, editionId, unitOrder);
+  const allConcepts = await loadConcepts(sql, editionId, unitOrder);
+
+  // ── 구획 하나만: 그 구획이 가리키는 것만 남긴다(값은 그대로 — 고르기만 한다)
+  let units = allUnits;
+  let concepts = allConcepts;
+  let shownAssets = assets;
+  let shownConceptQr = conceptQrTargets;
+  if (only !== null) {
+    units = allUnits.filter((unit) => unit.sections.length > 0);
+    const target = sections.find((section) => section.id === only);
+    const blocks = target?.content.blocks ?? [];
+    const conceptKeys = new Set<string>();
+    const assetIds = new Set<string>();
+    for (const block of blocks) {
+      if (block.kind === "concept") conceptKeys.add(block.conceptKey);
+      else if (block.kind === "concept-recall" && block.conceptKey)
+        conceptKeys.add(block.conceptKey);
+      else if (block.kind === "image") assetIds.add(block.assetId);
+      else if (block.kind === "dialogue")
+        for (const turn of block.turns)
+          if (turn.portraitAssetId) assetIds.add(turn.portraitAssetId);
+    }
+    for (const item of items)
+      for (const key of item.conceptKeys ?? []) conceptKeys.add(key);
+    concepts = allConcepts.filter(
+      (concept) =>
+        conceptKeys.has(concept.conceptKey) ||
+        (target !== undefined &&
+          concept.unitKey === target.unitKey &&
+          concept.sectionKey === target.sectionKey),
+    );
+    const shownConcepts = new Set(
+      concepts.map((concept) => concept.conceptKey),
+    );
+    for (const snapshot of snapshots) {
+      for (const figure of snapshot.payload.figures)
+        assetIds.add(figure.assetId);
+      if (snapshot.rawSource?.figureSvgAssetId)
+        assetIds.add(snapshot.rawSource.figureSvgAssetId);
+    }
+    for (const concept of concepts)
+      for (const asset of concept.frozen?.assetHashes ?? [])
+        assetIds.add(asset.assetId);
+    shownAssets = assets.filter((asset) => assetIds.has(asset.assetId));
+    shownConceptQr = conceptQrTargets.filter((qr) =>
+      shownConcepts.has(qr.conceptKey),
+    );
+    units = units.map((unit) => ({
+      ...unit,
+      conceptLectureRefs: unit.conceptLectureRefs.filter((ref) =>
+        shownConcepts.has(ref.conceptKey),
+      ),
+    }));
+  }
 
   return {
     schemaVersion: textbookVersion,
@@ -320,7 +393,7 @@ export async function assembleExchange(
     units,
     snapshots,
     items,
-    assets,
+    assets: shownAssets,
     qrTargets,
     videoBindings,
     pageMap,
@@ -334,7 +407,7 @@ export async function assembleExchange(
           },
         }
       : {}),
-    ...(conceptQrTargets.length ? { conceptQrTargets } : {}),
+    ...(shownConceptQr.length ? { conceptQrTargets: shownConceptQr } : {}),
   };
 }
 

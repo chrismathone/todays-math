@@ -36,6 +36,7 @@ const ROUTES = "src/__tests__/api/textbookRoutes.test.ts";
 const REGISTER = "src/__tests__/lib/textbookRegisterAndRefs.test.ts";
 const VALIDATOR = "src/__tests__/lib/textbookRealValidator.test.ts";
 const REPLAY = "src/__tests__/lib/textbookReplayScope.test.ts";
+const PREVIEW = "src/__tests__/lib/textbookSectionPreview.test.ts";
 
 const MUTATIONS: Mutation[] = [
   // ── 범위 (access.ts)
@@ -685,7 +686,7 @@ const MUTATIONS: Mutation[] = [
     name: "교환 형식: 차례를 구획 안의 값으로 낸다",
     file: `${LIB}/server/exchange.ts`,
     line: 0,
-    find: `orderIndex: position,`,
+    find: `orderIndex: positionOf.get(row.itemId)!,`,
     replace: `orderIndex: row.orderIndex,`,
     tests: [VALIDATOR],
   },
@@ -745,6 +746,47 @@ const MUTATIONS: Mutation[] = [
     find: `if (!mine) throw notFound("배정");`,
     replace: ``,
     tests: [REPLAY],
+  },
+  // ── 구획 미리보기 (sectionPreview.ts · exchange.ts 의 `onlySectionId`)
+  {
+    name: "미리보기: 판본을 못 읽는 사람도 본다",
+    file: `${LIB}/server/sectionPreview.ts`,
+    line: 0,
+    find: `const access = await requireReadableEdition(sql, actor, editionId);`,
+    replace: `const access = { revision: 1, status: "draft" };`,
+    tests: [PREVIEW],
+  },
+  {
+    name: "미리보기: 발행본의 개념을 다시 굳힌다",
+    file: `${LIB}/server/sectionPreview.ts`,
+    line: 0,
+    find: `access.status === "draft" && integration`,
+    replace: `integration`,
+    tests: [PREVIEW],
+  },
+  {
+    name: "미리보기: 구획 밖의 배치도 싣는다",
+    file: `${LIB}/server/exchange.ts`,
+    line: 0,
+    find: `only === null ? itemRows : itemRows.filter((row) => row.sectionId === only);`,
+    replace: `itemRows;`,
+    tests: [PREVIEW],
+  },
+  {
+    name: "미리보기: 판본의 자산을 전부 싣는다",
+    file: `${LIB}/server/exchange.ts`,
+    line: 0,
+    find: `shownAssets = assets.filter((asset) => assetIds.has(asset.assetId));`,
+    replace: `shownAssets = assets;`,
+    tests: [PREVIEW],
+  },
+  {
+    name: "미리보기: 판본의 개념을 전부 싣는다",
+    file: `${LIB}/server/exchange.ts`,
+    line: 0,
+    find: `conceptKeys.has(concept.conceptKey) ||`,
+    replace: `true ||`,
+    tests: [PREVIEW],
   },
   {
     name: "활동: 남의 학생을 읽고 쓴다",
@@ -823,6 +865,7 @@ const control = runTests([
   REGISTER,
   VALIDATOR,
   REPLAY,
+  PREVIEW,
 ]);
 console.log(
   `대조군(변이 없음): ${control.passed} 통과 · ${control.failed} 실패`,
