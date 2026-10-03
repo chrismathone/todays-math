@@ -222,6 +222,7 @@ model User {
   errorLogs              ErrorLog[]
   /// 오늘의 영어 — 학교별 내신 시험(D-148). 학원 운영 데이터 — 계정을 지우면 시험과 딸린 자료·세트가 같이 지워진다
   englishExams           EnglishExam[]
+  listeningSets          EnglishListeningSet[]
 
   @@map("user")
 }
@@ -319,6 +320,7 @@ model Class {
 
   user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   students   Student[]
+  listeningAssignments EnglishListeningAssignment[]
   progresses Progress[]
   tests      Test[]
   /// 진도 계획 — 반 계획 한 줄 + 개별 진도 학생의 학생 계획들(D-129 ⑴)
@@ -399,6 +401,8 @@ model Student {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   class            Class             @relation(fields: [classId], references: [id], onDelete: Cascade)
+  listeningTargets EnglishListeningTarget[]
+  listeningAttempts EnglishListeningAttempt[]
   progresses       Progress[]
   tests            Test[]
   testResults      TestResult[]
@@ -1573,4 +1577,170 @@ model AppSetting {
   updatedById String?  @map("updated_by_id") @db.Uuid
 
   @@map("app_setting")
+}
+
+/// Listening is an independent ownership root. Draft document revision differs from row CAS revision.
+model EnglishListeningSet {
+  id String @id @db.Uuid
+  ownerId String @map("owner_id") @db.Uuid
+  branchId String? @map("branch_id") @db.Uuid
+  revision Int @default(1)
+  document Json @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  publications EnglishListeningPublication[]
+  mediaAssets EnglishListeningMediaAsset[]
+  @@index([ownerId, createdAt])
+  @@map("english_listening_set")
+}
+
+/// Immutable signed content snapshot; withdrawal is separate from content.
+model EnglishListeningPublication {
+  id String @id @db.Uuid
+  setId String @map("set_id") @db.Uuid
+  sourceRevision Int @map("source_revision")
+  snapshot Json @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at")
+  withdrawnAt DateTime? @map("withdrawn_at")
+  set EnglishListeningSet @relation(fields: [setId], references: [id], onDelete: Restrict)
+  assignments EnglishListeningAssignment[]
+  @@unique([setId, sourceRevision])
+  @@map("english_listening_publication")
+}
+
+model EnglishListeningAssignment {
+  id String @id @db.Uuid
+  publicationId String @map("publication_id") @db.Uuid
+  ownerId String @map("owner_id") @db.Uuid
+  branchId String? @map("branch_id") @db.Uuid
+  classId String @map("class_id") @db.Uuid
+  revision Int @default(1)
+  snapshot Json @db.JsonB
+  manualRelease Json? @map("manual_release") @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at")
+  cancelledAt DateTime? @map("cancelled_at")
+  publication EnglishListeningPublication @relation(fields: [publicationId], references: [id], onDelete: Restrict)
+  class Class @relation(fields: [classId], references: [id], onDelete: Restrict)
+  versions EnglishListeningAssignmentRevision[]
+  targets EnglishListeningTarget[]
+  attempts EnglishListeningAttempt[]
+  releases EnglishListeningRelease[]
+  broadcast EnglishListeningBroadcast?
+  @@index([ownerId, createdAt])
+  @@map("english_listening_assignment")
+}
+
+model EnglishListeningAssignmentRevision {
+  assignmentId String @map("assignment_id") @db.Uuid
+  revision Int
+  snapshot Json @db.JsonB
+  assignment EnglishListeningAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  @@id([assignmentId, revision])
+  @@map("english_listening_assignment_revision")
+}
+
+model EnglishListeningTarget {
+  assignmentId String @map("assignment_id") @db.Uuid
+  studentId String @map("student_id") @db.Uuid
+  classId String @map("class_id") @db.Uuid
+  revokedAt DateTime? @map("revoked_at")
+  assignment EnglishListeningAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  attempts EnglishListeningAttempt[]
+  releases EnglishListeningRelease[]
+  @@id([assignmentId, studentId])
+  @@index([studentId])
+  @@map("english_listening_target")
+}
+
+model EnglishListeningAttempt {
+  id String @id @db.Uuid
+  assignmentId String @map("assignment_id") @db.Uuid
+  studentId String @map("student_id") @db.Uuid
+  ordinal Int @default(1)
+  revision Int
+  snapshot Json @db.JsonB
+  assignment EnglishListeningAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  student Student @relation(fields: [studentId], references: [id], onDelete: Restrict)
+  target EnglishListeningTarget @relation(fields: [assignmentId, studentId], references: [assignmentId, studentId], onDelete: Restrict)
+  receipts EnglishListeningReceipt[]
+  @@unique([assignmentId, studentId, ordinal])
+  @@map("english_listening_attempt")
+}
+
+model EnglishListeningReceipt {
+  attemptId String @map("attempt_id") @db.Uuid
+  key String @db.VarChar(200)
+  commandHash String @map("command_hash") @db.Char(64)
+  acceptedRevision Int @map("accepted_revision")
+  attempt EnglishListeningAttempt @relation(fields: [attemptId], references: [id], onDelete: Restrict)
+  @@id([attemptId, key])
+  @@map("english_listening_receipt")
+}
+
+model EnglishListeningRelease {
+  assignmentId String @map("assignment_id") @db.Uuid
+  studentId String @map("student_id") @db.Uuid
+  groupId String @map("group_id") @db.Uuid
+  publicationId String @map("publication_id") @db.Uuid
+  releasedAt DateTime @map("released_at")
+  reason String @db.VarChar(30)
+  earlyExposure Boolean @map("early_exposure")
+  assignment EnglishListeningAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  target EnglishListeningTarget @relation(fields: [assignmentId, studentId], references: [assignmentId, studentId], onDelete: Restrict)
+  @@id([assignmentId, studentId, groupId])
+  @@map("english_listening_release")
+}
+
+model EnglishListeningBroadcast {
+  id String @id @db.Uuid
+  assignmentId String @unique @map("assignment_id") @db.Uuid
+  snapshot Json @db.JsonB
+  endedAt DateTime? @map("ended_at")
+  interrupted Boolean @default(false)
+  assignment EnglishListeningAssignment @relation(fields: [assignmentId], references: [id], onDelete: Restrict)
+  @@map("english_listening_broadcast")
+}
+
+model EnglishListeningAudit {
+  id String @id @db.Uuid
+  resourceId String @map("resource_id") @db.Uuid
+  actorId String @map("actor_id") @db.Uuid
+  kind String @db.VarChar(50)
+  payload Json @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at")
+  @@index([resourceId, createdAt])
+  @@map("english_listening_audit")
+}
+
+model EnglishListeningMediaAsset {
+  assetId String @id @db.Uuid
+  ownerId String @db.Uuid
+  branchId String? @db.Uuid
+  setId String @db.Uuid
+  revision Int
+  state String @db.VarChar(30)
+  uploadExpiresAt DateTime
+  reservedBytes Int
+  record Json @db.JsonB
+  blobs EnglishListeningMediaBlob[]
+  set EnglishListeningSet @relation(fields: [setId], references: [id], onDelete: Restrict)
+  @@index([ownerId])
+  @@index([state, uploadExpiresAt])
+  @@map("english_listening_media_asset")
+}
+
+model EnglishListeningMediaBlob {
+  key String @id @db.Uuid
+  assetId String @db.Uuid
+  bytes Bytes
+  byteLength Int
+  committed Boolean @default(false)
+  createdAt DateTime @default(now())
+  asset EnglishListeningMediaAsset @relation(fields: [assetId], references: [assetId], onDelete: Restrict)
+  @@index([assetId])
+  @@index([committed, createdAt])
+  @@map("english_listening_media_blob")
 }
