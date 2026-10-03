@@ -130,6 +130,36 @@ export function managedRelationDb() {
           rows.forEach((r) => Object.assign(r, args.data));
           return { count: rows.length };
         },
+        async update(args: Row) {
+          const row = tables[name].find((r) => matches(r, args.where));
+          if (!row) throw new Error("missing fixture row");
+          Object.assign(row, args.data);
+          return { ...row };
+        },
+        async createMany(args: Row) {
+          const data: Row[] = Array.isArray(args.data)
+            ? args.data
+            : [args.data];
+          for (const item of data) {
+            if (
+              name === "progress" &&
+              item.eywaReportId != null &&
+              tables[name].some(
+                (row) =>
+                  row.eywaReportId === item.eywaReportId &&
+                  row.unitId === item.unitId,
+              )
+            )
+              throw new Error("duplicate progress identity");
+            tables[name].push({
+              id: `local-${++sequence}`,
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              ...item,
+            });
+          }
+          return { count: data.length };
+        },
         async create(args: Row) {
           const row = {
             id: `local-${++sequence}`,
