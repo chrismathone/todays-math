@@ -186,6 +186,7 @@ export function TextbookStudioView({
   );
   const [savedLinks, setSavedLinks] = useState<TextbookConcept["links"]>([]);
   const [confirmLinkIds, setConfirmLinkIds] = useState<string[]>([]);
+  const [confirmEntryIds, setConfirmEntryIds] = useState<string[]>([]);
   const [newUnitKey, setNewUnitKey] = useState("");
   const [newUnitTitle, setNewUnitTitle] = useState("");
   const [pendingNav, setPendingNav] = useState<PendingNav | null>(null);
@@ -266,6 +267,7 @@ export function TextbookStudioView({
           setConceptLinks(loaded.concept.links);
           setSavedLinks(structuredClone(loaded.concept.links));
           setConfirmLinkIds([]);
+          setConfirmEntryIds([]);
           aligned = { ...aligned, concept: loaded.draft };
         } catch (reason) {
           setConceptSource(null);
@@ -273,6 +275,7 @@ export function TextbookStudioView({
           setConceptLinks([]);
           setSavedLinks([]);
           setConfirmLinkIds([]);
+          setConfirmEntryIds([]);
           setNotice(messageOf(reason));
         }
       } else {
@@ -281,6 +284,7 @@ export function TextbookStudioView({
         setConceptLinks([]);
         setSavedLinks([]);
         setConfirmLinkIds([]);
+        setConfirmEntryIds([]);
       }
       setDraft(aligned);
       setSaved(structuredClone(aligned));
@@ -297,8 +301,9 @@ export function TextbookStudioView({
     dirtyRef.current =
       (draft !== null && !sameDraft(draft, saved)) ||
       JSON.stringify(conceptLinks) !== JSON.stringify(savedLinks) ||
-      confirmLinkIds.length > 0;
-  }, [draft, saved, conceptLinks, savedLinks, confirmLinkIds]);
+      confirmLinkIds.length > 0 ||
+      confirmEntryIds.length > 0;
+  }, [draft, saved, conceptLinks, savedLinks, confirmLinkIds, confirmEntryIds]);
   useEffect(() => {
     const id = initialEditionFromLocation(
       initialEditionId,
@@ -415,7 +420,8 @@ export function TextbookStudioView({
   );
   const linksDirty =
     JSON.stringify(conceptLinks) !== JSON.stringify(savedLinks) ||
-    confirmLinkIds.length > 0;
+    confirmLinkIds.length > 0 ||
+    confirmEntryIds.length > 0;
   const workDirty =
     (draft !== null && saved === null) ||
     (draft !== null && saved !== null && !sameDraft(draft, saved)) ||
@@ -450,6 +456,7 @@ export function TextbookStudioView({
     setConceptLinks([]);
     setSavedLinks([]);
     setConfirmLinkIds([]);
+    setConfirmEntryIds([]);
     setPendingNav(null);
   }
 
@@ -471,6 +478,7 @@ export function TextbookStudioView({
         setConceptLinks([]);
         setSavedLinks([]);
         setConfirmLinkIds([]);
+        setConfirmEntryIds([]);
         return;
       }
       await loadSection(next, first.sectionId);
@@ -600,9 +608,16 @@ export function TextbookStudioView({
         unitKey: draft.unitKey,
         sectionKey: draft.sectionKey,
         links: conceptLinks,
-        confirmEntryIds: draft.picks
-          .filter((pick) => pick.confirmRequested)
-          .map((pick) => pick.entryId),
+        confirmEntryIds: [
+          ...new Set([
+            ...confirmEntryIds.filter(
+              (id) => !draft.picks.some((pick) => pick.entryId === id),
+            ),
+            ...draft.picks
+              .filter((pick) => pick.confirmRequested)
+              .map((pick) => pick.entryId),
+          ]),
+        ],
         confirmLinkIds,
       });
       const status = new Map(
@@ -631,6 +646,7 @@ export function TextbookStudioView({
       setConceptLinks(nextLinks);
       setSavedLinks(structuredClone(nextLinks));
       setConfirmLinkIds([]);
+      setConfirmEntryIds([]);
       setEdition((current) =>
         current
           ? { ...current, aggregateRevision: savedConcept.aggregateRevision }
@@ -686,6 +702,7 @@ export function TextbookStudioView({
     setDraft(saved);
     setConceptLinks(savedLinks);
     setConfirmLinkIds([]);
+    setConfirmEntryIds([]);
     void finishNav(nav);
   }
 
@@ -1445,6 +1462,13 @@ export function TextbookStudioView({
                   audience={audience}
                   mode={mode}
                   locked={locked}
+                  existingBlankItems={conceptSource?.blankItems ?? []}
+                  confirmEntryIds={confirmEntryIds}
+                  onConfirmEntries={setConfirmEntryIds}
+                  conceptChanged={conceptManuscriptChanged(
+                    saved?.concept ?? null,
+                    draft.concept,
+                  )}
                   conceptLinks={conceptLinks}
                   confirmLinkIds={confirmLinkIds}
                   onConceptLinks={(links, ids) => {
@@ -1460,6 +1484,15 @@ export function TextbookStudioView({
                   onChange={(next) => {
                     if (conceptManuscriptChanged(draft.concept, next.concept)) {
                       setConfirmLinkIds([]);
+                      setConfirmEntryIds([]);
+                      setDraft({
+                        ...next,
+                        picks: next.picks.map((pick) => ({
+                          ...pick,
+                          confirmRequested: false,
+                        })),
+                      });
+                      return;
                     }
                     setDraft(next);
                   }}
@@ -1633,6 +1666,7 @@ export function TextbookStudioView({
                     setConceptLinks([]);
                     setSavedLinks([]);
                     setConfirmLinkIds([]);
+                    setConfirmEntryIds([]);
                     setDraft({ ...draft, concept });
                   }}
                   onSaveConcept={() => {

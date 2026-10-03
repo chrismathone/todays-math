@@ -429,6 +429,10 @@ export function SectionEditor({
   orderMessage,
   diffSummary,
   saving,
+  existingBlankItems,
+  confirmEntryIds,
+  onConfirmEntries,
+  conceptChanged,
   conceptLinks,
   confirmLinkIds,
   onConceptLinks,
@@ -464,6 +468,10 @@ export function SectionEditor({
   orderMessage: string | null;
   diffSummary: string | null;
   saving: boolean;
+  existingBlankItems: TextbookConcept["blankItems"];
+  confirmEntryIds: string[];
+  onConfirmEntries: (ids: string[]) => void;
+  conceptChanged: boolean;
   conceptLinks: TextbookConcept["links"];
   confirmLinkIds: string[];
   onConceptLinks: (
@@ -869,6 +877,10 @@ export function SectionEditor({
         ) : null}
         <PickEditor
           picks={draft.picks}
+          existing={existingBlankItems}
+          confirmEntryIds={confirmEntryIds}
+          onConfirmEntries={onConfirmEntries}
+          conceptChanged={conceptChanged}
           onChange={(picks) => onChange({ ...draft, picks })}
           onSearch={onSearchCatalog}
         />
@@ -1018,16 +1030,70 @@ export function SectionEditor({
 
 function PickEditor({
   picks,
+  existing,
+  confirmEntryIds,
+  onConfirmEntries,
+  conceptChanged,
   onChange,
   onSearch,
 }: {
   picks: BlankPick[];
+  existing: TextbookConcept["blankItems"];
+  confirmEntryIds: string[];
+  onConfirmEntries: (ids: string[]) => void;
+  conceptChanged: boolean;
   onChange: (picks: BlankPick[]) => void;
   onSearch: (query: string) => void;
 }) {
   return (
     <fieldset className={styles.stack}>
       <legend>개념 백지</legend>
+      {existing.length > 0 ? (
+        <ul className={styles.list} aria-label="기존 개념백지 연결">
+          {existing
+            .filter(
+              (entry) =>
+                !picks.some(
+                  (pick) =>
+                    pick.entryId === entry.entryId &&
+                    pick.entryKind === entry.entryKind,
+                ),
+            )
+            .map((entry) => (
+              <li key={`${entry.entryKind}:${entry.entryId}`}>
+                <span>
+                  {entry.blankSectionKey} · {entry.entryKind} · {entry.entryId}{" "}
+                  ·{" "}
+                  {confirmEntryIds.includes(entry.entryId)
+                    ? "확인 요청"
+                    : conceptChanged
+                      ? "본문 변경 · 재확인 필요"
+                      : entry.review.status === "confirmed"
+                        ? "확인"
+                        : entry.review.status === "rejected"
+                          ? "거절"
+                          : "후보"}
+                </span>
+                <button
+                  type="button"
+                  className={styles.button}
+                  aria-label={`${entry.entryId} ${confirmEntryIds.includes(entry.entryId) ? "확인 취소" : "확인 요청"}`}
+                  onClick={() =>
+                    onConfirmEntries(
+                      confirmEntryIds.includes(entry.entryId)
+                        ? confirmEntryIds.filter((id) => id !== entry.entryId)
+                        : [...confirmEntryIds, entry.entryId],
+                    )
+                  }
+                >
+                  {confirmEntryIds.includes(entry.entryId)
+                    ? "확인 취소"
+                    : "확인 요청"}
+                </button>
+              </li>
+            ))}
+        </ul>
+      ) : null}
       <form
         className={styles.row}
         onSubmit={(event) => {

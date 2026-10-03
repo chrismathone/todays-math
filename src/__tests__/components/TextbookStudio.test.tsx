@@ -1417,4 +1417,151 @@ describe("TextbookStudioView", () => {
       expect(saveSection).not.toHaveBeenCalled();
     },
   );
+  it.each([
+    "body",
+    "confirmation",
+    "conflict",
+    "shadow-reject",
+    "new-body",
+  ] as const)(
+    "reopens existing blank references and preserves explicit confirmation: %s",
+    async (mode) => {
+      const placed = section();
+      placed.blocks.push({
+        id: "concept-block",
+        kind: "concept",
+        conceptKey: "prime-definition",
+      });
+      const draftConcept = {
+        conceptKey: "prime-definition",
+        title: "소수",
+        kind: "정의",
+        goal: "",
+        prerequisites: "",
+        definition: "1과 자신만으로 나누어진다",
+        conditions: "",
+        examples: "기존 예",
+        counterexamples: "",
+        misconceptions: "",
+        explainPrompt: "",
+        blankForms: ["term", "cloze"],
+      };
+      const reference = {
+        blankSectionKey: "중1::소인수분해::소인수분해",
+        entryKind: "concept",
+        entryId: "m1-01-02-c3",
+        review: {
+          status: "confirmed",
+          candidateRule: "manual",
+          reviewedBy: "teacher",
+          reviewedAt: "2026-10-03",
+          targetHash: "hash",
+        },
+      };
+      const source = { ...draftConcept, links: [], blankItems: [reference] };
+      const saveSection = vi.fn(async () => ({
+        revision: 4,
+        aggregateRevision: 10,
+      }));
+      let calls = 0;
+      const saveConcept = vi.fn(async (input) => {
+        calls += 1;
+        if (mode === "conflict" && calls === 1)
+          throw new TextbookRequestError("다른 곳에서 수정됨", 409);
+        return {
+          revision: 5,
+          aggregateRevision: 12,
+          concept: { ...source, ...input.concept },
+        };
+      }) as TextbookStudioApi["saveConcept"];
+      const client = api({
+        getSection: vi.fn(async () => placed),
+        saveSection,
+        readConcept: vi.fn(async () => ({
+          revision: 4,
+          draft: draftConcept,
+          concept: source,
+        })) as TextbookStudioApi["readConcept"],
+        saveConcept,
+      });
+      await openStudio(client);
+      expect(placed.picks).toEqual([]);
+      const existing = screen.getByRole("list", { name: "기존 개념백지 연결" });
+      expect(within(existing).getByText(/m1-01-02-c3 · 확인/)).toBeVisible();
+      fireEvent.click(
+        within(existing).getByRole("button", { name: "m1-01-02-c3 확인 요청" }),
+      );
+      const hasPick = mode === "shadow-reject" || mode === "new-body";
+      if (hasPick) {
+        fireEvent.change(screen.getByRole("textbox", { name: "소단원" }), {
+          target: { value: reference.blankSectionKey },
+        });
+        fireEvent.change(screen.getByRole("textbox", { name: "항목 ID" }), {
+          target: { value: reference.entryId },
+        });
+        fireEvent.click(screen.getByRole("button", { name: "항목 추가" }));
+        fireEvent.click(
+          screen.getByRole("button", {
+            name: mode === "shadow-reject" ? "거절" : "확인 요청",
+            exact: true,
+          }),
+        );
+      }
+      if (mode !== "confirmation" && mode !== "shadow-reject") {
+        fireEvent.change(screen.getByRole("textbox", { name: "예" }), {
+          target: { value: "수정된 예" },
+        });
+        if (!hasPick) {
+          expect(
+            within(existing).getByText(/본문 변경 · 재확인 필요/),
+          ).toBeVisible();
+          fireEvent.click(
+            within(existing).getByRole("button", {
+              name: "m1-01-02-c3 확인 요청",
+            }),
+          );
+        }
+      }
+      fireEvent.click(screen.getByRole("button", { name: "목록" }));
+      expect(screen.getByText("저장하지 않은 수정이 있습니다.")).toBeVisible();
+      fireEvent.click(screen.getByRole("button", { name: "저장 후 이동" }));
+      if (mode === "conflict") {
+        expect(await screen.findByText("다른 곳에서 수정됨")).toBeVisible();
+        expect(
+          within(existing).getByRole("button", {
+            name: "m1-01-02-c3 확인 취소",
+          }),
+        ).toBeVisible();
+        expect(screen.getByRole("textbox", { name: "예" })).toHaveValue(
+          "수정된 예",
+        );
+        fireEvent.click(screen.getByRole("button", { name: "저장 후 이동" }));
+      }
+      expect(await screen.findByRole("button", { name: "열기" })).toBeVisible();
+      expect(saveConcept).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          picks: hasPick
+            ? [
+                expect.objectContaining({
+                  entryId: reference.entryId,
+                  confirmRequested: false,
+                  reviewStatus:
+                    mode === "shadow-reject" ? "rejected" : "candidate",
+                }),
+              ]
+            : [],
+          source,
+          confirmEntryIds: hasPick ? [] : ["m1-01-02-c3"],
+          confirmLinkIds: [],
+          concept: expect.objectContaining({
+            examples:
+              mode === "confirmation" || mode === "shadow-reject"
+                ? "기존 예"
+                : "수정된 예",
+          }),
+        }),
+      );
+      expect(client.saveSection).not.toHaveBeenCalled();
+    },
+  );
 });
