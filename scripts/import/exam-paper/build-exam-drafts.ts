@@ -38,6 +38,7 @@ import {
 } from "../../../src/lib/import/convertPastExam";
 
 import { loadExamConfig } from "./examConfig";
+import { splitAnswer } from "./splitAnswer";
 
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
@@ -281,25 +282,6 @@ function stripTableCells(stem: string, n: number): string {
  * ⚠️ 마지막 표시 뒤에 수식이 하나도 없으면 그 표시는 **해설의 것**이라 되돌려 준다
  *    (문19 `⑴ $4$ ⑵ $40$` 다음에 곧바로 `⑴ 원 위의 점이 …`).
  */
-function splitAnswer(text: string): { answer: string; solution: string } {
-  const m = /^\s*정답\s*/.exec(text);
-  if (!m) return { answer: "", solution: text.trim() };
-  const rest = text.slice(m[0].length);
-  const TOKEN = /^(\$[^$]*\$|[⑴-⑽]|해설참조|[\s,·]+)/;
-  let i = 0;
-  let lastMark = -1;
-  for (;;) {
-    const t = TOKEN.exec(rest.slice(i));
-    if (!t) break;
-    if (/^[⑴-⑽]$/.test(t[1])) lastMark = i;
-    i += t[1].length;
-  }
-  if (lastMark >= 0 && !/\$/.test(rest.slice(lastMark, i))) i = lastMark;
-  return {
-    answer: rest.slice(0, i).replace(/\s+/g, " ").trim(),
-    solution: rest.slice(i).trim(),
-  };
-}
 
 // ── ㉢ 상자 마커 — HWP 는 **틀 구조를 잃는다**. 그것을 아는 것은 PDF 쪽이다 ────
 //
@@ -509,7 +491,11 @@ const answers: PastExamAnswer[] = hwp.questions.map((q) => {
       topic: q.topic,
       difficulty: q.difficulty,
     };
-  const { answer, solution } = splitAnswer(text);
+  const { answer, solution } = splitAnswer(
+    text,
+    q.answer ?? "",
+    CFG.answerRepairs?.[q.number],
+  );
   return {
     number: q.number,
     answer: answer || q.answer || "",
@@ -584,7 +570,7 @@ for (const d of drafts) {
 }
 
 writeFileSync(
-  join(DIR, "drafts.json"),
+  process.argv[3] ?? join(DIR, "drafts.json"),
   JSON.stringify(drafts, null, 1),
   "utf-8",
 );

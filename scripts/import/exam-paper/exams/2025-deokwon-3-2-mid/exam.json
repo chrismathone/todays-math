@@ -3,6 +3,13 @@
   "school": "덕원중",
   "grade": "중3",
   "subject": "수학",
+  "answerRepairs": {
+    "14": { "answer": "$\\mathrm{(}\\frac{64}{3}\\pi -16\\sqrt{3})cm^{2}$", "evidence": ["$\\mathrm{(}\\frac{64}{3}\\pi -16\\sqrt{3})cm^{2}$"], "why": "EX-01: sol_fixed 14의 부채꼴에서 삼각형을 뺀 마지막 결론" },
+    "15": { "answer": "풀이 참조", "evidence": ["SSS\\,합동", "따라서 $\\overline{OM}=\\overline{ON}$"], "why": "EX-01: 수치를 묻지 않는 증명형; 첫 반지름 등식은 정답이 아니라 가정" },
+    "16": { "answer": "$90°$", "evidence": ["\\angle COD=90°$"], "why": "EX-01: sol_fixed 16의 마지막 각도 결론" },
+    "17": { "answer": "$(1)$ $x=5,~y=8,~z=7$ $(2)$ $10\\sqrt{3}$ $(3)$ $\\frac{5\\sqrt{3}}{14}$", "evidence": ["$x=5,~y=8,~z=7$", "10\\sqrt{3}", "\\frac{5\\sqrt{3}}{14}"], "why": "EX-01: 세 소문항의 최종 값; xy=40은 답 머리가 아닌 첫 조건" },
+    "18": { "answer": "$\\sin A=\\frac{3}{5},~\\cos B=\\frac{\\sqrt{3}}{2},~\\tan C=1,~\\sin D=\\frac{5}{13}$, $\\sin D<\\sin A<\\cos B<\\tan C$", "evidence": ["\\frac{3}{5}", "\\frac{\\sqrt{3}}{2}", "\\tan C=1", "\\frac{5}{13}", "$\\sin D<\\sin A<\\,\\cos B<\\,\\tan C$"], "why": "EX-01: sol_fixed 18이 명시한 네 삼각비의 값과 오름차순" }
+  },
   "tables": [],
   "hand": [],
   "units": {},
