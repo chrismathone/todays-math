@@ -11,6 +11,7 @@
  *
  * 1. 학생 토큰에는 `id` 가 없다. Auth.js 가 로그인 때 채워 주는 `sub`·`name`·`email`·`picture` 도
  *    **물려받지 않고** 새 객체를 짓는다(`studentTokenFor`). 학생 정보는 `student` 칸에만.
+ *    연동 학생은 비공개 `managedStudentStamp`를 비교하며 이 값은 공개 세션에 싣지 않는다.
  * 2. 요청마다 학생 계정을 **다시 읽는다** — 꺼진 계정(`disabledAt`)·퇴원한 학생(`eywaWithdrawnAt` —
  *    D-126 ⑺)·지워진 학생이면 `null` 을 돌려 Auth.js 가 세션 쿠키를 지운다(④). 꺼짐 ∪ 퇴원 판정은
  *    로그인·비밀번호 바꾸기와 같은 함수 하나(`accountBlock.ts`)다.
@@ -28,6 +29,7 @@ import type { Session } from "next-auth";
 import type { JWT } from "next-auth/jwt";
 
 import { studentAccountBlocked } from "./accountBlock";
+import type { ManagedStudentAccess } from "@/lib/eywa/managedStudentAccess";
 
 /** 학생 Credentials 공급자 id — `signIn("student", …)` · `/api/auth/callback/student` */
 export const STUDENT_PROVIDER_ID = "student";
@@ -54,6 +56,7 @@ export interface StudentAccountForToken {
   disabledAt: Date | null;
   mustChangePassword: boolean;
   student: { name: string; eywaWithdrawnAt: Date | null } | null;
+  managedAccess?: ManagedStudentAccess;
 }
 
 /**
@@ -63,6 +66,7 @@ export interface StudentAccountForToken {
 export async function studentTokenFor(
   accountId: unknown,
   load: (id: string) => Promise<StudentAccountForToken | null>,
+  expectedManagedStamp?: unknown,
 ): Promise<JWT | null> {
   if (typeof accountId !== "string" || accountId === "") return null;
   const row = await load(accountId);
@@ -70,9 +74,18 @@ export async function studentTokenFor(
   const blocked = studentAccountBlocked({
     disabledAt: row.disabledAt,
     withdrawnAt: row.student.eywaWithdrawnAt,
+    managedAccessAllowed: row.managedAccess?.allowed,
   });
   if (blocked) return null;
+  const stamp = row.managedAccess?.stamp ?? null;
+  if (
+    stamp !== null
+      ? stamp !== expectedManagedStamp
+      : expectedManagedStamp != null
+  )
+    return null;
   return {
+    ...(stamp !== null ? { managedStudentStamp: stamp } : {}),
     student: {
       accountId: row.id,
       studentId: row.studentId,

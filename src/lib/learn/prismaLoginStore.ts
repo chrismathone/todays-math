@@ -15,6 +15,7 @@
  * 실제 Postgres 에서 한 번은 돌려 봐야 한다(보고서 «못 본 것»).
  */
 import type { PrismaClient } from "@prisma/client";
+import { managedStudentAccess } from "@/lib/eywa/managedStudentAccess";
 
 import type {
   LockSlot,
@@ -36,7 +37,7 @@ export const ACCOUNT_LOGIN_SELECT = {
   disabledAt: true,
   failedCount: true,
   lockedUntil: true,
-  student: { select: { eywaWithdrawnAt: true } },
+  student: { select: { eywaWithdrawnAt: true, eywaBindingId: true } },
 } as const;
 
 /** `ACCOUNT_LOGIN_SELECT` 로 읽은 행 → 로그인 핵심이 받는 모양 (로그인 · 비밀번호 바꾸기가 같이 쓴다) */
@@ -48,7 +49,7 @@ export function toLoginAccount(row: {
   disabledAt: Date | null;
   failedCount: number;
   lockedUntil: Date | null;
-  student: { eywaWithdrawnAt: Date | null };
+  student: { eywaWithdrawnAt: Date | null; eywaBindingId?: string | null };
 }): LoginAccount {
   return {
     id: row.id,
@@ -62,6 +63,26 @@ export function toLoginAccount(row: {
   };
 }
 
+/** Password login and current-password verification share the managed access gate. */
+export async function loadStudentLoginAccount(
+  row: Parameters<typeof toLoginAccount>[0],
+): Promise<LoginAccount> {
+  const account = toLoginAccount(row);
+  if (!row.student.eywaBindingId) return account;
+  const access = await managedStudentAccess(
+    row.studentId,
+    row.student.eywaBindingId,
+    {
+      forceRefresh: true,
+    },
+  );
+  return {
+    ...account,
+    managedAccessAllowed: access.allowed,
+    managedStudentStamp: access.stamp,
+  };
+}
+
 export function prismaLoginStore(db: Db): LoginStore {
   return {
     async findAccountByLoginId(loginId) {
@@ -69,7 +90,7 @@ export function prismaLoginStore(db: Db): LoginStore {
         where: { loginId },
         select: ACCOUNT_LOGIN_SELECT,
       });
-      return row ? toLoginAccount(row) : null;
+      return row ? loadStudentLoginAccount(row) : null;
     },
 
     async readMiss(key) {
