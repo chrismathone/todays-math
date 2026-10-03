@@ -24,7 +24,11 @@ import type {
 import type { ProblemEntity, ProblemType } from "@/contracts/problem.contract";
 import type { ProblemReportEntity } from "@/contracts/problemReport.contract";
 import type { ReviewLogEntity } from "@/contracts/review.contract";
-import type { TestEntity, TestProblemItem } from "@/contracts/test.contract";
+import type {
+  TestEntity,
+  TestProblemFigureFields,
+  TestProblemItem,
+} from "@/contracts/test.contract";
 import type {
   AnalysisReportEntity,
   ProblemAnswerEntity,
@@ -69,7 +73,7 @@ export function serializeProgress(row: ProgressRow): ProgressEntity {
 }
 
 export function serializeProblem(
-  row: Omit<ProblemRow, "choiceFigureIndex">,
+  row: Omit<ProblemRow, "choiceFigureIndex" | "figureDims" | "figureSourceMm">,
 ): ProblemEntity {
   return {
     id: row.id,
@@ -128,9 +132,8 @@ export function serializeTest(row: TestRow): TestEntity {
 
 export function serializeTestProblemItem(
   row: TestProblemRow & {
-    problem: Omit<ProblemRow, "choiceFigureIndex"> & {
-      choiceFigureIndex?: (number | null)[];
-    };
+    problem: Omit<ProblemRow, keyof TestProblemFigureFields> &
+      TestProblemFigureFields;
   },
 ): TestProblemItem {
   return {
