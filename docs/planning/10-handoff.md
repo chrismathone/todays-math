@@ -40,7 +40,21 @@ codex 작업자 셋(조판 · 엔진 · 기출 — orca Run `run_f571c2e15943`, 
   한 번이라도 시험지에 실린 문항이 바뀌면 «채점한 문제와 은행의 문제가 다르다».
 - **새 연장**(18 §3.1 · §3.2): `verify-refresh-ledger.ts`(원장 전수 검증) · `lock-problems.ts`(출제에서 빼기 · 원장) · `parse-census.ts`(파서 전후 전수 지문) ·
   `consult-three-way.ts`(3자 합의 실행기) · `apply-exam-draft-review.ts --review … --label …`(회차별).
+- 🔴 **같은 날 교재 트랙도 보기 그림의 짝을 따로 구현해 main 에 먼저 넣었다** — `ProblemContent` · `printOverflow` · 인쇄 매퍼 · 직렬화 여섯 파일이 충돌했다.
+  읽는 규칙을 `src/lib/problem/choiceFigureIndex.ts` 의 **`choiceFigureMode` 한 곳**으로 모았다(조판과 자가 같은 함수를 부른다):
+  `grid` 짝이 온전하다(은행 · B1 — 그림이 `[그림]` 자리를 대신해 번호 칸 안 · 2열) ·
+  `loose` 글 보기에 그림이 딸린 문항의 덜 된 짝(교재 스냅샷 — 아는 그림은 보기 글 아래 · 모르는 그림은 «그림 대응 확인 필요»와 함께 발문 자리) ·
+  `none` 짝 없음, 또는 **그림뿐인 보기가 있는데 짝이 어긋남** — 예전 조판 그대로.
+  짝 배열의 원소는 `null`(아직 안 본 장)을 받는다 — 은행 계약(`ProblemEntity`)은 `number[]` 그대로, 검수 화면의 읽는 쪽(`ExcerptProblem`)만 넓다.
+  `serializeProblem` 은 짝이 없으면 칸을 안 싣는다. 교재 시험 둘의 한 줄씩을 고쳤다(«옛 시험지 문항에는 짝이 없다» → «은행 행의 짝을 그대로 싣는다» — 은행 카드와 시험지 검수가 같은 뷰).
+  실물 검수 항목 수는 **101**(교재 100 + `bank-choice-figures`).
+- 🔴 **main 은 지금 11파일 24시험이 빨갛다 — 이 트랙 것이 아니다**(푸시 전 `a2f35e028` 에서도 같다 · pre-push 는 vitest 를 안 돌려 안 막힌다):
+  `kstDate`(`src/lib/eywa/relationPolicy.ts` 가 «+9시간»을 다시 적었다) · `mathSrsRecordIsolation`(`courseTeacherRoutes.ts` 가 복습 기록 표를 직접 읽는다) ·
+  `mathSrsQuickFence`(`scripts/qa/math-prerequisite/server.test.ts` → quick) · `noRmSync`(`englishBank.postgres.test.ts` · `mathPrerequisiteGraphCli.test.ts`) ·
+  `accountSession` 6 · `rosterRetainedRecords` 6 · `AdminAccounts` 4 · `StudentProgressBoard` 2 · `DailyReviewSection` 1 · `TodaysExam` 1 · `textbookSqlStatements`(«relation "textbook" already exists»).
+  eywa · 영어 자료 은행 · 선수학습 · 교재 세션의 몫이다. 이 트랙이 고친 것은 `decisionLogNumbers` 하나(머리글 괄호 안의 덧말이 판독을 깨고 있었다 — D-155 때 리드가 넣은 것).
 - 🔴 **원장님께 남는 것**
+  0. **그림뿐인 보기에 덜 된 짝이 올 때**를 어떻게 그릴지 — 은행 합의는 «예전 조판 그대로 + 출제에서 뺀다», 교재는 «그림 대응 확인 필요를 지면에 적는다». 지금은 은행식이다(`choiceFigureMode` 의 `none`). 교재 스냅샷에 그런 문항이 생기면 정해야 한다.
   1. **운영 DB 의 기출 82행**(동도 16 · 강동 21 · 경산여 26 · 정화 19 — 9월에 다시 들여오다 멈춘 것)을 **그대로 둘지 · 격리할지.** 답을 듣기 전이라 이 82행에는 쓰지 않았다.
      그대로 두면 드라이런을 마친 셋을 돌린다: 경산여 19 잠금(`lock-problems.ts --label exam-lock-gyeongsanyeo19-20261003 --reason "…" 2025-gyeongsanyeo-3-2-mid-19 --apply`) ·
      동도 16 풀이 식 · 강동 17 의 `%`(`apply-exam-draft-review.ts --review bank-decide-review.json --label exam-draft-review-bank-decide-20261003 --apply`).
@@ -51,6 +65,8 @@ codex 작업자 셋(조판 · 엔진 · 기출 — orca Run `run_f571c2e15943`, 
 - **오늘의 함정**: 🔴 **합의 요청서의 틀린 전제** — «지면에 출처가 붙는다» · «원본 필요»(원본은 미추적 `exams/<편>/src/paper.pdf` 에 있었다) · 어림 수치. 둘은 도구가 없어 요청서를 못 의심한다(20번 교훈).
   codex TUI 가 일하는 중에 보낸 지시는 **입력칸에 붙은 채 대기**한다 — `orca terminal read` 로 꼬리를 보고 `orca terminal send --terminal <handle> --enter` 를 한 번 더(「next tool call 뒤에 보냄」으로 바뀌면 된 것).
   작업자가 파일을 통째로 다시 쓰면 **줄끝이 LF → CRLF** 로 바뀌어 `git diff` 가 파일 전체를 낸다(`--ignore-cr-at-eol` 로 읽고, 커밋 전에 되돌리게 한다) · `parseProblemContent.ts` 는 원래 NUL 한 바이트를 품어 git 이 «Binary»라 한다(`--text`).
+  🔴 **작업자의 «관련 시험»이 초록이어도 전체 시험에서 셋이 빨갰다** — `printGeometryPin`(본문 렌더러의 소스 글자를 핀다) · `hwpRescueRules`(파서 판정이 바뀐다) · `decisionLogNumbers`. 푸시 전에 `npm run test` 를 한 번 돌린다(이 기계에서 `--maxWorkers=3` 으로 31분 · 1,033파일).
+  그 사이 다른 세션이 공유 `node_modules` 에 `npm install` 을 돌려도 결과는 같았다. 다른 세션이 main 에 넣은 빨강과 내 것을 가르려면 **같은 파일을 main 체크아웃에서 한 번 더** 돌린다.
   codex 주간 한도가 작업 끝에 2% 였다 — 셋을 동시에 띄우기 전에 상태줄의 `weekly N% left` 를 본다. 리드가 Bash heredoc 으로 문서에 TeX 를 넣다 `\t` 가 탭이 됐다(또 — Edit 로만).
 
 ## 0-ZI. 인수인계 (2026-10-03 저녁) — 일반 문제은행 외부 검토의 반영 (생성기 · 파생 · 채점 · 기출 초안 고침 · **적재본 7,130행 제자리 갱신**)
