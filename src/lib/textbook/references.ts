@@ -172,6 +172,12 @@ export function validateTextbookReferences(
       }
       if (raw.figureSvgAssetId) {
         image(raw.figureSvgAssetId, [...p, "rawSource", "figureSvgAssetId"]);
+        if (!s.payload.figures.some((f) => f.assetId === raw.figureSvgAssetId))
+          add("RAW_SVG_REF", "원본 SVG가 고정 그림 목록에 없습니다.", [
+            ...p,
+            "rawSource",
+            "figureSvgAssetId",
+          ]);
         if (assets.get(raw.figureSvgAssetId)?.mimeType !== "image/svg+xml")
           add("SVG_MIME", "원본 SVG에는 SVG 자산이 필요합니다.", p);
       }

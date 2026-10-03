@@ -37,7 +37,9 @@ describe("strict textbook archive transport", () => {
       async () => new Uint8Array(),
       reopened.validation,
     );
-    expect(repeated).toEqual(archive);
+    expect(Buffer.compare(Buffer.from(repeated!), Buffer.from(archive))).toBe(
+      0,
+    );
   });
   it.each([
     "../x",

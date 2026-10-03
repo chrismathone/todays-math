@@ -8,13 +8,82 @@ import {
   mergeTextbookPdfs,
   createTextbookSpreadPdf,
   planTextbookChunks,
+  renderTextbookOfflineHtml,
 } from "@/lib/textbook/render/server";
+import { verifyPdfQrPixels } from "@/lib/textbook/render/qrVerify.server";
+import { exchangeFromInertHtml } from "@/lib/textbook/archive/package.server";
+import { sha256, contentHash, snapshotHash } from "@/lib/textbook/hash.server";
 import { textbookFixture, SYNTHETIC_ORIGIN } from "../helpers/textbookFixture";
 
 const run = process.env.TEXTBOOK_PDF_TEST === "1";
 describe.skipIf(!run)(
   "real local Chromium / pdfjs / jsQR textbook artifacts",
   () => {
+    it("loads fixed figures and fails corrupt images or mathematical width overflow", async () => {
+      const browser = await launchExportBrowser();
+      try {
+        const exchange = textbookFixture(1, 1),
+          s = exchange.snapshots[0];
+        let bytes = new TextEncoder().encode(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="120" height="80" viewBox="0 0 120 80"><path d="M10 70 L60 10 L110 70 Z" fill="none" stroke="black"/><text x="55" y="78" font-size="10">6</text></svg>',
+        );
+        exchange.assets.push({
+          assetId: "triangle",
+          packagePath: "assets/triangle.svg",
+          sha256: sha256(bytes),
+          mimeType: "image/svg+xml",
+          widthPx: 120,
+          heightPx: 80,
+        });
+        s.payload.figures = [
+          {
+            assetId: "triangle",
+            sha256: sha256(bytes),
+            choiceIndex: 0,
+            sourceWidthMm: 40,
+            altText: "fixed triangle",
+          },
+        ];
+        const rehash = () => {
+          s.contentHash = contentHash(s.payload);
+          s.snapshotHash = snapshotHash(s);
+        };
+        rehash();
+        const input = {
+          exchange,
+          officialOrigin: SYNTHETIC_ORIGIN,
+          readAsset: async () => bytes,
+          sectionIndices: [0],
+          firstPhysicalPageIndex: 1,
+          variant: "student" as const,
+          browser,
+        };
+        const result = await renderTextbookChunk(input);
+        expect(result.qrChecks).toHaveLength(1);
+        expect(result.html).toContain("fixed triangle");
+        s.payload.content = `$\\underbrace{${"x+".repeat(200)}x}_{1}$`;
+        rehash();
+        await expect(renderTextbookChunk(input)).rejects.toThrow(
+          /width overflow/,
+        );
+        s.payload.content = "그림을 보시오.";
+        bytes = new Uint8Array(33);
+        bytes.set([137, 80, 78, 71, 13, 10, 26, 10]);
+        exchange.assets[0] = {
+          ...exchange.assets[0],
+          packagePath: "assets/broken.png",
+          mimeType: "image/png",
+          sha256: sha256(bytes),
+        };
+        s.payload.figures[0].sha256 = sha256(bytes);
+        rehash();
+        await expect(renderTextbookChunk(input)).rejects.toThrow(
+          /decode|encoding|image/i,
+        );
+      } finally {
+        await browser.close();
+      }
+    }, 180_000);
     it("renders student, answers, spreads and verifies all final QR pixels", async () => {
       const browser = await launchExportBrowser();
       try {
@@ -45,9 +114,39 @@ describe.skipIf(!run)(
         const answers = await renderTextbookChunk({
           ...input,
           variant: "answers",
+          frozenPages: student.pages,
         });
+        expect(answers.pageMap).toEqual(student.pageMap);
         expect(answers.html).toContain("비공개 정답");
         expect(answers.qrChecks).toHaveLength(4);
+        await expect(
+          verifyPdfQrPixels(
+            browser,
+            merged.pdf,
+            merged.qrPlacements.map((p, i) =>
+              i ? p : { ...p, url: `${p.url}_wrong` },
+            ),
+            merged.pageCount,
+          ),
+        ).rejects.toThrow(/PDF QR mismatch/);
+        await expect(
+          mergeTextbookPdfs([student, student], undefined, browser),
+        ).rejects.toThrow(/physical order/);
+        const teacherHtml = await renderTextbookOfflineHtml({
+          ...input,
+          pages: answers.pages,
+          variant: "answers",
+          includeTeacherArchiveData: true,
+        });
+        expect(exchangeFromInertHtml(teacherHtml)).toEqual(exchange);
+        await expect(
+          renderTextbookOfflineHtml({
+            ...input,
+            pages: student.pages,
+            variant: "student",
+            includeTeacherArchiveData: true,
+          }),
+        ).rejects.toThrow(/Student HTML/);
         await mkdir("output/pdf", { recursive: true });
         await Promise.all([
           writeFile("output/pdf/textbook-synthetic-student.pdf", merged.pdf),
