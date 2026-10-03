@@ -13,18 +13,25 @@ import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 
 import type { TextbookActor } from "@/lib/textbook/access";
-import { sha256 } from "@/lib/textbook/hash.server";
+import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import {
+  freezeTextbookConcept,
+  resolveReviewedConcept,
+} from "@/lib/textbook/concepts";
+import { canonicalHash, sha256 } from "@/lib/textbook/hash.server";
+import { validateForPublish } from "@/lib/textbook/publish/deps.server";
 import { finalizePublish } from "@/lib/textbook/publish/finalize";
+import { preflightEdition } from "@/lib/textbook/publish/preflight";
 import { reservePublish } from "@/lib/textbook/publish/reserve";
 import { runNextStep } from "@/lib/textbook/publish/step";
 import { completeUpload, putUploadChunk } from "@/lib/textbook/server/blobs";
 import { createBook, createEdition } from "@/lib/textbook/server/books";
-import { listConcepts } from "@/lib/textbook/server/conceptRows";
+import { listConcepts, saveConcept } from "@/lib/textbook/server/conceptRows";
 import {
   getEditionDetail,
   saveStructure,
 } from "@/lib/textbook/server/editions";
-import { assembleExchange } from "@/lib/textbook/server/exchange";
+import { exportEdition } from "@/lib/textbook/server/exportEdition";
 import { importPackage } from "@/lib/textbook/server/imports";
 import { captureItems, updateItem } from "@/lib/textbook/server/items";
 import { saveSection } from "@/lib/textbook/server/sections";
@@ -52,7 +59,14 @@ let db: TextbookDb;
 let world: World;
 let owner: TextbookActor;
 let other: TextbookActor;
-const deps = fakePublishDeps();
+// Only rendering is a test double: concept freezing and publish preflight use
+// the production validator, which caught the self-derivation copy bug in QA.
+const deps = {
+  ...fakePublishDeps(),
+  validate: validateForPublish,
+  freezeConcept: freezeTextbookConcept,
+};
+const EXPORTED_AT = "2026-10-03T00:00:00.000Z";
 
 beforeAll(async () => {
   pg = await openTextbookDb();
@@ -78,7 +92,7 @@ const BODY = JSON.stringify({
 
 /**
  * 개념 둘이 든 책 — `k-chosen` 은 형식을 [recall] 하나만 골랐고, `k-unset` 은 고르지 않았다(NULL).
- * 둘 다 배치가 가리킨다(발행할 때 지워지지 않게).
+ * `k-unset` 은 같은 판본의 `k-chosen` 에서 파생되었다. 둘 다 배치가 가리킨다(발행할 때 지워지지 않게).
  */
 async function book(options: { publish: boolean }) {
   const { book: made } = await createBook(
@@ -142,14 +156,39 @@ async function book(options: { publish: boolean }) {
     },
     async () => null,
   );
+  const blankEntry = CONCEPT_BLANK_BANK.concepts.find(
+    (entry) => !entry.givenCase,
+  )!;
+  const blankItems = JSON.stringify([
+    {
+      blankSectionKey: blankEntry.section,
+      entryKind: "concept",
+      entryId: blankEntry.id,
+      review: {
+        status: "confirmed",
+        candidateRule: "manual",
+        reviewedBy: owner.id,
+        reviewedAt: EXPORTED_AT,
+        targetHash: canonicalHash(blankEntry),
+      },
+    },
+  ]);
   for (const [conceptKey, forms] of [
     ["k-chosen", JSON.stringify(["recall"])],
     ["k-unset", null],
   ] as const)
     await pg.query(
-      `INSERT INTO "textbook_concept" ("edition_id", "concept_key", "unit_key", "title", "kind", "body", "blank_items", "blank_forms", "links", "mapping_version", "updated_at")
-       VALUES ($1, $2, 'u1', $2, '정의', $3::jsonb, '[]'::jsonb, $4::jsonb, '[]'::jsonb, 'm1', $5)`,
-      [editionId, conceptKey, BODY, forms, sqlNow()],
+      `INSERT INTO "textbook_concept" ("edition_id", "concept_key", "unit_key", "title", "kind", "body", "blank_items", "blank_forms", "links", "mapping_version", "updated_at", "derived_from_concept_key")
+       VALUES ($1, $2, 'u1', $2, '정의', $3::jsonb, $6::jsonb, $4::jsonb, '[]'::jsonb, 'm1', $5, $7)`,
+      [
+        editionId,
+        conceptKey,
+        BODY,
+        forms,
+        sqlNow(),
+        blankItems,
+        conceptKey === "k-unset" ? "k-chosen" : null,
+      ],
     );
   let revision = (await getEditionDetail(db, owner, editionId)).edition
     .revision;
@@ -194,15 +233,38 @@ async function formsOf(actor: TextbookActor, editionId: string) {
 
 const stored = async (editionId: string) =>
   (
-    await pg.query<{ concept_key: string; blank_forms: string[] | null }>(
-      `SELECT "concept_key", "blank_forms" FROM "textbook_concept" WHERE "edition_id" = $1 ORDER BY "concept_key"`,
+    await pg.query<{
+      concept_key: string;
+      blank_forms: string[] | null;
+      derived_from_concept_key: string | null;
+    }>(
+      `SELECT "concept_key", "blank_forms", "derived_from_concept_key" FROM "textbook_concept" WHERE "edition_id" = $1 ORDER BY "concept_key"`,
       [editionId],
     )
   ).rows;
 
+const preservedConcepts = [
+  {
+    concept_key: "k-chosen",
+    blank_forms: ["recall"],
+    derived_from_concept_key: null,
+  },
+  {
+    concept_key: "k-unset",
+    blank_forms: null,
+    derived_from_concept_key: "k-chosen",
+  },
+];
+
 describe("고른 백지 형식은 판본을 건너가도 그대로다", () => {
   it("발행본에서 새 판본을 만들면 고른 형식은 그대로, 고르지 않은 것은 고르지 않은 채로 온다", async () => {
     const source = await book({ publish: true });
+    const original = await exportEdition(
+      db,
+      owner,
+      source.editionId,
+      EXPORTED_AT,
+    );
     const { edition } = await createEdition(
       db,
       owner,
@@ -212,43 +274,134 @@ describe("고른 백지 형식은 판본을 건너가도 그대로다", () => {
     );
     const next = edition.edition.editionId;
     expect(next).not.toBe(source.editionId);
-    expect(await stored(next)).toEqual([
-      { concept_key: "k-chosen", blank_forms: ["recall"] },
-      { concept_key: "k-unset", blank_forms: null },
-    ]);
+    const beforePreflight = await exportEdition(db, owner, next, EXPORTED_AT);
+    const preflight = await preflightEdition(db, owner, next, deps);
+    expect(
+      preflight.issues.filter((issue) => issue.severity === "error"),
+    ).toEqual([]);
+    expect(preflight.canPublish).toBe(true);
+    expect(await exportEdition(db, owner, next, EXPORTED_AT)).toEqual(
+      beforePreflight,
+    );
+    expect(await stored(next)).toEqual(preservedConcepts);
+    expect(
+      await db.query(
+        `SELECT "derived_from_edition_id" FROM "textbook_edition" WHERE "id" = $1`,
+        [next],
+      ),
+    ).toEqual([{ derived_from_edition_id: source.editionId }]);
+    expect(
+      (await listConcepts(db, owner, next)).every(
+        (record) => record.concept.frozen === null,
+      ),
+    ).toBe(true);
     // 읽는 쪽도 같다 — 없는 칸을 기본값으로 채워 내지 않는다
     expect(await formsOf(owner, next)).toEqual({
       "k-chosen": ["recall"],
       "k-unset": "없음",
     });
     // 발행본은 그대로다
-    expect(await stored(source.editionId)).toEqual([
-      { concept_key: "k-chosen", blank_forms: ["recall"] },
-      { concept_key: "k-unset", blank_forms: null },
-    ]);
+    expect(await stored(source.editionId)).toEqual(preservedConcepts);
+    expect(
+      await exportEdition(db, owner, source.editionId, EXPORTED_AT),
+    ).toEqual(original);
   });
 
-  it("패키지로 복사해 가도 같다", async () => {
+  it.each([false, true])(
+    "패키지 복사도 형식과 판본 안의 파생 관계를 보존한다 (published=%s)",
+    async (publish) => {
+      const source = await book({ publish });
+      const exchange = await exportEdition(
+        db,
+        owner,
+        source.editionId,
+        EXPORTED_AT,
+      );
+      const zip = Buffer.from(`PK-${randomUUID()}`);
+      await putUploadChunk(db, other, sha256(zip), 0, zip);
+      const upload = await completeUpload(db, other, sha256(zip), {
+        byteLength: zip.length,
+      });
+      const copied = await importPackage(
+        db,
+        other,
+        requestKey(other, "import"),
+        {
+          mode: "copy",
+          uploadId: upload.uploadId,
+          expectedSha256: sha256(zip),
+        },
+        async () => ({ exchange, files: new Map(), validation: {} }),
+        async () => null,
+      );
+      expect(copied.editionId).not.toBeNull();
+      expect(copied.editionId).not.toBe(source.editionId);
+      expect(await stored(copied.editionId!)).toEqual(preservedConcepts);
+      expect(await formsOf(other, copied.editionId!)).toEqual({
+        "k-chosen": ["recall"],
+        "k-unset": "없음",
+      });
+      // Cross-owner package copies still need this teacher's explicit review.
+      const concepts = await listConcepts(db, other, copied.editionId!);
+      for (const record of concepts) {
+        expect(record.concept.frozen).toBeNull();
+        expect(record.concept.blankItems[0].review.status).toBe("candidate");
+        await saveConcept(
+          db,
+          other,
+          copied.editionId!,
+          record.concept.conceptKey,
+          requestKey(other, "concept-save"),
+          {
+            expectedRevision: record.revision,
+            concept: record.concept,
+            confirmBlankEntryIds: record.concept.blankItems.map(
+              (item) => item.entryId,
+            ),
+          },
+          resolveReviewedConcept,
+        );
+      }
+      const preflight = await preflightEdition(
+        db,
+        other,
+        copied.editionId!,
+        deps,
+      );
+      expect(
+        preflight.issues.filter((issue) => issue.severity === "error"),
+      ).toEqual([]);
+      expect(preflight.canPublish).toBe(true);
+      expect(
+        await exportEdition(db, owner, source.editionId, EXPORTED_AT),
+      ).toEqual(exchange);
+    },
+  );
+
+  it("자기 자신을 가리키는 명시적 파생 관계는 실제 발행 사전 검사에서 계속 거절한다", async () => {
     const source = await book({ publish: false });
-    const exchange = await assembleExchange(db, source.editionId, {
-      exportedAt: "2026-10-03T00:00:00.000Z",
-    });
-    const zip = Buffer.from(`PK-${randomUUID()}`);
-    await putUploadChunk(db, other, sha256(zip), 0, zip);
-    const upload = await completeUpload(db, other, sha256(zip), {
-      byteLength: zip.length,
-    });
-    const copied = await importPackage(
+    const record = (await listConcepts(db, owner, source.editionId)).find(
+      (row) => row.concept.conceptKey === "k-chosen",
+    )!;
+    await saveConcept(
       db,
-      other,
-      requestKey(other, "import"),
-      { mode: "copy", uploadId: upload.uploadId, expectedSha256: sha256(zip) },
-      async () => ({ exchange, files: new Map(), validation: {} }),
-      async () => null,
+      owner,
+      source.editionId,
+      record.concept.conceptKey,
+      requestKey(owner, "concept-save"),
+      {
+        expectedRevision: record.revision,
+        concept: {
+          ...record.concept,
+          derivedFromConceptKey: record.concept.conceptKey,
+        },
+      },
+      resolveReviewedConcept,
     );
-    expect(await stored(copied.editionId!)).toEqual([
-      { concept_key: "k-chosen", blank_forms: ["recall"] },
-      { concept_key: "k-unset", blank_forms: null },
-    ]);
+    const preflight = await preflightEdition(db, owner, source.editionId, deps);
+    expect(preflight.canPublish).toBe(false);
+    expect(
+      preflight.issues.filter((issue) => issue.severity === "error"),
+    ).toEqual([expect.objectContaining({ code: "CONCEPT_DERIVATION" })]);
   });
 });

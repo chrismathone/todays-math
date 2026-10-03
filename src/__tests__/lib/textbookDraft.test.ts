@@ -1213,13 +1213,13 @@ describe("새 판본", () => {
     });
     const concepts = await pg.query<{
       frozen: unknown;
-      derived_from_concept_key: string;
+      derived_from_concept_key: string | null;
     }>(
       `SELECT "frozen", "derived_from_concept_key" FROM "textbook_concept" WHERE "edition_id" = $1`,
       [nextId],
     );
     expect(concepts.rows).toEqual([
-      { frozen: null, derived_from_concept_key: book.conceptKey },
+      { frozen: null, derived_from_concept_key: null },
     ]);
     // QR 은 따라오지 않는다 — 새 판본은 발행할 때 새로 받는다
     const qr = await pg.query(
