@@ -159,10 +159,18 @@ async function run(doApply: boolean): Promise<void> {
     }
     todo.push({ problemId: db.id, externalId: c.externalId, before, after });
   }
+  // 바뀌는 칸마다 «처음 달라지는 자리»를 찍는다 — 정답만 찍으면 풀이 · 본문만 고친 행이 undefined 로 나온다.
   for (const t of todo)
-    console.log(
-      `   ${t.externalId}  정답 「${String(t.before.answer).slice(0, 14)}」 → 「${String(t.after.answer).slice(0, 40)}」`,
-    );
+    for (const f of Object.keys(t.after) as Field[]) {
+      const b = t.before[f] ?? "";
+      const a = t.after[f] ?? "";
+      let at = 0;
+      while (at < b.length && at < a.length && b[at] === a[at]) at += 1;
+      const from = Math.max(0, at - 12);
+      console.log(
+        `   ${t.externalId}  ${f} 「…${b.slice(from, at + 24)}」 → 「…${a.slice(from, at + 28)}」`,
+      );
+    }
   console.log(`덮을 것 ${todo.length} · 건너뜀 ${skipped.length}`);
   for (const s of skipped) console.log(`   ⚠️ ${s}`);
   if (!doApply)
