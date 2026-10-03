@@ -3,6 +3,12 @@
   "school": "대구일중",
   "grade": "중3",
   "subject": "수학",
+  "graphChoices": {
+    "3": { "stem": "q03.png", "choices": ["q03-2.png", "q03-3.png", "q03-4.png", "q03-5.png", "q03-6.png"], "why": "리드 추가: 원본 그림·색인 좌표의 읽기 순서를 확인. a<0,b>0,c<0이므로 y=bx²-cx+a는 위로 열리고 축·y절편이 음수인 ④(q03-5) 하나다." }
+  },
+  "answerRepairs": {
+    "19": { "head": "$\\mathrm{\\sin }\\,A=\\frac{\\sqrt{11}}{6},~\\mathrm{\\cos }\\,A=\\frac{5}{6},~\\mathrm{\\tan }\\,A=\\frac{\\sqrt{11}}{5}$$\\mathrm{\\sin }\\,C=\\frac{5}{6},~\\mathrm{\\cos }\\,C=\\frac{\\sqrt{11}}{6},~\\mathrm{\\tan }\\,C=\\frac{5\\sqrt{11}}{11}$", "why": "EX-01: A·C 각각의 삼각비 세 개가 두 수식으로 나뉜 답 머리; 뒤의 피타고라스 식부터 풀이" }
+  },
   "tables": [
     12,
     22

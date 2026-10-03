@@ -26,7 +26,7 @@
  * 검수자 실명이다 — **DB 에 들어가면 안 된다.** 문3 에는 연구회 꼬리말이 붙었다.
  * 걷어 낸 뒤 **남았는지 다시 세고**, 그 검사가 살아 있는지 일부러 걸리는 글로 확인한다.
  */
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { blocksToLatex } from "../../../src/lib/import/blocksToLatex";
@@ -38,6 +38,11 @@ import {
 } from "../../../src/lib/import/convertPastExam";
 
 import { loadExamConfig } from "./examConfig";
+import { repairExamPieces, withoutSharedPassage } from "./repairExamPieces";
+import { repairEquationScopes } from "./repairEquationScopes";
+import { repairExamText } from "./repairExamText";
+import { graphFigureFields } from "./graphChoiceFigures";
+import { splitAnswer } from "./splitAnswer";
 
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
@@ -56,20 +61,38 @@ interface HwpQuestion {
   difficulty: string;
   answer: string | null;
   solution: string | null;
+  label?: string | null;
 }
 
 const hwp = read("answers.json") as { questions: HwpQuestion[] };
 const pdf = read("body.json") as PastExamPaper;
-const piece = new Map(
-  (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
-    r.id,
-    r.text,
-  ]),
+const graphFields = new Map<number, { choiceFigureIndex?: number[] }>();
+if (Object.keys(CFG.graphChoices ?? {}).length > 0) {
+  const source = read("figures/index.json") as {
+    figures: { number: number; file: string }[];
+  };
+  for (const [number, repair] of Object.entries(CFG.graphChoices ?? {})) {
+    const figures = source.figures.filter((f) => f.number === Number(number));
+    for (const f of figures) {
+      if (!existsSync(join(DIR, "figures", f.file)))
+        throw new Error(`[중단] 원본 그림 ${f.file}이 없다`);
+    }
+    graphFields.set(Number(number), graphFigureFields(repair, figures));
+  }
+}
+const piece = repairExamPieces(
+  new Map(
+    (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
+      r.id,
+      repairExamText(repairEquationScopes(r.text)),
+    ]),
+  ),
+  hwp.questions,
 );
 const solFixed = new Map(
   (read("sol_fixed.json") as { id: string; text: string }[]).map((r) => [
     r.id,
-    r.text,
+    repairExamText(repairEquationScopes(r.text)),
   ]),
 );
 
@@ -281,25 +304,6 @@ function stripTableCells(stem: string, n: number): string {
  * ⚠️ 마지막 표시 뒤에 수식이 하나도 없으면 그 표시는 **해설의 것**이라 되돌려 준다
  *    (문19 `⑴ $4$ ⑵ $40$` 다음에 곧바로 `⑴ 원 위의 점이 …`).
  */
-function splitAnswer(text: string): { answer: string; solution: string } {
-  const m = /^\s*정답\s*/.exec(text);
-  if (!m) return { answer: "", solution: text.trim() };
-  const rest = text.slice(m[0].length);
-  const TOKEN = /^(\$[^$]*\$|[⑴-⑽]|해설참조|[\s,·]+)/;
-  let i = 0;
-  let lastMark = -1;
-  for (;;) {
-    const t = TOKEN.exec(rest.slice(i));
-    if (!t) break;
-    if (/^[⑴-⑽]$/.test(t[1])) lastMark = i;
-    i += t[1].length;
-  }
-  if (lastMark >= 0 && !/\$/.test(rest.slice(lastMark, i))) i = lastMark;
-  return {
-    answer: rest.slice(0, i).replace(/\s+/g, " ").trim(),
-    solution: rest.slice(i).trim(),
-  };
-}
 
 // ── ㉢ 상자 마커 — HWP 는 **틀 구조를 잃는다**. 그것을 아는 것은 PDF 쪽이다 ────
 //
@@ -464,7 +468,12 @@ const questions = hwp.questions.map((q) => {
   const scrubbed0 = scrub(piece.get(`${q.number}-stem`) ?? "");
   scrubbed0.out = stripTableCells(scrubbed0.out, q.number);
   const hits = scrubbed0.hits;
-  const stem = restoreBoxMarker(scrubbed0.out, pdfStem, q.number);
+  let stem = restoreBoxMarker(
+    scrubbed0.out,
+    withoutSharedPassage(pdfStem),
+    q.number,
+  );
+  if (graphFields.has(q.number)) stem = stem.replace(/[①-⑤]/g, "").trim();
   if (hits.length > 0) {
     scrubbed += 1;
     console.log(`  문${q.number} 걷음: ${hits.join(" · ")}`);
@@ -489,6 +498,17 @@ const questions = hwp.questions.map((q) => {
     const c = scrub(c0).out;
     choices.push({ number: i, contents: [{ type: "text", value: c }] });
   }
+  if (graphFields.has(q.number)) {
+    if (choices.length > 0 || !/^[①-⑤]$/.test(q.answer ?? ""))
+      throw new Error(
+        `[중단] 문${q.number}의 그래프 보기 복구 전제가 바뀌었다`,
+      );
+    for (let i = 1; i <= 5; i += 1)
+      choices.push({
+        number: i,
+        contents: [{ type: "text", value: "[그림]" }],
+      });
+  }
   return {
     number: q.number,
     score: scoreOf.get(q.number)!,
@@ -509,7 +529,11 @@ const answers: PastExamAnswer[] = hwp.questions.map((q) => {
       topic: q.topic,
       difficulty: q.difficulty,
     };
-  const { answer, solution } = splitAnswer(text);
+  const { answer, solution } = splitAnswer(
+    text,
+    q.answer ?? "",
+    CFG.answerRepairs?.[q.number],
+  );
   return {
     number: q.number,
     answer: answer || q.answer || "",
@@ -554,7 +578,10 @@ const drafts = convertPastExamPaper(paper, answers).map((d, i) => {
     answer,
     solution,
     // HWP 가 아는 출제 형식(객관식/단답형/서술형). `problemType`(계산/개념/활용/서술형)과 다른 축.
-    questionType: hwp.questions[i].type,
+    questionType: graphFields.has(d.questionNumber!)
+      ? "객관식"
+      : hwp.questions[i].type,
+    ...(graphFields.get(d.questionNumber!) ?? {}),
   };
 });
 console.log(
@@ -584,7 +611,7 @@ for (const d of drafts) {
 }
 
 writeFileSync(
-  join(DIR, "drafts.json"),
+  process.argv[3] ?? join(DIR, "drafts.json"),
   JSON.stringify(drafts, null, 1),
   "utf-8",
 );

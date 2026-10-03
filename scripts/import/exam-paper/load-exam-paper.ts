@@ -32,6 +32,7 @@ import { PrismaClient } from "@prisma/client";
 import { mapUnitHint } from "../../../src/lib/import/mapUnit";
 
 import { loadExamConfig } from "./examConfig";
+import { graphFigureFields } from "./graphChoiceFigures";
 import { syncExamMetadata } from "../../../src/lib/import/syncExamMetadata";
 import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
 
@@ -483,6 +484,7 @@ async function main(): Promise<void> {
       solutionSource,
       // 🔴 원본을 옮긴다. `figureSvg`(우리가 다시 그린 것)는 **안 쓴다**.
       figureUrls: figs.length > 0 ? copyFigures(figs) : [],
+      ...graphFigureFields(CFG.graphChoices?.[n], figs),
       figureDims: figs.flatMap((f) => f.px),
       figureSourceMm: figs.map((f) => f.widthMm),
       figureSvg: null,
