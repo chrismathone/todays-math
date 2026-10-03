@@ -49,7 +49,10 @@
   cursor: default;
 }
 .workspace button:focus-visible,
-.workspace input:focus-visible {
+.workspace input:focus-visible,
+.workspace textarea:focus-visible,
+.workspace select:focus-visible,
+.workspace summary:focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 3px;
 }
@@ -268,6 +271,173 @@
   margin-top: 8px;
 }
 
+.studio {
+  min-width: 0;
+  background: var(--surface);
+}
+.studio > .workspace + .workspace {
+  padding-top: 0;
+}
+.studio [hidden] {
+  display: none;
+}
+.editor {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+.editor label:not(.check),
+.blockLabel {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  font-weight: 600;
+}
+.workspace input:not([type="checkbox"]):not([type="range"]),
+.workspace textarea,
+.workspace select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--control);
+  border-radius: var(--control-radius);
+  padding: 9px 10px;
+  color: var(--ink);
+  background: var(--surface);
+  font: inherit;
+}
+.workspace textarea {
+  resize: vertical;
+  line-height: 1.65;
+}
+.workspace input:disabled,
+.workspace select:disabled,
+.workspace textarea:disabled {
+  background: var(--bg);
+  color: var(--text-2);
+}
+.workspace input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  accent-color: var(--blue);
+}
+.workspace input[type="checkbox"]:enabled {
+  cursor: pointer;
+}
+.formSection {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  margin: 0;
+  padding: 20px;
+  border: 1px solid var(--divider);
+}
+.formSection legend,
+.questionFields legend,
+.targets legend {
+  padding: 0 8px;
+  font-weight: 700;
+}
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.checks,
+.targets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+.targets {
+  border: 1px solid var(--divider);
+  margin: 0;
+  padding: 14px;
+  min-width: 0;
+}
+.check {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 400;
+}
+.questionFields {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  margin: 12px 0 0;
+  padding: 18px;
+  background: var(--bg);
+  border: 1px solid var(--divider);
+}
+.choiceFields {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+.interval {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  gap: 10px;
+  align-items: end;
+}
+.reviewPanel {
+  margin-top: 24px;
+  border-top: 2px solid var(--ink);
+  padding-top: 18px;
+  display: grid;
+  gap: 16px;
+}
+.reviewRow {
+  display: grid;
+  gap: 8px;
+  border-bottom: 1px solid var(--divider);
+  padding-bottom: 14px;
+}
+.reviewRow button {
+  justify-self: start;
+}
+.assignmentCreate {
+  border: 1px solid var(--divider);
+  margin-bottom: 26px;
+  padding: 18px;
+}
+.assignmentCreate > summary {
+  cursor: pointer;
+  min-height: 44px;
+  font-weight: 700;
+}
+.assignmentCreate > summary:hover {
+  color: var(--blue);
+}
+.tableWrap {
+  overflow-x: auto;
+  margin: 16px 0;
+}
+.results {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+.results th,
+.results td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--divider);
+  vertical-align: top;
+  min-width: 70px;
+}
+.results thead {
+  background: var(--bg);
+}
+.notice button {
+  margin-left: 14px;
+}
+
 @media (max-width: 850px) {
   .workspace {
     padding: 22px 18px;
@@ -289,5 +459,22 @@
   }
   .player {
     padding: 14px;
+  }
+  .formGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .formSection,
+  .questionFields,
+  .assignmentCreate {
+    padding: 12px;
+  }
+  .interval {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .interval button {
+    grid-column: 1 / -1;
+  }
+  .choiceFields {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

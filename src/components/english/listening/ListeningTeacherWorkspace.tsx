@@ -1,6 +1,12 @@
 "use client";
 
-import { useId, useLayoutEffect, useRef, useState } from "react";
+import {
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import { ListeningTeacherAudio } from "./ListeningTeacherAudio";
 import styles from "./ListeningTeacherWorkspace.module.css";
@@ -17,6 +23,10 @@ export type ListeningTeacherWorkspaceProps = {
   selectedDocument: EnglishListeningDocument | null;
   /** Caller-authorized URLs only. Asset IDs are never converted into routes. */
   mediaUrlsByAssetId: Readonly<Record<string, string | undefined>>;
+  /** Connected controller may render an incomplete draft in the same A workbench. */
+  selectedContent?: ReactNode;
+  selectedMaterialId?: string;
+  embedded?: boolean;
   onSelectMaterial: (
     materialId: string,
     context: ListeningTeacherActionContext,
@@ -63,6 +73,9 @@ function TeacherSession({
   onCreate,
   onEdit,
   onPublish,
+  selectedContent,
+  selectedMaterialId,
+  embedded,
 }: ListeningTeacherWorkspaceProps) {
   const request = useRef<AbortController | null>(null);
   const [pending, setPending] = useState<string | null>(null);
@@ -98,31 +111,33 @@ function TeacherSession({
 
   return (
     <section className={styles.workspace} aria-label="교사 영어듣기 작업대">
-      <header className={styles.heading}>
-        <div>
-          <p className={styles.eyebrow}>오늘의 영어 · 교사</p>
-          <h1>영어듣기</h1>
-          <p className={styles.muted}>
-            음원과 문항을 확인하고 수업에서 재생합니다.
-          </p>
-        </div>
-        {onCreate ? (
-          <button
-            type="button"
-            className={styles.primary}
-            disabled={pending !== null}
-            onClick={() =>
-              void perform({
-                pending: "자료 만들기를 여는 중입니다.",
-                error: "자료 만들기를 열지 못했습니다. 다시 시도해 주세요.",
-                run: onCreate,
-              })
-            }
-          >
-            자료 만들기
-          </button>
-        ) : null}
-      </header>
+      {!embedded ? (
+        <header className={styles.heading}>
+          <div>
+            <p className={styles.eyebrow}>오늘의 영어 · 교사</p>
+            <h1>영어듣기</h1>
+            <p className={styles.muted}>
+              음원과 문항을 확인하고 수업에서 재생합니다.
+            </p>
+          </div>
+          {onCreate ? (
+            <button
+              type="button"
+              className={styles.primary}
+              disabled={pending !== null}
+              onClick={() =>
+                void perform({
+                  pending: "자료 만들기를 여는 중입니다.",
+                  error: "자료 만들기를 열지 못했습니다. 다시 시도해 주세요.",
+                  run: onCreate,
+                })
+              }
+            >
+              자료 만들기
+            </button>
+          ) : null}
+        </header>
+      ) : null}
 
       <div
         role="status"
@@ -154,7 +169,9 @@ function TeacherSession({
                   <button
                     type="button"
                     className={styles.material}
-                    aria-pressed={document?.id === material.id}
+                    aria-pressed={
+                      (selectedMaterialId ?? document?.id) === material.id
+                    }
                     onClick={() =>
                       void perform({
                         pending: "자료를 불러오는 중입니다.",
@@ -184,7 +201,9 @@ function TeacherSession({
           aria-label="선택한 듣기 자료"
           aria-busy={pending !== null}
         >
-          {document ? (
+          {selectedContent !== undefined ? (
+            selectedContent
+          ) : document ? (
             <>
               <div className={styles.documentHeading}>
                 <p className={styles.eyebrow}>
@@ -251,7 +270,7 @@ function TeacherSession({
   );
 }
 
-function TeacherWorkbench({
+export function TeacherWorkbench({
   document,
   mediaUrlsByAssetId,
   playbackEpoch,
