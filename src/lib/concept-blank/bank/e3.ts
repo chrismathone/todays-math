@@ -2457,7 +2457,7 @@ export const bank: ConceptBlankBank = {
       statement:
         "$1\\,\\mathrm{L}\\ 40\\,\\mathrm{mL}$를 $\\mathrm{mL}$로만 쓰면 $140\\,\\mathrm{mL}$이다.",
       answer: false,
-      why: "$1\\,\\mathrm{L}$는 $1000\\,\\mathrm{mL}$라 $1040\\,\\mathrm{mL}$이다 — $1$과 $40$을 붙여 쓰면 안 된다.",
+      why: "$1$은 $1000\\,\\mathrm{mL}$ 묶음 하나, $40$은 $1\\,\\mathrm{mL}$ 마흔 개를 뜻하므로 $1040\\,\\mathrm{mL}$이다.",
     },
     {
       id: "e3-2-5-3-o1",
@@ -2483,7 +2483,7 @@ export const bank: ConceptBlankBank = {
       statement:
         "$3\\,\\mathrm{kg}\\ 20\\,\\mathrm{g}$을 $\\mathrm{g}$으로만 쓰면 $320\\,\\mathrm{g}$이다.",
       answer: false,
-      why: "$3\\,\\mathrm{kg}$은 $3000\\,\\mathrm{g}$이라 $3020\\,\\mathrm{g}$이다 — $3$과 $20$을 붙여 쓰면 안 된다.",
+      why: "$3$은 $1000\\,\\mathrm{g}$ 묶음 셋, $20$은 $1\\,\\mathrm{g}$ 스무 개를 뜻하므로 $3020\\,\\mathrm{g}$이다.",
     },
     {
       id: "e3-2-5-6-o1",
