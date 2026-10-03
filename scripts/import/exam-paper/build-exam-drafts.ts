@@ -39,6 +39,7 @@ import {
 
 import { loadExamConfig } from "./examConfig";
 import { repairExamPieces, withoutSharedPassage } from "./repairExamPieces";
+import { repairEquationScopes } from "./repairEquationScopes";
 import { splitAnswer } from "./splitAnswer";
 
 const DIR = process.argv[2];
@@ -67,7 +68,7 @@ const piece = repairExamPieces(
   new Map(
     (read("hwp_fixed.json") as { id: string; text: string }[]).map((r) => [
       r.id,
-      r.text,
+      repairEquationScopes(r.text),
     ]),
   ),
   hwp.questions,
@@ -75,7 +76,7 @@ const piece = repairExamPieces(
 const solFixed = new Map(
   (read("sol_fixed.json") as { id: string; text: string }[]).map((r) => [
     r.id,
-    r.text,
+    repairEquationScopes(r.text),
   ]),
 );
 
