@@ -49,7 +49,7 @@ export function renderBlockHtml(
       const figures = block.figures
         .map(
           (f) =>
-            `<figure class="tb-problem-figure" data-choice-index="${f.choiceIndex ?? "unknown"}">${f.choiceIndex && f.choiceIndex > 0 ? `<span class="tb-choice-label">${f.choiceIndex}번 보기</span>` : f.choiceIndex === null ? '<span class="tb-choice-label">그림 대응 확인 필요</span>' : ""}${image(f.assetId, f.altText ?? "문제 그림", f.sourceWidthMm ?? undefined)}</figure>`,
+            `<figure class="tb-problem-figure" data-choice-index="${f.choiceIndex ?? "unknown"}">${f.choiceIndex && f.choiceIndex > 0 ? `<span class="tb-choice-label">${f.choiceIndex}번 보기</span>` : f.choiceIndex === null ? '<span class="tb-choice-label">보기 대응 정보 없음 · 원본 순서로 표시</span>' : ""}${image(f.assetId, f.altText ?? "문제 그림", f.sourceWidthMm ?? undefined)}</figure>`,
         )
         .join("");
       const answer =
