@@ -1,8 +1,11 @@
-import type { ReactNode } from "react";
+"use client";
+
+import { useState, type ReactNode } from "react";
 import {
   CONCEPT_KINDS,
   EXPRESSIONS,
   SIDES,
+  SPEAKER_IDS,
   SPEAKERS,
   answerPlacement,
   canFinalize,
@@ -11,10 +14,12 @@ import {
   portraitMirrorAllowed,
   publishHeadline,
   sectionStatusLabel,
+  toggleBlankForm,
   videoStatusLabel,
   visibleAnswer,
   type AssignmentRow,
   type Audience,
+  type BlankForm,
   type BlankPick,
   type BookSummary,
   type ImportMode,
@@ -36,12 +41,14 @@ export function BookList({
   curriculumVersion,
   pageTarget,
   videoPolicy,
+  studentSolutionPolicy,
   busy,
   onTitle,
   onVolume,
   onCurriculum,
   onPageTarget,
   onVideoPolicy,
+  onSolutionPolicy,
   onCreate,
   onOpen,
   onImport,
@@ -52,12 +59,14 @@ export function BookList({
   curriculumVersion: string;
   pageTarget: string;
   videoPolicy: "required" | "optional";
+  studentSolutionPolicy: "never" | "assigned";
   busy: boolean;
   onTitle: (value: string) => void;
   onVolume: (value: string) => void;
   onCurriculum: (value: string) => void;
   onPageTarget: (value: string) => void;
   onVideoPolicy: (value: "required" | "optional") => void;
+  onSolutionPolicy: (value: "never" | "assigned") => void;
   onCreate: () => void;
   onOpen: (book: BookSummary) => void;
   onImport: () => void;
@@ -131,6 +140,20 @@ export function BookList({
             <option value="required">필수</option>
           </select>
         </label>
+        <label className={styles.field}>
+          <span>학생 글 해설</span>
+          <select
+            value={studentSolutionPolicy}
+            onChange={(event) =>
+              onSolutionPolicy(
+                event.target.value === "assigned" ? "assigned" : "never",
+              )
+            }
+          >
+            <option value="never">열지 않음</option>
+            <option value="assigned">배정한 QR만</option>
+          </select>
+        </label>
         <button
           type="button"
           className={styles.primary}
@@ -151,8 +174,8 @@ export function BookList({
       </div>
       <p className={styles.muted}>
         기본은 초등 5학년 1학기 1권, 통합, 여백 15mm, 표지 별도, 주요 구획은
-        짝수 왼쪽입니다. 새 문항의 풀이선 기본은 7mm입니다. 학생 글 해설은 열지
-        않습니다.
+        짝수 왼쪽입니다. 새 문항의 풀이선 기본은 7mm입니다. 학생 글 해설은 고른
+        값으로 저장합니다.
       </p>
     </section>
   );
@@ -164,12 +187,16 @@ export function Outline({
   currentId,
   onToggle,
   onSelect,
+  onMoveUnit,
+  onMoveSection,
 }: {
   units: OutlineUnit[];
   collapsed: ReadonlySet<string>;
   currentId: string | null;
   onToggle: (unitKey: string) => void;
   onSelect: (sectionId: string) => void;
+  onMoveUnit: (unitKey: string, direction: -1 | 1) => void;
+  onMoveSection: (sectionId: string, direction: -1 | 1) => void;
 }) {
   return (
     <nav className={styles.outline} aria-label="단원">
@@ -177,30 +204,65 @@ export function Outline({
         const open = !collapsed.has(unit.unitKey);
         return (
           <div key={unit.unitKey}>
-            <button
-              type="button"
-              className={styles.unitButton}
-              aria-expanded={open}
-              onClick={() => onToggle(unit.unitKey)}
-            >
-              {unit.title}
-            </button>
+            <div className={styles.row}>
+              <button
+                type="button"
+                className={styles.unitButton}
+                aria-expanded={open}
+                onClick={() => onToggle(unit.unitKey)}
+              >
+                {unit.title}
+              </button>
+              <button
+                type="button"
+                className={styles.button}
+                aria-label={`${unit.title} 위로`}
+                onClick={() => onMoveUnit(unit.unitKey, -1)}
+              >
+                위로
+              </button>
+              <button
+                type="button"
+                className={styles.button}
+                aria-label={`${unit.title} 아래로`}
+                onClick={() => onMoveUnit(unit.unitKey, 1)}
+              >
+                아래로
+              </button>
+            </div>
             {open
               ? unit.sections.map((section) => (
-                  <button
-                    key={section.sectionId}
-                    type="button"
-                    className={styles.sectionButton}
-                    aria-current={
-                      section.sectionId === currentId ? "true" : undefined
-                    }
-                    onClick={() => onSelect(section.sectionId)}
-                  >
-                    {section.title}
-                    <span className={styles.status}>
-                      {sectionStatusLabel(section.status)}
-                    </span>
-                  </button>
+                  <div key={section.sectionId} className={styles.row}>
+                    <button
+                      type="button"
+                      className={styles.sectionButton}
+                      aria-current={
+                        section.sectionId === currentId ? "true" : undefined
+                      }
+                      onClick={() => onSelect(section.sectionId)}
+                    >
+                      {section.title}
+                      <span className={styles.status}>
+                        {sectionStatusLabel(section.status)}
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      aria-label={`${section.title} 위로`}
+                      onClick={() => onMoveSection(section.sectionId, -1)}
+                    >
+                      위로
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      aria-label={`${section.title} 아래로`}
+                      onClick={() => onMoveSection(section.sectionId, 1)}
+                    >
+                      아래로
+                    </button>
+                  </div>
                 ))
               : null}
           </div>
@@ -231,6 +293,14 @@ export function SectionEditor({
   onCapture,
   onDiff,
   onRecapture,
+  onLoadLinks,
+  onLink,
+  onRegister,
+  onSaveConcept,
+  onCreateConcept,
+  onSearchCatalog,
+  onDelete,
+  lectureLink,
 }: {
   draft: SectionDetail;
   audience: Audience;
@@ -248,6 +318,16 @@ export function SectionEditor({
   onCapture: (testId: string, problemIds: string[]) => void;
   onDiff: (itemId: string) => void;
   onRecapture: (itemId: string) => void;
+  onLoadLinks: (
+    itemId: string,
+  ) => Promise<{ problemId: string; problemCode: string }[]>;
+  onLink: (itemId: string, problemId: string) => void;
+  onRegister: (itemId: string) => void;
+  onSaveConcept: () => void;
+  onCreateConcept: (conceptKey: string, title: string) => void;
+  onSearchCatalog: (query: string) => void;
+  onDelete: () => void;
+  lectureLink?: ReactNode;
 }) {
   const order = orderBlankPicks(draft.picks);
   const placement = answerPlacement(audience, mode);
@@ -440,7 +520,9 @@ export function SectionEditor({
                     SPEAKERS.find((item) => item === event.target.value) ??
                     turn.speaker;
                   const turns = block.turns.map((item) =>
-                    item.id === turn.id ? { ...item, speaker } : item,
+                    item.id === turn.id
+                      ? { ...item, speaker, speakerId: SPEAKER_IDS[speaker] }
+                      : item,
                   );
                   onChange({
                     ...draft,
@@ -510,6 +592,51 @@ export function SectionEditor({
               </select>
             </label>
             <label className={styles.field}>
+              <span>초상 자료</span>
+              <input
+                value={turn.portraitAssetId}
+                onChange={(event) => {
+                  const turns = block.turns.map((item) =>
+                    item.id === turn.id
+                      ? { ...item, portraitAssetId: event.target.value }
+                      : item,
+                  );
+                  onChange({
+                    ...draft,
+                    blocks: draft.blocks.map((item) =>
+                      item.id === block.id && item.kind === "dialogue"
+                        ? { ...item, turns }
+                        : item,
+                    ),
+                  });
+                }}
+              />
+            </label>
+            <label className={styles.field}>
+              <span>초상 뒤집기</span>
+              <select
+                value={turn.side === "오른쪽" && turn.mirror ? "right" : "none"}
+                disabled={turn.side !== "오른쪽"}
+                onChange={(event) => {
+                  const mirror = event.target.value === "right";
+                  const turns = block.turns.map((item) =>
+                    item.id === turn.id ? { ...item, mirror } : item,
+                  );
+                  onChange({
+                    ...draft,
+                    blocks: draft.blocks.map((item) =>
+                      item.id === block.id && item.kind === "dialogue"
+                        ? { ...item, turns }
+                        : item,
+                    ),
+                  });
+                }}
+              >
+                <option value="none">뒤집지 않음</option>
+                <option value="right">오른쪽만 뒤집기</option>
+              </select>
+            </label>
+            <label className={styles.field}>
               <span>{turnLabel(index, block.turns.length)}</span>
               <textarea
                 value={turn.text}
@@ -571,19 +698,29 @@ export function SectionEditor({
       <PickEditor
         picks={draft.picks}
         onChange={(picks) => onChange({ ...draft, picks })}
+        onSearch={onSearchCatalog}
       />
       {orderMessage ? (
         <p className={styles.alert} role="alert">
           {orderMessage}
         </p>
       ) : null}
-      <ConceptFields draft={draft} onChange={onChange} />
+      <ConceptFields
+        draft={draft}
+        onChange={onChange}
+        onCreate={onCreateConcept}
+        onSave={onSaveConcept}
+      />
+      {lectureLink}
       <ItemCapture
         items={draft.items}
         diffSummary={diffSummary}
         onCapture={onCapture}
         onDiff={onDiff}
         onRecapture={onRecapture}
+        onLoadLinks={onLoadLinks}
+        onLink={onLink}
+        onRegister={onRegister}
       />
       <div className={styles.row}>
         <button
@@ -623,6 +760,39 @@ export function SectionEditor({
         >
           회상 추가
         </button>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={() =>
+            onChange({
+              ...draft,
+              blocks: [
+                ...draft.blocks,
+                {
+                  id: crypto.randomUUID(),
+                  kind: "dialogue",
+                  turns: [
+                    {
+                      id: crypto.randomUUID(),
+                      speaker: "선생님",
+                      speakerId: SPEAKER_IDS.선생님,
+                      expression: "평온",
+                      side: "왼쪽",
+                      text: "",
+                      portraitAssetId: "",
+                      mirror: false,
+                    },
+                  ],
+                },
+              ],
+            })
+          }
+        >
+          대화 추가
+        </button>
+        <button type="button" className={styles.button} onClick={onDelete}>
+          구획 삭제
+        </button>
       </div>
       {conflictMessage ? (
         <div className={styles.note} role="alert">
@@ -660,13 +830,31 @@ export function SectionEditor({
 function PickEditor({
   picks,
   onChange,
+  onSearch,
 }: {
   picks: BlankPick[];
   onChange: (picks: BlankPick[]) => void;
+  onSearch: (query: string) => void;
 }) {
   return (
     <fieldset className={styles.stack}>
       <legend>개념 백지</legend>
+      <form
+        className={styles.row}
+        onSubmit={(event) => {
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          onSearch(String(data.get("query") ?? ""));
+        }}
+      >
+        <label className={styles.field}>
+          <span>은행 검색</span>
+          <input name="query" />
+        </label>
+        <button type="submit" className={styles.button}>
+          검색
+        </button>
+      </form>
       <ul className={styles.list}>
         {picks.map((pick, index) => (
           <li key={`${pick.form}-${pick.entryId}-${index}`}>
@@ -675,7 +863,50 @@ function PickEditor({
               ? "확인"
               : pick.reviewStatus === "rejected"
                 ? "거절"
-                : "후보"}
+                : pick.confirmRequested
+                  ? "확인 요청"
+                  : "후보"}
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() =>
+                onChange(
+                  picks.map((item, itemIndex) =>
+                    itemIndex === index
+                      ? {
+                          ...item,
+                          confirmRequested: true,
+                          reviewStatus:
+                            item.reviewStatus === "confirmed"
+                              ? "confirmed"
+                              : "candidate",
+                        }
+                      : item,
+                  ),
+                )
+              }
+            >
+              확인 요청
+            </button>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() =>
+                onChange(
+                  picks.map((item, itemIndex) =>
+                    itemIndex === index
+                      ? {
+                          ...item,
+                          confirmRequested: false,
+                          reviewStatus: "rejected",
+                        }
+                      : item,
+                  ),
+                )
+              }
+            >
+              거절
+            </button>
           </li>
         ))}
       </ul>
@@ -763,16 +994,54 @@ function PickAdd({ onAdd }: { onAdd: (pick: BlankPick) => void }) {
   );
 }
 
+const FORM_LABEL: Record<BlankForm, string> = {
+  recall: "완전 백지",
+  term: "용어",
+  cloze: "빈칸",
+  map: "지도",
+  figure: "그림",
+};
+
 function ConceptFields({
   draft,
   onChange,
+  onCreate,
+  onSave,
 }: {
   draft: SectionDetail;
   onChange: (next: SectionDetail) => void;
+  onCreate: (conceptKey: string, title: string) => void;
+  onSave: () => void;
 }) {
   const concept = draft.concept;
-  if (!concept)
-    return <p className={styles.muted}>연결할 개념 원고가 없습니다.</p>;
+  if (!concept) {
+    return (
+      <form
+        className={styles.stack}
+        onSubmit={(event) => {
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          onCreate(
+            String(data.get("conceptKey") ?? "").trim(),
+            String(data.get("title") ?? "").trim(),
+          );
+        }}
+      >
+        <p className={styles.muted}>연결할 개념 원고가 없습니다.</p>
+        <label className={styles.field}>
+          <span>개념 키</span>
+          <input name="conceptKey" />
+        </label>
+        <label className={styles.field}>
+          <span>개념 제목</span>
+          <input name="title" />
+        </label>
+        <button type="submit" className={styles.button}>
+          개념 원고 만들기
+        </button>
+      </form>
+    );
+  }
   const patch = (key: keyof typeof concept, value: string) =>
     onChange({ ...draft, concept: { ...concept, [key]: value } });
   return (
@@ -813,6 +1082,37 @@ function ConceptFields({
           />
         </label>
       ))}
+      <fieldset className={styles.row}>
+        <legend>백지 형식</legend>
+        {(Object.keys(FORM_LABEL) as BlankForm[]).map((form) => {
+          const selected = concept.blankForms.includes(form);
+          return (
+            <button
+              key={form}
+              type="button"
+              className={styles.button}
+              aria-pressed={selected}
+              onClick={() => {
+                const next = toggleBlankForm(
+                  concept.blankForms,
+                  form,
+                  draft.picks.some((pick) => pick.givenCase),
+                );
+                if (!next.ok) return;
+                onChange({
+                  ...draft,
+                  concept: { ...concept, blankForms: next.forms },
+                });
+              }}
+            >
+              {FORM_LABEL[form]}
+            </button>
+          );
+        })}
+      </fieldset>
+      <button type="button" className={styles.primary} onClick={onSave}>
+        개념 저장
+      </button>
     </fieldset>
   );
 }
@@ -848,13 +1148,26 @@ function ItemCapture({
   onCapture,
   onDiff,
   onRecapture,
+  onLoadLinks,
+  onLink,
+  onRegister,
 }: {
   items: SectionDetail["items"];
   diffSummary: string | null;
   onCapture: (testId: string, problemIds: string[]) => void;
   onDiff: (itemId: string) => void;
   onRecapture: (itemId: string) => void;
+  onLoadLinks: (
+    itemId: string,
+  ) => Promise<{ problemId: string; problemCode: string }[]>;
+  onLink: (itemId: string, problemId: string) => void;
+  onRegister: (itemId: string) => void;
 }) {
+  const [links, setLinks] = useState<{
+    itemId: string;
+    candidates: { problemId: string; problemCode: string }[];
+    problemId: string;
+  } | null>(null);
   return (
     <fieldset className={styles.stack}>
       <legend>문항</legend>
@@ -908,11 +1221,240 @@ function ItemCapture({
             >
               다시 고정
             </button>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => {
+                void onLoadLinks(item.itemId).then((candidates) => {
+                  setLinks({
+                    itemId: item.itemId,
+                    candidates,
+                    problemId: candidates[0]?.problemId ?? "",
+                  });
+                });
+              }}
+            >
+              연결
+            </button>
+            {links &&
+            links.itemId === item.itemId &&
+            links.candidates.length > 0 ? (
+              <>
+                <label className={styles.field}>
+                  <span>연결 후보</span>
+                  <select
+                    aria-label="연결 후보"
+                    value={links.problemId}
+                    onChange={(event) =>
+                      setLinks({ ...links, problemId: event.target.value })
+                    }
+                  >
+                    {links.candidates.map((candidate) => (
+                      <option
+                        key={candidate.problemId}
+                        value={candidate.problemId}
+                      >
+                        {candidate.problemCode}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <button
+                  type="button"
+                  className={styles.button}
+                  onClick={() => onLink(item.itemId, links.problemId)}
+                >
+                  선택한 문항 연결
+                </button>
+              </>
+            ) : null}
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => onRegister(item.itemId)}
+            >
+              등록
+            </button>
           </li>
         ))}
       </ul>
       {diffSummary ? <p>{diffSummary}</p> : null}
     </fieldset>
+  );
+}
+
+export type LectureChoice = {
+  lectureId: string;
+  title: string;
+  status: "draft" | "published" | "archived";
+};
+
+/** 단원 개념 준비 강의. 문항 풀이 영상 바인딩과는 다른 목록이다. */
+export function LectureLink({
+  conceptKey,
+  sourceUnitIds,
+  refs,
+  onFind,
+  onLink,
+  onUnlink,
+}: {
+  conceptKey: string | null;
+  sourceUnitIds: readonly string[];
+  refs: readonly { lectureId: string; conceptKey: string }[];
+  onFind: () => Promise<LectureChoice[]>;
+  onLink: (lectureId: string) => void;
+  onUnlink: (lectureId: string, conceptKey: string) => void;
+}) {
+  const [choices, setChoices] = useState<LectureChoice[] | null>(null);
+  const [picked, setPicked] = useState("");
+  const published = (choices ?? []).filter((row) => row.status === "published");
+  const mine = conceptKey
+    ? refs.filter((ref) => ref.conceptKey === conceptKey)
+    : [];
+  return (
+    <fieldset className={styles.stack}>
+      <legend>개념 준비 강의</legend>
+      {!conceptKey ? (
+        <p className={styles.muted}>개념 키를 먼저 만드세요.</p>
+      ) : sourceUnitIds.length === 0 ? (
+        <p className={styles.muted}>
+          이 단원에 연결된 차시가 없어 강의를 찾지 않습니다.
+        </p>
+      ) : (
+        <>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => {
+              void onFind().then((rows) => {
+                setChoices(rows);
+                const first = rows.find((row) => row.status === "published");
+                setPicked(first?.lectureId ?? "");
+              });
+            }}
+          >
+            강의 찾기
+          </button>
+          {choices && published.length === 0 ? (
+            <p>게시한 강의가 없습니다.</p>
+          ) : null}
+          {published.length > 0 ? (
+            <div className={styles.row}>
+              <label className={styles.field}>
+                <span>강의</span>
+                <select
+                  aria-label="개념 준비 강의"
+                  value={picked}
+                  onChange={(event) => setPicked(event.target.value)}
+                >
+                  {published.map((row) => (
+                    <option key={row.lectureId} value={row.lectureId}>
+                      {row.title || "제목 없음"}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={() => {
+                  if (picked) onLink(picked);
+                }}
+              >
+                연결
+              </button>
+            </div>
+          ) : null}
+        </>
+      )}
+      {mine.length > 0 ? (
+        <ul>
+          {mine.map((ref) => {
+            const title = choices?.find(
+              (row) => row.lectureId === ref.lectureId,
+            )?.title;
+            const label = title && title.length > 0 ? title : "연결된 강의";
+            return (
+              <li key={`${ref.lectureId}:${ref.conceptKey}`}>
+                {label}
+                <button
+                  type="button"
+                  className={styles.button}
+                  aria-label={`${label} 빼기`}
+                  onClick={() => onUnlink(ref.lectureId, ref.conceptKey)}
+                >
+                  빼기
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </fieldset>
+  );
+}
+
+export function ObservationForm({
+  onSubmit,
+}: {
+  onSubmit: (studentId: string, form: BlankForm, observation: string) => void;
+}) {
+  return (
+    <form
+      className={styles.stack}
+      aria-label="종이 활동"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const form = data.get("form");
+        const chosen =
+          form === "recall" ||
+          form === "term" ||
+          form === "cloze" ||
+          form === "map" ||
+          form === "figure"
+            ? form
+            : "recall";
+        onSubmit(
+          String(data.get("studentId") ?? "").trim(),
+          chosen,
+          String(data.get("observation") ?? "").trim(),
+        );
+      }}
+    >
+      <fieldset className={styles.stack}>
+        <legend>종이 활동</legend>
+        <label className={styles.field}>
+          <span>학생</span>
+          <input name="studentId" />
+        </label>
+        <label className={styles.field}>
+          <span>형식</span>
+          <select name="form" defaultValue="term" aria-label="종이 활동 형식">
+            {(
+              [
+                ["recall", "완전 백지"],
+                ["term", "용어"],
+                ["cloze", "빈칸"],
+                ["map", "지도"],
+                ["figure", "그림"],
+              ] as const
+            ).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>관찰</span>
+          <textarea name="observation" />
+        </label>
+        <button type="submit" className={styles.button}>
+          기록
+        </button>
+      </fieldset>
+    </form>
   );
 }
 
@@ -926,6 +1468,8 @@ export function PreviewPane({
   onNext,
   showModes,
   renderPaper,
+  measured,
+  unavailable,
 }: {
   input: PaperPreviewInput;
   zoom: ZoomMode;
@@ -936,6 +1480,10 @@ export function PreviewPane({
   onNext: () => void;
   showModes: boolean;
   renderPaper?: (input: PaperPreviewInput) => ReactNode;
+  /** 측정이 되면 대기 문장과 대사 덤프 대신 이 노드를 보여 준다. */
+  measured?: ReactNode;
+  /** 측정하지 않는 사유. 없으면 기존 대기 지면을 그대로 둔다. */
+  unavailable?: string | null;
 }) {
   return (
     <section
@@ -1002,23 +1550,31 @@ export function PreviewPane({
           renderPaper(input)
         ) : (
           <article className={styles.page}>
-            <p className={styles.muted}>
-              공유 지면 렌더러가 연결되면 이 자리에 펼침이 나타납니다. 측정된
-              배치가 오기 전에는 인쇄 쪽 번호를 만들지 않습니다.
-            </p>
+            {measured ? (
+              measured
+            ) : unavailable ? (
+              <p className={styles.muted}>{unavailable}</p>
+            ) : (
+              <>
+                <p className={styles.muted}>
+                  공유 지면 렌더러가 연결되면 이 자리에 펼침이 나타납니다.
+                  측정된 배치가 오기 전에는 인쇄 쪽 번호를 만들지 않습니다.
+                </p>
+                {input.blocks.map((block) =>
+                  block.kind === "dialogue" ? (
+                    <div key={block.id}>
+                      {block.turns.map((turn) => (
+                        <p key={turn.id}>
+                          {turn.speaker} {turn.text}
+                        </p>
+                      ))}
+                    </div>
+                  ) : null,
+                )}
+              </>
+            )}
             {input.mode === "draft" ? <p>초안</p> : null}
             <h3>{input.title}</h3>
-            {input.blocks.map((block) =>
-              block.kind === "dialogue" ? (
-                <div key={block.id}>
-                  {block.turns.map((turn) => (
-                    <p key={turn.id}>
-                      {turn.speaker} {turn.text}
-                    </p>
-                  ))}
-                </div>
-              ) : null,
-            )}
             {input.parityMessage ? <p>{input.parityMessage}</p> : null}
             {input.answerPlacement === "sheet" && input.answer ? (
               <p>교사용 정답 {input.answer}</p>
@@ -1243,6 +1799,8 @@ export function AssignmentPanel({
 export function VideoPanel({
   rows,
   onUpdate,
+  onCreate,
+  onBind,
 }: {
   rows: VideoBinding[];
   onUpdate: (
@@ -1250,10 +1808,63 @@ export function VideoPanel({
     status: VideoBinding["status"],
     policy: VideoBinding["policy"],
   ) => void;
+  onCreate: (title: string, providerVideoId: string) => void;
+  onBind: (snapshotId: string, videoId: string, contentHash: string) => void;
 }) {
   return (
     <section className={styles.panel} aria-label="영상">
       <h2>영상</h2>
+      <form
+        className={styles.row}
+        onSubmit={(event) => {
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          onCreate(
+            String(data.get("title") ?? "").trim(),
+            String(data.get("providerVideoId") ?? "").trim(),
+          );
+        }}
+      >
+        <label className={styles.field}>
+          <span>영상 제목</span>
+          <input name="title" />
+        </label>
+        <label className={styles.field}>
+          <span>유튜브 ID</span>
+          <input name="providerVideoId" />
+        </label>
+        <button type="submit" className={styles.button}>
+          영상 등록
+        </button>
+      </form>
+      <form
+        className={styles.row}
+        onSubmit={(event) => {
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          onBind(
+            String(data.get("snapshotId") ?? "").trim(),
+            String(data.get("videoId") ?? "").trim(),
+            String(data.get("contentHash") ?? "").trim(),
+          );
+        }}
+      >
+        <label className={styles.field}>
+          <span>확정본</span>
+          <input name="snapshotId" />
+        </label>
+        <label className={styles.field}>
+          <span>영상 번호</span>
+          <input name="videoId" />
+        </label>
+        <label className={styles.field}>
+          <span>내용 해시</span>
+          <input name="contentHash" />
+        </label>
+        <button type="submit" className={styles.button}>
+          영상 연결
+        </button>
+      </form>
       <ul className={styles.list}>
         {rows.map((row) => (
           <li key={row.bindingId}>
@@ -1264,9 +1875,25 @@ export function VideoPanel({
             <button
               type="button"
               className={styles.button}
+              onClick={() =>
+                onUpdate(row.bindingId, "pending-review", row.policy)
+              }
+            >
+              검수 요청
+            </button>
+            <button
+              type="button"
+              className={styles.button}
               onClick={() => onUpdate(row.bindingId, "published", row.policy)}
             >
               게시
+            </button>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => onUpdate(row.bindingId, "stopped", row.policy)}
+            >
+              중지
             </button>
           </li>
         ))}
@@ -1275,6 +1902,88 @@ export function VideoPanel({
         <p className={styles.muted}>연결된 영상이 없습니다.</p>
       ) : null}
     </section>
+  );
+}
+
+export function ConfigPanel({
+  volumeCode,
+  title,
+  pageTarget,
+  videoPolicy,
+  studentSolutionPolicy,
+  busy,
+  onSave,
+}: {
+  volumeCode: string;
+  title: string;
+  pageTarget: string;
+  videoPolicy: "required" | "optional";
+  studentSolutionPolicy: "never" | "assigned";
+  busy: boolean;
+  onSave: (value: {
+    volumeCode: string;
+    title: string;
+    pageTarget: string;
+    videoPolicy: "required" | "optional";
+    studentSolutionPolicy: "never" | "assigned";
+  }) => void;
+}) {
+  return (
+    <form
+      className={styles.stack}
+      aria-label="교재 설정"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const policy = data.get("studentSolutionPolicy");
+        const video = data.get("videoPolicy");
+        onSave({
+          volumeCode: String(data.get("volumeCode") ?? ""),
+          title: String(data.get("title") ?? ""),
+          pageTarget: String(data.get("pageTarget") ?? ""),
+          videoPolicy: video === "required" ? "required" : "optional",
+          studentSolutionPolicy: policy === "assigned" ? "assigned" : "never",
+        });
+      }}
+    >
+      <h2>설정</h2>
+      <label className={styles.field}>
+        <span>제목</span>
+        <input name="title" defaultValue={title} />
+      </label>
+      <label className={styles.field}>
+        <span>권 코드</span>
+        <input name="volumeCode" defaultValue={volumeCode} />
+      </label>
+      <label className={styles.field}>
+        <span>목표 쪽수</span>
+        <input
+          name="pageTarget"
+          defaultValue={pageTarget}
+          inputMode="numeric"
+        />
+      </label>
+      <label className={styles.field}>
+        <span>영상</span>
+        <select name="videoPolicy" defaultValue={videoPolicy}>
+          <option value="optional">선택</option>
+          <option value="required">필수</option>
+        </select>
+      </label>
+      <label className={styles.field}>
+        <span>학생 글 해설</span>
+        <select
+          name="studentSolutionPolicy"
+          defaultValue={studentSolutionPolicy}
+        >
+          <option value="never">열지 않음</option>
+          <option value="assigned">배정한 QR만</option>
+        </select>
+      </label>
+      <button type="submit" className={styles.primary} disabled={busy}>
+        설정 저장
+      </button>
+    </form>
   );
 }
 
