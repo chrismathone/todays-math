@@ -5,7 +5,7 @@
  * 다른 발행 시험은 검증기를 대역(`validate: async () => []`)으로 둔다 — 그래서 서버가 조립한 원고가 검증기의 규칙에
  * 맞는지는 거기서 한 번도 재지지 않는다. 실제로 그 틈으로 두 가지가 지나갔다(2026-10-03 실제 조판기 통합에서 잡았다):
  *   · `orderIndex` 를 구획 안의 차례로 내어 구획이 둘이면 `ITEM_ORDER` 로 발행이 막혔다
- *   · 사전 검사가 초안 기준이라, 발행 기준에서만 막는 사유(그림과 보기의 짝)가 조판 걸음에서야 드러났다
+ *   · 사전 검사가 초안 기준이라, 발행 기준에서만 막는 사유(빈 구획 · 연결 안 된 문항 …)가 조판 걸음에서야 드러났다
  * 여기서는 검증기를 그대로 꽂아 그 둘을 잠근다.
  */
 import { randomUUID } from "node:crypto";
@@ -179,33 +179,35 @@ describe("서버가 조립한 원고 ↔ 실제 검증기", () => {
     expect(preflight.canPublish).toBe(true);
   });
 
-  it("사전 검사는 발행 기준으로 본다 — 짝을 모르는 스캔 그림은 조판 전에 알린다", async () => {
+  it("짝을 모르는 스캔 그림은 경고로 알리고 발행을 막지 않는다 — 짝을 지어내지 않는다", async () => {
     const path = `/figures/validator/${randomUUID()}.png`;
     figures.set(path, tinyPng(40, 30, path));
     // 짝 배열이 비어 있다(은행의 기본값 = «짝을 모른다»)
     const unknown = await draft([
       [{ figureUrls: [path], figureDims: [40, 30] }],
     ]);
-    const blocked = await preflightEdition(
-      db,
-      owner,
-      unknown.editionId,
-      deps(),
-    );
-    expect(blocked.canPublish).toBe(false);
+    const warned = await preflightEdition(db, owner, unknown.editionId, deps());
+    expect(warned.canPublish).toBe(true);
     expect(
-      blocked.issues.filter((issue) => issue.severity === "error"),
-    ).toEqual([expect.objectContaining({ code: "FIGURE_CHOICE_UNKNOWN" })]);
+      warned.issues.filter((issue) => issue.code === "FIGURE_CHOICE_UNKNOWN"),
+    ).toEqual([expect.objectContaining({ severity: "warning" })]);
+    // 확정본의 짝은 «모른다» 그대로다 — 0 으로 바꿔 적지 않았다
+    const exchange = await assembleExchange(db, unknown.editionId, {
+      exportedAt: "2026-10-03T00:00:00.000Z",
+    });
+    expect(exchange.snapshots[0]!.payload.figures[0]!.choiceIndex).toBeNull();
 
-    // 발문의 그림이라고 적혀 있으면(0) 지난다
+    // 발문의 그림이라고 적혀 있어도(0) 지난다 — 그때는 경고도 없다
     const path2 = `/figures/validator/${randomUUID()}.png`;
     figures.set(path2, tinyPng(40, 30, path2));
     const known = await draft([
       [{ figureUrls: [path2], figureDims: [40, 30], choiceFigureIndex: [0] }],
     ]);
+    const clean = await preflightEdition(db, owner, known.editionId, deps());
+    expect(clean.canPublish).toBe(true);
     expect(
-      (await preflightEdition(db, owner, known.editionId, deps())).canPublish,
-    ).toBe(true);
+      clean.issues.filter((issue) => issue.code === "FIGURE_CHOICE_UNKNOWN"),
+    ).toEqual([]);
   });
 
   it("엔진이 그린 인라인 SVG 는 발문의 그림이다 — 짝을 모르는 그림으로 막히지 않는다", async () => {

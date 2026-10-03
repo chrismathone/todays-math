@@ -387,57 +387,76 @@ export function pageBudgetIssues(
       ];
 }
 
-/** Answer artifacts reuse the verified student placements and source page labels. */
-export function fitTextbookFrozenPages(
+/** Read source-page labels from server-owned student placements, never answer footprints. */
+export function studentPageMapFromPages(
   sections: readonly RenderSection[],
-  measurements: readonly BlockMeasurement[],
-  original: readonly TextbookPage[],
+  pages: readonly TextbookPage[],
   config: TextbookConfig,
-  firstPhysicalPageIndex: number,
-): TextbookLayout {
-  const pages = structuredClone([...original]),
-    pageMap: PagePlacement[] = [],
+): PagePlacement[] {
+  const pageMap: PagePlacement[] = [],
     blocks = new Map(sections.flatMap((s) => s.blocks).map((b) => [b.id, b])),
-    measured = new Map(measurements.map((m) => [m.blockId, m])),
-    seen = new Set<string>();
+    seen = new Set<string>(),
+    firstPhysicalPageIndex = pages[0]?.physicalPageIndex ?? Number.NaN;
   const fail = (
     code: string,
     message: string,
     page?: TextbookPage,
     blockId?: string,
   ): never => {
+    const physicalPageIndex = page?.physicalPageIndex ?? firstPhysicalPageIndex;
     throw new TextbookLayoutError([
       {
         code,
         message,
         severity: "error",
         path: [
-          "pages",
-          page?.physicalPageIndex ?? firstPhysicalPageIndex,
+          "studentPages",
+          ...(Number.isSafeInteger(physicalPageIndex)
+            ? [physicalPageIndex]
+            : []),
           ...(blockId ? ["blocks", blockId] : []),
         ],
-        ...(page ? { physicalPageIndex: page.physicalPageIndex } : {}),
+        ...(Number.isSafeInteger(physicalPageIndex)
+          ? { physicalPageIndex }
+          : {}),
       },
     ]);
   };
-  if (!pages.length || pages.length > 32)
-    fail("FROZEN_PAGE_COUNT", "정답지에 대응하는 학생용 묶음 쪽이 필요합니다.");
+  if (
+    !pages.length ||
+    pages.length > 32 ||
+    !Number.isSafeInteger(firstPhysicalPageIndex) ||
+    firstPhysicalPageIndex < config.print.firstPhysicalPageIndex
+  )
+    fail("STUDENT_PAGE_COUNT", "검증한 학생용 묶음 쪽 참조가 필요합니다.");
   pages.forEach((page, i) => {
-    if (page.physicalPageIndex !== firstPhysicalPageIndex + i)
-      fail("FROZEN_PAGE_ORDER", "학생용 쪽 순서를 그대로 사용하세요.", page);
+    if (
+      !Array.isArray(page.blocks) ||
+      page.physicalPageIndex !== firstPhysicalPageIndex + i
+    )
+      fail("STUDENT_PAGE_ORDER", "검증한 학생용 쪽 순서를 확인하세요.", page);
     if (page.kind === "cover") {
-      if (i || page.blocks.length || config.print.coverMode !== "included")
-        fail("FROZEN_COVER", "학생용 표지 배치를 확인하세요.", page);
+      if (
+        i ||
+        page.blocks.length ||
+        page.printedPageLabel !== "" ||
+        firstPhysicalPageIndex !== config.print.firstPhysicalPageIndex ||
+        config.print.coverMode !== "included"
+      )
+        fail("STUDENT_COVER", "학생용 표지 참조를 확인하세요.", page);
       return;
     }
-    if (!page.blocks.length)
-      fail("FROZEN_EMPTY_PAGE", "빈 본문 쪽은 사용할 수 없습니다.", page);
+    if (
+      page.kind !== "content" ||
+      !page.blocks.length ||
+      page.printedPageLabel !== String(page.physicalPageIndex)
+    )
+      fail("STUDENT_PAGE_LABEL", "학생용 본문 쪽 참조를 확인하세요.", page);
     for (const p of page.blocks) {
-      const b = blocks.get(p.blockId),
-        m = measured.get(p.blockId);
-      if (!b || !m || seen.has(p.blockId))
+      const b = blocks.get(p.blockId);
+      if (!b || seen.has(p.blockId))
         fail(
-          "FROZEN_BLOCK_REF",
+          "STUDENT_BLOCK_REF",
           "정답지와 학생용 블록의 일치 여부를 확인하세요.",
           page,
           p.blockId,
@@ -445,14 +464,17 @@ export function fitTextbookFrozenPages(
       seen.add(p.blockId);
       if (
         ![p.xMm, p.yMm, p.widthMm, p.heightMm].every(Number.isFinite) ||
+        ![1, 2].includes(p.column) ||
+        p.xMm < 0 ||
+        p.xMm + p.widthMm > A4.widthMm ||
+        p.heightMm <= 0 ||
         Math.abs(p.widthMm - blockWidthMm(config, b!)) > A4.toleranceMm ||
         p.yMm < A4.bodyTopMm ||
-        p.yMm + p.heightMm > A4.bodyBottomMm ||
-        m!.heightMm > p.heightMm + A4.toleranceMm
+        p.yMm + p.heightMm > A4.bodyBottomMm + A4.toleranceMm
       )
         fail(
-          "ANSWER_PLACEMENT_OVERFLOW",
-          "해설이 학생용 대응 영역을 넘습니다. 원고의 해설 분량 또는 문항 배치를 조정하세요.",
+          "STUDENT_PLACEMENT",
+          "검증한 학생용 블록 배치가 필요합니다. 학생용 조판 결과를 확인하세요.",
           page,
           p.blockId,
         );
@@ -460,7 +482,7 @@ export function fitTextbookFrozenPages(
         const item = b as Extract<RenderBlock, { kind: "problem" }>;
         if (p.itemId !== item.itemId)
           fail(
-            "FROZEN_ITEM_REF",
+            "STUDENT_ITEM_REF",
             "학생용 문항 참조가 다릅니다.",
             page,
             p.blockId,
@@ -471,18 +493,19 @@ export function fitTextbookFrozenPages(
           printedPageLabel: page.printedPageLabel,
           column: p.column,
         });
-      }
+      } else if (p.itemId !== undefined)
+        fail(
+          "STUDENT_ITEM_REF",
+          "학생용 문항 참조가 다릅니다.",
+          page,
+          p.blockId,
+        );
     }
   });
   if (seen.size !== blocks.size)
     fail(
-      "FROZEN_MISSING_BLOCK",
+      "STUDENT_MISSING_BLOCK",
       "학생용 배치에서 누락된 원고 블록이 있습니다.",
     );
-  return {
-    pages,
-    pageMap,
-    issues: [],
-    nextPhysicalPageIndex: firstPhysicalPageIndex + pages.length,
-  };
+  return pageMap;
 }

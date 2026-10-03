@@ -19,8 +19,9 @@ import {
   textbookRegisterItemResultSchema,
 } from "@/contracts/textbookServer.contract";
 import type { TextbookOutlineUnit } from "@/contracts/textbook.contract";
+import type { TextbookExchange } from "@/contracts/textbookExchange.contract";
 import type { TextbookActor } from "@/lib/textbook/access";
-import { sha256 } from "@/lib/textbook/hash.server";
+import { contentHash, sha256, snapshotHash } from "@/lib/textbook/hash.server";
 import { preflightEdition } from "@/lib/textbook/publish/preflight";
 import { completeUpload, putUploadChunk } from "@/lib/textbook/server/blobs";
 import { createBook } from "@/lib/textbook/server/books";
@@ -176,7 +177,11 @@ async function emptyDraft(actor: TextbookActor) {
 async function importedDraft(
   from: TextbookActor,
   to: TextbookActor,
-  options: { figure?: boolean } = {},
+  options: {
+    figure?: boolean;
+    inlineSvg?: string;
+    tamper?: (exchange: TextbookExchange) => void;
+  } = {},
 ) {
   const draft = await emptyDraft(from);
   const path = `/figures/register/${randomUUID()}.png`;
@@ -186,6 +191,7 @@ async function importedDraft(
     answer: "42",
     solution: "가져온 풀이",
     ...(options.figure ? { figureUrls: [path], figureDims: [40, 30] } : {}),
+    ...(options.inlineSvg ? { figureSvg: options.inlineSvg } : {}),
   });
   await captureItems(
     db,
@@ -210,6 +216,7 @@ async function importedDraft(
     );
     files.set(asset.packagePath, blob.rows[0]!.bytes);
   }
+  options.tamper?.(exchange);
   const archive: VerifiedArchive = { exchange, files, validation: {} };
   const zip = Buffer.from(`PK-${randomUUID()}`);
   await putUploadChunk(db, to, sha256(zip), 0, zip);
@@ -452,6 +459,83 @@ describe("새 문항으로 등록", () => {
         )
       ).rows,
     ).toEqual(before.rows);
+  });
+
+  const SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M0 0L10 10"/></svg>`;
+
+  it("그림이 인라인 SVG 하나면 그 글자 그대로 은행에 적는다 — 승인 뒤 이어진다", async () => {
+    const made = await importedDraft(owner, colleague, { inlineSvg: SVG });
+    const registered = await registerItemProblem(
+      db,
+      colleague,
+      made.editionId,
+      made.itemId,
+      requestKey(colleague, "register"),
+      body(made.revision),
+    );
+    const stored = await pg.query<{
+      figure_svg: string;
+      figure_urls: string[];
+    }>(`SELECT "figure_svg", "figure_urls" FROM "problem" WHERE "id" = $1`, [
+      registered.problem.problemId,
+    ]);
+    expect(stored.rows).toEqual([{ figure_svg: SVG, figure_urls: [] }]);
+    await pg.query(
+      `UPDATE "problem" SET "review_status" = 'approved' WHERE "id" = $1`,
+      [registered.problem.problemId],
+    );
+    const linked = await linkItem(
+      db,
+      colleague,
+      made.editionId,
+      made.itemId,
+      requestKey(colleague, "link"),
+      {
+        expectedRevision: registered.aggregateRevision,
+        problemId: registered.problem.problemId,
+      },
+      loadFigure,
+    );
+    expect(linked.item.linkStatus).toBe("linked");
+  });
+
+  it("다시 캡처한 내용이 다르게 나오는 문항은 등록하지 않는다 — 은행에 줄이 남지 않는다", async () => {
+    // 옛 패키지처럼 인라인 SVG 의 짝이 «모른다»로 적혀 있다 — 지금 은행에서 다시 캡처하면 «발문의 그림»으로 나온다
+    const made = await importedDraft(owner, colleague, {
+      inlineSvg: SVG,
+      tamper: (exchange) => {
+        const snapshot = exchange.snapshots[0]!;
+        snapshot.payload.figures[0]!.choiceIndex = null;
+        snapshot.contentHash = contentHash(snapshot.payload);
+        snapshot.snapshotHash = snapshotHash(snapshot);
+      },
+    });
+    const before = await pg.query<{ n: number }>(
+      `SELECT count(*)::int AS n FROM "problem"`,
+    );
+    const error = await refusal(
+      registerItemProblem(
+        db,
+        colleague,
+        made.editionId,
+        made.itemId,
+        requestKey(colleague, "register"),
+        body(made.revision),
+      ),
+    );
+    expect(error.status).toBe(422);
+    expect(error.message).toContain("다시 캡처한 내용이 이 문항과 달라");
+    expect(
+      (
+        await pg.query<{ n: number }>(
+          `SELECT count(*)::int AS n FROM "problem"`,
+        )
+      ).rows,
+    ).toEqual(before.rows);
+    expect(
+      (await getItemDetail(db, colleague, made.editionId, made.itemId))
+        .linkCandidates,
+    ).toHaveLength(1);
   });
 
   it("이미 연결된 배치 · 남의 판본 · 낡은 revision · 없는 단원은 거절한다", async () => {

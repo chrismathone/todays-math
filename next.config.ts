@@ -75,12 +75,23 @@ const nextConfig: NextConfig = {
    *    다른 이유(타입 오류)로 빨개서 아무도 여기까지 못 왔다.
    */
   serverExternalPackages: [
+    // Decoder exports a Node worker adapter with dynamic imports; keep it native.
+    "mpg123-decoder",
     "mathjax-full",
     "puppeteer-core",
     "@sparticuz/chromium-min",
   ],
   // Assets read by Node/Python at runtime must travel with production route bundles.
   outputFileTracingIncludes: {
+    "/api/textbook/**": [
+      "./src/config/shared-figures.manifest.json",
+      "./public/fonts/PretendardVariable.woff2",
+      "./node_modules/katex/dist/katex.min.css",
+      "./node_modules/katex/dist/fonts/**/*",
+      "./node_modules/pdfjs-dist/build/pdf.mjs",
+      "./node_modules/pdfjs-dist/build/pdf.worker.mjs",
+      "./node_modules/jsqr/dist/jsQR.js",
+    ],
     "/api/shared-figures/**": ["./src/config/shared-figures.manifest.json"],
     "/api/studio/pdf-worker": [
       "./node_modules/pdfjs-dist/build/pdf.worker.min.mjs",

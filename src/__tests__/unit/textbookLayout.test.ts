@@ -7,7 +7,7 @@ import {
   paginateTextbookSections,
   alignTextbookSpreads,
   pageBudgetIssues,
-  fitTextbookFrozenPages,
+  studentPageMapFromPages,
 } from "@/lib/textbook/layout/paginate";
 import { createTextbookRenderModel } from "@/lib/textbook/render/model";
 import {
@@ -29,8 +29,8 @@ function fixture(sections = 1, problemHeight = 140) {
   return { e, model, measurements };
 }
 describe("measured semantic textbook pagination", () => {
-  it("reuses student page references for shorter answers and fails longer answers explicitly", () => {
-    const { e, model, measurements } = fixture(2);
+  it("keeps verified student references while answers paginate from their own measured content", () => {
+    const { e, model, measurements } = fixture(1);
     const student = paginateTextbookSections(
       model.sections,
       measurements,
@@ -38,30 +38,119 @@ describe("measured semantic textbook pagination", () => {
       { includeCover: true },
     );
     alignTextbookSpreads(student.pages);
-    const answers = createTextbookRenderModel(e, "answers"),
+    const sourceMap = studentPageMapFromPages(
+      model.sections,
+      student.pages,
+      e.config,
+    );
+    expect(sourceMap).toEqual(student.pageMap);
+    const answers = createTextbookRenderModel(
+        { ...e, pageMap: sourceMap },
+        "answers",
+      ),
       short = measurements.map((m) => ({
         ...m,
         heightMm: Math.min(m.heightMm, 30),
       }));
-    const answerLayout = fitTextbookFrozenPages(
+    const answerLayout = paginateTextbookSections(
       answers.sections,
       short,
-      student.pages,
       e.config,
-      1,
+      { includeCover: true },
     );
-    expect(answerLayout.pageMap).toEqual(student.pageMap);
-    expect(answerLayout.pages).toEqual(student.pages);
+    expect(student.pages).toHaveLength(3);
+    expect(answerLayout.pages).toHaveLength(2);
+    expect(answerLayout.pageMap).not.toEqual(student.pageMap);
+    expect(
+      answers.sections[0].blocks
+        .filter((b) => b.kind === "problem")
+        .map((b) => b.sourcePageLabel),
+    ).toEqual(["2", "2", "3", "3"]);
+    expect(
+      studentPageMapFromPages(model.sections, student.pages, e.config),
+    ).toEqual(sourceMap);
     const long = short.map((m) => ({ ...m, heightMm: 300 }));
     expect(() =>
-      fitTextbookFrozenPages(
-        answers.sections,
-        long,
-        student.pages,
+      paginateTextbookSections(answers.sections, long, e.config, {
+        includeCover: true,
+      }),
+    ).toThrow(/BLOCK_OVERFLOW/);
+  });
+  it.each(["duplicate", "missing", "wrong-item", "bad-label", "bad-bounds"])(
+    "rejects %s student carry before printing source references",
+    (fault) => {
+      const { e, model, measurements } = fixture();
+      const { pages } = paginateTextbookSections(
+        model.sections,
+        measurements,
         e.config,
-        1,
-      ),
-    ).toThrow(/ANSWER_PLACEMENT_OVERFLOW/);
+        { includeCover: true },
+      );
+      const item = pages[1].blocks.find((b) => b.itemId)!;
+      if (fault === "duplicate") pages[1].blocks.push({ ...item });
+      if (fault === "missing")
+        pages[1].blocks = pages[1].blocks.filter((b) => b !== item);
+      if (fault === "wrong-item") item.itemId = "wrong-item";
+      if (fault === "bad-label") pages[1].printedPageLabel = "999";
+      if (fault === "bad-bounds") item.heightMm = 300;
+      expect(() =>
+        studentPageMapFromPages(model.sections, pages, e.config),
+      ).toThrow(/STUDENT_/);
+    },
+  );
+  it("resumes answer chunks at their own page index while keeping later student page references", () => {
+    const e = textbookFixture(2, 8);
+    const studentModel = createTextbookRenderModel(e, "student");
+    const measurements = studentModel.sections.flatMap((section) =>
+      section.blocks.map((block) => ({
+        blockId: block.id,
+        widthMm: blockWidthMm(e.config, block),
+        heightMm: block.kind === "problem" ? 90 : 14,
+      })),
+    );
+    const student = paginateTextbookSections(
+      studentModel.sections,
+      measurements,
+      e.config,
+      { includeCover: true },
+    );
+    const answerMeasurements = measurements.map((m) => ({
+      ...m,
+      heightMm: m.heightMm === 90 ? 180 : 14,
+    }));
+    const firstAnswers = paginateTextbookSections(
+      studentModel.sections.slice(0, 1),
+      answerMeasurements,
+      e.config,
+      { includeCover: true },
+    );
+    expect(student.pages).toHaveLength(5);
+    expect(firstAnswers.nextPhysicalPageIndex).toBe(6);
+    const sourceMap = studentPageMapFromPages(
+      studentModel.sections.slice(1),
+      student.pages.slice(3),
+      e.config,
+    );
+    const answerModel = createTextbookRenderModel(
+      { ...e, pageMap: sourceMap },
+      "answers",
+    );
+    const secondAnswers = paginateTextbookSections(
+      answerModel.sections.slice(1),
+      answerMeasurements,
+      e.config,
+      { firstPhysicalPageIndex: firstAnswers.nextPhysicalPageIndex },
+    );
+    expect(secondAnswers.pages[0].physicalPageIndex).toBe(6);
+    expect(secondAnswers.nextPhysicalPageIndex).toBe(10);
+    expect(sourceMap.map((p) => p.physicalPageIndex)).toEqual([
+      4, 4, 4, 4, 5, 5, 5, 5,
+    ]);
+    expect(
+      answerModel.sections[1].blocks
+        .filter((block) => block.kind === "problem")
+        .map((block) => block.sourcePageLabel),
+    ).toEqual(sourceMap.map((p) => p.printedPageLabel));
   });
   it("starts majors on actual even pages and retains every item without filler", () => {
     const { e, model, measurements } = fixture(101),

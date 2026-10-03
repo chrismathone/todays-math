@@ -29,19 +29,23 @@ const account: AccountAccess = {
 };
 
 describe("English menu compatibility", () => {
-  it("lists three sidebar menus while retaining the legacy input enum", () => {
+  it("lists four sidebar menus while retaining the legacy input enum", () => {
     expect(
-      WORKSPACE_MENUS.slice(-3).map(({ id, label }) => [id, label]),
+      WORKSPACE_MENUS.slice(-4).map(({ id, label }) => [id, label]),
     ).toEqual([
       ["english-school", "학교별 내신 대비"],
       ["english-maker", "문제 만들기"],
       ["english-library", "문제 보관함"],
+      ["english-listening", "영어듣기"],
     ]);
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
     ).toEqual(ALL_WORKSPACE_MENUS);
     expect(workspaceMenusOf("math")).toHaveLength(9);
-    expect(workspaceMenusOf("english")).toEqual(englishMenus);
+    expect(workspaceMenusOf("english")).toEqual([
+      ...englishMenus,
+      "english-listening",
+    ]);
     expect(workspaceMenuProduct("english")).toBe("english");
   });
   it("expands legacy allows without granting unrelated permissions", () => {

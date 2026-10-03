@@ -7,10 +7,12 @@
  *
  *   ① 20261003120000_textbook_studio                 전용 표 20개 · 트리거 · RLS
  *   ② 20261003120100_textbook_test_problem_snapshot  test_problem.snapshot_id (nullable) · FK · 부분 색인 · 트리거
- *   ③ 20261003120200_user_menus_check_textbook       메뉴 CHECK 넓히기(textbook · 영어 셋)
+ *   ③ 20261003120200_user_menus_check_textbook       메뉴 CHECK 넓히기(textbook · 영어 넷 · 옛 통합 키)
  *
- * 🔴 **이 워크트리는 공유 DB 에 닿지 않았다**(`.env` 가 없다). 여기서 잰 것은 PGlite(메모리 Postgres)뿐이다 —
- *    공유 DB 의 드라이런 · 적용은 리드가 병합 뒤에 한다. Supabase 와 PGlite 는 같은 판 · 설정이 아니다.
+ * 🔴 **이 워크트리는 공유 DB 에 닿지 않았다**(`.env` 가 없다). 여기서 잰 것은 PGlite(메모리 Postgres)와
+ *    **격리된 로컬 Postgres 18.4**(127.0.0.1, 빈 DB)다 — 되돌리기 → 드라이런 → 가드 없는 적용 거절 → 적용 → 다시 돌리기(멱등)
+ *    → `prisma migrate status` 까지(2026-10-03). 공유 DB 의 드라이런 · 적용은 리드가 병합 뒤에 한다 —
+ *    Supabase 는 같은 판 · 설정이 아니고(역할 · 기본 권한 · 시간대), 빈 DB 는 «기존 행 무변경»을 0 → 0 으로만 본다.
  * 🔴 순서: **DB 먼저 · 코드 나중**(24번 문서 §6.1). `schema.prisma` 의 `TestProblem.snapshotId` 가 ②의 칸을 읽는다 —
  *    칸 없는 DB 에 코드가 먼저 나가면 시험지를 읽는 모든 요청이 P2022 로 죽는다. ①②를 적용한 뒤에 코드를 낸다.
  *    ③은 코드보다 먼저여도 나중이어도 깨지지 않는다(넓히기만 한다) — 다만 늦으면 `textbook` 메뉴를 끄는 저장이 500 이다.

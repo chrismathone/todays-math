@@ -1,0 +1,72 @@
+"use client";
+
+import type { ListeningPrintDocument } from "@/lib/english/listening/print";
+import s from "./ListeningPrint.module.css";
+
+export function ListeningPrint({
+  document,
+}: {
+  document: ListeningPrintDocument;
+}) {
+  return (
+    <div className={s.frame}>
+      <div className={s.toolbar}>
+        <span>
+          영어듣기 · {document.view === "teacher" ? "교사용" : "학생용"}
+        </span>
+        <button type="button" onClick={() => window.print()}>
+          인쇄
+        </button>
+      </div>
+      <article className={s.paper}>
+        <header className={s.header}>
+          <p>오늘의 영어 · 영어듣기</p>
+          <h1>{document.title}</h1>
+          <p>
+            {document.view === "teacher"
+              ? "교사용 · 대본과 정답 포함"
+              : "이름 ____________________  날짜 ____________________"}
+          </p>
+        </header>
+        {document.groups.map((group, index) => (
+          <section key={group.id} className={s.group}>
+            <h2>듣기 {index + 1}</h2>
+            {group.questions.map((question) => (
+              <section key={question.id} className={s.question}>
+                <h3>
+                  {question.number}. {question.prompt}
+                </h3>
+                <ol className={s.choices}>
+                  {question.choices.map((choice, choiceIndex) => (
+                    <li key={choiceIndex}>
+                      <span>{["①", "②", "③", "④", "⑤"][choiceIndex]}</span>{" "}
+                      {choice}
+                    </li>
+                  ))}
+                </ol>
+                {question.answer !== undefined && (
+                  <div className={s.answer}>
+                    <strong>정답 {question.answer}</strong>
+                    <p>{question.explanation}</p>
+                  </div>
+                )}
+              </section>
+            ))}
+            {group.transcript !== undefined && (
+              <section className={s.transcript}>
+                <h3>대본</h3>
+                <p>{group.transcript}</p>
+                {group.translation && (
+                  <>
+                    <h3>해석</h3>
+                    <p>{group.translation}</p>
+                  </>
+                )}
+              </section>
+            )}
+          </section>
+        ))}
+      </article>
+    </div>
+  );
+}

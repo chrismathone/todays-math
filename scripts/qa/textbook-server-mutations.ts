@@ -35,6 +35,7 @@ const ARTIFACTS = "src/__tests__/lib/textbookPublishArtifacts.test.ts";
 const ROUTES = "src/__tests__/api/textbookRoutes.test.ts";
 const REGISTER = "src/__tests__/lib/textbookRegisterAndRefs.test.ts";
 const VALIDATOR = "src/__tests__/lib/textbookRealValidator.test.ts";
+const REPLAY = "src/__tests__/lib/textbookReplayScope.test.ts";
 
 const MUTATIONS: Mutation[] = [
   // ── 범위 (access.ts)
@@ -157,7 +158,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "담기: 출제 자격을 안 묻는다",
     file: `${LIB}/server/items.ts`,
-    line: 374,
+    line: 391,
     find: `const ineligible = problemIneligibleReason(row);`,
     replace: `const ineligible = null as string | null;`,
     tests: [CAPTURE],
@@ -165,7 +166,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "담기: 낡은 집계 revision 으로 담는다",
     file: `${LIB}/server/items.ts`,
-    line: 443,
+    line: 460,
     find: `if (access.revision !== input.expectedRevision)`,
     replace: `if (false)`,
     tests: [CAPTURE],
@@ -173,7 +174,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "배치: 낡은 집계 revision 으로 고친다",
     file: `${LIB}/server/items.ts`,
-    line: 595,
+    line: 615,
     find: `if (access.revision !== input.expectedRevision)`,
     replace: `if (false)`,
     tests: [CAPTURE],
@@ -181,7 +182,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "다시 캡처: 자격을 안 묻는다",
     file: `${LIB}/server/items.ts`,
-    line: 693,
+    line: 713,
     find: `const ineligible = problemIneligibleReason(row);`,
     replace: `const ineligible = null as string | null;`,
     tests: [CAPTURE],
@@ -562,8 +563,8 @@ const MUTATIONS: Mutation[] = [
     name: "등록: 승인된 문항으로 만든다",
     file: `${LIB}/server/itemRegister.ts`,
     line: 0,
-    find: `$10::"problem_pool", 'pending', `,
-    replace: `$10::"problem_pool", 'approved', `,
+    find: `$11::"problem_pool", 'pending', `,
+    replace: `$11::"problem_pool", 'approved', `,
     tests: [REGISTER],
   },
   {
@@ -578,8 +579,24 @@ const MUTATIONS: Mutation[] = [
     name: "등록: 그림이 있어도 등록한다",
     file: `${LIB}/server/itemRegister.ts`,
     line: 0,
-    find: `if (source.figureCount > 0)`,
-    replace: `if (false)`,
+    find: `if (source.figureAssetIds.length === 0) return null;`,
+    replace: `return null;`,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 다시 캡처한 내용이 달라도 등록한다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `recaptured.snapshot.contentHash !== source.contentHash`,
+    replace: `false`,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 인라인 SVG 를 은행에 적지 않는다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `            figureSvg,`,
+    replace: `            null,`,
     tests: [REGISTER],
   },
   {
@@ -704,6 +721,31 @@ const MUTATIONS: Mutation[] = [
     replace: `return [];`,
     tests: [ARTIFACTS],
   },
+  // ── 재전송과 범위 — 지금의 범위를 멱등 기록보다 먼저 본다 (conceptRows.ts · assignments.ts)
+  {
+    name: "재전송: 확인의 범위를 처음 한 번만 본다",
+    file: `${LIB}/server/conceptRows.ts`,
+    line: 0,
+    find: `await requireOwnStudent(tx, actor, target.studentId);`,
+    replace: ``,
+    tests: [REPLAY],
+  },
+  {
+    name: "재전송: 배정의 반 · 학생을 처음 한 번만 본다",
+    file: `${LIB}/server/assignments.ts`,
+    line: 0,
+    find: `if (!owned || owned.ownerId !== actor.id)`,
+    replace: `if (false)`,
+    tests: [REPLAY, FLOWS],
+  },
+  {
+    name: "재전송: 회수의 범위를 처음 한 번만 본다",
+    file: `${LIB}/server/assignments.ts`,
+    line: 0,
+    find: `if (!mine) throw notFound("배정");`,
+    replace: ``,
+    tests: [REPLAY],
+  },
   {
     name: "활동: 남의 학생을 읽고 쓴다",
     file: `${LIB}/server/conceptRows.ts`,
@@ -780,6 +822,7 @@ const control = runTests([
   ROUTES,
   REGISTER,
   VALIDATOR,
+  REPLAY,
 ]);
 console.log(
   `대조군(변이 없음): ${control.passed} 통과 · ${control.failed} 실패`,

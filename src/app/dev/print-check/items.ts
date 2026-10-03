@@ -18,6 +18,8 @@
  * 남이 쓴 것과 내가 지어낸 것을 섞지 않는다.
  */
 
+import { textbookPrintCheck } from "@/lib/textbook/render/printCheck";
+
 export type CheckStatus = "대기" | "통과" | "형태미확정";
 
 export interface PrintCheckItem {
@@ -80,6 +82,22 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  { ...textbookPrintCheck, changedOn: "2026-10-03" },
+  {
+    id: "english-listening-student-teacher",
+    changedOn: "2026-10-03",
+    title: "영어듣기 학생용·교사용 A4",
+    changed:
+      "발행한 듣기 자료를 학생용 문항과 교사용 대본·정답·해설로 나눠 인쇄한다. 학생용은 서버에서 대본과 정답 정보를 제거한다.",
+    look: "학생용에 대본·해석·정답·해설이 없어야 한다. 긴 발문·5개 보기·여러 대화의 문항이 잘리거나 겹치지 않아야 한다. 교사용에 정답 번호와 대본이 보여야 한다. A4 100%로 실제 출력해 여백과 다음 쪽 넘어감을 확인한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/english-listening-plan-20261003.md §11",
+      "src/components/english/listening/print/ListeningPrint.tsx",
+    ],
+    status: "대기",
+    needs: "영어듣기에서 발행한 자료의 학생용 인쇄·교사용 인쇄를 각각 연다.",
+  },
   {
     id: "studio-export-condition-and-solve-layout",
     title: "시험지 조건 상자·문항 머리와 오른쪽 풀이 공간",

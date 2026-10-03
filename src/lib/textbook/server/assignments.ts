@@ -92,24 +92,25 @@ export async function createAssignment(
   input: CreateAssignmentInput,
 ): Promise<{ assignment: TextbookAssignment; replayed: boolean }> {
   return db.transaction(async (tx) => {
+    // 🔴 지금의 범위를 재전송 기록보다 먼저 본다 — 끝난 요청이 다시 와도(일을 건너뛰어도) 이 둘은 지금의 것으로 본다:
+    //    그 판본을 지금 읽을 수 있는가 · 그 반 · 학생이 지금 내 것인가. 공유가 닫히거나 학생이 옮겨 간 뒤의 재전송은 404 다
+    const access = await requireReadableEdition(tx, actor, editionId);
+    const [owned] =
+      input.subject.kind === "class"
+        ? await tx.query<{ ownerId: string }>(
+            `SELECT c."user_id" AS "ownerId" FROM "class" c WHERE c."id" = $1::uuid`,
+            [input.subject.classId],
+          )
+        : await tx.query<{ ownerId: string }>(
+            `SELECT c."user_id" AS "ownerId" FROM "student" s JOIN "class" c ON c."id" = s."class_id"
+              WHERE s."id" = $1::uuid`,
+            [input.subject.studentId],
+          );
+    if (!owned || owned.ownerId !== actor.id)
+      throw notFound(input.subject.kind === "class" ? "반" : "학생");
     const { result, replayed } = await runOnce(tx, key, async () => {
-      const access = await requireReadableEdition(tx, actor, editionId);
       if (access.status !== "published")
         throw conflict("발행한 판본만 배정할 수 있습니다.");
-
-      const [owned] =
-        input.subject.kind === "class"
-          ? await tx.query<{ ownerId: string }>(
-              `SELECT c."user_id" AS "ownerId" FROM "class" c WHERE c."id" = $1::uuid`,
-              [input.subject.classId],
-            )
-          : await tx.query<{ ownerId: string }>(
-              `SELECT c."user_id" AS "ownerId" FROM "student" s JOIN "class" c ON c."id" = s."class_id"
-                WHERE s."id" = $1::uuid`,
-              [input.subject.studentId],
-            );
-      if (!owned || owned.ownerId !== actor.id)
-        throw notFound(input.subject.kind === "class" ? "반" : "학생");
 
       const scopeIds =
         input.scope.kind === "edition"
@@ -169,6 +170,13 @@ export async function revokeAssignment(
   key: RequestKey,
 ): Promise<{ assignment: TextbookAssignment; replayed: boolean }> {
   return db.transaction(async (tx) => {
+    // 🔴 지금의 범위를 재전송 기록보다 먼저 본다 — 그 반 · 학생이 지금 내 것일 때만(재전송도 같다)
+    const [mine] = await tx.query<{ id: string }>(
+      `SELECT a."id" FROM "textbook_assignment" a
+        WHERE a."id" = $3::uuid AND a."edition_id" = $1::uuid AND ${OWN_SUBJECT}`,
+      [editionId, actor.id, assignmentId],
+    );
+    if (!mine) throw notFound("배정");
     const { result, replayed } = await runOnce(tx, key, async () => {
       const [current] = await tx.query<AssignmentRow>(
         `${ASSIGNMENT_SQL} WHERE a."id" = $3::uuid AND a."edition_id" = $1::uuid AND ${OWN_SUBJECT} FOR UPDATE OF a`,

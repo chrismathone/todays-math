@@ -56,9 +56,14 @@ export const POST = withErrorLog(
         body,
         resolveReviewedConcept,
       );
+      // 응답은 계약의 세 칸만 — 서버 함수가 같이 돌려주는 `replayed` 를 그대로 실으면 엄격한 스키마가 500 을 낸다
       return data(
         textbookConceptRecordSchema,
-        saved,
+        {
+          concept: saved.concept,
+          revision: saved.revision,
+          aggregateRevision: saved.aggregateRevision,
+        },
         saved.replayed ? 200 : 201,
       );
     }),
