@@ -228,7 +228,8 @@ export const textbookAssignmentSchema = z.strictObject({
 export const textbookReissueSchema = textbookRequestSchema.extend({
   itemIds: z.array(textbookIdSchema).min(1).max(200),
   classId: z.uuid(),
-  title: textbookTitleSchema,
+  /** Legacy request compatibility only; Test has no title field. */
+  title: textbookTitleSchema.optional(),
   testType: z.enum(["daily", "review"]),
   rangeEndUnitId: z.uuid(),
 });

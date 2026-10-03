@@ -10,12 +10,8 @@ import { canonicalHash } from "./hash.server";
 import { studentAttemptOf, studentConceptOf } from "./studentProjection";
 import { readFrozenConcept, requireStudentConcept } from "./studentRead";
 import { conflict, invalid } from "./server/errors";
-import { isoColumn, type TextbookDb, type TextbookSql } from "./server/sql";
-
-const attemptSelect = `SELECT a."id" AS "attemptId", a."request_id" AS "requestId", a."body_hash" AS "bodyHash", a."student_id" AS "studentId",
-  a."edition_id" AS "editionId", a."concept_key" AS "conceptKey", a."frozen_hash" AS "frozenHash", a."form", a."channel", a."response",
-  ${isoColumn('a."submitted_at"')} AS "submittedAt", a."revision", a."review_status" AS "reviewStatus", a."reviewed_by" AS "reviewedBy",
-  ${isoColumn('a."reviewed_at"')} AS "reviewedAt", a."note" FROM "textbook_concept_attempt" a`;
+import type { TextbookDb, TextbookSql } from "./server/sql";
+import { textbookAttemptSelectSql as attemptSelect } from "./server/conceptRows";
 
 export async function listStudentConceptAttempts(
   sql: TextbookSql,
