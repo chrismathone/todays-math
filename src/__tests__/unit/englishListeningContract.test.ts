@@ -10,6 +10,17 @@ import {
 } from "@/mocks/englishListeningFixture";
 
 describe("listening strict contract", () => {
+  it("preserves a standalone account's null branch without inventing a tenant", () => {
+    const document = { ...englishListeningFixture(), branchId: null };
+    expect(englishListeningDocumentSchema.parse(document).branchId).toBeNull();
+    const assignment = {
+      ...englishListeningAssignmentFixture(),
+      branchId: null,
+    };
+    expect(
+      englishListeningAssignmentSchema.parse(assignment).branchId,
+    ).toBeNull();
+  });
   it("keeps schema version separate from edit revision without normalization", () => {
     const document = englishListeningFixture();
     document.revision = 28;

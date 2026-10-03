@@ -94,7 +94,7 @@ export const verifiedListeningMediaSchema = z.strictObject({
   ...listeningAudioRefSchema.shape,
   readiness: z.literal("ready"),
   ownerId: z.uuid(),
-  branchId: z.uuid(),
+  branchId: z.uuid().nullable(),
   verifiedAt: z.iso.datetime(),
 });
 export type VerifiedListeningMedia = z.infer<
