@@ -223,7 +223,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //     그 커밋이 이 수를 안 올려 main 이 97 ≠ 98 로 빨갰다 — 같은 날 리드가 병합하며 맞춤).
     // 99: elementary-bank-net-and-hidden-dimensions 추가 (2026-10-03 일반 문제은행 외부 검토 반영 —
     //     원기둥 전개도의 두 밑면 자리 · 한 모서리를 묻는 정육면체 그림의 치수 숨김).
-    expect(ITEMS.length).toBe(99);
+    // 100: textbook-studio 출력 검수 추가 — 디지털 QR 판독과 실물 스캔을 구별해 대기로 남긴다.
+    expect(ITEMS.length).toBe(100);
   });
 
   /**
