@@ -45,7 +45,11 @@ export default async function RetryWirePage() {
    * 시안이 조용히 빈 화면이 된다.
    */
   const tests = await db.test.findMany({
-    where: { status: { in: ["confirmed", "printed"] } },
+    // This legacy layout probe uses the live-bank display only; real textbook printing uses contentOf.
+    where: {
+      status: { in: ["confirmed", "printed"] },
+      testProblems: { every: { snapshotId: null } },
+    },
     include: {
       class: { include: { students: { orderBy: { name: "asc" } } } },
       testProblems: {

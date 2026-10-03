@@ -80,6 +80,8 @@ export interface ScoredItem {
   unitId: string;
   difficulty: Difficulty;
   isCorrect: boolean;
+  /** Caption captured with a textbook item; never changes the progress curriculum's current names. */
+  frozenUnitLabel?: UnitRef;
 }
 
 /**
@@ -360,6 +362,18 @@ function scoredFactors(
 
   const taken = rows.filter((r) => !r.absent).sort(byDate);
   const absent = rows.filter((r) => r.absent).sort(byDate);
+  // An aggregate uses the most recent observed caption, while progress keeps its own live catalogue.
+  const scoredUnits = new Map(byId);
+  for (const row of taken)
+    for (const item of row.items) {
+      const label = item.frozenUnitLabel ?? byId.get(item.unitId);
+      if (label)
+        scoredUnits.set(item.unitId, {
+          ...label,
+          orderIndex:
+            byId.get(item.unitId)?.orderIndex ?? Number.MAX_SAFE_INTEGER,
+        });
+    }
 
   // 🔴 결시 회차의 문항은 어떤 누적에도 안 들어간다.
   const problemTally: ProblemTally = { correct: 0, total: 0, rounds: 0 };
@@ -393,7 +407,7 @@ function scoredFactors(
   const reported: UnitAccuracy[] = [];
   const underSampled: UnderSampledUnit[] = [];
   for (const [unitId, tally] of unitTally) {
-    const ref = unitRefOf(unitId, byId);
+    const ref = unitRefOf(unitId, scoredUnits);
     if (tally.total >= MIN_UNIT_PROBLEMS) {
       reported.push({
         ...ref,
@@ -437,7 +451,7 @@ function scoredFactors(
     problems: problemTally.total > 0 ? problemTally : null,
     unitAccuracy: { reported, underSampled },
     bandAccuracy,
-    reviewUnits: reviewUnitsOf(taken, unitTally, byId),
+    reviewUnits: reviewUnitsOf(taken, unitTally, scoredUnits),
   };
 }
 

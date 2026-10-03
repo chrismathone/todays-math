@@ -68,7 +68,9 @@ export function serializeProgress(row: ProgressRow): ProgressEntity {
   };
 }
 
-export function serializeProblem(row: ProblemRow): ProblemEntity {
+export function serializeProblem(
+  row: Omit<ProblemRow, "choiceFigureIndex">,
+): ProblemEntity {
   return {
     id: row.id,
     // 컬럼을 **그대로** 내보낸다. 단원에서 다시 만들지 않는다 — 코드는 부여 당시의
@@ -125,14 +127,28 @@ export function serializeTest(row: TestRow): TestEntity {
 }
 
 export function serializeTestProblemItem(
-  row: TestProblemRow & { problem: ProblemRow },
+  row: TestProblemRow & {
+    problem: Omit<ProblemRow, "choiceFigureIndex"> & {
+      choiceFigureIndex?: (number | null)[];
+    };
+  },
 ): TestProblemItem {
   return {
     id: row.id,
     problemId: row.problemId,
     orderIndex: row.orderIndex,
     replaced: row.replaced,
-    problem: serializeProblem(row.problem),
+    ...(row.snapshotId ? { snapshotId: row.snapshotId } : {}),
+    problem: {
+      ...serializeProblem(row.problem),
+      ...(row.snapshotId
+        ? {
+            figureDims: row.problem.figureDims,
+            figureSourceMm: row.problem.figureSourceMm,
+            choiceFigureIndex: row.problem.choiceFigureIndex,
+          }
+        : {}),
+    },
   };
 }
 
