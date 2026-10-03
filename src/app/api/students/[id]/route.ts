@@ -15,6 +15,7 @@ import {
 } from "@/contracts/common.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { isRetainedRelationError } from "@/lib/databaseErrors";
 import { canManageRoster } from "@/lib/ownerScope";
 import { requireOwnedStudent } from "@/lib/ownership";
 import { serializeStudent } from "@/lib/serializers";
@@ -75,7 +76,22 @@ async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const owned = await requireOwnedStudent(id, session);
   if (!owned.ok) return owned.response;
 
-  await db.student.delete({ where: { id } });
+  try {
+    await db.student.delete({ where: { id } });
+  } catch (error) {
+    if (isRetainedRelationError(error)) {
+      return Response.json(
+        {
+          error: {
+            code: "RECORDS_RETAINED",
+            message: "학습 기록이 연결되어 있어 학생을 삭제할 수 없습니다.",
+          },
+        },
+        { status: 409 },
+      );
+    }
+    throw error;
+  }
   return jsonOk(deleteResponseSchema, { data: { id } });
 }
 
