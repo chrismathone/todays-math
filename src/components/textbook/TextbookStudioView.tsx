@@ -294,8 +294,11 @@ export function TextbookStudioView({
 
   const dirtyRef = useRef(false);
   useEffect(() => {
-    dirtyRef.current = draft !== null && !sameDraft(draft, saved);
-  }, [draft, saved]);
+    dirtyRef.current =
+      (draft !== null && !sameDraft(draft, saved)) ||
+      JSON.stringify(conceptLinks) !== JSON.stringify(savedLinks) ||
+      confirmLinkIds.length > 0;
+  }, [draft, saved, conceptLinks, savedLinks, confirmLinkIds]);
   useEffect(() => {
     const id = initialEditionFromLocation(
       initialEditionId,
@@ -517,7 +520,9 @@ export function TextbookStudioView({
     const order = orderBlankPicks(draft.picks);
     if (!order.ok) return false;
     const conceptStill =
-      JSON.stringify(draft.concept) !== JSON.stringify(saved?.concept ?? null);
+      JSON.stringify(draft.concept) !==
+        JSON.stringify(saved?.concept ?? null) ||
+      JSON.stringify(draft.picks) !== JSON.stringify(saved?.picks ?? []);
     const linksStill = linksDirty;
     setBusy(true);
     try {
@@ -539,6 +544,7 @@ export function TextbookStudioView({
         structuredClone({
           ...next,
           concept: current?.concept ?? null,
+          picks: current?.picks ?? [],
         }),
       );
       setEdition({
@@ -657,9 +663,10 @@ export function TextbookStudioView({
     if (!nav || !draft || !saved) return;
     const conceptStill =
       JSON.stringify(draft.concept) !== JSON.stringify(saved.concept) ||
+      JSON.stringify(draft.picks) !== JSON.stringify(saved.picks) ||
       linksDirty;
     const sectionStill = !sameDraft(
-      { ...draft, concept: saved.concept },
+      { ...draft, concept: saved.concept, picks: saved.picks },
       saved,
     );
     if (conceptStill) {
@@ -1421,6 +1428,13 @@ export function TextbookStudioView({
                     onClick={discardAndLeave}
                   >
                     버리고 이동
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => setPendingNav(null)}
+                  >
+                    계속 편집
                   </button>
                 </div>
               ) : null}
