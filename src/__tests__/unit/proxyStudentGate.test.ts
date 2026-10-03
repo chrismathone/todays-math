@@ -182,7 +182,23 @@ const EXIT = [
  * eywa 자동 로그인 입구 — 학생이 앉아 있던 공용 PC 에서 선생님이 eywa 링크를 눌러도 선생님 계정으로
  * 바뀌어야 한다(원장님 2026-09-26). 주는 것은 로그인 시도뿐이다(표가 틀리면 /login).
  */
-const SSO = ["GET /api/sso/eywa"];
+const SSO = [
+  "GET /api/sso/eywa",
+  "GET /api/sso/eywa/v2/start",
+  "GET /api/sso/eywa/v2/callback",
+  "POST /api/sso/eywa/v2/complete",
+  "GET /account/eywa-switch",
+];
+
+// These public transport endpoints validate signed requests in managedTransport.
+// Proxy forwarding grants no student or teacher authority. Keep exact paths here;
+// unsupported methods reach Next's 405 handling, never an operational mutation.
+const SIGNED_RECEIVER = [
+  "/api/integrations/eywa/v2/events",
+  `/api/integrations/eywa/v2/events/${UUID}`,
+  "/api/integrations/eywa/v2/process",
+  `/api/integrations/eywa/v2/students/${UUID}`,
+].flatMap((p) => METHODS.map((method) => `${method} ${p}`));
 
 /** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */
 const REPORT = ["POST /api/logs/client"];
@@ -289,6 +305,7 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/test-console",
         ...REPORT,
         ...SSO,
+        ...SIGNED_RECEIVER,
         ...EXIT,
         ...brand,
         ...LAB,
@@ -337,6 +354,7 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
         "POST /api/learn/test-console",
         ...REPORT,
         ...SSO,
+        ...SIGNED_RECEIVER,
         ...EXIT,
         ...brand,
         ...LAB,
