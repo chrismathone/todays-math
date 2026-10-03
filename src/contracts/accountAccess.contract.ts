@@ -199,6 +199,8 @@ export type ManagedAccount = AccountAccess & {
   /** Exact branch cap; null only for unassigned accounts. */
   branchMenus?: WorkspaceMenu[] | null;
   branchMenuRevision?: number | null;
+  /** Independent rollout restrictions, without personal or branch policy applied. */
+  unavailableMenus?: WorkspaceMenu[];
   createdAt: string;
   updatedAt: string;
   suspendedAt: string | null;

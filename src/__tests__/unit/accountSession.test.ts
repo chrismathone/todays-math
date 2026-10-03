@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ALL_WORKSPACE_MENUS } from "@/contracts/accountAccess.contract";
 vi.mock("server-only", () => ({}));
 type Token = Record<string, unknown>;
@@ -19,6 +19,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("@/lib/db", () => ({
   db: {
     user: { findUnique: mocks.findUnique },
+    eywaManagedAccount: { findUnique: vi.fn(async () => null) },
     accountAuditLog: { create: vi.fn() },
   },
 }));
@@ -43,9 +44,12 @@ const user = {
   deletedAt: null,
 };
 beforeEach(() => {
+  vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
+  vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "");
   mocks.findUnique.mockReset();
   mocks.findUnique.mockResolvedValue(user);
 });
+afterEach(() => vi.unstubAllEnvs());
 describe("existing session access refresh", () => {
   it.each([null, "branch-b"])(
     "invalidates the old session after membership changes to %s",
@@ -143,7 +147,7 @@ describe("existing session access refresh", () => {
       await mocks.configuration.value.callbacks.jwt({ token: {} }),
     ).toBeNull();
   });
-  it("grants admin menus only from the authoritative account row", async () => {
+  it("keeps personal denials for the highest administrator", async () => {
     mocks.findUnique.mockResolvedValue({
       ...user,
       isAdmin: true,
@@ -157,6 +161,67 @@ describe("existing session access refresh", () => {
           user: { id: "u1" },
         })
       )?.menus,
-    ).toEqual(ALL_WORKSPACE_MENUS);
+    ).toEqual(ALL_WORKSPACE_MENUS.filter((menu) => menu !== "bank"));
+  });
+  it.each([false, true])(
+    "refreshes branch policy on the existing token for owner/superadmin=%s",
+    async (isSuperAdmin) => {
+      vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "u1");
+      const assigned = {
+        ...user,
+        isAdmin: true,
+        isSuperAdmin,
+        branchId: "branch-a",
+        branchRole: "owner",
+        disabledMenus: ["studio"],
+        branch: { disabledMenus: [], menuRevision: 1 },
+      };
+      mocks.findUnique.mockResolvedValue(assigned);
+      const first = await mocks.configuration.value.callbacks.jwt({
+        token: { id: "u1" },
+      });
+      expect(first?.menus).toContain("bank");
+      expect(first?.menus).not.toContain("studio");
+      mocks.findUnique.mockResolvedValue({
+        ...assigned,
+        branch: {
+          disabledMenus: ["bank", "english-listening"],
+          menuRevision: 2,
+        },
+      });
+      const second = await mocks.configuration.value.callbacks.jwt({
+        token: first!,
+      });
+      expect(second?.menus).not.toContain("bank");
+      expect(second?.menus).not.toContain("english-listening");
+      expect(second?.isAdmin).toBe(true);
+      expect(mocks.findUnique).toHaveBeenLastCalledWith(
+        expect.objectContaining({
+          select: expect.objectContaining({
+            branch: { select: { disabledMenus: true, menuRevision: true } },
+          }),
+        }),
+      );
+      mocks.findUnique.mockResolvedValue({
+        ...assigned,
+        branch: { disabledMenus: [], menuRevision: 3 },
+      });
+      const restored = await mocks.configuration.value.callbacks.jwt({
+        token: second!,
+      });
+      expect(restored?.menus).toContain("bank");
+      expect(restored?.menus).not.toContain("studio");
+    },
+  );
+  it("fails closed when an assigned account's live branch relation is missing", async () => {
+    mocks.findUnique.mockResolvedValue({
+      ...user,
+      branchId: "missing",
+      branch: null,
+    });
+    const result = await mocks.configuration.value.callbacks.jwt({
+      token: { id: "u1", menus: ALL_WORKSPACE_MENUS },
+    });
+    expect(result?.menus).toEqual([]);
   });
 });

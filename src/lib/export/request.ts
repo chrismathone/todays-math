@@ -16,6 +16,12 @@ export async function authorizeExport(
     return fail(403, "현재 작업 화면에서 다시 내보내 주세요.");
   if (!request.headers.get("content-type")?.startsWith("application/json"))
     return fail(415, "JSON 문서가 필요합니다.");
+  const { getSessionUser } = await import("@/lib/session");
+  const session = await getSessionUser();
+  if (session)
+    return session.menus?.includes("export")
+      ? null
+      : fail(403, "시험지 · 내보내기 메뉴를 사용할 권한이 없습니다.");
   if (process.env.NODE_ENV === "development") {
     const local = (hostname: string) =>
       ["localhost", "127.0.0.1", "[::1]"].includes(hostname);
@@ -32,10 +38,7 @@ export async function authorizeExport(
       return fail(403, "로컬 작업 화면에서 다시 내보내 주세요.");
     }
   }
-  const { getSessionUser } = await import("@/lib/session");
-  return (await getSessionUser())
-    ? null
-    : fail(401, "로그인 후 내보낼 수 있습니다.");
+  return fail(401, "로그인 후 내보낼 수 있습니다.");
 }
 
 export async function readExportBody(

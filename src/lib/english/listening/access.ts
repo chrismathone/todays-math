@@ -23,6 +23,7 @@ export function canUseListeningTeacher(
   return (
     !!account?.id &&
     account.approvalStatus === "approved" &&
+    account.menus.includes("english-listening") &&
     pilot.enabled === true &&
     pilot.grantedUserIds.includes(account.id) &&
     (!legacyBlocked ||

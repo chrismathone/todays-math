@@ -85,6 +85,7 @@ const BRANCH_ADMIN: Viewer = {
   email: "branch-admin@example.com",
   name: "지점 관리자",
   isAdmin: true,
+  menus: ["english-school", "english-maker", "english-library"],
   branchId: BRANCH_A,
   branchRole: "owner",
 };
@@ -93,6 +94,7 @@ const OTHER_BRANCH_ADMIN: Viewer = {
   email: "other-branch-admin@example.com",
   name: "다른 지점 관리자",
   isAdmin: true,
+  menus: ["english-school", "english-maker", "english-library"],
   branchId: BRANCH_B,
   branchRole: "owner",
 };

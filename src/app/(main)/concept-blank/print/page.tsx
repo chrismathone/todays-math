@@ -9,7 +9,7 @@
  * 세션 없음 → `/login` · `?s=` 가 틀리면(읽기 · 계약 검사 실패) «주소를 확인해 주세요» 한 줄.
  * 고정 문항이라 같은 `?s=` 는 언제나 같은 지면이다(DB 를 안 읽는다 — 은행은 코드 데이터).
  */
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import ConceptBlankPaper from "@/components/concept-blank/ConceptBlankPaper";
 import PrintNow from "@/components/concept-blank/paper/PrintNow";
@@ -37,6 +37,7 @@ export default async function ConceptBlankPrintPage({
 }: ConceptBlankPrintPageProps) {
   const [session, query] = await Promise.all([getSessionUser(), searchParams]);
   if (!session) redirect("/login");
+  if (!session.menus?.includes("conceptBlank")) notFound();
 
   const code = Array.isArray(query.s) ? query.s[0] : query.s;
   const selection = decodeSelection(code);

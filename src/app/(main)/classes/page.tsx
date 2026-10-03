@@ -1,4 +1,5 @@
 import { connection } from "next/server";
+import { notFound, redirect } from "next/navigation";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
 import { ClassManage } from "@/components/class/ClassManage";
@@ -11,6 +12,8 @@ export default async function ClassesPage() {
   await connection();
 
   const session = await getSessionUser();
+  if (!session) redirect("/login");
+  if (!session.menus?.includes("teaching")) notFound();
 
   const units = await db.unit.findMany({
     orderBy: { orderIndex: "asc" },

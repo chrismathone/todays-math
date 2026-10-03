@@ -45,16 +45,7 @@ export function createListeningRuntime(
     ) =>
       transaction(undefined, async (tx) => {
         const account = await teacher(tx, actor);
-        const user = await tx.user.findUnique({
-          where: { id: account.id },
-          select: { disabledMenus: true },
-        });
-        if (
-          !user ||
-          user.disabledMenus.includes("english-bank") ||
-          user.disabledMenus.includes("english")
-        )
-          throw denied();
+        if (!account.menus.includes("english-bank")) throw denied();
         return resource === "bank"
           ? searchListeningBank(tx, account, input)
           : searchListeningReferences(input);
