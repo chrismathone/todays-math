@@ -18,8 +18,10 @@ import {
 } from "../helpers/textbookPglite";
 
 const TEXTBOOK = migrationDirs().filter((dir) => dir.includes("textbook"));
+// 이후 과목의 마이그레이션이 추가돼도 준비 DB는 첫 교재 마이그레이션 직전에서 멈춘다.
+// 마지막 비교재 마이그레이션까지 열면 교재 DDL도 이미 적용되어 아래에서 중복 실행된다.
 const BEFORE = migrationDirs()
-  .filter((dir) => !dir.includes("textbook"))
+  .filter((dir) => dir < TEXTBOOK[0]!)
   .at(-1)!;
 const read = (dir: string) =>
   readFileSync(
