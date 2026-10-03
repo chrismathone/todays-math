@@ -50,6 +50,8 @@ export interface MergedPdf {
 export interface TextbookRenderer {
   rendererVersion: string;
   templateVersion: string;
+  /** 조판기를 쓸 수 없는 까닭 — 있으면 발행 예약이 작업을 만들지 않고 거절한다 */
+  unavailableReason?: string;
   renderChunk(input: {
     exchange: TextbookExchange;
     readAsset: ReadEditionAsset;

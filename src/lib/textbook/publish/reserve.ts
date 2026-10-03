@@ -125,6 +125,12 @@ export async function reservePublish(
   bodyHash: string,
   deps: PublishDeps,
 ): Promise<TextbookPublishJob> {
+  if (deps.renderer.unavailableReason)
+    throw new TextbookError(
+      503,
+      "INTERNAL_ERROR",
+      deps.renderer.unavailableReason,
+    );
   return db.transaction(async (tx) => {
     const [existing] = await tx.query<{
       operation: string;

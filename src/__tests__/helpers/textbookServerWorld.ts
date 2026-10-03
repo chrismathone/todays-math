@@ -174,3 +174,93 @@ export async function insertBankProblem(
   );
   return { id, code: rows[0]!.problem_code };
 }
+
+export const TEST_ORIGIN = "https://textbook.todays-math.kr";
+
+/**
+ * 결정적인 대역 조판기가 든 발행 의존물 — Chromium 을 띄우지 않는다.
+ * 쪽 계획 · 다시 읽은 QR 은 교환 형식에서 그대로 지어낸다(서버 쪽 차례와 검증을 재는 시험용이다).
+ */
+export function fakePublishDeps(): import("@/lib/textbook/publish/rendererAdapter").PublishDeps {
+  type QrReadback = import("@/lib/textbook/publish/rendererAdapter").QrReadback;
+  return {
+    officialOrigin: TEST_ORIGIN,
+    now: () => new Date("2026-10-03T03:00:00.000Z"),
+    validate: async () => [],
+    freezeConcept: (concept) => ({
+      ...concept,
+      frozen: {
+        contentHash: fakeHash(`frozen:${concept.conceptKey}`),
+        parserVersion: "p1",
+        compositionVersion: "c1",
+        mappingVersion: concept.mappingVersion,
+        sections: [],
+        entries: [],
+        selection: [],
+        assetHashes: [],
+      },
+    }),
+    renderer: {
+      rendererVersion: "fake.renderer.v1",
+      templateVersion: "fake.template.v1",
+      async renderChunk(input) {
+        const flat = input.exchange.units.flatMap((unit) =>
+          unit.sections.map(
+            (section) => `${unit.unitKey}/${section.sectionKey}`,
+          ),
+        );
+        const keys = new Set(input.sectionIndices.map((index) => flat[index]!));
+        const items = input.exchange.items.filter((item) =>
+          keys.has(`${item.unitKey}/${item.sectionKey}`),
+        );
+        const concepts = (
+          input.exchange.conceptIntegration?.concepts ?? []
+        ).filter(
+          (concept) =>
+            concept.sectionKey &&
+            keys.has(`${concept.unitKey}/${concept.sectionKey}`),
+        );
+        const qrChecks: QrReadback[] = [
+          ...items.map((item) =>
+            input.exchange.qrTargets.find((qr) => qr.itemId === item.itemId)!,
+          ),
+          ...concepts.flatMap((concept) =>
+            (input.exchange.conceptQrTargets ?? []).filter(
+              (qr) => qr.conceptKey === concept.conceptKey,
+            ),
+          ),
+        ].map((qr) => ({
+          qrTargetId: qr.qrTargetId,
+          url: qr.url,
+          decodedUrl: qr.url,
+          physicalPageIndex: input.firstPhysicalPageIndex,
+        }));
+        return {
+          pdf: Buffer.from(
+            `%PDF-fake ${input.variant} ${input.sectionIndices.join(",")} ${randomUUID()}`,
+          ),
+          pageCount: 2,
+          pageMap: items.map((item) => ({
+            itemId: item.itemId,
+            physicalPageIndex: input.firstPhysicalPageIndex,
+            printedPageLabel: String(input.firstPhysicalPageIndex),
+            column: 1 as const,
+          })),
+          issues: [],
+          qrChecks,
+          nextPhysicalPageIndex: input.firstPhysicalPageIndex + 2,
+          carry: { qrChecks },
+        };
+      },
+      async mergeChunks(chunks) {
+        return {
+          pdf: Buffer.concat(chunks.map((chunk) => Buffer.from(chunk.pdf))),
+          pageCount: chunks.reduce((sum, chunk) => sum + chunk.pageCount, 0),
+          qrChecks: chunks.flatMap(
+            (chunk) => (chunk.carry as { qrChecks: QrReadback[] }).qrChecks,
+          ),
+        };
+      },
+    },
+  };
+}
