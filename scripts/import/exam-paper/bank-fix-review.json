@@ -1,0 +1,1983 @@
+{
+  "baseRevision": "34f16be721fcfc0ed4666c7a213a373c0d8a6ece",
+  "papers": 25,
+  "rows": 533,
+  "changed": 117,
+  "unchanged": 416,
+  "missingAnswersBefore": 106,
+  "missingAnswersAfter": 1,
+  "databaseChanged": [
+    "2025-dongdo-3-2-mid-9",
+    "2025-dongdo-3-2-mid-10",
+    "2025-dongdo-3-2-mid-11",
+    "2025-dongdo-3-2-mid-12",
+    "2025-dongdo-3-2-mid-13",
+    "2025-dongdo-3-2-mid-14",
+    "2025-dongdo-3-2-mid-15",
+    "2025-dongdo-3-2-mid-16",
+    "2025-gangdong-3-2-mid-18",
+    "2025-gangdong-3-2-mid-19",
+    "2025-gangdong-3-2-mid-20",
+    "2025-gangdong-3-2-mid-21"
+  ],
+  "changes": [
+    {
+      "externalId": "2025-chilgok-3-2-mid-17",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "548ce0aa9bc3b2705affbef93f63a352dcb957c84d7e71baa0ef73a1bd0b30ce",
+      "afterHash": "11b975ce0514ca899b42aa287f742325517ac10514e786e151aa276bad834f88",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\sqrt{2},\\,-\\sqrt{2}$이차함수 $y=3x^{2}+7$의 꼭짓점의 좌표가 $\\left( 0,\\,7\\right)$이 같으므로구하고자 하는 이차함수 식은 $y=ax^{2}+7$이다.점$\\left( 2,\\,-1\\right)$을 지나므로    $-1=4a+7$   $\\therefore \\,a=-2$이다.이차함수 식은 $y=-2x^{2}+7$가 $\\left( k,\\,3\\right)$을 지나므로    $3=-2k^{2}+7$  $\\therefore \\,k=+-\\sqrt{2}$이다."
+      },
+      "after": {
+        "answer": "$\\sqrt{2},\\,-\\sqrt{2}$",
+        "solution": "이차함수 $y=3x^{2}+7$의 꼭짓점의 좌표가 $\\left( 0,\\,7\\right)$이 같으므로구하고자 하는 이차함수 식은 $y=ax^{2}+7$이다.점$\\left( 2,\\,-1\\right)$을 지나므로    $-1=4a+7$   $\\therefore \\,a=-2$이다.이차함수 식은 $y=-2x^{2}+7$가 $\\left( k,\\,3\\right)$을 지나므로    $3=-2k^{2}+7$  $\\therefore \\,k=+-\\sqrt{2}$이다."
+      }
+    },
+    {
+      "externalId": "2025-chilgok-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "7e7614040086a2bd30c5080774fc1191e0f6e537a8743b299388a3a9ae48a0d2",
+      "afterHash": "c479c8a41ae6aab019a2a639c2822dd596a1bc18672fd4305e15a1e2250c8d99",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$y=x^{2}+4x-2$꼭짓점의 좌표가 $\\left( -2,\\,-6\\right)$이므로 $y=a\\left( x+2\\right) ^{2}-6$이고$y$절편이 $-2$이므로 $\\left( 0,\\,-2\\right)$를 지난다.식에 대입하면, $-2=4a-6$이므로 $a=1$이다.$y=\\left( x+2\\right) ^{2}-6$이므로 $y=x^{2}+4x-2$이다."
+      },
+      "after": {
+        "answer": "$y=x^{2}+4x-2$",
+        "solution": "꼭짓점의 좌표가 $\\left( -2,\\,-6\\right)$이므로 $y=a\\left( x+2\\right) ^{2}-6$이고$y$절편이 $-2$이므로 $\\left( 0,\\,-2\\right)$를 지난다.식에 대입하면, $-2=4a-6$이므로 $a=1$이다.$y=\\left( x+2\\right) ^{2}-6$이므로 $y=x^{2}+4x-2$이다."
+      }
+    },
+    {
+      "externalId": "2025-chilgok-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "8f5d0a07795843bbd38d7045e37e69afd22e71792433de6af2e7b096fdd1491f",
+      "afterHash": "56f9866a9d08fc787f283b5472cf02ad93b98c65c537042e87609a29fb619543",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "풀이 참조$y=2x^{2}-4x-15$ $=2\\left( x-1\\right) ^{2}-17$이고,$x$축의 방향으로 $1$만큼, $y$축의 방향으로 $3$만큼 평행이동하면$y=2\\left( x-1-1\\right) ^{2}-17+3$ $=2\\left( x-2\\right) ^{2}-14$ $=2x^{2}-8x-6$이다.꼭짓점의 좌표가 $\\left( 2,\\,-14\\right)$이고, $y$절편이 $-6$인 이차함수 그래프는 아래와 같다."
+      },
+      "after": {
+        "answer": "풀이 참조",
+        "solution": "$y=2x^{2}-4x-15$ $=2\\left( x-1\\right) ^{2}-17$이고,$x$축의 방향으로 $1$만큼, $y$축의 방향으로 $3$만큼 평행이동하면$y=2\\left( x-1-1\\right) ^{2}-17+3$ $=2\\left( x-2\\right) ^{2}-14$ $=2x^{2}-8x-6$이다.꼭짓점의 좌표가 $\\left( 2,\\,-14\\right)$이고, $y$절편이 $-6$인 이차함수 그래프는 아래와 같다."
+      }
+    },
+    {
+      "externalId": "2025-chilgok-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "74a3e0ed55f32f133596176f34fb86fa7128c1f866a0641d360465135dcb00b4",
+      "afterHash": "ca12a8f526207cb185b42934d23578d5e4da73314c1ac657ad3eebf322bb6e54",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$15$이차함수 $y=-x^{2}-4x+5$          $=-\\left( x+2\\right) ^{2}+9$이므로꼭짓점의 좌표는 $\\left( -2,\\,9\\right)$, $x$축의 음의 부분과 만나는 점 $\\mathrm{B}$는 $\\left( -5,\\,0\\right)$, $y$축과 만나는 점 $\\mathrm{C}$$\\left( 0,\\,5\\right)$이다.$\\triangle \\mathrm{ABC}$의 넓이  $=$(직사각형의 넓이)$-$(주변 삼각형들의 넓이)  $=\\left( 5\\,\\times 9\\right) -\\left( \\frac{1}{2}\\times 3\\times 9\\right) -\\left( \\frac{1}{2}\\times 2\\times 4\\right) -\\left( \\frac{1}{2}\\times 5\\times 5\\right)$  $=15$[참고]"
+      },
+      "after": {
+        "answer": "$15$",
+        "solution": "이차함수 $y=-x^{2}-4x+5$          $=-\\left( x+2\\right) ^{2}+9$이므로꼭짓점의 좌표는 $\\left( -2,\\,9\\right)$, $x$축의 음의 부분과 만나는 점 $\\mathrm{B}$는 $\\left( -5,\\,0\\right)$, $y$축과 만나는 점 $\\mathrm{C}$$\\left( 0,\\,5\\right)$이다.$\\triangle \\mathrm{ABC}$의 넓이  $=$(직사각형의 넓이)$-$(주변 삼각형들의 넓이)  $=\\left( 5\\,\\times 9\\right) -\\left( \\frac{1}{2}\\times 3\\times 9\\right) -\\left( \\frac{1}{2}\\times 2\\times 4\\right) -\\left( \\frac{1}{2}\\times 5\\times 5\\right)$  $=15$[참고]"
+      }
+    },
+    {
+      "externalId": "2025-chilgok-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "b58ac9295739ccd987175014f39e16e78af33e9c19851110276ba066220b3152",
+      "afterHash": "2974a21eb014b66258795fa049e15b7f999f22997ed0aa01658be61a2a06d676",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$58.78$$\\cos 54°=\\frac{\\overline{\\mathrm{A}C}}{100}$$\\overline{\\mathrm{A}C}=100\\,\\times \\,\\cos 54°$   $=100\\,\\times \\,0.5878$   $=58.78$"
+      },
+      "after": {
+        "answer": "$58.78$",
+        "solution": "$\\cos 54°=\\frac{\\overline{\\mathrm{A}C}}{100}$$\\overline{\\mathrm{A}C}=100\\,\\times \\,\\cos 54°$   $=100\\,\\times \\,0.5878$   $=58.78$"
+      }
+    },
+    {
+      "externalId": "2025-daegudong-3-2-mid-12",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "8198e7d20ec3e8e263f95141147cef4e0c9c265f0c5d5c03c60bdb76c4e78dfe",
+      "afterHash": "bd05263210e0124a07a0f56634201b7ca322fb2738a54e0d942802bbc8682896",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $\\overline{\\mathrm{OB}=\\sin \\,x°,\\,\\overline{\\mathrm{AB}=\\cos \\,x°,\\,\\overline{\\mathrm{CD}=\\frac{1}{\\tan \\,x°}}}}$⑵ $\\frac{1}{4}$   ⑶ $\\frac{\\pi}{4}-\\frac{1}{4}$⑴ $\\sin x°=\\frac{\\overline{OB}}{\\overline{OA}=\\frac{\\overline{OB}}{1}=\\overline{\\mathrm{OB},\\,\\overline{\\mathrm{OB}=\\sin x°\\,}}}$ $\\cos x°=\\frac{\\overline{AB}}{\\overline{OA}=\\frac{\\overline{AB}}{1}=\\overline{\\mathrm{AB},\\,\\overline{\\mathrm{AB}=\\cos x°\\,}}}$$\\tan x°=\\frac{\\overline{OD}}{\\overline{CD}=\\frac{1}{\\overline{CD},\\,\\overline{\\mathrm{CD}=\\frac{1}{\\tan x°}}}}$⑵ $\\overline{\\mathrm{OB}=\\frac{\\sqrt{2}}{2},\\,\\overline{\\mathrm{AB}=\\frac{\\sqrt{2}}{2}}}$$\\triangle \\mathrm{OAB}=\\frac{\\sqrt{2}}{2}\\times \\frac{\\sqrt{2}}{2}\\times \\frac{1}{2}=\\frac{1}{4}$⑶ 색칠한 부분의 넓이는$\\pi \\times 1^{2}\\times \\frac{90}{360}-\\frac{1}{4}=\\frac{\\pi}{4}-\\frac{1}{4}$"
+      },
+      "after": {
+        "answer": "⑴ $\\overline{OB}=\\sin \\,x°,\\,\\overline{AB}=\\cos \\,x°,\\,\\overline{CD}=\\frac{1}{\\tan \\,x°}$⑵ $\\frac{1}{4}$ ⑶ $\\frac{\\pi}{4}-\\frac{1}{4}$",
+        "solution": "⑴ $\\sin x°=\\frac{\\overline{OB}}{\\overline{OA}}=\\frac{\\overline{OB}}{1}=\\overline{OB},\\,\\overline{OB}=\\sin x°\\,$ $\\cos x°=\\frac{\\overline{AB}}{\\overline{OA}}=\\frac{\\overline{AB}}{1}=\\overline{AB},\\,\\overline{AB}=\\cos x°\\,$$\\tan x°=\\frac{\\overline{OD}}{\\overline{CD}}=\\frac{1}{\\overline{CD}},\\,\\overline{CD}=\\frac{1}{\\tan x°}$⑵ $\\overline{OB}=\\frac{\\sqrt{2}}{2},\\,\\overline{AB}=\\frac{\\sqrt{2}}{2}$$\\triangle \\mathrm{OAB}=\\frac{\\sqrt{2}}{2}\\times \\frac{\\sqrt{2}}{2}\\times \\frac{1}{2}=\\frac{1}{4}$⑶ 색칠한 부분의 넓이는$\\pi \\times 1^{2}\\times \\frac{90}{360}-\\frac{1}{4}=\\frac{\\pi}{4}-\\frac{1}{4}$"
+      }
+    },
+    {
+      "externalId": "2025-daegudong-3-2-mid-13",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "89aa07867382a4ba7f858bfa151be1e0ffdd982bae052555c8ef8f920ce8cdf7",
+      "afterHash": "e996e2e465158414057bbb0bf5ca4aa37bd65d84e77560c414601607d0e5ef8d",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{128\\pi}{3}-32\\sqrt{3}$$\\overset{\\frown}{\\mathrm{AB}=\\frac{16}{3}\\pi =\\pi \\times 2\\overline{\\mathrm{OA}\\times \\frac{60°}{360°},\\,\\overline{\\mathrm{O}A}=16}}$, $\\sin 60°=\\frac{\\overline{AH}}{16}=\\frac{\\sqrt{3}}{2},\\,\\overline{\\mathrm{A}H}=8\\sqrt{3}$, $\\cos 60°=\\frac{\\overline{OH}}{16}=\\frac{1}{2},\\,\\overline{\\mathrm{O}H}=8$, 어두운 부분의 넓이는$\\pi \\times \\left( 16\\right) ^{2}\\times \\frac{60°}{360°}-8\\times 8\\sqrt{3}\\times \\frac{1}{2}=\\frac{128\\pi}{3}-32\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$\\frac{128\\pi}{3}-32\\sqrt{3}$",
+        "solution": "$\\overset{\\frown}{AB}=\\frac{16}{3}\\pi =\\pi \\times 2\\overline{OA}\\times \\frac{60°}{360°},\\,\\overline{\\mathrm{O}A}=16$, $\\sin 60°=\\frac{\\overline{AH}}{16}=\\frac{\\sqrt{3}}{2},\\,\\overline{\\mathrm{A}H}=8\\sqrt{3}$, $\\cos 60°=\\frac{\\overline{OH}}{16}=\\frac{1}{2},\\,\\overline{\\mathrm{O}H}=8$, 어두운 부분의 넓이는$\\pi \\times \\left( 16\\right) ^{2}\\times \\frac{60°}{360°}-8\\times 8\\sqrt{3}\\times \\frac{1}{2}=\\frac{128\\pi}{3}-32\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-daegudong-3-2-mid-14",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "f5cb4a151d89ef82547a1a779d33e029497eec6ba3e246d4d12cc4e6af0ad928",
+      "afterHash": "ec4f404a066893a3dff81c6a2326a2ac0d604ac079cb68c5250495fbd5bd3f93",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$336000\\,(\\mathrm{k}m)$지구의 반지름 길이 $\\overline{\\mathrm{A}C}$는$3\\times 2\\overline{\\mathrm{AC}=40320\\left( \\mathrm{km}\\right) ,\\,\\overline{AC}=6720\\left( km\\right) }$, $\\cos 89°=\\frac{\\overline{AC}}{\\overline{AB}=\\frac{6720}{\\overline{AB}=0.02,\\,\\overline{\\mathrm{A}B}=336000\\left( \\mathrm{k}m\\right)}}$"
+      },
+      "after": {
+        "answer": "$336000\\,(\\mathrm{k}m)$",
+        "solution": "지구의 반지름 길이 $\\overline{\\mathrm{A}C}$는$3\\times 2\\overline{AC}=40320\\left( \\mathrm{km}\\right) ,\\,\\overline{AC}=6720\\left( km\\right) $, $\\cos 89°=\\frac{\\overline{AC}}{\\overline{AB}}=\\frac{6720}{\\overline{AB}}=0.02,\\,\\overline{\\mathrm{A}B}=336000\\left( \\mathrm{k}m\\right)$"
+      }
+    },
+    {
+      "externalId": "2025-daegudong-3-2-mid-15",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "7aa05f4cf52ed2a15f1249157f80623d25a3424c8975b4d6c8d663a6f5aadddb",
+      "afterHash": "e8b2cbde0c56848313e5fb85501104630b34a1406df64e2bdb1d5b1ad9762e0b",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$2\\sqrt{3}$$\\overline{OD}=\\overline{OE}=\\overline{OF}$에서 $\\overline{AB}=\\overline{BC}=\\overline{CA}$이므로 $\\triangle ABC$는 정삼각형이다.$\\angle BAC=60°$이므로 $\\angle DAO=\\frac{1}{2}\\times 60°=30°$직각삼각형 $\\mathrm{ADO}$에서$\\cos 30°=\\frac{\\overline{AD}}{\\overline{AO}}=\\frac{3}{\\overline{AO}},\\,\\,\\,\\,\\overline{AO}=\\frac{3}{\\cos 30°}=2\\sqrt{3}\\left( \\mathrm{cm}\\right)$"
+      },
+      "after": {
+        "answer": "$2\\sqrt{3}$",
+        "solution": "$\\overline{OD}=\\overline{OE}=\\overline{OF}$에서 $\\overline{AB}=\\overline{BC}=\\overline{CA}$이므로 $\\triangle ABC$는 정삼각형이다.$\\angle BAC=60°$이므로 $\\angle DAO=\\frac{1}{2}\\times 60°=30°$직각삼각형 $\\mathrm{ADO}$에서$\\cos 30°=\\frac{\\overline{AD}}{\\overline{AO}}=\\frac{3}{\\overline{AO}},\\,\\,\\,\\,\\overline{AO}=\\frac{3}{\\cos 30°}=2\\sqrt{3}\\left( \\mathrm{cm}\\right)$"
+      }
+    },
+    {
+      "externalId": "2025-daegudong-3-2-mid-16",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "201eb6fc05fe4a841d9ae40757a4c3ecc1eaea12a3f5a2abba5744441c24e9fa",
+      "afterHash": "9cfd49c344eca4f7be40661fb1d13b363e7648292623daeed61e6c1031021c54",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$14\\sqrt{3}\\,(\\mathrm{c}m^{2})$$\\overline{AD}=\\overline{DE}=4\\left( cm\\right) ,\\,\\overline{BC}=\\overline{CE}=3\\left( cm\\right)$이므로 $\\overline{CD}=7\\left( cm\\right)$점 $\\mathrm{C}$에서 $\\overline{AD}$에 내린 수선의 발을 $\\mathrm{H}$라 하면 $\\overline{DH}=1\\left( cm\\right)$직각삼각형 $\\mathrm{CDH}$에서 $\\overline{CH}=\\sqrt{7^{2}-1^{2}}=4\\sqrt{3}\\left( cm\\right)$사각형 $\\mathrm{ABCD}$의 넓이는$\\frac{\\mathrm{1}}{2}\\times \\left( 4+3\\right) \\times 4\\sqrt{3}=14\\sqrt{3}\\left( cm^{2}\\right)$"
+      },
+      "after": {
+        "answer": "$14\\sqrt{3}\\,(\\mathrm{c}m^{2})$",
+        "solution": "$\\overline{AD}=\\overline{DE}=4\\left( cm\\right) ,\\,\\overline{BC}=\\overline{CE}=3\\left( cm\\right)$이므로 $\\overline{CD}=7\\left( cm\\right)$점 $\\mathrm{C}$에서 $\\overline{AD}$에 내린 수선의 발을 $\\mathrm{H}$라 하면 $\\overline{DH}=1\\left( cm\\right)$직각삼각형 $\\mathrm{CDH}$에서 $\\overline{CH}=\\sqrt{7^{2}-1^{2}}=4\\sqrt{3}\\left( cm\\right)$사각형 $\\mathrm{ABCD}$의 넓이는$\\frac{\\mathrm{1}}{2}\\times \\left( 4+3\\right) \\times 4\\sqrt{3}=14\\sqrt{3}\\left( cm^{2}\\right)$"
+      }
+    },
+    {
+      "externalId": "2025-daegudong-3-2-mid-17",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "4e0ca7a06d69cb6d5d8d3a5e3bc6460ab137d58846abb8773c2f28f6a41e745a",
+      "afterHash": "5946b764261601becccd4f28bf18497935e427cf2e58d2dc2d7168c6e27f6bf3",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$24\\,(\\mathrm{c}m)$$\\overline{BE}=\\overline{BD}=4\\left( cm\\right) ,\\,\\overline{CE}=\\overline{CF}=6\\left( cm\\right)$$\\overline{\\mathrm{AD}=\\overline{\\mathrm{AF}=x\\left( \\mathrm{c}m\\right) }}$라 하면 $\\overline{\\mathrm{AB}=x+4\\left( \\mathrm{cm}\\right) }$, $\\overline{\\mathrm{AC}=x+6\\left( \\mathrm{c}m\\right) }$이므로직각삼각형 $\\mathrm{ABC}$에서$\\left( x+4\\right) ^{2}+\\left( x+6\\right) ^{2}=10^{2}$$x^{2}+10x-24=0$, $\\left( x+12\\right) \\left( x-2\\right) =0$$x=2\\,\\left( x>0\\right)$직각삼각형 $\\mathrm{ABC}$둘레의 길이는$6+10+8=24\\left( \\mathrm{c}m\\right)$"
+      },
+      "after": {
+        "answer": "$24\\,(\\mathrm{c}m)$",
+        "solution": "$\\overline{BE}=\\overline{BD}=4\\left( cm\\right) ,\\,\\overline{CE}=\\overline{CF}=6\\left( cm\\right)$$\\overline{AD}=\\overline{AF}=x\\left( \\mathrm{c}m\\right) $라 하면 $\\overline{AB}=x+4\\left( \\mathrm{cm}\\right) $, $\\overline{AC}=x+6\\left( \\mathrm{c}m\\right) $이므로직각삼각형 $\\mathrm{ABC}$에서$\\left( x+4\\right) ^{2}+\\left( x+6\\right) ^{2}=10^{2}$$x^{2}+10x-24=0$, $\\left( x+12\\right) \\left( x-2\\right) =0$$x=2\\,\\left( x>0\\right)$직각삼각형 $\\mathrm{ABC}$둘레의 길이는$6+10+8=24\\left( \\mathrm{c}m\\right)$"
+      }
+    },
+    {
+      "externalId": "2025-daeguil-3-2-mid-3",
+      "fields": [
+        "content",
+        "questionType",
+        "choiceFigureIndex"
+      ],
+      "beforeHash": "f103616784f6730f967329c010e1537b75aaa659c6a06df0a6155b6b99e4ed19",
+      "afterHash": "3601ae53f31d70317d45d88fc025dac404d92a0aaec3a143b3603c49d14a485b",
+      "before": {
+        "content": "이차함수 $y=ax^{2}+bx+c$의 그래프가 다음 그림과 같을 때, 다음 중 $y=bx^{2}-cx+a$의 그래프로 알맞은 것은? ①\n②\n③\n\n⑤",
+        "questionType": "단답형",
+        "choiceFigureIndex": null
+      },
+      "after": {
+        "content": "이차함수 $y=ax^{2}+bx+c$의 그래프가 다음 그림과 같을 때, 다음 중 $y=bx^{2}-cx+a$의 그래프로 알맞은 것은?\n\n1. [그림]\n2. [그림]\n3. [그림]\n4. [그림]\n5. [그림]",
+        "questionType": "객관식",
+        "choiceFigureIndex": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "externalId": "2025-daeguil-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d3202b2e418edce1ae222d7f84ec857bdf240fc0c60d74c0896564b53a90f8fa",
+      "afterHash": "d7b8ad8f598f5d533a5a0678c69f113e1ef64a8521b157b8311504991efd304d",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\mathrm{\\sin }\\,A=\\frac{\\sqrt{11}}{6},~\\mathrm{\\cos }\\,A=\\frac{5}{6},~\\mathrm{\\tan }\\,A=\\frac{\\sqrt{11}}{5}$$\\mathrm{\\sin }\\,C=\\frac{5}{6},~\\mathrm{\\cos }\\,C=\\frac{\\sqrt{11}}{6},~\\mathrm{\\tan }\\,C=\\frac{5\\sqrt{11}}{11}$$\\overline{BC}=\\sqrt{36-25}=\\sqrt{11}$이므로$\\mathrm{\\sin }\\,A=\\frac{\\sqrt{11}}{6},~\\mathrm{\\cos }\\,A=\\frac{5}{6},~\\mathrm{\\tan }\\,A=\\frac{\\sqrt{11}}{5}$$\\mathrm{\\sin }\\,C=\\frac{5}{6},~\\mathrm{\\cos }\\,C=\\frac{\\sqrt{11}}{6},~\\mathrm{\\tan }\\,C=\\frac{5\\sqrt{11}}{11}$"
+      },
+      "after": {
+        "answer": "$\\mathrm{\\sin }\\,A=\\frac{\\sqrt{11}}{6},~\\mathrm{\\cos }\\,A=\\frac{5}{6},~\\mathrm{\\tan }\\,A=\\frac{\\sqrt{11}}{5}$$\\mathrm{\\sin }\\,C=\\frac{5}{6},~\\mathrm{\\cos }\\,C=\\frac{\\sqrt{11}}{6},~\\mathrm{\\tan }\\,C=\\frac{5\\sqrt{11}}{11}$",
+        "solution": "$\\overline{BC}=\\sqrt{36-25}=\\sqrt{11}$이므로$\\mathrm{\\sin }\\,A=\\frac{\\sqrt{11}}{6},~\\mathrm{\\cos }\\,A=\\frac{5}{6},~\\mathrm{\\tan }\\,A=\\frac{\\sqrt{11}}{5}$$\\mathrm{\\sin }\\,C=\\frac{5}{6},~\\mathrm{\\cos }\\,C=\\frac{\\sqrt{11}}{6},~\\mathrm{\\tan }\\,C=\\frac{5\\sqrt{11}}{11}$"
+      }
+    },
+    {
+      "externalId": "2025-daeguil-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "8fba59465fe00258ed3f690a38234c47484369d591d60609f6c96d2595b19776",
+      "afterHash": "d8f8f87ba4d9d44e766be4f077cadf2c900e799b3b7c7e81451f8027dfaf0c71",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$2\\sqrt{39}km$$\\mathrm{B}$에서 $\\overline{\\mathrm{A}C}$에 내린 수선의 발을 $\\mathrm{H}$라 하면$\\overline{\\mathrm{A}H}=\\overline{AB}\\times \\mathrm{\\cos }\\,30°=10\\sqrt{3}\\times \\frac{\\sqrt{3}}{2}=15$$\\overline{CH}=9$$\\overline{BH}=\\overline{AB}\\times \\mathrm{\\sin }\\,30°=10\\sqrt{3}\\times \\frac{1}{2}=5\\sqrt{3}$$\\overline{BC}=\\sqrt{(5\\sqrt{3})^{2}+9^{2}}=\\sqrt{156}=2\\sqrt{39}$"
+      },
+      "after": {
+        "answer": "$2\\sqrt{39}km$",
+        "solution": "$\\mathrm{B}$에서 $\\overline{\\mathrm{A}C}$에 내린 수선의 발을 $\\mathrm{H}$라 하면$\\overline{\\mathrm{A}H}=\\overline{AB}\\times \\mathrm{\\cos }\\,30°=10\\sqrt{3}\\times \\frac{\\sqrt{3}}{2}=15$$\\overline{CH}=9$$\\overline{BH}=\\overline{AB}\\times \\mathrm{\\sin }\\,30°=10\\sqrt{3}\\times \\frac{1}{2}=5\\sqrt{3}$$\\overline{BC}=\\sqrt{(5\\sqrt{3})^{2}+9^{2}}=\\sqrt{156}=2\\sqrt{39}$"
+      }
+    },
+    {
+      "externalId": "2025-daeguil-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "53cb00aa4b03c6a9e3361e2a8da42af42f1c09fc2f711b0b814a2996698f06f9",
+      "afterHash": "a0f8874799e11727c63499b464588982541ce3e228d59e738d3e43b194e345b7",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$-10$축의 방정식이 $x=4$이므로 이차함수 식은$y=a(x-4)^{2}+p$이므로 $(2,~-1)$를 대입하면 $4a+p=-1$$(8,~5)$를 대입하면 $16a+p=5$ 이므로 연립방정식을 풀면 $a=\\frac{1}{2},~p=-3$이다. 그러므로 $y=\\frac{1}{2}(x-4)^{2}-3=\\frac{1}{2}x^{2}-4x+5$ 이다. $a=\\frac{1}{2},~b=-4,~c=5$$abc=-10$"
+      },
+      "after": {
+        "answer": "$-10$",
+        "solution": "축의 방정식이 $x=4$이므로 이차함수 식은$y=a(x-4)^{2}+p$이므로 $(2,~-1)$를 대입하면 $4a+p=-1$$(8,~5)$를 대입하면 $16a+p=5$ 이므로 연립방정식을 풀면 $a=\\frac{1}{2},~p=-3$이다. 그러므로 $y=\\frac{1}{2}(x-4)^{2}-3=\\frac{1}{2}x^{2}-4x+5$ 이다. $a=\\frac{1}{2},~b=-4,~c=5$$abc=-10$"
+      }
+    },
+    {
+      "externalId": "2025-daeguil-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "ec2c5665309adad7e480041354d50a392cb275ccf8fc59553422aa2f072bf922",
+      "afterHash": "0ee4241d583a93ffa04731f75636b993662eb2e4a513f7f801775c1ae089bb37",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\angle \\mathrm{A}=28°$$\\overline{BE}=x$라 하면 $\\overline{AD}=\\overline{AF}=17-x$이므로 피타고라스 정리를 사용하면 $17^{2}=(x+3)^{2}+(20-x)^{2}$$2x^{2}-34x+120=0$$x^{2}-17x+60=0$$(x-5)(x-12)=0$ 인데 $\\overline{AD}>\\overline{BD}$이므로 $x=5$삼각형 $\\mathrm{ABC}$에서 $\\mathrm{\\sin }\\,A=\\frac{8}{17}=0.4705\\,\\cdots \\,$, $\\mathrm{\\tan }\\,A=\\frac{8}{15}=0.533\\,\\cdots \\,$이므로 주어진 삼각비의 표에서는 $\\angle A$의 크기를 알 수 없다. 원 $\\mathrm{O}$는 삼각형 $\\mathrm{ABC}$의 내접원이므로 $\\overline{OA}$를 연결하면 $\\angle \\mathrm{OAF}=\\frac{1}{2}\\angle A$이고 삼각형 $\\mathrm{OAF}$가 직각삼각형이므로 $\\mathrm{\\tan }\\,(\\angle \\mathrm{OAF})=\\frac{3}{12}=\\frac{1}{4}=0.25=\\mathrm{\\tan }\\,14°$이므로 $\\angle \\mathrm{A}=28°$이다."
+      },
+      "after": {
+        "answer": "$\\angle \\mathrm{A}=28°$",
+        "solution": "$\\overline{BE}=x$라 하면 $\\overline{AD}=\\overline{AF}=17-x$이므로 피타고라스 정리를 사용하면 $17^{2}=(x+3)^{2}+(20-x)^{2}$$2x^{2}-34x+120=0$$x^{2}-17x+60=0$$(x-5)(x-12)=0$ 인데 $\\overline{AD}>\\overline{BD}$이므로 $x=5$삼각형 $\\mathrm{ABC}$에서 $\\mathrm{\\sin }\\,A=\\frac{8}{17}=0.4705\\,\\cdots \\,$, $\\mathrm{\\tan }\\,A=\\frac{8}{15}=0.533\\,\\cdots \\,$이므로 주어진 삼각비의 표에서는 $\\angle A$의 크기를 알 수 없다. 원 $\\mathrm{O}$는 삼각형 $\\mathrm{ABC}$의 내접원이므로 $\\overline{OA}$를 연결하면 $\\angle \\mathrm{OAF}=\\frac{1}{2}\\angle A$이고 삼각형 $\\mathrm{OAF}$가 직각삼각형이므로 $\\mathrm{\\tan }\\,(\\angle \\mathrm{OAF})=\\frac{3}{12}=\\frac{1}{4}=0.25=\\mathrm{\\tan }\\,14°$이므로 $\\angle \\mathrm{A}=28°$이다."
+      }
+    },
+    {
+      "externalId": "2025-daejin-3-2-mid-17",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "58b628082c8424a9a4d1264b6872ecc17d7c5b23c76e0ee0848ff6a6f04fa192",
+      "afterHash": "0bba099cdd9cc9ddd6536244a3e36d42644487b1c86aa2334ded91f1bdb0639b",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$2$"
+      }
+    },
+    {
+      "externalId": "2025-daejin-3-2-mid-18",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "055e0347a6a33ccf29cb7800faddb3eb5b6430b4d2a7ca645bb0321b407ded34",
+      "afterHash": "7cd9bfbd10519f0fff285b15d64a5ece955c9d3921f7c19c15716e6c59612f4e",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$90$"
+      }
+    },
+    {
+      "externalId": "2025-daejin-3-2-mid-19",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "a73907f04eda575be87b081ff7900e216305bcbeec9347ad3348a00bad9475f3",
+      "afterHash": "1b904557a4ee2a734eb5ed0e68104acb2492f3b60035142eb47a348866914da1",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$8\\sqrt{2}$"
+      }
+    },
+    {
+      "externalId": "2025-daejin-3-2-mid-20",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "53439f263933f0b3534b64666d310a1e4452bc3ddf8474149c039021becc43d3",
+      "afterHash": "606f15f0a8c344774d48cc048029e62b026432ea3846167ef3541cb4c6ab4e8a",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$\\frac{50\\sqrt{6}}{3}+50\\sqrt{2}$"
+      }
+    },
+    {
+      "externalId": "2025-daejin-3-2-mid-21",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "2b2c2bc28b448d26ecae2d0f8a99f0c456f06f6b0427073fb3d2650941a2ce2a",
+      "afterHash": "b1b3e979cecffdc9373979cc35e32f9eff3bde38dbba6be5b1fe0cd8623ef464",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "⑴ $2$ ⑵ $2\\sqrt{3}+2$ ⑶ $2\\sqrt{3}-2$"
+      }
+    },
+    {
+      "externalId": "2025-daeryun-3-2-mid-5",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "6ec65b3f085694ee33e437ba2b5dcadc4b7b2528047014b3cecfc7b1ac0340de",
+      "afterHash": "c422ca98df479a269d703f50db69f745ba4f18d9e2f0f6f8f384c24c0c72a5a4",
+      "before": {
+        "content": "반지름의 길이가 $1$인 사분원에 대하여 $\\angle \\mathrm{AOB}=x°$일 때, <보기>에서 옳은 것만을 있는 대로 고른 것은? \n< 보 기 >\nㄱ. $\\overline{AB}=\\sin x°$ ㄴ. $\\overline{OB}=\\sin (90°-x°)$\nㄷ. $\\overline{BD}=1-\\,\\cos x°$ ㄹ. $\\frac{\\overline{BD}}{\\overline{AC}=\\cos x\\,°}$\n\n1. ㄱ, ㄴ\n2. ㄷ, ㄹ\n3. ㄱ, ㄴ, ㄷ\n4. ㄴ, ㄷ, ㄹ\n5. ㄱ, ㄴ, ㄷ, ㄹ"
+      },
+      "after": {
+        "content": "반지름의 길이가 $1$인 사분원에 대하여 $\\angle \\mathrm{AOB}=x°$일 때, <보기>에서 옳은 것만을 있는 대로 고른 것은? \n< 보 기 >\nㄱ. $\\overline{AB}=\\sin x°$ ㄴ. $\\overline{OB}=\\sin (90°-x°)$\nㄷ. $\\overline{BD}=1-\\,\\cos x°$ ㄹ. $\\frac{\\overline{BD}}{\\overline{AC}}=\\cos x\\,°$\n\n1. ㄱ, ㄴ\n2. ㄷ, ㄹ\n3. ㄱ, ㄴ, ㄷ\n4. ㄴ, ㄷ, ㄹ\n5. ㄱ, ㄴ, ㄷ, ㄹ"
+      }
+    },
+    {
+      "externalId": "2025-daeryun-3-2-mid-13",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a80b17e845e94af6fc783a25152d6abf9bdc85881ba7908c2cf0970e1d156d1d",
+      "afterHash": "af458cd90d34087f4cf864a6cc13144500cf5d658f0cfbb7d840f1edf177c0bc",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $\\overline{BH}=\\frac{5}{4}x,~\\overline{CH}=\\frac{5}{8}x$ ⑵$~80\\,\\mathrm{m}$⑴$\\frac{x}{\\overline{BH}=0.8}$, $4\\overline{BH}=5x$, $\\overline{BH}=\\frac{5}{4}x$$\\frac{x}{\\overline{CH}=1.6,~8\\overline{CH}=5x,~\\overline{CH}=\\frac{5}{8}x}$⑵ $\\frac{5}{4}x+\\frac{5}{8}x=150$$\\frac{15}{8}x=150$$x=80$$\\therefore 80\\mathrm{m}$"
+      },
+      "after": {
+        "answer": "⑴ $\\overline{BH}=\\frac{5}{4}x,~\\overline{CH}=\\frac{5}{8}x$ ⑵$~80\\,\\mathrm{m}$",
+        "solution": "⑴$\\frac{x}{\\overline{BH}}=0.8$, $4\\overline{BH}=5x$, $\\overline{BH}=\\frac{5}{4}x$$\\frac{x}{\\overline{CH}}=1.6,~8\\overline{CH}=5x,~\\overline{CH}=\\frac{5}{8}x$⑵ $\\frac{5}{4}x+\\frac{5}{8}x=150$$\\frac{15}{8}x=150$$x=80$$\\therefore 80\\mathrm{m}$"
+      }
+    },
+    {
+      "externalId": "2025-daeryun-3-2-mid-14",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "e3d8385735e4926f376491c58c64db2526bbe6c0e676339e1c013de7adc80bbd",
+      "afterHash": "bb2a080b66f11d123918bd26e60b456601da93df7ca09564982a68d5cc602c60",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$6\\sqrt{3},~4\\sqrt{2}$$\\overline{AB}=2\\overline{AM},~\\overline{AM}=\\sqrt{36-9}=\\sqrt{27}=3\\sqrt{3}$$\\overline{AB}=\\overline{CD}=6\\sqrt{3}$$\\overline{AB}=\\overline{CD}=14,~\\overline{OM}=\\overline{ON},~\\overline{OM}=\\sqrt{81-49}=\\sqrt{32}=4\\sqrt{2}$$\\overline{ON}=4\\sqrt{2}$"
+      },
+      "after": {
+        "answer": "$6\\sqrt{3},~4\\sqrt{2}$",
+        "solution": "$\\overline{AB}=2\\overline{AM},~\\overline{AM}=\\sqrt{36-9}=\\sqrt{27}=3\\sqrt{3}$$\\overline{AB}=\\overline{CD}=6\\sqrt{3}$$\\overline{AB}=\\overline{CD}=14,~\\overline{OM}=\\overline{ON},~\\overline{OM}=\\sqrt{81-49}=\\sqrt{32}=4\\sqrt{2}$$\\overline{ON}=4\\sqrt{2}$"
+      }
+    },
+    {
+      "externalId": "2025-daeryun-3-2-mid-15",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "372b74f26715ffd60d88545640d445c4acd2d2e09a2fa6df8f23b7641be4f645",
+      "afterHash": "18c6eee1498070dddefdaba23cec632d3dbf7aeeefbe57f30a777ed85bb259ae",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\overline{AC}=10cm,~□ABCD=72cm^{2}$$\\overline{AP}=2\\mathrm{cm},~\\overline{PB}=8cm,$ 점 $\\mathrm{A}$에서 $\\overline{\\mathrm{B}C}$에 내린 수선의 발을 $\\mathrm{H}$라 하면, $\\overline{AH}=\\overline{DC}$ (지름) $\\overline{BH}=8-2=6$ $\\overline{AH}=\\sqrt{100-36}=\\sqrt{64}=8$$\\overline{QC}=\\overline{RC}=\\overline{DR}=\\overline{SD}=4$ 이므로 $\\overline{AD}=6,~\\overline{BC}=12$$\\overline{AC}=\\sqrt{36+64}=\\sqrt{100}=10$$□\\mathrm{ABCD}=(6+12)\\times 8\\div 2=72$"
+      },
+      "after": {
+        "answer": "$\\overline{AC}=10cm,~□ABCD=72cm^{2}$",
+        "solution": "$\\overline{AP}=2\\mathrm{cm},~\\overline{PB}=8cm,$ 점 $\\mathrm{A}$에서 $\\overline{\\mathrm{B}C}$에 내린 수선의 발을 $\\mathrm{H}$라 하면, $\\overline{AH}=\\overline{DC}$ (지름) $\\overline{BH}=8-2=6$ $\\overline{AH}=\\sqrt{100-36}=\\sqrt{64}=8$$\\overline{QC}=\\overline{RC}=\\overline{DR}=\\overline{SD}=4$ 이므로 $\\overline{AD}=6,~\\overline{BC}=12$$\\overline{AC}=\\sqrt{36+64}=\\sqrt{100}=10$$□\\mathrm{ABCD}=(6+12)\\times 8\\div 2=72$"
+      }
+    },
+    {
+      "externalId": "2025-daeryun-3-2-mid-16",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "ddac6c377fdf37ae8dde11d1260f8f65dc4ac80abfa646302691ee6ddb47642a",
+      "afterHash": "62af81588c3f8a2c4d459b6ac3bc6dc8e058b39fbc52120f88428602d6f1d923",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\overline{BH}=\\frac{24}{5},~\\overline{AH}=\\frac{18}{5},~\\overline{HD}=\\frac{12}{5},~\\cos y=\\frac{\\sqrt{5}}{5}$$\\overline{AB}\\times \\overline{BC}=\\overline{AC}\\times \\overline{BH}$$6\\times 8=10\\times \\overline{\\mathrm{B}H}$$\\overline{BH}=\\frac{24}{5}$$\\tan x=\\frac{1}{2}=\\frac{\\overline{HD}}{\\overline{BH}=\\frac{\\overline{HD}}{\\frac{24}{5}}}$$\\overline{HD}=\\frac{12}{5}$$\\overline{AH}=\\sqrt{36-\\left( \\frac{24}{5}\\right) ^{2}}=\\frac{18}{5}$$\\overline{AD}=\\overline{AH}+\\overline{HD}=\\frac{18}{5}+\\frac{12}{5}=6$$\\overline{AB}=\\overline{AD}$이므로 $\\angle ABD=\\angle ADB$$\\overline{BD}=\\sqrt{\\left( \\frac{12}{5}\\right) ^{2}+\\left( \\frac{24}{5}\\right) ^{2}}=\\frac{12\\sqrt{5}}{5}$$\\cos y=\\frac{\\overline{HD}}{\\overline{BD}=\\frac{\\frac{12}{5}}{\\frac{12\\sqrt{5}}{5}}=\\frac{60}{60\\sqrt{5}}=\\frac{\\sqrt{5}}{5}}$"
+      },
+      "after": {
+        "answer": "$\\overline{BH}=\\frac{24}{5},~\\overline{AH}=\\frac{18}{5},~\\overline{HD}=\\frac{12}{5},~\\cos y=\\frac{\\sqrt{5}}{5}$",
+        "solution": "$\\overline{AB}\\times \\overline{BC}=\\overline{AC}\\times \\overline{BH}$$6\\times 8=10\\times \\overline{\\mathrm{B}H}$$\\overline{BH}=\\frac{24}{5}$$\\tan x=\\frac{1}{2}=\\frac{\\overline{HD}}{\\overline{BH}}=\\frac{\\overline{HD}}{\\frac{24}{5}}$$\\overline{HD}=\\frac{12}{5}$$\\overline{AH}=\\sqrt{36-\\left( \\frac{24}{5}\\right) ^{2}}=\\frac{18}{5}$$\\overline{AD}=\\overline{AH}+\\overline{HD}=\\frac{18}{5}+\\frac{12}{5}=6$$\\overline{AB}=\\overline{AD}$이므로 $\\angle ABD=\\angle ADB$$\\overline{BD}=\\sqrt{\\left( \\frac{12}{5}\\right) ^{2}+\\left( \\frac{24}{5}\\right) ^{2}}=\\frac{12\\sqrt{5}}{5}$$\\cos y=\\frac{\\overline{HD}}{\\overline{BD}}=\\frac{\\frac{12}{5}}{\\frac{12\\sqrt{5}}{5}}=\\frac{60}{60\\sqrt{5}}=\\frac{\\sqrt{5}}{5}$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-7",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "fdd0c28f6b48c243c68adaec080dac52abb5efb4808e3f558cf46ca8b8fe0671",
+      "afterHash": "970667322f3407d4fd4d94b02c75bf74668c29be8e86350cfbacde384f3f2b5f",
+      "before": {
+        "content": "원에 내접하는 $\\triangle ABC$에서 $\\angle A=60\\,°$이고 원의 중심에서 두 변 $\\overline{AB},\\,~\\overline{AC}$까지의 거리가 $1$로 같을 때, $\\triangle ABC$의 넓이가 $a\\sqrt{b}$일 때, $a+b$의 값은? (단, $a$는 수, $b$는 최소의 자연수이다.)\n\n1. $4$\n2. $5$\n3. $6$\n4. $7$\n5. $8$\n \n \n$[\\,8SIM9\\,]$ $\\overline{BC}=1+\\sqrt{3}$이고, $\\angle B=60\\,°,~\\angle C=45\\,°$인 $\\triangle ABC$가 있다."
+      },
+      "after": {
+        "content": "원에 내접하는 $\\triangle ABC$에서 $\\angle A=60\\,°$이고 원의 중심에서 두 변 $\\overline{AB},\\,~\\overline{AC}$까지의 거리가 $1$로 같을 때, $\\triangle ABC$의 넓이가 $a\\sqrt{b}$일 때, $a+b$의 값은? (단, $a$는 수, $b$는 최소의 자연수이다.)\n\n1. $4$\n2. $5$\n3. $6$\n4. $7$\n5. $8$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-8",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "e8307b39a43691eb13e2f25a19e55e65890a3088139a154e13cb09b1f241a728",
+      "afterHash": "461e1b1935912723049ce1eaf631925f23ef159c8c625d102fc1fc1510462ce8",
+      "before": {
+        "content": "점 $\\mathrm{A}$에서 변 $\\mathrm{B}C$에 내린 수선의 발을 $\\mathrm{H}$라고 할 때, $\\overline{AH}$의 길이는?\n\n1. $1$\n2. $\\sqrt{2}$\n3. $\\sqrt{3}$\n4. $2$\n5. $\\sqrt{5}$"
+      },
+      "after": {
+        "content": "$[\\,8∼9\\,]$ $\\overline{BC}=1+\\sqrt{3}$이고, $\\angle B=60\\,°,~\\angle C=45\\,°$인 $\\triangle ABC$가 있다.\n\n점 $\\mathrm{A}$에서 변 $\\mathrm{B}C$에 내린 수선의 발을 $\\mathrm{H}$라고 할 때, $\\overline{AH}$의 길이는?\n\n1. $1$\n2. $\\sqrt{2}$\n3. $\\sqrt{3}$\n4. $2$\n5. $\\sqrt{5}$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-9",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "0ca22e3d65ae9931d3ebe7fbae31bd3677c03f9e6dddfe56e3f9cff2c9c14b9e",
+      "afterHash": "eb6615c80bbdd991cc35f0e6aebdf05542703e8eeb057dadf653b3a5f4c6381c",
+      "before": {
+        "content": "$\\triangle ABC$의 둘레의 길이를 $S\\,$라 할 때. $a<S<a+1$을 만족하는 정수 $a$의 값은? (단, $\\sqrt{2}=1.4,~\\sqrt{3}=1.7$로 계산한다.)\n\n1. $4$\n2. $5$\n3. $6$\n4. $7$\n5. $8$"
+      },
+      "after": {
+        "content": "$[\\,8∼9\\,]$ $\\overline{BC}=1+\\sqrt{3}$이고, $\\angle B=60\\,°,~\\angle C=45\\,°$인 $\\triangle ABC$가 있다.\n\n$\\triangle ABC$의 둘레의 길이를 $S\\,$라 할 때. $a<S<a+1$을 만족하는 정수 $a$의 값은? (단, $\\sqrt{2}=1.4,~\\sqrt{3}=1.7$로 계산한다.)\n\n1. $4$\n2. $5$\n3. $6$\n4. $7$\n5. $8$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-14",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "516d23f1aa84c20f3b262e7efc3860633f6aa61c15a89d0b9b2537fc30723686",
+      "afterHash": "fde0f6a7d5f3134bd49f9bf3b0b5159ba399a11f28fb23488c63d3a582ea1e56",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$\\mathrm{(}\\frac{64}{3}\\pi -16\\sqrt{3})cm^{2}$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-15",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "00f14ccaa5685f5effef7b45d405362205c8821622201719ec13cb7bb270fadf",
+      "afterHash": "2d13e8aec82a7a7bb947a6b59ca45ab0031fef534728efca98d42c358c5f5179",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "풀이 참조"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-16",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "53276536e8a6880aae7c37fb9724ff57e4df565fbbb1d04cf65178e7c1e19ab9",
+      "afterHash": "46a641a47b6f398b079cc049ef8a1750fd54729ea3d1208fb102c25bd6079f3b",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$90°$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-17",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "ef2158beacfb41ea3ad952f2e0743f5c9cc40df7fbf6335848e71f1b11faf10c",
+      "afterHash": "a91a9da194a53c8c28cc58a9073ef94ec7486214aca9b89ead5bc441dead14b6",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$(1)$ $x=5,~y=8,~z=7$ $(2)$ $10\\sqrt{3}$ $(3)$ $\\frac{5\\sqrt{3}}{14}$"
+      }
+    },
+    {
+      "externalId": "2025-deokwon-3-2-mid-18",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "ecdb0b4839ad9a4261dea7d4f593e9f81534f8f16a094e48a94ab77baafae357",
+      "afterHash": "408e5b1d0a7127eb5b19f21f93eadebac42c6afd0043921b54fe857fe2224263",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$\\sin A=\\frac{3}{5},~\\cos B=\\frac{\\sqrt{3}}{2},~\\tan C=1,~\\sin D=\\frac{5}{13}$, $\\sin D<\\sin A<\\cos B<\\tan C$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-9",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a9290996739cfcc4b7e70dc42038c5004eafe6b15ddc06818012532597460ba9",
+      "afterHash": "42d85a41c9375b88140e7ceab2ce8d536dab7ccf5d7bf4ee5c9c65896f95fdff",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "풀이참조$\\angle A$, $\\angle C$에 대한 중심각을 각각 $\\angle a$, $\\angle c$라고 하면, $\\angle A+\\angle C=\\,\\frac{1}{2}(\\angle \\,a+\\angle \\,c)=180°$임을 알수 있고, 같은방 법으로 $\\angle B+\\angle D=180°$이다. 따라서 원에 내접하는 사각형에서 한 쌍의 대각의 합은 $180°$이다."
+      },
+      "after": {
+        "answer": "풀이 참조",
+        "solution": "$\\angle A$, $\\angle C$에 대한 중심각을 각각 $\\angle a$, $\\angle c$라고 하면, $\\angle A+\\angle C=\\,\\frac{1}{2}(\\angle \\,a+\\angle \\,c)=180°$임을 알수 있고, 같은방 법으로 $\\angle B+\\angle D=180°$이다. 따라서 원에 내접하는 사각형에서 한 쌍의 대각의 합은 $180°$이다."
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-10",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "7efa40b39cc486c15259e56ce57922c268ff84276ff1a5947363470dc46ac468",
+      "afterHash": "454419abbd448365f9dc4accd60fba2ee41862fe77883cb497b911a9ce19b2df",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{\\mathrm{65}}{7}\\,cm$원 밖의 한 점에서 접선을 그으면 두 접점까지 거리가 같으므로 $\\overline{DS}=\\overline{DR}=7cm$, $\\overline{EQ}=\\overline{ER}=x\\,cm$$\\triangle DEC$에서 $(7+x)^{2}-(7-x)^{2}=8^{2}$, $14\\times 2x=64$, $x=\\frac{16}{7}$$\\overline{DE}=7+\\frac{16}{7}=\\frac{65}{7}$"
+      },
+      "after": {
+        "answer": "$\\frac{\\mathrm{65}}{7}\\,cm$",
+        "solution": "원 밖의 한 점에서 접선을 그으면 두 접점까지 거리가 같으므로 $\\overline{DS}=\\overline{DR}=7cm$, $\\overline{EQ}=\\overline{ER}=x\\,cm$$\\triangle DEC$에서 $(7+x)^{2}-(7-x)^{2}=8^{2}$, $14\\times 2x=64$, $x=\\frac{16}{7}$$\\overline{DE}=7+\\frac{16}{7}=\\frac{65}{7}$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-11",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "24d31e60a1471b8119e2565db14c71059afba87ed6f484eacb9610e61345e9ab",
+      "afterHash": "32b027da1ec7b52777a0113af6d71eb3060673694ca5dd3b7ddfb3c7235050f1",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $120°$  ⑵ $12\\pi$⑴ 접선과 현이 이루는 각은 그 현에 대한 원주각과 같으므로 $\\angle ABP=\\angle ACB=60°$ 이고 $\\overset{\\frown}{AB}$에 대한 중심각은 원주각의 $2$배이므로 $\\angle AOB=120°$⑵ 원의 중심 $\\mathrm{O}$에서 $\\overline{AB}$에 수선을 내려 수선의 발의 $H$라하면 $\\overline{AH}=3$, $\\overline{OA}=2\\sqrt{3}$ 원의 넓이는 $12\\pi$"
+      },
+      "after": {
+        "answer": "⑴ $120°$ ⑵ $12\\pi$",
+        "solution": "⑴ 접선과 현이 이루는 각은 그 현에 대한 원주각과 같으므로 $\\angle ABP=\\angle ACB=60°$ 이고 $\\overset{\\frown}{AB}$에 대한 중심각은 원주각의 $2$배이므로 $\\angle AOB=120°$⑵ 원의 중심 $\\mathrm{O}$에서 $\\overline{AB}$에 수선을 내려 수선의 발의 $H$라하면 $\\overline{AH}=3$, $\\overline{OA}=2\\sqrt{3}$ 원의 넓이는 $12\\pi$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-12",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "33764f2cd18e6b48826b92c8ae659714824f965de2d77a2bf02f40359b388534",
+      "afterHash": "ff4cdc95ca72d759f1d922f015fdf14683018c7ab4dfbc78caee473a407c3753",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $60°$  ⑵ $120°$⑴ $\\overset{\\frown}{AB}:\\,\\overset{\\frown}{BC}:\\,\\overset{\\frown}{CA}=\\,2:3:4$이므로 $\\overset{\\frown}{BC}$에 대한 원주각은 $180°\\times \\frac{3}{9}=60°$ , $\\angle BAC=60°$⑵ $\\overset{\\frown}{BP}=\\overset{\\frown}{PQ}=\\overset{\\frown}{QC}$이므로 $\\angle BAS=60°\\times \\frac{2}{3}=40°$$\\overset{\\frown}{AC}$에 대한 원주각은 $\\angle ABC=180°\\times \\frac{4}{9}=80°$$\\angle RSQ=80°+40°=120°$"
+      },
+      "after": {
+        "answer": "⑴ $60°$ ⑵ $120°$",
+        "solution": "⑴ $\\overset{\\frown}{AB}:\\,\\overset{\\frown}{BC}:\\,\\overset{\\frown}{CA}=\\,2:3:4$이므로 $\\overset{\\frown}{BC}$에 대한 원주각은 $180°\\times \\frac{3}{9}=60°$ , $\\angle BAC=60°$⑵ $\\overset{\\frown}{BP}=\\overset{\\frown}{PQ}=\\overset{\\frown}{QC}$이므로 $\\angle BAS=60°\\times \\frac{2}{3}=40°$$\\overset{\\frown}{AC}$에 대한 원주각은 $\\angle ABC=180°\\times \\frac{4}{9}=80°$$\\angle RSQ=80°+40°=120°$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-13",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "c073c2c7b9f031219003820f55ef13a6f42ab258a46f1e5bee8a4580ff510937",
+      "afterHash": "33ad8a3d40867cf45202aff96fbc8aaac0c7fc02ced87930117d3ad37d0f754a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $6$  ⑵ $\\frac{3\\sqrt{5}}{5}$⑴ $\\overline{DE}^{2}=12\\times 3=36$, $\\overline{DE}=6$⑵ $\\triangle ABC\\backsim \\triangle DEA\\backsim \\triangle CED$, $\\angle ACB=\\angle DAE=\\angle CDE=x°$$\\triangle DEA$에서 $\\overline{AD}=\\sqrt{6^{2}+12^{2}}=6\\sqrt{5}$$\\sin \\,x°+\\cos \\,x°=\\frac{6}{6\\sqrt{5}}+\\frac{12}{6\\sqrt{5}}=\\frac{18}{6\\sqrt{5}}=\\frac{3\\sqrt{5}}{5}$"
+      },
+      "after": {
+        "answer": "⑴ $6$ ⑵ $\\frac{3\\sqrt{5}}{5}$",
+        "solution": "⑴ $\\overline{DE}^{2}=12\\times 3=36$, $\\overline{DE}=6$⑵ $\\triangle ABC\\backsim \\triangle DEA\\backsim \\triangle CED$, $\\angle ACB=\\angle DAE=\\angle CDE=x°$$\\triangle DEA$에서 $\\overline{AD}=\\sqrt{6^{2}+12^{2}}=6\\sqrt{5}$$\\sin \\,x°+\\cos \\,x°=\\frac{6}{6\\sqrt{5}}+\\frac{12}{6\\sqrt{5}}=\\frac{18}{6\\sqrt{5}}=\\frac{3\\sqrt{5}}{5}$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-14",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "72de85aad0f8cafac67fdccbaa4cd16b0a207685bbe7e9102c038ecf3c4ed59a",
+      "afterHash": "daefc2751b6f476bc606356d520883249afe6f349dca4c16b6bd95de105a1f53",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$44$점 $A$에서 $\\overline{BC}$에 수선을 내려 발을 $\\mathrm{H}$라고 하면 $\\angle HAC=45°$, $\\angle BAH=37°$$\\overline{AC}=10\\sqrt{2}$, $\\overline{AH}=\\overline{CH}=10$$\\overline{AB}=\\frac{10}{coc37°}=\\frac{10}{0.8}=12.5$, $\\overline{BH}=10\\,\\tan 37°=10\\times 0.75=7.5$$\\overline{AB}+\\overline{BC}+\\overline{CA}=12.5+17.5+14=44$"
+      },
+      "after": {
+        "answer": "$44$",
+        "solution": "점 $A$에서 $\\overline{BC}$에 수선을 내려 발을 $\\mathrm{H}$라고 하면 $\\angle HAC=45°$, $\\angle BAH=37°$$\\overline{AC}=10\\sqrt{2}$, $\\overline{AH}=\\overline{CH}=10$$\\overline{AB}=\\frac{10}{\\cos 37°}=\\frac{10}{0.8}=12.5$, $\\overline{BH}=10\\,\\tan 37°=10\\times 0.75=7.5$$\\overline{AB}+\\overline{BC}+\\overline{CA}=12.5+17.5+14=44$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-15",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d1453732adeaf6c8ef3940722c2d31ce4d0ec79eb074f4d6601f6b451a0abf56",
+      "afterHash": "b3ae0da890377c07554c4838a7a28bbaf268d807141d34ab9ac038525b165f46",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{\\mathrm{9}}{4}\\,cm^{2}$원 밖의 한 점에서 접선을 그으면 두 접점까지 거리가 같으므로  $\\overline{PA}=\\overline{PB}$, $\\angle APB=60°$이므로 $\\triangle ABP$는 정삼각형이고 $\\overline{AB}=3\\,cm$, $\\angle AOB=120°$$\\triangle OAB$에서 점 $\\mathrm{O}$에서 $\\overline{AB}$에 수선을 내려 그 발을 $M$이라 하면 $\\overline{AO}=\\frac{\\overline{AM}}{\\sin 60°}=\\sqrt{3}$$\\angle QOA=240°\\times \\frac{3}{8}=90°$, $\\angle QOB=240°\\times \\frac{5}{8}=150°$어두운 부분의 넓이는 $\\triangle AOQ+\\triangle BOQ$$\\frac{\\mathrm{1}}{2}\\times \\sqrt{3}\\times \\sqrt{3}\\times \\,\\sin 90°+\\frac{1}{2}\\times \\sqrt{3}\\times \\sqrt{3}\\times \\,\\sin 30°=\\frac{9}{4}$"
+      },
+      "after": {
+        "answer": "$\\frac{\\mathrm{9}}{4}\\,cm^{2}$",
+        "solution": "원 밖의 한 점에서 접선을 그으면 두 접점까지 거리가 같으므로  $\\overline{PA}=\\overline{PB}$, $\\angle APB=60°$이므로 $\\triangle ABP$는 정삼각형이고 $\\overline{AB}=3\\,cm$, $\\angle AOB=120°$$\\triangle OAB$에서 점 $\\mathrm{O}$에서 $\\overline{AB}$에 수선을 내려 그 발을 $M$이라 하면 $\\overline{AO}=\\frac{\\overline{AM}}{\\sin 60°}=\\sqrt{3}$$\\angle QOA=240°\\times \\frac{3}{8}=90°$, $\\angle QOB=240°\\times \\frac{5}{8}=150°$어두운 부분의 넓이는 $\\triangle AOQ+\\triangle BOQ$$\\frac{\\mathrm{1}}{2}\\times \\sqrt{3}\\times \\sqrt{3}\\times \\,\\sin 90°+\\frac{1}{2}\\times \\sqrt{3}\\times \\sqrt{3}\\times \\,\\sin 30°=\\frac{9}{4}$"
+      }
+    },
+    {
+      "externalId": "2025-dongdo-3-2-mid-16",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "fb0535b65ad964d554376c097be226f705e06470769e10d702d77584b7bd44f4",
+      "afterHash": "f24a06e07db4d269dd8feb263ea7ac92e53c6d5e77ea538a0d640f15df71ff9a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$90$평균이 $4$이므로 $\\frac{4(a+b+c)}{12}=4$, $a+b+c=12$표준편차가 $\\sqrt{2}$이므로 분산은 $2$$\\frac{(a-4)^{2}+(b-4)^{2}+(c-4)^{2}}{12}=2$, $a^{2}+b^{2}+c^{2}-8(a+b+c)+48=6$에서 $a^{2}+b^{2}+c^{2}=54$$(a+b+c)^{2}=a^{2}+b^{2}+c^{2}+2(ab+bc+ca)$을 이용하면$12^{2}=54+2(ab+bc+ca)$직육면체의 겉넓이는 $2(ab+bc+ca)=144-54=90$"
+      },
+      "after": {
+        "answer": "$90$",
+        "solution": "평균이 $4$이므로 $\\frac{4(a+b+c)}{12}=4$, $a+b+c=12$표준편차가 $\\sqrt{2}$이므로 분산은 $2$$\\frac{(a-4)^{2}+(b-4)^{2}+(c-4)^{2}}{12}=2$, $a^{2}+b^{2}+c^{2}-8(a+b+c)+48=6$에서 $a^{2}+b^{2}+c^{2}=54$$(a+b+c)^{2}=a^{2}+b^{2}+c^{2}+2(ab+bc+ca)$을 이용하면$12^{2}=54+2(ab+bc+ca)$직육면체의 겉넓이는 $2(ab+bc+ca)=144-54=90$"
+      }
+    },
+    {
+      "externalId": "2025-dowon-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "71e051288252ea87701187ee3959a2b34696c51e5e3812fd51e7a23615c1604e",
+      "afterHash": "9db1d68e17f66036fb960e0c4e7bc0d1bd24cd6c77e29124f9960b2410092c32",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$(-2,~-11)$, $x=-2$, $(0,~-3)$$y=2x^{2}+8x-3$$y=2(x^{2}+4x+4-4)-3$$y=2(x+2)^{2}-11$꼭짓점의 좌표는 $(-2,~-11)$축의 방정식은 $x=-2$$y$축과의 교점의 좌표는 $(0,~-3)$"
+      },
+      "after": {
+        "answer": "$(-2,~-11)$, $x=-2$, $(0,~-3)$",
+        "solution": "$y=2x^{2}+8x-3$$y=2(x^{2}+4x+4-4)-3$$y=2(x+2)^{2}-11$꼭짓점의 좌표는 $(-2,~-11)$축의 방정식은 $x=-2$$y$축과의 교점의 좌표는 $(0,~-3)$"
+      }
+    },
+    {
+      "externalId": "2025-dowon-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "e3fab165c1e1d9abf68867e5fa8b6a89a2107288335c9e0dc30232d70ff0175d",
+      "afterHash": "ef0dd573c44ba1309ad812f021f26a2cda78973e5657154ce69973a05f2aaf5b",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$p>-3,~q>\\frac{1}{2}$$y=4\\left( x-3\\right) ^{2}+1$에서 주어진 조건만큼 평행이동 시킨 식은$y=4\\left( x-3-p\\right) ^{2}+1-2q$이므로꼭짓점의 좌표는 $(3+p,~1-2q)$이고 제$4$사분면은 $x$의 좌표는 양수, $y$의 좌표는 음수이므로$3+p>0,~p>-3$$1-2q<0,~q>\\frac{1}{2}$$\\therefore ~p>-3,~q>\\frac{1}{2}$"
+      },
+      "after": {
+        "answer": "$p>-3,~q>\\frac{1}{2}$",
+        "solution": "$y=4\\left( x-3\\right) ^{2}+1$에서 주어진 조건만큼 평행이동 시킨 식은$y=4\\left( x-3-p\\right) ^{2}+1-2q$이므로꼭짓점의 좌표는 $(3+p,~1-2q)$이고 제$4$사분면은 $x$의 좌표는 양수, $y$의 좌표는 음수이므로$3+p>0,~p>-3$$1-2q<0,~q>\\frac{1}{2}$$\\therefore ~p>-3,~q>\\frac{1}{2}$"
+      }
+    },
+    {
+      "externalId": "2025-dowon-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "b20c78b139b449f64130536f1293a65b9795f7db80212e2f6e32e24dd0acb847",
+      "afterHash": "d352701dd8e29d8daa37c0674506d3a340b4ce16c7289a54d81c9c069a9bab7e",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$31.3m$풍선이 있는 쪽의 꼭짓점을 $\\mathrm{C}$라고 하면$\\angle \\mathrm{ACH}=36\\,°,~\\angle \\mathrm{BCH}=40\\,°$이므로$\\tan \\,36°=\\frac{\\overline{AH}}{20}=0.7265$$\\tan \\,40°=\\frac{\\overline{BH}}{20}=0.8391$이므로$\\overline{AH}=20\\times 0.7265=14.53$$\\overline{BH}=20\\times 0.8391=16.782$$\\overline{AB}=\\overline{AH}+\\overline{HB}=14.53+16.782=31.312$소수점 아래 둘째 자리에서 반올림을 하면 $31.3\\,\\mathrm{m}$"
+      },
+      "after": {
+        "answer": "$31.3m$",
+        "solution": "풍선이 있는 쪽의 꼭짓점을 $\\mathrm{C}$라고 하면$\\angle \\mathrm{ACH}=36\\,°,~\\angle \\mathrm{BCH}=40\\,°$이므로$\\tan \\,36°=\\frac{\\overline{AH}}{20}=0.7265$$\\tan \\,40°=\\frac{\\overline{BH}}{20}=0.8391$이므로$\\overline{AH}=20\\times 0.7265=14.53$$\\overline{BH}=20\\times 0.8391=16.782$$\\overline{AB}=\\overline{AH}+\\overline{HB}=14.53+16.782=31.312$소수점 아래 둘째 자리에서 반올림을 하면 $31.3\\,\\mathrm{m}$"
+      }
+    },
+    {
+      "externalId": "2025-dowon-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "6b6b660f54da108b1cbafe04ef60bad9619d6b23589f1483468c13f723dd436d",
+      "afterHash": "c9d9b0aff5e9aabb1de41b379bad52659f7bce232ac24af5edd45e46a0c9c84a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$27+9\\sqrt{3}$$\\mathrm{\\overset{\\frown}{AB}:\\,\\overset{\\frown}{BC}:\\,\\overset{\\frown}{CA}=4:\\,3:\\,5}$이므로$\\angle AOB:\\angle BOC:\\angle COA=4:3:5$$\\angle AOB=360\\,°\\times \\frac{4}{4+3+5}=120\\,°$$\\angle BOC=360\\,°\\times \\frac{3}{4+3+5}=90\\,°$$\\angle COA=360\\,°\\times \\frac{5}{4+3+5}=150\\,°$$\\triangle AOB=\\frac{1}{2}\\times 6\\times 6\\times \\sin \\,120°=18\\times \\frac{\\sqrt{3}}{2}=9\\sqrt{3}$$\\triangle BOC=\\frac{1}{2}\\times 6\\times 6\\times \\sin \\,90°=18\\times 1=18$$\\triangle COA=\\frac{1}{2}\\times 6\\times 6\\times \\sin \\,150°=18\\times \\frac{1}{2}=9$$\\triangle ABC=\\triangle AOB+\\triangle BOC+\\triangle COA$ 이므로$\\therefore ~\\triangle ABC=27+9\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$27+9\\sqrt{3}$",
+        "solution": "$\\mathrm{\\overset{\\frown}{AB}:\\,\\overset{\\frown}{BC}:\\,\\overset{\\frown}{CA}=4:\\,3:\\,5}$이므로$\\angle AOB:\\angle BOC:\\angle COA=4:3:5$$\\angle AOB=360\\,°\\times \\frac{4}{4+3+5}=120\\,°$$\\angle BOC=360\\,°\\times \\frac{3}{4+3+5}=90\\,°$$\\angle COA=360\\,°\\times \\frac{5}{4+3+5}=150\\,°$$\\triangle AOB=\\frac{1}{2}\\times 6\\times 6\\times \\sin \\,120°=18\\times \\frac{\\sqrt{3}}{2}=9\\sqrt{3}$$\\triangle BOC=\\frac{1}{2}\\times 6\\times 6\\times \\sin \\,90°=18\\times 1=18$$\\triangle COA=\\frac{1}{2}\\times 6\\times 6\\times \\sin \\,150°=18\\times \\frac{1}{2}=9$$\\triangle ABC=\\triangle AOB+\\triangle BOC+\\triangle COA$ 이므로$\\therefore ~\\triangle ABC=27+9\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-gangdong-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "ce9e8c409e783e4d8163f1dbe489651095b7b4565dd39aab0d6046f55873322e",
+      "afterHash": "c1cf5930f99506f87055f700b02f085048e46aeb027feda60049e5773cdb608d",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$2.05$$\\angle \\mathrm{B}=62°$이므로 $\\sin \\,62°=\\frac{x}{5}=0.88$ $\\therefore \\,x=4.4$$\\angle \\mathrm{A}=28°$이므로 $\\sin \\,28°=\\frac{y}{5}=0.47$ $\\therefore \\,y=2.35$$\\therefore \\,x-y=4.4-2.35=2.05$"
+      },
+      "after": {
+        "answer": "$2.05$",
+        "solution": "$\\angle \\mathrm{B}=62°$이므로 $\\sin \\,62°=\\frac{x}{5}=0.88$ $\\therefore \\,x=4.4$$\\angle \\mathrm{A}=28°$이므로 $\\sin \\,28°=\\frac{y}{5}=0.47$ $\\therefore \\,y=2.35$$\\therefore \\,x-y=4.4-2.35=2.05$"
+      }
+    },
+    {
+      "externalId": "2025-gangdong-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "5c0f0aec1c8483dd7c7c8a049e74dc09d059e1b8a3a6046810aab6a9632dc19c",
+      "afterHash": "9293f2a01d02bbfca730b20e9730e8176756e2fce6299a26a51791c562597c65",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{1}{3}$$\\sin \\,45°=\\frac{\\overline{AH}}{8}=\\frac{\\sqrt{2}}{2}$이므로 $\\overline{AH}=4\\sqrt{2}\\,(\\mathrm{cm})$이고피타고라스 정리에 의해 $\\overline{BH}=\\sqrt{6^{2}-\\left( 4\\sqrt{2}\\right) ^{2}}=2\\,(\\mathrm{cm})$이므로$\\sin \\,x=\\frac{1}{3}$"
+      },
+      "after": {
+        "answer": "$\\frac{1}{3}$",
+        "solution": "$\\sin \\,45°=\\frac{\\overline{AH}}{8}=\\frac{\\sqrt{2}}{2}$이므로 $\\overline{AH}=4\\sqrt{2}\\,(\\mathrm{cm})$이고피타고라스 정리에 의해 $\\overline{BH}=\\sqrt{6^{2}-\\left( 4\\sqrt{2}\\right) ^{2}}=2\\,(\\mathrm{cm})$이므로$\\sin \\,x=\\frac{1}{3}$"
+      }
+    },
+    {
+      "externalId": "2025-gangdong-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "33f6c7f9d2c23729dca539e693e14609459b1c4798d0a73fdfca284362e5337f",
+      "afterHash": "cfbcca473ad030476c72fe8828ee76e78c1217856fd9427d2a22eee1c615f16c",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$6$$\\frac{7+1+5+2+11+10+6+x+4+8}{10}=x$이므로$54+x=10x$, $9x=54$    $\\therefore \\,x=6$자료를 크기 순서대로 재배열하면 $1~~2~~4~~5~~6~~6~~7~~8~~10~~11$이므로 중앙값은 $6$이다."
+      },
+      "after": {
+        "answer": "$6$",
+        "solution": "$\\frac{7+1+5+2+11+10+6+x+4+8}{10}=x$이므로$54+x=10x$, $9x=54$    $\\therefore \\,x=6$자료를 크기 순서대로 재배열하면 $1~~2~~4~~5~~6~~6~~7~~8~~10~~11$이므로 중앙값은 $6$이다."
+      }
+    },
+    {
+      "externalId": "2025-gangdong-3-2-mid-21",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "d6998a5facd686fa27a53ff82389685789757d572d7dff985451bd36497455a5",
+      "afterHash": "37b6f34bec0292ef6734acad88280cc408480eca4c92dec2857e9bed0addca53",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "대구"
+      }
+    },
+    {
+      "externalId": "2025-gyeonggu-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "2bdfc03a18b49ca07ae3113854ecec34bf06ae4980eba54989efad298cc0422f",
+      "afterHash": "2952a5e65503b72eb2050d81b37a2c5fa79396f1cd4dbd6a8523afcbe2a68d51",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $\\overline{CD}$ ⑵ $\\overline{OD}$ ⑶ $1$⑴ $\\sin x=\\frac{\\overline{CD}}{1}=\\overline{CD}$⑵ $\\cos x=\\frac{\\overline{OD}}{1}=\\overline{OD}$⑶ $\\tan x\\times \\mathrm{\\tan }z=\\frac{\\overline{EB}}{1}\\times \\frac{1}{\\overline{EB}}=1$"
+      },
+      "after": {
+        "answer": "⑴ $\\overline{CD}$ ⑵ $\\overline{OD}$ ⑶ $1$",
+        "solution": "⑴ $\\sin x=\\frac{\\overline{CD}}{1}=\\overline{CD}$⑵ $\\cos x=\\frac{\\overline{OD}}{1}=\\overline{OD}$⑶ $\\tan x\\times \\mathrm{\\tan }z=\\frac{\\overline{EB}}{1}\\times \\frac{1}{\\overline{EB}}=1$"
+      }
+    },
+    {
+      "externalId": "2025-gyeonggu-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "4e9af4a3a5c4dcec253a3b8f986937bbd2254d992a04b68a9a18a63e2d3bd151",
+      "afterHash": "fb14bff7f5a0fd74c76e9bb97496cb77efa35a1642b36d875d73e9aa7d2e4c84",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $75°$ ⑵ $8$ ⑶ $4\\sqrt{6}$ ⑷ $36-12\\sqrt{3}$⑴ $\\angle \\mathrm{DBC}=30°$이므로 $\\angle \\mathrm{ABP}=60°$, 삼각형 내각의 합에 따라 $\\angle \\mathrm{APB}=75°$⑵ 삼각비에 의해 $\\overline{BD}=4\\times 2=8$⑶ 삼각비에 의해 $\\overline{BC}=4\\times \\sqrt{3}=4\\sqrt{3}$, $\\overline{AC}=\\sqrt{2}\\times \\overline{BC}=\\sqrt{2}\\times 4\\sqrt{3}=4\\sqrt{6}$⑷ 점 $\\mathrm{P}$에서 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하고 $\\overline{PH}$의 길이를 $x$라 하면 $\\overline{HB}=4\\sqrt{3}-x$, $x=\\sqrt{3}(4\\sqrt{3}-x)$이다.$(\\sqrt{3}+1)x=12,~x=\\frac{12}{\\sqrt{3}+1}=\\frac{12(\\sqrt{3}-1)}{2}=6(\\sqrt{3}-1)$따라서 $\\triangle \\mathrm{APB}$의 넓이는 $\\frac{1}{2}\\times 6(\\sqrt{3}-1)\\times 4\\sqrt{3}=36-12\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "⑴ $75°$ ⑵ $8$ ⑶ $4\\sqrt{6}$ ⑷ $36-12\\sqrt{3}$",
+        "solution": "⑴ $\\angle \\mathrm{DBC}=30°$이므로 $\\angle \\mathrm{ABP}=60°$, 삼각형 내각의 합에 따라 $\\angle \\mathrm{APB}=75°$⑵ 삼각비에 의해 $\\overline{BD}=4\\times 2=8$⑶ 삼각비에 의해 $\\overline{BC}=4\\times \\sqrt{3}=4\\sqrt{3}$, $\\overline{AC}=\\sqrt{2}\\times \\overline{BC}=\\sqrt{2}\\times 4\\sqrt{3}=4\\sqrt{6}$⑷ 점 $\\mathrm{P}$에서 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하고 $\\overline{PH}$의 길이를 $x$라 하면 $\\overline{HB}=4\\sqrt{3}-x$, $x=\\sqrt{3}(4\\sqrt{3}-x)$이다.$(\\sqrt{3}+1)x=12,~x=\\frac{12}{\\sqrt{3}+1}=\\frac{12(\\sqrt{3}-1)}{2}=6(\\sqrt{3}-1)$따라서 $\\triangle \\mathrm{APB}$의 넓이는 $\\frac{1}{2}\\times 6(\\sqrt{3}-1)\\times 4\\sqrt{3}=36-12\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-gyeonggu-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "f8d72f375af743500d919d9e7f3286def0b0a058c0d3264ecc9cd1b2deffc308",
+      "afterHash": "d4459f0c6a4fab466b2339e34ac1278de5b1f826474f8671858aa63b757e9521",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $2$ ⑵ $2\\sqrt{3}$ ⑶ $4\\sqrt{3}$⑴ $\\angle \\mathrm{APO}=60°$이므로 삼각비에 의해 $\\overline{OP}=4\\times \\frac{1}{2}=2$⑵ 삼각비에 의해 $\\overline{AP}=2\\times \\sqrt{3}=2\\sqrt{3}$⑶ $\\overline{PC}=\\overline{DC},~\\overline{QB}=\\overline{DB}\\,$이고 삼각형의 둘레는 $\\overline{AC}+\\overline{PC}+\\overline{AB}+\\overline{QB}=\\overline{AP}+\\overline{AQ}=4\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "⑴ $2$ ⑵ $2\\sqrt{3}$ ⑶ $4\\sqrt{3}$",
+        "solution": "⑴ $\\angle \\mathrm{APO}=60°$이므로 삼각비에 의해 $\\overline{OP}=4\\times \\frac{1}{2}=2$⑵ 삼각비에 의해 $\\overline{AP}=2\\times \\sqrt{3}=2\\sqrt{3}$⑶ $\\overline{PC}=\\overline{DC},~\\overline{QB}=\\overline{DB}\\,$이고 삼각형의 둘레는 $\\overline{AC}+\\overline{PC}+\\overline{AB}+\\overline{QB}=\\overline{AP}+\\overline{AQ}=4\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-gyeonggu-3-2-mid-23",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "80d7f6d549c131274d72a20968eb6d9efa02e85fbc14670beea72f94ea87074d",
+      "afterHash": "8ecd925ed690e506c9308e98cb58bc0bb547efacfcd2aae150b60f1ed2cda287",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "⑴ $120$°⑵ $6$ ⑶ $9\\sqrt{3}-3\\pi$⑴ $\\angle \\mathrm{APB}+2\\angle \\mathrm{APB}=180$°이므로 $\\angle \\mathrm{APB}=60°$, $\\angle \\mathrm{AOB}=120°$⑵ $\\angle \\mathrm{AOP}=60°$이므로 삼각비에 의해 $\\overline{OP}=3\\times 2=6$⑶ 색칠한 부분의 넓이는 $2\\triangle \\mathrm{AOP}-9\\pi \\times \\frac{120°}{360°}=9\\sqrt{3}-3\\pi$"
+      },
+      "after": {
+        "answer": "⑴ $120$°⑵ $6$ ⑶ $9\\sqrt{3}-3\\pi$",
+        "solution": "⑴ $\\angle \\mathrm{APB}+2\\angle \\mathrm{APB}=180$°이므로 $\\angle \\mathrm{APB}=60°$, $\\angle \\mathrm{AOB}=120°$⑵ $\\angle \\mathrm{AOP}=60°$이므로 삼각비에 의해 $\\overline{OP}=3\\times 2=6$⑶ 색칠한 부분의 넓이는 $2\\triangle \\mathrm{AOP}-9\\pi \\times \\frac{120°}{360°}=9\\sqrt{3}-3\\pi$"
+      }
+    },
+    {
+      "externalId": "2025-gyeseong-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "33038039fa6e65fb9bad87bb64ebffde924f78c125d002605b70c1700cb1139e",
+      "afterHash": "63a76ece6993988bf753c8e8f52fe7395b0f70207ce4a7cd51ef5c5f91482b64",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$6$$\\sin \\,C=\\frac{4}{5}$이므로 $\\frac{\\overline{AB}}{5}=\\frac{4}{5}$이고 $\\overline{AB}=4$이다.피타고라스법칙에 의해 $\\overline{BC}=\\sqrt{25-16}=3$이므로 $\\triangle \\mathrm{ABC}=\\frac{1}{2}\\times 4\\times 3=6$"
+      },
+      "after": {
+        "answer": "$6$",
+        "solution": "$\\sin \\,C=\\frac{4}{5}$이므로 $\\frac{\\overline{AB}}{5}=\\frac{4}{5}$이고 $\\overline{AB}=4$이다.피타고라스법칙에 의해 $\\overline{BC}=\\sqrt{25-16}=3$이므로 $\\triangle \\mathrm{ABC}=\\frac{1}{2}\\times 4\\times 3=6$"
+      }
+    },
+    {
+      "externalId": "2025-gyeseong-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "6bb52b11a31284f4fd1a37733b748894223f2f12cb06502bbf8058e05e9a543c",
+      "afterHash": "35414d28ce1227d60a66fd9b863bbb94c4bed370f07bb87483ae37d8653dc00e",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{3\\sqrt{3}}{8}$$\\overline{BC}=\\frac{\\sqrt{3}}{2},~\\overline{AB}=\\frac{1}{2}$이므로 $\\overline{BD}=\\frac{1}{2}$이다. 또 $\\overline{DE}=\\sqrt{3}$이므로 사다리꼴 $\\mathrm{BCED}$의 넓이는 $\\frac{1}{2}\\times \\frac{1}{2}\\times \\left( \\frac{\\sqrt{3}}{2}+\\sqrt{3}\\right) =\\frac{3\\sqrt{3}}{8}$"
+      },
+      "after": {
+        "answer": "$\\frac{3\\sqrt{3}}{8}$",
+        "solution": "$\\overline{BC}=\\frac{\\sqrt{3}}{2},~\\overline{AB}=\\frac{1}{2}$이므로 $\\overline{BD}=\\frac{1}{2}$이다. 또 $\\overline{DE}=\\sqrt{3}$이므로 사다리꼴 $\\mathrm{BCED}$의 넓이는 $\\frac{1}{2}\\times \\frac{1}{2}\\times \\left( \\frac{\\sqrt{3}}{2}+\\sqrt{3}\\right) =\\frac{3\\sqrt{3}}{8}$"
+      }
+    },
+    {
+      "externalId": "2025-gyeseong-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "5764aedd7036711339533b3e0f0280eb81058739ca4313f33b6b3dd4d0e9149c",
+      "afterHash": "f1d45b4d897ce33078a0fd735abe6faf9e8dc80a82b1865d4ad0152ba6a66d43",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\left( 27-9\\sqrt{3}\\right) \\mathrm{cm}^{2}$$\\mathrm{A}$에서 $\\overline{BC}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\overline{AH}=x$라 하면 $\\overline{BH}=x,$ $\\overline{CH}=6-x$가 된다. $\\triangle \\mathrm{AHC}$에서 $\\tan \\,60°=\\frac{x}{6}-x$이므로 $x:6-x=\\sqrt{3}:1$이고 $(\\sqrt{3}+1)x=6\\sqrt{3}$이 되어 $x=9-3\\sqrt{3}$이다. 따라서 $\\triangle \\mathrm{ABC}$의 넓이는 $\\frac{1}{2}\\times 6\\times (9-3\\sqrt{3})=27-9\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$\\left( 27-9\\sqrt{3}\\right) \\mathrm{cm}^{2}$",
+        "solution": "$\\mathrm{A}$에서 $\\overline{BC}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\overline{AH}=x$라 하면 $\\overline{BH}=x,$ $\\overline{CH}=6-x$가 된다. $\\triangle \\mathrm{AHC}$에서 $\\tan \\,60°=\\frac{x}{6}-x$이므로 $x:6-x=\\sqrt{3}:1$이고 $(\\sqrt{3}+1)x=6\\sqrt{3}$이 되어 $x=9-3\\sqrt{3}$이다. 따라서 $\\triangle \\mathrm{ABC}$의 넓이는 $\\frac{1}{2}\\times 6\\times (9-3\\sqrt{3})=27-9\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-gyeseong-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a88c64752724de4bcf8ee8c638a45409066930e0a82ac77014613f59b22f5a4b",
+      "afterHash": "4a07b2e555d93f8cddae009ffe6e9a0c61329bfaa3c42aa8b461a10aa2489d45",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$10\\sqrt{14}$$\\overline{AB}=\\overline{CD}$이므로 점 $\\mathrm{O}$에서 $\\overline{AB}$에 내린 수선의 발 $\\mathrm{H}$까지의 거리 또한 $5$이다. 피타고라스 법칙에 의해 $\\overline{AH}=\\sqrt{81-25}=2\\sqrt{14}$이므로 $\\triangle \\mathrm{OAB}=\\frac{1}{2}\\times 5\\times 4\\sqrt{14}=10\\sqrt{14}$"
+      },
+      "after": {
+        "answer": "$10\\sqrt{14}$",
+        "solution": "$\\overline{AB}=\\overline{CD}$이므로 점 $\\mathrm{O}$에서 $\\overline{AB}$에 내린 수선의 발 $\\mathrm{H}$까지의 거리 또한 $5$이다. 피타고라스 법칙에 의해 $\\overline{AH}=\\sqrt{81-25}=2\\sqrt{14}$이므로 $\\triangle \\mathrm{OAB}=\\frac{1}{2}\\times 5\\times 4\\sqrt{14}=10\\sqrt{14}$"
+      }
+    },
+    {
+      "externalId": "2025-gyeseong-3-2-mid-23",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "936ca759290223a2a5ba0bca224d7179332c8cb1b41c2a33d678fa17b13ff2d8",
+      "afterHash": "a4f18e0f60c74f4f7c6f6a662b39422c1fd7c2321daf5fe7ebd8bc1c3226657a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$2\\,\\mathrm{c}m$내접원의 반지름의 길이를 $r$이라 하자. 사각형 $\\mathrm{OECF}$은 이웃한 두 변의 길이가 같은 직사각형이 되어 정사각형이다. 따라서 $\\overline{EC}=\\overline{FC}=r$이다. 원과 접선의 성질에 의해 $\\overline{AF}=6,~\\overline{BE}=4$이므로 $\\overline{AB}=10,~\\overline{AC}=6+r,~\\overline{BC}=r+4$이다. 피타고라스법칙에 의해 $100=(6+r)^{2}+(4+r)^{2}$이므로 $r=2$이다. ($\\because r>0$)반지름의 길이는 $2\\,\\mathrm{c}m$이다."
+      },
+      "after": {
+        "answer": "$2\\,\\mathrm{c}m$",
+        "solution": "내접원의 반지름의 길이를 $r$이라 하자. 사각형 $\\mathrm{OECF}$은 이웃한 두 변의 길이가 같은 직사각형이 되어 정사각형이다. 따라서 $\\overline{EC}=\\overline{FC}=r$이다. 원과 접선의 성질에 의해 $\\overline{AF}=6,~\\overline{BE}=4$이므로 $\\overline{AB}=10,~\\overline{AC}=6+r,~\\overline{BC}=r+4$이다. 피타고라스법칙에 의해 $100=(6+r)^{2}+(4+r)^{2}$이므로 $r=2$이다. ($\\because r>0$)반지름의 길이는 $2\\,\\mathrm{c}m$이다."
+      }
+    },
+    {
+      "externalId": "2025-hyeopseonggyeongbok-3-2-mid-15",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "9d55921e22b35c2a850a19f28ec7ed7adb40b0b0a9f2f50379f504faaaa3cdfd",
+      "afterHash": "2b34c55bf12a24bdf6400b29a82cbf0b15efc81f7fee6070434bfcf904832091",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{\\sqrt{6}}{6}$$\\cos \\,x°=\\frac{2}{3}$이므로 $\\overline{BD}=3k,~\\overline{BC}=2k$라 하자. $\\overline{CD}=\\sqrt{5}k$이므로 $\\overline{AC}=2\\sqrt{5}k,~\\overline{AB}=2\\sqrt{6}k$이다.따라서 $\\sin A=\\frac{2k}{2\\sqrt{6}k}=\\frac{\\sqrt{6}}{6}$"
+      },
+      "after": {
+        "answer": "$\\frac{\\sqrt{6}}{6}$",
+        "solution": "$\\cos \\,x°=\\frac{2}{3}$이므로 $\\overline{BD}=3k,~\\overline{BC}=2k$라 하자. $\\overline{CD}=\\sqrt{5}k$이므로 $\\overline{AC}=2\\sqrt{5}k,~\\overline{AB}=2\\sqrt{6}k$이다.따라서 $\\sin A=\\frac{2k}{2\\sqrt{6}k}=\\frac{\\sqrt{6}}{6}$"
+      }
+    },
+    {
+      "externalId": "2025-hyeopseonggyeongbok-3-2-mid-16",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "378eba75873295bf4cbe2e9b441d0acba896a7cd7a3cf5860913fd7475409a9a",
+      "afterHash": "ffb1c7bb2330810ff5d722ebe5875a65066ff0007ceedd4b5387816556f897ab",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$4\\sqrt{7}$점 $\\mathrm{D}$와 변 $\\mathrm{B}C$의 연장선에 그은 수선의 발을 $\\mathrm{H}$라 하자.직각삼각형 $\\mathrm{CDH}$에서$\\overline{CD}=4$이므로 $\\overline{CH}=2,~\\overline{DH}=2\\sqrt{3}$ 이다.직각삼각형 $\\mathrm{BDH}$에서 피타고라스 정리에 의해 $\\overline{BD}=\\sqrt{10^{2}+\\left( 2\\sqrt{3}\\right) ^{2}}=4\\sqrt{7}$"
+      },
+      "after": {
+        "answer": "$4\\sqrt{7}$",
+        "solution": "점 $\\mathrm{D}$와 변 $\\mathrm{B}C$의 연장선에 그은 수선의 발을 $\\mathrm{H}$라 하자.직각삼각형 $\\mathrm{CDH}$에서$\\overline{CD}=4$이므로 $\\overline{CH}=2,~\\overline{DH}=2\\sqrt{3}$ 이다.직각삼각형 $\\mathrm{BDH}$에서 피타고라스 정리에 의해 $\\overline{BD}=\\sqrt{10^{2}+\\left( 2\\sqrt{3}\\right) ^{2}}=4\\sqrt{7}$"
+      }
+    },
+    {
+      "externalId": "2025-hyeopseonggyeongbok-3-2-mid-17",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "27af440ba98f3fd96e55c2f86edea7accc45ecbc59ff47d209f44ef2a2b033f0",
+      "afterHash": "5bae54015187b3edb286726e7815825e1067a5c6c8f373a2f9d580a1e5c162d4",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{3}{4}$$\\triangle DMN=□ABCD-\\left( \\triangle DAM+\\triangle MBN+\\triangle NCD\\right) =\\frac{3}{2}$$\\overline{MD}=\\sqrt{5}$이므로$\\frac{1}{2}\\times \\sqrt{5}\\times \\sqrt{5}\\times \\mathrm{\\sin }\\,x\\,°=\\frac{3}{2}$이고 $\\sin \\,x\\,°=\\frac{3}{5}$따라서 $\\tan \\,x\\,°=\\frac{3}{4}$"
+      },
+      "after": {
+        "answer": "$\\frac{3}{4}$",
+        "solution": "$\\triangle DMN=□ABCD-\\left( \\triangle DAM+\\triangle MBN+\\triangle NCD\\right) =\\frac{3}{2}$$\\overline{MD}=\\sqrt{5}$이므로$\\frac{1}{2}\\times \\sqrt{5}\\times \\sqrt{5}\\times \\mathrm{\\sin }\\,x\\,°=\\frac{3}{2}$이고 $\\sin \\,x\\,°=\\frac{3}{5}$따라서 $\\tan \\,x\\,°=\\frac{3}{4}$"
+      }
+    },
+    {
+      "externalId": "2025-hyeopseonggyeongbok-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "3de43360c5a89779ea370eaedf37e014e93411be3757b2a3d1603bcf9ac011b2",
+      "afterHash": "02e96ad36a66458c2844ff332a44d175338593f3eb0fc50feaf882a609131100",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$42\\,°$사각형 $\\mathrm{PAOB}$에서 $\\angle AOB=150\\,°$이므로 원주각 $\\angle ACB=75\\,°$이다.삼각형 $\\mathrm{ABC}$에서 $\\angle A+\\angle B=105\\,°$ $\\overset{\\frown}{AC}:\\overset{\\frown}{CB}=2:3$이므로 $\\angle ABC:\\angle BAC=2:3$따라서 $\\angle \\mathrm{APC}=105\\,°\\times \\frac{2}{5}=42\\,°$"
+      },
+      "after": {
+        "answer": "$42\\,°$",
+        "solution": "사각형 $\\mathrm{PAOB}$에서 $\\angle AOB=150\\,°$이므로 원주각 $\\angle ACB=75\\,°$이다.삼각형 $\\mathrm{ABC}$에서 $\\angle A+\\angle B=105\\,°$ $\\overset{\\frown}{AC}:\\overset{\\frown}{CB}=2:3$이므로 $\\angle ABC:\\angle BAC=2:3$따라서 $\\angle \\mathrm{APC}=105\\,°\\times \\frac{2}{5}=42\\,°$"
+      }
+    },
+    {
+      "externalId": "2025-hyeopseonggyeongbok-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "32bae6ee374711b4e748144430048195291580f76c5cce7932bb9c6b51a38a01",
+      "afterHash": "05e1a99daa301827d727befe302df7ac3ac908d3ed9810fa88a5d6115d0f71f4",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$180\\,°$호 $\\mathrm{A}B$에 대한 원주각이 $\\angle \\mathrm{D}$호 $\\mathrm{BC}$에 대한 원주각이 $\\angle \\mathrm{E}$호 $\\mathrm{CD}$에 대한 원주각이 $\\angle \\mathrm{A}$호 $\\mathrm{DE}$에 대한 원주각이 $\\angle \\mathrm{B}$호 $\\mathrm{EA}$에 대한 원주각이 $\\angle \\mathrm{C}$모든 다섯 개의 호의 합이 원주이므로 원주각의 합은 $180\\,°$이다."
+      },
+      "after": {
+        "answer": "$180\\,°$",
+        "solution": "호 $\\mathrm{A}B$에 대한 원주각이 $\\angle \\mathrm{D}$호 $\\mathrm{BC}$에 대한 원주각이 $\\angle \\mathrm{E}$호 $\\mathrm{CD}$에 대한 원주각이 $\\angle \\mathrm{A}$호 $\\mathrm{DE}$에 대한 원주각이 $\\angle \\mathrm{B}$호 $\\mathrm{EA}$에 대한 원주각이 $\\angle \\mathrm{C}$모든 다섯 개의 호의 합이 원주이므로 원주각의 합은 $180\\,°$이다."
+      }
+    },
+    {
+      "externalId": "2025-joam-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "01e4a6345611ec2a74fb682e77b4d5ad8c43d3e7e8953da54e72ad1231e95a88",
+      "afterHash": "113c3e01182391b4e282c77d1c5f3e9373f9481f86e3c8519f0bf070034138ea",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\sin x°=\\frac{\\sqrt{3}}{3},~\\cos x°=\\frac{\\sqrt{6}}{3},~$ $\\tan x°=\\frac{\\sqrt{2}}{2}$$\\overline{BD}^{2}=\\overline{AB}^{2}+\\overline{AD}^{2}=3^{2}+3^{2}=18$$\\overline{BD}=3\\sqrt{2}$$\\overline{BH}^{2}=\\overline{BD}^{2}+\\overline{DH}^{2}=3\\sqrt{2}^{2}+3^{2}=27$$\\overline{BH}=3\\sqrt{3}$$\\angle \\mathrm{DHN}=90-x°$$\\angle DBH=x°$$\\therefore \\sin x°=\\frac{\\sqrt{3}}{3},~\\cos x°=\\frac{\\sqrt{6}}{3},~\\tan x°=\\frac{\\sqrt{2}}{2}$"
+      },
+      "after": {
+        "answer": "$\\sin x°=\\frac{\\sqrt{3}}{3},~\\cos x°=\\frac{\\sqrt{6}}{3},~$ $\\tan x°=\\frac{\\sqrt{2}}{2}$",
+        "solution": "$\\overline{BD}^{2}=\\overline{AB}^{2}+\\overline{AD}^{2}=3^{2}+3^{2}=18$$\\overline{BD}=3\\sqrt{2}$$\\overline{BH}^{2}=\\overline{BD}^{2}+\\overline{DH}^{2}=3\\sqrt{2}^{2}+3^{2}=27$$\\overline{BH}=3\\sqrt{3}$$\\angle \\mathrm{DHN}=90-x°$$\\angle DBH=x°$$\\therefore \\sin x°=\\frac{\\sqrt{3}}{3},~\\cos x°=\\frac{\\sqrt{6}}{3},~\\tan x°=\\frac{\\sqrt{2}}{2}$"
+      }
+    },
+    {
+      "externalId": "2025-joam-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "85899d951cb6267f48cdec103bf5b53934293421f6c1c19be2ba863ab6b518e1",
+      "afterHash": "50364475453904383c3772a77bbc1f5c7a533ee04d750a574ed2409007cd8517",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "약 $17°$$경사도=\\frac{높이}{밑변}\\times 100=\\tan x°\\times 100$경사도 $30%$는 $\\tan x°=\\frac{3}{10}$을 의미한다.$\\tan 17°=0.3057$이므로, 약 $17°$"
+      },
+      "after": {
+        "answer": "약 $17°$",
+        "solution": "$경사도=\\frac{높이}{밑변}\\times 100=\\tan x°\\times 100$경사도 $30%$는 $\\tan x°=\\frac{3}{10}$을 의미한다.$\\tan 17°=0.3057$이므로, 약 $17°$"
+      }
+    },
+    {
+      "externalId": "2025-joam-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "91b9889523ff9ebe459098f07b1a4d59afedb3dd768fcd71e67630b8408e4e38",
+      "afterHash": "6b460dcc05c2d1c31581f5246c9626bed1dc27be1ac50f6e7958f3366e4e6528",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$2\\sqrt{6}-2\\sqrt{2}$$\\frac{\\overline{BC}}{\\overline{AC}}=\\sin 30°=\\frac{4}{\\overline{A}}C=\\frac{1}{2}$$\\overline{AC}=8$$\\overline{AB}^{2}=\\overline{AC}^{2}-\\overline{BC}^{2}=8^{2}-4^{2}=48$$\\overline{AB}=4\\sqrt{3}$$\\overline{AB}^{2}=\\overline{AE}^{2}+\\overline{BE}^{2}=48$$\\overline{AE}=\\overline{BE}$이므로, $\\overline{AE}=\\overline{BE}=2\\sqrt{6}$$\\overline{BC}^{2}=\\overline{CF}^{2}+\\overline{BF}^{2}=16$$\\angle BFC$가 $45°$이므로, $\\overline{CF}=\\overline{BF}=2\\sqrt{2}$$\\overline{AD}=\\overline{AE}-\\overline{DE}=2\\sqrt{6}-2\\sqrt{2}$$\\overline{AD}=\\overline{DG}$이므로, $\\overline{DG}=2\\sqrt{6}-2\\sqrt{2}$"
+      },
+      "after": {
+        "answer": "$2\\sqrt{6}-2\\sqrt{2}$",
+        "solution": "$\\frac{\\overline{BC}}{\\overline{AC}}=\\sin 30°=\\frac{4}{\\overline{A}}C=\\frac{1}{2}$$\\overline{AC}=8$$\\overline{AB}^{2}=\\overline{AC}^{2}-\\overline{BC}^{2}=8^{2}-4^{2}=48$$\\overline{AB}=4\\sqrt{3}$$\\overline{AB}^{2}=\\overline{AE}^{2}+\\overline{BE}^{2}=48$$\\overline{AE}=\\overline{BE}$이므로, $\\overline{AE}=\\overline{BE}=2\\sqrt{6}$$\\overline{BC}^{2}=\\overline{CF}^{2}+\\overline{BF}^{2}=16$$\\angle BFC$가 $45°$이므로, $\\overline{CF}=\\overline{BF}=2\\sqrt{2}$$\\overline{AD}=\\overline{AE}-\\overline{DE}=2\\sqrt{6}-2\\sqrt{2}$$\\overline{AD}=\\overline{DG}$이므로, $\\overline{DG}=2\\sqrt{6}-2\\sqrt{2}$"
+      }
+    },
+    {
+      "externalId": "2025-joam-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "938da4fb6599a95fb24e6d5126da8856717ac4654bd73798fa9bc52c474b3471",
+      "afterHash": "df1d9a262532242d9656764577c943493943253ba13deb0af6e5ea8825ed9f39",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\mathrm{4}\\sqrt{3}cm^{2}$$\\overline{OB}=8cm$, $\\overline{OA}=4cm$이므로,$\\overline{AB}=4\\sqrt{3}cm,~\\angle AOB=60°$($\\mathrm{\\because }\\frac{\\overline{AB}}{\\overline{OB}}=\\sin 60°$)$\\angle OBA=30°$가 되고, $\\overline{OD}=\\overline{DB}=4cm$이므로$\\triangle ABD$의 높이는 $\\mathrm{2}cm$가 된다.$\\mathrm{\\therefore }\\triangle ABD=\\frac{1}{2}\\times 4\\sqrt{3}\\times 2=4\\sqrt{3}cm^{2}$"
+      },
+      "after": {
+        "answer": "$\\mathrm{4}\\sqrt{3}cm^{2}$",
+        "solution": "$\\overline{OB}=8cm$, $\\overline{OA}=4cm$이므로,$\\overline{AB}=4\\sqrt{3}cm,~\\angle AOB=60°$($\\mathrm{\\because }\\frac{\\overline{AB}}{\\overline{OB}}=\\sin 60°$)$\\angle OBA=30°$가 되고, $\\overline{OD}=\\overline{DB}=4cm$이므로$\\triangle ABD$의 높이는 $\\mathrm{2}cm$가 된다.$\\mathrm{\\therefore }\\triangle ABD=\\frac{1}{2}\\times 4\\sqrt{3}\\times 2=4\\sqrt{3}cm^{2}$"
+      }
+    },
+    {
+      "externalId": "2025-maeho-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "3ec7e05b88276f9e59f5668d34241ddb3afd1314b7b09ffe51b172b771337fdc",
+      "afterHash": "5e9814770729c5ea3e0e584313a18f4e72975ac26f49841dc3060bf34e7804cf",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\tan x=\\frac{\\overline{BE}}{\\overline{AE}}=\\,\\frac{3\\sqrt{7}}{25}$$\\sin y=\\,\\frac{\\overline{CD}}{\\overline{AD}}=\\frac{12}{\\overline{AD}}=\\,\\frac{3}{4}\\,$$\\overline{AD}=\\,16$$\\overline{AD}^{\\,2}=\\,\\overline{AC}^{\\,2}\\,+\\,\\overline{CD}^{\\,2}$$\\overline{AC}=\\,4\\sqrt{7}\\,$ $\\triangle BED\\,∾\\triangle ACD\\,(AA닮음)$$\\overline{BD}:\\,\\overline{AD}=\\,12:16=\\,3:4$$\\overline{BE}:\\,\\overline{\\,AC}=\\,\\overline{BE}:\\,4\\sqrt{7}=\\,3:4$$\\overline{BE}=\\,3\\sqrt{7}$$\\overline{ED}:\\,\\overline{CD}=\\,\\overline{ED}:\\,12=\\,3:4$$\\overline{ED}=\\,9$$\\tan x=\\,\\frac{\\overline{BE}}{\\overline{AE}}=\\,\\frac{\\overline{BE}}{\\overline{AD}\\,+\\,\\overline{DE}}=\\,\\frac{3\\sqrt{7}}{16+9}=\\,\\frac{3\\sqrt{7}}{25}$"
+      },
+      "after": {
+        "answer": "$\\tan x=\\frac{\\overline{BE}}{\\overline{AE}}=\\,\\frac{3\\sqrt{7}}{25}$",
+        "solution": "$\\sin y=\\,\\frac{\\overline{CD}}{\\overline{AD}}=\\frac{12}{\\overline{AD}}=\\,\\frac{3}{4}\\,$$\\overline{AD}=\\,16$$\\overline{AD}^{\\,2}=\\,\\overline{AC}^{\\,2}\\,+\\,\\overline{CD}^{\\,2}$$\\overline{AC}=\\,4\\sqrt{7}\\,$ $\\triangle BED\\,∾\\triangle ACD\\,(AA닮음)$$\\overline{BD}:\\,\\overline{AD}=\\,12:16=\\,3:4$$\\overline{BE}:\\,\\overline{\\,AC}=\\,\\overline{BE}:\\,4\\sqrt{7}=\\,3:4$$\\overline{BE}=\\,3\\sqrt{7}$$\\overline{ED}:\\,\\overline{CD}=\\,\\overline{ED}:\\,12=\\,3:4$$\\overline{ED}=\\,9$$\\tan x=\\,\\frac{\\overline{BE}}{\\overline{AE}}=\\,\\frac{\\overline{BE}}{\\overline{AD}\\,+\\,\\overline{DE}}=\\,\\frac{3\\sqrt{7}}{16+9}=\\,\\frac{3\\sqrt{7}}{25}$"
+      }
+    },
+    {
+      "externalId": "2025-maeho-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "3ceda8d35835641d6de198dd229575a0e9efc1012ee3cf94d9032df16628d35e",
+      "afterHash": "9a914d3cf1a08c60ef5486daaa86e981cda51cdae1f53e652c4fd757c0b4daa4",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\overline{BC}=\\,6\\sqrt{3}$$\\overline{OP}=\\,\\overline{OQ}$ 이므로 $\\overline{AB}=\\,\\overline{AC}$ 이다.$\\overline{AB}=\\,\\overline{AC}$와 $\\angle BAC=\\,60^\\circ$으로 $\\triangle ABC=$ 정삼각형으로$\\overline{AB}=\\,\\overline{BC}=\\,\\overline{AC}$원 넓이가 $36\\pi$ 이므로 원 $O$ 의 반지름 길이는 $6$$\\overline{OA}=\\,\\overline{OB}=\\,\\overline{OC}=\\,6$$\\triangle \\,APO=\\triangle AQO\\,(RHS$ 합동$)$,   $\\angle \\,OAP=\\,30^\\circ$$\\cos 30^\\circ =\\,\\frac{\\mathrm{\\sqrt{3}}}{2}=\\,\\frac{\\overline{AP}}{\\overline{OA}}=\\,\\frac{\\overline{AP}}{6}\\,$,   $\\overline{AP}=\\,3\\sqrt{3}$$\\overline{AB}=\\,2\\overline{AP}=\\,6\\sqrt{3}$$\\overline{AB}=\\,\\overline{BC}=\\,6\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$\\overline{BC}=\\,6\\sqrt{3}$",
+        "solution": "$\\overline{OP}=\\,\\overline{OQ}$ 이므로 $\\overline{AB}=\\,\\overline{AC}$ 이다.$\\overline{AB}=\\,\\overline{AC}$와 $\\angle BAC=\\,60^\\circ$으로 $\\triangle ABC=$ 정삼각형으로$\\overline{AB}=\\,\\overline{BC}=\\,\\overline{AC}$원 넓이가 $36\\pi$ 이므로 원 $O$ 의 반지름 길이는 $6$$\\overline{OA}=\\,\\overline{OB}=\\,\\overline{OC}=\\,6$$\\triangle \\,APO=\\triangle AQO\\,(RHS$ 합동$)$,   $\\angle \\,OAP=\\,30^\\circ$$\\cos 30^\\circ =\\,\\frac{\\mathrm{\\sqrt{3}}}{2}=\\,\\frac{\\overline{AP}}{\\overline{OA}}=\\,\\frac{\\overline{AP}}{6}\\,$,   $\\overline{AP}=\\,3\\sqrt{3}$$\\overline{AB}=\\,2\\overline{AP}=\\,6\\sqrt{3}$$\\overline{AB}=\\,\\overline{BC}=\\,6\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-maeho-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a99cd26b095e05dea8909a7ecd7e67fcfede23f03072475040b4e46be591f51d",
+      "afterHash": "69f239c5a41d47883781be04a5967d61f09352650ce92f54093e763cc4bf00f6",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\angle x=\\,105^\\circ$$\\overline{AP}=\\,\\overline{AT}$이므로 $\\triangle \\,APT=\\,$이등변삼각형$\\angle APT=\\,\\angle ATP=25^\\circ$이다.따라서 $\\angle \\,BAT=\\,50^\\circ$이고, $\\angle \\,ABT=\\,25^\\circ$이다.$\\angle \\,x=\\,180^\\circ \\,-(50^\\circ +25^\\circ )=\\,105^\\circ$"
+      },
+      "after": {
+        "answer": "$\\angle x=\\,105^\\circ$",
+        "solution": "$\\overline{AP}=\\,\\overline{AT}$이므로 $\\triangle \\,APT=\\,$이등변삼각형$\\angle APT=\\,\\angle ATP=25^\\circ$이다.따라서 $\\angle \\,BAT=\\,50^\\circ$이고, $\\angle \\,ABT=\\,25^\\circ$이다.$\\angle \\,x=\\,180^\\circ \\,-(50^\\circ +25^\\circ )=\\,105^\\circ$"
+      }
+    },
+    {
+      "externalId": "2025-maeho-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "5790159fe2111d859e526110bb8626053664b3b18ac49ae6077db3517d17ae02",
+      "afterHash": "678b20618314ae82252351980403aba49dcc15a51c271037f540df64af26daea",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\triangle DBC=$  $9\\sqrt{3}\\,cm^{2}$$\\overline{AD}$가 원 $O$ 의 지름이므로 $\\triangle ABD=\\,$직각삼각형.$\\angle \\,AB\\,D=\\,90^\\circ$, $\\angle \\,ADB=60^\\circ$,  $\\overline{AD}=\\,2\\overline{AO}=\\,12$$\\cos 60^\\circ =\\,\\frac{\\mathrm{1}}{2}=\\,\\frac{\\overline{BD}}{\\overline{AD}}=\\,\\frac{\\overline{BD}}{12}$,    $\\overline{BD}=\\,6$$\\angle BAD=\\,\\angle DBC=\\,30^\\circ$$\\angle \\,ABC=\\,\\angle ABD\\,+\\,\\angle \\,DBC=\\,90^\\circ +30^\\circ =\\,120^\\circ$$\\triangle \\,ABC$에서 $\\angle C=\\,30^\\circ$$\\triangle DBC=$이등변삼각형$\\overline{DB}=\\,\\overline{DC}=\\,6$                        $\\triangle DBC=\\,\\frac{1}{2}\\times \\,\\overline{DB}\\,\\times \\,\\overline{DC}\\,\\times \\,\\sin \\angle BDC$$=\\frac{1}{2}\\times 6\\times 6\\times \\,\\sin 120^\\circ $$=18\\times \\sin (180^\\circ -120^\\circ )$$=\\,18\\,\\times \\,\\frac{\\sqrt{3}}{2}$$=9\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$\\triangle DBC=$ $9\\sqrt{3}\\,cm^{2}$",
+        "solution": "$\\overline{AD}$가 원 $O$ 의 지름이므로 $\\triangle ABD=\\,$직각삼각형.$\\angle \\,AB\\,D=\\,90^\\circ$, $\\angle \\,ADB=60^\\circ$,  $\\overline{AD}=\\,2\\overline{AO}=\\,12$$\\cos 60^\\circ =\\,\\frac{\\mathrm{1}}{2}=\\,\\frac{\\overline{BD}}{\\overline{AD}}=\\,\\frac{\\overline{BD}}{12}$,    $\\overline{BD}=\\,6$$\\angle BAD=\\,\\angle DBC=\\,30^\\circ$$\\angle \\,ABC=\\,\\angle ABD\\,+\\,\\angle \\,DBC=\\,90^\\circ +30^\\circ =\\,120^\\circ$$\\triangle \\,ABC$에서 $\\angle C=\\,30^\\circ$$\\triangle DBC=$이등변삼각형$\\overline{DB}=\\,\\overline{DC}=\\,6$                        $\\triangle DBC=\\,\\frac{1}{2}\\times \\,\\overline{DB}\\,\\times \\,\\overline{DC}\\,\\times \\,\\sin \\angle BDC$$=\\frac{1}{2}\\times 6\\times 6\\times \\,\\sin 120^\\circ $$=18\\times \\sin (180^\\circ -120^\\circ )$$=\\,18\\,\\times \\,\\frac{\\sqrt{3}}{2}$$=9\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-neungin-3-2-mid-17",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a2dc28018ba47bd25c5c1d4950f3af89b1ed9a6ab271d1ae762fc327d1d1529d",
+      "afterHash": "e96d3251e233238d73b342c590f164e49bd986446fc32bdcdcdc2e7cc5e19fb7",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\left( 12+2\\sqrt{3}\\right) \\,\\mathrm{m}$ $\\overline{DH}=\\overline{DE}\\times \\cos 30\\,°=2\\sqrt{3}$, $\\overline{EH}=\\overline{DE}\\times \\,\\sin 30\\,°=2=\\overline{BH}$$\\overline{AC}=\\overline{AD}+\\overline{DH}+\\overline{BH}=10+2\\sqrt{3}+2=12+2\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$\\left( 12+2\\sqrt{3}\\right) \\,\\mathrm{m}$",
+        "solution": "$\\overline{DH}=\\overline{DE}\\times \\cos 30\\,°=2\\sqrt{3}$, $\\overline{EH}=\\overline{DE}\\times \\,\\sin 30\\,°=2=\\overline{BH}$$\\overline{AC}=\\overline{AD}+\\overline{DH}+\\overline{BH}=10+2\\sqrt{3}+2=12+2\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-neungin-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "aa4fb7974736675af18d655d87af2bdba02adfbf563b1703a1107e5de61ef084",
+      "afterHash": "f115c0875a4b4fd4c222f4d9bf38c8571babea1cb788a4619739cd1c95ab3966",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$6\\sqrt{3}$$\\angle DAC=60\\,°$. $\\overline{AC}=x$라 하면 $\\overline{CD}=\\sqrt{3}x$ ,$\\overline{BC}=6+\\sqrt{3}x$$\\tan B=\\frac{\\overline{AC}}{\\overline{BC}}=\\frac{x}{6+\\sqrt{3}x}=\\frac{\\sqrt{3}}{4}$, $x=6\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$6\\sqrt{3}$",
+        "solution": "$\\angle DAC=60\\,°$. $\\overline{AC}=x$라 하면 $\\overline{CD}=\\sqrt{3}x$ ,$\\overline{BC}=6+\\sqrt{3}x$$\\tan B=\\frac{\\overline{AC}}{\\overline{BC}}=\\frac{x}{6+\\sqrt{3}x}=\\frac{\\sqrt{3}}{4}$, $x=6\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-neungin-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a1b8a89e9ded55d2c88c2cc9163cbd9bab85ee0602cc5ef7a1707cd1e71eece6",
+      "afterHash": "3ab3b46016c06d727d5f17c661f4afaf3a1f530489ad7917d8b2b9a34158f268",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$729\\pi (\\mathrm{cm})^{3}$$\\overline{BH}=\\overline{AB}\\times \\cos 30\\,°=9\\sqrt{3}$, $\\overline{AH}=\\overline{AB}\\times \\,\\sin 30\\,°=9$$\\mathrm{V}=\\frac{1}{3}\\times \\pi \\times \\left( 9\\sqrt{3}\\right) ^{2}\\times 9=729\\pi$"
+      },
+      "after": {
+        "answer": "$729\\pi (\\mathrm{cm})^{3}$",
+        "solution": "$\\overline{BH}=\\overline{AB}\\times \\cos 30\\,°=9\\sqrt{3}$, $\\overline{AH}=\\overline{AB}\\times \\,\\sin 30\\,°=9$$\\mathrm{V}=\\frac{1}{3}\\times \\pi \\times \\left( 9\\sqrt{3}\\right) ^{2}\\times 9=729\\pi$"
+      }
+    },
+    {
+      "externalId": "2025-neungin-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "0b8f57e5899e7a486a172df835259b3dac16750734684ddf868bf2625d06c495",
+      "afterHash": "8866e1d84d03f1a8dbf91fb2cdf970342ff39c595d0da3201105d2548ba76cb9",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\left( 135+45\\sqrt{3}\\right) \\,\\mathrm{m}$$\\overline{AH}=\\overline{AP}\\times \\cos 30\\,°=45\\sqrt{3}$$\\overline{PH}=\\overline{AP}\\times \\,\\sin 30\\,°=45$$\\overline{BH}=\\overline{PH}\\times \\,\\tan 72\\,°=45\\times 3=135$두 지점 $\\mathrm{A},~B$사이의 거리=$\\overline{AH}+\\overline{BH}=45\\sqrt{3}+135$"
+      },
+      "after": {
+        "answer": "$\\left( 135+45\\sqrt{3}\\right) \\,\\mathrm{m}$",
+        "solution": "$\\overline{AH}=\\overline{AP}\\times \\cos 30\\,°=45\\sqrt{3}$$\\overline{PH}=\\overline{AP}\\times \\,\\sin 30\\,°=45$$\\overline{BH}=\\overline{PH}\\times \\,\\tan 72\\,°=45\\times 3=135$두 지점 $\\mathrm{A},~B$사이의 거리=$\\overline{AH}+\\overline{BH}=45\\sqrt{3}+135$"
+      }
+    },
+    {
+      "externalId": "2025-oseong-3-2-mid-17",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "8238f628e2c9d5c5892d0a40b289a16471e247a894dab641b2022aefcd04a400",
+      "afterHash": "c4eac07e82ba5043a57b2b57013d72da1301527f54d0328fb2b6ddda36c39260",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{21}{10}$$45°<x<90°$에서 $\\sin x>\\cos \\,x$이다.$\\sqrt{\\left( \\sin \\,x+\\cos \\,x\\right) ^{2}}-\\sqrt{\\left( \\sin \\,x-\\cos \\,x\\right) ^{2}}=\\frac{4}{5}\\,$$|\\sin x+\\cos x|-|\\sin x-\\cos |=\\frac{4}{5}$$\\sin x+\\cos x-\\sin x+\\cos x=\\frac{4}{5}$$2\\cos x=\\frac{4}{5}$, $\\cos x=\\frac{2}{5}$, $\\cos (90°-x)=\\sin x=\\frac{\\sqrt{21}}{5}$, $\\tan x=\\frac{\\sqrt{21}}{2}$$\\cos \\,\\left( 90°-x\\right) \\times \\,\\tan \\,x=\\sin x×\\tan x=\\frac{\\sqrt{21}}{5}×\\frac{\\sqrt{21}}{2}=\\frac{21}{10}$"
+      },
+      "after": {
+        "answer": "$\\frac{21}{10}$",
+        "solution": "$45°<x<90°$에서 $\\sin x>\\cos \\,x$이다.$\\sqrt{\\left( \\sin \\,x+\\cos \\,x\\right) ^{2}}-\\sqrt{\\left( \\sin \\,x-\\cos \\,x\\right) ^{2}}=\\frac{4}{5}\\,$$|\\sin x+\\cos x|-|\\sin x-\\cos |=\\frac{4}{5}$$\\sin x+\\cos x-\\sin x+\\cos x=\\frac{4}{5}$$2\\cos x=\\frac{4}{5}$, $\\cos x=\\frac{2}{5}$, $\\cos (90°-x)=\\sin x=\\frac{\\sqrt{21}}{5}$, $\\tan x=\\frac{\\sqrt{21}}{2}$$\\cos \\,\\left( 90°-x\\right) \\times \\,\\tan \\,x=\\sin x×\\tan x=\\frac{\\sqrt{21}}{5}×\\frac{\\sqrt{21}}{2}=\\frac{21}{10}$"
+      }
+    },
+    {
+      "externalId": "2025-oseong-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "9615acd7a828c8aef00a8ccd54b8d71e09daa5629fbc4edd6371f13565f4e214",
+      "afterHash": "3226f0c84f1a567260a835ed16d7df34e0fe53e3c7b7dbe58aa50ea1b2be4e2c",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$5\\left( 3-\\sqrt{3}\\right) \\,\\mathrm{cm}^{2}$점$\\mathrm{A}$에서 $\\overline{\\mathrm{B}C}$에 수선을 그어 그 수선의 발을 점$\\mathrm{H}$라 하자.$\\overline{AH}=$$x$, $\\overline{BH}=$$x$, $\\overline{HC}=$$10-x$$△\\mathrm{AHC}$에서 $\\overline{\\mathrm{A}H}:\\overline{HC}=\\sqrt{3}:1$, $x:10-x=\\sqrt{3}:1$$x=15-5\\sqrt{3}$이다.$\\frac{1}{5}\\triangle \\mathrm{ABC}=\\frac{1}{5}×10×(15-5\\sqrt{3})×\\frac{1}{2}=15-5\\sqrt{3}$"
+      },
+      "after": {
+        "answer": "$5\\left( 3-\\sqrt{3}\\right) \\,\\mathrm{cm}^{2}$",
+        "solution": "점$\\mathrm{A}$에서 $\\overline{\\mathrm{B}C}$에 수선을 그어 그 수선의 발을 점$\\mathrm{H}$라 하자.$\\overline{AH}=$$x$, $\\overline{BH}=$$x$, $\\overline{HC}=$$10-x$$△\\mathrm{AHC}$에서 $\\overline{\\mathrm{A}H}:\\overline{HC}=\\sqrt{3}:1$, $x:10-x=\\sqrt{3}:1$$x=15-5\\sqrt{3}$이다.$\\frac{1}{5}\\triangle \\mathrm{ABC}=\\frac{1}{5}×10×(15-5\\sqrt{3})×\\frac{1}{2}=15-5\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-oseong-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "f5a1eaf082a22291326967f34601991546f54831b4953747b09f609435ae0e6b",
+      "afterHash": "f8fbf06f331776233ba6f286a38dc7adad3e9a957fa1bf704849dc73c0644425",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{\\sqrt{5}}{5}$$\\overline{\\mathrm{A}B}:\\overline{BC}=2:3\\,$이므로 $\\overline{AB}=12cm,~\\overline{AD}=18cm$이다.$\\overline{\\mathrm{B}E}=2\\overline{EC}$이므로 $\\overline{BE}=12cm,~\\overline{EC}=6cm$$\\overline{\\mathrm{C}F}=\\overline{\\mathrm{D}F}=6cm$$\\angle \\mathrm{BEA}=\\angle \\mathrm{CEF}=45°\\,(\\begin{matrix} \\overline{AB}=\\overline{BE},\\,\\overline{EC}=\\overline{CF}) \\end{matrix}$,$\\angle \\mathrm{AEF}=90°$,$\\triangle \\mathrm{ECF}$에서 $\\overline{\\mathrm{E}F}=\\sqrt{6^{2}+6^{2}}=6\\sqrt{2}$$\\triangle \\mathrm{ABE}$에서 $\\overline{\\mathrm{A}E}=\\sqrt{12^{2}+12^{2}}=12\\sqrt{2}$$\\triangle \\mathrm{ADF}$에서 $\\overline{\\mathrm{A}F}=\\sqrt{18^{2}+6^{2}}=6\\sqrt{10}$따라서 $\\triangle \\mathrm{AEF}$에서 $\\sin x=\\frac{6\\sqrt{2}}{6\\sqrt{10}}=\\frac{1}{\\sqrt{5}}=\\frac{\\sqrt{5}}{5}$"
+      },
+      "after": {
+        "answer": "$\\frac{\\sqrt{5}}{5}$",
+        "solution": "$\\overline{\\mathrm{A}B}:\\overline{BC}=2:3\\,$이므로 $\\overline{AB}=12cm,~\\overline{AD}=18cm$이다.$\\overline{\\mathrm{B}E}=2\\overline{EC}$이므로 $\\overline{BE}=12cm,~\\overline{EC}=6cm$$\\overline{\\mathrm{C}F}=\\overline{\\mathrm{D}F}=6cm$$\\angle \\mathrm{BEA}=\\angle \\mathrm{CEF}=45°\\,(\\begin{matrix} \\overline{AB}=\\overline{BE},\\,\\overline{EC}=\\overline{CF}) \\end{matrix}$,$\\angle \\mathrm{AEF}=90°$,$\\triangle \\mathrm{ECF}$에서 $\\overline{\\mathrm{E}F}=\\sqrt{6^{2}+6^{2}}=6\\sqrt{2}$$\\triangle \\mathrm{ABE}$에서 $\\overline{\\mathrm{A}E}=\\sqrt{12^{2}+12^{2}}=12\\sqrt{2}$$\\triangle \\mathrm{ADF}$에서 $\\overline{\\mathrm{A}F}=\\sqrt{18^{2}+6^{2}}=6\\sqrt{10}$따라서 $\\triangle \\mathrm{AEF}$에서 $\\sin x=\\frac{6\\sqrt{2}}{6\\sqrt{10}}=\\frac{1}{\\sqrt{5}}=\\frac{\\sqrt{5}}{5}$"
+      }
+    },
+    {
+      "externalId": "2025-oseong-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d367d9735d8cade6f554be068243d5c8513ba732d5faa90ff961ccecb0d6f721",
+      "afterHash": "8be8a95529118c27a342fd6858841ac92dacb4453fe394ca45329263944e0c6c",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$12cm$큰 원의 반지름의 길이는  $\\overline{OA}=acm$작은 원의 반지름의 길이는  $\\overline{OH}=bcm$라 하면$\\triangle \\mathrm{OAH}$에서 $\\overline{AH}=\\sqrt{a^{2}-b^{2}}$이다.색칠한 부분의 넓이는 $(a^{2}-b^{2})\\pi =144\\pi ,~a^{2}-b^{2}=144$∴ $\\overline{AH}=\\sqrt{144}=12\\,cm$"
+      },
+      "after": {
+        "answer": "$12cm$",
+        "solution": "큰 원의 반지름의 길이는  $\\overline{OA}=acm$작은 원의 반지름의 길이는  $\\overline{OH}=bcm$라 하면$\\triangle \\mathrm{OAH}$에서 $\\overline{AH}=\\sqrt{a^{2}-b^{2}}$이다.색칠한 부분의 넓이는 $(a^{2}-b^{2})\\pi =144\\pi ,~a^{2}-b^{2}=144$∴ $\\overline{AH}=\\sqrt{144}=12\\,cm$"
+      }
+    },
+    {
+      "externalId": "2025-oseong-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "85474592c06231f39de6f3bc6faf6fe16cf11fb3061cb5813b3199a1c98b233a",
+      "afterHash": "9f4db1ff36c599d92f097551ec0a6712f13b5f477ef5ac18236573bedb86e7f3",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$224°$$\\angle \\mathrm{D}=180\\times \\frac{1}{5}=36°$$\\angle \\mathrm{DAB}=180\\times \\frac{4}{9}=80°$$\\angle \\mathrm{ABC}=180°-36°=144°$$\\angle \\mathrm{BCD}=180°-80°=100°$$\\angle \\mathrm{DCE}=80°$∴ $144°+80°=224°$"
+      },
+      "after": {
+        "answer": "$224°$",
+        "solution": "$\\angle \\mathrm{D}=180\\times \\frac{1}{5}=36°$$\\angle \\mathrm{DAB}=180\\times \\frac{4}{9}=80°$$\\angle \\mathrm{ABC}=180°-36°=144°$$\\angle \\mathrm{BCD}=180°-80°=100°$$\\angle \\mathrm{DCE}=80°$∴ $144°+80°=224°$"
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-4",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "58588d28b0b6bafff5dac63ce07650cff66f176754178f624dbc7018d8d91ca8",
+      "afterHash": "1f25da1dbb557e9b438e47347c22a0021ddd89446a0ac8363ac1a8e5eec815b7",
+      "before": {
+        "content": "한 변의 길이가 $1$인 정사각형 $\\mathrm{ABCD}$를 반으로 잘라 만든 삼각형 $\\mathrm{BCD}$를 이용해 특수각의 삼각비를 구하는 과정이다. <상자> ㉠ $SIM$ ㉤에 들어갈 내용이 옳지 않은 것은? \n\n삼각형 $\\mathrm{BCD}$는 직각이등변삼각형이므\n로 $x=\\square ㉠$\n피타고라스 정리에 의하여\n $\\overline{BD}=\\sqrt{\\overline{BC}^{2}+\\overline{CD}^{2}}=\\square ㉡$ 이다.\n $\\sin \\,x°=\\square ㉢\\cos \\,x°=\\square ㉣\\tan \\,x°=\\square ㉤$\n\n1. ㉠ : $45$\n2. ㉡ : $\\sqrt{2}$\n3. ㉢ : $\\sqrt{2}$\n4. ㉣ : $\\frac{\\sqrt{2}}{2}$\n5. ㉤ : $1$"
+      },
+      "after": {
+        "content": "한 변의 길이가 $1$인 정사각형 $\\mathrm{ABCD}$를 반으로 잘라 만든 삼각형 $\\mathrm{BCD}$를 이용해 특수각의 삼각비를 구하는 과정이다. <상자> ㉠ $∼$ ㉤에 들어갈 내용이 옳지 않은 것은? \n\n삼각형 $\\mathrm{BCD}$는 직각이등변삼각형이므\n로 $x=\\square ㉠$\n피타고라스 정리에 의하여\n $\\overline{BD}=\\sqrt{\\overline{BC}^{2}+\\overline{CD}^{2}}=\\square ㉡$ 이다.\n $\\sin \\,x°=\\square ㉢\\cos \\,x°=\\square ㉣\\tan \\,x°=\\square ㉤$\n\n1. ㉠ : $45$\n2. ㉡ : $\\sqrt{2}$\n3. ㉢ : $\\sqrt{2}$\n4. ㉣ : $\\frac{\\sqrt{2}}{2}$\n5. ㉤ : $1$"
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-14",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "84185a5df924547155beace2e7d77d083d0ab9bae5b4c67b73fd900730684198",
+      "afterHash": "49d9e014ec21701a93067e13cdc4108ec348732271b7961da38e04f85d349a60",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "풀이참조$(1)$ 사인은 빗변에 대한 높이의 비    코사인은 빗변에 대한 밑변의 비$(2)$ $\\overline{BC}=8$, $\\cos C=\\frac{4}{5}$이므로 $\\overline{AC}=10$이고, $\\overline{AB}=6$이다.따라서 $\\sin C=\\frac{6}{10}=\\frac{3}{5}$"
+      },
+      "after": {
+        "answer": "풀이 참조",
+        "solution": "$(1)$ 사인은 빗변에 대한 높이의 비    코사인은 빗변에 대한 밑변의 비$(2)$ $\\overline{BC}=8$, $\\cos C=\\frac{4}{5}$이므로 $\\overline{AC}=10$이고, $\\overline{AB}=6$이다.따라서 $\\sin C=\\frac{6}{10}=\\frac{3}{5}$"
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-15",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "6c156c9503172627582e681fe0f04fd72884f8ad97bc47fdb75f67ef5127ee8c",
+      "afterHash": "a28ae4d8598841fb5d6ee1498a313b270dafd2edfab56fb494fb7d071be5167b",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "풀이참조$(1)$ $\\tan$, 수직거리(높이)와 수평거리(밑변)의 비$(2)$ $\\tan 21°=0.38$이므로 $38%$이다."
+      },
+      "after": {
+        "answer": "풀이 참조",
+        "solution": "$(1)$ $\\tan$, 수직거리(높이)와 수평거리(밑변)의 비$(2)$ $\\tan 21°=0.38$이므로 $38%$이다."
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-16",
+      "fields": [
+        "content",
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "90401089cb4a8f6d5d3e49b3c0534f77fca5511a9e39682d074ee501f4950a30",
+      "afterHash": "3a2a9af85dfc69d3a04a4fcf6f841ddab47fec7355248de3357f69170067cb2a",
+      "before": {
+        "content": "[서술형 $3$] 그림과 같이 한 모서리의 길이가 $6$인 정사면체에서 $\\overline{DE}$는 $\\triangle \\mathrm{DBC}$의 중선이고 점 $\\mathrm{A}$에서 $\\overline{DE}$에 내린 수선의 발을 $\\mathrm{G}$라고 한다. $\\angle \\mathrm{ADG}=\\angle x$, $\\angle \\mathrm{GAE}=\\angle y$라 할 때, $3\\sin x-4\\tan y$의 값을 구하는 과정을 서술하시오. \n \n \n[서술형 $4$ ~ 서술형 $5$] <보기>는 원의 성질에 대한 것이다. 물음에 답하시오.\n< 보 기 >\n[원의 성질]\n$\\circ$원에서 현의 수직이등분선은 그 원의 중심을 지난다.\n$\\circ$원의 중심에서 현에 내린 수선은 그 현을 수직이등분한다.\n$\\circ$한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같다.\n$\\circ$한 원에서 길이가 같은 두 현은 원의 중심으로부터 같은 거리에 있다.\n$\\circ$원 밖의 한 점에서 그 원에 그은 두 접선의 길이는 같다.",
+        "answer": "$\\sqrt{6}-\\sqrt{2}$$\\overline{AE}=\\overline{DE}=\\frac{\\sqrt{3}}{2}\\times 6=3\\sqrt{3}$",
+        "solution": "점 $\\mathrm{G}$는 삼각형$\\mathrm{BCD}$의 무게중심이므로 $\\overline{EG}=\\sqrt{3}$, $\\overline{DG}=2\\sqrt{3}$이다.삼각형 $\\mathrm{ADG}$에서 피타고라스 정리를 사용하면$\\overline{AG}=2\\sqrt{6}$이다.따라서 $\\sin x=\\frac{\\overline{AG}}{\\overline{AD}}=\\frac{2\\sqrt{6}}{6}=\\frac{\\sqrt{6}}{3}$$\\tan y=\\frac{\\overline{EG}}{\\overline{AG}}=\\frac{\\sqrt{3}}{2\\sqrt{6}}=\\frac{\\sqrt{2}}{4}$이므로 $3\\sin x-4\\tan y=\\sqrt{6}-\\sqrt{2}$"
+      },
+      "after": {
+        "content": "[서술형 $3$] 그림과 같이 한 모서리의 길이가 $6$인 정사면체에서 $\\overline{DE}$는 $\\triangle \\mathrm{DBC}$의 중선이고 점 $\\mathrm{A}$에서 $\\overline{DE}$에 내린 수선의 발을 $\\mathrm{G}$라고 한다. $\\angle \\mathrm{ADG}=\\angle x$, $\\angle \\mathrm{GAE}=\\angle y$라 할 때, $3\\sin x-4\\tan y$의 값을 구하는 과정을 서술하시오.",
+        "answer": "$\\sqrt{6}-\\sqrt{2}$",
+        "solution": "$\\overline{AE}=\\overline{DE}=\\frac{\\sqrt{3}}{2}\\times 6=3\\sqrt{3}$ 점 $\\mathrm{G}$는 삼각형$\\mathrm{BCD}$의 무게중심이므로 $\\overline{EG}=\\sqrt{3}$, $\\overline{DG}=2\\sqrt{3}$이다.삼각형 $\\mathrm{ADG}$에서 피타고라스 정리를 사용하면$\\overline{AG}=2\\sqrt{6}$이다.따라서 $\\sin x=\\frac{\\overline{AG}}{\\overline{AD}}=\\frac{2\\sqrt{6}}{6}=\\frac{\\sqrt{6}}{3}$$\\tan y=\\frac{\\overline{EG}}{\\overline{AG}}=\\frac{\\sqrt{3}}{2\\sqrt{6}}=\\frac{\\sqrt{2}}{4}$이므로 $3\\sin x-4\\tan y=\\sqrt{6}-\\sqrt{2}$"
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-17",
+      "fields": [
+        "content",
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "129cfbf6cb59f5c9819c04da683c825f5bb2a329a7f51a31e3a7c3eee7e80562",
+      "afterHash": "ce242588bc08a33c5c7dfe3d21489d9abd1b796bdbf5ef623954ee8f3f35f873",
+      "before": {
+        "content": "[서술형 $4$] 그림과 같은 원 $\\mathrm{O}$에서 $\\overline{OM}\\perp \\overline{AB}$, $\\overline{ON}\\perp \\overline{AC}$이고, $\\overline{OM}=\\overline{ON}=3\\,\\mathrm{c}m$, $\\angle \\mathrm{C}=60°$일 때, 물음에 답하시오. \n$(1)$ $\\triangle \\mathrm{ABC}$가 어떤 삼각형인지 판단하고 그렇게 생각한 이유를 [조건]에 맞게 서술하시오. \n[조건]\n$\\circ$<보기>의 원의 성질과 관련지어 서술할 것\n[배점]\n$\\circ$필요한 원의 성질을 정확하게 관련지어 설명 \n$\\circ$삼각형의 종류와 이유 설명 \n$(2)$ $\\triangle \\mathrm{ABC}$의 넓이를 구하는 과정을 삼각비를 이용하여 서술하시오.",
+        "answer": "$(1)$",
+        "solution": "정삼각형 $(2)$ $27\\sqrt{3}\\mathrm{c}m^{2}$$(1)$ $\\overline{OM}\\perp \\overline{AB},~\\overline{ON}\\perp \\overline{AC},~\\overline{OM}=\\overline{ON}$이므로 한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같다.따라서 $\\overline{AB}=\\overline{AC}$이다. $\\angle \\mathrm{C}=\\angle \\mathrm{B}=60°$이므로 $\\angle \\mathrm{A}=60°$따라서 삼각형 $\\mathrm{ABC}$는 정삼각형이다.$(2)$ $\\angle A=60°$이므로 $\\angle OAM=30°$이다.따라서 $\\tan 30°=\\frac{\\overline{MO}}{\\overline{AM}}$이므로 $\\frac{\\sqrt{3}}{3}=\\frac{\\mathrm{3}}{\\overline{AM}}$에서 $\\overline{AM}=3\\sqrt{3}$$\\overline{AB}=6\\sqrt{3}$이므로 삼각형 $\\mathrm{ABC}$의 넓이는 $\\frac{\\sqrt{3}}{4}\\times (6\\sqrt{3})^{2}=27\\sqrt{3}$"
+      },
+      "after": {
+        "content": "[서술형 $4$ ~ 서술형 $5$] <보기>는 원의 성질에 대한 것이다. 물음에 답하시오.\n< 보 기 >\n[원의 성질]\n$\\circ$원에서 현의 수직이등분선은 그 원의 중심을 지난다.\n$\\circ$원의 중심에서 현에 내린 수선은 그 현을 수직이등분한다.\n$\\circ$한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같다.\n$\\circ$한 원에서 길이가 같은 두 현은 원의 중심으로부터 같은 거리에 있다.\n$\\circ$원 밖의 한 점에서 그 원에 그은 두 접선의 길이는 같다.\n\n[서술형 $4$] 그림과 같은 원 $\\mathrm{O}$에서 $\\overline{OM}\\perp \\overline{AB}$, $\\overline{ON}\\perp \\overline{AC}$이고, $\\overline{OM}=\\overline{ON}=3\\,\\mathrm{c}m$, $\\angle \\mathrm{C}=60°$일 때, 물음에 답하시오. \n$(1)$ $\\triangle \\mathrm{ABC}$가 어떤 삼각형인지 판단하고 그렇게 생각한 이유를 [조건]에 맞게 서술하시오. \n[조건]\n$\\circ$<보기>의 원의 성질과 관련지어 서술할 것\n[배점]\n$\\circ$필요한 원의 성질을 정확하게 관련지어 설명 \n$\\circ$삼각형의 종류와 이유 설명 \n$(2)$ $\\triangle \\mathrm{ABC}$의 넓이를 구하는 과정을 삼각비를 이용하여 서술하시오.",
+        "answer": "$(1)$ 정삼각형 $(2)$ $27\\sqrt{3}\\mathrm{c}m^{2}$",
+        "solution": "$(1)$ $\\overline{OM}\\perp \\overline{AB},~\\overline{ON}\\perp \\overline{AC},~\\overline{OM}=\\overline{ON}$이므로 한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같다.따라서 $\\overline{AB}=\\overline{AC}$이다. $\\angle \\mathrm{C}=\\angle \\mathrm{B}=60°$이므로 $\\angle \\mathrm{A}=60°$따라서 삼각형 $\\mathrm{ABC}$는 정삼각형이다.$(2)$ $\\angle A=60°$이므로 $\\angle OAM=30°$이다.따라서 $\\tan 30°=\\frac{\\overline{MO}}{\\overline{AM}}$이므로 $\\frac{\\sqrt{3}}{3}=\\frac{\\mathrm{3}}{\\overline{AM}}$에서 $\\overline{AM}=3\\sqrt{3}$$\\overline{AB}=6\\sqrt{3}$이므로 삼각형 $\\mathrm{ABC}$의 넓이는 $\\frac{\\sqrt{3}}{4}\\times (6\\sqrt{3})^{2}=27\\sqrt{3}$"
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-18",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "578b7c64a65cb7f6e4635b83eff9879126d1b338cc45d1a5d033548f1d6c50af",
+      "afterHash": "c285348ba04e8ee960d41af6329291ecc0a7bfa89ab6aeb23736aa912181bc94",
+      "before": {
+        "content": "[서술형 $5$] 그림과 같이 두 점 $\\mathrm{A}$,$\\mathrm{B}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점이고 점 $\\mathrm{C}$는 $\\overline{OP}$와 원 $\\mathrm{O}$의 교점이다. $\\overline{PA}=\\sqrt{55}$, $\\overline{OB}=3$일 때, $\\overline{PC}$의 길이를 구하는 과정을 [조건]에 맞게 서술하시오. \n[조건]\n$\\circ$<보기>의 원의 성질과 관련지어 서술할 것\n[배점]\n$\\circ$필요한 원의 성질을 정확하게 관련지어 설명 \n$\\circ$$\\overline{PC}$의 값을 구하는 식과 계산 과정 \n$\\circ$$\\overline{PC}$의 값"
+      },
+      "after": {
+        "content": "[서술형 $4$ ~ 서술형 $5$] <보기>는 원의 성질에 대한 것이다. 물음에 답하시오.\n< 보 기 >\n[원의 성질]\n$\\circ$원에서 현의 수직이등분선은 그 원의 중심을 지난다.\n$\\circ$원의 중심에서 현에 내린 수선은 그 현을 수직이등분한다.\n$\\circ$한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 같다.\n$\\circ$한 원에서 길이가 같은 두 현은 원의 중심으로부터 같은 거리에 있다.\n$\\circ$원 밖의 한 점에서 그 원에 그은 두 접선의 길이는 같다.\n\n[서술형 $5$] 그림과 같이 두 점 $\\mathrm{A}$,$\\mathrm{B}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점이고 점 $\\mathrm{C}$는 $\\overline{OP}$와 원 $\\mathrm{O}$의 교점이다. $\\overline{PA}=\\sqrt{55}$, $\\overline{OB}=3$일 때, $\\overline{PC}$의 길이를 구하는 과정을 [조건]에 맞게 서술하시오. \n[조건]\n$\\circ$<보기>의 원의 성질과 관련지어 서술할 것\n[배점]\n$\\circ$필요한 원의 성질을 정확하게 관련지어 설명 \n$\\circ$$\\overline{PC}$의 값을 구하는 식과 계산 과정 \n$\\circ$$\\overline{PC}$의 값"
+      }
+    },
+    {
+      "externalId": "2025-saeron-3-2-mid-19",
+      "fields": [
+        "content",
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d4df9c8950bffc5e565282a9f300b2c3fc72b401ab08e24b4cea76a658f3a3f8",
+      "afterHash": "e45b62994359a8340c9deb35cd48c1c7d46d7ae15d1dc0fbf28bdb660ee173da",
+      "before": {
+        "content": "[서술형 $6$] 그림과 같이 한 원 위에 간격이 모두 똑같은 점이 $32$개 있다. 점 $1$과 점 $8$을, 점 $2$와 점 $9$를 선분으로 연결하고 나머지도 같은 방법으로 이어 한 바퀴를 돌아가며 모두 연결한 후 나눈 두 친구의 대화이다. \n수아 : 원 $\\mathrm{O}$의 내부에 원처럼 보이는 도형이 생겼네.\n창신 : 맞아. 연결한 선분의 길이가 모두 같으니 원의 중심에서 각 선분까지의 거리가 모두 같은 것 같다.\n창신이의 생각이 옳음을 설명하는 과정이다. ㉠ $SIM$ ㉤에 알맞은 것을 쓰시오.\n원 $\\mathrm{O}$의 중심에서 두 현 $\\mathrm{AB}$, $\\mathrm{CD}$에 내린 수선의 발을 각각 $\\mathrm{M}$, $\\mathrm{N}$이라고 하면 $\\triangle \\mathrm{OAM}$과 $\\triangle \\mathrm{OCN}$에서 수선 $\\mathrm{OM}$과 수선 $\\mathrm{ON}$은 각각 현을 수직이등분하므로\n $\\overline{AM}=\\square ~㉠~$ \n $\\angle OMA=\\square ~㉡~=90°$\n $\\overline{OA}=\\square ~㉢~$ (반지름)\n이므로 $\\triangle \\mathrm{OAM}=\\triangle \\mathrm{OCN}$( $\\square ~㉣~$ 합동)이다.\n따라서 $\\overline{OM}=\\square ~㉤~$이다.\n즉, 한 원에서 길이가 같은 두 현은 중심으로부터 같은 거리에 있다.\n[조건]\n$\\circ$단답형이므로 ㉠ $SIM$ ㉤과 답만 적을 것.",
+        "answer": "(정답 없음)",
+        "solution": "㉠ $\\overline{CN}$㉡ $\\angle \\mathrm{ONC}$㉢ $\\overline{OC}$㉣ $\\mathrm{RHS}$㉤ $\\overline{ON}$"
+      },
+      "after": {
+        "content": "[서술형 $6$] 그림과 같이 한 원 위에 간격이 모두 똑같은 점이 $32$개 있다. 점 $1$과 점 $8$을, 점 $2$와 점 $9$를 선분으로 연결하고 나머지도 같은 방법으로 이어 한 바퀴를 돌아가며 모두 연결한 후 나눈 두 친구의 대화이다. \n수아 : 원 $\\mathrm{O}$의 내부에 원처럼 보이는 도형이 생겼네.\n창신 : 맞아. 연결한 선분의 길이가 모두 같으니 원의 중심에서 각 선분까지의 거리가 모두 같은 것 같다.\n창신이의 생각이 옳음을 설명하는 과정이다. ㉠ $∼$ ㉤에 알맞은 것을 쓰시오.\n원 $\\mathrm{O}$의 중심에서 두 현 $\\mathrm{AB}$, $\\mathrm{CD}$에 내린 수선의 발을 각각 $\\mathrm{M}$, $\\mathrm{N}$이라고 하면 $\\triangle \\mathrm{OAM}$과 $\\triangle \\mathrm{OCN}$에서 수선 $\\mathrm{OM}$과 수선 $\\mathrm{ON}$은 각각 현을 수직이등분하므로\n $\\overline{AM}=\\square ~㉠~$ \n $\\angle OMA=\\square ~㉡~=90°$\n $\\overline{OA}=\\square ~㉢~$ (반지름)\n이므로 $\\triangle \\mathrm{OAM}=\\triangle \\mathrm{OCN}$( $\\square ~㉣~$ 합동)이다.\n따라서 $\\overline{OM}=\\square ~㉤~$이다.\n즉, 한 원에서 길이가 같은 두 현은 중심으로부터 같은 거리에 있다.\n[조건]\n$\\circ$단답형이므로 ㉠ $∼$ ㉤과 답만 적을 것.",
+        "answer": "㉠ $\\overline{CN}$㉡ $\\angle \\mathrm{ONC}$㉢ $\\overline{OC}$㉣ $\\mathrm{RHS}$㉤ $\\overline{ON}$",
+        "solution": null
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-17",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "9ad6bf7c4bb0c88f76eb03a6702b19717c89518163515b5fb43e185f42938f4f",
+      "afterHash": "455b1a320bc6152a751cc5544906ead8dab6b44d812540c740dd4bd89ae8a42a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{8}{3}$원점이 꼭짓점이므로 $y=ax^{2}$$(3,~6)$을 대입하면, $a=\\frac{2}{3}$$f(x)=\\frac{2}{3}x^{2}$이므로 $f(2)=\\frac{8}{3}$"
+      },
+      "after": {
+        "answer": "$\\frac{8}{3}$",
+        "solution": "원점이 꼭짓점이므로 $y=ax^{2}$$(3,~6)$을 대입하면, $a=\\frac{2}{3}$$f(x)=\\frac{2}{3}x^{2}$이므로 $f(2)=\\frac{8}{3}$"
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-18",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "22d9d17d85e85a3c6f6787401720e802e5715d78c82d687903dc24e46f5a7a09",
+      "afterHash": "2c6b4f11873537a0e71f7e8dbfe1c07548627649cf0389b17e4be79a3dbd2363",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$a>0$, $b>0$, 제$1$, $2$사분면기울기$>0$, $y$절편$>0$이므로 $a>0$, $b>0$이다.따라서 $y=bx^{2}+a$의 그래프는 아래와 같고 제$1,~2$사분면을 지난다."
+      },
+      "after": {
+        "answer": "$a>0$, $b>0$, 제$1$, $2$사분면",
+        "solution": "기울기$>0$, $y$절편$>0$이므로 $a>0$, $b>0$이다.따라서 $y=bx^{2}+a$의 그래프는 아래와 같고 제$1,~2$사분면을 지난다."
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "dcf8ca3a32f0630912f5bc5348cbf434994e5769e5964a67c19683c8693372d9",
+      "afterHash": "085afcbbc16380af279c2f22a675c319a2211b6554030fb9db0a0fe70f57eaf6",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$y=2(x+1)^{2}-2$꼭짓점에 의하여 $p=-1$, $q=-2$이므로 $y=a(x+1)^{2}-2$지나는 점의 좌표가 $(-3,~6)$이므로 대입하면, $a=2$"
+      },
+      "after": {
+        "answer": "$y=2(x+1)^{2}-2$",
+        "solution": "꼭짓점에 의하여 $p=-1$, $q=-2$이므로 $y=a(x+1)^{2}-2$지나는 점의 좌표가 $(-3,~6)$이므로 대입하면, $a=2$"
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "b2eb248c274d7baabaab1b707dfd61d82061c5f6406c5527fab32d13ee9b59f1",
+      "afterHash": "f42fbdd31b399f1b333bc77f09cb9cea8029d45066d6b97edb7a0d706af1c9e9",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$a=-4$, $b=-7$$y=x^{2}+2x+a=(x+1)^{2}+a-1$이므로 꼭짓점은 $(-1,~a-1)$$y=-2x^{2}+ax+b=-2(x+1)^{2}+a-1$이 되어야하므로전개하면, $y=-2x^{2}-4x+a-3$이 된다.$a=-4$이고 $a-3=b$여야 하므로 $b=-7$"
+      },
+      "after": {
+        "answer": "$a=-4$, $b=-7$",
+        "solution": "$y=x^{2}+2x+a=(x+1)^{2}+a-1$이므로 꼭짓점은 $(-1,~a-1)$$y=-2x^{2}+ax+b=-2(x+1)^{2}+a-1$이 되어야하므로전개하면, $y=-2x^{2}-4x+a-3$이 된다.$a=-4$이고 $a-3=b$여야 하므로 $b=-7$"
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "52facfed032ceaafa5d7a907f0315981c91d00ab08ca71bc8f4f8f3fe76105db",
+      "afterHash": "5796b8b7b9fe637c9cb3b1fe28350dabd77b2cf6bf72a25e06d204c004025c3a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{1}{6}\\pi -\\frac{\\sqrt{3}}{8}$$\\mathrm{A}\\left( \\frac{1}{2},~\\frac{\\sqrt{3}}{2}\\right)$이므로 $\\angle \\mathrm{AOB}=60°$이다. 반지름의 길이가 $1$이므로 부채꼴 $\\mathrm{AOC}$의 넓이는 $1^{2}\\times \\frac{60}{360}\\times \\pi =\\frac{1}{6}\\pi$$\\triangle \\mathrm{AOB}$의 넓이는 $\\frac{\\sqrt{3}}{8}$이므로 색칠한 부분의 넓이는$\\frac{1}{6}\\pi -\\frac{\\sqrt{3}}{8}$"
+      },
+      "after": {
+        "answer": "$\\frac{1}{6}\\pi -\\frac{\\sqrt{3}}{8}$",
+        "solution": "$\\mathrm{A}\\left( \\frac{1}{2},~\\frac{\\sqrt{3}}{2}\\right)$이므로 $\\angle \\mathrm{AOB}=60°$이다. 반지름의 길이가 $1$이므로 부채꼴 $\\mathrm{AOC}$의 넓이는 $1^{2}\\times \\frac{60}{360}\\times \\pi =\\frac{1}{6}\\pi$$\\triangle \\mathrm{AOB}$의 넓이는 $\\frac{\\sqrt{3}}{8}$이므로 색칠한 부분의 넓이는$\\frac{1}{6}\\pi -\\frac{\\sqrt{3}}{8}$"
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a6f758a00a433503870bd9c9445857d6c60105009c312c6c603975df22570153",
+      "afterHash": "756f6811f46a076e66e3bdded5110beecdf11d731d02e7f92486d0e16bb2b72c",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$69.47$빗변의 길이가 $100$이므로 $\\overline{AC}$를 구하기 위해선 $44°$를 기준으로 $\\overline{AC}$가 높이가 되는 삼각비를 이용해야 한다.하지만, $\\sin 44°$가 존재하지 않으므로 $\\angle C=46°$이므로 이것을 활용하면, $\\cos 46°=0.6947$을 활용할 수 있다.$cos46°=\\frac{\\overline{AC}}{100}$이므로 $\\overline{AC}=0.6947\\times 100=69.47$"
+      },
+      "after": {
+        "answer": "$69.47$",
+        "solution": "빗변의 길이가 $100$이므로 $\\overline{AC}$를 구하기 위해선 $44°$를 기준으로 $\\overline{AC}$가 높이가 되는 삼각비를 이용해야 한다.하지만, $\\sin 44°$가 존재하지 않으므로 $\\angle C=46°$이므로 이것을 활용하면, $\\cos 46°=0.6947$을 활용할 수 있다.$cos46°=\\frac{\\overline{AC}}{100}$이므로 $\\overline{AC}=0.6947\\times 100=69.47$"
+      }
+    },
+    {
+      "externalId": "2025-sangin-3-2-mid-23",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "de31f8b3b2852b36ceec87e38fd0cb63728b6323028505ab4e0470c479b395f2",
+      "afterHash": "0aaf4823c36175dc37d69a3d2351a85a331950a6a29a4c9de92172a55c25b4d6",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$25(\\sqrt{3}+1)m$$\\overline{CD}=\\overline{BD}=x$라고 두면, $\\overline{AD}=x+50$이다.$\\tan 30°=\\sqrt{3}$이므로, $\\frac{x}{x}+50=\\frac{1}{\\sqrt{3}}$이 되어야 한다.$x=\\frac{1}{\\sqrt{3}}(x+50)$, $\\sqrt{3}x=x+50$$x$에 대해 정리하면, $x=\\frac{50}{\\sqrt{3}-1}=\\frac{50(\\sqrt{3}+1)}{2}=25(\\sqrt{3}+1)$"
+      },
+      "after": {
+        "answer": "$25(\\sqrt{3}+1)m$",
+        "solution": "$\\overline{CD}=\\overline{BD}=x$라고 두면, $\\overline{AD}=x+50$이다.$\\tan 30°=\\sqrt{3}$이므로, $\\frac{x}{x}+50=\\frac{1}{\\sqrt{3}}$이 되어야 한다.$x=\\frac{1}{\\sqrt{3}}(x+50)$, $\\sqrt{3}x=x+50$$x$에 대해 정리하면, $x=\\frac{50}{\\sqrt{3}-1}=\\frac{50(\\sqrt{3}+1)}{2}=25(\\sqrt{3}+1)$"
+      }
+    },
+    {
+      "externalId": "2025-seonggwang-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "4cf3b78c6267b758bb053be310be44646afab688fea10a6e68af300be8b4a67a",
+      "afterHash": "8ac954dd727657b6d07c9644e015bba4b63695daab003ef7343225eb0de297b6",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{3+\\sqrt{5}}{2}$$\\overline{RD}=\\overline{RB}=6$이고, $\\angle \\,\\mathrm{BRQ}=\\angle QRD=\\angle BQR=x°$ 이다.$\\triangle \\mathrm{BQR}$은 이등변삼각형이므로, $\\overline{RB}=\\overline{BQ}=6$ 이다.$\\triangle \\mathrm{ABR}$에서 $4^{2}+\\overline{AR}^{2}=6^{2}$ 따라서 $\\overline{AR}=2\\sqrt{5}$그리고, $\\overline{QC}=2\\sqrt{5}$ $\\mathrm{Q}$에서 $\\overline{AD}$에 내린 수선의발을 $\\mathrm{H}$라하면, $\\overline{RH}=6-2\\sqrt{5}$$\\,$$\\triangle \\mathrm{RQH}\\,$에서 $\\tan x°=\\frac{4}{6-2\\sqrt{5}}=\\frac{3+\\sqrt{5}}{2}$"
+      },
+      "after": {
+        "answer": "$\\frac{3+\\sqrt{5}}{2}$",
+        "solution": "$\\overline{RD}=\\overline{RB}=6$이고, $\\angle \\,\\mathrm{BRQ}=\\angle QRD=\\angle BQR=x°$ 이다.$\\triangle \\mathrm{BQR}$은 이등변삼각형이므로, $\\overline{RB}=\\overline{BQ}=6$ 이다.$\\triangle \\mathrm{ABR}$에서 $4^{2}+\\overline{AR}^{2}=6^{2}$ 따라서 $\\overline{AR}=2\\sqrt{5}$그리고, $\\overline{QC}=2\\sqrt{5}$ $\\mathrm{Q}$에서 $\\overline{AD}$에 내린 수선의발을 $\\mathrm{H}$라하면, $\\overline{RH}=6-2\\sqrt{5}$$\\,$$\\triangle \\mathrm{RQH}\\,$에서 $\\tan x°=\\frac{4}{6-2\\sqrt{5}}=\\frac{3+\\sqrt{5}}{2}$"
+      }
+    },
+    {
+      "externalId": "2025-seonggwang-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "c73bd129b6e4ab381de8efed719ff45961e2f3910c460de289e859318af55b93",
+      "afterHash": "511ce6d7cf9a98c2919352c50ea7b397fc35a5e733533a0ea0f6db72daba688a",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$4\\sqrt{13}$$\\triangle \\mathrm{OPB}$에서 $13^{2}=5^{2}+\\overline{PB}^{2}$ 이므로 $\\overline{PB}=12$ $\\overline{PB}=\\overline{PA}=12$이다. $\\overline{OC}=13$ 이므로 $\\overline{PC}=8$$\\triangle \\mathrm{APC}$에서 $\\overline{AC}^{2}=12^{2}+8^{2}$$\\overline{AC}=4\\sqrt{13}$"
+      },
+      "after": {
+        "answer": "$4\\sqrt{13}$",
+        "solution": "$\\triangle \\mathrm{OPB}$에서 $13^{2}=5^{2}+\\overline{PB}^{2}$ 이므로 $\\overline{PB}=12$ $\\overline{PB}=\\overline{PA}=12$이다. $\\overline{OC}=13$ 이므로 $\\overline{PC}=8$$\\triangle \\mathrm{APC}$에서 $\\overline{AC}^{2}=12^{2}+8^{2}$$\\overline{AC}=4\\sqrt{13}$"
+      }
+    },
+    {
+      "externalId": "2025-seonggwang-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "50932338f75f2431f45f2223fa12939d2f2ee9ce4edcc2d792cabff50b6f0dd4",
+      "afterHash": "f682232eb299b79d18400276ff60160c91e6268b5a6805f02213b205f5d32ea5",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$16-4\\pi$$\\triangle \\mathrm{ABO}$에서 $\\overline{AB}=4\\sqrt{2}$ 이므로, 작은 원의 반지름은 $2\\sqrt{2}$이다. $(색칠한\\,넓이)=\\left\\{ \\triangle \\mathrm{ABO}-(작은원의\\,사분원\\,넓이)\\right\\} \\times 2$              $=\\left\\{ \\frac{1}{2}\\times 4\\times 4-\\pi (2\\sqrt{2})^{2}\\times \\frac{1}{4}\\right\\} \\times 2$             $=(8-2\\pi )\\times 2=16-4\\pi$"
+      },
+      "after": {
+        "answer": "$16-4\\pi$",
+        "solution": "$\\triangle \\mathrm{ABO}$에서 $\\overline{AB}=4\\sqrt{2}$ 이므로, 작은 원의 반지름은 $2\\sqrt{2}$이다. $(색칠한\\,넓이)=\\left\\{ \\triangle \\mathrm{ABO}-(작은원의\\,사분원\\,넓이)\\right\\} \\times 2$              $=\\left\\{ \\frac{1}{2}\\times 4\\times 4-\\pi (2\\sqrt{2})^{2}\\times \\frac{1}{4}\\right\\} \\times 2$             $=(8-2\\pi )\\times 2=16-4\\pi$"
+      }
+    },
+    {
+      "externalId": "2025-seonghwa-3-2-mid-7",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "bcb96afb3a9f9778fb0efb08b159ba640bfdb6e24d358b5539ebc47b0beede21",
+      "afterHash": "8ea7b5e990bc767b4dcc7a64a3ab115281b299f74323a6aec9ac6790ff8b788e",
+      "before": {
+        "content": "<보기>는 원의 중심에서 현에 내린 수선이 그 현을 이등분함을 설명하는 과정이다. (가), (나), (다)에 알맞은 것은? \n< 보 기 >\n위 그림과 같이 원 $\\mathrm{O}$의 중심에서 현 $\\mathrm{AB}$에 내린 수선의 발을 $\\mathrm{M}$이라 하자. $\\triangle OAM$과 $\\triangle OBM$에서 $\\overline{OA}=\\square ~㈎\\,$ $\\angle OMA=\\,\\square ~㈏=90°$, $\\overline{OM}$은 공통이므로 $\\triangle OAM=\\triangle OBM$\n$\\mathrm{\\therefore }\\overline{AM}=\\square ~㈐\\,$\n(가)\n(나)\n(다)\n\n1. $\\overline{OM}$\n$\\angle OAM$\n$\\overline{BM}$\n2. $\\overline{OM}$\n$\\angle OAM$\n$\\overline{OA}$\n3. $\\overline{OB}$\n$\\angle OAM$\n$\\overline{BM}$\n4. $\\overline{OB}$\n$\\angle OMB$\n$\\overline{OA}$\n\n$\\overline{OB}$\n$\\angle OMB$\n$\\overline{BM}$"
+      },
+      "after": {
+        "content": "<보기>는 원의 중심에서 현에 내린 수선이 그 현을 이등분함을 설명하는 과정이다. (가), (나), (다)에 알맞은 것은? \n< 보 기 >\n위 그림과 같이 원 $\\mathrm{O}$의 중심에서 현 $\\mathrm{AB}$에 내린 수선의 발을 $\\mathrm{M}$이라 하자. $\\triangle OAM$과 $\\triangle OBM$에서 $\\overline{OA}=\\square ~㈎\\,$ $\\angle OMA=\\,\\square ~㈏=90°$, $\\overline{OM}$은 공통이므로 $\\triangle OAM=\\triangle OBM$\n$\\mathrm{\\therefore }\\overline{AM}=\\square ~㈐\\,$\n(가)\n(나)\n(다)\n\n1. $\\overline{OM}$\n$\\angle OAM$\n$\\overline{BM}$\n2. $\\overline{OM}$\n$\\angle OAM$\n$\\overline{OA}$\n3. $\\overline{OB}$\n$\\angle OAM$\n$\\overline{BM}$\n4. $\\overline{OB}$\n$\\angle OMB$\n$\\overline{OA}$\n5. $\\overline{OB}$\n$\\angle OMB$\n$\\overline{BM}$"
+      }
+    },
+    {
+      "externalId": "2025-seonghwa-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d2d42d5a871ed71707758929149f63853fbfc5a8c8ca5b284fa09bb805b98813",
+      "afterHash": "46f034645a56d14090ed5a186328984d87af30f9a4a010791858a6f8589278a3",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$15$$\\triangle ABC$에서 $\\sin 45°=\\frac{\\overline{AB}}{3\\sqrt{2}}$, $\\frac{\\sqrt{2}}{2}=\\frac{x}{3\\sqrt{2}}$, $x=3$$\\triangle DBC$에서 $\\tan 30°=\\frac{\\overline{CD}}{3\\sqrt{2}}$, $\\frac{1}{\\sqrt{3}}=\\frac{y}{3\\sqrt{2}}$, $y=\\sqrt{6}$$x^{2}+y^{2}=9+6=15$"
+      },
+      "after": {
+        "answer": "$15$",
+        "solution": "$\\triangle ABC$에서 $\\sin 45°=\\frac{\\overline{AB}}{3\\sqrt{2}}$, $\\frac{\\sqrt{2}}{2}=\\frac{x}{3\\sqrt{2}}$, $x=3$$\\triangle DBC$에서 $\\tan 30°=\\frac{\\overline{CD}}{3\\sqrt{2}}$, $\\frac{1}{\\sqrt{3}}=\\frac{y}{3\\sqrt{2}}$, $y=\\sqrt{6}$$x^{2}+y^{2}=9+6=15$"
+      }
+    },
+    {
+      "externalId": "2025-seonghwa-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "0de6cd4a107ea372d7a0a9172cfa5a857a1a1154907c74a0a9b945d88d26ecef",
+      "afterHash": "d37d0b591c133d8f4b2866cd5d14b80a391abe673f7d944652b4348ddf36188b",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$12\\sqrt{2}\\,cm$점 $\\mathrm{C}$에서 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하면, $\\overline{DC}=\\overline{DP}+\\overline{PC}=\\overline{DA}+\\overline{CB}=12+6=18$$\\overline{DH}=12-6=6$, $\\overline{HC}=\\sqrt{18^{2}-6^{2}}=\\sqrt{288}=12\\sqrt{2}$"
+      },
+      "after": {
+        "answer": "$12\\sqrt{2}\\,cm$",
+        "solution": "점 $\\mathrm{C}$에서 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하면, $\\overline{DC}=\\overline{DP}+\\overline{PC}=\\overline{DA}+\\overline{CB}=12+6=18$$\\overline{DH}=12-6=6$, $\\overline{HC}=\\sqrt{18^{2}-6^{2}}=\\sqrt{288}=12\\sqrt{2}$"
+      }
+    },
+    {
+      "externalId": "2025-seonghwa-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "6b4108a18f403f21357f205b434982001b9817d6e62a53c0ca926711780c85a2",
+      "afterHash": "e8f3cd91adc89f331041bd3a0678db9f48a6d9dcdb0b23dfadee148360a1507f",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$40(3-\\sqrt{3})m$점 $\\mathrm{A}$에서 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하고$\\overline{AH}=\\overline{BH}=h\\,\\mathrm{m}$, $\\overline{CH}=\\,h\\,\\tan 30°=\\frac{\\sqrt{3}}{3}h$$h+\\frac{\\sqrt{3}}{3}h=80$, $h=80\\,\\times \\frac{3}{3+\\sqrt{3}}=40(3-\\sqrt{3})$"
+      },
+      "after": {
+        "answer": "$40(3-\\sqrt{3})m$",
+        "solution": "점 $\\mathrm{A}$에서 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하고$\\overline{AH}=\\overline{BH}=h\\,\\mathrm{m}$, $\\overline{CH}=\\,h\\,\\tan 30°=\\frac{\\sqrt{3}}{3}h$$h+\\frac{\\sqrt{3}}{3}h=80$, $h=80\\,\\times \\frac{3}{3+\\sqrt{3}}=40(3-\\sqrt{3})$"
+      }
+    },
+    {
+      "externalId": "2025-seonghwa-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "9e2e2188e79452f7d1273fcc200c00149e22dce620564fa0c17959be6552b6d6",
+      "afterHash": "4f808c52f3cebe3cc83de647eaf8de56b6cfa9fde9038816cb00508af7250735",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{8}{7}$$\\overline{AD}=7a$, $\\overline{BD}=5a$, $\\overline{AE}=4b$, $\\overline{CE}=b$라 하면, $S=\\triangle ADE=\\,\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A=14\\sin A$$T=\\triangle ADE-\\triangle ADE=\\,\\frac{1}{2}\\times 12a\\times 5b\\times \\sin A-\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A$$=30ab\\,\\sin A-14\\,ab\\,\\sin A=16ab\\,\\sin A$$\\frac{T}{S}=\\frac{16ab\\,\\sin A}{14ab\\,\\sin A}=\\frac{8}{7}$"
+      },
+      "after": {
+        "answer": "$\\frac{8}{7}$",
+        "solution": "$\\overline{AD}=7a$, $\\overline{BD}=5a$, $\\overline{AE}=4b$, $\\overline{CE}=b$라 하면, $S=\\triangle ADE=\\,\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A=14\\sin A$$T=\\triangle ADE-\\triangle ADE=\\,\\frac{1}{2}\\times 12a\\times 5b\\times \\sin A-\\frac{1}{2}\\times 7a\\times 4b\\times \\sin A$$=30ab\\,\\sin A-14\\,ab\\,\\sin A=16ab\\,\\sin A$$\\frac{T}{S}=\\frac{16ab\\,\\sin A}{14ab\\,\\sin A}=\\frac{8}{7}$"
+      }
+    },
+    {
+      "externalId": "2025-seongmyeongyeo-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "78a060891bcb8be20cf45083f18023d4f2bcee9b730648306ded06da363ff4b0",
+      "afterHash": "a7d2ca65336270165e115015857400ab71791ee3da25e16a8248ca11e7ac13a2",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$6\\sqrt{3},~18\\sqrt{3}$마름모의 대각선은 서로를 수직이등분한다. 두 대각선의 교점을 $\\mathrm{H}$라 하면 $\\overline{AH}=6\\cos 30^\\circ =3\\sqrt{3}$이므로 $\\overline{\\mathrm{A}C}=2\\times 3\\sqrt{3}=6\\sqrt{3}$이다.마름모의 넓이는 $6\\times 6\\times \\mathrm{\\sin }60^\\circ =18\\sqrt{3}$이다."
+      },
+      "after": {
+        "answer": "$6\\sqrt{3},~18\\sqrt{3}$",
+        "solution": "마름모의 대각선은 서로를 수직이등분한다. 두 대각선의 교점을 $\\mathrm{H}$라 하면 $\\overline{AH}=6\\cos 30^\\circ =3\\sqrt{3}$이므로 $\\overline{\\mathrm{A}C}=2\\times 3\\sqrt{3}=6\\sqrt{3}$이다.마름모의 넓이는 $6\\times 6\\times \\mathrm{\\sin }60^\\circ =18\\sqrt{3}$이다."
+      }
+    },
+    {
+      "externalId": "2025-seongmyeongyeo-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "5a54618e871f477e1c5e660a6ab84e017f828f76b00dc96af1a83b49d461d2f5",
+      "afterHash": "53c327f5d3f9cdf9cf00b12a3d1b561b0ac978e90b67f07f787833612866d62d",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{5\\sqrt{3}}{2}$점 $\\mathrm{C}$에서 변 $\\mathrm{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하면$\\overline{AH}=2\\sqrt{3}\\cos \\,30^\\circ =3$, $\\overline{CH}=2\\sqrt{3}\\sin \\,30^\\circ =\\sqrt{3}$, $\\overline{HB}=\\sqrt{(\\sqrt{7})^{2}-(\\sqrt{3})^{2}}=2$이므로 $\\overline{AB}=5$이다.따라서 $\\triangle \\mathrm{ABC}$의 넓이는 $\\frac{1}{2}\\times 2\\sqrt{3}\\times 5\\times \\mathrm{\\sin }\\,30^\\circ =\\frac{5\\sqrt{3}}{2}$이다."
+      },
+      "after": {
+        "answer": "$\\frac{5\\sqrt{3}}{2}$",
+        "solution": "점 $\\mathrm{C}$에서 변 $\\mathrm{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하면$\\overline{AH}=2\\sqrt{3}\\cos \\,30^\\circ =3$, $\\overline{CH}=2\\sqrt{3}\\sin \\,30^\\circ =\\sqrt{3}$, $\\overline{HB}=\\sqrt{(\\sqrt{7})^{2}-(\\sqrt{3})^{2}}=2$이므로 $\\overline{AB}=5$이다.따라서 $\\triangle \\mathrm{ABC}$의 넓이는 $\\frac{1}{2}\\times 2\\sqrt{3}\\times 5\\times \\mathrm{\\sin }\\,30^\\circ =\\frac{5\\sqrt{3}}{2}$이다."
+      }
+    },
+    {
+      "externalId": "2025-seongmyeongyeo-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "74a4930f1f2cabf9d432c9caacea2aa8154cb68c971a669a6755e39ab92d4704",
+      "afterHash": "b727b455411c6b13cb5d8d537586b53aef517d98fcca22f325dba63bba275bda",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$(1)~\\overline{DM}=\\sqrt{3}~(2)~\\sin \\,y=\\frac{\\sqrt{6}}{3}~(3)~\\cos \\,x=\\frac{1}{3}$$(1)$ 한 변의 길이가 $2$인 정삼각형 $\\mathrm{ABD}$에서 $\\overline{DM}=2\\,\\sin \\,60^\\circ =\\sqrt{3}$이다.$(2)$ 꼭짓점 $\\mathrm{D}$에서 밑면에 내린 수선의 발을 $\\mathrm{H}$라 하면 점$\\mathrm{H}$는 $\\triangle \\mathrm{ABC}$의 무게중심이다. $\\overline{CH}=\\frac{2}{3}\\overline{CM}=\\frac{2\\sqrt{3}}{3}$, $\\overline{DH}=\\sqrt{2^{2}-\\left( \\frac{2\\sqrt{3}}{3}\\right) ^{2}}=\\frac{2\\sqrt{6}}{3}$이므로 $\\sin \\,y=\\frac{\\frac{2\\sqrt{6}}{3}}{2}=\\frac{\\sqrt{6}}{3}$이다.$(3)$ $\\overline{MH}=\\frac{\\sqrt{3}}{3},~\\overline{DM}=\\sqrt{3}$이므로 $\\cos \\,x=\\frac{\\frac{\\sqrt{3}}{3}}{\\sqrt{3}}=\\frac{1}{3}$이다."
+      },
+      "after": {
+        "answer": "$(1)~\\overline{DM}=\\sqrt{3}~(2)~\\sin \\,y=\\frac{\\sqrt{6}}{3}~(3)~\\cos \\,x=\\frac{1}{3}$",
+        "solution": "$(1)$ 한 변의 길이가 $2$인 정삼각형 $\\mathrm{ABD}$에서 $\\overline{DM}=2\\,\\sin \\,60^\\circ =\\sqrt{3}$이다.$(2)$ 꼭짓점 $\\mathrm{D}$에서 밑면에 내린 수선의 발을 $\\mathrm{H}$라 하면 점$\\mathrm{H}$는 $\\triangle \\mathrm{ABC}$의 무게중심이다. $\\overline{CH}=\\frac{2}{3}\\overline{CM}=\\frac{2\\sqrt{3}}{3}$, $\\overline{DH}=\\sqrt{2^{2}-\\left( \\frac{2\\sqrt{3}}{3}\\right) ^{2}}=\\frac{2\\sqrt{6}}{3}$이므로 $\\sin \\,y=\\frac{\\frac{2\\sqrt{6}}{3}}{2}=\\frac{\\sqrt{6}}{3}$이다.$(3)$ $\\overline{MH}=\\frac{\\sqrt{3}}{3},~\\overline{DM}=\\sqrt{3}$이므로 $\\cos \\,x=\\frac{\\frac{\\sqrt{3}}{3}}{\\sqrt{3}}=\\frac{1}{3}$이다."
+      }
+    },
+    {
+      "externalId": "2025-seongmyeongyeo-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d4b1d5675258846833b65f28846fe8d38df29da4ad5f2e574c248b51a58a2007",
+      "afterHash": "4fba8fa1a1eb0919d60d80fed9b0a8ea99beba3058087c3fa4a6550e7c21a531",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$(1)~\\overline{OC}=2\\sqrt{5}~(2)\\,\\overline{DG}=1~(3)\\,18$$(1)$ 직각삼각형$\\mathrm{C}OF$에서 $\\cos \\,x=\\frac{2\\sqrt{5}}{5}$이므로 $\\sin \\,x=\\frac{\\sqrt{5}}{5}$    $\\overline{OC}=\\frac{\\overline{OF}}{\\sin x}=\\frac{2}{\\frac{\\sqrt{5}}{5}}=2\\sqrt{5}$$(2)$ $\\angle \\mathrm{CDO}=90^\\circ -\\angle x$이므로 $\\angle \\mathrm{GOD}=\\angle x$이다.  $\\overline{\\mathrm{O}D}=\\frac{\\overline{\\mathrm{G}O}}{\\cos \\,x}=\\frac{2}{\\frac{2\\sqrt{5}}{5}}=\\sqrt{5}$이므로 $\\overline{DG}=\\sqrt{(\\sqrt{5})^{2}-2^{2}}=1$$(3)$ $\\overline{CF}=\\overline{OC}\\,\\cos \\,x=2\\sqrt{5}\\times \\frac{2\\sqrt{5}}{5}=4$$(3)~□\\mathrm{ABCD}$의 둘레의 길이는 $(\\overline{CF}+\\overline{FB}+\\overline{AE}+\\overline{DG})\\times 2=(4+2+2+1)\\times 2=18$"
+      },
+      "after": {
+        "answer": "$(1)~\\overline{OC}=2\\sqrt{5}~(2)\\,\\overline{DG}=1~(3)\\,18$",
+        "solution": "$(1)$ 직각삼각형$\\mathrm{C}OF$에서 $\\cos \\,x=\\frac{2\\sqrt{5}}{5}$이므로 $\\sin \\,x=\\frac{\\sqrt{5}}{5}$    $\\overline{OC}=\\frac{\\overline{OF}}{\\sin x}=\\frac{2}{\\frac{\\sqrt{5}}{5}}=2\\sqrt{5}$$(2)$ $\\angle \\mathrm{CDO}=90^\\circ -\\angle x$이므로 $\\angle \\mathrm{GOD}=\\angle x$이다.  $\\overline{\\mathrm{O}D}=\\frac{\\overline{\\mathrm{G}O}}{\\cos \\,x}=\\frac{2}{\\frac{2\\sqrt{5}}{5}}=\\sqrt{5}$이므로 $\\overline{DG}=\\sqrt{(\\sqrt{5})^{2}-2^{2}}=1$$(3)$ $\\overline{CF}=\\overline{OC}\\,\\cos \\,x=2\\sqrt{5}\\times \\frac{2\\sqrt{5}}{5}=4$$(3)~□\\mathrm{ABCD}$의 둘레의 길이는 $(\\overline{CF}+\\overline{FB}+\\overline{AE}+\\overline{DG})\\times 2=(4+2+2+1)\\times 2=18$"
+      }
+    },
+    {
+      "externalId": "2025-seongmyeongyeo-3-2-mid-23",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "3fa9e11e1abcfdde50013868d144dbc42e3a5c98398007067ae31c498537083a",
+      "afterHash": "ac856e7149a42f7d01b6e4d434a618b7197f82b261b90139af94fd7166b37b52",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$(1)~x=30^\\circ ~(2)~r=2~(3)~\\sqrt{3}+\\frac{2}{3}\\pi$$(1)$ $\\overline{AP}=\\overline{PQ}$이므로 $\\angle \\mathrm{PAO}=\\angle x$, $\\overline{AO}=\\overline{OP}$이므로 $\\angle \\mathrm{APO}=\\angle x$이다. 삼각형에서 한 외각의 크기는 이웃하지 않는 두 각의 합과 같으므로 $\\angle \\mathrm{POQ}=2\\angle x$이다. $\\overline{PQ}$는 접선이므로 $\\angle \\mathrm{OPQ}=90^\\circ$이다.$\\triangle \\mathrm{POQ}$에서 $3\\angle x=90^\\circ$이므로 $\\angle x=30^\\circ$이다.$(2)$ 원 $\\mathrm{O}$의 반지름을 $r$이라 하면 $\\sin \\,30^\\circ =\\frac{r}{r+2}=\\frac{1}{2}$이므로 $r=2$이다.$(3)$ 색칠한 부분의 넓이는 삼각형 $\\mathrm{AOP}$와 부채꼴 $\\mathrm{POB}$의 넓이의 합이다.$\\triangle \\mathrm{AOP}=\\frac{1}{2}\\times 2\\times 2\\times \\sin 60^\\circ =\\sqrt{3}$(부채꼴$\\mathrm{POB}$의 넓이)$=4\\pi \\times \\frac{1}{6}=\\frac{2}{3}\\pi$따라서 색칠한 부분의 넓이는 $\\sqrt{3}+\\frac{2}{3}\\pi$이다."
+      },
+      "after": {
+        "answer": "$(1)~x=30^\\circ ~(2)~r=2~(3)~\\sqrt{3}+\\frac{2}{3}\\pi$",
+        "solution": "$(1)$ $\\overline{AP}=\\overline{PQ}$이므로 $\\angle \\mathrm{PAO}=\\angle x$, $\\overline{AO}=\\overline{OP}$이므로 $\\angle \\mathrm{APO}=\\angle x$이다. 삼각형에서 한 외각의 크기는 이웃하지 않는 두 각의 합과 같으므로 $\\angle \\mathrm{POQ}=2\\angle x$이다. $\\overline{PQ}$는 접선이므로 $\\angle \\mathrm{OPQ}=90^\\circ$이다.$\\triangle \\mathrm{POQ}$에서 $3\\angle x=90^\\circ$이므로 $\\angle x=30^\\circ$이다.$(2)$ 원 $\\mathrm{O}$의 반지름을 $r$이라 하면 $\\sin \\,30^\\circ =\\frac{r}{r+2}=\\frac{1}{2}$이므로 $r=2$이다.$(3)$ 색칠한 부분의 넓이는 삼각형 $\\mathrm{AOP}$와 부채꼴 $\\mathrm{POB}$의 넓이의 합이다.$\\triangle \\mathrm{AOP}=\\frac{1}{2}\\times 2\\times 2\\times \\sin 60^\\circ =\\sqrt{3}$(부채꼴$\\mathrm{POB}$의 넓이)$=4\\pi \\times \\frac{1}{6}=\\frac{2}{3}\\pi$따라서 색칠한 부분의 넓이는 $\\sqrt{3}+\\frac{2}{3}\\pi$이다."
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-9",
+      "fields": [
+        "content",
+        "questionType",
+        "choiceFigureIndex"
+      ],
+      "beforeHash": "7b5d10da53ee393aef046699e065035d90cb5dea9cf7a75fbb4bc242368fd0bf",
+      "afterHash": "79877110ff5a4889573ff7f282b0ca5829d601554014da1c398a89bcdb8057bd",
+      "before": {
+        "content": "이차함수 $y=ax^{2}+bx+c$의 그래프가 다음 그림과 같을 때, 일차함수 $y=ax+b$의 그래프로 알맞은 것은? \n\n②\n③\n④\n⑤",
+        "questionType": "단답형",
+        "choiceFigureIndex": null
+      },
+      "after": {
+        "content": "이차함수 $y=ax^{2}+bx+c$의 그래프가 다음 그림과 같을 때, 일차함수 $y=ax+b$의 그래프로 알맞은 것은?\n\n1. [그림]\n2. [그림]\n3. [그림]\n4. [그림]\n5. [그림]",
+        "questionType": "객관식",
+        "choiceFigureIndex": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-19",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "c13487a0af85b2157ceef6a6c2d6ee5abe6a71d0d16d928310f34b4251b4e46c",
+      "afterHash": "4694c28e4f198687ce40f08299a004d5fc0764d510c39b2ea0c39942fe90ec4b",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$\\frac{25}{2}$이차함수의 꼭짓점이 $(-2,~0)$이므로 주어진 $f(x)$의 식은 $f(x)=a(x+2)^{2}$으로 쓸 수 있고, $(0,~2)$를 지나므로 $f(x)$에 대입하면, $a=\\frac{1}{2}$가 된다, 따라서 $f(x)=\\frac{1}{2}(x+2)^{2}$이고 $f(3)=\\frac{25}{2}$"
+      },
+      "after": {
+        "answer": "$\\frac{25}{2}$",
+        "solution": "이차함수의 꼭짓점이 $(-2,~0)$이므로 주어진 $f(x)$의 식은 $f(x)=a(x+2)^{2}$으로 쓸 수 있고, $(0,~2)$를 지나므로 $f(x)$에 대입하면, $a=\\frac{1}{2}$가 된다, 따라서 $f(x)=\\frac{1}{2}(x+2)^{2}$이고 $f(3)=\\frac{25}{2}$"
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-20",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "ae20c8a4df056c101bd78d5476a6887a8478e01f48092e109109b359aa55e265",
+      "afterHash": "6e830af8c73d5498ad1b54086599dde13626238246fa20e5e80378c05e2def41",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$4$이차함수의 꼭짓점이 $(3,~1)$이므로 주어진 식은, $y=a(x-3)^{2}+1$이라 쓸 수 있고, $(5,~5)$를 지나므로 $a=1$임을 알 수 있다. 따라서 $y=(x-3)^{2}+1$이고 주어진 식을 전개하면 $y=x^{2}-6x+10$이므로 $ab+c$는 $4$이다."
+      },
+      "after": {
+        "answer": "$4$",
+        "solution": "이차함수의 꼭짓점이 $(3,~1)$이므로 주어진 식은, $y=a(x-3)^{2}+1$이라 쓸 수 있고, $(5,~5)$를 지나므로 $a=1$임을 알 수 있다. 따라서 $y=(x-3)^{2}+1$이고 주어진 식을 전개하면 $y=x^{2}-6x+10$이므로 $ab+c$는 $4$이다."
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-21",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "d304ee5add4e0c4b4037831404fced6aa30d73708f7b57067f1589f639dcfecd",
+      "afterHash": "50b77836ec0130996142a8507c19ae6cd85e0aabbc5f2747306fdb1868a412d0",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$0$$y=3x^{2}+6x+5$를 표준형으로 수정하면 $y=3(x+1)^{2}+2$이므로 꼭짓점은 $(-1,~2)$가 된다.꼭짓점을 주어진 조건에 맞춰 평행이동 시키면, $(-1+p,~2+q)$이다.$y=-2x^{2}+12x-20$을 표준형으로 수정하면 $y=-2(x-3)^{2}-2$이므로 꼭짓점은 $(3,~-2)$이다. 따라서 꼭짓점을 주어진 조건에 맞춰 평행이동 시키면 $(3-p,~-2-q)$이므로 두 꼭짓점이 일치하여야 하므로 $p=2,~q=-2$가되므로 $p+q=0$이다."
+      },
+      "after": {
+        "answer": "$0$",
+        "solution": "$y=3x^{2}+6x+5$를 표준형으로 수정하면 $y=3(x+1)^{2}+2$이므로 꼭짓점은 $(-1,~2)$가 된다.꼭짓점을 주어진 조건에 맞춰 평행이동 시키면, $(-1+p,~2+q)$이다.$y=-2x^{2}+12x-20$을 표준형으로 수정하면 $y=-2(x-3)^{2}-2$이므로 꼭짓점은 $(3,~-2)$이다. 따라서 꼭짓점을 주어진 조건에 맞춰 평행이동 시키면 $(3-p,~-2-q)$이므로 두 꼭짓점이 일치하여야 하므로 $p=2,~q=-2$가되므로 $p+q=0$이다."
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-22",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "a6807d481ca05de2162538e6d13bd382e5f55477006d42ce505626c431ff21db",
+      "afterHash": "fb2a3df2167bf7e160db6e0c5bae0c4d5d244d68411ba92fe8ca5d3538c07a54",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$83.5$$34$가 두 번 나오므로 최빈값은 $34$이고, 중앙값은 순서대로 나열하였을 때 $5$번째인 $22$와 $6$번째인 $25$를 평균내면, $23.5$이다. 평균은 주어진 변량을 모두 더하여 $10$으로 나누면 되므로, $26$이다. 따라서 $a+b+c$는 $83.5$가 된다."
+      },
+      "after": {
+        "answer": "$83.5$",
+        "solution": "$34$가 두 번 나오므로 최빈값은 $34$이고, 중앙값은 순서대로 나열하였을 때 $5$번째인 $22$와 $6$번째인 $25$를 평균내면, $23.5$이다. 평균은 주어진 변량을 모두 더하여 $10$으로 나누면 되므로, $26$이다. 따라서 $a+b+c$는 $83.5$가 된다."
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-23",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "15b8c71c7b942527bc2dc86ba2d1c66e501155c3a4ac8b297beb57063e9a87b8",
+      "afterHash": "df64166f7fc209d39d75316bbc9fc85c4f2c637c8504bceac66fb4850cd892b8",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$82$평균이 $5$이므로, $a+b=12$이고  주어진 변량들의 편차를 구하면 $-2,~(a-5),~0,~(b-5)$가 되므로 표준편차를 구해보면 $\\frac{4+(a-5)^{2}+(b-5)^{2}}{4}=4$이므로, $a^{2}+b^{2}-10(a+b)+50=12$이므로 $a^{2}+b^{2}=82$가된다."
+      },
+      "after": {
+        "answer": "$82$",
+        "solution": "평균이 $5$이므로, $a+b=12$이고  주어진 변량들의 편차를 구하면 $-2,~(a-5),~0,~(b-5)$가 되므로 표준편차를 구해보면 $\\frac{4+(a-5)^{2}+(b-5)^{2}}{4}=4$이므로, $a^{2}+b^{2}-10(a+b)+50=12$이므로 $a^{2}+b^{2}=82$가된다."
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-24",
+      "fields": [
+        "answer"
+      ],
+      "beforeHash": "7740a42cfe78d28911051db1e1d189b9885c68d3443287158293f25e5f87aa34",
+      "afterHash": "836edbd823cf44f657764e79fc0c03af5c4f8d3fce8be7f998b694cb949f0dd1",
+      "before": {
+        "answer": "(정답 없음)"
+      },
+      "after": {
+        "answer": "$\\sqrt{17}-8$"
+      }
+    },
+    {
+      "externalId": "2025-sinmyeongyeo-3-2-mid-25",
+      "fields": [
+        "answer",
+        "solution"
+      ],
+      "beforeHash": "b981000fa177abcbbe1078dffea3d59ea8956a1ced0dc98f9706328e6d19c8f2",
+      "afterHash": "2ed1e50c00f1efb27a74a7c68d7b52f6fa0c9324ebe727f9f2dba01e842ecdf1",
+      "before": {
+        "answer": "(정답 없음)",
+        "solution": "$13$ 첫 번째 폭죽의 높이가 $140\\mathrm{m}$가 되는 순간은 $-5t^{2}+80t=140$, $(t-2)(t-14)=0$ $t=2~,~t=14$인데, 내려올 때 이므로 발사후 $14$초 일때다.두 번째 폭죽의 높이가 $75\\mathrm{m}$가 되는 순간은 $-5t^{2}+80t=75,~(t-1)(t-15)=0$이므로 $t=1,~t=15$일때인데, 올라갈때라 하였으므로 $t=1$일때이다. 따라서둘의 시간차는 $13$초이다."
+      },
+      "after": {
+        "answer": "$13$",
+        "solution": "첫 번째 폭죽의 높이가 $140\\mathrm{m}$가 되는 순간은 $-5t^{2}+80t=140$, $(t-2)(t-14)=0$ $t=2~,~t=14$인데, 내려올 때 이므로 발사후 $14$초 일때다.두 번째 폭죽의 높이가 $75\\mathrm{m}$가 되는 순간은 $-5t^{2}+80t=75,~(t-1)(t-15)=0$이므로 $t=1,~t=15$일때인데, 올라갈때라 하였으므로 $t=1$일때이다. 따라서둘의 시간차는 $13$초이다."
+      }
+    },
+    {
+      "externalId": "2025-yeongnamsamyuk-3-2-mid-9",
+      "fields": [
+        "content"
+      ],
+      "beforeHash": "6545086b5a5e31e9badbfff3cb030a9b9d2065d97aabeb4b6f2710188b3b2635",
+      "afterHash": "1d0bef4faeccf4f43429245d5e25d14f911eddc27c20e0bfe90809d298c10b3d",
+      "before": {
+        "content": "다음 그림과 같은 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{AB}=\\overline{BD}=\\overline{DC}$ 이고 $\\overline{\\mathrm{AD}=2\\sqrt{2}}$이다. $\\angle CAD=x$ 일 때, $\\mathrm{\\tan }x$의 값은?\n\n1. $\\frac{1}{5}$\n2. $\\frac{1}{4}$\n3. $\\frac{1}{3}$\n4. $\\frac{1}{2}$\n5. $1$"
+      },
+      "after": {
+        "content": "다음 그림과 같은 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{AB}=\\overline{BD}=\\overline{DC}$ 이고 $\\overline{AD}=2\\sqrt{2}$이다. $\\angle CAD=x$ 일 때, $\\mathrm{\\tan }x$의 값은?\n\n1. $\\frac{1}{5}$\n2. $\\frac{1}{4}$\n3. $\\frac{1}{3}$\n4. $\\frac{1}{2}$\n5. $1$"
+      }
+    }
+  ]
+}
