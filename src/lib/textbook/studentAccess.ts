@@ -13,7 +13,7 @@
  * 🔴 학생 id 는 **세션에서만** 온다 — 이 함수에 넘기는 `studentId` 를 요청 본문에서 읽지 않는다.
  * 🔴 예약(reserved) · 무효(void) QR 은 학생에게 «없는 것»이다. 사유를 갈라 알리지 않는다.
  */
-import type { TextbookSql } from "./sql";
+import type { TextbookSql } from "./server/sql";
 
 export type StudentQrDenial =
   /** 없는 주소 · 예약만 된 주소 · 무효가 된 주소 — 학생에게는 같은 것이다 */

@@ -359,3 +359,28 @@ export async function loadConcepts(
       byCodeUnit(a.conceptKey, b.conceptKey),
   );
 }
+
+/**
+ * 조판 · 발행이 쓰는 구획의 차례 — `assembleExchange` 의 `units[].sections[]` 를 편 것과 **같은 차례**다
+ * (목차의 단원 순 → 구획의 차례). 목차에 없는 단원의 구획은 교환 형식에 실리지 않으므로 여기에도 없다.
+ */
+export async function orderedSectionIds(
+  sql: TextbookSql,
+  editionId: string,
+): Promise<string[]> {
+  const [edition] = await sql.query<{ outline: StoredOutline }>(
+    `SELECT "outline" FROM "textbook_edition" WHERE "id" = $1::uuid`,
+    [editionId],
+  );
+  if (!edition) throw notFound("판본");
+  const sections = await sql.query<{ id: string; unitKey: string }>(
+    `SELECT "id", "unit_key" AS "unitKey" FROM "textbook_section"
+      WHERE "edition_id" = $1::uuid ORDER BY "order_index", "id"`,
+    [editionId],
+  );
+  return edition.outline.units.flatMap((unit) =>
+    sections
+      .filter((section) => section.unitKey === unit.unitKey)
+      .map((section) => section.id),
+  );
+}
