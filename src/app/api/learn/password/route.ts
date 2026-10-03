@@ -29,7 +29,7 @@ import { studentLoginDeps } from "@/lib/learn/loginDeps";
 import { hashStudentPin } from "@/lib/learn/pinHash";
 import {
   ACCOUNT_LOGIN_SELECT,
-  toLoginAccount,
+  loadStudentLoginAccount,
 } from "@/lib/learn/prismaLoginStore";
 import { verifyStudentPin } from "@/lib/learn/studentLogin";
 import { requireStudent } from "@/lib/learn/studentRequest";
@@ -49,9 +49,15 @@ async function handlePost(request: NextRequest) {
     select: ACCOUNT_LOGIN_SELECT,
   });
   if (!row) return unauthorizedError();
-  const account = toLoginAccount(row);
+  const account = await loadStudentLoginAccount(row);
   // 🔴 꺼짐 ∪ 퇴원 — 로그인·학생 토큰과 같은 판정 하나(accountBlock.ts, D-126 ⑺)
   if (studentAccountBlocked(account)) return unauthorizedError();
+  if (row.student.eywaBindingId) {
+    // The fresh control read may reveal an OFF -> ON generation change after the first gate.
+    const refreshed = await requireStudent({ active: false });
+    if (refreshed.response) return refreshed.response;
+    if (refreshed.student.accountId !== account.id) return unauthorizedError();
+  }
 
   const who = { studentAccountId: account.id, studentId: account.studentId };
   const check = await verifyStudentPin(

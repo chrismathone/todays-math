@@ -53,6 +53,8 @@ export interface LoginAccount extends LockState {
   disabledAt: Date | null;
   /** 그 학생의 퇴원 시각(`Student.eywaWithdrawnAt`) — 찍혀 있으면 꺼진 계정과 똑같다(규칙 6) */
   withdrawnAt: Date | null;
+  managedAccessAllowed?: boolean;
+  managedStudentStamp?: string | null;
 }
 
 /** 저장소 — 넷(`resetExpiredLock`·`reserveAttempt`·`lock`·`clearFailures`)은 **한 번에 끝나는** 연산이어야 한다 */
