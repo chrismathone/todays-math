@@ -10,10 +10,12 @@ import type { TextbookStudioApi } from "@/lib/textbook/client";
 import { TextbookRequestError } from "@/lib/textbook/client";
 import type {
   BookSummary,
+  ConceptDraft,
   EditionDetail,
   SectionDetail,
   VideoBinding,
 } from "@/components/textbook/model";
+import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import { TextbookStudioView } from "@/components/textbook/TextbookStudioView";
 
 const book: BookSummary = {
@@ -190,6 +192,35 @@ async function openStudio(
   render(<TextbookStudioView api={client} audience={audience} />);
   fireEvent.click(await screen.findByRole("button", { name: "열기" }));
   expect(await screen.findByRole("textbox", { name: "대사" })).toBeVisible();
+}
+
+function wireConcept(
+  overrides: Partial<TextbookConcept> = {},
+): TextbookConcept {
+  return {
+    conceptKey: "prime-definition",
+    unitKey: "unit-1",
+    sectionKey: "dialogue",
+    title: "소수",
+    kind: "정의",
+    unitId: null,
+    body: {
+      goal: "",
+      prerequisites: [],
+      definition: "1과 자신만으로 나누어진다",
+      conditions: null,
+      examples: [],
+      counterexamples: [],
+      misconceptions: [],
+      explainPrompt: null,
+    },
+    blankItems: [],
+    links: [],
+    mappingVersion: "1",
+    derivedFromConceptKey: null,
+    frozen: null,
+    ...overrides,
+  };
 }
 
 describe("TextbookStudioView", () => {
@@ -1262,7 +1293,7 @@ describe("TextbookStudioView", () => {
             explainPrompt: "",
             blankForms: ["term", "cloze"],
           },
-          concept: {
+          concept: wireConcept({
             links: [
               {
                 linkId: "factorization-review",
@@ -1280,7 +1311,7 @@ describe("TextbookStudioView", () => {
                 },
               },
             ],
-          },
+          }),
         })) as TextbookStudioApi["readConcept"],
         createEdition,
       }),
@@ -1335,13 +1366,13 @@ describe("TextbookStudioView", () => {
       const saveConcept = vi.fn(async (input) => ({
         revision: 5,
         aggregateRevision: 12,
-        concept: {
+        concept: wireConcept({
           title: input.concept.title,
           kind: input.concept.kind,
           blankForms: [...input.concept.blankForms],
           blankItems: [],
           links: input.links,
-        },
+        }),
       })) as TextbookStudioApi["saveConcept"];
       const saveSection = vi.fn(async () => ({
         revision: 4,
@@ -1367,7 +1398,7 @@ describe("TextbookStudioView", () => {
               explainPrompt: "",
               blankForms: ["term", "cloze"],
             },
-            concept: { links: [], blankItems: [] },
+            concept: wireConcept(),
           })) as TextbookStudioApi["readConcept"],
           saveConcept,
           saveSection,
@@ -1379,9 +1410,7 @@ describe("TextbookStudioView", () => {
           target: { value: "임시표식" },
         });
       } else {
-        fireEvent.click(
-          screen.getByRole("button", { name: "거절", exact: true }),
-        );
+        fireEvent.click(screen.getByRole("button", { name: "거절" }));
       }
       expect(screen.getByRole("button", { name: "대화저장 전" })).toBeVisible();
       fireEvent.click(screen.getByRole("button", { name: "목록" }));
@@ -1432,7 +1461,7 @@ describe("TextbookStudioView", () => {
         kind: "concept",
         conceptKey: "prime-definition",
       });
-      const draftConcept = {
+      const draftConcept: ConceptDraft = {
         conceptKey: "prime-definition",
         title: "소수",
         kind: "정의",
@@ -1446,7 +1475,7 @@ describe("TextbookStudioView", () => {
         explainPrompt: "",
         blankForms: ["term", "cloze"],
       };
-      const reference = {
+      const reference: TextbookConcept["blankItems"][number] = {
         blankSectionKey: "중1::소인수분해::소인수분해",
         entryKind: "concept",
         entryId: "m1-01-02-c3",
@@ -1458,7 +1487,10 @@ describe("TextbookStudioView", () => {
           targetHash: "hash",
         },
       };
-      const source = { ...draftConcept, links: [], blankItems: [reference] };
+      const source = wireConcept({
+        blankForms: draftConcept.blankForms,
+        blankItems: [reference],
+      });
       const saveSection = vi.fn(async () => ({
         revision: 4,
         aggregateRevision: 10,
@@ -1503,7 +1535,6 @@ describe("TextbookStudioView", () => {
         fireEvent.click(
           screen.getByRole("button", {
             name: mode === "shadow-reject" ? "거절" : "m1-01-02-c3 확인 요청",
-            exact: true,
           }),
         );
       }

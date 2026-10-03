@@ -1389,7 +1389,7 @@ describe("textbook preview and lecture refs", () => {
       message: "첫 쪽은 1부터 1000까지입니다.",
     });
     const bare = structuredClone(source);
-    delete bare.config.print;
+    Reflect.deleteProperty(bare.config, "print");
     expect(applyEditionEdits(bare, { coverMode: "included" })).toEqual({
       ok: false,
       message: "인쇄 설정이 없어 저장하지 않습니다.",
