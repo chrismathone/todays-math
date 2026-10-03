@@ -1,11 +1,12 @@
 import { db } from "@/lib/db";
-import { serializeTestProblemItem } from "@/lib/serializers";
+import { serializeFrozenTestProblemItem } from "./testProblemContent";
+import { hydrateTestSnapshots } from "./loadSnapshotAssets";
 
 export async function loadTestProblemItems(testId: string) {
   const rows = await db.testProblem.findMany({
     where: { testId },
-    include: { problem: true },
+    include: { problem: true, snapshot: true },
     orderBy: { orderIndex: "asc" },
   });
-  return rows.map(serializeTestProblemItem);
+  return (await hydrateTestSnapshots(rows)).map(serializeFrozenTestProblemItem);
 }

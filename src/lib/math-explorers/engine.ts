@@ -86,6 +86,24 @@ export function explorerReceipt(
   return structuredClone(existing.feedback);
 }
 
+/** Record a decision without running an activity transition (which may initialize learning state). */
+export function recordExplorerReceipt(
+  stored: StoredExplorer,
+  action: ExplorerAction,
+  requestId: string,
+  feedback: ExplorerFeedback,
+): StoredExplorer {
+  uuidSchema.parse(requestId);
+  if (explorerReceipt(stored, action, requestId)) return stored;
+  return storedExplorerSchema.parse({
+    ...stored,
+    receipts: [
+      ...stored.receipts,
+      { requestId, actionKey: actionKey(action), feedback },
+    ].slice(-256),
+  });
+}
+
 /** Immutable, account-scoped transition. The caller supplies the server's Seoul date. */
 export function applyExplorerAction(
   stored: StoredExplorer,

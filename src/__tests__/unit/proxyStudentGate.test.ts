@@ -182,7 +182,23 @@ const EXIT = [
  * eywa 자동 로그인 입구 — 학생이 앉아 있던 공용 PC 에서 선생님이 eywa 링크를 눌러도 선생님 계정으로
  * 바뀌어야 한다(원장님 2026-09-26). 주는 것은 로그인 시도뿐이다(표가 틀리면 /login).
  */
-const SSO = ["GET /api/sso/eywa"];
+const SSO = [
+  "GET /api/sso/eywa",
+  "GET /api/sso/eywa/v2/start",
+  "GET /api/sso/eywa/v2/callback",
+  "POST /api/sso/eywa/v2/complete",
+  "GET /account/eywa-switch",
+];
+
+// These public transport endpoints validate signed requests in managedTransport.
+// Proxy forwarding grants no student or teacher authority. Keep exact paths here;
+// unsupported methods reach Next's 405 handling, never an operational mutation.
+const SIGNED_RECEIVER = [
+  "/api/integrations/eywa/v2/events",
+  `/api/integrations/eywa/v2/events/${UUID}`,
+  "/api/integrations/eywa/v2/process",
+  `/api/integrations/eywa/v2/students/${UUID}`,
+].flatMap((p) => METHODS.map((method) => `${method} ${p}`));
 
 /** 브라우저 오류 보고 — 학생 화면의 오류도 모은다(원장님 2026-09-22). 보내기 한 메서드 · 한 경로뿐 */
 const REPORT = ["POST /api/logs/client"];
@@ -239,6 +255,8 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
     expect(pass.sort()).toStrictEqual(
       [
         ...[
+          `/q/${UUID}`,
+          `/learn/textbook/${UUID}/concepts/${UUID}`,
           "/learn/english-listening",
           `/learn/english-listening/${UUID}`,
           "/learn",
@@ -249,9 +267,14 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
           "/learn/math-srs/algebra",
           "/learn/math-explorers",
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
+        `GET /api/learn/textbook/q/${UUID}`,
+        `GET /api/learn/textbook/q/${UUID}/assets/${UUID}`,
+        `HEAD /api/learn/textbook/q/${UUID}/assets/${UUID}`,
+        `GET /api/learn/textbook/editions/${UUID}/concepts/${UUID}`,
+        `GET /api/learn/textbook/editions/${UUID}/concepts/${UUID}/attempts`,
+        `POST /api/learn/textbook/editions/${UUID}/concepts/${UUID}/attempts`,
+        `POST /api/learn/textbook/editions/${UUID}/concepts/${UUID}/review`,
         "GET /api/learn/lectures",
-        "GET /api/learn/test-console",
-        "POST /api/learn/test-console",
         "GET /api/english/learn/listening",
         `GET /api/english/learn/listening/${UUID}`,
         `POST /api/english/learn/listening/${UUID}/prepare`,
@@ -277,8 +300,12 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/math-srs/replay",
         "GET /api/learn/math-explorers",
         "POST /api/learn/math-explorers",
+        // Existing test-console policy permits both; its handler restricts test accounts.
+        "GET /api/learn/test-console",
+        "POST /api/learn/test-console",
         ...REPORT,
         ...SSO,
+        ...SIGNED_RECEIVER,
         ...EXIT,
         ...brand,
         ...LAB,
@@ -321,12 +348,13 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
     expect(pass.sort()).toStrictEqual(
       [
         "GET /learn/password",
-        "GET /api/learn/test-console",
-        "POST /api/learn/test-console",
         "HEAD /learn/password",
         "POST /api/learn/password",
+        "GET /api/learn/test-console",
+        "POST /api/learn/test-console",
         ...REPORT,
         ...SSO,
+        ...SIGNED_RECEIVER,
         ...EXIT,
         ...brand,
         ...LAB,
@@ -352,6 +380,19 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
 });
 
 describe("로그인 안 한 사람 — /learn 은 학생 로그인으로 (D-125 ⑷)", () => {
+  it("교재 QR의 로그인 복귀를 첫 비밀번호 변경까지 보존한다", async () => {
+    const qr = "/q/abcdefghijklmnopqrst";
+    session.mockReturnValue(null);
+    const login = new URL((await run("GET", qr)).headers.get("location")!);
+    expect(login.pathname).toBe("/learn/login");
+    expect(login.searchParams.get("returnTo")).toBe(qr);
+    session.mockReturnValue(studentSession(true));
+    const password = new URL((await run("GET", qr)).headers.get("location")!);
+    expect(password.pathname).toBe("/learn/password");
+    expect(password.searchParams.get("returnTo")).toBe(qr);
+    session.mockReturnValue(studentSession(false));
+    expect(passed(await run("GET", qr))).toBe(true);
+  });
   it("🔴 /learn/login 이 아닌 학생 화면은 /learn/login 으로 · /learn/login 은 열림", async () => {
     session.mockReturnValue(null);
     for (const p of ["/learn", "/learn/password", `/learn/watch/${UUID}`]) {

@@ -16,6 +16,7 @@ export const WORKSPACE_MENUS = [
   { id: "studio", label: "문제 추출" },
   { id: "export", label: "시험지 · 내보내기" },
   { id: "library", label: "내 시험지" },
+  { id: "textbook", label: "교재 제작" },
   { id: "teaching", label: "수업 · 학생 관리" },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래. 강의 목록은 서비스 공용, 쓰기는 isAdmin 만(⑼).
   { id: "concept", label: "오늘의 개념" },
@@ -35,6 +36,7 @@ export const workspaceMenuSchema = z.enum([
   "studio",
   "export",
   "library",
+  "textbook",
   "teaching",
   "concept",
   "conceptBlank",

@@ -24,7 +24,11 @@ import type {
 import type { ProblemEntity, ProblemType } from "@/contracts/problem.contract";
 import type { ProblemReportEntity } from "@/contracts/problemReport.contract";
 import type { ReviewLogEntity } from "@/contracts/review.contract";
-import type { TestEntity, TestProblemItem } from "@/contracts/test.contract";
+import type {
+  TestEntity,
+  TestProblemFigureFields,
+  TestProblemItem,
+} from "@/contracts/test.contract";
 import type {
   AnalysisReportEntity,
   ProblemAnswerEntity,
@@ -68,7 +72,19 @@ export function serializeProgress(row: ProgressRow): ProgressEntity {
   };
 }
 
-export function serializeProblem(row: ProblemRow): ProblemEntity {
+export function serializeProblem(
+  row: Omit<
+    ProblemRow,
+    "choiceFigureIndex" | "figureDims" | "figureSourceMm"
+  > & {
+    // 은행 행은 `number[]`, 교재 스냅샷 행은 원소에 `null` 이 섞인다. 없으면 «모른다»(빈 배열).
+    choiceFigureIndex?: readonly (number | null)[] | null;
+  },
+): ProblemEntity {
+  // 은행 계약은 `number[]` 다. `null` 이 섞인 배열(교재 스냅샷)은 여기서 «모른다»(빈 배열)로 내고,
+  // 시험지 문항 쪽(`serializeTestProblemItem`)이 원래 값을 덧씌운다.
+  const links = row.choiceFigureIndex ?? [];
+  const knownLinks = links.filter((value): value is number => value !== null);
   return {
     id: row.id,
     // 컬럼을 **그대로** 내보낸다. 단원에서 다시 만들지 않는다 — 코드는 부여 당시의
@@ -101,7 +117,10 @@ export function serializeProblem(row: ProblemRow): ProblemEntity {
     pool: row.pool,
     // 그림이 없는 문항은 빈 배열이다 — 화면이 널 검사를 하지 않아도 되게 한다.
     figureUrls: row.figureUrls ?? [],
-    choiceFigureIndex: row.choiceFigureIndex ?? [],
+    // 짝이 없으면 칸 자체를 안 싣는다 — 짝 없는 문항의 응답이 예전과 한 글자도 안 달라진다(계약의 기본값이 []).
+    ...(knownLinks.length > 0 && knownLinks.length === links.length
+      ? { choiceFigureIndex: knownLinks }
+      : {}),
     figureSvg: row.figureSvg ?? null,
     createdAt: row.createdAt.toISOString(),
     updatedAt: row.updatedAt.toISOString(),
@@ -126,14 +145,27 @@ export function serializeTest(row: TestRow): TestEntity {
 }
 
 export function serializeTestProblemItem(
-  row: TestProblemRow & { problem: ProblemRow },
+  row: TestProblemRow & {
+    problem: Omit<ProblemRow, keyof TestProblemFigureFields> &
+      TestProblemFigureFields;
+  },
 ): TestProblemItem {
   return {
     id: row.id,
     problemId: row.problemId,
     orderIndex: row.orderIndex,
     replaced: row.replaced,
-    problem: serializeProblem(row.problem),
+    ...(row.snapshotId ? { snapshotId: row.snapshotId } : {}),
+    problem: {
+      ...serializeProblem(row.problem),
+      ...(row.snapshotId
+        ? {
+            figureDims: row.problem.figureDims,
+            figureSourceMm: row.problem.figureSourceMm,
+            choiceFigureIndex: row.problem.choiceFigureIndex,
+          }
+        : {}),
+    },
   };
 }
 

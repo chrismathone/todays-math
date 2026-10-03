@@ -267,7 +267,16 @@ export const CONCEPT_BLANK_TITLE_MAX = 40;
  * 원장님이 고른 것 — 소단원 여럿 · 형식 여럿 · 형식마다 난이도별 문항 수. 이것만으로 지면이 정해진다(고정).
  * 주소(`?s=`)에 실어 같은 링크 = 같은 지면.
  */
-export const conceptBlankSelectionSchema = z.strictObject({
+export const conceptBlankPickSchema = z.strictObject({
+  blankSectionKey: sectionKeySchema,
+  entryKind: z.enum(["concept", "ox", "apply", "figure"]),
+  entryId: idSchema,
+  form: z.enum(CONCEPT_BLANK_FORMS),
+  level: levelSchema,
+});
+export type ConceptBlankPick = z.infer<typeof conceptBlankPickSchema>;
+
+const conceptBlankSelectionBaseSchema = z.strictObject({
   sections: z.array(sectionKeySchema).min(1).max(60),
   forms: z
     .array(
@@ -286,7 +295,69 @@ export const conceptBlankSelectionSchema = z.strictObject({
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional(),
+  pick: z.array(conceptBlankPickSchema).min(1).max(2000).optional(),
 });
+function validateExactSelection(
+  value: z.infer<typeof conceptBlankSelectionBaseSchema>,
+  ctx: z.RefinementCtx,
+) {
+  if (!value.pick) return; // Existing selection bytes and behavior remain unchanged.
+  const issue = (message: string, path: (string | number)[] = ["pick"]) =>
+    ctx.addIssue({ code: "custom", message, path });
+  const formSet = new Set(value.forms.map((f) => f.form));
+  if (formSet.size !== value.forms.length)
+    issue("정확한 선택의 형식을 중복 지정할 수 없습니다.", ["forms"]);
+  if (new Set(value.sections).size !== value.sections.length)
+    issue("소단원을 중복 지정할 수 없습니다.", ["sections"]);
+  const seen = new Set<string>(),
+    closedGroups = new Set<string>();
+  let previous = "";
+  for (const [i, pick] of value.pick.entries()) {
+    const key = `${pick.form}:${pick.entryKind}:${pick.entryId}`;
+    if (seen.has(key))
+      issue("같은 형식의 같은 항목을 중복 선택할 수 없습니다.", ["pick", i]);
+    seen.add(key);
+    const group = `${pick.form}:${pick.blankSectionKey}`;
+    if (group !== previous) {
+      if (closedGroups.has(group))
+        issue("분리된 형식·소단원 그룹이 다시 등장합니다.", ["pick", i]);
+      if (previous) closedGroups.add(previous);
+      previous = group;
+    }
+    if (
+      !value.sections.includes(pick.blankSectionKey) ||
+      !formSet.has(pick.form)
+    )
+      issue("선택 형식과 소단원이 일치하지 않습니다.", ["pick", i]);
+    const compatible =
+      pick.entryKind === "concept"
+        ? pick.form !== "figure"
+        : pick.entryKind === "ox"
+          ? pick.form === "term"
+          : pick.entryKind === "apply"
+            ? pick.form === "cloze"
+            : pick.form === "figure";
+    if (!compatible)
+      issue("항목 종류가 백지 형식과 맞지 않습니다.", ["pick", i]);
+  }
+  for (const [i, { form, counts, extras }] of value.forms.entries()) {
+    for (const level of CONCEPT_BLANK_LEVELS) {
+      const matches = value.pick.filter(
+        (p) => p.form === form && p.level === level,
+      );
+      const main = matches.filter(
+        (p) => p.entryKind === "concept" || p.entryKind === "figure",
+      ).length;
+      if (counts[level] !== main || extras[level] !== matches.length - main)
+        issue("문항 수와 추가 문항 수가 정확한 선택과 다릅니다.", ["forms", i]);
+    }
+  }
+  for (const section of value.sections)
+    if (!value.pick.some((p) => p.blankSectionKey === section))
+      issue("선택 항목이 없는 소단원입니다.", ["sections"]);
+}
+export const conceptBlankSelectionSchema =
+  conceptBlankSelectionBaseSchema.superRefine(validateExactSelection);
 export type ConceptBlankSelection = z.infer<typeof conceptBlankSelectionSchema>;
 
 /**
@@ -295,7 +366,9 @@ export type ConceptBlankSelection = z.infer<typeof conceptBlankSelectionSchema>;
  * 날짜는 담지 않는다 — 다음에 열면 그날(화면의 처음 값). 자료 이름은 지면 제목과 같이 간다(이름 바꾸기도 제목을 고친다).
  */
 export const conceptBlankDocumentSchema = z.strictObject({
-  selection: conceptBlankSelectionSchema.omit({ date: true }),
+  selection: conceptBlankSelectionBaseSchema
+    .omit({ date: true })
+    .superRefine(validateExactSelection),
 });
 export type ConceptBlankDocument = z.infer<typeof conceptBlankDocumentSchema>;
 
@@ -357,12 +430,19 @@ export type ConceptBlankSheet =
       /** 고른 소단원의 사례 문항(`givenCase`) 수 — 채점표에 안 실린 것. 0 이 아니면 채점 안내가 그 말을 한다. */
       omittedCases?: number;
     }
-  | { form: "term"; header: SheetHeader; terms: ConceptEntry[]; ox: OxItem[] }
+  | {
+      form: "term";
+      header: SheetHeader;
+      terms: ConceptEntry[];
+      ox: OxItem[];
+      entryOrder?: { entryKind: "concept" | "ox"; entryId: string }[];
+    }
   | {
       form: "cloze";
       header: SheetHeader;
       sentences: ConceptEntry[];
       apply: ApplyItem[];
+      entryOrder?: { entryKind: "concept" | "apply"; entryId: string }[];
     }
   | {
       form: "map";

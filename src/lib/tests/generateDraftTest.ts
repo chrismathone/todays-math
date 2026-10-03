@@ -262,7 +262,7 @@ export async function generateDraftTest(
 
     const items = await tx.testProblem.findMany({
       where: { testId: test.id },
-      include: { problem: true },
+      include: { problem: true, snapshot: true },
       orderBy: { orderIndex: "asc" },
     });
     return { test, items };

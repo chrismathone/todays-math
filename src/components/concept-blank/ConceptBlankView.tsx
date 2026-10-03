@@ -75,6 +75,7 @@ import { kstDateOf } from "@/lib/kstDate";
 
 import ConceptBlankFormTable from "./ConceptBlankFormTable";
 import ConceptBlankUnitPicker from "./ConceptBlankUnitPicker";
+import TextbookConceptLinks from "@/components/textbook/integration/TextbookConceptLinks";
 import s from "./concept-blank.module.css";
 
 /** 계약의 상한(`conceptBlankSelectionSchema`) — 형식 · 난이도마다 40, 소단원 60, 제목 40자. */
@@ -346,6 +347,7 @@ export type ConceptBlankViewProps = {
   /** 내 시험지의 계정 범위 — 있으면 [내 시험지에 저장]이 선다(26 §9 ⑾). */
   storageScope?: string;
   branchId?: string | null;
+  textbookEnabled?: boolean;
   /** 내 시험지에서 연 개념 백지 — 판(version)이 바뀔 때마다 그 자료를 불러와 고르기를 되살린다. */
   openDocument?: { id: string; version: number } | null;
 };
@@ -356,6 +358,7 @@ export default function ConceptBlankView({
   storageScope,
   branchId,
   openDocument,
+  textbookEnabled = false,
 }: ConceptBlankViewProps) {
   const uid = useId();
   const [draft, setDraft] = useState<Draft>(initialDraft);
@@ -807,6 +810,9 @@ export default function ConceptBlankView({
           )}
         </div>
       </WorkspacePageHeader>
+      {textbookEnabled && (
+        <TextbookConceptLinks sections={chosen} active={active} />
+      )}
       {live.failed && (
         <p className={s.saveError} role="alert">
           문항을 불러오지 못했습니다. 새로 고쳐 주세요.

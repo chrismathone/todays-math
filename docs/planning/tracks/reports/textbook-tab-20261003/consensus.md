@@ -1,0 +1,64 @@
+# 교재 제작 합의 원장
+
+## 범위·행동 계획 v03
+
+대상: `docs/planning/textbook-studio-20261003.md`, 27,328 bytes (LF), SHA-256 `60a508c008ea24abfcb8b361f3c639fbc19a80147ff404c045db9eb9cbb40702`. 계획 파일 자체는 표결 당시 문구와 바이트를 보존한다. 이 원장이 이후의 합의 상태를 기록한다.
+
+2026-10-03 실제 Orca run `run_e9e92323ce2e`에서 다음 세 모델이 같은 해시의 범위·행동을 승인했다. 다른 모델을 Codex 하위 에이전트로 흉내 낸 표결이 아니다.
+
+| 모델 | Task / Dispatch | 실제 메시지 | 결과 |
+| --- | --- | --- | --- |
+| Codex | `task_ae5047fd8a20` / `ctx_c1c71a06e762` | `msg_fead8f4b5d2b`, 05:41:49 UTC | APPROVE. exact bank entry, 개념 snapshot, 학생 응답/교사 관찰 분리, 기존 탐험 CAS/선수 범위 보존 |
+| Claude | `task_0bd879e33a3f` / `ctx_b2bda39c03bc` | `msg_d5799203e13a`, 05:44:25 UTC | APPROVE. 불변 발행/같은 문제 재출제/개념 통합 일치. P1에서 구체 저장 형태·호환·정확한 선택을 고정 |
+| Grok | `task_86b0243170bd` / `ctx_ecf1f36b901b` | `msg_4a3f623a907b`, 05:50:13 UTC | APPROVE. 동일 해시 확인, 보관본 유지와 exact-ID 개념백지 계약 수용 |
+
+승인 범위는 계획이다. 제품 구현, P1 계약 정본, Hi-fi, v15 원고 이관, 실제 영상/로그인/물리 인쇄가 승인·완료된 것으로 확대하지 않는다. 계획의 v15 원본 미확보 상태는 유지한다.
+
+## 화면 구조
+
+`D:/tmp/textbook-tab-20261003/design/wire-review.html`과 W1–W4 PC/휴대폰 실제 브라우저 캡처를 비교했다.
+
+- Claude `msg_428436561a35` 및 통합 v03 보고서: W3.
+- Grok `msg_9f4e72093704`, 휴대폰 후속 `msg_e07830f1c71d`: W3.
+- Codex `msg_5b6d31631fd2`: W3, 실제 여덟 캡처 확인.
+- root: W3. 원고/계산된 미리보기 분리, 접이식 목차, 큰 펼침면 모드, 모바일 원고/미리보기 탭, 같은 개념 연결 조작을 포함한다.
+
+Hi-fi4 실제 PC/휴대폰 여덟 캡처 비교에서 세 모델 모두 H1을 선택했다. 초기 일부 캡처의 아래쪽 회색 영역은 캡처 viewport 높이가 부족한 결과여서, 1600×1500 viewport의 `*-full.png`로 다시 확인했다. 실제 모바일 펼침면에서 발견한 과대 글자 잘림을 수정하고 최종 `hifi-review.html` SHA-256 `4bf3d37c9802df17727e2abee54301eafc327f49e9dd3ea5cb0c340bb82b6fa7`의 `hifi-h1-final-{desktop,mobile,spread,wide}-v2.png`를 다시 캡처했다.
+
+- Claude: `msg_deee18c1435c`, 보고서 commit `486ccab01167a620a2c7df7a983a373aafe34dd9` — 최종 H1 픽셀 승인.
+- Grok: `msg_4428d7e497de`, 보고서 commit `64c792c065b1dac0cdcd16bf4ca97232ea96c487` — 최종 H1 픽셀 승인.
+- Codex: `msg_f4fd89ab0f60`, 보고서 commit `0d3cb949048293e8861a5173f567bae56155fe3c` — 최종 H1 픽셀 승인.
+- root: 실제 최종 네 캡처 확인. 390px 맞춤 펼침면의 본문·수식·쪽번호가 지면 안에 표시된다.
+
+접이식 목차·구획별 저장 상태·정확한 백지 항목 종류/검수 표시·활성 확대 방식 표시·휴대폰의 읽을 수 있는 메뉴·오른쪽 페이지로 이동 조작은 실제 구현 검수 조건으로 유지한다. H3 검수 표는 별도 검수 화면에 사용한다.
+
+## P1 계약 명세 승인
+
+대상 `docs/planning/textbook-studio-p1-contracts-20261003.md`, 24,697 bytes, SHA-256 `e94aedb8a5bff13d64ddded08539a187aadc9111e39603eabb9554d6eff41ca1`. 문서의 검토 초안이라는 표제는 표결 바이트 보존을 위해 유지한다.
+
+| 모델 | Task / Dispatch | 실제 메시지 | 결과 |
+| --- | --- | --- | --- |
+| Claude | `task_a74e466bcac6` / `ctx_aff514947da8` | `msg_84e5b1ce790a`, 06:09:14 UTC | APPROVE |
+| Codex | `task_b012383e1983` / `ctx_060956892576` | `msg_756d33ce14ec`, 06:10:40 UTC | APPROVE |
+| Grok | `task_4313f49b3c2f` / `ctx_4197e29dd510` | `msg_7ec5a4084d01`, 06:15:32 UTC | APPROVE |
+
+정확한 개념백지 선택·이전 URL 호환, 서버 소유 검수, 원본 메타데이터와 내용 해시 구분, 학생 응답 분리, 기존 탐험 영수증의 재시도 의미까지 합의했다. 이는 구현 계약 승인이지 제품 구현·운영 적용·실물 인쇄 완료가 아니다.
+
+## 실행
+
+구현 중 확인한 두 선택 필드도 실제 세 모델이 승인했다. 기존 교환 파일을 읽으며 값을 자동으로 추가하지 않는다.
+
+- `concept.blankForms`: 사용할 백지 형식 1–5개를 중복 없이 명시하는 선택 필드. 미기재에 기본값을 주입하지 않는다. Codex `msg_fb065989dd12`, Grok `msg_648c3544a6ad`, Claude `msg_1acbc0a0565f` 승인.
+- `config.studentSolutionPolicy`: `never | assigned` 선택 필드. 미기재는 학생 해설 비공개로 처리하며 교환 데이터에 값을 자동 삽입하지 않는다. Codex `msg_cea2221fd446`, Grok `msg_929547102a66`, Claude `msg_1acbc0a0565f` 승인.
+
+승인된 shared contract를 구현하고 독립 Orca 트랙의 서버·조판·화면 작업을 통합한다. 완료 검증 후 main 병합·필요한 push와 조건에 맞는 worktree 정리를 한다. v15 원본·실제 영상·실물 인쇄 검증은 미확보 상태를 유지한다.
+
+## 실제 발행 검증 후 조판 보완 합의
+
+2026-10-03 실제 Chromium 발행에서 미확정 그림 대응과 기본 풀이선 0개인 문항의 해설 넘침을 확인했다. 아래 두 변경을 세 실제 모델이 코드와 기존 계획에 대조해 승인했다.
+
+- D1: 스캔 그림의 `choiceIndex: null` 및 원본 배열을 보존하고 원래 순서의 미연결 그림 묶음과 경고를 출력한다. 알려진 본문 그림 `0` 및 양수 보기 번호와 구별하며 자산 손상·명시적으로 잘못된 대응은 오류로 유지한다. 선택 그림 배열에 속하지 않는 엔진의 본문 SVG는 기존 스키마 의미대로 `0`이다.
+- D2: 교사용 정답해설 지면은 실제 정답·해설 높이로 독립 조판한다. 학생 pageMap은 학생 QR와 원문 쪽 참조의 기준으로 유지하고, 해설지에 출력된 QR은 해설지의 실제 좌표와 픽셀로 검증한다. 학생 DTO에 연습 정답·해설을 추가하지 않는다.
+- Codex `msg_05d9abc54886`, Grok `msg_c86da3d1b309`, Claude `msg_e59e9dd13272`: 모두 APPROVE. 구현 승인 전달 `thread_1791020982795`.
+
+이는 결함 수정 방향에 대한 합의다. v15 실물 원고의 쪽수 또는 교재 전체 인수 완료를 뜻하지 않는다.

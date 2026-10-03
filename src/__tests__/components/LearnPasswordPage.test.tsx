@@ -33,7 +33,7 @@ beforeEach(() => {
 describe("첫 로그인 페이지 — 윗줄 이름은 세션에서 (D-128 ⑵)", () => {
   it("🔴 학생 세션의 이름을 윗줄에 싣는다", async () => {
     auth.mockResolvedValue({ student: STUDENT, expires: EXPIRES });
-    render(await StudentPasswordPage());
+    render(await StudentPasswordPage({ searchParams: Promise.resolve({}) }));
     expect(screen.getByRole("banner").textContent).toBe(
       "오늘의수학이서준·나가기",
     );
@@ -41,13 +41,13 @@ describe("첫 로그인 페이지 — 윗줄 이름은 세션에서 (D-128 ⑵)"
 
   it("학생 칸이 없는 세션은 이름 없이 «나가기»만 — 관문이 먼저 막는 자리지만 이름을 지어내지 않는다", async () => {
     auth.mockResolvedValue({ expires: EXPIRES });
-    render(await StudentPasswordPage());
+    render(await StudentPasswordPage({ searchParams: Promise.resolve({}) }));
     expect(screen.getByRole("banner").textContent).toBe("오늘의수학나가기");
   });
 
   it("세션이 없어도 «나가기»만", async () => {
     auth.mockResolvedValue(null);
-    render(await StudentPasswordPage());
+    render(await StudentPasswordPage({ searchParams: Promise.resolve({}) }));
     expect(screen.getByRole("banner").textContent).toBe("오늘의수학나가기");
   });
 });

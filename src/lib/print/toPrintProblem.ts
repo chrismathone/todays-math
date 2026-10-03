@@ -32,9 +32,9 @@ export interface PrintableProblemRow {
   solution: string | null;
   questionType?: string | null;
   figureUrls?: string[];
-  figureDims?: number[];
-  figureSourceMm?: number[];
-  choiceFigureIndex?: number[];
+  choiceFigureIndex?: (number | null)[];
+  figureDims?: (number | null)[];
+  figureSourceMm?: (number | null)[];
   figureSvg?: string | null;
 }
 
@@ -46,8 +46,8 @@ export const PRINT_FIGURE_FIELDS = [
   "figureUrls",
   "figureDims",
   "figureSourceMm",
-  "choiceFigureIndex",
   "figureSvg",
+  "choiceFigureIndex",
 ] as const satisfies readonly (keyof TestPrintProblem)[];
 
 export function toPrintProblem(
@@ -82,9 +82,11 @@ export function toPrintProblem(
     // 원본 지면에서 그 그림이 차지하던 **물리 폭(mm)** — 「얼마로 그린다」의
     // 유일한 근거다. 비면 «모른다»라 픽셀로 그린다.
     figureSourceMm: problem.figureSourceMm,
-    choiceFigureIndex: problem.choiceFigureIndex ?? [],
     // 엔진이 그린 인라인 SVG — **엔진 문항의 그림은 이것뿐**이고 `figureUrls` 는
     // 비어 있다. 안 담으면 그림 없는 시험지가 나간다(2026-08-29 까지 그랬다).
     figureSvg: problem.figureSvg,
+    ...(problem.choiceFigureIndex === undefined
+      ? {}
+      : { choiceFigureIndex: problem.choiceFigureIndex }),
   };
 }

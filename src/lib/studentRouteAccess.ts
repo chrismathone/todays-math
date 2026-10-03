@@ -85,6 +85,41 @@ const TEST_CONSOLE_RULES: readonly Rule[] = [
 const ACTIVE_RULES: readonly Rule[] = [
   {
     methods: PAGE,
+    path: "/q/{id}",
+    why: "배정된 교재의 QR — 서버가 매 요청 권한 확인",
+  },
+  {
+    methods: PAGE,
+    path: "/learn/textbook/{id}/concepts/{id}",
+    why: "교재에 실린 개념의 정확한 백지 활동",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/learn/textbook/q/{id}",
+    why: "배정된 교재 QR 내용",
+  },
+  {
+    methods: PAGE,
+    path: "/api/learn/textbook/q/{id}/assets/{id}",
+    why: "배정된 QR 내용에서 참조하는 고정 자산",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/learn/textbook/editions/{id}/concepts/{id}",
+    why: "정답을 뺀 교재 백지",
+  },
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/textbook/editions/{id}/concepts/{id}/attempts",
+    why: "본인의 교재 백지 답변 기록",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/learn/textbook/editions/{id}/concepts/{id}/review",
+    why: "확인된 개념 연결의 기존 복습 활동 시작",
+  },
+  {
+    methods: PAGE,
     path: "/learn/english-listening",
     why: "배정된 영어듣기 목록",
   },
@@ -283,6 +318,11 @@ export function anonymousLearnGate(
   pathname: string,
 ): LearnGate | null {
   const path = normalizeRoutePathname(pathname);
+  if (
+    /^\/q\/[A-Za-z0-9_-]{16,100}$/.test(path) &&
+    isPageRead(method.toUpperCase())
+  )
+    return { kind: "redirect", to: STUDENT_LOGIN_PAGE };
   if (path !== STUDENT_HOME && !path.startsWith(`${STUDENT_HOME}/`))
     return null;
   if (path === STUDENT_LOGIN_PAGE) return { kind: "allow" };

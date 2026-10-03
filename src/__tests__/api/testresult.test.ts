@@ -12,6 +12,7 @@
  *   1번 객관식(정답 2, 배점10, easy) · 2번 객관식(정답 4, 배점10, hard) · 3번 서술형(배점80, mid)
  */
 import { NextRequest } from "next/server";
+vi.mock("server-only", () => ({}));
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/session", () => ({

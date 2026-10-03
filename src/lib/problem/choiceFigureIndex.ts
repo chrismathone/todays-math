@@ -55,7 +55,7 @@ export interface ChoiceFigureIndexCheck {
  */
 export function checkChoiceFigureIndex(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
+  flat: readonly (number | null)[] | null | undefined,
 ): ChoiceFigureIndexCheck {
   if (!flat || flat.length === 0) return { ok: false, reason: "모른다" };
   if (flat.length !== figureCount)
@@ -63,12 +63,18 @@ export function checkChoiceFigureIndex(
       ok: false,
       reason: `길이가 다르다 (그림 ${figureCount}장 · 배열 ${flat.length})`,
     };
+  // `null` 은 «이 장은 아직 안 봤다»(교재 스냅샷이 싣는다) — 한 장이라도 모르면 통째로 모른다.
   for (const value of flat) {
-    if (!Number.isInteger(value) || value < 0 || value > MAX_CHOICE_NUMBER)
+    if (
+      value === null ||
+      !Number.isInteger(value) ||
+      value < 0 ||
+      value > MAX_CHOICE_NUMBER
+    )
       return { ok: false, reason: `값이 범위 밖이다 (${value})` };
   }
   const used = new Set<number>();
-  for (const value of flat) {
+  for (const value of flat as readonly number[]) {
     if (value === 0) continue; // 발문 그림은 여럿일 수 있다
     if (used.has(value))
       return { ok: false, reason: `보기 ${value} 번에 그림이 둘 이상이다` };
@@ -85,7 +91,7 @@ export function checkChoiceFigureIndex(
  */
 export function parseChoiceFigureIndex(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
+  flat: readonly (number | null)[] | null | undefined,
 ): (ChoiceFigureLink | null)[] {
   if (figureCount <= 0) return [];
   const unknown = (): (ChoiceFigureLink | null)[] =>
@@ -93,7 +99,7 @@ export function parseChoiceFigureIndex(
   if (!checkChoiceFigureIndex(figureCount, flat).ok) return unknown();
 
   return Array.from({ length: figureCount }, (_, index) => {
-    const value = flat![index]!;
+    const value = flat![index]! as number;
     return value === 0
       ? ({ kind: "stem" } as const)
       : ({ kind: "choice", number: value } as const);
@@ -103,7 +109,7 @@ export function parseChoiceFigureIndex(
 /** 이 문항의 짝을 아는가 — 지면이 보기 번호를 붙여도 되는가. */
 export function hasChoiceFigureLinks(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
+  flat: readonly (number | null)[] | null | undefined,
 ): boolean {
   return checkChoiceFigureIndex(figureCount, flat).ok;
 }
@@ -137,13 +143,13 @@ export interface ChoiceFigurePlan {
  */
 export function planChoiceFigures(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
+  flat: readonly (number | null)[] | null | undefined,
   choices: readonly string[],
 ): ChoiceFigurePlan | null {
   if (!checkChoiceFigureIndex(figureCount, flat).ok) return null;
   const plan: ChoiceFigurePlan = { stem: [], byChoice: {} };
   for (let index = 0; index < figureCount; index += 1) {
-    const value = flat![index]!;
+    const value = flat![index]! as number;
     if (value === 0) {
       plan.stem.push(index);
       continue;
@@ -160,12 +166,45 @@ export function planChoiceFigures(
 }
 
 /**
+ * 짝을 읽는 **갈래** — 조판(`ProblemContent`)과 자(`estimateProblemPx`)가 같이 부르는 한 곳.
+ *
+ * 2026-10-03 에 두 트랙이 같은 칸을 따로 읽게 만들었다(은행 · 3자 합의 B1 / 교재 스냅샷). 병합에서 하나로 맞췄다:
+ *
+ *   `"grid"`   짝이 **온전하다** — 그림이 `[그림]` 자리를 대신해 번호 칸 안에 서고 보기는 늘 2열이다(B1).
+ *   `"loose"`  짝이 있긴 한데 온전하지 않고, **그림뿐인 보기가 하나도 없다**(글 보기에 그림이 딸린 문항 — 교재 스냅샷).
+ *              아는 그림은 그 보기의 글 아래에, 모르는 그림(`null` · 없는 보기 · 길이 불일치)은
+ *              «그림 대응 확인 필요»와 함께 발문 자리에 둔다. 그림을 감추지 않는다.
+ *   `"none"`   짝이 없다(없음 · 빈 배열). 또는 **그림뿐인 보기가 있는데 짝이 어긋났다** — 예전 조판 그대로.
+ *
+ * 🔴 마지막 줄이 경계다. 보기가 그림뿐이면 그 그림이 곧 보기라, 반쪽만 붙이면 «그럴듯해 보이면서 틀린» 지면이 된다
+ *    (이 파일 머리말). 그래서 온전하지 않으면 손대지 않고, 적재기가 그 문항의 출제 허용을 끈다(`hasUnlinkedFigureChoices`).
+ *    글 보기에 딸린 그림은 보기의 «전부»가 아니라 아는 만큼 드러내도 번호를 잘못 고르게 하지 않는다.
+ *    ⚠️ 두 트랙의 결정이 여기서 갈린다 — 그림뿐인 보기 + 덜 된 짝을 교재식(«확인 필요» 표시)으로 그릴지는 원장님 결정으로 남겼다.
+ */
+export type ChoiceFigureMode =
+  | { mode: "grid"; plan: ChoiceFigurePlan }
+  | { mode: "loose" }
+  | { mode: "none" };
+
+export function choiceFigureMode(
+  figureCount: number,
+  flat: readonly (number | null)[] | null | undefined,
+  choices: readonly string[],
+): ChoiceFigureMode {
+  const plan = planChoiceFigures(figureCount, flat, choices);
+  if (plan) return { mode: "grid", plan };
+  if (flat && flat.length > 0 && !choices.some(isFigureChoice))
+    return { mode: "loose" };
+  return { mode: "none" };
+}
+
+/**
  * `[그림]` 보기가 있는데 짝을 모른다 — **학생이 못 푸는 문항**이다.
  * 적재기는 이런 행의 출제 허용을 끈다(은행 카드에는 그대로 보인다 — 결함이 보여야 고친다).
  */
 export function hasUnlinkedFigureChoices(
   figureCount: number,
-  flat: readonly number[] | null | undefined,
+  flat: readonly (number | null)[] | null | undefined,
   choices: readonly string[],
 ): boolean {
   return (

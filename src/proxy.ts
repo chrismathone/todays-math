@@ -14,6 +14,11 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { auth } from "@/lib/auth";
 import { requestedCallbackUrl } from "@/lib/callbackUrl";
+import {
+  normalizeStudentReturnTo,
+  studentLoginHref,
+  studentPasswordHref,
+} from "@/lib/learn/studentReturnTo";
 import { routeAccessFor } from "@/lib/routeAccess";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import { recordAudit } from "@/lib/audit";
@@ -31,8 +36,26 @@ import { logRejectedResponse } from "@/lib/errorLog/withErrorLog";
 /** 학생 관문의 판정 → 응답. 막힌 API 는 403 **JSON**(화면용 되돌림을 fetch 가 파싱하다 죽는다). */
 function learnGateResponse(gate: LearnGate, url: URL): Response {
   if (gate.kind === "allow") return NextResponse.next();
-  if (gate.kind === "redirect")
-    return NextResponse.redirect(new URL(gate.to, url));
+  if (gate.kind === "redirect") {
+    const requested = normalizeStudentReturnTo(`${url.pathname}${url.search}`);
+    const callback =
+      requested !== "/learn"
+        ? requested
+        : normalizeStudentReturnTo(
+            url.searchParams.get("returnTo") ??
+              url.searchParams.get("callbackUrl"),
+          );
+    const destination =
+      gate.to === "/learn/password"
+        ? studentPasswordHref(callback)
+        : gate.to === "/learn/login"
+          ? studentLoginHref(callback)
+          : gate.to === "/learn" &&
+              (url.pathname === "/login" || url.pathname === "/learn/login")
+            ? callback
+            : gate.to;
+    return NextResponse.redirect(new URL(destination, url));
+  }
   return NextResponse.json(
     { error: { code: "FORBIDDEN", message: gate.message } },
     { status: 403 },
