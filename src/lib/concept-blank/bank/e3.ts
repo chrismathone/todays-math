@@ -1178,7 +1178,7 @@ export const bank: ConceptBlankBank = {
       term: "곱해지는 수의 십의 자리가 $0$일 때",
       kind: "성질",
       definition:
-        "곱해지는 수의 십의 자리가 $0$이고 일의 자리에서 올림이 없으면, 곱의 십의 자리에 {$0$을 써서 자리를 지킨다}.",
+        "$0$이 아닌 수를 곱할 때 곱해지는 수의 십의 자리가 $0$이고 일의 자리에서 올림이 없으면, 곱의 십의 자리에 {$0$을 써서 자리를 지킨다}.",
       example: {
         prompt: "$201\\times4$의 곱을 $84$가 아니라 $804$로 쓰는 까닭은?",
         answer: "$8$은 백의 묶음 수라서",
@@ -1191,7 +1191,7 @@ export const bank: ConceptBlankBank = {
       term: "올림",
       kind: "방법",
       definition:
-        "각 자리의 곱에서 묶음 $10$개가 생길 때마다 {바로 윗자리}로 옮긴다.",
+        "각 자리의 곱에 아랫자리에서 올린 수를 더한 뒤 묶음 $10$개가 생길 때마다 {바로 윗자리}로 옮긴다.",
       example: {
         prompt:
           "$236\\times4$에서 일의 자리 곱 $24$ 가운데 십의 자리로 옮기는 수를 쓰시오.",
@@ -2023,7 +2023,7 @@ export const bank: ConceptBlankBank = {
       term: "그림 하나의 값과 그림의 개수",
       kind: "성질",
       definition:
-        "같은 수를 나타낼 때 그림 하나의 값이 클수록 필요한 그림의 개수는 {적어진다}.",
+        "$0$보다 큰 같은 수를 한 가지 그림으로 남김없이 나타낼 때, 그림 하나의 값이 클수록 필요한 그림의 개수는 {적어진다}.",
       example: {
         prompt:
           "자료 $20$개를 그릴 때 그림 하나가 $5$개일 때보다 $10$개일 때 그림이 적은 까닭은?",
@@ -2457,7 +2457,7 @@ export const bank: ConceptBlankBank = {
       statement:
         "$1\\,\\mathrm{L}\\ 40\\,\\mathrm{mL}$를 $\\mathrm{mL}$로만 쓰면 $140\\,\\mathrm{mL}$이다.",
       answer: false,
-      why: "$1\\,\\mathrm{L}$는 $1000\\,\\mathrm{mL}$라 $1040\\,\\mathrm{mL}$이다 — $1$과 $40$을 붙여 쓰면 안 된다.",
+      why: "$1$은 $1000\\,\\mathrm{mL}$ 묶음 하나, $40$은 $1\\,\\mathrm{mL}$ 마흔 개를 뜻하므로 $1040\\,\\mathrm{mL}$이다.",
     },
     {
       id: "e3-2-5-3-o1",
@@ -2483,7 +2483,7 @@ export const bank: ConceptBlankBank = {
       statement:
         "$3\\,\\mathrm{kg}\\ 20\\,\\mathrm{g}$을 $\\mathrm{g}$으로만 쓰면 $320\\,\\mathrm{g}$이다.",
       answer: false,
-      why: "$3\\,\\mathrm{kg}$은 $3000\\,\\mathrm{g}$이라 $3020\\,\\mathrm{g}$이다 — $3$과 $20$을 붙여 쓰면 안 된다.",
+      why: "$3$은 $1000\\,\\mathrm{g}$ 묶음 셋, $20$은 $1\\,\\mathrm{g}$ 스무 개를 뜻하므로 $3020\\,\\mathrm{g}$이다.",
     },
     {
       id: "e3-2-5-6-o1",
