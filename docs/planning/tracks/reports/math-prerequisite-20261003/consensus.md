@@ -8,15 +8,15 @@
 SHA-256: `09cd2ab152621e563945dcaf0eb7270095c2e31411051a547d94953bb6948bd1`
 Orca Run: `run_d1d13bf94c6c`
 
-| 실제 검토자 | 최종 Task / Dispatch | 최종 판단 | 실제 승인 메시지 | 원문 |
-|---|---|---|---|---|
-| Codex | task_30e64ebf4c54 / ctx_6d79b6fef7c0 | approve | msg_51bab8fb4c15, 2026-10-02 22:23:46 UTC | [review-codex-v03-final.md](./review-codex-v03-final.md) |
-| Grok | task_946b23bb943b / ctx_44196cfb43da | approve | msg_d8dd53d7afcf, 2026-10-02 22:20:14 UTC | [review-grok-v03-final.md](./review-grok-v03-final.md) |
-| Claude | task_bb69396a9789 / ctx_0053975fa502 | approve | msg_46219b463cd7, 최종 v03 표결 | [review-claude-v03-final.md](./review-claude-v03-final.md) |
+| 실제 검토자 | 최종 Task / Dispatch                 | 최종 판단 | 실제 승인 메시지                          | 원문                                                       |
+| ----------- | ------------------------------------ | --------- | ----------------------------------------- | ---------------------------------------------------------- |
+| Codex       | task_30e64ebf4c54 / ctx_6d79b6fef7c0 | approve   | msg_51bab8fb4c15, 2026-10-02 22:23:46 UTC | [review-codex-v03-final.md](./review-codex-v03-final.md)   |
+| Grok        | task_946b23bb943b / ctx_44196cfb43da | approve   | msg_d8dd53d7afcf, 2026-10-02 22:20:14 UTC | [review-grok-v03-final.md](./review-grok-v03-final.md)     |
+| Claude      | task_bb69396a9789 / ctx_0053975fa502 | approve   | msg_46219b463cd7, 최종 v03 표결           | [review-claude-v03-final.md](./review-claude-v03-final.md) |
 
 셋 모두 같은 최종 파일을 직접 읽고 해시를 검증해 승인했다. 원문 검토는 별도의 Orca worktree에서 실제 각 CLI가 수행했다. 최초 v01은 셋 모두 request_changes였고 합의로 처리하지 않았다. Claude의 v02 승인도 v03 승인과 구별하며 최종 합의 근거로 사용하지 않는다. worker_done의 succeeded만으로 승인 판단을 대신하지 않았다.
 
-이 승인은 구현 시험을 통과했다는 뜻이 아니다. 200seed 공급·채점, 저장 호환, 권한/CAS, 시안 시각 합의, 두 학생 fixture의 실제 핸들러·플레이어 브라우저 검증은 필수 관문으로 남는다.
+계획 승인은 구현 시험을 통과했다는 뜻이 아니다. 승인 시점에 200seed 공급·채점, 저장 호환, 권한/CAS, 시안 시각 합의, 학생 fixture의 실제 핸들러·플레이어 브라우저 검증을 필수 관문으로 남겼다. 아래 최종 구현 기록에서 실제 수행 결과를 별도로 확인한다.
 
 ## 해결한 차이
 
@@ -51,11 +51,11 @@ Orca Run: `run_d1d13bf94c6c`
 
 네 시각 시안 중 **H1**을 세 모델이 독립적으로 선택해 승인했다. 동일 HTML blob SHA-256은 `fd9b495022a954025143062675e96b71249322fd162eaa307b9dd82ae1c39869`이다.
 
-| 실제 검토자 | 판단 | 증거 |
-|---|---|---|
-| Codex | H1, approve | msg_bae85bfa868a · [hifi-codex-vote.md](./hifi-codex-vote.md) |
-| Grok | H1 | msg_c1eed3e4b25a · [hifi-grok.md](./hifi-grok.md) |
-| Claude | H1, approve | msg_8aeb6f0c6ef2 · [hifi-claude-vote.md](./hifi-claude-vote.md) |
+| 실제 검토자 | 판단        | 증거                                                            |
+| ----------- | ----------- | --------------------------------------------------------------- |
+| Codex       | H1, approve | msg_bae85bfa868a · [hifi-codex-vote.md](./hifi-codex-vote.md)   |
+| Grok        | H1          | msg_c1eed3e4b25a · [hifi-grok.md](./hifi-grok.md)               |
+| Claude      | H1, approve | msg_8aeb6f0c6ef2 · [hifi-claude-vote.md](./hifi-claude-vote.md) |
 
 실제 PC·320·390 PNG와 같은 해시의 HTML을 검토했다. `msg_5a57634294df`로 최종 합의를 전달한 뒤 제품 UI 구현을 시작했다. 구현 조건은 실제 학생 근거·공급 상태·보류 사유로 표시하고, 시범 범위 밖에 문제 공급이나 단원 전체 숙달을 표시하지 않는 것이다. 학생의 뒤로 단추는 320에서도 한 줄을 유지한다. 최종 구현과 브라우저 검사는 별도로 기록한다.
 
@@ -63,16 +63,26 @@ Orca Run: `run_d1d13bf94c6c`
 
 네 구조 시안 중 **W2(한 열 목록에서 단원 상세 펼침)**를 세 모델이 독립적으로 선택했다. 승인한 개정 HTML SHA-256은 `8109a7ee826b9a6ed7d5b8f5bbfeb6e46b4d005a24ea8dfe0eb85537e7e04423`이다. 학생을 선택하지 않아도 기존 CourseDashboard에서 연결도를 열고, 선택된 학생의 부분 근거는 별도로 덧붙인다.
 
-| 실제 검토자 | 판단 | 증거 |
-|---|---|---|
-| Codex | W2, approve structure | msg_4b671d4cde85 · [wire-codex-vote.md](./wire-codex-vote.md) |
-| Grok | W2 | msg_fff76da20573 · [wire-grok-vote.md](./wire-grok-vote.md) |
-| Claude | W2, approve structure | msg_2185b12f9bf8 · [wire-claude-vote.md](./wire-claude-vote.md) |
+| 실제 검토자 | 판단                  | 증거                                                            |
+| ----------- | --------------------- | --------------------------------------------------------------- |
+| Codex       | W2, approve structure | msg_4b671d4cde85 · [wire-codex-vote.md](./wire-codex-vote.md)   |
+| Grok        | W2                    | msg_fff76da20573 · [wire-grok-vote.md](./wire-grok-vote.md)     |
+| Claude      | W2, approve structure | msg_2185b12f9bf8 · [wire-claude-vote.md](./wire-claude-vote.md) |
 
-각 검토자는 실제 PC/휴대폰 PNG를 열었다. 구조 승인에는 Hi-fi 보완 조건이 있다: 확인 선수는 실제 1학기 복습 머리, 복귀는 2학기 목표 학습 머리로 표시한다. 네 소단원의 부분 근거, P 실패/보류 사유, 안전한 목표 대체 공급과 전체 공급 부족을 구별하고 관계 단원으로 이동하는 조작을 보여 준다. 하이파이 최종 승인과 제품 화면 구현은 아직 완료로 처리하지 않는다.
+각 검토자는 실제 PC/휴대폰 PNG를 열었다. 구조 승인에는 Hi-fi 보완 조건이 있었다: 확인 선수는 실제 1학기 복습 머리, 복귀는 2학기 목표 학습 머리로 표시한다. 네 소단원의 부분 근거, P 실패/보류 사유, 안전한 목표 대체 공급과 전체 공급 부족을 구별하고 관계 단원으로 이동하는 조작을 보여 준다. 이 구조 표결만으로 하이파이 승인이나 제품 구현 완료를 판단하지 않았다.
 
 ### 실제 문제 공급 관문 — 2026-10-03
 
 Claude의 실행 보고 `msg_8fcb7fc5853d`, 커밋 `994ae0bdb9771ea7978df49af8e9478856afe109`: 원시 문항 2,400개와 실제 5문항 세션 800개(4,000문항)의 자동 채점·그림·보기 검사가 오류 없이 통과했다. 같은 세션 안 본문 중복이 0/2/2/1개 발견되며 실제 공급기가 이 세션을 제외한다. [공급·근거·정책 검사 기록](./impl-claude-evidence-policy.md)에 갈래별 서로 다른 본문 수와 조건을 남겼다. 운영 학생의 진단 정확도나 교육 효과를 검증한 결과로 해석하지 않는다. 기능 기본값은 꺼짐을 유지한다.
 
-2026-10-03: 기능 계획 합의 완료. 그래프 생성·직접 근거/정책·공급 검사를 독립 Orca 작업으로 진행한다. 새 UI는 Wire 4 → 실제 3자 구조 선택 → Hi-fi 4 → 실제 3자 시각 선택 뒤 구현한다. 이 기록에 구현 완료나 교육 효과 검증을 미리 표시하지 않는다.
+### 최종 구현·검증 완료 — 2026-10-03
+
+실제 3자 계획 합의와 W2/H1 시각 선택 뒤 코드와 검사 보고를 main에 병합했다. Codex는 그래프와 실제 API/CAS 검사를, Claude는 근거·정책·공급 및 독립 통합 검토를, Grok은 시안과 교사 연결도를 담당했다. 루트는 기존 코스/탐험/학생 화면 연결과 실제 브라우저·최종 빌드를 수행했다.
+
+- 최종 관련 **19파일 317검사**, full `tsc --noEmit`, Next 16.3 프로덕션 빌드가 통과했다.
+- 실제 격리 API/플레이어에서 A의 확인→목표 복귀와 B의 기록 분리, C의 공급 부족·자동 시작 중단·계획 변경 후 근거 갱신·새 풀이 시작을 확인했다. 교사 네 필터·관계 이동·수동 역추적 후보 제외·도움/과목 관계 구분도 브라우저에서 통과했다. 자체 서버를 종료하고 세 학생의 기존 strict 저장 형식을 검사했다.
+- 변경 화면의 affordance 검사는 통과했다. 전체 검사는 이번 작업에서 수정하지 않은 `PrivateLibrary.module.css:35`의 기존 위반 1건으로 실패했다. 관련 ESLint 오류는 0이며 기존 코드 경고 4건은 기록에 남겼다.
+- 최종 실제 독립 구현 검토 `msg_1d352d8547af`에서 Claude가 학생 `d94f6efad`, 교사 `c0ec1e3d3`, 선택지 표시 고정 수정을 승인했다. 이는 최초 계획/시안 표결과 구별한다. 교사 수정 뒤 실제 브라우저 복구도 별도로 수행했다.
+- 완료·병합·깨끗함·비활성 조건을 확인한 세 Orca worktree를 제거하고 브랜치는 보존했다. 기능은 기본 꺼짐이며 `MATH_PREREQ_CHECK=on`으로만 활성화한다. 운영 환경·DB·배포를 변경하지 않았다.
+
+[최종 구현·검사 기록](./implementation-root.md), [독립 UI 검토](./integration-claude-ui-review.md), [브라우저 교사·복구 증거](./browser-shots/teacher-inspection.json). 자동 배정은 승인한 초5 분수 네 소단원 시범이며, 100단원 조회와 구별한다. 소단원 직접 선수 간선과 성취기준 전수 검증, 운영 학생의 진단 정확도·교육 효과는 완료했다고 표시하지 않는다.

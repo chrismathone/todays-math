@@ -93,10 +93,7 @@ function safeProblem(problem: CourseProblem, sectionId: string): boolean {
   );
 }
 
-function safeSession(
-  session: CourseSession,
-  input: SupplyInput,
-): boolean {
+function safeSession(session: CourseSession, input: SupplyInput): boolean {
   if (
     session.sectionId !== input.sectionId ||
     session.mode !== input.mode ||
@@ -130,7 +127,13 @@ export function supplySafeSession(
         ok: true,
         seed,
         candidateIndex,
-        problems: session.problems.map((problem) => ({ ...problem })),
+        // The existing player gives a fraction widget precedence over choices.
+        // This pilot has validated all four stored choices, so keep that input
+        // presentation fixed without changing question content or its grader.
+        problems: session.problems.map((problem) => ({
+          ...problem,
+          interactive: null,
+        })),
       };
   }
   return { ok: false, tried };

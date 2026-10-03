@@ -13,6 +13,7 @@ import {
 } from "@/lib/math-srs/serverState";
 import { kstDateOf } from "@/lib/kstDate";
 import { prerequisiteRecommendation } from "@/lib/math-prerequisite/courseIntegration";
+import { PREREQUISITE_REASONS } from "@/lib/math-prerequisite/policy";
 import {
   bankSectionsForExplorerUnit,
   explorerUnitForSection,
@@ -116,9 +117,7 @@ export function startExpedition(
         ? bank.candidates
         : [];
     if (!recommendation)
-      throw new SrsConflict(
-        "지금 낼 수 있는 새 문제가 없어요. 선생님께 알려 주세요.",
-      );
+      throw new SrsConflict(PREREQUISITE_REASONS.unavailable);
     const supplied =
       expeditionInitialPrerequisiteDecision(source, plan, now)?.session ??
       undefined;
