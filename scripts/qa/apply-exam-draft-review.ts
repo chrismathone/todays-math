@@ -59,6 +59,28 @@ type LedgerRow = {
   after: Partial<Record<Field, string | null>>;
 };
 
+/**
+ * 원장의 칸 → DB 갱신 값. `content` · `answer` 는 비울 수 없는 칸이라 **빈 값이면 던진다** —
+ * 조용히 건너뛰면 «덮었다»가 거짓말이 된다. `solution` 만 비울 수 있다.
+ */
+function toData(values: Partial<Record<Field, string | null>>): {
+  answer?: string;
+  content?: string;
+  solution?: string | null;
+} {
+  const data: { answer?: string; content?: string; solution?: string | null } =
+    {};
+  for (const f of ["answer", "content"] as const) {
+    if (!(f in values)) continue;
+    const v = values[f];
+    if (typeof v !== "string")
+      throw new Error(`${f} 는 비울 수 없는 칸이다 — 원장을 확인하라`);
+    data[f] = v;
+  }
+  if ("solution" in values) data.solution = values.solution ?? null;
+  return data;
+}
+
 function renderBad(text: string | null | undefined): string | null {
   if (!text) return null;
   const html = renderMathHtml(text);
@@ -145,7 +167,10 @@ async function run(doApply: boolean): Promise<void> {
   console.log(`원장 ${path.relative(REPO, LEDGER)}`);
   await prisma.$transaction(
     todo.map((t) =>
-      prisma.problem.update({ where: { id: t.problemId }, data: t.after }),
+      prisma.problem.update({
+        where: { id: t.problemId },
+        data: toData(t.after),
+      }),
     ),
   );
   const back = await prisma.problem.findMany({
@@ -185,7 +210,10 @@ async function revert(): Promise<void> {
       skipped += 1;
       continue;
     }
-    await prisma.problem.update({ where: { id: t.problemId }, data: t.before });
+    await prisma.problem.update({
+      where: { id: t.problemId },
+      data: toData(t.before),
+    });
     restored += 1;
   }
   console.log(`되돌림 ${restored} · 남이 고쳐서 건너뜀 ${skipped}`);
