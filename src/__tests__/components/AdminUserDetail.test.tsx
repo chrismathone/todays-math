@@ -10,6 +10,10 @@ import AdminUserDetail from "@/components/admin/AdminUserDetail";
 import AdminDocumentPreview from "@/components/admin/AdminDocumentPreview";
 import { adminIdentity, pendingAccount } from "./adminFixtures";
 
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ replace: vi.fn(), refresh: vi.fn() }),
+}));
+
 const fetchMock = vi.fn<typeof fetch>();
 const draft = {
   id: "draft-1",
@@ -77,6 +81,7 @@ describe("administrator user detail", () => {
     fetchMock.mockImplementation(() => new Promise(() => {}));
     render(
       <AdminUserDetail
+        branchId="unassigned"
         userId={pendingAccount.id}
         identity={adminIdentity}
         initialAccount={pendingAccount}
@@ -104,7 +109,11 @@ describe("administrator user detail", () => {
       return Response.json({ data: pendingAccount });
     });
     render(
-      <AdminUserDetail userId={pendingAccount.id} identity={adminIdentity} />,
+      <AdminUserDetail
+        branchId="unassigned"
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+      />,
     );
     const trigger = await screen.findByRole("button", {
       name: /중1 방정식 연습/,
@@ -145,7 +154,11 @@ describe("administrator user detail", () => {
       return Response.json({ data: pendingAccount });
     });
     render(
-      <AdminUserDetail userId={pendingAccount.id} identity={adminIdentity} />,
+      <AdminUserDetail
+        branchId="unassigned"
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+      />,
     );
     fireEvent.click(
       await screen.findByRole("button", { name: /중1 방정식 연습/ }),
@@ -316,6 +329,7 @@ describe("administrator user detail", () => {
     });
     const { container } = render(
       <AdminUserDetail
+        branchId={account.branchId ?? "unassigned"}
         userId={account.id}
         identity={adminIdentity}
         initialAccount={account}
@@ -368,6 +382,7 @@ describe("administrator user detail", () => {
     );
     render(
       <AdminUserDetail
+        branchId="unassigned"
         userId={pendingAccount.id}
         identity={adminIdentity}
         initialAccount={pendingAccount}
@@ -419,6 +434,7 @@ describe("administrator user detail", () => {
     );
     render(
       <AdminUserDetail
+        branchId="unassigned"
         userId={pendingAccount.id}
         identity={adminIdentity}
         initialAccount={pendingAccount}
@@ -465,6 +481,7 @@ describe("administrator user detail", () => {
     });
     render(
       <AdminUserDetail
+        branchId="unassigned"
         userId={pendingAccount.id}
         identity={adminIdentity}
         initialAccount={pendingAccount}
@@ -491,13 +508,17 @@ describe("administrator user detail", () => {
       ),
     );
     render(
-      <AdminUserDetail userId={pendingAccount.id} identity={adminIdentity} />,
+      <AdminUserDetail
+        branchId="unassigned"
+        userId={pendingAccount.id}
+        identity={adminIdentity}
+      />,
     );
     expect(await screen.findByRole("alert")).toHaveTextContent(
       "사용자를 찾지 못했습니다.",
     );
     expect(
-      screen.getByRole("link", { name: "← 계정 관리로 돌아가기" }),
-    ).toHaveAttribute("href", "/admin");
+      screen.getByRole("link", { name: "← 미소속 계정 목록으로 돌아가기" }),
+    ).toHaveAttribute("href", "/admin/branches/unassigned");
   });
 });

@@ -2,22 +2,14 @@
 
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
+import type {
+  BranchListResponse,
+  BranchSummary,
+} from "@/contracts/branchAdmin.contract";
 import AdminHeader from "./AdminHeader";
 import { accountRequest, requestMessage } from "./accountRequests";
 import s from "./admin.module.css";
 
-type Branch = {
-  id: string;
-  name: string;
-  createdAt: string;
-  _count: { users: number };
-  users: {
-    id: string;
-    name: string;
-    email: string;
-    suspendedAt: string | null;
-  }[];
-};
 type Created = {
   branch: { id: string; name: string };
   owner: { id: string; name: string; email: string };
@@ -29,7 +21,10 @@ export default function AdminBranches({
 }: {
   identity: { name: string; email: string };
 }) {
-  const [branches, setBranches] = useState<Branch[]>([]);
+  const [branches, setBranches] = useState<BranchSummary[]>([]);
+  const [unassigned, setUnassigned] = useState<
+    BranchListResponse["meta"]["unassigned"] | null
+  >(null);
   const [branchName, setBranchName] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
@@ -70,11 +65,13 @@ export default function AdminBranches({
   }
 
   async function reload() {
+    setLoading(true);
     try {
-      const response = await accountRequest<{ data: Branch[] }>(
+      const response = await accountRequest<BranchListResponse>(
         "/api/admin/branches",
       );
       setBranches(response.data);
+      setUnassigned(response.meta.unassigned);
       setError("");
     } catch (cause) {
       setError(requestMessage(cause));
@@ -85,11 +82,14 @@ export default function AdminBranches({
 
   useEffect(() => {
     const controller = new AbortController();
-    accountRequest<{ data: Branch[] }>("/api/admin/branches", {
+    accountRequest<BranchListResponse>("/api/admin/branches", {
       signal: controller.signal,
     })
       .then((response) => {
-        if (!controller.signal.aborted) setBranches(response.data);
+        if (!controller.signal.aborted) {
+          setBranches(response.data);
+          setUnassigned(response.meta.unassigned);
+        }
       })
       .catch((cause) => {
         if (!controller.signal.aborted) setError(requestMessage(cause));
@@ -139,7 +139,7 @@ export default function AdminBranches({
               지점 관리 <span className={s.titleAccent}>/ 조직 설정</span>
             </h1>
             <p className={s.subtitle}>
-              지점을 개설하고 원장 계정을 발급하거나 지점명을 변경합니다.
+              지점을 개설하고 각 지점의 계정과 사용 메뉴를 관리합니다.
             </p>
           </div>
         </div>
@@ -248,7 +248,9 @@ export default function AdminBranches({
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <strong>{branch.name}</strong>
                     <span className={s.branchMeta}>
-                      직원 {branch._count.users}명 · 개설{" "}
+                      계정 {branch._count.users}명 · 승인 대기{" "}
+                      {branch.pendingCount}명 · 사용 메뉴 {branch.menus.length}
+                      개 · 개설{" "}
                       {new Date(branch.createdAt).toLocaleDateString("ko-KR", {
                         timeZone: "Asia/Seoul",
                       })}
@@ -261,7 +263,7 @@ export default function AdminBranches({
                           <span key={owner.id}>
                             {index ? ", " : ""}
                             <Link
-                              href={`/admin/users/${encodeURIComponent(owner.id)}`}
+                              href={`/admin/branches/${encodeURIComponent(branch.id)}/users/${encodeURIComponent(owner.id)}`}
                             >
                               {owner.name} ({owner.email})
                             </Link>
@@ -270,6 +272,12 @@ export default function AdminBranches({
                         ))
                       : "없음"}
                   </p>
+                  <Link
+                    className={s.textLink}
+                    href={`/admin/branches/${encodeURIComponent(branch.id)}`}
+                  >
+                    지점 관리 →
+                  </Link>
                   {editingBranch === branch.id ? (
                     <form
                       className={s.branchRename}
@@ -320,6 +328,18 @@ export default function AdminBranches({
               ))}
             </div>
           )}
+          {unassigned ? (
+            <div className={s.branchItem}>
+              <strong>미소속 계정</strong>
+              <p className={s.branchMeta}>
+                계정 {unassigned.count}명 · 승인 대기 {unassigned.pendingCount}
+                명
+              </p>
+              <Link className={s.textLink} href="/admin/branches/unassigned">
+                미소속 계정 관리 →
+              </Link>
+            </div>
+          ) : null}
         </section>
       </main>
     </div>
