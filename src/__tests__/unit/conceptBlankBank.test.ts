@@ -50,6 +50,16 @@ const PER_LEVEL = 10;
 /** 까닭을 적고 빼더라도 난이도 한 칸에 남아야 하는 장수(26 §11). */
 const MIN_PER_LEVEL = 1;
 const LEVELS = ["하", "중", "상"] as const;
+/** 학년마다 C 지면 빈칸보다 넓은 핵심어의 상한 — 줄기만 한다(2026-10-03 처음 잰 값 · 끝은 0). */
+const WIDE_KEYWORD_CEILING: Readonly<Record<string, number>> = {
+  e3: 0,
+  e4: 3,
+  e5: 0,
+  e6: 0,
+  m1: 0,
+  m2: 0,
+  m3: 0,
+};
 const squash = (s: string) => s.replace(/\s+/g, "");
 
 const everyItem = (b = CONCEPT_BLANK_BANK) => [
@@ -284,6 +294,26 @@ describe("concept blank bank", () => {
       .map((c) => c.id);
     // 자를 세울 때 넘던 다섯(초3 셋 · 중1 둘)은 학년 트랙이 줄였다 — 이제 하나도 없다.
     expect(wide).toEqual([]);
+  });
+
+  // 문장 빈칸(C)은 핵심어 하나하나를 빈칸 하나로 바꾼다 — 그 빈칸도 `BLANK_WIDTH.max` 에서 잘린다(2026-10-03 — 까닭 절을 통째로
+  // 감싼 핵심어가 202개 · 처음 은행 32개). 학년 트랙이 줄이는 중이라 학년마다 지금 수를 넘지 않게만 잠근다 — 줄면 리드가 낮춘다(끝은 0).
+  it("no grade adds cloze keywords wider than the blank the sheet gives them", () => {
+    const { perEm, pad, max } = BLANK_WIDTH;
+    const wide = new Map<string, string[]>();
+    for (const c of CONCEPT_BLANK_BANK.concepts)
+      for (const key of blankKeywords(c.definition))
+        if (inkEm(key) * perEm + pad > max) {
+          const grade = c.id.split("-")[0]!;
+          wide.set(grade, [...(wide.get(grade) ?? []), c.id]);
+        }
+    const over = Object.entries(WIDE_KEYWORD_CEILING).flatMap(
+      ([grade, ceiling]) => {
+        const n = wide.get(grade)?.length ?? 0;
+        return n > ceiling ? [`${grade} ${n} > ${ceiling}`] : [];
+      },
+    );
+    expect(over).toEqual([]);
   });
 
   it("the cross-form ruler says both yes and no", () => {
