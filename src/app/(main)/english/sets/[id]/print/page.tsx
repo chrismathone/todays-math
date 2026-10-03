@@ -51,7 +51,6 @@ export default async function EnglishSetPrintPage({
   ]);
   if (!session) redirect("/login");
   if (
-    !session.isAdmin &&
     !englishRouteAllowed(
       session.menus ?? [],
       "GET",

@@ -43,7 +43,7 @@ export async function teacherGate(request: Request) {
     !accountRouteAllowed(access.account, request.method, path) ||
     (!access.account.isAdmin &&
       routeAccessFor(access.account.role, request.method, path) === "deny") ||
-    (!access.account.isAdmin && !access.account.menus.includes("srs"))
+    !access.account.menus.includes("srs")
   )
     return {
       account: null,

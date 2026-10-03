@@ -16,7 +16,7 @@ const teacher: AccountAccess = {
   isAdmin: false,
   approvalStatus: "approved",
   branchId: "branch-a",
-  menus: [],
+  menus: ["english-listening"],
 };
 const pilot = { enabled: true, grantedUserIds: [teacher.id] };
 const mediaTarget = { setId: "set-a", assetId: "asset-a" };
@@ -70,6 +70,16 @@ function facts(): ListeningStudentAccessFacts {
 }
 
 describe("listening pilot teacher access", () => {
+  it("does not let a pilot grant bypass the effective staff menu cap", () => {
+    for (const isSuperAdmin of [false, true])
+      expect(
+        canUseListeningTeacher(
+          { ...teacher, isAdmin: true, isSuperAdmin, menus: [] },
+          pilot,
+          [],
+        ),
+      ).toBe(false);
+  });
   it("preserves the stored normalized legacy English block until explicitly overridden", () => {
     const disabled = ["english-school", "english-maker", "english-library"];
     expect(canUseListeningTeacher(teacher, pilot, disabled)).toBe(false);

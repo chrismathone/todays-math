@@ -1,10 +1,7 @@
 import "server-only";
 import type { Prisma } from "@prisma/client";
-import {
-  ALL_WORKSPACE_MENUS,
-  workspaceMenusFromDisabled,
-  type ManagedAccount,
-} from "@/contracts/accountAccess.contract";
+import type { ManagedAccount } from "@/contracts/accountAccess.contract";
+import { effectiveWorkspaceMenuPolicy } from "@/lib/workspaceMenuPolicy.server";
 
 export const managedAccountSelect = {
   id: true,
@@ -15,7 +12,7 @@ export const managedAccountSelect = {
   isSuperAdmin: true,
   branchId: true,
   branchRole: true,
-  branch: { select: { name: true } },
+  branch: { select: { name: true, disabledMenus: true, menuRevision: true } },
   approvalStatus: true,
   disabledMenus: true,
   createdAt: true,
@@ -38,9 +35,7 @@ export function managedAccount(
   return {
     ...data,
     branchName: branch?.name ?? null,
-    menus: user.isAdmin
-      ? ALL_WORKSPACE_MENUS
-      : workspaceMenusFromDisabled(disabledMenus),
+    ...effectiveWorkspaceMenuPolicy({ ...data, disabledMenus, branch }),
     createdAt: createdAt.toISOString(),
     updatedAt: updatedAt.toISOString(),
     suspendedAt: suspendedAt?.toISOString() ?? null,

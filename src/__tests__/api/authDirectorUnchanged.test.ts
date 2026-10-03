@@ -249,10 +249,43 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
     expect(Object.keys(session ?? {}).sort()).toEqual(["expires", "user"]);
   });
 
-  it("관리자는 꺼 둔 메뉴가 있어도 전 메뉴다", async () => {
+  it("최고관리자도 저장된 개인 메뉴 차단을 따른다", async () => {
     seedDirector({ isAdmin: true, isSuperAdmin: true });
     resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
-    expect((await auth())?.user?.menus).toEqual(ALL_WORKSPACE_MENUS);
+    expect((await auth())?.user?.menus).toEqual(
+      ALL_WORKSPACE_MENUS.filter((menu) => menu !== "studio"),
+    );
+  });
+  it("refreshes branch menu policy through the existing session cookie without logout", async () => {
+    seedDirector({
+      isAdmin: true,
+      isSuperAdmin: true,
+      branchId: "branch-a",
+      branchRole: "owner",
+      branch: { disabledMenus: [], menuRevision: 1 },
+    });
+    await signInDirector();
+    const cookie = `authjs.session-token=${sessionCookieFromJar()}`;
+    resetRequest({ cookie });
+    const before = await auth();
+    expect(before?.user?.menus).toContain("bank");
+    expect(before?.user?.menus).not.toContain("studio");
+    const stored = store.users.get(DIRECTOR_ID)!;
+    stored.branch = {
+      disabledMenus: ["bank", "english-listening"],
+      menuRevision: 2,
+    };
+    resetRequest({ cookie });
+    const blocked = await auth();
+    expect(blocked?.user?.id).toBe(DIRECTOR_ID);
+    expect(blocked?.user?.isAdmin).toBe(true);
+    expect(blocked?.user?.menus).not.toContain("bank");
+    expect(blocked?.user?.menus).not.toContain("english-listening");
+    stored.branch = { disabledMenus: [], menuRevision: 3 };
+    resetRequest({ cookie });
+    const restored = await auth();
+    expect(restored?.user?.menus).toContain("bank");
+    expect(restored?.user?.menus).not.toContain("studio");
   });
 
   it("listening pilot grants and revocations refresh an existing teacher session", async () => {

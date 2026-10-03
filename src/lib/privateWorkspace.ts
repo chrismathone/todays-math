@@ -89,7 +89,6 @@ export async function authorizePrivate(request: Request, ownerId?: string) {
     };
   if (
     !ownerId &&
-    !access.account!.isAdmin &&
     !access.account!.menus.some((menu) =>
       ["studio", "export", "library", "conceptBlank"].includes(menu),
     )

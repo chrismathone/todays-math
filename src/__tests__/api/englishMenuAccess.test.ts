@@ -82,6 +82,37 @@ describe("English handler authorization without proxy", () => {
         .status,
     ).toBe(403);
   });
+  it.each([false, true])(
+    "denies direct English writes for a capped owner/superadmin=%s",
+    async (isSuperAdmin) => {
+      mocks.session.mockResolvedValue({
+        ...session,
+        isAdmin: true,
+        isSuperAdmin,
+        branchRole: "owner",
+        branchId: "branch-a",
+        menus: [],
+      });
+      const context = {
+        params: Promise.resolve({ id: "20000000-0000-4000-8000-000000000001" }),
+      };
+      expect(
+        (await createExam(request("POST", "/api/english/exams"))).status,
+      ).toBe(403);
+      expect(
+        (
+          await createSet(
+            request("POST", "/api/english/exams/exam/sets"),
+            context,
+          )
+        ).status,
+      ).toBe(403);
+      expect(
+        (await updateSet(request("PUT", "/api/english/sets/set"), context))
+          .status,
+      ).toBe(403);
+    },
+  );
   it("keeps missing-session and cross-origin writes blocked", async () => {
     mocks.session.mockResolvedValue(null);
     expect(

@@ -68,6 +68,18 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllEnvs());
 
 describe("반 복습 현황 — GET /api/classes/{id}/math-srs", () => {
+  it.each([false, true])(
+    "denies direct class/course endpoints after the effective menu cap, superadmin=%s",
+    async (isSuperAdmin) => {
+      world.session = sameBranchAdmin({ isSuperAdmin, menus: [] });
+      expect((await readClass()).status).toBe(403);
+      expect((await readDetail()).status).toBe(403);
+      expect((await writePlan()).status).toBe(403);
+      expect((await readRoster()).status).toBe(403);
+      expect(world.writes).toBe(0);
+      expect(world.rows.size).toBe(0);
+    },
+  );
   it("다른 지점 관리자는 403 · 같은 지점 관리자는 200", async () => {
     world.session = otherBranchAdmin();
     expect((await readClass()).status).toBe(403);

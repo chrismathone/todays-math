@@ -74,6 +74,7 @@ const BRANCH_ADMIN: Viewer = {
   email: "branch-admin@example.com",
   name: "지점 관리자",
   isAdmin: true,
+  menus: ["english-school", "english-maker", "english-library"],
   branchId: BRANCH_A,
   branchRole: "owner",
 };
