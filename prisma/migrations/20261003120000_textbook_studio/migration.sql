@@ -523,6 +523,7 @@ CREATE TABLE "textbook_publish_step" (
   "user_id" UUID NOT NULL,
   "request_id" UUID NOT NULL,
   "idx" INTEGER NOT NULL,
+  "kind" VARCHAR(8) NOT NULL DEFAULT 'render',
   "view" VARCHAR(8) NOT NULL,
   "section_ids" JSONB NOT NULL,
   "state" VARCHAR(8) NOT NULL DEFAULT 'queued',
@@ -539,6 +540,8 @@ CREATE TABLE "textbook_publish_step" (
   CONSTRAINT "textbook_publish_step_user_id_request_id_fkey" FOREIGN KEY ("user_id", "request_id") REFERENCES "textbook_request"("user_id", "request_id") ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT "textbook_publish_step_sha256_fkey" FOREIGN KEY ("sha256") REFERENCES "textbook_blob"("sha256") ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT "textbook_publish_step_idx_check" CHECK ("idx" >= 0),
+  -- render = 구획 묶음을 조판한다 · merge = 그 조각들을 한 파일로 합치고 QR 을 다시 읽는다
+  CONSTRAINT "textbook_publish_step_kind_check" CHECK ("kind" IN ('render', 'merge')),
   CONSTRAINT "textbook_publish_step_view_check" CHECK ("view" IN ('student', 'answers')),
   CONSTRAINT "textbook_publish_step_section_ids_array" CHECK (jsonb_typeof("section_ids") = 'array'),
   CONSTRAINT "textbook_publish_step_state_check" CHECK ("state" IN ('queued', 'running', 'done', 'failed')),
@@ -1107,7 +1110,7 @@ BEGIN
     RAISE EXCEPTION 'textbook: finished publish step %/% is immutable', OLD."request_id", OLD."idx" USING ERRCODE = '23514';
   END IF;
   IF NEW."user_id" <> OLD."user_id" OR NEW."request_id" <> OLD."request_id" OR NEW."idx" <> OLD."idx"
-     OR NEW."view" <> OLD."view" OR NEW."section_ids" IS DISTINCT FROM OLD."section_ids" THEN
+     OR NEW."kind" <> OLD."kind" OR NEW."view" <> OLD."view" OR NEW."section_ids" IS DISTINCT FROM OLD."section_ids" THEN
     RAISE EXCEPTION 'textbook: publish step %/% plan is immutable', OLD."request_id", OLD."idx" USING ERRCODE = '23514';
   END IF;
   IF NEW."attempts" < OLD."attempts" THEN

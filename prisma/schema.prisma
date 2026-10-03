@@ -2016,6 +2016,8 @@ model TextbookPublishStep {
   userId         String    @map("user_id") @db.Uuid
   requestId      String    @map("request_id") @db.Uuid
   idx            Int
+  /// render(구획 묶음 조판) · merge(조각을 합치고 QR 을 다시 읽는다)
+  kind           String    @default("render") @db.VarChar(8)
   /// student · answers
   view           String    @db.VarChar(8)
   sectionIds     Json      @map("section_ids") @db.JsonB

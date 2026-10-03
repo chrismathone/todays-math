@@ -107,3 +107,160 @@ export const sampleConfig = (
   videoPolicy: "optional",
   ...overrides,
 });
+
+/** 머리만 있는 PNG — 치수를 읽을 수 있을 만큼(서명 + IHDR). 내용은 `seed` 로 가른다 */
+export function tinyPng(width: number, height: number, seed = ""): Buffer {
+  const head = Buffer.alloc(24);
+  Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]).copy(head, 0);
+  head.writeUInt32BE(13, 8);
+  head.write("IHDR", 12, "latin1");
+  head.writeUInt32BE(width, 16);
+  head.writeUInt32BE(height, 20);
+  return Buffer.concat([head, Buffer.from(seed)]);
+}
+
+export interface BankProblemInput {
+  content?: string;
+  answer?: string;
+  solution?: string | null;
+  questionType?: string | null;
+  difficulty?: string;
+  reviewStatus?: "pending" | "approved" | "rejected";
+  directUseAllowed?: boolean;
+  pool?: "shared" | "private";
+  figureSvg?: string | null;
+  figureUrls?: string[];
+  figureDims?: number[];
+  figureSourceMm?: number[];
+  choiceFigureIndex?: number[];
+  score?: number | null;
+}
+
+/** 출제 자격이 있는 은행 문항(기본값) — 칸을 덮어써 자격을 잃게 하거나 그림을 단다 */
+export async function insertBankProblem(
+  db: Db,
+  unitId: string,
+  input: BankProblemInput = {},
+): Promise<{ id: string; code: string }> {
+  const id = randomUUID();
+  const { rows } = await db.query<{ problem_code: string }>(
+    `INSERT INTO "problem" ("id", "unit_id", "source", "difficulty", "problem_type", "question_type", "content", "answer",
+        "solution", "figure_svg", "figure_urls", "figure_dims", "figure_source_mm", "choice_figure_index", "score",
+        "review_status", "direct_use_allowed", "pool", "updated_at")
+     VALUES ($1, $2, 'manual', $3::"difficulty", '단답형', $4, $5, $6, $7, $8,
+             ARRAY(SELECT jsonb_array_elements_text($9::jsonb)), ARRAY(SELECT (jsonb_array_elements_text($10::jsonb))::int),
+             ARRAY(SELECT (jsonb_array_elements_text($11::jsonb))::float8), ARRAY(SELECT (jsonb_array_elements_text($12::jsonb))::int),
+             $13, $14::"review_status", $15, $16::"problem_pool", $17)
+     RETURNING "problem_code"`,
+    [
+      id,
+      unitId,
+      input.difficulty ?? "기본",
+      input.questionType ?? null,
+      input.content ?? "다음을 계산하시오.",
+      input.answer ?? "3",
+      input.solution === undefined ? "풀이" : input.solution,
+      input.figureSvg ?? null,
+      JSON.stringify(input.figureUrls ?? []),
+      JSON.stringify(input.figureDims ?? []),
+      JSON.stringify(input.figureSourceMm ?? []),
+      JSON.stringify(input.choiceFigureIndex ?? []),
+      input.score ?? null,
+      input.reviewStatus ?? "approved",
+      input.directUseAllowed ?? true,
+      input.pool ?? "shared",
+      sqlNow(),
+    ],
+  );
+  return { id, code: rows[0]!.problem_code };
+}
+
+export const TEST_ORIGIN = "https://textbook.todays-math.kr";
+
+/**
+ * 결정적인 대역 조판기가 든 발행 의존물 — Chromium 을 띄우지 않는다.
+ * 쪽 계획 · 다시 읽은 QR 은 교환 형식에서 그대로 지어낸다(서버 쪽 차례와 검증을 재는 시험용이다).
+ */
+export function fakePublishDeps(): import("@/lib/textbook/publish/rendererAdapter").PublishDeps {
+  type QrReadback = import("@/lib/textbook/publish/rendererAdapter").QrReadback;
+  return {
+    officialOrigin: TEST_ORIGIN,
+    now: () => new Date("2026-10-03T03:00:00.000Z"),
+    validate: async () => [],
+    freezeConcept: (concept) => ({
+      ...concept,
+      frozen: {
+        contentHash: fakeHash(`frozen:${concept.conceptKey}`),
+        parserVersion: "p1",
+        compositionVersion: "c1",
+        mappingVersion: concept.mappingVersion,
+        sections: [],
+        entries: [],
+        selection: [],
+        assetHashes: [],
+      },
+    }),
+    renderer: {
+      rendererVersion: "fake.renderer.v1",
+      templateVersion: "fake.template.v1",
+      async renderChunk(input) {
+        const flat = input.exchange.units.flatMap((unit) =>
+          unit.sections.map(
+            (section) => `${unit.unitKey}/${section.sectionKey}`,
+          ),
+        );
+        const keys = new Set(input.sectionIndices.map((index) => flat[index]!));
+        const items = input.exchange.items.filter((item) =>
+          keys.has(`${item.unitKey}/${item.sectionKey}`),
+        );
+        const concepts = (
+          input.exchange.conceptIntegration?.concepts ?? []
+        ).filter(
+          (concept) =>
+            concept.sectionKey &&
+            keys.has(`${concept.unitKey}/${concept.sectionKey}`),
+        );
+        const qrChecks: QrReadback[] = [
+          ...items.map((item) =>
+            input.exchange.qrTargets.find((qr) => qr.itemId === item.itemId)!,
+          ),
+          ...concepts.flatMap((concept) =>
+            (input.exchange.conceptQrTargets ?? []).filter(
+              (qr) => qr.conceptKey === concept.conceptKey,
+            ),
+          ),
+        ].map((qr) => ({
+          qrTargetId: qr.qrTargetId,
+          url: qr.url,
+          decodedUrl: qr.url,
+          physicalPageIndex: input.firstPhysicalPageIndex,
+        }));
+        return {
+          pdf: Buffer.from(
+            `%PDF-fake ${input.variant} ${input.sectionIndices.join(",")} ${randomUUID()}`,
+          ),
+          pageCount: 2,
+          pageMap: items.map((item) => ({
+            itemId: item.itemId,
+            physicalPageIndex: input.firstPhysicalPageIndex,
+            printedPageLabel: String(input.firstPhysicalPageIndex),
+            column: 1 as const,
+          })),
+          issues: [],
+          qrChecks,
+          nextPhysicalPageIndex: input.firstPhysicalPageIndex + 2,
+          carry: { qrChecks },
+        };
+      },
+      async mergeChunks(chunks) {
+        return {
+          pdf: Buffer.concat(chunks.map((chunk) => Buffer.from(chunk.pdf))),
+          pageCount: chunks.reduce((sum, chunk) => sum + chunk.pageCount, 0),
+          qrChecks: chunks.flatMap(
+            (chunk) => (chunk.carry as { qrChecks: QrReadback[] }).qrChecks,
+          ),
+        };
+      },
+    },
+  };
+}
