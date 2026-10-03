@@ -115,6 +115,24 @@
 **이름 규약**: `<앞머리>-<대상>-<무엇>.<확장자>`. 새 것도 이 앞머리 중 하나를 쓴다.
 머리 주석에 **① 무엇을 하나 ② 왜 이렇게 하나 ③ 무엇을 안 바꾸나**를 적는다.
 
+### 3.1 적재본이 지금 엔진과 같은가 — `refresh-engine-content.ts` (2026-10-03)
+
+엔진(초등 · 중등 생성기 · 객관식 파생)을 고쳤으면 **적재본 드라이런이 0 이 될 때까지**가 일의 끝이다.
+
+```bash
+# 읽기만 한다(3 ~ 5분) — 갈래: same · solution · choices · stem · 못 맞댐
+npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --all-families
+# 글은 같고 그림만 바뀌는 수리는 이것을 줘야 잡힌다(목록은 문항류 이름 · 끝의 * 는 앞머리 맞춤)
+#   … --figure-families <목록.json>
+# 덮기: 원장이 먼저 써진다(scripts/qa/reports/refresh-engine-content/<이름>.json.gz)
+ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-content.ts --all-plans --all-families --lock-unmatched --label <이름> --apply
+```
+
+- 적재 계획 29개를 **적재기와 같은 코드**(`buildElemRows` · `buildMiddleRows` · `buildComboRows`)로 다시 돌려 `externalId` 로 맞댄다 — 형식을 옮겨 적지 않는다.
+- `--families <목록.json>` 만 주면 그 문항류와 «고칠 까닭이 있는 보기»(같은 값 · 소수 정답 · 초등 음수)만 덮는다. 그 밖에서 발문이 다르면 **안 덮고 세어 찍는다.**
+- 기출 초안을 고쳤으면 `apply-exam-draft-review.ts` — 원장의 before 와 **글자까지 같을 때만** 덮는다.
+- 그림만 전부 다시 그리는 옛 도구는 `refresh-engine-figures.ts`(계획 하나 · 셰이드).
+
 ---
 
 ## 4. 이 데이터에 대해 이미 잰 것 — 다시 재지 말 것
@@ -153,6 +171,25 @@
 
 > 🔴 이 검사를 **유니코드 기호(∠·°·⊥)로 세면 6건**밖에 안 잡힌다. 본문은 LaTeX
 > (`$\triangle ABC$`·`$\angle C=45\degree$`)라 그렇다. §2-1 의 함정이다.
+
+### 4.1 2026-10-03 저녁 — 엔진 적재본과 지금 엔진 (일반 문제은행 외부 검토의 반영)
+
+| 무엇 | 값 | 어떻게 |
+| --- | ---: | --- |
+| 전체 문항 | 100,891 | `problem.groupBy(source)` — 자작(엔진) 100,794 · 기출 82 · AI 10 · 변형 5 |
+| 엔진 적재본 | 100,794 | `externalId` 가 `engine-` 으로 시작 (초등 55,782 · 중등 44,868 · 결합 144 · **고등 0**) |
+| 기출이 DB 에 있는 편 | 4편 82행 | 동도 16 · 강동 21 · 경산여 26 · 정화 19 — 저장소 초안은 25편 533행 |
+| 객관식 정답의 꼴 | 동그라미 하나 47,798 · 여럿 135 · 숫자 0 | `groupBy(answer)` |
+| 채점 기록 | `test_result` 0 · `problem_answer` 0 | `count()` |
+| **고치기 전** 엔진과 다른 적재본 | 발문 1,707 · 풀이 1,740 · 보기 1,049 · 못 맞댐 1,782 | `refresh-engine-content.ts --all-plans` (판 `65720e207`) |
+| 고친 뒤 덮은 행 | 7,130 (발문 2,075 · 보기 3,040 · 풀이 1,740 · 그림만 248) + 잠금 27 | 같은 도구 `--all-families --figure-families … --lock-unmatched --apply` |
+| **적용 뒤** | 같음 99,016 · 다른 것 0 · 못 맞댐 1,778(전부 잠긴 행) | 같은 도구 드라이런 |
+| 출제 가능한 자작 문항 | 99,016 (잠김 1,778) | `groupBy(source, directUseAllowed)` |
+| 적재된 그림 가운데 «라벨 조판 전» 옛 그림 | 7,199 / 20,664 → 0 (조판된 그림 8,690 → 15,879) | 같은 도구 `--figure-families ["*"]` — 전수로 다시 그려 견준다(약 40분) |
+
+> ⚠️ «못 맞댐»은 지금 엔진 + 적재 계획으로 **되만들 수 없는** 행이다(변형 가르기가 바뀌어 열쇠가 밀렸거나, 엔진이 더는 안 내는 발문).
+> 2026-10-03 에 남아 있던 출제 가능 27행은 잠갔다(«내각과 외각의 비가 4:4» · «톱니 수가 각각 30개, 30개» 같은 옛 결함).
+> 🔴 그림 속 글자를 셀 때 `<text>` 만 보면 **조판된 라벨**(`<g data-label>`)을 놓친다 — 제품의 `labelTexts` 를 쓴다(20번 교훈).
 
 ---
 

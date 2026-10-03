@@ -1996,11 +1996,11 @@ function entry(
   };
 }
 
-/** 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다(시험이 대조한다). */
+/** 색인의 유형 번호는 보존하고, 표시 제목의 OCR 잔재만 바로잡았다. */
 export const H1_MATRIX: HighTypeEntry[] = [
   entry("01", "행렬 구하기", SEC.행렬, t01),
   entry("02", "두 행렬이 서로 같을 조건", SEC.행렬, t02),
-  entry("03", ", 행렬의 덧셈 뺄셈과 실수배", SEC.덧셈, t03),
+  entry("03", "행렬의 덧셈, 뺄셈과 실수배", SEC.덧셈, t03),
   entry("04", "조건을 만족시키는 행렬", SEC.덧셈, t04),
   entry("05", "행렬의 변형", SEC.덧셈, t05),
   entry("06", "행렬의 곱셈", SEC.곱셈, t06),

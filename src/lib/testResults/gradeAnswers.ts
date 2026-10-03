@@ -2,7 +2,7 @@
  * 자동 채점 — 순수 함수. DB/AI에 의존하지 않는다(테스트 용이성 우선, 06-tasks.md T7.1).
  *
  * 채점 규칙:
- * - 객관식(selectedChoice != null): Problem.answer(정답 텍스트)와 선택 번호 문자열이 일치하면 정답.
+ * - 객관식(selectedChoice != null): Problem.answer의 단일 동그라미·숫자 번호와 선택 번호가 일치하면 정답.
  *   정답이면 배점 전액, 오답이면 0점.
  * - 서술형(essayScore != null): 0~100점(배점 대비 비율)으로 이미 채점되어 들어온다 —
  *   pointsEarned = essayScore/100 * 배점. ESSAY_PASS_THRESHOLD(60점) 이상이면 "정답"으로 집계한다
@@ -20,6 +20,7 @@
  *    보정을 거치지 않은 시험지는 여전히 이 문제가 남아 있다(REPORT.md 참조).
  */
 import type { Difficulty } from "@/contracts/common.contract";
+import { circledValueRaw } from "@/lib/math/circledNumber";
 
 /** 서술형 정답 판정 기준선(0~100점 중) — 잠정. 확정 필요 시 계약에 노출해 조정한다. */
 export const ESSAY_PASS_THRESHOLD = 60;
@@ -36,7 +37,7 @@ export interface GradingProblem {
   id: string;
   unitId: string;
   difficulty: Difficulty;
-  /** 정답 텍스트 — 객관식은 정답 선택 번호를 문자열로 저장한다고 전제(예: "3"). */
+  /** 정답 텍스트 — 객관식은 동그라미 번호(예: "③"), 옛 자료는 숫자(예: "3"). */
   answer: string;
   /** 원본 배점(`Problem.score`). 없으면 균등 배분. */
   score: number | null;
@@ -109,7 +110,15 @@ export function gradeAnswers(
       pointsEarned = (answer.essayScore / 100) * maxPoints;
       isCorrect = answer.essayScore >= ESSAY_PASS_THRESHOLD;
     } else if (answer.selectedChoice !== null) {
-      isCorrect = String(answer.selectedChoice) === problem.answer.trim();
+      const correct = problem.answer.trim();
+      // 번호 판독은 기존 원문자 규칙을 쓴다. 한 글자일 때만 읽어야 "①, ④"를
+      // ①로 잘라 맞았다고 하지 않는다. 복수 정답은 현재 selectedChoice: number
+      // 계약으로 채점할 수 없으므로 단일 선택에 정답 점수를 주지 않는다.
+      const circled = correct.length === 1 ? circledValueRaw(correct) : 0;
+      isCorrect =
+        circled > 0
+          ? answer.selectedChoice === circled
+          : String(answer.selectedChoice) === correct;
       pointsEarned = isCorrect ? maxPoints : 0;
     }
     // 둘 다 null(미답)이면 isCorrect=false, pointsEarned=0 기본값 유지.

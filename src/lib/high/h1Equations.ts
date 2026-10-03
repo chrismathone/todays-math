@@ -1548,7 +1548,7 @@ function t13(rng: Rng): Body {
 // 공통인 근을 갖는 방정식
 // 꼴 0 (기본·대표): 계수 자리를 바꾼 두 이차방정식 — 두 식이 같아지는 경우를 뺀다
 // 꼴 1 (기본): 일차항 계수만 다른 두 이차방정식 — 빼면 공통인 근이 바로 나온다
-// 꼴 2 (응용): 오직 한 개의 공통인 근 — 두 식이 일치하는 k 를 뺀다
+// 꼴 2 (응용): 오직 한 개의 공통인 근 — 일치할 때 중근인 조합은 제외한다
 
 function t14(rng: Rng): Body {
   const mode = randInt(rng, 0, 2);
@@ -1608,6 +1608,8 @@ function t14(rng: Rng): Body {
     const Q = -k0 * (w + P) - w * w;
     const R = randInt(rng, -4, 4);
     if (R === k0) return null;
+    // k=R에서 두 식이 일치해도 중근이면 공통근은 하나이므로 두 번째 답이 된다.
+    if (R * R - 4 * (P * R + Q) === 0) return null;
     const sCoef = P - w + R;
     const sConst = Q + R * w;
     const e1 = `x^{2}+kx${termIf(P, "k")}${plusConst(Q)}=0`;
@@ -2075,11 +2077,7 @@ function entry(
   };
 }
 
-/**
- * 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다. 12·16 의 머리 `, `
- * 와 `x^3=1x^3=-1` 은 추출기가 제목 앞 수식(「x+y,」·「x³=1,」)을 놓친 자국이다 — 고치지 않는다
- * (색인을 고치는 것은 리드의 추출기 일이다).
- */
+/** 색인의 유형 번호는 보존하고, 표시 제목에서 빠지거나 붙은 수식을 바로잡았다. */
 export const H1_EQUATIONS: HighTypeEntry[] = [
   entry("01", "삼차방정식과 사차방정식의 풀이", SEC.삼사1, t01),
   entry("02", "공통부분이 있는 사차방정식의 풀이", SEC.삼사2, t02),
@@ -2097,11 +2095,11 @@ export const H1_EQUATIONS: HighTypeEntry[] = [
     t10,
   ),
   entry("11", "두 이차방정식으로 이루어진 연립이차방정식", SEC.연립2, t11),
-  entry("12", ", xy에 대한 대칭식인 연립이차방정식", SEC.대칭, t12),
+  entry("12", "x+y, xy에 대한 대칭식인 연립이차방정식", SEC.대칭, t12),
   entry("13", "연립이차방정식의 해의 조건", SEC.연립1, t13),
   entry("14", "공통인 근을 갖는 방정식", SEC.연립2, t14),
   entry("15", "연립이차방정식의 활용", SEC.연립1, t15),
-  entry("16", ", 방정식 x^3=1x^3=-1의 허근의 성질", SEC.허근, t16),
+  entry("16", "방정식 x³=1, x³=-1의 허근의 성질", SEC.허근, t16),
   entry("17", "정수 조건의 부정방정식", SEC.부정, t17),
   entry("18", "실수 조건의 부정방정식", SEC.부정, t18),
 ];

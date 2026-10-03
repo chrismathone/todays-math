@@ -22,6 +22,7 @@ import { H1_COMB, H1_COMB_HOLD } from "../../lib/high/h1Comb";
 import type { HighProblem } from "../../lib/high/types";
 import { readAnswerValues } from "../helpers/highAnswer";
 import { highCatalog, mathSpans } from "../helpers/highPage";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 const BOOK = "공통수학1";
 const MINOR = "조합";
@@ -911,7 +912,7 @@ const SHOWN_TEXT: Record<string, (f: Fact) => string[]> = {
       "{}_{n}\\mathrm{P}_{r}=n\\times {}_{n-1}\\mathrm{P}_{r-1}",
       "{}_{n}\\mathrm{C}_{r}\\times r!={}_{n}\\mathrm{P}_{r}",
     ]
-      [f.id!]!.split(" ")
+      [f.id!]!.split("\0")
       .filter((s) => s !== "")
       .concat([`${["㈎", "㈏", "㈐"][f.blank!]!}에 알맞은 것`]),
   "08": (f) =>
@@ -960,7 +961,9 @@ describe("고등 공통수학1 조합 — 등록", () => {
     for (const e of H1_COMB) {
       const row = catalogRows.find((t) => t.number === e.rpmType);
       expect(row, `${e.key}: 색인에 없는 번호`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.key).toBe(`${BOOK}|${MINOR}|${e.rpmType}`);
     }

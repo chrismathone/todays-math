@@ -310,6 +310,7 @@ function signedSum(vs: readonly number[]): string {
 /**
  * **굳힘 함수** — 세 각의 «비»만으로 $\angle OAB$, $\angle OBC$, $\angle OCA$ 를 굳힌다.
  *
+ * 전제는 예각삼각형이다. 외심이 내부에 있으므로 아래에서 세 내각을 더할 수 있다.
  * 굳히는 것은 이 소단원의 개념 하나다: 외심이면 $\overline{OA}=\overline{OB}=\overline{OC}$
  * 라 $\triangle OAB$, $\triangle OBC$, $\triangle OCA$ 가 모두 이등변삼각형이고,
  * $\triangle ABC$ 의 세 내각이 그 여섯 각으로 **두 개씩** 나뉘므로
@@ -448,7 +449,7 @@ const CIRCUM_RATIO: TypeEntry[] = [
 
         return {
           content:
-            `점 $O$가 $\\triangle ABC$의 외심이고 ` +
+            `점 $O$가 예각삼각형 $ABC$의 외심이고 ` +
             `$\\angle ${ANGLE_NAMES[0]} : \\angle ${ANGLE_NAMES[1]} : \\angle ${ANGLE_NAMES[2]} = ${ratio}$일 때, ` +
             `$\\angle ${target.name}$의 크기를 구하시오.`,
           answer: `$${ans}^\\circ$`,

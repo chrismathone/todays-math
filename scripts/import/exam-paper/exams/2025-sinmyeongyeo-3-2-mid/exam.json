@@ -3,6 +3,12 @@
   "school": "신명여중",
   "grade": "중3",
   "subject": "수학",
+  "graphChoices": {
+    "9": { "stem": "q09.png", "choices": ["q09-2.png", "q09-3.png", "q09-4.png", "q09-5.png", "q09-6.png"], "why": "리드 추가: 원본 그림·색인 좌표의 읽기 순서를 확인. a>0,b<0이므로 y=ax+b는 기울기 양수·y절편 음수인 ①(q09-2) 하나다." }
+  },
+  "answerRepairs": {
+    "24": { "answer": "$\\sqrt{17}-8$", "evidence": ["$b-a=\\sqrt{17}-8$"], "why": "EX-01: sol_fixed 24의 마지막 결론; 평균 3·분산 17에서 재계산" }
+  },
   "tables": [
     5,
     13,

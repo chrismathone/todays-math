@@ -12,6 +12,7 @@
  * 지면(수는 수식 안 · 냄새 · 조사) · 난이도 · 형식 · 해설 끝 답은 `highRegistry.test.ts` 가 돈다.
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -705,10 +706,12 @@ const VERIFY: Record<string, (f: Fact) => Want> = {
     }
     const [w, P, Q, R] = [f.w!, f.P!, f.Q!, f.R!];
     const hits: number[] = [];
-    for (let k = -30; k <= 30; k += 1) {
+    // 두 식의 차는 (k-R)(x+k+w). 따라서 실수 k 후보를 빠짐없이 구한다.
+    expect(w + P, "일치하지 않는 경우의 k가 결정되지 않는다").not.toBe(0);
+    for (const k of new Set([R, -(w * w + Q) / (w + P)])) {
       const S = -k * k + (P - w + R) * k + Q + R * w;
-      const same = k === R;
-      if (!same && common(P * k + Q, k, S, R).length === 1) hits.push(k);
+      // 일치하는 두 식도 중근이면 서로 다른 공통근은 하나다.
+      if (common(P * k + Q, k, S, R).length === 1) hits.push(k);
     }
     expect(hits, "공통인 근이 오직 하나인 k 가 하나가 아니다").toHaveLength(1);
     return hits[0]!;
@@ -1077,7 +1080,9 @@ describe("고등 공통수학1 여러 가지 방정식 — 등록", () => {
     for (const e of H1_EQUATIONS) {
       const row = catalogRows.find((t) => t.number === e.rpmType);
       expect(row, `${e.key}: 색인에 없는 번호`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.key).toBe(`${BOOK}|${MINOR}|${e.rpmType}`);
@@ -1099,6 +1104,21 @@ describe("고등 공통수학1 여러 가지 방정식 — 등록", () => {
 });
 
 describe("고등 공통수학1 여러 가지 방정식 — 값", () => {
+  it("HIGH-EQ-001: 씨앗 150을 포함한 300판에서 일치하는 중근까지 세어 k가 하나다", () => {
+    const modes = [0, 0, 0];
+    for (let seed = 0; seed < 300; seed += 1) {
+      const p = generateHighProblem(`${BOOK}|${MINOR}|14`, seed);
+      modes[p.facts.mode!]! += 1;
+      const want = asC(VERIFY["14"]!(p.facts));
+      expect(readAnswerValues(p.answer)[0]!.re, `seed ${seed}`).toBe(want.re);
+    }
+    expect(modes.reduce((a, b) => a + b, 0)).toBe(300);
+    expect(
+      modes.every((n) => n > 0),
+      "14의 세 꼴을 모두 검산했다",
+    ).toBe(true);
+  });
+
   it("정답을 facts 로 다른 길을 걸어 다시 낸 것과 같다", () => {
     const modes = new Map<string, Set<number>>();
     eachProblem((p, key, number) => {

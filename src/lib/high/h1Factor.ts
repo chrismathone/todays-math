@@ -707,6 +707,10 @@ function t04(rng: Rng): Body {
         ["a+b+c", a + b + c],
         ["abc", a * b * c],
       ]);
+      // h=cg이면 인수를 상수배해 바꾼 (b/c, ac, c)도 같은 전개식을 준다.
+      // abc는 항상 같고, 합도 c=1 또는 b=ac이면 같다. 묻는 값이 갈리는 조합만 제외한다.
+      // 식을 고르는 난수까지 예전대로 소비하므로 원래 정답이 0이라 버리던 판도 유지된다.
+      if (h === c * g && c !== 1 && b !== a * c && exprId !== 2) return null;
       const yPart = linTex(
         [
           [c, "y^{2}"],

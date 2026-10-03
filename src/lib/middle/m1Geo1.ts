@@ -788,15 +788,29 @@ const M1_GEO1_BASE: TypeEntry[] = [
     "각의 크기 사이의 조건이 주어진 경우 각의 크기 구하기",
     SEC.각,
     "응용",
-    (rng) =>
-      attempt(200, (): Body | null => {
-        const k = pick(rng, [2, 3, 4] as const);
-        const p = intBetween(rng, 2, 40);
-        if ((2 + k) * p !== 180 && (2 + k) * p !== 90) {
-          // p 는 자유 변수이므로 total 을 p 로부터 정한다(역산).
+    (rng) => {
+      let remaining = 200;
+      return attempt(200, (): Body | null => {
+        remaining -= 1;
+        let k: number = pick(rng, [2, 3, 4] as const);
+        let p = intBetween(rng, 2, 40);
+        let total = (2 + k) * p;
+        if (total !== 90 && total !== 180) {
+          if (remaining > 0) return null;
+          // 성공하던 200회 경로는 그대로 둔다. 소진된 경우에만 가능한 쌍을
+          // 전수로 세고 마지막 p 로 고른다 — 난수를 더 소비하지 않는다.
+          const candidates: [number, number][] = [];
+          for (const candidateK of [2, 3, 4]) {
+            for (let candidateP = 2; candidateP <= 40; candidateP += 1) {
+              const angle = (2 + candidateK) * candidateP;
+              if (angle === 90 || angle === 180) {
+                candidates.push([candidateK, candidateP]);
+              }
+            }
+          }
+          [k, p] = candidates[(p - 2) % candidates.length]!;
+          total = (2 + k) * p;
         }
-        const total = (2 + k) * p;
-        if (total !== 90 && total !== 180) return null;
         const cod = k * p;
         return {
           content: `그림과 같이 한 점 $O$에서 네 반직선 $OA$, $OB$, $OC$, $OD$를 그었더니 $\\angle AOB=\\angle BOC$이고 $\\angle COD=${k}\\angle BOC$이다. $\\angle AOD=${total}^\\circ$일 때, $\\angle COD$의 크기를 구하시오.`,
@@ -805,7 +819,8 @@ const M1_GEO1_BASE: TypeEntry[] = [
           facts: { k, p, total, cod, ans: cod },
           figureSpec: figRaysFromO([p, p, k * p], total as 90 | 180, []),
         };
-      }),
+      });
+    },
   ),
 
   // 09 — ∠x:∠y:∠z = a:b:c, 합 180.
@@ -837,7 +852,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
         const ay = (180 * rb) / sum;
         const az = (180 * rc) / sum;
         return {
-          content: `그림과 같이 한 점 $O$에서 만나는 세 반직선이 이루는 $\\angle x:\\angle y:\\angle z=${ra}:${rb}:${rc}$이고 세 각을 합하면 평각을 이룬다. $${askName}$의 크기를 구하시오.`,
+          content: `그림과 같이 꼭짓점이 $O$인 평각을 세 각으로 나누었더니 $\\angle x:\\angle y:\\angle z=${ra}:${rb}:${rc}$이다. $${askName}$의 크기를 구하시오.`,
           answer: `$${ans}^\\circ$`,
           solution: `세 각의 크기의 합이 $180^\\circ$이므로 $${askName}=180^\\circ\\times\\dfrac{${r}}{${sum}}=${ans}^\\circ$이다.`,
           facts: { ra, rb, rc, sum, ask, ans },

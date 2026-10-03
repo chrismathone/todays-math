@@ -11,6 +11,7 @@
  * 지면 · 난이도 · 형식은 `highRegistry.test.ts` 가 등록 유형 전부에 돈다.
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -1842,7 +1843,9 @@ describe("고등 공통수학1 이차부등식과 연립이차부등식 — 등�
     for (const e of H1_QUAD_INEQ) {
       const row = catalogRows.find((r) => r.number === e.rpmType);
       expect(row, `${e.key}: 색인에 없다`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.grade).toBe(BOOK);
