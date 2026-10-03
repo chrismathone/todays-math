@@ -7,6 +7,10 @@
  * 🔴 문제은행의 문항에는 주인이 없다(공용 풀) — `Problem.userId` 로 거르지 않는다. 거르는 것은 **출제 자격**이다
  *    (`problemIneligibleReason` — 자동 출제 · 담기 바구니와 같은 규칙). 걸린 문항은 사유와 함께 빼고, 임의로 풀지 않는다.
  * 🔴 시험지 표는 읽기만 한다. 내용 · 배점 · 순서를 건드리지 않는다.
+ * 🔴 시험지 문항에 **확정본이 달려 있으면**(`test_problem.snapshot_id` — 교재에서 다시 출제한 시험지) 그 확정본을 싣는다.
+ *    살아 있는 은행 문항의 내용 · 그림을 다시 읽지 않는다 — 그 시험지가 학생에게 나간 내용이 교재에 실려야 한다.
+ *    은행 문항은 **자격과 정체**만 본다. 같은 주인이면 같은 확정본 줄을 쓰고, 다른 주인의 것이면 내 것으로 복제한다
+ *    (내용 · 해시는 그대로 — 남의 확정본을 내 판본이 직접 가리키지 못한다: 같은 주인 복합 FK).
  * 🔴 `expectedRevision` 은 **판본 집계 revision** 이다(배치의 계약 모양에는 배치 자신의 revision 이 없다).
  */
 import { randomUUID } from "node:crypto";
@@ -106,23 +110,26 @@ export async function loadProblemRows(
   return new Map(rows.map((row) => [row.id, row]));
 }
 
+interface SourceEntry {
+  problemId: string;
+  testId: string | null;
+  testProblemId: string | null;
+  /** 시험지 문항에 달린 확정본 — 있으면 살아 있는 문항 대신 이것을 싣는다 */
+  frozenSnapshotId: string | null;
+}
+
 /** 담을 문항의 차례 — 시험지면 그 시험지의 문항 번호 순, 목록이면 받은 순서 그대로(겹쳐도 그대로) */
 async function resolveSource(
   sql: TextbookSql,
   actor: TextbookActor,
   source: CaptureSource,
-): Promise<
-  Array<{
-    problemId: string;
-    testId: string | null;
-    testProblemId: string | null;
-  }>
-> {
+): Promise<SourceEntry[]> {
   if (source.kind === "problems")
     return source.problemIds.map((problemId) => ({
       problemId,
       testId: null,
       testProblemId: null,
+      frozenSnapshotId: null,
     }));
   const [test] = await sql.query<{ userId: string }>(
     `SELECT "user_id" AS "userId" FROM "test" WHERE "id" = $1::uuid`,
@@ -130,8 +137,12 @@ async function resolveSource(
   );
   // 내 시험지만 — 없는 것과 남의 것은 같은 404 다
   if (!test || test.userId !== actor.id) throw notFound("시험지");
-  const rows = await sql.query<{ id: string; problemId: string }>(
-    `SELECT "id", "problem_id" AS "problemId" FROM "test_problem"
+  const rows = await sql.query<{
+    id: string;
+    problemId: string;
+    frozenSnapshotId: string | null;
+  }>(
+    `SELECT "id", "problem_id" AS "problemId", "snapshot_id" AS "frozenSnapshotId" FROM "test_problem"
       WHERE "test_id" = $1::uuid ORDER BY "order_index", "id"`,
     [source.testId],
   );
@@ -139,7 +150,80 @@ async function resolveSource(
     problemId: row.problemId,
     testId: source.testId,
     testProblemId: row.id,
+    frozenSnapshotId: row.frozenSnapshotId,
   }));
+}
+
+/** 이미 있는 확정본 한 줄 — 싣는 데 필요한 것만(주인 · 그 확정본이 쓰는 그림) */
+interface FrozenSource {
+  snapshotId: string;
+  userId: string;
+  assetIds: string[];
+}
+
+async function loadFrozenSources(
+  sql: TextbookSql,
+  snapshotIds: readonly string[],
+): Promise<Map<string, FrozenSource>> {
+  if (!snapshotIds.length) return new Map();
+  const rows = await sql.query<FrozenSource>(
+    `SELECT s."id" AS "snapshotId", s."user_id" AS "userId",
+            COALESCE((SELECT jsonb_agg(DISTINCT f ->> 'assetId') FROM jsonb_array_elements(s."payload" -> 'figures') f),
+                     '[]'::jsonb) AS "assetIds"
+       FROM "textbook_problem_snapshot" s WHERE s."id" IN ${uuidList("$1")}`,
+    [JSON.stringify([...new Set(snapshotIds)])],
+  );
+  return new Map(rows.map((row) => [row.snapshotId, row]));
+}
+
+/**
+ * 남의 확정본을 내 것으로 복제한다 — 내용 · 원문 · 메타데이터 · 해시 · 캡처 시각까지 그대로, 주인만 나다.
+ * 그림은 바이트를 다시 넣지 않는다(바이트 표는 내용 주소다) — 내 손잡이만 만든다.
+ * 돌려주는 것: 원래 확정본 id → 내 확정본 id.
+ */
+async function cloneFrozenSnapshots(
+  tx: TextbookSql,
+  userId: string,
+  sources: readonly FrozenSource[],
+): Promise<Map<string, string>> {
+  if (!sources.length) return new Map();
+  for (const source of sources)
+    await tx.execute(
+      `INSERT INTO "textbook_asset" ("user_id", "id", "kind", "mime_type", "name", "width_px", "height_px")
+       SELECT $1::uuid, a."id", a."kind", a."mime_type", a."name", a."width_px", a."height_px"
+         FROM "textbook_asset" a
+        WHERE a."user_id" = $2::uuid AND a."id" IN (SELECT value FROM jsonb_array_elements_text($3::jsonb))
+       ON CONFLICT ("user_id", "id") DO NOTHING`,
+      [userId, source.userId, JSON.stringify(source.assetIds)],
+    );
+  const ids = JSON.stringify(
+    sources.map((source) => ({
+      id: randomUUID(),
+      sourceId: source.snapshotId,
+    })),
+  );
+  await tx.execute(
+    `INSERT INTO "textbook_problem_snapshot" ("id", "user_id", "source_system", "source_key", "source_ref", "problem_id",
+        "source_updated_at", "captured_at", "unit_id", "family_key", "difficulty", "problem_type", "payload", "raw_source",
+        "source_metadata", "content_hash", "snapshot_hash", "c14n_version")
+     SELECT r."id", $1::uuid, s."source_system", s."source_key", s."source_ref", s."problem_id", s."source_updated_at",
+            s."captured_at", s."unit_id", s."family_key", s."difficulty", s."problem_type", s."payload", s."raw_source",
+            s."source_metadata", s."content_hash", s."snapshot_hash", s."c14n_version"
+       FROM jsonb_to_recordset($2::jsonb) AS r("id" uuid, "sourceId" uuid)
+       JOIN "textbook_problem_snapshot" s ON s."id" = r."sourceId"
+     ON CONFLICT ("user_id", "source_key", "snapshot_hash") DO NOTHING`,
+    [userId, ids],
+  );
+  // 방금 넣었든 전에 복제해 두었든, (나, 출처, 해시)가 같은 내 줄을 쓴다
+  const rows = await tx.query<{ sourceId: string; id: string }>(
+    `SELECT r."sourceId", mine."id"
+       FROM jsonb_to_recordset($2::jsonb) AS r("sourceId" uuid)
+       JOIN "textbook_problem_snapshot" s ON s."id" = r."sourceId"
+       JOIN "textbook_problem_snapshot" mine
+         ON mine."user_id" = $1::uuid AND mine."source_key" = s."source_key" AND mine."snapshot_hash" = s."snapshot_hash"`,
+    [userId, ids],
+  );
+  return new Map(rows.map((row) => [row.sourceId, row.id]));
 }
 
 const ITEM_SQL = `
@@ -182,7 +266,7 @@ export async function placedItems(
   return rows.map(toExchangeItem);
 }
 
-async function insertSnapshots(
+export async function insertSnapshots(
   tx: TextbookSql,
   userId: string,
   snapshots: readonly CapturedSnapshot[],
@@ -243,12 +327,9 @@ async function insertSnapshots(
   return new Map(rows.map((row) => [row.snapshotHash, row.id]));
 }
 
-interface Prepared {
-  problemId: string;
-  testId: string | null;
-  testProblemId: string | null;
-  snapshot: CapturedSnapshot;
-}
+/** 준비된 한 줄 — 새로 캡처한 것(`snapshot`)이거나 이미 있는 확정본(`frozen`)이다 */
+type Prepared = Omit<SourceEntry, "frozenSnapshotId"> &
+  ({ snapshot: CapturedSnapshot } | { frozen: FrozenSource });
 
 /** ⑴ 잠금 밖의 준비 — 읽고 · 자격을 묻고 · 그림을 얼린다 */
 async function prepareCapture(
@@ -266,6 +347,12 @@ async function prepareCapture(
   const rows = await loadProblemRows(
     sql,
     ordered.map((entry) => entry.problemId),
+  );
+  const frozenSources = await loadFrozenSources(
+    sql,
+    ordered.flatMap((entry) =>
+      entry.frozenSnapshotId ? [entry.frozenSnapshotId] : [],
+    ),
   );
   const prepared: Prepared[] = [];
   const excluded: CaptureResult["excluded"] = [];
@@ -289,6 +376,20 @@ async function prepareCapture(
       excluded.push({ problemId: entry.problemId, reason: ineligible });
       continue;
     }
+    const { frozenSnapshotId, ...place } = entry;
+    if (frozenSnapshotId) {
+      // 확정본이 달린 시험지 문항 — 은행 문항에서는 위의 자격만 보았다. 내용 · 그림은 확정본의 것이다
+      const frozen = frozenSources.get(frozenSnapshotId);
+      if (!frozen) {
+        excluded.push({
+          problemId: entry.problemId,
+          reason: "시험지에 실린 확정본을 찾을 수 없습니다.",
+        });
+        continue;
+      }
+      prepared.push({ ...place, frozen });
+      continue;
+    }
     let outcome = captured.get(entry.problemId);
     if (!outcome) {
       outcome = await captureProblemSnapshot(row, loadFigure);
@@ -309,7 +410,7 @@ async function prepareCapture(
       excluded.push({ problemId: entry.problemId, reason: outcome.reason });
       continue;
     }
-    prepared.push({ ...entry, snapshot: outcome.snapshot });
+    prepared.push({ ...place, snapshot: outcome.snapshot });
   }
   return { prepared, excluded };
 }
@@ -363,25 +464,48 @@ export async function captureItems(
         if (total + prepared.length > EDITION_MAX_ITEMS)
           throw invalid(`한 판본의 문항은 ${EDITION_MAX_ITEMS}개까지입니다.`);
 
-        const assets = new Map(
-          prepared.flatMap((entry) =>
-            entry.snapshot.assets.map(
-              (asset) => [asset.assetId, asset] as const,
+        const fresh = prepared.flatMap((entry) =>
+          "snapshot" in entry ? [entry.snapshot] : [],
+        );
+        const frozen = [
+          ...new Map(
+            prepared.flatMap((entry) =>
+              "frozen" in entry
+                ? [[entry.frozen.snapshotId, entry.frozen] as const]
+                : [],
             ),
+          ).values(),
+        ];
+        const assets = new Map(
+          fresh.flatMap((snapshot) =>
+            snapshot.assets.map((asset) => [asset.assetId, asset] as const),
           ),
         );
         for (const asset of assets.values())
           await putAsset(tx, actor.id, asset, "figure");
-        await linkEditionAssets(tx, editionId, actor.id, [...assets.keys()]);
-        const snapshotIds = await insertSnapshots(
+        // 남의 확정본은 내 것으로 복제하고(그림 손잡이까지), 내 것은 그 줄을 그대로 쓴다
+        const cloned = await cloneFrozenSnapshots(
           tx,
           actor.id,
-          prepared.map((entry) => entry.snapshot),
+          frozen.filter((source) => source.userId !== actor.id),
         );
+        await linkEditionAssets(tx, editionId, actor.id, [
+          ...new Set([
+            ...assets.keys(),
+            ...frozen.flatMap((source) => source.assetIds),
+          ]),
+        ]);
+        const snapshotIds = await insertSnapshots(tx, actor.id, fresh);
+        const snapshotIdOf = (entry: Prepared): string =>
+          "snapshot" in entry
+            ? snapshotIds.get(entry.snapshot.snapshotHash)!
+            : entry.frozen.userId === actor.id
+              ? entry.frozen.snapshotId
+              : cloned.get(entry.frozen.snapshotId)!;
 
         const rows = prepared.map((entry, index) => ({
           id: randomUUID(),
-          snapshotId: snapshotIds.get(entry.snapshot.snapshotHash)!,
+          snapshotId: snapshotIdOf(entry),
           testId: entry.testId,
           testProblemId: entry.testProblemId,
           orderIndex: inSection + index,
@@ -512,6 +636,9 @@ export async function updateItem(
   });
 }
 
+export type ItemDiffField =
+  "content" | "answer" | "solution" | "questionType" | "figures";
+
 export interface ItemDiff {
   itemId: string;
   /** 지금 은행 문항이 확정본과 다른가 */
@@ -522,7 +649,7 @@ export interface ItemDiff {
   metadataChanged: boolean;
   /** 지금 문항을 다시 담을 수 없는 사유. 담을 수 있으면 null */
   blocked: string | null;
-  fields: string[];
+  fields: ItemDiffField[];
   summary: string;
 }
 
@@ -595,17 +722,15 @@ export async function diffItem(
   const contentChanged = next.snapshot.contentHash !== current.contentHash;
   const metadataChanged =
     !contentChanged && next.snapshot.snapshotHash !== current.snapshotHash;
-  const fields = (
+  const fields: ItemDiffField[] = (
     ["content", "answer", "solution", "questionType"] as const
-  ).filter(
-    (field) => next.snapshot.payload[field] !== current.payload[field],
-  ) as string[];
+  ).filter((field) => next.snapshot.payload[field] !== current.payload[field]);
   if (
     JSON.stringify(next.snapshot.payload.figures) !==
     JSON.stringify(current.payload.figures)
   )
     fields.push("figures");
-  const label: Record<string, string> = {
+  const label: Record<ItemDiffField, string> = {
     content: "본문",
     answer: "정답",
     solution: "해설",

@@ -541,7 +541,8 @@ CREATE TABLE "textbook_publish_step" (
   CONSTRAINT "textbook_publish_step_sha256_fkey" FOREIGN KEY ("sha256") REFERENCES "textbook_blob"("sha256") ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT "textbook_publish_step_idx_check" CHECK ("idx" >= 0),
   -- render = 구획 묶음을 조판한다 · merge = 그 조각들을 한 파일로 합치고 QR 을 다시 읽는다
-  CONSTRAINT "textbook_publish_step_kind_check" CHECK ("kind" IN ('render', 'merge')),
+  -- spread = 합친 학생용을 펼침면으로 다시 묶고 QR 을 다시 읽는다 · offline = 조판한 쪽들로 단일 HTML 을 만든다
+  CONSTRAINT "textbook_publish_step_kind_check" CHECK ("kind" IN ('render', 'merge', 'spread', 'offline')),
   CONSTRAINT "textbook_publish_step_view_check" CHECK ("view" IN ('student', 'answers')),
   CONSTRAINT "textbook_publish_step_section_ids_array" CHECK (jsonb_typeof("section_ids") = 'array'),
   CONSTRAINT "textbook_publish_step_state_check" CHECK ("state" IN ('queued', 'running', 'done', 'failed')),

@@ -807,6 +807,7 @@ describe("발행 확정", () => {
     expect(job.artifacts.map((artifact) => artifact.kind).sort()).toEqual([
       "answer-pdf",
       "exchange-json",
+      "mapping-csv",
       "student-pdf",
       "validation-json",
     ]);

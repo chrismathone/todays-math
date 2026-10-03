@@ -2,10 +2,11 @@
  * PUT /api/textbook/uploads/{sha256}?offset={바이트 자리} — 조각 하나(≤ 1MB)를 올린다. 본문은 날 바이트다.
  * 같은 자리에 다시 오면 덮어쓴다(응답을 못 받은 재시도). 끝맺기는 `POST …/complete`.
  */
+import { textbookUploadChunkResultSchema } from "@/contracts/textbookServer.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { CHUNK_MAX_BYTES, putUploadChunk } from "@/lib/textbook/server/blobs";
 import { TextbookError, invalid } from "@/lib/textbook/server/errors";
-import { plain, textbookRoute } from "@/lib/textbook/server/http";
+import { data, textbookRoute } from "@/lib/textbook/server/http";
 
 export const runtime = "nodejs";
 
@@ -53,7 +54,8 @@ export const PUT = withErrorLog(
       const offset = new URL(request.url).searchParams.get("offset") ?? "0";
       if (!/^\d{1,9}$/.test(offset))
         throw invalid("조각의 자리가 올바르지 않습니다.");
-      return plain(
+      return data(
+        textbookUploadChunkResultSchema,
         await putUploadChunk(
           db,
           actor,

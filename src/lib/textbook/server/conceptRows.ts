@@ -100,6 +100,74 @@ export async function getConcept(
   return toRecord(row, access.revision);
 }
 
+/**
+ * 개념 한 줄의 **내용만** — 권한을 묻지 않고 집계 revision 도 읽지 않는다.
+ * 🔴 부르는 쪽이 **이미 권한을 판정한 뒤에만** 쓴다(학생 화면: QR · 배정으로 판정한 뒤 / 교사의 백지 인쇄: 판본 읽기 권한을 본 뒤).
+ *    이 함수만 불러서는 아무것도 지켜지지 않는다.
+ */
+export async function readConceptContent(
+  sql: TextbookSql,
+  editionId: string,
+  conceptKey: string,
+): Promise<TextbookConcept | null> {
+  const row = await loadConcept(sql, editionId, conceptKey);
+  return row ? toRecord(row, 0).concept : null;
+}
+
+export interface ConceptLookupMatch {
+  bookId: string;
+  bookTitle: string;
+  editionId: string;
+  editionLabel: string;
+  status: "draft" | "published";
+  access: "owner" | "branch";
+  conceptKey: string;
+  conceptTitle: string;
+  entries: Array<{
+    entryKind: TextbookConcept["blankItems"][number]["entryKind"];
+    entryId: string;
+    reviewStatus: TextbookConcept["blankItems"][number]["review"]["status"];
+  }>;
+}
+
+/**
+ * 개념 백지의 소단원 하나를 가리키는 교재 개념들 — 백지 화면이 «이 소단원이 실린 교재»를 보여 줄 때 쓴다.
+ *
+ * 🔴 맞추는 것은 **`blankSectionKey` 글자 그대로**다. 이름이 비슷한 소단원 · 다른 이름공간(탐험 카드 · 강의 구획)으로
+ *    바꿔 찾지 않는다 — 없으면 없는 것이다.
+ * 🔴 읽는 범위는 판본 읽기와 같다: 내 것은 초안 · 발행본, 동료 것은 **지점에 공유된 발행본만**(세 겹 판정은 SQL 이 한다).
+ *    폐기한 판본 · 보관한 책은 내지 않는다.
+ */
+export async function lookupConceptsByBlankSection(
+  sql: TextbookSql,
+  actor: TextbookActor,
+  blankSectionKey: string,
+): Promise<ConceptLookupMatch[]> {
+  return sql.query<ConceptLookupMatch>(
+    `SELECT t."id" AS "bookId", t."title" AS "bookTitle", e."id" AS "editionId", e."label" AS "editionLabel",
+            e."status", CASE WHEN t."user_id" = $1::uuid THEN 'owner' ELSE 'branch' END AS "access",
+            c."concept_key" AS "conceptKey", c."title" AS "conceptTitle",
+            (SELECT jsonb_agg(jsonb_build_object('entryKind', b ->> 'entryKind', 'entryId', b ->> 'entryId',
+                                                 'reviewStatus', b -> 'review' ->> 'status')
+                              ORDER BY b ->> 'entryKind', b ->> 'entryId')
+               FROM jsonb_array_elements(c."blank_items") b
+              WHERE b ->> 'blankSectionKey' = $2::text) AS "entries"
+       FROM "textbook_concept" c
+       JOIN "textbook_edition" e ON e."id" = c."edition_id"
+       JOIN "textbook" t ON t."id" = e."textbook_id"
+       JOIN "user" o ON o."id" = t."user_id"
+      WHERE t."archived_at" IS NULL
+        AND EXISTS (SELECT 1 FROM jsonb_array_elements(c."blank_items") b WHERE b ->> 'blankSectionKey' = $2::text)
+        AND ((t."user_id" = $1::uuid AND e."status" IN ('draft', 'published'))
+          OR (e."status" = 'published' AND t."visibility" = 'branch' AND t."shared_branch_id" IS NOT NULL
+              AND t."shared_branch_id" = $3::uuid AND o."branch_id" = t."shared_branch_id"
+              AND o."deleted_at" IS NULL AND o."suspended_at" IS NULL AND o."approval_status" = 'approved'))
+      ORDER BY (t."user_id" = $1::uuid) DESC, t."title", e."ordinal" DESC, c."concept_key"
+      LIMIT 500`,
+    [actor.id, blankSectionKey, actor.branchId],
+  );
+}
+
 export interface SaveConceptInput {
   /** 0 = 새 개념 */
   expectedRevision: number;
@@ -223,7 +291,8 @@ export async function saveConcept(
 // 백지 활동
 // ─────────────────────────────────────────────
 
-const ATTEMPT_SQL = `
+/** 백지 활동 한 줄을 계약 모양으로 읽는 SELECT — 학생 쪽 코드(루트)도 같은 문장을 쓴다 */
+export const textbookAttemptSelectSql = `
   SELECT a."id" AS "attemptId", a."request_id" AS "requestId", a."body_hash" AS "bodyHash", a."student_id" AS "studentId",
          a."edition_id" AS "editionId", a."concept_key" AS "conceptKey", a."frozen_hash" AS "frozenHash", a."form",
          a."channel", a."response", ${isoColumn(`a."submitted_at"`)} AS "submittedAt", a."revision",
@@ -265,7 +334,7 @@ export async function recordObservation(
     const access = await requireReadableEdition(tx, actor, editionId);
     await requireOwnStudent(tx, actor, input.studentId);
     const [existing] = await tx.query<TextbookConceptAttempt>(
-      `${ATTEMPT_SQL} WHERE a."student_id" = $1::uuid AND a."request_id" = $2::uuid`,
+      `${textbookAttemptSelectSql} WHERE a."student_id" = $1::uuid AND a."request_id" = $2::uuid`,
       [input.studentId, input.requestId],
     );
     if (existing) {
@@ -307,7 +376,7 @@ export async function recordObservation(
       ],
     );
     const [attempt] = await tx.query<TextbookConceptAttempt>(
-      `${ATTEMPT_SQL} WHERE a."id" = $1::uuid`,
+      `${textbookAttemptSelectSql} WHERE a."id" = $1::uuid`,
       [id],
     );
     return { attempt: attempt!, replayed: false };
@@ -329,7 +398,7 @@ export async function reviewAttempt(
   return db.transaction(async (tx) => {
     const { result, replayed } = await runOnce(tx, key, async () => {
       const [current] = await tx.query<TextbookConceptAttempt>(
-        `${ATTEMPT_SQL} WHERE a."id" = $1::uuid FOR UPDATE OF a`,
+        `${textbookAttemptSelectSql} WHERE a."id" = $1::uuid FOR UPDATE OF a`,
         [attemptId],
       );
       if (!current) throw notFound("활동 기록");
@@ -349,7 +418,7 @@ export async function reviewAttempt(
         ],
       );
       const [attempt] = await tx.query<TextbookConceptAttempt>(
-        `${ATTEMPT_SQL} WHERE a."id" = $1::uuid`,
+        `${textbookAttemptSelectSql} WHERE a."id" = $1::uuid`,
         [attemptId],
       );
       return attempt!;
@@ -366,7 +435,7 @@ export async function studentConceptAttempts(
 ): Promise<TextbookConceptAttempt[]> {
   await requireOwnStudent(sql, actor, studentId);
   return sql.query<TextbookConceptAttempt>(
-    `${ATTEMPT_SQL} WHERE a."student_id" = $1::uuid ORDER BY a."submitted_at" DESC, a."id" LIMIT 500`,
+    `${textbookAttemptSelectSql} WHERE a."student_id" = $1::uuid ORDER BY a."submitted_at" DESC, a."id" LIMIT 500`,
     [studentId],
   );
 }

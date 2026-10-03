@@ -501,12 +501,9 @@ async function copyAsDraft(
           : block;
   const sectionRows = sections.map(({ unit, section, orderIndex }) => {
     const id = randomUUID();
+    // 구획은 대응표에 싣지 않는다 — 교환 형식에서 구획의 정체는 (단원 열쇠, 구획 열쇠)이고 복사해도 그대로다.
+    // 새 줄의 id 는 판본을 읽으면 나온다(열쇠에는 한글이 올 수 있어 대응표의 id 모양에 맞지 않는다)
     sectionIds.set(`${unit.unitKey}/${section.sectionKey}`, id);
-    idMap.push({
-      namespace: "section",
-      from: `${unit.unitKey}/${section.sectionKey}`,
-      to: id,
-    });
     return {
       id,
       unitKey: unit.unitKey,

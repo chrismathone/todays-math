@@ -62,13 +62,15 @@ export async function artifactSource(
   );
   if (!row) throw notFound("산출물");
   const extension =
-    row.mimeType === "application/pdf"
-      ? "pdf"
-      : row.mimeType.startsWith("application/json")
-        ? "json"
-        : row.mimeType.startsWith("text/csv")
-          ? "csv"
-          : "bin";
+    (
+      [
+        ["application/pdf", "pdf"],
+        ["application/json", "json"],
+        ["text/csv", "csv"],
+        ["text/html", "html"],
+        ["application/zip", "zip"],
+      ] as const
+    ).find(([mime]) => row.mimeType.startsWith(mime))?.[1] ?? "bin";
   return {
     sha256: row.sha256,
     size: row.size,
@@ -125,7 +127,10 @@ export async function serveBytes(
   const end = range?.end ?? Math.min(source.size, RANGE_WINDOW_BYTES) - 1;
   const bytes = await readBlobRange(sql, source.sha256, start, end - start + 1);
   if (!bytes || bytes.byteLength !== end - start + 1) throw notFound("파일");
-  const svg = source.mimeType === "image/svg+xml";
+  // 문서로 열릴 수 있는 것(SVG · HTML)은 이 출처의 권한으로 스크립트가 돌지 않게 가둔다
+  const svg =
+    source.mimeType === "image/svg+xml" ||
+    source.mimeType.startsWith("text/html");
   return new Response(Buffer.from(bytes), {
     status: whole ? 200 : 206,
     headers: {
@@ -137,7 +142,7 @@ export async function serveBytes(
         : { "Content-Range": `bytes ${start}-${end}/${source.size}` }),
       "Cache-Control": "private, no-store",
       "X-Content-Type-Options": "nosniff",
-      // SVG 를 문서로 열어도 스크립트가 돌지 않게 — 그림으로만 쓰인다
+      // 문서로 열어도 스크립트가 돌지 않게 — 그림 · 내려받는 파일로만 쓰인다
       ...(svg
         ? {
             "Content-Security-Policy":

@@ -1,13 +1,12 @@
 import "server-only";
 
+import { createTextbookArchive } from "../archive/package.server";
+import type { JsonValue } from "../canonical";
 import { freezeTextbookConcept } from "../concepts";
 import { validateTextbookIntegrity } from "../integrity.server";
-import {
-  TEXTBOOK_RENDERER_VERSION,
-  TEXTBOOK_TEMPLATE_VERSION,
-} from "../render/versions";
-import { TextbookError } from "../server/errors";
+import { codexRenderer } from "./codexRenderer";
 import type {
+  PackageArchive,
   PublishDeps,
   PublishValidator,
   TextbookRenderer,
@@ -34,33 +33,34 @@ export const validateForPublish: PublishValidator = (exchange, options) =>
     readAsset: options.readAsset,
   });
 
-const NOT_CONNECTED =
-  "조판기가 아직 연결되지 않았습니다. 발행을 시작할 수 없습니다.";
-
-/**
- * 조판기 자리 — 실제 조판기(`render/server.ts` 의 `renderTextbookChunk` · `mergeTextbookPdfs`)가 병합되면
- * `codexRenderer.ts` 가 이 자리를 채운다. 그때까지는 **발행을 시작하지 못하게** 막는다 —
- * 조판하지 않은 것을 조판한 것처럼 적지 않는다.
- */
-const pendingRenderer: TextbookRenderer = {
-  rendererVersion: TEXTBOOK_RENDERER_VERSION,
-  templateVersion: TEXTBOOK_TEMPLATE_VERSION,
-  unavailableReason: NOT_CONNECTED,
-  renderChunk: async () => {
-    throw new TextbookError(503, "INTERNAL_ERROR", NOT_CONNECTED);
-  },
-  mergeChunks: async () => {
-    throw new TextbookError(503, "INTERNAL_ERROR", NOT_CONNECTED);
-  },
+/** 교환 패키지 — Codex 의 꾸리는 함수를 그대로 쓴다(자산 바이트 · 해시를 꾸리기 전에 다시 본다) */
+export const packageArchive: PackageArchive = async (
+  exchange,
+  readAsset,
+  validation,
+) => {
+  const bytes = await createTextbookArchive(
+    exchange,
+    readAsset,
+    validation as JsonValue,
+  );
+  if (!bytes) throw new Error("교환 패키지를 만들지 못했습니다.");
+  return bytes;
 };
 
+/**
+ * 제품의 발행 의존물 — 조판기는 실제 조판기(`codexRenderer` → `render/server.ts`)다.
+ * 조판기는 서버의 Chromium 을 띄운다. 띄우지 못하는 환경에서는 걸음이 실패 사유를 남기고(세 번까지) 작업이 그만둔다 —
+ * 조판하지 않은 것을 조판한 것처럼 적지 않는다.
+ */
 export function publishDeps(
-  renderer: TextbookRenderer = pendingRenderer,
+  renderer: TextbookRenderer = codexRenderer,
 ): PublishDeps {
   return {
     renderer,
     validate: validateForPublish,
     freezeConcept: (concept) => freezeTextbookConcept(concept),
+    packageArchive,
     officialOrigin: textbookPublicOrigin(),
     now: () => new Date(),
   };
