@@ -9226,7 +9226,7 @@ function graph262Mid(unit: UnitSeed, rng: Rng): ElemProblem {
   const f = pick(rng, GRAPH262_MID);
   const stuff = pick(rng, GRAPH_STUFF);
   const place = pick(rng, stuff.places);
-  const head = `그림그래프로 나타낼 때 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다.`;
+  const head = `그림그래프로 나타낼 때 큰 그림 한 개는 ${n(10)}${stuff.unit}, 작은 그림 한 개는 ${n(1)}${stuff.unit}${josa(stuff.unit, "을", "를")} 나타냅니다. 작은 그림 열 개는 큰 그림 한 개로 바꾸어 나타냅니다.`;
   const stem = pick(rng, [
     `${head} 어느 ${place}의 ${stuff.name} 수를 나타내는 데 큰 그림과 작은 그림을 모두 ${n(f.total)}개 그렸습니다. 이 ${place}의 ${stuff.name} 수가 가장 작을 때 얼마인지 쓰시오.`,
     `${head} 가 ${place}의 ${stuff.name} 수를 나타내는 데 그림을 모두 ${n(f.total)}개 그렸습니다. 가 ${place}의 ${stuff.name} 수가 될 수 있는 수 가운데 가장 작은 것을 쓰시오.`,

@@ -1412,12 +1412,14 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
 
 // ───────────────────── 2-6 원기둥, 원뿔, 구 ─────────────────────
 
+// 풀의 크기와 고르는 횟수를 유지해 같은 씨앗의 수치는 바꾸지 않는다.
+// 두 밑면은 반드시 옆면의 서로 마주 보는 변에 하나씩 붙인다.
 const CYL_NET_LAYOUTS = [
   "opp",
   "oppFlip",
   "oppMid",
-  "sameTop",
-  "sameBot",
+  "opp",
+  "oppFlip",
   "ends",
 ] as const;
 
@@ -8113,8 +8115,8 @@ function pyrAreaMid(unit: UnitSeed, rng: Rng): ElemProblem {
 
 // ── 1-2-4 각뿔 알아보기 — 심화상 ────────────────────────────────────────────
 //
-// 🔴 후보를 **발문이 주지 않는다.** 「입체도형」이라고만 하므로 되짚기가 각기둥·각뿔
-//    **둘**을 만들고, 성질만으로는 어느 쪽인지 못 고른다 — 각각의 꼭짓점을 **실제로
+// 🔴 후보의 범위는 각기둥·각뿔로 발문에 밝힌다. 어느 쪽인지는 말하지 않아
+//    성질만으로는 못 고른다 — 각각의 꼭짓점을 **실제로
 //    계산해** 조건에 대 봐야 하나가 남는다(D-115 ⑾: 끝까지 계산해야 하면 «상»).
 //    이 소단원의 이름이 「각뿔 **알아보기**」이고, 각뿔을 각기둥과 가르는 것이 바로
 //    「밑면이 하나·옆면이 삼각형」이라 반증 ③ 도 안 건드린다.
@@ -8141,7 +8143,7 @@ function solidKindTop(unit: UnitSeed, rng: Rng): ElemProblem {
   const nPyr = c.f - 1;
   return makeDeep(
     unit,
-    `어떤 입체도형의 면이 ${num(c.f)}개입니다. 이 입체도형의 꼭짓점이 ${num(c.cap)}개보다 적을 때, ` +
+    `각기둥이나 각뿔 가운데 하나인 입체도형의 면이 ${num(c.f)}개입니다. 이 입체도형의 꼭짓점이 ${num(c.cap)}개보다 적을 때, ` +
       `모서리는 몇 개입니까?`,
     num(2 * nPyr),
     [
@@ -10355,8 +10357,8 @@ const BAND_TOPICS = [
 
 const bandLenStem = (c: BandLenCase, t: (typeof BAND_TOPICS)[number]) =>
   `${t.survey}${josa(t.survey, "을", "를")} 조사해 띠그래프로 나타내려고 합니다. ` +
-  `${t.item}의 비율이 ${expr(`${c.p}\\%`)} 이고, 띠에서 ` +
-  `${t.item}${josa(t.item, "이", "가")} 차지하는 길이가 자연수 cm 입니다. ` +
+  `${t.item}의 비율이 ${expr(`${c.p}\\%`)} 이고, 띠의 전체 길이와 ` +
+  `${t.item}${josa(t.item, "이", "가")} 차지하는 길이가 모두 자연수 cm 입니다. ` +
   `띠의 전체 길이가 ${num(c.lo)} cm 보다 길고 ${num(c.hi)} cm 보다 짧을 때, ` +
   `${t.item}${josa(t.item, "이", "가")} 차지하는 길이는 몇 cm 입니까?`;
 
@@ -10407,7 +10409,7 @@ function bandLenMid(unit: UnitSeed, rng: Rng): ElemProblem {
   return makeDeep(unit, bandLenStem(c, t), num(c.ans), [
     `${expr(`${c.p}\\%`)} 를 기약분수로 고치면 ` +
       `${expr(`\\frac{${c.p}}{100}=\\frac{${a}}{${b}}`)} 입니다. ${t.item}의 길이가 ` +
-      `자연수 cm 이려면 띠의 전체 길이가 ${num(b)}의 배수여야 합니다.`,
+      `자연수 cm 이고 띠의 전체 길이도 자연수 cm 이므로 전체 길이가 ${num(b)}의 배수여야 합니다.`,
     `${num(c.lo)}보다 크고 ${num(c.hi)}보다 작은 ${num(b)}의 배수는 ` +
       `${expr(`${b}\\times${c.total / b}=${c.total}`)} 하나이므로 전체 길이는 ` +
       `${unitNum(c.total, "cm")} 입니다.`,
@@ -12976,7 +12978,7 @@ function surfFormEdgeFromArea(unit: UnitSeed, rng: Rng): ElemProblem {
     `겉넓이가 ${num(6 * a * a)} cm²인 정육면체가 있습니다. 한 모서리의 길이는 몇 cm입니까?`,
     num(a),
     `한 면은 ${expr(`${6 * a * a}\\div6=${a * a}`)} 이므로 한 모서리는 ${num(a)} cm입니다.`,
-    fig("cuboid", { w: a, d: a, h: a }),
+    fig("cuboid", { w: a, d: a, h: a, showDimensions: false }),
   );
 }
 
