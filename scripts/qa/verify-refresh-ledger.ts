@@ -3,6 +3,7 @@
  *
  *   npx tsx scripts/qa/verify-refresh-ledger.ts text    <원장.json.gz> [보고.md]
  *   npx tsx scripts/qa/verify-refresh-ledger.ts figures <원장.json.gz> [보고.md]
+ *   npx tsx scripts/qa/verify-refresh-ledger.ts replaced <원장.json.gz> <목록.json>
  *
  * ## 왜 있나 (2026-10-03 3자 합의 C1)
  *
@@ -431,7 +432,83 @@ function runFigures(): void {
     say(`- ${key}: ${v.n}장 \`${v.id}\``);
 }
 
-if (mode === "text") runText();
+/**
+ * 사람이 읽고 «같은 문제»로 가른 틀 — 수 토큰은 바뀌었지만 문제는 그대로다.
+ *   · 다각형 20: «비가 $10:2$» → «$5:1$»(약분)
+ *   · 초5 평균 04: «1모둠 · 2모둠» → «가 모둠 · 나 모둠»(이름)
+ */
+const SAME_PROBLEM_FAMILIES = new Set([
+  "mid:1-2|다각형|20",
+  "elem:초5|2-6-1 평균 알아보기|04",
+]);
+
+/** «같은 행이 다른 문제가 된» 행의 목록 — 개장 전 기준선의 기록(3자 합의 C1). */
+function runReplaced(outPath: string): void {
+  const rows: {
+    problemId: string;
+    externalId: string;
+    problemCode: string | null;
+    kind: string;
+    before: { question: string; answer: string };
+    after: { question: string; answer: string };
+  }[] = [];
+  const kinds = new Map<string, number>();
+  const squash = (text: string): string => text.replace(/\s+/g, " ").trim();
+  const valueOf = (cols: Cols, choices: string[]): string => {
+    const mark = cols.answer.trim();
+    const index = mark.length === 1 ? circledValueRaw(mark) : 0;
+    const raw = index > 0 ? (choices[index - 1] ?? "(없는 번호)") : mark;
+    return raw
+      .replace(/\s+/g, "")
+      .replace(/(\d+\.\d*?)0+(?=\D|$)/g, "$1")
+      .replace(/\.(?=\D|$)/g, "");
+  };
+  for (const row of ledger.rows) {
+    const { before: b, after: a } = row;
+    if (b.directUseAllowed !== a.directUseAllowed) continue;
+    const pb = parseProblemContent(b.content);
+    const pa = parseProblemContent(a.content);
+    const answerChanged = valueOf(b, pb.choices) !== valueOf(a, pa.choices);
+    const redrawn =
+      numberBag(pb.question) !== numberBag(pa.question) &&
+      stemChangeKind(pb.question, pa.question).startsWith("수가 다시 뽑힘");
+    const wordingChanged =
+      pb.question.replace(/\s+/g, "") !== pa.question.replace(/\s+/g, "");
+    let kind: string | null = null;
+    if (redrawn) {
+      if (!SAME_PROBLEM_FAMILIES.has(familyOf(row.externalId)))
+        kind = answerChanged
+          ? "수가 다시 뽑히고 정답도 바뀜"
+          : "수가 다시 뽑혔고 정답 값은 같지만 다른 문제";
+    } else if (answerChanged && wordingChanged) kind = "묻는 것이 바뀜";
+    if (!kind) continue;
+    bump(kinds, kind);
+    rows.push({
+      problemId: row.problemId,
+      externalId: row.externalId,
+      problemCode: row.problemCode,
+      kind,
+      before: { question: squash(pb.question), answer: b.answer },
+      after: { question: squash(pa.question), answer: a.answer },
+    });
+  }
+  for (const [key, n] of kinds) say(`- ${key}: ${n}`);
+  say(`합 ${rows.length}행 → ${outPath}`);
+  const record = {
+    note: "개장 전 기준선 — 2026-10-03 전수 동기화에서 같은 행이 다른 문제가 된 것. 되돌리지 않는다(3자 합의 C1). 결함 수리로 단정하지 않는다 — 성했던 옛 문항이 난수 차례 탓에 바뀐 것도 섞여 있다(미분류).",
+    ledger: "bank-fix-20261003.json.gz",
+    sameProblemFamilies: [...SAME_PROBLEM_FAMILIES],
+    kinds: Object.fromEntries(kinds),
+    rows,
+  };
+  writeFileSync(outPath, `${JSON.stringify(record, null, 1)}\n`);
+}
+
+if (mode === "replaced") {
+  if (!reportPath) throw new Error("replaced 는 <목록.json> 이 필요하다");
+  runReplaced(reportPath);
+} else if (mode === "text") runText();
 else if (mode === "figures") runFigures();
 else throw new Error(`모르는 갈래: ${mode}`);
-if (reportPath) writeFileSync(reportPath, `${out.join("\n")}\n`);
+if (reportPath && mode !== "replaced")
+  writeFileSync(reportPath, `${out.join("\n")}\n`);

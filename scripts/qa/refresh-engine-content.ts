@@ -54,9 +54,10 @@ import {
   appendLedger,
   brokenChoiceReason,
   classifyDiff,
+  decideApply,
+  identityRisk,
   norm,
   sameSnapshot,
-  shouldApply,
   type BrokenReason,
   type DiffClass,
   type Ledger,
@@ -299,6 +300,17 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       `글이 같아도 그림을 다시 그려 견줄 문항류 ${figureFamilies.size}개`,
     );
 
+  // 🔴 문지기 — 덮으면 «다른 문제»가 되는 행은 막는다(2026-10-03 3자 합의 C1 · Core 의 주석).
+  //    사람이 «같은 문제»라고 짚어 준 행(externalId 목록)만 지나간다.
+  const sameFile = arg("--same-problem");
+  const confirmedSame = new Set<string>(
+    sameFile ? (JSON.parse(readFileSync(sameFile, "utf8")) as string[]) : [],
+  );
+  if (sameFile)
+    console.log(`사람이 «같은 문제»라고 짚은 행 ${confirmedSame.size}`);
+  const refusedBy = new Map<string, number>();
+  const refused: { externalId: string; risk: string; familyKey: string }[] = [];
+
   // ── 갈래 세기 ─────────────────────────────────────────────────────────────
   let figureOnly = 0;
   const byClass = new Map<string, number>();
@@ -366,9 +378,24 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     }
     if (!inFamily && cls === "solution")
       bump(solutionOutside, row.familyKey ?? "?");
-    if (shouldApply(row.familyKey, cls, broken, scope))
-      todo.push({ db: row, made: m, cls, broken });
-    else if (
+    const risk = cls === "same" ? null : identityRisk(row, m);
+    const decision = decideApply(
+      row.familyKey,
+      cls,
+      broken,
+      scope,
+      risk,
+      confirmedSame.has(ext),
+    );
+    if (decision === "apply") todo.push({ db: row, made: m, cls, broken });
+    else if (decision === "refuse") {
+      bump(refusedBy, risk!);
+      refused.push({
+        externalId: ext,
+        risk: risk!,
+        familyKey: row.familyKey ?? "?",
+      });
+    } else if (
       cls === "same" &&
       !!row.familyKey &&
       figureFamilies.has(row.familyKey) &&
@@ -402,6 +429,19 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
     if (m.size > 15) console.log(`   … 문항류 ${m.size - 15}개 더`);
   };
   show("🔴 고치기로 한 문항류 «밖»에서 발문이 다른 것(안 덮는다)", stemOutside);
+  if (refused.length) {
+    console.log(
+      `
+🔴 문지기가 막은 행 ${refused.length} — 덮으면 «다른 문제»가 된다: ${[...refusedBy.entries()].map(([k, n]) => `${k} ${n}`).join(" · ")}`,
+    );
+    console.log(
+      "   같은 문제임을 확인한 행은 externalId 목록으로 --same-problem 에 주고, 아니면 «출제 제외 + 새 씨앗 적재»로 고친다.",
+    );
+    for (const r of refused.slice(0, 12))
+      console.log(`   ${r.risk}  ${r.externalId}`);
+    if (refused.length > 12)
+      console.log(`   … ${refused.length - 12}행 더(보고 파일)`);
+  }
   show("문항류 밖에서 풀이만 다른 것", solutionOutside);
   show("못 맞댄 적재본(계획으로 되만들지 못함)", unmatchedBy);
   console.log(
@@ -502,6 +542,20 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
       return null;
     }
     if (sameSnapshot(b, after)) return null;
+    // 그림만 다시 그린 행도 문지기를 지난다 — 라벨이 달라지면 그림이 주는 정보가 바뀐 것이다.
+    const figureRisk = identityRisk(b, after);
+    if (figureRisk !== null && !confirmedSame.has(t.db.externalId!)) {
+      bump(refusedBy, figureRisk);
+      refused.push({
+        externalId: t.db.externalId!,
+        risk: figureRisk,
+        familyKey: t.db.familyKey ?? "?",
+      });
+      skipped.push(
+        `${t.db.problemCode ?? t.db.externalId}: 문지기 — ${figureRisk}`,
+      );
+      return null;
+    }
     return {
       problemId: t.db.id,
       externalId: t.db.externalId!,
@@ -572,6 +626,7 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         buildFailures: failures,
         changes: changes.length,
         skipped,
+        identityRefused: refused,
         families: [...perFamily.entries()]
           .sort((a, b) => b[1].length - a[1].length)
           .map(([k, rows]) => ({

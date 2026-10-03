@@ -137,6 +137,102 @@ export function shouldApply(
   return scope.solutionEverywhere;
 }
 
+/**
+ * ## 문지기 — 제자리 갱신이 «같은 행을 다른 문제로» 만들지 않는가
+ *
+ * 2026-10-03 전수 동기화(`--all-families`)에서 **298행이 같은 문항 코드를 단 채 다른 문제가 됐다**
+ * (엔진이 퇴화값을 거르게 고쳐진 뒤로 같은 씨앗이 다른 수를 뽑았다 — 그 사이 적재본은 그대로였다).
+ * 은행을 열기 전이고 그 행들을 가리키는 시험지 · 기록이 0 이라 그 상태를 **기준선**으로 두기로 했다
+ * (3자 합의 C1 — `docs/planning/tracks/reports/consult-bank-fix/consensus.md` §4). 대신 **앞으로는 막는다**:
+ * 문항 코드가 가리키는 문제는 바뀌지 않는다. 같은 문제임을 확인하지 못한 행은 덮지 않고,
+ * 그런 행은 «출제 제외 + 새 씨앗으로 따로 적재»로만 고친다.
+ *
+ * 🔴 **너그러운 예외를 두지 않는다.** «빠진 수가 0 · 1 뿐이면 표기»같은 규칙은 그럴듯하지만 0 과 1 도 조건을 바꾼다.
+ *    표기 정리 · 조건 보탬 · 약분(`10:2` → `5:1`)처럼 «같은 문제»인 갱신은 **사람이 행을 짚어** 지나가게 한다
+ *    (`--same-problem <목록.json>`). 기계가 «같다»고 믿는 것은 공백 · 조사 · 정답의 끝자리 0 뿐이다.
+ */
+export type IdentityRisk =
+  "발문의 수" | "발문의 글" | "정답의 값" | "그림의 라벨";
+
+/** 조사 — 받침에 따라 갈리는 짝. 문구 수리(을/를 · 이/가 …)는 문제를 바꾸지 않는다. */
+const PARTICLES = /[은는이가을를와과으로]/g;
+
+const numberTokens = (text: string): string =>
+  (text.match(/\d+(?:\.\d+)?/g) ?? []).sort().join(" ");
+
+/** 수 · 공백 · 조사를 걷어 낸 글 — «무엇을 묻는가»가 남는다(낱말 · 단위 · 수식의 꼴). */
+const wording = (text: string): string =>
+  text
+    .replace(/\d+(?:\.\d+)?/g, "#")
+    .replace(/\s+/g, "")
+    .replace(PARTICLES, "");
+
+/** 정답의 «값» — 객관식은 번호가 가리키는 보기의 글. 공백과 소수의 끝자리 0 은 값이 아니다. */
+function answerValue(cols: Cols): string {
+  const mark = cols.answer.trim();
+  const index = mark.length === 1 ? MARKS.indexOf(mark) : -1;
+  const raw =
+    index >= 0
+      ? (parseProblemContent(cols.content).choices[index] ?? "(없는 번호)")
+      : mark;
+  return raw
+    .replace(/\s+/g, "")
+    .replace(/(\d+\.\d*?)0+(?=\D|$)/g, "$1")
+    .replace(/\.(?=\D|$)/g, "");
+}
+
+/**
+ * 그림이 글로 주는 정보 — 라벨의 다중집합(차례는 안 본다).
+ * 옛 판의 `<text data-mj>` 와 조판된 `<g data-label>` 을 같은 것으로 읽는다.
+ */
+export function figureLabelBag(svg: string): string[] {
+  const labels: string[] = [];
+  for (const m of svg.matchAll(/<g data-label="([^"]*)"/g)) labels.push(m[1]!);
+  for (const m of svg.matchAll(/<text\b([^>]*)>([\s\S]*?)<\/text>/g)) {
+    const mj = / data-mj="([^"]*)"/.exec(m[1]!)?.[1];
+    labels.push(mj ?? m[2]!.replace(/<[^>]+>/g, "").replace(/\s+/g, ""));
+  }
+  return labels.sort();
+}
+
+type WithFigure = Cols & { figureSvg?: string | null };
+
+/** 덮으면 **다른 문제**가 되는가. 같은 문제임이 확인되면 null. */
+export function identityRisk(
+  db: WithFigure,
+  made: WithFigure,
+): IdentityRisk | null {
+  const a = parseProblemContent(db.content).question;
+  const b = parseProblemContent(made.content).question;
+  if (numberTokens(a) !== numberTokens(b)) return "발문의 수";
+  if (wording(a) !== wording(b)) return "발문의 글";
+  if (answerValue(db) !== answerValue(made)) return "정답의 값";
+  if (
+    db.figureSvg &&
+    made.figureSvg &&
+    figureLabelBag(db.figureSvg).join("\n") !==
+      figureLabelBag(made.figureSvg).join("\n")
+  )
+    return "그림의 라벨";
+  return null;
+}
+
+/**
+ * 덮는가(`apply`) · 문지기가 막는가(`refuse`) · 애초에 덮을 행이 아닌가(`skip`).
+ * `confirmed` — 사람이 «같은 문제»라고 짚어 준 행(`--same-problem`).
+ */
+export function decideApply(
+  familyKey: string | null,
+  cls: DiffClass,
+  broken: BrokenReason | null,
+  scope: Scope,
+  risk: IdentityRisk | null,
+  confirmed: boolean,
+): "apply" | "refuse" | "skip" {
+  if (!shouldApply(familyKey, cls, broken, scope)) return "skip";
+  return risk !== null && !confirmed ? "refuse" : "apply";
+}
+
 export type Snapshot = {
   content: string;
   answer: string;
