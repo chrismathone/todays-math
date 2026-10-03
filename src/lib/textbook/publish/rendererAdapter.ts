@@ -83,10 +83,7 @@ export type PublishValidator = (
  * 개념 굳히기(루트의 `freezeTextbookConcept`) — 확인한 은행 항목의 **내용**을 개념에 싣는다.
  * 확인 안 된 후보가 남았거나 확인한 항목이 그사이 바뀌었으면 사유를 던진다.
  */
-export type ConceptFreezer = (
-  concept: TextbookConcept,
-  blankForms: readonly string[] | null,
-) => TextbookConcept;
+export type ConceptFreezer = (concept: TextbookConcept) => TextbookConcept;
 
 export interface PublishDeps {
   renderer: TextbookRenderer;

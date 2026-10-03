@@ -104,22 +104,9 @@ export async function collectPreflight(
   issues.push(...placementIssues(exchange));
 
   // 개념은 예약 때 굳는다 — 굳힐 수 없는 개념을 미리 알린다(여기서는 쓰지 않는다)
-  const blankForms = await sql.query<{
-    conceptKey: string;
-    blankForms: string[] | null;
-  }>(
-    `SELECT "concept_key" AS "conceptKey", "blank_forms" AS "blankForms" FROM "textbook_concept" WHERE "edition_id" = $1::uuid`,
-    [editionId],
-  );
-  const formsByKey = new Map(
-    blankForms.map((row) => [row.conceptKey, row.blankForms]),
-  );
   for (const concept of exchange.conceptIntegration?.concepts ?? []) {
     try {
-      deps.freezeConcept(
-        { ...concept, frozen: null },
-        formsByKey.get(concept.conceptKey) ?? null,
-      );
+      deps.freezeConcept({ ...concept, frozen: null });
     } catch (error) {
       issues.push(
         issue(

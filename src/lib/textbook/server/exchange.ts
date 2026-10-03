@@ -343,21 +343,29 @@ export async function loadConcepts(
   unitOrder: ReadonlyMap<string, number>,
 ): Promise<TextbookConcept[]> {
   const rows = await sql.query<
-    Omit<TextbookConcept, "sectionKey"> & { sectionKey: string | null }
+    Omit<TextbookConcept, "blankForms"> & {
+      blankForms: TextbookConcept["blankForms"] | null;
+    }
   >(
     `SELECT c."concept_key" AS "conceptKey", c."unit_key" AS "unitKey", s."section_key" AS "sectionKey", c."title",
-            c."kind", c."unit_id" AS "unitId", c."body", c."blank_items" AS "blankItems", c."links",
+            c."kind", c."unit_id" AS "unitId", c."body", c."blank_items" AS "blankItems",
+            c."blank_forms" AS "blankForms", c."links",
             c."mapping_version" AS "mappingVersion", c."derived_from_concept_key" AS "derivedFromConceptKey", c."frozen"
        FROM "textbook_concept" c
        LEFT JOIN "textbook_section" s ON s."edition_id" = c."edition_id" AND s."id" = c."section_id"
       WHERE c."edition_id" = $1::uuid`,
     [editionId],
   );
-  return rows.sort(
-    (a, b) =>
-      (unitOrder.get(a.unitKey) ?? 1e9) - (unitOrder.get(b.unitKey) ?? 1e9) ||
-      byCodeUnit(a.conceptKey, b.conceptKey),
-  );
+  return rows
+    .sort(
+      (a, b) =>
+        (unitOrder.get(a.unitKey) ?? 1e9) - (unitOrder.get(b.unitKey) ?? 1e9) ||
+        byCodeUnit(a.conceptKey, b.conceptKey),
+    )
+    .map(({ blankForms, ...concept }) =>
+      // 고르지 않은 형식을 빈 배열로 채우지 않는다 — 없는 칸은 없는 채로 둔다
+      blankForms ? { ...concept, blankForms } : concept,
+    );
 }
 
 /**

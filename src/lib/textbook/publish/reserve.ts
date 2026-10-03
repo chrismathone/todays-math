@@ -211,22 +211,14 @@ export async function reservePublish(
                            WHERE q."edition_id" = c."edition_id" AND q."concept_key" = c."concept_key")`,
       [editionId, JSON.stringify(referenced)],
     );
-    const forms = await tx.query<{
-      conceptKey: string;
-      blankForms: string[] | null;
-    }>(
-      `SELECT "concept_key" AS "conceptKey", "blank_forms" AS "blankForms" FROM "textbook_concept" WHERE "edition_id" = $1::uuid`,
+    const kept = await tx.query<{ conceptKey: string }>(
+      `SELECT "concept_key" AS "conceptKey" FROM "textbook_concept" WHERE "edition_id" = $1::uuid`,
       [editionId],
     );
-    const formsByKey = new Map(
-      forms.map((row) => [row.conceptKey, row.blankForms]),
-    );
+    const keptKeys = new Set(kept.map((row) => row.conceptKey));
     for (const concept of exchange.conceptIntegration?.concepts ?? []) {
-      if (!formsByKey.has(concept.conceptKey)) continue;
-      const frozen = deps.freezeConcept(
-        { ...concept, frozen: null },
-        formsByKey.get(concept.conceptKey) ?? null,
-      ).frozen;
+      if (!keptKeys.has(concept.conceptKey)) continue;
+      const frozen = deps.freezeConcept({ ...concept, frozen: null }).frozen;
       await tx.execute(
         `UPDATE "textbook_concept" SET "frozen" = $3::jsonb, "updated_at" = ${SQL_NOW}
           WHERE "edition_id" = $1::uuid AND "concept_key" = $2::text AND "frozen" IS DISTINCT FROM $3::jsonb`,
