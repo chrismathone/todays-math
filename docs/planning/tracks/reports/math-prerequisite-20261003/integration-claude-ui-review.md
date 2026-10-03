@@ -16,7 +16,11 @@
 | `src/components/math-explorers/ExplorerHome.tsx` | **approve** | §2.1 · 시험 없음(N6) |
 | `src/components/math-srs/elementary-practice.module.css` | **approve** | C4 를 지킨다 |
 | `src/__tests__/components/StudentCourseSrs.test.tsx` 새 시험 넷 | **approve** | 변이 넷 중 하나만 문다 — 코드가 맞아 막지 않음(§3) |
-| 교사 화면(Grok · `CourseDashboard` · `CurriculumGraphPanel`) | 아래 §5 | 루트가 커밋 · 읽을 곳을 알려 주면 판정 |
+| `src/components/math-srs/CourseDashboard.tsx` (Grok `226a0fdba`) | **request_changes** | §5.1 T1 — 계획 저장 뒤 연결도의 학생 기록이 다시 오지 않는다(재현) |
+| `src/components/math-srs/CurriculumGraphPanel.tsx` (Grok `226a0fdba`) | **request_changes** | §5.1 T2 · T3 — 교사에게 학생 문장 · 회복 방법 없음 · «낼 문제가 없고» |
+| `src/components/math-srs/curriculum-graph.module.css` (Grok `226a0fdba`) | **approve** | hover 는 단추에만(D-30) |
+| `src/__tests__/components/CurriculumGraphPanel.test.tsx` (Grok `226a0fdba`) | **approve** · 보강 권고 | T1 을 지키는 시험이 없다 · 옛 문구 픽스처 |
+| 공급 관문의 `interactive` (루트 진행 중) | **approve** — 명시적 `null` 로 지우는 안 | §6 |
 
 ## 1. 막는 것이었던 것 — 학생 문구가 승인 시안과 달랐다 (풀림)
 
@@ -119,4 +123,57 @@
 
 ## 5. 교사 화면 — Grok · `CourseDashboard` / `CurriculumGraphPanel`
 
-루트가 커밋이나 읽을 곳을 알려 주면 여기에 판정을 더한다. 볼 것: 고른 학생이 바뀐 뒤 늦게 온 응답을 버리는가 · 부분 범위(«보이는 후보 2 / 9») · 보류(풀리는 조건) · 회복 방법(시작 소단원 변경 · 기능 끄기) · 감사 기록이 없을 때 «없다»를 사실대로 말하는가.
+대상: Grok 워크트리 커밋 `226a0fdba` «교육과정 연결도를 현황 화면에 연다»(바탕 `7a286033a`). 커밋 전 작업 파일을 먼저 읽어 루트 · Grok 에 알렸고(`msg_778050c47efe` · `msg_6f4a012ef4ff`), 커밋 뒤 다시 읽었다(`msg_819b2b790c9f`). 이 워크트리의 `src/components` · `src/lib` · `src/contracts` 는 `7a286033a` 와 같다.
+
+### 5.1 막는 것
+
+| # | 자리 | 무엇 | 확인 | 고칠 길 |
+|---|---|---|---|---|
+| T1 | `CourseDashboard.tsx` — 연결도에 `selected ? { id: selected.id, revision: selected.revision } : null` | `selected` 는 학생을 열 때만 정해진다. 계획 저장은 `onStudentUpdate={updateRow}` 로 목록 줄만 바꾸고 `selected` 는 그대로다. 연결도의 학생 기록은 옛 `revision` 을 붙들어 다시 부르지 않는다 | **재현** — 기존 «saves the actual form» 흐름을 본뜬 임시 시험(지웠다): 저장 전 `getCourseStudentDetail` 2번(상세 + 연결도), 저장 뒤 3번(상세 다시 부르기뿐) | 목록의 최신 줄을 넘긴다(`students.find((row) => row.id === selected.id) ?? selected`) 또는 `updateRow` 에서 `selected` 도 바꾼다. 저장 뒤 연결도가 다시 부르는 시험 하나 |
+| T2 | `CurriculumGraphPanel.tsx:401-412` | 공급 부족이면 학생 문장 «새 문제를 준비하지 못했어요. 선생님께 알려 주세요.»를 **교사에게** 보이고, 회복 길은 일반 문장(`FROZEN_MISSION`)뿐이다. H1 조건 C3 은 «시작 소단원 변경 · 기능 끄기»를 함께 보이라고 했다 | 읽기. 서버에 `PREREQUISITE_REASONS.unavailableTeacher` 가 있으나 DTO(`prerequisiteContextSchema`)에는 학생 `reason` 만 실린다 | 교사 문장을 화면에서 `kind` · `canStart` 로 고르거나 DTO 에 교사 문장 칸을 더한다(계약 변경이면 3자) |
+| T3 | `CurriculumGraphPanel.tsx:174-178` | 시범 밖 단원에 «낼 문제가 없고»라고 쓴다. 초3~초6 단원 다수는 보통 코스가 문제를 낸다 — 거짓이다 | 읽기 | «자동 확인 문제는 내지 않습니다»처럼 시범 공급의 범위로 말한다 |
+
+### 5.2 지시서의 초점별
+
+| 초점 | 판단 | 근거 |
+|---|---|---|
+| 고른 학생이 바뀐 뒤 늦게 온 응답 | **지킨다** | 요청 번호 + 정리 함수의 번호 올림 + 응답의 학생 id · `revision` 대조(`:267-309`). `226a0fdba` 에서 기록을 그 요청의 `studentId` · `revision` 에 묶어 다른 학생으로 바뀐 첫 그림에 옛 학생이 비치지 않는다(`:311-318`). 같은 `revision` 이 바뀌지 않는 경우는 T1 |
+| 부분 범위 | 지킨다 | «부분 범위 N 줄이며 합산하지 않습니다» · 줄마다 «소단원 일부입니다. 단원 숙달이 아닙니다.» · 단원 화면의 «보이는 후보 n / m» |
+| 보류 | 지킨다 · 날짜는 없음 | 보류 범위 이름 + 서버 `holdReason`(«목표를 마치거나 14일이 지날 때까지»). 풀리는 날짜는 줄의 마지막 기록 시각으로만 짐작된다 — 막지 않음 |
+| 회복 | **T2** | 위 |
+| 감사가 없다는 사실 | 지킨다 | «성취기준 대조는 끝나지 않았습니다»는 계약이 받쳐 준다 — 단원 스키마가 `needsCurriculumAudit: z.literal(true)` · `achievementStandardIds` 길이 0 을 강제해, 데이터가 바뀌면 그래프 적재가 먼저 실패하고 문장만 거짓으로 남을 수 없다. 학생 기록이 안 오면 «이 학생의 선수 기록은 오지 않았습니다» — 기록이 없다고 단정하지 않는다 |
+| 시작 단추 없음 | 지킨다 | 연결도에 시작 · 연습 컨트롤이 없다(시험이 확인) |
+| D-30 | 지킨다 | hover 배경은 `.row` · `.jump` · `.entryButton` · `.reset` · `.close` — 모두 단추 |
+
+### 5.3 막지 않는 것
+
+- `:335` 학생을 고르지 않아도 «선택한 학생의 기록» 칸과 «선택된 학생 없음.»이 그려진다. H1 은 «학생을 고르지 않으면 이 줄은 없습니다»였다.
+- 시험 픽스처(`CurriculumGraphPanel.test.tsx:242` · `:317`)가 `d94f6efad` 전의 문장이다. 늦은 응답 시험은 두 요청에 같은 약속을 돌려줘 id 불일치 가지를 지난다 — 요청 번호 가지도 «대분수의 뺄셈이 안 보임» 단정으로 함께 물린다.
+- `OUTSIDE_PILOT = ["5-2-2-3", "5-2-2-4"]` 은 손으로 적었다. 오늘 카탈로그의 5-2-2 소단원은 그 넷이 전부라 맞다.
+
+### 5.4 내가 돌린 것
+
+`226a0fdba` 의 네 파일을 이 워크트리에 잠시 꺼내 `CurriculumGraphPanel.test.tsx` · `CourseDashboard.test.tsx` — **2파일 31 통과**. T1 재현 시험은 따로 만들어 돌리고 지웠다. 되돌린 뒤 `git status` 깨끗. 브라우저로 교사 화면을 열지는 않았다.
+
+## 6. 공급 관문의 `interactive` — 루트가 브라우저에서 찾은 것
+
+루트의 실제 학생 A 흐름에서 돌아온 T 세션의 문항 하나가 «칸 칠하기»(`interactive: fraction-parts`)로 나와 저장된 보기 넷이 화면에서 사라졌다. 내 `supply.ts` 머리말은 «학생 화면이 저장된 보기를 그대로 쓴다»를 약속하는데, 그 걸러 내기가 이 자리를 못 봤다 — **내 모듈의 구멍이다.**
+
+- 생성기가 `makeCourseAnswerChoices` 의 `interactive` 를 문항에 저장한다(`generator.ts:71`). 답이 분모 2~12 의 진분수이면 붙는다(`choiceAnswers.ts` `fractionOf`).
+- 연습 화면은 `interactive` 가 있으면 보기를 쓰지 않는다(`StudentCoursePractice.tsx:277`).
+- plan-v03 §5 의 첫 구현 관문(«보기의 유일한 정답 · 정답 채점 성공/오답 거절»)은 보기가 입력이라는 전제다.
+
+루트의 첫 안은 `interactive` 가 붙은 문항이 하나라도 있는 세션을 버리는 것이었다. 임시 탐침(실제 `supplySafeSession` · 열쇠 200개씩 · 이미 본 본문 없음, 지웠다)으로 잰 결과:
+
+| 범위 | 지금 | 버리면 | 문항 중 `interactive` |
+|---|---|---|---|
+| T1 `5-2-2-1` learn | 200 / 200 | 145 / 200 | 41% |
+| T2 `5-2-2-2` learn | 200 / 200 | 200 / 200 | 27% |
+| P1 `5-1-5-4` review | 200 / 200 | 200 / 200 | 11% |
+| P2 `5-1-5-3` review | 200 / 200 | **0 / 200** | 59% |
+
+버리면 P2 는 영영 공급되지 않고 T1 의 복귀 · 대체가 네 번에 한 번꼴로 공급 부족이 된다. plan-v03 §5 는 관문에 못 드는 범위를 조용히 켜지 말고 3자 재검토하라고 했으므로, 버리기는 «관문 지키기»가 아니라 범위 바꾸기다. 루트도 같은 결과(실제 공급 · 연결 시험 다섯 실패)를 보고 다른 안으로 갔다.
+
+**승인한 안**: 모든 기존 관문을 지난 뒤, 공급한 사본의 `interactive` 를 명시적 `null` 로 둔다. `publicCourseSession`(`courseAutomation.ts:916-933`)은 `answerChoices` 가 있고 `interactive !== undefined` 이면 다시 만들지 않으므로, 화면은 관문이 검사한 보기 넷을 그대로 쓴다. 생성기 · 연습 화면 · 계약 · 문턱 · 20씨앗 탐색은 그대로이고 공급은 넷 다 200 / 200 이다. 시험에서 볼 것: 공급한 문항이 모두 `interactive === null`(엄격 비교) · 본문 · 답 · 보기 · 씨앗 · 갈래는 생성기와 같음 · 공개 세션이 같은 보기 넷과 `null` · 보통 세션은 여전히 칸 칠하기.
+
+남는 것(막지 않음): 시범 P · T 세션은 늘 보기로, 같은 소단원의 보통 세션은 칸 칠하기로 나올 수 있다 — 한 학생이 한 소단원을 두 입력 꼴로 만난다.
