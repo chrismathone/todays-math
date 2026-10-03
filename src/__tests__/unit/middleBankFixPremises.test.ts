@@ -48,6 +48,43 @@ describe("MID-001: the stated radii determine one sector answer", () => {
   }
 });
 
+it("MID-001 sibling 07: proportional quantities share one radius", () => {
+  const measurements: Record<string, (r: number, theta: number) => number> = {
+    "호의 길이": (r, theta) => r * theta,
+    "부채꼴의 넓이": (r, theta) => (r * r * theta) / 2,
+    "현의 길이": (r, theta) => 2 * r * Math.sin(theta / 2),
+    "삼각형 $OAB$의 넓이": (r, theta) => (r * r * Math.sin(theta)) / 2,
+    "부채꼴의 둘레의 길이": (r, theta) => 2 * r + r * theta,
+    "활꼴의 넓이": (r, theta) => (r * r * (theta - Math.sin(theta))) / 2,
+  };
+  const seen = new Set<string>();
+  let checked = 0;
+  for (let seed = 0; seed < 300; seed++) {
+    const p = generateMiddleProblem("1-2|원과 부채꼴|07", seed);
+    const rows = [...p.content.matchAll(/^[ㄱ-ㅎ]\. (.+)$/gm)].map(
+      (m) => m[1]!,
+    );
+    expect(rows.length).toBeGreaterThanOrEqual(4);
+    const radii = p.content.includes("한 원에서") ? [1] : [1, 2];
+    let proportional = 0;
+    for (const row of rows) {
+      seen.add(row);
+      const measure = measurements[row];
+      expect(measure, row).toBeDefined();
+      const quotients = radii.flatMap((r) =>
+        [Math.PI / 6, Math.PI / 3, Math.PI / 2].map(
+          (theta) => measure!(r, theta) / theta,
+        ),
+      );
+      if (quotients.every((q) => close(q, quotients[0]!))) proportional++;
+    }
+    expect(proportional, `${seed}: ${p.content}`).toBe(numberIn(p.answer));
+    checked++;
+  }
+  expect(checked).toBe(300);
+  expect(seen.size).toBe(6);
+});
+
 type Triangle = { A: number; B: number; C: number };
 const signs = [-1, 1];
 function admissible(t: Triangle, acute: boolean) {
