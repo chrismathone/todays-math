@@ -107,3 +107,70 @@ export const sampleConfig = (
   videoPolicy: "optional",
   ...overrides,
 });
+
+/** 머리만 있는 PNG — 치수를 읽을 수 있을 만큼(서명 + IHDR). 내용은 `seed` 로 가른다 */
+export function tinyPng(width: number, height: number, seed = ""): Buffer {
+  const head = Buffer.alloc(24);
+  Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]).copy(head, 0);
+  head.writeUInt32BE(13, 8);
+  head.write("IHDR", 12, "latin1");
+  head.writeUInt32BE(width, 16);
+  head.writeUInt32BE(height, 20);
+  return Buffer.concat([head, Buffer.from(seed)]);
+}
+
+export interface BankProblemInput {
+  content?: string;
+  answer?: string;
+  solution?: string | null;
+  questionType?: string | null;
+  difficulty?: string;
+  reviewStatus?: "pending" | "approved" | "rejected";
+  directUseAllowed?: boolean;
+  pool?: "shared" | "private";
+  figureSvg?: string | null;
+  figureUrls?: string[];
+  figureDims?: number[];
+  figureSourceMm?: number[];
+  choiceFigureIndex?: number[];
+  score?: number | null;
+}
+
+/** 출제 자격이 있는 은행 문항(기본값) — 칸을 덮어써 자격을 잃게 하거나 그림을 단다 */
+export async function insertBankProblem(
+  db: Db,
+  unitId: string,
+  input: BankProblemInput = {},
+): Promise<{ id: string; code: string }> {
+  const id = randomUUID();
+  const { rows } = await db.query<{ problem_code: string }>(
+    `INSERT INTO "problem" ("id", "unit_id", "source", "difficulty", "problem_type", "question_type", "content", "answer",
+        "solution", "figure_svg", "figure_urls", "figure_dims", "figure_source_mm", "choice_figure_index", "score",
+        "review_status", "direct_use_allowed", "pool", "updated_at")
+     VALUES ($1, $2, 'manual', $3::"difficulty", '단답형', $4, $5, $6, $7, $8,
+             ARRAY(SELECT jsonb_array_elements_text($9::jsonb)), ARRAY(SELECT (jsonb_array_elements_text($10::jsonb))::int),
+             ARRAY(SELECT (jsonb_array_elements_text($11::jsonb))::float8), ARRAY(SELECT (jsonb_array_elements_text($12::jsonb))::int),
+             $13, $14::"review_status", $15, $16::"problem_pool", $17)
+     RETURNING "problem_code"`,
+    [
+      id,
+      unitId,
+      input.difficulty ?? "기본",
+      input.questionType ?? null,
+      input.content ?? "다음을 계산하시오.",
+      input.answer ?? "3",
+      input.solution === undefined ? "풀이" : input.solution,
+      input.figureSvg ?? null,
+      JSON.stringify(input.figureUrls ?? []),
+      JSON.stringify(input.figureDims ?? []),
+      JSON.stringify(input.figureSourceMm ?? []),
+      JSON.stringify(input.choiceFigureIndex ?? []),
+      input.score ?? null,
+      input.reviewStatus ?? "approved",
+      input.directUseAllowed ?? true,
+      input.pool ?? "shared",
+      sqlNow(),
+    ],
+  );
+  return { id, code: rows[0]!.problem_code };
+}
