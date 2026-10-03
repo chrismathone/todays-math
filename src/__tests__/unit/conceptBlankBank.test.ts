@@ -52,13 +52,13 @@ const MIN_PER_LEVEL = 1;
 const LEVELS = ["하", "중", "상"] as const;
 /** 학년마다 C 지면 빈칸보다 넓은 핵심어의 상한 — 줄기만 한다(2026-10-03 처음 잰 값 · 끝은 0). */
 const WIDE_KEYWORD_CEILING: Readonly<Record<string, number>> = {
-  e3: 40,
-  e4: 28,
-  e5: 23,
-  e6: 107,
-  m1: 1,
+  e3: 0,
+  e4: 3,
+  e5: 0,
+  e6: 0,
+  m1: 0,
   m2: 0,
-  m3: 3,
+  m3: 0,
 };
 const squash = (s: string) => s.replace(/\s+/g, "");
 
