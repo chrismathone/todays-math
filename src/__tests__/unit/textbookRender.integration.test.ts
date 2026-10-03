@@ -114,9 +114,11 @@ describe.skipIf(!run)(
         const answers = await renderTextbookChunk({
           ...input,
           variant: "answers",
-          frozenPages: student.pages,
+          studentPages: student.pages,
         });
-        expect(answers.pageMap).toEqual(student.pageMap);
+        expect(answers.pages).toHaveLength(2);
+        expect(answers.pageMap).not.toEqual(student.pageMap);
+        expect(answers.html).toContain("정답 · 문제 3쪽");
         expect(answers.html).toContain("비공개 정답");
         expect(answers.qrChecks).toHaveLength(4);
         await expect(
