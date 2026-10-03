@@ -44,6 +44,7 @@ const OWNER = {
   email: "owner@example.com",
   name: "김원장",
   isAdmin: false,
+  menus: ["conceptBlank"],
 };
 
 const SELECTION: ConceptBlankSelection = {
@@ -86,6 +87,20 @@ beforeEach(() => {
 });
 
 describe("/concept-blank/print", () => {
+  it.each([false, true])(
+    "denies direct print access with no effective menu, admin=%s",
+    async (isAdmin) => {
+      mocks.session.mockResolvedValue({
+        ...OWNER,
+        isAdmin,
+        isSuperAdmin: isAdmin,
+        menus: [],
+      });
+      await expect(call({ s: encodeSelection(SELECTION) })).rejects.toThrow(
+        "NOT_FOUND",
+      );
+    },
+  );
   it("세션이 없으면 /login 으로", async () => {
     mocks.session.mockResolvedValue(null);
     await expect(call({ s: encodeSelection(SELECTION) })).rejects.toThrow(

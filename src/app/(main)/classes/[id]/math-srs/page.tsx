@@ -16,7 +16,7 @@ export default async function ClassMathSrsPage({
   const account = await getAccountAccess();
   if (!account) redirect("/login");
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
-  if (!account.isAdmin && !account.menus.includes("teaching")) notFound();
+  if (!account.menus.includes("teaching")) notFound();
   const { id } = await params;
   if (!uuidSchema.safeParse(id).success) notFound();
   const owned = await requireOwnedClass(id, account);

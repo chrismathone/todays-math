@@ -158,10 +158,7 @@ export async function saveDocument(request: Request, id: string) {
       `개념 백지 이름은 ${CONCEPT_BLANK_TITLE_MAX}자까지입니다.`,
       400,
     );
-  if (
-    !access.account!.isAdmin &&
-    !access.account!.menus.includes(EDITOR_MENU[kind])
-  )
+  if (!access.account!.menus.includes(EDITOR_MENU[kind]))
     return privateError("이 자료를 편집할 권한이 없습니다.", 403);
   const userId = access.ownerId!;
   try {
@@ -268,7 +265,7 @@ export async function deleteDocument(request: Request, id: string) {
     revision < 1
   )
     return privateError("자료 버전을 확인해 주세요.", 400);
-  if (!access.account!.isAdmin && !access.account!.menus.includes("library"))
+  if (!access.account!.menus.includes("library"))
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const userId = access.ownerId!;
   const deleted = await db.$transaction(async (tx) => {
@@ -304,7 +301,7 @@ export async function renameDocument(request: Request, id: string) {
   if (access.response) return access.response;
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
-  if (!access.account!.isAdmin && !access.account!.menus.includes("library"))
+  if (!access.account!.menus.includes("library"))
     return privateError("내 시험지 메뉴를 사용할 권한이 없습니다.", 403);
   const parsed = z
     .object({
@@ -393,7 +390,6 @@ export async function copyDocument(request: Request, id: string) {
     });
     if (!source) return null;
     if (
-      !access.account!.isAdmin &&
       !access.account!.menus.includes(EDITOR_MENU[source.kind as DocumentKind])
     )
       return "forbidden" as const;

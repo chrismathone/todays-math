@@ -35,7 +35,6 @@ export async function requireEnglishSession(
   const session = await getSessionUser();
   if (!session) return { session: null, response: unauthorizedError() };
   if (
-    !session.isAdmin &&
     !englishRouteAllowed(
       session.menus ?? [],
       request.method,

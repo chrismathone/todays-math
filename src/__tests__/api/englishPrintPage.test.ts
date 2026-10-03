@@ -60,6 +60,24 @@ const OWNER = {
   name: "김원장",
   isAdmin: false,
 };
+it.each([false, true])(
+  "denies a capped owner/superadmin print before reading a set: %s",
+  async (isSuperAdmin) => {
+    mocks.session.mockResolvedValue({
+      ...OWNER,
+      isAdmin: true,
+      isSuperAdmin,
+      menus: [],
+    });
+    await expect(
+      EnglishSetPrintPage({
+        params: Promise.resolve({ id: SET_ID }),
+        searchParams: Promise.resolve({}),
+      }),
+    ).rejects.toThrow("NOT_FOUND");
+    expect(mocks.setFindUnique).not.toHaveBeenCalled();
+  },
+);
 
 it("denies direct print page access without library permission before reading a set", async () => {
   mocks.setFindUnique.mockClear();
