@@ -4,9 +4,9 @@
  * 학생 S 가 대상(배치 또는 개념)을 열 수 있는 조건 — 전부 참이어야 한다:
  *   ⑴ 판본이 발행됨이고 QR 이 켜져 있으며(active) 중지되지 않았다
  *   ⑵ 배정이 있다: 같은 판본 · 회수 안 됨 · 지금이 시작 ~ 만료 안
- *   ⑶ 그 배정이 S 를 가리킨다: 학생 본인이거나 S 의 **지금** 반
+ *   ⑶ 그 배정이 S 를 가리킨다: 학생 본인이거나 S 가 지금 실제 수강 중인 반
  *   ⑷ 그 배정이 대상을 덮는다: 판본 전체 · 대상의 구획 · 대상 배치
- *   ⑸ 판본의 주인과 그 반의 주인이 **지금도** 같은 범위다: 같은 계정이거나, 책이 지점 공유이고 둘 다 지금 그 지점의 살아 있는 계정
+ *   ⑸ 로컬 반은 기존 소유 범위를 지킨다. 관리형 반은 유효 수강·지점 범위와 명시적 배정을 확인한다.
  *   ⑹ 판본의 주인 계정이 정지 · 삭제 상태가 아니다
  *
  * 🔴 진도 표를 읽지도 쓰지도 않는다 · 교사의 `textbook` 메뉴를 꺼도 학생 열람은 그대로다(여기서 메뉴를 묻지 않는다).
@@ -14,6 +14,7 @@
  * 🔴 예약(reserved) · 무효(void) QR 은 학생에게 «없는 것»이다. 사유를 갈라 알리지 않는다.
  */
 import type { TextbookSql } from "./server/sql";
+import { activeTextbookStudentClasses } from "./server/operationalScope";
 
 export type StudentQrDenial =
   /** 없는 주소 · 예약만 된 주소 · 무효가 된 주소 — 학생에게는 같은 것이다 */
@@ -56,6 +57,8 @@ interface StudentRow {
   classOwnerId: string;
   classOwnerBranchId: string | null;
   classOwnerActive: boolean;
+  managed?: boolean;
+  branchId?: string | null;
 }
 
 export interface AssignmentRow {
@@ -65,6 +68,7 @@ export interface AssignmentRow {
   scopeIds: string[];
   /** DB 의 지금으로 본 값 — 열려 있고(시작함 · 만료 전) 회수되지 않았다 */
   open: boolean;
+  assignedBy?: string;
 }
 
 /** ⑸ 판본의 주인과 반의 주인이 지금 같은 범위인가 */
@@ -116,13 +120,20 @@ export function judgeStudentQr(
   // ⑹ 주인 계정이 닫혔으면 인쇄된 QR 은 «닫힘»이다
   if (qr.editionStatus !== "published" || qr.suspended || !qr.ownerActive)
     return { ok: false, reason: "closed" };
-  if (!ownersShareScope(qr, student))
+  if (!student.managed && !ownersShareScope(qr, student))
     return { ok: false, reason: "not-assigned" };
   const covered = assignments.some(
     (assignment) =>
       assignment.open &&
       (assignment.studentId === studentId ||
         assignment.classId === student.classId) &&
+      (!student.managed ||
+        (qr.visibility === "private"
+          ? assignment.assignedBy === qr.ownerId
+          : qr.visibility === "branch" &&
+            qr.sharedBranchId !== null &&
+            qr.sharedBranchId === student.branchId &&
+            qr.ownerBranchId === qr.sharedBranchId)) &&
       assignmentCovers(assignment, qr),
   );
   if (!covered) return { ok: false, reason: "not-assigned" };
@@ -145,7 +156,7 @@ export function judgeStudentQr(
 const ACTIVE = (alias: string) =>
   `(${alias}."deleted_at" IS NULL AND ${alias}."suspended_at" IS NULL AND ${alias}."approval_status" = 'approved')`;
 
-/** 매 요청마다 부른다 — 회수 · 만료 · 반 이동 · 지점 이동이 다음 요청에 바로 반영된다 */
+/** 매 요청마다 부른다 — 배정 회수·만료, 현재 수강 종료, 지점 공유 변경을 다시 확인한다. */
 export async function resolveStudentQr(
   sql: TextbookSql,
   studentId: string,
@@ -173,24 +184,30 @@ export async function resolveStudentQr(
     [slug],
   );
   if (!qr) return { ok: false, reason: "not-found" };
-  const [student] = await sql.query<StudentRow>(
-    `SELECT s."class_id" AS "classId", c."user_id" AS "classOwnerId", u."branch_id" AS "classOwnerBranchId",
-            ${ACTIVE("u")} AS "classOwnerActive"
-       FROM "student" s JOIN "class" c ON c."id" = s."class_id" JOIN "user" u ON u."id" = c."user_id"
-      WHERE s."id" = $1::uuid`,
-    [studentId],
-  );
-  if (!student) return { ok: false, reason: "not-found" };
+  await sql.refreshStudentScope?.(studentId);
+  const classes = await activeTextbookStudentClasses(sql, studentId);
+  if (!classes.length) return { ok: false, reason: "not-assigned" };
   const assignments = await sql.query<AssignmentRow>(
     `SELECT a."class_id" AS "classId", a."student_id" AS "studentId", a."scope_kind" AS "scopeKind",
-            a."scope_ids" AS "scopeIds",
+            a."scope_ids" AS "scopeIds", a."assigned_by" AS "assignedBy",
             (a."revoked_at" IS NULL AND a."opens_at" <= (now() AT TIME ZONE 'UTC')
              AND (a."expires_at" IS NULL OR a."expires_at" > (now() AT TIME ZONE 'UTC'))) AS "open"
        FROM "textbook_assignment" a
-      WHERE a."edition_id" = $1::uuid AND (a."student_id" = $2::uuid OR a."class_id" = $3::uuid)`,
-    [qr.editionId, studentId, student.classId],
+      WHERE a."edition_id" = $1::uuid AND (a."student_id" = $2::uuid
+        OR a."class_id" IN (SELECT value::uuid FROM jsonb_array_elements_text($3::jsonb)))`,
+    [
+      qr.editionId,
+      studentId,
+      JSON.stringify(classes.map((row) => row.classId)),
+    ],
   );
-  return judgeStudentQr(studentId, qr, student, assignments);
+  for (const student of classes) {
+    const result = judgeStudentQr(studentId, qr, student, assignments);
+    if (result.ok) return result;
+    if (result.reason === "closed" || result.reason === "not-found")
+      return result;
+  }
+  return { ok: false, reason: "not-assigned" };
 }
 
 /**

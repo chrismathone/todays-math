@@ -14,7 +14,8 @@ import { randomUUID } from "node:crypto";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 
 import { type TextbookActor, requireReadableEdition } from "../access";
-import { TextbookError, conflict, invalid, notFound } from "./errors";
+import { TextbookError, conflict, invalid } from "./errors";
+import { requireClassScope } from "./operationalScope";
 import { type RequestKey, runOnce } from "./requests";
 import { type TextbookDb, type TextbookSql, uuidList } from "./sql";
 
@@ -80,19 +81,17 @@ export async function reissueTest(
   if (input.itemIds.some((id) => !UUID.test(id)))
     throw invalid("이 판본에 없는 문항이 들어 있습니다.");
   return db.transaction(async (tx) => {
+    const access = await requireReadableEdition(tx, actor, editionId);
+    if (access.status !== "published")
+      throw conflict("발행한 판본의 문항으로만 다시 출제합니다.");
+    // Every replay must pass the current assignment, not the original creator pointer.
+    await requireClassScope(tx, actor, input.classId, "test:write", {
+      lock: true,
+    });
     const { result, replayed } = await runOnce<ReissueResult>(
       tx,
       key,
       async () => {
-        const access = await requireReadableEdition(tx, actor, editionId);
-        if (access.status !== "published")
-          throw conflict("발행한 판본의 문항으로만 다시 출제합니다.");
-        const [owned] = await tx.query<{ ownerId: string }>(
-          `SELECT "user_id" AS "ownerId" FROM "class" WHERE "id" = $1::uuid`,
-          [input.classId],
-        );
-        // 개인 작업물이다 — 자기 반에만 만든다(바구니 출제와 같다)
-        if (!owned || owned.ownerId !== actor.id) throw notFound("반");
         const [endUnit] = await tx.query<{ orderIndex: number }>(
           `SELECT "order_index" AS "orderIndex" FROM "unit" WHERE "id" = $1::uuid`,
           [input.rangeEndUnitId],

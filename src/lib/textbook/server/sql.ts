@@ -17,6 +17,9 @@
 export type SqlParam = string | number | boolean | null | Uint8Array | Date;
 
 export interface TextbookSql {
+  /** Refresh external relationship leases before a transaction; never grants access itself. */
+  refreshTeacherScope?(userId: string, write: boolean): Promise<void>;
+  refreshStudentScope?(studentId: string): Promise<void>;
   query<T = Record<string, unknown>>(
     text: string,
     params?: readonly SqlParam[],
