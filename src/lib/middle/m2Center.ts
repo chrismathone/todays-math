@@ -1564,7 +1564,7 @@ export const M2_CENTER_EXT: TypeEntry[] = [
       const q = intBetween(rng, 15, 40);
       const x = 90 - p - q;
       return {
-        content: `점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB=${p}^\\circ$, $\\angle OBC=${q}^\\circ$일 때, $\\angle OCA$의 크기를 구하시오.`,
+        content: `점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB=${p}^\\circ$, $\\angle OBC=${q}^\\circ$일 때, $\\angle OCA$의 크기를 구하시오.`,
         answer: `$${x}^\\circ$`,
         solution: `외심에서 세 꼭짓점까지의 거리가 같으므로 $\\triangle OAB$, $\\triangle OBC$, $\\triangle OCA$는 모두 이등변삼각형이다.\n따라서 $\\angle OAB+\\angle OBC+\\angle OCA=90^\\circ$이므로 $\\angle OCA=90^\\circ-${p}^\\circ-${q}^\\circ=${x}^\\circ$이다.`,
         facts: { p, q, x },

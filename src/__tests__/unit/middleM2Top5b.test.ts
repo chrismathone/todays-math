@@ -449,8 +449,10 @@ function productPairs(P: number): Array<[number, number]> {
 const VERIFY: Record<string, (content: string) => string> = {
   // 105X — 세 내각을 전부 넣어 보고 비가 맞는 삼각형을 찾는다.
   "105X": (content) => {
+    if (!content.includes("예각삼각형"))
+      throw new Error("105X: 예각삼각형 조건이 없다");
     const [pT, qT, rT, askT] = grab(
-      /^점 \$O\$가 \$\\triangle ABC\$의 외심이고 \$\\angle OAB : \\angle OBC : \\angle OCA = (\d+) : (\d+) : (\d+)\$일 때, \$\\angle (BOC|COA|AOB)\$의 크기를 구하시오\.$/,
+      /^점 \$O\$가 예각삼각형 \$ABC\$의 외심이고 \$\\angle OAB : \\angle OBC : \\angle OCA = (\d+) : (\d+) : (\d+)\$일 때, \$\\angle (BOC|COA|AOB)\$의 크기를 구하시오\.$/,
       content,
       "105X",
     );
@@ -658,18 +660,28 @@ const VERIFY: Record<string, (content: string) => string> = {
  * ⚠️ 이 지면들은 **문자열 픽스처**다. 엔진 산출물을 그때그때 불러 쓰면 엔진을 고치는
  *    순간 양성이 사라져 재현율을 영영 못 잰다(2026-08-23).
  */
+it("MID-002: 외심 검산은 발문에 없는 예각 조건을 가정하지 않는다", () => {
+  // A=101.25°, B=48.75°, C=30°도 이 비를 만족하고 COA=97.5°이다.
+  // 예각삼각형만 센 검산기는 다른 답 114° 하나만 있다고 잘못 판단했다.
+  expect(() =>
+    VERIFY["105X"]!(
+      "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 16 : 3 : 11$일 때, $\\angle COA$의 크기를 구하시오.",
+    ),
+  ).toThrow("예각삼각형 조건이 없다");
+});
+
 const CALIBRATION: ReadonlyArray<readonly [string, string, string]> = [
   [
     // $4+3+8=15$, $90\div15=6$ → $24^\circ,18^\circ,48^\circ$.
     // $\angle A=24+48=72$ 이므로 $\angle BOC=2\times72=144$.
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 4 : 3 : 8$일 때, $\\angle BOC$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 4 : 3 : 8$일 때, $\\angle BOC$의 크기를 구하시오.",
     "144^\\circ",
   ],
   [
     // 같은 비에서 물음만 바꾼다 — $\angle B=24+18=42$ 이므로 $\angle COA=84$.
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 4 : 3 : 8$일 때, $\\angle COA$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 4 : 3 : 8$일 때, $\\angle COA$의 크기를 구하시오.",
     "84^\\circ",
   ],
   [
@@ -712,31 +724,31 @@ const REJECTS: ReadonlyArray<readonly [string, string, string]> = [
   [
     // $2:2:6$ 은 $1:1:3$ 과 같은 문항이다 (전수에서 이 축만 걸린다).
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 2 : 2 : 6$일 때, $\\angle BOC$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 2 : 2 : 6$일 때, $\\angle BOC$의 크기를 구하시오.",
     "비가 기약이 아니다",
   ],
   [
     // $1+1+2=4$ 이고 $90$ 이 $4$ 로 안 나뉘어 정수 각이 없다.
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 1 : 2$일 때, $\\angle BOC$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 1 : 2$일 때, $\\angle BOC$의 크기를 구하시오.",
     "그런 비를 갖는 예각삼각형이 없다",
   ],
   [
     // $1+13+16=30$, $k=3$ → $3^\circ,39^\circ,48^\circ$ — $3^\circ$ 짜리 각이 난다.
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 13 : 16$일 때, $\\angle BOC$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 13 : 16$일 때, $\\angle BOC$의 크기를 구하시오.",
     "$6^\\circ$ 미만인 각이 있다",
   ],
   [
     // 정삼각형 — 비를 줄 까닭이 없다.
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 1 : 1$일 때, $\\angle BOC$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 1 : 1$일 때, $\\angle BOC$의 크기를 구하시오.",
     "정삼각형이라 비를 줄 까닭이 없다",
   ],
   [
     // $1+1+4=6$, $k=15$ → $15,15,60$; $\angle B=30$ → $\angle COA=60=10\times(1+1+4)$.
     "105X",
-    "점 $O$가 $\\triangle ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 1 : 4$일 때, $\\angle COA$의 크기를 구하시오.",
+    "점 $O$가 예각삼각형 $ABC$의 외심이고 $\\angle OAB : \\angle OBC : \\angle OCA = 1 : 1 : 4$일 때, $\\angle COA$의 크기를 구하시오.",
     "발문 세 수의 한두 번 연산으로 답이 나온다",
   ],
   [
