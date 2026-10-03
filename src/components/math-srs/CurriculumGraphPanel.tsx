@@ -51,7 +51,7 @@ const OUTCOME_TEXT = {
   unknown: "모름",
 } as const;
 const FROZEN_MISSION =
-  "자동 확인을 끄거나 허용된 계획 변경을 하면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.";
+  "같은 탐험 단원 안에서 시작 소단원을 바꾸거나, 관리자가 자동 선수 확인을 끄면 이후 계산만 바뀝니다. 이미 열린 탐험은 그대로 둡니다.";
 const OUTSIDE_PILOT = ["5-2-2-3", "5-2-2-4"] as const;
 const clock = new Intl.DateTimeFormat("ko-KR", {
   timeZone: "Asia/Seoul",
@@ -173,8 +173,8 @@ function UnitBody({
       ) : null}
       {info.role === null ? (
         <p>
-          찾을 수는 있고 자동으로 내지 않습니다. 시범 소단원은 없습니다. 낼
-          문제가 없고, 성취기준 대조도 끝나지 않았습니다.
+          찾을 수는 있고 자동으로 내지 않습니다. 이 시범에서 자동 제시하는 문제
+          범위를 연결하지 않았습니다.
         </p>
       ) : null}
       <h3 className={styles.subhead}>학습 요소</h3>
@@ -325,6 +325,7 @@ function StudentRecords({ student }: { student: GraphStudentRef | null }) {
   const evidence = view?.evidence;
   const unavailable =
     evidence?.context?.kind === "unavailable" ? evidence.context : null;
+  if (!student) return null;
   return (
     <section className={styles.student} aria-label="선택한 학생의 기록">
       <h2 className={styles.title}>선택한 학생의 기록</h2>
@@ -332,7 +333,6 @@ function StudentRecords({ student }: { student: GraphStudentRef | null }) {
         교육과정 연결과 따로입니다. 다른 학생과 합치지 않고, 이 화면에서 학습을
         시작하지 않습니다.
       </p>
-      {!student ? <p>선택된 학생 없음.</p> : null}
       {loading ? (
         <p role="status" className={styles.loading}>
           학생 기록을 불러오는 중…

@@ -7,8 +7,11 @@ import CurriculumGraphPanel from "@/components/math-srs/CurriculumGraphPanel";
 import {
   getCourseDashboard,
   getCourseStudentDetail,
+  saveCourseStudentPlan,
 } from "@/components/math-srs/courseApi";
 import type { PrerequisiteTeacherEvidence } from "@/contracts/mathPrerequisite.contract";
+import type { CourseRosterStudent } from "@/contracts/mathSrsCourse.contract";
+import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
 
 vi.mock("next/dynamic", () => ({
   default: (loader: () => Promise<{ default: ComponentType }>) => {
@@ -32,7 +35,14 @@ vi.mock("@/components/math-srs/courseApi", () => ({
 
 const detailApi = vi.mocked(getCourseStudentDetail);
 const dashboardApi = vi.mocked(getCourseDashboard);
+const saveApi = vi.mocked(saveCourseStudentPlan);
 const observed = "2026-09-22T03:00:00.000Z";
+const H1_REASONS = {
+  return: "분수의 뺄셈 확인 범위를 본 뒤, 분수의 곱셈을 다시 학습해요.",
+  fallback: "확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.",
+  unavailable: "새 문제를 준비하지 못했어요. 선생님께 알려 주세요.",
+  held: "확인 범위를 최근 14일 안에 풀어, 목표를 마치거나 14일이 지날 때까지 그 복습을 미뤄요. 숙달 판정이 아니에요.",
+} as const;
 const versions = {
   graphSchemaVersion: "1.1.0" as const,
   graphContentHash: "a".repeat(64),
@@ -48,7 +58,7 @@ function evidence(
     configuredAt: observed,
     versions,
     heldSectionIds: ["5-1-5-4"],
-    holdReason: "이 소단원의 다시 풀 시기는 보류입니다.",
+    holdReason: H1_REASONS.held,
     context,
     sections: [
       {
@@ -179,6 +189,15 @@ describe("교육과정 연결도", () => {
     ).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: /M3-R02/ }));
     expect(screen.getByText("근의 공식").closest("button")).toBeNull();
+    expect(
+      screen.getByText(
+        /이 시범에서 자동 제시하는 문제 범위를 연결하지 않았습니다/,
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/낼 문제가 없고/)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("region", { name: "선택한 학생의 기록" }),
+    ).not.toBeInTheDocument();
   });
 
   it("opens a related unit outside the filter by resetting the filter", async () => {
@@ -239,7 +258,7 @@ describe("교육과정 연결도", () => {
           kind: "unavailable",
           targetSectionId: "5-2-2-1",
           sectionId: "5-2-2-1",
-          reason: "안전한 확인 문제를 준비하지 못해 목표 학습을 이어갑니다.",
+          reason: H1_REASONS.fallback,
           canStart: true,
           partial: true,
           versions,
@@ -269,12 +288,17 @@ describe("교육과정 연결도", () => {
     expect(
       screen.getByText(/최근 완료한 5문항 세션 두 번/),
     ).toBeInTheDocument();
-    expect(screen.getByText(/다시 풀 시기는 보류입니다/)).toBeInTheDocument();
     expect(
-      screen.getByText(
-        /안전한 확인 문제를 준비하지 못해 목표 학습을 이어갑니다/,
-      ),
+      screen.getByText(H1_REASONS.held, { exact: false }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByText(new RegExp(H1_REASONS.fallback)),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/같은 탐험 단원 안에서 시작 소단원을 바꾸거나/),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/자동 선수 확인을 끄면/)).toBeInTheDocument();
+    expect(screen.queryByText(/허용된 계획 변경/)).not.toBeInTheDocument();
     expect(
       screen.getByText(/이미 열린 탐험은 그대로 둡니다/),
     ).toBeInTheDocument();
@@ -314,7 +338,7 @@ describe("교육과정 연결도", () => {
           kind: "unavailable",
           targetSectionId: "5-2-2-1",
           sectionId: null,
-          reason: "지금 낼 수 있는 새 문제가 없어요. 선생님께 알려 주세요.",
+          reason: H1_REASONS.unavailable,
           canStart: false,
           partial: true,
           versions,
@@ -326,8 +350,97 @@ describe("교육과정 연결도", () => {
     ).toBeInTheDocument();
     expect(screen.queryByText(/대분수의 뺄셈/)).not.toBeInTheDocument();
     expect(
+      screen.queryByText(new RegExp(H1_REASONS.unavailable)),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByRole("button", { name: /시작/ }),
     ).not.toBeInTheDocument();
+  });
+
+  it("shows the shortage reason and a return reason from the frozen DTO", async () => {
+    detailApi.mockResolvedValue(
+      detail(
+        "student-a",
+        2,
+        "김하늘",
+        evidence({
+          kind: "unavailable",
+          targetSectionId: "5-2-2-1",
+          sectionId: null,
+          reason: H1_REASONS.unavailable,
+          canStart: false,
+          partial: true,
+          versions,
+        }),
+      ),
+    );
+    const { rerender } = render(
+      <CurriculumGraphPanel
+        id="graph"
+        student={{ id: "student-a", revision: 2 }}
+      />,
+    );
+    expect(
+      await screen.findByText(new RegExp(H1_REASONS.unavailable)),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/자동 선수 확인을 끄면/)).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /시작/ }),
+    ).not.toBeInTheDocument();
+
+    detailApi.mockResolvedValue(
+      detail(
+        "student-a",
+        3,
+        "김하늘",
+        evidence({
+          kind: "return",
+          targetSectionId: "5-2-2-1",
+          sectionId: "5-2-2-1",
+          reason: H1_REASONS.return,
+          canStart: true,
+          partial: true,
+          versions,
+        }),
+      ),
+    );
+    rerender(
+      <CurriculumGraphPanel
+        id="graph"
+        student={{ id: "student-a", revision: 3 }}
+      />,
+    );
+    expect(
+      await screen.findByText(new RegExp(H1_REASONS.return)),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText(new RegExp(H1_REASONS.unavailable)),
+    ).not.toBeInTheDocument();
+  });
+
+  it("drops the previous student on the first paint of the next student", async () => {
+    detailApi.mockResolvedValue(
+      detail("student-a", 4, "김하늘", evidence(null)),
+    );
+    const { rerender } = render(
+      <CurriculumGraphPanel
+        id="graph"
+        student={{ id: "student-a", revision: 4 }}
+      />,
+    );
+    expect(await screen.findByText(/김하늘/)).toBeInTheDocument();
+    const pending =
+      deferred<Awaited<ReturnType<typeof getCourseStudentDetail>>>();
+    detailApi.mockImplementation(() => pending.promise);
+    rerender(
+      <CurriculumGraphPanel
+        id="graph"
+        student={{ id: "student-b", revision: 1 }}
+      />,
+    );
+    expect(screen.queryByText(/김하늘/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/대분수의 뺄셈/)).not.toBeInTheDocument();
+    expect(screen.getByText(/학생 기록을 불러오는 중/)).toBeInTheDocument();
   });
 });
 
@@ -345,8 +458,109 @@ describe("SRS 현황의 연결도 진입", () => {
     expect(
       await screen.findByRole("heading", { name: "단원 100 / 100" }),
     ).toBeInTheDocument();
-    expect(screen.getByText("선택된 학생 없음.")).toBeInTheDocument();
+    expect(screen.getByText(/선택된 학생 없음/)).toBeInTheDocument();
+    expect(screen.queryByText("선택된 학생 없음.")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("region", { name: "선택한 학생의 기록" }),
+    ).not.toBeInTheDocument();
     expect(detailApi).not.toHaveBeenCalled();
     await waitFor(() => expect(entry).toHaveAttribute("aria-expanded", "true"));
+  });
+
+  it("refetches graph evidence when a plan save raises the roster revision", async () => {
+    const user = userEvent.setup();
+    const section = COURSE_SECTIONS[0];
+    const row = (revision: number): CourseRosterStudent => ({
+      id: "student-1",
+      name: "김하늘",
+      classId: "class-1",
+      className: "초등 새싹반",
+      hasAccount: true,
+      revision,
+      plan: {
+        startSectionId: section.id,
+        dailyQuestionCount: 10,
+        enabled: true,
+        configuredAt: observed,
+      },
+      summary: {
+        status: "learning",
+        currentSectionId: section.id,
+        dueCount: 0,
+        todayAnswered: 0,
+        todayCorrect: 0,
+        todayGoal: 10,
+        completedSections: 0,
+        lastPracticedAt: null,
+        nextReviewAt: null,
+        recommendation: null,
+      },
+    });
+    const payload = (
+      revision: number,
+      context: PrerequisiteTeacherEvidence["context"],
+    ) =>
+      ({
+        ok: true as const,
+        data: {
+          student: row(revision),
+          sections: [],
+          activity: [],
+          recentSessions: [],
+          recentAttempts: [],
+          prerequisite: evidence(context),
+        },
+      }) as unknown as Awaited<ReturnType<typeof getCourseStudentDetail>>;
+    let saved = false;
+    detailApi.mockImplementation(async () =>
+      saved
+        ? payload(4, {
+            kind: "return",
+            targetSectionId: "5-2-2-1",
+            sectionId: "5-2-2-1",
+            reason: H1_REASONS.return,
+            canStart: true,
+            partial: true,
+            versions,
+          })
+        : payload(3, {
+            kind: "unavailable",
+            targetSectionId: "5-2-2-1",
+            sectionId: "5-2-2-1",
+            reason: H1_REASONS.fallback,
+            canStart: true,
+            partial: true,
+            versions,
+          }),
+    );
+    dashboardApi.mockResolvedValue({
+      ok: true,
+      data: {
+        classes: [{ id: "class-1", name: "초등 새싹반" }],
+        students: [row(3)],
+      },
+    });
+    saveApi.mockResolvedValue({ ok: true, data: row(4) });
+    render(<CourseDashboard />);
+    await user.click(screen.getByRole("button", { name: "교육과정 연결도" }));
+    await screen.findByRole("heading", { name: "단원 100 / 100" });
+    await user.click(
+      await screen.findByRole("button", { name: "김하늘 상세 보기" }),
+    );
+    const records = await screen.findByRole("region", {
+      name: "선택한 학생의 기록",
+    });
+    expect(
+      await within(records).findByText(new RegExp(H1_REASONS.fallback)),
+    ).toBeInTheDocument();
+    saved = true;
+    await user.click(screen.getByRole("button", { name: "학습 설정" }));
+    await user.click(screen.getByRole("button", { name: "학습 계획 저장" }));
+    expect(
+      await within(records).findByText(new RegExp(H1_REASONS.return)),
+    ).toBeInTheDocument();
+    expect(
+      within(records).queryByText(new RegExp(H1_REASONS.fallback)),
+    ).not.toBeInTheDocument();
   });
 });

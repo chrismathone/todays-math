@@ -133,6 +133,9 @@ export default function CourseDashboard({
   }, [reload]);
 
   const students = data?.students ?? [];
+  const selectedGraphStudent = selected
+    ? (students.find((row) => row.id === selected.id) ?? selected)
+    : null;
   const normalized = query.trim().toLocaleLowerCase("ko-KR");
   const inScope = students.filter(
     (student) =>
@@ -215,7 +218,12 @@ export default function CourseDashboard({
         <CurriculumGraphPanel
           id={graphPanelId}
           student={
-            selected ? { id: selected.id, revision: selected.revision } : null
+            selectedGraphStudent
+              ? {
+                  id: selectedGraphStudent.id,
+                  revision: selectedGraphStudent.revision,
+                }
+              : null
           }
           onClose={() => setGraphOpen(false)}
         />
