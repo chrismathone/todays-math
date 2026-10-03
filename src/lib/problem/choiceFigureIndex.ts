@@ -32,6 +32,8 @@
  * 겹침은 짝짓기가 무너졌다는 뜻이므로 「모른다」가 정직하다.
  */
 
+import { FIGURE_MARKER } from "./figureMarker";
+
 /** 배열이 담을 수 있는 보기 번호의 상한. 마커 표기(①~⑩)와 같은 범위다. */
 export const MAX_CHOICE_NUMBER = 10;
 
@@ -104,4 +106,70 @@ export function hasChoiceFigureLinks(
   flat: readonly number[] | null | undefined,
 ): boolean {
   return checkChoiceFigureIndex(figureCount, flat).ok;
+}
+
+/**
+ * 본문이 `[그림]` 자국**뿐인** 보기 — 그 칸의 내용이 곧 그림이다.
+ * `[그림] 위로 볼록한 곡선` 처럼 글이 붙은 보기는 글 보기로 본다(그 글이 그림의 설명인지 알 길이 없다).
+ */
+export function isFigureChoice(body: string): boolean {
+  return body.trim() === FIGURE_MARKER;
+}
+
+/** 조판이 그릴 자리 — `figureUrls` 의 색인으로 적는다. */
+export interface ChoiceFigurePlan {
+  /** 발문 아래에 그릴 그림(원래 차례). */
+  stem: number[];
+  /** 보기 번호(1부터) → 그 보기 칸에 넣을 그림. */
+  byChoice: Record<number, number>;
+}
+
+/**
+ * 「어느 그림을 어느 보기 칸에 넣는가」 — 조판 · 넘침 자 · 적재기가 **같이 쓰는 한 곳**
+ * (2026-10-03 3자 합의 B1 · `tracks/reports/consult-bank-fix/consensus.md`).
+ *
+ * 배열 규약(`checkChoiceFigureIndex`)에 **보기 쪽 사정**을 더해 본다 — 짝은 양쪽에서 맞아야 한다:
+ *   · 0 이 아닌 번호는 실제로 있는 보기이고, 그 보기의 본문이 `[그림]` 이다
+ *     (글 보기를 가리키는 그림은 칸에 못 들어가 조판에서 **사라진다**)
+ *   · 본문이 `[그림]` 인 보기마다 그림이 하나씩 있다 (반쪽 짝은 받지 않는다)
+ * 하나라도 어긋나면 `null` — «모른다»이고, 조판은 오늘 그대로 그린다.
+ * 보기 그림이 하나도 없을 때도 `null` 이다(오늘의 조판과 다를 것이 없다).
+ */
+export function planChoiceFigures(
+  figureCount: number,
+  flat: readonly number[] | null | undefined,
+  choices: readonly string[],
+): ChoiceFigurePlan | null {
+  if (!checkChoiceFigureIndex(figureCount, flat).ok) return null;
+  const plan: ChoiceFigurePlan = { stem: [], byChoice: {} };
+  for (let index = 0; index < figureCount; index += 1) {
+    const value = flat![index]!;
+    if (value === 0) {
+      plan.stem.push(index);
+      continue;
+    }
+    const body = choices[value - 1];
+    if (body === undefined || !isFigureChoice(body)) return null;
+    plan.byChoice[value] = index;
+  }
+  const everyFigureChoiceLinked = choices.every(
+    (body, i) => !isFigureChoice(body) || plan.byChoice[i + 1] !== undefined,
+  );
+  if (!everyFigureChoiceLinked) return null;
+  return Object.keys(plan.byChoice).length > 0 ? plan : null;
+}
+
+/**
+ * `[그림]` 보기가 있는데 짝을 모른다 — **학생이 못 푸는 문항**이다.
+ * 적재기는 이런 행의 출제 허용을 끈다(은행 카드에는 그대로 보인다 — 결함이 보여야 고친다).
+ */
+export function hasUnlinkedFigureChoices(
+  figureCount: number,
+  flat: readonly number[] | null | undefined,
+  choices: readonly string[],
+): boolean {
+  return (
+    choices.some(isFigureChoice) &&
+    planChoiceFigures(figureCount, flat, choices) === null
+  );
 }
