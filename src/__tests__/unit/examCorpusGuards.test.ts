@@ -78,11 +78,9 @@ describe("기출 25편·533문항 전수 관문", () => {
       if (answer < 0) faults.push(`${d.externalId}: 정답 번호 없음`);
       else expect(answer, d.externalId).toBeLessThan(choices.length);
     }
-    // 칠곡의 빈 ④는 A3 합의로 보충했다. 대구동 파서 수리는 별도 engine 트랙이다.
-    expect(faults).toEqual([
-      "2025-daegudong-3-2-mid-6: 보기 8",
-      "2025-daejin-3-2-mid-13: 정답 번호 없음",
-    ]);
+    // 칠곡의 빈 ④는 A3 합의로 보충했다. 대구동 6 의 «조건 1..3 + 보기 1..5»는 파서가 끝 묶음만
+    // 보기로 읽게 되어(B3) 여기서 빠졌다 — 남은 것은 학교가 문제 오류라고 쓴 대진 13 하나다(적재 제외).
+    expect(faults).toEqual(["2025-daejin-3-2-mid-13: 정답 번호 없음"]);
     const blanks = readDraftCorpus().flatMap((d) =>
       [...d.content.matchAll(/^([1-5])\.\s*$/gm)].map(
         (m) => `${d.externalId}: 빈 ${m[1]}`,
