@@ -20,7 +20,7 @@
 | `src/components/math-srs/CurriculumGraphPanel.tsx` (Grok `226a0fdba`) | **request_changes** | §5.1 T2 · T3 — 교사에게 학생 문장 · 회복 방법 없음 · «낼 문제가 없고» |
 | `src/components/math-srs/curriculum-graph.module.css` (Grok `226a0fdba`) | **approve** | hover 는 단추에만(D-30) |
 | `src/__tests__/components/CurriculumGraphPanel.test.tsx` (Grok `226a0fdba`) | **approve** · 보강 권고 | T1 을 지키는 시험이 없다 · 옛 문구 픽스처 |
-| 공급 관문의 `interactive` (루트 진행 중) | **approve** — 명시적 `null` 로 지우는 안 | §6 |
+| `src/lib/math-prerequisite/supply.ts` 의 `interactive: null` · 그 시험 · `expeditionStart.ts` 문구 (루트 작업 트리, 커밋 전) | **approve** | §6 — 8파일 114 통과 · 공개 세션 탐침 |
 
 ## 1. 막는 것이었던 것 — 학생 문구가 승인 시안과 달랐다 (풀림)
 
@@ -115,7 +115,7 @@
 | N2 | 시범 학생의 열린 미션이 계획 꺼짐으로 멈추면 탐험 안 설정 칸이 «학습 설정을 확인한 뒤…»를 보인다. 열린 미션 동안 학생은 설정을 바꿀 수 없다 | 교사 화면에서 «계획이 꺼져 미션이 멈춤»을 보이는 일(§5 의 회복 표시)로 넘긴다 |
 | N3 | 넷째 시험은 대체에서 자동 시작만 단정한다 | 대체 세션의 마지막 답 뒤 `onComplete` 가 불리는지 한 줄 더하면 `canStart` 를 안 보는 변이를 문다 |
 | N4 | 연습 화면의 사유 줄(`StudentCoursePractice.tsx:126-130`)은 문맥의 `sectionId` 와 보이는 세션의 범위를 대조하지 않는다. 서버는 열린 세션에서 문맥을 만들고, 세션 번호로 옛 세션을 부르면 문맥을 빼고 보낸다(`courseServer.ts:75-83`) — 지금 길들에서는 맞는다 | `sectionId === session.sectionId` 일 때만 그리면 화면 혼자서도 어긋날 수 없다 |
-| N5 | `expeditionStart.ts:119-121` 의 옛 공급 부족 문장 | `PREREQUISITE_REASONS.unavailable` |
+| N5 | `expeditionStart.ts:119-121` 의 옛 공급 부족 문장 | `PREREQUISITE_REASONS.unavailable` — 루트 작업 트리에서 고침(§6) |
 | N6 | `ExplorerHome` 의 꺼진 시작 단추 · 사유 줄에 컴포넌트 시험이 없다. 서버가 같은 사유로 거절해서 안전 문제는 아니다 | 시험 하나 |
 | N7 | 루트 그림 `student-a-return-*.png` 는 옛 복귀 문장이다. 새 문장은 320 에서 두 줄이 된다(`.prerequisiteReason` 은 `overflow-wrap: anywhere`) | `d94f6efad` 로 다시 찍기 |
 | N8 | `student-b-isolated.png` 는 «학습 화면을 준비하고 있어요…»만 보인다. 하네스가 «불러오는 중» 문자열이 없고 단추가 하나라도 있기만 기다리고 찍는다(`browser-check.mjs:28-33` · `:159`) — 그림에 보이는 단추 후보는 머리의 «나가기»뿐이다. B 의 격리는 고정물 상태 단정(`:149-158`)이 지키고 그림은 증거가 아니다. `result.json` 의 `requests` 도 B 를 열기 전 A 의 상태에서 읽어 B 요청이 없다 | B 화면의 제목을 기다린 뒤 찍기 · 요청 목록은 마지막에 읽기 |
@@ -175,5 +175,7 @@
 버리면 P2 는 영영 공급되지 않고 T1 의 복귀 · 대체가 네 번에 한 번꼴로 공급 부족이 된다. plan-v03 §5 는 관문에 못 드는 범위를 조용히 켜지 말고 3자 재검토하라고 했으므로, 버리기는 «관문 지키기»가 아니라 범위 바꾸기다. 루트도 같은 결과(실제 공급 · 연결 시험 다섯 실패)를 보고 다른 안으로 갔다.
 
 **승인한 안**: 모든 기존 관문을 지난 뒤, 공급한 사본의 `interactive` 를 명시적 `null` 로 둔다. `publicCourseSession`(`courseAutomation.ts:916-933`)은 `answerChoices` 가 있고 `interactive !== undefined` 이면 다시 만들지 않으므로, 화면은 관문이 검사한 보기 넷을 그대로 쓴다. 생성기 · 연습 화면 · 계약 · 문턱 · 20씨앗 탐색은 그대로이고 공급은 넷 다 200 / 200 이다. 시험에서 볼 것: 공급한 문항이 모두 `interactive === null`(엄격 비교) · 본문 · 답 · 보기 · 씨앗 · 갈래는 생성기와 같음 · 공개 세션이 같은 보기 넷과 `null` · 보통 세션은 여전히 칸 칠하기.
+
+**구현 확인**(루트 작업 트리, 커밋 전): `supply.ts` 가 검증한 사본을 `interactive: null` 로 돌려주고, `mathPrerequisiteSupply.test.ts` 가 칸 칠하기를 끼운 생성기로 «`interactive` 말고는 생성기 출력과 같다»를 단정한다. `expeditionStart.ts` 도 `PREREQUISITE_REASONS.unavailable` 을 쓴다(N5 풀림). 루트의 세 파일 + `d94f6efad` 화면 · 문구 + Codex 경로 시험을 이 워크트리에 잠시 꺼내 공급 · 공급 관문 · 회귀 · 연결 · 정책 · 경로 · `StudentCourseSrs` + 임시 탐침 = **8파일 114 통과**(되돌림, `git status` 깨끗). 탐침: P2 `5-1-5-3` 열쇠 40개(문항 200)에서 공급한 세션의 `publicCourseSession` 은 `interactive` 0/200 · 저장된 보기 넷 200/200, 같은 생성기 출력을 보통 세션으로 내면 칸 칠하기 117/200 — 보통 경로는 그대로다. **approve.** 브라우저는 내가 돌리지 않았다.
 
 남는 것(막지 않음): 시범 P · T 세션은 늘 보기로, 같은 소단원의 보통 세션은 칸 칠하기로 나올 수 있다 — 한 학생이 한 소단원을 두 입력 꼴로 만난다.
