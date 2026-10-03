@@ -22,6 +22,7 @@ import {
   textbookStudentVideoSchema,
   textbookStudentAttemptSchema,
   textbookReviewStartSchema,
+  textbookStudentQrSchema,
 } from "@/contracts/textbookStudent.contract";
 
 const id = "11111111-1111-4111-8111-111111111111";
@@ -71,6 +72,50 @@ const legacyPackage = {
 };
 
 describe("textbook shared contract boundaries", () => {
+  it("keeps older packages unchanged and requires explicit QR text solution disclosure", () => {
+    const parsed = textbookConfigSchema.parse(config);
+    expect(Object.hasOwn(parsed, "studentSolutionPolicy")).toBe(false);
+    expect(
+      textbookConfigSchema.parse({
+        ...config,
+        studentSolutionPolicy: "assigned",
+      }).studentSolutionPolicy,
+    ).toBe("assigned");
+    const problem = {
+      kind: "problem",
+      editionId: id,
+      itemId: id,
+      title: "문항",
+      displayNumber: "1",
+      content: "문제",
+      textSolutionAvailable: false,
+      answer: null,
+      solution: null,
+      figures: [],
+      concepts: [],
+      video: {
+        state: "preparing",
+        providerVideoId: null,
+        startSeconds: 0,
+        endSeconds: null,
+      },
+    };
+    expect(textbookStudentQrSchema.safeParse(problem).success).toBe(true);
+    expect(
+      textbookStudentQrSchema.safeParse({ ...problem, answer: "숨긴 정답" })
+        .success,
+    ).toBe(false);
+    expect(
+      textbookStudentQrSchema.safeParse({ ...problem, solution: "숨긴 해설" })
+        .success,
+    ).toBe(false);
+    expect(
+      textbookStudentQrSchema.safeParse({
+        ...problem,
+        textSolutionAvailable: true,
+      }).success,
+    ).toBe(false);
+  });
   it("does not expose unpublished video identities or teacher observation prose", () => {
     expect(
       textbookStudentVideoSchema.safeParse({
