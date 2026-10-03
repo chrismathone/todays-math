@@ -5,6 +5,11 @@ import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadExamConfig } from "../../../scripts/import/exam-paper/examConfig";
 import { examRoot } from "../../../scripts/import/exam-paper/audit-bank-fix";
+import {
+  candidateFingerprint,
+  collectRegeneration,
+  prepareRegeneration,
+} from "../../../scripts/import/exam-paper/regenerateExam";
 
 const originalArgv = process.argv;
 const originalExitCode = process.exitCode;
@@ -16,6 +21,7 @@ afterEach(() => {
 });
 interface Row {
   questionNumber: number;
+  answer: string;
   solution: string | null;
   solutionSource: string;
   directUseAllowed: boolean;
@@ -31,6 +37,9 @@ async function load(
     figureCount?: number;
     solution?: string | null;
     generated?: { answer: string; solution: string };
+    regenerated?: { answer: string; solution: string };
+    malformedLegacy?: boolean;
+    solutionNote?: string;
     answer?: string;
     figures?: { number: number; file: string; widthMm: number; px: number[] }[];
   } = {},
@@ -56,6 +65,9 @@ async function load(
     school: "시험",
     grade: "중3",
     subject: "수학",
+    ...(options.solutionNote
+      ? { solutionNotes: { [number]: options.solutionNote } }
+      : {}),
     units: {
       [number]: {
         section: "삼각비의 뜻",
@@ -69,7 +81,7 @@ async function load(
       externalId: `bank-decision-test-${number}`,
       examId: "bank-decision-test",
       questionNumber: number,
-      content: `값을 고르시오.\n\n${choices.map((c, i) => `${i + 1}. ${c}`).join("\n")}`,
+      content: `${options.regenerated ? "$1+1$의 값을 고르시오." : "값을 고르시오."}\n\n${choices.map((c, i) => `${i + 1}. ${c}`).join("\n")}`,
       answer: options.answer ?? "⑤",
       solution: options.solution ?? null,
       choiceFigureIndex: options.mapping,
@@ -95,6 +107,43 @@ async function load(
     );
   if (options.generated)
     put(`sol_ai/q${String(number).padStart(2, "0")}.json`, options.generated);
+  if (options.malformedLegacy)
+    fs.writeFileSync(
+      join(dir, "sol_ai", `q${String(number).padStart(2, "0")}.json`),
+      "broken JSON",
+    );
+  if (options.regenerated) {
+    const blind = fs.mkdtempSync(join(tmpdir(), "bank-decide-blind-"));
+    const manifest = prepareRegeneration(dir, blind);
+    const candidate = {
+      ...options.regenerated,
+      solverId: "independent-solving-session",
+    };
+    fs.writeFileSync(
+      join(blind, "out", `q${String(number).padStart(2, "0")}.json`),
+      JSON.stringify(candidate),
+    );
+    fs.writeFileSync(
+      join(blind, "verify", `q${String(number).padStart(2, "0")}.json`),
+      JSON.stringify({
+        status: "verified",
+        sourceDigest: manifest.sourceDigest,
+        candidateDigest: candidateFingerprint(candidate),
+        method: "independent-solve",
+        verifierId: "separate-checking-session",
+        independentAnswer: "②",
+        checks: {
+          answerCorrect: true,
+          solutionCorrect: true,
+          sourceFaithful: true,
+          curriculumAppropriate: true,
+        },
+        evidence:
+          "독립적으로 1+1=2를 계산했고 선택지 ②의 값 2와 일치한다. 덧셈 과정과 원문 선택지를 대조했다.",
+      }),
+    );
+    expect(collectRegeneration(dir).status).toBe("verified");
+  }
   const disconnect = vi.fn().mockResolvedValue(undefined);
   vi.doMock("@prisma/client", () => ({
     PrismaClient: class {
@@ -114,7 +163,12 @@ async function load(
   }));
   const log = vi.spyOn(console, "log").mockImplementation(() => {});
   const error = vi.spyOn(console, "error").mockImplementation(() => {});
-  process.argv = [process.execPath, script, dir];
+  process.argv = [
+    process.execPath,
+    script,
+    dir,
+    ...(options.regenerated ? ["--regenerate-all"] : []),
+  ];
   vi.spyOn(process, "cwd").mockReturnValue(dir);
   await import("../../../scripts/import/exam-paper/load-exam-paper");
   await vi.waitFor(() => expect(disconnect).toHaveBeenCalled());
@@ -132,6 +186,27 @@ async function load(
 }
 
 describe("원장님 결정 — 실제 적재 경로", () => {
+  it("재생성 모드는 새 정답·해설을 그대로 채택하고 원본 안내와 sol_ai를 섞지 않는다", async () => {
+    const regenerated = {
+      answer: "②",
+      solution: "$1+1=2$이다. 따라서 정답은 ②이다.",
+    };
+    const result = await load({
+      answer: "⑤",
+      solution: "원본의 이전 풀이",
+      solutionNote: "이전 답안 안내",
+      malformedLegacy: true,
+      regenerated,
+    });
+    expect(result.rows).toHaveLength(1);
+    expect(result.rows[0]).toMatchObject({
+      answer: regenerated.answer,
+      solution: regenerated.solution,
+      solutionSource: "ai",
+      questionNumber: 8,
+      directUseAllowed: true,
+    });
+  });
   it("A6: 대진 13은 초안이 있어도 적재 행을 만들지 않고 사유를 남긴다", async () => {
     const result = await load({ school: "daejin", number: 13 });
     expect(result.rows).toEqual([]);

@@ -1,4 +1,4 @@
-import type { Prisma } from "@prisma/client";
+import type { Prisma, Progress } from "@prisma/client";
 import { DEFAULT_DIFFICULTY_RATIO } from "@/contracts/difficulty";
 import {
   COLLECTION_KINDS,
@@ -17,6 +17,96 @@ import { enrollmentActive, kstRelationshipDay } from "./relationPolicy";
 
 const date = (value: string | null) => (value ? new Date(value) : null);
 const day = (value: string) => new Date(`${value}T00:00:00Z`);
+const RELATION_BATCH_SIZE = 500;
+function* batches<T>(rows: readonly T[]) {
+  for (let offset = 0; offset < rows.length; offset += RELATION_BATCH_SIZE)
+    yield rows.slice(offset, offset + RELATION_BATCH_SIZE);
+}
+function sameValue(current: unknown, desired: unknown): boolean {
+  if (desired instanceof Date)
+    return current instanceof Date && current.getTime() === desired.getTime();
+  if (Array.isArray(desired))
+    return (
+      Array.isArray(current) &&
+      current.length === desired.length &&
+      desired.every((value, offset) => sameValue(current[offset], value))
+    );
+  return current === desired;
+}
+/** Compare only source-owned fields; local IDs, authors and unrelated fields remain intact. */
+function sameFields(current: object, desired: object) {
+  const values = current as Record<string, unknown>;
+  return Object.entries(desired).every(([field, value]) =>
+    sameValue(values[field], value),
+  );
+}
+type ManagedProgressRow = Pick<
+  Progress,
+  "classId" | "studentId" | "unitId" | "recordedAt" | "createdAt"
+> & { eywaReportId: string };
+type ProgressChanges = {
+  retireIds: string[];
+  createRows: ManagedProgressRow[];
+  updateRows: { id: string; row: ManagedProgressRow }[];
+};
+const progressChanges = (): ProgressChanges => ({
+  retireIds: [],
+  createRows: [],
+  updateRows: [],
+});
+const progressIdentity = (row: Pick<Progress, "eywaReportId" | "unitId">) =>
+  `${row.eywaReportId}/${row.unitId}`;
+
+/** Identity/ownership must be checked by the caller before planning any writes. */
+function reconcileProgress(
+  existing: readonly Progress[],
+  planned: readonly ManagedProgressRow[],
+  changes: ProgressChanges,
+) {
+  const desired = new Map(planned.map((row) => [progressIdentity(row), row]));
+  const current = new Map(existing.map((row) => [progressIdentity(row), row]));
+  for (const row of existing)
+    if (row.retiredAt === null && !desired.has(progressIdentity(row)))
+      changes.retireIds.push(row.id);
+  for (const [identity, row] of desired) {
+    const old = current.get(identity);
+    if (!old) changes.createRows.push(row);
+    else if (
+      old.retiredAt !== null ||
+      old.classId !== row.classId ||
+      old.studentId !== row.studentId ||
+      old.recordedAt.getTime() !== row.recordedAt.getTime() ||
+      old.createdAt.getTime() !== row.createdAt.getTime()
+    )
+      changes.updateRows.push({ id: old.id, row });
+  }
+}
+
+/** Bounded bulk writes stay inside the receiver's existing atomic transaction. */
+async function applyProgressChanges(
+  tx: Prisma.TransactionClient,
+  changes: ProgressChanges,
+  now: Date,
+) {
+  for (const ids of batches(changes.retireIds))
+    await tx.progress.updateMany({
+      where: {
+        id: { in: ids },
+        retiredAt: null,
+      },
+      data: { retiredAt: now },
+    });
+  for (const rows of batches(changes.createRows))
+    await tx.progress.createMany({
+      data: rows.map((row) => ({ ...row, retiredAt: null })),
+    });
+  for (const { id, row } of changes.updateRows)
+    await tx.progress.update({
+      where: { id },
+      data: { ...row, retiredAt: null },
+    });
+}
+
 export class RelationConflict extends Error {
   constructor(code: string) {
     super(code);
@@ -101,11 +191,21 @@ export async function applyEywaRelations(
     if (!sourceClasses.has(row.classId) || !sourceStudents.has(row.studentId))
       throw new RelationConflict("enrollment_parent_missing");
 
+  // Include UUID collisions outside this binding so bulk reads preserve identity checks.
+  const existingClasses = await tx.class.findMany({
+    where: {
+      OR: [
+        { eywaBindingId: bindingId },
+        { eywaClassId: { in: [...sourceClasses.keys()] } },
+      ],
+    },
+  });
+  const classesBySource = new Map(
+    existingClasses.map((row) => [row.eywaClassId, row]),
+  );
   for (const row of rows.classes) {
     if (row.subject !== "math") throw new RelationConflict("non_math_class");
-    const existing = await tx.class.findUnique({
-      where: { eywaClassId: row.id },
-    });
+    const existing = classesBySource.get(row.id);
     if (
       existing &&
       ((existing.eywaBindingId && existing.eywaBindingId !== bindingId) ||
@@ -147,27 +247,41 @@ export async function applyEywaRelations(
       active: row.active,
       closedAt: date(row.closedAt),
     };
-    const cls = await tx.class.upsert({
-      where: { eywaClassId: row.id },
-      update: data,
-      create: {
-        ...data,
-        eywaClassId: row.id,
-        userId: owner,
-        difficultyRatio: DEFAULT_DIFFICULTY_RATIO,
-      },
-    });
+    const cls =
+      existing && sameFields(existing, data)
+        ? existing
+        : await tx.class.upsert({
+            where: { eywaClassId: row.id },
+            update: data,
+            create: {
+              ...data,
+              eywaClassId: row.id,
+              userId: owner,
+              difficultyRatio: DEFAULT_DIFFICULTY_RATIO,
+            },
+          });
     classMap.set(row.id, cls.id);
   }
-  await tx.class.updateMany({
-    where: {
-      eywaBindingId: bindingId,
-      eywaClassId: { notIn: rows.classes.map((c) => c.id) },
-      active: true,
-    },
-    data: { active: false, closedAt: now },
-  });
+  const absentClasses = existingClasses.filter(
+    (row) =>
+      row.eywaBindingId === bindingId &&
+      (sourceClasses.size === 0 ||
+        (row.eywaClassId !== null && !sourceClasses.has(row.eywaClassId))) &&
+      row.active,
+  );
+  for (const group of batches(absentClasses))
+    await tx.class.updateMany({
+      where: { id: { in: group.map((row) => row.id) }, active: true },
+      data: { active: false, closedAt: now },
+    });
 
+  const existingMemberships = await tx.classMembership.findMany({
+    where: { bindingId },
+  });
+  const membershipsBySource = new Map(
+    existingMemberships.map((row) => [row.sourceId, row]),
+  );
+  const newMemberships: Prisma.ClassMembershipCreateManyInput[] = [];
   const appliedMembershipIds: string[] = [];
   for (const row of rows.memberships) {
     const userId = users.get(row.userId);
@@ -182,28 +296,40 @@ export async function applyEywaRelations(
       revokedAt: date(row.revokedAt),
       capabilities: row.capabilities,
     };
-    await tx.classMembership.upsert({
-      where: { bindingId_sourceId: { bindingId, sourceId: row.id } },
-      create: { bindingId, sourceId: row.id, ...data },
-      update: data,
-    });
+    const existing = membershipsBySource.get(row.id);
+    if (!existing)
+      newMemberships.push({ bindingId, sourceId: row.id, ...data });
+    else if (!sameFields(existing, data))
+      await tx.classMembership.update({ where: { id: existing.id }, data });
     appliedMembershipIds.push(row.id);
   }
-  await tx.classMembership.updateMany({
-    where: {
-      bindingId,
-      sourceId: { notIn: appliedMembershipIds },
-      revokedAt: null,
-    },
-    data: { revokedAt: now },
-  });
+  for (const data of batches(newMemberships))
+    await tx.classMembership.createMany({ data });
+  const membershipIds = new Set(appliedMembershipIds);
+  const absentMemberships = existingMemberships.filter(
+    (row) => row.revokedAt === null && !membershipIds.has(row.sourceId),
+  );
+  for (const group of batches(absentMemberships))
+    await tx.classMembership.updateMany({
+      where: { id: { in: group.map((row) => row.id) }, revokedAt: null },
+      data: { revokedAt: now },
+    });
 
   const studentMap = new Map<string, string>();
+  const existingStudents = await tx.student.findMany({
+    where: {
+      OR: [
+        { eywaBindingId: bindingId },
+        { eywaStudentId: { in: [...sourceStudents.keys()] } },
+      ],
+    },
+  });
+  const studentsBySource = new Map(
+    existingStudents.map((row) => [row.eywaStudentId, row]),
+  );
   let deferredStudents = 0;
   for (const row of rows.students) {
-    const existing = await tx.student.findUnique({
-      where: { eywaStudentId: row.id },
-    });
+    const existing = studentsBySource.get(row.id);
     if (
       existing &&
       ((existing.eywaBindingId && existing.eywaBindingId !== bindingId) ||
@@ -248,21 +374,40 @@ export async function applyEywaRelations(
           ? (existing?.eywaWithdrawnAt ?? now)
           : null,
     };
-    const student = await tx.student.upsert({
-      where: { eywaStudentId: row.id },
-      update: data,
-      create: { ...data, eywaStudentId: row.id, useIndividualProgress: true },
-    });
+    const student =
+      existing && sameFields(existing, data)
+        ? existing
+        : await tx.student.upsert({
+            where: { eywaStudentId: row.id },
+            update: data,
+            create: {
+              ...data,
+              eywaStudentId: row.id,
+              useIndividualProgress: true,
+            },
+          });
     studentMap.set(row.id, student.id);
   }
-  await tx.student.updateMany({
-    where: {
-      eywaBindingId: bindingId,
-      eywaStudentId: { notIn: rows.students.map((s) => s.id) },
-      eywaWithdrawnAt: null,
-    },
-    data: { eywaWithdrawnAt: now },
+  const absentStudents = existingStudents.filter(
+    (row) =>
+      row.eywaBindingId === bindingId &&
+      (sourceStudents.size === 0 ||
+        (row.eywaStudentId !== null &&
+          !sourceStudents.has(row.eywaStudentId))) &&
+      row.eywaWithdrawnAt === null,
+  );
+  for (const group of batches(absentStudents))
+    await tx.student.updateMany({
+      where: { id: { in: group.map((row) => row.id) }, eywaWithdrawnAt: null },
+      data: { eywaWithdrawnAt: now },
+    });
+  const existingEnrollments = await tx.studentEnrollment.findMany({
+    where: { bindingId },
   });
+  const enrollmentsBySource = new Map(
+    existingEnrollments.map((row) => [row.sourceId, row]),
+  );
+  const newEnrollments: Prisma.StudentEnrollmentCreateManyInput[] = [];
   const appliedEnrollmentIds: string[] = [];
   for (const row of rows.enrollments) {
     const studentId = studentMap.get(row.studentId);
@@ -299,21 +444,24 @@ export async function applyEywaRelations(
       attendanceDays: row.attendanceDays,
       endedAt: null,
     };
-    await tx.studentEnrollment.upsert({
-      where: { bindingId_sourceId: { bindingId, sourceId: row.id } },
-      create: { bindingId, sourceId: row.id, ...data },
-      update: data,
-    });
+    const existing = enrollmentsBySource.get(row.id);
+    if (!existing)
+      newEnrollments.push({ bindingId, sourceId: row.id, ...data });
+    else if (!sameFields(existing, data))
+      await tx.studentEnrollment.update({ where: { id: existing.id }, data });
     appliedEnrollmentIds.push(row.id);
   }
-  await tx.studentEnrollment.updateMany({
-    where: {
-      bindingId,
-      sourceId: { notIn: appliedEnrollmentIds },
-      endedAt: null,
-    },
-    data: { endedAt: now },
-  });
+  for (const data of batches(newEnrollments))
+    await tx.studentEnrollment.createMany({ data });
+  const enrollmentIds = new Set(appliedEnrollmentIds);
+  const absentEnrollments = existingEnrollments.filter(
+    (row) => row.endedAt === null && !enrollmentIds.has(row.sourceId),
+  );
+  for (const group of batches(absentEnrollments))
+    await tx.studentEnrollment.updateMany({
+      where: { id: { in: group.map((row) => row.id) }, endedAt: null },
+      data: { endedAt: now },
+    });
 
   const index = buildUnitIndex(
     await tx.unit.findMany({
@@ -358,15 +506,31 @@ export async function applyEywaRelations(
     groups.set(key, [...(groups.get(key) ?? []), report]);
   }
   // A missing report can be retired only after complete enumeration. Unresolved present reports retain their prior effective history.
-  await tx.progress.updateMany({
+  const studentChanges = progressChanges();
+  const reportIds = new Set(rows.progress.map((row) => row.id));
+  const existingProgress = await tx.progress.findMany({
     where: {
-      class: { eywaBindingId: bindingId },
-      studentId: { not: null },
-      eywaReportId: { not: null, notIn: rows.progress.map((r) => r.id) },
-      retiredAt: null,
+      OR: [
+        { class: { eywaBindingId: bindingId }, eywaReportId: { not: null } },
+        { eywaReportId: { in: [...reportIds, ...sourceClasses.keys()] } },
+      ],
     },
-    data: { retiredAt: now },
+    include: { class: true },
   });
+  const progressByReport = new Map<string, typeof existingProgress>();
+  for (const row of existingProgress) {
+    if (row.eywaReportId === null) continue;
+    const group = progressByReport.get(row.eywaReportId) ?? [];
+    group.push(row);
+    progressByReport.set(row.eywaReportId, group);
+    if (
+      row.class.eywaBindingId === bindingId &&
+      row.studentId !== null &&
+      row.retiredAt === null &&
+      !reportIds.has(row.eywaReportId)
+    )
+      studentChanges.retireIds.push(row.id);
+  }
   let progress = 0;
   for (const [key, reports] of groups) {
     const [sourceClass, sourceStudent] = key.split("/");
@@ -376,10 +540,9 @@ export async function applyEywaRelations(
       heldClasses.add(classMap.get(sourceClass)!);
       continue;
     }
-    const existing = await tx.progress.findMany({
-      where: { eywaReportId: { in: reports.map((r) => r.id) } },
-      include: { class: true },
-    });
+    const existing = reports.flatMap(
+      (row) => progressByReport.get(row.id) ?? [],
+    );
     if (
       existing.some(
         (r) =>
@@ -397,47 +560,26 @@ export async function applyEywaRelations(
         });
       continue;
     }
-    await tx.progress.updateMany({
-      where: {
-        class: { eywaBindingId: bindingId },
-        eywaReportId: { in: reports.map((r) => r.id) },
-        retiredAt: null,
-      },
-      data: { retiredAt: now },
-    });
-    for (const row of plan.rows) {
-      const data = {
+    reconcileProgress(
+      existing,
+      plan.rows.map((row) => ({
+        eywaReportId: row.eywaReportId,
+        unitId: row.unitId,
         classId: classMap.get(sourceClass)!,
         studentId: studentMap.get(sourceStudent)!,
         recordedAt: day(row.recordedAt),
         createdAt: row.createdAt,
-        retiredAt: null,
-      };
-      await tx.progress.upsert({
-        where: {
-          eywaReportId_unitId: {
-            eywaReportId: row.eywaReportId,
-            unitId: row.unitId,
-          },
-        },
-        create: { ...data, eywaReportId: row.eywaReportId, unitId: row.unitId },
-        update: data,
-      });
-      progress++;
-    }
+      })),
+      studentChanges,
+    );
+    progress += plan.rows.length;
   }
+  await applyProgressChanges(tx, studentChanges, now);
   // Preserve the existing class-progress behavior, using only the current operational roster.
   // The source class UUID remains the stable derived-row identity used by the legacy importer.
-  const heldRows = heldReportIds.size
-    ? await tx.progress.findMany({
-        where: {
-          class: { eywaBindingId: bindingId },
-          eywaReportId: { in: [...heldReportIds] },
-        },
-        select: { classId: true },
-      })
-    : [];
-  for (const row of heldRows) heldClasses.add(row.classId);
+  for (const reportId of heldReportIds)
+    for (const row of progressByReport.get(reportId) ?? [])
+      if (row.class.eywaBindingId === bindingId) heldClasses.add(row.classId);
   const currentRoster = rows.enrollments.filter(
     (e) =>
       enrollmentActive(e, kstRelationshipDay(now)) &&
@@ -446,13 +588,12 @@ export async function applyEywaRelations(
       studentMap.has(e.studentId),
   );
   let derivedProgress = 0;
+  const derivedChanges = progressChanges();
   for (const [sourceClassId, classId] of classMap) {
     if (heldClasses.has(classId)) continue;
-    const markerRows = await tx.progress.findMany({
-      where: { eywaReportId: sourceClassId },
-    });
+    const markerRows = progressByReport.get(sourceClassId) ?? [];
     if (
-      rows.progress.some((r) => r.id === sourceClassId) ||
+      reportIds.has(sourceClassId) ||
       markerRows.some((r) => r.classId !== classId || r.studentId !== null)
     ) {
       conflicts.push({
@@ -488,29 +629,10 @@ export async function applyEywaRelations(
             new Map([[classId, sourceClassId]]),
           ).rows
         : [];
-    await tx.progress.updateMany({
-      where: {
-        classId,
-        studentId: null,
-        eywaReportId: sourceClassId,
-        retiredAt: null,
-      },
-      data: { retiredAt: now },
-    });
-    for (const row of derived) {
-      await tx.progress.upsert({
-        where: {
-          eywaReportId_unitId: {
-            eywaReportId: row.eywaReportId,
-            unitId: row.unitId,
-          },
-        },
-        create: { ...row, retiredAt: null },
-        update: { ...row, retiredAt: null },
-      });
-      derivedProgress++;
-    }
+    reconcileProgress(markerRows, derived, derivedChanges);
+    derivedProgress += derived.length;
   }
+  await applyProgressChanges(tx, derivedChanges, now);
   return {
     applied: true,
     classes: classMap.size,

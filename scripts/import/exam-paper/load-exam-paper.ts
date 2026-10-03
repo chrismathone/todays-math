@@ -3,6 +3,7 @@
  *
  *   npx tsx --env-file=.env scripts/import/exam-paper/load-exam-paper.ts <작업폴더>            # 드라이런
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=.env scripts/import/exam-paper/load-exam-paper.ts <작업폴더> --apply
+ *   npx tsx scripts/import/exam-paper/load-exam-paper.ts <작업폴더> --regenerate-all  # 모든 정답·해설의 독립 검산 산출물만
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=.env scripts/import/exam-paper/load-exam-paper.ts <작업폴더> --revert --apply
  *
  * ## 문지기 셋
@@ -41,10 +42,12 @@ import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
 import { parseProblemContent } from "../../../src/lib/problem/parseProblemContent";
 import { hasUnlinkedFigureChoices } from "../../../src/lib/problem/choiceFigureIndex";
 import { appendSolutionNote, withoutSolutionNote } from "./examDecisions";
+import { readVerifiedRegeneration } from "./regenerateExam";
 
 const DIR = process.argv[2];
 const APPLY = process.argv.includes("--apply");
 const REVERT = process.argv.includes("--revert");
+const REGENERATE_ALL = process.argv.includes("--regenerate-all");
 if (!DIR) throw new Error("사용: <작업폴더> [--apply] [--revert]");
 if (APPLY && process.env.ALLOW_SHARED_IMPORT !== "1") {
   throw new Error(
@@ -369,6 +372,9 @@ async function revert(): Promise<void> {
 async function main(): Promise<void> {
   if (REVERT) return revert();
 
+  // Explicit opt-in: fail before DB reads or figure writes while any regenerated
+  // answer/solution is missing, stale, rejected, or awaiting independent verification.
+  const regenerated = REGENERATE_ALL ? readVerifiedRegeneration(DIR) : null;
   const drafts = JSON.parse(
     readFileSync(join(DIR, "drafts.json"), "utf-8"),
   ) as Draft[];
@@ -406,10 +412,11 @@ async function main(): Promise<void> {
     { answer: string; solution: string; note?: string }
   >();
   // 첫 편은 `n <= 11` 로 박혀 있었다 — 객관식이 1~11 번이었기 때문이다. 편마다 다르다.
-  for (const n of drafts.map((x) => x.questionNumber!)) {
-    const p = join(DIR, "sol_ai", `q${String(n).padStart(2, "0")}.json`);
-    if (existsSync(p)) ai.set(n, JSON.parse(readFileSync(p, "utf-8")));
-  }
+  if (!REGENERATE_ALL)
+    for (const n of drafts.map((x) => x.questionNumber!)) {
+      const p = join(DIR, "sol_ai", `q${String(n).padStart(2, "0")}.json`);
+      if (existsSync(p)) ai.set(n, JSON.parse(readFileSync(p, "utf-8")));
+    }
 
   const rows: Record<string, unknown>[] = [];
   const skipped: string[] = [];
@@ -427,6 +434,10 @@ async function main(): Promise<void> {
     const want = UNIT_BY_NUMBER[n];
     const unit = bySection.get(want.section);
     if (!unit) {
+      if (regenerated)
+        throw new Error(
+          `[중단] 문${n}: 재생성 문항의 소단원 «${want.section}» 이 트리에 없다`,
+        );
       skipped.push(`문${n}: 소단원 «${want.section}» 이 트리에 없다`);
       continue;
     }
@@ -445,12 +456,20 @@ async function main(): Promise<void> {
     }
 
     // ── 해설 ──────────────────────────────────────────────────────────────
+    let answer = d.answer;
     let solution = withoutSolutionNote(d.solution, CFG.solutionNotes?.[n]);
     let solutionSource: "none" | "original" | "ai" = solution
       ? "original"
       : "none";
     const gen = ai.get(n);
-    if (!solution && gen) {
+    if (regenerated) {
+      const verified = regenerated.get(n);
+      if (!verified) throw new Error(`[중단] 문${n} 재생성 검산 결과가 없다`);
+      answer = verified.answer;
+      solution = verified.solution;
+      solutionSource = "ai";
+      aiOk += 1;
+    } else if (!solution && gen) {
       if (normAnswer(gen.answer) !== normAnswer(d.answer)) {
         aiBad += 1;
         console.log(
@@ -472,7 +491,9 @@ async function main(): Promise<void> {
       }
     }
 
-    solution = appendSolutionNote(solution, CFG.solutionNotes?.[n]);
+    // A verified regenerated solution is adopted verbatim; legacy notes stay in the legacy path.
+    if (!regenerated)
+      solution = appendSolutionNote(solution, CFG.solutionNotes?.[n]);
 
     // ── 지면 검사 ─────────────────────────────────────────────────────────
     const figs = sourceFigures.get(n) ?? [];
@@ -489,10 +510,14 @@ async function main(): Promise<void> {
 
     const faults = [
       ...renderFaults(d.content).map((f) => `본문: ${f}`),
-      ...renderFaults(d.answer).map((f) => `정답: ${f}`),
+      ...renderFaults(answer).map((f) => `정답: ${f}`),
       ...renderFaults(solution ?? "").map((f) => `해설: ${f}`),
     ];
     if (faults.length > 0) {
+      if (regenerated)
+        throw new Error(
+          `[중단] 문${n} 재생성 지면 검사: ${faults.join(" · ")}`,
+        );
       skipped.push(`문${n}: ${faults.join(" · ")}`);
       continue;
     }
@@ -506,7 +531,7 @@ async function main(): Promise<void> {
       problemType: d.problemType,
       questionType: d.questionType,
       content: d.content,
-      answer: d.answer,
+      answer,
       solution,
       solutionSource,
       // 🔴 원본을 옮긴다. `figureSvg`(우리가 다시 그린 것)는 **안 쓴다**.

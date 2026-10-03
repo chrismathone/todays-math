@@ -52,6 +52,13 @@ import {
   correctExamChoices,
   correctExamSolutions,
 } from "./examDecisions";
+import {
+  BOX_MARKER_RE,
+  restoreBoxMarker as restoreSourceBoxMarker,
+} from "./restoreBoxMarker";
+
+const restoreBoxMarker = (stem: string, fromPdf: string, n: number) =>
+  restoreSourceBoxMarker(stem, fromPdf, n, TABLES.has(n));
 
 const DIR = process.argv[2];
 if (!DIR) throw new Error("사용: <작업폴더>");
@@ -349,60 +356,6 @@ function stripTableCells(stem: string, n: number): string {
 //    `renderBoxSegment` 가 내부에서 만드는 표기다(`boxBlock` 이 아는 입력은
 //    `보기|조건|상자` 셋뿐이다). 실제로 `<나열>` 을 넣어 봤더니 상자가 아예 안 서고
 //    **날 글자로 지면에 찍혔다** — 스크린샷으로 잡았다.
-const BOX_MARKER_RE =
-  /[<〈［[＜《≪〔【]\s*(보\s*기|조\s*건|상\s*자)\s*[>〉］\]＞》≫〕】]/;
-/** 상자 첫 항목의 표지. `boxBlock.ts` 의 계열 첫 원소들에서 왔다. */
-const FIRST_ITEM_RE = new RegExp(
-  "(㉠|㈀|㉮|㈎|Ⓐ" +
-    "|\\(\\s*ㄱ\\s*\\)" +
-    // 괄호 친 «(가)» — 조건 상자가 흔히 이 꼴이다(2026-09-13 경산중 문5: 「(가) x축에 접한다」).
-    // 아래 맨끝 가지는 **괄호 없는** `가.`·`가)` 만 잡아서 이 꼴이 어느 가지에도 안 걸렸다.
-    // 🔴 «(가)» 는 표지이면서 **참조**이기도 하다(「(가)에서 구한 값을…」). 표지는 뒤에 공백이
-    //    오고 참조는 조사가 붙으므로 여기서 한 겹, 형제 «(나)» 로 아래에서 또 한 겹 거른다.
-    "|[(（]\\s*가\\s*[)）](?=\\s|$)" +
-    "|(?<![(（])ㄱ\\s*[.)]" +
-    // 글머리 «•» — 서술형 조건 상자가 이 꼴이다(2026-09-13 경일여중 문18·19·21·22).
-    // 전수 census: 표지를 못 찾은 16문항의 줄머리에서 «•» 는 4번 나오고 **본문 산문에는
-    // 한 번도 안 나온다** — 그래서 이 글자는 표지로만 쓰인다(손으로 고른 것이 아니라 세어서 골랐다).
-    "|(?:^|\\n)\\s*•" +
-    "|(?:^|[\\n\\s])가\\s*[.)])",
-);
-
-function restoreBoxMarker(stem: string, fromPdf: string, n: number): string {
-  const found = BOX_MARKER_RE.exec(fromPdf);
-  if (!found || BOX_MARKER_RE.test(stem)) return stem;
-  // 🔴 표 문항에서 PDF 가 말하는 «상자»는 **표의 테두리**다(강동중 문6·9·16·21 — PDF 텍스트층이
-  //    표 외곽선을 상자로 읽는다). 표는 원본에서 오려 그림으로 붙이므로 여기서 상자를 세우면
-  //    항목도 없는 빈 상자가 선다. 항목 표지가 **있으면** 진짜 상자이니 아래로 간다.
-  if (TABLES.has(n) && !FIRST_ITEM_RE.test(stem)) return stem;
-  // PDF 가 부른 이름을 그대로 쓴다. `상자` 는 「라벨 없는 테두리」라는 뜻이고,
-  // 그것을 머리 없이 그리는 일은 렌더러가 한다.
-  const label = found[1]!.replace(/\s+/g, "");
-  const m = FIRST_ITEM_RE.exec(stem);
-  if (!m) {
-    throw new Error(
-      `[중단] 문${n}: PDF 는 상자가 있다는데 HWP 발문에서 **첫 항목을 못 찾았다** — ` +
-        "손으로 보고 규칙을 고칠 것",
-    );
-  }
-  // 🔴 괄호 친 «(가)» 만은 형제를 하나 더 묻는다 — 진짜 조건 상자에는 «(나)» 가 따로 있다.
-  //    없으면 그 «(가)» 는 참조일 수 있으니 **조용히 지나가지 말고 멈춘다**(사람이 지면을 본다).
-  //    2026-09-13: 마커를 새로 쓸 때 «누가 그것을 입력으로 아는가»(2026-09-06)의 되풀이를 막는 자리.
-  if (
-    /^[(（]\s*가/.test(m[1]!) &&
-    !/[(（]\s*나\s*[)）]/.test(stem.slice(m.index + m[1]!.length))
-  ) {
-    throw new Error(
-      `[중단] 문${n}: «${m[1]!.trim()}» 뒤에 형제 «(나)» 가 없다 — 항목 표지가 아니라 ` +
-        "참조일 수 있다. 손으로 지면을 보고 정할 것",
-    );
-  }
-  console.log(
-    `  문${n} 상자 복원: 첫 항목 «${m[1].trim()}» 앞에 <${label}> 를 넣는다` +
-      (label === "상자" ? " (라벨 없는 테두리 — 지면에 머리를 안 그린다)" : ""),
-  );
-  return `${stem.slice(0, m.index)}<${label}> ${stem.slice(m.index)}`;
-}
 
 // ── ㉠″ 표 후보 제안 — 대량 이관 드라이버(`batch_import.py`)가 부른다 ──────────
 //

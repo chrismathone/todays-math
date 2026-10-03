@@ -14,11 +14,114 @@ import { verifyPdfQrPixels } from "@/lib/textbook/render/qrVerify.server";
 import { exchangeFromInertHtml } from "@/lib/textbook/archive/package.server";
 import { sha256, contentHash, snapshotHash } from "@/lib/textbook/hash.server";
 import { textbookFixture, SYNTHETIC_ORIGIN } from "../helpers/textbookFixture";
+import { canonicalJson } from "@/lib/textbook/canonical";
 
 const run = process.env.TEXTBOOK_PDF_TEST === "1";
 describe.skipIf(!run)(
   "real local Chromium / pdfjs / jsQR textbook artifacts",
   () => {
+    it("prints one notice only for unlinked image choices without changing the frozen source", async () => {
+      const browser = await launchExportBrowser();
+      try {
+        const exchange = textbookFixture(1, 2);
+        const bytes = new TextEncoder().encode(
+          '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="30" viewBox="0 0 80 30"><path d="M5 25 L40 5 L75 25 Z" fill="none" stroke="black"/></svg>',
+        );
+        exchange.assets = ["first", "second"].map((assetId) => ({
+          assetId,
+          packagePath: `assets/${assetId}.svg`,
+          sha256: sha256(bytes),
+          mimeType: "image/svg+xml",
+          widthPx: 80,
+          heightPx: 30,
+        }));
+        exchange.snapshots.forEach((snapshot, index) => {
+          snapshot.payload.content =
+            index === 0
+              ? "삼각형의 변의 수를 고르시오.\n\n① $1$\n② $2$\n③ $3$\n④ $4$\n⑤ $5$"
+              : "삼각형인 보기를 고르시오.\n\n① [그림]\n② [그림]\n③ [그림]\n④ [그림]\n⑤ [그림]";
+          snapshot.payload.questionType = "객관식";
+          snapshot.payload.figures = exchange.assets.map((asset) => ({
+            assetId: asset.assetId,
+            sha256: asset.sha256,
+            choiceIndex: null,
+            sourceWidthMm: 30,
+            altText: asset.assetId,
+          }));
+          snapshot.rawSource!.figureUrls = ["/first.svg", "/second.svg"];
+          snapshot.contentHash = contentHash(snapshot.payload);
+          snapshot.snapshotHash = snapshotHash(snapshot);
+        });
+        exchange.items.forEach((item) => {
+          item.layout.minWorkLines = 0;
+          item.layout.preferredWorkLines = 0;
+          item.layout.maxWorkLines = 0;
+        });
+        const before = canonicalJson(exchange);
+        const result = await renderTextbookChunk({
+          exchange,
+          officialOrigin: SYNTHETIC_ORIGIN,
+          readAsset: async () => bytes,
+          sectionIndices: [0],
+          firstPhysicalPageIndex: 1,
+          variant: "student",
+          browser,
+        });
+        expect(result.qrChecks).toHaveLength(2);
+        expect(
+          result.issues.filter((i) => i.code === "FIGURE_CHOICE_UNKNOWN"),
+        ).toHaveLength(4);
+        expect(canonicalJson(exchange)).toBe(before);
+        expect(result.html.includes("비공개 정답")).toBe(false);
+        expect(result.html.includes("비공개 해설")).toBe(false);
+        expect(result.html.includes("보기 대응 정보 없음")).toBe(false);
+        const page = await browser.newPage();
+        await page.setJavaScriptEnabled(false);
+        await page.setContent(result.html, { waitUntil: "load" });
+        await page.evaluate(async () => {
+          await document.fonts.ready;
+          await Promise.all(
+            Array.from(document.images).map((img) => img.decode()),
+          );
+        });
+        const printed = await page.$$eval(".tb-problem", (problems) =>
+          problems.map((problem) => ({
+            text: problem.textContent ?? "",
+            figures: Array.from(
+              problem.querySelectorAll(".tb-problem-figure"),
+            ).map((figure) => ({
+              link: figure.getAttribute("data-choice-index"),
+              alt: figure.querySelector("img")?.alt,
+            })),
+          })),
+        );
+        const notice = "보기 그림의 번호를 확인할 수 없는 문항입니다.";
+        expect(printed).toHaveLength(2);
+        expect(printed[0].text).not.toContain(notice);
+        expect(printed[1].text.split(notice)).toHaveLength(2);
+        expect(printed[1].text.indexOf(notice)).toBeLessThan(
+          printed[1].text.indexOf("①"),
+        );
+        for (const problem of printed) {
+          expect(problem.figures).toEqual([
+            { link: "unknown", alt: "first" },
+            { link: "unknown", alt: "second" },
+          ]);
+        }
+        await mkdir("output/pdf", { recursive: true });
+        await writeFile("output/pdf/textbook-figure-notice.pdf", result.pdf);
+        await page.setViewport({ width: 1000, height: 1250 });
+        const sheet = await page.$('[data-textbook-page="2"]');
+        expect(sheet).not.toBeNull();
+        await sheet!.screenshot({
+          path: "output/pdf/textbook-figure-notice.png",
+        });
+        await page.close();
+      } finally {
+        await browser.close();
+      }
+    }, 180_000);
+
     it("loads fixed figures and fails corrupt images or mathematical width overflow", async () => {
       const browser = await launchExportBrowser();
       try {
