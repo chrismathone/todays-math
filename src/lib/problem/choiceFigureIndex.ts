@@ -172,19 +172,28 @@ export function planChoiceFigures(
  *
  *   `"grid"`   짝이 **온전하다** — 그림이 `[그림]` 자리를 대신해 번호 칸 안에 서고 보기는 늘 2열이다(B1).
  *   `"loose"`  짝이 있긴 한데 온전하지 않고, **그림뿐인 보기가 하나도 없다**(글 보기에 그림이 딸린 문항 — 교재 스냅샷).
- *              아는 그림은 그 보기의 글 아래에, 모르는 그림(`null` · 없는 보기 · 길이 불일치)은
- *              «그림 대응 확인 필요»와 함께 발문 자리에 둔다. 그림을 감추지 않는다.
- *   `"none"`   짝이 없다(없음 · 빈 배열). 또는 **그림뿐인 보기가 있는데 짝이 어긋났다** — 예전 조판 그대로.
+ *              아는 그림은 그 보기의 글 아래에, 모르는 그림(`null` · 없는 보기 · 길이 불일치)은 **문구 없이** 발문 자리에 둔다.
+ *              🔴 발문 그림으로 «확정»한 것이 아니다 — 자료는 여전히 모름이고, 조판만 그 자리다.
+ *   `"none"`   짝이 없다(없음 · 빈 배열). 또는 **그림뿐인 보기가 있는데 짝이 온전하지 않다** — 예전 조판 그대로.
+ *              뒤쪽이면 `unlinkedFigureChoices` 가 참이고, 조판은 문항에 **한 번** `UNLINKED_FIGURE_CHOICES_NOTICE` 를 적는다.
  *
- * 🔴 마지막 줄이 경계다. 보기가 그림뿐이면 그 그림이 곧 보기라, 반쪽만 붙이면 «그럴듯해 보이면서 틀린» 지면이 된다
- *    (이 파일 머리말). 그래서 온전하지 않으면 손대지 않고, 적재기가 그 문항의 출제 허용을 끈다(`hasUnlinkedFigureChoices`).
- *    글 보기에 딸린 그림은 보기의 «전부»가 아니라 아는 만큼 드러내도 번호를 잘못 고르게 하지 않는다.
- *    ⚠️ 두 트랙의 결정이 여기서 갈린다 — 그림뿐인 보기 + 덜 된 짝을 교재식(«확인 필요» 표시)으로 그릴지는 원장님 결정으로 남겼다.
+ * 🔴 경계는 «그림뿐인 보기가 있는가»다. 보기가 그림뿐이면 그 그림이 곧 보기라, 반쪽만 붙이면 «그럴듯해 보이면서 틀린»
+ *    지면이 된다(이 파일 머리말). 그래서 온전하지 않으면 칸에 넣지 않고, 적재기가 그 문항의 출제 허용을 끈다(`hasUnlinkedFigureChoices`).
+ *
+ * ## 문구를 어디에 적는가 (2026-10-03 3자 합의 A2 — 5회차 3:0)
+ *
+ * 병합 직후에는 거꾸로였다: 교재 스냅샷은 은행 행의 짝이 비었으면 스캔 그림을 **전부 `null`** 로 보내는데(전부 아니면 전무),
+ * 글 보기 문항(평범한 발문 그림)에는 그림마다 «그림 대응 확인 필요»가 찍히고, 정작 못 푸는 문항(그림뿐인 보기)에는 아무 말이 없었다.
+ * 합의: **문구는 정말로 짝이 문제인 문항에, 문항에 한 번.** 글 보기 문항의 모르는 그림에는 적지 않는다.
  */
 export type ChoiceFigureMode =
   | { mode: "grid"; plan: ChoiceFigurePlan }
   | { mode: "loose" }
-  | { mode: "none" };
+  | { mode: "none"; unlinkedFigureChoices: boolean };
+
+/** 그림뿐인 보기가 있는데 짝이 온전하지 않은 문항에 한 번 적는 말(D-08 — 사무적으로). */
+export const UNLINKED_FIGURE_CHOICES_NOTICE =
+  "보기 그림의 번호를 확인할 수 없는 문항입니다.";
 
 export function choiceFigureMode(
   figureCount: number,
@@ -193,9 +202,9 @@ export function choiceFigureMode(
 ): ChoiceFigureMode {
   const plan = planChoiceFigures(figureCount, flat, choices);
   if (plan) return { mode: "grid", plan };
-  if (flat && flat.length > 0 && !choices.some(isFigureChoice))
-    return { mode: "loose" };
-  return { mode: "none" };
+  const hasFigureOnlyChoice = choices.some(isFigureChoice);
+  if (flat && flat.length > 0 && !hasFigureOnlyChoice) return { mode: "loose" };
+  return { mode: "none", unlinkedFigureChoices: hasFigureOnlyChoice };
 }
 
 /**

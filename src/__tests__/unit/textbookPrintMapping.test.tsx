@@ -53,9 +53,14 @@ describe("snapshot choice image mapping through legacy print", () => {
         .querySelector('[data-figure-choice="2"]')
         ?.closest("[data-hwpx-grid]")?.textContent,
     ).toContain("②");
+    // 2026-10-03 3자 합의 A2(리드 · codex · grok 3:0): 글 보기 문항의 모르는 그림에는 문구를 찍지 않는다 —
+    // 교재 스냅샷은 은행 행의 짝이 비었으면 스캔 그림을 전부 `null` 로 보내서, 평범한 발문 그림마다 «그림 대응 확인 필요»가
+    // 찍히고 있었다. 문구는 «그림뿐인 보기가 있는데 짝이 온전하지 않은 문항»에 한 번만 적는다(`choiceFigureNotice.test.tsx`).
+    // 그림은 그대로 보이고(`unknown` 표지도 그대로다 — 자료는 여전히 모름), 글자만 없다.
     expect(
-      container.querySelector('[data-figure-choice="unknown"]')?.textContent,
-    ).toContain("그림 대응 확인 필요");
+      container.querySelector('[data-figure-choice="unknown"]'),
+    ).not.toBeNull();
+    expect(container.textContent).not.toContain("그림 대응 확인 필요");
     expect(
       container
         .querySelector('[data-figure-choice="unknown"]')

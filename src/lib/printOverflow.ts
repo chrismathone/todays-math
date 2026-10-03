@@ -319,6 +319,9 @@ function choicesBlockPx(items: readonly string[], ruler: RulerMetrics): number {
   return choiceGridTop + textLines * line + choiceRowGap * (rows - 1);
 }
 
+/** «보기 그림의 번호를 확인할 수 없는 문항» 문구의 위 여백 — `ProblemContent` 의 `mt-3`(12px). */
+const UNLINKED_NOTICE_MARGIN_PX = 12;
+
 /** ProblemContent 의 고정 2열: gap-x-8(32px), 번호+gap-1.5 는 기존 실측 폭 차이. */
 function choiceFigureGridPx(
   choices: readonly string[],
@@ -560,6 +563,10 @@ export function estimateProblemPx(
   px += choiceFigures
     ? choiceFigureGridPx(choices, figures, choiceFigures, ruler)
     : choicesBlockPx(choices, ruler);
+  // 그림뿐인 보기가 있는데 짝이 온전하지 않으면 지면이 보기 위에 한 줄을 적는다(`UNLINKED_FIGURE_CHOICES_NOTICE` ·
+  // `mt-3 text-xs`). 지면이 그리는데 자가 안 세면 그만큼 넘친다 — 본문 한 줄 + 위 여백으로 넉넉히 센다.
+  if (figureMode.mode === "none" && figureMode.unlinkedFigureChoices)
+    px += ruler.line + UNLINKED_NOTICE_MARGIN_PX;
   /**
    * **세로로 쌓이는 수식**은 폭이 아니라 높이를 먹는다. 해설 자에만 있던 항을
    * 여기에도 건다(적대적 리뷰 ④ A). 원문 전체에서 세는 이유는 발문·상자·보기 어디에
@@ -577,7 +584,7 @@ export function estimateProblemLines(
   content: string,
   figures: readonly (FigureDimensionType | null)[] = [],
   figureSvg: string | null = null,
-  choiceFigureIndex?: readonly number[],
+  choiceFigureIndex?: readonly (number | null)[],
 ): number {
   return Math.ceil(
     estimateProblemPx(
