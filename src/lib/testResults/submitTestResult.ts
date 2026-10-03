@@ -15,6 +15,8 @@ import {
 import type { SessionUser } from "@/lib/session";
 import { buildAnalysisReport } from "@/lib/testResults/buildAnalysisReport";
 import { gradeAnswers } from "@/lib/testResults/gradeAnswers";
+import { contentOf } from "@/lib/tests/testProblemContent";
+import { hydrateTestSnapshots } from "@/lib/tests/loadSnapshotAssets";
 
 export async function submitTestResult(
   session: SessionUser,
@@ -33,7 +35,7 @@ export async function submitTestResult(
     requireOwnedStudentInClass(input.studentId, owned.data.classId, session),
     db.testProblem.findMany({
       where: { testId },
-      include: { problem: true },
+      include: { problem: true, snapshot: true },
     }),
   ]);
   if (!studentOwned.ok) return studentOwned.response;
@@ -71,16 +73,18 @@ export async function submitTestResult(
     );
   }
 
-  const gradingProblems = testProblems.map((tp) => ({
-    id: tp.problem.id,
-    unitId: tp.problem.unitId,
-    difficulty: tp.problem.difficulty,
-    answer: tp.problem.answer,
-    score: tp.problem.score ?? null,
-    // 배점 보정기가 이 시험지에 매긴 조정 배점(11 §10, D-42). 있으면 원본보다 우선한다 —
-    // 짜깁기 시험지의 만점을 100으로 맞추는 경로가 여기다. 없으면 기존 규칙 그대로.
-    adjustedScore: tp.score ?? null,
-  }));
+  const gradingProblems = (await hydrateTestSnapshots(testProblems))
+    .map((row) => ({ ...row, problem: contentOf(row) }))
+    .map((tp) => ({
+      id: tp.problem.id,
+      unitId: tp.problem.unitId,
+      difficulty: tp.problem.difficulty,
+      answer: tp.problem.answer,
+      score: tp.problem.score ?? null,
+      // 배점 보정기가 이 시험지에 매긴 조정 배점(11 §10, D-42). 있으면 원본보다 우선한다 —
+      // 짜깁기 시험지의 만점을 100으로 맞추는 경로가 여기다. 없으면 기존 규칙 그대로.
+      adjustedScore: tp.score ?? null,
+    }));
 
   const { graded, score } = gradeAnswers(input.answers, gradingProblems);
   const predictedScore = predictStudentScore(score, graded);

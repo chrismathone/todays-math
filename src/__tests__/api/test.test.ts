@@ -11,6 +11,7 @@
  * 대응 계약: src/contracts/test.contract.ts
  */
 import { NextRequest } from "next/server";
+vi.mock("server-only", () => ({}));
 import { describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/session", () => ({
