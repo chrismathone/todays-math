@@ -478,6 +478,21 @@ describe("연결 후보의 확정", () => {
       (await getItemDetail(db, colleague, made.editionId, made.itemId)).item
         .linkStatus,
     ).toBe("needs-review");
+    // 남의 판본이면 **그 사유조차 알려 주지 않는다** — «내용이 다르다»(409)는 그 배치가 있다는 것과
+    // 은행 문항과의 같고 다름을 새어 보낸다. 주인이 아니면 견주기 전에 404 다
+    const outsider = await refusal(
+      linkItem(
+        db,
+        owner,
+        made.editionId,
+        made.itemId,
+        requestKey(owner, "link"),
+        { expectedRevision: made.revision, problemId: made.book.problem.id },
+        loadFigure,
+      ),
+    );
+    expect(outsider.status).toBe(404);
+    expect(outsider.message).not.toContain("내용이");
   });
 
   it("은행 문항의 내용이 같으면 잇는다 — 배치는 그 은행 문항의 새 확정본을 가리키고 후보는 비워진다", async () => {

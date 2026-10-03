@@ -90,6 +90,7 @@ import {
   GET as getEdition,
   PATCH as patchEdition,
 } from "@/app/api/textbook/editions/[editionId]/route";
+import { GET as previewSection } from "@/app/api/textbook/editions/[editionId]/sections/[sectionId]/preview/route";
 import {
   DELETE as deleteSection,
   GET as getSectionRoute,
@@ -370,6 +371,24 @@ describe("한 권의 일생 — 모든 성공 응답이 계약을 지난다", ()
         params({ editionId, itemId }),
       ),
     );
+
+    // ── 구획 미리보기(초안) — 그 구획의 배치 둘과 개념 하나만 실린다
+    const preview = await ok<{
+      kind: string;
+      manifestVerified: boolean;
+      exchange: {
+        items: unknown[];
+        conceptIntegration?: { concepts: Array<{ conceptKey: string }> };
+      };
+    }>(previewSection(get(), params({ editionId, sectionId })));
+    expect(preview).toMatchObject({
+      kind: "section-preview",
+      manifestVerified: false,
+    });
+    expect(preview.exchange.items).toHaveLength(2);
+    expect(
+      preview.exchange.conceptIntegration?.concepts.map((c) => c.conceptKey),
+    ).toEqual([conceptKey]);
 
     // ── 영상 · 연결(초안 → 검수 대기 → 게시)
     const exchange = await ok<{
