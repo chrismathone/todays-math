@@ -24,6 +24,7 @@ import {
 } from "../access";
 import { aggregateRevision, editionStructure } from "./editions";
 import { conflict, invalid, notFound, revisionMismatch } from "./errors";
+import { requireStudentScope } from "./operationalScope";
 import { type RequestKey, runOnce } from "./requests";
 import { type TextbookDb, type TextbookSql, SQL_NOW, isoColumn } from "./sql";
 
@@ -300,19 +301,6 @@ export const textbookAttemptSelectSql = `
          ${isoColumn(`a."reviewed_at"`)} AS "reviewedAt", a."note"
     FROM "textbook_concept_attempt" a`;
 
-/** 이 교사의 학생인가 — 학생은 반을 거쳐 교사에게 속한다. 관리자 범위를 쓰지 않는다(개인 자료) */
-async function requireOwnStudent(
-  sql: TextbookSql,
-  actor: TextbookActor,
-  studentId: string,
-): Promise<void> {
-  const [row] = await sql.query<{ ownerId: string }>(
-    `SELECT c."user_id" AS "ownerId" FROM "student" s JOIN "class" c ON c."id" = s."class_id" WHERE s."id" = $1::uuid`,
-    [studentId],
-  );
-  if (!row || row.ownerId !== actor.id) throw notFound("학생");
-}
-
 /**
  * 교사가 종이 활동을 보고 적는 기록. 발행본의 굳은 개념에만 쌓인다(DB 도 다시 본다).
  * 같은 (학생, requestId)가 다시 오면 있던 줄을 돌려준다 — 본문이 다르면 409.
@@ -332,7 +320,9 @@ export async function recordObservation(
 ): Promise<{ attempt: TextbookConceptAttempt; replayed: boolean }> {
   return db.transaction(async (tx) => {
     const access = await requireReadableEdition(tx, actor, editionId);
-    await requireOwnStudent(tx, actor, input.studentId);
+    await requireStudentScope(tx, actor, input.studentId, "progress:write", {
+      lock: true,
+    });
     const [existing] = await tx.query<TextbookConceptAttempt>(
       `${textbookAttemptSelectSql} WHERE a."student_id" = $1::uuid AND a."request_id" = $2::uuid`,
       [input.studentId, input.requestId],
@@ -407,7 +397,9 @@ export async function reviewAttempt(
       [attemptId],
     );
     if (!target) throw notFound("활동 기록");
-    await requireOwnStudent(tx, actor, target.studentId);
+    await requireStudentScope(tx, actor, target.studentId, "progress:write", {
+      lock: true,
+    });
     const { result, replayed } = await runOnce(tx, key, async () => {
       const [current] = await tx.query<TextbookConceptAttempt>(
         `${textbookAttemptSelectSql} WHERE a."id" = $1::uuid FOR UPDATE OF a`,
@@ -415,7 +407,13 @@ export async function reviewAttempt(
       );
       if (!current) throw notFound("활동 기록");
       // 잠근 뒤에 다시 본다 — 위의 검사와 잠금 사이에 학생이 옮겨 갔을 수 있다
-      await requireOwnStudent(tx, actor, current.studentId);
+      await requireStudentScope(
+        tx,
+        actor,
+        current.studentId,
+        "progress:write",
+        { lock: true },
+      );
       if (current.revision !== input.expectedRevision)
         throw revisionMismatch("활동 기록", current.revision);
       await tx.execute(
@@ -511,7 +509,7 @@ export async function studentConceptAttempts(
   actor: TextbookActor,
   studentId: string,
 ): Promise<TextbookConceptAttempt[]> {
-  await requireOwnStudent(sql, actor, studentId);
+  await requireStudentScope(sql, actor, studentId, "progress:read");
   return sql.query<TextbookConceptAttempt>(
     `${textbookAttemptSelectSql} WHERE a."student_id" = $1::uuid ORDER BY a."submitted_at" DESC, a."id" LIMIT 500`,
     [studentId],

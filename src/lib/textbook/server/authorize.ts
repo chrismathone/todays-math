@@ -41,6 +41,17 @@ export async function authorizeTextbook(
       actor: null,
       response: refuse(403, "교재 제작 메뉴를 사용할 권한이 없습니다."),
     };
+  try {
+    await sql.refreshTeacherScope?.(
+      account.id,
+      !["GET", "HEAD", "OPTIONS"].includes(request.method),
+    );
+  } catch {
+    return {
+      actor: null,
+      response: refuse(403, "현재 담당 권한을 확인할 수 없습니다."),
+    };
+  }
   const rows = await sql.query<{ name: string; branchId: string | null }>(
     `SELECT "name", "branch_id" AS "branchId" FROM "user"
       WHERE "id" = $1::uuid AND "deleted_at" IS NULL AND "suspended_at" IS NULL AND "approval_status" = 'approved'`,

@@ -77,6 +77,13 @@ export async function studentTextbookRoute(
   )
     return noStore(unauthorizedError());
   try {
+    await textbookDb.refreshStudentScope?.(student.id);
+  } catch {
+    return noStore(
+      jsonError("FORBIDDEN", "현재 수강 정보를 확인할 수 없습니다.", 403),
+    );
+  }
+  try {
     return noStore(await run(student.id));
   } catch (error) {
     if (error instanceof TextbookError)
