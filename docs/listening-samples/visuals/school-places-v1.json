@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "school-places-v1",
+  "status": "teacher_review_pending",
+  "createdAt": "2026-10-03",
+  "provider": "connected_image_gen_tool",
+  "file": "school-places-v1.png",
+  "sourceSample": "../20261003/samples.json#sample-01",
+  "sourceQuestionIndex": 1,
+  "prompt": "음악 선생님은 지금 어디에 계신가?",
+  "choiceOrder": ["음악실", "체육관", "급식실", "도서관", "정원"],
+  "answerIndex": 3,
+  "evidenceTurnIndices": [2],
+  "usage": "Teacher review prototype; not published to students; do not send this manifest to student clients.",
+  "altText": "다섯 장소의 그림: 피아노와 기타가 있는 방, 농구 골대가 있는 실내 체육관, 배식대와 식탁이 있는 공간, 책장과 독서용 탁자가 있는 방, 나무와 꽃밭 및 벤치가 있는 정원.",
+  "generationPrompt": "Use case: scientific-educational.\nAsset type: original English listening multiple-choice illustration sheet for a Korean secondary-school worksheet, teacher-review prototype.\nCreate one wide landscape sheet with EXACTLY FIVE equally sized rectangular panels side by side in a single horizontal row. Each panel depicts one clearly recognizable school location, in this exact left-to-right order: (1) music room with upright piano, music stand, and acoustic guitar; (2) indoor gym with basketball hoop and court floor lines; (3) school cafeteria with serving counter, trays, and dining tables; (4) school library with bookshelves and a reading table; (5) school garden with flowerbeds, tree, and outdoor bench.\nStyle: clean black-and-white educational line illustration, confident smooth black contours, very sparse light gray shading, white paper background. Consistent line thickness, perspective, level of detail, visual density, panel dimensions, equal margins and spacing. Empty locations without people. All five panels should be equally legible at small sizes and equally plausible answer choices. No panel is emphasized.\nContext for correctness only, DO NOT render as text: the original dialogue says the music teacher is in the library helping students; the question asks where the music teacher is. These pictures are alternative locations, not depictions of a specific teacher.\nNO words, NO letters, NO numbers, NO labels, NO speech balloons, NO logos, NO watermark, NO answer marks. Do not include teacher figures. A fine simple outline around each panel is acceptable. Avoid color, decorative flourishes, busy textures and realistic photographic detail. Leave a narrow clean blank band below every panel where the app will render choice numbers. The only output is the five-panel illustration.",
+  "checks": {
+    "modelVisualInspection": "Five distinct matching locations, no teacher or answer mark, consistent monochrome style. Library has greater line density than gym; verify small-size legibility.",
+    "teacherReview": false,
+    "printReview": false
+  }
+}

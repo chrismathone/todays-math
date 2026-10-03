@@ -29,14 +29,15 @@ const account: AccountAccess = {
 };
 
 describe("English menu compatibility", () => {
-  it("lists four sidebar menus while retaining the legacy input enum", () => {
+  it("lists five sidebar menus while retaining the legacy input enum", () => {
     expect(
-      WORKSPACE_MENUS.slice(-4).map(({ id, label }) => [id, label]),
+      WORKSPACE_MENUS.slice(-5).map(({ id, label }) => [id, label]),
     ).toEqual([
       ["english-school", "학교별 내신 대비"],
       ["english-maker", "문제 만들기"],
       ["english-library", "문제 보관함"],
       ["english-listening", "영어듣기"],
+      ["english-bank", "자료은행"],
     ]);
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
@@ -45,6 +46,7 @@ describe("English menu compatibility", () => {
     expect(workspaceMenusOf("english")).toEqual([
       ...englishMenus,
       "english-listening",
+      "english-bank",
     ]);
     expect(workspaceMenuProduct("english")).toBe("english");
   });
