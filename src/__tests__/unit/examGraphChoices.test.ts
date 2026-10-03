@@ -52,6 +52,9 @@ describe("리드 추가: 원본 그래프 보기의 번호와 수학", () => {
     expect(() =>
       graphFigureFields(repair, [...figures.slice(1), figures[1]]),
     ).toThrow();
+    expect(() =>
+      graphFigureFields(repair, [...figures.slice(1), figures[2]]),
+    ).toThrow();
   });
   it.each([
     ["daeguil", 3, 4],

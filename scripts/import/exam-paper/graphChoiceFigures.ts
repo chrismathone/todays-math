@@ -17,6 +17,7 @@ export function graphFigureFields(
     repair.choices.length !== 5 ||
     new Set(files).size !== 6 ||
     figures.length !== 6 ||
+    new Set(figures.map((f) => f.file)).size !== 6 ||
     figures.some((f) => !files.includes(f.file))
   ) {
     throw new Error(
