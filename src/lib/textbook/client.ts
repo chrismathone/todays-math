@@ -313,6 +313,7 @@ export interface TextbookStudioApi {
     source: TextbookConcept | null;
     unitKey: string;
     sectionKey: string | null;
+    links: TextbookConcept["links"];
     confirmEntryIds: string[];
     confirmLinkIds: string[];
   }): Promise<{
@@ -862,6 +863,7 @@ function applyConceptEdits(
   source: TextbookConcept,
   concept: ConceptDraft,
   picks: BlankPick[],
+  links: TextbookConcept["links"],
 ): TextbookConcept {
   const reviews = new Map(
     picks.map((pick) => [
@@ -922,6 +924,7 @@ function applyConceptEdits(
         : null,
     },
     blankItems,
+    links,
   };
   if (concept.blankForms.length > 0) next.blankForms = [...concept.blankForms];
   else delete next.blankForms;
@@ -1462,7 +1465,12 @@ export function createTextbookApi(
       const payload = parseRequest(textbookSaveConceptSchema, {
         requestId: input.requestId,
         expectedRevision: input.expectedRevision,
-        concept: applyConceptEdits(base, input.concept, input.picks),
+        concept: applyConceptEdits(
+          base,
+          input.concept,
+          input.picks,
+          input.links,
+        ),
         ...(input.confirmEntryIds.length > 0
           ? { confirmBlankEntryIds: input.confirmEntryIds }
           : {}),

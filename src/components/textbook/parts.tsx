@@ -2,7 +2,9 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
+import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import type { ProblemType } from "@/contracts/problem.contract";
+import { TextbookConceptLinkEditor } from "@/components/textbook/TextbookConceptLinkEditor";
 import {
   CONCEPT_KINDS,
   EXPRESSIONS,
@@ -314,6 +316,8 @@ export function Outline({
   units,
   collapsed,
   currentId,
+  pendingSectionId,
+  movesDisabled,
   onToggle,
   onSelect,
   onMoveUnit,
@@ -322,6 +326,8 @@ export function Outline({
   units: OutlineUnit[];
   collapsed: ReadonlySet<string>;
   currentId: string | null;
+  pendingSectionId: string | null;
+  movesDisabled: boolean;
   onToggle: (unitKey: string) => void;
   onSelect: (sectionId: string) => void;
   onMoveUnit: (unitKey: string, direction: -1 | 1) => void;
@@ -346,6 +352,7 @@ export function Outline({
                 type="button"
                 className={styles.button}
                 aria-label={`${unit.title} 위로`}
+                disabled={movesDisabled}
                 onClick={() => onMoveUnit(unit.unitKey, -1)}
               >
                 위로
@@ -354,6 +361,7 @@ export function Outline({
                 type="button"
                 className={styles.button}
                 aria-label={`${unit.title} 아래로`}
+                disabled={movesDisabled}
                 onClick={() => onMoveUnit(unit.unitKey, 1)}
               >
                 아래로
@@ -372,13 +380,16 @@ export function Outline({
                     >
                       {section.title}
                       <span className={styles.status}>
-                        {sectionStatusLabel(section.status)}
+                        {section.sectionId === pendingSectionId
+                          ? "저장 전"
+                          : sectionStatusLabel(section.status)}
                       </span>
                     </button>
                     <button
                       type="button"
                       className={styles.button}
                       aria-label={`${section.title} 위로`}
+                      disabled={movesDisabled}
                       onClick={() => onMoveSection(section.sectionId, -1)}
                     >
                       위로
@@ -387,6 +398,7 @@ export function Outline({
                       type="button"
                       className={styles.button}
                       aria-label={`${section.title} 아래로`}
+                      disabled={movesDisabled}
                       onClick={() => onMoveSection(section.sectionId, 1)}
                     >
                       아래로
@@ -407,14 +419,19 @@ function turnLabel(index: number, total: number): string {
 
 export function SectionEditor({
   draft,
+  editionId,
   audience,
   mode,
+  locked,
   conflictMessage,
   serverText,
   showServer,
   orderMessage,
   diffSummary,
   saving,
+  conceptLinks,
+  confirmLinkIds,
+  onConceptLinks,
   onChange,
   onSave,
   onToggleServer,
@@ -437,14 +454,22 @@ export function SectionEditor({
   lectureLink,
 }: {
   draft: SectionDetail;
+  editionId: string;
   audience: Audience;
   mode: PreviewMode;
+  locked: boolean;
   conflictMessage: string | null;
   serverText: string | null;
   showServer: boolean;
   orderMessage: string | null;
   diffSummary: string | null;
   saving: boolean;
+  conceptLinks: TextbookConcept["links"];
+  confirmLinkIds: string[];
+  onConceptLinks: (
+    links: TextbookConcept["links"],
+    confirmLinkIds: string[],
+  ) => void;
   onChange: (next: SectionDetail) => void;
   onSave: () => void;
   onToggleServer: () => void;
@@ -478,498 +503,515 @@ export function SectionEditor({
   );
   return (
     <div className={styles.stack}>
-      <label className={styles.field}>
-        <span>구획 제목</span>
-        <input
-          value={draft.title}
-          onChange={(event) =>
-            onChange({ ...draft, title: event.target.value })
-          }
-        />
-      </label>
-      <label className={styles.field}>
-        <span>시작 면</span>
-        <select
-          value={draft.parity}
-          onChange={(event) => {
-            const parity =
-              event.target.value === "even-left" ||
-              event.target.value === "continue"
-                ? event.target.value
-                : "unconfirmed";
-            onChange({ ...draft, parity });
-          }}
-        >
-          <option value="unconfirmed">시작 면 미정</option>
-          <option value="continue">이어짐</option>
-          <option value="even-left">짝수 왼쪽</option>
-        </select>
-      </label>
-      {draft.blocks.map((block) => {
-        const move = (direction: -1 | 1) =>
-          onChange({
-            ...draft,
-            blocks: moveBlock(draft.blocks, block.id, direction),
-          });
-        const replace = (next: SectionDetail["blocks"][number]) =>
-          onChange({
-            ...draft,
-            blocks: draft.blocks.map((item) =>
-              item.id === block.id ? next : item,
-            ),
-          });
-        if (block.kind === "text") {
-          return (
-            <div key={block.id} className={styles.stack}>
-              <label className={styles.field}>
-                <span>본문</span>
-                <textarea
-                  value={block.text}
-                  onChange={(event) =>
-                    replace({ ...block, text: event.target.value })
-                  }
-                />
-              </label>
-              <div className={styles.row}>
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={() => move(-1)}
-                >
-                  위로
-                </button>
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={() => move(1)}
-                >
-                  아래로
-                </button>
-              </div>
-            </div>
-          );
-        }
-        if (block.kind === "concept-recall") {
-          return (
-            <div key={block.id} className={styles.stack}>
-              <label className={styles.field}>
-                <span>회상 단계</span>
-                <select
-                  value={block.phase}
-                  onChange={(event) => {
-                    const phase =
-                      event.target.value === "keywords" ||
-                      event.target.value === "sentences"
-                        ? event.target.value
-                        : "study";
-                    replace({
-                      ...block,
-                      phase,
-                      showRepetitionChecks:
-                        phase === "study" ? block.showRepetitionChecks : false,
-                    });
-                  }}
-                >
-                  <option value="study">개념</option>
-                  <option value="keywords">핵심어</option>
-                  <option value="sentences">문장</option>
-                </select>
-              </label>
-              <label className={styles.field}>
-                <span>회상 본문</span>
-                <textarea
-                  value={block.text}
-                  onChange={(event) =>
-                    replace({ ...block, text: event.target.value })
-                  }
-                />
-              </label>
-              <div className={styles.row}>
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={() => move(-1)}
-                >
-                  위로
-                </button>
-                <button
-                  type="button"
-                  className={styles.button}
-                  onClick={() => move(1)}
-                >
-                  아래로
-                </button>
-              </div>
-            </div>
-          );
-        }
-        if (block.kind === "problems") {
-          return (
-            <div key={block.id} className={styles.row}>
-              <span>문항 블록</span>
-              <button
-                type="button"
-                className={styles.button}
-                onClick={() => move(-1)}
-              >
-                위로
-              </button>
-              <button
-                type="button"
-                className={styles.button}
-                onClick={() => move(1)}
-              >
-                아래로
-              </button>
-            </div>
-          );
-        }
-        if (block.kind === "concept") {
-          return (
-            <label key={block.id} className={styles.field}>
-              <span>개념 키</span>
-              <input
-                value={block.conceptKey}
-                onChange={(event) =>
-                  replace({ ...block, conceptKey: event.target.value })
-                }
-              />
-            </label>
-          );
-        }
-        if (block.kind === "image") {
-          return (
-            <label key={block.id} className={styles.field}>
-              <span>그림 설명</span>
-              <input
-                value={block.caption}
-                onChange={(event) =>
-                  replace({ ...block, caption: event.target.value })
-                }
-              />
-            </label>
-          );
-        }
-        if (block.kind !== "dialogue") return null;
-        return block.turns.map((turn, index) => (
-          <div key={turn.id} className={styles.stack}>
-            <label className={styles.field}>
-              <span>화자</span>
-              <select
-                value={turn.speaker}
-                onChange={(event) => {
-                  const speaker =
-                    SPEAKERS.find((item) => item === event.target.value) ??
-                    turn.speaker;
-                  const turns = block.turns.map((item) =>
-                    item.id === turn.id
-                      ? { ...item, speaker, speakerId: SPEAKER_IDS[speaker] }
-                      : item,
-                  );
-                  onChange({
-                    ...draft,
-                    blocks: draft.blocks.map((item) =>
-                      item.id === block.id && item.kind === "dialogue"
-                        ? { ...item, turns }
-                        : item,
-                    ),
-                  });
-                }}
-              >
-                {SPEAKERS.map((speaker) => (
-                  <option key={speaker}>{speaker}</option>
-                ))}
-              </select>
-            </label>
-            <label className={styles.field}>
-              <span>자리</span>
-              <select
-                value={turn.side}
-                onChange={(event) => {
-                  const side =
-                    SIDES.find((item) => item === event.target.value) ??
-                    turn.side;
-                  const turns = block.turns.map((item) =>
-                    item.id === turn.id ? { ...item, side } : item,
-                  );
-                  onChange({
-                    ...draft,
-                    blocks: draft.blocks.map((item) =>
-                      item.id === block.id && item.kind === "dialogue"
-                        ? { ...item, turns }
-                        : item,
-                    ),
-                  });
-                }}
-              >
-                {SIDES.map((side) => (
-                  <option key={side}>{side}</option>
-                ))}
-              </select>
-            </label>
-            <label className={styles.field}>
-              <span>표정</span>
-              <select
-                value={turn.expression}
-                onChange={(event) => {
-                  const expression =
-                    EXPRESSIONS.find((item) => item === event.target.value) ??
-                    turn.expression;
-                  const turns = block.turns.map((item) =>
-                    item.id === turn.id ? { ...item, expression } : item,
-                  );
-                  onChange({
-                    ...draft,
-                    blocks: draft.blocks.map((item) =>
-                      item.id === block.id && item.kind === "dialogue"
-                        ? { ...item, turns }
-                        : item,
-                    ),
-                  });
-                }}
-              >
-                {EXPRESSIONS.map((expression) => (
-                  <option key={expression}>{expression}</option>
-                ))}
-              </select>
-            </label>
-            <label className={styles.field}>
-              <span>초상 자료</span>
-              <input
-                value={turn.portraitAssetId}
-                onChange={(event) => {
-                  const turns = block.turns.map((item) =>
-                    item.id === turn.id
-                      ? { ...item, portraitAssetId: event.target.value }
-                      : item,
-                  );
-                  onChange({
-                    ...draft,
-                    blocks: draft.blocks.map((item) =>
-                      item.id === block.id && item.kind === "dialogue"
-                        ? { ...item, turns }
-                        : item,
-                    ),
-                  });
-                }}
-              />
-            </label>
-            <label className={styles.field}>
-              <span>초상 뒤집기</span>
-              <select
-                value={turn.side === "오른쪽" && turn.mirror ? "right" : "none"}
-                disabled={turn.side !== "오른쪽"}
-                onChange={(event) => {
-                  const mirror = event.target.value === "right";
-                  const turns = block.turns.map((item) =>
-                    item.id === turn.id ? { ...item, mirror } : item,
-                  );
-                  onChange({
-                    ...draft,
-                    blocks: draft.blocks.map((item) =>
-                      item.id === block.id && item.kind === "dialogue"
-                        ? { ...item, turns }
-                        : item,
-                    ),
-                  });
-                }}
-              >
-                <option value="none">뒤집지 않음</option>
-                <option value="right">오른쪽만 뒤집기</option>
-              </select>
-            </label>
-            <label className={styles.field}>
-              <span>{turnLabel(index, block.turns.length)}</span>
-              <textarea
-                value={turn.text}
-                onChange={(event) => {
-                  const turns = block.turns.map((item) =>
-                    item.id === turn.id
-                      ? { ...item, text: event.target.value }
-                      : item,
-                  );
-                  onChange({
-                    ...draft,
-                    blocks: draft.blocks.map((item) =>
-                      item.id === block.id && item.kind === "dialogue"
-                        ? { ...item, turns }
-                        : item,
-                    ),
-                  });
-                }}
-              />
-            </label>
-          </div>
-        ));
-      })}
-      {draft.portraits.map((portrait) => (
-        <label key={portrait.id} className={styles.field}>
-          <span>{portrait.character} 초상</span>
-          <select
-            aria-label={`${portrait.character} 뒤집기`}
-            value={
-              portrait.side === "오른쪽" && portrait.mirror ? "right" : "none"
-            }
-            disabled={portrait.side !== "오른쪽"}
-            onChange={(event) => {
-              const mirror = event.target.value === "right";
-              onChange({
-                ...draft,
-                portraits: draft.portraits.map((item) =>
-                  item.id === portrait.id ? { ...item, mirror } : item,
-                ),
-              });
-            }}
-          >
-            <option value="none">뒤집지 않음</option>
-            <option value="right">오른쪽만 뒤집기</option>
-          </select>
-        </label>
-      ))}
-      {placement === "manuscript" ? (
+      <fieldset className={styles.stack} disabled={locked}>
         <label className={styles.field}>
-          <span>교사용 정답</span>
+          <span>구획 제목</span>
           <input
-            value={draft.answer}
+            value={draft.title}
             onChange={(event) =>
-              onChange({ ...draft, answer: event.target.value })
+              onChange({ ...draft, title: event.target.value })
             }
           />
         </label>
-      ) : null}
-      <PickEditor
-        picks={draft.picks}
-        onChange={(picks) => onChange({ ...draft, picks })}
-        onSearch={onSearchCatalog}
-      />
-      {orderMessage ? (
-        <p className={styles.alert} role="alert">
-          {orderMessage}
-        </p>
-      ) : null}
-      <ConceptFields
-        draft={draft}
-        onChange={onChange}
-        onCreate={onCreateConcept}
-        onSave={onSaveConcept}
-      />
-      {lectureLink}
-      <ItemCapture
-        items={draft.items}
-        diffSummary={diffSummary}
-        onCapture={onCapture}
-        onDiff={onDiff}
-        onRecapture={onRecapture}
-        onLoadLinks={onLoadLinks}
-        onLink={onLink}
-        onRegister={onRegister}
-        onLoadUnits={onLoadUnits}
-        onLoadProblems={onLoadProblems}
-        onLoadClasses={onLoadClasses}
-        onLoadStudents={onLoadStudents}
-        onLoadTests={onLoadTests}
-      />
-      <div className={styles.row}>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
+        <label className={styles.field}>
+          <span>시작 면</span>
+          <select
+            value={draft.parity}
+            onChange={(event) => {
+              const parity =
+                event.target.value === "even-left" ||
+                event.target.value === "continue"
+                  ? event.target.value
+                  : "unconfirmed";
+              onChange({ ...draft, parity });
+            }}
+          >
+            <option value="unconfirmed">시작 면 미정</option>
+            <option value="continue">이어짐</option>
+            <option value="even-left">짝수 왼쪽</option>
+          </select>
+        </label>
+        {draft.blocks.map((block) => {
+          const move = (direction: -1 | 1) =>
             onChange({
               ...draft,
-              blocks: [
-                ...draft.blocks,
-                { id: crypto.randomUUID(), kind: "text", text: "" },
-              ],
-            })
-          }
-        >
-          글 추가
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
+              blocks: moveBlock(draft.blocks, block.id, direction),
+            });
+          const replace = (next: SectionDetail["blocks"][number]) =>
             onChange({
               ...draft,
-              blocks: [
-                ...draft.blocks,
-                {
-                  id: crypto.randomUUID(),
-                  kind: "concept-recall",
-                  conceptKey: "",
-                  phase: "study",
-                  text: "",
-                  showRepetitionChecks: true,
-                },
-              ],
-            })
+              blocks: draft.blocks.map((item) =>
+                item.id === block.id ? next : item,
+              ),
+            });
+          if (block.kind === "text") {
+            return (
+              <div key={block.id} className={styles.stack}>
+                <label className={styles.field}>
+                  <span>본문</span>
+                  <textarea
+                    value={block.text}
+                    onChange={(event) =>
+                      replace({ ...block, text: event.target.value })
+                    }
+                  />
+                </label>
+                <div className={styles.row}>
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => move(-1)}
+                  >
+                    위로
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => move(1)}
+                  >
+                    아래로
+                  </button>
+                </div>
+              </div>
+            );
           }
-        >
-          회상 추가
-        </button>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={() =>
-            onChange({
-              ...draft,
-              blocks: [
-                ...draft.blocks,
-                {
-                  id: crypto.randomUUID(),
-                  kind: "dialogue",
-                  turns: [
-                    {
-                      id: crypto.randomUUID(),
-                      speaker: "선생님",
-                      speakerId: SPEAKER_IDS.선생님,
-                      expression: "평온",
-                      side: "왼쪽",
-                      text: "",
-                      portraitAssetId: "",
-                      mirror: false,
-                    },
-                  ],
-                },
-              ],
-            })
+          if (block.kind === "concept-recall") {
+            return (
+              <div key={block.id} className={styles.stack}>
+                <label className={styles.field}>
+                  <span>회상 단계</span>
+                  <select
+                    value={block.phase}
+                    onChange={(event) => {
+                      const phase =
+                        event.target.value === "keywords" ||
+                        event.target.value === "sentences"
+                          ? event.target.value
+                          : "study";
+                      replace({
+                        ...block,
+                        phase,
+                        showRepetitionChecks:
+                          phase === "study"
+                            ? block.showRepetitionChecks
+                            : false,
+                      });
+                    }}
+                  >
+                    <option value="study">개념</option>
+                    <option value="keywords">핵심어</option>
+                    <option value="sentences">문장</option>
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>회상 본문</span>
+                  <textarea
+                    value={block.text}
+                    onChange={(event) =>
+                      replace({ ...block, text: event.target.value })
+                    }
+                  />
+                </label>
+                <div className={styles.row}>
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => move(-1)}
+                  >
+                    위로
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => move(1)}
+                  >
+                    아래로
+                  </button>
+                </div>
+              </div>
+            );
           }
-        >
-          대화 추가
-        </button>
-        <button type="button" className={styles.button} onClick={onDelete}>
-          구획 삭제
-        </button>
-      </div>
-      {conflictMessage ? (
-        <div className={styles.note} role="alert">
-          <p>{conflictMessage}</p>
-          <div className={styles.row}>
-            <button
-              type="button"
-              className={styles.button}
-              onClick={onToggleServer}
+          if (block.kind === "problems") {
+            return (
+              <div key={block.id} className={styles.row}>
+                <span>문항 블록</span>
+                <button
+                  type="button"
+                  className={styles.button}
+                  onClick={() => move(-1)}
+                >
+                  위로
+                </button>
+                <button
+                  type="button"
+                  className={styles.button}
+                  onClick={() => move(1)}
+                >
+                  아래로
+                </button>
+              </div>
+            );
+          }
+          if (block.kind === "concept") {
+            return (
+              <label key={block.id} className={styles.field}>
+                <span>개념 키</span>
+                <input
+                  value={block.conceptKey}
+                  onChange={(event) =>
+                    replace({ ...block, conceptKey: event.target.value })
+                  }
+                />
+              </label>
+            );
+          }
+          if (block.kind === "image") {
+            return (
+              <label key={block.id} className={styles.field}>
+                <span>그림 설명</span>
+                <input
+                  value={block.caption}
+                  onChange={(event) =>
+                    replace({ ...block, caption: event.target.value })
+                  }
+                />
+              </label>
+            );
+          }
+          if (block.kind !== "dialogue") return null;
+          return block.turns.map((turn, index) => (
+            <div key={turn.id} className={styles.stack}>
+              <label className={styles.field}>
+                <span>화자</span>
+                <select
+                  value={turn.speaker}
+                  onChange={(event) => {
+                    const speaker =
+                      SPEAKERS.find((item) => item === event.target.value) ??
+                      turn.speaker;
+                    const turns = block.turns.map((item) =>
+                      item.id === turn.id
+                        ? { ...item, speaker, speakerId: SPEAKER_IDS[speaker] }
+                        : item,
+                    );
+                    onChange({
+                      ...draft,
+                      blocks: draft.blocks.map((item) =>
+                        item.id === block.id && item.kind === "dialogue"
+                          ? { ...item, turns }
+                          : item,
+                      ),
+                    });
+                  }}
+                >
+                  {SPEAKERS.map((speaker) => (
+                    <option key={speaker}>{speaker}</option>
+                  ))}
+                </select>
+              </label>
+              <label className={styles.field}>
+                <span>자리</span>
+                <select
+                  value={turn.side}
+                  onChange={(event) => {
+                    const side =
+                      SIDES.find((item) => item === event.target.value) ??
+                      turn.side;
+                    const turns = block.turns.map((item) =>
+                      item.id === turn.id ? { ...item, side } : item,
+                    );
+                    onChange({
+                      ...draft,
+                      blocks: draft.blocks.map((item) =>
+                        item.id === block.id && item.kind === "dialogue"
+                          ? { ...item, turns }
+                          : item,
+                      ),
+                    });
+                  }}
+                >
+                  {SIDES.map((side) => (
+                    <option key={side}>{side}</option>
+                  ))}
+                </select>
+              </label>
+              <label className={styles.field}>
+                <span>표정</span>
+                <select
+                  value={turn.expression}
+                  onChange={(event) => {
+                    const expression =
+                      EXPRESSIONS.find((item) => item === event.target.value) ??
+                      turn.expression;
+                    const turns = block.turns.map((item) =>
+                      item.id === turn.id ? { ...item, expression } : item,
+                    );
+                    onChange({
+                      ...draft,
+                      blocks: draft.blocks.map((item) =>
+                        item.id === block.id && item.kind === "dialogue"
+                          ? { ...item, turns }
+                          : item,
+                      ),
+                    });
+                  }}
+                >
+                  {EXPRESSIONS.map((expression) => (
+                    <option key={expression}>{expression}</option>
+                  ))}
+                </select>
+              </label>
+              <label className={styles.field}>
+                <span>초상 자료</span>
+                <input
+                  value={turn.portraitAssetId}
+                  onChange={(event) => {
+                    const turns = block.turns.map((item) =>
+                      item.id === turn.id
+                        ? { ...item, portraitAssetId: event.target.value }
+                        : item,
+                    );
+                    onChange({
+                      ...draft,
+                      blocks: draft.blocks.map((item) =>
+                        item.id === block.id && item.kind === "dialogue"
+                          ? { ...item, turns }
+                          : item,
+                      ),
+                    });
+                  }}
+                />
+              </label>
+              <label className={styles.field}>
+                <span>초상 뒤집기</span>
+                <select
+                  value={
+                    turn.side === "오른쪽" && turn.mirror ? "right" : "none"
+                  }
+                  disabled={turn.side !== "오른쪽"}
+                  onChange={(event) => {
+                    const mirror = event.target.value === "right";
+                    const turns = block.turns.map((item) =>
+                      item.id === turn.id ? { ...item, mirror } : item,
+                    );
+                    onChange({
+                      ...draft,
+                      blocks: draft.blocks.map((item) =>
+                        item.id === block.id && item.kind === "dialogue"
+                          ? { ...item, turns }
+                          : item,
+                      ),
+                    });
+                  }}
+                >
+                  <option value="none">뒤집지 않음</option>
+                  <option value="right">오른쪽만 뒤집기</option>
+                </select>
+              </label>
+              <label className={styles.field}>
+                <span>{turnLabel(index, block.turns.length)}</span>
+                <textarea
+                  value={turn.text}
+                  onChange={(event) => {
+                    const turns = block.turns.map((item) =>
+                      item.id === turn.id
+                        ? { ...item, text: event.target.value }
+                        : item,
+                    );
+                    onChange({
+                      ...draft,
+                      blocks: draft.blocks.map((item) =>
+                        item.id === block.id && item.kind === "dialogue"
+                          ? { ...item, turns }
+                          : item,
+                      ),
+                    });
+                  }}
+                />
+              </label>
+            </div>
+          ));
+        })}
+        {draft.portraits.map((portrait) => (
+          <label key={portrait.id} className={styles.field}>
+            <span>{portrait.character} 초상</span>
+            <select
+              aria-label={`${portrait.character} 뒤집기`}
+              value={
+                portrait.side === "오른쪽" && portrait.mirror ? "right" : "none"
+              }
+              disabled={portrait.side !== "오른쪽"}
+              onChange={(event) => {
+                const mirror = event.target.value === "right";
+                onChange({
+                  ...draft,
+                  portraits: draft.portraits.map((item) =>
+                    item.id === portrait.id ? { ...item, mirror } : item,
+                  ),
+                });
+              }}
             >
-              서버 내용 보기
-            </button>
-            <button type="button" className={styles.button} onClick={onCopy}>
-              새 초안으로 복사
-            </button>
-          </div>
-          {showServer && serverText ? <p>{serverText}</p> : null}
-        </div>
+              <option value="none">뒤집지 않음</option>
+              <option value="right">오른쪽만 뒤집기</option>
+            </select>
+          </label>
+        ))}
+        {placement === "manuscript" ? (
+          <label className={styles.field}>
+            <span>교사용 정답</span>
+            <input
+              value={draft.answer}
+              onChange={(event) =>
+                onChange({ ...draft, answer: event.target.value })
+              }
+            />
+          </label>
+        ) : null}
+        <PickEditor
+          picks={draft.picks}
+          onChange={(picks) => onChange({ ...draft, picks })}
+          onSearch={onSearchCatalog}
+        />
+        {orderMessage ? (
+          <p className={styles.alert} role="alert">
+            {orderMessage}
+          </p>
+        ) : null}
+        <ConceptFields
+          draft={draft}
+          onChange={onChange}
+          onCreate={onCreateConcept}
+          onSave={onSaveConcept}
+        />
+      </fieldset>
+      {draft.concept ? (
+        <TextbookConceptLinkEditor
+          key={`${editionId}:${draft.concept.conceptKey}`}
+          links={conceptLinks}
+          confirmLinkIds={confirmLinkIds}
+          disabled={locked}
+          onChange={onConceptLinks}
+        />
       ) : null}
-      <div className={styles.row}>
-        <button
-          type="button"
-          className={styles.primary}
-          disabled={saving || !order.ok || !mirrorsOk}
-          onClick={onSave}
-        >
-          이 구획 저장
-        </button>
-        <p className={styles.muted}>기록 없음</p>
-      </div>
+      {lectureLink}
+      <fieldset className={styles.stack} disabled={locked}>
+        <ItemCapture
+          items={draft.items}
+          diffSummary={diffSummary}
+          onCapture={onCapture}
+          onDiff={onDiff}
+          onRecapture={onRecapture}
+          onLoadLinks={onLoadLinks}
+          onLink={onLink}
+          onRegister={onRegister}
+          onLoadUnits={onLoadUnits}
+          onLoadProblems={onLoadProblems}
+          onLoadClasses={onLoadClasses}
+          onLoadStudents={onLoadStudents}
+          onLoadTests={onLoadTests}
+        />
+        <div className={styles.row}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() =>
+              onChange({
+                ...draft,
+                blocks: [
+                  ...draft.blocks,
+                  { id: crypto.randomUUID(), kind: "text", text: "" },
+                ],
+              })
+            }
+          >
+            글 추가
+          </button>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() =>
+              onChange({
+                ...draft,
+                blocks: [
+                  ...draft.blocks,
+                  {
+                    id: crypto.randomUUID(),
+                    kind: "concept-recall",
+                    conceptKey: "",
+                    phase: "study",
+                    text: "",
+                    showRepetitionChecks: true,
+                  },
+                ],
+              })
+            }
+          >
+            회상 추가
+          </button>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() =>
+              onChange({
+                ...draft,
+                blocks: [
+                  ...draft.blocks,
+                  {
+                    id: crypto.randomUUID(),
+                    kind: "dialogue",
+                    turns: [
+                      {
+                        id: crypto.randomUUID(),
+                        speaker: "선생님",
+                        speakerId: SPEAKER_IDS.선생님,
+                        expression: "평온",
+                        side: "왼쪽",
+                        text: "",
+                        portraitAssetId: "",
+                        mirror: false,
+                      },
+                    ],
+                  },
+                ],
+              })
+            }
+          >
+            대화 추가
+          </button>
+          <button type="button" className={styles.button} onClick={onDelete}>
+            구획 삭제
+          </button>
+        </div>
+        {conflictMessage ? (
+          <div className={styles.note} role="alert">
+            <p>{conflictMessage}</p>
+            <div className={styles.row}>
+              <button
+                type="button"
+                className={styles.button}
+                onClick={onToggleServer}
+              >
+                서버 내용 보기
+              </button>
+              <button type="button" className={styles.button} onClick={onCopy}>
+                새 초안으로 복사
+              </button>
+            </div>
+            {showServer && serverText ? <p>{serverText}</p> : null}
+          </div>
+        ) : null}
+        <div className={styles.row}>
+          <button
+            type="button"
+            className={styles.primary}
+            disabled={saving || !order.ok || !mirrorsOk}
+            onClick={onSave}
+          >
+            이 구획 저장
+          </button>
+          <p className={styles.muted}>기록 없음</p>
+        </div>
+      </fieldset>
     </div>
   );
 }
@@ -1710,6 +1752,7 @@ export function LectureLink({
   conceptKey,
   sourceUnitIds,
   refs,
+  disabled,
   onFind,
   onLink,
   onUnlink,
@@ -1717,6 +1760,7 @@ export function LectureLink({
   conceptKey: string | null;
   sourceUnitIds: readonly string[];
   refs: readonly { lectureId: string; conceptKey: string }[];
+  disabled: boolean;
   onFind: () => Promise<LectureChoice[]>;
   onLink: (lectureId: string) => void;
   onUnlink: (lectureId: string, conceptKey: string) => void;
@@ -1728,7 +1772,7 @@ export function LectureLink({
     ? refs.filter((ref) => ref.conceptKey === conceptKey)
     : [];
   return (
-    <fieldset className={styles.stack}>
+    <fieldset className={styles.stack} disabled={disabled}>
       <legend>개념 준비 강의</legend>
       {!conceptKey ? (
         <p className={styles.muted}>개념 키를 먼저 만드세요.</p>
@@ -2104,6 +2148,7 @@ export function PublishPanel({
   status,
   issues,
   busy,
+  locked,
   onPreflight,
   onReserve,
   onStep,
@@ -2112,6 +2157,7 @@ export function PublishPanel({
   status: PublishStatus;
   issues: StudioIssue[];
   busy: boolean;
+  locked: boolean;
   onPreflight: () => void;
   onReserve: () => void;
   onStep: () => void;
@@ -2129,7 +2175,7 @@ export function PublishPanel({
         <button
           type="button"
           className={styles.button}
-          disabled={busy}
+          disabled={busy || locked}
           onClick={onPreflight}
         >
           발행 전 확인
@@ -2138,7 +2184,9 @@ export function PublishPanel({
           type="button"
           className={styles.button}
           disabled={
-            busy || (status !== "idle" && status !== "preflight-failed")
+            busy ||
+            locked ||
+            (status !== "idle" && status !== "preflight-failed")
           }
           onClick={onReserve}
         >
@@ -2147,7 +2195,9 @@ export function PublishPanel({
         <button
           type="button"
           className={styles.button}
-          disabled={busy || (status !== "reserved" && status !== "running")}
+          disabled={
+            busy || locked || (status !== "reserved" && status !== "running")
+          }
           onClick={onStep}
         >
           조판 단계
@@ -2155,7 +2205,7 @@ export function PublishPanel({
         <button
           type="button"
           className={styles.primary}
-          disabled={busy || !canFinalize(status)}
+          disabled={busy || locked || !canFinalize(status)}
           onClick={onFinalize}
         >
           확정
@@ -2558,6 +2608,8 @@ export function ConfigPanel({
   pageTarget,
   videoPolicy,
   studentSolutionPolicy,
+  print,
+  locked,
   busy,
   onSave,
 }: {
@@ -2566,6 +2618,11 @@ export function ConfigPanel({
   pageTarget: string;
   videoPolicy: "required" | "optional";
   studentSolutionPolicy: "never" | "assigned";
+  print?: {
+    coverMode: "included" | "separate";
+    firstPhysicalPageIndex: number;
+  };
+  locked: boolean;
   busy: boolean;
   onSave: (value: {
     volumeCode: string;
@@ -2573,6 +2630,8 @@ export function ConfigPanel({
     pageTarget: string;
     videoPolicy: "required" | "optional";
     studentSolutionPolicy: "never" | "assigned";
+    coverMode?: "included" | "separate";
+    firstPhysicalPageIndex?: string;
   }) => void;
 }) {
   return (
@@ -2584,52 +2643,88 @@ export function ConfigPanel({
         const data = new FormData(event.currentTarget);
         const policy = data.get("studentSolutionPolicy");
         const video = data.get("videoPolicy");
+        const cover = data.get("coverMode");
         onSave({
           volumeCode: String(data.get("volumeCode") ?? ""),
           title: String(data.get("title") ?? ""),
           pageTarget: String(data.get("pageTarget") ?? ""),
           videoPolicy: video === "required" ? "required" : "optional",
           studentSolutionPolicy: policy === "assigned" ? "assigned" : "never",
+          ...(print
+            ? {
+                coverMode:
+                  cover === "included"
+                    ? ("included" as const)
+                    : ("separate" as const),
+                firstPhysicalPageIndex: String(
+                  data.get("firstPhysicalPageIndex") ?? "",
+                ),
+              }
+            : {}),
         });
       }}
     >
       <h2>설정</h2>
-      <label className={styles.field}>
-        <span>제목</span>
-        <input name="title" defaultValue={title} />
-      </label>
-      <label className={styles.field}>
-        <span>권 코드</span>
-        <input name="volumeCode" defaultValue={volumeCode} />
-      </label>
-      <label className={styles.field}>
-        <span>목표 쪽수</span>
-        <input
-          name="pageTarget"
-          defaultValue={pageTarget}
-          inputMode="numeric"
-        />
-      </label>
-      <label className={styles.field}>
-        <span>영상</span>
-        <select name="videoPolicy" defaultValue={videoPolicy}>
-          <option value="optional">선택</option>
-          <option value="required">필수</option>
-        </select>
-      </label>
-      <label className={styles.field}>
-        <span>학생 글 해설</span>
-        <select
-          name="studentSolutionPolicy"
-          defaultValue={studentSolutionPolicy}
-        >
-          <option value="never">열지 않음</option>
-          <option value="assigned">배정한 QR만</option>
-        </select>
-      </label>
-      <button type="submit" className={styles.primary} disabled={busy}>
-        설정 저장
-      </button>
+      <fieldset className={styles.stack} disabled={locked}>
+        <label className={styles.field}>
+          <span>제목</span>
+          <input name="title" defaultValue={title} />
+        </label>
+        <label className={styles.field}>
+          <span>권 코드</span>
+          <input name="volumeCode" defaultValue={volumeCode} />
+        </label>
+        <label className={styles.field}>
+          <span>목표 쪽수</span>
+          <input
+            name="pageTarget"
+            defaultValue={pageTarget}
+            inputMode="numeric"
+          />
+        </label>
+        <label className={styles.field}>
+          <span>영상</span>
+          <select name="videoPolicy" defaultValue={videoPolicy}>
+            <option value="optional">선택</option>
+            <option value="required">필수</option>
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>학생 글 해설</span>
+          <select
+            name="studentSolutionPolicy"
+            defaultValue={studentSolutionPolicy}
+          >
+            <option value="never">열지 않음</option>
+            <option value="assigned">배정한 QR만</option>
+          </select>
+        </label>
+        {print ? (
+          <>
+            <label className={styles.field}>
+              <span>표지</span>
+              <select name="coverMode" defaultValue={print.coverMode}>
+                <option value="separate">별도</option>
+                <option value="included">교재에 포함</option>
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>첫 인쇄 쪽</span>
+              <input
+                name="firstPhysicalPageIndex"
+                defaultValue={String(print.firstPhysicalPageIndex)}
+                inputMode="numeric"
+              />
+            </label>
+            <p className={styles.muted}>
+              주요 구획은 짝수 왼쪽에서 시작합니다.
+            </p>
+          </>
+        ) : null}
+        <button type="submit" className={styles.primary} disabled={busy}>
+          설정 저장
+        </button>
+      </fieldset>
     </form>
   );
 }

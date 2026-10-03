@@ -378,6 +378,9 @@ describe("TextbookStudioView", () => {
     fireEvent.click(screen.getByRole("button", { name: "개념 저장" }));
     expect(await screen.findByText("개념을 저장했습니다.")).toBeVisible();
     expect(saveConcept).toHaveBeenCalledOnce();
+    expect(saveConcept).toHaveBeenCalledWith(
+      expect.objectContaining({ links: [], confirmLinkIds: [] }),
+    );
     expect(screen.getByText(/e5-1 · 확인/)).toBeVisible();
   });
 
@@ -1159,5 +1162,223 @@ describe("TextbookStudioView", () => {
       ),
     ).toBeVisible();
     expect(screen.queryByText(/공유 지면 렌더러/)).not.toBeInTheDocument();
+  });
+
+  it("saves the real cover and first printed page without changing the even-left start", async () => {
+    const source = structuredClone(edition.structureSource);
+    if (!source) throw new Error("fixture");
+    source.config = {
+      ...source.config,
+      print: {
+        paper: "A4",
+        innerMarginMm: 15,
+        outerMarginMm: 15,
+        sectionStart: "even-left",
+        coverMode: "separate",
+        firstPhysicalPageIndex: 1,
+      },
+    };
+    const patchEdition = vi.fn(async () => edition);
+    await openStudio(
+      api({
+        openEdition: vi.fn(async () => ({
+          ...edition,
+          structureSource: source,
+        })),
+        patchEdition,
+      }),
+    );
+    const form = screen.getByRole("form", { name: "교재 설정" });
+    fireEvent.change(within(form).getByRole("combobox", { name: "표지" }), {
+      target: { value: "included" },
+    });
+    fireEvent.change(
+      within(form).getByRole("textbox", { name: "첫 인쇄 쪽" }),
+      {
+        target: { value: "3" },
+      },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "설정 저장" }));
+    expect(await screen.findByText("설정을 저장했습니다.")).toBeVisible();
+    expect(patchEdition).toHaveBeenCalledWith(
+      expect.objectContaining({
+        source: expect.objectContaining({
+          config: expect.objectContaining({
+            print: expect.objectContaining({
+              coverMode: "included",
+              firstPhysicalPageIndex: 3,
+              sectionStart: "even-left",
+            }),
+          }),
+        }),
+      }),
+    );
+  });
+
+  it("disables published manuscript edits and still opens a definition and a new draft", async () => {
+    const source = structuredClone(edition.structureSource);
+    if (!source) throw new Error("fixture");
+    source.edition = {
+      editionId: "00000000-0000-4000-8000-000000000011",
+      label: "1",
+      status: "published",
+      revision: 2,
+      publishedAt: "2026-10-03T00:00:00.000Z",
+      manifestHash: null,
+    };
+    const placed = section();
+    placed.blocks = [
+      ...placed.blocks,
+      {
+        id: "concept-block",
+        kind: "concept",
+        conceptKey: "prime-definition",
+      },
+    ];
+    const createEdition = vi.fn(async () => ({
+      ...edition,
+      editionId: "edition-copy",
+    }));
+    await openStudio(
+      api({
+        openEdition: vi.fn(async () => ({
+          ...edition,
+          structureSource: source,
+        })),
+        getSection: vi.fn(async () => placed),
+        readConcept: vi.fn(async () => ({
+          revision: 2,
+          draft: {
+            conceptKey: "prime-definition",
+            title: "소수",
+            kind: "정의",
+            goal: "",
+            prerequisites: "",
+            definition: "1과 자신만으로 나누어진다",
+            conditions: "",
+            examples: "",
+            counterexamples: "",
+            misconceptions: "",
+            explainPrompt: "",
+            blankForms: ["term", "cloze"],
+          },
+          concept: {
+            links: [
+              {
+                linkId: "factorization-review",
+                target: {
+                  namespace: "explorer-card",
+                  cardId: "factorization-review",
+                },
+                relation: "same",
+                review: {
+                  status: "confirmed",
+                  candidateRule: "manual",
+                  reviewedBy: "11111111-1111-4111-8111-111111111111",
+                  reviewedAt: "2026-10-03T00:00:00.000Z",
+                  targetHash: "a".repeat(64),
+                },
+              },
+            ],
+          },
+        })) as TextbookStudioApi["readConcept"],
+        createEdition,
+      }),
+    );
+    expect(screen.getByRole("button", { name: "이 구획 저장" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "설정 저장" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "대화 위로" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "정의 불러오기" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "내보내기" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "다시 출제" })).toBeEnabled();
+    fireEvent.click(screen.getByRole("button", { name: "발행" }));
+    expect(screen.getByRole("button", { name: "발행 전 확인" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "새 초안" }));
+    expect(await screen.findByText("새 초안을 만들었습니다.")).toBeVisible();
+    expect(createEdition).toHaveBeenCalledWith(
+      "book-1",
+      "edition-1",
+      expect.any(String),
+    );
+  });
+
+  it("saves a dirty concept before leaving the list", async () => {
+    const placed = section();
+    placed.status = "saved";
+    placed.blocks = [
+      ...placed.blocks,
+      {
+        id: "concept-block",
+        kind: "concept",
+        conceptKey: "prime-definition",
+      },
+    ];
+    const savedEdition: EditionDetail = {
+      ...edition,
+      units: edition.units.map((unit) => ({
+        ...unit,
+        sections: unit.sections.map((row) => ({ ...row, status: "saved" })),
+      })),
+    };
+    const saveConcept = vi.fn(async (input) => ({
+      revision: 5,
+      aggregateRevision: 12,
+      concept: {
+        title: input.concept.title,
+        kind: input.concept.kind,
+        blankForms: [...input.concept.blankForms],
+        blankItems: [],
+        links: input.links,
+      },
+    })) as TextbookStudioApi["saveConcept"];
+    const saveSection = vi.fn(async () => ({
+      revision: 4,
+      aggregateRevision: 10,
+    }));
+    await openStudio(
+      api({
+        openEdition: vi.fn(async () => savedEdition),
+        getSection: vi.fn(async () => placed),
+        readConcept: vi.fn(async () => ({
+          revision: 4,
+          draft: {
+            conceptKey: "prime-definition",
+            title: "소수",
+            kind: "정의",
+            goal: "",
+            prerequisites: "",
+            definition: "1과 자신만으로 나누어진다",
+            conditions: "",
+            examples: "기존 예",
+            counterexamples: "",
+            misconceptions: "",
+            explainPrompt: "",
+            blankForms: ["term", "cloze"],
+          },
+          concept: { links: [], blankItems: [] },
+        })) as TextbookStudioApi["readConcept"],
+        saveConcept,
+        saveSection,
+      }),
+    );
+    expect(screen.getByRole("button", { name: "대화저장됨" })).toBeVisible();
+    fireEvent.change(screen.getByRole("textbox", { name: "예" }), {
+      target: { value: "임시표식" },
+    });
+    expect(screen.getByRole("button", { name: "대화저장 전" })).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "목록" }));
+    expect(screen.getByText("저장하지 않은 수정이 있습니다.")).toBeVisible();
+    expect(screen.getByRole("textbox", { name: "대사" })).toBeVisible();
+    expect(saveConcept).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "저장 후 이동" }));
+    expect(await screen.findByRole("button", { name: "열기" })).toBeVisible();
+    expect(saveConcept).toHaveBeenCalledWith(
+      expect.objectContaining({
+        concept: expect.objectContaining({ examples: "임시표식" }),
+        links: [],
+        confirmLinkIds: [],
+      }),
+    );
+    expect(saveSection).not.toHaveBeenCalled();
   });
 });

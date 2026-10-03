@@ -338,6 +338,34 @@ export function canFinalize(status: PublishStatus): boolean {
   return status === "ready";
 }
 
+/** 발행본과 보관본은 원고를 고치지 않는다. 상태 칸이 없는 화면 픽스처는 초안으로 본다. */
+export function manuscriptLocked(
+  status: "draft" | "published" | "retired" | undefined,
+  bookArchived: boolean,
+): boolean {
+  return bookArchived || status === "published" || status === "retired";
+}
+
+/** 제목·갈래·본문이 바뀌면 저장 대기 중인 연결 확인을 비운다. 백지 형식은 확인을 지우지 않는다. */
+export function conceptManuscriptChanged(
+  before: ConceptDraft | null,
+  after: ConceptDraft | null,
+): boolean {
+  if (!before || !after) return false;
+  return (
+    before.title !== after.title ||
+    before.kind !== after.kind ||
+    before.goal !== after.goal ||
+    before.prerequisites !== after.prerequisites ||
+    before.definition !== after.definition ||
+    before.conditions !== after.conditions ||
+    before.examples !== after.examples ||
+    before.counterexamples !== after.counterexamples ||
+    before.misconceptions !== after.misconceptions ||
+    before.explainPrompt !== after.explainPrompt
+  );
+}
+
 export function publishHeadline(status: PublishStatus): string {
   switch (status) {
     case "idle":
@@ -549,6 +577,8 @@ export function applyEditionEdits(
     videoPolicy?: VideoPolicy;
     studentSolutionPolicy?: SolutionPolicy;
     pageTarget?: number;
+    coverMode?: "included" | "separate";
+    firstPhysicalPageIndex?: number;
   },
 ): { ok: true; source: EditionSource } | { ok: false; message: string } {
   const known = new Map(
@@ -609,6 +639,18 @@ export function applyEditionEdits(
     outline = next;
   }
   const pageTarget = edits.pageTarget;
+  const printEdited =
+    edits.coverMode !== undefined || edits.firstPhysicalPageIndex !== undefined;
+  if (printEdited && !source.config.print) {
+    return { ok: false, message: "인쇄 설정이 없어 저장하지 않습니다." };
+  }
+  const firstPage = edits.firstPhysicalPageIndex;
+  if (
+    firstPage !== undefined &&
+    (!Number.isInteger(firstPage) || firstPage < 1 || firstPage > 1000)
+  ) {
+    return { ok: false, message: "첫 쪽은 1부터 1000까지입니다." };
+  }
   return {
     ok: true,
     source: {
@@ -623,6 +665,17 @@ export function applyEditionEdits(
           : {}),
         ...(pageTarget
           ? { pageBudget: { ...source.config.pageBudget, target: pageTarget } }
+          : {}),
+        ...(printEdited && source.config.print
+          ? {
+              print: {
+                ...source.config.print,
+                ...(edits.coverMode ? { coverMode: edits.coverMode } : {}),
+                ...(firstPage !== undefined
+                  ? { firstPhysicalPageIndex: firstPage }
+                  : {}),
+              },
+            }
           : {}),
       },
       outline,

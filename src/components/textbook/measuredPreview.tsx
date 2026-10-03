@@ -7,6 +7,7 @@ import { measureTextbookPreview } from "@/lib/textbook/render/browser";
 import type { TextbookRenderModel } from "@/lib/textbook/render/model";
 import { TextbookSpread } from "@/components/textbook/paper/TextbookPaper";
 
+import { withBrowserQrImages } from "./browserQr";
 import type { ZoomMode } from "./model";
 import type { PreviewResources } from "./previewModel";
 import { measuredSpreadAnchor } from "./model";
@@ -20,6 +21,7 @@ type MeasureState =
       status: "ready";
       pages: Awaited<ReturnType<typeof measureTextbookPreview>>["pages"];
       issues: Awaited<ReturnType<typeof measureTextbookPreview>>["issues"];
+      resources: PreviewResources;
     };
 
 function messageOf(reason: unknown): string {
@@ -36,14 +38,14 @@ export function SectionMeasure({
   resources,
   zoom,
   physicalPageIndex,
-  omittedQr,
+  provisionalNotice,
   onPages,
 }: {
   model: TextbookRenderModel;
   resources: PreviewResources;
   zoom: ZoomMode;
   physicalPageIndex: number | null;
-  omittedQr: boolean;
+  provisionalNotice: string | null;
   onPages: (
     pages: { physicalPageIndex: number; printedPageLabel: string }[],
   ) => void;
@@ -53,22 +55,29 @@ export function SectionMeasure({
   useEffect(() => {
     const controller = new AbortController();
     let cancel = false;
-    measureTextbookPreview(model, resources, { signal: controller.signal })
-      .then((layout) => {
-        if (cancel) return;
-        if (layout.pages.length === 0) {
+    withBrowserQrImages(model, resources)
+      .then((prepared) => {
+        if (cancel) return null;
+        return measureTextbookPreview(model, prepared, {
+          signal: controller.signal,
+        }).then((layout) => ({ layout, prepared }));
+      })
+      .then((result) => {
+        if (cancel || !result) return;
+        if (result.layout.pages.length === 0) {
           setState({ status: "empty" });
           return;
         }
-        const pages = layout.pages.map((page) => ({
+        const pages = result.layout.pages.map((page) => ({
           physicalPageIndex: page.physicalPageIndex,
           printedPageLabel: page.printedPageLabel,
         }));
         onPages(pages);
         setState({
           status: "ready",
-          pages: layout.pages,
-          issues: layout.issues,
+          pages: result.layout.pages,
+          issues: result.layout.issues,
+          resources: result.prepared,
         });
       })
       .catch((reason: unknown) => {
@@ -94,15 +103,13 @@ export function SectionMeasure({
     first.physicalPageIndex;
   return (
     <div className={styles.measureHost} data-zoom={zoom}>
-      {omittedQr ? (
-        <p className={styles.muted}>
-          예약된 QR 이미지가 없어 해설 칸은 빼 두었습니다.
-        </p>
+      {provisionalNotice ? (
+        <p className={styles.muted}>{provisionalNotice}</p>
       ) : null}
       <TextbookSpread
         pages={state.pages}
         model={model}
-        resources={resources}
+        resources={state.resources}
         currentPhysicalPageIndex={anchor}
       />
       {state.issues.length > 0 ? (

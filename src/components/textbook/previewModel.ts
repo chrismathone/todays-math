@@ -1,6 +1,7 @@
 /**
  * 선택한 구획만 측정 지면으로 올린다.
- * 확정본·개념 고정본·예약 QR 이 없으면 측정하지 않고, 자리 표시를 만들지 않는다.
+ * 확정본·개념 고정본이 없으면 측정하지 않는다.
+ * 예약된 QR 은 발행과 같은 모형에 싣고, 없는 예약은 임시라고 알린다. 주소를 지어내지 않는다.
  */
 import {
   textbookExchangeSchema,
@@ -37,8 +38,8 @@ export type SectionPreview =
       ok: true;
       model: TextbookRenderModel;
       resources: PreviewResources;
-      /** The exchange has a QR address and no reserved image bytes. */
-      omittedQr: boolean;
+      /** 예약이 없는 초안·발행본. 측정은 하고, 해설 칸은 비운다. */
+      provisionalNotice: string | null;
     }
   | { ok: false; message: string };
 
@@ -139,11 +140,11 @@ function wireBlocks(
       ok: true;
       blocks: ManuscriptBlock[];
       material: PreviewMaterial;
-      omittedQr: boolean;
+      provisionalNotice: string | null;
     }
   | { ok: false; message: string } {
   const wired: ManuscriptBlock[] = [];
-  let omittedQr = false;
+  let missingQr = false;
   const used: PreviewMaterial = {
     items: [],
     snapshots: [],
@@ -181,7 +182,11 @@ function wireBlocks(
       const qr = item.qrTargetId
         ? material?.qrTargets.find((row) => row.qrTargetId === item.qrTargetId)
         : undefined;
-      if (qr) omittedQr = true;
+      if (qr) {
+        if (!used.qrTargets.some((row) => row.qrTargetId === qr.qrTargetId)) {
+          used.qrTargets.push(qr);
+        }
+      } else missingQr = true;
       wired.push({ blockId: block.id, kind: "problem", itemId: item.itemId });
       continue;
     }
@@ -199,7 +204,13 @@ function wireBlocks(
       const qr = material?.conceptQrTargets.find(
         (row) => row.conceptKey === concept.conceptKey,
       );
-      if (qr) omittedQr = true;
+      if (qr) {
+        if (
+          !used.conceptQrTargets.some((row) => row.qrTargetId === qr.qrTargetId)
+        ) {
+          used.conceptQrTargets.push(qr);
+        }
+      } else missingQr = true;
       wired.push({
         blockId: block.id,
         kind: "concept",
@@ -255,7 +266,10 @@ function wireBlocks(
     }
     wired.push({ blockId: block.id, kind: "text", markdown: block.text });
   }
-  return { ok: true, blocks: wired, material: used, omittedQr };
+  const provisionalNotice = missingQr
+    ? "이 구획에 예약된 QR이 없습니다. 해설 칸은 비워 두고, 발행할 때 예약된 주소만 넣습니다."
+    : null;
+  return { ok: true, blocks: wired, material: used, provisionalNotice };
 }
 
 export function buildSectionPreview(input: {
@@ -310,7 +324,7 @@ export function buildSectionPreview(input: {
     snapshots: wired.material.snapshots,
     items: wired.material.items,
     assets: wired.material.assets,
-    qrTargets: [],
+    qrTargets: wired.material.qrTargets,
     videoBindings: [],
     pageMap: [],
     rendererVersion: TEXTBOOK_RENDERER_VERSION,
@@ -322,6 +336,9 @@ export function buildSectionPreview(input: {
             concepts: wired.material.concepts,
           },
         }
+      : {}),
+    ...(wired.material.conceptQrTargets.length > 0
+      ? { conceptQrTargets: wired.material.conceptQrTargets }
       : {}),
   };
   const parsed = textbookExchangeSchema.safeParse(exchange);
@@ -343,5 +360,15 @@ export function buildSectionPreview(input: {
       throw new Error("예약된 QR 이미지가 없습니다.");
     },
   };
-  return { ok: true, model, resources, omittedQr: wired.omittedQr };
+  const draft = input.edition.structureSource?.edition?.status === "draft";
+  return {
+    ok: true,
+    model,
+    resources,
+    provisionalNotice: wired.provisionalNotice
+      ? draft
+        ? "이 초안에는 예약된 QR이 없습니다. 해설 칸은 비워 두고, 발행할 때 예약된 주소만 넣습니다."
+        : wired.provisionalNotice
+      : null,
+  };
 }
