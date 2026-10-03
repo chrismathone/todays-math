@@ -5,6 +5,7 @@ import {
   render,
   screen,
   waitFor,
+  within,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { EnglishListeningStudentView } from "@/contracts/englishListeningStudent.contract";
@@ -108,6 +109,106 @@ afterEach(() => {
 });
 
 describe("ListeningStudentView", () => {
+  it("allows changing an exam draft and blocks submit until the new choice is acknowledged", async () => {
+    const onCommitAnswer = vi.fn().mockResolvedValue(
+      snapshot({
+        revision: 2,
+        answers: [
+          { questionId: "q1", choiceId: "a1" },
+          { questionId: "q2", choiceId: "b1" },
+        ],
+      }),
+    );
+    render(
+      <ListeningStudentView
+        {...props({
+          mode: "exam",
+          attempt: snapshot({ answers: allAnswers }),
+          onCommitAnswer,
+        })}
+      />,
+    );
+    expect(screen.getByRole("radio", { name: /At three/ })).toBeEnabled();
+    fireEvent.click(screen.getByRole("radio", { name: /At three/ }));
+    expect(screen.getByRole("button", { name: "답안 제출" })).toBeDisabled();
+    fireEvent.click(
+      screen.getByRole("button", { name: "답 저장", exact: true }),
+    );
+    expect(
+      await screen.findByText("저장 완료 · 제출 전까지 바꿀 수 있습니다."),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("radio", { name: /At three/ })).toBeChecked();
+    expect(screen.getByRole("button", { name: "답안 제출" })).toBeEnabled();
+  });
+  it("keeps submitted first answers while retrying a separately acknowledged review answer", async () => {
+    const reviewed: EnglishListeningStudentView = {
+      ...view,
+      audioSource: "teacher_device",
+      groups: [
+        {
+          id: "group-1",
+          state: "review",
+          transcript: { text: "Meet at four.", translation: null },
+          questions: [
+            {
+              ...view.groups[0].questions[0],
+              answerChoiceId: "a2",
+              explanation: "They agreed on four.",
+            },
+          ],
+        },
+      ],
+    };
+    const onCommitAnswer = vi
+      .fn()
+      .mockRejectedValueOnce(new Error("lost acknowledgement"))
+      .mockResolvedValue(
+        snapshot({
+          status: "submitted",
+          submittedAt: "2026-10-03T10:00:00Z",
+          answers: [{ questionId: "q1", choiceId: "a1" }],
+          revision: 2,
+          reviewAnswers: [{ questionId: "q1", choiceId: "a2" }],
+        }),
+      );
+    render(
+      <ListeningStudentView
+        {...props({
+          view: reviewed,
+          onCommitAnswer,
+          attempt: snapshot({
+            status: "submitted",
+            submittedAt: "2026-10-03T10:00:00Z",
+            answers: [{ questionId: "q1", choiceId: "a1" }],
+          }),
+        })}
+      />,
+    );
+    fireEvent.click(screen.getByRole("radio", { name: "복습 2 At four." }));
+    fireEvent.click(screen.getByRole("button", { name: "복습 답 저장" }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "답 저장 다시 시도" }),
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByText("복습 답 저장 완료 · 최초 답은 유지됩니다."),
+      ).toBeInTheDocument(),
+    );
+    expect(onCommitAnswer.mock.calls[0][0]).toMatchObject({
+      phase: "review",
+      questionId: "q1",
+      choiceId: "a2",
+    });
+    expect(onCommitAnswer.mock.calls[1][0]).toEqual(
+      onCommitAnswer.mock.calls[0][0],
+    );
+    expect(
+      within(screen.getByRole("region", { name: "1번 문항" })).getByRole(
+        "radio",
+        { name: /At three/ },
+      ),
+    ).toBeChecked();
+  });
   it("shows one question, keeps selection unsaved, and locks the first answer only after acknowledgement", async () => {
     const pending = deferred<ListeningStudentAttemptSnapshot>();
     const onCommitAnswer = vi.fn().mockReturnValue(pending.promise);

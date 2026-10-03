@@ -116,6 +116,8 @@ const TABLE_ALLOWED = [
   "scripts/qa/apply-english-studio-migration.ts",
   // 세트의 «만든 조건» 칸(2026-10-01 원장님 «메타데이터 기억되게») — 마이그레이션과 그 적용 도구
   "prisma/migrations/20261001120000_english_set_meta/",
+  "prisma/migrations/20261003120000_english_listening/",
+  "scripts/qa/english-listening/",
   "scripts/qa/apply-english-set-meta-migration.ts",
   // 세트의 «형식 판» 칸 — 🔴 미적용 SQL 초안과 그 검사 도구(자료 개선 M0, 2026-10-02). 영어 모듈을 import 하지 않고 표 이름만 안다
   "prisma/drafts/english-set-schema-version/",
@@ -285,7 +287,7 @@ function learnerSensitive(abs: string): boolean {
   const file = rel(abs);
   return (
     inEnglish(abs) ||
-    /^src\/contracts\/english(?:V2|Listening|ListeningMedia)?\.contract\.ts$/.test(
+    /^src\/contracts\/english(?:V2|Listening(?:Media|Http)?)?\.contract\.ts$/.test(
       file,
     )
   );
@@ -304,6 +306,7 @@ const learnerDatabase = (abs: string) => {
 // These exact edges may reach DB for existing student account/theme behavior. The
 // unfiltered English/teacher-contract graph above is still checked for every edge.
 const EXISTING_STUDENT_SERVER_EDGES = new Set([
+  "src/app/learn/english-listening/layout.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts",
   "src/app/learn/lectures/page.tsx → src/lib/learn/studentRequest.ts",
@@ -341,13 +344,16 @@ function learnerLeaks(graph: Graph = SCAN.graph): string[] {
 
 // ── ⑵ 표·모델 접근 글자 ─────────────────────────────────────────
 
-const TABLE_NAME = /\b(english_exam|english_material|english_question_set)\b/;
-const CLIENT_ACCESS = /\.(englishExam|englishMaterial|englishQuestionSet)\b/;
+const TABLE_NAME =
+  /\b(english_exam|english_material|english_question_set|english_listening_(?:set|publication|assignment|assignment_revision|target|attempt|receipt|release|broadcast|audit|media_asset|media_blob))\b/;
+const CLIENT_ACCESS =
+  /\.(englishExam|englishMaterial|englishQuestionSet|englishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
 const PRISMA_NAMESPACE =
-  /\bPrisma\.(EnglishExam|EnglishMaterial|EnglishQuestionSet)\w*/;
+  /\bPrisma\.(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\w*/;
 const PRISMA_IMPORT =
   /\bimport\s+(?:type\s+)?\{([^}]*)\}\s*from\s*["']@prisma\/client["']/g;
-const PRISMA_MODEL = /\b(EnglishExam|EnglishMaterial|EnglishQuestionSet)\b/;
+const PRISMA_MODEL =
+  /\b(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
 
 /** 주석을 걷은 글에서 영어 표·모델에 닿는 자리를 찾는다 */
 function tableAccess(text: string): string | null {
@@ -550,6 +556,7 @@ describe("영어 울타리 — ⑴ import 사슬", () => {
       "src/contracts/englishV2.contract.ts",
       "src/contracts/englishListening.contract.ts",
       "src/contracts/englishListeningMedia.contract.ts",
+      "src/contracts/englishListeningHttp.contract.ts",
     ]) {
       const graph: Graph = new Map([
         [student, [{ target: bridge, reexport: false }]],

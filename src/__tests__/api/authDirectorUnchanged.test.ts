@@ -15,6 +15,7 @@ import { hash } from "bcryptjs";
 import { NextRequest } from "next/server";
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -110,17 +111,23 @@ function seedDirector(overrides: Record<string, unknown> = {}) {
   });
 }
 
-const MENUS_WITHOUT_STUDIO = ALL_WORKSPACE_MENUS.filter((m) => m !== "studio");
+// The new pilot is opt-in; the established teacher token retains its previous grants.
+const MENUS_WITHOUT_STUDIO = ALL_WORKSPACE_MENUS.filter(
+  (m) => m !== "studio" && m !== "english-listening",
+);
 
 beforeAll(async () => {
   assertTestAuthEnv();
   passwordHash = await hash(PASSWORD, 4);
 });
 beforeEach(() => {
+  vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
+  vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "");
   store.audits.length = 0;
   seedDirector();
   resetRequest();
 });
+afterEach(() => vi.unstubAllEnvs());
 afterAll(() => {
   for (const [k, v] of Object.entries(savedEnv)) {
     if (v === undefined) delete process.env[k];
@@ -242,6 +249,18 @@ describe("① 원장 세션 — auth() 와 /api/auth/session 이 돌려주는 �
     seedDirector({ isAdmin: true, isSuperAdmin: true });
     resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
     expect((await auth())?.user?.menus).toEqual(ALL_WORKSPACE_MENUS);
+  });
+
+  it("listening pilot grants and revocations refresh an existing teacher session", async () => {
+    await signInDirector();
+    carryJarToNextRequest();
+    expect((await auth())?.user?.menus).not.toContain("english-listening");
+    vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", DIRECTOR_ID);
+    resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
+    expect((await auth())?.user?.menus).toContain("english-listening");
+    seedDirector({ disabledMenus: ["english"] });
+    resetRequest({ cookie: await cookieHeaderFor({ id: DIRECTOR_ID }) });
+    expect((await auth())?.user?.menus).not.toContain("english-listening");
   });
 
   it("🔴 role 없는 옛 토큰도 DB 행으로 다시 읽어 원장으로 선다", async () => {

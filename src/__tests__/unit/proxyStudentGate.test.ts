@@ -74,6 +74,8 @@ const AUTH_ACTIONS = [
 
 /** 학생 화면(D-125 ⑷)과 학생 API — 화면 파일은 아직 없다(D-07 Hi-fi 뒤). 그래도 관문은 먼저 선다 */
 const LEARN_PAGES = [
+  "/learn/english-listening",
+  `/learn/english-listening/${UUID}`,
   "/learn",
   "/learn/lectures",
   "/learn/login",
@@ -84,6 +86,12 @@ const LEARN_PAGES = [
   "/learn/math-explorers",
 ];
 const LEARN_APIS = [
+  "/api/english/learn/listening",
+  `/api/english/learn/listening/${UUID}`,
+  `/api/english/learn/listening/${UUID}/prepare`,
+  `/api/english/learn/listening/${UUID}/commands`,
+  `/api/english/learn/listening/${UUID}/media/${UUID}`,
+  "/api/english/learn/listening/sound-check",
   "/api/learn/login",
   "/api/learn/logout",
   "/api/learn/password",
@@ -231,6 +239,8 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
     expect(pass.sort()).toStrictEqual(
       [
         ...[
+          "/learn/english-listening",
+          `/learn/english-listening/${UUID}`,
           "/learn",
           "/learn/lectures",
           "/learn/password",
@@ -240,6 +250,16 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
           "/learn/math-explorers",
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
         "GET /api/learn/lectures",
+        "GET /api/learn/test-console",
+        "POST /api/learn/test-console",
+        "GET /api/english/learn/listening",
+        `GET /api/english/learn/listening/${UUID}`,
+        `POST /api/english/learn/listening/${UUID}/prepare`,
+        `POST /api/english/learn/listening/${UUID}/commands`,
+        `GET /api/english/learn/listening/${UUID}/media/${UUID}`,
+        `HEAD /api/english/learn/listening/${UUID}/media/${UUID}`,
+        "GET /api/english/learn/listening/sound-check",
+        "HEAD /api/english/learn/listening/sound-check",
         `GET /api/learn/lectures/${UUID}`,
         "POST /api/learn/watch",
         "POST /api/learn/password",
@@ -301,6 +321,8 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
     expect(pass.sort()).toStrictEqual(
       [
         "GET /learn/password",
+        "GET /api/learn/test-console",
+        "POST /api/learn/test-console",
         "HEAD /learn/password",
         "POST /api/learn/password",
         ...REPORT,

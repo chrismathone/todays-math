@@ -20,6 +20,7 @@ export interface ListeningStudentAttemptSnapshot {
   deadlineAt: string | null;
   submittedAt: string | null;
   answers: readonly { questionId: string; choiceId: string }[];
+  reviewAnswers?: readonly { questionId: string; choiceId: string }[];
 }
 
 export interface ListeningStudentRequest {
@@ -31,6 +32,7 @@ export interface ListeningStudentRequest {
 export interface ListeningStudentAnswerRequest extends ListeningStudentRequest {
   questionId: string;
   choiceId: string;
+  phase?: "initial" | "review";
 }
 
 export interface ListeningStudentMedia {
@@ -196,7 +198,10 @@ function StudentAttempt({
         result.id === next.request.attemptId &&
         result.revision >= next.request.expectedRevision &&
         (next.kind === "answer"
-          ? result.answers.some(
+          ? (next.request.phase === "review"
+              ? (result.reviewAnswers ?? [])
+              : result.answers
+            ).some(
               (answer) =>
                 answer.questionId === next.request.questionId &&
                 answer.choiceId === next.request.choiceId,
@@ -206,6 +211,18 @@ function StudentAttempt({
             : result.status === "in_progress" && result.startedAt !== null);
       if (!confirmed) throw new Error("Unconfirmed server result");
       setAcknowledged((previous) => newerSnapshot(result, previous));
+      if (
+        mode === "exam" &&
+        next.kind === "answer" &&
+        next.request.phase !== "review"
+      ) {
+        setDrafts((previous) => {
+          const clean = { ...previous };
+          if (clean[next.request.questionId] === next.request.choiceId)
+            delete clean[next.request.questionId];
+          return clean;
+        });
+      }
       operationRef.current = null;
       setOperation(null);
     } catch {
@@ -221,7 +238,8 @@ function StudentAttempt({
       !item ||
       !active ||
       operationRef.current ||
-      current.answers.some((a) => a.questionId === item.question.id)
+      (mode !== "exam" &&
+        current.answers.some((a) => a.questionId === item.question.id))
     )
       return;
     const choiceId = drafts[item.question.id];
@@ -237,7 +255,19 @@ function StudentAttempt({
     item &&
     current.answers.find((answer) => answer.questionId === item.question.id);
   const selected =
-    savedAnswer?.choiceId ?? (item ? drafts[item.question.id] : undefined);
+    mode === "exam" && active
+      ? ((item ? drafts[item.question.id] : undefined) ?? savedAnswer?.choiceId)
+      : (savedAnswer?.choiceId ??
+        (item ? drafts[item.question.id] : undefined));
+  const unsavedExamAnswer =
+    mode === "exam" &&
+    questions.some(
+      ({ question }) =>
+        drafts[question.id] !== undefined &&
+        drafts[question.id] !==
+          current.answers.find((answer) => answer.questionId === question.id)
+            ?.choiceId,
+    );
   const reviewQuestion =
     item?.group.state === "review"
       ? item.group.questions.find(
@@ -378,7 +408,11 @@ function StudentAttempt({
           >
             <fieldset
               className={styles.fieldset}
-              disabled={!active || Boolean(savedAnswer) || operation !== null}
+              disabled={
+                !active ||
+                (mode !== "exam" && Boolean(savedAnswer)) ||
+                operation !== null
+              }
             >
               <legend>
                 <span className={styles.questionNumber}>
@@ -414,19 +448,23 @@ function StudentAttempt({
                 disabled={
                   !active ||
                   !selected ||
-                  Boolean(savedAnswer) ||
+                  (mode === "exam"
+                    ? selected === savedAnswer?.choiceId
+                    : Boolean(savedAnswer)) ||
                   operation !== null
                 }
                 onClick={commit}
               >
-                답 확정
+                {mode === "exam" ? "답 저장" : "답 확정"}
               </button>
               <p
                 role="status"
                 className={savedAnswer ? styles.saved : styles.muted}
               >
-                {savedAnswer
-                  ? "저장 완료 · 확정한 답은 바꿀 수 없습니다."
+                {savedAnswer && selected === savedAnswer.choiceId
+                  ? mode === "exam" && active
+                    ? "저장 완료 · 제출 전까지 바꿀 수 있습니다."
+                    : "저장 완료 · 확정한 답은 바꿀 수 없습니다."
                   : operation?.kind === "answer" && operation.pending
                     ? "답 저장 중…"
                     : operation?.kind === "answer"
@@ -446,7 +484,14 @@ function StudentAttempt({
             <p>{failureText[operation.kind]}</p>
             <button
               type="button"
-              disabled={operation.kind === "start" ? !ready : !active}
+              disabled={
+                operation.kind === "start"
+                  ? !ready
+                  : operation.kind === "answer" &&
+                      operation.request.phase === "review"
+                    ? !(active || current.status === "submitted")
+                    : !active
+              }
               onClick={() => void perform(operation)}
             >
               {retryText[operation.kind]}
@@ -499,6 +544,71 @@ function StudentAttempt({
               }
             </p>
             <p>{reviewQuestion.explanation}</p>
+            {savedAnswer &&
+            ((active && mode === "practice") ||
+              current.status === "submitted") ? (
+              <fieldset
+                className={styles.choices}
+                disabled={operation !== null}
+              >
+                <legend>대본 확인 후 복습</legend>
+                {item.question.choices.map((choice, index) => (
+                  <label key={choice.id}>
+                    <input
+                      type="radio"
+                      name={`review-${item.question.id}`}
+                      aria-label={`복습 ${index + 1} ${choice.text}`}
+                      checked={
+                        (drafts[`review:${item.question.id}`] ??
+                          current.reviewAnswers?.find(
+                            (a) => a.questionId === item.question.id,
+                          )?.choiceId) === choice.id
+                      }
+                      onChange={() =>
+                        setDrafts((previous) => ({
+                          ...previous,
+                          [`review:${item.question.id}`]: choice.id,
+                        }))
+                      }
+                    />
+                    <span>
+                      {index + 1} {choice.text}
+                    </span>
+                  </label>
+                ))}
+                <button
+                  type="button"
+                  disabled={
+                    !drafts[`review:${item.question.id}`] || operation !== null
+                  }
+                  onClick={() => {
+                    const choiceId = drafts[`review:${item.question.id}`];
+                    if (!choiceId || operationRef.current) return;
+                    void perform({
+                      kind: "answer",
+                      pending: true,
+                      request: {
+                        ...request(),
+                        questionId: item.question.id,
+                        choiceId,
+                        phase: "review",
+                      },
+                    });
+                  }}
+                >
+                  복습 답 저장
+                </button>
+                {current.reviewAnswers?.some(
+                  (a) => a.questionId === item.question.id,
+                ) ? (
+                  <p role="status">복습 답 저장 완료 · 최초 답은 유지됩니다.</p>
+                ) : (
+                  <p className={styles.muted}>
+                    복습 답은 최초 답과 별도로 기록합니다.
+                  </p>
+                )}
+              </fieldset>
+            ) : null}
           </section>
         ) : (
           <p className={styles.notice}>
@@ -529,6 +639,7 @@ function StudentAttempt({
               !active ||
               !questions.length ||
               savedCount !== questions.length ||
+              unsavedExamAnswer ||
               operation !== null
             }
             onClick={() => {
