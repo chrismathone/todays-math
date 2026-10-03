@@ -454,7 +454,7 @@ export const bank: ConceptBlankBank = {
       example: {
         prompt:
           "$4\\times7=28$에서 $28\\div4$와 $28\\div7$이 모두 나오는 까닭은?",
-        answer: "구하는 것이 서로 달라서",
+        answer: "한 묶음의 수와 묶음 수를 구해서",
       },
     },
     {
@@ -547,7 +547,7 @@ export const bank: ConceptBlankBank = {
         "몇십은 낱개로 세면 몇십 개이고, 십의 묶음으로 세면 {십의 자리 숫자만큼의 묶음}인 수이다.",
       example: {
         prompt: "$60$을 십의 묶음 $6$개로 볼 수 있는 까닭은?",
-        answer: "$10$이 $6$개 모인 수라서",
+        answer: "십의 자리 숫자가 $6$이라서",
       },
     },
     {
