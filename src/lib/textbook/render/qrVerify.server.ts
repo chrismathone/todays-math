@@ -89,6 +89,11 @@ export async function verifyPdfQrPixels(
       '<!doctype html><html><head><meta charset="utf-8"></head><body></body></html>',
     );
     await page.addScriptTag({ url: `${RESOURCE_ORIGIN}/jsqr.js` });
+    // Keep these browser module imports out of server bundler transforms. The
+    // script and both URLs are fixed application code, never submitted HTML.
+    await page.addScriptTag({
+      content: `globalThis.textbookPdfjsReady = Promise.all([import("${RESOURCE_ORIGIN}/pdfjs/pdf.mjs"), import("${RESOURCE_ORIGIN}/pdfjs/pdf.worker.mjs")]).then(([pdfjs, worker]) => { globalThis.pdfjsWorker = worker; return pdfjs; });`,
+    });
     const result: {
       checks: { index: number; decoded: string | null }[];
       rasters: { pageNumber: number; data: string }[];
@@ -99,17 +104,16 @@ export async function verifyPdfQrPixels(
       if (proof.signal?.aborted) throw new Error("PDF QR validation aborted");
       const batch = await page.evaluate(
         async ({ targets, count, origin, rasterPages, startPage, endPage }) => {
-          const pdfUrl = `${origin}/pdfjs/pdf.mjs`,
-            workerUrl = `${origin}/pdfjs/pdf.worker.mjs`;
-          const pdfjs = await import(pdfUrl);
-          (globalThis as unknown as { pdfjsWorker: unknown }).pdfjsWorker =
-            await import(workerUrl);
+          const pdfjs = await (
+            globalThis as unknown as {
+              textbookPdfjsReady: Promise<typeof import("pdfjs-dist")>;
+            }
+          ).textbookPdfjsReady;
           const data = new Uint8Array(
             await (await fetch(`${origin}/artifact.pdf`)).arrayBuffer(),
           );
           const document = await pdfjs.getDocument({
             data,
-            isEvalSupported: false,
             useWorkerFetch: false,
             useSystemFonts: false,
           }).promise;

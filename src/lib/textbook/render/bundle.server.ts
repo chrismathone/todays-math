@@ -44,20 +44,26 @@ export function loadTextbookLocalBundle(): Promise<LocalTextbookBundle> {
         ].map((m) => m[1]),
       ),
     ];
-    for (const name of names) {
-      const mimeType = name.endsWith(".woff2")
-        ? "font/woff2"
-        : name.endsWith(".woff")
-          ? "font/woff"
-          : "font/ttf";
-      const bytes = new Uint8Array(
-        await readFile(
-          path.join(process.cwd(), "node_modules/katex/dist", name),
-        ),
-      );
-      assertAssetMime(bytes, mimeType);
-      resources.set(`${RESOURCE_ORIGIN}/katex/${name}`, { bytes, mimeType });
-    }
+    const fonts = await Promise.all(
+      names.map(async (name) => {
+        const mimeType = name.endsWith(".woff2")
+          ? "font/woff2"
+          : name.endsWith(".woff")
+            ? "font/woff"
+            : "font/ttf";
+        const bytes = new Uint8Array(
+          await readFile(
+            path.join(process.cwd(), "node_modules/katex/dist", name),
+          ),
+        );
+        assertAssetMime(bytes, mimeType);
+        return [
+          `${RESOURCE_ORIGIN}/katex/${name}`,
+          { bytes, mimeType },
+        ] as const;
+      }),
+    );
+    for (const [url, resource] of fonts) resources.set(url, resource);
     katexCss = katexCss.replace(
       /url\((?:["'])?(fonts\/[A-Za-z0-9_.-]+)(?:["'])?\)/g,
       (_, name: string) => `url(${RESOURCE_ORIGIN}/katex/${name})`,

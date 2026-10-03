@@ -7,6 +7,7 @@ import {
   paginateTextbookSections,
   alignTextbookSpreads,
   pageBudgetIssues,
+  fitTextbookFrozenPages,
 } from "@/lib/textbook/layout/paginate";
 import { createTextbookRenderModel } from "@/lib/textbook/render/model";
 import {
@@ -28,6 +29,40 @@ function fixture(sections = 1, problemHeight = 140) {
   return { e, model, measurements };
 }
 describe("measured semantic textbook pagination", () => {
+  it("reuses student page references for shorter answers and fails longer answers explicitly", () => {
+    const { e, model, measurements } = fixture(2);
+    const student = paginateTextbookSections(
+      model.sections,
+      measurements,
+      e.config,
+      { includeCover: true },
+    );
+    alignTextbookSpreads(student.pages);
+    const answers = createTextbookRenderModel(e, "answers"),
+      short = measurements.map((m) => ({
+        ...m,
+        heightMm: Math.min(m.heightMm, 30),
+      }));
+    const answerLayout = fitTextbookFrozenPages(
+      answers.sections,
+      short,
+      student.pages,
+      e.config,
+      1,
+    );
+    expect(answerLayout.pageMap).toEqual(student.pageMap);
+    expect(answerLayout.pages).toEqual(student.pages);
+    const long = short.map((m) => ({ ...m, heightMm: 300 }));
+    expect(() =>
+      fitTextbookFrozenPages(
+        answers.sections,
+        long,
+        student.pages,
+        e.config,
+        1,
+      ),
+    ).toThrow(/ANSWER_PLACEMENT_OVERFLOW/);
+  });
   it("starts majors on actual even pages and retains every item without filler", () => {
     const { e, model, measurements } = fixture(101),
       layout = paginateTextbookSections(
