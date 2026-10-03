@@ -36,4 +36,13 @@ The coordinator independently reviewed and approved that change, and the worker 
 
 ## Coordinator-owned follow-up
 
-The coordinator owns origin integration, real Chromium/PDF verification, publication regression checks, final push, and eventual worktree cleanup after merge. This worker did not edit `textbookRender.integration.test.ts` or run browser/PDF checks.
+The worker did not edit `textbookRender.integration.test.ts` or run browser/PDF checks. The coordinator merged its commit `3329977e217cb874368f61580bdf7e80bf747012` into main and completed the following integration checks:
+
+- The real Chromium regression added in `bdaa4c9b4` failed on the original per-figure warnings and passed after integration. It generated a two-page synthetic PDF with two verified QR codes, preserved all source hashes and unknown links, and checked one notice before choices only on the question with unlinked image choices. Teacher-only answers remained absent.
+- The PDF itself was rasterized with PyMuPDF and visually checked: Korean text, figures, notice, numbering, and QR codes are legible with no clipping or overlap. The test writes `output/pdf/textbook-figure-notice.pdf`; this run's PDF and PNG evidence were moved to `D:/tmp/textbook-tab-20261003/figure-notice-qa/` to keep generated QA files out of the working tree. These use synthetic content and are not a production book publication.
+- The repository test gate passed four publication/archive/canonical files with 79 tests on integrated main: `textbookPublish`, `textbookPublishArtifacts`, `textbookArchive`, and `textbookCanonical`.
+- Main's generated Prisma client includes `Problem` and the current `Branch.disabledMenus`/`menuRevision` fields. The worker's ungenerated client stub was not copied into main.
+- `npm run type-check` completed successfully in main. The normal pre-push hook remains enabled for the final pushed commit.
+- The completed worker was released and its clean, merged Orca worktree removed. Branch `chrismathone/textbook-figure-notice-20261004` remains at `3329977e2`.
+
+The active exam-reimport session acknowledged all three ledger names: `exam-hold-pilot81-20261003` (81 records stay excluded until full import verification), `exam-lock-gyeongsanyeo19-20261003` (the defective question stays excluded after reimport), and `exam-draft-review-bank-decide-20261003` (Dongdo 16 / Gangdong 17 corrections). This textbook change performed no production data writes.
