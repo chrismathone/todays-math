@@ -5,7 +5,8 @@ export type ListeningMediaInspection =
   | { playable: false; blocker: ListeningMediaBlocker };
 
 /**
- * L0 accepts ONLY canonical RIFF/WAVE, fmt(16), PCM16 mono/stereo, data, EOF.
+ * Synchronous WAV validator / MPEG preflight only; mp3.ts performs full decoding.
+ * WAV accepts ONLY canonical RIFF/WAVE, fmt(16), PCM16 mono/stereo, data, EOF.
  * Every bit pattern is a valid PCM16 sample; size/block alignment proves the full
  * sample stream is decodable. No optional chunks, ID3, LIST, trailing tags or
  * compressed codecs are accepted. This does not establish audible correctness.
@@ -32,9 +33,7 @@ export function inspectListeningMedia(
       (prefix[1] & 0x06) !== 0);
   if (mimeType === "audio/mpeg")
     return block(
-      mp3Hint
-        ? "mp3_decoder_and_scrubber_unavailable"
-        : "type_signature_mismatch",
+      mp3Hint ? "unsupported_or_invalid_mp3" : "type_signature_mismatch",
     );
   if (!wave) return block("type_signature_mismatch");
   if (
@@ -54,7 +53,9 @@ export function inspectListeningMedia(
   const byteRate = prefix.readUInt32LE(28);
   if (
     ![1, 2].includes(channels) ||
-    ![8000, 16000, 22050, 24000, 32000, 44100, 48000].includes(sampleRate) ||
+    ![8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000].includes(
+      sampleRate,
+    ) ||
     alignment !== channels * 2 ||
     byteRate !== sampleRate * alignment ||
     totalBytes <= 44 ||

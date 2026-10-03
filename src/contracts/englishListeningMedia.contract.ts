@@ -1,4 +1,4 @@
-/** L0 only: separate from the existing 4MiB text importer; no deployed routes. */
+/** Separate bounded audio protocol; never use the existing 4MiB text importer. */
 import { z } from "zod";
 
 const safeInteger = z.number().int().min(0).max(Number.MAX_SAFE_INTEGER);
@@ -38,6 +38,8 @@ export const listeningMediaBlockerSchema = z.enum([
   "mp3_decoder_and_scrubber_unavailable",
   "type_signature_mismatch",
   "unsupported_or_invalid_wave",
+  "unsupported_or_invalid_mp3",
+  "output_limit",
   "duration_limit",
 ]);
 /**
@@ -62,7 +64,8 @@ export const listeningMediaUploadReceiptSchema = z.strictObject({
   ...receiptFields,
   state: z.literal("uploading"),
 });
-/** Completion carries the stored scope and the server clock at verification, not request data. */
+/** Completion carries stored scope/server time. Ready.sha256 identifies canonical
+ * playback, while totalBytes/receivedBytes describe the immutable original upload. */
 const completionFields = {
   ...receiptFields,
   ...listeningMediaScopeSchema.shape,
@@ -76,6 +79,9 @@ export const listeningMediaCompletionSchema = z.discriminatedUnion("state", [
     mimeType: z.literal("audio/wav"),
     sha256: listeningMediaSha256Schema,
     durationMs: safeInteger.min(1),
+    originalSha256: listeningMediaSha256Schema.optional(),
+    playbackBytes: safeInteger.min(1).optional(),
+    playbackRevision: safeInteger.min(1).optional(),
   }),
   z.strictObject({
     ...completionFields,
@@ -97,8 +103,8 @@ export type ListeningMediaBlocker = z.infer<typeof listeningMediaBlockerSchema>;
 /** Transport validation is not teacher/content/rights review or deployment approval. */
 export const LISTENING_MEDIA_CAPABILITIES = Object.freeze({
   canonicalPcm16Wave: true,
-  mp3SignatureDetectionOnly: true,
-  mp3FullDecode: false,
-  mp3MetadataScrubbing: false,
-  productionPersistence: false,
+  mp3SignatureDetectionOnly: false,
+  mp3FullDecode: true,
+  mp3MetadataScrubbing: true,
+  productionPersistence: true,
 });

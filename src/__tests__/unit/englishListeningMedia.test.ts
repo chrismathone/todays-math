@@ -409,7 +409,7 @@ describe("listening media upload boundary", () => {
       bytes.subarray(100, 151),
     );
   });
-  it("fails closed for chunk and whole-file hashes, mismatched MIME, tags, and missing MP3 decoder", async () => {
+  it("fails closed for chunk and whole-file hashes, mismatched MIME, WAV tags, and fake MP3", async () => {
     const f = await fixture();
     const bytes = wav();
     const start = await f.begin(bytes, "audio/wav", "0".repeat(64));
@@ -446,7 +446,7 @@ describe("listening media upload boundary", () => {
       [
         Buffer.from("ID3\x04\x00\x00\x00\x00\x00\x10secret-answer"),
         "audio/mpeg",
-        "mp3_decoder_and_scrubber_unavailable",
+        "unsupported_or_invalid_mp3",
       ],
       [bytes, "audio/mpeg", "type_signature_mismatch"],
       [
