@@ -383,7 +383,13 @@ export async function recordObservation(
   });
 }
 
-/** 교사의 확인 — `expectedRevision` 으로 충돌을 본다. 학생의 글은 바뀌지 않는다 */
+/**
+ * 교사의 확인 — `expectedRevision` 으로 충돌을 본다. 학생의 글은 바뀌지 않는다.
+ *
+ * 🔴 **지금의 범위를 재전송 기록보다 먼저 본다.** 멱등 기록(`runOnce`)은 끝난 요청이 다시 오면 일을 건너뛰고 그때의 결과를
+ *    돌려준다 — 범위 검사가 그 안에만 있으면, 확인한 뒤 학생이 다른 교사의 반으로 옮겨 가도 같은 요청을 다시 보내
+ *    그 학생의 글 · 메모를 받아 간다. 범위는 «그때»가 아니라 «지금»의 것이다.
+ */
 export async function reviewAttempt(
   db: TextbookDb,
   actor: TextbookActor,
@@ -396,12 +402,19 @@ export async function reviewAttempt(
   },
 ): Promise<{ attempt: TextbookConceptAttempt; replayed: boolean }> {
   return db.transaction(async (tx) => {
+    const [target] = await tx.query<{ studentId: string }>(
+      `SELECT "student_id" AS "studentId" FROM "textbook_concept_attempt" WHERE "id" = $1::uuid`,
+      [attemptId],
+    );
+    if (!target) throw notFound("활동 기록");
+    await requireOwnStudent(tx, actor, target.studentId);
     const { result, replayed } = await runOnce(tx, key, async () => {
       const [current] = await tx.query<TextbookConceptAttempt>(
         `${textbookAttemptSelectSql} WHERE a."id" = $1::uuid FOR UPDATE OF a`,
         [attemptId],
       );
       if (!current) throw notFound("활동 기록");
+      // 잠근 뒤에 다시 본다 — 위의 검사와 잠금 사이에 학생이 옮겨 갔을 수 있다
       await requireOwnStudent(tx, actor, current.studentId);
       if (current.revision !== input.expectedRevision)
         throw revisionMismatch("활동 기록", current.revision);

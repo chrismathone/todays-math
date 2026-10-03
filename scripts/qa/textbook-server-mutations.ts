@@ -35,6 +35,7 @@ const ARTIFACTS = "src/__tests__/lib/textbookPublishArtifacts.test.ts";
 const ROUTES = "src/__tests__/api/textbookRoutes.test.ts";
 const REGISTER = "src/__tests__/lib/textbookRegisterAndRefs.test.ts";
 const VALIDATOR = "src/__tests__/lib/textbookRealValidator.test.ts";
+const REPLAY = "src/__tests__/lib/textbookReplayScope.test.ts";
 
 const MUTATIONS: Mutation[] = [
   // ── 범위 (access.ts)
@@ -704,6 +705,31 @@ const MUTATIONS: Mutation[] = [
     replace: `return [];`,
     tests: [ARTIFACTS],
   },
+  // ── 재전송과 범위 — 지금의 범위를 멱등 기록보다 먼저 본다 (conceptRows.ts · assignments.ts)
+  {
+    name: "재전송: 확인의 범위를 처음 한 번만 본다",
+    file: `${LIB}/server/conceptRows.ts`,
+    line: 0,
+    find: `await requireOwnStudent(tx, actor, target.studentId);`,
+    replace: ``,
+    tests: [REPLAY],
+  },
+  {
+    name: "재전송: 배정의 반 · 학생을 처음 한 번만 본다",
+    file: `${LIB}/server/assignments.ts`,
+    line: 0,
+    find: `if (!owned || owned.ownerId !== actor.id)`,
+    replace: `if (false)`,
+    tests: [REPLAY, FLOWS],
+  },
+  {
+    name: "재전송: 회수의 범위를 처음 한 번만 본다",
+    file: `${LIB}/server/assignments.ts`,
+    line: 0,
+    find: `if (!mine) throw notFound("배정");`,
+    replace: ``,
+    tests: [REPLAY],
+  },
   {
     name: "활동: 남의 학생을 읽고 쓴다",
     file: `${LIB}/server/conceptRows.ts`,
@@ -780,6 +806,7 @@ const control = runTests([
   ROUTES,
   REGISTER,
   VALIDATOR,
+  REPLAY,
 ]);
 console.log(
   `대조군(변이 없음): ${control.passed} 통과 · ${control.failed} 실패`,
