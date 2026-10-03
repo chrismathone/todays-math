@@ -995,7 +995,7 @@ export const bank: ConceptBlankBank = {
       example: {
         prompt:
           "$\\frac{4}{7}$를 $\\frac{1}{7}$이 $4$개라고 말할 수 있는 까닭은?",
-        answer: "한 조각이 $\\frac{1}{7}$이라서",
+        answer: "분자 $4$가 조각의 수라서",
       },
     },
     {
