@@ -606,3 +606,37 @@ describe("조판기의 묶음 계획", () => {
     );
   });
 });
+
+describe("조판기가 원고의 문제로 멈출 때", () => {
+  it("조판기가 남긴 사유가 작업에 그대로 실리고, 원고가 그대로면 다시 조판하지 않는다", async () => {
+    const target = await draft();
+    const { deps } = fullDeps();
+    const reason = {
+      code: "SECTION_PARITY",
+      message: "주요 구획이 홀수 쪽에서 시작합니다.",
+      severity: "error" as const,
+      path: ["units", "u1", "sections", "s0"],
+    };
+    let calls = 0;
+    deps.renderer.renderChunk = async () => {
+      calls += 1;
+      throw Object.assign(new Error(`${reason.code}: ${reason.message}`), {
+        issues: [reason, { not: "an issue" }],
+      });
+    };
+    const { requestId, job } = await reserveAndRun(target, deps);
+    expect(job.status).toBe("failed");
+    // 모양이 맞는 사유만 그대로 — 같은 글의 «조판 실패» 줄을 따로 만들지 않는다
+    expect(job.issues).toEqual([reason]);
+    expect(calls).toBe(1);
+    const again = await runNextStep(
+      db,
+      owner,
+      target.editionId,
+      requestId,
+      deps,
+    );
+    expect(again.status).toBe("failed");
+    expect(calls).toBe(1);
+  });
+});

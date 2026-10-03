@@ -12,6 +12,10 @@
 import { randomUUID } from "node:crypto";
 
 import type { TextbookPublishJob } from "@/contracts/textbook.contract";
+import {
+  type TextbookIssue,
+  textbookIssueSchema,
+} from "@/contracts/textbookPrimitives.contract";
 
 import { type TextbookActor, requireOwnedEdition } from "../access";
 import { BLOB_MAX_BYTES, putBlob, readBlobRange } from "../server/blobs";
@@ -129,6 +133,22 @@ async function finish(
   });
 }
 
+/**
+ * 조판기가 **원고의 문제**로 멈췄을 때 그 사유들(시작 면 · 해설이 영역을 넘음 · 그림과 보기의 짝 …).
+ * 조판기의 오류는 사유 목록(`issues`)을 들고 온다 — 화면이 어느 구획 · 블록인지 짚을 수 있게 그대로 남긴다.
+ * 원고가 그대로면 다시 조판해도 같은 자리에서 멈춘다 — 사유가 남은 작업은 더 조판하지 않는다(`runNextStep`).
+ */
+export function manuscriptIssuesOf(error: unknown): TextbookIssue[] {
+  const raw = (error as { issues?: unknown } | null)?.issues;
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .flatMap((entry) => {
+      const parsed = textbookIssueSchema.safeParse(entry);
+      return parsed.success ? [parsed.data] : [];
+    })
+    .slice(0, 200);
+}
+
 async function fail(
   sql: TextbookSql,
   request: PublishRequestRow,
@@ -139,6 +159,7 @@ async function fail(
   const message = (
     error instanceof Error ? error.message : String(error)
   ).slice(0, 2000);
+  const issues = manuscriptIssuesOf(error);
   await sql.execute(
     `UPDATE "textbook_publish_step" SET "state" = 'failed', "result" = $5::jsonb, "updated_at" = ${SQL_NOW}
       WHERE "user_id" = $1::uuid AND "request_id" = $2::uuid AND "idx" = $3::int
@@ -148,7 +169,7 @@ async function fail(
       request.requestId,
       step.idx,
       token,
-      JSON.stringify({ error: message }),
+      JSON.stringify({ error: message, ...(issues.length ? { issues } : {}) }),
     ],
   );
 }

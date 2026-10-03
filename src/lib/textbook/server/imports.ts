@@ -44,6 +44,7 @@ import { DRAFT_RENDERER_VERSION, DRAFT_TEMPLATE_VERSION } from "./books";
 import { EDITION_MAX_CONCEPTS } from "./conceptRows";
 import { invalid, issue } from "./errors";
 import { EDITION_MAX_ITEMS, loadProblemRows } from "./items";
+import { lectureRefFaults, lectureRefsOf } from "./lectureRefs";
 import { type RequestKey, runOnce } from "./requests";
 import { EDITION_MAX_SECTIONS } from "./sections";
 import { type TextbookDb, type TextbookSql, SQL_NOW } from "./sql";
@@ -297,6 +298,35 @@ async function copyAsDraft(
   }
   const assetOf = (id: string) => assetIds.get(id) ?? id;
 
+  // ── 목차의 개념 강의 참조 — 이 서비스에 게시된 강의이고 패키지 안의 개념과 맞는 것만 가져온다.
+  //    다른 곳에서 만든 패키지의 강의 번호를 확인 없이 원고에 심지 않는다
+  const droppedRefs = new Set(
+    (
+      await lectureRefFaults(
+        tx,
+        lectureRefsOf(exchange.units),
+        new Map(
+          (exchange.conceptIntegration?.concepts ?? []).map((concept) => [
+            concept.conceptKey,
+            concept.unitId,
+          ]),
+        ),
+      )
+    ).map((fault) => {
+      issues.push(
+        issue(
+          "concept-lecture-ref-dropped",
+          `개념 «${fault.conceptKey}»의 개념 강의 연결을 가져오지 않았습니다: ${fault.reason}`,
+          {
+            severity: "warning",
+            path: ["units", fault.unitKey, "conceptLectureRefs"],
+          },
+        ),
+      );
+      return `${fault.unitKey}/${fault.lectureId}/${fault.conceptKey}`;
+    }),
+  );
+
   // ── 책과 초안
   const bookId = map("book", exchange.config.bookId, randomUUID());
   const editionId = map("edition", exchange.edition.editionId, randomUUID());
@@ -336,7 +366,12 @@ async function copyAsDraft(
           sourceUnitIds: unit.sourceUnitIds,
           prerequisites: unit.prerequisites,
           goals: unit.goals,
-          conceptLectureRefs: unit.conceptLectureRefs,
+          conceptLectureRefs: unit.conceptLectureRefs.filter(
+            (ref) =>
+              !droppedRefs.has(
+                `${unit.unitKey}/${ref.lectureId}/${ref.conceptKey}`,
+              ),
+          ),
         })),
       }),
       DRAFT_RENDERER_VERSION,
@@ -526,6 +561,17 @@ async function copyAsDraft(
       [editionId, JSON.stringify(sectionRows)],
     );
   const conceptKeys = new Set(concepts.map((concept) => concept.conceptKey));
+  // 구획 안의 차례 — 패키지의 차례(원고 전체에서의 자리)를 구획마다 0부터 다시 센다
+  const sectionRank = new Map<string, number>();
+  const rankCounters = new Map<string, number>();
+  for (const item of [...exchange.items].sort(
+    (a, b) => a.orderIndex - b.orderIndex,
+  )) {
+    const sectionOf = `${item.unitKey}/${item.sectionKey}`;
+    const rank = rankCounters.get(sectionOf) ?? 0;
+    sectionRank.set(item.itemId, rank);
+    rankCounters.set(sectionOf, rank + 1);
+  }
   const itemRows = exchange.items.map((item) => {
     const snapshot = snapshotIds.get(item.snapshotId)!;
     return {
@@ -540,7 +586,8 @@ async function copyAsDraft(
       unitKey: item.unitKey,
       sectionId: sectionIds.get(`${item.unitKey}/${item.sectionKey}`) ?? null,
       learningStage: item.learningStage,
-      orderIndex: item.orderIndex,
+      // 표에는 **구획 안의 차례**를 적는다(패키지의 값은 원고 전체에서의 차례다)
+      orderIndex: sectionRank.get(item.itemId)!,
       layout: item.layout,
       videoRequired: item.videoRequired ?? null,
       conceptKeys: (item.conceptKeys ?? []).filter((key) =>

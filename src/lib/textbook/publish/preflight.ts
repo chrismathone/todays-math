@@ -11,6 +11,7 @@ import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
 import { type TextbookActor, requireOwnedEdition } from "../access";
 import { issue } from "../server/errors";
 import { assembleExchange } from "../server/exchange";
+import { lectureRefFaults, lectureRefsOf } from "../server/lectureRefs";
 import type { TextbookSql } from "../server/sql";
 import { type PublishDeps, officialOriginIssue } from "./rendererAdapter";
 
@@ -103,10 +104,18 @@ export async function collectPreflight(
       );
   issues.push(...placementIssues(exchange));
 
-  // 개념은 예약 때 굳는다 — 굳힐 수 없는 개념을 미리 알린다(여기서는 쓰지 않는다)
+  // 개념은 예약 때 굳는다 — 굳힐 수 없는 개념을 미리 알린다(여기서는 쓰지 않는다).
+  // 굳힌 모양은 검증기에 넘길 «예약 뒤의 원고»에만 쓴다 — DB 에는 예약이 적는다
+  const frozenConcepts = new Map<
+    string,
+    NonNullable<TextbookExchange["conceptIntegration"]>["concepts"][number]
+  >();
   for (const concept of exchange.conceptIntegration?.concepts ?? []) {
     try {
-      deps.freezeConcept({ ...concept, frozen: null });
+      frozenConcepts.set(
+        concept.conceptKey,
+        deps.freezeConcept({ ...concept, frozen: null }),
+      );
     } catch (error) {
       issues.push(
         issue(
@@ -118,9 +127,43 @@ export async function collectPreflight(
     }
   }
 
+  // 목차의 개념 강의 참조 — 학생 화면이 찾는 조건 그대로(게시된 강의 · 판본에 있는 개념 · 같은 단원)
+  const unitTitles = new Map(
+    exchange.units.map((unit) => [unit.unitKey, unit.title]),
+  );
+  for (const fault of await lectureRefFaults(
+    sql,
+    lectureRefsOf(exchange.units),
+    new Map(
+      (exchange.conceptIntegration?.concepts ?? []).map((concept) => [
+        concept.conceptKey,
+        concept.unitId,
+      ]),
+    ),
+  ))
+    issues.push(
+      issue(
+        "concept-lecture-ref",
+        `단원 «${unitTitles.get(fault.unitKey)}»의 개념 강의 연결: ${fault.reason}`,
+        { path: ["units", fault.unitKey, "conceptLectureRefs"] },
+      ),
+    );
+
+  // 검증기는 «예약이 굳힌 뒤»의 원고를 본다 — 굳힐 수 있는 개념을 «안 굳었다»로 다시 막지 않게
+  const afterFreeze: TextbookExchange = exchange.conceptIntegration
+    ? {
+        ...exchange,
+        conceptIntegration: {
+          ...exchange.conceptIntegration,
+          concepts: exchange.conceptIntegration.concepts.map(
+            (concept) => frozenConcepts.get(concept.conceptKey) ?? concept,
+          ),
+        },
+      }
+    : exchange;
   if (!originIssue)
     issues.push(
-      ...(await deps.validate(exchange, {
+      ...(await deps.validate(afterFreeze, {
         stage: "preflight",
         officialOrigin: deps.officialOrigin!,
         requirePageMap: false,
