@@ -16,6 +16,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import { signOutAction } from "@/app/actions/auth";
 import {
   WORKSPACE_MENUS,
@@ -40,6 +41,55 @@ const mocks = vi.hoisted(() => ({
   englishSetOpened: vi.fn(),
 }));
 const router = { replace: mocks.replace };
+const bankSeed: EnglishBankMakerSeed = {
+  requestId: "10000000-0000-4000-8000-000000000021",
+  examId: "exam-from-bank",
+  path: "cloze",
+  passageRef: {
+    passageId: "10000000-0000-4000-8000-000000000022",
+    textRevision: 1,
+    snapshotHash: "a".repeat(64),
+  },
+  title: "은행 원문",
+  text: "Students learn together.",
+};
+vi.mock("@/components/english/bank/EnglishResourceBank", () => ({
+  default: function ResourceBankProbe({
+    active,
+    onUsePassage,
+    onOpenListening,
+  }: {
+    active?: boolean;
+    onUsePassage: (seed: EnglishBankMakerSeed) => void;
+    onOpenListening: (id: string) => void;
+  }) {
+    return (
+      <div hidden={!active}>
+        <h2>영어 자료은행 패널</h2>
+        <button onClick={() => onUsePassage(bankSeed)}>
+          은행 지문으로 제작
+        </button>
+        <button onClick={() => onOpenListening("listening-from-bank")}>
+          은행 듣기 열기
+        </button>
+      </div>
+    );
+  },
+}));
+vi.mock("@/components/english/listening/ListeningStudio", () => ({
+  default: ({
+    active,
+    openSetRequest,
+  }: {
+    active?: boolean;
+    openSetRequest?: { id: string };
+  }) => (
+    <div hidden={!active}>
+      <h2>듣기 패널</h2>
+      <span data-testid="listening-open-set">{openSetRequest?.id}</span>
+    </div>
+  ),
+}));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("next/dynamic", () => ({
   default: (loader: () => Promise<{ default: ComponentType }>) => {
@@ -152,12 +202,14 @@ vi.mock("@/components/math-srs/CourseDashboard", () => ({
 vi.mock("@/components/english/EnglishStudio", () => ({
   default: function EnglishProbe({
     view,
+    bankSeed,
     openSetRequest,
     onSetOpened,
     newExamOpen,
     onNotice,
   }: {
     view: string;
+    bankSeed?: EnglishBankMakerSeed;
     openSetRequest?: { id: string; version: number };
     onSetOpened: () => void;
     newExamOpen: boolean;
@@ -170,6 +222,7 @@ vi.mock("@/components/english/EnglishStudio", () => ({
       <>
         <h2>영어 패널</h2>
         <span data-testid="english-view">{view}</span>
+        <span data-testid="english-bank-seed">{bankSeed?.requestId ?? ""}</span>
         <span data-testid="english-open-set">{openSetRequest?.id ?? ""}</span>
         <span data-testid="english-new-exam">{String(newExamOpen)}</span>
         <button
@@ -276,6 +329,78 @@ afterEach(() => {
 });
 
 describe("per-account workspace menu access", () => {
+  it("opens the standalone English bank without mounting exam-dependent screens", async () => {
+    window.history.replaceState(null, "", "/#english-bank");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-bank"]}
+      />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: "영어 자료은행 패널" }),
+    ).toBeVisible();
+    expect(nav().getByRole("button", { name: "자료은행" })).toHaveAttribute(
+      "aria-current",
+      "page",
+    );
+    expect(mocks.englishMount).not.toHaveBeenCalled();
+    expect(
+      screen.getByRole("button", { name: "오늘의영어 작업실" }),
+    ).toBeVisible();
+  });
+
+  it("hands bank selections to the correct existing English panes", async () => {
+    window.history.replaceState(null, "", "/#english-bank");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-bank", "english-maker", "english-listening"]}
+      />,
+    );
+    fireEvent.click(
+      await screen.findByRole("button", { name: "은행 지문으로 제작" }),
+    );
+    expect(await screen.findByTestId("english-bank-seed")).toHaveTextContent(
+      bankSeed.requestId,
+    );
+    expect(window.location.hash).toBe("#english-maker");
+    fireEvent.click(nav().getByRole("button", { name: "자료은행" }));
+    expect(
+      screen.getByRole("heading", { name: "영어 자료은행 패널" }),
+    ).toBeVisible();
+    expect(screen.queryByRole("heading", { name: "영어 패널" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "은행 듣기 열기" }));
+    expect(await screen.findByTestId("listening-open-set")).toHaveTextContent(
+      "listening-from-bank",
+    );
+    expect(window.location.hash).toBe("#english-listening");
+  });
+
+  it("does not enqueue a maker seed when bank navigation is cancelled", async () => {
+    window.history.replaceState(null, "", "/#english-bank");
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-bank", "english-maker"]}
+      />,
+    );
+    const cancel = (event: Event) => event.preventDefault();
+    window.addEventListener("english-bank-before-leave", cancel);
+    try {
+      fireEvent.click(
+        await screen.findByRole("button", { name: "은행 지문으로 제작" }),
+      );
+      expect(window.location.hash).toBe("#english-bank");
+      expect(mocks.englishMount).not.toHaveBeenCalled();
+    } finally {
+      window.removeEventListener("english-bank-before-leave", cancel);
+    }
+    fireEvent.click(nav().getByRole("button", { name: "문제 만들기" }));
+    expect(
+      await screen.findByTestId("english-bank-seed"),
+    ).toBeEmptyDOMElement();
+  });
   it("uses the branch library name without a sidebar count and confirms worksheet scope before publishing", async () => {
     const cloud = privateServer();
     cloud.switchAccount("teacher-one");
@@ -1194,7 +1319,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     ).toBeNull();
   });
 
-  it("영어로 넘어가면 옆 메뉴가 영어 탭 셋 · 파란 단추 «새 시험 등록» · 캡션, 돌아오면 수학 여덟이 그대로다", async () => {
+  it("영어로 넘어가면 허용된 영어 메뉴와 새 시험 등록이 보이고 수학 메뉴도 유지된다", async () => {
     render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
@@ -1202,7 +1327,7 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       nav()
         .getAllByRole("button")
         .map((button) => button.getAttribute("aria-label")),
-    ).toEqual(ENGLISH_NAV);
+    ).toEqual([...ENGLISH_NAV, "영어듣기", "자료은행"]);
     expect(
       nav().getByRole("button", { name: "학교별 내신 대비" }),
     ).toHaveAttribute("aria-current", "page");

@@ -33,8 +33,12 @@ type Area = "materials" | "create" | "assignments";
 
 export default function ListeningStudio({
   active = true,
+  openSetRequest,
+  onSetOpened,
 }: {
   active?: boolean;
+  openSetRequest?: { id: string; version: number };
+  onSetOpened?: (version: number) => void;
 }) {
   const [area, setArea] = useState<Area>("materials");
   const [materials, setMaterials] = useState<ListeningSetSummary[]>([]);
@@ -159,21 +163,50 @@ export default function ListeningStudio({
     setError("");
     setArea("create");
   }
-  async function select(id: string) {
-    if (!allowDiscard()) return;
-    await run("자료를 불러오는 중입니다.", async (signal) => {
-      const detail = await listeningRequest<ListeningSetDetail>(
-        `/sets/${encodeURIComponent(id)}`,
-        signal,
-      );
-      signal.throwIfAborted();
-      setSelected(detail);
-      setDraft(null);
-      target.current = null;
-      setEditorTarget(null);
-      setLatest(null);
-    });
-  }
+  const select = useCallback(
+    async (id: string) => {
+      if (dirty && !window.confirm("저장하지 않은 입력을 버릴까요?")) return;
+      if (
+        assignmentDirty &&
+        !window.confirm("배정 입력을 보존하고 자료를 열까요?")
+      )
+        return;
+      await run("자료를 불러오는 중입니다.", async (signal) => {
+        const detail = await listeningRequest<ListeningSetDetail>(
+          `/sets/${encodeURIComponent(id)}`,
+          signal,
+        );
+        signal.throwIfAborted();
+        setSelected(detail);
+        setDraft(null);
+        target.current = null;
+        setEditorTarget(null);
+        setLatest(null);
+        setArea("materials");
+      });
+    },
+    [dirty, assignmentDirty, run],
+  );
+
+  const consumedRequest = useRef<number | undefined>(undefined);
+  const openedCallback = useRef(onSetOpened);
+  useEffect(() => {
+    openedCallback.current = onSetOpened;
+  }, [onSetOpened]);
+  useEffect(() => {
+    // Let the list finish first: run() replaces the current request controller.
+    if (
+      !active ||
+      !loaded ||
+      pending ||
+      !openSetRequest ||
+      consumedRequest.current === openSetRequest.version
+    )
+      return;
+    const { id, version } = openSetRequest;
+    consumedRequest.current = version;
+    void select(id).finally(() => openedCallback.current?.(version));
+  }, [active, loaded, pending, openSetRequest, select]);
   function adopt(detail: ListeningSetDetail) {
     target.current = detail;
     setEditorTarget(detail);
