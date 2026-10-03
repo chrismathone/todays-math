@@ -325,7 +325,7 @@ function t02(rng: Rng): Body {
         [m, "b"],
       ]);
       return {
-        content: `이차방정식 $${eq}$${ga(eq)} 실수 $k$의 값에 관계없이 $${root}$${eul(root)} 근으로 가질 때, 실수 $a$, $b$에 대하여 $${et}$의 값을 구하시오.`,
+        content: `$x$에 대한 방정식 $${eq}$${ga(eq)} 실수 $k$의 값에 관계없이 $${root}$${eul(root)} 근으로 가질 때, 실수 $a$, $b$에 대하여 $${et}$의 값을 구하시오.`,
         answer: numAnswer(ev),
         solution: [
           `$${root}$${eul(root)} 대입하면 $${coef(r * r)}k${sgnTerm(r, "a")}+(k${plusConst(m)})b=0$`,
