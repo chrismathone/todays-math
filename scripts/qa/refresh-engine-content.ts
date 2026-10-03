@@ -525,6 +525,13 @@ async function run(planFiles: string[], doApply: boolean): Promise<void> {
         unmatched: top(unmatchedBy, 500),
         unmatchedStillMade,
         unmatchedGone: top(unmatchedGone, 500),
+        // 되만들지 못했는데 **출제 가능**한 행 — 엔진으로 검증할 길이 없는 행이다. 눈으로 보고 잠글지 정한다.
+        unmatchedEligible: toLock.map((r) => ({
+          externalId: r.externalId,
+          problemCode: r.problemCode,
+          content: r.content.slice(0, 200),
+          answer: r.answer.slice(0, 60),
+        })),
         fresh: top(fresh, 500),
         buildFailures: failures,
         changes: changes.length,
