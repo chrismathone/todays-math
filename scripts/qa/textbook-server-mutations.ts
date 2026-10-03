@@ -37,6 +37,7 @@ const REGISTER = "src/__tests__/lib/textbookRegisterAndRefs.test.ts";
 const VALIDATOR = "src/__tests__/lib/textbookRealValidator.test.ts";
 const REPLAY = "src/__tests__/lib/textbookReplayScope.test.ts";
 const PREVIEW = "src/__tests__/lib/textbookSectionPreview.test.ts";
+const FORMS = "src/__tests__/lib/textbookConceptForms.test.ts";
 
 const MUTATIONS: Mutation[] = [
   // ── 범위 (access.ts)
@@ -788,6 +789,15 @@ const MUTATIONS: Mutation[] = [
     replace: `true ||`,
     tests: [PREVIEW],
   },
+  // ── 새 판본으로 복사 (books.ts)
+  {
+    name: "새 판본: 고른 백지 형식을 복사하지 않는다",
+    file: `${LIB}/server/books.ts`,
+    line: 0,
+    find: `c."blank_forms", c."links", c."mapping_version", c."concept_key",`,
+    replace: `NULL::jsonb, c."links", c."mapping_version", c."concept_key",`,
+    tests: [FORMS],
+  },
   {
     name: "활동: 남의 학생을 읽고 쓴다",
     file: `${LIB}/server/conceptRows.ts`,
@@ -870,6 +880,7 @@ const control = runTests([
   VALIDATOR,
   REPLAY,
   PREVIEW,
+  FORMS,
 ]);
 console.log(
   `대조군(변이 없음): ${control.passed} 통과 · ${control.failed} 실패`,

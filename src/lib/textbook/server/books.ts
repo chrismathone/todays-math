@@ -350,13 +350,15 @@ async function copyEditionChildren(
          JOIN "textbook_item" i ON i."id" = m."from"`,
       [targetId, actor.id, JSON.stringify(itemMap)],
     );
-  // 개념 — 연결과 원고는 따라오고 굳은 내용은 비운다(새 판본은 발행할 때 다시 굳는다)
+  // 개념 — 연결과 원고는 따라오고 굳은 내용은 비운다(새 판본은 발행할 때 다시 굳는다).
+  // 🔴 고른 백지 형식(`blank_forms`)도 **그대로** 따라온다 — 고른 것은 고른 대로, 고르지 않은 것(NULL)은 고르지 않은 채로.
+  //    빠뜨리면 새 판본이 «형식을 고르지 않은 개념»이 되어 발행 때 다른 백지가 굳는다(2026-10-03 실제 API 검수에서 발견)
   const sectionMap = [...sectionIds].map(([from, to]) => ({ from, to }));
   await tx.execute(
     `INSERT INTO "textbook_concept" ("edition_id", "concept_key", "unit_key", "section_id", "title", "kind", "unit_id",
-          "body", "blank_items", "links", "mapping_version", "derived_from_concept_key", "updated_at")
+          "body", "blank_items", "blank_forms", "links", "mapping_version", "derived_from_concept_key", "updated_at")
      SELECT $1::uuid, c."concept_key", c."unit_key", m."to", c."title", c."kind", c."unit_id", c."body", c."blank_items",
-            c."links", c."mapping_version", c."concept_key", ${SQL_NOW}
+            c."blank_forms", c."links", c."mapping_version", c."concept_key", ${SQL_NOW}
        FROM "textbook_concept" c
        LEFT JOIN jsonb_to_recordset($3::jsonb) AS m("from" uuid, "to" uuid) ON m."from" = c."section_id"
       WHERE c."edition_id" = $2::uuid`,
