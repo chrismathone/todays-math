@@ -3,7 +3,7 @@
 - 날짜: 2026-10-03
 - 역할: 계획·화면 검토만. 제품 코드, DB, 유료 생성, 푸시, 병합은 하지 않았다.
 - 앞 검토 `594d8e68120ef5f565c8a7704f029a48bdd6a68b` 는 수용된 기준이다. 그 파일은 고치지 않는다.
-- 이 문서의 와이어 선택은 아래 네 장의 데스크톱 캡처를 본 결과다. 와이어 합의는 W3이고, 하이파이는 §4와 §8이다. 계획 표결은 §6, P1 표결은 §7이다.
+- 이 문서의 와이어 선택은 아래 네 장의 데스크톱 캡처를 본 결과다. 와이어 합의는 W3이고, 하이파이는 §4와 §8이다. 계획 표결은 §6이다. P1의 현재 표결은 §11이다. §7과 §9는 그 앞 바이트의 기록이다.
 
 ## 1. 와이어 선택: W3
 
@@ -148,3 +148,63 @@ SHA-256 `613573a7ad1b80191cf8829a40515621be05fc275f6d63ccd95e1665031d0d5b`. 크�
 고친 파일은 같은 `hifi-review.html`이다. SHA-256 `e50f306232a9da898a50a854b4c3a5b8c5964e71ba3aa0242533227a8d5fb685`, 23,287바이트, LF 473, CR 없음. 저장 단추는 `.actionBar button.primary`와 `.deskBar button.primary`가 강조 배경과 흰 글자를 가진다. H2 도구 단추는 높이 44px다. 390 미리보기는 짝수 왼쪽과 홀수 오른쪽을 나란히 둔다. «맞춤»은 A4 비율로 글자까지 줄이고, «넓게»는 680px 펼침을 밀어 본다. 제목은 «미리보기»다. 안내 문장은 «유형 연습이 홀수 쪽에서 시작합니다. 이전 구획을 조정하세요.»다. 학생용에는 정답 글자를 넣지 않고, 교사용 장에만 정답이 생긴다. 단추 id와 `data-set`/`data-value`는 그대로다. `zoom-large`의 보이는 글만 «넓게»다.
 
 이 검토자는 고친 HTML을 브라우저로 열지 않았다. 픽셀 표결은 이 해시의 다시 찍은 캡처로 닫는다.
+
+## 9. P1 재표결 — APPROVE
+
+대상 파일: 루트 작업 트리 `docs/planning/textbook-studio-p1-contracts-20261003.md`.
+
+SHA-256 `647397f8a774bcf83feefa77ce6024282868871c851ff93dff4671ee661e127e`. 크기 24,086바이트. 줄바꿈 LF 137. CR 없음. §7의 `613573a7ad1b80191cf8829a40515621be05fc275f6d63ccd95e1665031d0d5b` 는 이 표결의 대상이 아니다.
+
+**APPROVE.** 이 해시의 파일만 승인한다. 파일이 바뀌면 이 표결은 무효다. 계획 `60a508c008ea24abfcb8b361f3c639fbc19a80147ff404c045db9eb9cbb40702` 의 승인은 그대로다.
+
+§7에서 막았던 세 자리는 이 파일에서 닫혔다.
+
+- `pick`은 `{blankSectionKey, entryKind, entryId, form, level}` 배열이다. 없으면 기존 compose와 지면 코드가 유지된다. `entryKind`와 `form`의 짝, recall의 `givenCase` 거절, 중복과 그룹 재등장은 오류다. `blankSectionKey`는 `sectionKeySchema`다. `entryId`는 은행 `idSchema`(소문자, 숫자, 붙임표)다.
+- `blankItems`의 열쇠 이름은 `blankSectionKey`다. 코스 참조는 `courseSectionId`다. 교재 `sectionId`는 구획 UUID만 뜻한다.
+- `{id}`는 `routeAccess`와 `studentRouteAccess`의 한 칸 토큰이다. `compileRoutePattern`은 그 토큰만 `[^/]+`로 바꾼다. `accountRouteAllowed`는 prefix 비교다. `/api/textbook`, 교재 인쇄, 교사 `/q`는 `textbook` 메뉴로 명시한다. `/api/learn/textbook`는 학생 관문이 먼저다. Next 폴더는 `[editionId]`와 `[sectionId]`다.
+
+## 10. 하이파이 최종 픽셀
+
+`hifi-h1-final-desktop.png`는 H1이다. «이 구획 저장»은 파란 배경에 흰 글자다. 제목은 «미리보기»다. 014가 왼쪽, 015가 오른쪽이다. 안내 문장은 «유형 연습이 홀수 쪽에서 시작합니다. 이전 구획을 조정하세요.»다.
+
+`hifi-h1-final-mobile.png`는 «원고» 탭이다. 같은 양식과 하단 메뉴가 있다.
+
+`hifi-h1-final-spread.png`는 두 쪽이 나란하고 안내 문장은 맞다. «맞춤»에서 글자가 쪽보다 크게 잘려 대화를 읽을 수 없다. `font-size: 7.5cqw`가 query container인 `.page` 자신에 있다. `cqw`는 그 요소의 너비가 아니라 상위 컨테이너이고, 없으면 뷰포트다. 이 캡처로는 최종 픽셀을 승인하지 않는다.
+
+단원 나무, 구획별 상태, 연결 상태, 전체 미리보기는 구현 인수다. 하이파이 네 방향을 다시 그리지 않는다. 이 절까지는 커밋하지 않는다. 최종 픽셀이 닫힌 뒤에 보고서를 커밋한다.
+
+## 11. P1 최종 표결 — APPROVE
+
+§9가 승인한 `647397f8a774bcf83feefa77ce6024282868871c851ff93dff4671ee661e127e`는 루트가 두 문단을 고친 뒤 무효다. 그 승인을 현재 파일에 적용하지 않는다.
+
+대상 파일은 루트 작업 트리 `docs/planning/textbook-studio-p1-contracts-20261003.md`다.
+
+SHA-256 `e94aedb8a5bff13d64ddded08539a187aadc9111e39603eabb9554d6eff41ca1`. 크기 24,697바이트. 줄바꿈 LF 138. CR 없음. 커밋 `19ea787e9` 위에 미커밋 두 문단이 있다.
+
+**APPROVE.** 이 해시의 바이트만 승인한다. 바이트가 바뀌면 이 표결은 무효다. 계획 `60a508c008ea24abfcb8b361f3c639fbc19a80147ff404c045db9eb9cbb40702`의 승인은 그대로다. §9에서 닫은 pick 튜플, `blankSectionKey`/`courseSectionId`, `{id}` 관문과 prefix 관문의 구분은 이 파일에 남아 있다.
+
+바뀐 문단은 둘이다.
+
+- pick selection은 `?s=`에 싣지 않는다. 인쇄와 교재에서 개념백지로의 이동은 저장 문서 ID 또는 권한을 확인한 서버 참조를 쓴다. `?s=` decoder는 pick이 든 입력을 거절한다. pick이 없는 기존 주소는 유지한다. 현재 `selectionCodec.ts`는 strict `conceptBlankSelectionSchema`로 `?s=`를 읽는다. pick을 서버 선택에 더할 때 URL decoder가 그 키를 따로 거절해야 이 문장이 성립한다.
+- 복습 시작의 저장 영수증은 `storedExplorerSchema`의 `{requestId, actionKey, feedback}` strict 객체를 유지한다. `replayed`는 그 영수증 칸이 아니라 교재 복습 시작 응답에 붙는다. 같은 requestId의 재시도는 학습 상태를 다시 쓰지 않는다. 현재 도전이 미완료면 resumed, 완료 뒤 미해결이 남으면 deferred를 반환하고 `replayed:true`를 붙인다. 그 두 상태가 아니면 unavailable과 reasonCode `already-processed`다. started는 도전을 만든 첫 요청만 쓴다. 요청 없는 GET은 학습 상태를 바꾸지 않는다.
+
+남은 행동 차단은 없다.
+
+하이파이 HTML은 이 검토자가 고쳤다. 경로 `D:\tmp\textbook-tab-20261003\design\hifi-review.html`. SHA-256 `4bf3d37c9802df17727e2abee54301eafc327f49e9dd3ea5cb0c340bb82b6fa7`. 크기 23,637바이트. LF 477. CR 없음. `cqw`와 `container-type`은 없다. 390 맞춤은 쪽 글자 11px, 머리와 꼬리 10px, 넘침 hidden이다. Chrome에서 390 장치의 맞춤 쪽은 161×228이고 글자는 11px였다. 넓게는 펼침 680px, 쪽 336×475, 글자 14px였다. 대화는 쪽 안에서 줄바꿈된다. §10의 `e50f3062` 캡처는 그 앞 결함의 기록이다.
+
+`hifi-h1-final-spread-v2.png`는 390×844이고 시각은 2026-10-03 15:15다. «미리보기»와 «맞춤»이 선택돼 있고, 014가 왼쪽, 015가 오른쪽이다. 대화와 `3/4 + 1/6`이 쪽 안에서 줄바꿈된다. 안내 문장은 «유형 연습이 홀수 쪽에서 시작합니다. 이전 구획을 조정하세요.»다. 100px를 넘던 글자 넘침은 이 캡처에 없다. 데스크톱과 모바일 원고 캡처는 15:04의 앞 파일이고, 그 규칙은 이번 390 맞춤 수정 밖에 있다.
+
+## 12. 하이파이 최종 픽셀 — H1 승인
+
+루트가 HTML `4bf3d37c9802df17727e2abee54301eafc327f49e9dd3ea5cb0c340bb82b6fa7`의 캡처 넷을 지목했다. P1 `e94aedb8a5bff13d64ddded08539a187aadc9111e39603eabb9554d6eff41ca1`는 세 모델이 승인했다. 계획 `60a508c008ea24abfcb8b361f3c639fbc19a80147ff404c045db9eb9cbb40702`의 승인은 그대로다.
+
+| 파일 | 픽셀 | 본 것 |
+|---|---|---|
+| `hifi-h1-final-desktop-v2.png` | 1280×800 | H1이다. «이 구획 저장»은 파란 배경에 흰 글자다. 014가 왼쪽, 015가 오른쪽이다. 제목은 «미리보기»다. 안내 문장이 있고, 개념은 «초5 · 약분과 통분 · 통분»이며 «통분»이 선택돼 있다. |
+| `hifi-h1-final-mobile-v2.png` | 390×844 | «원고» 탭이다. 같은 양식과 하단 메뉴가 있다. |
+| `hifi-h1-final-spread-v2.png` | 390×844 | «맞춤»이다. 두 쪽이 나란하고 대화와 `3/4 + 1/6`이 쪽 안에 줄바꿈된다. |
+| `hifi-h1-final-wide-v2.png` | 390×844 | «넓게»다. 680px 펼침의 014가 장치에 보이고, 015는 `.split`의 가로 스크롤 쪽에 있다. |
+
+데스크톱과 원고 캡처는 15:04 파일과 바이트가 같다. 그 두 화면은 이번에 고친 390 맞춤 규칙 밖에 있다. «넓게»와 «맞춤» 캡처가 그 규칙의 결과다.
+
+**H1 픽셀을 승인한다.** 단원 나무, 구획별 상태, 연결 상태, 전체 미리보기, 기존 모바일 메뉴는 구현 인수다. 하이파이 네 방향을 다시 그리지 않는다.
