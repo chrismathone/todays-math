@@ -23,6 +23,10 @@ function fromBase64Url(code: string): string {
 }
 
 export function encodeSelection(selection: ConceptBlankSelection): string {
+  if (selection.pick !== undefined)
+    throw new RangeError(
+      "정확한 선택은 저장 문서 또는 교재 참조로 인쇄하세요.",
+    );
   return toBase64Url(
     JSON.stringify(conceptBlankSelectionSchema.parse(selection)),
   );
@@ -36,7 +40,9 @@ export function decodeSelection(
     const parsed = conceptBlankSelectionSchema.safeParse(
       JSON.parse(fromBase64Url(code)),
     );
-    return parsed.success ? parsed.data : null;
+    return parsed.success && parsed.data.pick === undefined
+      ? parsed.data
+      : null;
   } catch {
     return null;
   }
