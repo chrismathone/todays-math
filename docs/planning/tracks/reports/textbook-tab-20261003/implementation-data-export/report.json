@@ -1,0 +1,48 @@
+{
+  "reportVersion": 1,
+  "taskId": "task_004db42d9409",
+  "source": "Explicit synthetic fixtures only; original v15 source is absent.",
+  "claims": {
+    "originalV15Converted": false,
+    "originalV15CompletenessVerified": false,
+    "productionDatabaseUsed": false,
+    "paidAiUsed": false,
+    "physicalPrintAndPhoneScan": "pending"
+  },
+  "implemented": [
+    "Strict UTF-8 bounded JSON tokenization before JSON.parse; duplicate decoded keys, malformed surrogates, NUL, negative zero and unsafe integers rejected",
+    "Versioned deterministic UTF-16 key-sorted canonical JSON and matching browser/server SHA-256 projections",
+    "Frozen snapshot/concept/asset hashes and cross-reference validation; historical optional-field absence retained",
+    "Bounded ZIP central/local entries, paths, CRC, expansion, hashes and MIME validation; no archive database writes or live QR reassignment",
+    "Original-ID package roundtrip; local fonts and KaTeX bundle; mapping CSV formula neutralization",
+    "Exact concept blank picks with frozen bank labels, schema reuse, form/section/order/count validation and givenCase recall rejection; no pick in URL or legacy sheet code",
+    "Shared measured A4 React/HTML layout, parity/overflow failures, exact two-page unit intro, student/answer/spread exports",
+    "Student answer removal before render model; teacher-only inert JSON archive HTML; single-file offline local assets",
+    "Trusted intercepted local Chromium/PDFjs resources; every final PDF QR decoded from raster pixels and matched to reserved target URL",
+    "Bounded resumable chunk adapters, chunk hash/order verification, verified merged/spread artifacts and volume fallback",
+    "Frozen answer placement adapter and page references; first-only inline SVG extraction; nullable choice and dimension mapping through legacy print"
+  ],
+  "checks": {
+    "focusedIntegrityArchiveCanonicalExactPickLayoutTests": { "passed": 63 },
+    "legacyPrintAndNullableFigureTests": { "passed": 78 },
+    "realChromiumIntegrationTests": { "passed": 2, "largeBenchmarkSeparatelyExecuted": true },
+    "realChromiumChecks": ["student answer exclusion", "answer PDF matching student placements", "spread PDF QR raster matches", "wrong expected QR URL rejection", "duplicate PDF chunk rejection", "teacher HTML original exchange roundtrip", "student teacher-data rejection", "fixed SVG load", "math width overflow rejection", "corrupt PNG decode rejection", "zero offline external requests"],
+    "largeBenchmark": "benchmark-203-pages.json",
+    "largePdf": "synthetic-203-pages.pdf",
+    "largePdfSha256": "b7b0211bd75cd5033f805b7150bffe45ac15ce2d0910df5ae9805e261c7d0595",
+    "actualPdfVisualReview": ["synthetic-page-2.png", "synthetic-page-102.png", "synthetic-page-203.png"],
+    "sourceReportsPreserved": ["../source-codex.md", "../source-codex-v02.md", "../integration-codex-v03.md", "../p1-codex-review.md"]
+  },
+  "integration": {
+    "root": "Wire print-check entry and student/auth/snapshot reader paths; final root application verification remains coordinator-owned.",
+    "claude": "Persist immutable chunk PDFs and pages/pageMap/qrPlacements/artifactHash/nextPhysicalPageIndex; use matching student frozenPages for answers; finalize only after final artifact QR checks.",
+    "grok": "Use TextbookPaper/TextbookSpread with createTextbookRenderModel and measured preview; provide authorized asset URLs and reserved-URL QR PNG resources.",
+    "setupLockDelta": "Preserved original incidental setup delta in tmp/textbook/setup-lock.patch before root dependency merge; package files remain root-owned."
+  },
+  "limitations": [
+    "Physical printer alignment, phone scans, live login return and assigned video playback require coordinator-owned integrated app and real assigned data.",
+    "Original v15 is unavailable; no source conversion or visual-fidelity/completeness claim is made.",
+    "An indivisible block or answer exceeding its measured page area fails with a location-specific issue; content is never silently removed or scaled to fit.",
+    "Chunks permit at most eight contiguous sections and 600 measured blocks; continued-section chains must stay together."
+  ]
+}
