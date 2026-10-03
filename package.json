@@ -28,7 +28,8 @@
     "db:studio": "prisma studio",
     "db:seed": "prisma db seed",
     "check:figures": "tsx scripts/qa/checkDeployedFigures.ts",
-    "check:raw-latex": "tsx scripts/qa/checkLoadedRawLatex.ts"
+    "check:raw-latex": "tsx scripts/qa/checkLoadedRawLatex.ts",
+    "check:figure-choices": "tsx scripts/qa/checkFigureChoiceLinks.ts"
   },
   "prisma": {
     "seed": "node prisma/seed.ts"
