@@ -858,7 +858,7 @@ export const bank: ConceptBlankBank = {
       term: "두 단위에서 올림",
       kind: "방법",
       definition:
-        "초를 분으로 바꾼 뒤 분도 $60$ 이상이면 {$1$시간}을 다시 올려야 한다.",
+        "두 시간을 더할 때 초를 분으로 바꾼 뒤 분도 $60$ 이상이면 {$1$시간}을 다시 올려야 한다.",
     },
     {
       id: "e3-1-5-6-c1",
@@ -2450,9 +2450,9 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-5 들이와 무게::2-5-2 들이의 단위",
       level: "중",
       statement:
-        "$1\\,\\mathrm{L}\\ 40\\,\\mathrm{mL}$는 $1040\\,\\mathrm{mL}$와 같다.",
-      answer: true,
-      why: "$1000\\,\\mathrm{mL}$에 $40\\,\\mathrm{mL}$를 더한 양이다.",
+        "$1\\,\\mathrm{L}\\ 40\\,\\mathrm{mL}$를 $\\mathrm{mL}$로만 쓰면 $140\\,\\mathrm{mL}$이다.",
+      answer: false,
+      why: "$1\\,\\mathrm{L}$는 $1000\\,\\mathrm{mL}$라 $1040\\,\\mathrm{mL}$이다 — $1$과 $40$을 붙여 쓰면 안 된다.",
     },
     {
       id: "e3-2-5-3-o1",
@@ -2928,15 +2928,17 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
       level: "하",
       prompt:
-        "같은 컵으로 가득 채우니 가는 $4$컵, 나는 $6$컵이었다면 들이가 큰 그릇은?",
-      answer: "나",
+        "같은 컵으로 가득 채우니 가는 $4$컵, 나는 $6$컵이었다. 들이가 큰 그릇을 쓰고 까닭을 쓰시오.",
+      answer: "나 — 같은 컵으로 더 많이 들어갔기 때문이다.",
     },
     {
       id: "e3-2-5-2-a1",
       section: "초3::2-5 들이와 무게::2-5-2 들이의 단위",
       level: "중",
-      prompt: "$2\\,\\mathrm{L}\\ 75\\,\\mathrm{mL}$를 mL로만 나타내시오.",
-      answer: "$2075\\,\\mathrm{mL}$",
+      prompt:
+        "$2\\,\\mathrm{L}\\ 75\\,\\mathrm{mL}$를 $\\mathrm{mL}$로만 나타내고 백의 자리에 $0$을 쓰는 까닭을 쓰시오.",
+      answer:
+        "$2075\\,\\mathrm{mL}$ — $75\\,\\mathrm{mL}$에는 $100\\,\\mathrm{mL}$ 묶음이 없기 때문이다.",
     },
     {
       id: "e3-2-5-3-a1",
