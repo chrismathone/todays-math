@@ -5,7 +5,7 @@
 
 외부 검토 보고서(기준 커밋 `2cb791dce`)가 일반 문제은행(개념 백지 제외)의 결함 37묶음을 냈다.
 리드가 전부 제품 함수와 저장소 자료로 **재현했고**(틀린 지적 0), 운영 DB 를 읽어 영향 범위를 쟀다.
-이 지시서는 그것을 **고치는** 트랙 넷의 일이다.
+이 지시서는 그것을 **고치는** 트랙 다섯의 일이다.
 
 - 보고서 글 · 근거 · 리드의 재현 스크립트와 결과: 저장소 밖 `D:\tmp\bank-review-20261003\`
   (`report.txt` · `findings-readable.txt` · `<분야>-review\` · `verify\verify-out.json` · `verify\db-probe*-out.json`).
@@ -18,7 +18,8 @@
 | 트랙 | 워크트리 이름 | 몫 | 내 파일 |
 |---|---|---|---|
 | 초등 | `bank-fix-elem` | §2 (EL-01 ~ EL-09 · EL-A1) | `src/lib/elementary/g3.ts` · `g4.ts` · `g5.ts` · `g6.ts` · (필요하면) `scripts/figure/elem_advanced.py` · `docs/planning/09-figure-engine-guide.md` · `src/app/dev/print-check/items.ts` · 초등 시험 |
-| 중등 · 고등 | `bank-fix-midhigh` | §3 (MID-001 ~ 005 · 순환소수 17 · HIGH 다섯) | `src/lib/middle/**` · `src/lib/high/**` · 그 시험 |
+| 중등 | `bank-fix-midhigh` | §3 의 중등 (MID-001 ~ 005 · 순환소수 17) | `src/lib/middle/**` · 그 시험 |
+| 고등 | `bank-fix-high` | §3 의 고등 (HIGH 다섯) — 중등 트랙의 물음으로 리드가 나눔 | `src/lib/high/**` · 그 시험 |
 | 파생 · 채점 | `bank-fix-derive` | §4 (Q-P01 소수 오답 · Q-P02 동그라미 채점) | `src/lib/engine/deriveFormats.ts` · `src/lib/testResults/gradeAnswers.ts` · 그 시험 |
 | 기출 | `bank-fix-exams` | §5 (EX-01 ~ EX-15 + 리드가 더 찾은 둘) | `scripts/import/exam-paper/**` · 그 시험 |
 | 리드 | (리드 작업트리) | 적재본 제자리 갱신 도구 · 병합 · 재검산 · DB 적용 · 문서 | `scripts/qa/refresh-engine-content.ts` · 공유 문서 |
