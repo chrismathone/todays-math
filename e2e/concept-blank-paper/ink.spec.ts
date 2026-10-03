@@ -90,8 +90,11 @@ test("빈칸 폭 — 수식 핵심어 · 예의 답의 보이는 폭 어림이 �
   );
 
   expect(rows.filter((r) => r.broken).map((r) => r.raw)).toEqual([]);
-  // 어림이 실제보다 0.8em 넘게 좁거나 1.2em 넘게 넓은 답이 없다 — 빈칸으로는 11 · 17px(잰 값 −0.53 ~ +0.84em)
+  // 어림이 실제보다 0.8em 넘게 좁거나 1.2em 넘게 넓은 답이 없다 — 빈칸으로는 11 · 17px(잰 값 −0.53 ~ +0.84em).
+  // 어림으로도 실제로도 최대 폭에 닿는 줄은 뺀다 — 차가 빈칸 길이에 닿지 않는다(어림은 글자 수에 비례해 어긋나 30em 짜리 답은 1.5em 넓다).
+  // 그런 줄은 «빈칸이 답보다 짧다»는 다른 결함이고, 은행 시험(«…fits the blank…» 둘)이 잡는다.
   const off = table
+    .filter((r) => !(r.blank === BLANK_WIDTH.max && r.ideal === BLANK_WIDTH.max))
     .filter((r) => r.diff < -0.8 || r.diff > 1.2)
     .map((r) => `${r.raw}: 어림 ${r.est}em · 실제 ${r.actual}em`);
   expect(off).toEqual([]);
