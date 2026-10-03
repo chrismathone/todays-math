@@ -2,7 +2,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 const m = vi.hoisted(() => {
+  const cls = vi.fn();
+  const student = vi.fn();
   const tx = {
+    class: { findUnique: cls },
+    student: { findUnique: student },
     testResult: { create: vi.fn() },
     problemAnswer: { createMany: vi.fn() },
     analysisReport: { create: vi.fn() },
@@ -10,9 +14,10 @@ const m = vi.hoisted(() => {
   return {
     test: vi.fn(),
     user: vi.fn(),
-    student: vi.fn(),
+    student,
     students: vi.fn(),
-    cls: vi.fn(),
+    cls,
+    managedAccount: vi.fn(),
     problems: vi.fn(),
     results: vi.fn(),
     raw: vi.fn(),
@@ -28,6 +33,7 @@ vi.mock("@/lib/db", () => ({
   db: {
     test: { findUnique: m.test },
     user: { findUnique: m.user },
+    eywaManagedAccount: { findUnique: m.managedAccount },
     student: { findUnique: m.student, findMany: m.students },
     class: { findUnique: m.cls },
     testProblem: { findMany: m.problems },
@@ -130,18 +136,24 @@ beforeEach(() => {
     testType: "daily",
     testDate: date,
   });
-  m.user.mockResolvedValue({ branchId: BRANCH_ID });
+  m.user.mockResolvedValue({ branchId: BRANCH_ID, authSource: "local" });
+  m.managedAccount.mockResolvedValue(null);
   const cls = {
     id: CLASS_ID,
     userId: TEST_OWNER,
     name: "Shared class",
     grade: "초5",
+    branchId: BRANCH_ID,
+    eywaBindingId: null,
   };
   const student = {
     id: STUDENT_ID,
     classId: CLASS_ID,
     name: "Student",
     useIndividualProgress: false,
+    eywaBindingId: null,
+    eywaWithdrawnAt: null,
+    isTest: false,
     class: cls,
   };
   m.student.mockResolvedValue(student);
@@ -209,10 +221,7 @@ describe("authorized Test access supports a reissue owned by another teacher", (
       problemCode: "E50101-A01-001",
       difficulty: "기본",
     });
-    expect(m.user).toHaveBeenCalledWith({
-      where: { id: TEST_OWNER },
-      select: { branchId: true },
-    });
+    expect(m.cls).toHaveBeenCalledWith({ where: { id: CLASS_ID } });
     for (const [sql] of m.raw.mock.calls) {
       expect(sql.values).toEqual([OWNER_ID, assetId]);
       expect(sql.values).not.toContain(TEST_OWNER);
@@ -253,6 +262,15 @@ describe("authorized Test access supports a reissue owned by another teacher", (
     },
   );
 
+  it("keeps the frozen class branch authoritative when its creator moves branches", async () => {
+    m.user.mockResolvedValue({
+      branchId: "another-branch",
+      authSource: "local",
+    });
+    expect((await loadGradeSheet(viewer, TEST_ID)).status).toBe(200);
+    expect(m.problems).toHaveBeenCalled();
+  });
+
   it.each([0, 8])(
     "preserves the Test score override %s over frozen original and live score",
     async (score) => {
@@ -267,7 +285,12 @@ describe("authorized Test access supports a reissue owned by another teacher", (
   it.each(["read", "answers", "marks"])(
     "rejects out-of-branch %s before reading snapshots or assets",
     async (mode) => {
-      m.user.mockResolvedValue({ branchId: "another-branch" });
+      m.cls.mockResolvedValue({
+        id: CLASS_ID,
+        userId: TEST_OWNER,
+        branchId: "another-branch",
+        eywaBindingId: null,
+      });
       const response =
         mode === "read"
           ? await loadGradeSheet(viewer, TEST_ID)
