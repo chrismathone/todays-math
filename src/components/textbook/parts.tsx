@@ -1058,6 +1058,7 @@ function PickEditor({
             <button
               type="button"
               className={styles.button}
+              aria-label={`${pick.entryId} 확인 요청`}
               onClick={() =>
                 onChange(
                   picks.map((item, itemIndex) =>
@@ -1262,15 +1263,19 @@ function ConceptFields({
           "counterexamples",
           "misconceptions",
         ] as const
-      ).map((key) => (
-        <label key={key} className={styles.field}>
-          <span>{conceptLabel(key)}</span>
-          <textarea
-            value={concept[key]}
-            onChange={(event) => patch(key, event.target.value)}
-          />
-        </label>
-      ))}
+      ).map((key) => {
+        const fieldId = `concept-${concept.conceptKey}-${key}`;
+        return (
+          <div key={key} className={styles.field}>
+            <label htmlFor={fieldId}>{conceptLabel(key)}</label>
+            <textarea
+              id={fieldId}
+              value={concept[key]}
+              onChange={(event) => patch(key, event.target.value)}
+            />
+          </div>
+        );
+      })}
       <fieldset className={styles.row}>
         <legend>백지 형식</legend>
         {(Object.keys(FORM_LABEL) as BlankForm[]).map((form) => {
@@ -2701,13 +2706,17 @@ export function ConfigPanel({
         </label>
         {print ? (
           <>
-            <label className={styles.field}>
-              <span>표지</span>
-              <select name="coverMode" defaultValue={print.coverMode}>
+            <div className={styles.field}>
+              <label htmlFor="textbook-cover-mode">표지</label>
+              <select
+                id="textbook-cover-mode"
+                name="coverMode"
+                defaultValue={print.coverMode}
+              >
                 <option value="separate">별도</option>
                 <option value="included">교재에 포함</option>
               </select>
-            </label>
+            </div>
             <label className={styles.field}>
               <span>첫 인쇄 쪽</span>
               <input

@@ -426,9 +426,10 @@ export function TextbookConceptLinkEditor({
       >
         <legend>{editingId ? "연결 대상 변경" : "연결 대상 찾기"}</legend>
         <div className={s.searchFields}>
-          <label className={s.field}>
-            자료 종류
+          <div className={s.field}>
+            <label htmlFor={`${id}-namespace`}>자료 종류</label>
             <select
+              id={`${id}-namespace`}
               value={namespace}
               onChange={(event) => {
                 resetSearch();
@@ -441,7 +442,7 @@ export function TextbookConceptLinkEditor({
                 </option>
               ))}
             </select>
-          </label>
+          </div>
           <label className={`${s.field} ${s.query}`}>
             이름·정의·ID 검색
             <input
@@ -529,9 +530,10 @@ export function TextbookConceptLinkEditor({
         {selected && (
           <div className={s.preview} aria-label="선택한 대상 정의">
             <Definition entry={selected} />
-            <label className={s.field}>
-              선택한 대상과의 관계
+            <div className={s.field}>
+              <label htmlFor={`${id}-relation`}>선택한 대상과의 관계</label>
               <select
+                id={`${id}-relation`}
                 value={relation}
                 onChange={(event) => {
                   setRelation(event.target.value as Relation);
@@ -544,7 +546,7 @@ export function TextbookConceptLinkEditor({
                   </option>
                 ))}
               </select>
-            </label>
+            </div>
             <div className={s.actions}>
               <button
                 className={s.primary}
