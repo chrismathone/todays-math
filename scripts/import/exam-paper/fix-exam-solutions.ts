@@ -28,6 +28,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 import { renderMathHtml } from "../../../src/lib/math/renderMathHtml";
 import { repairEquationScopes } from "./repairEquationScopes";
+import { repairExamText } from "./repairExamText";
 
 interface Row {
   id: string;
@@ -264,7 +265,7 @@ function applyRules(s: string): string {
     if (next === out) break;
     out = next;
   }
-  return repairEquationScopes(out);
+  return repairExamText(repairEquationScopes(out));
 }
 
 function gauge(): void {
