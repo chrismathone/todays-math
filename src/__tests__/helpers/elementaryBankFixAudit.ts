@@ -5,6 +5,7 @@
  * 저장 파일은 검토용 임시 자료이며 제품 파일을 바꾸지 않는다.
  */
 import { createHash } from "node:crypto";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
@@ -30,7 +31,54 @@ const unit = (grade: string, code: string) => {
   return found;
 };
 
-if (process.argv[2] === "compare") {
+if (process.argv[2] === "probe") {
+  const revision = process.argv[3];
+  if (!revision) throw new Error("고치기 전 커밋 필요");
+  const beforeSource = execFileSync(
+    "git",
+    ["show", `${revision}:scripts/figure/elem_advanced.py`],
+    { encoding: "utf8" },
+  );
+  // 옛 렌더러는 메모리에서만 불러온다. 다른 검사 도중 작업 파일을 바꾸지 않는다.
+  const script = [
+    "import sys,runpy",
+    "sys.path.insert(0,'scripts/figure')",
+    "from engine_path import engine_root",
+    "sys.path.insert(0,engine_root())",
+    "old=sys.stdin.buffer.read().decode('utf-8')",
+    "if old:",
+    " import elementary,elem_advanced",
+    " exec(compile(old,'before/elem_advanced.py','exec'),elem_advanced.__dict__)",
+    " elementary.KIND_FIELDS.update(elem_advanced.ADV_FIELDS)",
+    " for kind in elem_advanced.ADV_FIELDS: elementary.OPTIONAL.pop(kind,None)",
+    " elementary.OPTIONAL.update(elem_advanced.ADV_OPTIONAL)",
+    " elementary._RENDER.update(elem_advanced.ADV_RENDER)",
+    "runpy.run_path('scripts/qa/probe-elem-figure.py',run_name='__main__')",
+  ].join("\n");
+  const results = [beforeSource, ""].map((input) => {
+    const r = spawnSync(process.env.PYTHON_BIN ?? "python", ["-c", script], {
+      input,
+      encoding: "utf8",
+      timeout: 60_000,
+      maxBuffer: 32 * 1024 * 1024,
+    });
+    if (r.error || r.status !== 0)
+      throw new Error(`${r.error ?? ""} ${r.stderr}`);
+    return r.stdout;
+  });
+  const count = (results[0]!.match(/^### /gm) ?? []).length;
+  if (count === 0 || results[0] !== results[1])
+    throw new Error(`기존 ${count}개 그림 표본의 출력이 바뀜`);
+  console.log(
+    JSON.stringify({
+      probe: "scripts/qa/probe-elem-figure.py",
+      count,
+      rejected: (results[0]!.match(/^ERROR /gm) ?? []).length,
+      identical: true,
+      sha256: hash(results[0]),
+    }),
+  );
+} else if (process.argv[2] === "compare") {
   type Snapshot = { total: number; rows: Record<string, string[]> };
   const before = JSON.parse(readFileSync(process.argv[3]!, "utf8")) as Snapshot;
   const after = JSON.parse(readFileSync(process.argv[4]!, "utf8")) as Snapshot;

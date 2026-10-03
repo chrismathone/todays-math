@@ -81,6 +81,23 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "elementary-bank-net-and-hidden-dimensions",
+    title: "초등 원기둥 전개도와 정육면체 역산 그림",
+    changed:
+      "원기둥의 두 밑면을 옆면의 서로 반대쪽 긴 변에 붙이고, 한 모서리를 구하는 정육면체 그림에서 치수선과 치수 글자를 뺐다.",
+    look: "원기둥의 원 둘이 서로 반대쪽 긴 변에 닿아 있어야 한다. 정육면체 역산 그림에 답 길이가 보이면 안 되며, 면과 숨은 모서리 점선은 남아 있어야 한다. 치수를 주는 다른 직육면체 문항에는 기존 치수가 그대로 보여야 한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/tracks/briefs/bank-fix.md §2 EL-01·EL-02",
+      "docs/planning/09-figure-engine-guide.md §2.1·§2.2",
+      "src/__tests__/unit/elementaryBankFixFigures.test.ts",
+    ],
+    status: "대기",
+    needs:
+      "초6 2-6-2 원기둥 전개도, 초6 1-6-1 문형10, 초5 2-5-2 문형01과 치수가 있는 직육면체 문항을 넣은 시험지",
+    changedOn: "2026-10-03",
+  },
+  {
     id: "studio-export-condition-and-solve-layout",
     title: "시험지 조건 상자·문항 머리와 오른쪽 풀이 공간",
     changed:

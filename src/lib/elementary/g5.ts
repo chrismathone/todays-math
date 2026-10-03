@@ -12257,7 +12257,7 @@ function boxCubeCalc(unit: UnitSeed, rng: Rng): ElemProblem {
     `정육면체의 모든 모서리 길이의 합이 ${n(12 * e)} cm입니다. 한 모서리의 길이는 몇 cm입니까?`,
     n(e),
     `정육면체의 모서리는 ${n(12)}개이고 길이가 모두 같습니다. ${expr(`${12 * e}\\div12=${e}`)}이므로 ${n(e)} cm입니다.`,
-    fig("cuboid", { w: e, d: e, h: e }),
+    fig("cuboid", { w: e, d: e, h: e, showDimensions: false }),
   );
 }
 

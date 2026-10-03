@@ -1412,12 +1412,14 @@ function circle62(unit: UnitSeed, rng: Rng): ElemProblem {
 
 // ───────────────────── 2-6 원기둥, 원뿔, 구 ─────────────────────
 
+// 풀의 크기와 고르는 횟수를 유지해 같은 씨앗의 수치는 바꾸지 않는다.
+// 두 밑면은 반드시 옆면의 서로 마주 보는 변에 하나씩 붙인다.
 const CYL_NET_LAYOUTS = [
   "opp",
   "oppFlip",
   "oppMid",
-  "sameTop",
-  "sameBot",
+  "opp",
+  "oppFlip",
   "ends",
 ] as const;
 
@@ -12976,7 +12978,7 @@ function surfFormEdgeFromArea(unit: UnitSeed, rng: Rng): ElemProblem {
     `겉넓이가 ${num(6 * a * a)} cm²인 정육면체가 있습니다. 한 모서리의 길이는 몇 cm입니까?`,
     num(a),
     `한 면은 ${expr(`${6 * a * a}\\div6=${a * a}`)} 이므로 한 모서리는 ${num(a)} cm입니다.`,
-    fig("cuboid", { w: a, d: a, h: a }),
+    fig("cuboid", { w: a, d: a, h: a, showDimensions: false }),
   );
 }
 
