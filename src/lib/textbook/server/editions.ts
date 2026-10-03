@@ -19,6 +19,11 @@ import {
 } from "../access";
 import { bookSummary } from "./books";
 import { invalid, issue, revisionMismatch } from "./errors";
+import {
+  editionConceptUnits,
+  lectureRefFaults,
+  lectureRefsOf,
+} from "./lectureRefs";
 import { type RequestKey, runOnce } from "./requests";
 import { type TextbookDb, type TextbookSql, SQL_NOW } from "./sql";
 
@@ -149,6 +154,27 @@ export async function saveStructure(
       const unitKeys = input.outline.map((unit) => unit.unitKey);
       if (new Set(unitKeys).size !== unitKeys.length)
         throw invalid("단원 열쇠가 겹칩니다.");
+
+      // 개념 강의 참조 — **새로 더한 것만** 확인한다. 전부터 있던 참조(그사이 강의가 내려갔을 수 있다)가
+      // 관계없는 목차 저장을 막지 않게. 남은 것은 발행 사전 검사가 전부 본다
+      const [stored] = await tx.query<{ outline: StoredOutline }>(
+        `SELECT "outline" FROM "textbook_edition" WHERE "id" = $1::uuid`,
+        [editionId],
+      );
+      const refKey = (ref: { lectureId: string; conceptKey: string }) =>
+        `${ref.lectureId}/${ref.conceptKey}`;
+      const before = new Set(
+        lectureRefsOf(stored?.outline.units ?? []).map(refKey),
+      );
+      const added = lectureRefsOf(input.outline).filter(
+        (ref) => !before.has(refKey(ref)),
+      );
+      const [fault] = await lectureRefFaults(
+        tx,
+        added,
+        await editionConceptUnits(tx, editionId),
+      );
+      if (fault) throw invalid(`개념 강의 연결: ${fault.reason}`);
       const existing = await sectionSummaries(tx, editionId);
       const placed = input.outline.flatMap((unit) =>
         unit.sections.map((section, orderIndex) => ({

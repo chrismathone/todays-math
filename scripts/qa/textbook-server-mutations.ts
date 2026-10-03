@@ -33,6 +33,8 @@ const FLOWS = "src/__tests__/lib/textbookTeacherFlows.test.ts";
 const FROZEN = "src/__tests__/lib/textbookFrozenSources.test.ts";
 const ARTIFACTS = "src/__tests__/lib/textbookPublishArtifacts.test.ts";
 const ROUTES = "src/__tests__/api/textbookRoutes.test.ts";
+const REGISTER = "src/__tests__/lib/textbookRegisterAndRefs.test.ts";
+const VALIDATOR = "src/__tests__/lib/textbookRealValidator.test.ts";
 
 const MUTATIONS: Mutation[] = [
   // ── 범위 (access.ts)
@@ -155,7 +157,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "담기: 출제 자격을 안 묻는다",
     file: `${LIB}/server/items.ts`,
-    line: 287,
+    line: 374,
     find: `const ineligible = problemIneligibleReason(row);`,
     replace: `const ineligible = null as string | null;`,
     tests: [CAPTURE],
@@ -163,7 +165,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "담기: 낡은 집계 revision 으로 담는다",
     file: `${LIB}/server/items.ts`,
-    line: 342,
+    line: 443,
     find: `if (access.revision !== input.expectedRevision)`,
     replace: `if (false)`,
     tests: [CAPTURE],
@@ -171,7 +173,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "배치: 낡은 집계 revision 으로 고친다",
     file: `${LIB}/server/items.ts`,
-    line: 471,
+    line: 595,
     find: `if (access.revision !== input.expectedRevision)`,
     replace: `if (false)`,
     tests: [CAPTURE],
@@ -179,7 +181,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "다시 캡처: 자격을 안 묻는다",
     file: `${LIB}/server/items.ts`,
-    line: 566,
+    line: 693,
     find: `const ineligible = problemIneligibleReason(row);`,
     replace: `const ineligible = null as string | null;`,
     tests: [CAPTURE],
@@ -252,7 +254,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "확정: 쪽 계획에 빠진 문항을 통과시킨다",
     file: `${LIB}/publish/finalize.ts`,
-    line: 70,
+    line: 74,
     find: `if (count !== 1)`,
     replace: `if (false)`,
     tests: [PUBLISH],
@@ -515,28 +517,192 @@ const MUTATIONS: Mutation[] = [
   },
   // ── 백지 소단원 조회 (conceptRows.ts)
   {
-    name: "조회: 동료의 초안도 보인다",
-    file: `${LIB}/server/conceptRows.ts`,
-    line: 0,
-    find: `OR (e."status" = 'published' AND t."visibility" = 'branch'`,
-    replace: `OR (t."visibility" = 'branch'`,
-    tests: [ROUTES],
-  },
-  {
-    name: "조회: 주인이 지점을 떠나도 보인다",
-    file: `${LIB}/server/conceptRows.ts`,
-    line: 0,
-    find: `AND t."shared_branch_id" = $3::uuid AND o."branch_id" = t."shared_branch_id"`,
-    replace: `AND t."shared_branch_id" = $3::uuid`,
-    tests: [ROUTES],
-  },
-  {
     name: "조회: 비슷한 소단원도 맞춘다",
     file: `${LIB}/server/conceptRows.ts`,
     line: 0,
     find: `AND EXISTS (SELECT 1 FROM jsonb_array_elements(c."blank_items") b WHERE b ->> 'blankSectionKey' = $2::text)`,
     replace: `AND EXISTS (SELECT 1 FROM jsonb_array_elements(c."blank_items") b WHERE split_part(b ->> 'blankSectionKey', '::', 2) = split_part($2::text, '::', 2))`,
     tests: [ROUTES],
+  },
+  // ── 판본 읽기의 SQL 꼴 (access.ts `readableEditionSql`) — 조회 · 활동 증거가 같이 쓴다
+  {
+    name: "읽기 SQL: 동료의 초안도 읽힌다",
+    file: `${LIB}/access.ts`,
+    line: 0,
+    find: `    e."status" = 'published'`,
+    replace: `    TRUE`,
+    tests: [ROUTES, REGISTER],
+  },
+  {
+    name: "읽기 SQL: 주인이 지점을 떠나도 읽힌다",
+    file: `${LIB}/access.ts`,
+    line: 0,
+    find: `AND t."shared_branch_id" = o."branch_id"`,
+    replace: ``,
+    tests: [ROUTES, REGISTER],
+  },
+  {
+    name: "읽기 SQL: 다른 지점도 읽힌다",
+    file: `${LIB}/access.ts`,
+    line: 0,
+    find: `AND t."shared_branch_id" = \${branch}::uuid`,
+    replace: ``,
+    tests: [REGISTER],
+  },
+  {
+    name: "증거: 읽을 수 없는 책의 이름을 낸다",
+    file: `${LIB}/server/conceptRows.ts`,
+    line: 0,
+    find: `return row?.canOpen`,
+    replace: `return row`,
+    tests: [REGISTER],
+  },
+  // ── 새 문항으로 등록 (itemRegister.ts)
+  {
+    name: "등록: 승인된 문항으로 만든다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `$10::"problem_pool", 'pending', `,
+    replace: `$10::"problem_pool", 'approved', `,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 등록하면서 연결한다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `UPDATE "textbook_item" SET "link_candidates" = $3::jsonb,`,
+    replace: `UPDATE "textbook_item" SET "link_status" = 'linked', "link_candidates" = $3::jsonb,`,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 그림이 있어도 등록한다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `if (source.figureCount > 0)`,
+    replace: `if (false)`,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 같은 배치를 또 등록한다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `if (waiting.length)`,
+    replace: `if (false)`,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 이미 연결된 배치도 등록한다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `if (source.linkStatus === "linked")`,
+    replace: `if (false)`,
+    tests: [REGISTER],
+  },
+  {
+    name: "등록: 낡은 집계 revision 으로 등록한다",
+    file: `${LIB}/server/itemRegister.ts`,
+    line: 0,
+    find: `if (access.revision !== input.expectedRevision)`,
+    replace: `if (false)`,
+    tests: [REGISTER],
+  },
+  // ── 목차의 개념 강의 참조 (lectureRefs.ts · editions.ts · preflight.ts · imports.ts)
+  {
+    name: "강의 참조: 게시 안 된 강의도 받는다",
+    file: `${LIB}/server/lectureRefs.ts`,
+    line: 0,
+    find: `: lecture.status !== "published"`,
+    replace: `: false`,
+    tests: [REGISTER],
+  },
+  {
+    name: "강의 참조: 판본에 없는 개념도 받는다",
+    file: `${LIB}/server/lectureRefs.ts`,
+    line: 0,
+    find: `: conceptUnit === undefined`,
+    replace: `: false`,
+    tests: [REGISTER],
+  },
+  {
+    name: "강의 참조: 다른 단원의 강의도 받는다",
+    file: `${LIB}/server/lectureRefs.ts`,
+    line: 0,
+    find: `: conceptUnit !== null && conceptUnit !== lecture.unitId`,
+    replace: `: false`,
+    tests: [REGISTER],
+  },
+  {
+    name: "강의 목록: 초안 · 내린 강의도 낸다",
+    file: `${LIB}/server/lectureRefs.ts`,
+    line: 0,
+    find: `WHERE "unit_id" = $1::uuid AND "status" = 'published'`,
+    replace: `WHERE "unit_id" = $1::uuid`,
+    tests: [REGISTER],
+  },
+  {
+    name: "목차 저장: 새 강의 참조를 확인하지 않는다",
+    file: `${LIB}/server/editions.ts`,
+    line: 0,
+    find: `if (fault) throw invalid(`,
+    replace: `if (false) throw invalid(`,
+    tests: [REGISTER],
+  },
+  {
+    name: "사전 검사: 강의 참조를 안 본다",
+    file: `${LIB}/publish/preflight.ts`,
+    line: 0,
+    find: `    lectureRefsOf(exchange.units),`,
+    replace: `    [],`,
+    tests: [REGISTER],
+  },
+  {
+    name: "가져오기: 성립하지 않는 강의 참조도 가져온다",
+    file: `${LIB}/server/imports.ts`,
+    line: 0,
+    find: `!droppedRefs.has(`,
+    replace: `!new Set<string>().has(`,
+    tests: [REGISTER],
+  },
+  // ── 실제 검증기와 맞물리는 자리 (exchange.ts · items.ts · deps.server.ts · snapshotFromProblem.ts)
+  {
+    name: "교환 형식: 차례를 구획 안의 값으로 낸다",
+    file: `${LIB}/server/exchange.ts`,
+    line: 0,
+    find: `orderIndex: position,`,
+    replace: `orderIndex: row.orderIndex,`,
+    tests: [VALIDATOR],
+  },
+  {
+    name: "배치 응답: 차례를 구획 안의 값으로 낸다",
+    file: `${LIB}/server/items.ts`,
+    line: 0,
+    find: `o."globalIndex" AS "orderIndex", i."order_index" AS "sectionOrder",`,
+    replace: `i."order_index" AS "orderIndex", i."order_index" AS "sectionOrder",`,
+    tests: [VALIDATOR],
+  },
+  {
+    name: "사전 검사: 초안 기준으로 본다",
+    file: `${LIB}/publish/deps.server.ts`,
+    line: 0,
+    find: `mode: "publish",`,
+    replace: `mode: "draft",`,
+    tests: [VALIDATOR],
+  },
+  {
+    name: "확정본: 인라인 SVG 를 짝 모르는 그림으로 적는다",
+    file: `${LIB}/snapshotFromProblem.ts`,
+    line: 0,
+    find: `choiceIndex: 0,`,
+    replace: `choiceIndex: null,`,
+    tests: [VALIDATOR, CAPTURE],
+  },
+  {
+    name: "걸음: 조판기가 남긴 원고의 사유를 버린다",
+    file: `${LIB}/publish/step.ts`,
+    line: 0,
+    find: `if (!Array.isArray(raw)) return [];`,
+    replace: `return [];`,
+    tests: [ARTIFACTS],
   },
   {
     name: "활동: 남의 학생을 읽고 쓴다",
@@ -612,6 +778,8 @@ const control = runTests([
   FROZEN,
   ARTIFACTS,
   ROUTES,
+  REGISTER,
+  VALIDATOR,
 ]);
 console.log(
   `대조군(변이 없음): ${control.passed} 통과 · ${control.failed} 실패`,

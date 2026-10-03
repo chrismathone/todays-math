@@ -118,7 +118,12 @@ export function stepIssues(steps: readonly StepRow[]): TextbookIssue[] {
   const issues: TextbookIssue[] = [];
   for (const step of steps) {
     for (const entry of step.result?.issues ?? []) issues.push(entry);
-    if (step.state === "failed" && step.result?.error)
+    // 조판기가 원고의 사유를 남겼으면 그것이 실패의 까닭이다 — 같은 글을 한 줄로 또 싣지 않는다
+    if (
+      step.state === "failed" &&
+      step.result?.error &&
+      !step.result.issues?.length
+    )
       issues.push({
         code: "render-failed",
         severity: "error",

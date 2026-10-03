@@ -115,8 +115,8 @@ export const testProblemItemSchema = z.strictObject({
     content: z.string().max(100_000),
     answer: z.string().max(100_000),
     solution: z.string().max(100_000).nullable(),
-    figureDims: z.array(z.number()).max(400).optional(),
-    figureSourceMm: z.array(z.number()).max(200).optional(),
+    figureDims: z.array(z.number().nullable()).max(400).optional(),
+    figureSourceMm: z.array(z.number().nullable()).max(200).optional(),
     choiceFigureIndex: z
       .array(z.number().int().nonnegative().nullable())
       .max(200)
@@ -124,6 +124,11 @@ export const testProblemItemSchema = z.strictObject({
   }),
 });
 export type TestProblemItem = z.infer<typeof testProblemItemSchema>;
+/** Snapshot geometry can be unknown at individual indices; bank writes keep their original schema. */
+export type TestProblemFigureFields = Pick<
+  TestProblemItem["problem"],
+  "figureDims" | "figureSourceMm" | "choiceFigureIndex"
+>;
 
 /**
  * 출제 엔진이 요청 배분을 완전히 채우지 못했을 때(인접 난이도 대체 등) 투명하게 보고하는 항목.

@@ -49,17 +49,19 @@ export const PUT = withErrorLog(
     textbookRoute(request, async ({ actor, db }) => {
       const scope = await scopeOf(context);
       const body = await readBody(request, textbookSaveConceptSchema);
-      return data(
-        textbookConceptRecordSchema,
-        await saveConcept(
-          db,
-          actor,
-          scope.editionId,
-          scope.conceptKey,
-          requestKeyOf(actor, "concept-save", body, scope),
-          body,
-          resolveReviewedConcept,
-        ),
+      const saved = await saveConcept(
+        db,
+        actor,
+        scope.editionId,
+        scope.conceptKey,
+        requestKeyOf(actor, "concept-save", body, scope),
+        body,
+        resolveReviewedConcept,
       );
+      return data(textbookConceptRecordSchema, {
+        concept: saved.concept,
+        revision: saved.revision,
+        aggregateRevision: saved.aggregateRevision,
+      });
     }),
 );

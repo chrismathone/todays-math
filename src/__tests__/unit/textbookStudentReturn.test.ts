@@ -4,12 +4,16 @@ import {
   studentLoginDestination,
   studentLoginHref,
 } from "@/lib/learn/studentReturnTo";
-import { studentGateFor } from "@/lib/studentRouteAccess";
+import { studentGateFor, anonymousLearnGate } from "@/lib/studentRouteAccess";
 
 const qr = "/q/abcdefghijklmnopqrst";
 describe("student textbook login return", () => {
   it("carries the exact QR through login and compulsory password change", () => {
     expect(normalizeStudentReturnTo(qr)).toBe(qr);
+    expect(anonymousLearnGate("GET", qr)).toEqual({
+      kind: "redirect",
+      to: "/learn/login",
+    });
     expect(studentLoginDestination(qr, false)).toBe(qr);
     const password = new URL(
       studentLoginDestination(qr, true),
@@ -54,7 +58,7 @@ describe("student textbook login return", () => {
         "GET",
         "/api/learn/textbook/editions/e/concepts/c/attempts",
       ).kind,
-    ).toBe("forbidden");
+    ).toBe("allow");
     expect(
       studentGateFor(
         false,

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import StudentMathExplorers from "@/components/math-explorers/StudentMathExplorers";
 import { readJourneyTheme } from "@/lib/journeyThemeStore";
 import { getStudentSession } from "@/lib/learn/studentRequest";
+import { TextbookReturnLink } from "@/components/learn/textbook/TextbookReturnLink";
 
 export const metadata: Metadata = { title: "수학 탐험 · 오늘의수학" };
 
@@ -10,7 +11,10 @@ export const metadata: Metadata = { title: "수학 탐험 · 오늘의수학" };
 export default async function LearnHomePage({
   searchParams,
 }: {
-  searchParams: Promise<{ view?: string | string[] }>;
+  searchParams: Promise<{
+    view?: string | string[];
+    fromTextbook?: string | string[];
+  }>;
 }) {
   const [student, query] = await Promise.all([
     getStudentSession(),
@@ -24,10 +28,18 @@ export default async function LearnHomePage({
     theme: "classic" as const,
   }));
   return (
-    <StudentMathExplorers
-      key={view ?? "home"}
-      initialView={view}
-      journeyTheme={theme}
-    />
+    <>
+      {query.fromTextbook && (
+        <TextbookReturnLink
+          studentId={student.studentId}
+          value={query.fromTextbook}
+        />
+      )}
+      <StudentMathExplorers
+        key={view ?? "home"}
+        initialView={view}
+        journeyTheme={theme}
+      />
+    </>
   );
 }

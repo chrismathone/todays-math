@@ -532,7 +532,8 @@ describe("확정본은 손실 없이 담긴다", () => {
       {
         assetId,
         sha256: assetId,
-        choiceIndex: null,
+        // 인라인 SVG 는 발문의 그림이다(보기 그림이 아니다)
+        choiceIndex: 0,
         sourceWidthMm: null,
         altText: null,
       },

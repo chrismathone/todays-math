@@ -3,6 +3,7 @@ import type { Problem, TestProblem } from "@prisma/client";
 import { serializeTestProblemItem } from "@/lib/serializers";
 import { difficultySchema, uuidSchema } from "@/contracts/common.contract";
 import { problemTypeSchema } from "@/contracts/problem.contract";
+import type { TestProblemFigureFields } from "@/contracts/test.contract";
 import {
   textbookProblemSnapshotSchema,
   type ProblemSnapshot,
@@ -44,6 +45,9 @@ export function snapshotOf(row: TestContentLink): ProblemSnapshot | null {
   const stored = row.snapshot;
   if (!stored || stored.id !== row.snapshotId)
     throw new Error("시험지의 고정 문항을 불러오지 못했습니다.");
+  // Test access is already authorized, including a reissue across owners. Its assets
+  // remain scoped to the snapshot's persisted owner, never to the viewer or live bank.
+  uuidSchema.parse(stored.userId);
   const snapshot = textbookProblemSnapshotSchema.parse({
     snapshotId: stored.id,
     source: stored.sourceRef,
@@ -69,6 +73,12 @@ export function snapshotOf(row: TestContentLink): ProblemSnapshot | null {
     snapshotHash(snapshot) !== snapshot.snapshotHash
   )
     throw new Error("시험지의 고정 문항 내용 해시가 일치하지 않습니다.");
+  const svgId = snapshot.rawSource?.figureSvgAssetId;
+  if (
+    svgId &&
+    !snapshot.payload.figures.some((figure) => figure.assetId === svgId)
+  )
+    throw new Error("고정 SVG 자산이 문항의 그림 목록에 없습니다.");
   return snapshot;
 }
 
@@ -112,13 +122,15 @@ export function contentOf<
   },
 >(
   row: TestContentLink & { problem: T },
-): Omit<T, "choiceFigureIndex"> & { choiceFigureIndex?: (number | null)[] } {
+): Omit<T, keyof TestProblemFigureFields> & TestProblemFigureFields {
   const snapshot = snapshotOf(row);
   if (!snapshot) return row.problem;
   const metadata = metadataOf(row);
   const printable = snapshotToPrintable(snapshot, 0, (id) => {
     const asset = row.snapshotAssets?.get(id);
     if (!asset) throw new Error(`고정 문항 자산을 불러오지 못했습니다: ${id}`);
+    if (snapshot.rawSource?.figureSvgAssetId === id && !asset.svg)
+      throw new Error(`고정 SVG 자산의 원문을 불러오지 못했습니다: ${id}`);
     return asset;
   });
   return {
