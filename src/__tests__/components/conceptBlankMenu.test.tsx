@@ -24,6 +24,10 @@ import {
   pendingAccount,
 } from "./adminFixtures";
 
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ replace: vi.fn(), refresh: vi.fn() }),
+}));
+
 const account: AccountAccess = {
   id: "u1",
   name: "원장",
@@ -147,7 +151,7 @@ describe("계정 권한 화면", () => {
           })
         : json(accountsResponse()),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(
       await screen.findByRole("button", { name: "김하늘 계정 검토" }),
     );
@@ -160,7 +164,7 @@ describe("계정 권한 화면", () => {
     fireEvent.click(box);
     expect(box).toBeChecked();
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    await screen.findByText("계정 변경을 저장했습니다.");
     const patch = fetchMock.mock.calls.find(
       ([, init]) => init?.method === "PATCH",
     )!;

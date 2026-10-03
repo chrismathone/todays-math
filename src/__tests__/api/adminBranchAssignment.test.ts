@@ -85,7 +85,16 @@ beforeEach(() => {
   state.updated = null;
   state.branchFindUnique.mockResolvedValue({ id: branchId });
   state.classCount.mockResolvedValue(0);
-  state.userFindFirst.mockImplementation(async () => state.previous);
+  const withBranch = (account: Record<string, unknown> | null) =>
+    account && {
+      ...account,
+      branch: account.branchId
+        ? { name: "QA branch", disabledMenus: [], menuRevision: 1 }
+        : null,
+    };
+  state.userFindFirst.mockImplementation(async () =>
+    withBranch(state.previous),
+  );
   state.userUpdateMany.mockImplementation(
     async ({ data }: { data: Record<string, unknown> }) => {
       state.updated = {
@@ -96,7 +105,9 @@ beforeEach(() => {
       return { count: 1 };
     },
   );
-  state.userFindUniqueOrThrow.mockImplementation(async () => state.updated);
+  state.userFindUniqueOrThrow.mockImplementation(async () =>
+    withBranch(state.updated),
+  );
   state.userCount.mockResolvedValue(1);
   state.documentUpdateMany.mockResolvedValue({ count: 0 });
   state.auditCreate.mockResolvedValue({});
@@ -119,6 +130,48 @@ beforeEach(() => {
 });
 
 describe("최고관리자의 기존 계정 지점 배정", () => {
+  it("rejects a nested account mutation after the account leaves the displayed branch", async () => {
+    state.previous = {
+      ...state.previous,
+      branchId: otherBranchId,
+      branchRole: "teacher",
+    };
+    expect(
+      (await patch({ name: "Stale edit", expectedBranchId: branchId }))!.status,
+    ).toBe(409);
+    expect(state.userUpdateMany).not.toHaveBeenCalled();
+    expect(state.auditCreate).not.toHaveBeenCalled();
+  });
+  it("fences the conditional write by displayed branch and updatedAt", async () => {
+    state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+    expect(
+      (await patch({ name: "Current edit", expectedBranchId: branchId }))!
+        .status,
+    ).toBe(200);
+    expect(state.userUpdateMany.mock.calls[0][0].where).toMatchObject({
+      branchId,
+      updatedAt: new Date(updatedAt),
+    });
+  });
+  it("checks explicit unassigned scope and keeps old clients compatible", async () => {
+    expect(
+      (await patch({ name: "Unassigned", expectedBranchId: null }))!.status,
+    ).toBe(200);
+    expect(state.userUpdateMany.mock.calls[0][0].where.branchId).toBeNull();
+    state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+    expect((await patch({ name: "Legacy caller" }))!.status).toBe(200);
+    expect(
+      (await patch({ name: "Stale unassigned", expectedBranchId: null }))!
+        .status,
+    ).toBe(409);
+  });
+  it.each(["configuredMenus", "branchMenus", "branchMenuRevision"])(
+    "rejects read-only result field %s",
+    async (key) => {
+      expect((await patch({ name: "Strict", [key]: [] }))!.status).toBe(400);
+      expect(state.transaction).not.toHaveBeenCalled();
+    },
+  );
   it("managed mappings prevent direct branch or administrator promotion", async () => {
     state.managed = { blockReasons: [] };
     expect(

@@ -29,7 +29,11 @@ const { connection } = vi.hoisted(() => ({
 vi.mock("next/server", () => ({ connection }));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/session", () => ({
-  getSessionUser: vi.fn(async () => ({ id: "test-user", isAdmin: false })),
+  getSessionUser: vi.fn(async () => ({
+    id: "test-user",
+    isAdmin: false,
+    menus: ["teaching"],
+  })),
 }));
 
 function renderManage() {

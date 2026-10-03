@@ -52,10 +52,8 @@ import Credentials from "next-auth/providers/credentials";
 import { authLoginRequestSchema } from "@/contracts/auth.contract";
 import type { UserRole } from "@/contracts/problemReport.contract";
 import { db } from "@/lib/db";
-import { filterListeningPilotMenus } from "@/lib/listeningPilot";
+import { effectiveWorkspaceMenuPolicy } from "@/lib/workspaceMenuPolicy.server";
 import {
-  ALL_WORKSPACE_MENUS,
-  workspaceMenusFromDisabled,
   type ApprovalStatus,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
@@ -284,6 +282,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           branchRole: true,
           approvalStatus: true,
           disabledMenus: true,
+          branch: { select: { disabledMenus: true, menuRevision: true } },
           deletedAt: true,
           suspendedAt: true,
           sessionVersion: true,
@@ -305,13 +304,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       token.branchId = current.branchId;
       token.branchRole = current.branchRole;
       token.approvalStatus = current.approvalStatus;
-      token.menus = filterListeningPilotMenus(
-        current,
-        token.isAdmin
-          ? ALL_WORKSPACE_MENUS
-          : workspaceMenusFromDisabled(current.disabledMenus),
-        current.disabledMenus,
-      );
+      token.menus = effectiveWorkspaceMenuPolicy(current).menus;
       return token;
     },
     async session({ session, token }) {

@@ -4,12 +4,17 @@ import { useEffect, useId, useRef, useState } from "react";
 import {
   ALL_WORKSPACE_MENUS,
   normalizeWorkspaceMenus,
+  isPersonalMenuSelectionRepresentable,
   workspaceMenuInSidebar,
   workspaceMenuOptionsOf,
   type ManagedAccount,
   type WorkspaceMenu,
   type WorkspaceProduct,
 } from "@/contracts/accountAccess.contract";
+import type {
+  BranchListResponse,
+  BranchSummary,
+} from "@/contracts/branchAdmin.contract";
 import {
   AccountRequestError,
   accountRequest,
@@ -63,7 +68,9 @@ export default function AccountReview({
   onUpdate: (account: ManagedAccount) => void;
   autoFocus?: boolean;
 }) {
-  const originalMenus = normalizeWorkspaceMenus(account.menus);
+  const originalMenus = normalizeWorkspaceMenus(
+    account.configuredMenus ?? account.menus,
+  );
   const originalBranchRole =
     account.branchRole ??
     (account.branchId && account.isAdmin ? "manager" : "teacher");
@@ -78,7 +85,8 @@ export default function AccountReview({
   const [branchRole, setBranchRole] = useState<"owner" | "manager" | "teacher">(
     originalBranchRole,
   );
-  const [branches, setBranches] = useState<{ id: string; name: string }[]>([]);
+  const [branches, setBranches] = useState<BranchSummary[]>([]);
+  const [branchesError, setBranchesError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [issuedPassword, setIssuedPassword] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -89,8 +97,44 @@ export default function AccountReview({
   const [notice, setNotice] = useState<string | null>(null);
   const [confirmReject, setConfirmReject] = useState(false);
   const headingRef = useRef<HTMLHeadingElement>(null);
-  const effectiveMenus = branchManager ? ALL_WORKSPACE_MENUS : menus;
   const branchChanged = branchId !== (account.branchId ?? "");
+  const previewBranchMenus = !branchId
+    ? ALL_WORKSPACE_MENUS
+    : branchChanged
+      ? branches.find((branch) => branch.id === branchId)?.menus
+      : (account.branchMenus ??
+        branches.find((branch) => branch.id === branchId)?.menus);
+  const branchPolicyUnknown = Boolean(branchId) && !previewBranchMenus;
+  const unavailableMenus =
+    account.unavailableMenus ??
+    (account.menus.includes("english-listening") ? [] : ["english-listening"]);
+  const effectiveMenus = menus.filter(
+    (menu) =>
+      previewBranchMenus?.includes(menu) && !unavailableMenus.includes(menu),
+  );
+  function menuAvailabilityNote(menu: WorkspaceMenu) {
+    const reasons = [];
+    if (!previewBranchMenus?.includes(menu))
+      reasons.push(
+        branchPolicyUnknown ? "지점 메뉴 확인 전" : "지점에서 사용하지 않음",
+      );
+    if (unavailableMenus.includes(menu))
+      reasons.push(
+        account.unavailableMenus
+          ? "시범 이용 대상이 아님"
+          : "시범 이용 대상 확인 필요",
+      );
+    return reasons.length
+      ? `${reasons.join(" · ")} · ${menus.includes(menu) ? "개인 선택 보존" : "개인 선택 안 함"}`
+      : "";
+  }
+  const menusChanged =
+    menus.length !== originalMenus.length ||
+    menus.some((menu) => !originalMenus.includes(menu));
+  const personalMenuError =
+    menusChanged && !isPersonalMenuSelectionRepresentable(menus)
+      ? "영어듣기·자료은행을 개인 메뉴로 선택하려면 학교별 내신 대비·문제 만들기·문제 보관함 중 하나 이상도 선택해 주세요. 지점에서 차단된 개인 선택은 보존됩니다."
+      : null;
   const branchRoleChanged =
     Boolean(branchId) && branchRole !== originalBranchRole;
   const menuEditingDisabled =
@@ -98,8 +142,7 @@ export default function AccountReview({
     conflict ||
     authError ||
     account.isSuperAdmin ||
-    Boolean(account.deletedAt) ||
-    branchManager;
+    Boolean(account.deletedAt);
   function isDraftDirty(
     nextMenus = menus,
     nextBranchId = branchId,
@@ -125,20 +168,24 @@ export default function AccountReview({
   useEffect(() => {
     if (account.isSuperAdmin || account.deletedAt) return;
     const controller = new AbortController();
-    accountRequest<{ data: { id: string; name: string }[] }>(
-      "/api/admin/branches",
-      { signal: controller.signal },
-    )
+    accountRequest<BranchListResponse>("/api/admin/branches", {
+      signal: controller.signal,
+    })
       .then((response) => {
-        if (!controller.signal.aborted) setBranches(response.data);
+        if (!controller.signal.aborted) {
+          setBranches(response.data);
+          setBranchesError(false);
+        }
       })
       .catch(() => {
-        /* Account editing remains available when branch options cannot load. */
+        if (!controller.signal.aborted) setBranchesError(true);
       });
     return () => controller.abort();
   }, [account.isSuperAdmin, account.deletedAt]);
 
   function changeMenus(menu: WorkspaceMenu) {
+    if (!previewBranchMenus?.includes(menu) || unavailableMenus.includes(menu))
+      return;
     const next = menus.includes(menu)
       ? menus.filter((item) => item !== menu)
       : [...menus, menu];
@@ -152,7 +199,9 @@ export default function AccountReview({
       busyRef.current ||
       conflict ||
       account.isSuperAdmin ||
-      account.deletedAt
+      account.deletedAt ||
+      (approvalStatus !== "rejected" && personalMenuError) ||
+      (branchChanged && branchPolicyUnknown)
     )
       return;
     busyRef.current = true;
@@ -169,6 +218,7 @@ export default function AccountReview({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             expectedUpdatedAt: account.updatedAt,
+            expectedBranchId: account.branchId ?? null,
             ...(name !== account.name ? { name } : {}),
             ...(email !== account.email ? { email } : {}),
             ...(branchChanged || branchRoleChanged
@@ -176,15 +226,19 @@ export default function AccountReview({
                   branchId: branchId || null,
                   ...(branchId ? { branchRole } : {}),
                 }
-              : account.branchId
+              : account.branchId && branchManager !== account.isAdmin
                 ? { isAdmin: branchManager }
                 : {}),
             ...(approvalStatus ? { approvalStatus } : {}),
-            ...(approvalStatus !== "rejected" ? { menus } : {}),
+            ...(approvalStatus !== "rejected" && menusChanged ? { menus } : {}),
           }),
         },
       );
-      setMenus(normalizeWorkspaceMenus(result.data.menus));
+      setMenus(
+        normalizeWorkspaceMenus(
+          result.data.configuredMenus ?? result.data.menus,
+        ),
+      );
       setName(result.data.name);
       setEmail(result.data.email);
       setBranchManager(result.data.isAdmin);
@@ -196,7 +250,7 @@ export default function AccountReview({
           ? "계정을 승인하고 선택한 메뉴를 저장했습니다."
           : approvalStatus === "rejected"
             ? "가입 승인을 거절했습니다."
-            : "사용 가능한 메뉴를 저장했습니다.",
+            : "계정 변경을 저장했습니다.",
       );
       onLockChange(false);
     } catch (cause) {
@@ -226,7 +280,7 @@ export default function AccountReview({
     onLockChange(true);
     try {
       const latest = await reloadManagedAccount(account);
-      setMenus(normalizeWorkspaceMenus(latest.menus));
+      setMenus(normalizeWorkspaceMenus(latest.configuredMenus ?? latest.menus));
       setName(latest.name);
       setEmail(latest.email);
       setBranchManager(latest.isAdmin);
@@ -266,6 +320,7 @@ export default function AccountReview({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             expectedUpdatedAt: account.updatedAt,
+            expectedBranchId: account.branchId ?? null,
             [field]: value,
           }),
         },
@@ -302,6 +357,11 @@ export default function AccountReview({
         data: { initialPassword: string };
       }>(`/api/admin/users/${encodeURIComponent(account.id)}/password`, {
         method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          expectedUpdatedAt: account.updatedAt,
+          expectedBranchId: account.branchId ?? null,
+        }),
       });
       const latest = await reloadManagedAccount(account);
       onUpdate(latest);
@@ -309,6 +369,7 @@ export default function AccountReview({
       setNotice("임시 비밀번호를 발급했습니다. 현재 로그인은 모두 종료됩니다.");
     } catch (cause) {
       setError(requestMessage(cause));
+      setConflict(cause instanceof AccountRequestError && cause.status === 409);
     } finally {
       busyRef.current = false;
       setBusy(false);
@@ -469,7 +530,18 @@ export default function AccountReview({
       <h3 id={`${menuId}-heading`} className={s.menuHeading}>
         사용 가능한 메뉴
       </h3>
-      <p className={s.help}>승인된 계정은 선택한 메뉴만 이용할 수 있습니다.</p>
+      <p className={s.help}>
+        원장·관리자·강사 모두 개인 설정과 지점에서 허용한 메뉴만 이용할 수
+        있습니다. 지점에서 끈 메뉴의 개인 선택은 보존되며 다시 켜면 복구됩니다.
+      </p>
+      {branchPolicyUnknown ? (
+        <p className={s.note} role="status">
+          {branchesError
+            ? "지점 메뉴를 확인하지 못했습니다. 최신 정보를 다시 불러와 주세요."
+            : "지점 메뉴를 확인하는 중입니다."}{" "}
+          확인 전에는 메뉴가 허용된 것으로 표시하지 않습니다.
+        </p>
+      ) : null}
       <div
         className={s.menuTabs}
         role="tablist"
@@ -542,9 +614,20 @@ export default function AccountReview({
                     <input
                       type="checkbox"
                       checked={effectiveMenus.includes(option.permission)}
+                      disabled={
+                        !previewBranchMenus?.includes(option.permission) ||
+                        unavailableMenus.includes(option.permission)
+                      }
                       onChange={() => changeMenus(option.permission)}
                     />
-                    <span>{option.label}</span>
+                    <span>
+                      {option.label}
+                      {menuAvailabilityNote(option.permission) ? (
+                        <small className={s.menuBlocked}>
+                          {menuAvailabilityNote(option.permission)}
+                        </small>
+                      ) : null}
+                    </span>
                   </label>
                 ))}
               </div>
@@ -560,10 +643,21 @@ export default function AccountReview({
                       <input
                         type="checkbox"
                         checked={effectiveMenus.includes(option.permission)}
+                        disabled={
+                          !previewBranchMenus?.includes(option.permission) ||
+                          unavailableMenus.includes(option.permission)
+                        }
                         aria-describedby={`${menuId}-export-help`}
                         onChange={() => changeMenus(option.permission)}
                       />
-                      <span>{option.label}</span>
+                      <span>
+                        {option.label}
+                        {menuAvailabilityNote(option.permission) ? (
+                          <small className={s.menuBlocked}>
+                            {menuAvailabilityNote(option.permission)}
+                          </small>
+                        ) : null}
+                      </span>
                     </label>
                   ))}
                 </div>
@@ -572,10 +666,10 @@ export default function AccountReview({
           </div>
         );
       })}
-      {!branchManager && menus.length === 0 ? (
+      {effectiveMenus.length === 0 ? (
         <p className={s.note}>
-          선택한 메뉴가 없습니다. 승인해도 작업실에서 사용할 수 있는 메뉴가
-          없습니다.
+          사용할 수 있는 메뉴가 없습니다. 내 정보·로그아웃과 허용된 관리 화면은
+          계속 이용할 수 있습니다.
         </p>
       ) : null}
       {error ? (
@@ -608,6 +702,11 @@ export default function AccountReview({
           {notice}
         </p>
       ) : null}
+      {personalMenuError ? (
+        <p role="alert" className={s.error}>
+          {personalMenuError}
+        </p>
+      ) : null}
       {!account.isSuperAdmin && !account.deletedAt ? (
         <div className={s.reviewActions}>
           {dirty ? (
@@ -620,7 +719,14 @@ export default function AccountReview({
             <button
               className={s.secondary}
               type="button"
-              disabled={!dirty || busy || conflict || authError}
+              disabled={
+                !dirty ||
+                busy ||
+                conflict ||
+                authError ||
+                Boolean(personalMenuError) ||
+                (branchChanged && branchPolicyUnknown)
+              }
               onClick={() => save()}
             >
               {" "}
@@ -656,7 +762,13 @@ export default function AccountReview({
               <button
                 className={s.primary}
                 type="button"
-                disabled={busy || conflict || authError}
+                disabled={
+                  busy ||
+                  conflict ||
+                  authError ||
+                  Boolean(personalMenuError) ||
+                  (branchChanged && branchPolicyUnknown)
+                }
                 onClick={() => save("approved")}
               >
                 {busy ? "처리 중…" : "계정 승인 · 메뉴 저장"}

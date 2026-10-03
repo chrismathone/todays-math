@@ -155,6 +155,8 @@ model Branch {
   id        String   @id @default(uuid()) @db.Uuid
   name      String   @db.VarChar(100)
   createdAt DateTime @default(now()) @map("created_at")
+  disabledMenus String[] @default([]) @map("disabled_menus")
+  menuRevision Int @default(1) @map("menu_revision")
   users     User[]
   sharedDocuments WorkspaceDocument[]
 

@@ -123,6 +123,10 @@ const TABLE_ALLOWED = [
   "prisma/migrations/20261003085222_eywa_managed_sync/migration.sql",
   "scripts/qa/eywa-managed-migration-check.sql",
   "scripts/qa/apply-eywa-managed-migrations.ts",
+  // Reviewed roster ownership migration/probe checks the existing English exam
+  // owner without importing product logic or exposing records to students.
+  "scripts/qa/apply-eywa-owned-roster-migration.ts",
+  "scripts/qa/eywa-email-migration-integration.ts",
   "scripts/qa/english-listening/",
   "scripts/qa/apply-english-set-meta-migration.ts",
   // 세트의 «형식 판» 칸 — 🔴 미적용 SQL 초안과 그 검사 도구(자료 개선 M0, 2026-10-02). 영어 모듈을 import 하지 않고 표 이름만 안다
@@ -322,6 +326,11 @@ const EXISTING_STUDENT_SERVER_EDGES = new Set([
   "src/app/learn/password/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/page.tsx → src/lib/journeyThemeStore.ts",
+  // Textbook server page authentication and its assignment-checked bookmark.
+  // Client components and every English/teacher-contract edge remain checked.
+  "src/app/learn/textbook/[editionId]/concepts/[conceptKey]/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/components/learn/textbook/TextbookReturnLink.tsx → src/lib/textbook/server/prismaSql.ts",
+  "src/components/learn/textbook/TextbookReturnLink.tsx → src/lib/textbook/studentRead.ts",
 ]);
 
 function learnerLeaks(graph: Graph = SCAN.graph): string[] {
@@ -531,6 +540,43 @@ describe("영어 울타리 — 스캐너 자기 시험", () => {
 });
 
 describe("영어 울타리 — ⑴ import 사슬", () => {
+  it.each([
+    "src/lib/textbook/server/prismaSql.ts",
+    "src/lib/textbook/studentRead.ts",
+  ])(
+    "교재 서버 북마크 예외 %s 는 학생 클라이언트와 교사 계약 접근을 열지 않는다",
+    (serverPath) => {
+      const bookmark = path.join(
+        ROOT,
+        "src/components/learn/textbook/TextbookReturnLink.tsx",
+      );
+      const client = path.join(ROOT, "src/components/learn/ListeningView.tsx");
+      const server = path.join(ROOT, serverPath);
+      const database = path.join(ROOT, "src/lib/db.ts");
+      expect(withoutComments(readFileSync(bookmark, "utf8"))).not.toMatch(
+        /["']use client["']/,
+      );
+      expect(importSpecifiers(readFileSync(server, "utf8"))).toContainEqual({
+        spec: "server-only",
+        reexport: false,
+      });
+      const graph: Graph = new Map([
+        [bookmark, [{ target: server, reexport: false }]],
+        [server, [{ target: database, reexport: false }]],
+      ]);
+      expect(learnerLeaks(graph)).toEqual([]);
+      graph.set(client, [{ target: server, reexport: false }]);
+      expect(learnerLeaks(graph)).toHaveLength(1);
+      graph.delete(client);
+      graph.set(server, [
+        {
+          target: path.join(ROOT, "src/contracts/englishListening.contract.ts"),
+          reexport: false,
+        },
+      ]);
+      expect(learnerLeaks(graph)).toHaveLength(1);
+    },
+  );
   it("학생 화면은 실제 코드에서도 교사 계약·DB에 직접 또는 간접으로 닿지 않는다", () => {
     expect(learnerLeaks()).toEqual([]);
   });

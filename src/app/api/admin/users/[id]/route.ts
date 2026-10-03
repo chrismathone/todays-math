@@ -80,6 +80,16 @@ async function handlePatch(request: Request, context: Context) {
         });
         if (!previous)
           return { error: failure("사용자를 찾지 못했습니다.", 404) };
+        if (
+          update.expectedBranchId !== undefined &&
+          update.expectedBranchId !== previous.branchId
+        )
+          return {
+            error: failure(
+              "계정의 소속이 변경되었습니다. 새로고침 후 다시 확인해 주세요.",
+              409,
+            ),
+          };
         const managed = await tx.eywaManagedAccount.findUnique({
           where: { currentUserId: id },
         });
@@ -201,6 +211,7 @@ async function handlePatch(request: Request, context: Context) {
             id,
             isSuperAdmin: false,
             updatedAt: new Date(update.expectedUpdatedAt),
+            branchId: previous.branchId,
           },
           data: {
             ...(update.approvalStatus

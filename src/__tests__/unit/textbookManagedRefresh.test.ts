@@ -95,14 +95,17 @@ describe("managed refresh occurs at the textbook request boundary", () => {
     expect(result.response?.headers.get("cache-control")).toContain("no-store");
   });
 
-  it("keeps the textbook menu check ahead of external refresh", async () => {
-    f.account.mockResolvedValue({
-      account: { id: teacherId, menus: [], isAdmin: false },
-      response: null,
-    });
-    expect((await authorizeTextbook(request())).response?.status).toBe(403);
-    expect(f.refreshTeacher).not.toHaveBeenCalled();
-  });
+  it.each([false, true])(
+    "keeps the textbook menu check ahead of external refresh for admin=%s",
+    async (isAdmin) => {
+      f.account.mockResolvedValue({
+        account: { id: teacherId, menus: [], isAdmin },
+        response: null,
+      });
+      expect((await authorizeTextbook(request())).response?.status).toBe(403);
+      expect(f.refreshTeacher).not.toHaveBeenCalled();
+    },
+  );
 
   it("refreshes the session student's binding before entering student read or write services", async () => {
     expect((await studentTextbookRoute(request("POST"), f.run)).status).toBe(

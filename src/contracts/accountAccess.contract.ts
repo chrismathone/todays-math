@@ -87,6 +87,26 @@ export function workspaceMenusFromDisabled(
   }
   return ALL_WORKSPACE_MENUS.filter((menu) => !disabled.has(menu));
 }
+/** Branch policy uses exact current menu IDs, without personal legacy English inference. */
+export function workspaceMenusFromBranchDisabled(
+  disabledMenus: readonly string[],
+): WorkspaceMenu[] {
+  return ALL_WORKSPACE_MENUS.filter((menu) => !disabledMenus.includes(menu));
+}
+
+/** A personal allow list must survive the existing deny-list compatibility rules unchanged. */
+export function isPersonalMenuSelectionRepresentable(
+  menus: readonly string[],
+): boolean {
+  const configured = normalizeWorkspaceMenus(menus);
+  const restored = workspaceMenusFromDisabled(
+    ALL_WORKSPACE_MENUS.filter((menu) => !configured.includes(menu)),
+  );
+  return (
+    configured.length === restored.length &&
+    configured.every((menu) => restored.includes(menu))
+  );
+}
 /** 메뉴가 딸린 제품 — `product` 가 없으면 수학 */
 export function workspaceMenuProduct(menu: WorkspaceMenu): WorkspaceProduct {
   if (menu === "english") return "english";
@@ -182,6 +202,13 @@ export type AccountSyncStatus = {
 };
 export type ManagedAccount = AccountAccess & {
   branchName?: string | null;
+  /** Stored personal policy; editors submit this through the existing menus input. */
+  configuredMenus?: WorkspaceMenu[];
+  /** Exact branch cap; null only for unassigned accounts. */
+  branchMenus?: WorkspaceMenu[] | null;
+  branchMenuRevision?: number | null;
+  /** Independent rollout restrictions, without personal or branch policy applied. */
+  unavailableMenus?: WorkspaceMenu[];
   eywaSync?: AccountSyncStatus;
   createdAt: string;
   updatedAt: string;
@@ -203,6 +230,7 @@ export const accountUpdateSchema = z
     approvalStatus: approvalStatusSchema.optional(),
     isAdmin: z.boolean().optional(),
     branchId: z.uuid().nullable().optional(),
+    expectedBranchId: z.uuid().nullable().optional(),
     branchRole: z.enum(["owner", "manager", "teacher"]).optional(),
     name: z.string().trim().min(1).max(50).optional(),
     email: z
@@ -218,6 +246,10 @@ export const accountUpdateSchema = z
       .max(workspaceMenuSchema.options.length)
       .refine((menus) => new Set(menus).size === menus.length)
       .transform(normalizeWorkspaceMenus)
+      .refine(isPersonalMenuSelectionRepresentable, {
+        message:
+          "기존 개인 권한 정책상 영어 앞의 세 메뉴를 모두 끄면 영어듣기와 자료은행도 꺼집니다. 개인 메뉴 선택을 다시 확인해 주세요.",
+      })
       .optional(),
     expectedUpdatedAt: z.iso.datetime(),
   })

@@ -18,8 +18,13 @@ import {
 } from "./adminFixtures";
 import {
   accountUpdateSchema,
+  ALL_WORKSPACE_MENUS,
   type ManagedAccount,
 } from "@/contracts/accountAccess.contract";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ replace: vi.fn(), refresh: vi.fn() }),
+}));
 
 const fetchMock = vi.fn<typeof fetch>();
 const json = (body: unknown, status = 200) =>
@@ -40,6 +45,7 @@ describe("account menu product tabs", () => {
     "시험지 만들기",
     "문제 추출",
     "내 시험지",
+    "교재 제작",
     "수업 · 학생 관리",
     "오늘의 개념",
     "개념 백지",
@@ -50,7 +56,10 @@ describe("account menu product tabs", () => {
     const onUpdate = vi.fn();
     render(
       <AccountReview
-        account={account}
+        account={{
+          ...account,
+          branchMenus: account.branchId ? ALL_WORKSPACE_MENUS : null,
+        }}
         onLockChange={onLockChange}
         onUpdate={onUpdate}
       />,
@@ -62,7 +71,11 @@ describe("account menu product tabs", () => {
   const labels = () =>
     panel()
       .getAllByRole("checkbox")
-      .map((input) => input.closest("label")?.textContent);
+      .map(
+        (input) =>
+          input.closest("label")?.querySelector("span")?.firstChild
+            ?.textContent,
+      );
 
   it.each([
     [null, "내 시험지"],
@@ -82,7 +95,7 @@ describe("account menu product tabs", () => {
         panel().getByRole("heading", { name: "추가 기능 권한" }),
       ).toBeInTheDocument();
       expect(panel().getByRole("group")).toHaveAccessibleName(
-        "오늘의 수학 2 / 8",
+        "오늘의 수학 2 / 9",
       );
     },
   );
@@ -94,12 +107,18 @@ describe("account menu product tabs", () => {
       "학교별 내신 대비",
       "문제 만들기",
       "문제 보관함",
+      "영어듣기",
+      "자료은행",
     ]);
     panel()
       .getAllByRole("checkbox")
-      .forEach((input) => expect(input).toBeChecked());
+      .forEach((input, index) =>
+        index < 3
+          ? expect(input).toBeChecked()
+          : expect(input).not.toBeChecked(),
+      );
     expect(panel().getByRole("group")).toHaveAccessibleName(
-      "오늘의 영어 3 / 3",
+      "오늘의 영어 3 / 5",
     );
     expect(onLockChange).not.toHaveBeenCalled();
     expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
@@ -149,6 +168,7 @@ describe("account menu product tabs", () => {
       accountUpdateSchema.parse(JSON.parse(String(patch[1]?.body))),
     ).toEqual({
       expectedUpdatedAt: account.updatedAt,
+      expectedBranchId: account.branchId ?? null,
       approvalStatus: "approved",
       menus: ["home", "bank", "export", "studio", "english-maker"],
     });
@@ -185,10 +205,16 @@ describe("account menu product tabs", () => {
         ? json({
             data: { ...pendingAccount, ...JSON.parse(String(init.body)) },
           })
-        : json({ data: [{ id: branchId, name: "새 지점" }] }),
+        : json({
+            data: [
+              { id: branchId, name: "새 지점", menus: ALL_WORKSPACE_MENUS },
+            ],
+          }),
     );
     review();
-    await screen.findByRole("option", { name: "새 지점" });
+    await screen.findByRole("option", {
+      name: "새 지점",
+    });
     fireEvent.change(screen.getByRole("combobox", { name: "지점" }), {
       target: { value: branchId },
     });
@@ -198,12 +224,13 @@ describe("account menu product tabs", () => {
     fireEvent.click(tab("오늘의 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    await screen.findByText("계정 변경을 저장했습니다.");
     const patch = fetchMock.mock.calls.find(
       ([, init]) => init?.method === "PATCH",
     )!;
     expect(JSON.parse(String(patch[1]?.body))).toMatchObject({
       expectedUpdatedAt: pendingAccount.updatedAt,
+      expectedBranchId: null,
       branchId,
       branchRole: "teacher",
       menus: ["home", "bank", "english-library"],
@@ -221,7 +248,7 @@ describe("account menu product tabs", () => {
     fireEvent.click(tab("오늘의 영어"));
     fireEvent.click(screen.getByRole("checkbox", { name: "문제 만들기" }));
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    await screen.findByText("계정 변경을 저장했습니다.");
     const patch = fetchMock.mock.calls.find(
       ([, init]) => init?.method === "PATCH",
     )!;
@@ -263,6 +290,7 @@ describe("account menu product tabs", () => {
                 {
                   id: "33333333-3333-4333-8333-333333333333",
                   name: "다른 학원",
+                  menus: ALL_WORKSPACE_MENUS,
                 },
               ],
             }),
@@ -283,7 +311,7 @@ describe("account menu product tabs", () => {
       fireEvent.click(tab("오늘의 영어"));
       fireEvent.click(screen.getByRole("checkbox", { name: "문제 보관함" }));
       fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-      await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+      await screen.findByText("계정 변경을 저장했습니다.");
       const payload = JSON.parse(
         String(
           fetchMock.mock.calls.find(([, init]) => init?.method === "PATCH")![1]
@@ -292,6 +320,7 @@ describe("account menu product tabs", () => {
       );
       expect(payload).toEqual({
         expectedUpdatedAt: account.updatedAt,
+        expectedBranchId: account.branchId ?? null,
         branchId: nextBranchId,
         ...(nextBranchId ? { branchRole: "teacher" } : {}),
         menus: ["home", "bank", "english-library"],
@@ -320,7 +349,7 @@ describe("account menu product tabs", () => {
     );
     expect(
       screen.getByRole("checkbox", { name: "우리학원 시험지" }),
-    ).toBeDisabled();
+    ).toBeEnabled();
   });
 
   it("unlocks the review when a membership draft returns to its original value", () => {
@@ -360,7 +389,7 @@ describe("account menu product tabs", () => {
       target: { value: "manager" },
     });
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    await screen.findByText("계정 변경을 저장했습니다.");
     const payload = JSON.parse(
       String(
         fetchMock.mock.calls.find(([, init]) => init?.method === "PATCH")![1]
@@ -424,10 +453,6 @@ describe("account menu product tabs", () => {
   it.each([
     ["super admin", adminAccount],
     [
-      "branch manager",
-      { ...pendingAccount, isAdmin: true, branchId: "branch-id" },
-    ],
-    [
       "deleted account",
       { ...pendingAccount, deletedAt: pendingAccount.updatedAt },
     ],
@@ -484,7 +509,7 @@ describe("account menu product tabs", () => {
 
 describe("admin account management", () => {
   it("closes review with Escape and returns focus without discarding edited permissions", async () => {
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     const trigger = await screen.findByRole("button", {
       name: "김하늘 계정 검토",
     });
@@ -509,11 +534,11 @@ describe("admin account management", () => {
     ).toHaveLength(0);
   });
   it("shows authenticated identity, account links and invokes logout", async () => {
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     expect(screen.getByText("admin@example.com")).toBeInTheDocument();
     expect(await screen.findByRole("link", { name: "김하늘" })).toHaveAttribute(
       "href",
-      `/admin/users/${pendingAccount.id}`,
+      `/admin/branches/unassigned/users/${pendingAccount.id}`,
     );
     fireEvent.submit(
       screen.getByRole("button", { name: "로그아웃" }).closest("form")!,
@@ -525,7 +550,7 @@ describe("admin account management", () => {
     fetchMock.mockImplementation(async () =>
       json(accountsResponse(undefined, { total: 51 })),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(await screen.findByRole("button", { name: "다음 페이지" }));
     await waitFor(() =>
       expect(String(fetchMock.mock.lastCall?.[0])).toContain("page=2"),
@@ -536,7 +561,7 @@ describe("admin account management", () => {
     fireEvent.click(screen.getByRole("button", { name: "검색" }));
     await waitFor(() =>
       expect(String(fetchMock.mock.lastCall?.[0])).toContain(
-        "q=haneul&status=all&page=1",
+        "q=haneul&branchId=unassigned&status=all&page=1",
       ),
     );
     fireEvent.click(screen.getByRole("button", { name: /승인 대기 1/ }));
@@ -559,7 +584,7 @@ describe("admin account management", () => {
           })
         : json(accountsResponse()),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(
       await screen.findByRole("button", { name: "김하늘 계정 검토" }),
     );
@@ -571,12 +596,13 @@ describe("admin account management", () => {
       screen.getByRole("button", { name: "박지우 계정 검토" }),
     ).toBeDisabled();
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    await screen.findByText("계정 변경을 저장했습니다.");
     const patch = fetchMock.mock.calls.find(
       ([, init]) => init?.method === "PATCH",
     )!;
     expect(JSON.parse(String(patch[1]?.body))).toEqual({
       expectedUpdatedAt: pendingAccount.updatedAt,
+      expectedBranchId: null,
       menus: ["home", "bank", "studio"],
     });
     await waitFor(() =>
@@ -598,7 +624,7 @@ describe("admin account management", () => {
           })
         : json(accountsResponse()),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(
       await screen.findByRole("button", { name: "김하늘 계정 검토" }),
     );
@@ -618,7 +644,7 @@ describe("admin account management", () => {
             ?.body,
         ),
       ),
-    ).toMatchObject({ approvalStatus: "approved", menus: ["home", "bank"] });
+    ).toMatchObject({ approvalStatus: "approved", expectedBranchId: null });
   });
 
   it("sends rejection without silently saving a menu draft", async () => {
@@ -627,7 +653,7 @@ describe("admin account management", () => {
         ? json({ data: { ...pendingAccount, approvalStatus: "rejected" } })
         : json(accountsResponse()),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(
       await screen.findByRole("button", { name: "김하늘 계정 검토" }),
     );
@@ -644,11 +670,12 @@ describe("admin account management", () => {
     ).toEqual({
       approvalStatus: "rejected",
       expectedUpdatedAt: pendingAccount.updatedAt,
+      expectedBranchId: null,
     });
   });
 
   it("keeps administrators read-only", async () => {
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(
       await screen.findByRole("button", { name: "관리 선생님 계정 검토" }),
     );
@@ -677,7 +704,7 @@ describe("admin account management", () => {
         ? json({ data: latest })
         : json(accountsResponse());
     });
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fireEvent.click(
       await screen.findByRole("button", { name: "김하늘 계정 검토" }),
     );
@@ -692,7 +719,7 @@ describe("admin account management", () => {
     expect(screen.getByLabelText("시험지 만들기")).not.toBeChecked();
     fireEvent.click(screen.getByLabelText("문제 추출"));
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
-    await screen.findByText("사용 가능한 메뉴를 저장했습니다.");
+    await screen.findByText("계정 변경을 저장했습니다.");
     const patches = fetchMock.mock.calls.filter(
       ([, init]) => init?.method === "PATCH",
     );
@@ -710,7 +737,7 @@ describe("admin account management", () => {
           resolve = done;
         }),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     expect(screen.getByRole("status")).toHaveTextContent(
       "계정 목록을 불러오는 중",
     );
@@ -734,7 +761,7 @@ describe("admin account management", () => {
           resolveOld = done;
         }),
     );
-    render(<AdminAccounts identity={adminIdentity} />);
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
     fetchMock.mockResolvedValueOnce(json(accountsResponse([])));
     fireEvent.change(screen.getByLabelText("이름 또는 이메일 검색"), {
       target: { value: "missing" },

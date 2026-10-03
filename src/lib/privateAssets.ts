@@ -82,7 +82,6 @@ export async function writePrivateAsset(request: Request, id: string) {
   const ownerError = mutationOwnerError(request, access.ownerId!);
   if (ownerError) return ownerError;
   if (
-    !access.account!.isAdmin &&
     !access.account!.menus.some(
       (menu) => menu === "studio" || menu === "export",
     )

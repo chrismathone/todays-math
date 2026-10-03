@@ -42,7 +42,7 @@ import {
 export type BankTx = Prisma.TransactionClient;
 type BankViewer = ScopeViewer & { menus?: readonly WorkspaceMenu[] };
 function requireOriginalMenu(viewer: BankViewer, path: string, method = "GET") {
-  if (!viewer.isAdmin && !englishRouteAllowed(viewer.menus ?? [], method, path))
+  if (!englishRouteAllowed(viewer.menus ?? [], method, path))
     throw new EnglishBankError("SOURCE_ACCESS_DENIED");
 }
 export const bankSummarySelect = {
@@ -154,11 +154,12 @@ function expected(row: EnglishPassage, revision: number) {
 /** Both generation and set persistence call this; trust only the immutable database revision. */
 export async function validateBankReference(
   tx: BankTx,
-  viewer: ScopeViewer,
+  viewer: BankViewer,
   ref: EnglishPassageRef,
   input: string,
   path: "chatgpt" | "cloze" | "api",
 ) {
+  requireOriginalMenu(viewer, "/api/english/passages");
   const row = await ownedPassage(tx, viewer, ref.passageId, true);
   if (row.archivedAt) throw unavailable();
   if (row.textRevision !== ref.textRevision)
@@ -186,7 +187,7 @@ export async function validateBankReference(
 }
 export async function validateBankSetReference(
   tx: BankTx,
-  viewer: ScopeViewer,
+  viewer: BankViewer,
   examId: string,
   passage: string,
   meta: EnglishSetMeta,
@@ -245,8 +246,13 @@ export function sameBankSaveReference(
 export function createEnglishBank(
   database: Pick<PrismaClient, "$transaction">,
 ) {
-  const transaction = <T>(fn: (tx: BankTx) => Promise<T>) =>
-    database.$transaction(fn, { maxWait: 10000, timeout: 30000 });
+  const transaction = async <T>(
+    viewer: BankViewer,
+    fn: (tx: BankTx) => Promise<T>,
+  ) => {
+    requireOriginalMenu(viewer, "/api/english/passages");
+    return database.$transaction(fn, { maxWait: 10000, timeout: 30000 });
+  };
   async function createInTransaction(
     tx: BankTx,
     viewer: ScopeViewer,
@@ -384,8 +390,8 @@ export function createEnglishBank(
     });
   }
   return {
-    list: (viewer: ScopeViewer, input: unknown) =>
-      transaction(async (tx) => {
+    list: (viewer: BankViewer, input: unknown) =>
+      transaction(viewer, async (tx) => {
         const query = englishPassageQuerySchema.parse(input);
         const cursor = decodeBankCursor(query.cursor);
         const rows = await tx.englishPassage.findMany({
@@ -461,14 +467,14 @@ export function createEnglishBank(
           },
         };
       }),
-    get: (viewer: ScopeViewer, id: string) =>
-      transaction(async (tx) =>
+    get: (viewer: BankViewer, id: string) =>
+      transaction(viewer, async (tx) =>
         detail(tx, viewer, await ownedPassage(tx, viewer, z.uuid().parse(id))),
       ),
-    uses: (viewer: ScopeViewer, id: string) =>
-      transaction((tx) => passageUses(tx, viewer, z.uuid().parse(id))),
-    create: (viewer: ScopeViewer, input: unknown) =>
-      transaction((tx) =>
+    uses: (viewer: BankViewer, id: string) =>
+      transaction(viewer, (tx) => passageUses(tx, viewer, z.uuid().parse(id))),
+    create: (viewer: BankViewer, input: unknown) =>
+      transaction(viewer, (tx) =>
         createInTransaction(
           tx,
           viewer,
@@ -476,7 +482,7 @@ export function createEnglishBank(
         ),
       ),
     import: (viewer: BankViewer, input: unknown) =>
-      transaction(async (tx) => {
+      transaction(viewer, async (tx) => {
         const parsed = englishPassageImportSchema.parse(input);
         const original = await importInput(tx, viewer, parsed);
         return createInTransaction(tx, viewer, original, {
@@ -485,8 +491,8 @@ export function createEnglishBank(
           ...(parsed.textKind ? { textKind: parsed.textKind } : {}),
         });
       }),
-    update: (viewer: ScopeViewer, id: string, input: unknown) =>
-      transaction(async (tx) => {
+    update: (viewer: BankViewer, id: string, input: unknown) =>
+      transaction(viewer, async (tx) => {
         const parsed = englishPassageUpdateSchema.parse(input);
         const row = await ownedPassage(tx, viewer, z.uuid().parse(id), true);
         expected(row, parsed.revision);
@@ -530,8 +536,8 @@ export function createEnglishBank(
           });
         return detail(tx, viewer, await ownedPassage(tx, viewer, id));
       }),
-    archive: (viewer: ScopeViewer, id: string, input: unknown) =>
-      transaction(async (tx) => {
+    archive: (viewer: BankViewer, id: string, input: unknown) =>
+      transaction(viewer, async (tx) => {
         const parsed = englishPassageArchiveSchema.parse(input);
         const row = await ownedPassage(tx, viewer, z.uuid().parse(id), true);
         expected(row, parsed.revision);
@@ -541,8 +547,8 @@ export function createEnglishBank(
         });
         return detail(tx, viewer, archived);
       }),
-    rights: (viewer: ScopeViewer, id: string, input: unknown) =>
-      transaction(async (tx) => {
+    rights: (viewer: BankViewer, id: string, input: unknown) =>
+      transaction(viewer, async (tx) => {
         const parsed = englishPassageRightsConfirmSchema.parse(input);
         const row = await ownedPassage(tx, viewer, z.uuid().parse(id), true);
         expected(row, parsed.revision);
@@ -563,7 +569,7 @@ export function createEnglishBank(
         return detail(tx, viewer, updated);
       }),
     prepare: (viewer: BankViewer, id: string, input: unknown) =>
-      transaction(async (tx) => {
+      transaction(viewer, async (tx) => {
         const parsed = englishPassagePrepareSchema.parse(input);
         requireOriginalMenu(viewer, "/api/english/generate", "POST");
         await ownedBankExam(tx, viewer, parsed.examId);
