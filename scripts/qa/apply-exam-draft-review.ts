@@ -6,6 +6,8 @@
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/apply-exam-draft-review.ts --apply
  *   ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/apply-exam-draft-review.ts --revert
  *
+ * 다른 회차는 `--review <고침 목록 파일> --label <원장 이름>` 을 같이 준다(되돌릴 때도 같은 `--label`).
+ *
  * ## 왜 있나
  *
  * 기출 적재기(`load-exam-paper.ts`)는 **넣기만** 한다. 초안을 고쳐도 DB 에 굳은 행은 그대로다 —
@@ -28,20 +30,35 @@ import { renderMathHtml } from "../../src/lib/math/renderMathHtml";
 
 const prisma = new PrismaClient();
 const REPO = process.cwd();
+
+/** `--이름 값` 꼴의 인자. 없으면 기본값 — 2026-10-03 첫 적용(정답 머리 12행)의 파일들이다. */
+function argValue(name: string, fallback: string): string {
+  const at = process.argv.indexOf(name);
+  const value = at >= 0 ? process.argv[at + 1] : undefined;
+  if (at >= 0 && (!value || value.startsWith("--")))
+    throw new Error(`${name} 뒤에 값이 없다`);
+  return value ?? fallback;
+}
+
+/** 고침 목록(before / after). `--review <scripts/import/exam-paper 안의 파일 이름>` */
 const REVIEW = path.join(
   REPO,
   "scripts",
   "import",
   "exam-paper",
-  "bank-fix-review.json",
+  argValue("--review", "bank-fix-review.json"),
 );
+/**
+ * 되돌리기 원장. `--label <이름>` — 🔴 적용마다 **다른 이름**을 쓴다.
+ * 같은 이름이면 «원장이 이미 있다»로 멈춘다(덮어쓰면 앞 회차를 못 되돌린다 — 2026-08-20).
+ */
 const LEDGER = path.join(
   REPO,
   "scripts",
   "qa",
   "reports",
   "refresh-engine-content",
-  "exam-draft-review-20261003.json",
+  `${argValue("--label", "exam-draft-review-20261003")}.json`,
 );
 
 type Field = "answer" | "solution" | "content";

@@ -131,7 +131,30 @@ ALLOW_SHARED_IMPORT=1 npx tsx --env-file=<.env> scripts/qa/refresh-engine-conten
 - 적재 계획 29개를 **적재기와 같은 코드**(`buildElemRows` · `buildMiddleRows` · `buildComboRows`)로 다시 돌려 `externalId` 로 맞댄다 — 형식을 옮겨 적지 않는다.
 - `--families <목록.json>` 만 주면 그 문항류와 «고칠 까닭이 있는 보기»(같은 값 · 소수 정답 · 초등 음수)만 덮는다. 그 밖에서 발문이 다르면 **안 덮고 세어 찍는다.**
 - 기출 초안을 고쳤으면 `apply-exam-draft-review.ts` — 원장의 before 와 **글자까지 같을 때만** 덮는다.
+  회차마다 `--review <고침 목록> --label <원장 이름>` 을 준다(같은 이름의 원장이 있으면 멈춘다).
 - 그림만 전부 다시 그리는 옛 도구는 `refresh-engine-figures.ts`(계획 하나 · 셰이드).
+
+🔴 **문지기(2026-10-03 밤 — 3자 합의 C1)**: 이 도구는 «같은 문제임을 확인하지 못하면» **덮지 않는다.**
+`refreshEngineContentCore.ts` 의 `identityRisk` 가 앞뒤를 견줘 `발문의 수` · `발문의 글` · `정답의 값` · `그림의 라벨` 가운데 먼저 걸리는 것을 낸다
+(객관식은 번호가 아니라 **정답 보기의 값**으로 견준다 — 보기의 차례 · 오답만 바뀐 것은 지나간다). 걸린 행은 보고의 «막음»에 사유별로 찍힌다.
+
+```bash
+# 막힌 행을 사람이 보고 «같은 문제다»(조사 · 표기 · 조건 보탬)라고 판단했으면 externalId 를 목록에 적어 다시 돌린다
+#   … --same-problem <externalId 목록.json>
+```
+
+- `1x` → `x` 같은 표기 수리도 **그냥은 안 지나간다** — 0 · 1 을 예외로 두면 그 틈으로 조건이 바뀐다. 짚어 준다.
+- 왜: 2026-10-03 전수 동기화에서 298행이 같은 문항 코드로 **다른 문제**가 됐다(엔진이 퇴화값을 거르게 바뀌어 같은 씨앗이 다른 수를 뽑았다 — 20번 교훈).
+  그 298행은 개장 전이라 기준선으로 두었고 앞뒤가 `reports/refresh-engine-content/pre-open-replaced-20261003.json` 에 있다.
+
+### 3.2 적용한 뒤 · 잠글 때 · 파서를 고칠 때 (2026-10-03 밤)
+
+| 무엇을 | 연장 | 한 줄 |
+| --- | --- | --- |
+| 덮은 원장을 **전수로** 다시 본다 | `verify-refresh-ledger.ts text\|figures\|replaced <원장>` | 글: 정답 값이 같은가 · 수가 다시 뽑혔나. 그림: 주 도형이 같은가(평행이동 · 주석 차이는 가른다). `replaced` 는 «다른 문제가 된 행»을 앞뒤와 함께 적는다 |
+| 문항을 출제에서 뺀다(지우지 않는다) | `lock-problems.ts --label <원장> --reason "…" <externalId…> [--apply\|--revert]` | `directUseAllowed=false` · 원장 먼저 · `ALLOW_UNIT_FIX=1` · 되돌리기는 «지금 값이 내가 쓴 값일 때만» |
+| 보기 파서(`parseProblemContent`)를 고쳤다 | `parse-census.ts dump <앞.json>` → 고침 → `dump <뒤.json>` → `compare <앞> <뒤>` | 운영 DB 전 행의 파싱 결과(발문 · 보기 · 라벨)를 지문으로 떠서 견준다(작업트리마다 제 파서를 쓴다). **바뀐 행 0** 이 병합 조건(뜻한 변화면 그 행을 하나씩 본다) |
+| 원장님이 맡긴 결정을 codex · grok 과 정한다 | `consult-three-way.ts <요청서.md> <답 앞머리>` | 블라인드 · 도구 없음 · 빈 폴더. 🔴 **요청서의 «사실»에는 어디서 쟀는지를 붙인다** — 둘은 요청서를 의심할 길이 없다 |
 
 ---
 
