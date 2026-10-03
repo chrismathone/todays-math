@@ -15,7 +15,7 @@ function pieces(school: string, file: string): { id: string; text: string }[] {
 }
 
 describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
-  it("새론 8: 셋째 자리 반올림은 9.71, 보기 중 가장 가까운 값은 유일하게 ⑤다", () => {
+  it("새론 8: 셋째 자리 반올림은 9.71이며 보기 ⑤와 같다", () => {
     const ai = JSON.parse(
       readFileSync(
         join(examRoot, "2025-saeron-3-2-mid/sol_ai/q08.json"),
@@ -40,7 +40,7 @@ describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
     );
     expect(nearest).toEqual([5]);
     expect(ai.answer).toBe("⑤");
-    expect(ai.solution).toContain("가장 가까운");
+    expect(values[4]).toBe(rounded);
   });
 
   it("동도 14: 높이와 cos 37도로 둘레 44가 유일하게 결정된다", () => {

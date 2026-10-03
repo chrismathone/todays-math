@@ -3,16 +3,43 @@
   "school": "대진중",
   "grade": "중3",
   "subject": "수학",
-  "answerRepairs": {
-    "17": { "answer": "$2$", "evidence": ["ap+q=2$"], "why": "EX-01: sol_fixed 17의 마지막 결론, 꼭짓점 (2,1)과 (0,3)으로 재계산" },
-    "18": { "answer": "$90$", "evidence": ["원래 직사각형의 둘레의 길이는 $90$"], "why": "EX-01: sol_fixed 18의 마지막 결론, 4(x-8)(x-13)=816의 유효근 25" },
-    "19": { "answer": "$8\\sqrt{2}$", "evidence": ["=8\\sqrt{2}$"], "why": "EX-01: 계산식 전체가 풀이인 미주, 마지막 값을 답으로 복구하고 식은 보존" },
-    "20": { "answer": "$\\frac{50\\sqrt{6}}{3}+50\\sqrt{2}$", "evidence": ["\\overline{AB}=\\overline{AH}+\\overline{BH}=\\frac{50\\sqrt{6}}{3}+50\\sqrt{2}$"], "why": "EX-01: sol_fixed 20의 마지막 AB 결론" },
-    "21": { "answer": "⑴ $2$ ⑵ $2\\sqrt{3}+2$ ⑶ $2\\sqrt{3}-2$", "evidence": ["\\overline{BE}=2$", "\\overline{AB}=\\overline{AE}+\\overline{EB}=2\\sqrt{3}+2$", "\\overline{CD}=\\overline{AC}-\\overline{AD}=2\\sqrt{3}-2$"], "why": "EX-01: 세 소문항 각각의 결론에서 BE·AB·CD 복구; 첫 각도 가정은 답이 아님" }
+  "excludeFromLoad": {
+    "13": "A6: 제공 자료가 문제오류로 명시했다. 그림의 조건에서 D와 B가 겹치며 tan x=3/4도 보기에 없어 출제용으로 적재하지 않는다."
   },
-  "tables": [
-    11
-  ],
+  "answerRepairs": {
+    "17": {
+      "answer": "$2$",
+      "evidence": ["ap+q=2$"],
+      "why": "EX-01: sol_fixed 17의 마지막 결론, 꼭짓점 (2,1)과 (0,3)으로 재계산"
+    },
+    "18": {
+      "answer": "$90$",
+      "evidence": ["원래 직사각형의 둘레의 길이는 $90$"],
+      "why": "EX-01: sol_fixed 18의 마지막 결론, 4(x-8)(x-13)=816의 유효근 25"
+    },
+    "19": {
+      "answer": "$8\\sqrt{2}$",
+      "evidence": ["=8\\sqrt{2}$"],
+      "why": "EX-01: 계산식 전체가 풀이인 미주, 마지막 값을 답으로 복구하고 식은 보존"
+    },
+    "20": {
+      "answer": "$\\frac{50\\sqrt{6}}{3}+50\\sqrt{2}$",
+      "evidence": [
+        "\\overline{AB}=\\overline{AH}+\\overline{BH}=\\frac{50\\sqrt{6}}{3}+50\\sqrt{2}$"
+      ],
+      "why": "EX-01: sol_fixed 20의 마지막 AB 결론"
+    },
+    "21": {
+      "answer": "⑴ $2$ ⑵ $2\\sqrt{3}+2$ ⑶ $2\\sqrt{3}-2$",
+      "evidence": [
+        "\\overline{BE}=2$",
+        "\\overline{AB}=\\overline{AE}+\\overline{EB}=2\\sqrt{3}+2$",
+        "\\overline{CD}=\\overline{AC}-\\overline{AD}=2\\sqrt{3}-2$"
+      ],
+      "why": "EX-01: 세 소문항 각각의 결론에서 BE·AB·CD 복구; 첫 각도 가정은 답이 아님"
+    }
+  },
+  "tables": [11],
   "hand": [],
   "units": {}
 }

@@ -14,7 +14,7 @@ const range = (a: number, b: number) =>
   Array.from({ length: b - a + 1 }, (_, i) => a + i);
 // EX-01·02의 답 경계, EX-03·04·06·11·14의 지문·수식, 원본을 확인한 그래프 둘.
 const changedQuestions: Record<string, number[]> = {
-  chilgok: range(17, 21),
+  chilgok: [7, ...range(17, 21)],
   daegudong: range(12, 17),
   daeguil: [3, ...range(19, 22)],
   daejin: range(17, 21),
@@ -30,7 +30,7 @@ const changedQuestions: Record<string, number[]> = {
   maeho: range(19, 22),
   neungin: range(17, 20),
   oseong: range(17, 21),
-  saeron: [4, ...range(14, 19)],
+  saeron: [4, 8, ...range(14, 19)],
   sangin: range(17, 23),
   seonggwang: range(19, 21),
   seonghwa: [7, ...range(19, 22)],
@@ -40,7 +40,7 @@ const changedQuestions: Record<string, number[]> = {
 };
 
 describe("기출 25편·533문항 전수 관문", () => {
-  it("수리한 117행 밖의 416행은 content·answer·solution SHA-256이 한 글자도 달라지지 않는다", () => {
+  it("앞선 수리 117행과 합의로 더 고친 2행 밖의 414행은 SHA-256이 그대로다", () => {
     const baseline = JSON.parse(readFileSync(baselinePath, "utf8")) as Record<
       string,
       string
@@ -55,7 +55,7 @@ describe("기출 25편·533문항 전수 관문", () => {
         numbers.map((n) => `2025-${school}-3-2-mid-${n}`),
       )
       .sort();
-    expect(allowed).toHaveLength(117);
+    expect(allowed).toHaveLength(119);
     expect(
       rows
         .filter((d) => fingerprint(d) !== baseline[d.externalId])
@@ -78,10 +78,8 @@ describe("기출 25편·533문항 전수 관문", () => {
       if (answer < 0) faults.push(`${d.externalId}: 정답 번호 없음`);
       else expect(answer, d.externalId).toBeLessThan(choices.length);
     }
-    // 칠곡의 빈 ④는 제품 파서에서 사라진다. 대구동 6은 조건 1·2·3까지 보기로 센다.
-    // 둘 다 이번 수리로 만든 예외가 아니며 보고서의 원본/리드 후속 목록에 남긴다.
+    // 칠곡의 빈 ④는 A3 합의로 보충했다. 대구동 파서 수리는 별도 engine 트랙이다.
     expect(faults).toEqual([
-      "2025-chilgok-3-2-mid-7: 보기 4",
       "2025-daegudong-3-2-mid-6: 보기 8",
       "2025-daejin-3-2-mid-13: 정답 번호 없음",
     ]);
@@ -90,7 +88,7 @@ describe("기출 25편·533문항 전수 관문", () => {
         (m) => `${d.externalId}: 빈 ${m[1]}`,
       ),
     );
-    expect(blanks).toEqual(["2025-chilgok-3-2-mid-7: 빈 4"]);
+    expect(blanks).toEqual([]);
   });
 
   it("SIM·coc·남은 범위 수리 0이며 답 없음은 학교가 문제 오류라고 쓴 대진 13 하나다", () => {
