@@ -163,7 +163,7 @@ const FAMILIES: readonly Family[] = [
  * `①②③`·`⑴⑵⑶`도 뺐다: 앞은 **선택지 마커**이고 뒤는 **소문항 번호**라
  * 상자 항목으로 읽으면 상자가 선택지·소문항까지 삼킨다(프로토타입에서 실제로 났다).
  */
-const BULLET_CHARS = [..."∘•◦○⦁∙⚪⚬◯⸰◎✽Ÿ●॰"];
+export const BOX_BULLET_CHARS: readonly string[] = [..."∘•◦○⦁∙⚪⚬◯⸰◎✽Ÿ●॰"];
 
 /**
  * 상자를 끊는 신호 ① 서술형 라벨. 이건 수식에 갇히는 일이 없어 probe 에서 본다.
@@ -262,7 +262,7 @@ const MIN_BULLET_BODY = 3;
 /** 같은 불릿이 2회 이상 반복되면 항목 구분자다. */
 function findBulletItems(probe: string): ItemHit[] {
   let best: ItemHit[] = [];
-  for (const bullet of BULLET_CHARS) {
+  for (const bullet of BOX_BULLET_CHARS) {
     const hits: ItemHit[] = [];
     for (let i = 0; i < probe.length; i += 1) {
       if (probe[i] !== bullet) continue;
@@ -304,7 +304,7 @@ function findBulletItems(probe: string): ItemHit[] {
 const REFERENCE_PARTICLE_RE = /^(?:의|에|은|는|을|를|과|와|이|가)/;
 
 const CONTENT_HEAD_RE = new RegExp(
-  `^(?:\\s|[${BULLET_CHARS.join("")}]|ㅇ|○|\\$\\s*\\\\(?:circ|bullet)\\s*\\$)*`,
+  `^(?:\\s|[${BOX_BULLET_CHARS.join("")}]|ㅇ|○|\\$\\s*\\\\(?:circ|bullet)\\s*\\$)*`,
 );
 
 /**
@@ -443,7 +443,7 @@ function findMarkers(text: string): MarkerHit[] {
 function hasMeaningfulContent(content: string): boolean {
   const stripped = content
     .replace(FIGURE_PLACEHOLDER_RE, "")
-    .replace(new RegExp(`[${BULLET_CHARS.join("")}\\s\u0000]`, "g"), "");
+    .replace(new RegExp(`[${BOX_BULLET_CHARS.join("")}\\s\u0000]`, "g"), "");
   return stripped.length >= 4;
 }
 
