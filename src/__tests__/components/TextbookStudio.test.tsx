@@ -374,7 +374,7 @@ describe("TextbookStudioView", () => {
       target: { value: "term" },
     });
     fireEvent.click(screen.getByRole("button", { name: "항목 추가" }));
-    fireEvent.click(screen.getByRole("button", { name: "확인 요청" }));
+    fireEvent.click(screen.getByRole("button", { name: "e5-1 확인 요청" }));
     fireEvent.click(screen.getByRole("button", { name: "개념 저장" }));
     expect(await screen.findByText("개념을 저장했습니다.")).toBeVisible();
     expect(saveConcept).toHaveBeenCalledOnce();

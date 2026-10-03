@@ -82,7 +82,8 @@
   gap: 4px;
   min-width: 0;
 }
-.field span {
+.field span,
+.field > label {
   color: var(--learn-muted);
   font-size: 13px;
 }
