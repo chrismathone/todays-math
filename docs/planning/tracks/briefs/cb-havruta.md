@@ -105,6 +105,8 @@ npx tsx scripts/qa/concept-blank/havruta/review.ts --part <p> --section "<열쇠
   «…이기 때문이다» 문장이 아니라 근거의 알맹이만(«…라서»). 줄일 수 없으면 예의 장면을 더 단순한 것으로 바꾼다(긴 설명은 적용 칸의 몫).
   자: 은행 시험 `every map example answer fits the blank the sheet gives it` · 트랙에서는
   `npx tsx D:/tmp/concept-blank-havruta/tools/example-blank.ts . <학년>` 이 «넘는 예 0개».
+  🔴 **핵심어 `{ }` 하나도 같은 자다**(2026-10-03 덧붙임) — C 지면은 핵심어마다 빈칸 하나를 주고 그 빈칸도 240px 에서 잘린다. 까닭 절을 통째로 감싸지 말고
+  알맹이 낱말만 감싸거나 둘로 나눈다(한 문장에 1~4곳). 같은 도구가 «넘는 핵심어 0개»까지 본다 · 은행 시험 `no grade adds cloze keywords wider than …` 은 학년마다 줄기만 하는 상한.
 - 줄 끝의 `CASE` 를 뗀다(원래 파일은 파일 끝 `markGivenCases(…)` 목록에서 그 id 를 뺀다). 표지가 남아 있으면 원장은 «남음»이다.
 
 ### 3.2 `calc` — 적용을 «개념을 써서 판단 · 설명하는 물음»으로
