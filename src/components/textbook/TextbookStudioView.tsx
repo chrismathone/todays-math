@@ -135,6 +135,19 @@ export function TextbookStudioView({
     "optional",
   );
   const [solutionPolicy, setSolutionPolicy] = useState<SolutionPolicy>("never");
+  const [schoolLevel, setSchoolLevel] = useState<
+    "elementary" | "middle" | "high"
+  >("elementary");
+  const [grade, setGrade] = useState("5");
+  const [semester, setSemester] = useState<"1" | "2">("1");
+  const [bookMode, setBookMode] = useState<
+    "integrated" | "concept" | "practice"
+  >("integrated");
+  const [innerMarginMm, setInnerMarginMm] = useState("15");
+  const [outerMarginMm, setOuterMarginMm] = useState("15");
+  const [coverMode, setCoverMode] = useState<"included" | "separate">(
+    "separate",
+  );
   const [conceptSource, setConceptSource] = useState<TextbookConcept | null>(
     null,
   );
@@ -542,16 +555,61 @@ export function TextbookStudioView({
             pageTarget={pageTarget}
             videoPolicy={videoPolicy}
             studentSolutionPolicy={solutionPolicy}
+            schoolLevel={schoolLevel}
+            grade={grade}
+            semester={semester}
+            bookMode={bookMode}
+            innerMarginMm={innerMarginMm}
+            outerMarginMm={outerMarginMm}
+            coverMode={coverMode}
             onTitle={setTitle}
             onVolume={setVolumeCode}
             onCurriculum={setCurriculumVersion}
             onPageTarget={setPageTarget}
             onVideoPolicy={setVideoPolicy}
             onSolutionPolicy={setSolutionPolicy}
+            onSchoolLevel={(value) => {
+              setSchoolLevel(value);
+              const max = value === "elementary" ? 6 : 3;
+              if (Number(grade) > max) setGrade(String(max));
+            }}
+            onGrade={setGrade}
+            onSemester={setSemester}
+            onBookMode={setBookMode}
+            onInnerMargin={setInnerMarginMm}
+            onOuterMargin={setOuterMarginMm}
+            onCoverMode={setCoverMode}
             onCreate={() => {
               const pages = Number(pageTarget);
               if (!Number.isSafeInteger(pages) || pages < 1) {
                 setNotice("목표 쪽수는 1 이상의 정수입니다.");
+                return;
+              }
+              const chosenGrade = Number(grade);
+              const gradeMax = schoolLevel === "elementary" ? 6 : 3;
+              if (
+                !Number.isSafeInteger(chosenGrade) ||
+                chosenGrade < 1 ||
+                chosenGrade > gradeMax
+              ) {
+                setNotice(
+                  schoolLevel === "elementary"
+                    ? "초등 학년은 1부터 6까지입니다."
+                    : "중·고등학교 학년은 1부터 3까지입니다.",
+                );
+                return;
+              }
+              const inner = Number(innerMarginMm);
+              const outer = Number(outerMarginMm);
+              if (
+                !Number.isSafeInteger(inner) ||
+                !Number.isSafeInteger(outer) ||
+                inner < 8 ||
+                inner > 40 ||
+                outer < 8 ||
+                outer > 40
+              ) {
+                setNotice("여백은 8mm 이상 40mm 이하입니다.");
                 return;
               }
               setBusy(true);
@@ -563,6 +621,13 @@ export function TextbookStudioView({
                   pageTarget: pages,
                   videoPolicy,
                   studentSolutionPolicy: solutionPolicy,
+                  schoolLevel,
+                  grade: chosenGrade,
+                  semester: semester === "2" ? 2 : 1,
+                  mode: bookMode,
+                  innerMarginMm: inner,
+                  outerMarginMm: outer,
+                  coverMode,
                   requestId: newRequestId(),
                 })
                 .then((book) => {

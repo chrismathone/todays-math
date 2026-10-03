@@ -610,6 +610,48 @@ describe("TextbookStudioView", () => {
     ).not.toBeInTheDocument();
   });
 
+  it("creates a book with the chosen grade and margins", async () => {
+    const createBook = vi.fn(async () => book);
+    render(<TextbookStudioView api={api({ createBook })} />);
+    fireEvent.change(await screen.findByRole("textbox", { name: "제목" }), {
+      target: { value: "분수" },
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "권 코드" }), {
+      target: { value: "2-1-1" },
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "교육과정" }), {
+      target: { value: "2022" },
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "목표 쪽수" }), {
+      target: { value: "32" },
+    });
+    fireEvent.change(screen.getByRole("combobox", { name: "학년" }), {
+      target: { value: "6" },
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "안쪽 여백" }), {
+      target: { value: "12" },
+    });
+    expect(
+      screen.getByText(
+        "주요 구획은 짝수 왼쪽에서 시작합니다. 여백은 8mm 이상 40mm 이하입니다.",
+      ),
+    ).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "새 교재" }));
+    expect(createBook).toHaveBeenCalledWith(
+      expect.objectContaining({
+        title: "분수",
+        volumeCode: "2-1-1",
+        grade: 6,
+        schoolLevel: "elementary",
+        semester: 1,
+        innerMarginMm: 12,
+        outerMarginMm: 15,
+        coverMode: "separate",
+        mode: "integrated",
+      }),
+    );
+  });
+
   it("opens the edition named by initialEditionId and does not reopen it from the list", async () => {
     const client = api();
     render(

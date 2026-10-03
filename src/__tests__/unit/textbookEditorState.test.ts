@@ -236,6 +236,55 @@ describe("textbook editor rules", () => {
     expect(body.config?.displayCode).toBe("2-1-1");
   });
 
+  it("sends the chosen grade and margins and keeps the even-left start", async () => {
+    let body: {
+      config?: {
+        schoolLevel?: string;
+        grade?: number;
+        semester?: number;
+        mode?: string;
+        print?: {
+          innerMarginMm?: number;
+          outerMarginMm?: number;
+          sectionStart?: string;
+          coverMode?: string;
+        };
+      };
+    } = {};
+    const api = createTextbookApi(async (_url, init) => {
+      body = JSON.parse(String(init?.body));
+      return Response.json({ data: bookSummary() });
+    });
+    await api.createBook({
+      title: "분수의 덧셈",
+      volumeCode: "2-1-1",
+      curriculumVersion: "2022",
+      pageTarget: 32,
+      videoPolicy: "optional",
+      studentSolutionPolicy: "never",
+      schoolLevel: "elementary",
+      grade: 6,
+      semester: 2,
+      mode: "concept",
+      innerMarginMm: 12,
+      outerMarginMm: 18,
+      coverMode: "included",
+      requestId,
+    });
+    expect(body.config).toMatchObject({
+      schoolLevel: "elementary",
+      grade: 6,
+      semester: 2,
+      mode: "concept",
+      print: {
+        innerMarginMm: 12,
+        outerMarginMm: 18,
+        sectionStart: "even-left",
+        coverMode: "included",
+      },
+    });
+  });
+
   it("saves blank forms and confirmation ids on the concept", async () => {
     let body: {
       expectedRevision?: number;

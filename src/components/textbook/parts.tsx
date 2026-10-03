@@ -42,6 +42,13 @@ export function BookList({
   pageTarget,
   videoPolicy,
   studentSolutionPolicy,
+  schoolLevel,
+  grade,
+  semester,
+  bookMode,
+  innerMarginMm,
+  outerMarginMm,
+  coverMode,
   busy,
   onTitle,
   onVolume,
@@ -49,6 +56,13 @@ export function BookList({
   onPageTarget,
   onVideoPolicy,
   onSolutionPolicy,
+  onSchoolLevel,
+  onGrade,
+  onSemester,
+  onBookMode,
+  onInnerMargin,
+  onOuterMargin,
+  onCoverMode,
   onCreate,
   onOpen,
   onImport,
@@ -60,6 +74,13 @@ export function BookList({
   pageTarget: string;
   videoPolicy: "required" | "optional";
   studentSolutionPolicy: "never" | "assigned";
+  schoolLevel: "elementary" | "middle" | "high";
+  grade: string;
+  semester: "1" | "2";
+  bookMode: "integrated" | "concept" | "practice";
+  innerMarginMm: string;
+  outerMarginMm: string;
+  coverMode: "included" | "separate";
   busy: boolean;
   onTitle: (value: string) => void;
   onVolume: (value: string) => void;
@@ -67,10 +88,18 @@ export function BookList({
   onPageTarget: (value: string) => void;
   onVideoPolicy: (value: "required" | "optional") => void;
   onSolutionPolicy: (value: "never" | "assigned") => void;
+  onSchoolLevel: (value: "elementary" | "middle" | "high") => void;
+  onGrade: (value: string) => void;
+  onSemester: (value: "1" | "2") => void;
+  onBookMode: (value: "integrated" | "concept" | "practice") => void;
+  onInnerMargin: (value: string) => void;
+  onOuterMargin: (value: string) => void;
+  onCoverMode: (value: "included" | "separate") => void;
   onCreate: () => void;
   onOpen: (book: BookSummary) => void;
   onImport: () => void;
 }) {
+  const gradeMax = schoolLevel === "elementary" ? 6 : 3;
   return (
     <section className={styles.panel} aria-label="교재 목록">
       <h2>교재</h2>
@@ -127,6 +156,104 @@ export function BookList({
           />
         </label>
         <label className={styles.field}>
+          <span>학교급</span>
+          <select
+            aria-label="학교급"
+            value={schoolLevel}
+            onChange={(event) => {
+              const value = event.target.value;
+              onSchoolLevel(
+                value === "middle" || value === "high" ? value : "elementary",
+              );
+            }}
+          >
+            <option value="elementary">초등</option>
+            <option value="middle">중등</option>
+            <option value="high">고등</option>
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>학년</span>
+          <select
+            aria-label="학년"
+            value={grade}
+            onChange={(event) => onGrade(event.target.value)}
+          >
+            {Array.from({ length: gradeMax }, (_, index) =>
+              String(index + 1),
+            ).map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>학기</span>
+          <select
+            aria-label="학기"
+            value={semester}
+            onChange={(event) =>
+              onSemester(event.target.value === "2" ? "2" : "1")
+            }
+          >
+            <option value="1">1학기</option>
+            <option value="2">2학기</option>
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>구성</span>
+          <select
+            aria-label="구성"
+            value={bookMode}
+            onChange={(event) => {
+              const value = event.target.value;
+              onBookMode(
+                value === "concept" || value === "practice"
+                  ? value
+                  : "integrated",
+              );
+            }}
+          >
+            <option value="integrated">통합</option>
+            <option value="concept">개념</option>
+            <option value="practice">연습</option>
+          </select>
+        </label>
+        <label className={styles.field}>
+          <span>안쪽 여백</span>
+          <input
+            aria-label="안쪽 여백"
+            value={innerMarginMm}
+            inputMode="numeric"
+            onChange={(event) => onInnerMargin(event.target.value)}
+          />
+        </label>
+        <label className={styles.field}>
+          <span>바깥 여백</span>
+          <input
+            aria-label="바깥 여백"
+            value={outerMarginMm}
+            inputMode="numeric"
+            onChange={(event) => onOuterMargin(event.target.value)}
+          />
+        </label>
+        <label className={styles.field}>
+          <span>표지</span>
+          <select
+            aria-label="표지"
+            value={coverMode}
+            onChange={(event) =>
+              onCoverMode(
+                event.target.value === "included" ? "included" : "separate",
+              )
+            }
+          >
+            <option value="separate">별도</option>
+            <option value="included">포함</option>
+          </select>
+        </label>
+        <label className={styles.field}>
           <span>영상</span>
           <select
             value={videoPolicy}
@@ -173,9 +300,7 @@ export function BookList({
         </button>
       </div>
       <p className={styles.muted}>
-        기본은 초등 5학년 1학기 1권, 통합, 여백 15mm, 표지 별도, 주요 구획은
-        짝수 왼쪽입니다. 새 문항의 풀이선 기본은 7mm입니다. 학생 글 해설은 고른
-        값으로 저장합니다.
+        주요 구획은 짝수 왼쪽에서 시작합니다. 여백은 8mm 이상 40mm 이하입니다.
       </p>
     </section>
   );

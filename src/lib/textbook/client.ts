@@ -166,6 +166,13 @@ export interface TextbookStudioApi {
     videoPolicy: VideoPolicy;
     studentSolutionPolicy: SolutionPolicy;
     requestId: string;
+    schoolLevel?: "elementary" | "middle" | "high";
+    grade?: number;
+    semester?: 1 | 2;
+    mode?: "integrated" | "concept" | "practice";
+    innerMarginMm?: number;
+    outerMarginMm?: number;
+    coverMode?: "included" | "separate";
   }): Promise<BookSummary>;
   openEdition(editionId: string): Promise<EditionDetail>;
   createEdition(
@@ -999,22 +1006,22 @@ export function createTextbookApi(
         requestId: input.requestId,
         config: {
           bookId,
-          schoolLevel: "elementary",
-          grade: 5,
-          semester: 1,
+          schoolLevel: input.schoolLevel ?? "elementary",
+          grade: input.grade ?? 5,
+          semester: input.semester ?? 1,
           volume: 1,
           volumeCount: 1,
           displayCode: input.volumeCode,
           title: input.title,
           curriculumVersion: input.curriculumVersion,
-          mode: "integrated",
+          mode: input.mode ?? "integrated",
           pageBudget: { target: input.pageTarget, tolerance: 0, strict: false },
           print: {
             paper: "A4",
-            innerMarginMm: 15,
-            outerMarginMm: 15,
+            innerMarginMm: input.innerMarginMm ?? 15,
+            outerMarginMm: input.outerMarginMm ?? 15,
             sectionStart: "even-left",
-            coverMode: "separate",
+            coverMode: input.coverMode ?? "separate",
             firstPhysicalPageIndex: 1,
           },
           videoPolicy: input.videoPolicy,
