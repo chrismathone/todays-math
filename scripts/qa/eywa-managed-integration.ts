@@ -9,7 +9,11 @@ async function main() {
   assert.ok(
     ["localhost", "127.0.0.1"].includes(url.hostname) &&
       url.port === "55432" &&
-      ["/eywa_target_test", "/eywa_auto_target_test"].includes(url.pathname),
+      [
+        "/eywa_target_test",
+        "/eywa_auto_target_test",
+        "/eywa_email_target_test",
+      ].includes(url.pathname),
     "Only the isolated localhost:55432 target fixture databases are allowed",
   );
   process.env.DATABASE_URL = fixtureUrl;
@@ -277,11 +281,12 @@ async function main() {
       validatedAt: new Date().toISOString(),
     };
     await apply(true);
-    let mapping = await db.eywaManagedAccount.findFirstOrThrow({
+    const mapping = await db.eywaManagedAccount.findFirstOrThrow({
       where: { sourceUserId: candidateSource.id, bindingId },
     });
-    assert.equal(mapping.status, "candidate");
-    assert.equal(mapping.currentUserId, null);
+    assert.equal(mapping.status, "confirmed");
+    assert.equal(mapping.currentUserId, existing.id);
+    assert.equal(mapping.confirmationMethod, "email_match");
     assert.equal(
       (await db.user.findUniqueOrThrow({ where: { id: existing.id } }))
         .suspendedAt,
@@ -328,15 +333,7 @@ async function main() {
           password: "wrong",
         }),
       );
-      await approveManagedCandidate(actor, {
-        id: mapping.id,
-        version: mapping.candidateVersion!,
-        method: "owner",
-        password: "fixture-password",
-      });
-      mapping = await db.eywaManagedAccount.findUniqueOrThrow({
-        where: { id: mapping.id },
-      });
+      await apply(true);
       assert.equal(mapping.currentUserId, existing.id);
       assert.ok(
         (await db.user.findUniqueOrThrow({ where: { id: existing.id } }))
@@ -534,7 +531,7 @@ async function main() {
       globalThis.fetch = originalFetch;
     }
     console.log(
-      `PASS ${checks} receiver PostgreSQL integration scenarios (provisioning, candidate confirmation, OFF/ON, revocation, manual suspension, DB guards, inbox collision, lease race, nonce, state/PKCE handoff, jti reuse, outage)`,
+      `PASS ${checks} receiver PostgreSQL integration scenarios (provisioning, email migration, OFF/ON, revocation, manual suspension, DB guards, inbox collision, lease race, nonce, state/PKCE handoff, jti reuse, outage)`,
     );
   } finally {
     await db.$disconnect();

@@ -82,7 +82,20 @@ export async function accessibleClassesWhere(
           ),
       )
       .map((row) => row.classId);
-    return { id: { in: [...new Set(ids)] } };
+    return {
+      OR: [
+        { id: { in: [...new Set(ids)] } },
+        ...(viewer.branchId
+          ? [
+              {
+                userId: viewer.id,
+                branchId: viewer.branchId,
+                eywaBindingId: null,
+              },
+            ]
+          : []),
+      ],
+    };
   }
   if (viewer.isSuperAdmin === true) return {};
   if (viewer.isAdmin === true && viewer.branchId)
@@ -106,12 +119,16 @@ export async function classAccessAllowed(
   const client = options.client ?? db;
   if (!cls.eywaBindingId) {
     try {
-      if (
-        await getManagedClassGrants(viewer.id, {
-          forceRefresh: options.forceRefresh,
-        })
-      )
-        return false;
+      const managed = await getManagedClassGrants(viewer.id, {
+        forceRefresh: options.forceRefresh,
+      });
+      if (managed)
+        return (
+          managed.leaseExpiresAt > (options.now ?? new Date()) &&
+          !!viewer.branchId &&
+          cls.branchId === viewer.branchId &&
+          cls.userId === viewer.id
+        );
     } catch {
       return false;
     }

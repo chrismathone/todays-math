@@ -88,10 +88,10 @@ export function candidateProblem(
     user.approvalStatus !== "approved"
   )
     return "local_account_blocked";
-  if (!confirmedTransfer && (user.authSource === "eywa" || !user.passwordHash))
+  if (!confirmedTransfer && user.authSource === "eywa")
     return "identity_confirmation_required";
-  if (normalizeName(user.name) !== normalizeName(source.name))
-    return "name_mismatch";
+  // The source's unique normalized email owns the automatic teacher migration.
+  // Display names (including honorifics) are not an identity gate.
   if (normalizeEmail(user.email) !== normalizeEmail(source.email))
     return "email_mismatch";
   if (!confirmedTransfer && user.eywaUserId && user.eywaUserId !== source.id)
