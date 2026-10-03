@@ -4,6 +4,10 @@ import { useRouter } from "next/navigation";
 import { useRef, useState, type FormEvent } from "react";
 
 import { isEasyPin, isPinFormat } from "@/lib/concept/pinRules";
+import {
+  normalizeStudentReturnTo,
+  studentLoginHref,
+} from "@/lib/learn/studentReturnTo";
 
 import { postPasswordChange } from "./learnApi";
 import s from "./learn.module.css";
@@ -29,9 +33,11 @@ import { pinDigits } from "./StudentLoginForm";
  */
 export function StudentPasswordForm({
   studentName,
+  returnTo,
 }: {
   /** 윗줄 이름 — 세션의 학생 이름(D-128 ⑵). 없으면 «나가기»만 */
   studentName: string | null;
+  returnTo?: string;
 }) {
   const router = useRouter();
   const [current, setCurrent] = useState("");
@@ -75,7 +81,7 @@ export function StudentPasswordForm({
       }
       const result = await postPasswordChange(current, next);
       if (result.ok) {
-        router.replace("/learn");
+        router.replace(normalizeStudentReturnTo(returnTo));
         router.refresh();
         return;
       }
@@ -84,7 +90,7 @@ export function StudentPasswordForm({
         result.status === 401 &&
         result.message !== STUDENT_LOGIN_MESSAGES.wrongCurrentPin
       ) {
-        router.replace("/learn/login");
+        router.replace(studentLoginHref(returnTo));
         return;
       }
       setError(result.message);
