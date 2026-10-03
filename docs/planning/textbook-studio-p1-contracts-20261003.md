@@ -57,8 +57,9 @@
 
 - 선택 확장과 `conceptKeys`가 없던 패키지에는 파싱 시 기본 빈 배열/null을 삽입하지 않는다. 읽기 전용 보관본은 원래 바이트/manifest를 유지한다. 새 reader의 과거 파일 호환과 옛 strict reader의 새 확장 지원은 다르다. 후자는 명시적 지원 없으면 오류다.
 - exact `pick` 지면은 이번 범위에서 기존 60자 지면 코드를 찍지 않는다. 정확한 선택은 패키지/서버 기록에 남으며 이전 코드로 축약하지 않는다. frozen에는 선택 section 라벨·순서 및 파서/조합 버전도 포함한다. 과거 지면을 구성할 때 현재 `getBlankSection`의 이름·존재 여부에 의존하지 않는 resolved section 입력을 둔다.
+- pick selection은 `?s=` URL에 싣지 않는다. 인쇄는 저장 문서 ID 또는 교재 개념 참조로 서버에서 읽고, `?s=`용 decoder는 pick 포함 입력을 거절한다. 기존 pick 없는 URL 동작은 유지한다. 교재에서 개념백지로 이동할 때도 큰 선택 JSON 대신 권한을 확인한 서버 참조를 사용한다.
 - `givenCase`가 recall에 맞지 않거나 형식/난이도와 pick이 충돌하면 누락시키지 않고 오류를 낸다. 개념의 일치가 필요한 문항 연결은 교재 item의 검수된 `conceptKeys`로만 표시한다. 현재 `Problem.unitId`나 courseBank의 가공 결과로 exact 개념을 증명하지 않는다.
-- 복습 시작 응답은 `started | resumed | deferred | unavailable`을 구분한다. 현재 엔진의 repair가 여러 카드 구성을 요구하는 경우 단일 카드 복습을 했다고 표시하지 않는다. 문자열 피드백을 해석하지 않고 같은 CAS에서 전후 도전 ID·미완료/미해결 상태로 계산한다. 새 도전 생성은 started, 미완료 도전 유지는 resumed, 완료했으나 미해결이 남아 재도전이 먼저면 deferred, 연결/학생 기록/탐험 기록이 없으면 unavailable + reasonCode다. 재시도는 기존 영수증의 typed 결과를 사용한다. 요청 없는 GET은 학습 상태를 변경하지 않는다.
+- 복습 시작 응답은 `started | resumed | deferred | unavailable`을 구분한다. 현재 엔진의 repair가 여러 카드 구성을 요구하는 경우 단일 카드 복습을 했다고 표시하지 않는다. 문자열 피드백을 해석하지 않고 같은 CAS에서 전후 도전 ID·미완료/미해결 상태로 계산한다. 새 도전 생성은 started, 미완료 도전 유지는 resumed, 완료했으나 미해결이 남아 재도전이 먼저면 deferred, 연결/학생 기록/탐험 기록이 없으면 unavailable + reasonCode다. 기존 영수증 스키마는 바꾸지 않는다. 같은 requestId 재시도는 추가 상태 변경 없이 현재 상태로 resumed/deferred를 반환하고 `replayed:true`를 붙인다. 둘 다 아니면 unavailable/reasonCode=already-processed다. started는 실제 도전을 생성한 첫 요청에만 표시한다. 요청 없는 GET은 학습 상태를 변경하지 않는다.
 - 학생 텍스트는 학생 삭제 시 기존 학생 활동 삭제 수명에 맞춰 삭제하고, 학생 응답을 인쇄 판본 불변 blob이나 교사 교환 패키지에 넣지 않는다. 임의의 자동 만료/보상/숙달 전환은 추가하지 않는다.
 - 교사 `parseConceptBlankView` 기본값은 정답을 포함할 수 있고 `loadGradeBank`는 답을 가진 은행을 읽는다. 새 학생 경로가 교사 인쇄 URL에 query만 바꾸거나 은행 전체를 번들에 싣는 방식은 금지한다.
 

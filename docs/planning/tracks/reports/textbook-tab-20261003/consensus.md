@@ -25,6 +25,18 @@
 
 Hi-fi4는 이후 실제 캡처로 별도 표결한다. 초기 일부 캡처의 아래쪽 회색 영역은 캡처 viewport 높이가 부족한 결과여서, 1600×1500 viewport의 `*-full.png`로 다시 확인했다. 최종 시안 증거에는 교정된 캡처를 사용한다.
 
-## 남은 검토와 실행
+## P1 계약 명세 승인
 
-P1 구체 계약은 `docs/planning/textbook-studio-p1-contracts-20261003.md`에서 검토한다. 현재 제품 코드·운영 DB 변경은 없다. 계약 승인 뒤 shared contract를 구현하고, 독립 Orca 트랙의 서버·조판·화면 작업을 통합한다. 완료 검증 후 main 병합·필요한 push와 조건에 맞는 worktree 정리를 한다.
+대상 `docs/planning/textbook-studio-p1-contracts-20261003.md`, 24,697 bytes, SHA-256 `e94aedb8a5bff13d64ddded08539a187aadc9111e39603eabb9554d6eff41ca1`. 문서의 검토 초안이라는 표제는 표결 바이트 보존을 위해 유지한다.
+
+| 모델 | Task / Dispatch | 실제 메시지 | 결과 |
+| --- | --- | --- | --- |
+| Claude | `task_a74e466bcac6` / `ctx_aff514947da8` | `msg_84e5b1ce790a`, 06:09:14 UTC | APPROVE |
+| Codex | `task_b012383e1983` / `ctx_060956892576` | `msg_756d33ce14ec`, 06:10:40 UTC | APPROVE |
+| Grok | `task_4313f49b3c2f` / `ctx_4197e29dd510` | `msg_7ec5a4084d01`, 06:15:32 UTC | APPROVE |
+
+정확한 개념백지 선택·이전 URL 호환, 서버 소유 검수, 원본 메타데이터와 내용 해시 구분, 학생 응답 분리, 기존 탐험 영수증의 재시도 의미까지 합의했다. 이는 구현 계약 승인이지 제품 구현·운영 적용·실물 인쇄 완료가 아니다.
+
+## 실행
+
+승인된 shared contract를 구현하고 독립 Orca 트랙의 서버·조판·화면 작업을 통합한다. 완료 검증 후 main 병합·필요한 push와 조건에 맞는 worktree 정리를 한다. v15 원본·실제 영상·실물 인쇄 검증은 미확보 상태를 유지한다.
