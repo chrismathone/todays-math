@@ -1,0 +1,302 @@
+/*
+ * 교재 제작 — 승인된 H1. 색과 글꼴은 작업실 --learn-* 만 쓴다.
+ * 카드·행에는 손가락 커서와 행 hover 를 두지 않는다. 단추만 누른다.
+ */
+.studio {
+  min-width: 0;
+  color: var(--learn-ink);
+  background: var(--learn-bg);
+  font-family: inherit;
+}
+.studio fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.studio legend {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.studio :is(input, select, textarea, button) {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--learn-ink);
+}
+.studio :is(button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--learn-focus);
+  outline-offset: 2px;
+}
+
+.button,
+.primary,
+.tab {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  cursor: pointer;
+}
+.button:disabled,
+.primary:disabled,
+.tab:disabled {
+  cursor: not-allowed;
+  background: var(--learn-neutral);
+  color: var(--learn-muted);
+  border-color: var(--learn-track);
+}
+.primary {
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
+  border-color: var(--learn-accent);
+}
+.tab[aria-selected="true"],
+.button[aria-pressed="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+  color: var(--learn-accent);
+}
+.primary[aria-pressed="true"] {
+  background: var(--learn-accent);
+  color: var(--learn-on-accent);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.field span {
+  color: var(--learn-muted);
+  font-size: 13px;
+}
+.field input,
+.field select,
+.field textarea {
+  min-height: 44px;
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+}
+.field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.panel {
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  padding: 16px;
+  min-width: 0;
+}
+.panel h2,
+.panel h3 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+.muted {
+  margin: 0;
+  color: var(--learn-muted);
+}
+.alert {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--learn-danger-bg);
+  color: var(--learn-danger);
+}
+.note {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}
+.ok {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--learn-done-bg);
+  color: var(--learn-done);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.book {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  background: var(--learn-surface);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 220px minmax(280px, 1fr) minmax(320px, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.workspace[data-pane="manuscript"] .preview,
+.workspace[data-pane="preview"] .manuscript {
+  display: block;
+}
+
+.outline,
+.manuscript,
+.preview {
+  min-width: 0;
+}
+.outline {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.unitButton {
+  min-height: 44px;
+  width: 100%;
+  padding: 0 8px;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font-weight: 700;
+  cursor: pointer;
+}
+.sectionButton {
+  min-height: 44px;
+  width: 100%;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.sectionButton[aria-current="true"] {
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+}
+.status {
+  display: block;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+
+.spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.page {
+  min-height: 180px;
+  padding: 12px;
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  background: var(--learn-surface);
+}
+.workspace[data-zoom="wide"] .spread {
+  width: 680px;
+}
+.pageNav {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hidden {
+  display: none;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table th,
+.table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--learn-track);
+  text-align: left;
+  vertical-align: top;
+}
+.table th {
+  font-weight: 700;
+}
+
+.tabs {
+  display: none;
+}
+.studio[data-narrow="true"] .tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.studio[data-narrow="true"] .workspace {
+  display: block;
+}
+.studio[data-narrow="true"] .workspace[data-pane="manuscript"] .preview,
+.studio[data-narrow="true"] .workspace[data-pane="preview"] .manuscript,
+.studio[data-narrow="true"] .workspace[data-pane="preview"] .outline {
+  display: none;
+}
+.studio[data-narrow="true"] .workspace[data-zoom="wide"] .spread {
+  width: 680px;
+}
+
+@media (max-width: 800px) {
+  .workspace {
+    display: block;
+  }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .workspace[data-pane="manuscript"] .preview,
+  .workspace[data-pane="preview"] .manuscript,
+  .workspace[data-pane="preview"] .outline {
+    display: none;
+  }
+  .workspace[data-zoom="fit"] .spread {
+    width: 100%;
+  }
+  .workspace[data-zoom="fit"] .page {
+    font-size: 11px;
+    overflow: hidden;
+  }
+  .workspace[data-zoom="wide"] .spread {
+    width: 680px;
+  }
+  .preview {
+    overflow-x: auto;
+  }
+}
