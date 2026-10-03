@@ -24,7 +24,9 @@ export const listeningDraftQuestionSchema = z.strictObject({
     .max(5),
   answerChoiceId: z.uuid().nullable(),
   explanation: z.string().max(10000),
-  evidence: listeningGroupSchema.shape.questions.element.shape.evidence.min(0),
+  evidence: z
+    .array(listeningGroupSchema.shape.questions.element.shape.evidence.element)
+    .max(50),
 });
 export const listeningDraftGroupSchema = listeningGroupSchema.extend({
   audio: listeningGroupSchema.shape.audio.nullable(),

@@ -82,6 +82,7 @@ export const SPECIMEN_ITEM_IDS = [
 export const ITEMS: PrintCheckItem[] = [
   {
     id: "english-listening-student-teacher",
+    changedOn: "2026-10-03",
     title: "영어듣기 학생용·교사용 A4",
     changed:
       "발행한 듣기 자료를 학생용 문항과 교사용 대본·정답·해설로 나눠 인쇄한다. 학생용은 서버에서 대본과 정답 정보를 제거한다.",

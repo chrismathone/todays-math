@@ -131,9 +131,7 @@ describe("ListeningStudentView", () => {
     expect(screen.getByRole("radio", { name: /At three/ })).toBeEnabled();
     fireEvent.click(screen.getByRole("radio", { name: /At three/ }));
     expect(screen.getByRole("button", { name: "답안 제출" })).toBeDisabled();
-    fireEvent.click(
-      screen.getByRole("button", { name: "답 저장", exact: true }),
-    );
+    fireEvent.click(screen.getByRole("button", { name: "답 저장" }));
     expect(
       await screen.findByText("저장 완료 · 제출 전까지 바꿀 수 있습니다."),
     ).toBeInTheDocument();

@@ -59,6 +59,7 @@ const denied = () =>
     { status: 403 },
   );
 beforeEach(() => {
+  sessionStorage.clear();
   vi.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
   vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
 });
@@ -69,6 +70,44 @@ afterEach(() => {
 });
 
 describe("listening learner HTTP integration", () => {
+  it("stops an offline exam and records interruption after reload without restarting the timer", async () => {
+    const detail = fixture();
+    detail.mode = "exam";
+    const interrupted = fixture();
+    interrupted.mode = "exam";
+    interrupted.attempt!.revision = 2;
+    interrupted.attempt!.status = "interrupted";
+    const fetcher = vi
+      .fn()
+      .mockResolvedValueOnce(ok(detail))
+      .mockResolvedValueOnce(ok(detail))
+      .mockResolvedValueOnce(ok(interrupted));
+    vi.stubGlobal("fetch", fetcher);
+    const rendered = render(<ListeningAssignment assignmentId={id(1)} />);
+    await screen.findByRole("radio", { name: /At four/ });
+    fireEvent(window, new Event("offline"));
+    expect(await screen.findByRole("alert")).toHaveTextContent("연결이 끊겨");
+    expect(screen.queryByRole("radio")).not.toBeInTheDocument();
+    rendered.unmount();
+    render(<ListeningAssignment assignmentId={id(1)} />);
+    expect(
+      await screen.findByText(
+        "응시가 중단되었습니다. 선생님에게 확인해 주세요.",
+      ),
+    ).toBeInTheDocument();
+    expect(JSON.parse(fetcher.mock.calls[2][1].body)).toMatchObject({
+      attemptId: id(7),
+      command: {
+        kind: "interrupt",
+        expectedRevision: 1,
+        reason: "student_connection",
+      },
+    });
+    expect(screen.getByRole("radio", { name: /At four/ })).toBeDisabled();
+    expect(
+      sessionStorage.getItem(`english-listening-interrupted:${id(1)}`),
+    ).toBeNull();
+  });
   it("prepares a missing attempt without starting the timer and excludes teacher audio", async () => {
     const detail = fixture();
     detail.attempt!.status = "ready";

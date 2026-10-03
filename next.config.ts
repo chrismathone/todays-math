@@ -75,6 +75,8 @@ const nextConfig: NextConfig = {
    *    다른 이유(타입 오류)로 빨개서 아무도 여기까지 못 왔다.
    */
   serverExternalPackages: [
+    // Decoder exports a Node worker adapter with dynamic imports; keep it native.
+    "mpg123-decoder",
     "mathjax-full",
     "puppeteer-core",
     "@sparticuz/chromium-min",

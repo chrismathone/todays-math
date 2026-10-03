@@ -276,7 +276,10 @@ export function ListeningAssignments({
           onChange={() => onDirtyChange(true)}
           className={s.editor}
         >
-          <fieldset className={s.formSection} disabled={busy || !active}>
+          <fieldset
+            className={s.formSection}
+            disabled={busy || !active || !loaded}
+          >
             <legend>발행본과 대상</legend>
             <div className={s.formGrid}>
               <label>
@@ -385,7 +388,10 @@ export function ListeningAssignments({
               </fieldset>
             ) : null}
           </fieldset>
-          <fieldset className={s.formSection} disabled={busy || !active}>
+          <fieldset
+            className={s.formSection}
+            disabled={busy || !active || !loaded}
+          >
             <legend>진행과 정답 공개</legend>
             <div className={s.formGrid}>
               <label>

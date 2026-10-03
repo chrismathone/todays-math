@@ -33,13 +33,17 @@ function AssignmentSession({ assignmentId }: { assignmentId: string }) {
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [reload, setReload] = useState(0);
+  const [connectionLost, setConnectionLost] = useState(false);
+  const latestDetail = useRef<ListeningStudentDetail | null>(null);
+  const interruptedAttempt = useRef<string | null>(null);
   const pending = useRef(false);
   const stopped = useRef(false);
   const controllers = useRef(new Set<AbortController>());
   const base = `/api/english/learn/listening/${assignmentId}`;
   const receive = useCallback((next: ListeningStudentDetail) => {
     if (stopped.current) return;
-    setDetail((current) => newerListeningDetail(current, next));
+    latestDetail.current = newerListeningDetail(latestDetail.current, next);
+    setDetail(latestDetail.current);
     setNotice("");
   }, []);
   useEffect(() => {
@@ -47,8 +51,16 @@ function AssignmentSession({ assignmentId }: { assignmentId: string }) {
     const controller = new AbortController();
     const activeControllers = controllers.current;
     activeControllers.add(controller);
+    const interruptionKey = `english-listening-interrupted:${assignmentId}`;
+    try {
+      interruptedAttempt.current = sessionStorage.getItem(interruptionKey);
+    } catch {
+      /* Storage can be unavailable; the live tab still records an interruption. */
+    }
+    let loading = false;
     async function load(prepare: boolean) {
-      if (pending.current || stopped.current) return;
+      if (pending.current || stopped.current || loading) return;
+      loading = true;
       try {
         let next = await requestListeningData(
           base,
@@ -66,7 +78,41 @@ function AssignmentSession({ assignmentId }: { assignmentId: string }) {
               signal: controller.signal,
             },
           );
-        if (!controller.signal.aborted) receive(next);
+        if (interruptedAttempt.current && next.attempt) {
+          if (
+            interruptedAttempt.current === next.attempt.id &&
+            next.attempt.status === "in_progress"
+          ) {
+            next = await requestListeningData(
+              `${base}/commands`,
+              listeningStudentDetailSchema,
+              {
+                method: "POST",
+                signal: controller.signal,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  attemptId: next.attempt.id,
+                  command: {
+                    kind: "interrupt",
+                    reason: "student_connection",
+                    expectedRevision: next.attempt.revision,
+                    idempotencyKey: crypto.randomUUID(),
+                  },
+                }),
+              },
+            );
+          }
+          interruptedAttempt.current = null;
+          try {
+            sessionStorage.removeItem(interruptionKey);
+          } catch {
+            /* The acknowledged server state is authoritative. */
+          }
+        }
+        if (!controller.signal.aborted) {
+          setConnectionLost(false);
+          receive(next);
+        }
       } catch (reason) {
         if (controller.signal.aborted) return;
         const message =
@@ -83,6 +129,8 @@ function AssignmentSession({ assignmentId }: { assignmentId: string }) {
           setDetail(null);
           setError(message);
         } else setNotice("연결을 확인하고 있습니다. 저장된 답은 유지됩니다.");
+      } finally {
+        loading = false;
       }
     }
     void load(true);
@@ -92,16 +140,30 @@ function AssignmentSession({ assignmentId }: { assignmentId: string }) {
     const refresh = () => {
       if (document.visibilityState === "visible") void load(false);
     };
+    const offline = () => {
+      const current = latestDetail.current;
+      if (current?.mode !== "exam" || current.attempt?.status !== "in_progress")
+        return;
+      interruptedAttempt.current = current.attempt.id;
+      try {
+        sessionStorage.setItem(interruptionKey, current.attempt.id);
+      } catch {
+        /* Keep the live interruption flag. */
+      }
+      setConnectionLost(true);
+    };
     document.addEventListener("visibilitychange", refresh);
     window.addEventListener("online", refresh);
+    window.addEventListener("offline", offline);
     return () => {
       clearInterval(timer);
       document.removeEventListener("visibilitychange", refresh);
       window.removeEventListener("online", refresh);
+      window.removeEventListener("offline", offline);
       for (const request of activeControllers) request.abort();
       activeControllers.clear();
     };
-  }, [base, receive, reload]);
+  }, [assignmentId, base, receive, reload]);
 
   async function command(
     kind: "start" | "answer" | "submit",
@@ -190,6 +252,11 @@ function AssignmentSession({ assignmentId }: { assignmentId: string }) {
             다시 불러오기
           </button>
         </div>
+      ) : connectionLost ? (
+        <p className={s.notice} role="alert">
+          연결이 끊겨 평가 재생을 멈췄습니다. 연결이 돌아오면 중단 상태를
+          저장합니다. 저장된 답은 유지되며, 재응시는 선생님이 열어 줍니다.
+        </p>
       ) : detail?.attempt ? (
         <ListeningStudentView
           view={detail.view}

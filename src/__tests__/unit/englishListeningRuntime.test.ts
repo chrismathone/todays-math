@@ -306,7 +306,15 @@ describe.skipIf(!db)(
           {
             ...bare,
             audio: null,
-            questions: [],
+            questions: [
+              {
+                ...bare.questions[0],
+                prompt: "",
+                explanation: "",
+                answerChoiceId: null,
+                evidence: [],
+              },
+            ],
             transcript: {
               revision: 900,
               text: "",

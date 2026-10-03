@@ -129,10 +129,28 @@ export function ListeningReviewPanel({
         <p className={s.muted}>기존 배정은 이전 발행본을 유지합니다.</p>
       </div>
       {detail.publications.length > 0 ? (
-        <p>
-          발행본 {detail.publications.length}개 · 과제와 결과에서 배정할 수
-          있습니다.
-        </p>
+        <div>
+          <p>
+            발행본 {detail.publications.length}개 · 과제와 결과에서 배정할 수
+            있습니다.
+          </p>
+          <div className={s.actions}>
+            <a
+              href={`/english/listening/sets/${detail.id}/print?publicationId=${detail.publications[0].id}&view=student`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              최신 발행본 학생용 인쇄
+            </a>
+            <a
+              href={`/english/listening/sets/${detail.id}/print?publicationId=${detail.publications[0].id}&view=teacher`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              최신 발행본 교사용 인쇄
+            </a>
+          </div>
+        </div>
       ) : null}
     </section>
   );

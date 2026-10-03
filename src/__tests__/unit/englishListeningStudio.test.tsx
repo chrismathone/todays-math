@@ -454,6 +454,38 @@ describe("ListeningStudio connected teacher flow", () => {
 });
 
 describe("teacher assignment requests", () => {
+  it("waits for the roster before allowing material selection to cancel an initial load", async () => {
+    let resolveRoster!: (value: Response) => void;
+    vi.stubGlobal(
+      "fetch",
+      vi.fn((url: string) =>
+        url.endsWith("/classes")
+          ? new Promise<Response>((resolve) => {
+              resolveRoster = resolve;
+            })
+          : Promise.resolve(receipt([])),
+      ),
+    );
+    render(
+      <ListeningAssignments
+        active
+        materials={[summary(makeDetail())]}
+        onDirtyChange={() => {}}
+      />,
+    );
+    expect(
+      screen.getByRole("combobox", { name: /배정할 자료/ }),
+    ).toBeDisabled();
+    resolveRoster(receipt(classes));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("combobox", { name: /배정할 자료/ }),
+      ).toBeEnabled(),
+    );
+    expect(
+      screen.getByRole("option", { name: "내 중등반" }),
+    ).toBeInTheDocument();
+  });
   it("creates practice assignment with selected own-class students and server publication ID", async () => {
     const detail = makeDetail();
     const assigned = assignmentDetail(detail);

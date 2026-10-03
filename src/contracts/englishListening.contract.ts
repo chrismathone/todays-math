@@ -1,4 +1,4 @@
-/** L0 only: no routes or persistence. Parse strictly; never downgrade an unknown schema. */
+/** Listening domain contract. Parse strictly; never downgrade an unknown schema. */
 import { z } from "zod";
 import { englishV2RightsSchema } from "./englishV2.contract";
 
