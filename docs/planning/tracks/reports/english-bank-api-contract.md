@@ -25,3 +25,5 @@ All ordinary responses use `{data}`, paged responses add `{meta:{nextCursor}}`. 
 Errors use existing `{error:{code,message,details}}`. Malformed input/ref is 400 VALIDATION_ERROR. Bank semantic conflicts are 409 CONFLICT with details.reason: PASSAGE_UNAVAILABLE (identical missing/cross-owner/archived ref response), PASSAGE_TEXT_MISMATCH, RIGHTS_REQUIRED, PASSAGE_TOO_LONG, REVISION_MISMATCH, CLIENT_KEY_CONFLICT, IMPORT_TEXT_UNAVAILABLE, IMPORT_TEXT_TRUNCATED or IMPORT_INVALID_UTF8. Length failure includes limit/length/path. Existing bank-free V1 writes remain compatible; successful same-key replay returns the stored row without creating another use or requiring renewed rights.
 
 Root owns route grants. Passage routes require english-bank. Listening bank/references require both english-bank and the existing listening account/pilot gate; existing `/listening/sets` array shape is unchanged. Backend never receives EBS asset URLs in its public projection.
+
+Official references additionally accept optional year (1900–2200) and round (1–10), via englishListeningReferenceQuerySchema. Own listening bank strictly rejects year/round; it supports q and level only.
