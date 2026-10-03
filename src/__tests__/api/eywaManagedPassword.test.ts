@@ -15,21 +15,30 @@ vi.mock("@/lib/accountAccess", () => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
-    user: { findFirst: mocks.target, update: mocks.update },
-    eywaManagedAccount: { findUnique: mocks.mapping },
+    $transaction: async (run: (tx: unknown) => Promise<unknown>) =>
+      run({
+        user: { findFirst: mocks.target, updateMany: mocks.update },
+        eywaManagedAccount: { findUnique: mocks.mapping },
+        accountAuditLog: { create: mocks.audit },
+      }),
   },
 }));
-vi.mock("@/lib/audit", () => ({ recordAudit: mocks.audit }));
+vi.mock("@/lib/audit", () => ({ auditData: (data: unknown) => data }));
 vi.mock("@/lib/errorLog/withErrorLog", () => ({
   withErrorLog: (_: string, fn: unknown) => fn,
 }));
 import { POST } from "@/app/api/admin/users/[id]/password/route";
 const id = "00000000-0000-4000-8000-000000000002";
-const call = (body: unknown = {}) =>
+const updatedAt = "2026-10-01T00:00:00.000Z";
+const call = (body: Record<string, unknown> = {}) =>
   POST(
     new Request(`http://localhost/api/admin/users/${id}/password`, {
       method: "POST",
-      body: JSON.stringify(body),
+      body: JSON.stringify({
+        expectedUpdatedAt: updatedAt,
+        expectedBranchId: null,
+        ...body,
+      }),
     }),
     { params: Promise.resolve({ id }) },
   );
@@ -39,9 +48,11 @@ beforeEach(() => {
     id,
     isSuperAdmin: false,
     authSource: "local",
+    branchId: null,
+    updatedAt: new Date(updatedAt),
   });
   mocks.mapping.mockResolvedValue(null);
-  mocks.update.mockResolvedValue({});
+  mocks.update.mockResolvedValue({ count: 1 });
 });
 describe("managed account recovery boundaries", () => {
   it("cannot turn integration-only authentication into a password account", async () => {
@@ -63,7 +74,7 @@ describe("managed account recovery boundaries", () => {
     expect(mocks.update.mock.calls[0][0].data.sessionVersion).toEqual({
       increment: 1,
     });
-    expect(mocks.audit.mock.calls[0][0].details.recoveryEvidence).toBe(
+    expect(mocks.audit.mock.calls[0][0].data.details.recoveryEvidence).toBe(
       evidence,
     );
   });

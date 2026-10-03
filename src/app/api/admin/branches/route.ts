@@ -2,7 +2,9 @@ import { randomBytes } from "node:crypto";
 import { hash } from "bcryptjs";
 import { z } from "zod";
 import { authorizeAccount } from "@/lib/accountAccess";
-import { recordAudit } from "@/lib/audit";
+import { auditData } from "@/lib/audit";
+import { branchSummary, branchSummarySelect } from "@/lib/adminBranches";
+import type { BranchListResponse } from "@/contracts/branchAdmin.contract";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
@@ -19,24 +21,41 @@ const createSchema = z.strictObject({
 async function handleGet(request: Request) {
   const access = await authorizeAccount(request, true, true);
   if (access.response) return access.response;
-  const branches = await db.branch.findMany({
-    select: {
-      id: true,
-      name: true,
-      createdAt: true,
-      _count: { select: { users: true } },
-      users: {
-        where: { branchRole: "owner", deletedAt: null },
-        select: { id: true, name: true, email: true, suspendedAt: true },
-        orderBy: { createdAt: "asc" },
+  const [branches, pending, unassignedCount, unassignedPendingCount] =
+    await Promise.all([
+      db.branch.findMany({
+        select: branchSummarySelect,
+        orderBy: [{ createdAt: "desc" }, { id: "asc" }],
+      }),
+      db.user.groupBy({
+        by: ["branchId"],
+        where: {
+          branchId: { not: null },
+          deletedAt: null,
+          approvalStatus: "pending",
+        },
+        _count: true,
+      }),
+      db.user.count({ where: { branchId: null, deletedAt: null } }),
+      db.user.count({
+        where: { branchId: null, deletedAt: null, approvalStatus: "pending" },
+      }),
+    ]);
+  const pendingByBranch = new Map(
+    pending.map((row) => [row.branchId, row._count]),
+  );
+  const body: BranchListResponse = {
+    data: branches.map((branch) =>
+      branchSummary(branch, pendingByBranch.get(branch.id) ?? 0),
+    ),
+    meta: {
+      unassigned: {
+        count: unassignedCount,
+        pendingCount: unassignedPendingCount,
       },
     },
-    orderBy: [{ createdAt: "desc" }, { id: "asc" }],
-  });
-  return Response.json(
-    { data: branches },
-    { headers: { "Cache-Control": "no-store" } },
-  );
+  };
+  return Response.json(body, { headers: { "Cache-Control": "no-store" } });
 }
 
 async function handlePost(request: Request) {
@@ -72,14 +91,16 @@ async function handlePost(request: Request) {
         },
         select: { id: true, email: true, name: true },
       });
+      await tx.accountAuditLog.create({
+        data: auditData({
+          userId: owner.id,
+          actorId: access.account!.id,
+          action: "admin.branch_created",
+          outcome: "success",
+          details: { branchId: branch.id },
+        }),
+      });
       return { branch, owner };
-    });
-    await recordAudit({
-      userId: created.owner.id,
-      actorId: access.account!.id,
-      action: "admin.branch_created",
-      outcome: "success",
-      details: { branchId: created.branch.id },
     });
     return Response.json(
       {
