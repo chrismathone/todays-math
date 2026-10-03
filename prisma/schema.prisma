@@ -1662,7 +1662,7 @@ model TextbookEdition {
   rendererVersion      String    @map("renderer_version") @db.VarChar(80)
   templateVersion      String    @map("template_version") @db.VarChar(80)
   derivedFromEditionId String?   @map("derived_from_edition_id") @db.Uuid
-  /// 발행 때 서버가 계산한다. 정본 manifest 바이트는 산출물 `manifest-json` 이다
+  /// 발행 때 서버가 계산한다. 그 값을 낸 정본 교환 JSON 은 산출물 `exchange-json` 이다
   manifestHash         String?   @map("manifest_hash") @db.Char(64)
   publishedAt          DateTime? @map("published_at")
   retiredAt            DateTime? @map("retired_at")
@@ -1802,13 +1802,17 @@ model TextbookBlob {
   @@map("textbook_blob")
 }
 
-/// 올리는 중인 파일 — 조각이 다 오면 `TextbookBlob` 으로 옮기고 지운다
+/// 올리는 파일 — 조각이 다 오면 DB 가 이어 붙여 `TextbookBlob` 에 넣고 조각을 지운다.
+/// 끝난 줄(`completedAt`)은 남는다 — 가져오기 · 자산 등록이 `id` 로 그 바이트를 가리킨다
 model TextbookUpload {
-  id        String   @id @default(uuid()) @db.Uuid
-  userId    String   @map("user_id") @db.Uuid
-  sha256    String   @db.Char(64)
-  size      Int
-  createdAt DateTime @default(now()) @map("created_at")
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  sha256      String    @db.Char(64)
+  /// 끝맺을 때 정해진다
+  size        Int?
+  fileName    String?   @map("file_name") @db.VarChar(255)
+  completedAt DateTime? @map("completed_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
 
   chunks TextbookUploadChunk[]
 
@@ -1816,15 +1820,15 @@ model TextbookUpload {
   @@map("textbook_upload")
 }
 
-/// 조각 하나(≤ 1MB)
+/// 조각 하나(≤ 1MB) — 열쇠는 파일 안의 바이트 자리다. 끝맺을 때 빈틈 · 겹침 없이 이어지는지 본다
 model TextbookUploadChunk {
-  uploadId String @map("upload_id") @db.Uuid
-  idx      Int
-  bytes    Bytes
+  uploadId   String @map("upload_id") @db.Uuid
+  byteOffset Int    @map("byte_offset")
+  bytes      Bytes
 
   upload TextbookUpload @relation(fields: [uploadId], references: [id], onDelete: Cascade)
 
-  @@id([uploadId, idx])
+  @@id([uploadId, byteOffset])
   @@map("textbook_upload_chunk")
 }
 
@@ -1873,6 +1877,8 @@ model TextbookConcept {
   body                  Json     @db.JsonB
   /// 순서가 지면의 순서다
   blankItems            Json     @default("[]") @map("blank_items") @db.JsonB
+  /// 백지로 낼 형식(recall · term · cloze · map · figure). NULL = 고르지 않았다 — 빈 배열로 채우지 않는다
+  blankForms            Json?    @map("blank_forms") @db.JsonB
   links                 Json     @default("[]") @db.JsonB
   mappingVersion        String   @map("mapping_version") @db.VarChar(80)
   derivedFromConceptKey String?  @map("derived_from_concept_key") @db.VarChar(80)
@@ -1914,20 +1920,21 @@ model TextbookQrTarget {
   @@map("textbook_qr_target")
 }
 
-/// 문제 해설영상 — 주소와 길이는 안 바뀐다(트리거). 다른 주소는 새 행이다
+/// 문제 해설영상 — 공급자와 영상 id 는 안 바뀐다(트리거). 다른 영상은 새 행이다.
+/// 주소를 통째로 받지 않는다 — 서버가 공급자와 id 로 짓는다
 model TextbookVideo {
-  id        String   @id @default(uuid()) @db.Uuid
-  userId    String   @map("user_id") @db.Uuid
-  /// 정규 watch 주소만(`canonicalVideoUrlSchema`)
-  videoUrl  String   @map("video_url") @db.VarChar(200)
-  title     String   @db.VarChar(200)
-  seconds   Int
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String   @map("user_id") @db.Uuid
+  /// youtube
+  provider        String   @db.VarChar(12)
+  providerVideoId String   @map("provider_video_id") @db.VarChar(20)
+  title           String   @db.VarChar(120)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
 
   bindings TextbookVideoBinding[]
 
-  @@unique([userId, videoUrl])
+  @@unique([userId, provider, providerVideoId])
   @@map("textbook_video")
 }
 
@@ -1939,8 +1946,8 @@ model TextbookVideoBinding {
   snapshotId          String    @map("snapshot_id") @db.Uuid
   videoId             String    @map("video_id") @db.Uuid
   status              String    @default("draft") @db.VarChar(10)
-  startSeconds        Int       @default(0) @map("start_seconds")
-  endSeconds          Int?      @map("end_seconds")
+  startSeconds        Float     @default(0) @map("start_seconds")
+  endSeconds          Float?    @map("end_seconds")
   reviewedAgainstHash String?   @map("reviewed_against_hash") @db.Char(64)
   reviewedBy          String?   @map("reviewed_by") @db.Uuid
   reviewedAt          DateTime? @map("reviewed_at")
@@ -1956,18 +1963,17 @@ model TextbookVideoBinding {
   @@map("textbook_video_binding")
 }
 
-/// 배정 — 반 또는 학생 하나에, 책 전체 또는 범위를. 발행본에만 건다(트리거). 회수는 `revokedAt`
+/// 배정 — 반 또는 학생 하나에, 판본 전체 · 구획들 · 배치들을. 발행본에만 건다(트리거). 회수는 `revokedAt`
 model TextbookAssignment {
   id         String    @id @default(uuid()) @db.Uuid
   editionId  String    @map("edition_id") @db.Uuid
   classId    String?   @map("class_id") @db.Uuid
   studentId  String?   @map("student_id") @db.Uuid
-  whole      Boolean
-  /// [{ unitKey, sectionIds? }] — `whole` 이면 비어 있다(CHECK)
-  scope      Json      @default("[]") @db.JsonB
-  /// study · preview
-  purpose    String    @db.VarChar(10)
-  opensAt    DateTime? @map("opens_at")
+  /// edition · sections · items (계약 `textbookAssignmentScopeSchema`)
+  scopeKind  String    @map("scope_kind") @db.VarChar(10)
+  /// 구획 id 들 또는 배치 id 들. 판본 전체면 비어 있다 — 빈 범위가 «전체»로 읽히지 않게 CHECK 가 짝을 본다
+  scopeIds   Json      @default("[]") @map("scope_ids") @db.JsonB
+  opensAt    DateTime  @map("opens_at")
   expiresAt  DateTime? @map("expires_at")
   revokedAt  DateTime? @map("revoked_at")
   assignedBy String?   @map("assigned_by") @db.Uuid
@@ -2032,21 +2038,23 @@ model TextbookPublishStep {
   @@map("textbook_publish_step")
 }
 
-/// 발행 산출물 — 합친 PDF · 정본 manifest · 검수 보고 · 매핑표
+/// 발행 산출물 — 서버가 만든 PDF · 정본 교환 JSON · 검수 보고 · 매핑표. 판본마다 종류 하나
 model TextbookArtifact {
+  id        String   @id @default(uuid()) @db.Uuid
   editionId String   @map("edition_id") @db.Uuid
-  /// student-pdf · answers-pdf · manifest-json · validation-json · mapping-csv
+  /// 계약 `textbookArtifactSchema.kind` — **SQL 에만 있는 것**: CHECK kind IN (...). 가드 시험이 둘을 견준다
   kind      String   @db.VarChar(16)
-  /// 합친 파일이 64MB 를 넘으면 NULL 이고 `parts` 가 정본이다
-  sha256    String?  @db.Char(64)
-  byteSize  BigInt   @map("byte_size")
+  mimeType  String   @map("mime_type") @db.VarChar(100)
+  sha256    String   @db.Char(64)
+  byteSize  Int      @map("byte_size")
   pageCount Int?     @map("page_count")
+  /// 조판 걸음의 조각 해시 · 쪽 범위 — 합친 파일이 어디서 왔는지의 기록
   parts     Json     @default("[]") @db.JsonB
   createdAt DateTime @default(now()) @map("created_at")
 
   edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Cascade)
 
-  @@id([editionId, kind])
+  @@unique([editionId, kind])
   @@map("textbook_artifact")
 }
 

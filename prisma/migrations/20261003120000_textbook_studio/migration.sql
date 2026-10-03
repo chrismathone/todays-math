@@ -242,31 +242,36 @@ CREATE TABLE "textbook_blob" (
 ALTER TABLE "textbook_blob" ALTER COLUMN "bytes" SET STORAGE EXTERNAL;
 
 -- ─────────────────────────────────────────────
--- ⑦⑧ 올리는 중인 파일 — 1MB 조각. 끝나면 ⑥으로 옮기고 지운다
+-- ⑦⑧ 올리는 파일 — 1MB 조각. 다 오면 DB 가 이어 붙여 ⑥에 넣고(해시를 다시 계산한다) 조각을 지운다.
+--    끝난 줄(completed_at)은 남는다 — 가져오기 · 자산 등록이 uploadId 로 그 바이트를 가리킨다
 -- ─────────────────────────────────────────────
 CREATE TABLE "textbook_upload" (
   "id" UUID NOT NULL,
   "user_id" UUID NOT NULL,
   "sha256" CHAR(64) NOT NULL,
-  "size" INTEGER NOT NULL,
+  "size" INTEGER,
+  "file_name" VARCHAR(255),
+  "completed_at" TIMESTAMP(3),
   "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
   CONSTRAINT "textbook_upload_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_upload_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT "textbook_upload_sha256_check" CHECK ("sha256" ~ '^[a-f0-9]{64}$'),
-  CONSTRAINT "textbook_upload_size_check" CHECK ("size" > 0 AND "size" <= 67108864)
+  CONSTRAINT "textbook_upload_size_check" CHECK ("size" IS NULL OR ("size" > 0 AND "size" <= 67108864)),
+  -- 끝났다고 적으려면 크기가 있어야 한다(그 크기의 바이트가 ⑥에 있다)
+  CONSTRAINT "textbook_upload_completed_size" CHECK ("completed_at" IS NULL OR "size" IS NOT NULL)
 );
 CREATE UNIQUE INDEX "textbook_upload_user_id_sha256_key" ON "textbook_upload"("user_id", "sha256");
 
 CREATE TABLE "textbook_upload_chunk" (
   "upload_id" UUID NOT NULL,
-  "idx" INTEGER NOT NULL,
+  "byte_offset" INTEGER NOT NULL,
   "bytes" BYTEA NOT NULL,
 
-  CONSTRAINT "textbook_upload_chunk_pkey" PRIMARY KEY ("upload_id", "idx"),
+  CONSTRAINT "textbook_upload_chunk_pkey" PRIMARY KEY ("upload_id", "byte_offset"),
   CONSTRAINT "textbook_upload_chunk_upload_id_fkey" FOREIGN KEY ("upload_id") REFERENCES "textbook_upload"("id") ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT "textbook_upload_chunk_idx_check" CHECK ("idx" >= 0 AND "idx" < 64),
-  CONSTRAINT "textbook_upload_chunk_bytes_check" CHECK (octet_length("bytes") BETWEEN 1 AND 1048576)
+  CONSTRAINT "textbook_upload_chunk_bytes_check" CHECK (octet_length("bytes") BETWEEN 1 AND 1048576),
+  CONSTRAINT "textbook_upload_chunk_range_check" CHECK ("byte_offset" >= 0 AND "byte_offset" + octet_length("bytes") <= 67108864)
 );
 
 -- ─────────────────────────────────────────────
@@ -325,6 +330,8 @@ CREATE TABLE "textbook_concept" (
   "unit_id" UUID,
   "body" JSONB NOT NULL,
   "blank_items" JSONB NOT NULL DEFAULT '[]',
+  -- 백지로 낼 형식(recall · term · cloze · map · figure). NULL = 고르지 않았다 — 빈 배열로 채우지 않는다
+  "blank_forms" JSONB,
   "links" JSONB NOT NULL DEFAULT '[]',
   "mapping_version" VARCHAR(80) NOT NULL,
   "derived_from_concept_key" VARCHAR(80),
@@ -341,6 +348,10 @@ CREATE TABLE "textbook_concept" (
   CONSTRAINT "textbook_concept_kind_check" CHECK ("kind" IN ('정의', '성질', '공식', '방법', '법칙', '정리', '단위')),
   CONSTRAINT "textbook_concept_body_object" CHECK (jsonb_typeof("body") = 'object'),
   CONSTRAINT "textbook_concept_blank_items_array" CHECK (jsonb_typeof("blank_items") = 'array'),
+  CONSTRAINT "textbook_concept_blank_forms_array" CHECK (
+    "blank_forms" IS NULL
+    OR COALESCE(jsonb_typeof("blank_forms") = 'array' AND jsonb_array_length("blank_forms") BETWEEN 1 AND 5, FALSE)
+  ),
   CONSTRAINT "textbook_concept_links_array" CHECK (jsonb_typeof("links") = 'array'),
   CONSTRAINT "textbook_concept_frozen_object" CHECK (
     "frozen" IS NULL
@@ -393,19 +404,20 @@ CREATE UNIQUE INDEX "textbook_qr_target_concept_key" ON "textbook_qr_target"("ed
 CREATE TABLE "textbook_video" (
   "id" UUID NOT NULL,
   "user_id" UUID NOT NULL,
-  "video_url" VARCHAR(200) NOT NULL,
-  "title" VARCHAR(200) NOT NULL,
-  "seconds" INTEGER NOT NULL,
+  "provider" VARCHAR(12) NOT NULL,
+  "provider_video_id" VARCHAR(20) NOT NULL,
+  "title" VARCHAR(120) NOT NULL,
   "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_video_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_video_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT "textbook_video_seconds_check" CHECK ("seconds" > 0 AND "seconds" <= 86400),
-  CONSTRAINT "textbook_video_url_check" CHECK ("video_url" LIKE 'https://%')
+  -- 주소를 통째로 받지 않는다. 공급자와 영상 id 만 받아 서버가 주소를 짓는다
+  CONSTRAINT "textbook_video_provider_check" CHECK ("provider" = 'youtube'),
+  CONSTRAINT "textbook_video_provider_video_id_check" CHECK ("provider_video_id" ~ '^[A-Za-z0-9_-]{11}$')
 );
 CREATE UNIQUE INDEX "textbook_video_id_user_id_key" ON "textbook_video"("id", "user_id");
-CREATE UNIQUE INDEX "textbook_video_user_id_video_url_key" ON "textbook_video"("user_id", "video_url");
+CREATE UNIQUE INDEX "textbook_video_user_id_provider_provider_video_id_key" ON "textbook_video"("user_id", "provider", "provider_video_id");
 
 CREATE TABLE "textbook_video_binding" (
   "id" UUID NOT NULL,
@@ -413,8 +425,8 @@ CREATE TABLE "textbook_video_binding" (
   "snapshot_id" UUID NOT NULL,
   "video_id" UUID NOT NULL,
   "status" VARCHAR(10) NOT NULL DEFAULT 'draft',
-  "start_seconds" INTEGER NOT NULL DEFAULT 0,
-  "end_seconds" INTEGER,
+  "start_seconds" DOUBLE PRECISION NOT NULL DEFAULT 0,
+  "end_seconds" DOUBLE PRECISION,
   "reviewed_against_hash" CHAR(64),
   "reviewed_by" UUID,
   "reviewed_at" TIMESTAMP(3),
@@ -428,7 +440,10 @@ CREATE TABLE "textbook_video_binding" (
   CONSTRAINT "textbook_video_binding_video_id_user_id_fkey" FOREIGN KEY ("video_id", "user_id") REFERENCES "textbook_video"("id", "user_id") ON DELETE RESTRICT ON UPDATE CASCADE,
   CONSTRAINT "textbook_video_binding_reviewed_by_fkey" FOREIGN KEY ("reviewed_by") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT "textbook_video_binding_status_check" CHECK ("status" IN ('draft', 'review', 'published', 'withdrawn')),
-  CONSTRAINT "textbook_video_binding_range_check" CHECK ("start_seconds" >= 0 AND ("end_seconds" IS NULL OR "end_seconds" > "start_seconds")),
+  CONSTRAINT "textbook_video_binding_range_check" CHECK (
+    "start_seconds" >= 0 AND "start_seconds" <= 86400
+    AND ("end_seconds" IS NULL OR ("end_seconds" > "start_seconds" AND "end_seconds" <= 86400))
+  ),
   CONSTRAINT "textbook_video_binding_published_review" CHECK (
     "status" <> 'published'
     OR ("reviewed_against_hash" IS NOT NULL AND "reviewed_at" IS NOT NULL AND "published_at" IS NOT NULL)
@@ -441,17 +456,16 @@ CREATE INDEX "textbook_video_binding_snapshot_id_idx" ON "textbook_video_binding
 CREATE INDEX "textbook_video_binding_video_id_idx" ON "textbook_video_binding"("video_id");
 
 -- ─────────────────────────────────────────────
--- ⑭ 배정 — 반 또는 학생 하나에, 책 전체 또는 범위를
+-- ⑭ 배정 — 반 또는 학생 하나에, 판본 전체 · 구획들 · 배치들을
 -- ─────────────────────────────────────────────
 CREATE TABLE "textbook_assignment" (
   "id" UUID NOT NULL,
   "edition_id" UUID NOT NULL,
   "class_id" UUID,
   "student_id" UUID,
-  "whole" BOOLEAN NOT NULL,
-  "scope" JSONB NOT NULL DEFAULT '[]',
-  "purpose" VARCHAR(10) NOT NULL,
-  "opens_at" TIMESTAMP(3),
+  "scope_kind" VARCHAR(10) NOT NULL,
+  "scope_ids" JSONB NOT NULL DEFAULT '[]',
+  "opens_at" TIMESTAMP(3) NOT NULL,
   "expires_at" TIMESTAMP(3),
   "revoked_at" TIMESTAMP(3),
   "assigned_by" UUID,
@@ -463,9 +477,12 @@ CREATE TABLE "textbook_assignment" (
   CONSTRAINT "textbook_assignment_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "student"("id") ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT "textbook_assignment_assigned_by_fkey" FOREIGN KEY ("assigned_by") REFERENCES "user"("id") ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT "textbook_assignment_target_xor" CHECK (num_nonnulls("class_id", "student_id") = 1),
-  CONSTRAINT "textbook_assignment_scope_check" CHECK (jsonb_typeof("scope") = 'array' AND "whole" = (jsonb_array_length("scope") = 0)),
-  CONSTRAINT "textbook_assignment_purpose_check" CHECK ("purpose" IN ('study', 'preview')),
-  CONSTRAINT "textbook_assignment_window_check" CHECK ("opens_at" IS NULL OR "expires_at" IS NULL OR "expires_at" > "opens_at")
+  CONSTRAINT "textbook_assignment_scope_kind_check" CHECK ("scope_kind" IN ('edition', 'sections', 'items')),
+  -- 판본 전체면 목록이 비고, 범위면 하나 이상이다 — 빈 범위가 «전체»로 읽히지 않게
+  CONSTRAINT "textbook_assignment_scope_ids_check" CHECK (
+    jsonb_typeof("scope_ids") = 'array' AND ("scope_kind" = 'edition') = (jsonb_array_length("scope_ids") = 0)
+  ),
+  CONSTRAINT "textbook_assignment_window_check" CHECK ("expires_at" IS NULL OR "expires_at" > "opens_at")
 );
 CREATE INDEX "textbook_assignment_class_id_idx" ON "textbook_assignment"("class_id");
 CREATE INDEX "textbook_assignment_student_id_idx" ON "textbook_assignment"("student_id");
@@ -535,25 +552,32 @@ CREATE TABLE "textbook_publish_step" (
 );
 
 -- ─────────────────────────────────────────────
--- ⑰ 발행 산출물 — 합친 PDF · 정본 manifest · 검수 보고 · 매핑표
+-- ⑰ 발행 산출물 — 서버가 만든 PDF · 정본 교환 JSON · 검수 보고 · 매핑표
+--    값 목록은 계약 `textbookArtifactSchema.kind` 와 같다(가드 시험이 견준다)
 -- ─────────────────────────────────────────────
 CREATE TABLE "textbook_artifact" (
+  "id" UUID NOT NULL,
   "edition_id" UUID NOT NULL,
   "kind" VARCHAR(16) NOT NULL,
-  "sha256" CHAR(64),
-  "byte_size" BIGINT NOT NULL,
+  "mime_type" VARCHAR(100) NOT NULL,
+  "sha256" CHAR(64) NOT NULL,
+  "byte_size" INTEGER NOT NULL,
   "page_count" INTEGER,
   "parts" JSONB NOT NULL DEFAULT '[]',
   "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-  CONSTRAINT "textbook_artifact_pkey" PRIMARY KEY ("edition_id", "kind"),
+  CONSTRAINT "textbook_artifact_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_artifact_edition_id_fkey" FOREIGN KEY ("edition_id") REFERENCES "textbook_edition"("id") ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT "textbook_artifact_sha256_fkey" FOREIGN KEY ("sha256") REFERENCES "textbook_blob"("sha256") ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT "textbook_artifact_kind_check" CHECK ("kind" IN ('student-pdf', 'answers-pdf', 'manifest-json', 'validation-json', 'mapping-csv')),
+  CONSTRAINT "textbook_artifact_kind_check" CHECK ("kind" IN (
+    'student-pdf', 'answer-pdf', 'spread-pdf', 'offline-html', 'exchange-json', 'exchange-zip', 'mapping-csv', 'validation-json'
+  )),
   CONSTRAINT "textbook_artifact_byte_size_check" CHECK ("byte_size" > 0),
-  -- 합친 파일이 64MB 를 넘으면 조각 목록이 정본이다
-  CONSTRAINT "textbook_artifact_bytes_or_parts" CHECK (jsonb_typeof("parts") = 'array' AND ("sha256" IS NOT NULL OR jsonb_array_length("parts") > 0))
+  CONSTRAINT "textbook_artifact_page_count_check" CHECK ("page_count" IS NULL OR "page_count" >= 0),
+  -- 조판 걸음의 조각 해시 · 쪽 범위 — 합친 파일이 어디서 왔는지의 기록이다
+  CONSTRAINT "textbook_artifact_parts_array" CHECK (jsonb_typeof("parts") = 'array')
 );
+CREATE UNIQUE INDEX "textbook_artifact_edition_id_kind_key" ON "textbook_artifact"("edition_id", "kind");
 
 -- ─────────────────────────────────────────────
 -- ⑲ 학생의 백지 활동 — 발행본의 개념 하나에 대한 한 번. 새 제출은 새 줄이다
@@ -683,7 +707,7 @@ BEGIN
         RAISE EXCEPTION 'textbook: edition % has no completed server publish job', OLD."id" USING ERRCODE = '23514';
       END IF;
       IF (SELECT count(*) FROM public."textbook_artifact" a
-           WHERE a."edition_id" = NEW."id" AND a."kind" IN ('student-pdf', 'answers-pdf', 'manifest-json')) <> 3 THEN
+           WHERE a."edition_id" = NEW."id" AND a."kind" IN ('student-pdf', 'answer-pdf', 'exchange-json')) <> 3 THEN
         RAISE EXCEPTION 'textbook: edition % is missing published artifacts', OLD."id" USING ERRCODE = '23514';
       END IF;
       IF EXISTS (
@@ -940,7 +964,7 @@ $$;
 CREATE TRIGGER "textbook_guard_qr_target" BEFORE INSERT OR UPDATE OR DELETE ON "textbook_qr_target"
 FOR EACH ROW EXECUTE FUNCTION "textbook_guard_qr_target"();
 
--- 영상: 검수한 주소와 길이는 안 바뀐다(다른 주소는 새 영상 행이다)
+-- 영상: 검수한 영상의 정체(공급자 · 영상 id)는 안 바뀐다 — 다른 영상은 새 행이다
 CREATE FUNCTION "textbook_guard_video"()
 RETURNS trigger
 LANGUAGE plpgsql
@@ -948,7 +972,7 @@ SET search_path = ''
 AS $$
 BEGIN
   IF (to_jsonb(NEW) - 'title' - 'updated_at') IS DISTINCT FROM (to_jsonb(OLD) - 'title' - 'updated_at') THEN
-    RAISE EXCEPTION 'textbook: video % address and length are immutable', OLD."id" USING ERRCODE = '23514';
+    RAISE EXCEPTION 'textbook: video % provider identity is immutable', OLD."id" USING ERRCODE = '23514';
   END IF;
   RETURN NEW;
 END;
@@ -1034,7 +1058,7 @@ BEGIN
     END IF;
     RETURN NEW;
   END IF;
-  IF (to_jsonb(NEW) - 'opens_at' - 'expires_at' - 'revoked_at' - 'assigned_by') IS DISTINCT FROM (to_jsonb(OLD) - 'opens_at' - 'expires_at' - 'revoked_at' - 'assigned_by')
+  IF (to_jsonb(NEW) - 'expires_at' - 'revoked_at' - 'assigned_by') IS DISTINCT FROM (to_jsonb(OLD) - 'expires_at' - 'revoked_at' - 'assigned_by')
      OR (NEW."assigned_by" IS NOT NULL AND NEW."assigned_by" IS DISTINCT FROM OLD."assigned_by") THEN
     RAISE EXCEPTION 'textbook: assignment % target and scope are immutable', OLD."id" USING ERRCODE = '23514';
   END IF;
