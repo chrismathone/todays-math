@@ -61,6 +61,12 @@ export interface BankSnapshot {
   }>;
 }
 
+/** Read-only SHA256 census produced by the CLI; missing hashes never establish equivalence. */
+export interface SourceHashSnapshot {
+  fetchedAt: string;
+  files: Array<{ path: string; bytes: number; sha256: string }>;
+}
+
 export interface PersonalExamJob {
   examId: string;
   canonicalKey: string | null;
@@ -213,7 +219,7 @@ function resolveGroup(group: InventoryExam, files: InventoryFile[], labels: Set<
   };
 }
 
-function chooseSources(job: PersonalExamJob): void {
+function chooseSources(job: PersonalExamJob, hashes: ReadonlyMap<string, string>): void {
   const papers = job.files.filter((f) => f.kind === "기출 시험지");
   const pdfs = papers.filter((f) => f.ext.toLowerCase() === "pdf");
   const hwps = papers.filter((f) => ["hwp", "hwpx"].includes(f.ext.toLowerCase()));
@@ -221,25 +227,43 @@ function chooseSources(job: PersonalExamJob): void {
   const completedHwps = hwps.filter((f) => f.completed);
   job.completedPairs = completed.flatMap((pdf) => hwps.filter((hwp) => stem(hwp.path) === stem(pdf.path))
     .map((hwp) => ({ pdf: pdf.path, hwp: hwp.path })));
-  if (job.completedPairs.length === 1) {
-    job.selectedPair = job.completedPairs[0]!;
+  const identity = (file: string) => hashes.get(nfc(file)) ?? `unhashed:${nfc(file)}`;
+  const equivalentFiles = (candidates: InventoryFile[]) => [...new Map(candidates.map((f) => [identity(f.path), f])).values()];
+  const pairs = [...new Map(job.completedPairs.map((pair) => [JSON.stringify([identity(pair.pdf), identity(pair.hwp)]), pair])).values()];
+  const completedSources = equivalentFiles(completed);
+  const completedHwpSources = equivalentFiles(completedHwps);
+  const pdfSources = equivalentFiles(pdfs);
+  const hwpSources = equivalentFiles(hwps);
+  if (pairs.length < job.completedPairs.length || completedSources.length < completed.length || completedHwpSources.length < completedHwps.length || pdfSources.length < pdfs.length || hwpSources.length < hwps.length) {
+    job.metadataCorrections.push("원본 SHA256과 바이트 크기가 같은 사본만 source selection에서 합침; 파일 경로는 전량 유지");
+  }
+  if (pairs.length === 1) {
+    job.selectedPair = pairs[0]!;
     job.selectedPdf = job.selectedPair.pdf;
     job.selectedHwp = job.selectedPair.hwp;
-  } else if (job.completedPairs.length > 1) {
-    job.holdReasons.push(`동일 stem의 완료 HWP/PDF 짝 ${job.completedPairs.length}개: 내용/바이트 대조 필요`);
-  } else if (completed.length === 1) job.selectedPdf = completed[0]!.path;
-  else if (completed.length > 1) job.holdReasons.push(`완료 PDF ${completed.length}개: 대표 원본 확인 필요`);
-  else if (completedHwps.length === 1) job.selectedHwp = completedHwps[0]!.path;
-  else if (completedHwps.length > 1) job.holdReasons.push(`완료 HWP ${completedHwps.length}개: 대표 원본 확인 필요`);
-  else if (pdfs.length === 1) job.selectedPdf = pdfs[0]!.path;
-  else if (pdfs.length > 1) job.holdReasons.push(`완료본 없는 PDF ${pdfs.length}개: 대표 원본 확인 필요`);
-  else if (hwps.length === 1) job.selectedHwp = hwps[0]!.path;
-  else if (hwps.length > 1) job.holdReasons.push(`HWP 전용 ${hwps.length}개: 대표 원본 확인 필요`);
+  } else if (pairs.length > 1) {
+    job.holdReasons.push(`동일 stem의 완료 HWP/PDF 짝 ${pairs.length}개: 내용/바이트 대조 필요`);
+  } else if (completedSources.length === 1) job.selectedPdf = completedSources[0]!.path;
+  else if (completedSources.length > 1) job.holdReasons.push(`완료 PDF ${completedSources.length}개: 대표 원본 확인 필요`);
+  else if (completedHwpSources.length === 1) job.selectedHwp = completedHwpSources[0]!.path;
+  else if (completedHwpSources.length > 1) job.holdReasons.push(`완료 HWP ${completedHwpSources.length}개: 대표 원본 확인 필요`);
+  else if (pdfSources.length === 1) job.selectedPdf = pdfSources[0]!.path;
+  else if (pdfSources.length > 1) job.holdReasons.push(`완료본 없는 PDF ${pdfSources.length}개: 대표 원본 확인 필요`);
+  else if (hwpSources.length === 1) job.selectedHwp = hwpSources[0]!.path;
+  else if (hwpSources.length > 1) job.holdReasons.push(`HWP 전용 ${hwpSources.length}개: 대표 원본 확인 필요`);
   else job.holdReasons.push("원본 HWP/PDF 경로 없음");
 }
 
 /** Read-only planner. No database client, model call, COM or source-document operation. */
-export function planPersonalExams(inventory: PersonalExamInventory, bank: BankSnapshot, sourceRoot = "N:/개인/기출") {
+export function planPersonalExams(inventory: PersonalExamInventory, bank: BankSnapshot, sourceRoot = "N:/개인/기출", sourceHashes?: SourceHashSnapshot) {
+  const hashes = new Map<string, string>();
+  for (const f of sourceHashes?.files ?? []) {
+    if (!/^[a-f0-9]{64}$/i.test(f.sha256) || !Number.isSafeInteger(f.bytes) || f.bytes < 0) throw new Error(`유효하지 않은 원본 해시: ${f.path}`);
+    const key = nfc(f.path);
+    const value = `${f.bytes}:${f.sha256.toLowerCase()}`;
+    if (hashes.has(key) && hashes.get(key) !== value) throw new Error(`같은 경로에 상충하는 원본 해시: ${f.path}`);
+    hashes.set(key, value);
+  }
   const byInventory = new Map<string, InventoryFile[]>();
   for (const f of inventory.files) {
     const key = provisionalKey(f);
@@ -263,7 +287,7 @@ export function planPersonalExams(inventory: PersonalExamInventory, bank: BankSn
   }
   const jobs = [...grouped.values()].sort((a, b) => (a.canonicalKey ?? a.examId).localeCompare(b.canonicalKey ?? b.examId));
   for (const job of jobs) {
-    chooseSources(job);
+    chooseSources(job, hashes);
     const selectedSource = job.selectedPair?.pdf ?? job.selectedPdf ?? job.selectedHwp;
     if (selectedSource) job.sourceFile = relativeSource(selectedSource, sourceRoot);
     const existing = bank.exams.filter((e) => e.external_exam_id === job.canonicalKey);
@@ -285,6 +309,7 @@ export function planPersonalExams(inventory: PersonalExamInventory, bank: BankSn
   return {
     minimumYear: 2025,
     bankSnapshotAt: bank.fetchedAt,
+    sourceHashesAt: sourceHashes?.fetchedAt ?? null,
     sourceRoot,
     note: "Filename candidates only; content extraction, answer/solution regeneration, review and DB import are not completed.",
     summary: {

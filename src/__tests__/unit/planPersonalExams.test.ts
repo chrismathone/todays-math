@@ -90,4 +90,33 @@ describe("personal exam planning", () => {
     const job = planPersonalExams({ groups: [g], files: [hwp, pdf, { ...pdf, path: `${root}/복사/${pdf.filename}` }] }, bank).jobs[0]!;
     expect(job).toMatchObject({ selectedHwp: hwp.path, selectedPdf: null, selectedPair: null, status: "readyForExtraction" });
   });
+
+  it("resolves duplicate completed pairs only when both formats have matching SHA256 and byte counts", () => {
+    const g = group(); const pdf = file(g); const hwp = file(g, "hwp");
+    const pdf2 = { ...pdf, path: `${root}/복사/${pdf.filename}` };
+    const hwp2 = { ...hwp, path: `${root}/복사/${hwp.filename}` };
+    const inventory = { groups: [g], files: [pdf, hwp, pdf2, hwp2] };
+    const hashes = { fetchedAt: "2026-10-03T00:00:00Z", files: inventory.files.map((f) => ({ path: f.path, bytes: f.ext === "pdf" ? 100 : 200, sha256: (f.ext === "pdf" ? "a" : "b").repeat(64) })) };
+    const job = planPersonalExams(inventory, bank, root, hashes).jobs[0]!;
+    expect(job.status).toBe("readyForExtraction");
+    expect(job.selectedPair).not.toBeNull();
+    expect(job.completedPairs).toHaveLength(4);
+    expect(job.files).toHaveLength(4);
+    expect(job.metadataCorrections.join(" ")).toContain("SHA256");
+
+    hashes.files[2]!.sha256 = "c".repeat(64);
+    const different = planPersonalExams(inventory, bank, root, hashes).jobs[0]!;
+    expect(different).toMatchObject({ status: "holdMetadata", selectedPair: null });
+    expect(different.holdReasons.join(" ")).toContain("짝 2개");
+  });
+
+  it("keeps unhashed source copies ambiguous and rejects contradictory hash evidence", () => {
+    const g = group(); const pdf = file(g); const hwp = file(g, "hwp");
+    const hwp2 = { ...hwp, path: `${root}/복사/${hwp.filename}` };
+    const inventory = { groups: [g], files: [pdf, hwp, hwp2] };
+    const hashes = { fetchedAt: "2026-10-03T00:00:00Z", files: [{ path: hwp.path, bytes: 10, sha256: "a".repeat(64) }] };
+    expect(planPersonalExams(inventory, bank, root, hashes).jobs[0]).toMatchObject({ status: "holdMetadata", selectedPair: null });
+    hashes.files.push({ path: hwp.path, bytes: 10, sha256: "b".repeat(64) });
+    expect(() => planPersonalExams(inventory, bank, root, hashes)).toThrow("상충하는 원본 해시");
+  });
 });
