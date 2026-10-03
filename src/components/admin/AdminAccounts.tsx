@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type {
   AdminAccountsResponse,
@@ -33,9 +34,20 @@ const FILTERS: { id: Filter; label: string }[] = [
 
 export default function AdminAccounts({
   identity,
+  branchId,
+  branchName = "미소속 계정",
+  embedded = false,
+  onLockChange,
+  onAccountsChange,
 }: {
   identity: { name: string; email: string };
+  branchId: string;
+  branchName?: string;
+  embedded?: boolean;
+  onLockChange?: (locked: boolean) => void;
+  onAccountsChange?: () => void;
 }) {
+  const router = useRouter();
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState({
     q: "",
@@ -62,7 +74,7 @@ export default function AdminAccounts({
 
   useEffect(() => {
     const controller = new AbortController();
-    const params = new URLSearchParams({ q: query.q });
+    const params = new URLSearchParams({ q: query.q, branchId });
     if (query.status === "suspended" || query.status === "deleted")
       params.set("lifecycle", query.status);
     else params.set("status", query.status);
@@ -94,7 +106,11 @@ export default function AdminAccounts({
         setLoading(false);
       });
     return () => controller.abort();
-  }, [query, revision]);
+  }, [query, revision, branchId]);
+
+  useEffect(() => {
+    onLockChange?.(locked);
+  }, [locked, onLockChange]);
 
   useEffect(() => {
     if (!locked) return;
@@ -133,21 +149,30 @@ export default function AdminAccounts({
       : (result?.meta.counts[filter] ?? 0);
 
   return (
-    <div className={s.shell}>
+    <div
+      className={embedded ? undefined : s.shell}
+      onClickCapture={(event) => {
+        if (
+          locked &&
+          event.target instanceof Element &&
+          event.target.closest("a")
+        )
+          event.preventDefault();
+      }}
+    >
       <a className={s.skipLink} href="#admin-main">
         계정 관리로 바로가기
       </a>
-      <AdminHeader identity={identity} />
-      <main className={s.main} id="admin-main">
+      {embedded ? null : <AdminHeader identity={identity} />}
+      <div className={embedded ? undefined : s.main} id="admin-main">
         <div className={s.titleRow}>
           <div>
             <p className={s.eyebrow}>ADMIN / ACCOUNTS</p>
-            <h1>
-              계정 관리 <span className={s.titleAccent}>/ 운영 현황</span>
-            </h1>
+            <h2>
+              계정 관리 <span className={s.titleAccent}>/ {branchName}</span>
+            </h2>
             <p className={s.subtitle}>
-              가입 요청부터 지점 권한, 사용 메뉴, 계정 상태까지 한곳에서
-              관리합니다.
+              현재 지점의 가입 요청, 사용 메뉴와 계정 상태를 관리합니다.
             </p>
           </div>
           <button
@@ -188,21 +213,11 @@ export default function AdminAccounts({
               },
             ] as const
           ).map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={s.summaryCard}
-              aria-pressed={query.status === item.id}
-              onClick={() =>
-                changeQuery({ ...query, status: item.id, page: 1 })
-              }
-            >
+            <div key={item.id} className={s.summaryCard}>
               <span>{item.label}</span>
               <strong>{item.value?.toLocaleString("ko-KR") ?? "—"}</strong>
-              <small>
-                {item.hint} <span aria-hidden="true">↗</span>
-              </small>
-            </button>
+              <small>{item.hint}</small>
+            </div>
           ))}
         </section>
         <div className={s.workspace}>
@@ -325,7 +340,7 @@ export default function AdminAccounts({
                               <div className={s.accountName}>
                                 <Link
                                   className={s.accountLink}
-                                  href={`/admin/users/${encodeURIComponent(account.id)}`}
+                                  href={`/admin/branches/${encodeURIComponent(branchId)}/users/${encodeURIComponent(account.id)}`}
                                 >
                                   {account.name || "이름 미등록"}
                                 </Link>
@@ -467,6 +482,17 @@ export default function AdminAccounts({
                   account={selected}
                   onLockChange={setLocked}
                   onUpdate={(account) => {
+                    onAccountsChange?.();
+                    if ((account.branchId ?? "unassigned") !== branchId) {
+                      setSelected(null);
+                      setLocked(false);
+                      reload();
+                      router.refresh();
+                      router.replace(
+                        `/admin/branches/${encodeURIComponent(account.branchId ?? "unassigned")}/users/${encodeURIComponent(account.id)}`,
+                      );
+                      return;
+                    }
                     setSelected(account);
                     reload();
                   }}
@@ -493,7 +519,7 @@ export default function AdminAccounts({
         <p className={s.footerNote}>
           관리자 전용 · 메뉴 변경은 저장한 뒤 적용됩니다.
         </p>
-      </main>
+      </div>
     </div>
   );
 }

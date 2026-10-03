@@ -52,10 +52,8 @@ import Credentials from "next-auth/providers/credentials";
 import { authLoginRequestSchema } from "@/contracts/auth.contract";
 import type { UserRole } from "@/contracts/problemReport.contract";
 import { db } from "@/lib/db";
-import { filterListeningPilotMenus } from "@/lib/listeningPilot";
+import { effectiveWorkspaceMenuPolicy } from "@/lib/workspaceMenuPolicy.server";
 import {
-  ALL_WORKSPACE_MENUS,
-  workspaceMenusFromDisabled,
   type ApprovalStatus,
   type WorkspaceMenu,
 } from "@/contracts/accountAccess.contract";
@@ -70,6 +68,7 @@ import {
   eywaSsoOptionsFromEnv,
 } from "@/lib/eywaSso";
 import { studentLoginDeps } from "@/lib/learn/loginDeps";
+import { managedStudentAccess } from "@/lib/eywa/managedStudentAccess";
 import { attemptStudentLogin } from "@/lib/learn/studentLogin";
 import {
   isStudentToken,
@@ -83,17 +82,27 @@ import {
  * 학생 토큰을 지을 때 읽는 한 줄 — 요청마다 다시 읽는다(꺼짐·퇴원·지워짐이 다음 요청에 반영된다).
  * 퇴원(`eywaWithdrawnAt`)은 학생 행에 있다 — 막힘 판정은 `studentTokenFor` 가 한다(D-126 ⑺).
  */
-function loadStudentAccountForToken(id: string) {
-  return db.studentAccount.findUnique({
+async function loadStudentAccountForToken(id: string) {
+  const row = await db.studentAccount.findUnique({
     where: { id },
     select: {
       id: true,
       studentId: true,
       disabledAt: true,
       mustChangePassword: true,
-      student: { select: { name: true, eywaWithdrawnAt: true } },
+      student: {
+        select: { name: true, eywaWithdrawnAt: true, eywaBindingId: true },
+      },
     },
   });
+  if (!row?.student?.eywaBindingId) return row;
+  return {
+    ...row,
+    managedAccess: await managedStudentAccess(
+      row.studentId,
+      row.student.eywaBindingId,
+    ),
+  };
 }
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -169,7 +178,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     /**
      * 학생 — 원장님이 발급한 아이디 + 비밀번호 (D-124 ⑶ · D-125 ⑶). 잠금·문구 규칙은 전부
      * `src/lib/learn/studentLogin.ts`, 실패는 `StudentLoginError`(code `invalid`|`locked`)로 던진다.
-     * 돌려주는 사용자는 **계정 id 하나뿐** — 토큰은 `jwt` 콜백의 학생 갈래가 새로 짓는다.
+     * 계정 id와 연동 학생의 비공개 폐기 세대만 돌려준다 — 학생 토큰은 `jwt` 콜백이 새로 짓는다.
      */
     Credentials({
       id: STUDENT_PROVIDER_ID,
@@ -190,7 +199,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           studentLoginDeps(),
         );
         if (!outcome.ok) throw new StudentLoginError(outcome.reason);
-        return { id: outcome.account.id };
+        return {
+          id: outcome.account.id,
+          managedStudentStamp: outcome.account.managedStudentStamp,
+        };
       },
     }),
     Credentials({
@@ -237,11 +249,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       // 🔴 학생 갈래 — 여기서 끝낸다(user.id 없는 새 토큰 · 꺼짐/지워짐이면 null). 아래 원장 줄은
       //    한 줄도 안 바꿨다(authDirectorUnchanged.test.ts).
       if (account?.provider === STUDENT_PROVIDER_ID)
-        return studentTokenFor(user?.id, loadStudentAccountForToken);
+        return studentTokenFor(
+          user?.id,
+          loadStudentAccountForToken,
+          user?.managedStudentStamp,
+        );
       if (isStudentToken(token))
         return studentTokenFor(
           token.student?.accountId,
           loadStudentAccountForToken,
+          token.managedStudentStamp,
         );
       if (user) {
         token.id = user.id;
@@ -265,6 +282,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           branchRole: true,
           approvalStatus: true,
           disabledMenus: true,
+          branch: { select: { disabledMenus: true, menuRevision: true } },
           deletedAt: true,
           suspendedAt: true,
           sessionVersion: true,
@@ -286,13 +304,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       token.branchId = current.branchId;
       token.branchRole = current.branchRole;
       token.approvalStatus = current.approvalStatus;
-      token.menus = filterListeningPilotMenus(
-        current,
-        token.isAdmin
-          ? ALL_WORKSPACE_MENUS
-          : workspaceMenusFromDisabled(current.disabledMenus),
-        current.disabledMenus,
-      );
+      token.menus = effectiveWorkspaceMenuPolicy(current).menus;
       return token;
     },
     async session({ session, token }) {
@@ -337,6 +349,7 @@ declare module "next-auth" {
   interface User {
     role?: UserRole;
     sessionVersion?: number;
+    managedStudentStamp?: string | null;
   }
 }
 
@@ -352,7 +365,9 @@ declare module "next-auth/jwt" {
     sessionVersion?: number;
     approvalStatus?: ApprovalStatus;
     menus?: WorkspaceMenu[];
-    /** 학생 토큰은 이 칸 **하나뿐**이다 — id·sub·role 이 없다(studentSession.ts) */
+    /** 학생 공개 정보 — id·sub·role은 없으며 비공개 폐기 세대는 별도로 둔다. */
     student?: StudentSession;
+    /** Private managed-student revocation claim, never exposed in Session. */
+    managedStudentStamp?: string;
   }
 }

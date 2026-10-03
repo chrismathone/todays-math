@@ -2,6 +2,7 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { compare } from "bcryptjs";
 import { Prisma } from "@prisma/client";
+vi.mock("server-only", () => ({}));
 
 const state = vi.hoisted(() => ({
   superadmin: true,
@@ -12,6 +13,7 @@ const state = vi.hoisted(() => ({
   branchUpdate: vi.fn(),
   audit: vi.fn(),
   transaction: vi.fn(),
+  branchName: "기존 지점",
 }));
 vi.mock("@/lib/accountAccess", () => ({
   authorizeAccount: vi.fn(
@@ -37,10 +39,11 @@ vi.mock("@/lib/db", () => ({
       findUnique: state.branchFindUnique,
       update: state.branchUpdate,
     },
+    user: { count: vi.fn(async () => 0), groupBy: vi.fn(async () => []) },
     $transaction: state.transaction,
   },
 }));
-vi.mock("@/lib/audit", () => ({ recordAudit: state.audit }));
+vi.mock("@/lib/audit", () => ({ auditData: (data: unknown) => data }));
 vi.mock("@/lib/errorLog/withErrorLog", () => ({
   withErrorLog: (_: string, handler: unknown) => handler,
 }));
@@ -62,6 +65,7 @@ const request = () =>
 beforeEach(() => {
   vi.clearAllMocks();
   state.superadmin = true;
+  state.branchName = "기존 지점";
   state.branchCreate.mockResolvedValue({
     id: "20000000-0000-4000-8000-000000000002",
     name: "새 지점",
@@ -76,19 +80,29 @@ beforeEach(() => {
   state.transaction.mockImplementation(
     async (run: (tx: unknown) => Promise<unknown>) =>
       run({
-        branch: { create: state.branchCreate },
-        user: { create: state.userCreate },
+        branch: {
+          create: state.branchCreate,
+          findUnique: state.branchFindUnique,
+          updateMany: state.branchUpdate,
+        },
+        user: { create: state.userCreate, count: vi.fn(async () => 0) },
+        accountAuditLog: { create: state.audit },
       }),
   );
   state.audit.mockResolvedValue(undefined);
   state.branchFindMany.mockResolvedValue([]);
-  state.branchFindUnique.mockResolvedValue({
+  state.branchFindUnique.mockImplementation(async () => ({
     id: "20000000-0000-4000-8000-000000000002",
-    name: "기존 지점",
-  });
-  state.branchUpdate.mockResolvedValue({
-    id: "20000000-0000-4000-8000-000000000002",
-    name: "새 지점명",
+    name: state.branchName,
+    createdAt: new Date("2026-10-01T00:00:00Z"),
+    disabledMenus: [],
+    menuRevision: 1,
+    _count: { users: 0 },
+    users: [],
+  }));
+  state.branchUpdate.mockImplementation(async ({ data }) => {
+    state.branchName = data.name;
+    return { count: 1 };
   });
 });
 
@@ -110,9 +124,9 @@ describe("최고관리자 지점 개설", () => {
       isSuperAdmin: false,
     });
     expect(await compare(data.initialPassword, saved.passwordHash)).toBe(true);
-    expect(state.audit).toHaveBeenCalledWith(
-      expect.objectContaining({ action: "admin.branch_created" }),
-    );
+    expect(state.audit).toHaveBeenCalledWith({
+      data: expect.objectContaining({ action: "admin.branch_created" }),
+    });
   });
 
   it("최고관리자가 아니면 지점 목록과 개설을 막는다", async () => {
@@ -148,14 +162,13 @@ describe("최고관리자 지점 개설", () => {
     expect(state.branchUpdate).toHaveBeenCalledWith({
       where: { id },
       data: { name: "새 지점명" },
-      select: { id: true, name: true },
     });
-    expect(state.audit).toHaveBeenCalledWith(
-      expect.objectContaining({
+    expect(state.audit).toHaveBeenCalledWith({
+      data: expect.objectContaining({
         action: "admin.branch_renamed",
         details: { branchId: id, previousName: "기존 지점", name: "새 지점명" },
       }),
-    );
+    });
   });
 
   it("지점명 변경은 최고관리자만 가능하고 빈 이름은 거절한다", async () => {

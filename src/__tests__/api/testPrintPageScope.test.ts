@@ -34,6 +34,7 @@ const VIEWER = {
   id: "10000000-0000-4000-8000-0000000000ad",
   email: "director@todaysmath.test",
   name: "원장",
+  menus: ["export"],
 };
 const page = () => TestPrintPage({ params: Promise.resolve({ id: TEST_ID }) });
 
@@ -41,6 +42,20 @@ beforeEach(() => {
   vi.clearAllMocks();
   mocks.findFirst.mockResolvedValue(null);
 });
+
+it.each([false, true])(
+  "denies direct print access for capped admin=%s before reading a test",
+  async (isAdmin) => {
+    mocks.session.mockResolvedValue({
+      ...VIEWER,
+      isAdmin,
+      isSuperAdmin: isAdmin,
+      menus: [],
+    });
+    await expect(page()).rejects.toThrow("NOT_FOUND");
+    expect(mocks.findFirst).not.toHaveBeenCalled();
+  },
+);
 
 describe.each([
   {

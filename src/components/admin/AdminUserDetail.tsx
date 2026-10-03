@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { lazy, Suspense, useEffect, useId, useRef, useState } from "react";
 import type { ManagedAccount } from "@/contracts/accountAccess.contract";
 import AdminHeader from "./AdminHeader";
@@ -442,18 +443,24 @@ export default function AdminUserDetail({
   userId,
   identity,
   initialAccount,
+  branchId,
 }: {
   userId: string;
   identity: { name: string; email: string };
   initialAccount?: ManagedAccount;
+  branchId: string;
 }) {
+  const router = useRouter();
   const [tab, setTab] = useState<"documents" | "audit">("documents");
   const [locked, setLocked] = useState(false);
   const resource = useAdminResource<{ data: ManagedAccount }>(
     `/api/admin/users/${encodeURIComponent(userId)}`,
     initialAccount ? { data: initialAccount } : undefined,
   );
-  const account = resource.data?.data;
+  const currentAccount = resource.data?.data;
+  const scopeChanged =
+    currentAccount && (currentAccount.branchId ?? "unassigned") !== branchId;
+  const account = scopeChanged ? undefined : currentAccount;
   useEffect(() => {
     if (!locked) return;
     const preventLeave = (event: BeforeUnloadEvent) => event.preventDefault();
@@ -461,25 +468,49 @@ export default function AdminUserDetail({
     return () => window.removeEventListener("beforeunload", preventLeave);
   }, [locked]);
   return (
-    <div className={s.shell}>
+    <div
+      className={s.shell}
+      onClickCapture={(event) => {
+        if (
+          locked &&
+          event.target instanceof Element &&
+          event.target.closest("a")
+        )
+          event.preventDefault();
+      }}
+    >
       <AdminHeader identity={identity} />
       <main className={s.main}>
         <Link
           className={s.textLink}
-          href="/admin"
+          href={`/admin/branches/${encodeURIComponent(branchId)}`}
           onClick={(event) => {
             if (locked) event.preventDefault();
           }}
           aria-disabled={locked}
         >
-          ← 계정 관리로 돌아가기
+          ←{" "}
+          {account?.branchName
+            ? `${account.branchName} 계정 목록`
+            : "미소속 계정 목록"}
+          으로 돌아가기
         </Link>
         {locked ? (
           <p className={s.unsaved}>
             변경을 저장하거나 취소한 뒤 목록으로 이동하세요.
           </p>
         ) : null}
-        {resource.error ? (
+        {scopeChanged ? (
+          <div role="alert" className={s.empty}>
+            <p>계정의 소속 지점이 변경되었습니다.</p>
+            <Link
+              className={s.textLink}
+              href={`/admin/branches/${encodeURIComponent(currentAccount.branchId ?? "unassigned")}/users/${encodeURIComponent(userId)}`}
+            >
+              현재 지점에서 다시 열기
+            </Link>
+          </div>
+        ) : resource.error ? (
           <ResourceError message={resource.error} retry={resource.reload} />
         ) : !account ? (
           <div className={s.empty} role="status">
@@ -600,7 +631,17 @@ export default function AdminUserDetail({
                   account={account}
                   autoFocus={false}
                   onLockChange={setLocked}
-                  onUpdate={(updated) => resource.update({ data: updated })}
+                  onUpdate={(updated) => {
+                    if ((updated.branchId ?? "unassigned") !== branchId) {
+                      setLocked(false);
+                      router.refresh();
+                      router.replace(
+                        `/admin/branches/${encodeURIComponent(updated.branchId ?? "unassigned")}/users/${encodeURIComponent(userId)}`,
+                      );
+                      return;
+                    }
+                    resource.update({ data: updated });
+                  }}
                 />
               </aside>
             </div>

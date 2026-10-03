@@ -23,7 +23,7 @@ const refuse = (status: number, message: string) =>
  * 교사 교재 API 의 문 — 로그인 · 승인 · 같은 출처(쓰기) · `textbook` 메뉴, 그리고 **지금의** 계정 상태.
  *
  * 세션에 실린 지점은 로그인 때의 값이다. 지점 공유의 판정은 지금의 지점으로 해야 하므로 계정 행을 다시 읽는다
- * (`authorizePrivate` 와 같은 까닭). 관리자는 메뉴 관문만 지난다 — 남의 책을 여는 권한은 여기서도 생기지 않는다
+ * (`authorizePrivate` 와 같은 까닭). 관리자도 지점·개인 메뉴 관문을 통과해야 하며 남의 책을 여는 권한은 여기서도 생기지 않는다
  * (`access.ts` 가 `isAdmin` 을 읽지 않는다).
  */
 export async function authorizeTextbook(
@@ -36,7 +36,7 @@ export async function authorizeTextbook(
   if (access.response) return { actor: null, response: access.response };
   const account = access.account;
   const menus = account.menus as readonly string[];
-  if (!account.isAdmin && !menus.includes(TEXTBOOK_MENU))
+  if (!menus.includes(TEXTBOOK_MENU))
     return {
       actor: null,
       response: refuse(403, "교재 제작 메뉴를 사용할 권한이 없습니다."),

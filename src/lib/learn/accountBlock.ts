@@ -1,5 +1,5 @@
 /**
- * 🔴 학생 계정이 **막혔나** — 꺼짐 ∪ 퇴원 (D-124 ⑷ · D-126 ⑺ · learn-screens 브리프 §1.4 · §6).
+ * 🔴 학생 계정이 **막혔나** — 수동 꺼짐 ∪ 퇴원 ∪ 연동 접근 중지.
  *
  * 부르는 곳이 **이 파일 하나**를 부른다:
  *   - 로그인 · 비밀번호 바꾸기의 «지금 번호 확인» — `studentLogin.ts` 의 `verifyStudentPin`
@@ -18,6 +18,8 @@ export interface BlockableStudentAccount {
   disabledAt: Date | null;
   /** 그 학생이 퇴원 처리된 시각(`Student.eywaWithdrawnAt`) */
   withdrawnAt: Date | null;
+  /** A failed managed binding/license/enrollment check; separate from manual disabledAt. */
+  managedAccessAllowed?: boolean;
 }
 
 /** 막힘 판정의 **퇴원 쪽** — 발급 API 도 이것을 부른다(D-127 «새 판정 금지») */
@@ -30,5 +32,9 @@ export function studentWithdrawn(student: {
 export function studentAccountBlocked(
   account: BlockableStudentAccount,
 ): boolean {
-  return account.disabledAt !== null || studentWithdrawn(account);
+  return (
+    account.disabledAt !== null ||
+    studentWithdrawn(account) ||
+    account.managedAccessAllowed === false
+  );
 }

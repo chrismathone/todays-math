@@ -17,14 +17,11 @@ import { decodeBankUtf8, EnglishBankError } from "./policy";
 
 const bank = createEnglishBank(db);
 export function bankMenuDenied(viewer: SessionUser, maker = false) {
-  return !viewer.isAdmin &&
-    (!(viewer.menus ?? []).some((menu) => String(menu) === "english-bank") ||
-      (maker &&
-        !englishRouteAllowed(
-          viewer.menus ?? [],
-          "POST",
-          "/api/english/generate",
-        )))
+  return !(viewer.menus ?? []).some(
+    (menu) => String(menu) === "english-bank",
+  ) ||
+    (maker &&
+      !englishRouteAllowed(viewer.menus ?? [], "POST", "/api/english/generate"))
     ? jsonError("FORBIDDEN", "자료은행을 사용할 권한이 없습니다.", 403)
     : null;
 }

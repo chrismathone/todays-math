@@ -16,6 +16,7 @@ type TestPrintPageProps = {
 export default async function TestPrintPage({ params }: TestPrintPageProps) {
   const [session, routeParams] = await Promise.all([getSessionUser(), params]);
   if (!session) redirect("/login");
+  if (!session.menus?.includes("export")) notFound();
 
   const parsed = idParamSchema.safeParse(routeParams);
   if (!parsed.success) notFound();

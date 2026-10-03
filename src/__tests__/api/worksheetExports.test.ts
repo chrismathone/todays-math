@@ -4,7 +4,8 @@ import { gunzipSync } from "node:zlib";
 import { authorizeExport } from "@/lib/export/request";
 import { POST } from "@/app/api/exports/hwpx/route";
 
-vi.mock("@/lib/session", () => ({ getSessionUser: vi.fn(async () => null) }));
+const mocks = vi.hoisted(() => ({ session: vi.fn() }));
+vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
 vi.mock("@/lib/export/hwpxServer", async (original) => ({
   ...(await original<typeof import("@/lib/export/hwpxServer")>()),
   buildHwpxParts: vi.fn(async () => ({
@@ -23,11 +24,34 @@ const request = (body = "{}", origin = "http://localhost:3000") =>
     body,
   });
 beforeEach(() => {
+  mocks.session.mockResolvedValue(null);
   vi.stubEnv("NODE_ENV", "development");
 });
 afterEach(() => vi.unstubAllEnvs());
 
 describe("worksheet export routes", () => {
+  it.each(["development", "production"])(
+    "caps authenticated owners and highest admins in %s",
+    async (environment) => {
+      vi.stubEnv("NODE_ENV", environment);
+      for (const isSuperAdmin of [false, true]) {
+        mocks.session.mockResolvedValue({
+          id: "owner",
+          isAdmin: true,
+          isSuperAdmin,
+          menus: [],
+        });
+        expect((await POST(request()))?.status).toBe(403);
+        mocks.session.mockResolvedValue({
+          id: "owner",
+          isAdmin: true,
+          isSuperAdmin,
+          menus: ["export"],
+        });
+        expect(await authorizeExport(request())).toBeNull();
+      }
+    },
+  );
   it("allows only same-origin loopback dev exports without login", async () => {
     expect(await authorizeExport(request())).toBe(null);
     expect(

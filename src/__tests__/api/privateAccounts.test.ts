@@ -114,6 +114,19 @@ beforeEach(() => {
 });
 
 describe("account guards", () => {
+  it.each([false, true])(
+    "rejects private storage access for a zero-menu owner/superadmin=%s",
+    async (isSuperAdmin) => {
+      login({ isAdmin: true, isSuperAdmin, menus: [] });
+      expect((await readDocument(request(), "draft-1")).status).toBe(403);
+      expect(
+        (await writePrivateAsset(request("PUT", { data: "image" }), "asset-1"))
+          .status,
+      ).toBe(403);
+      expect(mocks.doc.findFirst).not.toHaveBeenCalled();
+      expect(mocks.asset.create).not.toHaveBeenCalled();
+    },
+  );
   it("requires a session, approval, and separate administrator privilege", async () => {
     mocks.auth.mockResolvedValue(null);
     expect((await authorizeAccount(request())).response?.status).toBe(401);
@@ -330,6 +343,48 @@ describe("private material ownership and revision control", () => {
     ).toBe(403);
     expect(mocks.doc.updateMany).not.toHaveBeenCalled();
   });
+  it.each([false, true])(
+    "requires the editor and library menus independently for privileged accounts, superadmin=%s",
+    async (isSuperAdmin) => {
+      login({ isAdmin: true, isSuperAdmin, menus: ["library"] });
+      expect(
+        (
+          await saveDocument(
+            request("PUT", {
+              kind: "draft",
+              title: "시험지",
+              payload: { problems: [] },
+              expectedRevision: 1,
+            }),
+            "draft-1",
+          )
+        ).status,
+      ).toBe(403);
+      login({ isAdmin: true, isSuperAdmin, menus: ["export"] });
+      expect(
+        (
+          await deleteDocument(
+            request(
+              "DELETE",
+              undefined,
+              "/api/library/documents/draft-1?revision=1",
+            ),
+            "draft-1",
+          )
+        ).status,
+      ).toBe(403);
+      expect(
+        (
+          await renameDocument(
+            request("PATCH", { title: "시험지", expectedRevision: 1 }),
+            "draft-1",
+          )
+        ).status,
+      ).toBe(403);
+      expect(mocks.doc.updateMany).not.toHaveBeenCalled();
+      expect(mocks.doc.deleteMany).not.toHaveBeenCalled();
+    },
+  );
   it("allows library-only renaming without exposing editing permission", async () => {
     login({ menus: ["library"] });
     expect(

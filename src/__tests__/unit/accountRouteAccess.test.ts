@@ -19,7 +19,11 @@ describe("account approval and menu route policy", () => {
     (path) => {
       expect(accountRouteAllowed(account, "GET", path)).toBe(false);
       expect(
-        accountRouteAllowed({ ...account, isAdmin: true }, "GET", path),
+        accountRouteAllowed(
+          { ...account, isAdmin: true, isSuperAdmin: true },
+          "GET",
+          path,
+        ),
       ).toBe(true);
     },
   );
@@ -83,6 +87,43 @@ describe("account approval and menu route policy", () => {
       true,
     );
   });
+  it.each([false, true])(
+    "keeps management reachable with zero menus, superadmin=%s",
+    (isSuperAdmin) => {
+      const manager = { ...account, isAdmin: true, isSuperAdmin, menus: [] };
+      for (const path of [
+        "/branch",
+        "/api/branch/accounts",
+        "/account",
+        "/api/account/access",
+        "/api/auth/signout",
+        "/",
+      ])
+        expect(accountRouteAllowed(manager, "GET", path), path).toBe(true);
+      for (const path of [
+        "/admin/branches",
+        "/api/admin/users",
+        "/dev/unified",
+        "/api/dev/unified/problems",
+      ])
+        expect(accountRouteAllowed(manager, "GET", path), path).toBe(
+          isSuperAdmin,
+        );
+      for (const path of [
+        "/api/problems",
+        "/api/studio/ai",
+        "/api/library/documents",
+        "/api/tests",
+        "/classes",
+        "/api/math-srs/course",
+        "/api/english/exams",
+        "/english/sets/set/print",
+        "/concept-blank/print",
+        "/api/new-feature",
+      ])
+        expect(accountRouteAllowed(manager, "GET", path), path).toBe(false);
+    },
+  );
   /**
    * dev 빌드의 작업실 AI 는 구독 CLI 다리 `/api/dev/unified/ai` 로 간다(`studio-ai/endpoints.ts`).
    * 관리자만 열어 두면 관리자 아닌 계정의 상태판이 «연결 확인 중»에서 403 으로 멈춘다(2026-09-18 test_t 계정).

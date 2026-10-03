@@ -2,6 +2,7 @@ import { Prisma, type PrismaClient } from "@prisma/client";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
 import type { StudentSession } from "@/contracts/studentAccount.contract";
 import { canAccessListeningPilot } from "@/lib/listeningPilot";
+import { effectiveWorkspaceMenuPolicy } from "@/lib/workspaceMenuPolicy.server";
 import { withinOwnerScope } from "@/lib/ownerScope";
 import {
   activeStudentClassIds,
@@ -96,15 +97,22 @@ export async function teacher(
   actor: ListeningActor,
 ): Promise<AccountAccess> {
   if (actor.kind !== "teacher") throw denied();
-  const user = await tx.user.findUnique({ where: { id: actor.userId } });
+  const user = await tx.user.findUnique({
+    where: { id: actor.userId },
+    include: {
+      branch: { select: { disabledMenus: true, menuRevision: true } },
+    },
+  });
   if (
     !user ||
     user.deletedAt ||
     user.suspendedAt ||
-    !canAccessListeningPilot(user, user.disabledMenus)
+    user.approvalStatus !== "approved"
   )
     throw denied();
-  return { ...user, menus: [] };
+  const { menus } = effectiveWorkspaceMenuPolicy(user);
+  if (!menus.includes("english-listening")) throw denied();
+  return { ...user, menus };
 }
 export async function student(tx: ListeningTx, actor: ListeningActor) {
   if (actor.kind !== "student" || actor.session.mustChangePassword)

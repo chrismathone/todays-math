@@ -14,6 +14,13 @@ If work can be split into independent sessions, do that with Orca by default
 (worktrees), then merge completed sessions into `main`. Sequential solo work
 is only for tasks that cannot be split.
 
+# Check the remote before every push
+
+Immediately before every push, fetch the target remote branch and compare it
+with the local branch. Integrate any newer remote commits, resolve conflicts
+without discarding others' work, and rerun the relevant checks before pushing.
+Never force-push over newer commits. This is the user's explicit standing rule.
+
 # Orca session cleanup
 
 When an Orca-managed task is fully complete, its changes have been merged into

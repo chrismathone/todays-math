@@ -172,7 +172,12 @@ describe("GET /api/classes/{id}/math-srs/explorers — 반 학생마다 요약",
       ["제 반", teacherSession(), 200],
       ["수업 메뉴만", teacherSession({ menus: ["teaching"] }), 200],
       ["같은 지점 관리자", sameBranchAdmin(), 200],
-      ["메뉴 없는 같은 지점 관리자", sameBranchAdmin({ menus: [] }), 200],
+      [
+        "수업 메뉴 있는 같은 지점 관리자",
+        sameBranchAdmin({ menus: ["teaching"] }),
+        200,
+      ],
+      ["메뉴 없는 같은 지점 관리자", sameBranchAdmin({ menus: [] }), 403],
       ["최고관리자", otherBranchAdmin({ isSuperAdmin: true }), 200],
     ];
     for (const [label, session, status] of table) {
@@ -328,7 +333,12 @@ describe("GET /api/students/{id}/math-srs/explorers — 학생 한 명의 상세
       ["제 학생", teacherSession(), 200],
       ["SRS 메뉴만", teacherSession({ menus: ["srs"] }), 200],
       ["같은 지점 관리자", sameBranchAdmin(), 200],
-      ["메뉴 없는 같은 지점 관리자", sameBranchAdmin({ menus: [] }), 200],
+      [
+        "SRS 메뉴 있는 같은 지점 관리자",
+        sameBranchAdmin({ menus: ["srs"] }),
+        200,
+      ],
+      ["메뉴 없는 같은 지점 관리자", sameBranchAdmin({ menus: [] }), 403],
       ["최고관리자", otherBranchAdmin({ isSuperAdmin: true }), 200],
     ];
     for (const [label, session, status] of table) {
