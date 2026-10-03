@@ -295,6 +295,27 @@ describe("상태 칸만 바꿔서는 발행되지 않는다", () => {
     expect(error.message).toContain("no completed server publish job");
   });
 
+  it("걸음의 종류는 넷뿐이다 — 조판 · 합치기 · 펼침면 · 단일 HTML. 그 밖의 종류는 거절", async () => {
+    const draft = await draftWithContent(db, world);
+    const plan = await reservePublish(db, draft);
+    const add = (idx: number, kind: string) =>
+      db.query(
+        `INSERT INTO "textbook_publish_step" ("user_id", "request_id", "idx", "kind", "view", "section_ids", "updated_at")
+         VALUES ($1, $2, $3, $4, 'student', '[]'::jsonb, $5)`,
+        [draft.userId, plan.requestId, idx, kind, sqlNow()],
+      );
+    for (const [at, kind] of ["render", "merge", "spread", "offline"].entries())
+      await add(10 + at, kind);
+    const error = await rejected(add(20, "upload"));
+    expect(error.code).toBe("23514");
+    expect(error.message).toContain("textbook_publish_step_kind_check");
+    // 늘어난 걸음이 안 끝났으면 발행되지 않는다 — 종류가 무엇이든 «전부 끝»을 본다
+    await runSteps(db, draft, plan);
+    expect((await rejected(flip(draft.editionId))).message).toContain(
+      "no completed server publish job",
+    );
+  });
+
   it("걸음이 없는 발행 요청으로는 거절", async () => {
     const draft = await draftWithContent(db, world);
     await db.query(

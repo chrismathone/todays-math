@@ -6,10 +6,10 @@ import {
   textbookVideoCreateSchema,
   textbookVideoSchema,
 } from "@/contracts/textbook.contract";
+import { textbookVideoListSchema } from "@/contracts/textbookServer.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import {
   data,
-  plain,
   readBody,
   requestKeyOf,
   textbookRoute,
@@ -24,7 +24,7 @@ import {
 export const GET = withErrorLog("/api/textbook/videos", (request: Request) =>
   textbookRoute(request, async ({ actor, db }) => {
     const editionId = new URL(request.url).searchParams.get("editionId");
-    return plain({
+    return data(textbookVideoListSchema, {
       videos: await listVideos(db, actor),
       bindings: await listBindings(
         db,

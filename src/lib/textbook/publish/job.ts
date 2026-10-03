@@ -31,7 +31,7 @@ export interface StepResult {
 
 export interface StepRow {
   idx: number;
-  kind: "render" | "merge";
+  kind: "render" | "merge" | "spread" | "offline";
   view: PublishVariant;
   sectionIds: string[];
   state: "queued" | "running" | "done" | "failed";

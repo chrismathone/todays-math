@@ -6,13 +6,13 @@ import {
   textbookConceptRecordSchema,
   textbookSaveConceptSchema,
 } from "@/contracts/textbook.contract";
+import { textbookConceptListSchema } from "@/contracts/textbookServer.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { resolveReviewedConcept } from "@/lib/textbook/concepts";
 import { listConcepts, saveConcept } from "@/lib/textbook/server/conceptRows";
 import { invalid } from "@/lib/textbook/server/errors";
 import {
   data,
-  plain,
   readBody,
   requestKeyOf,
   textbookRoute,
@@ -25,7 +25,8 @@ export const GET = withErrorLog(
   "/api/textbook/editions/[editionId]/concepts",
   (request: Request, context: Context) =>
     textbookRoute(request, async ({ actor, db }) =>
-      plain(
+      data(
+        textbookConceptListSchema,
         await listConcepts(
           db,
           actor,

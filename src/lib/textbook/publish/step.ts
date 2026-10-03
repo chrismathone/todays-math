@@ -60,11 +60,14 @@ async function abandon(
   );
 }
 
-/** 걸음을 임대로 잡는다 — 잡았으면 토큰, 못 잡았으면 null */
-async function claim(
+/**
+ * 걸음을 임대로 잡는다 — 잡았으면 토큰, 못 잡았으면 null.
+ * 잡을 수 있는가는 **이 문장 하나**가 정한다(앞의 사전 검사는 헛걸음을 줄일 뿐이다 — 두 요청이 같이 지나칠 수 있다):
+ * 대기 · 실패한 걸음이거나 임대가 끝난 걸음만, 그리고 세 번까지만.
+ */
+export async function claimStep(
   sql: TextbookSql,
-  request: PublishRequestRow,
-  step: StepRow,
+  step: { userId: string; requestId: string; idx: number },
 ): Promise<string | null> {
   const token = randomUUID();
   const claimed = await sql.execute(
@@ -75,8 +78,8 @@ async function claim(
         AND ("state" IN ('queued', 'failed')
              OR ("state" = 'running' AND "lease_until" < (now() AT TIME ZONE 'UTC')))`,
     [
-      request.userId,
-      request.requestId,
+      step.userId,
+      step.requestId,
       step.idx,
       token,
       STEP_LEASE_SECONDS,
@@ -92,15 +95,19 @@ async function finish(
   step: StepRow,
   token: string,
   done: {
-    pdf: Uint8Array;
+    bytes: Uint8Array;
     pageCount: number;
     firstPageIndex: number;
     result: StepResult;
   },
 ): Promise<void> {
-  const hash = sha256(done.pdf);
+  if (done.bytes.byteLength > BLOB_MAX_BYTES)
+    throw new Error(
+      "만든 파일이 64MB 를 넘습니다. 구획을 나누거나 그림을 줄여 주세요.",
+    );
+  const hash = sha256(done.bytes);
   await db.transaction(async (tx) => {
-    await putBlob(tx, hash, done.pdf);
+    await putBlob(tx, hash, done.bytes);
     // 임대 토큰이 맞을 때만 — 임대를 잃은 조판의 결과는 적히지 않는다
     await tx.execute(
       `UPDATE "textbook_publish_step"
@@ -116,7 +123,7 @@ async function finish(
         hash,
         done.pageCount,
         done.firstPageIndex,
-        JSON.stringify({ ...done.result, byteSize: done.pdf.byteLength }),
+        JSON.stringify({ ...done.result, byteSize: done.bytes.byteLength }),
       ],
     );
   });
@@ -191,13 +198,30 @@ export async function runNextStep(
     );
     return report();
   }
-  const token = await claim(db, request, step);
+  const token = await claimStep(db, {
+    userId: request.userId,
+    requestId: request.requestId,
+    idx: step.idx,
+  });
   if (!token) return report();
 
-  try {
-    const sameView = steps.filter(
-      (entry) => entry.view === step.view && entry.kind === "render",
+  /** 서버가 넣어 둔 걸음의 바이트 — 해시가 그때와 같을 때만 */
+  const storedBytes = async (part: StepRow): Promise<Uint8Array> => {
+    const bytes = await readBlobRange(
+      db,
+      part.sha256!,
+      0,
+      part.result!.byteSize!,
     );
+    if (!bytes || sha256(bytes) !== part.sha256)
+      throw new Error("보관한 조각이 조판 때의 바이트와 다릅니다.");
+    return bytes;
+  };
+  const rendersOf = (view: StepRow["view"]) =>
+    steps.filter((entry) => entry.view === view && entry.kind === "render");
+
+  try {
+    const sameView = rendersOf(step.view);
     if (step.kind === "render") {
       const exchange = await assembleExchange(db, editionId, {
         exportedAt: deps.now().toISOString(),
@@ -211,6 +235,19 @@ export async function runNextStep(
       const firstPageIndex =
         previous?.result?.nextPhysicalPageIndex ??
         exchange.config.print.firstPhysicalPageIndex;
+      // 해설판은 같은 구획 묶음의 학생용 걸음이 남긴 쪽 자리를 그대로 쓴다
+      const twin =
+        step.view === "answers"
+          ? rendersOf("student").find(
+              (entry) =>
+                JSON.stringify(entry.sectionIds) ===
+                JSON.stringify(step.sectionIds),
+            )
+          : undefined;
+      if (step.view === "answers" && twin?.state !== "done")
+        throw new Error(
+          "학생용 조판이 끝나지 않아 해설판을 조판할 수 없습니다.",
+        );
       const rendered = await deps.renderer.renderChunk({
         exchange,
         readAsset: editionAssetReader(db, editionId),
@@ -218,11 +255,10 @@ export async function runNextStep(
         sectionIndices,
         firstPhysicalPageIndex: firstPageIndex,
         variant: step.view,
+        ...(twin ? { studentCarry: twin.result?.carry } : {}),
       });
-      if (rendered.pdf.byteLength > BLOB_MAX_BYTES)
-        throw new Error("조판한 조각이 64MB 를 넘습니다. 구획을 나눠 주세요.");
       await finish(db, request, step, token, {
-        pdf: rendered.pdf,
+        bytes: rendered.pdf,
         pageCount: rendered.pageCount,
         firstPageIndex,
         result: {
@@ -233,24 +269,15 @@ export async function runNextStep(
           carry: rendered.carry,
         },
       });
-    } else {
+    } else if (step.kind === "merge") {
       // 합치기 — 그 판의 조각들을 차례로. 조각 바이트는 서버가 넣어 둔 것만 읽는다
       const chunks = [];
-      for (const part of sameView) {
-        const bytes = await readBlobRange(
-          db,
-          part.sha256!,
-          0,
-          part.result!.byteSize!,
-        );
-        if (!bytes || sha256(bytes) !== part.sha256)
-          throw new Error("보관한 조각이 조판 때의 바이트와 다릅니다.");
+      for (const part of sameView)
         chunks.push({
-          pdf: bytes,
+          pdf: await storedBytes(part),
           pageCount: part.pageCount!,
           carry: part.result!.carry,
         });
-      }
       const merged = await deps.renderer.mergeChunks(chunks, BLOB_MAX_BYTES);
       const expectedPages = sameView.reduce(
         (sum, part) => sum + part.pageCount!,
@@ -259,10 +286,55 @@ export async function runNextStep(
       if (merged.pageCount !== expectedPages)
         throw new Error("합친 파일의 쪽 수가 조각의 합과 다릅니다.");
       await finish(db, request, step, token, {
-        pdf: merged.pdf,
+        bytes: merged.pdf,
         pageCount: merged.pageCount,
         firstPageIndex: sameView[0]!.firstPageIndex!,
-        result: { qrChecks: merged.qrChecks },
+        result: { qrChecks: merged.qrChecks, carry: merged.carry },
+      });
+    } else if (step.kind === "spread") {
+      // 펼침면 — 합친 학생용을 두 쪽씩 한 장에. QR 은 **이 파일에서** 다시 읽는다
+      if (!deps.renderer.spread)
+        throw new Error("이 조판기는 펼침면을 만들지 못합니다.");
+      const source = steps.find(
+        (entry) => entry.kind === "merge" && entry.view === "student",
+      );
+      if (source?.state !== "done")
+        throw new Error("학생용을 합치기 전에는 펼침면을 만들 수 없습니다.");
+      const spread = await deps.renderer.spread(
+        {
+          pdf: await storedBytes(source),
+          pageCount: source.pageCount!,
+          carry: source.result!.carry,
+        },
+        source.firstPageIndex!,
+      );
+      await finish(db, request, step, token, {
+        bytes: spread.pdf,
+        pageCount: spread.pageCount,
+        firstPageIndex: source.firstPageIndex!,
+        result: { qrChecks: spread.qrChecks },
+      });
+    } else {
+      // 단일 HTML — 조판한 학생용 쪽들을 그대로. 정답 · 해설은 조판기가 싣지 않는다
+      if (!deps.renderer.offlineHtml)
+        throw new Error("이 조판기는 단일 HTML 을 만들지 못합니다.");
+      const student = rendersOf("student");
+      if (student.some((entry) => entry.state !== "done"))
+        throw new Error("학생용 조판이 끝나지 않았습니다.");
+      const html = await deps.renderer.offlineHtml({
+        exchange: await assembleExchange(db, editionId, {
+          exportedAt: deps.now().toISOString(),
+          qrStates: ["reserved", "active"],
+        }),
+        readAsset: editionAssetReader(db, editionId),
+        officialOrigin: deps.officialOrigin!,
+        chunkCarries: student.map((entry) => entry.result!.carry),
+      });
+      await finish(db, request, step, token, {
+        bytes: html,
+        pageCount: student.reduce((sum, entry) => sum + entry.pageCount!, 0),
+        firstPageIndex: student[0]!.firstPageIndex!,
+        result: {},
       });
     }
   } catch (error) {

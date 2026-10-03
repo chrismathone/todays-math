@@ -3,9 +3,10 @@
  * 자격을 잃었거나 지워진 문항 · 두 번 고른 문항이 있으면 만들지 않고 사유를 낸다.
  */
 import { textbookReissueSchema } from "@/contracts/textbook.contract";
+import { textbookReissueResultSchema } from "@/contracts/textbookServer.contract";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import {
-  plain,
+  data,
   readBody,
   requestKeyOf,
   textbookRoute,
@@ -28,6 +29,10 @@ export const POST = withErrorLog(
         requestKeyOf(actor, "reissue", body, { editionId }),
         body,
       );
-      return plain(result, result.replayed ? 200 : 201);
+      return data(
+        textbookReissueResultSchema,
+        result,
+        result.replayed ? 200 : 201,
+      );
     }),
 );

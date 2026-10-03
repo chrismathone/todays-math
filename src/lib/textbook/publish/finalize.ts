@@ -5,10 +5,13 @@
  * 확인하는 것(전부 서버가 가진 값):
  *   · 걸음이 전부 끝났고 진단에 막는 사유가 없다
  *   · 놓인 배치 전부가 쪽 계획에 정확히 한 번씩 나온다
- *   · 합친 PDF 에서 **다시 읽은** QR 이 예약한 QR 과 하나씩 맞는다(개수와 주소까지)
+ *   · 합친 PDF 에서 **다시 읽은** QR 이 예약한 QR 과 하나씩 맞는다(개수와 주소까지) — 학생용 · 펼침면은 전부,
+ *     해설판은 찍힌 것마다
  *   · 교환 형식 전체의 참조 · 해시 · 자산 바이트(검증기) — 영상 필수 범위의 게시 영상도 여기서 본다
  * 확정 트랜잭션: 놓이지 않은 배치 정리 → 쪽 칸 채우기 → QR 켜기(남은 예약은 무효) → 산출물 → manifest 해시 →
  *   판본을 발행으로(트리거가 위의 것들이 실제로 있는지 다시 본다) → 요청을 끝으로.
+ * 산출물: 학생용 · 해설 PDF, (조판기가 만들었으면) 펼침면 PDF · 단일 HTML, 검수 보고, 교환 JSON, 대응표 CSV,
+ *   (꾸리는 함수가 있고 64MB 안이면) 교환 패키지 ZIP. **만들지 않은 것은 줄도 없다.**
  * 같은 `requestId` 로 다시 오면 그때의 결과를 그대로 돌려준다.
  */
 import { randomUUID } from "node:crypto";
@@ -25,9 +28,10 @@ import {
 import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
 
 import { type TextbookActor, requireOwnedEdition } from "../access";
+import { mappingCsv } from "../archive/mappingCsv";
 import { canonicalBytes } from "../canonical";
 import { manifestHash, sha256 } from "../hash.server";
-import { putBlob } from "../server/blobs";
+import { BLOB_MAX_BYTES, putBlob } from "../server/blobs";
 import {
   TextbookError,
   conflict,
@@ -89,11 +93,16 @@ export function collectPageMap(
   return { pageMap, issues };
 }
 
-/** 합친 학생용 PDF 에서 다시 읽은 QR 이 예약한 QR 과 하나씩 맞는가 */
+/**
+ * 합친 PDF 에서 다시 읽은 QR 이 예약한 QR 과 하나씩 맞는가.
+ * `requireAll` 이 false 면(해설판) 안 찍힌 QR 은 봐주고, 찍힌 것이 예약한 주소로 읽히는지만 본다.
+ */
 export function qrReadbackIssues(
   readback: readonly QrReadback[],
   exchange: TextbookExchange,
+  options: { requireAll?: boolean } = {},
 ): TextbookIssue[] {
+  const requireAll = options.requireAll ?? true;
   const issues: TextbookIssue[] = [];
   const expected = new Map(
     [...exchange.qrTargets, ...(exchange.conceptQrTargets ?? [])].map((qr) => [
@@ -106,6 +115,7 @@ export function qrReadbackIssues(
     read.set(check.qrTargetId, [...(read.get(check.qrTargetId) ?? []), check]);
   for (const [qrTargetId, url] of expected) {
     const checks = read.get(qrTargetId) ?? [];
+    if (checks.length === 0 && !requireAll) continue;
     if (checks.length !== 1)
       issues.push(
         issue("qr-not-printed", "지면에서 읽히지 않는 QR 이 있습니다.", {
@@ -189,9 +199,19 @@ export async function finalizePublish(
   const paged = collectPageMap(steps, reserved);
   const merged = (view: "student" | "answers") =>
     steps.find((step) => step.kind === "merge" && step.view === view)!;
+  const extra = (kind: "spread" | "offline") =>
+    steps.find((step) => step.kind === kind);
+  const spread = extra("spread");
   const issues = [
     ...paged.issues,
     ...qrReadbackIssues(merged("student").result?.qrChecks ?? [], reserved),
+    ...qrReadbackIssues(merged("answers").result?.qrChecks ?? [], reserved, {
+      requireAll: false,
+    }),
+    // 펼침면은 다른 파일이다 — 그 파일에서 다시 읽은 것을 따로 본다
+    ...(spread
+      ? qrReadbackIssues(spread.result?.qrChecks ?? [], reserved)
+      : []),
     ...(await deps.validate(
       { ...reserved, pageMap: paged.pageMap },
       {
@@ -274,7 +294,18 @@ export async function finalizePublish(
           })),
       });
     }
-    const report = canonicalBytes({
+    for (const [step, kind] of [
+      [spread, "spread-pdf"],
+      [extra("offline"), "offline-html"],
+    ] as const)
+      if (step)
+        await insertArtifact(tx, editionId, {
+          kind,
+          sha256: step.sha256!,
+          byteSize: step.result!.byteSize!,
+          pageCount: step.pageCount,
+        });
+    const validation = {
       requestId,
       baseRevision: locked.baseRevision,
       steps: steps.map((step) => ({
@@ -286,7 +317,8 @@ export async function finalizePublish(
         issues: step.result?.issues ?? [],
         qrChecks: step.result?.qrChecks ?? [],
       })),
-    });
+    };
+    const report = canonicalBytes(validation);
     await putBlob(tx, sha256(report), report);
     await insertArtifact(tx, editionId, {
       kind: "validation-json",
@@ -323,6 +355,33 @@ export async function finalizePublish(
       byteSize: exchangeBytes.byteLength,
       pageCount: null,
     });
+    // 대응표 — 쪽은 방금 적은 쪽 계획에서 온다. 학생의 정보는 한 칸도 없다
+    const mapping = new TextEncoder().encode(mappingCsv(published));
+    await putBlob(tx, sha256(mapping), mapping);
+    await insertArtifact(tx, editionId, {
+      kind: "mapping-csv",
+      sha256: sha256(mapping),
+      byteSize: mapping.byteLength,
+      pageCount: null,
+    });
+    // 교환 패키지 — 방금 조립한 발행본과 판본의 자산 바이트로. 한 줄에 못 담는 크기면 줄을 만들지 않는다
+    // (내보내기가 그때그때 같은 내용으로 만든다 — 없는 파일을 있다고 적지 않는다)
+    if (deps.packageArchive) {
+      const archive = await deps.packageArchive(
+        published,
+        editionAssetReader(tx, editionId),
+        validation,
+      );
+      if (archive.byteLength <= BLOB_MAX_BYTES) {
+        await putBlob(tx, sha256(archive), archive);
+        await insertArtifact(tx, editionId, {
+          kind: "exchange-zip",
+          sha256: sha256(archive),
+          byteSize: archive.byteLength,
+          pageCount: null,
+        });
+      }
+    }
 
     const flipped = await tx.execute(
       `UPDATE "textbook_edition" SET "status" = 'published', "published_at" = $2::timestamp, "manifest_hash" = $3::text,
