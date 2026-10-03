@@ -155,6 +155,22 @@ export async function requireOwnedBook(
 }
 
 /**
+ * 판본 한 줄을 이 사람이 읽을 수 있는가 — `editionReadScope` 와 **같은 판정**의 SQL 꼴이다
+ * (여러 판본을 한 번에 거르는 조회가 줄마다 묻지 않게). 둘을 따로 고치지 않는다 — 한쪽을 고치면 다른 쪽도 고친다.
+ * 별칭: `e` 판본 · `t` 책 · `o` 주인 계정. 인자: 보는 사람 · 그 사람의 **지금** 지점(없으면 NULL — 뒤 갈래가 통째로 거짓이다).
+ */
+export const readableEditionSql = (actor: string, branch: string): string => `(
+  t."user_id" = ${actor}::uuid
+  OR (
+    e."status" = 'published'
+    AND t."visibility" = 'branch' AND t."shared_branch_id" IS NOT NULL
+    AND t."shared_branch_id" = ${branch}::uuid
+    AND t."shared_branch_id" = o."branch_id"
+    AND o."approval_status" = 'approved' AND o."deleted_at" IS NULL AND o."suspended_at" IS NULL
+  )
+)`;
+
+/**
  * 목록의 범위 — 내 책 전부 + 지금 내 지점에 공유된 남의 책(발행본이 있는 것만).
  * `$1` 은 보는 사람, `$2` 는 그 사람의 지금 지점(없으면 NULL — 그러면 뒤 갈래가 통째로 거짓이다).
  */

@@ -60,7 +60,10 @@ import {
   GET as listBooksRoute,
   POST as postBook,
 } from "@/app/api/textbook/books/route";
+import { GET as listConceptLectures } from "@/app/api/textbook/concept-lectures/route";
 import { GET as lookupConcepts } from "@/app/api/textbook/concepts/lookup/route";
+import { POST as registerItemRoute } from "@/app/api/textbook/editions/[editionId]/items/[itemId]/register/route";
+import { GET as getEvidence } from "@/app/api/textbook/students/[studentId]/concept-evidence/route";
 import { PUT as putConcept } from "@/app/api/textbook/editions/[editionId]/concepts/[conceptKey]/route";
 import { GET as exportRoute } from "@/app/api/textbook/editions/[editionId]/export/route";
 import { GET as getItem } from "@/app/api/textbook/editions/[editionId]/items/[itemId]/route";
@@ -771,6 +774,7 @@ describe("개념 백지 소단원 → 교재 개념", () => {
         conceptTitle: "순환소수의 뜻",
         status: "draft",
         access: "owner",
+        hasFrozen: false,
         entries: [
           { entryKind: "concept", entryId: "c-1", reviewStatus: "candidate" },
         ],
@@ -852,5 +856,111 @@ describe("개념 백지 소단원 → 교재 개념", () => {
         )
       ).some((match) => match.editionId === editionId),
     ).toBe(false);
+  });
+});
+
+describe("등록 · 강의 목록 · 활동 증거 라우트", () => {
+  it("등록 요청은 검수 상태 · 본문을 정하지 못한다(모르는 칸은 400)", async () => {
+    const { editionId } = await newBook();
+    const itemId = randomUUID();
+    const base = {
+      requestId: randomUUID(),
+      expectedRevision: 1,
+      unitId: world.unitId,
+      difficulty: "기본",
+      problemType: "계산",
+    };
+    for (const extra of [
+      { reviewStatus: "approved" },
+      { content: "요청이 보낸 본문" },
+      { linkStatus: "linked" },
+    ]) {
+      const response = await registerItemRoute(
+        json("POST", { ...base, ...extra }),
+        params({ editionId, itemId }),
+      );
+      expect(response.status).toBe(400);
+    }
+    // 모양이 맞아도 없는 배치는 404 — 은행에 줄이 생기지 않는다
+    const before = await pg.query(`SELECT count(*)::int AS n FROM "problem"`);
+    const missing = await registerItemRoute(
+      json("POST", { ...base, requestId: randomUUID() }),
+      params({ editionId, itemId }),
+    );
+    expect([404, 409]).toContain(missing.status);
+    expect(
+      await pg.query(`SELECT count(*)::int AS n FROM "problem"`),
+    ).toMatchObject({ rows: before.rows });
+  });
+
+  it("개념 강의 목록 — 단원이 없거나 모르는 질의 칸이 있으면 400, 있으면 게시된 강의만", async () => {
+    for (const query of [
+      "",
+      "?unitId=x",
+      `?unitId=${world.unitId}&status=draft`,
+    ])
+      expect(
+        (
+          await listConceptLectures(
+            new Request(
+              `https://today.test/api/textbook/concept-lectures${query}`,
+            ),
+          )
+        ).status,
+      ).toBe(400);
+    const lectureId = randomUUID();
+    await pg.query(
+      `INSERT INTO "concept_lecture" ("id", "unit_id", "title", "video_url", "seconds", "status", "published_at", "updated_at")
+       VALUES ($1, $2, '게시된 강의', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', 90, 'published', now(), now()),
+              ($3, $2, '초안 강의', NULL, 0, 'draft', NULL, now())`,
+      [lectureId, world.unitId, randomUUID()],
+    );
+    const response = await listConceptLectures(
+      new Request(
+        `https://today.test/api/textbook/concept-lectures?unitId=${world.unitId}`,
+      ),
+    );
+    expect(response.status).toBe(200);
+    const body = (await response.json()) as {
+      data: { lectures: Array<{ lectureId: string; title: string }> };
+    };
+    expect(body.data.lectures.map((lecture) => lecture.title)).toContain(
+      "게시된 강의",
+    );
+    expect(body.data.lectures.map((lecture) => lecture.title)).not.toContain(
+      "초안 강의",
+    );
+  });
+
+  it("활동 증거 — 내 학생이면 활동과 표시 정보가 같이 온다. 남의 학생은 404", async () => {
+    const mine = await pg.query<{ id: string }>(
+      `SELECT s."id" FROM "student" s JOIN "class" c ON c."id" = s."class_id" WHERE c."user_id" = $1 LIMIT 1`,
+      [world.userA],
+    );
+    // 이 시험의 주인(owner)은 seedWorld 의 교사가 아니다 — 남의 학생이다
+    const foreign = await getEvidence(
+      new Request("https://today.test/x"),
+      params({ studentId: mine.rows[0]!.id }),
+    );
+    expect(foreign.status).toBe(404);
+    const classId = randomUUID();
+    const studentId = randomUUID();
+    await pg.query(
+      `INSERT INTO "class" ("id", "user_id", "name", "grade", "difficulty_ratio", "updated_at") VALUES ($1, $2, '반', '중2', '{}'::jsonb, now())`,
+      [classId, owner.id],
+    );
+    await pg.query(
+      `INSERT INTO "student" ("id", "class_id", "name", "updated_at") VALUES ($1, $2, '학생', now())`,
+      [studentId, classId],
+    );
+    const response = await getEvidence(
+      new Request("https://today.test/x"),
+      params({ studentId }),
+    );
+    expect(response.status).toBe(200);
+    expect(((await response.json()) as { data: unknown }).data).toEqual({
+      attempts: [],
+      references: [],
+    });
   });
 });

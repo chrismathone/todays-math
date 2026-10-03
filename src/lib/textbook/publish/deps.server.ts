@@ -22,16 +22,37 @@ export function textbookPublicOrigin(): string | null {
   return value ? value.replace(/\/$/, "") : null;
 }
 
-/** 교환 형식 전체의 참조 · 해시 · 자산 바이트 검증 — Codex 의 검증기를 그대로 쓴다 */
-export const validateForPublish: PublishValidator = (exchange, options) =>
-  validateTextbookIntegrity(exchange, {
-    mode: options.stage === "publish" ? "publish" : "draft",
+/** 사전 검사 때는 아직 만들 수 없는 것 — QR 은 예약이 만든다 */
+const NOT_YET_AT_PREFLIGHT = new Set(["MISSING_QR"]);
+
+/**
+ * 교환 형식 전체의 참조 · 해시 · 자산 바이트 검증 — Codex 의 검증기를 그대로 쓴다.
+ *
+ * 🔴 사전 검사도 **발행 기준**으로 본다. 조판기는 걸음마다 발행 기준으로 원고를 다시 검증하므로(그림과 보기의 짝 ·
+ *    빈 구획 · 연결 안 된 문항 · 필수 영상), 사전 검사가 초안 기준이면 «통과»라던 원고가 조판 걸음에서야 세 번 실패하고
+ *    작업이 그만둔다. 사전 검사 때 아직 있을 수 없는 것(예약 전의 QR)만 뺀다 — 그 밖의 막는 사유는 여기서 다 알린다.
+ */
+export const validateForPublish: PublishValidator = async (
+  exchange,
+  options,
+) => {
+  const issues = await validateTextbookIntegrity(exchange, {
+    mode: "publish",
     officialOrigin: options.officialOrigin,
     requirePageMap: options.requirePageMap,
     // manifest 는 확정이 지금의 줄들에서 새로 계산한다 — 여기서는 견줄 값이 아직 없다
     verifyManifest: false,
     readAsset: options.readAsset,
   });
+  return options.stage === "publish"
+    ? issues
+    : issues.filter(
+        (entry) =>
+          !NOT_YET_AT_PREFLIGHT.has(entry.code) &&
+          // 자산 바이트는 조판 걸음과 확정이 읽어 확인한다 — 사전 검사는 읽기만 하는 가벼운 길이다
+          entry.code !== "ASSET_READER_REQUIRED",
+      );
+};
 
 /** 교환 패키지 — Codex 의 꾸리는 함수를 그대로 쓴다(자산 바이트 · 해시를 꾸리기 전에 다시 본다) */
 export const packageArchive: PackageArchive = async (

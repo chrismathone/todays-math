@@ -20,6 +20,7 @@ import {
   type TextbookActor,
   requireOwnedDraft,
   requireReadableEdition,
+  readableEditionSql,
 } from "../access";
 import { aggregateRevision, editionStructure } from "./editions";
 import { conflict, invalid, notFound, revisionMismatch } from "./errors";
@@ -123,6 +124,8 @@ export interface ConceptLookupMatch {
   access: "owner" | "branch";
   conceptKey: string;
   conceptTitle: string;
+  /** 발행 때 굳힌 내용이 있는가 — 있으면 백지 인쇄가 그 선택 그대로 열린다 */
+  hasFrozen: boolean;
   entries: Array<{
     entryKind: TextbookConcept["blankItems"][number]["entryKind"];
     entryId: string;
@@ -146,7 +149,7 @@ export async function lookupConceptsByBlankSection(
   return sql.query<ConceptLookupMatch>(
     `SELECT t."id" AS "bookId", t."title" AS "bookTitle", e."id" AS "editionId", e."label" AS "editionLabel",
             e."status", CASE WHEN t."user_id" = $1::uuid THEN 'owner' ELSE 'branch' END AS "access",
-            c."concept_key" AS "conceptKey", c."title" AS "conceptTitle",
+            c."concept_key" AS "conceptKey", c."title" AS "conceptTitle", (c."frozen" IS NOT NULL) AS "hasFrozen",
             (SELECT jsonb_agg(jsonb_build_object('entryKind', b ->> 'entryKind', 'entryId', b ->> 'entryId',
                                                  'reviewStatus', b -> 'review' ->> 'status')
                               ORDER BY b ->> 'entryKind', b ->> 'entryId')
@@ -158,10 +161,7 @@ export async function lookupConceptsByBlankSection(
        JOIN "user" o ON o."id" = t."user_id"
       WHERE t."archived_at" IS NULL
         AND EXISTS (SELECT 1 FROM jsonb_array_elements(c."blank_items") b WHERE b ->> 'blankSectionKey' = $2::text)
-        AND ((t."user_id" = $1::uuid AND e."status" IN ('draft', 'published'))
-          OR (e."status" = 'published' AND t."visibility" = 'branch' AND t."shared_branch_id" IS NOT NULL
-              AND t."shared_branch_id" = $3::uuid AND o."branch_id" = t."shared_branch_id"
-              AND o."deleted_at" IS NULL AND o."suspended_at" IS NULL AND o."approval_status" = 'approved'))
+        AND e."status" IN ('draft', 'published') AND ${readableEditionSql("$1", "$3")}
       ORDER BY (t."user_id" = $1::uuid) DESC, t."title", e."ordinal" DESC, c."concept_key"
       LIMIT 500`,
     [actor.id, blankSectionKey, actor.branchId],
@@ -424,6 +424,71 @@ export async function reviewAttempt(
       return attempt!;
     });
     return { attempt: result, replayed };
+  });
+}
+
+export interface ConceptEvidenceReference {
+  editionId: string;
+  conceptKey: string;
+  bookTitle: string | null;
+  editionLabel: string | null;
+  conceptTitle: string | null;
+  canOpen: boolean;
+}
+
+/**
+ * 백지 활동이 가리키는 (판본, 개념)의 **표시 정보** — 화면이 id 대신 책 · 개념의 이름을 보이게.
+ *
+ * 🔴 이름은 **지금 그 판본을 읽을 수 있을 때만** 낸다(내 책이거나, 지점에 공유된 동료의 발행본).
+ *    내 학생이 예전에 남의 책으로 활동한 기록이 있다고 그 책의 제목이 열리지 않는다 — 읽을 수 없으면 이름은 전부 null 이고
+ *    `canOpen` 이 false 다. 활동 기록 자체(형식 · 시각 · 확인 상태)는 내 학생의 것이라 그대로 보인다.
+ */
+export async function conceptEvidenceReferences(
+  sql: TextbookSql,
+  actor: TextbookActor,
+  attempts: ReadonlyArray<{ editionId: string; conceptKey: string }>,
+): Promise<ConceptEvidenceReference[]> {
+  const pairs = [
+    ...new Map(
+      attempts.map((attempt) => [
+        `${attempt.editionId}/${attempt.conceptKey}`,
+        { editionId: attempt.editionId, conceptKey: attempt.conceptKey },
+      ]),
+    ).values(),
+  ];
+  if (!pairs.length) return [];
+  const rows = await sql.query<
+    ConceptEvidenceReference & { bookTitle: string; editionLabel: string }
+  >(
+    `SELECT r."editionId", r."conceptKey", t."title" AS "bookTitle", e."label" AS "editionLabel",
+            c."title" AS "conceptTitle", ${readableEditionSql("$1", "$3")} AS "canOpen"
+       FROM jsonb_to_recordset($2::jsonb) AS r("editionId" uuid, "conceptKey" text)
+       JOIN "textbook_edition" e ON e."id" = r."editionId"
+       JOIN "textbook" t ON t."id" = e."textbook_id"
+       JOIN "user" o ON o."id" = t."user_id"
+       LEFT JOIN "textbook_concept" c ON c."edition_id" = e."id" AND c."concept_key" = r."conceptKey"`,
+    [actor.id, JSON.stringify(pairs), actor.branchId],
+  );
+  const known = new Map(
+    rows.map((row) => [`${row.editionId}/${row.conceptKey}`, row]),
+  );
+  return pairs.map((pair) => {
+    const row = known.get(`${pair.editionId}/${pair.conceptKey}`);
+    return row?.canOpen
+      ? {
+          ...pair,
+          bookTitle: row.bookTitle,
+          editionLabel: row.editionLabel,
+          conceptTitle: row.conceptTitle,
+          canOpen: true,
+        }
+      : {
+          ...pair,
+          bookTitle: null,
+          editionLabel: null,
+          conceptTitle: null,
+          canOpen: false,
+        };
   });
 }
 

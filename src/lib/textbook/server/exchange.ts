@@ -180,7 +180,9 @@ export async function assembleExchange(
     qrRows.filter((qr) => qr.kind === "item").map((qr) => [qr.itemId!, qr]),
   );
 
-  const items: TextbookItem[] = itemRows.map((row) => ({
+  // `orderIndex` 는 원고 전체에서의 차례다 — 위에서 세운 차례(단원 → 구획 → 구획 안)의 자리 그대로.
+  // 표의 `order_index` 는 구획 안의 차례라 그대로 내면 구획마다 0 이 생긴다
+  const items: TextbookItem[] = itemRows.map((row, position) => ({
     itemId: row.itemId,
     editionId,
     snapshotId: row.snapshotId,
@@ -191,7 +193,7 @@ export async function assembleExchange(
     sectionKey: row.sectionKey,
     learningStage: row.learningStage,
     displayNumber: row.displayNumber ?? String(row.orderIndex + 1),
-    orderIndex: row.orderIndex,
+    orderIndex: position,
     layout: row.layout,
     qrTargetId: qrByItem.get(row.itemId)?.id ?? null,
     ...(row.conceptKeys.length ? { conceptKeys: row.conceptKeys } : {}),

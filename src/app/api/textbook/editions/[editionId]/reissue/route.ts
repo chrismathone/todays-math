@@ -31,7 +31,8 @@ export const POST = withErrorLog(
       );
       return data(
         textbookReissueResultSchema,
-        result,
+        // 시험지 표에 제목 칸이 없다 — 받은 제목을 저장하지 않았다고 응답이 말한다
+        { ...result, titlePersisted: false as const },
         result.replayed ? 200 : 201,
       );
     }),

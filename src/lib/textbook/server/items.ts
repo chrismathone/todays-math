@@ -226,28 +226,45 @@ async function cloneFrozenSnapshots(
   return new Map(rows.map((row) => [row.sourceId, row.id]));
 }
 
+/**
+ * 🔴 교환 형식의 `orderIndex` 는 **원고 전체에서의 차례**다(0부터, 목차의 단원 순 → 구획 순 → 구획 안의 차례).
+ *    표의 `order_index` 는 구획 안의 차례라, 그대로 내면 구획이 둘일 때 0 이 둘이 된다 — 검증기가 «순서가 다르다»로 막고
+ *    대응표의 줄 차례도 섞인다. 여기서 판본 전체에 번호를 매겨 낸다(`assembleExchange` 와 같은 차례).
+ *    `$1` 은 판본 id 다.
+ */
 const ITEM_SQL = `
   SELECT i."id" AS "itemId", i."edition_id" AS "editionId", i."snapshot_id" AS "snapshotId", i."link_status" AS "linkStatus",
          i."source_test_id" AS "sourceTestId", i."source_test_problem_id" AS "sourceTestProblemId", i."unit_key" AS "unitKey",
          s."section_key" AS "sectionKey", i."learning_stage" AS "learningStage", i."display_number" AS "displayNumber",
-         i."order_index" AS "orderIndex", i."layout", i."concept_keys" AS "conceptKeys", i."video_required" AS "videoRequired",
-         q."id" AS "qrTargetId"
+         o."globalIndex" AS "orderIndex", i."order_index" AS "sectionOrder", i."layout", i."concept_keys" AS "conceptKeys",
+         i."video_required" AS "videoRequired", q."id" AS "qrTargetId"
     FROM "textbook_item" i
     JOIN "textbook_section" s ON s."id" = i."section_id"
+    JOIN (SELECT gi."id",
+                 (row_number() OVER (ORDER BY COALESCE(u."ord", 2147483647), gs."order_index", gs."id",
+                                              gi."order_index", gi."id") - 1)::int AS "globalIndex"
+            FROM "textbook_item" gi
+            JOIN "textbook_section" gs ON gs."id" = gi."section_id"
+            JOIN "textbook_edition" ge ON ge."id" = gi."edition_id"
+            LEFT JOIN LATERAL (SELECT x."ord" FROM jsonb_array_elements(ge."outline" -> 'units') WITH ORDINALITY AS x("value", "ord")
+                                WHERE x."value" ->> 'unitKey' = gi."unit_key" LIMIT 1) u ON TRUE
+           WHERE gi."edition_id" = $1::uuid) o ON o."id" = i."id"
     LEFT JOIN "textbook_qr_target" q ON q."edition_id" = i."edition_id" AND q."item_id" = i."id"
                                     AND q."kind" = 'item' AND q."state" = 'active'`;
 
 type ItemRow = Omit<TextbookItem, "videoRequired" | "conceptKeys"> & {
   conceptKeys: string[];
   videoRequired: boolean | null;
+  /** 구획 안의 차례 — 표시 번호가 비었을 때의 기본값에만 쓴다 */
+  sectionOrder: number;
 };
 
 /** 표의 줄 → 교환 형식의 배치. `videoRequired` 는 덮어쓴 값이 있을 때만 싣는다(없는 칸을 기본값으로 채우지 않는다) */
 export const toExchangeItem = (row: ItemRow): TextbookItem => {
-  const { videoRequired, displayNumber, ...rest } = row;
+  const { videoRequired, displayNumber, sectionOrder, ...rest } = row;
   return {
     ...rest,
-    displayNumber: displayNumber ?? String(row.orderIndex + 1),
+    displayNumber: displayNumber ?? String(sectionOrder + 1),
     ...(videoRequired === null ? {} : { videoRequired }),
   };
 };
@@ -260,7 +277,7 @@ export async function placedItems(
 ): Promise<TextbookItem[]> {
   const rows = await sql.query<ItemRow>(
     `${ITEM_SQL} WHERE i."edition_id" = $1::uuid${itemIds ? ` AND i."id" IN ${uuidList("$2")}` : ""}
-      ORDER BY i."unit_key", s."order_index", s."id", i."order_index", i."id"`,
+      ORDER BY o."globalIndex"`,
     itemIds ? [editionId, JSON.stringify(itemIds)] : [editionId],
   );
   return rows.map(toExchangeItem);
@@ -453,11 +470,14 @@ export async function captureItems(
         if (!prepared.length)
           return { items: [], excluded, aggregateRevision: access.revision };
 
-        const [{ total, inSection }] = await tx.query<{
+        // 새 배치는 구획의 **끝**에 선다 — 세어서가 아니라 지금의 마지막 차례 다음에(가져온 구획은 차례가 0부터가 아닐 수 있다)
+        const [{ total, inSection, nextOrder }] = await tx.query<{
           total: number;
           inSection: number;
+          nextOrder: number;
         }>(
-          `SELECT count(*)::int AS total, count(*) FILTER (WHERE "section_id" = $2::uuid)::int AS "inSection"
+          `SELECT count(*)::int AS total, count(*) FILTER (WHERE "section_id" = $2::uuid)::int AS "inSection",
+                  COALESCE(MAX("order_index") FILTER (WHERE "section_id" = $2::uuid) + 1, 0)::int AS "nextOrder"
            FROM "textbook_item" WHERE "edition_id" = $1::uuid`,
           [editionId, input.sectionId],
         );
@@ -508,7 +528,7 @@ export async function captureItems(
           snapshotId: snapshotIdOf(entry),
           testId: entry.testId,
           testProblemId: entry.testProblemId,
-          orderIndex: inSection + index,
+          orderIndex: nextOrder + index,
           displayNumber: String(inSection + index + 1),
         }));
         await tx.execute(
