@@ -427,7 +427,7 @@ export const bank: ConceptBlankBank = {
       term: "나눌 사람 수 바꾸기",
       kind: "성질",
       definition:
-        "같은 양을 더 많은 사람에게 남김없이 똑같이 나누면 한 사람이 받는 양은 {줄어든다}.",
+        "$0$보다 많은 같은 양을 더 많은 사람에게 남김없이 똑같이 나누면 한 사람이 받는 양은 {줄어든다}.",
     },
     {
       id: "e3-1-3-2-c1",
@@ -2945,16 +2945,17 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
       level: "상",
       prompt:
-        "$2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}$에서 $850\\,\\mathrm{mL}$를 빼시오.",
-      answer: "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$",
+        "$2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}-850\\,\\mathrm{mL}=1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$가 맞는지 덧셈으로 확인하는 방법과 까닭을 쓰시오.",
+      answer:
+        "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}+850\\,\\mathrm{mL}$가 $2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}$인지 본다 — 차에 뺀 양을 더하면 처음 양이 되어야 하기 때문이다.",
     },
     {
       id: "e3-2-5-4-a1",
       section: "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
       level: "하",
       prompt:
-        "양팔저울에서 가 쪽은 내려가고 나 쪽은 올라갔다면 더 무거운 것은?",
-      answer: "가",
+        "양팔저울에서 가 쪽은 내려가고 나 쪽은 올라갔다. 더 무거운 것을 쓰고 까닭을 쓰시오.",
+      answer: "가 — 무거운 쪽 접시가 아래로 내려가기 때문이다.",
     },
     {
       id: "e3-2-5-5-a1",
