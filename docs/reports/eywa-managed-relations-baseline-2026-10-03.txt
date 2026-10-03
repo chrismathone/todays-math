@@ -1,0 +1,90 @@
+    at C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/.tmp/relation-baseline/src/__tests__/api/studentSessionSweep.test.ts:367:33
+
+stderr | src/__tests__/api/studentSessionSweep.test.ts > ② 학생 세션 → 기존 API 전수 > 🔴 모든 라우트 × 내보낸 메서드 — 학생은 «로그인 안 한 사람» 이상을 못 얻는다
+[auth][error] UnknownAction: Cannot parse action at /api/auth/a/b.png. Read more at https://errors.authjs.dev#unknownaction
+    at parseActionAndProviderId (file:///C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/node_modules/@auth/core/lib/utils/web.js:101:15)
+    at toInternalRequest (file:///C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/node_modules/@auth/core/lib/utils/web.js:25:40)
+    at Auth (file:///C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/node_modules/@auth/core/index.js:68:35)
+    at httpHandler (C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/node_modules/next-auth/index.js:130:34)
+    at C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/.tmp/relation-baseline/src/lib/errorLog/withErrorLog.ts:351:9
+    at AsyncLocalStorage.run (node:internal/async_local_storage/async_context_frame:63:14)
+    at runWithErrorLogNotes (C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/.tmp/relation-baseline/src/lib/errorLog/scope.ts:46:18)
+    at wrapped (C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/.tmp/relation-baseline/src/lib/errorLog/withErrorLog.ts:350:25)
+    at callRoute (C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/.tmp/relation-baseline/src/__tests__/api/studentSessionSweep.test.ts:262:7)
+    at C:/Users/user/orca/workspaces/testautocreator/eywa-managed-sync/.tmp/relation-baseline/src/__tests__/api/studentSessionSweep.test.ts:368:31
+
+ ❯ src/__tests__/api/studentSessionSweep.test.ts (4 tests | 2 failed) 5544ms
+     × 🔴 모든 라우트 × 내보낸 메서드 — 학생은 «로그인 안 한 사람» 이상을 못 얻는다 4740ms
+     × 🔴 갈래를 못 받은 auth() 호출 파일이 없다 728ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/__tests__/api/mathPrerequisiteRoutes.test.ts > prerequisite pilot through actual course API handlers > returns a failed check to fresh target learn before due review and suppresses check reassignment
+AssertionError: expected undefined to be 'return' // Object.is equality
+
+- Expected:
+"return"
+
++ Received:
+undefined
+
+ ❯ src/__tests__/api/mathPrerequisiteRoutes.test.ts:697:48
+    695|       completedAt: null,
+    696|     });
+    697|     expect(returned.prerequisiteContext?.kind).toBe("return");
+       |                                                ^
+    698|     for (const problem of returned.session!.problems) {
+    699|       expect(exposed.has(normalizeContent(problem.content))).toBe(fals…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/__tests__/api/studentSessionSweep.test.ts > ② 학생 세션 → 기존 API 전수 > 🔴 모든 라우트 × 내보낸 메서드 — 학생은 «로그인 안 한 사람» 이상을 못 얻는다
+AssertionError: expected [ …(3) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "GET src/app/api/english/learn/listening/[[...path]]/route.ts: 로그인 안 함 401 · 학생 400 ",
++   "HEAD src/app/api/english/learn/listening/[[...path]]/route.ts: 로그인 안 함 401 · 학생 400 ",
++   "POST src/app/api/english/learn/listening/[[...path]]/route.ts: 로그인 안 함 401 · 학생 400 ",
++ ]
+
+ ❯ src/__tests__/api/studentSessionSweep.test.ts:413:17
+    411|           `${r.method} ${r.file}: 로그인 안 함 ${r.anonymous.status} · 학생 $…
+    412|       );
+    413|     expect(bad).toEqual([]);
+       |                 ^
+    414|     // 거부된 쌍이 대부분이어야 한다 — 전부 «공개»로 읽혔다면 세션 판정이 통째로 눈을 감은 것이다
+    415|     expect(
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/__tests__/api/studentSessionSweep.test.ts > ② 모집단 — auth() 를 부르는 파일은 전부 어딘가에서 시험된다 > 🔴 갈래를 못 받은 auth() 호출 파일이 없다
+AssertionError: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "src/lib/english/listening/runtime/http.ts",
++ ]
+
+ ❯ src/__tests__/api/studentSessionSweep.test.ts:505:27
+    503|     );
+    504|     expect(callers.length).toBeGreaterThanOrEqual(8);
+    505|     expect(uncategorised).toEqual([]);
+       |                           ^
+    506|   });
+    507| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  3 failed | 20 passed (23)
+   Start at  19:06:42
+   Duration  16.58s (transform 5.52s, setup 2.21s, import 4.20s, tests 9.80s, environment 0ms)
+

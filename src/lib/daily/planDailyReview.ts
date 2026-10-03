@@ -81,6 +81,7 @@ export interface DailyPlanRow extends ProgressPlanRule {
 }
 
 export interface LastReviewRef {
+  classId?: string;
   studentId: string;
   rangeEndUnitId: string | null;
 }
@@ -171,7 +172,8 @@ export function planDailyReview(args: {
     // `ProgressRecordLike` 로 맞춰 둔다 — 적용 이력 판정을 제품 함수와 같은 것으로 쓴다.
     const record: ProgressRecordLike = { id: "", ...row };
     const bucket = row.studentId === null ? rowsByClass : rowsByStudent;
-    const key = row.studentId === null ? row.classId : row.studentId;
+    const key =
+      row.studentId === null ? row.classId : `${row.classId}/${row.studentId}`;
     const list = bucket.get(key) ?? [];
     list.push(record);
     bucket.set(key, list);
@@ -181,11 +183,14 @@ export function planDailyReview(args: {
   const studentPlanByStudent = new Map<string, DailyPlanRow>();
   for (const p of plans) {
     if (p.studentId === null) classPlanByClass.set(p.classId, p);
-    else studentPlanByStudent.set(p.studentId, p);
+    else studentPlanByStudent.set(`${p.classId}/${p.studentId}`, p);
   }
 
   const lastReviewByStudent = new Map(
-    lastReviews.map((r) => [r.studentId, r.rangeEndUnitId]),
+    lastReviews.map((r) => [
+      r.classId ? `${r.classId}/${r.studentId}` : r.studentId,
+      r.rangeEndUnitId,
+    ]),
   );
 
   const groups = new Map<string, DailyGroup>();
@@ -198,7 +203,7 @@ export function planDailyReview(args: {
   for (const st of students) {
     const applicable = applicableProgress({
       classProgress: rowsByClass.get(st.classId) ?? [],
-      studentProgress: rowsByStudent.get(st.id) ?? [],
+      studentProgress: rowsByStudent.get(`${st.classId}/${st.id}`) ?? [],
       useIndividualProgress: st.useIndividualProgress,
     });
     const current = findLatestProgress(applicable);
@@ -206,7 +211,7 @@ export function planDailyReview(args: {
     // 계획도 진도와 **같은 규칙**으로 고른다 — 개별 진도 학생만 학생 계획이 반 계획을 덮는다.
     const rule = pickProgressPlan({
       classPlan: classPlanByClass.get(st.classId) ?? null,
-      studentPlan: studentPlanByStudent.get(st.id) ?? null,
+      studentPlan: studentPlanByStudent.get(`${st.classId}/${st.id}`) ?? null,
       useIndividualProgress: st.useIndividualProgress,
     });
     const planned = rule
@@ -267,7 +272,10 @@ export function planDailyReview(args: {
     const range = resolveDefaultReviewRange({
       units: [...units],
       currentUnitId: endUnitId,
-      lastReviewEndUnitId: lastReviewByStudent.get(st.id) ?? null,
+      lastReviewEndUnitId:
+        lastReviewByStudent.get(`${st.classId}/${st.id}`) ??
+        lastReviewByStudent.get(st.id) ??
+        null,
       // 🔴 계획의 **시작 차시**도 이력에 넣는다. D-63 은 「그 반이 실제로 나가기 시작한 데」를
       //    이력에서 찾는데, 계획으로 들어온 새 학생은 이력이 **한 줄도 없다** — 넣지 않으면
       //    시작을 못 정해 `current-only`(한 차시짜리 범위)로 조용히 떨어진다.

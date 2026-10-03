@@ -17,6 +17,10 @@ import { requireOwnedClass } from "@/lib/ownership";
 import { serializeStudent } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import {
+  studentsInClassWhere,
+  currentEnrollmentWhere,
+} from "@/lib/classAccess";
 
 // POST /api/students — 학생 등록(classId + 이름만)
 async function handlePost(request: NextRequest) {
@@ -37,11 +41,29 @@ async function handlePost(request: NextRequest) {
   const parsed = studentCreateRequestSchema.safeParse(body);
   if (!parsed.success) return validationError(parsed.error);
 
-  const owned = await requireOwnedClass(parsed.data.classId, session);
+  const owned = await requireOwnedClass(
+    parsed.data.classId,
+    session,
+    "student:manage",
+  );
   if (!owned.ok) return owned.response;
+  if (owned.data.eywaBindingId)
+    return Response.json(
+      {
+        error: {
+          code: "FORBIDDEN",
+          message: "연동 명단은 에이와에서 변경해 주세요.",
+        },
+      },
+      { status: 403 },
+    );
 
   const created = await db.student.create({
-    data: { classId: parsed.data.classId, name: parsed.data.name },
+    data: {
+      classId: parsed.data.classId,
+      name: parsed.data.name,
+      branchId: owned.data.branchId,
+    },
   });
 
   return jsonOk(
@@ -62,22 +84,46 @@ async function handleGet(request: NextRequest) {
   );
   if (!parsed.success) return validationError(parsed.error);
 
-  const owned = await requireOwnedClass(parsed.data.classId, session);
+  const owned = await requireOwnedClass(
+    parsed.data.classId,
+    session,
+    "student:read",
+  );
   if (!owned.ok) return owned.response;
 
   const { page, pageSize, classId } = parsed.data;
   const [rows, total] = await Promise.all([
     db.student.findMany({
-      where: { classId },
+      where: studentsInClassWhere(classId),
+      include: {
+        enrollments: {
+          where: { classId, ...currentEnrollmentWhere(undefined, true) },
+          orderBy: { startsOn: "desc" },
+          take: 1,
+        },
+      },
       skip: (page - 1) * pageSize,
       take: pageSize,
       orderBy: { createdAt: "asc" },
     }),
-    db.student.count({ where: { classId } }),
+    db.student.count({ where: studentsInClassWhere(classId) }),
   ]);
 
   return jsonOk(studentListResponseSchema, {
-    data: rows.map(serializeStudent),
+    data: rows.map((row) =>
+      serializeStudent({
+        ...row,
+        classId,
+        ...(row.eywaBindingId
+          ? {
+              eywaLastReportDate:
+                row.enrollments[0]?.eywaLastReportDate ?? null,
+              eywaLastReportText:
+                row.enrollments[0]?.eywaLastReportText ?? null,
+            }
+          : {}),
+      }),
+    ),
     meta: { page, pageSize, total },
   });
 }

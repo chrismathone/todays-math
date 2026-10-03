@@ -18,6 +18,7 @@ const state = vi.hoisted(() => ({
   documentUpdateMany: vi.fn(),
   auditCreate: vi.fn(),
   transaction: vi.fn(),
+  managed: null as null | { blockReasons: string[] },
 }));
 vi.mock("@/lib/accountAccess", () => ({
   authorizeAccount: vi.fn(async () =>
@@ -64,6 +65,7 @@ const patch = (data: Record<string, unknown>) =>
 beforeEach(() => {
   vi.clearAllMocks();
   state.superadmin = true;
+  state.managed = null;
   state.previous = {
     id,
     name: "새 강사",
@@ -101,6 +103,7 @@ beforeEach(() => {
   state.transaction.mockImplementation(
     async (run: (tx: unknown) => Promise<unknown>) =>
       run({
+        eywaManagedAccount: { findUnique: vi.fn(async () => state.managed) },
         user: {
           findFirst: state.userFindFirst,
           updateMany: state.userUpdateMany,
@@ -116,6 +119,28 @@ beforeEach(() => {
 });
 
 describe("최고관리자의 기존 계정 지점 배정", () => {
+  it("managed mappings prevent direct branch or administrator promotion", async () => {
+    state.managed = { blockReasons: [] };
+    expect(
+      (await patch({ branchId: otherBranchId, branchRole: "teacher" }))!.status,
+    ).toBe(403);
+    expect((await patch({ isAdmin: true }))!.status).toBe(403);
+    expect(state.userUpdateMany).not.toHaveBeenCalled();
+  });
+  it("clearing a manual suspension cannot clear a managed OFF suspension", async () => {
+    const suspendedAt = new Date("2026-09-22T00:00:00Z");
+    state.managed = { blockReasons: ["tenant_disabled"] };
+    Object.assign(state.previous!, {
+      branchId,
+      branchRole: "teacher",
+      suspendedAt,
+    });
+    expect((await patch({ suspended: false }))!.status).toBe(200);
+    expect(state.userUpdateMany.mock.calls[0][0].data).toMatchObject({
+      manualSuspendedAt: null,
+      suspendedAt,
+    });
+  });
   it.each([null, otherBranchId])(
     "withdraws old sharing on transfer to %s and does not republish it on return",
     async (target) => {

@@ -23,6 +23,8 @@ import {
   serializeTestProblemItem,
 } from "@/lib/serializers";
 import type { SessionUser } from "@/lib/session";
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
+import { autoDraftBindingAllowed } from "./autoDraftScope";
 
 import { loadRecentProblemIds } from "./recentProblemIds";
 
@@ -42,8 +44,10 @@ export async function generateDraftTest(
   input: TestGenerateRequest,
   origin: DraftTestOrigin = {},
 ) {
-  const owned = await requireOwnedClass(input.classId, session);
+  const owned = await requireOwnedClass(input.classId, session, "test:write");
   if (!owned.ok) return owned.response;
+  if (origin.autoDraftRunId && !(await autoDraftBindingAllowed(owned.data)))
+    return jsonError("FORBIDDEN", "자동 출제 대상 반이 아닙니다.", 403);
 
   if (input.studentId) {
     const studentOwned = await requireOwnedStudentInClass(
@@ -63,13 +67,17 @@ export async function generateDraftTest(
   ];
   const [classProgress, studentProgressRows, student] = await Promise.all([
     db.progress.findMany({
-      where: { classId: input.classId, studentId: null },
+      where: { retiredAt: null, classId: input.classId, studentId: null },
       orderBy: latestFirst,
       take: 1,
     }),
     input.studentId
       ? db.progress.findMany({
-          where: { classId: input.classId, studentId: input.studentId },
+          where: {
+            retiredAt: null,
+            classId: input.classId,
+            studentId: input.studentId,
+          },
           orderBy: latestFirst,
           take: 1,
         })
@@ -214,6 +222,14 @@ export async function generateDraftTest(
     input.testType === "daily" ? null : (input.rangeStartUnitId ?? null);
 
   const created = await db.$transaction(async (tx) => {
+    await assertClassWrite(tx, session, input.classId, "test:write");
+    if (input.studentId)
+      await assertStudentEnrollment(tx, input.studentId, input.classId);
+    if (
+      origin.autoDraftRunId &&
+      !(await autoDraftBindingAllowed(owned.data, tx))
+    )
+      throw new Error("auto_draft_binding_disabled");
     const test = await tx.test.create({
       data: {
         // 시험지는 **소유자가 있다** — 없앤 것은 문항 소유자뿐이다(D-101). 섞지 말 것.

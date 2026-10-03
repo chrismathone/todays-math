@@ -1,6 +1,9 @@
 // @vitest-environment node
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/eywa/managedAccounts", () => ({
+  getManagedClassGrants: async () => null,
+}));
 vi.mock("@/lib/session", () => ({ getSessionUser: vi.fn() }));
 vi.mock("@/lib/auth", () => ({ auth: vi.fn() }));
 vi.mock("@/lib/unifiedPreview", () => ({
@@ -97,13 +100,35 @@ describe("production workspace resources", () => {
     expect(vi.mocked(loadUnifiedBank).mock.calls[0][0]?.get("page")).toBe("2");
     expect((await overview(request("overview"))).status).toBe(200);
     expect(db.class.count).toHaveBeenCalledWith({
-      where: { userId: "owner-17" },
+      where: {
+        userId: "owner-17",
+        eywaBindingId: null,
+        OR: [{ branchId: null }],
+      },
     });
     expect(db.student.count).toHaveBeenCalledWith({
-      where: { class: { userId: "owner-17" } },
+      where: expect.objectContaining({
+        OR: expect.arrayContaining([
+          expect.objectContaining({
+            eywaBindingId: null,
+            class: {
+              userId: "owner-17",
+              eywaBindingId: null,
+              OR: [{ branchId: null }],
+            },
+          }),
+        ]),
+      }),
     });
     expect(db.class.findMany).toHaveBeenCalledWith(
-      expect.objectContaining({ where: { userId: "owner-17" }, take: 3 }),
+      expect.objectContaining({
+        where: {
+          userId: "owner-17",
+          eywaBindingId: null,
+          OR: [{ branchId: null }],
+        },
+        take: 3,
+      }),
     );
     expect((await teaching(request("teaching"))).status).toBe(200);
   });
@@ -117,7 +142,13 @@ describe("production workspace resources", () => {
     });
     expect((await overview(request("overview"))).status).toBe(200);
     expect(db.class.count).toHaveBeenCalledWith({ where: {} });
-    expect(db.student.count).toHaveBeenCalledWith({ where: {} });
+    expect(db.student.count).toHaveBeenCalledWith({
+      where: expect.objectContaining({
+        OR: expect.arrayContaining([
+          expect.objectContaining({ eywaBindingId: null, class: {} }),
+        ]),
+      }),
+    });
     expect(db.class.findMany).toHaveBeenCalledWith(
       expect.objectContaining({ where: {}, take: 3 }),
     );

@@ -1,3 +1,4 @@
+import { accessibleTestsWhere, assertClassWrite } from "@/lib/classAccess";
 /**
  * POST /api/tests/{id}/print — 인쇄 기록 (confirmed → printed, printedAt).
  * 대응 계약: src/contracts/test.contract.ts
@@ -13,7 +14,6 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { requireOwnedTest } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeTest } from "@/lib/serializers";
@@ -30,6 +30,9 @@ async function handlePost(_request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
+  const authorized = await requireOwnedTest(id, session, "test:write");
+  if (!authorized.ok) return authorized.response;
+
   // 🔴 정상 경로가 3왕복이었다 — 소유권 findUnique → updateMany → 갱신본 findUnique.
   //    소유권·상태 조건을 `update` 의 where 에 그대로 실으면 **한 문장**으로 끝나고
   //    갱신된 행이 바로 돌아온다(Prisma 5+ extendedWhereUnique). 조건이 안 맞으면
@@ -39,9 +42,22 @@ async function handlePost(_request: NextRequest, { params }: RouteContext) {
   //    두 요청이 동시에 와도 하나만 성공한다(예전 updateMany 가 하던 일과 같다).
   //    소유 범위가 where 에 있으므로 범위 밖 시험지가 갱신될 여지도 없다(D-130 — 관리자는 넘는다).
   try {
-    const updated = await db.test.update({
-      where: { id, ...ownedRowsWhere(session), status: "confirmed" },
-      data: { status: "printed", printedAt: new Date() },
+    const updated = await db.$transaction(async (tx) => {
+      if (!authorized.data.predictionRunId)
+        await assertClassWrite(
+          tx,
+          session,
+          authorized.data.classId,
+          "test:write",
+        );
+      return tx.test.update({
+        where: {
+          ...(await accessibleTestsWhere(session, "test:write")),
+          id,
+          status: "confirmed",
+        },
+        data: { status: "printed", printedAt: new Date() },
+      });
     });
     return jsonOk(testPrintResponseSchema, { data: serializeTest(updated) });
   } catch (error) {
@@ -50,7 +66,7 @@ async function handlePost(_request: NextRequest, { params }: RouteContext) {
 
   // 여기부터는 "왜 안 됐는가" 를 가리는 길이다. 응답은 예전과 글자 그대로 같다:
   // 없으면 404, 남의 것이면 403, 이미 인쇄됐으면 200(멱등), 그 외 상태면 409.
-  const owned = await requireOwnedTest(id, session);
+  const owned = await requireOwnedTest(id, session, "test:write");
   if (!owned.ok) return owned.response;
 
   if (owned.data.status === "printed") {

@@ -26,7 +26,13 @@ import {
   loadCourseStudent,
   loadCourseStudentDetail,
 } from "./courseServer";
-import { changeSrsState } from "./serverStore";
+import { db } from "@/lib/db";
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
+import {
+  changeSrsState,
+  srsStateTable,
+  type SrsStateTable,
+} from "./serverStore";
 
 /** «오늘의 기억» 교사 끝점의 문지기 — 탐험 교사 보기(`math-explorers/teacherRoutes.ts`)도 이것을 지난다. */
 export async function teacherGate(request: Request) {
@@ -70,10 +76,14 @@ export async function handleCourseTeacherStudent(
   if (access.response) return noStore(access.response);
   const parsed = idParamSchema.safeParse(await context.params);
   if (!parsed.success) return noStore(validationError(parsed.error));
-  const owned = await requireOwnedStudent(parsed.data.id, access.account);
+  const owned = await requireOwnedStudent(
+    parsed.data.id,
+    access.account,
+    request.method === "GET" ? "student:read" : "progress:write",
+  );
   if (!owned.ok) return noStore(owned.response);
   try {
-    const student = await loadCourseStudent(parsed.data.id);
+    const student = await loadCourseStudent(parsed.data.id, owned.data.classId);
     if (!student) return noStore(notFoundError("학생"));
     const now = new Date();
     if (request.method === "GET")
@@ -87,6 +97,33 @@ export async function handleCourseTeacherStudent(
     );
     if (!input.success) return noStore(validationError(input.error));
     let changes: Record<string, string | number | boolean | null> = {};
+    const guardedTable: SrsStateTable = {
+      ...srsStateTable(),
+      create: (args) =>
+        db.$transaction(async (tx) => {
+          await assertClassWrite(
+            tx,
+            access.account,
+            student.classId,
+            "progress:write",
+          );
+          await assertStudentEnrollment(tx, student.id, student.classId);
+          return (tx.studentSrsState as unknown as SrsStateTable).create(args);
+        }),
+      updateMany: (args) =>
+        db.$transaction(async (tx) => {
+          await assertClassWrite(
+            tx,
+            access.account,
+            student.classId,
+            "progress:write",
+          );
+          await assertStudentEnrollment(tx, student.id, student.classId);
+          return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
+            args,
+          );
+        }),
+    };
     const saved = await changeSrsState(
       student.id,
       (state) => {
@@ -109,7 +146,7 @@ export async function handleCourseTeacherStudent(
         }
         return Object.keys(changes).length ? { ...state, course } : state;
       },
-      undefined,
+      guardedTable,
       input.data.expectedRevision,
       // A frozen student mission must not lock the teacher out of the plan.
       { teacher: true },

@@ -31,6 +31,10 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 vi.mock("@/lib/db", () => {
   const client = {
+    eywaManagedAccount: {
+      findUnique: vi.fn(async () => null),
+      findFirst: vi.fn(async () => null),
+    },
     user: { findUnique: state.findUnique, updateMany: state.updateMany },
     accountAuditLog: {
       create: vi.fn(async ({ data }: { data: Record<string, unknown> }) => {

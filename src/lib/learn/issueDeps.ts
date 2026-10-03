@@ -6,18 +6,63 @@
  * 조회만 같게 두었다(판정은 `issueStudentAccount.ts` 규칙 1).
  */
 import "server-only";
+import type { Prisma } from "@prisma/client";
+import type { ScopeViewer } from "@/lib/ownerScope";
 
 import { recordAudit } from "@/lib/audit";
 import { generateInitialPassword } from "@/lib/concept/initialPassword";
 import { db } from "@/lib/db";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
+import { requireOwnedStudent } from "@/lib/ownership";
+import {
+  ClassAccessDenied,
+  assertClassWrite,
+  assertStudentEnrollment,
+} from "@/lib/classAccess";
 
 import { studentWithdrawn } from "./accountBlock";
 import type { IssueDeps } from "./issueStudentAccount";
 import { hashStudentPin } from "./pinHash";
 
 export function studentIssueDeps(): IssueDeps {
+  let permission:
+    { viewer: ScopeViewer; studentId: string; classId: string } | undefined;
+  const beforeWrite = async (tx: Prisma.TransactionClient) => {
+    if (!permission) throw new ClassAccessDenied();
+    await assertClassWrite(
+      tx,
+      permission.viewer,
+      permission.classId,
+      "student:account",
+    );
+    const student = await tx.student.findUnique({
+      where: { id: permission.studentId },
+    });
+    if (
+      !student ||
+      (student.classId !== permission.classId && !student.eywaBindingId)
+    )
+      throw new ClassAccessDenied();
+    if (student.eywaBindingId)
+      await assertStudentEnrollment(
+        tx,
+        permission.studentId,
+        permission.classId,
+        true,
+      );
+  };
   return {
+    async authorizeStudent(viewer, studentId) {
+      const owned = await requireOwnedStudent(
+        studentId,
+        viewer,
+        "student:account",
+      );
+      permission = owned.ok
+        ? { viewer, studentId, classId: owned.data.classId }
+        : undefined;
+      return owned.ok;
+    },
     async findStudentOwner(studentId) {
       const student = await db.student.findUnique({
         where: { id: studentId },
@@ -28,7 +73,7 @@ export function studentIssueDeps(): IssueDeps {
       return student
         ? {
             ownerId: student.class.userId,
-            ownerBranchId: student.class.user?.branchId ?? null,
+            ownerBranchId: student.class.branchId,
             // 🔴 로그인을 막는 판정과 같은 함수(`accountBlock.ts`) — D-127
             withdrawn: studentWithdrawn({
               withdrawnAt: student.eywaWithdrawnAt,
@@ -43,9 +88,16 @@ export function studentIssueDeps(): IssueDeps {
         where: { loginId },
         select: { id: true },
       }),
-    createAccount: (data) => db.studentAccount.create({ data }),
+    createAccount: (data) =>
+      db.$transaction(async (tx) => {
+        await beforeWrite(tx);
+        return tx.studentAccount.create({ data });
+      }),
     updateAccount: (id, data) =>
-      db.studentAccount.update({ where: { id }, data }),
+      db.$transaction(async (tx) => {
+        await beforeWrite(tx);
+        return tx.studentAccount.update({ where: { id }, data });
+      }),
     generatePin: () => generateInitialPassword(),
     hashPin: hashStudentPin,
     now: () => new Date(),

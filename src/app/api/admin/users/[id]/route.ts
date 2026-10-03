@@ -80,6 +80,21 @@ async function handlePatch(request: Request, context: Context) {
         });
         if (!previous)
           return { error: failure("사용자를 찾지 못했습니다.", 404) };
+        const managed = await tx.eywaManagedAccount.findUnique({
+          where: { currentUserId: id },
+        });
+        if (
+          managed &&
+          (update.branchId !== undefined ||
+            update.branchRole !== undefined ||
+            update.isAdmin !== undefined)
+        )
+          return {
+            error: failure(
+              "연동 계정의 소속과 관리 권한은 연결 관리에서 확인해 주세요.",
+              403,
+            ),
+          };
         if (
           previous.updatedAt.getTime() !==
           new Date(update.expectedUpdatedAt).getTime()
@@ -194,7 +209,14 @@ async function handlePatch(request: Request, context: Context) {
             ...(update.name !== undefined ? { name: update.name } : {}),
             ...(update.email !== undefined ? { email: update.email } : {}),
             ...(update.suspended !== undefined
-              ? { suspendedAt: update.suspended ? new Date() : null }
+              ? {
+                  manualSuspendedAt: update.suspended ? new Date() : null,
+                  suspendedAt: update.suspended
+                    ? new Date()
+                    : managed?.blockReasons.length
+                      ? (previous.suspendedAt ?? new Date())
+                      : null,
+                }
               : {}),
             ...(update.deleted !== undefined
               ? { deletedAt: update.deleted ? new Date() : null }

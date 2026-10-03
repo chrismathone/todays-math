@@ -33,8 +33,17 @@ vi.mock("@/lib/db", () => {
     id,
     name: "학생",
     classId: f.classId,
+    eywaBindingId: null,
+    isTest: false,
+    enrollments: [],
     eywaWithdrawnAt: f.withdrawn ? new Date() : null,
-    class: { id: f.classId, name: "초3", userId: f.ownerId },
+    class: {
+      id: f.classId,
+      name: "초3",
+      userId: f.ownerId,
+      branchId: null,
+      eywaBindingId: null,
+    },
     studentAccount: {
       id: f.otherId,
       disabledAt: f.disabled ? new Date() : null,
@@ -42,6 +51,11 @@ vi.mock("@/lib/db", () => {
   });
   return {
     db: {
+      eywaManagedAccount: { findUnique: async () => null },
+      user: { findUnique: async () => ({ authSource: "local" }) },
+      async $transaction<T>(work: (tx: object) => Promise<T>): Promise<T> {
+        return work(this);
+      },
       accountAuditLog: { create: f.audit },
       unit: { findFirst: vi.fn(async () => null) },
       problem: { findMany: vi.fn(async () => []) },
@@ -65,6 +79,8 @@ vi.mock("@/lib/db", () => {
         ),
       },
       class: {
+        findUnique: async ({ where }: { where: { id: string } }) =>
+          where.id === f.classId ? student(f.studentId).class : null,
         findMany: async ({ where }: { where: { userId?: string } }) =>
           where.userId && where.userId !== f.ownerId
             ? []
@@ -536,7 +552,15 @@ describe("teacher course roster, plans and detail", () => {
     ).toHaveLength(2);
     expect(db.student.findMany).toHaveBeenCalledWith(
       expect.objectContaining({
-        where: { class: { userId: f.ownerId }, eywaWithdrawnAt: null },
+        where: expect.objectContaining({
+          eywaWithdrawnAt: null,
+          OR: expect.arrayContaining([
+            expect.objectContaining({
+              eywaBindingId: null,
+              classId: { in: [f.classId] },
+            }),
+          ]),
+        }),
       }),
     );
     teacher({ id: f.otherId });

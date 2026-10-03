@@ -458,6 +458,7 @@ describe("POST /api/english/exams/[id]/sets — 저장", () => {
     ).toBe(403);
     const branchExam = seedEnglishExam({
       userId: BRANCH_TEACHER_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "중3",
       title: "지점 시험",
@@ -808,6 +809,7 @@ describe("PUT /api/english/sets/[id] — revision CAS", () => {
     ).toBe(403);
     const branchExam = seedEnglishExam({
       userId: BRANCH_TEACHER_ID,
+      branchId: BRANCH_A,
       school: "지점학교",
       grade: "중3",
       title: "지점 시험",

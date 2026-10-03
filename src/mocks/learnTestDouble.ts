@@ -431,6 +431,34 @@ export function composeLearnDb(base: object): object {
     {},
     {
       get(_target, prop, receiver) {
+        if (prop === "$transaction")
+          return async (work: (tx: object) => Promise<unknown>) => {
+            const before = structuredClone({
+              studentAccountRows,
+              studentLoginMissRows,
+              conceptLectureRows,
+              conceptLectureViewRows,
+              auditRows,
+            });
+            try {
+              return await (
+                base as {
+                  $transaction: (
+                    work: (tx: object) => Promise<unknown>,
+                  ) => Promise<unknown>;
+                }
+              ).$transaction((tx) => work(composeLearnDb(tx)));
+            } catch (error) {
+              ({
+                studentAccountRows,
+                studentLoginMissRows,
+                conceptLectureRows,
+                conceptLectureViewRows,
+                auditRows,
+              } = before);
+              throw error;
+            }
+          };
         if (typeof prop === "string" && prop in learnTestDouble)
           return learnTestDouble[prop as keyof typeof learnTestDouble];
         return Reflect.get(base, prop, receiver);

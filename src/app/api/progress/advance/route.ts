@@ -1,3 +1,4 @@
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
 /**
  * POST /api/progress/advance — "다음 소단원 1클릭 진행"(D-19, order_index 기준).
  * 현재 진도 소단원의 orderIndex+1에 해당하는 다음 소단원으로 새 PROGRESS 행을 추가한다
@@ -37,7 +38,7 @@ async function handlePost(request: NextRequest) {
 
   const { classId, studentId } = parsed.data;
 
-  const owned = await requireOwnedClass(classId, session);
+  const owned = await requireOwnedClass(classId, session, "progress:write");
   if (!owned.ok) return owned.response;
 
   let useIndividualProgress = false;
@@ -68,13 +69,13 @@ async function handlePost(request: NextRequest) {
   ];
   const [classProgress, studentProgress] = await Promise.all([
     db.progress.findMany({
-      where: { classId, studentId: null },
+      where: { retiredAt: null, classId, studentId: null },
       orderBy: latestFirst,
       take: 1,
     }),
     studentId
       ? db.progress.findMany({
-          where: { classId, studentId },
+          where: { retiredAt: null, classId, studentId },
           orderBy: latestFirst,
           take: 1,
         })
@@ -100,13 +101,17 @@ async function handlePost(request: NextRequest) {
 
   // 진행 결과는 요청이 지정한 대상(반 전체 또는 특정 학생) 기준으로 새로 기록한다 —
   // 개별 진도가 아직 반 진도를 기준선으로 삼았더라도(위 폴백), 결과 행은 학생 개별 진도로 남는다.
-  const created = await db.progress.create({
-    data: {
-      classId,
-      studentId: studentId ?? null,
-      unitId: nextUnit.id,
-      recordedAt: new Date(),
-    },
+  const created = await db.$transaction(async (tx) => {
+    await assertClassWrite(tx, session, classId, "progress:write");
+    if (studentId) await assertStudentEnrollment(tx, studentId, classId);
+    return tx.progress.create({
+      data: {
+        classId,
+        studentId: studentId ?? null,
+        unitId: nextUnit.id,
+        recordedAt: new Date(),
+      },
+    });
   });
 
   return jsonOk(

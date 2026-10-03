@@ -50,7 +50,7 @@ async function checkExam(
     where: { id: examId },
     include: { user: true },
   });
-  if (!exam || !withinOwnerScope(account, exam.userId, exam.user.branchId))
+  if (!exam || !withinOwnerScope(account, exam.userId, exam.branchId))
     throw denied();
 }
 export async function listSets(
@@ -62,7 +62,7 @@ export async function listSets(
   >(Prisma.sql`
     SELECT s.*, (SELECT count(*) FROM english_listening_publication p WHERE p.set_id=s.id) AS publication_count
     FROM english_listening_set s WHERE s.deleted_at IS NULL AND
-    (${account.isSuperAdmin === true} OR s.owner_id=${account.id}::uuid OR (${account.isAdmin && !!account.branchId} AND s.branch_id=${account.branchId ?? null}::uuid)) ORDER BY s.updated_at DESC LIMIT 200`);
+    (${account.isSuperAdmin === true} OR (s.owner_id=${account.id}::uuid AND (s.branch_id IS NULL OR s.branch_id=${account.branchId ?? null}::uuid)) OR (${account.isAdmin && !!account.branchId} AND s.branch_id=${account.branchId ?? null}::uuid)) ORDER BY s.updated_at DESC LIMIT 200`);
   return rows.map((r) => ({
     id: r.id,
     revision: r.revision,

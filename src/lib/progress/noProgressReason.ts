@@ -23,7 +23,7 @@
 export interface ProgressLookup {
   progress: {
     findMany: (args: {
-      where: { classId: string; studentId: { not: null } };
+      where: { classId: string; studentId: { not: null }; retiredAt: null };
       select: {
         studentId: true;
         unitId: true;
@@ -62,7 +62,7 @@ export async function noProgressReason(
   classId: string,
 ): Promise<string> {
   const rows = await db.progress.findMany({
-    where: { classId, studentId: { not: null } },
+    where: { retiredAt: null, classId, studentId: { not: null } },
     select: {
       studentId: true,
       unitId: true,

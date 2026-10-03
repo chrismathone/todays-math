@@ -1,3 +1,4 @@
+import { accessibleClassesWhere } from "@/lib/classAccess";
 /**
  * 작업실 개요 «최근 등록한 반» 세 줄 — `api/studio/overview` 와 dev 쌍둥이(`api/dev/unified/overview`)가
  * 같이 부른다. 두 라우트가 조회를 따로 적으면 한쪽만 담당이 실린다.
@@ -10,7 +11,7 @@ import type { Prisma } from "@prisma/client";
 
 import type { ClassOwner } from "@/contracts/class.contract";
 import { db } from "@/lib/db";
-import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
+import { type ScopeViewer } from "@/lib/ownerScope";
 
 import {
   CLASS_OWNER_NAME,
@@ -36,7 +37,7 @@ const RECENT_CLASS_SELECT = {
   _count: { select: { students: true } },
   progresses: {
     // Class progress only, with the same latest-record order as /api/progress.
-    where: { studentId: null },
+    where: { studentId: null, retiredAt: null },
     orderBy: [{ recordedAt: "desc" }, { createdAt: "desc" }],
     take: 1,
     select: { unit: { select: { chapter: true, section: true } } },
@@ -67,7 +68,7 @@ const toRecent = (item: RecentRow): RecentClass => ({
 export async function loadRecentClasses(
   viewer: ScopeViewer,
 ): Promise<RecentClass[]> {
-  const where = ownedRowsWhere(viewer);
+  const where = await accessibleClassesWhere(viewer);
   if (!showsClassOwner(viewer)) {
     const rows = await db.class.findMany({
       where,

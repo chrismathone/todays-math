@@ -38,7 +38,7 @@ async function handlePatch(request: Request, context: Context) {
     );
   const [cls, teacher] = await Promise.all([
     db.class.findFirst({
-      where: { id, user: { branchId } },
+      where: { id, branchId, eywaBindingId: null },
       select: { id: true, userId: true },
     }),
     db.user.findFirst({

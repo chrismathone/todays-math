@@ -29,6 +29,7 @@ export interface ProgressRowLike {
 export interface StudentScope {
   id: string;
   classId: string;
+  classIds?: readonly string[];
 }
 
 /** `@db.Date` → 그 날(YYYY-MM-DD). 날짜 칸이라 UTC 자정으로 오고, 시간대를 옮기지 않는다 */
@@ -47,8 +48,11 @@ export function progressDatesOf(
   const dates = new Map<string, string>();
   for (const row of rows) {
     const classProgress =
-      row.studentId === null && row.classId === student.classId;
-    const ownProgress = row.studentId === student.id;
+      row.studentId === null &&
+      (student.classIds ?? [student.classId]).includes(row.classId);
+    const ownProgress =
+      row.studentId === student.id &&
+      (!student.classIds || student.classIds.includes(row.classId));
     if (!(classProgress || ownProgress)) continue;
     const day = recordedDay(row.recordedAt);
     const seen = dates.get(row.unitId);
