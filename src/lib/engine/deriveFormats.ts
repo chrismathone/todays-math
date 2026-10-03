@@ -127,11 +127,34 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     );
   }
   const correct = stem.answer.trim();
+  const parsedCorrect = parseNumericAnswer(correct);
+  const decimalPlaces = parsedCorrect?.decimalPlaces;
+  // 소수는 끝자리 0·약분 여부가 달라도 같은 유리수면 같은 보기다.
+  // 다른 형식의 후보 순서·난수 소비는 그대로 둔다.
+  const choiceKey = (value: string): string => {
+    if (decimalPlaces === undefined) return value;
+    const parsed = parseNumericAnswer(value);
+    return parsed ? `${parsed.rat.n}/${parsed.rat.d}` : value;
+  };
   // 생성기가 오답을 직접 냈으면 그것을 쓴다 — 수 오답 경로를 타지 않는다.
   // 넷이 아니거나 겹치면 던진다(부르는 쪽이 그 변형의 객관식을 건너뛰고 사유를 찍는다).
   if (stem.distractors !== undefined) {
-    const given = stem.distractors.map((d) => d.trim());
-    if (given.length !== 4 || new Set([correct, ...given]).size !== 5) {
+    const given = stem.distractors.map((d) => {
+      const value = d.trim();
+      if (decimalPlaces === undefined) return value;
+      const parsed = parseNumericAnswer(value);
+      const formatted = parsed && formatRat(parsed.rat, "dec", decimalPlaces);
+      if (formatted === null) {
+        throw new Error(
+          `정답의 소수 자릿수로 정확히 적을 수 없는 오답입니다: ${value}`,
+        );
+      }
+      return parsed!.wrapped(formatted);
+    });
+    if (
+      given.length !== 4 ||
+      new Set([correct, ...given].map(choiceKey)).size !== 5
+    ) {
       throw new Error(
         `생성기가 낸 오답이 넷이 아니거나 서로·정답과 겹칩니다: ${given.join(" · ")}`,
       );
@@ -142,7 +165,8 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
   //    끼면 학생이 계산 없이 크기만 보고 지워 낸다. 그렇다고 버릴 수는 없다:
   //    빼고 재니 초등 69갈래·중등 54유형이 5지선다를 통째로 잃었다(실측).
   //    **버리지 말고 뒤로 민다** — 좋은 후보로 넷을 못 채울 때만 쓴다.
-  //    (소수·분수 정답에서는 소수점 자리 실수라 진짜 오답이므로 여기 안 넣는다.)
+  //    소수도 끝자리 실수로 넷을 채울 수 있으면 자리 이동을 뒤로 민다.
+  //    분수 정답의 곱하기·나누기 실수는 그대로 둔다.
   const WEAK = new Set(["times-ten", "div-ten"]);
   // 🔴 발문이 스스로 못 박은 상한을 넘는 오답도 **버리지 말고 뒤로 민다** —
   //    바로 위 `times-ten` 과 같은 처리다. 버리면 후보가 모자라 5지선다를
@@ -153,18 +177,21 @@ export function asMultipleChoice(stem: StemProblem, rng: Rng): DerivedProblem {
     const p = parseNumericAnswer(value);
     return p !== null && p.rat.d !== 0 && p.rat.n / p.rat.d > bound;
   };
-  const seen = new Set<string>([correct]);
+  const seen = new Set<string>([choiceKey(correct)]);
   const strong: string[] = [];
   const weak: string[] = [];
   const overs: string[] = [];
   for (const m of numericMistakes(correct)) {
-    if (seen.has(m.value)) continue;
-    seen.add(m.value);
+    const key = choiceKey(m.value);
+    if (seen.has(key)) continue;
+    seen.add(key);
     if (overBound(m.value)) {
       overs.push(m.value);
       continue;
     }
-    (WEAK.has(m.tag) && !m.value.includes("frac") && !m.value.includes(".")
+    (WEAK.has(m.tag) &&
+    (decimalPlaces !== undefined ||
+      (!m.value.includes("frac") && !m.value.includes(".")))
       ? weak
       : strong
     ).push(m.value);
@@ -322,8 +349,13 @@ export function numericMistakes(answer: string): Mistake[] {
     if (!rat || rat.d === 0) return;
     const reduced = reduce(rat);
     if (reduced.n === parsed.rat.n && reduced.d === parsed.rat.d) return;
-    if (!sameKind(parsed.rat, reduced)) return;
-    const value = wrap(formatRat(reduced, parsed.style));
+    if (parsed.style === "dec") {
+      // 1.0·0.0도 소수 자릿수의 실수를 낼 수 있다. 음수 금지는 그대로다.
+      if (parsed.rat.n >= 0 && reduced.n < 0) return;
+    } else if (!sameKind(parsed.rat, reduced)) return;
+    const formatted = formatRat(reduced, parsed.style, parsed.decimalPlaces);
+    if (formatted === null) return;
+    const value = wrap(formatted);
     if (parsed.decorated && shapeOf(value) !== wantShape) return;
     // 🔴 정답이 **구간**이면 한쪽 끝만 흔들려 «있을 수 없는 구간»이 나온다.
     //    2026-09-02 확대 갈래 3차 물결이 「$y$ 의 값의 범위」를 정답으로 내는 첫
@@ -333,8 +365,9 @@ export function numericMistakes(answer: string): Mistake[] {
     //    `shapeOf` 가르기는 이걸 못 본다 — 모양(`$N\le y\le N$`)은 그대로다.
     //    등록 1,411유형을 전수로 훑어 이 부류를 내는 것은 `35V` **하나뿐**이었다.
     if (reversesOrder(value)) return;
-    if (seen.has(value)) return;
-    seen.add(value);
+    const key = parsed.style === "dec" ? `${reduced.n}/${reduced.d}` : value;
+    if (seen.has(key)) return;
+    seen.add(key);
     out.push({ tag, value });
   };
 
@@ -357,6 +390,21 @@ export function numericMistakes(answer: string): Mistake[] {
     n: parsed.rat.n,
     d: parsed.rat.d + (parsed.rat.d === 0 ? 0 : 1),
   });
+
+  if (parsed.decimalPlaces !== undefined) {
+    // 약분된 분모에서 자릿수를 추측하지 않는다: 0.8290은 만분의 자리까지다.
+    // 정답의 최소 단위·그 위 자리의 계산 실수로 정확한 소수 후보를 채운다.
+    const scale = 10 ** parsed.decimalPlaces;
+    const scaled = parsed.rat.n * (scale / parsed.rat.d);
+    for (const [tag, step] of [
+      ["last", 1],
+      ["next", 10],
+      ["last-two", 2],
+    ] as const) {
+      push(`decimal-${tag}-up`, { n: scaled + step, d: scale });
+      push(`decimal-${tag}-down`, { n: scaled - step, d: scale });
+    }
+  }
 
   // 🔴 위 아홉만으로는 **정수 정답**에서 후보가 모자란다. 같은 종류 가드를 켜면
   //    `sign-flip`·`reciprocal`·`denominator-plus` 가 통째로 빠지기 때문이다
@@ -484,6 +532,8 @@ function parseNumericAnswer(raw: string): {
   rat: Rat;
   wrapped: (inner: string) => string;
   style: "int" | "frac" | "dec";
+  /** 약분 전의 소수 자릿수 — 끝자리 0도 보존한다. */
+  decimalPlaces?: number;
   /** 단위·꼬리표가 붙은 수인가 — 오답 모양을 그대로 지켜야 한다. */
   decorated?: boolean;
 } | null {
@@ -514,10 +564,16 @@ function parseNumericAnswer(raw: string): {
     const scale = 10 ** dec[2]!.length;
     const intPart = Number(dec[1]);
     const fracPart = Number(dec[2]);
-    const signed =
-      intPart < 0 ? intPart * scale - fracPart : intPart * scale + fracPart;
+    const signed = dec[1]!.startsWith("-")
+      ? intPart * scale - fracPart
+      : intPart * scale + fracPart;
     if (!Number.isFinite(signed)) return null;
-    return { rat: reduce({ n: signed, d: scale }), wrapped, style: "dec" };
+    return {
+      rat: reduce({ n: signed, d: scale }),
+      wrapped,
+      style: "dec",
+      decimalPlaces: dec[2]!.length,
+    };
   }
 
   const int = inner.match(/^-?\d+$/);
@@ -552,6 +608,7 @@ function parseNumericAnswer(raw: string): {
       rat: reduce({ n: Math.round(value * scale), d: scale }),
       wrapped: (s) => `${before}${s}${after}`,
       style,
+      decimalPlaces: dot < 0 ? undefined : num.length - dot - 1,
       decorated: true,
     };
   }
@@ -581,35 +638,26 @@ function gcd(a: number, b: number): number {
   return b === 0 ? a : gcd(b, a % b);
 }
 
-function formatRat(r: Rat, style: "int" | "frac" | "dec"): string {
-  if (r.d === 1) return String(r.n);
+function formatRat(
+  r: Rat,
+  style: "int" | "frac" | "dec",
+  places?: number,
+): string | null {
   if (style === "dec") {
+    if (places === undefined) return null;
+    const scale = 10 ** places;
+    // 기약분모가 10^places의 약수여야 그 자릿수로 정확히 적을 수 있다.
+    // 순환소수·자릿수 초과를 반올림해서 다른 값의 오답으로 만들지 않는다.
+    if (!Number.isSafeInteger(scale) || scale % r.d !== 0) return null;
+    const scaled = r.n * (scale / r.d);
+    if (!Number.isSafeInteger(scaled)) return null;
     const sign = r.n < 0 ? "-" : "";
-    const a = Math.abs(r.n);
-    const whole = Math.floor(a / r.d);
-    const rem = a % r.d;
-    if (rem === 0) return `${sign}${whole}`;
-    let decimals = String(rem);
-    const width = decimalWidth(r.d);
-    decimals = decimals.padStart(width, "0");
-    return `${sign}${whole}.${decimals}`;
+    const digits = String(Math.abs(scaled)).padStart(places + 1, "0");
+    return `${sign}${digits.slice(0, -places)}.${digits.slice(-places)}`;
   }
+  if (r.d === 1) return String(r.n);
   if (r.n < 0) return `\\frac{${-r.n}}{${r.d}}`.replace(/^/, "-");
   return `\\frac{${r.n}}{${r.d}}`;
-}
-
-function decimalWidth(d: number): number {
-  let w = 0;
-  let x = d;
-  while (x > 1 && x % 2 === 0) {
-    x /= 2;
-    w += 1;
-  }
-  while (x > 1 && x % 5 === 0) {
-    x /= 5;
-    w += 1;
-  }
-  return w === 0 ? 1 : w;
 }
 
 function shuffleInPlace<T>(rng: Rng, items: T[]): T[] {
