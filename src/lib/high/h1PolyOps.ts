@@ -1253,6 +1253,18 @@ function t06(rng: Rng): Body {
 // 꼴 2 (심화하): $a^2b^2+b^2c^2+c^2a^2$ · $a+b+c=0$ 일 때 $a^4+b^4+c^4$
 // (RPM 대표문제의 $a^3+b^3+c^3$ 꼴은 2022 공식 목록 밖이라 안 냈다 — 머리말)
 
+/** 합·두 수씩의 곱의 합·곱을 갖는 실수 세 수의 존재 조건(중근 포함). */
+function hasRealTriple(s: number, e2: number, e3: number): boolean {
+  // 세 수는 t³-st²+e2*t-e3의 근이다. 실계수 삼차식의 판별식이 음수면 허근이 둘이다.
+  const discriminant =
+    s * s * e2 * e2 -
+    4 * e2 ** 3 -
+    4 * s ** 3 * e3 -
+    27 * e3 * e3 +
+    18 * s * e2 * e3;
+  return discriminant >= 0;
+}
+
 function t07(rng: Rng): Body {
   const mode = randInt(rng, 0, 2);
   if (mode === 0)
@@ -1293,6 +1305,7 @@ function t07(rng: Rng): Body {
       const e2 = nz(rng, -6, 6);
       const e3 = nz(rng, -8, 8);
       if (s * s < 3 * e2) return null;
+      if (!hasRealTriple(s, e2, e3)) return null;
       const value = s * e2 - e3;
       const qq = s * s - 2 * e2;
       const S = paren(s);
@@ -1345,6 +1358,7 @@ function t07(rng: Rng): Body {
     const e2 = nz(rng, -6, 6);
     const e3 = nz(rng, -6, 6);
     if (s * s < 3 * e2) return null;
+    if (!hasRealTriple(s, e2, e3)) return null;
     const qq = s * s - 2 * e2;
     const value = e2 * e2 - 2 * e3 * s;
     if (value === 0) return null;
