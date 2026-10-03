@@ -618,7 +618,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     const branch = intBetween(rng, 0, 1);
     if (branch === 0) {
       return {
-        content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $x^\\circ$인 두 부채꼴이 있다. 두 부채꼴의 호의 길이가 각각 $${L1}\\,\\mathrm{cm}$, $${L2}\\,\\mathrm{cm}$일 때, $x$의 값을 구하시오.`,
+        content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $x^\\circ$이고 반지름의 길이가 같은 두 부채꼴이 있다. 두 부채꼴의 호의 길이가 각각 $${L1}\\,\\mathrm{cm}$, $${L2}\\,\\mathrm{cm}$일 때, $x$의 값을 구하시오.`,
         answer: `$${x}$`,
         solution: `한 원(또는 반지름이 같은 두 원)에서 부채꼴의 호의 길이는 중심각의 크기에 정비례하므로 $${a}:x=${L1}:${L2}$이다.\n따라서 $${a}\\times${L2}=x\\times${L1}$에서 $x=${x}$이다.`,
         facts: { branch, a, x, L1, L2 },
@@ -626,7 +626,7 @@ const SECTOR_TYPES: TypeEntry[] = [
       };
     }
     return {
-      content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $${x}^\\circ$인 두 부채꼴이 있다. 두 부채꼴의 호의 길이가 각각 $${L1}\\,\\mathrm{cm}$, $y\\,\\mathrm{cm}$일 때, $y$의 값을 구하시오.`,
+      content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $${x}^\\circ$이고 반지름의 길이가 같은 두 부채꼴이 있다. 두 부채꼴의 호의 길이가 각각 $${L1}\\,\\mathrm{cm}$, $y\\,\\mathrm{cm}$일 때, $y$의 값을 구하시오.`,
       answer: `$${L2}$`,
       solution: `부채꼴의 호의 길이는 중심각의 크기에 정비례하므로 $${a}:${x}=${L1}:y$이다.\n따라서 $${a}\\times y=${x}\\times${L1}$에서 $y=${L2}$이다.`,
       facts: { branch, a, x, L1, L2 },
@@ -702,7 +702,7 @@ const SECTOR_TYPES: TypeEntry[] = [
     const branch = intBetween(rng, 0, 1);
     if (branch === 0) {
       return {
-        content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $x^\\circ$인 두 부채꼴이 있다. 두 부채꼴의 넓이가 각각 $${S1}\\,\\mathrm{cm}^2$, $${S2}\\,\\mathrm{cm}^2$일 때, $x$의 값을 구하시오.`,
+        content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $x^\\circ$이고 반지름의 길이가 같은 두 부채꼴이 있다. 두 부채꼴의 넓이가 각각 $${S1}\\,\\mathrm{cm}^2$, $${S2}\\,\\mathrm{cm}^2$일 때, $x$의 값을 구하시오.`,
         answer: `$${x}$`,
         solution: `한 원(또는 반지름이 같은 두 원)에서 부채꼴의 넓이는 중심각의 크기에 정비례하므로 $${a}:x=${S1}:${S2}$이다.\n따라서 $${a}\\times${S2}=x\\times${S1}$에서 $x=${x}$이다.`,
         facts: { branch, a, x, S1, S2 },
@@ -710,7 +710,7 @@ const SECTOR_TYPES: TypeEntry[] = [
       };
     }
     return {
-      content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $${x}^\\circ$인 두 부채꼴이 있다. 두 부채꼴의 넓이가 각각 $${S1}\\,\\mathrm{cm}^2$, $y\\,\\mathrm{cm}^2$일 때, $y$의 값을 구하시오.`,
+      content: `그림과 같이 중심각의 크기가 각각 $${a}^\\circ$, $${x}^\\circ$이고 반지름의 길이가 같은 두 부채꼴이 있다. 두 부채꼴의 넓이가 각각 $${S1}\\,\\mathrm{cm}^2$, $y\\,\\mathrm{cm}^2$일 때, $y$의 값을 구하시오.`,
       answer: `$${S2}$`,
       solution: `부채꼴의 넓이는 중심각의 크기에 정비례하므로 $${a}:${x}=${S1}:y$이다.\n따라서 $${a}\\times y=${x}\\times${S1}$에서 $y=${S2}$이다.`,
       facts: { branch, a, x, S1, S2 },

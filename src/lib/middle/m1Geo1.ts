@@ -837,7 +837,7 @@ const M1_GEO1_BASE: TypeEntry[] = [
         const ay = (180 * rb) / sum;
         const az = (180 * rc) / sum;
         return {
-          content: `그림과 같이 한 점 $O$에서 만나는 세 반직선이 이루는 $\\angle x:\\angle y:\\angle z=${ra}:${rb}:${rc}$이고 세 각을 합하면 평각을 이룬다. $${askName}$의 크기를 구하시오.`,
+          content: `그림과 같이 꼭짓점이 $O$인 평각을 세 각으로 나누었더니 $\\angle x:\\angle y:\\angle z=${ra}:${rb}:${rc}$이다. $${askName}$의 크기를 구하시오.`,
           answer: `$${ans}^\\circ$`,
           solution: `세 각의 크기의 합이 $180^\\circ$이므로 $${askName}=180^\\circ\\times\\dfrac{${r}}{${sum}}=${ans}^\\circ$이다.`,
           facts: { ra, rb, rc, sum, ask, ans },
