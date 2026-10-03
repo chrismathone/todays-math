@@ -2,6 +2,8 @@
 
 Local implementation for the approved 2026-10-03 plan. This work does not apply a production migration, change environment variables, register a live binding, or deploy either application.
 
+User follow-up: automatic branch creation is now the default. Configure identical `EYWA_SYNC_AUTO_JSON` arrays on both projects with `{sourceBaseUrl,targetBaseUrl,keyId,controlSecret,webhookSecret,ssoSecret}`; production origins are `https://aywa.co.kr` and `https://today.aywa.co.kr`. No per-branch ID/env entry is needed. Source ON creates a stable binding, and trusted receiver control creates the target branch and subsequent managed roster. Source tenant UUID is the binding/target branch UUID. First confirmed source SSO also works before the first webhook. OFF/ON retains identities and records; local operator/manual suspensions remain enforced. Apply both `20261003085222_eywa_managed_sync` and `20261003103000_eywa_auto_branch` migrations before the new code. See `docs/reports/eywa-automatic-target-2026-10-03.txt` for 11 real PostgreSQL verification groups and ownership/name rules. The explicit registration steps below apply to pre-existing manual mapping exceptions, not the automatic default.
+
 ## Configuration and rollout order
 
 1. Integrate both source and receiver changes and preserve a compatible recovery build. Apply the receiver Prisma migration before deploying code that queries the new ledger. Do not roll back to a build that lacks managed account, lease, generation, and SSO replay checks.
