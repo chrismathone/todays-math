@@ -1,3 +1,7 @@
+import {
+  accessibleClassesWhere,
+  loadOperationalRoster,
+} from "@/lib/classAccess";
 /**
  * GET /api/tests/daily-review — 오늘의 학생별 확인테스트 (2단계 화면, D-63·D-64 · D-129 ⑷).
  *
@@ -40,26 +44,10 @@ import {
 import { db } from "@/lib/db";
 import { isEywaOwner } from "@/lib/eywa/owner";
 import { kstDateOf } from "@/lib/kstDate";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { getSessionUser } from "@/lib/session";
 import { draftCapacityOf, loadCapacityRows } from "@/lib/tests/draftCapacity";
 import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
-
-/** 두 갈래가 **같은 칸**을 읽어야 한다 — 한쪽만 빠지면 그 학생만 조용히 다르게 갈린다. */
-const STUDENT_SELECT = {
-  id: true,
-  name: true,
-  classId: true,
-  schoolLevel: true,
-  schoolGrade: true,
-  useIndividualProgress: true,
-  eywaLastReportDate: true,
-  eywaLastReportText: true,
-  class: {
-    select: { name: true, grade: true, defaultProblemCount: true },
-  },
-} as const;
 
 const PROGRESS_SELECT = {
   classId: true,
@@ -87,7 +75,7 @@ async function handleGet(request: NextRequest) {
 
   // ── 계획 갈래 — 이 계정의 소유 범위 안의 반만 ─────────────────────────────
   const ownClasses = await db.class.findMany({
-    where: ownedRowsWhere(session),
+    where: await accessibleClassesWhere(session),
     select: { id: true, name: true, grade: true },
   });
   const ownClassIds = ownClasses.map((c) => c.id);
@@ -108,22 +96,12 @@ async function handleGet(request: NextRequest) {
   const planClassIds = [...new Set(planRows.map((p) => p.classId))];
 
   const [eywaStudents, planStudents] = await Promise.all([
-    eywaOwner
-      ? db.student.findMany({
-          where: { eywaStudentId: { not: null }, eywaWithdrawnAt: null },
-          select: STUDENT_SELECT,
-        })
-      : Promise.resolve([]),
-    planClassIds.length
-      ? db.student.findMany({
-          where: { classId: { in: planClassIds }, eywaWithdrawnAt: null },
-          select: STUDENT_SELECT,
-        })
-      : Promise.resolve([]),
+    eywaOwner ? loadOperationalRoster(ownClassIds) : Promise.resolve([]),
+    loadOperationalRoster(planClassIds),
   ]);
   // 두 갈래에 같이 든 학생은 **한 번만** 센다.
   const studentById = new Map(
-    [...eywaStudents, ...planStudents].map((s) => [s.id, s]),
+    [...eywaStudents, ...planStudents].map((s) => [`${s.classId}/${s.id}`, s]),
   );
   const students = [...studentById.values()];
   const studentIds = students.map((s) => s.id);
@@ -149,13 +127,17 @@ async function handleGet(request: NextRequest) {
         ? db.eywaSyncRun.findFirst({ orderBy: { ranAt: "desc" } })
         : Promise.resolve(null),
       db.progress.findMany({
-        where: { studentId: { in: studentIds } },
+        where: {
+          retiredAt: null,
+          classId: { in: ownClassIds },
+          studentId: { in: studentIds },
+        },
         select: PROGRESS_SELECT,
       }),
       // 반 전체 진도(studentId=null) — 개별 진도를 안 쓰는 학생이 이것을 본다.
       // 어느 쪽이 적용되는지는 제품 함수(`applicableProgress`)가 정한다.
       db.progress.findMany({
-        where: { classId: { in: classIds }, studentId: null },
+        where: { retiredAt: null, classId: { in: classIds }, studentId: null },
         select: PROGRESS_SELECT,
       }),
       db.unit.findMany({
@@ -171,12 +153,14 @@ async function handleGet(request: NextRequest) {
       // 규칙). 학생별 최신 한 건이면 된다.
       db.test.findMany({
         where: {
+          classId: { in: ownClassIds },
+          predictionRunId: null,
           studentId: { in: studentIds },
           testType: "review",
           status: { in: ["confirmed", "printed"] },
         },
         orderBy: [{ testDate: "desc" }, { createdAt: "desc" }],
-        select: { studentId: true, rangeEndUnitId: true },
+        select: { classId: true, studentId: true, rangeEndUnitId: true },
       }),
     ]);
 
@@ -184,12 +168,20 @@ async function handleGet(request: NextRequest) {
   // 화면이 이 학생을 건너뛴다. draft 포함(초안도 «이미 출제됨»이다).
   const todayTestRows = await db.test.findMany({
     where: {
+      classId: { in: ownClassIds },
+      predictionRunId: null,
       studentId: { in: studentIds },
       testType: "review",
       testDate: new Date(`${day}T00:00:00Z`),
     },
     orderBy: [{ createdAt: "desc" }],
-    select: { id: true, studentId: true, status: true, autoDraftRunId: true },
+    select: {
+      id: true,
+      classId: true,
+      studentId: true,
+      status: true,
+      autoDraftRunId: true,
+    },
   });
   const todayTestByStudent = new Map<
     string,
@@ -202,11 +194,11 @@ async function handleGet(request: NextRequest) {
     }
   >();
   for (const t of todayTestRows)
-    if (t.studentId && !todayTestByStudent.has(t.studentId))
-      todayTestByStudent.set(t.studentId, {
+    if (t.studentId && !todayTestByStudent.has(`${t.classId}/${t.studentId}`))
+      todayTestByStudent.set(`${t.classId}/${t.studentId}`, {
         studentId: t.studentId,
         // 조회가 `studentIds`(두 갈래 학생) 안에서만 돌아 이름은 늘 있다
-        studentName: studentById.get(t.studentId)?.name ?? "",
+        studentName: studentById.get(`${t.classId}/${t.studentId}`)?.name ?? "",
         testId: t.id,
         status: t.status as "draft" | "confirmed" | "printed",
         // «자동 출제» 표지(D-133 ⑵) — 아침 회차가 세운 시험지만. 근거는 이 칸 하나다.
@@ -214,8 +206,8 @@ async function handleGet(request: NextRequest) {
       });
   const lastReviewByStudent = new Map<string, string | null>();
   for (const r of reviews)
-    if (r.studentId && !lastReviewByStudent.has(r.studentId))
-      lastReviewByStudent.set(r.studentId, r.rangeEndUnitId);
+    if (r.studentId && !lastReviewByStudent.has(`${r.classId}/${r.studentId}`))
+      lastReviewByStudent.set(`${r.classId}/${r.studentId}`, r.rangeEndUnitId);
 
   const plan = planDailyReview({
     day,
@@ -244,12 +236,11 @@ async function handleGet(request: NextRequest) {
       recordedAt: isoDay(r.recordedAt),
       createdAt: r.createdAt.toISOString(),
     })),
-    lastReviews: [...lastReviewByStudent].map(
-      ([studentId, rangeEndUnitId]) => ({
-        studentId,
-        rangeEndUnitId,
-      }),
-    ),
+    lastReviews: [...lastReviewByStudent].map(([key, rangeEndUnitId]) => ({
+      classId: key.split("/")[0],
+      studentId: key.split("/")[1],
+      rangeEndUnitId,
+    })),
     units,
     // 🔴 아침 회차와 **같은 경계** — 계획이 출제할 문항이 있는 마지막 차시를 넘지 않는다
     //    (2026-09-18 시뮬레이션 ⑵). 계획이 없으면 경계가 쓸 데가 없어 묻지 않는다.

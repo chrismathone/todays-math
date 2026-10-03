@@ -1,3 +1,4 @@
+import { accessibleTestsWhere, assertClassWrite } from "@/lib/classAccess";
 /**
  * PUT /api/tests/{id}/problems/{seq} — 동일 단원/난이도 + 최근 14일 중복 제외로 1클릭 교체.
  */
@@ -10,7 +11,6 @@ import {
 import { jsonError, jsonOk, notFoundError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { findEligibleProblems } from "@/lib/findEligibleProblems";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { familyIdOf } from "@/lib/generator/familyKey";
 import { selectProblems } from "@/lib/generator/selectProblems";
 import { requireOwnedTest } from "@/lib/ownership";
@@ -43,7 +43,7 @@ export async function replaceTestProblemAtSeq(
   testId: string,
   seq: number,
 ) {
-  const owned = await requireOwnedTest(testId, session);
+  const owned = await requireOwnedTest(testId, session, "test:write");
   if (!owned.ok) return owned.response;
   if (owned.data.status !== "draft") {
     return jsonError(
@@ -140,8 +140,14 @@ export async function replaceTestProblemAtSeq(
   }
 
   const updated = await db.$transaction(async (tx) => {
+    if (!owned.data.predictionRunId)
+      await assertClassWrite(tx, session, owned.data.classId, "test:write");
     const claimed = await tx.test.updateMany({
-      where: { id: testId, ...ownedRowsWhere(session), status: "draft" },
+      where: {
+        id: testId,
+        ...(await accessibleTestsWhere(session, "test:write")),
+        status: "draft",
+      },
       data: { modified: true },
     });
     if (claimed.count === 0) return null;

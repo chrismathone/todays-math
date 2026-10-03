@@ -9,6 +9,7 @@ import "server-only";
 
 import type { LearnStudent } from "@/contracts/studentAccount.contract";
 import { db } from "@/lib/db";
+import { activeStudentClassIds } from "@/lib/classAccess";
 
 import { progressDatesOf, type StudentScope } from "./lectureAccess";
 
@@ -31,7 +32,20 @@ export async function loadStudentLectureScope(
     include: { class: true },
   });
   if (!student) return null;
-  const scope = { id: student.id, classId: student.classId };
+  const classIds = student.eywaBindingId
+    ? await activeStudentClassIds(student.id)
+    : undefined;
+  if (classIds && !classIds.length) return null;
+  const scope = {
+    id: student.id,
+    classId: classIds?.[0] ?? student.classId,
+    ...(classIds ? { classIds } : {}),
+  };
+  const contextClass =
+    scope.classId === student.classId
+      ? student.class
+      : await db.class.findUnique({ where: { id: scope.classId } });
+  if (!contextClass) return null;
   const select = {
     classId: true,
     studentId: true,
@@ -40,15 +54,26 @@ export async function loadStudentLectureScope(
   } as const;
   const [classRows, ownRows] = await Promise.all([
     db.progress.findMany({
-      where: { classId: scope.classId, studentId: null },
+      where: {
+        retiredAt: null,
+        classId: classIds ? { in: classIds } : scope.classId,
+        studentId: null,
+      },
       select,
     }),
-    db.progress.findMany({ where: { studentId: scope.id }, select }),
+    db.progress.findMany({
+      where: {
+        retiredAt: null,
+        studentId: scope.id,
+        ...(classIds ? { classId: { in: classIds } } : {}),
+      },
+      select,
+    }),
   ]);
   const taughtOn = progressDatesOf([...classRows, ...ownRows], scope);
   return {
     student: scope,
-    head: { name: student.name, className: student.class.name },
+    head: { name: student.name, className: contextClass.name },
     progressUnitIds: new Set(taughtOn.keys()),
     taughtOn,
   };

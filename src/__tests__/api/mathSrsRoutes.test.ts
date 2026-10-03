@@ -104,6 +104,9 @@ const fixture = vi.hoisted(() => {
 });
 
 vi.mock("server-only", () => ({}));
+vi.mock("@/lib/eywa/managedAccounts", () => ({
+  getManagedClassGrants: async () => null,
+}));
 vi.mock("@/lib/auth", () => ({ auth: vi.fn(async () => fixture.session) }));
 vi.mock("@/lib/errorLog/record", () => ({
   recordErrorLog: vi.fn(async () => undefined),
@@ -115,8 +118,15 @@ vi.mock("@/lib/db", () => ({
         async ({ where }: { where: { id: string } }) =>
           fixture.students.find((s) => s.id === where.id) ?? null,
       ),
-      findMany: vi.fn(async ({ where }: { where: { classId: string } }) =>
-        fixture.students.filter((s) => s.classId === where.classId),
+      findMany: vi.fn(
+        async ({
+          where,
+        }: {
+          where: { classId?: string; OR?: { classId?: string }[] };
+        }) =>
+          fixture.students.filter(
+            (s) => s.classId === (where.classId ?? where.OR?.[0]?.classId),
+          ),
       ),
     },
     class: {

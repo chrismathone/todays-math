@@ -53,6 +53,11 @@ import { errorLogModels, resetErrorLogTestDouble } from "./errorLogTestDouble";
 import { englishModels, resetEnglishTestDouble } from "./englishTestDouble";
 
 interface ClassRow {
+  active?: boolean;
+  closedAt?: Date | null;
+  branchId?: string | null;
+  eywaBindingId?: string | null;
+  eywaClassId?: string | null;
   id: string;
   userId: string;
   name: string;
@@ -64,6 +69,8 @@ interface ClassRow {
 }
 
 interface StudentRow {
+  branchId?: string | null;
+  eywaBindingId?: string | null;
   id: string;
   classId: string;
   name: string;
@@ -127,6 +134,8 @@ interface AutoDraftRunRow {
 
 /** 계정 — 자동 출제가 **소유자(원장 계정)** 를 이메일로 찾는다(`resolveAutoDraftOwner`). */
 interface UserRow {
+  authSource?: string;
+  manualSuspendedAt?: Date | null;
   id: string;
   email: string;
   name: string;
@@ -141,6 +150,7 @@ interface UserRow {
 type UnitRow = MockUnit;
 
 interface ProgressRow {
+  retiredAt?: Date | null;
   id: string;
   classId: string;
   studentId: string | null;
@@ -511,6 +521,11 @@ const RECENT_BLOCK_PROBLEM_ID = problemId(111);
 
 function toClassRow(entity: ClassEntity): ClassRow {
   return {
+    branchId: null,
+    eywaBindingId: null,
+    eywaClassId: null,
+    active: true,
+    closedAt: null,
     ...entity,
     createdAt: new Date(entity.createdAt),
     updatedAt: new Date(entity.updatedAt),
@@ -519,6 +534,8 @@ function toClassRow(entity: ClassEntity): ClassRow {
 
 function toStudentRow(entity: StudentEntity): StudentRow {
   return {
+    branchId: null,
+    eywaBindingId: null,
     schoolLevel: null,
     schoolGrade: null,
     eywaStudentId: null,
@@ -533,6 +550,7 @@ function toStudentRow(entity: StudentEntity): StudentRow {
 
 function toProgressRow(entity: ProgressEntity): ProgressRow {
   return {
+    retiredAt: null,
     ...entity,
     recordedAt: new Date(`${entity.recordedAt}T00:00:00.000Z`),
     createdAt: new Date(entity.createdAt),
@@ -667,6 +685,8 @@ export function resetPrismaTestDouble() {
   progressPlanRows = [];
   autoDraftRunRows = [];
   userRows = [MOCK_TEACHER, MOCK_OTHER_TEACHER].map((u) => ({
+    authSource: "local",
+    manualSuspendedAt: null,
     id: u.id,
     email: u.email,
     name: u.name,
@@ -784,9 +804,12 @@ function matchesWhere<T extends object>(
   const record = row as Record<string, unknown>;
 
   if (Array.isArray(where.AND)) {
-    return where.AND.every((clause) =>
-      matchesWhere(row, clause as Record<string, unknown>, relations),
-    );
+    if (
+      !where.AND.every((clause) =>
+        matchesWhere(row, clause as Record<string, unknown>, relations),
+      )
+    )
+      return false;
   }
 
   // 🔴 모르는 최상위 연산자를 **조용히 필드 이름으로 취급하면** 가짜가 실제 Prisma 와
@@ -816,6 +839,7 @@ function matchesWhere<T extends object>(
   const rest = { ...where };
   delete rest.OR;
   delete rest.NOT;
+  delete rest.AND;
   if (Array.isArray(orClauses)) {
     const orOk = orClauses.some((clause) =>
       matchesWhere(row, clause as Record<string, unknown>, relations),
@@ -827,7 +851,17 @@ function matchesWhere<T extends object>(
     if (cond === undefined) return true;
 
     // 관계 조건 — 상대 행을 실제로 찾아 그 위에서 다시 판정한다.
-    const resolveRelation = relations[key];
+    const resolveRelation =
+      relations[key] ??
+      (key === "class" && "classId" in record
+        ? () => classRows.find((c) => c.id === record.classId) ?? null
+        : key === "test" && "testId" in record
+          ? () => testRows.find((t) => t.id === record.testId) ?? null
+          : key === "user" && "userId" in record
+            ? () => userRows.find((u) => u.id === record.userId) ?? null
+            : key === "enrollments"
+              ? () => []
+              : undefined);
     if (resolveRelation) {
       const related = resolveRelation(row);
 
@@ -1166,7 +1200,44 @@ function projectClassRows(
 }
 
 const prismaModels = {
+  // Legacy fixtures have no managed bindings; managed integration suites inject explicit rows.
+  eywaManagedAccount: {
+    async findUnique() {
+      return null;
+    },
+    async findFirst() {
+      return null;
+    },
+  },
+  eywaBinding: {
+    async findUnique() {
+      return null;
+    },
+    async findFirst() {
+      return null;
+    },
+  },
+  classMembership: {
+    async findMany() {
+      return [];
+    },
+  },
+  studentEnrollment: {
+    async findFirst() {
+      return null;
+    },
+  },
   class: {
+    async findFirst({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      const row = classRows.find((r) => matchesWhere(r, where));
+      return row ? projectClassRows([row], select, undefined)[0] : null;
+    },
     async create({
       data,
       include,
@@ -1177,6 +1248,11 @@ const prismaModels = {
       const now = new Date();
       const row: ClassRow = {
         id: randomUUID(),
+        branchId: userRows.find((u) => u.id === data.userId)?.branchId ?? null,
+        eywaBindingId: null,
+        eywaClassId: null,
+        active: true,
+        closedAt: null,
         ...data,
         createdAt: now,
         updatedAt: now,
@@ -1490,6 +1566,16 @@ const prismaModels = {
   },
 
   student: {
+    async findFirst({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      const row = studentRows.find((r) => matchesWhere(r, where));
+      return row ? applySelect([row], select)[0] : null;
+    },
     async create({
       data,
     }: {
@@ -1501,6 +1587,8 @@ const prismaModels = {
       const now = new Date();
       const row: StudentRow = {
         id: randomUUID(),
+        branchId: null,
+        eywaBindingId: null,
         ...data,
         useIndividualProgress: false,
         createdAt: now,
@@ -1514,15 +1602,29 @@ const prismaModels = {
       skip = 0,
       take,
       select,
+      include,
     }: {
       where?: Record<string, unknown>;
       skip?: number;
       take?: number;
       select?: Record<string, unknown>;
+      include?: Record<string, unknown>;
     } = {}) {
       return applySelect(
         paginate(
-          studentRows.filter((row) => matchesWhere(row, where)),
+          studentRows
+            .filter((row) => matchesWhere(row, where))
+            .map((row) =>
+              include
+                ? {
+                    ...row,
+                    ...(include.class
+                      ? { class: classRows.find((c) => c.id === row.classId) }
+                      : {}),
+                    ...(include.enrollments ? { enrollments: [] } : {}),
+                  }
+                : row,
+            ),
           skip,
           take,
         ),
@@ -1612,6 +1714,7 @@ const prismaModels = {
     }) {
       const row: ProgressRow = {
         id: randomUUID(),
+        retiredAt: null,
         classId: data.classId,
         studentId: data.studentId ?? null,
         unitId: data.unitId,
@@ -2594,8 +2697,12 @@ function assertProgressPlanConstraints(
   if (row.studentId === null) {
     if (others.some((o) => o.studentId === null && o.classId === row.classId))
       throw prismaKnownError("P2002", "progress_plan_class_only_key");
-  } else if (others.some((o) => o.studentId === row.studentId)) {
-    throw prismaKnownError("P2002", "progress_plan_student_id_key");
+  } else if (
+    others.some(
+      (o) => o.studentId === row.studentId && o.classId === row.classId,
+    )
+  ) {
+    throw prismaKnownError("P2002", "progress_plan_class_id_student_id_key");
   }
 }
 
@@ -2644,6 +2751,8 @@ export function seedPredictionRuns(rows: PredictionRunRow[]) {
 export function seedUsers(rows: UserRow[]) {
   userRows.push(
     ...rows.map((row) => ({
+      authSource: "local",
+      manualSuspendedAt: null,
       isSuperAdmin: false,
       branchId: null,
       branchRole: null,

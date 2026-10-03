@@ -50,6 +50,7 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
   if (!query.success) return validationError(query.error);
 
   const input = await loadAchievementInput({
+    classId: owned.data.classId,
     studentId: id,
     period: { from: query.data.from, to: query.data.to },
     compare: query.data.compare,

@@ -17,6 +17,7 @@ import {
   type RosterResponse,
 } from "@/lib/eywa/contract";
 import { eywaQuery } from "@/lib/eywa/client";
+import { assertLegacyTransportAllowed } from "./legacyFence";
 
 export type EywaTransport = "db" | "api";
 
@@ -83,6 +84,7 @@ export async function fetchViaApi(
   baseUrl = process.env.EYWA_API_URL,
   key = process.env.EYWA_API_KEY,
 ): Promise<EywaSnapshot> {
+  assertLegacyTransportAllowed();
   if (!baseUrl || !key) throw new Error("EYWA_API_URL / EYWA_API_KEY 가 없다.");
   const base = baseUrl.replace(/\/$/, "") + "/api/integrations/todays-math";
 
@@ -118,6 +120,7 @@ export async function fetchViaDb(
   client: PrismaClient,
   tenantId = process.env.EYWA_TENANT_ID,
 ): Promise<EywaSnapshot> {
+  assertLegacyTransportAllowed(tenantId);
   if (!tenantId)
     throw new Error("EYWA_TENANT_ID 가 없다 (db 전송의 테넌트 필터).");
   interface RosterRow {

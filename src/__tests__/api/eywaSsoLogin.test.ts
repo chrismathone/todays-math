@@ -31,9 +31,12 @@ const savedEnv = vi.hoisted(() => {
     AUTH_URL: process.env.AUTH_URL,
     EYWA_SSO_SECRET: process.env.EYWA_SSO_SECRET,
     EYWA_SSO_TENANT_IDS: process.env.EYWA_SSO_TENANT_IDS,
+    ENGLISH_LISTENING_TEACHER_IDS: process.env.ENGLISH_LISTENING_TEACHER_IDS,
   };
   process.env.AUTH_SECRET = "student-auth-test-secret-0123456789abcdef";
   process.env.AUTH_URL = "http://localhost:3000";
+  process.env.ENGLISH_LISTENING_TEACHER_IDS =
+    "10000000-0000-4000-8000-000000000001";
   delete process.env.EYWA_SSO_TENANT_IDS;
   return before;
 });
@@ -123,6 +126,10 @@ vi.mock("@/lib/db", async () => {
     }),
   };
   const db = {
+    eywaManagedAccount: {
+      findUnique: vi.fn(async () => null),
+      findFirst: vi.fn(async () => null),
+    },
     user,
     accountAuditLog,
     $transaction: async (fn: (tx: unknown) => unknown) =>
@@ -270,6 +277,15 @@ afterAll(() => {
 });
 
 describe("⑴ eywa-sso 공급자 — 연결된 계정만", () => {
+  it("managed identities cannot bypass the receiver handshake with legacy SSO", async () => {
+    vi.mocked(db.eywaManagedAccount.findFirst).mockResolvedValueOnce({
+      id: "managed",
+    } as never);
+    await expect(signInSso(ssoToken())).rejects.toBeInstanceOf(
+      CredentialsSignin,
+    );
+    expect(sessionCookieFromJar()).toBeNull();
+  });
   it("🔴 토큰 칸이 이메일 로그인(authDirectorUnchanged)과 정확히 같다 · 감사에 SSO 표시", async () => {
     await signInSso(ssoToken());
     const cookie = sessionCookieFromJar();

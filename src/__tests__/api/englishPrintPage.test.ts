@@ -16,6 +16,7 @@ const mocks = vi.hoisted(() => ({
   setFindUnique: vi.fn(),
   examFindUnique: vi.fn(),
   userFindUnique: vi.fn(),
+  branchFindUnique: vi.fn(),
 }));
 vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
 vi.mock("@/lib/db", () => ({
@@ -23,6 +24,7 @@ vi.mock("@/lib/db", () => ({
     englishQuestionSet: { findUnique: mocks.setFindUnique },
     englishExam: { findUnique: mocks.examFindUnique },
     user: { findUnique: mocks.userFindUnique },
+    branch: { findUnique: mocks.branchFindUnique },
   },
 }));
 vi.mock("next/navigation", () => ({
@@ -98,6 +100,14 @@ const examRow = {
 
 /** 시험 주인의 지점 — `ownerIsInScope` 는 `branchId` 만, 페이지는 `branch.name` 을 고른다 */
 function ownerInBranch(branch: { id: string; name: string } | null) {
+  mocks.branchFindUnique.mockResolvedValue(
+    branch ? { name: branch.name } : null,
+  );
+  mocks.examFindUnique.mockResolvedValue({
+    ...examRow,
+    branchId: branch?.id ?? null,
+  });
+  mocks.session.mockResolvedValue({ ...OWNER, branchId: branch?.id ?? null });
   mocks.userFindUnique.mockImplementation(
     async ({ select }: { select?: Record<string, unknown> }) =>
       select?.branchId
@@ -198,6 +208,11 @@ describe("오늘의 영어 인쇄 페이지 — 관문", () => {
     });
     const props = await rendered();
     expect(props.academyName).toBe("한빛수학");
+    expect(mocks.branchFindUnique).toHaveBeenCalledWith({
+      where: { id: BRANCH_A },
+      select: { name: true },
+    });
+    expect(mocks.userFindUnique).not.toHaveBeenCalled();
     expect(props.set.id).toBe(SET_ID);
   });
 });
@@ -227,10 +242,8 @@ describe("오늘의 영어 인쇄 페이지 — 지면에 넘기는 것", () => 
     });
     expect(props.set.questions).toHaveLength(4);
     // 시험 주인의 지점을 이름까지 물었다
-    expect(mocks.userFindUnique).toHaveBeenCalledWith({
-      where: { id: OWNER_ID },
-      select: { branch: { select: { name: true } } },
-    });
+    expect(mocks.userFindUnique).not.toHaveBeenCalled();
+    expect(mocks.branchFindUnique).not.toHaveBeenCalled();
   });
 
   it("?bundle= · ?merge= 로 학생용 묶음과 합침을 넘긴다 — 기본은 묶음 1 · 가른 채 (D-151)", async () => {

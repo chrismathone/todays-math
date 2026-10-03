@@ -12,6 +12,9 @@ const mocks = vi.hoisted(() => ({
   session: vi.fn(),
   findFirst: vi.fn(),
 }));
+vi.mock("@/lib/eywa/managedAccounts", () => ({
+  getManagedClassGrants: async () => null,
+}));
 vi.mock("@/lib/session", () => ({ getSessionUser: mocks.session }));
 vi.mock("@/lib/db", () => ({ db: { test: { findFirst: mocks.findFirst } } }));
 vi.mock("next/navigation", () => ({
@@ -43,9 +46,32 @@ describe.each([
   {
     who: "관리자 아님",
     isAdmin: false,
-    where: { id: TEST_ID, userId: VIEWER.id },
+    where: {
+      id: TEST_ID,
+      OR: [
+        { predictionRunId: { not: null }, userId: VIEWER.id },
+        {
+          predictionRunId: null,
+          class: {
+            eywaBindingId: null,
+            userId: VIEWER.id,
+            OR: [{ branchId: null }],
+          },
+        },
+      ],
+    },
   },
-  { who: "관리자", isAdmin: true, where: { id: TEST_ID } },
+  {
+    who: "관리자",
+    isAdmin: true,
+    where: {
+      id: TEST_ID,
+      OR: [
+        { predictionRunId: { not: null }, userId: VIEWER.id },
+        { predictionRunId: null, class: {} },
+      ],
+    },
+  },
 ] as const)("인쇄 지면 조회 — $who", ({ isAdmin, where }) => {
   it("시험지 where", async () => {
     mocks.session.mockResolvedValue({

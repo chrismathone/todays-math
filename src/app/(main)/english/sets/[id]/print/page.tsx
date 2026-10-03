@@ -73,14 +73,16 @@ export default async function EnglishSetPrintPage({
   if (!owned.ok) notFound();
   const exam = owned.data;
 
-  const owner = await db.user.findUnique({
-    where: { id: exam.userId },
-    select: { branch: { select: { name: true } } },
-  });
+  const branch = exam.branchId
+    ? await db.branch.findUnique({
+        where: { id: exam.branchId },
+        select: { name: true },
+      })
+    : null;
 
   return (
     <EnglishPrintClient
-      academyName={owner?.branch?.name ?? ENGLISH_PRINT_DEFAULT_ACADEMY}
+      academyName={branch?.name ?? ENGLISH_PRINT_DEFAULT_ACADEMY}
       exam={{
         school: exam.school,
         // DB CHECK 가 계약 `ENGLISH_GRADES` 안으로 잠근다(`serializeEnglishExam` 과 같은 읽기)

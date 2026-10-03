@@ -59,6 +59,7 @@ export interface AccountAuditEntry {
 }
 
 export interface IssueDeps {
+  authorizeStudent?(viewer: ScopeViewer, studentId: string): Promise<boolean>;
   /** 학생의 반 소유자와 퇴원 여부 — 학생이 없으면 null */
   findStudentOwner(studentId: string): Promise<{
     ownerId: string;
@@ -117,7 +118,11 @@ async function ownedStudent(
 ): Promise<{ failure: IssueFailure } | { failure: null; withdrawn: boolean }> {
   const owner = await deps.findStudentOwner(studentId);
   if (!owner) return { failure: "student_not_found" };
-  if (!withinOwnerScope(director, owner.ownerId, owner.ownerBranchId))
+  if (
+    !(deps.authorizeStudent
+      ? await deps.authorizeStudent(director, studentId)
+      : withinOwnerScope(director, owner.ownerId, owner.ownerBranchId))
+  )
     return { failure: "not_owner" };
   return { failure: null, withdrawn: owner.withdrawn };
 }

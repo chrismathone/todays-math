@@ -25,6 +25,7 @@ const mocks = vi.hoisted(() => ({
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
 vi.mock("@/lib/db", () => {
   const db = {
+    eywaManagedAccount: { findUnique: vi.fn(async () => null) },
     user: mocks.user,
     workspaceDocument: mocks.doc,
     workspaceAsset: mocks.asset,

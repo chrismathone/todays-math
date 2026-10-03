@@ -28,6 +28,7 @@ import { Prisma } from "@prisma/client";
 export interface EnglishExamRow {
   id: string;
   userId: string;
+  branchId: string | null;
   school: string;
   grade: string;
   title: string;
@@ -117,7 +118,15 @@ async function examMatches(
   if (!where) return true;
   for (const [key, cond] of Object.entries(where)) {
     if (cond === undefined) continue;
-    if (key === "id") {
+    if (key === "OR" || key === "AND") {
+      const matches = await Promise.all(
+        (cond as Where[]).map((part) => examMatches(row, part)),
+      );
+      if (key === "OR" ? !matches.some(Boolean) : !matches.every(Boolean))
+        return false;
+    } else if (key === "branchId") {
+      if (row.branchId !== cond) return false;
+    } else if (key === "id") {
       if (!matchesId(row.id, cond)) return false;
     } else if (key === "userId") {
       if (typeof cond !== "string") fail("where.userId 는 문자열만 안다");
@@ -332,6 +341,7 @@ export const englishModels = {
       const row: EnglishExamRow = {
         id: randomUUID(),
         userId: undefined,
+        branchId: null,
         school: undefined,
         grade: undefined,
         title: undefined,
@@ -676,6 +686,7 @@ export function seedEnglishExam(
   const row: EnglishExamRow = {
     id: randomUUID(),
     examDate: null,
+    branchId: null,
     types: [],
     createdAt: now,
     updatedAt: now,

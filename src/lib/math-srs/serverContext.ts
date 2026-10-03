@@ -1,3 +1,4 @@
+import { studentsInClassWhere } from "@/lib/classAccess";
 import "server-only";
 import type {
   MathSrsClassDashboard,
@@ -79,7 +80,8 @@ export async function loadSrsStudentContext(
   if (!student || student.eywaWithdrawnAt || !lectureScope) return null;
   const progress = await db.progress.findMany({
     where: {
-      classId: student.classId,
+      retiredAt: null,
+      classId: lectureScope.student.classId,
       OR: [{ studentId: null }, { studentId }],
       recordedAt: { lte: new Date(`${kstDateOf(now)}T00:00:00.000Z`) },
     },
@@ -107,8 +109,8 @@ export async function loadSrsStudentContext(
     student: {
       id: student.id,
       name: student.name,
-      classId: student.classId,
-      className: student.class.name,
+      classId: lectureScope.student.classId,
+      className: lectureScope.head.className,
     },
     currentProgress: srsCurrentProgress(
       progress.map(shapeProgress),
@@ -136,7 +138,7 @@ export async function loadSrsStudentContext(
  */
 export async function loadSrsClassRoster(classId: string) {
   const students = await db.student.findMany({
-    where: { classId, eywaWithdrawnAt: null },
+    where: { ...studentsInClassWhere(classId), eywaWithdrawnAt: null },
     orderBy: { createdAt: "asc" },
     include: {
       // `createdAt` — 탐험 교사 보기의 «시작 전»이 계정을 만든 날부터 센다(27번 문서 §4.2)
@@ -176,6 +178,7 @@ export async function loadSrsClassDashboard(
     loadSrsClassRoster(cls.id),
     db.progress.findMany({
       where: {
+        retiredAt: null,
         classId: cls.id,
         recordedAt: { lte: new Date(`${kstDateOf(now)}T00:00:00.000Z`) },
       },

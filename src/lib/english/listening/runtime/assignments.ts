@@ -1,3 +1,9 @@
+import {
+  accessibleClassesWhere,
+  assertClassWrite,
+  classAccessAllowed,
+  studentsInClassWhere,
+} from "@/lib/classAccess";
 import { randomUUID } from "node:crypto";
 import { Prisma } from "@prisma/client";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
@@ -16,7 +22,6 @@ import {
   type ListeningAssignmentSummary,
   type ListeningClassOption,
 } from "@/contracts/englishListeningHttp.contract";
-import { ownedRowsWhere, withinOwnerScope } from "@/lib/ownerScope";
 import { appendListeningAssignmentTargets } from "../assignment";
 import {
   createListeningAttempt,
@@ -49,19 +54,26 @@ export async function listClasses(
   tx: ListeningTx,
   account: AccountAccess,
 ): Promise<ListeningClassOption[]> {
-  return tx.class.findMany({
-    where: ownedRowsWhere(account),
-    select: {
-      id: true,
-      name: true,
-      students: {
-        where: { eywaWithdrawnAt: null },
-        select: { id: true, name: true },
-        orderBy: { name: "asc" },
-      },
-    },
+  const classes = await tx.class.findMany({
+    where: await accessibleClassesWhere(account, "student:read", {
+      client: tx,
+    }),
+    select: { id: true, name: true },
     orderBy: { name: "asc" },
   });
+  return Promise.all(
+    classes.map(async (cls) => ({
+      ...cls,
+      students: await tx.student.findMany({
+        where: {
+          ...studentsInClassWhere(cls.id, false),
+          eywaWithdrawnAt: null,
+        },
+        select: { id: true, name: true },
+        orderBy: { name: "asc" },
+      }),
+    })),
+  );
 }
 async function roster(
   tx: ListeningTx,
@@ -80,12 +92,16 @@ async function roster(
   });
   if (
     !cls ||
-    !withinOwnerScope(account, cls.userId, cls.user.branchId) ||
-    cls.user.branchId !== branchId ||
+    !(await classAccessAllowed(account, cls, "test:write", { client: tx })) ||
+    cls.branchId !== branchId ||
     (branchId === null && cls.userId !== ownerId)
   )
     throw denied();
-  if (new Set(ids).size !== ids.length || cls.students.length !== ids.length)
+  await assertClassWrite(tx, account, classId, "test:write");
+  const assigned = await tx.student.count({
+    where: { id: { in: ids }, ...studentsInClassWhere(classId, false) },
+  });
+  if (new Set(ids).size !== ids.length || assigned !== ids.length)
     throw invalid("현재 반에 재학 중인 학생만 배정할 수 있습니다.");
   return cls;
 }
@@ -148,8 +164,13 @@ export async function listAssignments(
   tx: ListeningTx,
   account: AccountAccess,
 ): Promise<ListeningAssignmentSummary[]> {
+  const classes = await tx.class.findMany({
+    where: await accessibleClassesWhere(account, "test:read", { client: tx }),
+    select: { id: true },
+  });
+  if (!classes.length) return [];
   const rows = await tx.$queryRaw<(AssignmentRow & { title: string })[]>(
-    Prisma.sql`SELECT a.*, p.snapshot->'document'->>'title' AS title FROM english_listening_assignment a JOIN english_listening_publication p ON p.id=a.publication_id WHERE (${account.isSuperAdmin === true} OR a.owner_id=${account.id}::uuid OR (${account.isAdmin && !!account.branchId} AND a.branch_id=${account.branchId ?? null}::uuid)) ORDER BY a.created_at DESC LIMIT 200`,
+    Prisma.sql`SELECT a.*, p.snapshot->'document'->>'title' AS title FROM english_listening_assignment a JOIN english_listening_publication p ON p.id=a.publication_id WHERE a.class_id::text IN (${Prisma.join(classes.map((c) => c.id))}) ORDER BY a.created_at DESC LIMIT 200`,
   );
   return rows.map((row) => ({
     id: row.id,
@@ -172,7 +193,6 @@ export async function assignmentDetail(
 ): Promise<ListeningAssignmentDetail> {
   const row = await ownedAssignment(tx, account, id);
   const pub = await publicationRow(tx, row.publication_id);
-  await ownedSet(tx, account, pub.set_id);
   const broadcast = await one<BroadcastRow>(
     tx,
     Prisma.sql`SELECT * FROM english_listening_broadcast WHERE assignment_id=${id}::uuid`,
@@ -306,12 +326,11 @@ export async function mutateAssignment(
   input: unknown,
   now: string,
 ) {
-  const row = await ownedAssignment(tx, account, id);
+  const row = await ownedAssignment(tx, account, id, true);
   const supplied = input as { expectedRevision: number };
   expected(row.revision, supplied.expectedRevision);
   if (row.cancelled_at) throw denied();
   const pub = await publicationRow(tx, row.publication_id);
-  await ownedSet(tx, account, pub.set_id);
   let next = { ...row.snapshot, revision: row.revision + 1 };
   if (action === "targets") {
     const data = listeningAddTargetsSchema.parse(input);

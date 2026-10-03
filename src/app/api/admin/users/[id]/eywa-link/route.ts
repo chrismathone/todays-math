@@ -28,6 +28,12 @@ async function handleDelete(request: Request, context: Context) {
   const { id } = await context.params;
   if (!z.uuid().safeParse(id).success)
     return failure("NOT_FOUND", "사용자를 찾지 못했습니다.", 404);
+  if (await db.eywaManagedAccount.findUnique({ where: { currentUserId: id } }))
+    return failure(
+      "FORBIDDEN",
+      "연동 관리 계정은 여기서 연결을 해제할 수 없습니다.",
+      403,
+    );
   const target = await db.user.findFirst({
     where: { id },
     select: { id: true, isSuperAdmin: true, eywaUserId: true },

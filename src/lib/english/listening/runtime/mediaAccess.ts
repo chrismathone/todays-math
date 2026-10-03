@@ -2,6 +2,7 @@ import type { ListeningMediaAuthorizationTarget } from "../media/service";
 import {
   denied,
   ownedSet,
+  readablePublishedSet,
   student,
   teacher,
   type ListeningActor,
@@ -43,7 +44,15 @@ export function createListeningMediaAccess(
         return { ownerId: scope.ownerId, branchId: scope.branchId };
       }
       const account = await teacher(tx, context.actor);
-      const set = await ownedSet(tx, account, target.setId);
+      const set =
+        target.action === "playback"
+          ? await readablePublishedSet(
+              tx,
+              account,
+              target.setId,
+              target.assetId,
+            )
+          : await ownedSet(tx, account, target.setId);
       const use =
         target.action === "store_original"
           ? "store_original"
@@ -73,7 +82,7 @@ export function createListeningMediaAccess(
     resolveScope: async (context: ListeningMediaActor, setId: string) =>
       database.$transaction(async (tx) => {
         if (context.actor.kind === "teacher") {
-          const set = await ownedSet(
+          const set = await readablePublishedSet(
             tx,
             await teacher(tx, context.actor),
             setId,

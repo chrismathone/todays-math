@@ -17,6 +17,7 @@ import "server-only";
 
 import type { Difficulty } from "@/contracts/difficulty";
 import { db } from "@/lib/db";
+import { studentsInClassWhere } from "@/lib/classAccess";
 import {
   pickProgressPlan,
   type ProgressPlanRule,
@@ -51,6 +52,7 @@ async function loadProgress(
   // 「개별 진도 이력이 한 건이라도 있나」가 반/개별 판정의 입력이기 때문이다.
   const rows = await db.progress.findMany({
     where: {
+      retiredAt: null,
       classId,
       recordedAt: { lte: new Date(`${until}T00:00:00.000Z`) },
       OR: [{ studentId: null }, { studentId }],
@@ -85,11 +87,14 @@ async function loadProgress(
 async function loadResults(
   studentId: string,
   period: Period,
+  classId: string,
 ): Promise<ResultRow[]> {
   const rows = await db.testResult.findMany({
     where: {
       studentId,
       test: {
+        classId,
+        predictionRunId: null,
         testDate: {
           gte: new Date(`${period.from}T00:00:00.000Z`),
           lte: new Date(`${period.to}T00:00:00.000Z`),
@@ -265,13 +270,13 @@ async function loadComparison(
         student.useIndividualProgress,
         prev.to,
       ),
-      results: await loadResults(student.id, prev),
+      results: await loadResults(student.id, prev, student.classId),
     };
   }
 
   // 🔴 반 평균 — **표본 수를 같이 내려면 반 전원을 세야 한다**(성적이 있는 사람만 세면 분모가 거짓말이다).
   const classmates = await db.student.findMany({
-    where: { classId: student.classId },
+    where: studentsInClassWhere(student.classId),
     select: { id: true, useIndividualProgress: true },
     orderBy: { name: "asc" },
   });
@@ -285,7 +290,7 @@ async function loadComparison(
         mate.useIndividualProgress,
         period.to,
       ),
-      results: await loadResults(mate.id, period),
+      results: await loadResults(mate.id, period, student.classId),
     });
   }
   return { kind: "반평균", students };
@@ -297,17 +302,24 @@ async function loadComparison(
  */
 export async function loadAchievementInput(args: {
   studentId: string;
+  classId?: string;
   period: Period;
   compare?: CompareMode;
 }): Promise<AchievementInput | null> {
   const { studentId, period, compare = "none" } = args;
 
   // 소속 반은 **조인 한 번으로** 같이 온다 — 이름·학년이 리포트 머리에 들어간다.
-  const student = await db.student.findUnique({
+  const original = await db.student.findUnique({
     where: { id: studentId },
     include: { class: true },
   });
-  if (!student?.class) return null;
+  if (!original?.class) return null;
+  const cls =
+    args.classId && args.classId !== original.classId
+      ? await db.class.findUnique({ where: { id: args.classId } })
+      : original.class;
+  if (!cls) return null;
+  const student = { ...original, classId: cls.id, class: cls };
 
   const progress = await loadProgress(
     student.classId,
@@ -315,7 +327,7 @@ export async function loadAchievementInput(args: {
     student.useIndividualProgress,
     period.to,
   );
-  const results = await loadResults(student.id, period);
+  const results = await loadResults(student.id, period, student.classId);
   const plan = await loadPlan(
     student.classId,
     student.id,

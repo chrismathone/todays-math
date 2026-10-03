@@ -84,7 +84,11 @@ export async function handleExplorerTeacherClass(
     );
   const parsed = idParamSchema.safeParse(await params);
   if (!parsed.success) return noStore(validationError(parsed.error));
-  const owned = await requireOwnedClass(parsed.data.id, access.account);
+  const owned = await requireOwnedClass(
+    parsed.data.id,
+    access.account,
+    "progress:read",
+  );
   if (!owned.ok) return noStore(owned.response);
   try {
     const today = kstDateOf(new Date());
@@ -124,10 +128,14 @@ export async function handleExplorerTeacherStudent(
   if (access.response) return noStore(access.response);
   const parsed = idParamSchema.safeParse(await context.params);
   if (!parsed.success) return noStore(validationError(parsed.error));
-  const owned = await requireOwnedStudent(parsed.data.id, access.account);
+  const owned = await requireOwnedStudent(
+    parsed.data.id,
+    access.account,
+    "progress:read",
+  );
   if (!owned.ok) return noStore(owned.response);
   try {
-    const student = await loadCourseStudent(parsed.data.id);
+    const student = await loadCourseStudent(parsed.data.id, owned.data.classId);
     if (!student) return noStore(notFoundError("학생"));
     const today = kstDateOf(new Date());
     const saved = await readSrsState(student.id);

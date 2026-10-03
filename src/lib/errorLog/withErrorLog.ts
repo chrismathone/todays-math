@@ -351,6 +351,12 @@ export function withErrorLog<H extends RouteHandler>(
         handler(...args),
       )) as Awaited<ReturnType<H>>;
     } catch (error) {
+      if (error instanceof Error && error.name === "ClassAccessDenied") {
+        return Response.json(
+          { error: { code: "FORBIDDEN", message: error.message } },
+          { status: 403 },
+        ) as Awaited<ReturnType<H>>;
+      }
       const info = { ...base(), status: 500 };
       if (!isFrameworkSignal(error) && admit(info, notes, args[0])) {
         schedule(async () =>

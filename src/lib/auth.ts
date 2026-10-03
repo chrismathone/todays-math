@@ -37,6 +37,11 @@
  */
 import { compare } from "bcryptjs";
 import NextAuth, { type DefaultSession } from "next-auth";
+import {
+  managedLoginAllowed,
+  isManagedIdentity,
+} from "@/lib/eywa/managedAccounts";
+import { authorizeManagedSso, EYWA_V2_PROVIDER } from "@/lib/eywa/managedSso";
 // ⚠️ 값 없는(type-only) import지만 제거하면 안 된다 — 아래 `declare module "next-auth/jwt"`
 //    보강이 tsc(moduleResolution: bundler)에서 "module cannot be found"(TS2664)로 실패한다.
 //    TS가 서브패스 exports 대상 모듈을 증강하려면 해당 모듈을 먼저 실제로 import해 알고
@@ -114,9 +119,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         const { email, password } = parsed.data;
 
-        const user = await db.user.findUnique({ where: { email } });
+        let user = await db.user.findUnique({ where: { email } });
         // passwordHash가 없는 레코드(과거 구글 가입자 잔존분)는 로그인시키지 않는다.
-        if (!user?.passwordHash || user.deletedAt || user.suspendedAt) {
+        if (
+          !user?.passwordHash ||
+          user.deletedAt ||
+          user.authSource === "eywa"
+        ) {
           return null;
         }
 
@@ -129,6 +138,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           });
           return null;
         }
+
+        if (!(await managedLoginAllowed(user.id, true))) return null;
+        user = await db.user.findUnique({ where: { id: user.id } });
+        if (
+          !user ||
+          user.suspendedAt ||
+          user.manualSuspendedAt ||
+          user.deletedAt
+        )
+          return null;
 
         await recordAudit({
           userId: user.id,
@@ -174,7 +193,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return { id: outcome.account.id };
       },
     }),
-    /** eywa 자동 로그인 — `sub` 로 연결된 계정만, 가입 없음(머리말 «eywa 자동 로그인»). */
+    Credentials({
+      id: EYWA_V2_PROVIDER,
+      name: "eywa-managed",
+      credentials: { ticket: { type: "text" } },
+      authorize: (credentials) => authorizeManagedSso(credentials?.ticket),
+    }),
+    /** Legacy SSO remains available only outside managed identities. */
     Credentials({
       id: EYWA_SSO_PROVIDER_ID,
       name: "eywa",
@@ -185,8 +210,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         authorizeEywaSso(credentials?.token, {
           ...eywaSsoOptionsFromEnv(),
           // 🔴 eywa 사용자 id 로만 찾는다 — 이메일로 찾지 않는다(eywa 이메일은 본인 확인 값이 아니다)
-          findLinkedUser: (eywaUserId) =>
-            db.user.findUnique({
+          findLinkedUser: async (eywaUserId) => {
+            const linked = await db.user.findUnique({
               where: { eywaUserId },
               select: {
                 id: true,
@@ -198,7 +223,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 suspendedAt: true,
                 sessionVersion: true,
               },
-            }),
+            });
+            if (linked && (await isManagedIdentity(linked.id, eywaUserId)))
+              return null;
+            return linked;
+          },
           audit: (entry) => recordAudit(entry),
         }),
     }),
@@ -220,6 +249,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
       const id = typeof token.id === "string" ? token.id : token.sub;
       if (!id) return null;
+      if (!(await managedLoginAllowed(id))) return null;
       // Authorization changes must apply to existing sessions, not only a future login.
       // Claims submitted by useSession().update are never trusted here.
       const current = await db.user.findUnique({

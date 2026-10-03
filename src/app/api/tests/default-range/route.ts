@@ -1,3 +1,4 @@
+import { accessibleTestsWhere } from "@/lib/classAccess";
 /**
  * GET /api/tests/default-range — 확인테스트가 **손대지 않아도 맞는** 범위.
  *
@@ -15,7 +16,6 @@ import {
 } from "@/contracts/test.contract";
 import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { resolveDefaultReviewRange } from "@/lib/generator/defaultReviewRange";
 import { resolveRange } from "@/lib/generator/resolveRange";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
@@ -77,13 +77,13 @@ async function handleGet(request: NextRequest) {
     units,
   ] = await Promise.all([
     db.progress.findMany({
-      where: { classId, studentId: null },
+      where: { retiredAt: null, classId, studentId: null },
       orderBy: LATEST_FIRST,
       take: 1,
     }),
     studentId
       ? db.progress.findMany({
-          where: { classId, studentId },
+          where: { retiredAt: null, classId, studentId },
           orderBy: LATEST_FIRST,
           take: 1,
         })
@@ -93,18 +93,18 @@ async function handleGet(request: NextRequest) {
     //    정렬 대신 id 만 받아 순수 함수가 고르게 한다. 한 학기 이력이 수백 행이라
     //    uuid 하나씩이면 무겁지 않다.
     db.progress.findMany({
-      where: { classId, studentId: null },
+      where: { retiredAt: null, classId, studentId: null },
       select: { unitId: true },
     }),
     studentId
       ? db.progress.findMany({
-          where: { classId, studentId },
+          where: { retiredAt: null, classId, studentId },
           select: { unitId: true },
         })
       : Promise.resolve([]),
     db.test.findMany({
       where: {
-        ...ownedRowsWhere(session),
+        ...(await accessibleTestsWhere(session)),
         classId,
         studentId: null,
         testType: "review",
@@ -116,7 +116,7 @@ async function handleGet(request: NextRequest) {
     studentId
       ? db.test.findMany({
           where: {
-            ...ownedRowsWhere(session),
+            ...(await accessibleTestsWhere(session)),
             classId,
             studentId,
             testType: "review",

@@ -18,7 +18,7 @@
  * 형식(요일·차시 수·날짜)도, 없는 차시도 422 `VALIDATION_ERROR` 에 칸 이름을 싣는다(브리프 §3).
  * 없는 차시를 DB 에 맡기면 FK(Restrict)가 500 으로 터진다 — 넣기 전에 본다.
  */
-import type { ProgressPlan as ProgressPlanRow } from "@prisma/client";
+import type { Prisma, ProgressPlan as ProgressPlanRow } from "@prisma/client";
 import type { z, ZodError } from "zod";
 
 import type {
@@ -36,6 +36,8 @@ import {
 import { loadLastTeachableUnitId } from "@/lib/daily/teachableBoundary";
 import type { ProgressPlanRule } from "@/lib/daily/progressPlan";
 import { db } from "@/lib/db";
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
+import type { ScopeViewer } from "@/lib/ownerScope";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 const isoDay = (value: Date): string => value.toISOString().slice(0, 10);
@@ -144,12 +146,15 @@ function toPlanData(
 /** 반 계획이면 `studentId: null`, 학생 계획이면 그 학생 — 한 줄을 찾는 조건. */
 export type PlanTarget = { classId: string; studentId: string | null };
 
-export function findPlan(target: PlanTarget) {
-  return db.progressPlan.findFirst({
+export function findPlan(
+  target: PlanTarget,
+  client: Prisma.TransactionClient = db,
+) {
+  return client.progressPlan.findFirst({
     where:
       target.studentId === null
         ? { classId: target.classId, studentId: null }
-        : { studentId: target.studentId },
+        : { studentId: target.studentId, classId: target.classId },
   });
 }
 
@@ -171,37 +176,73 @@ export function planCreateData(
 }
 
 /** 넣기 또는 덮어쓰기. `created` 가 참이면 새 행(201). */
+async function authorizePlanWrite(
+  tx: Prisma.TransactionClient,
+  viewer: ScopeViewer,
+  target: PlanTarget,
+) {
+  await assertClassWrite(tx, viewer, target.classId, "progress:write");
+  if (target.studentId)
+    await assertStudentEnrollment(tx, target.studentId, target.classId);
+}
+
 export async function putPlan(
   target: PlanTarget,
   input: ProgressPlanWriteRequest,
+  viewer: ScopeViewer,
 ): Promise<{ row: ProgressPlanRow; created: boolean }> {
-  const data = toPlanData(input);
-  const overwrite = (id: string) =>
-    db.progressPlan.update({
-      where: { id },
-      // 학생 계획은 학생의 **지금** 반을 따른다.
-      data: { ...data, classId: target.classId },
+  const attempt = () =>
+    db.$transaction(async (tx) => {
+      await authorizePlanWrite(tx, viewer, target);
+      const existing = await findPlan(target, tx);
+      if (existing)
+        return {
+          row: await tx.progressPlan.update({
+            where: { id: existing.id },
+            data: toPlanData(input),
+          }),
+          created: false,
+        };
+      return {
+        row: await tx.progressPlan.create({
+          data: planCreateData(target, input),
+        }),
+        created: true,
+      };
     });
-
-  const existing = await findPlan(target);
-  if (existing) return { row: await overwrite(existing.id), created: false };
-
   try {
-    const row = await db.progressPlan.create({
-      data: planCreateData(target, input),
-    });
-    return { row, created: true };
+    return await attempt();
   } catch (error) {
-    // 동시에 두 요청이 «없음»을 봤다 — unique 가 한쪽을 막았다. 막힌 쪽은 고쳐 쓴다.
+    // PostgreSQL aborts the losing transaction on a unique conflict. Retry in a fresh one.
     if (!isPrismaErrorCode(error, "P2002")) throw error;
-    const raced = await findPlan(target);
-    if (!raced) throw error;
-    return { row: await overwrite(raced.id), created: false };
+    return attempt();
   }
 }
 
-export function patchPlan(id: string, input: ProgressPlanPatchRequest) {
-  return db.progressPlan.update({ where: { id }, data: toPlanData(input) });
+export function patchPlan(
+  id: string,
+  input: ProgressPlanPatchRequest,
+  target: PlanTarget,
+  viewer: ScopeViewer,
+) {
+  return db.$transaction(async (tx) => {
+    await authorizePlanWrite(tx, viewer, target);
+    return tx.progressPlan.update({
+      where: { id, ...target },
+      data: toPlanData(input),
+    });
+  });
+}
+
+export function deletePlan(
+  id: string,
+  target: PlanTarget,
+  viewer: ScopeViewer,
+) {
+  return db.$transaction(async (tx) => {
+    await authorizePlanWrite(tx, viewer, target);
+    return tx.progressPlan.delete({ where: { id, ...target } });
+  });
 }
 
 // ─────────────────────────────────────────────
@@ -259,12 +300,12 @@ export async function loadPlanSchedule(args: {
       },
     }),
     db.progress.findMany({
-      where: { classId, studentId: null },
+      where: { retiredAt: null, classId, studentId: null },
       select: PROGRESS_SELECT,
     }),
     student
       ? db.progress.findMany({
-          where: { studentId: student.id },
+          where: { retiredAt: null, studentId: student.id, classId },
           select: PROGRESS_SELECT,
         })
       : Promise.resolve([] as ProgressPick[]),

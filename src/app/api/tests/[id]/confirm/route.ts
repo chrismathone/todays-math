@@ -1,3 +1,4 @@
+import { accessibleTestsWhere, assertClassWrite } from "@/lib/classAccess";
 /**
  * POST /api/tests/{id}/confirm — 테스트 확정 (draft → confirmed).
  * 대응 계약: src/contracts/test.contract.ts
@@ -14,7 +15,6 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
-import { ownedRowsWhere } from "@/lib/ownerScope";
 import { requireOwnedTest } from "@/lib/ownership";
 import { serializeTest } from "@/lib/serializers";
 import { getSessionUser } from "@/lib/session";
@@ -30,16 +30,24 @@ async function handlePost(_request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedTest(id, session);
+  const owned = await requireOwnedTest(id, session, "test:write");
   if (!owned.ok) return owned.response;
 
   if (owned.data.status !== "draft") {
     return jsonError("CONFLICT", "초안 테스트만 확정할 수 있습니다.", 409);
   }
 
-  const result = await db.test.updateMany({
-    where: { id, ...ownedRowsWhere(session), status: "draft" },
-    data: { status: "confirmed" },
+  const result = await db.$transaction(async (tx) => {
+    if (!owned.data.predictionRunId)
+      await assertClassWrite(tx, session, owned.data.classId, "test:write");
+    return tx.test.updateMany({
+      where: {
+        id,
+        ...(await accessibleTestsWhere(session, "test:write")),
+        status: "draft",
+      },
+      data: { status: "confirmed" },
+    });
   });
   if (result.count === 0) {
     return jsonError("CONFLICT", "초안 테스트만 확정할 수 있습니다.", 409);

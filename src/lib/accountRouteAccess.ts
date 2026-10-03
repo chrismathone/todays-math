@@ -85,11 +85,14 @@ export function accountRouteAllowed(
     under(path, "/api/account") ||
     // eywa 연결 확인 화면(D-139 ⑹) — SSO 가 승인 대기 계정도 들이므로 연결도 승인 전에 연다. 연결 API 는 위 줄
     path === "/account/eywa-link" ||
+    path === "/account/eywa-managed" ||
     // 브라우저 오류 보고 — 승인 전·메뉴가 없는 계정의 화면 오류도 와야 한다(오류 기록 2026-09-22). 받는 쪽이 양을 묶는다
     (method === "POST" && path === "/api/logs/client")
   )
     return true;
   if (account.approvalStatus !== "approved") return false;
+  if (path === "/admin/eywa-sync" || path === "/api/admin/eywa-sync")
+    return account.isAdmin;
   if (under(path, "/admin") || under(path, "/api/admin"))
     return account.isSuperAdmin === true;
   if (under(path, "/branch")) return account.isAdmin;

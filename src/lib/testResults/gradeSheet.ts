@@ -31,6 +31,11 @@ import {
 import { jsonError, jsonOk } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { requireOwnedTest } from "@/lib/ownership";
+import {
+  assertClassWrite,
+  assertStudentEnrollment,
+  studentsInClassWhere,
+} from "@/lib/classAccess";
 import { predictStudentScore } from "@/lib/predictor/predictStudentScore";
 import type { SessionUser } from "@/lib/session";
 import { buildAnalysisReport } from "@/lib/testResults/buildAnalysisReport";
@@ -51,14 +56,14 @@ const DRAFT_MESSAGE = "초안 시험지는 채점할 수 없습니다. 먼저 �
  */
 async function loadRoster(test: { classId: string; studentId: string | null }) {
   if (test.studentId) {
-    const one = await db.student.findUnique({
-      where: { id: test.studentId },
+    const one = await db.student.findFirst({
+      where: { id: test.studentId, ...studentsInClassWhere(test.classId) },
       select: { id: true, name: true },
     });
     return one ? [one] : [];
   }
   return db.student.findMany({
-    where: { classId: test.classId },
+    where: studentsInClassWhere(test.classId),
     select: { id: true, name: true },
     orderBy: { createdAt: "asc" },
   });
@@ -81,7 +86,7 @@ async function loadProblems(testId: string) {
 // ─────────────────────────────────────────────
 
 export async function loadGradeSheet(session: SessionUser, testId: string) {
-  const owned = await requireOwnedTest(testId, session);
+  const owned = await requireOwnedTest(testId, session, "test:read");
   if (!owned.ok) return owned.response;
   if (owned.data.status === "draft") {
     return jsonError("VALIDATION_ERROR", DRAFT_MESSAGE, 422);
@@ -172,7 +177,7 @@ export async function saveGradingMarks(
   testId: string,
   input: GradeSubmitRequest,
 ) {
-  const owned = await requireOwnedTest(testId, session);
+  const owned = await requireOwnedTest(testId, session, "test:write");
   if (!owned.ok) return owned.response;
   if (owned.data.status === "draft") {
     return jsonError("VALIDATION_ERROR", DRAFT_MESSAGE, 422);
@@ -189,11 +194,8 @@ export async function saveGradingMarks(
     .map((e) => e.studentId)
     .filter((id) => !rosterIds.has(id));
   if (strangers.length > 0) {
-    const named = await db.student.findMany({
-      where: { id: { in: strangers } },
-      select: { id: true, name: true },
-    });
-    const byId = new Map(named.map((s) => [s.id, s.name] as const));
+    // Do not disclose another branch's student name in a validation response.
+    const byId = new Map<string, string>();
     return jsonError(
       "VALIDATION_ERROR",
       `이 시험지의 대상 학생이 아닙니다: ${strangers
@@ -261,7 +263,11 @@ export async function saveGradingMarks(
   // 🔴 한 트랜잭션 — 한 학생에서 실패하면 **아무것도 남지 않는다.**
   //    반쪽 채점이 남으면 다음 열람에서 「누가 남았나」가 거짓이 된다.
   await db.$transaction(async (tx) => {
+    if (!owned.data.predictionRunId)
+      await assertClassWrite(tx, session, owned.data.classId, "test:write");
     for (const row of plan) {
+      if (!owned.data.predictionRunId)
+        await assertStudentEnrollment(tx, row.student.id, owned.data.classId);
       if (row.absent) {
         // 결시 — 점수도 응답도 리포트도 만들지 않는다. 남기는 것은 «안 봤다»는 사실 하나다.
         await tx.testResult.create({

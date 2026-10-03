@@ -33,8 +33,18 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedStudent(id, session);
+  const owned = await requireOwnedStudent(id, session, "student:manage");
   if (!owned.ok) return owned.response;
+  if (owned.data.eywaBindingId)
+    return Response.json(
+      {
+        error: {
+          code: "RECORDS_RETAINED",
+          message: "연동 명단과 기록은 에이와에서 관리합니다.",
+        },
+      },
+      { status: 409 },
+    );
 
   const body = await request.json().catch(() => undefined);
   const parsed = studentUpdateRequestSchema.safeParse(body);
@@ -73,8 +83,18 @@ async function handleDelete(request: NextRequest, { params }: RouteContext) {
   const idResult = idParamSchema.safeParse({ id });
   if (!idResult.success) return validationError(idResult.error);
 
-  const owned = await requireOwnedStudent(id, session);
+  const owned = await requireOwnedStudent(id, session, "student:manage");
   if (!owned.ok) return owned.response;
+  if (owned.data.eywaBindingId)
+    return Response.json(
+      {
+        error: {
+          code: "RECORDS_RETAINED",
+          message: "연동 명단과 기록은 에이와에서 관리합니다.",
+        },
+      },
+      { status: 409 },
+    );
 
   try {
     await db.student.delete({ where: { id } });

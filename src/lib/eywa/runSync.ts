@@ -21,6 +21,7 @@
 import { createHash } from "node:crypto";
 
 import type { PrismaClient } from "@prisma/client";
+import { assertLegacyWriterAllowed } from "./legacyFence";
 
 import { DEFAULT_DIFFICULTY_RATIO } from "@/contracts/difficulty";
 import { createEywaClient } from "@/lib/eywa/client";
@@ -102,6 +103,7 @@ export async function runEywaSync(opts: {
   writeLedger: (runId: string, payload: unknown) => Promise<void> | void;
 }): Promise<EywaSyncSummary> {
   const { prisma, apply } = opts;
+  await assertLegacyWriterAllowed(prisma);
   const runId = `eywa-sync-${new Date().toISOString().replace(/[:.]/g, "-")}`;
 
   // ── ① 수집·검증 ─────────────────────────────────────────────
@@ -134,7 +136,7 @@ export async function runEywaSync(opts: {
 
   const owner = await prisma.user.findUnique({
     where: { email: process.env.EYWA_SYNC_OWNER_EMAIL ?? "" },
-    select: { id: true, email: true },
+    select: { id: true, email: true, branchId: true },
   });
   if (!owner)
     throw new Error(
@@ -284,7 +286,11 @@ export async function runEywaSync(opts: {
 
   // ── ③ 원장 (적용 전에, 회차 단위 sink 로) ─────────────────────
   const beforeStudents = await prisma.student.findMany({
-    where: { eywaStudentId: { not: null } },
+    where: {
+      eywaStudentId: { not: null },
+      eywaBindingId: null,
+      class: { userId: owner.id, eywaClassId: { in: [...허용] } },
+    },
     select: {
       id: true,
       eywaStudentId: true,
@@ -294,13 +300,24 @@ export async function runEywaSync(opts: {
     },
   });
   const beforeClasses = await prisma.class.findMany({
-    where: { eywaClassId: { not: null } },
+    where: {
+      eywaClassId: { in: [...허용] },
+      eywaBindingId: null,
+      userId: owner.id,
+    },
     select: { id: true, eywaClassId: true, name: true, grade: true },
   });
   // 진도는 «전체 삭제 → createMany»로 적용하므로(행별 upsert 13,571번은 원격
   // 왕복 ~17분 — 트랜잭션 타임아웃을 넘는다) 원장에 **행 전체**를 남긴다.
   const beforeProgressRows = await prisma.progress.findMany({
-    where: { eywaReportId: { not: null } },
+    where: {
+      eywaReportId: { not: null },
+      class: {
+        userId: owner.id,
+        eywaBindingId: null,
+        eywaClassId: { in: [...허용] },
+      },
+    },
     select: {
       eywaReportId: true,
       unitId: true,
@@ -338,11 +355,18 @@ export async function runEywaSync(opts: {
   await prisma.$transaction(
     async (tx) => {
       await tx.$executeRawUnsafe(`select pg_advisory_xact_lock(${LOCK_KEY})`);
+      await assertLegacyWriterAllowed(tx, owner.branchId);
 
       // 반 upsert — grade 는 최빈값. userId 는 생성 때만(소유 이관은 수동).
       const ourClassId = new Map<string, string>();
       for (const [eywaClassId, info] of classMembers) {
         const grade = classGradeOf(info.grades) ?? "중1";
+        const previous = await tx.class.findUnique({ where: { eywaClassId } });
+        if (
+          previous &&
+          (previous.eywaBindingId || previous.userId !== owner.id)
+        )
+          throw new Error("legacy_class_fenced");
         const row = await tx.class.upsert({
           where: { eywaClassId },
           create: {
@@ -350,6 +374,7 @@ export async function runEywaSync(opts: {
             name: info.name,
             grade,
             userId: owner.id,
+            branchId: owner.branchId,
             difficultyRatio: DEFAULT_DIFFICULTY_RATIO,
           },
           update: { name: info.name, grade },
@@ -371,10 +396,21 @@ export async function runEywaSync(opts: {
           eywaLastReportDate: last ? new Date(`${last.date}T00:00:00Z`) : null,
           eywaLastReportText: last?.text ?? null,
         };
+        const previousStudent = await tx.student.findUnique({
+          where: { eywaStudentId: student.id },
+          include: { class: true },
+        });
+        if (
+          previousStudent &&
+          (previousStudent.eywaBindingId ||
+            previousStudent.class.userId !== owner.id)
+        )
+          throw new Error("legacy_student_fenced");
         const row = await tx.student.upsert({
           where: { eywaStudentId: student.id },
           create: {
             eywaStudentId: student.id,
+            branchId: owner.branchId,
             name: student.name,
             classId: ourClassId.get(primary.id)!,
             useIndividualProgress: true,
@@ -402,6 +438,12 @@ export async function runEywaSync(opts: {
       const withdrawn = await tx.student.updateMany({
         where: {
           eywaStudentId: { not: null, notIn: [...rosterIds] },
+          eywaBindingId: null,
+          class: {
+            userId: owner.id,
+            eywaBindingId: null,
+            eywaClassId: { in: [...허용] },
+          },
           eywaWithdrawnAt: null,
         },
         data: { eywaWithdrawnAt: new Date() },
@@ -412,7 +454,14 @@ export async function runEywaSync(opts: {
       // 소비자는 살아 있는 행만 읽으므로 행 id 가 갈려도 안전하다. 지워진·바뀐
       // 보고서의 대사(grok #9)도 전체 교체가 자동으로 해결한다.
       const deleted = await tx.progress.deleteMany({
-        where: { eywaReportId: { not: null } },
+        where: {
+          eywaReportId: { not: null },
+          class: {
+            userId: owner.id,
+            eywaBindingId: null,
+            eywaClassId: { in: [...허용] },
+          },
+        },
       });
       const rowsToCreate: Array<{
         eywaReportId: string;
@@ -499,7 +548,12 @@ export async function runEywaSync(opts: {
 
   // 검산 — 완료 조건 §7: 연계 학생 수 == roster.
   const linked = await prisma.student.count({
-    where: { eywaStudentId: { not: null }, eywaWithdrawnAt: null },
+    where: {
+      eywaStudentId: { not: null },
+      eywaWithdrawnAt: null,
+      eywaBindingId: null,
+      class: { userId: owner.id, eywaClassId: { in: [...허용] } },
+    },
   });
   appliedCounts.linkedAfter = linked;
   // ⚠️ 예전엔 `roster.total`(수학 재원 **전체**)과 댔다. 범위를 좁힌 뒤 그대로 두면

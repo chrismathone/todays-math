@@ -113,7 +113,15 @@ export const proxy = auth(async (req) => {
    * 누른 사람을 표의 계정으로 **바꿔** 들이는 곳이라, 학생 갈래나 승인 대기 갈래에 걸리면 안 된다.
    * 표가 틀리면 라우트가 `/login` 으로 돌려보낸다 — 이 경로가 주는 것은 로그인 시도뿐이다.
    */
-  if (req.method === "GET" && pathname === EYWA_SSO_PATH)
+  if (
+    (req.method === "GET" &&
+      (pathname === EYWA_SSO_PATH ||
+        pathname === "/api/sso/eywa/v2/start" ||
+        pathname === "/api/sso/eywa/v2/callback" ||
+        pathname === "/account/eywa-switch")) ||
+    (req.method === "POST" && pathname === "/api/sso/eywa/v2/complete") ||
+    pathname.startsWith("/api/integrations/eywa/v2/")
+  )
     return NextResponse.next();
   /**
    * 🔴 학생 세션 — **원장 갈래보다 먼저** 가둔다 (D-124 ⑶ · D-125 ⑷).

@@ -116,6 +116,20 @@ async function handlePost(request: NextRequest) {
     return finish(request, failure("NOT_FOUND", EYWA_LINK_MESSAGES.expired));
   }
   const sub = pending.sub;
+  if (
+    await db.eywaManagedAccount.findFirst({
+      where: {
+        OR: [
+          { currentUserId: me },
+          { sourceUserId: sub, status: { not: "ended" } },
+        ],
+      },
+    })
+  )
+    return finish(
+      request,
+      failure("FORBIDDEN", "새 연동 연결 관리 화면에서 확인해 주세요."),
+    );
   const deny = async (reason: string, message: string) => {
     await recordAudit(
       linkAudit(me, "denied", { action: "link", eywaUserId: sub, reason }),
@@ -170,6 +184,11 @@ async function handleDelete(request: NextRequest) {
   const checked = await gate(request);
   if (checked.response) return checked.response;
   const me = checked.account.id;
+  if (await db.eywaManagedAccount.findUnique({ where: { currentUserId: me } }))
+    return failure(
+      "FORBIDDEN",
+      "연동 관리 계정은 여기서 연결을 해제할 수 없습니다.",
+    );
   const row = await db.user.findUnique({
     where: { id: me },
     select: { eywaUserId: true },

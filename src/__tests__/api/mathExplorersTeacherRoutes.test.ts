@@ -221,7 +221,9 @@ describe("GET /api/classes/{id}/math-srs/explorers — 반 학생마다 요약",
       ["다온", true],
     ]);
     expect(world.studentWhere).toMatchObject({
-      classId: ids.classId,
+      OR: expect.arrayContaining([
+        expect.objectContaining({ classId: ids.classId, eywaBindingId: null }),
+      ]),
       eywaWithdrawnAt: null,
     });
     const [studied, noAccount, fresh, newAccount] = data.students;

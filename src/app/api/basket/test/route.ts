@@ -38,6 +38,7 @@ import {
 } from "@/lib/apiResponse";
 import { renumberForTest } from "@/lib/basket/readBasket";
 import { db } from "@/lib/db";
+import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
 import { personalViewer } from "@/lib/ownerScope";
 import { requireOwnedClass, requireOwnedStudentInClass } from "@/lib/ownership";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
@@ -55,7 +56,7 @@ async function handlePost(request: NextRequest) {
 
   // 🔴 장바구니는 개인 작업물이다(D-130 ⑶) — 관리자여도 **자기 반**에만 만든다. 넓히려면 리드 결정.
   const viewer = personalViewer(session);
-  const owned = await requireOwnedClass(input.classId, viewer);
+  const owned = await requireOwnedClass(input.classId, viewer, "test:write");
   if (!owned.ok) return owned.response;
   if (input.studentId) {
     const studentOwned = await requireOwnedStudentInClass(
@@ -137,6 +138,9 @@ async function handlePost(request: NextRequest) {
   }
 
   const created = await db.$transaction(async (tx) => {
+    await assertClassWrite(tx, viewer, input.classId, "test:write");
+    if (input.studentId)
+      await assertStudentEnrollment(tx, input.studentId, input.classId);
     const test = await tx.test.create({
       data: {
         userId: session.id,
