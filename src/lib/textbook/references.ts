@@ -4,6 +4,7 @@ import {
 } from "@/contracts/textbookExchange.contract";
 import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
 import { composeFrozenTextbookBlank } from "@/lib/concept-blank/textbookPrint";
+import { checkChoiceFigureIndex } from "@/lib/problem/choiceFigureIndex";
 
 export interface ReferenceOptions {
   mode?: "draft" | "archive" | "publish";
@@ -135,15 +136,25 @@ export function validateTextbookReferences(
   );
   e.snapshots.forEach((s, i) => {
     const p = ["snapshots", i];
+    const mappedChoices = new Set<number>();
     s.payload.figures.forEach((f, fi) => {
       image(f.assetId, [...p, "payload", "figures", fi], f.sha256);
       if (f.choiceIndex === null)
         add(
           "FIGURE_CHOICE_UNKNOWN",
-          "그림의 본문·보기 대응을 확인하세요.",
+          "그림의 본문·보기 대응 정보가 없습니다. 보기 번호를 추정하지 않고 원본 순서의 별도 그림으로 표시합니다.",
           [...p, "payload", "figures", fi],
-          publish ? "error" : "warning",
+          "warning",
         );
+      else if (f.choiceIndex > 0) {
+        if (mappedChoices.has(f.choiceIndex))
+          add(
+            "FIGURE_CHOICE_DUPLICATE",
+            `여러 그림이 같은 ${f.choiceIndex}번 보기를 가리킵니다. 원본 대응을 확인하세요.`,
+            [...p, "payload", "figures", fi],
+          );
+        mappedChoices.add(f.choiceIndex);
+      }
     });
     if (s.rawSource) {
       const raw = s.rawSource,
@@ -151,23 +162,27 @@ export function validateTextbookReferences(
       for (const [name, array, multiplier] of [
         ["figureDims", raw.figureDims, 2],
         ["figureSourceMm", raw.figureSourceMm, 1],
-        ["choiceFigureIndex", raw.choiceFigureIndex, 1],
       ] as const) {
         if (
           array.length &&
           (array.length !== count * multiplier ||
-            array.some(
-              (n) =>
-                !Number.isFinite(n) ||
-                (name === "choiceFigureIndex"
-                  ? !Number.isInteger(n) || n < 0
-                  : n <= 0),
-            ))
+            array.some((n) => !Number.isFinite(n) || n <= 0))
         )
           add(
             "RAW_FIGURE_ALIGNMENT",
             `원본 ${name} 배열을 보존했으나 대응·치수가 잘못되어 조판할 수 없습니다.`,
             [...p, "rawSource", name],
+          );
+      }
+      // [] means unknown. A malformed explicit map must not become publishable
+      // merely because capture preserved it and projected its links to null.
+      if (raw.choiceFigureIndex.length) {
+        const mapping = checkChoiceFigureIndex(count, raw.choiceFigureIndex);
+        if (!mapping.ok)
+          add(
+            "RAW_FIGURE_ALIGNMENT",
+            `원본 choiceFigureIndex 배열의 대응이 잘못되었습니다: ${mapping.reason}. 원본 배열은 보존합니다.`,
+            [...p, "rawSource", "choiceFigureIndex"],
           );
       }
       if (raw.figureSvgAssetId) {

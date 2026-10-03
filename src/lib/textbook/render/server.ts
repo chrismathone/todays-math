@@ -6,6 +6,8 @@ import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
 import { launchExportBrowser } from "@/lib/export/pdfServer";
 import {
   assertTextbookIntegrity,
+  TextbookIntegrityError,
+  validateTextbookIntegrity,
   type ReadTextbookAsset,
 } from "../integrity.server";
 import { sha256 } from "../hash.server";
@@ -14,7 +16,7 @@ import {
   A4,
   alignTextbookSpreads,
   paginateTextbookSections,
-  fitTextbookFrozenPages,
+  studentPageMapFromPages,
   type BlockMeasurement,
   type TextbookPage,
 } from "../layout/paginate";
@@ -56,8 +58,8 @@ export interface RenderTextbookChunkInput {
   browser?: Browser;
   mode?: "publish" | "draft";
   maxPages?: number;
-  /** Answers reuse this server-owned verified student chunk. No submitted placement JSON. */
-  frozenPages?: readonly TextbookPage[];
+  /** Verified server-owned student pages supply source labels only; answers paginate independently. */
+  studentPages?: readonly TextbookPage[];
   onProgress?: (
     phase: "integrity" | "measuring" | "layout" | "pdf" | "qr",
   ) => void;
@@ -262,14 +264,18 @@ export async function renderTextbookChunk(
   if (input.signal?.aborted) throw new Error("Textbook render aborted");
   const { exchange, officialOrigin } = input;
   input.onProgress?.("integrity");
-  await assertTextbookIntegrity(exchange, {
+  const integrityIssues = await validateTextbookIntegrity(exchange, {
     mode: input.mode ?? "publish",
     officialOrigin,
     requirePageMap: false,
     verifyManifest: false,
     readAsset: input.readAsset,
   });
-  const wholeModel = createTextbookRenderModel(exchange, input.variant);
+  const failures = integrityIssues.filter(
+    (issue) => issue.severity === "error",
+  );
+  if (failures.length) throw new TextbookIntegrityError(failures);
+  let wholeModel = createTextbookRenderModel(exchange, input.variant);
   if (
     !input.sectionIndices.length ||
     input.sectionIndices.length > 8 ||
@@ -282,6 +288,19 @@ export async function renderTextbookChunk(
     )
   )
     throw new Error("Render chunks require 1–8 contiguous valid sections");
+  if (input.studentPages) {
+    if (input.variant !== "answers")
+      throw new Error("Student page references are only accepted for answers");
+    const pageMap = studentPageMapFromPages(
+      input.sectionIndices.map((i) => wholeModel.sections[i]),
+      input.studentPages,
+      exchange.config,
+    );
+    wholeModel = createTextbookRenderModel(
+      { ...exchange, pageMap },
+      input.variant,
+    );
+  }
   const model = {
     ...wholeModel,
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
@@ -344,22 +363,20 @@ export async function renderTextbookChunk(
       exchange.config.print.coverMode === "included" &&
       input.firstPhysicalPageIndex ===
         exchange.config.print.firstPhysicalPageIndex;
-    const layout = input.frozenPages
-      ? fitTextbookFrozenPages(
-          model.sections,
-          measured,
-          input.frozenPages,
-          model.config,
-          input.firstPhysicalPageIndex,
-        )
-      : paginateTextbookSections(model.sections, measured, model.config, {
-          firstPhysicalPageIndex: input.firstPhysicalPageIndex,
-          includeCover,
-          previousSectionKey:
-            wholeModel.sections[input.sectionIndices[0] - 1]?.sectionKey,
-          maxPages: input.maxPages ?? 32,
-        });
-    if (!input.frozenPages) alignTextbookSpreads(layout.pages);
+    const layout = paginateTextbookSections(
+      model.sections,
+      measured,
+      model.config,
+      {
+        firstPhysicalPageIndex: input.firstPhysicalPageIndex,
+        includeCover,
+        previousSectionKey:
+          wholeModel.sections[input.sectionIndices[0] - 1]?.sectionKey,
+        maxPages: input.maxPages ?? 32,
+      },
+    );
+    // Writing-space alignment is a student layout constraint, not answer padding.
+    if (input.variant === "student") alignTextbookSpreads(layout.pages);
     const body = layout.pages
       .map((p) => renderPageHtml(p, model, resolver))
       .join("");
@@ -405,7 +422,7 @@ export async function renderTextbookChunk(
       pages: layout.pages,
       qrPlacements,
       qrChecks,
-      issues: layout.issues,
+      issues: [...integrityIssues, ...layout.issues],
       artifactHash: sha256(pdf),
       nextPhysicalPageIndex: layout.nextPhysicalPageIndex,
       metrics: {

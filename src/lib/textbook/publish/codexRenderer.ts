@@ -78,6 +78,8 @@ export const codexRenderer: TextbookRenderer = {
   },
 
   async renderChunk(input) {
+    if (input.variant === "answers" && input.studentCarry === undefined)
+      throw new Error("해설판에는 검증한 학생용 쪽 참조가 필요합니다.");
     const result = await renderTextbookChunk({
       exchange: input.exchange,
       readAsset: input.readAsset,
@@ -86,10 +88,10 @@ export const codexRenderer: TextbookRenderer = {
       firstPhysicalPageIndex: input.firstPhysicalPageIndex,
       variant: input.variant,
       mode: "publish",
-      // 해설은 학생용의 쪽 자리를 그대로 쓴다 — 같은 문항이 같은 쪽에 있어야 쪽 참조가 맞는다
+      // 학생용 묶음은 원문 쪽 참조만 제공한다. 해설은 실제 분량으로 따로 조판한다.
       ...(input.studentCarry === undefined
         ? {}
-        : { frozenPages: chunkCarry(input.studentCarry).pages }),
+        : { studentPages: chunkCarry(input.studentCarry).pages }),
     });
     const carry: ChunkCarry = {
       pages: result.pages,

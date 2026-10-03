@@ -68,8 +68,9 @@ export interface TextbookRenderer {
     firstPhysicalPageIndex: number;
     variant: PublishVariant;
     /**
-     * 해설판을 조판할 때 — **같은 구획 묶음의 학생용 걸음이 남긴 `carry`**. 해설판은 학생용의 쪽 자리를 그대로 쓴다
-     * (같은 문항이 같은 쪽에 있어야 쪽 참조 · QR 이 맞는다). 서버가 걸음 줄에서 읽어 준다 — 요청 본문에서 오지 않는다.
+     * 같은 구획 묶음의 검증한 학생용 `carry`는 원문 쪽 참조만 제공한다.
+     * 해설판은 실제 정답·해설 분량으로 독립 조판하고 자체 QR 위치를 검증한다.
+     * 서버가 걸음 줄에서 읽어 준다 — 요청 본문에서 오지 않는다.
      */
     studentCarry?: unknown;
   }): Promise<RenderedChunk>;
