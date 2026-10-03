@@ -10,9 +10,10 @@ import { z } from "zod";
 
 import { EYWA_LINK_MESSAGES } from "@/contracts/eywaLink.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
-import { recordAudit } from "@/lib/audit";
+import { auditData } from "@/lib/audit";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 type Context = { params: Promise<{ id: string }> };
 
@@ -28,47 +29,77 @@ async function handleDelete(request: Request, context: Context) {
   const { id } = await context.params;
   if (!z.uuid().safeParse(id).success)
     return failure("NOT_FOUND", "사용자를 찾지 못했습니다.", 404);
-  if (await db.eywaManagedAccount.findUnique({ where: { currentUserId: id } }))
-    return failure(
-      "FORBIDDEN",
-      "연동 관리 계정은 여기서 연결을 해제할 수 없습니다.",
-      403,
-    );
-  const target = await db.user.findFirst({
-    where: { id },
-    select: { id: true, isSuperAdmin: true, eywaUserId: true },
-  });
-  if (!target) return failure("NOT_FOUND", "사용자를 찾지 못했습니다.", 404);
-  if (target.isSuperAdmin)
-    return failure(
-      "FORBIDDEN",
-      "최고관리자 계정의 연결은 여기서 해제할 수 없습니다.",
-      403,
-    );
-  const sub = target.eywaUserId;
-  if (!sub) return failure("NOT_FOUND", EYWA_LINK_MESSAGES.notLinked, 404);
-  const changed = await db.user.updateMany({
-    where: { id, isSuperAdmin: false, eywaUserId: sub },
-    data: { eywaUserId: null, eywaLinkedAt: null },
-  });
-  // 옆 라우트(PATCH)의 경주 문구와 같다
-  if (changed.count !== 1)
-    return failure(
+  const conflict = () =>
+    failure(
       "CONFLICT",
       "다른 관리자가 설정을 변경했습니다. 새로고침 후 다시 확인해 주세요.",
       409,
     );
-  await recordAudit({
-    userId: id,
-    actorId: access.account!.id,
-    action: "auth.eywa-unlink",
-    outcome: "success",
-    details: { eywaUserId: sub, by: "admin" },
-  });
-  return Response.json(
-    { data: { unlinked: true } },
-    { headers: { "Cache-Control": "no-store" } },
-  );
+  try {
+    return await db.$transaction(
+      async (tx) => {
+        if (
+          await tx.eywaManagedAccount.findUnique({
+            where: { currentUserId: id },
+          })
+        )
+          return failure(
+            "FORBIDDEN",
+            "연동 관리 계정은 여기서 연결을 해제할 수 없습니다.",
+            403,
+          );
+        const target = await tx.user.findFirst({
+          where: { id },
+          select: {
+            id: true,
+            isSuperAdmin: true,
+            eywaUserId: true,
+            updatedAt: true,
+            branchId: true,
+          },
+        });
+        if (!target)
+          return failure("NOT_FOUND", "사용자를 찾지 못했습니다.", 404);
+        if (target.isSuperAdmin)
+          return failure(
+            "FORBIDDEN",
+            "최고관리자 계정의 연결은 여기서 해제할 수 없습니다.",
+            403,
+          );
+        const sub = target.eywaUserId;
+        if (!sub)
+          return failure("NOT_FOUND", EYWA_LINK_MESSAGES.notLinked, 404);
+        const changed = await tx.user.updateMany({
+          where: {
+            id,
+            isSuperAdmin: false,
+            eywaUserId: sub,
+            updatedAt: target.updatedAt,
+            branchId: target.branchId,
+          },
+          data: { eywaUserId: null, eywaLinkedAt: null },
+        });
+        if (changed.count !== 1) return conflict();
+        await tx.accountAuditLog.create({
+          data: auditData({
+            userId: id,
+            actorId: access.account!.id,
+            action: "auth.eywa-unlink",
+            outcome: "success",
+            details: { eywaUserId: sub, by: "admin" },
+          }),
+        });
+        return Response.json(
+          { data: { unlinked: true } },
+          { headers: { "Cache-Control": "no-store" } },
+        );
+      },
+      { isolationLevel: "Serializable" },
+    );
+  } catch (error) {
+    if (isPrismaErrorCode(error, "P2034")) return conflict();
+    throw error;
+  }
 }
 
 export const DELETE = withErrorLog(

@@ -19,6 +19,9 @@ const state = vi.hoisted(() => ({
   findFirst: vi.fn(),
   updateMany: vi.fn(),
   audits: [] as Record<string, unknown>[],
+  audit: vi.fn(),
+  transaction: vi.fn(),
+  mapping: vi.fn(),
 }));
 
 vi.mock("server-only", () => ({}));
@@ -28,14 +31,12 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
 }));
 vi.mock("@/lib/db", () => ({
   db: {
-    eywaManagedAccount: { findUnique: vi.fn(async () => null) },
+    eywaManagedAccount: { findUnique: state.mapping },
     user: { findFirst: state.findFirst, updateMany: state.updateMany },
     accountAuditLog: {
-      create: vi.fn(async ({ data }: { data: Record<string, unknown> }) => {
-        state.audits.push(data);
-        return data;
-      }),
+      create: state.audit,
     },
+    $transaction: state.transaction,
   },
 }));
 
@@ -76,9 +77,35 @@ beforeEach(() => {
   state.audits.length = 0;
   state.findFirst.mockReset();
   state.updateMany.mockReset();
-  target = { id: TARGET, isSuperAdmin: false, eywaUserId: SUB };
+  target = {
+    id: TARGET,
+    isSuperAdmin: false,
+    eywaUserId: SUB,
+    branchId: null,
+    updatedAt: new Date("2026-10-01T00:00:00Z"),
+  };
   state.findFirst.mockImplementation(async () => target);
   state.updateMany.mockResolvedValue({ count: 1 });
+  state.mapping.mockReset().mockResolvedValue(null);
+  state.audit.mockReset().mockImplementation(async ({ data }) => {
+    state.audits.push(data);
+    return data;
+  });
+  state.transaction.mockReset().mockImplementation(async (run) => {
+    const previous = structuredClone(target),
+      audits = structuredClone(state.audits);
+    try {
+      return await run({
+        eywaManagedAccount: { findUnique: state.mapping },
+        user: { findFirst: state.findFirst, updateMany: state.updateMany },
+        accountAuditLog: { create: state.audit },
+      });
+    } catch (error) {
+      target = previous;
+      state.audits = audits;
+      throw error;
+    }
+  });
 });
 
 describe("관리자 해제", () => {
@@ -87,7 +114,13 @@ describe("관리자 해제", () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toStrictEqual({ data: { unlinked: true } });
     expect(state.updateMany).toHaveBeenCalledWith({
-      where: { id: TARGET, isSuperAdmin: false, eywaUserId: SUB },
+      where: {
+        id: TARGET,
+        isSuperAdmin: false,
+        eywaUserId: SUB,
+        branchId: null,
+        updatedAt: new Date("2026-10-01T00:00:00Z"),
+      },
       data: { eywaUserId: null, eywaLinkedAt: null },
     });
     expect(state.audits).toStrictEqual([
@@ -162,5 +195,39 @@ describe("관리자 해제", () => {
     state.updateMany.mockResolvedValue({ count: 0 });
     expect((await call()).status).toBe(409);
     expect(state.audits).toStrictEqual([]);
+  });
+  it("fences an unlink against concurrent branch/lifecycle changes", async () => {
+    state.updateMany.mockImplementation(async ({ where }) => {
+      target = {
+        ...target,
+        branchId: ADMIN,
+        updatedAt: new Date("2026-10-02T00:00:00Z"),
+      };
+      return {
+        count:
+          where.branchId === target.branchId &&
+          where.updatedAt.getTime() === (target.updatedAt as Date).getTime()
+            ? 1
+            : 0,
+      };
+    });
+    expect((await call()).status).toBe(409);
+    expect(target!.eywaUserId).toBe(SUB);
+    expect(state.audits).toEqual([]);
+  });
+  it("audit failure rolls back the unlink", async () => {
+    state.updateMany.mockImplementation(async () => {
+      target = { ...target, eywaUserId: null };
+      return { count: 1 };
+    });
+    state.audit.mockRejectedValueOnce(new Error("audit unavailable"));
+    await expect(call()).rejects.toThrow("audit unavailable");
+    expect(target!.eywaUserId).toBe(SUB);
+    expect(state.audits).toEqual([]);
+  });
+  it("never unlinks managed mappings", async () => {
+    state.mapping.mockResolvedValue({ currentUserId: TARGET });
+    expect((await call()).status).toBe(403);
+    expect(state.updateMany).not.toHaveBeenCalled();
   });
 });
