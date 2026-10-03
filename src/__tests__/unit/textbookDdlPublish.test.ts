@@ -83,6 +83,38 @@ describe("표 · RLS · 권한", () => {
     expect(control.rows.length).toBeGreaterThan(0);
   });
 
+  it("시각 기본값은 세션 시간대에 기대지 않는다 — 전부 UTC 로 적는다", async () => {
+    const defaults = await db.query<{
+      table_name: string;
+      column_name: string;
+      column_default: string;
+    }>(
+      `SELECT table_name, column_name, column_default FROM information_schema.columns
+        WHERE table_schema = 'public' AND table_name LIKE 'textbook%'
+          AND data_type LIKE 'timestamp%' AND column_default IS NOT NULL`,
+    );
+    expect(defaults.rows.length).toBeGreaterThanOrEqual(17);
+    expect(
+      defaults.rows.filter(
+        (row) => !/AT TIME ZONE 'UTC'/i.test(row.column_default),
+      ),
+    ).toEqual([]);
+
+    // 서울 시간대의 세션에서 기본값으로 넣어도 UTC 벽시계가 적힌다(9시간 밀리지 않는다)
+    await db.query(`SET TIME ZONE 'Asia/Seoul'`);
+    try {
+      const { bookId } = await insertBook(db, world.userA);
+      const { rows } = await db.query<{ drift: number }>(
+        `SELECT abs(extract(epoch FROM ("created_at" - (now() AT TIME ZONE 'UTC'))))::float8 AS drift
+           FROM "textbook" WHERE "id" = $1`,
+        [bookId],
+      );
+      expect(rows[0]!.drift).toBeLessThan(60);
+    } finally {
+      await db.query(`SET TIME ZONE 'UTC'`);
+    }
+  });
+
   it("트리거 함수는 search_path 를 고정한다", async () => {
     const { rows } = await db.query<{
       proname: string;

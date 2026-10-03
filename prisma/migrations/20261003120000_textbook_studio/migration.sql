@@ -10,6 +10,10 @@
 --   · 판본의 자식을 쓰면 **같은 문장에서** 판본 집계 revision 이 오른다(앱이 잊을 수 없다)
 --   · 문항 확정본 · 바이트 · QR 대상 · 보관본은 만든 뒤로 안 바뀐다
 --   · 자식은 같은 판본 · 같은 주인의 행만 가리킨다(복합 FK)
+--
+-- 시각 칸은 전부 시간대 없는 TIMESTAMP(3) 이고 **UTC 벽시계**를 적는다. 기본값도 `(now() AT TIME ZONE 'UTC')` 로 적는다 —
+-- `CURRENT_TIMESTAMP` 는 세션 시간대의 벽시계라, 시간대가 UTC 가 아닌 DB(로컬 Postgres 는 Asia/Seoul 로 뜬다)에서는
+-- 앱이 UTC 로 적는 `updated_at` 과 9시간 어긋난다(2026-10-03 실제 브라우저 검증에서 발견).
 
 -- ─────────────────────────────────────────────
 -- ① 책
@@ -27,7 +31,7 @@ CREATE TABLE "textbook" (
   "visibility" VARCHAR(20) NOT NULL DEFAULT 'private',
   "shared_branch_id" UUID,
   "archived_at" TIMESTAMP(3),
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_pkey" PRIMARY KEY ("id"),
@@ -68,7 +72,7 @@ CREATE TABLE "textbook_edition" (
   "manifest_hash" CHAR(64),
   "published_at" TIMESTAMP(3),
   "retired_at" TIMESTAMP(3),
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_edition_pkey" PRIMARY KEY ("id"),
@@ -106,7 +110,7 @@ CREATE TABLE "textbook_section" (
   "start_policy" VARCHAR(12) NOT NULL,
   "content" JSONB NOT NULL,
   "revision" INTEGER NOT NULL DEFAULT 1,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_section_pkey" PRIMARY KEY ("id"),
@@ -130,7 +134,7 @@ CREATE TABLE "textbook_problem_snapshot" (
   "source_ref" JSONB NOT NULL,
   "problem_id" UUID,
   "source_updated_at" TIMESTAMP(3),
-  "captured_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "captured_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "unit_id" UUID,
   "family_key" TEXT,
   "difficulty" VARCHAR(40),
@@ -199,7 +203,7 @@ CREATE TABLE "textbook_item" (
   "printed_page_label" VARCHAR(40),
   "page_column" SMALLINT,
   "revision" INTEGER NOT NULL DEFAULT 1,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_item_pkey" PRIMARY KEY ("id"),
@@ -232,7 +236,7 @@ CREATE TABLE "textbook_blob" (
   "sha256" CHAR(64) NOT NULL,
   "size" INTEGER NOT NULL,
   "bytes" BYTEA NOT NULL,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_blob_pkey" PRIMARY KEY ("sha256"),
   CONSTRAINT "textbook_blob_sha256_check" CHECK ("sha256" ~ '^[a-f0-9]{64}$'),
@@ -252,7 +256,7 @@ CREATE TABLE "textbook_upload" (
   "size" INTEGER,
   "file_name" VARCHAR(255),
   "completed_at" TIMESTAMP(3),
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_upload_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_upload_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE,
@@ -285,7 +289,7 @@ CREATE TABLE "textbook_asset" (
   "name" VARCHAR(255) NOT NULL,
   "width_px" INTEGER,
   "height_px" INTEGER,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_asset_pkey" PRIMARY KEY ("user_id", "id"),
   CONSTRAINT "textbook_asset_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -337,7 +341,7 @@ CREATE TABLE "textbook_concept" (
   "derived_from_concept_key" VARCHAR(80),
   "frozen" JSONB,
   "revision" INTEGER NOT NULL DEFAULT 1,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_concept_pkey" PRIMARY KEY ("edition_id", "concept_key"),
@@ -374,7 +378,7 @@ CREATE TABLE "textbook_qr_target" (
   "concept_key" VARCHAR(80),
   "state" VARCHAR(10) NOT NULL DEFAULT 'reserved',
   "suspended_at" TIMESTAMP(3),
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "activated_at" TIMESTAMP(3),
 
   CONSTRAINT "textbook_qr_target_pkey" PRIMARY KEY ("id"),
@@ -407,7 +411,7 @@ CREATE TABLE "textbook_video" (
   "provider" VARCHAR(12) NOT NULL,
   "provider_video_id" VARCHAR(20) NOT NULL,
   "title" VARCHAR(120) NOT NULL,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_video_pkey" PRIMARY KEY ("id"),
@@ -432,7 +436,7 @@ CREATE TABLE "textbook_video_binding" (
   "reviewed_at" TIMESTAMP(3),
   "published_at" TIMESTAMP(3),
   "withdrawn_at" TIMESTAMP(3),
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_video_binding_pkey" PRIMARY KEY ("id"),
   -- 남의 확정본에 남의 영상을 걸지 못한다
@@ -469,7 +473,7 @@ CREATE TABLE "textbook_assignment" (
   "expires_at" TIMESTAMP(3),
   "revoked_at" TIMESTAMP(3),
   "assigned_by" UUID,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_assignment_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_assignment_edition_id_fkey" FOREIGN KEY ("edition_id") REFERENCES "textbook_edition"("id") ON DELETE RESTRICT ON UPDATE CASCADE,
@@ -500,7 +504,7 @@ CREATE TABLE "textbook_request" (
   "base_revision" INTEGER,
   "body_hash" CHAR(64) NOT NULL,
   "result" JSONB,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "updated_at" TIMESTAMP(3) NOT NULL,
 
   CONSTRAINT "textbook_request_pkey" PRIMARY KEY ("user_id", "request_id"),
@@ -568,7 +572,7 @@ CREATE TABLE "textbook_artifact" (
   "byte_size" INTEGER NOT NULL,
   "page_count" INTEGER,
   "parts" JSONB NOT NULL DEFAULT '[]',
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_artifact_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_artifact_edition_id_fkey" FOREIGN KEY ("edition_id") REFERENCES "textbook_edition"("id") ON DELETE CASCADE ON UPDATE CASCADE,
@@ -598,7 +602,7 @@ CREATE TABLE "textbook_concept_attempt" (
   "channel" VARCHAR(16) NOT NULL,
   "response" TEXT NOT NULL,
   "recorded_by" UUID,
-  "submitted_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "submitted_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
   "review_status" VARCHAR(12) NOT NULL DEFAULT 'pending',
   "reviewed_by" UUID,
   "reviewed_at" TIMESTAMP(3),
@@ -638,7 +642,7 @@ CREATE TABLE "textbook_archive" (
   "schema_version" VARCHAR(40) NOT NULL,
   "manifest_hash" CHAR(64),
   "report" JSONB NOT NULL,
-  "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "created_at" TIMESTAMP(3) NOT NULL DEFAULT (now() AT TIME ZONE 'UTC'),
 
   CONSTRAINT "textbook_archive_pkey" PRIMARY KEY ("id"),
   CONSTRAINT "textbook_archive_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE,

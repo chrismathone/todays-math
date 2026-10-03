@@ -1628,7 +1628,7 @@ model Textbook {
   sharedBranchId String?   @map("shared_branch_id") @db.Uuid
   /// 목록에서 감추기 — 책은 지우지 않는다(인쇄된 QR 이 남는다)
   archivedAt     DateTime? @map("archived_at")
-  createdAt      DateTime  @default(now()) @map("created_at")
+  createdAt      DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt      DateTime  @updatedAt @map("updated_at")
 
   user     User              @relation(fields: [userId], references: [id], onDelete: Restrict)
@@ -1666,7 +1666,7 @@ model TextbookEdition {
   manifestHash         String?   @map("manifest_hash") @db.Char(64)
   publishedAt          DateTime? @map("published_at")
   retiredAt            DateTime? @map("retired_at")
-  createdAt            DateTime  @default(now()) @map("created_at")
+  createdAt            DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt            DateTime  @updatedAt @map("updated_at")
 
   textbook    Textbook                @relation(fields: [textbookId], references: [id], onDelete: Restrict)
@@ -1699,7 +1699,7 @@ model TextbookSection {
   /// { blocks: ManuscriptBlock[] } — 배치의 자리는 이 블록 순서 하나가 정한다
   content     Json     @db.JsonB
   revision    Int      @default(1)
-  createdAt   DateTime @default(now()) @map("created_at")
+  createdAt   DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
 
   edition  TextbookEdition   @relation(fields: [editionId], references: [id], onDelete: Cascade)
@@ -1724,7 +1724,7 @@ model TextbookProblemSnapshot {
   /// 지금 은행 문항과 견줄 때만 쓴다. 원본이 지워지면 **이 칸만** 빈다 — FK(SET NULL)는 SQL 에 있다
   problemId       String?   @map("problem_id") @db.Uuid
   sourceUpdatedAt DateTime? @map("source_updated_at")
-  capturedAt      DateTime  @default(now()) @map("captured_at")
+  capturedAt      DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("captured_at")
   unitId          String?   @map("unit_id") @db.Uuid
   familyKey       String?   @map("family_key") @db.Text
   difficulty      String?   @db.VarChar(40)
@@ -1778,7 +1778,7 @@ model TextbookItem {
   printedPageLabel    String?  @map("printed_page_label") @db.VarChar(40)
   pageColumn          Int?     @map("page_column") @db.SmallInt
   revision            Int      @default(1)
-  createdAt           DateTime @default(now()) @map("created_at")
+  createdAt           DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt           DateTime @updatedAt @map("updated_at")
 
   edition   TextbookEdition         @relation(fields: [editionId], references: [id], onDelete: Cascade)
@@ -1797,7 +1797,7 @@ model TextbookBlob {
   sha256    String   @id @db.Char(64)
   size      Int
   bytes     Bytes
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   @@map("textbook_blob")
 }
@@ -1812,7 +1812,7 @@ model TextbookUpload {
   size        Int?
   fileName    String?   @map("file_name") @db.VarChar(255)
   completedAt DateTime? @map("completed_at")
-  createdAt   DateTime  @default(now()) @map("created_at")
+  createdAt   DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   chunks TextbookUploadChunk[]
 
@@ -1843,7 +1843,7 @@ model TextbookAsset {
   /// 바이트에서 잰 값. 원본 행의 figureDims 는 확정본 `rawSource` 에 따로 있다
   widthPx   Int?     @map("width_px")
   heightPx  Int?     @map("height_px")
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   @@id([userId, id])
   @@map("textbook_asset")
@@ -1885,7 +1885,7 @@ model TextbookConcept {
   /// 발행 확정 때 서버가 채운다. 초안에서는 NULL
   frozen                Json?    @db.JsonB
   revision              Int      @default(1)
-  createdAt             DateTime @default(now()) @map("created_at")
+  createdAt             DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt             DateTime @updatedAt @map("updated_at")
 
   edition  TextbookEdition          @relation(fields: [editionId], references: [id], onDelete: Cascade)
@@ -1911,7 +1911,7 @@ model TextbookQrTarget {
   state       String    @default("reserved") @db.VarChar(10)
   /// 발행 뒤 바꿀 수 있는 유일한 칸
   suspendedAt DateTime? @map("suspended_at")
-  createdAt   DateTime  @default(now()) @map("created_at")
+  createdAt   DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   activatedAt DateTime? @map("activated_at")
 
   edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Restrict)
@@ -1929,7 +1929,7 @@ model TextbookVideo {
   provider        String   @db.VarChar(12)
   providerVideoId String   @map("provider_video_id") @db.VarChar(20)
   title           String   @db.VarChar(120)
-  createdAt       DateTime @default(now()) @map("created_at")
+  createdAt       DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt       DateTime @updatedAt @map("updated_at")
 
   bindings TextbookVideoBinding[]
@@ -1953,7 +1953,7 @@ model TextbookVideoBinding {
   reviewedAt          DateTime? @map("reviewed_at")
   publishedAt         DateTime? @map("published_at")
   withdrawnAt         DateTime? @map("withdrawn_at")
-  createdAt           DateTime  @default(now()) @map("created_at")
+  createdAt           DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   snapshot TextbookProblemSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Restrict)
   video    TextbookVideo           @relation(fields: [videoId], references: [id], onDelete: Restrict)
@@ -1977,7 +1977,7 @@ model TextbookAssignment {
   expiresAt  DateTime? @map("expires_at")
   revokedAt  DateTime? @map("revoked_at")
   assignedBy String?   @map("assigned_by") @db.Uuid
-  createdAt  DateTime  @default(now()) @map("created_at")
+  createdAt  DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Restrict)
   class   Class?          @relation(fields: [classId], references: [id], onDelete: Cascade)
@@ -2000,7 +2000,7 @@ model TextbookRequest {
   baseRevision Int?     @map("base_revision")
   bodyHash     String   @map("body_hash") @db.Char(64)
   result       Json?    @db.JsonB
-  createdAt    DateTime @default(now()) @map("created_at")
+  createdAt    DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
   edition TextbookEdition?      @relation(fields: [editionId], references: [id], onDelete: Cascade)
@@ -2052,7 +2052,7 @@ model TextbookArtifact {
   pageCount Int?     @map("page_count")
   /// 조판 걸음의 조각 해시 · 쪽 범위 — 합친 파일이 어디서 왔는지의 기록
   parts     Json     @default("[]") @db.JsonB
-  createdAt DateTime @default(now()) @map("created_at")
+  createdAt DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   edition TextbookEdition @relation(fields: [editionId], references: [id], onDelete: Cascade)
 
@@ -2076,7 +2076,7 @@ model TextbookConceptAttempt {
   response     String    @db.Text
   /// 종이 활동을 본 교사 — `teacher-observed` 일 때만
   recordedBy   String?   @map("recorded_by") @db.Uuid
-  submittedAt  DateTime  @default(now()) @map("submitted_at")
+  submittedAt  DateTime  @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("submitted_at")
   /// pending · checked · needs-review
   reviewStatus String    @default("pending") @map("review_status") @db.VarChar(12)
   reviewedBy   String?   @map("reviewed_by") @db.Uuid
@@ -2105,7 +2105,7 @@ model TextbookArchive {
   manifestHash  String?  @map("manifest_hash") @db.Char(64)
   /// 검증 보고와 패키지 요약(원 판본 정체 · 개수)
   report        Json     @db.JsonB
-  createdAt     DateTime @default(now()) @map("created_at")
+  createdAt     DateTime @default(dbgenerated("(now() AT TIME ZONE 'UTC'::text)")) @map("created_at")
 
   @@unique([userId, sha256])
   @@index([userId, createdAt])
