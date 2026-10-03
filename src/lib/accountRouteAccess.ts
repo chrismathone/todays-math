@@ -18,7 +18,23 @@ export function englishRouteAllowed(
   const maker = allowed.includes("english-maker");
   const library = allowed.includes("english-library");
   const listening = allowed.includes("english-listening");
+  const bank = allowed.includes("english-bank");
   const read = method === "GET" || method === "HEAD";
+  if (path === "/api/english/passages")
+    return bank && (read || method === "POST");
+  if (path === "/api/english/passages/import") return bank && method === "POST";
+  if (/^\/api\/english\/passages\/[^/]+$/.test(path))
+    return bank && (read || method === "PATCH" || method === "DELETE");
+  if (/^\/api\/english\/passages\/[^/]+\/rights$/.test(path))
+    return bank && method === "POST";
+  if (/^\/api\/english\/passages\/[^/]+\/prepare$/.test(path))
+    return bank && maker && method === "POST";
+  if (/^\/api\/english\/passages\/[^/]+\/sets$/.test(path)) return bank && read;
+  if (
+    path === "/api/english/listening/bank" ||
+    path === "/api/english/listening/references"
+  )
+    return bank && listening && read;
   if (/^\/english\/listening\/sets\/[^/]+\/print$/.test(path))
     return listening && read;
   if (path === "/api/english/listening/sets")
