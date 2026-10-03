@@ -7,6 +7,7 @@
  * 표본 지문은 우리가 지은 짧은 글이다(교재·출판사 지문 아님).
  */
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { StrictMode } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import EnglishMakerView from "@/components/english/EnglishMakerView";
@@ -14,6 +15,7 @@ import type {
   EnglishExam,
   EnglishMaterial,
 } from "@/contracts/english.contract";
+import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 
 const passage =
   "Haru walks to school with her younger brother every morning. On the way they count the red cars and guess how many they will see tomorrow. Their guesses are rarely correct, but the game makes the long walk feel short. Their mother says that small games are the easiest way to practice patience.";
@@ -969,5 +971,576 @@ describe("붙여넣기 재시도", () => {
     expect(second).toEqual(first);
     expect(fetchMock).toHaveBeenCalledTimes(2);
     expect(onSaved).toHaveBeenCalledWith("set-5");
+  });
+});
+
+describe("자료은행 → 기존 만들기", () => {
+  const seed: EnglishBankMakerSeed = {
+    requestId: "40000000-0000-4000-8000-000000000001",
+    examId: exam.id,
+    path: "chatgpt",
+    title: "은행 원문",
+    text: passage,
+    passageRef: {
+      passageId: "50000000-0000-4000-8000-000000000001",
+      textRevision: 1,
+      snapshotHash: "a".repeat(64),
+    },
+  };
+  const handled = vi.fn();
+  const accepted = vi.fn();
+  const props = { exam, materials, onSaved, onNotice };
+  async function bankSetup(bankSeed = seed) {
+    const view = render(
+      <EnglishMakerView
+        {...props}
+        bankSeed={bankSeed}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    return view;
+  }
+  function prepare(nextSeed = seed) {
+    return jsonResponse({ data: nextSeed });
+  }
+  function conflict(reason = "RIGHTS_REQUIRED") {
+    return jsonResponse(
+      {
+        error: {
+          code: "CONFLICT",
+          message: "은행 이용 근거를 다시 확인해 주세요.",
+          details: { reason },
+        },
+      },
+      409,
+    );
+  }
+  async function pasteDraft(draft = goodDraft) {
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: JSON.stringify(draft) },
+    });
+    await act(async () => {
+      fireEvent.click(button("가져오기"));
+    });
+  }
+  beforeEach(() => {
+    handled.mockReset();
+    accepted.mockReset();
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+  });
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("초기 seed의 원문·제목을 보존하고 같은 requestId는 다시 덮지 않는다", async () => {
+    const exact = { ...seed, text: `  ${passage}\n\n` };
+    const view = await bankSetup(exact);
+    expect(screen.getByLabelText("원문")).toHaveValue(exact.text);
+    expect(screen.getByLabelText("원문 유지")).toBeChecked();
+    expect(screen.getByText(/은행 원문/)).toBeVisible();
+    fireEvent.change(screen.getByLabelText("원문"), {
+      target: { value: "수정한 원문" },
+    });
+    view.rerender(
+      <EnglishMakerView
+        {...props}
+        bankSeed={{ ...exact }}
+        onBankSeedHandled={handled}
+      />,
+    );
+    expect(screen.getByLabelText("원문")).toHaveValue("수정한 원문");
+    expect(handled).toHaveBeenCalledExactlyOnceWith(seed.requestId);
+    expect(window.confirm).not.toHaveBeenCalled();
+  });
+
+  it("다른 시험 seed는 인계 callback 없이는 보류한다", async () => {
+    const other = { ...seed, examId: "20000000-0000-4000-8000-000000000099" };
+    const view = await bankSetup(other);
+    expect(screen.getByLabelText("소재")).toHaveValue("");
+    expect(handled).not.toHaveBeenCalled();
+    view.rerender(
+      <EnglishMakerView
+        {...props}
+        exam={{ ...exam, id: other.examId }}
+        bankSeed={other}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    expect(screen.getByLabelText("원문")).toHaveValue(passage);
+    expect(handled).toHaveBeenCalledExactlyOnceWith(other.requestId);
+  });
+
+  it("덮어쓰기 취소는 입력·결과·현재 시험을 보존하고 handled만 부른다", async () => {
+    const view = setup();
+    fillTopic("기존 소재");
+    fireEvent.change(screen.getByLabelText("ChatGPT 결과 붙여넣기"), {
+      target: { value: "기존 결과" },
+    });
+    vi.mocked(window.confirm).mockReturnValue(false);
+    const other = { ...seed, examId: "20000000-0000-4000-8000-000000000099" };
+    view.rerender(
+      <EnglishMakerView
+        {...props}
+        bankSeed={other}
+        onBankSeedAccepted={accepted}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    expect(screen.getByLabelText("소재")).toHaveValue("기존 소재");
+    expect(screen.getByLabelText("ChatGPT 결과 붙여넣기")).toHaveValue(
+      "기존 결과",
+    );
+    expect(window.confirm).toHaveBeenCalledTimes(1);
+    expect(accepted).not.toHaveBeenCalled();
+    expect(handled).toHaveBeenCalledExactlyOnceWith(seed.requestId);
+  });
+
+  it("다른 시험 인계 수락은 accepted를 handled보다 먼저 부른다", async () => {
+    const other = {
+      ...seed,
+      examId: "20000000-0000-4000-8000-000000000099",
+      path: "api" as const,
+    };
+    render(
+      <EnglishMakerView
+        {...props}
+        bankSeed={other}
+        onBankSeedAccepted={accepted}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    expect(tab("API 직접 생성")).toHaveAttribute("aria-selected", "true");
+    expect(accepted).toHaveBeenCalledExactlyOnceWith(other.examId);
+    expect(accepted.mock.invocationCallOrder[0]).toBeLessThan(
+      handled.mock.invocationCallOrder[0]!,
+    );
+  });
+
+  it("은행 요청문 복사는 매번 해당 경로 준비 검사를 하고 권리 실패면 외부로 보내지 않는다", async () => {
+    await bankSetup();
+    fetchMock
+      .mockResolvedValueOnce(prepare())
+      .mockResolvedValueOnce(conflict());
+    await act(async () => {
+      fireEvent.click(button("요청문 복사"));
+    });
+    expect(writeText).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls[0]![0]).toBe(
+      `/api/english/passages/${seed.passageRef.passageId}/prepare`,
+    );
+    expect(JSON.parse(String(fetchMock.mock.calls[0]![1].body))).toEqual({
+      examId: exam.id,
+      path: "chatgpt",
+      textRevision: 1,
+    });
+    fireEvent.click(tab("API 직접 생성"));
+    await act(async () => {
+      fireEvent.click(button("AI 지문·문제 생성"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(JSON.parse(String(fetchMock.mock.calls[1]![1].body)).path).toBe(
+      "api",
+    );
+    expect(screen.getByLabelText("원문")).toHaveValue(passage);
+    expect(screen.getByRole("alert")).toHaveTextContent("은행 이용 근거");
+  });
+
+  it.each(["text", "textRevision", "snapshotHash"])(
+    "준비 응답의 %s 변경은 원문을 바꾸거나 복사하지 않는다",
+    async (field) => {
+      await bankSetup();
+      const changed = { ...seed, passageRef: { ...seed.passageRef } };
+      if (field === "text") changed.text += " Updated.";
+      else if (field === "textRevision") changed.passageRef.textRevision = 2;
+      else changed.passageRef.snapshotHash = "b".repeat(64);
+      fetchMock.mockResolvedValue(prepare(changed));
+      await act(async () => {
+        fireEvent.click(button("요청문 복사"));
+      });
+      expect(writeText).not.toHaveBeenCalled();
+      expect(screen.queryByLabelText("요청문")).toBeNull();
+      expect(screen.getByLabelText("원문")).toHaveValue(passage);
+      expect(onNotice).toHaveBeenCalledWith(
+        expect.stringContaining("변경"),
+        "alert",
+      );
+    },
+  );
+
+  it("본문 수정이나 같은 본문의 다른 자료 선택은 은행 연결을 해제한다", async () => {
+    await bankSetup();
+    fireEvent.change(screen.getByLabelText("저장한 자료 불러오기"), {
+      target: { value: materials[0]!.id },
+    });
+    expect(screen.getByText(/은행 연결을 해제/)).toBeVisible();
+    await act(async () => {
+      fireEvent.click(button("요청문 복사"));
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(writeText).toHaveBeenCalledTimes(1);
+  });
+
+  it("18k 초과 24k 이하 원문 복원은 준비 뒤 은행 ref를 저장하고 sourcePassage에는 넣지 않는다", async () => {
+    const longSeed = {
+      ...seed,
+      path: "cloze" as const,
+      text: `${passage}\n`.repeat(65),
+    };
+    expect(longSeed.text.length).toBeGreaterThan(18_000);
+    expect(longSeed.text.length).toBeLessThan(24_000);
+    await bankSetup(longSeed);
+    fetchMock
+      .mockResolvedValueOnce(prepare(longSeed))
+      .mockResolvedValueOnce(
+        jsonResponse(savedSet("bank-cloze", "cloze"), 201),
+      );
+    expect(screen.getByLabelText("복원할 원문")).toHaveValue(longSeed.text);
+    await act(async () => {
+      fireEvent.click(button("연습문제 만들기"));
+    });
+    const saved = await lastRequestBody();
+    expect(saved.meta).toMatchObject({
+      path: "cloze",
+      passageRef: seed.passageRef,
+      materialName: seed.title,
+    });
+    expect(saved.meta).not.toHaveProperty("sourcePassage");
+    expect(String(saved.passage).trim()).toBe(longSeed.text.trim());
+    expect(onSaved).toHaveBeenCalledWith("bank-cloze");
+  });
+
+  it("ChatGPT 저장은 bank ref·제목을 보존하고 충돌 재시도는 같은 묶음, 명시적 연결 해제는 새 키를 쓴다", async () => {
+    await bankSetup();
+    fetchMock
+      .mockResolvedValueOnce(conflict("PASSAGE_UNAVAILABLE"))
+      .mockResolvedValueOnce(conflict("PASSAGE_TEXT_MISMATCH"))
+      .mockResolvedValueOnce(
+        jsonResponse(savedSet("unlinked", "chatgpt"), 201),
+      );
+    await pasteDraft();
+    const first = await lastRequestBody();
+    expect(first.meta).toMatchObject({
+      passageRef: seed.passageRef,
+      materialName: seed.title,
+    });
+    expect(screen.getByLabelText("ChatGPT 결과 붙여넣기")).toHaveValue(
+      JSON.stringify(goodDraft),
+    );
+    await act(async () => {
+      fireEvent.click(button("다시 저장"));
+    });
+    expect(await lastRequestBody()).toEqual(first);
+    await act(async () => {
+      fireEvent.click(button("은행 연결 해제 후 새 사본 저장"));
+    });
+    const unlinked = await lastRequestBody();
+    expect(unlinked.meta).not.toHaveProperty("passageRef");
+    expect((unlinked.meta as { clientKey: string }).clientKey).not.toBe(
+      (first.meta as { clientKey: string }).clientKey,
+    );
+    expect(unlinked.passage).toBe(first.passage);
+    expect(unlinked.questions).toEqual(first.questions);
+    expect(onSaved).toHaveBeenCalledWith("unlinked");
+  });
+
+  it("은행 저장 충돌 후 재시도 취소는 입력과 붙여넣은 결과를 남긴다", async () => {
+    await bankSetup();
+    fetchMock.mockResolvedValue(conflict());
+    await pasteDraft();
+    fireEvent.click(button("저장 재시도 취소"));
+    expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
+    expect(screen.getByLabelText("원문")).toHaveValue(passage);
+    expect(screen.getByLabelText("ChatGPT 결과 붙여넣기")).toHaveValue(
+      JSON.stringify(goodDraft),
+    );
+  });
+
+  it("거절된 은행 수정 요청문은 현재 입력이 연결 해제돼도 원래 은행 권리를 검사한다", async () => {
+    await bankSetup();
+    const invalid = {
+      ...goodDraft,
+      questions: goodDraft.questions.slice(0, 2),
+    };
+    await pasteDraft(invalid);
+    fireEvent.change(screen.getByLabelText("원문"), {
+      target: { value: passage + " Edited." },
+    });
+    fetchMock.mockResolvedValue(conflict());
+    await act(async () => {
+      fireEvent.click(button("수정 요청문 복사"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(writeText).not.toHaveBeenCalled();
+    expect(screen.queryByLabelText("수정 요청문")).toBeNull();
+    await act(async () => {
+      fireEvent.click(button("수정 요청문 보기"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(screen.queryByLabelText("수정 요청문")).toBeNull();
+  });
+
+  it("StrictMode 재실행과 새 callback에도 seed를 한 번만 처리한다", async () => {
+    const view = render(
+      <StrictMode>
+        <EnglishMakerView
+          {...props}
+          bankSeed={seed}
+          onBankSeedHandled={handled}
+        />
+      </StrictMode>,
+    );
+    await act(async () => {});
+    expect(handled).toHaveBeenCalledExactlyOnceWith(seed.requestId);
+    fireEvent.change(screen.getByLabelText("원문"), {
+      target: { value: passage + " Edited." },
+    });
+    view.rerender(
+      <StrictMode>
+        <EnglishMakerView
+          {...props}
+          bankSeed={{ ...seed }}
+          onBankSeedHandled={(id) => handled(id)}
+        />
+      </StrictMode>,
+    );
+    await act(async () => {});
+    expect(handled).toHaveBeenCalledTimes(1);
+    expect(screen.getByLabelText("원문")).toHaveValue(passage + " Edited.");
+  });
+
+  it("생성 중 seed는 보류하고 저장 실패 뒤 덮어쓰기 취소하면 기존 묶음을 그대로 재시도한다", async () => {
+    let finishGeneration!: (response: Response) => void;
+    fetchMock
+      .mockImplementationOnce(
+        () =>
+          new Promise<Response>((resolve) => {
+            finishGeneration = resolve;
+          }),
+      )
+      .mockResolvedValueOnce(
+        jsonResponse({ error: { message: "저장 실패" } }, 503),
+      )
+      .mockResolvedValueOnce(
+        jsonResponse(savedSet("old-draft", "deepseek"), 201),
+      );
+    const view = setup();
+    fireEvent.click(tab("API 직접 생성"));
+    fillTopic("진행 중인 소재");
+    fireEvent.click(button("AI 지문·문제 생성"));
+    await act(async () => {});
+    view.rerender(
+      <EnglishMakerView
+        {...props}
+        bankSeed={seed}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    expect(handled).not.toHaveBeenCalled();
+    expect(window.confirm).not.toHaveBeenCalled();
+    vi.mocked(window.confirm).mockReturnValue(false);
+    await act(async () => {
+      finishGeneration(
+        jsonResponse({ data: { ...goodDraft, source: "deepseek" } }),
+      );
+    });
+    expect(handled).toHaveBeenCalledExactlyOnceWith(seed.requestId);
+    expect(window.confirm).toHaveBeenCalledTimes(1);
+    expect(screen.getByLabelText("소재")).toHaveValue("진행 중인 소재");
+    const bundle = await lastRequestBody();
+    await act(async () => {
+      fireEvent.click(button("다시 저장"));
+    });
+    expect(await lastRequestBody()).toEqual(bundle);
+    expect(onSaved).toHaveBeenCalledWith("old-draft");
+  });
+
+  it("API 원문 변형은 준비·생성·저장에 ref를 전달하며 sourcePassage는 입력 원문이다", async () => {
+    const apiSeed = { ...seed, path: "api" as const };
+    await bankSetup(apiSeed);
+    fireEvent.click(screen.getByLabelText("원문 변형"));
+    const generated = {
+      ...goodDraft,
+      source: "deepseek",
+      passage: passage + " The family enjoyed their afternoon.",
+    };
+    fetchMock
+      .mockResolvedValueOnce(prepare(apiSeed))
+      .mockResolvedValueOnce(jsonResponse({ data: generated }))
+      .mockResolvedValueOnce(
+        jsonResponse(savedSet("variation", "deepseek"), 201),
+      );
+    await act(async () => {
+      fireEvent.click(button("AI 지문·문제 생성"));
+    });
+    expect(fetchMock.mock.calls.map((call) => call[0])).toEqual([
+      `/api/english/passages/${seed.passageRef.passageId}/prepare`,
+      "/api/english/generate",
+      `/api/english/exams/${exam.id}/sets`,
+    ]);
+    expect(JSON.parse(String(fetchMock.mock.calls[1]![1].body))).toMatchObject({
+      mode: "variation",
+      passage,
+      passageRef: seed.passageRef,
+    });
+    const saved = await lastRequestBody();
+    expect(saved.passage).toBe(generated.passage);
+    expect(saved.meta).toMatchObject({
+      path: "api",
+      mode: "variation",
+      sourcePassage: passage,
+      passageRef: seed.passageRef,
+      materialName: seed.title,
+    });
+  });
+
+  it("은행 원문을 편집하면 ref 없이 저장하며 새 지문 전환도 ref를 버린다", async () => {
+    const view = await bankSetup();
+    fireEvent.change(screen.getByLabelText("원문"), {
+      target: { value: passage + " Edited." },
+    });
+    expect(screen.getByText(/은행 연결을 해제/)).toBeVisible();
+    fireEvent.change(screen.getByLabelText("원문"), {
+      target: { value: passage },
+    });
+    fetchMock.mockResolvedValue(
+      jsonResponse(savedSet("edited", "chatgpt"), 201),
+    );
+    await pasteDraft();
+    expect((await lastRequestBody()).meta).not.toHaveProperty("passageRef");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    view.rerender(
+      <EnglishMakerView
+        {...props}
+        bankSeed={{
+          ...seed,
+          requestId: "40000000-0000-4000-8000-000000000002",
+        }}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    fireEvent.click(screen.getByLabelText("새 지문 생성"));
+    fillTopic();
+    fetchMock.mockClear();
+    await act(async () => {
+      fireEvent.click(button("요청문 복사"));
+    });
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("원문 복원 입력 편집은 해당 ref만 해제하고 ChatGPT 입력·ref를 유지한다", async () => {
+    const view = await bankSetup();
+    const clozeSeed = {
+      ...seed,
+      requestId: "40000000-0000-4000-8000-000000000003",
+      path: "cloze" as const,
+      text: passage + " The afternoon was peaceful.",
+    };
+    view.rerender(
+      <EnglishMakerView
+        {...props}
+        bankSeed={clozeSeed}
+        onBankSeedHandled={handled}
+      />,
+    );
+    await act(async () => {});
+    fireEvent.change(screen.getByLabelText("복원할 원문"), {
+      target: { value: passage },
+    });
+    fetchMock.mockResolvedValueOnce(
+      jsonResponse(savedSet("edited-cloze", "cloze"), 201),
+    );
+    await act(async () => {
+      fireEvent.click(button("연습문제 만들기"));
+    });
+    expect((await lastRequestBody()).meta).not.toHaveProperty("passageRef");
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(tab("ChatGPT 로 제작"));
+    expect(screen.getByLabelText("원문")).toHaveValue(passage);
+    fetchMock.mockResolvedValueOnce(prepare());
+    await act(async () => {
+      fireEvent.click(button("요청문 복사"));
+    });
+    expect(fetchMock.mock.calls[1]![0]).toContain("/prepare");
+  });
+
+  it.each(["chatgpt", "cloze"] as const)(
+    "%s 길이 초과 원문은 입력에 전부 남기고 동작을 막는다",
+    async (path) => {
+      const length = path === "chatgpt" ? 18_001 : 24_001;
+      const longSeed = {
+        ...seed,
+        path,
+        text: passage + " ".repeat(length - passage.length),
+      };
+      await bankSetup(longSeed);
+      const label = path === "chatgpt" ? "원문" : "복원할 원문";
+      await act(async () => {
+        fireEvent.click(
+          button(path === "chatgpt" ? "요청문 복사" : "연습문제 만들기"),
+        );
+      });
+      expect(screen.getByLabelText(label)).toHaveValue(longSeed.text);
+      expect(fetchMock).not.toHaveBeenCalled();
+      expect(writeText).not.toHaveBeenCalled();
+      expect(screen.getByRole("alert")).toHaveTextContent(
+        path === "chatgpt" ? "18,000" : "24,000",
+      );
+    },
+  );
+
+  it("원문 복원 준비 권리 실패는 저장하지 않고 원문을 남긴다", async () => {
+    await bankSetup({ ...seed, path: "cloze" });
+    fetchMock.mockResolvedValue(conflict());
+    await act(async () => {
+      fireEvent.click(button("연습문제 만들기"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock.mock.calls[0]![0]).toContain("/prepare");
+    expect(screen.getByLabelText("복원할 원문")).toHaveValue(passage);
+    expect(onSaved).not.toHaveBeenCalled();
+  });
+
+  it("은행 준비 서비스 장애는 AI 미연결로 고정하지 않아 다시 시도할 수 있다", async () => {
+    await bankSetup({ ...seed, path: "api" });
+    fetchMock.mockResolvedValue(
+      jsonResponse(
+        { error: { message: "잠시 뒤 은행 확인을 다시 시도해 주세요." } },
+        503,
+      ),
+    );
+    await act(async () => {
+      fireEvent.click(button("AI 지문·문제 생성"));
+    });
+    expect(button("AI 지문·문제 생성")).toBeEnabled();
+    expect(
+      screen.getByText("AI 연결 확인 전 — 첫 생성 때 확인합니다."),
+    ).toBeVisible();
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("다시 복사할 때 권리가 실패하면 전에 펼친 요청문도 숨긴다", async () => {
+    await bankSetup();
+    writeText.mockRejectedValue(new Error("clipboard unavailable"));
+    fetchMock
+      .mockResolvedValueOnce(prepare())
+      .mockResolvedValueOnce(conflict());
+    await act(async () => {
+      fireEvent.click(button("요청문 복사"));
+    });
+    expect(screen.getByLabelText("요청문")).toBeVisible();
+    await act(async () => {
+      fireEvent.click(button("요청문 복사"));
+    });
+    expect(screen.queryByLabelText("요청문")).toBeNull();
+    expect(writeText).toHaveBeenCalledTimes(1);
   });
 });
