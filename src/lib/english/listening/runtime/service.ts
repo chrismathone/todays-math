@@ -5,6 +5,7 @@ import {
 } from "@/contracts/englishListeningHttp.contract";
 import {
   lock,
+  denied,
   teacher,
   type ListeningActor,
   type ListeningDatabase,
@@ -13,6 +14,7 @@ import {
 import * as sets from "./sets";
 import * as assignments from "./assignments";
 import * as students from "./students";
+import { searchListeningBank, searchListeningReferences } from "./bank";
 
 /** Each command, receipt, revision and release exposure commits in one durable transaction.
  * The advisory lock serializes a set/assignment across processes; SQL CAS still checks the
@@ -36,6 +38,27 @@ export function createListeningRuntime(
     );
   const id = (value: string) => z.uuid().parse(value);
   return {
+    teacherBank: (
+      actor: ListeningActor,
+      resource: "bank" | "references",
+      input: unknown,
+    ) =>
+      transaction(undefined, async (tx) => {
+        const account = await teacher(tx, actor);
+        const user = await tx.user.findUnique({
+          where: { id: account.id },
+          select: { disabledMenus: true },
+        });
+        if (
+          !user ||
+          user.disabledMenus.includes("english-bank") ||
+          user.disabledMenus.includes("english")
+        )
+          throw denied();
+        return resource === "bank"
+          ? searchListeningBank(tx, account, input)
+          : searchListeningReferences(input);
+      }),
     teacherList: (
       actor: ListeningActor,
       resource: "sets" | "assignments" | "classes",

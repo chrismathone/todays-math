@@ -1,0 +1,237 @@
+{
+  "generatedAt": "2026-10-03",
+  "model": "hexgrad/Kokoro-82M v1.0",
+  "modelCard": "https://huggingface.co/hexgrad/Kokoro-82M",
+  "voiceGuide": "https://huggingface.co/hexgrad/Kokoro-82M/blob/main/VOICES.md",
+  "runtime": "kokoro-onnx 0.6.1 / local CPU",
+  "modelAssets": [
+    {
+      "name": "kokoro-v1.0.onnx",
+      "bytes": 325505369,
+      "sha256": "beb0d1848dee9a49da392cc3df26958d46cfa35d321edf434f52949153f0df3a",
+      "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/kokoro-v1.0.onnx"
+    },
+    {
+      "name": "voices-v1.0.bin",
+      "bytes": 28214398,
+      "sha256": "bca610b8308e8d99f32e6fe4197e7ec01679264efed0cac9140fe9c29f1fbf7d",
+      "url": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.1/voices-v1.0.bin"
+    }
+  ],
+  "generation": {
+    "engine": "Kokoro v1.0 / kokoro-onnx 0.6.1, local CPU",
+    "cloudApiCalls": 0,
+    "newApiCharge": 0,
+    "samples": [
+      {
+        "id": "sample-01",
+        "title": "학교에서 나눈 대화",
+        "level": "중학교 1학년 · A2",
+        "durationMs": 40492,
+        "words": 86,
+        "overallWordsPerMinute": 127.4,
+        "speed": 0.78,
+        "sha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+        "wavBytes": 1943654,
+        "mp3Bytes": 487052,
+        "peak": 0.4811065196990967,
+        "rms": 0.05237468332052231,
+        "timing": [
+          {
+            "turnIndex": 0,
+            "startMs": 350,
+            "endMs": 4498
+          },
+          {
+            "turnIndex": 1,
+            "startMs": 4898,
+            "endMs": 9569
+          },
+          {
+            "turnIndex": 2,
+            "startMs": 9969,
+            "endMs": 15153
+          },
+          {
+            "turnIndex": 3,
+            "startMs": 15553,
+            "endMs": 20758
+          },
+          {
+            "turnIndex": 4,
+            "startMs": 21158,
+            "endMs": 23029
+          },
+          {
+            "turnIndex": 5,
+            "startMs": 23429,
+            "endMs": 27487
+          },
+          {
+            "turnIndex": 6,
+            "startMs": 27887,
+            "endMs": 31421
+          },
+          {
+            "turnIndex": 7,
+            "startMs": 31821,
+            "endMs": 36989
+          },
+          {
+            "turnIndex": 8,
+            "startMs": 37389,
+            "endMs": 40092
+          }
+        ],
+        "humanAudioReview": false
+      },
+      {
+        "id": "sample-02",
+        "title": "주말을 앞둔 대화",
+        "level": "중학교 2~3학년 · B1",
+        "durationMs": 41954,
+        "words": 106,
+        "overallWordsPerMinute": 151.6,
+        "speed": 0.86,
+        "sha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+        "wavBytes": 2013856,
+        "mp3Bytes": 504620,
+        "peak": 0.4841245412826538,
+        "rms": 0.052334073930978775,
+        "timing": [
+          {
+            "turnIndex": 0,
+            "startMs": 350,
+            "endMs": 5139
+          },
+          {
+            "turnIndex": 1,
+            "startMs": 5539,
+            "endMs": 11938
+          },
+          {
+            "turnIndex": 2,
+            "startMs": 12338,
+            "endMs": 14509
+          },
+          {
+            "turnIndex": 3,
+            "startMs": 14909,
+            "endMs": 20006
+          },
+          {
+            "turnIndex": 4,
+            "startMs": 20406,
+            "endMs": 24437
+          },
+          {
+            "turnIndex": 5,
+            "startMs": 24837,
+            "endMs": 34713
+          },
+          {
+            "turnIndex": 6,
+            "startMs": 35113,
+            "endMs": 38261
+          },
+          {
+            "turnIndex": 7,
+            "startMs": 38661,
+            "endMs": 41554
+          }
+        ],
+        "humanAudioReview": false
+      },
+      {
+        "id": "sample-03",
+        "title": "학생들을 위한 교내 방송",
+        "level": "고등학교 1~2학년 · B1–B2",
+        "durationMs": 44207,
+        "words": 126,
+        "overallWordsPerMinute": 171.0,
+        "speed": 0.94,
+        "sha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+        "wavBytes": 2121996,
+        "mp3Bytes": 531404,
+        "peak": 0.5462705492973328,
+        "rms": 0.0686260387301445,
+        "timing": [
+          {
+            "turnIndex": 0,
+            "startMs": 350,
+            "endMs": 13076
+          },
+          {
+            "turnIndex": 1,
+            "startMs": 13476,
+            "endMs": 24809
+          },
+          {
+            "turnIndex": 2,
+            "startMs": 25209,
+            "endMs": 34139
+          },
+          {
+            "turnIndex": 3,
+            "startMs": 34539,
+            "endMs": 43807
+          }
+        ],
+        "humanAudioReview": false
+      }
+    ]
+  },
+  "productionImport": {
+    "records": [
+      {
+        "sampleId": "sample-01",
+        "setId": "a097511d-21ab-4f12-86ec-143b8d6da463",
+        "title": "[청취 샘플] 학교에서 나눈 대화",
+        "status": "ready-for-teacher-audition",
+        "assetId": "79d2382e-4dd4-47fe-bf2d-5da031a55ee1",
+        "durationMs": 40492,
+        "sha256": "5eef69d086bbc5257ae6a356e19f9c5f5ef4698123de9686af52971829ef29c1",
+        "revision": 3,
+        "questionCount": 3,
+        "playbackRangeStatus": 206,
+        "published": false
+      },
+      {
+        "sampleId": "sample-02",
+        "setId": "3e8bdaa9-c3d7-46d4-b9fe-3f82d7425b01",
+        "title": "[청취 샘플] 주말을 앞둔 대화",
+        "status": "ready-for-teacher-audition",
+        "assetId": "96ce8798-a9cb-44ce-8ad5-8cf4f17ec281",
+        "durationMs": 41955,
+        "sha256": "3c4a6d6cf5090f7fd0b6c18bc6c66cbda0d5afdc65eb00e9e446e59849556391",
+        "revision": 3,
+        "questionCount": 3,
+        "playbackRangeStatus": 206,
+        "published": false
+      },
+      {
+        "sampleId": "sample-03",
+        "setId": "5208fc63-de72-4e06-ba40-2e528f68105e",
+        "title": "[청취 샘플] 학생들을 위한 교내 방송",
+        "status": "ready-for-teacher-audition",
+        "assetId": "ecc19690-074e-4189-81a3-a5116275b276",
+        "durationMs": 44208,
+        "sha256": "803705f97ecc92b8f13f4ac950f7536106445b00b97e72b4f228ba89eb31c096",
+        "revision": 3,
+        "questionCount": 3,
+        "playbackRangeStatus": 206,
+        "published": false
+      }
+    ]
+  },
+  "verification": {
+    "allWavsDecode": true,
+    "allBrowserPlaybackTimesAdvanced": true,
+    "mobileViewportWidth": 390,
+    "mobileScrollWidth": 390,
+    "humanAudioReview": false,
+    "cloudTtsCalls": 0,
+    "newPaidApiCalls": 0,
+    "assignmentsCreated": 0
+  }
+}

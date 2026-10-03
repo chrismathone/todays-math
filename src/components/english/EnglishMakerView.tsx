@@ -9,7 +9,14 @@
  *
  * 모양은 작업실 토큰 그대로(05 §8.9) · D-08(사무적) · D-30(손가락 커서는 단추·선택에만).
  */
-import { useId, useState, type KeyboardEvent } from "react";
+import {
+  useEffect,
+  useEffectEvent,
+  useId,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 
 import WorkProgress from "@/components/unified/WorkProgress";
 import {
@@ -27,6 +34,11 @@ import {
   type EnglishMaterial,
   type EnglishSetMeta,
 } from "@/contracts/english.contract";
+import {
+  ENGLISH_BANK_PATH_LIMITS,
+  englishPassagePrepareResponseSchema,
+  type EnglishBankMakerSeed,
+} from "@/contracts/englishBank.contract";
 import {
   buildChatgptFixRequest,
   buildChatgptRequest,
@@ -46,6 +58,9 @@ export interface EnglishMakerViewProps {
   materials: EnglishMaterial[];
   onSaved: (setId: string) => void;
   onNotice: (message: string, tone: "status" | "alert") => void;
+  bankSeed?: EnglishBankMakerSeed;
+  onBankSeedAccepted?: (examId: string) => void;
+  onBankSeedHandled?: (requestId: string) => void;
 }
 
 type MakerTab = "chatgpt" | "cloze" | "api";
@@ -143,15 +158,18 @@ const JSON_HEADERS = { "content-type": "application/json" } as const;
 class ApiFailure extends Error {
   readonly status: number;
   readonly issues: EnglishDraftIssue[];
+  readonly reason?: string;
   constructor(
     status: number,
     message: string,
     issues: EnglishDraftIssue[] = [],
+    reason?: string,
   ) {
     super(message);
     this.name = "ApiFailure";
     this.status = status;
     this.issues = issues;
+    this.reason = reason;
   }
 }
 
@@ -200,7 +218,13 @@ async function readJson(response: Response): Promise<unknown> {
       typeof error?.message === "string" && error.message
         ? error.message
         : `요청이 실패했습니다(${response.status}). 다시 시도해 주세요.`;
-    throw new ApiFailure(response.status, message, issuesOf(error?.details));
+    const details = error?.details as { reason?: unknown } | undefined;
+    throw new ApiFailure(
+      response.status,
+      message,
+      issuesOf(error?.details),
+      typeof details?.reason === "string" ? details.reason : undefined,
+    );
   }
   return body;
 }
@@ -240,6 +264,9 @@ export default function EnglishMakerView({
   materials,
   onSaved,
   onNotice,
+  bankSeed,
+  onBankSeedAccepted,
+  onBankSeedHandled,
 }: EnglishMakerViewProps) {
   const uid = useId();
   // 탭·패널 id 는 인스턴스마다 다르게 — 한 화면에 둘이 마운트돼도 aria-controls·포커스가 안 섞인다(리드 검토 D8).
@@ -262,10 +289,11 @@ export default function EnglishMakerView({
   });
   const [conditionIssues, setConditionIssues] = useState<string[]>([]);
   const [busy, setBusy] = useState<
-    null | "import" | "cloze" | "generate" | "save"
+    null | "import" | "cloze" | "generate" | "save" | "prepare"
   >(null);
   /** 검증을 통과한 초안 · 그때의 meta · clientKey. «다시 저장»은 이 묶음만 보낸다. */
   const [pendingSave, setPendingSave] = useState<SaveBundle | null>(null);
+  const [saveFailure, setSaveFailure] = useState<ApiFailure | null>(null);
   const [startedAt, setStartedAt] = useState<number | undefined>(undefined);
 
   // 불러온 자료 — 그 글을 그대로 썼을 때만 «만든 조건»에 이름을 싣는다
@@ -273,6 +301,15 @@ export default function EnglishMakerView({
     null,
   );
   const [pickedCloze, setPickedCloze] = useState<EnglishMaterial | null>(null);
+  // ChatGPT/API share an input; cloze has its own exact text and relationship.
+  const [bankPassage, setBankPassage] = useState<EnglishBankMakerSeed | null>(
+    null,
+  );
+  const [bankCloze, setBankCloze] = useState<EnglishBankMakerSeed | null>(null);
+  const [bankMessage, setBankMessage] = useState("");
+  const [clozeBankMessage, setClozeBankMessage] = useState("");
+  const handledSeeds = useRef(new Set<string>());
+  const [conditionsEdited, setConditionsEdited] = useState(false);
   const sameText = (material: EnglishMaterial | null, text: string) =>
     material?.content && material.content.trim() === text.trim()
       ? material.name
@@ -287,6 +324,7 @@ export default function EnglishMakerView({
     pasted: string;
     conditions: string;
     text: string;
+    bank: EnglishBankMakerSeed | null;
   } | null>(null);
   const [fixOpen, setFixOpen] = useState(false);
   const [fixCopyFailed, setFixCopyFailed] = useState(false);
@@ -302,12 +340,106 @@ export default function EnglishMakerView({
   );
   const [apiError, setApiError] = useState<ApiFailure | null>(null);
 
+  const hasUnsavedDraft = Boolean(
+    conditionsEdited ||
+    conditions.topic ||
+    conditions.passage ||
+    clozeText ||
+    pasteText ||
+    fallbackText ||
+    rejection ||
+    pendingSave,
+  );
+
+  // A bank handoff is a one-shot command. Read the latest draft only when that command is handled.
+  const acceptBankSeed = useEffectEvent((bankSeed: EnglishBankMakerSeed) => {
+    if (handledSeeds.current.has(bankSeed.requestId)) return;
+    // The shell may atomically select a validated target exam after acceptance.
+    if (bankSeed.examId !== exam.id && !onBankSeedAccepted) return;
+    handledSeeds.current.add(bankSeed.requestId);
+    if (
+      hasUnsavedDraft &&
+      !window.confirm(
+        "작성 중인 입력·결과와 저장 대기 초안을 바꾸고 은행 원문을 불러오시겠습니까?",
+      )
+    ) {
+      onBankSeedHandled?.(bankSeed.requestId);
+      return;
+    }
+    setTab(bankSeed.path);
+    setPendingSave(null);
+    setSaveFailure(null);
+    setConditionIssues([]);
+    setApiError(null);
+    setClozeError("");
+    setFallbackText(null);
+    setPasteText("");
+    setPasteIssues([]);
+    setRejection(null);
+    setFixOpen(false);
+    setFixCopyFailed(false);
+    if (bankSeed.path === "cloze") {
+      setClozeText(bankSeed.text);
+      setBankCloze(bankSeed);
+      setPickedCloze(null);
+      setClozeBankMessage("");
+    } else {
+      setConditions((previous) => ({
+        ...previous,
+        mode: "original",
+        topic: "",
+        passage: bankSeed.text,
+      }));
+      setBankPassage(bankSeed);
+      setPickedPassage(null);
+      setBankMessage("");
+    }
+    onBankSeedAccepted?.(bankSeed.examId);
+    onBankSeedHandled?.(bankSeed.requestId);
+  });
+  useEffect(() => {
+    if (!bankSeed || busy) return;
+    // Cancel a queued command if the shell changes the target or unmounts while a save settles.
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (!cancelled) acceptBankSeed(bankSeed);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [bankSeed, busy, exam.id, onBankSeedAccepted]);
+
   const textMaterials = materials.filter((material) => material.content);
 
-  const update = (patch: Partial<Conditions>) =>
+  function detachBank(path: "external" | "cloze") {
+    const message =
+      "입력 또는 자료가 바뀌어 은행 연결을 해제했습니다. 이 글은 새 사본으로 저장됩니다.";
+    if (path === "cloze") {
+      if (!bankCloze) return;
+      setBankCloze(null);
+      setClozeBankMessage(message);
+    } else {
+      if (!bankPassage) return;
+      setBankPassage(null);
+      setBankMessage(message);
+      setFallbackText(null);
+      setFixOpen(false);
+      setFixCopyFailed(false);
+    }
+  }
+
+  const update = (patch: Partial<Conditions>) => {
+    setConditionsEdited(true);
+    if (
+      (patch.passage !== undefined && patch.passage !== conditions.passage) ||
+      patch.mode === "new"
+    )
+      detachBank("external");
     setConditions((previous) => ({ ...previous, ...patch }));
+  };
 
   const toggleType = (type: GeneratedType) => {
+    setConditionsEdited(true);
     const adding = !conditions.types.includes(type);
     if (
       adding &&
@@ -332,6 +464,7 @@ export default function EnglishMakerView({
   };
 
   function loadExamTypes() {
+    setConditionsEdited(true);
     if (!exam.types.length) {
       onNotice("이 시험에 저장된 출제 설정이 없습니다.", "alert");
       return;
@@ -346,6 +479,15 @@ export default function EnglishMakerView({
 
   /** 조건을 계약으로 잠근다 — 어긋나면 사유를 보이고 null. */
   function validatedConditions(): EnglishMakerConditions | null {
+    if (
+      conditions.mode !== "new" &&
+      conditions.passage.length > ENGLISH_BANK_PATH_LIMITS.chatgpt
+    ) {
+      setConditionIssues([
+        "ChatGPT·API 제작은 원문 18,000자까지 가능합니다. 글을 자르지 않았습니다. 원문 복원은 24,000자까지 지원합니다.",
+      ]);
+      return null;
+    }
     const parsed = englishGenerateRequestSchema.safeParse({
       examId: exam.id,
       ...conditions,
@@ -357,7 +499,56 @@ export default function EnglishMakerView({
     setConditionIssues([]);
     const { mode, topic, passage, difficulty, count, words, types } =
       parsed.data;
-    return { mode, topic, passage, difficulty, count, words, types };
+    return {
+      mode,
+      topic,
+      passage: bankPassage ? conditions.passage : passage,
+      difficulty,
+      count,
+      words,
+      types,
+    };
+  }
+
+  async function prepareBank(
+    bank: EnglishBankMakerSeed | null,
+    path: MakerTab,
+  ) {
+    if (!bank) return;
+    const body = await readJson(
+      await fetch(
+        `/api/english/passages/${bank.passageRef.passageId}/prepare`,
+        {
+          method: "POST",
+          headers: JSON_HEADERS,
+          body: JSON.stringify({
+            examId: exam.id,
+            path,
+            textRevision: bank.passageRef.textRevision,
+          }),
+        },
+      ),
+    );
+    const prepared = englishPassagePrepareResponseSchema.safeParse(body);
+    if (!prepared.success)
+      throw new ApiFailure(
+        0,
+        "은행 원문 준비 결과를 읽지 못했습니다. 다시 시도해 주세요.",
+      );
+    const fresh = prepared.data.data;
+    if (
+      fresh.examId !== exam.id ||
+      fresh.path !== path ||
+      fresh.text !== bank.text ||
+      !sameJson(fresh.passageRef, bank.passageRef)
+    ) {
+      throw new ApiFailure(
+        409,
+        "은행 원문이 변경되었습니다. 입력은 보존했습니다. 은행에서 원문을 확인하고 다시 불러와 주세요.",
+        [],
+        "PASSAGE_TEXT_MISMATCH",
+      );
+    }
   }
 
   /**
@@ -382,24 +573,34 @@ export default function EnglishMakerView({
   }
 
   async function postBundle(bundle: SaveBundle): Promise<string> {
-    const body = await readJson(
-      // 묶음을 지은 시험으로 — 지금 보고 있는 시험이 아니다
-      await fetch(`/api/english/exams/${bundle.examId}/sets`, {
-        method: "POST",
-        headers: JSON_HEADERS,
-        body: JSON.stringify({
-          title: bundle.draft.title,
-          source: bundle.draft.source,
-          passage: bundle.draft.passage,
-          questions: bundle.draft.questions,
-          meta: bundle.meta,
+    setSaveFailure(null);
+    try {
+      const body = await readJson(
+        // 묶음을 지은 시험으로 — 지금 보고 있는 시험이 아니다
+        await fetch(`/api/english/exams/${bundle.examId}/sets`, {
+          method: "POST",
+          headers: JSON_HEADERS,
+          body: JSON.stringify({
+            title: bundle.draft.title,
+            source: bundle.draft.source,
+            passage: bundle.draft.passage,
+            questions: bundle.draft.questions,
+            meta: bundle.meta,
+          }),
         }),
-      }),
-    );
-    const id = (body as { data?: { id?: unknown } } | null)?.data?.id;
-    if (typeof id !== "string" || !id)
-      throw new ApiFailure(0, "저장 결과를 읽지 못했습니다.");
-    return id;
+      );
+      const id = (body as { data?: { id?: unknown } } | null)?.data?.id;
+      if (typeof id !== "string" || !id)
+        throw new ApiFailure(0, "저장 결과를 읽지 못했습니다.");
+      return id;
+    } catch (error) {
+      const failure =
+        error instanceof ApiFailure
+          ? error
+          : new ApiFailure(0, messageOf(error));
+      setSaveFailure(failure);
+      throw failure;
+    }
   }
 
   async function saveDraft(draft: EnglishDraft, meta: EnglishSetMeta) {
@@ -426,23 +627,77 @@ export default function EnglishMakerView({
     }
   }
 
+  async function unlinkAndSave() {
+    if (
+      !pendingSave ||
+      busy ||
+      pendingSave.examId !== exam.id ||
+      !pendingSave.meta.passageRef
+    )
+      return;
+    const meta = { ...pendingSave.meta, clientKey: crypto.randomUUID() };
+    delete meta.passageRef;
+    const bundle = { ...pendingSave, meta };
+    // Explicit new-copy action is the only operation that rewrites a pending relationship/key.
+    setPendingSave(bundle);
+    if (pendingSave.meta.path === "cloze") {
+      if (sameJson(bankCloze?.passageRef, pendingSave.meta.passageRef))
+        detachBank("cloze");
+    } else if (sameJson(bankPassage?.passageRef, pendingSave.meta.passageRef))
+      detachBank("external");
+    setBusy("save");
+    try {
+      const id = await postBundle(bundle);
+      setPendingSave(null);
+      onNotice("은행 연결을 해제한 새 사본을 초안으로 저장했습니다.", "status");
+      onSaved(id);
+    } catch (error) {
+      onNotice(messageOf(error), "alert");
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  function cancelPendingSave() {
+    setPendingSave(null);
+    setSaveFailure(null);
+    onNotice(
+      "저장 재시도를 취소했습니다. 작성 중인 입력은 그대로 남아 있습니다.",
+      "status",
+    );
+  }
+
   async function copyRequest() {
+    if (busy) return;
     const request = validatedConditions();
     if (!request) return;
-    const text = buildChatgptRequest({ exam, request });
-    const clipboard =
-      typeof navigator === "undefined" ? undefined : navigator.clipboard;
+    setBusy("prepare");
+    setFallbackText(null);
     try {
-      if (!clipboard?.writeText) throw new Error("clipboard unavailable");
-      await clipboard.writeText(text);
-      setFallbackText(null);
-      onNotice("요청문을 복사했습니다. ChatGPT 에 붙여 넣어 주세요.", "status");
-    } catch {
-      setFallbackText(text);
+      await prepareBank(bankPassage, "chatgpt");
+      const text = buildChatgptRequest({ exam, request });
+      const clipboard =
+        typeof navigator === "undefined" ? undefined : navigator.clipboard;
+      try {
+        if (!clipboard?.writeText) throw new Error("clipboard unavailable");
+        await clipboard.writeText(text);
+        setFallbackText(null);
+        onNotice(
+          "요청문을 복사했습니다. ChatGPT 에 붙여 넣어 주세요.",
+          "status",
+        );
+      } catch {
+        setFallbackText(text);
+      }
+    } catch (error) {
+      onNotice(messageOf(error), "alert");
+    } finally {
+      setBusy(null);
     }
   }
 
   async function importPaste() {
+    if (busy) return;
     // «요청문 복사»와 같은 함수로 조건을 읽는다 — 조건이 계약을 못 지나면 여기서도 사유를 보이고 멈춘다.
     // (리드 검토 D4: 전에는 expectation 을 조용히 버리고 문항 수·유형 대조 없이 저장까지 갔다.)
     const request = validatedConditions();
@@ -465,6 +720,7 @@ export default function EnglishMakerView({
               pasted: pasteText,
               conditions: JSON.stringify(conditions),
               text: fix,
+              bank: bankPassage,
             }
           : null,
       );
@@ -477,10 +733,12 @@ export default function EnglishMakerView({
       await saveDraft(
         verdict.draft,
         englishMetaFromConditions("chatgpt", request, {
+          passageRef: bankPassage?.passageRef,
           materialName:
             request.mode === "new"
               ? undefined
-              : sameText(pickedPassage, request.passage),
+              : (bankPassage?.title ??
+                sameText(pickedPassage, request.passage)),
         }),
       );
       setPasteText("");
@@ -495,26 +753,59 @@ export default function EnglishMakerView({
 
   /** 수정 요청문 복사 — 거절된 그때의 글로 지은 것. 클립보드를 못 쓰면 글을 펼쳐 직접 복사하게 한다 */
   async function copyFixRequest() {
-    if (!rejection) return;
-    const clipboard =
-      typeof navigator === "undefined" ? undefined : navigator.clipboard;
+    if (!rejection || busy) return;
+    setBusy("prepare");
+    setFixOpen(false);
+    setFixCopyFailed(false);
     try {
-      if (!clipboard?.writeText) throw new Error("clipboard unavailable");
-      await clipboard.writeText(rejection.text);
-      setFixCopyFailed(false);
-      onNotice(
-        "수정 요청문을 복사했습니다. 같은 ChatGPT 대화에 붙여 넣어 주세요.",
-        "status",
-      );
-    } catch {
-      setFixCopyFailed(true);
+      // The rejected prompt still contains its original source after current input is edited.
+      await prepareBank(rejection.bank, "chatgpt");
+      const clipboard =
+        typeof navigator === "undefined" ? undefined : navigator.clipboard;
+      try {
+        if (!clipboard?.writeText) throw new Error("clipboard unavailable");
+        await clipboard.writeText(rejection.text);
+        setFixCopyFailed(false);
+        onNotice(
+          "수정 요청문을 복사했습니다. 같은 ChatGPT 대화에 붙여 넣어 주세요.",
+          "status",
+        );
+      } catch {
+        setFixCopyFailed(true);
+        setFixOpen(true);
+      }
+    } catch (error) {
+      onNotice(messageOf(error), "alert");
+    } finally {
+      setBusy(null);
+    }
+  }
+
+  async function toggleFixRequest() {
+    if (fixOpen) {
+      setFixOpen(false);
+      return;
+    }
+    if (!rejection || busy) return;
+    if (!rejection.bank) {
       setFixOpen(true);
+      return;
+    }
+    setBusy("prepare");
+    try {
+      await prepareBank(rejection.bank, "chatgpt");
+      setFixOpen(true);
+    } catch (error) {
+      onNotice(messageOf(error), "alert");
+    } finally {
+      setBusy(null);
     }
   }
 
   async function makeClozeSet() {
-    const text = clozeText.trim();
-    if (!text) {
+    if (busy) return;
+    const text = bankCloze ? clozeText : clozeText.trim();
+    if (!text.trim()) {
       setClozeError("원문을 입력해 주세요.");
       return;
     }
@@ -542,8 +833,12 @@ export default function EnglishMakerView({
     setBusy("cloze");
     const meta: EnglishSetMeta = { path: "cloze", count: clozeCount };
     const materialName = sameText(pickedCloze, text);
-    if (materialName) meta.materialName = materialName;
+    if (bankCloze) {
+      meta.passageRef = { ...bankCloze.passageRef };
+      meta.materialName = bankCloze.title;
+    } else if (materialName) meta.materialName = materialName;
     try {
+      await prepareBank(bankCloze, "cloze");
       await saveDraft(verdict.draft, meta);
     } catch (error) {
       const message = messageOf(error);
@@ -555,17 +850,25 @@ export default function EnglishMakerView({
   }
 
   async function generateWithApi() {
+    if (busy) return;
     const request = validatedConditions();
     if (!request) return;
     setApiError(null);
     setBusy("generate");
     setStartedAt(Date.now());
+    let generating = false;
     try {
+      await prepareBank(bankPassage, "api");
+      generating = true;
       const body = await readJson(
         await fetch("/api/english/generate", {
           method: "POST",
           headers: JSON_HEADERS,
-          body: JSON.stringify({ examId: exam.id, ...request }),
+          body: JSON.stringify({
+            examId: exam.id,
+            ...request,
+            ...(bankPassage ? { passageRef: bankPassage.passageRef } : {}),
+          }),
         }),
       );
       const full = englishGenerateResponseSchema.safeParse(body);
@@ -586,12 +889,14 @@ export default function EnglishMakerView({
         await saveDraft(
           full.success ? full.data.data : (draft.data as EnglishDraft),
           englishMetaFromConditions("api", request, {
+            passageRef: bankPassage?.passageRef,
             model: model?.name,
             promptVersion: model?.promptVersion,
             materialName:
               request.mode === "new"
                 ? undefined
-                : sameText(pickedPassage, request.passage),
+                : (bankPassage?.title ??
+                  sameText(pickedPassage, request.passage)),
           }),
         );
       } catch (error) {
@@ -607,7 +912,7 @@ export default function EnglishMakerView({
         error instanceof ApiFailure
           ? error
           : new ApiFailure(0, messageOf(error));
-      if (failure.status === 503) setAiLink("waiting");
+      if (generating && failure.status === 503) setAiLink("waiting");
       setApiError(failure);
     } finally {
       setBusy(null);
@@ -636,6 +941,7 @@ export default function EnglishMakerView({
     textMaterials.length ? (
       <select
         className={s.select}
+        disabled={busy !== null}
         aria-label="저장한 자료 불러오기"
         value=""
         onChange={(event) => {
@@ -656,6 +962,16 @@ export default function EnglishMakerView({
 
   const conditionFields = (
     <div className={s.form}>
+      {bankPassage ? (
+        <p role="status" className={s.statusLine}>
+          은행 원문 «{bankPassage.title}» 연결됨
+        </p>
+      ) : null}
+      {bankMessage ? (
+        <p role="status" className={s.statusLine}>
+          {bankMessage}
+        </p>
+      ) : null}
       <fieldset className={s.group}>
         <legend>제작 방식</legend>
         <div className={s.choices}>
@@ -663,6 +979,7 @@ export default function EnglishMakerView({
             <label key={mode} className={s.choice}>
               <input
                 type="radio"
+                disabled={busy !== null}
                 name={`${uid}-mode`}
                 value={mode}
                 checked={conditions.mode === mode}
@@ -678,6 +995,7 @@ export default function EnglishMakerView({
           <label htmlFor={`${uid}-topic`}>소재</label>
           <input
             id={`${uid}-topic`}
+            disabled={busy !== null}
             type="text"
             value={conditions.topic}
             maxLength={300}
@@ -690,12 +1008,14 @@ export default function EnglishMakerView({
           <div className={s.fieldHead}>
             <label htmlFor={`${uid}-passage`}>원문</label>
             {materialPicker((material) => {
+              detachBank("external");
               setPickedPassage(material);
               update({ passage: material.content ?? "" });
             })}
           </div>
           <AutoGrowTextarea
             id={`${uid}-passage`}
+            disabled={busy !== null}
             rows={8}
             value={conditions.passage}
             placeholder="영어 원문을 붙여 넣으세요 (80자 이상)."
@@ -710,6 +1030,7 @@ export default function EnglishMakerView({
             <label key={difficulty} className={s.choice}>
               <input
                 type="radio"
+                disabled={busy !== null}
                 name={`${uid}-difficulty`}
                 value={difficulty}
                 checked={conditions.difficulty === difficulty}
@@ -725,6 +1046,7 @@ export default function EnglishMakerView({
           <label htmlFor={`${uid}-count`}>문항 수</label>
           <select
             id={`${uid}-count`}
+            disabled={busy !== null}
             className={s.select}
             value={conditions.count}
             onChange={(event) => update({ count: Number(event.target.value) })}
@@ -742,7 +1064,7 @@ export default function EnglishMakerView({
             id={`${uid}-words`}
             className={s.select}
             value={conditions.words}
-            disabled={conditions.mode === "original"}
+            disabled={busy !== null || conditions.mode === "original"}
             onChange={(event) => update({ words: Number(event.target.value) })}
           >
             {WORD_OPTIONS.map((words) => (
@@ -760,6 +1082,7 @@ export default function EnglishMakerView({
             <label key={type} className={s.choice}>
               <input
                 type="checkbox"
+                disabled={busy !== null}
                 checked={conditions.types.includes(type)}
                 onChange={() => toggleType(type)}
               />
@@ -767,7 +1090,12 @@ export default function EnglishMakerView({
             </label>
           ))}
         </div>
-        <button type="button" className={s.quietButton} onClick={loadExamTypes}>
+        <button
+          type="button"
+          disabled={busy !== null}
+          className={s.quietButton}
+          onClick={loadExamTypes}
+        >
           이 시험의 출제 설정 불러오기
         </button>
       </fieldset>
@@ -791,6 +1119,7 @@ export default function EnglishMakerView({
             key={item.id}
             type="button"
             role="tab"
+            disabled={busy !== null}
             id={tabId(item.id)}
             aria-selected={tab === item.id}
             aria-controls={panelId(item.id)}
@@ -825,6 +1154,7 @@ export default function EnglishMakerView({
               <button
                 type="button"
                 className={s.primaryButton}
+                disabled={busy !== null}
                 onClick={() => void copyRequest()}
               >
                 요청문 복사
@@ -848,6 +1178,7 @@ export default function EnglishMakerView({
               <label htmlFor={`${uid}-paste`}>ChatGPT 결과 붙여넣기</label>
               <textarea
                 id={`${uid}-paste`}
+                disabled={busy !== null}
                 rows={10}
                 value={pasteText}
                 placeholder="ChatGPT 가 답한 JSON 을 그대로 붙여 넣으세요."
@@ -876,6 +1207,7 @@ export default function EnglishMakerView({
                       <button
                         type="button"
                         className={s.quietButton}
+                        disabled={busy !== null}
                         onClick={() => void copyFixRequest()}
                       >
                         수정 요청문 복사
@@ -883,8 +1215,9 @@ export default function EnglishMakerView({
                       <button
                         type="button"
                         className={s.quietButton}
+                        disabled={busy !== null}
                         aria-expanded={fixOpen}
-                        onClick={() => setFixOpen((open) => !open)}
+                        onClick={() => void toggleFixRequest()}
                       >
                         {fixOpen ? "수정 요청문 접기" : "수정 요청문 보기"}
                       </button>
@@ -942,20 +1275,35 @@ export default function EnglishMakerView({
               </p>
             </div>
             <div className={s.form}>
+              {bankCloze ? (
+                <p role="status" className={s.statusLine}>
+                  은행 원문 «{bankCloze.title}» 연결됨
+                </p>
+              ) : null}
+              {clozeBankMessage ? (
+                <p role="status" className={s.statusLine}>
+                  {clozeBankMessage}
+                </p>
+              ) : null}
               <div className={s.field}>
                 <div className={s.fieldHead}>
                   <label htmlFor={`${uid}-cloze`}>복원할 원문</label>
                   {materialPicker((material) => {
+                    detachBank("cloze");
                     setPickedCloze(material);
                     setClozeText(material.content ?? "");
                   })}
                 </div>
                 <AutoGrowTextarea
                   id={`${uid}-cloze`}
+                  disabled={busy !== null}
                   rows={10}
                   value={clozeText}
                   placeholder="영어 원문을 붙여 넣으세요."
-                  onChange={(event) => setClozeText(event.target.value)}
+                  onChange={(event) => {
+                    if (event.target.value !== clozeText) detachBank("cloze");
+                    setClozeText(event.target.value);
+                  }}
                 />
               </div>
               <div className={s.row}>
@@ -963,11 +1311,13 @@ export default function EnglishMakerView({
                   <label htmlFor={`${uid}-cloze-count`}>최대 문항 수</label>
                   <select
                     id={`${uid}-cloze-count`}
+                    disabled={busy !== null}
                     className={s.select}
                     value={clozeCount}
-                    onChange={(event) =>
-                      setClozeCount(Number(event.target.value) as ClozeCount)
-                    }
+                    onChange={(event) => {
+                      setConditionsEdited(true);
+                      setClozeCount(Number(event.target.value) as ClozeCount);
+                    }}
                   >
                     {CLOZE_COUNTS.map((count) => (
                       <option key={count} value={count}>
@@ -1054,19 +1404,47 @@ export default function EnglishMakerView({
       </section>
       {/* 다른 시험을 보는 동안에는 숨긴다 — 그 시험으로 돌아오면 다시 보인다(묶음은 그대로) */}
       {pendingSave && pendingSave.examId === exam.id ? (
-        <div className={s.actions}>
-          <button
-            type="button"
-            className={s.primaryButton}
-            disabled={busy !== null}
-            onClick={() => void retrySave()}
-          >
-            {busy === "save" ? (
-              <WorkProgress variant="inline" label="저장 중…" />
-            ) : (
-              "다시 저장"
-            )}
-          </button>
+        <div className={s.card}>
+          {saveFailure && pendingSave.meta.passageRef ? (
+            <p role="alert" className={s.alert}>
+              {saveFailure.message}{" "}
+              {saveFailure.reason === "RIGHTS_REQUIRED"
+                ? "은행에서 제작·외부 전송 이용 근거를 확인한 뒤 다시 저장해 주세요."
+                : "입력과 저장할 초안을 보존했습니다. 은행 원문을 확인한 뒤 다시 저장하거나, 연결을 해제해 새 사본으로 저장할 수 있습니다."}
+            </p>
+          ) : null}
+          <div className={s.actions}>
+            <button
+              type="button"
+              className={s.primaryButton}
+              disabled={busy !== null}
+              onClick={() => void retrySave()}
+            >
+              {busy === "save" ? (
+                <WorkProgress variant="inline" label="저장 중…" />
+              ) : (
+                "다시 저장"
+              )}
+            </button>
+            {saveFailure && pendingSave.meta.passageRef ? (
+              <button
+                type="button"
+                className={s.quietButton}
+                disabled={busy !== null}
+                onClick={() => void unlinkAndSave()}
+              >
+                은행 연결 해제 후 새 사본 저장
+              </button>
+            ) : null}
+            <button
+              type="button"
+              className={s.quietButton}
+              disabled={busy !== null}
+              onClick={cancelPendingSave}
+            >
+              저장 재시도 취소
+            </button>
+          </div>
         </div>
       ) : null}
     </div>

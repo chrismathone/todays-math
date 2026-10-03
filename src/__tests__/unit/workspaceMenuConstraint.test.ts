@@ -39,7 +39,7 @@ function lastMenuCheck(): string[] | null {
 }
 
 describe("메뉴 목록 ↔ DB CHECK(user_disabled_menus_valid)", () => {
-  it("마지막 CHECK 의 목록이 코드의 메뉴 전부와 같다", () => {
+  it("마지막 CHECK 는 모든 메뉴와 이전 영어 차단 값을 보존한다", () => {
     const check = lastMenuCheck();
     expect(check).not.toBeNull();
     expect([...check!].sort()).toEqual([...workspaceMenuSchema.options].sort());
@@ -49,5 +49,12 @@ describe("메뉴 목록 ↔ DB CHECK(user_disabled_menus_valid)", () => {
     expect(normalizeWorkspaceMenus(workspaceMenuSchema.options).sort()).toEqual(
       [...ALL_WORKSPACE_MENUS].sort(),
     );
+  });
+
+  it("호환 입력 english 외에는 메뉴 배열과 enum 이 같다", () => {
+    expect(workspaceMenuSchema.options).toContain("english");
+    expect(
+      workspaceMenuSchema.options.filter((menu) => menu !== "english").sort(),
+    ).toEqual([...ALL_WORKSPACE_MENUS].sort());
   });
 });

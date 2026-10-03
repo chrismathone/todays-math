@@ -99,6 +99,50 @@ afterEach(() => {
 });
 
 describe("ListeningStudio connected teacher flow", () => {
+  it("opens a bank request after list loading and consumes it once", async () => {
+    const detail = makeDetail();
+    const opened = vi.fn();
+    const fetcher = vi.fn(async (url: string) =>
+      receipt(url === `${base}/sets` ? [summary(detail)] : detail),
+    );
+    vi.stubGlobal("fetch", fetcher);
+    const request = { id: detail.id, version: 1 };
+    const rendered = render(
+      <ListeningStudio openSetRequest={request} onSetOpened={opened} />,
+    );
+    expect(
+      await screen.findByRole("heading", { name: detail.document.title }),
+    ).toBeVisible();
+    expect(opened).toHaveBeenCalledWith(1);
+    rendered.rerender(
+      <ListeningStudio openSetRequest={{ ...request }} onSetOpened={opened} />,
+    );
+    expect(
+      fetcher.mock.calls.filter(([url]) => url === `${base}/sets/${detail.id}`),
+    ).toHaveLength(1);
+  });
+
+  it("keeps an unsaved draft when a bank request is cancelled", async () => {
+    const detail = makeDetail();
+    const opened = vi.fn();
+    const fetcher = vi.fn(async () => receipt([summary(detail)]));
+    vi.stubGlobal("fetch", fetcher);
+    const rendered = render(<ListeningStudio />);
+    await screen.findByRole("button", { name: /짧은 대화와 안내/ });
+    fireEvent.click(screen.getByRole("button", { name: "새 자료 만들기" }));
+    fireEvent.change(screen.getByLabelText("자료 제목"), {
+      target: { value: "보존할 초안" },
+    });
+    rendered.rerender(
+      <ListeningStudio
+        openSetRequest={{ id: detail.id, version: 2 }}
+        onSetOpened={opened}
+      />,
+    );
+    await waitFor(() => expect(opened).toHaveBeenCalledWith(2));
+    expect(screen.getByLabelText("자료 제목")).toHaveValue("보존할 초안");
+    expect(fetcher).toHaveBeenCalledTimes(1);
+  });
   it("opens the native draft form with the keyboard and keeps late selection responses out", async () => {
     const first = makeDetail();
     const second = {

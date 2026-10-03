@@ -228,6 +228,8 @@ model User {
   englishExams           EnglishExam[]
   /// 교재 제작 — 이 계정의 책. 🔴 RESTRICT — 책이 있는 계정은 지워지지 않는다(인쇄된 QR 이 그 행에 달려 있다)
   textbooks              Textbook[]
+  englishPassages        EnglishPassage[]
+  englishPassageReceipts EnglishPassageReceipt[]
   listeningSets          EnglishListeningSet[]
 
   @@map("user")
@@ -1594,9 +1596,82 @@ model EnglishQuestionSet {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   exam EnglishExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  passageUse EnglishPassageUse?
 
   @@index([examId, updatedAt])
   @@map("english_question_set")
+}
+
+/// Independent bank ownership root; archiving does not delete historical text or uses.
+model EnglishPassage {
+  id String @id @default(uuid()) @db.Uuid
+  userId String @map("user_id") @db.Uuid
+  branchId String? @map("branch_id") @db.Uuid
+  title String @db.VarChar(160)
+  grade String? @db.VarChar(4)
+  source Json @db.JsonB
+  text String @db.Text
+  textLength Int @map("text_length")
+  snapshotHash String @map("snapshot_hash") @db.VarChar(64)
+  duplicateHash String @map("duplicate_hash") @db.VarChar(64)
+  revision Int @default(1)
+  textRevision Int @default(1) @map("text_revision")
+  rights Json @db.JsonB
+  importedFrom Json? @map("imported_from") @db.JsonB
+  importFingerprint String? @map("import_fingerprint") @db.VarChar(64)
+  archivedAt DateTime? @map("archived_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  revisions EnglishPassageRevision[]
+  receipts EnglishPassageReceipt[]
+  @@unique([userId, importFingerprint])
+  @@index([userId, archivedAt, createdAt, id])
+  @@index([branchId, archivedAt, createdAt, id])
+  @@index([userId, duplicateHash])
+  @@map("english_passage")
+}
+
+/// Text-only immutable revision. Metadata edits increment the parent's CAS, not this number.
+model EnglishPassageRevision {
+  passageId String @map("passage_id") @db.Uuid
+  textRevision Int @map("text_revision")
+  text String @db.Text
+  snapshotHash String @map("snapshot_hash") @db.VarChar(64)
+  createdAt DateTime @default(now()) @map("created_at")
+  passage EnglishPassage @relation(fields: [passageId], references: [id], onDelete: Restrict)
+  uses EnglishPassageUse[]
+  @@id([passageId, textRevision])
+  @@map("english_passage_revision")
+}
+
+/// Server-read source and original text at creation; deleted only when its set is deleted.
+model EnglishPassageUse {
+  setId String @id @map("set_id") @db.Uuid
+  passageId String @map("passage_id") @db.Uuid
+  textRevision Int @map("text_revision")
+  snapshotHash String @map("snapshot_hash") @db.VarChar(64)
+  textSnapshot String @map("text_snapshot") @db.Text
+  sourceSnapshot Json @map("source_snapshot") @db.JsonB
+  createdAt DateTime @default(now()) @map("created_at")
+  set EnglishQuestionSet @relation(fields: [setId], references: [id], onDelete: Cascade)
+  revision EnglishPassageRevision @relation(fields: [passageId, textRevision], references: [passageId, textRevision], onDelete: Restrict)
+  @@index([passageId, createdAt])
+  @@map("english_passage_use")
+}
+
+/// Multiple retry keys may resolve to the same explicitly imported original.
+model EnglishPassageReceipt {
+  userId String @map("user_id") @db.Uuid
+  clientKey String @map("client_key") @db.Uuid
+  requestHash String @map("request_hash") @db.VarChar(64)
+  passageId String @map("passage_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  user User @relation(fields: [userId], references: [id], onDelete: Restrict)
+  passage EnglishPassage @relation(fields: [passageId], references: [id], onDelete: Restrict)
+  @@id([userId, clientKey])
+  @@index([passageId])
+  @@map("english_passage_receipt")
 }
 
 // ─────────────────────────────────────────────

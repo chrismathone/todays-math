@@ -35,6 +35,8 @@
 
 리스닝 후속 기획은 [오늘의 영어 리스닝 추가 계획](docs/planning/english-listening-plan-20261003.md)을 본다(2026-10-03). **직접 제작·MP3/PCM16 WAV 업로드 기반 교사 수업·학생 자습·3~5문항 연습평가의 화면·인증 API·영속 저장을 통합했다.** 최신 상태는 [통합 기록](docs/planning/tracks/reports/listening-integration-20261003.md)을 따른다. **Wire 교사 A·학생 B와 Hi-fi H1은 사용자 선택 완료**이며 재질문하지 않는다. **사용자의 운영 반영 승인으로 듣기 테이블 12개를 공유 DB에 적용·검증했다.** 서비스 최고관리자가 기본 시범 대상이며 교사는 `/#english-listening`, 학생은 `/learn/english-listening`을 사용한다. AI/TTS·전체 듣기평가·사람의 청취 및 실물 출력 검수는 후속 단계다. Claude·Grok의 [기획 검토](docs/planning/tracks/reports/english-listening-review-20261003.md)와 Claude의 [L0 코드 리뷰](docs/planning/tracks/reports/listening-l0-code-review.md)는 당시 이력이다.
 
+영어 자료은행은 [지문은행·듣기은행 계획](docs/planning/english-resource-bank-plan-20261003.md)과 [통합·운영 반영 기록](docs/planning/tracks/reports/english-bank-integration-20261003.md)을 따른다. 사용자 승인 A안·기존 스타일 및 Claude·Grok 합의로 구현했다. `/#english-bank`에서 독립 지문과 기존 듣기 자료·EBS 공식 참조를 검색한다. 지문 표 네 개와 메뉴 CHECK는 운영 반영했다. EBS 파일 재호스팅과 이미지 문항 학생 발행은 이번 완료 범위가 아니다.
+
 > ⚠️ **새 기획 문서 번호를 붙이기 전에 반드시 `ls docs/planning/` 로 확인하고,
 > 원장님께 번호를 먼저 알린다.** 오르카 다중 세션이 동시에 문서를 만들면 번호가 겹친다
 > (2026-08-16 실제 발생: 11번이 둘). 겹치면 **참조가 적은 쪽**을 옮기고,

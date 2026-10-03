@@ -21,6 +21,13 @@ import {
   englishGradeSchema,
 } from "@/contracts/english.contract";
 import { sameOriginMutation } from "@/lib/accountAccess";
+import { db } from "@/lib/db";
+import { bankMenuDenied, bankErrorResponse } from "@/lib/english/bank/http";
+import { EnglishBankError } from "@/lib/english/bank/policy";
+import {
+  ownedBankExam,
+  validateBankReference,
+} from "@/lib/english/bank/service";
 import {
   AiCapacityError,
   AiConfigError,
@@ -65,6 +72,22 @@ async function handlePost(request: NextRequest) {
   const grade = englishGradeSchema.parse(owned.data.grade);
 
   try {
+    if (parsed.data.passageRef) {
+      const denied = bankMenuDenied(session, true);
+      if (denied) return denied;
+      if (parsed.data.mode === "new")
+        throw new EnglishBankError("PASSAGE_TEXT_MISMATCH");
+      await db.$transaction(async (tx) => {
+        await ownedBankExam(tx, session, parsed.data.examId);
+        await validateBankReference(
+          tx,
+          session,
+          parsed.data.passageRef!,
+          parsed.data.passage,
+          "api",
+        );
+      });
+    }
     const draft = await generateEnglishDraft(parsed.data, grade);
     // 200 — 만든 자원이 없다. 저장은 클라이언트가 sets POST 로. 부른 모델 · 프롬프트 판은 «만든 조건»에 실린다
     return jsonOk(englishGenerateResponseSchema, {
@@ -72,6 +95,7 @@ async function handlePost(request: NextRequest) {
       model: englishGenerationModel(),
     });
   } catch (error) {
+    if (error instanceof EnglishBankError) return bankErrorResponse(error);
     if (error instanceof AiCapacityError)
       return jsonError(
         "AI_GENERATION_FAILED",

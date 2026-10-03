@@ -1,0 +1,288 @@
+{
+  "version": 1,
+  "samples": [
+    {
+      "id": "sample-01",
+      "title": "학교에서 나눈 대화",
+      "level": "중학교 1학년 · A2",
+      "scenario": "학교에서 만난 두 학생의 대화",
+      "speakers": [
+        {
+          "id": "A",
+          "voice": "af_heart",
+          "description": "여학생 미아"
+        },
+        {
+          "id": "B",
+          "voice": "am_michael",
+          "description": "남학생 벤"
+        }
+      ],
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Hi, Ben. Why are you waiting outside the music room?",
+          "translation": "안녕, 벤. 왜 음악실 밖에서 기다리고 있어?"
+        },
+        {
+          "speaker": "B",
+          "text": "I need to return this guitar, but the door is locked.",
+          "translation": "이 기타를 반납해야 하는데, 문이 잠겨 있어."
+        },
+        {
+          "speaker": "A",
+          "text": "Our music teacher is in the library. She is helping some students.",
+          "translation": "우리 음악 선생님은 도서관에 계셔. 학생 몇 명을 도와주고 계셔."
+        },
+        {
+          "speaker": "B",
+          "text": "Thanks, Mia. Can you hold my bag while I carry the guitar?",
+          "translation": "고마워, 미아. 내가 기타를 들고 가는 동안 내 가방을 맡아 줄 수 있어?"
+        },
+        {
+          "speaker": "A",
+          "text": "Sure. Is it heavy?",
+          "translation": "물론이지. 가방이 무거워?"
+        },
+        {
+          "speaker": "B",
+          "text": "A little. My English book and lunch are inside.",
+          "translation": "조금. 안에 내 영어책과 도시락이 들어 있어."
+        },
+        {
+          "speaker": "A",
+          "text": "You can put it on this chair. I'll wait here with it.",
+          "translation": "이 의자 위에 놓아도 돼. 내가 여기서 가방을 맡아 주며 기다릴게."
+        },
+        {
+          "speaker": "B",
+          "text": "Great. After I return the guitar, let's eat in the garden.",
+          "translation": "좋아. 내가 기타를 반납하고 나면 정원에서 밥 먹자."
+        },
+        {
+          "speaker": "A",
+          "text": "Good idea. It's sunny today.",
+          "translation": "좋은 생각이야. 오늘 날씨가 화창하네."
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "남학생이 음악실에 온 목적은 무엇인가?",
+          "choices": [
+            "노래 연습을 하려고",
+            "기타를 반납하려고",
+            "음악 시험을 보려고",
+            "기타를 빌리려고",
+            "의자를 가져오려고"
+          ],
+          "answerIndex": 1,
+          "explanation": "남학생은 기타를 반납해야 하지만 문이 잠겨 있다고 말한다. 기타를 빌리려는 것이 아니라 반납하려는 것이다.",
+          "evidenceTurnIndices": [1]
+        },
+        {
+          "prompt": "음악 선생님은 지금 어디에 계신가?",
+          "choices": [
+            "음악실",
+            "체육관",
+            "급식실",
+            "도서관",
+            "정원"
+          ],
+          "answerIndex": 3,
+          "explanation": "여학생은 음악 선생님이 도서관에서 학생 몇 명을 도와주고 계신다고 말한다.",
+          "evidenceTurnIndices": [2]
+        },
+        {
+          "prompt": "여학생이 남학생을 기다리는 동안 하기로 한 일은 무엇인가?",
+          "choices": [
+            "남학생의 가방을 맡아 준다.",
+            "영어 숙제를 끝낸다.",
+            "혼자 먼저 점심을 먹는다.",
+            "친구에게 전화를 건다.",
+            "다음 수업 준비물을 사러 간다."
+          ],
+          "answerIndex": 0,
+          "explanation": "남학생은 가방을 맡아 달라고 부탁한다. 여학생은 가방을 의자 위에 놓으라고 하고, 그 가방과 함께 여기서 기다리겠다고 답한다.",
+          "evidenceTurnIndices": [3, 6]
+        }
+      ]
+    },
+    {
+      "id": "sample-02",
+      "title": "주말을 앞둔 대화",
+      "level": "중학교 2~3학년 · B1",
+      "scenario": "주말 나들이를 계획하는 두 친구의 대화",
+      "speakers": [
+        {
+          "id": "A",
+          "voice": "af_heart",
+          "description": "나들이를 함께 계획하는 여자 친구"
+        },
+        {
+          "id": "B",
+          "voice": "am_michael",
+          "description": "나들이를 함께 계획하는 남자 친구"
+        }
+      ],
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "How should we get to the lake for our picnic on Saturday? I'd rather not drive.",
+          "translation": "토요일에 소풍 가는 호수까지 어떻게 가면 좋을까? 나는 운전하지 않는 편이 좋겠어."
+        },
+        {
+          "speaker": "B",
+          "text": "We could take the bus. The express leaves at nine fifteen and costs twelve pounds each.",
+          "translation": "버스를 타도 되겠다. 급행버스는 아홉 시 십오 분에 출발하고 요금은 한 사람당 십이 파운드야."
+        },
+        {
+          "speaker": "A",
+          "text": "Does it stop near the lake entrance?",
+          "translation": "그 버스가 호수 입구 근처에 정차해?"
+        },
+        {
+          "speaker": "B",
+          "text": "No, it doesn't. We'd have to walk for half an hour from its last stop.",
+          "translation": "아니, 그렇지 않아. 그 버스의 종점에서 삼십 분 동안 걸어야 해."
+        },
+        {
+          "speaker": "A",
+          "text": "That's too far with our picnic bags. What about the local bus?",
+          "translation": "소풍 가방을 들고 가기에는 너무 멀어. 일반 버스는 어때?"
+        },
+        {
+          "speaker": "B",
+          "text": "It stops right at the entrance. It leaves at nine forty. Tickets are seven pounds each, so fourteen pounds for both of us.",
+          "translation": "그 버스는 입구 바로 앞에 정차해. 아홉 시 사십 분에 출발해. 표는 한 사람당 칠 파운드니까, 우리 둘의 요금은 합해서 십사 파운드야."
+        },
+        {
+          "speaker": "A",
+          "text": "Let's take that one. I'll buy our tickets tonight.",
+          "translation": "그 버스를 타자. 오늘 밤에 우리 표를 살게."
+        },
+        {
+          "speaker": "B",
+          "text": "Great. I'll bring the food and a blanket.",
+          "translation": "좋아. 내가 음식과 담요를 가져갈게."
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "두 사람이 최종적으로 타기로 한 버스의 출발 시각은 언제인가?",
+          "choices": [
+            "아홉 시 정각",
+            "아홉 시 십오 분",
+            "아홉 시 삼십 분",
+            "아홉 시 사십 분",
+            "열 시 정각"
+          ],
+          "answerIndex": 3,
+          "explanation": "일반 버스의 출발 시각은 아홉 시 사십 분이며, 여자가 이어서 그 버스를 타자고 결정한다. 아홉 시 십오 분은 선택하지 않은 급행버스의 출발 시각이다.",
+          "evidenceTurnIndices": [1, 5, 6]
+        },
+        {
+          "prompt": "두 사람이 선택한 버스의 두 명분 요금은 합해서 얼마인가?",
+          "choices": [
+            "칠 파운드",
+            "십이 파운드",
+            "십사 파운드",
+            "이십사 파운드",
+            "이십팔 파운드"
+          ],
+          "answerIndex": 2,
+          "explanation": "두 사람이 선택한 일반 버스는 한 사람당 칠 파운드이며, 남자가 두 명의 합계가 십사 파운드라고 명시한다. 칠 파운드는 한 명분이고, 십이 파운드는 선택하지 않은 급행버스의 한 명분 요금이다. 이십사 파운드는 급행버스를 두 명이 탈 경우의 금액이며, 이십팔 파운드는 일반 버스 네 명분에 해당하므로 정답이 아니다.",
+          "evidenceTurnIndices": [1, 5, 6]
+        },
+        {
+          "prompt": "두 사람이 급행버스를 선택하지 않은 이유는 무엇인가?",
+          "choices": [
+            "주말에는 운행하지 않아서",
+            "차 안에 음식물을 가져갈 수 없어서",
+            "돌아오는 차편이 없어서",
+            "표가 이미 매진되어서",
+            "종점에서 호수 입구까지 걷는 거리가 부담스러워서"
+          ],
+          "answerIndex": 4,
+          "explanation": "남자는 급행버스 종점에서 삼십 분을 걸어야 한다고 말한다. 여자는 소풍 가방을 들고 가기에는 너무 멀다며 일반 버스를 묻는다. 운행일, 음식물 반입 금지, 귀가편 부재, 매진은 언급되지 않는다.",
+          "evidenceTurnIndices": [2, 3, 4]
+        }
+      ]
+    },
+    {
+      "id": "sample-03",
+      "title": "학생들을 위한 교내 방송",
+      "level": "고등학교 1~2학년 · B1–B2",
+      "scenario": "학생들을 대상으로 하는 학교 사서의 안내 방송",
+      "speakers": [
+        {
+          "id": "A",
+          "voice": "bf_emma",
+          "description": "안내 방송을 하는 학교 사서 레인 선생님"
+        }
+      ],
+      "turns": [
+        {
+          "speaker": "A",
+          "text": "Good morning, students. This is Ms. Lane from the library. Next Wednesday, we are holding a workshop where you can learn to repair damaged books. Everyone is welcome, and no previous experience is necessary.",
+          "translation": "학생 여러분, 안녕하세요. 도서관의 레인 선생님입니다. 다음 주 수요일에 손상된 책을 수선하는 방법을 배울 수 있는 체험 활동을 엽니다. 누구나 참여할 수 있고, 사전 경험은 필요하지 않습니다."
+        },
+        {
+          "speaker": "A",
+          "text": "The session runs from three thirty to five in the afternoon. Please meet in the art room, not the library. The art room has large tables, which give us enough space to spread out the books and tools.",
+          "translation": "활동은 오후 세 시 삼십 분부터 다섯 시까지 진행됩니다. 도서관이 아니라 미술실로 모여 주세요. 미술실에는 큰 탁자가 있어서 책과 도구를 펼쳐 놓을 공간이 충분합니다."
+        },
+        {
+          "speaker": "A",
+          "text": "We will provide all the materials, including paper and glue. However, please bring an old shirt to wear over your uniform, because the glue can leave marks.",
+          "translation": "종이와 풀을 포함해 모든 재료는 학교에서 제공합니다. 다만 풀이 얼룩을 남길 수 있으니, 교복 위에 입을 낡은 셔츠를 가져오세요."
+        },
+        {
+          "speaker": "A",
+          "text": "Only twenty students can attend, so sign up at the library desk by Monday afternoon. If this session fills up, we will arrange another one next month.",
+          "translation": "스무 명만 참가할 수 있으므로 월요일 오후까지 도서관 안내 데스크에서 신청하세요. 이번 활동의 정원이 다 차면 다음 달에 한 번 더 마련하겠습니다."
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "이 안내 방송의 주된 목적은 무엇인가?",
+          "choices": [
+            "학교 도서관의 휴관 일정을 공지하려고",
+            "독서 감상문 대회의 결과를 발표하려고",
+            "도서 기증 운동의 참여를 독려하려고",
+            "연체된 도서의 반납을 요청하려고",
+            "도서 수선 체험 활동의 참가를 안내하려고"
+          ],
+          "answerIndex": 4,
+          "explanation": "방송은 손상된 책을 수선하는 체험 활동을 소개하고, 활동 시간과 장소, 준비물, 신청 방법을 안내한다. 휴관, 대회 결과, 기증, 연체 도서 반납에 관한 방송이 아니다.",
+          "evidenceTurnIndices": [0, 1, 2, 3]
+        },
+        {
+          "prompt": "참가 학생이 직접 준비해 와야 하는 것은 무엇인가?",
+          "choices": [
+            "종이",
+            "교복 위에 입을 낡은 셔츠",
+            "풀",
+            "활동 중 먹을 간식",
+            "기록에 사용할 노트"
+          ],
+          "answerIndex": 1,
+          "explanation": "방송에서 교복 위에 입을 낡은 셔츠를 가져오라고 명시한다. 종이와 풀은 학교가 제공하며, 간식과 노트는 준비물로 언급되지 않는다.",
+          "evidenceTurnIndices": [2]
+        },
+        {
+          "prompt": "이 활동을 도서관 대신 미술실에서 진행하는 이유는 무엇인가?",
+          "choices": [
+            "큰 탁자가 있어 작업할 공간이 충분해서",
+            "도서관이 공사 중이어서",
+            "미술실이 도서관보다 일찍 문을 열어서",
+            "도서관에서는 방과 후 활동이 금지되어 있어서",
+            "미술실의 전시 작품을 함께 감상해야 해서"
+          ],
+          "answerIndex": 0,
+          "explanation": "방송은 미술실의 큰 탁자 덕분에 책과 도구를 펼쳐 놓을 공간이 충분하다고 설명한다. 공사, 개방 시각, 방과 후 활동 금지, 작품 감상은 이유로 제시되지 않는다.",
+          "evidenceTurnIndices": [1]
+        }
+      ]
+    }
+  ]
+}
