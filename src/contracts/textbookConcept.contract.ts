@@ -127,6 +127,16 @@ export const textbookConceptSchema = z
     unitId: z.uuid().nullable(),
     body: textbookConceptBodySchema,
     blankItems: z.array(textbookBlankReferenceSchema).max(2000),
+    // Absent in older exchange packages; do not insert defaults while parsing their bytes.
+    blankForms: z
+      .array(textbookFormSchema)
+      .min(1)
+      .max(5)
+      .refine(
+        (forms) => new Set(forms).size === forms.length,
+        "백지 형식을 중복 선택할 수 없습니다.",
+      )
+      .optional(),
     links: z.array(textbookConceptLinkSchema).max(2000),
     mappingVersion: z.string().min(1).max(80),
     derivedFromConceptKey: textbookKeySchema.nullable(),
