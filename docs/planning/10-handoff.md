@@ -74,6 +74,8 @@ codex 작업자 셋(조판 · 엔진 · 기출 — orca Run `run_f571c2e15943`, 
   작업자가 파일을 통째로 다시 쓰면 **줄끝이 LF → CRLF** 로 바뀌어 `git diff` 가 파일 전체를 낸다(`--ignore-cr-at-eol` 로 읽고, 커밋 전에 되돌리게 한다) · `parseProblemContent.ts` 는 원래 NUL 한 바이트를 품어 git 이 «Binary»라 한다(`--text`).
   🔴 **작업자의 «관련 시험»이 초록이어도 전체 시험에서 셋이 빨갰다** — `printGeometryPin`(본문 렌더러의 소스 글자를 핀다) · `hwpRescueRules`(파서 판정이 바뀐다) · `decisionLogNumbers`. 푸시 전에 `npm run test` 를 한 번 돌린다(이 기계에서 `--maxWorkers=3` 으로 31분 · 1,033파일).
   그 사이 다른 세션이 공유 `node_modules` 에 `npm install` 을 돌려도 결과는 같았다. 다른 세션이 main 에 넣은 빨강과 내 것을 가르려면 **같은 파일을 main 체크아웃에서 한 번 더** 돌린다.
+  🔴 **정션 워크트리에서 `npx prisma generate` 를 돌리지 않는다 — 스키마가 origin 과 같아도.** 리드가 «스키마가 같으니 괜찮다»며 돌렸더니 공유 클라이언트에 `.env` 경로가 빈 채로 구워졌고
+  (`relativeEnvPaths.schemaEnvPath` 없음), 약 한 시간 동안 **모든 세션**의 DB 스크립트 · pre-push 가 «DATABASE_URL 을 못 찾는다»가 됐다. 푸시가 막혀서야 알았다. main 체크아웃을 origin 에 맞춘 뒤 **거기서** 다시 생성한다.
   codex 주간 한도가 작업 끝에 2% 였다 — 셋을 동시에 띄우기 전에 상태줄의 `weekly N% left` 를 본다. 리드가 Bash heredoc 으로 문서에 TeX 를 넣다 `\t` 가 탭이 됐다(또 — Edit 로만).
 
 ## 0-ZI. 인수인계 (2026-10-03 저녁) — 일반 문제은행 외부 검토의 반영 (생성기 · 파생 · 채점 · 기출 초안 고침 · **적재본 7,130행 제자리 갱신**)
