@@ -106,7 +106,7 @@ export const ENGLISH_PASSAGE_MAX = 24_000;
 /** Exact immutable bank revision; source text lives in the server-side usage snapshot. */
 export const englishPassageRefSchema = z.strictObject({
   passageId: uuidSchema,
-  textRevision: z.number().int().min(1),
+  textRevision: z.number().int().min(1).max(2_147_483_647),
   snapshotHash: z.string().regex(/^[a-f0-9]{64}$/),
 });
 export type EnglishPassageRef = z.infer<typeof englishPassageRefSchema>;

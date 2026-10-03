@@ -15,8 +15,15 @@ import {
 } from "@/contracts/english.contract";
 import { jsonOk, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
+import { bankErrorResponse, bankMenuDenied } from "@/lib/english/bank/http";
+import { EnglishBankError } from "@/lib/english/bank/policy";
 import {
-  clientKeyConflict,
+  ownedBankExam,
+  sameBankSaveReference,
+  savePassageUse,
+  validateBankSetReference,
+} from "@/lib/english/bank/service";
+import {
   draftRejected,
   readEnglishV1Body,
   requireEnglishSession,
@@ -136,6 +143,10 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
   // 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek)이 같은 규칙을 지난다 — 검증 통과 ≠ 검토 완료
   // 만든 조건(meta)은 초안이 아니다 — 검증기에는 초안만 넘긴다
   const { meta, ...draft } = parsed.data;
+  if (meta?.passageRef) {
+    const denied = bankMenuDenied(gate.session);
+    if (denied) return denied;
+  }
   const verdict = validateEnglishDraft(draft);
   if (!verdict.ok) return draftRejected(verdict.issues);
 
@@ -147,17 +158,34 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
       await tx.$executeRaw`
         SELECT id FROM english_exam WHERE id = CAST(${id} AS uuid) FOR UPDATE
       `;
+      if (meta?.passageRef) await ownedBankExam(tx, gate.session, id);
       const key = meta?.clientKey;
       if (key) {
         const rows = await tx.englishQuestionSet.findMany({
           where: { examId: id },
         });
         const matches = rows.filter((row) => clientKeyOf(row.meta) === key);
-        if (matches.some((row) => !sameStoredBody(row, verdict.draft)))
+        if (
+          matches.some(
+            (row) =>
+              !sameStoredBody(row, verdict.draft) ||
+              !sameBankSaveReference(row.meta, meta),
+          )
+        )
           throw new ClientKeyConflict();
         const existing = matches[0];
         if (existing) return { row: existing, created: false as const };
       }
+      const verified = meta?.passageRef
+        ? await validateBankSetReference(
+            tx,
+            gate.session,
+            id,
+            verdict.draft.passage,
+            meta,
+            verdict.draft.source,
+          )
+        : null;
       const created = await tx.englishQuestionSet.create({
         data: {
           examId: id,
@@ -171,6 +199,7 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
           revision: 1,
         },
       });
+      if (verified) await savePassageUse(tx, created.id, verified);
       return { row: created, created: true as const };
     });
     return jsonOk(
@@ -179,7 +208,9 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
       saved.created ? { status: 201 } : undefined,
     );
   } catch (error) {
-    if (error instanceof ClientKeyConflict) return clientKeyConflict();
+    if (error instanceof EnglishBankError) return bankErrorResponse(error);
+    if (error instanceof ClientKeyConflict)
+      return bankErrorResponse(new EnglishBankError("CLIENT_KEY_CONFLICT"));
     throw error;
   }
 }

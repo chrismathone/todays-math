@@ -21,12 +21,17 @@ export const ENGLISH_BANK_PATH_LIMITS = {
   cloze: 24_000,
 } as const;
 export const englishBankPathSchema = z.enum(["chatgpt", "cloze", "api"]);
-const revision = z.number().int().min(1).max(Number.MAX_SAFE_INTEGER);
+const revision = z.number().int().min(1).max(2_147_483_647);
 const text = z
   .string()
   .min(1)
   .max(ENGLISH_BANK_TEXT_MAX)
-  .refine((value) => value.trim().length > 0);
+  .refine(
+    (value) =>
+      value.trim().length > 0 &&
+      value.isWellFormed() &&
+      !value.includes("\u0000"),
+  );
 const title = z.string().trim().min(1).max(160);
 export const englishPassageSourceSchema = z.strictObject({
   label: z.string().trim().max(255),

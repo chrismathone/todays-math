@@ -101,6 +101,19 @@ export async function handleListeningHttp(
       const [resource, rawId, action, rawAssetId, mediaAction] = path;
       if (
         path.length === 1 &&
+        method === "GET" &&
+        (resource === "bank" || resource === "references")
+      )
+        return Response.json(
+          await runtime.teacherBank(
+            actor,
+            resource,
+            Object.fromEntries(new URL(request.url).searchParams),
+          ),
+          { headers },
+        );
+      if (
+        path.length === 1 &&
         ["sets", "assignments", "classes"].includes(resource) &&
         method === "GET"
       )
