@@ -257,6 +257,9 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/math-srs/replay",
         "GET /api/learn/math-explorers",
         "POST /api/learn/math-explorers",
+        // Existing test-console policy permits both; its handler restricts test accounts.
+        "GET /api/learn/test-console",
+        "POST /api/learn/test-console",
         ...REPORT,
         ...SSO,
         ...EXIT,
@@ -303,6 +306,8 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
         "GET /learn/password",
         "HEAD /learn/password",
         "POST /api/learn/password",
+        "GET /api/learn/test-console",
+        "POST /api/learn/test-console",
         ...REPORT,
         ...SSO,
         ...EXIT,
@@ -330,6 +335,19 @@ describe("🔴 첫 로그인 학생 — 비밀번호 바꾸기 외에는 못 간
 });
 
 describe("로그인 안 한 사람 — /learn 은 학생 로그인으로 (D-125 ⑷)", () => {
+  it("교재 QR의 로그인 복귀를 첫 비밀번호 변경까지 보존한다", async () => {
+    const qr = "/q/abcdefghijklmnopqrst";
+    session.mockReturnValue(null);
+    const login = new URL((await run("GET", qr)).headers.get("location")!);
+    expect(login.pathname).toBe("/login");
+    expect(login.searchParams.get("callbackUrl")).toBe(qr);
+    session.mockReturnValue(studentSession(true));
+    const password = new URL((await run("GET", qr)).headers.get("location")!);
+    expect(password.pathname).toBe("/learn/password");
+    expect(password.searchParams.get("returnTo")).toBe(qr);
+    session.mockReturnValue(studentSession(false));
+    expect(passed(await run("GET", qr))).toBe(true);
+  });
   it("🔴 /learn/login 이 아닌 학생 화면은 /learn/login 으로 · /learn/login 은 열림", async () => {
     session.mockReturnValue(null);
     for (const p of ["/learn", "/learn/password", `/learn/watch/${UUID}`]) {
