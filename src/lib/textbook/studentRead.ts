@@ -22,6 +22,7 @@ import { readSrsState } from "@/lib/math-srs/serverStore";
 import { SrsUnavailable } from "@/lib/math-srs/serverState";
 import { TextbookError, notFound } from "./server/errors";
 import { isoColumn, type TextbookSql } from "./server/sql";
+import { readConceptContent } from "./server/conceptRows";
 
 /** Every student consumer (JSON, assets, submissions and review) enters through this same gate. */
 export async function requireStudentQr(
@@ -67,24 +68,13 @@ export async function readFrozenConcept(
 ): Promise<TextbookConcept> {
   if (target.kind !== "concept" || !target.conceptKey)
     throw notFound("교재 개념");
-  const [row] = await sql.query<
-    Omit<TextbookConcept, "blankForms"> & {
-      blankForms: TextbookConcept["blankForms"] | null;
-    }
-  >(
-    `SELECT c."concept_key" AS "conceptKey", c."unit_key" AS "unitKey", s."section_key" AS "sectionKey", c."title", c."kind",
-      c."unit_id" AS "unitId", c."body", c."blank_items" AS "blankItems", c."blank_forms" AS "blankForms", c."links",
-      c."mapping_version" AS "mappingVersion", c."derived_from_concept_key" AS "derivedFromConceptKey", c."frozen"
-      FROM "textbook_concept" c LEFT JOIN "textbook_section" s ON s."id" = c."section_id" AND s."edition_id" = c."edition_id"
-      WHERE c."edition_id" = $1::uuid AND c."concept_key" = $2::text`,
-    [target.editionId, target.conceptKey],
+  const row = await readConceptContent(
+    sql,
+    target.editionId,
+    target.conceptKey,
   );
   if (!row) throw notFound("교재 개념");
-  const { blankForms, ...rest } = row;
-  const concept = textbookConceptSchema.parse({
-    ...rest,
-    ...(blankForms ? { blankForms } : {}),
-  });
+  const concept = textbookConceptSchema.parse(row);
   if (
     !concept.frozen ||
     conceptContentHash(concept) !== concept.frozen.contentHash
