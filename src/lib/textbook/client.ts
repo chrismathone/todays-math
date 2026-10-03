@@ -2,9 +2,9 @@
  * 교사 교재 API `/api/textbook`.
  *
  * 요청·응답은 공유 계약을 파싱한다.
- * 비교·다시 고정·연결·업로드 완료는 `textbookServer.contract.ts` 를 쓴다.
- * 등록은 검수 대기 스키마가 오기 전에는 요청을 보내지 않고, 연결됨으로 표시하지 않는다.
- * 재출제는 호출하지 않는다. 시험지에는 제목 칸이 없다.
+ * 비교·다시 고정·연결·등록·재출제·업로드 완료는 공유 스키마를 쓴다.
+ * 등록은 검수 대기 문항을 만들고 배치를 연결하지 않는다.
+ * 재출제 응답의 제목은 저장되지 않는다. 시험지에는 제목 칸이 없다.
  * 성공 본문은 공통 `{ data }` 봉투다. 목록과 교환 파일은 그 봉투가 스키마 안에 있다.
  * 없는 필드는 성공으로 채우지 않는다.
  */
@@ -24,7 +24,9 @@ import {
   type ImportMode,
   type ImportResult,
   type ItemRow,
+  type NamedChoice,
   type PublishJob,
+  type RegisterFields,
   type SectionBlock,
   type SectionDetail,
   SPEAKER_IDS,
@@ -35,8 +37,14 @@ import {
   type VideoPolicy,
   type VideoStatus,
 } from "@/components/textbook/model";
-import { conceptUnitLecturesResponseSchema } from "@/contracts/conceptAdmin.contract";
+import {
+  classListResponseSchema,
+  studentListResponseSchema,
+} from "@/contracts/class.contract";
 import { dataResponseSchema } from "@/contracts/common.contract";
+import { problemListResponseSchema } from "@/contracts/problem.contract";
+import { testListResponseSchema } from "@/contracts/test.contract";
+import { unitListResponseSchema } from "@/contracts/unit.contract";
 import {
   textbookAssignmentSchema,
   textbookBindingWriteSchema,
@@ -56,6 +64,7 @@ import {
   textbookPreflightSchema,
   textbookPublishJobSchema,
   textbookPublishReserveSchema,
+  textbookReissueSchema,
   textbookRequestSchema,
   textbookSaveConceptSchema,
   textbookSaveSectionResultSchema,
@@ -80,18 +89,27 @@ import {
 import {
   textbookItemSchema,
   textbookVideoBindingSchema,
+  type AssetRef,
+  type ConceptQrTarget,
   type ManuscriptBlock,
+  type ProblemSnapshot,
+  type QrTarget,
   type Section,
+  type TextbookItem,
 } from "@/contracts/textbookExchange.contract";
 import {
   textbookIssueSchema,
   type TextbookIssue,
 } from "@/contracts/textbookPrimitives.contract";
 import {
+  textbookConceptLectureListSchema,
   textbookItemDetailSchema,
   textbookItemDiffSchema,
   textbookItemMutationResultSchema,
   textbookLinkItemSchema,
+  textbookRegisterItemResultSchema,
+  textbookRegisterItemSchema,
+  textbookReissueResultSchema,
   textbookUploadCompleteResultSchema,
   textbookUploadCompleteSchema,
   textbookVideoListSchema,
@@ -154,6 +172,34 @@ export type SnapshotDiff = { itemId: string; summary: string };
 export type ItemLinkCandidate = {
   problemId: string;
   problemCode: string;
+};
+
+export type RegisterItemResult = {
+  item: ItemRow;
+  aggregateRevision: number;
+  problem: {
+    problemId: string;
+    problemCode: string;
+    reviewStatus: "pending";
+  };
+  candidates: ItemLinkCandidate[];
+};
+
+export type ReissueResult = {
+  testId: string;
+  problemCount: number;
+  titlePersisted: false;
+  replayed: boolean;
+};
+
+/** 측정에 쓰는 교환 형식의 확정본. 없으면 문항·개념 블록은 측정하지 않는다. */
+export type PreviewMaterial = {
+  items: TextbookItem[];
+  snapshots: ProblemSnapshot[];
+  assets: AssetRef[];
+  concepts: TextbookConcept[];
+  qrTargets: QrTarget[];
+  conceptQrTargets: ConceptQrTarget[];
 };
 
 export interface TextbookStudioApi {
@@ -239,7 +285,24 @@ export interface TextbookStudioApi {
     itemId: string,
     requestId: string,
     expectedRevision: number,
-  ): Promise<{ item: ItemRow; aggregateRevision: number }>;
+    fields: RegisterFields,
+  ): Promise<RegisterItemResult>;
+  /** 발행본의 배치로 기존 시험지를 만든다. 제목은 저장되지 않는다. */
+  reissue(input: {
+    editionId: string;
+    requestId: string;
+    itemIds: string[];
+    classId: string;
+    title?: string;
+    testType: "daily" | "review";
+    rangeEndUnitId: string;
+  }): Promise<ReissueResult>;
+  listUnits(): Promise<NamedChoice[]>;
+  listClasses(): Promise<NamedChoice[]>;
+  listStudents(classId: string): Promise<NamedChoice[]>;
+  listOwnedTests(classId: string, studentId?: string): Promise<NamedChoice[]>;
+  listUnitProblems(unitId: string): Promise<NamedChoice[]>;
+  readPreviewMaterial(editionId: string): Promise<PreviewMaterial>;
   saveConcept(input: {
     editionId: string;
     conceptKey: string;
@@ -288,7 +351,7 @@ export interface TextbookStudioApi {
     requestId: string,
   ): Promise<void>;
   listVideos(editionId: string): Promise<VideoBinding[]>;
-  /** 기존 개념 강의 목록. 문항 영상 바인딩이 아니다. */
+  /** 단원의 게시된 개념 강의. 문항 영상 바인딩이 아니다. */
   listUnitLectures(unitId: string): Promise<
     Array<{
       lectureId: string;
@@ -369,6 +432,35 @@ function parseData<T extends z.ZodType>(schema: T, body: unknown): z.infer<T> {
   const parsed = schema.safeParse(envelope.data.data);
   if (!parsed.success) fail(LOAD_ERROR);
   return parsed.data;
+}
+
+function parseWhole<T extends z.ZodType>(schema: T, body: unknown): z.infer<T> {
+  const parsed = schema.safeParse(body);
+  if (!parsed.success) fail(LOAD_ERROR);
+  return parsed.data;
+}
+
+async function readAllPages<T>(
+  fetchImpl: typeof fetch,
+  schema: z.ZodType<{
+    data: T[];
+    meta: { total: number };
+  }>,
+  urlFor: (page: number) => string,
+): Promise<T[]> {
+  const rows: T[] = [];
+  let total = 0;
+  for (let page = 1; page <= 20; page += 1) {
+    const parsed = parseWhole(schema, await request(fetchImpl, urlFor(page)));
+    if (page === 1) total = parsed.meta.total;
+    else if (parsed.meta.total !== total) {
+      fail("목록이 바뀌었습니다. 다시 불러오세요.");
+    }
+    rows.push(...parsed.data);
+    if (rows.length >= total) return rows;
+    if (parsed.data.length === 0) break;
+  }
+  fail("목록이 더 있습니다. 거르기를 좁히세요.");
 }
 
 function studioIssues(issues: TextbookIssue[]): StudioIssue[] {
@@ -1226,11 +1318,124 @@ export function createTextbookApi(
         ),
       );
     },
-    async registerItem() {
-      fail(
-        "등록 계약이 아직 없습니다. 공유 스키마가 오기 전에는 요청을 보내지 않습니다.",
-        400,
+    async registerItem(editionId, itemId, requestId, expectedRevision, fields) {
+      const payload = parseRequest(textbookRegisterItemSchema, {
+        requestId,
+        expectedRevision,
+        unitId: fields.unitId,
+        difficulty: fields.difficulty,
+        problemType: fields.problemType,
+      });
+      const result = parseData(
+        textbookRegisterItemResultSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${editionId}/items/${itemId}/register`,
+          jsonInit("POST", payload),
+        ),
       );
+      return {
+        item: toItem(result.item),
+        aggregateRevision: result.aggregateRevision,
+        problem: result.problem,
+        candidates: result.linkCandidates.map((row) => ({
+          problemId: row.problemId,
+          problemCode: row.problemCode,
+        })),
+      };
+    },
+    async reissue(input) {
+      const payload = parseRequest(textbookReissueSchema, {
+        requestId: input.requestId,
+        itemIds: input.itemIds,
+        classId: input.classId,
+        ...(input.title ? { title: input.title } : {}),
+        testType: input.testType,
+        rangeEndUnitId: input.rangeEndUnitId,
+      });
+      return parseData(
+        textbookReissueResultSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${input.editionId}/reissue`,
+          jsonInit("POST", payload),
+        ),
+      );
+    },
+    async listUnits() {
+      const parsed = parseWhole(
+        unitListResponseSchema,
+        await request(fetchImpl, "/api/units"),
+      );
+      return parsed.data.map((unit) => ({
+        id: unit.id,
+        label: `${unit.grade} ${unit.chapter} ${unit.section}`,
+      }));
+    },
+    async listClasses() {
+      const rows = await readAllPages(
+        fetchImpl,
+        classListResponseSchema,
+        (page) => `/api/classes?page=${page}&pageSize=100`,
+      );
+      return rows.map((row) => ({
+        id: row.id,
+        label: `${row.name} · ${row.grade}`,
+      }));
+    },
+    async listStudents(classId) {
+      const rows = await readAllPages(
+        fetchImpl,
+        studentListResponseSchema,
+        (page) =>
+          `/api/students?classId=${encodeURIComponent(classId)}&page=${page}&pageSize=100`,
+      );
+      return rows.map((row) => ({ id: row.id, label: row.name }));
+    },
+    async listOwnedTests(classId, studentId) {
+      const rows = await readAllPages(
+        fetchImpl,
+        testListResponseSchema,
+        (page) => {
+          const query = new URLSearchParams({
+            classId,
+            page: String(page),
+            pageSize: "100",
+          });
+          if (studentId) query.set("studentId", studentId);
+          return `/api/tests?${query.toString()}`;
+        },
+      );
+      return rows.map((row) => ({
+        id: row.id,
+        label:
+          row.testType === "daily"
+            ? `${row.testDate} 일일테스트`
+            : `${row.testDate} 확인테스트`,
+      }));
+    },
+    async listUnitProblems(unitId) {
+      const rows = await readAllPages(
+        fetchImpl,
+        problemListResponseSchema,
+        (page) =>
+          `/api/problems?unitId=${encodeURIComponent(unitId)}&page=${page}&pageSize=100`,
+      );
+      return rows.map((row) => ({ id: row.id, label: row.problemCode }));
+    },
+    async readPreviewMaterial(editionId) {
+      const parsed = parseWhole(
+        textbookExportResponseSchema,
+        await request(fetchImpl, `${BASE}/editions/${editionId}/export`),
+      );
+      return {
+        items: parsed.data.items,
+        snapshots: parsed.data.snapshots,
+        assets: parsed.data.assets,
+        concepts: parsed.data.conceptIntegration?.concepts ?? [],
+        qrTargets: parsed.data.qrTargets,
+        conceptQrTargets: parsed.data.conceptQrTargets ?? [],
+      };
     },
     async readConcept(editionId, conceptKey) {
       const record = parseData(
@@ -1349,17 +1554,17 @@ export function createTextbookApi(
       );
     },
     async listUnitLectures(unitId) {
-      const parsed = conceptUnitLecturesResponseSchema.safeParse(
+      const parsed = parseData(
+        textbookConceptLectureListSchema,
         await request(
           fetchImpl,
-          `/api/concept/lectures?unitId=${encodeURIComponent(unitId)}`,
+          `${BASE}/concept-lectures?unitId=${encodeURIComponent(unitId)}`,
         ),
       );
-      if (!parsed.success) fail(LOAD_ERROR);
-      return parsed.data.data.lectures.map((lecture) => ({
-        lectureId: lecture.id,
+      return parsed.lectures.map((lecture) => ({
+        lectureId: lecture.lectureId,
         title: lecture.title,
-        status: lecture.status,
+        status: "published" as const,
       }));
     },
     async createVideo(input) {

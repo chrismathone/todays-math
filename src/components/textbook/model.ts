@@ -1,14 +1,24 @@
 /**
  * 교재 편집 화면이 지키는 순수 규칙.
  * 서버 응답의 정본은 `src/contracts/textbook.contract.ts`다.
- * 여기 값은 화면 상태와, 계약이 오기 전에 클라이언트가 거절할 조건이다.
+ * 여기 값은 화면 상태다.
  */
+import type { Difficulty } from "@/contracts/difficulty";
+import type { ProblemType } from "@/contracts/problem.contract";
 import {
   CONCEPT_KINDS,
   type ConceptKind,
 } from "@/lib/math-explorers/conceptKinds";
 
 export { CONCEPT_KINDS, type ConceptKind };
+
+export type NamedChoice = { id: string; label: string };
+
+export type RegisterFields = {
+  unitId: string;
+  difficulty: Difficulty;
+  problemType: ProblemType;
+};
 
 export type Audience = "teacher" | "student";
 export type PreviewMode = "draft" | "student" | "teacher";
@@ -390,6 +400,39 @@ export function spreadStarts(units: readonly OutlineUnit[]): string[] {
     }
   }
   return ids;
+}
+
+export type MeasuredPageRef = {
+  physicalPageIndex: number;
+  printedPageLabel: string;
+};
+
+/** Even physical index of the spread that contains `current`, or the first measured page. */
+export function measuredSpreadAnchor(
+  pages: readonly MeasuredPageRef[],
+  current: number | null,
+): number | null {
+  if (pages.length === 0) return null;
+  const indexes = pages
+    .map((page) => page.physicalPageIndex)
+    .sort((left, right) => left - right);
+  const chosen = current ?? indexes[0] ?? null;
+  if (chosen === null) return null;
+  return chosen % 2 === 0 ? chosen : chosen - 1;
+}
+
+/** Next or previous measured spread. Null means this section has no further spread. */
+export function nextMeasuredSpread(
+  pages: readonly MeasuredPageRef[],
+  current: number | null,
+  direction: -1 | 1,
+): number | null {
+  const anchor = measuredSpreadAnchor(pages, current);
+  if (anchor === null) return null;
+  const next = anchor + direction * 2;
+  const indexes = new Set(pages.map((page) => page.physicalPageIndex));
+  if (indexes.has(next) || indexes.has(next + 1)) return next;
+  return null;
 }
 
 export function sectionStatusLabel(status: SectionStatus): string {

@@ -3,6 +3,8 @@ import { describe, expect, it } from "vitest";
 import {
   canFinalize,
   initialEditionFromLocation,
+  measuredSpreadAnchor,
+  nextMeasuredSpread,
   orderBlankPicks,
   planUploadChunks,
   publishHeadline,
@@ -447,16 +449,187 @@ describe("textbook editor rules", () => {
       expectedRevision: 9,
       problemId,
     });
+  });
 
-    let registerCalls = 0;
-    const refused = createTextbookApi(async () => {
-      registerCalls += 1;
-      return Response.json({ data: {} });
+  it("registers a pending bank item and keeps the placement unlinked", async () => {
+    const unitId = "00000000-0000-4000-8000-0000000000d1";
+    let body = "";
+    let url = "";
+    const api = createTextbookApi(async (input, init) => {
+      url = String(input);
+      body = String(init?.body);
+      return Response.json({
+        data: {
+          item: { ...placedItem, linkStatus: "unlinked" },
+          problem: {
+            problemId,
+            problemCode: "E56-1",
+            reviewStatus: "pending",
+          },
+          linkCandidates: [
+            { system: "todays-math", problemId, problemCode: "E56-1" },
+          ],
+          aggregateRevision: 10,
+          replayed: false,
+        },
+      });
     });
     await expect(
-      refused.registerItem(editionId, "item-1", requestId, 9),
-    ).rejects.toThrow(/등록 계약이 아직 없습니다/);
-    expect(registerCalls).toBe(0);
+      api.registerItem(editionId, "item-1", requestId, 9, {
+        unitId,
+        difficulty: "기본",
+        problemType: "계산",
+      }),
+    ).resolves.toMatchObject({
+      aggregateRevision: 10,
+      item: { label: "1 · 연결 없음" },
+      problem: {
+        problemId,
+        problemCode: "E56-1",
+        reviewStatus: "pending",
+      },
+      candidates: [{ problemId, problemCode: "E56-1" }],
+    });
+    expect(url).toBe(
+      `/api/textbook/editions/${editionId}/items/item-1/register`,
+    );
+    expect(JSON.parse(body)).toEqual({
+      requestId,
+      expectedRevision: 9,
+      unitId,
+      difficulty: "기본",
+      problemType: "계산",
+    });
+
+    const figures = createTextbookApi(async () =>
+      Response.json(
+        {
+          error: {
+            code: "VALIDATION_ERROR",
+            message:
+              "그림이 있는 문항은 여기서 등록하지 않습니다. 문제은행의 등록 화면에서 그림과 함께 등록해 주세요.",
+          },
+        },
+        { status: 422 },
+      ),
+    );
+    await expect(
+      figures.registerItem(editionId, "item-1", requestId, 9, {
+        unitId,
+        difficulty: "기본",
+        problemType: "계산",
+      }),
+    ).rejects.toThrow(/그림이 있는 문항은 여기서 등록하지 않습니다/);
+  });
+
+  it("reissues the chosen item order and rejects a persisted title", async () => {
+    const classId = "00000000-0000-4000-8000-0000000000c1";
+    const rangeEndUnitId = "00000000-0000-4000-8000-0000000000d1";
+    const testId = "00000000-0000-4000-8000-0000000000d2";
+    const itemIds = ["item-2", "item-1", "item-2"];
+    let body = "";
+    const api = createTextbookApi(async (input, init) => {
+      expect(String(input)).toBe(`/api/textbook/editions/${editionId}/reissue`);
+      body = String(init?.body);
+      return Response.json({
+        data: {
+          testId,
+          problemCount: 3,
+          titlePersisted: false,
+          replayed: false,
+        },
+      });
+    });
+    await expect(
+      api.reissue({
+        editionId,
+        requestId,
+        itemIds,
+        classId,
+        title: "",
+        testType: "daily",
+        rangeEndUnitId,
+      }),
+    ).resolves.toEqual({
+      testId,
+      problemCount: 3,
+      titlePersisted: false,
+      replayed: false,
+    });
+    expect(JSON.parse(body)).toEqual({
+      requestId,
+      itemIds,
+      classId,
+      testType: "daily",
+      rangeEndUnitId,
+    });
+    expect(JSON.parse(body).title).toBeUndefined();
+
+    const titled = createTextbookApi(async (_input, init) => {
+      body = String(init?.body);
+      return Response.json({
+        data: {
+          testId,
+          problemCount: 2,
+          titlePersisted: false,
+          replayed: false,
+        },
+      });
+    });
+    await titled.reissue({
+      editionId,
+      requestId,
+      itemIds: ["item-1", "item-2"],
+      classId,
+      title: "복습",
+      testType: "review",
+      rangeEndUnitId,
+    });
+    expect(JSON.parse(body).title).toBe("복습");
+
+    const lied = createTextbookApi(async () =>
+      Response.json({
+        data: {
+          testId,
+          problemCount: 1,
+          titlePersisted: true,
+          replayed: false,
+        },
+      }),
+    );
+    await expect(
+      lied.reissue({
+        editionId,
+        requestId,
+        itemIds: ["item-1"],
+        classId,
+        testType: "daily",
+        rangeEndUnitId,
+      }),
+    ).rejects.toThrow("교재 응답을 읽지 못했습니다.");
+
+    const duplicate = createTextbookApi(async () =>
+      Response.json(
+        {
+          error: {
+            code: "VALIDATION_ERROR",
+            message:
+              "낼 수 없는 문항 1건이 들어 있습니다. 1(같은 문항을 두 번 골랐습니다.)",
+          },
+        },
+        { status: 422 },
+      ),
+    );
+    await expect(
+      duplicate.reissue({
+        editionId,
+        requestId,
+        itemIds: ["item-1", "item-1"],
+        classId,
+        testType: "daily",
+        rangeEndUnitId,
+      }),
+    ).rejects.toThrow(/같은 문항을 두 번 골랐습니다/);
   });
 
   it("completes an upload with byte length and file name, and blocks a hashless publish", async () => {
@@ -533,28 +706,13 @@ describe("textbook editor rules", () => {
       called = String(url);
       return Response.json({
         data: {
-          unit: {
-            id: unitId,
-            grade: "초5",
-            chapter: "분수",
-            section: "통분",
-            code: "E56",
-            orderIndex: 1,
-            lectures: { published: 1, draft: 0, archived: 0 },
-          },
+          unitId,
           lectures: [
             {
-              id: lectureId,
+              lectureId,
               unitId,
               title: "통분 강의",
-              videoUrl: null,
-              seconds: 0,
-              disclosure: null,
-              sortOrder: 0,
-              status: "published",
-              reviewedAt: null,
-              publishedAt: "2026-10-03T00:00:00.000Z",
-              gate: { canPublish: true, blockers: [], warnings: [] },
+              seconds: 240,
             },
           ],
         },
@@ -563,7 +721,7 @@ describe("textbook editor rules", () => {
     await expect(api.listUnitLectures(unitId)).resolves.toEqual([
       { lectureId, title: "통분 강의", status: "published" },
     ]);
-    expect(called).toBe(`/api/concept/lectures?unitId=${unitId}`);
+    expect(called).toBe(`/api/textbook/concept-lectures?unitId=${unitId}`);
   });
 
   it("posts a teacher observation and returns the server review status", async () => {
@@ -826,6 +984,160 @@ describe("textbook preview and lecture refs", () => {
     expect(() =>
       built.resources.qrDataUrl("qr-1", "https://textbook.invalid/qr"),
     ).toThrow("예약된 QR 이미지가 없습니다.");
+    expect(built.omittedQr).toBe(false);
+  });
+
+  it("measures a student problem from its snapshot and keeps the answer off the page", () => {
+    const problemId = "00000000-0000-4000-8000-000000000013";
+    const snapshot = {
+      snapshotId: "snap-1",
+      source: {
+        system: "todays-math" as const,
+        problemId,
+        problemCode: "E56-1",
+      },
+      sourceUpdatedAt: null,
+      capturedAt: when,
+      unitId: null,
+      familyKey: null,
+      difficulty: null,
+      problemType: null,
+      payload: {
+        format: "markdown-latex" as const,
+        content: "3+4",
+        answer: "7",
+        solution: null,
+        questionType: null,
+        figures: [],
+      },
+      contentHash: "c".repeat(64),
+    };
+    const item = {
+      itemId: "item-1",
+      editionId: previewEditionId,
+      snapshotId: "snap-1",
+      linkStatus: "unlinked" as const,
+      sourceTestId: null,
+      sourceTestProblemId: null,
+      unitKey: "unit-1",
+      sectionKey: "dialogue",
+      learningStage: "basic" as const,
+      displayNumber: "1",
+      orderIndex: 0,
+      layout: {
+        columnSpan: 1 as const,
+        minWorkLines: 0,
+        preferredWorkLines: 0,
+        maxWorkLines: 0,
+        keepTogether: false,
+      },
+      qrTargetId: "qr-1",
+    };
+    const material = {
+      items: [item],
+      snapshots: [snapshot],
+      assets: [],
+      concepts: [],
+      qrTargets: [
+        {
+          qrTargetId: "qr-1",
+          editionId: previewEditionId,
+          slug: "abcdefghijklmnop",
+          url: "https://textbook.example/qr",
+          itemId: "item-1",
+        },
+      ],
+      conceptQrTargets: [],
+    };
+    const built = buildSectionPreview({
+      edition: previewEdition(previewSource()),
+      section: {
+        ...section,
+        blocks: [{ id: "block-1", kind: "problems", itemIds: ["item-1"] }],
+      },
+      variant: "student",
+      material,
+    });
+    expect(built.ok).toBe(true);
+    if (!built.ok) return;
+    const block = built.model.sections
+      .flatMap((row) => row.blocks)
+      .find((row) => row.kind === "problem");
+    expect(block).toMatchObject({
+      kind: "problem",
+      content: "3+4",
+      displayNumber: "1",
+      qr: null,
+    });
+    expect(block && "answer" in block).toBe(false);
+    expect(built.omittedQr).toBe(true);
+    const answers = buildSectionPreview({
+      edition: previewEdition(previewSource()),
+      section: {
+        ...section,
+        blocks: [{ id: "block-1", kind: "problems", itemIds: ["item-1"] }],
+      },
+      variant: "answers",
+      material,
+    });
+    expect(answers.ok).toBe(true);
+    if (!answers.ok) return;
+    const answerBlock = answers.model.sections
+      .flatMap((row) => row.blocks)
+      .find((row) => row.kind === "problem");
+    expect(answerBlock).toMatchObject({ answer: "7" });
+  });
+
+  it("overlays an unsaved concept onto the preview without a server concept row", () => {
+    const built = buildSectionPreview({
+      edition: previewEdition(previewSource()),
+      section: {
+        ...section,
+        blocks: [
+          { id: "block-1", kind: "concept", conceptKey: "common-denominator" },
+        ],
+        concept: {
+          conceptKey: "common-denominator",
+          title: "통분",
+          kind: "정의",
+          goal: "분모를 같게 한다",
+          prerequisites: "",
+          definition: "고친 정의",
+          conditions: "",
+          examples: "",
+          counterexamples: "",
+          misconceptions: "",
+          explainPrompt: "",
+          blankForms: ["term"],
+        },
+      },
+      variant: "student",
+      material: null,
+    });
+    expect(built.ok).toBe(true);
+    if (!built.ok) return;
+    const block = built.model.sections
+      .flatMap((row) => row.blocks)
+      .find((row) => row.kind === "concept");
+    expect(block).toMatchObject({
+      kind: "concept",
+      title: "통분",
+      body: { definition: "고친 정의", goal: "분모를 같게 한다" },
+    });
+  });
+
+  it("moves between measured spreads and stops at the edge", () => {
+    const pages = [
+      { physicalPageIndex: 2, printedPageLabel: "2" },
+      { physicalPageIndex: 3, printedPageLabel: "3" },
+      { physicalPageIndex: 4, printedPageLabel: "4" },
+    ];
+    expect(measuredSpreadAnchor(pages, null)).toBe(2);
+    expect(nextMeasuredSpread(pages, 2, 1)).toBe(4);
+    expect(nextMeasuredSpread(pages, 3, 1)).toBe(4);
+    expect(nextMeasuredSpread(pages, 4, 1)).toBeNull();
+    expect(nextMeasuredSpread(pages, 4, -1)).toBe(2);
+    expect(nextMeasuredSpread([], null, 1)).toBeNull();
   });
 
   it("adds and removes a concept lecture ref without touching video bindings", () => {
