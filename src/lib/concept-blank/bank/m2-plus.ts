@@ -128,8 +128,8 @@ export const bank = joinBanks([
         "방법",
         r`분모의 소인수가 $2$와 $5$뿐이면 두 소인수의 {지수가 같아지도록} 모자란 쪽을 분자와 분모에 똑같이 곱해 분모를 $10$의 거듭제곱으로 만든다.`,
         [
-          r`$\frac{1}{2\times5}$에는 아무것도 곱하지 않아도 되는 까닭은?`,
-          "지수가 이미 같아서",
+          r`$\frac{1}{2\times5}$의 분모를 $10$의 거듭제곱으로 만들 때 아무것도 곱하지 않아도 되는 까닭은?`,
+          r`$2$와 $5$의 지수가 이미 같아서`,
         ],
       ],
       [
@@ -965,8 +965,8 @@ export const bank = joinBanks([
         "방법",
         "정수 부분이 있는 순환소수를 공식으로 고칠 때는 정수 부분도 {되풀이되지 않는 부분}으로 보아 소수점을 뗀 전체의 수에서 {뺀다}.",
         [
-          r`$2.\dot{3}$을 고칠 때 분자에서 정수 부분 $2$도 빼는 까닭은?`,
-          "정수 부분도 함께 빼져서",
+          r`$x=3.\dot{4}$에서 $10x-x$를 구할 때 $34$에서 $3$을 빼게 되는 까닭은?`,
+          "소수 부분이 같아 없어져서",
         ],
       ],
       [
@@ -1647,7 +1647,7 @@ export const bank = joinBanks([
         "성질",
         r`$a^n$은 $a$를 $n$번 {곱한} 것이고 $a\times n$은 $a$를 $n$번 {더한} 것이라 뜻이 다르다.`,
         [
-          r`$2\times2\times2$와 $2+2+2$를 각각 간단히 쓰면?`,
+          r`$2\times2\times2$는 거듭제곱으로, $2+2+2$는 곱셈식으로 나타내면?`,
           r`$2^3$, $2\times3$`,
         ],
       ],
@@ -1718,7 +1718,7 @@ export const bank = joinBanks([
         "성질",
         r`$a\ne0$일 때 $a^m\div a^n$에서 나누는 쪽의 지수 $n$이 더 크면 분자의 $a$가 모두 {약분}되고 {분모}에 $a$가 $(n-m)$개 남는다.`,
         [
-          r`$a^2\div a^5$의 몫이 $a^3$이 아니라 $\frac{1}{a^3}$인 까닭은?`,
+          r`$a\ne0$일 때 $a^2\div a^5$를 $\frac{1}{a^3}$로 나타내는 까닭은?`,
           r`$a$ 세 개가 분모에 남아서`,
         ],
       ],
@@ -2004,8 +2004,8 @@ export const bank = joinBanks([
         "방법",
         r`$0$이 아닌 단항식과 곱해서 {$1$}이 되는 식을 그 단항식의 역수라 하고, 단항식을 분수 꼴로 써서 분자와 분모를 {바꾸어} 구한다.`,
         [
-          r`$3a$의 역수가 $\frac{1}{3a}$인 까닭은?`,
-          r`두 식을 곱하면 $1$이 된다`,
+          r`$a\ne0$일 때 $3a$의 역수가 $\frac{1}{3a}$인 까닭은?`,
+          r`두 식을 곱하면 $1$이 되어서`,
         ],
       ],
       [
@@ -2072,7 +2072,7 @@ export const bank = joinBanks([
         "성질",
         "단항식의 나눗셈에서 같은 문자가 나누는 쪽에 더 많이 곱해져 있으면, 약분한 뒤 그 문자가 {분모}에 남아 몫이 {분수} 꼴이 된다.",
         [
-          r`$2a\div6a^2$의 몫에서 $a$가 분모에 남는 까닭은?`,
+          r`$a\ne0$일 때 $2a\div6a^2$의 몫에서 $a$가 분모에 남는 까닭은?`,
           r`$a$ 하나만 약분되어서`,
         ],
       ],
@@ -2124,8 +2124,8 @@ export const bank = joinBanks([
         "성질",
         "계수가 분수인 단항식의 역수를 구할 때 계수만 뒤집고 {문자}를 그대로 두는 것은 {잘못}이다. 문자도 분모로 가야 한다.",
         [
-          r`$6a\div\frac{2}{3}a$를 $6a\times\frac{3}{2}a$로 고치면 무엇이 잘못인가?`,
-          r`$\frac{3}{2a}$을 곱해야 해서`,
+          r`$a\ne0$일 때 $6a\div\frac{2}{3}a$를 $6a\times\frac{3}{2}a$로 고치면 틀린 까닭은?`,
+          r`$\frac{2}{3}a$의 역수는 $\frac{3}{2a}$이라서`,
         ],
       ],
       [
@@ -2141,8 +2141,8 @@ export const bank = joinBanks([
         "방법",
         r`계수가 $0$이 아닌 두 단항식이 {문자의 값에 관계없이} 같으면 같은 문자의 {지수}끼리 같으므로, 지수를 견주어 모르는 지수를 구한다.`,
         [
-          r`$2x^a\times3x^2=6x^5$에서 $a+2=5$로 놓을 수 있는 까닭은?`,
-          r`$x$의 지수가 같아야 해서`,
+          r`자연수 $a$에 대하여 $2x^a\times3x^2=6x^5$이 $x$의 값에 관계없이 성립할 때 $a+2=5$인 까닭은?`,
+          r`양변의 $x$의 지수가 같아야 해서`,
         ],
       ],
     ],
@@ -2820,7 +2820,7 @@ export const bank = joinBanks([
         "방법",
         r`다항식에 $0$이 아닌 단항식을 곱한 결과를 알면, 그 결과를 단항식으로 {나누어} 처음 다항식을 구하고 다시 곱해 {확인}할 수 있다.`,
         [
-          r`$\square\times3x=6x^2-9x$에서 $\square$를 나눗셈으로 구할 수 있는 까닭은?`,
+          r`$x\ne0$일 때 $\square\times3x=6x^2-9x$에서 $\square$를 나눗셈으로 구할 수 있는 까닭은?`,
           "나눗셈이 곱셈을 되돌려서",
         ],
       ],
@@ -3448,10 +3448,10 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "소수 계수에 곱하는 수",
+        "소수 첫째 자리까지인 계수에 곱하는 수",
         "방법",
-        r`계수가 소수 첫째 자리까지인 부등식은 양변에 {$10$}을 곱해 계수를 {정수}로 고친다.`,
-        [r`$0.2x+0.5>1.3$의 해`, "$x>4$"],
+        "계수가 소수 첫째 자리까지인 부등식은 양변에 {$10$}을 곱해 계수를 {정수}로 고친다.",
+        [r`$0.2x+0.5>1.3$의 해`, r`$x>4$`],
       ],
       [
         "중",
@@ -3509,7 +3509,7 @@ export const bank = joinBanks([
         "상",
         "소수점 아래가 긴 계수",
         "방법",
-        r`$0.12x-0.3\ge0.06$처럼 소수점 아래 자리가 가장 긴 수에 맞추어 양변에 {$100$}을 곱한다.`,
+        r`계수가 소수인 부등식에서 계수와 상수항의 소수점 아래 자릿수 가운데 가장 큰 것이 $n$이면, 양변에 {$10^n$}을 곱할 때 {모두} 정수가 된다.`,
         [r`$0.12x-0.3\ge0.06$의 해`, r`$x\ge3$`],
       ],
     ],
@@ -4448,8 +4448,8 @@ export const bank = joinBanks([
           "성질",
           r`합해서 $n$개를 살 때 한 물건의 개수 $x$의 해가 $n$을 넘는 범위까지 나와도 실제 답은 {$0$ 이상 $n$ 이하}로 줄어든다. 문제의 {조건}이 해를 한 번 더 거른다.`,
           [
-            r`합해서 $10$개를 살 때 해가 $x\le12$로 나와도 $x=11$이 답이 아닌 까닭은?`,
-            r`나머지가 $-1$개라서`,
+            r`사과와 배를 합해서 $10$개 살 때 사과의 개수 $x$의 해가 $x\le12$로 나와도 $x=11$이 답이 아닌 까닭은?`,
+            r`배가 $-1$개가 되어서`,
           ],
         ],
         [
@@ -4803,12 +4803,12 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          "일정하게 줄어드는 양",
+          "일정하게 줄어드는 물의 양",
           "방법",
-          r`일정하게 줄어드는 양은 처음 양에서 (줄어드는 빠르기)$\times$(시간)을 {뺀} 식으로 나타내고, 남은 양은 $0$보다 {작아질 수 없다}.`,
+          r`물의 양처럼 음수가 될 수 없는 양이 일정하게 줄어들면 처음 양에서 (줄어드는 빠르기)$\times$(시간)을 {뺀} 식으로 나타내고, 남은 양은 $0$보다 {작아질 수 없다}.`,
           [
-            r`$80\,\mathrm{L}$에서 매분 $5\,\mathrm{L}$씩 뺄 때 $x$분 뒤 남은 물을 $(80-5x)\,\mathrm{L}$로 놓는 까닭은?`,
-            r`$x$분 동안 $5x\,\mathrm{L}$가 줄어든다`,
+            r`물 $80\,\mathrm{L}$를 매분 $5\,\mathrm{L}$씩 뺀다. 물이 남아 있는 동안 $x$분 뒤 남은 양이 $(80-5x)\,\mathrm{L}$인 까닭은?`,
+            r`$x$분 동안 $5x\,\mathrm{L}$가 줄어서`,
           ],
         ],
         [
@@ -5751,9 +5751,9 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "두 식이 모두 $y=$ 꼴일 때",
+        r`두 식이 모두 $y=$ 꼴일 때`,
         "방법",
-        r`$y=2x+1$, $y=-x+7$처럼 두 식이 모두 $y=$ 꼴이면 두 우변이 {같다}고 놓아 {$2x+1=-x+7$}을 푼다.`,
+        r`두 식이 모두 $y=$(식) 꼴이면 두 우변을 {같다}고 놓아 $x$에 대한 방정식을 만든다. 두 우변이 모두 같은 {$y$}와 같기 때문이다.`,
         [r`$y=2x+1$, $y=-x+7$의 해`, r`$x=2,\ y=5$`],
       ],
       [
@@ -6050,8 +6050,8 @@ export const bank = joinBanks([
         "방법",
         r`계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 {가장 많은} 계수가 정수가 되도록 {$10$의 거듭제곱}을 곱한다.`,
         [
-          "자릿수가 가장 적은 계수만 보고 곱할 수를 정하면 안 되는 까닭은?",
-          "모든 계수가 정수여야 해서",
+          r`$0.6x+0.07y=1$의 계수를 모두 정수로 고칠 때 $10$이 아니라 $100$을 곱하는 까닭은?`,
+          r`$0.07$이 소수 둘째 자리까지라서`,
         ],
       ],
       [
@@ -6319,7 +6319,10 @@ export const bank = joinBanks([
         "비로 주어진 해를 한 문자로 놓기",
         "방법",
         r`$a$, $b$가 $0$이 아닐 때 $x:y=a:b$이면 $0$이 아닌 수 $k$를 써서 {$x=ak$}, {$y=bk$}로 놓을 수 있다. 이것을 다른 식에 넣어 $k$가 하나로 정해지면 $x$, $y$도 {정해진다}.`,
-        [r`$x:y=3:5$를 한 문자 $k$로 나타내면`, r`$x=3k$, $y=5k$`],
+        [
+          r`$x:y=3:5$일 때 $x=3k$, $y=5k$($k\ne0$)로 놓을 수 있는 까닭은?`,
+          r`$\frac{x}{3}$와 $\frac{y}{5}$가 같은 수라서`,
+        ],
       ],
       [
         "중",
@@ -6357,17 +6360,21 @@ export const bank = joinBanks([
       [
         "상",
         "해가 자연수가 되는 상수",
-        "성질",
-        r`$x+y=k$, $x-y=2$의 해가 자연수이려면 $\frac{k-2}{2}$가 {자연수}여야 하므로 $k$는 $4$ 이상의 {짝수}이다.`,
+        "방법",
+        r`연립방정식의 해를 상수 $k$가 든 식으로 나타낸 다음, $x$와 $y$의 값이 {모두 자연수}가 되는 $k$의 {조건}을 찾는다.`,
+        [
+          r`$x+y=k$, $x-y=2$의 해가 자연수일 때 $k$가 짝수인 까닭은?`,
+          r`$\frac{k-2}{2}$가 자연수여야 해서`,
+        ],
       ],
       [
         "상",
         "해가 같은 두 연립방정식의 상수",
         "방법",
-        r`$\{x+y=5,\ ax+y=8\}$과 $\{x-y=1,\ x+by=5\}$의 해가 같으면 {$x+y=5$}와 {$x-y=1$}을 먼저 풀어 $(3,\ 2)$를 얻는다.`,
+        "해가 같은 두 연립방정식의 네 식은 모두 그 해로 {참}이 된다. 그래서 문자 상수가 없는 두 식으로 해가 하나로 정해지면, 그 해를 상수가 든 식에 {대입}해 상수를 구한다.",
         [
-          r`$\{x+y=5,\ ax+y=8\}$과 $\{x-y=1,\ x+by=5\}$가 같은 해 한 쌍을 가질 때 $a$, $b$`,
-          r`$a=2,\ b=1$`,
+          r`$\{x+y=5,\ ax+y=8\}$과 $\{x-y=1,\ x+by=5\}$의 해가 같을 때 먼저 연립할 두 식은?`,
+          r`$x+y=5$와 $x-y=1$`,
         ],
       ],
       RETIRED,
@@ -6670,7 +6677,7 @@ export const bank = joinBanks([
         "해가 무수히 많으려면 두 식이 같은 식이어야 하므로, 한 식에 수를 곱해 한 항을 맞춘 뒤 나머지 계수와 상수항이 {모두} {같다}는 조건에서 상수를 구한다.",
         [
           r`$ax+2y=6$, $x+y=3$의 해가 무수히 많을 때 둘째 식에 $2$를 곱해 견주는 까닭은?`,
-          r`$a$만 견주면 되어서`,
+          r`$y$의 계수와 상수항이 같아져서`,
         ],
       ],
       [
@@ -6680,7 +6687,7 @@ export const bank = joinBanks([
         "해가 없으려면 한 식에 수를 곱해 한 미지수의 계수를 맞추었을 때 다른 미지수의 계수는 {같고} 상수항은 {달라야} 한다. 이 조건에서 상수를 구한다.",
         [
           r`$2x+ay=4$, $x-y=1$에서 $a=-2$이면 해가 없는 까닭은?`,
-          "좌변만 같고 우변이 달라서",
+          r`둘째 식의 $2$배와 우변만 달라서`,
         ],
       ],
       [
@@ -6981,10 +6988,10 @@ export const bank = joinBanks([
         "중",
         "몫과 나머지 조건",
         "방법",
-        r`큰 수 $x$를 작은 수 $y$로 나눈 몫이 $2$, 나머지가 $3$이면 {$x=2y+3$}이다.`,
+        "나누어지는 수는 {나누는 수}에 몫을 곱하고 나머지를 {더한} 것과 같다. 이 관계로 몫과 나머지 조건을 등식으로 바꾼다.",
         [
-          r`큰 수 $x$를 작은 수 $y$로 나눈 몫이 $2$, 나머지가 $3$이고 $x+y=18$일 때의 해`,
-          r`$x=13,\ y=5$`,
+          r`큰 수 $x$를 작은 수 $y$로 나눈 몫이 $2$, 나머지가 $3$일 때의 식은?`,
+          r`$x=2y+3$`,
         ],
       ],
       [
@@ -6993,7 +7000,7 @@ export const bank = joinBanks([
         "방법",
         r`자리를 바꾼 수 $10y+x$가 처음 수 $10x+y$보다 $k$만큼 크면 {$10y+x=10x+y+k$}로 세운다. $k$는 {작은} 쪽에 더한다.`,
         [
-          r`자리를 바꾼 수가 처음 수보다 $18$ 작을 때의 식`,
+          r`십의 자리 숫자가 $x$, 일의 자리 숫자가 $y$인 두 자리 자연수에서 자리를 바꾼 수가 처음 수보다 $18$ 작을 때의 식은?`,
           r`$10y+x=10x+y-18$`,
         ],
       ],
@@ -7326,8 +7333,8 @@ export const bank = joinBanks([
           "방법",
           r`윗변 $x$, 아랫변 $y$, 높이 $h$인 사다리꼴의 넓이는 {$\frac{(x+y)h}{2}$}이다. 높이 $h$가 수로 주어지면 넓이는 $x$, $y$에 대한 {일차식}이다.`,
           [
-            r`높이가 $6$인 사다리꼴의 넓이가 윗변과 아랫변에 대한 일차식인 까닭은?`,
-            r`$x$와 $y$의 곱이 없어서`,
+            r`윗변이 $x$, 아랫변이 $y$, 높이가 $6$인 사다리꼴의 넓이가 $x$, $y$에 대한 일차식인 까닭은?`,
+            r`$3x+3y$의 항이 모두 일차라서`,
           ],
         ],
         RETIRED,
@@ -7338,7 +7345,7 @@ export const bank = joinBanks([
           "방법",
           r`맞히면 $a$점을 얻고 틀리면 $b$점을 잃을 때, $x$개 맞히고 $y$개 틀린 점수는 {$ax-by$}점이다. 잃는 점수는 {빼서} 쓴다.`,
           [
-            r`맞히면 $5$점, 틀리면 $2$점을 잃을 때 점수를 $5x+2y$로 쓰면 틀린 까닭은?`,
+            r`맞히면 $5$점을 얻고 틀리면 $2$점을 잃는다. $x$개 맞히고 $y$개 틀린 점수를 $5x+2y$로 쓰면 틀린 까닭은?`,
             "잃는 점수는 빼야 해서",
           ],
         ],
@@ -7368,11 +7375,11 @@ export const bank = joinBanks([
         ],
         [
           "상",
-          "가로와 세로를 바꾼 직사각형의 둘레",
+          "가로를 늘이고 세로를 줄인 직사각형의 둘레 변화",
           "성질",
           r`세로가 $b$보다 긴 직사각형의 가로를 $a$ 늘이고 세로를 $b$ 줄이면 둘레의 변화량은 {$2(a-b)$}이다. 이 값은 처음 가로와 세로의 길이와 {관계없다}.`,
           [
-            r`가로를 $3$ 늘이고 세로를 $1$ 줄일 때 둘레의 변화가 처음 길이와 관계없는 까닭은?`,
+            r`세로가 $1$보다 긴 직사각형의 가로를 $3$ 늘이고 세로를 $1$ 줄일 때 둘레의 변화가 처음 길이와 관계없는 까닭은?`,
             "늘고 준 길이만 두 번씩 더해져서",
           ],
         ],
@@ -7665,10 +7672,10 @@ export const bank = joinBanks([
         "중",
         r`함께 $n$일 걸리는 일의 식`,
         "방법",
-        r`하루에 $x$, $y$씩 하는 두 사람이 함께 $n$일 걸려 끝내면, 하루에 함께 하는 양 $x+y$를 $n$일 동안 한 것이므로 {$n(x+y)=1$}이다.`,
+        r`전체 일을 $1$로 놓고 하루에 $x$, $y$씩 하는 두 사람이 함께 $n$일 걸려 끝내면, 하루에 함께 하는 양 $x+y$를 $n$일 동안 한 것이므로 {$n(x+y)=1$}이다.`,
         [
-          r`함께 $4$일 걸리는 일을 $x+y=4$로 쓰면 틀린 까닭은?`,
-          r`$4$는 날수라서`,
+          r`전체 일을 $1$로 놓고 두 사람이 하루에 $x$, $y$씩 한다. 함께 $4$일 걸리는 일을 $x+y=4$로 쓰면 틀린 까닭은?`,
+          r`$x+y$는 하루에 하는 양이라서`,
         ],
       ],
       [
@@ -7677,8 +7684,8 @@ export const bank = joinBanks([
         "방법",
         r`하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 {합}이 전체 일 {$1$}이다.`,
         [
-          r`$A$가 $3$일, $B$가 $5$일 해서 끝낸 일을 $3x+5y=1$로 쓸 때 우변이 $1$인 까닭은?`,
-          "두 사람의 몫을 합하면 전체라서",
+          r`전체 일을 $1$로 놓고 $A$, $B$가 하루에 $x$, $y$씩 한다. $A$가 $3$일, $B$가 $5$일 해서 끝냈을 때 $3x+5y=1$인 까닭은?`,
+          "두 사람이 한 양의 합이 전체라서",
         ],
       ],
       [
@@ -7687,8 +7694,8 @@ export const bank = joinBanks([
         "성질",
         r`$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발해 둘 다 쉬지 않고 가다가 만나면, 만날 때까지 $A$가 움직인 시간이 $B$보다 {$\frac{m}{60}$시간} {길다}.`,
         [
-          r`늦게 출발한 $B$가 움직인 시간이 더 짧은 까닭은?`,
-          r`$B$가 늦게 출발해서`,
+          r`$B$가 $A$보다 늦게 출발해 둘 다 쉬지 않고 가다가 만났다. 만날 때까지 $B$가 움직인 시간이 더 짧은 까닭은?`,
+          "만난 시각은 같고 출발이 늦어서",
         ],
       ],
       [
@@ -7959,7 +7966,7 @@ export const bank = joinBanks([
           "하",
           "합금 속 금속의 양",
           "방법",
-          r`구리가 $60\%$ 든 합금 $x\,\mathrm{g}$ 속 구리는 {$0.6x\,\mathrm{g}$}이다.`,
+          r`어떤 금속이 $a\%$ 든 합금 $x\,\mathrm{g}$ 속 그 금속의 양은 {$\frac{a}{100}x\,\mathrm{g}$}이다.`,
           [
             r`구리가 $60\%$ 든 합금 $200\,\mathrm{g}$ 속 구리`,
             r`$120\,\mathrm{g}$`,
@@ -7969,7 +7976,7 @@ export const bank = joinBanks([
           "하",
           "식품 속 영양소의 양",
           "방법",
-          r`단백질이 $20\%$ 든 식품 $x\,\mathrm{g}$의 단백질은 {$0.2x\,\mathrm{g}$}이다.`,
+          r`어떤 영양소가 $a\%$ 든 식품 $x\,\mathrm{g}$ 속 그 영양소의 양은 {$\frac{a}{100}x\,\mathrm{g}$}이다. 소금물 속 소금의 양을 구하는 식과 {같은} 꼴이다.`,
           [
             r`단백질이 $20\%$ 든 식품 $150\,\mathrm{g}$의 단백질`,
             r`$30\,\mathrm{g}$`,
@@ -8013,7 +8020,7 @@ export const bank = joinBanks([
           "중",
           "물을 섞어 묽게 할 때",
           "방법",
-          r`$10\%$ 소금물 $x\,\mathrm{g}$에 물 $y\,\mathrm{g}$을 섞어 $4\%$ $500\,\mathrm{g}$을 만들면 소금의 식은 {$0.1x=20$}이다.`,
+          "소금물에 물만 섞으면 소금물의 양은 {늘어도} 소금의 양은 {변하지 않는다}. 그래서 섞기 전과 섞은 뒤의 소금의 양이 같다는 식을 세운다.",
           [
             r`$10\%$ 소금물에 물을 섞어 $4\%$ 소금물 $500\,\mathrm{g}$을 만들 때 섞는 물의 양`,
             r`$300\,\mathrm{g}$`,
@@ -8860,8 +8867,8 @@ export const bank = joinBanks([
         "방법",
         r`기울기가 $a$($a\ne0$)일 때 $y$의 증가량이 $d$이면 $x$의 증가량은 {$\frac{d}{a}$}이다. $a$와 $d$의 부호가 같으면 $x$는 {늘어난} 것이다.`,
         [
-          r`기울기가 음수인 직선에서 $y$가 줄었다면 $x$는 늘었는가?`,
-          r`늘었다 — $\frac{d}{a}$가 양수라서`,
+          r`기울기가 음수인 직선에서 $y$의 값이 줄 때 $x$의 값이 늘어나는 까닭은?`,
+          "두 증가량의 부호가 달라서",
         ],
       ],
       RETIRED,
@@ -9333,7 +9340,7 @@ export const bank = joinBanks([
         r`$x$절편이 $m$이라는 조건은 점 {$(m,\ 0)$}을 지난다는 뜻으로 바꾸어 식에 {대입}한다.`,
         [
           r`기울기 $4$, $x$절편 $1$인 직선을 $y=4x+1$이라 하면 틀린 까닭은?`,
-          r`$1$은 $y$절편이 아니라서`,
+          r`점 $(1,\ 0)$을 지나지 않아서`,
         ],
       ],
       RETIRED,
@@ -9547,7 +9554,7 @@ export const bank = joinBanks([
         "방법",
         r`$x$가 $m$ 늘 때마다 $y$가 $n$씩 변하면 기울기는 $x$가 $1$ 늘 때의 변화량 {$\frac{n}{m}$}이다.`,
         [
-          r`$4$분마다 $6\,^\circ\mathrm{C}$씩 오를 때 기울기가 $6$이 아닌 까닭은?`,
+          r`$x$분 뒤의 온도를 $y\,^\circ\mathrm{C}$라 하자. $4$분마다 $6\,^\circ\mathrm{C}$씩 오를 때 기울기가 $6$이 아닌 까닭은?`,
           r`기울기는 $1$분마다의 변화라서`,
         ],
       ],
@@ -9577,9 +9584,13 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "끓는 온도까지의 범위",
+        "데우는 물의 온도 식이 맞는 때",
         "성질",
-        r`물이 $100\,^\circ\mathrm{C}$에서 끓는다면, 데우는 물의 온도 식은 $y$가 {$100$} 이하인 {범위}에서만 쓴다.`,
+        r`물을 일정하게 데울 때의 온도 식은 물이 {끓기 시작할 때}까지만 맞는다. 끓는 동안에는 온도가 더 오르지 않으므로 $y$가 {끓는 온도} 이하인 범위에서만 쓴다.`,
+        [
+          r`물이 $100\,^\circ\mathrm{C}$에서 끓을 때 데우는 물의 온도 식을 쓸 수 있는 온도 $y\,^\circ\mathrm{C}$의 범위는?`,
+          r`$y\le100$`,
+        ],
       ],
       [
         "중",
@@ -9854,8 +9865,8 @@ export const bank = joinBanks([
         "성질",
         r`길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 {$0\le x\le\frac{l}{v}$}이다.`,
         [
-          r`움직인 시간 $x$의 범위에 위쪽 끝을 두는 까닭은?`,
-          "변의 끝까지만 움직여서",
+          r`길이가 $15$인 변 위를 한 끝에서 다른 끝까지 매초 $3$씩 움직이는 점의 시간 $x$초의 범위가 $x\le5$에서 끝나는 까닭은?`,
+          r`$5$초에 다른 끝에 닿아서`,
         ],
       ],
       RETIRED,
@@ -10600,9 +10611,13 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "꼭지각의 자리",
-        "성질",
-        r`$\overline{AB}=\overline{AC}$인 $\triangle ABC$에서는 같은 두 변이 만나는 꼭짓점 {$A$}의 각이 {꼭지각}이다.`,
+        "꼭지각을 찾는 법",
+        "방법",
+        "꼭지각은 그림에서 놓인 자리가 아니라 변의 길이로 찾는다. 길이가 {같은 두 변}이 {만나는} 꼭짓점의 각이 꼭지각이다.",
+        [
+          r`$\overline{BA}=\overline{BC}$인 $\triangle ABC$의 꼭지각은?`,
+          r`$\angle B$`,
+        ],
       ],
       [
         "하",
@@ -10688,7 +10703,10 @@ export const bank = joinBanks([
         "각의 관계를 나타낸 식의 뜻",
         "방법",
         r`꼭지각이 $x^\circ$, 한 밑각이 꼭지각의 $k$배인 이등변삼각형에서 $x+2kx=180$의 $2kx$는 {두 밑각}의 크기의 {합}이다.`,
-        [r`$x+2kx=180$에서 $2kx$가 나타내는 것`, "두 밑각의 크기의 합"],
+        [
+          r`꼭지각이 $x^\circ$, 한 밑각이 $(kx)^\circ$인 이등변삼각형에서 $x+2kx=180$의 $2kx$가 나타내는 것은?`,
+          "두 밑각의 크기의 합",
+        ],
       ],
     ],
     ox: [
@@ -10962,7 +10980,11 @@ export const bank = joinBanks([
         "상",
         "수직이등분선 위의 점",
         "성질",
-        r`$\overline{AB}$의 수직이등분선 위의 점 $P$는 $\overline{PA}=$ {$\overline{PB}$}이다. $P$가 중점 $M$과 다르면 두 직각삼각형의 {$\mathrm{SAS}$} 합동으로 보인다.`,
+        r`한 선분을 수직이등분하는 직선 위의 점은 그 선분의 {양 끝 점}까지의 거리가 {같다}. 그 점이 선분의 중점이 아니면 직각을 낀 두 변이 각각 같은 두 직각삼각형의 {$\mathrm{SAS}$} 합동으로 보인다.`,
+        [
+          r`$\overline{CD}$의 수직이등분선 위의 점 $Q$에 대해 $\overline{QC}$와 길이가 같은 선분은?`,
+          r`$\overline{QD}$`,
+        ],
       ],
       [
         "상",
@@ -10986,7 +11008,11 @@ export const bank = joinBanks([
         "상",
         "대응의 차례를 지키기",
         "성질",
-        r`$\triangle ABC\equiv\triangle DEF$에서 $\overline{AB}$에 대응하는 변은 {$\overline{DE}$}이다. 꼭짓점의 {차례}를 지켜 읽는다.`,
+        "합동을 나타낸 식에서는 {같은 자리}에 쓴 꼭짓점끼리 대응한다. 그래서 한 변의 대응변은 그 변의 두 끝 점과 같은 자리에 쓴 {두 꼭짓점}을 이은 변이다.",
+        [
+          r`$\triangle PQR\equiv\triangle STU$에서 $\overline{PR}$의 대응변이 $\overline{SU}$인 까닭은?`,
+          r`$P$와 $S$, $R$과 $U$가 대응해서`,
+        ],
       ],
     ],
     ox: [
@@ -11226,7 +11252,7 @@ export const bank = joinBanks([
         "하",
         "외심의 기호",
         "성질",
-        r`외심은 보통 {$O$}로 나타내며, $\overline{OA}=\overline{OB}=$ {$\overline{OC}$}이다.`,
+        r`외심은 보통 {$O$}로 나타낸다. 외심이 외접원의 {중심}이라 원의 중심을 나타내는 글자를 쓴다.`,
       ],
       [
         "하",
@@ -11322,9 +11348,13 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "나뉜 각으로 내각 구하기",
+        "외심으로 나뉜 각에서 내각 구하기",
         "방법",
-        r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=x$, $\angle OBC=y$, $\angle OCA=z$이면 $x+y+z=$ {$90^\circ$}이고 $\angle A=x+z$이다.`,
+        "예각삼각형의 외심과 세 꼭짓점을 이으면 내각이 둘씩 나뉘고, 나뉜 각은 모두 {이등변삼각형}의 밑각이다. 그래서 한 내각은 그 꼭짓점을 같이 쓰는 두 이등변삼각형의 {밑각}을 하나씩 더한 것이다.",
+        [
+          r`예각삼각형 $ABC$의 외심 $O$에서 $\angle OAB=15^\circ$, $\angle OCA=40^\circ$일 때 $\angle A$가 $55^\circ$인 까닭은?`,
+          r`$\angle OAC$도 $40^\circ$라서`,
+        ],
       ],
       [
         "상",
@@ -11633,17 +11663,21 @@ export const bank = joinBanks([
         "상",
         "내심을 지나는 평행선",
         "성질",
-        r`내심 $I$를 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$, $\overline{AC}$와 만나는 점을 $D$, $E$라 하면 $\overline{DE}=\overline{DB}+$ {$\overline{EC}$}이다.`,
+        "삼각형의 내심을 지나 한 변에 평행하게 다른 두 변 사이에 그은 선분의 길이는, 그 두 변에서 선분과 평행한 변 사이에 남은 두 조각의 길이의 {합}과 같다.",
         [
-          r`내심을 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$, $\overline{AC}$와 $D$, $E$에서 만난다. $\overline{DB}=3$, $\overline{EC}=4$일 때 $\overline{DE}$`,
+          r`$\triangle ABC$의 내심을 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$, $\overline{AC}$와 $D$, $E$에서 만난다. $\overline{DB}=3$, $\overline{EC}=4$일 때 $\overline{DE}$`,
           "$7$",
         ],
       ],
       [
         "상",
-        "평행선이 만드는 이등변삼각형",
+        "내심을 지나는 평행선이 만드는 삼각형",
         "성질",
-        r`$\triangle ABC$의 내심 $I$를 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$와 만나는 점을 $D$라 하면, $\angle DIB$와 $\angle IBC$가 엇각으로 같아 $\triangle DBI$는 $\overline{DB}=$ {$\overline{DI}$}인 {이등변삼각형}이다.`,
+        "삼각형의 내심을 지나 한 변에 평행하게 그은 직선, 다른 한 변, 그 두 변이 만나는 꼭짓점과 내심을 이은 선분은 {이등변삼각형}을 만든다. 평행선의 {엇각}과 이등분된 각이 같기 때문이다.",
+        [
+          r`$\triangle ABC$의 내심 $I$를 지나고 $\overline{BC}$에 평행한 직선이 $\overline{AB}$와 $D$에서 만날 때 $\overline{DB}$와 길이가 같은 선분은?`,
+          r`$\overline{DI}$`,
+        ],
       ],
       [
         "상",
@@ -11824,7 +11858,11 @@ export const bank = joinBanks([
         "하",
         "마주 보는 변 찾기",
         "방법",
-        r`$\square ABCD$에서 $\overline{AB}$와 마주 보는 변은 {$\overline{DC}$}, $\overline{AD}$와 마주 보는 변은 {$\overline{BC}$}이다.`,
+        "사각형에서 한 변과 마주 보는 변은 그 변과 {만나지 않는} 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 {이웃한} 변이다.",
+        [
+          r`$\square ABCD$에서 $\overline{AD}$와 마주 보는 변은?`,
+          r`$\overline{BC}$`,
+        ],
       ],
       [
         "하",
@@ -11874,9 +11912,9 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "이등분선이 자르는 길이",
+        "평행사변형에서 각의 이등분선이 자르는 길이",
         "방법",
-        r`평행사변형 $ABCD$에서 $\angle A$의 이등분선이 $\overline{BC}$와 만나는 점이 $E$이면 $\overline{BE}=$ {$\overline{AB}$}이다.`,
+        "평행사변형에서 한 내각의 이등분선이 변을 두 조각으로 나누면, 한 조각은 그 변과 이웃한 변과 길이가 {같고}, 남은 조각은 이웃한 두 변의 길이의 {차}이다.",
         [
           r`평행사변형 $ABCD$에서 $\angle A$의 이등분선이 $\overline{BC}$와 $E$에서 만난다. $\overline{AB}=5$, $\overline{BC}=8$일 때 $\overline{EC}$`,
           "$3$",
@@ -12079,9 +12117,9 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "마주 보는 변이 같은 예",
+        r`$\square ABCD$의 대변의 길이 조건을 기호로`,
         "성질",
-        r`$\square ABCD$에서 $\overline{AB}$와 {$\overline{DC}$}, $\overline{AD}$와 {$\overline{BC}$}의 길이가 각각 같으면 $\square ABCD$는 평행사변형이다.`,
+        r`$\square ABCD$에서 대변의 길이 조건은 $\overline{AB}=$ {$\overline{DC}$}, $\overline{AD}=$ {$\overline{BC}$}이다. 두 식이 모두 성립하면 $\square ABCD$는 평행사변형이다.`,
       ],
       [
         "하",
@@ -12137,7 +12175,7 @@ export const bank = joinBanks([
         "방법",
         r`대변의 길이로 평행사변형을 만들 때는 $\overline{AB}=\overline{DC}$와 $\overline{AD}=\overline{BC}$를 {모두} 맞춰야 한다. 한 쌍만 같은 사각형은 평행사변형이 {아닐 수 있다}.`,
         [
-          r`$\overline{AB}=x+2$, $\overline{DC}=8$, $\overline{AD}=y$, $\overline{BC}=5$에서 $x=6$만으로 모자란 까닭은?`,
+          r`$\square ABCD$에서 $\overline{AB}=x+2$, $\overline{DC}=8$, $\overline{AD}=y$, $\overline{BC}=5$이다. 평행사변형이 되려면 $x=6$만으로 모자란 까닭은?`,
           r`$\overline{AD}=\overline{BC}$도 맞춰야 해서`,
         ],
       ],
@@ -13139,7 +13177,11 @@ export const bank = joinBanks([
         "중",
         "공통 부분 빼기",
         "방법",
-        r`대각선의 교점이 $O$일 때 $\triangle ABC=\triangle DBC$에서 공통인 $\triangle OBC$를 {빼면} $\triangle ABO=$ {$\triangle DCO$}이다.`,
+        "넓이가 같은 두 도형이 겹쳐 있으면, 두 도형에서 공통인 부분을 각각 뺀 {나머지} 부분끼리도 넓이가 {같다}.",
+        [
+          r`$\overline{AD}\parallel\overline{BC}$인 사다리꼴 $ABCD$의 두 대각선이 $O$에서 만난다. $\triangle ABC$, $\triangle DBC$에서 $\triangle OBC$를 빼면 넓이가 같은 두 삼각형은?`,
+          r`$\triangle ABO$, $\triangle DCO$`,
+        ],
       ],
       [
         "중",
@@ -13166,15 +13208,23 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "사각형을 넓이가 같은 삼각형으로",
-        "방법",
-        r`$\square ABCD$에서 $D$를 지나 $\overline{AC}$에 평행한 직선이 $\overline{BC}$의 연장선과 만나는 점을 $E$라 하면 $\square ABCD=$ {$\triangle ABE$}이다.`,
+        "사각형을 넓이가 같은 삼각형으로 바꿀 수 있는 까닭",
+        "성질",
+        "사각형의 한 꼭짓점을, 그 점을 지나지 않는 대각선에 평행한 직선 위에서 옮기면 그 대각선을 {밑변}으로 하는 삼각형의 {높이}가 그대로라 넓이가 변하지 않는다. 그래서 넓이가 같은 삼각형으로 바꿀 수 있다.",
+        [
+          r`$\square ABCD$에서 $D$를 지나 $\overline{AC}$에 평행한 직선이 $\overline{BC}$의 연장선과 $E$에서 만날 때 $\triangle ACD$와 넓이가 같은 삼각형은?`,
+          r`$\triangle ACE$`,
+        ],
       ],
       [
         "상",
         "윗변을 같이 쓰는 두 삼각형",
         "성질",
-        r`$\overline{AD}\parallel\overline{BC}$인 사다리꼴 $ABCD$에서 $\triangle ABD$와 {$\triangle ACD$}는 밑변 $\overline{AD}$를 같이 써서 넓이가 같다.`,
+        "사다리꼴에서 윗변을 밑변으로 하고 아랫변의 두 끝 점을 각각 꼭짓점으로 하는 두 삼각형은 {높이}가 사다리꼴의 높이로 같아 넓이가 {같다}. 아랫변을 같이 쓰는 두 삼각형만 그런 것이 아니다.",
+        [
+          r`$\overline{AD}\parallel\overline{BC}$인 사다리꼴 $ABCD$에서 밑변 $\overline{AD}$를 같이 쓰고 $\triangle ABD$와 넓이가 같은 삼각형은?`,
+          r`$\triangle ACD$`,
+        ],
       ],
       [
         "상",
@@ -13190,7 +13240,11 @@ export const bank = joinBanks([
         "상",
         "평행사변형 안의 점이 만든 네 조각",
         "성질",
-        r`평행사변형 $ABCD$ 내부의 점 $P$에 대해 $\triangle PAB+\triangle PCD=$ {$\triangle PAD+\triangle PBC$}이다.`,
+        "평행사변형 내부의 한 점과 네 꼭짓점을 이어 생긴 네 삼각형에서, {마주 보는} 두 삼각형의 넓이의 합은 나머지 두 삼각형의 넓이의 합과 {같다}. 두 합이 모두 평행사변형 넓이의 절반이기 때문이다.",
+        [
+          r`평행사변형 $ABCD$ 내부의 점 $P$에 대해 $\triangle PAB$, $\triangle PCD$의 넓이가 $3$, $7$일 때 $\triangle PAD+\triangle PBC$는?`,
+          "$10$",
+        ],
       ],
       [
         "상",
@@ -13214,7 +13268,11 @@ export const bank = joinBanks([
         "상",
         "사다리꼴을 대각선으로 나눈 넓이",
         "방법",
-        r`$\overline{AD}\parallel\overline{BC}$인 사다리꼴에서 $\triangle ABC$는 {$\overline{BC}$}$\times$(높이)$\div2$, $\triangle ACD$는 {$\overline{AD}$}$\times$(높이)$\div2$이다.`,
+        "사다리꼴을 한 대각선으로 나눈 두 삼각형은 각각 {윗변}과 {아랫변}을 밑변으로 하고 높이가 사다리꼴의 높이로 같다. 그래서 두 삼각형의 넓이의 비는 윗변과 아랫변의 길이의 {비}와 같다.",
+        [
+          r`$\overline{AD}\parallel\overline{BC}$, $\overline{AD}=3$, $\overline{BC}=7$인 사다리꼴 $ABCD$에서 $\triangle ACD$와 $\triangle ABC$의 넓이의 비는?`,
+          "$3:7$",
+        ],
       ],
     ],
     ox: [
@@ -13409,7 +13467,11 @@ export const bank = joinBanks([
         "하",
         "닮음 기호에서 대응점 읽기",
         "방법",
-        r`$\triangle ABC\backsim\triangle DEF$에서 꼭짓점 $A$의 대응점은 {$D$}이다.`,
+        "닮음 기호로 쓴 두 도형은 꼭짓점을 {대응하는 차례대로} 쓰므로, {같은 자리}에 쓴 꼭짓점끼리 대응한다.",
+        [
+          r`$\triangle ABC\backsim\triangle DEF$에서 꼭짓점 $A$의 대응점은?`,
+          "$D$",
+        ],
       ],
       [
         "하",
@@ -13439,9 +13501,13 @@ export const bank = joinBanks([
       ],
       [
         "중",
-        "사각형의 닮음 기호",
+        "닮음 기호에서 대응변 읽기",
         "방법",
-        r`$\square ABCD\backsim\square EFGH$이면 $\overline{BC}$의 대응변은 {$\overline{FG}$}이다.`,
+        "닮음 기호에서 한 변의 대응변은, 그 변의 두 끝 점과 {같은 자리}에 쓴 {두 꼭짓점}을 이은 변이다.",
+        [
+          r`$\square ABCD\backsim\square EFGH$에서 $\overline{BC}$의 대응변은?`,
+          r`$\overline{FG}$`,
+        ],
       ],
       [
         "중",
@@ -13766,7 +13832,11 @@ export const bank = joinBanks([
         "상",
         "수선이 만든 닮음으로 비례식 세우기",
         "방법",
-        r`$\triangle ABC\backsim\triangle HBA$에서 $\overline{AB}:\overline{HB}=$ {$\overline{BC}:\overline{BA}$}이다.`,
+        "직각인 꼭짓점에서 빗변에 수선을 그어 생긴 닮음에서 비례식은 닮음 기호의 {같은 자리}끼리 짝지어 세운다. 두 삼각형이 {같이 쓰는 변}이 비례식에 두 번 나와 그 변의 길이의 {제곱}이 된다.",
+        [
+          r`$\triangle ABC\backsim\triangle HBA$에서 $\overline{AB}:\overline{HB}=\overline{BC}:\square$의 $\square$에 알맞은 변은?`,
+          r`$\overline{BA}$`,
+        ],
       ],
       [
         "상",
@@ -13782,19 +13852,31 @@ export const bank = joinBanks([
         "상",
         "겹친 삼각형에서 짝 바꾸기",
         "성질",
-        r`$\triangle ABC$의 $\overline{AB}$, $\overline{AC}$ 위에 각각 $A$와 다른 점 $D$, $E$가 있고 $\overline{AD}:\overline{AC}=\overline{AE}:\overline{AB}$이면 $\triangle ADE\backsim$ {$\triangle ACB$}이다.`,
+        r`한 각을 같이 쓰며 겹친 두 삼각형에서 그 각을 낀 변을 한 직선 위의 변끼리가 아니라 {엇갈려} 짝지은 비가 같아도 $\mathrm{SAS}$ 닮음이다. 이때 닮음 기호는 짝지은 변끼리 {대응}하도록 꼭짓점 차례를 맞춰 쓴다.`,
+        [
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 꼭짓점이 아닌 점 $D$, $E$가 있고 $\overline{AD}:\overline{AC}=\overline{AE}:\overline{AB}$일 때 $\triangle ADE\backsim\square$의 $\square$는?`,
+          r`$\triangle ACB$`,
+        ],
       ],
       [
         "상",
         "평행선이 만든 닮음과 길이",
         "방법",
-        r`$\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=$ {$\overline{DE}:\overline{BC}$}이다.`,
+        "삼각형의 한 변에 평행한 선분이 다른 두 변과 만나 생긴 작은 삼각형은 원래 삼각형과 닮음이다. 평행한 두 선분의 길이의 비는 {닮음비}, 곧 꼭짓점에서 잰 변의 길이의 비와 같고, 잘린 {조각끼리}의 비와는 다르다.",
+        [
+          r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{AD}:\overline{DB}=2:1$일 때 $\overline{DE}:\overline{BC}$가 $2:1$이 아닌 까닭은?`,
+          r`닮음비가 $2:3$이라서`,
+        ],
       ],
       [
         "상",
-        "엇각과 맞꼭지각으로 찾는 닮음",
+        "평행선 사이에서 엇갈려 만난 두 삼각형의 대응",
         "성질",
-        r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$와 $\overline{BC}$가 $O$에서 만나면 $\triangle OAB\backsim$ {$\triangle ODC$}이다.`,
+        "평행한 두 선분의 끝 점을 엇갈려 이어 생긴 두 삼각형에서는 {교점}끼리 대응하고, 교점을 지나는 한 선분의 {양 끝 점}끼리 대응한다. 그 두 끝 점의 각이 엇각으로 같기 때문이다.",
+        [
+          r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$와 $\overline{BC}$가 $O$에서 만날 때 $\triangle OAB\backsim\square$의 $\square$는?`,
+          r`$\triangle ODC$`,
+        ],
       ],
       [
         "상",
@@ -13804,9 +13886,9 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "수선과 다른 한 변",
-        "성질",
-        r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발을 $H$라 할 때 $\overline{AC}^2=\overline{CH}\times$ {$\overline{CB}$}이다.`,
+        "수선이 나눈 빗변 조각 고르기",
+        "방법",
+        "직각인 꼭짓점에서 빗변에 그은 수선으로 직각을 낀 변의 길이를 구할 때, 어느 변이냐에 따라 곱하는 빗변 조각이 달라진다. 수선의 발에서 {그 변의 끝 점}까지의 조각을 빗변 전체와 곱한다. {다른 쪽} 조각을 곱하면 다른 변의 제곱이 된다.",
         [
           r`$\angle A=90^\circ$인 $\triangle ABC$의 꼭짓점 $A$에서 변 $BC$에 내린 수선의 발 $H$에 대해 $\overline{CH}=4$, $\overline{CB}=25$일 때 $\overline{AC}$`,
           "$10$",
@@ -13993,27 +14075,43 @@ export const bank = joinBanks([
       concepts: [
         [
           "하",
-          "평행선이 만든 동위각",
+          "평행선이 만든 같은 각",
           "성질",
-          r`$\triangle ABC$의 $\overline{AB}$, $\overline{AC}$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\angle ADE=$ {$\angle ABC$}이다.`,
+          "삼각형의 한 변에 평행한 직선이 다른 두 변과 만나면, 평행선의 양 끝에 생긴 각은 평행한 변의 양 끝 각과 각각 {동위각}이라 크기가 {같다}.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$일 때 $\angle ADE$와 크기가 같은 각은?`,
+            r`$\angle ABC$`,
+          ],
         ],
         [
           "하",
           "꼭짓점에서 잰 두 변의 비",
           "성질",
-          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=\overline{AE}:$ {$\overline{AC}$}이다.`,
+          "삼각형의 한 변에 평행한 선분이 다른 두 변을 자를 때, 한 변에서 꼭짓점부터 평행선까지의 길이와 {변 전체}의 길이의 비는 다른 변에서도 {같다}.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$일 때 $\overline{AD}:\overline{AB}=\overline{AE}:\square$의 $\square$는?`,
+            r`$\overline{AC}$`,
+          ],
         ],
         [
           "하",
           "평행한 두 선분의 비",
           "성질",
-          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=\overline{DE}:$ {$\overline{BC}$}이다.`,
+          "삼각형의 한 변에 평행하게 다른 두 변 사이에 그은 선분과 원래 변의 길이의 비는 작은 삼각형과 원래 삼각형의 {닮음비}와 같다. 두 선분이 닮은 두 삼각형의 {대응변}이기 때문이다.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$일 때 $\overline{AD}:\overline{AB}=\overline{DE}:\square$의 $\square$는?`,
+            r`$\overline{BC}$`,
+          ],
         ],
         [
           "하",
-          "위아래 조각의 비",
-          "성질",
-          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{DB}=\overline{AE}:$ {$\overline{EC}$}이다.`,
+          "조각의 비를 쓰는 차례",
+          "방법",
+          "밑변에 평행한 선분이 두 변을 나눌 때 조각의 비는 {같은 쪽} 조각끼리 차례를 맞춰 쓴다. 한 변에서 꼭짓점 쪽 조각을 먼저 썼으면 다른 변에서도 {꼭짓점 쪽} 조각을 먼저 쓴다.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$일 때 $\overline{AD}:\overline{DB}=\overline{AE}:\square$의 $\square$는?`,
+            r`$\overline{EC}$`,
+          ],
         ],
         RETIRED,
         [
@@ -14030,7 +14128,11 @@ export const bank = joinBanks([
           "하",
           "꼭짓점을 같이 쓰는 두 삼각형",
           "성질",
-          r`$\overline{DE}\parallel\overline{BC}$일 때 $\triangle ADE$와 $\triangle ABC$는 꼭짓점 {$A$}를 같이 쓴다.`,
+          "삼각형의 한 변에 평행한 직선이 만든 작은 삼각형과 원래 삼각형은 평행한 변과 {마주 보는} 꼭짓점을 같이 쓴다. 그 꼭짓점의 {각}도 두 삼각형이 같이 쓴다.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$일 때 $\triangle ADE$와 $\triangle ABC$가 같이 쓰는 각은?`,
+            r`$\angle A$`,
+          ],
         ],
         [
           "하",
@@ -14051,8 +14153,12 @@ export const bank = joinBanks([
         [
           "중",
           "연장선 쪽의 평행선",
-          "성질",
-          r`$D$, $E$가 $\overline{BA}$, $\overline{CA}$의 연장선 위에 있고 $\overline{DE}\parallel\overline{BC}$이면 $\overline{AD}:\overline{AB}=$ {$\overline{AE}:\overline{AC}$}이다.`,
+          "방법",
+          "평행선이 꼭짓점 너머 연장선과 만날 때도 비례식은 {한 직선 위}에 있는 선분끼리 짝지어 세운다. 꼭짓점에서 평행선까지의 길이와 꼭짓점에서 {밑변}까지의 길이를 견준다.",
+          [
+            r`$\triangle ABC$에서 $\overline{BA}$, $\overline{CA}$의 연장선 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$일 때 $\overline{AD}:\overline{AB}=\overline{AE}:\square$의 $\square$는?`,
+            r`$\overline{AC}$`,
+          ],
         ],
         [
           "중",
@@ -14089,7 +14195,7 @@ export const bank = joinBanks([
           "상",
           "모래시계 꼴의 비",
           "성질",
-          r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$, $\overline{BC}$가 $O$에서 만나면 $\overline{OA}:\overline{OD}=$ {$\overline{AB}:\overline{DC}$}이다.`,
+          "평행한 두 선분의 끝 점을 엇갈려 이은 모래시계 꼴에서, 교점이 엇갈려 이은 선분을 나눈 두 조각의 길이의 비는 {평행한 두 선분}의 길이의 비와 {같다}.",
           [
             r`$\overline{AB}\parallel\overline{CD}$이고 $\overline{AD}$, $\overline{BC}$가 $O$에서 만난다. $\overline{OA}=3$, $\overline{OD}=5$, $\overline{AB}=6$일 때 $\overline{DC}$`,
             "$10$",
@@ -14099,7 +14205,11 @@ export const bank = joinBanks([
           "상",
           "평행선을 두 번 그은 사각형",
           "성질",
-          r`$\triangle ABC$의 변 $AB$, $AC$, $BC$ 위의 점 $D$, $E$, $F$에 대해 $\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$이면 $\square DBFE$는 {평행사변형}이라 $\overline{DE}=$ {$\overline{BF}$}이다.`,
+          "삼각형의 한 변 위의 점에서 다른 두 변에 평행한 선분을 하나씩 그으면 삼각형 안에 {평행사변형}이 생긴다. 그래서 평행하게 그은 선분은 맞은편 변 위의 {조각}과 길이가 같다.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$, $BC$ 위에 점 $D$, $E$, $F$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{EF}\parallel\overline{AB}$일 때 $\overline{DE}$와 길이가 같은 선분은?`,
+            r`$\overline{BF}$`,
+          ],
         ],
         [
           "상",
@@ -14115,7 +14225,11 @@ export const bank = joinBanks([
           "상",
           "평행선이 셋째 변을 나누는 비",
           "성질",
-          r`$\triangle ABC$의 변 $AB$, $BC$ 위의 점 $D$, $F$에 대해 $\overline{DF}\parallel\overline{AC}$이면 $\overline{BF}:\overline{FC}=$ {$\overline{BD}:\overline{DA}$}이다.`,
+          "평행선과 선분의 비는 어느 변에 평행하게 그어도 성립한다. 평행한 변과 {마주 보는 꼭짓점}에서 시작해, 그 꼭짓점 쪽 조각과 나머지 조각의 비가 두 변에서 {같다}.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $BC$ 위에 점 $D$, $F$가 있고 $\overline{DF}\parallel\overline{AC}$일 때 $\overline{BD}:\overline{DA}=\overline{BF}:\square$의 $\square$는?`,
+            r`$\overline{FC}$`,
+          ],
         ],
         [
           "상",
@@ -14134,7 +14248,11 @@ export const bank = joinBanks([
           "상",
           "두 변의 남은 조각의 비",
           "성질",
-          r`$\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\overline{DE}\parallel\overline{BC}$이면 $\overline{DB}:\overline{EC}=\overline{AB}:$ {$\overline{AC}$}이다.`,
+          "삼각형의 두 변을 밑변에 평행한 선분으로 자르면, 두 변에서 밑변 쪽에 남은 조각끼리의 길이의 비는 {원래 두 변}의 길이의 비와 {같다}.",
+          [
+            r`$\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\overline{DE}\parallel\overline{BC}$, $\overline{AB}:\overline{AC}=3:4$일 때 $\overline{DB}:\overline{EC}$는?`,
+            "$3:4$",
+          ],
         ],
       ],
       ox: [
@@ -14290,9 +14408,13 @@ export const bank = joinBanks([
       RETIRED,
       [
         "하",
-        "이등분선과 대변의 비",
-        "성질",
-        r`$\angle A$의 이등분선이 $\overline{BC}$와 $D$에서 만나면 $\overline{BD}:\overline{DC}=\overline{AB}:$ {$\overline{AC}$}이다.`,
+        "이등분선의 비례식에서 짝짓기",
+        "방법",
+        "내각의 이등분선이 나눈 대변의 두 조각은 각각 {맞닿은 변}과 짝을 짓는다. 조각과 그 조각에 맞닿은 변을 같은 {차례}로 써서 비례식을 세운다.",
+        [
+          r`$\triangle ABC$에서 $\angle A$의 이등분선이 $\overline{BC}$와 $D$에서 만날 때 $\overline{BD}:\overline{DC}=\overline{AB}:\square$의 $\square$는?`,
+          r`$\overline{AC}$`,
+        ],
       ],
       [
         "하",
@@ -14325,9 +14447,13 @@ export const bank = joinBanks([
       ],
       [
         "하",
-        "이등분선이 나눈 넓이의 비",
+        "이등분선이 나눈 두 삼각형 가운데 넓은 쪽",
         "성질",
-        r`$\angle A$의 이등분선이 나눈 $\triangle ABD$와 $\triangle ADC$의 넓이의 비는 $\overline{AB}:$ {$\overline{AC}$}이다.`,
+        "한 내각의 이등분선이 삼각형을 둘로 나눌 때, 그 각을 낀 두 변 가운데 {긴} 변이 있는 쪽 삼각형이 더 {넓다}. 두 변의 길이가 같으면 넓이도 같다.",
+        [
+          r`$\triangle ABC$에서 $\overline{AB}=7$, $\overline{AC}=5$이고 $\angle A$의 이등분선이 $\overline{BC}$와 $D$에서 만날 때 $\triangle ABD$와 $\triangle ADC$ 가운데 넓은 쪽은?`,
+          r`$\triangle ABD$`,
+        ],
       ],
       [
         "하",
@@ -14339,13 +14465,17 @@ export const bank = joinBanks([
         "중",
         "조각을 미지수로 놓기",
         "방법",
-        r`$\angle A$의 이등분선이 $\overline{BC}$와 $D$에서 만날 때 $\overline{BD}=x$로 놓으면 $\overline{DC}=$ {$\overline{BC}-x$}이고, $\overline{AB}:\overline{AC}=x:(\overline{BC}-x)$를 푼다.`,
+        r`이등분선이 나눈 대변의 한 조각의 길이를 $x$로 놓으면 다른 조각은 대변 전체의 길이에서 $x$를 {뺀} 것이다. 두 조각의 비를 각을 낀 {두 변}의 길이의 비와 같다고 놓아 $x$를 구한다.`,
+        [
+          r`$\triangle ABC$에서 $\angle A$의 이등분선이 길이 $7$인 $\overline{BC}$와 $D$에서 만난다. $\overline{BD}=x$일 때 $\overline{DC}$는?`,
+          "$7-x$",
+        ],
       ],
       [
         "중",
         "대변 전체에서 조각 구하기",
         "방법",
-        r`$\angle A$의 이등분선이 변 $BC$와 $D$에서 만나면 $\overline{BD}$는 $\overline{BC}$의 {$\frac{\overline{AB}}{\overline{AB}+\overline{AC}}$}배이다.`,
+        r`한 내각을 낀 두 변의 길이가 $a$, $b$일 때, 그 각의 이등분선이 나눈 대변의 두 조각 가운데 길이가 $a$인 변 쪽 조각은 대변 전체의 {$\frac{a}{a+b}$}배이다.`,
         [
           r`$\triangle ABC$에서 $\angle A$의 이등분선이 변 $BC$와 $D$에서 만난다. $\overline{AB}=8$, $\overline{AC}=12$, $\overline{BC}=10$일 때 $\overline{BD}$`,
           "$4$",
@@ -14355,13 +14485,21 @@ export const bank = joinBanks([
         "중",
         "두 변까지의 거리로 본 넓이",
         "성질",
-        r`$\angle A$의 이등분선과 $\overline{BC}$의 교점 $D$는 두 변 $AB$, $AC$까지의 거리가 같아 $\triangle ABD$와 $\triangle ADC$의 넓이의 비는 {$\overline{AB}:\overline{AC}$}이다.`,
+        "이등분선과 대변의 교점에서 각의 두 변까지의 거리는 {같다}. 그래서 각을 낀 두 변을 {밑변}으로 보면 나뉜 두 삼각형은 높이가 같아, 넓이의 비가 두 변의 길이의 비와 같다.",
+        [
+          r`$\triangle ABC$에서 $\angle A$의 이등분선이 $\overline{BC}$와 $D$에서 만날 때, $\overline{AB}$, $\overline{AC}$를 밑변으로 본 $\triangle ABD$, $\triangle ADC$의 높이가 같은 까닭은?`,
+          r`$D$에서 두 변까지 거리가 같아서`,
+        ],
       ],
       [
         "중",
         "높이를 같이 쓰는 두 삼각형",
         "성질",
-        r`$\overline{BC}$의 내부에 $D$가 있으면 $\triangle ABD$와 $\triangle ADC$는 꼭짓점 $A$에서 $\overline{BC}$까지의 높이가 같아 넓이의 비가 {$\overline{BD}:\overline{DC}$}이다.`,
+        "삼각형의 한 꼭짓점과 마주 보는 변 위의 점을 이어 나눈 두 삼각형은 그 꼭짓점에서 잰 높이가 같다. 그래서 넓이의 비는 나뉜 변의 {두 조각}의 길이의 {비}와 같다.",
+        [
+          r`$\triangle ABC$의 변 $BC$ 위에 점 $D$가 있고 $\overline{BD}=3$, $\overline{DC}=5$일 때 $\triangle ABD$와 $\triangle ADC$의 넓이의 비는?`,
+          "$3:5$",
+        ],
       ],
       [
         "중",
@@ -14401,21 +14539,33 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "평행선을 그어 까닭 밝히기",
-        "방법",
-        r`$\overline{AD}$가 $\angle A$의 이등분선일 때 $C$를 지나 $\overline{AD}$에 평행한 직선이 $\overline{BA}$의 연장선과 만나는 점을 $E$라 하면 $\triangle ACE$는 $\overline{AC}=$ {$\overline{AE}$}인 이등변삼각형이다.`,
+        "보조선이 이등변삼각형을 만드는 까닭",
+        "성질",
+        "삼각형에서 내각의 이등분선에 평행한 보조선을 다른 꼭짓점에서 그으면 {동위각}과 {엇각}이 각각 이등분된 두 각과 같다. 이등분된 두 각이 같으므로 보조선이 만든 삼각형은 두 각이 같아 이등변삼각형이다.",
+        [
+          r`$\triangle ABC$에서 $\overline{AD}$는 $\angle A$의 이등분선이고, $C$를 지나 $\overline{AD}$에 평행한 직선이 $\overline{BA}$의 연장선과 $E$에서 만날 때 $\overline{AC}$와 길이가 같은 선분은?`,
+          r`$\overline{AE}$`,
+        ],
       ],
       [
         "상",
-        "외각의 이등분선과 비",
-        "성질",
-        r`$\angle A$의 외각의 이등분선이 $\overline{BC}$의 연장선과 $D$에서 만나면 $\overline{BD}:\overline{CD}=\overline{AB}:$ {$\overline{AC}$}이다.`,
+        "외각의 이등분선의 비례식에서 짝짓기",
+        "방법",
+        "외각의 이등분선에서도 교점에서 대변의 한 끝 점까지의 거리는 그 끝 점에서 만나는 {각을 낀 변}과 짝을 짓는다. 내각 때와 달리 짝짓는 두 거리가 서로 {겹쳐} 있다.",
+        [
+          r`$\triangle ABC$에서 $\angle A$의 외각의 이등분선이 $\overline{BC}$의 연장선과 $D$에서 만날 때 $\overline{BD}:\overline{CD}=\overline{AB}:\square$의 $\square$는?`,
+          r`$\overline{AC}$`,
+        ],
       ],
       [
         "상",
         "외각의 이등분선이 만나는 쪽",
         "성질",
-        r`$\overline{AB}>\overline{AC}$이면 $\angle A$의 외각의 이등분선은 {$C$} 쪽 연장선과 만난다.`,
+        "삼각형의 한 내각을 낀 두 변의 길이가 다르면, 그 각의 외각의 이등분선은 대변을 {짧은 변} 쪽으로 늘인 연장선과 만난다. 교점에서 대변의 두 끝 점까지의 거리의 비가 두 변의 길이의 비와 같아, 긴 변 쪽 끝 점이 더 {멀어야} 하기 때문이다.",
+        [
+          r`$\triangle ABC$에서 $\overline{AB}>\overline{AC}$일 때 $\angle A$의 외각의 이등분선은 $\overline{BC}$를 어느 꼭짓점 쪽으로 늘인 연장선과 만나는가?`,
+          r`$C$ 쪽`,
+        ],
       ],
       [
         "상",
@@ -14427,7 +14577,11 @@ export const bank = joinBanks([
         "상",
         "비가 맞으면 이등분선",
         "성질",
-        r`$\triangle ABC$의 변 $BC$ 위의 점 $D$가 $\overline{BD}:\overline{DC}=$ {$\overline{AB}:\overline{AC}$}를 만족하면 $\overline{AD}$는 $\angle A$를 이등분한다.`,
+        "삼각형의 한 꼭짓점과 {대변} 위의 점을 이은 선분이 대변을 나눈 두 조각의 길이의 비가, 각 조각에 맞닿은 {각을 낀 두 변}의 길이의 비와 같으면 그 선분은 꼭짓점의 각을 이등분한다.",
+        [
+          r`$\triangle ABC$의 변 $BC$ 위에 점 $D$가 있고 $\overline{BD}:\overline{DC}=\overline{AB}:\overline{AC}$일 때 $\overline{AD}$는 $\angle A$를 어떻게 나누는가?`,
+          "이등분한다",
+        ],
       ],
       [
         "상",
@@ -14443,7 +14597,7 @@ export const bank = joinBanks([
         "상",
         "외각의 이등분선으로 길이 구하기",
         "방법",
-        r`$\overline{AB}>\overline{AC}$이고 $\angle A$의 외각의 이등분선이 $\overline{BC}$의 연장선과 $D$에서 만날 때, $\overline{CD}=x$로 놓고 $\overline{BD}=$ {$\overline{BC}+x$}로 비례식을 세운다.`,
+        r`외각의 이등분선과 대변의 연장선의 교점에서 대변의 가까운 끝 점까지의 거리를 $x$로 놓으면, 먼 끝 점까지의 거리는 대변의 길이에 $x$를 {더한} 것이다. 내각 때 한 조각을 {빼던} 것과 다르다.`,
         [
           r`$\triangle ABC$에서 $\angle A$의 외각의 이등분선이 변 $BC$의 연장선과 $D$에서 만난다. $\overline{AB}=6$, $\overline{AC}=3$, $\overline{BC}=4$일 때 $\overline{CD}$`,
           "$4$",
@@ -14955,7 +15109,11 @@ export const bank = joinBanks([
           "하",
           "중점을 표시하는 등식",
           "방법",
-          r`$M$이 $\overline{AB}$ 위에 있을 때 중점 조건은 {$\overline{AM}=\overline{MB}$}로 나타낸다.`,
+          "선분 위의 점이 중점이라는 조건은 그 점에서 {양 끝 점}까지의 길이가 {같다}는 식으로 나타낸다.",
+          [
+            r`선분 $AB$ 위의 점 $M$이 중점이라는 조건을 등식으로 쓰면?`,
+            r`$\overline{AM}=\overline{MB}$`,
+          ],
         ],
         [
           "하",
@@ -14979,7 +15137,11 @@ export const bank = joinBanks([
           "하",
           "연결 선분에 대응하는 변",
           "방법",
-          r`$\overline{AB}$와 $\overline{AC}$의 중점을 이은 선분에 대응하는 원래 변은 {$\overline{BC}$}이다.`,
+          "두 변의 중점을 이은 선분과 길이를 견주는 원래 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 그 선분과 {한 끝}에서 만난다.",
+          [
+            r`$\triangle ABC$에서 $\overline{AB}$와 $\overline{AC}$의 중점을 이은 선분과 길이를 견주는 원래 변은?`,
+            r`$\overline{BC}$`,
+          ],
         ],
         [
           "중",
@@ -16217,9 +16379,13 @@ export const bank = joinBanks([
       ],
       [
         "상",
-        "직사각형 안의 점에서 제곱 비교",
-        "공식",
-        r`직사각형 $ABCD$의 내부 점 $P$에서는 $\overline{PA}^2+\overline{PC}^2=$ {$\overline{PB}^2+\overline{PD}^2$}가 된다.`,
+        "직사각형 안의 점에서 제곱의 합이 같은 짝",
+        "성질",
+        "직사각형 안의 한 점에서 꼭짓점까지의 거리의 제곱을 더한 값이 같은 것은 {마주 보는} 꼭짓점끼리 짝지을 때이다. {이웃한} 꼭짓점끼리 짝지은 합은 같다는 보장이 없다.",
+        [
+          r`직사각형 $ABCD$ 안의 점 $P$에 대해 $\overline{PA}^2+\overline{PC}^2$과 값이 같은 식은?`,
+          r`$\overline{PB}^2+\overline{PD}^2$`,
+        ],
       ],
       [
         "상",
