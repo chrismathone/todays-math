@@ -57,6 +57,7 @@ import {
   type Load,
 } from "./englishClient";
 import type { EnglishNotice, EnglishView } from "./views";
+import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import s from "./EnglishStudio.module.css";
 
 export type { EnglishNotice, EnglishView } from "./views";
@@ -72,6 +73,8 @@ export type EnglishStudioProps = {
   /** 딥링크 `/?set=<uuid>#english` — 셸 `sync()` 가 넘긴다. 열고 나면 `onSetOpened` 로 URL 의 set 을 지운다 */
   openSetRequest?: { id: string; version: number };
   onSetOpened: () => void;
+  bankSeed?: EnglishBankMakerSeed;
+  onBankSeedHandled?: (requestId: string) => void;
   onNotice: EnglishNotice;
 };
 
@@ -114,6 +117,8 @@ export default function EnglishStudio({
   onNewExamClose,
   openSetRequest,
   onSetOpened,
+  bankSeed,
+  onBankSeedHandled,
   onNotice,
 }: EnglishStudioProps) {
   const menus = normalizeWorkspaceMenus(allowedMenus);
@@ -134,12 +139,25 @@ export default function EnglishStudio({
     Record<string, Load<EnglishSetSummary[]> | undefined>
   >({});
   const [editor, setEditor] = useState<EditorSeed | null>(null);
+  const [readyBankSeed, setReadyBankSeed] = useState<EnglishBankMakerSeed>();
   const examsVersion = useRef(0);
   const inflight = useRef(new Set<string>());
   // 셸이 주는 콜백은 렌더마다 바뀔 수 있다 — 딥링크 효과가 그것 때문에 다시 돌지 않게 최신 것을 ref 로 본다.
-  const callbacks = useRef({ onNotice, onSetOpened, onNavigate, view });
+  const callbacks = useRef({
+    onNotice,
+    onSetOpened,
+    onNavigate,
+    onBankSeedHandled,
+    view,
+  });
   useEffect(() => {
-    callbacks.current = { onNotice, onSetOpened, onNavigate, view };
+    callbacks.current = {
+      onNotice,
+      onSetOpened,
+      onNavigate,
+      onBankSeedHandled,
+      view,
+    };
   });
 
   const loadExams = useCallback(async () => {
@@ -164,6 +182,41 @@ export default function EnglishStudio({
     void loadExams();
   }, [loadExams]);
 
+  // Validate the bank's target against a fresh exam list. The maker changes the
+  // exam only after accepting the seed, so cancelling preserves its old draft.
+  useEffect(() => {
+    if (!bankSeed || !canMake) return;
+    const controller = new AbortController();
+    const version = ++examsVersion.current;
+    void requestEnglish("/api/english/exams", { signal: controller.signal })
+      .then((value) => {
+        const body = englishExamListResponseSchema.parse(value);
+        if (controller.signal.aborted) return;
+        if (version === examsVersion.current)
+          setExams({ status: "ready", data: body.data });
+        if (!body.data.some((item) => item.id === bankSeed.examId))
+          throw new Error(
+            "대상 시험을 찾을 수 없습니다. 자료은행에서 시험을 다시 선택해 주세요.",
+          );
+        setReadyBankSeed(bankSeed);
+      })
+      .catch((error) => {
+        if (controller.signal.aborted) return;
+        if (version === examsVersion.current)
+          setExams((previous) =>
+            previous.status === "ready"
+              ? previous
+              : {
+                  status: "error",
+                  message: messageOf(error),
+                },
+          );
+        callbacks.current.onNotice(messageOf(error), "alert");
+        callbacks.current.onBankSeedHandled?.(bankSeed.requestId);
+      });
+    return () => controller.abort();
+  }, [bankSeed, canMake]);
+
   const examList = exams.status === "ready" ? exams.data : [];
   const exam =
     (requestedExamId && examList.find((item) => item.id === requestedExamId)) ||
@@ -175,6 +228,14 @@ export default function EnglishStudio({
     setRequestedExamId(id);
     storeExam(id);
   }, []);
+  const acceptBankSeed = useCallback(
+    (id: string) => {
+      selectExam(id);
+      // An older save may have opened its editor while this seed waited for it.
+      callbacks.current.onNavigate("english-maker");
+    },
+    [selectExam],
+  );
 
   const loadMaterials = useCallback(async (id: string) => {
     const key = `materials:${id}`;
@@ -547,6 +608,13 @@ export default function EnglishStudio({
               />
               <EnglishMakerView
                 exam={exam}
+                bankSeed={
+                  readyBankSeed?.requestId === bankSeed?.requestId
+                    ? readyBankSeed
+                    : undefined
+                }
+                onBankSeedAccepted={acceptBankSeed}
+                onBankSeedHandled={onBankSeedHandled}
                 materials={
                   materialsLoad?.status === "ready" ? materialsLoad.data : []
                 }

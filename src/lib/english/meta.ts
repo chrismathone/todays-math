@@ -26,6 +26,7 @@ export interface EnglishMetaExtra {
   model?: string;
   promptVersion?: string;
   materialName?: string;
+  passageRef?: EnglishSetMeta["passageRef"];
 }
 
 /**
@@ -50,6 +51,7 @@ export function englishMetaFromConditions(
   if (conditions.mode === "variation" && conditions.passage.trim())
     meta.sourcePassage = conditions.passage.trim();
   if (extra.materialName) meta.materialName = extra.materialName;
+  if (extra.passageRef) meta.passageRef = { ...extra.passageRef };
   if (extra.model) meta.model = extra.model;
   if (extra.promptVersion) meta.promptVersion = extra.promptVersion;
   return meta;

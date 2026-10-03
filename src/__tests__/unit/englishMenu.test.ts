@@ -29,14 +29,15 @@ const account: AccountAccess = {
 };
 
 describe("English menu compatibility", () => {
-  it("lists four sidebar menus while retaining the legacy input enum", () => {
+  it("lists five sidebar menus while retaining the legacy input enum", () => {
     expect(
-      WORKSPACE_MENUS.slice(-4).map(({ id, label }) => [id, label]),
+      WORKSPACE_MENUS.slice(-5).map(({ id, label }) => [id, label]),
     ).toEqual([
       ["english-school", "학교별 내신 대비"],
       ["english-maker", "문제 만들기"],
       ["english-library", "문제 보관함"],
       ["english-listening", "영어듣기"],
+      ["english-bank", "자료은행"],
     ]);
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
@@ -45,6 +46,7 @@ describe("English menu compatibility", () => {
     expect(workspaceMenusOf("english")).toEqual([
       ...englishMenus,
       "english-listening",
+      "english-bank",
     ]);
     expect(workspaceMenuProduct("english")).toBe("english");
   });
@@ -120,6 +122,64 @@ const routes: [string, string, WorkspaceMenu[]][] = [
   ["HEAD", "/english/sets/set/print", ["english-library"]],
 ];
 describe("English route permissions", () => {
+  it("keeps the resource bank separate from legacy English grants", () => {
+    const bankAccount = {
+      ...account,
+      menus: ["english-bank"] as WorkspaceMenu[],
+    };
+    for (const [method, path] of [
+      ["GET", "/api/english/passages"],
+      ["POST", "/api/english/passages"],
+      ["POST", "/api/english/passages/import"],
+      ["GET", "/api/english/passages/id"],
+      ["PATCH", "/api/english/passages/id"],
+      ["DELETE", "/api/english/passages/id"],
+      ["GET", "/api/english/passages/id/sets"],
+      ["POST", "/api/english/passages/id/rights"],
+    ]) {
+      expect(accountRouteAllowed(bankAccount, method!, path!)).toBe(true);
+      expect(
+        accountRouteAllowed({ ...account, menus: ["english"] }, method!, path!),
+      ).toBe(false);
+    }
+    const prepare = "/api/english/passages/id/prepare";
+    expect(accountRouteAllowed(bankAccount, "POST", prepare)).toBe(false);
+    expect(
+      accountRouteAllowed(
+        { ...bankAccount, menus: ["english-bank", "english-maker"] },
+        "POST",
+        prepare,
+      ),
+    ).toBe(true);
+    for (const endpoint of ["bank", "references"]) {
+      const path = `/api/english/listening/${endpoint}`;
+      for (const menus of [
+        ["english-bank"],
+        ["english-listening"],
+      ] as WorkspaceMenu[][])
+        expect(accountRouteAllowed({ ...account, menus }, "GET", path)).toBe(
+          false,
+        );
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["english-bank", "english-listening"] },
+          "GET",
+          path,
+        ),
+      ).toBe(true);
+      expect(accountRouteAllowed(account, "POST", path)).toBe(false);
+    }
+    expect(
+      accountRouteAllowed(
+        bankAccount,
+        "GET",
+        "/api/english/passages/id/future",
+      ),
+    ).toBe(false);
+    expect(accountRouteAllowed(bankAccount, "GET", "/api/english/exams")).toBe(
+      false,
+    );
+  });
   it.each(routes)(
     "%s %s requires the matching grant",
     (method, path, permitted) => {

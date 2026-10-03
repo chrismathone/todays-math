@@ -103,6 +103,14 @@ export const ENGLISH_MATERIAL_MAX_LABEL = "4MB";
 export const ENGLISH_MATERIAL_CONTENT_MAX = 30_000;
 export const ENGLISH_PASSAGE_MAX = 24_000;
 
+/** Exact immutable bank revision; source text lives in the server-side usage snapshot. */
+export const englishPassageRefSchema = z.strictObject({
+  passageId: uuidSchema,
+  textRevision: z.number().int().min(1).max(2_147_483_647),
+  snapshotHash: z.string().regex(/^[a-f0-9]{64}$/),
+});
+export type EnglishPassageRef = z.infer<typeof englishPassageRefSchema>;
+
 // ─────────────────────────────────────────────
 // 시험 (english_exam)
 // ─────────────────────────────────────────────
@@ -246,6 +254,7 @@ export const englishSetMetaSchema = z.strictObject({
    * 같은 시험·같은 키·같은 본문은 그 행을 돌려주고, 본문이 다르면 409. 없으면 매번 새 행.
    */
   clientKey: uuidSchema.optional(),
+  passageRef: englishPassageRefSchema.optional(),
 });
 export type EnglishSetMeta = z.infer<typeof englishSetMetaSchema>;
 
@@ -308,6 +317,7 @@ export const englishSetResponseSchema = dataResponseSchema(englishSetSchema);
 export const englishGenerateRequestSchema = z
   .strictObject({
     examId: uuidSchema,
+    passageRef: englishPassageRefSchema.optional(),
     /** new: 새 지문 · original: 원문 유지(문제만) · variation: 원문 변형 */
     mode: englishGenerateModeSchema,
     topic: z.string().trim().max(300).default(""),

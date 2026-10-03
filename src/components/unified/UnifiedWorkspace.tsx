@@ -30,6 +30,7 @@ import {
 import { useWorkspaceAccess } from "./useWorkspaceAccess";
 import type { BankData, StudioProblem } from "./types";
 import type { StudioCrop } from "./studioHelpers";
+import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import {
   addToCart,
   forgetRemovals,
@@ -129,6 +130,15 @@ const ListeningStudio = dynamic(
     ),
   },
 );
+const EnglishResourceBank = dynamic(
+  () => import("@/components/english/bank/EnglishResourceBank"),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress className={s.loading} label="자료은행을 여는 중입니다…" />
+    ),
+  },
+);
 /**
  * 영어 학교 메뉴는 기존 english 주소를 유지하고, 각 뷰는 개별 메뉴 권한을 본다.
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
@@ -174,6 +184,7 @@ const englishNav: NavItem[] = [
     short: "듣기",
     icon: "headphones",
   },
+  { id: "english-bank", label: "자료은행", short: "자료은행", icon: "bank" },
 ];
 const navItemsOf: Record<WorkspaceProduct, NavItem[]> = {
   math: mathNav,
@@ -188,7 +199,10 @@ const viewValid = (value: string): value is View =>
 const menuOf = (view: View): WorkspaceMenu =>
   isEnglishView(view) ? englishViewMenu(view) : view;
 const productOf = (view: View | null): WorkspaceProduct =>
-  view && (isEnglishView(view) || view === "english-listening")
+  view &&
+  (isEnglishView(view) ||
+    view === "english-listening" ||
+    view === "english-bank")
     ? "english"
     : "math";
 /** 세트 딥링크 `/?set=<uuid>#english` 의 id 모양 */
@@ -255,7 +269,7 @@ function UnifiedWorkspaceContent({
   const hasMenus = enabledMenus.size > 0;
   const canCreate = can("bank") || can("studio") || can("export");
   const canEnglish = englishNav.some(
-    (item) => item.id !== "english-listening" && can(item.id),
+    (item) => isEnglishView(item.id) && can(item.id),
   );
   const canCreateEnglishExam = can("english");
   const canOpenEnglishSet = can("english-library");
@@ -405,6 +419,11 @@ function UnifiedWorkspaceContent({
   const [openSet, setOpenSet] = useState<{ id?: string; version: number }>({
     version: 0,
   });
+  const [bankMakerSeed, setBankMakerSeed] = useState<EnglishBankMakerSeed>();
+  const [openListening, setOpenListening] = useState<{
+    id: string;
+    version: number;
+  }>();
   const [newTitle, setNewTitle] = useState("");
   const [quickQuery, setQuickQuery] = useState("");
   const [libraryQuery, setLibraryQuery] = useState("");
@@ -423,14 +442,21 @@ function UnifiedWorkspaceContent({
         "메뉴 이용 안내");
   const navigate = useCallback(
     (next: View) => {
-      if (!can(next)) return;
+      if (!can(next)) return false;
       if (
         next !== "english-listening" &&
         !window.dispatchEvent(
           new Event("english-listening-before-leave", { cancelable: true }),
         )
       )
-        return;
+        return false;
+      if (
+        next !== "english-bank" &&
+        !window.dispatchEvent(
+          new Event("english-bank-before-leave", { cancelable: true }),
+        )
+      )
+        return false;
       setView(next);
       setOpened((current) =>
         current.has(next) ? current : new Set([...current, next]),
@@ -444,6 +470,7 @@ function UnifiedWorkspaceContent({
       if (url.href !== window.location.href)
         window.history.pushState(null, "", url);
       window.scrollTo({ top: 0, behavior: "instant" });
+      return true;
     },
     [can, setNotice, setModal],
   );
@@ -521,6 +548,7 @@ function UnifiedWorkspaceContent({
   };
   /** 영어 뷰가 세트를 열고 나면 URL 의 `set` 을 지운다 — 새로 고쳐도 같은 세트를 다시 열지 않는다 */
   const forgetSetLink = useCallback(() => {
+    setOpenSet((current) => ({ version: current.version }));
     const url = new URL(window.location.href);
     if (!url.searchParams.has("set")) return;
     url.searchParams.delete("set");
@@ -551,6 +579,16 @@ function UnifiedWorkspaceContent({
         )
       ) {
         url.hash = "english-listening";
+        window.history.replaceState(null, "", url);
+        return;
+      }
+      if (
+        next !== "english-bank" &&
+        !window.dispatchEvent(
+          new Event("english-bank-before-leave", { cancelable: true }),
+        )
+      ) {
+        url.hash = "english-bank";
         window.history.replaceState(null, "", url);
         return;
       }
@@ -1057,7 +1095,8 @@ function UnifiedWorkspaceContent({
         </div>
         {product === "english"
           ? canCreateEnglishExam &&
-            view !== "english-listening" && (
+            view !== "english-listening" &&
+            view !== "english-bank" && (
               <button
                 className={s.newButton}
                 aria-label="새 시험 등록"
@@ -1381,7 +1420,7 @@ function UnifiedWorkspaceContent({
             ([...opened].some((item) => isEnglishView(item)) ||
               (view !== null && isEnglishView(view))) && (
               <main
-                hidden={product !== "english" || view === "english-listening"}
+                hidden={view === null || !isEnglishView(view)}
                 className={s.viewContent}
               >
                 <EnglishStudio
@@ -1400,6 +1439,12 @@ function UnifiedWorkspaceContent({
                       : undefined
                   }
                   onSetOpened={forgetSetLink}
+                  bankSeed={can("english-maker") ? bankMakerSeed : undefined}
+                  onBankSeedHandled={(requestId) =>
+                    setBankMakerSeed((current) =>
+                      current?.requestId === requestId ? undefined : current,
+                    )
+                  }
                   onNotice={englishNotice}
                 />
               </main>
@@ -1411,7 +1456,46 @@ function UnifiedWorkspaceContent({
                 hidden={view !== "english-listening"}
                 className={s.viewContent}
               >
-                <ListeningStudio active={view === "english-listening"} />
+                <ListeningStudio
+                  active={view === "english-listening"}
+                  openSetRequest={openListening}
+                  onSetOpened={(version) =>
+                    setOpenListening((current) =>
+                      current?.version === version ? undefined : current,
+                    )
+                  }
+                />
+              </main>
+            )}
+          {can("english-bank") &&
+            (opened.has("english-bank") || view === "english-bank") && (
+              <main hidden={view !== "english-bank"} className={s.viewContent}>
+                <EnglishResourceBank
+                  active={view === "english-bank"}
+                  allowedMenus={allowedMenus}
+                  onUsePassage={(seed) => {
+                    if (navigate("english-maker")) setBankMakerSeed(seed);
+                  }}
+                  onOpenListening={(id) => {
+                    if (navigate("english-listening"))
+                      setOpenListening({ id, version: Date.now() });
+                  }}
+                  onOpenSet={(id) => {
+                    if (navigate("english-library"))
+                      setOpenSet((current) => ({
+                        id,
+                        version: current.version + 1,
+                      }));
+                  }}
+                  onNewExam={
+                    canCreateEnglishExam
+                      ? () => {
+                          if (navigate("english")) setModal("english-exam");
+                        }
+                      : undefined
+                  }
+                  onNotice={setNotice}
+                />
               </main>
             )}
           {view === "export" && hydrated && (
