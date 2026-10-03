@@ -24,6 +24,7 @@ export type ReviewConsoleRow = {
   figureUrls: string[];
   figureDims: number[];
   figureSourceMm: number[];
+  choiceFigureIndex?: number[];
   directUseAllowed: boolean;
   unitName: string;
   /**
@@ -64,6 +65,7 @@ export function toConsoleRow(p: ProblemWithUnit): ReviewConsoleRow {
     figureUrls: p.figureUrls ?? [],
     figureDims: p.figureDims ?? [],
     figureSourceMm: p.figureSourceMm ?? [],
+    choiceFigureIndex: p.choiceFigureIndex ?? [],
     directUseAllowed: p.directUseAllowed,
     unitName: p.unit ? `${p.unit.grade} · ${p.unit.section}` : "—",
     grade: p.unit?.grade ?? "",

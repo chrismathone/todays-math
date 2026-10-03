@@ -232,6 +232,7 @@ export const ProblemCard = memo(function ProblemCard({
         <PaperProblemView
           content={shown(problem.content)}
           figureUrls={problem.figureUrls}
+          choiceFigureIndex={problem.choiceFigureIndex}
           figureSvg={problem.figureSvg}
         />
 

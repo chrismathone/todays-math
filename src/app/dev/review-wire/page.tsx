@@ -27,6 +27,7 @@ const SELECT = {
   figureUrls: true,
   figureDims: true,
   figureSourceMm: true,
+  choiceFigureIndex: true,
   reviewStatus: true,
   directUseAllowed: true,
   unit: { select: { grade: true, chapter: true, section: true } },

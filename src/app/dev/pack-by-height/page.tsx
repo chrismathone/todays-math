@@ -137,6 +137,7 @@ export default async function PackByHeightPage() {
       figureUrls: true,
       figureDims: true,
       figureSourceMm: true,
+      choiceFigureIndex: true,
       problemCode: true,
     },
   });
@@ -154,6 +155,7 @@ export default async function PackByHeightPage() {
       figureUrls: p.figureUrls,
       figureDims: p.figureDims,
       figureSourceMm: p.figureSourceMm,
+      choiceFigureIndex: p.choiceFigureIndex,
     }));
 
   const 높이 = new Map(차례.map((r) => [r.pid, r.neededPx]));

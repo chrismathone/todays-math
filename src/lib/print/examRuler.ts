@@ -32,6 +32,7 @@ export function estimateExamProblemPx(problem: TestPrintProblem): number {
     figures,
     problem.figureSvg ?? null,
     EXAM_RULER,
+    problem.choiceFigureIndex,
   );
 }
 

@@ -1,0 +1,43 @@
+@page {
+  size: A4;
+  margin: 0;
+}
+body {
+  margin: 0;
+  color: #111;
+  background: #eee;
+}
+[data-sheet] {
+  box-sizing: border-box;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 12px auto;
+  padding: 15mm;
+  background: #fcfcf8;
+}
+h1 {
+  margin: 0 0 8mm;
+  font-size: 16px;
+}
+h2 {
+  margin: 0 0 3mm;
+  font-size: 14px;
+}
+[data-columns] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7mm;
+}
+[data-problem] {
+  font-family: serif;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+@media print {
+  body {
+    background: white;
+  }
+  [data-sheet] {
+    margin: 0;
+  }
+}

@@ -344,7 +344,11 @@ function parseProblems(value: unknown): StudioProblem[] {
     )
       throw new DraftError(INVALID_IMPORT);
     normalized.figureUrls = urls;
-    for (const key of ["figureDims", "figureSourceMm"]) {
+    for (const key of [
+      "figureDims",
+      "figureSourceMm",
+      ...(problem.choiceFigureIndex === undefined ? [] : ["choiceFigureIndex"]),
+    ]) {
       const numbers = problem[key] === undefined ? [] : problem[key];
       if (
         !Array.isArray(numbers) ||

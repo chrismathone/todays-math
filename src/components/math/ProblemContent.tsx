@@ -21,6 +21,7 @@ import {
 import { fitsTwoColumns } from "@/lib/math/displayWidth";
 import { CHOICE_MARKS } from "@/lib/math/circledNumber";
 import { hideFigureMarker } from "@/lib/problem/figureMarker";
+import { planChoiceFigures } from "@/lib/problem/choiceFigureIndex";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 
 /**
@@ -72,6 +73,8 @@ export interface ProblemContentProps {
    *    규칙은 `src/lib/figurePrintSize.ts` 한 곳에 있고 넘침 판정도 같은 함수를 쓴다.
    */
   figureSourceMm?: number[];
+  /** 그림 순서대로 0 = 발문, 1부터 = 보기 번호. 비거나 짝이 어긋나면 기존 조판. */
+  choiceFigureIndex?: number[];
   className?: string;
   /**
    * 그림을 지연 로딩할지. 화면 목록(문제은행·검수)은 true —
@@ -103,6 +106,7 @@ export function ProblemContent({
   figureSvg,
   figureDims,
   figureSourceMm,
+  choiceFigureIndex,
   className = "",
   deferFigures = true,
   choiceLayout = "auto",
@@ -110,6 +114,12 @@ export function ProblemContent({
 }: ProblemContentProps) {
   const { question: rawQuestion, choices } = parseProblemContent(content);
   const figures = figureUrls ?? [];
+  const choiceFigures = planChoiceFigures(
+    figures.length,
+    choiceFigureIndex,
+    choices,
+  );
+  const stemFigures = choiceFigures?.stem ?? figures.map((_, index) => index);
   /**
    * 그림이 붙어 있는데 발문에 `[그림]` 자국이 남은 문항이 3,951건 있다
    * (원장님 2026-08-20). 그림은 바로 아래 그려지므로 그 글자는 군더더기다.
@@ -174,19 +184,19 @@ export function ProblemContent({
           dangerouslySetInnerHTML={{ __html: figureSvg }}
         />
       ) : null}
-      {figures.length > 0 ? (
+      {stemFigures.length > 0 ? (
         // 발문 뒤·보기 앞 — 원본 지면 순서 그대로.
         // 장식 없음(05 §0: 유리·그림자·그라데이션 금지). 그림 자체가 내용이다.
         // `justify-center` — 원장님 지시(2026-08-20): 「그림이 문제 중앙 정렬 되면
         // 좋겠네」. 여러 장이면 줄마다 가운데로 모인다(원본 순서는 그대로).
         <div className="mt-3 flex flex-wrap items-start justify-center gap-4 print:break-inside-avoid">
-          {figures.map((url, index) => (
+          {stemFigures.map((index) => (
             // 원본 비율·자연 크기를 그대로 써야 인쇄물이 원본 시험지와 같아진다.
             // next/image 는 리사이즈·포맷 변환을 하므로 여기선 쓰지 않는다.
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              key={url}
-              src={url}
+              key={figures[index]}
+              src={figures[index]}
               alt={figures.length > 1 ? `문항 그림 ${index + 1}` : "문항 그림"}
               // 원본이 최대 1,423px 이라 자연 크기로 두면 본문을 압도한다(실측 표시폭 1,178px).
               // 작은 그림은 그대로 두고 큰 것만 줄인다.
@@ -214,27 +224,51 @@ export function ProblemContent({
           data-hwpx-grid=""
           // 「자동」은 표식을 안 붙인다 — React 가 속성 자체를 안 만들어 마크업이 오늘 그대로다.
           data-choice-layout={
-            choiceLayout === "auto" ? undefined : choiceLayout
+            choiceFigures
+              ? "3x2"
+              : choiceLayout === "auto"
+                ? undefined
+                : choiceLayout
           }
           // 글 칸은 기준선 맞춤, 그림 보기만 위쪽 — 분수 보기 옆 칸·번호가 분수의 기준선에 선다(트랙 51).
           className={
-            choiceLayout === "auto"
-              ? `mt-4 grid grid-cols-1 items-baseline gap-x-8 gap-y-2${
-                  choicesInTwoColumns ? " md:grid-cols-2 print:grid-cols-2" : ""
-                }`
-              : `mt-4 grid items-baseline gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
+            choiceFigures
+              ? "mt-4 grid grid-cols-2 items-start gap-x-8 gap-y-2"
+              : choiceLayout === "auto"
+                ? `mt-4 grid grid-cols-1 items-baseline gap-x-8 gap-y-2${
+                    choicesInTwoColumns
+                      ? " md:grid-cols-2 print:grid-cols-2"
+                      : ""
+                  }`
+                : `mt-4 grid items-baseline gap-x-8 gap-y-2 ${CHOICE_COLUMN_CLASS[chosenColumns]}`
           }
         >
           {choices.map((choice, index) => (
             <div
               key={index}
-              className="flex items-baseline gap-1.5 has-[img]:items-start has-[img]:self-start print:break-inside-avoid"
+              className={
+                choiceFigures
+                  ? "flex items-start gap-1.5 print:break-inside-avoid"
+                  : "flex items-baseline gap-1.5 has-[img]:items-start has-[img]:self-start print:break-inside-avoid"
+              }
             >
               <span className="flex-shrink-0 leading-relaxed">
                 {CHOICE_MARKS[index] ?? `(${index + 1})`}
               </span>
               <div className="min-w-0 flex-1">
-                <MarkdownRenderer content={choice} className="[&_p]:my-0" />
+                {choiceFigures?.byChoice[index + 1] !== undefined ? (
+                  // 보기 그림은 통단 mm 폭이 아니라 같은 칸 폭을 쓴다. 높이는 원본 비율대로.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={figures[choiceFigures.byChoice[index + 1]]}
+                    alt={`보기 ${CHOICE_MARKS[index] ?? index + 1} 그림`}
+                    className={`h-auto w-full max-w-full ${FIGURE_BLEND_CLASS}`}
+                    loading={figureLoading}
+                    decoding={figureDecoding}
+                  />
+                ) : (
+                  <MarkdownRenderer content={choice} className="[&_p]:my-0" />
+                )}
               </div>
             </div>
           ))}

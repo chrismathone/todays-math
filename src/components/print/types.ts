@@ -57,6 +57,8 @@ export interface TestPrintProblem {
    *    규칙 한 곳: `src/lib/figurePrintSize.ts`.
    */
   figureSourceMm?: number[];
+  /** 그림 순서대로 0 = 발문, 1부터 = 보기 번호. 없으면 짝을 모른다. */
+  choiceFigureIndex?: number[];
 }
 
 export interface TestPrintDocument {
