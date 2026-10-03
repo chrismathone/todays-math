@@ -127,6 +127,8 @@ interface Row {
    * 한다** — 안 보면 판정만 «모른다»로 재서 지면과 갈린다(2026-08-20).
    */
   figureSourceMm: number[] | null;
+  /** 보기 그림의 짝 — 알면 지면이 달라진다. 측정기 · 지문과 같이 본다(2026-10-03 B1). */
+  choiceFigureIndex: number[] | null;
   solution: string | null;
   questionType: string | null;
 }
@@ -183,7 +185,8 @@ async function main() {
   const rows = (await prisma
     .$queryRawUnsafe(
       `SELECT id, content, figure_urls AS "figureUrls", figure_dims AS "figureDims",
-              figure_source_mm AS "figureSourceMm", solution,
+              figure_source_mm AS "figureSourceMm",
+              choice_figure_index AS "choiceFigureIndex", solution,
               question_type AS "questionType"
        FROM problem ORDER BY id`,
     )
@@ -192,7 +195,8 @@ async function main() {
         // figure_dims 컬럼이 아직 없는 시점에도 돌아야 한다 (마이그레이션 전 측정).
         (await prisma.$queryRawUnsafe(
           `SELECT id, content, figure_urls AS "figureUrls", NULL::int[] AS "figureDims",
-                NULL::double precision[] AS "figureSourceMm", solution,
+                NULL::double precision[] AS "figureSourceMm",
+                NULL::int[] AS "choiceFigureIndex", solution,
                 question_type AS "questionType"
          FROM problem ORDER BY id`,
         )) as Row[],
@@ -349,6 +353,9 @@ async function main() {
       figureUrls: row.figureUrls,
       figureDims: flat,
       figureSourceMm: sourceMm,
+      choiceFigureIndex: noDims
+        ? undefined
+        : (row.choiceFigureIndex ?? undefined),
     };
     /**
      * 판정이 **장을 보게 된 뒤로**(리뷰 §11-2) 문항 하나만 넘기면 늘 «첫 장 1번»이
