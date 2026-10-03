@@ -186,6 +186,12 @@ export const englishListeningBankQuerySchema = z.strictObject({
   cursor: z.string().max(1000).optional(),
   limit: z.coerce.number().int().min(1).max(100).default(20),
 });
+/** Official catalog supports year/round; own listening drafts do not. */
+export const englishListeningReferenceQuerySchema =
+  englishListeningBankQuerySchema.extend({
+    year: z.coerce.number().int().min(1900).max(2200).optional(),
+    round: z.coerce.number().int().min(1).max(10).optional(),
+  });
 export const englishListeningBankSummarySchema = z.strictObject({
   id: uuidSchema,
   revision,
