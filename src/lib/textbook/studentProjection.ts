@@ -70,7 +70,17 @@ export function studentConceptOf(
           entry.entryKind === "concept"
             ? entry.payload.term
             : entry.payload.statement,
-        pieces: [{ kind: "blank", index: 0 }],
+        pieces: [
+          ...(entry.entryKind === "ox"
+            ? [
+                {
+                  kind: "text" as const,
+                  text: "○ 또는 ×를 쓰고, 그 이유를 설명하세요. ",
+                },
+              ]
+            : []),
+          { kind: "blank", index: 0 },
+        ],
       });
     } else if (entry.entryKind === "concept") {
       let blankIndex = 0;
@@ -89,7 +99,10 @@ export function studentConceptOf(
       sheet.prompts.push({
         id: pick.entryId,
         label: entry.payload.prompt,
-        pieces: [{ kind: "blank", index: 0 }],
+        pieces: [
+          { kind: "text", text: "결론과 그 이유를 설명하세요. " },
+          { kind: "blank", index: 0 },
+        ],
       });
     } else {
       throw new Error("문장 백지에 맞지 않는 고정 항목입니다.");

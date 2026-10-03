@@ -109,7 +109,7 @@ const ACTIVE_RULES: readonly Rule[] = [
     why: "정답을 뺀 교재 백지",
   },
   {
-    methods: ["POST"],
+    methods: ["GET", "POST"],
     path: "/api/learn/textbook/editions/{id}/concepts/{id}/attempts",
     why: "본인의 교재 백지 답변 기록",
   },
@@ -278,6 +278,11 @@ export function anonymousLearnGate(
   pathname: string,
 ): LearnGate | null {
   const path = normalizeRoutePathname(pathname);
+  if (
+    /^\/q\/[A-Za-z0-9_-]{16,100}$/.test(path) &&
+    isPageRead(method.toUpperCase())
+  )
+    return { kind: "redirect", to: STUDENT_LOGIN_PAGE };
   if (path !== STUDENT_HOME && !path.startsWith(`${STUDENT_HOME}/`))
     return null;
   if (path === STUDENT_LOGIN_PAGE) return { kind: "allow" };
