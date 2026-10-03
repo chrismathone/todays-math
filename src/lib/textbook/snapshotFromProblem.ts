@@ -209,7 +209,8 @@ export async function captureProblemSnapshot(
     figures.push({
       assetId: frozen.asset.assetId,
       sha256: frozen.asset.assetId,
-      choiceIndex: null,
+      // 인라인 SVG 는 늘 **발문의 그림**이다 — 보기 그림은 스캔 그림 배열과 그 짝 배열로만 온다. 짝을 모르는 그림이 아니다
+      choiceIndex: 0,
       sourceWidthMm: null,
       altText: null,
     });

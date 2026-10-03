@@ -13,7 +13,9 @@ import {
   textbookRequestSchema,
   textbookVideoSchema,
 } from "./textbook.contract";
+import { difficultySchema } from "./common.contract";
 import { sectionKeySchema } from "./conceptBlank.contract";
+import { problemTypeSchema } from "./problem.contract";
 import {
   textbookConceptAttemptSchema,
   textbookConceptReviewSchema,
@@ -73,6 +75,33 @@ export const textbookLinkItemSchema = textbookRequestSchema.extend({
   problemId: z.uuid(),
 });
 
+/**
+ * 새 문항으로 등록 — 연결되지 않은 배치를 문제은행의 **검수 대기** 문항으로 올린다. `expectedRevision` 은 판본 집계 revision 이다.
+ * 본문 · 정답 · 해설 · 문제 형식은 배치의 확정본에서 글자 그대로 온다(요청이 정하지 못한다). 단원 · 난이도 · 유형만 요청이 정한다.
+ */
+export const textbookRegisterItemSchema = textbookRequestSchema.extend({
+  expectedRevision: textbookRevisionSchema,
+  unitId: z.uuid(),
+  difficulty: difficultySchema,
+  problemType: problemTypeSchema,
+});
+
+/**
+ * 등록 결과 — 은행 문항은 **검수 대기**(`pending`)이고 배치는 **연결되지 않은 그대로**다(`item.linkStatus` 가 바뀌지 않는다).
+ * 방금 만든 문항이 연결 후보로 붙는다. 검수를 통과한 뒤 연결(`…/link`)을 부르면, 그 은행 문항의 내용이 그대로일 때만 이어진다.
+ */
+export const textbookRegisterItemResultSchema = z.strictObject({
+  item: textbookItemSchema,
+  problem: z.strictObject({
+    problemId: z.uuid(),
+    problemCode: z.string().min(1).max(100),
+    reviewStatus: z.literal("pending"),
+  }),
+  linkCandidates: z.array(textbookLinkCandidateSchema).max(50),
+  aggregateRevision: textbookRevisionSchema,
+  replayed: z.boolean(),
+});
+
 export const textbookUploadChunkResultSchema = z.strictObject({
   uploadId: z.uuid(),
   completed: z.boolean(),
@@ -117,11 +146,13 @@ export const textbookUploadCompleteResultSchema = z.strictObject({
 
 /**
  * 재출제 결과 — 새 시험지의 id 와 문항 수.
- * 요청의 `title` 은 **저장되지 않는다**: 시험지 표에 제목 칸이 없다(기존 시험지도 제목이 없다). 받되 쓰지 않는다.
+ * 요청의 `title` 은 **저장되지 않는다**: 시험지 표에 제목 칸이 없다(기존 시험지도 제목이 없다).
+ * 그 사실을 응답이 말한다(`titlePersisted: false`) — 화면이 «제목을 저장했다»고 보이지 않게.
  */
 export const textbookReissueResultSchema = z.strictObject({
   testId: z.uuid(),
   problemCount: z.number().int().positive(),
+  titlePersisted: z.literal(false),
   replayed: z.boolean(),
 });
 
@@ -134,9 +165,38 @@ export const textbookConceptListSchema = z
   .array(textbookConceptRecordSchema)
   .max(500);
 
-/** 내 학생 한 명의 백지 활동 — 탐험 기록 · 시험 관측은 여기 섞지 않는다 */
+/**
+ * 백지 활동이 가리키는 (판본, 개념)의 표시 정보. 이름은 **지금 그 판본을 읽을 수 있을 때만** 온다 —
+ * 읽을 수 없으면 셋 다 null 이고 `canOpen` 이 false 다(내 학생의 옛 활동이 남의 책 제목을 열지 않는다).
+ */
+export const textbookConceptEvidenceReferenceSchema = z.strictObject({
+  editionId: z.uuid(),
+  conceptKey: textbookKeySchema,
+  bookTitle: textbookTitleSchema.nullable(),
+  editionLabel: z.string().min(1).max(80).nullable(),
+  conceptTitle: textbookTitleSchema.nullable(),
+  canOpen: z.boolean(),
+});
+
+/** 내 학생 한 명의 백지 활동 — 탐험 기록 · 시험 관측은 여기 섞지 않는다. `references` 는 활동이 가리키는 (판본, 개념)마다 하나 */
 export const textbookConceptEvidenceSchema = z.strictObject({
   attempts: z.array(textbookConceptAttemptSchema).max(500),
+  references: z.array(textbookConceptEvidenceReferenceSchema).max(500),
+});
+
+/** 원고의 목차가 가리킬 수 있는 개념 강의 — 그 단원의 **게시된** 강의만(`GET /api/textbook/concept-lectures?unitId=`) */
+export const textbookConceptLectureListSchema = z.strictObject({
+  unitId: z.uuid(),
+  lectures: z
+    .array(
+      z.strictObject({
+        lectureId: z.uuid(),
+        unitId: z.uuid(),
+        title: z.string().min(1).max(200),
+        seconds: z.number().int().nonnegative(),
+      }),
+    )
+    .max(200),
 });
 
 /**
@@ -153,6 +213,7 @@ export const textbookConceptLookupMatchSchema = z.strictObject({
   access: z.enum(["owner", "branch"]),
   conceptKey: textbookKeySchema,
   conceptTitle: textbookTitleSchema,
+  hasFrozen: z.boolean(),
   entries: z
     .array(
       z.strictObject({
@@ -175,6 +236,7 @@ export const textbookConceptLookupSchema = z.strictObject({
 export type TextbookConceptLookup = z.infer<typeof textbookConceptLookupSchema>;
 export type TextbookItemDiff = z.infer<typeof textbookItemDiffSchema>;
 export type TextbookItemDetail = z.infer<typeof textbookItemDetailSchema>;
+export type TextbookLinkCandidate = z.infer<typeof textbookLinkCandidateSchema>;
 export type TextbookItemMutationResult = z.infer<
   typeof textbookItemMutationResultSchema
 >;
