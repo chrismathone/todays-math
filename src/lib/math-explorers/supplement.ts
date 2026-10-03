@@ -162,16 +162,20 @@ export function applySupplementAction(
   const kind = s.queue[s.index]!;
   const options = supplementOptions(s, kind);
   const values = action.choiceIds.map((choice) => options[choice]);
+  // «아직 모르겠어요» = 빈 답 = 그 활동의 오답(본 카드와 같은 뜻 — `definition-cards.ts`). 빈 답만 푼다.
+  const gaveUp = values.length === 0;
   if (
-    values.some((value) => value === undefined) ||
-    new Set(values).size !== values.length ||
-    (kind === 0 && values.length !== 2) ||
-    (kind === 2 && values.length !== 1)
+    !gaveUp &&
+    (values.some((value) => value === undefined) ||
+      new Set(values).size !== values.length ||
+      (kind === 0 && values.length !== 2) ||
+      (kind === 2 && values.length !== 1))
   )
     throw new ExplorerActionInvalid("답을 다시 골라 주세요.");
   const tiles = values as number[];
-  const correct =
-    kind === 0
+  const correct = gaveUp
+    ? false
+    : kind === 0
       ? card.words[tiles[0]!] === card.words[0] &&
         card.words[tiles[1]!] === card.words[1]
       : kind === 1

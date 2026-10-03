@@ -797,26 +797,33 @@ export function applyDefinitionAction(
   if (a.definitionAction !== "answer" || definitionNeedsRead(p, s))
     throw new Error("먼저 정의를 읽어주세요.");
   const values = a.tiles;
+  // «아직 모르겠어요» — 화면은 세 활동 모두에서 **빈 답**을 보낸다. 모름은 그 활동의 오답이다
+  // (재도전 줄에 넣고 첫 시도 정답으로 세지 않는다 — 2026-10-03 3자 합의 S1).
+  // 예전에는 개수 검사가 먼저라 문장 조립 · 경계 살피기에서 «답을 다시 확인해주세요.»로 던졌다 — 학생이 모른다고 할 수 없었다.
+  // 🔴 풀어 주는 것은 빈 답 하나뿐이다. 개수가 어긋난 비어 있지 않은 답은 아래에서 그대로 거절한다.
+  const gaveUp = Array.isArray(values) && values.length === 0;
   if (
-    !Array.isArray(values) ||
-    new Set(values).size !== values.length ||
-    values.some(
-      (v) =>
-        !Number.isInteger(v) ||
-        v < 0 ||
-        v >=
-          (task.kind === 0
-            ? c.words.length
-            : task.kind === 1
-              ? c.examples.length
-              : 2),
-    ) ||
-    (task.kind === 0 && values.length !== 2) ||
-    (task.kind === 2 && values.length !== 1)
+    !gaveUp &&
+    (!Array.isArray(values) ||
+      new Set(values).size !== values.length ||
+      values.some(
+        (v) =>
+          !Number.isInteger(v) ||
+          v < 0 ||
+          v >=
+            (task.kind === 0
+              ? c.words.length
+              : task.kind === 1
+                ? c.examples.length
+                : 2),
+      ) ||
+      (task.kind === 0 && values.length !== 2) ||
+      (task.kind === 2 && values.length !== 1))
   )
     throw new Error("답을 다시 확인해주세요.");
-  const correct =
-    task.kind === 0
+  const correct = gaveUp
+    ? false
+    : task.kind === 0
       ? definitionAssemblyCorrect(c, values)
       : task.kind === 1
         ? c.examples.every((e, i) => e.yes === values.includes(i))
