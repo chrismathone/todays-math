@@ -59,8 +59,9 @@ describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
     expect(Number(d.answer.replace(/\$/g, ""))).toBe(perimeter);
   });
 
-  it("전 25편에서 SIM·coc를 걷고 정상 글과 숫자는 한 글자도 바꾸지 않는다", () => {
+  it("전 25편에서 연산자·퍼센트를 복구하고 숫자는 한 글자도 바꾸지 않는다", () => {
     let changed = 0;
+    let operatorChanges = 0;
     for (const school of new Set(readDraftCorpus().map((d) => d.examId))) {
       for (const file of ["hwp_fixed.json", "sol_fixed.json"]) {
         const rows = JSON.parse(
@@ -71,10 +72,13 @@ describe("EX-10·14: AI 반올림 설명과 변환 연산자", () => {
           expect(fixed).not.toMatch(/SIM|coc/);
           expect(fixed.match(/\d+/g)).toEqual(text.match(/\d+/g));
           if (fixed !== text) changed += 1;
+          if (fixed.replace(/\\%/g, "%") !== text.replace(/\\%/g, "%"))
+            operatorChanges += 1;
         }
       }
     }
-    expect(changed).toBe(4);
+    expect(changed).toBe(17); // 연산자 4조각 + 퍼센트 13조각(초안에서는 7행 17곳).
+    expect(operatorChanges).toBe(4);
     for (const text of [
       "SIMILAR",
       "cocoa",

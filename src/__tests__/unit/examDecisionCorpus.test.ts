@@ -11,7 +11,7 @@ import {
 } from "../../../scripts/import/exam-paper/audit-bank-decide";
 
 describe("bank-decide 전수 지문 — 고정 기출 25편 533행", () => {
-  it("지시한 5행의 해당 칸만 달라지고 모든 정답·식별자·나머지 528행은 그대로다", () => {
+  it("합의 5행과 퍼센트 7행만 달라지고 모든 정답·식별자·나머지 521행은 그대로다", () => {
     const baseline = readDecideBaseline();
     const rows = readDraftCorpus();
     expect(baseline.rows).toBe(533);
@@ -26,10 +26,17 @@ describe("bank-decide 전수 지문 — 고정 기출 25편 533행", () => {
       .sort();
     expect(changed).toEqual([
       "2025-chilgok-3-2-mid-7",
+      "2025-daeryun-3-2-mid-7",
       "2025-dongdo-3-2-mid-16",
+      "2025-gangdong-3-2-mid-17",
+      "2025-joam-3-2-mid-20",
+      "2025-neungin-3-2-mid-16",
+      "2025-saeron-3-2-mid-15",
       "2025-saeron-3-2-mid-8",
       "2025-sangin-3-2-mid-23",
       "2025-seonghwa-3-2-mid-22",
+      "2025-sinmyeongyeo-3-2-mid-18",
+      "2025-yeongnamsamyuk-3-2-mid-14",
     ]);
     for (const exam of new Set(rows.map((d) => d.examId))) {
       const source = execFileSync(
@@ -54,11 +61,26 @@ describe("bank-decide 전수 지문 — 고정 기출 25편 533행", () => {
               (k) => JSON.stringify(after[k]) !== JSON.stringify(before[k]),
             )
             .sort();
+          const both = /(?:chilgok|saeron|joam)/.test(exam);
+          const solutionOnly = /(?:dongdo|sangin|seonghwa)/.test(exam);
           expect(fields).toEqual(
-            /(?:chilgok|saeron)/.test(exam)
+            both
               ? ["content", "solution"]
-              : ["solution"],
+              : solutionOnly
+                ? ["solution"]
+                : ["content"],
           );
+          if (
+            !solutionOnly &&
+            !/chilgok/.test(exam) &&
+            after.externalId !== "2025-saeron-3-2-mid-8"
+          ) {
+            for (const field of ["content", "solution"] as const) {
+              expect(after[field]?.replace(/\\%/g, "%")).toBe(
+                before[field]?.replace(/\\%/g, "%"),
+              );
+            }
+          }
         }
       }
     }

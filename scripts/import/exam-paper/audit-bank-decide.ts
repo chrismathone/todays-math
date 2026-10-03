@@ -109,7 +109,7 @@ if (/[\\/]audit-bank-decide\.(?:ts|js)$/.test(process.argv[1] ?? "")) {
       changed: changes.length,
       unchanged: baseline.rows - changes.length,
       databaseChanged: changes
-        .filter((d) => d.externalId.startsWith("2025-dongdo-3-2-mid-"))
+        .filter((d) => /^2025-(dongdo|gangdong)-3-2-mid-/.test(d.externalId))
         .map((d) => d.externalId),
       added: drafts
         .filter((d) => !original.has(d.externalId))

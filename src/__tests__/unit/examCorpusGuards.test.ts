@@ -18,29 +18,29 @@ const changedQuestions: Record<string, number[]> = {
   daegudong: range(12, 17),
   daeguil: [3, ...range(19, 22)],
   daejin: range(17, 21),
-  daeryun: [5, ...range(13, 16)],
+  daeryun: [5, 7, ...range(13, 16)],
   deokwon: [7, 8, 9, ...range(14, 18)],
   dongdo: range(9, 16),
   dowon: range(18, 21),
-  gangdong: range(18, 21),
+  gangdong: range(17, 21),
   gyeonggu: range(20, 23),
   gyeseong: range(19, 23),
   hyeopseonggyeongbok: range(15, 19),
   joam: range(19, 22),
   maeho: range(19, 22),
-  neungin: range(17, 20),
+  neungin: range(16, 20),
   oseong: range(17, 21),
   saeron: [4, 8, ...range(14, 19)],
   sangin: range(17, 23),
   seonggwang: range(19, 21),
   seonghwa: [7, ...range(19, 22)],
   seongmyeongyeo: range(19, 23),
-  sinmyeongyeo: [9, ...range(19, 25)],
-  yeongnamsamyuk: [9],
+  sinmyeongyeo: [9, ...range(18, 25)],
+  yeongnamsamyuk: [9, 14],
 };
 
 describe("기출 25편·533문항 전수 관문", () => {
-  it("앞선 수리 117행과 합의로 더 고친 2행 밖의 414행은 SHA-256이 그대로다", () => {
+  it("앞선 수리와 합의·퍼센트 수리 124행 밖의 409행은 SHA-256이 그대로다", () => {
     const baseline = JSON.parse(readFileSync(baselinePath, "utf8")) as Record<
       string,
       string
@@ -55,7 +55,7 @@ describe("기출 25편·533문항 전수 관문", () => {
         numbers.map((n) => `2025-${school}-3-2-mid-${n}`),
       )
       .sort();
-    expect(allowed).toHaveLength(119);
+    expect(allowed).toHaveLength(124);
     expect(
       rows
         .filter((d) => fingerprint(d) !== baseline[d.externalId])
