@@ -2,6 +2,11 @@ import type { RenderBlock, TextbookRenderModel } from "./model";
 import type { TextbookPage } from "../layout/paginate";
 import { blockWidthMm } from "../layout/paginate";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "./markdown";
+import {
+  hasUnlinkedFigureChoices,
+  UNLINKED_FIGURE_CHOICES_NOTICE,
+} from "@/lib/problem/choiceFigureIndex";
+import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 
 export interface RenderResources {
   assetUrl: (assetId: string) => string;
@@ -46,10 +51,21 @@ export function renderBlockHtml(
     case "recall":
       return `<section class="tb-recall" data-phase="${block.phase}">${block.pieces.map((p) => (p.kind === "blank" ? `<span class="tb-blank tb-blank-${p.scope}" aria-label="빈칸"></span>` : `<div class="tb-recall-text">${md(p.markdown)}</div>`)).join("")}${block.repetitionChecks ? '<div class="tb-repetition">1 ○　2 ○　3 ○　4 ○</div>' : ""}</section>`;
     case "problem": {
+      const { choices } = parseProblemContent(block.content);
+      // Classify with the shared parser, but render the original Markdown.
+      // Its normalized output has no source offsets, so place the one notice
+      // before the whole prose rather than reconstructing or splitting it.
+      const figureNotice = hasUnlinkedFigureChoices(
+        block.figures.length,
+        block.figures.map((f) => f.choiceIndex),
+        choices,
+      )
+        ? `<p class="tb-choice-figure-notice">${esc(UNLINKED_FIGURE_CHOICES_NOTICE)}</p>`
+        : "";
       const figures = block.figures
         .map(
           (f) =>
-            `<figure class="tb-problem-figure" data-choice-index="${f.choiceIndex ?? "unknown"}">${f.choiceIndex && f.choiceIndex > 0 ? `<span class="tb-choice-label">${f.choiceIndex}번 보기</span>` : f.choiceIndex === null ? '<span class="tb-choice-label">보기 대응 정보 없음 · 원본 순서로 표시</span>' : ""}${image(f.assetId, f.altText ?? "문제 그림", f.sourceWidthMm ?? undefined)}</figure>`,
+            `<figure class="tb-problem-figure" data-choice-index="${f.choiceIndex ?? "unknown"}">${f.choiceIndex && f.choiceIndex > 0 ? `<span class="tb-choice-label">${f.choiceIndex}번 보기</span>` : ""}${image(f.assetId, f.altText ?? "문제 그림", f.sourceWidthMm ?? undefined)}</figure>`,
         )
         .join("");
       const answer =
@@ -62,7 +78,7 @@ export function renderBlockHtml(
         block.answer === undefined && !block.publicWorkedExample
           ? block.layout.preferredWorkLines
           : 0;
-      return `<section class="tb-problem"><header class="tb-problem-head"><strong>${esc(block.displayNumber)}</strong>${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-prose">${md(block.content)}</div>${figures}${answer}<div class="tb-work-area" style="min-height:${Math.max(lines * 7, block.qr ? 27 : 0)}mm">${lines ? `<div class="tb-work-lines" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</div></section>`;
+      return `<section class="tb-problem"><header class="tb-problem-head"><strong>${esc(block.displayNumber)}</strong>${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header>${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}${answer}<div class="tb-work-area" style="min-height:${Math.max(lines * 7, block.qr ? 27 : 0)}mm">${lines ? `<div class="tb-work-lines" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</div></section>`;
     }
   }
 }
