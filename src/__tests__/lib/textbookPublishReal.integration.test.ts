@@ -30,7 +30,7 @@ import {
   saveStructure,
 } from "@/lib/textbook/server/editions";
 import { exportEdition } from "@/lib/textbook/server/exportEdition";
-import { captureItems, updateItem } from "@/lib/textbook/server/items";
+import { captureItems } from "@/lib/textbook/server/items";
 import { saveSection } from "@/lib/textbook/server/sections";
 import type { TextbookDb } from "@/lib/textbook/server/sql";
 
@@ -141,10 +141,9 @@ describe.skipIf(!run)("실제 조판기로 발행한다", () => {
       await insertBankProblem(pg, world.unitId, {
         content: "다음 삼각형의 넓이를 구하시오.",
         answer: "12",
+        // 짝 배열을 적지 않는다 — 은행의 기본값(«짝을 모른다»)이다. 조판기는 원래 차례의 한 덩어리로 놓고 경고만 낸다
         figureUrls: [figurePath],
         figureDims: [120, 80],
-        // 발문의 그림이다(0) — 짝을 모르는 그림(빈 배열)은 검증기가 발행을 막는다
-        choiceFigureIndex: [0],
       }),
       await insertBankProblem(pg, world.unitId, {
         content: "$\\frac{1}{3}$ 을 소수로 나타내시오.",
@@ -175,28 +174,7 @@ describe.skipIf(!run)("실제 조판기로 발행한다", () => {
       );
       expect(captured.excluded).toEqual([]);
       revision = captured.aggregateRevision;
-      // 해설판은 학생용의 그 문항 자리에 정답 · 해설을 놓는다 — 풀이 줄이 없으면 자리가 모자라 조판이 멈춘다
-      for (const item of captured.items)
-        revision = (
-          await updateItem(
-            db,
-            owner,
-            editionId,
-            item.itemId,
-            requestKey(owner, "item-update"),
-            {
-              expectedRevision: revision,
-              layout: {
-                columnSpan: 1,
-                // 해설판의 그 자리에는 정답 · 해설 상자와 QR(27mm)이 같이 들어간다 — 7mm × 14줄이면 넉넉하다
-                minWorkLines: 14,
-                preferredWorkLines: 14,
-                maxWorkLines: 16,
-                keepTogether: true,
-              },
-            },
-          )
-        ).aggregateRevision;
+      // 풀이 줄은 담기의 기본값(0) 그대로 둔다 — 해설판은 정답 · 해설의 실제 분량으로 따로 쪽을 나눈다
     }
 
     const requestId = randomUUID();
@@ -223,7 +201,10 @@ describe.skipIf(!run)("실제 조판기로 발행한다", () => {
       guard++
     )
       job = await runNextStep(db, owner, editionId, requestId, deps);
-    expect(job.issues).toEqual([]);
+    // 짝을 모르는 그림은 경고로 남는다 — 막는 사유는 없다
+    expect(job.issues.filter((issue) => issue.severity === "error")).toEqual(
+      [],
+    );
     expect(job).toMatchObject({ status: "ready", completedSteps: 6 });
 
     const done = await finalizePublish(db, owner, editionId, requestId, deps);
@@ -252,8 +233,9 @@ describe.skipIf(!run)("실제 조판기로 발행한다", () => {
       expect(bytesOf.get(kind)!.subarray(0, 5).toString()).toBe("%PDF-");
     const student = done.artifacts.find((a) => a.kind === "student-pdf")!;
     const answers = done.artifacts.find((a) => a.kind === "answer-pdf")!;
-    // 해설판은 학생용의 쪽 자리를 그대로 쓴다 — 쪽 수가 같다
-    expect(answers.pageCount).toBe(student.pageCount);
+    // 해설판은 따로 쪽을 나눈다 — 쪽 수가 학생용과 같을 까닭이 없다. 둘 다 실제 쪽이 있다
+    expect(student.pageCount).toBeGreaterThan(0);
+    expect(answers.pageCount).toBeGreaterThan(0);
     // 학생용 단일 HTML 에는 정답이 없다. 바깥 주소를 부르지 않는다(스크립트도 없다)
     const html = bytesOf.get("offline-html")!.toString();
     expect(html).toContain("구획 1");
