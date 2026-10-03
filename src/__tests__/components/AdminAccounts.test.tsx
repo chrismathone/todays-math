@@ -45,6 +45,7 @@ describe("account menu product tabs", () => {
     "시험지 만들기",
     "문제 추출",
     "내 시험지",
+    "교재 제작",
     "수업 · 학생 관리",
     "오늘의 개념",
     "개념 백지",
@@ -94,7 +95,7 @@ describe("account menu product tabs", () => {
         panel().getByRole("heading", { name: "추가 기능 권한" }),
       ).toBeInTheDocument();
       expect(panel().getByRole("group")).toHaveAccessibleName(
-        "오늘의 수학 2 / 8",
+        "오늘의 수학 2 / 9",
       );
     },
   );
