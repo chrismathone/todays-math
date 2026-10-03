@@ -35,6 +35,11 @@ export type PublishStatus =
 
 export const SPEAKERS = ["선생님", "민서", "지호"] as const;
 export type Speaker = (typeof SPEAKERS)[number];
+export const SPEAKER_IDS = {
+  선생님: "speaker.teacher",
+  민서: "speaker.minseo",
+  지호: "speaker.jiho",
+} as const satisfies Record<Speaker, string>;
 export const EXPRESSIONS = ["평온", "질문", "생각", "알아챔"] as const;
 export type Expression = (typeof EXPRESSIONS)[number];
 export const SIDES = ["왼쪽", "오른쪽"] as const;
@@ -47,6 +52,9 @@ export type BlankPick = {
   form: BlankForm;
   level: BlankLevel;
   reviewStatus: ReviewStatus;
+  /** 저장 때 서버 확인 목록에 넣는다. 화면이 확인 도장을 찍지 않는다. */
+  confirmRequested?: boolean;
+  givenCase?: boolean;
 };
 
 export type PickGroup = {
@@ -116,6 +124,7 @@ export type ConceptDraft = {
   counterexamples: string;
   misconceptions: string;
   explainPrompt: string;
+  blankForms: BlankForm[];
 };
 
 export type SectionDetail = {
@@ -151,12 +160,16 @@ export type OutlineUnit = {
   sections: OutlineSection[];
 };
 
+export type SolutionPolicy = "never" | "assigned";
+
 export type EditionConfig = {
   paper: "A4";
   workLineMm: number;
   answerPolicy: AnswerPolicy;
   volumeCode: string;
   videoPolicy: VideoPolicy;
+  /** 응답에 칸이 없으면 never 로 보여 준다. 저장할 때는 고른 값을 보낸다. */
+  studentSolutionPolicy: SolutionPolicy;
 };
 
 export type EditionDetail = {
@@ -164,6 +177,8 @@ export type EditionDetail = {
   bookId: string;
   title: string;
   structureRevision: number;
+  /** 판본 행의 revision. 담기·다시 고정·발행 예약이 이 값을 보낸다. */
+  aggregateRevision: number;
   config: EditionConfig;
   units: OutlineUnit[];
   /** 목차 PATCH에 그대로 되돌리는 서버 원고. 없으면 순서를 저장하지 않는다. */
@@ -401,4 +416,283 @@ export function videoStatusLabel(status: VideoStatus): string {
     case "stopped":
       return "게시 중지";
   }
+}
+
+const BLANK_FORMS: readonly BlankForm[] = [
+  "recall",
+  "term",
+  "cloze",
+  "map",
+  "figure",
+];
+
+export function toggleBlankForm(
+  current: readonly BlankForm[],
+  form: BlankForm,
+  blockRecall: boolean,
+): { ok: true; forms: BlankForm[] } | { ok: false; message: string } {
+  if (!BLANK_FORMS.includes(form)) {
+    return { ok: false, message: "알 수 없는 백지 형식입니다." };
+  }
+  if (current.includes(form)) {
+    return { ok: true, forms: current.filter((item) => item !== form) };
+  }
+  if (form === "recall" && blockRecall) {
+    return {
+      ok: false,
+      message: "사례 항목이 있으면 완전 백지를 고르지 않습니다.",
+    };
+  }
+  if (current.length >= 5) {
+    return { ok: false, message: "백지 형식은 다섯까지입니다." };
+  }
+  return { ok: true, forms: [...current, form] };
+}
+
+export function moveOutlineSection(
+  units: readonly OutlineUnit[],
+  sectionId: string,
+  direction: -1 | 1,
+): OutlineUnit[] | null {
+  const unitIndex = units.findIndex((unit) =>
+    unit.sections.some((section) => section.sectionId === sectionId),
+  );
+  if (unitIndex < 0) return null;
+  const unit = units[unitIndex];
+  if (!unit) return null;
+  const sectionIndex = unit.sections.findIndex(
+    (section) => section.sectionId === sectionId,
+  );
+  const target = sectionIndex + direction;
+  if (sectionIndex < 0 || target < 0 || target >= unit.sections.length) {
+    return null;
+  }
+  const sections = [...unit.sections];
+  const current = sections[sectionIndex];
+  const next = sections[target];
+  if (!current || !next) return null;
+  sections[sectionIndex] = next;
+  sections[target] = current;
+  return units.map((item, index) =>
+    index === unitIndex ? { ...item, sections } : item,
+  );
+}
+
+export function moveOutlineUnit(
+  units: readonly OutlineUnit[],
+  unitKey: string,
+  direction: -1 | 1,
+): OutlineUnit[] | null {
+  const index = units.findIndex((unit) => unit.unitKey === unitKey);
+  const target = index + direction;
+  if (index < 0 || target < 0 || target >= units.length) return null;
+  const copy = [...units];
+  const current = copy[index];
+  const next = copy[target];
+  if (!current || !next) return null;
+  copy[index] = next;
+  copy[target] = current;
+  return copy;
+}
+
+type EditionSource = NonNullable<EditionDetail["structureSource"]>;
+
+export function applyEditionEdits(
+  source: EditionSource,
+  edits: {
+    units?: readonly OutlineUnit[];
+    title?: string;
+    volumeCode?: string;
+    videoPolicy?: VideoPolicy;
+    studentSolutionPolicy?: SolutionPolicy;
+    pageTarget?: number;
+  },
+): { ok: true; source: EditionSource } | { ok: false; message: string } {
+  const known = new Map(
+    source.outline.flatMap((unit) =>
+      unit.sections.map((section) => [section.id, section] as const),
+    ),
+  );
+  let outline = source.outline;
+  if (edits.units) {
+    const next = [];
+    for (const unit of edits.units) {
+      const prior = source.outline.find(
+        (item) => item.unitKey === unit.unitKey,
+      );
+      const sections = [];
+      for (const section of unit.sections) {
+        const row = known.get(section.sectionId);
+        if (!row) {
+          return {
+            ok: false,
+            message: "목차에 없는 구획은 순서를 저장하지 않습니다.",
+          };
+        }
+        sections.push(row);
+      }
+      if (!prior) {
+        if (sections.length > 0) {
+          return {
+            ok: false,
+            message: "새 단원에는 있는 구획만 옮길 수 있습니다.",
+          };
+        }
+        next.push({
+          unitKey: unit.unitKey,
+          title: unit.title,
+          sourceUnitIds: [],
+          prerequisites: [],
+          goals: [],
+          conceptLectureRefs: [],
+          sections,
+        });
+        continue;
+      }
+      next.push({ ...prior, title: unit.title, sections });
+    }
+    const nextIds = next.flatMap((unit) =>
+      unit.sections.map((section) => section.id),
+    );
+    if (
+      nextIds.length !== known.size ||
+      [...known.keys()].some((id) => !nextIds.includes(id))
+    ) {
+      return {
+        ok: false,
+        message: "목차의 구획 목록이 지금의 구획과 다릅니다.",
+      };
+    }
+    outline = next;
+  }
+  const pageTarget = edits.pageTarget;
+  return {
+    ok: true,
+    source: {
+      ...source,
+      config: {
+        ...source.config,
+        ...(edits.title ? { title: edits.title } : {}),
+        ...(edits.volumeCode ? { displayCode: edits.volumeCode } : {}),
+        ...(edits.videoPolicy ? { videoPolicy: edits.videoPolicy } : {}),
+        ...(edits.studentSolutionPolicy
+          ? { studentSolutionPolicy: edits.studentSolutionPolicy }
+          : {}),
+        ...(pageTarget
+          ? { pageBudget: { ...source.config.pageBudget, target: pageTarget } }
+          : {}),
+      },
+      outline,
+    },
+  };
+}
+
+export function mergeCapturedSection(
+  draft: SectionDetail,
+  saved: SectionDetail,
+  fresh: SectionDetail,
+): SectionDetail {
+  if (JSON.stringify(draft) === JSON.stringify(saved)) return fresh;
+  const known = new Set(
+    draft.blocks.flatMap((block) =>
+      block.kind === "problems" ? block.itemIds : [],
+    ),
+  );
+  const added = fresh.blocks.filter(
+    (block) =>
+      block.kind === "problems" &&
+      block.itemIds.some((itemId) => !known.has(itemId)),
+  );
+  return {
+    ...draft,
+    revision: fresh.revision,
+    items: fresh.items,
+    blocks: [...draft.blocks, ...added],
+  };
+}
+
+const EDITION_UUID =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+/** 주소의 판본이 유효하면 그 id 를 연다. 속성값이 있으면 쿼리보다 먼저 본다. */
+export function initialEditionFromLocation(
+  prop: string | null | undefined,
+  search: string,
+): string | null {
+  const explicit = prop?.trim() ?? "";
+  if (explicit) return EDITION_UUID.test(explicit) ? explicit : null;
+  const params = new URLSearchParams(
+    search.startsWith("?") ? search.slice(1) : search,
+  );
+  const query = params.get("textbookEdition")?.trim() ?? "";
+  if (!query || !EDITION_UUID.test(query)) return null;
+  return query;
+}
+
+export type ConceptLectureRef = { lectureId: string; conceptKey: string };
+
+export function lectureRefsFor(
+  source: EditionSource | undefined,
+  unitKey: string,
+): ConceptLectureRef[] {
+  const unit = source?.outline.find((item) => item.unitKey === unitKey);
+  if (!unit) return [];
+  return unit.conceptLectureRefs.map((ref) => ({
+    lectureId: ref.lectureId,
+    conceptKey: ref.conceptKey,
+  }));
+}
+
+export function sourceUnitIdsFor(
+  source: EditionSource | undefined,
+  unitKey: string,
+): string[] {
+  const unit = source?.outline.find((item) => item.unitKey === unitKey);
+  return unit ? [...unit.sourceUnitIds] : [];
+}
+
+export function withConceptLecture(
+  source: EditionSource,
+  unitKey: string,
+  lectureId: string,
+  conceptKey: string,
+  linked: boolean,
+): { ok: true; source: EditionSource } | { ok: false; message: string } {
+  if (!EDITION_UUID.test(lectureId)) {
+    return { ok: false, message: "고른 강의를 확인하지 못했습니다." };
+  }
+  if (!/^[A-Za-z0-9가-힣][A-Za-z0-9가-힣_.:-]*$/.test(conceptKey)) {
+    return { ok: false, message: "개념 키가 필요합니다." };
+  }
+  const index = source.outline.findIndex((unit) => unit.unitKey === unitKey);
+  const unit = source.outline[index];
+  if (!unit) {
+    return {
+      ok: false,
+      message: "목차에 없는 단원에는 강의를 연결하지 않습니다.",
+    };
+  }
+  const current = unit.conceptLectureRefs;
+  const nextRefs = linked
+    ? current.some((ref) => ref.lectureId === lectureId)
+      ? null
+      : [...current, { lectureId, conceptKey }]
+    : current.filter(
+        (ref) => ref.lectureId !== lectureId || ref.conceptKey !== conceptKey,
+      );
+  if (!nextRefs) {
+    return { ok: false, message: "이미 이 단원에 연결된 강의입니다." };
+  }
+  if (nextRefs.length > 100) {
+    return { ok: false, message: "한 단원의 강의는 100개까지입니다." };
+  }
+  return {
+    ok: true,
+    source: {
+      ...source,
+      outline: source.outline.map((item, itemIndex) =>
+        itemIndex === index ? { ...item, conceptLectureRefs: nextRefs } : item,
+      ),
+    },
+  };
 }
