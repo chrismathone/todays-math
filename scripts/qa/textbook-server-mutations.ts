@@ -37,6 +37,7 @@ const REGISTER = "src/__tests__/lib/textbookRegisterAndRefs.test.ts";
 const VALIDATOR = "src/__tests__/lib/textbookRealValidator.test.ts";
 const REPLAY = "src/__tests__/lib/textbookReplayScope.test.ts";
 const PREVIEW = "src/__tests__/lib/textbookSectionPreview.test.ts";
+const FORMS = "src/__tests__/lib/textbookConceptForms.test.ts";
 
 const MUTATIONS: Mutation[] = [
   // ── 범위 (access.ts)
@@ -788,6 +789,15 @@ const MUTATIONS: Mutation[] = [
     replace: `true ||`,
     tests: [PREVIEW],
   },
+  // ── 새 판본으로 복사 (books.ts)
+  {
+    name: "새 판본: 고른 백지 형식을 복사하지 않는다",
+    file: `${LIB}/server/books.ts`,
+    line: 0,
+    find: `c."blank_forms", c."links", c."mapping_version", c."concept_key",`,
+    replace: `NULL::jsonb, c."links", c."mapping_version", c."concept_key",`,
+    tests: [FORMS],
+  },
   {
     name: "활동: 남의 학생을 읽고 쓴다",
     file: `${LIB}/server/conceptRows.ts`,
@@ -805,12 +815,16 @@ function runTests(tests: string[]): { failed: number; passed: number } {
     { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 },
   );
   const output = `${result.stdout}\n${result.stderr}`;
-  const line = output.match(/Tests\s+(?:(\d+) failed \| )?(\d+) passed/);
+  // 실패 수와 통과 수를 따로 읽는다 — 묶음의 시험이 **전부** 실패하면 요약 줄에 «passed» 가 없다
+  // (`Tests  6 failed (6)`). 한 정규식으로 읽으면 그 줄을 놓쳐 «한 줄도 안 돌았다»로 잘못 센다
+  const failed = output.match(/Tests\s+(\d+) failed/);
+  const passed = output.match(/Tests\s+(?:\d+ failed \| )?(\d+) passed/);
   // 묶음째 죽었으면(문법 오류 등) 시험이 문 것이 아니다 — 통과 0 · 실패 0 으로 돌려 «잘못 걸림»이 되게 한다
-  if (/Failed Suites/.test(output) && !line) return { failed: 0, passed: 0 };
+  if (/Failed Suites/.test(output) && !failed && !passed)
+    return { failed: 0, passed: 0 };
   return {
-    failed: line?.[1] ? Number(line[1]) : 0,
-    passed: line?.[2] ? Number(line[2]) : 0,
+    failed: failed ? Number(failed[1]) : 0,
+    passed: passed ? Number(passed[1]) : 0,
   };
 }
 
@@ -866,6 +880,7 @@ const control = runTests([
   VALIDATOR,
   REPLAY,
   PREVIEW,
+  FORMS,
 ]);
 console.log(
   `대조군(변이 없음): ${control.passed} 통과 · ${control.failed} 실패`,
