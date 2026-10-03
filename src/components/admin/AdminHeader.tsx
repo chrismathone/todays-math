@@ -6,10 +6,10 @@ import s from "./admin.module.css";
 
 export default function AdminHeader({
   identity,
-  active = "accounts",
+  active = "branches",
 }: {
   identity: { name: string; email: string };
-  active?: "accounts" | "srs" | "branches" | "eywa";
+  active?: "srs" | "branches" | "eywa";
 }) {
   return (
     <header className={s.header}>
@@ -29,13 +29,6 @@ export default function AdminHeader({
             aria-current={active === "eywa" ? "page" : undefined}
           >
             에이와 연결
-          </Link>
-          <Link
-            className={s.workroomLink}
-            href="/admin"
-            aria-current={active === "accounts" ? "page" : undefined}
-          >
-            <NavigationPending icon="◫" /> 계정 관리
           </Link>
           <Link
             className={s.workroomLink}

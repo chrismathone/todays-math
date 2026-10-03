@@ -3,6 +3,8 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import AdminPage from "@/app/admin/page";
 import AdminSrsPage from "@/app/admin/math-srs/page";
 import AdminUserPage from "@/app/admin/users/[id]/page";
+import AdminBranchPage from "@/app/admin/branches/[id]/page";
+import AdminBranchUserPage from "@/app/admin/branches/[id]/users/[userId]/page";
 import BranchPage from "@/app/branch/page";
 import ApprovalPendingPage from "@/app/approval-pending/page";
 import {
@@ -14,16 +16,27 @@ import {
 
 const access = vi.hoisted(() => vi.fn());
 const findUnique = vi.hoisted(() => vi.fn());
+const findBranch = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/accountAccess", () => ({ getAccountAccess: access }));
-vi.mock("@/lib/db", () => ({ db: { user: { findUnique } } }));
+vi.mock("@/lib/db", () => ({
+  db: { user: { findUnique }, branch: { findUnique: findBranch } },
+}));
 vi.mock("@/lib/adminAccounts", () => ({
   managedAccountSelect: { id: true },
   managedAccount: (account: unknown) => account,
 }));
 vi.mock("next/navigation", () => ({
+  notFound: () => {
+    throw new Error("not-found");
+  },
   redirect: (path: string) => {
     throw new Error(`redirect:${path}`);
   },
+}));
+vi.mock("@/components/admin/AdminBranchDetail", () => ({
+  default: ({ branchId }: { branchId: string }) => (
+    <span>branch:{branchId}</span>
+  ),
 }));
 vi.mock("@/components/admin/AdminAccounts", () => ({
   default: () => <span>admin-screen</span>,
@@ -51,6 +64,8 @@ vi.mock("@/components/approval-pending/ApprovalPending", () => ({
 beforeEach(() => {
   access.mockReset();
   findUnique.mockReset();
+  findBranch.mockReset();
+  findBranch.mockResolvedValue({ name: "강남학원" });
   findUnique.mockResolvedValue(pendingAccount);
 });
 
@@ -85,10 +100,9 @@ describe("account page server gates", () => {
     access.mockResolvedValue(approvedAccount);
     await expect(AdminPage()).rejects.toThrow("redirect:/");
   });
-  it("renders administration for an approved administrator", async () => {
+  it("redirects an approved highest administrator to branches", async () => {
     access.mockResolvedValue(adminAccount);
-    render(await AdminPage());
-    expect(screen.getByText("admin-screen")).toBeInTheDocument();
+    await expect(AdminPage()).rejects.toThrow("redirect:/admin/branches");
   });
   it("gives branch managers their own page but not the higher management page", async () => {
     access.mockResolvedValue({
@@ -141,12 +155,82 @@ describe("account page server gates", () => {
       `redirect:/login?callbackUrl=%2Fadmin%2Fusers%2F${pendingAccount.id}`,
     );
     access.mockResolvedValue(adminAccount);
-    render(
-      await AdminUserPage({
+    await expect(
+      AdminUserPage({
         params: Promise.resolve({ id: pendingAccount.id }),
+      }),
+    ).rejects.toThrow(
+      `redirect:/admin/branches/unassigned/users/${pendingAccount.id}`,
+    );
+  });
+  it("opens only the canonical account scope and rejects mismatched or malformed scope", async () => {
+    access.mockResolvedValue(adminAccount);
+    render(
+      await AdminBranchUserPage({
+        params: Promise.resolve({
+          id: "unassigned",
+          userId: pendingAccount.id,
+        }),
       }),
     );
     expect(screen.getByText(`detail:${pendingAccount.id}`)).toBeInTheDocument();
+    await expect(
+      AdminBranchUserPage({
+        params: Promise.resolve({
+          id: "55555555-5555-4555-8555-555555555555",
+          userId: pendingAccount.id,
+        }),
+      }),
+    ).rejects.toThrow("not-found");
+    await expect(
+      AdminBranchUserPage({
+        params: Promise.resolve({ id: "wrong", userId: pendingAccount.id }),
+      }),
+    ).rejects.toThrow("not-found");
+    await expect(
+      AdminBranchUserPage({
+        params: Promise.resolve({ id: "unassigned", userId: "wrong" }),
+      }),
+    ).rejects.toThrow("not-found");
+  });
+  it("legacy bookmarks follow the current branch and missing users return 404", async () => {
+    access.mockResolvedValue(adminAccount);
+    const branchId = "55555555-5555-4555-8555-555555555555";
+    findUnique.mockResolvedValue({ ...pendingAccount, branchId });
+    await expect(
+      AdminUserPage({ params: Promise.resolve({ id: pendingAccount.id }) }),
+    ).rejects.toThrow(
+      `redirect:/admin/branches/${branchId}/users/${pendingAccount.id}`,
+    );
+    findUnique.mockResolvedValue(null);
+    await expect(
+      AdminUserPage({ params: Promise.resolve({ id: pendingAccount.id }) }),
+    ).rejects.toThrow("not-found");
+  });
+  it("validates branch existence, supports unassigned, and keeps the highest-admin gate", async () => {
+    access.mockResolvedValue(adminAccount);
+    render(
+      await AdminBranchPage({ params: Promise.resolve({ id: "unassigned" }) }),
+    );
+    expect(screen.getByText("branch:unassigned")).toBeInTheDocument();
+    expect(findBranch).not.toHaveBeenCalled();
+    await expect(
+      AdminBranchPage({ params: Promise.resolve({ id: "wrong" }) }),
+    ).rejects.toThrow("not-found");
+    findBranch.mockResolvedValue(null);
+    await expect(
+      AdminBranchPage({
+        params: Promise.resolve({ id: "55555555-5555-4555-8555-555555555555" }),
+      }),
+    ).rejects.toThrow("not-found");
+    access.mockResolvedValue({
+      ...approvedAccount,
+      isAdmin: true,
+      isSuperAdmin: false,
+    });
+    await expect(
+      AdminBranchPage({ params: Promise.resolve({ id: "unassigned" }) }),
+    ).rejects.toThrow("redirect:/");
   });
   it("redirects waiting-page guests and approved accounts", async () => {
     access.mockResolvedValue(null);
