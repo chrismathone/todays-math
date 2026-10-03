@@ -602,8 +602,8 @@ describe("[초6 갈래] 1-2 각기둥과 각뿔", () => {
               }
               continue;
             }
-            // ㉡ 「어떤 입체도형」 — 각기둥·각뿔 둘을 다 만들어 조건에 대 본다.
-            if (/어떤 입체도형/.test(p.content)) {
+            // ㉡ 발문이 각기둥·각뿔로 범위를 정한 뒤 둘을 다 만들어 조건에 대 본다.
+            if (/각기둥이나 각뿔 가운데 하나인 입체도형/.test(p.content)) {
               checked += 1;
               const [faces, cap] = nums as [number, number];
               const live: number[] = [];
@@ -1819,9 +1819,9 @@ function truthOf15(content: string, spec: unknown): R | null {
   const named = slices ? labelsInOrder(content, slices) : [];
   // ══ 확대 갈래 (4차분 · 물결 4) — 1-5-2 심화중 · **눈금**이 굳힌다 ══
   //
-  // 띠의 전체 길이가 안 굳고, 「그 항목의 길이가 자연수 cm」가 기약분모의 배수로 묶는다.
+  // 전체와 부분 길이가 모두 자연수 cm이므로 전체를 기약분모의 배수로 묶는다.
   // 시험이 창 안에서 배수를 **다시 찾고**, 하나로 굳는지까지 잰다.
-  if (content.includes("차지하는 길이가 자연수 cm")) {
+  if (/전체 길이와 .*차지하는 길이가 모두 자연수 cm/.test(content)) {
     const p = Number(content.match(/\$(\d+)\\%\$/)?.[1] ?? NaN);
     const w = content.match(
       /전체 길이가 \$(\d+)\$ cm 보다 길고 \$(\d+)\$ cm 보다 짧을 때/,
