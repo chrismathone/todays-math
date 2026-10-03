@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  applyEditionEdits,
   canFinalize,
+  conceptManuscriptChanged,
   initialEditionFromLocation,
+  manuscriptLocked,
   measuredSpreadAnchor,
   nextMeasuredSpread,
   orderBlankPicks,
@@ -11,9 +14,12 @@ import {
   visibleAnswer,
   withConceptLecture,
   type BlankPick,
+  type ConceptDraft,
   type EditionDetail,
 } from "@/components/textbook/model";
+import { withBrowserQrImages } from "@/components/textbook/browserQr";
 import { buildSectionPreview } from "@/components/textbook/previewModel";
+import { measurementHtml, renderBlockHtml } from "@/lib/textbook/render/html";
 import type { TextbookEditionDetail } from "@/contracts/textbook.contract";
 import { TextbookRequestError, createTextbookApi } from "@/lib/textbook/client";
 import type { SectionDetail } from "@/components/textbook/model";
@@ -291,7 +297,12 @@ describe("textbook editor rules", () => {
     let body: {
       expectedRevision?: number;
       confirmBlankEntryIds?: string[];
-      concept?: { blankForms?: string[]; body?: { definition?: string } };
+      confirmLinkIds?: string[];
+      concept?: {
+        blankForms?: string[];
+        body?: { definition?: string };
+        links?: unknown[];
+      };
     } = {};
     const api = createTextbookApi(async (_url, init) => {
       body = JSON.parse(String(init?.body));
@@ -332,13 +343,89 @@ describe("textbook editor rules", () => {
       source: null,
       unitKey: "unit-1",
       sectionKey: "dialogue",
+      links: [],
       confirmEntryIds: ["e5-1"],
       confirmLinkIds: [],
     });
     expect(body.expectedRevision).toBe(0);
     expect(body.confirmBlankEntryIds).toEqual(["e5-1"]);
+    expect(body.confirmLinkIds).toBeUndefined();
     expect(body.concept?.blankForms).toEqual(["term", "cloze"]);
     expect(body.concept?.body?.definition).toBe("분모를 같게 한다");
+    expect(body.concept?.links).toEqual([]);
+  });
+
+  it("sends an unchanged confirmed link and only explicit confirmation ids", async () => {
+    const review = {
+      status: "confirmed" as const,
+      candidateRule: "manual" as const,
+      reviewedBy: "11111111-1111-4111-8111-111111111111",
+      reviewedAt: "2026-10-03T00:00:00.000Z",
+      targetHash: "a".repeat(64),
+    };
+    const link = {
+      linkId: "factorization-review",
+      target: {
+        namespace: "explorer-card" as const,
+        cardId: "factorization-review",
+      },
+      relation: "same" as const,
+      review,
+    };
+    let kept: { confirmLinkIds?: string[]; concept?: { links?: unknown[] } } =
+      {};
+    const api = createTextbookApi(async (_url, init) => {
+      kept = JSON.parse(String(init?.body));
+      return Response.json({
+        data: { concept: kept.concept, revision: 3, aggregateRevision: 9 },
+      });
+    });
+    const concept = {
+      conceptKey: "prime-definition",
+      title: "소수",
+      kind: "정의" as const,
+      goal: "",
+      prerequisites: "",
+      definition: "1과 자신만으로 나누어진다",
+      conditions: "",
+      examples: "2",
+      counterexamples: "",
+      misconceptions: "",
+      explainPrompt: "",
+      blankForms: ["term", "cloze"] as Array<"term" | "cloze">,
+    };
+    await api.saveConcept({
+      editionId,
+      conceptKey: "prime-definition",
+      expectedRevision: 4,
+      requestId,
+      concept,
+      picks: [],
+      source: null,
+      unitKey: "unit-1",
+      sectionKey: "dialogue",
+      links: [link],
+      confirmEntryIds: [],
+      confirmLinkIds: [],
+    });
+    expect(kept.confirmLinkIds).toBeUndefined();
+    expect(kept.concept?.links).toEqual([link]);
+    kept = {};
+    await api.saveConcept({
+      editionId,
+      conceptKey: "prime-definition",
+      expectedRevision: 4,
+      requestId,
+      concept,
+      picks: [],
+      source: null,
+      unitKey: "unit-1",
+      sectionKey: "dialogue",
+      links: [link],
+      confirmEntryIds: [],
+      confirmLinkIds: ["factorization-review"],
+    });
+    expect(kept.confirmLinkIds).toEqual(["factorization-review"]);
   });
 
   it("posts recapture with the aggregate revision and rejects a diff of the wrong shape", async () => {
@@ -984,7 +1071,7 @@ describe("textbook preview and lecture refs", () => {
     expect(() =>
       built.resources.qrDataUrl("qr-1", "https://textbook.invalid/qr"),
     ).toThrow("예약된 QR 이미지가 없습니다.");
-    expect(built.omittedQr).toBe(false);
+    expect(built.provisionalNotice).toBeNull();
   });
 
   it("measures a student problem from its snapshot and keeps the answer off the page", () => {
@@ -1067,10 +1154,10 @@ describe("textbook preview and lecture refs", () => {
       kind: "problem",
       content: "3+4",
       displayNumber: "1",
-      qr: null,
+      qr: { id: "qr-1", url: "https://textbook.example/qr" },
     });
     expect(block && "answer" in block).toBe(false);
-    expect(built.omittedQr).toBe(true);
+    expect(built.provisionalNotice).toBeNull();
     const answers = buildSectionPreview({
       edition: previewEdition(previewSource()),
       section: {
@@ -1123,7 +1210,11 @@ describe("textbook preview and lecture refs", () => {
       kind: "concept",
       title: "통분",
       body: { definition: "고친 정의", goal: "분모를 같게 한다" },
+      qr: null,
     });
+    expect(built.provisionalNotice).toBe(
+      "이 초안에는 예약된 QR이 없습니다. 해설 칸은 비워 두고, 발행할 때 예약된 주소만 넣습니다.",
+    );
   });
 
   it("moves between measured spreads and stops at the edge", () => {
@@ -1176,5 +1267,168 @@ describe("textbook preview and lecture refs", () => {
     expect(removed.ok).toBe(true);
     if (!removed.ok) return;
     expect(removed.source.outline[0]?.conceptLectureRefs).toEqual([]);
+  });
+
+  it("keeps a reserved QR on the measured markup without requesting the printed URL", async () => {
+    const problemId = "00000000-0000-4000-8000-000000000013";
+    const snapshot = {
+      snapshotId: "snap-1",
+      source: {
+        system: "todays-math" as const,
+        problemId,
+        problemCode: "E56-1",
+      },
+      sourceUpdatedAt: null,
+      capturedAt: when,
+      unitId: null,
+      familyKey: null,
+      difficulty: null,
+      problemType: null,
+      payload: {
+        format: "markdown-latex" as const,
+        content: "3+4",
+        answer: "7",
+        solution: null,
+        questionType: null,
+        figures: [],
+      },
+      contentHash: "c".repeat(64),
+    };
+    const item = {
+      itemId: "item-1",
+      editionId: previewEditionId,
+      snapshotId: "snap-1",
+      linkStatus: "unlinked" as const,
+      sourceTestId: null,
+      sourceTestProblemId: null,
+      unitKey: "unit-1",
+      sectionKey: "dialogue",
+      learningStage: "basic" as const,
+      displayNumber: "1",
+      orderIndex: 0,
+      layout: {
+        columnSpan: 1 as const,
+        minWorkLines: 0,
+        preferredWorkLines: 0,
+        maxWorkLines: 0,
+        keepTogether: false,
+      },
+      qrTargetId: "qr-1",
+    };
+    const built = buildSectionPreview({
+      edition: previewEdition(previewSource()),
+      section: {
+        ...section,
+        blocks: [{ id: "block-1", kind: "problems", itemIds: ["item-1"] }],
+      },
+      variant: "student",
+      material: {
+        items: [item],
+        snapshots: [snapshot],
+        assets: [],
+        concepts: [],
+        qrTargets: [
+          {
+            qrTargetId: "qr-1",
+            editionId: previewEditionId,
+            slug: "abcdefghijklmnop",
+            url: "https://textbook.example/qr",
+            itemId: "item-1",
+          },
+        ],
+        conceptQrTargets: [],
+      },
+    });
+    expect(built.ok).toBe(true);
+    if (!built.ok) return;
+    const requested: string[] = [];
+    const original = globalThis.fetch;
+    globalThis.fetch = (async (input: RequestInfo | URL) => {
+      requested.push(String(input));
+      throw new Error(`unexpected fetch ${String(input)}`);
+    }) as typeof fetch;
+    try {
+      const prepared = await withBrowserQrImages(built.model, built.resources);
+      const block = built.model.sections
+        .flatMap((row) => row.blocks)
+        .find((row) => row.kind === "problem");
+      expect(block?.kind).toBe("problem");
+      if (!block || block.kind !== "problem" || !block.qr) return;
+      const html = renderBlockHtml(block, prepared);
+      const measured = measurementHtml(built.model, prepared);
+      expect(html).toContain('class="tb-qr"');
+      expect(html).toContain("data:image/png;base64,");
+      expect(measured).toContain(prepared.qrDataUrl(block.qr.id, block.qr.url));
+      expect(requested.some((url) => url.includes("textbook.example"))).toBe(
+        false,
+      );
+    } finally {
+      globalThis.fetch = original;
+    }
+  });
+
+  it("saves the chosen cover and first page without moving the even-left start", () => {
+    const source = previewSource();
+    const edited = applyEditionEdits(source, {
+      coverMode: "included",
+      firstPhysicalPageIndex: 3,
+    });
+    expect(edited.ok).toBe(true);
+    if (!edited.ok) return;
+    expect(edited.source.config.print).toMatchObject({
+      paper: "A4",
+      sectionStart: "even-left",
+      coverMode: "included",
+      firstPhysicalPageIndex: 3,
+      innerMarginMm: 15,
+      outerMarginMm: 15,
+    });
+    expect(edited.source.outline).toEqual(source.outline);
+    expect(applyEditionEdits(source, { firstPhysicalPageIndex: 0 })).toEqual({
+      ok: false,
+      message: "첫 쪽은 1부터 1000까지입니다.",
+    });
+    const bare = structuredClone(source);
+    delete bare.config.print;
+    expect(applyEditionEdits(bare, { coverMode: "included" })).toEqual({
+      ok: false,
+      message: "인쇄 설정이 없어 저장하지 않습니다.",
+    });
+  });
+
+  it("clears pending link confirmation only when the concept manuscript changes", () => {
+    const concept: ConceptDraft = {
+      conceptKey: "prime-definition",
+      title: "소수",
+      kind: "정의",
+      goal: "",
+      prerequisites: "",
+      definition: "1과 자신",
+      conditions: "",
+      examples: "2",
+      counterexamples: "",
+      misconceptions: "",
+      explainPrompt: "",
+      blankForms: ["term", "cloze"],
+    };
+    expect(conceptManuscriptChanged(concept, concept)).toBe(false);
+    expect(conceptManuscriptChanged(null, concept)).toBe(false);
+    expect(
+      conceptManuscriptChanged(concept, {
+        ...concept,
+        blankForms: ["term"],
+      }),
+    ).toBe(false);
+    expect(
+      conceptManuscriptChanged(concept, {
+        ...concept,
+        examples: "임시표식",
+      }),
+    ).toBe(true);
+    expect(manuscriptLocked(undefined, false)).toBe(false);
+    expect(manuscriptLocked("draft", false)).toBe(false);
+    expect(manuscriptLocked("published", false)).toBe(true);
+    expect(manuscriptLocked("retired", false)).toBe(true);
+    expect(manuscriptLocked("draft", true)).toBe(true);
   });
 });
