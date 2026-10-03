@@ -1502,7 +1502,7 @@ describe("TextbookStudioView", () => {
         fireEvent.click(screen.getByRole("button", { name: "항목 추가" }));
         fireEvent.click(
           screen.getByRole("button", {
-            name: mode === "shadow-reject" ? "거절" : "확인 요청",
+            name: mode === "shadow-reject" ? "거절" : "m1-01-02-c3 확인 요청",
             exact: true,
           }),
         );
