@@ -723,11 +723,13 @@ STAGES = [
                                                                     _cfg_or(ex, "acceptFix", [])]),
     Stage("3t", "표", st_tables, lambda ex: D(ex, "figures/index.json"),
           lambda ex: D(ex, "hwp_fixed.json", "answers.json", "body.json") + [
-              HERE / "build-exam-drafts.ts", HERE / "figures" / "crop_tables.py",
+              HERE / "build-exam-drafts.ts", HERE / "restoreBoxMarker.ts",
+              REPO / "src" / "lib" / "math" / "boxBlock.ts", HERE / "figures" / "crop_tables.py",
               _cfg_or(ex, "tables", "없음"), (ex.dir / "src" / "paper.pdf").exists()]),
     Stage("7", "초안", st_drafts, lambda ex: D(ex, "drafts.json"),
           lambda ex: D(ex, "answers.json", "body.json", "hwp_fixed.json", "sol_fixed.json", "source_path.txt") + [
-              HERE / "build-exam-drafts.ts", HERE / "examConfig.ts",
+              HERE / "build-exam-drafts.ts", HERE / "restoreBoxMarker.ts",
+              REPO / "src" / "lib" / "math" / "boxBlock.ts", HERE / "examConfig.ts",
               {k: v for k, v in json.loads((ex.dir / "exam.json").read_text(encoding="utf-8")).items()
                if k != "units"}]),
     Stage("7r", "잔재 훑기", st_residue, lambda ex: [],
