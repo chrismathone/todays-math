@@ -1,7 +1,10 @@
 /**
  * 교사 교재 API `/api/textbook`.
  *
- * 요청·응답은 `src/contracts/textbook.contract.ts`만 파싱한다.
+ * 요청·응답은 공유 계약을 파싱한다.
+ * 비교·다시 고정·연결·업로드 완료는 `textbookServer.contract.ts` 를 쓴다.
+ * 등록은 검수 대기 스키마가 오기 전에는 요청을 보내지 않고, 연결됨으로 표시하지 않는다.
+ * 재출제는 호출하지 않는다. 시험지에는 제목 칸이 없다.
  * 성공 본문은 공통 `{ data }` 봉투다. 목록과 교환 파일은 그 봉투가 스키마 안에 있다.
  * 없는 필드는 성공으로 채우지 않는다.
  */
@@ -24,12 +27,15 @@ import {
   type PublishJob,
   type SectionBlock,
   type SectionDetail,
+  SPEAKER_IDS,
+  type SolutionPolicy,
   type Speaker,
   type StudioIssue,
   type VideoBinding,
   type VideoPolicy,
   type VideoStatus,
 } from "@/components/textbook/model";
+import { conceptUnitLecturesResponseSchema } from "@/contracts/conceptAdmin.contract";
 import { dataResponseSchema } from "@/contracts/common.contract";
 import {
   textbookAssignmentSchema,
@@ -58,6 +64,7 @@ import {
   textbookSaveStructureSchema,
   textbookSectionRecordSchema,
   textbookSnapshotActionSchema,
+  textbookVideoCreateSchema,
   textbookVideoSchema,
   type TextbookAssignment,
   type TextbookBookSummary,
@@ -65,7 +72,11 @@ import {
   type TextbookPublishJob,
   type TextbookSectionRecord,
 } from "@/contracts/textbook.contract";
-import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
+import {
+  textbookConceptAttemptSchema,
+  textbookObservationCreateSchema,
+  type TextbookConcept,
+} from "@/contracts/textbookConcept.contract";
 import {
   textbookItemSchema,
   textbookVideoBindingSchema,
@@ -76,15 +87,20 @@ import {
   textbookIssueSchema,
   type TextbookIssue,
 } from "@/contracts/textbookPrimitives.contract";
+import {
+  textbookItemDetailSchema,
+  textbookItemDiffSchema,
+  textbookItemMutationResultSchema,
+  textbookLinkItemSchema,
+  textbookUploadCompleteResultSchema,
+  textbookUploadCompleteSchema,
+  textbookVideoListSchema,
+} from "@/contracts/textbookServer.contract";
 
 const BASE = "/api/textbook";
 const LOAD_ERROR = "교재 응답을 읽지 못했습니다.";
 
-const SPEAKER_ID: Record<Speaker, string> = {
-  선생님: "speaker.teacher",
-  민서: "speaker.minseo",
-  지호: "speaker.jiho",
-};
+const SPEAKER_ID = SPEAKER_IDS;
 const EXPRESSION_WIRE: Record<
   Expression,
   "neutral" | "question" | "thinking" | "aha"
@@ -135,6 +151,11 @@ export type PreflightResult =
 
 export type SnapshotDiff = { itemId: string; summary: string };
 
+export type ItemLinkCandidate = {
+  problemId: string;
+  problemCode: string;
+};
+
 export interface TextbookStudioApi {
   listBooks(): Promise<BookSummary[]>;
   createBook(input: {
@@ -143,7 +164,15 @@ export interface TextbookStudioApi {
     curriculumVersion: string;
     pageTarget: number;
     videoPolicy: VideoPolicy;
+    studentSolutionPolicy: SolutionPolicy;
     requestId: string;
+    schoolLevel?: "elementary" | "middle" | "high";
+    grade?: number;
+    semester?: 1 | 2;
+    mode?: "integrated" | "concept" | "practice";
+    innerMarginMm?: number;
+    outerMarginMm?: number;
+    coverMode?: "included" | "separate";
   }): Promise<BookSummary>;
   openEdition(editionId: string): Promise<EditionDetail>;
   createEdition(
@@ -187,18 +216,30 @@ export interface TextbookStudioApi {
     testId: string | null;
     problemIds: string[];
   }): Promise<CaptureResult>;
-  diffItem(
-    editionId: string,
-    itemId: string,
-    requestId: string,
-    expectedRevision: number,
-  ): Promise<SnapshotDiff>;
+  diffItem(editionId: string, itemId: string): Promise<SnapshotDiff>;
   recaptureItem(
     editionId: string,
     itemId: string,
     requestId: string,
     expectedRevision: number,
-  ): Promise<ItemRow>;
+  ): Promise<{ item: ItemRow; aggregateRevision: number }>;
+  readItemDetail(
+    editionId: string,
+    itemId: string,
+  ): Promise<{ candidates: ItemLinkCandidate[] }>;
+  linkItem(
+    editionId: string,
+    itemId: string,
+    requestId: string,
+    expectedRevision: number,
+    problemId: string,
+  ): Promise<{ item: ItemRow; aggregateRevision: number }>;
+  registerItem(
+    editionId: string,
+    itemId: string,
+    requestId: string,
+    expectedRevision: number,
+  ): Promise<{ item: ItemRow; aggregateRevision: number }>;
   saveConcept(input: {
     editionId: string;
     conceptKey: string;
@@ -206,9 +247,25 @@ export interface TextbookStudioApi {
     requestId: string;
     concept: ConceptDraft;
     picks: BlankPick[];
-    source: TextbookConcept;
-  }): Promise<{ revision: number; concept: TextbookConcept }>;
+    source: TextbookConcept | null;
+    unitKey: string;
+    sectionKey: string | null;
+    confirmEntryIds: string[];
+    confirmLinkIds: string[];
+  }): Promise<{
+    revision: number;
+    aggregateRevision: number;
+    concept: TextbookConcept;
+  }>;
   searchCatalog(query: string): Promise<BlankPick[]>;
+  recordObservation(input: {
+    editionId: string;
+    conceptKey: string;
+    requestId: string;
+    studentId: string;
+    form: BlankForm;
+    observation: string;
+  }): Promise<{ reviewStatus: "pending" | "checked" | "needs-review" }>;
   readConcept(
     editionId: string,
     conceptKey: string,
@@ -231,6 +288,28 @@ export interface TextbookStudioApi {
     requestId: string,
   ): Promise<void>;
   listVideos(editionId: string): Promise<VideoBinding[]>;
+  /** 기존 개념 강의 목록. 문항 영상 바인딩이 아니다. */
+  listUnitLectures(unitId: string): Promise<
+    Array<{
+      lectureId: string;
+      title: string;
+      status: "draft" | "published" | "archived";
+    }>
+  >;
+  createVideo(input: {
+    requestId: string;
+    title: string;
+    providerVideoId: string;
+  }): Promise<VideoBinding>;
+  bindVideo(input: {
+    snapshotId: string;
+    requestId: string;
+    videoId: string;
+    startSeconds: number;
+    endSeconds: number | null;
+    status: VideoStatus;
+    contentHash: string;
+  }): Promise<VideoBinding>;
   updateVideo(input: {
     bindingId: string;
     requestId: string;
@@ -354,13 +433,18 @@ function toEdition(detail: TextbookEditionDetail): EditionDetail {
     bookId: detail.book.id,
     title: detail.config.title,
     structureRevision: detail.structureRevision,
+    aggregateRevision: detail.edition.revision,
     structureSource: detail,
     config: {
       paper: "A4",
       workLineMm: 7,
-      answerPolicy: "never",
+      answerPolicy:
+        detail.config.studentSolutionPolicy === "assigned"
+          ? "assigned-qr"
+          : "never",
       volumeCode: detail.config.displayCode,
       videoPolicy: detail.config.videoPolicy,
+      studentSolutionPolicy: detail.config.studentSolutionPolicy ?? "never",
     },
     units: detail.outline.map((unit) => ({
       unitKey: unit.unitKey,
@@ -647,6 +731,7 @@ function toDraft(concept: TextbookConcept): ConceptDraft {
     counterexamples: concept.body.counterexamples.join("\n"),
     misconceptions: concept.body.misconceptions.join("\n"),
     explainPrompt: concept.body.explainPrompt ?? "",
+    blankForms: concept.blankForms ? [...concept.blankForms] : [],
   };
 }
 
@@ -727,7 +812,7 @@ function applyConceptEdits(
       },
     });
   }
-  return {
+  const next: TextbookConcept = {
     ...source,
     title: concept.title,
     kind: concept.kind,
@@ -745,6 +830,50 @@ function applyConceptEdits(
         : null,
     },
     blankItems,
+  };
+  if (concept.blankForms.length > 0) next.blankForms = [...concept.blankForms];
+  else delete next.blankForms;
+  return next;
+}
+
+function blankConcept(
+  unitKey: string,
+  sectionKey: string | null,
+  concept: ConceptDraft,
+): TextbookConcept {
+  return {
+    conceptKey: concept.conceptKey,
+    unitKey,
+    sectionKey,
+    title: concept.title,
+    kind: concept.kind,
+    unitId: null,
+    body: {
+      goal: concept.goal,
+      prerequisites: [],
+      definition: concept.definition,
+      conditions: null,
+      examples: [],
+      counterexamples: [],
+      misconceptions: [],
+      explainPrompt: null,
+    },
+    blankItems: [],
+    links: [],
+    mappingVersion: "1",
+    derivedFromConceptKey: null,
+    frozen: null,
+  };
+}
+
+function parseItemMutation(body: unknown): {
+  item: ItemRow;
+  aggregateRevision: number;
+} {
+  const parsed = parseData(textbookItemMutationResultSchema, body);
+  return {
+    item: toItem(parsed.item),
+    aggregateRevision: parsed.aggregateRevision,
   };
 }
 
@@ -811,6 +940,16 @@ async function sha256Hex(bytes: ArrayBuffer): Promise<string> {
 }
 
 function parseVideoList(body: unknown): VideoBinding[] {
+  const envelope = z.strictObject({ data: z.unknown() }).safeParse(body);
+  if (envelope.success) {
+    const listed = textbookVideoListSchema.safeParse(envelope.data.data);
+    if (listed.success) {
+      if (listed.data.bindings.length > 0) {
+        return listed.data.bindings.map(toBinding);
+      }
+      return listed.data.videos.map(toVideo);
+    }
+  }
   const bindings = dataResponseSchema(
     z.array(textbookVideoBindingSchema),
   ).safeParse(body);
@@ -820,6 +959,35 @@ function parseVideoList(body: unknown): VideoBinding[] {
   );
   if (videos.success) return videos.data.data.map(toVideo);
   fail(LOAD_ERROR);
+}
+
+/** 다시 고정만 이 본문을 쓴다. 연결·등록은 다른 동작이라 같은 본문을 보내지 않는다. */
+async function recaptureAction(
+  fetchImpl: typeof fetch,
+  editionId: string,
+  itemId: string,
+  requestId: string,
+  expectedRevision: number,
+): Promise<{ item: ItemRow; aggregateRevision: number }> {
+  const payload = parseRequest(textbookSnapshotActionSchema, {
+    requestId,
+    expectedRevision,
+  });
+  return parseItemMutation(
+    await request(
+      fetchImpl,
+      `${BASE}/editions/${editionId}/items/${itemId}/recapture`,
+      jsonInit("POST", payload),
+    ),
+  );
+}
+
+function completeUploadPayload(
+  byteLength: number,
+  fileName: string,
+): { byteLength: number; fileName?: string } {
+  const name = fileName.trim().slice(0, 255);
+  return name.length > 0 ? { byteLength, fileName: name } : { byteLength };
 }
 
 export function createTextbookApi(
@@ -838,25 +1006,26 @@ export function createTextbookApi(
         requestId: input.requestId,
         config: {
           bookId,
-          schoolLevel: "elementary",
-          grade: 5,
-          semester: 1,
+          schoolLevel: input.schoolLevel ?? "elementary",
+          grade: input.grade ?? 5,
+          semester: input.semester ?? 1,
           volume: 1,
           volumeCount: 1,
           displayCode: input.volumeCode,
           title: input.title,
           curriculumVersion: input.curriculumVersion,
-          mode: "integrated",
+          mode: input.mode ?? "integrated",
           pageBudget: { target: input.pageTarget, tolerance: 0, strict: false },
           print: {
             paper: "A4",
-            innerMarginMm: 15,
-            outerMarginMm: 15,
+            innerMarginMm: input.innerMarginMm ?? 15,
+            outerMarginMm: input.outerMarginMm ?? 15,
             sectionStart: "even-left",
-            coverMode: "separate",
+            coverMode: input.coverMode ?? "separate",
             firstPhysicalPageIndex: 1,
           },
           videoPolicy: input.videoPolicy,
+          studentSolutionPolicy: input.studentSolutionPolicy,
         },
       });
       return toBook(
@@ -1008,39 +1177,60 @@ export function createTextbookApi(
         aggregateRevision: result.aggregateRevision,
       };
     },
-    async diffItem(editionId, itemId, requestId, expectedRevision) {
-      const payload = parseRequest(textbookSnapshotActionSchema, {
-        requestId,
-        expectedRevision,
-      });
-      const body = await request(
-        fetchImpl,
-        `${BASE}/editions/${editionId}/items/${itemId}/diff`,
-        jsonInit("POST", payload),
-      );
-      const parsed = dataResponseSchema(
-        z.strictObject({ issues: z.array(textbookIssueSchema).max(20_000) }),
-      ).safeParse(body);
-      if (!parsed.success) fail(LOAD_ERROR);
-      const summary = parsed.data.data.issues
-        .map((issue) => issue.message)
-        .join(" ");
-      return { itemId, summary: summary || "비교할 차이가 응답에 없습니다." };
-    },
-    async recaptureItem(editionId, itemId, requestId, expectedRevision) {
-      const payload = parseRequest(textbookSnapshotActionSchema, {
-        requestId,
-        expectedRevision,
-      });
-      const item = parseData(
-        textbookItemSchema,
+    async diffItem(editionId, itemId) {
+      const diff = parseData(
+        textbookItemDiffSchema,
         await request(
           fetchImpl,
-          `${BASE}/editions/${editionId}/items/${itemId}/recapture`,
+          `${BASE}/editions/${editionId}/items/${itemId}/diff`,
+          { method: "POST" },
+        ),
+      );
+      return { itemId: diff.itemId, summary: diff.summary };
+    },
+    async recaptureItem(editionId, itemId, requestId, expectedRevision) {
+      return recaptureAction(
+        fetchImpl,
+        editionId,
+        itemId,
+        requestId,
+        expectedRevision,
+      );
+    },
+    async readItemDetail(editionId, itemId) {
+      const detail = parseData(
+        textbookItemDetailSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${editionId}/items/${itemId}`,
+        ),
+      );
+      return {
+        candidates: detail.linkCandidates.map((row) => ({
+          problemId: row.problemId,
+          problemCode: row.problemCode,
+        })),
+      };
+    },
+    async linkItem(editionId, itemId, requestId, expectedRevision, problemId) {
+      const payload = parseRequest(textbookLinkItemSchema, {
+        requestId,
+        expectedRevision,
+        problemId,
+      });
+      return parseItemMutation(
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${editionId}/items/${itemId}/link`,
           jsonInit("POST", payload),
         ),
       );
-      return toItem(item);
+    },
+    async registerItem() {
+      fail(
+        "등록 계약이 아직 없습니다. 공유 스키마가 오기 전에는 요청을 보내지 않습니다.",
+        400,
+      );
     },
     async readConcept(editionId, conceptKey) {
       const record = parseData(
@@ -1057,20 +1247,54 @@ export function createTextbookApi(
       };
     },
     async saveConcept(input) {
+      const forms = input.concept.blankForms;
+      if (new Set(forms).size !== forms.length || forms.length > 5) {
+        fail("백지 형식을 중복 없이 다섯까지 고릅니다.", 400);
+      }
+      const base =
+        input.source ??
+        blankConcept(input.unitKey, input.sectionKey, input.concept);
       const payload = parseRequest(textbookSaveConceptSchema, {
         requestId: input.requestId,
         expectedRevision: input.expectedRevision,
-        concept: applyConceptEdits(input.source, input.concept, input.picks),
+        concept: applyConceptEdits(base, input.concept, input.picks),
+        ...(input.confirmEntryIds.length > 0
+          ? { confirmBlankEntryIds: input.confirmEntryIds }
+          : {}),
+        ...(input.confirmLinkIds.length > 0
+          ? { confirmLinkIds: input.confirmLinkIds }
+          : {}),
       });
       const saved = parseData(
         textbookConceptRecordSchema,
         await request(
           fetchImpl,
-          `${BASE}/editions/${input.editionId}/concepts/${input.conceptKey}`,
+          `${BASE}/editions/${input.editionId}/concepts/${encodeURIComponent(input.conceptKey)}`,
           jsonInit("PUT", payload),
         ),
       );
-      return { revision: saved.revision, concept: saved.concept };
+      return {
+        revision: saved.revision,
+        aggregateRevision: saved.aggregateRevision,
+        concept: saved.concept,
+      };
+    },
+    async recordObservation(input) {
+      const payload = parseRequest(textbookObservationCreateSchema, {
+        requestId: input.requestId,
+        studentId: input.studentId,
+        form: input.form,
+        observation: input.observation,
+      });
+      const saved = parseData(
+        textbookConceptAttemptSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/editions/${input.editionId}/concepts/${encodeURIComponent(input.conceptKey)}/attempts`,
+          jsonInit("POST", payload),
+        ),
+      );
+      return { reviewStatus: saved.reviewStatus };
     },
     async searchCatalog(query) {
       const body = await request(
@@ -1116,8 +1340,61 @@ export function createTextbookApi(
         jsonInit("DELETE", payload),
       );
     },
-    async listVideos() {
-      return parseVideoList(await request(fetchImpl, `${BASE}/videos`));
+    async listVideos(editionId) {
+      return parseVideoList(
+        await request(
+          fetchImpl,
+          `${BASE}/videos?editionId=${encodeURIComponent(editionId)}`,
+        ),
+      );
+    },
+    async listUnitLectures(unitId) {
+      const parsed = conceptUnitLecturesResponseSchema.safeParse(
+        await request(
+          fetchImpl,
+          `/api/concept/lectures?unitId=${encodeURIComponent(unitId)}`,
+        ),
+      );
+      if (!parsed.success) fail(LOAD_ERROR);
+      return parsed.data.data.lectures.map((lecture) => ({
+        lectureId: lecture.id,
+        title: lecture.title,
+        status: lecture.status,
+      }));
+    },
+    async createVideo(input) {
+      const payload = parseRequest(textbookVideoCreateSchema, {
+        requestId: input.requestId,
+        title: input.title,
+        provider: "youtube",
+        providerVideoId: input.providerVideoId,
+      });
+      return toVideo(
+        parseData(
+          textbookVideoSchema,
+          await request(fetchImpl, `${BASE}/videos`, jsonInit("POST", payload)),
+        ),
+      );
+    },
+    async bindVideo(input) {
+      const payload = parseRequest(textbookBindingWriteSchema, {
+        requestId: input.requestId,
+        videoId: input.videoId,
+        startSeconds: input.startSeconds,
+        endSeconds: input.endSeconds,
+        status: videoStatusWire(input.status),
+        expectedContentHash: input.contentHash,
+      });
+      return toBinding(
+        parseData(
+          textbookVideoBindingSchema,
+          await request(
+            fetchImpl,
+            `${BASE}/snapshots/${input.snapshotId}/bindings`,
+            jsonInit("POST", payload),
+          ),
+        ),
+      );
     },
     async updateVideo(input) {
       if (!input.contentHash) fail("게시 검수용 내용 해시가 없습니다.", 400);
@@ -1237,24 +1514,30 @@ export function createTextbookApi(
         if (!response.ok) throw errorMessage(null, response.status);
         offset += size;
       }
-      const completed = await request(
-        fetchImpl,
-        `${BASE}/uploads/${sha256}/complete`,
-        jsonInit("POST", {
-          requestId: input.requestId,
-          expectedSha256: sha256,
-          byteLength: bytes.byteLength,
-          mimeType: input.file.type || "application/octet-stream",
-        }),
+      const completed = parseData(
+        textbookUploadCompleteResultSchema,
+        await request(
+          fetchImpl,
+          `${BASE}/uploads/${sha256}/complete`,
+          jsonInit(
+            "POST",
+            parseRequest(
+              textbookUploadCompleteSchema,
+              completeUploadPayload(bytes.byteLength, input.fileName),
+            ),
+          ),
+        ),
       );
-      const upload = dataResponseSchema(
-        z.strictObject({ uploadId: z.uuid() }),
-      ).safeParse(completed);
-      if (!upload.success) fail("업로드 응답에 식별자가 없습니다.");
+      if (
+        completed.sha256 !== sha256 ||
+        completed.byteLength !== bytes.byteLength
+      ) {
+        fail("업로드 응답이 올린 파일과 다릅니다.");
+      }
       const payload = parseRequest(textbookImportSchema, {
         requestId: input.requestId,
         mode: input.mode,
-        uploadId: upload.data.data.uploadId,
+        uploadId: completed.uploadId,
         expectedSha256: sha256,
       });
       const imported = parseData(

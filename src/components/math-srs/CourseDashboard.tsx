@@ -34,6 +34,10 @@ const CurriculumGraphPanel = dynamic(() => import("./CurriculumGraphPanel"), {
     </p>
   ),
 });
+const TextbookStudentEvidence = dynamic(
+  () => import("@/components/textbook/integration/TextbookStudentEvidence"),
+  { ssr: false },
+);
 
 const STATUS: Record<CourseSummary["status"], string> = {
   setup: "설정 필요",
@@ -85,8 +89,10 @@ function ErrorNotice({ error }: { error: Failure }) {
 
 export default function CourseDashboard({
   admin = false,
+  textbookEnabled = false,
 }: {
   admin?: boolean;
+  textbookEnabled?: boolean;
 }) {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -549,6 +555,7 @@ export default function CourseDashboard({
             id={panelId}
             student={selected}
             admin={admin}
+            textbookEnabled={textbookEnabled}
             view={detailView}
             onViewChange={setDetailView}
             onClose={close}
@@ -560,19 +567,22 @@ export default function CourseDashboard({
   );
 }
 
-type DetailView = "overview" | "sections" | "activity" | "attempts" | "plan";
+type DetailView =
+  "overview" | "sections" | "activity" | "attempts" | "plan" | "textbook";
 const VIEWS: [DetailView, string][] = [
   ["overview", "개요"],
   ["sections", "소단원 분석"],
   ["activity", "일별 활동"],
   ["attempts", "풀이 기록"],
   ["plan", "학습 설정"],
+  ["textbook", "교재·백지"],
 ];
 
 function StudentDetail({
   id,
   student,
   admin,
+  textbookEnabled,
   view,
   onViewChange: setView,
   onClose,
@@ -581,6 +591,7 @@ function StudentDetail({
   id: string;
   student: CourseRosterStudent;
   admin: boolean;
+  textbookEnabled: boolean;
   view: DetailView;
   onViewChange: (view: DetailView) => void;
   onClose: () => void;
@@ -768,16 +779,18 @@ function StudentDetail({
         role="group"
         aria-label="학생 상세 보기 선택"
       >
-        {VIEWS.map(([value, label]) => (
-          <button
-            type="button"
-            key={value}
-            aria-pressed={view === value}
-            onClick={() => setView(value)}
-          >
-            {label}
-          </button>
-        ))}
+        {VIEWS.filter(([value]) => value !== "textbook" || textbookEnabled).map(
+          ([value, label]) => (
+            <button
+              type="button"
+              key={value}
+              aria-pressed={view === value}
+              onClick={() => setView(value)}
+            >
+              {label}
+            </button>
+          ),
+        )}
       </div>
       <div className={s.detailBody}>
         <div className={s.detailTools}>
@@ -822,6 +835,13 @@ function StudentDetail({
 
         {detail && record && !loadError && !loading ? (
           <>
+            {view === "textbook" && textbookEnabled ? (
+              <TextbookStudentEvidence
+                key={student.id}
+                studentId={student.id}
+                refreshKey={reload}
+              />
+            ) : null}
             {view === "overview" ? (
               <section aria-label="학습 개요">
                 <div className={s.overviewHeading}>

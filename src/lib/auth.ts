@@ -47,6 +47,7 @@ import Credentials from "next-auth/providers/credentials";
 import { authLoginRequestSchema } from "@/contracts/auth.contract";
 import type { UserRole } from "@/contracts/problemReport.contract";
 import { db } from "@/lib/db";
+import { filterListeningPilotMenus } from "@/lib/listeningPilot";
 import {
   ALL_WORKSPACE_MENUS,
   workspaceMenusFromDisabled,
@@ -255,9 +256,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       token.branchId = current.branchId;
       token.branchRole = current.branchRole;
       token.approvalStatus = current.approvalStatus;
-      token.menus = token.isAdmin
-        ? ALL_WORKSPACE_MENUS
-        : workspaceMenusFromDisabled(current.disabledMenus);
+      token.menus = filterListeningPilotMenus(
+        current,
+        token.isAdmin
+          ? ALL_WORKSPACE_MENUS
+          : workspaceMenusFromDisabled(current.disabledMenus),
+        current.disabledMenus,
+      );
       return token;
     },
     async session({ session, token }) {

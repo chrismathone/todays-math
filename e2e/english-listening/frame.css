@@ -1,0 +1,38 @@
+/* Product tokens and resets come from globals.css, imported by both entries. */
+body {
+  margin: 0;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  font-family: Arial, "Malgun Gothic", sans-serif;
+}
+
+.harness-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+  border-bottom: 1px solid var(--learn-control);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.harness-bar a,
+.harness-bar button {
+  color: var(--learn-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.harness-bar button:disabled {
+  color: var(--learn-muted);
+  cursor: wait;
+}
+
+.harness-note {
+  padding: 8px 20px;
+  color: var(--learn-muted);
+  font-size: 12px;
+}

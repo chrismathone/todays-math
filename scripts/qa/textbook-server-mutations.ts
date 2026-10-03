@@ -157,7 +157,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "담기: 출제 자격을 안 묻는다",
     file: `${LIB}/server/items.ts`,
-    line: 374,
+    line: 391,
     find: `const ineligible = problemIneligibleReason(row);`,
     replace: `const ineligible = null as string | null;`,
     tests: [CAPTURE],
@@ -165,7 +165,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "담기: 낡은 집계 revision 으로 담는다",
     file: `${LIB}/server/items.ts`,
-    line: 443,
+    line: 460,
     find: `if (access.revision !== input.expectedRevision)`,
     replace: `if (false)`,
     tests: [CAPTURE],
@@ -173,7 +173,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "배치: 낡은 집계 revision 으로 고친다",
     file: `${LIB}/server/items.ts`,
-    line: 595,
+    line: 615,
     find: `if (access.revision !== input.expectedRevision)`,
     replace: `if (false)`,
     tests: [CAPTURE],
@@ -181,7 +181,7 @@ const MUTATIONS: Mutation[] = [
   {
     name: "다시 캡처: 자격을 안 묻는다",
     file: `${LIB}/server/items.ts`,
-    line: 693,
+    line: 713,
     find: `const ineligible = problemIneligibleReason(row);`,
     replace: `const ineligible = null as string | null;`,
     tests: [CAPTURE],

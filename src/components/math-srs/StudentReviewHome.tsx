@@ -91,6 +91,9 @@ export function StudentReviewPage({
               </Link>
               <Link href="/learn?view=collection">도감</Link>
               <Link href="/learn/lectures">강의</Link>
+              <Link href="/learn/english-listening" prefetch={false}>
+                영어듣기
+              </Link>
             </nav>
             <StudentReviewHeading {...reviewCopy[kind]} />
           </>

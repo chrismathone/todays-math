@@ -1,0 +1,138 @@
+.frame {
+  min-height: 100vh;
+  padding: 24px;
+  background: #eef1f7;
+  color: #15253d;
+  font-family: Arial, "Malgun Gothic", sans-serif;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 210mm;
+  margin: 0 auto 16px;
+  font-size: 14px;
+}
+.toolbar button {
+  min-height: 44px;
+  padding: 0 24px;
+  border: 1px solid #284acc;
+  border-radius: 6px;
+  color: #fff;
+  background: #3158e5;
+  cursor: pointer;
+}
+.toolbar button:hover {
+  background: #2445c8;
+}
+.toolbar button:focus-visible {
+  outline: 3px solid #3158e5;
+  outline-offset: 3px;
+}
+.paper {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  padding: 18mm;
+  background: #fff;
+  font-size: 11pt;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.header {
+  border-bottom: 1px solid #46546b;
+  padding-bottom: 6mm;
+  margin-bottom: 7mm;
+}
+.header h1 {
+  font-size: 20pt;
+  line-height: 1.35;
+  margin: 2mm 0 5mm;
+}
+.header p {
+  margin: 0;
+  font-size: 10pt;
+}
+.group {
+  margin-top: 8mm;
+}
+.group h2 {
+  font-size: 12pt;
+  margin: 0 0 4mm;
+  break-after: avoid;
+}
+.question {
+  margin-bottom: 7mm;
+  break-inside: avoid;
+}
+.question h3 {
+  margin: 0 0 3mm;
+  font-size: 11pt;
+}
+.choices {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.choices li {
+  padding: 1mm 0;
+}
+.choices span {
+  display: inline-block;
+  min-width: 5mm;
+}
+.answer {
+  margin-top: 3mm;
+  padding-top: 3mm;
+  border-top: 1px dashed #a4aabb;
+}
+.answer p {
+  margin: 1mm 0 0;
+  white-space: pre-wrap;
+}
+.transcript h3 {
+  margin: 4mm 0 2mm;
+  font-size: 11pt;
+  break-after: avoid;
+}
+.transcript p {
+  margin: 0;
+  white-space: pre-wrap;
+  orphans: 3;
+  widows: 3;
+}
+@media (max-width: 600px) {
+  .frame {
+    padding: 12px;
+  }
+  .paper {
+    padding: 20px;
+  }
+}
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 18mm;
+  }
+  .frame {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+  }
+  .toolbar {
+    display: none;
+  }
+  .paper {
+    width: auto;
+    max-width: none;
+    min-height: 0;
+    padding: 0;
+  }
+  .group + .group {
+    break-before: page;
+  }
+}

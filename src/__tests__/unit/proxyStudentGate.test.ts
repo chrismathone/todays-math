@@ -74,6 +74,8 @@ const AUTH_ACTIONS = [
 
 /** 학생 화면(D-125 ⑷)과 학생 API — 화면 파일은 아직 없다(D-07 Hi-fi 뒤). 그래도 관문은 먼저 선다 */
 const LEARN_PAGES = [
+  "/learn/english-listening",
+  `/learn/english-listening/${UUID}`,
   "/learn",
   "/learn/lectures",
   "/learn/login",
@@ -84,6 +86,12 @@ const LEARN_PAGES = [
   "/learn/math-explorers",
 ];
 const LEARN_APIS = [
+  "/api/english/learn/listening",
+  `/api/english/learn/listening/${UUID}`,
+  `/api/english/learn/listening/${UUID}/prepare`,
+  `/api/english/learn/listening/${UUID}/commands`,
+  `/api/english/learn/listening/${UUID}/media/${UUID}`,
+  "/api/english/learn/listening/sound-check",
   "/api/learn/login",
   "/api/learn/logout",
   "/api/learn/password",
@@ -231,6 +239,10 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
     expect(pass.sort()).toStrictEqual(
       [
         ...[
+          `/q/${UUID}`,
+          `/learn/textbook/${UUID}/concepts/${UUID}`,
+          "/learn/english-listening",
+          `/learn/english-listening/${UUID}`,
           "/learn",
           "/learn/lectures",
           "/learn/password",
@@ -239,7 +251,22 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
           "/learn/math-srs/algebra",
           "/learn/math-explorers",
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
+        `GET /api/learn/textbook/q/${UUID}`,
+        `GET /api/learn/textbook/q/${UUID}/assets/${UUID}`,
+        `HEAD /api/learn/textbook/q/${UUID}/assets/${UUID}`,
+        `GET /api/learn/textbook/editions/${UUID}/concepts/${UUID}`,
+        `GET /api/learn/textbook/editions/${UUID}/concepts/${UUID}/attempts`,
+        `POST /api/learn/textbook/editions/${UUID}/concepts/${UUID}/attempts`,
+        `POST /api/learn/textbook/editions/${UUID}/concepts/${UUID}/review`,
         "GET /api/learn/lectures",
+        "GET /api/english/learn/listening",
+        `GET /api/english/learn/listening/${UUID}`,
+        `POST /api/english/learn/listening/${UUID}/prepare`,
+        `POST /api/english/learn/listening/${UUID}/commands`,
+        `GET /api/english/learn/listening/${UUID}/media/${UUID}`,
+        `HEAD /api/english/learn/listening/${UUID}/media/${UUID}`,
+        "GET /api/english/learn/listening/sound-check",
+        "HEAD /api/english/learn/listening/sound-check",
         `GET /api/learn/lectures/${UUID}`,
         "POST /api/learn/watch",
         "POST /api/learn/password",
@@ -339,8 +366,8 @@ describe("로그인 안 한 사람 — /learn 은 학생 로그인으로 (D-125 
     const qr = "/q/abcdefghijklmnopqrst";
     session.mockReturnValue(null);
     const login = new URL((await run("GET", qr)).headers.get("location")!);
-    expect(login.pathname).toBe("/login");
-    expect(login.searchParams.get("callbackUrl")).toBe(qr);
+    expect(login.pathname).toBe("/learn/login");
+    expect(login.searchParams.get("returnTo")).toBe(qr);
     session.mockReturnValue(studentSession(true));
     const password = new URL((await run("GET", qr)).headers.get("location")!);
     expect(password.pathname).toBe("/learn/password");

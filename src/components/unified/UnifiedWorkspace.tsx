@@ -70,6 +70,18 @@ const TeachingView = dynamic(() => import("./TeachingView"), {
     />
   ),
 });
+const TextbookView = dynamic(
+  () =>
+    import("@/components/textbook/TextbookStudioView").then(
+      (module) => module.TextbookStudioView,
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress className={s.loading} label="교재 제작을 여는 중입니다…" />
+    ),
+  },
+);
 const WorksheetEditor = dynamic(() => import("./WorksheetEditor"), {
   loading: () => (
     <WorkProgress
@@ -120,6 +132,15 @@ const EnglishStudio = dynamic(
     ),
   },
 );
+const ListeningStudio = dynamic(
+  () => import("@/components/english/listening/ListeningStudio"),
+  {
+    ssr: false,
+    loading: () => (
+      <WorkProgress className={s.loading} label="영어듣기를 여는 중입니다…" />
+    ),
+  },
+);
 /**
  * 영어 학교 메뉴는 기존 english 주소를 유지하고, 각 뷰는 개별 메뉴 권한을 본다.
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
@@ -137,6 +158,7 @@ const mathNav: NavItem[] = [
   { id: "studio", label: "문제 추출", short: "문제 추출", icon: "crop" },
   { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
   { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
+  { id: "textbook", label: "교재 제작", short: "교재 제작", icon: "paper" },
   {
     id: "teaching",
     label: "수업 · 학생 관리",
@@ -149,7 +171,7 @@ const mathNav: NavItem[] = [
   { id: "conceptBlank", label: "개념 백지", short: "백지", icon: "pen" },
   { id: "srs", label: "오늘의 기억 · SRS", short: "기억 학습", icon: "clock" },
 ];
-/** 오늘의 영어 옆 메뉴 — 탭 셋(원장님 확정 ⑹, ChatGPT 앱 옆 메뉴 그대로). 옆 메뉴는 지금 제품의 목록만 그린다 */
+/** 오늘의 영어 옆 메뉴 — 기존 내신 작업과 승인된 영어듣기. */
 const englishNav: NavItem[] = [
   { id: "english", label: "학교별 내신 대비", short: "내신", icon: "school" },
   { id: "english-maker", label: "문제 만들기", short: "만들기", icon: "pen" },
@@ -158,6 +180,12 @@ const englishNav: NavItem[] = [
     label: "문제 보관함",
     short: "보관함",
     icon: "folder",
+  },
+  {
+    id: "english-listening",
+    label: "영어듣기",
+    short: "듣기",
+    icon: "headphones",
   },
 ];
 const navItemsOf: Record<WorkspaceProduct, NavItem[]> = {
@@ -173,7 +201,9 @@ const viewValid = (value: string): value is View =>
 const menuOf = (view: View): WorkspaceMenu =>
   isEnglishView(view) ? englishViewMenu(view) : view;
 const productOf = (view: View | null): WorkspaceProduct =>
-  view && isEnglishView(view) ? "english" : "math";
+  view && (isEnglishView(view) || view === "english-listening")
+    ? "english"
+    : "math";
 /** 세트 딥링크 `/?set=<uuid>#english` 의 id 모양 */
 const SET_LINK = /^[0-9a-f-]{36}$/i;
 
@@ -237,7 +267,9 @@ function UnifiedWorkspaceContent({
     firstMenu === "english-school" ? "english" : (firstMenu ?? null);
   const hasMenus = enabledMenus.size > 0;
   const canCreate = can("bank") || can("studio") || can("export");
-  const canEnglish = englishNav.some((item) => can(item.id));
+  const canEnglish = englishNav.some(
+    (item) => item.id !== "english-listening" && can(item.id),
+  );
   const canCreateEnglishExam = can("english");
   const canOpenEnglishSet = can("english-library");
   const [requestedView, setView] = useState<View | null>(defaultView);
@@ -405,6 +437,13 @@ function UnifiedWorkspaceContent({
   const navigate = useCallback(
     (next: View) => {
       if (!can(next)) return;
+      if (
+        next !== "english-listening" &&
+        !window.dispatchEvent(
+          new Event("english-listening-before-leave", { cancelable: true }),
+        )
+      )
+        return;
       setView(next);
       setOpened((current) =>
         current.has(next) ? current : new Set([...current, next]),
@@ -518,6 +557,16 @@ function UnifiedWorkspaceContent({
         setId && SET_LINK.test(setId) && can("english-library"),
       );
       if (setLinked) next = "english-library";
+      if (
+        next !== "english-listening" &&
+        !window.dispatchEvent(
+          new Event("english-listening-before-leave", { cancelable: true }),
+        )
+      ) {
+        url.hash = "english-listening";
+        window.history.replaceState(null, "", url);
+        return;
+      }
       setView(next);
       setNavigationReady(true);
       setOpened(
@@ -1020,7 +1069,8 @@ function UnifiedWorkspaceContent({
           )}
         </div>
         {product === "english"
-          ? canCreateEnglishExam && (
+          ? canCreateEnglishExam &&
+            view !== "english-listening" && (
               <button
                 className={s.newButton}
                 aria-label="새 시험 등록"
@@ -1328,6 +1378,7 @@ function UnifiedWorkspaceContent({
               <main hidden={view !== "conceptBlank"} className={s.viewContent}>
                 <ConceptBlankView
                   active={view === "conceptBlank"}
+                  textbookEnabled={can("textbook")}
                   storageScope={storageScope}
                   openDocument={blankDocument}
                   branchId={branchId}
@@ -1336,14 +1387,23 @@ function UnifiedWorkspaceContent({
             )}
           {can("srs") && (opened.has("srs") || view === "srs") && (
             <main hidden={view !== "srs"} className={s.viewContent}>
-              <CourseDashboard />
+              <CourseDashboard textbookEnabled={can("textbook")} />
             </main>
           )}
+          {can("textbook") &&
+            (opened.has("textbook") || view === "textbook") && (
+              <main hidden={view !== "textbook"} className={s.viewContent}>
+                <TextbookView />
+              </main>
+            )}
           {/* 오늘의 영어(D-148) — 개념·SRS 블록과 같은 결로 마운트를 유지한다. `worksheetView` 에 넣지 않는다 */}
           {canEnglish &&
-            ([...opened].some((item) => productOf(item) === "english") ||
-              product === "english") && (
-              <main hidden={product !== "english"} className={s.viewContent}>
+            ([...opened].some((item) => isEnglishView(item)) ||
+              (view !== null && isEnglishView(view))) && (
+              <main
+                hidden={product !== "english" || view === "english-listening"}
+                className={s.viewContent}
+              >
                 <EnglishStudio
                   key={workspaceMenusOf("english")
                     .filter((menu) => enabledMenus.has(menu))
@@ -1362,6 +1422,16 @@ function UnifiedWorkspaceContent({
                   onSetOpened={forgetSetLink}
                   onNotice={englishNotice}
                 />
+              </main>
+            )}
+          {can("english-listening") &&
+            (opened.has("english-listening") ||
+              view === "english-listening") && (
+              <main
+                hidden={view !== "english-listening"}
+                className={s.viewContent}
+              >
+                <ListeningStudio active={view === "english-listening"} />
               </main>
             )}
           {view === "export" && hydrated && (
