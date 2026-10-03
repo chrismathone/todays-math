@@ -18,6 +18,7 @@ import {
 import { renderFigureSpec } from "@/lib/figure/renderFigureSpec";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { learnNow } from "@/lib/learn/testConsoleServer";
 import {
   CourseConflict,
   CourseInvalidInput,
@@ -34,7 +35,11 @@ import { courseStudentDto, loadCourseStudent } from "./courseServer";
 import { SrsUnavailable } from "./serverState";
 import { changeSrsState, readSrsState } from "./serverStore";
 import { srsFailureResponse } from "./serverRoutes";
-import { expeditionCourseRecommendation } from "@/lib/math-explorers/expedition";
+import {
+  expeditionCourseRecommendation,
+  expeditionCoursePrerequisiteDecision,
+} from "@/lib/math-explorers/expedition";
+import { requestIdAllocator } from "@/lib/math-prerequisite/requestIds";
 import type { StoredSrsState } from "./serverState";
 
 export function courseFailureResponse(error: unknown) {
@@ -53,7 +58,7 @@ export async function handleCourseStudentRequest(
   if (gate.response) return noStore(gate.response);
   if (operation !== "read" && !sameOriginMutation(request))
     return noStore(crossSiteError());
-  const now = new Date();
+  const now = await learnNow(gate.student.studentId, request);
   try {
     const student = await loadCourseStudent(gate.student.studentId);
     if (
@@ -80,22 +85,33 @@ export async function handleCourseStudentRequest(
         const seed = randomInt(0, 0x1_0000_0000);
         const current = await readSrsState(student.id);
         const recommended = expeditionCourseRecommendation(current.state, now);
+        const supplied = expeditionCoursePrerequisiteDecision(
+          current.state,
+          now,
+        );
         const bankSectionId =
-          recommended?.mode === "resume" ? null : recommended?.sectionId;
+          supplied || recommended?.mode === "resume"
+            ? null
+            : recommended?.sectionId;
         const bankCandidates = bankSectionId
           ? await loadCourseBankCandidates(bankSectionId)
           : [];
-        change = (c, state) =>
-          startRecommendedCourse(
+        const idAttempt = requestIdAllocator(randomUUID);
+        change = (c, state) => {
+          const decision = expeditionCoursePrerequisiteDecision(state, now);
+          return startRecommendedCourse(
             c,
             expeditionCourseRecommendation(state, now),
             now,
             seed,
-            randomUUID,
-            expeditionCourseRecommendation(state, now)?.sectionId === bankSectionId
+            idAttempt(),
+            expeditionCourseRecommendation(state, now)?.sectionId ===
+              bankSectionId
               ? bankCandidates
               : [],
+            decision?.session ?? undefined,
           );
+        };
       } else if (operation === "hint") {
         const parsed = courseHintInputSchema.safeParse(body);
         if (!parsed.success) return noStore(validationError(parsed.error));
@@ -116,6 +132,8 @@ export async function handleCourseStudentRequest(
         },
         undefined,
         expectedRevision,
+        {},
+        now,
       );
     }
     return noStore(

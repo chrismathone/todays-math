@@ -95,10 +95,17 @@ export default function StudentCourseSrs({
             (!session.completedAt ||
               (session.retry && !session.retry.completedAt));
           if (unfinished) setPracticing(true);
-          else if (result.data.journey?.todayComplete)
+          else if (
+            result.data.journey?.todayComplete &&
+            !(
+              result.data.prerequisiteContext?.kind === "unavailable" &&
+              !result.data.prerequisiteContext.canStart
+            )
+          )
             expeditionRef.current.onComplete();
           else if (
             result.data.plan?.enabled &&
+            result.data.prerequisiteContext?.canStart !== false &&
             result.data.summary.recommendation
           ) {
             const started = await startCourse();
@@ -152,6 +159,11 @@ export default function StudentCourseSrs({
   }
 
   function start() {
+    if (
+      state?.prerequisiteContext?.kind === "unavailable" &&
+      !state.prerequisiteContext.canStart
+    )
+      return;
     void mutate({
       run: startCourse,
       after: (data) => {
@@ -165,6 +177,10 @@ export default function StudentCourseSrs({
   const practice = practicing && state?.session;
   const summary = state?.summary;
   const recommendation = summary?.recommendation;
+  const prerequisiteContext = state?.prerequisiteContext;
+  const unavailable =
+    prerequisiteContext?.kind === "unavailable" &&
+    !prerequisiteContext.canStart;
   const section = recommendation
     ? getCourseSection(recommendation.sectionId)
     : summary?.currentSectionId
@@ -192,23 +208,25 @@ export default function StudentCourseSrs({
     settingsOpener.current = opener;
     setSettings(true);
   }
-  const title = needsSetup
-    ? "시작 진도를 한 번 골라 주세요."
-    : paused
-      ? "지금은 학습을 쉬고 있어요."
-      : goalReached
-        ? "오늘의 목표를 모두 채웠어요."
-        : done
-          ? "오늘은 여기까지, 기억할 시간을 가져요."
-          : summary?.status === "complete"
-            ? "새 학습을 모두 마쳤어요."
-            : recommendation?.mode === "resume"
-              ? "풀던 학습을 이어 가요."
-              : recommendation?.mode === "review"
-                ? "잊기 전에, 한 번 더."
-                : recommendation
-                  ? "오늘도 한 걸음 배워요."
-                  : "지금은 예정된 학습이 없어요.";
+  const title = unavailable
+    ? "지금은 새 문제를 열 수 없어요."
+    : needsSetup
+      ? "시작 진도를 한 번 골라 주세요."
+      : paused
+        ? "지금은 학습을 쉬고 있어요."
+        : goalReached
+          ? "오늘의 목표를 모두 채웠어요."
+          : done
+            ? "오늘은 여기까지, 기억할 시간을 가져요."
+            : summary?.status === "complete"
+              ? "새 학습을 모두 마쳤어요."
+              : recommendation?.mode === "resume"
+                ? "풀던 학습을 이어 가요."
+                : recommendation?.mode === "review"
+                  ? "잊기 전에, 한 번 더."
+                  : recommendation
+                    ? "오늘도 한 걸음 배워요."
+                    : "지금은 예정된 학습이 없어요.";
 
   return (
     <StudentReviewPage
@@ -241,6 +259,7 @@ export default function StudentCourseSrs({
             session={practice}
             summary={state.summary}
             journey={state.journey}
+            prerequisiteContext={prerequisiteContext}
             feedbackId={feedbackId}
             busy={blocked}
             onAuthFailure={authFailure}
@@ -263,7 +282,7 @@ export default function StudentCourseSrs({
                   start();
                 else {
                   setPracticing(false);
-                  expedition?.onComplete();
+                  if (!unavailable) expedition?.onComplete();
                 }
               }
             }}
@@ -282,8 +301,21 @@ export default function StudentCourseSrs({
         </div>
       ) : expedition && !loading ? (
         <section className={s.settings}>
-          <h2>탐험을 준비하고 있어요</h2>
-          <p>학습 설정을 확인한 뒤 같은 탐험을 이어 갈 수 있어요.</p>
+          <h2>
+            {unavailable
+              ? "지금은 새 문제를 열 수 없어요."
+              : "탐험을 준비하고 있어요"}
+          </h2>
+          <p>
+            {unavailable
+              ? prerequisiteContext.reason
+              : "학습 설정을 확인한 뒤 같은 탐험을 이어 갈 수 있어요."}
+          </p>
+          {unavailable ? (
+            <button type="button" className={s.settingsButton} disabled>
+              오늘의 추천 학습 시작
+            </button>
+          ) : null}
           <button
             type="button"
             className={s.settingsButton}
@@ -318,6 +350,15 @@ export default function StudentCourseSrs({
               ) : undefined
             }
             boardActions={[
+              ...(unavailable
+                ? [
+                    {
+                      label: "오늘의 추천 학습 시작",
+                      disabled: true,
+                      onClick: start,
+                    },
+                  ]
+                : []),
               ...(state.session?.completedAt &&
               (!state.session.retry || state.session.retry.completedAt)
                 ? [
@@ -354,14 +395,18 @@ export default function StudentCourseSrs({
                   : undefined,
               sectionTitle:
                 section && !needsSetup && !paused ? section.title : undefined,
-              reason: needsSetup
-                ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
-                : paused
-                  ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
-                  : done
-                    ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
-                    : (recommendation?.reason ??
-                      "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
+              reason: unavailable
+                ? prerequisiteContext.reason
+                : needsSetup
+                  ? "학교나 학원에서 배우는 소단원을 선택해 주세요. 내 계정에 학습 기록이 쌓여요."
+                  : paused
+                    ? "설정에서 자동 학습을 켜면 저장된 기록에 맞춰 다시 시작해요."
+                    : prerequisiteContext?.reason && !done
+                      ? prerequisiteContext.reason
+                      : done
+                        ? "오늘은 여기까지! 다음 학습 때 필요한 복습부터 만나요."
+                        : (recommendation?.reason ??
+                          "복습할 시기가 되면 여기에 다음 학습이 나타나요."),
               action:
                 needsSetup || paused
                   ? {
@@ -369,19 +414,29 @@ export default function StudentCourseSrs({
                       disabled: blocked,
                       onClick: (event) => openSettings(event.currentTarget),
                     }
-                  : recommendation && !done
+                  : unavailable
                     ? {
-                        label: busy
-                          ? "학습 준비 중…"
-                          : recommendation.mode === "resume"
-                            ? "이어서 학습하기"
-                            : "오늘의 추천 학습 시작",
-                        disabled: blocked,
+                        label: "오늘의 추천 학습 시작",
+                        disabled: true,
                         onClick: start,
-                        arrow: true,
                       }
-                    : undefined,
-              completedLabel: done ? "오늘 학습 완료" : "지금 필요한 학습 완료",
+                    : recommendation && !done
+                      ? {
+                          label: busy
+                            ? "학습 준비 중…"
+                            : recommendation.mode === "resume"
+                              ? "이어서 학습하기"
+                              : "오늘의 추천 학습 시작",
+                          disabled: blocked,
+                          onClick: start,
+                          arrow: true,
+                        }
+                      : undefined,
+              completedLabel: unavailable
+                ? undefined
+                : done
+                  ? "오늘 학습 완료"
+                  : "지금 필요한 학습 완료",
               note:
                 !needsSetup && !paused && !done && recommendation
                   ? "한 번에 5문제 · 하루 목표까지 차례로 풀어요"

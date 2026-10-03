@@ -39,6 +39,8 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "POST /api/learn/password",
       // 학생 화면에서 난 오류도 모은다(원장님 2026-09-22) — 보내기 하나뿐, 읽는 것은 없다
       "POST /api/logs/client",
+      // 테스트 도구판 — 경로만 연다. 시험용 계정인지는 라우트가 DB 로 본다(원장님 2026-09-28)
+      "GET|POST /api/learn/test-console",
       "POST /api/learn/logout",
       "GET /api/auth/session",
       "GET /api/auth/csrf",
@@ -58,6 +60,8 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "POST /api/learn/password",
       // 비밀번호 바꾸기 화면에서 난 오류도 와야 한다(원장님 2026-09-22)
       "POST /api/logs/client",
+      // 테스트 도구판 — 경로만 연다. 시험용 계정인지는 라우트가 DB 로 본다(원장님 2026-09-28)
+      "GET|POST /api/learn/test-console",
       "POST /api/learn/logout",
       "GET /api/auth/session",
       "GET /api/auth/csrf",

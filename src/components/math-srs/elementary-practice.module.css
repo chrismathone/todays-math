@@ -61,6 +61,17 @@
   color: var(--learn-ink);
   font-size: 14px;
   font-weight: 700;
+  white-space: nowrap;
+}
+
+.prerequisiteReason {
+  flex-shrink: 0;
+  margin: 8px 0 12px;
+  color: var(--learn-ink);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .breadcrumb,

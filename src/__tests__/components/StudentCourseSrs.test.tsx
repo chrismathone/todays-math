@@ -138,6 +138,119 @@ beforeEach(() => {
 });
 
 describe("embedded expedition bank activity", () => {
+  const versions = {
+    graphSchemaVersion: "1.1.0" as const,
+    graphContentHash: "0".repeat(64),
+    mappingVersion: 1 as const,
+    policyVersion: 1 as const,
+  };
+  function shortage(run: CoursePublicSession | null = null) {
+    const result = state(run);
+    result.summary.recommendation = null;
+    result.prerequisiteContext = {
+      kind: "unavailable",
+      targetSectionId: "5-2-2-1",
+      sectionId: null,
+      reason: "새 문제를 준비하지 못했어요. 선생님께 알려 주세요.",
+      canStart: false,
+      partial: true,
+      versions,
+    };
+    return result;
+  }
+  it("does not auto-start or claim completion when new problems are unavailable", async () => {
+    const unavailable = shortage(session(5));
+    vi.mocked(api.getCourseState).mockResolvedValue({
+      ok: true,
+      data: unavailable,
+    });
+    const onComplete = vi.fn();
+    render(<StudentCourseSrs expedition={{ onExit: vi.fn(), onComplete }} />);
+    expect(
+      await screen.findByText(unavailable.prerequisiteContext!.reason),
+    ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: "오늘의 추천 학습 시작" }),
+    ).toBeDisabled();
+    expect(api.startCourse).not.toHaveBeenCalled();
+    expect(onComplete).not.toHaveBeenCalled();
+  });
+  it("keeps supply shortage distinct from expedition completion after the last answer", async () => {
+    vi.mocked(api.getCourseState).mockResolvedValue({
+      ok: true,
+      data: state(session(4)),
+    });
+    vi.mocked(api.answerCourse).mockResolvedValue({
+      ok: true,
+      data: shortage(session(5)),
+    });
+    const onComplete = vi.fn();
+    render(<StudentCourseSrs expedition={{ onExit: vi.fn(), onComplete }} />);
+    await screen.findByText("문제 5: 1 + 1");
+    await userEvent.type(screen.getByRole("textbox", { name: "나의 답" }), "2");
+    fireEvent.submit(document.getElementById("course-answer-form")!);
+    await userEvent.click(
+      await screen.findByRole("button", { name: /이번 학습 마치기/ }),
+    );
+    expect(
+      await screen.findByText(shortage().prerequisiteContext!.reason),
+    ).toBeVisible();
+    expect(onComplete).not.toHaveBeenCalled();
+    expect(api.startCourse).not.toHaveBeenCalled();
+  });
+  it("shows the actual P review and its reason while resuming", async () => {
+    const result = state({
+      ...session(),
+      sectionId: "5-1-5-4",
+      mode: "review",
+    });
+    result.prerequisiteContext = {
+      kind: "check",
+      targetSectionId: "5-2-2-1",
+      sectionId: "5-1-5-4",
+      reason: "분수의 곱셈에 쓰이는 분수의 뺄셈을 먼저 확인해요.",
+      canStart: true,
+      partial: true,
+      versions,
+    };
+    vi.mocked(api.getCourseState).mockResolvedValue({ ok: true, data: result });
+    render(
+      <StudentCourseSrs
+        expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+      />,
+    );
+    expect(
+      await screen.findByText(result.prerequisiteContext.reason),
+    ).toBeVisible();
+    expect(
+      screen.getByRole("heading", { name: "대분수의 뺄셈" }),
+    ).toBeVisible();
+    expect(api.startCourse).not.toHaveBeenCalled();
+  });
+  it("uses canStart to allow fresh target fallback despite its unavailable context kind", async () => {
+    const ready = shortage();
+    ready.summary.recommendation = state().summary.recommendation;
+    ready.prerequisiteContext = {
+      ...ready.prerequisiteContext!,
+      sectionId: "5-2-2-1",
+      canStart: true,
+      reason: "확인 문제를 준비하지 못해 분수의 곱셈 학습을 이어 갑니다.",
+    };
+    vi.mocked(api.getCourseState).mockResolvedValue({ ok: true, data: ready });
+    vi.mocked(api.startCourse).mockResolvedValue({
+      ok: true,
+      data: { ...ready, session: session() },
+    });
+    render(
+      <StudentCourseSrs
+        expedition={{ onExit: vi.fn(), onComplete: vi.fn() }}
+      />,
+    );
+    expect(
+      await screen.findByText(ready.prerequisiteContext.reason),
+    ).toBeVisible();
+    expect(api.startCourse).toHaveBeenCalledOnce();
+  });
   it("opens the current problem directly and exits to the parent board", async () => {
     vi.mocked(api.getCourseState).mockResolvedValue({
       ok: true,
