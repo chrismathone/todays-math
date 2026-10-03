@@ -427,7 +427,7 @@ export const bank: ConceptBlankBank = {
       term: "나눌 사람 수 바꾸기",
       kind: "성질",
       definition:
-        "같은 양을 더 많은 사람에게 남김없이 똑같이 나누면 한 사람이 받는 양은 {줄어든다}.",
+        "$0$보다 많은 같은 양을 더 많은 사람에게 남김없이 똑같이 나누면 한 사람이 받는 양은 {줄어든다}.",
     },
     {
       id: "e3-1-3-2-c1",
@@ -995,7 +995,7 @@ export const bank: ConceptBlankBank = {
       example: {
         prompt:
           "$\\frac{4}{7}$를 $\\frac{1}{7}$이 $4$개라고 말할 수 있는 까닭은?",
-        answer: "한 조각이 $\\frac{1}{7}$이라서",
+        answer: "분자 $4$가 조각의 수라서",
       },
     },
     {
@@ -2020,10 +2020,15 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-6-2-c2",
       section: "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
       level: "중",
-      term: "한 그림이 $5$개를 뜻할 때 자료 $20$개의 그림 수",
-      kind: "방법",
+      term: "그림 하나의 값과 그림의 개수",
+      kind: "성질",
       definition:
-        "한 그림이 $5$개를 뜻하면 자료 $20$개는 같은 그림 {$4$개}로 나타낸다.",
+        "같은 수를 나타낼 때 그림 하나의 값이 클수록 필요한 그림의 개수는 {적어진다}.",
+      example: {
+        prompt:
+          "자료 $20$개를 그릴 때 그림 하나가 $5$개일 때보다 $10$개일 때 그림이 적은 까닭은?",
+        answer: "그림 하나가 더 많이 나타내서",
+      },
     },
     {
       id: "e3-2-6-2-c3",
@@ -2476,18 +2481,18 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-5 들이와 무게::2-5-5 무게의 단위",
       level: "중",
       statement:
-        "$3\\,\\mathrm{kg}\\ 20\\,\\mathrm{g}$은 $3020\\,\\mathrm{g}$과 같다.",
-      answer: true,
-      why: "$3\\,\\mathrm{kg}$을 $3000\\,\\mathrm{g}$으로 바꾸어 $20\\,\\mathrm{g}$을 더한다.",
+        "$3\\,\\mathrm{kg}\\ 20\\,\\mathrm{g}$을 $\\mathrm{g}$으로만 쓰면 $320\\,\\mathrm{g}$이다.",
+      answer: false,
+      why: "$3\\,\\mathrm{kg}$은 $3000\\,\\mathrm{g}$이라 $3020\\,\\mathrm{g}$이다 — $3$과 $20$을 붙여 쓰면 안 된다.",
     },
     {
       id: "e3-2-5-6-o1",
       section: "초3::2-5 들이와 무게::2-5-6 무게의 합과 차",
       level: "상",
       statement:
-        "$1\\,\\mathrm{kg}\\ 200\\,\\mathrm{g}$과 $900\\,\\mathrm{g}$을 더하면 $2\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$이다.",
+        "$1\\,\\mathrm{kg}\\ 900\\,\\mathrm{g}+1\\,\\mathrm{kg}\\ 800\\,\\mathrm{g}$의 합은 $4\\,\\mathrm{kg}$보다 가볍다.",
       answer: true,
-      why: "$200\\,\\mathrm{g}$과 $900\\,\\mathrm{g}$을 더한 $1100\\,\\mathrm{g}$을 $1\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$으로 바꾼다.",
+      why: "두 무게가 모두 $2\\,\\mathrm{kg}$보다 가볍기 때문이다.",
     },
     {
       id: "e3-2-6-1-o1",
@@ -2502,9 +2507,9 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
       level: "중",
       statement:
-        "그림 한 개를 $10$명으로 정했다면 $40$명은 그림 $4$개로 나타낸다.",
+        "그림 한 개를 $10$명으로 정했다면 그림을 하나 더 그릴 때마다 $10$명이 늘어난다.",
       answer: true,
-      why: "$10\\times4=40$이므로 그림을 네 개 그린다.",
+      why: "같은 그림은 모두 같은 수를 나타내기 때문이다.",
     },
   ],
   apply: [
@@ -2945,47 +2950,52 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
       level: "상",
       prompt:
-        "$2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}$에서 $850\\,\\mathrm{mL}$를 빼시오.",
-      answer: "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$",
+        "$2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}-850\\,\\mathrm{mL}=1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$가 맞는지 덧셈으로 확인하는 방법과 까닭을 쓰시오.",
+      answer:
+        "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}+850\\,\\mathrm{mL}$가 $2\\,\\mathrm{L}\\ 150\\,\\mathrm{mL}$인지 본다 — 차에 뺀 양을 더하면 처음 양이 되어야 하기 때문이다.",
     },
     {
       id: "e3-2-5-4-a1",
       section: "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
       level: "하",
       prompt:
-        "양팔저울에서 가 쪽은 내려가고 나 쪽은 올라갔다면 더 무거운 것은?",
-      answer: "가",
+        "양팔저울에서 가 쪽은 내려가고 나 쪽은 올라갔다. 더 무거운 것을 쓰고 까닭을 쓰시오.",
+      answer: "가 — 무거운 쪽 접시가 아래로 내려가기 때문이다.",
     },
     {
       id: "e3-2-5-5-a1",
       section: "초3::2-5 들이와 무게::2-5-5 무게의 단위",
       level: "중",
-      prompt: "$2\\,\\mathrm{t}\\ 60\\,\\mathrm{kg}$을 kg으로만 나타내시오.",
-      answer: "$2060\\,\\mathrm{kg}$",
+      prompt:
+        "$2\\,\\mathrm{t}\\ 60\\,\\mathrm{kg}$을 $\\mathrm{kg}$으로만 나타내고 백의 자리에 $0$을 쓰는 까닭을 쓰시오.",
+      answer:
+        "$2060\\,\\mathrm{kg}$ — $60\\,\\mathrm{kg}$에는 $100\\,\\mathrm{kg}$ 묶음이 없기 때문이다.",
     },
     {
       id: "e3-2-5-6-a1",
       section: "초3::2-5 들이와 무게::2-5-6 무게의 합과 차",
       level: "상",
       prompt:
-        "$4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}$에서 $1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}$을 빼시오.",
-      answer: "$2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}$",
+        "$4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}-1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}=2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}$이 맞는지 덧셈으로 확인하는 방법과 까닭을 쓰시오.",
+      answer:
+        "$2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}+1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}$이 $4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}$인지 본다 — 차에 뺀 무게를 더하면 처음 무게가 되어야 하기 때문이다.",
     },
     {
       id: "e3-2-6-1-a1",
       section: "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
       level: "상",
       prompt:
-        "큰 동그라미가 $10$명, 작은 동그라미가 $1$명이면 큰 것 $3$개와 작은 것 $4$개는 몇 명인가?",
-      answer: "$34$명",
+        "큰 동그라미가 $10$명, 작은 동그라미가 $1$명일 때 큰 것 $3$개와 작은 것 $4$개를 $7$명이라고 하면 안 되는 까닭을 쓰고 바르게 고쳐 쓰시오.",
+      answer:
+        "그림마다 나타내는 수가 다른데 개수만 세었다 — $30$명과 $4$명을 더한 $34$명이다.",
     },
     {
       id: "e3-2-6-2-a1",
       section: "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
       level: "중",
       prompt:
-        "그림 하나가 $5$권을 뜻할 때 $35$권을 나타내려면 그림이 몇 개 필요한가?",
-      answer: "$7$개",
+        "그림 하나가 $5$권을 뜻할 때 $35$권을 나타내는 그림 수를 쓰고 그렇게 정한 까닭을 쓰시오.",
+      answer: "$7$개 — $35$권을 $5$권씩 묶으면 일곱 묶음이기 때문이다.",
     },
   ],
   figures: [
@@ -3427,4 +3437,4 @@ export const bank: ConceptBlankBank = {
  * 사례 문항 — 굵은 답이 용어에 주어진 값으로 정해지는 개념의 id(계약 `givenCase` · 26 §10). A(완전 백지) 채점표에 안 실린다.
  * 이 파일은 문항을 적는 꼴에 표지 자리가 없어 파일 끝에서 id 로 단다(보강 파일은 줄 끝의 `CASE`).
  */
-markGivenCases(bank, ["e3-2-6-2-c2"]);
+markGivenCases(bank, []);
