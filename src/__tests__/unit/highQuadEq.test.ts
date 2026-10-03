@@ -11,6 +11,7 @@
  * 못했다(보고서의 공용 후보). 제품(`numbers.ts`·`poly.ts`)은 안 부른다.
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -1455,7 +1456,9 @@ describe("고등 공통수학1 이차방정식 — 등록", () => {
     for (const e of H1_QUAD_EQ) {
       const row = catalogRows.find((t) => t.number === e.rpmType);
       expect(row, `${e.key}: 색인에 없는 번호`).toBeDefined();
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row!.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row!.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.grade).toBe(BOOK);
@@ -1502,6 +1505,44 @@ describe("고등 공통수학1 이차방정식 — 지면(공용 자의 사각�
 });
 
 describe("고등 공통수학1 이차방정식 — 값", () => {
+  it("HIGH-ALG-003: 300판에서 k=0의 차수와 모든 k의 공통근 조건이 발문과 맞다", () => {
+    let checked = 0;
+    for (let seed = 0; seed < 300; seed += 1) {
+      const p = generateHighProblem(`${BOOK}|${MINOR}|02`, seed);
+      if (p.facts.mode !== 0) continue;
+      checked += 1;
+      const eq = spanOf(p, /^kx\^\{2\}/);
+      const r = Number(rhs(spanOf(p, /^x=/)));
+      const value = (k: number, a: number, b: number) =>
+        texValue(lhs(eq), { x: C(r), k: C(k), a: C(a), b: C(b) }).re;
+      const row = (k: number): [number, number, number] => [
+        value(k, 1, 0) - value(k, 0, 0),
+        value(k, 0, 1) - value(k, 0, 0),
+        -value(k, 0, 0),
+      ];
+      const [a0, b0, c0] = row(0);
+      const [a1, b1, c1] = row(1);
+      expect(a0 * b1 - a1 * b0, `seed ${seed}: a,b가 유일하다`).not.toBe(0);
+      const [a, b] = solve2(a0, b0, a1, b1, c0, c1);
+      for (const k of [-3, -1, 0, 1, 4]) {
+        const coefficients = quadOf(eq, { k: C(k), a: C(a), b: C(b) });
+        const degree =
+          coefficients[2] !== 0 ? 2 : coefficients[1] !== 0 ? 1 : 0;
+        if (p.content.includes("이차방정식"))
+          expect(
+            degree,
+            `seed ${seed}: k=${k}에서도 이차방정식이라는 주장`,
+          ).toBe(2);
+        else expect(p.content).toMatch(/^\$x\$에 대한 방정식 /);
+        expect(value(k, a, b), `seed ${seed}: k=${k}에서도 주어진 근`).toBe(0);
+      }
+      expect(readAnswerValues(p.answer)[0]!.re).toBe(
+        texValue(spans(p).at(-1)!, { a: C(a), b: C(b) }).re,
+      );
+    }
+    expect(checked, "300판 중 k에 무관한 근을 묻는 꼴").toBeGreaterThan(50);
+  });
+
   it("정답을 facts 로 다시 세운 것과 같다", () => {
     let n = 0;
     eachProblem((p, key, number) => {

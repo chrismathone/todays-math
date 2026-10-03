@@ -2084,6 +2084,9 @@ def _off_towards(
 def _cuboid(spec: Mapping[str, Any]) -> str:
     from core.figure_solid import View
 
+    show_dimensions = spec.get("showDimensions", True)
+    if not isinstance(show_dimensions, bool):
+        raise ValueError("showDimensions 는 참 또는 거짓이어야 합니다")
     w = _num(spec["w"], "w", 0.5, 40)
     d = _num(spec["d"], "d", 0.5, 40)
     h = _num(spec["h"], "h", 0.5, 40)
@@ -2140,9 +2143,11 @@ def _cuboid(spec: Mapping[str, Any]) -> str:
         parts.append(mark)
         avoid.add(mark, _dim_label_box(a, b, off, label, DIM_FS, t))
 
-    dim(p(0, 0, 0), p(w, 0, 0), f"{_n(w)} cm")
-    dim(p(0, 0, 0), p(0, 0, h), f"{_n(h)} cm")
-    dim(p(w, 0, 0), p(w, d, 0), f"{_n(d)} cm")
+    # 역산 문항에서 묻는 길이를 적으면 답이 된다. 도형과 숨은 모서리는 그대로 둔다.
+    if show_dimensions:
+        dim(p(0, 0, 0), p(w, 0, 0), f"{_n(w)} cm")
+        dim(p(0, 0, 0), p(0, 0, h), f"{_n(h)} cm")
+        dim(p(w, 0, 0), p(w, d, 0), f"{_n(d)} cm")
     return _svg((maxx - minx) + pad_l + pad_r, (maxy - miny) + pad_t + pad_b, "".join(parts))
 
 
@@ -4891,6 +4896,7 @@ ADV_FIELDS: dict[str, frozenset[str]] = {
     "scatterPlot": frozenset({"points", "xMin", "xMax", "xStep", "yMin", "yMax", "yStep"}),
 }
 ADV_OPTIONAL: dict[str, frozenset[str]] = {
+    "cuboid": frozenset({"showDimensions"}),
     "fracBars": frozenset({"fill"}),
     # `yStep` — 「눈금 한 칸은 몇」 발문이 말하는 걸음. 있으면 **그대로 긋는다** (D-70).
     # `orient` — "vertical"(기본) / "horizontal". 값 축을 어느 화면 축에 눕히는가만 바꾼다.

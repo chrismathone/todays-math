@@ -1176,7 +1176,7 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
   // 17 ─────────────────────────────────────────────
   def("17", "순환소수의 대소 관계", SEC.식계산, "심화하", (rng) =>
     attempt(300, () => {
-      // 명제 네 개 — 각각 (좌, 우) 값과 표기된 부등호. 값 비교는 분수 교차곱.
+      // 명제 다섯 개 — 각각 (좌, 우) 값과 표기된 부등호. 값 비교는 분수 교차곱.
       type Stmt = {
         texL: string;
         texR: string;
@@ -1280,8 +1280,40 @@ ${r.pre.length > 0 ? `$${N}-${r.pre.length}=${diff}$ ${eulReul(diff)}` : `$${N}$
       const cnt = stmts.reduce((acc, _s, i) => acc + ((mask >> i) & 1), 0);
       // 🔴 「모두 고르시오」의 정답은 **정확히 2개** (원장님 2026-08-25).
       //    보기의 참·거짓이 무작위 수에서 나와 미리 고를 수 없으므로 거른다 —
-      //    참이 2개일 확률 C(4,2)/2^4=37.5%, attempt(200) 이면 실패 ~1e-41.
+      //    참이 2개일 확률은 C(5,2)/2^5=31.25%이다.
       if (cnt !== CHOOSE_ALL_ANSWER_COUNT) return null;
+      // 뽑힌 명제를 다시 추첨하면 이후 난수와 성공하던 씨앗까지 바뀐다.
+      // 같은 글인 보기만, 참·거짓이 같은 미사용 비교로 바꾼다. 다섯 보기보다
+      // 많은 8개 후보를 쓰므로 반드시 남고, 정답 번호·난수 소비는 그대로다.
+      const seen = new Set<string>();
+      for (let i = 0; i < stmts.length; i += 1) {
+        const statement = stmts[i]!;
+        const signature = `${statement.texL}|${statement.shown}|${statement.texR}`;
+        if (!seen.has(signature)) {
+          seen.add(signature);
+          continue;
+        }
+        const digit = [1, 2, 3, 4, 5, 6, 7, 8].find((d) =>
+          stmts.every(
+            (s) => s.texL !== `0.${d}` || s.texR !== `0.\\overline{${d}}`,
+          ),
+        )!;
+        const shown = (mask >> i) & 1 ? 0 : 1;
+        stmts[i] = {
+          texL: `0.${digit}`,
+          texR: `0.\\overline{${digit}}`,
+          fl: { n: digit, d: 10 },
+          fr: { n: digit, d: 9 },
+          shown,
+          facts: {
+            [`s${i + 1}Kind`]: 0,
+            [`s${i + 1}Cyc`]: digit,
+            [`s${i + 1}CycLen`]: 1,
+            [`s${i + 1}Shown`]: shown,
+          },
+        };
+        seen.add(`${stmts[i]!.texL}|${shown}|${stmts[i]!.texR}`);
+      }
       const lines = stmts
         .map(
           (s, i) =>

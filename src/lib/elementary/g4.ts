@@ -11292,7 +11292,7 @@ function tier214MidRaw(unit: UnitSeed, rng: Rng): ElemProblem {
   const restNum = den + topNum - smallest;
   return makeDeep(
     unit,
-    `${expr(`${w1}\\frac{${topNum}}{${den}}`)} 에서 자연수 부분이 ${josaNum(w2, "인", "인")} ` +
+    `${expr(`${w1}\\frac{${topNum}}{${den}}`)} 에서 분모가 같고 자연수 부분이 ${josaNum(w2, "인", "인")} ` +
       `대분수를 뺐더니 차의 자연수 부분이 ${josaNum(w1 - w2 - 1, "이", "가")} 되었습니다. ` +
       `빼는 대분수의 분수 부분의 분자가 될 수 있는 수 중에서 가장 작을 때의 차를 ` +
       `구하시오.`,

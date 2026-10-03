@@ -13,6 +13,7 @@
  * 병합 때 helpers 로 올릴 것).
  */
 import { describe, expect, it } from "vitest";
+import { expectedHighTitle } from "../helpers/highTitles";
 
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import {
@@ -947,7 +948,9 @@ describe("고등 공통수학1 행렬 — 등록", () => {
     expect(H1_MATRIX.length + H1_MATRIX_HOLD.length).toBe(catalogRows.length);
     for (const e of H1_MATRIX) {
       const row = rowOf(e.rpmType);
-      expect(e.rpmTitle, `${e.key} 제목`).toBe(row.title);
+      expect(e.rpmTitle, `${e.key} 제목`).toBe(
+        expectedHighTitle(e.key, row.title),
+      );
       expect(e.rpmMinor).toBe(MINOR);
       expect(e.rpmBook).toBe(BOOK);
       expect(e.grade).toBe(BOOK);

@@ -85,6 +85,8 @@ scripts/qa/reports/*
 #    되돌릴 자료가 이 컴퓨터에만 남는다(2026-08-18 에 실제로 그랬다).
 #    그래서 **디렉터리째** 살린다 — 어떤 셰이드든 자동으로 들어온다.
 !scripts/qa/reports/refresh-engine-figures
+# 적재본 본문 갱신 원장(2026-10-03 외부 검토 반영) — 같은 까닭으로 디렉터리째.
+!scripts/qa/reports/refresh-engine-content
 !scripts/qa/reports/subnum-dup-2026-08-21.json
 !scripts/qa/reports/cm-sup-2026-08-21.json
 # Claude 생성 해설 원장 — 되돌리기 자료. 커밋 필수 (2026-08-22)

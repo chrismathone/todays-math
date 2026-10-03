@@ -2244,7 +2244,7 @@ function entry(
   };
 }
 
-/** 번호·제목은 `scripts/rpm/rpm-high-type-catalog.json` 의 **바이트 그대로**다(시험이 대조한다). */
+/** 색인의 유형 번호는 보존하고, 표시 제목의 OCR 잔재만 바로잡았다. */
 export const H1_LIN_INEQ: HighTypeEntry[] = [
   entry("01", "연립일차부등식의 풀이", SEC.연립1, t01),
   entry("02", "A<B<C의 꼴의 부등식", SEC.연립1, t02),
@@ -2252,7 +2252,7 @@ export const H1_LIN_INEQ: HighTypeEntry[] = [
   entry("04", "연립일차부등식의 해가 주어진 경우", SEC.연립2, t04),
   entry("05", "연립일차부등식이 해를 갖거나 갖지 않는 경우", SEC.연립2, t05),
   entry("06", "연립일차부등식의 활용", SEC.연립2, t06),
-  entry("07", ", |ax+b|<c|ax+b|>c의 꼴의 부등식", SEC.절댓값, t07),
+  entry("07", "|ax+b|<c, |ax+b|>c의 꼴의 부등식", SEC.절댓값, t07),
   entry("08", "|ax+b|<cx+d의 꼴의 부등식", SEC.절댓값, t08),
   entry("09", "절댓값 기호가 두 개인 부등식", SEC.절댓값, t09),
   entry(
