@@ -20,6 +20,10 @@ import {
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
+import {
+  ExplorerActionConflict,
+  ExplorerActionInvalid,
+} from "@/lib/math-explorers/errors";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import { SrsConflict, SrsUnavailable } from "@/lib/math-srs/serverState";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
@@ -84,6 +88,10 @@ export async function studentTextbookRoute(
       return noStore(
         jsonError("VALIDATION_ERROR", "요청 내용을 확인해 주세요.", 400),
       );
+    if (error instanceof ExplorerActionConflict)
+      return noStore(jsonError("CONFLICT", error.message, 409));
+    if (error instanceof ExplorerActionInvalid)
+      return noStore(jsonError("VALIDATION_ERROR", error.message, 400));
     if (error instanceof SrsConflict || error instanceof SrsUnavailable)
       return noStore(srsFailureResponse(error));
     throw error;

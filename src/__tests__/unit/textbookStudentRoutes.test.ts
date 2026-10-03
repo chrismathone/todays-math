@@ -60,6 +60,10 @@ import {
 } from "@/contracts/textbookStudent.contract";
 import { TextbookError } from "@/lib/textbook/server/errors";
 import { studentAttemptOf } from "@/lib/textbook/studentProjection";
+import {
+  ExplorerActionConflict,
+  ExplorerActionInvalid,
+} from "@/lib/math-explorers/errors";
 
 const ORIGIN = "https://textbook.example.test";
 const STUDENT_ID = "11111111-1111-4111-8111-111111111111";
@@ -421,6 +425,76 @@ describe("학생 제출 요청의 원본 JSON과 출처 경계", () => {
       ),
       400,
     );
+    expect(f.frozenConcept).not.toHaveBeenCalled();
+    expect(f.startReview).not.toHaveBeenCalled();
+    expect(f.execute).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    {
+      error: new ExplorerActionConflict(
+        "같은 요청 번호로 다른 답을 보낼 수 없어요.",
+      ),
+      status: 409,
+      code: "CONFLICT",
+    },
+    {
+      error: new ExplorerActionInvalid("현재 개념 활동을 다시 확인해 주세요."),
+      status: 400,
+      code: "VALIDATION_ERROR",
+    },
+  ])(
+    "기존 탐험 엔진의 $code 오류를 HTTP $status로 반환한다",
+    async ({ error, status, code }) => {
+      const frozen = { frozen: { contentHash: "a".repeat(64) } };
+      f.frozenConcept.mockResolvedValue(frozen);
+      f.startReview.mockRejectedValue(error);
+      const result = await expectStatus(
+        await REVIEW_POST(
+          new Request(`${ORIGIN}${conceptPath}/review`, {
+            method: "POST",
+            headers: { origin: ORIGIN, "content-type": "application/json" },
+            body: JSON.stringify({ requestId: REQUEST_ID }),
+          }),
+          context(),
+        ),
+        status,
+      );
+      expect(result).toEqual({ error: { code, message: error.message } });
+      expect(f.requireConcept).toHaveBeenCalledWith(
+        expect.anything(),
+        STUDENT_ID,
+        EDITION_ID,
+        KEY,
+      );
+      expect(f.frozenConcept).toHaveBeenCalledWith(expect.anything(), target);
+      expect(f.startReview).toHaveBeenCalledWith({
+        studentId: STUDENT_ID,
+        concept: frozen,
+        requestId: REQUEST_ID,
+        now: expect.any(Date),
+      });
+      expect(f.submitAttempt).not.toHaveBeenCalled();
+      expect(f.execute).not.toHaveBeenCalled();
+    },
+  );
+
+  it("복습 시작도 현재 배정을 먼저 확인하고 회수되면 엔진에 접근하지 않는다", async () => {
+    f.requireConcept.mockRejectedValue(
+      new TextbookError(403, "FORBIDDEN", "배정이 회수되었습니다."),
+    );
+    const result = await expectStatus(
+      await REVIEW_POST(
+        new Request(`${ORIGIN}${conceptPath}/review`, {
+          method: "POST",
+          headers: { origin: ORIGIN, "content-type": "application/json" },
+          body: JSON.stringify({ requestId: REQUEST_ID }),
+        }),
+        context(),
+      ),
+      403,
+    );
+    expect(result.error.code).toBe("FORBIDDEN");
     expect(f.frozenConcept).not.toHaveBeenCalled();
     expect(f.startReview).not.toHaveBeenCalled();
     expect(f.execute).not.toHaveBeenCalled();

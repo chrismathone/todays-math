@@ -20,7 +20,8 @@ import { textbookAttemptSubmitSchema } from "@/contracts/textbookConcept.contrac
 vi.mock("next/link", () => ({
   default: (props: ComponentProps<"a">) => <a {...props} />,
 }));
-vi.mock("next/navigation", () => ({ useRouter: () => ({ push: vi.fn() }) }));
+const push = vi.hoisted(() => vi.fn());
+vi.mock("next/navigation", () => ({ useRouter: () => ({ push }) }));
 vi.mock("@/components/math/MarkdownRenderer", () => ({
   MarkdownRenderer: ({ content }: { content: string }) => (
     <span>{content}</span>
@@ -41,6 +42,7 @@ type Submission = ReturnType<typeof textbookAttemptSubmitSchema.parse>;
 let concept: TextbookStudentConcept;
 let history: unknown[];
 let submit: (body: Submission) => Promise<Response>;
+let review: (body: { requestId: string }) => Promise<Response>;
 
 function conceptFixture() {
   return textbookStudentConceptSchema.parse({
@@ -150,6 +152,14 @@ beforeEach(() => {
   history = [];
   submit = async (body) =>
     json({ attempt: savedAttempt(body), replayed: false });
+  review = async () =>
+    json({
+      status: "started",
+      reasonCode: null,
+      replayed: false,
+      href: "/learn?view=collection",
+    });
+  push.mockReset();
   fetchMock.mockReset();
   fetchMock.mockImplementation(async (url, options) => {
     const path = String(url);
@@ -157,6 +167,8 @@ beforeEach(() => {
       return submit(
         textbookAttemptSubmitSchema.parse(JSON.parse(String(options.body))),
       );
+    if (options?.method === "POST" && path === `${BASE}/review`)
+      return review(JSON.parse(String(options.body)));
     if (options?.method === undefined && path === BASE) return json(concept);
     if (options?.method === undefined && path === `${BASE}/attempts`)
       return json(history);
@@ -194,6 +206,9 @@ describe("교재 학생 개념백지 활동", () => {
     ).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "답변 제출" })).toBeDisabled();
     expect(posts()).toHaveLength(0);
+    expect(
+      screen.queryByRole("button", { name: "개념 복습 이어가기" }),
+    ).not.toBeInTheDocument();
     expect(fetchMock.mock.calls.map(([url]) => String(url)).sort()).toEqual(
       [BASE, `${BASE}/attempts`].sort(),
     );
@@ -410,5 +425,106 @@ describe("교재 학생 개념백지 활동", () => {
       screen.queryByRole("button", { name: "답변 제출" }),
     ).not.toBeInTheDocument();
     expect(posts()).toHaveLength(0);
+  });
+
+  it("복습을 한 번 요청하고 기존 도감으로 이동하면서 교재로 돌아올 주소를 보존한다", async () => {
+    concept.reviewAccess = { available: true, reasonCode: null };
+    let finish!: (response: Response) => void;
+    review = () =>
+      new Promise<Response>((resolve) => {
+        finish = resolve;
+      });
+    await openActivity();
+    expect(posts()).toHaveLength(0);
+    const button = screen.getByRole("button", { name: "개념 복습 이어가기" });
+    fireEvent.click(button);
+    await waitFor(() => expect(posts()).toHaveLength(1));
+    expect(button).toBeDisabled();
+    fireEvent.click(button);
+    expect(posts()).toHaveLength(1);
+    expect(posts()[0][0]).toBe(`${BASE}/review`);
+    expect(JSON.parse(String(posts()[0][1]?.body))).toEqual({
+      requestId: FIRST_REQUEST,
+    });
+    expect(new Headers(posts()[0][1]?.headers).get("x-student-id")).toBe(
+      STUDENT_ID,
+    );
+    expect(push).not.toHaveBeenCalled();
+    await act(async () => {
+      finish(
+        json({
+          status: "started",
+          reasonCode: null,
+          replayed: false,
+          href: "/learn?view=collection",
+        }),
+      );
+    });
+    expect(push).toHaveBeenCalledTimes(1);
+    const destination = new URL(push.mock.calls[0][0], "https://school.test");
+    expect(destination.pathname).toBe("/learn");
+    expect(destination.searchParams.get("view")).toBe("collection");
+    expect(destination.searchParams.get("fromTextbook")).toBe(
+      `/learn/textbook/${EDITION_ID}/concepts/${KEY}`,
+    );
+    expect(posts().some(([url]) => String(url).endsWith("/attempts"))).toBe(
+      false,
+    );
+  });
+
+  it("복습 시작 응답이 유실되면 같은 UUID로 재시도하고 재개 응답으로 이동한다", async () => {
+    concept.reviewAccess = { available: true, reasonCode: null };
+    let count = 0;
+    review = async () => {
+      if (++count === 1)
+        throw new TypeError("복습 시작 응답을 받지 못했습니다.");
+      return json({
+        status: "resumed",
+        reasonCode: "continue-current-concepts",
+        replayed: true,
+        href: "/learn?view=collection",
+      });
+    };
+    await openActivity();
+    fireEvent.click(screen.getByRole("button", { name: "개념 복습 이어가기" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "복습 시작 응답을 받지 못했습니다.",
+    );
+    expect(push).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "개념 복습 이어가기" }));
+    await waitFor(() => expect(push).toHaveBeenCalledTimes(1));
+    expect(posts()).toHaveLength(2);
+    expect(posts().map(([url]) => url)).toEqual([
+      `${BASE}/review`,
+      `${BASE}/review`,
+    ]);
+    expect(JSON.parse(String(posts()[0][1]?.body))).toEqual({
+      requestId: FIRST_REQUEST,
+    });
+    expect(posts()[1][1]?.body).toBe(posts()[0][1]?.body);
+    expect(crypto.randomUUID).toHaveBeenCalledTimes(1);
+  });
+
+  it("복습 요청 충돌은 안내하고 현재 답변을 유지하며 도감으로 이동하지 않는다", async () => {
+    concept.reviewAccess = { available: true, reasonCode: null };
+    const message = "같은 요청 번호로 다른 답을 보낼 수 없어요.";
+    review = async () =>
+      new Response(JSON.stringify({ error: { code: "CONFLICT", message } }), {
+        status: 409,
+        headers: { "content-type": "application/json" },
+      });
+    await openActivity();
+    writeAnswer();
+    fireEvent.click(screen.getByRole("button", { name: "개념 복습 이어가기" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(message);
+    expect(screen.getByRole("textbox", { name: "나의 설명" })).toHaveValue(
+      ownText,
+    );
+    expect(
+      screen.getByRole("button", { name: "개념 복습 이어가기" }),
+    ).toBeEnabled();
+    expect(push).not.toHaveBeenCalled();
+    expect(posts()).toHaveLength(1);
+    expect(posts()[0][0]).toBe(`${BASE}/review`);
   });
 });
