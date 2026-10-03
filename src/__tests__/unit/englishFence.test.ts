@@ -300,10 +300,12 @@ const learnerDatabase = (abs: string) => {
   );
 };
 
-// Existing server page authentication/theme reads (not a directory-wide exemption).
-// These exact edges may reach DB for existing student login/theme behavior. The
+// Existing server page authentication/theme/test-account reads (not a directory-wide exemption).
+// These exact edges may reach DB for existing student account/theme behavior. The
 // unfiltered English/teacher-contract graph above is still checked for every edge.
 const EXISTING_STUDENT_SERVER_EDGES = new Set([
+  "src/app/learn/layout.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts",
   "src/app/learn/lectures/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/math-explorers/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/math-srs/algebra/page.tsx → src/lib/learn/studentRequest.ts",
@@ -503,6 +505,38 @@ describe("영어 울타리 — 스캐너 자기 시험", () => {
 describe("영어 울타리 — ⑴ import 사슬", () => {
   it("학생 화면은 실제 코드에서도 교사 계약·DB에 직접 또는 간접으로 닿지 않는다", () => {
     expect(learnerLeaks()).toEqual([]);
+  });
+
+  it("테스트 계정 조회 예외는 서버 레이아웃의 DB 조회에만 적용된다", () => {
+    const layout = path.join(ROOT, "src/app/learn/layout.tsx");
+    const server = path.join(ROOT, "src/lib/learn/testConsoleServer.ts");
+    const student = path.join(ROOT, "src/components/learn/ListeningView.tsx");
+    const db = path.join(ROOT, "src/lib/db.ts");
+    const teacher = path.join(
+      ROOT,
+      "src/contracts/englishListening.contract.ts",
+    );
+    expect(withoutComments(readFileSync(layout, "utf8"))).not.toMatch(
+      /["']use client["']/,
+    );
+    expect(importSpecifiers(readFileSync(server, "utf8"))).toContainEqual({
+      spec: "server-only",
+      reexport: false,
+    });
+    const graph: Graph = new Map([
+      [layout, [{ target: server, reexport: false }]],
+      [server, [{ target: db, reexport: false }]],
+    ]);
+    expect(learnerLeaks(graph)).toEqual([]);
+    graph.set(student, [{ target: server, reexport: false }]);
+    expect(learnerLeaks(graph)).toEqual([
+      "src/components/learn/ListeningView.tsx → src/lib/learn/testConsoleServer.ts → src/lib/db.ts",
+    ]);
+    graph.delete(student);
+    graph.set(server, [{ target: teacher, reexport: false }]);
+    expect(learnerLeaks(graph)).toEqual([
+      "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts → src/contracts/englishListening.contract.ts",
+    ]);
   });
 
   it("학생 경계의 자도 DB·교사 계약·재수출 변이를 잡고 순수 학생 계약은 허용한다", () => {
