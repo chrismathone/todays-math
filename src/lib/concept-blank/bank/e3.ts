@@ -2476,18 +2476,18 @@ export const bank: ConceptBlankBank = {
       section: "초3::2-5 들이와 무게::2-5-5 무게의 단위",
       level: "중",
       statement:
-        "$3\\,\\mathrm{kg}\\ 20\\,\\mathrm{g}$은 $3020\\,\\mathrm{g}$과 같다.",
-      answer: true,
-      why: "$3\\,\\mathrm{kg}$을 $3000\\,\\mathrm{g}$으로 바꾸어 $20\\,\\mathrm{g}$을 더한다.",
+        "$3\\,\\mathrm{kg}\\ 20\\,\\mathrm{g}$을 $\\mathrm{g}$으로만 쓰면 $320\\,\\mathrm{g}$이다.",
+      answer: false,
+      why: "$3\\,\\mathrm{kg}$은 $3000\\,\\mathrm{g}$이라 $3020\\,\\mathrm{g}$이다 — $3$과 $20$을 붙여 쓰면 안 된다.",
     },
     {
       id: "e3-2-5-6-o1",
       section: "초3::2-5 들이와 무게::2-5-6 무게의 합과 차",
       level: "상",
       statement:
-        "$1\\,\\mathrm{kg}\\ 200\\,\\mathrm{g}$과 $900\\,\\mathrm{g}$을 더하면 $2\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$이다.",
+        "$1\\,\\mathrm{kg}\\ 900\\,\\mathrm{g}+1\\,\\mathrm{kg}\\ 800\\,\\mathrm{g}$의 합은 $4\\,\\mathrm{kg}$보다 가볍다.",
       answer: true,
-      why: "$200\\,\\mathrm{g}$과 $900\\,\\mathrm{g}$을 더한 $1100\\,\\mathrm{g}$을 $1\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$으로 바꾼다.",
+      why: "두 무게가 모두 $2\\,\\mathrm{kg}$보다 가볍기 때문이다.",
     },
     {
       id: "e3-2-6-1-o1",
@@ -2961,16 +2961,19 @@ export const bank: ConceptBlankBank = {
       id: "e3-2-5-5-a1",
       section: "초3::2-5 들이와 무게::2-5-5 무게의 단위",
       level: "중",
-      prompt: "$2\\,\\mathrm{t}\\ 60\\,\\mathrm{kg}$을 kg으로만 나타내시오.",
-      answer: "$2060\\,\\mathrm{kg}$",
+      prompt:
+        "$2\\,\\mathrm{t}\\ 60\\,\\mathrm{kg}$을 $\\mathrm{kg}$으로만 나타내고 백의 자리에 $0$을 쓰는 까닭을 쓰시오.",
+      answer:
+        "$2060\\,\\mathrm{kg}$ — $60\\,\\mathrm{kg}$에는 $100\\,\\mathrm{kg}$ 묶음이 없기 때문이다.",
     },
     {
       id: "e3-2-5-6-a1",
       section: "초3::2-5 들이와 무게::2-5-6 무게의 합과 차",
       level: "상",
       prompt:
-        "$4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}$에서 $1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}$을 빼시오.",
-      answer: "$2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}$",
+        "$4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}-1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}=2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}$이 맞는지 덧셈으로 확인하는 방법과 까닭을 쓰시오.",
+      answer:
+        "$2\\,\\mathrm{kg}\\ 270\\,\\mathrm{g}+1\\,\\mathrm{kg}\\ 780\\,\\mathrm{g}$이 $4\\,\\mathrm{kg}\\ 50\\,\\mathrm{g}$인지 본다 — 차에 뺀 무게를 더하면 처음 무게가 되어야 하기 때문이다.",
     },
     {
       id: "e3-2-6-1-a1",
