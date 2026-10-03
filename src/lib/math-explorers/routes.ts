@@ -19,6 +19,7 @@ import { kstDateOf } from "@/lib/kstDate";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 import { crossSiteError, noStore } from "@/lib/learn/accountRoutes";
 import { requireStudent } from "@/lib/learn/studentRequest";
+import { learnNow } from "@/lib/learn/testConsoleServer";
 import { loadCourseStudent } from "@/lib/math-srs/courseServer";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import {
@@ -157,6 +158,8 @@ async function changeExplorer(
       },
       undefined,
       input.expectedRevision,
+      {},
+      now,
     );
     return { ...saved, feedback };
   } catch (error) {
@@ -189,7 +192,7 @@ export async function handleExplorerRequest(
     const student = await loadCourseStudent(studentId);
     if (!student?.studentAccount || student.studentAccount.disabledAt)
       return noStore(unauthorizedError());
-    const now = new Date();
+    const now = await learnNow(studentId, request);
     const date = kstDateOf(now);
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let feedback: ExplorerFeedback | null = null;

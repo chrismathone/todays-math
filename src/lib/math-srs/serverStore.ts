@@ -70,6 +70,8 @@ export async function changeSrsState(
   table = srsStateTable(),
   expectedRevision?: number,
   writer: ExpeditionWriter = {},
+  /** 학생 요청의 «지금» — 테스트 도구판의 시간 이동이 여기까지 닿아야 원정·하루 여정이 같은 날을 본다. */
+  now: Date = new Date(),
 ): Promise<{ revision: number; state: StoredSrsState }> {
   for (let retry = 0; retry < 5; retry++) {
     const previous = await readSrsState(studentId, table);
@@ -88,7 +90,7 @@ export async function changeSrsState(
       updateExpedition(
         previous.state,
         updateDailyJourney(previous.state, state),
-        new Date(),
+        now,
         writer,
       ),
     );
@@ -113,4 +115,40 @@ export async function changeSrsState(
     "다른 창에서 학습 기록을 저장했습니다. 다시 불러와 주세요.",
     "REVISION_MISMATCH",
   );
+}
+
+/**
+ * 테스트 도구판 전용(원장님 2026-09-28) — 학습 경로에는 없는 두 일. 표를 만지는 곳을 이 모듈 하나로 두려고
+ * 여기 있다(`mathSrsRecordIsolation.test.ts`). 부르는 곳은 `testConsoleRoutes.ts` 하나다.
+ */
+export async function deleteSrsState(studentId: string): Promise<void> {
+  await (
+    db as unknown as {
+      studentSrsState: {
+        deleteMany(args: { where: { studentId: string } }): Promise<unknown>;
+      };
+    }
+  ).studentSrsState.deleteMany({ where: { studentId } });
+}
+
+/** 스냅샷 되돌리기 — 계약(`parseSrsState`)을 지난 원본만 받는다. 다른 창이 먼저 저장했으면 거절한다. */
+export async function replaceSrsState(
+  studentId: string,
+  payload: StoredSrsState,
+  table = srsStateTable(),
+): Promise<void> {
+  const current = await readSrsState(studentId, table);
+  const checked = parseSrsState(payload);
+  if (current.revision === 0) {
+    await table.create({ data: { studentId, revision: 1, payload: checked } });
+    return;
+  }
+  const saved = await table.updateMany({
+    where: { studentId, revision: current.revision },
+    data: { payload: checked, revision: { increment: 1 } },
+  });
+  if (saved.count !== 1)
+    throw new SrsConflict(
+      "다른 창에서 학습 기록을 저장했습니다. 다시 시도해 주세요.",
+    );
 }

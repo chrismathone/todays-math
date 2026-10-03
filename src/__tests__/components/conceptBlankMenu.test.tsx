@@ -44,8 +44,11 @@ describe("메뉴 자리 · 제품", () => {
     expect(workspaceMenuProduct("conceptBlank")).toBe("math");
   });
 
-  it("enum 과 배열이 같은 메뉴를 같은 순서로 안다(손으로 두 곳을 고치는 자리)", () => {
-    expect(workspaceMenuSchema.options).toEqual(ALL_WORKSPACE_MENUS);
+  it("enum 과 배열의 현재 메뉴 순서가 같고, 이전 english 키도 읽는다", () => {
+    expect(
+      workspaceMenuSchema.options.filter((menu) => menu !== "english"),
+    ).toEqual(ALL_WORKSPACE_MENUS);
+    expect(workspaceMenuSchema.safeParse("english").success).toBe(true);
     expect(workspaceMenuSchema.safeParse("conceptBlank").success).toBe(true);
   });
 
