@@ -222,6 +222,10 @@ const sameCounts = (a: LevelCounts, b: LevelCounts) =>
 export function canonicalSheetSelection(
   selection: ConceptBlankSelection,
 ): ConceptBlankSelection {
+  if (selection.pick !== undefined)
+    throw new RangeError(
+      "정확한 선택 지면에는 기존 지면 코드를 제공하지 않습니다.",
+    );
   return {
     sections: orderedSections(selection.sections),
     forms: selection.forms.map(({ form, counts, extras }) => ({

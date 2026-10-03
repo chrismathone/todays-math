@@ -735,6 +735,26 @@ function studentPages(sheet: ConceptBlankSheet): StudentPage[] {
           item,
         })),
       ];
+      if (sheet.entryOrder) {
+        const order = new Map(
+          sheet.entryOrder.map((entry, i) => [
+            `${entry.entryKind}:${entry.entryId}`,
+            i,
+          ]),
+        );
+        blocks.sort(
+          (a, b) =>
+            order.get(
+              a.kind === "term" ? `concept:${a.entry.id}` : `ox:${a.item.id}`,
+            )! -
+            order.get(
+              b.kind === "term" ? `concept:${b.entry.id}` : `ox:${b.item.id}`,
+            )!,
+        );
+        blocks.forEach((block, i) => {
+          block.n = i + 1;
+        });
+      }
       return packBalanced(blocks, PAGE_CAPS.term, termCost, studentBody).map(
         (page) => ({ form: "term", blocks: page }),
       );
@@ -752,6 +772,30 @@ function studentPages(sheet: ConceptBlankSheet): StudentPage[] {
           item,
         })),
       ];
+      if (sheet.entryOrder) {
+        const order = new Map(
+          sheet.entryOrder.map((entry, i) => [
+            `${entry.entryKind}:${entry.entryId}`,
+            i,
+          ]),
+        );
+        blocks.sort(
+          (a, b) =>
+            order.get(
+              a.kind === "sentence"
+                ? `concept:${a.entry.id}`
+                : `apply:${a.item.id}`,
+            )! -
+            order.get(
+              b.kind === "sentence"
+                ? `concept:${b.entry.id}`
+                : `apply:${b.item.id}`,
+            )!,
+        );
+        blocks.forEach((block, i) => {
+          block.n = i + 1;
+        });
+      }
       return packCloze(blocks).map((b) => ({ form: "cloze", blocks: b }));
     }
     case "map":
