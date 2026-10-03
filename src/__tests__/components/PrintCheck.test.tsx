@@ -219,7 +219,11 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 95: concept-blank-review-key-notes 추가 (2026-10-02 전수 검토 반영 — 채점 안내 문구 · 그림 속 한 글자 단위).
     // 96: concept-blank-review-terms 추가 (2026-10-03 전수 검토 반영 — 용어 칸에 조건을 실어 용어가 길어졌다).
     // 97: concept-blank-havruta-apply 추가 (2026-10-03 «개념을 묻는다» — «나» 머리말 · 채점 안내 · 문장 답).
-    expect(ITEMS.length).toBe(97);
+    // 98: english-listening-student-teacher 추가 (2026-10-03 영어듣기 학생용 · 교사용 A4.
+    //     그 커밋이 이 수를 안 올려 main 이 97 ≠ 98 로 빨갰다 — 같은 날 리드가 병합하며 맞춤).
+    // 99: elementary-bank-net-and-hidden-dimensions 추가 (2026-10-03 일반 문제은행 외부 검토 반영 —
+    //     원기둥 전개도의 두 밑면 자리 · 한 모서리를 묻는 정육면체 그림의 치수 숨김).
+    expect(ITEMS.length).toBe(99);
   });
 
   /**
