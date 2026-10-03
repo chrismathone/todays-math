@@ -52,6 +52,13 @@ const paths = {
       <path d="m10 9 5 3-5 3Z" />
     </>
   ),
+  headphones: (
+    <>
+      <path d="M4 14v-3a8 8 0 0 1 16 0v3" />
+      <rect x="3" y="12" width="4" height="8" rx="2" />
+      <rect x="17" y="12" width="4" height="8" rx="2" />
+    </>
+  ),
   check: <path d="m5 12 4 4L19 6" />,
   close: <path d="m6 6 12 12M6 18 18 6" />,
   search: (

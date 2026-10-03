@@ -17,7 +17,39 @@ export function englishRouteAllowed(
   const school = allowed.includes("english-school");
   const maker = allowed.includes("english-maker");
   const library = allowed.includes("english-library");
+  const listening = allowed.includes("english-listening");
   const read = method === "GET" || method === "HEAD";
+  if (/^\/english\/listening\/sets\/[^/]+\/print$/.test(path))
+    return listening && read;
+  if (path === "/api/english/listening/sets")
+    return listening && (read || method === "POST");
+  if (/^\/api\/english\/listening\/sets\/[^/]+$/.test(path))
+    return listening && (read || method === "PATCH" || method === "DELETE");
+  if (
+    /^\/api\/english\/listening\/sets\/[^/]+\/(review|publish|media)$/.test(
+      path,
+    )
+  )
+    return listening && method === "POST";
+  if (/^\/api\/english\/listening\/sets\/[^/]+\/media\/[^/]+$/.test(path))
+    return listening && read;
+  if (
+    /^\/api\/english\/listening\/sets\/[^/]+\/media\/[^/]+\/(chunks|complete)$/.test(
+      path,
+    )
+  )
+    return listening && method === "POST";
+  if (path === "/api/english/listening/classes") return listening && read;
+  if (path === "/api/english/listening/assignments")
+    return listening && (read || method === "POST");
+  if (/^\/api\/english\/listening\/assignments\/[^/]+$/.test(path))
+    return listening && read;
+  if (
+    /^\/api\/english\/listening\/assignments\/[^/]+\/(targets|cancel|release|broadcast|retry)$/.test(
+      path,
+    )
+  )
+    return listening && method === "POST";
   if (/^\/english\/sets\/[^/]+\/print$/.test(path)) return read && library;
   if (path === "/api/english/generate") return method === "POST" && maker;
   if (path === "/api/english/exams")

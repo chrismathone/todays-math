@@ -85,6 +85,46 @@ const TEST_CONSOLE_RULES: readonly Rule[] = [
 const ACTIVE_RULES: readonly Rule[] = [
   {
     methods: PAGE,
+    path: "/learn/english-listening",
+    why: "배정된 영어듣기 목록",
+  },
+  {
+    methods: PAGE,
+    path: "/learn/english-listening/{id}",
+    why: "본인의 영어듣기 학습·응시",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/english/learn/listening",
+    why: "본인에게 배정된 듣기 목록",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/english/learn/listening/{id}",
+    why: "본인의 듣기 상태와 공개된 학습 자료",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/english/learn/listening/{id}/prepare",
+    why: "듣기 응시 준비 — 시험 시계는 시작하지 않음",
+  },
+  {
+    methods: ["POST"],
+    path: "/api/english/learn/listening/{id}/commands",
+    why: "본인의 듣기 시작·답안 저장·제출",
+  },
+  {
+    methods: PAGE,
+    path: "/api/english/learn/listening/{id}/media/{id}",
+    why: "본인에게 허용된 듣기 음원",
+  },
+  {
+    methods: PAGE,
+    path: "/api/english/learn/listening/sound-check",
+    why: "시험 시작 전 기기 소리 확인",
+  },
+  {
+    methods: PAGE,
     path: "/learn/math-explorers",
     why: "학생별 개념 탐험과 기억 복습",
   },

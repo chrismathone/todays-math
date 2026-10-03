@@ -25,6 +25,7 @@ export const WORKSPACE_MENUS = [
   { id: "english-school", label: "학교별 내신 대비", product: "english" },
   { id: "english-maker", label: "문제 만들기", product: "english" },
   { id: "english-library", label: "문제 보관함", product: "english" },
+  { id: "english-listening", label: "영어듣기", product: "english" },
 ] as const;
 // ⚠️ 아래 enum 은 위 배열에서 파생되지 않는다 — 메뉴를 더하면 두 곳을 같이 고친다.
 export const workspaceMenuSchema = z.enum([
@@ -41,6 +42,7 @@ export const workspaceMenuSchema = z.enum([
   "english-school",
   "english-maker",
   "english-library",
+  "english-listening",
 ]);
 export type WorkspaceMenu = z.infer<typeof workspaceMenuSchema>;
 export const ALL_WORKSPACE_MENUS: WorkspaceMenu[] = WORKSPACE_MENUS.map(
@@ -65,11 +67,18 @@ export function normalizeWorkspaceMenus(
   ];
 }
 
-/** 기존 english 차단은 세 메뉴 모두 차단한다. 새 세부 차단은 해당 메뉴에만 적용한다. */
+/** 영어 전체 차단 의도는 새 듣기 메뉴에도 적용한다. 허용 목록의 옛 english 값은 확장하지 않는다. */
 export function workspaceMenusFromDisabled(
   disabledMenus: readonly string[],
 ): WorkspaceMenu[] {
   const disabled = new Set(normalizeWorkspaceMenus(disabledMenus));
+  if (
+    disabledMenus.includes("english") ||
+    ["english-school", "english-maker", "english-library"].every((menu) =>
+      disabledMenus.includes(menu),
+    )
+  )
+    disabled.add("english-listening");
   return ALL_WORKSPACE_MENUS.filter((menu) => !disabled.has(menu));
 }
 /** 메뉴가 딸린 제품 — `product` 가 없으면 수학 */
@@ -110,6 +119,11 @@ export function workspaceMenuOptionsOf(
         id: "english-library",
         label: "문제 보관함",
         permission: "english-library",
+      },
+      {
+        id: "english-listening",
+        label: "영어듣기",
+        permission: "english-listening",
       },
     ];
   }

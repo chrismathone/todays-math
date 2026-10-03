@@ -73,6 +73,8 @@ const FORBIDDEN_ROOTS = [
   "src/app/api/exports/",
   "src/app/api/studio/",
   "src/app/api/learn/",
+  "src/app/learn/",
+  "src/components/learn/",
   "src/app/api/exam/",
   "src/app/api/review/",
   "src/app/api/library/",
@@ -104,6 +106,7 @@ const NEVER_FORBIDDEN = [
   "scripts/qa/probe-english-generate-live.ts",
   // 모델 벤치 — 영어 쪽 도구 폴더(제품 프롬프트 · 파서 · 검증기 · 품질 검사를 그대로 부른다, 25 §12). 어디서도 import 되지 않음
   "scripts/qa/english-bench/",
+  "scripts/qa/english-listening/",
 ];
 
 /** ⑵ 표·모델 접근이 허용되는 곳(브리프 §1.7 ⑵ + `prismaTestDouble.ts` 의 합성 한 줄) */
@@ -113,6 +116,8 @@ const TABLE_ALLOWED = [
   "scripts/qa/apply-english-studio-migration.ts",
   // 세트의 «만든 조건» 칸(2026-10-01 원장님 «메타데이터 기억되게») — 마이그레이션과 그 적용 도구
   "prisma/migrations/20261001120000_english_set_meta/",
+  "prisma/migrations/20261003120000_english_listening/",
+  "scripts/qa/english-listening/",
   "scripts/qa/apply-english-set-meta-migration.ts",
   // 세트의 «형식 판» 칸 — 🔴 미적용 SQL 초안과 그 검사 도구(자료 개선 M0, 2026-10-02). 영어 모듈을 import 하지 않고 표 이름만 안다
   "prisma/drafts/english-set-schema-version/",
@@ -187,6 +192,8 @@ const EXTS = [
 /** 지정자를 저장소 안 파일로. 패키지면 null. */
 function resolveSpec(fromFile: string, spec: string): string | null {
   let base: string;
+  if (spec === "@prisma/client" || spec.startsWith("@prisma/client/"))
+    return path.join(ROOT, "node_modules", spec);
   if (spec.startsWith("@/")) base = path.join(ROOT, "src", spec.slice(2));
   else if (spec.startsWith("."))
     base = path.resolve(path.dirname(fromFile), spec);
@@ -239,12 +246,13 @@ const SCAN = scan();
 function pathToEnglish(
   start: string,
   graph: Graph = SCAN.graph,
+  sensitive: (abs: string) => boolean = inEnglish,
 ): string[] | null {
   const prev = new Map<string, string | null>([[start, null]]);
   const queue = [start];
   while (queue.length) {
     const cur = queue.shift()!;
-    if (inEnglish(cur)) {
+    if (sensitive(cur)) {
       const chain: string[] = [];
       for (let at: string | null = cur; at; at = prev.get(at) ?? null)
         chain.unshift(rel(at));
@@ -274,15 +282,78 @@ function chainLeaks(graph: Graph = SCAN.graph): string[] {
   return leaks;
 }
 
+/** 교사 계약은 type-only import도 막는다. 학생 DTO는 독립 계약이다. */
+function learnerSensitive(abs: string): boolean {
+  const file = rel(abs);
+  return (
+    inEnglish(abs) ||
+    /^src\/contracts\/english(?:V2|Listening(?:Media|Http)?)?\.contract\.ts$/.test(
+      file,
+    )
+  );
+}
+
+const learnerDatabase = (abs: string) => {
+  const file = rel(abs);
+  return (
+    file === "src/lib/db.ts" ||
+    file === "node_modules/@prisma/client" ||
+    file.startsWith("node_modules/@prisma/client/")
+  );
+};
+
+// Existing server page authentication/theme/test-account reads (not a directory-wide exemption).
+// These exact edges may reach DB for existing student account/theme behavior. The
+// unfiltered English/teacher-contract graph above is still checked for every edge.
+const EXISTING_STUDENT_SERVER_EDGES = new Set([
+  "src/app/learn/english-listening/layout.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/layout.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts",
+  "src/app/learn/lectures/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/math-explorers/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/math-srs/algebra/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/math-srs/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/password/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/page.tsx → src/lib/learn/studentRequest.ts",
+  "src/app/learn/page.tsx → src/lib/journeyThemeStore.ts",
+]);
+
+function learnerLeaks(graph: Graph = SCAN.graph): string[] {
+  const leaks: string[] = [];
+  const databaseGraph: Graph = new Map(
+    [...graph].map(([file, edges]) => [
+      file,
+      edges.filter(
+        (edge) =>
+          !EXISTING_STUDENT_SERVER_EDGES.has(
+            `${rel(file)} → ${rel(edge.target)}`,
+          ),
+      ),
+    ]),
+  );
+  for (const file of graph.keys()) {
+    if (!/^(src\/app\/learn\/|src\/components\/learn\/)/.test(rel(file)))
+      continue;
+    const chain =
+      pathToEnglish(file, graph, learnerSensitive) ??
+      pathToEnglish(file, databaseGraph, learnerDatabase);
+    if (chain) leaks.push(chain.join(" → "));
+  }
+  return leaks;
+}
+
 // ── ⑵ 표·모델 접근 글자 ─────────────────────────────────────────
 
-const TABLE_NAME = /\b(english_exam|english_material|english_question_set)\b/;
-const CLIENT_ACCESS = /\.(englishExam|englishMaterial|englishQuestionSet)\b/;
+const TABLE_NAME =
+  /\b(english_exam|english_material|english_question_set|english_listening_(?:set|publication|assignment|assignment_revision|target|attempt|receipt|release|broadcast|audit|media_asset|media_blob))\b/;
+const CLIENT_ACCESS =
+  /\.(englishExam|englishMaterial|englishQuestionSet|englishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
 const PRISMA_NAMESPACE =
-  /\bPrisma\.(EnglishExam|EnglishMaterial|EnglishQuestionSet)\w*/;
+  /\bPrisma\.(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\w*/;
 const PRISMA_IMPORT =
   /\bimport\s+(?:type\s+)?\{([^}]*)\}\s*from\s*["']@prisma\/client["']/g;
-const PRISMA_MODEL = /\b(EnglishExam|EnglishMaterial|EnglishQuestionSet)\b/;
+const PRISMA_MODEL =
+  /\b(EnglishExam|EnglishMaterial|EnglishQuestionSet|EnglishListening(?:Set|Publication|Assignment|AssignmentRevision|Target|Attempt|Receipt|Release|Broadcast|Audit|MediaAsset|MediaBlob))\b/;
 
 /** 주석을 걷은 글에서 영어 표·모델에 닿는 자리를 찾는다 */
 function tableAccess(text: string): string | null {
@@ -438,6 +509,129 @@ describe("영어 울타리 — 스캐너 자기 시험", () => {
 });
 
 describe("영어 울타리 — ⑴ import 사슬", () => {
+  it("학생 화면은 실제 코드에서도 교사 계약·DB에 직접 또는 간접으로 닿지 않는다", () => {
+    expect(learnerLeaks()).toEqual([]);
+  });
+
+  it("테스트 계정 조회 예외는 서버 레이아웃의 DB 조회에만 적용된다", () => {
+    const layout = path.join(ROOT, "src/app/learn/layout.tsx");
+    const server = path.join(ROOT, "src/lib/learn/testConsoleServer.ts");
+    const student = path.join(ROOT, "src/components/learn/ListeningView.tsx");
+    const db = path.join(ROOT, "src/lib/db.ts");
+    const teacher = path.join(
+      ROOT,
+      "src/contracts/englishListening.contract.ts",
+    );
+    expect(withoutComments(readFileSync(layout, "utf8"))).not.toMatch(
+      /["']use client["']/,
+    );
+    expect(importSpecifiers(readFileSync(server, "utf8"))).toContainEqual({
+      spec: "server-only",
+      reexport: false,
+    });
+    const graph: Graph = new Map([
+      [layout, [{ target: server, reexport: false }]],
+      [server, [{ target: db, reexport: false }]],
+    ]);
+    expect(learnerLeaks(graph)).toEqual([]);
+    graph.set(student, [{ target: server, reexport: false }]);
+    expect(learnerLeaks(graph)).toEqual([
+      "src/components/learn/ListeningView.tsx → src/lib/learn/testConsoleServer.ts → src/lib/db.ts",
+    ]);
+    graph.delete(student);
+    graph.set(server, [{ target: teacher, reexport: false }]);
+    expect(learnerLeaks(graph)).toEqual([
+      "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts → src/contracts/englishListening.contract.ts",
+    ]);
+  });
+
+  it("학생 경계의 자도 DB·교사 계약·재수출 변이를 잡고 순수 학생 계약은 허용한다", () => {
+    const student = path.join(ROOT, "src/components/learn/ListeningView.tsx");
+    const bridge = path.join(ROOT, "src/lib/aStudentBridge.ts");
+    for (const sensitive of [
+      "src/lib/db.ts",
+      "node_modules/@prisma/client",
+      "node_modules/@prisma/client/runtime/library",
+      "src/contracts/english.contract.ts",
+      "src/contracts/englishV2.contract.ts",
+      "src/contracts/englishListening.contract.ts",
+      "src/contracts/englishListeningMedia.contract.ts",
+      "src/contracts/englishListeningHttp.contract.ts",
+    ]) {
+      const graph: Graph = new Map([
+        [student, [{ target: bridge, reexport: false }]],
+        [bridge, [{ target: path.join(ROOT, sensitive), reexport: true }]],
+      ]);
+      expect(learnerLeaks(graph), sensitive).toHaveLength(1);
+    }
+    expect(resolveSpec(student, "@prisma/client")).toBe(
+      path.join(ROOT, "node_modules/@prisma/client"),
+    );
+    expect(
+      learnerLeaks(
+        new Map([
+          [
+            student,
+            [
+              {
+                target: path.join(
+                  ROOT,
+                  "src/contracts/englishListeningStudent.contract.ts",
+                ),
+                reexport: false,
+              },
+            ],
+          ],
+        ]),
+      ),
+    ).toEqual([]);
+    // An allowed old authentication path cannot hide a second, unauthorized DB path.
+    const oldPage = path.join(ROOT, "src/app/learn/lectures/page.tsx");
+    const auth = path.join(ROOT, "src/lib/learn/studentRequest.ts");
+    const db = path.join(ROOT, "src/lib/db.ts");
+    expect(
+      learnerLeaks(
+        new Map([
+          [
+            oldPage,
+            [
+              { target: auth, reexport: false },
+              { target: bridge, reexport: false },
+            ],
+          ],
+          [auth, [{ target: db, reexport: false }]],
+          [bridge, [{ target: db, reexport: false }]],
+        ]),
+      ),
+    ).toEqual([
+      "src/app/learn/lectures/page.tsx → src/lib/aStudentBridge.ts → src/lib/db.ts",
+    ]);
+  });
+
+  it("학생 화면에서 교사 영어 직렬화기로 가는 간접 참조도 막는다", () => {
+    const student = path.normalize(
+      path.join(ROOT, "src/app/learn/english/listening/page.tsx"),
+    );
+    const helper = path.normalize(
+      path.join(ROOT, "src/components/listeningBridge.ts"),
+    );
+    const teacher = path.normalize(
+      path.join(ROOT, "src/lib/english/listening/projection.ts"),
+    );
+    const graph: Graph = new Map([
+      [student, [{ target: helper, reexport: false }]],
+      [helper, [{ target: teacher, reexport: true }]],
+    ]);
+    expect(chainLeaks(graph)).toEqual([
+      "src/app/learn/english/listening/page.tsx → src/components/listeningBridge.ts → src/lib/english/listening/projection.ts",
+    ]);
+    expect(isForbidden("src/components/learn/ListeningView.tsx")).toBe(true);
+    expect(isForbidden("src/app/api/learn/listening/route.ts")).toBe(true);
+    expect(isForbidden("src/app/api/english/learn/listening/route.ts")).toBe(
+      false,
+    );
+  });
+
   it("문제은행·시험지·엔진·AI·자동 출제·복습·탐험·스크립트 쪽에서는 몇 단계를 돌아가도 영어 모듈에 닿지 않는다", () => {
     expect(chainLeaks()).toEqual([]);
   });
