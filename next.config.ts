@@ -81,6 +81,15 @@ const nextConfig: NextConfig = {
   ],
   // Assets read by Node/Python at runtime must travel with production route bundles.
   outputFileTracingIncludes: {
+    "/api/textbook/**": [
+      "./src/config/shared-figures.manifest.json",
+      "./public/fonts/PretendardVariable.woff2",
+      "./node_modules/katex/dist/katex.min.css",
+      "./node_modules/katex/dist/fonts/**/*",
+      "./node_modules/pdfjs-dist/build/pdf.mjs",
+      "./node_modules/pdfjs-dist/build/pdf.worker.mjs",
+      "./node_modules/jsqr/dist/jsQR.js",
+    ],
     "/api/shared-figures/**": ["./src/config/shared-figures.manifest.json"],
     "/api/studio/pdf-worker": [
       "./node_modules/pdfjs-dist/build/pdf.worker.min.mjs",

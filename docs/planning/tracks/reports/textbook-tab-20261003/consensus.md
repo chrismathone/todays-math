@@ -46,4 +46,9 @@ Hi-fi4 실제 PC/휴대폰 여덟 캡처 비교에서 세 모델 모두 H1을 �
 
 ## 실행
 
+구현 중 확인한 두 선택 필드도 실제 세 모델이 승인했다. 기존 교환 파일을 읽으며 값을 자동으로 추가하지 않는다.
+
+- `concept.blankForms`: 사용할 백지 형식 1–5개를 중복 없이 명시하는 선택 필드. 미기재에 기본값을 주입하지 않는다. Codex `msg_fb065989dd12`, Grok `msg_648c3544a6ad`, Claude `msg_1acbc0a0565f` 승인.
+- `config.studentSolutionPolicy`: `never | assigned` 선택 필드. 미기재는 학생 해설 비공개로 처리하며 교환 데이터에 값을 자동 삽입하지 않는다. Codex `msg_cea2221fd446`, Grok `msg_929547102a66`, Claude `msg_1acbc0a0565f` 승인.
+
 승인된 shared contract를 구현하고 독립 Orca 트랙의 서버·조판·화면 작업을 통합한다. 완료 검증 후 main 병합·필요한 push와 조건에 맞는 worktree 정리를 한다. v15 원본·실제 영상·실물 인쇄 검증은 미확보 상태를 유지한다.

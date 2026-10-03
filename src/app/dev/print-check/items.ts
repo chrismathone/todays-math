@@ -18,6 +18,8 @@
  * 남이 쓴 것과 내가 지어낸 것을 섞지 않는다.
  */
 
+import { textbookPrintCheck } from "@/lib/textbook/render/printCheck";
+
 export type CheckStatus = "대기" | "통과" | "형태미확정";
 
 export interface PrintCheckItem {
@@ -80,6 +82,7 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  { ...textbookPrintCheck, changedOn: "2026-10-03" },
   {
     id: "studio-export-condition-and-solve-layout",
     title: "시험지 조건 상자·문항 머리와 오른쪽 풀이 공간",

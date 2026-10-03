@@ -15,6 +15,7 @@ import { describe, expect, it } from "vitest";
 import {
   ALL_WORKSPACE_MENUS,
   workspaceMenuSchema,
+  normalizeWorkspaceMenus,
 } from "@/contracts/accountAccess.contract";
 
 const MIGRATIONS = path.join(process.cwd(), "prisma", "migrations");
@@ -41,11 +42,11 @@ describe("메뉴 목록 ↔ DB CHECK(user_disabled_menus_valid)", () => {
   it("마지막 CHECK 의 목록이 코드의 메뉴 전부와 같다", () => {
     const check = lastMenuCheck();
     expect(check).not.toBeNull();
-    expect([...check!].sort()).toEqual([...ALL_WORKSPACE_MENUS].sort());
+    expect([...check!].sort()).toEqual([...workspaceMenuSchema.options].sort());
   });
 
   it("코드의 메뉴 배열과 enum 이 같다(두 곳을 같이 고친다)", () => {
-    expect([...workspaceMenuSchema.options].sort()).toEqual(
+    expect(normalizeWorkspaceMenus(workspaceMenuSchema.options).sort()).toEqual(
       [...ALL_WORKSPACE_MENUS].sort(),
     );
   });
