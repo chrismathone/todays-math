@@ -1,6 +1,6 @@
 # 영어듣기 실제 화면·저장 통합 기록
 
-2026-10-03. 교사 A·학생 B·H1 선택에 맞춘 **직접 제작과 MP3/PCM16 WAV 업로드 기반 시범 기능**을 main에 통합했다. 교사 수업, 학생 학습, 3~5문항 연습평가가 인증된 API와 실제 PostgreSQL 저장소를 사용한다. 운영 DB 적용과 배포는 아직 하지 않았다.
+2026-10-03. 교사 A·학생 B·H1 선택에 맞춘 **직접 제작과 MP3/PCM16 WAV 업로드 기반 시범 기능**을 main에 통합했다. 교사 수업, 학생 학습, 3~5문항 연습평가가 인증된 API와 실제 PostgreSQL 저장소를 사용한다. 사용자의 운영 반영 승인으로 공유 DB 적용·검증을 완료했다.
 
 ## 실제 사용 경로
 
@@ -28,13 +28,15 @@
 
 MP3 패키지의 Node worker 동적 import를 Next가 잘못 번들링하는 문제를 `serverExternalPackages`로 해결했다. Zod의 기존 배열 최소 길이가 남아 빈 근거 구간 초안을 거절하던 문제를 수정했다. 자료 선택이 초기 반 목록 요청을 취소하던 경합은 목록 로드 전 입력을 잠가 막았다. 새 API는 기존 오류 로그 처리기를 거친다. 학습 기록에 연결된 학생/반 삭제는 데이터를 지우지 않고 409 안내를 반환한다(PostgreSQL RESTRICT SQLSTATE 23001 포함).
 
-## 운영 반영에 필요한 마지막 단계
+## 운영 반영 승인과 DB 적용
 
-프로젝트의 현재 DB를 **읽기 전용 트랜잭션**으로 확인했다. 듣기 테이블은 아직 0개이며, 스크린샷의 계정은 승인된 최고관리자이고 메뉴 제한이 없다. 따라서 새 코드의 메뉴 대상에 해당하며 별도 계정 권한 변경은 필요 없다.
+적용 전 프로젝트의 현재 DB를 **읽기 전용 트랜잭션**으로 확인했다. 듣기 테이블은 0개였으며, 스크린샷의 계정은 승인된 최고관리자이고 메뉴 제한이 없다. 따라서 새 코드의 메뉴 대상에 해당하며 별도 계정 권한 변경은 필요 없다.
 
 적용 대상은 `prisma/migrations/20261003120000_english_listening/migration.sql` 하나다. 듣기 전용 테이블 12개·제약·비공개 권한·불변성 트리거를 추가하며 기존 업무 데이터는 수정하지 않는다. 격리 DB의 rollback dry-run/실제 적용/사후 검사에서 12개 테이블, 제약 131개, 공개 역할 grant 0개를 확인했다.
 
-운영 DB 변경 승인이 나면 명시적으로 선택한 DSN에 `LISTENING_DATABASE_URL`과 승인용 `ALLOW_SHARED_IMPORT=1`을 설정해 `scripts/qa/english-listening/apply-migration.ts --apply`를 실행하고, 같은 스크립트의 기본 읽기 전용 검사 후 코드를 배포한다. 일반 `prisma migrate deploy`로 다른 미적용 migration까지 함께 실행하지 않는다. 승인 전 운영 쓰기·push·배포는 수행하지 않았다.
+사용자가 DB 적용·배포 질문에 **“어 진행해”**로 승인한 뒤, 프로젝트 `jyaguxwuaxgdnovtulna`의 명시적 세션 연결(port 5432)에 `LISTENING_DATABASE_URL`과 승인용 `ALLOW_SHARED_IMPORT=1`을 설정했다. `scripts/qa/english-listening/apply-migration.ts --dry-run` → `--apply` → 기본 사후 검사를 순서대로 통과했다. 운영 DB 결과는 **테이블 12개·제약 66개·발행 불변성 트리거·공개 역할 grant 0개**이며 계정·반·학생 수가 적용 전후 일치한다. 로컬 PostgreSQL 18의 제약 131개와 운영의 66개 차이는 PostgreSQL 버전별 NOT NULL 카탈로그 표현 차이다. 일반 `prisma migrate deploy`로 다른 미적용 migration을 실행하지 않았다.
+
+배포 경로는 `main` push에 연결된 기존 Vercel Git 통합이며 운영 주소는 **`https://today.aywa.co.kr`**다. 최신 원격 `65720e207`을 병합해 다른 작업도 보존했다. 로컬 `.vercel/project.json`과 CLI 계정은 이전 팀을 가리키므로 이를 이용해 새 프로젝트를 만들거나 재연결하지 않는다. GitHub 커밋의 `Vercel` 상태와 운영 HTTP/화면을 확인한다. Supabase MCP advisor는 연결 계정 권한 부족으로 실행되지 않았으며, 실제 적용 검사에서 RLS·접근 권한·필수 제약·트리거를 직접 검증했다.
 
 미완료 업로드 정리는 `scripts/qa/english-listening/cleanup-media.ts`의 기본 읽기 전용 검사 후 명시적 `--apply`로 제한된 건수만 처리한다. 정상 음원과 발행/답안 이력은 정리 대상이 아니다.
 
