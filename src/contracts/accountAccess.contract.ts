@@ -210,6 +210,8 @@ export type ManagedAccount = AccountAccess & {
   /** Independent rollout restrictions, without personal or branch policy applied. */
   unavailableMenus?: WorkspaceMenu[];
   eywaSync?: AccountSyncStatus;
+  /** Current managed identity owns branch and role, even when sync is inactive. */
+  branchAssignmentLocked?: boolean;
   createdAt: string;
   updatedAt: string;
   suspendedAt: string | null;
