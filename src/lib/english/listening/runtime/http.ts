@@ -17,6 +17,7 @@ import {
   readListeningStorageConfig,
 } from "../media/storageApi";
 import { PrismaListeningMediaStore } from "../media/prismaStore";
+import { PrismaStorageListeningMediaStore } from "../media/storageStore";
 import { createListeningRuntime } from "./service";
 import {
   createListeningMediaAccess,
@@ -46,7 +47,9 @@ const media = createListeningMediaService({
   drive,
   storage,
   mp3PlaybackEncoding: "scrubbed_mp3",
-  store: new PrismaListeningMediaStore(db),
+  store: storage
+    ? new PrismaStorageListeningMediaStore(db, storage)
+    : new PrismaListeningMediaStore(db),
   ...createListeningMediaAccess(db),
   limits: {
     chunkBytes: 1024 * 1024,
