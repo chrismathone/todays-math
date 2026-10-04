@@ -552,9 +552,7 @@ describe("ListeningAssessmentImport", () => {
         screen.getByRole("button", { name: "듣기평가 파일 등록" }),
       ).toBeDisabled();
       expect(screen.getByRole("button", { name: "문항 읽기" })).toBeDisabled();
-      expect(
-        screen.getByRole("button", { name: "재생", exact: true }),
-      ).toBeDisabled();
+      expect(screen.getByRole("button", { name: "재생" })).toBeDisabled();
       expect(onState).toHaveBeenLastCalledWith(true, true);
     };
     assertLocked();
