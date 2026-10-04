@@ -9,6 +9,15 @@ for (const width of [320, 390, 1440, 1920]) {
     page,
   }, testInfo) => {
     await page.setViewportSize({ width, height: 1000 });
+    const extraStudents =
+      width === 320
+        ? Array.from({ length: 30 }, (_, index) => ({
+            studentId: id(index + 100),
+            name: `학생${index + 100}`,
+            loginId: `학생${index + 100}`,
+            status: "existing",
+          }))
+        : [];
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));
     const queries: URL[] = [];
@@ -99,10 +108,10 @@ for (const width of [320, 390, 1440, 1920]) {
             data: {
               classId: id(1),
               className: "중등M 중2 JJPS",
-              total: 2,
+              total: 2 + extraStudents.length,
               ready: 1,
               issued: 0,
-              existing: 1,
+              existing: 1 + extraStudents.length,
               skipped: 0,
               students: [
                 {
@@ -117,6 +126,7 @@ for (const width of [320, 390, 1440, 1920]) {
                   loginId: "박지우",
                   status: "existing",
                 },
+                ...extraStudents,
               ],
             },
           });
@@ -192,6 +202,36 @@ for (const width of [320, 390, 1440, 1920]) {
       name: "중등M 중2 JJPS 발급 대상",
       exact: true,
     });
+    await expect(preview).toBeVisible();
+    await expect(preview).toHaveJSProperty("open", true);
+    expect(await preview.evaluate((el) => el.matches(":modal"))).toBe(true);
+    const bounds = await preview.boundingBox();
+    expect(bounds).not.toBeNull();
+    expect(Math.abs(bounds!.x + bounds!.width / 2 - width / 2)).toBeLessThan(2);
+    expect(Math.abs(bounds!.y + bounds!.height / 2 - 500)).toBeLessThan(2);
+    expect(bounds!.x).toBeGreaterThanOrEqual(12);
+    expect(bounds!.y).toBeGreaterThanOrEqual(12);
+    if (extraStudents.length) {
+      const roster = preview.getByRole("list");
+      expect(
+        await roster.evaluate((el) => el.scrollHeight > el.clientHeight),
+      ).toBe(true);
+      await expect(
+        preview.getByRole("button", { name: "취소", exact: true }),
+      ).toBeInViewport();
+    }
+    await page.screenshot({
+      path: testInfo.outputPath(`student-issue-dialog-${width}.png`),
+    });
+    await page.keyboard.press("Escape");
+    await expect(preview).toHaveCount(0);
+    const trigger = page.getByRole("button", {
+      name: "중등M 중2 JJPS 발급 대상 확인",
+      exact: true,
+    });
+    await expect(trigger).toBeFocused();
+    expect(issued).toBe(0);
+    await trigger.click();
     await expect(preview).toBeVisible();
     expect(issued).toBe(0);
     await expect(

@@ -1,0 +1,85 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: min(560px, calc(100% - 32px));
+  max-width: none;
+  max-height: min(680px, calc(100dvh - 32px));
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--divider);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 20px 60px rgb(23 43 77 / 20%);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.dialog::backdrop {
+  background: rgb(23 43 77 / 38%);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: min(678px, calc(100dvh - 34px));
+  padding: 20px;
+}
+
+.heading,
+.actions {
+  flex-shrink: 0;
+}
+
+.heading {
+  display: grid;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.students {
+  display: grid;
+  gap: 8px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+}
+
+.student {
+  padding: 10px 12px;
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+
+.studentLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.studentLabel input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: var(--blue);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
