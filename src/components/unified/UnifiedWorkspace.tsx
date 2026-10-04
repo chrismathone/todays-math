@@ -1,5 +1,6 @@
 "use client";
 import { requestCourseNavigation } from "@/lib/math-srs/courseNavigation";
+import { requestTextbookNavigation } from "@/lib/textbook/navigation";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
@@ -494,6 +495,14 @@ function UnifiedWorkspaceContent({
     (next: View): boolean => {
       if (!can(next)) return false;
       if (
+        can("textbook") &&
+        next !== "textbook" &&
+        !requestTextbookNavigation(() => {
+          performNavigation(next);
+        })
+      )
+        return false;
+      if (
         can("srs") &&
         next !== "srs" &&
         !requestCourseNavigation(() => {
@@ -604,6 +613,19 @@ function UnifiedWorkspaceContent({
       );
       if (setLinked) next = "english-library";
       const requestedHref = url.href;
+      if (
+        can("textbook") &&
+        next !== "textbook" &&
+        !requestTextbookNavigation(() => {
+          window.history.replaceState(window.history.state, "", requestedHref);
+          sync();
+        })
+      ) {
+        const previous = new URL(acceptedHref.current || window.location.href);
+        previous.hash = "textbook";
+        window.history.replaceState(window.history.state, "", previous);
+        return;
+      }
       if (
         can("srs") &&
         next !== "srs" &&

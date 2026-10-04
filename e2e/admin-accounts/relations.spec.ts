@@ -94,7 +94,34 @@ for (const width of [320, 390, 1440, 1920]) {
         });
       }
       if (url.pathname === `/api/classes/${id(1)}/student-accounts`) {
+        if (route.request().method() === "GET")
+          return respond({
+            data: {
+              classId: id(1),
+              className: "중등M 중2 JJPS",
+              total: 2,
+              ready: 1,
+              issued: 0,
+              existing: 1,
+              skipped: 0,
+              students: [
+                {
+                  studentId: id(2),
+                  name: "김하늘",
+                  loginId: "김하늘",
+                  status: "ready",
+                },
+                {
+                  studentId: id(3),
+                  name: "박지우",
+                  loginId: "박지우",
+                  status: "existing",
+                },
+              ],
+            },
+          });
         expect(route.request().method()).toBe("POST");
+        expect(route.request().postDataJSON()).toEqual({ studentIds: [id(2)] });
         issued++;
         return respond({
           data: {
@@ -140,7 +167,7 @@ for (const width of [320, 390, 1440, 1920]) {
     ).toBeVisible();
     expect(issued).toBe(0);
     const back = page.getByRole("link", {
-      name: "인재원 침산 계정 목록",
+      name: /인재원 침산 계정 목록/,
       exact: true,
     });
     await expect(back).toBeVisible();
@@ -157,9 +184,29 @@ for (const width of [320, 390, 1440, 1920]) {
     expect(issued).toBe(0);
     await page
       .getByRole("button", {
-        name: "중등M 중2 JJPS 학생 계정 전체 생성",
+        name: "중등M 중2 JJPS 발급 대상 확인",
         exact: true,
       })
+      .click();
+    const preview = page.getByRole("dialog", {
+      name: "중등M 중2 JJPS 발급 대상",
+      exact: true,
+    });
+    await expect(preview).toBeVisible();
+    expect(issued).toBe(0);
+    await expect(
+      preview.getByRole("checkbox", { name: /김하늘/ }),
+    ).toBeChecked();
+    await expect(
+      preview.getByRole("checkbox", { name: /박지우/ }),
+    ).toBeDisabled();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await preview
+      .getByRole("button", { name: "선택한 학생 계정 생성", exact: true })
       .click();
     await expect(
       page.getByRole("status").filter({ hasText: "생성 1명" }),

@@ -42,22 +42,33 @@ const mocks = vi.hoisted(() => ({
   englishSetOpened: vi.fn(),
 }));
 
-describe("SRS shell transitions", () => {
+describe.each([
+  {
+    view: "srs" as const,
+    heading: "SRS 패널",
+    eventName: "course-srs-before-leave",
+  },
+  {
+    view: "textbook" as const,
+    heading: "교재 패널",
+    eventName: "textbook-before-leave",
+  },
+])("$view shell transitions", ({ view, heading: panelHeading, eventName }) => {
   it.each(["sidebar", "keyboard", "hashchange", "popstate"])(
     "defers %s until the editor approves and keeps selection while canceled",
     async (method) => {
       window.history.replaceState(
         null,
         "",
-        "/?classId=class-1&studentId=student-2#srs",
+        `/?classId=class-1&studentId=student-2#${view}`,
       );
       render(
         <UnifiedWorkspace
           initialData={initialData}
-          allowedMenus={["home", "srs"]}
+          allowedMenus={["home", view]}
         />,
       );
-      await screen.findByRole("heading", { name: "SRS 패널" });
+      await screen.findByRole("heading", { name: panelHeading });
       let dirty = true;
       let proceed: (() => void) | undefined;
       const prevent = (event: Event) => {
@@ -66,16 +77,12 @@ describe("SRS shell transitions", () => {
         proceed = (event as CustomEvent<{ proceed: () => void }>).detail
           .proceed;
       };
-      window.addEventListener("course-srs-before-leave", prevent);
+      window.addEventListener(eventName, prevent);
       try {
         if (method === "sidebar")
-          fireEvent.click(
-            screen.getByRole("button", { name: "오늘의 작업" }),
-          );
+          fireEvent.click(screen.getByRole("button", { name: "오늘의 작업" }));
         else if (method === "keyboard") {
-          screen
-            .getByRole("button", { name: "오늘의 작업" })
-            .focus();
+          screen.getByRole("button", { name: "오늘의 작업" }).focus();
           await userEvent.setup().keyboard("{Enter}");
         } else
           act(() => {
@@ -83,8 +90,10 @@ describe("SRS shell transitions", () => {
             window.dispatchEvent(new Event(method));
           });
         expect(proceed).toBeTypeOf("function");
-        expect(screen.getByRole("heading", { name: "SRS 패널" })).toBeVisible();
-        expect(window.location.hash).toBe("#srs");
+        expect(
+          screen.getByRole("heading", { name: panelHeading }),
+        ).toBeVisible();
+        expect(window.location.hash).toBe(`#${view}`);
         expect(
           new URLSearchParams(window.location.search).get("studentId"),
         ).toBe("student-2");
@@ -95,11 +104,14 @@ describe("SRS shell transitions", () => {
         ).toBeVisible();
         expect(window.location.hash).toBe("");
       } finally {
-        window.removeEventListener("course-srs-before-leave", prevent);
+        window.removeEventListener(eventName, prevent);
       }
     },
   );
 });
+vi.mock("@/components/textbook/TextbookStudioView", () => ({
+  TextbookStudioView: () => <h2>교재 패널</h2>,
+}));
 const router = { replace: mocks.replace };
 const bankSeed: EnglishBankMakerSeed = {
   requestId: "10000000-0000-4000-8000-000000000021",
@@ -152,8 +164,13 @@ vi.mock("@/components/english/listening/ListeningStudio", () => ({
 }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("next/dynamic", () => ({
-  default: (loader: () => Promise<{ default: ComponentType }>) => {
-    const Component = lazy(loader);
+  default: (
+    loader: () => Promise<{ default: ComponentType } | ComponentType>,
+  ) => {
+    const Component = lazy(async () => {
+      const loaded = await loader();
+      return typeof loaded === "function" ? { default: loaded } : loaded;
+    });
     return function Dynamic(props: object) {
       return (
         <Suspense fallback={null}>
