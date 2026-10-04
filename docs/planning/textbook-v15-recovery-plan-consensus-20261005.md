@@ -45,6 +45,6 @@ v02는 핵심 1,657개/합본 9,119개 불일치, 공급 원천 부족, 엄격 �
 ## 문서 검증·통합·리소스
 
 - 표결 정본의 해시/CR 0/크기/줄 수를 확인했다. 최종 계획의 로컬 링크 5개가 모두 존재했고 kind 표 31행/31고유값을 검사했다. 계획 작성 중 앱 코드·DB·원고·배포를 변경하지 않았다.
-- 두 제공자의 최종 보고서를 읽고 각 커밋을 coordinator branch로 병합했다. 계획·표결·이 원장을 main에 병합하며 다른 세션의 기존 변경을 보존한다. 이 계획 작업에서는 새 운영 배포나 원격 푸시를 수행하지 않는다.
-- 초기 Claude/Grok 작업자와 최종 Grok 작업자는 완료 후 release했고 transcript를 보관했다. 최종 Claude의 release 결과는 **retained / user_takeover**였다. 사용자 소유로 전환된 세션을 강제로 닫거나 그 작업 폴더를 삭제하지 않는다. clean/merged/inactive 조건을 충족한 Grok worktree만 정리하고 Git 브랜치를 보존한다.
+- 두 제공자의 최종 보고서를 읽고 각 커밋을 coordinator branch로 병합했다. 계획·표결·이 원장의 main 병합 커밋은 `dab41406a`이며 9개 문서만 추가했다. 다른 세션의 기존 변경을 보존했고 앱 코드 차이는 없다. 이 계획 작업에서는 새 운영 배포나 원격 푸시를 수행하지 않았다.
+- 초기 Claude/Grok 작업자와 최종 Grok 작업자는 완료 후 release했고 transcript를 보관했다. 최종 Claude의 release 결과는 **retained / user_takeover**였다. 사용자 소유로 전환된 세션과 작업 폴더는 보존했다. clean/merged/inactive 조건을 확인한 Grok worktree만 제거했으며 Git 브랜치 `BIGSHOL/textbook-plan-grok-20261005`를 커밋 `50dfe3fa10967bd91cf29687a3c648f7284ef5a9`에서 보존했다.
 - 전달본도 정본의 UTF-8 LF 바이트를 복사한다. Git의 CRLF checkout 표시와 승인 대상 바이트를 혼동하지 않으며 원문 SHA로 검증한다.
