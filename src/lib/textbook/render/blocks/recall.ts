@@ -16,6 +16,11 @@ type RecallBlock = Extract<EditorialBlock, { kind: "recall" }> & {
   rowHeightsMm?: Readonly<Record<string, number>>;
   /** Page index within the phase, for the QA page-partition check. */
   relativePageIndex?: number;
+  /**
+   * Rows the model already projected for this variant with `recallDisplayRows`. When present
+   * they are printed as given and the node's `rawText` (stripped for students) is never read.
+   */
+  displayRows?: readonly RecallDisplayRow[];
 };
 
 export type RecallDisplayPiece =
@@ -104,6 +109,9 @@ function advanceEm(markdown: string): number {
   count(markdown.slice(at).replace(/[*_`]/g, ""), 1);
   return units;
 }
+/** A blank keeps the length of what it hides, never the text. */
+const blankWidthEm = (markdown: string) =>
+  Math.round(Math.min(40, Math.max(2, advanceEm(markdown) + 0.6)) * 10) / 10;
 /** Body column of a full-width sheet at 8.3pt holds about this many em before wrapping. */
 const ROW_WRAP_EM = 44;
 
@@ -135,14 +143,7 @@ export function recallDisplayRows(
           return { kind: "text", markdown: piece.markdown };
         return reveal
           ? { kind: "key", markdown: piece.markdown }
-          : {
-              kind: "blank",
-              widthEm:
-                Math.round(
-                  Math.min(40, Math.max(2, advanceEm(piece.markdown) + 0.6)) *
-                    10,
-                ) / 10,
-            };
+          : { kind: "blank", widthEm: blankWidthEm(piece.markdown) };
       }),
     };
   });
@@ -223,6 +224,29 @@ function revealed(block: RecallBlock): boolean {
   );
 }
 
+/**
+ * Rows the model projected are printed as given. A block explicitly marked as the student
+ * variant still loses anything a projection should not have carried into it.
+ */
+function projectedRows(block: RecallBlock): RecallDisplayRow[] | undefined {
+  const rows = block.displayRows;
+  if (!rows) return undefined;
+  if (block.answersVisible !== false || block.phase === "study")
+    return [...rows];
+  return rows.map((row) =>
+    block.phase === "sentences"
+      ? { ...row, pieces: [], hidden: true }
+      : {
+          ...row,
+          pieces: row.pieces.map((piece): RecallDisplayPiece =>
+            piece.kind === "key"
+              ? { kind: "blank", widthEm: blankWidthEm(piece.markdown) }
+              : piece,
+          ),
+        },
+  );
+}
+
 /** An authored code such as C03 is printed as written; identifiers are never mined for digits. */
 function conceptCode(conceptId: string): string {
   return /^[A-Za-z]{1,3}\d{1,3}$/.test(conceptId) ? conceptId : "";
@@ -237,7 +261,9 @@ function memoryHtml(
   >,
 ): string {
   const phase = block.phase;
-  const rows = recallDisplayRows(node.rows, phase, revealed(block));
+  const rows =
+    projectedRows(block) ??
+    recallDisplayRows(node.rows, phase, revealed(block));
   const conceptId = node.kind === "concept" ? node.conceptId : "";
   const group =
     node.kind === "concept" ? node.conceptId : (node.groupKey ?? "");
