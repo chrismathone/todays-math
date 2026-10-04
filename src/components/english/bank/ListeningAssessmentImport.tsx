@@ -50,12 +50,13 @@ export function ListeningAssessmentImport({
   const [notice, setNotice] = useState("");
   const [error, setError] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
+  const [hasSaved, setHasSaved] = useState(false);
+  const [fileInputKey, setFileInputKey] = useState(0);
   const previewRef = useRef("");
   const controller = useRef<AbortController | null>(null);
   const saved = useRef<ListeningSetDetail | null>(null);
   const uploaded = useRef<ListeningAudioRef | null>(null);
   const groupId = useRef("");
-  const fileInputKey = useRef(0);
   useEffect(() => {
     onState?.(Boolean(title || audioFile || questionFile), busy);
   }, [title, audioFile, questionFile, busy, onState]);
@@ -170,6 +171,7 @@ export function ListeningAssessmentImport({
           },
         );
         groupId.current = crypto.randomUUID();
+        setHasSaved(true);
       } else
         saved.current = await listeningRequest<ListeningSetDetail>(
           `/sets/${saved.current.id}`,
@@ -229,6 +231,7 @@ export function ListeningAssessmentImport({
       );
       saved.current = null;
       uploaded.current = null;
+      setHasSaved(false);
       setTitle("");
       chooseAudio(null);
       setQuestionFile(null);
@@ -239,7 +242,7 @@ export function ListeningAssessmentImport({
       setRightsConfirmed(false);
       setBasis("");
       setOpen(false);
-      fileInputKey.current++;
+      setFileInputKey((value) => value + 1);
       setNotice("듣기 자료를 등록했습니다.");
       onImported(current.id);
     } catch (cause) {
@@ -268,10 +271,7 @@ export function ListeningAssessmentImport({
           }}
         >
           <h2>전국 듣기평가·모의고사 등록</h2>
-          <fieldset
-            disabled={busy || Boolean(saved.current)}
-            className={b.fields}
-          >
+          <fieldset disabled={busy || hasSaved} className={b.fields}>
             <label className={s.field}>
               제목
               <input
@@ -341,9 +341,9 @@ export function ListeningAssessmentImport({
             </label>
           </fieldset>
           <fieldset
-            disabled={busy || Boolean(saved.current)}
+            disabled={busy || hasSaved}
             className={b.files}
-            key={fileInputKey.current}
+            key={fileInputKey}
           >
             <label className={s.field}>
               음원 MP3·WAV
@@ -404,7 +404,7 @@ export function ListeningAssessmentImport({
           <button
             type="button"
             className={w.outlineButton}
-            disabled={busy || !questionFile || Boolean(saved.current)}
+            disabled={busy || !questionFile || hasSaved}
             onClick={() => void readFiles()}
           >
             문항 읽기
@@ -422,8 +422,8 @@ export function ListeningAssessmentImport({
                         ) + 1
                       : "미정"}
                   </summary>
-                  {/* eslint-disable-next-line @next/next/no-img-element -- The cropped local PDF is preserved without an external image request. */}
                   {question.image && (
+                    // eslint-disable-next-line @next/next/no-img-element -- Preserve the cropped local PDF without an external image request.
                     <img
                       src={question.image.dataUrl}
                       width={question.image.width}
@@ -542,10 +542,7 @@ export function ListeningAssessmentImport({
               ))}
             </div>
           )}
-          <fieldset
-            disabled={busy || Boolean(saved.current)}
-            className={b.rights}
-          >
+          <fieldset disabled={busy || hasSaved} className={b.rights}>
             <label className={s.field}>
               출처·사용 근거
               <input
@@ -586,7 +583,7 @@ export function ListeningAssessmentImport({
           >
             {busy ? "등록 중…" : "듣기은행에 등록"}
           </button>
-          {saved.current && (
+          {hasSaved && (
             <p>
               등록 초안은 보존됩니다. 같은 자료로 다시 등록을 누르면 이어서
               저장합니다.
