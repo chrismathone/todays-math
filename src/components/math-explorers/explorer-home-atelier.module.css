@@ -150,6 +150,45 @@ button.motionSwitch:disabled .switchTrack {
   word-break: keep-all;
 }
 
+/*
+ * ── 이 기기 설정 — 효과음(3자 합의 사운드 v3 2항) ───────────────────────
+ * 스위치는 «움직임 줄이기»의 규칙(`button.motionSwitch`)을 그대로 쓴다. 옆의 «미리 듣기»는 같은 선 · 높이의
+ * 단추이고, 좁은 폰에서는 스위치 아래 줄로 내려간다(스위치는 180px 밑으로 줄지 않는다).
+ */
+.sound {
+  margin-top: 14px;
+}
+.soundControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+dialog.sheet .soundControls > button.motionSwitch {
+  flex: 1 1 180px;
+  width: auto;
+}
+dialog.sheet button.soundPreview {
+  flex: none;
+  min-height: 48px;
+  padding: 8px 16px;
+  border: 1px solid var(--math-atelier-line, #dee4ea);
+  border-radius: 12px;
+  background: var(--math-atelier-surface, #fff);
+  color: var(--math-atelier-ink, #203653);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+/* 효과음이 꺼져 있을 때 — 잠긴다. 글자는 읽히는 채로 둔다(까닭은 아래 줄이 말한다). */
+dialog.sheet button.soundPreview:disabled {
+  opacity: 1;
+  cursor: default;
+  background: #f4f6f8;
+  color: var(--math-atelier-muted, #52627a);
+}
+
 @media (max-width: 360px) {
   .home .mission,
   .home .journey {
