@@ -648,7 +648,7 @@ describe("concept cards", () => {
     );
   });
 
-  it("omits the title on a continuation and keeps the QR", () => {
+  it("replaces the title with a small continuation mark and keeps the QR", () => {
     const dom = parse(
       render(
         concept({
@@ -659,6 +659,11 @@ describe("concept cards", () => {
       ),
     );
     expect(dom.querySelector(".tb-concept-title")).toBeNull();
+    expect(dom.querySelector(".tb-concept-number")).toBeNull();
+    expect(
+      dom.querySelector(".tb-concept-continuation[data-continuation]")
+        ?.textContent,
+    ).toBe("약수계속");
     expect(dom.querySelector(".tb-qr")?.getAttribute("data-qr-id")).toBe("q1");
   });
 

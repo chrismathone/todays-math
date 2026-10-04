@@ -31,6 +31,11 @@ export const TEXTBOOK_CONTENT_CSS = `
 .tb-memory-source .tb-memory-body,.tb-memory-source .tb-memory-body>.tb-blank-sentence{min-height:0}
 .tb-memory-source .tb-blank-sentence>.tb-write-line:only-child{flex:1 1 auto;height:auto;min-height:calc(var(--tb-row-lines,1)*1.9em)}
 .tb-memory-source .tb-memory-row-measured .tb-write-line:only-child{min-height:0}
+.tb-memory-continuation{display:flex;align-items:baseline;gap:1.5mm;min-width:0;font-size:8pt;line-height:1.5;font-weight:700;letter-spacing:-.2px;color:var(--tb-dark)}
+.tb-memory-continuation-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-memory-continuation small{flex:none;font-size:6.5pt;font-weight:400;color:#83948b;white-space:nowrap}
+.tb-concept-continuation{display:flex;align-items:baseline;gap:1.5mm;margin:0 0 1.5mm;font-size:7.5pt;line-height:1.5;font-weight:700;letter-spacing:-.2px;color:var(--tb-accent)}
+.tb-concept-continuation small{flex:none;font-size:6.5pt;font-weight:400;color:#83948b}
 .tb-memory .tb-blank-keyword,.tb-term-recall .tb-blank-keyword{min-width:0}
 .tb-memory-key{border-bottom:.265mm solid var(--tb-accent);color:var(--tb-accent);font-weight:700}
 .tb-error-item{padding:2mm 0 2.5mm;border-bottom:.265mm solid var(--tb-light);font-size:9pt;line-height:1.9;word-break:keep-all}.tb-error-statement p{margin:0}

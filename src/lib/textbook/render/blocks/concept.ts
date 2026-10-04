@@ -32,7 +32,9 @@ function conceptNumber(block: ConceptBlock): string {
 }
 
 function titleHtml(block: ConceptBlock, title: string): string {
-  if (block.continuation) return "";
+  // A continued part repeats the name in a small line. The number chip stays with the first part.
+  if (block.continuation)
+    return `<div class="tb-concept-continuation" data-continuation data-anchor="concept-continuation">${esc(title)}<small>계속</small></div>`;
   const number = conceptNumber(block);
   return `<h3 class="tb-concept-title" data-anchor="concept-title">${number ? `<span class="tb-concept-number">${esc(number)}</span>` : ""}${esc(title)}</h3>`;
 }
