@@ -128,6 +128,7 @@ export function recallMeasurementModel(
       block.memoryGroup,
     ]),
   );
+  const seen = new Set<string>();
   return {
     ...answers,
     sections: answers.sections
@@ -135,13 +136,45 @@ export function recallMeasurementModel(
         ...section,
         blocks: section.blocks.filter((block) => {
           const group = groups.get(block.id);
-          return (
-            block.kind === "recall" && group !== undefined && wanted.has(group)
-          );
+          if (block.kind !== "recall" || group === undefined || !wanted.has(group))
+            return false;
+          const partition = JSON.stringify([group, (block.displayRows ?? []).map((row) => row.rowKey)]);
+          if (seen.has(partition)) return false;
+          seen.add(partition);
+          return true;
         }),
       }))
       .filter((section) => section.blocks.length > 0),
   };
+}
+
+/** Count every private helper before creating the bounded measurement DOM. */
+export function assertRecoveryMeasurementBudget(
+  sizing: TextbookRenderModel,
+  probes?: TextbookRenderModel,
+): void {
+  const count = [sizing, probes].reduce((sum, model) =>
+    sum + (model?.sections.reduce((total, section) => total + section.blocks.length, 0) ?? 0), 0);
+  if (sizing.sections.length > 8 || count > 600)
+    throw new Error("Render measurement exceeds 8 sections or 600 projected blocks including private helpers; split sections before publishing");
+}
+
+/** Self-contained DOM function used verbatim in the preview and trusted Chromium page. */
+export function measureIntroGeometry(root: ParentNode = document): Record<string, boolean> {
+  const result: Record<string, boolean> = {};
+  const tolerance = 0.5 * 96 / 25.4;
+  for (const element of root.querySelectorAll<HTMLElement>("[data-measure-id]")) {
+    const intro = element.querySelector<HTMLElement>(".tb-auto-intro-left");
+    if (!intro) continue;
+    const frame = intro.getBoundingClientRect();
+    const slots = ["h2", ".tb-intro-question", "figure", ".tb-intro-explanation", ".tb-intro-key"]
+      .map((selector) => intro.querySelector<HTMLElement>(selector)?.getBoundingClientRect());
+    result[element.dataset.measureId!] = slots.every((rect, index) =>
+      rect !== undefined && rect.bottom <= frame.bottom + tolerance &&
+      (index === 0 || slots[index - 1]!.bottom <= rect.top + tolerance),
+    );
+  }
+  return result;
 }
 
 /** Self-contained DOM function used verbatim in the preview and trusted Chromium page. */

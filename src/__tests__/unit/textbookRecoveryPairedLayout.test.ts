@@ -15,6 +15,7 @@ import {
 } from "@/lib/textbook/layout/paginate";
 import { renderPageHtml } from "@/lib/textbook/render/html";
 import { recallPieces } from "@/lib/textbook/render/markdown";
+import { assertRecoveryMeasurementBudget, recallMeasurementModel } from "@/lib/textbook/render/recoveryMeasurement";
 
 function paired() {
   const exchange = textbookFixture();
@@ -154,7 +155,7 @@ describe("corresponding exercise spreads", () => {
   function spread() {
     const { section } = paired();
     const base = section.blocks.find((block) => block.kind === "problem")!;
-    const blocks = [0, 1, 2, 3].map((index) => ({
+    const blocks: RenderBlock[] = [0, 1, 2, 3].map((index) => ({
       ...base,
       id: `q${index}`,
       semantic: { activity: "basicCheck" as const },
@@ -211,5 +212,39 @@ describe("corresponding exercise spreads", () => {
     const { pages, sections } = spread();
     pages[1].blocks.forEach((block) => { block.heightMm = 250; });
     expect(() => alignTextbookSpreads(pages, sections)).toThrow(/SPREAD_ALIGNMENT_OVERFLOW/);
+  });
+});
+
+describe("private canonical measurement limits", () => {
+  it("deduplicates repeated canonical phases while retaining distinct row partitions and excluding problem answers", () => {
+    const { model, section } = paired();
+    const recalls = ["study", "keywords", "sentences"].flatMap((phase, i) =>
+      ["row-a", "row-b"].map((rowKey): RenderBlock => ({
+        id: `recall-${i}-${rowKey}`, sourceBlockId: "source-recall",
+        unitKey: section.unitKey, sectionKey: section.sectionKey,
+        kind: "recall", phase: phase as "study" | "keywords" | "sentences",
+        pieces: [], repetitionChecks: false, answersVisible: true,
+        semantic: { activity: "conceptStudy", node: { kind: "rows", groupKey: "same-group",
+          rows: [{ rowKey, label: "정의", rawText: "canonical private text", textFormat: "markdown" }] } },
+        displayRows: [{ rowKey, label: "정의", pieces: [{ kind: "key", markdown: "canonical private text" }], hidden: false, lines: 1 }],
+      })),
+    );
+    const answers = { ...model, variant: "answers" as const,
+      sections: [{ ...section, blocks: [...recalls, ...section.blocks] }] };
+    const selected = { ...model, sections: [{ ...section, blocks: recalls.slice(4) }] };
+    const probes = recallMeasurementModel(answers, selected);
+    expect(probes.sections.flatMap((s) => s.blocks).map((b) => b.id))
+      .toEqual(["recall-0-row-a", "recall-0-row-b"]);
+    expect(probes.sections.every((s) => s.blocks.every((b) => b.kind === "recall"))).toBe(true);
+    expect(answers.sections[0].blocks).toHaveLength(10);
+  });
+  it("counts canonical helpers within the existing 600-block ceiling before a DOM is created", () => {
+    const { model, section } = paired();
+    const sizing = { ...model, sections: [{ ...section, blocks: Array(599).fill(section.blocks[0]) }] };
+    const one = { ...model, sections: [{ ...section, blocks: [section.blocks[0]] }] };
+    expect(() => assertRecoveryMeasurementBudget(sizing, one)).not.toThrow();
+    expect(() => assertRecoveryMeasurementBudget(sizing, model)).toThrow(/600 projected blocks/);
+    expect(() => assertRecoveryMeasurementBudget({ ...model, sections: Array(9).fill(section) }))
+      .toThrow(/8 sections/);
   });
 });

@@ -219,9 +219,11 @@ export function renderPageHtml(
   const bodyBlocks = page.blocks.filter(
     (placement) => blocks.get(placement.blockId)?.kind !== "heading",
   );
+  const headingPlacement = page.blocks.find((placement) => blocks.get(placement.blockId)?.kind === "heading");
   const bodyTop = Math.min(
     ...bodyBlocks.map((placement) => placement.yMm),
     ...dialogue.map((placement) => placement.yMm - 3),
+    ...(dialogue.length && headingPlacement ? [headingPlacement.yMm + headingPlacement.heightMm + 3.5] : []),
   );
   let bodyEnd = Math.max(
     ...bodyBlocks.map((placement) => placement.yMm + placement.heightMm),

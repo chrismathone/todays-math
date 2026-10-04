@@ -65,8 +65,11 @@ export function renderSemanticTextHtml(
     return `<section class="tb-writing-activity" data-activity="${semantic.activity}">${node.prompts.map((prompt) => `<div class="tb-writing-prompt">${md(prompt)}${writingLinesHtml(node.lines)}</div>`).join("")}</section>`;
   if (node.kind === "references")
     return `<section class="tb-references" data-activity="${semantic.activity}" aria-label="${esc(semantic.title ?? "쪽수 안내")}">${node.entries.map((entry) => `<div class="tb-reference-row" data-reference-key="${esc(entry.key)}"><span>${md(entry.label)}</span><span class="tb-reference-page" aria-label="쪽수">${esc(entry.pageLabel ?? "")}</span></div>`).join("")}</section>`;
-  if (node.kind === "exampleGroup")
-    return `<section class="tb-example-group tb-pair-heading" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${block.exampleGroupNumber ? `<span class="tb-pair-number">${String(block.exampleGroupNumber).padStart(2, "0")}</span>` : ""}<h3>${esc(node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy)) : md(node.strategy)}</div>`}</section>`;
+  if (node.kind === "exampleGroup") {
+    const sourceTitle = semantic.source ? /^Y(\d+)\s+(.+)$/.exec(node.title) : null;
+    const number = sourceTitle?.[1] ?? block.exampleGroupNumber;
+    return `<section class="tb-example-group tb-pair-heading" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy)) : md(node.strategy)}</div>`}</section>`;
+  }
   return null;
 }
 
