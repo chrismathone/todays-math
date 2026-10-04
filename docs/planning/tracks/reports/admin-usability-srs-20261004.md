@@ -98,3 +98,5 @@ root가 후속으로 `UnifiedWorkspace` 네비게이션 연결까지 소유를 �
 화면 증빙: [320px](evidence/admin-usability-srs-20261004/srs-320.png), [390px](evidence/admin-usability-srs-20261004/srs-390.png), [1440px](evidence/admin-usability-srs-20261004/srs-1440.png). 재실행 방법과 fixture 한계는 `e2e/admin-srs/README.md`에 기록했다.
 
 남은 작업은 root의 전체 통합 타입·빌드와 타 worker의 계정 폼/교재 guard 통합 확인이다. root가 후속 소유를 인계받은 UnifiedWorkspace production 및 UnifiedWorkspace.access 테스트를 더 편집하지 않았다. 이번 브라우저 검증은 실제 Next 서버 redirect·DB 쓰기를 실행한 검증이 아니며, 계정 목록 scroll과 브라우저 history 전체 스택 복원은 helper/jsdom 근거와 root 전체 통합 확인 범위로 남긴다.
+
+브라우저 fixture·화면 증빙·최종 구현 보고서는 `9e00f8796`에 커밋했다. 이어 현재 root 브랜치를 `c56ed0c8e`로 다시 병합했고, 마지막 병합 뒤 중복 등록/대상 수/dirty 전환/최초 저장 대상/외부 탭/직접 반 선택/불가 반 안내/SRS 셸 이동의 **3개 파일 11/11 focused regression**이 통과했다(12.70초, 무관한 93개는 의도적으로 제외). 이 검사는 후속 root 교재 guard 편집을 대신하지 않는다.
