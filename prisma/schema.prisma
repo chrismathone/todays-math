@@ -2358,6 +2358,7 @@ model EnglishListeningMediaAsset {
   reservedBytes Int
   record Json @db.JsonB
   blobs EnglishListeningMediaBlob[]
+  storageBlobs EnglishListeningMediaStorageBlob[]
   set EnglishListeningSet @relation(fields: [setId], references: [id], onDelete: Restrict)
   @@index([ownerId])
   @@index([state, uploadExpiresAt])
@@ -2375,6 +2376,21 @@ model EnglishListeningMediaBlob {
   @@index([assetId])
   @@index([committed, createdAt])
   @@map("english_listening_media_blob")
+}
+
+model EnglishListeningMediaStorageBlob {
+  key String @id @db.Uuid
+  assetId String @db.Uuid
+  byteLength Int
+  sha256 String @db.Char(64)
+  ref Json? @db.JsonB
+  committed Boolean @default(false)
+  deleting Boolean @default(false)
+  createdAt DateTime @default(now())
+  asset EnglishListeningMediaAsset @relation(fields: [assetId], references: [assetId], onDelete: Restrict)
+  @@index([assetId])
+  @@index([committed, createdAt], map: "english_listening_media_storage_blob_orphan_idx")
+  @@map("english_listening_media_storage_blob")
 }
 
 model EywaBinding {
