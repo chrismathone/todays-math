@@ -16,6 +16,7 @@ import { ListeningMediaError } from "./errors";
 import { inspectListeningMedia } from "./inspect";
 import {
   decodeMp3,
+  parseMp3,
   MAX_DURATION_MS,
   MAX_ORIGINAL_BYTES,
   MAX_PLAYBACK_BYTES,
@@ -53,6 +54,8 @@ export interface ListeningMediaAuthorizationTarget {
 }
 export interface ListeningMediaDependencies<Context> {
   store: ListeningMediaStore;
+  /** Trusted bulk archival path only. Full decoding still gates readiness. */
+  mp3PlaybackEncoding?: "canonical_pcm" | "scrubbed_mp3";
   /**
    * Live authoritative check, never a client assertion or cached allow decision.
    * Check actor/branch/owner/set/asset linkage and purpose-specific rights; playback
@@ -175,8 +178,8 @@ async function* readAsset(
     let chunkRemaining = to - from;
     let empty = 0;
     for await (const piece of store.readBlob(chunk.key, {
-      start: from - chunk.offset,
-      endExclusive: to - chunk.offset,
+      start: (chunk.blobOffset ?? 0) + from - chunk.offset,
+      endExclusive: (chunk.blobOffset ?? 0) + to - chunk.offset,
       maxChunkBytes: max,
       signal,
     })) {
@@ -261,6 +264,10 @@ export function createListeningMediaService<Context>(
   const limits = { ...LISTENING_MEDIA_L0_LIMITS, ...dependencies.limits };
   if (
     typeof resolveScope !== "function" ||
+    (dependencies.mp3PlaybackEncoding !== undefined &&
+      !["canonical_pcm", "scrubbed_mp3"].includes(
+        dependencies.mp3PlaybackEncoding,
+      )) ||
     !Object.values(limits).every((n) => Number.isSafeInteger(n) && n > 0) ||
     limits.chunkBytes > 1024 * 1024 ||
     limits.readChunkBytes > 1024 * 1024 ||
@@ -343,6 +350,10 @@ export function createListeningMediaService<Context>(
       chunkBytes: limits.chunkBytes,
       uploadExpiresAt: now() + limits.uploadTtlMs,
       chunks: [],
+      ...(data.mimeType === "audio/mpeg" &&
+      dependencies.mp3PlaybackEncoding === "scrubbed_mp3"
+        ? { mp3PlaybackEncoding: "scrubbed_mp3" as const }
+        : {}),
     };
     if (!(await store.create(record)))
       throw new ListeningMediaError("conflict");
@@ -474,7 +485,7 @@ export function createListeningMediaService<Context>(
     if (record.receivedBytes !== record.totalBytes)
       throw new ListeningMediaError("incomplete");
     const hash = createHash("sha256");
-    // Strictly capped at 16MiB. Decoder output is written in bounded chunks, never collected.
+    // One bounded original (64MiB maximum). PCM output is written in bounded chunks.
     const original = Buffer.alloc(record.totalBytes);
     let position = 0;
     for await (const piece of readAsset(
@@ -517,70 +528,106 @@ export function createListeningMediaService<Context>(
       ) {
         let offset = 44;
         try {
-          const outputChunkBytes = Math.max(64 * 1024, limits.chunkBytes);
-          let pending = Buffer.alloc(outputChunkBytes);
-          let pendingLength = 0;
-          const flush = async () => {
-            if (!pendingLength) return;
-            signal?.throwIfAborted();
-            const bytes = pending.subarray(0, pendingLength);
-            const key = await store.putBlob(bytes, record);
-            staged.push({
+          if (record.mp3PlaybackEncoding === "scrubbed_mp3") {
+            const decoded = await decodeMp3(
+              original,
+              limits,
+              async () => {},
+              signal,
+            );
+            const parsed = parseMp3(original, limits.maxDurationMs);
+            const span = original.subarray(parsed.audioStart, parsed.audioEnd);
+            playback = {
+              revision: 1,
+              mimeType: "audio/mpeg",
+              sha256: digest(span),
+              totalBytes: span.length,
+              chunks: record.chunks.flatMap((chunk) => {
+                const from = Math.max(parsed.audioStart, chunk.offset);
+                const to = Math.min(
+                  parsed.audioEnd,
+                  chunk.offset + chunk.byteLength,
+                );
+                return from < to
+                  ? [
+                      {
+                        ...chunk,
+                        offset: from - parsed.audioStart,
+                        byteLength: to - from,
+                        blobOffset: from - chunk.offset,
+                        sha256: digest(original.subarray(from, to)),
+                      },
+                    ]
+                  : [];
+              }),
+            };
+            inspection = { playable: true, durationMs: decoded.durationMs };
+          } else {
+            const outputChunkBytes = Math.max(64 * 1024, limits.chunkBytes);
+            let pending = Buffer.alloc(outputChunkBytes);
+            let pendingLength = 0;
+            const flush = async () => {
+              if (!pendingLength) return;
+              signal?.throwIfAborted();
+              const bytes = pending.subarray(0, pendingLength);
+              const key = await store.putBlob(bytes, record);
+              staged.push({
+                key,
+                offset,
+                byteLength: bytes.length,
+                sha256: digest(bytes),
+                expectedRevision: record.revision,
+              });
+              offset += bytes.length;
+              pending = Buffer.alloc(outputChunkBytes);
+              pendingLength = 0;
+            };
+            const decoded = await decodeMp3(
+              original,
+              limits,
+              async (pcm) => {
+                for (let p = 0; p < pcm.length;) {
+                  signal?.throwIfAborted();
+                  const take = Math.min(
+                    outputChunkBytes - pendingLength,
+                    pcm.length - p,
+                  );
+                  pcm.copy(pending, pendingLength, p, p + take);
+                  p += take;
+                  pendingLength += take;
+                  if (pendingLength === outputChunkBytes) await flush();
+                }
+              },
+              signal,
+            );
+            await flush();
+            const key = await store.putBlob(decoded.header, record);
+            staged.unshift({
               key,
-              offset,
-              byteLength: bytes.length,
-              sha256: digest(bytes),
+              offset: 0,
+              byteLength: 44,
+              sha256: digest(decoded.header),
               expectedRevision: record.revision,
             });
-            offset += bytes.length;
-            pending = Buffer.alloc(outputChunkBytes);
-            pendingLength = 0;
-          };
-          const decoded = await decodeMp3(
-            original,
-            limits,
-            async (pcm) => {
-              for (let p = 0; p < pcm.length;) {
-                signal?.throwIfAborted();
-                const take = Math.min(
-                  outputChunkBytes - pendingLength,
-                  pcm.length - p,
-                );
-                pcm.copy(pending, pendingLength, p, p + take);
-                p += take;
-                pendingLength += take;
-                if (pendingLength === outputChunkBytes) await flush();
-              }
-            },
-            signal,
-          );
-          await flush();
-          const key = await store.putBlob(decoded.header, record);
-          staged.unshift({
-            key,
-            offset: 0,
-            byteLength: 44,
-            sha256: digest(decoded.header),
-            expectedRevision: record.revision,
-          });
-          const playbackHash = createHash("sha256");
-          for await (const piece of readAsset(
-            store,
-            { chunks: staged },
-            0,
-            offset,
-            limits.readChunkBytes,
-            signal,
-          ))
-            playbackHash.update(piece);
-          playback = {
-            revision: 1,
-            mimeType: "audio/wav",
-            sha256: playbackHash.digest("hex"),
-            totalBytes: offset,
-            chunks: staged,
-          };
-          inspection = { playable: true, durationMs: decoded.durationMs };
+            const playbackHash = createHash("sha256");
+            for await (const piece of readAsset(
+              store,
+              { chunks: staged },
+              0,
+              offset,
+              limits.readChunkBytes,
+              signal,
+            ))
+              playbackHash.update(piece);
+            playback = {
+              revision: 1,
+              mimeType: "audio/wav",
+              sha256: playbackHash.digest("hex"),
+              totalBytes: offset,
+              chunks: staged,
+            };
+            inspection = { playable: true, durationMs: decoded.durationMs };
+          }
         } catch (error) {
           if (!(error instanceof MediaFormatError)) throw error;
           inspection = { playable: false, blocker: error.blocker };
@@ -614,7 +661,7 @@ export function createListeningMediaService<Context>(
               ...fields,
               state: "ready",
               publishable: true,
-              mimeType: "audio/wav",
+              mimeType: playback!.mimeType,
               sha256: playback!.sha256,
               originalSha256: record.expectedSha256,
               playbackBytes: playback!.totalBytes,
@@ -727,8 +774,8 @@ export function createListeningMediaService<Context>(
     const headers = new Headers({
       ...securityHeaders,
       "Accept-Ranges": "bytes",
-      "Content-Type": "audio/wav",
-      "Content-Disposition": `inline; filename="audio-${record.assetId}.wav"`,
+      "Content-Type": playback.mimeType,
+      "Content-Disposition": `inline; filename="audio-${record.assetId}.${playback.mimeType === "audio/mpeg" ? "mp3" : "wav"}"`,
     });
     // RFC 9110 §14.2: Range applies to GET only (HEAD ignores it and never opens a blob). An
     // unknown range unit or an unsupported multi-range set is ignored and the authorized full

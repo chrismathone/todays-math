@@ -138,7 +138,7 @@ export function parseMp3(bytes: Buffer, maxDurationMs: number) {
     (declaredBytes !== undefined && declaredBytes !== end - audioStart)
   )
     invalid();
-  return { frames, sampleRate, channels, samples };
+  return { frames, sampleRate, channels, samples, audioStart, audioEnd: end };
 }
 
 export function waveHeader(
