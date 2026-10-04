@@ -73,3 +73,28 @@ root가 후속으로 `UnifiedWorkspace` 네비게이션 연결까지 소유를 �
 실제 구현 커밋: `388ecdee5`; root 전체 목록 조회 병합: `be50527a1`. 후속 코드·fixture 및 최신 root 통합 뒤 검증 결과는 아래에 추가한다.
 
 추가 fixture와 React 수정 이후 CourseDashboard·ClassManageWorkflow·AdminAccounts·UnifiedWorkspace.access의 **4개 파일, 133/133 테스트**가 통과했다(115.61초). 변경한 다섯 React 파일의 ESLint 재검사도 오류·경고 없이 통과했다. 이 결과에는 실제 CourseDashboard의 셸 이동 이벤트 거절, 같은 등록 행 재선택 guard 및 접근 불가 반의 자동 대체 거절이 포함된다.
+
+## 최종 담당 검증과 실제 브라우저 추가 승인 범위
+
+판정: **A01·A02·A03·A04·A05·A06·B06·C01 담당 구현 완료**. 실제 구현/fixture 커밋은 `388ecdee5`, `c8de0a7bb`이고, 타입 오류가 있었던 테스트의 지원하지 않는 `getByRole exact` 옵션 세 곳은 `cde93fadf`에서 제거했다. root `4d95f078f` 병합은 `ab9d92652`, 최종 root `6cae54e8c` 및 root 당시 main 통합 병합은 `e03a3b1e2`다.
+
+- root 통합 뒤 관련 course API·server·class authorization·안전 복귀·roster metadata·학생 SRS·TeachingView **8개 파일 139개 케이스**를 확인했다. 첫 병렬 실행은 138 통과/TeachingView 동적 로딩 대기 1회 시간 초과였으며, TeachingView 단독 재실행은 **11/11 통과**했다. 다른 7개 파일은 첫 실행에 모두 통과했다.
+- 담당 production **24개 파일 ESLint 오류·경고 0**; 새 `e2e/admin-srs` fixture도 ESLint 오류·경고 0이다.
+- worker가 실행한 전체 8GB 타입 검사는 production 오류 없이 위 테스트 옵션 오류 세 곳을 보고했다. 해당 오류는 모두 수정·커밋했다. 코디네이터는 검사 프로세스 경합을 피하도록 추가 전체 타입 검사 실행을 중단하도록 지시했고, 이후 전체 통합 타입·빌드를 root가 맡았다. **worker의 최종 전체 타입 검사를 통과했다고 주장하지 않는다.**
+
+코디네이터의 후속 요청으로 단위 테스트와 별도로 **실제 Edge 브라우저 acceptance**를 수행했다. `e2e/admin-srs`는 port 4326의 독립 Vite preview에서 production CourseDashboard/CoursePlanForm, UnifiedWorkspace 셸 이동, ClassManage/StudentList, AdminUserDetail 복귀 링크를 실행한다. Link/router/dynamic은 client framework shim이며 열지 않는 타 메뉴는 fixture로 대체한다. API는 브라우저 로컬 합성 데이터여서 운영 저장소에 접근하지 않는다. 서버의 실제 반 소속 gate는 위 API 검증 근거로 판단한다.
+
+| 실제 브라우저 케이스         | 확인 결과                                                                                                                                                                                                                       |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 중복 반 등록과 보충 설정     | 학생 2명/등록 3건, 같은 학생 각 반의 계정 링크·독립 강조, 중2 등록에서 저장한 공유 계획이 초3·중2 행에 함께 반영되며 반 이름/학년은 보존. 보충 학생의 학년·학기·단원·소단원을 명시적으로 선택한 뒤 저장하면 계획 대상 2명이 됨. |
+| 원고와 저장 대상             | Escape·동일 학생 다른 반·탭 이동에서 계속 편집/버리고 이동/저장하고 이동, 원본 값 복원, 최초 학생/반으로 저장 검증.                                                                                                             |
+| production 작업실 셸         | 키보드 Enter와 hash 이동을 막고 계속 편집 시 SRS 유지, 버리기 및 저장 뒤 허용한 작업실 이동 실행.                                                                                                                               |
+| native 이탈과 busy           | 실제 `beforeunload` 브라우저 dialog를 취소하면 원고 유지; 지연 중인 저장에서 다른 등록 행/Escape 전환 차단 및 최초 반으로 저장.                                                                                                 |
+| 직접 링크·새로고침·안전 복귀 | 등록 반·학생으로 직접 이동/새로고침 복원, admin SRS 복귀 맥락 유지, 원장/관리자·최고 관리자·SRS-only 목적지 구분, 외부·다른 지점·재귀 return 거부.                                                                              |
+| 반응형·실행 오류             | 320·390·1440px에서 실제 계획 화면의 document overflow 없음 및 pageerror 0. agent-browser로 내용/오버레이/실행 오류를 확인하고 화면을 직접 확인함.                                                                               |
+
+**6개 고유 브라우저 케이스 통과**: main 실행에서 5개가 통과했고, 중복/보충 케이스는 비어 있는 보충 진도의 명시 선택 및 Playwright label 선택자를 수정한 focused 재실행에서 1/1 통과했다. main 실행의 5개는 3.8초/1.8초/12.0초/4.1초/3.9초, focused 케이스는 3.9초다. 단일 실행 6/6으로 오해하지 않도록 실행 경계를 구분한다.
+
+화면 증빙: [320px](evidence/admin-usability-srs-20261004/srs-320.png), [390px](evidence/admin-usability-srs-20261004/srs-390.png), [1440px](evidence/admin-usability-srs-20261004/srs-1440.png). 재실행 방법과 fixture 한계는 `e2e/admin-srs/README.md`에 기록했다.
+
+남은 작업은 root의 전체 통합 타입·빌드와 타 worker의 계정 폼/교재 guard 통합 확인이다. root가 후속 소유를 인계받은 UnifiedWorkspace production 및 UnifiedWorkspace.access 테스트를 더 편집하지 않았다. 이번 브라우저 검증은 실제 Next 서버 redirect·DB 쓰기를 실행한 검증이 아니며, 계정 목록 scroll과 브라우저 history 전체 스택 복원은 helper/jsdom 근거와 root 전체 통합 확인 범위로 남긴다.
