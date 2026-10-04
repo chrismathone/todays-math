@@ -20,6 +20,7 @@ import { createListeningMediaService } from "@/lib/english/listening/media/servi
 import { PrismaListeningMediaStore } from "@/lib/english/listening/media/prismaStore";
 import { PrismaStorageListeningMediaStore } from "@/lib/english/listening/media/storageStore";
 import { printableDraft } from "@/lib/english/listening/runtime/compose";
+import { listeningDraftPrintDocument } from "@/lib/english/listening/draftPrint";
 import {
   teacher,
   type ListeningActor,
@@ -426,6 +427,149 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         });
     });
   });
+  it("lets the bank grant manage owned materials without granting listening assignments or bypassing rights", async () => {
+    const pilotIds = process.env.ENGLISH_LISTENING_TEACHER_IDS;
+    process.env.ENGLISH_LISTENING_TEACHER_IDS = otherId;
+    await db!.user.update({
+      where: { id: ownerId },
+      data: { disabledMenus: ["english-listening"] },
+    });
+    try {
+      const account = await db!.$transaction((tx) =>
+        teacher(tx, owner, "materials"),
+      );
+      expect(account.menus).toContain("english-bank");
+      expect(account.menus).not.toContain("english-listening");
+      await expect(
+        db!.$transaction((tx) => teacher(tx, owner)),
+      ).rejects.toMatchObject({ status: 404 });
+      const original = await source(91);
+      const bank = await runtime!.teacherBank(owner, "bank", {});
+      expect(
+        bank.data.some((item) => item.id === original.source.detail.id),
+      ).toBe(true);
+      expect(
+        (await runtime!.teacherList(owner, "sets")).some(
+          (item) => "id" in item && item.id === original.source.detail.id,
+        ),
+      ).toBe(true);
+      expect(
+        (await runtime!.setDetail(owner, original.source.detail.id)).id,
+      ).toBe(original.source.detail.id);
+      await expect(
+        runtime!.composeSource(other, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.setDetail(other, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      for (const resource of ["classes", "assignments"] as const)
+        await expect(
+          runtime!.teacherList(owner, resource),
+        ).rejects.toMatchObject({ status: 404 });
+      await expect(runtime!.createAssignment(owner, {})).rejects.toMatchObject({
+        status: 404,
+      });
+      await expect(
+        runtime!.publishSet(owner, original.source.detail.id, {
+          expectedRevision: original.source.detail.revision,
+        }),
+      ).rejects.toMatchObject({ status: 404 });
+      const request = {
+        setId: original.source.detail.id,
+        assetId: original.source.detail.document.groups[0].audio!.assetId,
+        method: "GET",
+      } as const;
+      const response = await media!.serve({ actor: owner }, request);
+      expect(response.status).toBe(200);
+      expect(Buffer.from(await response.arrayBuffer())).toEqual(original.wav);
+      let composed = await runtime!.composeSet(owner, {
+        title: "은행 문항 시험지",
+        selections: [selection(original.source)],
+      });
+      expect(composed.document.rightsReview).toBeNull();
+      composed = await runtime!.reviewSet(owner, composed.id, {
+        expectedRevision: composed.revision,
+        kind: "rights",
+        basis: "직접 작성한 테스트 자료의 보관·교사 이용·인쇄 허용",
+      });
+      const printable = await db!.$transaction(async (tx) =>
+        printableDraft(
+          tx,
+          await teacher(tx, owner, "materials"),
+          composed.id,
+          composed.revision,
+          "student",
+        ),
+      );
+      const studentPaper = JSON.stringify(
+        listeningDraftPrintDocument(printable, "student"),
+      );
+      expect(studentPaper).not.toContain("answerChoiceId");
+      expect(studentPaper).not.toContain(printable.groups[0].transcript.text);
+      await runtime!.deleteSet(owner, composed.id, {
+        expectedRevision: composed.revision,
+      });
+      await expect(
+        runtime!.composeSource(owner, composed.id),
+      ).rejects.toMatchObject({ status: 404 });
+      await runtime!.updateSet(owner, original.source.detail.id, {
+        ...edit(original.source.detail),
+        rights: { rightsStatus: "unknown", allowedUses: [] },
+      });
+      expect((await media!.serve({ actor: owner }, request)).status).toBe(404);
+      await db!.user.update({
+        where: { id: ownerId },
+        data: { disabledMenus: ["english-listening", "english-bank"] },
+      });
+      await expect(
+        runtime!.teacherBank(owner, "bank", {}),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.composeSource(owner, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      expect((await media!.serve({ actor: owner }, request)).status).toBe(404);
+      await db!.user.update({
+        where: { id: ownerId },
+        data: {
+          disabledMenus: ["english-listening"],
+          approvalStatus: "pending",
+        },
+      });
+      await expect(
+        runtime!.teacherBank(owner, "bank", {}),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.setDetail(owner, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      const branch = await db!.branch.create({
+        data: {
+          name: "자료은행 차단 테스트 학원",
+          disabledMenus: ["english-bank", "english-listening"],
+        },
+      });
+      branchIds.push(branch.id);
+      await db!.user.update({
+        where: { id: ownerId },
+        data: {
+          approvalStatus: "approved",
+          disabledMenus: [],
+          branchId: branch.id,
+        },
+      });
+      await expect(
+        runtime!.teacherBank(owner, "bank", {}),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.setDetail(owner, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+    } finally {
+      await db!.user.update({
+        where: { id: ownerId },
+        data: { disabledMenus: [], approvalStatus: "approved", branchId: null },
+      });
+      process.env.ENGLISH_LISTENING_TEACHER_IDS = pilotIds;
+    }
+  }, 120000);
   it.skipIf(!process.env.LISTENING_M4A_TEST_FFMPEG_PATH)(
     "preserves an original M4A and plays only its verified MP3 derivative through same-scope clone and selected PCM",
     async () => {

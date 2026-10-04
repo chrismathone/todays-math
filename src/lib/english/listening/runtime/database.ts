@@ -95,6 +95,7 @@ export interface AttemptRow {
 export async function teacher(
   tx: ListeningTx,
   actor: ListeningActor,
+  access: "listening" | "materials" = "listening",
 ): Promise<AccountAccess> {
   if (actor.kind !== "teacher") throw denied();
   const user = await tx.user.findUnique({
@@ -111,7 +112,12 @@ export async function teacher(
   )
     throw denied();
   const { menus } = effectiveWorkspaceMenuPolicy(user);
-  if (!menus.includes("english-listening")) throw denied();
+  // Bank material work does not grant assignment/publication or pilot access.
+  if (
+    !menus.includes("english-listening") &&
+    !(access === "materials" && menus.includes("english-bank"))
+  )
+    throw denied();
   return { ...user, menus };
 }
 export async function student(tx: ListeningTx, actor: ListeningActor) {

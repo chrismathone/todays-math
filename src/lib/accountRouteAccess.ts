@@ -19,6 +19,7 @@ export function englishRouteAllowed(
   const library = allowed.includes("english-library");
   const listening = allowed.includes("english-listening");
   const bank = allowed.includes("english-bank");
+  const listeningMaterial = listening || bank;
   const read = method === "GET" || method === "HEAD";
   if (path === "/api/english/passages")
     return bank && (read || method === "POST");
@@ -34,31 +35,33 @@ export function englishRouteAllowed(
     path === "/api/english/listening/bank" ||
     path === "/api/english/listening/references"
   )
-    return bank && listening && read;
+    return bank && read;
   if (path === "/api/english/listening/compose")
-    return bank && listening && method === "POST";
+    return bank && method === "POST";
   if (/^\/api\/english\/listening\/sets\/[^/]+\/compose-source$/.test(path))
-    return bank && listening && method === "GET";
-  if (/^\/english\/listening\/sets\/[^/]+\/(print|draft-print)$/.test(path))
+    return bank && method === "GET";
+  if (/^\/english\/listening\/sets\/[^/]+\/draft-print$/.test(path))
+    return listeningMaterial && read;
+  if (/^\/english\/listening\/sets\/[^/]+\/print$/.test(path))
     return listening && read;
   if (path === "/api/english/listening/sets")
-    return listening && (read || method === "POST");
+    return listeningMaterial && (read || method === "POST");
   if (/^\/api\/english\/listening\/sets\/[^/]+$/.test(path))
-    return listening && (read || method === "PATCH" || method === "DELETE");
-  if (
-    /^\/api\/english\/listening\/sets\/[^/]+\/(review|publish|media)$/.test(
-      path,
-    )
-  )
+    return (
+      listeningMaterial && (read || method === "PATCH" || method === "DELETE")
+    );
+  if (/^\/api\/english\/listening\/sets\/[^/]+\/publish$/.test(path))
     return listening && method === "POST";
+  if (/^\/api\/english\/listening\/sets\/[^/]+\/(review|media)$/.test(path))
+    return listeningMaterial && method === "POST";
   if (/^\/api\/english\/listening\/sets\/[^/]+\/media\/[^/]+$/.test(path))
-    return listening && read;
+    return listeningMaterial && read;
   if (
     /^\/api\/english\/listening\/sets\/[^/]+\/media\/[^/]+\/(chunks|complete)$/.test(
       path,
     )
   )
-    return listening && method === "POST";
+    return listeningMaterial && method === "POST";
   if (path === "/api/english/listening/classes") return listening && read;
   if (path === "/api/english/listening/assignments")
     return listening && (read || method === "POST");
