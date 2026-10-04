@@ -142,6 +142,9 @@ button.secondary {
     transform: rotate(360deg);
   }
 }
+[data-learning-motion="reduce"] .spinner {
+  animation: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .spinner {
     animation: none;

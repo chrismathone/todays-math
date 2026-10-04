@@ -74,6 +74,7 @@ const sizes = (process.env.QA_SIZES ?? "320x600,390x844,430x932,1280x800")
   .split(",")
   .map((size) => size.split("x").map(Number));
 const scenarioFilter = process.env.QA_SCENARIOS?.split(",");
+const feedbackMeasurements = [];
 const throttle = Number(process.env.QA_THROTTLE ?? 0);
 await mkdir(output, { recursive: true });
 
@@ -535,12 +536,54 @@ function sameGeometry(actual, original, label = "") {
 async function overlay(page, result, baseline, mobile) {
   const effect = page.locator(`[data-answer-feedback=${result}]`);
   await effect.waitFor({ timeout: 5000 });
-  assert.deepEqual(
-    await effect.evaluate((el) => ({ position: getComputedStyle(el).position, pointerEvents: getComputedStyle(el).pointerEvents })),
-    { position: "absolute", pointerEvents: "none" },
-  );
-  if (baseline) sameGeometry(await practiceGeometry(page, mobile), baseline, "오버레이 중");
+  await inlineFeedbackGeometry(page, effect);
+  if (baseline) sameGeometry(await practiceGeometry(page, mobile), baseline, "결과 줄 표시 중");
   assert.equal(await page.locator("[data-explorer-solution]").count(), 0, "해설이 자동으로 열렸다");
+}
+async function inlineFeedbackGeometry(page, effect = page.locator("[data-answer-feedback]")) {
+  const measured = await effect.evaluate((el) => {
+    const box = el.getBoundingClientRect();
+    const overlaps = (other) => {
+      const rect = other.getBoundingClientRect();
+      return Math.min(box.right, rect.right) - Math.max(box.left, rect.left) > 1 &&
+        Math.min(box.bottom, rect.bottom) - Math.max(box.top, rect.top) > 1;
+    };
+    const area = el.closest("dialog") ?? document.querySelector("main");
+    const buttons = [...(area?.querySelectorAll('button[aria-pressed]') ?? [])];
+    const missed = buttons.filter((button) => {
+      const rect = button.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      if (x < 0 || x >= innerWidth || y < 0 || y >= innerHeight) return false;
+      // Scrollable option lists only require hit testing the visible portion.
+      const clipped = button.closest('[role="group"]');
+      if (clipped) {
+        const clip = clipped.getBoundingClientRect();
+        if (y < clip.top || y > clip.bottom) return false;
+      }
+      return !button.contains(document.elementFromPoint(x, y));
+    });
+    const pane = area?.querySelector('[data-page-turn="true"]');
+    const style = getComputedStyle(el);
+    return {
+      size: `${innerWidth}x${innerHeight}`,
+      result: el.getAttribute("data-answer-feedback"),
+      position: style.position,
+      pointerEvents: style.pointerEvents,
+      text: el.textContent,
+      box: { x: box.x, y: box.y, width: box.width, height: box.height },
+      overlapPane: !!pane && overlaps(pane),
+      overlapChoices: buttons.filter(overlaps).length,
+      missedChoiceCentres: missed.map((button) => button.textContent),
+    };
+  });
+  feedbackMeasurements.push(measured);
+  assert.ok(!["absolute", "fixed"].includes(measured.position), "결과가 덮는 레이어: " + measured.position);
+  assert.equal(measured.pointerEvents, "none");
+  assert.equal(measured.overlapPane, false, "결과가 문제 본문을 덮는다: " + JSON.stringify(measured));
+  assert.equal(measured.overlapChoices, 0, "결과가 보기를 덮는다: " + JSON.stringify(measured));
+  assert.deepEqual(measured.missedChoiceCentres, [], "결과 표시 중 보기 중앙 hit test");
+  return measured;
 }
 async function settled(page, sim) {
   await expect(page.locator("[data-answer-feedback]")).toHaveCount(0, { timeout: 8000 });
@@ -665,6 +708,7 @@ async function perform(page, sim, action, mobile) {
 async function homeReady(page) {
   await page.locator("[data-expedition-mission=true]").waitFor({ timeout: 20000 });
   await expect(page.locator("[data-daily-journey]")).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
 }
 async function homeFold(page, mobile, height, expected) {
   await homeReady(page);
@@ -883,8 +927,9 @@ const scenarios = {
         if (next.type === "answer") {
           const effect = page.locator("[data-answer-feedback]");
           await effect.waitFor();
-          const hidden = await effect.evaluate((el) => [...el.querySelectorAll("span")].filter((s) => getComputedStyle(s).display === "none").length);
-          assert.ok(hidden >= 1, "움직임 축소에서도 고리 이펙트가 보인다");
+          const animation = await effect.evaluate((el) => getComputedStyle(el).animationName);
+          assert.equal(animation, "none", "움직임 축소에서 결과 줄 애니메이션");
+          await inlineFeedbackGeometry(page, effect);
           checkedOverlay = true;
         }
         await settled(page, sim);
@@ -892,7 +937,7 @@ const scenarios = {
       assert.ok(checkedOverlay, "움직임 축소 중 오버레이를 보지 못했다");
       assert.equal(await page.locator("[data-page-turn=true]").evaluate((el) => getComputedStyle(el).animationName), "none");
       await page.emulateMedia({ reducedMotion: "no-preference" });
-      return "책장 넘김 none · 오버레이 고리 숨김";
+      return "문제 전환 none · 결과 줄 즉시 표시";
     });
     await step("concept.exitResume", async () => {
       const index = explorerStored(sim).profile.definitions.session.index;
@@ -1211,6 +1256,7 @@ async function bankScenario({ page, sim, mobile, height, step, shot }, kind) {
     await shot("bank-practice");
     await answerInBrowser();
     await page.locator("[data-answer-feedback=correct]").waitFor();
+    await inlineFeedbackGeometry(page);
     await expect(page.locator("[data-answer-feedback]")).toHaveCount(0, { timeout: 8000 });
     assert.equal(answered(), 1);
     return "탐험 틀(StudentReviewPage) 안 보기 4개 · 탭 위 고정 · 정답 오버레이";
@@ -2945,6 +2991,86 @@ fixtures["keys:look-replay-middle"] = fixtures["bank-middle"];
 scenarios["keys:look-replay-elementary"] = (context) => keysLookReplay(context, "elementary");
 fixtures["keys:look-replay-elementary"] = fixtures["bank-elementary"];
 
+// Opt-in checks for the agreed atelier layout and device preference.
+scenarios["atelier:home-motion"] = async ({ page, sim, mobile, width, step, shot }) => {
+  await step("atelier.home", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa");
+    await homeReady(page);
+    await noHorizontalScroll(page);
+    const mission = await page.locator("[data-expedition-mission]").boundingBox();
+    const map = await page.locator("[data-daily-journey]").boundingBox();
+    assert.ok(mission && map);
+    if (width >= 1024) {
+      assert.ok(map.width >= 480, "PC 나란히 배치의 지도 최소 폭: " + map.width);
+      assert.ok(map.x > mission.x + mission.width, "PC 미션/지도 나란히");
+    } else {
+      assert.ok(map.y >= mission.y + mission.height, "모바일 미션 뒤 지도 순서");
+      const tools = await page.getByRole("button", { name: "학습 설정", exact: true }).boundingBox();
+      assert.ok(tools && tools.y >= map.y + map.height, "모바일 지도 뒤 도구 순서");
+    }
+    await shot("atelier-home");
+    return `미션 ${Math.round(mission.width)}px · 지도 ${Math.round(map.width)}px · ${width >= 1024 ? "나란히" : "한 열"}`;
+  });
+  const boundary = page.locator("[data-learning-motion]").first();
+  const settings = () => page.getByRole("dialog", { name: "학습 설정", exact: true });
+  const toggle = () => settings().getByRole("switch", { name: "움직임 줄이기", exact: true });
+  const open = async () => {
+    await tap(page.getByRole("button", { name: "학습 설정", exact: true }), mobile);
+    await expect(settings()).toBeVisible();
+  };
+  const close = async () => {
+    await tap(settings().getByRole("button", { name: "학습 설정 닫기" }), mobile);
+    await expect(settings()).toHaveCount(0);
+  };
+  await step("atelier.app-reduce", async () => {
+    await expect(boundary).toHaveAttribute("data-learning-motion", "full");
+    await open();
+    const posts = sim.posts.length;
+    await tap(toggle(), mobile);
+    await expect(boundary).toHaveAttribute("data-learning-motion", "reduce");
+    assert.equal(await page.evaluate(() => localStorage.getItem("todays-math:learning-motion:v1")), "reduce");
+    assert.equal(sim.posts.length, posts, "기기 설정이 학습 기록 저장을 요청했다");
+    await close();
+    await page.reload();
+    await homeReady(page);
+    await expect(boundary).toHaveAttribute("data-learning-motion", "reduce");
+    await open();
+    await expect(toggle()).toHaveAttribute("aria-checked", "true");
+    await shot("atelier-motion-settings");
+    return "앱 줄이기 · 기기 저장 · reload 유지 · 서버 기록 요청 없음";
+  });
+  await step("atelier.os-and-app", async () => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(toggle()).toBeDisabled();
+    await expect(toggle()).toHaveAttribute("aria-checked", "true");
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await expect(toggle()).toBeEnabled();
+    await expect(boundary).toHaveAttribute("data-learning-motion", "reduce");
+    await tap(toggle(), mobile);
+    await expect(boundary).toHaveAttribute("data-learning-motion", "full");
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await expect(boundary).toHaveAttribute("data-learning-motion", "reduce");
+    await expect(toggle()).toBeDisabled();
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await expect(boundary).toHaveAttribute("data-learning-motion", "full");
+    await close();
+    return "OS만 · 앱만 · 둘 다 · 둘 다 없음 네 상태";
+  });
+  await step("atelier.active-settings", async () => {
+    await tap(page.locator("[data-expedition-start]"), mobile);
+    await page.locator("[data-explorer-dock]").waitFor();
+    await tap(page.getByRole("button", { name: "← 진도판", exact: true }), mobile);
+    await homeReady(page);
+    await open();
+    await expect(toggle()).toBeEnabled();
+    await tap(toggle(), mobile);
+    await expect(boundary).toHaveAttribute("data-learning-motion", "reduce");
+    await close();
+    return "미션 진행으로 단원 설정이 잠겨도 기기 설정 사용 가능";
+  });
+};
+fixtures["atelier:home-motion"] = fixtures.concept;
+
 // ───────────────────────── runner ─────────────────────────
 const results = [];
 // 이름에 `:` 가 든 묶음(`katex:*`·`lab-fraction:*`)은 `QA_SCENARIOS` 에 묶음 이름(전부) 또는 제 이름을 적을 때만 돈다
@@ -3023,6 +3149,8 @@ for (const engineName of engines) {
   }
 }
 await writeFile(resolve(output, "report.json"), JSON.stringify(results, null, 2));
+if (feedbackMeasurements.length)
+  await writeFile(resolve(output, "feedback-geometry.json"), JSON.stringify(feedbackMeasurements, null, 2));
 if (katexFindings.length || scenarioNames.some((name) => name.startsWith("katex:") || name.startsWith("lab-fraction:"))) {
   await writeFile(resolve(output, "katex-findings.json"), JSON.stringify(katexFindings, null, 2));
   await writeFile(resolve(output, "katex-fitted.json"), JSON.stringify(katexFitted, null, 2));
