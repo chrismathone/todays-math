@@ -7,6 +7,7 @@ import type {
   ListeningStorageRef,
 } from "../media/storageApi";
 import type { ListeningMediaRecord } from "../media/store";
+import type { ListeningM4aConversion } from "../media/trustedM4a";
 import { assertListeningStorageQuota } from "../media/storageQuota";
 import { invalid, json, type ListeningTx } from "./database";
 const chunkBytes = 1024 * 1024;
@@ -127,6 +128,14 @@ export async function writeStorageChunkAsset(
     read: () => AsyncIterable<Uint8Array>;
     playbackSpan?: { start: number; endExclusive: number };
     expectedSha256?: string;
+    /** Trusted native conversion preserves source bytes under this same asset. */
+    originalSource?: {
+      mimeType: "audio/mp4";
+      totalBytes: number;
+      expectedSha256: string;
+      read: () => AsyncIterable<Uint8Array>;
+      conversion: ListeningM4aConversion;
+    };
   },
   created: ListeningStorageRef[],
 ) {
@@ -136,6 +145,16 @@ export async function writeStorageChunkAsset(
     input.totalBytes > 336 * chunkBytes
   )
     throw invalid("음원 크기를 확인해 주세요.");
+  if (
+    input.originalSource &&
+    (input.mimeType !== "audio/mpeg" ||
+      !Number.isSafeInteger(input.originalSource.totalBytes) ||
+      input.originalSource.totalBytes < 1 ||
+      input.originalSource.totalBytes > 64 * chunkBytes ||
+      input.originalSource.expectedSha256 !==
+        input.originalSource.conversion.sourceSha256)
+  )
+    throw invalid("원본 M4A 크기와 검증 정보를 확인해 주세요.");
   const span = input.playbackSpan ?? {
     start: 0,
     endExclusive: input.totalBytes,
@@ -149,7 +168,7 @@ export async function writeStorageChunkAsset(
   )
     throw invalid("음원 재생 범위를 확인해 주세요.");
   await assertListeningStorageQuota(tx, input.ownerId, {
-    reserveBytes: input.totalBytes,
+    reserveBytes: input.totalBytes + (input.originalSource?.totalBytes ?? 0),
     assetCount: 1,
   });
   const assetId = input.assetId ?? randomUUID();
@@ -161,16 +180,25 @@ export async function writeStorageChunkAsset(
     storageChunks: true,
     revision: 0,
     state: "uploading",
-    totalBytes: input.totalBytes,
+    totalBytes: input.originalSource?.totalBytes ?? input.totalBytes,
     receivedBytes: 0,
     mimeType: input.mimeType,
-    expectedSha256: input.expectedSha256 ?? "0".repeat(64),
+    expectedSha256:
+      input.originalSource?.expectedSha256 ??
+      input.expectedSha256 ??
+      "0".repeat(64),
     chunkBytes,
     uploadExpiresAt: input.now,
     chunks: [],
+    ...(input.originalSource
+      ? {
+          originalMimeType: input.originalSource.mimeType,
+          conversion: input.originalSource.conversion,
+        }
+      : {}),
   };
   await tx.$executeRaw(
-    Prisma.sql`INSERT INTO english_listening_media_asset("assetId","ownerId","branchId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) VALUES(${assetId}::uuid,${input.ownerId}::uuid,${input.branchId}::uuid,${input.setId}::uuid,0,'uploading',${new Date(input.now)},${input.totalBytes},${json(staged)})`,
+    Prisma.sql`INSERT INTO english_listening_media_asset("assetId","ownerId","branchId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) VALUES(${assetId}::uuid,${input.ownerId}::uuid,${input.branchId}::uuid,${input.setId}::uuid,0,'uploading',${new Date(input.now)},${input.totalBytes + (input.originalSource?.totalBytes ?? 0)},${json(staged)})`,
   );
   const chunks: ListeningMediaRecord["chunks"] = [],
     playbackChunks: ListeningMediaRecord["chunks"] = [],
@@ -178,7 +206,7 @@ export async function writeStorageChunkAsset(
     playbackHash = createHash("sha256");
   let offset = 0,
     pending = Buffer.alloc(0);
-  const write = async (bytes: Buffer) => {
+  const write = async (bytes: Buffer, sourceOnly = false) => {
     const key = randomUUID(),
       sha256 = digest(bytes);
     await tx.$executeRaw(
@@ -200,7 +228,7 @@ export async function writeStorageChunkAsset(
       assetId,
       key,
       bytes,
-      mimeType: input.mimeType,
+      mimeType: sourceOnly ? "audio/mp4" : input.mimeType,
     });
     created[cleanupIndex] = ref;
     if (ref.sha256 !== sha256 || ref.bytes !== bytes.length)
@@ -213,13 +241,18 @@ export async function writeStorageChunkAsset(
       offset,
       byteLength: bytes.length,
       sha256,
-      expectedRevision: chunks.length,
+      expectedRevision:
+        input.originalSource && !sourceOnly
+          ? playbackChunks.length
+          : chunks.length,
     };
-    chunks.push(chunk);
-    originalHash.update(bytes);
+    if (sourceOnly || !input.originalSource) {
+      chunks.push(chunk);
+      originalHash.update(bytes);
+    }
     const start = Math.max(offset, span.start),
       end = Math.min(offset + bytes.length, span.endExclusive);
-    if (start < end) {
+    if (!sourceOnly && start < end) {
       const piece = bytes.subarray(start - offset, end - offset);
       playbackHash.update(piece);
       playbackChunks.push({
@@ -247,15 +280,38 @@ export async function writeStorageChunkAsset(
   if (pending.length) await write(pending);
   if (offset !== input.totalBytes)
     throw invalid("음원 길이가 일치하지 않습니다.");
+  if (input.originalSource) {
+    offset = 0;
+    pending = Buffer.alloc(0);
+    for await (const bytes of input.originalSource.read()) {
+      if (
+        bytes.length > chunkBytes ||
+        offset + pending.length + bytes.length > input.originalSource.totalBytes
+      )
+        throw invalid("원본 M4A 길이가 일치하지 않습니다.");
+      pending = Buffer.concat([pending, bytes]);
+      while (pending.length >= chunkBytes) {
+        await write(pending.subarray(0, chunkBytes), true);
+        pending = pending.subarray(chunkBytes);
+      }
+    }
+    if (pending.length) await write(pending, true);
+    if (offset !== input.originalSource.totalBytes)
+      throw invalid("원본 M4A 길이가 일치하지 않습니다.");
+  }
   const originalSha256 = originalHash.digest("hex"),
     sha256 = playbackHash.digest("hex");
-  if (input.expectedSha256 && originalSha256 !== input.expectedSha256)
+  if (
+    (input.originalSource?.expectedSha256 ?? input.expectedSha256) &&
+    originalSha256 !==
+      (input.originalSource?.expectedSha256 ?? input.expectedSha256)
+  )
     throw invalid("원본 음원 해시가 일치하지 않습니다.");
   const record: ListeningMediaRecord = {
     ...staged,
     revision: 1,
     state: "ready",
-    receivedBytes: input.totalBytes,
+    receivedBytes: staged.totalBytes,
     expectedSha256: originalSha256,
     chunks,
     playback: {
@@ -273,8 +329,8 @@ export async function writeStorageChunkAsset(
       revision: 1,
       state: "ready",
       publishable: true,
-      totalBytes: input.totalBytes,
-      receivedBytes: input.totalBytes,
+      totalBytes: staged.totalBytes,
+      receivedBytes: staged.totalBytes,
       chunkBytes,
       uploadExpiresAt: input.now,
       verifiedAt: input.now,

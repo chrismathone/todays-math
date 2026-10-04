@@ -3,6 +3,7 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { deflateSync } from "node:zlib";
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { Prisma, PrismaClient } from "@prisma/client";
 import {
   afterAll,
@@ -40,6 +41,7 @@ import { createListeningDriveApi } from "@/lib/english/listening/media/driveApi"
 import { fakeListeningDrive } from "../fixtures/english-listening/fakeDrive";
 import { fakeListeningStorage } from "../fixtures/english-listening/fakeStorage";
 import { createListeningStorageApi } from "@/lib/english/listening/media/storageApi";
+import { prepareListeningM4aPlayback } from "@/lib/english/listening/media/trustedM4a";
 import {
   registerStorageListeningAsset,
   insertStorageAsset,
@@ -424,6 +426,191 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         });
     });
   });
+  it.skipIf(!process.env.LISTENING_M4A_TEST_FFMPEG_PATH)(
+    "preserves an original M4A and plays only its verified MP3 derivative through same-scope clone and selected PCM",
+    async () => {
+      const original = await source(70, true, true);
+      const prepared = await prepareListeningM4aPlayback({
+        sourcePath: fileURLToPath(
+          new URL(
+            "../fixtures/english-listening/tone-aac.m4a",
+            import.meta.url,
+          ),
+        ),
+        ffmpegPath: process.env.LISTENING_M4A_TEST_FFMPEG_PATH!,
+      });
+      const assetId = randomUUID();
+      const request = {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        assetId,
+        bytes: prepared.sourceBytes,
+        playbackDerivative: prepared.playbackDerivative,
+      };
+      await expect(
+        registerStorageListeningAsset(
+          db!,
+          storageApi,
+          { ...request, actor: other },
+          () => now,
+        ),
+      ).rejects.toMatchObject({ status: 404 });
+      const ready = await registerStorageListeningAsset(
+        db!,
+        storageApi,
+        request,
+        () => now,
+      );
+      if (ready.state !== "ready") throw Error("Verified derivative required");
+      expect(ready.originalSha256).toBe(sha(prepared.sourceBytes));
+      expect(ready.totalBytes).toBe(prepared.sourceBytes.length);
+      const record = await store!.get(assetId);
+      expect(record).toMatchObject({
+        storageChunks: true,
+        originalMimeType: "audio/mp4",
+        expectedSha256: sha(prepared.sourceBytes),
+      });
+      const adapter = new PrismaStorageListeningMediaStore(db!, storageApi),
+        stored: Buffer[] = [];
+      for (const chunk of record!.chunks)
+        for await (const part of adapter.readBlob(chunk.key, {
+          start: 0,
+          endExclusive: chunk.byteLength,
+          maxChunkBytes: 1024,
+        }))
+          stored.push(Buffer.from(part));
+      expect(Buffer.concat(stored)).toEqual(prepared.sourceBytes);
+      expect(
+        record!.chunks.every((c) =>
+          record!.playback!.chunks.every((p) => p.key !== c.key),
+        ),
+      ).toBe(true);
+      const [pg] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_blob WHERE "assetId"=${assetId}::uuid`,
+      );
+      expect(pg.count).toBe(BigInt(0));
+      const before = fakeStorage.files.size;
+      expect(
+        await registerStorageListeningAsset(
+          db!,
+          storageApi,
+          request,
+          () => now,
+        ),
+      ).toEqual(ready);
+      expect(fakeStorage.files.size).toBe(before);
+      const input = edit(original.source.detail);
+      input.groups[0].audio = {
+        assetId,
+        sha256: ready.sha256,
+        durationMs: ready.durationMs,
+      };
+      const saved = await runtime!.updateSet(owner, request.setId, input),
+        snapshot = await runtime!.composeSource(owner, saved.id);
+      const expected = Buffer.concat(
+        parseMp3(prepared.playbackDerivative.bytes, MAX_DURATION_MS).frames,
+      );
+      await verifyStorageProxy(saved, expected, "audio/mpeg");
+      let whole = await storageRuntime!.composeSet(owner, {
+        title: "M4A 원본과 검증된 전체 회차",
+        selections: [selection(snapshot)],
+      });
+      expect(fakeStorage.files.size).toBe(before);
+      const copied = await store!.get(whole.document.groups[0].audio!.assetId);
+      expect(copied!.expectedSha256).toBe(sha(prepared.sourceBytes));
+      expect(copied!.conversion).toEqual(record!.conversion);
+      whole = await storageRuntime!.reviewSet(owner, whole.id, {
+        expectedRevision: whole.revision,
+        kind: "rights",
+        basis: "직접 만든 음원 전체 교사 이용",
+      });
+      await verifyStorageProxy(whole, expected, "audio/mpeg");
+      const q = snapshot.detail.document.groups[0].questions[1];
+      let subset = await storageRuntime!.composeSet(owner, {
+        title: "M4A 문항 선택 재생",
+        selections: [selection(snapshot, [q.id])],
+      });
+      const pieces: Buffer[] = [];
+      const decoded = await decodeMp3(
+        prepared.playbackDerivative.bytes,
+        {
+          maxDurationMs: MAX_DURATION_MS,
+          maxPlaybackBytes: MAX_PLAYBACK_BYTES,
+        },
+        async (part) => {
+          pieces.push(part);
+        },
+      );
+      const wav = Buffer.concat([decoded.header, ...pieces]),
+        plan = planListeningWaveClip(decoded.header, wav.length, [q]);
+      subset = await storageRuntime!.reviewSet(owner, subset.id, {
+        expectedRevision: subset.revision,
+        kind: "rights",
+        basis: "직접 만든 음원 문항 선택 교사 이용",
+      });
+      await verifyStorageProxy(
+        subset,
+        Buffer.concat([
+          plan.header,
+          ...plan.ranges.map((r) => wav.subarray(r.start, r.endExclusive)),
+        ]),
+        "audio/wav",
+      );
+      expect((await store!.get(assetId))!.expectedSha256).toBe(
+        sha(prepared.sourceBytes),
+      );
+    },
+    120000,
+  );
+  it.skipIf(!process.env.LISTENING_M4A_TEST_FFMPEG_PATH)(
+    "rolls back both derivative and original objects on failure without altering any prior assets",
+    async () => {
+      const original = await source(71, true, true),
+        prepared = await prepareListeningM4aPlayback({
+          sourcePath: fileURLToPath(
+            new URL(
+              "../fixtures/english-listening/tone-aac.m4a",
+              import.meta.url,
+            ),
+          ),
+          ffmpegPath: process.env.LISTENING_M4A_TEST_FFMPEG_PATH!,
+        }),
+        assetId = randomUUID();
+      const existing = new Map(fakeStorage.files),
+        upload = storageApi.uploadChunk.bind(storageApi);
+      const fail = vi
+        .spyOn(storageApi, "uploadChunk")
+        .mockImplementationOnce(upload)
+        .mockRejectedValueOnce(Error("Fixture source upload failure"));
+      try {
+        await expect(
+          registerStorageListeningAsset(
+            db!,
+            storageApi,
+            {
+              actor: owner,
+              setId: original.source.detail.id,
+              expectedSetRevision: original.source.detail.revision,
+              assetId,
+              bytes: prepared.sourceBytes,
+              playbackDerivative: prepared.playbackDerivative,
+            },
+            () => now,
+          ),
+        ).rejects.toThrow("Fixture source upload failure");
+        expect(await store!.get(assetId)).toBeNull();
+        expect(fakeStorage.files).toEqual(existing);
+        const [row] = await db!.$queryRaw<{ count: bigint }[]>(
+          Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_storage_blob WHERE "assetId"=${assetId}::uuid`,
+        );
+        expect(row.count).toBe(BigInt(0));
+      } finally {
+        fail.mockRestore();
+      }
+    },
+    120000,
+  );
   it("splits a large strictly decoded MP3 into <=1MiB private objects, scrubs metadata and composes exact selected audio", async () => {
     const original = await source(50, true, true, true, true);
     const tone = readFileSync(
