@@ -3000,7 +3000,7 @@ scenarios["atelier:home-motion"] = async ({ page, sim, mobile, width, step, shot
     const mission = await page.locator("[data-expedition-mission]").boundingBox();
     const map = await page.locator("[data-daily-journey]").boundingBox();
     assert.ok(mission && map);
-    if (width >= 1024) {
+    if (width >= 1100) {
       assert.ok(map.width >= 480, "PC 나란히 배치의 지도 최소 폭: " + map.width);
       assert.ok(map.x > mission.x + mission.width, "PC 미션/지도 나란히");
     } else {
@@ -3009,7 +3009,7 @@ scenarios["atelier:home-motion"] = async ({ page, sim, mobile, width, step, shot
       assert.ok(tools && tools.y >= map.y + map.height, "모바일 지도 뒤 도구 순서");
     }
     await shot("atelier-home");
-    return `미션 ${Math.round(mission.width)}px · 지도 ${Math.round(map.width)}px · ${width >= 1024 ? "나란히" : "한 열"}`;
+    return `미션 ${Math.round(mission.width)}px · 지도 ${Math.round(map.width)}px · ${width >= 1100 ? "나란히" : "한 열"}`;
   });
   const boundary = page.locator("[data-learning-motion]").first();
   const settings = () => page.getByRole("dialog", { name: "학습 설정", exact: true });
