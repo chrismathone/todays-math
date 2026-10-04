@@ -31,6 +31,7 @@ import {
   parseMp3,
   MAX_DURATION_MS,
   MAX_PLAYBACK_BYTES,
+  waveHeader,
 } from "@/lib/english/listening/media/mp3";
 import { planListeningWaveClip } from "@/lib/english/listening/media/clip";
 import { registerDriveListeningAsset } from "@/lib/english/listening/runtime/driveAssets";
@@ -38,7 +39,11 @@ import { createListeningDriveApi } from "@/lib/english/listening/media/driveApi"
 import { fakeListeningDrive } from "../fixtures/english-listening/fakeDrive";
 import { fakeListeningStorage } from "../fixtures/english-listening/fakeStorage";
 import { createListeningStorageApi } from "@/lib/english/listening/media/storageApi";
-import { registerStorageListeningAsset } from "@/lib/english/listening/runtime/storageAssets";
+import {
+  registerStorageListeningAsset,
+  insertStorageAsset,
+  storageReadyRecord,
+} from "@/lib/english/listening/runtime/storageAssets";
 
 vi.mock("server-only", () => ({}));
 const url = process.env.LISTENING_TEST_DATABASE_URL;
@@ -329,6 +334,9 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     fakeDrive.calls.splice(0);
     await db!.$transaction(async (tx) => {
       await tx.$executeRaw(
+        Prisma.sql`DELETE FROM english_listening_media_storage_blob WHERE "assetId" IN(SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId" IN(${ownerId}::uuid,${otherId}::uuid))`,
+      );
+      await tx.$executeRaw(
         Prisma.sql`DELETE FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId" IN (${ownerId}::uuid,${otherId}::uuid))`,
       );
       await tx.$executeRaw(
@@ -346,6 +354,176 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         });
     });
   });
+  it("splits a large strictly decoded MP3 into <=1MiB private objects, scrubs metadata and composes exact selected audio", async () => {
+    const original = await source(50, true, true, true, true);
+    const tone = readFileSync(
+      new URL("../fixtures/english-listening/tone.mp3", import.meta.url),
+    );
+    const metadata = Buffer.alloc(32 * 1024 * 1024);
+    metadata.write("SECRET_ANSWERS_AND_SCRIPT");
+    const huge = Buffer.concat([
+      Buffer.from([73, 68, 51, 3, 0, 0, 16, 0, 0, 0]),
+      metadata,
+      tone,
+    ]);
+    const ready = await registerStorageListeningAsset(
+      db!,
+      storageApi,
+      {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        bytes: huge,
+      },
+      () => now,
+    );
+    if (ready.state !== "ready") throw new Error("Validated MP3 required");
+    const input = edit(original.source.detail);
+    input.groups[0].audio = {
+      assetId: ready.assetId,
+      sha256: ready.sha256,
+      durationMs: ready.durationMs,
+    };
+    const saved = await runtime!.updateSet(
+        owner,
+        original.source.detail.id,
+        input,
+      ),
+      snapshot = await runtime!.composeSource(owner, saved.id),
+      record = await store!.get(ready.assetId);
+    expect(record!.storageChunks).toBe(true);
+    expect(record!.chunks.length).toBeGreaterThan(32);
+    expect(record!.chunks.every((c) => c.byteLength <= 1024 * 1024)).toBe(true);
+    const rows = await db!.$queryRaw<{ key: string; ref: { key: string } }[]>(
+        Prisma.sql`SELECT key,ref FROM english_listening_media_storage_blob WHERE "assetId"=${ready.assetId}::uuid`,
+      ),
+      refs = new Map(rows.map((row) => [row.key, row.ref]));
+    const playback = Buffer.concat(
+      record!.playback!.chunks.map((c) =>
+        fakeStorage.files
+          .get(refs.get(c.key)!.key)!
+          .subarray(c.blobOffset ?? 0, (c.blobOffset ?? 0) + c.byteLength),
+      ),
+    );
+    expect(sha(playback)).toBe(ready.sha256);
+    expect(playback.includes(Buffer.from("SECRET_ANSWERS"))).toBe(false);
+    const filesBefore = fakeStorage.files.size;
+    const whole = await storageRuntime!.composeSet(owner, {
+      title: "큰 Storage 회차",
+      selections: [selection(snapshot)],
+    });
+    expect(fakeStorage.files.size).toBe(filesBefore);
+    const wholeAsset = await store!.get(
+      whole.document.groups[0].audio!.assetId,
+    );
+    expect(wholeAsset!.chunks[0].key).not.toBe(record!.chunks[0].key);
+    expect(wholeAsset!.setId).toBe(whole.id);
+    const group = snapshot.detail.document.groups[0],
+      question = group.questions[1],
+      selected = await storageRuntime!.composeSet(owner, {
+        title: "큰 Storage 선택 문항",
+        selections: [selection(snapshot, [question.id])],
+      }),
+      clipAsset = await store!.get(selected.document.groups[0].audio!.assetId);
+    expect(clipAsset!.storageChunks).toBe(true);
+    const clipRows = await db!.$queryRaw<
+        { key: string; ref: { key: string } }[]
+      >(
+        Prisma.sql`SELECT key,ref FROM english_listening_media_storage_blob WHERE "assetId"=${clipAsset!.assetId}::uuid`,
+      ),
+      clipRefs = new Map(clipRows.map((row) => [row.key, row.ref]));
+    const actual = Buffer.concat(
+      clipAsset!.chunks.map((c) =>
+        fakeStorage.files.get(clipRefs.get(c.key)!.key)!,
+      ),
+    );
+    const plan = planListeningWaveClip(
+        original.wav.subarray(0, 44),
+        original.wav.length,
+        [question],
+      ),
+      expected = Buffer.concat([
+        plan.header,
+        ...plan.ranges.map((r) =>
+          original.wav.subarray(r.start, r.endExclusive),
+        ),
+      ]);
+    expect(actual.equals(expected)).toBe(true);
+  }, 120000);
+  it("splits a >32MiB selected PCM exam into <=1MiB private objects with exact selected samples", async () => {
+    const original = await source(60, true, true, true, true),
+      samples = 48000 * 360;
+    const header = waveHeader(samples, 48000, 1),
+      wav = Buffer.alloc(44 + samples * 2);
+    header.copy(wav);
+    const assetId = randomUUID(),
+      ref = await storageApi.upload({
+        ownerId,
+        assetId,
+        bytes: wav.length,
+        mimeType: "audio/wav",
+        read: async function* () {
+          for (let i = 0; i < wav.length; i += 1024 * 1024)
+            yield wav.subarray(i, i + 1024 * 1024);
+        },
+      });
+    const record = storageReadyRecord({
+      assetId,
+      setId: original.source.detail.id,
+      ownerId,
+      branchId: null,
+      storage: ref,
+      mimeType: "audio/wav",
+      sha256: sha(wav),
+      durationMs: 360000,
+      now: now.getTime(),
+    });
+    await db!.$transaction(async (tx) => {
+      await tx.$executeRaw(
+        Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${ownerId}`},0))`,
+      );
+      await insertStorageAsset(tx, record);
+    });
+    const input = edit(original.source.detail);
+    input.groups[0].audio = { assetId, sha256: sha(wav), durationMs: 360000 };
+    input.groups[0].questions = input.groups[0].questions.map((q, i) => ({
+      ...q,
+      audioRange: i
+        ? { startMs: 1000, endMs: 360000 }
+        : { startMs: 0, endMs: 1000 },
+      evidence: [],
+    }));
+    const saved = await runtime!.updateSet(
+        owner,
+        original.source.detail.id,
+        input,
+      ),
+      snapshot = await runtime!.composeSource(owner, saved.id),
+      question = snapshot.detail.document.groups[0].questions[1];
+    const composed = await storageRuntime!.composeSet(owner, {
+        title: "큰 PCM 선택 문항",
+        selections: [selection(snapshot, [question.id])],
+      }),
+      output = await store!.get(composed.document.groups[0].audio!.assetId);
+    expect(output!.storageChunks).toBe(true);
+    expect(output!.playback!.totalBytes).toBeGreaterThan(32 * 1024 * 1024);
+    const rows = await db!.$queryRaw<{ key: string; ref: { key: string } }[]>(
+        Prisma.sql`SELECT key,ref FROM english_listening_media_storage_blob WHERE "assetId"=${output!.assetId}::uuid`,
+      ),
+      refs = new Map(rows.map((row) => [row.key, row.ref]));
+    const actualHash = createHash("sha256");
+    for (const chunk of output!.chunks) {
+      const bytes = fakeStorage.files.get(refs.get(chunk.key)!.key)!;
+      expect(bytes.length).toBeLessThanOrEqual(1024 * 1024);
+      actualHash.update(bytes);
+    }
+    const plan = planListeningWaveClip(header, wav.length, [question]),
+      expectedHash = createHash("sha256").update(plan.header);
+    for (const range of plan.ranges)
+      expectedHash.update(wav.subarray(range.start, range.endExclusive));
+    expect(actualHash.digest("hex")).toBe(expectedHash.digest("hex"));
+    expect(composed.document.groups[0].audio!.durationMs).toBe(359000);
+  }, 120000);
   it("stores validated original MP3 in private Supabase Storage, registers idempotently and shares whole audio under fresh scope", async () => {
     const original = await source(30, true, true, true, true),
       from = original.source.detail.document.groups[0],
