@@ -12,7 +12,7 @@ export const LISTENING_RECONSTRUCTION_STYLE_VERSION =
   "korean-official-style-v4-20261005";
 export const LISTENING_RECONSTRUCTION_STYLE_THRESHOLD = 0.9;
 export const listeningStyleGenerationNormalizationSchema = z.strictObject({
-  version: z.literal("structural-metadata-v1"),
+  version: z.enum(["structural-metadata-v1", "structural-metadata-v2"]),
   steps: z.array(
     z.strictObject({
       sourceNumber: z.number().int().positive(),
@@ -26,7 +26,13 @@ export const listeningStyleGenerationNormalizationSchema = z.strictObject({
 export function normalizeListeningStyleGeneration(
   raw: unknown,
   binding: { sourceRecordId: string; level: string },
+  normalizationVersion:
+    | "structural-metadata-v1"
+    | "structural-metadata-v2" = "structural-metadata-v1",
 ) {
+  listeningStyleGenerationNormalizationSchema.shape.version.parse(
+    normalizationVersion,
+  );
   const value = structuredClone(raw);
   if (
     !value ||
@@ -55,7 +61,11 @@ export function normalizeListeningStyleGeneration(
       steps.push({ sourceNumber, field, from: binding[field], to: null });
       delete question[field];
     }
-    if (question.questionType === "reason") {
+    if (
+      question.questionType === "reason" ||
+      (normalizationVersion === "structural-metadata-v2" &&
+        question.questionType === "action")
+    ) {
       steps.push({
         sourceNumber,
         field: "questionType",
@@ -71,7 +81,7 @@ export function normalizeListeningStyleGeneration(
   return {
     value,
     generationNormalization: listeningStyleGenerationNormalizationSchema.parse({
-      version: "structural-metadata-v1",
+      version: normalizationVersion,
       steps,
     }),
   };
