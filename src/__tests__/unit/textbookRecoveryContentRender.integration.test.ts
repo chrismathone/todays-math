@@ -323,9 +323,10 @@ describe.skipIf(!run)("content geometry in real Chromium", () => {
     browser = await launchExportBrowser();
     mkdirSync(OUT, { recursive: true });
   }, 120_000);
+  // Closing Chromium can take longer than the default hook limit when other suites run beside it.
   afterAll(async () => {
     await browser?.close();
-  });
+  }, 60_000);
 
   async function print(name: string, rowHeightsMm?: Record<string, number>) {
     const body = [
@@ -563,4 +564,85 @@ describe.skipIf(!run)("content geometry in real Chromium", () => {
     expect(report.issues).toEqual([]);
     expect(report.status).toBe("passed");
   }, 180_000);
+
+  it("starts rows without a concept name at one height in all three phases", async () => {
+    // The automatic writer's shape: one rows node per block and no concept title. Only the
+    // study sheet prints the repetition marks; the other two keep the empty bar.
+    const rows = CONCEPTS.flatMap((concept) => concept.rows).slice(0, 6);
+    const block = (phase: RecallPhase): RenderBlock =>
+      ({
+        id: `rows.${phase}`,
+        sourceBlockId: `rows.${phase}`,
+        unitKey: "U01",
+        sectionKey: `rows-${phase}`,
+        kind: "recall",
+        phase,
+        pieces: [],
+        answersVisible: false,
+        repetitionChecks: phase === "study",
+        semantic: {
+          activity: ACTIVITY[phase],
+          node: { kind: "rows", groupKey: "concept-x.memory-0", rows },
+        },
+      }) as RenderBlock;
+    const html = textbookHtmlDocument(
+      "content-rows-kind",
+      PHASES.map((phase, i) =>
+        paper(i + 1, phase, flow(BODY_WIDTH_MM, block(phase))),
+      ).join(""),
+      css.font,
+      css.katex,
+    ).replace(
+      "</style></head>",
+      `</style><style>${TEXTBOOK_CONTENT_CSS}</style></head>`,
+    );
+    const page = await browser.newPage();
+    await page.evaluate("globalThis.__name = (fn) => fn");
+    await page.setContent(html, { waitUntil: "load" });
+    const measured = (await page.evaluate(async () => {
+      await document.fonts.ready;
+      const mm = 25.4 / 96;
+      return Array.from(
+        document.querySelectorAll<HTMLElement>("[data-textbook-page]"),
+      ).map((sheet) => {
+        const origin = sheet.getBoundingClientRect();
+        const span = (el: Element) => {
+          const r = el.getBoundingClientRect();
+          return [(r.top - origin.top) * mm, (r.bottom - origin.top) * mm];
+        };
+        const bar = sheet.querySelector(".tb-memory-title-bare")!;
+        return {
+          phase: sheet.dataset.sheet,
+          bar: span(bar),
+          barText: bar.textContent,
+          rows: Array.from(sheet.querySelectorAll(".tb-memory-row")).map(span),
+        };
+      });
+    })) as Array<{
+      phase: string;
+      bar: number[];
+      barText: string;
+      rows: number[][];
+    }>;
+    await page.close();
+    writeFileSync(
+      path.join(OUT, "content-rows-kind.json"),
+      JSON.stringify(measured, null, 2),
+    );
+    const [study, ...others] = measured;
+    expect(measured.map((sheet) => sheet.phase)).toEqual(PHASES);
+    expect(study.rows).toHaveLength(6);
+    expect(study.barText).toContain("1회");
+    expect(study.bar[1] - study.bar[0]).toBeGreaterThan(6.9);
+    for (const sheet of others) {
+      expect(sheet.barText).toBe("");
+      expect(Math.abs(sheet.bar[0] - study.bar[0])).toBeLessThan(0.05);
+      expect(Math.abs(sheet.bar[1] - study.bar[1])).toBeLessThan(0.05);
+      expect(sheet.rows).toHaveLength(6);
+      sheet.rows.forEach((row, i) => {
+        expect(Math.abs(row[0] - study.rows[i][0])).toBeLessThan(0.05);
+        expect(Math.abs(row[1] - study.rows[i][1])).toBeLessThan(0.05);
+      });
+    }
+  }, 120_000);
 });

@@ -216,11 +216,20 @@ const NAME_DATE = "<span>이름 __________　날짜 __________</span>";
 const ROUNDS =
   '<span class="tb-memory-rounds" aria-label="학습 반복 확인">1회<i></i>2회<i></i>3회<i></i>4회<i></i></span>';
 
-/** Hidden text exists only where the model left a blank; study and answer sheets show everything. */
+/**
+ * Whether hidden text may be printed. The model's flag decides; the study sheet hides nothing.
+ * Without the flag only a whole block whose legacy pieces show no blank is taken as the answer
+ * variant. A paragraph part of a split block is never evidence: its label paragraph has no
+ * blank of its own in either variant, so guessing there would print a student's answers.
+ */
 function revealed(block: RecallBlock): boolean {
+  if (block.answersVisible !== undefined) return block.answersVisible;
+  if (block.phase === "study") return true;
   return (
-    block.answersVisible ??
-    (block.phase === "study" || !block.pieces.some((p) => p.kind === "blank"))
+    !block.continuation &&
+    block.lastPart !== false &&
+    block.pieces.length > 0 &&
+    !block.pieces.some((p) => p.kind === "blank")
   );
 }
 
@@ -282,9 +291,9 @@ function memoryHtml(
   const title =
     node.kind === "concept"
       ? `<header class="tb-memory-title" data-anchor="memory-title">${code ? `<span class="tb-memory-code">${esc(code)}</span>` : ""}<b>${esc(node.title)}</b>${rounds}</header>`
-      : rounds
-        ? `<header class="tb-memory-title tb-memory-title-bare">${rounds}</header>`
-        : "";
+      : // Rows without a concept name keep the same bar in every phase, so the first row starts
+        // at one height. Only the study sheet prints the repetition marks in it.
+        `<header class="tb-memory-title tb-memory-title-bare" data-anchor="memory-title">${rounds}</header>`;
   const page =
     block.relativePageIndex === undefined
       ? ""
