@@ -1,65 +1,26 @@
 .page {
   position: relative;
-  transform-origin: left center;
-  backface-visibility: hidden;
+  opacity: 1;
 }
-
-.page[data-page-turn="true"] {
-  animation: turnPaper 520ms cubic-bezier(0.2, 0.65, 0.2, 1) both;
+.page[data-question-transition="true"] {
+  animation: showPaper 160ms ease-out both;
 }
-
-/* 빛 띠는 상자를 옮기지 않고 그라데이션 자리(--paper-light)만 옮긴다. 이 무늬를 받는 칸은 모두 스크롤 칸이라,
-   상자를 칸 폭의 35% 만큼 옮기면(옛 판 translateX) 끝난 뒤에도 투명한 띠가 그 자리에 남아 칸의 스크롤 폭을 35% 넓혔다
-   — PC 에 쓸데없는 가로 막대(원장님 제보 2026-09-27). 이동량 30% 는 그라데이션 줄 길이 기준이다(옛 판의 칸 폭 35% 와
-   같은 거리 — 폰·PC 칸 비율에서 29~31%). 막는 시험: pageTurnLightInside.test.ts */
-@property --paper-light {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 0%;
-}
-
-.page[data-page-turn="true"]::after {
-  position: absolute;
-  inset: 0;
-  content: "";
-  pointer-events: none;
-  background: linear-gradient(
-    100deg,
-    transparent calc(15% + var(--paper-light)),
-    #c1cee945 calc(48% + var(--paper-light)),
-    #fff9 calc(57% + var(--paper-light)),
-    transparent calc(72% + var(--paper-light))
-  );
-  animation: paperLight 520ms ease-out both;
-}
-
-@keyframes turnPaper {
+/* Only opacity changes: the scroll container keeps its position and dimensions. */
+@keyframes showPaper {
   from {
-    opacity: 0.35;
-    transform: perspective(1200px) rotateY(-65deg);
+    opacity: 0.45;
   }
   to {
     opacity: 1;
-    transform: perspective(1200px) rotateY(0);
   }
 }
-
-@keyframes paperLight {
-  from {
-    opacity: 0.9;
-    --paper-light: -30%;
-  }
-  to {
-    opacity: 0;
-    --paper-light: 30%;
-  }
+:global([data-learning-motion="reduce"]) .page[data-question-transition="true"] {
+  animation: none;
+  opacity: 1;
 }
-
 @media (prefers-reduced-motion: reduce) {
-  .page[data-page-turn="true"] {
+  .page[data-question-transition="true"] {
     animation: none;
-  }
-  .page[data-page-turn="true"]::after {
-    display: none;
+    opacity: 1;
   }
 }

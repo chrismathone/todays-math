@@ -136,6 +136,37 @@ async function answerNext(
 }
 
 describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
+  it("distinguishes explicit give-up from a wrong selection without changing the server rating", async () => {
+    const user = userEvent.setup();
+    const before = mission(["fast", "fast", "fast"]);
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(before),
+    });
+    const saved = mission(["fast", "fast", "fast", "wrong"]);
+    saved.attempts[3].submittedAnswer = "";
+    saved.attempts[3].rating = "again";
+    vi.mocked(api.submitMathSrsAttempt).mockResolvedValue({
+      ok: true,
+      data: state(saved),
+    });
+    const { container } = render(
+      <StudentMathSrs expedition={{ onExit: vi.fn(), onComplete: vi.fn() }} />,
+    );
+    await screen.findByRole("group", { name: "답 고르기" });
+    expect(
+      container.querySelector('[data-question-transition="true"]'),
+    ).not.toBeInTheDocument();
+    const effect = effectAppears();
+    await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    const status = await effect;
+    expect(status).toHaveTextContent(/^모르는 부분을 확인했어요$/);
+    expect(status).not.toHaveAttribute("data-streak");
+    expect(status.closest('[class*="answerDockHeading"]')).toBeInTheDocument();
+    expect(api.submitMathSrsAttempt).toHaveBeenCalledWith(
+      expect.objectContaining({ submittedAnswer: "", rating: "again" }),
+    );
+  });
   it("셋째 빠른 정답에서 «3문제 연속 정답»", async () => {
     const status = await answerNext(["fast", "fast"], "fast");
     expect(status).toHaveTextContent(/^3문제 연속 정답$/);
@@ -155,7 +186,7 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
 
   it("틀리면 지금 오답 연출 — 끊겼다는 말 없음", async () => {
     const status = await answerNext(["fast", "fast", "fast"], "wrong");
-    expect(status).toHaveTextContent(/^다시 풀 문제로 모았어요$/);
+    expect(status).toHaveTextContent(/^다시 생각해 볼 문제예요$/);
   });
 
   it("탐험 안 복습도 같은 셈 · 같은 모양", async () => {
@@ -205,7 +236,7 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
       )[0],
     );
     const status = await effect;
-    expect(status).toHaveTextContent(/^정확하게 풀었어요$/);
+    expect(status).toHaveTextContent(/^이번에는 해결했어요$/);
     expect(status).not.toHaveAttribute("data-streak");
     await act(async () => {});
   });

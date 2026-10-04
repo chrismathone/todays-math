@@ -56,7 +56,9 @@ export type TextbookVisualAssetLoader = (
 
 async function readBundledVisualAsset(src: string): Promise<Uint8Array> {
   return new Uint8Array(
-    await readFile(path.join(process.cwd(), "public", src.slice(1))),
+    await readFile(
+      path.join(process.cwd(), "public/textbook", src.slice("/textbook/".length)),
+    ),
   );
 }
 

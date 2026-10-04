@@ -36,6 +36,7 @@ import s from "./authenticated.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import StudentJourney from "./StudentJourney";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { useQuestionPageTurn } from "./useQuestionPageTurn";
 import { NumberKey } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
@@ -172,6 +173,11 @@ export function StudentMathSrs({
     ? mission?.problems[retryStep - 1]
     : mission?.problems[mission.attempts.length];
   const displayedProblem = feedbackProblem ?? currentProblem;
+  const turnPage = useQuestionPageTurn(
+    displayedProblem
+      ? `${mission!.id}:${displayedProblem.id}:${retryTurn}`
+      : null,
+  );
   const correct = retryStep
     ? retryFeedback
     : feedbackId
@@ -396,6 +402,7 @@ export function StudentMathSrs({
                   streak={streak}
                   retry={!!retryStep}
                   eventKey={`${displayedProblem.id}:${retryTurn}`}
+                  turnPage={turnPage}
                   onReload={resetLoad}
                   onAnswer={(submittedAnswer, elapsedSeconds, rating) => {
                     if (retryStep) {
@@ -594,6 +601,7 @@ function Question({
   streak,
   retry,
   eventKey,
+  turnPage,
   onReload,
   onAnswer,
 }: {
@@ -603,10 +611,14 @@ function Question({
   streak: number | null;
   retry: boolean;
   eventKey: string;
+  turnPage: "true" | undefined;
   onReload: () => void;
   onAnswer: (answer: string, elapsed: number, rating: Rating) => void;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
+  const [submittedAction, setSubmittedAction] = useState<
+    "answer" | "give-up" | null
+  >(null);
   const [startedAt] = useState(() => Date.now());
   const heading = useRef<HTMLParagraphElement>(null);
   const card = useRef<HTMLElement>(null);
@@ -619,6 +631,7 @@ function Question({
   function choose(answer: string) {
     if (disabled) return;
     setSelected(answer);
+    setSubmittedAction(answer ? "answer" : "give-up");
     onAnswer(
       answer,
       Math.min(86_400, Math.max(0, (Date.now() - startedAt) / 1000)),
@@ -635,6 +648,7 @@ function Question({
       <div
         className={`${s.problemScroll} ${pageTurn.page}`}
         data-page-turn="true"
+        data-question-transition={turnPage}
         key={eventKey}
       >
         <p ref={heading} tabIndex={-1} className={s.eyebrow}>
@@ -655,7 +669,26 @@ function Question({
         {choices?.length === 4 ? (
           <>
             <div className={s.answerDockHeading}>
-              <span>{busy ? "확인하고 있어요…" : "답을 하나 골라 주세요"}</span>
+              {correct !== null ? (
+                <AnswerFeedbackEffect
+                  correct={correct}
+                  eventKey={eventKey}
+                  streak={streak}
+                  message={
+                    submittedAction === "give-up"
+                      ? "모르는 부분을 확인했어요"
+                      : retry
+                        ? correct
+                          ? "이번에는 해결했어요"
+                          : "아직 해결하지 못했어요"
+                        : undefined
+                  }
+                />
+              ) : (
+                <span>
+                  {busy ? "확인하고 있어요…" : "답을 하나 골라 주세요"}
+                </span>
+              )}
               {!retry ? (
                 <button
                   type="button"
@@ -708,11 +741,6 @@ function Question({
           </div>
         )}
       </div>
-      <AnswerFeedbackEffect
-        correct={correct}
-        eventKey={eventKey}
-        streak={streak}
-      />
     </section>
   );
 }

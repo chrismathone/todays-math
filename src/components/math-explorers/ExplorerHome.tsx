@@ -19,6 +19,7 @@ import DailyJourneyBoard, {
   type DailyJourney,
   type DailyJourneyDay,
 } from "@/components/math-srs/DailyJourneyBoard";
+import { useLearningMotion } from "@/components/math-srs/LearningMotion";
 import { kstDateOf } from "@/lib/kstDate";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import {
@@ -38,6 +39,7 @@ import { BaseArt, StarMark } from "./JourneyArt";
 import { SupplementLine, SupplementShelf } from "./ExplorerSupplementPieces";
 import r from "./chest-reward.module.css";
 import s from "./math-explorers.module.css";
+import a from "./explorer-home-atelier.module.css";
 
 export type ExplorerCard = ExplorerState["units"][number]["cards"][number];
 export const gradeLabel = (grade: number) =>
@@ -202,14 +204,14 @@ export function ExplorerSheet({
   return (
     <dialog
       ref={dialog}
-      className={`${s.dialog} ${s.resourceSheet}`}
+      className={`${s.dialog} ${s.resourceSheet} ${a.sheet}`}
       aria-labelledby={titleId}
       onCancel={onClose}
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <header className={s.dialogHeader}>
+      <header className={`${s.dialogHeader} ${a.sheetHeader}`}>
         <h2 id={titleId}>{title}</h2>
         <button type="button" aria-label={`${title} 닫기`} onClick={onClose}>
           ×
@@ -217,6 +219,47 @@ export function ExplorerSheet({
       </header>
       <div className={s.dialogBody}>{children}</div>
     </dialog>
+  );
+}
+
+/**
+ * 이 기기의 «움직임 줄이기»(3자 합의 v2 9항, 2026-10-04) — 학습 기록이 아니라 기기 설정이다.
+ * 학년 · 단원 잠금, 상자 저장, 다른 요청과 무관하게 눌리고 서버에 아무것도 보내지 않는다.
+ * 기기(OS)가 이미 줄이고 있으면 앱에서 끌 수 없다 — 켜진 채 잠기고 까닭을 말한다(보이는 값 = 실제 상태).
+ */
+function MotionSetting() {
+  const {
+    reduceMotion,
+    appReducedMotion,
+    osReducedMotion,
+    setAppReducedMotion,
+  } = useLearningMotion();
+  const headingId = useId();
+  const noteId = useId();
+  return (
+    <section className={a.device} aria-labelledby={headingId}>
+      <h3 id={headingId}>이 기기 설정</h3>
+      <button
+        type="button"
+        role="switch"
+        className={a.motionSwitch}
+        aria-checked={reduceMotion}
+        aria-describedby={noteId}
+        disabled={osReducedMotion}
+        onClick={() => setAppReducedMotion(!appReducedMotion)}
+      >
+        <span>움직임 줄이기</span>
+        <span className={a.switchState} aria-hidden="true">
+          {reduceMotion ? "켜짐" : "꺼짐"}
+          <span className={a.switchTrack} />
+        </span>
+      </button>
+      <p id={noteId} className={a.deviceNote}>
+        {osReducedMotion
+          ? "기기 설정에 따라 움직임을 줄이고 있어요."
+          : "말이 움직이는 모습과 효과를 줄여요. 이 기기에만 저장돼요."}
+      </p>
+    </section>
   );
 }
 
@@ -362,11 +405,13 @@ export default function ExplorerHome({
   };
 
   return (
-    <div className={s.expeditionHome}>
+    // 순서는 미션 → 지도 → 도구 → 다시 살펴볼 개념 — 넓은 PC 의 두 열은 CSS 만 바꾼다(explorer-home-atelier).
+    <div className={`${s.expeditionHome} ${a.home}`} data-explorer-home="true">
       <section
-        className={s.todayMission}
+        className={`${s.todayMission} ${a.mission}`}
         aria-labelledby="today-mission-title"
         data-expedition-mission="true"
+        data-explorer-home-part="mission"
       >
         <div className={s.missionMeta}>
           <span>
@@ -383,7 +428,7 @@ export default function ExplorerHome({
               : "문제"}
           </span>
         </div>
-        <p className={s.missionSubtitle}>{subtitle}</p>
+        <p className={`${s.missionSubtitle} ${a.muted}`}>{subtitle}</p>
         <h1 id="today-mission-title">
           <ExplorerMath text={title} />
         </h1>
@@ -402,13 +447,13 @@ export default function ExplorerHome({
           />
         </div>
         {retryRemaining > 0 ? (
-          <p className={s.missionRetry}>
+          <p className={`${s.missionRetry} ${a.retry}`}>
             다시 풀 문제 {retryRemaining}개를 마치면 한 칸 전진해요.
           </p>
         ) : null}
         {prerequisiteContext?.reason ? (
           <p
-            className={s.missionRetry}
+            className={`${s.missionRetry} ${a.retry}`}
             role={unavailable ? "status" : undefined}
           >
             {prerequisiteContext.reason}
@@ -443,7 +488,7 @@ export default function ExplorerHome({
             <span aria-hidden="true"> →</span>
           </button>
         ) : (
-          <p className={s.missionComplete}>
+          <p className={`${s.missionComplete} ${a.done}`}>
             <span aria-hidden="true">✓</span> 한 칸 전진했어요.
             {state.expedition?.todayStars ? (
               <TileStars {...state.expedition.todayStars} />
@@ -460,7 +505,10 @@ export default function ExplorerHome({
         ) : null}
       </section>
 
-      <section className={s.journeyPanel}>
+      <section
+        className={`${s.journeyPanel} ${a.journey}`}
+        data-explorer-home-part="journey"
+      >
         <JourneyBoard
           journey={journey}
           variant="map"
@@ -472,7 +520,11 @@ export default function ExplorerHome({
         />
       </section>
 
-      <div className={s.resourceLinks} aria-label="탐험 도구">
+      <div
+        className={`${s.resourceLinks} ${a.tools}`}
+        aria-label="탐험 도구"
+        data-explorer-home-part="tools"
+      >
         <button type="button" onClick={() => setSheet("collection")}>
           <span aria-hidden="true">▤</span>도감
         </button>
@@ -496,7 +548,10 @@ export default function ExplorerHome({
       </div>
 
       {pendingRetry ? (
-        <section className={s.pendingReview}>
+        <section
+          className={`${s.pendingReview} ${a.review}`}
+          data-explorer-home-part="review"
+        >
           <strong>다시 살펴볼 개념</strong>
           <p>해설이 필요하면 카드를 눌러 열어 보세요.</p>
           <div>
@@ -524,7 +579,7 @@ export default function ExplorerHome({
               {cards.length}개념
             </span>
           </div>
-          <p className={s.quietNote}>
+          <p className={`${s.quietNote} ${a.sheetNote}`}>
             모은 카드와 연결된 앞개념을 살펴보세요. 기억 복습은 오늘의 탐험에
             이어져요.
           </p>
@@ -576,7 +631,9 @@ export default function ExplorerHome({
 
       {sheet === "settings" ? (
         <ExplorerSheet title="학습 설정" onClose={closeSheet}>
-          <p className={s.quietNote}>
+          {/* 기기 설정은 맨 위 — 아래 학년 · 단원이 잠겨 있어도(미션 진행 중 · 저장 중) 눌린다. */}
+          <MotionSetting />
+          <p className={`${s.quietNote} ${a.sheetNote}`}>
             {settingsLocked
               ? "진행 중인 오늘의 탐험을 마치면 설정을 바꿀 수 있어요."
               : "지금 배우는 학년과 목표 단원을 정해 주세요."}

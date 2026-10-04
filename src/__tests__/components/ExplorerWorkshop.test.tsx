@@ -60,6 +60,32 @@ function fixture(changes: Partial<typeof workshop> = {}) {
 }
 
 describe("ExplorerWorkshop inside the shared expedition frame", () => {
+  it.each(["split", "match", "rule", "check"] as const)(
+    "reports the actual stage outcome in the dock: %s",
+    (stage) => {
+      render(
+        <ExplorerWorkshop
+          workshop={{ ...workshop, stage }}
+          session={session}
+          busy
+          correct={false}
+          eventKey="confirmed"
+          onAction={vi.fn()}
+          onHome={vi.fn()}
+        />,
+      );
+      const status = screen.getByRole("status");
+      expect(status.closest("[data-explorer-dock]")).toBeInTheDocument();
+      expect(status).toHaveTextContent(
+        stage === "check"
+          ? "확인 결과를 기록했어요"
+          : stage === "rule"
+            ? "규칙을 다시 살펴보세요"
+            : "조각을 다시 살펴보세요",
+      );
+      expect(status.textContent).not.toMatch(/모았어요/);
+    },
+  );
   it("splits the same shaded quantity interactively without typing", () => {
     const { onAction, container } = fixture();
     expect(screen.getByLabelText("전체 2조각 중 1조각 색칠")).toBeVisible();
