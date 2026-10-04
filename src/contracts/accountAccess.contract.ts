@@ -212,6 +212,8 @@ export type ManagedAccount = AccountAccess & {
   eywaSync?: AccountSyncStatus;
   /** Current managed identity owns branch assignment, even when sync is inactive. */
   branchAssignmentLocked?: boolean;
+  /** Local password recovery versus source-only recovery. */
+  authSource?: "local" | "eywa";
   createdAt: string;
   updatedAt: string;
   suspendedAt: string | null;

@@ -15,3 +15,11 @@ export const KST_OFFSET_MS = 9 * 3_600_000;
 export function kstDateOf(at: Date): string {
   return new Date(at.getTime() + KST_OFFSET_MS).toISOString().slice(0, 10);
 }
+
+/** Readable KST clock. The date half is kstDateOf so the offset is not calculated again. */
+export function kstDateTimeLabel(at: Date | string): string {
+  const date = at instanceof Date ? at : new Date(at);
+  if (Number.isNaN(date.getTime())) return "시각 확인 필요";
+  const clock = new Date(date.getTime() + KST_OFFSET_MS).toISOString().slice(11, 16);
+  return `${kstDateOf(date)} ${clock} KST`;
+}

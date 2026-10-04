@@ -5,6 +5,7 @@ import { authorizeAccount } from "@/lib/accountAccess";
 import { auditData } from "@/lib/audit";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { passwordReissueDecision } from "@/lib/admin/accountUsability";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 type Context = { params: Promise<{ id: string }> };
@@ -51,7 +52,7 @@ async function handlePost(request: Request, context: Context) {
             branchId: true,
           },
         });
-        if (!target || target.isSuperAdmin || target.authSource === "eywa")
+        if (!target)
           return failure(
             "ACTION_NOT_ALLOWED",
             "이 계정의 비밀번호는 여기서 재발급할 수 없습니다.",
@@ -66,12 +67,16 @@ async function handlePost(request: Request, context: Context) {
         const mapping = await tx.eywaManagedAccount.findUnique({
           where: { currentUserId: id },
         });
-        if (mapping && (!recoveryEvidence || recoveryEvidence.length < 30))
-          return failure(
-            "ACTION_NOT_ALLOWED",
-            "연동 계정 복구는 독립적인 소유권 확인 근거를 기록해야 합니다.",
-            403,
-          );
+        const decision = passwordReissueDecision(
+          {
+            isSuperAdmin: target.isSuperAdmin,
+            authSource: target.authSource,
+            mapped: Boolean(mapping),
+          },
+          recoveryEvidence,
+        );
+        if (!decision.allowed)
+          return failure("ACTION_NOT_ALLOWED", decision.message, 403);
         const changed = await tx.user.updateMany({
           where: {
             id,
@@ -100,7 +105,7 @@ async function handlePost(request: Request, context: Context) {
             ...(mapping
               ? {
                   details: {
-                    recoveryEvidence: recoveryEvidence!,
+                    recoveryEvidence: decision.evidence,
                     bindingId: mapping.bindingId,
                   },
                 }
