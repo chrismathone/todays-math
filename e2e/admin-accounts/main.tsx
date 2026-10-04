@@ -13,9 +13,16 @@ import "./harness.css";
 import Workbench from "./Workbench";
 import { MainScreen } from "../../src/components/main/MainScreen";
 
-const view = new URLSearchParams(location.search).get("view");
+const branchRoute = location.pathname.match(
+  /^\/admin\/branches\/([^/]+)(?:\/users\/([^/]+))?$/,
+);
+const view =
+  new URLSearchParams(location.search).get("view") ??
+  (branchRoute?.[2] ? "detail" : null);
 const branchId =
-  new URLSearchParams(location.search).get("branchId") ?? "unassigned";
+  new URLSearchParams(location.search).get("branchId") ??
+  branchRoute?.[1] ??
+  "unassigned";
 createRoot(document.getElementById("root")!).render(
   view === "dashboard" ? (
     <MainScreen embedded allowedMenus={["teaching"]} />

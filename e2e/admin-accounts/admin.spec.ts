@@ -30,7 +30,7 @@ async function installApi(page: Page) {
       return;
     }
     if (!url.pathname.startsWith("/api/")) {
-      await route.continue();
+      await route.fallback();
       return;
     }
     const method = route.request().method();
@@ -144,6 +144,130 @@ async function installApi(page: Page) {
     },
   };
 }
+
+test("account return preserves search, page, selection, hash and scroll across navigation and reload", async ({
+  page,
+  context,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 720 });
+  const html = await (
+    await page.request.get("/e2e/admin-accounts/index.html")
+  ).text();
+  await context.route(
+    (url) => url.pathname.startsWith("/admin/branches/"),
+    (route) => route.fulfill({ contentType: "text/html", body: html }),
+  );
+  const reads: string[] = [];
+  const install = async (target: Page) => {
+    const api = await installApi(target);
+    await target.route("**/api/admin/users?*", (route) => {
+      const url = new URL(route.request().url());
+      reads.push(url.search);
+      const rows = Array.from({ length: 25 }, (_, index) => ({
+        ...pendingAccount,
+        id:
+          index === 15
+            ? pendingAccount.id
+            : `90000000-0000-4000-8000-${String(index).padStart(12, "0")}`,
+        name: index === 15 ? pendingAccount.name : `김하늘 ${index + 1}`,
+      }));
+      return route.fulfill({
+        contentType: "application/json",
+        body: JSON.stringify(
+          accountsResponse(rows, {
+            page: Number(url.searchParams.get("page")),
+            total: 75,
+            counts: { all: 75, pending: 75, approved: 0, rejected: 0 },
+          }),
+        ),
+      });
+    });
+    return api;
+  };
+  const api = await install(page);
+  const list =
+    "/admin/branches/unassigned?q=" +
+    encodeURIComponent("김하늘") +
+    "&status=pending&page=2&tab=accounts#admin-main";
+  await page.goto(list);
+  const target = page.getByRole("link", { name: "김하늘", exact: true });
+  await expect(target).toBeVisible();
+  await target.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeGreaterThan(100);
+  const before = await page.evaluate(() => window.scrollY);
+  const detail = await target.getAttribute("href");
+  expect(detail).toBeTruthy();
+  await target.click();
+  await expect(
+    page.getByRole("link", { name: "미소속 계정 목록", exact: true }),
+  ).toBeVisible();
+  const returnLink = page.getByRole("link", {
+    name: "미소속 계정 목록",
+    exact: true,
+  });
+  const restored = new URL(
+    (await returnLink.getAttribute("href")) as string,
+    page.url(),
+  );
+  expect(Object.fromEntries(restored.searchParams)).toMatchObject({
+    q: "김하늘",
+    status: "pending",
+    page: "2",
+    tab: "accounts",
+    selection: pendingAccount.id,
+  });
+  expect(restored.hash).toBe("#admin-main");
+  await returnLink.click();
+  await expect(page.getByLabel("이름 또는 이메일 검색")).toHaveValue("김하늘");
+  await expect(page.getByText("2 / 3", { exact: true })).toBeVisible();
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeCloseTo(before, 0);
+  await page.reload();
+  await expect(page.getByText("2 / 3", { exact: true })).toBeVisible();
+  await expect
+    .poll(() => page.evaluate(() => window.scrollY))
+    .toBeCloseTo(before, 0);
+  const newTab = await context.newPage();
+  const newApi = await install(newTab);
+  await newTab.goto(detail!);
+  await expect(
+    newTab.getByRole("link", { name: "미소속 계정 목록", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    restored.pathname + restored.search + restored.hash,
+  );
+  await newTab.reload();
+  await newTab
+    .getByRole("link", { name: "미소속 계정 목록", exact: true })
+    .click();
+  await expect(newTab.getByLabel("이름 또는 이메일 검색")).toHaveValue(
+    "김하늘",
+  );
+  await expect(newTab.getByText("2 / 3", { exact: true })).toBeVisible();
+  await newTab.goBack();
+  await expect(
+    newTab.getByRole("link", { name: "미소속 계정 목록", exact: true }),
+  ).toBeVisible();
+  expect(
+    reads.every((search) => {
+      const params = new URLSearchParams(search);
+      return (
+        params.get("q") === "김하늘" &&
+        params.get("page") === "2" &&
+        params.get("status") === "pending"
+      );
+    }),
+  ).toBe(true);
+  expect([...api.unexpected, ...newApi.unexpected]).toEqual([]);
+  expect(
+    [...api.requests, ...newApi.requests].every(
+      (request) => request.method === "GET",
+    ),
+  ).toBe(true);
+});
 
 async function noOverflow(page: Page) {
   expect(
