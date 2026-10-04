@@ -11,6 +11,71 @@ import {
 export const LISTENING_RECONSTRUCTION_STYLE_VERSION =
   "korean-official-style-v4-20261005";
 export const LISTENING_RECONSTRUCTION_STYLE_THRESHOLD = 0.9;
+export const listeningStyleGenerationNormalizationSchema = z.strictObject({
+  version: z.literal("structural-metadata-v1"),
+  steps: z.array(
+    z.strictObject({
+      sourceNumber: z.number().int().positive(),
+      field: z.enum(["questionType", "sourceRecordId", "level"]),
+      from: z.string(),
+      to: z.string().nullable(),
+    }),
+  ),
+});
+/** Explicit structural recovery only. Raw receipt and all substantive item fields stay unchanged. */
+export function normalizeListeningStyleGeneration(
+  raw: unknown,
+  binding: { sourceRecordId: string; level: string },
+) {
+  const value = structuredClone(raw);
+  if (
+    !value ||
+    typeof value !== "object" ||
+    !Array.isArray((value as { questions?: unknown }).questions)
+  )
+    throw new Error("Generation normalization requires a questions array");
+  const steps: z.infer<
+    typeof listeningStyleGenerationNormalizationSchema
+  >["steps"] = [];
+  for (const item of (value as { questions: unknown[] }).questions) {
+    if (!item || typeof item !== "object")
+      throw new Error("Generation normalization requires question objects");
+    const question = item as Record<string, unknown>;
+    const sourceNumber = z
+      .number()
+      .int()
+      .positive()
+      .parse(question.sourceNumber);
+    for (const field of ["sourceRecordId", "level"] as const) {
+      if (!(field in question)) continue;
+      if (question[field] !== binding[field])
+        throw new Error(
+          `Redundant ${field} does not match immutable source binding`,
+        );
+      steps.push({ sourceNumber, field, from: binding[field], to: null });
+      delete question[field];
+    }
+    if (question.questionType === "reason") {
+      steps.push({
+        sourceNumber,
+        field: "questionType",
+        from: question.questionType,
+        to: "detail",
+      });
+      question.questionType = "detail";
+    }
+    listeningSegmentReconstructionSchema.shape.questions.element.shape.questionType.parse(
+      question.questionType,
+    );
+  }
+  return {
+    value,
+    generationNormalization: listeningStyleGenerationNormalizationSchema.parse({
+      version: "structural-metadata-v1",
+      steps,
+    }),
+  };
+}
 /** A new independent verifier may reuse a prior generation, never rewrite its raw version. */
 export function listeningStyleGenerationVersionAllowed(
   auditVersion: string,
@@ -598,6 +663,8 @@ export const listeningStyleRevisionAuditSchema = z
     originalQuestionNumbersRecovered: z.literal(false),
     threshold: z.literal(LISTENING_RECONSTRUCTION_STYLE_THRESHOLD),
     judgmentVersion: z.enum(["1", "2", "4"]).default("1"),
+    generationNormalization:
+      listeningStyleGenerationNormalizationSchema.optional(),
     receipts: z.array(listeningStyleReceiptReferenceSchema).min(3),
     questionVerdicts: z
       .array(
@@ -642,6 +709,15 @@ export const listeningStyleRevisionAuditSchema = z
     needsReviewQuestionIds: z.array(z.uuid()).max(30),
   })
   .superRefine((audit, context) => {
+    if (
+      audit.generationNormalization &&
+      audit.version !== LISTENING_RECONSTRUCTION_STYLE_VERSION
+    )
+      context.addIssue({
+        code: "custom",
+        message:
+          "Structural metadata recovery requires current guarded audit version",
+      });
     if (
       (audit.version === "korean-official-style-v1-20261005" &&
         audit.judgmentVersion !== "1") ||

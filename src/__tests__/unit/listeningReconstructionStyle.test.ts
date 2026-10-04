@@ -9,6 +9,7 @@ import {
   readListeningStyleGroundingJudgment,
   readListeningStyleJudgment,
   listeningStyleSemanticWarnings,
+  normalizeListeningStyleGeneration,
   type ListeningStyleTemplate,
 } from "@/lib/english/listening/reconstructionStyle";
 
@@ -61,6 +62,82 @@ const style = {
 };
 
 describe("official Korean listening style revision", () => {
+  it("recovers only explicit taxonomy aliases and exactly bound redundant identities", () => {
+    const raw = {
+      questions: [
+        {
+          ...question,
+          sourceRecordId: "bound-record",
+          level: "중3",
+          questionType: "reason",
+        },
+      ],
+    };
+    const snapshot = structuredClone(raw);
+    const normalized = normalizeListeningStyleGeneration(raw, {
+      sourceRecordId: "bound-record",
+      level: "중3",
+    });
+    expect(raw).toEqual(snapshot);
+    expect(normalized.value).toEqual({
+      questions: [{ ...question, questionType: "detail" }],
+    });
+    expect(normalized.generationNormalization).toEqual({
+      version: "structural-metadata-v1",
+      steps: [
+        {
+          sourceNumber: 1,
+          field: "sourceRecordId",
+          from: "bound-record",
+          to: null,
+        },
+        { sourceNumber: 1, field: "level", from: "중3", to: null },
+        {
+          sourceNumber: 1,
+          field: "questionType",
+          from: "reason",
+          to: "detail",
+        },
+      ],
+    });
+    const substantiveFields = [
+      "prompt",
+      "choices",
+      "correctChoiceOneBased",
+      "evidenceQuotes",
+      "sourceSegmentIds",
+      "explanation",
+      "topics",
+      "keywords",
+    ];
+    for (const field of substantiveFields)
+      expect(
+        (normalized.value as typeof raw).questions[0][
+          field as keyof (typeof raw.questions)[0]
+        ],
+      ).toEqual(raw.questions[0][field as keyof (typeof raw.questions)[0]]);
+  });
+  it("rejects unknown normalization labels and mismatched redundant source identities", () => {
+    for (const changes of [
+      { sourceRecordId: "wrong" },
+      { level: "중1" },
+      { questionType: "unmapped" },
+      { questionType: "action" },
+    ])
+      expect(() =>
+        normalizeListeningStyleGeneration(
+          { questions: [{ ...question, ...changes }] },
+          { sourceRecordId: "bound-record", level: "중3" },
+        ),
+      ).toThrow();
+    const normalized = normalizeListeningStyleGeneration(
+      { questions: [{ ...question, inventedExtra: "do not drop" }] },
+      { sourceRecordId: "bound-record", level: "중3" },
+    );
+    expect(() =>
+      validateListeningStyleRevision(segments, [question], normalized.value),
+    ).toThrow();
+  });
   const meaning = (
     choice: string,
     prompt = "대화를 듣고, 시기를 고르시오.",
