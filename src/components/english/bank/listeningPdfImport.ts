@@ -171,7 +171,11 @@ export function listeningPdfQuestionBoxes(
 /** Parse explicit number/choice pairs in answer tables, never guess an absent answer. */
 export function listeningPdfAnswers(text: string): Map<number, number> {
   const result = new Map<number, number>();
-  for (const match of text.matchAll(/(?:^|\s)(\d{1,2})\s*([①②③④⑤])(?=\s|$)/g)) {
+  // Official older sheets append choice frequencies, which are not question answers.
+  const answerTable = text.split(/정답\s*번호\s*개수/, 1)[0];
+  for (const match of answerTable.matchAll(
+    /(?:^|\s)(\d{1,2})\s*([①②③④⑤])(?=\s|$)/g,
+  )) {
     const number = Number(match[1]);
     const answer = "①②③④⑤".indexOf(match[2]);
     if (result.has(number) && result.get(number) !== answer)

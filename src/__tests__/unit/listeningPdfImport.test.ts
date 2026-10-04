@@ -97,6 +97,15 @@ describe("original listening assessment PDF parsing", () => {
     expect(listeningPdfAnswers("1 2 3 4 5").size).toBe(0);
   });
 
+  it("ignores the choice-count summary following the official 2018 answer table", () => {
+    const answers = listeningPdfAnswers(
+      "문항번호 정답 문항번호 정답 1 ② 11 ③ 2 ④ 12 ⑤ 3 ① 13 ① 4 ⑤ 14 ④ 5 ③ 15 ⑤ 6 ③ 16 ① 7 ④ 17 ② 8 ② 18 ② 9 ④ 19 ③ 10 ⑤ 20 ③ 정답번호 개수 ① 3 ② 4 ③ 5 ④ 4 ⑤ 4 합계 20",
+    );
+    expect(answers.size).toBe(20);
+    expect(answers.get(3)).toBe(0);
+    expect(answers.get(4)).toBe(4);
+  });
+
   it.each(["【16-17】", "[16~17]"])(
     "keeps shared instructions with their own questions instead of the preceding illustration (%s)",
     (marker) => {
