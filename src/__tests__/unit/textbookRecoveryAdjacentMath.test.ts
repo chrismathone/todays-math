@@ -92,7 +92,7 @@ function memory(
         rows:
           options.projected && hidden
             ? source.map((row) => ({ ...row, rawText: "" }))
-            : source,
+            : [...source],
       },
     },
   } as RenderBlock;
