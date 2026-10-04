@@ -1241,6 +1241,33 @@ describe("textbook preview and lecture refs", () => {
     expect(nextMeasuredSpread(pages, 6, -1)).toBeNull();
   });
 
+  it("previews an auto-lesson template with the same generic body projection", () => {
+    const built = buildSectionPreview({
+      edition: previewEdition(previewSource()),
+      section: {
+        ...section,
+        templateKey: "auto-lesson",
+        parity: "continue",
+        blocks: [
+          { id: "lesson-text", kind: "text", text: "덧셈을 알아봅시다." },
+        ],
+      },
+      variant: "student",
+    });
+    expect(built.ok).toBe(true);
+    if (!built.ok) return;
+    expect(built.model.sections[0]).toMatchObject({
+      templateKey: "auto-lesson",
+      startPolicy: "continue",
+      blocks: expect.arrayContaining([
+        expect.objectContaining({
+          kind: "text",
+          markdown: "덧셈을 알아봅시다.",
+        }),
+      ]),
+    });
+  });
+
   it("turns between the actual measured spreads even when physical indexes have a gap", () => {
     const pages = [
       { physicalPageIndex: 7, printedPageLabel: "7" },
