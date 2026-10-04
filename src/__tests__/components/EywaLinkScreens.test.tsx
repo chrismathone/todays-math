@@ -23,8 +23,9 @@ const nav = vi.hoisted(() => ({
 }));
 const jar = vi.hoisted(() => ({ values: new Map<string, string>() }));
 const account = vi.hoisted(() => ({ value: null as unknown }));
+const loginSession = vi.hoisted(() => ({ value: null as unknown }));
 
-vi.mock("@/lib/auth", () => ({ auth: vi.fn(async () => null) }));
+vi.mock("@/lib/auth", () => ({ auth: vi.fn(async () => loginSession.value) }));
 vi.mock("@/lib/accountAccess", () => ({
   getAccountAccess: vi.fn(async () => account.value),
 }));
@@ -75,15 +76,16 @@ const director = {
 beforeEach(() => {
   jar.values.clear();
   account.value = null;
+  loginSession.value = null;
   nav.push.mockReset();
   nav.refresh.mockReset();
   nav.redirect.mockClear();
 });
 
-async function renderLogin(callbackUrl?: string) {
+async function renderLogin(callbackUrl?: string, eywa?: string | string[]) {
   render(
     await LoginPage({
-      searchParams: Promise.resolve(callbackUrl ? { callbackUrl } : {}),
+      searchParams: Promise.resolve({ callbackUrl, eywa }),
     }),
   );
 }
@@ -115,6 +117,62 @@ describe("로그인 화면 — 연결 대기 안내 줄", () => {
     await renderLogin("/account/eywa-link");
     expect(screen.queryByRole("status")).toBeNull();
     expect(document.body.textContent).not.toContain("eywa");
+  });
+});
+
+describe("로그인 화면 — 에이와 자동 로그인 안내", () => {
+  it.each([
+    [
+      "not-linked",
+      "에이와 자동 로그인 대상이 아닙니다. 오늘의 수학 계정으로 로그인해 주세요.",
+    ],
+    [
+      "retry",
+      "에이와 자동 로그인 요청이 만료되었거나 완료되지 않았습니다. 다시 이동하거나 오늘의 수학 계정으로 로그인해 주세요.",
+    ],
+    [
+      "unavailable",
+      "에이와 자동 로그인 연결을 확인할 수 없습니다. 오늘의 수학 계정으로 로그인해 주세요.",
+    ],
+  ])(
+    "%s 요청에서 기존 로그인 양식과 안내를 표시한다",
+    async (reason, message) => {
+      await renderLogin(undefined, reason);
+      expect(screen.getByRole("status")).toHaveTextContent(message);
+      expect(
+        screen.getByRole("textbox", { name: "이메일 또는 학생 아이디" }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: "로그인" }),
+      ).toBeEnabled();
+    },
+  );
+
+  it("미연동 안내는 이전 연결 대기 쿠키의 다른 계정 안내보다 우선한다", async () => {
+    jar.values.set(EYWA_LINK_PENDING_COOKIE, seal());
+    await renderLogin(undefined, "not-linked");
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "오늘의 수학 계정으로 로그인해 주세요.",
+    );
+    expect(screen.queryByText(LOGIN_NOTICE)).not.toBeInTheDocument();
+  });
+
+  it.each(["unknown", ["not-linked", "retry"]])(
+    "알 수 없거나 중복된 안내 값 %j는 표시하지 않는다",
+    async (reason) => {
+      await renderLogin(undefined, reason);
+      expect(screen.queryByRole("status")).not.toBeInTheDocument();
+    },
+  );
+
+  it("이미 로그인한 최고관리자는 미연동 안내 대신 기존 작업실로 이동한다", async () => {
+    loginSession.value = {
+      user: { ...director, isAdmin: true, isSuperAdmin: true },
+    };
+    await expect(
+      LoginPage({ searchParams: Promise.resolve({ eywa: "not-linked" }) }),
+    ).rejects.toThrow("redirect:/");
+    expect(nav.redirect).toHaveBeenCalledWith("/");
   });
 });
 
