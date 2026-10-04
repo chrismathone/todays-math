@@ -1,0 +1,680 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import type {
+  ListeningComposeSelection,
+  ListeningComposeSource,
+} from "@/contracts/englishListeningCompose.contract";
+import type {
+  ListeningDraft,
+  ListeningSetDetail,
+} from "@/contracts/englishListeningHttp.contract";
+import { listeningError, listeningRequest } from "../listening/listeningClient";
+import w from "@/components/unified/Workroom.module.css";
+import s from "../EnglishStudio.module.css";
+import b from "./EnglishResourceBank.module.css";
+import c from "./ListeningBankMaterial.module.css";
+import { BankError, BankLoading } from "./BankFeedback";
+
+type Group = ListeningDraft["groups"][number];
+type Question = Group["questions"][number];
+interface BasketEntry {
+  selection: ListeningComposeSelection;
+  title: string;
+  sourceNumber: number;
+  sourceQuestionIds: string[];
+  questions: {
+    id: string;
+    prompt: string;
+    number: number;
+    hasRange: boolean;
+  }[];
+}
+const entryKey = (item: ListeningComposeSelection) =>
+  `${item.setId}:${item.groupId}`;
+const timeLabel = (ms: number) =>
+  `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, "0")}`;
+
+function MaterialGroup({
+  group,
+  index,
+  mediaUrl,
+  checked,
+  onToggle,
+}: {
+  group: Group;
+  index: number;
+  mediaUrl?: string;
+  checked: Set<string>;
+  onToggle: (id: string) => void;
+}) {
+  const player = useRef<HTMLAudioElement>(null);
+  const stopAt = useRef<number | null>(null);
+  return (
+    <section className={c.group}>
+      <h3>
+        음원 {index + 1} · {group.questions.length}문항
+      </h3>
+      {mediaUrl ? (
+        <audio
+          ref={player}
+          className={c.player}
+          controls
+          preload="metadata"
+          src={mediaUrl}
+          aria-label={`음원 ${index + 1}`}
+          onTimeUpdate={() => {
+            if (
+              player.current &&
+              stopAt.current !== null &&
+              player.current.currentTime >= stopAt.current
+            ) {
+              player.current.pause();
+              stopAt.current = null;
+            }
+          }}
+          onSeeked={() => {
+            if (
+              player.current &&
+              stopAt.current !== null &&
+              player.current.currentTime > stopAt.current
+            )
+              stopAt.current = null;
+          }}
+        />
+      ) : (
+        <p className={b.note}>올린 음원이 없습니다.</p>
+      )}
+      <ol className={c.questions}>
+        {group.questions.map((raw, questionIndex) => {
+          const question = raw as Question;
+          return (
+            <li key={question.id}>
+              <label className={c.questionLabel}>
+                <input
+                  type="checkbox"
+                  checked={checked.has(question.id)}
+                  onChange={() => onToggle(question.id)}
+                  disabled={!group.audio}
+                />
+                <span>
+                  <strong>
+                    {question.sourceNumber ?? questionIndex + 1}.{" "}
+                    {question.prompt || "문항 이미지"}
+                  </strong>
+                </span>
+              </label>
+              {question.image ? (
+                <Image
+                  className={c.questionImage}
+                  unoptimized
+                  src={question.image.dataUrl}
+                  width={question.image.width}
+                  height={question.image.height}
+                  alt={`${question.sourceNumber ?? questionIndex + 1}번 원본 문항`}
+                />
+              ) : null}
+              {question.choices.length && !question.image ? (
+                <ol className={c.choices}>
+                  {question.choices.map((choice, choiceIndex) => (
+                    <li key={choice.id}>
+                      {["①", "②", "③", "④", "⑤"][choiceIndex]} {choice.text}
+                    </li>
+                  ))}
+                </ol>
+              ) : null}
+              {question.audioRange && mediaUrl ? (
+                <button
+                  type="button"
+                  className={w.outlineButton}
+                  onClick={() => {
+                    if (player.current) {
+                      stopAt.current = question.audioRange!.endMs / 1000;
+                      player.current.currentTime =
+                        question.audioRange!.startMs / 1000;
+                      void player.current.play().catch(() => {
+                        stopAt.current = null;
+                      });
+                    }
+                  }}
+                >
+                  {timeLabel(question.audioRange.startMs)}–
+                  {timeLabel(question.audioRange.endMs)} 문항 듣기
+                </button>
+              ) : (
+                <span className={b.meta}>
+                  개별 음원 구간 미지정 · 전체 회차 담기 가능
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </section>
+  );
+}
+
+/** Keep mounted while bank filters change so a basket can contain several source rounds. */
+export default function ListeningBankMaterial({
+  active,
+  setId,
+  onOpenListening,
+  onState,
+}: {
+  active: boolean;
+  setId: string;
+  onOpenListening: (id: string) => void;
+  onState?: (dirty: boolean, busy: boolean) => void;
+}) {
+  const [source, setSource] = useState<ListeningComposeSource | null>(null);
+  const [loadError, setLoadError] = useState<{
+    setId: string;
+    message: string;
+  } | null>(null);
+  const [generation, setGeneration] = useState(0);
+  const [checked, setChecked] = useState<Set<string>>(new Set());
+  const [basket, setBasket] = useState<BasketEntry[]>([]);
+  const [title, setTitle] = useState("듣기 시험지");
+  const [busy, setBusy] = useState(false);
+  const [notice, setNotice] = useState("");
+  const [created, setCreated] = useState<ListeningSetDetail | null>(null);
+  const [rightsBasis, setRightsBasis] = useState("");
+  const command = useRef<AbortController | null>(null);
+  const materialElement = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!active)
+      materialElement.current
+        ?.querySelectorAll("audio")
+        .forEach((audio) => audio.pause());
+  }, [active]);
+  useEffect(() => () => command.current?.abort(), []);
+  useEffect(() => {
+    if (!active || !setId) return;
+    const controller = new AbortController();
+    void listeningRequest<ListeningComposeSource>(
+      `/sets/${setId}/compose-source`,
+      controller.signal,
+    )
+      .then((result) => {
+        if (!controller.signal.aborted) {
+          setSource(result);
+          setChecked(new Set());
+          setLoadError(null);
+        }
+      })
+      .catch((error) => {
+        if (!controller.signal.aborted)
+          setLoadError({ setId, message: listeningError(error) });
+      });
+    return () => controller.abort();
+  }, [active, setId, generation]);
+  const current = source?.detail.id === setId ? source : null;
+  const questionCount = basket.reduce(
+    (total, entry) => total + entry.questions.length,
+    0,
+  );
+  useEffect(() => {
+    onState?.(questionCount > 0, busy);
+  }, [onState, questionCount, busy]);
+  useEffect(() => () => onState?.(false, false), [onState]);
+  const missingRanges = basket.some((entry) => {
+    const full =
+      entry.sourceQuestionIds.length === entry.questions.length &&
+      entry.sourceQuestionIds.every(
+        (id, index) => id === entry.questions[index].id,
+      );
+    return !full && entry.questions.some((question) => !question.hasRange);
+  });
+  function add(all: boolean) {
+    if (!current) return;
+    const additions: BasketEntry[] = current.detail.document.groups.flatMap(
+      (group, index) => {
+        const questions = group.questions.filter(
+          (question) => all || checked.has(question.id),
+        );
+        if (!questions.length || !group.audio) return [];
+        return [
+          {
+            selection: {
+              setId,
+              expectedRevision: current.detail.revision,
+              documentHash: current.documentHash,
+              groupId: group.id,
+              questionIds: questions.map((question) => question.id),
+            },
+            title: current.detail.document.title,
+            sourceNumber: index + 1,
+            sourceQuestionIds: group.questions.map((question) => question.id),
+            questions: questions.map((question) => ({
+              id: question.id,
+              prompt: question.prompt,
+              number:
+                question.sourceNumber ??
+                group.questions.findIndex((item) => item.id === question.id) +
+                  1,
+              hasRange: Boolean((question as Question).audioRange),
+            })),
+          },
+        ];
+      },
+    );
+    if (!additions.length) {
+      setNotice("음원이 있는 문항을 선택해 주세요.");
+      return;
+    }
+    if (
+      additions.some((addition) =>
+        basket.some(
+          (entry) =>
+            entryKey(entry.selection) === entryKey(addition.selection) &&
+            (entry.selection.expectedRevision !==
+              addition.selection.expectedRevision ||
+              entry.selection.documentHash !== addition.selection.documentHash),
+        ),
+      )
+    ) {
+      setNotice(
+        "담아 둔 원본 자료가 변경되었습니다. 기존 묶음을 지운 뒤 다시 담아 주세요.",
+      );
+      return;
+    }
+    setBasket((previous) => {
+      const next = [...previous];
+      for (const addition of additions) {
+        const index = next.findIndex(
+          (entry) => entryKey(entry.selection) === entryKey(addition.selection),
+        );
+        if (index < 0) next.push(addition);
+        else {
+          const merged = [
+            ...next[index].questions,
+            ...addition.questions.filter(
+              (question) =>
+                !next[index].selection.questionIds.includes(question.id),
+            ),
+          ].sort((a, b) => a.number - b.number);
+          next[index] = {
+            ...addition,
+            questions: merged,
+            selection: {
+              ...addition.selection,
+              questionIds: merged.map((question) => question.id),
+            },
+          };
+        }
+      }
+      return next;
+    });
+    setChecked(new Set());
+    setNotice(all ? "전체 회차를 담았습니다." : "선택한 문항을 담았습니다.");
+  }
+  async function create() {
+    if (busy || !basket.length || !title.trim() || missingRanges) return;
+    const controller = new AbortController();
+    command.current = controller;
+    setBusy(true);
+    setNotice("");
+    try {
+      const result = await listeningRequest<ListeningSetDetail>(
+        "/compose",
+        controller.signal,
+        "POST",
+        {
+          title: title.trim(),
+          selections: basket.map((entry) => entry.selection),
+        },
+      );
+      if (controller.signal.aborted) return;
+      setCreated(result);
+      setBasket([]);
+      setRightsBasis(result.document.provenance.basis);
+      setNotice("담은 문항으로 새 시험지를 만들었습니다.");
+    } catch (error) {
+      if (!controller.signal.aborted) setNotice(listeningError(error));
+    } finally {
+      if (!controller.signal.aborted) setBusy(false);
+    }
+  }
+  async function confirmRights() {
+    if (!created || busy || !rightsBasis.trim()) return;
+    const controller = new AbortController();
+    command.current = controller;
+    setBusy(true);
+    setNotice("");
+    try {
+      const result = await listeningRequest<ListeningSetDetail>(
+        `/sets/${created.id}/review`,
+        controller.signal,
+        "POST",
+        {
+          expectedRevision: created.revision,
+          kind: "rights",
+          basis: rightsBasis.trim(),
+        },
+      );
+      if (!controller.signal.aborted) {
+        setCreated(result);
+        setNotice(
+          "시험지의 사용 권리를 확인했습니다. 인쇄와 재생을 사용할 수 있습니다.",
+        );
+      }
+    } catch (error) {
+      if (!controller.signal.aborted) setNotice(listeningError(error));
+    } finally {
+      if (!controller.signal.aborted) setBusy(false);
+    }
+  }
+  function move(index: number, direction: number) {
+    setBasket((previous) => {
+      const next = [...previous];
+      const target = index + direction;
+      if (target >= 0 && target < next.length)
+        [next[index], next[target]] = [next[target], next[index]];
+      return next;
+    });
+  }
+  function removeQuestion(index: number, id: string) {
+    setBasket((previous) =>
+      previous.flatMap((entry, entryIndex) => {
+        if (entryIndex !== index) return [entry];
+        const questions = entry.questions.filter(
+          (question) => question.id !== id,
+        );
+        return questions.length
+          ? [
+              {
+                ...entry,
+                questions,
+                selection: {
+                  ...entry.selection,
+                  questionIds: questions.map((question) => question.id),
+                },
+              },
+            ]
+          : [];
+      }),
+    );
+  }
+  const canPrint = Boolean(created?.document.rightsReview);
+  return (
+    <div ref={materialElement} className={c.material}>
+      {setId && active ? (
+        loadError?.setId === setId ? (
+          <BankError
+            message={loadError.message}
+            onRetry={() => setGeneration((value) => value + 1)}
+          />
+        ) : !current ? (
+          <BankLoading />
+        ) : (
+          <>
+            <h2>{current.detail.document.title}</h2>
+            <p className={b.meta}>
+              {current.detail.document.level || "학년 미지정"} ·{" "}
+              {current.detail.document.groups.reduce(
+                (total, group) => total + group.questions.length,
+                0,
+              )}
+              문항
+            </p>
+            <div className={b.actions}>
+              <button
+                type="button"
+                className={w.primaryButton}
+                disabled={
+                  busy ||
+                  !current.detail.document.groups.some(
+                    (group) => group.audio && group.questions.length,
+                  )
+                }
+                onClick={() => add(true)}
+              >
+                전체 회차 담기
+              </button>
+              <button
+                type="button"
+                className={w.outlineButton}
+                disabled={busy || !checked.size}
+                onClick={() => add(false)}
+              >
+                선택 {checked.size}문항 담기
+              </button>
+              <button
+                type="button"
+                className={w.outlineButton}
+                onClick={() => onOpenListening(setId)}
+              >
+                원본 편집
+              </button>
+            </div>
+            {current.detail.document.groups.map((group, index) => (
+              <MaterialGroup
+                key={`${setId}:${group.id}`}
+                group={group}
+                index={index}
+                mediaUrl={
+                  group.audio
+                    ? current.detail.mediaUrlsByAssetId[group.audio.assetId]
+                    : undefined
+                }
+                checked={checked}
+                onToggle={(id) =>
+                  setChecked((previous) => {
+                    const next = new Set(previous);
+                    if (next.has(id)) next.delete(id);
+                    else next.add(id);
+                    return next;
+                  })
+                }
+              />
+            ))}
+            {!current.detail.document.groups.length ? (
+              <p className={b.note}>
+                문항이 없습니다. 원본 편집에서 음원과 문항을 추가해 주세요.
+              </p>
+            ) : null}
+          </>
+        )
+      ) : (
+        <p className={b.note}>
+          자료를 선택하면 여기서 듣고, 전체 회차나 개별 문항을 담을 수 있습니다.
+        </p>
+      )}
+      <section className={c.basket} aria-label="듣기 시험지 장바구니">
+        <div className={c.basketHeading}>
+          <h2>담은 문항 · {questionCount}문항</h2>
+          <button
+            type="button"
+            className={w.outlineButton}
+            disabled={busy || !basket.length}
+            onClick={() => {
+              setBasket([]);
+              setNotice("장바구니를 비웠습니다.");
+            }}
+          >
+            전체 비우기
+          </button>
+        </div>
+        {!basket.length ? (
+          <p className={b.note}>여러 자료의 문항을 함께 담을 수 있습니다.</p>
+        ) : (
+          <ol className={c.basketList}>
+            {basket.map((entry, index) => (
+              <li key={entryKey(entry.selection)}>
+                <div className={c.basketHeading}>
+                  <strong>
+                    {index + 1}. {entry.title} · 음원 {entry.sourceNumber}
+                  </strong>
+                  <div className={c.orderActions}>
+                    <button
+                      type="button"
+                      className={w.outlineButton}
+                      aria-label={`${entry.title} 위로 이동`}
+                      disabled={busy || index === 0}
+                      onClick={() => move(index, -1)}
+                    >
+                      ↑
+                    </button>
+                    <button
+                      type="button"
+                      className={w.outlineButton}
+                      aria-label={`${entry.title} 아래로 이동`}
+                      disabled={busy || index === basket.length - 1}
+                      onClick={() => move(index, 1)}
+                    >
+                      ↓
+                    </button>
+                    <button
+                      type="button"
+                      className={w.outlineButton}
+                      disabled={busy}
+                      onClick={() =>
+                        setBasket((previous) =>
+                          previous.filter(
+                            (_, itemIndex) => itemIndex !== index,
+                          ),
+                        )
+                      }
+                    >
+                      묶음 빼기
+                    </button>
+                  </div>
+                </div>
+                <ul className={c.basketQuestions}>
+                  {entry.questions.map((question) => (
+                    <li key={question.id}>
+                      <span>
+                        {question.number}번 · {question.prompt || "원본 문항"}
+                      </span>
+                      <button
+                        type="button"
+                        className={w.outlineButton}
+                        disabled={busy}
+                        aria-label={`${entry.title} ${question.number}번 빼기`}
+                        onClick={() => removeQuestion(index, question.id)}
+                      >
+                        빼기
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ol>
+        )}
+        <div className={c.createRow}>
+          <label className={s.field}>
+            새 시험지 제목
+            <input
+              value={title}
+              maxLength={200}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </label>
+          <button
+            type="button"
+            className={w.primaryButton}
+            disabled={
+              busy ||
+              !questionCount ||
+              !title.trim() ||
+              missingRanges ||
+              basket.length > 30
+            }
+            onClick={() => void create()}
+          >
+            {busy ? "처리 중…" : "담은 문항으로 시험지 만들기"}
+          </button>
+        </div>
+        {missingRanges ? (
+          <p className={b.notice}>
+            개별 문항의 전체 음원 구간이 필요합니다. 원본 편집에서 문항별
+            시작·끝 시각을 지정하거나 전체 회차를 담아 주세요.
+          </p>
+        ) : null}
+        {basket.length > 30 ? (
+          <p className={b.notice}>
+            시험지 하나에는 음원 묶음 30개까지 담을 수 있습니다.
+          </p>
+        ) : null}
+      </section>
+      {notice ? (
+        <p className={b.notice} role="status">
+          {notice}
+        </p>
+      ) : null}
+      {created ? (
+        <section className={c.created} aria-label="만든 듣기 시험지">
+          <h2>{created.document.title}</h2>
+          {!canPrint ? (
+            <div className={c.createRow}>
+              <label className={s.field}>
+                출처와 이용 권리 확인 근거
+                <input
+                  value={rightsBasis}
+                  maxLength={1000}
+                  onChange={(event) => setRightsBasis(event.target.value)}
+                />
+              </label>
+              <button
+                type="button"
+                className={w.primaryButton}
+                disabled={busy || !rightsBasis.trim()}
+                onClick={() => void confirmRights()}
+              >
+                사용 권리 확인
+              </button>
+            </div>
+          ) : null}
+          <div className={b.actions}>
+            {canPrint &&
+            created.document.rights.allowedUses.includes("distribution") ? (
+              <a
+                className={w.outlineButton}
+                href={`/english/listening/sets/${created.id}/draft-print?view=student&revision=${created.revision}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                학생용 시험지 인쇄
+              </a>
+            ) : null}
+            {canPrint ? (
+              <a
+                className={w.outlineButton}
+                href={`/english/listening/sets/${created.id}/draft-print?view=teacher&revision=${created.revision}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                교사용 정답·해설 인쇄
+              </a>
+            ) : null}
+            <button
+              type="button"
+              className={w.outlineButton}
+              onClick={() => onOpenListening(created.id)}
+            >
+              검수·학생 배정
+            </button>
+          </div>
+          {canPrint
+            ? created.document.groups.map((group, index) =>
+                group.audio ? (
+                  <div key={group.id} className={c.outputAudio}>
+                    <strong>시험 음원 {index + 1}</strong>
+                    <audio
+                      className={c.player}
+                      controls
+                      preload="metadata"
+                      src={created.mediaUrlsByAssetId[group.audio.assetId]}
+                      aria-label={`시험 음원 ${index + 1}`}
+                    />
+                  </div>
+                ) : null,
+              )
+            : null}
+        </section>
+      ) : null}
+    </div>
+  );
+}
