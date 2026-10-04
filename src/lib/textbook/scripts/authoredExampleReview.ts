@@ -634,15 +634,15 @@ export const AUTHORED_EXAMPLE_FINDINGS: readonly AuthoredExampleFinding[] = [
     key: "초6::1-2-3",
     kind: "condition",
     finding:
-      "답의 $3,4,5\\,\\mathrm{cm}$는 풀이 둘째 대사가 예로 든 수다. 질문은 수 없이 ‘폭은 마음대로 정해도 될까’만 묻는다. 고치려면 질문에 밑면의 세 변과 높이를 밝힌다. 교정 지시의 범위 밖이어서 남겼다.",
-    status: "open",
+      "답의 $3,4,5\\,\\mathrm{cm}$가 풀이 둘째 대사의 예로만 나왔고 질문에는 수가 없었다. 풀이가 쓰는 밑면의 세 변과 높이 $6\\,\\mathrm{cm}$를 질문에 밝혔다.",
+    status: "fixed",
   },
   {
     key: "초6::2-3-2",
     kind: "condition",
     finding:
-      "풀이의 ‘공중에 뜬 블록 없이 쌓았다고 정했으므로’가 가리키는 전제가 질문에 없다. 고치려면 질문에 그 전제를 밝힌다. 교정 지시의 범위 밖이어서 남겼다.",
-    status: "open",
+      "풀이의 ‘공중에 뜬 블록 없이 쌓았다고 정했으므로’가 가리키는 전제가 질문에 없었다. ‘공중에 뜬 블록 없이 쌓은’을 질문에 밝혔다.",
+    status: "fixed",
   },
 ];
 
