@@ -17,6 +17,10 @@ import * as students from "./students";
 import { searchListeningBank, searchListeningReferences } from "./bank";
 import { composeListeningSet, composeSource } from "./compose";
 import type { ListeningDriveApi } from "../media/driveApi";
+import type {
+  ListeningStorageApi,
+  ListeningStorageRef,
+} from "../media/storageApi";
 
 /** Each command, receipt, revision and release exposure commits in one durable transaction.
  * The advisory lock serializes a set/assignment across processes; SQL CAS still checks the
@@ -24,7 +28,10 @@ import type { ListeningDriveApi } from "../media/driveApi";
 export function createListeningRuntime(
   database: ListeningDatabase,
   clock: () => Date = () => new Date(),
-  dependencies: { drive?: ListeningDriveApi | null } = {},
+  dependencies: {
+    drive?: ListeningDriveApi | null;
+    storage?: ListeningStorageApi | null;
+  } = {},
 ) {
   const transaction = <T>(
     key: string | undefined,
@@ -72,6 +79,7 @@ export function createListeningRuntime(
       ),
     composeSet: async (actor: ListeningActor, input: unknown) => {
       const createdFiles = new Set<string>();
+      const createdStorageRefs: ListeningStorageRef[] = [];
       try {
         return await transaction(
           undefined,
@@ -83,18 +91,26 @@ export function createListeningRuntime(
               account,
               input,
               now,
-              dependencies.drive
-                ? { api: dependencies.drive, createdFiles }
+              dependencies.drive || dependencies.storage
+                ? {
+                    api: dependencies.drive ?? undefined,
+                    storage: dependencies.storage ?? undefined,
+                    createdFiles,
+                    createdStorageRefs,
+                  }
                 : undefined,
             );
           },
-          dependencies.drive ? 600000 : 120000,
+          dependencies.drive || dependencies.storage ? 600000 : 120000,
         );
       } catch (error) {
         // SQL rollback never leaves a playable metadata identity. Remove only
         // newly created derivatives, never shared originals or existing files.
         await Promise.allSettled(
           [...createdFiles].map((fileId) => dependencies.drive!.trash(fileId)),
+        );
+        await Promise.allSettled(
+          createdStorageRefs.map((ref) => dependencies.storage!.remove(ref)),
         );
         throw error;
       }
