@@ -2064,6 +2064,8 @@ export function PreviewPane({
   onZoom,
   onPrev,
   onNext,
+  prevDisabled = false,
+  nextDisabled = false,
   showModes,
   renderPaper,
   measured,
@@ -2076,6 +2078,8 @@ export function PreviewPane({
   onZoom: (zoom: ZoomMode) => void;
   onPrev: () => void;
   onNext: () => void;
+  prevDisabled?: boolean;
+  nextDisabled?: boolean;
   showModes: boolean;
   renderPaper?: (input: PaperPreviewInput) => ReactNode;
   /** 측정이 되면 대기 문장과 대사 덤프 대신 이 노드를 보여 준다. */
@@ -2130,11 +2134,21 @@ export function PreviewPane({
         </button>
       </div>
       <div className={styles.pageNav}>
-        <button type="button" className={styles.button} onClick={onPrev}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={onPrev}
+          disabled={prevDisabled}
+        >
           이전 쪽
         </button>
         <span>{pageLabel}</span>
-        <button type="button" className={styles.button} onClick={onNext}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={onNext}
+          disabled={nextDisabled}
+        >
           다음 쪽
         </button>
       </div>

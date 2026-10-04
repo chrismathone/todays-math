@@ -1231,6 +1231,84 @@ describe("textbook preview and lecture refs", () => {
     expect(nextMeasuredSpread([], null, 1)).toBeNull();
   });
 
+  it("clamps a spread that disappeared after remeasurement instead of showing an empty spread", () => {
+    const pages = [
+      { physicalPageIndex: 2, printedPageLabel: "2" },
+      { physicalPageIndex: 3, printedPageLabel: "3" },
+    ];
+    expect(measuredSpreadAnchor(pages, 6)).toBe(2);
+    expect(measuredSpreadAnchor(pages, 0)).toBe(2);
+    expect(nextMeasuredSpread(pages, 6, -1)).toBeNull();
+  });
+
+  it("turns between the actual measured spreads even when physical indexes have a gap", () => {
+    const pages = [
+      { physicalPageIndex: 7, printedPageLabel: "7" },
+      { physicalPageIndex: 1, printedPageLabel: "" },
+      { physicalPageIndex: 2, printedPageLabel: "2" },
+    ];
+    expect(nextMeasuredSpread(pages, 0, 1)).toBe(2);
+    expect(nextMeasuredSpread(pages, 2, 1)).toBe(6);
+    expect(nextMeasuredSpread(pages, 6, -1)).toBe(2);
+    expect(nextMeasuredSpread(pages, 2, -1)).toBe(0);
+  });
+
+  it("includes the cover only with the first section and leaves saved print settings intact", () => {
+    const source = previewSource();
+    source.config.print.coverMode = "included";
+    source.outline[0]!.sections = [
+      { id: "section-1", sectionKey: "dialogue", title: "대화", revision: 1 },
+      { id: "section-2", sectionKey: "practice", title: "연습", revision: 1 },
+    ];
+    const first = buildSectionPreview({
+      edition: previewEdition(source),
+      section,
+      variant: "student",
+    });
+    expect(first.ok).toBe(true);
+    if (!first.ok) return;
+    expect(first.model.config.print).toMatchObject({
+      coverMode: "included",
+      firstPhysicalPageIndex: 1,
+    });
+
+    for (const parity of ["continue", "even-left"] as const) {
+      const body = buildSectionPreview({
+        edition: previewEdition(source),
+        section: {
+          ...section,
+          sectionId: "section-2",
+          sectionKey: "practice",
+          parity,
+        },
+        variant: "student",
+      });
+      expect(body.ok).toBe(true);
+      if (!body.ok) continue;
+      expect(body.model.config.print).toMatchObject({
+        coverMode: "separate",
+        firstPhysicalPageIndex: 2,
+      });
+    }
+    expect(source.config.print).toMatchObject({
+      coverMode: "included",
+      firstPhysicalPageIndex: 1,
+    });
+
+    source.config.print.firstPhysicalPageIndex = 1000;
+    const lastAllowedStart = buildSectionPreview({
+      edition: previewEdition(source),
+      section: { ...section, sectionId: "section-2", parity: "continue" },
+      variant: "student",
+    });
+    expect(lastAllowedStart.ok).toBe(true);
+    if (!lastAllowedStart.ok) return;
+    expect(lastAllowedStart.model.config.print.firstPhysicalPageIndex).toBe(
+      1001,
+    );
+    expect(source.config.print.firstPhysicalPageIndex).toBe(1000);
+  });
+
   it("adds and removes a concept lecture ref without touching video bindings", () => {
     const source = previewSource();
     const lectureId = "00000000-0000-4000-8000-0000000000cc";

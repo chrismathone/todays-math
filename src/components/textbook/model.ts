@@ -425,13 +425,11 @@ export function moveBlock(
 }
 
 export function spreadStarts(units: readonly OutlineUnit[]): string[] {
-  const ids: string[] = [];
-  for (const unit of units) {
-    for (const section of unit.sections) {
-      if (section.parity !== "continue") ids.push(section.sectionId);
-    }
-  }
-  return ids;
+  // Every section is measured separately in the editor, including sections that
+  // continue on the preceding page in the full-book PDF.
+  return units.flatMap((unit) =>
+    unit.sections.map((section) => section.sectionId),
+  );
 }
 
 export type MeasuredPageRef = {
@@ -439,18 +437,28 @@ export type MeasuredPageRef = {
   printedPageLabel: string;
 };
 
-/** Even physical index of the spread that contains `current`, or the first measured page. */
+function measuredSpreadIndexes(pages: readonly MeasuredPageRef[]): number[] {
+  return [
+    ...new Set(
+      pages.map(
+        (page) => page.physicalPageIndex - (page.physicalPageIndex % 2),
+      ),
+    ),
+  ].sort((left, right) => left - right);
+}
+
+/** The current measured spread, clamped to a remaining spread after remeasurement. */
 export function measuredSpreadAnchor(
   pages: readonly MeasuredPageRef[],
   current: number | null,
 ): number | null {
   if (pages.length === 0) return null;
-  const indexes = pages
-    .map((page) => page.physicalPageIndex)
-    .sort((left, right) => left - right);
-  const chosen = current ?? indexes[0] ?? null;
-  if (chosen === null) return null;
-  return chosen % 2 === 0 ? chosen : chosen - 1;
+  const indexes = measuredSpreadIndexes(pages);
+  const first = indexes[0];
+  if (first === undefined) return null;
+  if (current === null) return first;
+  const chosen = current - (current % 2);
+  return indexes.findLast((index) => index <= chosen) ?? first;
 }
 
 /** Next or previous measured spread. Null means this section has no further spread. */
@@ -461,10 +469,8 @@ export function nextMeasuredSpread(
 ): number | null {
   const anchor = measuredSpreadAnchor(pages, current);
   if (anchor === null) return null;
-  const next = anchor + direction * 2;
-  const indexes = new Set(pages.map((page) => page.physicalPageIndex));
-  if (indexes.has(next) || indexes.has(next + 1)) return next;
-  return null;
+  const indexes = measuredSpreadIndexes(pages);
+  return indexes[indexes.indexOf(anchor) + direction] ?? null;
 }
 
 export function sectionStatusLabel(status: SectionStatus): string {

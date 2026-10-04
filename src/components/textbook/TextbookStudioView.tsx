@@ -109,7 +109,7 @@ function sameDraft(
 }
 
 type PendingNav =
-  | { kind: "section"; sectionId: string }
+  | { kind: "section"; sectionId: string; entry?: "first" | "last" }
   | { kind: "list" }
   | { kind: "new-draft" };
 
@@ -165,6 +165,10 @@ export function TextbookStudioView({
   const [measuredPages, setMeasuredPages] = useState<MeasuredPageRef[]>([]);
   const [spreadIndex, setSpreadIndex] = useState<number | null>(null);
   const [seenMeasureKey, setSeenMeasureKey] = useState<string | null>(null);
+  const pendingSpreadEntry = useRef<{
+    key: string;
+    entry: "first" | "last";
+  } | null>(null);
   const [reissueClasses, setReissueClasses] = useState<NamedChoice[]>([]);
   const [reissueUnits, setReissueUnits] = useState<NamedChoice[]>([]);
   const [diffSummary, setDiffSummary] = useState<string | null>(null);
@@ -263,7 +267,11 @@ export function TextbookStudioView({
   }, [api]);
 
   const loadSection = useCallback(
-    async function loadSection(nextEdition: EditionDetail, sectionId: string) {
+    async function loadSection(
+      nextEdition: EditionDetail,
+      sectionId: string,
+      entry: "first" | "last" = "first",
+    ) {
       const section = await api.getSection(nextEdition.editionId, sectionId);
       let aligned = {
         ...section,
@@ -302,6 +310,12 @@ export function TextbookStudioView({
         setConfirmLinkIds([]);
         setConfirmEntryIds([]);
       }
+      pendingSpreadEntry.current = {
+        key: `${nextEdition.editionId}:${sectionId}`,
+        entry,
+      };
+      setMeasuredPages([]);
+      setSpreadIndex(null);
       setDraft(aligned);
       setSaved(structuredClone(aligned));
       setConflict(null);
@@ -459,11 +473,14 @@ export function TextbookStudioView({
     return true;
   }
 
-  async function openSection(sectionId: string) {
+  async function openSection(
+    sectionId: string,
+    entry: "first" | "last" = "first",
+  ) {
     if (!edition) return;
     setBusy(true);
     try {
-      await loadSection(edition, sectionId);
+      await loadSection(edition, sectionId, entry);
     } catch (reason) {
       setNotice(messageOf(reason));
     } finally {
@@ -526,7 +543,7 @@ export function TextbookStudioView({
       void createDraftCopy();
       return;
     }
-    void openSection(nav.sectionId);
+    void openSection(nav.sectionId, nav.entry);
   }
 
   async function finishNav(nav: PendingNav) {
@@ -539,7 +556,7 @@ export function TextbookStudioView({
       await createDraftCopy();
       return;
     }
-    await openSection(nav.sectionId);
+    await openSection(nav.sectionId, nav.entry);
   }
 
   function selectSection(sectionId: string) {
@@ -731,23 +748,28 @@ export function TextbookStudioView({
   }
 
   function movePage(direction: -1 | 1) {
+    if (busy || pendingNav) return;
     const next = nextMeasuredSpread(measuredPages, spreadIndex, direction);
     if (next !== null) {
       setSpreadIndex(next);
       return;
     }
-    void moveSpread(direction);
+    moveSpread(direction);
   }
 
-  async function moveSpread(direction: -1 | 1) {
+  function moveSpread(direction: -1 | 1) {
     if (!edition || !draft) return;
     const starts = spreadStarts(edition.units);
     const current = starts.indexOf(draft.sectionId);
-    const origin = current >= 0 ? current : 0;
-    const nextIndex = origin + direction;
+    if (current < 0) return;
+    const nextIndex = current + direction;
     const sectionId = starts[nextIndex];
     if (!sectionId) return;
-    await selectSection(sectionId);
+    requestNav({
+      kind: "section",
+      sectionId,
+      entry: direction === -1 ? "last" : "first",
+    });
   }
 
   async function followJob(job: PublishJob) {
@@ -917,7 +939,8 @@ export function TextbookStudioView({
     audience === "student" || mode === "student" || mode === "draft"
       ? "student"
       : "answers";
-  const measureKey = `${draft?.sectionId ?? ""}:${previewVariant}`;
+  const measureIdentity = `${edition?.editionId ?? ""}:${draft?.sectionId ?? ""}`;
+  const measureKey = `${measureIdentity}:${previewVariant}`;
   if (seenMeasureKey !== measureKey) {
     setSeenMeasureKey(measureKey);
     if (seenMeasureKey !== null) {
@@ -925,10 +948,25 @@ export function TextbookStudioView({
       setSpreadIndex(null);
     }
   }
-  const onMeasuredPages = useCallback((pages: MeasuredPageRef[]) => {
-    setMeasuredPages(pages);
-    setSpreadIndex((current) => measuredSpreadAnchor(pages, current));
-  }, []);
+  const onMeasuredPages = useCallback(
+    (pages: MeasuredPageRef[]) => {
+      const pending = pendingSpreadEntry.current;
+      const entry = pending?.key === measureIdentity ? pending.entry : null;
+      if (entry) pendingSpreadEntry.current = null;
+      setMeasuredPages(pages);
+      setSpreadIndex((current) =>
+        measuredSpreadAnchor(
+          pages,
+          entry === "last"
+            ? Math.max(...pages.map((page) => page.physicalPageIndex))
+            : entry === "first"
+              ? null
+              : current,
+        ),
+      );
+    },
+    [measureIdentity],
+  );
   const preview = useMemo(() => {
     if (!edition || !draft) return null;
     return buildSectionPreview({
@@ -950,14 +988,22 @@ export function TextbookStudioView({
         )
         .map((page) => page.printedPageLabel)
         .filter((label) => label.length > 0);
-      if (labels.length > 0) return labels.join(" · ");
-      return `${pageAnchor}쪽`;
+      if (labels.length > 0) return `${draft?.title} · ${labels.join(" · ")}쪽`;
+      return "표지";
     }
     if (!draft) return "쪽 없음";
     if (draft.parity === "even-left") return "짝수 왼쪽";
     if (draft.parity === "continue") return "이어짐";
     return "시작 면 미정";
   })();
+  const sectionOrder = edition ? spreadStarts(edition.units) : [];
+  const sectionIndex = draft ? sectionOrder.indexOf(draft.sectionId) : -1;
+  const canPrev =
+    nextMeasuredSpread(measuredPages, spreadIndex, -1) !== null ||
+    sectionIndex > 0;
+  const canNext =
+    nextMeasuredSpread(measuredPages, spreadIndex, 1) !== null ||
+    (sectionIndex >= 0 && sectionIndex < sectionOrder.length - 1);
 
   const previewPanel = draft ? (
     <PreviewPane
@@ -975,6 +1021,8 @@ export function TextbookStudioView({
       onZoom={setZoom}
       onPrev={() => movePage(-1)}
       onNext={() => movePage(1)}
+      prevDisabled={busy || pendingNav !== null || !canPrev}
+      nextDisabled={busy || pendingNav !== null || !canNext}
       renderPaper={renderPaper}
       measured={
         preview?.ok ? (
@@ -1036,6 +1084,32 @@ export function TextbookStudioView({
         </p>
       ) : null}
       {notice ? <p role="status">{notice}</p> : null}
+      {pendingNav ? (
+        <div className={styles.note}>
+          <p>저장하지 않은 수정이 있습니다.</p>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => void saveThenLeave()}
+          >
+            저장 후 이동
+          </button>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={discardAndLeave}
+          >
+            버리고 이동
+          </button>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => setPendingNav(null)}
+          >
+            계속 편집
+          </button>
+        </div>
+      ) : null}
       {books === null && !edition ? <p>교재를 불러오는 중입니다.</p> : null}
       {books !== null && !edition ? (
         <div className={styles.stack}>
@@ -1300,7 +1374,7 @@ export function TextbookStudioView({
                       className={styles.button}
                       aria-pressed={draft?.sectionId === section.sectionId}
                       disabled={busy}
-                      onClick={() => void openSection(section.sectionId)}
+                      onClick={() => selectSection(section.sectionId)}
                     >
                       {section.title}
                     </button>
@@ -1693,32 +1767,6 @@ export function TextbookStudioView({
               />
             </div>
             <div className={styles.manuscript}>
-              {pendingNav ? (
-                <div className={styles.note}>
-                  <p>저장하지 않은 수정이 있습니다.</p>
-                  <button
-                    type="button"
-                    className={styles.button}
-                    onClick={() => void saveThenLeave()}
-                  >
-                    저장 후 이동
-                  </button>
-                  <button
-                    type="button"
-                    className={styles.button}
-                    onClick={discardAndLeave}
-                  >
-                    버리고 이동
-                  </button>
-                  <button
-                    type="button"
-                    className={styles.button}
-                    onClick={() => setPendingNav(null)}
-                  >
-                    계속 편집
-                  </button>
-                </div>
-              ) : null}
               {panel === "edit" && draft ? (
                 <SectionEditor
                   draft={draft}
