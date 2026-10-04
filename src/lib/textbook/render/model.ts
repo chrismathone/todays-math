@@ -16,6 +16,7 @@ import {
   splitTextbookMarkdown,
   type RecallPiece,
 } from "./markdown";
+import { answerCaseLayout, type AnswerPlacement } from "./answerLayout";
 import { splitConceptBody } from "./conceptParts";
 import { projectEditorialSection } from "./editorialProjection";
 import { frozenConceptGroups } from "../conceptRows";
@@ -123,6 +124,8 @@ export type RenderBlock = BlockBase &
         sourcePageLabel: string | null;
         answer?: string;
         solution?: string | null;
+        /** Answer variant only: the answer stands beside the question (see answerLayout). */
+        answerPlacement?: AnswerPlacement;
         publicWorkedExample?: { answer: string; solution: string | null };
       }
   );
@@ -420,6 +423,13 @@ export function createTextbookRenderModel(
                       ? qrs.get(item.qrTargetId)
                       : undefined;
                     const payload = snapshot.payload;
+                    // The answer book is paginated on its own: an ordinary one-column problem
+                    // takes the whole row there, its answer beside the question. The student
+                    // variant and the saved layout are not touched.
+                    const answerCase =
+                      variant === "answers"
+                        ? answerCaseLayout(item.layout, b.semantic)
+                        : undefined;
                     return [
                       {
                         ...base,
@@ -430,7 +440,10 @@ export function createTextbookRenderModel(
                         figures: payload.figures,
                         questionType: payload.questionType,
                         learningStage: item.learningStage,
-                        layout: item.layout,
+                        layout: answerCase?.layout ?? item.layout,
+                        ...(answerCase?.placement
+                          ? { answerPlacement: answerCase.placement }
+                          : {}),
                         qr: qr ? { id: qr.qrTargetId, url: qr.url } : null,
                         sourcePageLabel: pages.get(item.itemId) ?? null,
                         ...(variant === "answers"
