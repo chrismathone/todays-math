@@ -175,8 +175,10 @@ export async function registerStorageListeningAsset(
       throw denied();
     if (r.storage) await storage.check(r.storage);
     else
-      await database.$transaction((tx) =>
-        storageChunkReferences(tx, r, storage),
+      await database.$transaction(
+        (tx) => storageChunkReferences(tx, r, storage),
+        // Reusing a verified derivative can require dozens of private object HEADs.
+        { maxWait: 10000, timeout: 60000 },
       );
     return r.completion!;
   }
