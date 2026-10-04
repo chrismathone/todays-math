@@ -17,6 +17,7 @@ import { createListeningRuntime } from "@/lib/english/listening/runtime/service"
 import { createListeningMediaAccess } from "@/lib/english/listening/runtime/mediaAccess";
 import { createListeningMediaService } from "@/lib/english/listening/media/service";
 import { PrismaListeningMediaStore } from "@/lib/english/listening/media/prismaStore";
+import { PrismaStorageListeningMediaStore } from "@/lib/english/listening/media/storageStore";
 import { printableDraft } from "@/lib/english/listening/runtime/compose";
 import {
   teacher,
@@ -90,9 +91,78 @@ const storageApi = createListeningStorageApi(
 const storageRuntime = db
   ? createListeningRuntime(db, () => now, { storage: storageApi })
   : null;
+const durableStorageMedia = db
+  ? createListeningMediaService({
+      store: new PrismaStorageListeningMediaStore(db, storageApi),
+      storage: storageApi,
+      ...createListeningMediaAccess(db, () => now),
+      now: () => now.getTime(),
+    })
+  : null;
 const rights = englishListeningFixture().rights;
 const sha = (value: Uint8Array) =>
   createHash("sha256").update(value).digest("hex");
+async function verifyStorageProxy(
+  set: ListeningSetDetail,
+  expected: Buffer,
+  mimeType: "audio/mpeg" | "audio/wav",
+) {
+  const assetId = set.document.groups[0].audio!.assetId;
+  const request = { setId: set.id, assetId };
+  const head = await durableStorageMedia!.serve(
+    { actor: owner },
+    { ...request, method: "HEAD" },
+  );
+  expect(head.status).toBe(200);
+  expect(head.headers.get("content-type")).toBe(mimeType);
+  expect(head.headers.get("content-length")).toBe(String(expected.length));
+  expect(head.headers.get("etag")).toBe(`"${sha(expected)}"`);
+  expect(await head.text()).toBe("");
+  const response = await durableStorageMedia!.serve(
+    { actor: owner },
+    { ...request, method: "GET" },
+  );
+  const actualHash = createHash("sha256");
+  let actualBytes = 0;
+  const reader = response.body!.getReader();
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      actualHash.update(value);
+      actualBytes += value.length;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  expect(actualBytes).toBe(expected.length);
+  expect(actualHash.digest("hex")).toBe(sha(expected));
+  const boundary = Math.min(1024 * 1024, Math.floor(expected.length / 2));
+  for (const [start, end] of [
+    [0, Math.min(44, expected.length) - 1],
+    [boundary - 16, boundary + 31],
+  ]) {
+    const range = await durableStorageMedia!.serve(
+      { actor: owner },
+      { ...request, method: "GET", range: `bytes=${start}-${end}` },
+    );
+    expect(range.status).toBe(206);
+    expect(range.headers.get("content-range")).toBe(
+      `bytes ${start}-${end}/${expected.length}`,
+    );
+    expect(Buffer.from(await range.arrayBuffer())).toEqual(
+      expected.subarray(start, end + 1),
+    );
+  }
+  expect(
+    (
+      await durableStorageMedia!.serve(
+        { actor: other },
+        { ...request, method: "GET" },
+      )
+    ).status,
+  ).toBe(404);
+}
 function wave(marker = 0) {
   const bytes = Buffer.alloc(44 + 15000 * 16);
   bytes.write("RIFF");
@@ -407,8 +477,9 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     );
     expect(sha(playback)).toBe(ready.sha256);
     expect(playback.includes(Buffer.from("SECRET_ANSWERS"))).toBe(false);
+    await verifyStorageProxy(saved, playback, "audio/mpeg");
     const filesBefore = fakeStorage.files.size;
-    const whole = await storageRuntime!.composeSet(owner, {
+    let whole = await storageRuntime!.composeSet(owner, {
       title: "큰 Storage 회차",
       selections: [selection(snapshot)],
     });
@@ -418,6 +489,12 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     );
     expect(wholeAsset!.chunks[0].key).not.toBe(record!.chunks[0].key);
     expect(wholeAsset!.setId).toBe(whole.id);
+    whole = await storageRuntime!.reviewSet(owner, whole.id, {
+      expectedRevision: whole.revision,
+      kind: "rights",
+      basis: "직접 만든 테스트 음원의 보관·교사 이용 허용",
+    });
+    await verifyStorageProxy(whole, playback, "audio/mpeg");
     const group = snapshot.detail.document.groups[0],
       question = group.questions[1],
       selected = await storageRuntime!.composeSet(owner, {
@@ -449,6 +526,12 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         ),
       ]);
     expect(actual.equals(expected)).toBe(true);
+    const reviewed = await storageRuntime!.reviewSet(owner, selected.id, {
+      expectedRevision: selected.revision,
+      kind: "rights",
+      basis: "직접 만든 테스트 문항의 선택·교사 이용 허용",
+    });
+    await verifyStorageProxy(reviewed, expected, "audio/wav");
   }, 120000);
   it("splits a >32MiB selected PCM exam into <=1MiB private objects with exact selected samples", async () => {
     const original = await source(60, true, true, true, true),
@@ -456,6 +539,8 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     const header = waveHeader(samples, 48000, 1),
       wav = Buffer.alloc(44 + samples * 2);
     header.copy(wav);
+    for (let offset = 44; offset < wav.length; offset += 2)
+      wav.writeInt16LE(((offset / 2) % 64000) - 32000, offset);
     const assetId = randomUUID(),
       ref = await storageApi.upload({
         ownerId,
@@ -523,6 +608,27 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       expectedHash.update(wav.subarray(range.start, range.endExclusive));
     expect(actualHash.digest("hex")).toBe(expectedHash.digest("hex"));
     expect(composed.document.groups[0].audio!.durationMs).toBe(359000);
+    const reviewed = await storageRuntime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "직접 만든 큰 PCM 문항의 선택·교사 이용 허용",
+    });
+    const expected = Buffer.concat([
+      plan.header,
+      ...plan.ranges.map((range) =>
+        wav.subarray(range.start, range.endExclusive),
+      ),
+    ]);
+    await verifyStorageProxy(reviewed, expected, "audio/wav");
+    const cancellations = fakeStorage.cancels;
+    const partial = await durableStorageMedia!.serve(
+      { actor: owner },
+      { setId: reviewed.id, assetId: output!.assetId, method: "GET" },
+    );
+    const reader = partial.body!.getReader();
+    await reader.read();
+    await reader.cancel();
+    expect(fakeStorage.cancels).toBeGreaterThan(cancellations);
   }, 120000);
   it("stores validated original MP3 in private Supabase Storage, registers idempotently and shares whole audio under fresh scope", async () => {
     const original = await source(30, true, true, true, true),
