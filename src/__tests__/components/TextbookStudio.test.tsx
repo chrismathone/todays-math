@@ -171,6 +171,7 @@ function api(overrides: Partial<TextbookStudioApi> = {}): TextbookStudioApi {
     createAssignment: unused,
     revokeAssignment: unused,
     listVideos: unused,
+    listVideoChoices: unused,
     listUnitLectures: unused,
     recordObservation: unused,
     createVideo: unused,
@@ -234,6 +235,44 @@ function wireConcept(
     frozen: null,
     ...overrides,
   };
+}
+
+/** 발행한 판본 — 서버가 돌려주는 판본 상태가 published 다 */
+function publishedEdition(): EditionDetail {
+  const published = structuredClone(edition);
+  if (published.structureSource)
+    published.structureSource.edition = {
+      editionId: "edition-1",
+      label: "1",
+      status: "published",
+      revision: 9,
+      publishedAt: "2026-10-04T00:00:00Z",
+      manifestHash: null,
+    };
+  return published;
+}
+
+/** 문항 하나의 확정본이 든 미리보기 자료 — 영상 연결이 이 내용을 보여 준다 */
+function videoMaterial(
+  contentHash = "a".repeat(64),
+  content = "두 분수를 더하시오.",
+) {
+  return {
+    items: [{ itemId: "item-1", snapshotId: "snap-1", displayNumber: "1" }],
+    snapshots: [
+      {
+        snapshotId: "snap-1",
+        contentHash,
+        payload: { content, answer: "11/12" },
+      },
+    ],
+    assets: [],
+    concepts: [],
+    qrTargets: [],
+    conceptQrTargets: [],
+  } as unknown as Awaited<
+    ReturnType<TextbookStudioApi["readPreviewMaterial"]>
+  >;
 }
 
 describe("TextbookStudioView", () => {
@@ -416,14 +455,14 @@ describe("TextbookStudioView", () => {
   it("does not show the answer on the student page or to a student audience", async () => {
     await openStudio(api());
     const paper = screen.getByRole("region", { name: "지면" });
-    expect(screen.getByRole("textbox", { name: "교사용 정답" })).toHaveValue(
+    expect(screen.getByRole("textbox", { name: "구획 정답 메모" })).toHaveValue(
       "11/12",
     );
     expect(paper).not.toHaveTextContent("11/12");
 
     fireEvent.click(screen.getByRole("button", { name: "학생용" }));
     expect(
-      screen.queryByRole("textbox", { name: "교사용 정답" }),
+      screen.queryByRole("textbox", { name: "구획 정답 메모" }),
     ).not.toBeInTheDocument();
     expect(screen.queryByText("11/12")).not.toBeInTheDocument();
 
@@ -434,7 +473,7 @@ describe("TextbookStudioView", () => {
       "판본 원본이 없어 측정하지 않습니다.",
     );
     expect(
-      screen.queryByRole("textbox", { name: "교사용 정답" }),
+      screen.queryByRole("textbox", { name: "구획 정답 메모" }),
     ).not.toBeInTheDocument();
   });
 
@@ -445,7 +484,7 @@ describe("TextbookStudioView", () => {
       screen.queryByRole("button", { name: "교사용" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("textbox", { name: "교사용 정답" }),
+      screen.queryByRole("textbox", { name: "구획 정답 메모" }),
     ).not.toBeInTheDocument();
   });
 
@@ -474,7 +513,12 @@ describe("TextbookStudioView", () => {
         },
       } as Awaited<ReturnType<TextbookStudioApi["saveConcept"]>>;
     });
-    await openStudio(api({ saveConcept }));
+    // 개념만 저장하고 끝나지 않는다 — 이 구획에 개념 블록을 이어 저장한다
+    const saveSection = vi.fn(async () => ({
+      revision: 4,
+      aggregateRevision: 12,
+    }));
+    await openStudio(api({ saveConcept, saveSection }));
     fireEvent.change(screen.getByRole("textbox", { name: "개념 키" }), {
       target: { value: "common-denominator" },
     });
@@ -511,6 +555,21 @@ describe("TextbookStudioView", () => {
       expect.objectContaining({ links: [], confirmLinkIds: [] }),
     );
     expect(screen.getByText(/e5-1 · 확인/)).toBeVisible();
+    expect(saveSection).toHaveBeenCalledOnce();
+    expect(saveSection).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sectionId: "section-1",
+        expectedRevision: 3,
+        section: expect.objectContaining({
+          blocks: expect.arrayContaining([
+            expect.objectContaining({
+              kind: "concept",
+              conceptKey: "common-denominator",
+            }),
+          ]),
+        }),
+      }),
+    );
   });
 
   it("reorders the outline with the structure revision and restores it after 409", async () => {
@@ -664,7 +723,7 @@ describe("TextbookStudioView", () => {
       label: "예제 영상",
       startSeconds: 0,
       endSeconds: null,
-      contentHash: "a".repeat(64),
+      contentHash: null,
     };
     const updateVideo = vi.fn(async () => {
       throw new TextbookRequestError("영상을 찾지 못했습니다.", 404);
@@ -672,16 +731,24 @@ describe("TextbookStudioView", () => {
     await openStudio(
       api({
         listVideos: vi.fn(async () => [row]),
+        listVideoChoices: vi.fn(async () => []),
+        readPreviewMaterial: vi.fn(async () => videoMaterial()),
         updateVideo,
       }),
     );
     fireEvent.click(screen.getByRole("button", { name: "영상" }));
     expect(await screen.findByText(/예제 영상 · 초안/)).toBeVisible();
+    // 내용을 보기 전에는 게시를 보낼 수 없다
+    expect(screen.getByRole("button", { name: "게시" })).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "내용 확인" }));
     fireEvent.click(screen.getByRole("button", { name: "게시" }));
     expect(await screen.findByText("영상을 찾지 못했습니다.")).toBeVisible();
     expect(screen.getByText(/예제 영상 · 초안/)).toBeVisible();
     expect(screen.queryByText(/예제 영상 · 게시$/)).not.toBeInTheDocument();
     expect(updateVideo).toHaveBeenCalledOnce();
+    expect(updateVideo).toHaveBeenCalledWith(
+      expect.objectContaining({ contentHash: "a".repeat(64) }),
+    );
   });
 
   it("links the chosen bank problem and does not mark a refused register as linked", async () => {
@@ -1105,6 +1172,7 @@ describe("TextbookStudioView", () => {
     }));
     await openStudio(
       api({
+        openEdition: vi.fn(async () => publishedEdition()),
         listAssignments: vi.fn(async () => []),
         listClasses: vi.fn(async () => [
           { id: classId, label: "월수반 · 초5" },

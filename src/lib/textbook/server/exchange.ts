@@ -12,7 +12,6 @@ import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import type {
   AssetRef,
   ConceptQrTarget,
-  ManuscriptBlock,
   PagePlacement,
   ProblemSnapshot,
   ProblemVideoBinding,
@@ -29,6 +28,7 @@ import {
 
 import type { StoredOutline } from "./editions";
 import { notFound } from "./errors";
+import { type SectionContent, storedTeacherAnswer } from "./sections";
 import { type TextbookSql, isoColumn } from "./sql";
 
 const EXTENSION: Record<string, string> = {
@@ -120,7 +120,7 @@ export async function assembleExchange(
     title: string;
     templateKey: string;
     startPolicy: "even-left" | "continue";
-    content: { blocks: ManuscriptBlock[] };
+    content: SectionContent;
   }>(
     // 구획 하나만 볼 때는 다른 구획의 원고를 읽지 않는다(차례를 세우는 데 줄은 필요하다)
     `SELECT "id", "unit_key" AS "unitKey", "section_key" AS "sectionKey", "title", "template_key" AS "templateKey",
@@ -151,6 +151,8 @@ export async function assembleExchange(
         templateKey: section.templateKey,
         startPolicy: section.startPolicy,
         blocks: section.content.blocks,
+        // 구획 정답 메모 — 교사용 교환 형식 · 판본 해시에만 실린다. 학생 지면은 렌더 모델의 허용 목록이 거른다
+        ...storedTeacherAnswer(section.content),
       })),
   }));
   const sectionOrder = new Map(

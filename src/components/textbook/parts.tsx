@@ -22,6 +22,7 @@ import {
   toggleBlankForm,
   videoStatusLabel,
   visibleAnswer,
+  youtubeVideoId,
   type AssignmentRow,
   type Audience,
   type BlankForm,
@@ -464,6 +465,10 @@ export function SectionEditor({
   onLoadTests,
   onSaveConcept,
   onCreateConcept,
+  unattachedConcepts = [],
+  onAttachConcept,
+  conceptLinkFailure = null,
+  onRetryConceptLink,
   onSearchCatalog,
   onDelete,
   lectureLink,
@@ -511,6 +516,12 @@ export function SectionEditor({
   onLoadTests: (classId: string, studentId?: string) => Promise<NamedChoice[]>;
   onSaveConcept: () => void;
   onCreateConcept: (conceptKey: string, title: string) => void;
+  /** 이 판본에 저장돼 있지만 어느 구획에도 놓이지 않은 개념 */
+  unattachedConcepts?: readonly NamedChoice[];
+  onAttachConcept?: (conceptKey: string) => void;
+  /** 개념은 저장됐는데 이 구획에 잇지 못했을 때의 사유 */
+  conceptLinkFailure?: string | null;
+  onRetryConceptLink?: () => void;
   onSearchCatalog: (query: string) => void;
   onDelete: () => void;
   lectureLink?: ReactNode;
@@ -891,15 +902,25 @@ export function SectionEditor({
           </label>
         ))}
         {placement === "manuscript" ? (
-          <label className={styles.field}>
-            <span>교사용 정답</span>
-            <input
-              value={draft.answer}
-              onChange={(event) =>
-                onChange({ ...draft, answer: event.target.value })
-              }
-            />
-          </label>
+          <>
+            <label className={styles.field}>
+              <span>구획 정답 메모</span>
+              <input
+                value={draft.answer}
+                aria-describedby={`section-answer-note-${draft.sectionId}`}
+                onChange={(event) =>
+                  onChange({ ...draft, answer: event.target.value })
+                }
+              />
+            </label>
+            <p
+              className={styles.muted}
+              id={`section-answer-note-${draft.sectionId}`}
+            >
+              PDF에 인쇄되지 않습니다. 교사 원고와 교환 파일에만 저장하고 학생
+              화면에는 보내지 않습니다.
+            </p>
+          </>
         ) : null}
         <PickEditor
           picks={draft.picks}
@@ -920,6 +941,11 @@ export function SectionEditor({
           onChange={onChange}
           onCreate={onCreateConcept}
           onSave={onSaveConcept}
+          unattached={unattachedConcepts}
+          onAttach={onAttachConcept}
+          linkFailure={conceptLinkFailure}
+          onRetryLink={onRetryConceptLink}
+          saving={saving}
         />
       </fieldset>
       {draft.concept ? (
@@ -1289,39 +1315,76 @@ function ConceptFields({
   onChange,
   onCreate,
   onSave,
+  unattached,
+  onAttach,
+  linkFailure,
+  onRetryLink,
+  saving,
 }: {
   draft: SectionDetail;
   onChange: (next: SectionDetail) => void;
   onCreate: (conceptKey: string, title: string) => void;
   onSave: () => void;
+  unattached: readonly NamedChoice[];
+  onAttach?: (conceptKey: string) => void;
+  linkFailure: string | null;
+  onRetryLink?: () => void;
+  saving: boolean;
 }) {
   const concept = draft.concept;
   if (!concept) {
     return (
-      <form
-        className={styles.stack}
-        onSubmit={(event) => {
-          event.preventDefault();
-          const data = new FormData(event.currentTarget);
-          onCreate(
-            String(data.get("conceptKey") ?? "").trim(),
-            String(data.get("title") ?? "").trim(),
-          );
-        }}
-      >
+      <div className={styles.stack}>
         <p className={styles.muted}>연결할 개념 원고가 없습니다.</p>
-        <label className={styles.field}>
-          <span>개념 키</span>
-          <input name="conceptKey" />
-        </label>
-        <label className={styles.field}>
-          <span>개념 제목</span>
-          <input name="title" />
-        </label>
-        <button type="submit" className={styles.button}>
-          개념 원고 만들기
-        </button>
-      </form>
+        {unattached.length > 0 && onAttach ? (
+          // 저장은 됐지만 어느 구획에도 놓이지 않은 개념 — 새로 만들지 않고 이 구획에 잇는다
+          <form
+            className={styles.stack}
+            onSubmit={(event) => {
+              event.preventDefault();
+              const data = new FormData(event.currentTarget);
+              onAttach(String(data.get("existingConcept") ?? ""));
+            }}
+          >
+            <label className={styles.field}>
+              <span>저장된 개념</span>
+              <select name="existingConcept" defaultValue={unattached[0]!.id}>
+                {unattached.map((choice) => (
+                  <option key={choice.id} value={choice.id}>
+                    {choice.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <button type="submit" className={styles.button} disabled={saving}>
+              이 구획에 연결
+            </button>
+          </form>
+        ) : null}
+        <form
+          className={styles.stack}
+          onSubmit={(event) => {
+            event.preventDefault();
+            const data = new FormData(event.currentTarget);
+            onCreate(
+              String(data.get("conceptKey") ?? "").trim(),
+              String(data.get("title") ?? "").trim(),
+            );
+          }}
+        >
+          <label className={styles.field}>
+            <span>개념 키</span>
+            <input name="conceptKey" />
+          </label>
+          <label className={styles.field}>
+            <span>개념 제목</span>
+            <input name="title" />
+          </label>
+          <button type="submit" className={styles.button}>
+            개념 원고 만들기
+          </button>
+        </form>
+      </div>
     );
   }
   const patch = (key: keyof typeof concept, value: string) =>
@@ -1396,6 +1459,23 @@ function ConceptFields({
           );
         })}
       </fieldset>
+      {linkFailure ? (
+        <div className={styles.note} role="alert">
+          <p>개념 저장 완료 · 구획 연결 실패</p>
+          <p>{linkFailure}</p>
+          <p className={styles.muted}>
+            개념 원고는 저장돼 있습니다. 다시 시도하면 이 구획에 연결만 합니다.
+          </p>
+          <button
+            type="button"
+            className={styles.button}
+            disabled={saving}
+            onClick={onRetryLink}
+          >
+            구획 연결 다시 시도
+          </button>
+        </div>
+      ) : null}
       <button type="button" className={styles.primary} onClick={onSave}>
         개념 저장
       </button>
@@ -2158,6 +2238,13 @@ export function PreviewPane({
           </article>
         )}
       </div>
+      {input.answerPlacement === "sheet" && input.answer ? (
+        // 지면 밖에 둔다 — 조판하지 않는 글이다
+        <div className={styles.note} role="note" aria-label="구획 정답 메모">
+          <p>구획 정답 메모 · PDF에 인쇄되지 않음</p>
+          <p>{input.answer}</p>
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -2314,19 +2401,23 @@ export function PublishPanel({
 
 export function AssignmentPanel({
   rows,
+  unavailable = null,
   onLoadClasses,
   onLoadStudents,
   onCreate,
   onRevoke,
 }: {
   rows: AssignmentRow[];
+  /** 배정할 수 없는 사유(발행 전 판본). 있으면 배정 추가를 막고 사유를 먼저 보여 준다 */
+  unavailable?: string | null;
   onLoadClasses: () => Promise<NamedChoice[]>;
   onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
   onCreate: (kind: "class" | "student", id: string, label: string) => void;
   onRevoke: (assignmentId: string) => void;
 }) {
   const [kind, setKind] = useState<"class" | "student">("class");
-  const [classes, setClasses] = useState<NamedChoice[]>([]);
+  // null = 아직 불러오는 중. 빈 배열(반이 없음)과 가른다
+  const [classes, setClasses] = useState<NamedChoice[] | null>(null);
   const [classId, setClassId] = useState("");
   const [students, setStudents] = useState<NamedChoice[]>([]);
   const [studentId, setStudentId] = useState("");
@@ -2341,6 +2432,10 @@ export function AssignmentPanel({
       cancel = true;
     };
   }, [onLoadClasses]);
+  const chosenTarget =
+    kind === "class"
+      ? (classes ?? []).some((row) => row.id === classId)
+      : students.some((row) => row.id === studentId);
   useEffect(() => {
     if (kind !== "student" || !classId) return;
     let cancel = false;
@@ -2374,12 +2469,18 @@ export function AssignmentPanel({
           </li>
         ))}
       </ul>
+      {unavailable ? (
+        <p className={styles.alert} role="note">
+          {unavailable}
+        </p>
+      ) : null}
       <form
         className={styles.stack}
         onSubmit={(event) => {
           event.preventDefault();
+          if (unavailable) return;
           if (kind === "class") {
-            const chosen = classes.find((row) => row.id === classId);
+            const chosen = (classes ?? []).find((row) => row.id === classId);
             if (!chosen) return;
             onCreate("class", chosen.id, chosen.label);
             return;
@@ -2405,8 +2506,10 @@ export function AssignmentPanel({
         <ChoiceSelect
           label="반"
           value={classId}
-          options={classes}
-          empty="반이 없습니다"
+          options={classes ?? []}
+          empty={
+            classes === null ? "반 목록을 불러오는 중입니다" : "반이 없습니다"
+          }
           onChange={setClassId}
         />
         {kind === "student" ? (
@@ -2418,9 +2521,16 @@ export function AssignmentPanel({
             onChange={setStudentId}
           />
         ) : null}
-        <button type="submit" className={styles.button}>
+        <button
+          type="submit"
+          className={styles.button}
+          disabled={Boolean(unavailable) || !chosenTarget}
+        >
           배정 추가
         </button>
+        {!unavailable && classes !== null && !chosenTarget ? (
+          <p className={styles.muted}>배정할 대상이 없습니다.</p>
+        ) : null}
       </form>
     </section>
   );
@@ -2590,21 +2700,54 @@ export function ReissuePanel({
   );
 }
 
+/** 영상을 걸 문항 — 화면이 읽어 둔 확정본의 내용과 그 해시 */
+export type VideoSnapshotChoice = {
+  snapshotId: string;
+  label: string;
+  content: string;
+  answer: string;
+  contentHash: string;
+};
+
 export function VideoPanel({
   rows,
+  choices = [],
+  snapshots = [],
   onUpdate,
   onCreate,
   onBind,
 }: {
   rows: VideoBinding[];
+  /** 내가 등록한 영상 */
+  choices?: readonly NamedChoice[];
+  snapshots?: readonly VideoSnapshotChoice[];
+  /** `contentHash` 는 검수자가 이 화면에서 본 내용의 해시다 */
   onUpdate: (
     bindingId: string,
     status: VideoBinding["status"],
     policy: VideoBinding["policy"],
+    contentHash: string,
   ) => void;
   onCreate: (title: string, providerVideoId: string) => void;
   onBind: (snapshotId: string, videoId: string, contentHash: string) => void;
 }) {
+  const [address, setAddress] = useState("");
+  const [addressError, setAddressError] = useState<string | null>(null);
+  const [chosenSnapshot, setChosenSnapshot] = useState("");
+  /**
+   * 연결하려는 문항에서 **본 내용**과 그 해시 — 고른 순간의 것을 붙잡아 둔다.
+   * 보낼 때 목록을 다시 읽어 채우지 않는다: 그사이 내용이 바뀌었으면 서버가 409 로 알려야 한다.
+   */
+  const [viewed, setViewed] = useState<VideoSnapshotChoice | null>(null);
+  const [chosenVideo, setChosenVideo] = useState("");
+  /** 연결마다 «내용 확인»을 눌러 본 해시 */
+  const [reviewed, setReviewed] = useState<
+    Record<string, VideoSnapshotChoice>
+  >({});
+  const parsedId = youtubeVideoId(address);
+  const videoId = choices.some((choice) => choice.id === chosenVideo)
+    ? chosenVideo
+    : (choices[0]?.id ?? "");
   return (
     <section className={styles.panel} aria-label="영상">
       <h2>영상</h2>
@@ -2613,10 +2756,15 @@ export function VideoPanel({
         onSubmit={(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
-          onCreate(
-            String(data.get("title") ?? "").trim(),
-            String(data.get("providerVideoId") ?? "").trim(),
-          );
+          const id = youtubeVideoId(address);
+          if (!id) {
+            setAddressError(
+              "유튜브 주소나 11자 영상 ID를 넣어 주세요. 주소에서 영상 ID만 저장합니다.",
+            );
+            return;
+          }
+          setAddressError(null);
+          onCreate(String(data.get("title") ?? "").trim(), id);
         }}
       >
         <label className={styles.field}>
@@ -2624,73 +2772,216 @@ export function VideoPanel({
           <input name="title" />
         </label>
         <label className={styles.field}>
-          <span>유튜브 ID</span>
-          <input name="providerVideoId" />
+          <span>유튜브 주소 또는 ID</span>
+          <input
+            name="providerVideoId"
+            value={address}
+            onChange={(event) => {
+              setAddress(event.target.value);
+              setAddressError(null);
+            }}
+          />
         </label>
         <button type="submit" className={styles.button}>
           영상 등록
         </button>
+        {address.trim() !== "" && parsedId ? (
+          <p className={styles.muted}>영상 ID {parsedId}</p>
+        ) : null}
+        {addressError ? (
+          <p className={styles.alert} role="alert">
+            {addressError}
+          </p>
+        ) : null}
       </form>
       <form
-        className={styles.row}
+        className={styles.stack}
         onSubmit={(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
+          // 고급 입력에 값을 적었으면 그 값이 먼저다. 비워 두면 위에서 고르고 확인한 것을 쓴다
+          const typedSnapshot = String(data.get("snapshotId") ?? "").trim();
+          const typedVideo = String(data.get("videoId") ?? "").trim();
+          const typedHash = String(data.get("contentHash") ?? "").trim();
           onBind(
-            String(data.get("snapshotId") ?? "").trim(),
-            String(data.get("videoId") ?? "").trim(),
-            String(data.get("contentHash") ?? "").trim(),
+            typedSnapshot || viewed?.snapshotId || "",
+            typedVideo || videoId,
+            typedHash || viewed?.contentHash || "",
           );
         }}
       >
-        <label className={styles.field}>
-          <span>확정본</span>
-          <input name="snapshotId" />
-        </label>
-        <label className={styles.field}>
-          <span>영상 번호</span>
-          <input name="videoId" />
-        </label>
-        <label className={styles.field}>
-          <span>내용 해시</span>
-          <input name="contentHash" />
-        </label>
+        <div className={styles.row}>
+          <label className={styles.field}>
+            <span>문항</span>
+            <select
+              aria-label="문항"
+              value={chosenSnapshot}
+              onChange={(event) => {
+                setChosenSnapshot(event.target.value);
+                // 고른 순간 화면에 띄운 내용을 붙잡는다 — 아래 «확인한 내용»이 이것이다
+                setViewed(
+                  snapshots.find(
+                    (row) => row.snapshotId === event.target.value,
+                  ) ?? null,
+                );
+              }}
+            >
+              <option value="">
+                {snapshots.length === 0
+                  ? "이 판본에 담은 문항이 없습니다"
+                  : "문항을 고르세요"}
+              </option>
+              {snapshots.map((row) => (
+                <option key={row.snapshotId} value={row.snapshotId}>
+                  {row.label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className={styles.field}>
+            <span>등록한 영상</span>
+            <select
+              aria-label="등록한 영상"
+              value={videoId}
+              onChange={(event) => setChosenVideo(event.target.value)}
+            >
+              {choices.length === 0 ? (
+                <option value="">등록한 영상이 없습니다</option>
+              ) : null}
+              {choices.map((choice) => (
+                <option key={choice.id} value={choice.id}>
+                  {choice.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+        {viewed ? (
+          <div className={styles.note} role="group" aria-label="확인한 문항 내용">
+            <p>확인한 문항 내용 · {viewed.label}</p>
+            <p>{viewed.content}</p>
+            <p>정답 {viewed.answer}</p>
+            <p className={styles.muted}>
+              이 내용을 기준으로 연결합니다. 연결 전에 내용이 바뀌면 서버가
+              거절합니다.
+            </p>
+          </div>
+        ) : null}
+        <details>
+          <summary>고급 입력</summary>
+          <p className={styles.muted}>
+            비워 두면 위에서 고른 문항 · 영상과 확인한 내용의 해시를 씁니다.
+          </p>
+          <div className={styles.row}>
+            <label className={styles.field}>
+              <span>확정본</span>
+              <input name="snapshotId" />
+            </label>
+            <label className={styles.field}>
+              <span>영상 번호</span>
+              <input name="videoId" />
+            </label>
+            <label className={styles.field}>
+              <span>내용 해시</span>
+              <input name="contentHash" />
+            </label>
+          </div>
+        </details>
         <button type="submit" className={styles.button}>
           영상 연결
         </button>
       </form>
       <ul className={styles.list}>
-        {rows.map((row) => (
-          <li key={row.bindingId}>
-            {row.label} · {videoStatusLabel(row.status)}
-            {row.policy === "optional" && row.status !== "published"
-              ? " · 준비 중"
-              : ""}
-            <button
-              type="button"
-              className={styles.button}
-              onClick={() =>
-                onUpdate(row.bindingId, "pending-review", row.policy)
-              }
-            >
-              검수 요청
-            </button>
-            <button
-              type="button"
-              className={styles.button}
-              onClick={() => onUpdate(row.bindingId, "published", row.policy)}
-            >
-              게시
-            </button>
-            <button
-              type="button"
-              className={styles.button}
-              onClick={() => onUpdate(row.bindingId, "stopped", row.policy)}
-            >
-              중지
-            </button>
-          </li>
-        ))}
+        {rows.map((row) => {
+          const source = snapshots.find(
+            (item) => item.snapshotId === row.snapshotId,
+          );
+          const seen = reviewed[row.bindingId];
+          // 중지는 검수가 아니다 — 본 해시가 없으면 게시 때 적힌 해시를 쓴다
+          const stopHash = seen?.contentHash ?? row.contentHash;
+          return (
+            <li key={row.bindingId}>
+              {row.label} · {videoStatusLabel(row.status)}
+              {row.policy === "optional" && row.status !== "published"
+                ? " · 준비 중"
+                : ""}
+              <button
+                type="button"
+                className={styles.button}
+                disabled={!source}
+                onClick={() =>
+                  source &&
+                  setReviewed((current) => ({
+                    ...current,
+                    [row.bindingId]: source,
+                  }))
+                }
+              >
+                내용 확인
+              </button>
+              <button
+                type="button"
+                className={styles.button}
+                disabled={!seen}
+                onClick={() =>
+                  seen &&
+                  onUpdate(
+                    row.bindingId,
+                    "pending-review",
+                    row.policy,
+                    seen.contentHash,
+                  )
+                }
+              >
+                검수 요청
+              </button>
+              <button
+                type="button"
+                className={styles.button}
+                disabled={!seen}
+                onClick={() =>
+                  seen &&
+                  onUpdate(
+                    row.bindingId,
+                    "published",
+                    row.policy,
+                    seen.contentHash,
+                  )
+                }
+              >
+                게시
+              </button>
+              <button
+                type="button"
+                className={styles.button}
+                disabled={!stopHash}
+                onClick={() =>
+                  stopHash &&
+                  onUpdate(row.bindingId, "stopped", row.policy, stopHash)
+                }
+              >
+                중지
+              </button>
+              {seen ? (
+                <div
+                  className={styles.note}
+                  role="group"
+                  aria-label={`${row.label} 확인한 문항 내용`}
+                >
+                  <p>확인한 문항 내용 · {seen.label}</p>
+                  <p>{seen.content}</p>
+                  <p>정답 {seen.answer}</p>
+                </div>
+              ) : (
+                <p className={styles.muted}>
+                  {source
+                    ? "문항 내용을 확인한 뒤 검수 요청 · 게시를 누를 수 있습니다."
+                    : "이 연결의 문항 내용이 이 판본에 없습니다. 내용을 확인할 수 없어 검수 요청 · 게시를 보내지 않습니다."}
+                </p>
+              )}
+            </li>
+          );
+        })}
       </ul>
       {rows.length === 0 ? (
         <p className={styles.muted}>연결된 영상이 없습니다.</p>
@@ -2832,8 +3123,17 @@ export function ConfigPanel({
 
 export function ImportPanel({
   onSubmit,
+  busy = false,
+  note = null,
+  error = null,
+  issues = [],
 }: {
   onSubmit: (mode: ImportMode, file: File) => void;
+  busy?: boolean;
+  note?: string | null;
+  error?: string | null;
+  /** 이 가져오기가 돌려준 항목 — 판본 검수 항목과 다른 것이다 */
+  issues?: readonly StudioIssue[];
 }) {
   return (
     <section
@@ -2846,9 +3146,11 @@ export function ImportPanel({
         onSubmit={(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
-          const file = data.get("file");
+          const picker = event.currentTarget.elements.namedItem("file");
+          const file =
+            picker instanceof HTMLInputElement ? picker.files?.[0] : undefined;
           const mode = data.get("mode") === "copy" ? "copy" : "archive";
-          if (!(file instanceof File) || file.size === 0) return;
+          if (!file || file.size === 0) return;
           onSubmit(mode, file);
         }}
       >
@@ -2863,13 +3165,33 @@ export function ImportPanel({
           <span>파일</span>
           <input name="file" type="file" />
         </label>
-        <button type="submit" className={styles.button}>
-          올리기
+        <button type="submit" className={styles.button} disabled={busy}>
+          {busy ? "올리는 중…" : "올리기"}
         </button>
       </form>
+      {note ? <p role="status">{note}</p> : null}
+      {error ? (
+        <p className={styles.alert} role="alert">
+          {error}
+        </p>
+      ) : null}
+      {issues.length > 0 ? (
+        <ul className={styles.list} aria-label="가져오기 확인 항목">
+          {issues.map((issue, index) => (
+            <li key={`${issue.path ?? ""}-${issue.message}-${index}`}>
+              {issue.severity === "error"
+                ? "오류"
+                : issue.severity === "warning"
+                  ? "경고"
+                  : "안내"}
+              {issue.path ? ` · ${issue.path}` : ""} · {issue.message}
+            </li>
+          ))}
+        </ul>
+      ) : null}
       <p className={styles.muted}>
         보관본은 읽기 전용입니다. 새 원고는 새 ID를 받습니다. 오류가 있으면 열지
-        않습니다.
+        않습니다. 파일을 고친 뒤 다시 올릴 수 있습니다.
       </p>
     </section>
   );

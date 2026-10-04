@@ -33,6 +33,7 @@
 - `ManuscriptBlock`에 `{blockId,kind:'concept',conceptKey}` 및 개념용으로 검증되는 `concept-recall` 참조 확장을 추가한다. 연결은 블록마다 복제하지 않고 판본 내 개념 행에 둔다.
 - `ProblemSnapshot.rawSource`에 원본 `figureUrls/figureDims/figureSourceMm/choiceFigureIndex` 배열과 원본 SVG 바이트 자산 참조(`figureSvgAssetId`)를 명시한다. 잘못된 원본 배열도 보존하고 렌더 가능한 해석 및 오류와 구분한다. 실제 측정 자산 치수는 `AssetRef`의 값이다. `sourceMetadata`는 캡처 당시 unitId·단원명·학년·난도·원본 배점을 보존한다. rawSource/sourceMetadata는 payload contentHash 밖이고 별도 snapshotHash로 결합한다.
 - 개념 QR은 별도 `conceptQrTargets` 명시적 확장이다. problem QR의 itemId 자리에 개념 ID를 넣지 않는다.
+- `Section`에 `teacherAnswer?: string` — 구획 정답 메모(2026-10-04 추가, 관리자 사용성 후속 T01). 교사만 보는 구획 단위 자유 글이며 문항 정답 `ProblemPayload.answer`와 다른 것이다. 글이 있을 때만 키를 두고, 빈 글·공백뿐인 글·`null`·파싱 기본값은 허용하지 않는다. 키가 없는 구획은 이 확장을 더하기 전과 같은 바이트로 직렬화되어 기존 판본의 manifestHash가 그대로다. 값이 있으면 `units` 원고의 일부로 manifestHash에 들어간다. 저장은 기존 `textbook_section.content` JSONB의 형제 키이며 새 칸·migration은 없다. 교사용 구획 read/write·409의 `serverSection`·판본 복제·교사용 교환 형식(내보내기·가져오기)에 실린다. 학생용 렌더 모델·학생 PDF/HTML·배정/학습/QR 응답에는 싣지 않고, 서버 해설 PDF에도 조판하지 않는다(지면 변경 없음). 옛 strict reader는 이 키가 든 패키지를 거절한다.
 
 단원 키는 판본 내 유일하다. 구획 키는 **(unitKey, sectionKey)** 안에서 해석한다. 교환 문항과 블록의 참조는 이 두 키를 사용한다. 서버 내부 구획은 UUID `sectionId`로 API에 노출해 같은 이름의 준비학습 구획끼리 충돌하지 않게 한다. 문항의 `orderIndex`와 블록의 실제 참조 순서가 충돌하면 발행 오류다. 서로 다른 item이 같은 snapshot을 쓰는 반복 배치는 허용하고 item별 QR을 발급한다.
 
