@@ -21,6 +21,16 @@ import {
   type ListeningReconstructionJudgment,
 } from "../../../src/lib/english/listening/reconstruction";
 import {
+  LISTENING_KOREAN_STYLE_INSTRUCTIONS,
+  listeningStyleTemplateSchema,
+  buildListeningStyleChecks,
+  selectListeningStyleTemplates,
+  LISTENING_STYLE_DIMENSIONS,
+  LISTENING_RECONSTRUCTION_STYLE_THRESHOLD,
+  readListeningStyleJudgment,
+  listeningStyleSemanticWarnings,
+} from "../../../src/lib/english/listening/reconstructionStyle";
+import {
   listeningCreateSetSchema,
   listeningUpdateSetSchema,
 } from "../../../src/contracts/englishListeningHttp.contract";
@@ -36,7 +46,8 @@ async function main() {
       generate: { type: "boolean", default: false },
       verify: { type: "boolean", default: false },
       "repair-four-choices": { type: "boolean", default: false },
-      "generation-version": { type: "string", default: "2" },
+      "generation-version": { type: "string", default: "3" },
+      "style-templates": { type: "string" },
       "revise-existing": { type: "boolean", default: false },
     },
     strict: true,
@@ -91,6 +102,32 @@ async function main() {
       }),
     ),
   );
+  if (!["1", "2", "3"].includes(values["generation-version"]!))
+    throw new Error("Generation version must be 1, 2 or 3");
+  const koreanStyle = values["generation-version"] === "3";
+  const styleTemplates = koreanStyle
+    ? z
+        .array(listeningStyleTemplateSchema)
+        .min(1)
+        .parse(
+          values["style-templates"]
+            ? await json(values["style-templates"])
+            : null,
+        )
+        .filter((template) => template.level === prepared.createInput.level)
+    : [];
+  if (koreanStyle && !styleTemplates.length)
+    throw new Error(
+      "Version 3 requires actual same-grade --style-templates; legacy versions only replay old instruction receipts",
+    );
+  const generationExamples = [
+    ...new Map(
+      styleTemplates.map((template) => [
+        `${template.questionType}:${template.choiceLanguage}`,
+        template,
+      ]),
+    ).values(),
+  ];
   const env = values["env-file"]
     ? dotenv.parse(await fs.readFile(values["env-file"]!))
     : process.env;
@@ -127,14 +164,17 @@ async function main() {
   };
   const generationRequest = {
     model: DEEPSEEK_MODEL,
-    system:
-      "Create new listening questions grounded only in the supplied actual ASR transcript. The original question sheet is missing. Do not pretend to recover original questions. Return strict JSON, no prose.",
+    system: koreanStyle
+      ? LISTENING_KOREAN_STYLE_INSTRUCTIONS +
+        " Create only new audio-grounded questions; do not recover the missing original sheet. Return strict JSON."
+      : "Create new listening questions grounded only in the supplied actual ASR transcript. The original question sheet is missing. Do not pretend to recover original questions. Return strict JSON, no prose.",
     prompt: JSON.stringify({
-      task:
-        "Create up to 20 distinct new five-choice listening questions for this real recording, in audio order. Fewer is correct if reliable spoken evidence is missing. Do not fabricate a missing conversation or force a count. Questions/choices/explanations should be English; short topic and keyword labels should be Korean. Ignore opening/closing broadcast announcements. Exclude translated Korean paraphrases of English speech and uncertain ASR segments unless the uncertainty is explicitly preserved for review. Use only sourceSegmentIds from the supplied list, in original order. sourceNumber is a new sequential question ordinal starting at 1; it is not a claimed recovered official number. Never invent speaker names, timestamps, unseen images or diagrams. Ask text-only questions whose unique answer follows from the actual speech; for originally visual items ask a new spoken-detail question instead. Each evidenceQuotes entry must be an exact substring of the selected source segment texts joined by a single space. Do not repair or rewrite transcript quotes. Distractors must be distinct and wrong under the spoken evidence. Do not answer original questions with missing dialogue. Include actual inferred topics and keywords for search, without answer phrases." +
-        (values["generation-version"] === "1"
-          ? ""
-          : " Use 'one speaker' instead of assuming man/woman or unlabelled identities. Keep explanations concise and strictly factual, including only claims explicit in the selected ASR segments. Include every segment necessary to support all explanation claims; do not infer a proposed action was performed. Do not claim recovered original numbering."),
+      task: koreanStyle
+        ? "Create up to 20 distinct new five-choice listening questions for this real recording in audio order, using the same-grade actual official examples only as style references. Fewer is correct when reliable speech is missing. Use natural Korean listening-exam prompts. Content/purpose/detail/reason/action choices normally use concise Korean phrases; reply tasks keep English utterances; numeric/time/date forms follow actual examples. Use only supplied sourceSegmentIds in actual order; sourceNumber is a new sequential ordinal, not recovered official numbering. Ignore opening/closing announcements; do not invent missing conversations, speaker identities or visuals. A formerly visual recording can support a new text-only spoken-detail question only. Exact evidenceQuotes must occur verbatim in selected source texts joined by a single space. Explanations are concise Korean and contain only supported facts. Topics/keywords describe the question without answer phrases."
+        : "Create up to 20 distinct new five-choice listening questions for this real recording, in audio order. Fewer is correct if reliable spoken evidence is missing. Do not fabricate a missing conversation or force a count. Questions/choices/explanations should be English; short topic and keyword labels should be Korean. Ignore opening/closing broadcast announcements. Exclude translated Korean paraphrases of English speech and uncertain ASR segments unless the uncertainty is explicitly preserved for review. Use only sourceSegmentIds from the supplied list, in original order. sourceNumber is a new sequential question ordinal starting at 1; it is not a claimed recovered official number. Never invent speaker names, timestamps, unseen images or diagrams. Ask text-only questions whose unique answer follows from the actual speech; for originally visual items ask a new spoken-detail question instead. Each evidenceQuotes entry must be an exact substring of the selected source segment texts joined by a single space. Do not repair or rewrite transcript quotes. Distractors must be distinct and wrong under the spoken evidence. Do not answer original questions with missing dialogue. Include actual inferred topics and keywords for search, without answer phrases." +
+          (values["generation-version"] === "1"
+            ? ""
+            : " Use 'one speaker' instead of assuming man/woman or unlabelled identities. Keep explanations concise and strictly factual, including only claims explicit in the selected ASR segments. Include every segment necessary to support all explanation claims; do not infer a proposed action was performed. Do not claim recovered original numbering."),
       questionTypes: [
         "gist",
         "purpose",
@@ -172,6 +212,12 @@ async function main() {
         humanReviewed: false,
         segments,
       },
+      ...(koreanStyle
+        ? {
+            generationVersion: 3,
+            actualSameGradeOfficialExamples: generationExamples,
+          }
+        : {}),
     }),
   };
   const generationHash = sha(JSON.stringify(generationRequest));
@@ -240,7 +286,9 @@ async function main() {
       system:
         "Return strict JSON. Supply only one additional wrong distractor for each supplied four-choice question. Never rewrite the question, existing choices, answer, explanation or transcript.",
       prompt: JSON.stringify({
-        task: "Add one fifth distractor, in English, per listed question. It must be distinct from the existing four choices and clearly wrong under the actual selected speech. Do not invent spoken facts or alter the existing answer. Return only {choices:[{sourceNumber,fifthChoice}]}. These are newly generated ordinals, not official numbers.",
+        task: koreanStyle
+          ? "Add one fifth distractor per listed question using the task-appropriate language and parallel grammatical form of the existing choices: Korean content choices, English reply utterances, conventional numeric/time forms. It must be distinct and wrong under selected speech. Never alter the existing answer, prompt or evidence. Return {choices:[{sourceNumber,fifthChoice}]} only."
+          : "Add one fifth distractor, in English, per listed question. It must be distinct from the existing four choices and clearly wrong under the actual selected speech. Do not invent spoken facts or alter the existing answer. Return only {choices:[{sourceNumber,fifthChoice}]}. These are newly generated ordinals, not official numbers.",
         sourceAudioSha256: sourceAudio.sha256,
         questions: fourChoiceQuestions.map((question) => ({
           ...question,
@@ -349,6 +397,26 @@ async function main() {
       ),
       questions,
     );
+    const styleRequest = koreanStyle
+      ? {
+          model: "jev-latest",
+          ...buildListeningStyleChecks(
+            grounded.items,
+            questions,
+            prepared.createInput.level,
+            Object.fromEntries(
+              questions.map((question) => [
+                question.sourceNumber,
+                selectListeningStyleTemplates(
+                  styleTemplates,
+                  prepared.createInput.level,
+                  question,
+                ),
+              ]),
+            ),
+          ),
+        }
+      : null;
     const request = { model: "jev-latest", ...checks };
     const requestHash = sha(JSON.stringify(request));
     const cacheFile = path.join(
@@ -394,6 +462,58 @@ async function main() {
         "Cached Jev check belongs to different questions or evidence",
       );
     verificationAudits.push(audit);
+    let styleAudit: typeof audit | null = null;
+    if (styleRequest) {
+      const styleHash = sha(JSON.stringify(styleRequest));
+      const styleFile = path.join(
+        recordDirectory,
+        `jev-style-blind-v4-${offset + 1}.json`,
+      );
+      if (!(await exists(styleFile))) {
+        if (!values.verify || !env.TYPESAFE_API_KEY)
+          throw new Error(
+            "Independent style verification requires authorized --verify and TypeSafe server credential",
+          );
+        const startedFile = `${styleFile}.started`;
+        if (await exists(startedFile))
+          throw new Error(
+            "Prior blind style call has no successful receipt; no automatic retry",
+          );
+        await write(startedFile, {
+          requestHash: styleHash,
+          request: styleRequest,
+          startedAt: new Date().toISOString(),
+        });
+        const response = await fetch("https://api.typesafe.ai/v1/systemone", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${env.TYPESAFE_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(styleRequest),
+          signal: AbortSignal.timeout(30000),
+          redirect: "error",
+        });
+        if (!response.ok) {
+          await response.body?.cancel();
+          throw new Error(
+            `TypeSafe blind style HTTP ${response.status}; no automatic retry`,
+          );
+        }
+        await write(styleFile, {
+          requestHash: styleHash,
+          request: styleRequest,
+          checkedAt: new Date().toISOString(),
+          response: await response.json(),
+        });
+      }
+      styleAudit = await json(styleFile);
+      if (styleAudit.requestHash !== styleHash)
+        throw new Error(
+          "Cached blind style check belongs to different questions or templates",
+        );
+      verificationAudits.push(styleAudit);
+    }
     const answerSchema = z.object({
       type: z.literal("choice"),
       choice: z.string(),
@@ -454,6 +574,30 @@ async function main() {
         judgment,
         grounded.items.find((item) => item.sourceNumber === id)!.uncertain,
       );
+      if (
+        koreanStyle &&
+        (() => {
+          const style = readListeningStyleJudgment(
+            styleAudit?.response?.answers ?? {},
+            id,
+            "4",
+          );
+          return (
+            !style ||
+            listeningStyleSemanticWarnings(
+              question,
+              question,
+              grounded.items.find((item) => item.sourceNumber === id)!
+                .transcript,
+            ).length > 0 ||
+            LISTENING_STYLE_DIMENSIONS.some(
+              (dimension) =>
+                style[dimension] < LISTENING_RECONSTRUCTION_STYLE_THRESHOLD,
+            )
+          );
+        })()
+      )
+        disposition.verification = "needs_review";
       verdict = disposition.verification;
       dispositions.set(id, disposition);
       judgments.set(id, verdict);
@@ -643,6 +787,12 @@ async function main() {
         latencyMs: generation.latencyMs,
         usage: generation.usage,
         requestHash: generationHash,
+        ...(koreanStyle
+          ? {
+              instructionVersion: 3,
+              actualSameGradeOfficialExamples: generationExamples,
+            }
+          : {}),
         formatRepair: repair
           ? {
               kind: "add_fifth_distractor_only",
@@ -666,6 +816,14 @@ async function main() {
           ),
         ),
         initialProbabilityThreshold: 0.9,
+        ...(koreanStyle
+          ? {
+              styleVerification: "independent_blind_jev_questions",
+              styleProbabilityThreshold:
+                LISTENING_RECONSTRUCTION_STYLE_THRESHOLD,
+              styleDimensions: LISTENING_STYLE_DIMENSIONS,
+            }
+          : {}),
         aiVerified: questions.filter(
           (question) =>
             question.metadata.reconstruction.verification === "ai_verified",

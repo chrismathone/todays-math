@@ -14,6 +14,7 @@ async function main() {
       python: { type: "string" },
       "model-cache": { type: "string" },
       "env-file": { type: "string" },
+      "style-templates": { type: "string" },
       limit: { type: "string", default: "72" },
       execute: { type: "boolean", default: false },
     },
@@ -29,6 +30,10 @@ async function main() {
   ] as const)
     if (!values[field]) throw new Error(`--${field} required`);
   const limit = Number(values.limit);
+  if (values.execute && !values["style-templates"])
+    throw new Error(
+      "New generation requires actual same-grade --style-templates (version 3)",
+    );
   if (!Number.isInteger(limit) || limit < 1 || limit > 72)
     throw new Error("Batch limit must be 1..72");
   const output = path.resolve(values.output!);
@@ -211,6 +216,10 @@ async function main() {
             values["env-file"]!,
             "--generate",
             "--verify",
+            "--generation-version",
+            "3",
+            "--style-templates",
+            values["style-templates"]!,
             "--repair-four-choices",
           ]);
           await registerPrepared(id, resultFile);
