@@ -650,7 +650,7 @@ describe("StudentMathExplorers", () => {
         expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
       } else {
         fireEvent.click(
-          screen.getByRole("button", { name: "진도판", exact: true }),
+          screen.getByRole("button", { name: "진도판" }),
         );
         expect(
           await screen.findByRole("button", { name: /이어서 탐험하기/ }),
