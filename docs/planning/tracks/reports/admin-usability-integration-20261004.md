@@ -86,4 +86,8 @@
 
 학생 계정은 처음에 생성하지 않는다. 각 지점 관리자 이상이 반별 발급 가능/기존/제외를 확인하고 발급을 눌러야 생성된다. 이름 ID와 전화번호 끝 4자리, 기존 계정 보존, 동명이인·번호 누락 제외를 유지한다. 원본 활성 반 필터·소속 고정·최고관리자 유형 편집·공통 버튼형 뒤로가기와 넓은 화면 배치도 유지한다.
 
-main 병합·작업 종료·워크트리 정리: 최종 검사 뒤 기록한다. 기존 사용자 `package-lock.json` 수정은 이번 커밋에 포함하지 않는다. push·배포·실제 계정 발급은 실행하지 않았다.
+main은 기존 `5a250c54f`에서 통합 `689c8e4e0`으로 fast-forward 했다. 병합 직전에 main의 브랜치와 깨끗한 작업 상태를 확인했고 기존 변경을 버리지 않았다. 세 실제 작업자의 `worker_done` task/dispatch를 검증해 release했고, reclaimable 및 실행 중인 작업자는 0명이다. root 브라우저와 preview 프로세스도 종료했다.
+
+세 협업 워크트리는 main 포함·깨끗함·작업 종료를 확인한 뒤 Orca에서 제거했다. `BIGSHOL/admin-usability-claude`(`1d25946d8`), `BIGSHOL/admin-usability-grok`(`795b78c0e`), `BIGSHOL/admin-usability-srs`(`15970adc9`) 브랜치는 모두 보존했다. Orca의 첫 정리에서 Claude 브랜치도 삭제되어 동일 커밋으로 즉시 복원했고, 나머지는 먼저 HEAD를 분리해 브랜치를 유지했다. 공유 node_modules의 원본이 보존된 것도 확인했다.
+
+root 워크트리는 작업 전부터 있던 사용자 `package-lock.json` 수정 때문에 제거하지 않는다. 그 수정은 이번 커밋에 포함하지 않았다. push·배포·실제 계정 발급은 실행하지 않았다.
