@@ -14,3 +14,18 @@ v2는 Codex·Claude·Grok 실소스 검토와 명시 동의 후 구현했다. �
 기존 확대 검사 실패: StudentProgressBoard.test.tsx 2개는 변경하지 않은 main에서도 실패(생산 화면에서 사용하지 않는 오래된 컴포넌트). mathSrsRecordIsolation의 전수 소스 허용목록 1개는 기존 courseTeacherRoutes.ts의 studentSrsState 접근을 누락했다. 이 작업이 추가한 기록 접근은 없다. 전체 저장소 시험 모두 통과라고 보고하지 않는다.
 
 재현: scripts/qa/student-math-atelier/README.md. 결과/스크린샷 정본은 C:/Users/user/orca/artifacts/design-package-review-20261004/qa-practice-final, qa-home-motion, qa-journey, qa-reflow-final, qa-reflow-banks, qa-elementary-normal에 보관했다. 운영 DB/학생 로그인/학습 효과/음원 청취 검사는 이 v2 검증의 근거가 아니다.
+
+## 무료 효과음 v3 최종 통합 검증
+
+Codex·Claude·Grok 최종 동의 후 Kenney CC0 효과음 셋(총 WAV 90,332바이트)을 추가했다. 정답/중립/하루 완료에 연결하며 기본 끔, 기기 설정, gain 0.2, 명시 미리 듣기를 쓴다. 원본 출처·라이선스·변환법·배포 해시는 public/audio/math-learning/README.md와 manifest에 남겼다. 음원을 새로 생성하지 않았다.
+
+- 통합 Vitest 15파일 247시험 통과. 확정 답, 학생 격리, 자기 평가, 중복, 늦은 decode 취소, 저장 성공 뒤 오디오 예외, 관문, 음원 바이트, 기기 설정을 포함한다. 최신 main의 공통 뒤로가기 단추 변경을 보존해 병합한 뒤 영향을 받는 5파일 111시험도 다시 통과했다.
+- 최종 Chromium 320×568/390×844/768×650/1280×800의 116항목 전부 통과: 초등·중등 은행 각각28, 홈/움직임20, 사운드40. 실제 WAV decode와 AudioContext를 사용해 사용자 activation 안에서 생성/resume, gain 0.2, 켜기 뒤 자동 샘플 없음, 명시 미리 듣기, 숫자키/Enter 답1회, 유실 응답 무음과 재확인1회, 재로드 요청0, HTML 음원 거절 뒤 저장 정상, 경계 밖 무음, 음소거/visibility 사건 중지를 확인했다. autoplay 허용 플래그는 쓰지 않았다.
+- fixture의 Junction 바깥 실제 node_modules 경로를 명시 허용해 KaTeX 폰트를 제공했고, 최신 main 병합 뒤 320×568/640×400의 선택·내장보기·분수4·분수12·긴본문·자기평가 12경우도 다시 통과했다. 최종 캡처의 320px 효과음 스위치/미리 듣기 배치도 직접 확인했다.
+- 변경 TypeScript ESLint와 전역 affordance, diff 검사 통과. 전체 standalone type-check 통과 뒤, 최신 main 병합의 production build에서도 TypeScript 검사와 175정적 페이지 생성이 통과했다. 기존 figureBytes tracing 경고2는 유지한다.
+- 실제 main Next production 서버에서 익명 GET/HEAD 세 음원의 200·audio MIME·바이트·SHA를 대조했고, POST 및 접두사 밖 경로의 로그인 리다이렉트를 확인했다. Vite를 proxy 관문 검증 근거로 삼지 않는다. 학생 인증 관문은 모의 인증 단위시험이다.
+- 통합 도중 다른 작업의 최신 main이 Prisma 스키마를 변경해, main의 기존 npm build 단계로 로컬 Prisma client를 현재 스키마에 맞췄다. 효과음 자체의 스키마/DB 변경은 없고 마이그레이션·운영 DB 작업은 하지 않았다. 앞의 v2 빌드는 기존 client 재사용 기록이다.
+
+확대 검사에서 발견한 kstDate/relationPolicy, mathSrsQuickFence/기존 prerequisite 하네스, mathSrsRecordIsolation/courseTeacherRoutes, noRmSync/기존 시험3파일 실패는 음원 통합 전 main에서도 네 가드를 실제 재실행해 동일 실패를 확인했다. 기록은 baseline-guards.json이며 해당 파일은 효과음 변경에서 수정하지 않았다. 전체 저장소 시험이 모두 초록이라는 뜻은 아니다.
+
+최종 결과 정본: C:/Users/user/orca/artifacts/design-package-review-20261004/qa-sound-merged와 qa-reflow-merged. 실물 iPhone/iPad, 실제 운영 학생 로그인, 사람이 듣는 음색은 검증하지 않았다. 화면 숨김은 visibility 사건 시뮬레이션이다. 미리 듣기는 정답 샘플 한 종류를 재생한다.
