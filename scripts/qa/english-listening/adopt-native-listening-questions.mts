@@ -5,11 +5,11 @@ import { isAbsolute, relative, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Prisma, PrismaClient } from "@prisma/client";
 import { z } from "zod";
-import type { ListeningDraft } from "../../src/contracts/englishListeningHttp.contract";
+import type { ListeningDraft } from "../../../src/contracts/englishListeningHttp.contract";
 import type {
   ListeningActor,
   ListeningDatabase,
-} from "../../src/lib/english/listening/runtime/database";
+} from "../../../src/lib/english/listening/runtime/database";
 
 // The application .ts modules are CommonJS under Node/tsx and ESM under Vitest.
 function moduleExports<T>(module: T): T {
@@ -17,19 +17,19 @@ function moduleExports<T>(module: T): T {
   return fallback && typeof fallback === "object" ? (fallback as T) : module;
 }
 const { listeningCreateSetSchema, listeningUpdateSetSchema } = moduleExports(
-  await import("../../src/contracts/englishListeningHttp.contract"),
+  await import("../../../src/contracts/englishListeningHttp.contract"),
 );
 const { listeningQuestionImageSchema } = moduleExports(
-  await import("../../src/contracts/englishListeningSource.contract"),
+  await import("../../../src/contracts/englishListeningSource.contract"),
 );
 const { freezeListeningValue, listeningValueHash } = moduleExports(
-  await import("../../src/lib/english/listening/publication"),
+  await import("../../../src/lib/english/listening/publication"),
 );
 const { audit, json, lock, one, ownedSet, teacher } = moduleExports(
-  await import("../../src/lib/english/listening/runtime/database"),
+  await import("../../../src/lib/english/listening/runtime/database"),
 );
 const { updateSet, verifiedMedia } = moduleExports(
-  await import("../../src/lib/english/listening/runtime/sets"),
+  await import("../../../src/lib/english/listening/runtime/sets"),
 );
 
 const OWNER_ID = "6f361696-5eb5-4f7d-9c66-9313ad7bb06a";

@@ -14,7 +14,7 @@ An encoded `Man:`/`Woman:` followed by a source vector response rule keeps an ed
 Run from the repository root with the operator's existing environment:
 
 ```powershell
-node --conditions=react-server --env-file=.env --import=tsx scripts/import/adopt-native-listening-questions.mts ebs-middle-1-2026-1
+node --conditions=react-server --env-file=.env --import=tsx scripts/qa/english-listening/adopt-native-listening-questions.mts ebs-middle-1-2026-1
 ```
 
 The default is a PostgreSQL **read-only transaction**. Add `--apply` after reviewing the result to update the existing imported set. `--archive-root PATH` changes only the local artifact directory; its default is `output/listening-assessments`. There is no owner or project override. `DATABASE_URL` must identify `jyaguxwuaxgdnovtulna`; Storage credentials are unnecessary because this command never uploads or rewrites audio.

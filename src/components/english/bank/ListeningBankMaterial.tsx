@@ -25,7 +25,7 @@ import {
   hasListeningChoiceText,
   listeningChoiceBody,
   listeningChoiceMarks,
-} from "@/lib/english/listening/questionPresentation";
+} from "@/lib/listeningQuestionPresentation";
 
 type Group = ListeningDraft["groups"][number];
 type Question = Group["questions"][number];

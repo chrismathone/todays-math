@@ -278,6 +278,121 @@ function coverage(expected: string, observed: string) {
     precision: b.length ? row[b.length] / b.length : 0,
   };
 }
+
+/** Short, positional token anchors cannot be replaced by the complete dialogue. */
+function verifyDialogueEdgeAnchors(
+  expectedFirst: string,
+  expectedLast: string,
+  observed: string,
+) {
+  const first = tokens(expectedFirst).slice(0, 8);
+  const last = tokens(expectedLast).slice(-8);
+  const actual = tokens(observed);
+  for (const [expected, edge] of [
+    [first, actual.slice(0, first.length)],
+    [last, actual.slice(-last.length)],
+  ] as const) {
+    if (
+      !expected.length ||
+      coverage(expected.join(" "), edge.join(" ")).recall < 0.9
+    )
+      fail("positional dialogue edge token anchor is incomplete");
+  }
+}
+
+/** A quoted once/twice directive must apply to this section, rather than another question range. */
+function verifyRepetitionScope(text: string, sectionNumbers: number[]) {
+  const normalized = text.normalize("NFKC").replace(/\s+/g, "").toLowerCase();
+  if (
+    /(한번|once|onetime)/.test(normalized) &&
+    /(두번|twice|twotimes|\[repeat\])/.test(normalized)
+  )
+    fail("repetition instruction scope mixes different broadcast counts");
+  const range =
+    /(?<!\d)(\d{1,2})번(?:부터|~|～|–|—|-)(\d{1,2})번(?:까지)?/.exec(
+      normalized,
+    ) ??
+    /(?:questions?|numbers?)(\d{1,2})(?:to|through|-)(\d{1,2})/.exec(
+      normalized,
+    );
+  if (range) {
+    const first = Number(range[1]),
+      last = Number(range[2]);
+    if (
+      first < 1 ||
+      last > 30 ||
+      first > last ||
+      sectionNumbers.some((n) => n < first || n > last)
+    )
+      fail("repetition instruction scope does not include this question");
+    return;
+  }
+  if (
+    !/(모든문제|전체문제|allquestions|allthequestions|everyquestion)/.test(
+      normalized,
+    )
+  )
+    fail(
+      "repetition instruction has no explicit whole-source or numbered scope",
+    );
+}
+
+/** Check outside producer-selected bounds too: trimming a section must not hide speech. */
+export function verifyQuestionAudioSourceSpeech(script: QuestionAudioScript) {
+  const text = script.sourceTranscriptText;
+  const speakers = Array.from(
+    text.matchAll(/\b(ANN|[A-Z]\d?|[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*:\s*/g),
+  );
+  let sourceSpeechCount = 0;
+  let previousEnd = -1;
+  for (const section of script.sections) {
+    if (section.startCharacter < previousEnd)
+      fail("whole official speaker speech sections overlap or are reordered");
+    previousEnd = section.endCharacter;
+  }
+  for (const [index, speaker] of speakers.entries()) {
+    if (speaker[1] === "ANN") continue;
+    const start = speaker.index! + speaker[0].length;
+    let end = speakers[index + 1]?.index ?? text.length;
+    const body = text.slice(start, end);
+    const instruction =
+      /ⓒ|©|\b\d{1,2}\s*번|\b\d{1,2}\s*\.\s*(?=[가-힣]|[^:]{0,180}고르시오)|[\[【]\s*\d{1,2}\s*[~～–—-]\s*\d{1,2}\s*[\]】]/.exec(
+        body,
+      );
+    if (instruction) {
+      end = start + instruction.index;
+      // The mock-exam PDF puts a standalone page number before its next question.
+      const footer = /\n\s*\d{1,3}\s*$/.exec(text.slice(start, end));
+      if (footer) end = start + footer.index;
+    }
+    const spoken = text.slice(start, end);
+    // Only a bare answer blank has no source speech to prove. Written prefixes
+    // such as "Monica, ____" may actually be spoken and cannot be discarded.
+    if (/^\s*_{3,}\s*[.!?]?\s*$/.test(spoken)) continue;
+    const expected = tokens(spoken);
+    if (!expected.length) continue;
+    sourceSpeechCount++;
+    const covered = script.sections
+      .filter((s) => s.startCharacter < end && s.endCharacter > start)
+      .map((s) =>
+        text.slice(
+          Math.max(start, s.startCharacter),
+          Math.min(end, s.endCharacter),
+        ),
+      )
+      .join("\n");
+    const actual = tokens(covered);
+    if (
+      expected.length !== actual.length ||
+      expected.some((word, i) => word !== actual[i])
+    )
+      fail(
+        "whole official speaker speech is omitted outside selected section bounds",
+      );
+  }
+  if (!sourceSpeechCount)
+    fail("whole official speaker speech has no source labels");
+}
 const spokenNumbers = [
   "zero",
   "one",
@@ -319,6 +434,38 @@ export function questionAudioCueNumbers(text: string) {
     last = matched[2] ? asNumber(matched[2]) : first;
   if (first < 1 || last < first || last > 30) return [];
   return Array.from({ length: last - first + 1 }, (_, i) => first + i);
+}
+
+/** Bounded Korean probes sometimes spell "2번" as "2."; require the original instruction too. */
+export function questionAudioKoreanInstructionCueNumbers(
+  text: string,
+  script: QuestionAudioScript,
+  section: QuestionAudioScript["sections"][number],
+) {
+  if (section.questionNumbers.length !== 1) return [];
+  const match = /^(\d{1,2})[.．]\s*([\s\S]+)$/.exec(text.trim());
+  const number = section.questionNumbers[0];
+  if (
+    !match ||
+    Number(match[1]) !== number ||
+    !/듣고[\s\S]*고르시오[.。]?\s*$/.test(match[2])
+  )
+    return [];
+  const index = script.sections.findIndex((s) => s.id === section.id);
+  if (index < 0) return [];
+  const before = script.sourceTranscriptText.slice(
+    index ? script.sections[index - 1].endCharacter : 0,
+    section.startCharacter,
+  );
+  const markers = Array.from(before.matchAll(/(?<!\d)(\d{1,2})\s*번/g));
+  const marker = markers.at(-1);
+  if (!marker || Number(marker[1]) !== number) return [];
+  const original = before
+    .slice(marker.index! + marker[0].length)
+    .replace(/\b(?:[A-Z]\d?|[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*:\s*$/, "");
+  const normalize = (value: string) =>
+    value.normalize("NFKC").replace(/[\s,.，。?!'‘’"“”]/g, "");
+  return normalize(original) === normalize(match[2]) ? [number] : [];
 }
 
 /** Recomputes dialogue/copies and boundaries from exact file contents, not producer booleans. */
@@ -622,7 +769,9 @@ export function verifyQuestionAudioEvidence(input: {
         : !/(두번|twice|twotimes|\[repeat\])/.test(repetition)
     )
       fail("repetition count has no explicit source evidence");
+    verifyRepetitionScope(repetition, section.questionNumbers);
   }
+  verifyQuestionAudioSourceSpeech(script);
   const noSpeech = (start: number, end: number) =>
     !activity.events.some((e) => e.startSample < end && e.endSample > start);
   const selected = (
@@ -747,11 +896,15 @@ export function verifyQuestionAudioEvidence(input: {
           return segment;
         })
       : selected(question.cue.cache, question.cue.segmentIds, question);
+    const cueText = cue.map((s) => s.text).join(" ");
+    const regularCue = questionAudioCueNumbers(cueText);
+    const spokenCue = regularCue.length
+      ? regularCue
+      : question.cue.cache === "korean" && !commonScope
+        ? questionAudioKoreanInstructionCueNumbers(cueText, script, section)
+        : [];
     if (
-      !sameNumbers(
-        questionAudioCueNumbers(cue.map((s) => s.text).join(" ")),
-        question.cue.questionNumbers,
-      ) ||
+      !sameNumbers(spokenCue, question.cue.questionNumbers) ||
       (!commonScope &&
         !sameNumbers(question.cue.questionNumbers, section.questionNumbers))
     )
@@ -833,6 +986,11 @@ export function verifyQuestionAudioEvidence(input: {
         ).recall < 0.9
       )
         fail("complete dialogue or first/last utterance not covered");
+      verifyDialogueEdgeAnchors(
+        section.utterances[0].text,
+        section.utterances.at(-1)!.text,
+        segments.map((s) => s.text).join(" "),
+      );
       if (
         segments.some(
           (s, i) =>
@@ -847,6 +1005,47 @@ export function verifyQuestionAudioEvidence(input: {
         const key = copy.cache + ":" + segmentId;
         if (usedSegments.has(key)) fail("repeat reuses the same ASR speech");
         usedSegments.add(key);
+      }
+    }
+    // A producer cannot hide a spoken prefix, a second broadcast, or a foreign
+    // instruction simply by leaving its segment ID out of an otherwise valid copy.
+    for (const kind of new Set(question.copies.map((c) => c.cache))) {
+      const assigned = new Set(
+        question.copies
+          .filter((c) => c.cache === kind)
+          .flatMap((c) => c.segmentIds),
+      );
+      if (question.cue.cache === kind)
+        for (const segmentId of question.cue.segmentIds)
+          assigned.add(segmentId);
+      for (const segment of asr[kind].segments) {
+        const numbering = questionAudioCueNumbers(segment.text);
+        const numeralOnly =
+          /^\d{1,2}\s*번[.。]?\s*$/.test(segment.text.trim()) ||
+          /^\s*(?:number|questions?)\s+(?:[a-z]+|\d+)(?:\s*(?:and|to|through)\s*(?:number\s+)?(?:[a-z]+|\d+))?[.?!]*\s*$/i.test(
+            segment.text,
+          );
+        const numberingOnly =
+          numbering.length > 0 &&
+          numbering.every((n) => section.questionNumbers.includes(n)) &&
+          numeralOnly;
+        if (
+          segment.estimatedStartSeconds * 16000 < question.endSample &&
+          segment.estimatedEndSeconds * 16000 > question.startSample &&
+          !noSpeech(
+            Math.max(
+              question.startSample,
+              Math.floor(segment.estimatedStartSeconds * 16000),
+            ),
+            Math.min(
+              question.endSample,
+              Math.ceil(segment.estimatedEndSeconds * 16000),
+            ),
+          ) &&
+          !assigned.has(segment.id) &&
+          !numberingOnly
+        )
+          fail("unclassified ASR speech inside question passage");
       }
     }
     const shared = section.questionNumbers.length > 1;
@@ -892,5 +1091,20 @@ export function verifyQuestionAudioEvidence(input: {
   for (const scope of scopes.values())
     if (!sameNumbers(scope.numbers, scope.actual))
       fail("common numbering scope is incomplete or reordered");
+  // Deduplicated groups cover genuine common passages once. A VAD island in
+  // an internal gap may be a missed second broadcast and must never disappear.
+  const firstSample = groups[0].startSample;
+  const lastSample = groups.at(-1)!.endSample;
+  for (const event of activity.events) {
+    if (
+      event.startSample >= firstSample &&
+      event.endSample <= lastSample &&
+      groups.filter(
+        (g) =>
+          event.startSample >= g.startSample && event.endSample <= g.endSample,
+      ).length !== 1
+    )
+      fail("unassigned source activity between question passages");
+  }
   return groups;
 }

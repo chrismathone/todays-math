@@ -22,6 +22,11 @@ import {
   type ListeningPcmSource,
 } from "../media/sampleClip";
 import { PrismaStorageListeningMediaStore } from "../media/storageStore";
+import {
+  LISTENING_BOUNDARY_POLICY,
+  measureListeningBoundaryQuiet,
+  type ListeningBoundaryMeasurement,
+} from "../media/audioBoundary";
 import { createListeningMediaService } from "../media/service";
 import { assertListeningStorageQuota } from "../media/storageQuota";
 import type { ListeningMediaRecord } from "../media/store";
@@ -55,6 +60,7 @@ import {
 } from "../questionAudioProof";
 
 const chunkBytes = 1024 * 1024;
+const proofPolicy = "complete-source-positional-anchors-native-quiet-v2";
 const readyPlans = new WeakSet<object>();
 function fail(message: string): never {
   throw Error("Question audio import: " + message);
@@ -135,6 +141,9 @@ export interface PreparedQuestionAudioPlan {
     transcript: string;
     leadingSilenceMs: number;
     trailingSilenceMs: number;
+    vadLeadingPadMs: number;
+    vadTrailingPadMs: number;
+    boundary: ListeningBoundaryMeasurement;
     sha256: string;
     clip: ReturnType<typeof planListeningSampleClip>;
   }[];
@@ -369,7 +378,9 @@ export async function loadListeningQuestionAudioPlan(
       waveHash.update(part);
     const sourceWaveSha256 = waveHash.digest("hex");
     const planHash = listeningValueHash({
-      version: 1,
+      version: 2,
+      proofPolicy,
+      boundaryPolicy: LISTENING_BOUNDARY_POLICY,
       snapshot,
       sourcePcmSha256: source.pcmSha256,
       sampleRate: source.sampleRate,
@@ -386,6 +397,17 @@ export async function loadListeningQuestionAudioPlan(
         fail("native PCM clip ranges overlap");
       const clip = planListeningSampleClip(source, startFrame, endFrame),
         sha256 = await listeningSampleClipSha256(clip);
+      const boundary = await measureListeningBoundaryQuiet(source, {
+        startFrame,
+        endFrame,
+      });
+      if (boundary.status !== "measured_quiet")
+        fail(
+          `native PCM boundary quiet is incomplete for questions ${group.questions.map((q) => q.sourceNumber).join(",")}: ${boundary.reasons.join(",")}`,
+        );
+      if (boundary.clipSha256 !== sha256)
+        fail("native PCM boundary quiet bytes differ from the planned clip");
+      freezeListeningValue(boundary);
       const identity = planHash + ":" + startFrame + ":" + endFrame;
       groups.push({
         questionIds: group.questions.map((q) => q.questionId),
@@ -393,8 +415,11 @@ export async function loadListeningQuestionAudioPlan(
         groupId: stableId(identity + ":group"),
         assetId: stableId(identity + ":asset"),
         transcript: group.section.utterances.map((u) => u.text).join("\n"),
-        leadingSilenceMs: group.leadingSilenceMs,
-        trailingSilenceMs: group.trailingSilenceMs,
+        leadingSilenceMs: boundary.leading.quietMs,
+        trailingSilenceMs: boundary.trailing.quietMs,
+        vadLeadingPadMs: group.leadingSilenceMs,
+        vadTrailingPadMs: group.trailingSilenceMs,
+        boundary,
         sha256,
         clip,
       });
@@ -614,6 +639,7 @@ export async function adoptListeningQuestionAudio(
     { maxWait: 10000, timeout: 30000 },
   );
   const report = {
+    proofPolicy,
     sourceRecordId: plan.snapshot.sourceRecordId,
     setId: preflight.set.id,
     planHash: plan.planHash,
@@ -625,6 +651,9 @@ export async function adoptListeningQuestionAudio(
       endFrame: g.clip.endFrame,
       leadingSilenceMs: g.leadingSilenceMs,
       trailingSilenceMs: g.trailingSilenceMs,
+      vadLeadingPadMs: g.vadLeadingPadMs,
+      vadTrailingPadMs: g.vadTrailingPadMs,
+      boundary: g.boundary,
       sha256: g.sha256,
       durationMs: g.clip.durationMs,
       bytes: g.clip.totalBytes,
@@ -980,6 +1009,7 @@ export async function adoptListeningQuestionAudio(
         {
           planHash: plan.planHash,
           sourceRecordId: plan.snapshot.sourceRecordId,
+          proofPolicy,
           sourceRevision: source.set.revision,
           revision: saved.revision,
           documentSha256,

@@ -7,7 +7,7 @@ import {
   hasListeningChoiceText,
   listeningChoiceBody,
   listeningChoiceMarks,
-} from "@/lib/english/listening/questionPresentation";
+} from "@/lib/listeningQuestionPresentation";
 
 export function ListeningPrint({
   document,

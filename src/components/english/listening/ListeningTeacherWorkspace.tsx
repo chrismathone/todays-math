@@ -14,7 +14,7 @@ import {
   hasFullListeningQuestionImage,
   hasListeningChoiceText,
   listeningChoiceBody,
-} from "@/lib/english/listening/questionPresentation";
+} from "@/lib/listeningQuestionPresentation";
 
 export type ListeningTeacherMaterial = Pick<
   EnglishListeningDocument,

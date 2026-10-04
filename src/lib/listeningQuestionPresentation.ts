@@ -1,9 +1,10 @@
-import type { ListeningQuestionImage } from "@/contracts/englishListeningSource.contract";
-
+/** Shared presentation only: accepts image roles, without teacher contracts, answers or database access. */
 export const listeningChoiceMarks = ["①", "②", "③", "④", "⑤"] as const;
 
 /** Legacy crops contain the stem and choices. Visual crops contain only figures. */
-export function hasFullListeningQuestionImage(image?: ListeningQuestionImage) {
+export function hasFullListeningQuestionImage(image?: {
+  role?: "question" | "visual";
+}) {
   return Boolean(image && image.role !== "visual");
 }
 

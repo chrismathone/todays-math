@@ -20,8 +20,8 @@ Google Drive 보관본은 별도 백업이며 사이트 재생 서버의 Storage
 저장소 루트에서 다음 명령을 실행한다. 기본 실행은 읽기 전용 검증이다.
 
 ```powershell
-node --conditions=react-server --env-file=.env --import=tsx scripts/import/register-listening-assessment.mts ebs-middle-1-2026-2
-node --conditions=react-server --env-file=.env --import=tsx scripts/import/register-listening-assessment.mts ebs-middle-1-2026-2 --apply
+node --conditions=react-server --env-file=.env --import=tsx scripts/qa/english-listening/register-listening-assessment.mts ebs-middle-1-2026-2
+node --conditions=react-server --env-file=.env --import=tsx scripts/qa/english-listening/register-listening-assessment.mts ebs-middle-1-2026-2 --apply
 ```
 
 실제 원본이 M4A인 회차는 `--ffmpeg-path <설치된 FFmpeg 실행 파일>`을 추가한다.
