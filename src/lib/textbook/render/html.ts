@@ -12,6 +12,7 @@ import {
 import { EDITORIAL_CSS } from "./editorialCss";
 import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
 import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
+import { renderAutomaticIntroHtml, AUTOMATIC_INTRO_CSS } from "./blocks/automaticIntro";
 import { renderConceptHtml } from "./blocks/concept";
 import {
   renderDialogueHtml,
@@ -50,6 +51,8 @@ function renderBlockContent(
   resources: RenderResources,
   stage: EditorialStage,
 ): string {
+  const intro = renderAutomaticIntroHtml(block, resources);
+  if (intro) return intro;
   switch (block.kind) {
     case "unit-intro":
       return renderUnitIntroHtml(block, resources);
@@ -110,6 +113,7 @@ ${DIALOGUE_CSS}
 ${SEMANTIC_ACTIVITY_CSS}
 ${RECOVERY_FRAME_CSS}
 ${SOURCE_CHAPTER_CSS}
+${AUTOMATIC_INTRO_CSS}
 `;
 
 export function renderPageHtml(

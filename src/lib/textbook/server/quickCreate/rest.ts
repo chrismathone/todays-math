@@ -1,6 +1,7 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { text, type QuickCreateAssembly } from "./context";
+import { type QuickCreateAssembly } from "./context";
+import { activityText } from "../quickCreateRecovery";
 
 /** The illustrated story that closes the chapter the cursor is leaving. */
 export function appendRest(ctx: QuickCreateAssembly): void {
@@ -22,8 +23,8 @@ export function appendRest(ctx: QuickCreateAssembly): void {
         caption: story.title,
         semantic: { activity: "rest", title: story.title },
       },
-      text(story.markdown),
-      text(
+      activityText("rest", story.title, story.markdown),
+      activityText("rest", "함께 생각해요",
         `### 함께 생각해요\n\n${story.reflectionQuestions.map((question) => `- ${question}`).join("\n")}`,
       ),
     ]);

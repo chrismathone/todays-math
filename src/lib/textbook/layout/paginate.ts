@@ -64,7 +64,11 @@ export function textbookBodyTopMm(
 ): number {
   if (!section.blocks.some((candidate) => candidate.semantic))
     return A4.bodyTopMm;
-  if (section.templateKey.startsWith("reference-unitSpread")) return 16;
+  if (
+    section.templateKey.startsWith("reference-unitSpread") ||
+    section.templateKey === "auto-unit-intro"
+  )
+    return 16;
   return (block?.editorialStage ?? section.editorialStage) === "opening" ||
     section.templateKey === "reference-paired" ||
     section.templateKey === "reference-types"
@@ -174,6 +178,87 @@ export function paginateTextbookSections(
         "원고가 없는 구획입니다. 원고를 입력하거나 구획을 명시적으로 삭제하세요.",
         section,
       );
+    const introParts =
+      section.templateKey === "auto-unit-intro"
+        ? section.blocks.filter((block) => block.unitIntroPart)
+        : [];
+    if (introParts.length) {
+      if (introParts.length !== 3 || section.blocks.length !== 3)
+        fail(
+          "AUTO_INTRO_SOURCE",
+          "단원 도입의 공통 원고와 세 가지 측정 모형을 확인하세요.",
+          section,
+        );
+      const part = (name: RenderBlock["unitIntroPart"]) =>
+        introParts.find((block) => block.unitIntroPart === name)!;
+      const fits = (block: RenderBlock) => {
+        const size = measure.get(block.id);
+        return (
+          size &&
+          Number.isFinite(size.heightMm) &&
+          size.heightMm > 0 &&
+          size.heightMm <= 254 &&
+          Math.abs(size.widthMm - blockWidthMm(config, block)) <= A4.toleranceMm
+        );
+      };
+      const spread =
+        next % 2 === 0 && fits(part("left")) && fits(part("right"));
+      if (!spread && !fits(part("single")))
+        fail(
+          "AUTO_INTRO_OVERFLOW",
+          "선택한 단원 도입의 전체 내용이 한 쪽에 들어가지 않습니다. 선택 범위를 줄이거나 도입 원고를 편집하세요.",
+          section,
+          part("single"),
+        );
+      const chosen = spread ? [part("left"), part("right")] : [part("single")];
+      if (pages.length + chosen.length > (options.maxPages ?? 5000))
+        fail(
+          "PAGE_LIMIT",
+          "쪽 수 상한을 넘었습니다. 구획을 나눠 주세요.",
+          section,
+        );
+      if (!spread)
+        issues.push({
+          code: "AUTO_INTRO_SINGLE_PAGE",
+          severity: "warning",
+          path: ["units", section.unitKey, "sections", section.sectionKey],
+          physicalPageIndex: next,
+          message:
+            next % 2 !== 0
+              ? "홀수 시작 쪽이므로 도입의 질문·설명·목표·학습 순서·출발점을 한 쪽에 함께 배치했습니다."
+              : "두 쪽 도입의 측정 공간이 부족하여 같은 전체 내용을 한 쪽에 함께 배치했습니다.",
+        });
+      for (const block of chosen) {
+        const size = measure.get(block.id)!;
+        pages.push({
+          physicalPageIndex: next,
+          printedPageLabel: String(next),
+          unitKey: section.unitKey,
+          sectionKey: section.sectionKey,
+          unitTitle: section.unitTitle,
+          sectionTitle: section.title,
+          kind: "content",
+          editorialStage: "unit",
+          blocks: [
+            {
+              blockId: block.id,
+              column: 1,
+              xMm:
+                next % 2 === 0
+                  ? config.print.outerMarginMm
+                  : config.print.innerMarginMm,
+              yMm: 16,
+              widthMm: blockWidthMm(config, block),
+              heightMm: spread ? 254 : size.heightMm,
+            },
+          ],
+        });
+        next++;
+      }
+      previousSection = section.sectionKey;
+      previousTemplate = section.templateKey;
+      continue;
+    }
     if (section.startPolicy === "even-left" && next % 2 !== 0)
       fail(
         "SECTION_PARITY",

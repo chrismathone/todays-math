@@ -44,7 +44,7 @@ export const prepareQuickCreateVisuals: NonNullable<
           side:
             turn.role === "teacher" ? ("left" as const) : ("right" as const),
           expression: turn.expression,
-          mirrorPortrait: turn.role !== "teacher",
+          mirrorPortrait: turn.role === "student2",
           markdown: turn.markdown,
           ...(turn.presentation ? { presentation: turn.presentation } : {}),
         };
