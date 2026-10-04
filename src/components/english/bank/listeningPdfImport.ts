@@ -174,10 +174,10 @@ export function listeningPdfAnswers(text: string): Map<number, number> {
   // Official older sheets append choice frequencies, which are not question answers.
   const answerTable = text.split(/정답\s*번호\s*개수/, 1)[0];
   for (const match of answerTable.matchAll(
-    /(?:^|\s)(\d{1,2})\s*([①②③④⑤])(?=\s|$)/g,
+    /(?:^|\s)(\d{1,2})\s*([①②③④⑤⓵⓶⓷⓸⓹])(?=\s|$)/g,
   )) {
     const number = Number(match[1]);
-    const answer = "①②③④⑤".indexOf(match[2]);
+    const answer = "①②③④⑤⓵⓶⓷⓸⓹".indexOf(match[2]) % 5;
     if (result.has(number) && result.get(number) !== answer)
       throw new Error(`${number}번 정답이 서로 다르게 표시돼 있습니다.`);
     result.set(number, answer);

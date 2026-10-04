@@ -106,6 +106,14 @@ describe("original listening assessment PDF parsing", () => {
     expect(answers.get(4)).toBe(4);
   });
 
+  it("preserves the alternate circled choices printed in the official high1 2017 round2 answer sheet", () => {
+    const answers = listeningPdfAnswers(
+      "1 ⑤ 11 ⓸ 2 ② 12 ⓶ 3 ① 13 ⓵ 4 ② 14 ⓹ 5 ③ 15 ⓷ 6 ④ 16 ⓵ 7 ⓸ 17 ⓸ 8 ⓷ 18 ⓵ 9 ⓷ 19 ⓹ 10 ⓸ 20 ⓷ 정답번호 개수 ① 4 ② 3 ③ 5 ④ 5 ⑤ 3 합계 20",
+    );
+    expect(Array.from({ length: 20 }, (_, index) => answers.get(index + 1)))
+      .toEqual([4, 1, 0, 1, 2, 3, 3, 2, 2, 3, 3, 1, 0, 4, 2, 0, 3, 0, 4, 2]);
+  });
+
   it.each(["【16-17】", "[16~17]"])(
     "keeps shared instructions with their own questions instead of the preceding illustration (%s)",
     (marker) => {
