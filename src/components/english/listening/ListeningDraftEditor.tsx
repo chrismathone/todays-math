@@ -190,7 +190,7 @@ export function ListeningDraftEditor({
           <p className={s.muted}>
             {!saved
               ? "초안을 먼저 저장한 뒤 음원을 올리세요."
-              : "MP3·WAV, 최대 16MB·10분. 원본 보관 권한을 확인한 자료만 올리세요."}
+              : "MP3·WAV, 최대 64MB·30분. 원본 보관 권한을 확인한 자료만 올리세요."}
           </p>
           {group.audio ? (
             <>
@@ -292,6 +292,80 @@ export function ListeningDraftEditor({
                     onChange={(event) => update({ prompt: event.target.value })}
                   />
                 </label>
+                {question.image && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={question.image.dataUrl}
+                    width={question.image.width}
+                    height={question.image.height}
+                    alt={`${prefix} 원본 문제지`}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                )}
+                <div className={s.formGrid}>
+                  <label>
+                    {prefix} 전체 음원 시작 (초)
+                    <input
+                      type="number"
+                      min={0}
+                      step={0.001}
+                      value={
+                        question.audioRange
+                          ? question.audioRange.startMs / 1000
+                          : ""
+                      }
+                      onChange={(event) => {
+                        const startMs = Math.round(
+                          Number(event.target.value) * 1000,
+                        );
+                        update({
+                          audioRange:
+                            event.target.value === ""
+                              ? undefined
+                              : {
+                                  startMs,
+                                  endMs: Math.max(
+                                    startMs + 1,
+                                    question.audioRange?.endMs ??
+                                      startMs + 1000,
+                                  ),
+                                },
+                        });
+                      }}
+                    />
+                  </label>
+                  <label>
+                    {prefix} 전체 음원 끝 (초)
+                    <input
+                      type="number"
+                      min={0}
+                      step={0.001}
+                      value={
+                        question.audioRange
+                          ? question.audioRange.endMs / 1000
+                          : ""
+                      }
+                      onChange={(event) => {
+                        const endMs = Math.round(
+                          Number(event.target.value) * 1000,
+                        );
+                        update({
+                          audioRange:
+                            event.target.value === ""
+                              ? undefined
+                              : {
+                                  startMs: question.audioRange?.startMs ?? 0,
+                                  endMs,
+                                },
+                        });
+                      }}
+                    />
+                  </label>
+                </div>
+                <p className={s.muted}>
+                  문항별로 담을 때 사용할 전체 구간입니다. 아래 정답 근거 구간과
+                  별도로 지정합니다.
+                </p>
                 {question.choices.map((choice, ci) => (
                   <div key={choice.id} className={s.choiceFields}>
                     <label>

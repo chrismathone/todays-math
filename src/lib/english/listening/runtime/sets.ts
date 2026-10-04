@@ -111,10 +111,11 @@ export async function createSet(
     title: data.title,
     level: data.level ?? null,
     examId: data.examId ?? null,
+    ...(data.source ? { source: data.source } : {}),
     rights: data.rights,
     rightsReview: null,
     provenance: {
-      kind: "teacher_authored",
+      kind: data.source ? "uploaded_assessment" : "teacher_authored",
       recordedBy: account.id,
       recordedAt: now,
       basis: data.basis,
@@ -171,7 +172,7 @@ export async function updateSet(
     provenance: rightsUnchanged
       ? row.document.provenance
       : {
-          kind: "teacher_authored",
+          kind: row.document.provenance.kind,
           recordedBy: account.id,
           recordedAt: now,
           basis: data.basis,

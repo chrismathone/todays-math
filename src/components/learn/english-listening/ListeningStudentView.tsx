@@ -420,6 +420,16 @@ function StudentAttempt({
                 </span>{" "}
                 <span>{item.question.prompt}</span>
               </legend>
+              {item.question.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={item.question.image.dataUrl}
+                  width={item.question.image.width}
+                  height={item.question.image.height}
+                  alt={item.question.prompt}
+                  style={{ maxWidth: "100%", height: "auto" }}
+                />
+              )}
               <div className={styles.choices}>
                 {item.question.choices.map((choice, index) => (
                   <label className={styles.choice} key={choice.id}>
