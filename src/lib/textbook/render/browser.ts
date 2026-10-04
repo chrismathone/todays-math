@@ -100,7 +100,15 @@ export async function measureTextbookPreview(
             ? frame
             : child;
         const r = visible.getBoundingClientRect();
-        if (r.left < rect.left - 1.89 || r.right > rect.right + 1.89)
+        const bleedPx =
+          child instanceof HTMLElement &&
+          child.dataset.textbookDecorativeBleedMm === "4"
+            ? (4 * 96) / 25.4
+            : 0;
+        if (
+          r.left < rect.left - 1.89 - bleedPx ||
+          r.right > rect.right + 1.89 + bleedPx
+        )
           throw new Error(
             `수식·그림이 블록 너비를 넘습니다: ${e.dataset.measureId}`,
           );

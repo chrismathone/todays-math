@@ -188,7 +188,14 @@ async function measure(page: Page): Promise<BlockMeasurement[]> {
               ? frame
               : child;
           const r = visible.getBoundingClientRect();
-          if (r.left < rect.left - 1.89 || r.right > rect.right + 1.89)
+          const bleedPx =
+            child.dataset.textbookDecorativeBleedMm === "4"
+              ? (4 * 96) / 25.4
+              : 0;
+          if (
+            r.left < rect.left - 1.89 - bleedPx ||
+            r.right > rect.right + 1.89 + bleedPx
+          )
             throw new Error(
               `Math/figure width overflow: ${element.dataset.measureId}`,
             );
@@ -250,11 +257,15 @@ export async function validateRenderedPages(
                 ? frame
                 : child;
             const c = visible.getBoundingClientRect();
+            const bleedMm =
+              child.dataset.textbookDecorativeBleedMm === "4" ? 4 : 0;
             if (
               (c.bottom - rect.bottom) * scale > tolerance ||
               (rect.top - c.top) * scale > tolerance ||
-              (rect.left - c.left) * scale > tolerance ||
-              (c.right - rect.right) * scale > tolerance
+              (rect.left - c.left) * scale > tolerance + bleedMm ||
+              (c.right - rect.right) * scale > tolerance + bleedMm ||
+              (pageRect.left - c.left) * scale > tolerance ||
+              (c.right - pageRect.right) * scale > tolerance
             )
               throw new Error(`Content overflow: ${block.dataset.blockId}`);
           }
