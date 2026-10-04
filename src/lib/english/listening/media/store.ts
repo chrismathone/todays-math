@@ -34,6 +34,8 @@ export interface ListeningMediaRecord
   /** Private immutable external audio binding; never include in public DTOs. */
   drive?: ListeningDriveRef;
   storage?: ListeningStorageRef;
+  /** Server-selected durable private Storage chunks; never supplied by public inputs. */
+  storageChunks?: true;
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;
