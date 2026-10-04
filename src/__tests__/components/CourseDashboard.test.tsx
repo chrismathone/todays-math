@@ -19,12 +19,16 @@ import {
   getCourseDashboard,
   getCourseStudentDetail,
   saveCourseStudentPlan,
+  getExplorerTeacherSettings,
+  saveExplorerTeacherSettings,
 } from "@/components/math-srs/courseApi";
 
 vi.mock("@/components/math-srs/courseApi", () => ({
   getCourseDashboard: vi.fn(),
   getCourseStudentDetail: vi.fn(),
   saveCourseStudentPlan: vi.fn(),
+  getExplorerTeacherSettings: vi.fn(),
+  saveExplorerTeacherSettings: vi.fn(),
 }));
 vi.mock("@/components/math/ProblemContent", () => ({
   ProblemContent: ({ content }: { content: string }) => <p>{content}</p>,
@@ -36,6 +40,8 @@ vi.mock("@/components/math/MathText", () => ({
 const dashboardApi = vi.mocked(getCourseDashboard);
 const detailApi = vi.mocked(getCourseStudentDetail);
 const saveApi = vi.mocked(saveCourseStudentPlan);
+const explorerApi = vi.mocked(getExplorerTeacherSettings);
+const explorerSaveApi = vi.mocked(saveExplorerTeacherSettings);
 const first = COURSE_SECTIONS[0];
 const second = COURSE_SECTIONS[1];
 const timestamp = "2026-09-22T03:00:00.000Z";
@@ -239,6 +245,169 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("CourseDashboard", () => {
+  it("preselects the branch enrollment and saves the student's actual explorer target", async () => {
+    const user = userEvent.setup();
+    const branchId = "eb2bf8f7-24a1-44cd-9778-c1da6bd20d12";
+    window.history.replaceState(
+      null,
+      "",
+      `/admin/math-srs?branchId=${branchId}&classId=class-1&studentId=student-1`,
+    );
+    const settings = {
+      studentId: learner.id,
+      revision: 3,
+      courseGrade: 3,
+      goalUnitId: "g3-unit",
+      locked: false,
+      units: [
+        { id: "g3-unit", grade: 3, title: "세 자리 수" },
+        { id: "g7-unit", grade: 7, title: "소인수분해" },
+      ],
+    };
+    explorerApi.mockResolvedValue({ ok: true, data: settings });
+    explorerSaveApi.mockResolvedValue({
+      ok: true,
+      data: { ...settings, revision: 4, courseGrade: 7, goalUnitId: "g7-unit" },
+    });
+    render(<CourseDashboard admin initialBranchId={branchId} />);
+    expect(
+      await screen.findByRole("combobox", { name: "탐험 학년" }),
+    ).toHaveValue("3");
+    expect(dashboardApi.mock.calls.every((args) => args[0] === branchId)).toBe(
+      true,
+    );
+    expect(detailApi).toHaveBeenCalledWith(
+      learner.id,
+      learner.classId,
+      branchId,
+    );
+    expect(explorerApi).toHaveBeenCalledWith(
+      learner.id,
+      learner.classId,
+      branchId,
+    );
+    expect(screen.getByRole("combobox", { name: "반 선택" })).toHaveValue(
+      "class-1",
+    );
+    expect(
+      screen.queryByRole("button", { name: "이바다 진도 설정" }),
+    ).not.toBeInTheDocument();
+    await user.selectOptions(
+      screen.getByRole("combobox", { name: "탐험 학년" }),
+      "7",
+    );
+    await user.selectOptions(
+      screen.getByRole("combobox", { name: "목표 단원" }),
+      "g7-unit",
+    );
+    await user.click(screen.getByRole("button", { name: "학생 상세 닫기" }));
+    const confirm = await screen.findByRole("dialog");
+    await user.click(
+      within(confirm).getByRole("button", { name: "계속 편집" }),
+    );
+    expect(screen.getByRole("combobox", { name: "탐험 학년" })).toHaveValue(
+      "7",
+    );
+    await user.click(screen.getByRole("button", { name: "탐험 설정 저장" }));
+    await waitFor(() =>
+      expect(explorerSaveApi).toHaveBeenCalledWith(
+        learner.id,
+        learner.classId,
+        {
+          expectedRevision: 3,
+          courseGrade: 7,
+          goalUnitId: "g7-unit",
+        },
+        branchId,
+      ),
+    );
+    expect(
+      await screen.findByText(/탐험 학년과 목표 단원을 저장했습니다/),
+    ).toBeInTheDocument();
+    expect(new URLSearchParams(window.location.search).get("branchId")).toBe(
+      branchId,
+    );
+  });
+
+  it("keeps explorer drafts after a conflict and prevents saves while the mission is locked", async () => {
+    const user = userEvent.setup();
+    explorerApi.mockResolvedValue({
+      ok: true,
+      data: {
+        studentId: learner.id,
+        revision: 3,
+        courseGrade: 3,
+        goalUnitId: "g3-a",
+        locked: false,
+        units: [
+          { id: "g3-a", grade: 3, title: "덧셈" },
+          { id: "g3-b", grade: 3, title: "뺄셈" },
+        ],
+      },
+    });
+    explorerSaveApi.mockResolvedValue({
+      ok: false,
+      status: 409,
+      message: "학습 기록이 변경되었습니다.",
+    });
+    render(<CourseDashboard admin />);
+    const panel = await openStudent(user);
+    await user.click(panel.getByRole("button", { name: "탐험 설정" }));
+    await user.selectOptions(
+      await panel.findByRole("combobox", { name: "목표 단원" }),
+      "g3-b",
+    );
+    await user.click(panel.getByRole("button", { name: "탐험 설정 저장" }));
+    expect(await panel.findByRole("alert")).toHaveTextContent(
+      "학습 기록이 변경되었습니다.",
+    );
+    expect(panel.getByRole("combobox", { name: "목표 단원" })).toHaveValue(
+      "g3-b",
+    );
+    explorerApi.mockResolvedValue({
+      ok: true,
+      data: {
+        studentId: learner.id,
+        revision: 4,
+        courseGrade: 3,
+        goalUnitId: "g3-a",
+        locked: true,
+        units: [{ id: "g3-a", grade: 3, title: "덧셈" }],
+      },
+    });
+    await user.click(
+      panel.getByRole("button", { name: "탐험 설정 변경 취소" }),
+    );
+    await user.click(panel.getByRole("button", { name: "탐험 설정 새로고침" }));
+    await waitFor(() =>
+      expect(panel.getByRole("combobox", { name: "탐험 학년" })).toBeDisabled(),
+    );
+    expect(
+      panel.getByRole("button", { name: "탐험 설정 저장" }),
+    ).toBeDisabled();
+    expect(saveApi).not.toHaveBeenCalled();
+  });
+
+  it("honors class-only preselection and never opens an out-of-roster student", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/admin/math-srs?classId=class-2&studentId=unknown",
+    );
+    render(<CourseDashboard admin />);
+    expect(
+      await screen.findByRole("button", { name: "이바다 진도 설정" }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "반 선택" })).toHaveValue(
+      "class-2",
+    );
+    expect(
+      screen.queryByRole("region", { name: /학습 상세/ }),
+    ).not.toBeInTheDocument();
+    expect(detailApi).not.toHaveBeenCalled();
+    expect(explorerApi).not.toHaveBeenCalled();
+  });
+
   it("selects enrollments independently and updates shared plans without changing class metadata", async () => {
     const user = userEvent.setup();
     const secondEnrollment = student({

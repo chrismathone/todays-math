@@ -115,15 +115,67 @@ describe("account approval and menu route policy", () => {
         "/api/library/documents",
         "/api/tests",
         "/classes",
-        "/api/math-srs/course",
         "/api/english/exams",
         "/english/sets/set/print",
         "/concept-blank/print",
         "/api/new-feature",
       ])
         expect(accountRouteAllowed(manager, "GET", path), path).toBe(false);
+      expect(accountRouteAllowed(manager, "GET", "/api/math-srs/course")).toBe(
+        isSuperAdmin,
+      );
     },
   );
+  it("limits menu-disabled superadmin SRS access to the established management methods", () => {
+    const paths = [
+      ["GET", "/api/math-srs/course"],
+      ["GET", "/api/students/student/math-srs/course"],
+      ["POST", "/api/students/student/math-srs/course"],
+      ["GET", "/api/students/student/math-srs/explorers"],
+    ];
+    for (const [method, path] of paths) {
+      expect(
+        accountRouteAllowed(
+          { ...account, isAdmin: true, isSuperAdmin: true, menus: [] },
+          method,
+          path,
+        ),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, isAdmin: true, isSuperAdmin: false, menus: [] },
+          method,
+          path,
+        ),
+      ).toBe(false);
+      expect(
+        accountRouteAllowed(
+          {
+            ...account,
+            isSuperAdmin: true,
+            menus: [],
+            approvalStatus: "pending",
+          },
+          method,
+          path,
+        ),
+      ).toBe(false);
+    }
+    for (const [method, path] of [
+      ["POST", "/api/math-srs/course"],
+      ["POST", "/api/students/student/math-srs/explorers"],
+      ["DELETE", "/api/students/student/math-srs/course"],
+      ["GET", "/api/math-srs/unrelated"],
+    ]) {
+      expect(
+        accountRouteAllowed(
+          { ...account, isSuperAdmin: true, menus: [] },
+          method,
+          path,
+        ),
+      ).toBe(false);
+    }
+  });
   /**
    * dev 빌드의 작업실 AI 는 구독 CLI 다리 `/api/dev/unified/ai` 로 간다(`studio-ai/endpoints.ts`).
    * 관리자만 열어 두면 관리자 아닌 계정의 상태판이 «연결 확인 중»에서 403 으로 멈춘다(2026-09-18 test_t 계정).

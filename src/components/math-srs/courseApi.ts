@@ -71,15 +71,25 @@ export const answerCourse = (input: CourseAttemptInput) =>
   request(`${base}/attempts`, state, input);
 export const hintCourse = (input: CourseHintInput) =>
   request(`${base}/hint`, state, input);
-export const getCourseDashboard = () =>
+export const getCourseDashboard = (branchId?: string) =>
   request(
-    "/api/math-srs/course",
+    `/api/math-srs/course${branchId ? `?branchId=${encodeURIComponent(branchId)}` : ""}`,
     async (value) =>
       (await contract()).courseDashboardResponseSchema.parse(value).data,
   );
-export const getCourseStudentDetail = (studentId: string, classId?: string) =>
+const teacherQuery = (classId?: string, branchId?: string) => {
+  const params = new URLSearchParams();
+  if (classId) params.set("classId", classId);
+  if (branchId) params.set("branchId", branchId);
+  return params.size ? `?${params}` : "";
+};
+export const getCourseStudentDetail = (
+  studentId: string,
+  classId?: string,
+  branchId?: string,
+) =>
   request(
-    `/api/students/${encodeURIComponent(studentId)}/math-srs/course${classId ? `?classId=${encodeURIComponent(classId)}` : ""}`,
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/course${teacherQuery(classId, branchId)}`,
     async (value) =>
       (await contract()).courseStudentDetailResponseSchema.parse(value).data,
   );
@@ -87,10 +97,38 @@ export const saveCourseStudentPlan = (
   studentId: string,
   input: CoursePlanInput,
   classId?: string,
+  branchId?: string,
 ) =>
   request(
-    `/api/students/${encodeURIComponent(studentId)}/math-srs/course${classId ? `?classId=${encodeURIComponent(classId)}` : ""}`,
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/course${teacherQuery(classId, branchId)}`,
     async (value) =>
       (await contract()).courseRosterStudentResponseSchema.parse(value).data,
+    input,
+  );
+
+export const getExplorerTeacherSettings = (
+  studentId: string,
+  classId: string,
+  branchId?: string,
+) =>
+  request(
+    `/api/admin/students/${encodeURIComponent(studentId)}/explorer-settings${teacherQuery(classId, branchId)}`,
+    async (value) =>
+      (
+        await import("@/contracts/mathExplorerSettings.contract")
+      ).explorerSettingsResponseSchema.parse(value).data,
+  );
+export const saveExplorerTeacherSettings = (
+  studentId: string,
+  classId: string,
+  input: import("@/contracts/mathExplorerSettings.contract").ExplorerSettingsInput,
+  branchId?: string,
+) =>
+  request(
+    `/api/admin/students/${encodeURIComponent(studentId)}/explorer-settings${teacherQuery(classId, branchId)}`,
+    async (value) =>
+      (
+        await import("@/contracts/mathExplorerSettings.contract")
+      ).explorerSettingsResponseSchema.parse(value).data,
     input,
   );
