@@ -1,4 +1,5 @@
 import type { EnglishListeningPublication } from "@/contracts/englishListening.contract";
+import type { ListeningQuestionImage } from "@/contracts/englishListeningSource.contract";
 
 export type ListeningPrintView = "student" | "teacher";
 export interface ListeningPrintDocument {
@@ -13,7 +14,7 @@ export interface ListeningPrintDocument {
       prompt: string;
       instruction?: string;
       choices: string[];
-      image?: { dataUrl: string; width: number; height: number };
+      image?: ListeningQuestionImage;
       sourceNumber?: number;
       reconstructionLabel?: string;
       answer?: number;

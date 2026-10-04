@@ -23,6 +23,8 @@ export type ListeningAssessmentSource = z.infer<
 
 /** Browser-rendered question-sheet crops contain no transcript or answer-sheet data. */
 export const listeningQuestionImageSchema = z.strictObject({
+  /** Missing on legacy crops: the image contains the complete question. */
+  role: z.enum(["question", "visual"]).optional(),
   dataUrl: z
     .string()
     .max(300_000)
@@ -30,3 +32,4 @@ export const listeningQuestionImageSchema = z.strictObject({
   width: z.number().int().min(1).max(2400),
   height: z.number().int().min(1).max(2400),
 });
+export type ListeningQuestionImage = z.infer<typeof listeningQuestionImageSchema>;
