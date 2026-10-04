@@ -16,7 +16,9 @@ import type {
 import {
   compareRosterNames,
   selectAdminStudents,
+  studentAccountLoginState,
 } from "@/lib/adminStudentRoster";
+import { readAdminClassIssuanceSummaries } from "@/lib/adminLearningRoster";
 
 const bindingSelect = {
   id: true,
@@ -208,6 +210,12 @@ export async function readAdminAccountRelations(
             eywaClassId: true,
           },
         });
+        const summaries = await readAdminClassIssuanceSummaries(
+          tx,
+          branchId,
+          rows.map((c) => c.id),
+          now,
+        );
         return {
           kind: "classes",
           meta,
@@ -219,6 +227,7 @@ export async function readAdminAccountRelations(
             owner: c.userId === target.id,
             memberships: roles.get(c.id) ?? [],
             sync: syncState(c.eywaBindingId, c.eywaClassId, bindings, now),
+            issuanceSummary: summaries.get(c.id),
           })),
         };
       }
@@ -246,13 +255,7 @@ export async function readAdminAccountRelations(
         },
       });
       const roster: ConnectedStudent[] = rows.map((s) => {
-        const login = !s.studentAccount
-          ? "unissued"
-          : s.studentAccount.disabledAt
-            ? "disabled"
-            : s.studentAccount.lockedUntil && s.studentAccount.lockedUntil > now
-              ? "locked"
-              : "enabled";
+        const login = studentAccountLoginState(s.studentAccount, now);
         const classes = new Map<
           string,
           { id: string; name: string; membership: "enrolled" | "on-hold" }

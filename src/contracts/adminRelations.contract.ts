@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { classIssuanceSummarySchema } from "./adminBranchLearning.contract";
 
 const positiveQuery = (maximum: number, fallback: string) =>
   z
@@ -45,6 +46,7 @@ export const connectedClassSchema = z.strictObject({
   owner: z.boolean(),
   memberships: z.array(membershipRoleSchema),
   sync: relationSyncSchema,
+  issuanceSummary: classIssuanceSummarySchema.optional(),
 });
 export type ConnectedClass = z.infer<typeof connectedClassSchema>;
 export const connectedStudentSchema = z.strictObject({
