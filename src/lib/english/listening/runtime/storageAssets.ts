@@ -10,6 +10,10 @@ import type {
 import type { ListeningMediaRecord } from "../media/store";
 import { validateListeningDriveMp3 } from "./driveAssets";
 import { assertListeningStorageQuota } from "../media/storageQuota";
+import {
+  storageChunkReferences,
+  writeStorageChunkAsset,
+} from "./storageChunkAssets";
 export {
   LISTENING_STORAGE_OWNER_BYTES,
   LISTENING_STORAGE_OWNER_ASSETS,
@@ -147,13 +151,61 @@ export async function registerStorageListeningAsset(
       r.ownerId !== source.owner_id ||
       r.branchId !== source.branch_id ||
       r.state !== "ready" ||
-      !r.storage ||
+      (!r.storage && !r.storageChunks) ||
       r.expectedSha256 !== validated.originalSha256 ||
       r.playback?.sha256 !== validated.sha256
     )
       throw denied();
-    await storage.check(r.storage);
+    if (r.storage) await storage.check(r.storage);
+    else
+      await database.$transaction((tx) =>
+        storageChunkReferences(tx, r, storage),
+      );
     return r.completion!;
+  }
+  if (input.bytes.length > 32 * 1024 * 1024) {
+    const created: ListeningStorageRef[] = [];
+    try {
+      return await database.$transaction(
+        async (tx) => {
+          const set = await authorized(tx);
+          await tx.$executeRaw(
+            Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${set.owner_id}`},0))`,
+          );
+          const record = await writeStorageChunkAsset(
+            tx,
+            storage,
+            {
+              assetId,
+              setId,
+              ownerId: set.owner_id,
+              branchId: set.branch_id,
+              mimeType: "audio/mpeg",
+              totalBytes: input.bytes.length,
+              durationMs: validated.durationMs,
+              now: clock().getTime(),
+              playbackSpan: {
+                start: validated.start,
+                endExclusive: validated.endExclusive,
+              },
+              expectedSha256: validated.originalSha256,
+              read: async function* () {
+                for (let i = 0; i < input.bytes.length; i += 1024 * 1024)
+                  yield input.bytes.subarray(i, i + 1024 * 1024);
+              },
+            },
+            created,
+          );
+          if (record.playback!.sha256 !== validated.sha256)
+            throw invalid("음원 재생 해시가 일치하지 않습니다.");
+          return record.completion!;
+        },
+        { maxWait: 10000, timeout: 600000 },
+      );
+    } catch (error) {
+      await Promise.allSettled(created.map((ref) => storage.remove(ref)));
+      throw error;
+    }
   }
   const ref = await storage.upload({
     ownerId: source.owner_id,
