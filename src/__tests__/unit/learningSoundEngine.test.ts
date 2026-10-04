@@ -119,6 +119,15 @@ describe("켜기 — 준비만 하고 소리는 내지 않는다", () => {
     expect(world.contexts).toHaveLength(1);
   });
 
+  it("이미 준비된 뒤 켜기를 다시 불러도 소리는 없다", async () => {
+    const { world, engine, ready } = setup();
+    await ready();
+    engine.setEnabled(true);
+    engine.gesture();
+    expect(world.played).toEqual([]);
+    expect(world.contexts).toHaveLength(1);
+  });
+
   it("조작을 여러 번 해도 context 는 하나, 파일은 셋뿐이다", async () => {
     const { world, engine, serve } = setup();
     engine.setEnabled(true);

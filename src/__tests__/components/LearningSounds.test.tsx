@@ -197,6 +197,26 @@ describe("공급자", () => {
     expect(world.contexts).toHaveLength(1);
   });
 
+  it("가려진 화면에서는 조작이 와도 만들지 않고, 준비돼 있어도 울리지 않는다", async () => {
+    localStorage.setItem(LEARNING_SOUND_KEY, "on");
+    mount();
+    // 사건 없이 가려진 상태만 — 엔진이 그때의 화면을 직접 본다
+    world.hidden = true;
+    press("첫 조작");
+    press("첫 미리 듣기");
+    expect(world.contexts).toHaveLength(0);
+    expect(fetchMock()).not.toHaveBeenCalled();
+
+    world.hidden = false;
+    press("첫 조작");
+    await serve();
+    expect(state()).toHaveTextContent("안:켬:ready");
+    world.hidden = true;
+    act(() => latest().play("correct", "k1"));
+    press("첫 미리 듣기");
+    expect(world.played).toEqual([]);
+  });
+
   it("함수는 상태가 바뀌어도 같은 것이다", async () => {
     mount();
     const first = latest();
