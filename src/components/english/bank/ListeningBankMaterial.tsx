@@ -61,8 +61,11 @@ function MaterialGroup({
 }) {
   const player = useRef<HTMLAudioElement>(null);
   const stopAt = useRef<number | null>(null);
+  const pendingStart = useRef<number | null>(null);
   useEffect(() => {
     const audio = player.current;
+    stopAt.current = null;
+    pendingStart.current = null;
     return () => audio?.pause();
   }, [mediaUrl]);
   return (
@@ -75,9 +78,15 @@ function MaterialGroup({
           ref={player}
           className={c.player}
           controls
-          preload="metadata"
+          preload="none"
           src={mediaUrl}
           aria-label={`음원 ${index + 1}`}
+          onLoadedMetadata={() => {
+            if (player.current && pendingStart.current !== null) {
+              player.current.currentTime = pendingStart.current;
+              pendingStart.current = null;
+            }
+          }}
           onTimeUpdate={() => {
             if (
               player.current &&
@@ -100,6 +109,11 @@ function MaterialGroup({
       ) : (
         <p className={b.note}>올린 음원이 없습니다.</p>
       )}
+      {mediaUrl && group.audio ? (
+        <p className={b.meta}>
+          음원 길이 {timeLabel(group.audio.durationMs)} · 재생할 때 불러옵니다.
+        </p>
+      ) : null}
       <ol className={c.questions}>
         {group.questions.map((raw, questionIndex) => {
           const question = raw as Question;
@@ -175,10 +189,14 @@ function MaterialGroup({
                   onClick={() => {
                     if (player.current) {
                       stopAt.current = question.audioRange!.endMs / 1000;
-                      player.current.currentTime =
-                        question.audioRange!.startMs / 1000;
+                      const start = question.audioRange!.startMs / 1000;
+                      if (player.current.readyState >= 1) {
+                        pendingStart.current = null;
+                        player.current.currentTime = start;
+                      } else pendingStart.current = start;
                       void player.current.play().catch(() => {
                         stopAt.current = null;
+                        pendingStart.current = null;
                       });
                     }
                   }}
