@@ -230,6 +230,22 @@ def extract_question(
     stem_text = " ".join(line["text"] for line in stem_lines)
     stem_text = re.sub(r"^\d{1,2}\.\s*", "", stem_text).strip()
     graph = [box for box in graphics(page, rect) if not text_underline(box, selected)]
+    # Some originals draw the response blank as a vector rule after "Man:".
+    # Preserve its meaning in the editable prompt; it is not a picture choice.
+    response_blank = bool(
+        re.fullmatch(r"(?:Man|Woman):\s*", stem_text)
+        and graph
+        and all(
+            box.height <= 0.5
+            and box.width >= 80
+            and box.x0 >= stem_lines[-1]["bbox"][2] - 1
+            and abs(box.y0 - stem_lines[-1]["bbox"][3]) <= 2
+            for box in graph
+        )
+    )
+    if response_blank:
+        stem_text += " " + "_" * 48
+        graph = []
     prompt_end = re.search(r"(?:고르시오|답하시오|표시하시오)[.!?。]", stem_text)
     actual_stem = []
     total = ""
@@ -275,7 +291,12 @@ def extract_question(
     else:
         texts, choice_y = choice_texts(own[first_choice:])
     meaningful = all(texts) and not graphic_choices
-    if not graph and not meaningful:
+    numeric_dialogues = bool(
+        not graph
+        and not any(texts)
+        and re.search(r"두\s*사람의\s*대화가\s*어색한", stem_text)
+    )
+    if not graph and not meaningful and not numeric_dialogues:
         raise ValueError("Empty text choices have no source graphic")
     choices = [
         {"id": choice["id"], "text": texts[i] if meaningful else CIRCLED[i]}
@@ -440,6 +461,27 @@ def prepare(source_path: Path) -> dict | None:
                     if next_anchors
                     else None
                 )
+                if following is None and asset["kind"] == "paper":
+                    closing = next(
+                        (
+                            line
+                            for line in ordered(lines)
+                            if line["bbox"][1] > anchor["bbox"][1]
+                            and "이제듣기문제가끝났습니다"
+                            in re.sub(r"\s+", "", line["text"])
+                        ),
+                        None,
+                    )
+                    if closing:
+                        # The framed end-of-listening notice is outside Q17.
+                        following = {
+                            **closing,
+                            "bbox": [
+                                closing["bbox"][0],
+                                closing["bbox"][1] - 10,
+                                *closing["bbox"][2:],
+                            ],
+                        }
                 instruction = question.get("instruction")
                 shared_top = None
                 for line in shared:
@@ -451,7 +493,7 @@ def prepare(source_path: Path) -> dict | None:
                         instruction = match[3].strip() or instruction
                         if number == int(match[1]):
                             shared_top = line["bbox"][1] - 3
-                if following:
+                if following and HEADING.match(following["text"]):
                     next_number = int(HEADING.match(following["text"])[1])
                     next_shared = next(
                         (
