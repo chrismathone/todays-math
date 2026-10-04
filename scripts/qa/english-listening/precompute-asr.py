@@ -41,37 +41,52 @@ for payload in records[: args.limit]:
     source_audio = next(
         file for file in payload["sourceFiles"] if file["kind"] == "audio"
     )
-    completed = subprocess.run(
-        [
-            sys.executable,
-            "-X",
-            "faulthandler",
-            "-u",
-            "scripts/qa/english-listening/transcribe-local.py",
-            "--audio",
-            payload["audioFilePath"],
-            "--expected-sha256",
-            source_audio["sha256"],
-            "--output",
-            str(destination),
-            "--model-cache",
-            args.model_cache,
-            "--model",
-            "medium",
-            "--device",
-            "cuda",
-            "--compute-type",
-            "int8",
-            "--language",
-            "auto",
-            "--multilingual",
-        ],
-        check=False,
-    )
+    command = [
+        sys.executable,
+        "-X",
+        "faulthandler",
+        "-u",
+        "scripts/qa/english-listening/transcribe-local.py",
+        "--audio",
+        payload["audioFilePath"],
+        "--expected-sha256",
+        source_audio["sha256"],
+        "--output",
+        str(destination),
+        "--model-cache",
+        args.model_cache,
+        "--model",
+        "medium",
+        "--device",
+        "cuda",
+        "--compute-type",
+        "int8",
+        "--language",
+        "auto",
+        "--multilingual",
+    ]
+    attempts = 0
+    for attempt in range(2):
+        completed = subprocess.run(command, check=False)
+        attempts += 1
+        if completed.returncode & 0xFFFFFFFF != 0xC000070A or destination.exists():
+            break
+        if attempt == 0:
+            print(
+                json.dumps(
+                    {
+                        "stage": "native-asr-retry",
+                        "sourceRecordId": payload["sourceRecordId"],
+                        "attempt": 2,
+                    }
+                ),
+                flush=True,
+            )
     results.append(
         {
             "sourceRecordId": payload["sourceRecordId"],
             "exitCode": completed.returncode,
+            "attempts": attempts,
             "status": "prepared" if completed.returncode == 0 else "failed",
         }
     )
