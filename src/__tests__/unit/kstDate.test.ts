@@ -10,7 +10,7 @@ import path from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { KST_OFFSET_MS, kstDateOf } from "@/lib/kstDate";
+import { KST_OFFSET_MS, kstDateOf, kstDateTimeLabel } from "@/lib/kstDate";
 
 describe("🔴 학원 날짜(KST) — 서버 시계의 UTC 자정이 아니다", () => {
   it("UTC 15:00 = KST 다음날 0시", () => {
@@ -23,6 +23,12 @@ describe("🔴 학원 날짜(KST) — 서버 시계의 UTC 자정이 아니다",
     expect(kstDateOf(new Date("2026-01-15T15:00:00.000Z"))).toBe("2026-01-16");
     expect(kstDateOf(new Date("2026-07-15T14:59:59.999Z"))).toBe("2026-07-15");
     expect(kstDateOf(new Date("2026-12-31T15:00:00.000Z"))).toBe("2027-01-01");
+  });
+
+  it("시각 글의 날짜는 kstDateOf 와 같다", () => {
+    const at = new Date("2026-09-15T15:30:00.000Z");
+    expect(kstDateTimeLabel(at)).toBe(`${kstDateOf(at)} 00:30 KST`);
+    expect(kstDateTimeLabel("not-a-date")).toBe("시각 확인 필요");
   });
 });
 

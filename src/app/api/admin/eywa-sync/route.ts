@@ -4,21 +4,37 @@ import { approveManagedCandidate } from "@/lib/eywa/managedAccounts";
 import {
   configureManagedBinding,
   managedStatus,
+  previewBindingStop,
   previewManagedBinding,
 } from "@/lib/eywa/managedAdministration";
+import { readStatusPages } from "@/lib/admin/accountUsability";
 import { receiverFailure } from "@/lib/eywa/managedTransport";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 async function get(request: Request) {
   const access = await authorizeAccount(request, true);
   if (access.response) return access.response;
   try {
-    const preview = new URL(request.url).searchParams.get("preview");
-    if (preview && !access.account.isSuperAdmin)
+    const url = new URL(request.url);
+    const preview = url.searchParams.get("preview");
+    const impact = url.searchParams.get("impact");
+    if ((preview || impact) && !access.account.isSuperAdmin)
       return new Response(null, { status: 403 });
+    if (preview)
+      return Response.json(await previewManagedBinding(preview), {
+        headers: { "Cache-Control": "no-store" },
+      });
+    if (impact) {
+      if (!z.uuid().safeParse(impact).success)
+        return Response.json(
+          { error: { code: "invalid_or_conflicting_request" } },
+          { status: 409, headers: { "Cache-Control": "no-store" } },
+        );
+      return Response.json(await previewBindingStop(access.account, impact), {
+        headers: { "Cache-Control": "no-store" },
+      });
+    }
     return Response.json(
-      preview
-        ? await previewManagedBinding(preview)
-        : await managedStatus(access.account),
+      await managedStatus(access.account, false, readStatusPages(url)),
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {
@@ -49,6 +65,12 @@ async function post(request: Request) {
           bindingId: z.uuid(),
           archiveOwnerUserId: z.uuid().optional(),
           evidence: z.string().max(1000).optional(),
+        }),
+        z.object({
+          action: z.literal("assign-archive-owner"),
+          bindingId: z.uuid(),
+          archiveOwnerUserId: z.uuid(),
+          expectedArchiveOwnerUserId: z.uuid().nullable(),
         }),
       ])
       .parse(await request.json());

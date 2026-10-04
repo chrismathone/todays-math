@@ -14,6 +14,7 @@ import {
 } from "./syncPlan";
 import { deriveClassProgress } from "./deriveClassProgress";
 import { enrollmentActive, kstRelationshipDay } from "./relationPolicy";
+import { classOwnerForArchive } from "@/lib/admin/accountUsability";
 
 const date = (value: string | null) => (value ? new Date(value) : null);
 const day = (value: string) => new Date(`${value}T00:00:00Z`);
@@ -245,10 +246,11 @@ export async function applyEywaRelations(
       }
       continue;
     }
-    const owner =
-      existing?.userId ??
-      (row.teacherId ? users.get(row.teacherId) : null) ??
-      binding.archiveOwnerUserId;
+    const owner = classOwnerForArchive(
+      existing?.userId,
+      row.teacherId ? (users.get(row.teacherId) ?? null) : null,
+      binding.archiveOwnerUserId,
+    );
     if (!owner) {
       conflicts.push({
         entity: "class",

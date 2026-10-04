@@ -15,6 +15,7 @@ import type {
   BranchListResponse,
   BranchSummary,
 } from "@/contracts/branchAdmin.contract";
+import { passwordReissueDecision } from "@/lib/admin/accountUsability";
 import {
   AccountRequestError,
   accountRequest,
@@ -90,6 +91,11 @@ export default function AccountReview({
   const [branchesError, setBranchesError] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [issuedPassword, setIssuedPassword] = useState<string | null>(null);
+  const [passwordState, setPasswordState] = useState<
+    "idle" | "issued" | "unknown"
+  >("idle");
+  const [refreshRequired, setRefreshRequired] = useState(false);
+  const [recoveryEvidence, setRecoveryEvidence] = useState("");
   const [busy, setBusy] = useState(false);
   const busyRef = useRef(false);
   const [error, setError] = useState<string | null>(null);
@@ -149,10 +155,12 @@ export default function AccountReview({
     nextBranchId = branchId,
     nextRole = branchRole,
     nextManager = branchManager,
+    nextName = name,
+    nextEmail = email,
   ) {
     return (
-      name !== account.name ||
-      email !== account.email ||
+      nextName !== account.name ||
+      nextEmail !== account.email ||
       nextManager !== account.isAdmin ||
       nextBranchId !== (account.branchId ?? "") ||
       (Boolean(nextBranchId) && nextRole !== originalBranchRole) ||
@@ -160,6 +168,17 @@ export default function AccountReview({
       nextMenus.some((menu) => !originalMenus.includes(menu))
     );
   }
+  const passwordDecision = passwordReissueDecision(
+    {
+      deletedAt: account.deletedAt,
+      isSuperAdmin: account.isSuperAdmin,
+      authSource: account.authSource,
+      mapped: branchAssignmentLocked,
+    },
+    recoveryEvidence,
+  );
+  const passwordCode = passwordDecision.allowed ? null : passwordDecision.code;
+  const issuedReadPending = refreshRequired && passwordState === "issued";
   const dirty = isDraftDirty();
 
   useEffect(() => {
@@ -199,6 +218,7 @@ export default function AccountReview({
     if (
       busyRef.current ||
       conflict ||
+      refreshRequired ||
       account.isSuperAdmin ||
       account.deletedAt ||
       (approvalStatus !== "rejected" && personalMenuError) ||
@@ -288,6 +308,7 @@ export default function AccountReview({
       setBranchRole(latest.branchRole ?? "teacher");
       onUpdate(latest);
       setConflict(false);
+      setRefreshRequired(false);
       setError(null);
       setAuthError(false);
       setNotice(
@@ -296,7 +317,7 @@ export default function AccountReview({
       onLockChange(false);
     } catch (cause) {
       setError(requestMessage(cause));
-      onLockChange(dirty);
+      onLockChange(refreshRequired || dirty);
     } finally {
       setBusy(false);
       busyRef.current = false;
@@ -307,7 +328,8 @@ export default function AccountReview({
     field: "suspended" | "deleted",
     value: boolean,
   ) {
-    if (busyRef.current || dirty || account.isSuperAdmin) return;
+    if (busyRef.current || dirty || refreshRequired || account.isSuperAdmin)
+      return;
     busyRef.current = true;
     setBusy(true);
     setError(null);
@@ -346,12 +368,19 @@ export default function AccountReview({
   }
 
   async function reissuePassword() {
-    if (busyRef.current || dirty || account.deletedAt || account.isSuperAdmin)
+    if (
+      busyRef.current ||
+      dirty ||
+      issuedReadPending ||
+      account.deletedAt ||
+      account.isSuperAdmin ||
+      !passwordDecision.allowed
+    )
       return;
     busyRef.current = true;
     setBusy(true);
     setError(null);
-    setIssuedPassword(null);
+    const previousPassword = passwordState === "issued" ? issuedPassword : null;
     try {
       const result = await accountRequest<{
         data: { initialPassword: string };
@@ -361,15 +390,53 @@ export default function AccountReview({
         body: JSON.stringify({
           expectedUpdatedAt: account.updatedAt,
           expectedBranchId: account.branchId ?? null,
+          ...(passwordDecision.evidence
+            ? { recoveryEvidence: passwordDecision.evidence }
+            : {}),
         }),
       });
-      const latest = await reloadManagedAccount(account);
-      onUpdate(latest);
       setIssuedPassword(result.data.initialPassword);
-      setNotice("임시 비밀번호를 발급했습니다. 현재 로그인은 모두 종료됩니다.");
+      setPasswordState("issued");
+      setRefreshRequired(true);
+      setRecoveryEvidence("");
+      onLockChange(true);
+      try {
+        const latest = await reloadManagedAccount(account);
+        setMenus(
+          normalizeWorkspaceMenus(latest.configuredMenus ?? latest.menus),
+        );
+        setName(latest.name);
+        setEmail(latest.email);
+        setBranchManager(latest.isAdmin);
+        setBranchId(latest.branchId ?? "");
+        setBranchRole(latest.branchRole ?? "teacher");
+        onUpdate(latest);
+        setRefreshRequired(false);
+        onLockChange(false);
+        setNotice(
+          "임시 비밀번호를 발급했습니다. 현재 로그인은 모두 종료됩니다.",
+        );
+      } catch {
+        setNotice(null);
+        setError(
+          "비밀번호는 발급되었습니다. 계정 정보를 다시 읽지 못했습니다. 다른 변경은 최신 정보를 불러온 뒤에만 저장합니다.",
+        );
+      }
     } catch (cause) {
-      setError(requestMessage(cause));
-      setConflict(cause instanceof AccountRequestError && cause.status === 409);
+      const unknown = !(cause instanceof AccountRequestError);
+      if (unknown) {
+        setPasswordState("unknown");
+        setIssuedPassword(null);
+        setRefreshRequired(true);
+        onLockChange(true);
+        setError(
+          "발급 응답을 받지 못했습니다. 비밀번호가 바뀌었는지는 알 수 없습니다. 자동으로 다시 발급하지 않습니다. 최신 정보를 확인한 뒤 필요하면 다시 발급하세요.",
+        );
+      } else {
+        setIssuedPassword(previousPassword);
+        setError(requestMessage(cause));
+        setConflict(cause.status === 409);
+      }
     } finally {
       busyRef.current = false;
       setBusy(false);
@@ -435,8 +502,18 @@ export default function AccountReview({
               value={name}
               maxLength={50}
               onChange={(event) => {
-                setName(event.target.value);
-                onLockChange(true);
+                const nextName = event.target.value;
+                setName(nextName);
+                onLockChange(
+                  isDraftDirty(
+                    menus,
+                    branchId,
+                    branchRole,
+                    branchManager,
+                    nextName,
+                    email,
+                  ),
+                );
               }}
               disabled={busy || conflict}
             />
@@ -449,8 +526,18 @@ export default function AccountReview({
               value={email}
               maxLength={255}
               onChange={(event) => {
-                setEmail(event.target.value);
-                onLockChange(true);
+                const nextEmail = event.target.value;
+                setEmail(nextEmail);
+                onLockChange(
+                  isDraftDirty(
+                    menus,
+                    branchId,
+                    branchRole,
+                    branchManager,
+                    name,
+                    nextEmail,
+                  ),
+                );
               }}
               disabled={busy || conflict}
             />
@@ -701,6 +788,16 @@ export default function AccountReview({
               </button>
             </>
           ) : null}
+          {refreshRequired && !conflict ? (
+            <button
+              type="button"
+              className={s.secondary}
+              onClick={reload}
+              disabled={busy}
+            >
+              {busy ? "불러오는 중…" : "계정 정보 다시 읽기"}
+            </button>
+          ) : null}
           {authError ? (
             <a className={s.textLink} href="/admin">
               로그인 상태 다시 확인
@@ -734,6 +831,7 @@ export default function AccountReview({
                 !dirty ||
                 busy ||
                 conflict ||
+                refreshRequired ||
                 authError ||
                 Boolean(personalMenuError) ||
                 (branchChanged && branchPolicyUnknown)
@@ -776,6 +874,7 @@ export default function AccountReview({
                 disabled={
                   busy ||
                   conflict ||
+                  refreshRequired ||
                   authError ||
                   Boolean(personalMenuError) ||
                   (branchChanged && branchPolicyUnknown)
@@ -788,7 +887,7 @@ export default function AccountReview({
                 <button
                   className={s.reject}
                   type="button"
-                  disabled={busy || conflict || authError || dirty}
+                  disabled={busy || conflict || refreshRequired || authError || dirty}
                   onClick={() => setConfirmReject(true)}
                 >
                   승인 거절
@@ -831,44 +930,83 @@ export default function AccountReview({
         <div className="mt-5 border-t border-slate-200 pt-4">
           <h3 className="mb-2 font-semibold">계정 상태와 비밀번호</h3>
           {account.deletedAt ? (
-            <button
-              type="button"
-              className={s.secondary}
-              disabled={busy || conflict}
-              onClick={() => void changeLifecycle("deleted", false)}
-            >
-              계정 복원
-            </button>
+            <>
+              <p>삭제된 계정의 비밀번호는 재발급하지 않습니다.</p>
+              <button
+                type="button"
+                className={s.secondary}
+                disabled={busy || conflict || refreshRequired}
+                onClick={() => void changeLifecycle("deleted", false)}
+              >
+                계정 복원
+              </button>
+            </>
           ) : (
-            <div className={s.buttonRow}>
-              <button
-                type="button"
-                className={s.secondary}
-                disabled={busy || conflict || dirty}
-                onClick={() =>
-                  void changeLifecycle("suspended", !account.suspendedAt)
-                }
-              >
-                {account.suspendedAt ? "정지 해제" : "계정 정지"}
-              </button>
-              <button
-                type="button"
-                className={s.secondary}
-                disabled={busy || conflict || dirty}
-                onClick={() => void reissuePassword()}
-              >
-                비밀번호 재발급
-              </button>
-              <button
-                type="button"
-                className={s.reject}
-                disabled={busy || conflict || dirty}
-                onClick={() => setConfirmDelete(true)}
-              >
-                계정 삭제
-              </button>
-            </div>
+            <>
+              {passwordCode === "source_auth" ? (
+                <p>에이와 인증 계정은 원본 시스템에서만 비밀번호를 복구합니다.</p>
+              ) : null}
+              <div className={s.buttonRow}>
+                <button
+                  type="button"
+                  className={s.secondary}
+                  disabled={busy || conflict || refreshRequired || dirty}
+                  onClick={() =>
+                    void changeLifecycle("suspended", !account.suspendedAt)
+                  }
+                >
+                  {account.suspendedAt ? "정지 해제" : "계정 정지"}
+                </button>
+                {passwordCode === "source_auth" ? null : (
+                  <button
+                    type="button"
+                    className={s.secondary}
+                    disabled={
+                      busy ||
+                      conflict ||
+                      dirty ||
+                      issuedReadPending ||
+                      !passwordDecision.allowed
+                    }
+                    onClick={() => void reissuePassword()}
+                  >
+                    비밀번호 재발급
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className={s.reject}
+                  disabled={busy || conflict || refreshRequired || dirty}
+                  onClick={() => setConfirmDelete(true)}
+                >
+                  계정 삭제
+                </button>
+              </div>
+            </>
           )}
+          {branchAssignmentLocked && passwordCode !== "source_auth" &&
+          !account.deletedAt ? (
+            <label className="mt-3 grid gap-1 text-sm">
+              복구 근거 (30자 이상)
+              <textarea
+                className="min-h-20 rounded-lg border border-slate-300 px-3 py-2"
+                value={recoveryEvidence}
+                maxLength={1000}
+                onChange={(event) => setRecoveryEvidence(event.target.value)}
+              />
+            </label>
+          ) : null}
+          {passwordCode === "evidence_required" ? (
+            <p className={s.note}>
+              연동된 로컬 계정은 30자 이상의 복구 근거가 필요합니다.
+            </p>
+          ) : null}
+          {refreshRequired ? (
+            <p className={s.note}>
+              최신 조회가 필요합니다. 다른 계정 변경은 다시 읽은 뒤에만
+              저장합니다.
+            </p>
+          ) : null}
           {confirmDelete && (
             <div className={s.confirm} role="group" aria-label="계정 삭제 확인">
               <p>

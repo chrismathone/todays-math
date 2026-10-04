@@ -6,16 +6,33 @@ import {
   bindingConfig,
   bindingConfigs,
   fetchControl,
+  fetchSnapshot,
 } from "./managedTransport";
-import { candidateProblem, EywaAccessError } from "./managedPolicy";
+import { candidateProblem, EywaAccessError, leaseExpiry } from "./managedPolicy";
 import { lockBinding } from "./managedAccounts";
 import {
   normalizeEmail,
   normalizeName,
   parseAutomaticConfigs,
+  validateCompleteSnapshot,
 } from "./sync-contract";
+import {
+  activationGate,
+  archiveOwnerWhere,
+  pageWindow,
+  restorableIntegrationUser,
+  withoutBindingStop,
+} from "@/lib/admin/accountUsability";
 
-export async function managedStatus(actor: AccountAccess, ownOnly = false) {
+const EVENT_PAGE_SIZE = 30;
+const ACCOUNT_PAGE_SIZE = 200;
+const REVIEW_PAGE_SIZE = 10;
+
+export async function managedStatus(
+  actor: AccountAccess,
+  ownOnly = false,
+  pages?: { events?: number; accounts?: number; reviews?: number },
+) {
   const scope = ownOnly
     ? { userId: actor.id }
     : actor.isSuperAdmin
@@ -26,7 +43,8 @@ export async function managedStatus(actor: AccountAccess, ownOnly = false) {
               actor.branchId ?? "00000000-0000-0000-0000-000000000000",
           },
         };
-  const [bindings, accounts] = await Promise.all([
+  const [bindings, accounts, accountTotal, pendingAccountChecks] =
+    await Promise.all([
     ownOnly
       ? []
       : db.eywaBinding.findMany({
@@ -45,10 +63,15 @@ export async function managedStatus(actor: AccountAccess, ownOnly = false) {
         user: { select: { name: true, email: true, branchId: true } },
       },
       orderBy: { updatedAt: "desc" },
-      take: 200,
+      skip: (Math.max(1, pages?.accounts ?? 1) - 1) * ACCOUNT_PAGE_SIZE,
+      take: ACCOUNT_PAGE_SIZE,
+    }),
+    db.eywaManagedAccount.count({ where: scope }),
+    db.eywaManagedAccount.count({
+      where: { ...scope, status: { in: ["candidate", "conflict"] } },
     }),
   ]);
-  const [events, relationReviews] = bindings.length
+  const eventQuery = bindings.length
     ? await Promise.all([
         db.eywaInbox.findMany({
           where: { bindingId: { in: bindings.map((b) => b.id) } },
@@ -61,7 +84,11 @@ export async function managedStatus(actor: AccountAccess, ownOnly = false) {
             appliedAt: true,
           },
           orderBy: { receivedAt: "desc" },
-          take: 30,
+          skip: (Math.max(1, pages?.events ?? 1) - 1) * EVENT_PAGE_SIZE,
+          take: EVENT_PAGE_SIZE,
+        }),
+        db.eywaInbox.count({
+          where: { bindingId: { in: bindings.map((b) => b.id) } },
         }),
         db.accountAuditLog.findMany({
           where: {
@@ -72,10 +99,23 @@ export async function managedStatus(actor: AccountAccess, ownOnly = false) {
           },
           select: { id: true, details: true, createdAt: true },
           orderBy: { createdAt: "desc" },
-          take: 10,
+          skip: (Math.max(1, pages?.reviews ?? 1) - 1) * REVIEW_PAGE_SIZE,
+          take: REVIEW_PAGE_SIZE,
+        }),
+        db.accountAuditLog.count({
+          where: {
+            action: "eywa.relation_conflicts",
+            OR: bindings.map((b) => ({
+              details: { path: ["bindingId"], equals: b.id },
+            })),
+          },
         }),
       ])
-    : [[], []];
+    : null;
+  const events = eventQuery?.[0] ?? [];
+  const eventTotal = eventQuery?.[1] ?? 0;
+  const relationReviews = eventQuery?.[2] ?? [];
+  const reviewTotal = eventQuery?.[3] ?? 0;
   const branches = bindings.length
     ? await db.branch.findMany({
         where: { id: { in: bindings.map((b) => b.targetBranchId) } },
@@ -119,6 +159,7 @@ export async function managedStatus(actor: AccountAccess, ownOnly = false) {
           normalizeName(sourceName) !== normalizeName(targetName),
         configured: bindingConfigs(b.id).length > 0,
         mode: b.mode,
+        archiveOwnerUserId: b.archiveOwnerUserId,
         enabled: b.enabled,
         healthy: b.healthy,
         retiredAt: b.retiredAt?.toISOString() ?? null,
@@ -131,6 +172,27 @@ export async function managedStatus(actor: AccountAccess, ownOnly = false) {
         inboxCount: b._count.inbox,
       };
     }),
+    pendingAccountChecks,
+    pages: {
+      events: pageWindow(
+        pages?.events ?? 1,
+        EVENT_PAGE_SIZE,
+        eventTotal,
+        events.length,
+      ),
+      accounts: pageWindow(
+        pages?.accounts ?? 1,
+        ACCOUNT_PAGE_SIZE,
+        accountTotal,
+        accounts.length,
+      ),
+      reviews: pageWindow(
+        pages?.reviews ?? 1,
+        REVIEW_PAGE_SIZE,
+        reviewTotal,
+        relationReviews.length,
+      ),
+    },
     accounts: accounts.map((a) => ({
       id: a.id,
       bindingId: a.bindingId,
@@ -206,8 +268,15 @@ export async function configureManagedBinding(
   input: {
     bindingId: string;
     action:
-      "register" | "activate" | "shadow" | "retire" | "rebaseline" | "retry";
+      | "register"
+      | "activate"
+      | "shadow"
+      | "retire"
+      | "rebaseline"
+      | "retry"
+      | "assign-archive-owner";
     archiveOwnerUserId?: string;
+    expectedArchiveOwnerUserId?: string | null;
     evidence?: string;
   },
 ) {
@@ -241,6 +310,7 @@ export async function configureManagedBinding(
       const accounts = await tx.eywaManagedAccount.findMany({
         where: { bindingId: binding.id, status: "confirmed" },
       });
+      const stoppedUserIds: string[] = [];
       for (const account of accounts) {
         await tx.eywaManagedAccount.update({
           where: { id: account.id },
@@ -256,22 +326,72 @@ export async function configureManagedBinding(
             leaseExpiresAt: new Date(0),
           },
         });
-        if (account.currentUserId)
+        if (account.currentUserId) {
+          stoppedUserIds.push(account.currentUserId);
           await tx.user.update({
             where: { id: account.currentUserId },
             data: { suspendedAt: new Date(), sessionVersion: { increment: 1 } },
           });
+        }
       }
       await tx.accountAuditLog.create({
         data: {
           actorId: actor.id,
           action: `eywa.binding_${input.action}`,
           outcome: "success",
-          details: { bindingId: binding.id },
+          details: {
+            bindingId: binding.id,
+            reason: input.action,
+            count: stoppedUserIds.length,
+            userIds: stoppedUserIds,
+          },
         },
       });
-      return { changed: true };
+      return { changed: true, count: stoppedUserIds.length };
     });
+  if (input.action === "assign-archive-owner") {
+    if (!input.archiveOwnerUserId)
+      throw new EywaAccessError("invalid_archive_owner");
+    return db.$transaction(async (tx) => {
+      const binding = await lockBinding(tx, input.bindingId);
+      if (
+        binding.tenantId !== config.tenantId ||
+        binding.targetBranchId !== config.targetBranchId
+      )
+        throw new EywaAccessError("binding_mismatch");
+      if (
+        (binding.archiveOwnerUserId ?? null) !==
+        (input.expectedArchiveOwnerUserId ?? null)
+      )
+        throw new EywaAccessError("archive_owner_conflict");
+      const owner = await tx.user.findFirst({
+        where: archiveOwnerWhere(
+          binding.targetBranchId,
+          input.archiveOwnerUserId!,
+        ),
+      });
+      if (!owner) throw new EywaAccessError("invalid_archive_owner");
+      const beforeId = binding.archiveOwnerUserId;
+      await tx.eywaBinding.update({
+        where: { id: binding.id },
+        data: { archiveOwnerUserId: owner.id },
+      });
+      await tx.accountAuditLog.create({
+        data: {
+          actorId: actor.id,
+          action: "eywa.archive_owner_changed",
+          outcome: "success",
+          details: {
+            bindingId: binding.id,
+            reason: "assign-archive-owner",
+            beforeId,
+            afterId: owner.id,
+          },
+        },
+      });
+      return { changed: true, beforeId, afterId: owner.id };
+    });
+  }
   const fresh = await fetchControl(config);
   if (input.action === "register") {
     if (!(await db.branch.findUnique({ where: { id: config.targetBranchId } })))
@@ -279,11 +399,10 @@ export async function configureManagedBinding(
     if (
       input.archiveOwnerUserId &&
       !(await db.user.findFirst({
-        where: {
-          id: input.archiveOwnerUserId,
-          branchId: config.targetBranchId,
-          deletedAt: null,
-        },
+        where: archiveOwnerWhere(
+          config.targetBranchId,
+          input.archiveOwnerUserId,
+        ),
       }))
     )
       throw new EywaAccessError("invalid_archive_owner");
@@ -309,6 +428,30 @@ export async function configureManagedBinding(
       return { registered: true };
     });
   }
+  let snapshotId: string | null = null;
+  if (input.action === "activate") {
+    const row = await db.eywaBinding.findUnique({
+      where: { id: input.bindingId },
+    });
+    if (
+      !row ||
+      row.tenantId !== config.tenantId ||
+      row.targetBranchId !== config.targetBranchId
+    )
+      throw new EywaAccessError("binding_mismatch");
+    const gate = activationGate(row, fresh.control);
+    if (!gate.ok) throw new EywaAccessError(gate.code);
+    try {
+      const snapshot = await fetchSnapshot(config);
+      validateCompleteSnapshot(snapshot.manifest, snapshot.pages);
+      const snapshotGate = activationGate(row, snapshot.manifest.control);
+      if (!snapshotGate.ok) throw new EywaAccessError(snapshotGate.code);
+      snapshotId = snapshot.manifest.snapshotId;
+    } catch (error) {
+      if (error instanceof EywaAccessError) throw error;
+      throw new EywaAccessError("snapshot_not_applied");
+    }
+  }
   return db.$transaction(async (tx) => {
     const binding = await lockBinding(tx, input.bindingId);
     if (
@@ -316,13 +459,10 @@ export async function configureManagedBinding(
       binding.targetBranchId !== config.targetBranchId
     )
       throw new EywaAccessError("binding_mismatch");
-    if (
-      input.action === "activate" &&
-      (binding.retiredAt ||
-        !fresh.control.healthy ||
-        binding.sourceEpoch !== fresh.control.sourceEpoch)
-    )
-      throw new EywaAccessError("activation_requires_healthy_binding");
+    if (input.action === "activate") {
+      const gate = activationGate(binding, fresh.control);
+      if (!gate.ok) throw new EywaAccessError(gate.code);
+    }
     if (
       input.action === "rebaseline" &&
       (!input.evidence ||
@@ -374,11 +514,66 @@ export async function configureManagedBinding(
             where: { id: m.currentUserId },
             data: { suspendedAt: new Date(), sessionVersion: { increment: 1 } },
           });
-    } else if (input.action === "activate")
+    }
+    let restored = 0;
+    const restoredIds: string[] = [];
+    if (input.action === "activate") {
+      const expiry = leaseExpiry(fresh.control, fresh.started);
       await tx.eywaBinding.update({
         where: { id: binding.id },
-        data: { mode: "active" },
+        data: {
+          mode: "active",
+          enabled: fresh.control.enabled,
+          healthy: fresh.control.healthy,
+          leaseExpiresAt: expiry,
+          validatedAt: new Date(fresh.control.validatedAt),
+          lastError: null,
+        },
       });
+      const stop = await tx.accountAuditLog.findFirst({
+        where: {
+          action: "eywa.binding_shadow",
+          details: { path: ["bindingId"], equals: binding.id },
+        },
+        orderBy: { createdAt: "desc" },
+      });
+      const stoppedIds = new Set(
+        Array.isArray(
+          (stop?.details as { userIds?: unknown } | null)?.userIds,
+        )
+          ? (
+              (stop?.details as { userIds: unknown[] }).userIds.filter(
+                (id) => typeof id === "string",
+              ) as string[]
+            )
+          : [],
+      );
+      const users = stoppedIds.size
+        ? await tx.user.findMany({
+            where: { id: { in: [...stoppedIds] } },
+          })
+        : [];
+      for (const user of users) {
+        if (!restorableIntegrationUser(user, stoppedIds)) continue;
+        const account = await tx.eywaManagedAccount.findFirst({
+          where: { bindingId: binding.id, currentUserId: user.id },
+        });
+        const reasons = withoutBindingStop(account?.blockReasons ?? []);
+        if (reasons.length) continue;
+        const cleared = await tx.user.updateMany({
+          where: { id: user.id, deletedAt: null, manualSuspendedAt: null },
+          data: { suspendedAt: null },
+        });
+        if (!cleared.count) continue;
+        restored += 1;
+        restoredIds.push(user.id);
+        if (account)
+          await tx.eywaManagedAccount.update({
+            where: { id: account.id },
+            data: { blockReasons: reasons, leaseExpiresAt: expiry },
+          });
+      }
+    }
     if (input.action === "retry")
       await tx.eywaInbox.updateMany({
         where: { bindingId: binding.id, status: "conflict" },
@@ -413,10 +608,55 @@ export async function configureManagedBinding(
         outcome: "success",
         details: {
           bindingId: binding.id,
+          eventId,
+          reason: input.action,
+          ...(snapshotId ? { snapshotId } : {}),
+          ...(input.action === "activate"
+            ? { restored, userIds: restoredIds }
+            : {}),
           ...(input.evidence ? { evidence: input.evidence } : {}),
         },
       },
     });
+    if (input.action === "activate") {
+      return {
+        changed: true,
+        restored,
+        steps: [
+          { step: "source", ok: true, restored: false },
+          { step: "mode", ok: true, restored: false },
+          { step: "snapshot", ok: true, restored: false },
+          { step: "accounts", ok: true, restored: restored > 0, count: restored },
+          {
+            step: "relogin",
+            ok: true,
+            restored: false,
+            count: restored,
+          },
+        ],
+      };
+    }
     return { changed: true };
   });
+}
+
+/** Read-only count of confirmed linked accounts a stop would suspend. */
+export async function previewBindingStop(
+  actor: AccountAccess,
+  bindingId: string,
+) {
+  if (!actor.isSuperAdmin)
+    throw new EywaAccessError("platform_operator_required");
+  const config = bindingConfig(bindingId);
+  const binding = await db.eywaBinding.findUnique({ where: { id: bindingId } });
+  if (
+    !binding ||
+    binding.tenantId !== config.tenantId ||
+    binding.targetBranchId !== config.targetBranchId
+  )
+    throw new EywaAccessError("binding_mismatch");
+  const count = await db.eywaManagedAccount.count({
+    where: { bindingId, status: "confirmed", currentUserId: { not: null } },
+  });
+  return { bindingId, count };
 }
