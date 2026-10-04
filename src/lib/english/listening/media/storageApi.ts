@@ -220,7 +220,7 @@ export function createListeningStorageApi(
     ownerId: string;
     assetId: string;
     bytes: number;
-    mimeType: "audio/wav" | "audio/mpeg";
+    mimeType: "audio/wav" | "audio/mpeg" | "audio/mp4";
     read: () => AsyncIterable<Uint8Array>;
   }): Promise<ListeningStorageRef> => {
     const key = `${input.ownerId}/${input.assetId}/${randomUUID()}`,
@@ -351,7 +351,7 @@ export function createListeningStorageApi(
     assetId: string;
     key: string;
     bytes: Uint8Array;
-    mimeType: "audio/wav" | "audio/mpeg";
+    mimeType: "audio/wav" | "audio/mpeg" | "audio/mp4";
     signal?: AbortSignal;
   }): Promise<ListeningStorageRef> => {
     const scope = {
@@ -363,7 +363,7 @@ export function createListeningStorageApi(
     if (
       input.bytes.byteLength < 1 ||
       input.bytes.byteLength > 1024 * 1024 ||
-      !["audio/wav", "audio/mpeg"].includes(input.mimeType)
+      !["audio/wav", "audio/mpeg", "audio/mp4"].includes(input.mimeType)
     )
       throw failed();
     const sha256 = createHash("sha256").update(input.bytes).digest("hex");
