@@ -1075,6 +1075,60 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       before.length,
     );
   });
+  it("selects only requested questions while retaining the original private Storage audio when whole_source is explicit", async () => {
+    const original = await source(44, false, true, true, true);
+    const sourceGroup = original.source.detail.document.groups[0];
+    const originalRecord = (await store!.get(sourceGroup.audio!.assetId))!;
+    const composed = await storageRuntime!.composeSet(owner, {
+      title: "선택 문항과 전체 회차 음원",
+      selections: [
+        {
+          ...selection(original.source, [sourceGroup.questions[1].id]),
+          audioMode: "whole_source",
+        },
+      ],
+    });
+    const group = composed.document.groups[0];
+    expect(group.questions).toHaveLength(1);
+    expect(group.questions[0].prompt).toBe(sourceGroup.questions[1].prompt);
+    expect(group.questions[0].metadata).toEqual(
+      sourceGroup.questions[1].metadata,
+    );
+    expect(group.questions[0].audioRange).toBeUndefined();
+    expect(group.audio!.assetId).not.toBe(sourceGroup.audio!.assetId);
+    expect(group.audio!.sha256).toBe(sourceGroup.audio!.sha256);
+    expect(group.audio!.durationMs).toBe(sourceGroup.audio!.durationMs);
+    expect(composed.document.provenance.basis).toContain("전체 음원 포함");
+    expect((await store!.get(group.audio!.assetId))!.playback!.sha256).toBe(
+      originalRecord.playback!.sha256,
+    );
+    const [inventory] = await db!.$queryRaw<{ count: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*)::bigint AS count FROM english_listening_media_blob WHERE "assetId"=${group.audio!.assetId}::uuid`,
+    );
+    expect(inventory.count).toBe(BigInt(0));
+    const reviewed = await storageRuntime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "테스트 원본 교사 이용 허용",
+    });
+    const span = originalRecord.storage!;
+    await verifyStorageProxy(
+      reviewed,
+      original.original.subarray(span.start, span.endExclusive),
+      "audio/mpeg",
+    );
+    await expect(
+      storageRuntime!.composeSet(other, {
+        title: "다른 교사의 원본",
+        selections: [
+          {
+            ...selection(original.source, [sourceGroup.questions[1].id]),
+            audioMode: "whole_source",
+          },
+        ],
+      }),
+    ).rejects.toMatchObject({ status: 404 });
+  });
   it("checks current owner and branch scope, exact revisions/hash and selected question identity", async () => {
     const original = await source(3);
     const input = {

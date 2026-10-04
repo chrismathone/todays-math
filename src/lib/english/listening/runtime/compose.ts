@@ -688,6 +688,7 @@ export async function composeListeningSet(
   const mayWritePostgres = selections.filter(
     (item) =>
       !drive?.storage ||
+      item.selection.audioMode === "whole_source" ||
       (item.questions.length === item.group.questions.length &&
         item.questions.every(
           (question, index) => question.id === item.group.questions[index].id,
@@ -706,7 +707,7 @@ export async function composeListeningSet(
   const id = randomUUID();
   const first = selections[0].document;
   const basis =
-    `듣기은행에서 구성: ${[...new Set(selections.map((item) => item.document.title))].join(" · ")}`.slice(
+    `듣기은행에서 구성: ${[...new Set(selections.map((item) => item.document.title))].join(" · ")}${selections.some((item) => item.selection.audioMode === "whole_source") ? " · 선택 문항에 원본 회차 전체 음원 포함" : ""}`.slice(
       0,
       1000,
     );
@@ -753,17 +754,18 @@ export async function composeListeningSet(
       item.group.questions.every(
         (question, index) => question.id === item.questions[index].id,
       );
-    const clip = fullRound
-      ? null
-      : await clipReadyAudio(
-          tx,
-          item.source,
-          item.group,
-          item.questions,
-          target,
-          now,
-          drive,
-        );
+    const clip =
+      fullRound || item.selection.audioMode === "whole_source"
+        ? null
+        : await clipReadyAudio(
+            tx,
+            item.source,
+            item.group,
+            item.questions,
+            target,
+            now,
+            drive,
+          );
     const audio =
       clip?.audio ??
       (await cloneReadyAudio(
