@@ -56,6 +56,7 @@ export const textbookSemanticSourceSchema = z.strictObject({
   unit: z.string().min(1).max(200),
   page: z.number().int().positive().max(10_000),
   kind: z.string().min(1).max(100),
+  sectionName: z.string().max(200).optional(),
   path: z.string().min(1).max(500),
   scriptIndex: z.number().int().nonnegative().optional(),
   blockIndex: z.number().int().nonnegative().optional(),

@@ -23,6 +23,7 @@ export interface BlockMeasurement {
   blockId: string;
   heightMm: number;
   widthMm: number;
+  introTextFits?: boolean;
 }
 export interface BlockPlacement {
   blockId: string;
@@ -32,6 +33,7 @@ export interface BlockPlacement {
   yMm: number;
   widthMm: number;
   heightMm: number;
+  continuation?: boolean;
 }
 export interface TextbookPage {
   physicalPageIndex: number;
@@ -198,6 +200,7 @@ export function paginateTextbookSections(
           Number.isFinite(size.heightMm) &&
           size.heightMm > 0 &&
           size.heightMm <= 254 &&
+          size.introTextFits !== false &&
           Math.abs(size.widthMm - blockWidthMm(config, block)) <= A4.toleranceMm
         );
       };
@@ -329,6 +332,7 @@ export function paginateTextbookSections(
             : config.print.innerMarginMm;
         page.blocks.push({
           blockId: currentHeading.id,
+          continuation: true,
           column: 1,
           xMm: x,
           yMm: cursor,
@@ -629,7 +633,13 @@ export function paginateTextbookSections(
 }
 
 /** Align corresponding spread rows by adding actual writing space. Overflow remains an explicit editing failure. */
-export function alignTextbookSpreads(pages: TextbookPage[]): void {
+export function alignTextbookSpreads(
+  pages: TextbookPage[],
+  sections?: readonly RenderSection[],
+): void {
+  const originals = new Map(
+    sections?.flatMap((section) => section.blocks.map((block) => [block.id, block] as const)),
+  );
   const rows = (page: TextbookPage) => {
     const result: BlockPlacement[][] = [];
     for (const block of page.blocks) {
@@ -645,6 +655,7 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     if (
       left.kind !== "content" ||
       right.kind !== "content" ||
+      left.unitKey !== right.unitKey ||
       left.editorialStage !== right.editorialStage ||
       left.physicalPageIndex % 2 !== 0 ||
       right.physicalPageIndex !== left.physicalPageIndex + 1
@@ -658,7 +669,23 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     // section headings have their own semantic order and must not become exercises.
     const lr = rows(left).filter((row) => row.every((b) => b.itemId)),
       rr = rows(right).filter((row) => row.every((b) => b.itemId));
-    if (!lr.length || !rr.length) continue;
+    if (
+      !lr.length ||
+      lr.length !== rr.length ||
+      [...lr, ...rr].some((row) => row.length !== 2)
+    ) continue;
+    const sourceLeft = originals.get(lr[0][0].blockId)?.semantic?.source;
+    const sourceRight = originals.get(rr[0][0].blockId)?.semantic?.source;
+    if (sourceLeft || sourceRight) {
+      // The native template only aligns exercise grids of the same source section.
+      if (
+        sourceLeft?.kind !== "exercise" || sourceRight?.kind !== "exercise" ||
+        !sourceLeft.sectionName || sourceLeft.sectionName !== sourceRight.sectionName
+      ) continue;
+    } else if (left.sectionKey !== right.sectionKey) continue;
+    if ([...lr, ...rr].flat().some((placement) =>
+      originals.get(placement.blockId)?.semantic?.node?.kind === "exampleGroup",
+    )) continue;
     // Mixed prose between exercises needs a fresh measured layout, not row shifting.
     if (
       [left, right].some((p) => {

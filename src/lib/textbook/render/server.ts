@@ -40,6 +40,8 @@ import {
   recoveryMeasurePlan,
   measureRecoveryDom,
   applyRecoveryMeasurements,
+  assertRecoveryMeasurementBudget,
+  measureIntroGeometry,
 } from "./recoveryMeasurement";
 import {
   dataUrl,
@@ -164,7 +166,8 @@ async function loadReady(page: Page, html: string): Promise<void> {
   });
 }
 async function measure(page: Page): Promise<BlockMeasurement[]> {
-  return page.evaluate(
+  const introFits = await page.evaluate(measureIntroGeometry);
+  const measured = await page.evaluate(
     (atlasSpeakers) =>
       Array.from(
         document.querySelectorAll<HTMLElement>("[data-measure-id]"),
@@ -209,6 +212,9 @@ async function measure(page: Page): Promise<BlockMeasurement[]> {
       }),
     TEXTBOOK_CHARACTERS.map((character) => `tb-portrait-${character.id}`),
   );
+  return measured.map((block) => ({ ...block,
+    ...(introFits[block.blockId] === undefined ? {} : { introTextFits: introFits[block.blockId] }),
+  }));
 }
 
 export async function validateRenderedPages(
@@ -369,7 +375,13 @@ export async function renderTextbookChunk(
     ...wholeModel,
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
   };
+  if (model.sections.reduce((sum, section) => sum + section.blocks.length, 0) > 600)
+    throw new Error("Render chunk exceeds 600 projected blocks; split sections before publishing");
   const sizingModel = dialogueMeasurementModel(wholeModel, model);
+  const recallProbes = recallMeasurementModel(
+    createTextbookRenderModel(exchange, "answers"), model,
+  );
+  assertRecoveryMeasurementBudget(sizingModel, recallProbes);
   if (
     continuesTextbookSection(
       wholeModel.sections[input.sectionIndices[0] - 1],
@@ -423,13 +435,7 @@ export async function renderTextbookChunk(
       textbookHtmlDocument(
         model.title,
         measurementHtml(sizingModel, resolver) +
-          recallMeasurementHtml(
-            recallMeasurementModel(
-              createTextbookRenderModel(exchange, "answers"),
-              model,
-            ),
-            resolver,
-          ),
+          recallMeasurementHtml(recallProbes, resolver),
         bundle.fontCss,
         bundle.katexCss,
       ),
@@ -470,7 +476,7 @@ export async function renderTextbookChunk(
       },
     );
     // Writing-space alignment is a student layout constraint, not answer padding.
-    if (input.variant === "student") alignTextbookSpreads(layout.pages);
+    if (input.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
@@ -505,12 +511,15 @@ export async function renderTextbookChunk(
         dataUrl(resources.get(editorialResourceUrl(name))!),
       assetUrl: (id) => dataUrl(resources.get(resolver.assetUrl(id))!),
     };
-    const html = textbookHtmlDocument(
-      model.title,
+    const sharedImages = shareInlineTextbookImages(
       layout.pages
         .map((p) => renderPageHtml(p, model, inlineResolver))
         .join(""),
-      inlineBundleCss(bundle.fontCss, resources),
+    );
+    const html = textbookHtmlDocument(
+      model.title,
+      sharedImages.body,
+      inlineBundleCss(bundle.fontCss, resources) + "\n" + sharedImages.css,
       inlineBundleCss(bundle.katexCss, resources),
     );
     return {

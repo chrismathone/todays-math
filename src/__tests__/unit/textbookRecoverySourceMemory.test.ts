@@ -228,6 +228,7 @@ describe("source formulas are set in display style, at print time only", () => {
         kind: "concept",
         conceptKey: "C01",
         title: "유한소수의 판별",
+        qr: null,
         body: {
           goal: "",
           prerequisites: [],
@@ -313,6 +314,42 @@ describe("the source sentence sheet writes on one rule, or on 7mm lines", () => 
     expect(lines(memory("sentences", "bank"))).toEqual([
       { lines: 1, rule: false, text: "" },
     ]);
+  });
+
+  it("writes an unmeasured long source row on one rule spanning its estimated lines", () => {
+    // Long enough to be estimated at several text lines. Before it is measured, a source row
+    // is not raised to that many 7mm lines: it keeps one rule as tall as the text would be.
+    const text =
+      "어떤 수를 여러 번 더할 때에는 같은 수의 묶음으로 생각하여 곱셈으로 바꾸어 계산하고, 남는 수는 따로 더한 다음 처음의 식과 값이 같은지 다시 확인한다. 묶음의 크기를 바꾸어도 전체의 값은 달라지지 않는다.";
+    const long = (origin: "source" | "bank") => {
+      const block = memory("sentences", origin);
+      const node = block.semantic!.node as { rows: TextbookSemanticRow[] };
+      node.rows = [
+        {
+          rowKey: "long.r1",
+          label: "성질",
+          rawText: text,
+          textFormat: origin === "source" ? "v15-tex" : "bank-blank",
+        },
+      ];
+      const row = parse(render(block)).querySelector<HTMLElement>(
+        ".tb-memory-row",
+      )!;
+      return {
+        estimated: Number(row.style.getPropertyValue("--tb-row-lines")),
+        lines: row.querySelectorAll(".tb-write-line").length,
+        rule: !!row.querySelector(".tb-blank-rule"),
+      };
+    };
+    const fromSource = long("source");
+    expect(fromSource.estimated).toBeGreaterThanOrEqual(2);
+    expect(fromSource).toMatchObject({ lines: 1, rule: true });
+    // The bank's row of the same text keeps one 7mm line per estimated line.
+    expect(long("bank")).toEqual({
+      estimated: fromSource.estimated,
+      lines: fromSource.estimated,
+      rule: false,
+    });
   });
 });
 

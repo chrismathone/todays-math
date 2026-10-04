@@ -15,6 +15,8 @@ import {
   recoveryMeasurePlan,
   measureRecoveryDom,
   applyRecoveryMeasurements,
+  assertRecoveryMeasurementBudget,
+  measureIntroGeometry,
 } from "./recoveryMeasurement";
 import type { TextbookRenderModel } from "./model";
 import { getTextbookCharacter } from "../characters";
@@ -37,6 +39,7 @@ export async function measureTextbookPreview(
     recallMeasurementModel?: TextbookRenderModel;
   } = {},
 ): Promise<TextbookLayout> {
+  assertRecoveryMeasurementBudget(model, options.recallMeasurementModel);
   if (model.sections.reduce((n, s) => n + s.blocks.length, 0) > 600)
     throw new Error(
       "한 번에 미리 볼 구획을 줄여 주세요. 최대 600개 블록입니다.",
@@ -81,6 +84,7 @@ export async function measureTextbookPreview(
     await Promise.all(
       Array.from(host.querySelectorAll("img")).map((image) => image.decode()),
     );
+    const introFits = measureIntroGeometry(host);
     const measurements = Array.from(
       host.querySelectorAll<HTMLElement>("[data-measure-id]"),
     ).map((e) => {
@@ -117,6 +121,7 @@ export async function measureTextbookPreview(
         blockId: e.dataset.measureId!,
         heightMm: Math.ceil(((rect.height * 25.4) / 96) * 100) / 100,
         widthMm: (rect.width * 25.4) / 96,
+        ...(introFits[e.dataset.measureId!] === undefined ? {} : { introTextFits: introFits[e.dataset.measureId!] }),
       };
     });
     const layout = paginateTextbookSections(
@@ -125,7 +130,7 @@ export async function measureTextbookPreview(
       model.config,
       { includeCover: model.config.print.coverMode === "included" },
     );
-    if (model.variant === "student") alignTextbookSpreads(layout.pages);
+    if (model.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
     if (
       layout.pages.some((p) =>
         p.blocks.some(
