@@ -207,6 +207,56 @@ test("저장하지 않은 수정 — 계속 편집 · 버리고 이동 · 저장
   clean(world, errors);
 });
 
+test("주소의 # · 뒤로가기로 떠나려 할 때 — 붙잡고 주소를 되돌리며, 승인한 뒤에는 다시 붙잡지 않는다", async ({
+  page,
+}) => {
+  const { world, errors } = await start(page);
+  await openDetail(page);
+  const shell = page.locator(".harness");
+  const hash = () => new URL(page.url()).hash;
+  const toOther = () =>
+    page.evaluate(() => {
+      window.location.hash = "other";
+    });
+
+  // 고친 채로 주소를 바꾼다 — 화면은 그대로고 주소는 교재로 되돌아온다
+  await body(page).fill("고친 문장");
+  await toOther();
+  await expect(prompt(page)).toBeVisible();
+  await expect(shell).toHaveAttribute("data-view", "textbook");
+  expect(hash()).toBe("");
+  await prompt(page).getByRole("button", { name: "계속 편집" }).click();
+  await expect(body(page)).toHaveValue("고친 문장");
+  expect(hash()).toBe("");
+
+  // 버리고 이동 — 넘겨준 길이 주소를 되돌리고 같은 동기화를 다시 돌려 한 번 더 묻는다. 다시 붙잡히면 여기서 멈춘다
+  await toOther();
+  await prompt(page).getByRole("button", { name: "버리고 이동" }).click();
+  await expect(shell).toHaveAttribute("data-view", "other");
+  expect(hash()).toBe("#other");
+  await expect(prompt(page)).toHaveCount(0);
+
+  // 뒤로가기로 교재에 돌아와 다시 고치고, 앞으로 가기로 떠나려 한다
+  await page.goBack();
+  await expect(shell).toHaveAttribute("data-view", "textbook");
+  await expect(body(page)).toHaveValue("저장된 문장");
+  await body(page).fill("저장할 문장");
+  await page.goForward();
+  await expect(prompt(page)).toBeVisible();
+  await expect(shell).toHaveAttribute("data-view", "textbook");
+  expect(hash()).toBe("");
+
+  // 저장 후 이동 — 저장이 끝난 직후 같은 이동을 다시 물어도 붙잡지 않는다
+  await prompt(page).getByRole("button", { name: "저장 후 이동" }).click();
+  await expect(shell).toHaveAttribute("data-view", "other");
+  expect(hash()).toBe("#other");
+  expect(sectionSaves(world)).toBe(1);
+  await expect(
+    status(page, "처리 중입니다. 끝난 뒤 다시 눌러 주세요."),
+  ).toHaveCount(0);
+  clean(world, errors);
+});
+
 test("저장이 도는 동안 — 거듭 눌러도 저장은 한 번이고 화면 전환은 붙잡힌다", async ({
   page,
 }) => {
