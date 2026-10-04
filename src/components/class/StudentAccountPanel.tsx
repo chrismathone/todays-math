@@ -30,7 +30,7 @@ type PanelState =
  * 원장님 «수업 · 학생 관리 › 학생» 안의 **오늘의 개념 로그인** 칸 — 시안 1안 `issue()`(05 §8.9 · D-125 ⑴).
  * 한 명씩이다(D-124 ⑷) — 명단에서 학생 이름을 누르면 그 학생의 칸이 선다(`StudentList`).
  *
- * - 발급 전: 아이디 칸(🔴 비어서 시작 — 자동 제안 없음, D-125 ⑵) · 형식 안내 한 줄 · «계정 만들기».
+ * - 발급 전: 학생 이름을 기본 아이디로 채우고, 동명이인이면 관리자가 조정할 수 있다.
  * - 만든 직후: 아이디 · 발급 날짜 · 발급한 사람 · 마지막 로그인 · «초기 비밀번호 — 지금 한 번만 보입니다» ·
  *   «비밀번호 다시 발급» · «계정 끄기». 끈 계정은 «계정 켜기»(시안에 없는 상태 — 최소한으로).
  * - 퇴원한 학생은 «퇴원 — 로그인 막힘» 한 줄(D-126 ⑺ — 서버가 로그인을 막는다). 발급하지 않는다.
@@ -51,7 +51,7 @@ export function StudentAccountPanel({
   const [state, setState] = useState<PanelState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
   const [pin, setPin] = useState<string | null>(null);
-  const [loginId, setLoginId] = useState("");
+  const [loginId, setLoginId] = useState(student.name);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 

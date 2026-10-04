@@ -420,7 +420,7 @@ model Student {
   /// 재학 학교 — '오늘의 시험' 예측 대상을 정한다(트랙 E).
   /// 표기는 eywa `school-name.ts` 규칙으로 정규화해 넣는다("경명여자중학교" → "경명여중").
   schoolName  String? @map("school_name") @db.VarChar(50)
-  /// "중" | "고". 초등은 내신이 없어 대상이 아니다.
+  /// "초" | "중" | "고". 내신 예측 대상 여부는 별도의 시험 정책에서 판정한다.
   schoolLevel String? @map("school_level") @db.VarChar(2)
   schoolGrade Int?    @map("school_grade")
 

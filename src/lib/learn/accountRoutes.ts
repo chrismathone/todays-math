@@ -25,6 +25,12 @@ export function issueFailureResponse(reason: IssueFailure): Response {
       return jsonError("CONFLICT", STUDENT_LOGIN_MESSAGES.loginIdTaken, 409);
     case "no_account":
       return notFoundError("학생 계정");
+    case "missing_phone":
+      return jsonError(
+        "CONFLICT",
+        "등록된 전화번호가 없습니다. 원본 학생 연락처를 등록하고 동기화 후 생성해 주세요.",
+        409,
+      );
     // 퇴원 학생 — 발급 · 다시 발급 · 켜기 (D-127 · 규칙 8)
     case "withdrawn_issue":
       return jsonError(

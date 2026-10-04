@@ -69,6 +69,7 @@ interface ClassRow {
 }
 
 interface StudentRow {
+  phoneLast4?: string | null;
   branchId?: string | null;
   eywaBindingId?: string | null;
   id: string;

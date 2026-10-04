@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type { StudentEntity } from "@/contracts/class.contract";
+import BulkStudentAccountButton from "@/components/class/BulkStudentAccountButton";
 
 const StudentAccountPanel = dynamic(() =>
   import("@/components/class/StudentAccountPanel").then(
@@ -51,11 +52,9 @@ export default function BranchAccounts({
   const [studentId, setStudentId] = useState("");
   const [targetClassId, setTargetClassId] = useState("");
   const [studentName, setStudentName] = useState("");
-  const [studentLoginId, setStudentLoginId] = useState("");
+  const [studentPhone, setStudentPhone] = useState("");
   const [studentIssued, setStudentIssued] = useState<{
     name: string;
-    loginId: string;
-    initialPassword: string;
   } | null>(null);
   const [openStudentId, setOpenStudentId] = useState<string | null>(null);
   const [name, setName] = useState("");
@@ -151,8 +150,6 @@ export default function BranchAccounts({
     try {
       const issued = await dataFrom<{
         name: string;
-        loginId: string;
-        initialPassword: string;
       }>(
         await fetch("/api/branch/students", {
           method: "POST",
@@ -160,13 +157,13 @@ export default function BranchAccounts({
           body: JSON.stringify({
             classId: sourceClassId,
             name: studentName,
-            loginId: studentLoginId,
+            phone: studentPhone,
           }),
         }),
       );
       setStudentIssued(issued);
       setStudentName("");
-      setStudentLoginId("");
+      setStudentPhone("");
       await chooseSource(sourceClassId);
       setClasses((previous) =>
         previous.map((group) =>
@@ -177,9 +174,7 @@ export default function BranchAccounts({
       );
     } catch (cause) {
       setError(
-        cause instanceof Error
-          ? cause.message
-          : "학생 계정을 만들지 못했습니다.",
+        cause instanceof Error ? cause.message : "학생을 등록하지 못했습니다.",
       );
     } finally {
       setBusy(false);
@@ -338,10 +333,10 @@ export default function BranchAccounts({
       {section === "accounts" ? (
         <>
           <div className="mb-6 rounded-xl border border-blue-100 bg-blue-50/40 p-4">
-            <h3 className="mb-1 font-bold">학생 등록·로그인 발급</h3>
+            <h3 className="mb-1 font-bold">학생 등록</h3>
             <p className="mb-4 text-sm text-slate-600">
-              반, 이름, 아이디를 입력하면 학생 명단과 로그인 계정이 함께
-              만들어집니다.
+              학생을 명단에 등록한 뒤, 반별 학생 계정 전체 생성으로 로그인
+              계정을 발급하세요.
             </p>
             {classes.length === 0 ? (
               <p className="text-sm">
@@ -386,19 +381,16 @@ export default function BranchAccounts({
                   />
                 </label>
                 <label className="grid gap-1 text-sm">
-                  로그인 아이디
+                  전화번호 (선택)
                   <input
                     className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
-                    value={studentLoginId}
-                    onChange={(e) => setStudentLoginId(e.target.value)}
-                    required
-                    minLength={4}
-                    maxLength={20}
-                    pattern="[A-Za-z0-9_-]{4,20}"
-                    autoCapitalize="none"
+                    value={studentPhone}
+                    onChange={(e) => setStudentPhone(e.target.value)}
+                    type="tel"
+                    maxLength={40}
                     autoComplete="off"
                     spellCheck={false}
-                    placeholder="영문·숫자 4~20자"
+                    placeholder="계정 초기 비밀번호에 사용할 연락처"
                   />
                 </label>
                 <button
@@ -406,32 +398,22 @@ export default function BranchAccounts({
                   disabled={busy || !sourceClassId}
                   className="min-h-11 rounded-lg bg-blue-700 px-4 font-semibold text-white disabled:opacity-50"
                 >
-                  학생 등록·계정 생성
+                  학생 등록
                 </button>
               </form>
             )}
             <p className="mt-2 text-xs text-slate-500">
-              아이디는 전체 학생 중 중복할 수 없습니다. 초기 비밀번호는 한 번만
-              표시됩니다.
+              로그인 아이디는 학생 이름, 초기 비밀번호는 등록된 전화번호 끝
+              4자리입니다.
             </p>
             {studentIssued && (
               <div
                 role="status"
                 className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm"
               >
-                <strong>{studentIssued.name} 학생 계정 발급 완료</strong>
-                <p>
-                  아이디{" "}
-                  <strong className="select-all font-mono">
-                    {studentIssued.loginId}
-                  </strong>{" "}
-                  · 초기 비밀번호{" "}
-                  <strong className="select-all font-mono">
-                    {studentIssued.initialPassword}
-                  </strong>
-                </p>
+                <strong>{studentIssued.name} 학생 등록 완료</strong>
                 <p className="text-slate-600">
-                  로그인 후 학생이 비밀번호를 변경하도록 안내해 주세요.
+                  반별 학생 계정 전체 생성으로 로그인 계정을 발급하세요.
                 </p>
               </div>
             )}
@@ -440,6 +422,14 @@ export default function BranchAccounts({
                 <h4 className="mb-2 text-sm font-semibold">
                   선택한 반 학생 {studentTotal}명
                 </h4>
+                <BulkStudentAccountButton
+                  key={sourceClassId}
+                  classId={sourceClassId}
+                  className={
+                    classes.find((group) => group.id === sourceClassId)?.name ??
+                    "선택한 반"
+                  }
+                />
                 {studentTotal > 100 && (
                   <div className="mb-3 flex items-center gap-2 text-sm">
                     <button
