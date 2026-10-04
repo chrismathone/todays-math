@@ -238,7 +238,7 @@ export function createTextbookRenderModel(
                       candidate.sections.some(
                         (section) =>
                           section.templateKey === "auto-unit-intro" ||
-                          section.templateKey === "auto-lesson" ||
+                          section.templateKey.startsWith("auto-lesson") ||
                           section.blocks.some(
                             (block) => block.kind === "concept",
                           ),

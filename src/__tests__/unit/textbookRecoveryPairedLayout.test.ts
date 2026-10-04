@@ -10,6 +10,8 @@ import {
   blockWidthMm,
   paginateTextbookSections,
   studentPageMapFromPages,
+  alignTextbookSpreads,
+  type TextbookPage,
 } from "@/lib/textbook/layout/paginate";
 import { renderPageHtml } from "@/lib/textbook/render/html";
 import { recallPieces } from "@/lib/textbook/render/markdown";
@@ -145,5 +147,69 @@ describe("TeX braces and legacy recall delimiters", () => {
   it("still rejects unmatched or nested recall markers outside mathematics", () => {
     for (const source of ["[[정의", "정의}}", "{{문장 [[중첩]]}}", "[[단어}}"])
       expect(() => recallPieces(source, "study")).toThrow(/짝이 맞지/);
+  });
+});
+
+describe("corresponding exercise spreads", () => {
+  function spread() {
+    const { section } = paired();
+    const base = section.blocks.find((block) => block.kind === "problem")!;
+    const blocks = [0, 1, 2, 3].map((index) => ({
+      ...base,
+      id: `q${index}`,
+      semantic: { activity: "basicCheck" as const },
+    }));
+    const pages: TextbookPage[] = [2, 3].map((physicalPageIndex, pageIndex) => ({
+      physicalPageIndex,
+      printedPageLabel: String(physicalPageIndex),
+      unitKey: section.unitKey,
+      sectionKey: section.sectionKey,
+      unitTitle: section.unitTitle,
+      sectionTitle: section.title,
+      kind: "content",
+      editorialStage: "basic",
+      blocks: blocks.slice(pageIndex * 2, pageIndex * 2 + 2).map((block, i) => ({
+        blockId: block.id,
+        itemId: block.id,
+        column: (i + 1) as 1 | 2,
+        xMm: i ? 108 : 13,
+        yMm: pageIndex ? 47 : 45,
+        widthMm: 86,
+        heightMm: pageIndex ? 100 : 90,
+      })),
+    }));
+    return { pages, sections: [{ ...section, blocks }] };
+  }
+  it("aligns actual matching two-column exercise rows without changing item membership", () => {
+    const { pages, sections } = spread();
+    alignTextbookSpreads(pages, sections);
+    expect(pages.flatMap((page) => page.blocks.map((block) => [block.yMm, block.heightMm])))
+      .toEqual([[47, 100], [47, 100], [47, 100], [47, 100]]);
+  });
+  it.each(["unit", "section", "row-count", "linked-group", "source-kind", "source-section"])(
+    "preserves unrelated %s pages rather than manufacturing an alignment overflow",
+    (fault) => {
+      const { pages, sections } = spread();
+      if (fault === "unit") pages[1].unitKey = "other";
+      if (fault === "section") pages[1].sectionKey = "other";
+      if (fault === "row-count") pages[1].blocks.pop();
+      if (fault === "linked-group") sections[0].blocks[0].semantic = paired().section.blocks[0].semantic;
+      if (fault.startsWith("source")) sections[0].blocks.forEach((block, index) => {
+        block.semantic = { ...block.semantic!, source: {
+          unit: "U01", page: index < 2 ? 16 : 17,
+          kind: fault === "source-kind" && index < 2 ? "concept3" : "exercise",
+          sectionName: fault === "source-section" && index < 2 ? "개념 이해" : "확인문제",
+          path: `pages[${index}]`,
+        } };
+      });
+      const before = structuredClone(pages);
+      alignTextbookSpreads(pages, sections);
+      expect(pages).toEqual(before);
+    },
+  );
+  it("retains overflow rejection for a truly corresponding spread", () => {
+    const { pages, sections } = spread();
+    pages[1].blocks.forEach((block) => { block.heightMm = 250; });
+    expect(() => alignTextbookSpreads(pages, sections)).toThrow(/SPREAD_ALIGNMENT_OVERFLOW/);
   });
 });

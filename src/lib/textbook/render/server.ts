@@ -470,7 +470,7 @@ export async function renderTextbookChunk(
       },
     );
     // Writing-space alignment is a student layout constraint, not answer padding.
-    if (input.variant === "student") alignTextbookSpreads(layout.pages);
+    if (input.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages

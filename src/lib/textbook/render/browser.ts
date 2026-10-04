@@ -125,7 +125,7 @@ export async function measureTextbookPreview(
       model.config,
       { includeCover: model.config.print.coverMode === "included" },
     );
-    if (model.variant === "student") alignTextbookSpreads(layout.pages);
+    if (model.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
     if (
       layout.pages.some((p) =>
         p.blocks.some(
