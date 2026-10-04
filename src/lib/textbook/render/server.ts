@@ -212,8 +212,11 @@ async function measure(page: Page): Promise<BlockMeasurement[]> {
       }),
     TEXTBOOK_CHARACTERS.map((character) => `tb-portrait-${character.id}`),
   );
-  return measured.map((block) => ({ ...block,
-    ...(introFits[block.blockId] === undefined ? {} : { introTextFits: introFits[block.blockId] }),
+  return measured.map((block) => ({
+    ...block,
+    ...(introFits[block.blockId] === undefined
+      ? {}
+      : { introTextFits: introFits[block.blockId] }),
   }));
 }
 
@@ -359,8 +362,9 @@ export async function renderTextbookChunk(
   if (input.studentPages) {
     if (input.variant !== "answers")
       throw new Error("Student page references are only accepted for answers");
+    const studentModel = createTextbookRenderModel(exchange, "student");
     const pageMap = studentPageMapFromPages(
-      input.sectionIndices.map((i) => wholeModel.sections[i]),
+      input.sectionIndices.map((i) => studentModel.sections[i]),
       input.studentPages,
       exchange.config,
     );
@@ -375,11 +379,17 @@ export async function renderTextbookChunk(
     ...wholeModel,
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
   };
-  if (model.sections.reduce((sum, section) => sum + section.blocks.length, 0) > 600)
-    throw new Error("Render chunk exceeds 600 projected blocks; split sections before publishing");
+  if (
+    model.sections.reduce((sum, section) => sum + section.blocks.length, 0) >
+    600
+  )
+    throw new Error(
+      "Render chunk exceeds 600 projected blocks; split sections before publishing",
+    );
   const sizingModel = dialogueMeasurementModel(wholeModel, model);
   const recallProbes = recallMeasurementModel(
-    createTextbookRenderModel(exchange, "answers"), model,
+    createTextbookRenderModel(exchange, "answers"),
+    model,
   );
   assertRecoveryMeasurementBudget(sizingModel, recallProbes);
   if (
@@ -476,7 +486,8 @@ export async function renderTextbookChunk(
       },
     );
     // Writing-space alignment is a student layout constraint, not answer padding.
-    if (input.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
+    if (input.variant === "student")
+      alignTextbookSpreads(layout.pages, model.sections);
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
