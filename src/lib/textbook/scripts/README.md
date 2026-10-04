@@ -38,7 +38,7 @@ const coverage = conceptScriptCoverage(); // coveragePercent: 100
 
 ## 수업·판서·학기·호칭 (2026-10-05)
 
-모든 대사에 `presentation: { kind, lessonKey, lessonTitle }`이 있다. 이 칸들을 더할 때 이전 대사의 글·출처·ID는 한 글자도 바뀌지 않았다. 새 칸을 빼고 아래 「교정」의 41대사를 되돌리면 학년 파일 일곱이 처음 커밋과 바이트로 같고, 그 해시를 검사가 지킨다.
+모든 대사에 `presentation: { kind, lessonKey, lessonTitle }`이 있다. 이 칸들을 더할 때 이전 대사의 글·출처·ID는 한 글자도 바뀌지 않았다. 새 칸을 빼고 아래 「교정」의 45대사를 되돌리면 학년 파일 일곱이 처음 커밋과 바이트로 같고, 그 해시를 검사가 지킨다.
 
 | 수업 | `lessonKey` | `lessonTitle` | 개수 |
 | --- | --- | --- | ---: |
@@ -56,13 +56,13 @@ const coverage = conceptScriptCoverage(); // coveragePercent: 100
 
 ## 교정 (2026-10-05)
 
-확인된 결함 41대사를 고쳤고, 고친 대사는 `static-corrections.json`에 ID · 이전 글 · 새 글 · 까닭과 함께 한 줄씩 있다. AI 편집 검수이고 사람이 읽은 검수가 아니다.
+확인된 결함 45대사를 고쳤고, 고친 대사는 `static-corrections.json`에 ID · 이전 글 · 새 글 · 까닭과 함께 한 줄씩 있다. AI 편집 검수이고 사람이 읽은 검수가 아니다.
 
 | 종류 | 대사 | 내용 |
 | --- | ---: | --- |
 | `sentence-answer-copula` | 32 | 은행의 답이 「유리수이다」 「된다 (…)」처럼 이미 문장인데 「입니다」가 덧붙던 대사. 답은 그대로 두고 「입니다」만 뺐다 |
 | `particle` | 1 | 초5 2-4-6의 「$1.56$예요」 → 「이에요」 |
-| `missing-condition` | 4 | 초4 2-4-3 · 초6 2-3-1의 질문에, 풀이가 쓰던 조건을 밝혔다(질문은 도입과 수업 예에 두 번 나온다) |
+| `missing-condition` | 8 | 초4 2-4-3 · 초6 2-3-1 · 초6 1-2-3 · 초6 2-3-2의 질문에, 풀이가 쓰던 조건을 밝혔다(질문은 도입과 수업 예에 두 번 나온다) |
 | `ambiguous-wording` | 4 | 중3 원의 접선 「접점을 이었고」 → 「접선을 그었고」, 이차함수와 그래프 「나란할까」 → 「높이가 같을까」 |
 
 수와 수식 토큰은 하나도 바뀌지 않았고, v15 원본 298블록도 그대로다. 대사를 새로 고치려면 작성 노트(`authoredExamples.ts` 또는 `materialize.ts`의 틀)와 학년 JSON을 함께 고친 뒤 `static-corrections.json`에 그 대사를 한 줄 더한다. 이 목록에 없는 대사가 바뀌면 이전 대사 해시 검사가 실패하고, 목록의 글이 원고와 다르면 `corrections.ts`가 그 ID를 대며 멈춘다.

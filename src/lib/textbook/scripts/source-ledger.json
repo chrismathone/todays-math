@@ -131,8 +131,7 @@
       "newExample": {
         "해당 없음": 150,
         "자동 확인": 164,
-        "AI 검수": 44,
-        "수정 필요": 2
+        "AI 검수": 46
       },
       "wordingAndFlow": {
         "미검수": 360
@@ -161,8 +160,7 @@
       "faults": 0,
       "findings": {
         "wording:fixed": 3,
-        "condition:fixed": 2,
-        "condition:open": 2
+        "condition:fixed": 4
       }
     },
     "templateFrames": {
@@ -173,18 +171,18 @@
       "lessonsRepeatingTheirOpeningQuestion": 360
     },
     "corrections": {
-      "total": 41,
+      "total": 45,
       "byKind": {
         "sentence-answer-copula": 32,
-        "missing-condition": 4,
+        "missing-condition": 8,
         "particle": 1,
         "ambiguous-wording": 4
       },
-      "sections": 30
+      "sections": 32
     },
     "aiReadings": {
       "examples": 46,
-      "examplesWithUnverified": 8,
+      "examplesWithUnverified": 6,
       "restBands": 18,
       "restBandsWithUnverified": 9
     },
@@ -7893,7 +7891,7 @@
       "title": "1-2-3 각기둥의 전개도",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "b885a550ee786d8f"
+        "dialogueSha256": "3b041ed5d9aa7223"
       },
       "concepts": 3,
       "lessons": 5,
@@ -7920,17 +7918,15 @@
       "status": {
         "idsAndSources": "자동 확인",
         "bankMathematics": "미검수",
-        "newExample": "수정 필요",
+        "newExample": "AI 검수",
         "wordingAndFlow": "미검수",
         "printedPage": "미검수"
       },
-      "findings": [
-        {
-          "id": "authored-example:condition",
-          "turns": 1
-        }
-      ],
-      "corrections": []
+      "findings": [],
+      "corrections": [
+        "SC-042",
+        "SC-043"
+      ]
     },
     {
       "id": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
@@ -9334,7 +9330,7 @@
       "title": "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "6d038c305f2072cc"
+        "dialogueSha256": "f491a2a16683ec9c"
       },
       "concepts": 3,
       "lessons": 5,
@@ -9361,17 +9357,15 @@
       "status": {
         "idsAndSources": "자동 확인",
         "bankMathematics": "미검수",
-        "newExample": "수정 필요",
+        "newExample": "AI 검수",
         "wordingAndFlow": "미검수",
         "printedPage": "미검수"
       },
-      "findings": [
-        {
-          "id": "authored-example:condition",
-          "turns": 1
-        }
-      ],
-      "corrections": []
+      "findings": [],
+      "corrections": [
+        "SC-044",
+        "SC-045"
+      ]
     },
     {
       "id": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
@@ -22490,15 +22484,14 @@
       "findings": [
         {
           "kind": "condition",
-          "status": "open",
-          "finding": "답의 $3,4,5\\,\\mathrm{cm}$는 풀이 둘째 대사가 예로 든 수다. 질문은 수 없이 ‘폭은 마음대로 정해도 될까’만 묻는다. 고치려면 질문에 밑면의 세 변과 높이를 밝힌다. 교정 지시의 범위 밖이어서 남겼다."
+          "status": "fixed",
+          "finding": "답의 $3,4,5\\,\\mathrm{cm}$가 풀이 둘째 대사의 예로만 나왔고 질문에는 수가 없었다. 풀이가 쓰는 밑면의 세 변과 높이 $6\\,\\mathrm{cm}$를 질문에 밝혔다."
         }
       ],
       "reading": {
-        "basis": "각기둥 전개도에서 옆면의 폭은 밑면의 변 길이와 같고 높이는 모두 같다. 3, 4, 5는 삼각형을 이루는 길이다(3+4가 5보다 크다).",
-        "unverified": "답의 3, 4, 5cm는 풀이 둘째 대사의 예에서 온 수다. 질문에는 없다. 열린 지적으로 남겼다."
+        "basis": "교정 뒤 질문에 밑면의 세 변 3, 4, 5cm와 높이 6cm가 있다. 각기둥 전개도에서 옆면의 폭은 밑면의 변 길이와 같고 높이는 모두 같다. 3, 4, 5는 삼각형을 이루는 길이다(3+4가 5보다 크다)."
       },
-      "state": "수정 필요"
+      "state": "AI 검수"
     },
     {
       "key": "초6::1-2-4",
@@ -22875,15 +22868,14 @@
       "findings": [
         {
           "kind": "condition",
-          "status": "open",
-          "finding": "풀이의 ‘공중에 뜬 블록 없이 쌓았다고 정했으므로’가 가리키는 전제가 질문에 없다. 고치려면 질문에 그 전제를 밝힌다. 교정 지시의 범위 밖이어서 남겼다."
+          "status": "fixed",
+          "finding": "풀이의 ‘공중에 뜬 블록 없이 쌓았다고 정했으므로’가 가리키는 전제가 질문에 없었다. ‘공중에 뜬 블록 없이 쌓은’을 질문에 밝혔다."
         }
       ],
       "reading": {
-        "basis": "공중에 뜬 쌓기나무가 없으면 3층 기둥에는 쌓기나무가 3개 있다.",
-        "unverified": "‘뜬 블록 없이 쌓았다고 정했으므로’의 전제가 질문에 없다. 열린 지적으로 남겼다."
+        "basis": "교정 뒤 질문에 ‘공중에 뜬 블록 없이 쌓은’이 있다. 그 전제에서 3층 기둥에는 쌓기나무가 3개 있고, 보이는 것은 꼭대기 하나다."
       },
-      "state": "수정 필요"
+      "state": "AI 검수"
     },
     {
       "key": "초6::2-3-3",
