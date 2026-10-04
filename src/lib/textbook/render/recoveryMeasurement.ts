@@ -39,7 +39,10 @@ export function recoveryMeasurePlan(
             : {}),
           ...(isDialoguePlacement(block) && block.semantic
             ? {
-                dialogueGroup: section.unitKey,
+                dialogueGroup:
+                  block.semantic?.source?.kind === "opening"
+                    ? section.unitKey
+                    : section.sectionKey,
                 dialoguePage: section.sectionKey,
               }
             : {}),
@@ -47,6 +50,47 @@ export function recoveryMeasurePlan(
       }),
     ),
   };
+}
+/** Original multi-page scripts are fitted as one unit even when publishing divides the pages into steps. */
+export function dialogueMeasurementModel(
+  whole: TextbookRenderModel,
+  selected: TextbookRenderModel,
+): TextbookRenderModel {
+  const wanted = new Set(
+    selected.sections.flatMap((section) =>
+      section.blocks.flatMap((block) =>
+        block.semantic?.source?.kind === "opening" ? [section.unitKey] : [],
+      ),
+    ),
+  );
+  const selectedKeys = new Set(
+    selected.sections.map(
+      (section) => `${section.unitKey}:${section.sectionKey}`,
+    ),
+  );
+  const extra = whole.sections
+    .filter(
+      (section) =>
+        wanted.has(section.unitKey) &&
+        !selectedKeys.has(`${section.unitKey}:${section.sectionKey}`),
+    )
+    .map((section) => ({
+      ...section,
+      blocks: section.blocks.filter(
+        (block) => isDialoguePlacement(block) || block.dialogueLesson,
+      ),
+    }))
+    .filter((section) => section.blocks.length > 0);
+  const result = { ...selected, sections: [...selected.sections, ...extra] };
+  if (
+    result.sections.length > 8 ||
+    result.sections.reduce((sum, section) => sum + section.blocks.length, 0) >
+      600
+  )
+    throw new Error(
+      "대화의 공통 글자 크기 측정 한도를 넘었습니다. 수업 구획을 줄여 주세요.",
+    );
+  return result;
 }
 export interface RecoveryMeasureResult {
   rowHeightsMm: Record<string, number>;

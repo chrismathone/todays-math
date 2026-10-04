@@ -36,6 +36,7 @@ import {
 } from "./html";
 import {
   recallMeasurementModel,
+  dialogueMeasurementModel,
   recoveryMeasurePlan,
   measureRecoveryDom,
   applyRecoveryMeasurements,
@@ -368,6 +369,7 @@ export async function renderTextbookChunk(
     ...wholeModel,
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
   };
+  const sizingModel = dialogueMeasurementModel(wholeModel, model);
   if (
     continuesTextbookSection(
       wholeModel.sections[input.sectionIndices[0] - 1],
@@ -420,7 +422,7 @@ export async function renderTextbookChunk(
       page,
       textbookHtmlDocument(
         model.title,
-        measurementHtml(model, resolver) +
+        measurementHtml(sizingModel, resolver) +
           recallMeasurementHtml(
             recallMeasurementModel(
               createTextbookRenderModel(exchange, "answers"),
@@ -434,7 +436,7 @@ export async function renderTextbookChunk(
     );
     const recoveryMeasurements = await page.evaluate(
       measureRecoveryDom,
-      recoveryMeasurePlan(model),
+      recoveryMeasurePlan(sizingModel),
     );
     applyRecoveryMeasurements(model, recoveryMeasurements);
     await loadReady(

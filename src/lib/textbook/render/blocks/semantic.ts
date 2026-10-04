@@ -7,7 +7,7 @@ import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
 function inlineMarkdown(source: string): string {
   const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
   return /^<p>[\s\S]*<\/p>$/.test(html) && !html.slice(3, -4).includes("<p>")
-    ? html.slice(3, -4)
+    ? `${/^\s/.test(source) ? " " : ""}${html.slice(3, -4)}${/\s$/.test(source) ? " " : ""}`
     : html;
 }
 
