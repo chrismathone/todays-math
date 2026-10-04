@@ -1,5 +1,7 @@
 "use client";
 
+import { BackButton } from "@/components/ui/BackLink";
+
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -393,9 +395,7 @@ export function StudentMathSrs({
           {practicing && mission ? (
             <>
               <div className={s.practiceHeader}>
-                <Button
-                  variant="ghost"
-                  className={s.quietButton}
+                <BackButton
                   disabled={busy}
                   onClick={() => {
                     soundEpoch.current++;
@@ -406,8 +406,8 @@ export function StudentMathSrs({
                     expedition?.onExit();
                   }}
                 >
-                  ← 학습 홈
-                </Button>
+                  학습 홈
+                </BackButton>
                 <span>중1 · 일차방정식</span>
               </div>
               <div className={s.progress}>

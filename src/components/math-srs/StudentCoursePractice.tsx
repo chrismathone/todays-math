@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { BackButton } from "@/components/ui/BackLink";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type {
   CourseAttemptInput,
@@ -86,14 +87,9 @@ export default function StudentCoursePractice(props: Props) {
   return (
     <div className={`${s.practice} ${s.studentPractice} ${s.fixedPractice}`}>
       <header className={s.header}>
-        <button
-          className={s.back}
-          type="button"
-          onClick={onExit}
-          disabled={props.busy}
-        >
-          <span aria-hidden="true">←</span> 학습 홈
-        </button>
+        <BackButton type="button" onClick={onExit} disabled={props.busy}>
+          학습 홈
+        </BackButton>
         <span className={s.breadcrumb}>
           초{section?.grade} · {section?.semester}학기 · {section?.chapterTitle}
         </span>

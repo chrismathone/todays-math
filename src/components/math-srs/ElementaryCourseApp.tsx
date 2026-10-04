@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import BackLink from "@/components/ui/BackLink";
 import dynamic from "next/dynamic";
 import { useState, type FormEvent } from "react";
 import TodayMathMark from "@/components/brand/TodayMathMark";
@@ -562,7 +563,7 @@ export default function ElementaryCourseApp() {
         )}
         {!practicing ? (
           <footer className={shell.footer}>
-            <Link href="/lab">← 개념 실험실</Link>
+            <BackLink href="/lab">개념 실험실</BackLink>
             <span>
               학습 기록은 이 브라우저에 저장돼요. 다른 기기와 공유되지 않아요.
             </span>

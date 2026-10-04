@@ -30,6 +30,11 @@ const ACTION_LABELS: Record<string, string> = {
   "account.approved": "계정 승인",
   "account.rejected": "가입 승인 거절",
   "account.updated": "계정 권한 변경",
+  "student_auth.bulk_issue": "학생 계정 일괄 생성",
+  "student_account.issue": "학생 계정 생성",
+  "student_account.reissue": "학생 초기 비밀번호 재발급",
+  "student_account.disable": "학생 계정 사용 중지",
+  "student_account.enable": "학생 계정 사용 설정",
   "auth.login": "로그인",
   "auth.logout": "로그아웃",
   "auth.signup": "회원 가입",
@@ -230,6 +235,7 @@ export function auditDetailRows(details: AuditEntry["details"]) {
         { owner: "원장", manager: "지점 관리자", teacher: "강사" },
         value,
       ) ?? "기록 확인 필요",
+    "previousBranchRole",
   );
   add(
     "kind",
@@ -248,6 +254,7 @@ export function auditDetailRows(details: AuditEntry["details"]) {
     revision: "자료 버전",
     page: "페이지",
     count: "개수",
+    issued: "생성한 학생 계정 수",
     problemCount: "문항 수",
     label: "작업",
   })) {

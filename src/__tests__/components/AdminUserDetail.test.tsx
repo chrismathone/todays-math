@@ -518,7 +518,7 @@ describe("administrator user detail", () => {
       "사용자를 찾지 못했습니다.",
     );
     expect(
-      screen.getByRole("link", { name: "← 미소속 계정 목록으로 돌아가기" }),
+      screen.getByRole("link", { name: "미소속 계정 목록" }),
     ).toHaveAttribute("href", "/admin/branches/unassigned");
   });
 });

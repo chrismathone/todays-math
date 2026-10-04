@@ -3,8 +3,9 @@ import { z } from "zod";
 export const LISTENING_MAX_UPLOAD_BYTES = 64 * 1024 * 1024;
 export const LISTENING_MAX_DURATION_MS = 30 * 60 * 1000;
 export const LISTENING_MAX_PLAYBACK_BYTES = 336 * 1024 * 1024;
-/** Enough for all six grades plus a mock exam, within the media adapter's integer bound. */
+/** Existing PostgreSQL path remains bounded independently of external archive capacity. */
 export const LISTENING_MAX_OWNER_BYTES = 2 ** 31 - 1;
+export const LISTENING_MAX_OWNER_ASSETS = 128;
 /** Leave room for HTTP envelopes below the hosting provider's request limit. */
 export const LISTENING_MAX_DOCUMENT_BYTES = 3 * 1024 * 1024;
 

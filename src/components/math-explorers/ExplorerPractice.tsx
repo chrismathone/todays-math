@@ -7,6 +7,7 @@ import type {
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
+import { BackButton } from "@/components/ui/BackLink";
 import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
 import { useQuestionPageTurn } from "@/components/math-srs/useQuestionPageTurn";
@@ -119,9 +120,9 @@ export function ExplorerPracticeFrame({
   return (
     <>
       <div className={s.practiceToolbar}>
-        <button type="button" disabled={busy} onClick={onHome}>
-          ← 진도판
-        </button>
+        <BackButton type="button" disabled={busy} onClick={onHome}>
+          진도판
+        </BackButton>
         <span>
           {session.reviewOnly ? (
             "지난 학습 다시 풀기"

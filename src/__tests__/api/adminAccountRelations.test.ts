@@ -256,7 +256,7 @@ describe("superadmin read-only account relationships", () => {
     branch.mockResolvedValue(null);
     expect((await call()).status).toBe(404);
   });
-  it("includes only owned or current teacher memberships, never the entire manager branch", async () => {
+  it("includes only active owned or current teacher memberships, never the entire manager branch", async () => {
     const owned = cls(10, teacher, branchA, false),
       current = cls(11),
       sameBranch = cls(12),
@@ -282,6 +282,10 @@ describe("superadmin read-only account relationships", () => {
       role: "delegate",
       capabilities: ["progress:write"],
     });
+    const endedOwned = cls(21, teacher, branchA, false);
+    endedOwned.active = false;
+    const closedOwned = cls(22, teacher, branchA, false);
+    Object.assign(closedOwned, { closedAt: now });
     const body = await (await call()).json();
     expect(body.data.map((r: { id: string }) => r.id)).toEqual([
       owned.id,
@@ -373,7 +377,7 @@ describe("superadmin read-only account relationships", () => {
       ],
     });
     expect(body.data[1]).toMatchObject({
-      grade: null,
+      grade: "중1",
       login: "unissued",
       sync: "local",
       classes: [{ membership: "legacy" }],
@@ -493,5 +497,64 @@ describe("superadmin read-only account relationships", () => {
     const body = await (await call("classes", "&page=2&pageSize=2")).json();
     expect(body.meta).toEqual({ page: 2, pageSize: 2, total: 3 });
     expect(body.data[0].id).toBe(c.id);
+  });
+  it("filters the complete roster before pagination and sorts by current class rather than the compatibility pointer", async () => {
+    const a = cls(10),
+      b = cls(11),
+      unrelated = cls(12);
+    a.name = "가반";
+    b.name = "나반";
+    member(30, a.id);
+    member(31, b.id);
+    const first = student(20, unrelated.id, {
+      name: "홍길동",
+      schoolLevel: "초",
+      schoolGrade: 6,
+    });
+    const second = student(21, unrelated.id, {
+      name: "김학생",
+      studentAccount: { disabledAt: null, lockedUntil: null },
+    });
+    const held = student(22, unrelated.id, { name: "휴원 학생" });
+    enrollment(40, first.id, a.id);
+    enrollment(41, second.id, b.id);
+    enrollment(42, held.id, a.id, { onHold: true });
+    const sorted = await (
+      await call("students", "&sort=class&pageSize=1")
+    ).json();
+    expect(sorted.data[0].id).toBe(first.id);
+    expect(sorted.meta.total).toBe(3);
+    expect(sorted.filters.classes).toEqual([
+      { id: a.id, name: "가반" },
+      { id: b.id, name: "나반" },
+    ]);
+    const filtered = await (
+      await call(
+        "students",
+        `&classId=${a.id}&enrollment=enrolled&login=unissued&grade=${encodeURIComponent("초6")}&q=${encodeURIComponent("홍")}&page=999`,
+      )
+    ).json();
+    expect(filtered.meta).toEqual({ page: 1, pageSize: 20, total: 1 });
+    expect(filtered.data[0].id).toBe(first.id);
+    const onHold = await (
+      await call("students", `&classId=${a.id}&enrollment=on-hold`)
+    ).json();
+    expect(onHold.data.map((s: { id: string }) => s.id)).toEqual([held.id]);
+    const foreign = await (
+      await call("students", `&classId=${unrelated.id}`)
+    ).json();
+    expect(foreign.meta.total).toBe(0);
+    expect(foreign.data).toEqual([]);
+  });
+  it.each([
+    "&sort=arbitrary",
+    "&enrollment=withdrawn",
+    "&classId=bad",
+    "&login=unknown",
+    "&direction=backwards",
+    "&q=a&q=b",
+  ])("rejects invalid student filters: %s", async (query) => {
+    expect((await call("students", query)).status).toBe(400);
+    expect(transaction).not.toHaveBeenCalled();
   });
 });

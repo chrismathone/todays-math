@@ -4,11 +4,15 @@ import type {
   ListeningMediaScope,
   ListeningMediaUpload,
 } from "../../../../contracts/englishListeningMedia.contract";
+import type { ListeningDriveRef } from "./driveApi";
+import type { ListeningStorageRef } from "./storageApi";
 
 export interface ListeningMediaChunkRecord {
   key: string;
   offset: number;
   byteLength: number;
+  /** Internal bounded view into an immutable original blob; absent means zero. */
+  blobOffset?: number;
   sha256: string;
   /** Exact request revision retained for idempotent retry checks. */
   expectedRevision: number;
@@ -25,10 +29,15 @@ export interface ListeningMediaRecord
   uploadExpiresAt: number;
   state: "uploading" | "ready" | "publish_blocked" | "failed" | "expired";
   chunks: ListeningMediaChunkRecord[];
+  /** Server-selected at upload start, never accepted from public upload inputs. */
+  mp3PlaybackEncoding?: "scrubbed_mp3";
+  /** Private immutable external audio binding; never include in public DTOs. */
+  drive?: ListeningDriveRef;
+  storage?: ListeningStorageRef;
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;
-    mimeType: "audio/wav";
+    mimeType: "audio/wav" | "audio/mpeg";
     sha256: string;
     totalBytes: number;
     chunks: ListeningMediaChunkRecord[];

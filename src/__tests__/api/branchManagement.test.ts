@@ -1,7 +1,6 @@
 // @vitest-environment node
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { compare } from "bcryptjs";
-import { Prisma } from "@prisma/client";
 
 const state = vi.hoisted(() => ({
   account: {
@@ -89,7 +88,7 @@ const register = () =>
       body: JSON.stringify({
         classId,
         name: "새 학생",
-        loginId: "NEW_STUDENT",
+        phone: "010-1234-0042",
       }),
     }),
   );
@@ -177,7 +176,7 @@ describe("지점 계정 발급과 반 배정", () => {
     expect(state.studentCreate).not.toHaveBeenCalled();
   });
 
-  it("지점 관리자는 학생 명단과 로그인 계정을 한 번에 발급한다", async () => {
+  it("지점 관리자는 학생 등록만 하며 반별 전체 생성 전에는 계정을 만들지 않는다", async () => {
     state.account = { ...state.account, branchRole: "manager" };
     const response = await register();
     expect(response.status).toBe(201);
@@ -186,36 +185,23 @@ describe("지점 계정 발급과 반 배정", () => {
       id: studentId,
       name: "새 학생",
       classId,
-      loginId: "new_student",
     });
-    expect(data.initialPassword).toBe("q1w2e3r4");
+    expect(data).not.toHaveProperty("initialPassword");
+    expect(data).not.toHaveProperty("loginId");
     const saved = state.studentCreate.mock.calls[0][0].data;
     expect(saved).toMatchObject({
       classId,
       name: "새 학생",
-      studentAccount: {
-        create: { loginId: "new_student", issuedById: state.account.id },
-      },
+      phoneLast4: "0042",
     });
-    expect(
-      await compare(
-        data.initialPassword,
-        saved.studentAccount.create.passwordHash,
-      ),
-    ).toBe(true);
+    expect(saved).not.toHaveProperty("studentAccount");
+    expect(JSON.stringify(saved)).not.toContain("010-1234");
   });
 
-  it("다른 지점 반이나 중복 아이디는 학생을 등록하지 않는다", async () => {
+  it("다른 지점 반에는 학생을 등록하지 않는다", async () => {
     state.classFindFirst.mockResolvedValueOnce(null);
     expect((await register()).status).toBe(404);
     expect(state.studentCreate).not.toHaveBeenCalled();
-    state.studentCreate.mockRejectedValueOnce(
-      new Prisma.PrismaClientKnownRequestError("duplicate", {
-        code: "P2002",
-        clientVersion: "6.19.3",
-      }),
-    );
-    expect((await register()).status).toBe(409);
   });
 
   it("학생은 소속 지점의 다른 반으로만 배정할 수 있다", async () => {

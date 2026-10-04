@@ -15,6 +15,7 @@ export interface ListeningPrintDocument {
       choices: string[];
       image?: { dataUrl: string; width: number; height: number };
       sourceNumber?: number;
+      reconstructionLabel?: string;
       answer?: number;
       explanation?: string;
     }[];
@@ -39,6 +40,9 @@ export function listeningPrintDocument(
         id: question.id,
         number: ++number,
         prompt: question.prompt,
+        ...(question.metadata?.origin === "audio_reconstructed"
+          ? { reconstructionLabel: "원본 문제지 없음 · 음원 기반 재구성" }
+          : {}),
         ...(question.instruction ? { instruction: question.instruction } : {}),
         choices: question.choices.map((choice) => choice.text),
         ...(question.image ? { image: { ...question.image } } : {}),

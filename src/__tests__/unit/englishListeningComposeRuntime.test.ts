@@ -2,6 +2,7 @@
 /** Real PostgreSQL and canonical PCM files; no shared database fallback. */
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { deflateSync } from "node:zlib";
+import { readFileSync } from "node:fs";
 import { Prisma, PrismaClient } from "@prisma/client";
 import {
   afterAll,
@@ -25,6 +26,19 @@ import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import type { ListeningComposeSource } from "@/contracts/englishListeningCompose.contract";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
 import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
+import {
+  decodeMp3,
+  parseMp3,
+  MAX_DURATION_MS,
+  MAX_PLAYBACK_BYTES,
+} from "@/lib/english/listening/media/mp3";
+import { planListeningWaveClip } from "@/lib/english/listening/media/clip";
+import { registerDriveListeningAsset } from "@/lib/english/listening/runtime/driveAssets";
+import { createListeningDriveApi } from "@/lib/english/listening/media/driveApi";
+import { fakeListeningDrive } from "../fixtures/english-listening/fakeDrive";
+import { fakeListeningStorage } from "../fixtures/english-listening/fakeStorage";
+import { createListeningStorageApi } from "@/lib/english/listening/media/storageApi";
+import { registerStorageListeningAsset } from "@/lib/english/listening/runtime/storageAssets";
 
 vi.mock("server-only", () => ({}));
 const url = process.env.LISTENING_TEST_DATABASE_URL;
@@ -45,11 +59,32 @@ const media = db
       now: () => now.getTime(),
     })
   : null;
+const archiveMedia = db
+  ? createListeningMediaService({
+      store: store!,
+      ...createListeningMediaAccess(db, () => now),
+      now: () => now.getTime(),
+      mp3PlaybackEncoding: "scrubbed_mp3",
+    })
+  : null;
 const ownerId = randomUUID(),
   otherId = randomUUID();
 const branchIds: string[] = [];
 const owner: ListeningActor = { kind: "teacher", userId: ownerId };
 const other: ListeningActor = { kind: "teacher", userId: otherId };
+const fakeDrive = fakeListeningDrive(ownerId);
+const driveApi = createListeningDriveApi(fakeDrive.config, fakeDrive.fetchImpl);
+const driveRuntime = db
+  ? createListeningRuntime(db, () => now, { drive: driveApi })
+  : null;
+const fakeStorage = fakeListeningStorage();
+const storageApi = createListeningStorageApi(
+  fakeStorage.config,
+  fakeStorage.fetchImpl,
+);
+const storageRuntime = db
+  ? createListeningRuntime(db, () => now, { storage: storageApi })
+  : null;
 const rights = englishListeningFixture().rights;
 const sha = (value: Uint8Array) =>
   createHash("sha256").update(value).digest("hex");
@@ -124,7 +159,13 @@ const edit = (set: ListeningSetDetail) => ({
     return copy;
   }),
 });
-async function source(marker = 0, timing = true) {
+async function source(
+  marker = 0,
+  timing = true,
+  archive = false,
+  external = false,
+  useStorage = false,
+) {
   let set = await runtime!.createSet(owner, {
     title: "원본 듣기 " + marker,
     rights,
@@ -135,36 +176,86 @@ async function source(marker = 0, timing = true) {
     kind: "rights",
     basis: "테스트 원본 보관·교사 이용·배포 허용",
   });
-  const wav = wave(marker);
-  const begun = await media!.beginUpload(
-    { actor: owner },
-    {
-      setId: set.id,
-      totalBytes: wav.length,
-      mimeType: "audio/wav",
-      expectedSha256: sha(wav),
-    },
-  );
-  const appended = await media!.appendChunk(
-    { actor: owner },
-    {
-      setId: set.id,
-      assetId: begun.assetId,
-      expectedRevision: begun.revision,
-      offset: 0,
-      byteLength: wav.length,
-      sha256: sha(wav),
-    },
-    bytes(wav),
-  );
-  const ready = await media!.completeUpload(
-    { actor: owner },
-    {
-      setId: set.id,
-      assetId: begun.assetId,
-      expectedRevision: appended.revision,
-    },
-  );
+  let wav = wave(marker);
+  let original = wav;
+  if (archive) {
+    const tone = readFileSync(
+      new URL("../fixtures/english-listening/tone.mp3", import.meta.url),
+    );
+    const text = Buffer.from("SECRET_ANSWER_AND_SCRIPT");
+    original = Buffer.concat([
+      Buffer.from([73, 68, 51, 3, 0, 0, 0, 0, 0, text.length]),
+      text,
+      tone,
+    ]);
+    const parts: Buffer[] = [];
+    const decoded = await decodeMp3(
+      original,
+      { maxDurationMs: MAX_DURATION_MS, maxPlaybackBytes: MAX_PLAYBACK_BYTES },
+      async (part) => {
+        parts.push(part);
+      },
+    );
+    wav = Buffer.concat([decoded.header, ...parts]);
+  }
+  const uploadMedia = archive ? archiveMedia! : media!;
+  let ready;
+  if (external) {
+    ready = useStorage
+      ? await registerStorageListeningAsset(
+          db!,
+          storageApi,
+          {
+            actor: owner,
+            setId: set.id,
+            expectedSetRevision: set.revision,
+            bytes: original,
+          },
+          () => now,
+        )
+      : await registerDriveListeningAsset(
+          db!,
+          driveApi,
+          {
+            actor: owner,
+            setId: set.id,
+            expectedSetRevision: set.revision,
+            fileId: fakeDrive.add(original),
+            bytes: original,
+          },
+          () => now,
+        );
+  } else {
+    const begun = await uploadMedia.beginUpload(
+      { actor: owner },
+      {
+        setId: set.id,
+        totalBytes: original.length,
+        mimeType: archive ? "audio/mpeg" : "audio/wav",
+        expectedSha256: sha(original),
+      },
+    );
+    const appended = await uploadMedia.appendChunk(
+      { actor: owner },
+      {
+        setId: set.id,
+        assetId: begun.assetId,
+        expectedRevision: begun.revision,
+        offset: 0,
+        byteLength: original.length,
+        sha256: sha(original),
+      },
+      bytes(original),
+    );
+    ready = await uploadMedia.completeUpload(
+      { actor: owner },
+      {
+        setId: set.id,
+        assetId: begun.assetId,
+        expectedRevision: appended.revision,
+      },
+    );
+  }
   if (ready.state !== "ready") throw new Error("Real PCM readiness required");
   const group = englishListeningFixture().groups[0];
   const editableGroup = { ...group };
@@ -172,9 +263,17 @@ async function source(marker = 0, timing = true) {
   const questions = group.questions.map((question, index) => ({
     ...question,
     ...(timing
-      ? { audioRange: { startMs: index * 8000, endMs: index ? 15000 : 8000 } }
+      ? {
+          audioRange: archive
+            ? { startMs: index * 500, endMs: (index + 1) * 500 }
+            : { startMs: index * 8000, endMs: index ? 15000 : 8000 },
+        }
       : {}),
-    evidence: [{ startMs: index ? 9000 : 3000, endMs: index ? 14000 : 7000 }],
+    evidence: [
+      archive
+        ? { startMs: index ? 600 : 100, endMs: index ? 900 : 300 }
+        : { startMs: index ? 9000 : 3000, endMs: index ? 14000 : 7000 },
+    ],
   }));
   set = await runtime!.updateSet(owner, set.id, {
     ...edit(set),
@@ -194,7 +293,7 @@ async function source(marker = 0, timing = true) {
       },
     ],
   });
-  return { source: await runtime!.composeSource(owner, set.id), wav };
+  return { source: await runtime!.composeSource(owner, set.id), wav, original };
 }
 const selection = (
   source: ListeningComposeSource,
@@ -224,6 +323,10 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       });
   });
   afterEach(async () => {
+    fakeStorage.files.clear();
+    fakeStorage.calls.splice(0);
+    fakeDrive.files.clear();
+    fakeDrive.calls.splice(0);
     await db!.$transaction(async (tx) => {
       await tx.$executeRaw(
         Prisma.sql`DELETE FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId" IN (${ownerId}::uuid,${otherId}::uuid))`,
@@ -243,9 +346,351 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         });
     });
   });
+  it("stores validated original MP3 in private Supabase Storage, registers idempotently and shares whole audio under fresh scope", async () => {
+    const original = await source(30, true, true, true, true),
+      from = original.source.detail.document.groups[0],
+      asset = await store!.get(from.audio!.assetId);
+    const ready = await registerStorageListeningAsset(
+      db!,
+      storageApi,
+      {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        bytes: original.original,
+        assetId: asset!.assetId,
+      },
+      () => now,
+    );
+    expect(ready.assetId).toBe(asset!.assetId);
+    expect(fakeStorage.files.size).toBe(1);
+    const composed = await storageRuntime!.composeSet(owner, {
+        title: "Supabase 회차",
+        selections: [selection(original.source)],
+      }),
+      cloned = await store!.get(composed.document.groups[0].audio!.assetId);
+    expect(cloned!.storage).toEqual(asset!.storage);
+    expect(cloned!.setId).toBe(composed.id);
+    expect(fakeStorage.files.size).toBe(1);
+    const [row] = await db!.$queryRaw<{ count: bigint; bytes: bigint }[]>(
+      Prisma.sql`SELECT (SELECT COUNT(*) FROM english_listening_media_blob WHERE "assetId" IN(SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid)) AS count,(SELECT SUM("reservedBytes") FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS bytes`,
+    );
+    expect(row).toEqual({ count: BigInt(0), bytes: BigInt(0) });
+  });
+  it("clips reordered Supabase MP3 or legacy PG PCM to Storage while preserving exact samples and resetting reviews", async () => {
+    for (const external of [true, false]) {
+      const original = await source(
+          external ? 31 : 32,
+          true,
+          external,
+          external,
+          external,
+        ),
+        group = original.source.detail.document.groups[0],
+        questions = [...group.questions].reverse();
+      const composed = await storageRuntime!.composeSet(owner, {
+          title: "Supabase 선택 문항",
+          selections: [
+            selection(
+              original.source,
+              questions.map((q) => q.id),
+            ),
+          ],
+        }),
+        record = await store!.get(composed.document.groups[0].audio!.assetId),
+        output = fakeStorage.files.get(record!.storage!.key)!;
+      const plan = planListeningWaveClip(
+        original.wav.subarray(0, 44),
+        original.wav.length,
+        questions,
+      );
+      expect(output).toEqual(
+        Buffer.concat([
+          plan.header,
+          ...plan.ranges.map((r) =>
+            original.wav.subarray(r.start, r.endExclusive),
+          ),
+        ]),
+      );
+      expect(record!.chunks).toEqual([]);
+      expect(composed.document.groups[0].reviews).toEqual({
+        audio: null,
+        alignment: null,
+        content: null,
+      });
+      const [row] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_blob WHERE "assetId"=${record!.assetId}::uuid`,
+      );
+      expect(row.count).toBe(BigInt(0));
+    }
+  });
+  it("registers strictly validated private Drive audio idempotently without bytea rows and clones fresh set scope", async () => {
+    const original = await source(10, true, true, true),
+      from = original.source.detail.document.groups[0];
+    const asset = await store!.get(from.audio!.assetId);
+    const repeated = await registerDriveListeningAsset(
+      db!,
+      driveApi,
+      {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        fileId: asset!.drive!.fileId,
+        bytes: original.original,
+        assetId: asset!.assetId,
+      },
+      () => now,
+    );
+    expect(repeated.assetId).toBe(asset!.assetId);
+    const composed = await driveRuntime!.composeSet(owner, {
+      title: "Drive 원본 회차",
+      selections: [selection(original.source)],
+    });
+    const cloned = await store!.get(composed.document.groups[0].audio!.assetId);
+    expect(cloned!.setId).toBe(composed.id);
+    expect(cloned!.assetId).not.toBe(asset!.assetId);
+    expect(cloned!.drive).toEqual(asset!.drive);
+    const [inventory] = await db!.$queryRaw<{ count: bigint; bytes: bigint }[]>(
+      Prisma.sql`SELECT (SELECT COUNT(*) FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid)) AS count,(SELECT SUM("reservedBytes") FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS bytes`,
+    );
+    expect(inventory).toEqual({ count: BigInt(0), bytes: BigInt(0) });
+    expect(composed.document.rightsReview).toBeNull();
+    expect(composed.document.groups[0].reviews.audio).toBeNull();
+  });
+  it("reorders Drive MP3 ranges into sample-exact private PCM with no database binary", async () => {
+    const original = await source(11, true, true, true),
+      group = original.source.detail.document.groups[0],
+      questions = [...group.questions].reverse();
+    const composed = await driveRuntime!.composeSet(owner, {
+      title: "Drive 순서 바꿈",
+      selections: [
+        selection(
+          original.source,
+          questions.map((q) => q.id),
+        ),
+      ],
+    });
+    const asset = await store!.get(composed.document.groups[0].audio!.assetId),
+      output = fakeDrive.files.get(asset!.drive!.fileId)!.bytes;
+    const plan = planListeningWaveClip(
+      original.wav.subarray(0, 44),
+      original.wav.length,
+      questions,
+    );
+    expect(output).toEqual(
+      Buffer.concat([
+        plan.header,
+        ...plan.ranges.map((r) =>
+          original.wav.subarray(r.start, r.endExclusive),
+        ),
+      ]),
+    );
+    const [row] = await db!.$queryRaw<{ count: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid)`,
+    );
+    expect(row.count).toBe(BigInt(0));
+    expect(composed.document.groups[0].questions[0].audioRange).toEqual({
+      startMs: 0,
+      endMs: 500,
+    });
+    const count = fakeDrive.calls.length;
+    await expect(
+      registerDriveListeningAsset(db!, driveApi, {
+        actor: other,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        fileId: asset!.drive!.fileId,
+        bytes: original.original,
+      }),
+    ).rejects.toMatchObject({ status: 404 });
+    expect(fakeDrive.calls).toHaveLength(count);
+  });
+  it.each(["drive", "storage"] as const)(
+    "removes only a newly uploaded %s clip when oversized composition rolls back SQL",
+    async (backend) => {
+      const originals: ListeningComposeSource[] = [];
+      const image = documentBudgetImage();
+      for (const [marker, external] of [
+        [21, true],
+        [22, false],
+      ] as const) {
+        const original = await source(
+            marker,
+            true,
+            external,
+            external,
+            backend === "storage",
+          ),
+          input = edit(original.source.detail),
+          question = input.groups[0].questions[0];
+        input.groups[0].questions = Array.from({ length: 10 }, (_, index) => {
+          const ids = new Map(
+            question.choices.map((c) => [c.id, randomUUID()]),
+          );
+          return {
+            ...question,
+            id: randomUUID(),
+            image,
+            sourceNumber: index + 1,
+            ...(external
+              ? {
+                  audioRange: {
+                    startMs: index * 100,
+                    endMs: (index + 1) * 100,
+                  },
+                  evidence: [],
+                }
+              : {}),
+            choices: question.choices.map((c) => ({
+              ...c,
+              id: ids.get(c.id)!,
+            })),
+            answerChoiceId: ids.get(question.answerChoiceId!)!,
+          };
+        });
+        const saved = await runtime!.updateSet(
+          owner,
+          original.source.detail.id,
+          input,
+        );
+        expect(Buffer.byteLength(JSON.stringify(saved.document))).toBeLessThan(
+          LISTENING_MAX_DOCUMENT_BYTES,
+        );
+        originals.push(await runtime!.composeSource(owner, saved.id));
+      }
+      const originalAsset = await store!.get(
+          originals[0].detail.document.groups[0].audio!.assetId,
+        ),
+        before = await runtime!.teacherList(owner, "sets");
+      await expect(
+        (backend === "storage" ? storageRuntime! : driveRuntime!).composeSet(
+          owner,
+          {
+            title: "Drive 복합 그림 한도",
+            selections: [
+              selection(
+                originals[0],
+                [...originals[0].detail.document.groups[0].questions]
+                  .reverse()
+                  .map((q) => q.id),
+              ),
+              selection(originals[1]),
+            ],
+          },
+        ),
+      ).rejects.toMatchObject({ status: 400 });
+      expect(await runtime!.teacherList(owner, "sets")).toHaveLength(
+        before.length,
+      );
+      if (backend === "storage") {
+        expect(fakeStorage.files.has(originalAsset!.storage!.key)).toBe(true);
+        expect(fakeStorage.files.size).toBe(1);
+      } else {
+        expect(
+          fakeDrive.files.get(originalAsset!.drive!.fileId)!.trashed,
+        ).not.toBe(true);
+        const derivatives = [...fakeDrive.files.entries()].filter(([id]) =>
+          id.startsWith("derivative_"),
+        );
+        expect(derivatives).toHaveLength(1);
+        expect(derivatives[0][1].trashed).toBe(true);
+      }
+      const [inventory] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`,
+      );
+      expect(inventory.count).toBe(BigInt(2));
+    },
+  );
   afterAll(async () => {
     await db?.user.deleteMany({ where: { id: { in: [ownerId, otherId] } } });
     await db?.$disconnect();
+  });
+  it("clones compressed archives once per unique original blob, preserving MPEG identity and scope", async () => {
+    const original = await source(8, true, true);
+    const originalAudio = original.source.detail.document.groups[0].audio!;
+    const before = (await store!.get(originalAudio.assetId))!;
+    expect(before.playback!.mimeType).toBe("audio/mpeg");
+    const composed = await runtime!.composeSet(owner, {
+      title: "보관 MP3 전체 회차",
+      selections: [selection(original.source)],
+    });
+    const audio = composed.document.groups[0].audio!;
+    const copied = (await store!.get(audio.assetId))!;
+    expect(copied.playback!.mimeType).toBe("audio/mpeg");
+    expect(copied.playback!.sha256).toBe(before.playback!.sha256);
+    const blobs = await db!.$queryRaw<{ count: bigint; bytes: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*)::bigint AS count,SUM("byteLength")::bigint AS bytes FROM english_listening_media_blob WHERE "assetId"=${audio.assetId}::uuid`,
+    );
+    expect(Number(blobs[0].count)).toBe(before.chunks.length);
+    expect(Number(blobs[0].bytes)).toBe(original.original.length);
+    expect(
+      copied.chunks.every((chunk) =>
+        before.chunks.every((old) => old.key !== chunk.key),
+      ),
+    ).toBe(true);
+    const reviewed = await runtime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "직접 만든 보관 음원의 교사 이용",
+    });
+    const response = await media!.serve(
+      { actor: owner },
+      { setId: reviewed.id, assetId: audio.assetId, method: "GET" },
+    );
+    expect(response.headers.get("content-type")).toBe("audio/mpeg");
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(
+      Buffer.concat(parseMp3(original.original, MAX_DURATION_MS).frames),
+    );
+    expect(await store!.get(originalAudio.assetId)).toEqual(before);
+  });
+  it("decodes an archive on demand and clips reordered questions to sample-exact canonical PCM", async () => {
+    const original = await source(9, true, true);
+    const questions = [
+      ...original.source.detail.document.groups[0].questions,
+    ].reverse();
+    const expected = planListeningWaveClip(
+      original.wav.subarray(0, 44),
+      original.wav.length,
+      questions,
+    );
+    let composed = await runtime!.composeSet(owner, {
+      title: "보관 MP3 문항 순서 편집",
+      selections: [
+        selection(
+          original.source,
+          questions.map((question) => question.id),
+        ),
+      ],
+    });
+    composed = await runtime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "직접 만든 보관 음원의 편집·교사 이용",
+    });
+    const group = composed.document.groups[0];
+    const response = await media!.serve(
+      { actor: owner },
+      { setId: composed.id, assetId: group.audio!.assetId, method: "GET" },
+    );
+    expect(response.headers.get("content-type")).toBe("audio/wav");
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(
+      Buffer.concat([
+        expected.header,
+        ...expected.ranges.map((range) =>
+          original.wav.subarray(range.start, range.endExclusive),
+        ),
+      ]),
+    );
+    expect(group.reviews).toEqual({
+      content: null,
+      audio: null,
+      alignment: null,
+    });
+    expect(group.questions.map((question) => question.audioRange)).toEqual(
+      questions.map((question) =>
+        expected.audioRangeByQuestionId.get(question.id),
+      ),
+    );
   });
   it("copies a full round with fresh IDs and set-owned sealed bytes while originals stay unchanged", async () => {
     const original = await source();

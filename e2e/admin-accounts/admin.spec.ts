@@ -42,6 +42,10 @@ async function installApi(page: Page) {
         contentType: "application/json",
         body: JSON.stringify(data),
       });
+    if (url.pathname === "/api/admin/branches") {
+      await respond({ data: [] });
+      return;
+    }
     if (url.pathname === "/api/admin/users") {
       const q = (url.searchParams.get("q") || "").toLowerCase();
       const status = url.searchParams.get("status");
@@ -174,14 +178,14 @@ for (const width of [320, 390, 1440]) {
       fullPage: true,
     });
     api.conflict();
-    await page.getByRole("button", { name: "메뉴 변경 저장" }).click();
+    await page.getByRole("button", { name: "변경 저장", exact: true }).click();
     await expect(page.getByRole("alert")).toContainText("다른 관리자가");
     await expect(
       page.getByRole("button", { name: "계정 승인 · 메뉴 저장" }),
     ).toBeDisabled();
     await page.getByRole("button", { name: "최신 정보 불러오기" }).click();
     await expect(
-      page.getByLabel("문제은행", { exact: true }),
+      page.getByLabel("문제 추출", { exact: true }),
     ).not.toBeChecked();
     await page.getByLabel("문제 추출", { exact: true }).check();
     await page.getByRole("button", { name: "계정 승인 · 메뉴 저장" }).click();

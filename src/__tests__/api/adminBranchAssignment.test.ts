@@ -18,7 +18,8 @@ const state = vi.hoisted(() => ({
   documentUpdateMany: vi.fn(),
   auditCreate: vi.fn(),
   transaction: vi.fn(),
-  managed: null as null | { blockReasons: string[] },
+  managedUpdate: vi.fn(),
+  managed: null as null | { id?: string; blockReasons: string[] },
 }));
 vi.mock("@/lib/accountAccess", () => ({
   authorizeAccount: vi.fn(async () =>
@@ -111,10 +112,14 @@ beforeEach(() => {
   state.userCount.mockResolvedValue(1);
   state.documentUpdateMany.mockResolvedValue({ count: 0 });
   state.auditCreate.mockResolvedValue({});
+  state.managedUpdate.mockResolvedValue({});
   state.transaction.mockImplementation(
     async (run: (tx: unknown) => Promise<unknown>) =>
       run({
-        eywaManagedAccount: { findUnique: vi.fn(async () => state.managed) },
+        eywaManagedAccount: {
+          findUnique: vi.fn(async () => state.managed),
+          update: state.managedUpdate,
+        },
         user: {
           findFirst: state.userFindFirst,
           updateMany: state.userUpdateMany,
@@ -179,6 +184,51 @@ describe("최고관리자의 기존 계정 지점 배정", () => {
     ).toBe(403);
     expect((await patch({ isAdmin: true }))!.status).toBe(403);
     expect(state.userUpdateMany).not.toHaveBeenCalled();
+  });
+  it.each(["owner", "manager", "teacher"])(
+    "persists a superadmin-managed role override %s without changing branch",
+    async (branchRole) => {
+      state.managed = { id: "mapping", blockReasons: [] };
+      state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+      expect(
+        (await patch({ branchRole, expectedBranchId: branchId }))!.status,
+      ).toBe(200);
+      expect(state.managedUpdate).toHaveBeenCalledWith({
+        where: { id: "mapping" },
+        data: { branchRoleOverride: branchRole },
+      });
+      expect(state.userUpdateMany.mock.calls[0][0].data).toMatchObject({
+        branchRole,
+        isAdmin: branchRole !== "teacher",
+        sessionVersion: { increment: 1 },
+      });
+      expect(state.userUpdateMany.mock.calls[0][0].data).not.toHaveProperty(
+        "branchId",
+      );
+    },
+  );
+  it("denies role overrides from branch managers before starting a transaction", async () => {
+    state.superadmin = false;
+    expect((await patch({ branchRole: "owner" }))!.status).toBe(403);
+    expect(state.transaction).not.toHaveBeenCalled();
+  });
+  it("does not persist an override when demoting the last active managed owner", async () => {
+    state.managed = { id: "mapping", blockReasons: [] };
+    state.previous = {
+      ...state.previous,
+      branchId,
+      branchRole: "owner",
+      isAdmin: true,
+    };
+    expect((await patch({ branchRole: "teacher" }))!.status).toBe(403);
+    expect(state.managedUpdate).not.toHaveBeenCalled();
+  });
+  it("rolls back the override by throwing when the optimistic user update fails", async () => {
+    state.managed = { id: "mapping", blockReasons: [] };
+    state.previous = { ...state.previous, branchId, branchRole: "teacher" };
+    state.userUpdateMany.mockResolvedValueOnce({ count: 0 });
+    expect((await patch({ branchRole: "manager" }))!.status).toBe(409);
+    expect(state.auditCreate).not.toHaveBeenCalled();
   });
   it("clearing a manual suspension cannot clear a managed OFF suspension", async () => {
     const suspendedAt = new Date("2026-09-22T00:00:00Z");

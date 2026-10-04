@@ -106,6 +106,8 @@ export function accountUsable(
     | "approvalStatus"
     | "isSuperAdmin"
     | "isAdmin"
+    | "branchId"
+    | "branchRole"
   >,
   account: EywaManagedAccount,
   binding: EywaBinding,
@@ -116,7 +118,10 @@ export function accountUsable(
     !user.manualSuspendedAt &&
     user.approvalStatus === "approved" &&
     !user.isSuperAdmin &&
-    !user.isAdmin &&
+    user.branchId === binding.targetBranchId &&
+    user.branchRole === (account.branchRoleOverride ?? "teacher") &&
+    user.isAdmin ===
+      ["owner", "manager"].includes(account.branchRoleOverride ?? "teacher") &&
     account.status === "confirmed" &&
     !!account.currentUserId &&
     !account.blockReasons.length &&

@@ -431,6 +431,8 @@ export function composeLearnDb(base: object): object {
     {},
     {
       get(_target, prop, receiver) {
+        // This fixture models credential writes; real row-lock behavior belongs to PostgreSQL tests.
+        if (prop === "$queryRaw") return async () => [];
         if (prop === "$transaction")
           return async (work: (tx: object) => Promise<unknown>) => {
             const before = structuredClone({

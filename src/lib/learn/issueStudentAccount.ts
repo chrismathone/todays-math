@@ -9,7 +9,7 @@
  *     일반 강사는 원본의 student:account 권한이 있어도 발급하지 못한다(`studentAccountPolicy.ts`).
  *     `issueDeps.ts`가 현재 학생·반·지점 관계를 확인하고 저장 직전에 다시 확인한다.
  *  2. **한 명씩**(D-124 ⑷). 이미 계정이 있으면 거부 — «다시 발급»은 비밀번호만 새로.
- *  3. 아이디는 원장님이 적은 것을 정규화해 쓴다(자동 제안 없음 — D-125 ⑵). 겹치면 «이미 쓰는 아이디입니다».
+ *  3. 기본 아이디는 학생 이름이다. 개별 발급에서 동명이인 아이디를 조정할 수 있고, 초기 비밀번호는 등록 연락처 끝 4자리다.
  *  4. 🔴 초기 비밀번호는 **해시만** 저장하고 부르는 쪽에 **한 번** 돌려준다. 감사 기록에 싣지 않는다(⑥).
  *  5. 끄기는 `disabledAt` 만 찍고 지우지 않는다(수맥 규칙). 켜면 비운다.
  *  6. 모두 `AccountAuditLog` 에 남긴다(기존 `recordAudit`) — 발급한 사람이 `userId`·`actorId` 다
@@ -25,7 +25,6 @@ import {
   type StudentAccountStatus,
 } from "@/contracts/studentAccount.contract";
 
-import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import type { ScopeViewer } from "@/lib/ownerScope";
 import {
   canManageStudentAccounts,
@@ -92,6 +91,8 @@ export interface IssueDeps {
     >,
   ): Promise<IssuedAccount>;
   generatePin(): string;
+  /** Initial issuance uses the registered contact tail; null means the source needs contact data. */
+  initialPinForStudent?(studentId: string): Promise<string | null>;
   hashPin(pin: string): Promise<string>;
   now(): Date;
   audit(entry: AccountAuditEntry): Promise<void>;
@@ -104,6 +105,7 @@ export type IssueFailure =
   | "account_exists"
   | "login_id_taken"
   | "no_account"
+  | "missing_phone"
   /** 규칙 8 — 퇴원 학생 발급 · 다시 발급 · 켜기 (문구가 셋이라 까닭도 셋) */
   | "withdrawn_issue"
   | "withdrawn_reissue"
@@ -163,13 +165,10 @@ export async function issueStudentAccount(
     return fail("account_exists");
   if (await deps.findAccountByLoginId(loginId)) return fail("login_id_taken");
 
-  // 지점 원장·관리자 발급은 지점 초기 비밀번호를 사용한다.
-  const initialPassword =
-    input.director.branchId &&
-    (input.director.branchRole === "owner" ||
-      input.director.branchRole === "manager")
-      ? BRANCH_INITIAL_PASSWORD
-      : deps.generatePin();
+  const initialPassword = deps.initialPinForStudent
+    ? await deps.initialPinForStudent(input.studentId)
+    : deps.generatePin();
+  if (!initialPassword) return fail("missing_phone");
   const passwordHash = await deps.hashPin(initialPassword);
   let account: IssuedAccount;
   try {

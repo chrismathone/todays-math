@@ -82,6 +82,7 @@ beforeEach(() => {
     branchId,
     eywaBindingId: "binding",
     isTest: false,
+    phoneLast4: "0042",
     eywaWithdrawnAt: null,
   });
   fixture.tables.studentEnrollment.push({

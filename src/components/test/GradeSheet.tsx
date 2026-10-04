@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import BackLink from "@/components/ui/BackLink";
 
 import { Button } from "@/components/ui/Button";
 
@@ -259,12 +260,7 @@ export function GradeSheet({ testId }: { testId: string }) {
           <Button variant="secondary" onClick={retry}>
             다시 불러오기
           </Button>
-          <Link
-            href={`/tests/${testId}`}
-            className="inline-flex min-h-11 items-center text-[14px] font-semibold text-[var(--learn-ink,#172b4d)] underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)]"
-          >
-            시험지로 돌아가기
-          </Link>
+          <BackLink href={`/tests/${testId}`}>시험지로 돌아가기</BackLink>
         </div>
       </main>
     );

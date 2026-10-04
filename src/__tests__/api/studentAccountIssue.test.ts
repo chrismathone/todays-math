@@ -68,7 +68,7 @@ import { prismaTestDouble } from "@/mocks/prismaTestDouble";
 const ORIGIN = "http://localhost:3000";
 const PIN = "7392";
 const PIN2 = "4816";
-const BRANCH_PASSWORD = "q1w2e3r4";
+const BRANCH_PASSWORD = "0042";
 const BRANCH = "00000000-0000-4000-8000-000000000101";
 
 /** 남의 반(USER_OTHER_ID 소유 CLASS_OTHER) 학생 — 픽스처에 없어 시험이 만든다 */
@@ -108,6 +108,14 @@ beforeEach(async () => {
       },
     });
   }
+  const students = (await prismaTestDouble.student.findMany()) as {
+    id: string;
+  }[];
+  for (const student of students)
+    await prismaTestDouble.student.update({
+      where: { id: student.id },
+      data: { phoneLast4: BRANCH_PASSWORD },
+    });
   const classes = await prismaTestDouble.class.findMany({
     where: { userId: USER_OTHER_ID },
   });
@@ -116,6 +124,7 @@ beforeEach(async () => {
       data: {
         classId: classes[0]!.id,
         name: "남의반학생",
+        phoneLast4: BRANCH_PASSWORD,
         schoolLevel: null,
         schoolGrade: null,
         eywaStudentId: null,
@@ -254,7 +263,7 @@ describe("발급 — 지점 관리자 이상 · 한 명씩", () => {
   });
 
   it("형식이 틀린 아이디는 400 — 계정 0", async () => {
-    for (const bad of ["abc", "김서준", "a b c d"]) {
+    for (const bad of ["abc", "김서준@", "a b c d"]) {
       const res = await issue(MOCK_STUDENT_1.id, bad);
       expect(res.status, bad).toBe(400);
     }
@@ -264,6 +273,16 @@ describe("발급 — 지점 관리자 이상 · 한 명씩", () => {
   it("다른 사이트에서 온 요청은 403", async () => {
     const res = await issue(MOCK_STUDENT_1.id, "seo01", "https://evil.example");
     expect(res.status).toBe(403);
+    expect(learnRows.studentAccounts()).toEqual([]);
+  });
+  it("연락처가 없으면 비밀번호를 임의 생성하지 않고 409로 안내한다", async () => {
+    await prismaTestDouble.student.update({
+      where: { id: MOCK_STUDENT_1.id },
+      data: { phoneLast4: null },
+    });
+    const response = await issue(MOCK_STUDENT_1.id, "김민서");
+    expect(response.status).toBe(409);
+    expect((await response.json()).error.message).toContain("전화번호");
     expect(learnRows.studentAccounts()).toEqual([]);
   });
 });

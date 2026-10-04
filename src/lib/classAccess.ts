@@ -56,6 +56,12 @@ export async function accessibleClassesWhere(
   }
   if (managed) {
     if (managed.leaseExpiresAt.getTime() <= now.getTime()) return denied;
+    if (
+      managed.branchAdminScope &&
+      viewer.isAdmin === true &&
+      viewer.branchId === managed.branchAdminScope.branchId
+    )
+      return { branchId: managed.branchAdminScope.branchId };
     const rows = await client.classMembership.findMany({
       where: {
         userId: viewer.id,
@@ -127,7 +133,9 @@ export async function classAccessAllowed(
           managed.leaseExpiresAt > (options.now ?? new Date()) &&
           !!viewer.branchId &&
           cls.branchId === viewer.branchId &&
-          cls.userId === viewer.id
+          (cls.userId === viewer.id ||
+            (viewer.isAdmin === true &&
+              managed.branchAdminScope?.branchId === viewer.branchId))
         );
     } catch {
       return false;

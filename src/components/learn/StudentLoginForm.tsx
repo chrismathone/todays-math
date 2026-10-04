@@ -94,7 +94,7 @@ export function StudentLoginForm() {
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck={false}
-              maxLength={20}
+              maxLength={50}
               required
             />
           </label>

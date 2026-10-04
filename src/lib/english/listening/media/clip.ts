@@ -57,7 +57,9 @@ export function planListeningWaveClip(
   }[] = [];
   for (const range of ranges) {
     const previous = union.at(-1);
-    if (previous && range.start <= previous.end) {
+    // Adjacent questions are separate ranges: merging them would silently undo
+    // a teacher's selected order when those questions are reversed.
+    if (previous && range.start < previous.end) {
       previous.end = Math.max(previous.end, range.end);
       previous.order = Math.min(previous.order, range.order);
     } else union.push({ ...range, outputStart: 0 });
