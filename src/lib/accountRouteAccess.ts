@@ -35,7 +35,11 @@ export function englishRouteAllowed(
     path === "/api/english/listening/references"
   )
     return bank && listening && read;
-  if (/^\/english\/listening\/sets\/[^/]+\/print$/.test(path))
+  if (path === "/api/english/listening/compose")
+    return bank && listening && method === "POST";
+  if (/^\/api\/english\/listening\/sets\/[^/]+\/compose-source$/.test(path))
+    return bank && listening && method === "GET";
+  if (/^\/english\/listening\/sets\/[^/]+\/(print|draft-print)$/.test(path))
     return listening && read;
   if (path === "/api/english/listening/sets")
     return listening && (read || method === "POST");
