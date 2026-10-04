@@ -664,16 +664,13 @@ async function read(editionId: string) {
   return { exchange, sections, blocks, problems };
 }
 type Book = Awaited<ReturnType<typeof read>>;
-/** Whether a selectable activity left anything in the saved book. */
+/**
+ * Whether a selectable activity left anything in the saved book. Every activity but the cover
+ * is recognised by the semantic marker on its own blocks, never by a template name or a title.
+ */
 function present(book: Book, key: Key): boolean {
   if (key === "cover")
     return book.exchange.config.print.coverMode === "included";
-  if (key === "unitIntro")
-    return book.sections.some((s) => s.templateKey === "auto-unit-intro");
-  if (key === "preparation")
-    return book.blocks.some(
-      (b) => b.kind === "text" && b.markdown.startsWith("### 준비 학습"),
-    );
   return book.blocks.some((b) => b.semantic?.activity === key);
 }
 const bankName = (problemId: string) =>
@@ -707,9 +704,7 @@ describe("28 independent activities", () => {
       expect(
         new Set(book.blocks.flatMap((b) => b.semantic?.activity ?? [])),
         `${key} semantic`,
-      ).toEqual(
-        new Set(["unitIntro", "preparation"].includes(key) ? [] : [key]),
-      );
+      ).toEqual(new Set([key]));
     }
   }, 300_000);
 
