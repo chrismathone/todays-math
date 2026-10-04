@@ -24,7 +24,10 @@ export function listeningPdfQuestionBoxes(
   maxNumber = 30,
 ): ListeningPdfQuestionBox[] {
   const headings = items.flatMap((item) => {
-    const match = item.str.trim().match(/^(\d{1,2})\.(?:\s|$)/);
+    const value = item.str.trim();
+    // The original assessment masthead splits dates into "8. (화) 시행".
+    if (/^\d{1,2}\.\s*\([월화수목금토일]\)/.test(value)) return [];
+    const match = value.match(/^(\d{1,2})\.(?:\s|$)/);
     if (!match || !Number(match[1])) return [];
     return [{ ...item, number: Number(match[1]) }];
   });
@@ -36,34 +39,98 @@ export function listeningPdfQuestionBoxes(
     throw new Error(
       "문항의 열 구분을 확인하지 못했습니다. 문제지만 선택하세요.",
     );
+  const readingOrder = (a: ListeningPdfText, b: ListeningPdfText) =>
+    Math.abs(a.y - b.y) < 3 ? a.x - b.x : a.y - b.y;
+  const sharedHeading = /^[【\[]\s*(\d{1,2})\s*[-~～–]\s*(\d{1,2})\s*[】\]]\s*/;
+  const shared = items.flatMap((item) => {
+    const match = item.str.trim().match(sharedHeading);
+    if (!match) return [];
+    const first = Number(match[1]);
+    const last = Number(match[2]);
+    const heading = headings.find(
+      (h) => h.number === first && Math.abs(h.x - item.x) < 24 && h.y > item.y,
+    );
+    if (!heading || first > last) return [];
+    const column = columns.findIndex((x) => Math.abs(x - heading.x) < 24);
+    const left = Math.max(0, Math.min(columns[column], item.x) - 4);
+    const right = columns[column + 1] ? columns[column + 1] - 12 : width - 30;
+    const top = Math.max(0, item.y - item.height - 5);
+    const prompt = items
+      .filter(
+        (line) =>
+          line.str.trim() &&
+          line.x >= left &&
+          line.x < right &&
+          line.y >= top &&
+          line.y < heading.y - heading.height - 5,
+      )
+      .toSorted(readingOrder)
+      .map((line) => line.str.trim())
+      .join(" ")
+      .replace(sharedHeading, "")
+      .trim();
+    return prompt ? [{ first, last, column, left, top, prompt }] : [];
+  });
   return headings
     .filter((h) => h.number <= maxNumber)
     .map((heading) => {
       const column = columns.findIndex((x) => Math.abs(x - heading.x) < 24);
-      const left = Math.max(0, columns[column] - 4);
+      const instruction = shared.find(
+        (group) =>
+          group.column === column &&
+          heading.number >= group.first &&
+          heading.number <= group.last,
+      );
+      const startsInstruction = instruction?.first === heading.number;
+      const left = startsInstruction
+        ? instruction.left
+        : Math.max(0, columns[column] - 4);
       const right = columns[column + 1] ? columns[column + 1] - 12 : width - 30;
-      const top = Math.max(0, heading.y - heading.height - 5);
+      const headingTop = Math.max(0, heading.y - heading.height - 5);
+      const top = startsInstruction ? instruction.top : headingTop;
       const next = headings
         .filter((h) => Math.abs(h.x - heading.x) < 24 && h.y > heading.y + 4)
         .toSorted((a, b) => a.y - b.y)[0];
-      const bottom = next ? next.y - next.height - 7 : height - 45;
+      const nextInstruction = next
+        ? shared.find(
+            (group) => group.column === column && group.first === next.number,
+          )
+        : undefined;
+      const nextTop = nextInstruction
+        ? nextInstruction.top - 2
+        : next
+          ? next.y - next.height - 7
+          : height - 45;
+      const endNotice = items.find(
+        (item) =>
+          item.x >= left &&
+          item.x < right &&
+          item.y > heading.y &&
+          item.str.replace(/\s/g, "").startsWith("이제듣기문제가끝났습니다"),
+      );
+      const bottom = endNotice
+        ? Math.min(nextTop, endNotice.y - endNotice.height - 7)
+        : nextTop;
       const lines = items
         .filter(
           (item) =>
             item.str.trim() &&
             item.x >= left &&
             item.x < right &&
-            item.y >= top &&
+            item.y >= headingTop &&
             item.y < bottom,
         )
-        .toSorted((a, b) => (Math.abs(a.y - b.y) < 3 ? a.x - b.x : a.y - b.y));
+        .toSorted(readingOrder);
       const firstChoice = lines.findIndex((item) => /[①②③④⑤]/.test(item.str));
-      const prompt = lines
+      const ownPrompt = lines
         .slice(0, firstChoice < 0 ? lines.length : firstChoice)
         .map((item) => item.str.trim())
         .join(" ")
         .replace(/^\d+\.\s*/, "")
         .trim();
+      const prompt = instruction
+        ? `${instruction.prompt} ${ownPrompt}`
+        : ownPrompt;
       if (right <= left || bottom <= top || !prompt)
         throw new Error(
           `${heading.number}번 문항의 범위를 확인하지 못했습니다.`,
