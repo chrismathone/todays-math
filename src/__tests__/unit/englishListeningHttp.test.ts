@@ -147,6 +147,28 @@ describe("listening HTTP authenticated boundary", () => {
     const req = new Request("http://localhost/api", { method: "POST", body });
     await expect(listeningJson(req)).rejects.toThrow("너무");
   });
+  it("accepts image data for a combined exam larger than a single assessment", async () => {
+    const payload = {
+      groups: [
+        {
+          questions: Array.from({ length: 20 }, () => ({
+            image: {
+              dataUrl: "data:image/png;base64,iVBORw0KGgo" + "A".repeat(260000),
+              width: 640,
+              height: 420,
+            },
+          })),
+        },
+      ],
+    };
+    const body = JSON.stringify(payload);
+    expect(Buffer.byteLength(body)).toBeGreaterThan(4 * 1024 * 1024);
+    await expect(
+      listeningJson(
+        new Request("http://localhost/api", { method: "POST", body }),
+      ),
+    ).resolves.toEqual(payload);
+  });
   it("routes exact source snapshots and authenticated assembly with private envelopes", async () => {
     mocks.composeSource.mockResolvedValue({
       detail: { id },

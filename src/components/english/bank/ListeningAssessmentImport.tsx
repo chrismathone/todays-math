@@ -57,6 +57,7 @@ export function ListeningAssessmentImport({
   const [error, setError] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
   const [hasSaved, setHasSaved] = useState(false);
+  const [hasUploaded, setHasUploaded] = useState(false);
   const [fileInputKey, setFileInputKey] = useState(0);
   const previewRef = useRef("");
   const controller = useRef<AbortController | null>(null);
@@ -80,6 +81,7 @@ export function ListeningAssessmentImport({
     setPreviewUrl(previewRef.current);
     setAudioFile(file);
     uploaded.current = null;
+    setHasUploaded(false);
   }
 
   async function readFiles() {
@@ -205,6 +207,7 @@ export function ListeningAssessmentImport({
           request.signal,
           setNotice,
         );
+      setHasUploaded(true);
       const audio = uploaded.current;
       for (const question of questions)
         if (question.audioRange && question.audioRange.endMs > audio.durationMs)
@@ -351,16 +354,13 @@ export function ListeningAssessmentImport({
               />
             </label>
           </fieldset>
-          <fieldset
-            disabled={busy || hasSaved}
-            className={b.files}
-            key={fileInputKey}
-          >
+          <fieldset disabled={busy} className={b.files} key={fileInputKey}>
             <label className={s.field}>
               음원 MP3·WAV
               <input
                 type="file"
                 accept=".mp3,.wav"
+                disabled={hasUploaded}
                 onChange={(event) =>
                   chooseAudio(event.target.files?.[0] ?? null)
                 }
@@ -371,6 +371,7 @@ export function ListeningAssessmentImport({
               <input
                 type="file"
                 accept=".pdf"
+                disabled={hasSaved}
                 onChange={(event) => {
                   setQuestionFile(event.target.files?.[0] ?? null);
                   setQuestions([]);
@@ -382,6 +383,7 @@ export function ListeningAssessmentImport({
               <input
                 type="file"
                 accept=".pdf"
+                disabled={hasSaved}
                 onChange={(event) => {
                   setAnswerFile(event.target.files?.[0] ?? null);
                   setQuestions([]);
@@ -393,6 +395,7 @@ export function ListeningAssessmentImport({
               <input
                 type="file"
                 accept=".pdf"
+                disabled={hasSaved}
                 onChange={(event) => {
                   setTranscriptFile(event.target.files?.[0] ?? null);
                   setQuestions([]);
