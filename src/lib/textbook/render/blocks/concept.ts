@@ -1,8 +1,18 @@
+import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
 import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { recallDisplayRows } from "./recall";
 import { renderSourceFragments } from "./semantic";
 import { qrHtml, type RenderResources } from "./shared";
+
+/**
+ * Typed image nodes resolve their URL through the resources. The shared renderer is given
+ * them on every call; a version that does not read them yet ignores the argument.
+ */
+const renderFragments = renderSourceFragments as (
+  nodes: readonly TextbookSourceFragment[],
+  resources?: RenderResources,
+) => string;
 
 type ConceptBlock = Extract<EditorialBlock, { kind: "concept" }> & {
   /** 1-based position among the book's concepts, counted by the render model. */
@@ -46,7 +56,7 @@ export function renderConceptHtml(
       )
       .join("")}</div>${qr}</section>`;
   if (node?.kind === "fragments")
-    return `<section class="tb-concept tb-source-fragments" data-source-kind="${esc(concept.semantic?.source?.kind ?? "concept")}">${titleHtml(concept, block.title)}${renderSourceFragments(node.fragments)}${qr}</section>`;
+    return `<section class="tb-concept tb-source-fragments" data-source-kind="${esc(concept.semantic?.source?.kind ?? "concept")}">${titleHtml(concept, block.title)}${renderFragments(node.fragments, resources)}${qr}</section>`;
   // No source rows (an edited or older manuscript): the saved body is printed as written.
   const b = block.body;
   const list = (title: string, rows: string[], style: string) =>
