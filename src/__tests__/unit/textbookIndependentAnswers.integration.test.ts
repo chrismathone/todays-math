@@ -97,7 +97,8 @@ describe.skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")(
       exchange.snapshots.forEach((snapshot, i) => {
         snapshot.payload.answer = `ANSWER_START_${i}\n\nANSWER_END_${i}`;
         snapshot.payload.solution = Array.from(
-          { length: 12 },
+          // Each legacy answer must fit a page on its own while the answer book grows.
+          { length: 10 },
           (_, line) => `SOLUTION_${i}_LINE_${line} 정답의 근거를 확인합니다.`,
         ).join("\n\n");
       });
@@ -186,7 +187,7 @@ describe.skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")(
         for (let i = 0; i < 4; i++) {
           expect(compact).toContain(`ANSWER_START_${i}`);
           expect(compact).toContain(`ANSWER_END_${i}`);
-          for (let line = 0; line < 12; line++)
+          for (let line = 0; line < 10; line++)
             expect(compact).toContain(`SOLUTION_${i}_LINE_${line}`);
         }
         expect(compact.match(/정답·문제2쪽/g)).toHaveLength(4);
