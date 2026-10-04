@@ -31,7 +31,15 @@ export async function appendIndexes(ctx: QuickCreateAssembly): Promise<void> {
       const concept = concepts.find((entry) => entry.unitId === unit.id);
       const owner =
         concept &&
-        sections.find((entry) => entry.sectionKey === concept.sectionKey);
+        sections.find(
+          (entry) =>
+            entry.sectionKey === concept.sectionKey ||
+            entry.blocks.some(
+              (block) =>
+                (block.kind === "concept" || block.kind === "concept-recall") &&
+                block.conceptKey === concept.conceptKey,
+            ),
+        );
       return coreConceptsForSection(keyOf(unit)).map((entry) => ({
         key: entry.id,
         label: `${entry.term} · ${unit.section}`,

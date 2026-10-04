@@ -59,6 +59,7 @@ type BlockBase = {
   exampleGroupNumber?: number;
   exampleConfirmIndex?: number;
   dialogueScriptTotal?: number;
+  memoryContinuationTitle?: string;
 };
 export type RenderBlock = BlockBase &
   (
@@ -331,6 +332,7 @@ export function createTextbookRenderModel(
                             (previous?.kind === "concept-recall" &&
                               previous.semantic?.activity ===
                                 b.semantic?.activity),
+                          memoryContinuationTitle: s.title,
                           lastPart: true,
                           repetitionChecks:
                             b.phase === "study" && b.showRepetitionChecks,

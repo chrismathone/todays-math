@@ -328,6 +328,18 @@ describe("quick create prepared script and frozen visual integration", () => {
     const legacy = structuredClone(exchange);
     legacy.conceptIntegration!.concepts.forEach((concept) => {
       concept.mappingVersion = "quick-create.unit-triple.v1";
+      // Reconstruct the old same-section OX binding; new bounded activity sections
+      // deliberately share a unit-wide concept instead.
+      concept.sectionKey = legacy.units
+        .flatMap((unit) => unit.sections)
+        .find((section) =>
+          section.blocks.some(
+            (block) =>
+              block.kind === "concept-recall" &&
+              block.semantic?.activity === "errorCheck" &&
+              block.conceptKey === concept.conceptKey,
+          ),
+        )!.sectionKey;
     });
     for (const section of legacy.units.flatMap((u) => u.sections))
       for (const block of section.blocks)

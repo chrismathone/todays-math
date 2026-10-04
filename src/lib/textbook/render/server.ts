@@ -722,8 +722,8 @@ export function planTextbookChunks(
       );
     // Each automatic lesson includes several recall forms and needs its own
     // bounded render job. Manual continuation chains remain together.
-    const automaticLesson = chain.some(
-      (i) => sections[i].templateKey === "auto-lesson",
+    const automaticLesson = chain.some((i) =>
+      sections[i].templateKey.startsWith("auto-lesson"),
     );
     if (
       group.length &&
