@@ -38,7 +38,7 @@ const coverage = conceptScriptCoverage(); // coveragePercent: 100
 
 ## 수업·판서·학기·호칭 (2026-10-05)
 
-모든 대사에 `presentation: { kind, lessonKey, lessonTitle }`이 있다. 이전 대사의 글·출처·ID는 한 글자도 바뀌지 않았다. 새 칸을 빼면 학년 파일 일곱이 이전 커밋과 바이트로 같고, 그 해시를 검사가 지킨다.
+모든 대사에 `presentation: { kind, lessonKey, lessonTitle }`이 있다. 이 칸들을 더할 때 이전 대사의 글·출처·ID는 한 글자도 바뀌지 않았다. 새 칸을 빼고 아래 「교정」의 41대사를 되돌리면 학년 파일 일곱이 처음 커밋과 바이트로 같고, 그 해시를 검사가 지킨다.
 
 | 수업 | `lessonKey` | `lessonTitle` | 개수 |
 | --- | --- | --- | ---: |
@@ -54,13 +54,28 @@ const coverage = conceptScriptCoverage(); // coveragePercent: 100
 
 대본이 학생을 이름으로 부르는 곳은 한 대사뿐이다(중2 유리수와 소수의 “민서는 …, 지호는 …”). 그 대사에는 `roleMentions`로 이름과 조사의 자리가 적혀 있다. 새 교재를 만들 때 `conceptScriptForCast(sectionKey, { student1, student2 })`가 그 자리에만 고른 이름과 받침에 맞는 조사를 쓴다. 이름 글자를 찾아 바꾸지 않으므로 “짝지은”의 “지은”은 그대로이고, 수식과 “선생님”도 그대로다. 이미 저장된 교재의 대사에는 쓰지 않는다. 새 호칭을 원고에 넣으려면 `roleMentions.ts`의 표에 그 블록을 적는다.
 
+## 교정 (2026-10-05)
+
+확인된 결함 41대사를 고쳤고, 고친 대사는 `static-corrections.json`에 ID · 이전 글 · 새 글 · 까닭과 함께 한 줄씩 있다. AI 편집 검수이고 사람이 읽은 검수가 아니다.
+
+| 종류 | 대사 | 내용 |
+| --- | ---: | --- |
+| `sentence-answer-copula` | 32 | 은행의 답이 「유리수이다」 「된다 (…)」처럼 이미 문장인데 「입니다」가 덧붙던 대사. 답은 그대로 두고 「입니다」만 뺐다 |
+| `particle` | 1 | 초5 2-4-6의 「$1.56$예요」 → 「이에요」 |
+| `missing-condition` | 4 | 초4 2-4-3 · 초6 2-3-1의 질문에, 풀이가 쓰던 조건을 밝혔다(질문은 도입과 수업 예에 두 번 나온다) |
+| `ambiguous-wording` | 4 | 중3 원의 접선 「접점을 이었고」 → 「접선을 그었고」, 이차함수와 그래프 「나란할까」 → 「높이가 같을까」 |
+
+수와 수식 토큰은 하나도 바뀌지 않았고, v15 원본 298블록도 그대로다. 대사를 새로 고치려면 작성 노트(`authoredExamples.ts` 또는 `materialize.ts`의 틀)와 학년 JSON을 함께 고친 뒤 `static-corrections.json`에 그 대사를 한 줄 더한다. 이 목록에 없는 대사가 바뀌면 이전 대사 해시 검사가 실패하고, 목록의 글이 원고와 다르면 `corrections.ts`가 그 ID를 대며 멈춘다.
+
+`aiReadings.ts`에는 다시 계산할 수가 없는 수업 예 46건과 쉬어가기 연령대 판정 18칸을 AI가 하나씩 읽은 근거와, 읽고도 확인하지 못한 조건이 있다.
+
 ## 검사와 원장
 
 ```text
 node node_modules/vitest/vitest.mjs run --config scripts/qa/textbook/vitest.config.mts src/__tests__/unit/textbookConceptScripts.test.ts src/__tests__/unit/textbookSourceLedger.test.ts src/__tests__/unit/textbookRestStories.test.ts
 ```
 
-`source-ledger.json`은 360개 소단원의 원천별 대사 수, 은행·v15와의 일치, 판서 상태, 새 수업 예 210건의 검산, 되풀이되는 문장 틀 17종, 쉬어가기 6편의 연령대 판정을 담는다. 상태는 `자동 확인`(코드의 계산·일치), `미검수`, `수정 필요` 셋이다. 사람이 읽은 기록이 없으므로 `편집 확인`은 한 건도 없다. 원고를 고치면 원장을 다시 만든다.
+`source-ledger.json`은 360개 소단원의 원천별 대사 수, 은행·v15와의 일치, 판서 상태, 새 수업 예 210건의 검산, 되풀이되는 문장 틀 19종, 쉬어가기 6편의 연령대 판정, 소단원별 교정 ID를 담는다. 상태는 `자동 확인`(코드의 계산·일치), `AI 검수`(모델이 하나씩 읽고 근거를 적음), `미검수`, `수정 필요` 넷이다. 사람이 읽은 기록이 없으므로 사람의 승인은 한 건도 없다. 원고를 고치면 원장을 다시 만든다.
 
 ```text
 node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/sourceLedger.ts          # 견주기만
@@ -79,4 +94,4 @@ node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/sourceLedger.ts --wr
 node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/materialize.ts
 ```
 
-`--write`를 붙이면 수업·판서 같은 메타데이터만 다를 때 쓴다. 이전 대사가 한 글자라도 달라지는 학년은 거절하고 쓰지 않는다. 대사를 바꾸는 편집은 JSON과 작성 노트를 함께 고친 뒤 `--write --replace-dialogue`로만 하고, 검사의 이전 대사 해시를 그 근거와 함께 바꾼다. 앱에서는 materializer, 원본 은행, AI, 네트워크 또는 데이터베이스를 호출하지 않는다.
+`--write`를 붙이면 수업·판서 같은 메타데이터만 다를 때 쓴다. 이전 대사가 한 글자라도 달라지는 학년은 거절하고 쓰지 않는다. 대사를 바꾸는 교정은 작성 노트를 고친 뒤 `--write --replace-dialogue`로만 쓰고, 바뀐 대사를 `static-corrections.json`에 한 줄씩 적는다. 검사의 이전 대사 해시는 바꾸지 않는다. 앱에서는 materializer, 원본 은행, AI, 네트워크 또는 데이터베이스를 호출하지 않는다.

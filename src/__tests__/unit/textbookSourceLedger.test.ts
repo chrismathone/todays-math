@@ -1,7 +1,16 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
+import {
+  AI_READING_REVIEW,
+  AUTHORED_EXAMPLE_READINGS,
+  REST_BAND_READINGS,
+} from "@/lib/textbook/scripts/aiReadings";
 import { AUTHORED_EXAMPLES } from "@/lib/textbook/scripts/authoredExamples";
+import {
+  STATIC_CORRECTIONS,
+  withoutStaticCorrections,
+} from "@/lib/textbook/scripts/corrections";
 import {
   AUTHORED_EXAMPLE_CLAIMS,
   AUTHORED_EXAMPLE_FINDINGS,
@@ -143,29 +152,112 @@ describe("the 210 newly written lesson examples", () => {
         finding.status,
       ]),
     ).toEqual([
-      ["초5::2-4-6", "wording", "open"],
-      ["초4::2-4-3", "condition", "open"],
-      ["초6::2-3-1", "condition", "open"],
-      ["중3::원의 접선", "wording", "open"],
-      ["중3::이차함수와 그래프", "wording", "open"],
+      ["초5::2-4-6", "wording", "fixed"],
+      ["초4::2-4-3", "condition", "fixed"],
+      ["초6::2-3-1", "condition", "fixed"],
+      ["중3::원의 접선", "wording", "fixed"],
+      ["중3::이차함수와 그래프", "wording", "fixed"],
+      ["초6::1-2-3", "condition", "open"],
+      ["초6::2-3-2", "condition", "open"],
     ]);
     for (const finding of AUTHORED_EXAMPLE_FINDINGS) {
       const [grade, name] = finding.key.split("::");
       expect(AUTHORED_EXAMPLES[grade!]?.[name!], finding.key).toBeDefined();
+      // A fixed finding has its corrected turns in the corrections ledger; an open one has none.
+      expect(
+        STATIC_CORRECTIONS.some(
+          (correction) =>
+            correction.source.kind === "authored-example" &&
+            correction.source.key === finding.key,
+        ),
+        finding.key,
+      ).toBe(finding.status === "fixed");
     }
-    // The one particle that disagrees with how the number is read is still in the manuscript.
-    expect(AUTHORED_EXAMPLES["초5"]!["2-4-6"]!.answer).toBe("곱은 $1.56$예요.");
+    // The five corrected examples read as corrected in the authoring notes.
+    expect(AUTHORED_EXAMPLES["초5"]!["2-4-6"]!.answer).toBe(
+      "곱은 $1.56$이에요.",
+    );
+    expect(AUTHORED_EXAMPLES["초4"]!["2-4-3"]!.question).toBe(
+      "평행선 사이를 수직으로 재면 $3\\,\\mathrm{cm}$, 비스듬히 재면 $5\\,\\mathrm{cm}$일 때 $5\\,\\mathrm{cm}$를 거리라고 해도 될까?",
+    );
+    expect(AUTHORED_EXAMPLES["초4"]!["2-4-3"]!.answer).toContain(
+      "거리는 $3\\,\\mathrm{cm}$이고",
+    );
+    expect(AUTHORED_EXAMPLES["초6"]!["2-3-1"]!.question).toBe(
+      "높이 $1$인 기둥이 앞에, 높이 $3$인 기둥이 뒤에 겹쳐 있다면 앞에서 몇 층으로 보일까?",
+    );
+    expect(AUTHORED_EXAMPLES["초6"]!["2-3-1"]!.steps[1]).toContain(
+      "뒤 기둥이 더 높아",
+    );
+    expect(AUTHORED_EXAMPLES["중3"]!["원의 접선"]!.question).toContain(
+      "두 접선을 그었고",
+    );
+    expect(AUTHORED_EXAMPLES["중3"]!["이차함수와 그래프"]!.question).toContain(
+      "왜 높이가 같을까?",
+    );
+    expect(AUTHORED_EXAMPLES["중3"]!["이차함수와 그래프"]!.steps[0]).toContain(
+      "두 점의 높이가 같아",
+    );
     expect(AUTHORED_EXAMPLE_FINDINGS.filter((f) => f.kind === "math")).toEqual(
       [],
     );
   });
+
+  it("records an AI reading, with what it could not settle, for each of the 46 examples it cannot recalculate", () => {
+    const readOnly = rows
+      .filter((row) => row.method === "read-only")
+      .map((row) => row.key);
+    expect(readOnly).toHaveLength(46);
+    expect(Object.keys(AUTHORED_EXAMPLE_READINGS).sort()).toEqual(
+      [...readOnly].sort(),
+    );
+    for (const [key, reading] of Object.entries(AUTHORED_EXAMPLE_READINGS)) {
+      expect(reading.basis.length, key).toBeGreaterThan(15);
+      if (reading.unverified !== undefined)
+        expect(reading.unverified.length, key).toBeGreaterThan(15);
+    }
+    // No two examples share a basis: each was read on its own text.
+    expect(
+      new Set(Object.values(AUTHORED_EXAMPLE_READINGS).map((r) => r.basis))
+        .size,
+    ).toBe(46);
+    expect(
+      Object.entries(AUTHORED_EXAMPLE_READINGS)
+        .filter(([, reading]) => reading.unverified)
+        .map(([key]) => key),
+    ).toEqual([
+      "초4::1-2-1",
+      "초4::1-2-2",
+      "초4::2-4-1",
+      "초4::2-4-4",
+      "초4::2-6-1",
+      "초6::1-2-3",
+      "초6::2-3-2",
+      "중3::원의 접선",
+    ]);
+    expect(AI_READING_REVIEW.reviewer).toMatch(/^AI 정독/);
+    expect(AI_READING_REVIEW.reviewer).toContain("사람이 읽은 검수가 아니다");
+    // An open finding is never hidden behind an AI reading.
+    for (const finding of AUTHORED_EXAMPLE_FINDINGS.filter(
+      (item) => item.status === "open",
+    ))
+      expect(
+        AUTHORED_EXAMPLE_READINGS[finding.key]?.unverified,
+        finding.key,
+      ).toContain("열린 지적");
+  });
 });
 
 describe("the repeated sentence frames", () => {
-  it("measures the twelve whole-turn frames and the generator's other frames from the manuscripts", () => {
+  it("measures the whole-turn frames and the generator's other frames from the manuscripts", () => {
+    // Before the corrections: 12 frames, 3,147 turns. The 32 sentence answers left the
+    // "…입니다." frame; 29 of them now share the frame "…답하면 **B**." and 3 end inside the bold.
     const repeated = repeatedFrames(scripts);
-    expect(repeated.size).toBe(12);
-    expect([...repeated.values()].reduce((a, b) => a + b, 0)).toBe(3147);
+    expect(repeated.size).toBe(13);
+    expect([...repeated.values()].reduce((a, b) => a + b, 0)).toBe(3144);
+    const before = repeatedFrames(withoutStaticCorrections(scripts));
+    expect(before.size).toBe(12);
+    expect([...before.values()].reduce((a, b) => a + b, 0)).toBe(3147);
     const measured = measureTemplateFrames(scripts);
     const whole = TEMPLATE_FRAMES.filter((frame) => frame.repeatsAsWhole);
     expect(whole.map((frame) => frame.frame).sort()).toEqual(
@@ -188,7 +280,9 @@ describe("the repeated sentence frames", () => {
       misconception: 392,
       correction: 392,
       "example-apply": 372,
-      "example-answer": 372,
+      "example-answer": 340,
+      "example-answer-sentence": 29,
+      "example-answer-sentence-closed": 3,
       "opening-elementary": 230,
       "opening-middle": 130,
       "check-elementary": 230,
@@ -212,8 +306,11 @@ describe("the repeated sentence frames", () => {
       ),
     );
     expect(turns).toMatchObject({
-      "example-answer:predicate": 27,
-      "example-answer:register": 372,
+      // Corrected: no sentence answer is followed by "입니다" any more.
+      "example-answer:predicate": 0,
+      "example-answer:register": 340,
+      "example-answer-sentence:register": 29,
+      "example-answer-sentence-closed:register": 3,
       "example-apply:recitation": 372,
       "correction:register": 392,
       "bare-expression-prompt:no-question": 31,
@@ -223,12 +320,22 @@ describe("the repeated sentence frames", () => {
         .filter(([id]) => id.endsWith(":clause-term"))
         .reduce((n, [, count]) => n + count, 0),
     ).toBe(47);
-    // The broken sentence is real: the bank answer is a predicate and "입니다" follows it.
-    const broken = scripts
-      .flatMap((script) => script.dialogue)
-      .filter((turn) => /다\*\*입니다\.$/.test(turn.markdown));
-    expect(broken.length).toBeGreaterThanOrEqual(20);
-    expect(broken.map((turn) => turn.markdown)).toContain(
+    // The same guard on the manuscripts as first committed finds all 32, not the 27 first
+    // reported: five answers end with a bracket after the predicate ("된다 (…)").
+    const before = Object.fromEntries(
+      measureTemplateFrames(withoutStaticCorrections(scripts)).flatMap(
+        (frame) => frame.findings.map((finding) => [finding.id, finding.turns]),
+      ),
+    );
+    expect(before["example-answer:predicate"]).toBe(32);
+    const all = scripts.flatMap((script) => script.dialogue);
+    expect(
+      all.filter((turn) => /\*\*입니다\.$/.test(turn.markdown)),
+    ).toHaveLength(340);
+    expect(all.map((turn) => turn.markdown)).toContain(
+      "이 기준으로 물음에 답하면 **유리수이다**.",
+    );
+    expect(all.map((turn) => turn.markdown)).not.toContain(
       "이 기준으로 물음에 답하면 **유리수이다**입니다.",
     );
     expect(repeatedOpeningQuestions(scripts)).toBe(360);
@@ -331,37 +438,100 @@ describe("the 360-section source ledger", () => {
     ]);
   });
 
-  it("claims no editorial approval and keeps unreviewed, calculated and defective apart", () => {
+  it("claims no person's approval and keeps unreviewed, calculated, AI-read and defective apart", () => {
     expect(ledger.reviewers.editor).toMatch(/^없음/);
+    expect(ledger.reviewers.reading).toMatch(/^AI 정독/);
+    expect(ledger.reviewers.corrections).toMatch(/^AI 편집 검수/);
     expect(committed).not.toContain("편집 확인");
+    expect(committed).not.toContain("사람 검수 완료");
     expect(ledger.totals).toMatchObject({
       status: {
         idsAndSources: { "자동 확인": 360 },
         bankMathematics: { 미검수: 360 },
-        newExample: { "해당 없음": 150, "자동 확인": 164, 미검수: 46 },
-        wordingAndFlow: { 미검수: 335, "수정 필요": 25 },
+        newExample: {
+          "해당 없음": 150,
+          "자동 확인": 164,
+          "AI 검수": 44,
+          "수정 필요": 2,
+        },
+        // The wrong sentences are corrected; nobody has read the lessons for flow.
+        wordingAndFlow: { 미검수: 360 },
         printedPage: { 미검수: 360 },
+      },
+      corrections: {
+        total: 41,
+        byKind: {
+          "sentence-answer-copula": 32,
+          particle: 1,
+          "missing-condition": 4,
+          "ambiguous-wording": 4,
+        },
+        sections: 30,
+      },
+      aiReadings: {
+        examples: 46,
+        examplesWithUnverified: 8,
+        restBands: 18,
+        restBandsWithUnverified: 9,
       },
     });
     expect(ledger.authoredExamples).toHaveLength(210);
     expect(
-      ledger.authoredExamples.filter((row) => row.state === "수정 필요"),
-    ).toHaveLength(3);
-    expect(ledger.templateFrames).toHaveLength(17);
+      ledger.authoredExamples
+        .filter((row) => row.state === "수정 필요")
+        .map((row) => row.key),
+    ).toEqual(["초6::1-2-3", "초6::2-3-2"]);
+    expect(
+      ledger.authoredExamples.filter((row) => row.state === "AI 검수"),
+    ).toHaveLength(44);
+    for (const row of ledger.authoredExamples)
+      expect(row.reading !== undefined, row.key).toBe(
+        row.method === "read-only",
+      );
+    expect(ledger.templateFrames).toHaveLength(19);
     expect(ledger.restShortages.reduce((n, row) => n + row.shortage, 0)).toBe(
       15,
     );
     expect(ledger.restStories.flatMap((story) => story.faults)).toEqual([]);
-    // The G0b section itself carries a broken frame sentence: it is not hidden by a total.
+    expect(
+      ledger.sections.reduce((n, section) => n + section.corrections.length, 0),
+    ).toBe(41);
+    // The G0b section: its three sentence answers are corrected and no open defect remains.
     expect(
       ledger.sections.find(
         (section) => section.id === "중2::1. 수와 식::유리수와 소수",
       ),
     ).toMatchObject({
-      status: { wordingAndFlow: "수정 필요" },
-      findings: [{ id: "example-answer:predicate", turns: 1 }],
+      status: { wordingAndFlow: "미검수" },
+      findings: [],
+      corrections: ["SC-021", "SC-022", "SC-023"],
       boards: { status: "authored-v15", count: 6 },
     });
+  });
+
+  it("records an AI reading for each of the 18 age-band verdicts of the rest stories", () => {
+    const cells = ledger.restStories.flatMap((story) =>
+      Object.entries(story.readings).map(([band, reading]) => ({
+        story,
+        band,
+        reading,
+      })),
+    );
+    expect(cells).toHaveLength(18);
+    expect(new Set(cells.map((cell) => cell.reading.basis)).size).toBe(18);
+    for (const { story, band, reading } of cells) {
+      expect(Object.keys(story.ageBands)).toContain(band);
+      expect(reading.basis.length, `${story.id} ${band}`).toBeGreaterThan(15);
+      // The reading agrees with every stored verdict; a disagreement would have to be resolved first.
+      expect(reading.agrees, `${story.id} ${band}`).toBe(true);
+    }
+    expect(REST_BAND_READINGS.sharing["middle1-3"].unverified).toContain(
+      "판단이 갈릴 수 있다",
+    );
+    expect(cells.filter((cell) => cell.reading.unverified)).toHaveLength(9);
+    expect(ledger.restStories.map((story) => story.state)).toEqual(
+      Array(6).fill("AI 검수"),
+    );
   });
 });
 

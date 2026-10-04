@@ -6,8 +6,9 @@
  *   node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/materialize.ts
  * Write presentation metadata only (refuses if any earlier dialogue would change):
  *   node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/materialize.ts --write
- * Replacing dialogue needs --write --replace-dialogue, after the editorial change
- * is also present in the authoring notes. Never run that as a routine step.
+ * Replacing dialogue needs --write --replace-dialogue, after the correction is in the
+ * authoring notes; every turn it changes is then listed in static-corrections.json.
+ * Never run that as a routine step.
  * No model, network, database, or independent practice answers are used.
  */
 import { readFileSync, writeFileSync } from "node:fs";
@@ -72,6 +73,25 @@ const kindQuestion = {
   정리: "조건과 결론을 함께 알고 싶어요.",
   단위: "기준이 되는 양은 무엇인가요?",
 };
+/**
+ * A bank answer that already ends as a sentence — "아니다", "된다 (…)", "없다. …" —
+ * rather than as a noun or a value. Math and one closing parenthesis are looked past.
+ */
+export function endsAsSentence(answer: string): boolean {
+  const body = answer
+    .replace(/\$[^$]*\$/g, "")
+    .replace(/\s*\([^()]*\)\s*$/, "")
+    .trim();
+  return /(?:다|[.!?])$/.test(body);
+}
+
+/** The teacher's answer to a bank example. A sentence answer takes no "입니다" after it. */
+export function exampleAnswerLine(answer: string): string {
+  if (!endsAsSentence(answer))
+    return `이 기준으로 물음에 답하면 **${answer}**입니다.`;
+  return `이 기준으로 물음에 답하면 **${answer}**${/[.!?]$/.test(answer.trim()) ? "" : "."}`;
+}
+
 /** Statements a class records on the board, by the bank's own classification. */
 export const BOARD_CONCEPT_KINDS: readonly ConceptEntry["kind"][] = [
   "공식",
@@ -269,7 +289,7 @@ export function materializeGrade(
           "teacher",
           "aha",
           "example",
-          `이 기준으로 물음에 답하면 **${concept.example.answer}**입니다.`,
+          exampleAnswerLine(concept.example.answer),
           exampleSource,
           [concept.id],
         );

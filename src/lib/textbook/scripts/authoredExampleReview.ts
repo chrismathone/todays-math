@@ -589,41 +589,59 @@ export type AuthoredExampleFinding = {
   status: "fixed" | "open";
 };
 
-/** What the reading found. An empty list for an example means nothing was found, not that an editor approved it. */
+/**
+ * What the reading found. An empty list for an example means nothing was found, not that
+ * an editor approved it. `fixed` findings were corrected in the manuscript; each has its
+ * turns in static-corrections.json.
+ */
 export const AUTHORED_EXAMPLE_FINDINGS: readonly AuthoredExampleFinding[] = [
   {
     key: "초5::2-4-6",
     kind: "wording",
     finding:
-      "답 ‘곱은 $1.56$예요.’의 조사가 수 읽기와 맞지 않는다: …오육은 받침으로 끝나므로 ‘이에요’가 맞다. 수식과 값은 옳다. 저장된 대사를 바꾸는 일이어서 고치지 않고 남겼다.",
-    status: "open",
+      "답의 조사가 수 읽기와 맞지 않았다(‘$1.56$예요’). …오육은 받침으로 끝나므로 ‘이에요’로 고쳤다. 수식과 값은 그대로다.",
+    status: "fixed",
   },
   {
     key: "초4::2-4-3",
     kind: "condition",
     finding:
-      "질문에는 비스듬히 잰 $5\\,\\mathrm{cm}$만 있고, 답의 $3\\,\\mathrm{cm}$는 풀이 둘째 대사에서 ‘수직으로 잰 길이가 $3\\,\\mathrm{cm}$라면’으로 처음 나온다. 가정임이 드러나 있어 틀린 문장은 아니지만 질문만 읽으면 답을 정할 수 없다.",
-    status: "open",
+      "답의 $3\\,\\mathrm{cm}$가 질문에 없고 풀이의 가정으로만 나왔다. 풀이가 쓰는 수직 거리 $3\\,\\mathrm{cm}$를 질문에 밝혔다.",
+    status: "fixed",
   },
   {
     key: "초6::2-3-1",
     kind: "condition",
     finding:
-      "질문은 어느 기둥이 앞인지 말하지 않고, 풀이가 ‘뒤 기둥이 더 높아’로 정한다. 어느 쪽이 앞이어도 보이는 높이는 $3$이라 답은 같다.",
-    status: "open",
+      "질문이 어느 기둥이 앞인지 말하지 않았다. 풀이대로 높이 $1$이 앞, 높이 $3$이 뒤임을 질문에 밝혔다.",
+    status: "fixed",
   },
   {
     key: "중3::원의 접선",
     kind: "wording",
     finding:
-      "‘원 밖의 점에서 두 접점을 이었고’는 접선 두 개를 그었다는 뜻으로 읽어야 한다. 교과서 표현은 ‘원 밖의 한 점에서 그은 두 접선’.",
-    status: "open",
+      "‘두 접점을 이었고’는 접선 두 개를 그었다는 뜻이었다. ‘두 접선을 그었고’로 고쳤다.",
+    status: "fixed",
   },
   {
     key: "중3::이차함수와 그래프",
     kind: "wording",
     finding:
-      "질문의 ‘두 점은 왜 나란할까’는 ‘높이가 같을까’의 뜻이다. 풀이와 답은 대칭과 좌표로 바르게 설명한다.",
+      "질문의 ‘왜 나란할까’는 높이가 같다는 뜻이었다. ‘왜 높이가 같을까’로 고쳤다.",
+    status: "fixed",
+  },
+  {
+    key: "초6::1-2-3",
+    kind: "condition",
+    finding:
+      "답의 $3,4,5\\,\\mathrm{cm}$는 풀이 둘째 대사가 예로 든 수다. 질문은 수 없이 ‘폭은 마음대로 정해도 될까’만 묻는다. 고치려면 질문에 밑면의 세 변과 높이를 밝힌다. 교정 지시의 범위 밖이어서 남겼다.",
+    status: "open",
+  },
+  {
+    key: "초6::2-3-2",
+    kind: "condition",
+    finding:
+      "풀이의 ‘공중에 뜬 블록 없이 쌓았다고 정했으므로’가 가리키는 전제가 질문에 없다. 고치려면 질문에 그 전제를 밝힌다. 교정 지시의 범위 밖이어서 남겼다.",
     status: "open",
   },
 ];
