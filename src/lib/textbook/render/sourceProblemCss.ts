@@ -1,10 +1,12 @@
 /** Native v15 question values, scoped to source projections; saved and bank layouts keep their styles. */
 export const SOURCE_PROBLEM_CSS = `
-.tb-editorial[data-source-tone="forest"],.tb-paper[data-source-tone="forest"]{--tb-accent:#086c61;--tb-dark:#073f3b;--tb-soft:#edf5f0;--tb-light:#d6e4df;--tb-signal:#d6ed75;color:#253836}
-.tb-editorial[data-source-tone="tree"],.tb-paper[data-source-tone="tree"]{--tb-accent:#6250a0;--tb-dark:#342752;--tb-soft:#f3f0f8;--tb-light:#e1dced;--tb-signal:#ffbea4;color:#253836}
-.tb-recovered[data-source-tone] .tb-edge-tab{left:0}.tb-recovered.tb-page-odd[data-source-tone] .tb-edge-tab{left:auto;right:0}
+.tb-editorial[data-source-tone="forest"],.tb-paper[data-source-tone="forest"]{--tb-accent:#086c61;--tb-dark:#073f3b;--tb-soft:#edf5f0;--tb-light:#d6e4df;--tb-signal:#d6ed75;--tb-subink:#526461;color:#253836}
+.tb-editorial[data-source-tone="tree"],.tb-paper[data-source-tone="tree"]{--tb-accent:#6250a0;--tb-dark:#342752;--tb-soft:#f3f0f8;--tb-light:#e1dced;--tb-signal:#ffbea4;--tb-subink:#635d70;color:#253836}
 .tb-source-problem:not([data-example-role]){padding:3mm 0 3mm;border:0;min-height:0}
 .tb-source-problem .tb-problem-head strong{font-size:12.5pt;line-height:1.1;letter-spacing:-.5px}
+.tb-source-problem .tb-problem-head strong span{font:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;background:none;padding:0;border-radius:0}
+.tb-source-fragments .daily-banner{display:flex;justify-content:space-between;align-items:baseline;background:var(--tb-soft);padding:3mm 4mm;border-top:1.4pt solid var(--tb-accent);border-radius:0 3mm 0 0}
+.tb-source-fragments .daily-banner>strong{font-size:10pt;color:var(--tb-accent)}.tb-source-fragments .daily-banner>span{font-size:7pt;color:var(--tb-subink,#526461)}
 .tb-source-problem .tb-problem-head{flex-wrap:nowrap;min-height:5.5mm;margin-bottom:1.2mm;line-height:1.65}
 .tb-editorial-problem[data-source-kind] .tb-source-problem{height:auto}
 .tb-source-fragments[data-source-kind="basic"] .mini-concepts{display:grid;grid-template-columns:1fr 1fr;gap:4mm}

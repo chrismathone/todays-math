@@ -27,6 +27,64 @@ const footer: TextbookSourceFragment[] = [
 ];
 
 describe("original memory page footer", () => {
+  it("preserves the original final dialogue note without adding a different generic note", () => {
+    const exchange = textbookFixture(1, 0);
+    const section = exchange.units[0].sections[0];
+    section.templateKey = "reference-opening";
+    section.startPolicy = "continue";
+    section.blocks = [
+      {
+        blockId: "synthetic-source-board",
+        kind: "text",
+        markdown: "합성 판서",
+        semantic: {
+          activity: "dialogue",
+          source: {
+            unit: "U01",
+            page: 13,
+            kind: "opening",
+            path: "synthetic",
+            scriptIndex: 4,
+          },
+          sourceFooter: [
+            {
+              tag: "div",
+              attributes: { className: "script-continue" },
+              children: [
+                { tag: "span", rawText: "단원을 여는 수업" },
+                { tag: "strong", rawText: "4 / 4" },
+                { tag: "span", rawText: "이어서 개념을 정리합니다." },
+              ],
+            },
+          ],
+          node: { kind: "board", title: "합성 판서", tex: "1=1" },
+        },
+      },
+    ];
+    const before = canonicalJson(exchange);
+    const model = createTextbookRenderModel(exchange, "student");
+    const layout = paginateTextbookSections(
+      model.sections,
+      model.sections.flatMap((s) =>
+        s.blocks.map((block) => ({
+          blockId: block.id,
+          widthMm: blockWidthMm(model.config, block),
+          heightMm: block.kind === "heading" ? 30 : 40,
+        })),
+      ),
+      model.config,
+      { firstPhysicalPageIndex: 13 },
+    );
+    const html = renderPageHtml(layout.pages[0], model, {
+      assetUrl: () => "",
+      qrDataUrl: () => "",
+    });
+    expect(html.match(/class="script-continue"/g)).toHaveLength(1);
+    expect(html).toContain("이어서 개념을 정리합니다.");
+    expect(html).not.toContain("수업에서 배운 내용을 설명해 보세요.");
+    expect(html).not.toContain('class="tb-dialogue-page-note"');
+    expect(canonicalJson(exchange)).toBe(before);
+  });
   it("preserves a source question page's authored checkbar outside its question grid", () => {
     const exchange = textbookFixture(1, 2);
     const section = exchange.units[0].sections[0];

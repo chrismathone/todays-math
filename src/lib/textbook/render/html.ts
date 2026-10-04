@@ -176,19 +176,24 @@ export function renderPageHtml(
           .map((block) => block.semantic?.source?.scriptIndex ?? 0),
       ))
     : 0;
-  const continueNote = dialogue.length
-    ? `<div class="tb-dialogue-page-note" style="left:${left}mm;right:${right}mm">${renderDialogueContinueHtml(
-        {
-          label: "단원을 여는 수업",
-          index: scriptIndex ?? 1,
-          total: scriptTotal || 1,
-          note:
-            scriptIndex && scriptIndex < scriptTotal
-              ? "다음 쪽에서 이어집니다."
-              : "수업에서 배운 내용을 설명해 보세요.",
-        },
-      )}</div>`
-    : "";
+  const hasSourceDialogueFooter = dialogue.some((placement) => {
+    const block = blocks.get(placement.blockId);
+    return Boolean(block?.semantic?.source && block.semantic.sourceFooter);
+  });
+  const continueNote =
+    dialogue.length && !hasSourceDialogueFooter
+      ? `<div class="tb-dialogue-page-note" style="left:${left}mm;right:${right}mm">${renderDialogueContinueHtml(
+          {
+            label: "단원을 여는 수업",
+            index: scriptIndex ?? 1,
+            total: scriptTotal || 1,
+            note:
+              scriptIndex && scriptIndex < scriptTotal
+                ? "다음 쪽에서 이어집니다."
+                : "수업에서 배운 내용을 설명해 보세요.",
+          },
+        )}</div>`
+      : "";
   const recovered = Boolean(section?.blocks.some((block) => block.semantic));
   const schoolLabel = {
     elementary: "초등수학",
