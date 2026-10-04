@@ -228,6 +228,7 @@ describe("source formulas are set in display style, at print time only", () => {
         kind: "concept",
         conceptKey: "C01",
         title: "유한소수의 판별",
+        qr: null,
         body: {
           goal: "",
           prerequisites: [],
