@@ -1,22 +1,30 @@
 import { z } from "zod";
-import { studentLoginIdSchema } from "@/contracts/studentAccount.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
 import { recordAudit } from "@/lib/audit";
-import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { db } from "@/lib/db";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
-import { hashStudentPin } from "@/lib/learn/pinHash";
 import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
-import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 const createSchema = z.strictObject({
   classId: z.uuid(),
   name: z.string().trim().min(1).max(50),
-  loginId: studentLoginIdSchema,
+  phone: z
+    .string()
+    .trim()
+    .max(40)
+    .optional()
+    .refine(
+      (phone) =>
+        !phone ||
+        (/^[0-9+()\-\s]+$/.test(phone) &&
+          phone.replace(/[^0-9]/g, "").length >= 7),
+      { error: "전화번호를 확인해 주세요." },
+    ),
 });
 
+/** Registration creates a roster record only. Class-wide issuance is a separate explicit action. */
 async function handlePost(request: Request) {
-  const access = await authorizeAccount(request, true);
+  const access = await authorizeAccount(request);
   if (access.response) return access.response;
   const branchId = access.account?.branchId;
   if (!branchId || !access.account || !canManageStudentAccounts(access.account))
@@ -24,12 +32,11 @@ async function handlePost(request: Request) {
       {
         error: {
           code: "FORBIDDEN",
-          message: "지점 관리자만 학생 계정을 만들 수 있습니다.",
+          message: "지점 관리자만 학생을 등록할 수 있습니다.",
         },
       },
       { status: 403 },
     );
-
   const parsed = createSchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success)
     return Response.json(
@@ -42,9 +49,15 @@ async function handlePost(request: Request) {
       },
       { status: 400 },
     );
-  const { classId, name, loginId } = parsed.data;
+  const { classId, name, phone } = parsed.data;
   const target = await db.class.findFirst({
-    where: { id: classId, branchId, eywaBindingId: null },
+    where: {
+      id: classId,
+      branchId,
+      eywaBindingId: null,
+      active: true,
+      OR: [{ closedAt: null }, { closedAt: { gt: new Date() } }],
+    },
     select: { id: true },
   });
   if (!target)
@@ -52,67 +65,25 @@ async function handlePost(request: Request) {
       {
         error: {
           code: "NOT_FOUND",
-          message: "소속 지점의 반을 선택해 주세요.",
+          message: "소속 지점의 운영 중인 반을 선택해 주세요.",
         },
       },
       { status: 404 },
     );
-
-  const initialPassword = BRANCH_INITIAL_PASSWORD;
-  try {
-    // Nested create keeps the roster and login together if the login ID is already taken.
-    const student = await db.student.create({
-      data: {
-        classId,
-        branchId,
-        name,
-        studentAccount: {
-          create: {
-            loginId,
-            passwordHash: await hashStudentPin(initialPassword),
-            issuedById: access.account!.id,
-          },
-        },
-      },
-      include: { studentAccount: { select: { id: true, issuedAt: true } } },
-    });
-    await recordAudit({
-      userId: access.account!.id,
-      actorId: access.account!.id,
-      action: "student_account.issue",
-      outcome: "success",
-      details: {
-        studentId: student.id,
-        studentAccountId: student.studentAccount!.id,
-        loginId,
-      },
-    });
-    return Response.json(
-      {
-        data: {
-          id: student.id,
-          name: student.name,
-          classId: student.classId,
-          loginId,
-          initialPassword,
-          issuedAt: student.studentAccount!.issuedAt.toISOString(),
-        },
-      },
-      { status: 201, headers: { "Cache-Control": "no-store" } },
-    );
-  } catch (error) {
-    if (isPrismaErrorCode(error, "P2002"))
-      return Response.json(
-        {
-          error: {
-            code: "CONFLICT",
-            message: "이미 사용 중인 학생 아이디입니다.",
-          },
-        },
-        { status: 409 },
-      );
-    throw error;
-  }
+  const phoneLast4 = phone ? phone.replace(/[^0-9]/g, "").slice(-4) : null;
+  const student = await db.student.create({
+    data: { classId, branchId, name, phoneLast4 },
+  });
+  await recordAudit({
+    userId: access.account.id,
+    actorId: access.account.id,
+    action: "student.register",
+    outcome: "success",
+    details: { studentId: student.id, classId },
+  });
+  return Response.json(
+    { data: { id: student.id, name: student.name, classId: student.classId } },
+    { status: 201, headers: { "Cache-Control": "no-store" } },
+  );
 }
-
 export const POST = withErrorLog("/api/branch/students", handlePost);

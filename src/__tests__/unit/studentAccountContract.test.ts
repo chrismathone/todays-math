@@ -44,7 +44,6 @@ describe("아이디 — 원장님이 직접 적는다 (D-125 ⑵)", () => {
       "a".repeat(21),
       "",
       "    ",
-      "김서준01",
       "kim seo",
       "kim.seo",
       "kim@seo",
@@ -56,10 +55,24 @@ describe("아이디 — 원장님이 직접 적는다 (D-125 ⑵)", () => {
 
   it("규칙은 한 곳이다 — 보고서·화면이 이 상수를 읽는다", () => {
     expect(STUDENT_LOGIN_ID_RULE).toStrictEqual({
-      minLength: 4,
-      maxLength: 20,
-      pattern: /^[a-z0-9_-]{4,20}$/,
+      minLength: 1,
+      maxLength: 50,
+      pattern:
+        /^(?:[a-z0-9_-]{4,20}|(?=[가-힣a-z0-9 _-]{1,50}$)(?=.*[가-힣])[가-힣a-z0-9 _-]+)$/u,
     });
+  });
+
+  it("실제 한글 이름으로 로그인하며 NFC 정규화 후 비교한다", () => {
+    expect(studentLoginIdSchema.parse(" 김민서A ")).toBe("김민서a");
+    expect(studentLoginIdSchema.parse("김민서".normalize("NFD"))).toBe(
+      "김민서",
+    );
+    expect(
+      studentLoginRequestSchema.safeParse({
+        loginId: "김민서",
+        password: "0042",
+      }).success,
+    ).toBe(true);
   });
 
   it("발급 요청은 아이디 한 칸뿐이다 (비밀번호는 서버가 뽑는다)", () => {
