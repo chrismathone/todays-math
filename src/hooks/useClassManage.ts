@@ -22,7 +22,7 @@ type Mutation = {
 };
 const idleMutation: Mutation = { pending: false, error: null, success: null };
 
-export function useClassManage() {
+export function useClassManage(requestedClassId = "") {
   const [classes, setClasses] = useState<ClassEntity[]>([]);
   const [students, setStudents] = useState<StudentEntity[]>([]);
   const [selectedClassId, setSelectedClassId] = useState("");
@@ -46,6 +46,8 @@ export function useClassManage() {
   const classPending = useRef(false);
   const studentRequests = useRef(new Map<string, Promise<boolean>>());
   const progressRequests = useRef(new Map<string, Promise<boolean>>());
+  const requested = useRef(requestedClassId);
+  requested.current = requestedClassId;
 
   useEffect(() => {
     let cancelled = false;
@@ -53,8 +55,18 @@ export function useClassManage() {
       .then((rows) => {
         if (cancelled) return;
         setClasses(rows);
-        activeClassId.current = rows[0]?.id ?? "";
+        const wanted = activeClassId.current || requested.current;
+        activeClassId.current = wanted
+          ? rows.some((row) => row.id === wanted)
+            ? wanted
+            : ""
+          : (rows[0]?.id ?? "");
         setSelectedClassId(activeClassId.current);
+        setError(
+          wanted && !activeClassId.current
+            ? "요청한 반을 찾을 수 없거나 접근 권한이 없습니다. 반 목록에서 선택하세요."
+            : null,
+        );
         setStatus("ready");
       })
       .catch(() => {
@@ -66,6 +78,26 @@ export function useClassManage() {
       cancelled = true;
     };
   }, [classReload]);
+
+  useEffect(() => {
+    if (
+      status !== "ready" ||
+      !requestedClassId ||
+      requestedClassId === activeClassId.current
+    )
+      return;
+    if (!classes.some((row) => row.id === requestedClassId)) {
+      activeClassId.current = "";
+      setSelectedClassId("");
+      resetDetails();
+      setError(
+        "요청한 반을 찾을 수 없거나 접근 권한이 없습니다. 반 목록에서 선택하세요.",
+      );
+    } else {
+      setError(null);
+      selectClass(requestedClassId);
+    }
+  }, [requestedClassId, status, classes]);
 
   useEffect(() => {
     if (!selectedClassId) return;
@@ -105,9 +137,11 @@ export function useClassManage() {
   }, [selectedClassId, reload]);
 
   function selectClass(classId: string) {
+    if (!classes.some((row) => row.id === classId)) return;
     if (activeClassId.current === classId) return;
     activeClassId.current = classId;
     setSelectedClassId(classId);
+    setError(null);
     resetDetails();
   }
 

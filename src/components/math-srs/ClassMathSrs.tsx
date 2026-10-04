@@ -80,10 +80,16 @@ export function ClassMathSrs({
       <header className={s.teacherHeader}>
         <div>
           <p className={s.eyebrow}>CLASS PRACTICE</p>
-          <h1>{state ? `${state.class.name} · 수학 복습` : "반 수학 복습"}</h1>
+          <h1>
+            {state
+              ? `${state.class.name} · 개념 카드 복습(대수 6개 개념)`
+              : "개념 카드 복습(대수 6개 개념)"}
+          </h1>
           <p className={s.muted}>
-            등록된 학생들의 실제 풀이 기록과 현재 진도를 확인합니다.
+            이 반에 등록된 학생의 대수 6개 개념 카드 풀이 기록입니다. 반 학년{" "}
+            {state?.class.grade || "확인 필요"} · 과정 SRS와 별도로 집계합니다.
           </p>
+          <Link href="/#srs">초3–초6 과정 SRS 열기 →</Link>
         </div>
         <Button
           variant="secondary"

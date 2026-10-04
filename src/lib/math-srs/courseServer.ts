@@ -48,7 +48,7 @@ type StudentRow = {
   id: string;
   name: string;
   classId: string;
-  class: { id: string; name: string };
+  class: { id: string; name: string; grade?: string | null };
   studentAccount: { id: string; disabledAt: Date | null } | null;
 };
 type Saved = { revision: number; state: StoredSrsState };
@@ -119,6 +119,7 @@ export function courseRosterDto(
     classId: student.classId,
     className: student.class.name,
     hasAccount: !!student.studentAccount && !student.studentAccount.disabledAt,
+    classGrade: student.class.grade ?? null,
     revision: saved.revision,
     plan: course.plan,
     summary: courseSummary(course, now),
@@ -170,7 +171,10 @@ export function courseDetailDto(
   };
 }
 
-export async function loadCourseDashboard(viewer: ScopeViewer, now: Date) {
+export async function loadCourseDashboard(
+  viewer: ScopeViewer & { menus?: readonly string[] },
+  now: Date,
+) {
   const classes = await db.class.findMany({
     where: await accessibleClassesWhere(viewer),
     select: { id: true, name: true },
@@ -194,6 +198,11 @@ export async function loadCourseDashboard(viewer: ScopeViewer, now: Date) {
       ]),
     );
     return {
+      management: {
+        canOpen: viewer.menus?.includes("teaching") === true,
+        branchId: viewer.branchId ?? null,
+        branchRole: viewer.branchRole ?? null,
+      },
       classes,
       students: students.map((s) =>
         courseRosterDto(

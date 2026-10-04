@@ -7,14 +7,16 @@ import s from "./admin.module.css";
 export default function AdminHeader({
   identity,
   active = "branches",
+  isSuperAdmin = true,
 }: {
   identity: { name: string; email: string };
   active?: "srs" | "branches" | "eywa";
+  isSuperAdmin?: boolean;
 }) {
   return (
     <header className={s.header}>
       <div className={s.headerBrand}>
-        <Link href="/admin" className={s.brand}>
+        <Link href={isSuperAdmin ? "/admin" : "/branch"} className={s.brand}>
           <TodayMathMark size={28} inverse />
           <span>오늘의수학</span>
         </Link>
@@ -30,20 +32,28 @@ export default function AdminHeader({
           >
             에이와 연결
           </Link>
-          <Link
-            className={s.workroomLink}
-            href="/admin/branches"
-            aria-current={active === "branches" ? "page" : undefined}
-          >
-            <NavigationPending icon="⌂" /> 지점 관리
-          </Link>
-          <Link
-            className={s.workroomLink}
-            href="/admin/math-srs"
-            aria-current={active === "srs" ? "page" : undefined}
-          >
-            <NavigationPending icon="◷" /> SRS 현황
-          </Link>
+          {isSuperAdmin ? (
+            <>
+              <Link
+                className={s.workroomLink}
+                href="/admin/branches"
+                aria-current={active === "branches" ? "page" : undefined}
+              >
+                <NavigationPending icon="⌂" /> 지점 관리
+              </Link>
+              <Link
+                className={s.workroomLink}
+                href="/admin/math-srs"
+                aria-current={active === "srs" ? "page" : undefined}
+              >
+                <NavigationPending icon="◷" /> SRS 현황
+              </Link>
+            </>
+          ) : (
+            <Link className={s.workroomLink} href="/branch">
+              <NavigationPending icon="⌂" /> 내 지점 관리
+            </Link>
+          )}
           <Link className={s.workroomLink} href="/">
             <NavigationPending icon="↗" /> 작업실로 이동
           </Link>

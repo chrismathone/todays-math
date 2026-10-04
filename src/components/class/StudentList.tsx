@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { replaceScreenQuery } from "@/hooks/useScreenQuery";
 
 import { Button } from "@/components/ui/Button";
 import { OwnerTag } from "@/components/ui/OwnerTag";
@@ -32,6 +33,7 @@ type StudentListProps = {
   status: "loading" | "ready" | "error";
   onRetry: () => void;
   canManageAccounts?: boolean;
+  requestedStudentId?: string;
 };
 
 export function StudentList({
@@ -40,6 +42,7 @@ export function StudentList({
   status,
   onRetry,
   canManageAccounts = false,
+  requestedStudentId = "",
 }: StudentListProps) {
   // 고른 학생은 **그 반 안에서만** 산다 — 반을 바꾸면 칸이 닫힌다(초기 비밀번호도 같이 사라진다)
   const [picked, setPicked] = useState<{
@@ -47,6 +50,15 @@ export function StudentList({
     studentId: string;
   } | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
+  useEffect(() => {
+    if (
+      status === "ready" &&
+      selectedClass &&
+      requestedStudentId &&
+      students.some((row) => row.id === requestedStudentId)
+    )
+      setPicked({ classId: selectedClass.id, studentId: requestedStudentId });
+  }, [status, selectedClass, students, requestedStudentId]);
   const pickedId =
     picked && picked.classId === selectedClass?.id ? picked.studentId : null;
   const pickedStudent =
@@ -56,6 +68,17 @@ export function StudentList({
 
   return (
     <div>
+      {requestedStudentId &&
+      status === "ready" &&
+      !students.some((row) => row.id === requestedStudentId) ? (
+        <p role="alert">요청한 학생이 이 반에 없거나 접근 권한이 없습니다.</p>
+      ) : null}
+      {requestedStudentId && pickedStudent && !canManageAccounts ? (
+        <p role="status">
+          선택 학생: {pickedStudent.name}. 계정 발급·관리는 지점 관리자에게
+          요청하세요.
+        </p>
+      ) : null}
       <h2
         id="class-students-heading"
         className="mb-2 border-t-[3px] border-ink pt-1.5 text-[10.5px] font-black tracking-[2.5px]"
@@ -99,7 +122,11 @@ export function StudentList({
         {(status === "ready" ? students : []).map((student) => {
           const selected = student.id === pickedId;
           return (
-            <li key={student.id} className="border-b border-divider">
+            <li
+              key={student.id}
+              data-selected={selected}
+              className="border-b border-divider"
+            >
               {/*
                * 이름 단추 — 누르면 그 학생의 오늘의 개념 로그인 칸이 선다(한 번 더 누르면 닫힌다).
                * 고른 표시는 반 목록과 같은 어법(`rowSelection.ts`). ⚠️ D-30 — 행에는 손가락·hover 가 없다.
@@ -112,6 +139,9 @@ export function StudentList({
                   aria-controls={`student-account-${student.id}-panel`}
                   onClick={(event) => {
                     opener.current = event.currentTarget;
+                    replaceScreenQuery({
+                      studentId: selected ? null : student.id,
+                    });
                     setPicked(
                       selected || !selectedClass
                         ? null
@@ -143,6 +173,7 @@ export function StudentList({
           student={pickedStudent}
           onClose={() => {
             setPicked(null);
+            replaceScreenQuery({ studentId: null });
             opener.current?.focus();
           }}
         />

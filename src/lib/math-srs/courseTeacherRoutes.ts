@@ -1,5 +1,5 @@
 import "server-only";
-import { idParamSchema } from "@/contracts/common.contract";
+import { idParamSchema, uuidSchema } from "@/contracts/common.contract";
 import {
   courseDashboardResponseSchema,
   coursePlanInputSchema,
@@ -16,7 +16,10 @@ import {
   validationError,
 } from "@/lib/apiResponse";
 import { noStore } from "@/lib/learn/accountRoutes";
-import { requireOwnedStudent } from "@/lib/ownership";
+import {
+  requireOwnedStudent,
+  requireOwnedStudentInClass,
+} from "@/lib/ownership";
 import { routeAccessFor } from "@/lib/routeAccess";
 import { emptyCourseState, setCoursePlan } from "./courseAutomation";
 import { courseFailureResponse } from "./courseRoutes";
@@ -76,11 +79,21 @@ export async function handleCourseTeacherStudent(
   if (access.response) return noStore(access.response);
   const parsed = idParamSchema.safeParse(await context.params);
   if (!parsed.success) return noStore(validationError(parsed.error));
-  const owned = await requireOwnedStudent(
-    parsed.data.id,
-    access.account,
-    request.method === "GET" ? "student:read" : "progress:write",
-  );
+  const requestedClassId = new URL(request.url).searchParams.get("classId");
+  const classId =
+    requestedClassId === null ? null : uuidSchema.safeParse(requestedClassId);
+  if (classId && !classId.success)
+    return noStore(validationError(classId.error));
+  const capability =
+    request.method === "GET" ? "student:read" : "progress:write";
+  const owned = classId?.success
+    ? await requireOwnedStudentInClass(
+        parsed.data.id,
+        classId.data,
+        access.account,
+        capability,
+      )
+    : await requireOwnedStudent(parsed.data.id, access.account, capability);
   if (!owned.ok) return noStore(owned.response);
   try {
     const student = await loadCourseStudent(parsed.data.id, owned.data.classId);

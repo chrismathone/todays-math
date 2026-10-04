@@ -156,9 +156,18 @@ export const courseRosterStudentSchema = courseStudentStateSchema
     classId: uuidSchema,
     className: z.string(),
     hasAccount: z.boolean(),
+    // Enrollment grade; never inferred from the student's personal school grade.
+    classGrade: z.string().nullable().optional(),
   });
 export type CourseRosterStudent = z.infer<typeof courseRosterStudentSchema>;
 export const courseDashboardSchema = z.strictObject({
+  management: z
+    .strictObject({
+      canOpen: z.boolean(),
+      branchId: uuidSchema.nullable(),
+      branchRole: z.enum(["owner", "manager", "teacher"]).nullable(),
+    })
+    .optional(),
   classes: z.array(z.strictObject({ id: uuidSchema, name: z.string() })),
   students: z.array(courseRosterStudentSchema),
 });

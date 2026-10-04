@@ -5,11 +5,15 @@ import TodayMathMark from "@/components/brand/TodayMathMark";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import TeachingView from "@/components/unified/TeachingView";
 import { getAccountAccess } from "@/lib/accountAccess";
+import { contextParams, type QueryValues } from "@/lib/adminReturn";
 import s from "@/components/admin/admin.module.css";
 
 export const metadata: Metadata = { title: "반 관리 | 오늘의수학" };
 
-export default async function TeacherClassesPage() {
+export default async function TeacherClassesPage({
+  searchParams,
+}: { searchParams?: Promise<QueryValues> } = {}) {
+  const context = contextParams((await searchParams) ?? {});
   const account = await getAccountAccess();
   if (!account) redirect("/login?callbackUrl=%2Fclasses%2Fmanage");
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
@@ -19,7 +23,7 @@ export default async function TeacherClassesPage() {
     account.branchId &&
     (account.branchRole === "owner" || account.branchRole === "manager")
   )
-    redirect("/branch?tab=classes");
+    redirect(`/branch?tab=classes${context.size ? `&${context}` : ""}`);
   return (
     <div className={s.shell}>
       <header className={s.header}>
