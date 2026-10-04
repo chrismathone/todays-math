@@ -43,6 +43,7 @@ const {
   readListeningStyleJudgment,
   listeningStyleGenerationVersionAllowed,
   listeningStyleSemanticWarnings,
+  normalizeListeningStyleGeneration,
 } = moduleExports(
   await import("../../../src/lib/english/listening/reconstructionStyle"),
 );
@@ -868,10 +869,52 @@ export async function loadVerifiedListeningStyleStage(
     expectedQuestions,
     "Generation input differs from immutable baseline questions/ASR/template coverage.",
   );
+  let generated: unknown = JSON.parse(response.choices[0].message.content);
+  if (audit.version === "korean-official-style-v4-20261005") {
+    const normalizationVersion =
+        audit.generationNormalization?.version ?? "structural-metadata-v1",
+      normalized = normalizeListeningStyleGeneration(
+        generated,
+        {
+          sourceRecordId: staged.sourceRecordId,
+          level: baseline.createInput.level,
+        },
+        normalizationVersion,
+      );
+    // The recovery authorization covers only redundant identity metadata and
+    // the explicitly versioned taxonomy aliases, never substantive item edits.
+    if (
+      normalized.generationNormalization.steps.some(
+        (step) =>
+          step.field === "questionType" &&
+          (step.to !== "detail" ||
+            (step.from !== "reason" &&
+              !(
+                normalizationVersion === "structural-metadata-v2" &&
+                step.from === "action"
+              ))),
+      )
+    )
+      fail("Generation normalization contains an unauthorized taxonomy alias.");
+    if (
+      normalized.generationNormalization.steps.length &&
+      !audit.generationNormalization
+    )
+      fail(
+        "Generation normalization requires a declared transformation proof.",
+      );
+    if (audit.generationNormalization)
+      equal(
+        audit.generationNormalization,
+        normalized.generationNormalization,
+        "Declared generation normalization differs from the immutable raw response.",
+      );
+    generated = normalized.value;
+  }
   const grounded = validateListeningStyleRevision(
     segments,
     baselineQuestions,
-    JSON.parse(response.choices[0].message.content),
+    generated,
   );
   for (const [index, candidate] of grounded.questions.entries()) {
     const verdict = audit.questionVerdicts[index];

@@ -31,6 +31,9 @@ export async function makeListeningStyleStageFixture(
   options: {
     legacy?: boolean;
     semanticCase?: "deadline_drift" | "deadline_preserved";
+    generationRecovery?: boolean;
+    generationRecoveryVersion?:
+      "structural-metadata-v1" | "structural-metadata-v2";
   } = {},
 ) {
   const root = await mkdtemp(join(tmpdir(), "verified-listening-style-"));
@@ -377,12 +380,26 @@ export async function makeListeningStyleStageFixture(
       actualModel: response.model,
     });
   }
+  const rawCandidates = candidates.map((candidate, index) =>
+    options.generationRecovery && (index === 0 || index === 2)
+      ? {
+          ...candidate,
+          sourceRecordId: id,
+          level: "중3",
+          questionType:
+            options.generationRecoveryVersion === "structural-metadata-v2" &&
+            index === 2
+              ? "action"
+              : "reason",
+        }
+      : candidate,
+  );
   await saveReceipt("generation", "generation", generationRequest, {
     model: "deepseek-v4-pro",
     choices: [
       {
         finish_reason: "stop",
-        message: { content: JSON.stringify({ questions: candidates }) },
+        message: { content: JSON.stringify({ questions: rawCandidates }) },
       },
     ],
   } as { model: string });
@@ -537,6 +554,28 @@ export async function makeListeningStyleStageFixture(
     generatedAt: time,
     originalQuestionNumbersRecovered: false,
     threshold: 0.9,
+    ...(options.generationRecovery
+      ? {
+          generationNormalization: {
+            version:
+              options.generationRecoveryVersion ?? "structural-metadata-v1",
+            steps: [1, 3].flatMap((sourceNumber) => [
+              { sourceNumber, field: "sourceRecordId", from: id, to: null },
+              { sourceNumber, field: "level", from: "중3", to: null },
+              {
+                sourceNumber,
+                field: "questionType",
+                from:
+                  options.generationRecoveryVersion ===
+                    "structural-metadata-v2" && sourceNumber === 3
+                    ? "action"
+                    : "reason",
+                to: "detail",
+              },
+            ]),
+          },
+        }
+      : {}),
     receipts: references,
     questionVerdicts: verdicts,
     eligibleQuestionIds: verdicts

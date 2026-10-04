@@ -41,8 +41,366 @@ async function fixture(
   return value;
 }
 type Fixture = Awaited<ReturnType<typeof fixture>>;
+type RawGeneration = { questions: Record<string, unknown>[] };
+async function rewriteGeneration(
+  f: Fixture,
+  change: (raw: RawGeneration) => void,
+) {
+  const reference = f.audit.receipts[0],
+    request = await json(reference.requestPath),
+    saved = await json(reference.receiptPath),
+    raw = JSON.parse(saved.response.choices[0].message.content);
+  change(raw);
+  saved.response.choices[0].message.content = JSON.stringify(raw);
+  await f.rewriteReceipt(0, request, saved);
+}
 
 describe("trusted offline listening style stage", () => {
+  it("replays exact structural recovery without changing immutable receipts or held edits", async () => {
+    const f = await fixture("4", { generationRecovery: true }),
+      reference = f.audit.receipts[0],
+      before = await readFile(reference.receiptPath),
+      raw = JSON.parse(
+        (await json(reference.receiptPath)).response.choices[0].message.content,
+      ),
+      loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
+    expect(raw.questions[0].questionType).toBe("reason");
+    expect(raw.questions[0].sourceRecordId).toBe(loaded.sourceRecordId);
+    expect(raw.questions[0].level).toBe("중3");
+    expect(loaded.audit.generationNormalization).toEqual({
+      version: "structural-metadata-v1",
+      steps: [1, 3].flatMap((sourceNumber) => [
+        {
+          sourceNumber,
+          field: "sourceRecordId",
+          from: loaded.sourceRecordId,
+          to: null,
+        },
+        { sourceNumber, field: "level", from: "중3", to: null },
+        { sourceNumber, field: "questionType", from: "reason", to: "detail" },
+      ]),
+    });
+    expect(loaded.audit.eligibleQuestionIds).toHaveLength(2);
+    expect(
+      loaded.staged.editableInput.groups[0].questions[0].metadata!.questionType,
+    ).toBe("detail");
+    expect(loaded.staged.editableInput.groups[0].questions[2]).toEqual(
+      loaded.baseline.editableInput.groups[0].questions[2],
+    );
+    expect(
+      loaded.staged.editableInput.groups[0].questions[1].metadata!
+        .reconstruction!.verification,
+    ).toBe("needs_review");
+    expect(await readFile(reference.receiptPath)).toEqual(before);
+    expect(sha(before)).toBe(reference.receiptSha256);
+    assertVerifiedListeningStyleStage(loaded);
+  });
+
+  it("accepts raw current stages with an absent or explicitly empty normalization declaration", async () => {
+    const f = await fixture();
+    expect(
+      (await loadVerifiedListeningStyleStage(f.file, f.root)).audit
+        .generationNormalization,
+    ).toBeUndefined();
+    f.audit.generationNormalization = {
+      version: "structural-metadata-v1",
+      steps: [],
+    };
+    await f.saveStage();
+    const loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
+    expect(loaded.audit.generationNormalization!.steps).toEqual([]);
+    assertVerifiedListeningStyleStage(loaded);
+  });
+
+  it.each([
+    "missing declaration",
+    "missing version",
+    "unknown version",
+    "erased steps",
+    "missing step",
+    "invented step",
+    "duplicate step",
+    "reordered steps",
+    "wrong ordinal",
+    "wrong from",
+    "wrong to",
+    "unknown field",
+    "extra field",
+    "noninteger ordinal",
+  ])("rejects recovery proof %s before candidate checks", async (change) => {
+    const f = await fixture("4", { generationRecovery: true }),
+      stage = await json(f.file),
+      audit = stage.verification.styleRevision,
+      normalization = audit.generationNormalization;
+    if (change === "missing declaration") delete audit.generationNormalization;
+    if (change === "missing version") delete normalization.version;
+    if (change === "unknown version")
+      normalization.version = "structural-metadata-v3";
+    if (change === "erased steps") normalization.steps = [];
+    if (change === "missing step") normalization.steps.pop();
+    if (change === "invented step")
+      normalization.steps.push({
+        sourceNumber: 2,
+        field: "questionType",
+        from: "reason",
+        to: "detail",
+      });
+    if (change === "duplicate step")
+      normalization.steps.push(normalization.steps[0]);
+    if (change === "reordered steps") normalization.steps.reverse();
+    if (change === "wrong ordinal") normalization.steps[0].sourceNumber = 2;
+    if (change === "wrong from")
+      normalization.steps[0].from = "ebs-middle-3-2016-2";
+    if (change === "wrong to") normalization.steps[0].to = "";
+    if (change === "unknown field") normalization.steps[0].field = "prompt";
+    if (change === "extra field") normalization.steps[0].text = "invented";
+    if (change === "noninteger ordinal")
+      normalization.steps[0].sourceNumber = 1.5;
+    await write(f.file, stage);
+    await expect(
+      loadVerifiedListeningStyleStage(f.file, f.root),
+    ).rejects.toThrow(/normalization|generationNormalization/);
+  });
+
+  it.each([
+    "wrong sourceRecordId",
+    "wrong level",
+    "null sourceRecordId",
+    "numeric level",
+    "action alias",
+    "unknown alias",
+    "already normalized alias",
+    "erased raw metadata",
+    "unknown question field",
+    "unknown top-level field",
+  ])(
+    "rejects raw recovery %s even after receipt hashes are rebuilt",
+    async (change) => {
+      const f = await fixture("4", { generationRecovery: true });
+      await rewriteGeneration(f, (raw) => {
+        const question = raw.questions[0];
+        if (change === "wrong sourceRecordId")
+          question.sourceRecordId = "ebs-middle-3-2016-2";
+        if (change === "wrong level") question.level = "중2";
+        if (change === "null sourceRecordId") question.sourceRecordId = null;
+        if (change === "numeric level") question.level = 3;
+        if (change === "action alias") question.questionType = "action";
+        if (change === "unknown alias") question.questionType = "reasoning";
+        if (change === "already normalized alias")
+          question.questionType = "detail";
+        if (change === "erased raw metadata") delete question.sourceRecordId;
+        if (change === "unknown question field")
+          question.officialQuestionNumber = 1;
+        if (change === "unknown top-level field")
+          Object.assign(raw, { recovered: true });
+      });
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow();
+    },
+  );
+
+  it.each([
+    "prompt",
+    "choice",
+    "explanation",
+    "answer",
+    "quote",
+    "segments",
+    "order",
+    "missing",
+    "duplicate",
+  ])(
+    "rejects a %s change hidden in a structural recovery, including held candidates",
+    async (change) => {
+      const f = await fixture("4", { generationRecovery: true });
+      await rewriteGeneration(f, (raw) => {
+        const held = raw.questions[2];
+        if (change === "prompt")
+          held.prompt = "대화를 듣고, 구입할 물건으로 적절한 것을 고르시오.";
+        if (change === "choice") (held.choices as string[])[0] = "노란 시계";
+        if (change === "explanation")
+          held.explanation = "네모난 시계를 살 예정이라고 했다.";
+        if (change === "answer") held.correctChoiceOneBased = 1;
+        if (change === "quote")
+          held.evidenceQuotes = ["I will buy a yellow watch."];
+        if (change === "segments") held.sourceSegmentIds = [1];
+        if (change === "order") raw.questions.reverse();
+        if (change === "missing") raw.questions.pop();
+        if (change === "duplicate") raw.questions[4] = raw.questions[3];
+      });
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow();
+    },
+  );
+
+  it.each(["topics", "keywords"] as const)(
+    "rejects recovery staging %s that is not derived from the exact eligible patch",
+    async (field) => {
+      const f = await fixture("4", { generationRecovery: true });
+      f.staged.editableInput.groups[0].questions[0].metadata![field] = [
+        "changed",
+      ];
+      await f.saveStage();
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow(/editable|patch/);
+    },
+  );
+
+  it("rejects invented proof on an unchanged raw generation and recovery on legacy audits", async () => {
+    const plain = await fixture();
+    plain.audit.generationNormalization = {
+      version: "structural-metadata-v1",
+      steps: [
+        {
+          sourceNumber: 1,
+          field: "questionType",
+          from: "reason",
+          to: "detail",
+        },
+      ],
+    };
+    await plain.saveStage();
+    await expect(
+      loadVerifiedListeningStyleStage(plain.file, plain.root),
+    ).rejects.toThrow(/normalization/);
+    const recovered = await fixture("4", { generationRecovery: true });
+    recovered.audit.version = "korean-official-style-v3-20261005";
+    await recovered.saveStage();
+    await expect(
+      loadVerifiedListeningStyleStage(recovered.file, recovered.root),
+    ).rejects.toThrow(/current guarded/);
+    delete recovered.audit.generationNormalization;
+    await recovered.saveStage();
+    await expect(
+      loadVerifiedListeningStyleStage(recovered.file, recovered.root),
+    ).rejects.toThrow();
+  });
+
+  it("keeps semantic holds and rejects semantic warning erasure after normalization", async () => {
+    const f = await fixture("4", {
+        generationRecovery: true,
+        semanticCase: "deadline_drift",
+      }),
+      loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
+    expect(loaded.audit.questionVerdicts[0].semanticWarnings).toEqual([
+      "dropped_deadline",
+    ]);
+    expect(loaded.audit.questionVerdicts[0].eligible).toBe(false);
+    expect(loaded.staged.editableInput.groups[0].questions[0]).toEqual(
+      loaded.baseline.editableInput.groups[0].questions[0],
+    );
+    f.audit.questionVerdicts[0].semanticWarnings = [];
+    f.audit.questionVerdicts[0].groundingJudgment!.choice = "1";
+    f.audit.questionVerdicts[0].answerVerified = false;
+    await f.saveStage();
+    await expect(
+      loadVerifiedListeningStyleStage(f.file, f.root),
+    ).rejects.toThrow(/semantic warnings/);
+  });
+
+  it("replays explicit v2 reason and action aliases with exact ordered identity removals", async () => {
+    const f = await fixture("4", {
+        generationRecovery: true,
+        generationRecoveryVersion: "structural-metadata-v2",
+      }),
+      before = await readFile(f.audit.receipts[0].receiptPath),
+      loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
+    expect(loaded.audit.generationNormalization).toEqual({
+      version: "structural-metadata-v2",
+      steps: [1, 3].flatMap((sourceNumber) => [
+        {
+          sourceNumber,
+          field: "sourceRecordId",
+          from: loaded.sourceRecordId,
+          to: null,
+        },
+        { sourceNumber, field: "level", from: "중3", to: null },
+        {
+          sourceNumber,
+          field: "questionType",
+          from: sourceNumber === 3 ? "action" : "reason",
+          to: "detail",
+        },
+      ]),
+    });
+    expect(loaded.audit.eligibleQuestionIds).toHaveLength(2);
+    expect(loaded.staged.editableInput.groups[0].questions[2]).toEqual(
+      loaded.baseline.editableInput.groups[0].questions[2],
+    );
+    expect(await readFile(f.audit.receipts[0].receiptPath)).toEqual(before);
+    assertVerifiedListeningStyleStage(loaded);
+  });
+
+  it.each([
+    "downgraded version",
+    "unknown version",
+    "missing declaration",
+    "wrong alias",
+    "erased action step",
+    "invented removal",
+    "reordered steps",
+  ])("rejects explicit v2 recovery with %s", async (change) => {
+    const f = await fixture("4", {
+        generationRecovery: true,
+        generationRecoveryVersion: "structural-metadata-v2",
+      }),
+      stage = await json(f.file),
+      audit = stage.verification.styleRevision,
+      normalization = audit.generationNormalization;
+    if (change === "downgraded version")
+      normalization.version = "structural-metadata-v1";
+    if (change === "unknown version")
+      normalization.version = "structural-metadata-v3";
+    if (change === "missing declaration") delete audit.generationNormalization;
+    if (change === "wrong alias") normalization.steps[5].from = "reason";
+    if (change === "erased action step") normalization.steps.pop();
+    if (change === "invented removal")
+      normalization.steps.push({
+        sourceNumber: 2,
+        field: "level",
+        from: "중3",
+        to: null,
+      });
+    if (change === "reordered steps") normalization.steps.reverse();
+    await write(f.file, stage);
+    await expect(
+      loadVerifiedListeningStyleStage(f.file, f.root),
+    ).rejects.toThrow();
+  });
+
+  it.each([
+    "unknown alias",
+    "mismatched identity",
+    "prompt",
+    "answer",
+    "quote",
+  ])(
+    "rejects v2 raw %s changes with rebuilt receipt hashes",
+    async (change) => {
+      const f = await fixture("4", {
+        generationRecovery: true,
+        generationRecoveryVersion: "structural-metadata-v2",
+      });
+      await rewriteGeneration(f, (raw) => {
+        const question = raw.questions[2];
+        if (change === "unknown alias") question.questionType = "intent";
+        if (change === "mismatched identity") question.level = "중1";
+        if (change === "prompt")
+          question.prompt =
+            "대화를 듣고, 구입할 물건으로 적절한 것을 고르시오.";
+        if (change === "answer") question.correctChoiceOneBased = 1;
+        if (change === "quote")
+          question.evidenceQuotes = ["I will buy a yellow watch."];
+      });
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow();
+    },
+  );
+
   it("records deadline drift and holds it despite strong independent judgments", async () => {
     const f = await fixture("4", { semanticCase: "deadline_drift" }),
       loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
@@ -797,6 +1155,59 @@ describe("trusted offline listening style stage", () => {
         /semantic guard/,
       );
     });
+
+  it("validates the saved failed-generation recovery with every gate and unchanged raw receipt", async (context) => {
+    const root = "C:/Creative/testautocreator/output/listening-assessments",
+      file = resolve(
+        root,
+        "style-revision-20261005-recovery-v4/ebs-middle-1-2006-2.json",
+      );
+    if (
+      !(await access(file).then(
+        () => true,
+        () => false,
+      ))
+    ) {
+      context.skip();
+      return;
+    }
+    const stage = await json(file),
+      receiptPath = stage.verification.styleRevision.receipts[0].receiptPath,
+      before = await readFile(receiptPath),
+      raw = JSON.parse(
+        JSON.parse(before.toString("utf8")).response.choices[0].message.content,
+      ),
+      loaded = await loadVerifiedListeningStyleStage(file, root);
+    expect(loaded.audit.version).toBe("korean-official-style-v4-20261005");
+    expect(loaded.audit.generationNormalization!.version).toBe(
+      "structural-metadata-v1",
+    );
+    expect(loaded.audit.generationNormalization!.steps).toEqual([
+      { sourceNumber: 20, field: "questionType", from: "reason", to: "detail" },
+    ]);
+    expect(
+      raw.questions.some(
+        (question: { questionType: string }) =>
+          question.questionType === "reason",
+      ),
+    ).toBe(true);
+    expect(resolve(receiptPath)).toBe(
+      resolve(
+        root,
+        "style-revision-20261005-flash-v4/audit/ebs-middle-1-2006-2/generation.receipt.json",
+      ),
+    );
+    expect(loaded.audit.questionVerdicts).toHaveLength(20);
+    expect(loaded.audit.eligibleQuestionIds).toHaveLength(2);
+    expect(loaded.audit.needsReviewQuestionIds).toHaveLength(18);
+    expect(loaded.audit.receipts).toHaveLength(11);
+    expect(loaded.audit.humanReviewed).toBe(false);
+    expect(loaded.audit.audioAlignmentVerified).toBe(false);
+    expect(loaded.audit.originalQuestionNumbersRecovered).toBe(false);
+    expect(await readFile(receiptPath)).toEqual(before);
+    expect(loaded.audit.receipts[0].receiptSha256).toBe(sha(before));
+    assertVerifiedListeningStyleStage(loaded);
+  });
 
   it("validates the current guarded Flash pilot with adoption proof", async (context) => {
     const root = "C:/Creative/testautocreator/output/listening-assessments",
