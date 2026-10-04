@@ -359,7 +359,7 @@ describe("account-based math practice", () => {
         "button",
       )[3],
     );
-    expect(await wrongFirst).toHaveTextContent("다시 풀 문제로 모았어요");
+    expect(await wrongFirst).toHaveTextContent("다시 생각해 볼 문제예요");
     expect(
       screen.queryByRole("heading", { name: "미션을 마쳤어요" }),
     ).not.toBeInTheDocument();
@@ -371,7 +371,7 @@ describe("account-based math practice", () => {
         "button",
       )[3],
     );
-    expect(await wrongRetry).toHaveTextContent("다시 풀 문제로 모았어요");
+    expect(await wrongRetry).toHaveTextContent("아직 해결하지 못했어요");
     expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
       expect.objectContaining({
         missionId,
@@ -395,7 +395,7 @@ describe("account-based math practice", () => {
         "button",
       )[0],
     );
-    expect(await rightRetry).toHaveTextContent("정확하게 풀었어요");
+    expect(await rightRetry).toHaveTextContent("이번에는 해결했어요");
     expect(screen.queryByText("이렇게 풀어요")).not.toBeInTheDocument();
     await screen.findByRole(
       "heading",
@@ -483,7 +483,7 @@ describe("account-based math practice", () => {
         "button",
       )[0],
     );
-    expect(await resumedRetry).toHaveTextContent("정확하게 풀었어요");
+    expect(await resumedRetry).toHaveTextContent("이번에는 해결했어요");
     expect(api.submitMathSrsReplay).toHaveBeenCalledWith(
       expect.objectContaining({ step: 2, recordRetry: true }),
     );
