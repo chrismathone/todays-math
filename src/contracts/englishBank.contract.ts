@@ -1,5 +1,7 @@
 /** English bank HTTP contract. Original text is preserved exactly; never silently truncated. */
 import { z } from "zod";
+import { listeningAssessmentSourceSchema } from "./englishListeningSource.contract";
+import { listeningQuestionOriginSchema } from "./englishListeningMetadata.contract";
 import {
   dataResponseSchema,
   isoDateTimeSchema,
@@ -188,10 +190,13 @@ export const englishPassagePrepareResponseSchema = dataResponseSchema(
 export const englishListeningBankQuerySchema = z.strictObject({
   q: z.string().trim().max(200).default(""),
   level: z.string().trim().max(80).optional(),
+  year: z.coerce.number().int().min(1900).max(2200).optional(),
+  round: z.coerce.number().int().min(1).max(10).optional(),
+  origin: listeningQuestionOriginSchema.optional(),
   cursor: z.string().max(1000).optional(),
   limit: z.coerce.number().int().min(1).max(100).default(20),
 });
-/** Official catalog supports year/round; own listening drafts do not. */
+/** Both registered assessments and the reference catalog support year and round. */
 export const englishListeningReferenceQuerySchema =
   englishListeningBankQuerySchema.extend({
     year: z.coerce.number().int().min(1900).max(2200).optional(),
@@ -204,6 +209,9 @@ export const englishListeningBankSummarySchema = z.strictObject({
   level: z.string().nullable(),
   groupCount: z.number().int().min(0),
   publicationCount: z.number().int().min(0),
+  questionCount: z.number().int().min(0).optional(),
+  reconstructedQuestionCount: z.number().int().min(0).optional(),
+  source: listeningAssessmentSourceSchema.optional(),
   updatedAt: isoDateTimeSchema,
 });
 export type EnglishListeningBankSummary = z.infer<

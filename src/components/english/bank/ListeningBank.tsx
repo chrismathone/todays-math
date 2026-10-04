@@ -69,7 +69,9 @@ export default function ListeningBank({
     },
     [onState],
   );
-  const [kind, setKind] = useState<"own" | "ebs">("own");
+  const [kind, setKind] = useState<
+    "own" | "official" | "reconstructed" | "ebs"
+  >("own");
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
   const [year, setYear] = useState("");
@@ -86,11 +88,19 @@ export default function ListeningBank({
   const params = {
     q: filter.q,
     level: filter.level,
+    year: filter.year,
+    round: filter.round,
+    origin:
+      kind === "official"
+        ? "official_original"
+        : kind === "reconstructed"
+          ? "audio_reconstructed"
+          : "",
     cursor: cursors[cursors.length - 1],
     limit: 20,
   };
   const own = useBankQuery(
-    active && kind === "own"
+    active && kind !== "ebs"
       ? bankUrl("/api/english/listening/bank", params)
       : null,
     englishListeningBankResponseSchema,
@@ -107,7 +117,7 @@ export default function ListeningBank({
     englishListeningReferencesResponseSchema,
     generation,
   );
-  const result = kind === "own" ? own : references;
+  const result = kind !== "ebs" ? own : references;
   const reference =
     kind === "ebs" && references.status === "ready"
       ? references.data.data.find((item) => item.id === selected)
@@ -140,7 +150,7 @@ export default function ListeningBank({
           }}
         >
           <label className={`${s.field} ${b.listeningQuery}`}>
-            듣기 제목 검색
+            듣기 자료·문항 검색
             <input
               type="search"
               maxLength={200}
@@ -173,6 +183,8 @@ export default function ListeningBank({
               }}
             >
               <option value="own">내 범위의 듣기 자료</option>
+              <option value="official">공식 원본 자료</option>
+              <option value="reconstructed">음원 기반 재구성 자료</option>
               <option value="ebs">EBS 공식 참조</option>
             </select>
           </label>
@@ -184,7 +196,6 @@ export default function ListeningBank({
               max={2200}
               step={1}
               placeholder="모든 연도"
-              disabled={kind !== "ebs"}
               value={year}
               onChange={(event) => setYear(event.target.value)}
             />
@@ -197,7 +208,6 @@ export default function ListeningBank({
               max={10}
               step={1}
               placeholder="모든 회차"
-              disabled={kind !== "ebs"}
               value={round}
               onChange={(event) => setRound(event.target.value)}
             />
@@ -217,7 +227,7 @@ export default function ListeningBank({
         </form>
       </div>
       <p className={b.note}>
-        {kind === "own"
+        {kind !== "ebs"
           ? "자료를 선택해 바로 듣고, 회차 전체 또는 필요한 문항을 담아 시험지를 만드세요. 전국 듣기평가·모의고사 원본은 파일 등록으로 추가할 수 있습니다."
           : "EBS 공식 페이지의 참조 목록입니다. 음원·문서를 이 서비스에 복제하거나 외부 모델에 전송하지 않습니다."}
       </p>
@@ -233,7 +243,7 @@ export default function ListeningBank({
           ) : (
             <>
               <ul className={b.list}>
-                {kind === "own" &&
+                {kind !== "ebs" &&
                   own.status === "ready" &&
                   own.data.data.map((item) => (
                     <li key={item.id}>
@@ -245,8 +255,18 @@ export default function ListeningBank({
                       >
                         <strong>{item.title}</strong>
                         <span className={b.meta}>
-                          {item.level || "학년 미지정"} · {item.groupCount}개
-                          묶음 · 발행 {item.publicationCount}회
+                          {item.level || "학년 미지정"}
+                          {item.source
+                            ? ` · ${item.source.year}년${item.source.round ? ` ${item.source.round}회` : ""}`
+                            : ""}
+                          {" · "}
+                          {item.questionCount ?? item.groupCount}
+                          {item.questionCount === undefined
+                            ? "개 묶음"
+                            : "문항"}
+                          {item.reconstructedQuestionCount
+                            ? " · 음원 기반 재구성"
+                            : ""}
                         </span>
                       </button>
                     </li>
@@ -288,8 +308,8 @@ export default function ListeningBank({
         </section>
         <section className={b.detail} aria-label="듣기 상세">
           <ListeningBankMaterial
-            active={active && kind === "own"}
-            setId={kind === "own" ? selected : ""}
+            active={active && kind !== "ebs"}
+            setId={kind !== "ebs" ? selected : ""}
             onOpenListening={onOpenListening}
             onState={reportBasket}
           />

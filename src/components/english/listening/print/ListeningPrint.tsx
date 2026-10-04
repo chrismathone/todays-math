@@ -39,6 +39,9 @@ export function ListeningPrint({
                     ? `원본 ${question.sourceNumber ?? question.number}번`
                     : question.prompt}
                 </h3>
+                {question.reconstructionLabel && (
+                  <p>{question.reconstructionLabel}</p>
+                )}
                 {question.image && question.instruction && (
                   <p>{question.instruction}</p>
                 )}
