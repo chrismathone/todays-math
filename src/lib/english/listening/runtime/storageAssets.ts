@@ -9,6 +9,11 @@ import type {
 } from "../media/storageApi";
 import type { ListeningMediaRecord } from "../media/store";
 import { validateListeningDriveMp3 } from "./driveAssets";
+import { assertListeningStorageQuota } from "../media/storageQuota";
+export {
+  LISTENING_STORAGE_OWNER_BYTES,
+  LISTENING_STORAGE_OWNER_ASSETS,
+} from "../media/storageQuota";
 import {
   denied,
   expected,
@@ -22,36 +27,16 @@ import {
   type ListeningDatabase,
   type ListeningTx,
 } from "./database";
-export const LISTENING_STORAGE_OWNER_BYTES = 8 * 1024 ** 3;
-export const LISTENING_STORAGE_OWNER_ASSETS = 512;
 export async function assertStorageQuota(
   tx: ListeningTx,
   ownerId: string,
   ref: ListeningStorageRef,
 ) {
-  const rows = await tx.$queryRaw<{ storage: ListeningStorageRef }[]>(
-    Prisma.sql`SELECT record->'storage' AS storage FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid AND record->'storage' IS NOT NULL`,
-  );
-  if (
-    rows.some(
-      ({ storage }) =>
-        !Number.isSafeInteger(storage.bytes) || storage.bytes < 1,
-    )
-  )
-    throw invalid("보관된 음원 정보를 확인해 주세요.");
-  const files = new Map(
-    rows.map(({ storage }) => [
-      `${storage.bucket}:${storage.key}:${storage.etag}`,
-      storage.bytes,
-    ]),
-  );
-  files.set(`${ref.bucket}:${ref.key}:${ref.etag}`, ref.bytes);
-  if (
-    rows.length >= LISTENING_STORAGE_OWNER_ASSETS ||
-    [...files.values()].reduce((a, b) => a + b, 0) >
-      LISTENING_STORAGE_OWNER_BYTES
-  )
+  try {
+    await assertListeningStorageQuota(tx, ownerId, { ref });
+  } catch {
     throw invalid("듣기 자료 보관 한도를 초과했습니다.");
+  }
 }
 export function storageReadyRecord(input: {
   assetId: string;
