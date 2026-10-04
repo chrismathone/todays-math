@@ -222,6 +222,7 @@ export function quickCreateSelectionInput(components: QuickCreateComponents) {
   };
 }
 export const quickCreateCatalogSchema = z.strictObject({
+  writerReady: z.boolean().optional(),
   units: z
     .array(
       z.strictObject({

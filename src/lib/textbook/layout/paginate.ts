@@ -23,6 +23,7 @@ export interface BlockMeasurement {
   blockId: string;
   heightMm: number;
   widthMm: number;
+  introTextFits?: boolean;
 }
 export interface BlockPlacement {
   blockId: string;
@@ -199,6 +200,7 @@ export function paginateTextbookSections(
           Number.isFinite(size.heightMm) &&
           size.heightMm > 0 &&
           size.heightMm <= 254 &&
+          size.introTextFits !== false &&
           Math.abs(size.widthMm - blockWidthMm(config, block)) <= A4.toleranceMm
         );
       };
