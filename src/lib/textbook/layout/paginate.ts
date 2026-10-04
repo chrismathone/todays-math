@@ -64,7 +64,11 @@ export function textbookBodyTopMm(
 ): number {
   if (!section.blocks.some((candidate) => candidate.semantic))
     return A4.bodyTopMm;
-  if (section.templateKey.startsWith("reference-unitSpread")) return 16;
+  if (
+    section.templateKey.startsWith("reference-unitSpread") ||
+    section.templateKey === "auto-unit-intro"
+  )
+    return 16;
   return (block?.editorialStage ?? section.editorialStage) === "opening" ||
     section.templateKey === "reference-paired" ||
     section.templateKey === "reference-types"
@@ -174,6 +178,87 @@ export function paginateTextbookSections(
         "원고가 없는 구획입니다. 원고를 입력하거나 구획을 명시적으로 삭제하세요.",
         section,
       );
+    const introParts =
+      section.templateKey === "auto-unit-intro"
+        ? section.blocks.filter((block) => block.unitIntroPart)
+        : [];
+    if (introParts.length) {
+      if (introParts.length !== 3 || section.blocks.length !== 3)
+        fail(
+          "AUTO_INTRO_SOURCE",
+          "단원 도입의 공통 원고와 세 가지 측정 모형을 확인하세요.",
+          section,
+        );
+      const part = (name: RenderBlock["unitIntroPart"]) =>
+        introParts.find((block) => block.unitIntroPart === name)!;
+      const fits = (block: RenderBlock) => {
+        const size = measure.get(block.id);
+        return (
+          size &&
+          Number.isFinite(size.heightMm) &&
+          size.heightMm > 0 &&
+          size.heightMm <= 254 &&
+          Math.abs(size.widthMm - blockWidthMm(config, block)) <= A4.toleranceMm
+        );
+      };
+      const spread =
+        next % 2 === 0 && fits(part("left")) && fits(part("right"));
+      if (!spread && !fits(part("single")))
+        fail(
+          "AUTO_INTRO_OVERFLOW",
+          "선택한 단원 도입의 전체 내용이 한 쪽에 들어가지 않습니다. 선택 범위를 줄이거나 도입 원고를 편집하세요.",
+          section,
+          part("single"),
+        );
+      const chosen = spread ? [part("left"), part("right")] : [part("single")];
+      if (pages.length + chosen.length > (options.maxPages ?? 5000))
+        fail(
+          "PAGE_LIMIT",
+          "쪽 수 상한을 넘었습니다. 구획을 나눠 주세요.",
+          section,
+        );
+      if (!spread)
+        issues.push({
+          code: "AUTO_INTRO_SINGLE_PAGE",
+          severity: "warning",
+          path: ["units", section.unitKey, "sections", section.sectionKey],
+          physicalPageIndex: next,
+          message:
+            next % 2 !== 0
+              ? "홀수 시작 쪽이므로 도입의 질문·설명·목표·학습 순서·출발점을 한 쪽에 함께 배치했습니다."
+              : "두 쪽 도입의 측정 공간이 부족하여 같은 전체 내용을 한 쪽에 함께 배치했습니다.",
+        });
+      for (const block of chosen) {
+        const size = measure.get(block.id)!;
+        pages.push({
+          physicalPageIndex: next,
+          printedPageLabel: String(next),
+          unitKey: section.unitKey,
+          sectionKey: section.sectionKey,
+          unitTitle: section.unitTitle,
+          sectionTitle: section.title,
+          kind: "content",
+          editorialStage: "unit",
+          blocks: [
+            {
+              blockId: block.id,
+              column: 1,
+              xMm:
+                next % 2 === 0
+                  ? config.print.outerMarginMm
+                  : config.print.innerMarginMm,
+              yMm: 16,
+              widthMm: blockWidthMm(config, block),
+              heightMm: spread ? 254 : size.heightMm,
+            },
+          ],
+        });
+        next++;
+      }
+      previousSection = section.sectionKey;
+      previousTemplate = section.templateKey;
+      continue;
+    }
     if (section.startPolicy === "even-left" && next % 2 !== 0)
       fail(
         "SECTION_PARITY",
@@ -328,7 +413,9 @@ export function paginateTextbookSections(
             )
           ? (row[0].block.dialogueGapMm ?? 0.85)
           : row[0].block.kind === "heading" && recovered
-            ? 3.5
+            ? row[0].block.editorialStage === "opening"
+              ? 3.5
+              : 4
             : A4.gapMm;
       cursor += height + gap;
       row = [];
@@ -558,6 +645,7 @@ export function studentPageMapFromPages(
   )
     fail("STUDENT_PAGE_COUNT", "검증한 학생용 묶음 쪽 참조가 필요합니다.");
   pages.forEach((page, i) => {
+    const pageSeen = new Set<string>();
     if (
       !Array.isArray(page.blocks) ||
       page.physicalPageIndex !== firstPhysicalPageIndex + i
@@ -582,7 +670,11 @@ export function studentPageMapFromPages(
       fail("STUDENT_PAGE_LABEL", "학생용 본문 쪽 참조를 확인하세요.", page);
     for (const p of page.blocks) {
       const b = blocks.get(p.blockId);
-      if (!b || seen.has(p.blockId))
+      if (
+        !b ||
+        pageSeen.has(p.blockId) ||
+        (seen.has(p.blockId) && b.kind !== "heading")
+      )
         fail(
           "STUDENT_BLOCK_REF",
           "정답지와 학생용 블록의 일치 여부를 확인하세요.",
@@ -590,6 +682,7 @@ export function studentPageMapFromPages(
           p.blockId,
         );
       seen.add(p.blockId);
+      pageSeen.add(p.blockId);
       if (
         ![p.xMm, p.yMm, p.widthMm, p.heightMm].every(Number.isFinite) ||
         ![1, 2].includes(p.column) ||
@@ -597,7 +690,13 @@ export function studentPageMapFromPages(
         p.xMm + p.widthMm > A4.widthMm ||
         p.heightMm <= 0 ||
         Math.abs(p.widthMm - blockWidthMm(config, b!)) > A4.toleranceMm ||
-        p.yMm < A4.bodyTopMm ||
+        p.yMm <
+          textbookBodyTopMm(
+            sections.find((section) =>
+              section.blocks.some((block) => block.id === p.blockId),
+            )!,
+            b!,
+          ) ||
         p.yMm + p.heightMm > A4.bodyBottomMm + A4.toleranceMm
       )
         fail(
@@ -630,10 +729,33 @@ export function studentPageMapFromPages(
         );
     }
   });
-  if (seen.size !== blocks.size)
+  if (
+    [...blocks.values()].some(
+      (block) => !block.unitIntroPart && !seen.has(block.id),
+    )
+  )
     fail(
       "STUDENT_MISSING_BLOCK",
       "학생용 배치에서 누락된 원고 블록이 있습니다.",
     );
+  for (const section of sections) {
+    const alternatives = section.blocks.filter((block) => block.unitIntroPart);
+    if (!alternatives.length) continue;
+    const selected = alternatives
+      .filter((block) => seen.has(block.id))
+      .map((block) => block.unitIntroPart);
+    if (
+      !(selected.length === 1 && selected[0] === "single") &&
+      !(
+        selected.length === 2 &&
+        selected.includes("left") &&
+        selected.includes("right")
+      )
+    )
+      fail(
+        "STUDENT_INTRO_SELECTION",
+        "학생용 단원 도입의 전체 내용 배치를 확인하세요.",
+      );
+  }
   return pageMap;
 }

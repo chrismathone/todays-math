@@ -3,6 +3,7 @@ import {
   textbookIdSchema,
   textbookKeySchema,
   textbookTextSchema,
+  textbookHashSchema,
 } from "./textbookPrimitives.contract";
 
 /** Independent activities. This vocabulary is shared by the request, manuscript and renderer. */
@@ -208,6 +209,19 @@ export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
   }),
   z.strictObject({
     kind: z.literal("unitIntro"),
+    keyPhrase: z.string().max(200).optional(),
+    provenance: z
+      .strictObject({
+        origin: z.literal("bank-derived"),
+        sourceHash: textbookHashSchema,
+        sourceConceptIds: z.array(textbookKeySchema).max(1657),
+        sourceHashes: z.array(textbookHashSchema).max(360),
+        editor: z.string().max(200),
+        reviewer: z.string().max(200),
+        status: z.literal("AI 검수"),
+        humanReview: z.literal(false),
+      })
+      .optional(),
     question: textbookTextSchema,
     explanation: textbookTextSchema,
     goals: z.array(textbookTextSchema).max(100),

@@ -55,6 +55,7 @@ type BlockBase = {
   dialogueLesson?: { lessonKey: string; lessonTitle: string };
   dialogueGuide?: string;
   measurementMinHeightMm?: number;
+  unitIntroPart?: "left" | "right" | "single";
 };
 export type RenderBlock = BlockBase &
   (

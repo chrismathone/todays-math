@@ -87,6 +87,23 @@ function semanticProjection(
     const semantic = block.semantic;
     const activity = semantic?.activity ?? current;
     const stage = activity ? ACTIVITY_STAGE[activity] : "guide";
+    if (
+      semantic?.node?.kind === "unitIntro" &&
+      section.templateKey === "auto-unit-intro" &&
+      block.kind === "text"
+    ) {
+      for (const part of ["left", "right", "single"] as const)
+        blocks.push({
+          ...block,
+          id: `${block.id}.intro-${part}`,
+          unitIntroPart: part,
+          unitNumber: section.blocks.find((candidate) => candidate.unitNumber)
+            ?.unitNumber,
+          editorialStage: "unit",
+        });
+      current = activity;
+      continue;
+    }
     if (activity && activity !== current) {
       const memory = Object.hasOwn(MEMORY_COPY, activity)
         ? MEMORY_COPY[activity as keyof typeof MEMORY_COPY]
@@ -112,10 +129,20 @@ function semanticProjection(
                   : ACTIVITY_LABELS[activity])),
           subtitle:
             activity === "dialogue" && block.kind === "dialogue"
-              ? (block.presentation?.lessonTitle ?? section.title)
-              : (memory?.[1] ?? section.title),
+              ? semantic?.source
+                ? (semantic.title ?? section.title)
+                : (block.presentation?.lessonTitle ?? section.title)
+              : (memory?.[1] ??
+                (semantic?.source ? (semantic.subtitle ?? "") : section.title)),
           stageNumber: String(
-            steps.findIndex((step) => step.activity === activity) + 1,
+            semantic?.source?.scriptIndex ??
+              (memory
+                ? ["conceptStudy", "clozeRecall", "sentenceRecall"].indexOf(
+                    activity,
+                  ) + 1
+                : (section.blocks.find((candidate) => candidate.unitNumber)
+                    ?.unitNumber ??
+                  steps.findIndex((step) => step.activity === activity) + 1)),
           ).padStart(2, "0"),
           progressSteps:
             activity === "dialogue" || stage === "guide"

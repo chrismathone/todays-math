@@ -39,7 +39,10 @@ export function recoveryMeasurePlan(
             : {}),
           ...(isDialoguePlacement(block) && block.semantic
             ? {
-                dialogueGroup: section.unitKey,
+                dialogueGroup:
+                  block.semantic?.source?.kind === "opening"
+                    ? section.unitKey
+                    : section.sectionKey,
                 dialoguePage: section.sectionKey,
               }
             : {}),
@@ -47,6 +50,47 @@ export function recoveryMeasurePlan(
       }),
     ),
   };
+}
+/** Original multi-page scripts are fitted as one unit even when publishing divides the pages into steps. */
+export function dialogueMeasurementModel(
+  whole: TextbookRenderModel,
+  selected: TextbookRenderModel,
+): TextbookRenderModel {
+  const wanted = new Set(
+    selected.sections.flatMap((section) =>
+      section.blocks.flatMap((block) =>
+        block.semantic?.source?.kind === "opening" ? [section.unitKey] : [],
+      ),
+    ),
+  );
+  const selectedKeys = new Set(
+    selected.sections.map(
+      (section) => `${section.unitKey}:${section.sectionKey}`,
+    ),
+  );
+  const extra = whole.sections
+    .filter(
+      (section) =>
+        wanted.has(section.unitKey) &&
+        !selectedKeys.has(`${section.unitKey}:${section.sectionKey}`),
+    )
+    .map((section) => ({
+      ...section,
+      blocks: section.blocks.filter(
+        (block) => isDialoguePlacement(block) || block.dialogueLesson,
+      ),
+    }))
+    .filter((section) => section.blocks.length > 0);
+  const result = { ...selected, sections: [...selected.sections, ...extra] };
+  if (
+    result.sections.length > 8 ||
+    result.sections.reduce((sum, section) => sum + section.blocks.length, 0) >
+      600
+  )
+    throw new Error(
+      "대화의 공통 글자 크기 측정 한도를 넘었습니다. 수업 구획을 줄여 주세요.",
+    );
+  return result;
 }
 export interface RecoveryMeasureResult {
   rowHeightsMm: Record<string, number>;
@@ -125,10 +169,8 @@ export function measureRecoveryDom(
       );
   }
   const maxima: Record<string, number> = {};
-  const groupOf = (block: RecoveryMeasurePlan["blocks"][number]) =>
-    block.memoryGroup ?? block.memoryHeading;
   for (const block of plan.blocks) {
-    const group = groupOf(block),
+    const group = block.memoryGroup ?? block.memoryHeading,
       element = elements.get(block.id);
     if (group && element)
       maxima[group] = Math.max(
@@ -138,7 +180,7 @@ export function measureRecoveryDom(
   }
   const blockMinHeightsMm: Record<string, number> = {};
   for (const block of plan.blocks) {
-    const group = groupOf(block),
+    const group = block.memoryGroup ?? block.memoryHeading,
       element = elements.get(block.id);
     if (group && element) {
       blockMinHeightsMm[block.id] = Math.ceil(maxima[group] * 100) / 100;
@@ -160,13 +202,6 @@ export function measureRecoveryDom(
     );
     const pages = [...new Set(blocks.map((block) => block.dialoguePage!))];
     let chosen = 9.2;
-    const heights = (page: string) =>
-      blocks
-        .filter((block) => block.dialoguePage === page)
-        .map(
-          (block) =>
-            elements.get(block.id)!.getBoundingClientRect().height * mm,
-        );
     for (let tenth = 105; tenth >= 92; tenth--) {
       const pt = tenth / 10;
       for (const block of blocks)
@@ -175,7 +210,12 @@ export function measureRecoveryDom(
           .style.setProperty("--tb-dialogue-size", `${pt}pt`);
       if (
         pages.every((page) => {
-          const hs = heights(page);
+          const hs = blocks
+            .filter((block) => block.dialoguePage === page)
+            .map(
+              (block) =>
+                elements.get(block.id)!.getBoundingClientRect().height * mm,
+            );
           return (
             hs.reduce((sum, height) => sum + height, 0) +
               0.85 * Math.max(0, hs.length - 1) <=
@@ -194,7 +234,12 @@ export function measureRecoveryDom(
       dialogueSizesPt[block.id] = chosen;
     }
     for (const page of pages) {
-      const hs = heights(page),
+      const hs = blocks
+          .filter((block) => block.dialoguePage === page)
+          .map(
+            (block) =>
+              elements.get(block.id)!.getBoundingClientRect().height * mm,
+          ),
         spare =
           plan.dialogueBottomMm -
           plan.dialogueBodyTopMm -

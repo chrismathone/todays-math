@@ -1,19 +1,55 @@
 import "server-only";
-import { sectionTitleTex } from "@/lib/concept-blank/sections";
-import { text, type QuickCreateAssembly } from "./context";
+import { selectUnitOpening } from "../../unitOpenings";
+import { activityText } from "../quickCreateRecovery";
+import type { QuickCreateAssembly } from "./context";
 
 /** The chapter's goals and order, at the head of the chapter the cursor just entered. */
 export function appendUnitIntro(ctx: QuickCreateAssembly): void {
   const { components, units, chapter, addSection } = ctx;
-  if (components.unitIntro)
-    addSection("단원 소개", "auto-unit-intro", [
-      text(
-        `### ${chapter}의 학습 목표와 순서\n\n${units
-          .filter((row) => row.chapter === chapter)
-          .map((row, index) => `${index + 1}. ${sectionTitleTex(row.section)}`)
-          .join(
-            "\n",
-          )}\n\n학습 전에 각 소단원에서 이미 알고 있는 내용과 궁금한 점을 적어 보세요. 학습을 마친 뒤에는 처음의 질문으로 돌아와, 뜻과 조건을 자신의 말로 설명할 수 있는지 확인하세요.`,
-      ),
-    ]);
+  if (!components.unitIntro) return;
+  const selected = units.filter((row) => row.chapter === chapter);
+  const opening = selectUnitOpening(
+    selected[0].grade,
+    chapter,
+    selected.map((row) => row.section),
+  );
+  if (!opening || opening.unmatched.length || !opening.sections.length)
+    throw new Error("선택 범위의 단원 도입 원고를 찾을 수 없습니다.");
+  const {
+    sourceHash,
+    sourceConceptIds,
+    sourceHashes,
+    editor,
+    reviewer,
+    status,
+    humanReview,
+    origin,
+  } = opening.provenance;
+  addSection(opening.title, "auto-unit-intro", [
+    activityText(
+      "unitIntro",
+      opening.title,
+      `### ${opening.title}\n\n${opening.question}\n\n${opening.explanation}`,
+      {
+        kind: "unitIntro",
+        question: opening.question,
+        explanation: opening.explanation,
+        keyPhrase: opening.keyPhrase,
+        goals: [...opening.goals],
+        path: [...opening.path],
+      check: [...opening.check],
+      dateLabel: "공부를 시작한 날",
+        provenance: {
+          origin,
+          sourceHash,
+          sourceConceptIds: [...sourceConceptIds],
+          sourceHashes: [...sourceHashes],
+          editor,
+          reviewer,
+          status,
+          humanReview,
+        },
+      },
+    ),
+  ]);
 }

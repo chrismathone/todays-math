@@ -12,6 +12,10 @@ import {
 import { EDITORIAL_CSS } from "./editorialCss";
 import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
 import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
+import {
+  renderAutomaticIntroHtml,
+  AUTOMATIC_INTRO_CSS,
+} from "./blocks/automaticIntro";
 import { renderConceptHtml } from "./blocks/concept";
 import {
   renderDialogueHtml,
@@ -50,6 +54,8 @@ function renderBlockContent(
   resources: RenderResources,
   stage: EditorialStage,
 ): string {
+  const intro = renderAutomaticIntroHtml(block, resources);
+  if (intro) return intro;
   switch (block.kind) {
     case "unit-intro":
       return renderUnitIntroHtml(block, resources);
@@ -110,6 +116,7 @@ ${DIALOGUE_CSS}
 ${SEMANTIC_ACTIVITY_CSS}
 ${RECOVERY_FRAME_CSS}
 ${SOURCE_CHAPTER_CSS}
+${AUTOMATIC_INTRO_CSS}
 `;
 
 export function renderPageHtml(
@@ -177,6 +184,23 @@ export function renderPageHtml(
       )}</div>`
     : "";
   const recovered = Boolean(section?.blocks.some((block) => block.semantic));
+  const schoolLabel = {
+    elementary: "초등수학",
+    middle: "중등수학",
+    high: "고등수학",
+  }[model.config.schoolLevel];
+  const runningUnit = section?.templateKey.startsWith("reference-unitSpread")
+    ? model.title
+        .replace(/^인재원\s*수학\s*/, "")
+        .replace(model.config.displayCode, "")
+        .trim()
+    : page.unitTitle;
+  const running = recovered
+    ? `${esc(schoolLabel)} ${esc(model.config.displayCode)} <small> / ${esc(runningUnit)}</small>`
+    : `${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small>`;
+  const footerNumber = recovered
+    ? `${model.variant === "answers" ? "A" : ""}${String(page.physicalPageIndex).padStart(3, "0")}`
+    : page.printedPageLabel;
   const placementHtml = (
     p: TextbookPage["blocks"][number],
     offsetX = 0,
@@ -210,7 +234,7 @@ export function renderPageHtml(
           .join("") +
         `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyBlocks.map((placement) => placementHtml(placement, left, bodyTop)).join("")}</div>`
       : page.blocks.map((placement) => placementHtml(placement)).join("");
-  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small></span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(page.printedPageLabel)}</strong><span>${esc(EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(

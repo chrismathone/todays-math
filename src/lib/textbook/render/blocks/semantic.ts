@@ -7,7 +7,7 @@ import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
 function inlineMarkdown(source: string): string {
   const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
   return /^<p>[\s\S]*<\/p>$/.test(html) && !html.slice(3, -4).includes("<p>")
-    ? html.slice(3, -4)
+    ? `${/^\s/.test(source) ? " " : ""}${html.slice(3, -4)}${/\s$/.test(source) ? " " : ""}`
     : html;
 }
 
@@ -50,8 +50,17 @@ export function renderSemanticTextHtml(
   const semantic = block.semantic;
   const node = semantic?.node;
   if (!semantic || !node) return null;
-  if (node.kind === "fragments")
-    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${renderSourceFragments(node.fragments, resources)}</section>`;
+  if (node.kind === "fragments") {
+    const content = renderSourceFragments(node.fragments, resources);
+    const marked =
+      semantic.source?.kind === "unitSpreadLeft"
+        ? content.replaceAll(
+            "<img ",
+            '<img data-textbook-decorative-bleed-mm="4" ',
+          )
+        : content;
+    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${marked}</section>`;
+  }
   if (node.kind === "writing")
     return `<section class="tb-writing-activity" data-activity="${semantic.activity}">${node.prompts.map((prompt) => `<div class="tb-writing-prompt">${md(prompt)}${writingLinesHtml(node.lines)}</div>`).join("")}</section>`;
   if (node.kind === "references")

@@ -3,7 +3,7 @@ export const SOURCE_CHAPTER_CSS = `
 .tb-source-fragments .chapter-number{position:absolute;top:7mm;left:0;display:flex;align-items:flex-start;gap:4mm;color:var(--tb-accent)}
 .tb-source-fragments .chapter-number span.tb-source-small{font-size:7pt;font-weight:700;letter-spacing:1.8px;padding-top:5mm;border-top:2pt solid #cee66c;margin-top:3mm}
 .tb-source-fragments .chapter-number strong{font-size:76pt;line-height:1;letter-spacing:-6px;color:#2f7e62;font-weight:700}
-.tb-source-fragments .chapter-title{position:absolute;left:0;right:0;top:48mm;font-size:31pt!important;line-height:1.25;letter-spacing:-1.7px;color:#123f35;font-weight:700}
+.tb-source-fragments .chapter-title{position:absolute;left:0;right:0;top:48mm;font-size:31pt!important;line-height:1.25;letter-spacing:-1.7px;color:#123f35;font-weight:700;margin:.67em 0}
 .tb-source-fragments .chapter-title span{display:block}
 .tb-source-fragments .chapter-question{position:absolute;top:83mm;left:0;right:4mm;font-size:11.1pt;line-height:1.7;letter-spacing:-.2px;color:#2f6551;word-break:keep-all;font-weight:700}
 .tb-source-fragments .chapter-hero{position:absolute;left:-4mm;right:-4mm;top:101mm;height:119mm}
