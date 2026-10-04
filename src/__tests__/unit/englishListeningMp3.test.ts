@@ -385,7 +385,7 @@ describe("real portable MP3 decoding", () => {
         async () => {},
       ),
     ).rejects.toMatchObject({ blocker: "unsupported_or_invalid_mp3" });
-    await expect(setup({ maxDurationMs: 600001 })).rejects.toMatchObject({
+    await expect(setup({ maxDurationMs: 1800001 })).rejects.toMatchObject({
       code: "invalid_request",
     });
     await expect(
