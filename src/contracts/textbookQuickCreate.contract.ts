@@ -45,6 +45,16 @@ export const DEFAULT_QUICK_CREATE_COMPONENTS = {
   questionLog: false,
   preparation: false,
   errorCheck: false,
+  tableOfContents: false,
+  dialogueCheck: false,
+  conceptStudy: false,
+  conceptBlankTest: false,
+  basicCheck: false,
+  explainActivity: false,
+  conceptMap: false,
+  reasoning: false,
+  conceptIndex: false,
+  typeIndex: false,
 } as const;
 export const quickCreateComponentsSchema = z.strictObject({
   unitIntro: z.boolean(),
@@ -65,6 +75,16 @@ export const quickCreateComponentsSchema = z.strictObject({
   questionLog: z.boolean().default(false),
   preparation: z.boolean().default(false),
   errorCheck: z.boolean().default(false),
+  tableOfContents: z.boolean().default(false),
+  dialogueCheck: z.boolean().default(false),
+  conceptStudy: z.boolean().default(false),
+  conceptBlankTest: z.boolean().default(false),
+  basicCheck: z.boolean().default(false),
+  explainActivity: z.boolean().default(false),
+  conceptMap: z.boolean().default(false),
+  reasoning: z.boolean().default(false),
+  conceptIndex: z.boolean().default(false),
+  typeIndex: z.boolean().default(false),
 });
 export const quickCreateCastSchema = z.strictObject({
   teacherId: z.string().regex(/^teacher-[fm][1-5]$/),
@@ -109,6 +129,8 @@ export const quickCreateInputSchema = textbookRequestSchema
       components.review,
       components.assessment,
       components.written,
+      components.basicCheck,
+      components.reasoning,
     ].filter(Boolean).length;
     if (problemComponents > input.problemCountPerUnit)
       ctx.addIssue({
@@ -134,8 +156,39 @@ export function effectiveQuickCreateComponents(input: {
     result.sentenceRecall = false;
     result.preparation = false;
     result.errorCheck = false;
+    result.dialogueCheck = false;
+    result.conceptStudy = false;
+    result.conceptBlankTest = false;
+    result.basicCheck = false;
+    result.explainActivity = false;
+    result.conceptMap = false;
+    result.conceptIndex = false;
   }
   return result;
+}
+
+/** The new UI sends its explicit selections; old API callers keep includeConcepts semantics. */
+export function quickCreateSelectionInput(components: QuickCreateComponents) {
+  const conceptActivities: (keyof QuickCreateComponents)[] = [
+    "dialogue",
+    "concepts",
+    "termRecall",
+    "clozeRecall",
+    "sentenceRecall",
+    "preparation",
+    "errorCheck",
+    "dialogueCheck",
+    "conceptStudy",
+    "conceptBlankTest",
+    "basicCheck",
+    "explainActivity",
+    "conceptMap",
+    "conceptIndex",
+  ];
+  return {
+    components,
+    includeConcepts: conceptActivities.some((key) => components[key]),
+  };
 }
 export const quickCreateCatalogSchema = z.strictObject({
   units: z

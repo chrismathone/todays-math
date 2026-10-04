@@ -6,6 +6,10 @@
 import type { Difficulty } from "@/contracts/difficulty";
 import type { ProblemType } from "@/contracts/problem.contract";
 import type { TextbookArtifact } from "@/contracts/textbook.contract";
+import type {
+  TextbookDialoguePresentation,
+  TextbookSemantic,
+} from "@/contracts/textbookSemantic.contract";
 import {
   CONCEPT_KINDS,
   type ConceptKind,
@@ -86,6 +90,7 @@ export type DialogueTurn = {
   text: string;
   portraitAssetId: string;
   mirror: boolean;
+  presentation?: TextbookDialoguePresentation;
 };
 
 export type Portrait = {
@@ -97,7 +102,7 @@ export type Portrait = {
 
 export type RecallPhase = "study" | "keywords" | "sentences";
 
-export type SectionBlock =
+export type SectionBlock = { semantic?: TextbookSemantic } & (
   | { id: string; kind: "text"; text: string }
   | { id: string; kind: "dialogue"; turns: DialogueTurn[] }
   | { id: string; kind: "image"; assetId: string; caption: string }
@@ -110,7 +115,8 @@ export type SectionBlock =
       text: string;
       showRepetitionChecks: boolean;
     }
-  | { id: string; kind: "problems"; itemIds: string[] };
+  | { id: string; kind: "problems"; itemIds: string[] }
+);
 
 export type ItemRow = {
   itemId: string;

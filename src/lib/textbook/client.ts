@@ -576,33 +576,48 @@ function fromTurn(
     text: turn.markdown,
     portraitAssetId: turn.portraitAssetId,
     mirror: turn.mirrorPortrait,
+    ...(turn.presentation ? { presentation: turn.presentation } : {}),
   };
 }
 
 function fromBlock(block: ManuscriptBlock): SectionBlock {
+  const semantic = block.semantic ? { semantic: block.semantic } : {};
   switch (block.kind) {
     case "text":
-      return { id: block.blockId, kind: "text", text: block.markdown };
+      return {
+        id: block.blockId,
+        kind: "text",
+        text: block.markdown,
+        ...semantic,
+      };
     case "problem":
-      return { id: block.blockId, kind: "problems", itemIds: [block.itemId] };
+      return {
+        id: block.blockId,
+        kind: "problems",
+        itemIds: [block.itemId],
+        ...semantic,
+      };
     case "image":
       return {
         id: block.blockId,
         kind: "image",
         assetId: block.assetId,
         caption: block.caption ?? "",
+        ...semantic,
       };
     case "dialogue":
       return {
         id: block.blockId,
         kind: "dialogue",
         turns: block.turns.map(fromTurn),
+        ...semantic,
       };
     case "concept":
       return {
         id: block.blockId,
         kind: "concept",
         conceptKey: block.conceptKey,
+        ...semantic,
       };
     case "concept-recall":
       return {
@@ -612,6 +627,7 @@ function fromBlock(block: ManuscriptBlock): SectionBlock {
         phase: block.phase,
         text: block.markdown,
         showRepetitionChecks: block.showRepetitionChecks,
+        ...semantic,
       };
   }
 }
@@ -666,18 +682,25 @@ function toWireTurn(turn: DialogueTurn) {
     portraitAssetId: turn.portraitAssetId,
     mirrorPortrait: turn.mirror,
     markdown: turn.text,
+    ...(turn.presentation ? { presentation: turn.presentation } : {}),
   };
 }
 
 function toWireBlock(block: SectionBlock): ManuscriptBlock | ManuscriptBlock[] {
+  const semantic = block.semantic ? { semantic: block.semantic } : {};
   switch (block.kind) {
     case "text":
-      return { blockId: block.id, kind: "text", markdown: block.text };
+      return {
+        blockId: block.id,
+        kind: "text",
+        markdown: block.text,
+        ...semantic,
+      };
     case "problems": {
       const itemId = block.itemIds[0];
       if (!itemId || block.itemIds.length !== 1)
         fail("문항 블록은 한 문항씩 저장합니다.", 400);
-      return { blockId: block.id, kind: "problem", itemId };
+      return { blockId: block.id, kind: "problem", itemId, ...semantic };
     }
     case "image":
       return {
@@ -685,18 +708,21 @@ function toWireBlock(block: SectionBlock): ManuscriptBlock | ManuscriptBlock[] {
         kind: "image",
         assetId: block.assetId,
         caption: block.caption.length > 0 ? block.caption : null,
+        ...semantic,
       };
     case "dialogue":
       return {
         blockId: block.id,
         kind: "dialogue",
         turns: block.turns.map(toWireTurn),
+        ...semantic,
       };
     case "concept":
       return {
         blockId: block.id,
         kind: "concept",
         conceptKey: block.conceptKey,
+        ...semantic,
       };
     case "concept-recall":
       if (block.phase !== "study" && block.showRepetitionChecks) {
@@ -709,6 +735,7 @@ function toWireBlock(block: SectionBlock): ManuscriptBlock | ManuscriptBlock[] {
         markdown: block.text,
         showRepetitionChecks: block.showRepetitionChecks,
         ...(block.conceptKey ? { conceptKey: block.conceptKey } : {}),
+        ...semantic,
       };
   }
 }
