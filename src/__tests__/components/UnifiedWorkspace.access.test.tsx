@@ -70,11 +70,11 @@ describe("SRS shell transitions", () => {
       try {
         if (method === "sidebar")
           fireEvent.click(
-            screen.getByRole("button", { name: "오늘의 작업", exact: true }),
+            screen.getByRole("button", { name: "오늘의 작업" }),
           );
         else if (method === "keyboard") {
           screen
-            .getByRole("button", { name: "오늘의 작업", exact: true })
+            .getByRole("button", { name: "오늘의 작업" })
             .focus();
           await userEvent.setup().keyboard("{Enter}");
         } else

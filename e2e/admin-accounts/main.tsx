@@ -11,12 +11,15 @@ import "../../src/app/globals.css";
 import "katex/dist/katex.min.css";
 import "./harness.css";
 import Workbench from "./Workbench";
+import { MainScreen } from "../../src/components/main/MainScreen";
 
 const view = new URLSearchParams(location.search).get("view");
 const branchId =
   new URLSearchParams(location.search).get("branchId") ?? "unassigned";
 createRoot(document.getElementById("root")!).render(
-  view === "workbench" ? (
+  view === "dashboard" ? (
+    <MainScreen embedded allowedMenus={["teaching"]} />
+  ) : view === "workbench" ? (
     <Workbench />
   ) : view === "pending" || view === "rejected" ? (
     <ApprovalPending

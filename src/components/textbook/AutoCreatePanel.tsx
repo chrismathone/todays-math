@@ -18,6 +18,17 @@ import {
 import styles from "./AutoCreatePanel.module.css";
 
 const GRADES = ["초3", "초4", "초5", "초6", "중1", "중2", "중3"];
+type CatalogUnit = QuickCreateCatalog["units"][number] & {
+  availability?: Record<
+    QuickCreateInput["difficulty"],
+    { total: number; written: number }
+  >;
+};
+const DIFFICULTY_LABELS = {
+  basic: "기초",
+  standard: "표준",
+  challenge: "심화",
+};
 const COMPONENTS: {
   key: keyof QuickCreateComponents;
   label: string;
@@ -130,7 +141,7 @@ export function AutoCreatePanel({
     setError(null);
     change();
   }
-  const units = catalog?.units ?? [];
+  const units: CatalogUnit[] = catalog?.units ?? [];
   const startIndex = units.findIndex((unit) => unit.id === startId);
   const endIndex = units.findIndex((unit) => unit.id === endId);
   const selected =
@@ -152,8 +163,52 @@ export function AutoCreatePanel({
     Number.isSafeInteger(problemCount) &&
     problemCount >= Math.max(1, problemComponents) &&
     problemCount <= 30;
+  const nonWrittenStages = COMPONENTS.filter(
+    ({ key }) =>
+      (key === "practice" || key === "review" || key === "assessment") &&
+      components[key],
+  ).map(({ label }) => label);
+  const availability = selected.map((unit) => unit.availability?.[difficulty]);
+  const knownAvailability = availability.flatMap((value) =>
+    value ? [value] : [],
+  );
+  const availabilityComplete =
+    selected.length > 0 && knownAvailability.length === selected.length;
+  const availableTotal = knownAvailability.reduce(
+    (total, value) => total + value.total,
+    0,
+  );
+  const availableWritten = knownAvailability.reduce(
+    (total, value) => total + value.written,
+    0,
+  );
+  const shortageUnits =
+    availabilityComplete && validCount
+      ? knownAvailability.filter(
+          (value) =>
+            (nonWrittenStages.length ? value.total : value.written) <
+            problemCount,
+        ).length
+      : 0;
+  const noAvailableQuestions =
+    availabilityComplete &&
+    (nonWrittenStages.length ? availableTotal : availableWritten) === 0;
+  const learningContentEnabled = [
+    components.dialogue,
+    components.concepts,
+    components.termRecall,
+    components.clozeRecall,
+    components.sentenceRecall,
+    components.preparation,
+    components.errorCheck,
+  ].some(Boolean);
+  const noQuestionContent =
+    problemComponents > 0 && noAvailableQuestions && !learningContentEnabled;
   const ready =
-    selected.length > 0 && contentEnabled && (!problemComponents || validCount);
+    selected.length > 0 &&
+    contentEnabled &&
+    (!problemComponents || validCount) &&
+    !noQuestionContent;
   const suggestedTitle = `${gradeLabel} ${semester}학기 · ${selected[0]?.section ?? "범위를 선택하세요"}${selected.length > 1 ? ` ~ ${selected.at(-1)?.section}` : ""}`;
 
   return (
@@ -310,13 +365,14 @@ export function AutoCreatePanel({
               </select>
             </label>
             <label>
-              소단원당 문제 수
+              소단원당 최대 문제 수
               <input
                 type="number"
                 min={Math.max(1, problemComponents)}
                 max="30"
                 value={count}
                 disabled={!problemComponents}
+                aria-describedby="quick-create-availability"
                 onChange={(event) => setCount(event.target.value)}
               />
             </label>
@@ -427,6 +483,46 @@ export function AutoCreatePanel({
               {components.dialogue ? " · 개념 원고 자동 첨부" : ""}
             </span>
           </div>
+          {selected.length > 0 && problemComponents > 0 ? (
+            <div
+              id="quick-create-availability"
+              className={styles.availability}
+              aria-live="polite"
+            >
+              <strong>
+                {availabilityComplete
+                  ? `${DIFFICULTY_LABELS[difficulty]} 난이도 사용 가능 ${availableTotal}문제 · 서술형 ${availableWritten}문제 포함`
+                  : "선택한 난이도의 사용 가능한 문제 수는 만들 때 확인합니다."}
+              </strong>
+              <p>
+                선택한 난이도의 문제만 소단원당 목표 최대 수까지 담습니다.
+                문제가 부족하면 준비된 만큼 담고, 빈 문제 구성은 생략합니다.
+              </p>
+              {noQuestionContent ? (
+                <p role="alert" className={styles.error}>
+                  사용 가능한 문제가 없습니다. 범위나 난이도를 바꾸거나 개념
+                  구성을 켜 주세요.
+                </p>
+              ) : noAvailableQuestions ? (
+                <p className={styles.adjustment}>
+                  사용 가능한 문제가 없어 문제 구성은 생략합니다. 켜 둔 개념과
+                  다른 구성은 그대로 담습니다.
+                </p>
+              ) : shortageUnits > 0 ? (
+                <p className={styles.adjustment}>
+                  문제가 부족한 {shortageUnits}개 소단원은 목표 최대 수보다 적게
+                  담습니다.
+                </p>
+              ) : null}
+              {components.written ? (
+                <p className={styles.adjustment}>
+                  {nonWrittenStages.length
+                    ? `서술형이 부족하면 부족한 수만큼 켜 둔 ${nonWrittenStages.join("·")}에 자동 배분합니다.`
+                    : "서술형이 부족하면 준비된 서술형만 담고, 서술형이 없는 소단원은 해당 구성을 생략합니다."}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
           {!contentEnabled ? (
             <p className={styles.error}>
               표지 외에 구성을 하나 이상 켜 주세요.

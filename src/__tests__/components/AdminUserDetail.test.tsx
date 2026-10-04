@@ -90,7 +90,7 @@ describe("administrator user detail", () => {
     expect(url.searchParams.get("page")).toBe("3");
     expect(url.hash).toBe("#admin-main");
     expect(screen.getByRole("button", { name: "활동 기록" })).toHaveAttribute("aria-pressed", "true");
-    fireEvent.click(screen.getByRole("button", { name: "반", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "반" }));
     expect(new URLSearchParams(window.location.search).get("detailTab")).toBe("classes");
     expect(window.location.hash).toBe("#admin-main");
   });

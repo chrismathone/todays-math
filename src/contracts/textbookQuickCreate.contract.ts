@@ -75,7 +75,7 @@ export const quickCreateInputSchema = textbookRequestSchema
     startUnitId: z.uuid(),
     endUnitId: z.uuid(),
     difficulty: quickCreateDifficultySchema,
-    /** Total per curriculum section, shared between enabled problem components. */
+    /** Target maximum per curriculum section, shared between enabled problem components. */
     problemCountPerUnit: z.number().int().min(1).max(30),
     includeConcepts: z.boolean(),
     title: textbookTitleSchema
@@ -144,6 +144,23 @@ export const quickCreateCatalogSchema = z.strictObject({
         label: z.string().min(1).max(300),
         problemCount: z.number().int().nonnegative(),
         conceptCount: z.number().int().nonnegative(),
+        /** Bank eligibility counts; actual printable counts may be lower if figures are missing. */
+        availability: z
+          .strictObject({
+            basic: z.strictObject({
+              total: z.number().int().nonnegative(),
+              written: z.number().int().nonnegative(),
+            }),
+            standard: z.strictObject({
+              total: z.number().int().nonnegative(),
+              written: z.number().int().nonnegative(),
+            }),
+            challenge: z.strictObject({
+              total: z.number().int().nonnegative(),
+              written: z.number().int().nonnegative(),
+            }),
+          })
+          .optional(),
       }),
     )
     .max(500),
