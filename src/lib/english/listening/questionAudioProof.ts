@@ -469,7 +469,7 @@ export function questionAudioKoreanInstructionCueNumbers(
 }
 
 /** Recomputes dialogue/copies and boundaries from exact file contents, not producer booleans. */
-export function verifyQuestionAudioEvidence(input: {
+export interface QuestionAudioEvidenceInput {
   alignment: QuestionAudioAlignment;
   script: QuestionAudioScript;
   asr: {
@@ -480,9 +480,87 @@ export function verifyQuestionAudioEvidence(input: {
   activity: QuestionAudioActivity;
   rawActivity: QuestionAudioRawActivity;
   derivedAsrOrigins?: Record<string, QuestionAudioAsr>;
-}) {
+}
+
+/** An unresolved neighbor keeps its real identity without inventing cue/copy evidence. */
+export type QuestionAudioPassageEvidenceInput = Omit<
+  QuestionAudioEvidenceInput,
+  "alignment"
+> & {
+  alignment: Omit<QuestionAudioAlignment, "questions"> & {
+    questions: (
+      | QuestionAudioAlignment["questions"][number]
+      | {
+          questionId: string;
+          sourceNumber: number;
+          scriptSectionId: string;
+          [field: string]: unknown;
+        }
+    )[];
+  };
+};
+
+/** Production admission remains whole-source. */
+export function verifyQuestionAudioEvidence(input: QuestionAudioEvidenceInput) {
+  return verifyEvidence(input);
+}
+
+/**
+ * Offline passage staging only. Keep the complete official script, alignment identities,
+ * raw caches and activity; every selected passage passes the same speech checks as a round.
+ * Unselected questions retain whole-source fallback. This does not authorize DB adoption.
+ */
+export function verifyQuestionAudioPassageEvidence(
+  input: QuestionAudioPassageEvidenceInput,
+  sourceNumbers: number[],
+) {
+  if (
+    !sourceNumbers.length ||
+    sourceNumbers.some(
+      (n, i) =>
+        !Number.isSafeInteger(n) ||
+        n < 1 ||
+        (i > 0 && n <= sourceNumbers[i - 1]),
+    )
+  )
+    fail("invalid passage selection");
+  return verifyEvidence(input, new Set(sourceNumbers));
+}
+
+function verifyEvidence(
+  input: QuestionAudioPassageEvidenceInput,
+  staged?: Set<number>,
+) {
+  // In passage mode the full ledger proves original identities; unresolved neighbors
+  // have no speech references to parse. No selected question can bypass the full schema.
+  const originalIdentities = input.alignment.questions.map((q) =>
+    z
+      .strictObject({
+        questionId: id,
+        sourceNumber: number,
+        scriptSectionId: z.string().min(1),
+      })
+      .parse({
+        questionId: q.questionId,
+        sourceNumber: q.sourceNumber,
+        scriptSectionId: q.scriptSectionId,
+      }),
+  );
+  if (
+    originalIdentities.some((q, i) => q.sourceNumber !== i + 1) ||
+    new Set(originalIdentities.map((q) => q.questionId)).size !==
+      originalIdentities.length
+  )
+    fail("question numbering or identity differs");
   const alignment = listeningQuestionAudioAlignmentSchema.parse(
-    input.alignment,
+    staged
+      ? {
+          ...input.alignment,
+          questions: input.alignment.questions.filter((q) =>
+            staged.has(q.sourceNumber),
+          ),
+        }
+      : input.alignment,
   );
   const script = listeningQuestionAudioScriptSchema.parse(input.script);
   const activity = listeningQuestionAudioActivitySchema.parse(input.activity);
@@ -507,12 +585,39 @@ export function verifyQuestionAudioEvidence(input: {
     })
   )
     fail("raw VAD activity identity differs");
+  // Keep every segment of each referenced Korean probe. Unrelated probes are still
+  // retained in the raw artifact and reported by staging, but do not certify this passage.
+  const koreanProbeIds = new Set(
+    staged
+      ? alignment.questions
+          .filter((q) => q.cue.cache === "korean")
+          .flatMap((q) =>
+            q.cue.segmentIds.map(
+              (segmentId) =>
+                input.asr.korean?.segments.find((s) => s.id === segmentId)
+                  ?.probeId,
+            ),
+          )
+      : [],
+  );
+  const selectedKorean =
+    staged && input.asr.korean
+      ? {
+          ...input.asr.korean,
+          probes: input.asr.korean.probes.filter((p) =>
+            koreanProbeIds.has(p.id),
+          ),
+          segments: input.asr.korean.segments.filter((s) =>
+            koreanProbeIds.has(s.probeId),
+          ),
+        }
+      : input.asr.korean;
   const asr = {
     auto: listeningQuestionAudioAsrSchema.parse(input.asr.auto),
     english: listeningQuestionAudioAsrSchema.parse(input.asr.english),
-    ...(input.asr.korean
+    ...(selectedKorean
       ? {
-          korean: listeningQuestionAudioKoreanAsrSchema.parse(input.asr.korean),
+          korean: listeningQuestionAudioKoreanAsrSchema.parse(selectedKorean),
         }
       : {}),
   };
@@ -584,10 +689,12 @@ export function verifyQuestionAudioEvidence(input: {
   if (
     !sameNumbers(
       completeNumbers,
-      alignment.questions.map((q) => q.sourceNumber),
+      originalIdentities.map((q) => q.sourceNumber),
     )
   )
     fail("whole official source question set differs");
+  if (staged && [...staged].some((n) => !completeNumbers.includes(n)))
+    fail("selected passage is outside the official source");
   for (const cache of [...Object.values(asr), ...Object.values(origins)])
     if (
       new Set(cache.segments.map((s) => s.id)).size !== cache.segments.length ||
@@ -615,6 +722,21 @@ export function verifyQuestionAudioEvidence(input: {
       if (new Set(file.windows.map((w) => w.id)).size !== file.windows.length)
         fail("duplicate recognition windows");
       for (const window of file.windows) {
+        if (
+          staged &&
+          !alignment.questions.some(
+            (q) =>
+              (window.startSample < q.endSample &&
+                window.endSample > q.startSample) ||
+              file.segments.some(
+                (s) =>
+                  s.windowId === window.id &&
+                  s.estimatedStartSeconds * 16000 < q.endSample &&
+                  s.estimatedEndSeconds * 16000 > q.startSample,
+              ),
+          )
+        )
+          continue;
         const first = activity.events.find(
             (e) => e.id === window.firstActivityEventId,
           ),
@@ -810,14 +932,15 @@ export function verifyQuestionAudioEvidence(input: {
   }[] = [];
   const identities = new Set<string>();
   for (const [index, question] of alignment.questions.entries()) {
-    if (question.decision !== "qualified" || question.reasons.length)
-      fail("unqualified question cannot be approved");
     if (
-      question.sourceNumber !== index + 1 ||
+      (!staged && question.sourceNumber !== index + 1) ||
       identities.has(question.questionId)
     )
       fail("question numbering or identity differs");
     identities.add(question.questionId);
+    if (staged && !staged.has(question.sourceNumber)) continue;
+    if (question.decision !== "qualified" || question.reasons.length)
+      fail("unqualified question cannot be approved");
     const section = script.sections.find(
       (s) => s.id === question.scriptSectionId,
     );
@@ -1099,6 +1222,13 @@ export function verifyQuestionAudioEvidence(input: {
     if (
       event.startSample >= firstSample &&
       event.endSample <= lastSample &&
+      // Only complete-source admission owns gaps between independently staged passages.
+      // Within each selected range, all source events still have exactly one owner.
+      (!staged ||
+        groups.some(
+          (g) =>
+            event.startSample < g.endSample && event.endSample > g.startSample,
+        )) &&
       groups.filter(
         (g) =>
           event.startSample >= g.startSample && event.endSample <= g.endSample,
