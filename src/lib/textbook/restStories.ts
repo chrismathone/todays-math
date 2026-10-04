@@ -1,6 +1,14 @@
 export type RestStoryId =
   "sharing" | "patterns" | "garden" | "map" | "balance" | "weather";
 
+export type RestAgeBand = "elementary3-4" | "elementary5-6" | "middle1-3";
+
+/** Whether a story suits an age band, and the curriculum fact the verdict rests on. */
+export interface RestStoryFit {
+  readonly suitable: boolean;
+  readonly basis: string;
+}
+
 export interface RestStory {
   readonly id: RestStoryId;
   readonly title: string;
@@ -8,10 +16,21 @@ export interface RestStory {
   readonly reflectionQuestions: readonly string[];
   readonly imageId: RestStoryId;
   readonly imageSrc: string;
+  /** Verdict per age band. A model reading against the curriculum; not yet an editor's approval. */
+  readonly ageBands: Readonly<Record<RestAgeBand, RestStoryFit>>;
+  /** The semester whose chapter first teaches the mathematics the story relies on. */
+  readonly firstTaught: {
+    readonly grade: string;
+    readonly semester: 1 | 2;
+    readonly chapter: string;
+  };
 }
 
 /** Original fictional stories: the numerical claims come from the stated conditions, not the illustration. */
-const stories: Omit<RestStory, "imageId" | "imageSrc">[] = [
+const stories: Omit<
+  RestStory,
+  "imageId" | "imageSrc" | "ageBands" | "firstTaught"
+>[] = [
   {
     id: "sharing",
     title: "귤 바구니를 나누는 오후",
@@ -92,6 +111,117 @@ const stories: Omit<RestStory, "imageId" | "imageSrc">[] = [
   },
 ];
 
+const fit = (suitable: boolean, basis: string): RestStoryFit =>
+  Object.freeze({ suitable, basis });
+
+/**
+ * The six stories read against the curriculum catalogue, one verdict per age band.
+ * The text of a story is the same in every band: where a story relies on mathematics
+ * a band has not met, it is withheld rather than rewritten, so no variant text exists.
+ */
+const suitability: Record<
+  RestStoryId,
+  Pick<RestStory, "ageBands" | "firstTaught">
+> = {
+  sharing: {
+    firstTaught: { grade: "초3", semester: 1, chapter: "1-3 나눗셈" },
+    ageBands: {
+      "elementary3-4": fit(
+        true,
+        "같은 개수로 나누는 나눗셈식과 곱셈식 — 초3 1학기 나눗셈",
+      ),
+      "elementary5-6": fit(
+        true,
+        "나눗셈의 뜻과 ‘같은 개수’와 ‘같은 무게’의 구별 — 초3 내용의 복습",
+      ),
+      "middle1-3": fit(
+        false,
+        "계산과 생각 나누기 물음이 초3 나눗셈 수준이어서 중학생 독자에게는 낮다",
+      ),
+    },
+  },
+  patterns: {
+    firstTaught: { grade: "초3", semester: 1, chapter: "1-3 나눗셈" },
+    ageBands: {
+      "elementary3-4": fit(
+        true,
+        "세 개씩 되풀이되는 규칙과 나눗셈식 — 초3 1학기 나눗셈, 초4 1학기 규칙 찾기",
+      ),
+      "elementary5-6": fit(
+        true,
+        "되풀이되는 규칙과 대응 — 초5 1학기 대응 관계",
+      ),
+      "middle1-3": fit(
+        true,
+        "나머지로 차례를 찾는 생각 — 중2 순환소수의 자리 찾기와 같은 구조",
+      ),
+    },
+  },
+  garden: {
+    firstTaught: {
+      grade: "초5",
+      semester: 1,
+      chapter: "1-6 다각형의 둘레와 넓이",
+    },
+    ageBands: {
+      "elementary3-4": fit(
+        false,
+        "넓이와 제곱미터는 초5 1학기 다각형의 둘레와 넓이에서 처음 배운다",
+      ),
+      "elementary5-6": fit(
+        true,
+        "직사각형의 둘레와 넓이 — 초5 1학기 다각형의 둘레와 넓이",
+      ),
+      "middle1-3": fit(
+        true,
+        "둘레가 같아도 넓이가 다를 수 있다는 비교 — 초5 내용 위의 추론",
+      ),
+    },
+  },
+  map: {
+    firstTaught: { grade: "초6", semester: 1, chapter: "1-4 비와 비율" },
+    ageBands: {
+      "elementary3-4": fit(
+        false,
+        "지도의 길이와 실제 거리의 비, 두 배 확대는 초6 1학기 비와 비율의 내용이다",
+      ),
+      "elementary5-6": fit(
+        true,
+        "지도 위 길이와 실제 거리의 비 — 초6 1학기 비와 비율",
+      ),
+      "middle1-3": fit(true, "축척과 확대 — 중2 도형의 닮음과 이어진다"),
+    },
+  },
+  balance: {
+    firstTaught: { grade: "초3", semester: 1, chapter: "1-1 덧셈과 뺄셈" },
+    ageBands: {
+      "elementary3-4": fit(
+        true,
+        "덧셈과 뺄셈, 같은 수 두 묶음만 쓴다 — 문자식이 없다",
+      ),
+      "elementary5-6": fit(
+        true,
+        "양쪽에서 같은 수를 덜어 내는 생각 — 식 없이 읽힌다",
+      ),
+      "middle1-3": fit(true, "등식의 성질 — 중1 1학기 방정식"),
+    },
+  },
+  weather: {
+    firstTaught: { grade: "초5", semester: 2, chapter: "2-6 평균과 가능성" },
+    ageBands: {
+      "elementary3-4": fit(
+        false,
+        "평균은 초5 2학기 평균과 가능성에서 처음 배운다",
+      ),
+      "elementary5-6": fit(true, "평균 구하기 — 초5 2학기 평균과 가능성"),
+      "middle1-3": fit(
+        true,
+        "평균이 같아도 흩어진 정도가 다른 자료 — 중3 대푯값과 산포도",
+      ),
+    },
+  },
+};
+
 export const REST_STORIES: readonly RestStory[] = Object.freeze(
   stories.map((story) =>
     Object.freeze({
@@ -99,6 +229,8 @@ export const REST_STORIES: readonly RestStory[] = Object.freeze(
       reflectionQuestions: Object.freeze([...story.reflectionQuestions]),
       imageId: story.id,
       imageSrc: `/textbook/illustrations/${story.id}.png`,
+      ageBands: Object.freeze(suitability[story.id].ageBands),
+      firstTaught: Object.freeze(suitability[story.id].firstTaught),
     }),
   ),
 );
@@ -107,27 +239,151 @@ export function getRestStory(id: string): RestStory | undefined {
   return REST_STORIES.find((story) => story.id === id);
 }
 
-/** Topic matching and fallback are deterministic; no generated claim or remote judgment is needed. */
+const topicRules: readonly [RegExp, RestStoryId][] = [
+  [/통계|자료|평균|확률|기온|날씨/, "weather"],
+  [/방정식|등식|부등식|항의 계산|문자|대수|저울/, "balance"],
+  [/규칙|수열|배열|함수|패턴/, "patterns"],
+  [/넓이|둘레|면적|측정|텃밭/, "garden"],
+  [/비례|비율|비와|축척|좌표|지도|닮음|도형|각도/, "map"],
+  [/분수|나눗셈|나누|소수|곱셈|약수|배수|수와 연산/, "sharing"],
+];
+function fallbackIndex(grade: string, topic: string): number {
+  let index = 0;
+  for (const char of `${grade}|${topic}`)
+    index = (index * 31 + char.charCodeAt(0)) % REST_STORIES.length;
+  return index;
+}
+
+/**
+ * Topic matching and fallback are deterministic; no generated claim or remote judgment is needed.
+ * This one-chapter choice knows neither the reader's age nor the rest of the book, so the same
+ * story can repeat. A whole book is planned with {@link planRestStories}.
+ */
 export function chooseRestStory(input: {
   grade: string;
   chapter: string;
   section: string;
 }): RestStory {
   const topic = `${input.chapter} ${input.section}`;
-  const rules: readonly [RegExp, RestStoryId][] = [
-    [/통계|자료|평균|확률|기온|날씨/, "weather"],
-    [/방정식|등식|부등식|항의 계산|문자|대수|저울/, "balance"],
-    [/규칙|수열|배열|함수|패턴/, "patterns"],
-    [/넓이|둘레|면적|측정|텃밭/, "garden"],
-    [/비례|비율|비와|축척|좌표|지도|닮음|도형|각도/, "map"],
-    [/분수|나눗셈|나누|소수|곱셈|약수|배수|수와 연산/, "sharing"],
-  ];
-  const matched = rules.find(([pattern]) => pattern.test(topic));
+  const matched = topicRules.find(([pattern]) => pattern.test(topic));
   if (matched) return getRestStory(matched[1])!;
-  let index = 0;
-  for (const char of `${input.grade}|${topic}`)
-    index = (index * 31 + char.charCodeAt(0)) % REST_STORIES.length;
-  return REST_STORIES[index];
+  return REST_STORIES[fallbackIndex(input.grade, topic)];
+}
+
+const GRADE_ORDER = ["초3", "초4", "초5", "초6", "중1", "중2", "중3"];
+
+export function restAgeBand(grade: string): RestAgeBand | undefined {
+  if (grade === "초3" || grade === "초4") return "elementary3-4";
+  if (grade === "초5" || grade === "초6") return "elementary5-6";
+  if (grade === "중1" || grade === "중2" || grade === "중3") return "middle1-3";
+  return undefined;
+}
+
+export type RestShortageReason =
+  /** The grade is outside 초3–중3. */
+  | "unsupported-grade"
+  /** No story suits this age band or semester at all. */
+  | "no-suitable-story"
+  /** Every suitable story is already used earlier in this book. */
+  | "all-suitable-stories-used";
+
+export interface RestPlan {
+  readonly band: RestAgeBand | undefined;
+  /** One entry per chapter, in book order. `story` is null where the page is left out. */
+  readonly assignments: readonly {
+    readonly chapter: string;
+    readonly story: RestStory | null;
+    readonly shortage?: RestShortageReason;
+  }[];
+  /** How many requested rest pages could not be filled, and why. Never zero by omission. */
+  readonly shortageCount: number;
+  readonly shortages: readonly {
+    readonly chapter: string;
+    readonly reason: RestShortageReason;
+  }[];
+  /** Stories that suit this book, used or not. */
+  readonly suitableStoryIds: readonly RestStoryId[];
+}
+
+/**
+ * Rest stories for one book: a story suits the book's age band, relies on nothing taught
+ * after the book's semester, and appears at most once. A chapter whose topic matches a
+ * story gets that story first; the remaining chapters are then served in book order.
+ * When suitable stories run out the chapter gets no story and the plan says how many are
+ * missing — it never repeats or substitutes.
+ */
+export function planRestStories(input: {
+  grade: string;
+  /** Omit to judge the book as of the end of that grade. */
+  semester?: 1 | 2;
+  /** Units or chapters in book order; several units of one chapter count once. */
+  units: readonly { chapter: string; section?: string }[];
+}): RestPlan {
+  const band = restAgeBand(input.grade);
+  const chapters = input.units.filter(
+    (unit, index) =>
+      input.units.findIndex((other) => other.chapter === unit.chapter) ===
+      index,
+  );
+  const now =
+    GRADE_ORDER.indexOf(input.grade) * 2 + ((input.semester ?? 2) - 1);
+  const suitable = band
+    ? REST_STORIES.filter(
+        (story) =>
+          story.ageBands[band].suitable &&
+          GRADE_ORDER.indexOf(story.firstTaught.grade) * 2 +
+            (story.firstTaught.semester - 1) <=
+            now,
+      )
+    : [];
+  const topicOf = (unit: (typeof chapters)[number]) =>
+    `${unit.chapter} ${unit.section ?? ""}`;
+  const chosen = new Map<string, RestStory>();
+  const used = new Set<RestStoryId>();
+  const take = (chapter: string, story: RestStory | undefined) => {
+    if (!story || used.has(story.id) || !suitable.includes(story)) return;
+    chosen.set(chapter, story);
+    used.add(story.id);
+  };
+  for (const unit of chapters) {
+    const matched = topicRules.find(([pattern]) =>
+      pattern.test(topicOf(unit)),
+    )?.[1];
+    take(
+      unit.chapter,
+      REST_STORIES.find((story) => story.id === matched),
+    );
+  }
+  for (const unit of chapters) {
+    if (chosen.has(unit.chapter)) continue;
+    const start = fallbackIndex(input.grade, topicOf(unit));
+    take(
+      unit.chapter,
+      REST_STORIES.map(
+        (_, offset) => REST_STORIES[(start + offset) % REST_STORIES.length],
+      ).find((story) => suitable.includes(story) && !used.has(story.id)),
+    );
+  }
+  const assignments = chapters.map((unit) => {
+    const story = chosen.get(unit.chapter);
+    if (story) return { chapter: unit.chapter, story };
+    const shortage: RestShortageReason = !band
+      ? "unsupported-grade"
+      : suitable.length
+        ? "all-suitable-stories-used"
+        : "no-suitable-story";
+    return { chapter: unit.chapter, story: null, shortage };
+  });
+  const shortages = assignments.flatMap((entry) =>
+    entry.shortage ? [{ chapter: entry.chapter, reason: entry.shortage }] : [],
+  );
+  return {
+    band,
+    assignments,
+    shortageCount: shortages.length,
+    shortages,
+    suitableStoryIds: suitable.map((story) => story.id),
+  };
 }
 
 export function restStoryMarkdown(story: RestStory): string {
