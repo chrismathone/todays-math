@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { readApiError } from "@/components/onboarding/readApiError";
+import { fetchClasses, fetchStudents } from "@/lib/class/classApi";
 
 export type OnboardingUnitOption = {
   id: string;
@@ -60,35 +61,20 @@ export function OnboardingForm({ units }: { units: OnboardingUnitOption[] }) {
     let cancelled = false;
     void (async () => {
       try {
-        const res = await fetch("/api/classes?page=1&pageSize=100");
-        if (!res.ok) return;
-        const body = (await res.json()) as {
-          data: Array<{
-            id: string;
-            name: string;
-            grade: string;
-            createdAt?: string;
-          }>;
-        };
-        if (cancelled || body.data.length === 0) return;
+        const data = await fetchClasses();
+        if (cancelled || data.length === 0) return;
         // 가장 최근 반 — 여러 반이면 어느 것이든 2·3단계를 여는 데 족하다.
-        const latest = [...body.data].sort((a, b) =>
+        const latest = [...data].sort((a, b) =>
           String(b.createdAt ?? "").localeCompare(String(a.createdAt ?? "")),
         )[0]!;
         setClassId((prev) => prev ?? latest.id);
         setClassName((prev) => prev || latest.name);
         setGrade((prev) => prev || latest.grade);
 
-        const stRes = await fetch(
-          `/api/students?classId=${latest.id}&page=1&pageSize=100`,
-        );
-        if (!stRes.ok || cancelled) return;
-        const stBody = (await stRes.json()) as {
-          data: Array<{ name: string }>;
-        };
-        if (cancelled || stBody.data.length === 0) return;
+        const studentData = await fetchStudents(latest.id);
+        if (cancelled || studentData.length === 0) return;
         setStudents((prev) =>
-          prev.length > 0 ? prev : stBody.data.map((st) => st.name),
+          prev.length > 0 ? prev : studentData.map((st) => st.name),
         );
       } catch {
         /* 못 읽으면 처음부터 */

@@ -194,11 +194,15 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             <select
               className={FIELD_CLASS}
               value={form.classId}
+              disabled={form.busy}
               onChange={(event) => form.selectClass(event.target.value)}
               title={classOptionTitle(
                 form.classes.find((item) => item.id === form.classId),
               )}
             >
+              <option value="" disabled>
+                반을 선택해 주세요
+              </option>
               {form.classes.map((item) => (
                 <option
                   key={item.id}
@@ -216,6 +220,7 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             <select
               className={FIELD_CLASS}
               value={form.studentId}
+              disabled={form.busy || form.studentsLoading || form.studentsError}
               onChange={(event) => form.setStudentId(event.target.value)}
             >
               <option value="">반 전체</option>
@@ -226,6 +231,40 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
               ))}
             </select>
           </label>
+
+          {form.studentsLoading ? (
+            <p role="status">학생 명단을 불러오는 중…</p>
+          ) : null}
+          {form.studentsError ? (
+            <div role="alert" className="flex flex-wrap items-center gap-3">
+              <span>현재 반의 학생 명단을 불러오지 못했습니다.</span>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={form.retryStudents}
+              >
+                명단 다시 불러오기
+              </Button>
+            </div>
+          ) : !form.studentsLoading && form.students.length === 0 ? (
+            <p className="text-sm text-text-2">
+              등록된 학생이 없습니다. 반 전체로 출제할 수 있습니다.
+            </p>
+          ) : null}
+          {form.selectionWarning ? (
+            <div role="alert" className="flex flex-wrap items-center gap-3">
+              <span>{form.selectionWarning}</span>
+              {form.classId ? (
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={form.confirmClassScope}
+                >
+                  반 전체로 진행
+                </Button>
+              ) : null}
+            </div>
+          ) : null}
 
           <fieldset className="grid gap-2">
             <legend className="text-[14px] font-semibold text-[var(--learn-muted,#596c86)]">
@@ -413,6 +452,10 @@ export function GenerateSetup({ initialClassId, initialStudentId }: Props) {
             variant="primary"
             disabled={
               form.busy ||
+              !form.classId ||
+              form.studentsLoading ||
+              form.studentsError ||
+              Boolean(form.selectionWarning) ||
               (form.testType === "review" &&
                 (form.rangeLoading ||
                   !form.rangeStartUnitId ||
