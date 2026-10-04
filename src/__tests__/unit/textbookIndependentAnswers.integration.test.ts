@@ -190,8 +190,13 @@ describe.skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")(
             expect(compact).toContain(`SOLUTION_${i}_LINE_${line}`);
         }
         expect(compact.match(/정답·문제2쪽/g)).toHaveLength(4);
-        expect(studentText.replace(/\s/g, "")).toContain(
+        // This fixture is a short-answer question, so an unpaired figure keeps its source
+        // order and validator warning without adding a multiple-choice notice to the prose.
+        expect(studentText.replace(/\s/g, "")).not.toContain(
           "보기대응정보없음·원본순서로표시",
+        );
+        expect(studentText.replace(/\s/g, "")).not.toContain(
+          "보기그림의번호를확인할수없는문항입니다.",
         );
         await mkdir("output/pdf", { recursive: true });
         for (const [name, artifact] of [
