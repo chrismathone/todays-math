@@ -51,6 +51,7 @@ function paired() {
       semantic,
       editorialStage: "practice",
       content: `$${index + 2}+3$을 계산하시오.`,
+      qr: null,
       layout: {
         ...original.layout,
         columnSpan: 1,
