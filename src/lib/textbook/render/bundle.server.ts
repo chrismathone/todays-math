@@ -5,6 +5,8 @@ import type { AssetRef } from "@/contracts/textbookExchange.contract";
 import { assertAssetMime } from "../assets";
 import { sha256 } from "../hash.server";
 import type { ReadTextbookAsset } from "../integrity.server";
+import { TEXTBOOK_EDITORIAL_IMAGES } from "./editorialAssets";
+export { TEXTBOOK_EDITORIAL_IMAGES } from "./editorialAssets";
 
 export interface TrustedResource {
   bytes: Uint8Array;
@@ -115,16 +117,6 @@ export async function loadTextbookAssets(
 }
 export const dataUrl = (resource: TrustedResource): string =>
   `data:${resource.mimeType};base64,${Buffer.from(resource.bytes).toString("base64")}`;
-export const TEXTBOOK_EDITORIAL_IMAGES = [
-  "cover.png",
-  "u01.png",
-  "u02.png",
-  "u03.png",
-  "u04.png",
-  "u05.png",
-  "u06.png",
-  "learning-sprout.png",
-] as const;
 export function editorialResourceUrl(name: string): string {
   if (!(TEXTBOOK_EDITORIAL_IMAGES as readonly string[]).includes(name))
     throw new Error("Unknown bundled textbook illustration");

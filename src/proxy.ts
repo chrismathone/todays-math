@@ -20,6 +20,7 @@ import {
   studentPasswordHref,
 } from "@/lib/learn/studentReturnTo";
 import { routeAccessFor } from "@/lib/routeAccess";
+import { isTextbookEditorialRead } from "@/lib/textbook/render/editorialAssets";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import { recordAudit } from "@/lib/audit";
 import { isLabPath } from "@/lib/labPath";
@@ -108,6 +109,8 @@ export const proxy = auth(async (req) => {
    * 쓰기와 `/lab` 밖은 아래 규칙 그대로다 — 학생 세션이 `/lab` 밖에서 얻는 것은 늘지 않는다.
    */
   if (isLabRead(req.method, pathname)) return NextResponse.next();
+  // Only the enumerated published illustrations, fonts and license are public.
+  if (isTextbookEditorialRead(req.method, pathname)) return NextResponse.next();
   /**
    * eywa 자동 로그인 입구 — 로그인 안 한 사람·다른 원장·학생 세션 누구든 지나간다(원장님 2026-09-26).
    * 누른 사람을 표의 계정으로 **바꿔** 들이는 곳이라, 학생 갈래나 승인 대기 갈래에 걸리면 안 된다.
