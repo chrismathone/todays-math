@@ -24,6 +24,12 @@ import {
   type ListeningActor,
 } from "./database";
 import { studentState } from "./students";
+import { listeningJsonResponse } from "./jsonResponse";
+import {
+  LISTENING_MAX_UPLOAD_BYTES,
+  LISTENING_MAX_DURATION_MS,
+  LISTENING_MAX_DOCUMENT_BYTES,
+} from "@/contracts/englishListeningSource.contract";
 
 const runtime = createListeningRuntime(db);
 const media = createListeningMediaService({
@@ -31,8 +37,8 @@ const media = createListeningMediaService({
   ...createListeningMediaAccess(db),
   limits: {
     chunkBytes: 1024 * 1024,
-    maxTotalBytes: 16 * 1024 * 1024,
-    maxDurationMs: 10 * 60 * 1000,
+    maxTotalBytes: LISTENING_MAX_UPLOAD_BYTES,
+    maxDurationMs: LISTENING_MAX_DURATION_MS,
   },
 });
 const headers = {
@@ -40,11 +46,11 @@ const headers = {
   "X-Content-Type-Options": "nosniff",
 };
 const ok = (data: unknown, status = 200) =>
-  Response.json({ data }, { status, headers });
+  listeningJsonResponse(data, status, headers);
 const error = (status: number, code: string, message: string) =>
   Response.json({ error: { code, message } }, { status, headers });
 export async function listeningJson(request: Request) {
-  const limit = 1024 * 1024;
+  const limit = LISTENING_MAX_DOCUMENT_BYTES + 1024 * 1024;
   if (Number(request.headers.get("content-length") ?? 0) > limit)
     throw new ListeningRuntimeError(
       413,
@@ -99,6 +105,11 @@ export async function handleListeningHttp(
     const method = request.method;
     if (kind === "teacher") {
       const [resource, rawId, action, rawAssetId, mediaAction] = path;
+      if (path.length === 1 && method === "POST" && resource === "compose")
+        return ok(
+          await runtime.composeSet(actor, await listeningJson(request)),
+          201,
+        );
       if (
         path.length === 1 &&
         method === "GET" &&
@@ -135,6 +146,12 @@ export async function handleListeningHttp(
         );
       const id = uuid(rawId);
       if (resource === "sets") {
+        if (
+          path.length === 3 &&
+          method === "GET" &&
+          action === "compose-source"
+        )
+          return ok(await runtime.composeSource(actor, id));
         if (path.length === 2 && method === "GET")
           return ok(await runtime.setDetail(actor, id));
         if (path.length === 2 && method === "PATCH")

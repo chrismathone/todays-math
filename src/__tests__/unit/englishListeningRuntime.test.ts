@@ -227,6 +227,8 @@ describe.skipIf(!db)(
   "listening persistent runtime (isolated PostgreSQL)",
   () => {
     beforeAll(async () => {
+      // The persistent media store and runtime must share the suite's clock.
+      vi.spyOn(Date, "now").mockImplementation(() => now.getTime());
       process.env.ENGLISH_LISTENING_TEACHER_IDS = [teacherId, otherId].join(
         ",",
       );
@@ -275,6 +277,7 @@ describe.skipIf(!db)(
     afterAll(async () => {
       await db?.$disconnect();
       await db2?.$disconnect();
+      vi.mocked(Date.now).mockRestore();
     });
 
     it("stores incomplete drafts, rejects forged provenance and arbitrates concurrent CAS", async () => {

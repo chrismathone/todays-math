@@ -34,16 +34,34 @@ export function ListeningPrint({
             {group.questions.map((question) => (
               <section key={question.id} className={s.question}>
                 <h3>
-                  {question.number}. {question.prompt}
+                  {question.number}.{" "}
+                  {question.image
+                    ? `원본 ${question.sourceNumber ?? question.number}번`
+                    : question.prompt}
                 </h3>
-                <ol className={s.choices}>
-                  {question.choices.map((choice, choiceIndex) => (
-                    <li key={choiceIndex}>
-                      <span>{["①", "②", "③", "④", "⑤"][choiceIndex]}</span>{" "}
-                      {choice}
-                    </li>
-                  ))}
-                </ol>
+                {question.image && question.instruction && (
+                  <p>{question.instruction}</p>
+                )}
+                {question.image ? (
+                  // A validated PNG crop keeps original tables and picture choices intact.
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={question.image.dataUrl}
+                    width={question.image.width}
+                    height={question.image.height}
+                    alt={question.prompt}
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                ) : (
+                  <ol className={s.choices}>
+                    {question.choices.map((choice, choiceIndex) => (
+                      <li key={choiceIndex}>
+                        <span>{["①", "②", "③", "④", "⑤"][choiceIndex]}</span>{" "}
+                        {choice}
+                      </li>
+                    ))}
+                  </ol>
+                )}
                 {question.answer !== undefined && (
                   <div className={s.answer}>
                     <strong>정답 {question.answer}</strong>

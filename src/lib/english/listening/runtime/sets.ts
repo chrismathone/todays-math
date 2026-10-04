@@ -11,6 +11,7 @@ import {
   type ListeningSetSummary,
 } from "@/contracts/englishListeningHttp.contract";
 import { listeningMediaCompletionSchema } from "@/contracts/englishListeningMedia.contract";
+import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
 import { withinOwnerScope } from "@/lib/ownerScope";
 import {
   listeningContentHash,
@@ -111,10 +112,11 @@ export async function createSet(
     title: data.title,
     level: data.level ?? null,
     examId: data.examId ?? null,
+    ...(data.source ? { source: data.source } : {}),
     rights: data.rights,
     rightsReview: null,
     provenance: {
-      kind: "teacher_authored",
+      kind: data.source ? "uploaded_assessment" : "teacher_authored",
       recordedBy: account.id,
       recordedAt: now,
       basis: data.basis,
@@ -171,7 +173,7 @@ export async function updateSet(
     provenance: rightsUnchanged
       ? row.document.provenance
       : {
-          kind: "teacher_authored",
+          kind: row.document.provenance.kind,
           recordedBy: account.id,
           recordedAt: now,
           basis: data.basis,
@@ -187,6 +189,11 @@ export async function updateSet(
   ];
   if (new Set(ids).size !== ids.length)
     throw invalid("문항과 보기 ID는 중복될 수 없습니다.");
+  if (
+    Buffer.byteLength(JSON.stringify(document), "utf8") >
+    LISTENING_MAX_DOCUMENT_BYTES
+  )
+    throw invalid("문항 그림의 합계가 너무 큽니다. 자료를 나눠 저장하세요.");
   const changed = await tx.$executeRaw(
     Prisma.sql`UPDATE english_listening_set SET document=${json(document)},revision=revision+1,updated_at=${new Date(now)} WHERE id=${id}::uuid AND revision=${data.expectedRevision}`,
   );

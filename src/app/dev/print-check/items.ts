@@ -84,6 +84,24 @@ export const SPECIMEN_ITEM_IDS = [
 export const ITEMS: PrintCheckItem[] = [
   { ...textbookPrintCheck, changedOn: "2026-10-03" },
   {
+    id: "english-listening-bank-original-crops",
+    changedOn: "2026-10-04",
+    title: "듣기은행 — 원본 그림·표와 골라 담은 시험지",
+    changed:
+      "전국 듣기평가·모의고사 문제지에서 문항 그림을 보존하고, 회차 전체나 문항별로 골라 새 시험지를 인쇄한다. 새 번호와 원본 번호를 함께 표시한다.",
+    look: "A4 100% 출력에서 그림 보기 다섯 개와 표의 글자가 선명하고 잘리지 않는가. 새 번호·원본 번호와 문항 그림이 같은 쪽에 있는가. 공통 지시문이 있는 두 번째 문항만 골라도 지시문이 남는가. 학생용에는 정답·대본·해설이 없고 교사용에는 지정한 정답이 있는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/english/bank/listeningPdfImport.ts",
+      "src/components/english/listening/print/ListeningPrint.tsx",
+      "docs/planning/tracks/reports/listening-bank-workflow-20261004.md",
+    ],
+    scale: "검증한 전국 평가 6개 학년 120문항과 고1 학력평가 듣기 17문항",
+    status: "대기",
+    needs:
+      "원본 그림 보기 문항·표 문항·공통 지시문의 두 번째 문항을 담고 학생용·교사용 시험지를 각각 출력한다.",
+  },
+  {
     id: "bank-choice-figures",
     title: "문제은행 — 그림 보기의 번호와 2열 배치",
     changed:

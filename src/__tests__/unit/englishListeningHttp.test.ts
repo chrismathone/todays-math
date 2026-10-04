@@ -7,6 +7,8 @@ const mocks = vi.hoisted(() => ({
   teacherList: vi.fn(),
   studentCommand: vi.fn(),
   setDetail: vi.fn(),
+  composeSet: vi.fn(),
+  composeSource: vi.fn(),
 }));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
@@ -16,6 +18,8 @@ vi.mock("@/lib/english/listening/runtime/service", () => ({
     teacherList: mocks.teacherList,
     studentCommand: mocks.studentCommand,
     setDetail: mocks.setDetail,
+    composeSet: mocks.composeSet,
+    composeSource: mocks.composeSource,
   }),
 }));
 vi.mock("@/lib/english/listening/media/prismaStore", () => ({
@@ -139,8 +143,82 @@ describe("listening HTTP authenticated boundary", () => {
     expect(await response.text()).not.toContain("private connection");
   });
   it("bounds streamed JSON input rather than trusting content-length", async () => {
-    const body = "x".repeat(1024 * 1024 + 1);
+    const body = "x".repeat(4 * 1024 * 1024 + 1);
     const req = new Request("http://localhost/api", { method: "POST", body });
     await expect(listeningJson(req)).rejects.toThrow("너무");
+  });
+  it("accepts assessment images within the hosting request budget", async () => {
+    const payload = {
+      groups: [
+        {
+          questions: Array.from({ length: 20 }, () => ({
+            image: {
+              dataUrl: "data:image/png;base64,iVBORw0KGgo" + "A".repeat(130000),
+              width: 640,
+              height: 420,
+            },
+          })),
+        },
+      ],
+    };
+    const body = JSON.stringify(payload);
+    expect(Buffer.byteLength(body)).toBeGreaterThan(1024 * 1024);
+    await expect(
+      listeningJson(
+        new Request("http://localhost/api", { method: "POST", body }),
+      ),
+    ).resolves.toEqual(payload);
+  });
+  it("routes exact source snapshots and authenticated assembly with private envelopes", async () => {
+    mocks.composeSource.mockResolvedValue({
+      detail: { id },
+      documentHash: "a".repeat(64),
+    });
+    const source = await handleListeningHttp(
+      request(`sets/${id}/compose-source`),
+      ["sets", id, "compose-source"],
+      "teacher",
+    );
+    expect(source.status).toBe(200);
+    expect(await source.json()).toEqual({
+      data: { detail: { id }, documentHash: "a".repeat(64) },
+    });
+    expect(source.headers.get("cache-control")).toContain("no-store");
+    const input = { title: "시험지", selections: [] };
+    mocks.composeSet.mockResolvedValue({ id });
+    const composed = await handleListeningHttp(
+      request("compose", "POST", input),
+      ["compose"],
+      "teacher",
+    );
+    expect(composed.status).toBe(201);
+    expect(mocks.composeSet).toHaveBeenCalledWith(
+      { kind: "teacher", userId: id },
+      input,
+    );
+    expect(await composed.json()).toEqual({ data: { id } });
+  });
+  it("rejects cross-origin assembly before accessing sources and returns opaque source denials", async () => {
+    const external = await handleListeningHttp(
+      request("compose", "POST", {}, "https://elsewhere.test"),
+      ["compose"],
+      "teacher",
+    );
+    expect(external.status).toBe(403);
+    expect(mocks.composeSet).not.toHaveBeenCalled();
+    mocks.composeSource.mockRejectedValue(
+      new ListeningRuntimeError(
+        404,
+        "NOT_FOUND",
+        "듣기 자료를 찾을 수 없습니다.",
+      ),
+    );
+    const denied = await handleListeningHttp(
+      request(`sets/${id}/compose-source`),
+      ["sets", id, "compose-source"],
+      "teacher",
+    );
+    expect(denied.status).toBe(404);
+    expect(await denied.json()).toMatchObject({ error: { code: "NOT_FOUND" } });
   });
 });
