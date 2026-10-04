@@ -211,7 +211,7 @@ export function renderPageHtml(
     const blockSection = model.sections.find((s) =>
       s.blocks.some((b) => b.id === block.id),
     );
-    return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm - offsetX}mm;top:${p.yMm - offsetY}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
+    return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${block.semantic ? ` data-activity="${esc(block.semantic.activity)}"` : ""}${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm - offsetX}mm;top:${p.yMm - offsetY}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
   };
   const bodyBlocks = page.blocks.filter(
     (placement) => blocks.get(placement.blockId)?.kind !== "heading",
