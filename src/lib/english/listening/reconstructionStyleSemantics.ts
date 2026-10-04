@@ -133,6 +133,38 @@ function weekday(value: string) {
   const index = days.findIndex((day) => day.test(normalized(value)));
   return index < 0 ? null : index;
 }
+const months = [
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december",
+];
+function calendarDate(value: string) {
+  const text = normalized(value);
+  const english = new RegExp(
+    `\\b(${months.join("|")})\\s+(\\d{1,2})(?:st|nd|rd|th)?\\b`,
+    "g",
+  );
+  const matches = [...text.matchAll(english)];
+  if (matches.length === 1 && Number(matches[0][2]) <= 31)
+    return `${months.indexOf(matches[0][1]) + 1}/${Number(matches[0][2])}`;
+  const korean = [...text.matchAll(/(\d{1,2})\s*월\s*(\d{1,2})\s*일/g)];
+  if (
+    korean.length === 1 &&
+    Number(korean[0][1]) <= 12 &&
+    Number(korean[0][2]) <= 31
+  )
+    return `${Number(korean[0][1])}/${Number(korean[0][2])}`;
+  return null;
+}
 type Relation =
   "deadline" | "before" | "after" | "approximate" | "minimum" | "maximum";
 function relations(value: string): Relation[] {
@@ -184,13 +216,22 @@ export function listeningStyleSemanticWarnings(
     nextDay = weekday(nextAnswer);
   if (oldDay !== null && oldDay !== nextDay)
     warnings.push("weekday_changed_or_dropped");
+  const oldDate = calendarDate(oldAnswer),
+    nextDate = calendarDate(nextAnswer);
+  if (oldDate !== null && oldDate !== nextDate)
+    warnings.push("calendar_date_changed_or_dropped");
   const oldClock = clock(oldAnswer),
     nextClock = clock(nextAnswer);
   if (oldClock !== null && oldClock !== nextClock)
     warnings.push("clock_time_changed_or_dropped");
   const oldQuantity = quantity(oldAnswer, previous.prompt),
     nextQuantity = quantity(nextAnswer, candidate.prompt);
-  if (oldDay !== null || oldClock !== null || oldQuantity !== null) {
+  if (
+    oldDay !== null ||
+    oldDate !== null ||
+    oldClock !== null ||
+    oldQuantity !== null
+  ) {
     for (const relation of nextRelations) {
       if (
         !oldRelations.includes(relation) &&
@@ -213,7 +254,9 @@ export function listeningStyleSemanticWarnings(
     oldClock === null &&
     nextClock === null &&
     oldDay === null &&
-    nextDay === null
+    nextDay === null &&
+    oldDate === null &&
+    nextDate === null
   ) {
     const oldNumbers = numericValues(oldAnswer),
       nextNumbers = numericValues(nextAnswer);

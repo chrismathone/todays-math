@@ -69,6 +69,11 @@ describe("literal reconstructed answer meaning guard", () => {
     expect(warnings("On Friday", "목요일")).toContain(
       "weekday_changed_or_dropped",
     );
+    expect(warnings("On May 7th", "5월 7일")).toEqual([]);
+    expect(warnings("By May 7th", "5월 7일까지")).toEqual([]);
+    expect(warnings("On May 7th", "7월 5일")).toContain(
+      "calendar_date_changed_or_dropped",
+    );
     expect(warnings("5:30 p.m.", "오후 5시 30분")).toEqual([]);
     expect(warnings("5 p.m.", "17:00")).toEqual([]);
     expect(warnings("12 a.m.", "00:00")).toEqual([]);
