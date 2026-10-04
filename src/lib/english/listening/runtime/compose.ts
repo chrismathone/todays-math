@@ -36,9 +36,16 @@ import {
 import { setDetail } from "./sets";
 import type { ListeningDriveApi } from "../media/driveApi";
 import { driveReadyRecord, insertDriveAsset } from "./driveAssets";
+import { insertStorageAsset, storageReadyRecord } from "./storageAssets";
+import type {
+  ListeningStorageApi,
+  ListeningStorageRef,
+} from "../media/storageApi";
 export interface ListeningComposeDrive {
-  api: ListeningDriveApi;
+  api?: ListeningDriveApi;
+  storage?: ListeningStorageApi;
   createdFiles: Set<string>;
+  createdStorageRefs?: ListeningStorageRef[];
 }
 async function scopedDrive(
   record: ListeningMediaRecord,
@@ -47,7 +54,7 @@ async function scopedDrive(
 ) {
   if (
     !record.drive ||
-    !drive ||
+    !drive?.api ||
     record.ownerId !== drive.api.config.ownerId ||
     target.ownerId !== drive.api.config.ownerId ||
     record.drive.ownerId !== record.ownerId ||
@@ -59,6 +66,24 @@ async function scopedDrive(
     throw denied();
   await drive.api.check(record.drive);
   return drive.api;
+}
+async function scopedStorage(
+  record: ListeningMediaRecord,
+  drive?: ListeningComposeDrive,
+) {
+  if (
+    !record.storage ||
+    !drive?.storage ||
+    record.drive ||
+    record.storage.ownerId !== record.ownerId ||
+    record.chunks.length ||
+    record.playback?.chunks.length ||
+    record.storage.endExclusive - record.storage.start !==
+      record.playback?.totalBytes
+  )
+    throw denied();
+  await drive.storage.check(record.storage);
+  return drive.storage;
 }
 
 export async function composeSource(
@@ -106,6 +131,27 @@ async function cloneReadyAudio(
     throw invalid(
       "담은 자료에 검증된 음원이 필요합니다. 원본 자료의 음원을 확인해 주세요.",
     );
+  if (original.storage) {
+    await scopedStorage(original, drive);
+    if (original.ownerId !== target.ownerId) throw denied();
+    const assetId = randomUUID(),
+      record: ListeningMediaRecord = {
+        ...original,
+        assetId,
+        setId: target.id,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+        completion: {
+          ...completion.data,
+          assetId,
+          setId: target.id,
+          ownerId: target.ownerId,
+          branchId: target.branchId,
+        },
+      };
+    await insertStorageAsset(tx, record);
+    return { ...audio, assetId };
+  }
   if (original.drive) {
     await scopedDrive(original, target, drive);
     const assetId = randomUUID();
@@ -154,7 +200,7 @@ async function cloneReadyAudio(
   const bytes = blobs.reduce((total, blob) => total + blob.byteLength, 0);
   const quota = await one<{ bytes: bigint; count: bigint }>(
     tx,
-    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL`,
+    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL`,
   );
   if (
     !quota ||
@@ -238,6 +284,10 @@ async function clipReadyAudio(
   const external = original.drive
     ? await scopedDrive(original, target, drive)
     : null;
+  const storage = original.storage
+    ? await scopedStorage(original, drive)
+    : null;
+  if (storage && original.ownerId !== target.ownerId) throw denied();
   const sourceChunks = [...playback.chunks].sort((a, b) => a.offset - b.offset);
   let covered = 0;
   for (const chunk of sourceChunks) {
@@ -251,9 +301,18 @@ async function clipReadyAudio(
       throw invalid("원본 음원 조각이 일치하지 않습니다.");
     covered += chunk.byteLength;
   }
-  if (!external && covered !== playback.totalBytes)
+  if (!external && !storage && covered !== playback.totalBytes)
     throw invalid("원본 음원 길이가 일치하지 않습니다.");
   async function* readRange(start: number, endExclusive: number) {
+    if (storage) {
+      for await (const part of storage.read(
+        original!.storage!,
+        start,
+        endExclusive,
+      ))
+        yield Buffer.from(part);
+      return;
+    }
     if (external) {
       for await (const part of external.read(
         original!.drive!,
@@ -317,6 +376,38 @@ async function clipReadyAudio(
     );
   }
   try {
+    if (drive?.storage) {
+      const assetId = randomUUID();
+      const ref = await drive.storage.upload({
+        ownerId: target.ownerId,
+        assetId,
+        bytes: plan.totalBytes,
+        mimeType: "audio/wav",
+        read: async function* () {
+          yield plan.header;
+          for (const range of plan.ranges)
+            yield* readPcmRange(range.start, range.endExclusive);
+        },
+      });
+      drive!.createdStorageRefs!.push(ref);
+      const record = storageReadyRecord({
+        assetId,
+        setId: target.id,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+        storage: ref,
+        mimeType: "audio/wav",
+        sha256: ref.sha256,
+        durationMs: plan.durationMs,
+        now: Date.parse(now),
+      });
+      await insertStorageAsset(tx, record);
+      return {
+        audio: { assetId, sha256: ref.sha256, durationMs: plan.durationMs },
+        evidence: plan.evidenceByQuestionId,
+        audioRanges: plan.audioRangeByQuestionId,
+      };
+    }
     if (external) {
       // The selected WAV is streamed to private Drive; PostgreSQL receives only
       // its immutable binding. Keep a rollback list until the surrounding SQL commits.
@@ -356,7 +447,7 @@ async function clipReadyAudio(
     }
     const quota = await one<{ bytes: bigint; count: bigint }>(
       tx,
-      Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL`,
+      Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL`,
     );
     if (
       !quota ||

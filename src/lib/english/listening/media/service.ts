@@ -29,6 +29,7 @@ import type {
   ListeningMediaStore,
 } from "./store";
 import type { ListeningDriveApi } from "./driveApi";
+import type { ListeningStorageApi } from "./storageApi";
 
 export interface ListeningMediaLimits {
   chunkBytes: number;
@@ -57,6 +58,7 @@ export interface ListeningMediaDependencies<Context> {
   store: ListeningMediaStore;
   /** Server-only private external storage; never chosen by a client upload flag. */
   drive?: ListeningDriveApi | null;
+  storage?: ListeningStorageApi | null;
   /** Trusted bulk archival path only. Full decoding still gates readiness. */
   mp3PlaybackEncoding?: "canonical_pcm" | "scrubbed_mp3";
   /**
@@ -774,6 +776,24 @@ export function createListeningMediaService<Context>(
     )
       return unavailable();
     const playback = record.playback;
+    if (record.drive && record.storage) return unavailable();
+    if (record.storage) {
+      const storage = dependencies.storage;
+      if (
+        !storage ||
+        record.storage.ownerId !== record.ownerId ||
+        record.storage.endExclusive - record.storage.start !==
+          playback.totalBytes ||
+        record.chunks.length ||
+        playback.chunks.length
+      )
+        return unavailable();
+      try {
+        await storage.check(record.storage);
+      } catch {
+        return unavailable();
+      }
+    }
     if (record.drive) {
       const drive = dependencies.drive;
       if (
@@ -826,21 +846,28 @@ export function createListeningMediaService<Context>(
         ? null
         : responseStream(
             (streamSignal) =>
-              record.drive
-                ? dependencies.drive!.read(
-                    record.drive,
+              record.storage
+                ? dependencies.storage!.read(
+                    record.storage,
                     range.start,
                     range.endExclusive,
                     streamSignal,
                   )
-                : readAsset(
-                    store,
-                    playback,
-                    range.start,
-                    range.endExclusive,
-                    limits.readChunkBytes,
-                    streamSignal,
-                  ),
+                : record.drive
+                  ? dependencies.drive!.read(
+                      record.drive,
+                      range.start,
+                      range.endExclusive,
+                      streamSignal,
+                    )
+                  : readAsset(
+                      store,
+                      playback,
+                      range.start,
+                      range.endExclusive,
+                      limits.readChunkBytes,
+                      streamSignal,
+                    ),
             signal,
           ),
       { status: partial ? 206 : 200, headers },

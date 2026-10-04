@@ -36,6 +36,9 @@ import { planListeningWaveClip } from "@/lib/english/listening/media/clip";
 import { registerDriveListeningAsset } from "@/lib/english/listening/runtime/driveAssets";
 import { createListeningDriveApi } from "@/lib/english/listening/media/driveApi";
 import { fakeListeningDrive } from "../fixtures/english-listening/fakeDrive";
+import { fakeListeningStorage } from "../fixtures/english-listening/fakeStorage";
+import { createListeningStorageApi } from "@/lib/english/listening/media/storageApi";
+import { registerStorageListeningAsset } from "@/lib/english/listening/runtime/storageAssets";
 
 vi.mock("server-only", () => ({}));
 const url = process.env.LISTENING_TEST_DATABASE_URL;
@@ -73,6 +76,14 @@ const fakeDrive = fakeListeningDrive(ownerId);
 const driveApi = createListeningDriveApi(fakeDrive.config, fakeDrive.fetchImpl);
 const driveRuntime = db
   ? createListeningRuntime(db, () => now, { drive: driveApi })
+  : null;
+const fakeStorage = fakeListeningStorage();
+const storageApi = createListeningStorageApi(
+  fakeStorage.config,
+  fakeStorage.fetchImpl,
+);
+const storageRuntime = db
+  ? createListeningRuntime(db, () => now, { storage: storageApi })
   : null;
 const rights = englishListeningFixture().rights;
 const sha = (value: Uint8Array) =>
@@ -153,6 +164,7 @@ async function source(
   timing = true,
   archive = false,
   external = false,
+  useStorage = false,
 ) {
   let set = await runtime!.createSet(owner, {
     title: "원본 듣기 " + marker,
@@ -189,18 +201,30 @@ async function source(
   const uploadMedia = archive ? archiveMedia! : media!;
   let ready;
   if (external) {
-    ready = await registerDriveListeningAsset(
-      db!,
-      driveApi,
-      {
-        actor: owner,
-        setId: set.id,
-        expectedSetRevision: set.revision,
-        fileId: fakeDrive.add(original),
-        bytes: original,
-      },
-      () => now,
-    );
+    ready = useStorage
+      ? await registerStorageListeningAsset(
+          db!,
+          storageApi,
+          {
+            actor: owner,
+            setId: set.id,
+            expectedSetRevision: set.revision,
+            bytes: original,
+          },
+          () => now,
+        )
+      : await registerDriveListeningAsset(
+          db!,
+          driveApi,
+          {
+            actor: owner,
+            setId: set.id,
+            expectedSetRevision: set.revision,
+            fileId: fakeDrive.add(original),
+            bytes: original,
+          },
+          () => now,
+        );
   } else {
     const begun = await uploadMedia.beginUpload(
       { actor: owner },
@@ -299,6 +323,8 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       });
   });
   afterEach(async () => {
+    fakeStorage.files.clear();
+    fakeStorage.calls.splice(0);
     fakeDrive.files.clear();
     fakeDrive.calls.splice(0);
     await db!.$transaction(async (tx) => {
@@ -319,6 +345,84 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
           where: { id: { in: branchIds.splice(0) } },
         });
     });
+  });
+  it("stores validated original MP3 in private Supabase Storage, registers idempotently and shares whole audio under fresh scope", async () => {
+    const original = await source(30, true, true, true, true),
+      from = original.source.detail.document.groups[0],
+      asset = await store!.get(from.audio!.assetId);
+    const ready = await registerStorageListeningAsset(
+      db!,
+      storageApi,
+      {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        bytes: original.original,
+        assetId: asset!.assetId,
+      },
+      () => now,
+    );
+    expect(ready.assetId).toBe(asset!.assetId);
+    expect(fakeStorage.files.size).toBe(1);
+    const composed = await storageRuntime!.composeSet(owner, {
+        title: "Supabase 회차",
+        selections: [selection(original.source)],
+      }),
+      cloned = await store!.get(composed.document.groups[0].audio!.assetId);
+    expect(cloned!.storage).toEqual(asset!.storage);
+    expect(cloned!.setId).toBe(composed.id);
+    expect(fakeStorage.files.size).toBe(1);
+    const [row] = await db!.$queryRaw<{ count: bigint; bytes: bigint }[]>(
+      Prisma.sql`SELECT (SELECT COUNT(*) FROM english_listening_media_blob WHERE "assetId" IN(SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid)) AS count,(SELECT SUM("reservedBytes") FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS bytes`,
+    );
+    expect(row).toEqual({ count: BigInt(0), bytes: BigInt(0) });
+  });
+  it("clips reordered Supabase MP3 or legacy PG PCM to Storage while preserving exact samples and resetting reviews", async () => {
+    for (const external of [true, false]) {
+      const original = await source(
+          external ? 31 : 32,
+          true,
+          external,
+          external,
+          external,
+        ),
+        group = original.source.detail.document.groups[0],
+        questions = [...group.questions].reverse();
+      const composed = await storageRuntime!.composeSet(owner, {
+          title: "Supabase 선택 문항",
+          selections: [
+            selection(
+              original.source,
+              questions.map((q) => q.id),
+            ),
+          ],
+        }),
+        record = await store!.get(composed.document.groups[0].audio!.assetId),
+        output = fakeStorage.files.get(record!.storage!.key)!;
+      const plan = planListeningWaveClip(
+        original.wav.subarray(0, 44),
+        original.wav.length,
+        questions,
+      );
+      expect(output).toEqual(
+        Buffer.concat([
+          plan.header,
+          ...plan.ranges.map((r) =>
+            original.wav.subarray(r.start, r.endExclusive),
+          ),
+        ]),
+      );
+      expect(record!.chunks).toEqual([]);
+      expect(composed.document.groups[0].reviews).toEqual({
+        audio: null,
+        alignment: null,
+        content: null,
+      });
+      const [row] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_blob WHERE "assetId"=${record!.assetId}::uuid`,
+      );
+      expect(row.count).toBe(BigInt(0));
+    }
   });
   it("registers strictly validated private Drive audio idempotently without bytea rows and clones fresh set scope", async () => {
     const original = await source(10, true, true, true),
@@ -401,77 +505,102 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     ).rejects.toMatchObject({ status: 404 });
     expect(fakeDrive.calls).toHaveLength(count);
   });
-  it("trashes only a newly uploaded Drive clip when oversized composition rolls back SQL", async () => {
-    const originals: ListeningComposeSource[] = [];
-    const image = documentBudgetImage();
-    for (const [marker, external] of [
-      [21, true],
-      [22, false],
-    ] as const) {
-      const original = await source(marker, true, external, external),
-        input = edit(original.source.detail),
-        question = input.groups[0].questions[0];
-      input.groups[0].questions = Array.from({ length: 10 }, (_, index) => {
-        const ids = new Map(question.choices.map((c) => [c.id, randomUUID()]));
-        return {
-          ...question,
-          id: randomUUID(),
-          image,
-          sourceNumber: index + 1,
-          ...(external
-            ? {
-                audioRange: { startMs: index * 100, endMs: (index + 1) * 100 },
-                evidence: [],
-              }
-            : {}),
-          choices: question.choices.map((c) => ({ ...c, id: ids.get(c.id)! })),
-          answerChoiceId: ids.get(question.answerChoiceId!)!,
-        };
-      });
-      const saved = await runtime!.updateSet(
-        owner,
-        original.source.detail.id,
-        input,
-      );
-      expect(Buffer.byteLength(JSON.stringify(saved.document))).toBeLessThan(
-        LISTENING_MAX_DOCUMENT_BYTES,
-      );
-      originals.push(await runtime!.composeSource(owner, saved.id));
-    }
-    const originalAsset = await store!.get(
-        originals[0].detail.document.groups[0].audio!.assetId,
-      ),
-      before = await runtime!.teacherList(owner, "sets");
-    await expect(
-      driveRuntime!.composeSet(owner, {
-        title: "Drive 복합 그림 한도",
-        selections: [
-          selection(
-            originals[0],
-            [...originals[0].detail.document.groups[0].questions]
-              .reverse()
-              .map((q) => q.id),
+  it.each(["drive", "storage"] as const)(
+    "removes only a newly uploaded %s clip when oversized composition rolls back SQL",
+    async (backend) => {
+      const originals: ListeningComposeSource[] = [];
+      const image = documentBudgetImage();
+      for (const [marker, external] of [
+        [21, true],
+        [22, false],
+      ] as const) {
+        const original = await source(
+            marker,
+            true,
+            external,
+            external,
+            backend === "storage",
           ),
-          selection(originals[1]),
-        ],
-      }),
-    ).rejects.toMatchObject({ status: 400 });
-    expect(await runtime!.teacherList(owner, "sets")).toHaveLength(
-      before.length,
-    );
-    expect(fakeDrive.files.get(originalAsset!.drive!.fileId)!.trashed).not.toBe(
-      true,
-    );
-    const derivatives = [...fakeDrive.files.entries()].filter(([id]) =>
-      id.startsWith("derivative_"),
-    );
-    expect(derivatives).toHaveLength(1);
-    expect(derivatives[0][1].trashed).toBe(true);
-    const [inventory] = await db!.$queryRaw<{ count: bigint }[]>(
-      Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`,
-    );
-    expect(inventory.count).toBe(BigInt(2));
-  });
+          input = edit(original.source.detail),
+          question = input.groups[0].questions[0];
+        input.groups[0].questions = Array.from({ length: 10 }, (_, index) => {
+          const ids = new Map(
+            question.choices.map((c) => [c.id, randomUUID()]),
+          );
+          return {
+            ...question,
+            id: randomUUID(),
+            image,
+            sourceNumber: index + 1,
+            ...(external
+              ? {
+                  audioRange: {
+                    startMs: index * 100,
+                    endMs: (index + 1) * 100,
+                  },
+                  evidence: [],
+                }
+              : {}),
+            choices: question.choices.map((c) => ({
+              ...c,
+              id: ids.get(c.id)!,
+            })),
+            answerChoiceId: ids.get(question.answerChoiceId!)!,
+          };
+        });
+        const saved = await runtime!.updateSet(
+          owner,
+          original.source.detail.id,
+          input,
+        );
+        expect(Buffer.byteLength(JSON.stringify(saved.document))).toBeLessThan(
+          LISTENING_MAX_DOCUMENT_BYTES,
+        );
+        originals.push(await runtime!.composeSource(owner, saved.id));
+      }
+      const originalAsset = await store!.get(
+          originals[0].detail.document.groups[0].audio!.assetId,
+        ),
+        before = await runtime!.teacherList(owner, "sets");
+      await expect(
+        (backend === "storage" ? storageRuntime! : driveRuntime!).composeSet(
+          owner,
+          {
+            title: "Drive 복합 그림 한도",
+            selections: [
+              selection(
+                originals[0],
+                [...originals[0].detail.document.groups[0].questions]
+                  .reverse()
+                  .map((q) => q.id),
+              ),
+              selection(originals[1]),
+            ],
+          },
+        ),
+      ).rejects.toMatchObject({ status: 400 });
+      expect(await runtime!.teacherList(owner, "sets")).toHaveLength(
+        before.length,
+      );
+      if (backend === "storage") {
+        expect(fakeStorage.files.has(originalAsset!.storage!.key)).toBe(true);
+        expect(fakeStorage.files.size).toBe(1);
+      } else {
+        expect(
+          fakeDrive.files.get(originalAsset!.drive!.fileId)!.trashed,
+        ).not.toBe(true);
+        const derivatives = [...fakeDrive.files.entries()].filter(([id]) =>
+          id.startsWith("derivative_"),
+        );
+        expect(derivatives).toHaveLength(1);
+        expect(derivatives[0][1].trashed).toBe(true);
+      }
+      const [inventory] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`,
+      );
+      expect(inventory.count).toBe(BigInt(2));
+    },
+  );
   afterAll(async () => {
     await db?.user.deleteMany({ where: { id: { in: [ownerId, otherId] } } });
     await db?.$disconnect();

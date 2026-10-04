@@ -5,6 +5,7 @@ import type {
   ListeningMediaUpload,
 } from "../../../../contracts/englishListeningMedia.contract";
 import type { ListeningDriveRef } from "./driveApi";
+import type { ListeningStorageRef } from "./storageApi";
 
 export interface ListeningMediaChunkRecord {
   key: string;
@@ -32,6 +33,7 @@ export interface ListeningMediaRecord
   mp3PlaybackEncoding?: "scrubbed_mp3";
   /** Private immutable external audio binding; never include in public DTOs. */
   drive?: ListeningDriveRef;
+  storage?: ListeningStorageRef;
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;
