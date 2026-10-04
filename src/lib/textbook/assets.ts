@@ -85,6 +85,9 @@ export function assertSafeSvg(text: string): void {
     "version",
     "role",
     "aria-label",
+    // The local figure renderer records original MathJax/editing labels as inert text.
+    "data-mj",
+    "data-label",
   ]);
   const stack: string[] = [];
   let at = 0,
@@ -127,9 +130,19 @@ export function assertSafeSvg(text: string): void {
         /[\u0000-\u001f]/.test(value)
       )
         throw new Error(`Unsupported SVG attribute ${key}`);
-      if (value.includes("&"))
+      const labelMetadata = key === "data-mj" || key === "data-label";
+      if (
+        labelMetadata &&
+        /&(?!(?:amp|lt|gt|quot|apos|#\d+|#x[\da-f]+);)/i.test(value)
+      )
+        throw new Error("Unsupported SVG label entity");
+      if (!labelMetadata && value.includes("&"))
         throw new Error("SVG attribute entities are unsupported");
-      if (/url\s*\(/i.test(value) && !/^url\(#[A-Za-z][\w:.-]*\)$/.test(value))
+      if (
+        !labelMetadata &&
+        /url\s*\(/i.test(value) &&
+        !/^url\(#[A-Za-z][\w:.-]*\)$/.test(value)
+      )
         throw new Error("External SVG resource");
       if (key === "xmlns" && value !== "http://www.w3.org/2000/svg")
         throw new Error("Unsupported SVG namespace");

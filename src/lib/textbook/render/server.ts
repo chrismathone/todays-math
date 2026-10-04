@@ -16,6 +16,7 @@ import { TEXTBOOK_CHARACTERS } from "../characters";
 import {
   A4,
   alignTextbookSpreads,
+  continuesTextbookSection,
   paginateTextbookSections,
   studentPageMapFromPages,
   type BlockMeasurement,
@@ -340,10 +341,15 @@ export async function renderTextbookChunk(
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
   };
   if (
-    (input.sectionIndices[0] > 0 &&
-      model.sections[0].startPolicy === "continue") ||
-    wholeModel.sections[input.sectionIndices.at(-1)! + 1]?.startPolicy ===
-      "continue"
+    continuesTextbookSection(
+      wholeModel.sections[input.sectionIndices[0] - 1],
+      model.sections[0],
+    ) ||
+    (wholeModel.sections[input.sectionIndices.at(-1)! + 1] &&
+      continuesTextbookSection(
+        model.sections.at(-1),
+        wholeModel.sections[input.sectionIndices.at(-1)! + 1],
+      ))
   )
     throw new Error(
       "CHUNK_CONTINUATION: keep a section and its continued sections in the same chunk",
@@ -642,20 +648,40 @@ export function planTextbookChunks(
     maximumSections > 8
   )
     throw new Error("Chunk section limit must be 1–8");
-  const sections = exchange.units.flatMap((u) => u.sections),
+  const sections = createTextbookRenderModel(exchange, "student").sections,
     result: number[][] = [];
-  let group: number[] = [];
+  const chains: number[][] = [];
   sections.forEach((section, i) => {
-    if (group.length >= maximumSections && section.startPolicy !== "continue") {
-      result.push(group);
-      group = [];
+    if (continuesTextbookSection(sections[i - 1], section)) {
+      chains.at(-1)!.push(i);
+    } else {
+      chains.push([i]);
     }
-    group.push(i);
-    if (group.length > 8)
+  });
+  let group: number[] = [];
+  for (const chain of chains) {
+    if (chain.length > 8)
       throw new Error(
         "CHUNK_CONTINUATION: split a chain of more than eight continued sections in the manuscript",
       );
-  });
+    // Each automatic lesson includes several recall forms and needs its own
+    // bounded render job. Manual continuation chains remain together.
+    const automaticLesson = chain.some(
+      (i) => sections[i].templateKey === "auto-lesson",
+    );
+    if (
+      group.length &&
+      (automaticLesson || group.length + chain.length > maximumSections)
+    ) {
+      result.push(group);
+      group = [];
+    }
+    group.push(...chain);
+    if (automaticLesson) {
+      result.push(group);
+      group = [];
+    }
+  }
   if (group.length) result.push(group);
   return result;
 }

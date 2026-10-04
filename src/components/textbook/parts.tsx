@@ -2144,6 +2144,8 @@ export function PreviewPane({
   onZoom,
   onPrev,
   onNext,
+  prevDisabled = false,
+  nextDisabled = false,
   showModes,
   renderPaper,
   measured,
@@ -2156,6 +2158,8 @@ export function PreviewPane({
   onZoom: (zoom: ZoomMode) => void;
   onPrev: () => void;
   onNext: () => void;
+  prevDisabled?: boolean;
+  nextDisabled?: boolean;
   showModes: boolean;
   renderPaper?: (input: PaperPreviewInput) => ReactNode;
   /** 측정이 되면 대기 문장과 대사 덤프 대신 이 노드를 보여 준다. */
@@ -2210,11 +2214,21 @@ export function PreviewPane({
         </button>
       </div>
       <div className={styles.pageNav}>
-        <button type="button" className={styles.button} onClick={onPrev}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={onPrev}
+          disabled={prevDisabled}
+        >
           이전 쪽
         </button>
         <span>{pageLabel}</span>
-        <button type="button" className={styles.button} onClick={onNext}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={onNext}
+          disabled={nextDisabled}
+        >
           다음 쪽
         </button>
       </div>
@@ -2741,9 +2755,9 @@ export function VideoPanel({
   const [viewed, setViewed] = useState<VideoSnapshotChoice | null>(null);
   const [chosenVideo, setChosenVideo] = useState("");
   /** 연결마다 «내용 확인»을 눌러 본 해시 */
-  const [reviewed, setReviewed] = useState<
-    Record<string, VideoSnapshotChoice>
-  >({});
+  const [reviewed, setReviewed] = useState<Record<string, VideoSnapshotChoice>>(
+    {},
+  );
   const parsedId = youtubeVideoId(address);
   const videoId = choices.some((choice) => choice.id === chosenVideo)
     ? chosenVideo
@@ -2857,7 +2871,11 @@ export function VideoPanel({
           </label>
         </div>
         {viewed ? (
-          <div className={styles.note} role="group" aria-label="확인한 문항 내용">
+          <div
+            className={styles.note}
+            role="group"
+            aria-label="확인한 문항 내용"
+          >
             <p>확인한 문항 내용 · {viewed.label}</p>
             <p>{viewed.content}</p>
             <p>정답 {viewed.answer}</p>
