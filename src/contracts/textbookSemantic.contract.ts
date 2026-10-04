@@ -199,6 +199,7 @@ export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
     groupId: textbookKeySchema,
     title: z.string().max(200),
     strategy: textbookTextSchema,
+    strategyKind: z.literal("captured-solution").optional(),
     exampleItemId: textbookIdSchema,
     confirmItemIds: z.array(textbookIdSchema).min(1).max(20),
   }),

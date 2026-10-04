@@ -115,7 +115,7 @@ describe("strict textbook archive transport", () => {
   it("accepts frozen local figure labels while retaining the SVG execution/resource allowlist", () => {
     expect(() =>
       assertSafeSvg(
-        '<svg xmlns="http://www.w3.org/2000/svg"><g data-mj="x &lt; 3" data-label="&quot;수학&quot;"><path d="M0 0 L2 2"/></g></svg>',
+        '<svg xmlns="http://www.w3.org/2000/svg"><g data-mj="x &lt; 3" data-label="&quot;수학&quot;" data-anchor="middle" data-x="12.500" data-y="-3.000" data-base="1.000" data-fs="16.000" data-w="22.000" data-a="12.000" data-d="3.000" data-halo="1.500" data-px="0.000" data-py="0.000"><path d="M0 0 L2 2"/></g></svg>',
       ),
     ).not.toThrow();
     for (const attrs of [
@@ -126,6 +126,12 @@ describe("strict textbook archive transport", () => {
       'fill="url(https://x)"',
       'href="https://x"',
       'data-label="x" onmouseover="x"',
+      'data-anchor="javascript:x"',
+      'data-x="Infinity"',
+      'data-w="url(https://x)"',
+      'data-y="&custom;"',
+      'data-mml-node="url(https://x)"',
+      'data-c="<script>"',
     ])
       expect(() => assertSafeSvg(`<svg><g ${attrs}/></svg>`)).toThrow();
   });

@@ -4,12 +4,14 @@ import { textbookBodyTopMm } from "../layout/paginate";
 
 export interface RecoveryMeasurePlan {
   rootSelector?: string;
+  sourceMemoryRowKeys: string[];
   blocks: Array<{
     id: string;
     memoryGroup?: string;
     memoryHeading?: string;
     dialogueGroup?: string;
     dialoguePage?: string;
+    dialogueCaption?: boolean;
   }>;
   dialogueBodyTopMm: number;
   dialogueBottomMm: number;
@@ -18,6 +20,13 @@ export function recoveryMeasurePlan(
   model: TextbookRenderModel,
 ): RecoveryMeasurePlan {
   return {
+    sourceMemoryRowKeys: model.sections.flatMap((section) =>
+      section.blocks.flatMap((block) =>
+        block.kind === "recall" && block.semantic?.source
+          ? (block.displayRows ?? []).map((row) => row.rowKey)
+          : [],
+      ),
+    ),
     dialogueBodyTopMm: 63.42,
     dialogueBottomMm: 263,
     blocks: model.sections.flatMap((section) =>
@@ -37,16 +46,63 @@ export function recoveryMeasurePlan(
           )
             ? { memoryHeading: `${section.unitKey}.memory-heading` }
             : {}),
-          ...(isDialoguePlacement(block) && block.semantic
+          ...((isDialoguePlacement(block) && block.semantic) ||
+          block.dialogueLesson
             ? {
-                dialogueGroup: section.unitKey,
+                dialogueGroup: section.blocks.some(
+                  (candidate) => candidate.semantic?.source?.kind === "opening",
+                )
+                  ? section.unitKey
+                  : section.sectionKey,
                 dialoguePage: section.sectionKey,
+                ...(block.dialogueLesson ? { dialogueCaption: true } : {}),
               }
             : {}),
         };
       }),
     ),
   };
+}
+/** Original multi-page scripts are fitted as one unit even when publishing divides the pages into steps. */
+export function dialogueMeasurementModel(
+  whole: TextbookRenderModel,
+  selected: TextbookRenderModel,
+): TextbookRenderModel {
+  const wanted = new Set(
+    selected.sections.flatMap((section) =>
+      section.blocks.flatMap((block) =>
+        block.semantic?.source?.kind === "opening" ? [section.unitKey] : [],
+      ),
+    ),
+  );
+  const selectedKeys = new Set(
+    selected.sections.map(
+      (section) => `${section.unitKey}:${section.sectionKey}`,
+    ),
+  );
+  const extra = whole.sections
+    .filter(
+      (section) =>
+        wanted.has(section.unitKey) &&
+        !selectedKeys.has(`${section.unitKey}:${section.sectionKey}`),
+    )
+    .map((section) => ({
+      ...section,
+      blocks: section.blocks.filter(
+        (block) => isDialoguePlacement(block) || block.dialogueLesson,
+      ),
+    }))
+    .filter((section) => section.blocks.length > 0);
+  const result = { ...selected, sections: [...selected.sections, ...extra] };
+  if (
+    result.sections.length > 8 ||
+    result.sections.reduce((sum, section) => sum + section.blocks.length, 0) >
+      600
+  )
+    throw new Error(
+      "대화의 공통 글자 크기 측정 한도를 넘었습니다. 수업 구획을 줄여 주세요.",
+    );
+  return result;
 }
 export interface RecoveryMeasureResult {
   rowHeightsMm: Record<string, number>;
@@ -103,26 +159,46 @@ export function measureRecoveryDom(
     ),
   );
   const rowHeightsMm: Record<string, number> = {};
+  const sourceRowKeys = new Set(plan.sourceMemoryRowKeys);
   for (const row of root.querySelectorAll<HTMLElement>(
     ".tb-memory-row[data-row-key]",
   )) {
     const key = row.dataset.rowKey!;
+    // A masked sentence's writing floor must not enlarge the immutable source row.
+    // Only the private canonical copy supplies source row heights.
+    if (sourceRowKeys.has(key) && !row.closest("[data-recall-probe-id]"))
+      continue;
+    const precision = sourceRowKeys.has(key) ? 100 : 10;
     rowHeightsMm[key] = Math.max(
       rowHeightsMm[key] ?? 0,
-      Math.ceil(row.getBoundingClientRect().height * mm * 10 - 1e-6) / 10,
+      Math.ceil(row.getBoundingClientRect().height * mm * precision - 1e-6) /
+        precision,
     );
   }
   for (const row of root.querySelectorAll<HTMLElement>(
     ".tb-memory-row[data-row-key]",
   )) {
     const height = rowHeightsMm[row.dataset.rowKey!];
+    if (height === undefined)
+      throw new Error("Missing canonical recall row measurement");
     row.classList.add("tb-memory-row-measured");
     row.style.height = `${height}mm`;
     const blank = row.querySelector<HTMLElement>(".tb-blank-sentence");
     if (blank)
       blank.innerHTML = '<span class="tb-write-line"></span>'.repeat(
-        Math.max(1, Math.floor((height - 2.2) / 7)),
+        Math.max(
+          1,
+          Math.floor(
+            (height - (sourceRowKeys.has(row.dataset.rowKey!) ? 3 : 2.2)) / 7,
+          ),
+        ),
       );
+    if (
+      blank &&
+      sourceRowKeys.has(row.dataset.rowKey!) &&
+      blank.children.length === 1
+    )
+      (blank.firstElementChild as HTMLElement).style.height = "100%";
   }
   const maxima: Record<string, number> = {};
   for (const block of plan.blocks) {
@@ -161,16 +237,21 @@ export function measureRecoveryDom(
     for (let tenth = 105; tenth >= 92; tenth--) {
       const pt = tenth / 10;
       for (const block of blocks)
-        elements
-          .get(block.id)!
-          .style.setProperty("--tb-dialogue-size", `${pt}pt`);
+        for (const element of [
+          elements.get(block.id)!,
+          ...elements
+            .get(block.id)!
+            .querySelectorAll<HTMLElement>(".tb-dialogue,.tb-dialogue-board"),
+        ])
+          element.style.setProperty("--tb-dialogue-size", `${pt}pt`);
       if (
         pages.every((page) => {
           const hs = blocks
             .filter((block) => block.dialoguePage === page)
             .map(
               (block) =>
-                elements.get(block.id)!.getBoundingClientRect().height * mm,
+                elements.get(block.id)!.getBoundingClientRect().height * mm +
+                (block.dialogueCaption ? 4 : 0),
             );
           return (
             hs.reduce((sum, height) => sum + height, 0) +
@@ -184,17 +265,22 @@ export function measureRecoveryDom(
       }
     }
     for (const block of blocks) {
-      elements
-        .get(block.id)!
-        .style.setProperty("--tb-dialogue-size", `${chosen}pt`);
-      dialogueSizesPt[block.id] = chosen;
+      for (const element of [
+        elements.get(block.id)!,
+        ...elements
+          .get(block.id)!
+          .querySelectorAll<HTMLElement>(".tb-dialogue,.tb-dialogue-board"),
+      ])
+        element.style.setProperty("--tb-dialogue-size", `${chosen}pt`);
+      if (!block.dialogueCaption) dialogueSizesPt[block.id] = chosen;
     }
     for (const page of pages) {
       const hs = blocks
           .filter((block) => block.dialoguePage === page)
           .map(
             (block) =>
-              elements.get(block.id)!.getBoundingClientRect().height * mm,
+              elements.get(block.id)!.getBoundingClientRect().height * mm +
+              (block.dialogueCaption ? 4 : 0),
           ),
         spare =
           plan.dialogueBottomMm -
@@ -208,7 +294,7 @@ export function measureRecoveryDom(
       for (const block of blocks.filter(
         (candidate) => candidate.dialoguePage === page,
       ))
-        dialogueGapsMm[block.id] = gap;
+        if (!block.dialogueCaption) dialogueGapsMm[block.id] = gap;
     }
   }
   return {

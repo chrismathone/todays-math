@@ -17,7 +17,7 @@ export function renderAutomaticIntroHtml(
     resources,
     editorialUnitAsset(block),
     "수학 단원 조형 삽화",
-  );
+  ).replace("<img ", '<img data-textbook-decorative-bleed-mm="4" ');
   const heading = `<div class="tb-intro-number"><small>UNIT</small><strong>${number}</strong></div><h2>${esc(title)}</h2>`;
   const question = `<div class="tb-intro-question">${md(node.question)}</div>`;
   const explanation = `<div class="tb-intro-explanation">${md(node.explanation)}</div>`;

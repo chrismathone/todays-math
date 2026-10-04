@@ -7,11 +7,16 @@ import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import type { RenderBlock } from "../model";
 import { imageHtml, qrHtml, type RenderResources } from "./shared";
+import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
 
 export function renderProblemHtml(
   block: Extract<EditorialBlock, { kind: "problem" }>,
   resources: RenderResources,
 ): string {
+  const source = block.semantic?.source;
+  const prose = source
+    ? (text: string) => dialogueMarkdownHtml(v15DisplayMarkdown(text))
+    : md;
   const { choices } = parseProblemContent(block.content);
   // Classify with the shared parser, but render the original Markdown.
   // Its normalized output has no source offsets, so place the one notice
@@ -31,9 +36,9 @@ export function renderProblemHtml(
     .join("");
   const answer =
     block.answer !== undefined
-      ? `<section class="tb-answer"><h4>정답${block.sourcePageLabel ? ` · 문제 ${esc(block.sourcePageLabel)}쪽` : ""}</h4>${md(block.answer)}${block.solution !== null && block.solution !== undefined ? `<div>${md(block.solution)}</div>` : ""}</section>`
+      ? `<section class="tb-answer"><h4>정답${block.sourcePageLabel ? ` · 문제 ${esc(block.sourcePageLabel)}쪽` : ""}</h4>${prose(block.answer)}${block.solution !== null && block.solution !== undefined ? `<div>${prose(block.solution)}</div>` : ""}</section>`
       : block.publicWorkedExample
-        ? `<section class="tb-worked"><h4>함께 풀어 보기 · 풀이</h4>${block.publicWorkedExample.solution ? `<div class="tb-worked-solution">${md(block.publicWorkedExample.solution)}</div>` : ""}<div class="tb-worked-answer"><b>답</b>${md(block.publicWorkedExample.answer)}</div></section>`
+        ? `<section class="tb-worked"><h4>${source ? "풀이" : "함께 풀어 보기 · 풀이"}</h4>${block.publicWorkedExample.solution ? `<div class="tb-worked-solution">${prose(block.publicWorkedExample.solution)}</div>` : ""}<div class="tb-worked-answer"><b>답</b>${prose(block.publicWorkedExample.answer)}</div></section>`
         : "";
   const lines =
     block.answer === undefined && !block.publicWorkedExample
@@ -61,5 +66,5 @@ export function renderProblemHtml(
       );
   const qr = block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : "";
   // The QR sits beside the prompt: the ruled space below keeps the full column width.
-  return `<section class="tb-problem${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 ? " tb-problem-wide" : ""}${qr ? " tb-problem-has-qr" : ""}"${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"` : ""}><header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}</div>${answer}</div>${qr}</div><div class="tb-work-area" style="min-height:${lines * 7}mm">${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
+  return `<section class="tb-problem${source ? " tb-source-problem" : ""}${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 ? " tb-problem-wide" : ""}${qr ? " tb-problem-has-qr" : ""}"${source ? ` data-source-kind="${esc(source.kind)}"` : ""}${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"${role === "confirm" ? ` data-confirm-index="${block.exampleConfirmIndex ?? group.confirmItemIds.indexOf(block.itemId)}"` : ""}` : ""}><header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType && !source ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${prose(block.content)}</div>${figures}</div>${answer}</div>${qr}</div><div class="tb-work-area" style="min-height:${lines * 7}mm"${!lines ? " data-empty-work" : ""}>${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
 }

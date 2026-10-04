@@ -83,6 +83,7 @@ function semanticProjection(
   const blocks: RenderBlock[] = [];
   let current: TextbookActivity | undefined;
   let lessonTitle = "";
+  let exampleGroupNumber = 0;
   for (const block of source) {
     const semantic = block.semantic;
     const activity = semantic?.activity ?? current;
@@ -129,10 +130,20 @@ function semanticProjection(
                   : ACTIVITY_LABELS[activity])),
           subtitle:
             activity === "dialogue" && block.kind === "dialogue"
-              ? (block.presentation?.lessonTitle ?? section.title)
-              : (memory?.[1] ?? section.title),
+              ? semantic?.source
+                ? (semantic.title ?? section.title)
+                : (block.presentation?.lessonTitle ?? section.title)
+              : (memory?.[1] ??
+                (semantic?.source ? (semantic.subtitle ?? "") : section.title)),
           stageNumber: String(
-            steps.findIndex((step) => step.activity === activity) + 1,
+            semantic?.source?.scriptIndex ??
+              (memory
+                ? ["conceptStudy", "clozeRecall", "sentenceRecall"].indexOf(
+                    activity,
+                  ) + 1
+                : (section.blocks.find((candidate) => candidate.unitNumber)
+                    ?.unitNumber ??
+                  steps.findIndex((step) => step.activity === activity) + 1)),
           ).padStart(2, "0"),
           progressSteps:
             activity === "dialogue" || stage === "guide"
@@ -191,6 +202,16 @@ function semanticProjection(
     blocks.push({
       ...block,
       editorialStage: stage,
+      ...(semantic?.node?.kind === "exampleGroup" && block.kind === "text"
+        ? { exampleGroupNumber: ++exampleGroupNumber }
+        : {}),
+      ...(semantic?.node?.kind === "exampleGroup" && block.kind === "problem"
+        ? {
+            exampleConfirmIndex: semantic.node.confirmItemIds.indexOf(
+              block.itemId,
+            ),
+          }
+        : {}),
       ...(block.kind === "recall" && Object.hasOwn(MEMORY_COPY, activity ?? "")
         ? { memoryPhases: [] }
         : {}),

@@ -2,10 +2,18 @@ import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
 import type { TextbookSemanticRow } from "@/contracts/textbookSemantic.contract";
 import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
+import { displayStyleMath } from "./dialogue";
 
 export type RecallPhase = "study" | "keywords" | "sentences";
 /** Writing lines are 7mm apart everywhere; a memory row is a whole number of them tall. */
 export const RECALL_LINE_PITCH_MM = 7;
+/** Top and bottom padding of a row: sheets written from the bank, and original v15 pages. */
+export const RECALL_ROW_PADDING_MM = { bank: 2.2, source: 3 } as const;
+/**
+ * A sheet converted from an original page carries these on its section and on every row
+ * (`.tb-memory-row-source[data-row-origin="source"]`). Sheets written from the bank carry neither.
+ */
+export const RECALL_SOURCE_CLASS = "tb-memory-source";
 
 type RecallBlock = Extract<EditorialBlock, { kind: "recall" }> & {
   /** `variant === "answers"`. Absent: inferred from the legacy pieces (see `revealed`). */
@@ -173,9 +181,23 @@ const keywordBlank = (widthEm: number) =>
   `<span class="tb-blank tb-blank-keyword" data-writing-space="keyword" role="textbox" aria-label="빈칸" style="width:${widthEm}em"></span>`;
 const writingLines = (count: number, label: string) =>
   `<span class="tb-blank tb-blank-sentence" data-writing-space="sentence" role="textbox" aria-label="${label}">${'<span class="tb-write-line"></span>'.repeat(count)}</span>`;
+/** The original sentence sheet: one rule under the space the hidden sentence would take. */
+const writingRule = (label: string) =>
+  `<span class="tb-blank tb-blank-sentence tb-blank-rule" data-writing-space="sentence" role="textbox" aria-label="${label}"><span class="tb-write-line"></span></span>`;
 
-function rowBodyHtml(row: RecallDisplayRow, lines: number): string {
-  if (row.hidden) return writingLines(lines, "문장으로 개념 쓰기");
+/**
+ * `source`: the row is an original v15 row. Its formulas are set in display style as they are
+ * typeset (the stored text keeps its TeX), and a hidden sentence short of two 7mm lines is one rule.
+ */
+function rowBodyHtml(
+  row: RecallDisplayRow,
+  lines: number,
+  source = false,
+): string {
+  if (row.hidden)
+    return source && lines < 2
+      ? writingRule("문장으로 개념 쓰기")
+      : writingLines(lines, "문장으로 개념 쓰기");
   const blanks: number[] = [];
   const markdown = row.pieces
     .map((piece) => {
@@ -186,7 +208,7 @@ function rowBodyHtml(row: RecallDisplayRow, lines: number): string {
     })
     .join("");
   let blank = 0;
-  return md(markdown)
+  return md(source ? displayStyleMath(markdown) : markdown)
     .replaceAll(MARK, () => keywordBlank(blanks[blank++]))
     .replaceAll(OPEN, '<span class="tb-memory-key">')
     .replaceAll(CLOSE, "</span>");
@@ -216,11 +238,20 @@ const NAME_DATE = "<span>이름 __________　날짜 __________</span>";
 const ROUNDS =
   '<span class="tb-memory-rounds" aria-label="학습 반복 확인">1회<i></i>2회<i></i>3회<i></i>4회<i></i></span>';
 
-/** Hidden text exists only where the model left a blank; study and answer sheets show everything. */
+/**
+ * Whether hidden text may be printed. The model's flag decides; the study sheet hides nothing.
+ * Without the flag only a whole block whose legacy pieces show no blank is taken as the answer
+ * variant. A paragraph part of a split block is never evidence: its label paragraph has no
+ * blank of its own in either variant, so guessing there would print a student's answers.
+ */
 function revealed(block: RecallBlock): boolean {
+  if (block.answersVisible !== undefined) return block.answersVisible;
+  if (block.phase === "study") return true;
   return (
-    block.answersVisible ??
-    (block.phase === "study" || !block.pieces.some((p) => p.kind === "blank"))
+    !block.continuation &&
+    block.lastPart !== false &&
+    block.pieces.length > 0 &&
+    !block.pieces.some((p) => p.kind === "blank")
   );
 }
 
@@ -282,25 +313,33 @@ function memoryHtml(
   const title =
     node.kind === "concept"
       ? `<header class="tb-memory-title" data-anchor="memory-title">${code ? `<span class="tb-memory-code">${esc(code)}</span>` : ""}<b>${esc(node.title)}</b>${rounds}</header>`
-      : rounds
-        ? `<header class="tb-memory-title tb-memory-title-bare">${rounds}</header>`
-        : "";
+      : // Rows without a concept name keep the same bar in every phase, so the first row starts
+        // at one height. Only the study sheet prints the repetition marks in it.
+        `<header class="tb-memory-title tb-memory-title-bare" data-anchor="memory-title">${rounds}</header>`;
   const page =
     block.relativePageIndex === undefined
       ? ""
       : ` data-relative-page-index="${block.relativePageIndex}"`;
+  // An original v15 page: its own row geometry and display-style formulas (see the content CSS).
+  const origin = block.semantic!.source;
+  const padding = RECALL_ROW_PADDING_MM[origin ? "source" : "bank"];
   const body = rows
     .map((row) => {
       const measured = block.rowHeightsMm?.[row.rowKey];
-      // A measured row holds as many whole lines as fit above its padding.
+      // A measured row holds as many whole 7mm lines as fit above its padding. An unmeasured
+      // source row keeps its natural height: the rule spans the estimated lines of its text.
       const lines =
         measured === undefined
           ? row.lines
-          : Math.max(1, Math.floor((measured - 2.2) / RECALL_LINE_PITCH_MM));
-      return `<div class="tb-memory-row${measured === undefined ? "" : " tb-memory-row-measured"}" data-row-key="${esc(row.rowKey)}" data-row-group="${esc(group)}" data-concept-id="${esc(conceptId)}" data-phase="${phase}"${page} style="--tb-row-lines:${lines}${measured === undefined ? "" : `;height:${measured}mm`}"><div class="tb-memory-label" data-anchor="row-label">${esc(row.label)}</div><div class="tb-memory-body" data-anchor="row-body">${rowBodyHtml(row, lines)}</div></div>`;
+          : Math.max(
+              1,
+              Math.floor((measured - padding) / RECALL_LINE_PITCH_MM),
+            );
+      const written = origin && measured === undefined ? 1 : lines;
+      return `<div class="tb-memory-row${origin ? " tb-memory-row-source" : ""}${measured === undefined ? "" : " tb-memory-row-measured"}" data-row-key="${esc(row.rowKey)}" data-row-group="${esc(group)}" data-concept-id="${esc(conceptId)}" data-phase="${phase}"${origin ? ' data-row-origin="source"' : ""}${page} style="--tb-row-lines:${lines}${measured === undefined ? "" : `;height:${measured}mm`}"><div class="tb-memory-label" data-anchor="row-label">${esc(row.label)}</div><div class="tb-memory-body" data-anchor="row-body">${rowBodyHtml(row, written, !!origin)}</div></div>`;
     })
     .join("");
-  return `<section class="tb-recall tb-memory${continuation ? " tb-recall-continuation" : ""}" data-phase="${phase}" data-activity="${block.semantic!.activity}" data-row-group="${esc(group)}"${conceptId ? ` data-concept-id="${esc(conceptId)}"` : ""}>${intro}${title}<div class="tb-memory-rows">${body}</div></section>`;
+  return `<section class="tb-recall tb-memory${origin ? ` ${RECALL_SOURCE_CLASS}` : ""}${continuation ? " tb-recall-continuation" : ""}" data-phase="${phase}" data-activity="${block.semantic!.activity}" data-row-group="${esc(group)}"${conceptId ? ` data-concept-id="${esc(conceptId)}"` : ""}${origin ? ` data-memory-origin="source" data-source-kind="${esc(origin.kind)}"` : ""}>${intro}${title}<div class="tb-memory-rows">${body}</div></section>`;
 }
 
 const recallTextHtml = (markdown: string) =>

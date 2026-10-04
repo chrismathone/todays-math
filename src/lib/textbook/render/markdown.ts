@@ -166,27 +166,56 @@ export function recallPieces(
 ): RecallPiece[] {
   const pieces: RecallPiece[] = [];
   let at = 0;
-  const marker = /\[\[([\s\S]*?)\]\]|\{\{([\s\S]*?)\}\}/g;
-  for (const match of source.matchAll(marker)) {
-    if (match.index! > at)
-      pieces.push({ kind: "text", markdown: source.slice(at, match.index) });
-    const keyword = match[1] !== undefined;
+  const mathEnd = (index: number): number => {
+    if (source[index] !== "$" || source[index - 1] === "\\") return index;
+    const delimiter = source.startsWith("$$", index) ? "$$" : "$";
+    let end = source.indexOf(delimiter, index + delimiter.length);
+    while (end >= 0 && source[end - 1] === "\\")
+      end = source.indexOf(delimiter, end + delimiter.length);
+    return end < 0 ? index : end + delimiter.length;
+  };
+  for (let index = 0; index < source.length;) {
+    const afterMath = mathEnd(index);
+    if (afterMath > index) {
+      index = afterMath;
+      continue;
+    }
+    const opening = source.slice(index, index + 2);
+    if (opening === "]]" || opening === "}}")
+      throw new Error("짝이 맞지 않는 백지 표기입니다.");
+    if (opening !== "[[" && opening !== "{{") {
+      index++;
+      continue;
+    }
+    const keyword = opening === "[[";
+    const closing = keyword ? "]]" : "}}";
+    let end = index + 2;
+    for (; end < source.length;) {
+      const afterInnerMath = mathEnd(end);
+      if (afterInnerMath > end) {
+        end = afterInnerMath;
+        continue;
+      }
+      if (source.startsWith(closing, end)) break;
+      if (/^(?:\[\[|\{\{|\]\]|\}\})/.test(source.slice(end)))
+        throw new Error("짝이 맞지 않는 백지 표기입니다.");
+      end++;
+    }
+    if (end >= source.length)
+      throw new Error("짝이 맞지 않는 백지 표기입니다.");
+    if (index > at)
+      pieces.push({ kind: "text", markdown: source.slice(at, index) });
     const hidden = phase === "sentences" || (phase === "keywords" && keyword);
     pieces.push(
       hidden
         ? { kind: "blank", scope: keyword ? "keyword" : "sentence" }
-        : { kind: "text", markdown: match[1] ?? match[2] },
+        : { kind: "text", markdown: source.slice(index + 2, end) },
     );
-    at = match.index! + match[0].length;
+    at = end + 2;
+    index = at;
   }
   if (at < source.length)
     pieces.push({ kind: "text", markdown: source.slice(at) });
-  if (
-    pieces.some(
-      (p) => p.kind === "text" && /\[\[|\]\]|\{\{|\}\}/.test(p.markdown),
-    )
-  )
-    throw new Error("짝이 맞지 않는 백지 표기입니다.");
   if (phase !== "study" && !pieces.some((p) => p.kind === "blank"))
     throw new Error("빈칸 단계에 숨길 핵심어·문장 표기를 입력하세요.");
   return pieces;

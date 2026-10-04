@@ -77,6 +77,7 @@ import { appendRest } from "./quickCreate/rest";
 import { appendUnitIntro } from "./quickCreate/unitIntro";
 import { coreConceptsForSection } from "../coreConceptBank";
 import { appendIndexes } from "./quickCreate/indexes";
+import { splitLargeAutomaticLesson } from "./quickCreate/lessonSections";
 
 export {
   DEFAULT_QUICK_CREATE_CAST,
@@ -154,6 +155,7 @@ export async function listQuickCreateUnits(
         MISSING_ANSWER,
       ],
     );
+    const seenContent = new Set<string>();
     for (const row of rows) {
       const counts = availability.get(row.unitId)!;
       const written = classifyFormat(row) === "descriptive";
@@ -161,6 +163,13 @@ export async function listQuickCreateUnits(
         QUICK_CREATE_DIFFICULTIES,
       )) {
         if ((tiers as readonly string[]).includes(row.difficulty)) {
+          const key = JSON.stringify([
+            row.unitId,
+            difficulty,
+            row.content.trim(),
+          ]);
+          if (seenContent.has(key)) continue;
+          seenContent.add(key);
           const count = counts[difficulty as keyof Availability];
           count.total += 1;
           if (written) count.written += 1;
@@ -385,6 +394,7 @@ export async function createQuickTextbook(
           appendConceptAndRecall(ctx, lesson);
           await prependDialogue(ctx, lesson);
           await appendProblemStages(ctx, lesson);
+          splitLargeAutomaticLesson(ctx, section);
           if (!section.blocks.length)
             sections.splice(sections.indexOf(section), 1);
         }
@@ -458,7 +468,9 @@ export async function createQuickTextbook(
               editionId,
               concept.conceptKey,
               concept.unitKey,
-              sections.find((s) => s.sectionKey === concept.sectionKey)!.id,
+              concept.sectionKey === null
+                ? null
+                : sections.find((s) => s.sectionKey === concept.sectionKey)!.id,
               concept.title,
               concept.kind,
               concept.unitId,
@@ -514,7 +526,12 @@ export async function createQuickTextbook(
                 item.sectionId,
                 item.stage,
                 item.orderIndex,
-                JSON.stringify(quickCreateItemLayout(item.stage, item.snapshot.payload.questionType)),
+                JSON.stringify(
+                  quickCreateItemLayout(
+                    item.stage,
+                    item.snapshot.payload.questionType,
+                  ),
+                ),
                 JSON.stringify(item.conceptKeys),
                 String(item.orderIndex + 1),
               ],

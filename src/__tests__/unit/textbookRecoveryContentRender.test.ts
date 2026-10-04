@@ -393,7 +393,10 @@ describe("memory sheets share one immutable row list", () => {
     expect(row.textContent).not.toContain("나누어떨어지게");
     // The public symbol is typeset; the hidden fraction is not.
     expect(row.querySelectorAll("[data-textbook-math]")).toHaveLength(1);
-    expect(bank.querySelector(".tb-memory-title")).toBeNull();
+    // Rows without a concept name keep an empty bar where the study sheet prints its marks.
+    const bar = bank.querySelector(".tb-memory-title")!;
+    expect(bar.className).toBe("tb-memory-title tb-memory-title-bare");
+    expect(bar.textContent).toBe("");
   });
 
   it("keeps an unclosed key hidden instead of demoting it to public text", () => {

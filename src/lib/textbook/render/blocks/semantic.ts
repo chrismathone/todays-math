@@ -7,7 +7,7 @@ import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
 function inlineMarkdown(source: string): string {
   const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
   return /^<p>[\s\S]*<\/p>$/.test(html) && !html.slice(3, -4).includes("<p>")
-    ? html.slice(3, -4)
+    ? `${/^\s/.test(source) ? " " : ""}${html.slice(3, -4)}${/\s$/.test(source) ? " " : ""}`
     : html;
 }
 
@@ -50,14 +50,23 @@ export function renderSemanticTextHtml(
   const semantic = block.semantic;
   const node = semantic?.node;
   if (!semantic || !node) return null;
-  if (node.kind === "fragments")
-    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${renderSourceFragments(node.fragments, resources)}</section>`;
+  if (node.kind === "fragments") {
+    const content = renderSourceFragments(node.fragments, resources);
+    const marked =
+      semantic.source?.kind === "unitSpreadLeft"
+        ? content.replaceAll(
+            "<img ",
+            '<img data-textbook-decorative-bleed-mm="4" ',
+          )
+        : content;
+    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${marked}</section>`;
+  }
   if (node.kind === "writing")
     return `<section class="tb-writing-activity" data-activity="${semantic.activity}">${node.prompts.map((prompt) => `<div class="tb-writing-prompt">${md(prompt)}${writingLinesHtml(node.lines)}</div>`).join("")}</section>`;
   if (node.kind === "references")
     return `<section class="tb-references" data-activity="${semantic.activity}" aria-label="${esc(semantic.title ?? "쪽수 안내")}">${node.entries.map((entry) => `<div class="tb-reference-row" data-reference-key="${esc(entry.key)}"><span>${md(entry.label)}</span><span class="tb-reference-page" aria-label="쪽수">${esc(entry.pageLabel ?? "")}</span></div>`).join("")}</section>`;
   if (node.kind === "exampleGroup")
-    return `<section class="tb-example-group" data-example-group="${esc(node.groupId)}"><h3>${esc(node.title)}</h3><div class="tb-example-strategy">${md(node.strategy)}</div><p>대표예제의 풀이를 확인하고 연결된 확인 문제를 스스로 풀어 보세요.</p></section>`;
+    return `<section class="tb-example-group tb-pair-heading" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${block.exampleGroupNumber ? `<span class="tb-pair-number">${String(block.exampleGroupNumber).padStart(2, "0")}</span>` : ""}<h3>${esc(node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy)) : md(node.strategy)}</div>`}</section>`;
   return null;
 }
 

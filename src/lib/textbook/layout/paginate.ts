@@ -292,7 +292,7 @@ export function paginateTextbookSections(
       cursor =
         Math.max(...page.blocks.map((b) => b.yMm + b.heightMm)) + A4.gapMm;
     }
-    const newPage = () => {
+    const newPage = (firstBlock = row[0]?.block ?? currentHeading) => {
       if (pages.length >= (options.maxPages ?? 5000))
         fail(
           "PAGE_LIMIT",
@@ -310,12 +310,12 @@ export function paginateTextbookSections(
         unitTitle: section.unitTitle,
         sectionTitle: section.title,
         kind: "content",
-        editorialStage: row[0]?.block.editorialStage ?? section.editorialStage,
+        editorialStage: firstBlock?.editorialStage ?? section.editorialStage,
         blocks: [],
       };
       next++;
       pages.push(page);
-      cursor = textbookBodyTopMm(section, row[0]?.block);
+      cursor = textbookBodyTopMm(section, firstBlock);
       if (
         recovered &&
         continuing &&
@@ -413,12 +413,16 @@ export function paginateTextbookSections(
             )
           ? (row[0].block.dialogueGapMm ?? 0.85)
           : row[0].block.kind === "heading" && recovered
-            ? 3.5
+            ? row[0].block.editorialStage === "opening"
+              ? 3.5
+              : 4
             : A4.gapMm;
       cursor += height + gap;
       row = [];
     };
+    const grouped = new Set<string>();
     for (const [blockIndex, block] of section.blocks.entries()) {
+      if (grouped.has(block.id)) continue;
       if (block.startNewPage) {
         flush();
         if (page?.blocks.length) {
@@ -441,6 +445,111 @@ export function paginateTextbookSections(
           section,
           block,
         );
+      const group =
+        block.kind === "text" && block.semantic?.node?.kind === "exampleGroup"
+          ? block.semantic.node
+          : undefined;
+      if (group) {
+        flush();
+        const itemIds = [group.exampleItemId, ...group.confirmItemIds];
+        const members = section.blocks.slice(
+          blockIndex + 1,
+          blockIndex + 1 + itemIds.length,
+        );
+        if (
+          members.length !== itemIds.length ||
+          members.some(
+            (member, index) =>
+              member.kind !== "problem" ||
+              member.itemId !== itemIds[index] ||
+              member.semantic?.node?.kind !== "exampleGroup" ||
+              member.semantic.node.groupId !== group.groupId ||
+              blockColumnSpan(member) !== 1,
+          )
+        )
+          fail(
+            "EXAMPLE_GROUP_MEMBERS",
+            "대표예제와 연결된 확인문제의 순서·열 배치를 확인하세요.",
+            section,
+            block,
+          );
+        const sizes = members.map((member) => {
+          const size = measure.get(member.id);
+          if (
+            !size ||
+            !Number.isFinite(size.heightMm) ||
+            size.heightMm <= 0 ||
+            Math.abs(size.widthMm - blockWidthMm(config, member)) >
+              A4.toleranceMm
+          )
+            fail(
+              "EXAMPLE_GROUP_MEASUREMENT",
+              "예제와 확인문제를 실제 열 폭으로 측정하세요.",
+              section,
+              member,
+            );
+          return size!;
+        });
+        if (Math.abs(m!.widthMm - blockWidthMm(config, block)) > A4.toleranceMm)
+          fail(
+            "MEASUREMENT_WIDTH",
+            "예제 제목의 실제 측정 폭을 확인하세요.",
+            section,
+            block,
+          );
+        const rightInset = 3;
+        const columnsHeight = Math.max(
+          sizes[0].heightMm,
+          rightInset +
+            sizes.slice(1).reduce((sum, size) => sum + size.heightMm, 0),
+        );
+        const groupHeight = Math.max(102, m!.heightMm + columnsHeight);
+        if (!page || cursor + groupHeight > bodyBottom) newPage(block);
+        if (cursor + groupHeight > bodyBottom)
+          fail(
+            "EXAMPLE_GROUP_OVERFLOW",
+            "예제와 확인문제를 한 지면에 넣을 수 없습니다. 원고·그림·풀이 공간을 조정하세요.",
+            section,
+            block,
+          );
+        const left =
+          page!.physicalPageIndex % 2 === 0
+            ? config.print.outerMarginMm
+            : config.print.innerMarginMm;
+        page!.blocks.push({
+          blockId: block.id,
+          column: 1,
+          xMm: left,
+          yMm: cursor,
+          widthMm: blockWidthMm(config, block),
+          heightMm: m!.heightMm,
+        });
+        let rightTop = cursor + m!.heightMm + rightInset;
+        members.forEach((member, index) => {
+          const problem = member as Extract<RenderBlock, { kind: "problem" }>;
+          const column = index === 0 ? 1 : 2;
+          const width = blockWidthMm(config, member);
+          page!.blocks.push({
+            blockId: member.id,
+            itemId: problem.itemId,
+            column,
+            xMm: left + (column - 1) * (width + A4.columnGapMm),
+            yMm: index === 0 ? cursor + m!.heightMm : rightTop,
+            widthMm: width,
+            heightMm: sizes[index].heightMm,
+          });
+          pageMap.push({
+            itemId: problem.itemId,
+            physicalPageIndex: page!.physicalPageIndex,
+            printedPageLabel: page!.printedPageLabel,
+            column,
+          });
+          if (index > 0) rightTop += sizes[index].heightMm;
+          grouped.add(member.id);
+        });
+        cursor += groupHeight + 3;
+        continue;
+      }
       if (block.kind === "unit-intro") {
         if (
           blockIndex !== 0 ||
@@ -643,6 +752,7 @@ export function studentPageMapFromPages(
   )
     fail("STUDENT_PAGE_COUNT", "검증한 학생용 묶음 쪽 참조가 필요합니다.");
   pages.forEach((page, i) => {
+    const pageSeen = new Set<string>();
     if (
       !Array.isArray(page.blocks) ||
       page.physicalPageIndex !== firstPhysicalPageIndex + i
@@ -667,7 +777,11 @@ export function studentPageMapFromPages(
       fail("STUDENT_PAGE_LABEL", "학생용 본문 쪽 참조를 확인하세요.", page);
     for (const p of page.blocks) {
       const b = blocks.get(p.blockId);
-      if (!b || seen.has(p.blockId))
+      if (
+        !b ||
+        pageSeen.has(p.blockId) ||
+        (seen.has(p.blockId) && b.kind !== "heading")
+      )
         fail(
           "STUDENT_BLOCK_REF",
           "정답지와 학생용 블록의 일치 여부를 확인하세요.",
@@ -675,6 +789,7 @@ export function studentPageMapFromPages(
           p.blockId,
         );
       seen.add(p.blockId);
+      pageSeen.add(p.blockId);
       if (
         ![p.xMm, p.yMm, p.widthMm, p.heightMm].every(Number.isFinite) ||
         ![1, 2].includes(p.column) ||
@@ -682,7 +797,13 @@ export function studentPageMapFromPages(
         p.xMm + p.widthMm > A4.widthMm ||
         p.heightMm <= 0 ||
         Math.abs(p.widthMm - blockWidthMm(config, b!)) > A4.toleranceMm ||
-        p.yMm < A4.bodyTopMm ||
+        p.yMm <
+          textbookBodyTopMm(
+            sections.find((section) =>
+              section.blocks.some((block) => block.id === p.blockId),
+            )!,
+            b!,
+          ) ||
         p.yMm + p.heightMm > A4.bodyBottomMm + A4.toleranceMm
       )
         fail(
@@ -715,10 +836,33 @@ export function studentPageMapFromPages(
         );
     }
   });
-  if (seen.size !== blocks.size)
+  if (
+    [...blocks.values()].some(
+      (block) => !block.unitIntroPart && !seen.has(block.id),
+    )
+  )
     fail(
       "STUDENT_MISSING_BLOCK",
       "학생용 배치에서 누락된 원고 블록이 있습니다.",
     );
+  for (const section of sections) {
+    const alternatives = section.blocks.filter((block) => block.unitIntroPart);
+    if (!alternatives.length) continue;
+    const selected = alternatives
+      .filter((block) => seen.has(block.id))
+      .map((block) => block.unitIntroPart);
+    if (
+      !(selected.length === 1 && selected[0] === "single") &&
+      !(
+        selected.length === 2 &&
+        selected.includes("left") &&
+        selected.includes("right")
+      )
+    )
+      fail(
+        "STUDENT_INTRO_SELECTION",
+        "학생용 단원 도입의 전체 내용 배치를 확인하세요.",
+      );
+  }
   return pageMap;
 }

@@ -1,6 +1,7 @@
 import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
 import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
+import { displayStyleMath } from "./dialogue";
 import { recallDisplayRows } from "./recall";
 import { renderSourceFragments } from "./semantic";
 import { qrHtml, type RenderResources } from "./shared";
@@ -44,7 +45,10 @@ export function renderConceptHtml(
   const node = concept.semantic?.node;
   const qr = block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : "";
   // One source concept: its own name, and its explanation, example and caution kept together.
-  if (node?.kind === "concept")
+  if (node?.kind === "concept") {
+    // An original v15 page set every formula in display style; the stored TeX is not changed.
+    const typeset = (markdown: string) =>
+      md(concept.semantic?.source ? displayStyleMath(markdown) : markdown);
     return `<section class="tb-concept tb-concept-card" data-concept-id="${esc(node.conceptId)}">${titleHtml(concept, node.title)}<div class="tb-concept-rows">${recallDisplayRows(
       node.rows,
       "study",
@@ -52,9 +56,10 @@ export function renderConceptHtml(
     )
       .map(
         (row) =>
-          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${md(row.pieces.map((piece) => (piece.kind === "blank" ? "" : piece.markdown)).join(""))}</div></div>`,
+          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${typeset(row.pieces.map((piece) => (piece.kind === "blank" ? "" : piece.markdown)).join(""))}</div></div>`,
       )
       .join("")}</div>${qr}</section>`;
+  }
   if (node?.kind === "fragments")
     return `<section class="tb-concept tb-source-fragments" data-source-kind="${esc(concept.semantic?.source?.kind ?? "concept")}">${titleHtml(concept, block.title)}${renderFragments(node.fragments, resources)}${qr}</section>`;
   // No source rows (an edited or older manuscript): the saved body is printed as written.
