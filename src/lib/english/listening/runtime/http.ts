@@ -24,6 +24,7 @@ import {
   type ListeningActor,
 } from "./database";
 import { studentState } from "./students";
+import { listeningJsonResponse } from "./jsonResponse";
 import {
   LISTENING_MAX_UPLOAD_BYTES,
   LISTENING_MAX_DURATION_MS,
@@ -45,11 +46,11 @@ const headers = {
   "X-Content-Type-Options": "nosniff",
 };
 const ok = (data: unknown, status = 200) =>
-  Response.json({ data }, { status, headers });
+  listeningJsonResponse(data, status, headers);
 const error = (status: number, code: string, message: string) =>
   Response.json({ error: { code, message } }, { status, headers });
 export async function listeningJson(request: Request) {
-  const limit = LISTENING_MAX_DOCUMENT_BYTES;
+  const limit = LISTENING_MAX_DOCUMENT_BYTES + 1024 * 1024;
   if (Number(request.headers.get("content-length") ?? 0) > limit)
     throw new ListeningRuntimeError(
       413,

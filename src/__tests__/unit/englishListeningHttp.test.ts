@@ -143,17 +143,17 @@ describe("listening HTTP authenticated boundary", () => {
     expect(await response.text()).not.toContain("private connection");
   });
   it("bounds streamed JSON input rather than trusting content-length", async () => {
-    const body = "x".repeat(16 * 1024 * 1024 + 1);
+    const body = "x".repeat(4 * 1024 * 1024 + 1);
     const req = new Request("http://localhost/api", { method: "POST", body });
     await expect(listeningJson(req)).rejects.toThrow("너무");
   });
-  it("accepts image data for a combined exam larger than a single assessment", async () => {
+  it("accepts assessment images within the hosting request budget", async () => {
     const payload = {
       groups: [
         {
           questions: Array.from({ length: 20 }, () => ({
             image: {
-              dataUrl: "data:image/png;base64,iVBORw0KGgo" + "A".repeat(260000),
+              dataUrl: "data:image/png;base64,iVBORw0KGgo" + "A".repeat(130000),
               width: 640,
               height: 420,
             },
@@ -162,7 +162,7 @@ describe("listening HTTP authenticated boundary", () => {
       ],
     };
     const body = JSON.stringify(payload);
-    expect(Buffer.byteLength(body)).toBeGreaterThan(4 * 1024 * 1024);
+    expect(Buffer.byteLength(body)).toBeGreaterThan(1024 * 1024);
     await expect(
       listeningJson(
         new Request("http://localhost/api", { method: "POST", body }),

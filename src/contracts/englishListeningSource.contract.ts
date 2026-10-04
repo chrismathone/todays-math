@@ -3,7 +3,10 @@ import { z } from "zod";
 export const LISTENING_MAX_UPLOAD_BYTES = 64 * 1024 * 1024;
 export const LISTENING_MAX_DURATION_MS = 30 * 60 * 1000;
 export const LISTENING_MAX_PLAYBACK_BYTES = 336 * 1024 * 1024;
-export const LISTENING_MAX_DOCUMENT_BYTES = 16 * 1024 * 1024;
+/** Enough for all six grades plus a mock exam, within the media adapter's integer bound. */
+export const LISTENING_MAX_OWNER_BYTES = 2 ** 31 - 1;
+/** Leave room for HTTP envelopes below the hosting provider's request limit. */
+export const LISTENING_MAX_DOCUMENT_BYTES = 3 * 1024 * 1024;
 
 export const listeningAssessmentSourceSchema = z.strictObject({
   kind: z.enum(["national_listening", "mock_exam", "other"]),

@@ -11,7 +11,10 @@ import {
 } from "@/contracts/englishListeningHttp.contract";
 import { listeningMediaCompletionSchema } from "@/contracts/englishListeningMedia.contract";
 import type { ListeningMediaRecord } from "../media/store";
-import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
+import {
+  LISTENING_MAX_DOCUMENT_BYTES,
+  LISTENING_MAX_OWNER_BYTES,
+} from "@/contracts/englishListeningSource.contract";
 import { planListeningWaveClip } from "../media/clip";
 import { listeningValueHash } from "../publication";
 import {
@@ -101,7 +104,7 @@ async function cloneReadyAudio(
   );
   if (
     !quota ||
-    Number(quota.bytes) + bytes > 1024 * 1024 * 1024 ||
+    Number(quota.bytes) + bytes > LISTENING_MAX_OWNER_BYTES ||
     Number(quota.count) >= 128
   )
     throw invalid("듣기 자료 보관 한도를 초과했습니다.");
@@ -226,7 +229,7 @@ async function clipReadyAudio(
   );
   if (
     !quota ||
-    Number(quota.bytes) + plan.totalBytes > 1024 * 1024 * 1024 ||
+    Number(quota.bytes) + plan.totalBytes > LISTENING_MAX_OWNER_BYTES ||
     Number(quota.count) >= 128
   )
     throw invalid("듣기 자료 보관 한도를 초과했습니다.");
