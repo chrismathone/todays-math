@@ -742,6 +742,38 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     expect(output.subarray(44)).toEqual(original.wav.subarray(44 + 8000 * 16));
     expect(sha(output)).toBe(record!.playback!.sha256);
   });
+  it("rolls back the draft before PG clone or clip binary writes when actual database disk ceiling is reached", async () => {
+    const original = await source(40),
+      before = await runtime!.teacherList(owner, "sets"),
+      previous = process.env.ENGLISH_LISTENING_DATABASE_MAX_BYTES;
+    const [row] = await db!.$queryRaw<{ bytes: bigint }[]>(
+      Prisma.sql`SELECT pg_database_size(current_database())::bigint AS bytes`,
+    );
+    process.env.ENGLISH_LISTENING_DATABASE_MAX_BYTES = String(row.bytes);
+    try {
+      for (const ids of [
+        undefined,
+        [original.source.detail.document.groups[0].questions[0].id],
+      ])
+        await expect(
+          runtime!.composeSet(owner, {
+            title: "DB 공간 한도",
+            selections: [selection(original.source, ids)],
+          }),
+        ).rejects.toMatchObject({ code: "quota_exceeded" });
+      expect(await runtime!.teacherList(owner, "sets")).toHaveLength(
+        before.length,
+      );
+      const [inventory] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`,
+      );
+      expect(inventory.count).toBe(BigInt(1));
+    } finally {
+      if (previous === undefined)
+        delete process.env.ENGLISH_LISTENING_DATABASE_MAX_BYTES;
+      else process.env.ENGLISH_LISTENING_DATABASE_MAX_BYTES = previous;
+    }
+  });
   it("refuses missing full-question ranges and does not leave partial sets or assets", async () => {
     const original = await source(2, false);
     const before = await runtime!.teacherList(owner, "sets");
