@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import s from "./BulkStudentAccountButton.module.css";
 import type {
   BulkStudentAccountSummary,
   BulkStudentAccountStatus,
@@ -29,9 +30,28 @@ export function BulkStudentAccountButton({
   const lock = useRef(false);
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
-  const [preview, setPreview] = useState<BulkStudentAccountSummary | null>(null);
+  const [preview, setPreview] = useState<BulkStudentAccountSummary | null>(
+    null,
+  );
   const [selected, setSelected] = useState<string[]>([]);
   const [result, setResult] = useState<BulkStudentAccountSummary | null>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const returnFocus = useRef<HTMLButtonElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
+  const previewOpen = preview !== null;
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!previewOpen || !dialog) return;
+    const trigger = returnFocus.current;
+    // showModal puts the dialog above table/scroll containers and makes the page inert.
+    dialog.showModal();
+    return () => {
+      dialog.close();
+      if (trigger?.isConnected) trigger.focus();
+    };
+  }, [previewOpen]);
 
   async function readSummary(method: "GET" | "POST", studentIds?: string[]) {
     const response = await fetch(
@@ -115,7 +135,10 @@ export function BulkStudentAccountButton({
     <div className="flex flex-col items-start gap-2 text-[12.5px]">
       <Button
         variant="secondary"
-        onClick={() => void confirmTargets()}
+        onClick={(event) => {
+          returnFocus.current = event.currentTarget;
+          void confirmTargets();
+        }}
         disabled={pending}
         aria-label={`${className} 발급 대상 확인`}
         aria-busy={pending}
@@ -126,65 +149,91 @@ export function BulkStudentAccountButton({
         아이디는 학생 이름입니다. 초기 비밀번호와 연락처는 이 화면과 기록에
         표시하지 않습니다.
       </p>
-      {error ? (
+      {error && !preview ? (
         <p role="alert" className="text-g-red-text">
           {error}
         </p>
       ) : null}
       {preview ? (
-        <dialog open aria-labelledby="student-issue-preview-title">
-          <h3 id="student-issue-preview-title" className="font-semibold text-ink">
-            {preview.className} 발급 대상
-          </h3>
-          <p className="text-text-2">
-            생성 가능 {preview.ready}명 · 기존 {preview.existing}명 · 확인 필요{" "}
-            {preview.skipped}명. 확인 뒤에 추가된 학생은 이번 생성에 포함되지
-            않습니다.
-          </p>
-          {preview.students.length ? (
-            <ul className="space-y-2" aria-label={`${preview.className} 발급 대상`}>
-              {preview.students.map((student) => (
-                <li key={student.studentId} className="break-words text-text-2">
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={selected.includes(student.studentId)}
-                      disabled={student.status !== "ready" || pending}
-                      onChange={(event) =>
-                        setSelected((current) =>
-                          event.target.checked
-                            ? [...current, student.studentId]
-                            : current.filter((id) => id !== student.studentId),
-                        )
-                      }
-                    />{" "}
-                    <strong className="text-ink">{student.name}</strong>
-                    {student.loginId && student.status !== "ready"
-                      ? ` · 아이디 ${student.loginId}`
-                      : ""}{" "}
-                    · {LABELS[student.status]}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-text-2">현재 수강 중인 학생이 없습니다.</p>
-          )}
-          <div className="mt-3 flex gap-2">
-            <Button
-              variant="secondary"
-              onClick={() => void createSelected()}
-              disabled={pending}
-            >
-              선택한 학생 계정 생성
-            </Button>
-            <Button
-              variant="secondary"
-              onClick={() => setPreview(null)}
-              disabled={pending}
-            >
-              취소
-            </Button>
+        <dialog
+          ref={dialogRef}
+          className={s.dialog}
+          aria-labelledby={titleId}
+          aria-describedby={descriptionId}
+          aria-busy={pending}
+          onCancel={(event) => {
+            event.preventDefault();
+            if (!lock.current) setPreview(null);
+          }}
+        >
+          <div className={s.content}>
+            <header className={s.heading}>
+              <h3 id={titleId} className={s.title}>
+                {preview.className} 발급 대상
+              </h3>
+              <p id={descriptionId} className="text-text-2">
+                생성 가능 {preview.ready}명 · 기존 {preview.existing}명 · 확인
+                필요 {preview.skipped}명. 확인 뒤에 추가된 학생은 이번 생성에
+                포함되지 않습니다.
+              </p>
+            </header>
+            {preview.students.length ? (
+              <ul
+                className={s.students}
+                aria-label={`${preview.className} 발급 대상`}
+              >
+                {preview.students.map((student) => (
+                  <li key={student.studentId} className={s.student}>
+                    <label className={s.studentLabel}>
+                      <input
+                        type="checkbox"
+                        checked={selected.includes(student.studentId)}
+                        disabled={student.status !== "ready" || pending}
+                        onChange={(event) =>
+                          setSelected((current) =>
+                            event.target.checked
+                              ? [...current, student.studentId]
+                              : current.filter(
+                                  (id) => id !== student.studentId,
+                                ),
+                          )
+                        }
+                      />
+                      <span>
+                        <strong className="text-ink">{student.name}</strong>
+                        {student.loginId && student.status !== "ready"
+                          ? ` · 아이디 ${student.loginId}`
+                          : ""}{" "}
+                        · {LABELS[student.status]}
+                      </span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-text-2">현재 수강 중인 학생이 없습니다.</p>
+            )}
+            {error ? (
+              <p role="alert" className="text-g-red-text">
+                {error}
+              </p>
+            ) : null}
+            <div className={s.actions}>
+              <Button
+                variant="secondary"
+                onClick={() => void createSelected()}
+                disabled={pending}
+              >
+                선택한 학생 계정 생성
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={() => setPreview(null)}
+                disabled={pending}
+              >
+                취소
+              </Button>
+            </div>
           </div>
         </dialog>
       ) : null}
@@ -210,8 +259,9 @@ export function BulkStudentAccountButton({
                     className="break-words text-text-2"
                   >
                     <strong className="text-ink">{student.name}</strong>
-                    {student.loginId ? ` · 아이디 ${student.loginId}` : ""} ·{" "}
-                    {LABELS[student.status]}
+                    {student.loginId
+                      ? ` · 아이디 ${student.loginId}`
+                      : ""} · {LABELS[student.status]}
                   </li>
                 ))}
               </ul>

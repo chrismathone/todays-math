@@ -109,10 +109,12 @@ export function createListeningStorageApi(
       throw failed();
     }
   };
-  const privateBucket = async () => {
+  const privateBucket = async (signal?: AbortSignal) => {
+    signal?.throwIfAborted();
     const value = await json<{ id?: string; public?: boolean }>(
-      await request(`${base}/bucket/${config.bucket}`),
+      await request(`${base}/bucket/${config.bucket}`, { signal }),
     );
+    signal?.throwIfAborted();
     if (value.id !== config.bucket || value.public !== false) throw failed();
   };
   const object = (
@@ -123,7 +125,7 @@ export function createListeningStorageApi(
       throw failed();
     return `${base}/object/authenticated/${config.bucket}/${ref.key}`;
   };
-  const check = async (ref: ListeningStorageRef) => {
+  const validateRef = (ref: ListeningStorageRef) => {
     if (
       !Number.isSafeInteger(ref.bytes) ||
       ref.bytes <= 0 ||
@@ -137,7 +139,10 @@ export function createListeningStorageApi(
       !/^[a-f0-9]{64}$/.test(ref.sha256)
     )
       throw failed();
-    const url = object(ref);
+    return object(ref);
+  };
+  const check = async (ref: ListeningStorageRef) => {
+    const url = validateRef(ref);
     await privateBucket();
     const response = await request(url, {
       method: "HEAD",
@@ -150,13 +155,12 @@ export function createListeningStorageApi(
     )
       throw failed();
   };
-  const read = async function* (
+  const validateRead = (
     ref: ListeningStorageRef,
     start: number,
     endExclusive: number,
-    signal?: AbortSignal,
-  ) {
-    const url = object(ref);
+  ) => {
+    const url = validateRef(ref);
     if (
       !Number.isSafeInteger(start) ||
       !Number.isSafeInteger(endExclusive) ||
@@ -165,6 +169,16 @@ export function createListeningStorageApi(
       endExclusive > ref.endExclusive - ref.start
     )
       throw failed();
+    return url;
+  };
+  const read = async function* (
+    ref: ListeningStorageRef,
+    start: number,
+    endExclusive: number,
+    signal?: AbortSignal,
+  ) {
+    signal?.throwIfAborted();
+    const url = validateRead(ref, start, endExclusive);
     const from = ref.start + start,
       to = ref.start + endExclusive - 1;
     const response = await request(url, {
@@ -192,6 +206,7 @@ export function createListeningStorageApi(
       while (true) {
         signal?.throwIfAborted();
         const next = await reader.read();
+        signal?.throwIfAborted();
         if (next.done) break;
         if (next.value.length > remaining) throw failed();
         remaining -= next.value.length;
@@ -203,6 +218,19 @@ export function createListeningStorageApi(
       await reader.cancel().catch(() => {});
       reader.releaseLock();
     }
+  };
+  const readPrivate = async function* (
+    ref: ListeningStorageRef,
+    start: number,
+    endExclusive: number,
+    signal?: AbortSignal,
+  ) {
+    signal?.throwIfAborted();
+    validateRead(ref, start, endExclusive);
+    // Recheck privacy on every chunk read. The conditional GET verifies ETag
+    // and total/range lengths itself, without a preceding HEAD or cached checks.
+    await privateBucket(signal);
+    yield* read(ref, start, endExclusive, signal);
   };
   const remove = async (
     ref: Pick<ListeningStorageRef, "bucket" | "key" | "ownerId">,
@@ -421,6 +449,6 @@ export function createListeningStorageApi(
     }
     throw failed();
   };
-  return { config, check, read, upload, uploadChunk, remove };
+  return { config, check, read, readPrivate, upload, uploadChunk, remove };
 }
 export type ListeningStorageApi = ReturnType<typeof createListeningStorageApi>;
