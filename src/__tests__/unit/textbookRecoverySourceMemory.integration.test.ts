@@ -45,6 +45,8 @@ const hasReference =
   !!REFERENCE &&
   existsSync(path.join(REFERENCE, "exchange-semantic.json")) &&
   existsSync(path.join(REFERENCE, "requested-row-paired-geometry.json"));
+/** Boxes of the original sheet's instruction bar, measured from the original typesetter. */
+const FULLMASTER = path.join(REFERENCE, "original-fullmaster-geometry.json");
 const OUT =
   process.env.TEXTBOOK_RECOVERY_EVIDENCE_DIR ??
   path.join(os.tmpdir(), "textbook-recovery-source-memory");
@@ -88,11 +90,23 @@ interface MeasuredRow {
   fractions: number;
   tightFractions: number;
 }
+/** The instruction bar above the first concept of a sheet. */
+interface MeasuredBar {
+  box: Box;
+  bold: Box;
+  span: Box;
+  paddingTop: number;
+  borderTop: number;
+  marginBottom: number;
+  boldFontPt: number;
+  boldLeading: number;
+}
 interface MeasuredBlock {
   blockId: string;
   source: boolean;
   box: Box;
   title: Box | null;
+  checkbar: MeasuredBar | null;
   rows: MeasuredRow[];
 }
 interface MeasuredSheet {
@@ -188,11 +202,33 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
           ).map((block) => {
             const section = block.querySelector<HTMLElement>(".tb-memory")!;
             const title = section.querySelector(".tb-memory-title");
+            const bar = section.querySelector(".tb-recall-checkbar");
+            const bold = bar?.querySelector(":scope > b");
+            const span = bar?.querySelector(":scope > span");
             return {
               blockId: block.dataset.blockId,
               source: section.classList.contains("tb-memory-source"),
               box: box(section),
               title: title ? box(title) : null,
+              checkbar:
+                bar && bold && span
+                  ? {
+                      box: box(bar),
+                      bold: box(bold),
+                      span: box(span),
+                      paddingTop:
+                        parseFloat(getComputedStyle(bar).paddingTop) * mm,
+                      borderTop:
+                        parseFloat(getComputedStyle(bar).borderTopWidth) * mm,
+                      marginBottom:
+                        parseFloat(getComputedStyle(bar).marginBottom) * mm,
+                      boldFontPt:
+                        (parseFloat(getComputedStyle(bold).fontSize) * 72) / 96,
+                      boldLeading:
+                        parseFloat(getComputedStyle(bold).lineHeight) /
+                        parseFloat(getComputedStyle(bold).fontSize),
+                    }
+                  : null,
               rows: Array.from(
                 section.querySelectorAll<HTMLElement>(".tb-memory-row"),
               ).map((row) => {
@@ -389,6 +425,18 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
     const sourceBlocks = sheets.find((s) => s.sheet === "study")!.blocks;
     expect(sourceBlocks.every((b) => b.source)).toBe(true);
     for (const b of sourceBlocks) expect(height(b.title!)).toBeCloseTo(8.43, 1);
+    // The instruction bar of the first concept is the original's: a rule, 2mm above 7.6pt text
+    // at leading 1.6, and 3.2mm before the title. A continued concept has none.
+    const [opening, following] = sourceBlocks;
+    expect(following.checkbar).toBeNull();
+    const bar = opening.checkbar!;
+    expect(bar.paddingTop).toBeCloseTo(2, 2);
+    expect(bar.borderTop).toBeGreaterThan(0.1);
+    expect(bar.marginBottom).toBeCloseTo(3.2, 2);
+    expect(bar.boldFontPt).toBeCloseTo(7.6, 1);
+    expect(bar.boldLeading).toBeCloseTo(1.6, 2);
+    expect(height(bar.box)).toBeCloseTo(6.553, 1);
+    expect(opening.title![1] - bar.box[1]).toBeCloseTo(9.749, 1);
     // The bank sheet beside it keeps its own geometry: 1.1mm padding around a 7mm floor.
     const bank = rowsOf(sheets, "bank");
     expect(bank.map((r) => r.origin)).toEqual([null, null]);
@@ -400,6 +448,14 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
     }
     expect(bank[1].fractions).toBe(1);
     expect(bank[1].tightFractions).toBe(1);
+    // Its instruction bar stays the generic one: no rule, no padding, 3mm before the bar.
+    const bankBar = sheets.find((s) => s.sheet === "bank")!.blocks[0].checkbar!;
+    expect(bankBar.paddingTop).toBe(0);
+    expect(bankBar.borderTop).toBe(0);
+    expect(bankBar.marginBottom).toBeCloseTo(3, 2);
+    expect(bankBar.boldFontPt).toBeCloseTo(7.3, 1);
+    expect(bankBar.boldLeading).toBeCloseTo(1.7, 2);
+    expect(height(bankBar.box)).toBeLessThan(5);
     expect(sheets[0].fonts.body).toBe("TextbookPretendard, sans-serif");
   }, 180_000);
 
@@ -636,6 +692,58 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
               });
         });
 
+      // 2b. The instruction bar of each sheet against the original typesetter's, when measured.
+      const barDeltas: Miss[] = [];
+      if (existsSync(FULLMASTER)) {
+        const original = JSON.parse(readFileSync(FULLMASTER, "utf8")) as {
+          pages: Array<{
+            sourcePage: number;
+            checkbar: { box: Box };
+            checkbarBold: { box: Box };
+            checkbarSpan: { box: Box };
+            titles: Box[];
+            rows: Box[];
+          }>;
+        };
+        for (const phase of PHASES) {
+          const want = original.pages.find(
+            (p) => p.sourcePage === PAGE[phase],
+          )!;
+          const [first] = printed.sheets.find((s) => s.sheet === phase)!.blocks;
+          const bar = first.checkbar!;
+          const top = bar.box[1];
+          const wantTop = want.checkbar.box[1];
+          const check = (where: string, got: number, expected: number) =>
+            barDeltas.push({ where: `${phase}.${where}`, got, want: expected });
+          check("checkbar.height", height(bar.box), height(want.checkbar.box));
+          check(
+            "bold.top",
+            bar.bold[1] - top,
+            want.checkbarBold.box[1] - wantTop,
+          );
+          check("bold.height", height(bar.bold), height(want.checkbarBold.box));
+          check(
+            "span.top",
+            bar.span[1] - top,
+            want.checkbarSpan.box[1] - wantTop,
+          );
+          check("span.height", height(bar.span), height(want.checkbarSpan.box));
+          check(
+            "title.top",
+            first.title![1] - top,
+            want.titles[0][1] - wantTop,
+          );
+          check(
+            "firstRow.top",
+            first.rows[0].box[1] - top,
+            want.rows[0][1] - wantTop,
+          );
+        }
+        expect(barDeltas).toHaveLength(21);
+        for (const d of barDeltas)
+          expect(Math.abs(d.got - d.want), d.where).toBeLessThan(0.05);
+      }
+
       // 3. Control: the same rows with the bank's defaults do not meet the original geometry.
       const bankDefaults = await measure("source-original-bank-defaults", [
         {
@@ -677,6 +785,11 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
               ...results[i],
             })),
             drift,
+            instructionBar: {
+              measuredOriginal: existsSync(FULLMASTER),
+              worstMm: worst(barDeltas),
+              deltas: barDeltas,
+            },
             bankDefaults: {
               worstMm: worst(control.deltas),
               misses: control.misses,

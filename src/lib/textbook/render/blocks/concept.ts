@@ -2,7 +2,7 @@ import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contra
 import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { displayStyleMath } from "./dialogue";
-import { recallDisplayRows } from "./recall";
+import { recallDisplayRows, typesetRecallPieces } from "./recall";
 import { renderSourceFragments } from "./semantic";
 import { qrHtml, type RenderResources } from "./shared";
 
@@ -32,7 +32,9 @@ function conceptNumber(block: ConceptBlock): string {
 }
 
 function titleHtml(block: ConceptBlock, title: string): string {
-  if (block.continuation) return "";
+  // A continued part repeats the name in a small line. The number chip stays with the first part.
+  if (block.continuation)
+    return `<div class="tb-concept-continuation" data-continuation data-anchor="concept-continuation">${esc(title)}<small>계속</small></div>`;
   const number = conceptNumber(block);
   return `<h3 class="tb-concept-title" data-anchor="concept-title">${number ? `<span class="tb-concept-number">${esc(number)}</span>` : ""}${esc(title)}</h3>`;
 }
@@ -56,7 +58,12 @@ export function renderConceptHtml(
     )
       .map(
         (row) =>
-          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${typeset(row.pieces.map((piece) => (piece.kind === "blank" ? "" : piece.markdown)).join(""))}</div></div>`,
+          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${typesetRecallPieces(
+            row.pieces.map((piece) =>
+              piece.kind === "blank" ? "" : piece.markdown,
+            ),
+            typeset,
+          )}</div></div>`,
       )
       .join("")}</div>${qr}</section>`;
   }

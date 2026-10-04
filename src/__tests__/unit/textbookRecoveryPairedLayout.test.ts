@@ -155,7 +155,7 @@ describe("corresponding exercise spreads", () => {
   function spread() {
     const { section } = paired();
     const base = section.blocks.find((block) => block.kind === "problem")!;
-    const blocks = [0, 1, 2, 3].map((index) => ({
+    const blocks: RenderBlock[] = [0, 1, 2, 3].map((index) => ({
       ...base,
       id: `q${index}`,
       semantic: { activity: "basicCheck" as const },

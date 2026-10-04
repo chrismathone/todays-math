@@ -409,7 +409,7 @@ export function paginateTextbookSections(
       // Dialogue turns and recall rows use the reference's compact vertical rhythm.
       // Exercise and prose rows keep their measured four-millimetre spacing.
       const gap = row.every(({ block }) => block.kind === "recall")
-        ? 1
+        ? row.every(({ block }) => block.semantic?.source?.kind === "fullmaster") ? 4.7 : 1
         : row.every(
               ({ block }) =>
                 block.kind === "dialogue" ||

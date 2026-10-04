@@ -374,6 +374,11 @@ export function createTextbookRenderModel(
                     const parts = groups.length
                       ? groups.map((group) => group.body)
                       : splitConceptBody(c.body);
+                    // Frozen groups are distinct concept cards. A split authored body is
+                    // one concept continued over several blocks, with one printed number.
+                    const bodyOrdinal = groups.length
+                      ? undefined
+                      : ++conceptOrdinal;
                     return parts.map((body, i) => ({
                       ...base,
                       id:
@@ -381,7 +386,7 @@ export function createTextbookRenderModel(
                           ? b.blockId
                           : `${b.blockId}.part-${i}`,
                       kind: "concept",
-                      ordinal: ++conceptOrdinal,
+                      ordinal: groups.length ? ++conceptOrdinal : bodyOrdinal,
                       conceptKey: c.conceptKey,
                       title: groups[i]?.title ?? c.title,
                       body,
@@ -398,7 +403,7 @@ export function createTextbookRenderModel(
                             },
                           }
                         : {}),
-                      continuation: i > 0,
+                      continuation: !groups.length && i > 0,
                       qr:
                         qr && i === parts.length - 1
                           ? { id: qr.qrTargetId, url: qr.url }

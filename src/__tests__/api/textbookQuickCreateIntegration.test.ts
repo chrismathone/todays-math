@@ -110,6 +110,7 @@ const request = (input: QuickCreateInput) =>
     body: JSON.stringify(input),
   });
 beforeAll(async () => {
+  vi.stubEnv("TEXTBOOK_RECOVERY_WRITER_ENABLED", "true");
   pg = await openTextbookDb();
   gate.db = pgliteTextbookDb(pg);
   gate.actor = await insertTeacher(pg);
@@ -121,6 +122,7 @@ beforeAll(async () => {
 }, 120_000);
 afterAll(async () => {
   await pg.close();
+  vi.unstubAllEnvs();
 });
 describe("quick create prepared script and frozen visual integration", () => {
   it("GET scopes a live DB unit; POST uses the actual prepared script and immutable asset helper", async () => {

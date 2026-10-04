@@ -4,7 +4,9 @@
  * Values of the nested concept layout come from the v15 source stylesheets.
  * `.tb-memory-source` is a sheet converted from an original v15 page: it keeps that page's title
  * leading (1.65) and row padding (1.5mm), has no 7mm body floor, and a single writing line fills
- * its row as one bottom rule. Sheets written from the bank keep the defaults above those rules.
+ * its row as one bottom rule. Its instruction bar is the original one: a .7pt rule, 2mm above the
+ * text, and 3.2mm (1mm margin and the 2.2mm content gap) before the first concept. Sheets written
+ * from the bank keep the defaults above those rules.
  */
 const RULE = ".265mm solid #bfcdbd";
 /** Source-authored concept pages (concept1–3), wrapped by the shared fragment renderer. */
@@ -26,11 +28,18 @@ export const TEXTBOOK_CONTENT_CSS = `
 .tb-memory-body{min-width:0;min-height:calc(var(--tb-row-lines,1)*7mm)}.tb-memory-body p{margin:0}
 .tb-memory-body>.tb-blank-sentence{height:100%;min-height:calc(var(--tb-row-lines,1)*7mm)}
 .tb-memory-row-measured .tb-memory-body,.tb-memory-row-measured .tb-memory-body>.tb-blank-sentence{min-height:0;height:100%}
+.tb-memory-source .tb-recall-checkbar{flex-wrap:nowrap;align-items:center;margin-bottom:3.2mm;padding:2mm 0 0;border-top:.7pt solid var(--tb-light);line-height:1.65}
+.tb-memory-source .tb-recall-checkbar>b{font-size:7.6pt;line-height:1.6}.tb-memory-source .tb-recall-checkbar>span{white-space:nowrap}
 .tb-memory-source .tb-memory-title{line-height:1.65}
 .tb-memory-source .tb-memory-row{padding-block:1.5mm}
 .tb-memory-source .tb-memory-body,.tb-memory-source .tb-memory-body>.tb-blank-sentence{min-height:0}
 .tb-memory-source .tb-blank-sentence>.tb-write-line:only-child{flex:1 1 auto;height:auto;min-height:calc(var(--tb-row-lines,1)*1.9em)}
 .tb-memory-source .tb-memory-row-measured .tb-write-line:only-child{min-height:0}
+.tb-memory-continuation{display:flex;align-items:baseline;gap:1.5mm;min-width:0;font-size:8pt;line-height:1.5;font-weight:700;letter-spacing:-.2px;color:var(--tb-dark)}
+.tb-memory-continuation-title{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-memory-continuation small{flex:none;font-size:6.5pt;font-weight:400;color:#83948b;white-space:nowrap}
+.tb-concept-continuation{display:flex;align-items:baseline;gap:1.5mm;margin:0 0 1.5mm;font-size:7.5pt;line-height:1.5;font-weight:700;letter-spacing:-.2px;color:var(--tb-accent)}
+.tb-concept-continuation small{flex:none;font-size:6.5pt;font-weight:400;color:#83948b}
 .tb-memory .tb-blank-keyword,.tb-term-recall .tb-blank-keyword{min-width:0}
 .tb-memory-key{border-bottom:.265mm solid var(--tb-accent);color:var(--tb-accent);font-weight:700}
 .tb-error-item{padding:2mm 0 2.5mm;border-bottom:.265mm solid var(--tb-light);font-size:9pt;line-height:1.9;word-break:keep-all}.tb-error-statement p{margin:0}

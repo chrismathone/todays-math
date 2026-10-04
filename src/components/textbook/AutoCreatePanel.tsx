@@ -265,6 +265,7 @@ export function AutoCreatePanel({
           문제와 준비된 개념 원고를 자동으로 담습니다. 필요한 구성은 켜고, 필요
           없는 구성은 꺼 주세요.
         </p>
+        <p>개념 원고: 초3–중3 준비됨 · 어휘와 수업 흐름은 전체 편집 검수 전</p>
       </div>
       <form
         onSubmit={async (event) => {
@@ -302,7 +303,9 @@ export function AutoCreatePanel({
         }}
       >
         {catalog?.writerReady === false && (
-          <p role="status">교재 제작 기능을 업데이트하고 있습니다. 잠시 후 다시 시도해 주세요.</p>
+          <p role="status">
+            교재 제작 기능을 업데이트하고 있습니다. 잠시 후 다시 시도해 주세요.
+          </p>
         )}
         <fieldset disabled={busy} className={styles.fields}>
           <legend className={styles.step}>1. 학년과 학기</legend>

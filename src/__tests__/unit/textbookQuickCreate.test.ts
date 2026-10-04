@@ -24,6 +24,7 @@ import { getSection } from "@/lib/textbook/server/sections";
 import { assembleExchange } from "@/lib/textbook/server/exchange";
 import { createTextbookRenderModel } from "@/lib/textbook/render/model";
 import {
+  A4,
   blockWidthMm,
   paginateTextbookSections,
 } from "@/lib/textbook/layout/paginate";
@@ -333,6 +334,148 @@ function exampleGroups(blocks: Awaited<ReturnType<typeof saved>>["blocks"]) {
   }
   return [...groups.values()];
 }
+type QuickModel = ReturnType<typeof createTextbookRenderModel>;
+type QuickLayout = ReturnType<typeof paginateTextbookSections>;
+type Measurement = {
+  blockId: string;
+  widthMm: number;
+  heightMm: number;
+  introTextFits?: boolean;
+};
+/** One fixed height per block: this checks which blocks are placed, never page geometry. */
+const mockMeasurements = (model: QuickModel): Measurement[] =>
+  model.sections.flatMap((section) =>
+    section.blocks.map((block) => ({
+      blockId: block.id,
+      widthMm: blockWidthMm(model.config, block),
+      heightMm: block.kind === "heading" ? 16 : 75,
+    })),
+  );
+/**
+ * Everything a pagination got wrong; empty when it is sound.
+ *
+ * - Every block outside a unit introduction is placed exactly once. Only a section heading may
+ *   be placed again, on the pages that continue it, and never twice on one page.
+ * - A unit introduction has three alternatives of the same content. Exactly its spread (left on
+ *   an even page, right on the next) or exactly its single page is placed.
+ * - The single page carries one AUTO_INTRO_SINGLE_PAGE warning, and only for a real reason: an
+ *   odd start page, or a spread the measurements do not fit. No other issue is accepted.
+ */
+function paginationFaults(
+  model: QuickModel,
+  layout: Pick<QuickLayout, "pages" | "issues">,
+  measurements: readonly Measurement[],
+): string[] {
+  const faults: string[] = [];
+  const blocks = model.sections.flatMap((section) => section.blocks);
+  const known = new Set(blocks.map((block) => block.id));
+  const pagesOf = new Map<string, number[]>();
+  for (const page of layout.pages) {
+    const onPage = new Set<string>();
+    for (const { blockId } of page.blocks) {
+      if (!known.has(blockId))
+        faults.push(
+          `unknown block ${blockId} on page ${page.physicalPageIndex}`,
+        );
+      if (onPage.has(blockId))
+        faults.push(`${blockId} is twice on page ${page.physicalPageIndex}`);
+      onPage.add(blockId);
+      pagesOf.set(blockId, [
+        ...(pagesOf.get(blockId) ?? []),
+        page.physicalPageIndex,
+      ]);
+    }
+  }
+  for (const block of blocks) {
+    if (block.unitIntroPart) continue;
+    const count = pagesOf.get(block.id)?.length ?? 0;
+    if (count === 0) faults.push(`${block.id} is not placed`);
+    else if (count > 1 && block.kind !== "heading")
+      faults.push(`${block.id} is placed ${count} times`);
+  }
+  const size = new Map(measurements.map((m) => [m.blockId, m]));
+  const accounted = new Set<QuickLayout["issues"][number]>();
+  for (const section of model.sections) {
+    const parts = section.blocks.filter((block) => block.unitIntroPart);
+    if (!parts.length) continue;
+    const where = `${section.unitKey}/${section.sectionKey}`;
+    const part = (name: "left" | "right" | "single") =>
+      parts.find((block) => block.unitIntroPart === name);
+    const pages = (name: "left" | "right" | "single") =>
+      pagesOf.get(part(name)?.id ?? "") ?? [];
+    const [left, right, single] = [
+      pages("left"),
+      pages("right"),
+      pages("single"),
+    ];
+    const spread =
+      left.length === 1 && right.length === 1 && single.length === 0;
+    const alone =
+      left.length === 0 && right.length === 0 && single.length === 1;
+    if (!spread && !alone)
+      faults.push(
+        `introduction ${where} is placed as left×${left.length} right×${right.length} single×${single.length}`,
+      );
+    if (spread && !(left[0] % 2 === 0 && right[0] === left[0] + 1))
+      faults.push(
+        `introduction ${where} spread is on pages ${left[0]} and ${right[0]}`,
+      );
+    const warnings = layout.issues.filter(
+      (issue) =>
+        issue.code === "AUTO_INTRO_SINGLE_PAGE" &&
+        issue.path.join("/") ===
+          `units/${section.unitKey}/sections/${section.sectionKey}`,
+    );
+    for (const warning of warnings) accounted.add(warning);
+    if (!alone) {
+      if (warnings.length)
+        faults.push(
+          `introduction ${where} has a single-page warning without a single page`,
+        );
+      continue;
+    }
+    if (warnings.length !== 1) {
+      faults.push(
+        `introduction ${where} on one page has ${warnings.length} warnings`,
+      );
+      continue;
+    }
+    const [warning] = warnings;
+    if (
+      warning.severity !== "warning" ||
+      warning.physicalPageIndex !== single[0]
+    )
+      faults.push(
+        `introduction ${where} warning is ${warning.severity} for page ${warning.physicalPageIndex}`,
+      );
+    // The two real reasons, judged from the page number and the measurements given.
+    const fits = (name: "left" | "right") => {
+      const block = part(name);
+      const measured = block && size.get(block.id);
+      return (
+        !!block &&
+        !!measured &&
+        Number.isFinite(measured.heightMm) &&
+        measured.heightMm > 0 &&
+        measured.heightMm <= 254 &&
+        measured.introTextFits !== false &&
+        Math.abs(measured.widthMm - blockWidthMm(model.config, block)) <=
+          A4.toleranceMm
+      );
+    };
+    const oddStart = single[0] % 2 !== 0;
+    if (!oddStart && fits("left") && fits("right"))
+      faults.push(
+        `introduction ${where} is on one page although its spread fits the even page ${single[0]}`,
+      );
+    if (oddStart !== warning.message.includes("홀수 시작 쪽"))
+      faults.push(`introduction ${where} warning states the wrong reason`);
+  }
+  for (const issue of layout.issues)
+    if (!accounted.has(issue))
+      faults.push(`unexpected issue ${issue.code}: ${issue.message}`);
+  return faults;
+}
 async function assertPaginates(
   result: Awaited<ReturnType<typeof createQuickTextbook>>,
 ) {
@@ -341,13 +484,7 @@ async function assertPaginates(
   });
   for (const variant of ["student", "answers"] as const) {
     const model = createTextbookRenderModel(exchange, variant);
-    const measurements = model.sections.flatMap((section) =>
-      section.blocks.map((block) => ({
-        blockId: block.id,
-        widthMm: blockWidthMm(model.config, block),
-        heightMm: block.kind === "heading" ? 16 : 75,
-      })),
-    );
+    const measurements = mockMeasurements(model);
     const layout = paginateTextbookSections(
       model.sections,
       measurements,
@@ -355,31 +492,7 @@ async function assertPaginates(
       { includeCover: model.config.print.coverMode === "included" },
     );
     expect(layout.pages.length).toBeGreaterThan(0);
-    expect(layout.issues).toEqual([]);
-    // Every block is placed. A continued page repeats the heading it continues, so a heading
-    // may appear on several pages — but nothing appears twice on one page, and no other
-    // block is ever placed twice.
-    const kinds = new Map(
-      model.sections.flatMap((section) =>
-        section.blocks.map((block) => [block.id, block.kind]),
-      ),
-    );
-    const placed = layout.pages.flatMap((page) =>
-      page.blocks.map((block) => block.blockId),
-    );
-    expect(new Set(placed)).toEqual(
-      new Set(measurements.map((measurement) => measurement.blockId)),
-    );
-    for (const page of layout.pages) {
-      const onPage = page.blocks.map((block) => block.blockId);
-      expect(new Set(onPage).size).toBe(onPage.length);
-    }
-    expect(
-      placed.filter(
-        (id, index) =>
-          placed.indexOf(id) !== index && kinds.get(id) !== "heading",
-      ),
-    ).toEqual([]);
+    expect(paginationFaults(model, layout, measurements), variant).toEqual([]);
   }
 }
 describe("quick create curriculum and validation", () => {
@@ -1296,5 +1409,236 @@ describe("quick create adapts to real bank availability", () => {
       ],
     );
     expect(new Set(rows.map((row) => row.content)).size).toBe(2);
+  });
+});
+
+describe("the pagination check refuses what it must not accept", () => {
+  let model: QuickModel;
+  let measurements: Measurement[];
+  /** The book starts at the given page: an even start prints the spread, an odd one the single page. */
+  const layoutFrom = (
+    firstPhysicalPageIndex: number,
+    sizes: Measurement[] = measurements,
+  ) =>
+    paginateTextbookSections(model.sections, sizes, model.config, {
+      firstPhysicalPageIndex,
+    });
+  const introPart = (name: "left" | "right" | "single") =>
+    model.sections
+      .flatMap((section) => section.blocks)
+      .find((block) => block.unitIntroPart === name)!;
+  const pageOf = (layout: QuickLayout, blockId: string) =>
+    layout.pages.find((page) =>
+      page.blocks.some((block) => block.blockId === blockId),
+    )!;
+  const faults = (
+    layout: Pick<QuickLayout, "pages" | "issues">,
+    sizes: Measurement[] = measurements,
+  ) => paginationFaults(model, layout, sizes);
+
+  beforeAll(async () => {
+    const result = await createQuickTextbook(
+      db,
+      actor,
+      input({
+        components: components({
+          unitIntro: true,
+          practice: true,
+          cover: false,
+        }),
+      }),
+      visualDeps,
+    );
+    const exchange = await assembleExchange(db, result.book.draftEditionId!, {
+      exportedAt: new Date().toISOString(),
+    });
+    model = createTextbookRenderModel(exchange, "student");
+    measurements = mockMeasurements(model);
+  });
+
+  it("accepts the spread on an even start and the single page on an odd start", () => {
+    const even = layoutFrom(2);
+    expect(even.issues).toEqual([]);
+    expect(pageOf(even, introPart("left").id).physicalPageIndex).toBe(2);
+    expect(pageOf(even, introPart("right").id).physicalPageIndex).toBe(3);
+    expect(faults(even)).toEqual([]);
+
+    const odd = layoutFrom(1);
+    expect(odd.issues.map((issue) => issue.code)).toEqual([
+      "AUTO_INTRO_SINGLE_PAGE",
+    ]);
+    expect(pageOf(odd, introPart("single").id).physicalPageIndex).toBe(1);
+    expect(faults(odd)).toEqual([]);
+  });
+
+  it("accepts the single page on an even start only when the measured spread does not fit", () => {
+    // Two ways a measured spread does not fit: a part taller than the page, and a part whose
+    // text was measured as not fitting its slot.
+    for (const [side, unfit] of [
+      ["left", { heightMm: 300 }],
+      ["right", { introTextFits: false }],
+    ] as const) {
+      const sizes = measurements.map((m) =>
+        m.blockId === introPart(side).id ? { ...m, ...unfit } : m,
+      );
+      const layout = layoutFrom(2, sizes);
+      expect(pageOf(layout, introPart("single").id).physicalPageIndex).toBe(2);
+      expect(layout.issues).toHaveLength(1);
+      expect(layout.issues[0].message).not.toContain("홀수 시작 쪽");
+      expect(faults(layout, sizes)).toEqual([]);
+      // The same layout judged against measurements that do fit has no reason for one page.
+      expect(faults(layout)).toEqual([
+        expect.stringContaining("although its spread fits the even page 2"),
+      ]);
+    }
+  });
+
+  it("reports a block that is missing, placed twice, or unknown", () => {
+    const sound = layoutFrom(2);
+    const problem = model.sections
+      .flatMap((section) => section.blocks)
+      .find((block) => block.kind === "problem")!;
+    const home = sound.pages.findIndex((page) =>
+      page.blocks.some((block) => block.blockId === problem.id),
+    );
+    const placement = sound.pages[home].blocks.find(
+      (block) => block.blockId === problem.id,
+    )!;
+
+    const missing = structuredClone(sound);
+    missing.pages[home].blocks = missing.pages[home].blocks.filter(
+      (block) => block.blockId !== problem.id,
+    );
+    expect(faults(missing)).toEqual([`${problem.id} is not placed`]);
+
+    const elsewhere = structuredClone(sound);
+    elsewhere.pages[home === 0 ? 1 : 0].blocks.push(placement);
+    expect(faults(elsewhere)).toEqual([`${problem.id} is placed 2 times`]);
+
+    const samePage = structuredClone(sound);
+    samePage.pages[home].blocks.push(placement);
+    expect(faults(samePage)).toEqual([
+      `${problem.id} is twice on page ${sound.pages[home].physicalPageIndex}`,
+      `${problem.id} is placed 2 times`,
+    ]);
+
+    const unknown = structuredClone(sound);
+    unknown.pages[home].blocks.push({ ...placement, blockId: "no-such-block" });
+    expect(faults(unknown)).toEqual([
+      `unknown block no-such-block on page ${sound.pages[home].physicalPageIndex}`,
+    ]);
+  });
+
+  it("lets a section heading repeat on another page, but not on its own page", () => {
+    const sound = layoutFrom(2);
+    const heading = model.sections
+      .flatMap((section) => section.blocks)
+      .find((block) => block.kind === "heading" && !block.unitIntroPart)!;
+    const home = sound.pages.findIndex((page) =>
+      page.blocks.some((block) => block.blockId === heading.id),
+    );
+    const placement = sound.pages[home].blocks.find(
+      (block) => block.blockId === heading.id,
+    )!;
+    const repeated = structuredClone(sound);
+    repeated.pages[home === 0 ? 1 : 0].blocks.push(placement);
+    expect(faults(repeated)).toEqual([]);
+    const doubled = structuredClone(sound);
+    doubled.pages[home].blocks.push(placement);
+    expect(faults(doubled)).toEqual([
+      `${heading.id} is twice on page ${sound.pages[home].physicalPageIndex}`,
+    ]);
+  });
+
+  it("reports an introduction that is neither exactly its spread nor exactly its single page", () => {
+    const spread = layoutFrom(2);
+    const single = layoutFrom(1);
+    const singlePlacement = pageOf(single, introPart("single").id).blocks[0];
+
+    // All three alternatives at once.
+    const all = structuredClone(spread);
+    all.pages[all.pages.length - 1].blocks.push(singlePlacement);
+    expect(faults(all)).toEqual([
+      expect.stringContaining("is placed as left×1 right×1 single×1"),
+    ]);
+
+    // Half a spread.
+    const half = structuredClone(spread);
+    const rightPage = half.pages.find((page) =>
+      page.blocks.some((block) => block.blockId === introPart("right").id),
+    )!;
+    rightPage.blocks = [];
+    expect(faults(half)).toEqual([
+      expect.stringContaining("is placed as left×1 right×0 single×0"),
+    ]);
+
+    // No alternative at all.
+    const none = structuredClone(single);
+    none.pages = none.pages.filter(
+      (page) =>
+        !page.blocks.some((block) => block.blockId === introPart("single").id),
+    );
+    expect(faults(none)).toEqual([
+      expect.stringContaining("is placed as left×0 right×0 single×0"),
+      expect.stringContaining("single-page warning without a single page"),
+    ]);
+
+    // A spread that starts on an odd page.
+    const shifted = structuredClone(spread);
+    for (const page of shifted.pages) page.physicalPageIndex += 1;
+    expect(faults(shifted)).toEqual([
+      expect.stringContaining("spread is on pages 3 and 4"),
+    ]);
+  });
+
+  it("reports a single-page warning that is absent, unearned, misstated or unrelated", () => {
+    const spread = layoutFrom(2);
+    const single = layoutFrom(1);
+    const [warning] = single.issues;
+
+    const silent = structuredClone(single);
+    silent.issues = [];
+    expect(faults(silent)).toEqual([
+      expect.stringContaining("on one page has 0 warnings"),
+    ]);
+
+    const unearned = structuredClone(spread);
+    unearned.issues = [warning];
+    expect(faults(unearned)).toEqual([
+      expect.stringContaining("single-page warning without a single page"),
+    ]);
+
+    const misstated = structuredClone(single);
+    misstated.issues = [
+      { ...warning, message: "두 쪽 도입의 측정 공간이 부족합니다." },
+    ];
+    expect(faults(misstated)).toEqual([
+      expect.stringContaining("warning states the wrong reason"),
+    ]);
+
+    const elsewhere = structuredClone(single);
+    elsewhere.issues = [
+      { ...warning, path: ["units", "other-unit", "sections", "other"] },
+    ];
+    expect(faults(elsewhere)).toEqual([
+      expect.stringContaining("on one page has 0 warnings"),
+      expect.stringContaining("unexpected issue AUTO_INTRO_SINGLE_PAGE"),
+    ]);
+
+    for (const sound of [spread, single]) {
+      const noisy = structuredClone(sound);
+      noisy.issues = [
+        ...noisy.issues,
+        {
+          code: "PAGE_BUDGET",
+          severity: "warning",
+          path: [],
+          message: "쪽 수 예산을 넘었습니다.",
+        },
+      ];
+      expect(faults(noisy)).toEqual([
+        "unexpected issue PAGE_BUDGET: 쪽 수 예산을 넘었습니다.",
+      ]);
+    }
   });
 });
