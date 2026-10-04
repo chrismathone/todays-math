@@ -3182,6 +3182,28 @@ scenarios["atelier:sound"] = async ({ page, sim, mobile, step, shot }) => {
     await open(); await expect(sound()).toHaveAttribute("aria-checked", "true"); await close();
     return "켜짐 기기 설정 유지 · 재로드된 기록에서 자동 발화/요청 없음";
   });
+  await step("sound.unavailable", async () => {
+    await page.route("**/audio/math-learning/**", route => route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>Login</title>" }));
+    await open(); await tap(preview(), mobile);
+    await expect(status()).toHaveAttribute("data-learning-sound-status", "unavailable");
+    assert.equal((await log()).starts.length, 0, "200 HTML 응답을 음원으로 재생하지 않음");
+    const requests = audioRequests.length;
+    await close(); await tap(page.locator("[data-expedition-start]"), mobile); await page.locator("[data-explorer-dock]").waitFor(); await settled(page, sim);
+    const posts = sim.posts.length;
+    await perform(page, sim, correctExplorerAction(sim), mobile); await settled(page, sim);
+    assert.ok(sim.posts.length > posts, "효과음 오류 뒤에도 답 저장 진행");
+    assert.equal((await log()).starts.length, 0); assert.equal(audioRequests.length, requests, "답마다 실패 음원 재요청 없음");
+    await page.unroute("**/audio/math-learning/**");
+    return "음원 대신 HTML이면 설정에 재생 불가 · 풀이/저장 정상 · 자동 재요청 없음";
+  });
+  await step("sound.outside-boundary", async () => {
+    audioRequests.length = 0;
+    await page.goto(base + "/dev/mobile-practice-qa");
+    await page.getByRole("button", { name: "답 확인", exact: true }).waitFor();
+    const state = await log();
+    assert.equal(state.contexts.length, 0); assert.equal(state.starts.length, 0); assert.equal(audioRequests.length, 0);
+    return "기기 설정이 켜져 있어도 탐험 경계 밖에서는 생성/요청/재생 없음";
+  });
 };
 fixtures["atelier:sound"] = fixtures.concept;
 
