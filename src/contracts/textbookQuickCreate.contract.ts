@@ -34,6 +34,7 @@ export const DEFAULT_QUICK_CREATE_COMPONENTS = {
   clozeRecall: true,
   sentenceRecall: true,
   practice: true,
+  workedExamples: false,
   review: false,
   assessment: false,
   written: false,
@@ -53,6 +54,7 @@ export const quickCreateComponentsSchema = z.strictObject({
   clozeRecall: z.boolean(),
   sentenceRecall: z.boolean(),
   practice: z.boolean(),
+  workedExamples: z.boolean().default(false),
   review: z.boolean(),
   assessment: z.boolean(),
   written: z.boolean(),
@@ -103,6 +105,7 @@ export const quickCreateInputSchema = textbookRequestSchema
       });
     const problemComponents = [
       components.practice,
+      components.workedExamples,
       components.review,
       components.assessment,
       components.written,

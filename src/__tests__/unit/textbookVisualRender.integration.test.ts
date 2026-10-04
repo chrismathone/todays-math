@@ -14,6 +14,7 @@ import {
 import { REST_STORIES, restStoryMarkdown } from "@/lib/textbook/restStories";
 import {
   renderTextbookChunk,
+  renderTextbookOfflineHtml,
   validateRenderedPages,
 } from "@/lib/textbook/render/server";
 import { createTextbookRenderModel } from "@/lib/textbook/render/model";
@@ -187,26 +188,28 @@ describe.skipIf(process.env.TEXTBOOK_VISUAL_TEST !== "1")(
           4,
         );
         const intro = await page.$eval(
-          '.tb-block[data-template-key="auto-unit-intro"] .tb-section-heading',
+          '.tb-block[data-template-key="auto-unit-intro"] .tb-unit-heading',
           (heading) => ({
             background: getComputedStyle(heading).backgroundColor,
-            color: getComputedStyle(heading).color,
-            kicker: getComputedStyle(heading, "::before").content,
+            title: heading.querySelector(".tb-unit-title")?.textContent,
+            art: heading.querySelector("img")?.getAttribute("src"),
+            heightMm: (heading.getBoundingClientRect().height * 25.4) / 96,
           }),
         );
-        expect(intro.background).toBe("rgb(7, 63, 59)");
-        expect(intro.color).toBe("rgb(255, 255, 255)");
-        expect(intro.kicker).toContain("이 단원의 배움");
+        expect(intro.background).toBe("rgb(242, 246, 239)");
+        expect(intro.title).toBeTruthy();
+        expect(intro.art).toMatch(/^data:image\/png;base64,/);
+        expect(intro.heightMm).toBeGreaterThanOrEqual(219.9);
         for (const story of REST_STORIES) {
           const storyPages = result.pages.filter(
             (p) => p.sectionKey === `rest-${story.id}`,
           );
-          expect(storyPages).toHaveLength(1);
-          expect(storyPages[0].blocks.map((b) => b.blockId)).toEqual([
-            `generated-heading:synthetic-unit:rest-${story.id}`,
-            `rest-image-${story.id}`,
-            `rest-text-${story.id}`,
-          ]);
+          expect(storyPages, JSON.stringify(storyPages)).toHaveLength(1);
+          expect(storyPages[0].blocks.map((b) => b.blockId)).toEqual(
+            createTextbookRenderModel(exchange, "student")
+              .sections.find((s) => s.sectionKey === `rest-${story.id}`)!
+              .blocks.map((b) => b.id),
+          );
           expect(result.html).toContain(story.title);
         }
         const footers = await page.$$eval(".tb-footer", (elements) =>
@@ -234,6 +237,40 @@ describe.skipIf(process.env.TEXTBOOK_VISUAL_TEST !== "1")(
           "textbook-visual-review",
         );
         await mkdir(output, { recursive: true });
+        const openingPages = await page.$$(
+          '.tb-paper[data-section-key="opening"]',
+        );
+        const openingBefore = await Promise.all(
+          openingPages.map((element) => element.screenshot()),
+        );
+        const offline = await renderTextbookOfflineHtml({
+          exchange,
+          pages: result.pages,
+          readAsset: async (id) => bytes.get(id)!,
+          officialOrigin: SYNTHETIC_ORIGIN,
+          variant: "student",
+        });
+        await page.setContent(offline, { waitUntil: "load" });
+        await page.evaluate(async () => {
+          await document.fonts.ready;
+          await Promise.all(
+            Array.from(document.images).map((image) => image.decode()),
+          );
+        });
+        expect(
+          await page.$$eval(
+            "img[data-textbook-inline-image]",
+            (images) => images.length,
+          ),
+        ).toBeGreaterThan(0);
+        const offlineOpeningPages = await page.$$(
+          '.tb-paper[data-section-key="opening"]',
+        );
+        const openingAfter = await Promise.all(
+          offlineOpeningPages.map((element) => element.screenshot()),
+        );
+        expect(openingAfter.map(sha256)).toEqual(openingBefore.map(sha256));
+        await writeFile(path.join(output, "visual-v15-offline.html"), offline);
         await writeFile(path.join(output, "visual-v15.pdf"), result.pdf);
         await writeFile(path.join(output, "visual-v15.html"), result.html);
         await page.screenshot({

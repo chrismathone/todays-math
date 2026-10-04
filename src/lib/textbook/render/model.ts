@@ -13,17 +13,32 @@ import {
   type RecallPiece,
 } from "./markdown";
 import { splitConceptBody } from "./conceptParts";
+import { projectEditorialSection } from "./editorialProjection";
 
 export {
   TEXTBOOK_RENDERER_VERSION,
   TEXTBOOK_TEMPLATE_VERSION,
 } from "./versions";
 export type TextbookVariant = "student" | "answers";
+export type TextbookEditorialStage =
+  | "opening"
+  | "concept"
+  | "recall"
+  | "basic"
+  | "practice"
+  | "application"
+  | "review"
+  | "guide"
+  | "unit"
+  | "rest";
 type BlockBase = {
   id: string;
   sourceBlockId: string;
   unitKey: string;
   sectionKey: string;
+  editorialStage?: TextbookEditorialStage;
+  startNewPage?: boolean;
+  unitNumber?: number;
 };
 export type RenderBlock = BlockBase &
   (
@@ -33,7 +48,12 @@ export type RenderBlock = BlockBase &
         goals: string[];
         prerequisites: string[];
       }
-    | { kind: "heading"; title: string }
+    | {
+        kind: "heading";
+        title: string;
+        subtitle?: string;
+        stageNumber?: string;
+      }
     | { kind: "text"; markdown: string }
     | { kind: "image"; assetId: string; caption: string | null }
     | {
@@ -58,6 +78,8 @@ export type RenderBlock = BlockBase &
         phase: "study" | "keywords" | "sentences";
         pieces: RecallPiece[];
         repetitionChecks: boolean;
+        continuation?: boolean;
+        lastPart?: boolean;
       }
     | {
         kind: "problem";
@@ -66,6 +88,7 @@ export type RenderBlock = BlockBase &
         content: string;
         figures: FigureRef[];
         questionType: string | null;
+        learningStage?: TextbookItem["learningStage"];
         layout: TextbookItem["layout"];
         qr: RenderQr | null;
         sourcePageLabel: string | null;
@@ -85,6 +108,7 @@ export interface RenderSection {
   title: string;
   templateKey: string;
   startPolicy: "even-left" | "continue";
+  editorialStage?: TextbookEditorialStage;
   blocks: RenderBlock[];
 }
 export interface TextbookRenderModel {
@@ -120,156 +144,180 @@ export function createTextbookRenderModel(
     variant,
     assets: exchange.assets,
     sections: exchange.units.flatMap((u) =>
-      u.sections.map((s): RenderSection => ({
-        unitKey: u.unitKey,
-        sectionKey: s.sectionKey,
-        unitTitle: u.title,
-        title: s.title,
-        // Earlier quick-create drafts used "basic" for every lesson. Their frozen
-        // concept provenance identifies them without rewriting the saved manuscript.
-        templateKey:
-          s.templateKey === "basic" &&
-          s.blocks.some(
-            (b) =>
-              b.kind === "concept" &&
-              concepts.get(b.conceptKey)?.mappingVersion ===
-                "quick-create.unit-triple.v1",
-          )
-            ? "auto-lesson"
-            : s.templateKey,
-        startPolicy: s.startPolicy,
-        blocks: [
-          ...(s.templateKey === "unit-intro"
-            ? [
-                {
-                  id: `generated-intro:${u.unitKey}:${s.sectionKey}`,
-                  sourceBlockId: "unit-intro",
-                  unitKey: u.unitKey,
-                  sectionKey: s.sectionKey,
-                  kind: "unit-intro" as const,
-                  title: u.title,
-                  goals: u.goals,
-                  prerequisites: u.prerequisites,
-                },
-              ]
-            : []),
-          {
-            id: `generated-heading:${u.unitKey}:${s.sectionKey}`,
-            sourceBlockId: "section-heading",
-            unitKey: u.unitKey,
-            sectionKey: s.sectionKey,
-            kind: "heading",
-            title: s.title,
-          },
-          ...s.blocks.flatMap((b): RenderBlock[] => {
-            const base: BlockBase = {
-              id: b.blockId,
-              sourceBlockId: b.blockId,
+      u.sections.map((s): RenderSection =>
+        projectEditorialSection({
+          unitKey: u.unitKey,
+          sectionKey: s.sectionKey,
+          unitTitle: u.title,
+          title: s.title,
+          // Earlier quick-create drafts used "basic" for every lesson. Their frozen
+          // concept provenance identifies them without rewriting the saved manuscript.
+          templateKey:
+            s.templateKey === "basic" &&
+            s.blocks.some(
+              (b) =>
+                b.kind === "concept" &&
+                concepts.get(b.conceptKey)?.mappingVersion ===
+                  "quick-create.unit-triple.v1",
+            )
+              ? "auto-lesson"
+              : s.templateKey,
+          startPolicy: s.startPolicy,
+          blocks: [
+            ...(s.templateKey === "unit-intro"
+              ? [
+                  {
+                    id: `generated-intro:${u.unitKey}:${s.sectionKey}`,
+                    sourceBlockId: "unit-intro",
+                    unitKey: u.unitKey,
+                    sectionKey: s.sectionKey,
+                    kind: "unit-intro" as const,
+                    unitNumber: exchange.units.indexOf(u) + 1,
+                    title: u.title,
+                    goals: u.goals,
+                    prerequisites: u.prerequisites,
+                  },
+                ]
+              : []),
+            {
+              id: `generated-heading:${u.unitKey}:${s.sectionKey}`,
+              sourceBlockId: "section-heading",
               unitKey: u.unitKey,
               sectionKey: s.sectionKey,
-            };
-            switch (b.kind) {
-              case "text": {
-                const parts = splitTextbookMarkdown(b.markdown);
-                return parts.map((markdown, i) => ({
-                  ...base,
-                  id: parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
-                  kind: "text",
-                  markdown,
-                }));
-              }
-              case "image":
-                return [
-                  {
+              kind: "heading",
+              unitNumber:
+                exchange.units
+                  .filter((candidate) =>
+                    candidate.sections.some(
+                      (section) =>
+                        section.templateKey === "auto-unit-intro" ||
+                        section.templateKey === "auto-lesson" ||
+                        section.blocks.some(
+                          (block) => block.kind === "concept",
+                        ),
+                    ),
+                  )
+                  .indexOf(u) + 1,
+              title: s.title,
+            },
+            ...s.blocks.flatMap((b): RenderBlock[] => {
+              const base: BlockBase = {
+                id: b.blockId,
+                sourceBlockId: b.blockId,
+                unitKey: u.unitKey,
+                sectionKey: s.sectionKey,
+              };
+              switch (b.kind) {
+                case "text": {
+                  const parts = splitTextbookMarkdown(b.markdown);
+                  return parts.map((markdown, i) => ({
                     ...base,
-                    kind: "image",
-                    assetId: b.assetId,
-                    caption: b.caption,
-                  },
-                ];
-              case "dialogue":
-                return b.turns.map((turn, i) => ({
-                  ...base,
-                  ...turn,
-                  id: `${b.blockId}.turn-${i}`,
-                  kind: "dialogue",
-                }));
-              case "concept-recall": {
-                const phase = variant === "answers" ? "study" : b.phase;
-                // Validate the complete source before projecting any individual paragraphs.
-                recallPieces(b.markdown, phase);
-                const parts = splitRecallMarkdown(b.markdown);
-                return parts.map((markdown, i) => ({
-                  ...base,
-                  id: parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
-                  kind: "recall",
-                  phase: b.phase,
-                  pieces: recallPieces(
+                    id:
+                      parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
+                    kind: "text",
                     markdown,
-                    /\[\[|\{\{/.test(markdown) ? phase : "study",
-                  ),
-                  repetitionChecks:
-                    b.phase === "study" && b.showRepetitionChecks,
-                }));
-              }
-              case "concept": {
-                const c = concepts.get(b.conceptKey);
-                if (!c) throw new Error(`Missing concept ${b.conceptKey}`);
-                const qr = conceptQrs.get(c.conceptKey);
-                const parts = splitConceptBody(c.body);
-                return parts.map((body, i) => ({
-                  ...base,
-                  id: parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
-                  kind: "concept",
-                  conceptKey: c.conceptKey,
-                  title: c.title,
-                  body,
-                  continuation: i > 0,
-                  qr:
-                    qr && i === parts.length - 1
-                      ? { id: qr.qrTargetId, url: qr.url }
-                      : null,
-                }));
-              }
-              case "problem": {
-                const item = items.get(b.itemId);
-                if (!item) throw new Error(`Missing item ${b.itemId}`);
-                const snapshot = snapshots.get(item.snapshotId);
-                if (!snapshot)
-                  throw new Error(`Missing snapshot ${item.snapshotId}`);
-                const qr = item.qrTargetId
-                  ? qrs.get(item.qrTargetId)
-                  : undefined;
-                const payload = snapshot.payload;
-                return [
-                  {
+                  }));
+                }
+                case "image":
+                  return [
+                    {
+                      ...base,
+                      kind: "image",
+                      assetId: b.assetId,
+                      caption: b.caption,
+                    },
+                  ];
+                case "dialogue":
+                  return b.turns.map((turn, i) => ({
                     ...base,
-                    kind: "problem",
-                    itemId: item.itemId,
-                    displayNumber: item.displayNumber,
-                    content: payload.content,
-                    figures: payload.figures,
-                    questionType: payload.questionType,
-                    layout: item.layout,
-                    qr: qr ? { id: qr.qrTargetId, url: qr.url } : null,
-                    sourcePageLabel: pages.get(item.itemId) ?? null,
-                    ...(variant === "answers"
-                      ? { answer: payload.answer, solution: payload.solution }
-                      : item.learningStage === "worked-example"
-                        ? {
-                            publicWorkedExample: {
-                              answer: payload.answer,
-                              solution: payload.solution,
-                            },
-                          }
-                        : {}),
-                  },
-                ];
+                    ...turn,
+                    id: `${b.blockId}.turn-${i}`,
+                    kind: "dialogue",
+                  }));
+                case "concept-recall": {
+                  const phase = variant === "answers" ? "study" : b.phase;
+                  // Validate the complete source before projecting any individual paragraphs.
+                  recallPieces(b.markdown, phase);
+                  const parts = splitRecallMarkdown(b.markdown);
+                  return parts.map((markdown, i) => ({
+                    ...base,
+                    id:
+                      parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
+                    kind: "recall",
+                    phase: b.phase,
+                    continuation: i > 0,
+                    lastPart: i === parts.length - 1,
+                    pieces: recallPieces(
+                      markdown,
+                      /\[\[|\{\{/.test(markdown) ? phase : "study",
+                    ),
+                    repetitionChecks:
+                      b.phase === "study" &&
+                      b.showRepetitionChecks &&
+                      i === parts.length - 1,
+                  }));
+                }
+                case "concept": {
+                  const c = concepts.get(b.conceptKey);
+                  if (!c) throw new Error(`Missing concept ${b.conceptKey}`);
+                  const qr = conceptQrs.get(c.conceptKey);
+                  const parts = splitConceptBody(c.body);
+                  return parts.map((body, i) => ({
+                    ...base,
+                    id:
+                      parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
+                    kind: "concept",
+                    conceptKey: c.conceptKey,
+                    title: c.title,
+                    body,
+                    continuation: i > 0,
+                    qr:
+                      qr && i === parts.length - 1
+                        ? { id: qr.qrTargetId, url: qr.url }
+                        : null,
+                  }));
+                }
+                case "problem": {
+                  const item = items.get(b.itemId);
+                  if (!item) throw new Error(`Missing item ${b.itemId}`);
+                  const snapshot = snapshots.get(item.snapshotId);
+                  if (!snapshot)
+                    throw new Error(`Missing snapshot ${item.snapshotId}`);
+                  const qr = item.qrTargetId
+                    ? qrs.get(item.qrTargetId)
+                    : undefined;
+                  const payload = snapshot.payload;
+                  return [
+                    {
+                      ...base,
+                      kind: "problem",
+                      itemId: item.itemId,
+                      displayNumber: item.displayNumber,
+                      content: payload.content,
+                      figures: payload.figures,
+                      questionType: payload.questionType,
+                      learningStage: item.learningStage,
+                      layout: item.layout,
+                      qr: qr ? { id: qr.qrTargetId, url: qr.url } : null,
+                      sourcePageLabel: pages.get(item.itemId) ?? null,
+                      ...(variant === "answers"
+                        ? { answer: payload.answer, solution: payload.solution }
+                        : item.learningStage === "worked-example"
+                          ? {
+                              publicWorkedExample: {
+                                answer: payload.answer,
+                                solution: payload.solution,
+                              },
+                            }
+                          : {}),
+                    },
+                  ];
+                }
               }
-            }
-          }),
-        ],
-      })),
+            }),
+          ],
+        }),
+      ),
     ),
   };
 }

@@ -212,12 +212,12 @@ createRoot(document.getElementById('root')).render(React.createElement(App));`;
         }
         try {
           await page.waitForFunction(
-            (title) =>
-              Array.from(document.querySelectorAll(".tb-section-heading")).some(
-                (h) => h.textContent === title,
-              ),
+            (key) =>
+              Array.from(
+                document.querySelectorAll(".tb-paper[data-section-key]"),
+              ).some((paper) => paper.getAttribute("data-section-key") === key),
             { timeout: 15000 },
-            title,
+            sectionKeys[sectionIndex],
           );
         } catch (error) {
           console.error(

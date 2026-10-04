@@ -1,5 +1,6 @@
 /** Read an explicitly selected existing draft, render locally, never publish or change the DB.
  * node --conditions=react-server --import tsx scripts/qa/textbook/saved-draft-proof.ts EDITION_ID OWNER_EMAIL OUTPUT_DIR
+ * Add --capture-only to save read-only browser evidence before the renderer is ready.
  */
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -106,6 +107,17 @@ async function main() {
       })),
     }),
   );
+  if (process.argv.includes("--capture-only")) {
+    console.log(
+      JSON.stringify({
+        source: "read-only saved production draft",
+        editionId,
+        questions: exchange.items.length,
+        output: out,
+      }),
+    );
+    return;
+  }
   const browser = await launchExportBrowser();
   try {
     const students = [];

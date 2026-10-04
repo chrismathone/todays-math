@@ -9,8 +9,12 @@ import { measurementHtml, TEXTBOOK_CSS, type RenderResources } from "./html";
 import type { TextbookRenderModel } from "./model";
 import { getTextbookCharacter } from "../characters";
 
-export const TEXTBOOK_PREVIEW_FONT_CSS =
-  "@font-face{font-family:TextbookPretendard;src:url('/fonts/PretendardVariable.woff2') format('woff2');font-weight:45 920;font-display:block}";
+export const TEXTBOOK_PREVIEW_FONT_CSS = [400, 700]
+  .map(
+    (weight) =>
+      `@font-face{font-family:TextbookPretendard;src:url('/textbook/editorial/fonts/NotoSansKR-${weight}.ttf') format('truetype');font-weight:${weight};font-display:block}`,
+  )
+  .join("\n");
 
 /** Same markup, physical widths and measured paginator as the server. Call with authorized asset/QR data. */
 export async function measureTextbookPreview(

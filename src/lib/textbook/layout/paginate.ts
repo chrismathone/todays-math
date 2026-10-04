@@ -3,7 +3,11 @@ import type {
   TextbookConfig,
 } from "@/contracts/textbookExchange.contract";
 import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
-import type { RenderBlock, RenderSection } from "../render/model";
+import type {
+  RenderBlock,
+  RenderSection,
+  TextbookEditorialStage,
+} from "../render/model";
 
 export const A4 = Object.freeze({
   widthMm: 210,
@@ -37,6 +41,7 @@ export interface TextbookPage {
   unitTitle: string;
   sectionTitle: string;
   kind: "content" | "cover";
+  editorialStage?: TextbookEditorialStage;
   blocks: BlockPlacement[];
 }
 export interface TextbookLayout {
@@ -195,6 +200,7 @@ export function paginateTextbookSections(
         unitTitle: section.unitTitle,
         sectionTitle: section.title,
         kind: "content",
+        editorialStage: row[0]?.block.editorialStage ?? section.editorialStage,
         blocks: [],
       };
       next++;
@@ -245,10 +251,24 @@ export function paginateTextbookSections(
             column,
           });
       });
-      cursor += height + A4.gapMm;
+      // Dialogue turns and recall rows use the reference's compact vertical rhythm.
+      // Exercise and prose rows keep their measured four-millimetre spacing.
+      const gap = row.every(({ block }) => block.kind === "recall")
+        ? 1
+        : row.every(({ block }) => block.kind === "dialogue")
+          ? 1.5
+          : A4.gapMm;
+      cursor += height + gap;
       row = [];
     };
     for (const [blockIndex, block] of section.blocks.entries()) {
+      if (block.startNewPage) {
+        flush();
+        if (page?.blocks.length) {
+          page = undefined;
+          cursor = A4.bodyTopMm;
+        }
+      }
       const m = measure.get(block.id);
       if (
         !m ||
@@ -295,7 +315,12 @@ export function paginateTextbookSections(
       }
       if (blockColumnSpan(block) === 2) {
         flush();
-        if (block.kind === "heading" && page) {
+        if (
+          (block.kind === "heading" ||
+            (block.kind === "text" &&
+              /^#{1,6}\s+[^\n]+\s*$/.test(block.markdown))) &&
+          page
+        ) {
           const following = section.blocks[blockIndex + 1];
           const nextHeight = following
             ? (measure.get(following.id)?.heightMm ?? 0)
@@ -353,6 +378,7 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     if (
       left.kind !== "content" ||
       right.kind !== "content" ||
+      left.editorialStage !== right.editorialStage ||
       left.physicalPageIndex % 2 !== 0 ||
       right.physicalPageIndex !== left.physicalPageIndex + 1
     )

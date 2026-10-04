@@ -8,10 +8,22 @@ import {
 } from "@/lib/problem/choiceFigureIndex";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { getTextbookCharacter } from "../characters";
+import {
+  editorialBlock,
+  editorialStage,
+  editorialUnitAsset,
+  editorialUnitNumber,
+  EDITORIAL_STAGES,
+  type EditorialBlock,
+  type EditorialStage,
+} from "./editorial";
+import { EDITORIAL_CSS } from "./editorialCss";
 
 export interface RenderResources {
   assetUrl: (assetId: string) => string;
   qrDataUrl: (qrTargetId: string, url: string) => string;
+  /** Bundled original v15 art; the PDF renderer supplies embedded data URLs. */
+  editorialAssetUrl?: (name: string) => string;
 }
 const attrUrl = (url: string) => {
   if (
@@ -22,9 +34,30 @@ const attrUrl = (url: string) => {
     throw new Error("지면에는 고정 로컬 자산 URL만 허용합니다.");
   return esc(url);
 };
+const editorialImage = (
+  resources: RenderResources,
+  name: string,
+  alt: string,
+) =>
+  `<img data-textbook-editorial-image src="${attrUrl(resources.editorialAssetUrl?.(name) ?? `/textbook/editorial/${name}`)}" alt="${esc(alt)}">`;
+const progressHtml = (stage: EditorialStage) => {
+  const active = EDITORIAL_STAGES[stage].tab;
+  return active < 0
+    ? ""
+    : `<nav class="tb-progress" aria-label="학습 단계">${["개념 이해", "개념 정리", "기본 확인", "유형 연습", "설명·적용", "다시 꺼내기"].map((label, i) => `<span${i === active ? ' class="tb-progress-active" aria-current="step"' : ""}>${label}</span>`).join("")}</nav>`;
+};
 export function renderBlockHtml(
   block: RenderBlock,
   resources: RenderResources,
+): string {
+  const projected = block as EditorialBlock;
+  const stage = editorialStage(projected);
+  return `<div class="tb-editorial tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}">${renderBlockContent(projected, resources, stage)}</div>`;
+}
+function renderBlockContent(
+  block: EditorialBlock,
+  resources: RenderResources,
+  stage: EditorialStage,
 ): string {
   const image = (
     id: string,
@@ -37,9 +70,18 @@ export function renderBlockHtml(
     `<figure class="tb-qr" data-qr-id="${esc(id)}" data-qr-url="${esc(url)}"><img src="${attrUrl(resources.qrDataUrl(id, url))}" alt="해설 QR"><figcaption>해설 보기</figcaption></figure>`;
   switch (block.kind) {
     case "unit-intro":
-      return `<section class="tb-unit-intro"><p>이 단원의 배움</p><h1>${esc(block.title)}</h1><h3>배울 내용</h3><ul>${block.goals.map((goal) => `<li>${md(goal)}</li>`).join("")}</ul>${block.prerequisites.length ? `<h3>준비할 개념</h3><ul>${block.prerequisites.map((goal) => `<li>${md(goal)}</li>`).join("")}</ul>` : ""}</section>`;
-    case "heading":
-      return `<h2 class="tb-section-heading">${esc(block.title)}</h2>`;
+      return `<section class="tb-unit-intro">${unitHeading(block, resources)}<div class="tb-unit-goals"><h3>이 단원의 학습 목표</h3><ul>${block.goals.map((goal) => `<li>${md(goal)}</li>`).join("")}</ul>${block.prerequisites.length ? `<h3>학습의 연결 · 준비할 개념</h3><ul>${block.prerequisites.map((goal) => `<li>${md(goal)}</li>`).join("")}</ul>` : ""}</div></section>`;
+    case "heading": {
+      if (stage === "unit") return unitHeading(block, resources);
+      const heading = block as EditorialBlock & {
+        subtitle?: string;
+        stageNumber?: string | number;
+      };
+      const meta = EDITORIAL_STAGES[stage];
+      const rawNumber = heading.stageNumber ?? meta.number;
+      const number = rawNumber === "" ? "" : String(rawNumber).padStart(2, "0");
+      return `<section class="tb-stage-heading"><header class="tb-stage-head"><div class="tb-kicker">${esc(meta.label)}</div><h2 class="tb-section-heading">${esc(block.title)}</h2><p class="tb-stage-subtitle">${esc(heading.subtitle ?? meta.subtitle)}</p>${number.trim() ? `<span class="tb-stage-number" aria-hidden="true">${esc(number)}</span>` : ""}${stage === "rest" ? `<figure class="tb-rest-sprout">${editorialImage(resources, "learning-sprout.png", "책에서 자라는 배움의 새싹")}</figure>` : ""}</header>${progressHtml(stage)}</section>`;
+    }
     case "text":
       return `<div class="tb-prose">${md(block.markdown)}</div>`;
     case "image":
@@ -66,14 +108,39 @@ export function renderBlockHtml(
     }
     case "concept": {
       const b = block.body;
-      const list = (title: string, rows: string[]) =>
+      const list = (title: string, rows: string[], style: string) =>
         rows.length
-          ? `<div class="tb-concept-part"><h4>${title}</h4><ul>${rows.map((r) => `<li>${md(r)}</li>`).join("")}</ul></div>`
+          ? `<div class="tb-concept-part tb-concept-${style}"><h4>${title}</h4><ul>${rows.map((r) => `<li>${md(r)}</li>`).join("")}</ul></div>`
           : "";
-      return `<section class="tb-concept">${block.continuation ? "" : `<h3>${esc(block.title)}</h3>`}${b.goal ? `<div class="tb-goal">${md(b.goal)}</div>` : ""}${list("준비할 개념", b.prerequisites)}${b.definition ? `<div class="tb-definition">${md(b.definition)}</div>` : ""}${b.conditions ? `<div>${md(b.conditions)}</div>` : ""}${list("예", b.examples)}${list("반례", b.counterexamples)}${list("주의할 점", b.misconceptions)}${b.explainPrompt ? `<div class="tb-prompt">${md(b.explainPrompt)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</section>`;
+      const code =
+        /(?:C|concept[-_]?)(\d+)/i.exec(block.conceptKey)?.[1] ??
+        /(?:^|[-_])(\d+)$/.exec(block.conceptKey)?.[1] ??
+        "01";
+      return `<section class="tb-concept">${block.continuation ? "" : `<h3 class="tb-concept-title"><span class="tb-concept-number">${esc(code.padStart(2, "0"))}</span>${esc(block.title)}</h3>`}${b.goal ? `<div class="tb-goal"><b>배움의 목표</b><div>${md(b.goal)}</div></div>` : ""}${list("준비할 개념", b.prerequisites, "prerequisites")}${b.definition ? `<div class="tb-definition"><h4>정의와 성질</h4>${md(b.definition)}</div>` : ""}${b.conditions ? `<div class="tb-conditions"><h4>조건 확인</h4><div>${md(b.conditions)}</div></div>` : ""}${list("예로 확인", b.examples, "examples")}${list("반례 · 구별하기", b.counterexamples, "nonexamples")}${list("헷갈리지 않기", b.misconceptions, "caution")}${b.explainPrompt ? `<div class="tb-prompt"><b>내 말로 설명</b><div>${md(b.explainPrompt)}</div></div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</section>`;
     }
-    case "recall":
-      return `<section class="tb-recall" data-phase="${block.phase}">${block.pieces.map((p) => (p.kind === "blank" ? `<span class="tb-blank tb-blank-${p.scope}" aria-label="빈칸"></span>` : `<div class="tb-recall-text">${md(p.markdown)}</div>`)).join("")}${block.repetitionChecks ? '<div class="tb-repetition">1 ○　2 ○　3 ○　4 ○</div>' : ""}</section>`;
+    case "recall": {
+      const modes = {
+        study: ["개념학습", "정의와 성질을 읽고 예를 들어 설명하시오."],
+        keywords: ["빈칸개념암기", "빈칸에 알맞은 용어와 식을 쓰시오."],
+        sentences: [
+          "통문장개념암기",
+          "책을 보지 않고 각 항목을 문장으로 쓰시오.",
+        ],
+      };
+      const introduction = block.continuation
+        ? ""
+        : `<div class="tb-recall-phases" aria-label="개념 정리 순서">${Object.entries(
+            modes,
+          )
+            .map(
+              ([phase, [title]], i) =>
+                `<span${phase === block.phase ? ' class="tb-recall-active" aria-current="step"' : ""}>${String(i + 1).padStart(2, "0")} ${title}</span>`,
+            )
+            .join(
+              "",
+            )}</div><div class="tb-recall-checkbar"><b>${modes[block.phase][1]}</b><span>이름 __________　날짜 __________</span></div>`;
+      return `<section class="tb-recall${block.continuation ? " tb-recall-continuation" : ""}" data-phase="${block.phase}">${introduction}<div class="tb-recall-content">${block.pieces.map((p) => (p.kind === "blank" ? `<span class="tb-blank tb-blank-${p.scope}" role="textbox" aria-label="${p.scope === "sentence" ? "문장으로 개념 쓰기" : "빈칸"}"></span>` : `<div class="tb-recall-text">${md(p.markdown)}</div>`)).join("")}</div>${block.repetitionChecks ? '<div class="tb-repetition" aria-label="학습 반복 확인">1회 ○　2회 ○　3회 ○　4회 ○</div>' : ""}${block.lastPart === false ? "" : `<p class="tb-study-footer">${block.phase === "study" ? "조건과 예를 함께 확인한다." : "이 단원의 개념학습으로 채점한다."}</p>`}</section>`;
+    }
     case "problem": {
       const { choices } = parseProblemContent(block.content);
       // Classify with the shared parser, but render the original Markdown.
@@ -96,15 +163,27 @@ export function renderBlockHtml(
         block.answer !== undefined
           ? `<section class="tb-answer"><h4>정답${block.sourcePageLabel ? ` · 문제 ${esc(block.sourcePageLabel)}쪽` : ""}</h4>${md(block.answer)}${block.solution !== null && block.solution !== undefined ? `<div>${md(block.solution)}</div>` : ""}</section>`
           : block.publicWorkedExample
-            ? `<section class="tb-worked"><h4>함께 풀어 보기</h4>${md(block.publicWorkedExample.answer)}${block.publicWorkedExample.solution ? md(block.publicWorkedExample.solution) : ""}</section>`
+            ? `<section class="tb-worked"><h4>함께 풀어 보기 · 풀이</h4>${block.publicWorkedExample.solution ? `<div class="tb-worked-solution">${md(block.publicWorkedExample.solution)}</div>` : ""}<div class="tb-worked-answer"><b>답</b>${md(block.publicWorkedExample.answer)}</div></section>`
             : "";
       const lines =
         block.answer === undefined && !block.publicWorkedExample
           ? block.layout.preferredWorkLines
           : 0;
-      return `<section class="tb-problem"><header class="tb-problem-head"><strong>${esc(block.displayNumber)}</strong>${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header>${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}${answer}<div class="tb-work-area" style="min-height:${Math.max(lines * 7, block.qr ? 27 : 0)}mm">${lines ? `<div class="tb-work-lines" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</div></section>`;
+      const worked =
+        block.publicWorkedExample ||
+        (block as RenderBlock & { learningStage?: string }).learningStage ===
+          "worked-example";
+      return `<section class="tb-problem${worked ? " tb-problem-worked" : ""}${block.layout.columnSpan === 2 ? " tb-problem-wide" : ""}"${worked ? ' aria-label="대표예제"' : ""}><header class="tb-problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}</div>${answer}</div><div class="tb-work-area" style="min-height:${Math.max(lines * 7, block.qr ? 27 : 0)}mm">${lines ? `<div class="tb-work-lines" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</div></section>`;
     }
   }
+}
+
+function unitHeading(
+  block: EditorialBlock & { title: string },
+  resources: RenderResources,
+): string {
+  const number = String(editorialUnitNumber(block)).padStart(2, "0");
+  return `<section class="tb-unit-heading"><div class="tb-unit-number"><small>UNIT</small><b>${number}</b></div><h2 class="tb-unit-title">${esc(block.title)}</h2><p class="tb-unit-question">이번 단원에서 무엇을 배우게 될까?</p><figure class="tb-unit-art">${editorialImage(resources, editorialUnitAsset(block), "종이와 유리 조형으로 표현한 수학 단원 삽화")}</figure><div class="tb-unit-key"><i aria-hidden="true"></i>개념을 읽고, 풀이를 설명하다</div></section>`;
 }
 
 /** v15 editorial/full palette and dialogue typography, measured within the native A4 body geometry. */
@@ -134,6 +213,7 @@ export const TEXTBOOK_CSS = `
 .tb-block[data-template-key="auto-unit-intro"] .tb-section-heading,.tb-measure-block[data-template-key="auto-unit-intro"] .tb-section-heading{background:var(--tb-dark);color:white;border:0;border-radius:0 0 12mm 0;padding:12mm 7mm;font-size:28pt;letter-spacing:-1px;margin-bottom:8mm}.tb-block[data-template-key="auto-unit-intro"] .tb-section-heading:before,.tb-measure-block[data-template-key="auto-unit-intro"] .tb-section-heading:before{content:'이 단원의 배움';display:block;font-size:8pt;line-height:1.6;letter-spacing:.03em;color:var(--tb-signal);margin-bottom:4mm}.tb-block[data-template-key="auto-unit-intro"] .tb-prose,.tb-measure-block[data-template-key="auto-unit-intro"] .tb-prose{border-left:2pt solid var(--tb-accent);padding-left:4mm;font-size:10pt;line-height:1.9}.tb-block[data-template-key="auto-unit-intro"] .tb-prose h2,.tb-measure-block[data-template-key="auto-unit-intro"] .tb-prose h2{font-size:15pt;color:var(--tb-accent);margin-top:5mm}
 .tb-paper[data-template-key="rest"]{background:#fffdf6}.tb-block[data-template-key="rest"] .tb-section-heading,.tb-measure-block[data-template-key="rest"] .tb-section-heading{background:transparent;border:0;padding-left:0;color:#334d35}.tb-block[data-template-key="rest"] .tb-figure img,.tb-measure-block[data-template-key="rest"] .tb-figure img{max-height:85mm}.tb-block[data-template-key="rest"] .tb-prose,.tb-measure-block[data-template-key="rest"] .tb-prose{font-size:10pt;line-height:1.9;color:#354a37}.tb-block[data-template-key="rest"] .tb-prose h3,.tb-measure-block[data-template-key="rest"] .tb-prose h3{font-size:9pt;border-top:.65pt solid #d3dec7;padding-top:3mm;margin-top:4mm;color:#5b7550}
 @media screen{.tb-paper{box-shadow:0 2px 10px #0002}.tb-spread{overflow:auto}}@media print{.tb-spread{display:block}.tb-paper{box-shadow:none}}
+${EDITORIAL_CSS}
 `;
 
 export function renderPageHtml(
@@ -141,8 +221,23 @@ export function renderPageHtml(
   model: TextbookRenderModel,
   resources: RenderResources,
 ): string {
-  if (page.kind === "cover")
-    return `<article class="tb-paper tb-cover" data-textbook-page="${page.physicalPageIndex}"><div class="tb-cover-code">${esc(model.config.displayCode)}</div><h1>${esc(model.title)}</h1><p>${model.config.grade}학년 · ${model.config.semester}학기 · ${model.config.volume}권</p><p>${model.variant === "answers" ? "정답과 해설" : ""}</p></article>`;
+  if (page.kind === "cover") {
+    const school = {
+      elementary: "초등수학",
+      middle: "중등수학",
+      high: "고등수학",
+    }[model.config.schoolLevel];
+    const titleSize =
+      model.title.length <= 7
+        ? 68
+        : model.title.length <= 18
+          ? 40
+          : model.title.length <= 40
+            ? 30
+            : 22;
+    const codeSize = model.config.displayCode.length > 12 ? 24 : 45;
+    return `<article class="tb-paper tb-cover" data-textbook-page="${page.physicalPageIndex}" style="--tb-cover-title-size:${titleSize}pt;--tb-cover-code-size:${codeSize}pt"><div class="tb-cover-top">INJAEWON MATHEMATICS<span>${school}</span></div><div class="tb-cover-title"><p>인재원 수학</p><h1>${esc(model.title)}</h1><div class="tb-cover-code">${esc(model.config.displayCode)}</div><p class="tb-cover-sub">${model.config.grade}학년 · ${model.config.semester}학기 · ${model.config.volume}권</p>${model.variant === "answers" ? '<p class="tb-cover-edition">정답과 해설</p>' : ""}</div><figure class="tb-cover-art">${editorialImage(resources, "cover.png", "종이와 유리 재질의 수학 조형 정원")}</figure><div class="tb-cover-equations"><span>개념 · 유형 · 설명</span><i aria-hidden="true"></i><span>${esc(model.config.displayCode)}</span></div><div class="tb-cover-bottom"><span>개념을 읽고, 풀이를 설명하다</span><b>INJAEWON</b></div></article>`;
+  }
   const blocks = new Map(
     model.sections.flatMap((s) => s.blocks).map((b) => [b.id, b]),
   );
@@ -162,15 +257,19 @@ export function renderPageHtml(
       candidate.unitKey === page.unitKey &&
       candidate.sectionKey === page.sectionKey,
   );
-  return `<article class="tb-paper tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span>${esc(model.title)}</span><strong>${esc(page.unitTitle)}</strong></header>${page.blocks
+  const stage = editorialStage(blocks.get(page.blocks[0]?.blockId), section);
+  return `<article class="tb-paper tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small></span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${page.blocks
     .map((p) => {
       const block = blocks.get(p.blockId);
       if (!block) throw new Error(`Missing rendered block ${p.blockId}`);
-      return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm}mm;top:${p.yMm}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(block, resources)}</div></div>`;
+      const blockSection = model.sections.find((s) =>
+        s.blocks.some((b) => b.id === block.id),
+      );
+      return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm}mm;top:${p.yMm}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
     })
     .join(
       "",
-    )}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(page.printedPageLabel)}</strong><span>${esc(page.sectionTitle)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+    )}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(page.printedPageLabel)}</strong><span>${esc(EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(
@@ -181,7 +280,7 @@ export function measurementHtml(
     .flatMap((section) =>
       section.blocks.map(
         (block) =>
-          `<div class="tb-measure-block" data-template-key="${esc(section.templateKey)}" data-measure-id="${esc(block.id)}" style="width:${blockWidthMm(model.config, block)}mm">${renderBlockHtml(block, resources)}</div>`,
+          `<div class="tb-measure-block" data-template-key="${esc(section.templateKey)}" data-measure-id="${esc(block.id)}" style="width:${blockWidthMm(model.config, block)}mm">${renderBlockHtml(editorialBlock(block, section), resources)}</div>`,
       ),
     )
     .join("")}</main>`;

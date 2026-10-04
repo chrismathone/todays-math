@@ -86,6 +86,7 @@ const nextConfig: NextConfig = {
     "/api/textbook/**": [
       "./src/config/shared-figures.manifest.json",
       "./public/fonts/PretendardVariable.woff2",
+      "./public/textbook/editorial/**/*",
       "./node_modules/katex/dist/katex.min.css",
       "./node_modules/katex/dist/fonts/**/*",
       "./node_modules/pdfjs-dist/build/pdf.mjs",

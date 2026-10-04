@@ -35,9 +35,11 @@ import {
 } from "./html";
 import {
   dataUrl,
+  editorialResourceUrl,
   inlineBundleCss,
   loadTextbookAssets,
   loadTextbookLocalBundle,
+  shareInlineTextbookImages,
   RESOURCE_ORIGIN,
   type TrustedResource,
 } from "./bundle.server";
@@ -365,6 +367,7 @@ export async function renderTextbookChunk(
   ]);
   const resources = new Map([...bundle.resources, ...assets]);
   const resolver: RenderResources = {
+    editorialAssetUrl: editorialResourceUrl,
     assetUrl: (id) => {
       const url = `${RESOURCE_ORIGIN}/assets/${encodeURIComponent(id)}`;
       if (!resources.has(url)) throw new Error(`Missing asset ${id}`);
@@ -447,6 +450,8 @@ export async function renderTextbookChunk(
     );
     const inlineResolver: RenderResources = {
       ...resolver,
+      editorialAssetUrl: (name) =>
+        dataUrl(resources.get(editorialResourceUrl(name))!),
       assetUrl: (id) => dataUrl(resources.get(resolver.assetUrl(id))!),
     };
     const html = textbookHtmlDocument(
@@ -711,6 +716,8 @@ export async function renderTextbookOfflineHtml(input: {
     generateTextbookQrs(model, input.officialOrigin),
   ]);
   const resolver: RenderResources = {
+    editorialAssetUrl: (name) =>
+      dataUrl(bundle.resources.get(editorialResourceUrl(name))!),
     assetUrl: (id) => {
       const r = assets.get(
         `${RESOURCE_ORIGIN}/assets/${encodeURIComponent(id)}`,
@@ -737,6 +744,8 @@ export async function renderTextbookOfflineHtml(input: {
       return renderPageHtml(page, model, resolver);
     })
     .join("");
+  const sharedImages = shareInlineTextbookImages(body);
+  body = sharedImages.body;
   if (input.includeTeacherArchiveData) {
     const data = canonicalJson(input.exchange).replace(
       /[<>&\u2028\u2029]/g,
@@ -747,7 +756,7 @@ export async function renderTextbookOfflineHtml(input: {
   const html = textbookHtmlDocument(
     model.title,
     body,
-    inlineBundleCss(bundle.fontCss, bundle.resources),
+    inlineBundleCss(bundle.fontCss, bundle.resources) + "\n" + sharedImages.css,
     inlineBundleCss(bundle.katexCss, bundle.resources),
   );
   if (Buffer.byteLength(html) > 128 * 1024 * 1024)
