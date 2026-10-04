@@ -224,6 +224,37 @@ describe("measured native PCM boundary quiet", () => {
       action: "held",
       reasons: ["boundary_sound_not_completed_within_bound"],
     });
+    // 1.3 s before the cut: the sound and its quiet lead are measured, but 1.7 s is past the bound.
+    const near = await findListeningBoundaryRefinement(far.source, {
+      startFrame: far.at(2300),
+      endFrame: far.at(5400),
+    });
+    expect(near.status).toBe("held");
+    expect(near.start.reasons).toEqual([
+      "boundary_sound_not_completed_within_bound",
+    ]);
+    // A cut word is completed far enough to keep an anchor that starts in an earlier sound.
+    const earlier = pcmSource([
+      { ms: 1000, left: QUIET },
+      { ms: 300, left: 900 },
+      { ms: 500, left: QUIET },
+      { ms: 3200, left: SPEECH },
+      { ms: 1000, left: QUIET },
+    ]);
+    const cut = { startFrame: earlier.at(1900), endFrame: earlier.at(5400) };
+    expect(
+      (await findListeningBoundaryRefinement(earlier.source, cut)).candidate
+        ?.range.startFrame,
+    ).toBe(earlier.at(1400));
+    const kept = await findListeningBoundaryRefinement(earlier.source, {
+      ...cut,
+      anchors: [{ startFrame: earlier.at(1100), endFrame: earlier.at(5000) }],
+    });
+    expect(kept.start).toMatchObject({
+      action: "extended_to_complete_boundary_sound",
+      boundaryFrame: earlier.at(600),
+    });
+    expect(kept.status).toBe("candidate");
   });
 
   it("moves an end out of a following signal only with anchors and a real 400 ms quiet run before it", async () => {
@@ -286,6 +317,14 @@ describe("measured native PCM boundary quiet", () => {
     });
     expect(none.status).toBe("held");
     expect(none.end.reasons).toEqual(["no_measured_quiet_run_within_bound"]);
+    // The quiet run exists, but it lies 1.7 s inside the cut: past the bound, so nothing is left out.
+    const deep = await findListeningBoundaryRefinement(source, {
+      startFrame: at(600),
+      endFrame: at(5300),
+      anchors,
+    });
+    expect(deep.status).toBe("held");
+    expect(deep.end.reasons).toEqual(["no_measured_quiet_run_within_bound"]);
   });
 
   it("uses the louder channel so opposite stereo phase cannot pass as quiet", async () => {
@@ -328,7 +367,12 @@ describe("measured native PCM boundary quiet", () => {
       endFrame: single.at(4400),
     });
     expect(one.leading.edgeRmsDbfs).toBe(-30.31);
+    expect(one.leading.quietMs).toBe(0);
     expect(one.status).toBe("rejected");
+    expect(one.reasons).toEqual([
+      "leading_edge_above_threshold",
+      "leading_quiet_below_minimum",
+    ]);
   });
 
   it("leaves short ranges uncertain and refuses truncated or non-canonical sources", async () => {
@@ -534,6 +578,14 @@ describe("measured native PCM boundary quiet", () => {
     expect(intruding.status).toBe("held");
     expect(intruding.start.reasons).toEqual(["neighbor_or_source_limit"]);
     expect(intruding.end.reasons).toEqual(["neighbor_or_source_limit"]);
+    // A neighbor that already overlaps a passing range is a held range, not an unchanged one.
+    const overlapped = await findListeningBoundaryRefinement(source, {
+      startFrame: at(600),
+      endFrame: at(4400),
+      previous: { startFrame: 0, endFrame: at(700) },
+    });
+    expect(overlapped.status).toBe("held");
+    expect(overlapped.reasons).toEqual(["start_neighbor_or_source_limit"]);
     const free = await findListeningBoundaryRefinement(source, {
       ...range,
       previous: { startFrame: 0, endFrame: at(600) },
