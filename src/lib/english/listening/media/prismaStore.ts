@@ -49,7 +49,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
     private readonly prisma: PrismaClient,
     options: PrismaListeningMediaStoreOptions = {},
   ) {
-    this.maxOwnerBytes = options.maxOwnerBytes ?? 512 * 1024 * 1024;
+    this.maxOwnerBytes = options.maxOwnerBytes ?? 1024 * 1024 * 1024;
     this.maxOwnerAssets = options.maxOwnerAssets ?? 128;
     this.orphanTtlMs = options.orphanTtlMs ?? 60 * 60 * 1000;
     bound(this.maxOwnerBytes, 1, 2 ** 31 - 1);

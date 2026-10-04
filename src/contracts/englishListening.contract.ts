@@ -1,6 +1,10 @@
 /** Listening domain contract. Parse strictly; never downgrade an unknown schema. */
 import { z } from "zod";
 import { englishV2RightsSchema } from "./englishV2.contract";
+import {
+  listeningAssessmentSourceSchema,
+  listeningQuestionImageSchema,
+} from "./englishListeningSource.contract";
 
 export const ENGLISH_LISTENING_SCHEMA_VERSION = 1;
 const id = z.uuid();
@@ -28,6 +32,9 @@ export const listeningChoiceSchema = z.strictObject({ id, text: text(2000) });
 export const listeningQuestionSchema = z.strictObject({
   id,
   prompt: text(2000),
+  image: listeningQuestionImageSchema.optional(),
+  sourceNumber: z.number().int().min(1).max(100).optional(),
+  audioRange: listeningEvidenceSchema.optional(),
   choices: z.array(listeningChoiceSchema).min(2).max(5),
   answerChoiceId: id,
   explanation: text(10000),
@@ -75,8 +82,9 @@ export const englishListeningDocumentSchema = z
     title: text(200),
     level: text(80).nullable(),
     examId: id.nullable(),
+    source: listeningAssessmentSourceSchema.optional(),
     provenance: z.strictObject({
-      kind: z.literal("teacher_authored"),
+      kind: z.enum(["teacher_authored", "uploaded_assessment", "assembled"]),
       recordedBy: id,
       recordedAt: time,
       basis: text(1000),
@@ -126,6 +134,8 @@ export const englishListeningDocumentSchema = z
             message: "Answer is outside question choices",
           });
         if (
+          (question.audioRange &&
+            question.audioRange.endMs > group.audio.durationMs) ||
           question.evidence.some(
             (range) => range.endMs > group.audio.durationMs,
           )
