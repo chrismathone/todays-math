@@ -1,5 +1,6 @@
 /** Student-only wire contract. Deliberately imports no teacher contract or server library. */
 import { z } from "zod";
+import { listeningQuestionImageSchema } from "./englishListeningSource.contract";
 
 const id = z.uuid();
 const text = z.string().min(1);
@@ -7,6 +8,7 @@ const choice = z.strictObject({ id, text });
 const questionFields = {
   id,
   prompt: text,
+  image: listeningQuestionImageSchema.optional(),
   choices: z.array(choice).min(2).max(5),
 };
 const lockedQuestion = z.strictObject(questionFields);

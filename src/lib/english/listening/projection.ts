@@ -35,6 +35,15 @@ export function projectListeningStudentView(
     const questions = group.questions.map((question) => ({
       id: question.id,
       prompt: question.prompt,
+      ...(question.image
+        ? {
+            image: {
+              dataUrl: question.image.dataUrl,
+              width: question.image.width,
+              height: question.image.height,
+            },
+          }
+        : {}),
       choices: question.choices.map((choice) => ({
         id: choice.id,
         text: choice.text,

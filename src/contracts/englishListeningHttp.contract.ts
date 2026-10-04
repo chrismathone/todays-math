@@ -19,6 +19,9 @@ export const listeningRevisionInputSchema = z.strictObject({
 export const listeningDraftQuestionSchema = z.strictObject({
   id: z.uuid(),
   prompt: z.string().max(2000),
+  image: listeningGroupSchema.shape.questions.element.shape.image,
+  sourceNumber: listeningGroupSchema.shape.questions.element.shape.sourceNumber,
+  audioRange: listeningGroupSchema.shape.questions.element.shape.audioRange,
   choices: z
     .array(z.strictObject({ id: z.uuid(), text: z.string().max(2000) }))
     .max(5),
@@ -54,6 +57,7 @@ const editable = {
 };
 export const listeningCreateSetSchema = z.strictObject({
   ...editable,
+  source: englishListeningDocumentSchema.shape.source,
   level: editable.level.optional(),
   examId: editable.examId.optional(),
 });

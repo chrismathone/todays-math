@@ -1,10 +1,15 @@
 /** Node-only. Inline WASM ships with mpg123-decoder; no ffmpeg process or CDN fetch. */
 import { setImmediate } from "node:timers/promises";
 import type { ListeningMediaBlocker } from "../../../../contracts/englishListeningMedia.contract";
+import {
+  LISTENING_MAX_UPLOAD_BYTES,
+  LISTENING_MAX_DURATION_MS,
+  LISTENING_MAX_PLAYBACK_BYTES,
+} from "../../../../contracts/englishListeningSource.contract";
 
-export const MAX_PLAYBACK_BYTES = 112 * 1024 * 1024;
-export const MAX_ORIGINAL_BYTES = 16 * 1024 * 1024;
-export const MAX_DURATION_MS = 10 * 60 * 1000;
+export const MAX_PLAYBACK_BYTES = LISTENING_MAX_PLAYBACK_BYTES;
+export const MAX_ORIGINAL_BYTES = LISTENING_MAX_UPLOAD_BYTES;
+export const MAX_DURATION_MS = LISTENING_MAX_DURATION_MS;
 export class MediaFormatError extends Error {
   constructor(readonly blocker: ListeningMediaBlocker) {
     super(blocker);
