@@ -10,6 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import EnglishResourceBank, {
   type EnglishResourceBankProps,
 } from "@/components/english/bank/EnglishResourceBank";
+import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import {
   englishPassageDetailSchema,
   type EnglishBankMakerSeed,
@@ -917,6 +918,24 @@ describe("English resource bank", () => {
     const fetcher = installFetch((url) => {
       if (url.pathname.endsWith("/listening/bank")) return paged([own]);
       if (url.pathname.endsWith("/listening/references")) return paged(refs);
+      if (url.pathname.endsWith(`/sets/${secondId}/compose-source`))
+        return json({
+          data: {
+            documentHash: hash,
+            detail: {
+              id: secondId,
+              revision: 1,
+              document: {
+                ...englishListeningFixture(),
+                id: secondId,
+                title: own.title,
+                groups: [],
+              },
+              publications: [],
+              mediaUrlsByAssetId: {},
+            },
+          },
+        });
     });
     const onOpenListening = vi.fn();
     const initialProps = props({ onOpenListening });
@@ -933,7 +952,7 @@ describe("English resource bank", () => {
       "true",
     );
     fireEvent.click(await screen.findByRole("button", { name: /학교 대화/ }));
-    fireEvent.click(screen.getByRole("button", { name: "듣기 자료 열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "원본 편집" }));
     expect(onOpenListening).toHaveBeenCalledWith(secondId);
     change("듣기 출처", "ebs");
     change("듣기 학년", "중2");

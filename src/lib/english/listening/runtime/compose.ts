@@ -11,6 +11,7 @@ import {
 } from "@/contracts/englishListeningHttp.contract";
 import { listeningMediaCompletionSchema } from "@/contracts/englishListeningMedia.contract";
 import type { ListeningMediaRecord } from "../media/store";
+import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
 import { planListeningWaveClip } from "../media/clip";
 import { listeningValueHash } from "../publication";
 import {
@@ -480,8 +481,16 @@ export async function composeListeningSet(
       reviews: { content: null, audio: null, alignment: null },
     });
   }
+  const validated = listeningDraftSchema.parse(document);
+  if (
+    Buffer.byteLength(JSON.stringify(validated), "utf8") >
+    LISTENING_MAX_DOCUMENT_BYTES
+  )
+    throw invalid(
+      "시험지의 문항 그림이 너무 많습니다. 시험지를 나눠 만들어 주세요.",
+    );
   await tx.$executeRaw(
-    Prisma.sql`UPDATE english_listening_set SET document=${json(listeningDraftSchema.parse(document))} WHERE id=${id}::uuid`,
+    Prisma.sql`UPDATE english_listening_set SET document=${json(validated)} WHERE id=${id}::uuid`,
   );
   await audit(
     tx,
