@@ -2,6 +2,8 @@
 
 상태: 2026-10-03 Codex·Claude·Grok 3자 합의 후 구현·통합 검증 완료. [검토·합의 기록](tracks/reports/admin-branch-consensus-20261003.md), [통합·운영 반영 기록](tracks/reports/admin-branch-integration-20261003.md).
 
+2026-10-04 사용성 점검 후속: [37개 항목의 계획 보강·수정 실행](admin-usability-remediation-20261004.md). 기존 완료 범위와 후속 점검을 구분하여 추적한다.
+
 ## 사용자 확정 요구
 
 - 관리 콘솔의 계정 관리를 각 지점 안으로 이동한다.
