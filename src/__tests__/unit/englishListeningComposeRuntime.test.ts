@@ -2,6 +2,7 @@
 /** Real PostgreSQL and canonical PCM files; no shared database fallback. */
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { deflateSync } from "node:zlib";
+import { readFileSync } from "node:fs";
 import { Prisma, PrismaClient } from "@prisma/client";
 import {
   afterAll,
@@ -25,6 +26,13 @@ import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import type { ListeningComposeSource } from "@/contracts/englishListeningCompose.contract";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
 import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
+import {
+  decodeMp3,
+  parseMp3,
+  MAX_DURATION_MS,
+  MAX_PLAYBACK_BYTES,
+} from "@/lib/english/listening/media/mp3";
+import { planListeningWaveClip } from "@/lib/english/listening/media/clip";
 
 vi.mock("server-only", () => ({}));
 const url = process.env.LISTENING_TEST_DATABASE_URL;
@@ -43,6 +51,14 @@ const media = db
       store: store!,
       ...createListeningMediaAccess(db, () => now),
       now: () => now.getTime(),
+    })
+  : null;
+const archiveMedia = db
+  ? createListeningMediaService({
+      store: store!,
+      ...createListeningMediaAccess(db, () => now),
+      now: () => now.getTime(),
+      mp3PlaybackEncoding: "scrubbed_mp3",
     })
   : null;
 const ownerId = randomUUID(),
@@ -124,7 +140,7 @@ const edit = (set: ListeningSetDetail) => ({
     return copy;
   }),
 });
-async function source(marker = 0, timing = true) {
+async function source(marker = 0, timing = true, archive = false) {
   let set = await runtime!.createSet(owner, {
     title: "원본 듣기 " + marker,
     rights,
@@ -135,29 +151,51 @@ async function source(marker = 0, timing = true) {
     kind: "rights",
     basis: "테스트 원본 보관·교사 이용·배포 허용",
   });
-  const wav = wave(marker);
-  const begun = await media!.beginUpload(
+  let wav = wave(marker);
+  let original = wav;
+  if (archive) {
+    const tone = readFileSync(
+      new URL("../fixtures/english-listening/tone.mp3", import.meta.url),
+    );
+    const text = Buffer.from("SECRET_ANSWER_AND_SCRIPT");
+    original = Buffer.concat([
+      Buffer.from([73, 68, 51, 3, 0, 0, 0, 0, 0, text.length]),
+      text,
+      tone,
+    ]);
+    const parts: Buffer[] = [];
+    const decoded = await decodeMp3(
+      original,
+      { maxDurationMs: MAX_DURATION_MS, maxPlaybackBytes: MAX_PLAYBACK_BYTES },
+      async (part) => {
+        parts.push(part);
+      },
+    );
+    wav = Buffer.concat([decoded.header, ...parts]);
+  }
+  const uploadMedia = archive ? archiveMedia! : media!;
+  const begun = await uploadMedia.beginUpload(
     { actor: owner },
     {
       setId: set.id,
-      totalBytes: wav.length,
-      mimeType: "audio/wav",
-      expectedSha256: sha(wav),
+      totalBytes: original.length,
+      mimeType: archive ? "audio/mpeg" : "audio/wav",
+      expectedSha256: sha(original),
     },
   );
-  const appended = await media!.appendChunk(
+  const appended = await uploadMedia.appendChunk(
     { actor: owner },
     {
       setId: set.id,
       assetId: begun.assetId,
       expectedRevision: begun.revision,
       offset: 0,
-      byteLength: wav.length,
-      sha256: sha(wav),
+      byteLength: original.length,
+      sha256: sha(original),
     },
-    bytes(wav),
+    bytes(original),
   );
-  const ready = await media!.completeUpload(
+  const ready = await uploadMedia.completeUpload(
     { actor: owner },
     {
       setId: set.id,
@@ -172,9 +210,17 @@ async function source(marker = 0, timing = true) {
   const questions = group.questions.map((question, index) => ({
     ...question,
     ...(timing
-      ? { audioRange: { startMs: index * 8000, endMs: index ? 15000 : 8000 } }
+      ? {
+          audioRange: archive
+            ? { startMs: index * 500, endMs: (index + 1) * 500 }
+            : { startMs: index * 8000, endMs: index ? 15000 : 8000 },
+        }
       : {}),
-    evidence: [{ startMs: index ? 9000 : 3000, endMs: index ? 14000 : 7000 }],
+    evidence: [
+      archive
+        ? { startMs: index ? 600 : 100, endMs: index ? 900 : 300 }
+        : { startMs: index ? 9000 : 3000, endMs: index ? 14000 : 7000 },
+    ],
   }));
   set = await runtime!.updateSet(owner, set.id, {
     ...edit(set),
@@ -194,7 +240,7 @@ async function source(marker = 0, timing = true) {
       },
     ],
   });
-  return { source: await runtime!.composeSource(owner, set.id), wav };
+  return { source: await runtime!.composeSource(owner, set.id), wav, original };
 }
 const selection = (
   source: ListeningComposeSource,
@@ -246,6 +292,93 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
   afterAll(async () => {
     await db?.user.deleteMany({ where: { id: { in: [ownerId, otherId] } } });
     await db?.$disconnect();
+  });
+  it("clones compressed archives once per unique original blob, preserving MPEG identity and scope", async () => {
+    const original = await source(8, true, true);
+    const originalAudio = original.source.detail.document.groups[0].audio!;
+    const before = (await store!.get(originalAudio.assetId))!;
+    expect(before.playback!.mimeType).toBe("audio/mpeg");
+    const composed = await runtime!.composeSet(owner, {
+      title: "보관 MP3 전체 회차",
+      selections: [selection(original.source)],
+    });
+    const audio = composed.document.groups[0].audio!;
+    const copied = (await store!.get(audio.assetId))!;
+    expect(copied.playback!.mimeType).toBe("audio/mpeg");
+    expect(copied.playback!.sha256).toBe(before.playback!.sha256);
+    const blobs = await db!.$queryRaw<{ count: bigint; bytes: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*)::bigint AS count,SUM("byteLength")::bigint AS bytes FROM english_listening_media_blob WHERE "assetId"=${audio.assetId}::uuid`,
+    );
+    expect(Number(blobs[0].count)).toBe(before.chunks.length);
+    expect(Number(blobs[0].bytes)).toBe(original.original.length);
+    expect(
+      copied.chunks.every((chunk) =>
+        before.chunks.every((old) => old.key !== chunk.key),
+      ),
+    ).toBe(true);
+    const reviewed = await runtime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "직접 만든 보관 음원의 교사 이용",
+    });
+    const response = await media!.serve(
+      { actor: owner },
+      { setId: reviewed.id, assetId: audio.assetId, method: "GET" },
+    );
+    expect(response.headers.get("content-type")).toBe("audio/mpeg");
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(
+      Buffer.concat(parseMp3(original.original, MAX_DURATION_MS).frames),
+    );
+    expect(await store!.get(originalAudio.assetId)).toEqual(before);
+  });
+  it("decodes an archive on demand and clips reordered questions to sample-exact canonical PCM", async () => {
+    const original = await source(9, true, true);
+    const questions = [
+      ...original.source.detail.document.groups[0].questions,
+    ].reverse();
+    const expected = planListeningWaveClip(
+      original.wav.subarray(0, 44),
+      original.wav.length,
+      questions,
+    );
+    let composed = await runtime!.composeSet(owner, {
+      title: "보관 MP3 문항 순서 편집",
+      selections: [
+        selection(
+          original.source,
+          questions.map((question) => question.id),
+        ),
+      ],
+    });
+    composed = await runtime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "직접 만든 보관 음원의 편집·교사 이용",
+    });
+    const group = composed.document.groups[0];
+    const response = await media!.serve(
+      { actor: owner },
+      { setId: composed.id, assetId: group.audio!.assetId, method: "GET" },
+    );
+    expect(response.headers.get("content-type")).toBe("audio/wav");
+    expect(Buffer.from(await response.arrayBuffer())).toEqual(
+      Buffer.concat([
+        expected.header,
+        ...expected.ranges.map((range) =>
+          original.wav.subarray(range.start, range.endExclusive),
+        ),
+      ]),
+    );
+    expect(group.reviews).toEqual({
+      content: null,
+      audio: null,
+      alignment: null,
+    });
+    expect(group.questions.map((question) => question.audioRange)).toEqual(
+      questions.map((question) =>
+        expected.audioRangeByQuestionId.get(question.id),
+      ),
+    );
   });
   it("copies a full round with fresh IDs and set-owned sealed bytes while originals stay unchanged", async () => {
     const original = await source();

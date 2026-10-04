@@ -3,7 +3,10 @@ import { randomUUID } from "node:crypto";
 import type { Prisma, PrismaClient } from "@prisma/client";
 import { ListeningMediaError } from "./errors";
 import { MAX_ORIGINAL_BYTES, MAX_PLAYBACK_BYTES } from "./mp3";
-import { LISTENING_MAX_OWNER_BYTES } from "@/contracts/englishListeningSource.contract";
+import {
+  LISTENING_MAX_OWNER_BYTES,
+  LISTENING_MAX_OWNER_ASSETS,
+} from "@/contracts/englishListeningSource.contract";
 import type {
   ListeningMediaRead,
   ListeningMediaRecord,
@@ -51,7 +54,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
     options: PrismaListeningMediaStoreOptions = {},
   ) {
     this.maxOwnerBytes = options.maxOwnerBytes ?? LISTENING_MAX_OWNER_BYTES;
-    this.maxOwnerAssets = options.maxOwnerAssets ?? 128;
+    this.maxOwnerAssets = options.maxOwnerAssets ?? LISTENING_MAX_OWNER_ASSETS;
     this.orphanTtlMs = options.orphanTtlMs ?? 60 * 60 * 1000;
     bound(this.maxOwnerBytes, 1, 2 ** 31 - 1);
     bound(this.maxOwnerAssets, 1, 10000);
@@ -89,7 +92,10 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
     const reserve =
       record.totalBytes +
       MAX_BLOB_BYTES +
-      (record.mimeType === "audio/mpeg" ? MAX_PLAYBACK_BYTES : 0);
+      (record.mimeType === "audio/mpeg" &&
+      record.mp3PlaybackEncoding !== "scrubbed_mp3"
+        ? MAX_PLAYBACK_BYTES
+        : 0);
     return this.transaction(async (tx) => {
       await this.lockOwner(tx, record.ownerId);
       const quota = await tx.$queryRaw<
@@ -136,6 +142,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
           "mimeType",
           "chunkBytes",
           "uploadExpiresAt",
+          "mp3PlaybackEncoding",
         ].some(
           (key) =>
             previous[key as keyof ListeningMediaRecord] !==
@@ -156,6 +163,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
         (!next.playback ||
           next.completion?.state !== "ready" ||
           next.completion.sha256 !== next.playback.sha256 ||
+          next.completion.mimeType !== next.playback.mimeType ||
           next.receivedBytes !== next.totalBytes)
       )
         throw new ListeningMediaError("storage_integrity");
@@ -170,11 +178,20 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
         >`SELECT key, "byteLength" FROM english_listening_media_blob WHERE "assetId" = ${assetId}::uuid AND key = ANY(${keys}::uuid[]) FOR UPDATE`;
         if (
           blobs.length !== keys.length ||
-          refs.some(
-            (ref) =>
-              blobs.find((blob) => blob.key === ref.key)?.byteLength !==
-              ref.byteLength,
-          )
+          refs.some((ref) => {
+            const blob = blobs.find((value) => value.key === ref.key);
+            const offset = ref.blobOffset ?? 0;
+            return (
+              !blob ||
+              !Number.isSafeInteger(offset) ||
+              offset < 0 ||
+              !Number.isSafeInteger(ref.byteLength) ||
+              ref.byteLength <= 0 ||
+              offset + ref.byteLength > blob.byteLength ||
+              (ref.blobOffset === undefined &&
+                ref.byteLength !== blob.byteLength)
+            );
+          })
         )
           throw new ListeningMediaError("storage_integrity");
         await tx.$executeRaw`UPDATE english_listening_media_blob SET committed = true WHERE "assetId" = ${assetId}::uuid AND key = ANY(${keys}::uuid[])`;

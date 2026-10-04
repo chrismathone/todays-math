@@ -76,7 +76,7 @@ export const listeningMediaCompletionSchema = z.discriminatedUnion("state", [
     ...completionFields,
     state: z.literal("ready"),
     publishable: z.literal(true),
-    mimeType: z.literal("audio/wav"),
+    mimeType: listeningMediaMimeSchema,
     sha256: listeningMediaSha256Schema,
     durationMs: safeInteger.min(1),
     originalSha256: listeningMediaSha256Schema.optional(),
