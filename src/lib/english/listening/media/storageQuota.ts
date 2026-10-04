@@ -4,8 +4,9 @@ import type { Prisma } from "@prisma/client";
 import type { ListeningStorageRef } from "./storageApi";
 import { ListeningMediaError } from "./errors";
 type Sql = Pick<Prisma.TransactionClient, "$queryRaw" | "$executeRaw">;
-export const LISTENING_STORAGE_OWNER_BYTES = 8 * 1024 ** 3;
-export const LISTENING_STORAGE_OWNER_ASSETS = 512;
+/** Pro private Storage: original archives plus sample-accurate PCM derivatives; PG limits stay separate. */
+export const LISTENING_STORAGE_OWNER_BYTES = 80 * 1024 ** 3;
+export const LISTENING_STORAGE_OWNER_ASSETS = 8192;
 export async function assertListeningStorageQuota(
   tx: Sql,
   ownerId: string,
