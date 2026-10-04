@@ -20,6 +20,12 @@ import s from "../EnglishStudio.module.css";
 import b from "./EnglishResourceBank.module.css";
 import c from "./ListeningBankMaterial.module.css";
 import { BankError, BankLoading } from "./BankFeedback";
+import {
+  hasFullListeningQuestionImage,
+  hasListeningChoiceText,
+  listeningChoiceBody,
+  listeningChoiceMarks,
+} from "@/lib/english/listening/questionPresentation";
 
 type Group = ListeningDraft["groups"][number];
 type Question = Group["questions"][number];
@@ -97,6 +103,8 @@ function MaterialGroup({
       <ol className={c.questions}>
         {group.questions.map((raw, questionIndex) => {
           const question = raw as Question;
+          const number = question.sourceNumber ?? questionIndex + 1;
+          const fullImage = hasFullListeningQuestionImage(question.image);
           return (
             <li key={question.id}>
               <label className={c.questionLabel}>
@@ -105,11 +113,13 @@ function MaterialGroup({
                   checked={checked.has(question.id)}
                   onChange={() => onToggle(question.id)}
                   disabled={!group.audio}
+                  aria-label={fullImage ? `${number}번 문항 담기` : undefined}
                 />
                 <span>
                   <strong>
-                    {question.sourceNumber ?? questionIndex + 1}.{" "}
-                    {question.prompt || "문항 이미지"}
+                    {fullImage
+                      ? `${number}번 문항 담기`
+                      : `${number}. ${question.prompt || "문항 이미지"}`}
                   </strong>
                 </span>
               </label>
@@ -130,6 +140,10 @@ function MaterialGroup({
                     : ""}
                 </p>
               )}
+              {question.instruction &&
+              (fullImage || !question.prompt.includes(question.instruction)) ? (
+                <p>{question.instruction}</p>
+              ) : null}
               {question.image ? (
                 <Image
                   className={c.questionImage}
@@ -137,14 +151,19 @@ function MaterialGroup({
                   src={question.image.dataUrl}
                   width={question.image.width}
                   height={question.image.height}
-                  alt={`${question.sourceNumber ?? questionIndex + 1}번 원본 문항`}
+                  alt={fullImage ? question.prompt : `${number}번 시각 자료`}
                 />
               ) : null}
-              {question.choices.length && !question.image ? (
+              {!fullImage &&
+              (!question.image ||
+                hasListeningChoiceText(
+                  question.choices.map((choice) => choice.text),
+                )) ? (
                 <ol className={c.choices}>
                   {question.choices.map((choice, choiceIndex) => (
                     <li key={choice.id}>
-                      {["①", "②", "③", "④", "⑤"][choiceIndex]} {choice.text}
+                      {listeningChoiceMarks[choiceIndex]}{" "}
+                      {listeningChoiceBody(choice.text, choiceIndex)}
                     </li>
                   ))}
                 </ol>

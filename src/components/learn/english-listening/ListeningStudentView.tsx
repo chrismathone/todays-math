@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import type { EnglishListeningStudentView } from "@/contracts/englishListeningStudent.contract";
 import styles from "./ListeningStudentView.module.css";
+import {
+  hasFullListeningQuestionImage,
+  listeningChoiceBody,
+} from "@/lib/english/listening/questionPresentation";
 
 /** Adapter snapshots are server facts. Time is displayed, never enforced here. */
 export interface ListeningStudentAttemptSnapshot {
@@ -161,6 +165,7 @@ function StudentAttempt({
     group.questions.map((question) => ({ group, question })),
   );
   const item = questions[Math.min(questionIndex, questions.length - 1)];
+  const fullImage = hasFullListeningQuestionImage(item?.question.image);
   const savedCount = questions.filter(({ question }) =>
     current.answers.some((answer) => answer.questionId === question.id),
   ).length;
@@ -418,18 +423,27 @@ function StudentAttempt({
                 <span className={styles.questionNumber}>
                   {questionIndex + 1}.
                 </span>{" "}
-                <span>{item.question.prompt}</span>
+                <span>{fullImage ? "원본 문항" : item.question.prompt}</span>
                 {item.question.origin === "audio_reconstructed" && (
                   <span>원본 문제지 없음 · 음원 기반 재구성</span>
                 )}
               </legend>
+              {item.question.instruction &&
+              (fullImage ||
+                !item.question.prompt.includes(item.question.instruction)) ? (
+                <p>{item.question.instruction}</p>
+              ) : null}
               {item.question.image && (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={item.question.image.dataUrl}
                   width={item.question.image.width}
                   height={item.question.image.height}
-                  alt={item.question.prompt}
+                  alt={
+                    fullImage
+                      ? item.question.prompt
+                      : `${questionIndex + 1}번 시각 자료`
+                  }
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
               )}
@@ -440,6 +454,11 @@ function StudentAttempt({
                       type="radio"
                       name={`listening-${current.id}-${item.question.id}`}
                       value={choice.id}
+                      aria-label={
+                        fullImage || !listeningChoiceBody(choice.text, index)
+                          ? `${index + 1}번 보기${listeningChoiceBody(choice.text, index) ? `: ${listeningChoiceBody(choice.text, index)}` : ""}`
+                          : undefined
+                      }
                       checked={selected === choice.id}
                       onChange={() =>
                         setDrafts((previous) => ({
@@ -449,7 +468,9 @@ function StudentAttempt({
                       }
                     />
                     <span className={styles.choiceNumber}>{index + 1}</span>
-                    <span>{choice.text}</span>
+                    {!fullImage && listeningChoiceBody(choice.text, index) ? (
+                      <span>{listeningChoiceBody(choice.text, index)}</span>
+                    ) : null}
                   </label>
                 ))}
               </div>
@@ -585,7 +606,10 @@ function StudentAttempt({
                       }
                     />
                     <span>
-                      {index + 1} {choice.text}
+                      {index + 1}{" "}
+                      {!fullImage
+                        ? listeningChoiceBody(choice.text, index)
+                        : "번 보기"}
                     </span>
                   </label>
                 ))}

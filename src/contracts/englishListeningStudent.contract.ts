@@ -9,6 +9,10 @@ const choice = z.strictObject({ id, text });
 const questionFields = {
   id,
   prompt: text,
+  instruction: text
+    .max(2000)
+    .refine((value) => value.trim().length > 0)
+    .optional(),
   origin: listeningQuestionOriginSchema.optional(),
   image: listeningQuestionImageSchema.optional(),
   choices: z.array(choice).min(2).max(5),

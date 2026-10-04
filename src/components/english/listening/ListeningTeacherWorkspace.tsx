@@ -10,6 +10,11 @@ import {
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import { ListeningTeacherAudio } from "./ListeningTeacherAudio";
 import styles from "./ListeningTeacherWorkspace.module.css";
+import {
+  hasFullListeningQuestionImage,
+  hasListeningChoiceText,
+  listeningChoiceBody,
+} from "@/lib/english/listening/questionPresentation";
 
 export type ListeningTeacherMaterial = Pick<
   EnglishListeningDocument,
@@ -346,16 +351,47 @@ export function TeacherWorkbench({
             const answerIndex = question.choices.findIndex(
               (choice) => choice.id === question.answerChoiceId,
             );
+            const fullImage = hasFullListeningQuestionImage(question.image);
             return (
               <li key={question.id} className={styles.question}>
                 <h3>
-                  {questionOffset + index + 1}. {question.prompt}
+                  {questionOffset + index + 1}.{" "}
+                  {fullImage
+                    ? `원본 ${question.sourceNumber ?? questionOffset + index + 1}번`
+                    : question.prompt}
                 </h3>
-                <ol className={styles.choices}>
-                  {question.choices.map((choice) => (
-                    <li key={choice.id}>{choice.text}</li>
-                  ))}
-                </ol>
+                {question.instruction &&
+                (fullImage ||
+                  !question.prompt.includes(question.instruction)) ? (
+                  <p>{question.instruction}</p>
+                ) : null}
+                {question.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={question.image.dataUrl}
+                    width={question.image.width}
+                    height={question.image.height}
+                    alt={
+                      fullImage
+                        ? question.prompt
+                        : `${questionOffset + index + 1}번 시각 자료`
+                    }
+                    style={{ maxWidth: "100%", height: "auto" }}
+                  />
+                ) : null}
+                {!fullImage &&
+                (!question.image ||
+                  hasListeningChoiceText(
+                    question.choices.map((choice) => choice.text),
+                  )) ? (
+                  <ol className={styles.choices}>
+                    {question.choices.map((choice, choiceIndex) => (
+                      <li key={choice.id}>
+                        {listeningChoiceBody(choice.text, choiceIndex)}
+                      </li>
+                    ))}
+                  </ol>
+                ) : null}
                 {review ? (
                   <div className={styles.answer}>
                     <strong>

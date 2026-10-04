@@ -293,14 +293,33 @@ export function ListeningDraftEditor({
                   />
                 </label>
                 {question.image && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={question.image.dataUrl}
-                    width={question.image.width}
-                    height={question.image.height}
-                    alt={`${prefix} 원본 문제지`}
-                    style={{ maxWidth: "100%", height: "auto" }}
-                  />
+                  <>
+                    <label>
+                      {prefix} 그림 용도
+                      <select
+                        value={question.image.role ?? "question"}
+                        onChange={(event) =>
+                          update({
+                            image: {
+                              ...question.image!,
+                              role: event.target.value as "question" | "visual",
+                            },
+                          })
+                        }
+                      >
+                        <option value="question">문항 전체</option>
+                        <option value="visual">그림·표만</option>
+                      </select>
+                    </label>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={question.image.dataUrl}
+                      width={question.image.width}
+                      height={question.image.height}
+                      alt={`${prefix} ${question.image.role === "visual" ? "시각 자료" : "원본 문제지"}`}
+                      style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                  </>
                 )}
                 <div className={s.formGrid}>
                   <label>
