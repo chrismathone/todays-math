@@ -297,6 +297,11 @@ export function buildSectionPreview(input: {
     source.outline.find((unit) =>
       unit.sections.some((row) => row.id === section.sectionId),
     );
+  const firstSectionId = source.outline.flatMap((unit) => unit.sections)[0]?.id;
+  const omitCover =
+    source.config.print.coverMode === "included" &&
+    firstSectionId !== undefined &&
+    firstSectionId !== section.sectionId;
   const exchange = {
     schemaVersion: textbookVersion,
     exportedAt: EXPORTED_AT,
@@ -346,6 +351,23 @@ export function buildSectionPreview(input: {
   let model: TextbookRenderModel;
   try {
     model = createTextbookRenderModel(parsed.data, input.variant);
+    // Adjust only the render model: later sections must not prepend the book's
+    // cover. The saved configuration and validated exchange remain intact, and
+    // the body starts exactly where it would after the included cover.
+    if (omitCover) {
+      model = {
+        ...model,
+        config: {
+          ...model.config,
+          print: {
+            ...model.config.print,
+            coverMode: "separate",
+            firstPhysicalPageIndex:
+              model.config.print.firstPhysicalPageIndex + 1,
+          },
+        },
+      };
+    }
   } catch (reason) {
     const message =
       reason instanceof Error && reason.message

@@ -6,7 +6,13 @@ import type {
   TextbookItem,
 } from "@/contracts/textbookExchange.contract";
 import type { TextbookConceptBody } from "@/contracts/textbookConcept.contract";
-import { recallPieces, type RecallPiece } from "./markdown";
+import {
+  recallPieces,
+  splitRecallMarkdown,
+  splitTextbookMarkdown,
+  type RecallPiece,
+} from "./markdown";
+import { splitConceptBody } from "./conceptParts";
 
 export {
   TEXTBOOK_RENDERER_VERSION,
@@ -44,6 +50,7 @@ export type RenderBlock = BlockBase &
         conceptKey: string;
         title: string;
         body: TextbookConceptBody;
+        continuation?: boolean;
         qr: RenderQr | null;
       }
     | {
@@ -118,7 +125,18 @@ export function createTextbookRenderModel(
         sectionKey: s.sectionKey,
         unitTitle: u.title,
         title: s.title,
-        templateKey: s.templateKey,
+        // Earlier quick-create drafts used "basic" for every lesson. Their frozen
+        // concept provenance identifies them without rewriting the saved manuscript.
+        templateKey:
+          s.templateKey === "basic" &&
+          s.blocks.some(
+            (b) =>
+              b.kind === "concept" &&
+              concepts.get(b.conceptKey)?.mappingVersion ===
+                "quick-create.unit-triple.v1",
+          )
+            ? "auto-lesson"
+            : s.templateKey,
         startPolicy: s.startPolicy,
         blocks: [
           ...(s.templateKey === "unit-intro"
@@ -151,8 +169,15 @@ export function createTextbookRenderModel(
               sectionKey: s.sectionKey,
             };
             switch (b.kind) {
-              case "text":
-                return [{ ...base, kind: "text", markdown: b.markdown }];
+              case "text": {
+                const parts = splitTextbookMarkdown(b.markdown);
+                return parts.map((markdown, i) => ({
+                  ...base,
+                  id: parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
+                  kind: "text",
+                  markdown,
+                }));
+              }
               case "image":
                 return [
                   {
@@ -169,34 +194,42 @@ export function createTextbookRenderModel(
                   id: `${b.blockId}.turn-${i}`,
                   kind: "dialogue",
                 }));
-              case "concept-recall":
-                return [
-                  {
-                    ...base,
-                    kind: "recall",
-                    phase: b.phase,
-                    pieces: recallPieces(
-                      b.markdown,
-                      variant === "answers" ? "study" : b.phase,
-                    ),
-                    repetitionChecks:
-                      b.phase === "study" && b.showRepetitionChecks,
-                  },
-                ];
+              case "concept-recall": {
+                const phase = variant === "answers" ? "study" : b.phase;
+                // Validate the complete source before projecting any individual paragraphs.
+                recallPieces(b.markdown, phase);
+                const parts = splitRecallMarkdown(b.markdown);
+                return parts.map((markdown, i) => ({
+                  ...base,
+                  id: parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
+                  kind: "recall",
+                  phase: b.phase,
+                  pieces: recallPieces(
+                    markdown,
+                    /\[\[|\{\{/.test(markdown) ? phase : "study",
+                  ),
+                  repetitionChecks:
+                    b.phase === "study" && b.showRepetitionChecks,
+                }));
+              }
               case "concept": {
                 const c = concepts.get(b.conceptKey);
                 if (!c) throw new Error(`Missing concept ${b.conceptKey}`);
                 const qr = conceptQrs.get(c.conceptKey);
-                return [
-                  {
-                    ...base,
-                    kind: "concept",
-                    conceptKey: c.conceptKey,
-                    title: c.title,
-                    body: c.body,
-                    qr: qr ? { id: qr.qrTargetId, url: qr.url } : null,
-                  },
-                ];
+                const parts = splitConceptBody(c.body);
+                return parts.map((body, i) => ({
+                  ...base,
+                  id: parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
+                  kind: "concept",
+                  conceptKey: c.conceptKey,
+                  title: c.title,
+                  body,
+                  continuation: i > 0,
+                  qr:
+                    qr && i === parts.length - 1
+                      ? { id: qr.qrTargetId, url: qr.url }
+                      : null,
+                }));
               }
               case "problem": {
                 const item = items.get(b.itemId);

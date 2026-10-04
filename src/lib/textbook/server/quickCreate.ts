@@ -340,7 +340,8 @@ export async function createQuickTextbook(
           components.concepts ||
           components.termRecall ||
           components.clozeRecall ||
-          components.sentenceRecall;
+          components.sentenceRecall ||
+          components.errorCheck;
         const stageOptions: Array<{
           enabled: boolean;
           stage: TextbookItem["learningStage"];
@@ -578,7 +579,7 @@ export async function createQuickTextbook(
             !stages.length
           )
             continue;
-          const section = addSection(unit.section, "basic", []);
+          const section = addSection(unit.section, "auto-lesson", []);
           const entries = conceptIndex.get(keyOf(unit)) ?? [];
           if (components.preparation) {
             if (!entries.length)
@@ -607,6 +608,7 @@ export async function createQuickTextbook(
                 blockId: randomUUID(),
                 kind: "concept-recall",
                 phase: "sentences",
+                conceptKey: `concept-${unit.id}`,
                 showRepetitionChecks: false,
                 markdown: checks
                   .slice(0, 3)
