@@ -1,4 +1,5 @@
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -9,6 +10,24 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import StudentReplayDialog from "@/components/math-srs/StudentReplayDialog";
 import type { MathSrsReplay } from "@/contracts/mathSrsReplay.contract";
 
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math/ProblemContent", () => ({
@@ -17,7 +36,10 @@ vi.mock("@/components/math/ProblemContent", () => ({
 vi.mock("@/components/math/MathText", () => ({
   MathText: ({ text }: { text: string }) => <span>{text}</span>,
 }));
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  vi.clearAllMocks();
+});
 
 const problem: MathSrsReplay = {
   kind: "elementary",
@@ -39,6 +61,60 @@ const response = (data: MathSrsReplay) =>
   });
 
 describe("completed tile replay", () => {
+  it("does not create feedback from a response after the request deadline", async () => {
+    let resolveLate: (value: Response) => void = () => {};
+    vi.stubGlobal(
+      "fetch",
+      vi
+        .fn()
+        .mockResolvedValueOnce(response(problem))
+        .mockImplementationOnce(
+          () =>
+            new Promise<Response>((resolve) => {
+              resolveLate = resolve;
+            }),
+        ),
+    );
+    const { container } = render(
+      <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
+    );
+    const choices = await screen.findByRole("group", {
+      name: "복습 답 고르기",
+    });
+    vi.useFakeTimers();
+    try {
+      fireEvent.click(within(choices).getAllByRole("button")[0]);
+      act(() => vi.advanceTimersByTime(15_000));
+      await act(async () => {
+        resolveLate(response({ ...problem, correct: true }));
+      });
+      expect(
+        container.querySelector("[data-answer-feedback]"),
+      ).not.toBeInTheDocument();
+      expect(screen.getByRole("alert")).toHaveTextContent(
+        "응답이 늦어지고 있어요",
+      );
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+  it("does not create an answer effect from a loaded grade", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(response({ ...problem, correct: true })),
+    );
+    const { container } = render(
+      <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
+    );
+    await screen.findByRole("group", { name: "복습 답 고르기" });
+    expect(sounds.play).not.toHaveBeenCalled();
+    expect(
+      container.querySelector("[data-answer-feedback]"),
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector('[data-question-transition="true"]'),
+    ).not.toBeInTheDocument();
+  });
   it("keeps the completed day identity while progressing through its review questions", async () => {
     const dayId = "elementary:2026-09-21";
     const fetcher = vi
@@ -74,6 +150,11 @@ describe("completed tile replay", () => {
     expect(fetcher.mock.calls[0][0]).toContain(
       `dayId=${encodeURIComponent(dayId)}`,
     );
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `replay:elementary:${dayId}:1:${problem.problemId}:1`,
+    );
+    expect(sounds.gesture).toHaveBeenCalledOnce();
     expect(JSON.parse(fetcher.mock.calls[1][1].body)).toMatchObject({
       dayId,
       step: 1,
@@ -112,6 +193,9 @@ describe("completed tile replay", () => {
     const options = await screen.findByRole("group", {
       name: "복습 답 고르기",
     });
+    expect(
+      document.querySelector('[data-question-transition="true"]'),
+    ).not.toBeInTheDocument();
     expect(within(options).getAllByRole("button")).toHaveLength(4);
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     expect(
@@ -121,9 +205,7 @@ describe("completed tile replay", () => {
       screen.queryByRole("button", { name: "풀이 보기" }),
     ).not.toBeInTheDocument();
     fireEvent.click(within(options).getAllByRole("button")[1]);
-    expect(
-      await screen.findByText("다시 풀 문제로 모았어요"),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("다시 생각해 보세요")).toBeInTheDocument();
     expect(screen.getByText(problem.content)).toBeVisible();
     expect(screen.queryByText("$2$")).not.toBeInTheDocument();
     expect(
@@ -143,6 +225,8 @@ describe("completed tile replay", () => {
     );
     fireEvent.click(within(options).getAllByRole("button")[0]);
     expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
+    const savedResult = document.querySelector("[data-answer-feedback]");
+    expect(savedResult?.closest('[class*="answers"]')).toBeInTheDocument();
     expect(
       screen.queryByRole("dialog", { name: "복습 풀이" }),
     ).not.toBeInTheDocument();
@@ -151,6 +235,7 @@ describe("completed tile replay", () => {
       await screen.findByRole("dialog", { name: "복습 풀이" }),
     ).toBeVisible();
     expect(screen.getByText("$2$")).toBeInTheDocument();
+    expect(document.querySelector("[data-answer-feedback]")).toBe(savedResult);
     fireEvent.click(screen.getByRole("button", { name: "풀이 닫기" }));
     expect(screen.getByText(problem.content)).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "진도판으로" }));

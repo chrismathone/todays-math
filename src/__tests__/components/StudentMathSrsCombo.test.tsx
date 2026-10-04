@@ -14,6 +14,24 @@ import { effectAppears } from "../helpers/answerFeedback";
  * 복습 화면의 콤보(05 §8.15) — 서버가 돌려준 미션 기록으로 세어, 첫 풀이 정답 연출에서만 말한다.
  * 규칙 자체는 `mathSrsCombo.test.ts`, 부품 모양은 `AnswerFeedbackEffectCombo.test.tsx`.
  */
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math-srs/mathSrsApi", () => ({
@@ -136,9 +154,49 @@ async function answerNext(
 }
 
 describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
+  it("distinguishes explicit give-up from a wrong selection without changing the server rating", async () => {
+    const user = userEvent.setup();
+    const before = mission(["fast", "fast", "fast"]);
+    vi.mocked(api.fetchMathSrs).mockResolvedValue({
+      ok: true,
+      data: state(before),
+    });
+    const saved = mission(["fast", "fast", "fast", "wrong"]);
+    saved.attempts[3].submittedAnswer = "";
+    saved.attempts[3].rating = "again";
+    vi.mocked(api.submitMathSrsAttempt).mockResolvedValue({
+      ok: true,
+      data: state(saved),
+    });
+    const { container } = render(
+      <StudentMathSrs expedition={{ onExit: vi.fn(), onComplete: vi.fn() }} />,
+    );
+    await screen.findByRole("group", { name: "답 고르기" });
+    expect(
+      container.querySelector('[data-question-transition="true"]'),
+    ).not.toBeInTheDocument();
+    const effect = effectAppears();
+    await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    const status = await effect;
+    expect(status).toHaveTextContent(/^모르는 부분을 확인했어요$/);
+    expect(status).not.toHaveAttribute("data-streak");
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "soft",
+      `${state(before).student.id}:${missionId}:${pid(3)}`,
+    );
+    expect(status.closest('[class*="answerDockHeading"]')).toBeInTheDocument();
+    expect(api.submitMathSrsAttempt).toHaveBeenCalledWith(
+      expect.objectContaining({ submittedAnswer: "", rating: "again" }),
+    );
+  });
   it("셋째 빠른 정답에서 «3문제 연속 정답»", async () => {
     const status = await answerNext(["fast", "fast"], "fast");
     expect(status).toHaveTextContent(/^3문제 연속 정답$/);
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `${state(mission([])).student.id}:${missionId}:${pid(2)}`,
+    );
+    expect(sounds.gesture).toHaveBeenCalled();
     // 화면 읽기 — 정답 연출이 role=status 로 이 한 문장을 읽는다
     expect(status).toHaveAttribute("role", "status");
   });
@@ -155,7 +213,7 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
 
   it("틀리면 지금 오답 연출 — 끊겼다는 말 없음", async () => {
     const status = await answerNext(["fast", "fast", "fast"], "wrong");
-    expect(status).toHaveTextContent(/^다시 풀 문제로 모았어요$/);
+    expect(status).toHaveTextContent(/^다시 생각해 볼 문제예요$/);
   });
 
   it("탐험 안 복습도 같은 셈 · 같은 모양", async () => {
@@ -205,7 +263,11 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
       )[0],
     );
     const status = await effect;
-    expect(status).toHaveTextContent(/^정확하게 풀었어요$/);
+    expect(status).toHaveTextContent(/^이번에는 해결했어요$/);
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `${state(finished).student.id}:${missionId}:${pid(11)}:0`,
+    );
     expect(status).not.toHaveAttribute("data-streak");
     await act(async () => {});
   });

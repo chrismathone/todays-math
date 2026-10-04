@@ -43,9 +43,10 @@ export function createListeningMediaAccess(
         if (scope.setId !== target.setId) throw denied();
         return { ownerId: scope.ownerId, branchId: scope.branchId };
       }
-      const account = await teacher(tx, context.actor);
+      const account = await teacher(tx, context.actor, "materials");
       const set =
-        target.action === "playback"
+        target.action === "playback" &&
+        account.menus.includes("english-listening")
           ? await readablePublishedSet(
               tx,
               account,
@@ -82,11 +83,10 @@ export function createListeningMediaAccess(
     resolveScope: async (context: ListeningMediaActor, setId: string) =>
       database.$transaction(async (tx) => {
         if (context.actor.kind === "teacher") {
-          const set = await readablePublishedSet(
-            tx,
-            await teacher(tx, context.actor),
-            setId,
-          );
+          const account = await teacher(tx, context.actor, "materials");
+          const set = account.menus.includes("english-listening")
+            ? await readablePublishedSet(tx, account, setId)
+            : await ownedSet(tx, account, setId);
           return { ownerId: set.owner_id, branchId: set.branch_id };
         }
         // authorize() has already bound an exact asset; this second lookup is only the set scope.

@@ -1,6 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import {
+  LISTENING_QUESTION_ORIGIN_LABELS,
+  LISTENING_QUESTION_TYPE_LABELS,
+} from "@/contracts/englishListeningMetadata.contract";
 import { useEffect, useRef, useState } from "react";
 import type {
   ListeningComposeSelection,
@@ -109,6 +113,23 @@ function MaterialGroup({
                   </strong>
                 </span>
               </label>
+              {question.metadata && (
+                <p className={b.meta}>
+                  {LISTENING_QUESTION_ORIGIN_LABELS[question.metadata.origin]} ·{" "}
+                  {
+                    LISTENING_QUESTION_TYPE_LABELS[
+                      question.metadata.questionType
+                    ]
+                  }
+                  {question.metadata.topics.length
+                    ? ` · ${question.metadata.topics.join(" · ")}`
+                    : ""}
+                  {question.metadata.reconstruction?.verification ===
+                  "needs_review"
+                    ? " · 교사 검토 필요"
+                    : ""}
+                </p>
+              )}
               {question.image ? (
                 <Image
                   className={c.questionImage}
@@ -148,7 +169,7 @@ function MaterialGroup({
                 </button>
               ) : (
                 <span className={b.meta}>
-                  개별 음원 구간 미지정 · 전체 회차 담기 가능
+                  개별 음원 구간 미지정 · 회차 전체 음원 제공
                 </span>
               )}
             </li>
@@ -180,6 +201,7 @@ export default function ListeningBankMaterial({
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [basket, setBasket] = useState<BasketEntry[]>([]);
   const [title, setTitle] = useState("듣기 시험지");
+  const [includeWholeAudio, setIncludeWholeAudio] = useState(true);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
   const [created, setCreated] = useState<ListeningSetDetail | null>(null);
@@ -314,7 +336,13 @@ export default function ListeningBankMaterial({
     setNotice(all ? "전체 회차를 담았습니다." : "선택한 문항을 담았습니다.");
   }
   async function create() {
-    if (busy || !basket.length || !title.trim() || missingRanges) return;
+    if (
+      busy ||
+      !basket.length ||
+      !title.trim() ||
+      (missingRanges && !includeWholeAudio)
+    )
+      return;
     const controller = new AbortController();
     command.current = controller;
     setBusy(true);
@@ -326,7 +354,21 @@ export default function ListeningBankMaterial({
         "POST",
         {
           title: title.trim(),
-          selections: basket.map((entry) => entry.selection),
+          selections: basket.map((entry) => {
+            const full =
+              entry.sourceQuestionIds.length === entry.questions.length &&
+              entry.sourceQuestionIds.every(
+                (id, index) => id === entry.questions[index].id,
+              );
+            return {
+              ...entry.selection,
+              ...(!full &&
+              entry.questions.some((question) => !question.hasRange) &&
+              includeWholeAudio
+                ? { audioMode: "whole_source" as const }
+                : {}),
+            };
+          }),
         },
       );
       if (controller.signal.aborted) return;
@@ -583,7 +625,7 @@ export default function ListeningBankMaterial({
               busy ||
               !questionCount ||
               !title.trim() ||
-              missingRanges ||
+              (missingRanges && !includeWholeAudio) ||
               basket.length > 30
             }
             onClick={() => void create()}
@@ -593,8 +635,17 @@ export default function ListeningBankMaterial({
         </div>
         {missingRanges ? (
           <p className={b.notice}>
-            개별 문항의 전체 음원 구간이 필요합니다. 원본 편집에서 문항별
-            시작·끝 시각을 지정하거나 전체 회차를 담아 주세요.
+            <label>
+              <input
+                type="checkbox"
+                checked={includeWholeAudio}
+                onChange={(event) => setIncludeWholeAudio(event.target.checked)}
+              />{" "}
+              구간 미지정 문항은 회차 전체 음원과 함께 만들기
+            </label>
+            <br />
+            시험지에는 선택한 문항만 넣습니다. 문항별 음원만 사용하려면 원본
+            편집에서 시작·끝 시각을 지정해 주세요.
           </p>
         ) : null}
         {basket.length > 30 ? (

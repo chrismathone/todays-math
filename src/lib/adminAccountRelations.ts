@@ -11,7 +11,12 @@ import type {
   AdminRelationsQuery,
   AdminRelationsResponse,
   ConnectedClass,
+  ConnectedStudent,
 } from "@/contracts/adminRelations.contract";
+import {
+  compareRosterNames,
+  selectAdminStudents,
+} from "@/lib/adminStudentRoster";
 
 const bindingSelect = {
   id: true,
@@ -175,8 +180,8 @@ export async function readAdminAccountRelations(
       };
       const total =
         query.kind === "classes"
-          ? await tx.class.count({ where: classScope })
-          : await tx.student.count({ where: studentScope });
+          ? await tx.class.count({ where: activeClasses })
+          : 0;
       const page = Math.min(
         query.page,
         Math.max(1, Math.ceil(total / query.pageSize)),
@@ -190,7 +195,7 @@ export async function readAdminAccountRelations(
 
       if (query.kind === "classes") {
         const rows = await tx.class.findMany({
-          where: classScope,
+          where: activeClasses,
           ...pagination,
           select: {
             id: true,
@@ -219,7 +224,7 @@ export async function readAdminAccountRelations(
       }
       const rows = await tx.student.findMany({
         where: studentScope,
-        ...pagination,
+        orderBy: pagination.orderBy,
         select: {
           id: true,
           name: true,
@@ -227,7 +232,7 @@ export async function readAdminAccountRelations(
           schoolGrade: true,
           eywaBindingId: true,
           eywaStudentId: true,
-          class: { select: { id: true, name: true } },
+          class: { select: { id: true, name: true, grade: true } },
           studentAccount: { select: { disabledAt: true, lockedUntil: true } },
           enrollments: {
             where: enrollmentScope,
@@ -235,56 +240,86 @@ export async function readAdminAccountRelations(
             select: {
               bindingId: true,
               onHold: true,
-              class: { select: { id: true, name: true } },
+              class: { select: { id: true, name: true, grade: true } },
             },
           },
         },
       });
+      const roster: ConnectedStudent[] = rows.map((s) => {
+        const login = !s.studentAccount
+          ? "unissued"
+          : s.studentAccount.disabledAt
+            ? "disabled"
+            : s.studentAccount.lockedUntil && s.studentAccount.lockedUntil > now
+              ? "locked"
+              : "enabled";
+        const classes = new Map<
+          string,
+          { id: string; name: string; membership: "enrolled" | "on-hold" }
+        >();
+        for (const e of s.enrollments) {
+          if (e.bindingId !== s.eywaBindingId || classes.has(e.class.id))
+            continue;
+          classes.set(e.class.id, {
+            id: e.class.id,
+            name: e.class.name,
+            membership: e.onHold ? "on-hold" : "enrolled",
+          });
+        }
+        const classGrades = [
+          ...new Set(
+            (s.eywaBindingId
+              ? s.enrollments
+                  .filter((e) => e.bindingId === s.eywaBindingId)
+                  .map((e) => e.class.grade)
+              : [s.class.grade]
+            ).filter(Boolean),
+          ),
+        ];
+        return {
+          id: s.id,
+          name: s.name,
+          grade:
+            s.schoolLevel && s.schoolGrade
+              ? `${s.schoolLevel}${s.schoolGrade}`
+              : classGrades.length === 1
+                ? classGrades[0]
+                : null,
+          sync: syncState(s.eywaBindingId, s.eywaStudentId, bindings, now),
+          login,
+          classes: s.eywaBindingId
+            ? [...classes.values()].sort((a, b) =>
+                compareRosterNames(a.name, b.name),
+              )
+            : [
+                {
+                  id: s.class.id,
+                  name: s.class.name,
+                  membership: "legacy" as const,
+                },
+              ],
+        };
+      });
+      const availableClasses = await tx.class.findMany({
+        where: activeClasses,
+        select: { id: true, name: true },
+        orderBy: [{ name: "asc" }, { id: "asc" }],
+      });
       return {
         kind: "students",
-        meta,
-        data: rows.map((s) => {
-          const login = !s.studentAccount
-            ? "unissued"
-            : s.studentAccount.disabledAt
-              ? "disabled"
-              : s.studentAccount.lockedUntil &&
-                  s.studentAccount.lockedUntil > now
-                ? "locked"
-                : "enabled";
-          const classes = new Map<
-            string,
-            { id: string; name: string; membership: "enrolled" | "on-hold" }
-          >();
-          for (const e of s.enrollments) {
-            if (e.bindingId !== s.eywaBindingId || classes.has(e.class.id))
-              continue;
-            classes.set(e.class.id, {
-              id: e.class.id,
-              name: e.class.name,
-              membership: e.onHold ? "on-hold" : "enrolled",
-            });
-          }
-          return {
-            id: s.id,
-            name: s.name,
-            grade:
-              s.schoolLevel && s.schoolGrade
-                ? `${s.schoolLevel}${s.schoolGrade}`
-                : null,
-            sync: syncState(s.eywaBindingId, s.eywaStudentId, bindings, now),
-            login,
-            classes: s.eywaBindingId
-              ? [...classes.values()]
-              : [
-                  {
-                    id: s.class.id,
-                    name: s.class.name,
-                    membership: "legacy" as const,
-                  },
-                ],
-          };
-        }),
+        ...selectAdminStudents(roster, query),
+        filters: {
+          classes: availableClasses
+            .map((c) => ({ id: c.id, name: c.name }))
+            .sort((a, b) => compareRosterNames(a.name, b.name)),
+          grades: [
+            ...new Set(
+              roster
+                .map((student) => student.grade)
+                .filter((grade): grade is string => !!grade),
+            ),
+          ].sort(compareRosterNames),
+        },
       };
     },
     { isolationLevel: "RepeatableRead" },

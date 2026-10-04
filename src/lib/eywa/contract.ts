@@ -13,6 +13,7 @@ import { z } from "zod";
 export const rosterStudentSchema = z.object({
   id: z.uuid(),
   name: z.string().min(1),
+  phoneLast4: z.string().regex(/^[0-9]{4}$/).nullable().optional(),
   grade: z.string().nullable(),
   school: z.string().nullable(),
   status: z.literal("enrolled"),

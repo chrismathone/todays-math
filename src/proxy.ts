@@ -154,6 +154,7 @@ export const proxy = auth(async (req) => {
       pathname.startsWith("/brand/") ||
       // 진도판 테마 그림(판 · 탈것) — 학생 화면 · 관리자 미리보기가 같이 쓰는 공개 그림(2026-09-30)
       pathname.startsWith("/images/journey/") ||
+      pathname.startsWith("/audio/math-learning/") ||
       pathname.startsWith("/figures/") ||
       pathname.startsWith("/figures-svg/") ||
       pathname.startsWith("/api/shared-figures/"))

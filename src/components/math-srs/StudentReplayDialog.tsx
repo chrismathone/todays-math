@@ -11,9 +11,12 @@ import { STUDENT_MUST_CHANGE_MESSAGE } from "@/lib/studentRouteAccess";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
 import pageTurn from "./question-page-turn.module.css";
+import { useQuestionPageTurn } from "./useQuestionPageTurn";
 import { EnterKey, NumberKey } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./student-replay.module.css";
+import { useLearningSounds } from "./LearningSounds";
+import { learningSoundCue } from "./learningSoundCue";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((m) => m.ProblemContent),
@@ -38,6 +41,8 @@ export default function StudentReplayDialog({
   onClose: () => void;
 }) {
   const router = useRouter();
+  const { gesture, play } = useLearningSounds();
+  const feedbackEventRef = useRef(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const solutionDialog = useRef<HTMLDialogElement>(null);
   const solutionOpener = useRef<HTMLButtonElement>(null);
@@ -53,6 +58,10 @@ export default function StudentReplayDialog({
   const [solutionOpen, setSolutionOpen] = useState(false);
   const [feedbackEvent, setFeedbackEvent] = useState(0);
   const [currentStep, setCurrentStep] = useState(step);
+  const [feedbackCorrect, setFeedbackCorrect] = useState<boolean | null>(null);
+  const turnPage = useQuestionPageTurn(
+    data ? `${currentStep}:${data.problemId}` : null,
+  );
 
   const perform = useCallback(
     async (input?: {
@@ -61,6 +70,7 @@ export default function StudentReplayDialog({
       revealSolution?: boolean;
     }) => {
       if (request.current) return;
+      if (input && !input.revealSolution) gesture();
       const controller = new AbortController();
       request.current = controller;
       const timeout = setTimeout(() => controller.abort(), 15_000);
@@ -89,6 +99,8 @@ export default function StudentReplayDialog({
           },
         );
         const json = await response.json().catch(() => null);
+        if (request.current !== controller) return;
+        if (controller.signal.aborted) throw new Error("late-response");
         if (response.status === 401) {
           router.replace("/learn/login");
           return;
@@ -114,9 +126,28 @@ export default function StudentReplayDialog({
           );
         const replay = parsed.data.data;
         if (request.current !== controller) return;
+        if (controller.signal.aborted) throw new Error("late-response");
         setData(replay);
-        if (input && !input.revealSolution && replay.correct !== null)
-          setFeedbackEvent((current) => current + 1);
+        if (input && !input.revealSolution && replay.correct !== null) {
+          const event = ++feedbackEventRef.current;
+          setFeedbackEvent(event);
+          setFeedbackCorrect(replay.correct);
+          if (
+            replay.problemId === input.problemId &&
+            replay.kind === kind &&
+            replay.step === currentStep
+          ) {
+            const cue = learningSoundCue(
+              { type: "replay", submittedAnswer: input.submittedAnswer },
+              replay.correct,
+            );
+            if (cue)
+              play(
+                cue,
+                `replay:${kind}:${dayId ?? "today"}:${currentStep}:${input.problemId}:${event}`,
+              );
+          }
+        }
         if (input?.revealSolution && replay.solution) setSolutionOpen(true);
       } catch (failure) {
         if (request.current === controller)
@@ -137,7 +168,7 @@ export default function StudentReplayDialog({
         }
       }
     },
-    [kind, currentStep, dayId, router],
+    [kind, currentStep, dayId, router, gesture, play],
   );
 
   useEffect(() => {
@@ -198,6 +229,7 @@ export default function StudentReplayDialog({
     const retry = setTimeout(() => {
       setAnswer(null);
       setParts([]);
+      setFeedbackCorrect(null);
       setData((previous) =>
         previous ? { ...previous, correct: null, solution: null } : null,
       );
@@ -206,6 +238,9 @@ export default function StudentReplayDialog({
   }, [correct, feedbackEvent]);
 
   const closeReplay = () => {
+    const pending = request.current;
+    request.current = null;
+    pending?.abort();
     const modal = dialog.current;
     if (modal?.open) {
       if (modal.close) modal.close();
@@ -250,6 +285,7 @@ export default function StudentReplayDialog({
             key={data.problemId}
             className={`${s.question} ${pageTurn.page}`}
             data-page-turn="true"
+            data-question-transition={turnPage}
             role="region"
             aria-label="복습 문제 내용"
             tabIndex={0}
@@ -262,11 +298,21 @@ export default function StudentReplayDialog({
             />
           </div>
           <div className={s.answers}>
-            <p className={s.answerPrompt}>
-              {data.interactive
-                ? "조각을 눌러 답을 만드세요"
-                : "답 하나를 눌러 주세요"}
-            </p>
+            {feedbackCorrect !== null ? (
+              <AnswerFeedbackEffect
+                correct={feedbackCorrect}
+                eventKey={feedbackEvent}
+                message={
+                  feedbackCorrect ? "정확하게 풀었어요" : "다시 생각해 보세요"
+                }
+              />
+            ) : (
+              <p className={s.answerPrompt}>
+                {data.interactive
+                  ? "조각을 눌러 답을 만드세요"
+                  : "답 하나를 눌러 주세요"}
+              </p>
+            )}
             {data.interactive ? (
               <div
                 className={s.fraction}
@@ -367,6 +413,7 @@ export default function StudentReplayDialog({
                       return;
                     }
                     setData(null);
+                    setFeedbackCorrect(null);
                     setAnswer(null);
                     setParts([]);
                     setSolutionOpen(false);
@@ -405,7 +452,6 @@ export default function StudentReplayDialog({
               {error}
             </p>
           ) : null}
-          <AnswerFeedbackEffect correct={correct} eventKey={feedbackEvent} />
         </div>
       ) : (
         <div className={s.empty}>

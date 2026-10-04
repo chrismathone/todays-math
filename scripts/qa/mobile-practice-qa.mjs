@@ -3,19 +3,19 @@ import assert from "node:assert/strict";
 import { mkdir } from "node:fs/promises";
 import { resolve } from "node:path";
 const base = process.env.BASE ?? "http://localhost:3000";
-const output = resolve(".qa-artifacts/answer-frame");
+const output = resolve(process.env.QA_OUTPUT ?? ".qa-artifacts/answer-frame");
 await mkdir(output, { recursive: true });
 let cases = 0;
-for (const [name, engine] of [
-  ["chromium", chromium],
-  ["webkit", webkit],
-]) {
+for (const [name, engine] of Object.entries({ chromium, webkit }).filter(
+  ([name]) =>
+    !process.env.QA_ENGINES || process.env.QA_ENGINES.split(",").includes(name),
+)) {
   const browser = await engine.launch();
-  for (const [width, height] of [
-    [320, 600],
-    [390, 700],
-    [430, 780],
-  ]) {
+  for (const [width, height] of (
+    process.env.QA_SIZES ?? "320x600,390x700,430x780"
+  )
+    .split(",")
+    .map((size) => size.split("x").map(Number))) {
     for (const kind of [
       "choice",
       "embedded",
@@ -101,7 +101,7 @@ for (const [name, engine] of [
       await effect.waitFor();
       assert.equal(
         await effect.evaluate((n) => getComputedStyle(n).position),
-        "absolute",
+        "static",
       );
       assert.equal(
         await effect.evaluate((n) => getComputedStyle(n).pointerEvents),
@@ -130,7 +130,7 @@ for (const [name, engine] of [
       assert.equal(
         await turning.count(),
         1,
-        "next problem must have page-turn effect",
+        "next problem preserves the paper marker",
       );
       if (width === 390 && kind === "long")
         await page.screenshot({

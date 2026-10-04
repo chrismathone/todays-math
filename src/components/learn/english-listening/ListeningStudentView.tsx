@@ -419,6 +419,9 @@ function StudentAttempt({
                   {questionIndex + 1}.
                 </span>{" "}
                 <span>{item.question.prompt}</span>
+                {item.question.origin === "audio_reconstructed" && (
+                  <span>원본 문제지 없음 · 음원 기반 재구성</span>
+                )}
               </legend>
               {item.question.image && (
                 // eslint-disable-next-line @next/next/no-img-element

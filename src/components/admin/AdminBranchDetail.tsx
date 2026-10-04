@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import BackLink from "@/components/ui/BackLink";
 import { useEffect, useState } from "react";
 import type {
   BranchResponse,
@@ -69,13 +69,9 @@ export default function AdminBranchDetail({
     >
       <AdminHeader identity={identity} active="branches" />
       <main className={s.main}>
-        <Link
-          className={s.textLink}
-          href="/admin/branches"
-          aria-disabled={locked}
-        >
-          ← 지점 목록으로 돌아가기
-        </Link>
+        <BackLink href="/admin/branches" aria-disabled={locked}>
+          지점 목록으로 돌아가기
+        </BackLink>
         <div className={s.titleRow}>
           <div>
             <p className={s.eyebrow}>ADMIN / BRANCHES</p>

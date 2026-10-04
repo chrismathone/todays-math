@@ -8,6 +8,7 @@ import { ProgressPlanFields } from "@/components/class/ProgressPlanFields";
 import { ProgressPlanSection } from "@/components/class/ProgressPlanSection";
 import { StudentList } from "@/components/class/StudentList";
 import { ClassTable } from "@/components/class/ClassTable";
+import { BulkStudentAccountButton } from "@/components/class/BulkStudentAccountButton";
 import { UnitTreePicker } from "@/components/progress/UnitTreePicker";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -103,6 +104,16 @@ export function ClassManage({
             onRetry={manage.retryDetails}
             canManageAccounts={canManageAccounts}
           />
+          {selectedClass && canManageAccounts ? (
+            <div className="my-4">
+              <BulkStudentAccountButton
+                key={selectedClass.id}
+                classId={selectedClass.id}
+                className={selectedClass.name}
+                onIssued={manage.retryDetails}
+              />
+            </div>
+          ) : null}
           {selectedClass && canManageStudents ? (
             <AddStudentForm
               classId={selectedClass.id}

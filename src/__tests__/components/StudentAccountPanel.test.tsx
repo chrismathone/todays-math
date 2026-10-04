@@ -168,8 +168,10 @@ describe("🔴 ⑤ 발급 칸 두 상태 (시안 issue())", () => {
         "아직 로그인 계정이 없습니다. 계정을 생성하면 학생이 로그인할 수 있습니다.",
       ),
     ).toBeInTheDocument();
-    expect(card().getByLabelText("아이디")).toHaveValue("");
-    expect(card().getByText("영문·숫자·-·_ 4~20자")).toBeInTheDocument();
+    expect(card().getByLabelText("아이디")).toHaveValue(SEO.name);
+    expect(
+      card().getByText("이름·영문·숫자·공백·-·_ 1~50자"),
+    ).toBeInTheDocument();
   });
 
   it("만든 직후 — 아이디 · 발급 날짜 · 발급한 사람 · 마지막 로그인 · 초기 비밀번호(지금 한 번만) · 다시 발급 · 끄기", async () => {
@@ -187,7 +189,8 @@ describe("🔴 ⑤ 발급 칸 두 상태 (시안 issue())", () => {
     };
     const user = renderList();
     await open(user, SEO.name);
-    await user.type(await card().findByLabelText("아이디"), "m1a-01");
+    await user.clear(await card().findByLabelText("아이디"));
+    await user.type(card().getByLabelText("아이디"), "m1a-01");
     await user.click(card().getByRole("button", { name: "계정 생성" }));
     await card().findByText("초기 비밀번호 — 지금 한 번만 보입니다");
     expect(calls.find((c) => c.method === "POST")?.body).toStrictEqual({
@@ -240,6 +243,7 @@ describe("🔴 ⑤ 발급 칸 두 상태 (시안 issue())", () => {
     const user = renderList();
     await open(user, SEO.name);
     const id = await card().findByLabelText("아이디");
+    await user.clear(id);
     await user.type(id, "ab");
     await user.click(card().getByRole("button", { name: "계정 생성" }));
     expect(await card().findByRole("alert")).toHaveTextContent(/아이디는/);
@@ -271,7 +275,8 @@ describe("🔴 ② 초기 비밀번호는 그 화면에만 — 저장소 · URL 
     };
     const user = renderList();
     await open(user, SEO.name);
-    await user.type(await card().findByLabelText("아이디"), "m1a-01");
+    await user.clear(await card().findByLabelText("아이디"));
+    await user.type(card().getByLabelText("아이디"), "m1a-01");
     await user.click(card().getByRole("button", { name: "계정 생성" }));
     // 흔적을 찾을 자리가 **실제로 채워져 있었다** — 번호가 화면에는 있다
     expect(await card().findByText(PIN)).toBeInTheDocument();

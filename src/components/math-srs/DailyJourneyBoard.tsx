@@ -9,6 +9,7 @@ import {
   type CSSProperties,
 } from "react";
 import s from "./daily-journey-board.module.css";
+import { useLearningMotion } from "./LearningMotion";
 import { tileTitle } from "@/lib/math-srs/elementary/sectionShortTitles";
 import { titlePieces } from "./journeyTitle";
 import {
@@ -67,6 +68,8 @@ export interface DailyJourneyBoardProps {
 }
 
 const PAGE_SIZE = 12;
+/** 한 칸 갈 때 말이 뜨는 높이 — 8px 이하(가는 거리와는 별개다). */
+const HOP_PX = 8;
 // Clockwise from the bottom right. Keep twelve spacious daily stages on each board.
 const CELLS = [
   [4, 4],
@@ -318,6 +321,9 @@ export default function DailyJourneyBoard({
     ? journey.days[journey.days.length - 1]
     : journey.upcoming[0];
 
+  // 기기(OS) 또는 앱의 «움직임 줄이기» — 하나라도 켜져 있으면 말은 움직임 없이 새 칸에 선다.
+  const { reduceMotion } = useLearningMotion();
+
   useEffect(() => {
     const from = previousCompleted.current;
     previousCompleted.current = completed;
@@ -328,7 +334,7 @@ export default function DailyJourneyBoard({
       completed !== from + 1 ||
       pawnStep < 1 ||
       typeof token.animate !== "function" ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      reduceMotion
     )
       return;
     const options = { duration: 650, easing: "cubic-bezier(.2,.8,.25,1)" };
@@ -346,28 +352,17 @@ export default function DailyJourneyBoard({
     travel.onfinish = arrive;
     travel.oncancel = arrive;
     const animations = [travel];
-    // Separate the travel, hop, shadow and landing layers, as in the supplied
-    // Math Explorers pieces. Only a completed daily stage triggers this hop.
+    // 가는 길(650ms)과 작은 뜀 · 그림자를 층으로 나눈다. 뜀은 세로 8px 이하 — 기울임 · 눌림 · 착지 링은
+    // 없다(3자 합의 v2 9항, 2026-10-04). Only a completed daily stage triggers this hop.
     const figure = token.querySelector<HTMLElement>("[data-pawn-figure]");
     const shadow = token.querySelector<HTMLElement>("[data-pawn-shadow]");
-    const landing = token.querySelector<HTMLElement>("[data-pawn-landing]");
     if (figure)
       animations.push(
         figure.animate(
           [
-            {
-              transform: "translateY(0) rotate(-5deg) scale(1.05,.94)",
-              offset: 0,
-            },
-            {
-              transform: "translateY(-18px) rotate(4deg) scale(.97,1.04)",
-              offset: 0.45,
-            },
-            {
-              transform: "translateY(1px) rotate(0) scale(1.08,.91)",
-              offset: 0.82,
-            },
-            { transform: "translateY(0) rotate(0) scale(1)", offset: 1 },
+            { transform: "translateY(0)", offset: 0 },
+            { transform: `translateY(-${HOP_PX}px)`, offset: 0.45 },
+            { transform: "translateY(0)", offset: 1 },
           ],
           options,
         ),
@@ -377,26 +372,15 @@ export default function DailyJourneyBoard({
         shadow.animate(
           [
             { transform: "scale(1)", opacity: 0.3 },
-            { transform: "scale(.6)", opacity: 0.12, offset: 0.45 },
+            { transform: "scale(.85)", opacity: 0.22, offset: 0.45 },
             { transform: "scale(1)", opacity: 0.3 },
           ],
           options,
         ),
       );
-    if (landing)
-      animations.push(
-        landing.animate(
-          [
-            { transform: "scale(.6)", opacity: 0, offset: 0 },
-            { transform: "scale(.7)", opacity: 0, offset: 0.6 },
-            { transform: "scale(1)", opacity: 0.8, offset: 0.78 },
-            { transform: "scale(1.8)", opacity: 0, offset: 1 },
-          ],
-          options,
-        ),
-      );
+    // 화면을 떠나거나 가는 중에 줄이기가 켜지면 여기서 멈춘다(`oncancel` 이 도착 모양으로 되돌린다).
     return () => animations.forEach((animation) => animation.cancel());
-  }, [completed, pawnStep, pawnVisible]);
+  }, [completed, pawnStep, pawnVisible, reduceMotion]);
 
   return (
     <section
@@ -655,7 +639,6 @@ export default function DailyJourneyBoard({
             aria-label={`내 ${look.rider}, ${completed}일 학습 완료`}
           >
             <span className={s.pawnShadow} data-pawn-shadow="true" />
-            <span className={s.pawnLanding} data-pawn-landing="true" />
             {themed ? (
               <Rider look={look} />
             ) : (

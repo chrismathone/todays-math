@@ -59,6 +59,8 @@ export function parseMp3(bytes: Buffer, maxDurationMs: number) {
   let samples = 0;
   let declaredFrames: number | undefined;
   let declaredBytes: number | undefined;
+  let gapless:
+    { delay: number; padding: number; infoSamples: number } | undefined;
   const audioStart = offset;
   while (offset < end) {
     if (end - offset < 4) invalid();
@@ -107,6 +109,7 @@ export function parseMp3(bytes: Buffer, maxDurationMs: number) {
       if (marker === "Xing" || marker === "Info") {
         if (xing + 8 > length) invalid();
         const flags = frame.readUInt32BE(xing + 4);
+        if (flags & ~15) invalid();
         let p = xing + 8;
         if (flags & 1) {
           if (p + 4 > length) invalid();
@@ -116,6 +119,36 @@ export function parseMp3(bytes: Buffer, maxDurationMs: number) {
         if (flags & 2) {
           if (p + 4 > length) invalid();
           declaredBytes = frame.readUInt32BE(p);
+          p += 4;
+        }
+        if (flags & 4) {
+          if (p + 100 > length) invalid();
+          p += 100;
+        }
+        if (flags & 8) {
+          if (p + 4 > length) invalid();
+          p += 4;
+        }
+        const encoder = frame.subarray(p, p + 4).toString("ascii");
+        if (["LAME", "Lavf", "Lavc"].includes(encoder)) {
+          if (p + 24 > length) invalid();
+          // mpg123/FFmpeg read these two 12-bit values from the Xing extension:
+          // https://github.com/madebr/mpg123/blob/master/src/libmpg123/parse.c
+          // https://github.com/FFmpeg/FFmpeg/blob/master/libavformat/mp3dec.c
+          // A real Info frame has an empty side-info area. Only derive an exact
+          // expected sample count for an unprotected header with declared length;
+          // other streams retain the existing conservative completeness check.
+          if (
+            (a & 1) !== 0 &&
+            declaredFrames !== undefined &&
+            frame.subarray(4, xing).every((n) => n === 0)
+          ) {
+            gapless = {
+              delay: (frame[p + 21] << 4) | (frame[p + 22] >> 4),
+              padding: ((frame[p + 22] & 15) << 8) | frame[p + 23],
+              infoSamples: version === 3 ? 1152 : 576,
+            };
+          }
         }
       } else if (frame.subarray(36, 40).toString("ascii") === "VBRI") {
         if (length < 54) invalid();
@@ -126,9 +159,12 @@ export function parseMp3(bytes: Buffer, maxDurationMs: number) {
     }
     frames.push(frame);
     samples += version === 3 ? 1152 : 576;
-    // Xing info frame plus encoder delay/padding; enforce the exact sample limit
-    // again on decoded PCM, so a genuine exactly-at-limit file is not rejected.
-    if ((samples - 3456) * 1000 > maxDurationMs * sampleRate)
+    // Known gapless trim is verified exactly after every frame has been decoded.
+    // Keep the previous bound for streams without this recognized metadata.
+    const trim = gapless
+      ? gapless.infoSamples + gapless.delay + gapless.padding
+      : 3456;
+    if ((samples - trim) * 1000 > maxDurationMs * sampleRate)
       throw new MediaFormatError("duration_limit");
     offset += length;
   }
@@ -138,7 +174,19 @@ export function parseMp3(bytes: Buffer, maxDurationMs: number) {
     (declaredBytes !== undefined && declaredBytes !== end - audioStart)
   )
     invalid();
-  return { frames, sampleRate, channels, samples };
+  const expectedSamples = gapless
+    ? samples - gapless.infoSamples - gapless.delay - gapless.padding
+    : undefined;
+  if (expectedSamples !== undefined && expectedSamples <= 0) invalid();
+  return {
+    frames,
+    sampleRate,
+    channels,
+    samples,
+    expectedSamples,
+    audioStart,
+    audioEnd: end,
+  };
 }
 
 export function waveHeader(
@@ -207,7 +255,13 @@ export async function decodeMp3(
       if (pcm.length) await writePcm(pcm);
       await setImmediate(undefined, { signal });
     }
-    if (!samples || samples > parsed.samples || parsed.samples - samples > 3456)
+    if (
+      !samples ||
+      samples > parsed.samples ||
+      (parsed.expectedSamples !== undefined
+        ? samples !== parsed.expectedSamples
+        : parsed.samples - samples > 3456)
+    )
       invalid();
     return {
       header: waveHeader(samples, parsed.sampleRate, parsed.channels),

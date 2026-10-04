@@ -18,6 +18,28 @@ vi.mock("next/navigation", () => ({
 const id = (n: number) =>
   `20000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const fetchMock = vi.fn<typeof fetch>();
+function TestRelations({
+  userId,
+  branchId,
+}: {
+  userId: string;
+  branchId: string;
+}) {
+  return (
+    <>
+      <AdminAccountRelations
+        userId={userId}
+        branchId={branchId}
+        kind="classes"
+      />
+      <AdminAccountRelations
+        userId={userId}
+        branchId={branchId}
+        kind="students"
+      />
+    </>
+  );
+}
 function payload(
   kind: "classes" | "students",
   page = 1,
@@ -85,7 +107,7 @@ afterEach(() => vi.unstubAllGlobals());
 describe("read-only connected account roster", () => {
   it("loads both panels independently and shows distinct pending states", () => {
     fetchMock.mockImplementation(() => new Promise(() => {}));
-    render(<AdminAccountRelations userId={id(10)} branchId={id(11)} />);
+    render(<TestRelations userId={id(10)} branchId={id(11)} />);
     expect(
       screen.getByText("연결된 반을 불러오는 중입니다."),
     ).toBeInTheDocument();
@@ -122,20 +144,30 @@ describe("read-only connected account roster", () => {
     expect(
       fetchMock.mock.calls.some(([url]) => String(url).includes("/relations")),
     ).toBe(false);
-    fireEvent.click(screen.getByRole("button", { name: "반·학생" }));
-    await screen.findByText("김학생 1");
+    fireEvent.click(screen.getByRole("button", { name: "반" }));
+    await screen.findByText("방정식반 1");
     expect(screen.getByText("방정식반 1")).toBeInTheDocument();
-    expect(screen.getByText("중2")).toBeInTheDocument();
     expect(screen.getByText("담임 · 열람 위임")).toBeInTheDocument();
+    expect(screen.queryByText("김학생 1")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "학생" }));
+    await screen.findByText("김학생 1");
+    expect(screen.getByText("중2")).toBeInTheDocument();
     expect(screen.getByText("도형반")).toBeInTheDocument();
-    expect(screen.getByText("휴원")).toBeInTheDocument();
-    expect(screen.getByText("사용 설정")).toBeInTheDocument();
-    expect(screen.getByText("관리 동기화 · 확인 필요")).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("table")).getByText("휴원"),
+    ).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("table")).getByText("사용 설정"),
+    ).toBeInTheDocument();
+    expect(
+      within(screen.getByRole("table")).getByText("관리 동기화 · 확인 필요"),
+    ).toBeInTheDocument();
     const students = screen.getByRole("region", { name: "연결된 학생" });
-    const classes = screen.getByRole("region", { name: "연결된 반" });
+    expect(
+      screen.queryByRole("region", { name: "연결된 반" }),
+    ).not.toBeInTheDocument();
     fireEvent.click(within(students).getByRole("button", { name: "다음" }));
     await screen.findByText("김학생 2");
-    expect(within(classes).getByText("방정식반 1")).toBeInTheDocument();
     expect(
       within(students).getByRole("button", { name: "다음" }),
     ).toBeDisabled();
@@ -160,7 +192,7 @@ describe("read-only connected account roster", () => {
         payload(url.searchParams.get("kind") as "classes" | "students", 1, 0),
       ),
     );
-    render(<AdminAccountRelations userId={id(10)} branchId={id(11)} />);
+    render(<TestRelations userId={id(10)} branchId={id(11)} />);
     await screen.findByText("연결된 반이 없습니다.");
     await screen.findByText("연결된 학생이 없습니다.");
     expect(screen.getByText("총 0명")).toBeInTheDocument();
@@ -180,7 +212,7 @@ describe("read-only connected account roster", () => {
             )
           : Response.json(payload("students")),
     );
-    render(<AdminAccountRelations userId={id(10)} branchId={id(11)} />);
+    render(<TestRelations userId={id(10)} branchId={id(11)} />);
     await screen.findByRole("alert");
     expect(
       screen.queryByText("연결된 학생이 없습니다."),
@@ -207,10 +239,10 @@ describe("read-only connected account roster", () => {
           ),
     );
     const { rerender } = render(
-      <AdminAccountRelations userId={id(10)} branchId={id(11)} />,
+      <TestRelations userId={id(10)} branchId={id(11)} />,
     );
     await screen.findByText("방정식반 1");
-    rerender(<AdminAccountRelations userId={id(12)} branchId={id(13)} />);
+    rerender(<TestRelations userId={id(12)} branchId={id(13)} />);
     await screen.findByText("김학생 1");
     const old = payload("students");
     old.data[0].name = "이전 계정 학생";
@@ -231,7 +263,7 @@ describe("read-only connected account roster", () => {
           ? Response.json(payload("students"))
           : Response.json(payload("students", 1, 1)),
     );
-    render(<AdminAccountRelations userId={id(10)} branchId={id(11)} />);
+    render(<TestRelations userId={id(10)} branchId={id(11)} />);
     await screen.findByText("김학생 1");
     const students = screen.getByRole("region", { name: "연결된 학생" });
     fireEvent.click(within(students).getByRole("button", { name: "다음" }));
@@ -249,5 +281,67 @@ describe("read-only connected account roster", () => {
     expect(
       within(students).queryByText("연결된 학생이 없습니다."),
     ).not.toBeInTheDocument();
+  });
+  it("submits filters and sorting to the server and resets pagination when conditions change", async () => {
+    mockRelations((url) =>
+      Response.json({
+        ...payload("students", Number(url.searchParams.get("page"))),
+        filters: {
+          classes: [{ id: id(1), name: "방정식반" }],
+          grades: ["중2"],
+        },
+      }),
+    );
+    render(
+      <AdminAccountRelations
+        userId={id(10)}
+        branchId={id(11)}
+        kind="students"
+      />,
+    );
+    await screen.findByText("김학생 1");
+    const panel = screen.getByRole("region", { name: "연결된 학생" });
+    fireEvent.click(within(panel).getByRole("button", { name: "다음" }));
+    await screen.findByText("김학생 2");
+    fireEvent.change(screen.getByLabelText("로그인 상태"), {
+      target: { value: "unissued" },
+    });
+    await screen.findByText("김학생 1");
+    let url = new URL(
+      String(fetchMock.mock.calls.at(-1)![0]),
+      "http://localhost",
+    );
+    expect(url.searchParams.get("page")).toBe("1");
+    expect(url.searchParams.get("login")).toBe("unissued");
+    expect(url.searchParams.get("sort")).toBe("class");
+    fireEvent.change(screen.getByLabelText("반", { exact: true }), {
+      target: { value: id(1) },
+    });
+    await waitFor(() =>
+      expect(String(fetchMock.mock.calls.at(-1)![0])).toContain(
+        `classId=${id(1)}`,
+      ),
+    );
+    fireEvent.change(screen.getByLabelText("학생·반 검색"), {
+      target: { value: "김학생" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "검색" }));
+    await waitFor(() => {
+      url = new URL(
+        String(fetchMock.mock.calls.at(-1)![0]),
+        "http://localhost",
+      );
+      expect(url.searchParams.get("q")).toBe("김학생");
+    });
+    fireEvent.click(screen.getByRole("button", { name: "필터 초기화" }));
+    await waitFor(() => {
+      url = new URL(
+        String(fetchMock.mock.calls.at(-1)![0]),
+        "http://localhost",
+      );
+      expect(url.searchParams.get("login")).toBe("all");
+      expect(url.searchParams.has("classId")).toBe(false);
+      expect(url.searchParams.has("q")).toBe(false);
+    });
   });
 });

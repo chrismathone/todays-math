@@ -29,6 +29,7 @@ import {
 } from "./studentAccountPolicy";
 
 export function studentIssueDeps(): IssueDeps {
+  let issuancePin: string | undefined;
   let permission:
     { viewer: ScopeViewer; studentId: string; classId: string } | undefined;
   const beforeWrite = async (tx: Prisma.TransactionClient) => {
@@ -40,6 +41,8 @@ export function studentIssueDeps(): IssueDeps {
       permission.classId,
       "student:account",
     );
+    if (issuancePin !== undefined)
+      await tx.$queryRaw`SELECT id FROM student WHERE id = ${permission.studentId}::uuid FOR SHARE`;
     const student = await tx.student.findUnique({
       where: { id: permission.studentId },
     });
@@ -52,7 +55,8 @@ export function studentIssueDeps(): IssueDeps {
       !cls ||
       !studentAccountBranchAllowed(permission.viewer, cls.branchId) ||
       (student.branchId != null && student.branchId !== cls.branchId) ||
-      (student.classId !== permission.classId && !student.eywaBindingId)
+      (student.classId !== permission.classId && !student.eywaBindingId) ||
+      (issuancePin !== undefined && student.phoneLast4 !== issuancePin)
     )
       throw new ClassAccessDenied();
     if (student.eywaBindingId)
@@ -60,7 +64,7 @@ export function studentIssueDeps(): IssueDeps {
         tx,
         permission.studentId,
         permission.classId,
-        true,
+        issuancePin === undefined,
       );
   };
   return {
@@ -122,6 +126,17 @@ export function studentIssueDeps(): IssueDeps {
         return tx.studentAccount.update({ where: { id }, data });
       }),
     generatePin: () => generateInitialPassword(),
+    async initialPinForStudent(studentId) {
+      const student = await db.student.findUnique({
+        where: { id: studentId },
+        select: { phoneLast4: true },
+      });
+      issuancePin =
+        student?.phoneLast4 && /^[0-9]{4}$/.test(student.phoneLast4)
+          ? student.phoneLast4
+          : undefined;
+      return issuancePin ?? null;
+    },
     hashPin: hashStudentPin,
     now: () => new Date(),
     audit: (entry) => recordAudit(entry),

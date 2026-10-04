@@ -13,6 +13,22 @@ import { z } from "zod";
 export const EYWA_LINK_PAGE_PATH = "/account/eywa-link";
 export const EYWA_LINK_API_PATH = "/api/account/eywa-link";
 
+/** Fixed login notices only; query values never create or authorize a link. */
+export function eywaSsoLoginNotice(
+  reason: string | string[] | undefined,
+): string | undefined {
+  switch (reason) {
+    case "not-linked":
+      return "에이와 자동 로그인 대상이 아닙니다. 오늘의 수학 계정으로 로그인해 주세요.";
+    case "retry":
+      return "에이와 자동 로그인 요청이 만료되었거나 완료되지 않았습니다. 다시 이동하거나 오늘의 수학 계정으로 로그인해 주세요.";
+    case "unavailable":
+      return "에이와 자동 로그인 연결을 확인할 수 없습니다. 오늘의 수학 계정으로 로그인해 주세요.";
+    default:
+      return undefined;
+  }
+}
+
 /** 본문은 이것뿐이다 — 계정 id·sub 는 세션과 연결 대기 쿠키에서만 온다(몸에 실어 보내면 400) */
 export const eywaLinkRequestSchema = z.strictObject({
   action: z.enum(["link", "dismiss"]),

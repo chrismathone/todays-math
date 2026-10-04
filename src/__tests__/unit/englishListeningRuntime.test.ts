@@ -8,6 +8,7 @@ import { createListeningMediaAccess } from "@/lib/english/listening/runtime/medi
 import { PrismaListeningMediaStore } from "@/lib/english/listening/media/prismaStore";
 import { createListeningMediaService } from "@/lib/english/listening/media/service";
 import { englishListeningFixture } from "@/mocks/englishListeningFixture";
+import { listeningQuestionMetadata } from "@/lib/english/listening/metadata";
 import type { ListeningActor } from "@/lib/english/listening/runtime/database";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
 import type { ListeningStudentDetail } from "@/contracts/englishListeningStudentHttp.contract";
@@ -278,6 +279,74 @@ describe.skipIf(!db)(
       await db?.$disconnect();
       await db2?.$disconnect();
       vi.mocked(Date.now).mockRestore();
+    });
+
+    it("searches question metadata with year, round and origin within the actor scope", async () => {
+      const source = {
+        kind: "national_listening" as const,
+        provider: "테스트 교육청",
+        year: 2020,
+        round: 2,
+        month: null,
+        originalFilename: "questions.pdf",
+      };
+      let set = await runtime!.createSet(owner, {
+        title: "원본 듣기",
+        level: "중1",
+        rights,
+        source,
+        basis: "isolated source fixture",
+      });
+      const group = englishListeningFixture().groups[0];
+      set = await runtime!.updateSet(owner, set.id, {
+        ...edit(set),
+        groups: [
+          {
+            id: group.id,
+            audio: null,
+            transcript: group.transcript,
+            questions: group.questions.map((question) => ({
+              ...question,
+              metadata: {
+                ...listeningQuestionMetadata(
+                  { image: {} },
+                  { source, level: "중1" },
+                ),
+                keywords: ["여행_100%"],
+              },
+            })),
+          },
+        ],
+      });
+      const query = {
+        q: "여행_100%",
+        year: "2020",
+        round: "2",
+        origin: "official_original",
+        level: "중1",
+      };
+      const result = await runtime!.teacherBank(owner, "bank", query);
+      expect(result.data.map((row) => row.id)).toEqual([set.id]);
+      expect(result.data[0]).toMatchObject({
+        questionCount: 2,
+        reconstructedQuestionCount: 0,
+        source,
+      });
+      expect(
+        (await runtime!.teacherBank(other, "bank", query)).data,
+      ).toHaveLength(0);
+      expect(
+        (await runtime!.teacherBank(owner, "bank", { ...query, round: "1" }))
+          .data,
+      ).toHaveLength(0);
+      expect(
+        (
+          await runtime!.teacherBank(owner, "bank", {
+            ...query,
+            origin: "audio_reconstructed",
+          })
+        ).data,
+      ).toHaveLength(0);
     });
 
     it("stores incomplete drafts, rejects forged provenance and arbitrates concurrent CAS", async () => {

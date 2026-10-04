@@ -158,6 +158,11 @@ export async function applyManagedControl(
       await tx.user.update({
         where: { id: account.user.id },
         data: {
+          // Source refresh must retain the superadmin's local account type.
+          branchRole: account.branchRoleOverride ?? "teacher",
+          isAdmin: ["owner", "manager"].includes(
+            account.branchRoleOverride ?? "teacher",
+          ),
           suspendedAt:
             account.user.manualSuspendedAt ??
             (reasons.length ? (account.user.suspendedAt ?? new Date()) : null),
@@ -531,6 +536,11 @@ export async function getManagedClassGrants(
     sourceClasses: controlUserSchema.shape.classes.parse(account.sourceClasses),
     classListRevision: account.classListRevision,
     leaseExpiresAt: account.leaseExpiresAt!,
+    // Derived only after the current mapping, local override and source lease
+    // pass accountUsable. A stale session admin flag cannot create this scope.
+    ...(account.user.isAdmin
+      ? { branchAdminScope: { branchId: account.binding.targetBranchId } }
+      : {}),
   };
 }
 export async function managedLoginAllowed(

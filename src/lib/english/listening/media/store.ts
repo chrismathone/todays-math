@@ -4,11 +4,16 @@ import type {
   ListeningMediaScope,
   ListeningMediaUpload,
 } from "../../../../contracts/englishListeningMedia.contract";
+import type { ListeningDriveRef } from "./driveApi";
+import type { ListeningStorageRef } from "./storageApi";
+import type { ListeningM4aConversion } from "./trustedM4a";
 
 export interface ListeningMediaChunkRecord {
   key: string;
   offset: number;
   byteLength: number;
+  /** Internal bounded view into an immutable original blob; absent means zero. */
+  blobOffset?: number;
   sha256: string;
   /** Exact request revision retained for idempotent retry checks. */
   expectedRevision: number;
@@ -25,10 +30,20 @@ export interface ListeningMediaRecord
   uploadExpiresAt: number;
   state: "uploading" | "ready" | "publish_blocked" | "failed" | "expired";
   chunks: ListeningMediaChunkRecord[];
+  /** Server-selected at upload start, never accepted from public upload inputs. */
+  mp3PlaybackEncoding?: "scrubbed_mp3";
+  /** Private immutable external audio binding; never include in public DTOs. */
+  drive?: ListeningDriveRef;
+  storage?: ListeningStorageRef;
+  /** Server-selected durable private Storage chunks; never supplied by public inputs. */
+  storageChunks?: true;
+  /** Trusted CLI conversion only; source chunks/hash remain the original M4A. */
+  originalMimeType?: "audio/mp4";
+  conversion?: ListeningM4aConversion;
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;
-    mimeType: "audio/wav";
+    mimeType: "audio/wav" | "audio/mpeg";
     sha256: string;
     totalBytes: number;
     chunks: ListeningMediaChunkRecord[];
@@ -60,6 +75,7 @@ export interface ListeningMediaStore {
   putBlob(
     bytes: Uint8Array,
     scope?: { assetId: string; ownerId: string },
+    signal?: AbortSignal,
   ): Promise<string>;
   readBlob(key: string, read: ListeningMediaRead): AsyncIterable<Uint8Array>;
   deleteBlob(key: string): Promise<void>;

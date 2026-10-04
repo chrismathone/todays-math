@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { BackButton } from "@/components/ui/BackLink";
 import learn from "@/components/learn/learn.module.css";
 import { MathText } from "@/components/math/MathText";
 import { ProblemContent } from "@/components/math/ProblemContent";
@@ -122,9 +123,7 @@ export function QuickPhone({
       <main className={`${s.body} ${s.practiceBody}`}>
         <h1 className={review.srOnly}>오늘의 수학 복습</h1>
         <div className={s.practiceHeader}>
-          <button type="button" className={s.quietButton} disabled>
-            ← 학습 홈
-          </button>
+          <BackButton disabled>학습 홈</BackButton>
           <span>중1 · 일차방정식</span>
         </div>
         <div className={s.progress}>

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { BackButton } from "@/components/ui/BackLink";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import type {
   CourseAttemptInput,
@@ -18,6 +19,7 @@ import { EnterKey, NumberKey, SwapArrow } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./elementary-practice.module.css";
 import pageTurn from "./question-page-turn.module.css";
+import { useQuestionPageTurn } from "./useQuestionPageTurn";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -62,13 +64,17 @@ export default function StudentCoursePractice(props: Props) {
           (item) =>
             !session.attempts.some((attempt) => attempt.problemId === item.id),
         );
-  if (!problem) return <CourseComplete {...props} />;
-  const index = session.problems.findIndex((item) => item.id === problem.id);
   const inRetry =
     !!retry &&
     (feedbackId
       ? retry.attempts.some((item) => item.problemId === feedbackId)
       : retryActive);
+  const questionKey = problem
+    ? `${problem.id}:${inRetry ? retry!.attempts.length - (feedbackId ? 1 : 0) : "first"}`
+    : null;
+  const turnPage = useQuestionPageTurn(questionKey);
+  if (!problem) return <CourseComplete {...props} />;
+  const index = session.problems.findIndex((item) => item.id === problem.id);
   const nextIsRetry =
     !!retry &&
     retry.pendingProblemIds.length > 0 &&
@@ -81,14 +87,9 @@ export default function StudentCoursePractice(props: Props) {
   return (
     <div className={`${s.practice} ${s.studentPractice} ${s.fixedPractice}`}>
       <header className={s.header}>
-        <button
-          className={s.back}
-          type="button"
-          onClick={onExit}
-          disabled={props.busy}
-        >
-          <span aria-hidden="true">←</span> 학습 홈
-        </button>
+        <BackButton type="button" onClick={onExit} disabled={props.busy}>
+          학습 홈
+        </BackButton>
         <span className={s.breadcrumb}>
           초{section?.grade} · {section?.semester}학기 · {section?.chapterTitle}
         </span>
@@ -129,10 +130,11 @@ export default function StudentCoursePractice(props: Props) {
         </p>
       ) : null}
       <CourseQuestion
-        key={`${problem.id}:${inRetry ? retry!.attempts.length - (feedbackId ? 1 : 0) : "first"}`}
+        key={questionKey}
         {...props}
         problem={problem}
         title={section?.title ?? "오늘의 수학"}
+        turnPage={turnPage}
         last={
           inRetry
             ? retry?.pendingProblemIds.length === 0
@@ -216,6 +218,7 @@ function CourseQuestion({
   repeatNext,
   retryAttempt,
   retryIndex,
+  turnPage,
   session,
   feedbackId,
   busy,
@@ -231,9 +234,9 @@ function CourseQuestion({
   repeatNext: boolean;
   retryAttempt: CoursePublicSession["attempts"][number] | null;
   retryIndex: number | null;
+  turnPage: "true" | undefined;
 }) {
   const [answer, setAnswer] = useState("");
-  const [turnPage] = useState(() => session.attempts.length > 0);
   const [validation, setValidation] = useState("");
   const [explanationOpen, setExplanationOpen] = useState(false);
   const [selfReady, setSelfReady] = useState(false);
@@ -247,6 +250,9 @@ function CourseQuestion({
   const questionRoot = useRef<HTMLElement>(null);
   useAnswerKeys(questionRoot);
   const submitted = useRef(false);
+  const [submittedAction, setSubmittedAction] = useState<
+    "answer" | "give-up" | "self-check" | null
+  >(null);
   const figure = useProblemFigure(problem.figureUrl, onAuthFailure);
   const attempt =
     retryAttempt ??
@@ -277,6 +283,27 @@ function CourseQuestion({
   const useChoices = !selfCheck && !interactive && answerChoices?.length === 4;
   const useInteractive = !selfCheck && interactive?.kind === "fraction-parts";
   const hasFeedback = !!feedback && !!attempt;
+  const resultMessage =
+    submittedAction === "give-up"
+      ? retryIndex === null
+        ? "모르는 부분을 확인했어요"
+        : "아직 모르겠어요로 기록했어요"
+      : submittedAction === "self-check" || attempt?.selfAssessed
+        ? feedback?.correct
+          ? "혼자 풀었다고 기록했어요"
+          : "다시 볼 내용으로 기록했어요"
+        : retryIndex !== null
+          ? feedback?.correct
+            ? "이번에는 해결했어요"
+            : "아직 해결하지 못했어요"
+          : undefined;
+  const result = (
+    <AnswerFeedbackEffect
+      correct={hasFeedback ? feedback.correct : null}
+      eventKey={`${problem.id}:${retryIndex ?? "first"}`}
+      message={resultMessage}
+    />
+  );
   const selectedAnswer = hasFeedback ? attempt.submittedAnswer : answer;
   const ready = figure.status === "ready";
   const locked = busy || !ready;
@@ -293,9 +320,9 @@ function CourseQuestion({
   }, [hasFeedback, busy, instantAnswer, onNext]);
 
   useEffect(() => {
-    if (feedback) nextButton.current?.focus({ preventScroll: true });
+    if (hasFeedback) nextButton.current?.focus({ preventScroll: true });
     else questionHeading.current?.focus({ preventScroll: true });
-  }, [feedback]);
+  }, [hasFeedback]);
 
   useEffect(() => {
     const dialog = explanationDialog.current;
@@ -328,6 +355,13 @@ function CourseQuestion({
   ) {
     if (submitted.current || locked || hasFeedback) return;
     submitted.current = true;
+    setSubmittedAction(
+      payload.giveUp
+        ? "give-up"
+        : payload.selfCorrect !== undefined
+          ? "self-check"
+          : "answer",
+    );
     const request = {
       sessionId: session.id,
       problemId: problem.id,
@@ -389,13 +423,10 @@ function CourseQuestion({
       aria-labelledby="course-question-title"
       aria-busy={busy}
     >
-      <AnswerFeedbackEffect
-        correct={hasFeedback ? feedback.correct : null}
-        eventKey={`${problem.id}:${retryIndex ?? "first"}`}
-      />
       <div
         className={`${s.problemPane} ${pageTurn.page}`}
-        data-page-turn={turnPage ? "true" : undefined}
+        data-page-turn="true"
+        data-question-transition={turnPage}
       >
         <div className={s.problemTitle}>
           <div className={s.problemHeading}>
@@ -450,7 +481,9 @@ function CourseQuestion({
               tabIndex={0}
               role="region"
               aria-label="풀이 결과 내용"
-            ></div>
+            >
+              {result}
+            </div>
             <div className={s.paneAction}>
               <button
                 ref={nextButton}
@@ -568,13 +601,17 @@ function CourseQuestion({
               aria-label="답안 작성"
             >
               <div className={s.answerDockHeader}>
-                <p className={s.feedbackLabel}>
-                  {useInteractive
-                    ? "모양을 눌러 답을 만드세요"
-                    : useChoices
-                      ? "답을 누르면 바로 확인해요"
-                      : "생각한 답을 적어 주세요"}
-                </p>
+                {hasFeedback ? (
+                  result
+                ) : (
+                  <p className={s.feedbackLabel}>
+                    {useInteractive
+                      ? "모양을 눌러 답을 만드세요"
+                      : useChoices
+                        ? "답을 누르면 바로 확인해요"
+                        : "생각한 답을 적어 주세요"}
+                  </p>
+                )}
                 <button
                   type="button"
                   className={s.textButton}

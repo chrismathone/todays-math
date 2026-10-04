@@ -1,5 +1,7 @@
 "use client";
 
+import { BackButton } from "@/components/ui/BackLink";
+
 import { useEffect, useReducer, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import {
@@ -276,13 +278,9 @@ export default function ConceptPlay({ onClose }: { onClose: () => void }) {
               >
                 한 번 더 놀기
               </button>
-              <button
-                type="button"
-                className={styles.returnButton}
-                onClick={close}
-              >
+              <BackButton type="button" onClick={close}>
                 랩실로 돌아가기
-              </button>
+              </BackButton>
             </div>
           ) : (
             <>

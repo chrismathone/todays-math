@@ -7,8 +7,10 @@ import type {
   ExplorerState,
 } from "@/contracts/mathExplorers.contract";
 import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
+import { BackButton } from "@/components/ui/BackLink";
 import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import { useQuestionPageTurn } from "@/components/math-srs/useQuestionPageTurn";
 import { answerKey, useAnswerKeys } from "@/components/math-srs/useAnswerKeys";
 import {
   ConceptKindTag,
@@ -44,6 +46,7 @@ export default function ExplorerPractice({
   busy,
   correct,
   eventKey,
+  feedbackMessage,
   onAction,
   onHome,
 }: {
@@ -56,17 +59,19 @@ export default function ExplorerPractice({
   busy: boolean;
   correct: boolean | null;
   eventKey: string;
+  feedbackMessage?: string;
   onAction: (action: ExplorerAction) => void;
   onHome: () => void;
 }) {
   const grade = units?.find((unit) => unit.id === activity.unitId)?.grade;
+  const turnPage = useQuestionPageTurn(
+    `${activity.questionId}:${activity.kind}`,
+  );
   return (
     <ExplorerPracticeFrame
       session={session}
       progressLabel={progressLabel}
       busy={busy}
-      correct={correct}
-      eventKey={eventKey}
       onHome={onHome}
     >
       <Activity
@@ -81,6 +86,11 @@ export default function ExplorerPractice({
         }
         busy={busy}
         correct={correct}
+        eventKey={eventKey}
+        feedbackMessage={feedbackMessage}
+        reviewOnly={session.reviewOnly}
+        retry={session.round > 0}
+        turnPage={turnPage}
         onAction={onAction}
       />
     </ExplorerPracticeFrame>
@@ -91,19 +101,17 @@ export function ExplorerPracticeFrame({
   session,
   progressLabel,
   busy,
-  correct,
-  eventKey,
   onHome,
   children,
-  feedbackMessage,
 }: {
   session: PracticeSession;
   progressLabel?: string;
   busy: boolean;
-  correct: boolean | null;
-  eventKey: string;
   onHome: () => void;
   children: ReactNode;
+  // Reading/session intros still pass these legacy frame props; feedback lives in the dock.
+  correct?: boolean | null;
+  eventKey?: string;
   feedbackMessage?: string;
 }) {
   // 보기 번호 키 · 엔터(`useAnswerKeys`) — 연습과 작업실이 같은 틀이라 한 곳에서 듣는다.
@@ -112,9 +120,9 @@ export function ExplorerPracticeFrame({
   return (
     <>
       <div className={s.practiceToolbar}>
-        <button type="button" disabled={busy} onClick={onHome}>
-          ← 진도판
-        </button>
+        <BackButton type="button" disabled={busy} onClick={onHome}>
+          진도판
+        </BackButton>
         <span>
           {session.reviewOnly ? (
             "지난 학습 다시 풀기"
@@ -146,11 +154,6 @@ export function ExplorerPracticeFrame({
         aria-label="개념 문제와 답 고르기"
       >
         {children}
-        <AnswerFeedbackEffect
-          correct={correct}
-          eventKey={eventKey}
-          message={feedbackMessage}
-        />
       </section>
     </>
   );
@@ -161,15 +164,41 @@ function Activity({
   gradeLabel,
   busy,
   correct,
+  eventKey,
+  feedbackMessage,
+  reviewOnly,
+  retry,
+  turnPage,
   onAction,
 }: {
   activity: ExplorerActivity;
   gradeLabel: string | null;
   busy: boolean;
   correct: boolean | null;
+  eventKey: string;
+  feedbackMessage?: string;
+  reviewOnly: boolean;
+  retry: boolean;
+  turnPage: "true" | undefined;
   onAction: (action: ExplorerAction) => void;
 }) {
   const [selected, setSelected] = useState<number[]>([]);
+  const [submittedAction, setSubmittedAction] = useState<
+    "answer" | "give-up" | null
+  >(null);
+  const resultMessage =
+    submittedAction === "give-up"
+      ? "모르는 부분을 확인했어요"
+      : (feedbackMessage ??
+        (reviewOnly
+          ? correct
+            ? "정확하게 풀었어요"
+            : "다시 생각해 보세요"
+          : retry
+            ? correct
+              ? "이번에는 해결했어요"
+              : "아직 해결하지 못했어요"
+            : undefined));
   // «선택됨» 움직임 표지(05 §8.16) — 누르거나 푼 **순간에만** 붙는다. 처음 그릴 때 · 채점 뒤 다시 그릴 때는 없거나 그대로라
   // 차오름·빠짐이 다시 돌지 않는다.
   const [motion, setMotion] = useState<Record<number, "in" | "out">>({});
@@ -181,8 +210,10 @@ function Activity({
   const pane = useRef<HTMLDivElement>(null);
   const sentence = useRef<HTMLDivElement>(null);
   const sentenceScale = useSentenceFit(pane, sentence, selected.join(","));
-  const submit = (choiceIds: number[]) =>
+  const submit = (choiceIds: number[]) => {
+    setSubmittedAction(choiceIds.length === 0 ? "give-up" : "answer");
     onAction({ type: "answer", questionId: activity.questionId, choiceIds });
+  };
   function choose(id: number) {
     if (disabled) return;
     if (activity.kind === "truth") {
@@ -214,6 +245,7 @@ function Activity({
         ref={pane}
         className={`${s.problemPane} ${pageTurn.page}`}
         data-page-turn="true"
+        data-question-transition={turnPage}
         tabIndex={0}
         aria-label="문제 내용"
       >
@@ -352,13 +384,21 @@ function Activity({
         ) : (
           <>
             <div className={s.answerInstruction}>
-              <span>
-                {activity.kind === "assemble"
-                  ? `말 조각 두 개를 순서대로 · ${Math.min(selected.length, 2)} / 2`
-                  : activity.kind === "examples"
-                    ? "해당하는 예 모두 선택"
-                    : "답을 하나 골라 주세요"}
-              </span>
+              {correct !== null ? (
+                <AnswerFeedbackEffect
+                  correct={correct}
+                  eventKey={eventKey}
+                  message={resultMessage}
+                />
+              ) : (
+                <span>
+                  {activity.kind === "assemble"
+                    ? `말 조각 두 개를 순서대로 · ${Math.min(selected.length, 2)} / 2`
+                    : activity.kind === "examples"
+                      ? "해당하는 예 모두 선택"
+                      : "답을 하나 골라 주세요"}
+                </span>
+              )}
               <button
                 type="button"
                 disabled={disabled}

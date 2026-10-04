@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import BackLink, { BackButton } from "@/components/ui/BackLink";
 import { useEffect, useState, type FormEvent } from "react";
 import TodayMathMark from "@/components/brand/TodayMathMark";
 import WorkspaceIcon from "@/components/unified/WorkspaceIcon";
@@ -406,13 +407,9 @@ export default function MathSrsApp() {
         ) : view === "mission" && mission ? (
           <>
             <div className={s.sessionHeader}>
-              <button
-                type="button"
-                className={s.textButton}
-                onClick={() => setView("home")}
-              >
-                ← 나의 학습
-              </button>
+              <BackButton type="button" onClick={() => setView("home")}>
+                나의 학습
+              </BackButton>
               <span>
                 {mission.date === today ? "오늘의 미션" : "이어서 푸는 미션"} ·{" "}
                 {Math.min(
@@ -470,7 +467,7 @@ export default function MathSrsApp() {
           />
         )}
         <footer className={s.footer}>
-          <Link href="/lab">← 개념 실험실</Link>
+          <BackLink href="/lab">개념 실험실</BackLink>
           <span>
             최근 90회 미션은 이 브라우저에 저장됩니다. 다른 기기와 공유되지
             않아요.

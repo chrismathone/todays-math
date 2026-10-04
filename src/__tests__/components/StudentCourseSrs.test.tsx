@@ -25,6 +25,24 @@ import { publicCourseSession } from "@/lib/math-srs/courseAutomation";
 import type { CourseSession } from "@/lib/math-srs/elementary/types";
 import * as api from "@/components/math-srs/courseApi";
 
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math-srs/courseApi", () => ({
@@ -310,6 +328,9 @@ describe("one-screen student answers", () => {
     view(run, onAnswer);
     expect(await screen.findByText("문제 1: 1 + 1")).toBeInTheDocument();
     expect(
+      document.querySelector('[data-question-transition="true"]'),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByRole("button", { name: "답안" }),
     ).not.toBeInTheDocument();
     expect(
@@ -330,6 +351,82 @@ describe("one-screen student answers", () => {
       submittedAnswer: "2",
     });
   });
+
+  it.each(["retry-wrong", "retry-give-up", "self-check"] as const)(
+    "uses client copy for the actual recorded action: %s",
+    async (mode) => {
+      const inRetry = mode !== "self-check";
+      const run = session(inRetry ? 5 : 0);
+      const problemId = run.problems[0].id;
+      if (inRetry) {
+        run.attempts[0].correct = false;
+        run.problems[0].feedback = null;
+        run.problems[0].answerChoices = ["1", "2", "3", "4"];
+        run.retry = {
+          pendingProblemIds: [problemId],
+          attempts: [],
+          completedAt: null,
+        };
+      } else run.problems[0].input.mode = "self-check";
+      const { props, rerender } = view(run);
+      await screen.findByText("문제 1: 1 + 1");
+      if (mode === "retry-give-up")
+        fireEvent.click(
+          screen.getByRole("button", { name: "아직 모르겠어요" }),
+        );
+      else if (mode === "self-check") {
+        fireEvent.click(screen.getByRole("button", { name: "다 풀었어요" }));
+        fireEvent.click(
+          screen.getByRole("button", { name: "다시 연습할래요" }),
+        );
+      } else
+        fireEvent.click(
+          within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+            "button",
+          )[0],
+        );
+      expect(props.onAnswer).toHaveBeenCalledWith(
+        expect.objectContaining(
+          mode === "retry-give-up"
+            ? { giveUp: true, retryIndex: 0 }
+            : mode === "self-check"
+              ? { selfCorrect: false }
+              : { submittedAnswer: "1", retryIndex: 0 },
+        ),
+      );
+      const saved = structuredClone(run);
+      const attempt = {
+        ...session(1).attempts[0],
+        correct: false,
+        selfAssessed: mode === "self-check",
+        submittedAnswer: mode === "retry-wrong" ? "1" : "",
+      };
+      saved.problems[0].feedback = { correct: false };
+      if (inRetry)
+        saved.retry = {
+          pendingProblemIds: mode === "retry-give-up" ? [] : [problemId],
+          attempts: [attempt],
+          completedAt: mode === "retry-give-up" ? now : null,
+        };
+      else saved.attempts = [attempt];
+      rerender(
+        <StudentCoursePractice
+          {...props}
+          session={saved}
+          feedbackId={problemId}
+        />,
+      );
+      expect(
+        screen.getByText(
+          mode === "retry-give-up"
+            ? "아직 모르겠어요로 기록했어요"
+            : mode === "self-check"
+              ? "다시 볼 내용으로 기록했어요"
+              : "아직 해결하지 못했어요",
+        ),
+      ).toBeInTheDocument();
+    },
+  );
 
   it("guards repeated taps and advances only after saved feedback, cancelling the timer on exit", async () => {
     const run = session();
@@ -355,6 +452,11 @@ describe("one-screen student answers", () => {
         />,
       );
       expect(screen.getByText("정확하게 풀었어요")).toBeInTheDocument();
+      expect(
+        screen
+          .getByText("정확하게 풀었어요")
+          .closest('[class*="answerDockHeader"]'),
+      ).toBeInTheDocument();
       expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
       act(() => vi.advanceTimersByTime(1199));
       expect(props.onNext).not.toHaveBeenCalled();
@@ -401,7 +503,7 @@ describe("one-screen student answers", () => {
           feedbackId={response.problems[4].id}
         />,
       );
-      expect(screen.getByText("다시 풀 문제로 모았어요")).toBeInTheDocument();
+      expect(screen.getByText("다시 생각해 볼 문제예요")).toBeInTheDocument();
       expect(screen.queryByText("비공개 풀이")).not.toBeInTheDocument();
       act(() => vi.advanceTimersByTime(1200));
       expect(props.onNext).toHaveBeenCalledTimes(1);
@@ -770,6 +872,63 @@ async function begin() {
 }
 
 describe("persisted course practice", () => {
+  it.each([
+    "self-true",
+    "self-false",
+    "give-up",
+    "other-student",
+    "other-session",
+  ] as const)("maps actual confirmed course action: %s", async (mode) => {
+    const run = session();
+    if (mode.startsWith("self-")) {
+      run.problems[0].input.mode = "self-check";
+      run.problems[0].hint = { answer: "2", solution: "1 더하기 1은 2" };
+    }
+    vi.mocked(api.startCourse).mockResolvedValue({
+      ok: true,
+      data: state(run),
+    });
+    const saved = state(session(1));
+    if (mode === "self-false") saved.session!.attempts[0].correct = false;
+    if (mode === "other-student")
+      saved.student.id = "99999999-9999-4999-8999-999999999999";
+    if (mode === "other-session")
+      saved.session!.id = "99999999-9999-4999-8999-999999999999";
+    vi.mocked(api.answerCourse).mockResolvedValue({ ok: true, data: saved });
+    render(<StudentCourseSrs />);
+    await userEvent.click(
+      await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
+    );
+    if (mode.startsWith("self-")) {
+      await userEvent.click(
+        await screen.findByRole("button", { name: "다 풀었어요" }),
+      );
+      await userEvent.click(
+        await screen.findByRole("button", {
+          name:
+            mode === "self-false"
+              ? "다시 연습할래요"
+              : "혼자 풀었다고 생각해요",
+        }),
+      );
+    } else if (mode === "give-up")
+      await userEvent.click(
+        await screen.findByRole("button", { name: "아직 모르겠어요" }),
+      );
+    else
+      await userEvent.type(
+        await screen.findByRole("textbox", { name: "나의 답" }),
+        "2{Enter}",
+      );
+    await waitFor(() => expect(api.answerCourse).toHaveBeenCalledOnce());
+    await act(async () => {});
+    if (mode.startsWith("other-")) expect(sounds.play).not.toHaveBeenCalled();
+    else
+      expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+        "soft",
+        `${state().student.id}:${run.id}:${run.problems[0].id}:first`,
+      );
+  });
   it("focuses the next recommendation at completion so Enter continues", async () => {
     const completed = state(session(5));
     vi.mocked(api.startCourse).mockResolvedValueOnce({
@@ -809,6 +968,11 @@ describe("persisted course practice", () => {
     await userEvent.keyboard("{Enter}");
     expect(api.answerCourse).toHaveBeenCalledTimes(1);
     await act(async () => resolve({ ok: true, data: state(session(1)) }));
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `${state().student.id}:${session().id}:${session().problems[0].id}:first`,
+    );
+    expect(sounds.gesture).toHaveBeenCalled();
     expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /다음 문제/ })).toHaveFocus();
     await userEvent.keyboard("{Enter}");
@@ -826,6 +990,7 @@ describe("persisted course practice", () => {
     const input = await begin();
     await userEvent.type(input, "2{Enter}");
     expect(await screen.findByRole("alert")).toHaveTextContent("연결되지");
+    expect(sounds.play).not.toHaveBeenCalled();
     expect(input).toBeDisabled();
     expect(
       screen.queryByRole("button", { name: /다음 문제/ }),
@@ -839,6 +1004,7 @@ describe("persisted course practice", () => {
     expect(vi.mocked(api.answerCourse).mock.calls[0]).toEqual(
       vi.mocked(api.answerCourse).mock.calls[1],
     );
+    expect(sounds.play).toHaveBeenCalledTimes(1);
   });
 
   it("requires a fresh server reload after a 409", async () => {
@@ -850,6 +1016,7 @@ describe("persisted course practice", () => {
     const input = await begin();
     await userEvent.type(input, "2{Enter}");
     expect(await screen.findByRole("alert")).toHaveTextContent("다른 화면");
+    expect(sounds.play).not.toHaveBeenCalled();
     expect(input).toBeDisabled();
     expect(
       screen.queryByRole("button", { name: "같은 요청 다시 시도" }),
@@ -948,7 +1115,7 @@ describe("persisted course practice", () => {
       giveUp: true,
     });
     expect(
-      await screen.findByText("다시 풀 문제로 모았어요"),
+      await screen.findByText("모르는 부분을 확인했어요"),
     ).toBeInTheDocument();
   });
 
@@ -989,6 +1156,9 @@ describe("persisted course practice", () => {
       submittedAnswer: "",
       selfCorrect: true,
     });
+    expect(
+      await screen.findByText("혼자 풀었다고 기록했어요"),
+    ).toBeInTheDocument();
   });
 
   it("records retry self-check privately before optional explanation", async () => {
@@ -1041,7 +1211,9 @@ describe("persisted course practice", () => {
     expect(api.answerCourse).toHaveBeenCalledWith(
       expect.objectContaining({ selfCorrect: true, retryIndex: 0 }),
     );
-    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
+    expect(
+      await screen.findByText("혼자 풀었다고 기록했어요"),
+    ).toBeInTheDocument();
   });
 
   it("requests the next recommendation after five problems and stops at the daily goal", async () => {

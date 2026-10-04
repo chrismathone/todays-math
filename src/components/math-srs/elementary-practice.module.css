@@ -1452,6 +1452,26 @@
     min-height: 56px;
   }
 }
+:global([data-learning-motion="reduce"]) .progressPath {
+  scroll-behavior: auto;
+}
+:global([data-learning-motion="reduce"])
+  .pathStep[data-state="current"]
+  .pathNode,
+:global([data-learning-motion="reduce"])
+  .pathStep[data-side="left"]
+  .playerPiece[data-moved="true"],
+:global([data-learning-motion="reduce"])
+  .pathStep[data-side="right"]
+  .playerPiece[data-moved="true"],
+:global([data-learning-motion="reduce"]) .practice .answerChoice[data-result] {
+  animation: none;
+}
+:global([data-learning-motion="reduce"]) .practice .answerInput,
+:global([data-learning-motion="reduce"]) .practice .noteInput,
+:global([data-learning-motion="reduce"]) .practice button {
+  transition: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .progressPath {
@@ -1472,13 +1492,13 @@
 
 /* The exercise frame stays in place; only the paper and answers change. */
 .fixedPractice {
+  color: var(--math-atelier-ink, #203653);
   height: 100%;
   overflow: hidden;
 }
 .fixedPractice .fixedQuestion {
   position: relative;
   isolation: isolate;
-  perspective: 1200px;
 }
 .fixedQuestion .problemPane {
   position: relative;
@@ -1490,6 +1510,9 @@
   justify-content: space-between;
   gap: 6px;
   min-height: 44px;
+}
+.answerDockHeader > [data-answer-feedback] {
+  flex: 1;
 }
 .fixedQuestion .answerDockHeader .feedbackLabel {
   margin: 0;
@@ -1623,5 +1646,47 @@
 @media (max-height: 650px) {
   .fixedPractice .fractionBar[data-many="true"] .fractionPart {
     min-height: 44px;
+  }
+}
+
+/* Keep the paper readable when zoom or a fraction dock fills a short frame.
+   The question card scrolls as a whole; the student navigation stays clear. */
+@media (max-height: 500px) {
+  .fixedPractice .fixedQuestion {
+    display: flex;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .fixedPractice .fixedQuestion .problemPane {
+    flex: 0 0 auto;
+    min-height: 144px;
+  }
+  .fixedPractice .fixedQuestion .problemScroll {
+    flex: 0 0 auto;
+    min-height: 88px;
+    max-height: 200px;
+  }
+  .fixedPractice .fixedQuestion .responsePane {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 350px) and (max-height: 600px) {
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] {
+    display: flex;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .problemPane {
+    flex: 0 0 auto;
+    min-height: 144px;
+  }
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .problemScroll {
+    flex: 0 0 auto;
+    min-height: 88px;
+    max-height: 200px;
+  }
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .responsePane {
+    flex: 0 0 auto;
   }
 }

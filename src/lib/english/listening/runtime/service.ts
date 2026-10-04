@@ -16,6 +16,11 @@ import * as assignments from "./assignments";
 import * as students from "./students";
 import { searchListeningBank, searchListeningReferences } from "./bank";
 import { composeListeningSet, composeSource } from "./compose";
+import type { ListeningDriveApi } from "../media/driveApi";
+import type {
+  ListeningStorageApi,
+  ListeningStorageRef,
+} from "../media/storageApi";
 
 /** Each command, receipt, revision and release exposure commits in one durable transaction.
  * The advisory lock serializes a set/assignment across processes; SQL CAS still checks the
@@ -23,6 +28,10 @@ import { composeListeningSet, composeSource } from "./compose";
 export function createListeningRuntime(
   database: ListeningDatabase,
   clock: () => Date = () => new Date(),
+  dependencies: {
+    drive?: ListeningDriveApi | null;
+    storage?: ListeningStorageApi | null;
+  } = {},
 ) {
   const transaction = <T>(
     key: string | undefined,
@@ -46,7 +55,7 @@ export function createListeningRuntime(
       input: unknown,
     ) =>
       transaction(undefined, async (tx) => {
-        const account = await teacher(tx, actor);
+        const account = await teacher(tx, actor, "materials");
         if (!account.menus.includes("english-bank")) throw denied();
         return resource === "bank"
           ? searchListeningBank(tx, account, input)
@@ -57,7 +66,11 @@ export function createListeningRuntime(
       resource: "sets" | "assignments" | "classes",
     ) =>
       transaction(undefined, async (tx) => {
-        const account = await teacher(tx, actor);
+        const account = await teacher(
+          tx,
+          actor,
+          resource === "sets" ? "materials" : "listening",
+        );
         return resource === "sets"
           ? sets.listSets(tx, account)
           : resource === "assignments"
@@ -66,35 +79,75 @@ export function createListeningRuntime(
       }),
     createSet: (actor: ListeningActor, input: unknown) =>
       transaction(undefined, async (tx, now) =>
-        sets.createSet(tx, await teacher(tx, actor), input, now),
+        sets.createSet(tx, await teacher(tx, actor, "materials"), input, now),
       ),
-    composeSet: (actor: ListeningActor, input: unknown) =>
-      transaction(
-        undefined,
-        async (tx, now) => {
-          const account = await teacher(tx, actor);
-          if (!account.menus.includes("english-bank")) throw denied();
-          return composeListeningSet(tx, account, input, now);
-        },
-        120000,
-      ),
+    composeSet: async (actor: ListeningActor, input: unknown) => {
+      const createdFiles = new Set<string>();
+      const createdStorageRefs: ListeningStorageRef[] = [];
+      try {
+        return await transaction(
+          undefined,
+          async (tx, now) => {
+            const account = await teacher(tx, actor, "materials");
+            if (!account.menus.includes("english-bank")) throw denied();
+            return composeListeningSet(
+              tx,
+              account,
+              input,
+              now,
+              dependencies.drive || dependencies.storage
+                ? {
+                    api: dependencies.drive ?? undefined,
+                    storage: dependencies.storage ?? undefined,
+                    createdFiles,
+                    createdStorageRefs,
+                  }
+                : undefined,
+            );
+          },
+          dependencies.drive || dependencies.storage ? 600000 : 120000,
+        );
+      } catch (error) {
+        // SQL rollback never leaves a playable metadata identity. Remove only
+        // newly created derivatives, never shared originals or existing files.
+        await Promise.allSettled(
+          [...createdFiles].map((fileId) => dependencies.drive!.trash(fileId)),
+        );
+        await Promise.allSettled(
+          createdStorageRefs.map((ref) => dependencies.storage!.remove(ref)),
+        );
+        throw error;
+      }
+    },
     composeSource: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) => {
-        const account = await teacher(tx, actor);
+        const account = await teacher(tx, actor, "materials");
         if (!account.menus.includes("english-bank")) throw denied();
         return composeSource(tx, account, setId);
       }),
     setDetail: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) =>
-        sets.setDetail(tx, await teacher(tx, actor), setId),
+        sets.setDetail(tx, await teacher(tx, actor, "materials"), setId),
       ),
     updateSet: (actor: ListeningActor, setId: string, input: unknown) =>
       transaction(id(setId), async (tx, now) =>
-        sets.updateSet(tx, await teacher(tx, actor), setId, input, now),
+        sets.updateSet(
+          tx,
+          await teacher(tx, actor, "materials"),
+          setId,
+          input,
+          now,
+        ),
       ),
     reviewSet: (actor: ListeningActor, setId: string, input: unknown) =>
       transaction(id(setId), async (tx, now) =>
-        sets.reviewSet(tx, await teacher(tx, actor), setId, input, now),
+        sets.reviewSet(
+          tx,
+          await teacher(tx, actor, "materials"),
+          setId,
+          input,
+          now,
+        ),
       ),
     publishSet: (actor: ListeningActor, setId: string, input: unknown) =>
       transaction(id(setId), async (tx, now) =>
@@ -110,7 +163,7 @@ export function createListeningRuntime(
       transaction(id(setId), async (tx, now) =>
         sets.deleteSet(
           tx,
-          await teacher(tx, actor),
+          await teacher(tx, actor, "materials"),
           setId,
           listeningRevisionInputSchema.parse(input).expectedRevision,
           now,

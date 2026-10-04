@@ -1,260 +1,61 @@
 .effect {
-  --effect-color: #168360;
-  --effect-rgb: 22, 131, 96;
-  position: absolute;
-  inset: 0;
-  z-index: 20;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-  overflow: hidden;
-  border-radius: inherit;
-  pointer-events: none;
-  user-select: none;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0.85) 0%,
-    rgba(255, 255, 255, 0.58) 27%,
-    rgba(var(--effect-rgb), 0.06) 57%,
-    transparent 82%
-  );
-  animation: effectLifetime 1150ms ease-out both;
-}
-
-.correct {
-  --effect-color: #168360;
-  --effect-rgb: 22, 131, 96;
-}
-
-.incorrect {
-  --effect-color: #c95146;
-  --effect-rgb: 201, 81, 70;
-}
-
-.content {
-  display: grid;
-  justify-items: center;
-  gap: 21px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
   max-width: 100%;
+  pointer-events: none;
+  font-size: 14px;
+  line-height: 1.4;
 }
-
-.emblem {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 88px;
-  height: 88px;
+.correct {
+  color: var(--math-atelier-done, #167052);
 }
-
-.medallion {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: 5px solid #fff;
-  border-radius: 50%;
-  color: #fff;
-  background: var(--effect-color);
-  box-shadow:
-    0 7px 0 rgba(var(--effect-rgb), 0.14),
-    0 12px 28px rgba(var(--effect-rgb), 0.23),
-    inset 0 2px 0 rgba(255, 255, 255, 0.2);
-  animation: medallionEnter 430ms cubic-bezier(0.2, 0.85, 0.25, 1.3) both;
+.incorrect {
+  color: var(--math-atelier-retry, #98531e);
 }
-
-.medallion svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.mark {
+.icon {
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
   stroke: currentColor;
-  stroke-width: 6;
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: drawMark 250ms ease-out 100ms forwards;
+  animation: confirmResult 320ms ease-out both;
 }
-
-.secondStroke {
-  animation-delay: 170ms;
-}
-
-.ring {
-  position: absolute;
-  inset: -5px;
-  border: 2px solid rgba(var(--effect-rgb), 0.36);
-  border-radius: 50%;
-  opacity: 0;
-  animation: ripple 680ms ease-out 90ms both;
-}
-
-.secondRing {
-  border-width: 1px;
-  animation-delay: 220ms;
-}
-
-.sparks {
-  position: absolute;
-  inset: 0;
-}
-
-.spark {
-  position: absolute;
-  top: calc(50% - 3px);
-  left: calc(50% - 4px);
-  width: 8px;
-  height: 6px;
-  border-radius: 2px;
-  background: #e6ac3b;
-  opacity: 0;
-  animation: sparkOut 650ms ease-out calc(100ms + var(--delay)) both;
-}
-
-.spark:nth-child(2n) {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #29a783;
-}
-
 .message {
   margin: 0;
-  padding: 10px 16px;
-  max-width: 100%;
-  border: 1px solid rgba(var(--effect-rgb), 0.13);
-  border-radius: 999px;
-  background: #fff;
-  color: var(--effect-color);
-  box-shadow: 0 6px 22px rgba(var(--effect-rgb), 0.1);
-  font-size: clamp(14px, 4vw, 17px);
-  font-weight: 800;
-  line-height: 1.4;
-  text-align: center;
+  min-width: 0;
+  font-weight: 750;
   word-break: keep-all;
-  animation: messageEnter 260ms ease-out 90ms both;
+  overflow-wrap: anywhere;
 }
-
-/* 한 걸음 복습 콤보(05 §8.15 «숫자 강조 한 줄») — 알약은 그대로, 숫자만 22px.
-   기준선 맞춤은 22px 숫자가 줄을 키워 알약이 3px 커진다 → 가운데 맞춤으로 높이를 지금과 같게. */
 .streak {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 3px;
 }
-
 .streakNumber {
   font-size: 22px;
   line-height: 1;
-  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
-
-.incorrect .medallion {
-  animation-timing-function: ease-out;
-}
-
-.incorrect .ring {
-  animation-name: retryRipple;
-}
-
-@keyframes effectLifetime {
-  0% {
-    opacity: 0;
-  }
-  9%,
-  76% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes medallionEnter {
+@keyframes confirmResult {
   from {
     opacity: 0;
-    transform: scale(0.72);
   }
   to {
     opacity: 1;
-    transform: scale(1);
   }
 }
-
-@keyframes drawMark {
-  to {
-    stroke-dashoffset: 0;
-  }
+:global([data-learning-motion="reduce"]) .icon {
+  animation: none;
+  opacity: 1;
 }
-
-@keyframes ripple {
-  0% {
-    opacity: 0.65;
-    transform: scale(0.85);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.8);
-  }
-}
-
-@keyframes retryRipple {
-  0% {
-    opacity: 0.5;
-    transform: scale(0.95);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.4);
-  }
-}
-
-@keyframes sparkOut {
-  0% {
-    opacity: 0;
-    transform: rotate(var(--angle)) translateX(39px) scale(0.4);
-  }
-  20% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(var(--angle)) translateX(83px) scale(0.6);
-  }
-}
-
-@keyframes messageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .effect {
-    animation-timing-function: linear;
-  }
-
-  .medallion,
-  .message,
-  .mark {
+  .icon {
     animation: none;
-  }
-
-  .mark {
-    stroke-dashoffset: 0;
-  }
-
-  .ring,
-  .sparks {
-    display: none;
+    opacity: 1;
   }
 }

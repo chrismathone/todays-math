@@ -141,6 +141,69 @@ afterEach(() => {
 });
 
 describe("operational guards use current relationships and immutable branch context", () => {
+  it.each(["owner", "manager"] as const)(
+    "gives a healthy explicit managed %s access to the whole current branch",
+    async (branchRole) => {
+      const admin = { ...viewer, isAdmin: true, branchRole };
+      vi.mocked(getManagedClassGrants).mockResolvedValue({
+        ...grant(),
+        sourceClasses: [],
+        branchAdminScope: { branchId: viewer.branchId },
+      });
+      fixture.tables.classMembership.length = 0;
+      fixture.tables.class.push({
+        id: "colleague-local",
+        userId: "colleague",
+        branchId: viewer.branchId,
+        eywaBindingId: null,
+      });
+      fixture.tables.class.push({
+        id: "other-branch",
+        userId: "colleague",
+        branchId: "other",
+        eywaBindingId: "binding",
+      });
+      expect(await accessibleClassesWhere(admin)).toEqual({
+        branchId: viewer.branchId,
+      });
+      expect((await requireOwnedClass("a", admin)).ok).toBe(true);
+      expect((await requireOwnedClass("colleague-local", admin)).ok).toBe(true);
+      expect((await requireOwnedClass("other-branch", admin)).ok).toBe(false);
+      expect(
+        (await requireOwnedClass("a", { ...admin, branchId: "other" })).ok,
+      ).toBe(false);
+      expect((await requireOwnedStudentInClass("student", "a", admin)).ok).toBe(
+        true,
+      );
+    },
+  );
+  it("never turns a stale admin session into branch scope without a current local override", async () => {
+    fixture.tables.classMembership.length = 0;
+    expect(
+      (await requireOwnedClass("a", { ...viewer, isAdmin: true })).ok,
+    ).toBe(false);
+  });
+  it("blocks promoted managed admins after source expiry or failure, including local classes", async () => {
+    const admin = { ...viewer, isAdmin: true, branchRole: "manager" as const };
+    fixture.tables.class.push({
+      id: "colleague-local",
+      userId: "colleague",
+      branchId: viewer.branchId,
+      eywaBindingId: null,
+    });
+    vi.mocked(getManagedClassGrants).mockResolvedValue({
+      ...grant(),
+      branchAdminScope: { branchId: viewer.branchId },
+      leaseExpiresAt: now,
+    });
+    expect((await requireOwnedClass("a", admin)).ok).toBe(false);
+    expect((await requireOwnedClass("colleague-local", admin)).ok).toBe(false);
+    vi.mocked(getManagedClassGrants).mockRejectedValue(
+      new Error("staff_inactive"),
+    );
+    expect((await requireOwnedClass("a", admin)).ok).toBe(false);
+    expect((await requireOwnedClass("colleague-local", admin)).ok).toBe(false);
+  });
   it("supports two classes for one identity and a second current teacher", async () => {
     expect((await requireOwnedStudentInClass("student", "a", viewer)).ok).toBe(
       true,

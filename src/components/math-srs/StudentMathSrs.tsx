@@ -1,5 +1,7 @@
 "use client";
 
+import { BackButton } from "@/components/ui/BackLink";
+
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -34,9 +36,12 @@ import s from "./authenticated.module.css";
 import pageTurn from "./question-page-turn.module.css";
 import StudentJourney from "./StudentJourney";
 import AnswerFeedbackEffect from "./AnswerFeedbackEffect";
+import { useQuestionPageTurn } from "./useQuestionPageTurn";
 import { NumberKey } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
+import { useLearningSounds } from "./LearningSounds";
+import { learningSoundCue } from "./learningSoundCue";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((mod) => mod.ProblemContent),
@@ -60,6 +65,9 @@ export function StudentMathSrs({
   expedition,
 }: { expedition?: ExpeditionActivityCallbacks } = {}) {
   const router = useRouter();
+  const { gesture, play, resetStudent } = useLearningSounds();
+  const soundEpoch = useRef(0);
+  const soundStudent = useRef<string | null>(null);
   const [state, setState] = useState<MathSrsState | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Failure | null>(null);
@@ -91,6 +99,9 @@ export function StudentMathSrs({
     void fetchMathSrs().then(async (result) => {
       if (!current) return;
       if (result.ok) {
+        soundEpoch.current++;
+        soundStudent.current = result.data.student.id;
+        resetStudent(result.data.student.id);
         setState(result.data);
         setRetrySteps(remainingRetrySteps(result.data.mission));
         setError(null);
@@ -125,7 +136,7 @@ export function StudentMathSrs({
     return () => {
       current = false;
     };
-  }, [reload, router]);
+  }, [reload, router, resetStudent]);
 
   async function mutate(
     action: () => Promise<Submitted<MathSrsState>>,
@@ -170,6 +181,11 @@ export function StudentMathSrs({
     ? mission?.problems[retryStep - 1]
     : mission?.problems[mission.attempts.length];
   const displayedProblem = feedbackProblem ?? currentProblem;
+  const turnPage = useQuestionPageTurn(
+    displayedProblem
+      ? `${mission!.id}:${displayedProblem.id}:${retryTurn}`
+      : null,
+  );
   const correct = retryStep
     ? retryFeedback
     : feedbackId
@@ -220,6 +236,9 @@ export function StudentMathSrs({
       retryFeedback !== null
     )
       return;
+    gesture();
+    const studentId = state!.student.id;
+    const soundTurn = soundEpoch.current;
     pending.current = true;
     setBusy(true);
     setError(null);
@@ -260,6 +279,25 @@ export function StudentMathSrs({
           );
         }
         setRetryFeedback(result.data.correct);
+        if (
+          soundEpoch.current === soundTurn &&
+          soundStudent.current === studentId &&
+          result.data.kind === "middle" &&
+          result.data.problemId === currentProblem.id &&
+          result.data.step === retryStep &&
+          typeof result.data.correct === "boolean"
+        ) {
+          const cue = learningSoundCue(
+            { type: "middle", submittedAnswer: answer },
+            result.data.correct,
+          );
+          if (cue)
+            play(
+              cue,
+              `${studentId}:${mission.id}:${currentProblem.id}:${retryTurn}`,
+            );
+          expeditionRef.current?.onConfirmedAnswer?.(studentId);
+        }
       } else if (result.status === 401) router.replace("/learn/login");
       else if (
         result.status === 403 &&
@@ -285,6 +323,7 @@ export function StudentMathSrs({
         ?.title
     : null;
   const resetLoad = () => {
+    soundEpoch.current++;
     lastSubmission.current = null;
     setLoading(true);
     setError(null);
@@ -293,6 +332,7 @@ export function StudentMathSrs({
     setReload((value) => value + 1);
   };
   const beginPractice = () => {
+    gesture();
     if (hasPendingRetry) {
       setPracticing(true);
       setFeedbackId(null);
@@ -355,11 +395,10 @@ export function StudentMathSrs({
           {practicing && mission ? (
             <>
               <div className={s.practiceHeader}>
-                <Button
-                  variant="ghost"
-                  className={s.quietButton}
+                <BackButton
                   disabled={busy}
                   onClick={() => {
+                    soundEpoch.current++;
                     setPracticing(false);
                     setFeedbackId(null);
                     setRetryFeedback(null);
@@ -367,8 +406,8 @@ export function StudentMathSrs({
                     expedition?.onExit();
                   }}
                 >
-                  ← 학습 홈
-                </Button>
+                  학습 홈
+                </BackButton>
                 <span>중1 · 일차방정식</span>
               </div>
               <div className={s.progress}>
@@ -396,6 +435,7 @@ export function StudentMathSrs({
                   streak={streak}
                   retry={!!retryStep}
                   eventKey={`${displayedProblem.id}:${retryTurn}`}
+                  turnPage={turnPage}
                   onReload={resetLoad}
                   onAnswer={(submittedAnswer, elapsedSeconds, rating) => {
                     if (retryStep) {
@@ -403,6 +443,9 @@ export function StudentMathSrs({
                       return;
                     }
                     if (!currentProblem || feedbackId) return;
+                    gesture();
+                    const studentId = state.student.id;
+                    const soundTurn = soundEpoch.current;
                     void mutate(
                       () => {
                         const previous = lastSubmission.current;
@@ -431,8 +474,30 @@ export function StudentMathSrs({
                             (attempt) =>
                               attempt.problemId === currentProblem.id,
                           )
-                        )
+                        ) {
                           setFeedbackId(currentProblem.id);
+                          const attempt = next.mission.attempts.find(
+                            (item) => item.problemId === currentProblem.id,
+                          )!;
+                          if (
+                            soundEpoch.current === soundTurn &&
+                            soundStudent.current === studentId &&
+                            next.student.id === studentId
+                          ) {
+                            const cue = learningSoundCue(
+                              { type: "middle", submittedAnswer },
+                              attempt.correct,
+                            );
+                            if (cue)
+                              play(
+                                cue,
+                                `${studentId}:${mission.id}:${currentProblem.id}`,
+                              );
+                            expeditionRef.current?.onConfirmedAnswer?.(
+                              studentId,
+                            );
+                          }
+                        }
                       },
                     );
                   }}
@@ -594,6 +659,7 @@ function Question({
   streak,
   retry,
   eventKey,
+  turnPage,
   onReload,
   onAnswer,
 }: {
@@ -603,10 +669,14 @@ function Question({
   streak: number | null;
   retry: boolean;
   eventKey: string;
+  turnPage: "true" | undefined;
   onReload: () => void;
   onAnswer: (answer: string, elapsed: number, rating: Rating) => void;
 }) {
   const [selected, setSelected] = useState<string | null>(null);
+  const [submittedAction, setSubmittedAction] = useState<
+    "answer" | "give-up" | null
+  >(null);
   const [startedAt] = useState(() => Date.now());
   const heading = useRef<HTMLParagraphElement>(null);
   const card = useRef<HTMLElement>(null);
@@ -619,6 +689,7 @@ function Question({
   function choose(answer: string) {
     if (disabled) return;
     setSelected(answer);
+    setSubmittedAction(answer ? "answer" : "give-up");
     onAnswer(
       answer,
       Math.min(86_400, Math.max(0, (Date.now() - startedAt) / 1000)),
@@ -635,6 +706,7 @@ function Question({
       <div
         className={`${s.problemScroll} ${pageTurn.page}`}
         data-page-turn="true"
+        data-question-transition={turnPage}
         key={eventKey}
       >
         <p ref={heading} tabIndex={-1} className={s.eyebrow}>
@@ -655,7 +727,26 @@ function Question({
         {choices?.length === 4 ? (
           <>
             <div className={s.answerDockHeading}>
-              <span>{busy ? "확인하고 있어요…" : "답을 하나 골라 주세요"}</span>
+              {correct !== null ? (
+                <AnswerFeedbackEffect
+                  correct={correct}
+                  eventKey={eventKey}
+                  streak={streak}
+                  message={
+                    submittedAction === "give-up"
+                      ? "모르는 부분을 확인했어요"
+                      : retry
+                        ? correct
+                          ? "이번에는 해결했어요"
+                          : "아직 해결하지 못했어요"
+                        : undefined
+                  }
+                />
+              ) : (
+                <span>
+                  {busy ? "확인하고 있어요…" : "답을 하나 골라 주세요"}
+                </span>
+              )}
               {!retry ? (
                 <button
                   type="button"
@@ -708,11 +799,6 @@ function Question({
           </div>
         )}
       </div>
-      <AnswerFeedbackEffect
-        correct={correct}
-        eventKey={eventKey}
-        streak={streak}
-      />
     </section>
   );
 }
