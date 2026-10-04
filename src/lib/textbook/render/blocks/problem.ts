@@ -39,9 +39,27 @@ export function renderProblemHtml(
     block.answer === undefined && !block.publicWorkedExample
       ? block.layout.preferredWorkLines
       : 0;
-  const worked =
-    block.publicWorkedExample ||
-    (block as RenderBlock & { learningStage?: string }).learningStage ===
-      "worked-example";
-  return `<section class="tb-problem${worked ? " tb-problem-worked" : ""}${block.layout.columnSpan === 2 ? " tb-problem-wide" : ""}"${worked ? ' aria-label="대표예제"' : ""}><header class="tb-problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}</div>${answer}</div><div class="tb-work-area" style="min-height:${Math.max(lines * 7, block.qr ? 27 : 0)}mm">${lines ? `<div class="tb-work-lines" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}${block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : ""}</div></section>`;
+  // In a linked group the writer names the solved example; every other member is an unsolved
+  // confirmation, whatever stage its parent activity gave it.
+  const group =
+    block.semantic?.node?.kind === "exampleGroup"
+      ? block.semantic.node
+      : undefined;
+  const role = !group
+    ? undefined
+    : block.itemId === group.exampleItemId
+      ? "example"
+      : group.confirmItemIds.includes(block.itemId)
+        ? "confirm"
+        : undefined;
+  const worked = role
+    ? role === "example"
+    : Boolean(
+        block.publicWorkedExample ||
+        (block as RenderBlock & { learningStage?: string }).learningStage ===
+          "worked-example",
+      );
+  const qr = block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : "";
+  // The QR sits beside the prompt: the ruled space below keeps the full column width.
+  return `<section class="tb-problem${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 ? " tb-problem-wide" : ""}${qr ? " tb-problem-has-qr" : ""}"${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"` : ""}><header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}</div>${answer}</div>${qr}</div><div class="tb-work-area" style="min-height:${lines * 7}mm">${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
 }
