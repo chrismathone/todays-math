@@ -77,17 +77,17 @@ export function classGradeOf(
   )[0]![0];
 }
 
-/**
- * 학년 문자열 → 학교 필드. 초등은 내신이 없어 '오늘의 시험' 대상이 아니다 —
- * `schoolLevel` 을 비운다(스키마 주석 그대로).
- */
+/** Preserve source grades for the roster; exam eligibility is decided by its own guards. */
 export function schoolFieldsOf(grade: string | null): {
-  schoolLevel: "중" | "고" | null;
+  schoolLevel: "초" | "중" | "고" | null;
   schoolGrade: number | null;
 } {
-  const m = grade ? /^(중|고)(\d)$/.exec(grade.trim()) : null;
+  const m = grade ? /^(초[1-6]|[중고][1-3])$/.exec(grade.trim()) : null;
   if (!m) return { schoolLevel: null, schoolGrade: null };
-  return { schoolLevel: m[1] as "중" | "고", schoolGrade: Number(m[2]) };
+  return {
+    schoolLevel: m[1][0] as "초" | "중" | "고",
+    schoolGrade: Number(m[1][1]),
+  };
 }
 
 /** 한 줄 판정의 대표 단원 — 진도 위치로 적을 것. */
