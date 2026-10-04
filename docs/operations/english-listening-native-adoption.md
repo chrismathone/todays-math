@@ -1,5 +1,14 @@
 # Adopt native listening questions
 
+Prepare the local stage from the verified source PDFs first:
+
+```powershell
+python scripts/import/prepare-native-listening-questions.py --root C:/Creative/testautocreator
+python scripts/import/prepare-native-listening-questions.py --root C:/Creative/testautocreator --write
+```
+
+The first command reports conversions without writing files. `--write` changes only local staging under `output/listening-assessments/prepared-native-registration`; it never connects to a database. The Python environment needs PyMuPDF. `--source-id SOURCE_ID` limits either command to one archived original. Inspect `manifest.json` for errors and preserved-image reasons before adopting. Preparation preserves original IDs and answer references, recovers encoded text from character geometry, and keeps figures/tables as separate source crops. Short rules underneath encoded text are treated as text typography rather than empty graphics. Outlined fonts, missing choice markers and ambiguous continuations keep the complete original question image. OCR output alone is not proof of an accurate editable question.
+
 Run from the repository root with the operator's existing environment:
 
 ```powershell
