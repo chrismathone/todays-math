@@ -1,0 +1,2740 @@
+{
+  "source": {
+    "styles.css": "64e7d6135d7b553198c8a0b17c552a6dbe91b37535b58220ad8dffa6160d8fda",
+    "editorial.css": "283627cf0c582b303579f10c40f349a1e912e641609fdd9444343f2979d6d66b",
+    "full.css": "b711f57857f425870a7aee65327728928dd24846d4574603327972dce35f3150",
+    "chapters.css": "51e32d8991aa3aaf4409466a0415e3ff43ac3fd181ff50b4320efe6388cc5990"
+  },
+  "rules": [
+    {
+      "file": "styles.css",
+      "selector": "@font-face",
+      "declarations": "font-family:NotoKR;src:url('assets/fonts/NotoSansKR-400.ttf')"
+    },
+    {
+      "file": "styles.css",
+      "selector": "@font-face",
+      "declarations": "font-family:NotoKR;src:url('assets/fonts/NotoSansKR-700.ttf');font-weight:700"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".workspace",
+      "declarations": "display:flex;align-items:flex-start"
+    },
+    {
+      "file": "styles.css",
+      "selector": "#contents a",
+      "declarations": "display:flex;gap:12px;text-decoration:none;font-size:11px;line-height:1.5;padding:8px 4px;color:#5e6f62;border-bottom:1px solid #dae1d9"
+    },
+    {
+      "file": "styles.css",
+      "selector": "#contents a span",
+      "declarations": "font-weight:700;font-size:10px;color:#889b8a;min-width:18px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet",
+      "declarations": "--accent:#205844;--soft:#eef4ec;--light:#dce7d8;--warm:#a9864c;--dark:#153e2d;background:white;width:210mm;height:297mm;padding:10mm 18mm 14mm 13mm;position:relative;box-shadow:0 4px 18px #243c2318;display:flex;flex-direction:column;break-after:page"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet.odd",
+      "declarations": "padding-left:18mm;padding-right:13mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet.tree",
+      "declarations": "--accent:#665186;--soft:#f2eef7;--light:#e3dbed;--dark:#3f3154"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet[hidden]",
+      "declarations": "display:none!important"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".page-head",
+      "declarations": "margin:6mm 0 5mm;min-height:25mm;flex:none;position:relative;padding-right:18mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".page-head h1",
+      "declarations": "font-size:23pt;letter-spacing:-1.25px;line-height:1.3;font-weight:700;margin:0 0 2mm;color:var(--dark)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".page-head p",
+      "declarations": "font-size:8pt;color:#758277;margin:0;word-break:keep-all"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".head-no",
+      "declarations": "position:absolute;right:0;top:0;color:var(--light);font-size:32pt;line-height:1;font-weight:700"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".content",
+      "declarations": "flex:none;display:flex;flex-direction:column;gap:4mm;min-width:0"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".foot",
+      "declarations": "position:absolute;bottom:7mm;left:13mm;right:18mm;display:flex;align-items:center;border-top:.5pt solid var(--light);padding-top:1.6mm;color:#8a978b;font-size:6.5pt;gap:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".odd .foot",
+      "declarations": "left:18mm;right:13mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".foot b",
+      "declarations": "color:var(--accent);font-size:10pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".foot .name",
+      "declarations": "margin-left:auto;color:var(--accent)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".rule-box",
+      "declarations": "padding:4mm 5mm;background:var(--soft);border-top:2px solid var(--accent);font-size:10pt;line-height:1.95;word-break:keep-all"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".rule-box h3",
+      "declarations": "color:var(--accent);margin-bottom:1.8mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".checkbar",
+      "declarations": "display:flex;align-items:center;justify-content:space-between;font-size:7.2pt;color:var(--accent);background:var(--soft);padding:2mm 3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".checkbar span",
+      "declarations": "font-size:6.8pt;white-space:nowrap"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".checkbar i,.rounds i",
+      "declarations": "display:inline-block;width:2.2mm;height:2.2mm;border:1px solid #a7b7a6;border-radius:50%;margin:0 1.1mm;vertical-align:middle"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".qhead",
+      "declarations": "display:flex;gap:2.2mm;align-items:baseline;margin-bottom:1.5mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".qhead .tag",
+      "declarations": "margin-left:auto"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".work",
+      "declarations": "height:var(--space,17mm);margin-top:2mm;display:flex;flex-direction:column"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".work span",
+      "declarations": "flex:1;border-bottom:.45pt solid #e6eae4"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".q.short .work",
+      "declarations": "height:5mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".q.reason .work",
+      "declarations": "height:25mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".question-grid",
+      "declarations": "display:grid;grid-template-columns:1fr 1fr;column-gap:7mm;row-gap:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".question-grid .q",
+      "declarations": "padding:3mm 0 2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".practice .question-grid",
+      "declarations": "row-gap:4mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".grid-table",
+      "declarations": "border-collapse:collapse;width:100%;font-size:8.5pt;line-height:1.85"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".grid-table th",
+      "declarations": "background:var(--soft);color:var(--accent);padding:2.4mm 3mm;text-align:left;border-top:1px solid var(--accent)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".grid-table td",
+      "declarations": "padding:2.6mm 3mm;border-bottom:.5pt solid var(--light);vertical-align:top"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".grid-table .rating",
+      "declarations": "width:26mm;font-size:6.4pt;color:#84907f;white-space:nowrap"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".navigator .page-head",
+      "declarations": "margin-top:10mm;min-height:44mm;padding-right:48mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".navigator .page-head h1",
+      "declarations": "font-size:33pt;letter-spacing:-2px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".navigator .head-no",
+      "declarations": "display:none"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-canvas",
+      "declarations": "position:relative;height:122mm;border:1px solid var(--light);background-image:radial-gradient(#e0e7dd .7px,transparent .7px);background-size:4mm 4mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-canvas svg",
+      "declarations": "position:absolute;inset:0;width:100%;height:100%"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node",
+      "declarations": "position:absolute;min-width:41mm;background:white;border:1px solid #b3c5ad;padding:3mm 4mm;text-align:center;font-size:9pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node.root",
+      "declarations": "left:calc(50% - 23mm);top:49mm;background:var(--accent);color:white;border:0;width:46mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node.a",
+      "declarations": "left:8mm;top:12mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node.b",
+      "declarations": "right:8mm;top:12mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node.c",
+      "declarations": "left:8mm;bottom:12mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node.d",
+      "declarations": "right:8mm;bottom:12mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node small",
+      "declarations": "display:block;font-size:7pt;color:#7d8d77;margin-top:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-node .line",
+      "declarations": "display:block;width:38mm;height:7mm;border-bottom:.5pt solid #c6d2be;margin:auto"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master .page-head",
+      "declarations": "min-height:22mm;margin-bottom:3.5mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-block",
+      "declarations": "border-bottom:.7pt solid var(--light);padding-bottom:3mm;position:relative;min-height:40mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-title",
+      "declarations": "display:flex;align-items:center;gap:2mm;background:var(--soft);padding:1.5mm 2.5mm;margin-bottom:2.3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-title b",
+      "declarations": "font-size:10pt;color:var(--accent)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-title small",
+      "declarations": "font-size:7pt;color:#7d8d77"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".rounds",
+      "declarations": "margin-left:auto;font-size:6pt;color:#788976;white-space:nowrap"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".rounds i",
+      "declarations": "width:1.8mm;height:1.8mm;margin-left:.5mm;margin-right:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-row",
+      "declarations": "display:grid;grid-template-columns:22mm 1fr;gap:2mm;font-size:9pt;line-height:1.9;margin:1.4mm 0;word-break:keep-all"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-row .label",
+      "declarations": "color:var(--accent);font-size:7.4pt;font-weight:700;padding-top:.7mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-block.has-video .master-rows",
+      "declarations": "padding-right:24mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-block>.video-chip",
+      "declarations": "position:absolute;right:0;top:13mm;max-width:22mm;display:block;text-align:center;padding:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-block>.video-chip .play",
+      "declarations": "margin:0 auto 1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".mask",
+      "declarations": "display:inline;border-bottom:1px dashed #91a18a;background:#f5f7f1;color:transparent;box-decoration-break:clone;-webkit-box-decoration-break:clone"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".mask>span",
+      "declarations": "visibility:hidden"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sentence-mask",
+      "declarations": "display:block;border-bottom:1px dashed #aab8a2;min-height:9mm;background:repeating-linear-gradient(transparent,transparent 6mm,#e5eadf 6mm,#e5eadf calc(6mm + .5pt));line-height:1.9"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sentence-mask>span",
+      "declarations": "visibility:hidden"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".study-footer",
+      "declarations": "display:flex;justify-content:space-between;color:#7c8b75;font-size:7pt;padding-top:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".definition-figure",
+      "declarations": "border:1px solid var(--light);padding:4mm;display:grid;grid-template-columns:30mm 1fr;gap:4mm;align-items:center"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".definition-figure>.root-label",
+      "declarations": "padding:3mm;background:var(--accent);color:white;text-align:center;font-size:11pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".subheading",
+      "declarations": "display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--light);padding-bottom:2mm;margin-top:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".subheading h2",
+      "declarations": "color:var(--accent);font-size:12pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".subheading small",
+      "declarations": "font-size:7pt;color:#809076"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".decimal-pair",
+      "declarations": "display:grid;grid-template-columns:1fr 1fr;gap:4mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".decimal-pair>div",
+      "declarations": "border:1px solid var(--light);padding:4mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".decimal-pair h3",
+      "declarations": "font-size:10pt;color:var(--accent)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".decimal-pair .big",
+      "declarations": "font-size:16pt;margin:3mm 0"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".decimal-pair p",
+      "declarations": "font-size:8.4pt;line-height:1.8"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".index-table",
+      "declarations": "width:100%;border-collapse:collapse;margin:3mm 0;font-size:9pt;text-align:center"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".index-table th,.index-table td",
+      "declarations": "padding:2mm;border:1px solid var(--light)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".index-table th",
+      "declarations": "background:var(--soft);font-size:7.5pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".index-table .highlight",
+      "declarations": "background:#fbf2d9;color:#a1732d;font-weight:700"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".recall .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-labels",
+      "declarations": "display:grid;grid-template-columns:1fr 1fr;font-size:8pt;color:var(--accent);gap:7mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-labels b",
+      "declarations": "padding:2mm 3mm;background:var(--soft)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-grid",
+      "declarations": "display:grid;grid-template-columns:1fr 1fr;column-gap:7mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-grid .q",
+      "declarations": "min-height:29mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-grid .qhead",
+      "declarations": "margin-bottom:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-grid .prompt",
+      "declarations": "font-size:9pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".drill-grid .work",
+      "declarations": "height:5mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired-group",
+      "declarations": "border-top:2px solid var(--accent);padding-top:2mm;margin-bottom:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired-title",
+      "declarations": "display:flex;align-items:center;gap:3mm;margin-bottom:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired-title h2",
+      "declarations": "font-size:11.5pt;color:var(--accent)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired-title .n",
+      "declarations": "font-size:16pt;color:#b0c2a5;font-weight:700"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired-cols",
+      "declarations": "display:grid;grid-template-columns:1fr 1fr;gap:6mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".worked",
+      "declarations": "background:#f8f8f3;padding:3mm 3.5mm;align-self:start"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".worked .q",
+      "declarations": "padding-top:0;border:0"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".worked .prompt",
+      "declarations": "font-size:9.3pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".worked .solution",
+      "declarations": "font-size:8.5pt;line-height:1.95;border-top:.5pt solid #dce2d6;margin-top:3mm;padding-top:2mm;word-break:keep-all"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".worked .solution b",
+      "declarations": "font-size:7pt;color:var(--accent);display:block;margin-bottom:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".worked .answer",
+      "declarations": "font-size:8.5pt;margin-top:2mm;color:var(--accent)"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".twins .work",
+      "declarations": "height:10mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".types .paired-group",
+      "declarations": "margin-bottom:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".types .worked",
+      "declarations": "background:#faf8f4"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".basic .question-grid",
+      "declarations": "row-gap:0"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".basic .q",
+      "declarations": "min-height:20mm;padding:2mm 0 1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".basic .qhead",
+      "declarations": "margin:0"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".basic .q .prompt",
+      "declarations": "font-size:8.7pt"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".basic .q .work",
+      "declarations": "height:3mm;margin-top:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".answers .page-head",
+      "declarations": "min-height:19mm;margin-bottom:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".answer-item .ans-head",
+      "declarations": "display:flex;gap:2mm;align-items:baseline;font-weight:700;color:var(--accent);margin-bottom:.7mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".answer-item .ans-head b",
+      "declarations": "font-size:9pt;white-space:nowrap"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".answer-item .ans-head>span",
+      "declarations": "font-size:8.3pt;font-weight:400"
+    },
+    {
+      "file": "styles.css",
+      "selector": "dialog",
+      "declarations": "border:1px solid #ccd8cb;border-radius:9px;width:min(900px,92vw);padding:24px;color:#354b36;box-shadow:0 15px 80px #122b2240"
+    },
+    {
+      "file": "styles.css",
+      "selector": "dialog::backdrop",
+      "declarations": "background:#1c302780"
+    },
+    {
+      "file": "styles.css",
+      "selector": "dialog header",
+      "declarations": "display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"
+    },
+    {
+      "file": "styles.css",
+      "selector": "dialog h2",
+      "declarations": "font-size:20px"
+    },
+    {
+      "file": "styles.css",
+      "selector": "dialog p",
+      "declarations": "font-size:12px;margin:12px 0;line-height:1.8"
+    },
+    {
+      "file": "styles.css",
+      "selector": "dialog footer",
+      "declarations": "display:flex;gap:10px;justify-content:flex-end;margin-top:12px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .content",
+      "declarations": "gap:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired .content,.types .content",
+      "declarations": "gap:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".paired-group",
+      "declarations": "margin-bottom:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".toolbar,.sidebar,dialog",
+      "declarations": "display:none!important"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".workspace,#book",
+      "declarations": "display:block!important;margin:0!important;padding:0!important"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet",
+      "declarations": "margin:0!important;box-shadow:none!important;print-color-adjust:exact;-webkit-print-color-adjust:exact"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet:last-child",
+      "declarations": "break-after:auto"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sheet[hidden]",
+      "declarations": "display:none!important"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .subheading .video-chip",
+      "declarations": "display:none"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .page-head",
+      "declarations": "padding-right:29mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .page-head .head-no",
+      "declarations": "display:none"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .page-head>.video-chip",
+      "declarations": "position:absolute;right:0;top:-2mm;width:23mm;height:29mm;display:flex;flex-direction:column;justify-content:center;gap:1mm;text-align:center"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".concept .page-head>.video-chip svg",
+      "declarations": "margin:auto"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master .master-rows",
+      "declarations": "padding-right:24mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".sentence-mask",
+      "declarations": "min-height:0;border:0;background:none;box-shadow:0 1px 0 #bcc8b4;line-height:inherit"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".practice:not(.reason-page) .question-grid",
+      "declarations": "row-gap:2mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".navigator .grid-table .rating",
+      "declarations": "width:33mm;padding-left:2mm;padding-right:2mm;vertical-align:middle;font-size:7.2pt;white-space:normal;color:#73866a"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-canvas.map-premium",
+      "declarations": "height:126mm;border:0;background:none;position:relative"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-premium .mindmap-svg",
+      "declarations": "display:block;width:100%;height:100%;position:static;overflow:visible;font-family:NotoKR,sans-serif"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-links path",
+      "declarations": "fill:none;stroke:#9bb69b;stroke-width:1.9;stroke-linecap:round"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-card-shadow",
+      "declarations": "fill:#e8eee4"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-card-shape",
+      "declarations": "fill:#fcfdf9;stroke:#b6c8af;stroke-width:1.1"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-card-accent",
+      "declarations": "fill:none;stroke:#b29460;stroke-width:2;stroke-linecap:round"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-code",
+      "declarations": "fill:#a08a5c;font-size:10px;letter-spacing:1px;font-weight:700"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-title",
+      "declarations": "fill:#2d513c;font-size:18px;font-weight:700;letter-spacing:-.5px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-sub",
+      "declarations": "fill:#829377;font-size:11px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-writing",
+      "declarations": "fill:none;stroke:#cbd6c3;stroke-width:1"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-joints circle",
+      "declarations": "fill:#fff;stroke:#9db495;stroke-width:1.4"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-orbit",
+      "declarations": "fill:none;stroke:#dce4d5;stroke-width:1;stroke-dasharray:1.5 5"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-seal",
+      "declarations": "fill:#205844;stroke:#174833;stroke-width:1.3"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-inner-ring",
+      "declarations": "fill:none;stroke:#73947b;stroke-width:.75"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-leaf",
+      "declarations": "fill:none;stroke:#d0bb86;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-root-title",
+      "declarations": "fill:#fffdf4;font-size:21px;font-weight:700;letter-spacing:.3px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-gold-rule",
+      "declarations": "stroke:#c8b27b;stroke-width:1"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".map-root-sub",
+      "declarations": "fill:#d1dec8;font-size:10px;letter-spacing:1.3px"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master-title",
+      "declarations": "min-height:8mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".master .progress",
+      "declarations": "gap:6mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".question-grid,.drill-grid",
+      "declarations": "grid-template-columns:repeat(2,minmax(0,1fr))"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".q .work",
+      "declarations": "height:auto!important;min-height:0!important;width:100%;margin:2mm 0 0!important;display:flex;flex-direction:column"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".q .work>span",
+      "declarations": "flex:0 0 7mm!important;height:7mm;min-height:7mm;width:100%;border-bottom:.45pt solid #dce4d7"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.basic .page-head,.tree.types .page-head",
+      "declarations": "min-height:21mm;margin-top:4mm;margin-bottom:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.basic .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.basic .mini-concepts>div",
+      "declarations": "padding:2mm 3mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.basic .q",
+      "declarations": "padding-top:1.2mm;padding-bottom:.8mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.types .content",
+      "declarations": "gap:1.5mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.types .paired-group",
+      "declarations": "padding-top:1.5mm;margin-bottom:1mm"
+    },
+    {
+      "file": "styles.css",
+      "selector": ".tree.types .paired-title",
+      "declarations": "margin-bottom:1.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet",
+      "declarations": "--accent:#086c61;--dark:#073f3b;--soft:#edf5f0;--light:#d6e4df;--signal:#d6ed75;--subink:#526461;color:#253836;font-size:10pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.tree",
+      "declarations": "--accent:#6250a0;--dark:#342752;--soft:#f3f0f8;--light:#e1dced;--signal:#ffbea4;--subink:#635d70"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet .running",
+      "declarations": "border:0;height:6mm;color:var(--subink);font-size:6.8pt;letter-spacing:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet .page-head",
+      "declarations": "margin:7mm 0 3mm;min-height:23mm;padding-right:19mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet .page-head h1",
+      "declarations": "font-size:25.5pt;letter-spacing:-1.35px;line-height:1.25;color:var(--dark);margin-bottom:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet .page-head p",
+      "declarations": "font-size:7.7pt;color:#6e7d7a;line-height:1.7"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".head-no",
+      "declarations": "font:700 41pt/1 NotoKR,sans-serif;letter-spacing:-3px;top:-1mm;right:0;color:var(--soft);-webkit-text-stroke:.6pt var(--light)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet .foot",
+      "declarations": "border:0;padding-top:1.8mm;font-size:6.8pt;color:#82908b;bottom:7mm;align-items:baseline"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".foot:before",
+      "declarations": "content:'';position:absolute;top:0;left:0;width:14mm;border-top:1.5pt solid var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".foot:after",
+      "declarations": "content:'';position:absolute;top:0;left:18mm;right:0;border-top:.45pt solid var(--light)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet .foot b",
+      "declarations": "font-size:15pt;letter-spacing:-.6px;line-height:1.2;color:var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".foot .name",
+      "declarations": "font-size:6.8pt;font-weight:700;letter-spacing:1px;display:flex;gap:2mm;align-items:center"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".foot .name i",
+      "declarations": "width:2.1mm;height:2.1mm;background:var(--signal);display:inline-block;transform:rotate(45deg)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.navigator .page-head",
+      "declarations": "margin-top:7mm;margin-bottom:6mm;min-height:63mm;padding:7mm 62mm 5mm 7mm;background:var(--dark);border-radius:0 0 15mm 0;overflow:hidden;color:#fff"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .page-head:before",
+      "declarations": "content:'01';position:absolute;right:8mm;bottom:-11mm;font-size:100pt;line-height:1;font-weight:700;letter-spacing:-10px;color:#ffffff08"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .page-head .kicker",
+      "declarations": "color:var(--signal);margin-bottom:5mm;font-size:8pt;letter-spacing:.03em"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .page-head h1",
+      "declarations": "font-size:38pt;letter-spacing:-2.4px;color:white;margin-bottom:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .page-head p",
+      "declarations": "font-size:8pt;color:#e1eee7;max-width:95mm;word-break:keep-all;line-height:1.85"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-edition",
+      "declarations": "font-size:8pt;color:var(--signal);margin-top:7mm;display:flex;gap:3mm;align-items:center"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-edition span",
+      "declarations": "font-size:5.7pt;letter-spacing:1px;color:#b0c8c0;border-left:.5pt solid #ffffff44;padding-left:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-art",
+      "declarations": "position:absolute;right:0;top:3mm;width:67mm;height:56mm;color:var(--signal);transform:rotate(-9deg)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-art svg",
+      "declarations": "width:100%;height:100%;display:block"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-formula",
+      "declarations": "position:absolute;left:54.666667%;top:50%;width:38mm;text-align:center;transform:translate(-50%,-50%) rotate(9deg);color:white;font-size:20pt;line-height:1.2"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-formula small",
+      "declarations": "display:block;font-size:6.3pt;margin-top:2mm;color:#e3eedb"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-formula>b",
+      "declarations": "display:inline-block;background:var(--signal);color:var(--dark);padding:.8mm 3mm;font-size:10pt;border-radius:4mm;margin-top:1mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .content",
+      "declarations": "gap:3.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".grid-table",
+      "declarations": "font-size:8.3pt;line-height:1.8"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".grid-table th",
+      "declarations": "font-size:7.5pt;border-top:1.5pt solid var(--accent);padding:2.2mm 3mm;color:var(--accent);background:var(--soft)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".grid-table td",
+      "declarations": "border-bottom:.5pt solid var(--light);padding:2.4mm 3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .grid-table tbody tr:nth-child(even)",
+      "declarations": "background:#fbfcfa"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .grid-table td:first-child",
+      "declarations": "color:var(--dark);font-size:8.2pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".navigator .grid-table .rating",
+      "declarations": "font-size:7pt;width:33mm;padding-inline:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".rule-box",
+      "declarations": "position:relative;background:var(--soft);border:0;border-left:2.3pt solid var(--accent);border-radius:0 4mm 0 0;padding:3.5mm 4.5mm;font-size:10pt;line-height:1.85;color:var(--dark)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".rule-box h3",
+      "declarations": "font-size:10.2pt;line-height:1.6;margin-bottom:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".rule-box>b",
+      "declarations": "background:linear-gradient(transparent 55%,var(--signal) 55%);padding:0 .5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".definition-figure",
+      "declarations": "border:0;background:#fbfcfa;padding:4mm;gap:4mm;border-bottom:.65pt solid var(--light)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".definition-figure>.root-label",
+      "declarations": "border-radius:50%;height:22mm;width:22mm;display:flex;align-items:center;justify-content:center;padding:0;font-size:10.5pt;justify-self:center"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".decimal-pair",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".decimal-pair>div",
+      "declarations": "border:0;border-top:1.4pt solid var(--accent);padding:3mm 4mm;background:#f7faf7;position:relative"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".decimal-pair>div+div",
+      "declarations": "border-top-color:#b6bdad;background:#fafaf5"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".decimal-pair h3",
+      "declarations": "font-size:9pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".decimal-pair .big",
+      "declarations": "font-size:17pt;color:var(--dark);margin:2.5mm 0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".decimal-pair p",
+      "declarations": "font-size:8.2pt;line-height:1.85"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".concept .content",
+      "declarations": "gap:2.1mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.concept .page-head",
+      "declarations": "min-height:25mm;padding-right:29mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.concept .page-head h1",
+      "declarations": "font-size:23pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".concept .page-head>.video-chip",
+      "declarations": "top:-1mm;background:white;border:0;border-left:.6pt solid var(--light);border-radius:0;width:24mm;height:30mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".index-table",
+      "declarations": "font-size:9.2pt;margin:2mm 0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".index-table td",
+      "declarations": "border-color:#d3e2d8;padding:1.8mm 1mm;background:#fff"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".index-table th",
+      "declarations": "border-color:#d3e2d8;padding:1.8mm 1mm;background:var(--accent);color:white"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".index-table .highlight",
+      "declarations": "background:var(--signal);color:var(--dark)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".subheading",
+      "declarations": "margin-top:2mm;border-bottom:1pt solid var(--accent);padding-bottom:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".subheading h2",
+      "declarations": "font-size:11pt;letter-spacing:-.4px"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".subheading h2:before",
+      "declarations": "content:'CHECK';font-size:6.5pt;letter-spacing:.6px;color:var(--accent);display:inline-block;background:var(--signal);padding:.6mm 1.4mm;margin-right:2.2mm;vertical-align:middle"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.master .page-head",
+      "declarations": "min-height:22mm;margin:7mm 0 3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master .progress",
+      "declarations": "gap:6mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master .content",
+      "declarations": "gap:3.2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master .checkbar",
+      "declarations": "margin-bottom:1mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-block",
+      "declarations": "padding-bottom:3mm;border-bottom:.65pt solid var(--light);min-height:40mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-title",
+      "declarations": "background:none;border-bottom:.6pt solid var(--light);padding:0 0 1.5mm;min-height:8mm;margin-bottom:2.3mm;gap:2.3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-title .concept-code",
+      "declarations": "display:flex;align-items:center;justify-content:center;background:var(--accent);color:white;font-size:7pt;font-weight:700;letter-spacing:-.2px;padding:1.3mm 1.5mm;border-radius:0 2mm 0 2mm;min-width:9mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-title b",
+      "declarations": "font-size:10.5pt;color:var(--dark);letter-spacing:-.2px"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".rounds",
+      "declarations": "font-size:6pt;color:#83948b"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".rounds i",
+      "declarations": "width:1.7mm;height:1.7mm;border-color:#a7b7ac"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-row",
+      "declarations": "grid-template-columns:22mm 1fr;font-size:9pt;line-height:1.9;margin:1.4mm 0;gap:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-row .label",
+      "declarations": "font-size:7.4pt;color:var(--accent);font-weight:700"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".master-block>.video-chip",
+      "declarations": "border:0;border-left:.6pt solid var(--light);border-radius:0;top:13mm;padding:1mm;min-height:17mm;background:white"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".mask",
+      "declarations": "background:#f0f5ec;border-bottom:.7pt solid #a6b8a5"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sentence-mask",
+      "declarations": "box-shadow:none;border-bottom:.6pt solid #bfcdbd;background:linear-gradient(90deg,#f6f8f3 0,#fff 9mm)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".study-footer",
+      "declarations": "font-size:6.8pt;color:#84958a"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".checkbar",
+      "declarations": "background:none;border-top:.7pt solid var(--light);padding:2mm 0 0;font-size:7.3pt;position:relative;gap:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".checkbar>b",
+      "declarations": "color:var(--accent);font-size:7.6pt;line-height:1.6"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".checkbar>span",
+      "declarations": "font-size:6.7pt;color:#89958e"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".checkbar i",
+      "declarations": "width:1.8mm;height:1.8mm;border-color:#a7b6ab;margin:0 .8mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".qhead",
+      "declarations": "margin-bottom:1.5mm;min-height:5mm;gap:2mm;align-items:baseline"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".q .work>span",
+      "declarations": "border-bottom:.45pt solid #e0e6e0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".question-grid",
+      "declarations": "column-gap:9mm;position:relative"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".question-grid:before,.drill-grid:before",
+      "declarations": "content:'';position:absolute;left:50%;top:1mm;bottom:2mm;width:0;border-left:.5pt solid #edf0eb"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".question-grid .q",
+      "declarations": "padding:2.5mm 0 3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".practice:not(.reason-page) .question-grid",
+      "declarations": "row-gap:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".practice .content",
+      "declarations": "gap:5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".practice .question-grid .qhead",
+      "declarations": "margin-bottom:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".drill-labels",
+      "declarations": "gap:9mm;font-size:8pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".drill-labels b",
+      "declarations": "padding:1.5mm 0;border-bottom:1.5pt solid var(--accent);background:none"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".drill-grid",
+      "declarations": "position:relative;column-gap:9mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".drill-grid .q",
+      "declarations": "min-height:28mm;padding:2.5mm 0 2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".drill-grid .qid",
+      "declarations": "font-size:13.5pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".drill-grid .qhead",
+      "declarations": "margin-bottom:1mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".paired .content,.types .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".paired-group",
+      "declarations": "border:0;padding-top:0;margin-bottom:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".paired-title",
+      "declarations": "gap:3mm;margin-bottom:2mm;min-height:10mm;border-bottom:1pt solid var(--accent);padding-bottom:2mm;align-items:center"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".type-index",
+      "declarations": "display:flex;gap:1.4mm;align-items:baseline;min-width:15mm;color:var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".type-index small",
+      "declarations": "font-size:7pt;letter-spacing:-.3px"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".type-index b",
+      "declarations": "font-size:23pt;line-height:1;letter-spacing:-1.2px;font-weight:700"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".paired-title h2",
+      "declarations": "font-size:12pt;line-height:1.4;color:var(--dark);letter-spacing:-.4px"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".paired-cols",
+      "declarations": "grid-template-columns:1fr 1fr;gap:7mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked,.types .worked",
+      "declarations": "background:var(--soft);border:0;border-radius:0 5mm 0 0;padding:3mm 3.8mm;position:relative"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked:before",
+      "declarations": "content:'';position:absolute;top:0;left:0;height:1.2mm;width:12mm;background:var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .q",
+      "declarations": "padding:0;border:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .qhead",
+      "declarations": "margin-top:1.4mm;margin-bottom:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .qid",
+      "declarations": "font-size:15pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .tag",
+      "declarations": "background:white;border:.5pt solid var(--light)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .prompt",
+      "declarations": "font-size:9.2pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .solution",
+      "declarations": "font-size:8.3pt;line-height:1.95;border-top:.55pt solid var(--light);margin-top:3mm;padding-top:2mm;word-break:keep-all"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .solution>b",
+      "declarations": "font-size:7pt;margin-bottom:1.2mm;display:inline-block;background:white;padding:.3mm 1.6mm;border-radius:4mm;color:var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .solution>b:after",
+      "declarations": "content:'';display:block"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .answer",
+      "declarations": "border-top:.5pt solid var(--light);padding-top:1.5mm;font-size:8.5pt;margin-top:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .answer>b",
+      "declarations": "display:inline-block;padding:0 1mm 0 0;font-size:7pt;color:var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".twins .qhead",
+      "declarations": "margin-bottom:1.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.tree.basic .page-head,.sheet.tree.types .page-head",
+      "declarations": "min-height:21mm;margin-top:5mm;margin-bottom:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.types .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.types .paired-group",
+      "declarations": "padding:0;margin-bottom:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.types .paired-title",
+      "declarations": "margin-bottom:2mm;padding-bottom:1.7mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.basic .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.basic .mini-concepts>div",
+      "declarations": "border:0;border-top:1.3pt solid var(--accent);border-radius:0 3mm 0 0;background:var(--soft);padding:2mm 3mm;font-size:7.8pt;line-height:1.8"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.basic .q",
+      "declarations": "padding:1.4mm 0 1.4mm;min-height:20mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.basic .qid",
+      "declarations": "font-size:12.5pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.basic .qhead",
+      "declarations": "min-height:4.5mm;margin-bottom:.3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".tree.basic .q .prompt",
+      "declarations": "font-size:8.5pt;line-height:1.8"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".basic .question-grid",
+      "declarations": "row-gap:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-card-shape",
+      "declarations": "fill:#f9fcf7;stroke:#b1c7ba;stroke-width:1"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-card-shadow",
+      "declarations": "fill:#e7efe4"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-card-accent",
+      "declarations": "stroke:#a9be5b;stroke-width:2.5"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-code",
+      "declarations": "fill:#76964c"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-seal",
+      "declarations": "fill:#086c61;stroke:#06554c"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-inner-ring",
+      "declarations": "stroke:#8cb4a0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-leaf",
+      "declarations": "stroke:#d6ed75"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-gold-rule",
+      "declarations": "stroke:#d6ed75"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-root-sub",
+      "declarations": "fill:#d6ed75"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-title",
+      "declarations": "fill:#124e44"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-sub",
+      "declarations": "fill:#798b7e"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".map-links path",
+      "declarations": "stroke:#91b2a4"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.answers .page-head",
+      "declarations": "min-height:21mm;margin-bottom:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".answer-item .ans-head",
+      "declarations": "align-items:baseline;gap:2.2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".answer-item .ans-head b",
+      "declarations": "font-size:11pt;line-height:1.4;letter-spacing:-.4px"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".answer-item .ans-head>span",
+      "declarations": "font-size:8.5pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet",
+      "declarations": "box-shadow:0 5px 22px #123c321b"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet",
+      "declarations": "box-shadow:none"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".chapter-art",
+      "declarations": "print-color-adjust:exact;-webkit-print-color-adjust:exact"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".q.worked",
+      "declarations": "background:none!important;border:0!important;border-radius:0;padding:0!important"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".q.worked:before",
+      "declarations": "display:none"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".worked .solution>b",
+      "declarations": "display:table;margin-bottom:1.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sentence-mask",
+      "declarations": "border:0;position:relative"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sentence-mask:after",
+      "declarations": "content:'';position:absolute;left:0;right:0;bottom:0;border-bottom:.6pt solid #bfcdbd"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".conversation",
+      "declarations": "border:0;border-bottom:.7pt solid var(--light);padding-bottom:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".conversation-head",
+      "declarations": "display:flex;align-items:flex-start;gap:3mm;margin-bottom:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".conversation-head>span",
+      "declarations": "font-size:6.8pt;white-space:nowrap;background:var(--dark);color:white;padding:1.3mm 2mm;border-radius:0 2mm 0 2mm;margin-top:.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".conversation-head h2",
+      "declarations": "font-size:12.2pt;letter-spacing:-.35px;color:var(--dark);line-height:1.6"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue-summary",
+      "declarations": "display:grid;grid-template-columns:19mm 1fr;gap:3mm;border-left:2.3pt solid var(--accent);background:var(--soft);padding:3mm 4mm;border-radius:0 3mm 0 0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue-summary>b",
+      "declarations": "font-size:8pt;color:var(--accent);padding-top:.4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue-summary p",
+      "declarations": "font-size:9.1pt;line-height:1.95;word-break:keep-all"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .content",
+      "declarations": "gap:2.6mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".concept .content",
+      "declarations": "gap:2.6mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .question-grid,.concept .question-grid",
+      "declarations": "row-gap:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .question-grid .q,.concept .question-grid .q",
+      "declarations": "padding-top:1mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .page-head h1",
+      "declarations": "font-size:23pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".checkpoint .question-grid",
+      "declarations": "row-gap:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".checkpoint .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".clinic .question-grid",
+      "declarations": "row-gap:9mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".clinic .question-grid",
+      "declarations": "row-gap:5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".clinic .content",
+      "declarations": "gap:5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .page-head",
+      "declarations": "padding-right:29mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .page-head .head-no",
+      "declarations": "display:none"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".dialogue .page-head>.video-chip",
+      "declarations": "position:absolute;right:0;top:-1mm;width:24mm;height:30mm;display:flex;flex-direction:column;justify-content:center;gap:1mm;text-align:center;background:white;border:0;border-left:.6pt solid var(--light);border-radius:0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".sheet.opening",
+      "declarations": "--accent:#086c61;--dark:#073f3b"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .page-head",
+      "declarations": "margin:6mm 0 5mm;padding:4.5mm 22mm 4.5mm 5mm;min-height:27mm;border-left:2pt solid var(--accent);background:#f0f6ee;border-radius:0 5mm 0 0"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .page-head h1",
+      "declarations": "font-size:23pt;letter-spacing:-.9px;margin-bottom:1.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .page-head p",
+      "declarations": "font-size:9.2pt;color:var(--accent)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .kicker",
+      "declarations": "font-size:6.4pt;letter-spacing:.1em;margin-bottom:1.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .head-no",
+      "declarations": "right:4mm;top:6mm;font-size:28pt;color:#dce9d9;-webkit-text-stroke:0;letter-spacing:-1.5px"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board",
+      "declarations": "margin:1mm 0 1mm 16mm;padding:2.7mm 4mm 3mm;background:#f5f6f0;border-top:.6pt solid #d5dfce;border-bottom:.6pt solid #d5dfce"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>small",
+      "declarations": "display:block;font-size:6.6pt;letter-spacing:.02em;color:#7f886f;margin-bottom:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>div",
+      "declarations": "text-align:center;font-size:11pt;color:var(--dark)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>p",
+      "declarations": "font-size:7.5pt;margin-top:2mm;color:#727e6a;line-height:1.85"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".scriptcheck .question-grid",
+      "declarations": "row-gap:1.6mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".scriptcheck .qhead",
+      "declarations": "margin-bottom:1mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".scriptcheck .content",
+      "declarations": "gap:3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".scriptcheck .content",
+      "declarations": "gap:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".scriptcheck .page-head",
+      "declarations": "min-height:20mm;margin-top:5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .page-head",
+      "declarations": "margin-top:5mm;margin-bottom:3.5mm;min-height:25mm;padding-block:3.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".opening .content",
+      "declarations": "gap:2mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-turn .chat-bubble",
+      "declarations": "position:relative;min-width:0;margin:0;padding:1.65mm 2.7mm;border:.45pt solid #dfe8e1;background:white;border-radius:.9mm 3mm 3mm 3mm;font-size:9.5pt;line-height:1.77;word-break:keep-all;box-shadow:0 .3mm .4mm #253c2c08;color:#263d32"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-turn .chat-bubble:before",
+      "declarations": "content:'';position:absolute;left:-1.8mm;top:2.4mm;width:2mm;height:2.6mm;background:inherit;clip-path:polygon(100% 0,0 0,100% 100%);filter:drop-shadow(-.2mm 0 .05mm #dfe8e1)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-turn.student-a .chat-bubble,.script-turn.student-b .chat-bubble",
+      "declarations": "background:#fff0b8;border-color:#eadfaf;border-radius:3mm .9mm 3mm 3mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-turn.student-a .chat-bubble:before,.script-turn.student-b .chat-bubble:before",
+      "declarations": "left:auto;right:-1.8mm;clip-path:polygon(0 0,100% 0,0 100%);filter:drop-shadow(.2mm 0 .05mm #eadfaf)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board",
+      "declarations": "align-self:center;margin:1mm 5mm;padding:2.3mm 4mm;background:#edf3e7;border:0;border-top:1pt solid #adc4a0;border-radius:0 0 2.5mm 2.5mm;width:calc(100% - 10mm);box-shadow:none"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>small",
+      "declarations": "display:flex;align-items:center;gap:1.3mm;font-size:6.2pt;margin-bottom:1.6mm;color:#6b815b"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>small i",
+      "declarations": "display:inline-block;width:2mm;height:2mm;border:1pt solid #a3b690;transform:rotate(45deg)"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>div",
+      "declarations": "font-size:10.5pt"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-board>p",
+      "declarations": "font-size:7pt;line-height:1.7;margin-top:1.5mm"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-body,.chat-bubble,.chat-avatar",
+      "declarations": "print-color-adjust:exact;-webkit-print-color-adjust:exact"
+    },
+    {
+      "file": "editorial.css",
+      "selector": ".script-turn .chat-bubble",
+      "declarations": "padding-top:1.5mm;padding-bottom:1.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .q .prompt",
+      "declarations": "white-space:normal;word-break:keep-all"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .q",
+      "declarations": "min-height:0!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .qid",
+      "declarations": "font-size:12.5pt;letter-spacing:-.5px"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .qhead",
+      "declarations": "margin-bottom:1.2mm;min-height:5.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .question-grid",
+      "declarations": "gap:4mm 7mm;align-items:start"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .q .prompt",
+      "declarations": "font-size:9.1pt;line-height:1.8"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .q .work",
+      "declarations": "margin-top:1.2mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet .content",
+      "declarations": "position:relative"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover",
+      "declarations": "background:#073f3b;color:#f7f5e9;padding:17mm 18mm!important;overflow:hidden"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-top",
+      "declarations": "font-size:9pt;letter-spacing:1.8px;border-top:1pt solid #cce984;padding-top:5mm;display:flex;justify-content:space-between"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-top span",
+      "declarations": "font-size:8pt;letter-spacing:1px;color:#d6ed75"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-title",
+      "declarations": "position:relative;margin-top:24mm;z-index:2"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-title>p:first-child",
+      "declarations": "font-size:16pt;color:#d6ed75;margin:0 0 5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-title h1",
+      "declarations": "font-size:68pt;line-height:1.1;letter-spacing:-4px;margin:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-code",
+      "declarations": "font-size:45pt;font-weight:700;letter-spacing:-2px;color:#d6ed75;margin-top:8mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-sub",
+      "declarations": "font-size:10pt;letter-spacing:.3px;margin-top:7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-visual",
+      "declarations": "position:absolute;left:9mm;right:9mm;top:118mm;height:126mm;color:#8fad93"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-visual svg",
+      "declarations": "height:100%;width:100%;opacity:.5"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-math",
+      "declarations": "position:absolute;font-size:17pt;color:#f6f6e8;background:#073f3b;padding:3mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-math.one",
+      "declarations": "left:20mm;top:35mm;transform:rotate(-9deg)"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-math.two",
+      "declarations": "right:10mm;top:66mm;transform:rotate(5deg);color:#d6ed75"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-math.three",
+      "declarations": "left:31mm;bottom:2mm;font-size:14pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-bottom",
+      "declarations": "position:absolute;left:18mm;right:18mm;bottom:19mm;display:flex;justify-content:space-between;border-bottom:.5pt solid #9fbaaa;padding-bottom:5mm;font-size:8.5pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover-bottom b",
+      "declarations": "letter-spacing:1.5px"
+    },
+    {
+      "file": "full.css",
+      "selector": ".guide .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".toc .page-head",
+      "declarations": "margin-bottom:4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".small-heading",
+      "declarations": "font-size:11pt;border-bottom:.7pt solid var(--light);padding-bottom:2mm;margin:3mm 0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".unitIntro .page-head",
+      "declarations": "padding:7mm 7mm 30mm!important;min-height:80mm!important;margin-bottom:5mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".unitIntro .page-head h1",
+      "declarations": "font-size:31pt;max-width:145mm;line-height:1.35"
+    },
+    {
+      "file": "full.css",
+      "selector": ".unitIntro .page-head:before",
+      "declarations": "content:attr(data-unit-number)!important;right:9mm;bottom:-6mm;font-size:76pt;color:#ffffff08"
+    },
+    {
+      "file": "full.css",
+      "selector": ".unitIntro .chapter-edition",
+      "declarations": "margin-top:5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".unitIntro .grid-table .rating",
+      "declarations": "width:55mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".unitIntro .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .page-head",
+      "declarations": "min-height:25mm!important;margin-top:5mm!important;margin-bottom:3mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .page-head h1",
+      "declarations": "font-size:21pt!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .content",
+      "declarations": "gap:2.7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .rule-box",
+      "declarations": "font-size:9pt;padding:3mm 4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .rule-box h3",
+      "declarations": "font-size:10pt;margin:0 0 1.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .rule-box p",
+      "declarations": "margin:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".concept-worked",
+      "declarations": "background:#fafbf8;border-top:1.3pt solid var(--accent);padding:2.7mm 3.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".concept-worked>small",
+      "declarations": "display:inline-block;background:var(--accent);color:#fff;padding:.4mm 1.8mm;font-size:6.8pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-step",
+      "declarations": "display:flex;gap:3mm;font-size:8.5pt;line-height:1.85;padding-top:1mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-step>b",
+      "declarations": "color:#91a390;font-size:8pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-step p",
+      "declarations": "margin:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .question-grid",
+      "declarations": "row-gap:2.2mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".lesson .checkbar",
+      "declarations": "font-size:7pt;margin-top:1mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .master-block",
+      "declarations": "margin:0 0 2.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .master-rows",
+      "declarations": "padding-right:0!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .master-title",
+      "declarations": "font-size:10pt;min-height:7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .master-row",
+      "declarations": "font-size:8.3pt;line-height:1.9;padding-block:1.5mm;grid-template-columns:24mm 1fr"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .content",
+      "declarations": "gap:2.2mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .master-title .concept-code",
+      "declarations": "width:10mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .rounds",
+      "declarations": "font-size:5.7pt;gap:1mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .page-head",
+      "declarations": "min-height:23mm;margin-top:5mm;margin-bottom:3mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .page-head h1",
+      "declarations": "font-size:22pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .page-head p",
+      "declarations": "display:none"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .content",
+      "declarations": "gap:2.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".type-strategy",
+      "declarations": "font-size:8.3pt;line-height:1.9;border-bottom:.7pt solid var(--light);padding:0 0 2.4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".type-strategy b",
+      "declarations": "color:var(--accent);margin-right:3mm;font-size:7pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".full-worked",
+      "declarations": "display:grid;grid-template-columns:1fr 1.15fr;gap:5mm;background:var(--soft);border-top:1.6pt solid var(--accent);padding:3mm 4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".full-worked .q",
+      "declarations": "background:none!important;border:0!important;padding:0!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".full-worked .q .prompt",
+      "declarations": "font-size:8.7pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-explanation",
+      "declarations": "border-left:.6pt solid #c8d8cc;padding-left:4mm;font-size:8pt;line-height:1.85"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-explanation>small",
+      "declarations": "font-size:6.5pt;color:var(--accent);font-weight:700"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-explanation p",
+      "declarations": "margin:1.1mm 0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-answer",
+      "declarations": "display:flex;gap:2mm;margin-top:2mm;border-top:.5pt solid #cfdfd2;padding-top:1.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".worked-answer b",
+      "declarations": "font-size:7pt;color:var(--accent)"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .question-grid",
+      "declarations": "gap:2.8mm 7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .subheading small",
+      "declarations": "font-size:7pt;color:#809186"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .checkbar",
+      "declarations": "font-size:7pt;margin-top:1mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".exercise .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".exercise .question-grid",
+      "declarations": "row-gap:5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".exercise .question-grid>.q",
+      "declarations": "min-height:40mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".qdiagram",
+      "declarations": "position:relative;height:28mm;margin:1.5mm auto 0;width:58mm;color:var(--accent)"
+    },
+    {
+      "file": "full.css",
+      "selector": ".qdiagram svg",
+      "declarations": "width:100%;height:100%;fill:#eef4eb;stroke:#508071;stroke-width:1.2"
+    },
+    {
+      "file": "full.css",
+      "selector": ".qdiagram .dash",
+      "declarations": "stroke-dasharray:4 3;fill:none"
+    },
+    {
+      "file": "full.css",
+      "selector": ".qdiagram>span",
+      "declarations": "position:absolute;font-size:7pt;background:#ffffffc0;padding:0 .8mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".full-worked .qdiagram",
+      "declarations": "width:52mm;height:26mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".full-worked .diagram-side",
+      "declarations": "font-size:6.5pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".error-grid .qhead",
+      "declarations": "grid-column:1/-1"
+    },
+    {
+      "file": "full.css",
+      "selector": ".error-grid .work",
+      "declarations": "align-self:end"
+    },
+    {
+      "file": "full.css",
+      "selector": ".errors .content",
+      "declarations": "gap:4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".reason-grid .q .work",
+      "declarations": "margin-top:3mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".reasoning .content",
+      "declarations": "gap:5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".map-instructions",
+      "declarations": "font-size:8.8pt;line-height:1.9;border-left:2pt solid var(--accent);padding-left:4mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".map-heading",
+      "declarations": "width:95mm;margin:0 auto 6mm;background:var(--dark);color:white;text-align:center;padding:4mm;border-radius:2mm 9mm;font-size:15pt;font-weight:700"
+    },
+    {
+      "file": "full.css",
+      "selector": ".map-cards",
+      "declarations": "display:grid;grid-template-columns:1fr 1fr;gap:6mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".summary-card .work",
+      "declarations": "margin-top:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".type-index-list",
+      "declarations": "font-size:7.5pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".type-index-list section",
+      "declarations": "margin-bottom:5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".type-index-list section>div",
+      "declarations": "padding:1.1mm 0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".answers .page-head",
+      "declarations": "min-height:22mm;margin-top:4mm;margin-bottom:3mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".answers .content",
+      "declarations": "gap:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".answers .ans-head",
+      "declarations": "display:flex;gap:2.8mm;font-size:8.5pt;line-height:1.85"
+    },
+    {
+      "file": "full.css",
+      "selector": ".answers .ans-head>b",
+      "declarations": "font-size:9pt;color:var(--accent);flex:none"
+    },
+    {
+      "file": "full.css",
+      "selector": ".answers .ans-head>span",
+      "declarations": "min-width:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .script-board>small",
+      "declarations": "font-size:6.2pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .script-board>div",
+      "declarations": "font-size:9.8pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .script-body",
+      "declarations": "gap:.85mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .chat-bubble",
+      "declarations": "font-size:9.2pt!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".cover",
+      "declarations": "print-color-adjust:exact!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet",
+      "declarations": "break-after:page"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.cover .math",
+      "declarations": "color:inherit"
+    },
+    {
+      "file": "full.css",
+      "selector": ".full-worked,.concept-worked,.summary-card",
+      "declarations": "break-inside:avoid"
+    },
+    {
+      "file": "full.css",
+      "selector": ".scriptcheck .question-grid",
+      "declarations": "gap:2mm 7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".drill .page-head",
+      "declarations": "margin-top:4mm!important;min-height:20mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".drill .progress",
+      "declarations": "margin-bottom:2mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".drill .qhead",
+      "declarations": "min-height:4.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".drill .q .prompt",
+      "declarations": "font-size:8.8pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".type-index-list section>div",
+      "declarations": "padding-block:.55mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".fullmaster .master-block",
+      "declarations": "min-height:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".basic .question-grid",
+      "declarations": "gap:2mm 7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .qdiagram",
+      "declarations": "height:24mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".typepage .full-worked .qdiagram",
+      "declarations": "height:22mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".qdiagram.triangle .diagram-side",
+      "declarations": "left:46%;right:auto;top:10mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.odd .foot",
+      "declarations": "flex-direction:row-reverse"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.odd .foot .name",
+      "declarations": "margin-left:0;margin-right:auto;flex-direction:row-reverse"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.odd .foot::before",
+      "declarations": "left:auto;right:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.odd .foot::after",
+      "declarations": "left:0;right:18mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet>.page-end-note",
+      "declarations": "position:absolute;top:270mm;left:13mm;right:18mm;height:8mm;margin:0;padding:1.5mm 0 0;border-top:.5pt solid var(--light);align-items:baseline;line-height:1.6"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.odd>.page-end-note",
+      "declarations": "left:18mm;right:13mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.paired .page-head,.sheet.types .page-head",
+      "declarations": "min-height:23mm!important;margin:5mm 0 3mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.paired .paired-title,.sheet.types .paired-title",
+      "declarations": "min-height:10mm;margin-bottom:2mm;padding-bottom:2mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.paired .strategy,.sheet.types .strategy",
+      "declarations": "margin-bottom:3mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols>.worked",
+      "declarations": "padding-top:3mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols>.worked .qhead",
+      "declarations": "margin-top:0;margin-bottom:1.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols>.twins",
+      "declarations": "padding-top:3mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols>.twins>.q:first-child",
+      "declarations": "padding-top:0"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols>.twins>.q:first-child .qhead",
+      "declarations": "margin-bottom:1.5mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols .qhead",
+      "declarations": "height:6mm!important;margin-bottom:1.5mm!important"
+    },
+    {
+      "file": "full.css",
+      "selector": ".paired-cols .prompt",
+      "declarations": "min-height:12mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".sheet.paired .paired-group,.sheet.types .paired-group",
+      "declarations": "min-height:102mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".scriptcheck .question-grid",
+      "declarations": "row-gap:1mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".qdiagram>span",
+      "declarations": "background:transparent;text-shadow:-.45px 0 #fff,.45px 0 #fff,0 -.45px #fff,0 .45px #fff,-.32px -.32px #fff,.32px -.32px #fff,-.32px .32px #fff,.32px .32px #fff"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .chat-bubble",
+      "declarations": "font-size:var(--chat-size,10.5pt)!important;line-height:1.77;padding:var(--chat-padding,1.5mm) 2.7mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .script-board>div",
+      "declarations": "font-size:var(--chat-size,10.5pt)"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .script-board>small",
+      "declarations": "font-size:7pt"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .script-board>p",
+      "declarations": "font-size:8pt;line-height:1.8"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .portrait-frame",
+      "declarations": "width:var(--portrait-size,9.5mm);height:var(--portrait-size,9.5mm)"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .chat-person",
+      "declarations": "flex-basis:var(--portrait-size,9.5mm);gap:.15mm"
+    },
+    {
+      "file": "full.css",
+      "selector": ".opening .chat-name",
+      "declarations": "font-size:5.5pt"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".cover .cover-visual",
+      "declarations": "top:128mm;left:9mm;right:9mm;height:116mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".cover-visual>img",
+      "declarations": "width:100%;height:100%;object-fit:contain;display:block"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".cover-equations",
+      "declarations": "position:absolute;left:18mm;right:18mm;bottom:34mm;display:flex;align-items:center;gap:5mm;font-size:11pt;color:#dceac0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".cover-equations>span:not(.math)",
+      "declarations": "height:.5pt;background:#5b8066;flex:1"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".sheet.unit-spread",
+      "declarations": "background:#f2f6ef;overflow:hidden;isolation:isolate;--accent:#0c6b5b;--light:#cbded2"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".unit-spread>.content",
+      "declarations": "height:254mm;position:relative;gap:0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-number",
+      "declarations": "position:absolute;top:7mm;left:0;display:flex;align-items:flex-start;gap:4mm;color:var(--accent)"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-number small",
+      "declarations": "font-size:7pt;font-weight:700;letter-spacing:1.8px;padding-top:5mm;border-top:2pt solid #cee66c;margin-top:3mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-number b",
+      "declarations": "font-size:76pt;line-height:1;letter-spacing:-6px;color:#2f7e62;font-weight:700"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-title",
+      "declarations": "position:absolute;left:0;right:0;top:48mm;font-size:31pt!important;line-height:1.25;letter-spacing:-1.7px;color:#123f35;font-weight:700"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-title span",
+      "declarations": "display:block"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-question",
+      "declarations": "position:absolute;top:83mm;left:0;right:4mm;font-size:11.1pt;line-height:1.7;letter-spacing:-.2px;color:#2f6551;word-break:keep-all;font-weight:700"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-hero",
+      "declarations": "position:absolute;left:-4mm;right:-4mm;top:101mm;height:119mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-title.single-line~.chapter-question",
+      "declarations": "top:70mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-title.single-line~.chapter-hero",
+      "declarations": "top:90mm;height:130mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-hero img",
+      "declarations": "width:100%;height:100%;object-fit:contain;display:block"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-lead",
+      "declarations": "position:absolute;top:225mm;left:0;right:3mm;font-size:8.9pt;line-height:1.85;color:#516f60;word-break:keep-all"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-key",
+      "declarations": "position:absolute;top:248mm;left:0;right:0;display:flex;gap:2.2mm;align-items:center;font-size:7.6pt;color:#3c6f58;font-weight:700;letter-spacing:.1px"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-key i",
+      "declarations": "width:2.2mm;height:2.2mm;background:#b6d453;transform:rotate(45deg)"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-route-head",
+      "declarations": "position:absolute;top:10mm;left:0;right:0;border-bottom:1.1pt solid #7da28f;padding-bottom:4mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-route-head>span",
+      "declarations": "font-size:7pt;letter-spacing:.7px;color:#61816d;font-weight:700"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-route-head h1",
+      "declarations": "font-size:23pt;color:#174c3e;line-height:1.4;letter-spacing:-1px;margin-top:1mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-route-head>b",
+      "declarations": "position:absolute;right:0;top:1mm;font-size:32pt;line-height:1;color:#c5d9c8;letter-spacing:-2px"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-goals",
+      "declarations": "position:absolute;top:40mm;left:0;right:0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-goals p,.chapter-readiness p",
+      "declarations": "display:flex;align-items:baseline;gap:2.3mm;font-size:8.25pt;line-height:1.75;color:#365746;margin-bottom:1.7mm;word-break:keep-all"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-goals p>i,.chapter-readiness p>i",
+      "declarations": "width:2.1mm;height:2.1mm;flex:none;display:inline-block;border:.6pt solid #86a68b;border-radius:.3mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-roadmap",
+      "declarations": "position:absolute;top:83mm;left:0;right:0;height:81mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-roadmap h2",
+      "declarations": "display:flex;justify-content:space-between;align-items:baseline"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-roadmap h2 small",
+      "declarations": "font-size:6.2pt;color:#7a9281;font-weight:400"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-topics",
+      "declarations": "height:68mm;display:flex;flex-direction:column;border-top:1pt solid #93b39e"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-topics>div",
+      "declarations": "flex:1;display:flex;align-items:center;gap:3mm;border-bottom:.5pt solid #c3d7c8;padding:1mm 0;min-height:0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-topics small",
+      "declarations": "font-size:9pt;color:#8da977;flex:none;width:8mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-topics b",
+      "declarations": "font-size:10.2pt;letter-spacing:-.3px;line-height:1.5;font-weight:700;color:#284f3e;word-break:keep-all"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-topics span",
+      "declarations": "margin-left:auto;font-size:12pt;font-weight:700;color:#2d7055;white-space:nowrap"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-topics span i",
+      "declarations": "font-size:6pt;font-style:normal;margin-left:1mm;font-weight:400;color:#738f7c"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-connections",
+      "declarations": "position:absolute;top:173mm;left:0;right:0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-readiness",
+      "declarations": "position:absolute;top:216mm;left:0;right:0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-readiness h2",
+      "declarations": "margin-bottom:2mm!important"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-readiness p",
+      "declarations": "font-size:7.1pt;margin-bottom:.9mm;line-height:1.65"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".chapter-date",
+      "declarations": "position:absolute;top:250mm;left:0;right:0;display:flex;justify-content:space-between;font-size:6.5pt;color:#7b9480"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".bridge-block .work",
+      "declarations": "height:auto;display:flex;flex-direction:column;margin-top:2mm"
+    },
+    {
+      "file": "chapters.css",
+      "selector": ".bridge-block .work>span",
+      "declarations": "height:7mm;flex:0 0 7mm;border-bottom:.45pt solid #e0e6e0"
+    },
+    {
+      "file": "chapters.css",
+      "selector": "#book>.sheet.odd",
+      "declarations": "grid-column:2"
+    },
+    {
+      "file": "chapters.css",
+      "selector": "#book>.sheet:not(.odd)",
+      "declarations": "grid-column:1"
+    }
+  ],
+  "method": "Original CSS declaration extraction, not computed/browser dimensions",
+  "limits": [
+    "CSS source values are not an optical PDF equality claim.",
+    "Source geometry must still be compared to all-page PDF/DOM landmarks within 0.5mm."
+  ]
+}

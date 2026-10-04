@@ -1,0 +1,188 @@
+{
+  "source": {
+    "pdfSha256": "6c24ba6e65e7dd4dec18dd24fafe0fb483e0bde0f7bbd5144f6d2411d0c773d0",
+    "manuscriptSha256": "520d1f437599ac6cc627aa5ba9962844e7b8a98eb12d8521aa1b4797c3c00cdb",
+    "zipSha256": "8d286fb7250588a705dcf16e4b2dd157d394f1119914a314ce5adfa2f9246b1a",
+    "zipManuscriptMatches": true,
+    "physicalPages": 259,
+    "questionCount": 1039
+  },
+  "selectedPages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    50,
+    53,
+    57,
+    58,
+    60,
+    68,
+    72,
+    74,
+    76,
+    78,
+    80,
+    81,
+    183,
+    244,
+    256,
+    258,
+    259
+  ],
+  "originalKinds": 31,
+  "exerciseStages": 15,
+  "converter": {
+    "counts": {
+      "selectedPages": 60,
+      "sections": 60,
+      "blocks": 349,
+      "questions": 222,
+      "snapshots": 222,
+      "speech": 50,
+      "boards": 4,
+      "publicExamples": 11,
+      "fullmasterRows": 36,
+      "texBodies": 1347
+    },
+    "exchangeHash": "007379c6a4814633e4d094a3ca614dae6035a7d0b53ae067559be81d5ef847d0",
+    "baseHash": "f9241b02c7af339fa0fe4ab2d1aa2ea4a516aee09ada8827865ff6d614078a3e",
+    "baseIntegrityErrors": 0,
+    "semanticSchemaAccepted": true
+  },
+  "conservation": {
+    "passed": true,
+    "tests": [
+      {
+        "check": "U01 all four opening pages: exact speech/board/title/source",
+        "count": 54
+      },
+      {
+        "check": "Common conceptId/rowKey/label/rawText and study-only repetition",
+        "count": 36
+      },
+      {
+        "check": "Original problem IDs, answers, solutions and TeX bytes",
+        "count": 222
+      },
+      {
+        "check": "Student answer allowlist and independent answers projection",
+        "count": 444
+      },
+      {
+        "check": "Public example and unsolved confirmation linkage",
+        "count": 11
+      },
+      {
+        "check": "Exported answer witness references verified final student pageMap",
+        "count": 142
+      },
+      {
+        "check": "Integrated optional semantic schema accepts lossless fixture",
+        "count": 349
+      }
+    ],
+    "intentionalCorruptionsRejected": 2,
+    "semanticAccepted": true,
+    "functionalAnswerChecks": "passed on 222 original source questions; not editorial mathematics approval",
+    "studentVisualEquality": "pending renderer integration; no original answer visual claim"
+  },
+  "mutations": {
+    "passed": true,
+    "tests": 28,
+    "validControlPassed": true,
+    "expectedFailuresObserved": 27
+  },
+  "originalRowLabelDeltaMm": {
+    "studyKeywords": 0.0,
+    "studySentences": 0.0
+  },
+  "exports": {
+    "student": {
+      "pageCount": 55,
+      "pdfSha256": "b51a95ba1ae82838efc688aa745a43a224e2407c121f490706f38a45e9df5f58",
+      "fixtureSha256": "7d4b3ed014b9a24004a112596e1e337dacec1680337af01559e5735d767ca4d5",
+      "chunks": 36,
+      "pageMapCount": 142,
+      "compatibilityChunkScoping": "One original section per standalone export call; continuous source-page policy pending",
+      "geometryStatus": "failed",
+      "checked": {
+        "pages": 55,
+        "textSpans": 3275,
+        "figures": 125,
+        "clipNodes": 717,
+        "semanticNodes": 320,
+        "writeBoxes": 163
+      },
+      "issueCounts": {
+        "WITNESS_COVERAGE_REQUIRED": 3,
+        "WRITE_GREY_BAND": 19,
+        "WRITE_VECTOR_MISSING": 12,
+        "ROW_PHASE_MISSING": 3
+      }
+    },
+    "answers": {
+      "pageCount": 60,
+      "pdfSha256": "b13a05db3408b0f327471a4393a7bf6aa4810736ae19911ee609ab8b4a652dcb",
+      "fixtureSha256": "7d4b3ed014b9a24004a112596e1e337dacec1680337af01559e5735d767ca4d5",
+      "chunks": 36,
+      "pageMapCount": 142,
+      "compatibilityChunkScoping": "One original section per standalone export call; continuous source-page policy pending",
+      "geometryStatus": "failed",
+      "checked": {
+        "pages": 60,
+        "textSpans": 4391,
+        "figures": 102,
+        "clipNodes": 1108,
+        "semanticNodes": 320
+      },
+      "issueCounts": {
+        "WITNESS_COVERAGE_REQUIRED": 3,
+        "ROW_PHASE_MISSING": 3
+      }
+    }
+  },
+  "g0aVisual": "pending semantic renderer integration and exact comparison",
+  "answerFunctional": "original payloads and DTO allowlist passed; original answer visual equality not asserted",
+  "humanVisualReview": "selected source/new PNGs only; no all-page human acceptance",
+  "projectTypeCheck": "default 4GB heap exhausted; QA scoped 8GB type check passed"
+}
