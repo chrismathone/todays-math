@@ -8,7 +8,7 @@ CREATE TABLE english_listening_media_storage_blob (
  committed boolean NOT NULL DEFAULT false,
  deleting boolean NOT NULL DEFAULT false,
  "createdAt" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
- CHECK(ref IS NULL OR (jsonb_typeof(ref)='object' AND ref->>'sha256'=sha256 AND (ref->>'bytes')::bigint="byteLength" AND (ref->>'start')::bigint=0 AND (ref->>'endExclusive')::bigint="byteLength")),
+ CHECK(ref IS NULL OR (jsonb_typeof(ref)='object' AND ref ?& ARRAY['bucket','key','ownerId','etag','bytes','sha256','start','endExclusive'] AND jsonb_typeof(ref->'bucket')='string' AND jsonb_typeof(ref->'key')='string' AND jsonb_typeof(ref->'ownerId')='string' AND jsonb_typeof(ref->'etag')='string' AND jsonb_typeof(ref->'sha256')='string' AND jsonb_typeof(ref->'bytes')='number' AND jsonb_typeof(ref->'start')='number' AND jsonb_typeof(ref->'endExclusive')='number' AND ref->>'sha256'=sha256 AND (ref->>'bytes')::bigint="byteLength" AND (ref->>'start')::bigint=0 AND (ref->>'endExclusive')::bigint="byteLength")),
  CHECK(NOT committed OR ref IS NOT NULL)
 );
 -- statement

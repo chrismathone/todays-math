@@ -71,6 +71,7 @@ export interface ListeningMediaStore {
   putBlob(
     bytes: Uint8Array,
     scope?: { assetId: string; ownerId: string },
+    signal?: AbortSignal,
   ): Promise<string>;
   readBlob(key: string, read: ListeningMediaRead): AsyncIterable<Uint8Array>;
   deleteBlob(key: string): Promise<void>;
