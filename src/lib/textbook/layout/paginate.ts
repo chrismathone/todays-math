@@ -32,6 +32,7 @@ export interface BlockPlacement {
   yMm: number;
   widthMm: number;
   heightMm: number;
+  continuation?: boolean;
 }
 export interface TextbookPage {
   physicalPageIndex: number;
@@ -329,6 +330,7 @@ export function paginateTextbookSections(
             : config.print.innerMarginMm;
         page.blocks.push({
           blockId: currentHeading.id,
+          continuation: true,
           column: 1,
           xMm: x,
           yMm: cursor,

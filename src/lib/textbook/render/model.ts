@@ -60,6 +60,7 @@ type BlockBase = {
   exampleConfirmIndex?: number;
   dialogueScriptTotal?: number;
   memoryContinuationTitle?: string;
+  continuedPage?: boolean;
 };
 export type RenderBlock = BlockBase &
   (
