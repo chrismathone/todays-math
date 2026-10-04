@@ -10,6 +10,8 @@ import {
 } from "@/contracts/englishListeningMedia.contract";
 import { ListeningMediaError } from "../media/errors";
 import { createListeningMediaService } from "../media/service";
+import { createListeningDriveApi } from "../media/driveApi";
+import { readListeningDriveConfig } from "../media/driveConfig";
 import { PrismaListeningMediaStore } from "../media/prismaStore";
 import { createListeningRuntime } from "./service";
 import {
@@ -31,8 +33,11 @@ import {
   LISTENING_MAX_DOCUMENT_BYTES,
 } from "@/contracts/englishListeningSource.contract";
 
-const runtime = createListeningRuntime(db);
+const driveConfig = readListeningDriveConfig();
+const drive = driveConfig ? createListeningDriveApi(driveConfig) : null;
+const runtime = createListeningRuntime(db, undefined, { drive });
 const media = createListeningMediaService({
+  drive,
   store: new PrismaListeningMediaStore(db),
   ...createListeningMediaAccess(db),
   limits: {
