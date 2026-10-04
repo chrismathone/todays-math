@@ -1,9 +1,21 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 const navigation = vi.hoisted(() => ({ push: vi.fn() }));
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: navigation.push }),
+}));
+vi.mock("@/lib/textbook/quickCreateClient", () => ({
+  httpQuickCreateApi: {
+    listUnits: vi.fn(async () => ({ units: [] })),
+    create: vi.fn(),
+  },
 }));
 
 import type { TextbookStudioApi } from "@/lib/textbook/client";
@@ -191,6 +203,7 @@ async function openStudio(
 ) {
   render(<TextbookStudioView api={client} audience={audience} />);
   fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+  fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
   expect(await screen.findByRole("textbox", { name: "대사" })).toBeVisible();
 }
 
@@ -224,6 +237,91 @@ function wireConcept(
 }
 
 describe("TextbookStudioView", () => {
+  it("keeps the chosen character visible while editing an automatic dialogue", async () => {
+    const draft = section();
+    const dialogue = draft.blocks[0];
+    if (dialogue?.kind !== "dialogue") throw new Error("fixture");
+    dialogue.turns[0]!.speakerId = "tb-portrait-student-f3";
+    await openStudio(api({ getSection: vi.fn(async () => draft) }));
+    expect(screen.getByRole("combobox", { name: "화자" })).toBeDisabled();
+    expect(screen.getByRole("option", { name: "유나" })).toBeInTheDocument();
+    fireEvent.change(screen.getByRole("textbox", { name: "대사" }), {
+      target: { value: "수정한 설명" },
+    });
+    expect(screen.getByRole("option", { name: "유나" })).toBeInTheDocument();
+  });
+  it("opens a finished preview and creates PDF with one click using one reservation", async () => {
+    const job = {
+      jobId: "pdf-reservation",
+      issues: [],
+      completedSteps: 0,
+      totalSteps: 1,
+    };
+    const published = structuredClone(edition);
+    if (published.structureSource)
+      published.structureSource.edition = {
+        editionId: "edition-1",
+        label: "1",
+        status: "published",
+        revision: 9,
+        publishedAt: "2026-10-04T00:00:00Z",
+        manifestHash: null,
+      };
+    const client = api({
+      preflight: vi.fn(async () => ({ ok: true, issues: [] })),
+      reserve: vi.fn(async () => ({ ...job, status: "reserved" as const })),
+      stepPublish: vi.fn(async () => ({
+        ...job,
+        status: "ready" as const,
+        completedSteps: 1,
+      })),
+      finalize: vi.fn(async () => ({
+        ...job,
+        status: "finalized" as const,
+        completedSteps: 1,
+      })),
+      openEdition: vi
+        .fn()
+        .mockResolvedValueOnce(edition)
+        .mockResolvedValueOnce(published),
+    });
+    render(<TextbookStudioView api={client} />);
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "PDF 만들기" }));
+    expect(
+      await screen.findByRole("link", { name: "학생용 PDF 내려받기" }),
+    ).toHaveAttribute(
+      "href",
+      "/api/textbook/editions/edition-1/pdf?kind=student",
+    );
+    expect(client.stepPublish).toHaveBeenCalledWith(
+      "edition-1",
+      "pdf-reservation",
+    );
+    expect(client.finalize).toHaveBeenCalledWith(
+      "edition-1",
+      "pdf-reservation",
+    );
+    expect(
+      screen.queryByRole("textbox", { name: "대사" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("shows preflight issues without reserving a PDF job", async () => {
+    const client = api({
+      preflight: vi.fn(async () => ({ ok: false, issues: [] })),
+      reserve: vi.fn(),
+    });
+    render(<TextbookStudioView api={client} />);
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "PDF 만들기" }));
+    await waitFor(() =>
+      expect(
+        screen.getByText("PDF를 만들기 전에 아래 항목을 확인해 주세요."),
+      ).toBeVisible(),
+    );
+    expect(client.reserve).not.toHaveBeenCalled();
+  });
   it("keeps the local sentence when the server reports a revision conflict", async () => {
     const client = api({
       saveSection: vi.fn(async () => {
@@ -772,6 +870,9 @@ describe("TextbookStudioView", () => {
   it("creates a book with the chosen grade and margins", async () => {
     const createBook = vi.fn(async () => book);
     render(<TextbookStudioView api={api({ createBook })} />);
+    fireEvent.click(
+      await screen.findByRole("button", { name: "직접 원고 만들기" }),
+    );
     fireEvent.change(await screen.findByRole("textbox", { name: "제목" }), {
       target: { value: "분수" },
     });
@@ -819,6 +920,7 @@ describe("TextbookStudioView", () => {
         initialEditionId="00000000-0000-4000-8000-0000000000aa"
       />,
     );
+    fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
     expect(await screen.findByRole("textbox", { name: "대사" })).toBeVisible();
     expect(client.openEdition).toHaveBeenCalledWith(
       "00000000-0000-4000-8000-0000000000aa",
@@ -844,6 +946,7 @@ describe("TextbookStudioView", () => {
         initialEditionId="00000000-0000-4000-8000-0000000000aa"
       />,
     );
+    fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
     const sentence = await screen.findByRole("textbox", { name: "대사" });
     fireEvent.change(sentence, { target: { value: "고친 문장" } });
     rerender(<TextbookStudioView api={client} initialEditionId={nextId} />);

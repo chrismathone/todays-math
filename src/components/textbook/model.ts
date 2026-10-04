@@ -5,6 +5,7 @@
  */
 import type { Difficulty } from "@/contracts/difficulty";
 import type { ProblemType } from "@/contracts/problem.contract";
+import type { TextbookArtifact } from "@/contracts/textbook.contract";
 import {
   CONCEPT_KINDS,
   type ConceptKind,
@@ -213,6 +214,9 @@ export type PublishJob = {
   jobId: string;
   status: Exclude<PublishStatus, "idle" | "preflight-failed">;
   issues: StudioIssue[];
+  completedSteps?: number;
+  totalSteps?: number;
+  artifacts?: TextbookArtifact[];
 };
 
 export type AssignmentTarget =

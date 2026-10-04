@@ -31,6 +31,7 @@ import {
   artifactSource,
   editionAssetSource,
   parseRange,
+  pdfSource,
   serveBytes,
 } from "@/lib/textbook/server/bytes";
 import {
@@ -1352,6 +1353,13 @@ describe("올리기와 자산 읽기", () => {
     );
     const pdf = artifacts.rows.find((row) => row.kind === "student-pdf")!;
     const source = await artifactSource(db, owner, made.editionId, pdf.id);
+    expect(await pdfSource(db, owner, made.editionId, "student-pdf")).toEqual(
+      source,
+    );
+    expect(
+      (await refusal(pdfSource(db, colleague, made.editionId, "student-pdf")))
+        .status,
+    ).toBe(404);
     expect(source).toMatchObject({
       mimeType: "application/pdf",
       downloadName: "student-pdf.pdf",
@@ -1361,6 +1369,10 @@ describe("올리기와 자산 읽기", () => {
         .status,
     ).toBe(404);
     const other = await book(owner);
+    expect(
+      (await refusal(pdfSource(db, owner, other.editionId, "student-pdf")))
+        .status,
+    ).toBe(404);
     expect(
       (await refusal(artifactSource(db, owner, other.editionId, pdf.id)))
         .status,

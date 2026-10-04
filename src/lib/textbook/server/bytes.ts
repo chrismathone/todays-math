@@ -43,6 +43,59 @@ export async function editionAssetSource(
 }
 
 /** 발행 산출물 — 그 판본의 것만 */
+export async function pdfSource(
+  sql: TextbookSql,
+  actor: TextbookActor,
+  editionId: string,
+  kind: "student-pdf" | "answer-pdf",
+): Promise<ByteSource> {
+  await requireReadableEdition(sql, actor, editionId);
+  const [row] = await sql.query<{ id: string }>(
+    `SELECT "id" FROM "textbook_artifact" WHERE "edition_id" = $1::uuid AND "kind" = $2 ORDER BY "id" LIMIT 1`,
+    [editionId, kind],
+  );
+  if (!row) throw notFound("PDF");
+  return artifactSource(sql, actor, editionId, row.id);
+}
+
+/** Full attachment download, reading bounded database windows instead of truncating at 4MB. */
+export function serveDownloadBytes(
+  sql: TextbookSql,
+  request: Request,
+  source: ByteSource,
+): Promise<Response> | Response {
+  if (request.headers.has("range")) return serveBytes(sql, request, source);
+  let offset = 0;
+  return new Response(
+    new ReadableStream<Uint8Array>({
+      async pull(controller) {
+        if (offset >= source.size) {
+          controller.close();
+          return;
+        }
+        const length = Math.min(RANGE_WINDOW_BYTES, source.size - offset);
+        const bytes = await readBlobRange(sql, source.sha256, offset, length);
+        if (!bytes || bytes.byteLength !== length) {
+          controller.error(new Error("PDF 바이트를 읽지 못했습니다."));
+          return;
+        }
+        offset += length;
+        controller.enqueue(bytes);
+      },
+    }),
+    {
+      headers: {
+        "Content-Type": source.mimeType,
+        "Content-Length": String(source.size),
+        "Content-Disposition": `attachment; filename="${source.downloadName ?? "textbook.pdf"}"`,
+        "Accept-Ranges": "bytes",
+        "Cache-Control": "private, no-store",
+        "X-Content-Type-Options": "nosniff",
+      },
+    },
+  );
+}
+
 export async function artifactSource(
   sql: TextbookSql,
   actor: TextbookActor,
