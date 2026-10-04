@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import type { Prisma, PrismaClient } from "@prisma/client";
 import { ListeningMediaError } from "./errors";
 import { MAX_ORIGINAL_BYTES, MAX_PLAYBACK_BYTES } from "./mp3";
+import { LISTENING_MAX_OWNER_BYTES } from "@/contracts/englishListeningSource.contract";
 import type {
   ListeningMediaRead,
   ListeningMediaRecord,
@@ -49,7 +50,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
     private readonly prisma: PrismaClient,
     options: PrismaListeningMediaStoreOptions = {},
   ) {
-    this.maxOwnerBytes = options.maxOwnerBytes ?? 1024 * 1024 * 1024;
+    this.maxOwnerBytes = options.maxOwnerBytes ?? LISTENING_MAX_OWNER_BYTES;
     this.maxOwnerAssets = options.maxOwnerAssets ?? 128;
     this.orphanTtlMs = options.orphanTtlMs ?? 60 * 60 * 1000;
     bound(this.maxOwnerBytes, 1, 2 ** 31 - 1);
