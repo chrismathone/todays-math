@@ -89,6 +89,66 @@
 .filters > label:first-child {
   flex: 2 1 220px;
 }
+.listeningFilterContainer {
+  container-type: inline-size;
+}
+.listeningFilters {
+  display: grid;
+  grid-template-columns:
+    minmax(180px, 2fr) minmax(95px, 0.9fr) minmax(170px, 1.15fr)
+    minmax(88px, 0.6fr) minmax(78px, 0.6fr) auto;
+  grid-template-areas: "query grade source year round actions";
+  align-items: end;
+  gap: 10px;
+  margin: 0 0 18px;
+}
+.listeningFilters > label {
+  min-width: 0;
+  margin-bottom: 0;
+}
+.listeningFilters input:disabled {
+  background: var(--e-soft);
+  color: var(--e-muted);
+}
+.listeningQuery {
+  grid-area: query;
+}
+.listeningGrade {
+  grid-area: grade;
+}
+.listeningSource {
+  grid-area: source;
+}
+.listeningYear {
+  grid-area: year;
+}
+.listeningRound {
+  grid-area: round;
+}
+.listeningFilterActions {
+  grid-area: actions;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+}
+@container (max-width: 860px) {
+  .listeningFilters {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "query query grade source"
+      "year round actions actions";
+  }
+}
+@container (max-width: 580px) {
+  .listeningFilters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "query query"
+      "grade source"
+      "year round"
+      "actions actions";
+  }
+}
 .actions {
   margin-top: 14px;
 }
