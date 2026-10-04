@@ -504,4 +504,40 @@ describe("source geometry is a separate rule set", () => {
     expect(RECALL_SOURCE_CLASS).toBe("tb-memory-source");
     expect(RECALL_ROW_PADDING_MM).toEqual({ bank: 2.2, source: 3 });
   });
+
+  it("gives the source sheet the original instruction bar, and only the source sheet", () => {
+    // The original: a .7pt rule, 2mm above the text, 1mm margin and the 2.2mm content gap
+    // before the first concept; the instruction is 7.6pt at leading 1.6.
+    expect(rule(".tb-memory-source .tb-recall-checkbar")).toBe(
+      "flex-wrap:nowrap;align-items:center;margin-bottom:3.2mm;padding:2mm 0 0;border-top:.7pt solid var(--tb-light);line-height:1.65",
+    );
+    expect(rule(".tb-memory-source .tb-recall-checkbar>b")).toBe(
+      "font-size:7.6pt;line-height:1.6",
+    );
+    expect(rule(".tb-memory-source .tb-recall-checkbar>span")).toBe(
+      "white-space:nowrap",
+    );
+    // Every rule of this stylesheet that touches the bar is under the source marker.
+    const bars = css
+      .split("}")
+      .map((r) => r.slice(0, r.indexOf("{")).trim())
+      .filter((selector) => selector.includes("tb-recall-checkbar"));
+    expect(bars).toHaveLength(3);
+    for (const selector of bars)
+      for (const part of selector.split(","))
+        expect(part.trim().startsWith(".tb-memory-source ")).toBe(true);
+  });
+
+  it("prints the instruction bar inside the source sheet it belongs to", () => {
+    const first = parse(render(memory("study", "source")));
+    const bar = first.querySelector(".tb-memory-source > .tb-recall-checkbar")!;
+    expect(bar.querySelector(":scope > b")?.textContent).toBe(
+      "정의와 성질을 확인하시오.",
+    );
+    expect(bar.querySelectorAll(":scope > span")).toHaveLength(1);
+    // It comes before the concept title, with nothing between them.
+    expect(bar.nextElementSibling?.classList.contains("tb-memory-title")).toBe(
+      true,
+    );
+  });
 });
