@@ -43,10 +43,11 @@ export default async function ListeningDraftPrintPage({
   const draft = await db
     .$transaction(async (tx) => {
       await lock(tx, parsed.data.id);
-      const account = await teacher(tx, {
-        kind: "teacher",
-        userId: session.id,
-      });
+      const account = await teacher(
+        tx,
+        { kind: "teacher", userId: session.id },
+        "materials",
+      );
       return printableDraft(
         tx,
         account,
