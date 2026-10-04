@@ -24,8 +24,22 @@ export function listeningPdfQuestionBoxes(
   height: number,
   maxNumber = 30,
 ): ListeningPdfQuestionBox[] {
+  // Older mastheads split "2025. 4. 4. (금) 시행" into separate text items.
+  const dateRows = items.flatMap((anchor) => {
+    if (!/^(?:19|20)\d{2}\s*[.년]/.test(anchor.str.trim())) return [];
+    const line = items
+      .filter((item) => Math.abs(item.y - anchor.y) < 3)
+      .toSorted((a, b) => a.x - b.x)
+      .map((item) => item.str.trim())
+      .join(" ");
+    return /(?:19|20)\d{2}\s*[.년]\s*\d{1,2}\s*[.월]\s*\d{1,2}/.test(line) &&
+      line.includes("시행")
+      ? [anchor.y]
+      : [];
+  });
   const headings = items.flatMap((item) => {
     const value = item.str.trim();
+    if (dateRows.some((y) => Math.abs(item.y - y) < 3)) return [];
     // The original assessment masthead splits dates into "8. (화) 시행".
     if (/^\d{1,2}\.\s*\([월화수목금토일]\)/.test(value)) return [];
     const match = value.match(/^(\d{1,2})\.(?:\s|$)/);

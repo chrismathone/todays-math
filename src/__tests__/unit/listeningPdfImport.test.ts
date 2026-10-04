@@ -14,6 +14,49 @@ const text = (
 ): ListeningPdfText => ({ str, x, y, width, height });
 
 describe("original listening assessment PDF parsing", () => {
+  it("excludes separately split month/day headings in the official middle3 2025 round1 masthead", () => {
+    const boxes = listeningPdfQuestionBoxes(
+      [
+        text("2025.", 49.773, 75.56, 36.16, 15.68),
+        text("4.", 93.789, 75.56, 11.93, 15.68),
+        text("4.", 113.578, 75.56, 11.93, 15.68),
+        text("(금)", 129.649, 75.56, 22.28, 15.68),
+        text("시행", 157.714, 75.56, 24.17, 15.68),
+        text("1.", 30.104, 104.86),
+        text("대화를 듣고, 남자가 주문할 셔츠를 고르시오.", 41.25, 104.86, 160),
+        text("①", 58.88, 120.33),
+        text("2.", 30.104, 187),
+        text("대화를 듣고, 알맞은 것을 고르시오.", 41.25, 187, 160),
+        text("12.", 307.753, 104.86),
+        text("다음 표를 보면서 대화를 듣고 고르시오.", 323.46, 104.86, 206),
+      ],
+      595.28,
+      841.89,
+      20,
+    );
+    expect(boxes.map((box) => box.number)).toEqual([1, 2, 12]);
+    expect(boxes[0].width).toBeCloseTo(269.649);
+    expect(boxes[0].prompt).toContain("셔츠");
+  });
+
+  it("keeps a question containing a dotted date outside an assessment masthead", () => {
+    const [box] = listeningPdfQuestionBoxes(
+      [
+        text("1.", 40, 100),
+        text("2025.", 55, 100),
+        text("4.", 100, 100),
+        text("4.", 130, 100),
+        text("(금) is the due date.", 160, 100, 160),
+        text("① response", 55, 130, 160),
+      ],
+      728,
+      1031,
+      1,
+    );
+    expect(box.number).toBe(1);
+    expect(box.prompt).toContain("2025.");
+  });
+
   it("keeps real columns and excludes the weekday date fragment in the official high1 2026 round2 header", () => {
     const boxes = listeningPdfQuestionBoxes(
       [
