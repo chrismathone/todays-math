@@ -337,48 +337,86 @@ describe.skipIf(!run)("automatic introduction in real Chromium", () => {
     await browser?.close();
   });
 
-  it("the production renderer renders the longest chapter on an even and an odd start", async () => {
+  it("the production renderer prints the longest chapter complete: its right face does not fit, so both starts get the single page", async () => {
     const exchange = introBook([longest]);
     const expected = expectedIntro(longest, 1);
     for (const start of [2, 3]) {
       const render = await renderIntroChunk(browser, exchange, [0], start);
+      expect(render.measured!.left).toBeCloseTo(254, 1);
+      expect(render.measured!.right).toBeGreaterThan(254);
+      expect(render.measured!.single).toBeLessThanOrEqual(254);
+      expect(render.pages.map((page) => page.part)).toEqual(["single"]);
+      expect(render.pages[0].goals).toHaveLength(13);
+      expect(render.pages[0].path).toHaveLength(13);
+      expect(render.blocked).toEqual([]);
       expect(
         verifyIntro(expected, render.pages, {
           firstPhysicalPageIndex: start,
           issues: render.result.issues,
           node: introNode(exchange, 0),
+          measured: render.measured,
         }),
       ).toEqual([]);
     }
   }, 180_000);
 
-  it("with only the art-width guard bypassed, every part is retained inside the page in the layout chosen", async () => {
+  it("the production renderer prints a chapter whose faces fit as the spread on an even start and the single page on an odd start", async () => {
+    const first: IntroCase = {
+      caseId: "e3-1-1",
+      opening: unitOpeningById("e3-1-1")!,
+    };
+    const exchange = introBook([first]);
+    const expected = expectedIntro(first, 1);
+    const layouts: string[] = [];
+    for (const start of [2, 3]) {
+      const render = await renderIntroChunk(browser, exchange, [0], start);
+      expect(render.measured!.right).toBeLessThanOrEqual(254);
+      layouts.push(render.pages.map((page) => page.part).join("+"));
+      expect(
+        verifyIntro(expected, render.pages, {
+          firstPhysicalPageIndex: start,
+          issues: render.result.issues,
+          node: introNode(exchange, 0),
+          measured: render.measured,
+        }),
+      ).toEqual([]);
+    }
+    expect(layouts).toEqual(["left+right", "single"]);
+  }, 180_000);
+
+  it("prints exactly the selected range of a partial selection, in both layouts", async () => {
     const failures = [];
-    for (const introCase of [longest, ...partialCases()]) {
+    const layouts: string[] = [];
+    for (const introCase of partialCases()) {
       const exchange = introBook([introCase]);
       const expected = expectedIntro(introCase, 1);
       for (const start of [2, 3]) {
-        const render = await renderIntroChunk(browser, exchange, [0], start, {
-          bypassArtGuard: true,
-        });
+        const render = await renderIntroChunk(browser, exchange, [0], start);
         expect(render.blocked).toEqual([]);
+        layouts.push(render.pages.map((page) => page.part).join("+"));
         failures.push(
           ...verifyIntro(expected, render.pages, {
             firstPhysicalPageIndex: start,
             issues: render.result.issues,
             node: introNode(exchange, 0),
-          })
-            // Whether an even start gets the spread is the acceptance test above.
-            .filter((failure) => failure.rule !== "layout-choice")
-            .map((failure) => ({ start, ...failure })),
+            measured: render.measured,
+          }).map((failure) => ({ start, ...failure })),
         );
       }
     }
     expect(failures).toEqual([]);
+    expect(layouts).toEqual([
+      "left+right",
+      "single",
+      "left+right",
+      "single",
+      "left+right",
+      "single",
+    ]);
   }, 300_000);
 
   it("negative controls fail: dropped goal, missing art, overheight, privacy, source hash, bounds", async () => {
-    const outcomes = await negativeControls(browser, { bypassArtGuard: true });
+    const outcomes = await negativeControls(browser);
     expect(outcomes.map((outcome) => outcome.name)).toEqual(CONTROL_NAMES);
     expect(
       outcomes
@@ -457,6 +495,7 @@ const CONTROL_NAMES = [
   "page-limit",
   "nine-sections",
   "six-hundred-blocks",
+  "six-hundred-blocks-admitted",
   "thirty-two-pages",
   "manual-even-left@3",
   "privacy-answers-artifact",

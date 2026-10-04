@@ -47,6 +47,7 @@ import {
   type CapturedIntroPage,
   type IntroCase,
   type IntroFailure,
+  type MeasuredForms,
 } from "../../../scripts/qa/textbook/recovery/intro-proof";
 
 const { JSDOM } = createRequire(import.meta.url)("jsdom") as {
@@ -74,6 +75,8 @@ interface Laid {
   layout: TextbookLayout;
   html: string;
   pages: CapturedIntroPage[];
+  /** The stated heights of the three forms, as the renderer would have measured them. */
+  measured: MeasuredForms;
 }
 /** The production projection, paginator and page markup over stated block heights. */
 function lay(
@@ -105,7 +108,7 @@ function lay(
   const html = layout.pages
     .map((page) => renderPageHtml(page, model, resources))
     .join("");
-  return { model, layout, html, pages: read(html) };
+  return { model, layout, html, pages: read(html), measured: all };
 }
 const read = (html: string) =>
   probe(new JSDOM(`<body>${html}</body>`).window.document);
@@ -265,6 +268,7 @@ describe("all 72 chapters on an even and on an odd start", () => {
             issues: laid.layout.issues,
             geometry: false,
             node: introNode(exchange, unitIndex),
+            measured: laid.measured,
           }))
             failures.push({ ...failure, start });
         }
@@ -371,20 +375,40 @@ describe("the longest chapter and measured heights", () => {
     }
   });
 
-  it("falls back to the complete single page when the right face of an even start is too tall", () => {
-    // 300.2mm is what Chromium measures for the right face of this chapter.
+  it("falls back to the complete single page, with its warning, when the right face of an even start is too tall", () => {
+    // About 300mm is what Chromium measures for the right face of this chapter.
     const laid = lay(exchange, [0], 2, { right: 300.2, single: 224.23 });
     expect(laid.pages.map((page) => page.part)).toEqual(["single"]);
     expect(laid.layout.issues.map((issue) => issue.message)).toEqual([
       "두 쪽 도입의 측정 공간이 부족하여 같은 전체 내용을 한 쪽에 함께 배치했습니다.",
     ]);
-    // The page is complete, but an even start was to be the spread: the verifier says so.
+    // Required behaviour: the measured right face does not fit, so the complete page is right.
+    expect(
+      verifyIntro(expected, laid.pages, {
+        firstPhysicalPageIndex: 2,
+        issues: laid.layout.issues,
+        geometry: false,
+        measured: laid.measured,
+      }),
+    ).toEqual([]);
+    // The same page is wrong where the measured spread fits, or where no measurement excuses it.
+    for (const measured of [{ ...laid.measured, right: 245.9 }, undefined])
+      expect(
+        rules(
+          verifyIntro(expected, laid.pages, {
+            firstPhysicalPageIndex: 2,
+            geometry: false,
+            ...(measured ? { measured } : {}),
+          }),
+        ),
+      ).toEqual(["layout-choice/pages"]);
+    // And a spread is wrong where its right face was measured too tall.
     expect(
       rules(
-        verifyIntro(expected, laid.pages, {
+        verifyIntro(expected, lay(exchange, [0], 2).pages, {
           firstPhysicalPageIndex: 2,
-          issues: laid.layout.issues,
           geometry: false,
+          measured: laid.measured,
         }),
       ),
     ).toEqual(["layout-choice/pages"]);
@@ -638,7 +662,8 @@ describe("negative controls: the verifier fails what it must", () => {
   });
 
   it("fails missing art, a wrong illustration, a missing date and a missing key", () => {
-    const art = /<figure><img data-textbook-editorial-image[^>]*><\/figure>/;
+    const art =
+      /<figure><img [^>]*data-textbook-editorial-image[^>]*><\/figure>/;
     for (const [html, start] of [
       [spread, 2],
       [single, 3],
@@ -728,7 +753,7 @@ describe("negative controls: the verifier fails what it must", () => {
     tampered.provenance.sourceHash = "0".repeat(64);
     expect(judge(single, 3, tampered)).toEqual(["source-hash/node.provenance"]);
     const reviewed = structuredClone(introNode(exchange, 0)) as IntroNodeLike;
-    (reviewed.provenance as { humanReview: boolean }).humanReview = true;
+    reviewed.provenance.humanReview = true;
     expect(judge(single, 3, reviewed)).toEqual(["source-hash/node"]);
     const malformed = structuredClone(introNode(exchange, 0)) as IntroNodeLike;
     malformed.provenance.sourceHash = "not-a-hash";
@@ -750,5 +775,9 @@ interface IntroNodeLike {
   goals: string[];
   path: string[];
   check: string[];
-  provenance: { sourceHash: string; sourceHashes: string[] };
+  provenance: {
+    sourceHash: string;
+    sourceHashes: string[];
+    humanReview: boolean;
+  };
 }

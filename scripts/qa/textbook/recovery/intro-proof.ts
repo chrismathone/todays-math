@@ -470,6 +470,11 @@ export const INTRO_DOM_PROBE = String.raw`function (document) {
   return result;
 }`;
 
+export interface MeasuredForms {
+  left: number;
+  right: number;
+  single: number;
+}
 export interface IntroFailure {
   caseId: string;
   rule: string;
@@ -506,6 +511,8 @@ export function verifyIntro(
     geometry?: boolean;
     /** The provenance printed nowhere but carried by the manuscript node. */
     node?: unknown;
+    /** Heights the renderer measured for the three forms; they decide the layout of an even start. */
+    measured?: MeasuredForms;
   },
 ): IntroFailure[] {
   const failures: IntroFailure[] = [];
@@ -517,14 +524,34 @@ export function verifyIntro(
   ) => failures.push({ caseId: expected.caseId, rule, anchor, page, detail });
   const geometry = options.geometry ?? true;
   const even = options.firstPhysicalPageIndex % 2 === 0;
-  const wantedParts = even ? ["left", "right"] : ["single"];
+  const fits = (height: number | undefined) =>
+    height !== undefined &&
+    Number.isFinite(height) &&
+    height > 0 &&
+    height <= INTRO_HEIGHT_MM;
+  // An even start is the spread when both faces measure within 254mm. Otherwise, and on every
+  // odd start, it is the complete single page. Without measurements nothing excuses a single
+  // page on an even start.
+  const spreadFits = options.measured
+    ? fits(options.measured.left) && fits(options.measured.right)
+    : true;
+  const wantedParts = even && spreadFits ? ["left", "right"] : ["single"];
   const parts = pages.map((page) => page.part);
+  const sizes = options.measured
+    ? ` (측정 왼쪽 ${options.measured.left} · 오른쪽 ${options.measured.right} · 단면 ${options.measured.single}mm)`
+    : "";
   if (parts.join(",") !== wantedParts.join(","))
     fail(
       "layout-choice",
       "pages",
-      `시작 ${options.firstPhysicalPageIndex}쪽에서 [${wantedParts}] 이어야 하는데 [${parts}] 가 나왔다`,
+      `시작 ${options.firstPhysicalPageIndex}쪽${sizes}에서 [${wantedParts}] 이어야 하는데 [${parts}] 가 나왔다`,
     );
+  if (
+    options.measured &&
+    parts.join(",") === "single" &&
+    !fits(options.measured.single)
+  )
+    fail("overheight", "single", `단면 측정 높이${sizes}`);
   // A complete single page on an even start is still judged for what it holds.
   const spread = parts.join(",") === "left,right";
   pages.forEach((page, index) => {
@@ -551,7 +578,8 @@ export function verifyIntro(
       );
     else if (!page.blocks[0].blockId.endsWith(`.intro-${page.part}`))
       fail("no-filler", "blocks", page.blocks[0].blockId, at);
-    if (page.footerNumber !== String(at))
+    // Recovered student pages print the physical page as three digits.
+    if (page.footerNumber !== String(at).padStart(3, "0"))
       fail("page-number", "footer", `꼬리말 쪽수 ${page.footerNumber}`, at);
   });
 
@@ -955,15 +983,42 @@ export interface IntroRender {
   result: TextbookChunkResult;
   pages: CapturedIntroPage[];
   blocked: string[];
+  /** Every block height the renderer's own second measurement returned. */
+  measurements: Array<{ blockId: string; heightMm: number; widthMm: number }>;
+  /** The three forms of the first section's introduction. */
+  measured: MeasuredForms | undefined;
 }
-/** One bounded production chunk: the introduction section alone, at the given start page. */
+/** The three measured forms of one written introduction block. */
+export function measuredForms(
+  measurements: IntroRender["measurements"],
+  sourceBlockId: string,
+): MeasuredForms | undefined {
+  const height = (part: string) =>
+    measurements.find(
+      (item) => item.blockId === `${sourceBlockId}.intro-${part}`,
+    )?.heightMm;
+  const [left, right, single] = ["left", "right", "single"].map(height);
+  return left === undefined || right === undefined || single === undefined
+    ? undefined
+    : { left, right, single };
+}
+const introBlockId = (exchange: TextbookExchange, unitIndex: number) =>
+  exchange.units[unitIndex]?.sections
+    .find((section) => section.templateKey === "auto-unit-intro")
+    ?.blocks.find((block) => block.semantic?.node?.kind === "unitIntro")
+    ?.blockId ?? "";
+/**
+ * One bounded production chunk, exactly as the publisher calls it. The browser is only watched:
+ * the heights the renderer measured are read back, nothing is altered.
+ */
 export async function renderIntroChunk(
   browser: Browser,
   exchange: TextbookExchange,
   sectionIndices: number[],
   firstPhysicalPageIndex: number,
-  options: { maxPages?: number; bypassArtGuard?: boolean } = {},
+  options: { maxPages?: number } = {},
 ): Promise<IntroRender> {
+  const log: WitnessedPage[] = [];
   const result = await renderTextbookChunk({
     exchange,
     readAsset: noAssets,
@@ -972,14 +1027,28 @@ export async function renderIntroChunk(
     firstPhysicalPageIndex,
     variant: "student",
     mode: "draft",
-    browser: options.bypassArtGuard
-      ? witnessBrowser(browser, [], true)
-      : browser,
+    browser: witnessBrowser(browser, log),
     ...(options.maxPages ? { maxPages: options.maxPages } : {}),
   });
+  const measurements = (log
+    .flatMap((page) => page.evaluations)
+    .find(
+      (call) =>
+        call.source.includes("Math/figure width overflow") &&
+        Array.isArray(call.value),
+    )?.value ?? []) as IntroRender["measurements"];
   const { page, blocked } = await openArtifact(browser, result.html);
   try {
-    return { result, pages: await captureIntroPages(page), blocked };
+    return {
+      result,
+      pages: await captureIntroPages(page),
+      blocked,
+      measurements,
+      measured: measuredForms(
+        measurements,
+        introBlockId(exchange, sectionIndices[0]),
+      ),
+    };
   } finally {
     await page.close();
   }
@@ -1001,16 +1070,20 @@ export async function proveSequence(
 ): Promise<SequenceProof> {
   const exchange = introBook(cases);
   const indices = cases.map((_, index) => index);
-  let production: string | null = null;
   let render: IntroRender;
   try {
     render = await renderIntroChunk(browser, exchange, indices, start);
   } catch (error) {
-    production = firstLine(error);
-    render = await renderIntroChunk(browser, exchange, indices, start, {
-      bypassArtGuard: true,
-    });
+    return {
+      start,
+      sections: cases.length,
+      production: firstLine(error),
+      pages: 0,
+      layouts: [],
+      failures: [],
+    };
   }
+  const production = null;
   const failures: IntroFailure[] = [];
   const layouts: string[] = [];
   render.pages.forEach((page, index) => {
@@ -1034,6 +1107,10 @@ export async function proveSequence(
           issue.path.includes(sectionKey),
         ),
         node: introNode(exchange, index),
+        measured: measuredForms(
+          render.measurements,
+          introBlockId(exchange, index),
+        ),
       }),
     );
   });
@@ -1064,22 +1141,10 @@ export interface WitnessedPage {
   contents: string[];
   evaluations: Array<{ source: string; value?: unknown; error?: string }>;
 }
-const ART_INSIDE =
-  "document.querySelectorAll('.tb-auto-intro-left figure').forEach(function (f) { f.style.left = '0'; f.style.right = '0'; })";
-const ART_RESTORED =
-  "document.querySelectorAll('.tb-auto-intro-left figure').forEach(function (f) { f.style.left = ''; f.style.right = ''; })";
-const ART_GUARDS = ["Math/figure width overflow", "Content overflow"];
-
-/**
- * Records what the production renderer sends to its pages. Without `bypassArtGuard` nothing is
- * altered. With it, the left illustration is pulled inside its block only while one of the two
- * width guards runs, and restored before anything is printed: the fixed 254mm left block measures
- * the same, and the PDF carries the production CSS. Output made this way is not production output.
- */
+/** Records what the production renderer sends to its pages. Nothing is altered or replaced. */
 export function witnessBrowser(
   browser: Browser,
   log: WitnessedPage[],
-  bypassArtGuard = false,
 ): Browser {
   return new Proxy(browser, {
     get(target, key) {
@@ -1101,10 +1166,6 @@ export function witnessBrowser(
               if (name === "evaluate")
                 return async (fn: unknown, ...args: unknown[]) => {
                   const source = String(fn);
-                  const guarded =
-                    bypassArtGuard &&
-                    ART_GUARDS.some((guard) => source.includes(guard));
-                  if (guarded) await inner.evaluate(ART_INSIDE);
                   try {
                     const value = await (
                       inner.evaluate as (...all: unknown[]) => Promise<unknown>
@@ -1114,8 +1175,6 @@ export function witnessBrowser(
                   } catch (error) {
                     entry.evaluations.push({ source, error: String(error) });
                     throw error;
-                  } finally {
-                    if (guarded) await inner.evaluate(ART_RESTORED);
                   }
                 };
               const value = Reflect.get(inner, name, inner) as unknown;
@@ -1162,26 +1221,27 @@ export interface CanonicalRow {
   /** Plain stretches of the sentence of eight characters or more. */
   fragments: string[];
 }
-/** Not a bank section: two rows whose hidden key is a display fraction, taller than a blank. */
+/** Not a bank section: two rows whose hidden key needs a line more than its blank does. */
 export const SYNTHETIC_TALL_SECTION = "synthetic::tall-canonical";
 const entriesOf = (sectionKey: string) => {
   if (sectionKey !== SYNTHETIC_TALL_SECTION)
     return coreConceptsForSection(sectionKey);
   const [base] = coreConceptsForSection(MEMORY_SECTION_KEY);
+  // The line estimate counts a Latin capital as 0.56em; W and M are nearly 1em wide. The hidden
+  // key therefore wraps to a second line in the canonical row, while its blank stays on one.
+  const wide = (letters: string) => Array(10).fill(letters).join(" ");
   return [
     {
       ...base,
       id: "synthetic-tall-c1",
-      term: "절반",
-      definition:
-        "전체를 똑같이 둘로 나눈 것 가운데 하나를 분수로 쓰면 {$\\dfrac{1}{2}$}이다.",
+      term: "넓은 글자",
+      definition: `넓은 글자 {${wide("WMWMW")}}이다.`,
     },
     {
       ...base,
       id: "synthetic-tall-c2",
-      term: "삼분의 이",
-      definition:
-        "전체를 똑같이 셋으로 나눈 것 가운데 둘을 분수로 쓰면 {$\\dfrac{2}{3}$}이고, 이 수는 {진분수}이다.",
+      term: "넓은 묶음",
+      definition: `넓은 묶음 {${wide("MWMWM")}}이다.`,
     },
   ];
 };
@@ -1856,7 +1916,6 @@ const thrown = async (run: () => Promise<unknown>): Promise<string | null> => {
 
 export async function negativeControls(
   browser: Browser,
-  options: { bypassArtGuard?: boolean } = {},
 ): Promise<ControlOutcome[]> {
   const outcomes: ControlOutcome[] = [];
   const renderIntro = (
@@ -1864,11 +1923,7 @@ export async function negativeControls(
     sectionIndices: number[],
     start: number,
     extra: { maxPages?: number } = {},
-  ) =>
-    renderIntroChunk(browser, exchange, sectionIndices, start, {
-      ...extra,
-      ...options,
-    });
+  ) => renderIntroChunk(browser, exchange, sectionIndices, start, extra);
   const longest = caseOf("m1-03");
   const expected = expectedIntro(longest, 1);
   const verifier = (name: string, failures: IntroFailure[], rules: string[]) =>
@@ -1892,6 +1947,7 @@ export async function negativeControls(
       verifyIntro(expected, render.pages, {
         firstPhysicalPageIndex: start,
         issues: render.result.issues,
+        measured: render.measured,
         node: introNode(dropped, 0),
       }),
       ["count", "text-equal", "no-filler"],
@@ -1907,6 +1963,7 @@ export async function negativeControls(
       verifyIntro(expected, render.pages, {
         firstPhysicalPageIndex: 2,
         issues: render.result.issues,
+        measured: render.measured,
       }),
       ["count", "no-filler"],
     );
@@ -1921,6 +1978,7 @@ export async function negativeControls(
       verifyIntro(expected, render.pages, {
         firstPhysicalPageIndex: 3,
         issues: render.result.issues,
+        measured: render.measured,
       }),
       ["count", "no-filler"],
     );
@@ -1928,7 +1986,7 @@ export async function negativeControls(
 
   // Missing art: the delivered page with its illustration removed or left unloaded.
   for (const start of [2, 3]) {
-    const { result: render } = await renderIntro(
+    const { result: render, measured } = await renderIntro(
       introBook([longest]),
       [0],
       start,
@@ -1937,14 +1995,14 @@ export async function negativeControls(
       [
         "art-removed",
         render.html.replace(
-          /<figure><img data-textbook-editorial-image[^>]*><\/figure>/,
+          /<figure><img [^>]*data-textbook-editorial-image[^>]*><\/figure>/,
           "",
         ),
       ],
       [
         "art-unloaded",
         render.html.replace(
-          /(<img data-textbook-editorial-image src=")[^"]+"/,
+          /(<img [^>]*data-textbook-editorial-image src=")[^"]+"/,
           '$1data:image/png;base64,AAAA"',
         ),
       ],
@@ -1957,6 +2015,7 @@ export async function negativeControls(
           verifyIntro(expected, await captureIntroPages(page), {
             firstPhysicalPageIndex: start,
             issues: render.issues,
+            measured,
           }),
           [name === "art-removed" ? "retained-once" : "art-loaded"],
         );
@@ -2020,7 +2079,11 @@ export async function negativeControls(
       const failures = verifyIntro(
         { ...expected, explanation: node.explanation, question: node.question },
         render.pages,
-        { firstPhysicalPageIndex: start, issues: render.result.issues },
+        {
+          firstPhysicalPageIndex: start,
+          issues: render.result.issues,
+          measured: render.measured,
+        },
       );
       outcomes.push({
         name: `${name}@${start}`,
@@ -2075,7 +2138,11 @@ export async function negativeControls(
         question: node.question,
       },
       render.pages,
-      { firstPhysicalPageIndex: 2, issues: render.result.issues },
+      {
+        firstPhysicalPageIndex: 2,
+        issues: render.result.issues,
+        measured: render.measured,
+      },
     );
     outcomes.push({
       name: `${name}@2`,
@@ -2103,6 +2170,7 @@ export async function negativeControls(
       verifyIntro(expected, render.pages, {
         firstPhysicalPageIndex: 2,
         issues: render.result.issues,
+        measured: render.measured,
         node: introNode(tampered, 0),
       }),
       ["source-hash"],
@@ -2169,12 +2237,26 @@ export async function negativeControls(
           browser,
         }),
       );
+    // The bound is kept by whichever of the renderer's two 600-block checks runs first. The
+    // dialogue sizing check now does, and words its refusal as a dialogue limit although this
+    // chunk holds no dialogue; the detail records which one answered.
     const blocks = await chunk(textbookFixture(1, 601));
     outcomes.push({
       name: "six-hundred-blocks",
       by: "renderer",
-      caught: Boolean(blocks?.includes("exceeds 600 blocks")),
+      caught: Boolean(
+        blocks?.includes("exceeds 600 blocks") ||
+        blocks?.includes("대화의 공통 글자 크기 측정 한도"),
+      ),
       detail: blocks ?? "거절하지 않았다",
+    });
+    // The largest chunk the bound admits is not refused for its size.
+    const admitted = await chunk(textbookFixture(1, 599));
+    outcomes.push({
+      name: "six-hundred-blocks-admitted",
+      by: "renderer",
+      caught: !admitted?.includes("600") && !admitted?.includes("측정 한도"),
+      detail: admitted ?? "600블록 이하는 한도로 거절하지 않는다",
     });
     // 160 exercises of eighteen lines need more than the default 32 pages.
     const pages = await chunk(textbookFixture(1, 160));
@@ -2272,8 +2354,8 @@ export interface IntroRunRecord {
   start: number;
   /** null: the production renderer produced the chunk. Otherwise its first error line. */
   production: string | null;
-  /** The pages below came from the art-guard bypass, not from production. */
-  bypass: boolean;
+  /** Heights the renderer measured for the left, right and single forms. */
+  measuredMm: MeasuredForms | null;
   layout: string;
   pages: number;
   pdf: string;
@@ -2706,7 +2788,6 @@ async function main(): Promise<void> {
         const unitIndex = book.cases.indexOf(introCase);
         const expected = expectedIntro(introCase, unitIndex + 1);
         for (const start of [2, 3]) {
-          let production: string | null = null;
           let render: IntroRender;
           try {
             render = await renderIntroChunk(
@@ -2716,71 +2797,44 @@ async function main(): Promise<void> {
               start,
             );
           } catch (error) {
-            production = firstLine(error);
-            try {
-              render = await renderIntroChunk(
-                browser,
-                exchange,
-                [unitIndex],
-                start,
+            const detail = firstLine(error);
+            records.push({
+              caseId: introCase.caseId,
+              bookId: book.bookId,
+              grade: introCase.opening.grade,
+              chapter: introCase.opening.chapter,
+              goals: expected.goals.length,
+              start,
+              production: detail,
+              measuredMm: null,
+              layout: "none",
+              pages: 0,
+              pdf: "",
+              pdfSha256: "",
+              singleHeightMm: null,
+              rightBottomMm: null,
+              failures: [
                 {
-                  bypassArtGuard: true,
+                  caseId: introCase.caseId,
+                  rule: "production-render",
+                  anchor: "renderTextbookChunk",
+                  page: null,
+                  detail,
                 },
-              );
-            } catch (inner) {
-              const detail = firstLine(inner);
-              records.push({
-                caseId: introCase.caseId,
-                bookId: book.bookId,
-                grade: introCase.opening.grade,
-                chapter: introCase.opening.chapter,
-                goals: expected.goals.length,
-                start,
-                production,
-                bypass: true,
-                layout: "none",
-                pages: 0,
-                pdf: "",
-                pdfSha256: "",
-                singleHeightMm: null,
-                rightBottomMm: null,
-                failures: [
-                  {
-                    caseId: introCase.caseId,
-                    rule: "production-render",
-                    anchor: "renderTextbookChunk",
-                    page: null,
-                    detail: production,
-                  },
-                  {
-                    caseId: introCase.caseId,
-                    rule: "bypass-render",
-                    anchor: "renderTextbookChunk",
-                    page: null,
-                    detail,
-                  },
-                ],
-                blocked: [],
-              });
-              console.info(
-                `${introCase.caseId} @${start}: 조판 실패 · ${detail}`,
-              );
-              continue;
-            }
+              ],
+              blocked: [],
+            });
+            console.info(
+              `${introCase.caseId} @${start}: 제품 조판 실패 · ${detail}`,
+            );
+            continue;
           }
           const failures = verifyIntro(expected, render.pages, {
             firstPhysicalPageIndex: start,
             issues: render.result.issues,
             node: introNode(exchange, unitIndex),
+            measured: render.measured,
           });
-          if (production)
-            failures.unshift({
-              caseId: introCase.caseId,
-              rule: "production-render",
-              anchor: "renderTextbookChunk",
-              page: null,
-              detail: production,
-            });
           if (render.blocked.length)
             failures.push({
               caseId: introCase.caseId,
@@ -2804,6 +2858,7 @@ async function main(): Promise<void> {
             JSON.stringify(
               {
                 expected,
+                measured: render.measured,
                 issues: render.result.issues,
                 pages: render.pages,
                 failures,
@@ -2821,8 +2876,8 @@ async function main(): Promise<void> {
             chapter: introCase.opening.chapter,
             goals: expected.goals.length,
             start,
-            production,
-            bypass: production !== null,
+            production: null,
+            measuredMm: render.measured ?? null,
             layout: render.pages.map((page) => page.part).join("+"),
             pages: render.pages.length,
             pdf,
@@ -2997,10 +3052,7 @@ async function main(): Promise<void> {
       );
     }
     const hazard = await nameHazard(browser);
-    const bypassed = records.some((record) => record.bypass);
-    const controls = selfTest
-      ? []
-      : await negativeControls(browser, { bypassArtGuard: bypassed });
+    const controls = selfTest ? [] : await negativeControls(browser);
     for (const control of controls)
       console.info(
         `control ${control.name}: ${control.caught ? "잡힘" : "놓침"} (${control.by})`,
@@ -3094,7 +3146,24 @@ async function main(): Promise<void> {
           ).length,
         ]),
       ),
-      controlsUsedBypass: bypassed,
+      evenStartCompleteSingles: records
+        .filter(
+          (record) => record.start % 2 === 0 && record.layout === "single",
+        )
+        .map((record) => ({
+          caseId: record.caseId,
+          goals: record.goals,
+          measuredMm: record.measuredMm,
+        })),
+      tallestRightFaces: [...records]
+        .filter((record) => record.start % 2 === 0 && record.measuredMm)
+        .sort((a, b) => b.measuredMm!.right - a.measuredMm!.right)
+        .slice(0, 5)
+        .map((record) => ({
+          caseId: record.caseId,
+          rightMm: record.measuredMm!.right,
+          singleMm: record.measuredMm!.single,
+        })),
       failures: failed.flatMap((record) =>
         record.failures.map((failure) => ({ start: record.start, ...failure })),
       ),
