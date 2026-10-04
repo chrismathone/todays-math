@@ -649,7 +649,9 @@ describe("StudentMathExplorers", () => {
         expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
         expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
       } else {
-        fireEvent.click(screen.getByRole("button", { name: "진도판", exact: true }));
+        fireEvent.click(
+          screen.getByRole("button", { name: "진도판", exact: true }),
+        );
         expect(
           await screen.findByRole("button", { name: /이어서 탐험하기/ }),
         ).toBeVisible();

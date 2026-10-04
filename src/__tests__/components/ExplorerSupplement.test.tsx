@@ -457,7 +457,9 @@ describe("학생 화면 흐름 — 단원 끝 줄에서 한 장을 풀고 홈으
     expect(bodies[0]).toMatchObject({
       action: { type: "supplement-start", cardId: "sup-line" },
     });
-    fireEvent.click(screen.getByRole("button", { name: "진도판", exact: true }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "진도판", exact: true }),
+    );
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: /이어서 하기|살펴보기/ }),

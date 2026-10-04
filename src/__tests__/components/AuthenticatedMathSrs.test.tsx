@@ -468,7 +468,9 @@ describe("account-based math practice", () => {
       await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
     );
     expect(screen.getByText("모아 둔 오답 다시 풀기")).toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "학습 홈", exact: true }));
+    await user.click(
+      screen.getByRole("button", { name: "학습 홈", exact: true }),
+    );
     expect(
       await screen.findByRole("button", { name: "오답 다시 풀기 · 1문제" }),
     ).toBeInTheDocument();
