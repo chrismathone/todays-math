@@ -46,6 +46,23 @@ function taggedMp3() {
   answer.copy(id3v1, 3);
   return Buffer.concat([header, frame, payload, tone, id3v1]);
 }
+function historicalGaplessTone() {
+  const bytes = Buffer.from(
+    readFileSync(
+      new URL(
+        "../fixtures/english-listening/tone-vbr-stereo.mp3",
+        import.meta.url,
+      ),
+    ),
+  );
+  const first = parseMp3(bytes, 600000).frames[0];
+  // Actual 2006 중1 1회 Info/Lavf header: 3567 delay +1681 padding,
+  // plus the 1152-sample Info frame. Keep an independent real encoded signal.
+  first.write("Info", 36);
+  first.write("Lavf\0\0\0\0\0", 156, "ascii");
+  first.writeUIntBE((3567 << 12) | 1681, 177, 3);
+  return bytes;
+}
 async function setup(limits = {}) {
   const store = await LocalTempListeningMediaStore.create();
   stores.push(store);
@@ -98,6 +115,87 @@ async function setup(limits = {}) {
 }
 
 describe("real portable MP3 decoding", () => {
+  it("fully decodes the historical Info/Lavf 6400-sample gapless trim with exact sample verification", async () => {
+    const bytes = historicalGaplessTone();
+    const parsed = parseMp3(bytes, 923);
+    expect(parsed.samples - parsed.expectedSamples!).toBe(6400);
+    expect(parsed.expectedSamples).toBe(44288);
+    const output: Buffer[] = [];
+    const result = await decodeMp3(
+      bytes,
+      { maxDurationMs: 923, maxPlaybackBytes: MAX_PLAYBACK_BYTES },
+      async (part) => {
+        output.push(part);
+      },
+    );
+    const pcm = Buffer.concat(output);
+    expect(result.durationMs).toBe(923);
+    expect(pcm.length).toBe(44288 * 2 * 2);
+    expect(result.header.readUInt32LE(40)).toBe(pcm.length);
+    expect(pcm.some((value) => value !== 0)).toBe(true);
+    await expect(
+      decodeMp3(
+        bytes,
+        { maxDurationMs: 922, maxPlaybackBytes: MAX_PLAYBACK_BYTES },
+        async () => {},
+      ),
+    ).rejects.toMatchObject({ blocker: "duration_limit" });
+  });
+  it.each([
+    "reserved-flags",
+    "invalid-count",
+    "impossible-padding",
+    "unknown-encoder",
+  ])("rejects malformed or unsupported gapless metadata: %s", async (kind) => {
+    const bytes = historicalGaplessTone();
+    const first = parseMp3(bytes, 600000).frames[0];
+    if (kind === "reserved-flags") first.writeUInt32BE(31, 40);
+    if (kind === "invalid-count") first.writeUInt32BE(1, 44);
+    if (kind === "impossible-padding") {
+      // A syntactically complete 2-frame stream cannot supply 8190 samples.
+      const two = Buffer.concat(parseMp3(bytes, 600000).frames.slice(0, 2));
+      two.writeUInt32BE(1, 44);
+      two.writeUInt32BE(two.length, 48);
+      two.writeUIntBE(0xffffff, 177, 3);
+      await expect(
+        decodeMp3(
+          two,
+          { maxDurationMs: 600000, maxPlaybackBytes: MAX_PLAYBACK_BYTES },
+          async () => {},
+        ),
+      ).rejects.toMatchObject({ blocker: "unsupported_or_invalid_mp3" });
+      return;
+    }
+    if (kind === "unknown-encoder") first.write("Junk", 156);
+    await expect(
+      decodeMp3(
+        bytes,
+        { maxDurationMs: 600000, maxPlaybackBytes: MAX_PLAYBACK_BYTES },
+        async () => {},
+      ),
+    ).rejects.toMatchObject({ blocker: "unsupported_or_invalid_mp3" });
+  });
+  it("rejects a declared Xing TOC that extends beyond its own frame", () => {
+    const frame = Buffer.alloc(96);
+    Buffer.from([0xff, 0xfb, 0x14, 0]).copy(frame);
+    frame.write("Info", 36);
+    frame.writeUInt32BE(4, 40);
+    expect(() => parseMp3(Buffer.concat([frame, frame]), 600000)).toThrow(
+      "unsupported_or_invalid_mp3",
+    );
+  });
+  it("rejects a recognized but truncated gapless extension", () => {
+    const frame = Buffer.alloc(168);
+    Buffer.from([0xff, 0xfb, 0x44, 0]).copy(frame);
+    frame.write("Info", 36);
+    frame.writeUInt32BE(15, 40);
+    frame.writeUInt32BE(1, 44);
+    frame.writeUInt32BE(336, 48);
+    frame.write("Lavf", 156);
+    expect(() => parseMp3(Buffer.concat([frame, frame]), 600000)).toThrow(
+      "unsupported_or_invalid_mp3",
+    );
+  });
   it.each(["tone-vbr-stereo.mp3", "tone-mpeg2.mp3"])(
     "fully decodes independent LAME fixture %s, including Xing and gapless duration",
     async (file) => {

@@ -87,6 +87,19 @@ export function fakeListeningStorage() {
       for (const key of JSON.parse(String(body)).prefixes) files.delete(key);
       return Response.json([]);
     }
+    const uploadPrefix = `/storage/v1/object/${config.bucket}/`;
+    if (method === "POST" && url.pathname.startsWith(uploadPrefix)) {
+      const key = url.pathname.slice(uploadPrefix.length);
+      if (headers.get("x-upsert") !== "false")
+        throw new Error("Mutable upload forbidden");
+      if (files.has(key))
+        return Response.json(
+          { error: "Asset Already Exists" },
+          { status: 400 },
+        );
+      files.set(key, Buffer.from(body as Uint8Array));
+      return Response.json({ Key: `${config.bucket}/${key}` });
+    }
     const prefix = `/storage/v1/object/authenticated/${config.bucket}/`,
       key = url.pathname.slice(prefix.length),
       bytes = files.get(key);

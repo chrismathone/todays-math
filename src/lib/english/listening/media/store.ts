@@ -6,6 +6,7 @@ import type {
 } from "../../../../contracts/englishListeningMedia.contract";
 import type { ListeningDriveRef } from "./driveApi";
 import type { ListeningStorageRef } from "./storageApi";
+import type { ListeningM4aConversion } from "./trustedM4a";
 
 export interface ListeningMediaChunkRecord {
   key: string;
@@ -34,6 +35,11 @@ export interface ListeningMediaRecord
   /** Private immutable external audio binding; never include in public DTOs. */
   drive?: ListeningDriveRef;
   storage?: ListeningStorageRef;
+  /** Server-selected durable private Storage chunks; never supplied by public inputs. */
+  storageChunks?: true;
+  /** Trusted CLI conversion only; source chunks/hash remain the original M4A. */
+  originalMimeType?: "audio/mp4";
+  conversion?: ListeningM4aConversion;
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;
@@ -69,6 +75,7 @@ export interface ListeningMediaStore {
   putBlob(
     bytes: Uint8Array,
     scope?: { assetId: string; ownerId: string },
+    signal?: AbortSignal,
   ): Promise<string>;
   readBlob(key: string, read: ListeningMediaRead): AsyncIterable<Uint8Array>;
   deleteBlob(key: string): Promise<void>;

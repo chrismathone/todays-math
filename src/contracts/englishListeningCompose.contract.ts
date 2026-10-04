@@ -9,6 +9,7 @@ export const listeningComposeSelectionSchema = z
     documentHash: z.string().regex(/^[a-f0-9]{64}$/),
     groupId: z.uuid(),
     questionIds: z.array(z.uuid()).min(1).max(30),
+    audioMode: z.enum(["clip", "whole_source"]).optional(),
   })
   .superRefine((value, ctx) => {
     if (new Set(value.questionIds).size !== value.questionIds.length)

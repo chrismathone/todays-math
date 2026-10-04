@@ -3,6 +3,7 @@
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { deflateSync } from "node:zlib";
 import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { Prisma, PrismaClient } from "@prisma/client";
 import {
   afterAll,
@@ -17,7 +18,9 @@ import { createListeningRuntime } from "@/lib/english/listening/runtime/service"
 import { createListeningMediaAccess } from "@/lib/english/listening/runtime/mediaAccess";
 import { createListeningMediaService } from "@/lib/english/listening/media/service";
 import { PrismaListeningMediaStore } from "@/lib/english/listening/media/prismaStore";
+import { PrismaStorageListeningMediaStore } from "@/lib/english/listening/media/storageStore";
 import { printableDraft } from "@/lib/english/listening/runtime/compose";
+import { listeningDraftPrintDocument } from "@/lib/english/listening/draftPrint";
 import {
   teacher,
   type ListeningActor,
@@ -31,6 +34,7 @@ import {
   parseMp3,
   MAX_DURATION_MS,
   MAX_PLAYBACK_BYTES,
+  waveHeader,
 } from "@/lib/english/listening/media/mp3";
 import { planListeningWaveClip } from "@/lib/english/listening/media/clip";
 import { registerDriveListeningAsset } from "@/lib/english/listening/runtime/driveAssets";
@@ -38,7 +42,12 @@ import { createListeningDriveApi } from "@/lib/english/listening/media/driveApi"
 import { fakeListeningDrive } from "../fixtures/english-listening/fakeDrive";
 import { fakeListeningStorage } from "../fixtures/english-listening/fakeStorage";
 import { createListeningStorageApi } from "@/lib/english/listening/media/storageApi";
-import { registerStorageListeningAsset } from "@/lib/english/listening/runtime/storageAssets";
+import { prepareListeningM4aPlayback } from "@/lib/english/listening/media/trustedM4a";
+import {
+  registerStorageListeningAsset,
+  insertStorageAsset,
+  storageReadyRecord,
+} from "@/lib/english/listening/runtime/storageAssets";
 
 vi.mock("server-only", () => ({}));
 const url = process.env.LISTENING_TEST_DATABASE_URL;
@@ -85,9 +94,78 @@ const storageApi = createListeningStorageApi(
 const storageRuntime = db
   ? createListeningRuntime(db, () => now, { storage: storageApi })
   : null;
+const durableStorageMedia = db
+  ? createListeningMediaService({
+      store: new PrismaStorageListeningMediaStore(db, storageApi),
+      storage: storageApi,
+      ...createListeningMediaAccess(db, () => now),
+      now: () => now.getTime(),
+    })
+  : null;
 const rights = englishListeningFixture().rights;
 const sha = (value: Uint8Array) =>
   createHash("sha256").update(value).digest("hex");
+async function verifyStorageProxy(
+  set: ListeningSetDetail,
+  expected: Buffer,
+  mimeType: "audio/mpeg" | "audio/wav",
+) {
+  const assetId = set.document.groups[0].audio!.assetId;
+  const request = { setId: set.id, assetId };
+  const head = await durableStorageMedia!.serve(
+    { actor: owner },
+    { ...request, method: "HEAD" },
+  );
+  expect(head.status).toBe(200);
+  expect(head.headers.get("content-type")).toBe(mimeType);
+  expect(head.headers.get("content-length")).toBe(String(expected.length));
+  expect(head.headers.get("etag")).toBe(`"${sha(expected)}"`);
+  expect(await head.text()).toBe("");
+  const response = await durableStorageMedia!.serve(
+    { actor: owner },
+    { ...request, method: "GET" },
+  );
+  const actualHash = createHash("sha256");
+  let actualBytes = 0;
+  const reader = response.body!.getReader();
+  try {
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      actualHash.update(value);
+      actualBytes += value.length;
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  expect(actualBytes).toBe(expected.length);
+  expect(actualHash.digest("hex")).toBe(sha(expected));
+  const boundary = Math.min(1024 * 1024, Math.floor(expected.length / 2));
+  for (const [start, end] of [
+    [0, Math.min(44, expected.length) - 1],
+    [boundary - 16, boundary + 31],
+  ]) {
+    const range = await durableStorageMedia!.serve(
+      { actor: owner },
+      { ...request, method: "GET", range: `bytes=${start}-${end}` },
+    );
+    expect(range.status).toBe(206);
+    expect(range.headers.get("content-range")).toBe(
+      `bytes ${start}-${end}/${expected.length}`,
+    );
+    expect(Buffer.from(await range.arrayBuffer())).toEqual(
+      expected.subarray(start, end + 1),
+    );
+  }
+  expect(
+    (
+      await durableStorageMedia!.serve(
+        { actor: other },
+        { ...request, method: "GET" },
+      )
+    ).status,
+  ).toBe(404);
+}
 function wave(marker = 0) {
   const bytes = Buffer.alloc(44 + 15000 * 16);
   bytes.write("RIFF");
@@ -329,6 +407,9 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     fakeDrive.calls.splice(0);
     await db!.$transaction(async (tx) => {
       await tx.$executeRaw(
+        Prisma.sql`DELETE FROM english_listening_media_storage_blob WHERE "assetId" IN(SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId" IN(${ownerId}::uuid,${otherId}::uuid))`,
+      );
+      await tx.$executeRaw(
         Prisma.sql`DELETE FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId" IN (${ownerId}::uuid,${otherId}::uuid))`,
       );
       await tx.$executeRaw(
@@ -346,6 +427,540 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         });
     });
   });
+  it("lets the bank grant manage owned materials without granting listening assignments or bypassing rights", async () => {
+    const pilotIds = process.env.ENGLISH_LISTENING_TEACHER_IDS;
+    process.env.ENGLISH_LISTENING_TEACHER_IDS = otherId;
+    await db!.user.update({
+      where: { id: ownerId },
+      data: { disabledMenus: ["english-listening"] },
+    });
+    try {
+      const account = await db!.$transaction((tx) =>
+        teacher(tx, owner, "materials"),
+      );
+      expect(account.menus).toContain("english-bank");
+      expect(account.menus).not.toContain("english-listening");
+      await expect(
+        db!.$transaction((tx) => teacher(tx, owner)),
+      ).rejects.toMatchObject({ status: 404 });
+      const original = await source(91);
+      const bank = await runtime!.teacherBank(owner, "bank", {});
+      expect(
+        bank.data.some((item) => item.id === original.source.detail.id),
+      ).toBe(true);
+      expect(
+        (await runtime!.teacherList(owner, "sets")).some(
+          (item) => "id" in item && item.id === original.source.detail.id,
+        ),
+      ).toBe(true);
+      expect(
+        (await runtime!.setDetail(owner, original.source.detail.id)).id,
+      ).toBe(original.source.detail.id);
+      await expect(
+        runtime!.composeSource(other, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.setDetail(other, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      for (const resource of ["classes", "assignments"] as const)
+        await expect(
+          runtime!.teacherList(owner, resource),
+        ).rejects.toMatchObject({ status: 404 });
+      await expect(runtime!.createAssignment(owner, {})).rejects.toMatchObject({
+        status: 404,
+      });
+      await expect(
+        runtime!.publishSet(owner, original.source.detail.id, {
+          expectedRevision: original.source.detail.revision,
+        }),
+      ).rejects.toMatchObject({ status: 404 });
+      const request = {
+        setId: original.source.detail.id,
+        assetId: original.source.detail.document.groups[0].audio!.assetId,
+        method: "GET",
+      } as const;
+      const response = await media!.serve({ actor: owner }, request);
+      expect(response.status).toBe(200);
+      expect(Buffer.from(await response.arrayBuffer())).toEqual(original.wav);
+      let composed = await runtime!.composeSet(owner, {
+        title: "은행 문항 시험지",
+        selections: [selection(original.source)],
+      });
+      expect(composed.document.rightsReview).toBeNull();
+      composed = await runtime!.reviewSet(owner, composed.id, {
+        expectedRevision: composed.revision,
+        kind: "rights",
+        basis: "직접 작성한 테스트 자료의 보관·교사 이용·인쇄 허용",
+      });
+      const printable = await db!.$transaction(async (tx) =>
+        printableDraft(
+          tx,
+          await teacher(tx, owner, "materials"),
+          composed.id,
+          composed.revision,
+          "student",
+        ),
+      );
+      const studentPaper = JSON.stringify(
+        listeningDraftPrintDocument(printable, "student"),
+      );
+      expect(studentPaper).not.toContain("answerChoiceId");
+      expect(studentPaper).not.toContain(printable.groups[0].transcript.text);
+      await runtime!.deleteSet(owner, composed.id, {
+        expectedRevision: composed.revision,
+      });
+      await expect(
+        runtime!.composeSource(owner, composed.id),
+      ).rejects.toMatchObject({ status: 404 });
+      await runtime!.updateSet(owner, original.source.detail.id, {
+        ...edit(original.source.detail),
+        rights: { rightsStatus: "unknown", allowedUses: [] },
+      });
+      expect((await media!.serve({ actor: owner }, request)).status).toBe(404);
+      await db!.user.update({
+        where: { id: ownerId },
+        data: { disabledMenus: ["english-listening", "english-bank"] },
+      });
+      await expect(
+        runtime!.teacherBank(owner, "bank", {}),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.composeSource(owner, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      expect((await media!.serve({ actor: owner }, request)).status).toBe(404);
+      await db!.user.update({
+        where: { id: ownerId },
+        data: {
+          disabledMenus: ["english-listening"],
+          approvalStatus: "pending",
+        },
+      });
+      await expect(
+        runtime!.teacherBank(owner, "bank", {}),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.setDetail(owner, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+      const branch = await db!.branch.create({
+        data: {
+          name: "자료은행 차단 테스트 학원",
+          disabledMenus: ["english-bank", "english-listening"],
+        },
+      });
+      branchIds.push(branch.id);
+      await db!.user.update({
+        where: { id: ownerId },
+        data: {
+          approvalStatus: "approved",
+          disabledMenus: [],
+          branchId: branch.id,
+        },
+      });
+      await expect(
+        runtime!.teacherBank(owner, "bank", {}),
+      ).rejects.toMatchObject({ status: 404 });
+      await expect(
+        runtime!.setDetail(owner, original.source.detail.id),
+      ).rejects.toMatchObject({ status: 404 });
+    } finally {
+      await db!.user.update({
+        where: { id: ownerId },
+        data: { disabledMenus: [], approvalStatus: "approved", branchId: null },
+      });
+      process.env.ENGLISH_LISTENING_TEACHER_IDS = pilotIds;
+    }
+  }, 120000);
+  it.skipIf(!process.env.LISTENING_M4A_TEST_FFMPEG_PATH)(
+    "preserves an original M4A and plays only its verified MP3 derivative through same-scope clone and selected PCM",
+    async () => {
+      const original = await source(70, true, true);
+      const prepared = await prepareListeningM4aPlayback({
+        sourcePath: fileURLToPath(
+          new URL(
+            "../fixtures/english-listening/tone-aac.m4a",
+            import.meta.url,
+          ),
+        ),
+        ffmpegPath: process.env.LISTENING_M4A_TEST_FFMPEG_PATH!,
+      });
+      const assetId = randomUUID();
+      const request = {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        assetId,
+        bytes: prepared.sourceBytes,
+        playbackDerivative: prepared.playbackDerivative,
+      };
+      await expect(
+        registerStorageListeningAsset(
+          db!,
+          storageApi,
+          { ...request, actor: other },
+          () => now,
+        ),
+      ).rejects.toMatchObject({ status: 404 });
+      const ready = await registerStorageListeningAsset(
+        db!,
+        storageApi,
+        request,
+        () => now,
+      );
+      if (ready.state !== "ready") throw Error("Verified derivative required");
+      expect(ready.originalSha256).toBe(sha(prepared.sourceBytes));
+      expect(ready.totalBytes).toBe(prepared.sourceBytes.length);
+      const record = await store!.get(assetId);
+      expect(record).toMatchObject({
+        storageChunks: true,
+        originalMimeType: "audio/mp4",
+        expectedSha256: sha(prepared.sourceBytes),
+      });
+      const adapter = new PrismaStorageListeningMediaStore(db!, storageApi),
+        stored: Buffer[] = [];
+      for (const chunk of record!.chunks)
+        for await (const part of adapter.readBlob(chunk.key, {
+          start: 0,
+          endExclusive: chunk.byteLength,
+          maxChunkBytes: 1024,
+        }))
+          stored.push(Buffer.from(part));
+      expect(Buffer.concat(stored)).toEqual(prepared.sourceBytes);
+      expect(
+        record!.chunks.every((c) =>
+          record!.playback!.chunks.every((p) => p.key !== c.key),
+        ),
+      ).toBe(true);
+      const [pg] = await db!.$queryRaw<{ count: bigint }[]>(
+        Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_blob WHERE "assetId"=${assetId}::uuid`,
+      );
+      expect(pg.count).toBe(BigInt(0));
+      const before = fakeStorage.files.size;
+      expect(
+        await registerStorageListeningAsset(
+          db!,
+          storageApi,
+          request,
+          () => now,
+        ),
+      ).toEqual(ready);
+      expect(fakeStorage.files.size).toBe(before);
+      const input = edit(original.source.detail);
+      input.groups[0].audio = {
+        assetId,
+        sha256: ready.sha256,
+        durationMs: ready.durationMs,
+      };
+      const saved = await runtime!.updateSet(owner, request.setId, input),
+        snapshot = await runtime!.composeSource(owner, saved.id);
+      const expected = Buffer.concat(
+        parseMp3(prepared.playbackDerivative.bytes, MAX_DURATION_MS).frames,
+      );
+      await verifyStorageProxy(saved, expected, "audio/mpeg");
+      let whole = await storageRuntime!.composeSet(owner, {
+        title: "M4A 원본과 검증된 전체 회차",
+        selections: [selection(snapshot)],
+      });
+      expect(fakeStorage.files.size).toBe(before);
+      const copied = await store!.get(whole.document.groups[0].audio!.assetId);
+      expect(copied!.expectedSha256).toBe(sha(prepared.sourceBytes));
+      expect(copied!.conversion).toEqual(record!.conversion);
+      whole = await storageRuntime!.reviewSet(owner, whole.id, {
+        expectedRevision: whole.revision,
+        kind: "rights",
+        basis: "직접 만든 음원 전체 교사 이용",
+      });
+      await verifyStorageProxy(whole, expected, "audio/mpeg");
+      const q = snapshot.detail.document.groups[0].questions[1];
+      let subset = await storageRuntime!.composeSet(owner, {
+        title: "M4A 문항 선택 재생",
+        selections: [selection(snapshot, [q.id])],
+      });
+      const pieces: Buffer[] = [];
+      const decoded = await decodeMp3(
+        prepared.playbackDerivative.bytes,
+        {
+          maxDurationMs: MAX_DURATION_MS,
+          maxPlaybackBytes: MAX_PLAYBACK_BYTES,
+        },
+        async (part) => {
+          pieces.push(part);
+        },
+      );
+      const wav = Buffer.concat([decoded.header, ...pieces]),
+        plan = planListeningWaveClip(decoded.header, wav.length, [q]);
+      subset = await storageRuntime!.reviewSet(owner, subset.id, {
+        expectedRevision: subset.revision,
+        kind: "rights",
+        basis: "직접 만든 음원 문항 선택 교사 이용",
+      });
+      await verifyStorageProxy(
+        subset,
+        Buffer.concat([
+          plan.header,
+          ...plan.ranges.map((r) => wav.subarray(r.start, r.endExclusive)),
+        ]),
+        "audio/wav",
+      );
+      expect((await store!.get(assetId))!.expectedSha256).toBe(
+        sha(prepared.sourceBytes),
+      );
+    },
+    120000,
+  );
+  it.skipIf(!process.env.LISTENING_M4A_TEST_FFMPEG_PATH)(
+    "rolls back both derivative and original objects on failure without altering any prior assets",
+    async () => {
+      const original = await source(71, true, true),
+        prepared = await prepareListeningM4aPlayback({
+          sourcePath: fileURLToPath(
+            new URL(
+              "../fixtures/english-listening/tone-aac.m4a",
+              import.meta.url,
+            ),
+          ),
+          ffmpegPath: process.env.LISTENING_M4A_TEST_FFMPEG_PATH!,
+        }),
+        assetId = randomUUID();
+      const existing = new Map(fakeStorage.files),
+        upload = storageApi.uploadChunk.bind(storageApi);
+      const fail = vi
+        .spyOn(storageApi, "uploadChunk")
+        .mockImplementationOnce(upload)
+        .mockRejectedValueOnce(Error("Fixture source upload failure"));
+      try {
+        await expect(
+          registerStorageListeningAsset(
+            db!,
+            storageApi,
+            {
+              actor: owner,
+              setId: original.source.detail.id,
+              expectedSetRevision: original.source.detail.revision,
+              assetId,
+              bytes: prepared.sourceBytes,
+              playbackDerivative: prepared.playbackDerivative,
+            },
+            () => now,
+          ),
+        ).rejects.toThrow("Fixture source upload failure");
+        expect(await store!.get(assetId)).toBeNull();
+        expect(fakeStorage.files).toEqual(existing);
+        const [row] = await db!.$queryRaw<{ count: bigint }[]>(
+          Prisma.sql`SELECT COUNT(*) AS count FROM english_listening_media_storage_blob WHERE "assetId"=${assetId}::uuid`,
+        );
+        expect(row.count).toBe(BigInt(0));
+      } finally {
+        fail.mockRestore();
+      }
+    },
+    120000,
+  );
+  it("splits a large strictly decoded MP3 into <=1MiB private objects, scrubs metadata and composes exact selected audio", async () => {
+    const original = await source(50, true, true, true, true);
+    const tone = readFileSync(
+      new URL("../fixtures/english-listening/tone.mp3", import.meta.url),
+    );
+    const metadata = Buffer.alloc(32 * 1024 * 1024);
+    metadata.write("SECRET_ANSWERS_AND_SCRIPT");
+    const huge = Buffer.concat([
+      Buffer.from([73, 68, 51, 3, 0, 0, 16, 0, 0, 0]),
+      metadata,
+      tone,
+    ]);
+    const ready = await registerStorageListeningAsset(
+      db!,
+      storageApi,
+      {
+        actor: owner,
+        setId: original.source.detail.id,
+        expectedSetRevision: original.source.detail.revision,
+        bytes: huge,
+      },
+      () => now,
+    );
+    if (ready.state !== "ready") throw new Error("Validated MP3 required");
+    const input = edit(original.source.detail);
+    input.groups[0].audio = {
+      assetId: ready.assetId,
+      sha256: ready.sha256,
+      durationMs: ready.durationMs,
+    };
+    const saved = await runtime!.updateSet(
+        owner,
+        original.source.detail.id,
+        input,
+      ),
+      snapshot = await runtime!.composeSource(owner, saved.id),
+      record = await store!.get(ready.assetId);
+    expect(record!.storageChunks).toBe(true);
+    expect(record!.chunks.length).toBeGreaterThan(32);
+    expect(record!.chunks.every((c) => c.byteLength <= 1024 * 1024)).toBe(true);
+    const rows = await db!.$queryRaw<{ key: string; ref: { key: string } }[]>(
+        Prisma.sql`SELECT key,ref FROM english_listening_media_storage_blob WHERE "assetId"=${ready.assetId}::uuid`,
+      ),
+      refs = new Map(rows.map((row) => [row.key, row.ref]));
+    const playback = Buffer.concat(
+      record!.playback!.chunks.map((c) =>
+        fakeStorage.files
+          .get(refs.get(c.key)!.key)!
+          .subarray(c.blobOffset ?? 0, (c.blobOffset ?? 0) + c.byteLength),
+      ),
+    );
+    expect(sha(playback)).toBe(ready.sha256);
+    expect(playback.includes(Buffer.from("SECRET_ANSWERS"))).toBe(false);
+    await verifyStorageProxy(saved, playback, "audio/mpeg");
+    const filesBefore = fakeStorage.files.size;
+    let whole = await storageRuntime!.composeSet(owner, {
+      title: "큰 Storage 회차",
+      selections: [selection(snapshot)],
+    });
+    expect(fakeStorage.files.size).toBe(filesBefore);
+    const wholeAsset = await store!.get(
+      whole.document.groups[0].audio!.assetId,
+    );
+    expect(wholeAsset!.chunks[0].key).not.toBe(record!.chunks[0].key);
+    expect(wholeAsset!.setId).toBe(whole.id);
+    whole = await storageRuntime!.reviewSet(owner, whole.id, {
+      expectedRevision: whole.revision,
+      kind: "rights",
+      basis: "직접 만든 테스트 음원의 보관·교사 이용 허용",
+    });
+    await verifyStorageProxy(whole, playback, "audio/mpeg");
+    const group = snapshot.detail.document.groups[0],
+      question = group.questions[1],
+      selected = await storageRuntime!.composeSet(owner, {
+        title: "큰 Storage 선택 문항",
+        selections: [selection(snapshot, [question.id])],
+      }),
+      clipAsset = await store!.get(selected.document.groups[0].audio!.assetId);
+    expect(clipAsset!.storageChunks).toBe(true);
+    const clipRows = await db!.$queryRaw<
+        { key: string; ref: { key: string } }[]
+      >(
+        Prisma.sql`SELECT key,ref FROM english_listening_media_storage_blob WHERE "assetId"=${clipAsset!.assetId}::uuid`,
+      ),
+      clipRefs = new Map(clipRows.map((row) => [row.key, row.ref]));
+    const actual = Buffer.concat(
+      clipAsset!.chunks.map((c) =>
+        fakeStorage.files.get(clipRefs.get(c.key)!.key)!,
+      ),
+    );
+    const plan = planListeningWaveClip(
+        original.wav.subarray(0, 44),
+        original.wav.length,
+        [question],
+      ),
+      expected = Buffer.concat([
+        plan.header,
+        ...plan.ranges.map((r) =>
+          original.wav.subarray(r.start, r.endExclusive),
+        ),
+      ]);
+    expect(actual.equals(expected)).toBe(true);
+    const reviewed = await storageRuntime!.reviewSet(owner, selected.id, {
+      expectedRevision: selected.revision,
+      kind: "rights",
+      basis: "직접 만든 테스트 문항의 선택·교사 이용 허용",
+    });
+    await verifyStorageProxy(reviewed, expected, "audio/wav");
+  }, 120000);
+  it("splits a >32MiB selected PCM exam into <=1MiB private objects with exact selected samples", async () => {
+    const original = await source(60, true, true, true, true),
+      samples = 48000 * 360;
+    const header = waveHeader(samples, 48000, 1),
+      wav = Buffer.alloc(44 + samples * 2);
+    header.copy(wav);
+    for (let offset = 44; offset < wav.length; offset += 2)
+      wav.writeInt16LE(((offset / 2) % 64000) - 32000, offset);
+    const assetId = randomUUID(),
+      ref = await storageApi.upload({
+        ownerId,
+        assetId,
+        bytes: wav.length,
+        mimeType: "audio/wav",
+        read: async function* () {
+          for (let i = 0; i < wav.length; i += 1024 * 1024)
+            yield wav.subarray(i, i + 1024 * 1024);
+        },
+      });
+    const record = storageReadyRecord({
+      assetId,
+      setId: original.source.detail.id,
+      ownerId,
+      branchId: null,
+      storage: ref,
+      mimeType: "audio/wav",
+      sha256: sha(wav),
+      durationMs: 360000,
+      now: now.getTime(),
+    });
+    await db!.$transaction(async (tx) => {
+      await tx.$executeRaw(
+        Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${ownerId}`},0))`,
+      );
+      await insertStorageAsset(tx, record);
+    });
+    const input = edit(original.source.detail);
+    input.groups[0].audio = { assetId, sha256: sha(wav), durationMs: 360000 };
+    input.groups[0].questions = input.groups[0].questions.map((q, i) => ({
+      ...q,
+      audioRange: i
+        ? { startMs: 1000, endMs: 360000 }
+        : { startMs: 0, endMs: 1000 },
+      evidence: [],
+    }));
+    const saved = await runtime!.updateSet(
+        owner,
+        original.source.detail.id,
+        input,
+      ),
+      snapshot = await runtime!.composeSource(owner, saved.id),
+      question = snapshot.detail.document.groups[0].questions[1];
+    const composed = await storageRuntime!.composeSet(owner, {
+        title: "큰 PCM 선택 문항",
+        selections: [selection(snapshot, [question.id])],
+      }),
+      output = await store!.get(composed.document.groups[0].audio!.assetId);
+    expect(output!.storageChunks).toBe(true);
+    expect(output!.playback!.totalBytes).toBeGreaterThan(32 * 1024 * 1024);
+    const rows = await db!.$queryRaw<{ key: string; ref: { key: string } }[]>(
+        Prisma.sql`SELECT key,ref FROM english_listening_media_storage_blob WHERE "assetId"=${output!.assetId}::uuid`,
+      ),
+      refs = new Map(rows.map((row) => [row.key, row.ref]));
+    const actualHash = createHash("sha256");
+    for (const chunk of output!.chunks) {
+      const bytes = fakeStorage.files.get(refs.get(chunk.key)!.key)!;
+      expect(bytes.length).toBeLessThanOrEqual(1024 * 1024);
+      actualHash.update(bytes);
+    }
+    const plan = planListeningWaveClip(header, wav.length, [question]),
+      expectedHash = createHash("sha256").update(plan.header);
+    for (const range of plan.ranges)
+      expectedHash.update(wav.subarray(range.start, range.endExclusive));
+    expect(actualHash.digest("hex")).toBe(expectedHash.digest("hex"));
+    expect(composed.document.groups[0].audio!.durationMs).toBe(359000);
+    const reviewed = await storageRuntime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "직접 만든 큰 PCM 문항의 선택·교사 이용 허용",
+    });
+    const expected = Buffer.concat([
+      plan.header,
+      ...plan.ranges.map((range) =>
+        wav.subarray(range.start, range.endExclusive),
+      ),
+    ]);
+    await verifyStorageProxy(reviewed, expected, "audio/wav");
+    const cancellations = fakeStorage.cancels;
+    const partial = await durableStorageMedia!.serve(
+      { actor: owner },
+      { setId: reviewed.id, assetId: output!.assetId, method: "GET" },
+    );
+    const reader = partial.body!.getReader();
+    await reader.read();
+    await reader.cancel();
+    expect(fakeStorage.cancels).toBeGreaterThan(cancellations);
+  }, 120000);
   it("stores validated original MP3 in private Supabase Storage, registers idempotently and shares whole audio under fresh scope", async () => {
     const original = await source(30, true, true, true, true),
       from = original.source.detail.document.groups[0],
@@ -790,6 +1405,60 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     expect(await runtime!.teacherList(owner, "sets")).toHaveLength(
       before.length,
     );
+  });
+  it("selects only requested questions while retaining the original private Storage audio when whole_source is explicit", async () => {
+    const original = await source(44, false, true, true, true);
+    const sourceGroup = original.source.detail.document.groups[0];
+    const originalRecord = (await store!.get(sourceGroup.audio!.assetId))!;
+    const composed = await storageRuntime!.composeSet(owner, {
+      title: "선택 문항과 전체 회차 음원",
+      selections: [
+        {
+          ...selection(original.source, [sourceGroup.questions[1].id]),
+          audioMode: "whole_source",
+        },
+      ],
+    });
+    const group = composed.document.groups[0];
+    expect(group.questions).toHaveLength(1);
+    expect(group.questions[0].prompt).toBe(sourceGroup.questions[1].prompt);
+    expect(group.questions[0].metadata).toEqual(
+      sourceGroup.questions[1].metadata,
+    );
+    expect(group.questions[0].audioRange).toBeUndefined();
+    expect(group.audio!.assetId).not.toBe(sourceGroup.audio!.assetId);
+    expect(group.audio!.sha256).toBe(sourceGroup.audio!.sha256);
+    expect(group.audio!.durationMs).toBe(sourceGroup.audio!.durationMs);
+    expect(composed.document.provenance.basis).toContain("전체 음원 포함");
+    expect((await store!.get(group.audio!.assetId))!.playback!.sha256).toBe(
+      originalRecord.playback!.sha256,
+    );
+    const [inventory] = await db!.$queryRaw<{ count: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*)::bigint AS count FROM english_listening_media_blob WHERE "assetId"=${group.audio!.assetId}::uuid`,
+    );
+    expect(inventory.count).toBe(BigInt(0));
+    const reviewed = await storageRuntime!.reviewSet(owner, composed.id, {
+      expectedRevision: composed.revision,
+      kind: "rights",
+      basis: "테스트 원본 교사 이용 허용",
+    });
+    const span = originalRecord.storage!;
+    await verifyStorageProxy(
+      reviewed,
+      original.original.subarray(span.start, span.endExclusive),
+      "audio/mpeg",
+    );
+    await expect(
+      storageRuntime!.composeSet(other, {
+        title: "다른 교사의 원본",
+        selections: [
+          {
+            ...selection(original.source, [sourceGroup.questions[1].id]),
+            audioMode: "whole_source",
+          },
+        ],
+      }),
+    ).rejects.toMatchObject({ status: 404 });
   });
   it("checks current owner and branch scope, exact revisions/hash and selected question identity", async () => {
     const original = await source(3);
