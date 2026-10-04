@@ -75,6 +75,8 @@ import {
 } from "./quickCreate/problemStages";
 import { appendRest } from "./quickCreate/rest";
 import { appendUnitIntro } from "./quickCreate/unitIntro";
+import { coreConceptsForSection } from "../coreConceptBank";
+import { appendIndexes } from "./quickCreate/indexes";
 
 export {
   DEFAULT_QUICK_CREATE_CAST,
@@ -295,6 +297,7 @@ export async function createQuickTextbook(
                 units,
                 dialogue: components.dialogue,
                 rest: components.rest,
+                semester: input.semester,
               })
             : undefined;
         const sections: SectionPlan[] = [],
@@ -306,6 +309,7 @@ export async function createQuickTextbook(
         >();
         const outline: OutlineUnitMeta[] = [];
         const warnings: string[] = [];
+        warnings.push(...(visuals?.warnings ?? []));
         const now = (deps.now?.() ?? new Date()).toISOString();
         const ctx: QuickCreateAssembly = {
           tx,
@@ -374,7 +378,7 @@ export async function createQuickTextbook(
           const lesson: QuickCreateLesson = {
             unit,
             section,
-            entries: conceptIndex.get(keyOf(unit)) ?? [],
+            entries: [...coreConceptsForSection(keyOf(unit))],
           };
           appendPreparation(ctx, lesson);
           appendErrorCheck(ctx, lesson);
@@ -385,6 +389,7 @@ export async function createQuickTextbook(
             sections.splice(sections.indexOf(section), 1);
         }
         appendRest(ctx);
+        await appendIndexes(ctx);
         if (
           stages.length &&
           !items.length &&
@@ -509,7 +514,7 @@ export async function createQuickTextbook(
                 item.sectionId,
                 item.stage,
                 item.orderIndex,
-                JSON.stringify(quickCreateItemLayout(item.stage)),
+                JSON.stringify(quickCreateItemLayout(item.stage, item.snapshot.payload.questionType)),
                 JSON.stringify(item.conceptKeys),
                 String(item.orderIndex + 1),
               ],

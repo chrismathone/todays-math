@@ -1,7 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
 import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
-import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
 import {
   textbookConceptSchema,
   type TextbookConcept,
@@ -12,10 +11,14 @@ import type { TextbookActor } from "../../access";
 import { freezeTextbookConcept } from "../../concepts";
 import { canonicalHash } from "../../hash.server";
 import { invalid } from "../errors";
+import { QUICK_CREATE_CORE_MAPPING_VERSION } from "../../coreConceptBank";
+import {
+  additionalConceptActivities,
+  memoryActivityBlocks,
+} from "../quickCreateRecovery";
 import {
   keyOf,
   plainDefinition,
-  text,
   type QuickCreateAssembly,
   type QuickCreateLesson,
   type UnitRow,
@@ -27,7 +30,12 @@ export const wantsConceptFamily = (components: QuickCreateComponents) =>
   components.termRecall ||
   components.clozeRecall ||
   components.sentenceRecall ||
-  components.errorCheck;
+  components.errorCheck ||
+  components.conceptStudy ||
+  components.dialogueCheck ||
+  components.conceptBlankTest ||
+  components.explainActivity ||
+  components.conceptMap;
 function conceptFor(
   unit: UnitRow,
   unitKey: string,
@@ -48,7 +56,7 @@ function conceptFor(
       goal: `${sectionTitleTex(unit.section)}의 뜻과 적용 방법을 설명할 수 있습니다.`,
       prerequisites: [],
       definition: entries
-        .map((entry) => `**${entry.term}**: ${plainDefinition(entry)}`)
+        .map(plainDefinition)
         .join("\n\n"),
       conditions: null,
       examples: entries.flatMap((entry) =>
@@ -74,7 +82,7 @@ function conceptFor(
     })),
     blankForms: forms,
     links: [],
-    mappingVersion: "quick-create.unit-triple.v1",
+    mappingVersion: QUICK_CREATE_CORE_MAPPING_VERSION,
     derivedFromConceptKey: null,
     frozen: null,
   });
@@ -109,19 +117,21 @@ export function appendConceptAndRecall(
       blockId: randomUUID(),
       kind: "concept",
       conceptKey: concept.conceptKey,
+      semantic: { activity: "concepts", title: "개념 이해" },
     });
   const recall = (
     title: string,
     phase: "keywords" | "sentences",
     markdown: string,
   ) =>
-    section.blocks.push(text(`### ${title}`), {
+    section.blocks.push({
       blockId: randomUUID(),
       kind: "concept-recall",
       phase,
       markdown,
       showRepetitionChecks: false,
       conceptKey: concept.conceptKey,
+      semantic: { activity: "termRecall", title },
     });
   if (components.termRecall)
     recall(
@@ -131,25 +141,19 @@ export function appendConceptAndRecall(
         .map((entry) => `[[${entry.term}]]: ${plainDefinition(entry)}`)
         .join("\n\n"),
     );
-  if (components.clozeRecall)
-    recall(
-      "핵심어 빈칸",
-      "keywords",
-      entries
-        .map(
-          (entry) =>
-            `**${entry.term}**: ${splitBlankSentence(entry.definition)
-              .map((p) => (p.kind === "key" ? `[[${p.text}]]` : p.text))
-              .join("")}`,
-        )
-        .join("\n\n"),
-    );
-  if (components.sentenceRecall)
-    recall(
-      "문장 백지",
-      "sentences",
-      entries
-        .map((entry) => `**${entry.term}**\n\n{{${plainDefinition(entry)}}}`)
-        .join("\n\n"),
-    );
+  section.blocks.push(
+    ...memoryActivityBlocks({
+      entries,
+      conceptKey: concept.conceptKey,
+      components,
+    }),
+  );
+  section.blocks.push(
+    ...additionalConceptActivities({
+      entries,
+      sectionKey: keyOf(unit),
+      conceptKey: concept.conceptKey,
+      components,
+    }),
+  );
 }

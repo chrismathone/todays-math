@@ -40,6 +40,11 @@ export async function prependDialogue(
       blockId: randomUUID(),
       kind: "dialogue",
       turns: dialogue.turns,
+      semantic: {
+        activity: "dialogue",
+        title: "단원을 여는 수업",
+        subtitle: unit.section,
+      },
     });
   }
 }

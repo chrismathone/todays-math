@@ -109,17 +109,18 @@ export function additionalConceptActivities(input: {
         .map((turn) => turn.markdown) ?? [];
     if (!questions.length)
       throw new Error(`대화 읽기 확인 원고가 없습니다: ${input.sectionKey}`);
-    blocks.push(
-      writingActivity(
-        "dialogueCheck",
-        "대화 읽기 확인",
-        [
-          "수업을 떠올리며 물음에 답하고, 그렇게 생각한 이유를 쓰세요.",
-          ...questions,
-        ],
-        4,
-      ),
-    );
+    for (let offset = 0; offset < questions.length; offset += 3)
+      blocks.push(
+        writingActivity(
+          "dialogueCheck",
+          "대화 읽기 확인",
+          [
+            "수업을 떠올리며 물음에 답하고, 그렇게 생각한 이유를 쓰세요.",
+            ...questions.slice(offset, offset + 3),
+          ],
+          4,
+        ),
+      );
   }
   if (components.conceptBlankTest)
     blocks.push(
@@ -133,28 +134,30 @@ export function additionalConceptActivities(input: {
       ),
     );
   if (components.explainActivity)
-    blocks.push(
-      writingActivity(
-        "explainActivity",
-        "설명 활동",
-        [
-          "짝에게 설명한 뒤 서로 질문하세요. 설명에서 빠진 조건을 찾아 고쳐 쓰세요.",
-          ...entries.map(
-            (entry) =>
-              `${entry.term}의 뜻과 사용할 때의 조건을 예와 함께 설명하세요.`,
-          ),
-        ],
-        3,
-      ),
-    );
+    for (let offset = 0; offset < entries.length; offset += 4)
+      blocks.push(
+        writingActivity(
+          "explainActivity",
+          "설명 활동",
+          [
+            "짝에게 설명한 뒤 서로 질문하세요. 설명에서 빠진 조건을 찾아 고쳐 쓰세요.",
+            ...entries
+              .slice(offset, offset + 4)
+              .map(
+                (entry) =>
+                  `${entry.term}의 뜻과 사용할 때의 조건을 예와 함께 설명하세요.`,
+              ),
+          ],
+          3,
+        ),
+      );
   if (components.conceptMap)
     blocks.push(
       writingActivity(
         "conceptMap",
         "개념 지도",
         [
-          "아래 개념을 써 놓고, 직접 설명할 수 있는 관계를 선과 문장으로 연결하세요.",
-          entries.map((entry) => entry.term).join(" · "),
+          `아래 개념을 써 놓고, 직접 설명할 수 있는 관계를 선과 문장으로 연결하세요.\n\n${entries.map((entry) => entry.term).join(" · ")}`,
         ],
         15,
       ),

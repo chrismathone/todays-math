@@ -14,7 +14,7 @@ import type {
   QuickCreateComponents,
   QuickCreateScope,
 } from "@/contracts/textbookQuickCreate.contract";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { TEXTBOOK_CORE_BANK } from "../../coreConceptBank";
 import { sectionKeyOf } from "@/lib/concept-blank/sections";
 import type { TextbookActor } from "../../access";
 import type {
@@ -23,6 +23,7 @@ import type {
   FrozenAsset,
 } from "../../snapshotFromProblem";
 import type { OutlineUnitMeta } from "../editions";
+import type { TextbookActivity } from "@/contracts/textbookSemantic.contract";
 import type { TextbookSql } from "../sql";
 
 /** Explicit, closed tier sets. A shortage reduces the count, never borrows a different difficulty. */
@@ -54,18 +55,20 @@ export interface QuickCreateDependencies {
       units: readonly UnitRow[];
       dialogue: boolean;
       rest: boolean;
+      semester: 1 | 2;
     },
   ) => Promise<{
     assetIds: string[];
     dialogueForSection: (
       sectionKey: string,
     ) => Extract<ManuscriptBlock, { kind: "dialogue" }>["turns"];
+    warnings?: readonly string[];
     restForUnit: (unit: UnitRow) => {
       title: string;
       markdown: string;
       reflectionQuestions: readonly string[];
       imageAssetId: string;
-    };
+    } | null;
   }>;
   now?: () => Date;
 }
@@ -82,7 +85,7 @@ export const gradeLabel = (scope: QuickCreateScope) =>
 export const keyOf = (unit: Pick<UnitRow, "grade" | "chapter" | "section">) =>
   sectionKeyOf(unit.grade, unit.chapter, unit.section);
 export const conceptIndex = new Map<string, ConceptEntry[]>();
-for (const entry of CONCEPT_BLANK_BANK.concepts) {
+for (const entry of TEXTBOOK_CORE_BANK.concepts) {
   const entries = conceptIndex.get(entry.section) ?? [];
   entries.push(entry);
   conceptIndex.set(entry.section, entries);
@@ -122,6 +125,7 @@ export type QuickCreateVisuals = Awaited<
 >;
 export interface QuickCreateStage {
   enabled: boolean;
+  activity: TextbookActivity;
   stage: TextbookItem["learningStage"];
   title: string;
 }
