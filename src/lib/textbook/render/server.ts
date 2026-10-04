@@ -45,6 +45,10 @@ import {
 } from "./bundle.server";
 import { generateTextbookQrs, modelQrTargets } from "./qr.server";
 import {
+  withTextbookPageReferences,
+  assertTextbookReferenceLayoutUnchanged,
+} from "./pageReferences";
+import {
   verifyPdfQrPixels,
   type QrPlacement,
   type QrPixelCheck,
@@ -64,6 +68,8 @@ export interface RenderTextbookChunkInput {
   maxPages?: number;
   /** Verified server-owned student pages supply source labels only; answers paginate independently. */
   studentPages?: readonly TextbookPage[];
+  referencePages?: readonly TextbookPage[];
+  reservedPages?: readonly TextbookPage[];
   onProgress?: (
     phase: "integrity" | "measuring" | "layout" | "pdf" | "qr",
   ) => void;
@@ -338,6 +344,8 @@ export async function renderTextbookChunk(
       input.variant,
     );
   }
+  if (input.referencePages)
+    wholeModel = withTextbookPageReferences(wholeModel, input.referencePages);
   const model = {
     ...wholeModel,
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
@@ -422,6 +430,8 @@ export async function renderTextbookChunk(
     );
     // Writing-space alignment is a student layout constraint, not answer padding.
     if (input.variant === "student") alignTextbookSpreads(layout.pages);
+    if (input.reservedPages)
+      assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
       .map((p) => renderPageHtml(p, model, resolver))
       .join("");

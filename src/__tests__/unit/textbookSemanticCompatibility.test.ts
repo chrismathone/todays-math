@@ -115,13 +115,16 @@ describe("textbook semantic compatibility", () => {
       templateKey: "basic",
       startPolicy: "continue",
       blocks: blocks().map((block) => {
-        const { semantic: _semantic, ...withoutSemantic } = block;
+        const withoutSemantic = { ...block };
+        delete withoutSemantic.semantic;
         if (withoutSemantic.kind === "dialogue")
           return {
             ...withoutSemantic,
-            turns: withoutSemantic.turns.map(
-              ({ presentation: _presentation, ...turn }) => turn,
-            ),
+            turns: withoutSemantic.turns.map((value) => {
+              const turn = { ...value };
+              delete turn.presentation;
+              return turn;
+            }),
           };
         return withoutSemantic;
       }),

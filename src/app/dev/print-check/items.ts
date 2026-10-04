@@ -83,6 +83,24 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "textbook-v15-recovery-20261005",
+    title: "교재 제작 — 2-1-1 기준 조판 복구",
+    changed:
+      "대화·판서·개념 묶음과 암기 공통 행을 보존하고, 선택한 구성의 안내·목차·색인을 출력한다. 문제 풀이선과 쪽수 참조는 실측 후 확정한다.",
+    look: "A4 100%로 기준 교재와 같은 영역을 비교한다. 제목·본문·열·푸터·암기 행의 차이 ±0.5mm, 풀이선 0.2~0.35mm·간격 7mm±0.5mm, 서술형 풀이 폭 열의 95% 이상, QR은 풀이 칸 밖인지 확인한다. 휴대폰으로 학생용·답지·펼침면 QR을 실제 스캔한다.",
+    lookFromSource: true,
+    evidence: [
+      "docs/planning/textbook-v15-recovery-plan-final-20261005.md",
+      "docs/planning/textbook-v15-recovery-execution-20261005.md",
+    ],
+    scale: "초3~중3 · 두 학기 · 28가지 선택 구성",
+    status: "대기",
+    needs: "동일 원본 U01·실제 초3·실제 중2 학생용/답지 검수본",
+    blockedBy:
+      "디지털 조판 검수를 마친 뒤 실물 인쇄·휴대폰 판독 증거를 기록해야 한다.",
+    changedOn: "2026-10-05",
+  },
+  {
     id: "english-listening-native-visual",
     title: "영어듣기 — DB 문항과 시각 자료 인쇄",
     changed:

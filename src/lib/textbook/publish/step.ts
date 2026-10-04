@@ -33,6 +33,7 @@ import {
   loadSteps,
   publishJob,
   stepIssues,
+  artifactRenderSteps,
 } from "./job";
 import type { PublishDeps, ReadEditionAsset } from "./rendererAdapter";
 
@@ -127,7 +128,13 @@ async function finish(
         hash,
         done.pageCount,
         done.firstPageIndex,
-        JSON.stringify({ ...done.result, byteSize: done.bytes.byteLength }),
+        JSON.stringify({
+          ...(step.result?.referencePhase
+            ? { referencePhase: step.result.referencePhase }
+            : {}),
+          ...done.result,
+          byteSize: done.bytes.byteLength,
+        }),
       ],
     );
   });
@@ -169,7 +176,13 @@ async function fail(
       request.requestId,
       step.idx,
       token,
-      JSON.stringify({ error: message, ...(issues.length ? { issues } : {}) }),
+      JSON.stringify({
+        ...(step.result?.referencePhase
+          ? { referencePhase: step.result.referencePhase }
+          : {}),
+        error: message,
+        ...(issues.length ? { issues } : {}),
+      }),
     ],
   );
 }
@@ -238,8 +251,7 @@ export async function runNextStep(
       throw new Error("보관한 조각이 조판 때의 바이트와 다릅니다.");
     return bytes;
   };
-  const rendersOf = (view: StepRow["view"]) =>
-    steps.filter((entry) => entry.view === view && entry.kind === "render");
+  const rendersOf = (view: StepRow["view"]) => artifactRenderSteps(steps, view);
 
   try {
     const sameView = rendersOf(step.view);
@@ -252,7 +264,15 @@ export async function runNextStep(
       const sectionIndices = step.sectionIds.map((id) => order.indexOf(id));
       if (sectionIndices.some((index) => index < 0))
         throw new Error("예약한 구획이 판본에 없습니다.");
-      const previous = sameView.filter((entry) => entry.idx < step.idx).at(-1);
+      const phaseRenders = steps.filter(
+        (entry) =>
+          entry.view === step.view &&
+          entry.kind === "render" &&
+          entry.result?.referencePhase === step.result?.referencePhase,
+      );
+      const previous = phaseRenders
+        .filter((entry) => entry.idx < step.idx)
+        .at(-1);
       const firstPageIndex =
         previous?.result?.nextPhysicalPageIndex ??
         exchange.config.print.firstPhysicalPageIndex;
@@ -269,6 +289,23 @@ export async function runNextStep(
         throw new Error(
           "학생용 조판이 끝나지 않아 해설판을 조판할 수 없습니다.",
         );
+      const reserved =
+        step.result?.referencePhase === "final"
+          ? steps.filter(
+              (entry) =>
+                entry.view === step.view &&
+                entry.kind === "render" &&
+                entry.result?.referencePhase === "reserve",
+            )
+          : [];
+      if (reserved.some((entry) => entry.state !== "done"))
+        throw new Error("전체 쪽수 예약이 끝나지 않았습니다.");
+      const ownReserve = reserved.find(
+        (entry) =>
+          JSON.stringify(entry.sectionIds) === JSON.stringify(step.sectionIds),
+      );
+      if (step.result?.referencePhase === "final" && !ownReserve)
+        throw new Error("이 조각의 예약 배치를 찾을 수 없습니다.");
       const rendered = await deps.renderer.renderChunk({
         exchange,
         readAsset: editionAssetReader(db, editionId),
@@ -277,6 +314,12 @@ export async function runNextStep(
         firstPhysicalPageIndex: firstPageIndex,
         variant: step.view,
         ...(twin ? { studentCarry: twin.result?.carry } : {}),
+        ...(ownReserve
+          ? {
+              referenceCarries: reserved.map((entry) => entry.result?.carry),
+              reservedCarry: ownReserve.result?.carry,
+            }
+          : {}),
       });
       await finish(db, request, step, token, {
         bytes: rendered.pdf,

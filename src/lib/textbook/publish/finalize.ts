@@ -48,6 +48,7 @@ import {
   loadSteps,
   publishJob,
   stepIssues,
+  artifactRenderSteps,
 } from "./job";
 import type { PublishDeps, QrReadback } from "./rendererAdapter";
 import { editionAssetReader } from "./step";
@@ -62,9 +63,9 @@ export function collectPageMap(
   steps: readonly StepRow[],
   exchange: TextbookExchange,
 ): { pageMap: PagePlacement[]; issues: TextbookIssue[] } {
-  const pageMap = steps
-    .filter((step) => step.kind === "render" && step.view === "student")
-    .flatMap((step) => step.result?.pageMap ?? []);
+  const pageMap = artifactRenderSteps(steps, "student").flatMap(
+    (step) => step.result?.pageMap ?? [],
+  );
   const issues: TextbookIssue[] = [];
   const seen = new Map<string, number>();
   for (const placement of pageMap)
@@ -285,13 +286,11 @@ export async function finalizePublish(
         sha256: step.sha256!,
         byteSize: step.result!.byteSize!,
         pageCount: step.pageCount,
-        parts: steps
-          .filter((part) => part.kind === "render" && part.view === view)
-          .map((part) => ({
-            sha256: part.sha256,
-            firstPageIndex: part.firstPageIndex,
-            pageCount: part.pageCount,
-          })),
+        parts: artifactRenderSteps(steps, view).map((part) => ({
+          sha256: part.sha256,
+          firstPageIndex: part.firstPageIndex,
+          pageCount: part.pageCount,
+        })),
       });
     }
     for (const [step, kind] of [

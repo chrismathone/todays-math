@@ -524,6 +524,99 @@ describe("사전 검사 · 예약", () => {
 });
 
 describe("조판 걸음", () => {
+  it("목차를 전체 예약 뒤 한 번 채우고 최종 조각만 발행한다", async () => {
+    const target = await draft();
+    const source = await getSection(
+      db,
+      owner,
+      target.editionId,
+      target.sectionIds[0],
+    );
+    const saved = await saveSection(
+      db,
+      owner,
+      target.editionId,
+      target.sectionIds[0],
+      requestKey(owner, "section-save"),
+      {
+        expectedRevision: source.revision,
+        unitKey: source.unitKey,
+        section: {
+          ...source.section,
+          blocks: [
+            {
+              blockId: "toc",
+              kind: "text",
+              markdown: "목차",
+              semantic: {
+                activity: "tableOfContents",
+                node: {
+                  kind: "references",
+                  entries: [
+                    {
+                      key: "toc.s1",
+                      label: "다음 수업",
+                      targetUnitKey: "u1",
+                      targetSectionKey: "s1",
+                    },
+                  ],
+                },
+              },
+            },
+            ...source.section.blocks,
+          ],
+        },
+      },
+    );
+    const h = harness();
+    h.deps.renderer.planChunks = () => [[0], [1]];
+    const passes: Array<Parameters<PublishDeps["renderer"]["renderChunk"]>[0]> =
+      [];
+    const render = h.deps.renderer.renderChunk;
+    h.deps.renderer.renderChunk = async (input) => {
+      passes.push(input);
+      return render(input);
+    };
+    const requestId = randomUUID();
+    await reserve(
+      { ...target, revision: saved.aggregateRevision },
+      h,
+      requestId,
+    );
+    const job = await runAll(target.editionId, requestId, h);
+    expect(job.status).toBe("ready");
+    expect(passes).toHaveLength(8);
+    expect(passes.map((pass) => pass.firstPhysicalPageIndex)).toEqual([
+      1, 3, 1, 3, 1, 3, 1, 3,
+    ]);
+    expect(passes.map((pass) => pass.referenceCarries?.length ?? 0)).toEqual([
+      0, 0, 2, 2, 0, 0, 2, 2,
+    ]);
+    expect(passes[2].reservedCarry).toBeDefined();
+    expect(passes[4].studentCarry).toBeDefined();
+    const finalized = await finalizePublish(
+      db,
+      owner,
+      target.editionId,
+      requestId,
+      h.deps,
+    );
+    expect(finalized.status).toBe("published");
+    const result = await assembleExchange(db, target.editionId, {
+      exportedAt: h.deps.now().toISOString(),
+    });
+    expect(result.pageMap).toHaveLength(3);
+    const artifacts = await pg.query<{
+      kind: string;
+      page_count: number;
+      parts: unknown[];
+    }>(
+      `SELECT kind,page_count,parts FROM textbook_artifact WHERE edition_id=$1 AND kind IN ('student-pdf','answer-pdf') ORDER BY kind`,
+      [target.editionId],
+    );
+    expect(artifacts.rows.map((row) => row.page_count)).toEqual([4, 4]);
+    expect(artifacts.rows.every((row) => row.parts.length === 2)).toBe(true);
+  });
   it("서버가 조립한 교환 형식을 조판기에 넘긴다 — 내용은 확정본이고, 예약한 QR 이 실려 있다", async () => {
     const target = await draft();
     // 담은 뒤에 은행 문항을 고친다 — 조판기는 이것을 보면 안 된다

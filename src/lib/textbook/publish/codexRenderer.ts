@@ -88,6 +88,16 @@ export const codexRenderer: TextbookRenderer = {
       firstPhysicalPageIndex: input.firstPhysicalPageIndex,
       variant: input.variant,
       mode: "publish",
+      ...(input.referenceCarries
+        ? {
+            referencePages: input.referenceCarries.flatMap(
+              (carry) => chunkCarry(carry).pages,
+            ),
+          }
+        : {}),
+      ...(input.reservedCarry
+        ? { reservedPages: chunkCarry(input.reservedCarry).pages }
+        : {}),
       // 학생용 묶음은 원문 쪽 참조만 제공한다. 해설은 실제 분량으로 따로 조판한다.
       ...(input.studentCarry === undefined
         ? {}

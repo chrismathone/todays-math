@@ -64,7 +64,9 @@ const referenceEntrySchema = z.strictObject({
   key: textbookKeySchema,
   label: z.string().min(1).max(500),
   targetSectionKey: textbookKeySchema.optional(),
+  targetUnitKey: textbookKeySchema.optional(),
   targetItemId: textbookIdSchema.optional(),
+  targetConceptId: textbookKeySchema.optional(),
   pageLabel: z.string().max(40).optional(),
 });
 export type TextbookSourceFragment = {
@@ -133,6 +135,11 @@ export const textbookSourceFragmentSchema: z.ZodType<TextbookSourceFragment> =
     }),
   );
 export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
+  z.strictObject({
+    kind: z.literal("writing"),
+    prompts: z.array(textbookTextSchema).min(1).max(100),
+    lines: z.number().int().min(1).max(30),
+  }),
   z.strictObject({
     kind: z.literal("board"),
     title: z.string().max(200),

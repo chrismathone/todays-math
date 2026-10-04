@@ -26,6 +26,7 @@ import { type TextbookDb, type TextbookSql, SQL_NOW } from "../server/sql";
 import { PUBLISH_OPERATION, loadPublishRequest, publishJob } from "./job";
 import { collectPreflight } from "./preflight";
 import type { PublishDeps, PublishVariant } from "./rendererAdapter";
+import { hasTextbookPageReferences } from "../render/pageReferences";
 
 /** 조판 걸음 하나에 넣는 구획 수 · 블록 수 — 조판기의 한도(8구획 · 600블록 · 32쪽)보다 넉넉히 작게 */
 export const STEP_MAX_SECTIONS = 4;
@@ -300,15 +301,22 @@ export async function reservePublish(
       kind: string;
       view: PublishVariant;
       sectionIds: string[];
+      result?: { referencePhase: "reserve" | "final" };
     }> = [];
+    const references = hasTextbookPageReferences(exchange);
     for (const view of ["student", "answers"] as const) {
-      for (const chunk of chunks)
-        steps.push({
-          idx: steps.length,
-          kind: "render",
-          view,
-          sectionIds: chunk,
-        });
+      for (const phase of references
+        ? (["reserve", "final"] as const)
+        : [undefined]) {
+        for (const chunk of chunks)
+          steps.push({
+            idx: steps.length,
+            kind: "render",
+            view,
+            sectionIds: chunk,
+            ...(phase ? { result: { referencePhase: phase } } : {}),
+          });
+      }
       steps.push({ idx: steps.length, kind: "merge", view, sectionIds: [] });
     }
     // 펼침면 · 단일 HTML 은 학생용에서 만든다 — 조판기가 할 줄 알 때만 걸음을 만든다(없는 산출물을 있다고 적지 않는다)
@@ -335,9 +343,9 @@ export async function reservePublish(
       [actor.id, input.requestId, editionId, baseRevision, bodyHash],
     );
     await tx.execute(
-      `INSERT INTO "textbook_publish_step" ("user_id", "request_id", "idx", "kind", "view", "section_ids", "updated_at")
-       SELECT $1::uuid, $2::uuid, r."idx", r."kind", r."view", r."sectionIds", ${SQL_NOW}
-         FROM jsonb_to_recordset($3::jsonb) AS r("idx" int, "kind" text, "view" text, "sectionIds" jsonb)`,
+      `INSERT INTO "textbook_publish_step" ("user_id", "request_id", "idx", "kind", "view", "section_ids", "result", "updated_at")
+       SELECT $1::uuid, $2::uuid, r."idx", r."kind", r."view", r."sectionIds", r."result", ${SQL_NOW}
+         FROM jsonb_to_recordset($3::jsonb) AS r("idx" int, "kind" text, "view" text, "sectionIds" jsonb, "result" jsonb)`,
       [actor.id, input.requestId, JSON.stringify(steps)],
     );
     return publishJob(

@@ -73,6 +73,9 @@ export interface TextbookRenderer {
      * 서버가 걸음 줄에서 읽어 준다 — 요청 본문에서 오지 않는다.
      */
     studentCarry?: unknown;
+    /** All first-pass carries and this chunk's first-pass carry, server-owned only. */
+    referenceCarries?: unknown[];
+    reservedCarry?: unknown;
   }): Promise<RenderedChunk>;
   mergeChunks(
     chunks: Array<{ pdf: Uint8Array; pageCount: number; carry: unknown }>,

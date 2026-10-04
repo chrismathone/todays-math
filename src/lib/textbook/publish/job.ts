@@ -19,6 +19,7 @@ export const STEP_MAX_ATTEMPTS = 3;
 export const STEP_LEASE_SECONDS = 330;
 
 export interface StepResult {
+  referencePhase?: "reserve" | "final";
   pageMap?: PagePlacement[];
   issues?: TextbookIssue[];
   qrChecks?: QrReadback[];
@@ -27,6 +28,19 @@ export interface StepResult {
   byteSize?: number;
   /** 실패한 걸음의 사유 */
   error?: string;
+}
+
+/** Initial reference measurements are not deliverable pages or final pageMap entries. */
+export function artifactRenderSteps(
+  steps: readonly StepRow[],
+  view: PublishVariant,
+): StepRow[] {
+  return steps.filter(
+    (step) =>
+      step.kind === "render" &&
+      step.view === view &&
+      step.result?.referencePhase !== "reserve",
+  );
 }
 
 export interface StepRow {
