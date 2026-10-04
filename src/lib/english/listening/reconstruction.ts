@@ -115,10 +115,16 @@ export const listeningSegmentReconstructionSchema = z.strictObject({
     .max(30),
 });
 /** Model echo fields carry no authority; provenance always comes from the verified source files. */
+function reconstructionEnvelope(value: unknown) {
+  const envelope = z.object({ questions: z.array(z.unknown()).min(1).max(30) });
+  const direct = envelope.safeParse(value);
+  if (direct.success) return direct.data;
+  return z.object({ schema: envelope }).parse(value).schema;
+}
 export function readListeningReconstructionGeneration(value: unknown) {
   const envelope = z
     .object({ questions: listeningSegmentReconstructionSchema.shape.questions })
-    .parse(value);
+    .parse(reconstructionEnvelope(value));
   return listeningSegmentReconstructionSchema.parse(envelope);
 }
 
@@ -140,7 +146,7 @@ export function normalizeListeningReconstructionEvidenceQuotes(
         .min(1)
         .max(30),
     })
-    .parse(value);
+    .parse(reconstructionEnvelope(value));
   return {
     questions: draft.questions.map((question) => {
       let previous = -1;
@@ -180,7 +186,7 @@ export function listeningReconstructionFifthChoiceTargets(value: unknown) {
         .min(1)
         .max(30),
     })
-    .parse(value);
+    .parse(reconstructionEnvelope(value));
   if (
     new Set(draft.questions.map((question) => question.sourceNumber)).size !==
     draft.questions.length
