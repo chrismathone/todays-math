@@ -374,6 +374,10 @@ async function main() {
       "max-generation-tokens": { type: "string", default: "24000" },
       "instruction-version": { type: "string", default: "4" },
       "normalize-structural-metadata": { type: "boolean", default: false },
+      "normalization-version": {
+        type: "string",
+        default: "structural-metadata-v1",
+      },
       "judgment-version": { type: "string", default: "4" },
       "reuse-audit-root": { type: "string" },
       execute: { type: "boolean", default: false },
@@ -388,6 +392,16 @@ async function main() {
   if (values["normalize-structural-metadata"] && !values["reuse-audit-root"])
     throw new Error(
       "Structural recovery requires --reuse-audit-root; no fresh generation is permitted",
+    );
+  if (
+    !["structural-metadata-v1", "structural-metadata-v2"].includes(
+      values["normalization-version"]!,
+    ) ||
+    (!values["normalize-structural-metadata"] &&
+      values["normalization-version"] !== "structural-metadata-v1")
+  )
+    throw new Error(
+      "Explicit structural recovery and supported --normalization-version are required",
     );
   const output = path.resolve(values.output),
     mainRoot = path.resolve(values["main-root"]!);
@@ -782,6 +796,14 @@ async function main() {
           throw new Error(
             "Existing result belongs to a different immutable baseline",
           );
+        if (
+          values["normalize-structural-metadata"] &&
+          style.generationNormalization?.version !==
+            values["normalization-version"]
+        )
+          throw new Error(
+            "Existing recovery uses a different normalization version; use a new output directory",
+          );
         await saveRecord({
           sourceRecordId: id,
           status: "prepared",
@@ -997,10 +1019,15 @@ async function main() {
         );
       const rawGenerated = JSON.parse(response.choices[0].message.content);
       const normalized = values["normalize-structural-metadata"]
-        ? normalizeListeningStyleGeneration(rawGenerated, {
-            sourceRecordId: id,
-            level: payload.createInput.level!,
-          })
+        ? normalizeListeningStyleGeneration(
+            rawGenerated,
+            {
+              sourceRecordId: id,
+              level: payload.createInput.level!,
+            },
+            values["normalization-version"] as
+              "structural-metadata-v1" | "structural-metadata-v2",
+          )
         : null;
       const grounded = validateListeningStyleRevision(
         asr.segments,

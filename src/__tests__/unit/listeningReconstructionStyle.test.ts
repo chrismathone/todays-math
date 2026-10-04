@@ -138,6 +138,38 @@ describe("official Korean listening style revision", () => {
       validateListeningStyleRevision(segments, [question], normalized.value),
     ).toThrow();
   });
+  it("requires explicit v2 for the separately authorized action taxonomy alias", () => {
+    const raw = { questions: [{ ...question, questionType: "action" }] };
+    const binding = { sourceRecordId: "bound-record", level: "중3" };
+    expect(() => normalizeListeningStyleGeneration(raw, binding)).toThrow();
+    const normalized = normalizeListeningStyleGeneration(
+      raw,
+      binding,
+      "structural-metadata-v2",
+    );
+    expect(normalized.value).toEqual({
+      questions: [{ ...question, questionType: "detail" }],
+    });
+    expect(normalized.generationNormalization).toEqual({
+      version: "structural-metadata-v2",
+      steps: [
+        {
+          sourceNumber: 1,
+          field: "questionType",
+          from: "action",
+          to: "detail",
+        },
+      ],
+    });
+    expect(raw.questions[0].questionType).toBe("action");
+    expect(() =>
+      normalizeListeningStyleGeneration(
+        { questions: [{ ...question, questionType: "unmapped" }] },
+        binding,
+        "structural-metadata-v2",
+      ),
+    ).toThrow();
+  });
   const meaning = (
     choice: string,
     prompt = "대화를 듣고, 시기를 고르시오.",
