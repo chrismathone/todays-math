@@ -122,6 +122,135 @@ export function readListeningReconstructionGeneration(value: unknown) {
   return listeningSegmentReconstructionSchema.parse(envelope);
 }
 
+/** Check all raw evidence before staging a bounded subset; raw receipts stay intact. */
+export function normalizeListeningReconstructionEvidenceQuotes(
+  segmentsInput: unknown,
+  value: unknown,
+) {
+  const segments = listeningAsrSegmentsSchema.parse(segmentsInput);
+  const draft = z
+    .object({
+      questions: z
+        .array(
+          listeningSegmentReconstructionSchema.shape.questions.element.extend({
+            choices: z.array(z.string().trim().min(1).max(2000)).min(4).max(5),
+            evidenceQuotes: z.array(z.string().min(1).max(2000)).min(1).max(32),
+          }),
+        )
+        .min(1)
+        .max(30),
+    })
+    .parse(value);
+  return {
+    questions: draft.questions.map((question) => {
+      let previous = -1;
+      const transcript = question.sourceSegmentIds
+        .map((id) => {
+          const position = segments.findIndex((segment) => segment.id === id);
+          if (position <= previous || position < 0)
+            throw new Error(
+              "음원 전사 구간은 실제 순서로만 사용할 수 있습니다.",
+            );
+          previous = position;
+          return segments[position].text;
+        })
+        .join(" ");
+      if (question.evidenceQuotes.some((quote) => !transcript.includes(quote)))
+        throw new Error(
+          "문항 근거의 모든 원문 인용이 실제 전사와 일치해야 합니다.",
+        );
+      return {
+        ...question,
+        evidenceQuotes: question.evidenceQuotes.slice(0, 8),
+      };
+    }),
+  };
+}
+
+/** A bounded format repair cannot rewrite an answer, prompt or source evidence. */
+export function listeningReconstructionFifthChoiceTargets(value: unknown) {
+  const draft = z
+    .object({
+      questions: z
+        .array(
+          listeningSegmentReconstructionSchema.shape.questions.element.extend({
+            choices: z.array(z.string().trim().min(1).max(2000)).min(4).max(5),
+          }),
+        )
+        .min(1)
+        .max(30),
+    })
+    .parse(value);
+  if (
+    new Set(draft.questions.map((question) => question.sourceNumber)).size !==
+    draft.questions.length
+  )
+    throw new Error("재구성 문항 번호가 중복됩니다.");
+  if (
+    draft.questions.some(
+      (question) => question.correctChoiceOneBased > question.choices.length,
+    )
+  )
+    throw new Error("생성 정답이 기존 선지에 없습니다.");
+  return draft;
+}
+export function addListeningReconstructionFifthChoices(
+  generated: unknown,
+  additions: unknown,
+) {
+  const draft = listeningReconstructionFifthChoiceTargets(generated);
+  const repairs = z
+    .strictObject({
+      choices: z
+        .array(
+          z.strictObject({
+            sourceNumber,
+            fifthChoice: z.string().trim().min(1).max(2000),
+          }),
+        )
+        .min(1)
+        .max(30),
+    })
+    .parse(additions);
+  const needed = draft.questions.filter(
+    (question) => question.choices.length === 4,
+  );
+  if (
+    repairs.choices.length !== needed.length ||
+    new Set(repairs.choices.map((repair) => repair.sourceNumber)).size !==
+      needed.length ||
+    repairs.choices.some(
+      (repair) =>
+        !needed.some(
+          (question) => question.sourceNumber === repair.sourceNumber,
+        ),
+    )
+  )
+    throw new Error("추가 오답은 선지가 누락된 문항에만 하나씩 필요합니다.");
+  const questions = draft.questions.map((question) =>
+    question.choices.length === 5
+      ? question
+      : {
+          ...question,
+          choices: [
+            ...question.choices,
+            repairs.choices.find(
+              (repair) => repair.sourceNumber === question.sourceNumber,
+            )!.fifthChoice,
+          ],
+        },
+  );
+  const result = readListeningReconstructionGeneration({ questions });
+  // Cross-question/duplicate-choice refinements live on the complete schema.
+  listeningReconstructionQuestionsSchema.parse({
+    questions: result.questions.map(({ sourceSegmentIds, ...question }) => {
+      void sourceSegmentIds;
+      return question;
+    }),
+  });
+  return result;
+}
+
 /** sourceNumber here is the newly generated ordinal, never a recovered official number. */
 export function groundListeningReconstructionSegments(
   segmentsInput: unknown,

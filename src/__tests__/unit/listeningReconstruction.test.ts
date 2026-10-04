@@ -7,6 +7,8 @@ import {
   reorderListeningReconstructionChoices,
   listeningReconstructionDisposition,
   readListeningReconstructionGeneration,
+  addListeningReconstructionFifthChoices,
+  normalizeListeningReconstructionEvidenceQuotes,
 } from "@/lib/english/listening/reconstruction";
 
 const source = {
@@ -32,6 +34,85 @@ const question = {
 };
 
 describe("audio-grounded listening reconstruction", () => {
+  it("checks every raw quote before bounded staging and keeps the original candidate unchanged", () => {
+    const evidenceQuotes = [
+      "Woman:",
+      "Our",
+      "train",
+      "leaves",
+      "at five.",
+      "Man:",
+      "Let's",
+      "arrive",
+      "four thirty.",
+    ];
+    const raw = {
+      questions: [{ ...question, sourceSegmentIds: [4], evidenceQuotes }],
+    };
+    const segments = [
+      { id: 4, text: source.items[0].transcript, uncertain: false },
+    ];
+    const normalized = normalizeListeningReconstructionEvidenceQuotes(
+      segments,
+      raw,
+    );
+    expect(normalized.questions[0].evidenceQuotes).toEqual(
+      evidenceQuotes.slice(0, 8),
+    );
+    expect(raw.questions[0].evidenceQuotes).toHaveLength(9);
+    expect(() =>
+      normalizeListeningReconstructionEvidenceQuotes(segments, {
+        questions: [
+          {
+            ...raw.questions[0],
+            evidenceQuotes: [
+              ...evidenceQuotes.slice(0, 8),
+              "Words never spoken",
+            ],
+          },
+        ],
+      }),
+    ).toThrow("근거");
+  });
+  it("repairs only a missing fifth distractor while preserving the generated answer and source evidence", () => {
+    const four = {
+      ...question,
+      choices: question.choices.slice(0, 4),
+      sourceSegmentIds: [4, 7],
+    };
+    const repaired = addListeningReconstructionFifthChoices(
+      { questions: [four] },
+      { choices: [{ sourceNumber: 1, fifthChoice: "3:30" }] },
+    );
+    expect(repaired.questions[0]).toEqual({
+      ...four,
+      choices: question.choices,
+    });
+    expect(() =>
+      addListeningReconstructionFifthChoices(
+        { questions: [four] },
+        { choices: [] },
+      ),
+    ).toThrow();
+    expect(() =>
+      addListeningReconstructionFifthChoices(
+        { questions: [four] },
+        { choices: [{ sourceNumber: 1, fifthChoice: "4:30" }] },
+      ),
+    ).toThrow();
+    expect(() =>
+      addListeningReconstructionFifthChoices(
+        { questions: [{ ...four, correctChoiceOneBased: 5 }] },
+        { choices: [{ sourceNumber: 1, fifthChoice: "3:30" }] },
+      ),
+    ).toThrow();
+    expect(() =>
+      addListeningReconstructionFifthChoices(
+        { questions: [four] },
+        { choices: [{ sourceNumber: 2, fifthChoice: "3:30" }] },
+      ),
+    ).toThrow();
+  });
   it("preserves grounded text and rejects a quote invented by generation", () => {
     expect(
       validateListeningReconstruction(source, { questions: [question] })
