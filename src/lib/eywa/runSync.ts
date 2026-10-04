@@ -195,6 +195,7 @@ export async function runEywaSync(opts: {
   // 🔴 보고서를 **(반, 학생)** 으로 가른다 — 규칙과 실측 근거는 `groupReports.ts` 에.
   //    예전에는 학생 단위로만 묶어 특강 진도가 본수업을 덮었다(원장님 지적 2026-08-25).
   const rosterIds = new Set(scopedRoster.students.map((s) => s.id));
+  const activeSourceClassIds = new Set(classMembers.keys());
   const {
     byClassStudent,
     byStudent: byStudentReports,
@@ -202,7 +203,12 @@ export async function runEywaSync(opts: {
     명단밖학생,
     반없는보고서,
     범위밖반보고서,
-  } = groupReportsByClassStudent(reports, rosterIds, 허용, 원본반이름);
+  } = groupReportsByClassStudent(
+    reports,
+    rosterIds,
+    activeSourceClassIds,
+    원본반이름,
+  );
 
   const progressPlans = new Map<
     string,
@@ -375,13 +381,26 @@ export async function runEywaSync(opts: {
             grade,
             userId: owner.id,
             branchId: owner.branchId,
+            active: true,
+            closedAt: null,
             difficultyRatio: DEFAULT_DIFFICULTY_RATIO,
           },
-          update: { name: info.name, grade },
+          update: { name: info.name, grade, active: true, closedAt: null },
           select: { id: true },
         });
         ourClassId.set(eywaClassId, row.id);
       }
+      // A complete active roster also closes previously imported classes that
+      // have ended. Keep their students, reports and tests as historical records.
+      await tx.class.updateMany({
+        where: {
+          eywaClassId: { in: [...허용], notIn: [...activeSourceClassIds] },
+          eywaBindingId: null,
+          userId: owner.id,
+          active: true,
+        },
+        data: { active: false, closedAt: new Date() },
+      });
 
       // 학생 upsert — 주반 규칙 + 학교 필드 + 개별 진도 켜기.
       const ourStudentId = new Map<string, string>();
@@ -396,6 +415,10 @@ export async function runEywaSync(opts: {
           eywaLastReportDate: last ? new Date(`${last.date}T00:00:00Z`) : null,
           eywaLastReportText: last?.text ?? null,
         };
+        const phoneFields =
+          student.phoneLast4 !== undefined
+            ? { phoneLast4: student.phoneLast4 }
+            : {};
         const previousStudent = await tx.student.findUnique({
           where: { eywaStudentId: student.id },
           include: { class: true },
@@ -417,6 +440,7 @@ export async function runEywaSync(opts: {
             schoolName: student.school?.slice(0, 50) ?? null,
             schoolLevel: school.schoolLevel,
             schoolGrade: school.schoolGrade,
+            ...phoneFields,
             ...lastFields,
           },
           update: {
@@ -427,6 +451,7 @@ export async function runEywaSync(opts: {
             schoolLevel: school.schoolLevel,
             schoolGrade: school.schoolGrade,
             eywaWithdrawnAt: null, // 돌아온 학생은 표시를 푼다
+            ...phoneFields,
             ...lastFields,
           },
           select: { id: true },
@@ -459,7 +484,7 @@ export async function runEywaSync(opts: {
           class: {
             userId: owner.id,
             eywaBindingId: null,
-            eywaClassId: { in: [...허용] },
+            eywaClassId: { in: [...activeSourceClassIds] },
           },
         },
       });

@@ -1,5 +1,5 @@
 // @vitest-environment node
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { applyEywaRelations } from "@/lib/eywa/managedRelations";
 import {
   COLLECTION_KINDS,
@@ -129,6 +129,8 @@ function rosterWrites() {
   ]);
 }
 beforeEach(() => {
+  vi.useFakeTimers();
+  vi.setSystemTime(new Date("2026-10-04T03:00:00Z"));
   fixture = managedRelationDb();
   fixture.tables.eywaBinding.push({
     id: bindingId,
@@ -215,7 +217,162 @@ beforeEach(() => {
   };
 });
 
+afterEach(() => vi.useRealTimers());
+
 describe("verified manifest relation application", () => {
+  it("stores verified phone suffixes, preserves omitted values and clears explicit null", async () => {
+    Object.assign(rows.students[0], { phoneLast4: "0123" });
+    await apply();
+    expect(fixture.tables.student[0].phoneLast4).toBe("0123");
+    rows.students[0] = { ...rows.students[0] };
+    delete rows.students[0].phoneLast4;
+    const writes = rosterWrites();
+    await apply();
+    expect(fixture.tables.student[0].phoneLast4).toBe("0123");
+    for (const spy of writes) expect(spy).not.toHaveBeenCalled();
+    Object.assign(rows.students[0], { phoneLast4: null });
+    await apply();
+    expect(fixture.tables.student[0].phoneLast4).toBeNull();
+  });
+
+  it.each([
+    { active: false, closedAt: null },
+    { active: true, closedAt: "2026-10-03T00:00:00Z" },
+  ])(
+    "does not import ended classes or their students, edges and progress (%j)",
+    async (state) => {
+      seedProgress();
+      Object.assign(rows.classes[0], state);
+      rows.enrollments[0].startsOn = "2026-09-01"; // Closed class must never become the primary class.
+      const result = await apply();
+      expect(result.classes).toBe(1);
+      expect(result.students).toBe(1);
+      expect(result.memberships).toBe(0);
+      expect(result.enrollments).toBe(1);
+      expect(result.progress).toBe(0);
+      expect(result.unresolvedProgress).toBe(0);
+      expect(fixture.tables.class.map((row) => row.eywaClassId)).toEqual([
+        classB,
+      ]);
+      expect(fixture.tables.student.map((row) => row.eywaStudentId)).toEqual([
+        studentA,
+      ]);
+      expect(fixture.tables.student[0].classId).toBe(
+        fixture.tables.class[0].id,
+      );
+      expect(fixture.tables.classMembership).toHaveLength(0);
+      expect(fixture.tables.studentEnrollment).toHaveLength(1);
+      expect(fixture.tables.progress).toHaveLength(0);
+      expect(fixture.tables.user).toHaveLength(0);
+    },
+  );
+
+  it.each([
+    { active: false, closedAt: null },
+    { active: true, closedAt: "2026-10-03T00:00:00Z" },
+  ])(
+    "deactivates an ended class and revokes its edges once while preserving its history (%j)",
+    async (state) => {
+      seedProgress();
+      await apply();
+      const oldClass = structuredClone(fixture.tables.class[0]);
+      const progress = structuredClone(fixture.tables.progress);
+      const studentIds = fixture.tables.student.map((row) => row.id);
+      Object.assign(rows.classes[0], state, {
+        name: "Do not import closed updates",
+      });
+      rows.students[1].name = "Do not import closed student";
+      rows.progress = []; // Closed history must survive missing reports in later snapshots.
+      await apply();
+      expect(fixture.tables.class[0]).toMatchObject({
+        id: oldClass.id,
+        name: oldClass.name,
+        active: false,
+        closedAt: new Date(state.closedAt ?? "2026-10-04T03:00:00Z"),
+      });
+      expect(fixture.tables.student.map((row) => row.id)).toEqual(studentIds);
+      expect(fixture.tables.student[1].name).toBe("Same name");
+      expect(fixture.tables.student[1].eywaWithdrawnAt).toBeInstanceOf(Date);
+      expect(fixture.tables.student[0].classId).toBe(
+        fixture.tables.class[1].id,
+      );
+      expect(
+        fixture.tables.classMembership.every(
+          (row) => row.revokedAt instanceof Date,
+        ),
+      ).toBe(true);
+      expect(
+        fixture.tables.studentEnrollment
+          .filter((row) => row.classId === oldClass.id)
+          .every((row) => row.endedAt instanceof Date),
+      ).toBe(true);
+      expect(
+        fixture.tables.studentEnrollment.find(
+          (row) => row.classId !== oldClass.id,
+        )?.endedAt,
+      ).toBeNull();
+      expect(fixture.tables.progress).toEqual(progress);
+      const before = structuredClone(fixture.tables);
+      const writes = [...rosterWrites(), ...Object.values(progressWrites())];
+      await apply();
+      expect(fixture.tables).toEqual(before);
+      for (const spy of writes) expect(spy).not.toHaveBeenCalled();
+    },
+  );
+
+  it("preserves progress when a closed class disappears from the complete source snapshot", async () => {
+    seedProgress();
+    await apply();
+    const progress = structuredClone(fixture.tables.progress);
+    rows.classes = [rows.classes[1]];
+    rows.memberships = [];
+    rows.enrollments = [rows.enrollments[1]];
+    rows.progress = [];
+    await apply();
+    expect(fixture.tables.class[0].active).toBe(false);
+    expect(fixture.tables.progress).toEqual(progress);
+  });
+
+  it("holds existing student status when an operational source class has an identity conflict", async () => {
+    await apply();
+    fixture.tables.class[0].branchId = "conflicting-branch";
+    const student = structuredClone(fixture.tables.student[1]);
+    const result = await apply();
+    expect(result.conflicts).toContainEqual({
+      entity: "class",
+      sourceId: classA,
+      code: "class_branch_conflict",
+    });
+    expect(fixture.tables.student[1]).toEqual(student);
+  });
+
+  it("reopens the same class and relation identities only after the source becomes active again", async () => {
+    seedProgress();
+    await apply();
+    const original = structuredClone(fixture.tables);
+    rows.classes[0].active = false;
+    await apply();
+    rows.classes[0].active = true;
+    await apply();
+    expect(fixture.tables).toEqual(original);
+  });
+
+  it("keeps a future scheduled closure operational until its effective time", async () => {
+    rows.classes[0].closedAt = "2026-10-05T00:00:00Z";
+    await apply();
+    expect(fixture.tables.class[0].active).toBe(true);
+    expect(fixture.tables.classMembership).toHaveLength(2);
+    expect(fixture.tables.studentEnrollment).toHaveLength(3);
+    vi.setSystemTime(new Date("2026-10-05T00:00:00Z"));
+    await apply();
+    expect(fixture.tables.class[0].active).toBe(false);
+    expect(
+      fixture.tables.classMembership.every(
+        (row) => row.revokedAt instanceof Date,
+      ),
+    ).toBe(true);
+  });
+
   it("bulk-reads the roster and performs zero relationship or progress writes on an identical full snapshot", async () => {
     seedProgress();
     await apply();
@@ -256,8 +413,6 @@ describe("verified manifest relation application", () => {
     fixture.tables.student[0].localNotes = "retained local field";
     rows.classes[0].name = "Corrected class";
     rows.classes[0].permissionRevision = "9007199254740993";
-    rows.classes[0].active = false;
-    rows.classes[0].closedAt = "2026-10-02T12:34:56.017Z";
     rows.students[0].name = "Corrected student";
     rows.students[0].school = "New school";
     rows.students[0].grade = "고2";
@@ -282,7 +437,7 @@ describe("verified manifest relation application", () => {
       userId: originalClass.userId,
       name: "Corrected class",
       permissionRevision: BigInt("9007199254740993"),
-      closedAt: new Date("2026-10-02T12:34:56.017Z"),
+      closedAt: null,
     });
     expect(fixture.tables.student[0]).toMatchObject({
       id: originalStudent.id,

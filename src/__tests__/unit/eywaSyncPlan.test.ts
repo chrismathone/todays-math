@@ -124,12 +124,14 @@ describe("[schoolFieldsOf] 학년 문자열 → 학교 필드", () => {
     });
   });
 
-  /** 초등은 내신이 없어 '오늘의 시험' 대상이 아니다 — level 을 비운다(스키마 주석). */
-  it("초등·미상은 null", () => {
+  it("초등 학년도 명단에 보존한다", () => {
     expect(schoolFieldsOf("초6")).toEqual({
-      schoolLevel: null,
-      schoolGrade: null,
+      schoolLevel: "초",
+      schoolGrade: 6,
     });
+  });
+
+  it("미상·잘못된 학년은 null", () => {
     expect(schoolFieldsOf(null)).toEqual({
       schoolLevel: null,
       schoolGrade: null,
@@ -138,6 +140,11 @@ describe("[schoolFieldsOf] 학년 문자열 → 학교 필드", () => {
       schoolLevel: null,
       schoolGrade: null,
     });
+    for (const invalid of ["초0", "초7", "중4", "고6"])
+      expect(schoolFieldsOf(invalid)).toEqual({
+        schoolLevel: null,
+        schoolGrade: null,
+      });
   });
 });
 

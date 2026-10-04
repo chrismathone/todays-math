@@ -183,7 +183,21 @@ export async function applyEywaRelations(
   );
   const classMap = new Map<string, string>();
   const sourceClasses = new Map(rows.classes.map((c) => [c.id, c]));
+  const operationalClasses = new Set(
+    rows.classes
+      .filter(
+        (row) =>
+          row.active &&
+          (!row.closedAt || Date.parse(row.closedAt) > now.getTime()),
+      )
+      .map((row) => row.id),
+  );
   const sourceStudents = new Map(rows.students.map((s) => [s.id, s]));
+  const operationalSourceStudents = new Set(
+    rows.enrollments
+      .filter((row) => operationalClasses.has(row.classId))
+      .map((row) => row.studentId),
+  );
   for (const row of rows.memberships)
     if (!sourceClasses.has(row.classId))
       throw new RelationConflict("membership_class_missing");
@@ -216,6 +230,19 @@ export async function applyEywaRelations(
         sourceId: row.id,
         code: "class_branch_conflict",
       });
+      continue;
+    }
+    // Closed source classes are history, never new roster/progress imports.
+    // Existing identities remain available for past tests and reports.
+    if (!operationalClasses.has(row.id)) {
+      if (existing) {
+        const data = {
+          active: false,
+          closedAt: date(row.closedAt) ?? existing.closedAt ?? now,
+        };
+        if (!sameFields(existing, data))
+          await tx.class.update({ where: { id: existing.id }, data });
+      }
       continue;
     }
     const owner =
@@ -316,6 +343,7 @@ export async function applyEywaRelations(
     });
 
   const studentMap = new Map<string, string>();
+  const operationalLocalClasses = new Set(classMap.values());
   const existingStudents = await tx.student.findMany({
     where: {
       OR: [
@@ -353,7 +381,10 @@ export async function applyEywaRelations(
         enrollmentActive(e, kstRelationshipDay(now), true),
       ) ?? enrollments[0];
     const classId =
-      (primary && classMap.get(primary.classId)) ?? existing?.classId;
+      (primary && classMap.get(primary.classId)) ??
+      (existing && operationalLocalClasses.has(existing.classId)
+        ? existing.classId
+        : null);
     if (!classId) {
       deferredStudents++;
       continue;
@@ -361,6 +392,7 @@ export async function applyEywaRelations(
     const school = schoolFieldsOf(row.grade);
     const data = {
       name: row.name.slice(0, 50),
+      ...(row.phoneLast4 !== undefined ? { phoneLast4: row.phoneLast4 } : {}),
       classId,
       branchId: binding.targetBranchId,
       eywaBindingId: bindingId,
@@ -393,7 +425,9 @@ export async function applyEywaRelations(
       row.eywaBindingId === bindingId &&
       (sourceStudents.size === 0 ||
         (row.eywaStudentId !== null &&
-          !sourceStudents.has(row.eywaStudentId))) &&
+          (!sourceStudents.has(row.eywaStudentId) ||
+            (!studentMap.has(row.eywaStudentId) &&
+              !operationalSourceStudents.has(row.eywaStudentId))))) &&
       row.eywaWithdrawnAt === null,
   );
   for (const group of batches(absentStudents))
@@ -481,6 +515,12 @@ export async function applyEywaRelations(
   for (const report of rows.progress) {
     const classId = report.makeupClassId ?? report.classId;
     if (
+      classId &&
+      sourceClasses.has(classId) &&
+      !operationalClasses.has(classId)
+    )
+      continue;
+    if (
       !classId ||
       !classMap.has(classId) ||
       !studentMap.has(report.studentId)
@@ -525,6 +565,7 @@ export async function applyEywaRelations(
     progressByReport.set(row.eywaReportId, group);
     if (
       row.class.eywaBindingId === bindingId &&
+      operationalLocalClasses.has(row.classId) &&
       row.studentId !== null &&
       row.retiredAt === null &&
       !reportIds.has(row.eywaReportId)
