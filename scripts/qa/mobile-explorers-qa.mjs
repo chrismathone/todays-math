@@ -3075,6 +3075,116 @@ scenarios["atelier:home-motion"] = async ({ page, sim, mobile, width, step, shot
 };
 fixtures["atelier:home-motion"] = fixtures.concept;
 
+
+// Native audio instrumentation: no autoplay flag, mock decoder, or synthesized samples.
+scenarios["atelier:sound"] = async ({ page, sim, mobile, step, shot }) => {
+  const audioRequests = [];
+  page.on("request", (request) => {
+    if (request.url().includes("/audio/math-learning/")) audioRequests.push(request.url());
+  });
+  await page.addInitScript(() => {
+    window.__learningSoundQa = { contexts: [], resumes: [], starts: [], stops: [] };
+    const Native = window.AudioContext ?? window.webkitAudioContext;
+    window.AudioContext = new Proxy(Native, {
+      construct(target, args, newTarget) {
+        const context = Reflect.construct(target, args, newTarget);
+        const log = window.__learningSoundQa;
+        log.contexts.push({ active: navigator.userActivation.isActive });
+        const resume = context.resume.bind(context);
+        context.resume = () => { log.resumes.push({ active: navigator.userActivation.isActive }); return resume(); };
+        const gains = [];
+        const makeGain = context.createGain.bind(context);
+        context.createGain = () => { const gain = makeGain(); gains.push(gain); return gain; };
+        const makeSource = context.createBufferSource.bind(context);
+        context.createBufferSource = () => {
+          const source = makeSource();
+          const start = source.start.bind(source);
+          const stop = source.stop.bind(source);
+          source.start = (...args) => { log.starts.push({ seconds: source.buffer?.duration, state: context.state, gains: gains.map(gain => gain.gain.value) }); return start(...args); };
+          source.stop = (...args) => { log.stops.push(true); return stop(...args); };
+          return source;
+        };
+        return context;
+      },
+    });
+  });
+  const settings = () => page.getByRole("dialog", { name: "학습 설정", exact: true });
+  const sound = () => settings().getByRole("switch", { name: "효과음", exact: true });
+  const status = () => settings().locator("[data-learning-sound-status]");
+  const preview = () => settings().getByRole("button", { name: /미리 듣기|미리듣기/ });
+  const log = () => page.evaluate(() => window.__learningSoundQa);
+  const open = async () => { await tap(page.getByRole("button", { name: "학습 설정", exact: true }), mobile); await expect(settings()).toBeVisible(); };
+  const close = async () => { await tap(settings().getByRole("button", { name: "학습 설정 닫기" }), mobile); await expect(settings()).toHaveCount(0); };
+  await step("sound.default-off", async () => {
+    await page.goto(base + "/dev/mobile-explorers-qa"); await homeReady(page); await open();
+    await expect(sound()).toHaveAttribute("aria-checked", "false"); await expect(preview()).toBeDisabled();
+    assert.equal((await log()).contexts.length, 0); assert.equal(audioRequests.length, 0);
+    return "기본 끔 · 음원 요청/AudioContext 0";
+  });
+  await step("sound.enable", async () => {
+    const posts = sim.posts.length;
+    await tap(sound(), mobile); await expect(status()).toHaveAttribute("data-learning-sound-status", "ready", { timeout: 15000 });
+    const state = await log();
+    assert.equal(state.contexts.length, 1); assert.ok(state.contexts.every(item => item.active)); assert.ok(state.resumes.every(item => item.active));
+    assert.equal(state.starts.length, 0, "켜기 뒤 자동 미리 듣기 없음"); assert.equal(audioRequests.length, 3);
+    assert.equal(sim.posts.length, posts, "기기 설정은 학생 기록 요청 없음");
+    return "실제 WAV 3개 decode · 사용자 activation 안에서 생성/resume";
+  });
+  await step("sound.preview-and-motion", async () => {
+    await tap(preview(), mobile); await expect.poll(async () => (await log()).starts.length).toBe(1);
+    const sample = (await log()).starts[0]; assert.ok(Math.abs(sample.seconds - 0.322018) < 0.001); assert.equal(sample.state, "running"); assert.ok(sample.gains.some(value => Math.abs(value - 0.2) < 0.001));
+    await page.emulateMedia({ reducedMotion: "reduce" }); await expect(sound()).toBeEnabled(); await expect(sound()).toHaveAttribute("aria-checked", "true");
+    assert.equal(await page.evaluate(() => localStorage.getItem("todays-math:learning-sound:v1")), "on");
+    await page.emulateMedia({ reducedMotion: "no-preference" }); await shot("sound-settings");
+    return "정답 샘플/선형 gain 0.2 · OS 움직임 설정과 독립";
+  });
+  await step("sound.stop", async () => {
+    const before = (await log()).stops.length;
+    await tap(preview(), mobile); await tap(sound(), mobile);
+    await expect(sound()).toHaveAttribute("aria-checked", "false"); assert.ok((await log()).stops.length > before, "끄기 즉시 source.stop");
+    await tap(sound(), mobile); await expect(status()).toHaveAttribute("data-learning-sound-status", "ready");
+    await tap(preview(), mobile); const starts = (await log()).starts.length; const stops = (await log()).stops.length;
+    await page.evaluate(() => {
+      Object.defineProperty(document, "hidden", { configurable: true, get: () => true });
+      Object.defineProperty(document, "visibilityState", { configurable: true, get: () => "hidden" });
+      document.dispatchEvent(new Event("visibilitychange"));
+    });
+    assert.ok((await log()).stops.length > stops, "숨김 즉시 source.stop");
+    await page.evaluate(() => { delete document.hidden; delete document.visibilityState; document.dispatchEvent(new Event("visibilitychange")); });
+    await page.waitForTimeout(100); assert.equal((await log()).starts.length, starts, "돌아온 뒤 과거 소리 없음");
+    await close(); return "끔/숨김 즉시 중지 · 복귀 자동 재생 없음";
+  });
+  await step("sound.keyboard-answer", async () => {
+    await tap(page.locator("[data-expedition-start]"), mobile); await page.locator("[data-explorer-dock]").waitFor(); await settled(page, sim);
+    await perform(page, sim, correctExplorerAction(sim), mobile); await settled(page, sim);
+    const action = correctExplorerAction(sim); assert.equal(action.type, "answer");
+    const starts = (await log()).starts.length;
+    for (const id of action.choiceIds) await page.keyboard.press(String(id + 1));
+    await page.keyboard.press("Enter");
+    await page.locator('[data-answer-feedback="correct"]').waitFor();
+    await expect.poll(async () => (await log()).starts.length).toBe(starts + 1);
+    assert.ok((await log()).resumes.every(item => item.active), "programmatic click도 실제 숫자키/Enter activation을 유지");
+    await settled(page, sim); return "숫자키/Enter로 확정한 답에서만 1회 발화";
+  });
+  await step("sound.lost-response", async () => {
+    const starts = (await log()).starts.length;
+    sim.loseNext = true; await perform(page, sim, correctExplorerAction(sim), mobile);
+    await expect(page.getByRole("button", { name: "같은 요청 다시 시도" })).toBeVisible();
+    assert.equal((await log()).starts.length, starts, "503 응답은 무음");
+    await tap(page.getByRole("button", { name: "같은 요청 다시 시도" }), mobile);
+    await page.locator('[data-answer-feedback="correct"]').waitFor();
+    await expect.poll(async () => (await log()).starts.length).toBe(starts + 1);
+    await settled(page, sim); return "응답 유실은 무음 · 같은 요청이 처음 확인될 때 1회";
+  });
+  await step("sound.reload", async () => {
+    audioRequests.length = 0; await page.reload(); await homeReady(page);
+    const state = await log(); assert.equal(state.contexts.length, 0); assert.equal(state.starts.length, 0); assert.equal(audioRequests.length, 0);
+    await open(); await expect(sound()).toHaveAttribute("aria-checked", "true"); await close();
+    return "켜짐 기기 설정 유지 · 재로드된 기록에서 자동 발화/요청 없음";
+  });
+};
+fixtures["atelier:sound"] = fixtures.concept;
+
 // ───────────────────────── runner ─────────────────────────
 const results = [];
 // 이름에 `:` 가 든 묶음(`katex:*`·`lab-fraction:*`)은 `QA_SCENARIOS` 에 묶음 이름(전부) 또는 제 이름을 적을 때만 돈다
