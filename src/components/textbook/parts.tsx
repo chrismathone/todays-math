@@ -131,180 +131,190 @@ export function BookList({
           </li>
         ))}
       </ul>
-      <div className={styles.row}>
-        <label className={styles.field}>
-          <span>제목</span>
-          <input
-            value={title}
-            onChange={(event) => onTitle(event.target.value)}
-          />
-        </label>
-        <label className={styles.field}>
-          <span>권 코드</span>
-          <input
-            value={volumeCode}
-            placeholder="2-1-1"
-            onChange={(event) => onVolume(event.target.value)}
-          />
-        </label>
-        <label className={styles.field}>
-          <span>교육과정</span>
-          <input
-            value={curriculumVersion}
-            onChange={(event) => onCurriculum(event.target.value)}
-          />
-        </label>
-        <label className={styles.field}>
-          <span>목표 쪽수</span>
-          <input
-            value={pageTarget}
-            inputMode="numeric"
-            onChange={(event) => onPageTarget(event.target.value)}
-          />
-        </label>
-        <label className={styles.field}>
-          <span>학교급</span>
-          <select
-            aria-label="학교급"
-            value={schoolLevel}
-            onChange={(event) => {
-              const value = event.target.value;
-              onSchoolLevel(
-                value === "middle" || value === "high" ? value : "elementary",
-              );
-            }}
-          >
-            <option value="elementary">초등</option>
-            <option value="middle">중등</option>
-            <option value="high">고등</option>
-          </select>
-        </label>
-        <label className={styles.field}>
-          <span>학년</span>
-          <select
-            aria-label="학년"
-            value={grade}
-            onChange={(event) => onGrade(event.target.value)}
-          >
-            {Array.from({ length: gradeMax }, (_, index) =>
-              String(index + 1),
-            ).map((value) => (
-              <option key={value} value={value}>
-                {value}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label className={styles.field}>
-          <span>학기</span>
-          <select
-            aria-label="학기"
-            value={semester}
-            onChange={(event) =>
-              onSemester(event.target.value === "2" ? "2" : "1")
-            }
-          >
-            <option value="1">1학기</option>
-            <option value="2">2학기</option>
-          </select>
-        </label>
-        <label className={styles.field}>
-          <span>구성</span>
-          <select
-            aria-label="구성"
-            value={bookMode}
-            onChange={(event) => {
-              const value = event.target.value;
-              onBookMode(
-                value === "concept" || value === "practice"
-                  ? value
-                  : "integrated",
-              );
-            }}
-          >
-            <option value="integrated">통합</option>
-            <option value="concept">개념</option>
-            <option value="practice">연습</option>
-          </select>
-        </label>
-        <label className={styles.field}>
-          <span>안쪽 여백</span>
-          <input
-            aria-label="안쪽 여백"
-            value={innerMarginMm}
-            inputMode="numeric"
-            onChange={(event) => onInnerMargin(event.target.value)}
-          />
-        </label>
-        <label className={styles.field}>
-          <span>바깥 여백</span>
-          <input
-            aria-label="바깥 여백"
-            value={outerMarginMm}
-            inputMode="numeric"
-            onChange={(event) => onOuterMargin(event.target.value)}
-          />
-        </label>
-        <label className={styles.field}>
-          <span>표지</span>
-          <select
-            aria-label="표지"
-            value={coverMode}
-            onChange={(event) =>
-              onCoverMode(
-                event.target.value === "included" ? "included" : "separate",
-              )
-            }
-          >
-            <option value="separate">별도</option>
-            <option value="included">포함</option>
-          </select>
-        </label>
-        <label className={styles.field}>
-          <span>영상</span>
-          <select
-            value={videoPolicy}
-            onChange={(event) =>
-              onVideoPolicy(
-                event.target.value === "required" ? "required" : "optional",
-              )
-            }
-          >
-            <option value="optional">선택</option>
-            <option value="required">필수</option>
-          </select>
-        </label>
-        <label className={styles.field}>
-          <span>학생 글 해설</span>
-          <select
-            value={studentSolutionPolicy}
-            onChange={(event) =>
-              onSolutionPolicy(
-                event.target.value === "assigned" ? "assigned" : "never",
-              )
-            }
-          >
-            <option value="never">열지 않음</option>
-            <option value="assigned">배정한 QR만</option>
-          </select>
-        </label>
-        <button
-          type="button"
-          className={styles.primary}
-          disabled={
-            busy ||
-            title.trim() === "" ||
-            volumeCode.trim() === "" ||
-            curriculumVersion.trim() === "" ||
-            pageTarget.trim() === ""
-          }
-          onClick={onCreate}
-        >
-          새 교재
-        </button>
-        <button type="button" className={styles.button} onClick={onImport}>
-          가져오기
-        </button>
+      <div className={styles.bookForm}>
+        <div className={styles.bookDetails}>
+          <label className={styles.field}>
+            <span>제목</span>
+            <input
+              value={title}
+              onChange={(event) => onTitle(event.target.value)}
+            />
+          </label>
+          <label className={styles.field}>
+            <span>권 코드</span>
+            <input
+              value={volumeCode}
+              placeholder="2-1-1"
+              onChange={(event) => onVolume(event.target.value)}
+            />
+          </label>
+          <label className={styles.field}>
+            <span>교육과정</span>
+            <input
+              value={curriculumVersion}
+              onChange={(event) => onCurriculum(event.target.value)}
+            />
+          </label>
+          <label className={styles.field}>
+            <span>목표 쪽수</span>
+            <input
+              value={pageTarget}
+              inputMode="numeric"
+              onChange={(event) => onPageTarget(event.target.value)}
+            />
+          </label>
+        </div>
+        <div className={styles.bookOptions}>
+          <div className={styles.bookSettings}>
+            <label className={styles.field}>
+              <span>학교급</span>
+              <select
+                aria-label="학교급"
+                value={schoolLevel}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  onSchoolLevel(
+                    value === "middle" || value === "high"
+                      ? value
+                      : "elementary",
+                  );
+                }}
+              >
+                <option value="elementary">초등</option>
+                <option value="middle">중등</option>
+                <option value="high">고등</option>
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>학년</span>
+              <select
+                aria-label="학년"
+                value={grade}
+                onChange={(event) => onGrade(event.target.value)}
+              >
+                {Array.from({ length: gradeMax }, (_, index) =>
+                  String(index + 1),
+                ).map((value) => (
+                  <option key={value} value={value}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>학기</span>
+              <select
+                aria-label="학기"
+                value={semester}
+                onChange={(event) =>
+                  onSemester(event.target.value === "2" ? "2" : "1")
+                }
+              >
+                <option value="1">1학기</option>
+                <option value="2">2학기</option>
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>구성</span>
+              <select
+                aria-label="구성"
+                value={bookMode}
+                onChange={(event) => {
+                  const value = event.target.value;
+                  onBookMode(
+                    value === "concept" || value === "practice"
+                      ? value
+                      : "integrated",
+                  );
+                }}
+              >
+                <option value="integrated">통합</option>
+                <option value="concept">개념</option>
+                <option value="practice">연습</option>
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>안쪽 여백</span>
+              <input
+                aria-label="안쪽 여백"
+                value={innerMarginMm}
+                inputMode="numeric"
+                onChange={(event) => onInnerMargin(event.target.value)}
+              />
+            </label>
+            <label className={styles.field}>
+              <span>바깥 여백</span>
+              <input
+                aria-label="바깥 여백"
+                value={outerMarginMm}
+                inputMode="numeric"
+                onChange={(event) => onOuterMargin(event.target.value)}
+              />
+            </label>
+            <label className={styles.field}>
+              <span>표지</span>
+              <select
+                aria-label="표지"
+                value={coverMode}
+                onChange={(event) =>
+                  onCoverMode(
+                    event.target.value === "included" ? "included" : "separate",
+                  )
+                }
+              >
+                <option value="separate">별도</option>
+                <option value="included">포함</option>
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>영상</span>
+              <select
+                value={videoPolicy}
+                onChange={(event) =>
+                  onVideoPolicy(
+                    event.target.value === "required" ? "required" : "optional",
+                  )
+                }
+              >
+                <option value="optional">선택</option>
+                <option value="required">필수</option>
+              </select>
+            </label>
+            <label className={styles.field}>
+              <span>학생 글 해설</span>
+              <select
+                value={studentSolutionPolicy}
+                onChange={(event) =>
+                  onSolutionPolicy(
+                    event.target.value === "assigned" ? "assigned" : "never",
+                  )
+                }
+              >
+                <option value="never">열지 않음</option>
+                <option value="assigned">배정한 QR만</option>
+              </select>
+            </label>
+          </div>
+          <div className={styles.bookActions}>
+            <button
+              type="button"
+              className={styles.primary}
+              disabled={
+                busy ||
+                title.trim() === "" ||
+                volumeCode.trim() === "" ||
+                curriculumVersion.trim() === "" ||
+                pageTarget.trim() === ""
+              }
+              onClick={onCreate}
+            >
+              새 교재
+            </button>
+            <button type="button" className={styles.button} onClick={onImport}>
+              가져오기
+            </button>
+          </div>
+        </div>
       </div>
       <p className={styles.muted}>
         주요 구획은 짝수 왼쪽에서 시작합니다. 여백은 8mm 이상 40mm 이하입니다.
@@ -2826,10 +2836,13 @@ export function ImportPanel({
   onSubmit: (mode: ImportMode, file: File) => void;
 }) {
   return (
-    <section className={styles.panel} aria-label="가져오기">
+    <section
+      className={`${styles.panel} ${styles.importPanel}`}
+      aria-label="가져오기"
+    >
       <h2>가져오기</h2>
       <form
-        className={styles.stack}
+        className={styles.importForm}
         onSubmit={(event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);

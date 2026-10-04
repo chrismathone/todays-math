@@ -11,7 +11,10 @@ export interface ListeningPrintDocument {
       id: string;
       number: number;
       prompt: string;
+      instruction?: string;
       choices: string[];
+      image?: { dataUrl: string; width: number; height: number };
+      sourceNumber?: number;
       answer?: number;
       explanation?: string;
     }[];
@@ -36,7 +39,12 @@ export function listeningPrintDocument(
         id: question.id,
         number: ++number,
         prompt: question.prompt,
+        ...(question.instruction ? { instruction: question.instruction } : {}),
         choices: question.choices.map((choice) => choice.text),
+        ...(question.image ? { image: { ...question.image } } : {}),
+        ...(question.sourceNumber
+          ? { sourceNumber: question.sourceNumber }
+          : {}),
         ...(view === "teacher"
           ? {
               answer:

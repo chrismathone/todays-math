@@ -3,6 +3,7 @@ import type {
   ListeningMediaUploadReceipt,
 } from "@/contracts/englishListeningMedia.contract";
 import type { ListeningAudioRef } from "@/contracts/englishListening.contract";
+import { LISTENING_MAX_UPLOAD_BYTES } from "@/contracts/englishListeningSource.contract";
 import {
   LISTENING_API,
   listeningRequest,
@@ -10,7 +11,7 @@ import {
   ListeningRequestError,
 } from "./listeningClient";
 
-export const MAX_LISTENING_UPLOAD_BYTES = 16 * 1024 * 1024;
+export const MAX_LISTENING_UPLOAD_BYTES = LISTENING_MAX_UPLOAD_BYTES;
 const MAX_CHUNK_BYTES = 1024 * 1024;
 async function sha256(bytes: ArrayBuffer) {
   const hash = await crypto.subtle.digest("SHA-256", bytes);
@@ -19,7 +20,7 @@ async function sha256(bytes: ArrayBuffer) {
   ).join("");
 }
 
-/** Hash allocation is capped at 16MiB; transmission holds only one <=1MiB chunk. */
+/** Hash allocation is capped at 64MiB; transmission holds only one <=1MiB chunk. */
 export async function uploadListeningAudio(
   setId: string,
   file: File,
@@ -32,7 +33,7 @@ export async function uploadListeningAudio(
     !/\.(mp3|wav)$/i.test(file.name)
   ) {
     throw new ListeningRequestError(
-      "16MB 이하의 MP3 또는 WAV 파일을 선택하세요.",
+      "64MB 이하의 MP3 또는 WAV 파일을 선택하세요.",
       400,
       "file_limit",
     );
@@ -119,7 +120,7 @@ export async function uploadListeningAudio(
     complete.durationMs <= 0
   ) {
     throw new ListeningRequestError(
-      "재생 가능한 음원을 만들지 못했습니다. 파일 형식과 10분 이내 길이를 확인해 주세요.",
+      "재생 가능한 음원을 만들지 못했습니다. 파일 형식과 30분 이내 길이를 확인해 주세요.",
       422,
       "audio_not_ready",
     );

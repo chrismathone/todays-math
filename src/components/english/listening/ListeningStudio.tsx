@@ -28,6 +28,7 @@ import {
 } from "./listeningClient";
 import { uploadListeningAudio } from "./listeningUpload";
 import s from "./ListeningTeacherWorkspace.module.css";
+import tabs from "../EnglishTabs.module.css";
 
 type Area = "materials" | "create" | "assignments";
 
@@ -365,7 +366,7 @@ export default function ListeningStudio({
             새 자료 만들기
           </button>
         </header>
-        <nav className={s.groups} aria-label="영어듣기 영역">
+        <nav className={tabs.tabs} aria-label="영어듣기 영역">
           {(
             [
               ["materials", "듣기 자료"],
@@ -376,6 +377,7 @@ export default function ListeningStudio({
             <button
               type="button"
               key={key}
+              className={tabs.tab}
               aria-pressed={area === key}
               disabled={busy}
               onClick={() => {

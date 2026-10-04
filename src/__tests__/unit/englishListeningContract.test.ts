@@ -10,6 +10,50 @@ import {
 } from "@/mocks/englishListeningFixture";
 
 describe("listening strict contract", () => {
+  it("preserves imported assessment metadata and a full-question clip independently of answer evidence", () => {
+    const document = englishListeningFixture();
+    document.source = {
+      kind: "national_listening",
+      provider: "시·도교육청",
+      year: 2026,
+      round: 2,
+      month: null,
+      originalFilename: "questions.pdf",
+    };
+    document.provenance.kind = "uploaded_assessment";
+    const question = document.groups[0].questions[0];
+    question.sourceNumber = 7;
+    question.image = {
+      dataUrl: "data:image/png;base64,iVBORw0KGgo=",
+      width: 320,
+      height: 480,
+    };
+    question.audioRange = { startMs: 1000, endMs: 14000 };
+    const parsed = englishListeningDocumentSchema.parse(document);
+    expect(parsed.source).toEqual(document.source);
+    expect(parsed.groups[0].questions[0]).toEqual(question);
+    question.audioRange.endMs = document.groups[0].audio.durationMs + 1;
+    expect(englishListeningDocumentSchema.safeParse(document).success).toBe(
+      false,
+    );
+  });
+
+  it.each([
+    "https://example.test/answer.png",
+    "data:image/svg+xml;base64,PHN2Zz4=",
+    "data:image/png;base64,PHN2Zz4=",
+  ])("rejects external images and non-PNG payloads: %s", (dataUrl) => {
+    const document = englishListeningFixture();
+    document.groups[0].questions[0].image = {
+      dataUrl,
+      width: 320,
+      height: 480,
+    };
+    expect(englishListeningDocumentSchema.safeParse(document).success).toBe(
+      false,
+    );
+  });
+
   it("preserves a standalone account's null branch without inventing a tenant", () => {
     const document = { ...englishListeningFixture(), branchId: null };
     expect(englishListeningDocumentSchema.parse(document).branchId).toBeNull();

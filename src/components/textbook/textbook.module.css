@@ -115,6 +115,81 @@
   resize: vertical;
 }
 
+.bookForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  container-type: inline-size;
+}
+.bookDetails {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.bookOptions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+}
+.bookSettings {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr)) minmax(136px, 1.25fr);
+  gap: 8px;
+}
+.bookActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+.bookForm + .muted,
+.importForm + .muted {
+  margin-top: 8px;
+}
+.importPanel {
+  container-type: inline-size;
+}
+.importForm {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+}
+.importForm input[type="file"] {
+  min-width: 0;
+}
+
+@container (max-width: 1120px) {
+  .bookOptions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bookSettings {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@container (max-width: 700px) {
+  .bookDetails {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bookSettings {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container (max-width: 480px) {
+  .bookSettings {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container (max-width: 600px) {
+  .importForm {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .importForm > .field:first-child {
+    grid-column: 1 / -1;
+    max-width: 180px;
+  }
+}
+
 .panel {
   background: var(--learn-surface);
   border: 1px solid var(--learn-track);

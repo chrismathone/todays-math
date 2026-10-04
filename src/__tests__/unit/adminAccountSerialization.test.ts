@@ -77,6 +77,31 @@ function user(overrides: Partial<UserRow> = {}): UserRow {
 }
 
 describe("관리자 계정 응답", () => {
+  it("uses current managed assignment for editor locks independently of the sync badge", () => {
+    expect(managedAccount(user()).branchAssignmentLocked).toBe(true);
+    expect(
+      managedAccount(
+        user({
+          eywaManagedAccounts: [
+            mapping({ binding: { ...mapping().binding, enabled: false } }),
+          ],
+        }),
+      ).branchAssignmentLocked,
+    ).toBe(true);
+    expect(
+      managedAccount(
+        user({
+          eywaManagedAccounts: [
+            mapping({
+              currentUserId: null,
+              status: "ended",
+              endedAt: new Date(),
+            }),
+          ],
+        }),
+      ).branchAssignmentLocked,
+    ).toBe(false);
+  });
   it.each([null, row.branchId])(
     "serializes rollout restrictions independently of branch caps for branch %s",
     (branchId) => {

@@ -1,0 +1,98 @@
+.root {
+  margin-bottom: 18px;
+}
+.form {
+  margin-top: 14px;
+  padding: 20px;
+  border: 1px solid var(--e-line);
+  border-radius: var(--card-radius, 12px);
+  background: white;
+}
+.form h2 {
+  margin: 0 0 18px;
+  font-size: 18px;
+}
+.form p {
+  font-size: var(--text-body, 14px);
+  color: var(--e-muted);
+  line-height: 1.65;
+}
+.fields,
+.files,
+.rights {
+  border: 0;
+  margin: 0 0 14px;
+  padding: 0;
+  min-width: 0;
+}
+.fields {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.7fr 1.3fr 0.8fr 0.8fr;
+  gap: 12px;
+}
+.files {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.fields > label,
+.files > label {
+  min-width: 0;
+  margin-bottom: 0;
+}
+.files > label > input {
+  padding: 8px;
+}
+.questions {
+  margin: 18px 0;
+  max-height: 32rem;
+  overflow-y: auto;
+}
+.questions details {
+  border-top: 1px solid var(--e-line-soft);
+  padding: 12px 0;
+}
+.questions summary {
+  cursor: pointer;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.questions img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 12px;
+}
+.range {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 180px));
+  gap: 12px;
+  margin-top: 12px;
+}
+.rights {
+  display: grid;
+  gap: 12px;
+}
+.rights > label:not(:first-child) {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--text-body, 14px);
+}
+@media (max-width: 1050px) {
+  .fields {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .files {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .form {
+    padding: 14px;
+  }
+  .fields,
+  .files {
+    grid-template-columns: 1fr;
+  }
+}

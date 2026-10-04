@@ -53,7 +53,7 @@ export default function EnglishResourceBank({
       } else if (
         stateRef.current.dirty &&
         !window.confirm(
-          "저장하지 않은 지문이 있습니다. 작성 내용은 유지됩니다. 다른 화면으로 이동할까요?",
+          "저장하지 않은 자료가 있습니다. 작성 내용은 유지됩니다. 다른 화면으로 이동할까요?",
         )
       )
         event.preventDefault();
@@ -171,6 +171,7 @@ export default function EnglishResourceBank({
               <ListeningBank
                 active={active && listeningAllowed}
                 onOpenListening={onOpenListening}
+                onState={onState}
               />
             </div>
           )}

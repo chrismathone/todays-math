@@ -10,6 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import EnglishResourceBank, {
   type EnglishResourceBankProps,
 } from "@/components/english/bank/EnglishResourceBank";
+import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import {
   englishPassageDetailSchema,
   type EnglishBankMakerSeed,
@@ -814,6 +815,66 @@ describe("English resource bank", () => {
     expect(lastUrl.searchParams.has("cursor")).toBe(false);
   });
 
+  it.each([
+    ["https://mid.ebs.co.kr/english/engGrade?clsfnSystId=22000010", true],
+    ["https://www.ebsi.co.kr/ebs/pot/potg/EnglishListening01.ebs", true],
+    ["https://www.ebsi.co.kr/ebs/pot/potg/EnglishListening02.ebs", true],
+    ["https://www.ebsi.co.kr/ebs/pot/potg/EnglishListening03.ebs", true],
+    ["https://www.ebsi.co.kr/ebs/pot/potg/EnglishListening04.ebs", false],
+    [
+      "https://www.ebsi.co.kr.example.com/ebs/pot/potg/EnglishListening02.ebs",
+      false,
+    ],
+    ["http://www.ebsi.co.kr/ebs/pot/potg/EnglishListening02.ebs", false],
+    [
+      "https://user:password@www.ebsi.co.kr/ebs/pot/potg/EnglishListening02.ebs",
+      false,
+    ],
+    ["https://www.ebsi.co.kr:8443/ebs/pot/potg/EnglishListening02.ebs", false],
+    [
+      "https://www.ebsi.co.kr/ebs/pot/potg/EnglishListening02.ebs/audio.mp3",
+      false,
+    ],
+  ])(
+    "allows only exact official listening pages: %s",
+    async (sourceUrl, allowed) => {
+      installFetch((url) => {
+        if (url.pathname.endsWith("/listening/bank")) return paged([]);
+        if (url.pathname.endsWith("/listening/references"))
+          return paged([
+            {
+              id: "ebs-reference",
+              title: "공식 듣기 평가",
+              school: "high",
+              grade: 2,
+              year: 2025,
+              round: 2,
+              provider: "EBSi",
+              sourceUrl,
+              reuseStatus: "permission-required",
+              hosted: false,
+            },
+          ]);
+      });
+      render(<EnglishResourceBank {...props()} />);
+      fireEvent.click(screen.getByRole("tab", { name: "듣기은행" }));
+      change("듣기 출처", "ebs");
+      fireEvent.click(
+        await screen.findByRole("button", { name: /공식 듣기 평가/ }),
+      );
+      if (allowed) {
+        expect(
+          screen.getByRole("link", { name: "EBS 공식 자료 열기 ↗" }),
+        ).toHaveAttribute("href", sourceUrl);
+      } else {
+        expect(screen.queryByRole("link")).not.toBeInTheDocument();
+        expect(screen.getByRole("alert")).toHaveTextContent(
+          "공식 페이지 주소를 확인할 수 없습니다.",
+        );
+      }
+    },
+  );
+
   it("opens own listening via callback and filters EBS references by grade, year and round with page links only", async () => {
     const own = {
       id: secondId,
@@ -857,6 +918,24 @@ describe("English resource bank", () => {
     const fetcher = installFetch((url) => {
       if (url.pathname.endsWith("/listening/bank")) return paged([own]);
       if (url.pathname.endsWith("/listening/references")) return paged(refs);
+      if (url.pathname.endsWith(`/sets/${secondId}/compose-source`))
+        return json({
+          data: {
+            documentHash: hash,
+            detail: {
+              id: secondId,
+              revision: 1,
+              document: {
+                ...englishListeningFixture(),
+                id: secondId,
+                title: own.title,
+                groups: [],
+              },
+              publications: [],
+              mediaUrlsByAssetId: {},
+            },
+          },
+        });
     });
     const onOpenListening = vi.fn();
     const initialProps = props({ onOpenListening });
@@ -873,7 +952,7 @@ describe("English resource bank", () => {
       "true",
     );
     fireEvent.click(await screen.findByRole("button", { name: /학교 대화/ }));
-    fireEvent.click(screen.getByRole("button", { name: "듣기 자료 열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "원본 편집" }));
     expect(onOpenListening).toHaveBeenCalledWith(secondId);
     change("듣기 출처", "ebs");
     change("듣기 학년", "중2");

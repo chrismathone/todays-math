@@ -95,7 +95,7 @@ describe("bounded teacher audio upload", () => {
         new AbortController().signal,
         vi.fn(),
       ),
-    ).rejects.toThrow("16MB");
+    ).rejects.toThrow("64MB");
     expect(arrayBuffer).not.toHaveBeenCalled();
     expect(fetcher).not.toHaveBeenCalled();
   });
