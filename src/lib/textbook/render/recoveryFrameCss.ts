@@ -13,4 +13,24 @@ export const RECOVERY_FRAME_CSS = `
 .tb-recovered .tb-dialogue-page-note{position:absolute;top:270mm;height:8mm}.tb-dialogue-page-note .tb-dialogue-continue{height:100%;align-items:center}
 .tb-source-fragments{min-width:0}.tb-source-fragments[data-source-kind="unitSpreadLeft"],.tb-source-fragments[data-source-kind="unitSpreadRight"]{height:254mm;position:relative;background:#f2f6ef;--tb-accent:#0c6b5b;--tb-light:#cbded2}
 .tb-recovered[data-template-key^="reference-unitSpread"]{background:#f2f6ef}.tb-recovered[data-template-key^="reference-unitSpread"] .tb-edge-tab{display:none}
+.tb-recovery .tb-pair-heading{padding:0;background:none;border:0;font-size:10pt;line-height:1.65}
+.tb-pair-heading .tb-paired-title{display:flex;align-items:center;gap:3mm;min-height:10mm;margin-bottom:2mm;padding-bottom:2mm;border-bottom:1px solid var(--tb-light)}
+.tb-pair-heading .tb-paired-title h3{font-size:11.5pt;line-height:1.5;margin:0;color:var(--tb-accent)}.tb-pair-number{font-size:16pt;line-height:1.65;font-weight:700;color:#b0c2a5}
+.tb-pair-heading .tb-example-strategy{padding:0;background:none;font-size:7.8pt;line-height:1.8;margin-bottom:3mm}.tb-example-strategy p{margin:0}
+.tb-recovery .tb-problem[data-example-role]{padding:3mm 0 2mm;border-top:.6pt solid var(--tb-light);border-radius:0;background:none}
+.tb-recovery .tb-problem[data-example-role="example"]{border:0;padding:3mm 3.8mm;background:var(--tb-soft)}
+.tb-recovery .tb-problem[data-confirm-index="0"]{padding-top:0;border-top:0}
+.tb-recovery .tb-problem[data-example-role] .tb-problem-head{height:6mm;min-height:6mm;margin-bottom:1.5mm;line-height:1.65;flex-wrap:nowrap}
+.tb-recovery .tb-problem[data-example-role] .tb-problem-head strong,.tb-source-problem .tb-problem-head strong{font-size:12.5pt;line-height:1.65;letter-spacing:-.5px}
+.tb-recovery .tb-problem[data-example-role] .tb-prose,.tb-source-problem .tb-prose{font-size:9.1pt;line-height:1.8}
+.tb-recovery .tb-problem[data-example-role] .tb-problem-question{min-height:12mm}
+.tb-recovery .tb-problem[data-example-role] .tb-work-area,.tb-source-problem .tb-work-area{margin-top:1.2mm;flex:none}
+.tb-recovery .tb-problem[data-example-role] .tb-work-area[data-empty-work],.tb-source-problem .tb-work-area[data-empty-work]{display:none}
+.tb-recovery .tb-problem[data-example-role] .tb-worked{font-size:8.5pt;line-height:1.95;border-top:.5pt solid #dce2d6;padding-top:2mm;margin-top:3mm}
+.tb-recovery .tb-problem[data-example-role] .tb-worked h4{display:block;font-size:7pt;line-height:1.65;border:0;padding:0;margin:0 0 1mm;background:none;border-radius:0}
+.tb-recovery .tb-problem[data-example-role] .tb-worked-answer{border:0;padding:0;margin-top:2mm}
+.tb-paired-group,.tb-paired-cols,.tb-paired-worked,.tb-paired-twins{position:absolute;min-width:0}
+.tb-source-problem{padding:3mm 0 2mm;border-top:.6pt solid var(--tb-light)}.tb-source-problem .tb-problem-head{min-height:5.5mm;margin-bottom:1.2mm;line-height:1.65}
+.tb-source-problem[data-source-kind="drill"] .tb-problem-head{min-height:4.5mm}.tb-source-problem[data-source-kind="drill"] .tb-prose{font-size:8.8pt}
+.tb-source-problem[data-source-kind="basic"]{padding:1.2mm 0 .8mm}.tb-source-problem[data-source-kind="basic"] .tb-problem-head{margin:0}.tb-source-problem[data-source-kind="basic"] .tb-prose{font-size:8.7pt}
 `;

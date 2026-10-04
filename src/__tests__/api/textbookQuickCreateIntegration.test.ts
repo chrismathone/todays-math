@@ -265,11 +265,19 @@ describe("quick create prepared script and frozen visual integration", () => {
           `J32${String(index + 1).padStart(3, "0")}`,
         ],
       );
-      for (let count = 0; count < 8; count++)
-        await insertBankProblem(pg, id, {
+      for (let count = 0; count < 8; count++) {
+        const bankItem = await insertBankProblem(pg, id, {
           difficulty: "기본",
           questionType: "단답형",
+          content: `$${count + 2} + ${index + 1}$을 계산하시오.`,
+          answer: String(count + index + 3),
+          solution: `$${count + 2} + ${index + 1} = ${count + index + 3}$`,
         });
+        await pg.query(`UPDATE "problem" SET "family_key"=$2 WHERE "id"=$1`, [
+          bankItem.id,
+          `mid:arithmetic-addition:${index}`,
+        ]);
+      }
     }
     const catalogResponse = await GET(
       new Request(
@@ -318,6 +326,9 @@ describe("quick create prepared script and frozen visual integration", () => {
       exchange.items.every((item) => item.learningStage !== "written"),
     ).toBe(true);
     const legacy = structuredClone(exchange);
+    legacy.conceptIntegration!.concepts.forEach((concept) => {
+      concept.mappingVersion = "quick-create.unit-triple.v1";
+    });
     for (const section of legacy.units.flatMap((u) => u.sections))
       for (const block of section.blocks)
         if (block.kind === "concept-recall" && /^\d+\.\s/.test(block.markdown))

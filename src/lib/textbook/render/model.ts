@@ -56,6 +56,9 @@ type BlockBase = {
   dialogueGuide?: string;
   measurementMinHeightMm?: number;
   unitIntroPart?: "left" | "right" | "single";
+  exampleGroupNumber?: number;
+  exampleConfirmIndex?: number;
+  dialogueScriptTotal?: number;
 };
 export type RenderBlock = BlockBase &
   (
@@ -178,7 +181,7 @@ export function createTextbookRenderModel(
     ),
   ];
   let conceptOrdinal = 0;
-  return {
+  const model: TextbookRenderModel = {
     title: exchange.config.title,
     editionId: exchange.edition.editionId,
     config: exchange.config,
@@ -287,8 +290,6 @@ export function createTextbookRenderModel(
                     }));
                   case "concept-recall": {
                     const phase = variant === "answers" ? "study" : b.phase;
-                    // Validate the complete source before projecting any individual paragraphs.
-                    recallPieces(b.markdown, phase);
                     const node = b.semantic?.node;
                     const rows =
                       node?.kind === "rows" || node?.kind === "concept"
@@ -322,7 +323,9 @@ export function createTextbookRenderModel(
                             b.phase,
                             variant === "answers",
                           ),
-                          pieces: recallPieces(b.markdown, phase),
+                          // Structured rows are validated/projected by their own format parser.
+                          // TeX braces are not legacy recall delimiters.
+                          pieces: [],
                           continuation:
                             b.semantic?.continuation ??
                             (previous?.kind === "concept-recall" &&
@@ -334,6 +337,7 @@ export function createTextbookRenderModel(
                         },
                       ];
                     }
+                    recallPieces(b.markdown, phase);
                     const parts = splitRecallMarkdown(b.markdown);
                     return parts.map((markdown, i) => ({
                       ...base,
@@ -454,4 +458,19 @@ export function createTextbookRenderModel(
       ),
     ),
   };
+  const scriptTotals = new Map<string, number>();
+  for (const block of model.sections.flatMap((section) => section.blocks)) {
+    const source = block.semantic?.source;
+    if (source?.kind === "opening" && source.scriptIndex)
+      scriptTotals.set(
+        source.unit,
+        Math.max(scriptTotals.get(source.unit) ?? 0, source.scriptIndex),
+      );
+  }
+  for (const block of model.sections.flatMap((section) => section.blocks)) {
+    const source = block.semantic?.source;
+    if (source?.kind === "opening")
+      block.dialogueScriptTotal = scriptTotals.get(source.unit);
+  }
+  return model;
 }

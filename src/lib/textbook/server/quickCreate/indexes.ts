@@ -15,30 +15,6 @@ export async function appendIndexes(ctx: QuickCreateAssembly): Promise<void> {
   const { components, sections, units, concepts, items, outline, addSection } =
     ctx;
   const originalUnit = ctx.unitKey;
-  if (components.tableOfContents) {
-    const entries: References = sections.map((section) => ({
-      key: section.sectionKey,
-      label: section.title,
-      targetUnitKey: section.unitKey,
-      targetSectionKey: section.sectionKey,
-    }));
-    if (!entries.length)
-      entries.push(
-        ...units.map((unit) => ({
-          key: `toc-${unit.id}`,
-          label: unit.section,
-          pageLabel: "—",
-        })),
-      );
-    ctx.unitKey = "front-matter";
-    const toc = addSection(
-      "목차",
-      "auto-table-of-contents",
-      referenceActivityBlocks("tableOfContents", entries),
-    );
-    sections.splice(sections.indexOf(toc), 1);
-    sections.unshift(toc);
-  }
   if (components.conceptIndex || components.typeIndex) {
     ctx.unitKey = "indexes";
     outline.push({
@@ -108,6 +84,31 @@ export async function appendIndexes(ctx: QuickCreateAssembly): Promise<void> {
       "auto-type-index",
       referenceActivityBlocks("typeIndex", entries),
     );
+  }
+  if (components.tableOfContents) {
+    // Include the independently selected index sections after they exist.
+    const entries: References = sections.map((section) => ({
+      key: section.sectionKey,
+      label: section.title,
+      targetUnitKey: section.unitKey,
+      targetSectionKey: section.sectionKey,
+    }));
+    if (!entries.length)
+      entries.push(
+        ...units.map((unit) => ({
+          key: `toc-${unit.id}`,
+          label: unit.section,
+          pageLabel: "—",
+        })),
+      );
+    ctx.unitKey = "front-matter";
+    const toc = addSection(
+      "목차",
+      "auto-table-of-contents",
+      referenceActivityBlocks("tableOfContents", entries),
+    );
+    sections.splice(sections.indexOf(toc), 1);
+    sections.unshift(toc);
   }
   ctx.unitKey = originalUnit;
 }
