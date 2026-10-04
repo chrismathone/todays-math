@@ -1,8 +1,17 @@
 // @vitest-environment node
 /** Real PostgreSQL and canonical PCM files; no shared database fallback. */
-import { createHash, randomUUID } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
+import { deflateSync } from "node:zlib";
 import { Prisma, PrismaClient } from "@prisma/client";
-import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import { createListeningRuntime } from "@/lib/english/listening/runtime/service";
 import { createListeningMediaAccess } from "@/lib/english/listening/runtime/mediaAccess";
 import { createListeningMediaService } from "@/lib/english/listening/media/service";
@@ -15,6 +24,7 @@ import {
 import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import type { ListeningComposeSource } from "@/contracts/englishListeningCompose.contract";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
+import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
 
 vi.mock("server-only", () => ({}));
 const url = process.env.LISTENING_TEST_DATABASE_URL;
@@ -25,7 +35,7 @@ if (
 )
   throw new Error("Refusing non-isolated listening database");
 const db = url ? new PrismaClient({ datasources: { db: { url } } }) : null;
-const now = new Date("2026-10-04T03:00:00Z");
+const now = new Date();
 const runtime = db ? createListeningRuntime(db, () => now) : null;
 const store = db ? new PrismaListeningMediaStore(db) : null;
 const media = db
@@ -37,6 +47,7 @@ const media = db
   : null;
 const ownerId = randomUUID(),
   otherId = randomUUID();
+const branchIds: string[] = [];
 const owner: ListeningActor = { kind: "teacher", userId: ownerId };
 const other: ListeningActor = { kind: "teacher", userId: otherId };
 const rights = englishListeningFixture().rights;
@@ -62,6 +73,43 @@ function wave(marker = 0) {
 }
 async function* bytes(value: Uint8Array) {
   yield value;
+}
+/** A real PNG with random RGBA pixels avoids compressible padding or malformed image fixtures. */
+function documentBudgetImage() {
+  const width = 400,
+    height = 100;
+  const chunk = (kind: string, content: Buffer) => {
+    const payload = Buffer.concat([Buffer.from(kind), content]);
+    let crc = 0xffffffff;
+    for (const byte of payload) {
+      crc ^= byte;
+      for (let bit = 0; bit < 8; bit++)
+        crc = (crc >>> 1) ^ (crc & 1 ? 0xedb88320 : 0);
+    }
+    const result = Buffer.alloc(content.length + 12);
+    result.writeUInt32BE(content.length, 0);
+    payload.copy(result, 4);
+    result.writeUInt32BE((crc ^ 0xffffffff) >>> 0, result.length - 4);
+    return result;
+  };
+  const header = Buffer.alloc(13);
+  header.writeUInt32BE(width, 0);
+  header.writeUInt32BE(height, 4);
+  header[8] = 8;
+  header[9] = 6;
+  const pixels = randomBytes((width * 4 + 1) * height);
+  for (let row = 0; row < height; row++) pixels[row * (width * 4 + 1)] = 0;
+  const png = Buffer.concat([
+    Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]),
+    chunk("IHDR", header),
+    chunk("IDAT", deflateSync(pixels)),
+    chunk("IEND", Buffer.alloc(0)),
+  ]);
+  return {
+    dataUrl: `data:image/png;base64,${png.toString("base64")}`,
+    width,
+    height,
+  };
 }
 const edit = (set: ListeningSetDetail) => ({
   title: set.document.title,
@@ -175,7 +223,28 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
         },
       });
   });
+  afterEach(async () => {
+    await db!.$transaction(async (tx) => {
+      await tx.$executeRaw(
+        Prisma.sql`DELETE FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId" IN (${ownerId}::uuid,${otherId}::uuid))`,
+      );
+      await tx.$executeRaw(
+        Prisma.sql`DELETE FROM english_listening_media_asset WHERE "ownerId" IN (${ownerId}::uuid,${otherId}::uuid)`,
+      );
+      await tx.$executeRaw(
+        Prisma.sql`DELETE FROM english_listening_audit WHERE actor_id IN (${ownerId}::uuid,${otherId}::uuid)`,
+      );
+      await tx.$executeRaw(
+        Prisma.sql`DELETE FROM english_listening_set WHERE owner_id IN (${ownerId}::uuid,${otherId}::uuid)`,
+      );
+      if (branchIds.length)
+        await tx.branch.deleteMany({
+          where: { id: { in: branchIds.splice(0) } },
+        });
+    });
+  });
   afterAll(async () => {
+    await db?.user.deleteMany({ where: { id: { in: [ownerId, otherId] } } });
     await db?.$disconnect();
   });
   it("copies a full round with fresh IDs and set-owned sealed bytes while originals stay unchanged", async () => {
@@ -275,6 +344,7 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     const branch = await db!.branch.create({
       data: { name: "다른 듣기 지점" },
     });
+    branchIds.push(branch.id);
     await db!.$executeRaw(
       Prisma.sql`UPDATE english_listening_set SET branch_id=${branch.id}::uuid,document=jsonb_set(document,'{branchId}',to_jsonb(${branch.id}::text)) WHERE id=${original.source.detail.id}::uuid`,
     );
@@ -312,5 +382,84 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     await expect(print(stale, "student")).rejects.toMatchObject({
       status: 409,
     });
+  });
+  it("rolls back all cloned sets, sealed assets and blobs when two valid image rounds exceed the document budget", async () => {
+    const image = documentBudgetImage();
+    const originals: ListeningComposeSource[] = [];
+    for (const marker of [5, 6]) {
+      const original = await source(marker);
+      const input = edit(original.source.detail);
+      const group = input.groups[0];
+      const question = group.questions[0];
+      group.questions = Array.from({ length: 10 }, (_, index) => {
+        const ids = new Map(
+          question.choices.map((choice) => [choice.id, randomUUID()]),
+        );
+        return {
+          ...question,
+          id: randomUUID(),
+          sourceNumber: index + 1,
+          image,
+          choices: question.choices.map((choice) => ({
+            ...choice,
+            id: ids.get(choice.id)!,
+          })),
+          answerChoiceId: ids.get(question.answerChoiceId!)!,
+        };
+      });
+      const saved = await runtime!.updateSet(
+        owner,
+        original.source.detail.id,
+        input,
+      );
+      const size = Buffer.byteLength(JSON.stringify(saved.document), "utf8");
+      expect(size).toBeGreaterThan(2 * 1024 * 1024);
+      expect(size).toBeLessThan(LISTENING_MAX_DOCUMENT_BYTES);
+      originals.push(await runtime!.composeSource(owner, saved.id));
+    }
+    expect(
+      originals.reduce(
+        (total, original) =>
+          total +
+          Buffer.byteLength(JSON.stringify(original.detail.document), "utf8"),
+        0,
+      ),
+    ).toBeGreaterThan(LISTENING_MAX_DOCUMENT_BYTES);
+    const inventory = async () => {
+      const [row] = await db!.$queryRaw<
+        {
+          sets: bigint;
+          assets: bigint;
+          blobs: bigint;
+          audits: bigint;
+          bytes: bigint;
+        }[]
+      >(Prisma.sql`
+        SELECT (SELECT count(*) FROM english_listening_set WHERE owner_id=${ownerId}::uuid) AS sets,
+        (SELECT count(*) FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS assets,
+        (SELECT count(*) FROM english_listening_media_blob WHERE "assetId" IN (SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid)) AS blobs,
+        (SELECT count(*) FROM english_listening_audit WHERE actor_id=${ownerId}::uuid) AS audits,
+        (SELECT COALESCE(sum("reservedBytes"),0)::bigint FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS bytes`);
+      return row;
+    };
+    const before = await inventory();
+    expect(before.sets).toBe(2n);
+    expect(before.assets).toBe(2n);
+    await expect(
+      runtime!.composeSet(owner, {
+        title: "문서 한도 초과 시험지",
+        selections: originals.map((original) => selection(original)),
+      }),
+    ).rejects.toMatchObject({
+      status: 400,
+      code: "VALIDATION_ERROR",
+      message:
+        "시험지의 문항 그림이 너무 많습니다. 시험지를 나눠 만들어 주세요.",
+    });
+    expect(await inventory()).toEqual(before);
+    for (const original of originals)
+      expect(
+        (await runtime!.composeSource(owner, original.detail.id)).documentHash,
+      ).toBe(original.documentHash);
   });
 });
