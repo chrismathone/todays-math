@@ -491,28 +491,12 @@
   padding: 9px 13px;
 }
 .tabs {
-  display: flex;
-  gap: 6px;
+  composes: tabs from "./EnglishTabs.module.css";
   margin: 0 0 18px;
   padding: 0;
-  border-bottom: 1px solid var(--e-line-soft);
 }
 .tab {
-  min-height: var(--control-height, 44px);
-  padding: 0 12px;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  border-radius: 0;
-  background: transparent;
-  color: var(--e-muted);
-  font-weight: 600;
-}
-.tab:hover {
-  color: var(--e-ink);
-}
-.tab[aria-selected="true"] {
-  color: var(--e-accent-ink);
-  border-bottom-color: var(--e-accent);
+  composes: tab from "./EnglishTabs.module.css";
 }
 .checks {
   display: grid;

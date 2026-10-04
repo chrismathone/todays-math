@@ -52,6 +52,7 @@ import { validateEnglishDraft } from "@/lib/english/validate";
 import AutoGrowTextarea from "./AutoGrowTextarea";
 
 import s from "./EnglishMaker.module.css";
+import tabs from "./EnglishTabs.module.css";
 
 export interface EnglishMakerViewProps {
   exam: EnglishExam;
@@ -1119,6 +1120,7 @@ export default function EnglishMakerView({
             key={item.id}
             type="button"
             role="tab"
+            className={tabs.tab}
             disabled={busy !== null}
             id={tabId(item.id)}
             aria-selected={tab === item.id}

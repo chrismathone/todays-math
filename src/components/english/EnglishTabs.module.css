@@ -1,0 +1,47 @@
+/* Shared English page selectors; their existing tab/pressed semantics stay with each caller. */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tabs > button.tab {
+  box-sizing: border-box;
+  height: 44px;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--learn-ink, #172b4d);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tabs > button.tab:enabled {
+  cursor: pointer;
+}
+
+.tabs > button.tab:enabled:hover {
+  background: var(--learn-neutral, #edf0f6);
+}
+
+.tabs > button.tab:is([aria-selected="true"], [aria-pressed="true"]),
+.tabs > button.tab:is([aria-selected="true"], [aria-pressed="true"]):hover {
+  border-color: var(--learn-accent, #3159df);
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+}
+
+.tabs > button.tab:disabled {
+  cursor: default;
+  color: var(--learn-muted, #596c86);
+  background: var(--learn-bg, #f4f6fa);
+}
+
+.tabs > button.tab:focus-visible {
+  outline: 2px solid var(--learn-accent, #3159df);
+  outline-offset: 3px;
+}
