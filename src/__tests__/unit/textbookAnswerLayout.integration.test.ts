@@ -59,6 +59,53 @@ const sha256 = (bytes: Uint8Array | string) =>
   createHash("sha256").update(bytes).digest("hex");
 
 type Problem = Extract<RenderBlock, { kind: "problem" }>;
+interface Placement {
+  blockId: string;
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+/** Every placed block of a chunk, in order, read from its inline position. */
+function chunkPlacements(html: string): Placement[] {
+  return [
+    ...html.matchAll(
+      /<div class="tb-block[^"]*"[^>]*data-block-id="([^"]+)"[^>]*style="left:([\d.]+)mm;top:([\d.]+)mm;width:([\d.]+)mm;height:([\d.]+)mm"/g,
+    ),
+  ].map((m) => ({
+    blockId: m[1],
+    left: Number(m[2]),
+    top: Number(m[3]),
+    width: Number(m[4]),
+    height: Number(m[5]),
+  }));
+}
+/**
+ * The student chunk against the one the failing run printed. Every block is at the same place
+ * and width. A height is the printed one, or the row height the student layout now reserves for
+ * the section's problems (the tallest of them) — never anything else. Returns the raised blocks.
+ */
+function expectStudentChunkAsPrinted(html: string, printed: string) {
+  const [now, then] = [chunkPlacements(html), chunkPlacements(printed)];
+  const position = (b: Placement) => [b.blockId, b.left, b.top, b.width];
+  expect(now.map(position)).toEqual(then.map(position));
+  const reserved = Math.max(
+    ...then.filter((b) => b.width < 100).map((b) => b.height),
+  );
+  const raised: Array<{ blockId: string; printed: number; now: number }> = [];
+  now.forEach((block, i) => {
+    if (block.height === then[i].height) return;
+    expect(block.width, block.blockId).toBeLessThan(100);
+    expect(block.height, block.blockId).toBe(reserved);
+    expect(block.height).toBeGreaterThan(then[i].height);
+    raised.push({
+      blockId: block.blockId,
+      printed: then[i].height,
+      now: block.height,
+    });
+  });
+  return { blocks: now.length, reservedRowMm: reserved, raised };
+}
 interface Probe {
   sheet: string;
   widthMm: number;
@@ -501,13 +548,10 @@ describe.skipIf(!run)("the answer variant of a real automatic book", () => {
     expect(JSON.stringify(data.exchange)).toBe(before);
 
     // The student chunk: every block where the failing run printed it.
-    const placements = (html: string) =>
-      [
-        ...html.matchAll(
-          /<div class="tb-block[^"]*"[^>]*data-block-id="([^"]+)"[^>]*style="([^"]*)"/g,
-        ),
-      ].map((m) => `${m[1]} ${m[2]}`);
-    expect(placements(studentChunk.html)).toEqual(placements(printed));
+    const studentAsPrinted = expectStudentChunkAsPrinted(
+      studentChunk.html,
+      printed,
+    );
     expect(studentChunk.pages.map((p) => p.physicalPageIndex)).toEqual(
       [...printed.matchAll(/data-textbook-page="(\d+)"/g)].map((m) =>
         Number(m[1]),
@@ -551,6 +595,7 @@ describe.skipIf(!run)("the answer variant of a real automatic book", () => {
           answersPdfSha256: sha256(answerChunk.pdf),
           failedBlock: failed,
           problems: placed,
+          studentAsPrinted,
         },
         null,
         2,
@@ -595,17 +640,109 @@ describe.skipIf(!run)("the answer variant of a real automatic book", () => {
     const problems = student.section.blocks.filter(
       (b): b is Problem => b.kind === "problem",
     );
+    // The page each block was on in the student chunk the failing run printed.
+    const pageStarts = [...printed.matchAll(/data-textbook-page="(\d+)"/g)].map(
+      (m) => ({ at: m.index!, page: m[1] }),
+    );
+    const originalPageOf = (blockId: string) => {
+      const at = printed.indexOf(`data-block-id="${blockId}"`);
+      return pageStarts.filter((start) => start.at < at).pop()!.page;
+    };
+    // The student chunk rendered for these references is the one that was printed.
+    const studentAsPrinted = expectStudentChunkAsPrinted(
+      studentChunk.html,
+      printed,
+    );
+    const labels: Array<{ blockId: string; label: string }> = [];
     for (const problem of problems) {
       const at = answerChunk.html.indexOf(`data-block-id="${problem.id}"`);
       const label = /<h4>정답 · 문제 (\d+)쪽<\/h4>/.exec(
         answerChunk.html.slice(at),
       )![1];
+      labels.push({ blockId: problem.id, label });
+      // The student page of this run, which is the page of the original printed chunk.
       expect(label).toBe(studentPageOf.get(problem.itemId));
+      expect(label).toBe(originalPageOf(problem.id));
     }
-    // The answer book's own page map is not the student's.
+    expect(labels.map((l) => l.label)).toEqual(["22", "22", "23", "23", "24"]);
+    // The answer book's own page map is not the student's, and every answer is beside.
     expect(answerChunk.pageMap.map((p) => p.itemId)).toEqual(
       studentChunk.pageMap.map((p) => p.itemId),
     );
+    expect(answerChunk.pageMap).not.toEqual(studentChunk.pageMap);
     expect(answerChunk.pages.length).toBeGreaterThan(studentChunk.pages.length);
+    expect(
+      (answerChunk.html.match(/data-answer-placement="beside"/g) ?? []).length,
+    ).toBe(problems.length);
+    const placed = answerChunk.pages.flatMap((page) =>
+      page.blocks
+        .filter((b) => problems.some((problem) => problem.id === b.blockId))
+        .map((b) => ({ ...b, page: page.physicalPageIndex })),
+    );
+    expect(placed.map((b) => b.blockId)).toEqual(problems.map((b) => b.id));
+    for (const block of placed) {
+      expect(block.widthMm).toBe(179);
+      expect(block.yMm + block.heightMm).toBeLessThanOrEqual(
+        A4.bodyBottomMm + 0.05,
+      );
+    }
+
+    // The student pages are still verified, against the student's own widths and page order.
+    const refused = async (
+      change: (pages: typeof studentChunk.pages) => void,
+    ) => {
+      const pages = structuredClone(studentChunk.pages);
+      change(pages);
+      return renderTextbookChunk({
+        ...input,
+        variant: "answers",
+        studentPages: pages,
+      });
+    };
+    const block = (pages: typeof studentChunk.pages) =>
+      pages
+        .flatMap((page) => page.blocks)
+        .find((placedBlock) => placedBlock.blockId === data.blockId)!;
+    // A student block given the answer book's width.
+    await expect(
+      refused((pages) => {
+        block(pages).widthMm = 179;
+      }),
+    ).rejects.toThrow(/STUDENT_PLACEMENT/);
+    // A page carried over out of sequence.
+    await expect(
+      refused((pages) => {
+        pages[1].physicalPageIndex += 1;
+        pages[1].printedPageLabel = String(pages[1].physicalPageIndex);
+      }),
+    ).rejects.toThrow(/STUDENT_PAGE_ORDER/);
+    // A page lost on the way.
+    await expect(refused((pages) => void pages.pop())).rejects.toThrow(
+      /STUDENT_MISSING_BLOCK/,
+    );
+    writeFileSync(
+      path.join(OUT, "answer-layout-labels.json"),
+      JSON.stringify(
+        {
+          sectionKey: student.section.sectionKey,
+          studentPages: studentChunk.pages.map((p) => p.physicalPageIndex),
+          answerPages: answerChunk.pages.map((p) => p.physicalPageIndex),
+          labels,
+          answers: placed,
+          studentAsPrinted,
+          refused: [
+            "STUDENT_PLACEMENT (student block at 179mm)",
+            "STUDENT_PAGE_ORDER (page out of sequence)",
+            "STUDENT_MISSING_BLOCK (page lost)",
+          ],
+        },
+        null,
+        2,
+      ),
+    );
+    writeFileSync(
+      path.join(OUT, "answer-layout-answers-with-labels.pdf"),
+      answerChunk.pdf,
+    );
   }, 300_000);
 });

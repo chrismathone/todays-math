@@ -19,20 +19,24 @@ export const ANSWER_CASE_COLUMN_GAP_MM = 7;
 type ItemLayout = TextbookItem["layout"];
 
 /**
- * The layout of a problem in the answer variant. Unchanged, with no placement, when
+ * The layout of a problem in the answer variant. Only a problem of a manuscript with semantic
+ * metadata is set beside its answer. Unchanged, with no placement, when
+ * - the block has no semantic metadata: a manuscript saved before it keeps the answer book it
+ *   has always printed, stacked in the student's columns;
  * - the problem already spans both columns: its question keeps the width it was written for;
  * - it belongs to a linked example group: the pair keeps its own columns and widths;
  * - it comes from an original page: that page's layout is its own.
- * The stored layout object is never modified.
+ * The stored layout object is returned as it is, never modified.
  */
 export function answerCaseLayout(
   layout: ItemLayout,
   semantic: Pick<TextbookSemantic, "source" | "node"> | undefined,
 ): { layout: ItemLayout; placement?: AnswerPlacement } {
   if (
+    !semantic ||
     layout.columnSpan !== 1 ||
-    semantic?.node?.kind === "exampleGroup" ||
-    semantic?.source
+    semantic.node?.kind === "exampleGroup" ||
+    semantic.source
   )
     return { layout };
   return { layout: { ...layout, columnSpan: 2 }, placement: "beside" };

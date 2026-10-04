@@ -7,7 +7,12 @@
 import { describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 import { canonicalJson } from "@/lib/textbook/canonical";
-import { A4, blockWidthMm } from "@/lib/textbook/layout/paginate";
+import {
+  A4,
+  blockWidthMm,
+  paginateTextbookSections,
+  studentPageMapFromPages,
+} from "@/lib/textbook/layout/paginate";
 import {
   ANSWER_CASE_COLUMN_GAP_MM,
   ANSWER_CASE_GRID_STYLE,
@@ -50,7 +55,14 @@ describe("which problems take the row in the answer variant", () => {
     });
     // The stored layout object is not the one that changed.
     expect(stored).toEqual(layout);
-    expect(answerCaseLayout(stored, undefined).placement).toBe("beside");
+  });
+
+  it("leaves a block without semantic metadata exactly as it was saved", () => {
+    // A manuscript saved before semantic metadata keeps the answer book it has always had.
+    const result = answerCaseLayout(layout, undefined);
+    expect(result).toEqual({ layout });
+    expect(result.layout).toBe(layout);
+    expect("placement" in result).toBe(false);
   });
 
   it("leaves a linked example group, an original page and a wide problem as they are", () => {
@@ -73,7 +85,7 @@ describe("which problems take the row in the answer variant", () => {
       expect(result.layout).toBe(layout);
     }
     const wide = { ...layout, columnSpan: 2 as const };
-    const result = answerCaseLayout(wide, undefined);
+    const result = answerCaseLayout(wide, { activity: "written" } as never);
     expect(result.placement).toBeUndefined();
     expect(result.layout).toBe(wide);
   });
@@ -88,8 +100,16 @@ describe("which problems take the row in the answer variant", () => {
 
 describe("the render model", () => {
   const exchange = () => {
-    const fixture = textbookFixture(1, 4);
-    // A legacy item with no writing space, a wide written item, and a linked pair.
+    const fixture = textbookFixture(1, 5);
+    const blockOf = (index: number) =>
+      fixture.units[0].sections[0].blocks.find(
+        (b) => b.kind === "problem" && b.itemId === fixture.items[index].itemId,
+      )!;
+    // Two ordinary problems of a manuscript with semantic metadata (one with no writing
+    // space), a wide written one, a linked pair, and a fifth saved without any metadata.
+    blockOf(0).semantic = { activity: "practice" };
+    blockOf(1).semantic = { activity: "basicCheck" };
+    blockOf(2).semantic = { activity: "written" };
     fixture.items[1].layout = {
       ...fixture.items[1].layout,
       minWorkLines: 0,
@@ -97,10 +117,7 @@ describe("the render model", () => {
       maxWorkLines: 0,
     };
     fixture.items[2].layout = { ...fixture.items[2].layout, columnSpan: 2 };
-    const block = fixture.units[0].sections[0].blocks.find(
-      (b) => b.kind === "problem" && b.itemId === fixture.items[3].itemId,
-    )!;
-    block.semantic = {
+    blockOf(3).semantic = {
       activity: "workedExamples",
       node: {
         kind: "exampleGroup",
@@ -124,7 +141,7 @@ describe("the render model", () => {
     const fixture = exchange();
     const before = canonicalJson(fixture);
     const student = problems(createTextbookRenderModel(fixture, "student"));
-    expect(student).toHaveLength(4);
+    expect(student).toHaveLength(5);
     student.forEach((block, i) => {
       // The very layout object of the item: nothing derived, nothing copied.
       expect(block.layout).toBe(fixture.items[i].layout);
@@ -134,7 +151,7 @@ describe("the render model", () => {
     });
     // The fixture page is 176mm wide between its margins: two 84.5mm columns and a 7mm gap.
     expect(student.map((b) => blockWidthMm(fixture.config, b))).toEqual([
-      84.5, 84.5, 176, 84.5,
+      84.5, 84.5, 176, 84.5, 84.5,
     ]);
     expect(canonicalJson(fixture)).toBe(before);
   });
@@ -152,9 +169,13 @@ describe("the render model", () => {
       [2, null],
       // A linked pair keeps its own columns.
       [1, null],
+      // No semantic metadata: the answer stays stacked in the student's column.
+      [1, null],
     ]);
     expect(answers[2].layout).toBe(fixture.items[2].layout);
     expect(answers[3].layout).toBe(fixture.items[3].layout);
+    expect(answers[4].layout).toBe(fixture.items[4].layout);
+    expect("answerPlacement" in answers[4]).toBe(false);
     // Everything else of the saved layout is carried over, the legacy zero included.
     expect(answers[0].layout).toEqual({
       ...fixture.items[0].layout,
@@ -164,7 +185,7 @@ describe("the render model", () => {
     expect(answers[1].layout.minWorkLines).toBe(0);
     // The saved items and the exchange are untouched.
     expect(fixture.items.map((item) => item.layout.columnSpan)).toEqual([
-      1, 1, 2, 1,
+      1, 1, 2, 1, 1,
     ]);
     expect(canonicalJson(fixture)).toBe(before);
   });
@@ -328,5 +349,153 @@ describe("the printed answer case", () => {
     );
     expect(answerDom.querySelectorAll(".tb-work-line")).toHaveLength(0);
     expect(answerDom.querySelector(".tb-answer-case")).not.toBeNull();
+  });
+});
+
+describe("student page references under a wider answer projection", () => {
+  /**
+   * A manuscript with semantic metadata: its ordinary answers take the row. A problem is
+   * 130mm tall, so the student book has two problems on each of pages 2 and 3.
+   */
+  function world() {
+    const fixture = textbookFixture(1, 4);
+    for (const block of fixture.units[0].sections[0].blocks)
+      if (block.kind === "problem") block.semantic = { activity: "practice" };
+    const student = createTextbookRenderModel(fixture, "student");
+    const measurements = student.sections.flatMap((section) =>
+      section.blocks.map((block) => ({
+        blockId: block.id,
+        widthMm: blockWidthMm(fixture.config, block),
+        heightMm: block.kind === "problem" ? 130 : 14,
+      })),
+    );
+    const layout = paginateTextbookSections(
+      student.sections,
+      measurements,
+      fixture.config,
+      { includeCover: true },
+    );
+    return { fixture, student, layout };
+  }
+  const verify = (
+    { fixture, student }: ReturnType<typeof world>,
+    pages: ReturnType<typeof world>["layout"]["pages"],
+  ) => studentPageMapFromPages(student.sections, pages, fixture.config);
+
+  it("takes the labels from the student's own pages, checked against the student projection", () => {
+    const w = world();
+    const pageMap = verify(w, w.layout.pages);
+    expect(pageMap).toEqual(w.layout.pageMap);
+    expect(pageMap.map((p) => [p.printedPageLabel, p.column])).toEqual([
+      ["2", 1],
+      ["2", 2],
+      ["3", 1],
+      ["3", 2],
+    ]);
+    const answers = createTextbookRenderModel(
+      { ...w.fixture, pageMap },
+      "answers",
+    );
+    expect(
+      problems(answers).map((b) => [b.answerPlacement, b.sourcePageLabel]),
+    ).toEqual([
+      ["beside", "2"],
+      ["beside", "2"],
+      ["beside", "3"],
+      ["beside", "3"],
+    ]);
+    // The answer book paginates on its own widths, one problem to a row.
+    const answerLayout = paginateTextbookSections(
+      answers.sections,
+      answers.sections.flatMap((section) =>
+        section.blocks.map((block) => ({
+          blockId: block.id,
+          widthMm: blockWidthMm(w.fixture.config, block),
+          heightMm: block.kind === "problem" ? 130 : 14,
+        })),
+      ),
+      w.fixture.config,
+      { includeCover: true },
+    );
+    const answerIds = problems(answers).map((b) => b.id);
+    expect(
+      answerLayout.pages.flatMap((page) =>
+        page.blocks
+          .filter((block) => answerIds.includes(block.blockId))
+          .map((block) => [block.blockId, block.widthMm, block.column]),
+      ),
+    ).toEqual(answerIds.map((id) => [id, 176, 1]));
+    expect(answerLayout.pageMap).not.toEqual(pageMap);
+    // The wider answer projection is not what student pages may be checked against.
+    expect(() =>
+      studentPageMapFromPages(
+        answers.sections,
+        w.layout.pages,
+        w.fixture.config,
+      ),
+    ).toThrow(/STUDENT_PLACEMENT/);
+  });
+
+  it("rejects a student page whose block is not at its student width", () => {
+    const w = world();
+    const problem = problems(w.student)[1];
+    for (const widthMm of [176, 84.5 + 1, 40]) {
+      const pages = structuredClone(w.layout.pages);
+      for (const page of pages)
+        for (const block of page.blocks)
+          if (block.blockId === problem.id) block.widthMm = widthMm;
+      expect(() => verify(w, pages), `width ${widthMm}`).toThrow(
+        /STUDENT_PLACEMENT/,
+      );
+    }
+    // Untouched pages still pass: the check is the tampering, not the fixture.
+    expect(() => verify(w, structuredClone(w.layout.pages))).not.toThrow();
+  });
+
+  it("rejects student pages that were not carried over as they were printed", () => {
+    const w = world();
+    const tampered = (
+      change: (pages: ReturnType<typeof world>["layout"]["pages"]) => void,
+    ) => {
+      const pages = structuredClone(w.layout.pages);
+      change(pages);
+      return () => verify(w, pages);
+    };
+    // A page out of sequence.
+    expect(
+      tampered((pages) => {
+        pages[2].physicalPageIndex += 1;
+        pages[2].printedPageLabel = String(pages[2].physicalPageIndex);
+      }),
+    ).toThrow(/STUDENT_PAGE_ORDER/);
+    // A label that is not the page's own number.
+    expect(
+      tampered((pages) => {
+        pages[1].printedPageLabel = "9";
+      }),
+    ).toThrow(/STUDENT_PAGE_LABEL/);
+    // A page lost on the way: its blocks are missing from the reference.
+    expect(tampered((pages) => void pages.pop())).toThrow(
+      /STUDENT_MISSING_BLOCK/,
+    );
+    // The same problem referenced on two pages.
+    expect(
+      tampered((pages) => {
+        pages[2].blocks.push(
+          pages[1].blocks.find(
+            (block) => block.blockId === problems(w.student)[0].id,
+          )!,
+        );
+      }),
+    ).toThrow(/STUDENT_BLOCK_REF/);
+    // A reference that names another problem's item.
+    expect(
+      tampered((pages) => {
+        const placed = pages[1].blocks.find(
+          (block) => block.blockId === problems(w.student)[0].id,
+        )!;
+        placed.itemId = problems(w.student)[1].itemId;
+      }),
+    ).toThrow(/STUDENT_ITEM_REF/);
   });
 });
