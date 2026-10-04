@@ -1452,6 +1452,26 @@
     min-height: 56px;
   }
 }
+:global([data-learning-motion="reduce"]) .progressPath {
+  scroll-behavior: auto;
+}
+:global([data-learning-motion="reduce"])
+  .pathStep[data-state="current"]
+  .pathNode,
+:global([data-learning-motion="reduce"])
+  .pathStep[data-side="left"]
+  .playerPiece[data-moved="true"],
+:global([data-learning-motion="reduce"])
+  .pathStep[data-side="right"]
+  .playerPiece[data-moved="true"],
+:global([data-learning-motion="reduce"]) .practice .answerChoice[data-result] {
+  animation: none;
+}
+:global([data-learning-motion="reduce"]) .practice .answerInput,
+:global([data-learning-motion="reduce"]) .practice .noteInput,
+:global([data-learning-motion="reduce"]) .practice button {
+  transition: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .progressPath {
@@ -1472,13 +1492,13 @@
 
 /* The exercise frame stays in place; only the paper and answers change. */
 .fixedPractice {
+  color: var(--math-atelier-ink, #203653);
   height: 100%;
   overflow: hidden;
 }
 .fixedPractice .fixedQuestion {
   position: relative;
   isolation: isolate;
-  perspective: 1200px;
 }
 .fixedQuestion .problemPane {
   position: relative;
@@ -1490,6 +1510,9 @@
   justify-content: space-between;
   gap: 6px;
   min-height: 44px;
+}
+.answerDockHeader > [data-answer-feedback] {
+  flex: 1;
 }
 .fixedQuestion .answerDockHeader .feedbackLabel {
   margin: 0;

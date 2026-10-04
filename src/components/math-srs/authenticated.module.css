@@ -1211,6 +1211,13 @@
     margin-top: 14px;
   }
 }
+:global([data-learning-motion="reduce"]) .body button,
+:global([data-learning-motion="reduce"]) .links a {
+  transition: none;
+}
+:global([data-learning-motion="reduce"]) .body button:hover:enabled {
+  transform: none;
+}
 @media (prefers-reduced-motion: reduce) {
   .body button,
   .links a {
@@ -1245,6 +1252,8 @@
   flex-direction: column;
   min-height: 430px;
   overflow: hidden;
+  color: var(--math-atelier-ink, #203653);
+  background: var(--math-atelier-surface, #fff);
 }
 .fixedQuestion > * {
   margin-top: 0;
@@ -1280,7 +1289,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  color: var(--learn-muted);
+  color: var(--math-atelier-muted, #52627a);
   font-size: 12px;
 }
 .body .answerDockHeading .skipAnswer {

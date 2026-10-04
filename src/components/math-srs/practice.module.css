@@ -732,6 +732,15 @@
     width: 100%;
   }
 }
+:global([data-learning-motion="reduce"]) .question,
+:global([data-learning-motion="reduce"]) .complete {
+  animation: none;
+}
+:global([data-learning-motion="reduce"]) .question button,
+:global([data-learning-motion="reduce"]) .complete button,
+:global([data-learning-motion="reduce"]) .question .answerInput {
+  transition: none;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .question,

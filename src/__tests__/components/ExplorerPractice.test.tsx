@@ -155,10 +155,67 @@ describe("ExplorerPractice", () => {
     expect(
       container.querySelector('[data-answer-feedback="incorrect"]'),
     ).toBeVisible();
+    expect(
+      screen.getByRole("status").closest("[data-explorer-dock]"),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "다시 생각해 볼 문제예요",
+    );
     expect(screen.queryByText(/정답은|해설 보기/)).not.toBeInTheDocument();
     expect(
       container.querySelectorAll('[data-answer-state="correct"]'),
     ).toHaveLength(0);
+  });
+});
+
+describe("ExplorerPractice paper and result row", () => {
+  it("shows the first paper immediately and transitions only when its question changes", () => {
+    const props = {
+      activity,
+      session,
+      busy: false,
+      correct: null,
+      eventKey: "",
+      onAction: vi.fn(),
+      onHome: vi.fn(),
+    };
+    const { container, rerender } = render(<ExplorerPractice {...props} />);
+    expect(
+      container.querySelector('[data-page-turn="true"]'),
+    ).not.toBeInTheDocument();
+    rerender(
+      <ExplorerPractice
+        {...props}
+        activity={{ ...activity, questionId: "next" }}
+      />,
+    );
+    expect(
+      container.querySelector('[data-page-turn="true"]'),
+    ).toBeInTheDocument();
+  });
+  it("distinguishes the explicit give-up action from wrong selected answers", () => {
+    const props = {
+      activity,
+      session,
+      busy: false,
+      correct: null,
+      eventKey: "",
+      onAction: vi.fn(),
+      onHome: vi.fn(),
+    };
+    const { rerender } = render(<ExplorerPractice {...props} />);
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    expect(props.onAction).toHaveBeenCalledWith({
+      type: "answer",
+      questionId: activity.questionId,
+      choiceIds: [],
+    });
+    rerender(
+      <ExplorerPractice {...props} correct={false} eventKey="confirmed" />,
+    );
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "모르는 부분을 확인했어요",
+    );
   });
 });
 

@@ -147,6 +147,8 @@ function ExplorerGame({
   const reviewOpener = useRef<HTMLButtonElement | null>(null);
   const [correct, setCorrect] = useState<boolean | null>(null);
   const [effectKey, setEffectKey] = useState("");
+  const [feedbackMessage, setFeedbackMessage] = useState<string | undefined>();
+  const confirmedAnswers = useRef(new Set<string>());
   const [chestStars, setChestStars] = useState<number | null>(null);
   const [tileStars, setTileStars] = useState<number | null>(null);
   const tileTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -324,6 +326,7 @@ function ExplorerGame({
       });
       const json = await response.json().catch(() => null);
       if (!alive.current) return;
+      if (controller.signal.aborted) throw new Error("late-response");
       if (response.status === 401) {
         router.replace("/learn/login");
         return;
@@ -351,17 +354,39 @@ function ExplorerGame({
         await import("@/contracts/mathExplorers.contract");
       const data = explorerStateSchema.parse(json.data);
       if (!alive.current) return;
+      if (controller.signal.aborted) throw new Error("late-response");
+      if (
+        data.student.id !== input.studentId ||
+        latest.current?.student.id !== input.studentId
+      ) {
+        lastRequest.current = null;
+        setError({ status: 409, message: STUDENT_CHANGED_MESSAGE });
+        return;
+      }
       latest.current = data;
       lastRequest.current = null;
+      const answerEvent = `${input.studentId}:${input.requestId}`;
       if (
         (action.type === "answer" ||
           action.type === "supplement-answer" ||
           action.type.startsWith("lab-")) &&
-        typeof data.feedback?.correct === "boolean"
+        typeof data.feedback?.correct === "boolean" &&
+        !confirmedAnswers.current.has(answerEvent)
       ) {
+        confirmedAnswers.current.add(answerEvent);
         held = true;
         setCorrect(data.feedback.correct);
         setEffectKey(input.requestId);
+        setFeedbackMessage(
+          (action.type === "answer" || action.type === "supplement-answer") &&
+            action.choiceIds.length === 0
+            ? "모르는 부분을 확인했어요"
+            : action.type === "supplement-answer"
+              ? data.feedback.correct
+                ? "정확하게 풀었어요"
+                : "다시 생각해 볼 문제예요"
+              : undefined,
+        );
         timer.current = setTimeout(() => {
           if (!alive.current) return;
           setState(data);
@@ -812,6 +837,7 @@ function ExplorerGame({
             busy={busy || !!error || loading}
             correct={correct}
             eventKey={effectKey}
+            feedbackMessage={feedbackMessage}
             onAction={(action) =>
               void send(
                 action.type === "read"
@@ -858,6 +884,7 @@ function ExplorerGame({
               busy={busy || !!error || loading}
               correct={correct}
               eventKey={effectKey}
+              feedbackMessage={feedbackMessage}
               onAction={(action) => void send(action)}
               onHome={exitPractice}
             />
