@@ -64,7 +64,7 @@ export async function withBrowserQrImages(
     });
   }
   return {
-    assetUrl: resources.assetUrl,
+    ...resources,
     qrDataUrl: (id, url) => {
       const row = images.get(id);
       if (!row || row.url !== url) {

@@ -93,7 +93,6 @@ export function projectEditorialSection(section: RenderSection): RenderSection {
   const first = source.find((block) => block.kind !== "heading");
   if (first) stage = blockStage(first, stage);
   const blocks: RenderBlock[] = [];
-  let sequence = 0;
   const heading = (
     sourceBlock: RenderBlock,
     title: string,
@@ -108,7 +107,18 @@ export function projectEditorialSection(section: RenderSection): RenderSection {
       kind: "heading",
       title,
       subtitle: section.title,
-      stageNumber: String(++sequence).padStart(2, "0"),
+      stageNumber: {
+        opening: "01",
+        concept: "01",
+        recall: "02",
+        basic: "03",
+        practice: "04",
+        application: "05",
+        review: "06",
+        guide: "00",
+        unit: "01",
+        rest: "",
+      }[nextStage],
       unitNumber: source.find((block) => block.unitNumber)?.unitNumber,
       editorialStage: nextStage,
       startNewPage: blocks.length > 0,

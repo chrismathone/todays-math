@@ -251,7 +251,14 @@ export function paginateTextbookSections(
             column,
           });
       });
-      cursor += height + A4.gapMm;
+      // Dialogue turns and recall rows use the reference's compact vertical rhythm.
+      // Exercise and prose rows keep their measured four-millimetre spacing.
+      const gap = row.every(({ block }) => block.kind === "recall")
+        ? 1
+        : row.every(({ block }) => block.kind === "dialogue")
+          ? 1.5
+          : A4.gapMm;
+      cursor += height + gap;
       row = [];
     };
     for (const [blockIndex, block] of section.blocks.entries()) {

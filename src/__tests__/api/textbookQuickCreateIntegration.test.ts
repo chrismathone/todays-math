@@ -1,5 +1,7 @@
 // @vitest-environment node
 import { randomUUID } from "node:crypto";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import type { TextbookActor } from "@/lib/textbook/access";
 import type { TextbookDb } from "@/lib/textbook/server/sql";
@@ -304,7 +306,7 @@ describe("quick create prepared script and frozen visual integration", () => {
     expect(result.conceptCount).toBe(8);
     expect(
       result.warnings.filter((warning) =>
-        warning.includes("서술형 2문항 중 0문항"),
+        warning.includes("서술형 1문항 중 0문항"),
       ),
     ).toHaveLength(8);
     const exchange = await assembleExchange(
@@ -350,14 +352,45 @@ describe("quick create prepared script and frozen visual integration", () => {
     expect(await replay.json()).toEqual(result);
   });
 
-  it.skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")(
-    "creates all components and publishes actual student/answer PDFs with the production renderer and bundled visuals",
-    async () => {
+  it
+    .skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")
+    .each(["elementary", "middle"] as const)(
+    "creates all components and publishes actual %s student/answer PDFs with the production renderer and bundled visuals",
+    async (schoolLevel) => {
       gate.bundledAssets = true;
       try {
+        let targetId = schoolLevel === "elementary" ? unitId : randomUUID();
+        if (schoolLevel === "middle") {
+          const middle = CURRICULUM_UNITS.find((unit) => unit.grade === "중2")!;
+          const existing = await pg.query<{ id: string }>(
+            `SELECT "id" FROM "unit" WHERE "grade"=$1 AND "chapter"=$2 AND "section"=$3 LIMIT 1`,
+            [middle.grade, middle.chapter, middle.section],
+          );
+          if (existing.rows[0]) targetId = existing.rows[0].id;
+          else
+            await pg.query(
+              `INSERT INTO "unit" ("id","grade","chapter","section","order_index","problem_code_prefix") VALUES ($1,$2,$3,$4,$5,'J32999')`,
+              [
+                targetId,
+                middle.grade,
+                middle.chapter,
+                middle.section,
+                middle.orderIndex,
+              ],
+            );
+        }
+        for (let index = 0; index < 8; index++)
+          await insertBankProblem(pg, targetId, {
+            difficulty: "기본",
+            questionType: index === 7 ? "서술형" : "단답형",
+          });
         const input: QuickCreateInput = {
           ...body(),
-          problemCountPerUnit: 4,
+          schoolLevel,
+          grade: schoolLevel === "elementary" ? 3 : 2,
+          startUnitId: targetId,
+          endUnitId: targetId,
+          problemCountPerUnit: 8,
           components: Object.fromEntries(
             Object.keys(DEFAULT_QUICK_CREATE_COMPONENTS).map((key) => [
               key,
@@ -435,6 +468,45 @@ describe("quick create prepared script and frozen visual integration", () => {
             },
           }),
         ).toEqual([]);
+        if (process.env.TEXTBOOK_PROOF_OUTPUT) {
+          const output = path.resolve(
+            process.env.TEXTBOOK_PROOF_OUTPUT,
+            schoolLevel,
+          );
+          await mkdir(output, { recursive: true });
+          for (const artifact of published.artifacts.filter(
+            (a) => a.kind === "student-pdf" || a.kind === "answer-pdf",
+          )) {
+            const [row] = await gate.db!.query<{ bytes: Uint8Array }>(
+              `SELECT "bytes" FROM "textbook_blob" WHERE "sha256"=$1::text`,
+              [artifact.sha256],
+            );
+            await writeFile(
+              path.join(output, `${artifact.kind}.pdf`),
+              row.bytes,
+            );
+          }
+          await writeFile(
+            path.join(output, "publish-proof.json"),
+            JSON.stringify(
+              {
+                schoolLevel,
+                problems: created.problemCount,
+                concepts: created.conceptCount,
+                status: published.status,
+                artifacts: published.artifacts.map(
+                  ({ kind, sha256, pageCount }) => ({
+                    kind,
+                    sha256,
+                    pageCount,
+                  }),
+                ),
+              },
+              null,
+              2,
+            ),
+          );
+        }
       } finally {
         gate.bundledAssets = false;
       }

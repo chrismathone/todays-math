@@ -62,6 +62,7 @@ export const EDITORIAL_CSS = `
 .tb-recall-text{display:inline}.tb-recall-text p{display:inline}.tb-recall-text h2,.tb-recall-text h3,.tb-recall-text h4{display:block;color:var(--tb-dark);border-bottom:.6pt solid var(--tb-light);padding-bottom:1.5mm;margin-top:3mm}
 .tb-blank{background:#f7f5ec;border-bottom:.7pt solid #baad91;height:7mm;min-width:22mm}.tb-blank-sentence{display:block;width:100%;height:21mm;background:repeating-linear-gradient(transparent,transparent calc(7mm - .45pt),#e0e6e0 calc(7mm - .45pt),#e0e6e0 7mm);border-bottom:0;margin:1.5mm 0}
 .tb-repetition{font-size:6.5pt;color:#83948b;margin-top:2mm;letter-spacing:.15mm}.tb-study-footer{font-size:6.8pt;color:#84958a;margin-top:2mm!important}
+.tb-recall-continuation .tb-recall-content{border-top:0;padding:1mm 0 2mm}
 .tb-cover.tb-paper{background:#073f3b;color:#f7f5e9;padding:17mm 18mm 19mm;display:flex;flex-direction:column;gap:0}
 .tb-cover-top{display:flex;justify-content:space-between;align-items:baseline;gap:5mm;font-size:9pt;line-height:1.6;letter-spacing:1.8px;border-top:1pt solid #cce984;padding-top:5mm}
 .tb-cover-top>span{font-size:8pt;letter-spacing:1px;color:#d6ed75;flex:none}
@@ -87,7 +88,7 @@ export const EDITORIAL_CSS = `
 .tb-editorial-dialogue.tb-stage-opening{padding:1mm 2mm;background:#f4f6f5;border-radius:0 2mm 2mm 2mm}
 .tb-stage-rest .tb-stage-head{padding:2mm 27mm 3mm 0;border-bottom:1pt solid var(--tb-light)}
 .tb-stage-rest .tb-stage-number{display:none}.tb-rest-sprout{position:absolute;right:0;top:0;width:22mm;height:22mm;margin:0}.tb-rest-sprout img{width:100%;height:100%;object-fit:contain}
-.tb-stage-rest .tb-prose{font-size:10pt;line-height:1.95;color:#354a37;border-left:2pt solid #d3dec7;padding:2mm 0 2mm 4mm}
-.tb-stage-rest .tb-prose h3{font-size:9pt;border-top:.65pt solid #d3dec7;padding-top:3mm;margin-top:4mm;color:#5b7550}
-.tb-stage-rest .tb-figure{background:#f2f6ef;border-radius:0 8mm 0 2mm;padding:3mm;margin:0}.tb-stage-rest .tb-figure img{max-height:85mm}
+.tb-editorial.tb-stage-rest .tb-prose{font-size:9.2pt;line-height:1.8;color:#354a37;border-left:2pt solid #d3dec7;padding:1mm 0 1mm 4mm}
+.tb-editorial.tb-stage-rest .tb-prose h3{font-size:9pt;border-top:.65pt solid #d3dec7;padding-top:3mm;margin-top:4mm;color:#5b7550}
+.tb-stage-rest .tb-figure{background:#f2f6ef;border-radius:0 8mm 0 2mm;padding:3mm;margin:0}.tb-editorial.tb-stage-rest .tb-figure img{max-height:72mm}
 `;

@@ -84,7 +84,7 @@ function availableCatalog(
 function enableAllComponents() {
   fireEvent.click(screen.getByText("교재 구성 선택"));
   const controls = screen.getAllByRole("switch");
-  expect(controls).toHaveLength(17);
+  expect(controls).toHaveLength(18);
   for (const control of controls)
     if (control.getAttribute("aria-checked") !== "true")
       fireEvent.click(control);
@@ -154,7 +154,7 @@ describe("simple textbook creation", () => {
   });
 
   it.each([0, 1])(
-    "creates with all 17 components and an eight-question maximum when only %i written questions are available",
+    "creates with all 18 components and an eight-question maximum when only %i written questions are available",
     async (written) => {
       const adjustedResult = {
         ...result,
@@ -182,7 +182,7 @@ describe("simple textbook creation", () => {
           /서술형이 부족하면 부족한 수만큼 켜 둔 .*자동 배분합니다/,
         ),
       ).toBeVisible();
-      expect(screen.getByText(/17가지 구성 · 최대 8문제/)).toBeVisible();
+      expect(screen.getByText(/18가지 구성 · 최대 8문제/)).toBeVisible();
       fireEvent.click(screen.getByText("등장인물 선택"));
       fireEvent.click(screen.getAllByRole("button", { name: /^선생님 / })[9]!);
       const submit = screen.getByRole("button", {
@@ -330,7 +330,9 @@ describe("simple textbook creation", () => {
         "통문장 개념 암기",
         "준비 학습",
         "오류 점검",
-        ...(writtenOnly ? ["유형·실전 문제", "복습 문제", "단원 확인"] : []),
+        ...(writtenOnly
+          ? ["대표예제와 풀이", "유형·실전 문제", "복습 문제", "단원 확인"]
+          : []),
       ]) {
         fireEvent.click(
           screen.getByRole("switch", { name: new RegExp(label) }),
@@ -365,6 +367,7 @@ describe("simple textbook creation", () => {
     await screen.findAllByRole("option", { name: "유리수와 소수" });
     fireEvent.click(screen.getByText("교재 구성 선택"));
     fireEvent.click(screen.getByRole("switch", { name: /유형·실전 문제/ }));
+    fireEvent.click(screen.getByRole("switch", { name: /대표예제와 풀이/ }));
     fireEvent.click(screen.getByRole("switch", { name: /서술형/ }));
     expect(screen.getByText(/준비된 서술형만 담고/)).toBeVisible();
     expect(
@@ -447,8 +450,9 @@ describe("simple textbook creation", () => {
     expect(create.mock.calls[0]![0].requestId).toBe(
       create.mock.calls[1]![0].requestId,
     );
-    expect(create.mock.calls[1]![0].components).toEqual(
-      DEFAULT_QUICK_CREATE_COMPONENTS,
-    );
+    expect(create.mock.calls[1]![0].components).toEqual({
+      ...DEFAULT_QUICK_CREATE_COMPONENTS,
+      workedExamples: true,
+    });
   });
 });

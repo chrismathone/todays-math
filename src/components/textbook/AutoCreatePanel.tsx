@@ -62,6 +62,11 @@ const COMPONENTS: {
     hint: "개념을 문장으로 설명하기",
   },
   {
+    key: "workedExamples",
+    label: "대표예제와 풀이",
+    hint: "풀이를 읽고 같은 방법으로 연습하기",
+  },
+  {
     key: "practice",
     label: "유형·실전 문제",
     hint: "선택한 난이도의 문제 자동 배치",
@@ -101,6 +106,7 @@ export function AutoCreatePanel({
   const [title, setTitle] = useState("");
   const [components, setComponents] = useState<QuickCreateComponents>({
     ...DEFAULT_QUICK_CREATE_COMPONENTS,
+    workedExamples: true,
   });
   const [cast, setCast] = useState({ ...DEFAULT_TEXTBOOK_CAST });
   const [error, setError] = useState<string | null>(null);
@@ -154,6 +160,7 @@ export function AutoCreatePanel({
   );
   const problemComponents = [
     components.practice,
+    components.workedExamples,
     components.written,
     components.review,
     components.assessment,
@@ -165,7 +172,10 @@ export function AutoCreatePanel({
     problemCount <= 30;
   const nonWrittenStages = COMPONENTS.filter(
     ({ key }) =>
-      (key === "practice" || key === "review" || key === "assessment") &&
+      (key === "practice" ||
+        key === "workedExamples" ||
+        key === "review" ||
+        key === "assessment") &&
       components[key],
   ).map(({ label }) => label);
   const availability = selected.map((unit) => unit.availability?.[difficulty]);
@@ -380,8 +390,8 @@ export function AutoCreatePanel({
           <details className={styles.details}>
             <summary>교재 구성 선택</summary>
             <p>
-              17가지 구성을 켜고 끌 수 있습니다. 기본은 표지·단원
-              도입·개념·문제로 시작합니다.
+              {COMPONENTS.length}가지 구성을 켜고 끌 수 있습니다. 기본은
+              표지·단원 도입·개념·문제로 시작합니다.
             </p>
             <div className={styles.toggleGrid}>
               {COMPONENTS.map(({ key, label, hint }) => (

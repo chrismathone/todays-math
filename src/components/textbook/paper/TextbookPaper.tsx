@@ -5,8 +5,12 @@ import {
   TEXTBOOK_CSS,
   type RenderResources,
 } from "@/lib/textbook/render/html";
-const previewFontCss =
-  "@font-face{font-family:TextbookPretendard;src:url('/fonts/PretendardVariable.woff2') format('woff2');font-weight:45 920;font-display:block}";
+const previewFontCss = [400, 700]
+  .map(
+    (weight) =>
+      `@font-face{font-family:TextbookPretendard;src:url('/textbook/editorial/fonts/NotoSansKR-${weight}.ttf') format('truetype');font-weight:${weight};font-display:block}`,
+  )
+  .join("\n");
 
 export interface TextbookPaperProps {
   page: TextbookPage;

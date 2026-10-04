@@ -78,6 +78,8 @@ export type RenderBlock = BlockBase &
         phase: "study" | "keywords" | "sentences";
         pieces: RecallPiece[];
         repetitionChecks: boolean;
+        continuation?: boolean;
+        lastPart?: boolean;
       }
     | {
         kind: "problem";
@@ -243,12 +245,16 @@ export function createTextbookRenderModel(
                       parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
                     kind: "recall",
                     phase: b.phase,
+                    continuation: i > 0,
+                    lastPart: i === parts.length - 1,
                     pieces: recallPieces(
                       markdown,
                       /\[\[|\{\{/.test(markdown) ? phase : "study",
                     ),
                     repetitionChecks:
-                      b.phase === "study" && b.showRepetitionChecks,
+                      b.phase === "study" &&
+                      b.showRepetitionChecks &&
+                      i === parts.length - 1,
                   }));
                 }
                 case "concept": {

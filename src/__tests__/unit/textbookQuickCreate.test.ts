@@ -468,7 +468,7 @@ describe("quick create component composition", () => {
         await createQuickTextbook(
           db,
           actor,
-          input({ components: { ...all, cover }, problemCountPerUnit: 4 }),
+          input({ components: { ...all, cover }, problemCountPerUnit: 5 }),
           visualDeps,
         ),
       );
@@ -848,7 +848,7 @@ describe("quick create adapts to real bank availability", () => {
     endUnitId: ids.get(seedKey(m2[end]))!,
   });
 
-  it("creates all 17 components across eight middle-2 sections with no written candidates", async () => {
+  it("creates all 18 components across eight middle-2 sections with no written candidates", async () => {
     for (const unit of m2.slice(0, 8)) {
       const unitId = ids.get(seedKey(unit))!;
       for (let index = 0; index < 8; index++)
@@ -878,7 +878,7 @@ describe("quick create adapts to real bank availability", () => {
     expect(result.conceptCount).toBe(8);
     expect(
       result.warnings.filter((warning) =>
-        warning.includes("서술형 2문항 중 0문항"),
+        warning.includes("서술형 1문항 중 0문항"),
       ),
     ).toHaveLength(8);
     const { blocks } = await saved(result);
@@ -890,12 +890,15 @@ describe("quick create adapts to real bank availability", () => {
     ).toHaveLength(0);
     expect(
       exchange.items.filter((item) => item.learningStage === "basic"),
-    ).toHaveLength(24);
+    ).toHaveLength(16);
+    expect(
+      exchange.items.filter((item) => item.learningStage === "worked-example"),
+    ).toHaveLength(16);
     expect(
       exchange.items.filter(
         (item) => item.learningStage === "cumulative-review",
       ),
-    ).toHaveLength(24);
+    ).toHaveLength(16);
     expect(
       exchange.items.filter((item) => item.learningStage === "unit-assessment"),
     ).toHaveLength(16);

@@ -347,6 +347,11 @@ export async function createQuickTextbook(
           stage: TextbookItem["learningStage"];
           title: string;
         }> = [
+          {
+            enabled: components.workedExamples,
+            stage: "worked-example",
+            title: "대표예제로 익히기",
+          },
           { enabled: components.practice, stage: "basic", title: "유형 연습" },
           {
             enabled: components.review,
@@ -395,8 +400,8 @@ export async function createQuickTextbook(
           },
           print: {
             paper: "A4",
-            innerMarginMm: 20,
-            outerMarginMm: 15,
+            innerMarginMm: 18,
+            outerMarginMm: 13,
             sectionStart: "even-left",
             coverMode: components.cover ? "included" : "separate",
             firstPhysicalPageIndex: 1,

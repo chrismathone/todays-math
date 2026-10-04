@@ -31,6 +31,7 @@ const MISSING_SOURCE = "판본 원본이 없어 측정하지 않습니다.";
 export type PreviewResources = {
   assetUrl: (assetId: string) => string;
   qrDataUrl: (qrTargetId: string, url: string) => string;
+  editorialAssetUrl?: (name: string) => string;
 };
 
 export type SectionPreview =

@@ -20,17 +20,34 @@ let bundlePromise: Promise<LocalTextbookBundle> | undefined;
 export function loadTextbookLocalBundle(): Promise<LocalTextbookBundle> {
   return (bundlePromise ??= (async () => {
     const resources = new Map<string, TrustedResource>();
-    const font = new Uint8Array(
-      await readFile(
-        path.join(process.cwd(), "public/fonts/PretendardVariable.woff2"),
-      ),
-    );
-    assertAssetMime(font, "font/woff2");
-    resources.set(`${RESOURCE_ORIGIN}/fonts/PretendardVariable.woff2`, {
-      bytes: font,
-      mimeType: "font/woff2",
-    });
-    const fontCss = `@font-face{font-family:TextbookPretendard;src:url(${RESOURCE_ORIGIN}/fonts/PretendardVariable.woff2) format('woff2');font-weight:45 920;font-style:normal;font-display:block}`;
+    const fontFaces: string[] = [];
+    for (const weight of [400, 700]) {
+      const name = `NotoSansKR-${weight}.ttf`;
+      const bytes = new Uint8Array(
+        await readFile(
+          path.join(process.cwd(), "public/textbook/editorial/fonts", name),
+        ),
+      );
+      assertAssetMime(bytes, "font/ttf");
+      const url = `${RESOURCE_ORIGIN}/editorial/fonts/${name}`;
+      resources.set(url, { bytes, mimeType: "font/ttf" });
+      fontFaces.push(
+        `@font-face{font-family:TextbookPretendard;src:url(${url}) format('truetype');font-weight:${weight};font-style:normal;font-display:block}`,
+      );
+    }
+    const fontCss = fontFaces.join("\n");
+    for (const name of TEXTBOOK_EDITORIAL_IMAGES) {
+      const bytes = new Uint8Array(
+        await readFile(
+          path.join(process.cwd(), "public/textbook/editorial", name),
+        ),
+      );
+      assertAssetMime(bytes, "image/png");
+      resources.set(editorialResourceUrl(name), {
+        bytes,
+        mimeType: "image/png",
+      });
+    }
     let katexCss = await readFile(
       path.join(process.cwd(), "node_modules/katex/dist/katex.min.css"),
       "utf8",
@@ -98,6 +115,21 @@ export async function loadTextbookAssets(
 }
 export const dataUrl = (resource: TrustedResource): string =>
   `data:${resource.mimeType};base64,${Buffer.from(resource.bytes).toString("base64")}`;
+export const TEXTBOOK_EDITORIAL_IMAGES = [
+  "cover.png",
+  "u01.png",
+  "u02.png",
+  "u03.png",
+  "u04.png",
+  "u05.png",
+  "u06.png",
+  "learning-sprout.png",
+] as const;
+export function editorialResourceUrl(name: string): string {
+  if (!(TEXTBOOK_EDITORIAL_IMAGES as readonly string[]).includes(name))
+    throw new Error("Unknown bundled textbook illustration");
+  return `${RESOURCE_ORIGIN}/editorial/${name}`;
+}
 export function inlineBundleCss(
   css: string,
   resources: ReadonlyMap<string, TrustedResource>,
@@ -110,4 +142,41 @@ export function inlineBundleCss(
       return `url(${dataUrl(resource)})`;
     },
   );
+}
+
+/** Reuse large frozen images in a script-free single HTML file, preserving img geometry. */
+export function shareInlineTextbookImages(body: string): {
+  body: string;
+  css: string;
+} {
+  const source =
+    /\bsrc="(data:image\/(?:png|jpeg|webp|svg\+xml);base64,[A-Za-z0-9+/=]+)"/g;
+  const counts = new Map<string, number>();
+  for (const match of body.matchAll(source)) {
+    if (match[1].length >= 16_384)
+      counts.set(match[1], (counts.get(match[1]) ?? 0) + 1);
+  }
+  const shared = new Map(
+    [...counts]
+      .filter(([, count]) => count > 1)
+      .map(([url]) => [url, sha256(new TextEncoder().encode(url))]),
+  );
+  // CSS image content retains the frozen image's intrinsic dimensions. The transparent
+  // src keeps a valid img fallback without JavaScript, blob URLs or network requests.
+  const placeholder =
+    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+  return {
+    body: body.replace(source, (attribute, url: string) => {
+      const id = shared.get(url);
+      return id
+        ? `src="${placeholder}" data-textbook-inline-image="${id}"`
+        : attribute;
+    }),
+    css: [...shared]
+      .map(
+        ([url, id]) =>
+          `.tb-paper img[data-textbook-inline-image="${id}"]{content:url("${url}")}`,
+      )
+      .join("\n"),
+  };
 }
