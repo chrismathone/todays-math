@@ -6,7 +6,7 @@ import styles from "./ListeningStudentView.module.css";
 import {
   hasFullListeningQuestionImage,
   listeningChoiceBody,
-} from "@/lib/english/listening/questionPresentation";
+} from "@/lib/listeningQuestionPresentation";
 
 /** Adapter snapshots are server facts. Time is displayed, never enforced here. */
 export interface ListeningStudentAttemptSnapshot {

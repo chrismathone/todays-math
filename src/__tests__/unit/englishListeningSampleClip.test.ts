@@ -84,7 +84,8 @@ describe("strict PCM sample clipping", () => {
     }
   });
   it("runs default CLI help without any DB or Storage credentials and refuses approval bypass", () => {
-    const script = "scripts/import/adopt-listening-question-audio.mts";
+    const script =
+      "scripts/qa/english-listening/adopt-listening-question-audio.mts";
     const env = {
       ...process.env,
       DATABASE_URL: "",
