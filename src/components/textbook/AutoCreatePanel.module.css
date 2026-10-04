@@ -1,0 +1,220 @@
+.creator {
+  border: 1px solid var(--learn-track);
+  border-radius: 16px;
+  padding: 28px;
+  background: var(--learn-surface);
+}
+.intro {
+  margin-bottom: 28px;
+}
+.intro h2 {
+  margin: 6px 0 12px;
+  font-size: clamp(22px, 3vw, 30px);
+}
+.intro p {
+  color: var(--learn-muted);
+  line-height: 1.7;
+  margin: 0;
+}
+.intro .eyebrow {
+  color: var(--learn-accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.step {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 20px 0 0;
+}
+.scope {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+}
+.scope label,
+.details > label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--learn-muted);
+  min-width: 0;
+}
+.creator select,
+.creator input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+}
+.rangeArrow {
+  padding-bottom: 14px;
+  color: var(--learn-accent);
+}
+.toggleGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.toggle {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  min-height: 74px;
+  padding: 14px 16px;
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  text-align: left;
+  background: var(--learn-surface);
+  cursor: pointer;
+}
+.toggle[aria-checked="true"] {
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.toggle strong {
+  display: block;
+  font-size: 14px;
+}
+.toggle small {
+  display: block;
+  margin-top: 5px;
+  color: var(--learn-muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.switchTrack {
+  flex-shrink: 0;
+  width: 36px;
+  height: 22px;
+  border-radius: 20px;
+  background: var(--learn-control);
+  padding: 3px;
+}
+.switchTrack > span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: var(--learn-surface);
+  border-radius: 50%;
+  transition: transform 120ms;
+}
+.toggle[aria-checked="true"] .switchTrack {
+  background: var(--learn-accent);
+}
+.toggle[aria-checked="true"] .switchTrack > span {
+  transform: translateX(14px);
+}
+.details {
+  border-top: 1px solid var(--learn-track);
+  padding-top: 16px;
+}
+.details summary {
+  cursor: pointer;
+  min-height: 32px;
+  font-weight: 600;
+}
+.details p {
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.castGroup {
+  padding-top: 16px !important;
+}
+.characters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.character {
+  padding: 8px 4px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 12px !important;
+}
+.character[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+  outline: 2px solid var(--learn-accent);
+  background: var(--learn-soft);
+}
+.face {
+  display: block;
+  width: 64px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin: 0 auto 4px;
+}
+.face img {
+  display: block;
+  width: 200%;
+  height: 200%;
+  max-width: none;
+}
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--learn-soft);
+}
+.summary span {
+  font-size: 13px;
+  color: var(--learn-muted);
+}
+.create {
+  min-height: 52px;
+  border: 1px solid var(--learn-accent);
+  border-radius: 10px;
+  background: var(--learn-accent);
+  color: var(--learn-on-accent) !important;
+  cursor: pointer;
+  font-weight: 700;
+}
+.creator button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.footnote {
+  margin: 0;
+  font-size: 12px;
+  color: var(--learn-muted);
+  text-align: center;
+}
+.error {
+  color: var(--learn-danger);
+  font-size: 14px;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .creator {
+    padding: 18px;
+  }
+  .scope {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .rangeArrow {
+    display: none;
+  }
+  .toggleGrid {
+    grid-template-columns: 1fr;
+  }
+  .characters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

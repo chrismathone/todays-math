@@ -72,6 +72,12 @@ import {
 import { SectionMeasure } from "@/components/textbook/measuredPreview";
 import { buildSectionPreview } from "@/components/textbook/previewModel";
 import styles from "@/components/textbook/textbook.module.css";
+import { AutoCreatePanel } from "./AutoCreatePanel";
+import {
+  httpQuickCreateApi,
+  type QuickCreateApi,
+} from "@/lib/textbook/quickCreateClient";
+import { finishTextbookPdf } from "@/lib/textbook/simplePublish";
 
 export type { PaperPreviewInput };
 
@@ -113,12 +119,14 @@ export function TextbookStudioView({
   renderPaper,
   viewport,
   initialEditionId,
+  quickApi = httpQuickCreateApi,
 }: {
   api?: TextbookStudioApi;
   audience?: Audience;
   renderPaper?: (input: PaperPreviewInput) => ReactNode;
   viewport?: "desktop" | "mobile";
   initialEditionId?: string;
+  quickApi?: QuickCreateApi;
 }) {
   const router = useRouter();
   const [books, setBooks] = useState<BookSummary[] | null>(null);
@@ -137,6 +145,12 @@ export function TextbookStudioView({
   const [pane, setPane] = useState<StudioPane>("manuscript");
   const [panel, setPanel] = useState<Panel>("edit");
   const [publishStatus, setPublishStatus] = useState<PublishStatus>("idle");
+  const [pdfJob, setPdfJob] = useState<PublishJob | null>(null);
+  const pdfRequest = useRef<{
+    editionId: string;
+    revision: number;
+    requestId: string;
+  } | null>(null);
   const [issues, setIssues] = useState<StudioIssue[]>([]);
   const [assignments, setAssignments] = useState<AssignmentRow[]>([]);
   const [videos, setVideos] = useState<VideoBinding[]>([]);
@@ -155,6 +169,8 @@ export function TextbookStudioView({
   const [reissueUnits, setReissueUnits] = useState<NamedChoice[]>([]);
   const [diffSummary, setDiffSummary] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [showManual, setShowManual] = useState(false);
+  const [simplePreview, setSimplePreview] = useState(true);
   const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(new Set());
   const [title, setTitle] = useState("");
   const [volumeCode, setVolumeCode] = useState("");
@@ -316,6 +332,8 @@ export function TextbookStudioView({
       .then((next) => {
         if (cancel) return;
         setEdition(next);
+        setSimplePreview(true);
+        setMode("student");
         const first = next.units.flatMap((unit) => unit.sections)[0];
         if (!first) {
           setDraft(null);
@@ -397,7 +415,13 @@ export function TextbookStudioView({
     try {
       const next = await api.openEdition(book.activeEditionId);
       setEdition(next);
+      setPdfJob(null);
+      pdfRequest.current = null;
+      setPublishStatus("idle");
+      setIssues([]);
       setPanel("edit");
+      setSimplePreview(true);
+      setMode("student");
       const first = next.units.flatMap((unit) => unit.sections)[0];
       if (!first) {
         setDraft(null);
@@ -729,6 +753,7 @@ export function TextbookStudioView({
   async function followJob(job: PublishJob) {
     if (!edition) return;
     let current = job;
+    setPdfJob(current);
     setPublishStatus(current.status);
     setIssues(current.issues);
     for (let attempt = 0; attempt < 5; attempt += 1) {
@@ -741,6 +766,56 @@ export function TextbookStudioView({
       }
       setPublishStatus(current.status);
       setIssues(current.issues);
+      setPdfJob(current);
+    }
+  }
+
+  async function makeSimplePdf() {
+    if (!edition || busy || refuseLocked()) return;
+    if (dirtyRef.current) {
+      setNotice("수정한 원고를 저장한 뒤 PDF를 만들어 주세요.");
+      return;
+    }
+    const id = edition.editionId;
+    setBusy(true);
+    setNotice("교재를 확인하고 PDF를 만들고 있습니다.");
+    try {
+      const checked = await api.preflight(id, newRequestId());
+      setIssues(checked.issues);
+      if (!checked.ok) {
+        setPublishStatus("preflight-failed");
+        setNotice("PDF를 만들기 전에 아래 항목을 확인해 주세요.");
+        return;
+      }
+      if (
+        pdfRequest.current?.editionId !== id ||
+        pdfRequest.current.revision !== edition.aggregateRevision ||
+        pdfJob?.status === "failed"
+      ) {
+        pdfRequest.current = {
+          editionId: id,
+          revision: edition.aggregateRevision,
+          requestId: newRequestId(),
+        };
+      }
+      const reserved = await api.reserve(
+        id,
+        pdfRequest.current.requestId,
+        edition.aggregateRevision,
+      );
+      const result = await finishTextbookPdf(api, id, reserved, (job) => {
+        setPdfJob(job);
+        setPublishStatus(job.status);
+        setIssues(job.issues);
+      });
+      if (result.status === "finalized") {
+        setNotice("PDF가 완성되었습니다. 학생용 또는 해설을 내려받으세요.");
+        setEdition(await api.openEdition(id));
+      } else setNotice("PDF를 만들지 못했습니다. 아래 항목을 확인해 주세요.");
+    } catch (reason) {
+      setNotice(messageOf(reason));
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -884,6 +959,42 @@ export function TextbookStudioView({
     return "시작 면 미정";
   })();
 
+  const previewPanel = draft ? (
+    <PreviewPane
+      input={paperInput(
+        draft,
+        audience,
+        audience === "teacher" ? mode : "student",
+        zoom,
+        pageLabel,
+      )}
+      zoom={zoom}
+      pageLabel={pageLabel}
+      showModes={audience === "teacher"}
+      onMode={setMode}
+      onZoom={setZoom}
+      onPrev={() => movePage(-1)}
+      onNext={() => movePage(1)}
+      renderPaper={renderPaper}
+      measured={
+        preview?.ok ? (
+          <SectionMeasure
+            key={`${draft.sectionId}:${previewVariant}:${draft.revision}:${draft.parity}:${draft.title}`}
+            model={preview.model}
+            resources={preview.resources}
+            zoom={zoom}
+            physicalPageIndex={spreadIndex}
+            provisionalNotice={preview.provisionalNotice}
+            onPages={onMeasuredPages}
+          />
+        ) : null
+      }
+      unavailable={preview && !preview.ok ? preview.message : null}
+    />
+  ) : (
+    <p className={styles.muted}>미리볼 구획이 없습니다.</p>
+  );
+
   return (
     <div className={styles.studio} data-narrow={narrow ? "true" : "false"}>
       <header className={styles.row}>
@@ -928,103 +1039,172 @@ export function TextbookStudioView({
       {books === null && !edition ? <p>교재를 불러오는 중입니다.</p> : null}
       {books !== null && !edition ? (
         <div className={styles.stack}>
-          <BookList
-            books={books}
-            title={title}
-            volumeCode={volumeCode}
-            busy={busy}
-            curriculumVersion={curriculumVersion}
-            pageTarget={pageTarget}
-            videoPolicy={videoPolicy}
-            studentSolutionPolicy={solutionPolicy}
-            schoolLevel={schoolLevel}
-            grade={grade}
-            semester={semester}
-            bookMode={bookMode}
-            innerMarginMm={innerMarginMm}
-            outerMarginMm={outerMarginMm}
-            coverMode={coverMode}
-            onTitle={setTitle}
-            onVolume={setVolumeCode}
-            onCurriculum={setCurriculumVersion}
-            onPageTarget={setPageTarget}
-            onVideoPolicy={setVideoPolicy}
-            onSolutionPolicy={setSolutionPolicy}
-            onSchoolLevel={(value) => {
-              setSchoolLevel(value);
-              const max = value === "elementary" ? 6 : 3;
-              if (Number(grade) > max) setGrade(String(max));
-            }}
-            onGrade={setGrade}
-            onSemester={setSemester}
-            onBookMode={setBookMode}
-            onInnerMargin={setInnerMarginMm}
-            onOuterMargin={setOuterMarginMm}
-            onCoverMode={setCoverMode}
-            onCreate={() => {
-              const pages = Number(pageTarget);
-              if (!Number.isSafeInteger(pages) || pages < 1) {
-                setNotice("목표 쪽수는 1 이상의 정수입니다.");
-                return;
-              }
-              const chosenGrade = Number(grade);
-              const gradeMax = schoolLevel === "elementary" ? 6 : 3;
-              if (
-                !Number.isSafeInteger(chosenGrade) ||
-                chosenGrade < 1 ||
-                chosenGrade > gradeMax
-              ) {
+          {!showManual ? (
+            <AutoCreatePanel
+              api={quickApi}
+              onCreated={async (result) => {
+                const book: BookSummary = {
+                  bookId: result.book.id,
+                  title: result.book.title,
+                  shared: result.book.visibility === "branch",
+                  archived: result.book.archivedAt !== null,
+                  activeEditionId:
+                    result.book.draftEditionId ??
+                    result.book.latestPublishedEditionId,
+                };
+                setBooks((current) => [
+                  ...(current ?? []).filter(
+                    (row) => row.bookId !== book.bookId,
+                  ),
+                  book,
+                ]);
+                await openBook(book);
+                setPane("preview");
                 setNotice(
-                  schoolLevel === "elementary"
-                    ? "초등 학년은 1부터 6까지입니다."
-                    : "중·고등학교 학년은 1부터 3까지입니다.",
+                  `${result.problemCount}문제와 ${result.conceptCount}개 개념을 담았습니다.${result.warnings.length ? ` ${result.warnings.join(" ")}` : ""}`,
                 );
-                return;
-              }
-              const inner = Number(innerMarginMm);
-              const outer = Number(outerMarginMm);
-              if (
-                !Number.isSafeInteger(inner) ||
-                !Number.isSafeInteger(outer) ||
-                inner < 8 ||
-                inner > 40 ||
-                outer < 8 ||
-                outer > 40
-              ) {
-                setNotice("여백은 8mm 이상 40mm 이하입니다.");
-                return;
-              }
-              setBusy(true);
-              api
-                .createBook({
-                  title: title.trim(),
-                  volumeCode: volumeCode.trim(),
-                  curriculumVersion: curriculumVersion.trim(),
-                  pageTarget: pages,
-                  videoPolicy,
-                  studentSolutionPolicy: solutionPolicy,
-                  schoolLevel,
-                  grade: chosenGrade,
-                  semester: semester === "2" ? 2 : 1,
-                  mode: bookMode,
-                  innerMarginMm: inner,
-                  outerMarginMm: outer,
-                  coverMode,
-                  requestId: newRequestId(),
-                })
-                .then((book) => {
-                  setBooks((current) => [...(current ?? []), book]);
-                  setTitle("");
-                  setVolumeCode("");
-                  setCurriculumVersion("");
-                  setPageTarget("");
-                })
-                .catch((reason: unknown) => setNotice(messageOf(reason)))
-                .finally(() => setBusy(false));
-            }}
-            onOpen={(book) => void openBook(book)}
-            onImport={() => setShowImport(true)}
-          />
+              }}
+            />
+          ) : null}
+          {books.length > 0 ? (
+            <section className={styles.panel} aria-label="만든 교재">
+              <h2>만든 교재</h2>
+              <ul className={styles.list}>
+                {books.map((book) => (
+                  <li className={styles.book} key={book.bookId}>
+                    <span>
+                      {book.title}
+                      {book.archived ? " · 보관" : ""}
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      disabled={!book.activeEditionId || busy}
+                      onClick={() => void openBook(book)}
+                    >
+                      열기
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+          <div className={styles.row}>
+            <button
+              type="button"
+              className={styles.button}
+              aria-expanded={showManual}
+              onClick={() => setShowManual((value) => !value)}
+            >
+              직접 원고 만들기
+            </button>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => setShowImport((value) => !value)}
+            >
+              기존 원고 가져오기
+            </button>
+          </div>
+          {showManual ? (
+            <BookList
+              books={[]}
+              title={title}
+              volumeCode={volumeCode}
+              busy={busy}
+              curriculumVersion={curriculumVersion}
+              pageTarget={pageTarget}
+              videoPolicy={videoPolicy}
+              studentSolutionPolicy={solutionPolicy}
+              schoolLevel={schoolLevel}
+              grade={grade}
+              semester={semester}
+              bookMode={bookMode}
+              innerMarginMm={innerMarginMm}
+              outerMarginMm={outerMarginMm}
+              coverMode={coverMode}
+              onTitle={setTitle}
+              onVolume={setVolumeCode}
+              onCurriculum={setCurriculumVersion}
+              onPageTarget={setPageTarget}
+              onVideoPolicy={setVideoPolicy}
+              onSolutionPolicy={setSolutionPolicy}
+              onSchoolLevel={(value) => {
+                setSchoolLevel(value);
+                const max = value === "elementary" ? 6 : 3;
+                if (Number(grade) > max) setGrade(String(max));
+              }}
+              onGrade={setGrade}
+              onSemester={setSemester}
+              onBookMode={setBookMode}
+              onInnerMargin={setInnerMarginMm}
+              onOuterMargin={setOuterMarginMm}
+              onCoverMode={setCoverMode}
+              onCreate={() => {
+                const pages = Number(pageTarget);
+                if (!Number.isSafeInteger(pages) || pages < 1) {
+                  setNotice("목표 쪽수는 1 이상의 정수입니다.");
+                  return;
+                }
+                const chosenGrade = Number(grade);
+                const gradeMax = schoolLevel === "elementary" ? 6 : 3;
+                if (
+                  !Number.isSafeInteger(chosenGrade) ||
+                  chosenGrade < 1 ||
+                  chosenGrade > gradeMax
+                ) {
+                  setNotice(
+                    schoolLevel === "elementary"
+                      ? "초등 학년은 1부터 6까지입니다."
+                      : "중·고등학교 학년은 1부터 3까지입니다.",
+                  );
+                  return;
+                }
+                const inner = Number(innerMarginMm);
+                const outer = Number(outerMarginMm);
+                if (
+                  !Number.isSafeInteger(inner) ||
+                  !Number.isSafeInteger(outer) ||
+                  inner < 8 ||
+                  inner > 40 ||
+                  outer < 8 ||
+                  outer > 40
+                ) {
+                  setNotice("여백은 8mm 이상 40mm 이하입니다.");
+                  return;
+                }
+                setBusy(true);
+                api
+                  .createBook({
+                    title: title.trim(),
+                    volumeCode: volumeCode.trim(),
+                    curriculumVersion: curriculumVersion.trim(),
+                    pageTarget: pages,
+                    videoPolicy,
+                    studentSolutionPolicy: solutionPolicy,
+                    schoolLevel,
+                    grade: chosenGrade,
+                    semester: semester === "2" ? 2 : 1,
+                    mode: bookMode,
+                    innerMarginMm: inner,
+                    outerMarginMm: outer,
+                    coverMode,
+                    requestId: newRequestId(),
+                  })
+                  .then((book) => {
+                    setBooks((current) => [...(current ?? []), book]);
+                    setTitle("");
+                    setVolumeCode("");
+                    setCurriculumVersion("");
+                    setPageTarget("");
+                  })
+                  .catch((reason: unknown) => setNotice(messageOf(reason)))
+                  .finally(() => setBusy(false));
+              }}
+              onOpen={(book) => void openBook(book)}
+              onImport={() => setShowImport(true)}
+            />
+          ) : null}
           {showImport ? (
             <ImportPanel
               onSubmit={(mode: ImportMode, file: File) => {
@@ -1058,8 +1238,92 @@ export function TextbookStudioView({
           {importNote ? <p role="status">{importNote}</p> : null}
         </div>
       ) : null}
-      {edition ? (
+      {edition && simplePreview ? (
         <div className={styles.stack}>
+          <div className={styles.row}>
+            <h2>{edition.title}</h2>
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() => {
+                setSimplePreview(false);
+                setMode("draft");
+                setPane("manuscript");
+              }}
+            >
+              세부 편집
+            </button>
+            {!locked ? (
+              <button
+                type="button"
+                className={styles.primary}
+                disabled={busy}
+                onClick={() => void makeSimplePdf()}
+              >
+                {busy ? "PDF를 만들고 있습니다…" : "PDF 만들기"}
+              </button>
+            ) : null}
+            {edition.structureSource?.edition?.status === "published" ? (
+              <>
+                <a
+                  className={styles.primary}
+                  href={`/api/textbook/editions/${edition.editionId}/pdf?kind=student`}
+                  download
+                >
+                  학생용 PDF 내려받기
+                </a>
+                <a
+                  className={styles.button}
+                  href={`/api/textbook/editions/${edition.editionId}/pdf?kind=answers`}
+                  download
+                >
+                  해설 PDF 내려받기
+                </a>
+              </>
+            ) : null}
+          </div>
+          {busy && pdfJob ? (
+            <p role="status">
+              PDF 조판 {pdfJob.completedSteps ?? 0}/{pdfJob.totalSteps ?? "…"}
+            </p>
+          ) : null}
+          {issues.length ? <ReviewTable issues={issues} /> : null}
+          <nav className={styles.simpleSections} aria-label="교재 내용">
+            {edition.units.map((unit) => (
+              <div key={unit.unitKey}>
+                <strong>{unit.title}</strong>
+                <div className={styles.row}>
+                  {unit.sections.map((section) => (
+                    <button
+                      type="button"
+                      key={section.sectionId}
+                      className={styles.button}
+                      aria-pressed={draft?.sectionId === section.sectionId}
+                      disabled={busy}
+                      onClick={() => void openSection(section.sectionId)}
+                    >
+                      {section.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </nav>
+          {previewPanel}
+        </div>
+      ) : null}
+      {edition && !simplePreview ? (
+        <div className={styles.stack}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => {
+              setSimplePreview(true);
+              setMode("student");
+            }}
+          >
+            완성 교재 보기
+          </button>
           <div className={styles.tabs} role="tablist" aria-label="편집 칸">
             <button
               type="button"
@@ -1824,7 +2088,12 @@ export function TextbookStudioView({
                     if (refuseLocked()) return;
                     setBusy(true);
                     api
-                      .stepPublish(edition.editionId, newRequestId())
+                      .stepPublish(
+                        edition.editionId,
+                        pdfJob?.jobId ??
+                          pdfRequest.current?.requestId ??
+                          newRequestId(),
+                      )
                       .then((job) => followJob(job))
                       .catch((reason: unknown) => setNotice(messageOf(reason)))
                       .finally(() => setBusy(false));
@@ -1833,9 +2102,15 @@ export function TextbookStudioView({
                     if (refuseLocked()) return;
                     setBusy(true);
                     api
-                      .finalize(edition.editionId, newRequestId())
+                      .finalize(
+                        edition.editionId,
+                        pdfJob?.jobId ??
+                          pdfRequest.current?.requestId ??
+                          newRequestId(),
+                      )
                       .then((job) => {
                         setPublishStatus(job.status);
+                        setPdfJob(job);
                         setIssues(job.issues);
                       })
                       .catch((reason: unknown) => setNotice(messageOf(reason)))
@@ -1991,41 +2266,7 @@ export function TextbookStudioView({
                 />
               ) : null}
             </div>
-            {draft ? (
-              <PreviewPane
-                input={paperInput(
-                  draft,
-                  audience,
-                  audience === "teacher" ? mode : "student",
-                  zoom,
-                  pageLabel,
-                )}
-                zoom={zoom}
-                pageLabel={pageLabel}
-                showModes={audience === "teacher"}
-                onMode={setMode}
-                onZoom={setZoom}
-                onPrev={() => movePage(-1)}
-                onNext={() => movePage(1)}
-                renderPaper={renderPaper}
-                measured={
-                  preview?.ok && draft ? (
-                    <SectionMeasure
-                      key={`${draft.sectionId}:${previewVariant}:${draft.revision}:${draft.parity}:${draft.title}`}
-                      model={preview.model}
-                      resources={preview.resources}
-                      zoom={zoom}
-                      physicalPageIndex={spreadIndex}
-                      provisionalNotice={preview.provisionalNotice}
-                      onPages={onMeasuredPages}
-                    />
-                  ) : null
-                }
-                unavailable={preview && !preview.ok ? preview.message : null}
-              />
-            ) : (
-              <p className={styles.muted}>미리볼 구획이 없습니다.</p>
-            )}
+            {previewPanel}
           </div>
         </div>
       ) : null}

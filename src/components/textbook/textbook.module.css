@@ -70,6 +70,19 @@
   gap: 12px;
   min-width: 0;
 }
+.simpleSections {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--learn-track);
+  border-radius: 8px;
+  background: var(--learn-surface);
+}
+.simpleSections strong {
+  display: block;
+  margin-bottom: 8px;
+}
 .row {
   display: flex;
   flex-wrap: wrap;

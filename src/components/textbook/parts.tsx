@@ -5,6 +5,7 @@ import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import type { ProblemType } from "@/contracts/problem.contract";
 import { TextbookConceptLinkEditor } from "@/components/textbook/TextbookConceptLinkEditor";
+import { getTextbookCharacter } from "@/lib/textbook/characters";
 import {
   CONCEPT_KINDS,
   EXPRESSIONS,
@@ -697,158 +698,173 @@ export function SectionEditor({
             );
           }
           if (block.kind !== "dialogue") return null;
-          return block.turns.map((turn, index) => (
-            <div key={turn.id} className={styles.stack}>
-              <label className={styles.field}>
-                <span>화자</span>
-                <select
-                  value={turn.speaker}
-                  onChange={(event) => {
-                    const speaker =
-                      SPEAKERS.find((item) => item === event.target.value) ??
-                      turn.speaker;
-                    const turns = block.turns.map((item) =>
-                      item.id === turn.id
-                        ? { ...item, speaker, speakerId: SPEAKER_IDS[speaker] }
-                        : item,
-                    );
-                    onChange({
-                      ...draft,
-                      blocks: draft.blocks.map((item) =>
-                        item.id === block.id && item.kind === "dialogue"
-                          ? { ...item, turns }
+          return block.turns.map((turn, index) => {
+            const character = getTextbookCharacter(
+              turn.speakerId.replace(/^tb-portrait-/, ""),
+            );
+            return (
+              <div key={turn.id} className={styles.stack}>
+                <label className={styles.field}>
+                  <span>화자</span>
+                  <select
+                    value={turn.speaker}
+                    disabled={!!character}
+                    onChange={(event) => {
+                      const speaker =
+                        SPEAKERS.find((item) => item === event.target.value) ??
+                        turn.speaker;
+                      const turns = block.turns.map((item) =>
+                        item.id === turn.id
+                          ? {
+                              ...item,
+                              speaker,
+                              speakerId: SPEAKER_IDS[speaker],
+                            }
                           : item,
-                      ),
-                    });
-                  }}
-                >
-                  {SPEAKERS.map((speaker) => (
-                    <option key={speaker}>{speaker}</option>
-                  ))}
-                </select>
-              </label>
-              <label className={styles.field}>
-                <span>자리</span>
-                <select
-                  value={turn.side}
-                  onChange={(event) => {
-                    const side =
-                      SIDES.find((item) => item === event.target.value) ??
-                      turn.side;
-                    const turns = block.turns.map((item) =>
-                      item.id === turn.id ? { ...item, side } : item,
-                    );
-                    onChange({
-                      ...draft,
-                      blocks: draft.blocks.map((item) =>
-                        item.id === block.id && item.kind === "dialogue"
-                          ? { ...item, turns }
+                      );
+                      onChange({
+                        ...draft,
+                        blocks: draft.blocks.map((item) =>
+                          item.id === block.id && item.kind === "dialogue"
+                            ? { ...item, turns }
+                            : item,
+                        ),
+                      });
+                    }}
+                  >
+                    {character ? (
+                      <option value={turn.speaker}>{character.name}</option>
+                    ) : (
+                      SPEAKERS.map((speaker) => (
+                        <option key={speaker}>{speaker}</option>
+                      ))
+                    )}
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>자리</span>
+                  <select
+                    value={turn.side}
+                    onChange={(event) => {
+                      const side =
+                        SIDES.find((item) => item === event.target.value) ??
+                        turn.side;
+                      const turns = block.turns.map((item) =>
+                        item.id === turn.id ? { ...item, side } : item,
+                      );
+                      onChange({
+                        ...draft,
+                        blocks: draft.blocks.map((item) =>
+                          item.id === block.id && item.kind === "dialogue"
+                            ? { ...item, turns }
+                            : item,
+                        ),
+                      });
+                    }}
+                  >
+                    {SIDES.map((side) => (
+                      <option key={side}>{side}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>표정</span>
+                  <select
+                    value={turn.expression}
+                    onChange={(event) => {
+                      const expression =
+                        EXPRESSIONS.find(
+                          (item) => item === event.target.value,
+                        ) ?? turn.expression;
+                      const turns = block.turns.map((item) =>
+                        item.id === turn.id ? { ...item, expression } : item,
+                      );
+                      onChange({
+                        ...draft,
+                        blocks: draft.blocks.map((item) =>
+                          item.id === block.id && item.kind === "dialogue"
+                            ? { ...item, turns }
+                            : item,
+                        ),
+                      });
+                    }}
+                  >
+                    {EXPRESSIONS.map((expression) => (
+                      <option key={expression}>{expression}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>초상 자료</span>
+                  <input
+                    value={turn.portraitAssetId}
+                    onChange={(event) => {
+                      const turns = block.turns.map((item) =>
+                        item.id === turn.id
+                          ? { ...item, portraitAssetId: event.target.value }
                           : item,
-                      ),
-                    });
-                  }}
-                >
-                  {SIDES.map((side) => (
-                    <option key={side}>{side}</option>
-                  ))}
-                </select>
-              </label>
-              <label className={styles.field}>
-                <span>표정</span>
-                <select
-                  value={turn.expression}
-                  onChange={(event) => {
-                    const expression =
-                      EXPRESSIONS.find((item) => item === event.target.value) ??
-                      turn.expression;
-                    const turns = block.turns.map((item) =>
-                      item.id === turn.id ? { ...item, expression } : item,
-                    );
-                    onChange({
-                      ...draft,
-                      blocks: draft.blocks.map((item) =>
-                        item.id === block.id && item.kind === "dialogue"
-                          ? { ...item, turns }
+                      );
+                      onChange({
+                        ...draft,
+                        blocks: draft.blocks.map((item) =>
+                          item.id === block.id && item.kind === "dialogue"
+                            ? { ...item, turns }
+                            : item,
+                        ),
+                      });
+                    }}
+                  />
+                </label>
+                <label className={styles.field}>
+                  <span>초상 뒤집기</span>
+                  <select
+                    value={
+                      turn.side === "오른쪽" && turn.mirror ? "right" : "none"
+                    }
+                    disabled={turn.side !== "오른쪽"}
+                    onChange={(event) => {
+                      const mirror = event.target.value === "right";
+                      const turns = block.turns.map((item) =>
+                        item.id === turn.id ? { ...item, mirror } : item,
+                      );
+                      onChange({
+                        ...draft,
+                        blocks: draft.blocks.map((item) =>
+                          item.id === block.id && item.kind === "dialogue"
+                            ? { ...item, turns }
+                            : item,
+                        ),
+                      });
+                    }}
+                  >
+                    <option value="none">뒤집지 않음</option>
+                    <option value="right">오른쪽만 뒤집기</option>
+                  </select>
+                </label>
+                <label className={styles.field}>
+                  <span>{turnLabel(index, block.turns.length)}</span>
+                  <textarea
+                    value={turn.text}
+                    onChange={(event) => {
+                      const turns = block.turns.map((item) =>
+                        item.id === turn.id
+                          ? { ...item, text: event.target.value }
                           : item,
-                      ),
-                    });
-                  }}
-                >
-                  {EXPRESSIONS.map((expression) => (
-                    <option key={expression}>{expression}</option>
-                  ))}
-                </select>
-              </label>
-              <label className={styles.field}>
-                <span>초상 자료</span>
-                <input
-                  value={turn.portraitAssetId}
-                  onChange={(event) => {
-                    const turns = block.turns.map((item) =>
-                      item.id === turn.id
-                        ? { ...item, portraitAssetId: event.target.value }
-                        : item,
-                    );
-                    onChange({
-                      ...draft,
-                      blocks: draft.blocks.map((item) =>
-                        item.id === block.id && item.kind === "dialogue"
-                          ? { ...item, turns }
-                          : item,
-                      ),
-                    });
-                  }}
-                />
-              </label>
-              <label className={styles.field}>
-                <span>초상 뒤집기</span>
-                <select
-                  value={
-                    turn.side === "오른쪽" && turn.mirror ? "right" : "none"
-                  }
-                  disabled={turn.side !== "오른쪽"}
-                  onChange={(event) => {
-                    const mirror = event.target.value === "right";
-                    const turns = block.turns.map((item) =>
-                      item.id === turn.id ? { ...item, mirror } : item,
-                    );
-                    onChange({
-                      ...draft,
-                      blocks: draft.blocks.map((item) =>
-                        item.id === block.id && item.kind === "dialogue"
-                          ? { ...item, turns }
-                          : item,
-                      ),
-                    });
-                  }}
-                >
-                  <option value="none">뒤집지 않음</option>
-                  <option value="right">오른쪽만 뒤집기</option>
-                </select>
-              </label>
-              <label className={styles.field}>
-                <span>{turnLabel(index, block.turns.length)}</span>
-                <textarea
-                  value={turn.text}
-                  onChange={(event) => {
-                    const turns = block.turns.map((item) =>
-                      item.id === turn.id
-                        ? { ...item, text: event.target.value }
-                        : item,
-                    );
-                    onChange({
-                      ...draft,
-                      blocks: draft.blocks.map((item) =>
-                        item.id === block.id && item.kind === "dialogue"
-                          ? { ...item, turns }
-                          : item,
-                      ),
-                    });
-                  }}
-                />
-              </label>
-            </div>
-          ));
+                      );
+                      onChange({
+                        ...draft,
+                        blocks: draft.blocks.map((item) =>
+                          item.id === block.id && item.kind === "dialogue"
+                            ? { ...item, turns }
+                            : item,
+                        ),
+                      });
+                    }}
+                  />
+                </label>
+              </div>
+            );
+          });
         })}
         {draft.portraits.map((portrait) => (
           <label key={portrait.id} className={styles.field}>

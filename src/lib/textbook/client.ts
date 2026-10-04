@@ -9,6 +9,7 @@
  * 없는 필드는 성공으로 채우지 않는다.
  */
 import { z } from "zod";
+import { getTextbookCharacter } from "./characters";
 
 import {
   planUploadChunks,
@@ -476,6 +477,13 @@ function knownSpeaker(id: string): Speaker | null {
   if (id === SPEAKER_ID.선생님) return "선생님";
   if (id === SPEAKER_ID.민서) return "민서";
   if (id === SPEAKER_ID.지호) return "지호";
+  const character = getTextbookCharacter(id.replace(/^tb-portrait-/, ""));
+  if (character)
+    return character.role === "teacher"
+      ? "선생님"
+      : character.gender === "female"
+        ? "민서"
+        : "지호";
   return null;
 }
 
@@ -808,7 +816,14 @@ function toJob(job: TextbookPublishJob): PublishJob {
           : job.status === "failed"
             ? "failed"
             : "reserved";
-  return { jobId: job.requestId, status, issues: studioIssues(job.issues) };
+  return {
+    jobId: job.requestId,
+    status,
+    issues: studioIssues(job.issues),
+    completedSteps: job.completedSteps,
+    totalSteps: job.totalSteps,
+    artifacts: job.artifacts,
+  };
 }
 
 function toDraft(concept: TextbookConcept): ConceptDraft {
