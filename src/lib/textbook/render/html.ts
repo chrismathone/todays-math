@@ -49,7 +49,7 @@ export function renderBlockHtml(
 ): string {
   const projected = block as EditorialBlock;
   const stage = editorialStage(projected);
-  return `<div class="tb-editorial${block.semantic || block.dialogueGuide || block.dialogueLesson ? " tb-recovery" : ""} tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}"${block.semantic?.source ? ` data-source-kind="${esc(block.semantic.source.kind)}"` : ""}>${renderBlockContent(projected, resources, stage)}</div>`;
+  return `<div class="tb-editorial${block.semantic || block.dialogueGuide || block.dialogueLesson ? " tb-recovery" : ""} tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}"${block.semantic?.source ? ` data-source-kind="${esc(block.semantic.source.kind)}"${block.semantic.source.tone ? ` data-source-tone="${block.semantic.source.tone}"` : ""}` : ""}>${renderBlockContent(projected, resources, stage)}</div>`;
 }
 function renderBlockContent(
   block: EditorialBlock,
@@ -324,7 +324,10 @@ export function renderPageHtml(
           .join("") +
         `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyHtml}</div>`
       : page.blocks.map((placement) => placementHtml(placement)).join("");
-  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${sourceFooterHtml}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+  const sourceTone = section?.blocks.find(
+    (block) => block.semantic?.source?.tone,
+  )?.semantic?.source?.tone;
+  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"${sourceTone ? ` data-source-tone="${sourceTone}"` : ""}><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${sourceFooterHtml}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(
