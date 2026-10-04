@@ -29,6 +29,8 @@ type RecallBlock = Extract<EditorialBlock, { kind: "recall" }> & {
    * they are printed as given and the node's `rawText` (stripped for students) is never read.
    */
   displayRows?: readonly RecallDisplayRow[];
+  /** The lesson a continued bank block belongs to; printed with "계속" in its reserved bar. */
+  memoryContinuationTitle?: string;
 };
 
 export type RecallDisplayPiece =
@@ -310,18 +312,24 @@ function memoryHtml(
   // Only the study sheet is repeated four times.
   const rounds = phase === "study" && block.repetitionChecks ? ROUNDS : "";
   const code = node.kind === "concept" ? conceptCode(node.conceptId) : "";
+  // An original v15 page: its own row geometry and display-style formulas (see the content CSS).
+  const origin = block.semantic!.source;
+  // A continued bank block has no concept name and no instruction of its own. It says what it
+  // continues in the bar it reserves anyway, in every phase, so the bar keeps one height.
+  const continued =
+    continuation && !origin
+      ? `<span class="tb-memory-continuation" data-continuation>${block.memoryContinuationTitle ? `<span class="tb-memory-continuation-title">${esc(block.memoryContinuationTitle)}</span>` : ""}<small>계속</small></span>`
+      : "";
   const title =
     node.kind === "concept"
       ? `<header class="tb-memory-title" data-anchor="memory-title">${code ? `<span class="tb-memory-code">${esc(code)}</span>` : ""}<b>${esc(node.title)}</b>${rounds}</header>`
       : // Rows without a concept name keep the same bar in every phase, so the first row starts
         // at one height. Only the study sheet prints the repetition marks in it.
-        `<header class="tb-memory-title tb-memory-title-bare" data-anchor="memory-title">${rounds}</header>`;
+        `<header class="tb-memory-title tb-memory-title-bare" data-anchor="memory-title">${continued}${rounds}</header>`;
   const page =
     block.relativePageIndex === undefined
       ? ""
       : ` data-relative-page-index="${block.relativePageIndex}"`;
-  // An original v15 page: its own row geometry and display-style formulas (see the content CSS).
-  const origin = block.semantic!.source;
   const padding = RECALL_ROW_PADDING_MM[origin ? "source" : "bank"];
   const body = rows
     .map((row) => {
