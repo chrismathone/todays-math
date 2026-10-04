@@ -20,7 +20,7 @@ const failure = (message: string, status: number) =>
             ? "CONFLICT"
             : status === 404
               ? "NOT_FOUND"
-              : "FORBIDDEN",
+              : "ACTION_NOT_ALLOWED",
         message,
       },
     },

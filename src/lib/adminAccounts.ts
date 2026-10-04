@@ -42,6 +42,9 @@ export function managedAccount(
   } = user;
   return {
     ...data,
+    branchAssignmentLocked: (eywaManagedAccounts ?? []).some(
+      (mapping) => mapping.currentUserId === user.id,
+    ),
     branchName: branch?.name ?? null,
     ...effectiveWorkspaceMenuPolicy({ ...data, disabledMenus, branch }),
     eywaSync: accountSyncStatus({ ...user, eywaUserId, eywaManagedAccounts }),
