@@ -1,4 +1,4 @@
-import Link from "next/link";
+import BackLink from "@/components/ui/BackLink";
 import { z } from "zod";
 import { normalizeStudentReturnTo } from "@/lib/learn/studentReturnTo";
 import {
@@ -42,7 +42,7 @@ export async function TextbookReturnLink({
   }
   return (
     <aside className={styles.returnLink}>
-      <Link href={href}>← {title} · 교재 개념백지로 돌아가기</Link>
+      <BackLink href={href}>{title} · 교재 개념백지로 돌아가기</BackLink>
     </aside>
   );
 }

@@ -11,6 +11,7 @@ import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 
 type Context = { params: Promise<{ id: string }> };
+class AccountUpdateConflict extends Error {}
 const failure = (message: string, status: number) =>
   Response.json(
     {
@@ -95,13 +96,11 @@ async function handlePatch(request: Request, context: Context) {
         });
         if (
           managed &&
-          (update.branchId !== undefined ||
-            update.branchRole !== undefined ||
-            update.isAdmin !== undefined)
+          (update.branchId !== undefined || update.isAdmin !== undefined)
         )
           return {
             error: failure(
-              "연동 계정의 소속과 관리 권한은 연결 관리에서 확인해 주세요.",
+              "연동 계정의 소속 지점은 변경할 수 없습니다. 권한은 계정 유형으로 선택해 주세요.",
               403,
             ),
           };
@@ -133,10 +132,12 @@ async function handlePatch(request: Request, context: Context) {
           update.branchId === undefined ? previous.branchId : update.branchId;
         if (update.isAdmin !== undefined && !targetBranchId)
           return { error: failure("먼저 계정을 지점에 소속시켜 주세요.", 403) };
-        if (update.branchRole !== undefined && update.branchId === undefined)
+        if (update.branchRole !== undefined && !targetBranchId)
           return {
-            error: failure("지점 소속과 계정 유형을 함께 선택해 주세요.", 403),
+            error: failure("먼저 계정을 지점에 소속시켜 주세요.", 403),
           };
+        if (update.branchRole !== undefined && update.isAdmin !== undefined)
+          return { error: failure("계정 유형만 선택해 주세요.", 403) };
         if (update.branchId !== undefined) {
           if (update.isAdmin !== undefined)
             return {
@@ -206,6 +207,13 @@ async function handlePatch(request: Request, context: Context) {
               ),
             };
         }
+        // Persist before the User write: the database guard checks this exact
+        // local type while still refusing source identity and branch changes.
+        if (managed && update.branchRole !== undefined)
+          await tx.eywaManagedAccount.update({
+            where: { id: managed.id },
+            data: { branchRoleOverride: update.branchRole },
+          });
         const changed = await tx.user.updateMany({
           where: {
             id,
@@ -240,9 +248,17 @@ async function handlePatch(request: Request, context: Context) {
                     Boolean(update.branchId) && update.branchRole !== "teacher",
                 }
               : {}),
+            ...(update.branchRole !== undefined && update.branchId === undefined
+              ? {
+                  branchRole: update.branchRole,
+                  isAdmin: update.branchRole !== "teacher",
+                }
+              : {}),
             ...(update.suspended !== undefined ||
             update.deleted !== undefined ||
-            update.branchId !== undefined
+            update.branchId !== undefined ||
+            update.branchRole !== undefined ||
+            update.isAdmin !== undefined
               ? { sessionVersion: { increment: 1 } }
               : {}),
             ...(update.isAdmin !== undefined
@@ -264,13 +280,7 @@ async function handlePatch(request: Request, context: Context) {
               : {}),
           },
         });
-        if (changed.count !== 1)
-          return {
-            error: failure(
-              "다른 관리자가 설정을 변경했습니다. 새로고침 후 다시 확인해 주세요.",
-              409,
-            ),
-          };
+        if (changed.count !== 1) throw new AccountUpdateConflict();
         if (branchMoving) {
           // Leaving and later rejoining a branch must not republish an old
           // sharing choice. Keep every document, but require a fresh consent.
@@ -298,6 +308,11 @@ async function handlePatch(request: Request, context: Context) {
               status: user.approvalStatus,
               previousBranchManager: previous.isAdmin,
               branchManager: user.isAdmin,
+              previousBranchRole: previous.branchRole,
+              branchRole: user.branchRole,
+              managedRoleOverride: Boolean(
+                managed && update.branchRole !== undefined,
+              ),
               previousBranchId: previous.branchId,
               branchId: user.branchId,
               suspended: Boolean(user.suspendedAt),
@@ -312,7 +327,10 @@ async function handlePatch(request: Request, context: Context) {
       { isolationLevel: "Serializable" },
     );
   } catch (error) {
-    if (isPrismaErrorCode(error, "P2034"))
+    if (
+      error instanceof AccountUpdateConflict ||
+      isPrismaErrorCode(error, "P2034")
+    )
       return failure(
         "다른 관리자가 설정을 변경했습니다. 새로고침 후 다시 확인해 주세요.",
         409,

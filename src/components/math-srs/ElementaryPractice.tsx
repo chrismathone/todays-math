@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MathText } from "@/components/math/MathText";
+import { BackButton } from "@/components/ui/BackLink";
 import { ProblemContent } from "@/components/math/ProblemContent";
 import {
   gradeCourseAnswer,
@@ -60,9 +61,9 @@ function CourseRun({
   return (
     <div className={s.practice}>
       <header className={s.header}>
-        <button className={s.back} type="button" onClick={onExit}>
-          <span aria-hidden="true">←</span> 학습 목록
-        </button>
+        <BackButton type="button" onClick={onExit}>
+          학습 목록
+        </BackButton>
         <span className={s.breadcrumb}>
           초{section.grade} · {section.semester}학기 · {section.chapterTitle}
         </span>
@@ -339,13 +340,9 @@ function CourseQuestion({
                 : "그림을 다시 불러온 뒤 답을 확인할 수 있어요."}
             </p>
             {figure.status === "error" ? (
-              <button
-                type="button"
-                className={s.textButton}
-                onClick={() => setPanel("problem")}
-              >
+              <BackButton type="button" onClick={() => setPanel("problem")}>
                 문제로 돌아가기
-              </button>
+              </BackButton>
             ) : null}
           </div>
         ) : null}

@@ -2420,6 +2420,8 @@ model EywaManagedAccount {
   candidateVersion            String?     @map("candidate_version") @db.VarChar(64)
   conflictReason              String?     @map("conflict_reason") @db.VarChar(100)
   blockReasons                String[]    @default([]) @map("block_reasons")
+  // Explicit local account type, selected by a superadmin; source branch stays immutable.
+  branchRoleOverride          BranchRole? @map("branch_role_override")
   sourceClasses               Json        @default("[]") @map("source_classes")
   sourceEpoch                 String?     @map("source_epoch") @db.Uuid
   securityRevision            BigInt      @default(0) @map("security_revision")

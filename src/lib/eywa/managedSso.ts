@@ -14,7 +14,7 @@ import {
   fetchControl,
   sourceRequest,
 } from "./managedTransport";
-import { EywaAccessError } from "./managedPolicy";
+import { accountUsable, EywaAccessError } from "./managedPolicy";
 import { provisionAutomaticBinding } from "./managedProvisioning";
 import { equalSecret, s256, sha256, verifyAssertion } from "./sync-contract";
 
@@ -279,14 +279,7 @@ export async function authorizeManagedSso(ticket: unknown) {
       const user = await tx.user.findUniqueOrThrow({
         where: { id: current.currentUserId! },
       });
-      if (
-        user.deletedAt ||
-        user.manualSuspendedAt ||
-        user.suspendedAt ||
-        user.approvalStatus !== "approved" ||
-        user.isSuperAdmin ||
-        user.isAdmin
-      )
+      if (user.suspendedAt || !accountUsable(user, current, binding))
         throw new EywaAccessError("local_account_blocked");
       if (user.authSource !== "eywa" && !user.passwordHash)
         throw new EywaAccessError("local_auth_missing");

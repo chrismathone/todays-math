@@ -1,5 +1,7 @@
 "use client";
 
+import { BackButton } from "@/components/ui/BackLink";
+
 /* Local image data must stay in the browser, bypassing the Next image optimizer. */
 /* eslint-disable @next/next/no-img-element */
 
@@ -2795,13 +2797,9 @@ export default function StudioView({
                 </button>
               </div>
               {currentSource ? (
-                <button
-                  type="button"
-                  className={styles.textButton}
-                  onClick={() => setStep("crop")}
-                >
-                  열어 둔 원본으로 돌아가기 <Icon name="arrow" />
-                </button>
+                <BackButton type="button" onClick={() => setStep("crop")}>
+                  열어 둔 원본으로 돌아가기
+                </BackButton>
               ) : null}
             </div>
           ) : (

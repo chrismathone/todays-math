@@ -1,0 +1,40 @@
+.control.control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-shrink: 0;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--learn-control, #b9c8dd);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--learn-ink, #172b4d);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+  text-decoration: none;
+  cursor: pointer;
+}
+.control svg {
+  flex-shrink: 0;
+}
+.control span {
+  overflow-wrap: anywhere;
+}
+.control.control:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: var(--learn-neutral, #eef2f7);
+  text-decoration: none;
+}
+.control:focus-visible {
+  outline: 3px solid var(--learn-accent, #3159df);
+  outline-offset: 3px;
+}
+.control:disabled,
+.control[aria-disabled="true"] {
+  cursor: not-allowed;
+  color: var(--learn-muted, #65758a);
+  background: var(--learn-neutral, #eef2f7);
+}
