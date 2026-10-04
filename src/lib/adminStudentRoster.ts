@@ -10,6 +10,19 @@ const collator = new Intl.Collator("ko-KR", {
 export function compareRosterNames(a: string, b: string): number {
   return collator.compare(a, b);
 }
+/** Disabled accounts stay issued; an expired temporary lock is enabled again. */
+export function studentAccountLoginState(
+  account: { disabledAt: Date | null; lockedUntil: Date | null } | null,
+  now: Date,
+): ConnectedStudent["login"] {
+  return !account
+    ? "unissued"
+    : account.disabledAt
+      ? "disabled"
+      : account.lockedUntil && account.lockedUntil > now
+        ? "locked"
+        : "enabled";
+}
 export function rosterGradeKey(grade: string | null): string {
   const match = grade?.match(/^([초중고])(\d+)$/);
   return match
