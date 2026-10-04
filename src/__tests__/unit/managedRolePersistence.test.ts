@@ -11,11 +11,17 @@ import {
   vi,
 } from "vitest";
 vi.mock("server-only", () => ({}));
-vi.mock("@/lib/db", () => ({ db: {} }));
+const state = vi.hoisted(() => ({ mapping: vi.fn() }));
+vi.mock("@/lib/db", () => ({
+  db: { eywaManagedAccount: { findUnique: state.mapping } },
+}));
 vi.mock("@/lib/eywa/managedProvisioning", () => ({
   syncAutomaticBranchName: vi.fn(),
 }));
-import { applyManagedControl } from "@/lib/eywa/managedAccounts";
+import {
+  applyManagedControl,
+  getManagedClassGrants,
+} from "@/lib/eywa/managedAccounts";
 import { accountUsable } from "@/lib/eywa/managedPolicy";
 import { controlSchema } from "@/lib/eywa/sync-contract";
 
@@ -26,8 +32,8 @@ const binding = {
   id: id(1),
   targetBranchId: id(2),
   sourceEpoch: id(3),
-  securityRevision: 12n,
-  tenantRevocationGeneration: 7n,
+  securityRevision: BigInt(12),
+  tenantRevocationGeneration: BigInt(7),
   mode: "active",
   enabled: true,
   healthy: true,
@@ -54,11 +60,11 @@ const mapping = {
   status: "confirmed",
   blockReasons: [],
   sourceEpoch: id(3),
-  accountRevocationGeneration: 9n,
-  tenantRevocationGeneration: 7n,
+  accountRevocationGeneration: BigInt(9),
+  tenantRevocationGeneration: BigInt(7),
   leaseExpiresAt: new Date(now + 60_000),
   user,
-} as Parameters<typeof accountUsable>[1] & { user: typeof user };
+} as unknown as Parameters<typeof accountUsable>[1] & { user: typeof user };
 const control = controlSchema.parse({
   schemaVersion: 2,
   bindingId: id(1),
@@ -90,6 +96,30 @@ const control = controlSchema.parse({
 });
 
 describe("managed local role persistence and source access", () => {
+  it("exports branch admin scope only after validating the persisted role and live source", async () => {
+    state.mapping.mockResolvedValue({ ...mapping, binding, sourceClasses: [] });
+    expect(await getManagedClassGrants(id(4))).toMatchObject({
+      branchAdminScope: { branchId: id(2) },
+    });
+    state.mapping.mockResolvedValue({
+      ...mapping,
+      binding,
+      sourceClasses: [],
+      branchRoleOverride: null,
+    });
+    await expect(getManagedClassGrants(id(4))).rejects.toThrow(
+      "managed_access_denied",
+    );
+    state.mapping.mockResolvedValue({
+      ...mapping,
+      binding,
+      sourceClasses: [],
+      blockReasons: ["staff_inactive"],
+    });
+    await expect(getManagedClassGrants(id(4))).rejects.toThrow(
+      "managed_access_denied",
+    );
+  });
   it("keeps an explicit manager role through a source refresh", async () => {
     const update = vi.fn().mockResolvedValue({});
     const tx = {
