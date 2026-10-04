@@ -17,6 +17,7 @@ import {
 } from "@/lib/math-srs/learningSoundManifest";
 import {
   SOUND_URLS as URLS,
+  releaseDecodes,
   serveSounds,
   settle,
   soundHost,
@@ -568,6 +569,51 @@ describe("끄기 · 다른 탭 · 화면 가림 · 언마운트", () => {
     world.hidden = false;
     engine.gesture();
     expect(world.requests).toHaveLength(3);
+    await serve();
+    expect(status()).toBe("ready");
+  });
+
+  it("decode 가 도는 중에 가려지면 그 결과를 버린다 — 늦게 끝난 decode 가 준비됨을 만들지 않는다", async () => {
+    const { world, engine, serve, status } = setup({ decodeHolds: true });
+    engine.setEnabled(true);
+    await serve();
+    expect(world.heldDecodes).toHaveLength(3);
+    expect(status()).toBe("loading");
+
+    world.hidden = true;
+    engine.pageHidden();
+    await releaseDecodes(world);
+    expect(status()).toBe("idle");
+
+    // 버려진 결과를 쓰지 않는다 — 돌아온 뒤의 조작이 새로 받는다
+    world.hidden = false;
+    world.decodeHolds = false;
+    engine.gesture();
+    expect(world.requests).toHaveLength(3);
+    engine.play("correct", "k1");
+    expect(world.played).toEqual([]);
+    await serve();
+    expect(status()).toBe("ready");
+  });
+
+  it("decode 가 도는 중에 끄고 다시 켜면, 앞 decode 가 늦게 끝나도 새로 받는 것을 가로채지 않는다", async () => {
+    const { world, engine, serve, status } = setup({ decodeHolds: true });
+    engine.setEnabled(true);
+    await serve();
+    const late = world.heldDecodes.splice(0);
+    engine.setEnabled(false);
+    engine.setEnabled(true);
+    expect(world.requests).toHaveLength(3);
+    expect(status()).toBe("loading");
+
+    // 앞 context 의 decode 가 이제 끝난다
+    for (const release of late) release();
+    await settle();
+    expect(status()).toBe("loading");
+    engine.preview();
+    expect(world.played).toEqual([]);
+
+    world.decodeHolds = false;
     await serve();
     expect(status()).toBe("ready");
   });
