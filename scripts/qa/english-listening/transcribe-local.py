@@ -1,6 +1,7 @@
 """Local original-audio ASR. Estimated timestamps never become exact audioRange."""
 
 import argparse
+import faulthandler
 import hashlib
 import json
 import os
@@ -56,10 +57,16 @@ def main():
     parser.add_argument("--model", default="medium")
     parser.add_argument("--device", choices=["cpu", "cuda"], default="cpu")
     parser.add_argument("--compute-type", default="int8")
-    parser.add_argument("--threads", type=int, default=4)
+    parser.add_argument("--threads", type=int)
     parser.add_argument("--language", choices=["auto", "en", "ko"], default="auto")
     parser.add_argument("--multilingual", action="store_true")
     args = parser.parse_args()
+    faulthandler.enable()
+    if args.threads is None:
+        args.threads = 1 if args.device == "cuda" else 4
+    if not 1 <= args.threads <= 16:
+        raise ValueError("ASR CPU threads must be 1..16")
+    os.environ.setdefault("OMP_NUM_THREADS", str(args.threads))
     audio = Path(args.audio).resolve()
     destination = Path(args.output).resolve()
     if audio.stat().st_size > 64 * 1024 * 1024:
@@ -92,8 +99,26 @@ def main():
         from faster_whisper import WhisperModel
 
         started = time.monotonic()
+        # Reuse the already verified model snapshot without repeated HF network
+        # checks or concurrent download thread pools on Windows.
+        model_reference = args.model
+        snapshot_revision = None
+        repository = (
+            Path(args.model_cache) / f"models--Systran--faster-whisper-{args.model}"
+        )
+        revision_file = repository / "refs" / "main"
+        if revision_file.is_file():
+            revision = revision_file.read_text("utf8").strip()
+            if len(revision) == 40 and all(c in "0123456789abcdef" for c in revision):
+                snapshot = repository / "snapshots" / revision
+                if all(
+                    (snapshot / filename).is_file()
+                    for filename in ["model.bin", "config.json", "tokenizer.json"]
+                ):
+                    model_reference = str(snapshot)
+                    snapshot_revision = revision
         model = WhisperModel(
-            args.model,
+            model_reference,
             device=args.device,
             compute_type=args.compute_type,
             cpu_threads=args.threads,
@@ -151,11 +176,14 @@ def main():
             "sourceAudioPath": str(audio),
             "sourceAudioSha256": actual_hash,
             "model": "Systran/faster-whisper-" + args.model,
+            "modelSnapshotRevision": snapshot_revision,
             "engine": "faster-whisper",
             "engineVersion": version("faster-whisper"),
             "device": args.device,
             "computeType": args.compute_type,
             "cpuThreads": args.threads,
+            "numWorkers": 1,
+            "ompNumThreads": os.environ["OMP_NUM_THREADS"],
             "requestedLanguage": args.language,
             "detectedLanguage": info.language,
             "languageProbability": info.language_probability,
