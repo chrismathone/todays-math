@@ -389,7 +389,7 @@ describe("real portable MP3 decoding", () => {
       code: "invalid_request",
     });
     await expect(
-      setup({ maxTotalBytes: 16 * 1024 * 1024 + 1 }),
+      setup({ maxTotalBytes: 64 * 1024 * 1024 + 1 }),
     ).rejects.toMatchObject({ code: "invalid_request" });
   });
 });

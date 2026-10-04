@@ -143,7 +143,7 @@ describe("listening HTTP authenticated boundary", () => {
     expect(await response.text()).not.toContain("private connection");
   });
   it("bounds streamed JSON input rather than trusting content-length", async () => {
-    const body = "x".repeat(4 * 1024 * 1024 + 1);
+    const body = "x".repeat(16 * 1024 * 1024 + 1);
     const req = new Request("http://localhost/api", { method: "POST", body });
     await expect(listeningJson(req)).rejects.toThrow("너무");
   });

@@ -26,9 +26,11 @@ import w from "@/components/unified/Workroom.module.css";
 import b from "./ListeningAssessmentImport.module.css";
 
 export function ListeningAssessmentImport({
+  active = true,
   onImported,
   onState,
 }: {
+  active?: boolean;
   onImported: (id: string) => void;
   onState?: (dirty: boolean, busy: boolean) => void;
 }) {
@@ -402,7 +404,7 @@ export function ListeningAssessmentImport({
             음원 최대 64MB·30분. 모의고사는 듣기 1~17번을 읽습니다. 원본
             그림·표를 보존하며 정답이 없는 문항은 미정으로 남깁니다.
           </p>
-          {previewUrl && (
+          {previewUrl && active && (
             <ListeningTeacherAudio
               key={previewUrl}
               url={previewUrl}

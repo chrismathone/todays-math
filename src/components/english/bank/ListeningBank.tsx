@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { ENGLISH_GRADES } from "@/contracts/english.contract";
 import {
   englishListeningBankResponseSchema,
@@ -8,6 +8,8 @@ import w from "@/components/unified/Workroom.module.css";
 import s from "../EnglishStudio.module.css";
 import { bankUrl, useBankQuery } from "./bankClient";
 import { BankError, BankLoading, BankPagination } from "./BankFeedback";
+import { ListeningAssessmentImport } from "./ListeningAssessmentImport";
+import ListeningBankMaterial from "./ListeningBankMaterial";
 import b from "./EnglishResourceBank.module.css";
 
 function officialPage(url: string) {
@@ -37,10 +39,36 @@ function officialPage(url: string) {
 export default function ListeningBank({
   active,
   onOpenListening,
+  onState,
 }: {
   active: boolean;
   onOpenListening: (id: string) => void;
+  onState?: (dirty: boolean, busy: boolean) => void;
 }) {
+  const work = useRef({
+    upload: { dirty: false, busy: false },
+    basket: { dirty: false, busy: false },
+  });
+  const reportUpload = useCallback(
+    (dirty: boolean, busy: boolean) => {
+      work.current.upload = { dirty, busy };
+      onState?.(
+        dirty || work.current.basket.dirty,
+        busy || work.current.basket.busy,
+      );
+    },
+    [onState],
+  );
+  const reportBasket = useCallback(
+    (dirty: boolean, busy: boolean) => {
+      work.current.basket = { dirty, busy };
+      onState?.(
+        dirty || work.current.upload.dirty,
+        busy || work.current.upload.busy,
+      );
+    },
+    [onState],
+  );
   const [kind, setKind] = useState<"own" | "ebs">("own");
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
@@ -80,10 +108,6 @@ export default function ListeningBank({
     generation,
   );
   const result = kind === "own" ? own : references;
-  const material =
-    kind === "own" && own.status === "ready"
-      ? own.data.data.find((item) => item.id === selected)
-      : undefined;
   const reference =
     kind === "ebs" && references.status === "ready"
       ? references.data.data.find((item) => item.id === selected)
@@ -91,6 +115,19 @@ export default function ListeningBank({
   const sourceUrl = reference ? officialPage(reference.sourceUrl) : null;
   return (
     <>
+      <ListeningAssessmentImport
+        active={active}
+        onState={reportUpload}
+        onImported={(id) => {
+          setKind("own");
+          setQuery("");
+          setLevel("");
+          setFilter({ q: "", level: "", year: "", round: "" });
+          setCursors([""]);
+          setSelected(id);
+          setGeneration((value) => value + 1);
+        }}
+      />
       <div className={b.listeningFilterContainer}>
         <form
           className={b.listeningFilters}
@@ -181,7 +218,7 @@ export default function ListeningBank({
       </div>
       <p className={b.note}>
         {kind === "own"
-          ? "직접 올리거나 자체 제작한 자료입니다. 기존 듣기 작업대에서 음원·대본·문항을 확인하고 검수·수업을 진행합니다."
+          ? "자료를 선택해 바로 듣고, 회차 전체 또는 필요한 문항을 담아 시험지를 만드세요. 전국 듣기평가·모의고사 원본은 파일 등록으로 추가할 수 있습니다."
           : "EBS 공식 페이지의 참조 목록입니다. 음원·문서를 이 서비스에 복제하거나 외부 모델에 전송하지 않습니다."}
       </p>
       <div className={b.layout}>
@@ -250,59 +287,46 @@ export default function ListeningBank({
           )}
         </section>
         <section className={b.detail} aria-label="듣기 상세">
-          {material ? (
-            <>
-              <h2>{material.title}</h2>
-              <p className={b.meta}>
-                {material.level || "학년 미지정"} · {material.groupCount}개 묶음
-                · 버전 {material.revision}
-              </p>
-              <p className={b.note}>
-                음원·대본·문항·검수 상태는 듣기 작업대에서 확인합니다. 발행 전
-                교사 검수 절차가 적용됩니다.
-              </p>
-              <button
-                type="button"
-                className={w.primaryButton}
-                onClick={() => onOpenListening(material.id)}
-              >
-                듣기 자료 열기
-              </button>
-            </>
-          ) : reference ? (
-            <>
-              <h2>{reference.title}</h2>
-              <p className={b.meta}>
-                {reference.school === "middle" ? "중" : "고"}
-                {reference.grade} · {reference.year}년 {reference.round}회 ·{" "}
-                {reference.provider}
-              </p>
-              <p className={b.note}>
-                공식 출처 링크입니다. 복제·변형·재배포에는 별도의 이용 허락이
-                필요합니다.
-              </p>
-              {sourceUrl ? (
-                <a
-                  href={sourceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={b.link}
-                >
-                  EBS 공식 자료 열기 ↗
-                </a>
-              ) : (
-                <BankError message="공식 페이지 주소를 확인할 수 없습니다." />
-              )}
-            </>
-          ) : (
-            <>
-              <h2>듣기 자료를 선택하세요</h2>
-              <p className={b.note}>
-                보관한 자료는 기존 작업대에서, 공식 참조는 EBS에서 열 수
-                있습니다.
-              </p>
-            </>
-          )}
+          <ListeningBankMaterial
+            active={active && kind === "own"}
+            setId={kind === "own" ? selected : ""}
+            onOpenListening={onOpenListening}
+            onState={reportBasket}
+          />
+          {kind === "ebs" &&
+            (reference ? (
+              <>
+                <h2>{reference.title}</h2>
+                <p className={b.meta}>
+                  {reference.school === "middle" ? "중" : "고"}
+                  {reference.grade} · {reference.year}년 {reference.round}회 ·{" "}
+                  {reference.provider}
+                </p>
+                <p className={b.note}>
+                  공식 출처 링크입니다. 복제·변형·재배포에는 별도의 이용 허락이
+                  필요합니다.
+                </p>
+                {sourceUrl ? (
+                  <a
+                    href={sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={b.link}
+                  >
+                    EBS 공식 자료 열기 ↗
+                  </a>
+                ) : (
+                  <BankError message="공식 페이지 주소를 확인할 수 없습니다." />
+                )}
+              </>
+            ) : (
+              <>
+                <h2>듣기 자료를 선택하세요</h2>
+                <p className={b.note}>
+                  공식 참조 자료를 선택하면 출처를 확인할 수 있습니다.
+                </p>
+              </>
+            ))}
         </section>
       </div>
     </>

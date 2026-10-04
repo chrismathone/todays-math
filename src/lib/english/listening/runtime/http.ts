@@ -27,6 +27,7 @@ import { studentState } from "./students";
 import {
   LISTENING_MAX_UPLOAD_BYTES,
   LISTENING_MAX_DURATION_MS,
+  LISTENING_MAX_DOCUMENT_BYTES,
 } from "@/contracts/englishListeningSource.contract";
 
 const runtime = createListeningRuntime(db);
@@ -48,7 +49,7 @@ const ok = (data: unknown, status = 200) =>
 const error = (status: number, code: string, message: string) =>
   Response.json({ error: { code, message } }, { status, headers });
 export async function listeningJson(request: Request) {
-  const limit = 4 * 1024 * 1024;
+  const limit = LISTENING_MAX_DOCUMENT_BYTES;
   if (Number(request.headers.get("content-length") ?? 0) > limit)
     throw new ListeningRuntimeError(
       413,
