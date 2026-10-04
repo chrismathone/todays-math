@@ -18,6 +18,10 @@ import {
 } from "../helpers/textbookPglite";
 
 const TEXTBOOK = migrationDirs().filter((dir) => dir.includes("textbook"));
+// 뒤늦게 추가된 교재 권한 변경도 선행 지점 제약을 거친 실제 순서에서 비교한다.
+const APPLY = migrationDirs().filter(
+  (dir) => dir >= TEXTBOOK[0]! && dir <= TEXTBOOK.at(-1)!,
+);
 // 이후 과목의 마이그레이션이 추가돼도 준비 DB는 첫 교재 마이그레이션 직전에서 멈춘다.
 // 마지막 비교재 마이그레이션까지 열면 교재 DDL도 이미 적용되어 아래에서 중복 실행된다.
 const BEFORE = migrationDirs()
@@ -60,8 +64,7 @@ describe("문장 분할", () => {
     expect(() => splitSqlStatements(`SELECT 'open`)).toThrow();
   });
 
-  it("교재 마이그레이션 셋을 문장으로 나눈다 — 함수 본문은 한 문장이다", () => {
-    expect(TEXTBOOK).toHaveLength(3);
+  it("교재 마이그레이션을 문장으로 나눈다 — 함수 본문은 한 문장이다", () => {
     const studio = splitSqlStatements(read(TEXTBOOK[0]!));
     expect(studio.filter((s) => s.startsWith("CREATE TABLE"))).toHaveLength(20);
     expect(studio.filter((s) => s.startsWith("CREATE TRIGGER"))).toHaveLength(
@@ -81,7 +84,7 @@ describe("문장씩 적용한 DB 는 통째로 적용한 DB 와 같다", () => {
   beforeAll(async () => {
     whole = await openTextbookDb({ until: BEFORE });
     split = await openTextbookDb({ until: BEFORE });
-    for (const dir of TEXTBOOK) {
+    for (const dir of APPLY) {
       await whole.exec(read(dir));
       // 적용기와 같은 길: 한 트랜잭션 안에서 문장 하나씩
       await split.transaction(async (tx) => {

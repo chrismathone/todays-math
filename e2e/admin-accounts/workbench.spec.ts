@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { classes } from "./workbenchFixtures";
 
 for (const width of [320, 390, 1440]) {
   test(`complete filters and explicit global theme apply at ${width}px`, async ({
@@ -112,5 +113,91 @@ for (const width of [320, 390, 1440]) {
       fullPage: true,
     });
     expect(errors).toEqual([]);
+  });
+}
+
+for (const width of [320, 1440]) {
+  test(`teaching-only dashboard paints before progress and isolates reads at ${width}px`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize({ width, height: 1000 });
+    const forbidden: string[] = [];
+    const errors: string[] = [];
+    const progressReads = new Map<string, number>();
+    let release!: () => void;
+    const barrier = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    page.on("pageerror", (error) => errors.push(error.message));
+    await page.route("**/api/**", async (route) => {
+      const url = new URL(route.request().url());
+      if (url.pathname === "/api/classes")
+        return route.fulfill({
+          json: { data: classes, meta: { page: 1, pageSize: 100, total: 2 } },
+        });
+      if (url.pathname === "/api/units")
+        return route.fulfill({
+          json: {
+            data: [
+              {
+                id: "40000000-0000-4000-8000-000000000001",
+                grade: "중2",
+                chapter: "1. 유리수와 순환소수",
+                section: "유리수와 순환소수",
+                orderIndex: 1,
+              },
+            ],
+          },
+        });
+      if (url.pathname === "/api/progress") {
+        const id = url.searchParams.get("classId")!;
+        const count = (progressReads.get(id) ?? 0) + 1;
+        progressReads.set(id, count);
+        if (count === 1) await barrier;
+        return route.fulfill({
+          status: id === classes[0].id && count === 1 ? 503 : 204,
+          body: "",
+        });
+      }
+      if (url.pathname === "/api/progress/suggest")
+        return route.fulfill({ status: 404, json: {} });
+      forbidden.push(url.pathname);
+      return route.fulfill({ status: 403, json: {} });
+    });
+    await page.goto("/e2e/admin-accounts/index.html?view=dashboard");
+    try {
+      await expect(
+        page.getByRole("button", { name: /중등M 중2 JJPS/ }),
+      ).toBeVisible();
+      await expect(page.getByText("진도를 불러오는 중…").first()).toBeVisible();
+      expect(forbidden).toEqual([]);
+    } finally {
+      release();
+    }
+    await expect(
+      page.getByRole("button", { name: "진도 다시 조회", exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /초등M 초5 JJ1A/ }),
+    ).toBeVisible();
+    await page
+      .getByRole("button", { name: "진도 다시 조회", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "진도 다시 조회", exact: true }),
+    ).toHaveCount(0);
+    expect(progressReads.get(classes[0].id)).toBe(2);
+    expect(progressReads.get(classes[1].id)).toBe(1);
+    expect(forbidden).toEqual([]);
+    expect(errors).toEqual([]);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+    await page.screenshot({
+      path: testInfo.outputPath(`dashboard-teaching-${width}.png`),
+      fullPage: true,
+    });
   });
 }
