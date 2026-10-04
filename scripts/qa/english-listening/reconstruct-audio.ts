@@ -15,6 +15,9 @@ import {
   readListeningReconstructionGeneration,
   reorderListeningReconstructionChoices,
   listeningReconstructionDisposition,
+  listeningReconstructionFifthChoiceTargets,
+  addListeningReconstructionFifthChoices,
+  normalizeListeningReconstructionEvidenceQuotes,
   type ListeningReconstructionJudgment,
 } from "../../../src/lib/english/listening/reconstruction";
 import {
@@ -32,6 +35,7 @@ async function main() {
       "env-file": { type: "string" },
       generate: { type: "boolean", default: false },
       verify: { type: "boolean", default: false },
+      "repair-four-choices": { type: "boolean", default: false },
       "generation-version": { type: "string", default: "2" },
       "revise-existing": { type: "boolean", default: false },
     },
@@ -190,9 +194,85 @@ async function main() {
     throw new Error(
       "Generation did not return a complete answer; audit retained, no automatic paid retry",
     );
-  const generated = readListeningReconstructionGeneration(
+  const rawGenerated = normalizeListeningReconstructionEvidenceQuotes(
+    segments,
     JSON.parse(generation.content),
   );
+  const repairTargets = listeningReconstructionFifthChoiceTargets(rawGenerated);
+  const fourChoiceQuestions = repairTargets.questions.filter(
+    (question) => question.choices.length === 4,
+  );
+  let repair: typeof generation | null = null;
+  let generated;
+  if (fourChoiceQuestions.length) {
+    const request = {
+      model: DEEPSEEK_MODEL,
+      system:
+        "Return strict JSON. Supply only one additional wrong distractor for each supplied four-choice question. Never rewrite the question, existing choices, answer, explanation or transcript.",
+      prompt: JSON.stringify({
+        task: "Add one fifth distractor, in English, per listed question. It must be distinct from the existing four choices and clearly wrong under the actual selected speech. Do not invent spoken facts or alter the existing answer. Return only {choices:[{sourceNumber,fifthChoice}]}. These are newly generated ordinals, not official numbers.",
+        sourceAudioSha256: sourceAudio.sha256,
+        questions: fourChoiceQuestions.map((question) => ({
+          ...question,
+          actualSegments: question.sourceSegmentIds.map((id) => {
+            const segment = segments.find((item) => item.id === id);
+            if (!segment) throw new Error("Repair source segment is absent");
+            return segment;
+          }),
+        })),
+      }),
+    };
+    const requestHash = sha(JSON.stringify(request));
+    const repairFile = path.join(
+      recordDirectory,
+      "generation-repair-five-choices.json",
+    );
+    if (!(await exists(repairFile))) {
+      if (!values["repair-four-choices"] || !env.DEEPSEEK_API_KEY)
+        throw new Error(
+          "Four-choice cache requires one --repair-four-choices request, not regeneration",
+        );
+      const client = new OpenAI({
+        apiKey: env.DEEPSEEK_API_KEY,
+        baseURL: "https://api.deepseek.com",
+        maxRetries: 0,
+        timeout: 600000,
+      });
+      const started = performance.now();
+      const response = await client.chat.completions.create({
+        model: DEEPSEEK_MODEL,
+        max_tokens: 16000,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: request.system },
+          { role: "user", content: request.prompt },
+        ],
+      });
+      await write(repairFile, {
+        requestHash,
+        generatedAt: new Date().toISOString(),
+        latencyMs: Math.round(performance.now() - started),
+        model: response.model,
+        usage: response.usage,
+        finishReason: response.choices[0]?.finish_reason,
+        content: response.choices[0]?.message.content ?? null,
+      });
+    }
+    repair = await json(repairFile);
+    if (
+      repair.requestHash !== requestHash ||
+      repair.finishReason === "length" ||
+      !repair.content
+    )
+      throw new Error(
+        "Incomplete or mismatched format repair retained in audit; no automatic paid retry",
+      );
+    generated = addListeningReconstructionFifthChoices(
+      rawGenerated,
+      JSON.parse(repair.content),
+    );
+  } else generated = readListeningReconstructionGeneration(rawGenerated);
+  const finalGeneratedAt = repair?.generatedAt ?? generation.generatedAt;
   const grounded = groundListeningReconstructionSegments(segments, generated);
   if (
     grounded.questions.some(
@@ -409,7 +489,7 @@ async function main() {
         },
         reconstruction: {
           model: DEEPSEEK_MODEL,
-          generatedAt: generation.generatedAt,
+          generatedAt: finalGeneratedAt,
           sourceAudioSha256: sourceAudio.sha256,
           verification: judgments.get(question.sourceNumber) ?? "needs_review",
         },
@@ -455,12 +535,23 @@ async function main() {
     (total, receipt) => total + (receipt.response?.usage?.output_tokens ?? 0),
     0,
   );
-  const hitTokens = generation.usage?.prompt_cache_hit_tokens ?? 0;
-  const missTokens =
-    generation.usage?.prompt_cache_miss_tokens ??
-    generation.usage?.prompt_tokens ??
-    0;
-  const completionTokens = generation.usage?.completion_tokens ?? 0;
+  const generationReceipts = repair ? [generation, repair] : [generation];
+  const hitTokens = generationReceipts.reduce(
+    (total, receipt) => total + (receipt.usage?.prompt_cache_hit_tokens ?? 0),
+    0,
+  );
+  const missTokens = generationReceipts.reduce(
+    (total, receipt) =>
+      total +
+      (receipt.usage?.prompt_cache_miss_tokens ??
+        receipt.usage?.prompt_tokens ??
+        0),
+    0,
+  );
+  const completionTokens = generationReceipts.reduce(
+    (total, receipt) => total + (receipt.usage?.completion_tokens ?? 0),
+    0,
+  );
   const estimatedDeepseekOffPeakUsd =
     (hitTokens * 0.022 + missTokens * 0.66 + completionTokens * 1.98) / 1000000;
   const estimatedTypesafeUsd = (typesafeInputTokens * 0.042) / 1000000;
@@ -510,6 +601,17 @@ async function main() {
         latencyMs: generation.latencyMs,
         usage: generation.usage,
         requestHash: generationHash,
+        formatRepair: repair
+          ? {
+              kind: "add_fifth_distractor_only",
+              model: repair.model,
+              generatedAt: repair.generatedAt,
+              usage: repair.usage,
+              requestHash: repair.requestHash,
+            }
+          : null,
+        evidenceQuotePolicy:
+          "All original quotes checked against selected ASR before keeping at most 8 per question; complete original generation receipt retained in audit.",
       },
       semanticVerification: {
         modelAliases: ["jev-latest"],
@@ -561,6 +663,7 @@ async function main() {
       apiCosts: {
         asrUsd: 0,
         deepseekUsage: generation.usage,
+        deepseekFormatRepairUsage: repair?.usage ?? null,
         typesafeUsage: verificationAudits.map(
           (audit) => (audit as { response: { usage: unknown } }).response.usage,
         ),

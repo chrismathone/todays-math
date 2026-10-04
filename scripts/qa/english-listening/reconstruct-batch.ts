@@ -211,6 +211,7 @@ async function main() {
             values["env-file"]!,
             "--generate",
             "--verify",
+            "--repair-four-choices",
           ]);
           await registerPrepared(id, resultFile);
         } catch (error) {
