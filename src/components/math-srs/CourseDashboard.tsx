@@ -6,6 +6,7 @@ import {
   useCallback,
   useEffect,
   useId,
+  useImperativeHandle,
   useRef,
   useState,
   type MutableRefObject,
@@ -145,7 +146,7 @@ export default function CourseDashboard({
   const panelId = useId();
   const graphPanelId = useId();
   const root = useRef<HTMLDivElement>(null);
-  const control = useRef<PlanControl | null>(null);
+  const controlRef = useRef<PlanControl | null>(null);
   const [pending, setPending] = useState<{ action: () => void } | null>(null);
   const [moving, setMoving] = useState(false);
   const [moveError, setMoveError] = useState<string | null>(null);
@@ -163,8 +164,8 @@ export default function CourseDashboard({
       from,
     );
   const guard = useCallback((action: () => void) => {
-    if (control.current?.busy) return;
-    if (!control.current?.dirty) {
+    if (controlRef.current?.busy) return;
+    if (!controlRef.current?.dirty) {
       action();
       return;
     }
@@ -177,7 +178,7 @@ export default function CourseDashboard({
   }, []);
   useEffect(() => {
     const beforeUnload = (event: BeforeUnloadEvent) => {
-      if (control.current?.dirty || control.current?.busy) {
+      if (controlRef.current?.dirty || controlRef.current?.busy) {
         event.preventDefault();
         event.returnValue = "";
       }
@@ -202,7 +203,7 @@ export default function CourseDashboard({
         const destination = new URL(target.href, window.location.href);
         if (destination.origin !== window.location.origin) return;
       }
-      if (!control.current?.dirty && !control.current?.busy) return;
+      if (!controlRef.current?.dirty && !controlRef.current?.busy) return;
       event.preventDefault();
       event.stopImmediatePropagation();
       guard(() => {
@@ -212,12 +213,40 @@ export default function CourseDashboard({
       });
     };
     document.addEventListener("click", click, true);
+    const beforeLeave = (event: Event) => {
+      if (!controlRef.current?.dirty && !controlRef.current?.busy) return;
+      event.preventDefault();
+      const proceed = (event as CustomEvent<{ proceed?: () => void }>).detail
+        ?.proceed;
+      if (proceed) guard(proceed);
+    };
+    window.addEventListener("course-srs-before-leave", beforeLeave);
     window.addEventListener("beforeunload", beforeUnload);
     return () => {
       document.removeEventListener("click", click, true);
+      window.removeEventListener("course-srs-before-leave", beforeLeave);
       window.removeEventListener("beforeunload", beforeUnload);
     };
   }, [guard]);
+
+  useEffect(() => {
+    if (!selected) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || document.querySelector("dialog[open]"))
+        return;
+      event.preventDefault();
+      event.stopPropagation();
+      guard(() => {
+        setSelected(null);
+        controlRef.current = null;
+        replaceScreenQuery({ studentId: null });
+        if (opener.current?.isConnected) opener.current.focus();
+        else heading.current?.focus();
+      });
+    };
+    document.addEventListener("keydown", escape, true);
+    return () => document.removeEventListener("keydown", escape, true);
+  }, [selected, guard]);
 
   useEffect(() => {
     let current = true;
@@ -254,13 +283,10 @@ export default function CourseDashboard({
   const targets = courseTargets(students);
   const restored = useRef("");
   const requested = contextParams(urlParams);
+  const requestedStudentId = requested.get("studentId");
   const requestedKey = `${requested.get("classId") ?? ""}:${requested.get("studentId") ?? ""}`;
   useEffect(() => {
-    if (
-      !data ||
-      !requested.get("studentId") ||
-      restored.current === requestedKey
-    )
+    if (!data || !requestedStudentId || restored.current === requestedKey)
       return;
     restored.current = requestedKey;
     const row = data.students.find(
@@ -271,7 +297,7 @@ export default function CourseDashboard({
         setSelected(row);
         setDetailView(row.plan ? "overview" : "plan");
       });
-  }, [data, requestedKey, guard]);
+  }, [data, requestedKey, requestedStudentId, guard]);
   const selectedGraphStudent = selected
     ? (students.find((row) => enrollmentKey(row) === enrollmentKey(selected)) ??
       selected)
@@ -300,6 +326,9 @@ export default function CourseDashboard({
     setReload((value) => value + 1);
   };
   const updateRow = (student: CourseRosterStudent) => {
+    setSelected((previous) =>
+      previous ? sharedCourseState(previous, student) : previous,
+    );
     setData((previous) =>
       previous
         ? {
@@ -313,7 +342,7 @@ export default function CourseDashboard({
   };
   const close = () => {
     setSelected(null);
-    control.current = null;
+    controlRef.current = null;
     replaceScreenQuery({ studentId: null });
     if (opener.current?.isConnected) opener.current.focus();
     else heading.current?.focus();
@@ -322,6 +351,17 @@ export default function CourseDashboard({
     student: CourseRosterStudent,
     trigger: HTMLButtonElement,
   ) => {
+    if (controlRef.current?.busy) return;
+    if (selected && enrollmentKey(selected) === enrollmentKey(student)) {
+      const nextView = student.plan ? "overview" : "plan";
+      const focus = () => {
+        setDetailView(nextView);
+        document.getElementById(`${panelId}-title`)?.focus();
+      };
+      if (detailView === nextView) focus();
+      else guard(focus);
+      return;
+    }
     guard(() => {
       opener.current = trigger;
       setDetailView(student.plan ? "overview" : "plan");
@@ -344,7 +384,7 @@ export default function CourseDashboard({
           returnFocus={returnFocus}
           onCancel={() => setPending(null)}
           onConfirm={() => {
-            control.current?.discard();
+            controlRef.current?.discard();
             const action = pending.action;
             setPending(null);
             action();
@@ -356,7 +396,7 @@ export default function CourseDashboard({
             disabled={moving}
             onClick={async () => {
               setMoving(true);
-              const saved = await control.current?.save();
+              const saved = await controlRef.current?.save();
               setMoving(false);
               if (saved) {
                 const action = pending.action;
@@ -669,7 +709,11 @@ export default function CourseDashboard({
                                 <Icon name="chevron" size={12} />
                               </Link>
                             ) : (
-                              <span className={s.srOnly}>
+                              <span
+                                className={
+                                  student.hasAccount ? s.srOnly : s.muted
+                                }
+                              >
                                 {student.hasAccount
                                   ? "계정 사용 가능"
                                   : "계정 확인에는 반 관리 권한이 필요합니다"}
@@ -787,7 +831,7 @@ export default function CourseDashboard({
             onViewChange={(view) => guard(() => setDetailView(view))}
             onClose={() => guard(close)}
             onStudentUpdate={updateRow}
-            control={control}
+            controlRef={controlRef}
             accountHref={accountHref(selected)}
             supplementary={!targets.primary.has(selected.id)}
           />
@@ -817,7 +861,7 @@ function StudentDetail({
   onViewChange: setView,
   onClose,
   onStudentUpdate,
-  control,
+  controlRef,
   accountHref,
   supplementary,
 }: {
@@ -829,7 +873,7 @@ function StudentDetail({
   onViewChange: (view: DetailView) => void;
   onClose: () => void;
   onStudentUpdate: (student: CourseRosterStudent) => void;
-  control: MutableRefObject<PlanControl | null>;
+  controlRef: MutableRefObject<PlanControl | null>;
   accountHref: string | null;
   supplementary: boolean;
 }) {
@@ -882,7 +926,10 @@ function StudentDetail({
         setLoadError(result);
         return;
       }
-      if (result.data.student.id !== student.id) {
+      if (
+        result.data.student.id !== student.id ||
+        result.data.student.classId !== student.classId
+      ) {
         setLoadError({
           status: 0,
           message: "학생 기록이 일치하지 않습니다. 다시 불러오세요.",
@@ -922,72 +969,87 @@ function StudentDetail({
     );
     setReload((value) => value + 1);
   }
-  async function save(input: CoursePlanInput): Promise<boolean> {
-    if (!detail || loading || loadError || conflict || saving.current)
-      return false;
-    saving.current = true;
-    setBusy(true);
-    setMessage("");
-    setSaveError(null);
-    const result = await saveCourseStudentPlan(
-      student.id,
-      {
-        ...input,
-        expectedRevision: detail.student.revision,
-      },
-      student.classId,
-    );
-    if (result.ok && result.data.id === student.id)
-      updateRef.current(result.data);
-    if (!active.current) return false;
-    saving.current = false;
-    setBusy(false);
-    if (!result.ok) {
-      setSaveError(result);
-      if (result.code === "REVISION_MISMATCH") setConflict(true);
-      return false;
-    }
-    if (result.data.id !== student.id) {
-      setSaveError({
-        status: 0,
-        message: "저장한 학생 기록이 일치하지 않습니다. 다시 불러오세요.",
-      });
-      return false;
-    }
-    dirty.current = false;
-    setDetail((previous) =>
-      previous
-        ? {
-            ...previous,
-            student: sharedCourseState(previous.student, result.data),
-          }
-        : previous,
-    );
-    setForm((previous) => ({
-      plan: result.data.plan,
-      revision: result.data.revision,
-      key: (previous?.key ?? 0) + 1,
-    }));
-    setMessage("학습 계획을 저장했습니다. 최신 상세 기록을 불러옵니다.");
-    setLoading(true);
-    setReload((value) => value + 1);
-    return true;
-  }
-  control.current = {
-    get dirty() {
-      return dirty.current;
-    },
-    get busy() {
-      return saving.current;
-    },
-    save: () => (draft.current ? save(draft.current) : Promise.resolve(false)),
-    discard: () => {
-      dirty.current = false;
-      setForm((previous) =>
-        previous ? { ...previous, key: previous.key + 1 } : previous,
+  const save = useCallback(
+    async (input: CoursePlanInput): Promise<boolean> => {
+      if (!detail || loading || loadError || conflict || saving.current)
+        return false;
+      saving.current = true;
+      setBusy(true);
+      setMessage("");
+      setSaveError(null);
+      const result = await saveCourseStudentPlan(
+        student.id,
+        {
+          ...input,
+          expectedRevision: detail.student.revision,
+        },
+        student.classId,
       );
+      if (
+        result.ok &&
+        result.data.id === student.id &&
+        result.data.classId === student.classId
+      )
+        updateRef.current(result.data);
+      if (!active.current) return false;
+      saving.current = false;
+      setBusy(false);
+      if (!result.ok) {
+        setSaveError(result);
+        if (result.code === "REVISION_MISMATCH") setConflict(true);
+        return false;
+      }
+      if (
+        result.data.id !== student.id ||
+        result.data.classId !== student.classId
+      ) {
+        setSaveError({
+          status: 0,
+          message: "저장한 학생 기록이 일치하지 않습니다. 다시 불러오세요.",
+        });
+        return false;
+      }
+      dirty.current = false;
+      setDetail((previous) =>
+        previous
+          ? {
+              ...previous,
+              student: sharedCourseState(previous.student, result.data),
+            }
+          : previous,
+      );
+      setForm((previous) => ({
+        plan: result.data.plan,
+        revision: result.data.revision,
+        key: (previous?.key ?? 0) + 1,
+      }));
+      setMessage("학습 계획을 저장했습니다. 최신 상세 기록을 불러옵니다.");
+      setLoading(true);
+      setReload((value) => value + 1);
+      return true;
     },
-  };
+    [detail, loading, loadError, conflict, student.id, student.classId],
+  );
+  useImperativeHandle(
+    controlRef,
+    () => ({
+      get dirty() {
+        return dirty.current;
+      },
+      get busy() {
+        return saving.current;
+      },
+      save: () =>
+        draft.current ? save(draft.current) : Promise.resolve(false),
+      discard: () => {
+        dirty.current = false;
+        setForm((previous) =>
+          previous ? { ...previous, key: previous.key + 1 } : previous,
+        );
+      },
+    }),
+    [save],
+  );
 
   const record = detail?.student;
   const reports = detail

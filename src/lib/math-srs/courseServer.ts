@@ -172,7 +172,7 @@ export function courseDetailDto(
 }
 
 export async function loadCourseDashboard(
-  viewer: ScopeViewer & { menus?: readonly string[] },
+  viewer: ScopeViewer & { menus?: readonly string[]; role?: string },
   now: Date,
 ) {
   const classes = await db.class.findMany({
@@ -199,7 +199,10 @@ export async function loadCourseDashboard(
     );
     return {
       management: {
-        canOpen: viewer.menus?.includes("teaching") === true,
+        canOpen:
+          viewer.menus?.includes("teaching") === true &&
+          viewer.role !== "reviewer",
+        isSuperAdmin: viewer.isSuperAdmin === true,
         branchId: viewer.branchId ?? null,
         branchRole: viewer.branchRole ?? null,
       },

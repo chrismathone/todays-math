@@ -35,9 +35,11 @@ function matchesStatus(student: Student, filter: Filter) {
 export function ClassMathSrs({
   classId,
   manageHref = "/classes/manage",
+  classGrade,
 }: {
   classId: string;
   manageHref?: string;
+  classGrade?: string;
 }) {
   const [state, setState] = useState<MathSrsClassDashboard | null>(null);
   const [loading, setLoading] = useState(true);
@@ -87,7 +89,7 @@ export function ClassMathSrs({
           </h1>
           <p className={s.muted}>
             이 반에 등록된 학생의 대수 6개 개념 카드 풀이 기록입니다. 반 학년{" "}
-            {state?.class.grade || "확인 필요"} · 과정 SRS와 별도로 집계합니다.
+            {classGrade || "확인 필요"} · 과정 SRS와 별도로 집계합니다.
           </p>
           <Link href="/#srs">초3–초6 과정 SRS 열기 →</Link>
         </div>

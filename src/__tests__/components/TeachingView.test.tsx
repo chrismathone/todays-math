@@ -39,6 +39,7 @@ const account = {
 };
 
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   vi.clearAllMocks();
   authenticated = false;
   bootstrapStatus = 200;
@@ -163,7 +164,7 @@ describe("embedded teaching authentication", () => {
       "true",
     );
     expect(window.location.pathname + window.location.search).toBe(
-      "/dev/unified?view=teaching&design=2",
+      "/dev/unified?view=teaching&design=2&teachingTab=lessons",
     );
     expect(document.querySelector(".app-chrome")).toBeNull();
     await waitFor(() => expect(classReads).toBeGreaterThan(0));

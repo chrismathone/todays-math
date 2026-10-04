@@ -20,6 +20,7 @@ export default async function TeacherClassesPage({
   if (!account.menus.includes("teaching") || account.role === "reviewer")
     redirect("/");
   if (
+    !account.isSuperAdmin &&
     account.branchId &&
     (account.branchRole === "owner" || account.branchRole === "manager")
   )

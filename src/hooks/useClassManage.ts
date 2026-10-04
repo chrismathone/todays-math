@@ -1,6 +1,7 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
+import { replaceScreenQuery } from "@/hooks/useScreenQuery";
 import {
   advanceProgress,
   createClass,
@@ -47,7 +48,29 @@ export function useClassManage(requestedClassId = "") {
   const studentRequests = useRef(new Map<string, Promise<boolean>>());
   const progressRequests = useRef(new Map<string, Promise<boolean>>());
   const requested = useRef(requestedClassId);
-  requested.current = requestedClassId;
+  useEffect(() => {
+    requested.current = requestedClassId;
+  }, [requestedClassId]);
+
+  const resetDetails = useCallback(() => {
+    selectionVersion.current += 1;
+    setStudents([]);
+    setCurrentUnitId(null);
+    setStudentsStatus("loading");
+    setProgressStatus("loading");
+    setReload((value) => value + 1);
+  }, []);
+
+  const selectClass = useCallback(
+    (classId: string) => {
+      if (activeClassId.current === classId) return;
+      activeClassId.current = classId;
+      setSelectedClassId(classId);
+      setError(null);
+      resetDetails();
+    },
+    [resetDetails],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -88,6 +111,8 @@ export function useClassManage(requestedClassId = "") {
       return;
     if (!classes.some((row) => row.id === requestedClassId)) {
       activeClassId.current = "";
+      // Synchronize the explicit URL selection with the loaded authorized roster.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedClassId("");
       resetDetails();
       setError(
@@ -97,7 +122,7 @@ export function useClassManage(requestedClassId = "") {
       setError(null);
       selectClass(requestedClassId);
     }
-  }, [requestedClassId, status, classes]);
+  }, [requestedClassId, status, classes, selectClass, resetDetails]);
 
   useEffect(() => {
     if (!selectedClassId) return;
@@ -135,24 +160,6 @@ export function useClassManage(requestedClassId = "") {
       cancelled = true;
     };
   }, [selectedClassId, reload]);
-
-  function selectClass(classId: string) {
-    if (!classes.some((row) => row.id === classId)) return;
-    if (activeClassId.current === classId) return;
-    activeClassId.current = classId;
-    setSelectedClassId(classId);
-    setError(null);
-    resetDetails();
-  }
-
-  function resetDetails() {
-    selectionVersion.current += 1;
-    setStudents([]);
-    setCurrentUnitId(null);
-    setStudentsStatus("loading");
-    setProgressStatus("loading");
-    setReload((value) => value + 1);
-  }
 
   function retryClasses() {
     setStatus("loading");
@@ -268,7 +275,10 @@ export function useClassManage(requestedClassId = "") {
       // 내 반은 맨 위(D-132 ⑷) — 새로 고친 목록과 같은 자리. 담당이 없으면(관리자 아님) 지금처럼 끝에 붙는다.
       setClasses((prev) => mineFirst([...prev, created], (c) => c.owner));
       // A delayed creation must not undo a class the user selected meanwhile.
-      if (version === selectionVersion.current) selectClass(created.id);
+      if (version === selectionVersion.current) {
+        selectClass(created.id);
+        replaceScreenQuery({ classId: created.id, studentId: null });
+      }
       setClassMutation({
         ...idleMutation,
         success: `${created.name} 반을 추가했습니다.`,

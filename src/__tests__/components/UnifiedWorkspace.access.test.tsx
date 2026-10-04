@@ -16,6 +16,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import userEvent from "@testing-library/user-event";
 import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import { signOutAction } from "@/app/actions/auth";
 import {
@@ -40,6 +41,65 @@ const mocks = vi.hoisted(() => ({
   englishMount: vi.fn(),
   englishSetOpened: vi.fn(),
 }));
+
+describe("SRS shell transitions", () => {
+  it.each(["sidebar", "keyboard", "hashchange", "popstate"])(
+    "defers %s until the editor approves and keeps selection while canceled",
+    async (method) => {
+      window.history.replaceState(
+        null,
+        "",
+        "/?classId=class-1&studentId=student-2#srs",
+      );
+      render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          allowedMenus={["home", "srs"]}
+        />,
+      );
+      await screen.findByRole("heading", { name: "SRS 패널" });
+      let dirty = true;
+      let proceed: (() => void) | undefined;
+      const prevent = (event: Event) => {
+        if (!dirty) return;
+        event.preventDefault();
+        proceed = (event as CustomEvent<{ proceed: () => void }>).detail
+          .proceed;
+      };
+      window.addEventListener("course-srs-before-leave", prevent);
+      try {
+        if (method === "sidebar")
+          fireEvent.click(
+            screen.getByRole("button", { name: "오늘의 작업", exact: true }),
+          );
+        else if (method === "keyboard") {
+          screen
+            .getByRole("button", { name: "오늘의 작업", exact: true })
+            .focus();
+          await userEvent.setup().keyboard("{Enter}");
+        } else
+          act(() => {
+            window.history.replaceState(null, "", "/?classId=foreign#home");
+            window.dispatchEvent(new Event(method));
+          });
+        expect(proceed).toBeTypeOf("function");
+        expect(screen.getByRole("heading", { name: "SRS 패널" })).toBeVisible();
+        expect(window.location.hash).toBe("#srs");
+        expect(
+          new URLSearchParams(window.location.search).get("studentId"),
+        ).toBe("student-2");
+        dirty = false;
+        act(() => proceed!());
+        expect(
+          await screen.findByRole("heading", { name: "오늘의 작업" }),
+        ).toBeVisible();
+        expect(window.location.hash).toBe("");
+      } finally {
+        window.removeEventListener("course-srs-before-leave", prevent);
+      }
+    },
+  );
+});
 const router = { replace: mocks.replace };
 const bankSeed: EnglishBankMakerSeed = {
   requestId: "10000000-0000-4000-8000-000000000021",

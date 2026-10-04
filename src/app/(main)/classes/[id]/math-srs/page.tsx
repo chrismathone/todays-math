@@ -41,7 +41,12 @@ export default async function ClassMathSrsPage({
       currentLabel="개념 카드 복습(대수 6개 개념)"
       classesHref={manageHref}
     >
-      <ClassMathSrs key={id} classId={id} manageHref={manageHref} />
+      <ClassMathSrs
+        key={id}
+        classId={id}
+        classGrade={owned.data.grade}
+        manageHref={manageHref}
+      />
     </AppChrome>
   );
 }

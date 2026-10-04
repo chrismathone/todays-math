@@ -164,6 +164,7 @@ export const courseDashboardSchema = z.strictObject({
   management: z
     .strictObject({
       canOpen: z.boolean(),
+      isSuperAdmin: z.boolean().optional(),
       branchId: uuidSchema.nullable(),
       branchRole: z.enum(["owner", "manager", "teacher"]).nullable(),
     })

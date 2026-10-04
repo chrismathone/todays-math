@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { replaceScreenQuery } from "@/hooks/useScreenQuery";
 
 import { Button } from "@/components/ui/Button";
@@ -50,17 +50,9 @@ export function StudentList({
     studentId: string;
   } | null>(null);
   const opener = useRef<HTMLButtonElement | null>(null);
-  useEffect(() => {
-    if (
-      status === "ready" &&
-      selectedClass &&
-      requestedStudentId &&
-      students.some((row) => row.id === requestedStudentId)
-    )
-      setPicked({ classId: selectedClass.id, studentId: requestedStudentId });
-  }, [status, selectedClass, students, requestedStudentId]);
   const pickedId =
-    picked && picked.classId === selectedClass?.id ? picked.studentId : null;
+    requestedStudentId ||
+    (picked && picked.classId === selectedClass?.id ? picked.studentId : null);
   const pickedStudent =
     status === "ready"
       ? (students.find((row) => row.id === pickedId) ?? null)

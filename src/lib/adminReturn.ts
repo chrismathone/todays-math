@@ -42,6 +42,7 @@ export function classManagerHref(
     menus?: readonly string[];
     branchId?: string | null;
     branchRole?: string | null;
+    isSuperAdmin?: boolean;
   },
   from: ReturnContext,
 ) {
@@ -52,7 +53,11 @@ export function classManagerHref(
     from,
   });
   params.set("teachingTab", "classes");
-  if (actor.branchId && ["owner", "manager"].includes(actor.branchRole ?? "")) {
+  if (
+    !actor.isSuperAdmin &&
+    actor.branchId &&
+    ["owner", "manager"].includes(actor.branchRole ?? "")
+  ) {
     params.set("tab", "classes");
     return `/branch?${params}`;
   }
@@ -106,6 +111,7 @@ export function safeInternalReturn(
     ? `/admin/branches/${encodeURIComponent(branchId)}`
     : null;
   const accountScreen = url.pathname === branchPath;
+  if (branchId && !accountScreen) return null;
   if (
     !accountScreen &&
     !["/", "/classes/manage", "/branch", "/admin/math-srs"].includes(
