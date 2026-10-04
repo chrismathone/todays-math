@@ -181,6 +181,24 @@ const OPEN = String.fromCharCode(0xe001);
 const CLOSE = String.fromCharCode(0xe002);
 const keywordBlank = (widthEm: number) =>
   `<span class="tb-blank tb-blank-keyword" data-writing-space="keyword" role="textbox" aria-label="빈칸" style="width:${widthEm}em"></span>`;
+const SEAM = String.fromCharCode(0xe003);
+/**
+ * The pieces of one row, typeset as one Markdown source. A key that is a formula may touch the
+ * formula after it (`{$50$}$\%$`); joined bare, the two `$` would open display math. A seam
+ * between such pieces keeps them two inline formulas and is taken out of the typeset HTML, so
+ * the formulas still touch on the page. The stored text and the pieces are not changed.
+ */
+export function typesetRecallPieces(
+  parts: readonly string[],
+  typeset: (markdown: string) => string,
+): string {
+  let markdown = "";
+  for (const part of parts) {
+    if (markdown.endsWith("$") && part.startsWith("$")) markdown += SEAM;
+    markdown += part;
+  }
+  return typeset(markdown).replaceAll(SEAM, "");
+}
 const writingLines = (count: number, label: string) =>
   `<span class="tb-blank tb-blank-sentence" data-writing-space="sentence" role="textbox" aria-label="${label}">${'<span class="tb-write-line"></span>'.repeat(count)}</span>`;
 /** The original sentence sheet: one rule under the space the hidden sentence would take. */
@@ -201,16 +219,16 @@ function rowBodyHtml(
       ? writingRule("문장으로 개념 쓰기")
       : writingLines(lines, "문장으로 개념 쓰기");
   const blanks: number[] = [];
-  const markdown = row.pieces
-    .map((piece) => {
-      if (piece.kind === "text") return piece.markdown;
-      if (piece.kind === "key") return `${OPEN}${piece.markdown}${CLOSE}`;
-      blanks.push(piece.widthEm);
-      return MARK;
-    })
-    .join("");
+  const parts = row.pieces.map((piece) => {
+    if (piece.kind === "text") return piece.markdown;
+    if (piece.kind === "key") return `${OPEN}${piece.markdown}${CLOSE}`;
+    blanks.push(piece.widthEm);
+    return MARK;
+  });
   let blank = 0;
-  return md(source ? displayStyleMath(markdown) : markdown)
+  return typesetRecallPieces(parts, (markdown) =>
+    md(source ? displayStyleMath(markdown) : markdown),
+  )
     .replaceAll(MARK, () => keywordBlank(blanks[blank++]))
     .replaceAll(OPEN, '<span class="tb-memory-key">')
     .replaceAll(CLOSE, "</span>");

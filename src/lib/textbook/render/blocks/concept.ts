@@ -2,7 +2,7 @@ import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contra
 import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { displayStyleMath } from "./dialogue";
-import { recallDisplayRows } from "./recall";
+import { recallDisplayRows, typesetRecallPieces } from "./recall";
 import { renderSourceFragments } from "./semantic";
 import { qrHtml, type RenderResources } from "./shared";
 
@@ -58,7 +58,12 @@ export function renderConceptHtml(
     )
       .map(
         (row) =>
-          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${typeset(row.pieces.map((piece) => (piece.kind === "blank" ? "" : piece.markdown)).join(""))}</div></div>`,
+          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${typesetRecallPieces(
+            row.pieces.map((piece) =>
+              piece.kind === "blank" ? "" : piece.markdown,
+            ),
+            typeset,
+          )}</div></div>`,
       )
       .join("")}</div>${qr}</section>`;
   }
