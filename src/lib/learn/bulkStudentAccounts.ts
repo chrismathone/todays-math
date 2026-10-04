@@ -104,6 +104,7 @@ export async function bulkStudentAccounts(
   viewer: ScopeViewer,
   classId: string,
   issue: boolean,
+  onlyStudentIds?: readonly string[],
 ): Promise<BulkStudentAccountSummary> {
   const cls = await db.class.findUnique({ where: { id: classId } });
   if (!cls) throw new BulkStudentAccountError("not_found");
@@ -149,16 +150,19 @@ export async function bulkStudentAccounts(
             : { eywaBindingId: null, classId },
         ],
       };
-      const roster = await tx.student.findMany({
-        where,
-        orderBy: [{ name: "asc" }, { id: "asc" }],
-        select: {
-          id: true,
-          name: true,
-          phoneLast4: true,
-          studentAccount: { select: { loginId: true } },
-        },
-      });
+      const selected = onlyStudentIds ? new Set(onlyStudentIds) : null;
+      const roster = (
+        await tx.student.findMany({
+          where,
+          orderBy: [{ name: "asc" }, { id: "asc" }],
+          select: {
+            id: true,
+            name: true,
+            phoneLast4: true,
+            studentAccount: { select: { loginId: true } },
+          },
+        })
+      ).filter((student) => !selected || selected.has(student.id));
       // Also guard manual student edits while hashing; a stale phone/name must not become credentials.
       if (issue && roster.length)
         await tx.$queryRaw`SELECT id FROM student WHERE id = ANY(${roster.map((student) => student.id)}::uuid[]) ORDER BY id FOR SHARE`;

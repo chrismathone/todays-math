@@ -11,6 +11,7 @@ import {
 } from "@/lib/apiResponse";
 import { getSessionUser } from "@/lib/session";
 import { canManageStudentAccounts } from "@/lib/learn/studentAccountPolicy";
+import { parseStudentIssueRequest } from "@/lib/admin/accountUsability";
 import {
   BulkStudentAccountError,
   bulkStudentAccounts,
@@ -36,8 +37,22 @@ async function handle(
   const { id } = await params;
   const parsed = idParamSchema.safeParse({ id });
   if (!parsed.success) return validationError(parsed.error);
+  const selection = issue
+    ? parseStudentIssueRequest(await request.text())
+    : { kind: "legacy" as const };
+  if (selection.kind === "malformed")
+    return jsonError(
+      "VALIDATION_ERROR",
+      "발급 대상 형식이 올바르지 않습니다.",
+      400,
+    );
   try {
-    const data = await bulkStudentAccounts(viewer, id, issue);
+    const data = await bulkStudentAccounts(
+      viewer,
+      id,
+      issue,
+      selection.kind === "subset" ? selection.studentIds : undefined,
+    );
     return noStore(jsonOk(bulkStudentAccountResponseSchema, { data }));
   } catch (error) {
     if (!(error instanceof BulkStudentAccountError)) throw error;

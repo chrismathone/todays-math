@@ -81,6 +81,15 @@ const request = (method = "POST", origin = "http://localhost") =>
     method,
     headers: { origin },
   });
+const posted = (body: string) =>
+  new NextRequest(`http://localhost/api/classes/${classId}/student-accounts`, {
+    method: "POST",
+    headers: {
+      origin: "http://localhost",
+      "content-type": "application/json",
+    },
+    body,
+  });
 const context = () => ({ params: Promise.resolve({ id: classId }) });
 
 beforeEach(() => {
@@ -300,6 +309,58 @@ describe("class bulk account issuance", () => {
       loginId: "previous-id",
     });
     expect(state.accounts[0].passwordHash).toBe("racing-original");
+  });
+  it("issues nobody for an empty selection and rejects a present malformed body", async () => {
+    addStudent(1, "김민서", "0042");
+    const empty = await POST(posted('{"studentIds":[]}'), context());
+    expect(empty.status).toBe(200);
+    expect((await empty.json()).data).toMatchObject({ issued: 0, total: 0 });
+    expect(state.create).not.toHaveBeenCalled();
+    for (const body of [
+      "{",
+      "[]",
+      "{}",
+      "null",
+      "   ",
+      '{"studentIds":"one"}',
+      '{"studentIds":[],"extra":1}',
+    ]) {
+      const response = await POST(posted(body), context());
+      expect(response.status, body).toBe(400);
+    }
+    expect(state.create).not.toHaveBeenCalled();
+    expect(state.hash).not.toHaveBeenCalled();
+  });
+  it("intersects the confirmed ids with the current roster", async () => {
+    const first = addStudent(1, "김민서", "0042");
+    const second = addStudent(2, "이서연", "0099");
+    const unknown = "30000000-0000-4000-8000-000000000099";
+    const response = await POST(
+      posted(JSON.stringify({ studentIds: [first.id, unknown] })),
+      context(),
+    );
+    const body = await response.json();
+    expect(response.status).toBe(200);
+    expect(body.data).toMatchObject({ issued: 1, existing: 0 });
+    expect(state.accounts.map((account) => account.studentId)).toEqual([
+      first.id,
+    ]);
+    expect(JSON.stringify(body)).not.toContain("0042");
+    expect(JSON.stringify(body)).not.toContain("password");
+    expect(JSON.stringify(state.audit.mock.calls)).not.toContain("0042");
+    const replay = await POST(
+      posted(JSON.stringify({ studentIds: [first.id, second.id] })),
+      context(),
+    );
+    const again = await replay.json();
+    expect(again.data).toMatchObject({ issued: 1, existing: 1 });
+    expect(state.accounts).toHaveLength(2);
+  });
+  it("keeps an unauthorized malformed body from issuing anyone", async () => {
+    state.session.mockResolvedValue(null);
+    addStudent(1);
+    expect((await POST(posted("{"), context())).status).toBe(401);
+    expect(state.create).not.toHaveBeenCalled();
   });
   it("rejects a globally taken name but preserves already issued accounts", () => {
     const student = addStudent(1, "김민서");

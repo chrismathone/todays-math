@@ -171,13 +171,18 @@ export async function processBinding(bindingId: string, limit = 10) {
                     relationResult.deferredStudents ||
                     relationResult.unresolvedProgress)
                 ) {
+                  const reviewId = randomUUID();
                   await tx.accountAuditLog.create({
                     data: {
+                      id: reviewId,
                       action: "eywa.relation_conflicts",
                       outcome: "denied",
                       details: {
                         bindingId,
                         snapshotId: snapshot.manifest.snapshotId,
+                        eventId: event.eventId,
+                        reason: "관계 충돌",
+                        reviewId,
                         conflicts: relationResult.conflicts,
                         deferredStudents: relationResult.deferredStudents,
                         unresolvedProgress: relationResult.unresolvedProgress,
