@@ -20,7 +20,7 @@ function fixture(cards: boolean) {
     unitKey: exchange.units[0].unitKey,
     sectionKey: section.sectionKey,
     title: "합성 개념 묶음",
-    kind: "개념",
+    kind: entries[0].kind,
     unitId: null,
     body: {
       goal: "",

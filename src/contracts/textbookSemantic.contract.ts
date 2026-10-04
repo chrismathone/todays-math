@@ -249,10 +249,16 @@ export const textbookSemanticSchema = z
     title: z.string().max(200).optional(),
     subtitle: z.string().max(500).optional(),
     continuation: z.boolean().optional(),
+    /** Original source's fixed instruction/footer tree; absence stays absent in old editions. */
+    sourceFooter: z
+      .array(textbookSourceFragmentSchema)
+      .min(1)
+      .max(50)
+      .optional(),
     node: textbookSemanticNodeSchema.optional(),
   })
   .superRefine((value, ctx) => {
-    if (value.node?.kind !== "fragments") return;
+    if (value.node?.kind !== "fragments" && !value.sourceFooter) return;
     let count = 0;
     const walk = (nodes: TextbookSourceFragment[], depth: number): boolean => {
       if (depth > 20) return false;
@@ -265,7 +271,11 @@ export const textbookSemanticSchema = z
       }
       return true;
     };
-    if (!walk(value.node.fragments, 1))
+    const fragments = [
+      ...(value.node?.kind === "fragments" ? value.node.fragments : []),
+      ...(value.sourceFooter ?? []),
+    ];
+    if (!walk(fragments, 1))
       ctx.addIssue({
         code: "custom",
         path: ["node", "fragments"],
