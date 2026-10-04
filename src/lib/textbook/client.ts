@@ -353,6 +353,8 @@ export interface TextbookStudioApi {
     requestId: string,
   ): Promise<void>;
   listVideos(editionId: string): Promise<VideoBinding[]>;
+  /** 내가 등록한 영상 — 연결할 때 고른다. 연결이 있어도 목록에서 사라지지 않는다. */
+  listVideoChoices(): Promise<NamedChoice[]>;
   /** 단원의 게시된 개념 강의. 문항 영상 바인딩이 아니다. */
   listUnitLectures(unitId: string): Promise<
     Array<{
@@ -470,6 +472,7 @@ function studioIssues(issues: TextbookIssue[]): StudioIssue[] {
     severity: issue.severity,
     message: issue.message,
     ...(issue.sectionId ? { sectionId: issue.sectionId } : {}),
+    ...(issue.path.length > 0 ? { path: issue.path.join(" › ") } : {}),
   }));
 }
 
@@ -630,7 +633,8 @@ function fromRecord(
     parity: record.section.startPolicy,
     parityMessage: null,
     blocks: record.section.blocks.map(fromBlock),
-    answer: "",
+    // 구획 정답 메모 — 서버에 없으면 빈 글로 보여 준다(저장할 때는 빈 글이면 칸을 뺀다)
+    answer: record.section.teacherAnswer ?? "",
     portraits: [],
     picks: [],
     items: record.section.blocks.flatMap((block) =>
@@ -719,6 +723,10 @@ function toWireSection(section: SectionDetail): Section {
     templateKey: section.templateKey,
     startPolicy: section.parity,
     blocks: section.blocks.flatMap(toWireBlock),
+    // 빈 글 · 공백뿐인 글은 칸을 뺀다 — 빈 값을 실으면 판본 해시가 달라진다
+    ...(section.answer.trim().length > 0
+      ? { teacherAnswer: section.answer }
+      : {}),
   };
 }
 
@@ -1575,6 +1583,16 @@ export function createTextbookApi(
           `${BASE}/videos?editionId=${encodeURIComponent(editionId)}`,
         ),
       );
+    },
+    async listVideoChoices() {
+      const listed = parseData(
+        textbookVideoListSchema,
+        await request(fetchImpl, `${BASE}/videos`),
+      );
+      return listed.videos.map((video) => ({
+        id: video.id,
+        label: `${video.title} · ${video.providerVideoId}`,
+      }));
     },
     async listUnitLectures(unitId) {
       const parsed = parseData(

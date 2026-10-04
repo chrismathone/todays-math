@@ -175,6 +175,27 @@ button.character {
   font-size: 13px;
   color: var(--learn-muted);
 }
+.availability {
+  padding: 16px;
+  border: 1px solid var(--learn-track);
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.availability strong {
+  display: block;
+  color: var(--learn-ink);
+}
+.availability p {
+  margin: 8px 0 0;
+  color: var(--learn-muted);
+}
+.availability .adjustment {
+  color: var(--learn-accent);
+}
+.availability .error {
+  color: var(--learn-danger);
+}
 button.create {
   min-height: 52px;
   border: 1px solid var(--learn-accent);

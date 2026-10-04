@@ -44,6 +44,35 @@ export const EDITION_MAX_SECTIONS = 150;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const SHA256 = /^[a-f0-9]{64}$/;
 
+/** `textbook_section.content` 의 모양 — 블록과, 있을 때만 구획 정답 메모 */
+export interface SectionContent {
+  blocks: ManuscriptBlock[];
+  teacherAnswer?: string;
+}
+
+/**
+ * 구획 원고를 저장 칸의 모양으로. 구획 정답 메모는 **글이 있을 때만** 칸을 둔다 —
+ * 빈 값을 적으면 판본 해시가 달라져 이미 발행한 판본의 검증이 깨진다.
+ */
+export function sectionContent(
+  section: Pick<Section, "blocks" | "teacherAnswer">,
+  blocks: ManuscriptBlock[] = section.blocks,
+): SectionContent {
+  return section.teacherAnswer === undefined
+    ? { blocks }
+    : { blocks, teacherAnswer: section.teacherAnswer };
+}
+
+/** 저장 칸에서 구획 정답 메모만 — 글이 아닌 값이나 빈 글은 «없음»이다(칸을 지어내지 않는다) */
+export function storedTeacherAnswer(
+  content: SectionContent,
+): Pick<Section, "teacherAnswer"> {
+  const value: unknown = content.teacherAnswer;
+  return typeof value === "string" && value.trim().length > 0
+    ? { teacherAnswer: value }
+    : {};
+}
+
 interface SectionRow {
   id: string;
   unitKey: string;
@@ -52,7 +81,7 @@ interface SectionRow {
   title: string;
   templateKey: string;
   startPolicy: Section["startPolicy"];
-  content: { blocks: ManuscriptBlock[] };
+  content: SectionContent;
   updatedAt: string;
 }
 
@@ -72,6 +101,7 @@ const toRecord = (row: SectionRow): TextbookSectionRecord => ({
     templateKey: row.templateKey,
     startPolicy: row.startPolicy,
     blocks: row.content.blocks,
+    ...storedTeacherAnswer(row.content),
   },
   updatedAt: row.updatedAt,
 });
@@ -328,7 +358,7 @@ export async function saveSection(
   key: RequestKey,
   input: SaveSectionInput,
 ): Promise<SaveSectionResult & { replayed: boolean }> {
-  const content = JSON.stringify({ blocks: input.section.blocks });
+  const content = JSON.stringify(sectionContent(input.section));
   if (Buffer.byteLength(content) > SECTION_MAX_BYTES)
     throw new TextbookError(
       413,
