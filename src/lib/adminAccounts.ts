@@ -25,6 +25,7 @@ export const managedAccountSelect = {
   updatedAt: true,
   suspendedAt: true,
   deletedAt: true,
+  authSource: true,
 } satisfies Prisma.UserSelect;
 export function managedAccount(
   user: Prisma.UserGetPayload<{ select: typeof managedAccountSelect }>,
@@ -38,10 +39,12 @@ export function managedAccount(
     branch,
     eywaUserId,
     eywaManagedAccounts,
+    authSource,
     ...data
   } = user;
   return {
     ...data,
+    authSource: authSource === "eywa" ? "eywa" : "local",
     branchAssignmentLocked: (eywaManagedAccounts ?? []).some(
       (mapping) => mapping.currentUserId === user.id,
     ),

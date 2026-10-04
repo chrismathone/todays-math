@@ -46,7 +46,7 @@ import { invalid, issue } from "./errors";
 import { EDITION_MAX_ITEMS, loadProblemRows } from "./items";
 import { lectureRefFaults, lectureRefsOf } from "./lectureRefs";
 import { type RequestKey, runOnce } from "./requests";
-import { EDITION_MAX_SECTIONS } from "./sections";
+import { EDITION_MAX_SECTIONS, sectionContent } from "./sections";
 import { type TextbookDb, type TextbookSql, SQL_NOW } from "./sql";
 
 /** 검증을 통과한 패키지 — Codex 의 `readTextbookArchive` 가 내는 것 가운데 여기서 쓰는 칸 */
@@ -547,7 +547,7 @@ async function copyAsDraft(
       title: section.title,
       templateKey: section.templateKey,
       startPolicy: section.startPolicy,
-      content: { blocks: section.blocks.map(remapBlock) },
+      content: sectionContent(section, section.blocks.map(remapBlock)),
     };
   });
   if (sectionRows.length)

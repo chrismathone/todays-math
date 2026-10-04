@@ -20,6 +20,7 @@ import {
   useRef,
   useState,
 } from "react";
+import Link from "next/link";
 
 import ConceptBlankPreview from "@/components/concept-blank/ConceptBlankPreview";
 import { PaperText } from "@/components/concept-blank/paper/PaperParts";
@@ -382,6 +383,11 @@ export default function ConceptBlankView({
     () => (storageScope ? new PrivateCloudClient(storageScope) : null),
     [storageScope],
   );
+  const [restoreAttempt, setRestoreAttempt] = useState(0);
+  const [restoreState, setRestoreState] = useState<{
+    status: "loading" | "ready" | "error";
+    message?: string;
+  }>(() => ({ status: urlDocument ? "loading" : "ready" }));
   const [capHit, setCapHit] = useState(false);
   const [paperView, setPaperView] = useState<"student" | "key">("student");
   /** 인쇄할 지면 — 학생지 · 채점표 · 전체(학생지 뒤에 채점표). 원장님 2026-10-01 «본문/답지/전체 따로». */
@@ -525,12 +531,15 @@ export default function ConceptBlankView({
   const savedId = savedDocument?.id ?? null;
   useEffect(() => {
     const url = new URL(window.location.href);
-    const next = active ? savedId : null;
+    const next = active
+      ? (savedId ??
+        (restoreState.status !== "ready" ? (urlDocument?.id ?? null) : null))
+      : null;
     if (url.searchParams.get(DOC_PARAM) === next) return;
     if (next) url.searchParams.set(DOC_PARAM, next);
     else url.searchParams.delete(DOC_PARAM);
     window.history.replaceState(window.history.state, "", url);
-  }, [active, savedId]);
+  }, [active, savedId, restoreState.status, urlDocument]);
 
   /** 내 시험지에서 읽은 자료를 받는다 — `keepDraft` 면 지금 고르기(주소의 아직 저장 안 한 고침)를 그대로 둔다. */
   const adopt = useCallback((document: BlankDocument, keepDraft: boolean) => {
@@ -593,14 +602,26 @@ export default function ConceptBlankView({
     let live = true;
     readBlankDocument(client, urlDocument.id).then(
       (document) => {
-        if (live) adopt(document, urlDocument.keepDraft);
+        if (live) {
+          adopt(document, urlDocument.keepDraft);
+          setRestoreState({ status: "ready" });
+        }
       },
-      () => undefined,
+      (cause) => {
+        if (!live) return;
+        const message =
+          cause instanceof PrivateCloudError && cause.status === 403
+            ? "이 자료를 열 권한이 없습니다. 자료 공유와 소속을 확인해 주세요."
+            : cause instanceof PrivateCloudError && cause.status === 404
+              ? "자료가 삭제되었거나 찾을 수 없습니다. 목록에서 다시 선택해 주세요."
+              : `자료를 불러오지 못했습니다. ${cloudError(cause)}`;
+        setRestoreState({ status: "error", message });
+      },
     );
     return () => {
       live = false;
     };
-  }, [client, urlDocument, adopt]);
+  }, [client, urlDocument, adopt, restoreAttempt]);
 
   /** 고른 소단원을 바꾼다 — 기준은 지금 고른 것(재고 있는 것만). 상한 60 을 넘으면 앞에서 자르고 한 줄 알린다. */
   const changeSections = (next: string[], hit = false) => {
@@ -666,7 +687,13 @@ export default function ConceptBlankView({
     !!toSave && !!savedDocument && savedDocument.key === selectionKey(toSave);
   /** [내 시험지에 저장] — 처음이면 새 자료, 내 시험지에 있는 자료면 그 다음 판. 자료 이름은 지면 제목. */
   const save = async (sharing?: DocumentSharing) => {
-    if (!client || !toSave || saving) return false;
+    if (
+      !client ||
+      !toSave ||
+      saving ||
+      (urlDocument && restoreState.status !== "ready")
+    )
+      return false;
     setSaving(true);
     setSaveError("");
     const title = (
@@ -782,7 +809,12 @@ export default function ConceptBlankView({
             <button
               type="button"
               className={s.secondaryButton}
-              disabled={!toSave || saving || (saved && !branchId)}
+              disabled={
+                !toSave ||
+                saving ||
+                (saved && !branchId) ||
+                Boolean(urlDocument && restoreState.status !== "ready")
+              }
               onClick={requestSave}
             >
               {saving
@@ -810,6 +842,34 @@ export default function ConceptBlankView({
           )}
         </div>
       </WorkspacePageHeader>
+      {urlDocument && restoreState.status === "loading" ? (
+        <p role="status" className="mb-4 text-sm">
+          {client
+            ? "저장된 자료를 불러오는 중…"
+            : "저장된 자료를 열려면 로그인과 자료 접근 권한을 확인해 주세요."}
+        </p>
+      ) : null}
+      {restoreState.status === "error" ? (
+        <div
+          role="alert"
+          className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-control p-4 text-sm"
+        >
+          <span>{restoreState.message}</span>
+          <button
+            type="button"
+            className={s.secondaryButton}
+            onClick={() => {
+              setRestoreState({ status: "loading" });
+              setRestoreAttempt((value) => value + 1);
+            }}
+          >
+            자료 다시 불러오기
+          </button>
+          <Link className={s.secondaryButton} href="/#library">
+            자료 목록으로 돌아가기
+          </Link>
+        </div>
+      ) : null}
       {textbookEnabled && (
         <TextbookConceptLinks sections={chosen} active={active} />
       )}

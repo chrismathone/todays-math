@@ -1,4 +1,6 @@
 "use client";
+import { requestCourseNavigation } from "@/lib/math-srs/courseNavigation";
+import { requestTextbookNavigation } from "@/lib/textbook/navigation";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
 import WorkProgress from "./WorkProgress";
@@ -453,8 +455,9 @@ function UnifiedWorkspaceContent({
       ? libraryLabel
       : (allNavItems.find((item) => item.id === view)?.label ??
         "메뉴 이용 안내");
-  const navigate = useCallback(
-    (next: View) => {
+  const acceptedHref = useRef("");
+  const performNavigation = useCallback(
+    (next: View): boolean => {
       if (!can(next)) return false;
       if (
         next !== "english-listening" &&
@@ -482,10 +485,34 @@ function UnifiedWorkspaceContent({
       url.hash = next === "home" ? "" : next;
       if (url.href !== window.location.href)
         window.history.pushState(null, "", url);
+      acceptedHref.current = window.location.href;
       window.scrollTo({ top: 0, behavior: "instant" });
       return true;
     },
     [can, setNotice, setModal],
+  );
+  const navigate = useCallback(
+    (next: View): boolean => {
+      if (!can(next)) return false;
+      if (
+        can("textbook") &&
+        next !== "textbook" &&
+        !requestTextbookNavigation(() => {
+          performNavigation(next);
+        })
+      )
+        return false;
+      if (
+        can("srs") &&
+        next !== "srs" &&
+        !requestCourseNavigation(() => {
+          performNavigation(next);
+        })
+      )
+        return false;
+      return performNavigation(next);
+    },
+    [can, performNavigation],
   );
   useEffect(() => {
     try {
@@ -585,6 +612,33 @@ function UnifiedWorkspaceContent({
         setId && SET_LINK.test(setId) && can("english-library"),
       );
       if (setLinked) next = "english-library";
+      const requestedHref = url.href;
+      if (
+        can("textbook") &&
+        next !== "textbook" &&
+        !requestTextbookNavigation(() => {
+          window.history.replaceState(window.history.state, "", requestedHref);
+          sync();
+        })
+      ) {
+        const previous = new URL(acceptedHref.current || window.location.href);
+        previous.hash = "textbook";
+        window.history.replaceState(window.history.state, "", previous);
+        return;
+      }
+      if (
+        can("srs") &&
+        next !== "srs" &&
+        !requestCourseNavigation(() => {
+          window.history.replaceState(window.history.state, "", requestedHref);
+          sync();
+        })
+      ) {
+        const previous = new URL(acceptedHref.current || window.location.href);
+        previous.hash = "srs";
+        window.history.replaceState(window.history.state, "", previous);
+        return;
+      }
       if (
         next !== "english-listening" &&
         !window.dispatchEvent(
@@ -632,15 +686,21 @@ function UnifiedWorkspaceContent({
       url.hash = next && next !== "home" ? next : "";
       if (url.href !== window.location.href)
         window.history.replaceState(null, "", url);
+      acceptedHref.current = window.location.href;
     };
     // Synchronize the browser's navigation state, including a directly opened hash.
 
     sync();
     window.addEventListener("popstate", sync);
     window.addEventListener("hashchange", sync);
+    const rememberQuery = () => {
+      acceptedHref.current = window.location.href;
+    };
+    window.addEventListener("screen-query-changed", rememberQuery);
     return () => {
       window.removeEventListener("popstate", sync);
       window.removeEventListener("hashchange", sync);
+      window.removeEventListener("screen-query-changed", rememberQuery);
     };
   }, [can, defaultView, storageScope]);
   useEffect(() => {

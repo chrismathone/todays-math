@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "incremental": false,
+    "types": ["node"],
+    "plugins": [],
+    "paths": {
+      "next/navigation": ["./navigation.ts"],
+      "next/image": ["./image.tsx"],
+      "@/*": ["../../src/*"]
+    }
+  },
+  "include": [
+    "../../next-env.d.ts",
+    "./styles.d.ts",
+    "./main.tsx",
+    "./navigation.ts",
+    "./image.tsx",
+    "./fixtures.ts",
+    "./textbook.spec.ts",
+    "./playwright.config.ts"
+  ],
+  "exclude": ["../../node_modules"]
+}

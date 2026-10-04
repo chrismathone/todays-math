@@ -24,6 +24,7 @@ const row = {
   updatedAt: new Date("2026-09-23T00:00:00.000Z"),
   suspendedAt: null,
   deletedAt: null,
+  authSource: "local",
 };
 
 type UserRow = Parameters<typeof managedAccount>[0];
@@ -72,6 +73,7 @@ function user(overrides: Partial<UserRow> = {}): UserRow {
     updatedAt: new Date("2026-09-23T00:00:00.000Z"),
     suspendedAt: null,
     deletedAt: null,
+    authSource: "local",
     ...overrides,
   };
 }
@@ -155,6 +157,7 @@ describe("관리자 계정 응답", () => {
       updatedAt: new Date("2026-09-23T00:00:00.000Z"),
       suspendedAt: null,
       deletedAt: null,
+      authSource: "local",
     });
     expect(account.branchName).toBe("서울 지점");
     expect(JSON.stringify(account)).not.toMatch(/password|hash/i);

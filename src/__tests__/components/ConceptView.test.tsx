@@ -398,6 +398,43 @@ describe("오른쪽 차시 판 — 게시 조건은 관문 결과 그대로", ()
 });
 
 describe("쓰기 — 누르면 서버에 묻고 다시 불러온다", () => {
+  it("keeps publish success when GET fails and retries reads without repeating PATCH", async () => {
+    await renderView();
+    const fetchBefore = globalThis.fetch;
+    let failRead = true;
+    vi.stubGlobal(
+      "fetch",
+      async (input: RequestInfo | URL, init?: RequestInit) => {
+        if (
+          String(input) === "/api/concept" &&
+          (!init?.method || init.method === "GET") &&
+          failRead
+        )
+          return json({}, 503);
+        return fetchBefore(input, init);
+      },
+    );
+    fireEvent.click(panel().getByRole("button", { name: "게시" }));
+    expect(
+      await screen.findByText(
+        "변경은 저장했습니다. 최신 조회에 실패해 화면이 이전 상태일 수 있습니다.",
+      ),
+    ).toBeVisible();
+    expect(screen.getByText("게시했습니다.")).toBeVisible();
+    expect(calls.filter((call) => call.method === "PATCH")).toHaveLength(1);
+    failRead = false;
+    fireEvent.click(
+      screen.getByRole("button", { name: "최신 상태 다시 조회" }),
+    );
+    await waitFor(() =>
+      expect(
+        screen.queryByText(
+          "변경은 저장했습니다. 최신 조회에 실패해 화면이 이전 상태일 수 있습니다.",
+        ),
+      ).not.toBeInTheDocument(),
+    );
+    expect(calls.filter((call) => call.method === "PATCH")).toHaveLength(1);
+  });
   it("게시 → PATCH { action: publish } 뒤 표를 다시 불러온다", async () => {
     await renderView();
     const before = gets("/api/concept");

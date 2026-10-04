@@ -1,6 +1,9 @@
 ﻿"use client";
 
 import Link from "next/link";
+import BackLink from "@/components/ui/BackLink";
+import { contextParams, shellReturn } from "@/lib/adminReturn";
+import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 import { useId, useState, type FormEvent } from "react";
 
@@ -44,7 +47,9 @@ export function ClassManage({
   canManageStudents = canManageRoster,
   canManageAccounts = false,
 }: ClassManageProps) {
-  const manage = useClassManage();
+  const query = useScreenQuery();
+  const context = contextParams(query);
+  const manage = useClassManage(context.get("classId") ?? "");
   const current = findUnit(units, manage.currentUnitId);
   const selectedClass = manage.selectedClass;
   const progressDisabled =
@@ -72,12 +77,19 @@ export function ClassManage({
 
   return (
     <main className={s.manage}>
+      {context.has("from") ? (
+        <BackLink href={shellReturn(context)}>이전 화면으로 돌아가기</BackLink>
+      ) : null}
+      {manage.error ? <p role="alert">{manage.error}</p> : null}
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]">
         <section aria-label="반 관리" className={s.panel}>
           <ClassTable
             classes={manage.classes}
             selectedClassId={manage.selectedClassId}
-            onSelect={manage.selectClass}
+            onSelect={(id) => {
+              manage.selectClass(id);
+              replaceScreenQuery({ classId: id, studentId: null });
+            }}
           />
           {canManageRoster && (
             <AddClassForm
@@ -90,19 +102,24 @@ export function ClassManage({
         <section aria-labelledby="class-students-heading" className={s.panel}>
           {selectedClass ? (
             <Link
-              href={`/classes/${encodeURIComponent(selectedClass.id)}/math-srs`}
+              href={`/classes/${encodeURIComponent(selectedClass.id)}/math-srs?${contextParams({ classId: selectedClass.id, studentId: context.get("studentId") ?? undefined, from: typeof window !== "undefined" && window.location.pathname === "/" ? "teaching" : undefined, teachingTab: query.get("teachingTab") ?? "classes" })}`}
               className="mb-3 inline-flex min-h-11 items-center text-[12.5px] font-bold text-g-blue underline underline-offset-4"
             >
-              {selectedClass.name} 수학 복습 현황 →
+              {selectedClass.name} 개념 카드 복습(대수 6개 개념) →
               <RouteLinkStatus />
             </Link>
           ) : null}
+          <p className="text-[12.5px] text-text-2">
+            개념 카드 복습은 이 반의 대수 6개 개념 기록입니다.{" "}
+            <Link href="/#srs">초3–초6 과정 SRS 열기 →</Link>
+          </p>
           <StudentList
             students={manage.students}
             selectedClass={selectedClass}
             status={manage.studentsStatus}
             onRetry={manage.retryDetails}
             canManageAccounts={canManageAccounts}
+            requestedStudentId={context.get("studentId") ?? ""}
           />
           {selectedClass && canManageAccounts ? (
             <div className="my-4">

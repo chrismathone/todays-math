@@ -8,7 +8,20 @@ import type {
   ListeningStorageRef,
 } from "../media/storageApi";
 import type { ListeningMediaRecord } from "../media/store";
+import {
+  verifyListeningM4aPlayback,
+  type VerifiedListeningM4aPlayback,
+} from "../media/trustedM4a";
 import { validateListeningDriveMp3 } from "./driveAssets";
+import { assertListeningStorageQuota } from "../media/storageQuota";
+import {
+  storageChunkReferences,
+  writeStorageChunkAsset,
+} from "./storageChunkAssets";
+export {
+  LISTENING_STORAGE_OWNER_BYTES,
+  LISTENING_STORAGE_OWNER_ASSETS,
+} from "../media/storageQuota";
 import {
   denied,
   expected,
@@ -22,36 +35,16 @@ import {
   type ListeningDatabase,
   type ListeningTx,
 } from "./database";
-export const LISTENING_STORAGE_OWNER_BYTES = 8 * 1024 ** 3;
-export const LISTENING_STORAGE_OWNER_ASSETS = 512;
 export async function assertStorageQuota(
   tx: ListeningTx,
   ownerId: string,
   ref: ListeningStorageRef,
 ) {
-  const rows = await tx.$queryRaw<{ storage: ListeningStorageRef }[]>(
-    Prisma.sql`SELECT record->'storage' AS storage FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid AND record->'storage' IS NOT NULL`,
-  );
-  if (
-    rows.some(
-      ({ storage }) =>
-        !Number.isSafeInteger(storage.bytes) || storage.bytes < 1,
-    )
-  )
-    throw invalid("보관된 음원 정보를 확인해 주세요.");
-  const files = new Map(
-    rows.map(({ storage }) => [
-      `${storage.bucket}:${storage.key}:${storage.etag}`,
-      storage.bytes,
-    ]),
-  );
-  files.set(`${ref.bucket}:${ref.key}:${ref.etag}`, ref.bytes);
-  if (
-    rows.length >= LISTENING_STORAGE_OWNER_ASSETS ||
-    [...files.values()].reduce((a, b) => a + b, 0) >
-      LISTENING_STORAGE_OWNER_BYTES
-  )
+  try {
+    await assertListeningStorageQuota(tx, ownerId, { ref });
+  } catch {
     throw invalid("듣기 자료 보관 한도를 초과했습니다.");
+  }
 }
 export function storageReadyRecord(input: {
   assetId: string;
@@ -129,6 +122,8 @@ export async function registerStorageListeningAsset(
     expectedSetRevision: number;
     bytes: Buffer;
     assetId?: string;
+    /** In-process capability from the trusted CLI native strict conversion helper. */
+    playbackDerivative?: VerifiedListeningM4aPlayback;
   },
   clock: () => Date = () => new Date(),
 ) {
@@ -147,7 +142,17 @@ export async function registerStorageListeningAsset(
     return set;
   };
   const source = await database.$transaction(authorized);
-  const validated = await validateListeningDriveMp3(input.bytes);
+  const conversion = input.playbackDerivative
+    ? verifyListeningM4aPlayback(input.bytes, input.playbackDerivative)
+    : undefined;
+  const playbackBytes = input.playbackDerivative?.bytes ?? input.bytes;
+  const validated = await validateListeningDriveMp3(playbackBytes);
+  if (
+    conversion &&
+    conversion.derivedOriginalSha256 !== validated.originalSha256
+  )
+    throw invalid("파생 음원 검증 후 원본이 변경되었습니다.");
+  const originalSha256 = conversion?.sourceSha256 ?? validated.originalSha256;
   const previous = await database.$transaction(async (tx) => {
     await authorized(tx);
     return one<{ record: ListeningMediaRecord }>(
@@ -162,13 +167,81 @@ export async function registerStorageListeningAsset(
       r.ownerId !== source.owner_id ||
       r.branchId !== source.branch_id ||
       r.state !== "ready" ||
-      !r.storage ||
-      r.expectedSha256 !== validated.originalSha256 ||
-      r.playback?.sha256 !== validated.sha256
+      (!r.storage && !r.storageChunks) ||
+      r.expectedSha256 !== originalSha256 ||
+      r.playback?.sha256 !== validated.sha256 ||
+      r.conversion?.derivedOriginalSha256 !== conversion?.derivedOriginalSha256
     )
       throw denied();
-    await storage.check(r.storage);
+    if (r.storage) await storage.check(r.storage);
+    else
+      await database.$transaction(
+        (tx) => storageChunkReferences(tx, r, storage),
+        // Reusing a verified derivative can require dozens of private object HEADs.
+        { maxWait: 10000, timeout: 60000 },
+      );
     return r.completion!;
+  }
+  if (conversion || input.bytes.length > 32 * 1024 * 1024) {
+    const encoded = conversion
+      ? playbackBytes.subarray(validated.start, validated.endExclusive)
+      : input.bytes;
+    const created: ListeningStorageRef[] = [];
+    try {
+      return await database.$transaction(
+        async (tx) => {
+          const set = await authorized(tx);
+          await tx.$executeRaw(
+            Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${set.owner_id}`},0))`,
+          );
+          const record = await writeStorageChunkAsset(
+            tx,
+            storage,
+            {
+              assetId,
+              setId,
+              ownerId: set.owner_id,
+              branchId: set.branch_id,
+              mimeType: "audio/mpeg",
+              totalBytes: encoded.length,
+              durationMs: validated.durationMs,
+              now: clock().getTime(),
+              playbackSpan: conversion
+                ? undefined
+                : {
+                    start: validated.start,
+                    endExclusive: validated.endExclusive,
+                  },
+              expectedSha256: validated.originalSha256,
+              read: async function* () {
+                for (let i = 0; i < encoded.length; i += 1024 * 1024)
+                  yield encoded.subarray(i, i + 1024 * 1024);
+              },
+              originalSource: conversion
+                ? {
+                    mimeType: "audio/mp4",
+                    totalBytes: input.bytes.length,
+                    expectedSha256: originalSha256,
+                    conversion,
+                    read: async function* () {
+                      for (let i = 0; i < input.bytes.length; i += 1024 * 1024)
+                        yield input.bytes.subarray(i, i + 1024 * 1024);
+                    },
+                  }
+                : undefined,
+            },
+            created,
+          );
+          if (record.playback!.sha256 !== validated.sha256)
+            throw invalid("음원 재생 해시가 일치하지 않습니다.");
+          return record.completion!;
+        },
+        { maxWait: 10000, timeout: 600000 },
+      );
+    } catch (error) {
+      await Promise.allSettled(created.map((ref) => storage.remove(ref)));
+      throw error;
+    }
   }
   const ref = await storage.upload({
     ownerId: source.owner_id,

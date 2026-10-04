@@ -62,7 +62,11 @@ const messageOf = (error: unknown) =>
 
 /** 서버의 오류 문구(`{ error: { message } }`)를 그대로 올린다 — 화면이 이유를 지어내지 않는다 */
 async function requestJson(url: string, init?: RequestInit): Promise<unknown> {
-  const response = await fetch(url, { cache: "no-store", ...init });
+  const response = await fetch(url, {
+    cache: "no-store",
+    signal: AbortSignal.timeout(20_000),
+    ...init,
+  });
   let body: unknown = null;
   try {
     body = await response.json();
@@ -121,6 +125,9 @@ export default function ConceptView({
   const [registerOpen, setRegisterOpen] = useState(false);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState<PanelNotice | null>(null);
+  const [refreshError, setRefreshError] = useState<string | null>(null);
+  const writing = useRef(false);
+  const writeOutcome = useRef<"saved" | "unknown">("saved");
   const boardVersion = useRef(0);
   const treeVersion = useRef(0);
 
@@ -149,8 +156,10 @@ export default function ConceptView({
         await requestJson("/api/concept/units"),
       );
       setUnits({ status: "ready", data: body.data });
+      return true;
     } catch (error) {
       setUnits({ status: "error", message: messageOf(error) });
+      return false;
     }
   }, []);
 
@@ -164,9 +173,11 @@ export default function ConceptView({
       );
       if (version === treeVersion.current)
         setTreeUnit({ status: "ready", data: body.data });
+      return true;
     } catch (error) {
       if (version === treeVersion.current)
         setTreeUnit({ status: "error", message: messageOf(error) });
+      return false;
     }
   }, []);
 
@@ -177,11 +188,20 @@ export default function ConceptView({
 
   /** 쓰기 뒤 — 지금 보는 것을 다시 불러온다 */
   const refresh = useCallback(async () => {
-    await loadBoard().catch(() => {});
-    if (view === "tree") {
-      await loadUnits();
-      if (treeUnitId) await loadTreeUnit(treeUnitId);
-    }
+    const reads: Promise<unknown>[] = [loadBoard()];
+    if (view === "tree") reads.push(loadUnits());
+    if (view === "tree" && treeUnitId) reads.push(loadTreeUnit(treeUnitId));
+    const results = await Promise.allSettled(reads);
+    const failed = results.some(
+      (result) => result.status === "rejected" || result.value === false,
+    );
+    setRefreshError(
+      failed
+        ? writeOutcome.current === "unknown"
+          ? "저장 결과를 확인하지 못했습니다. 연결을 확인한 뒤 최신 상태를 다시 조회해 주세요."
+          : "변경은 저장했습니다. 최신 조회에 실패해 화면이 이전 상태일 수 있습니다."
+        : null,
+    );
   }, [loadBoard, loadTreeUnit, loadUnits, treeUnitId, view]);
 
   if (board.status !== "ready") {
@@ -246,12 +266,14 @@ export default function ConceptView({
   }
 
   function selectClass(id: string) {
+    if (writing.current) return;
     setClassId(id);
     setRegisterOpen(false);
     setNotice(null);
   }
 
   function openTree() {
+    if (writing.current) return;
     setView("tree");
     setRegisterOpen(false);
     setNotice(null);
@@ -262,6 +284,7 @@ export default function ConceptView({
   }
 
   function selectTreeUnit(unitId: string) {
+    if (writing.current) return;
     setTreeUnitId(unitId);
     setTreeUnit({ status: "loading" });
     setRegisterOpen(false);
@@ -270,16 +293,31 @@ export default function ConceptView({
   }
 
   async function write(run: () => Promise<unknown>, done: string) {
+    if (writing.current) return;
+    writing.current = true;
     setBusy(true);
     setNotice(null);
     try {
       await run();
+      writeOutcome.current = "saved";
       setRegisterOpen(false);
       setNotice({ kind: "status", text: done });
       await refresh();
     } catch (error) {
-      setNotice({ kind: "error", text: messageOf(error) });
+      if (
+        error instanceof TypeError ||
+        error instanceof SyntaxError ||
+        (error instanceof DOMException &&
+          (error.name === "AbortError" || error.name === "TimeoutError"))
+      ) {
+        writeOutcome.current = "unknown";
+        setNotice({ kind: "error", text: "저장 결과 확인이 필요합니다." });
+        setRefreshError(
+          "저장 결과를 확인하지 못했습니다. 최신 상태를 조회해 주세요.",
+        );
+      } else setNotice({ kind: "error", text: messageOf(error) });
     } finally {
+      writing.current = false;
       setBusy(false);
     }
   }
@@ -322,14 +360,21 @@ export default function ConceptView({
         }
       >
         {view === "board" ? (
-          <button type="button" className={s.quietButton} onClick={openTree}>
+          <button
+            type="button"
+            className={s.quietButton}
+            onClick={openTree}
+            disabled={busy}
+          >
             전체 차시 {data.unitTotal}
           </button>
         ) : (
           <button
             type="button"
             className={s.quietButton}
+            disabled={busy}
             onClick={() => {
+              if (writing.current) return;
               setView("board");
               setRegisterOpen(false);
               setNotice(null);
@@ -342,7 +387,9 @@ export default function ConceptView({
           <button
             type="button"
             className={ws.primaryButton}
+            disabled={busy}
             onClick={() => {
+              if (writing.current) return;
               setRegisterOpen(true);
               setNotice(null);
             }}
@@ -351,6 +398,25 @@ export default function ConceptView({
           </button>
         ) : null}
       </WorkspacePageHeader>
+
+      {refreshError ? (
+        <div
+          role="alert"
+          className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-control p-4 text-sm"
+        >
+          <span>{refreshError}</span>
+          <button
+            type="button"
+            className={ws.outlineButton}
+            disabled={busy}
+            onClick={() => {
+              void refresh();
+            }}
+          >
+            최신 상태 다시 조회
+          </button>
+        </div>
+      ) : null}
 
       {view === "board" ? (
         <section className={s.summary} aria-label="이번 주 요약">

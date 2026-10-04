@@ -281,12 +281,22 @@ export const textbookBlockSchema = z
         message: "핵심어·문장 단계에는 반복 확인란을 표시하지 않습니다.",
       });
   });
+/**
+ * 구획 정답 메모 — 교사만 보는 구획 단위 자유 글이다. 문항 정답(`ProblemPayload.answer`)과 다르다.
+ * 🔴 없으면 **칸을 뺀다.** 빈 글 · null · 파싱 기본값을 두지 않는다 — manifest 가 `units` 를 통째로 해시하므로
+ *    빈 값을 실으면 이미 발행한 판본의 해시가 달라진다. 학생 지면 · 학생 응답에는 싣지 않는다.
+ */
+export const textbookTeacherAnswerSchema = textbookTextSchema.refine(
+  (value) => value.trim().length > 0,
+  "구획 정답 메모가 비어 있습니다. 비우려면 칸을 빼 주세요.",
+);
 export const textbookSectionSchema = z.strictObject({
   sectionKey: textbookKeySchema,
   title: textbookTitleSchema,
   templateKey: textbookIdSchema,
   startPolicy: z.enum(["even-left", "continue"]),
   blocks: z.array(textbookBlockSchema).max(5000),
+  teacherAnswer: textbookTeacherAnswerSchema.optional(),
 });
 export const textbookUnitSchema = z.strictObject({
   unitKey: textbookKeySchema,

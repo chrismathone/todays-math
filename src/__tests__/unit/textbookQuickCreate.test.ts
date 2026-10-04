@@ -742,6 +742,11 @@ describe("quick create component composition", () => {
     const { blocks } = await saved(result);
     expect(result.problemCount).toBe(0);
     expect(
+      blocks
+        .filter((b) => b.kind === "concept-recall")
+        .every((b) => b.kind === "concept-recall" && Boolean(b.conceptKey)),
+    ).toBe(true);
+    expect(
       blocks.filter(
         (b) => b.kind === "text" && b.markdown.includes("준비 학습"),
       ),
@@ -782,19 +787,19 @@ describe("quick create failure and idempotency", () => {
       createQuickTextbook(db, actor, { ...body, title: "새 제목" }, deps),
     ).rejects.toMatchObject({ status: 409 });
   });
-  it("missing figures cannot leave an empty book; same failed request id can retry", async () => {
+  it("missing figures reduce the count to intact alternatives and replay the saved result", async () => {
     const body = input({ problemCountPerUnit: 4 });
-    const before = await counts();
-    await expect(
-      createQuickTextbook(db, actor, body, {
-        ...deps,
-        loadFigure: async () => null,
-      }),
-    ).rejects.toThrow("부족");
-    expect(await counts()).toEqual(before);
+    const result = await createQuickTextbook(db, actor, body, {
+      ...deps,
+      loadFigure: async () => null,
+    });
+    expect(result.problemCount).toBe(6);
     expect(
-      (await createQuickTextbook(db, actor, body, deps)).problemCount,
-    ).toBe(12);
+      result.warnings.filter((warning) => warning.includes("요청한 4문항")),
+    ).toHaveLength(3);
+    const beforeReplay = await counts();
+    expect(await createQuickTextbook(db, actor, body, deps)).toEqual(result);
+    expect(await counts()).toEqual(beforeReplay);
   });
   it("capture exclusions are returned as warnings when enough intact alternatives exist", async () => {
     const result = await createQuickTextbook(db, actor, input(), {
@@ -828,5 +833,158 @@ describe("quick create failure and idempotency", () => {
     expect(
       (await createQuickTextbook(db, actor, body, deps)).problemCount,
     ).toBe(6);
+  });
+});
+
+describe("quick create adapts to real bank availability", () => {
+  const m2 = supportedSeeds.filter(
+    (unit) => unit.grade === "중2" && quickCreateSemester(unit) === 1,
+  );
+  const scope = (start = 0, end = start) => ({
+    schoolLevel: "middle" as const,
+    grade: 2,
+    semester: 1 as const,
+    startUnitId: ids.get(seedKey(m2[start]))!,
+    endUnitId: ids.get(seedKey(m2[end]))!,
+  });
+
+  it("creates all 17 components across eight middle-2 sections with no written candidates", async () => {
+    for (const unit of m2.slice(0, 8)) {
+      const unitId = ids.get(seedKey(unit))!;
+      for (let index = 0; index < 8; index++)
+        await insertBankProblem(pg, unitId, {
+          questionType: "단답형",
+          difficulty: "기본",
+        });
+      await insertBankProblem(pg, unitId, {
+        questionType: "서술형",
+        reviewStatus: "pending",
+      });
+      await insertBankProblem(pg, unitId, {
+        questionType: "서술형",
+        difficulty: "심화상",
+      });
+    }
+    const all = Object.fromEntries(
+      Object.keys(DEFAULT_QUICK_CREATE_COMPONENTS).map((key) => [key, true]),
+    ) as QuickCreateComponents;
+    const body = input({
+      ...scope(0, 7),
+      components: all,
+      problemCountPerUnit: 8,
+    });
+    const result = await createQuickTextbook(db, actor, body, visualDeps);
+    expect(result.problemCount).toBe(64);
+    expect(result.conceptCount).toBe(8);
+    expect(
+      result.warnings.filter((warning) =>
+        warning.includes("서술형 2문항 중 0문항"),
+      ),
+    ).toHaveLength(8);
+    const { blocks } = await saved(result);
+    const exchange = await assembleExchange(db, result.book.draftEditionId!, {
+      exportedAt: new Date().toISOString(),
+    });
+    expect(
+      exchange.items.filter((item) => item.learningStage === "written"),
+    ).toHaveLength(0);
+    expect(
+      exchange.items.filter((item) => item.learningStage === "basic"),
+    ).toHaveLength(24);
+    expect(
+      exchange.items.filter(
+        (item) => item.learningStage === "cumulative-review",
+      ),
+    ).toHaveLength(24);
+    expect(
+      exchange.items.filter((item) => item.learningStage === "unit-assessment"),
+    ).toHaveLength(16);
+    expect(
+      blocks.some(
+        (block) => block.kind === "text" && block.markdown === "### 서술형",
+      ),
+    ).toBe(false);
+    expect(await createQuickTextbook(db, actor, body, visualDeps)).toEqual(
+      result,
+    );
+    await assertPaginates(result);
+    const catalog = await listQuickCreateUnits(db, {
+      schoolLevel: "middle",
+      grade: 2,
+      semester: 1,
+    });
+    const first = catalog.units.find((unit) => unit.id === body.startUnitId)!;
+    expect(first.availability?.standard).toEqual({ total: 8, written: 0 });
+    expect(first.availability?.challenge).toEqual({ total: 1, written: 1 });
+  });
+
+  it("keeps concepts in a section with zero eligible questions, with an honest count", async () => {
+    const result = await createQuickTextbook(
+      db,
+      actor,
+      input({
+        ...scope(8),
+        problemCountPerUnit: 8,
+        components: components({ concepts: true, practice: true }),
+      }),
+      deps,
+    );
+    expect(result.problemCount).toBe(0);
+    expect(result.conceptCount).toBe(1);
+    expect(result.warnings).toEqual([
+      expect.stringContaining("출제 가능한 0문항"),
+    ]);
+    const { blocks } = await saved(result);
+    expect(blocks.some((block) => block.kind === "concept")).toBe(true);
+    expect(
+      blocks.some(
+        (block) => block.kind === "text" && block.markdown === "### 유형 연습",
+      ),
+    ).toBe(false);
+  });
+
+  it("rolls back an entirely empty problem-only request and can retry after bank availability changes", async () => {
+    const body = input({
+      ...scope(9),
+      problemCountPerUnit: 8,
+      components: components({ practice: true }),
+    });
+    const before = await counts();
+    await expect(createQuickTextbook(db, actor, body, deps)).rejects.toThrow(
+      "출제 가능한 문항이 없습니다",
+    );
+    expect(await counts()).toEqual(before);
+    await insertBankProblem(pg, body.startUnitId, { questionType: "단답형" });
+    const result = await createQuickTextbook(db, actor, body, deps);
+    expect(result.problemCount).toBe(1);
+    expect(result.warnings).toEqual([expect.stringContaining("요청한 8문항")]);
+  });
+
+  it("written-only requests include only actual written questions and reduce the target", async () => {
+    const unitId = ids.get(seedKey(m2[10]))!;
+    for (let index = 0; index < 3; index++)
+      await insertBankProblem(pg, unitId, { questionType: "단답형" });
+    for (let index = 0; index < 2; index++)
+      await insertBankProblem(pg, unitId, { questionType: "서술형" });
+    const result = await createQuickTextbook(
+      db,
+      actor,
+      input({
+        ...scope(10),
+        problemCountPerUnit: 8,
+        components: components({ written: true }),
+      }),
+      deps,
+    );
+    expect(result.problemCount).toBe(2);
+    expect(result.warnings).toEqual([
+      expect.stringContaining("출제 가능한 2문항"),
+    ]);
+    const exchange = await assembleExchange(db, result.book.draftEditionId!, {
+      exportedAt: new Date().toISOString(),
+    });
+    expect(
+      exchange.items.every((item) => item.learningStage === "written"),
+    ).toBe(true);
   });
 });

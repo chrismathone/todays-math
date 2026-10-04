@@ -8,9 +8,16 @@ const BTN =
 type Props = {
   row: ClassRow;
   onProgress?: (classId: string) => void;
+  canExport?: boolean;
+  readPending?: boolean;
 };
 
-export function ActionControl({ row, onProgress }: Props) {
+export function ActionControl({
+  row,
+  onProgress,
+  canExport = true,
+  readPending = false,
+}: Props) {
   const action = primaryAction(row);
   const filled =
     action.label === "출제" ||
@@ -23,6 +30,20 @@ export function ActionControl({ row, onProgress }: Props) {
       : "border-ink bg-transparent text-ink"
   }`;
 
+  if (readPending) {
+    return <span className="text-xs text-text-2">조회 완료 후 이용 가능</span>;
+  }
+  if (action.href && !canExport) {
+    return (
+      <button
+        type="button"
+        className={className}
+        onClick={() => onProgress?.(row.classId)}
+      >
+        진도 보기
+      </button>
+    );
+  }
   if (action.href) {
     return (
       <Link href={action.href} className={className}>

@@ -1,6 +1,6 @@
 /**
- * 관리자 «학습 관리» — 진도판 테마(학원 전체 한 벌). 누르면 바로 저장 · 실패하면 앞 선택으로 되돌린다.
- * 키보드: radiogroup 은 탭 정지 하나 · 화살표·Home·End 는 초점만 옮기고(저장은 학생 전체에 바로 가는 쓰기다) Space·Enter 가 저장한다.
+ * 관리자 «학습 관리» — 테마 선택은 미리 보기이고 적용 버튼으로 전체 학생에게 저장한다.
+ * 키보드: radiogroup 은 탭 정지 하나 · 방향키는 초점을, Space·Enter 는 미리 보기를 바꾼다.
  * 저장 중에 단추를 `disabled` 로 만들면 초점이 body 로 떨어진다 — 초점은 누른 판에 남아야 한다.
  */
 import { render, screen, waitFor } from "@testing-library/react";
@@ -63,13 +63,18 @@ describe("JourneyThemePicker", () => {
     );
   });
 
-  it("saves a choice at once and says so", async () => {
+  it("previews a choice without writing, then explicitly applies it", async () => {
     stub(ok("classic"), ok("shapes", "2026-09-30T02:00:00.000Z"));
     render(<JourneyThemePicker />);
     await waitFor(() =>
       expect(screen.getByRole("radio", { name: /기본 판/ })).toBeChecked(),
     );
     await userEvent.click(screen.getByRole("radio", { name: /도형 마을/ }));
+    expect(puts()).toHaveLength(0);
+    expect(screen.getByText(/서비스의 모든 학생/)).toBeVisible();
+    await userEvent.click(
+      screen.getByRole("button", { name: "전체 학생에게 적용" }),
+    );
     await screen.findByText("저장했습니다. 학생 화면은 새로 열 때 바뀝니다.");
     expect(screen.getByRole("radio", { name: /도형 마을/ })).toBeChecked();
     expect(calls[1]).toMatchObject({
@@ -78,7 +83,7 @@ describe("JourneyThemePicker", () => {
     });
   });
 
-  it("goes back to the saved board when saving fails", async () => {
+  it("preserves the preview selection when applying fails", async () => {
     stub(
       ok("sky"),
       new Response(
@@ -93,12 +98,15 @@ describe("JourneyThemePicker", () => {
       expect(screen.getByRole("radio", { name: /하늘섬/ })).toBeChecked(),
     );
     await userEvent.click(screen.getByRole("radio", { name: /숲길 탐험/ }));
+    await userEvent.click(
+      screen.getByRole("button", { name: "전체 학생에게 적용" }),
+    );
     await screen.findByText("관리자만 사용할 수 있습니다.");
-    expect(screen.getByRole("radio", { name: /하늘섬/ })).toBeChecked();
-    expect(screen.getByRole("radio", { name: /숲길 탐험/ })).not.toBeChecked();
+    expect(screen.getByRole("radio", { name: /숲길 탐험/ })).toBeChecked();
+    expect(screen.getByRole("radio", { name: /하늘섬/ })).not.toBeChecked();
   });
 
-  it("keeps focus on the pressed board while it saves and after", async () => {
+  it("keeps focus on the apply button during a save without disabling the radio", async () => {
     const put = deferred();
     stub(ok("classic"), put.promise);
     render(<JourneyThemePicker />);
@@ -107,14 +115,16 @@ describe("JourneyThemePicker", () => {
     );
     const sea = screen.getByRole("radio", { name: /바다 항해/ });
     await userEvent.click(sea);
+    const apply = screen.getByRole("button", { name: "전체 학생에게 적용" });
+    await userEvent.click(apply);
     expect(puts()).toHaveLength(1);
     // 브라우저는 초점 있는 단추가 disabled 가 되면 초점을 body 로 떨어뜨린다(jsdom 은 안 그런다) — 속성으로 잰다.
     expect(sea).not.toBeDisabled();
-    expect(sea).toHaveFocus();
+    expect(apply).toHaveFocus();
     expect(screen.getByRole("radiogroup")).toHaveAttribute("aria-busy", "true");
     put.resolve(ok("sea", "2026-09-30T02:00:00.000Z"));
     await screen.findByText("저장했습니다. 학생 화면은 새로 열 때 바뀝니다.");
-    expect(sea).toHaveFocus();
+    expect(apply).toHaveFocus();
     expect(sea).toBeChecked();
     expect(screen.getByRole("radiogroup")).not.toHaveAttribute("aria-busy");
   });
@@ -127,6 +137,9 @@ describe("JourneyThemePicker", () => {
       expect(screen.getByRole("radio", { name: /기본 판/ })).toBeChecked(),
     );
     await userEvent.click(screen.getByRole("radio", { name: /하늘섬/ }));
+    await userEvent.click(
+      screen.getByRole("button", { name: "전체 학생에게 적용" }),
+    );
     await userEvent.click(screen.getByRole("radio", { name: /우주 궤도/ }));
     expect(puts()).toHaveLength(1);
     put.resolve(ok("sky", "2026-09-30T02:00:00.000Z"));
@@ -135,7 +148,7 @@ describe("JourneyThemePicker", () => {
     expect(screen.getByRole("radio", { name: /우주 궤도/ })).not.toBeChecked();
   });
 
-  it("is one tab stop: arrows move focus without saving, Space saves", async () => {
+  it("is one radio tab stop: arrows focus and Space previews without saving", async () => {
     stub(ok("sea"), ok("space", "2026-09-30T02:00:00.000Z"));
     render(<JourneyThemePicker />);
     await waitFor(() =>
@@ -172,16 +185,23 @@ describe("JourneyThemePicker", () => {
 
     await user.keyboard("{ArrowRight}");
     await user.keyboard(" ");
+    expect(puts()).toHaveLength(0);
+    expect(screen.getByRole("radio", { name: /우주 궤도/ })).toHaveFocus();
+    await user.tab();
+    const apply = screen.getByRole("button", { name: "전체 학생에게 적용" });
+    expect(apply).toHaveFocus();
+    await user.keyboard("{Enter}");
     await screen.findByText("저장했습니다. 학생 화면은 새로 열 때 바뀝니다.");
     expect(puts()).toHaveLength(1);
     expect(puts()[0].init?.body).toBe(JSON.stringify({ theme: "space" }));
     expect(screen.getByRole("radio", { name: /우주 궤도/ })).toBeChecked();
-    expect(screen.getByRole("radio", { name: /우주 궤도/ })).toHaveFocus();
+    expect(apply).toHaveFocus();
   });
 
-  it("leaves the boards usable when the first read fails, and saves on the next press", async () => {
+  it("requires a successful read before applying and preserves preview during the retry", async () => {
     stub(
       new Response("<html>bad gateway</html>", { status: 502 }),
+      ok("classic"),
       ok("sky", "2026-09-30T02:00:00.000Z"),
     );
     render(<JourneyThemePicker />);
@@ -191,6 +211,21 @@ describe("JourneyThemePicker", () => {
       expect(radio).not.toBeChecked();
     }
     await userEvent.click(screen.getByRole("radio", { name: /하늘섬/ }));
+    expect(puts()).toHaveLength(0);
+    expect(
+      screen.getByRole("button", { name: "전체 학생에게 적용" }),
+    ).toBeDisabled();
+    await userEvent.click(
+      screen.getByRole("button", { name: "현재 설정 다시 조회" }),
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "전체 학생에게 적용" }),
+      ).toBeEnabled(),
+    );
+    await userEvent.click(
+      screen.getByRole("button", { name: "전체 학생에게 적용" }),
+    );
     await screen.findByText("저장했습니다. 학생 화면은 새로 열 때 바뀝니다.");
     expect(screen.getByRole("radio", { name: /하늘섬/ })).toBeChecked();
     expect(puts()[0].init?.body).toBe(JSON.stringify({ theme: "sky" }));

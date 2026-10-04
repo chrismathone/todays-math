@@ -10,6 +10,7 @@ import s from "@/components/math-srs/student-course.module.css";
 export type ExpeditionActivityCallbacks = {
   onExit: () => void;
   onComplete: () => void;
+  onConfirmedAnswer?: (studentId: string) => void;
 };
 
 const ElementaryActivity = dynamic(
@@ -49,10 +50,11 @@ export default function ExplorerBankActivity({
   kind,
   onExit,
   onComplete,
+  onConfirmedAnswer,
 }: ExpeditionActivityCallbacks & {
   kind: "elementary" | "middle";
 }) {
-  const expedition = { onExit, onComplete };
+  const expedition = { onExit, onComplete, onConfirmedAnswer };
   return kind === "elementary" ? (
     <ElementaryActivity expedition={expedition} />
   ) : (

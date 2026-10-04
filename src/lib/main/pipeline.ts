@@ -5,11 +5,12 @@ import type {
 } from "@/contracts/class.contract";
 import type { TestEntity } from "@/contracts/test.contract";
 import { mineRank } from "@/lib/class/classOwner";
+import { kstDateOf } from "@/lib/kstDate";
 
 import { unitSectionName } from "./unitLookup";
 
 export const MAIN_ROW_GRID =
-  "grid grid-cols-[44px_minmax(0,1fr)_232px_112px] items-center gap-4 px-6";
+  "grid grid-cols-[44px_minmax(0,1fr)_232px_112px] items-center gap-4 px-6 max-sm:grid-cols-1 max-sm:gap-3 max-sm:px-3";
 
 /**
  * 행을 눌러 반을 고르게 되면서(원장님 확정 2026-08-26) 행이 **두 조각**이 됐다 —
@@ -23,9 +24,9 @@ export const MAIN_ROW_GRID =
  *    **한쪽만 고치면 빨개진다.**
  */
 export const MAIN_ROW_OUTER =
-  "grid grid-cols-[minmax(0,1fr)_112px] items-center gap-4 px-6";
+  "grid grid-cols-[minmax(0,1fr)_112px] items-center gap-4 px-6 max-sm:grid-cols-1 max-sm:gap-3 max-sm:px-3";
 export const MAIN_ROW_INNER =
-  "grid grid-cols-[44px_minmax(0,1fr)_232px] items-center gap-4";
+  "grid grid-cols-[44px_minmax(0,1fr)_232px] items-center gap-4 max-sm:grid-cols-[36px_minmax(0,1fr)] max-sm:gap-3";
 
 export type PipelineStage =
   "progress" | "generate" | "review" | "print" | "done";
@@ -174,8 +175,6 @@ export function primaryAction(row: ClassRow): PrimaryAction {
 
 export function formatMastheadDate(date = new Date()): string {
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${d} ${days[date.getDay()]}`;
+  const iso = kstDateOf(date);
+  return `${iso} ${days[new Date(`${iso}T00:00:00Z`).getUTCDay()]}`;
 }

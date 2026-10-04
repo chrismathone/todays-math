@@ -70,7 +70,7 @@ export function renderBlockHtml(
         rows.length
           ? `<div class="tb-concept-part"><h4>${title}</h4><ul>${rows.map((r) => `<li>${md(r)}</li>`).join("")}</ul></div>`
           : "";
-      return `<section class="tb-concept"><h3>${esc(block.title)}</h3><div class="tb-goal">${md(b.goal)}</div>${list("준비할 개념", b.prerequisites)}<div class="tb-definition">${md(b.definition)}</div>${b.conditions ? `<div>${md(b.conditions)}</div>` : ""}${list("예", b.examples)}${list("반례", b.counterexamples)}${list("주의할 점", b.misconceptions)}${b.explainPrompt ? `<div class="tb-prompt">${md(b.explainPrompt)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</section>`;
+      return `<section class="tb-concept">${block.continuation ? "" : `<h3>${esc(block.title)}</h3>`}${b.goal ? `<div class="tb-goal">${md(b.goal)}</div>` : ""}${list("준비할 개념", b.prerequisites)}${b.definition ? `<div class="tb-definition">${md(b.definition)}</div>` : ""}${b.conditions ? `<div>${md(b.conditions)}</div>` : ""}${list("예", b.examples)}${list("반례", b.counterexamples)}${list("주의할 점", b.misconceptions)}${b.explainPrompt ? `<div class="tb-prompt">${md(b.explainPrompt)}</div>` : ""}${block.qr ? qr(block.qr.id, block.qr.url) : ""}</section>`;
     }
     case "recall":
       return `<section class="tb-recall" data-phase="${block.phase}">${block.pieces.map((p) => (p.kind === "blank" ? `<span class="tb-blank tb-blank-${p.scope}" aria-label="빈칸"></span>` : `<div class="tb-recall-text">${md(p.markdown)}</div>`)).join("")}${block.repetitionChecks ? '<div class="tb-repetition">1 ○　2 ○　3 ○　4 ○</div>' : ""}</section>`;

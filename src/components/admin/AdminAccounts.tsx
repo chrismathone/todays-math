@@ -2,7 +2,17 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
+import { accountListParams, accountListReturn } from "@/lib/adminReturn";
+import { restoreAdminScroll, saveAdminScroll } from "@/lib/adminScroll";
+import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
 import type {
   AdminAccountsResponse,
   ManagedAccount,
@@ -48,25 +58,76 @@ export default function AdminAccounts({
   onAccountsChange?: () => void;
 }) {
   const router = useRouter();
-  const [search, setSearch] = useState("");
-  const [query, setQuery] = useState({
-    q: "",
-    status: "all" as Filter,
-    page: 1,
-  });
+  const screenParams = useScreenQuery();
+  const screenKey = screenParams.toString();
+  const listValues = accountListParams(screenParams);
+  const listQ = listValues.get("q") ?? "";
+  const listStatus = (listValues.get("status") ?? "all") as Filter;
+  const listPage = Number(listValues.get("page") ?? 1);
+  const query = useMemo(() => {
+    return {
+      q: listQ,
+      status: listStatus,
+      page: listPage,
+    };
+  }, [listQ, listStatus, listPage]);
+  const setQuery = useCallback(
+    (next: typeof query | ((current: typeof query) => typeof query)) => {
+      const value = typeof next === "function" ? next(query) : next;
+      replaceScreenQuery({
+        q: value.q,
+        status: value.status,
+        page: String(value.page),
+      });
+    },
+    [query],
+  );
+  const [searchDraft, setSearchDraft] = useState({ q: "", value: "" });
+  const search = searchDraft.q === query.q ? searchDraft.value : query.q;
+  const setSearch = (value: string) => setSearchDraft({ q: query.q, value });
   const [revision, setRevision] = useState(0);
   const [result, setResult] = useState<AdminAccountsResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [authError, setAuthError] = useState(false);
-  const [selected, setSelected] = useState<ManagedAccount | null>(null);
+  const [reviewAccount, setSelected] = useState<ManagedAccount | null>(null);
+  const selection = screenParams.get("selection");
+  const selected = selection
+    ? reviewAccount?.id === selection
+      ? reviewAccount
+      : (result?.data.find((row) => row.id === selection) ?? null)
+    : null;
   const [locked, setLocked] = useState(false);
   const reviewTrigger = useRef<HTMLButtonElement | null>(null);
   const searchInput = useRef<HTMLInputElement | null>(null);
+  const restoredScroll = useRef("");
+  const returnHref = useCallback(
+    (selection?: string) => {
+      const params = new URLSearchParams(screenKey);
+      if (selection) params.set("selection", selection);
+      const href = accountListReturn(branchId, params);
+      return (
+        href +
+        (typeof window !== "undefined" && window.location.hash === "#admin-main"
+          ? "#admin-main"
+          : "")
+      );
+    },
+    [branchId, screenKey],
+  );
+  useEffect(() => {
+    if (!result || loading) return;
+    const href = returnHref();
+    if (restoredScroll.current !== href) {
+      restoredScroll.current = href;
+      restoreAdminScroll(href, branchId);
+    }
+  }, [result, loading, returnHref, branchId]);
 
   function closeReview() {
     if (locked) return;
     setSelected(null);
+    replaceScreenQuery({ selection: null });
     const trigger = reviewTrigger.current;
     if (trigger?.isConnected) trigger.focus();
     else searchInput.current?.focus();
@@ -106,7 +167,7 @@ export default function AdminAccounts({
         setLoading(false);
       });
     return () => controller.abort();
-  }, [query, revision, branchId]);
+  }, [query, revision, branchId, setQuery]);
 
   useEffect(() => {
     onLockChange?.(locked);
@@ -340,7 +401,13 @@ export default function AdminAccounts({
                               <div className={s.accountName}>
                                 <Link
                                   className={s.accountLink}
-                                  href={`/admin/branches/${encodeURIComponent(branchId)}/users/${encodeURIComponent(account.id)}`}
+                                  href={`/admin/branches/${encodeURIComponent(branchId)}/users/${encodeURIComponent(account.id)}?returnTo=${encodeURIComponent(returnHref(account.id))}`}
+                                  onClick={() =>
+                                    saveAdminScroll(
+                                      returnHref(account.id),
+                                      branchId,
+                                    )
+                                  }
                                 >
                                   {account.name || "이름 미등록"}
                                 </Link>
@@ -381,6 +448,7 @@ export default function AdminAccounts({
                                 onClick={(event) => {
                                   reviewTrigger.current = event.currentTarget;
                                   setSelected(account);
+                                  replaceScreenQuery({ selection: account.id });
                                 }}
                               >
                                 {selected?.id === account.id

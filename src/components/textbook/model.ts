@@ -208,6 +208,8 @@ export type StudioIssue = {
   severity: "error" | "warning" | "info";
   message: string;
   sectionId?: string;
+  /** 서버가 짚은 자리(교환 파일 안의 경로). 가져오기 오류를 파일 · 구획별로 보여 줄 때 쓴다. */
+  path?: string;
 };
 
 export type PublishJob = {
@@ -425,13 +427,11 @@ export function moveBlock(
 }
 
 export function spreadStarts(units: readonly OutlineUnit[]): string[] {
-  const ids: string[] = [];
-  for (const unit of units) {
-    for (const section of unit.sections) {
-      if (section.parity !== "continue") ids.push(section.sectionId);
-    }
-  }
-  return ids;
+  // Every section is measured separately in the editor, including sections that
+  // continue on the preceding page in the full-book PDF.
+  return units.flatMap((unit) =>
+    unit.sections.map((section) => section.sectionId),
+  );
 }
 
 export type MeasuredPageRef = {
@@ -439,18 +439,28 @@ export type MeasuredPageRef = {
   printedPageLabel: string;
 };
 
-/** Even physical index of the spread that contains `current`, or the first measured page. */
+function measuredSpreadIndexes(pages: readonly MeasuredPageRef[]): number[] {
+  return [
+    ...new Set(
+      pages.map(
+        (page) => page.physicalPageIndex - (page.physicalPageIndex % 2),
+      ),
+    ),
+  ].sort((left, right) => left - right);
+}
+
+/** The current measured spread, clamped to a remaining spread after remeasurement. */
 export function measuredSpreadAnchor(
   pages: readonly MeasuredPageRef[],
   current: number | null,
 ): number | null {
   if (pages.length === 0) return null;
-  const indexes = pages
-    .map((page) => page.physicalPageIndex)
-    .sort((left, right) => left - right);
-  const chosen = current ?? indexes[0] ?? null;
-  if (chosen === null) return null;
-  return chosen % 2 === 0 ? chosen : chosen - 1;
+  const indexes = measuredSpreadIndexes(pages);
+  const first = indexes[0];
+  if (first === undefined) return null;
+  if (current === null) return first;
+  const chosen = current - (current % 2);
+  return indexes.findLast((index) => index <= chosen) ?? first;
 }
 
 /** Next or previous measured spread. Null means this section has no further spread. */
@@ -461,10 +471,8 @@ export function nextMeasuredSpread(
 ): number | null {
   const anchor = measuredSpreadAnchor(pages, current);
   if (anchor === null) return null;
-  const next = anchor + direction * 2;
-  const indexes = new Set(pages.map((page) => page.physicalPageIndex));
-  if (indexes.has(next) || indexes.has(next + 1)) return next;
-  return null;
+  const indexes = measuredSpreadIndexes(pages);
+  return indexes[indexes.indexOf(anchor) + direction] ?? null;
 }
 
 export function sectionStatusLabel(status: SectionStatus): string {
@@ -795,4 +803,52 @@ export function withConceptLecture(
       ),
     },
   };
+}
+
+/** 제품이 스스로 쓰는 지면 틀. 목록에 없는 틀은 «직접 입력»으로 그대로 적는다. */
+export const TEMPLATE_CHOICES: readonly NamedChoice[] = [
+  { id: "basic", label: "기본" },
+  { id: "unit-intro", label: "단원 도입" },
+  { id: "rest", label: "쉬어가기" },
+];
+
+/** 구획 키의 자동값 — 자동 생성 교재와 같은 모양(`s-` + 8자)이고, 판본 안의 키와 겹치지 않는다. */
+export function suggestSectionKey(
+  existing: Iterable<string>,
+  random: () => string = () => crypto.randomUUID(),
+): string {
+  const taken = new Set(existing);
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    const key = `s-${random().replace(/-/g, "").slice(0, 8)}`;
+    if (!taken.has(key)) return key;
+  }
+  return `s-${random().replace(/-/g, "")}`;
+}
+
+const YOUTUBE_ID = /^[A-Za-z0-9_-]{11}$/;
+
+/**
+ * 유튜브 주소나 영상 ID 에서 영상 ID 만 꺼낸다. 유튜브가 아닌 주소 · 모양이 다른 값은 null 이다.
+ * 영상 주소를 통째로 저장하지 않는다 — 서버는 공급자와 영상 ID 만 받는다.
+ */
+export function youtubeVideoId(input: string): string | null {
+  const value = input.trim();
+  if (YOUTUBE_ID.test(value)) return value;
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    return null;
+  }
+  if (url.protocol !== "https:" && url.protocol !== "http:") return null;
+  const host = url.hostname.replace(/^www\.|^m\./, "");
+  let id: string | null = null;
+  if (host === "youtu.be") id = url.pathname.split("/")[1] ?? null;
+  else if (host === "youtube.com" || host === "youtube-nocookie.com") {
+    const [, first, second] = url.pathname.split("/");
+    if (first === "watch") id = url.searchParams.get("v");
+    else if (first === "embed" || first === "shorts" || first === "live")
+      id = second ?? null;
+  }
+  return id && YOUTUBE_ID.test(id) ? id : null;
 }

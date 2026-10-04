@@ -2,7 +2,27 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useEffect, useId, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type MutableRefObject,
+} from "react";
+import ConfirmDialog from "@/components/unified/ConfirmDialog";
+import {
+  classManagerHref,
+  contextParams,
+  type ReturnContext,
+} from "@/lib/adminReturn";
+import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
+import {
+  courseTargets,
+  enrollmentKey,
+  sharedCourseState,
+} from "@/lib/math-srs/courseRoster";
 import type {
   CourseDashboard as DashboardData,
   CoursePlan,
@@ -48,7 +68,14 @@ const STATUS: Record<CourseSummary["status"], string> = {
   done: "오늘 종료",
   complete: "과정 완료",
 };
-type Filter = "all" | "account" | CourseSummary["status"];
+type Filter =
+  "all" | "account" | "primary" | "supplementary" | CourseSummary["status"];
+type PlanControl = {
+  dirty: boolean;
+  busy: boolean;
+  save: () => Promise<boolean>;
+  discard: () => void;
+};
 type Failure = { status: number; message: string };
 const dateFormat = new Intl.DateTimeFormat("ko-KR", {
   timeZone: "Asia/Seoul",
@@ -66,12 +93,22 @@ function sectionName(id: string | null | undefined) {
     ? `초${section.grade} · ${section.semester}학기 · ${section.title}`
     : "미설정";
 }
-function matches(student: CourseRosterStudent, filter: Filter) {
+function matches(
+  student: CourseRosterStudent,
+  filter: Filter,
+  primary: Set<string>,
+) {
   return filter === "all"
     ? true
-    : filter === "account"
-      ? !student.hasAccount
-      : student.summary.status === filter;
+    : filter === "primary"
+      ? primary.has(student.id)
+      : filter === "supplementary"
+        ? !primary.has(student.id)
+        : filter === "setup"
+          ? primary.has(student.id) && !student.plan
+          : filter === "account"
+            ? !student.hasAccount
+            : student.summary.status === filter;
 }
 function ErrorNotice({ error }: { error: Failure }) {
   return (
@@ -108,6 +145,108 @@ export default function CourseDashboard({
   const heading = useRef<HTMLHeadingElement | null>(null);
   const panelId = useId();
   const graphPanelId = useId();
+  const root = useRef<HTMLDivElement>(null);
+  const controlRef = useRef<PlanControl | null>(null);
+  const [pending, setPending] = useState<{ action: () => void } | null>(null);
+  const [moving, setMoving] = useState(false);
+  const [moveError, setMoveError] = useState<string | null>(null);
+  const returnFocus = useRef<HTMLElement | null>(null);
+  const replay = useRef(false);
+  const urlParams = useScreenQuery();
+  const from: ReturnContext = admin ? "admin-srs" : "workspace-srs";
+  const accountHref = (row: CourseRosterStudent) =>
+    classManagerHref(
+      row,
+      {
+        ...data?.management,
+        menus: data?.management?.canOpen ? ["teaching"] : [],
+      },
+      from,
+    );
+  const guard = useCallback((action: () => void) => {
+    if (controlRef.current?.busy) return;
+    if (!controlRef.current?.dirty) {
+      action();
+      return;
+    }
+    returnFocus.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+    setMoveError(null);
+    setPending({ action });
+  }, []);
+  useEffect(() => {
+    const beforeUnload = (event: BeforeUnloadEvent) => {
+      if (controlRef.current?.dirty || controlRef.current?.busy) {
+        event.preventDefault();
+        event.returnValue = "";
+      }
+    };
+    const click = (event: MouseEvent) => {
+      if (replay.current || !(event.target instanceof Element)) return;
+      const target = event.target.closest<
+        HTMLAnchorElement | HTMLButtonElement
+      >("a, nav button, [role=tab]");
+      if (!target || target.closest("dialog")) return;
+      if (target instanceof HTMLButtonElement && root.current?.contains(target))
+        return;
+      if (target instanceof HTMLAnchorElement) {
+        if (
+          target.target === "_blank" ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        )
+          return;
+        const destination = new URL(target.href, window.location.href);
+        if (destination.origin !== window.location.origin) return;
+      }
+      if (!controlRef.current?.dirty && !controlRef.current?.busy) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      guard(() => {
+        replay.current = true;
+        target.click();
+        replay.current = false;
+      });
+    };
+    document.addEventListener("click", click, true);
+    const beforeLeave = (event: Event) => {
+      if (!controlRef.current?.dirty && !controlRef.current?.busy) return;
+      event.preventDefault();
+      const proceed = (event as CustomEvent<{ proceed?: () => void }>).detail
+        ?.proceed;
+      if (proceed) guard(proceed);
+    };
+    window.addEventListener("course-srs-before-leave", beforeLeave);
+    window.addEventListener("beforeunload", beforeUnload);
+    return () => {
+      document.removeEventListener("click", click, true);
+      window.removeEventListener("course-srs-before-leave", beforeLeave);
+      window.removeEventListener("beforeunload", beforeUnload);
+    };
+  }, [guard]);
+
+  useEffect(() => {
+    if (!selected) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape" || document.querySelector("dialog[open]"))
+        return;
+      event.preventDefault();
+      event.stopPropagation();
+      guard(() => {
+        setSelected(null);
+        controlRef.current = null;
+        replaceScreenQuery({ studentId: null });
+        if (opener.current?.isConnected) opener.current.focus();
+        else heading.current?.focus();
+      });
+    };
+    document.addEventListener("keydown", escape, true);
+    return () => document.removeEventListener("keydown", escape, true);
+  }, [selected, guard]);
 
   useEffect(() => {
     let current = true;
@@ -128,7 +267,9 @@ export default function CourseDashboard({
           ...result.data,
           students: result.data.students.map((row) => {
             const prior = previousRows.get(row.id);
-            return prior && prior.revision > row.revision ? prior : row;
+            return prior && prior.revision > row.revision
+              ? sharedCourseState(row, prior)
+              : row;
           }),
         };
       });
@@ -139,8 +280,27 @@ export default function CourseDashboard({
   }, [reload]);
 
   const students = data?.students ?? [];
+  const targets = courseTargets(students);
+  const restored = useRef("");
+  const requested = contextParams(urlParams);
+  const requestedStudentId = requested.get("studentId");
+  const requestedKey = `${requested.get("classId") ?? ""}:${requested.get("studentId") ?? ""}`;
+  useEffect(() => {
+    if (!data || !requestedStudentId || restored.current === requestedKey)
+      return;
+    restored.current = requestedKey;
+    const row = data.students.find(
+      (row) => enrollmentKey(row) === requestedKey,
+    );
+    if (row)
+      guard(() => {
+        setSelected(row);
+        setDetailView(row.plan ? "overview" : "plan");
+      });
+  }, [data, requestedKey, requestedStudentId, guard]);
   const selectedGraphStudent = selected
-    ? (students.find((row) => row.id === selected.id) ?? selected)
+    ? (students.find((row) => enrollmentKey(row) === enrollmentKey(selected)) ??
+      selected)
     : null;
   const normalized = query.trim().toLocaleLowerCase("ko-KR");
   const inScope = students.filter(
@@ -150,9 +310,13 @@ export default function CourseDashboard({
         .toLocaleLowerCase("ko-KR")
         .includes(normalized),
   );
-  const visible = inScope.filter((student) => matches(student, filter));
+  const visible = inScope.filter((student) =>
+    matches(student, filter, targets.primary),
+  );
   const filters: [Filter, string][] = [
     ["all", "전체"],
+    ["primary", "기본 대상"],
+    ["supplementary", "보충 / 학년 확인 필요"],
     ...(Object.entries(STATUS) as [CourseSummary["status"], string][]),
     ["account", "계정 확인 필요"],
   ];
@@ -162,14 +326,15 @@ export default function CourseDashboard({
     setReload((value) => value + 1);
   };
   const updateRow = (student: CourseRosterStudent) => {
+    setSelected((previous) =>
+      previous ? sharedCourseState(previous, student) : previous,
+    );
     setData((previous) =>
       previous
         ? {
             ...previous,
             students: previous.students.map((row) =>
-              row.id === student.id && row.revision <= student.revision
-                ? student
-                : row,
+              sharedCourseState(row, student),
             ),
           }
         : previous,
@@ -177,6 +342,8 @@ export default function CourseDashboard({
   };
   const close = () => {
     setSelected(null);
+    controlRef.current = null;
+    replaceScreenQuery({ studentId: null });
     if (opener.current?.isConnected) opener.current.focus();
     else heading.current?.focus();
   };
@@ -184,15 +351,75 @@ export default function CourseDashboard({
     student: CourseRosterStudent,
     trigger: HTMLButtonElement,
   ) => {
-    opener.current = trigger;
-    setDetailView(student.plan ? "overview" : "plan");
-    setSelected(student);
-    if (selected?.id === student.id)
-      document.getElementById(`${panelId}-title`)?.focus();
+    if (controlRef.current?.busy) return;
+    if (selected && enrollmentKey(selected) === enrollmentKey(student)) {
+      const nextView = student.plan ? "overview" : "plan";
+      const focus = () => {
+        setDetailView(nextView);
+        document.getElementById(`${panelId}-title`)?.focus();
+      };
+      if (detailView === nextView) focus();
+      else guard(focus);
+      return;
+    }
+    guard(() => {
+      opener.current = trigger;
+      setDetailView(student.plan ? "overview" : "plan");
+      setSelected(student);
+      replaceScreenQuery({ classId: student.classId, studentId: student.id });
+      if (selected && enrollmentKey(selected) === enrollmentKey(student))
+        document.getElementById(`${panelId}-title`)?.focus();
+    });
   };
 
   return (
-    <div className={s.dashboard}>
+    <div className={s.dashboard} ref={root}>
+      {pending ? (
+        <ConfirmDialog
+          title="저장하지 않은 학습 계획이 있습니다"
+          description="저장 후 이동하거나, 변경을 버리거나, 계속 편집할 수 있습니다."
+          confirmLabel="버리고 이동"
+          busy={moving}
+          error={moveError}
+          returnFocus={returnFocus}
+          onCancel={() => setPending(null)}
+          onConfirm={() => {
+            controlRef.current?.discard();
+            const action = pending.action;
+            setPending(null);
+            action();
+          }}
+        >
+          <button
+            type="button"
+            className={s.button}
+            disabled={moving}
+            onClick={async () => {
+              setMoving(true);
+              const saved = await controlRef.current?.save();
+              setMoving(false);
+              if (saved) {
+                const action = pending.action;
+                setPending(null);
+                action();
+              } else
+                setMoveError(
+                  "저장하지 못했습니다. 입력을 확인하거나 계속 편집하세요.",
+                );
+            }}
+          >
+            저장하고 이동
+          </button>
+          <button
+            type="button"
+            className={s.button}
+            disabled={moving}
+            onClick={() => setPending(null)}
+          >
+            계속 편집
+          </button>
+        </ConfirmDialog>
+      ) : null}
       <header className={s.header}>
         <div>
           <h1 ref={heading} tabIndex={-1}>
@@ -254,21 +481,24 @@ export default function CourseDashboard({
             <div>
               <dt>계획 설정</dt>
               <dd>
-                {students.filter((row) => row.plan).length}
-                <small> / {students.length}명</small>
+                {targets.unique.filter((row) => row.plan).length}
+                <small> / {targets.unique.length}명</small>
               </dd>
             </div>
             <div>
               <dt>설정 필요</dt>
               <dd>
-                {students.filter((row) => !row.plan).length}
+                {targets.setup.length}
                 <small>명</small>
               </dd>
             </div>
             <div>
               <dt>복습 도래</dt>
               <dd>
-                {students.filter((row) => row.summary.dueCount > 0).length}
+                {
+                  targets.unique.filter((row) => row.summary.dueCount > 0)
+                    .length
+                }
                 <small>명</small>
               </dd>
             </div>
@@ -276,7 +506,7 @@ export default function CourseDashboard({
               <dt>오늘 종료</dt>
               <dd>
                 {
-                  students.filter(
+                  targets.unique.filter(
                     (row) =>
                       row.summary.status === "done" ||
                       row.summary.todayAnswered >= row.summary.todayGoal,
@@ -322,7 +552,13 @@ export default function CourseDashboard({
                 >
                   {label}
                   <span>
-                    {inScope.filter((row) => matches(row, value)).length}
+                    {
+                      new Set(
+                        inScope
+                          .filter((row) => matches(row, value, targets.primary))
+                          .map((row) => row.id),
+                      ).size
+                    }
                   </span>
                 </button>
               ))}
@@ -330,10 +566,17 @@ export default function CourseDashboard({
           </div>
           <p className={s.resultCount} aria-live="polite">
             <span>
-              학생 <strong>{visible.length}명</strong> / 전체 {students.length}
-              명
+              학생{" "}
+              <strong>{new Set(visible.map((row) => row.id)).size}명</strong> ·
+              등록 {visible.length}건 / 전체 학생 {targets.unique.length}명 ·
+              등록 {students.length}건
             </span>
-            <span>요약 수치는 전체 학생 기준</span>
+            <span>
+              기본 대상 {targets.primary.size}명 · 보충 / 학년 확인 필요{" "}
+              {targets.supplementary.length}명 · 계획 대상{" "}
+              {targets.target.length}명. 반 등록 학년 기준이며 추정 중1은 확인된
+              개인 학년을 뜻하지 않습니다.
+            </span>
           </p>
         </>
       ) : null}
@@ -391,15 +634,24 @@ export default function CourseDashboard({
                   <tbody>
                     {visible.map((student) => (
                       <tr
-                        key={student.id}
-                        data-selected={selected?.id === student.id}
+                        key={enrollmentKey(student)}
+                        data-selected={
+                          selected
+                            ? enrollmentKey(selected) === enrollmentKey(student)
+                            : false
+                        }
                       >
                         <th scope="row">
                           <button
                             type="button"
-                            className={`${s.studentButton} ${nameSelectionClass(selected?.id === student.id)}`}
+                            className={`${s.studentButton} ${nameSelectionClass(selected ? enrollmentKey(selected) === enrollmentKey(student) : false)}`}
                             aria-label={`${student.name} 학습 현황 열기`}
-                            aria-expanded={selected?.id === student.id}
+                            aria-expanded={
+                              selected
+                                ? enrollmentKey(selected) ===
+                                  enrollmentKey(student)
+                                : false
+                            }
                             aria-controls={panelId}
                             onClick={(event) => {
                               openStudent(student, event.currentTarget);
@@ -408,7 +660,8 @@ export default function CourseDashboard({
                             <span className={s.studentIdentity}>
                               <strong>{student.name}</strong>
                               <span className={s.subline}>
-                                {student.className}
+                                {student.className} ·{" "}
+                                {student.classGrade || "학년 확인 필요"}
                               </span>
                             </span>
                             <Icon name="chevron" size={15} />
@@ -423,14 +676,19 @@ export default function CourseDashboard({
                                 aria-label={`${student.name} 시작 진도 설정`}
                                 aria-controls={panelId}
                                 aria-expanded={
-                                  selected?.id === student.id &&
-                                  detailView === "plan"
+                                  (selected
+                                    ? enrollmentKey(selected) ===
+                                      enrollmentKey(student)
+                                    : false) && detailView === "plan"
                                 }
                                 onClick={(event) =>
                                   openStudent(student, event.currentTarget)
                                 }
                               >
-                                설정 필요 <Icon name="chevron" size={13} />
+                                {targets.primary.has(student.id)
+                                  ? "설정 필요"
+                                  : "보충학습 설정"}{" "}
+                                <Icon name="chevron" size={13} />
                               </button>
                             ) : (
                               <span
@@ -440,10 +698,10 @@ export default function CourseDashboard({
                                 {STATUS[student.summary.status]}
                               </span>
                             )}
-                            {!student.hasAccount ? (
+                            {!student.hasAccount && accountHref(student) ? (
                               <Link
                                 className={s.accountLink}
-                                href={`/classes/${encodeURIComponent(student.classId)}`}
+                                href={accountHref(student) ?? "#"}
                                 aria-label="계정 확인 필요 · 계정 관리 ↗"
                               >
                                 <Icon name="warning" size={14} />
@@ -451,7 +709,15 @@ export default function CourseDashboard({
                                 <Icon name="chevron" size={12} />
                               </Link>
                             ) : (
-                              <span className={s.srOnly}>계정 사용 가능</span>
+                              <span
+                                className={
+                                  student.hasAccount ? s.srOnly : s.muted
+                                }
+                              >
+                                {student.hasAccount
+                                  ? "계정 사용 가능"
+                                  : "계정 확인에는 반 관리 권한이 필요합니다"}
+                              </span>
                             )}
                           </div>
                         </td>
@@ -531,7 +797,12 @@ export default function CourseDashboard({
                               student.plan ? s.rowButton : s.setupButton
                             }
                             aria-label={`${student.name} ${student.plan ? "상세 보기" : "진도 설정"}`}
-                            aria-expanded={selected?.id === student.id}
+                            aria-expanded={
+                              selected
+                                ? enrollmentKey(selected) ===
+                                  enrollmentKey(student)
+                                : false
+                            }
                             aria-controls={panelId}
                             onClick={(event) => {
                               openStudent(student, event.currentTarget);
@@ -551,15 +822,18 @@ export default function CourseDashboard({
         </div>
         {selected ? (
           <StudentDetail
-            key={selected.id}
+            key={enrollmentKey(selected)}
             id={panelId}
             student={selected}
             admin={admin}
             textbookEnabled={textbookEnabled}
             view={detailView}
-            onViewChange={setDetailView}
-            onClose={close}
+            onViewChange={(view) => guard(() => setDetailView(view))}
+            onClose={() => guard(close)}
             onStudentUpdate={updateRow}
+            controlRef={controlRef}
+            accountHref={accountHref(selected)}
+            supplementary={!targets.primary.has(selected.id)}
           />
         ) : null}
       </div>
@@ -587,6 +861,9 @@ function StudentDetail({
   onViewChange: setView,
   onClose,
   onStudentUpdate,
+  controlRef,
+  accountHref,
+  supplementary,
 }: {
   id: string;
   student: CourseRosterStudent;
@@ -596,6 +873,9 @@ function StudentDetail({
   onViewChange: (view: DetailView) => void;
   onClose: () => void;
   onStudentUpdate: (student: CourseRosterStudent) => void;
+  controlRef: MutableRefObject<PlanControl | null>;
+  accountHref: string | null;
+  supplementary: boolean;
 }) {
   const [detail, setDetail] = useState<CourseStudentDetail | null>(null);
   const [form, setForm] = useState<{
@@ -614,6 +894,15 @@ function StudentDetail({
   const title = useRef<HTMLHeadingElement | null>(null);
   const active = useRef(false);
   const saving = useRef(false);
+  const draft = useRef<CoursePlanInput | null>(null);
+  const dirty = useRef(false);
+  const onDirtyChange = useCallback(
+    (changed: boolean, input: CoursePlanInput | null) => {
+      dirty.current = changed;
+      draft.current = input;
+    },
+    [],
+  );
   const request = useRef(0);
   const [now, setNow] = useState(() => Date.now());
   const updateRef = useRef(onStudentUpdate);
@@ -630,14 +919,17 @@ function StudentDetail({
   }, []);
   useEffect(() => {
     const token = ++request.current;
-    void getCourseStudentDetail(student.id).then((result) => {
+    void getCourseStudentDetail(student.id, student.classId).then((result) => {
       if (!active.current || request.current !== token) return;
       setLoading(false);
       if (!result.ok) {
         setLoadError(result);
         return;
       }
-      if (result.data.student.id !== student.id) {
+      if (
+        result.data.student.id !== student.id ||
+        result.data.student.classId !== student.classId
+      ) {
         setLoadError({
           status: 0,
           message: "학생 기록이 일치하지 않습니다. 다시 불러오세요.",
@@ -667,7 +959,7 @@ function StudentDetail({
     return () => {
       request.current += 1;
     };
-  }, [student.id, reload]);
+  }, [student.id, student.classId, reload]);
 
   function refresh() {
     setLoading(true);
@@ -677,45 +969,87 @@ function StudentDetail({
     );
     setReload((value) => value + 1);
   }
-  async function save(input: CoursePlanInput) {
-    if (!detail || loading || loadError || conflict || saving.current) return;
-    saving.current = true;
-    setBusy(true);
-    setMessage("");
-    setSaveError(null);
-    const result = await saveCourseStudentPlan(student.id, {
-      ...input,
-      expectedRevision: detail.student.revision,
-    });
-    if (result.ok && result.data.id === student.id)
-      updateRef.current(result.data);
-    if (!active.current) return;
-    saving.current = false;
-    setBusy(false);
-    if (!result.ok) {
-      setSaveError(result);
-      if (result.code === "REVISION_MISMATCH") setConflict(true);
-      return;
-    }
-    if (result.data.id !== student.id) {
-      setSaveError({
-        status: 0,
-        message: "저장한 학생 기록이 일치하지 않습니다. 다시 불러오세요.",
-      });
-      return;
-    }
-    setDetail((previous) =>
-      previous ? { ...previous, student: result.data } : previous,
-    );
-    setForm((previous) => ({
-      plan: result.data.plan,
-      revision: result.data.revision,
-      key: (previous?.key ?? 0) + 1,
-    }));
-    setMessage("학습 계획을 저장했습니다. 최신 상세 기록을 불러옵니다.");
-    setLoading(true);
-    setReload((value) => value + 1);
-  }
+  const save = useCallback(
+    async (input: CoursePlanInput): Promise<boolean> => {
+      if (!detail || loading || loadError || conflict || saving.current)
+        return false;
+      saving.current = true;
+      setBusy(true);
+      setMessage("");
+      setSaveError(null);
+      const result = await saveCourseStudentPlan(
+        student.id,
+        {
+          ...input,
+          expectedRevision: detail.student.revision,
+        },
+        student.classId,
+      );
+      if (
+        result.ok &&
+        result.data.id === student.id &&
+        result.data.classId === student.classId
+      )
+        updateRef.current(result.data);
+      if (!active.current) return false;
+      saving.current = false;
+      setBusy(false);
+      if (!result.ok) {
+        setSaveError(result);
+        if (result.code === "REVISION_MISMATCH") setConflict(true);
+        return false;
+      }
+      if (
+        result.data.id !== student.id ||
+        result.data.classId !== student.classId
+      ) {
+        setSaveError({
+          status: 0,
+          message: "저장한 학생 기록이 일치하지 않습니다. 다시 불러오세요.",
+        });
+        return false;
+      }
+      dirty.current = false;
+      setDetail((previous) =>
+        previous
+          ? {
+              ...previous,
+              student: sharedCourseState(previous.student, result.data),
+            }
+          : previous,
+      );
+      setForm((previous) => ({
+        plan: result.data.plan,
+        revision: result.data.revision,
+        key: (previous?.key ?? 0) + 1,
+      }));
+      setMessage("학습 계획을 저장했습니다. 최신 상세 기록을 불러옵니다.");
+      setLoading(true);
+      setReload((value) => value + 1);
+      return true;
+    },
+    [detail, loading, loadError, conflict, student.id, student.classId],
+  );
+  useImperativeHandle(
+    controlRef,
+    () => ({
+      get dirty() {
+        return dirty.current;
+      },
+      get busy() {
+        return saving.current;
+      },
+      save: () =>
+        draft.current ? save(draft.current) : Promise.resolve(false),
+      discard: () => {
+        dirty.current = false;
+        setForm((previous) =>
+          previous ? { ...previous, key: previous.key + 1 } : previous,
+        );
+      },
+    }),
+    [save],
+  );
 
   const record = detail?.student;
   const reports = detail
@@ -837,7 +1171,7 @@ function StudentDetail({
           <>
             {view === "textbook" && textbookEnabled ? (
               <TextbookStudentEvidence
-                key={student.id}
+                key={enrollmentKey(student)}
                 studentId={student.id}
                 refreshKey={reload}
               />
@@ -906,7 +1240,9 @@ function StudentDetail({
                     <p>{record.summary.recommendation.reason}</p>
                   </div>
                 ) : null}
-                {!record.hasAccount ? <AccountNotice student={record} /> : null}
+                {!record.hasAccount ? (
+                  <AccountNotice student={record} href={accountHref} />
+                ) : null}
                 <button
                   type="button"
                   className={s.primaryButton}
@@ -1180,7 +1516,17 @@ function StudentDetail({
 
         {form ? (
           <section hidden={view !== "plan"} aria-label="학생 학습 계획">
-            <h3>시작 진도와 자동 학습</h3>
+            <h3>
+              {supplementary
+                ? "보충학습 · 시작 진도와 자동 학습"
+                : "시작 진도와 자동 학습"}
+            </h3>
+            {supplementary ? (
+              <p className={s.muted}>
+                반 등록 학년이 초3–초6으로 확인되지 않았습니다. 보충학습 계획을
+                저장하면 계획 대상에 포함됩니다. 기존 계획과 이력은 유지됩니다.
+              </p>
+            ) : null}
             <fieldset
               className={s.planGuard}
               disabled={loading || conflict || !!loadError}
@@ -1192,6 +1538,7 @@ function StudentDetail({
                 revision={form.revision}
                 busy={busy}
                 onSave={save}
+                onDirtyChange={onDirtyChange}
                 submitLabel="학습 계획 저장"
               />
             </fieldset>
@@ -1200,7 +1547,7 @@ function StudentDetail({
               입력은 유지됩니다.
             </p>
             {record && !record.hasAccount ? (
-              <AccountNotice student={record} />
+              <AccountNotice student={record} href={accountHref} />
             ) : null}
           </section>
         ) : null}
@@ -1209,7 +1556,13 @@ function StudentDetail({
   );
 }
 
-function AccountNotice({ student }: { student: CourseRosterStudent }) {
+function AccountNotice({
+  student,
+  href,
+}: {
+  student: CourseRosterStudent;
+  href: string | null;
+}) {
   return (
     <div className={s.accountNotice}>
       <strong>학생 계정을 확인해 주세요</strong>
@@ -1217,12 +1570,16 @@ function AccountNotice({ student }: { student: CourseRosterStudent }) {
         계정 미발급 또는 사용 중지 상태입니다. 학습 계획은 미리 설정할 수
         있습니다. 반 관리에서 계정을 발급하거나 사용 상태를 확인해 주세요.
       </p>
-      <Link
-        className={s.noticeAction}
-        href={`/classes/${encodeURIComponent(student.classId)}`}
-      >
-        {student.className} · 계정 확인하러 가기 <Icon name="arrow" size={16} />
-      </Link>
+      {href ? (
+        <Link className={s.noticeAction} href={href}>
+          {student.className} · 계정 확인하러 가기{" "}
+          <Icon name="arrow" size={16} />
+        </Link>
+      ) : (
+        <p>
+          계정 확인에는 반 관리 권한이 필요합니다. 지점 관리자에게 요청하세요.
+        </p>
+      )}
     </div>
   );
 }

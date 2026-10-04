@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { TextbookLayoutError } from "@/lib/textbook/layout/paginate";
 import { measureTextbookPreview } from "@/lib/textbook/render/browser";
@@ -31,6 +31,84 @@ function messageOf(reason: unknown): string {
   }
   if (reason instanceof Error && reason.message) return reason.message;
   return "지면을 측정하지 못했습니다.";
+}
+
+/** Fit the actual visible pages, including a single cover, to the available width. */
+function FittedSpread({
+  pages,
+  model,
+  resources,
+  anchor,
+  zoom,
+}: {
+  pages: Awaited<ReturnType<typeof measureTextbookPreview>>["pages"];
+  model: TextbookRenderModel;
+  resources: PreviewResources;
+  anchor: number;
+  zoom: ZoomMode;
+}) {
+  const viewport = useRef<HTMLDivElement>(null);
+  const surface = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ width: 0, height: 0, scale: 1 });
+
+  useLayoutEffect(() => {
+    const outer = viewport.current;
+    const paper = surface.current;
+    if (!outer || !paper) return;
+    const update = () => {
+      const width = paper.offsetWidth;
+      const height = paper.offsetHeight;
+      if (!width || !height) return;
+      const available = Math.max(1, outer.clientWidth - 12);
+      const scale = zoom === "fit" ? Math.min(1, available / width) : 1;
+      setSize((current) =>
+        current.width === width &&
+        current.height === height &&
+        current.scale === scale
+          ? current
+          : { width, height, scale },
+      );
+    };
+    update();
+    const observer =
+      typeof ResizeObserver === "undefined" ? null : new ResizeObserver(update);
+    observer?.observe(outer);
+    observer?.observe(paper);
+    window.addEventListener("resize", update);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [anchor, pages, zoom]);
+
+  return (
+    <div
+      ref={viewport}
+      className={styles.paperViewport}
+      data-textbook-preview-viewport
+    >
+      <div
+        className={styles.paperFrame}
+        style={{
+          width: size.width * size.scale,
+          height: size.height * size.scale,
+        }}
+      >
+        <div
+          ref={surface}
+          className={styles.paperSurface}
+          style={{ transform: `scale(${size.scale})` }}
+        >
+          <TextbookSpread
+            pages={pages}
+            model={model}
+            resources={resources}
+            currentPhysicalPageIndex={anchor}
+          />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function SectionMeasure({
@@ -106,11 +184,12 @@ export function SectionMeasure({
       {provisionalNotice ? (
         <p className={styles.muted}>{provisionalNotice}</p>
       ) : null}
-      <TextbookSpread
+      <FittedSpread
         pages={state.pages}
         model={model}
         resources={state.resources}
-        currentPhysicalPageIndex={anchor}
+        anchor={anchor}
+        zoom={zoom}
       />
       {state.issues.length > 0 ? (
         <ul>

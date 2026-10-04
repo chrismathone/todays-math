@@ -22,8 +22,57 @@ interface MarkdownNode {
   url?: string;
   alt?: string;
   lang?: string;
+  position?: { start: { offset: number }; end: { offset: number } };
 }
 const parser = unified().use(remarkParse).use(remarkMath).use(remarkGfm);
+
+/** Keep paragraphs, formulas, tables and fenced code intact; long lists can cross pages. */
+export function splitTextbookMarkdown(
+  source: string,
+  parseSource = source,
+): string[] {
+  const root = parser.parse(parseSource) as unknown as MarkdownNode;
+  const parts: string[] = [];
+  const slice = (node: MarkdownNode) =>
+    source.slice(node.position!.start.offset, node.position!.end.offset);
+  for (const node of root.children ?? []) {
+    if (node.type !== "list" || (node.children?.length ?? 0) <= 4) {
+      parts.push(slice(node));
+      continue;
+    }
+    const items = node.children!;
+    for (let at = 0; at < items.length; at += 4) {
+      let part = source.slice(
+        items[at].position!.start.offset,
+        items[Math.min(at + 3, items.length - 1)].position!.end.offset,
+      );
+      // Markdown commonly uses "1." for every item; preserve its rendered numbering.
+      if (node.ordered)
+        part = part.replace(
+          /^(\s*)\d+([.)]\s)/,
+          `$1${(node.start ?? 1) + at}$2`,
+        );
+      parts.push(part);
+    }
+  }
+  return parts.length ? parts : [source];
+}
+
+/** Do not split hidden answers at their internal paragraph breaks. */
+export function splitRecallMarkdown(source: string): string[] {
+  const masked = source.replace(
+    /\[\[([\s\S]*?)\]\]|\{\{([\s\S]*?)\}\}/g,
+    (marker) => "a".repeat(marker.length),
+  );
+  const parts: string[] = [];
+  for (const part of splitTextbookMarkdown(source, masked)) {
+    // The sentence prompt and its writing space belong together.
+    if (part.trimStart().startsWith("{{") && parts.length)
+      parts[parts.length - 1] += `\n\n${part}`;
+    else parts.push(part);
+  }
+  return parts;
+}
 
 /** A shared semantic Markdown renderer with no raw HTML, URL fetches or user-trusted KaTeX commands. */
 export function renderTextbookMarkdown(markdown: string): string {

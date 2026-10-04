@@ -54,6 +54,9 @@ import { GET, POST } from "@/app/api/textbook/quick-create/route";
 import {
   DEFAULT_QUICK_CREATE_COMPONENTS,
   quickCreateResultSchema,
+  quickCreateCatalogSchema,
+  type QuickCreateInput,
+  type QuickCreateComponents,
 } from "@/contracts/textbookQuickCreate.contract";
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import { assembleExchange } from "@/lib/textbook/server/exchange";
@@ -61,8 +64,16 @@ import { validateTextbookIntegrity } from "@/lib/textbook/integrity.server";
 import { conceptScriptFor } from "@/lib/textbook/conceptScripts";
 import { chooseRestStory } from "@/lib/textbook/restStories";
 import { openTextbookDb, type Db } from "../helpers/textbookPglite";
+import { publishDeps } from "@/lib/textbook/publish/deps.server";
+import { preflightEdition } from "@/lib/textbook/publish/preflight";
+import { reservePublish } from "@/lib/textbook/publish/reserve";
+import { runNextStep } from "@/lib/textbook/publish/step";
+import { finalizePublish } from "@/lib/textbook/publish/finalize";
+import { canonicalHash } from "@/lib/textbook/hash.server";
+import { validateTextbookReferences } from "@/lib/textbook/references";
 import {
   insertTeacher,
+  insertBankProblem,
   pgliteTextbookDb,
   tinyPng,
 } from "../helpers/textbookServerWorld";
@@ -75,12 +86,12 @@ const cast = {
 };
 const body = () => ({
   requestId: randomUUID(),
-  schoolLevel: "elementary",
+  schoolLevel: "elementary" as const,
   grade: 3,
-  semester: 1,
+  semester: 1 as const,
   startUnitId: unitId,
   endUnitId: unitId,
-  difficulty: "standard",
+  difficulty: "standard" as const,
   problemCountPerUnit: 2,
   includeConcepts: true,
   components: {
@@ -90,7 +101,7 @@ const body = () => ({
   },
   cast,
 });
-const request = (input: ReturnType<typeof body>) =>
+const request = (input: QuickCreateInput) =>
   new Request("https://today.test/api/textbook/quick-create", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -231,4 +242,203 @@ describe("quick create prepared script and frozen visual integration", () => {
       gate.bundledAssets = false;
     }
   });
+
+  it("returns 201 for the reported all-components middle-2 range with zero written candidates", async () => {
+    const seeds = CURRICULUM_UNITS.filter((unit) => unit.grade === "중2").slice(
+      0,
+      8,
+    );
+    const unitIds: string[] = [];
+    for (const [index, unit] of seeds.entries()) {
+      const id = randomUUID();
+      unitIds.push(id);
+      await pg.query(
+        `INSERT INTO "unit" ("id","grade","chapter","section","order_index","problem_code_prefix") VALUES ($1,$2,$3,$4,$5,$6)`,
+        [
+          id,
+          unit.grade,
+          unit.chapter,
+          unit.section,
+          unit.orderIndex,
+          `J32${String(index + 1).padStart(3, "0")}`,
+        ],
+      );
+      for (let count = 0; count < 8; count++)
+        await insertBankProblem(pg, id, {
+          difficulty: "기본",
+          questionType: "단답형",
+        });
+    }
+    const catalogResponse = await GET(
+      new Request(
+        "https://today.test/api/textbook/quick-create?schoolLevel=middle&grade=2&semester=1",
+      ),
+    );
+    expect(catalogResponse.status).toBe(200);
+    const catalog = quickCreateCatalogSchema.parse(
+      await catalogResponse.json(),
+    );
+    expect(catalog.units).toHaveLength(8);
+    expect(
+      catalog.units.every(
+        (unit) =>
+          unit.availability?.standard.total === 8 &&
+          unit.availability.standard.written === 0,
+      ),
+    ).toBe(true);
+    const input: QuickCreateInput = {
+      ...body(),
+      schoolLevel: "middle",
+      grade: 2,
+      problemCountPerUnit: 8,
+      startUnitId: unitIds[0],
+      endUnitId: unitIds[7],
+      components: Object.fromEntries(
+        Object.keys(DEFAULT_QUICK_CREATE_COMPONENTS).map((key) => [key, true]),
+      ) as QuickCreateComponents,
+    };
+    const response = await POST(request(input));
+    expect(response.status).toBe(201);
+    const result = quickCreateResultSchema.parse(await response.json());
+    expect(result.problemCount).toBe(64);
+    expect(result.conceptCount).toBe(8);
+    expect(
+      result.warnings.filter((warning) =>
+        warning.includes("서술형 2문항 중 0문항"),
+      ),
+    ).toHaveLength(8);
+    const exchange = await assembleExchange(
+      gate.db!,
+      result.book.draftEditionId!,
+      { exportedAt: new Date().toISOString() },
+    );
+    expect(
+      exchange.items.every((item) => item.learningStage !== "written"),
+    ).toBe(true);
+    const legacy = structuredClone(exchange);
+    for (const section of legacy.units.flatMap((u) => u.sections))
+      for (const block of section.blocks)
+        if (block.kind === "concept-recall" && /^\d+\.\s/.test(block.markdown))
+          delete block.conceptKey;
+    expect(
+      validateTextbookReferences(legacy, { mode: "publish" }).filter(
+        (i) => i.code === "MISSING_CONCEPT",
+      ),
+    ).toEqual([]);
+    legacy.conceptIntegration!.concepts.forEach((c) => {
+      c.mappingVersion = "manual";
+    });
+    expect(
+      validateTextbookReferences(legacy, { mode: "publish" }).filter(
+        (i) => i.code === "MISSING_CONCEPT",
+      ),
+    ).toHaveLength(8);
+    expect(
+      await validateTextbookIntegrity(exchange, {
+        verifyManifest: false,
+        readAsset: async (assetId) => {
+          const [row] = await gate.db!.query<{ bytes: Uint8Array }>(
+            `SELECT "bytes" FROM "textbook_blob" WHERE "sha256"=$1::text`,
+            [assetId],
+          );
+          return row.bytes;
+        },
+      }),
+    ).toEqual([]);
+    const replay = await POST(request(input));
+    expect(replay.status).toBe(201);
+    expect(await replay.json()).toEqual(result);
+  });
+
+  it.skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")(
+    "creates all components and publishes actual student/answer PDFs with the production renderer and bundled visuals",
+    async () => {
+      gate.bundledAssets = true;
+      try {
+        const input: QuickCreateInput = {
+          ...body(),
+          problemCountPerUnit: 4,
+          components: Object.fromEntries(
+            Object.keys(DEFAULT_QUICK_CREATE_COMPONENTS).map((key) => [
+              key,
+              true,
+            ]),
+          ) as QuickCreateComponents,
+        };
+        const response = await POST(request(input));
+        expect(response.status).toBe(201);
+        const created = quickCreateResultSchema.parse(await response.json());
+        const editionId = created.book.draftEditionId!;
+        const deps = {
+          ...publishDeps(),
+          officialOrigin: "https://textbook-qa.example.org",
+        };
+        const preflight = await preflightEdition(
+          gate.db!,
+          gate.actor!,
+          editionId,
+          deps,
+        );
+        expect(preflight.issues.filter((i) => i.severity === "error")).toEqual(
+          [],
+        );
+        const requestId = randomUUID();
+        let job = await reservePublish(
+          gate.db!,
+          gate.actor!,
+          editionId,
+          { requestId, expectedRevision: preflight.revision },
+          canonicalHash({ requestId, expectedRevision: preflight.revision }),
+          deps,
+        );
+        for (let step = 0; step < 40 && job.status !== "ready"; step++) {
+          job = await runNextStep(
+            gate.db!,
+            gate.actor!,
+            editionId,
+            requestId,
+            deps,
+          );
+          expect(job.issues.filter((i) => i.severity === "error")).toEqual([]);
+        }
+        expect(job.status).toBe("ready");
+        const published = await finalizePublish(
+          gate.db!,
+          gate.actor!,
+          editionId,
+          requestId,
+          deps,
+        );
+        expect(published.status).toBe("published");
+        expect(
+          published.artifacts.filter((a) => a.kind.includes("pdf")).length,
+        ).toBeGreaterThanOrEqual(2);
+        const frozen = await assembleExchange(gate.db!, editionId, {
+          exportedAt: new Date().toISOString(),
+        });
+        expect(frozen.pageMap).toHaveLength(created.problemCount);
+        expect(frozen.conceptIntegration?.concepts).toHaveLength(
+          created.conceptCount,
+        );
+        expect(frozen.qrTargets).toHaveLength(created.problemCount);
+        expect(frozen.conceptQrTargets).toHaveLength(created.conceptCount);
+        expect(
+          await validateTextbookIntegrity(frozen, {
+            mode: "archive",
+            officialOrigin: deps.officialOrigin,
+            readAsset: async (assetId) => {
+              const [row] = await gate.db!.query<{ bytes: Uint8Array }>(
+                `SELECT "bytes" FROM "textbook_blob" WHERE "sha256"=$1::text`,
+                [assetId],
+              );
+              return row.bytes;
+            },
+          }),
+        ).toEqual([]);
+      } finally {
+        gate.bundledAssets = false;
+      }
+    },
+    300_000,
+  );
 });

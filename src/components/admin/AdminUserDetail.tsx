@@ -1,4 +1,6 @@
 "use client";
+import { accountListReturn, safeInternalReturn } from "@/lib/adminReturn";
+import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -453,9 +455,16 @@ export default function AdminUserDetail({
   branchId: string;
 }) {
   const router = useRouter();
-  const [tab, setTab] = useState<
-    "documents" | "classes" | "students" | "audit"
-  >("documents");
+  const params = useScreenQuery();
+  const candidate = params.get("detailTab");
+  const tab =
+    candidate === "classes" || candidate === "students" || candidate === "audit"
+      ? candidate
+      : "documents";
+  const setTab = (value: string) => replaceScreenQuery({ detailTab: value });
+  const returnHref =
+    safeInternalReturn(params.get("returnTo"), branchId) ??
+    accountListReturn(branchId, new URLSearchParams({ tab: "accounts" }));
   const [locked, setLocked] = useState(false);
   const resource = useAdminResource<{ data: ManagedAccount }>(
     `/api/admin/users/${encodeURIComponent(userId)}`,
@@ -486,7 +495,7 @@ export default function AdminUserDetail({
       <AdminHeader identity={identity} />
       <main className={s.main}>
         <BackLink
-          href={`/admin/branches/${encodeURIComponent(branchId)}`}
+          href={returnHref}
           onClick={(event) => {
             if (locked) event.preventDefault();
           }}

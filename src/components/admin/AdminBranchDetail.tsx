@@ -2,6 +2,7 @@
 
 import BackLink from "@/components/ui/BackLink";
 import { useEffect, useState } from "react";
+import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
 import type {
   BranchResponse,
   BranchSummary,
@@ -21,7 +22,13 @@ export default function AdminBranchDetail({
   branchId: string;
   branchName: string;
 }) {
-  const [tab, setTab] = useState<"accounts" | "menus">("accounts");
+  const params = useScreenQuery();
+  const tab =
+    params.get("tab") === "menus" && branchId !== "unassigned"
+      ? "menus"
+      : "accounts";
+  const setTab = (value: "accounts" | "menus") =>
+    replaceScreenQuery({ tab: value });
   const [branch, setBranch] = useState<BranchSummary | null>(null);
   const [loading, setLoading] = useState(branchId !== "unassigned");
   const [error, setError] = useState("");

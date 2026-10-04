@@ -16,6 +16,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import userEvent from "@testing-library/user-event";
 import type { EnglishBankMakerSeed } from "@/contracts/englishBank.contract";
 import { signOutAction } from "@/app/actions/auth";
 import {
@@ -39,6 +40,77 @@ const mocks = vi.hoisted(() => ({
   conceptBlankMount: vi.fn(),
   englishMount: vi.fn(),
   englishSetOpened: vi.fn(),
+}));
+
+describe.each([
+  {
+    view: "srs" as const,
+    heading: "SRS 패널",
+    eventName: "course-srs-before-leave",
+  },
+  {
+    view: "textbook" as const,
+    heading: "교재 패널",
+    eventName: "textbook-before-leave",
+  },
+])("$view shell transitions", ({ view, heading: panelHeading, eventName }) => {
+  it.each(["sidebar", "keyboard", "hashchange", "popstate"])(
+    "defers %s until the editor approves and keeps selection while canceled",
+    async (method) => {
+      window.history.replaceState(
+        null,
+        "",
+        `/?classId=class-1&studentId=student-2#${view}`,
+      );
+      render(
+        <UnifiedWorkspace
+          initialData={initialData}
+          allowedMenus={["home", view]}
+        />,
+      );
+      await screen.findByRole("heading", { name: panelHeading });
+      let dirty = true;
+      let proceed: (() => void) | undefined;
+      const prevent = (event: Event) => {
+        if (!dirty) return;
+        event.preventDefault();
+        proceed = (event as CustomEvent<{ proceed: () => void }>).detail
+          .proceed;
+      };
+      window.addEventListener(eventName, prevent);
+      try {
+        if (method === "sidebar")
+          fireEvent.click(screen.getByRole("button", { name: "오늘의 작업" }));
+        else if (method === "keyboard") {
+          screen.getByRole("button", { name: "오늘의 작업" }).focus();
+          await userEvent.setup().keyboard("{Enter}");
+        } else
+          act(() => {
+            window.history.replaceState(null, "", "/?classId=foreign#home");
+            window.dispatchEvent(new Event(method));
+          });
+        expect(proceed).toBeTypeOf("function");
+        expect(
+          screen.getByRole("heading", { name: panelHeading }),
+        ).toBeVisible();
+        expect(window.location.hash).toBe(`#${view}`);
+        expect(
+          new URLSearchParams(window.location.search).get("studentId"),
+        ).toBe("student-2");
+        dirty = false;
+        act(() => proceed!());
+        expect(
+          await screen.findByRole("heading", { name: "오늘의 작업" }),
+        ).toBeVisible();
+        expect(window.location.hash).toBe("");
+      } finally {
+        window.removeEventListener(eventName, prevent);
+      }
+    },
+  );
+});
+vi.mock("@/components/textbook/TextbookStudioView", () => ({
+  TextbookStudioView: () => <h2>교재 패널</h2>,
 }));
 const router = { replace: mocks.replace };
 const bankSeed: EnglishBankMakerSeed = {
@@ -92,8 +164,13 @@ vi.mock("@/components/english/listening/ListeningStudio", () => ({
 }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("next/dynamic", () => ({
-  default: (loader: () => Promise<{ default: ComponentType }>) => {
-    const Component = lazy(loader);
+  default: (
+    loader: () => Promise<{ default: ComponentType } | ComponentType>,
+  ) => {
+    const Component = lazy(async () => {
+      const loaded = await loader();
+      return typeof loaded === "function" ? { default: loaded } : loaded;
+    });
     return function Dynamic(props: object) {
       return (
         <Suspense fallback={null}>

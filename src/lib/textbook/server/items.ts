@@ -43,7 +43,7 @@ import {
   revisionMismatch,
 } from "./errors";
 import { type RequestKey, runOnce } from "./requests";
-import { SECTION_MAX_BYTES } from "./sections";
+import { type SectionContent, SECTION_MAX_BYTES } from "./sections";
 import {
   type TextbookDb,
   type TextbookSql,
@@ -461,7 +461,7 @@ export async function captureItems(
           throw revisionMismatch("판본", access.revision);
         const [section] = await tx.query<{
           unitKey: string;
-          content: { blocks: ManuscriptBlock[] };
+          content: SectionContent;
         }>(
           `SELECT "unit_key" AS "unitKey", "content" FROM "textbook_section" WHERE "id" = $1::uuid AND "edition_id" = $2::uuid`,
           [input.sectionId, editionId],

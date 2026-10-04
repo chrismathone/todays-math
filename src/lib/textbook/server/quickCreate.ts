@@ -63,7 +63,7 @@ import { runOnce } from "./requests";
 import { EDITION_MAX_SECTIONS, SECTION_MAX_BYTES } from "./sections";
 import { SQL_NOW, type TextbookDb, type TextbookSql, uuidList } from "./sql";
 
-/** Explicit, closed tier sets. A shortage never borrows a different difficulty. */
+/** Explicit, closed tier sets. A shortage reduces the count, never borrows a different difficulty. */
 export const QUICK_CREATE_DIFFICULTIES = {
   basic: ["연산", "기본"],
   standard: ["기본", "응용"],
@@ -161,14 +161,63 @@ export async function listQuickCreateUnits(
   input: QuickCreateScope,
 ): Promise<QuickCreateCatalog> {
   const scope = quickCreateScopeSchema.parse(input);
+  const units = await scopedUnits(sql, scope);
+  type Availability = NonNullable<
+    QuickCreateCatalog["units"][number]["availability"]
+  >;
+  const availability = new Map<string, Availability>(
+    units.map((unit) => [
+      unit.id,
+      {
+        basic: { total: 0, written: 0 },
+        standard: { total: 0, written: 0 },
+        challenge: { total: 0, written: 0 },
+      },
+    ]),
+  );
+  if (units.length) {
+    const rows = await sql.query<{
+      unitId: string;
+      difficulty: string;
+      content: string;
+      answer: string;
+      questionType: string | null;
+      problemType: string | null;
+      familyKey: string | null;
+    }>(
+      `SELECT "unit_id" AS "unitId", "difficulty"::text AS "difficulty", "content", "answer",
+      "question_type" AS "questionType", "problem_type"::text AS "problemType", "family_key" AS "familyKey"
+      FROM "problem" WHERE "unit_id" IN ${uuidList("$1")} AND "pool"::text = $2::text
+      AND "review_status"::text = 'approved' AND "direct_use_allowed" = true AND "answer" <> $3::text`,
+      [
+        JSON.stringify(units.map((unit) => unit.id)),
+        DEFAULT_PROBLEM_POOL,
+        MISSING_ANSWER,
+      ],
+    );
+    for (const row of rows) {
+      const counts = availability.get(row.unitId)!;
+      const written = classifyFormat(row) === "descriptive";
+      for (const [difficulty, tiers] of Object.entries(
+        QUICK_CREATE_DIFFICULTIES,
+      )) {
+        if ((tiers as readonly string[]).includes(row.difficulty)) {
+          const count = counts[difficulty as keyof Availability];
+          count.total += 1;
+          if (written) count.written += 1;
+        }
+      }
+    }
+  }
   return {
-    units: (await scopedUnits(sql, scope)).map((unit) => ({
+    units: units.map((unit) => ({
       id: unit.id,
       chapter: unit.chapter,
       section: unit.section,
       label: `${unit.chapter} · ${unit.section}`,
       problemCount: unit.problemCount,
       conceptCount: conceptIndex.get(keyOf(unit))?.length ?? 0,
+      availability: availability.get(unit.id),
     })),
   };
 }
@@ -291,7 +340,8 @@ export async function createQuickTextbook(
           components.concepts ||
           components.termRecall ||
           components.clozeRecall ||
-          components.sentenceRecall;
+          components.sentenceRecall ||
+          components.errorCheck;
         const stageOptions: Array<{
           enabled: boolean;
           stage: TextbookItem["learningStage"];
@@ -529,7 +579,7 @@ export async function createQuickTextbook(
             !stages.length
           )
             continue;
-          const section = addSection(unit.section, "basic", []);
+          const section = addSection(unit.section, "auto-lesson", []);
           const entries = conceptIndex.get(keyOf(unit)) ?? [];
           if (components.preparation) {
             if (!entries.length)
@@ -558,6 +608,7 @@ export async function createQuickTextbook(
                 blockId: randomUUID(),
                 kind: "concept-recall",
                 phase: "sentences",
+                conceptKey: `concept-${unit.id}`,
                 showRepetitionChecks: false,
                 markdown: checks
                   .slice(0, 3)
@@ -715,11 +766,9 @@ export async function createQuickTextbook(
               : ordered;
             for (const row of candidates) {
               const written = classifyFormat(row) === "descriptive";
-              if (
-                captured.length >= input.problemCountPerUnit &&
-                captured.filter((entry) => entry.written).length >= writtenQuota
-              )
-                break;
+              if (captured.length >= input.problemCountPerUnit) break;
+              if (wantedWritten >= 0 && stages.length === 1 && !written)
+                continue;
               const outcome = await captureProblemSnapshot(
                 row,
                 deps.loadFigure,
@@ -730,27 +779,46 @@ export async function createQuickTextbook(
               }
               captured.push({ snapshot: outcome.snapshot, written });
             }
-            if (
-              captured.length < input.problemCountPerUnit ||
-              captured.filter((entry) => entry.written).length < writtenQuota
-            )
-              throw invalid(
-                `${unit.section}: 선택한 난이도의 출제 가능한 문항이 부족합니다${writtenQuota ? "(서술형 포함)" : ""}. 필요한 문항: ${input.problemCountPerUnit}개.`,
+            const actualCount = Math.min(
+              input.problemCountPerUnit,
+              captured.length,
+            );
+            if (actualCount < input.problemCountPerUnit)
+              warnings.push(
+                `${unit.section}: 요청한 ${input.problemCountPerUnit}문항 중 선택한 난이도에서 출제 가능한 ${actualCount}문항을 넣었습니다.`,
+              );
+            const actualWrittenQuota = Math.min(
+              writtenQuota,
+              captured.filter((entry) => entry.written).length,
+            );
+            if (actualWrittenQuota < writtenQuota && stages.length > 1)
+              warnings.push(
+                `${unit.section}: 서술형 ${writtenQuota}문항 중 ${actualWrittenQuota}문항을 넣고, 부족한 수는 선택한 다른 문제 구성에 배분했습니다.`,
               );
             const writtenEntries = captured
               .filter((entry) => entry.written)
-              .slice(0, writtenQuota);
+              .slice(0, actualWrittenQuota);
             const reserved = new Set(
               writtenEntries.map((entry) => entry.snapshot.source.problemId),
             );
             const otherEntries = captured.filter(
               (entry) => !reserved.has(entry.snapshot.source.problemId),
             );
-            for (const [index, stage] of stages.entries()) {
+            const otherStages = stages.filter(
+              (stage) => stage.stage !== "written",
+            );
+            for (const stage of stages) {
+              const otherIndex = otherStages.indexOf(stage);
+              const otherCount = actualCount - actualWrittenQuota;
+              const adjustedQuota = otherStages.length
+                ? Math.floor(otherCount / otherStages.length) +
+                  (otherIndex < otherCount % otherStages.length ? 1 : 0)
+                : 0;
               const selected =
                 stage.stage === "written"
                   ? writtenEntries
-                  : otherEntries.splice(0, quota(index));
+                  : otherEntries.splice(0, adjustedQuota);
+              if (!selected.length) continue;
               section.blocks.push(text(`### ${stage.title}`));
               for (const entry of selected) {
                 const item: ItemPlan = {
@@ -776,8 +844,21 @@ export async function createQuickTextbook(
               }
             }
           }
+          if (!section.blocks.length)
+            sections.splice(sections.indexOf(section), 1);
         }
         addRest();
+        if (
+          stages.length &&
+          !items.length &&
+          !wantsConcept &&
+          !components.dialogue &&
+          !components.preparation &&
+          !components.errorCheck
+        )
+          throw invalid(
+            "선택한 범위와 난이도에서 출제 가능한 문항이 없습니다. 난이도나 범위를 바꾸거나 개념 구성을 켜 주세요.",
+          );
         if (!sections.length) throw invalid("교재에 넣을 구성요소가 없습니다.");
         if (sections.length > EDITION_MAX_SECTIONS)
           throw invalid(

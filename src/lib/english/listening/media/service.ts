@@ -411,7 +411,7 @@ export function createListeningMediaService<Context>(
         revision: data.expectedRevision + 1,
         receivedBytes: data.offset + data.byteLength,
       };
-    const key = await store.putBlob(bytes, record);
+    const key = await store.putBlob(bytes, record, signal);
     let committed = false;
     try {
       await check(context, target);
@@ -575,7 +575,7 @@ export function createListeningMediaService<Context>(
               if (!pendingLength) return;
               signal?.throwIfAborted();
               const bytes = pending.subarray(0, pendingLength);
-              const key = await store.putBlob(bytes, record);
+              const key = await store.putBlob(bytes, record, signal);
               staged.push({
                 key,
                 offset,
@@ -606,7 +606,7 @@ export function createListeningMediaService<Context>(
               signal,
             );
             await flush();
-            const key = await store.putBlob(decoded.header, record);
+            const key = await store.putBlob(decoded.header, record, signal);
             staged.unshift({
               key,
               offset: 0,

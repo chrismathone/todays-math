@@ -24,24 +24,57 @@ async function parseOk<T>(
   return parse(await res.json());
 }
 
-export async function fetchClasses(): Promise<ClassEntity[]> {
-  const res = await fetch("/api/classes?page=1&pageSize=100");
-  const { classListResponseSchema } = await classContract();
-  const body = await parseOk(res, (json) =>
-    classListResponseSchema.parse(json),
-  );
-  return body.data;
+type ReadOptions = { signal?: AbortSignal };
+
+async function readAllPages<T extends { id: string }>(
+  path: string,
+  parse: (json: unknown) => {
+    data: T[];
+    meta: { page: number; pageSize: number; total: number };
+  },
+  options: ReadOptions,
+): Promise<T[]> {
+  const rows = new Map<string, T>();
+  let received = 0;
+  for (let page = 1; ; page += 1) {
+    const separator = path.includes("?") ? "&" : "?";
+    const res = await fetch(`${path}${separator}page=${page}&pageSize=100`, {
+      signal: options.signal,
+    });
+    const body = await parseOk(res, parse);
+    if (body.meta.page !== page) {
+      throw new Error("목록 페이지가 변경되었습니다. 다시 불러와 주세요.");
+    }
+    body.data.forEach((row) => rows.set(row.id, row));
+    received += body.data.length;
+    if (received >= body.meta.total) return [...rows.values()];
+    if (body.data.length === 0) {
+      throw new Error("전체 목록을 불러오지 못했습니다. 다시 불러와 주세요.");
+    }
+  }
 }
 
-export async function fetchStudents(classId: string): Promise<StudentEntity[]> {
-  const res = await fetch(
-    `/api/students?classId=${classId}&page=1&pageSize=100`,
+export async function fetchClasses(
+  options: ReadOptions = {},
+): Promise<ClassEntity[]> {
+  const { classListResponseSchema } = await classContract();
+  return readAllPages(
+    "/api/classes",
+    (json) => classListResponseSchema.parse(json),
+    options,
   );
+}
+
+export async function fetchStudents(
+  classId: string,
+  options: ReadOptions = {},
+): Promise<StudentEntity[]> {
   const { studentListResponseSchema } = await classContract();
-  const body = await parseOk(res, (json) =>
-    studentListResponseSchema.parse(json),
+  return readAllPages(
+    `/api/students?classId=${encodeURIComponent(classId)}`,
+    (json) => studentListResponseSchema.parse(json),
+    options,
   );
-  return body.data;
 }
 
 export async function fetchProgress(

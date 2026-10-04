@@ -1,4 +1,5 @@
 /** Deterministic relationship rules shared by import, API guards and scheduled jobs. */
+import { kstDateOf } from "@/lib/kstDate";
 export type ClassCapability =
   | "class:read"
   | "student:read"
@@ -18,9 +19,7 @@ const dayOf = (value: Day): string =>
     : value.toISOString().slice(0, 10);
 
 export function kstRelationshipDay(now = new Date()): string {
-  return new Date(now.getTime() + 9 * 60 * 60 * 1000)
-    .toISOString()
-    .slice(0, 10);
+  return kstDateOf(now);
 }
 
 export interface MembershipWindow {

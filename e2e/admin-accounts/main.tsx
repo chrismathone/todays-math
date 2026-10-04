@@ -10,12 +10,25 @@ import {
 import "../../src/app/globals.css";
 import "katex/dist/katex.min.css";
 import "./harness.css";
+import Workbench from "./Workbench";
+import { MainScreen } from "../../src/components/main/MainScreen";
 
-const view = new URLSearchParams(location.search).get("view");
+const branchRoute = location.pathname.match(
+  /^\/admin\/branches\/([^/]+)(?:\/users\/([^/]+))?$/,
+);
+const view =
+  new URLSearchParams(location.search).get("view") ??
+  (branchRoute?.[2] ? "detail" : null);
 const branchId =
-  new URLSearchParams(location.search).get("branchId") ?? "unassigned";
+  new URLSearchParams(location.search).get("branchId") ??
+  branchRoute?.[1] ??
+  "unassigned";
 createRoot(document.getElementById("root")!).render(
-  view === "pending" || view === "rejected" ? (
+  view === "dashboard" ? (
+    <MainScreen embedded allowedMenus={["teaching"]} />
+  ) : view === "workbench" ? (
+    <Workbench />
+  ) : view === "pending" || view === "rejected" ? (
     <ApprovalPending
       account={view === "rejected" ? rejectedAccount : pendingAccount}
     />

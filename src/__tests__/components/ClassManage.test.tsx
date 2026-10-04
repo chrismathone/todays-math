@@ -8,7 +8,7 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { delay, http, HttpResponse } from "msw";
-import { describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
 import { ClassManage } from "@/components/class/ClassManage";
@@ -35,6 +35,8 @@ vi.mock("@/lib/session", () => ({
     menus: ["teaching"],
   })),
 }));
+
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 function renderManage() {
   const user = userEvent.setup();

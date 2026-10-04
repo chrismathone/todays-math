@@ -956,6 +956,75 @@ describe("내 시험지에 저장 · 다시 열기", () => {
     expect(saveButton()).toHaveTextContent("저장됨");
   });
 
+  it.each([
+    [403, "이 자료를 열 권한이 없습니다."],
+    [404, "자료가 삭제되었거나 찾을 수 없습니다."],
+    [503, "자료를 불러오지 못했습니다."],
+  ] as const)(
+    "direct document link explains %s, preserves its URL and retries the original document",
+    async (status, message) => {
+      const selection = {
+        sections: [S.cong],
+        forms: [
+          {
+            form: "recall" as const,
+            counts: { 하: 1, 중: 0, 상: 0 },
+            extras: { 하: 0, 중: 0, 상: 0 },
+          },
+        ],
+      };
+      const { puts } = cloud({ "blank-9": stored("blank-9", 4, selection) });
+      const readBefore = globalThis.fetch;
+      let failing = true;
+      vi.stubGlobal(
+        "fetch",
+        async (input: RequestInfo | URL, init?: RequestInit) => {
+          if (
+            String(input).endsWith("/api/library/documents/blank-9") &&
+            (!init?.method || init.method === "GET") &&
+            failing
+          )
+            return Response.json(
+              { error: { message: "자료 조회 실패" } },
+              { status },
+            );
+          return readBefore(input, init);
+        },
+      );
+      window.history.replaceState(null, "", "/?blankDoc=blank-9#conceptBlank");
+      await act(async () => {
+        render(
+          <ConceptBlankView
+            bank={FIXTURE_BANK}
+            active
+            storageScope="owner-a"
+          />,
+        );
+      });
+      expect(screen.getByRole("alert")).toHaveTextContent(message);
+      expect(new URL(window.location.href).searchParams.get("blankDoc")).toBe(
+        "blank-9",
+      );
+      expect(saveButton()).toBeDisabled();
+      expect(
+        screen.getByRole("link", { name: "자료 목록으로 돌아가기" }),
+      ).toHaveAttribute("href", "/#library");
+      failing = false;
+      await act(async () => {
+        fireEvent.click(
+          screen.getByRole("button", { name: "자료 다시 불러오기" }),
+        );
+      });
+      expect(
+        screen.queryByRole("button", { name: "자료 다시 불러오기" }),
+      ).not.toBeInTheDocument();
+      expect(new URL(window.location.href).searchParams.get("blankDoc")).toBe(
+        "blank-9",
+      );
+      expect(puts).toHaveLength(0);
+    },
+  );
+
   it("새로 고쳐도(주소의 blankDoc) 같은 자료에 이어서 저장한다", async () => {
     const selection = {
       sections: [S.cong],

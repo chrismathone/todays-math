@@ -20,6 +20,12 @@ import s from "../EnglishStudio.module.css";
 import b from "./EnglishResourceBank.module.css";
 import c from "./ListeningBankMaterial.module.css";
 import { BankError, BankLoading } from "./BankFeedback";
+import {
+  hasFullListeningQuestionImage,
+  hasListeningChoiceText,
+  listeningChoiceBody,
+  listeningChoiceMarks,
+} from "@/lib/english/listening/questionPresentation";
 
 type Group = ListeningDraft["groups"][number];
 type Question = Group["questions"][number];
@@ -97,6 +103,8 @@ function MaterialGroup({
       <ol className={c.questions}>
         {group.questions.map((raw, questionIndex) => {
           const question = raw as Question;
+          const number = question.sourceNumber ?? questionIndex + 1;
+          const fullImage = hasFullListeningQuestionImage(question.image);
           return (
             <li key={question.id}>
               <label className={c.questionLabel}>
@@ -105,11 +113,13 @@ function MaterialGroup({
                   checked={checked.has(question.id)}
                   onChange={() => onToggle(question.id)}
                   disabled={!group.audio}
+                  aria-label={fullImage ? `${number}번 문항 담기` : undefined}
                 />
                 <span>
                   <strong>
-                    {question.sourceNumber ?? questionIndex + 1}.{" "}
-                    {question.prompt || "문항 이미지"}
+                    {fullImage
+                      ? `${number}번 문항 담기`
+                      : `${number}. ${question.prompt || "문항 이미지"}`}
                   </strong>
                 </span>
               </label>
@@ -124,8 +134,16 @@ function MaterialGroup({
                   {question.metadata.topics.length
                     ? ` · ${question.metadata.topics.join(" · ")}`
                     : ""}
+                  {question.metadata.reconstruction?.verification ===
+                  "needs_review"
+                    ? " · 교사 검토 필요"
+                    : ""}
                 </p>
               )}
+              {question.instruction &&
+              (fullImage || !question.prompt.includes(question.instruction)) ? (
+                <p>{question.instruction}</p>
+              ) : null}
               {question.image ? (
                 <Image
                   className={c.questionImage}
@@ -133,14 +151,19 @@ function MaterialGroup({
                   src={question.image.dataUrl}
                   width={question.image.width}
                   height={question.image.height}
-                  alt={`${question.sourceNumber ?? questionIndex + 1}번 원본 문항`}
+                  alt={fullImage ? question.prompt : `${number}번 시각 자료`}
                 />
               ) : null}
-              {question.choices.length && !question.image ? (
+              {!fullImage &&
+              (!question.image ||
+                hasListeningChoiceText(
+                  question.choices.map((choice) => choice.text),
+                )) ? (
                 <ol className={c.choices}>
                   {question.choices.map((choice, choiceIndex) => (
                     <li key={choice.id}>
-                      {["①", "②", "③", "④", "⑤"][choiceIndex]} {choice.text}
+                      {listeningChoiceMarks[choiceIndex]}{" "}
+                      {listeningChoiceBody(choice.text, choiceIndex)}
                     </li>
                   ))}
                 </ol>
@@ -165,7 +188,7 @@ function MaterialGroup({
                 </button>
               ) : (
                 <span className={b.meta}>
-                  개별 음원 구간 미지정 · 전체 회차 담기 가능
+                  개별 음원 구간 미지정 · 회차 전체 음원 제공
                 </span>
               )}
             </li>
@@ -197,6 +220,7 @@ export default function ListeningBankMaterial({
   const [checked, setChecked] = useState<Set<string>>(new Set());
   const [basket, setBasket] = useState<BasketEntry[]>([]);
   const [title, setTitle] = useState("듣기 시험지");
+  const [includeWholeAudio, setIncludeWholeAudio] = useState(true);
   const [busy, setBusy] = useState(false);
   const [notice, setNotice] = useState("");
   const [created, setCreated] = useState<ListeningSetDetail | null>(null);
@@ -331,7 +355,13 @@ export default function ListeningBankMaterial({
     setNotice(all ? "전체 회차를 담았습니다." : "선택한 문항을 담았습니다.");
   }
   async function create() {
-    if (busy || !basket.length || !title.trim() || missingRanges) return;
+    if (
+      busy ||
+      !basket.length ||
+      !title.trim() ||
+      (missingRanges && !includeWholeAudio)
+    )
+      return;
     const controller = new AbortController();
     command.current = controller;
     setBusy(true);
@@ -343,7 +373,21 @@ export default function ListeningBankMaterial({
         "POST",
         {
           title: title.trim(),
-          selections: basket.map((entry) => entry.selection),
+          selections: basket.map((entry) => {
+            const full =
+              entry.sourceQuestionIds.length === entry.questions.length &&
+              entry.sourceQuestionIds.every(
+                (id, index) => id === entry.questions[index].id,
+              );
+            return {
+              ...entry.selection,
+              ...(!full &&
+              entry.questions.some((question) => !question.hasRange) &&
+              includeWholeAudio
+                ? { audioMode: "whole_source" as const }
+                : {}),
+            };
+          }),
         },
       );
       if (controller.signal.aborted) return;
@@ -600,7 +644,7 @@ export default function ListeningBankMaterial({
               busy ||
               !questionCount ||
               !title.trim() ||
-              missingRanges ||
+              (missingRanges && !includeWholeAudio) ||
               basket.length > 30
             }
             onClick={() => void create()}
@@ -610,8 +654,17 @@ export default function ListeningBankMaterial({
         </div>
         {missingRanges ? (
           <p className={b.notice}>
-            개별 문항의 전체 음원 구간이 필요합니다. 원본 편집에서 문항별
-            시작·끝 시각을 지정하거나 전체 회차를 담아 주세요.
+            <label>
+              <input
+                type="checkbox"
+                checked={includeWholeAudio}
+                onChange={(event) => setIncludeWholeAudio(event.target.checked)}
+              />{" "}
+              구간 미지정 문항은 회차 전체 음원과 함께 만들기
+            </label>
+            <br />
+            시험지에는 선택한 문항만 넣습니다. 문항별 음원만 사용하려면 원본
+            편집에서 시작·끝 시각을 지정해 주세요.
           </p>
         ) : null}
         {basket.length > 30 ? (
