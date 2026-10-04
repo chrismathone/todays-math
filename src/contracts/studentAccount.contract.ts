@@ -42,14 +42,15 @@ import {
 
 // ── 한 곳에 두는 규칙 ────────────────────────────────────────────
 
-const LOGIN_ID_MIN = 4;
-const LOGIN_ID_MAX = 20;
+const LOGIN_ID_MIN = 1;
+const LOGIN_ID_MAX = 50;
 
 /** 아이디 규칙 — 정규화(`normalizeLoginId`) **뒤의** 모양이다. */
 export const STUDENT_LOGIN_ID_RULE = {
   minLength: LOGIN_ID_MIN,
   maxLength: LOGIN_ID_MAX,
-  pattern: new RegExp(`^[a-z0-9_-]{${LOGIN_ID_MIN},${LOGIN_ID_MAX}}$`),
+  pattern:
+    /^(?:[a-z0-9_-]{4,20}|(?=[가-힣a-z0-9 _-]{1,50}$)(?=.*[가-힣])[가-힣a-z0-9 _-]+)$/u,
 } as const;
 
 /** 연속 실패 잠금 (D-125 ⑶ — 리드 제안) */
@@ -85,7 +86,7 @@ export const STUDENT_ACCOUNT_WITHDRAWN_MESSAGES = {
 
 /** 앞뒤 공백을 걷고 소문자로 접는다 — 저장·비교·유일성 모두 이 모양으로 한다. */
 export function normalizeLoginId(raw: string): string {
-  return raw.trim().toLowerCase();
+  return raw.normalize("NFC").trim().toLowerCase();
 }
 
 // ── 원자 스키마 ─────────────────────────────────────────────────
@@ -95,7 +96,7 @@ export const studentLoginIdSchema = z
   .transform(normalizeLoginId)
   .pipe(
     z.string().regex(STUDENT_LOGIN_ID_RULE.pattern, {
-      error: `아이디는 영문·숫자·-·_ ${LOGIN_ID_MIN}~${LOGIN_ID_MAX}자입니다.`,
+      error: "아이디는 한글 이름(50자 이내) 또는 영문·숫자·-·_ 4~20자입니다.",
     }),
   );
 

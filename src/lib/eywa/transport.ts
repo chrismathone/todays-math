@@ -128,6 +128,7 @@ export async function fetchViaDb(
     name: string;
     grade: string | null;
     school: string | null;
+    phone_last4: string | null;
     class_id: string;
     class_name: string;
     start_date: string | null;
@@ -135,6 +136,9 @@ export async function fetchViaDb(
   const rosterRows = await eywaQuery<RosterRow>(
     client,
     `select s.id student_id, s.name, s.grade, s.school,
+            case when length(regexp_replace(coalesce(s.parent_phone, ''), '[^0-9]', '', 'g')) >= 7
+                 then right(regexp_replace(s.parent_phone, '[^0-9]', '', 'g'), 4)
+                 else null end phone_last4,
             c.id class_id, c.class_name, e.start_date::text
        from enrollments e
        join classes c on c.id = e.class_id
@@ -159,6 +163,7 @@ export async function fetchViaDb(
       name: rows[0]!.name,
       grade: rows[0]!.grade,
       school: rows[0]!.school,
+      phoneLast4: rows[0]!.phone_last4,
       status: "enrolled" as const,
       classes: rows.map((r) => ({
         id: r.class_id,
