@@ -274,7 +274,7 @@ function PanelBody({
             />
           </label>
           <p className={s.hint}>
-            영문·숫자·-·_ {STUDENT_LOGIN_ID_RULE.minLength}~
+            이름·영문·숫자·공백·-·_ {STUDENT_LOGIN_ID_RULE.minLength}~
             {STUDENT_LOGIN_ID_RULE.maxLength}자
           </p>
           {errorLine}
