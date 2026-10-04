@@ -296,6 +296,12 @@ export function TextbookStudioView({
   } | null>(null);
   const [videoChoices, setVideoChoices] = useState<NamedChoice[]>([]);
   const rootRef = useRef<HTMLDivElement>(null);
+  /**
+   * 방금 승인한 작업실 이동. 넘겨받은 길(`proceed`)은 주소를 되돌려 놓고 같은 이동을 **다시 물어 올 수 있다**
+   * (작업실의 # · 뒤로가기 동기화). 그때 이 화면은 아직 다시 그려지기 전이라 옛 상태를 본다 —
+   * 승인이 살아 있는 동안에는 다시 붙잡지 않는다. 상태가 바뀌어 다시 그려지면 거둔다.
+   */
+  const approvedLeave = useRef(false);
   const [mediaNarrow, setMediaNarrow] = useState(() => {
     if (
       typeof window === "undefined" ||
@@ -651,7 +657,15 @@ export function TextbookStudioView({
     }
     if (nav.kind === "workspace") {
       // 작업실의 다른 화면으로 — 교재는 연 채로 남는다(이미 저장했거나 버렸다)
-      nav.proceed();
+      approvedLeave.current = true;
+      try {
+        nav.proceed();
+      } finally {
+        // 보통은 아래 효과가 거둔다. 다시 그려질 일이 없어도 승인이 다음 이동까지 남지 않게 한다
+        window.setTimeout(() => {
+          approvedLeave.current = false;
+        }, 0);
+      }
       return;
     }
     await openSection(nav.sectionId);
@@ -1235,8 +1249,12 @@ export function TextbookStudioView({
   // 저장하지 않은 수정이 있으면 붙잡아 같은 확인 칸을 띄우고, 저장 · 조판 중이면 붙잡기만 한다.
   // 이 화면이 가려져 있을 때(다른 화면 사이의 이동)는 붙잡지 않는다 — 확인 칸이 보이지 않는다.
   useEffect(() => {
+    // 상태가 바뀌어 다시 그려졌다 — 지난 승인은 여기서 끝난다
+    approvedLeave.current = false;
     if (!workDirty && !busy && !leaving) return;
     const onLeave = (event: Event) => {
+      // 방금 승인한 이동이 다시 물어 온 것이다(이 닫힘은 아직 옛 상태를 본다) — 붙잡지 않는다
+      if (approvedLeave.current) return;
       const root = rootRef.current;
       if (!root || root.closest("[hidden]")) return;
       event.preventDefault();

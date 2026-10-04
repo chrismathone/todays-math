@@ -1406,3 +1406,74 @@ describe("T03 — 작업실이 교재 화면을 떠나려 할 때", () => {
     expect(leaveWorkspace(vi.fn())).toBe(true);
   });
 });
+
+describe("T03 — 승인한 이동이 같은 이동을 다시 물어 올 때 (주소 동기화)", () => {
+  /**
+   * 작업실은 주소의 # · 뒤로가기를 이렇게 처리한다: 넘겨준 길(`proceed`)이 주소를 되돌려 놓고 같은 동기화를 다시 돌리며,
+   * 그 동기화가 `requestTextbookNavigation` 을 **또** 부른다. 그때 화면은 아직 다시 그려지기 전이라
+   * 「고친 것이 있다」는 옛 상태를 보고 있다 — 승인한 이동을 다시 붙잡으면 저장 · 버리기를 하고도 떠나지 못한다.
+   */
+  const reentrant = () => {
+    const outcomes: boolean[] = [];
+    const proceed = vi.fn(() => {
+      outcomes.push(requestTextbookNavigation(() => {}));
+    });
+    return { outcomes, proceed };
+  };
+
+  it("버리고 이동 — 넘겨준 길이 다시 물어도 붙잡지 않는다", async () => {
+    await openStudio(api());
+    edit("고친 문장");
+    const { outcomes, proceed } = reentrant();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
+    expect(outcomes).toEqual([true]);
+    noPrompt();
+  });
+
+  it("저장 후 이동 — 저장이 끝난 직후 넘겨준 길이 다시 물어도 붙잡지 않는다", async () => {
+    const saveSection = vi.fn(async () => ({
+      revision: 4,
+      aggregateRevision: 10,
+    }));
+    await openStudio(api({ saveSection }));
+    edit("고친 문장");
+    const { outcomes, proceed } = reentrant();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    fireEvent.click(within(prompt()).getByRole("button", { name: "저장 후 이동" }));
+    await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
+    expect(outcomes).toEqual([true]);
+    expect(saveSection).toHaveBeenCalledOnce();
+    noPrompt();
+    expect(
+      screen.queryByText("처리 중입니다. 끝난 뒤 다시 눌러 주세요."),
+    ).not.toBeInTheDocument();
+  });
+
+  it("승인은 그 이동에만 쓰인다 — 다시 고치면 다음 이동은 다시 붙잡는다", async () => {
+    await openStudio(api());
+    edit("고친 문장");
+    const { proceed } = reentrant();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
+    edit("또 고친 문장");
+    const later = vi.fn();
+    expect(leaveWorkspace(later)).toBe(false);
+    expect(prompt()).toBeVisible();
+    expect(later).not.toHaveBeenCalled();
+  });
+
+  it("넘겨준 길이 다시 묻지 않아도 승인이 남아 다음 이동을 그냥 보내지 않는다", async () => {
+    await openStudio(api());
+    edit("고친 문장");
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
+    edit("또 고친 문장");
+    expect(leaveWorkspace(vi.fn())).toBe(false);
+    expect(prompt()).toBeVisible();
+  });
+});
