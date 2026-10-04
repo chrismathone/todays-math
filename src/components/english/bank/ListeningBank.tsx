@@ -17,7 +17,11 @@ function officialPage(url: string) {
       (parsed.hostname === "mid.ebs.co.kr" &&
         parsed.pathname === "/english/engGrade") ||
       (parsed.hostname === "www.ebsi.co.kr" &&
-        parsed.pathname === "/ebs/pot/potg/EnglishListening01.ebs");
+        [
+          "/ebs/pot/potg/EnglishListening01.ebs",
+          "/ebs/pot/potg/EnglishListening02.ebs",
+          "/ebs/pot/potg/EnglishListening03.ebs",
+        ].includes(parsed.pathname));
     return parsed.protocol === "https:" &&
       !parsed.username &&
       !parsed.password &&
@@ -87,92 +91,94 @@ export default function ListeningBank({
   const sourceUrl = reference ? officialPage(reference.sourceUrl) : null;
   return (
     <>
-      <form
-        className={b.filters}
-        aria-label="듣기 검색"
-        onSubmit={(event) => {
-          event.preventDefault();
-          setFilter({ q: query.trim(), level, year, round });
-          setCursors([""]);
-          setSelected("");
-        }}
-      >
-        <label className={s.field}>
-          듣기 제목 검색
-          <input
-            type="search"
-            maxLength={200}
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-          />
-        </label>
-        <label className={s.field}>
-          듣기 학년
-          <select
-            aria-label="듣기 학년"
-            value={level}
-            onChange={(event) => setLevel(event.target.value)}
-          >
-            <option value="">모든 학년</option>
-            {ENGLISH_GRADES.map((item) => (
-              <option key={item}>{item}</option>
-            ))}
-          </select>
-        </label>
-        <label className={s.field}>
-          듣기 출처
-          <select
-            aria-label="듣기 출처"
-            value={kind}
-            onChange={(event) => {
-              setKind(event.target.value as typeof kind);
-              setCursors([""]);
-              setSelected("");
-            }}
-          >
-            <option value="own">내 범위의 듣기 자료</option>
-            <option value="ebs">EBS 공식 참조</option>
-          </select>
-        </label>
-        {kind === "ebs" && (
-          <>
-            <label className={s.field}>
-              연도
-              <input
-                type="number"
-                min={1900}
-                max={2200}
-                step={1}
-                placeholder="모든 연도"
-                value={year}
-                onChange={(event) => setYear(event.target.value)}
-              />
-            </label>
-            <label className={s.field}>
-              회차
-              <input
-                type="number"
-                min={1}
-                max={10}
-                step={1}
-                placeholder="모든 회차"
-                value={round}
-                onChange={(event) => setRound(event.target.value)}
-              />
-            </label>
-          </>
-        )}
-        <button type="submit" className={w.outlineButton}>
-          검색
-        </button>
-        <button
-          type="button"
-          className={w.outlineButton}
-          onClick={() => setGeneration((v) => v + 1)}
+      <div className={b.listeningFilterContainer}>
+        <form
+          className={b.listeningFilters}
+          aria-label="듣기 검색"
+          onSubmit={(event) => {
+            event.preventDefault();
+            setFilter({ q: query.trim(), level, year, round });
+            setCursors([""]);
+            setSelected("");
+          }}
         >
-          새로고침
-        </button>
-      </form>
+          <label className={`${s.field} ${b.listeningQuery}`}>
+            듣기 제목 검색
+            <input
+              type="search"
+              maxLength={200}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+            />
+          </label>
+          <label className={`${s.field} ${b.listeningGrade}`}>
+            듣기 학년
+            <select
+              aria-label="듣기 학년"
+              value={level}
+              onChange={(event) => setLevel(event.target.value)}
+            >
+              <option value="">모든 학년</option>
+              {ENGLISH_GRADES.map((item) => (
+                <option key={item}>{item}</option>
+              ))}
+            </select>
+          </label>
+          <label className={`${s.field} ${b.listeningSource}`}>
+            듣기 출처
+            <select
+              aria-label="듣기 출처"
+              value={kind}
+              onChange={(event) => {
+                setKind(event.target.value as typeof kind);
+                setCursors([""]);
+                setSelected("");
+              }}
+            >
+              <option value="own">내 범위의 듣기 자료</option>
+              <option value="ebs">EBS 공식 참조</option>
+            </select>
+          </label>
+          <label className={`${s.field} ${b.listeningYear}`}>
+            연도
+            <input
+              type="number"
+              min={1900}
+              max={2200}
+              step={1}
+              placeholder="모든 연도"
+              disabled={kind !== "ebs"}
+              value={year}
+              onChange={(event) => setYear(event.target.value)}
+            />
+          </label>
+          <label className={`${s.field} ${b.listeningRound}`}>
+            회차
+            <input
+              type="number"
+              min={1}
+              max={10}
+              step={1}
+              placeholder="모든 회차"
+              disabled={kind !== "ebs"}
+              value={round}
+              onChange={(event) => setRound(event.target.value)}
+            />
+          </label>
+          <div className={b.listeningFilterActions}>
+            <button type="submit" className={w.outlineButton}>
+              검색
+            </button>
+            <button
+              type="button"
+              className={w.outlineButton}
+              onClick={() => setGeneration((v) => v + 1)}
+            >
+              새로고침
+            </button>
+          </div>
+        </form>
+      </div>
       <p className={b.note}>
         {kind === "own"
           ? "직접 올리거나 자체 제작한 자료입니다. 기존 듣기 작업대에서 음원·대본·문항을 확인하고 검수·수업을 진행합니다."
