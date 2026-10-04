@@ -1438,40 +1438,48 @@ export function TextbookStudioView({
     (sectionIndex >= 0 && sectionIndex < sectionOrder.length - 1);
 
   const previewPanel = draft ? (
-    <PreviewPane
-      input={paperInput(
-        draft,
-        audience,
-        audience === "teacher" ? mode : "student",
-        zoom,
-        pageLabel,
-      )}
-      zoom={zoom}
-      pageLabel={pageLabel}
-      showModes={audience === "teacher"}
-      onMode={setMode}
-      onZoom={setZoom}
-      onPrev={() => movePage(-1)}
-      onNext={() => movePage(1)}
-      prevDisabled={busy || pendingNav !== null || !canPrev}
-      nextDisabled={busy || pendingNav !== null || !canNext}
-      renderPaper={renderPaper}
-      measured={
-        preview?.ok ? (
-          <SectionMeasure
-            key={`${draft.sectionId}:${previewVariant}:${draft.revision}:${draft.parity}:${draft.title}`}
-            model={preview.model}
-            recallMeasurementModel={preview.recallMeasurementModel}
-            resources={preview.resources}
-            zoom={zoom}
-            physicalPageIndex={spreadIndex}
-            provisionalNotice={preview.provisionalNotice}
-            onPages={onMeasuredPages}
-          />
-        ) : null
-      }
-      unavailable={preview && !preview.ok ? preview.message : null}
-    />
+    <>
+      {audience === "teacher" &&
+        draft.templateKey.startsWith("auto-lesson") && (
+          <p className={styles.muted}>
+            개념 원고 준비됨 · 어휘와 수업 흐름은 전체 편집 검수 전
+          </p>
+        )}
+      <PreviewPane
+        input={paperInput(
+          draft,
+          audience,
+          audience === "teacher" ? mode : "student",
+          zoom,
+          pageLabel,
+        )}
+        zoom={zoom}
+        pageLabel={pageLabel}
+        showModes={audience === "teacher"}
+        onMode={setMode}
+        onZoom={setZoom}
+        onPrev={() => movePage(-1)}
+        onNext={() => movePage(1)}
+        prevDisabled={busy || pendingNav !== null || !canPrev}
+        nextDisabled={busy || pendingNav !== null || !canNext}
+        renderPaper={renderPaper}
+        measured={
+          preview?.ok ? (
+            <SectionMeasure
+              key={`${draft.sectionId}:${previewVariant}:${draft.revision}:${draft.parity}:${draft.title}`}
+              model={preview.model}
+              recallMeasurementModel={preview.recallMeasurementModel}
+              resources={preview.resources}
+              zoom={zoom}
+              physicalPageIndex={spreadIndex}
+              provisionalNotice={preview.provisionalNotice}
+              onPages={onMeasuredPages}
+            />
+          ) : null
+        }
+        unavailable={preview && !preview.ok ? preview.message : null}
+      />
+    </>
   ) : (
     <p className={styles.muted}>미리볼 구획이 없습니다.</p>
   );
