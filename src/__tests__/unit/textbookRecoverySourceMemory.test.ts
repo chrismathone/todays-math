@@ -12,6 +12,8 @@ import type {
 } from "@/contracts/textbookSemantic.contract";
 import { TEXTBOOK_CONTENT_CSS } from "@/lib/textbook/render/blocks/contentCss";
 import {
+  RECALL_ROW_PADDING_MM,
+  RECALL_SOURCE_CLASS,
   recallDisplayRows,
   v15TexToMarkdown,
   type RecallPhase,
@@ -439,14 +441,30 @@ describe("source geometry is a separate rule set", () => {
     );
   });
 
-  it("scopes every source rule under the source marker", () => {
-    const sourceRules = css
+  it("lets a single source writing line fill its row, and only there", () => {
+    // Whoever writes the line — this renderer or the measurement — one line is one bottom rule.
+    expect(
+      rule(".tb-memory-source .tb-blank-sentence>.tb-write-line:only-child"),
+    ).toBe(
+      "flex:1 1 auto;height:auto;min-height:calc(var(--tb-row-lines,1)*1.9em)",
+    );
+    expect(
+      rule(
+        ".tb-memory-source .tb-memory-row-measured .tb-write-line:only-child",
+      ),
+    ).toBe("min-height:0");
+    const single = css
       .split("}")
       .map((r) => r.slice(0, r.indexOf("{")).trim())
-      .filter((selector) => selector.includes("tb-blank-rule"));
-    expect(sourceRules.length).toBeGreaterThan(0);
-    for (const selector of sourceRules)
+      .filter((selector) => selector.includes(":only-child"));
+    expect(single).toHaveLength(2);
+    for (const selector of single)
       for (const part of selector.split(","))
         expect(part.trim().startsWith(".tb-memory-source ")).toBe(true);
+  });
+
+  it("names the marker and the two paddings for the measurement", () => {
+    expect(RECALL_SOURCE_CLASS).toBe("tb-memory-source");
+    expect(RECALL_ROW_PADDING_MM).toEqual({ bank: 2.2, source: 3 });
   });
 });

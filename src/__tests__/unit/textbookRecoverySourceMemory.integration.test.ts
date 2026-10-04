@@ -79,6 +79,12 @@ interface MeasuredRow {
   labelFontSize: number;
   rules: Box[];
   ruleOnly: boolean;
+  /** Content taller than the row box, in mm. */
+  overflow: number;
+  /** Printed key marks, keyword blanks, and characters of body text. */
+  keys: number;
+  blanks: number;
+  textLength: number;
   fractions: number;
   tightFractions: number;
 }
@@ -199,6 +205,10 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
                   origin: row.dataset.rowOrigin ?? null,
                   measured: row.classList.contains("tb-memory-row-measured"),
                   box: box(row),
+                  overflow: (row.scrollHeight - row.clientHeight) * mm,
+                  keys: row.querySelectorAll(".tb-memory-key").length,
+                  blanks: row.querySelectorAll(".tb-blank-keyword").length,
+                  textLength: (body.textContent ?? "").trim().length,
                   label: box(label),
                   body: box(body),
                   padding: [
@@ -418,6 +428,7 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
         expect(Math.abs(r.box[1] - study[i].box[1])).toBeLessThan(0.05);
         expect(Math.abs(r.box[3] - study[i].box[3])).toBeLessThan(0.05);
         expect(Math.abs(r.body[0] - study[i].body[0])).toBeLessThan(0.05);
+        expect(r.overflow, `${phase} ${r.rowKey}`).toBeLessThan(0.05);
       });
     }
     // The student pages carry neither a key nor a hidden sentence.
@@ -471,13 +482,22 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
           .sort((a, b) => a.ordinal - b.ordinal)
           .map((a) => a.boxMm);
       const rows = of(".master-row");
+      const labels = of(".master-row .label");
       const titles = of(".master-title");
+      expect(labels).toHaveLength(rows.length);
       return of(".master-block").map((block, i) => ({
         height: height(block),
         title: height(titles[i]),
         rows: rows
-          .filter((r) => r[1] >= block[1] && r[3] <= block[3])
-          .map((r) => ({ top: r[1] - block[1], height: height(r) })),
+          .map((r, at) => ({ r, label: labels[at] }))
+          .filter(({ r }) => r[1] >= block[1] && r[3] <= block[3])
+          .map(({ r, label }) => ({
+            top: r[1] - block[1],
+            height: height(r),
+            labelTop: label[1] - r[1],
+            labelHeight: height(label),
+            labelWidth: label[2] - label[0],
+          })),
       }));
     }
     const load = () => {
@@ -535,6 +555,22 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
             want.rows[i].height,
           );
           check(`${sheet}.${r.rowKey}.top`, r.box[1] - top, want.rows[i].top);
+          // The label column: where it starts in the row, how tall and how wide it is.
+          check(
+            `${sheet}.${r.rowKey}.labelTop`,
+            r.label[1] - r.box[1],
+            want.rows[i].labelTop,
+          );
+          check(
+            `${sheet}.${r.rowKey}.labelHeight`,
+            height(r.label),
+            want.rows[i].labelHeight,
+          );
+          check(
+            `${sheet}.${r.rowKey}.labelWidth`,
+            r.label[2] - r.label[0],
+            want.rows[i].labelWidth,
+          );
         });
       });
       return { misses, deltas };
@@ -562,9 +598,13 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
       expect(probeRows.some((r) => r.fractions > 0)).toBe(true);
       expect(probeRows.every((r) => r.tightFractions === 0)).toBe(true);
 
-      // 2. The student sheets with the probe's heights (rounded up to 0.1mm) as the common height.
-      const rowHeightsMm = commonRecallRowHeights(
-        probeRows.map((r) => ({ rowKey: r.rowKey, heightMm: height(r.box) })),
+      // 2. The student sheets with the probe's heights as the common height. Source rows are
+      // rounded up to 0.01mm, as the measurement does, so the rounding does not add up down a page.
+      const rowHeightsMm = Object.fromEntries(
+        probeRows.map((r) => [
+          r.rowKey,
+          Math.ceil(height(r.box) * 100 - 1e-6) / 100,
+        ]),
       );
       const printed = await measure(
         "source-original-student",
@@ -646,19 +686,45 @@ describe.skipIf(!run)("source memory sheets in real Chromium", () => {
           2,
         ),
       );
+      // The acceptance tolerance, and the tighter fact: the natural probe is the original geometry.
       expect(natural.misses).toEqual([]);
-      for (const result of results) expect(result.misses).toEqual([]);
+      expect(worst(natural.deltas)).toBeLessThan(0.05);
+      for (const result of results) {
+        expect(result.misses).toEqual([]);
+        expect(worst(result.deltas)).toBeLessThan(0.1);
+      }
       expect(drift).toEqual([]);
       expect(control.misses.length).toBeGreaterThan(0);
+      // Nothing is taller than the fixed row it is printed in.
+      for (const phase of PHASES)
+        for (const r of rowsOf(printed.sheets, phase))
+          expect(r.overflow, `${phase} ${r.rowKey}`).toBeLessThan(0.05);
 
-      // The student sheets print no key of the keyword sheet and no row text of the sentence sheet.
-      const dom = printed.sheets;
-      expect(rowsOf(dom, "sentences").every((r) => r.fractions === 0)).toBe(
+      // Student pages: a blank for every key and no key mark; no body text on the sentence sheet.
+      const keyCount = memoryBlocks(answers, PAGE.keywords)
+        .flatMap((b) => (b.kind === "recall" ? (b.displayRows ?? []) : []))
+        .flatMap((r) => r.pieces)
+        .filter((piece) => piece.kind === "key").length;
+      expect(keyCount).toBeGreaterThan(0);
+      const keywords = rowsOf(printed.sheets, "keywords");
+      expect(keywords.reduce((n, r) => n + r.keys, 0)).toBe(0);
+      expect(keywords.reduce((n, r) => n + r.blanks, 0)).toBe(keyCount);
+      const sentences = rowsOf(printed.sheets, "sentences");
+      expect(sentences.every((r) => r.textLength === 0)).toBe(true);
+      expect(sentences.every((r) => r.fractions === 0)).toBe(true);
+      expect(sentences.every((r) => r.ruleOnly && r.rules.length === 1)).toBe(
         true,
       );
-      expect(JSON.stringify(memoryBlocks(student, PAGE.sentences))).not.toMatch(
-        /"rawText":"[^"]/,
-      );
+      // And the student model: no row text and no key piece in either hidden phase.
+      for (const phase of ["keywords", "sentences"] as const) {
+        const blocks = memoryBlocks(student, PAGE[phase]);
+        expect(JSON.stringify(blocks)).not.toMatch(/"rawText":"[^"]/);
+        const pieces = blocks
+          .flatMap((b) => (b.kind === "recall" ? (b.displayRows ?? []) : []))
+          .flatMap((r) => r.pieces);
+        expect(pieces.some((piece) => piece.kind === "key")).toBe(false);
+        if (phase === "sentences") expect(pieces).toEqual([]);
+      }
     }, 300_000);
   });
 });
