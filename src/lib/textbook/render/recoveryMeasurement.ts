@@ -125,10 +125,8 @@ export function measureRecoveryDom(
       );
   }
   const maxima: Record<string, number> = {};
-  const groupOf = (block: RecoveryMeasurePlan["blocks"][number]) =>
-    block.memoryGroup ?? block.memoryHeading;
   for (const block of plan.blocks) {
-    const group = groupOf(block),
+    const group = block.memoryGroup ?? block.memoryHeading,
       element = elements.get(block.id);
     if (group && element)
       maxima[group] = Math.max(
@@ -138,7 +136,7 @@ export function measureRecoveryDom(
   }
   const blockMinHeightsMm: Record<string, number> = {};
   for (const block of plan.blocks) {
-    const group = groupOf(block),
+    const group = block.memoryGroup ?? block.memoryHeading,
       element = elements.get(block.id);
     if (group && element) {
       blockMinHeightsMm[block.id] = Math.ceil(maxima[group] * 100) / 100;
@@ -160,13 +158,6 @@ export function measureRecoveryDom(
     );
     const pages = [...new Set(blocks.map((block) => block.dialoguePage!))];
     let chosen = 9.2;
-    const heights = (page: string) =>
-      blocks
-        .filter((block) => block.dialoguePage === page)
-        .map(
-          (block) =>
-            elements.get(block.id)!.getBoundingClientRect().height * mm,
-        );
     for (let tenth = 105; tenth >= 92; tenth--) {
       const pt = tenth / 10;
       for (const block of blocks)
@@ -175,7 +166,12 @@ export function measureRecoveryDom(
           .style.setProperty("--tb-dialogue-size", `${pt}pt`);
       if (
         pages.every((page) => {
-          const hs = heights(page);
+          const hs = blocks
+            .filter((block) => block.dialoguePage === page)
+            .map(
+              (block) =>
+                elements.get(block.id)!.getBoundingClientRect().height * mm,
+            );
           return (
             hs.reduce((sum, height) => sum + height, 0) +
               0.85 * Math.max(0, hs.length - 1) <=
@@ -194,7 +190,12 @@ export function measureRecoveryDom(
       dialogueSizesPt[block.id] = chosen;
     }
     for (const page of pages) {
-      const hs = heights(page),
+      const hs = blocks
+          .filter((block) => block.dialoguePage === page)
+          .map(
+            (block) =>
+              elements.get(block.id)!.getBoundingClientRect().height * mm,
+          ),
         spare =
           plan.dialogueBottomMm -
           plan.dialogueBodyTopMm -
