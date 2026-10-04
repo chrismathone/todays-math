@@ -310,6 +310,9 @@ describe("one-screen student answers", () => {
     view(run, onAnswer);
     expect(await screen.findByText("문제 1: 1 + 1")).toBeInTheDocument();
     expect(
+      document.querySelector('[data-page-turn="true"]'),
+    ).not.toBeInTheDocument();
+    expect(
       screen.queryByRole("button", { name: "답안" }),
     ).not.toBeInTheDocument();
     expect(
@@ -330,6 +333,82 @@ describe("one-screen student answers", () => {
       submittedAnswer: "2",
     });
   });
+
+  it.each(["retry-wrong", "retry-give-up", "self-check"] as const)(
+    "uses client copy for the actual recorded action: %s",
+    async (mode) => {
+      const inRetry = mode !== "self-check";
+      const run = session(inRetry ? 5 : 0);
+      const problemId = run.problems[0].id;
+      if (inRetry) {
+        run.attempts[0].correct = false;
+        run.problems[0].feedback = null;
+        run.problems[0].answerChoices = ["1", "2", "3", "4"];
+        run.retry = {
+          pendingProblemIds: [problemId],
+          attempts: [],
+          completedAt: null,
+        };
+      } else run.problems[0].input.mode = "self-check";
+      const { props, rerender } = view(run);
+      await screen.findByText("문제 1: 1 + 1");
+      if (mode === "retry-give-up")
+        fireEvent.click(
+          screen.getByRole("button", { name: "아직 모르겠어요" }),
+        );
+      else if (mode === "self-check") {
+        fireEvent.click(screen.getByRole("button", { name: "다 풀었어요" }));
+        fireEvent.click(
+          screen.getByRole("button", { name: "다시 연습할래요" }),
+        );
+      } else
+        fireEvent.click(
+          within(screen.getByRole("group", { name: "답 고르기" })).getAllByRole(
+            "button",
+          )[0],
+        );
+      expect(props.onAnswer).toHaveBeenCalledWith(
+        expect.objectContaining(
+          mode === "retry-give-up"
+            ? { giveUp: true, retryIndex: 0 }
+            : mode === "self-check"
+              ? { selfCorrect: false }
+              : { submittedAnswer: "1", retryIndex: 0 },
+        ),
+      );
+      const saved = structuredClone(run);
+      const attempt = {
+        ...session(1).attempts[0],
+        correct: false,
+        selfAssessed: mode === "self-check",
+        submittedAnswer: mode === "retry-wrong" ? "1" : "",
+      };
+      saved.problems[0].feedback = { correct: false };
+      if (inRetry)
+        saved.retry = {
+          pendingProblemIds: mode === "retry-give-up" ? [] : [problemId],
+          attempts: [attempt],
+          completedAt: mode === "retry-give-up" ? now : null,
+        };
+      else saved.attempts = [attempt];
+      rerender(
+        <StudentCoursePractice
+          {...props}
+          session={saved}
+          feedbackId={problemId}
+        />,
+      );
+      expect(
+        screen.getByText(
+          mode === "retry-give-up"
+            ? "아직 모르겠어요로 기록했어요"
+            : mode === "self-check"
+              ? "다시 볼 내용으로 기록했어요"
+              : "아직 해결하지 못했어요",
+        ),
+      ).toBeInTheDocument();
+    },
+  );
 
   it("guards repeated taps and advances only after saved feedback, cancelling the timer on exit", async () => {
     const run = session();
@@ -355,6 +434,11 @@ describe("one-screen student answers", () => {
         />,
       );
       expect(screen.getByText("정확하게 풀었어요")).toBeInTheDocument();
+      expect(
+        screen
+          .getByText("정확하게 풀었어요")
+          .closest('[class*="answerDockHeader"]'),
+      ).toBeInTheDocument();
       expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
       act(() => vi.advanceTimersByTime(1199));
       expect(props.onNext).not.toHaveBeenCalled();
@@ -401,7 +485,7 @@ describe("one-screen student answers", () => {
           feedbackId={response.problems[4].id}
         />,
       );
-      expect(screen.getByText("다시 풀 문제로 모았어요")).toBeInTheDocument();
+      expect(screen.getByText("다시 생각해 볼 문제예요")).toBeInTheDocument();
       expect(screen.queryByText("비공개 풀이")).not.toBeInTheDocument();
       act(() => vi.advanceTimersByTime(1200));
       expect(props.onNext).toHaveBeenCalledTimes(1);
@@ -948,7 +1032,7 @@ describe("persisted course practice", () => {
       giveUp: true,
     });
     expect(
-      await screen.findByText("다시 풀 문제로 모았어요"),
+      await screen.findByText("모르는 부분을 확인했어요"),
     ).toBeInTheDocument();
   });
 
@@ -989,6 +1073,9 @@ describe("persisted course practice", () => {
       submittedAnswer: "",
       selfCorrect: true,
     });
+    expect(
+      await screen.findByText("혼자 풀었다고 기록했어요"),
+    ).toBeInTheDocument();
   });
 
   it("records retry self-check privately before optional explanation", async () => {
@@ -1041,7 +1128,9 @@ describe("persisted course practice", () => {
     expect(api.answerCourse).toHaveBeenCalledWith(
       expect.objectContaining({ selfCorrect: true, retryIndex: 0 }),
     );
-    expect(await screen.findByText("정확하게 풀었어요")).toBeInTheDocument();
+    expect(
+      await screen.findByText("혼자 풀었다고 기록했어요"),
+    ).toBeInTheDocument();
   });
 
   it("requests the next recommendation after five problems and stops at the daily goal", async () => {

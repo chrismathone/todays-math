@@ -7,7 +7,7 @@
   border: 0;
   border-radius: 24px;
   background: #fff;
-  color: #193150;
+  color: var(--math-atelier-ink, #203653);
   box-shadow: 0 20px 80px #10213d44;
   overflow: hidden;
   overscroll-behavior: contain;
@@ -70,7 +70,7 @@ button.close {
 .body {
   position: relative;
   display: grid;
-  grid-template-rows: 28px minmax(0, 1fr) 194px 50px;
+  grid-template-rows: 28px minmax(0, 1fr) minmax(194px, auto) 50px;
   gap: 12px;
   flex: 1;
   min-height: 0;
@@ -99,12 +99,12 @@ button.close {
 }
 .answers {
   display: grid;
-  grid-template-rows: 20px minmax(0, 1fr);
+  grid-template-rows: minmax(20px, auto) minmax(0, 1fr);
   gap: 8px;
   min-height: 0;
   border-radius: 16px;
   padding: 12px;
-  background: #f6f8fc;
+  background: var(--math-atelier-bg, #f6f4ef);
 }
 .answerPrompt {
   margin: 0;
@@ -114,7 +114,7 @@ button.close {
 .choices {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(44px, 1fr));
   gap: 10px;
 }
 .choices button {
@@ -282,7 +282,7 @@ button.secondary {
     padding-top: 12px;
   }
   .body {
-    grid-template-rows: 28px minmax(0, 1fr) 174px 50px;
+    grid-template-rows: 28px minmax(0, 1fr) minmax(174px, auto) 50px;
     gap: 10px;
   }
   .answers {

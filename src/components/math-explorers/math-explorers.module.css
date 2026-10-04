@@ -809,6 +809,7 @@ button.chest {
   border-radius: 9px;
 }
 .practiceFrame {
+  color: var(--math-atelier-ink, #203653);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -817,7 +818,7 @@ button.chest {
   min-width: 0;
   overflow: hidden;
   border-radius: 21px;
-  background: #fff;
+  background: var(--math-atelier-surface, #fff);
   isolation: isolate;
 }
 .problemPane {
@@ -858,7 +859,7 @@ button.chest {
 }
 .instruction {
   margin: 0 0 18px;
-  color: #8492a9;
+  color: var(--math-atelier-muted, #52627a);
   font-size: 13px;
   line-height: 1.7;
   word-break: keep-all;
@@ -926,12 +927,13 @@ button.wordSlot {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 274px;
+  min-height: 274px;
+  height: auto;
   flex-shrink: 0;
   position: relative;
   z-index: 1;
   padding: 11px 18px 15px;
-  background: #fff;
+  background: var(--math-atelier-surface, #fff);
   box-shadow: 0 -8px 20px #1e426806;
 }
 .answerInstruction {
@@ -942,7 +944,7 @@ button.wordSlot {
   margin-bottom: 8px;
   min-height: 30px;
   font-size: 11px;
-  color: #7990af;
+  color: var(--math-atelier-muted, #52627a);
 }
 .answerInstruction > button {
   padding: 5px 0 5px 7px;
@@ -1178,9 +1180,9 @@ button.confirm {
   grid-template-columns: repeat(var(--parts), minmax(0, 1fr));
   height: 47px;
   overflow: hidden;
-  border: 2px solid #83a2d3;
+  border: 2px solid var(--math-atelier-line, #dee4ea);
   border-radius: 8px;
-  background: #f6f9ff;
+  background: var(--math-atelier-surface, #fff);
 }
 .fractionStrip > span {
   border-right: 1px solid #aac0e2;
@@ -1190,11 +1192,12 @@ button.confirm {
 }
 .fractionStrip > span[data-filled] {
   background: #6f99e6;
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, #ffffff5c 5px 7px);
 }
 .paintInstruction {
   margin: 8px 0 10px;
   font-size: 12px;
-  color: #7a90ad;
+  color: var(--math-atelier-muted, #52627a);
   line-height: 1.6;
   word-break: keep-all;
 }
@@ -1203,9 +1206,9 @@ button.confirm {
   grid-template-columns: repeat(var(--paint-columns), minmax(44px, 1fr));
   gap: 3px;
   padding: 4px;
-  border: 2px solid #9fb8dd;
+  border: 2px solid var(--math-atelier-line, #dee4ea);
   border-radius: 10px;
-  background: #edf3fc;
+  background: var(--math-atelier-bg, #f6f4ef);
 }
 .paintGrid button {
   min-width: 44px;
@@ -1223,6 +1226,7 @@ button.confirm {
 .paintGrid button[aria-pressed="true"] {
   color: #eef6ff;
   background: #628fde;
+  background-image: repeating-linear-gradient(135deg, transparent 0 5px, #ffffff5c 5px 7px);
   border-color: #5784d3;
 }
 .factorControls {
@@ -1278,9 +1282,15 @@ button.confirm {
   margin: 4px 0 11px;
   font-size: 11px;
   line-height: 1.5;
-  color: #8296b1;
+  color: var(--math-atelier-muted, #52627a);
   text-align: center;
   word-break: keep-all;
+}
+.answerDock[data-dock-size="slim"] {
+  min-height: 0;
+}
+.manipulationNote > [data-answer-feedback] {
+  justify-content: center;
 }
 .paintedCounts {
   display: flex;
@@ -1621,9 +1631,12 @@ button.confirm {
     min-height: 26px;
   }
   .answerDock {
-    height: 244px;
+    min-height: 244px;
     padding-top: 4px;
     padding-bottom: 10px;
+  }
+  .answerDock[data-dock-size="slim"] {
+    min-height: 0;
   }
   button.confirm {
     min-height: 37px;

@@ -10,6 +10,8 @@ import { ConceptNameRow } from "./ExplorerConceptHead";
 import { ExplorerPracticeFrame } from "./ExplorerPractice";
 import { EnterKey, NumberKey } from "@/components/math-srs/AnswerKeyCaps";
 import pageTurn from "@/components/math-srs/question-page-turn.module.css";
+import AnswerFeedbackEffect from "@/components/math-srs/AnswerFeedbackEffect";
+import { useQuestionPageTurn } from "@/components/math-srs/useQuestionPageTurn";
 import { answerKey } from "@/components/math-srs/useAnswerKeys";
 import { ExplorerChoiceText, ExplorerMath } from "./ExplorerMath";
 import s from "./math-explorers.module.css";
@@ -84,20 +86,16 @@ export default function ExplorerWorkshop({
   onAction: (action: ExplorerAction) => void;
   onHome: () => void;
 }) {
+  const turnPage = useQuestionPageTurn(workshop.questionId);
   return (
-    <ExplorerPracticeFrame
-      session={session}
-      busy={busy}
-      correct={correct}
-      eventKey={eventKey}
-      onHome={onHome}
-      feedbackMessage={correct === false ? "조각을 다시 살펴보세요" : undefined}
-    >
+    <ExplorerPracticeFrame session={session} busy={busy} onHome={onHome}>
       <WorkshopActivity
         key={workshop.questionId}
         workshop={workshop}
         busy={busy}
         correct={correct}
+        eventKey={eventKey}
+        turnPage={turnPage}
         onAction={onAction}
       />
     </ExplorerPracticeFrame>
@@ -108,11 +106,15 @@ function WorkshopActivity({
   workshop,
   busy,
   correct,
+  eventKey,
+  turnPage,
   onAction,
 }: {
   workshop: Workshop;
   busy: boolean;
   correct: boolean | null;
+  eventKey: string;
+  turnPage: "true" | undefined;
   onAction: (action: ExplorerAction) => void;
 }) {
   const [factors, setFactors] = useState<[number, number]>([
@@ -126,6 +128,21 @@ function WorkshopActivity({
   const [motion, setMotion] = useState<Record<number, "in" | "out">>({});
   const disabled = busy || correct !== null;
   const { stage, questionId } = workshop;
+  const result = (
+    <AnswerFeedbackEffect
+      correct={correct}
+      eventKey={eventKey}
+      message={
+        correct === false
+          ? stage === "check" || stage === "predict"
+            ? "확인 결과를 기록했어요"
+            : stage === "rule"
+              ? "규칙을 다시 살펴보세요"
+              : "조각을 다시 살펴보세요"
+          : undefined
+      }
+    />
+  );
   const denominator = workshop.targetDenominator ?? 1;
   const columns =
     denominator % 5 === 0
@@ -163,7 +180,7 @@ function WorkshopActivity({
     <>
       <div
         className={`${s.problemPane} ${pageTurn.page}`}
-        data-page-turn="true"
+        data-page-turn={turnPage}
         data-workshop-stage={stage}
         tabIndex={0}
         aria-label="분수 조작 활동"
@@ -234,7 +251,7 @@ function WorkshopActivity({
                     role="group"
                     aria-label={`${index + 1}번째 분수 ${denominator}개 조각`}
                   >
-                    {/* 칠한 칸은 색(`#628fde`)으로만 보인다 — ✓ 글자는 뺐다(05 §8.16 «체크 말고»). */}
+                    {/* 색과 빗금으로 칠한 칸을 구분한다. 칸에 체크 글자를 넣지 않는다. */}
                     {Array.from({ length: denominator }, (_, part) => (
                       <button
                         type="button"
@@ -272,7 +289,11 @@ function WorkshopActivity({
         {workshop.choices.length > 0 ? (
           <>
             <div className={s.answerInstruction}>
-              <span>하나를 고르면 바로 확인해요</span>
+              {correct !== null ? (
+                result
+              ) : (
+                <span>하나를 고르면 바로 확인해요</span>
+              )}
             </div>
             <div
               className={`${s.answers} ${s.workshopChoices}`}
@@ -370,9 +391,11 @@ function WorkshopActivity({
               </div>
             )}
             <div className={s.manipulationNote}>
-              {stage === "check"
-                ? "조각을 다시 누르면 색칠을 지울 수 있어요."
-                : "색칠한 부분의 전체 크기는 그대로예요."}
+              {correct !== null
+                ? result
+                : stage === "check"
+                  ? "조각을 다시 누르면 색칠을 지울 수 있어요."
+                  : "색칠한 부분의 전체 크기는 그대로예요."}
             </div>
             <div className={s.answerControls}>
               <button
