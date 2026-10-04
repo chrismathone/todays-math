@@ -42,6 +42,7 @@ export function projectListeningStudentView(
               dataUrl: question.image.dataUrl,
               width: question.image.width,
               height: question.image.height,
+              ...(question.image.role ? { role: question.image.role } : {}),
             },
           }
         : {}),
