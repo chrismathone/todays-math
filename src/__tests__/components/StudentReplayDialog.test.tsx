@@ -90,7 +90,7 @@ describe("completed tile replay", () => {
       container.querySelector("[data-answer-feedback]"),
     ).not.toBeInTheDocument();
     expect(
-      container.querySelector('[data-page-turn="true"]'),
+      container.querySelector('[data-question-transition="true"]'),
     ).not.toBeInTheDocument();
   });
   it("keeps the completed day identity while progressing through its review questions", async () => {
@@ -167,7 +167,7 @@ describe("completed tile replay", () => {
       name: "복습 답 고르기",
     });
     expect(
-      document.querySelector('[data-page-turn="true"]'),
+      document.querySelector('[data-question-transition="true"]'),
     ).not.toBeInTheDocument();
     expect(within(options).getAllByRole("button")).toHaveLength(4);
     expect(screen.queryByRole("textbox")).not.toBeInTheDocument();

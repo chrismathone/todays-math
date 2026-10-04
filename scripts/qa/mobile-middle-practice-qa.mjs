@@ -76,12 +76,19 @@ const fresh = () => ({
   attempts: [],
 });
 let checked = 0;
-for (const [name, engine] of Object.entries({ chromium, webkit })) {
+for (const [name, engine] of Object.entries({ chromium, webkit }).filter(
+  ([name]) =>
+    !process.env.QA_ENGINES || process.env.QA_ENGINES.split(",").includes(name),
+)) {
   const browser = await engine.launch({ headless: true });
   try {
-    for (const width of [320, 390, 430]) {
+    for (const [width, height] of (
+      process.env.QA_SIZES ?? "320x600,390x600,430x600"
+    )
+      .split(",")
+      .map((size) => size.split("x").map(Number))) {
       const page = await browser.newPage({
-        viewport: { width, height: 600 },
+        viewport: { width, height },
         isMobile: true,
         hasTouch: true,
       });
@@ -145,14 +152,16 @@ for (const [name, engine] of Object.entries({ chromium, webkit })) {
         .evaluateAll((buttons) =>
           buttons.map((button) => getComputedStyle(button).backgroundColor),
         );
-      const nav = await page
-        .getByRole("navigation", { name: "학생 학습 메뉴" })
-        .boundingBox();
-      assert.ok(
-        box.y + box.height <= nav.y,
-        `answers must stay above nav: ${JSON.stringify({ box, nav })}`,
-      );
-      assert.ok(nav.y - (box.y + box.height) < 30);
+      if (width <= 600) {
+        const nav = await page
+          .getByRole("navigation", { name: "학생 학습 메뉴" })
+          .boundingBox();
+        assert.ok(
+          box.y + box.height <= nav.y,
+          `answers must stay above nav: ${JSON.stringify({ box, nav })}`,
+        );
+        assert.ok(nav.y - (box.y + box.height) < 30);
+      }
       const dimensions = await page.evaluate(() => ({
         width: document.documentElement.scrollWidth,
         height: document.documentElement.scrollHeight,

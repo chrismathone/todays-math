@@ -182,6 +182,9 @@ describe("ExplorerPractice paper and result row", () => {
     const { container, rerender } = render(<ExplorerPractice {...props} />);
     expect(
       container.querySelector('[data-page-turn="true"]'),
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-question-transition="true"]'),
     ).not.toBeInTheDocument();
     rerender(
       <ExplorerPractice
@@ -190,7 +193,7 @@ describe("ExplorerPractice paper and result row", () => {
       />,
     );
     expect(
-      container.querySelector('[data-page-turn="true"]'),
+      container.querySelector('[data-question-transition="true"]'),
     ).toBeInTheDocument();
   });
   it("distinguishes the explicit give-up action from wrong selected answers", () => {

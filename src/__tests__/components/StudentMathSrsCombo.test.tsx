@@ -155,7 +155,7 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
     );
     await screen.findByRole("group", { name: "답 고르기" });
     expect(
-      container.querySelector('[data-page-turn="true"]'),
+      container.querySelector('[data-question-transition="true"]'),
     ).not.toBeInTheDocument();
     const effect = effectAppears();
     await user.click(screen.getByRole("button", { name: "아직 모르겠어요" }));

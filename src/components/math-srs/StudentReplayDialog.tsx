@@ -260,7 +260,8 @@ export default function StudentReplayDialog({
           <div
             key={data.problemId}
             className={`${s.question} ${pageTurn.page}`}
-            data-page-turn={turnPage}
+            data-page-turn="true"
+            data-question-transition={turnPage}
             role="region"
             aria-label="복습 문제 내용"
             tabIndex={0}

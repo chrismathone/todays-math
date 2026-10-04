@@ -243,7 +243,8 @@ function Activity({
       <div
         ref={pane}
         className={`${s.problemPane} ${pageTurn.page}`}
-        data-page-turn={turnPage}
+        data-page-turn="true"
+        data-question-transition={turnPage}
         tabIndex={0}
         aria-label="문제 내용"
       >

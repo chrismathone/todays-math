@@ -1648,3 +1648,45 @@
     min-height: 44px;
   }
 }
+
+/* Keep the paper readable when zoom or a fraction dock fills a short frame.
+   The question card scrolls as a whole; the student navigation stays clear. */
+@media (max-height: 500px) {
+  .fixedPractice .fixedQuestion {
+    display: flex;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .fixedPractice .fixedQuestion .problemPane {
+    flex: 0 0 auto;
+    min-height: 144px;
+  }
+  .fixedPractice .fixedQuestion .problemScroll {
+    flex: 0 0 auto;
+    min-height: 88px;
+    max-height: 200px;
+  }
+  .fixedPractice .fixedQuestion .responsePane {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 350px) and (max-height: 600px) {
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] {
+    display: flex;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .problemPane {
+    flex: 0 0 auto;
+    min-height: 144px;
+  }
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .problemScroll {
+    flex: 0 0 auto;
+    min-height: 88px;
+    max-height: 200px;
+  }
+  .fixedPractice .fixedQuestion[data-answer-mode="fraction"] .responsePane {
+    flex: 0 0 auto;
+  }
+}

@@ -647,7 +647,8 @@ function Question({
     >
       <div
         className={`${s.problemScroll} ${pageTurn.page}`}
-        data-page-turn={turnPage}
+        data-page-turn="true"
+        data-question-transition={turnPage}
         key={eventKey}
       >
         <p ref={heading} tabIndex={-1} className={s.eyebrow}>

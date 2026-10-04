@@ -180,7 +180,8 @@ function WorkshopActivity({
     <>
       <div
         className={`${s.problemPane} ${pageTurn.page}`}
-        data-page-turn={turnPage}
+        data-page-turn="true"
+        data-question-transition={turnPage}
         data-workshop-stage={stage}
         tabIndex={0}
         aria-label="분수 조작 활동"

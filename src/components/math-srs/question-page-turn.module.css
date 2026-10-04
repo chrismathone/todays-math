@@ -2,7 +2,7 @@
   position: relative;
   opacity: 1;
 }
-.page[data-page-turn="true"] {
+.page[data-question-transition="true"] {
   animation: showPaper 160ms ease-out both;
 }
 /* Only opacity changes: the scroll container keeps its position and dimensions. */
@@ -14,12 +14,12 @@
     opacity: 1;
   }
 }
-:global([data-learning-motion="reduce"]) .page[data-page-turn="true"] {
+:global([data-learning-motion="reduce"]) .page[data-question-transition="true"] {
   animation: none;
   opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
-  .page[data-page-turn="true"] {
+  .page[data-question-transition="true"] {
     animation: none;
     opacity: 1;
   }

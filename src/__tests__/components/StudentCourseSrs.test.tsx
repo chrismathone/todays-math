@@ -310,7 +310,7 @@ describe("one-screen student answers", () => {
     view(run, onAnswer);
     expect(await screen.findByText("문제 1: 1 + 1")).toBeInTheDocument();
     expect(
-      document.querySelector('[data-page-turn="true"]'),
+      document.querySelector('[data-question-transition="true"]'),
     ).not.toBeInTheDocument();
     expect(
       screen.queryByRole("button", { name: "답안" }),

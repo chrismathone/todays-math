@@ -429,7 +429,8 @@ function CourseQuestion({
     >
       <div
         className={`${s.problemPane} ${pageTurn.page}`}
-        data-page-turn={turnPage}
+        data-page-turn="true"
+        data-question-transition={turnPage}
       >
         <div className={s.problemTitle}>
           <div className={s.problemHeading}>

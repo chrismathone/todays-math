@@ -555,11 +555,13 @@ async function inlineFeedbackGeometry(page, effect = page.locator("[data-answer-
       const x = rect.left + rect.width / 2;
       const y = rect.top + rect.height / 2;
       if (x < 0 || x >= innerWidth || y < 0 || y >= innerHeight) return false;
-      // Scrollable option lists only require hit testing the visible portion.
-      const clipped = button.closest('[role="group"]');
-      if (clipped) {
-        const clip = clipped.getBoundingClientRect();
-        if (y < clip.top || y > clip.bottom) return false;
+      // Workshop paint cells live in the scrolling problem pane. Test the
+      // visible centres, including clipping by every scroll/overflow ancestor.
+      for (let ancestor = button.parentElement; ancestor; ancestor = ancestor.parentElement) {
+        const clip = ancestor.getBoundingClientRect();
+        const style = getComputedStyle(ancestor);
+        if (/(auto|scroll|hidden|clip)/.test(style.overflowY) && (y < clip.top || y > clip.bottom)) return false;
+        if (/(auto|scroll|hidden|clip)/.test(style.overflowX) && (x < clip.left || x > clip.right)) return false;
       }
       return !button.contains(document.elementFromPoint(x, y));
     });
@@ -724,6 +726,8 @@ async function homeFold(page, mobile, height, expected) {
     ["progress", mission.getByRole("progressbar")],
     ["cta", page.locator("[data-expedition-start]")],
   ]) {
+    // A zoomed, short home naturally scrolls. Its single CTA must stay reachable.
+    if (height < 500) await locator.scrollIntoViewIfNeeded();
     const box = await locator.boundingBox();
     assert.ok(box && box.y >= 0 && box.y + box.height <= limit + 0.5, `${key} 가 접힘 아래: ${JSON.stringify(box)} / ${limit}`);
     boxes[key] = { top: Math.round(box.y), bottom: Math.round(box.y + box.height) };
@@ -735,12 +739,12 @@ async function homeFold(page, mobile, height, expected) {
 async function navTabs(page, mobile) {
   if (!mobile) return "데스크톱: 하단 탭 없음(본문 링크)";
   const links = nav(page).getByRole("link");
-  assert.deepEqual(await links.allInnerTexts(), ["탐험", "도감", "강의"]);
+  assert.deepEqual(await links.allInnerTexts(), ["탐험", "도감", "강의", "영어듣기"]);
   assert.deepEqual(
     await links.evaluateAll((items) => items.map((a) => [a.getAttribute("href"), a.getAttribute("aria-current")])),
-    [["/learn", "page"], ["/learn?view=collection", null], ["/learn/lectures", null]],
+    [["/learn", "page"], ["/learn?view=collection", null], ["/learn/lectures", null], ["/learn/english-listening", null]],
   );
-  return "탐험·도감·강의, 탐험 강조";
+  return "탐험·도감·강의·영어듣기, 탐험 강조";
 }
 // D-142: 예정 칸마다 서버가 낸 단원(초등은 소단원) — 그 뒤는 «다음 여정». 가운데는 «나의 진행». 이름이 잘리거나
 // 낱말이 두 줄에 걸치지 않는다(칸 안에서만 · `scripts/qa/daily-journey-board.mjs` 가 이름 전부를 따로 잰다).
@@ -927,7 +931,7 @@ const scenarios = {
         if (next.type === "answer") {
           const effect = page.locator("[data-answer-feedback]");
           await effect.waitFor();
-          const animation = await effect.evaluate((el) => getComputedStyle(el).animationName);
+          const animation = await effect.locator("svg").evaluate((el) => getComputedStyle(el).animationName);
           assert.equal(animation, "none", "움직임 축소에서 결과 줄 애니메이션");
           await inlineFeedbackGeometry(page, effect);
           checkedOverlay = true;
