@@ -314,10 +314,12 @@ export class PrismaStorageListeningMediaStore implements ListeningMediaStore {
     key: string,
     { start, endExclusive, maxChunkBytes, signal }: ListeningMediaRead,
   ) {
+    signal?.throwIfAborted();
     bound(start, 0, MAX_BLOB_BYTES);
     bound(endExclusive, start, MAX_BLOB_BYTES);
     bound(maxChunkBytes, 1, MAX_BLOB_BYTES);
     const blob = await this.blob(key);
+    signal?.throwIfAborted();
     if (!blob) {
       yield* this.legacy.readBlob(key, {
         start,
@@ -339,8 +341,9 @@ export class PrismaStorageListeningMediaStore implements ListeningMediaStore {
     if (start === endExclusive) return;
     // Staged decoder output is readable internally before CAS; user delivery only
     // reaches sealed asset chunk lists through the service's live authorization.
-    await this.storage.check(blob.ref);
-    for await (const part of this.storage.read(
+    // readPrivate checks the live private bucket and conditional GET's ETag, total
+    // size and exact range; a separate HEAD adds a redundant serial round trip.
+    for await (const part of this.storage.readPrivate(
       blob.ref,
       start,
       endExclusive,
