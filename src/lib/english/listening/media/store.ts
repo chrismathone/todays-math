@@ -40,6 +40,18 @@ export interface ListeningMediaRecord
   /** Trusted CLI conversion only; source chunks/hash remain the original M4A. */
   originalMimeType?: "audio/mp4";
   conversion?: ListeningM4aConversion;
+  /** Trusted operator sample cut; no client schema can supply this immutable provenance. */
+  sourceClip?: {
+    schemaVersion: 1;
+    planHash: string;
+    sourceAssetId: string;
+    sourcePcmSha256: string;
+    sourcePlaybackSha256: string;
+    startFrame: number;
+    endFrame: number;
+    sampleRate: number;
+    channels: number;
+  };
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;
