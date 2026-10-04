@@ -71,6 +71,7 @@ export function paginateTextbookSections(
     firstPhysicalPageIndex?: number;
     includeCover?: boolean;
     previousSectionKey?: string;
+    previousTemplateKey?: string;
     maxPages?: number;
   } = {},
 ): TextbookLayout {
@@ -126,6 +127,7 @@ export function paginateTextbookSections(
     });
   }
   let previousSection = options.previousSectionKey;
+  let previousTemplate = options.previousTemplateKey;
   for (const section of sections) {
     const sectionPageStart = pages.length;
     if (!section.blocks.length)
@@ -145,6 +147,9 @@ export function paginateTextbookSections(
     const previousPage = pages[pages.length - 1];
     if (
       section.startPolicy === "continue" &&
+      // A rest story occupies its own page(s), on either side of a spread, without filler.
+      section.templateKey !== "rest" &&
+      previousTemplate !== "rest" &&
       previousPage?.kind === "content" &&
       previousPage.unitKey === section.unitKey
     ) {
@@ -293,6 +298,7 @@ export function paginateTextbookSections(
         section,
       );
     previousSection = section.sectionKey;
+    previousTemplate = section.templateKey;
   }
   const itemIds = pageMap.map((p) => p.itemId);
   if (new Set(itemIds).size !== itemIds.length)

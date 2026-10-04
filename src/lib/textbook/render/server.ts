@@ -12,6 +12,7 @@ import {
 } from "../integrity.server";
 import { sha256 } from "../hash.server";
 import { canonicalJson } from "../canonical";
+import { TEXTBOOK_CHARACTERS } from "../characters";
 import {
   A4,
   alignTextbookSpreads,
@@ -146,14 +147,31 @@ async function loadReady(page: Page, html: string): Promise<void> {
   });
 }
 async function measure(page: Page): Promise<BlockMeasurement[]> {
-  return page.evaluate(() =>
-    Array.from(document.querySelectorAll<HTMLElement>("[data-measure-id]")).map(
-      (element) => {
+  return page.evaluate(
+    (atlasSpeakers) =>
+      Array.from(
+        document.querySelectorAll<HTMLElement>("[data-measure-id]"),
+      ).map((element) => {
         const rect = element.getBoundingClientRect();
         for (const child of element.querySelectorAll<HTMLElement>(
           ".katex-html, img, table, pre",
         )) {
-          const r = child.getBoundingClientRect();
+          // The atlas intentionally extends past its clipped portrait frame. Validate the
+          // visible frame; every ordinary figure still uses its full image bounds.
+          const frame = child.matches("img[data-textbook-portrait-atlas]")
+            ? child.parentElement
+            : null;
+          const speaker = frame?.closest<HTMLElement>(
+            ".tb-dialogue-atlas[data-speaker-id]",
+          )?.dataset.speakerId;
+          const visible =
+            frame?.matches(".tb-portrait-frame") &&
+            speaker &&
+            atlasSpeakers.includes(speaker) &&
+            getComputedStyle(frame).overflow === "hidden"
+              ? frame
+              : child;
+          const r = visible.getBoundingClientRect();
           if (r.left < rect.left - 1.89 || r.right > rect.right + 1.89)
             throw new Error(
               `Math/figure width overflow: ${element.dataset.measureId}`,
@@ -164,8 +182,8 @@ async function measure(page: Page): Promise<BlockMeasurement[]> {
           heightMm: Math.ceil(((rect.height * 25.4) / 96) * 100) / 100,
           widthMm: (rect.width * 25.4) / 96,
         };
-      },
-    ),
+      }),
+    TEXTBOOK_CHARACTERS.map((character) => `tb-portrait-${character.id}`),
   );
 }
 
@@ -175,7 +193,7 @@ export async function validateRenderedPages(
   pages: TextbookPage[],
 ): Promise<QrPlacement[]> {
   const result = await page.evaluate(
-    ({ expected, bodyBottom, tolerance }) => {
+    ({ expected, bodyBottom, tolerance, atlasSpeakers }) => {
       const scale = 25.4 / 96,
         qr: QrPlacement[] = [];
       const paper = Array.from(
@@ -202,7 +220,20 @@ export async function validateRenderedPages(
             ".tb-block-inner, .tb-prose, .katex-html, img, table, .tb-qr, .tb-work-lines",
           );
           for (const child of children) {
-            const c = child.getBoundingClientRect();
+            const frame = child.matches("img[data-textbook-portrait-atlas]")
+              ? child.parentElement
+              : null;
+            const speaker = frame?.closest<HTMLElement>(
+              ".tb-dialogue-atlas[data-speaker-id]",
+            )?.dataset.speakerId;
+            const visible =
+              frame?.matches(".tb-portrait-frame") &&
+              speaker &&
+              atlasSpeakers.includes(speaker) &&
+              getComputedStyle(frame).overflow === "hidden"
+                ? frame
+                : child;
+            const c = visible.getBoundingClientRect();
             if (
               (c.bottom - rect.bottom) * scale > tolerance ||
               (rect.top - c.top) * scale > tolerance ||
@@ -235,6 +266,9 @@ export async function validateRenderedPages(
       expected: pages.length,
       bodyBottom: A4.bodyBottomMm,
       tolerance: A4.toleranceMm,
+      atlasSpeakers: TEXTBOOK_CHARACTERS.map(
+        (character) => `tb-portrait-${character.id}`,
+      ),
     },
   );
   const targets = modelQrTargets(model);
@@ -372,6 +406,8 @@ export async function renderTextbookChunk(
         includeCover,
         previousSectionKey:
           wholeModel.sections[input.sectionIndices[0] - 1]?.sectionKey,
+        previousTemplateKey:
+          wholeModel.sections[input.sectionIndices[0] - 1]?.templateKey,
         maxPages: input.maxPages ?? 32,
       },
     );

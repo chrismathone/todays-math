@@ -7,6 +7,7 @@ import {
 } from "../layout/paginate";
 import { measurementHtml, TEXTBOOK_CSS, type RenderResources } from "./html";
 import type { TextbookRenderModel } from "./model";
+import { getTextbookCharacter } from "../characters";
 
 export const TEXTBOOK_PREVIEW_FONT_CSS =
   "@font-face{font-family:TextbookPretendard;src:url('/fonts/PretendardVariable.woff2') format('woff2');font-weight:45 920;font-display:block}";
@@ -49,7 +50,20 @@ export async function measureTextbookPreview(
     ).map((e) => {
       const rect = e.getBoundingClientRect();
       for (const child of e.querySelectorAll(".katex-html,img,table,pre")) {
-        const r = child.getBoundingClientRect();
+        const frame = child.matches("img[data-textbook-portrait-atlas]")
+          ? child.parentElement
+          : null;
+        const speaker = frame?.closest<HTMLElement>(
+          ".tb-dialogue-atlas[data-speaker-id]",
+        )?.dataset.speakerId;
+        const visible =
+          frame?.matches(".tb-portrait-frame") &&
+          speaker?.startsWith("tb-portrait-") &&
+          getTextbookCharacter(speaker.slice("tb-portrait-".length)) &&
+          getComputedStyle(frame).overflow === "hidden"
+            ? frame
+            : child;
+        const r = visible.getBoundingClientRect();
         if (r.left < rect.left - 1.89 || r.right > rect.right + 1.89)
           throw new Error(
             `수식·그림이 블록 너비를 넘습니다: ${e.dataset.measureId}`,
