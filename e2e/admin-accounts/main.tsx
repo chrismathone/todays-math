@@ -10,12 +10,15 @@ import {
 import "../../src/app/globals.css";
 import "katex/dist/katex.min.css";
 import "./harness.css";
+import Workbench from "./Workbench";
 
 const view = new URLSearchParams(location.search).get("view");
 const branchId =
   new URLSearchParams(location.search).get("branchId") ?? "unassigned";
 createRoot(document.getElementById("root")!).render(
-  view === "pending" || view === "rejected" ? (
+  view === "workbench" ? (
+    <Workbench />
+  ) : view === "pending" || view === "rejected" ? (
     <ApprovalPending
       account={view === "rejected" ? rejectedAccount : pendingAccount}
     />

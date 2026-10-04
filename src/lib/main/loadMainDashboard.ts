@@ -23,13 +23,16 @@ export type MainDashboardData = {
 };
 
 async function loadContracts() {
-  const [cls, test, unit, metrics] = await Promise.all([
-    import("@/contracts/class.contract"),
+  const [test, unit, metrics] = await Promise.all([
     import("@/contracts/test.contract"),
     import("@/contracts/unit.contract"),
     import("@/contracts/metrics.contract"),
   ]);
-  return { ...cls, ...test, ...unit, ...metrics };
+  return {
+    testListResponseSchema: test.testListResponseSchema,
+    unitListResponseSchema: unit.unitListResponseSchema,
+    metricsResponseSchema: metrics.metricsResponseSchema,
+  };
 }
 
 async function read(path: string, signal?: AbortSignal): Promise<Response> {
