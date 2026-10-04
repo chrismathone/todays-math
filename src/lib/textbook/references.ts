@@ -115,7 +115,26 @@ export function validateTextbookReferences(
             image(turn.portraitAssetId, [...p, "turns", i]),
           );
         else if (b.kind === "concept" || b.kind === "concept-recall") {
-          const c = b.conceptKey ? concepts.get(b.conceptKey) : undefined;
+          // Early automatic error-check blocks omitted their key. Accept only
+          // their unambiguous same-section prepared concept, keeping raw bytes intact.
+          const legacy =
+            b.kind === "concept-recall" &&
+            !b.conceptKey &&
+            b.phase === "sentences" &&
+            /^\d+\.\s/.test(b.markdown) &&
+            /\{\{(?:옳음|틀림):/.test(b.markdown)
+              ? [...concepts.values()].filter(
+                  (c) =>
+                    c.unitKey === u.unitKey &&
+                    c.sectionKey === s.sectionKey &&
+                    c.mappingVersion === "quick-create.unit-triple.v1",
+                )
+              : [];
+          const c = b.conceptKey
+            ? concepts.get(b.conceptKey)
+            : legacy.length === 1
+              ? legacy[0]
+              : undefined;
           if (!c && (b.kind === "concept" || b.conceptKey || publish))
             add(
               "MISSING_CONCEPT",

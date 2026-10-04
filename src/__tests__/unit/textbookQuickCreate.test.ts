@@ -742,6 +742,11 @@ describe("quick create component composition", () => {
     const { blocks } = await saved(result);
     expect(result.problemCount).toBe(0);
     expect(
+      blocks
+        .filter((b) => b.kind === "concept-recall")
+        .every((b) => b.kind === "concept-recall" && Boolean(b.conceptKey)),
+    ).toBe(true);
+    expect(
       blocks.filter(
         (b) => b.kind === "text" && b.markdown.includes("준비 학습"),
       ),

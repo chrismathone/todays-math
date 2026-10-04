@@ -64,6 +64,13 @@ import { validateTextbookIntegrity } from "@/lib/textbook/integrity.server";
 import { conceptScriptFor } from "@/lib/textbook/conceptScripts";
 import { chooseRestStory } from "@/lib/textbook/restStories";
 import { openTextbookDb, type Db } from "../helpers/textbookPglite";
+import { publishDeps } from "@/lib/textbook/publish/deps.server";
+import { preflightEdition } from "@/lib/textbook/publish/preflight";
+import { reservePublish } from "@/lib/textbook/publish/reserve";
+import { runNextStep } from "@/lib/textbook/publish/step";
+import { finalizePublish } from "@/lib/textbook/publish/finalize";
+import { canonicalHash } from "@/lib/textbook/hash.server";
+import { validateTextbookReferences } from "@/lib/textbook/references";
 import {
   insertTeacher,
   insertBankProblem,
@@ -308,6 +315,24 @@ describe("quick create prepared script and frozen visual integration", () => {
     expect(
       exchange.items.every((item) => item.learningStage !== "written"),
     ).toBe(true);
+    const legacy = structuredClone(exchange);
+    for (const section of legacy.units.flatMap((u) => u.sections))
+      for (const block of section.blocks)
+        if (block.kind === "concept-recall" && /^\d+\.\s/.test(block.markdown))
+          delete block.conceptKey;
+    expect(
+      validateTextbookReferences(legacy, { mode: "publish" }).filter(
+        (i) => i.code === "MISSING_CONCEPT",
+      ),
+    ).toEqual([]);
+    legacy.conceptIntegration!.concepts.forEach((c) => {
+      c.mappingVersion = "manual";
+    });
+    expect(
+      validateTextbookReferences(legacy, { mode: "publish" }).filter(
+        (i) => i.code === "MISSING_CONCEPT",
+      ),
+    ).toHaveLength(8);
     expect(
       await validateTextbookIntegrity(exchange, {
         verifyManifest: false,
@@ -324,4 +349,96 @@ describe("quick create prepared script and frozen visual integration", () => {
     expect(replay.status).toBe(201);
     expect(await replay.json()).toEqual(result);
   });
+
+  it.skipIf(process.env.TEXTBOOK_PDF_TEST !== "1")(
+    "creates all components and publishes actual student/answer PDFs with the production renderer and bundled visuals",
+    async () => {
+      gate.bundledAssets = true;
+      try {
+        const input: QuickCreateInput = {
+          ...body(),
+          problemCountPerUnit: 4,
+          components: Object.fromEntries(
+            Object.keys(DEFAULT_QUICK_CREATE_COMPONENTS).map((key) => [
+              key,
+              true,
+            ]),
+          ) as QuickCreateComponents,
+        };
+        const response = await POST(request(input));
+        expect(response.status).toBe(201);
+        const created = quickCreateResultSchema.parse(await response.json());
+        const editionId = created.book.draftEditionId!;
+        const deps = {
+          ...publishDeps(),
+          officialOrigin: "https://textbook-qa.example.org",
+        };
+        const preflight = await preflightEdition(
+          gate.db!,
+          gate.actor!,
+          editionId,
+          deps,
+        );
+        expect(preflight.issues.filter((i) => i.severity === "error")).toEqual(
+          [],
+        );
+        const requestId = randomUUID();
+        let job = await reservePublish(
+          gate.db!,
+          gate.actor!,
+          editionId,
+          { requestId, expectedRevision: preflight.revision },
+          canonicalHash({ requestId, expectedRevision: preflight.revision }),
+          deps,
+        );
+        for (let step = 0; step < 40 && job.status !== "ready"; step++) {
+          job = await runNextStep(
+            gate.db!,
+            gate.actor!,
+            editionId,
+            requestId,
+            deps,
+          );
+          expect(job.issues.filter((i) => i.severity === "error")).toEqual([]);
+        }
+        expect(job.status).toBe("ready");
+        const published = await finalizePublish(
+          gate.db!,
+          gate.actor!,
+          editionId,
+          requestId,
+          deps,
+        );
+        expect(published.status).toBe("published");
+        expect(
+          published.artifacts.filter((a) => a.kind.includes("pdf")).length,
+        ).toBeGreaterThanOrEqual(2);
+        const frozen = await assembleExchange(gate.db!, editionId, {
+          exportedAt: new Date().toISOString(),
+        });
+        expect(frozen.pageMap).toHaveLength(created.problemCount);
+        expect(frozen.conceptIntegration?.concepts).toHaveLength(
+          created.conceptCount,
+        );
+        expect(frozen.qrTargets).toHaveLength(created.problemCount);
+        expect(frozen.conceptQrTargets).toHaveLength(created.conceptCount);
+        expect(
+          await validateTextbookIntegrity(frozen, {
+            mode: "archive",
+            officialOrigin: deps.officialOrigin,
+            readAsset: async (assetId) => {
+              const [row] = await gate.db!.query<{ bytes: Uint8Array }>(
+                `SELECT "bytes" FROM "textbook_blob" WHERE "sha256"=$1::text`,
+                [assetId],
+              );
+              return row.bytes;
+            },
+          }),
+        ).toEqual([]);
+      } finally {
+        gate.bundledAssets = false;
+      }
+    },
+    300_000,
+  );
 });

@@ -112,6 +112,23 @@ describe("strict textbook archive transport", () => {
       ),
     ).not.toThrow();
   });
+  it("accepts frozen local figure labels while retaining the SVG execution/resource allowlist", () => {
+    expect(() =>
+      assertSafeSvg(
+        '<svg xmlns="http://www.w3.org/2000/svg"><g data-mj="x &lt; 3" data-label="&quot;수학&quot;"><path d="M0 0 L2 2"/></g></svg>',
+      ),
+    ).not.toThrow();
+    for (const attrs of [
+      'data-mj="&custom;"',
+      'data-html="x"',
+      'onload="x"',
+      'style="background:url(https://x)"',
+      'fill="url(https://x)"',
+      'href="https://x"',
+      'data-label="x" onmouseover="x"',
+    ])
+      expect(() => assertSafeSvg(`<svg><g ${attrs}/></svg>`)).toThrow();
+  });
   it("exports actual page labels and protects spreadsheet formula cells without changing JSON", () => {
     const e = publishedFixture();
     e.items[0].displayNumber = '=HYPERLINK("x")';

@@ -62,6 +62,24 @@ export function blockWidthMm(
   return blockColumnSpan(block) === 1 ? (width - A4.columnGapMm) / 2 : width;
 }
 
+/** A continued section can share its predecessor's page only within the same unit.
+ * Rest pages and auto-created lessons each occupy their own page(s).
+ */
+export function continuesTextbookSection(
+  previous: Pick<RenderSection, "unitKey" | "templateKey"> | undefined,
+  section: Pick<RenderSection, "unitKey" | "templateKey" | "startPolicy">,
+): boolean {
+  const isolated = (template: string) =>
+    template === "rest" || template === "auto-lesson";
+  return Boolean(
+    previous &&
+    section.startPolicy === "continue" &&
+    previous.unitKey === section.unitKey &&
+    !isolated(previous.templateKey) &&
+    !isolated(section.templateKey),
+  );
+}
+
 /** Deterministic rows from measured DOM sizes. No guessed heights, blank filler or deleted content. */
 export function paginateTextbookSections(
   sections: readonly RenderSection[],
@@ -146,10 +164,15 @@ export function paginateTextbookSections(
       cursor = A4.bodyTopMm;
     const previousPage = pages[pages.length - 1];
     if (
-      section.startPolicy === "continue" &&
-      // A rest story occupies its own page(s), on either side of a spread, without filler.
-      section.templateKey !== "rest" &&
-      previousTemplate !== "rest" &&
+      continuesTextbookSection(
+        previousTemplate
+          ? {
+              unitKey: previousPage?.unitKey ?? "",
+              templateKey: previousTemplate,
+            }
+          : undefined,
+        section,
+      ) &&
       previousPage?.kind === "content" &&
       previousPage.unitKey === section.unitKey
     ) {

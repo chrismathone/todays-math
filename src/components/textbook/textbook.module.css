@@ -306,14 +306,25 @@
 }
 .measureHost {
   grid-column: 1 / -1;
+  min-width: 0;
+}
+.paperViewport {
+  width: 100%;
   overflow: auto;
+  padding: 6px;
 }
-.measureHost[data-zoom="fit"] {
-  height: 140mm;
+.paperFrame {
+  position: relative;
+  margin-inline: auto;
 }
-.measureHost[data-zoom="fit"] :global(.tb-spread) {
-  transform: scale(0.45);
+.paperSurface {
+  position: absolute;
+  width: max-content;
   transform-origin: top left;
+}
+.paperSurface :global(.tb-spread) {
+  width: max-content;
+  overflow: visible;
 }
 .page {
   min-height: 180px;
