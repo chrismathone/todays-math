@@ -14,8 +14,15 @@ import type { ListeningMediaRecord } from "../media/store";
 import {
   LISTENING_MAX_DOCUMENT_BYTES,
   LISTENING_MAX_OWNER_BYTES,
+  LISTENING_MAX_OWNER_ASSETS,
 } from "@/contracts/englishListeningSource.contract";
 import { planListeningWaveClip } from "../media/clip";
+import { decodeListeningMp3Clip } from "../media/mp3Clip";
+import { MAX_ORIGINAL_BYTES } from "../media/mp3";
+import {
+  assertListeningDatabaseCapacity,
+  lockListeningDatabaseCapacity,
+} from "../media/databaseCapacity";
 import { listeningValueHash } from "../publication";
 import {
   audit,
@@ -31,6 +38,57 @@ import {
   type SetRow,
 } from "./database";
 import { setDetail } from "./sets";
+import type { ListeningDriveApi } from "../media/driveApi";
+import { driveReadyRecord, insertDriveAsset } from "./driveAssets";
+import { insertStorageAsset, storageReadyRecord } from "./storageAssets";
+import type {
+  ListeningStorageApi,
+  ListeningStorageRef,
+} from "../media/storageApi";
+export interface ListeningComposeDrive {
+  api?: ListeningDriveApi;
+  storage?: ListeningStorageApi;
+  createdFiles: Set<string>;
+  createdStorageRefs?: ListeningStorageRef[];
+}
+async function scopedDrive(
+  record: ListeningMediaRecord,
+  target: { ownerId: string },
+  drive?: ListeningComposeDrive,
+) {
+  if (
+    !record.drive ||
+    !drive?.api ||
+    record.ownerId !== drive.api.config.ownerId ||
+    target.ownerId !== drive.api.config.ownerId ||
+    record.drive.ownerId !== record.ownerId ||
+    record.chunks.length ||
+    record.playback?.chunks.length ||
+    record.drive.endExclusive - record.drive.start !==
+      record.playback?.totalBytes
+  )
+    throw denied();
+  await drive.api.check(record.drive);
+  return drive.api;
+}
+async function scopedStorage(
+  record: ListeningMediaRecord,
+  drive?: ListeningComposeDrive,
+) {
+  if (
+    !record.storage ||
+    !drive?.storage ||
+    record.drive ||
+    record.storage.ownerId !== record.ownerId ||
+    record.chunks.length ||
+    record.playback?.chunks.length ||
+    record.storage.endExclusive - record.storage.start !==
+      record.playback?.totalBytes
+  )
+    throw denied();
+  await drive.storage.check(record.storage);
+  return drive.storage;
+}
 
 export async function composeSource(
   tx: ListeningTx,
@@ -47,6 +105,7 @@ async function cloneReadyAudio(
   source: SetRow,
   audio: NonNullable<ListeningDraft["groups"][number]["audio"]>,
   target: { id: string; ownerId: string; branchId: string | null },
+  drive?: ListeningComposeDrive,
 ) {
   const row = await one<{ record: ListeningMediaRecord }>(
     tx,
@@ -76,6 +135,47 @@ async function cloneReadyAudio(
     throw invalid(
       "담은 자료에 검증된 음원이 필요합니다. 원본 자료의 음원을 확인해 주세요.",
     );
+  if (original.storage) {
+    await scopedStorage(original, drive);
+    if (original.ownerId !== target.ownerId) throw denied();
+    const assetId = randomUUID(),
+      record: ListeningMediaRecord = {
+        ...original,
+        assetId,
+        setId: target.id,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+        completion: {
+          ...completion.data,
+          assetId,
+          setId: target.id,
+          ownerId: target.ownerId,
+          branchId: target.branchId,
+        },
+      };
+    await insertStorageAsset(tx, record);
+    return { ...audio, assetId };
+  }
+  if (original.drive) {
+    await scopedDrive(original, target, drive);
+    const assetId = randomUUID();
+    const record: ListeningMediaRecord = {
+      ...original,
+      assetId,
+      setId: target.id,
+      ownerId: target.ownerId,
+      branchId: target.branchId,
+      completion: {
+        ...completion.data,
+        assetId,
+        setId: target.id,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+      },
+    };
+    await insertDriveAsset(tx, record);
+    return { ...audio, assetId };
+  }
   const references = [...original.chunks, ...original.playback.chunks];
   const keys = [...new Set(references.map((item) => item.key))];
   if (!keys.length) throw invalid("원본 음원 파일이 없습니다.");
@@ -91,21 +191,26 @@ async function cloneReadyAudio(
         !blobs.some(
           (blob) =>
             blob.key === ref.key &&
-            blob.byteLength === ref.byteLength &&
+            Number.isSafeInteger(ref.blobOffset ?? 0) &&
+            (ref.blobOffset ?? 0) >= 0 &&
+            (ref.blobOffset ?? 0) + ref.byteLength <= blob.byteLength &&
+            (ref.blobOffset !== undefined ||
+              blob.byteLength === ref.byteLength) &&
             blob.committed,
         ),
     )
   )
     throw invalid("원본 음원 파일을 확인하지 못했습니다.");
   const bytes = blobs.reduce((total, blob) => total + blob.byteLength, 0);
+  await assertListeningDatabaseCapacity(tx, bytes);
   const quota = await one<{ bytes: bigint; count: bigint }>(
     tx,
-    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid`,
+    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL AND record->>'storageChunks' IS DISTINCT FROM 'true'`,
   );
   if (
     !quota ||
     Number(quota.bytes) + bytes > LISTENING_MAX_OWNER_BYTES ||
-    Number(quota.count) >= 128
+    Number(quota.count) >= LISTENING_MAX_OWNER_ASSETS
   )
     throw invalid("듣기 자료 보관 한도를 초과했습니다.");
   const assetId = randomUUID();
@@ -152,6 +257,7 @@ async function clipReadyAudio(
   questions: ListeningDraft["groups"][number]["questions"],
   target: { id: string; ownerId: string; branchId: string | null },
   now: string,
+  drive?: ListeningComposeDrive,
 ) {
   const audio = group.audio!;
   const row = await one<{ record: ListeningMediaRecord }>(
@@ -180,156 +286,281 @@ async function clipReadyAudio(
   )
     throw invalid("원본 자료의 검증된 음원이 필요합니다.");
   const playback = original.playback;
+  const external = original.drive
+    ? await scopedDrive(original, target, drive)
+    : null;
+  const storage = original.storage
+    ? await scopedStorage(original, drive)
+    : null;
+  if (storage && original.ownerId !== target.ownerId) throw denied();
   const sourceChunks = [...playback.chunks].sort((a, b) => a.offset - b.offset);
   let covered = 0;
   for (const chunk of sourceChunks) {
     if (
       chunk.offset !== covered ||
       chunk.byteLength <= 0 ||
-      chunk.byteLength > 1024 * 1024
+      chunk.byteLength > 1024 * 1024 ||
+      !Number.isSafeInteger(chunk.blobOffset ?? 0) ||
+      (chunk.blobOffset ?? 0) < 0
     )
       throw invalid("원본 음원 조각이 일치하지 않습니다.");
     covered += chunk.byteLength;
   }
-  if (covered !== playback.totalBytes)
+  if (!external && !storage && covered !== playback.totalBytes)
     throw invalid("원본 음원 길이가 일치하지 않습니다.");
   async function* readRange(start: number, endExclusive: number) {
+    if (storage) {
+      for await (const part of storage.read(
+        original!.storage!,
+        start,
+        endExclusive,
+      ))
+        yield Buffer.from(part);
+      return;
+    }
+    if (external) {
+      for await (const part of external.read(
+        original!.drive!,
+        start,
+        endExclusive,
+      ))
+        yield Buffer.from(part);
+      return;
+    }
     for (const chunk of sourceChunks) {
       const from = Math.max(start, chunk.offset);
       const to = Math.min(endExclusive, chunk.offset + chunk.byteLength);
       if (from >= to) continue;
       const blob = await one<{ bytes: Uint8Array }>(
         tx,
-        Prisma.sql`SELECT SUBSTRING(bytes FROM ${from - chunk.offset + 1}::integer FOR ${to - from}::integer) AS bytes FROM english_listening_media_blob WHERE key=${chunk.key}::uuid AND "assetId"=${audio.assetId}::uuid AND committed=true AND "byteLength"=${chunk.byteLength}`,
+        Prisma.sql`SELECT SUBSTRING(bytes FROM ${(chunk.blobOffset ?? 0) + from - chunk.offset + 1}::integer FOR ${to - from}::integer) AS bytes FROM english_listening_media_blob WHERE key=${chunk.key}::uuid AND "assetId"=${audio.assetId}::uuid AND committed=true AND "byteLength">=${(chunk.blobOffset ?? 0) + chunk.byteLength}`,
       );
       if (!blob || blob.bytes.byteLength !== to - from)
         throw invalid("원본 음원 조각을 확인하지 못했습니다.");
       yield Buffer.from(blob.bytes);
     }
   }
-  const headerParts: Buffer[] = [];
-  for await (const part of readRange(0, 44)) headerParts.push(part);
+  let decoded: Awaited<ReturnType<typeof decodeListeningMp3Clip>> | undefined;
+  let readPcmRange = readRange;
   let plan: ReturnType<typeof planListeningWaveClip>;
   try {
-    plan = planListeningWaveClip(
-      Buffer.concat(headerParts),
-      playback.totalBytes,
-      questions,
-    );
+    if (playback.mimeType === "audio/mpeg") {
+      if (playback.totalBytes > MAX_ORIGINAL_BYTES)
+        throw new Error("원본 MP3가 보관 한도를 초과했습니다.");
+      const originalBytes = Buffer.alloc(playback.totalBytes);
+      let position = 0;
+      for await (const part of readRange(0, playback.totalBytes)) {
+        originalBytes.set(part, position);
+        position += part.length;
+      }
+      if (
+        createHash("sha256").update(originalBytes).digest("hex") !==
+        playback.sha256
+      )
+        throw new Error("원본 음원 해시를 확인하지 못했습니다.");
+      decoded = await decodeListeningMp3Clip(originalBytes, questions);
+      if (decoded.sourceDurationMs !== audio.durationMs)
+        throw new Error("원본 음원 길이를 확인하지 못했습니다.");
+      plan = decoded.plan;
+      readPcmRange = decoded.readRange;
+    } else {
+      const headerParts: Buffer[] = [];
+      for await (const part of readRange(0, 44)) headerParts.push(part);
+      plan = planListeningWaveClip(
+        Buffer.concat(headerParts),
+        playback.totalBytes,
+        questions,
+      );
+    }
   } catch (error) {
+    await decoded?.dispose();
     throw invalid(
       error instanceof Error
         ? error.message
         : "문항 음원 구간을 확인해 주세요.",
     );
   }
-  const quota = await one<{ bytes: bigint; count: bigint }>(
-    tx,
-    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid`,
-  );
-  if (
-    !quota ||
-    Number(quota.bytes) + plan.totalBytes > LISTENING_MAX_OWNER_BYTES ||
-    Number(quota.count) >= 128
-  )
-    throw invalid("듣기 자료 보관 한도를 초과했습니다.");
-  const assetId = randomUUID();
-  const staged: ListeningMediaRecord = {
-    assetId,
-    setId: target.id,
-    ownerId: target.ownerId,
-    branchId: target.branchId,
-    revision: 0,
-    state: "uploading",
-    totalBytes: plan.totalBytes,
-    receivedBytes: 0,
-    mimeType: "audio/wav",
-    expectedSha256: "0".repeat(64),
-    chunkBytes: 1024 * 1024,
-    uploadExpiresAt: Date.parse(now),
-    chunks: [],
-  };
-  await tx.$executeRaw(
-    Prisma.sql`INSERT INTO english_listening_media_asset("assetId","ownerId","branchId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) VALUES(${assetId}::uuid,${target.ownerId}::uuid,${target.branchId}::uuid,${target.id}::uuid,0,'uploading',${new Date(staged.uploadExpiresAt)},${plan.totalBytes},${json(staged)})`,
-  );
-  const chunks: ListeningMediaRecord["chunks"] = [];
-  const hash = createHash("sha256");
-  let outputOffset = 0;
-  let pending = Buffer.alloc(0);
-  const write = async (buffer: Buffer) => {
-    const key = randomUUID();
-    hash.update(buffer);
-    const chunk = {
-      key,
-      offset: outputOffset,
-      byteLength: buffer.length,
-      sha256: createHash("sha256").update(buffer).digest("hex"),
-      expectedRevision: chunks.length,
-    };
-    await tx.$executeRaw(
-      Prisma.sql`INSERT INTO english_listening_media_blob(key,"assetId",bytes,"byteLength",committed) VALUES(${key}::uuid,${assetId}::uuid,${buffer},${buffer.length},true)`,
-    );
-    chunks.push(chunk);
-    outputOffset += buffer.length;
-  };
-  const append = async (buffer: Buffer) => {
-    pending = Buffer.concat([pending, buffer]);
-    while (pending.length >= staged.chunkBytes) {
-      await write(pending.subarray(0, staged.chunkBytes));
-      pending = pending.subarray(staged.chunkBytes);
+  try {
+    if (drive?.storage) {
+      const assetId = randomUUID();
+      const ref = await drive.storage.upload({
+        ownerId: target.ownerId,
+        assetId,
+        bytes: plan.totalBytes,
+        mimeType: "audio/wav",
+        read: async function* () {
+          yield plan.header;
+          for (const range of plan.ranges)
+            yield* readPcmRange(range.start, range.endExclusive);
+        },
+      });
+      drive!.createdStorageRefs!.push(ref);
+      const record = storageReadyRecord({
+        assetId,
+        setId: target.id,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+        storage: ref,
+        mimeType: "audio/wav",
+        sha256: ref.sha256,
+        durationMs: plan.durationMs,
+        now: Date.parse(now),
+      });
+      await insertStorageAsset(tx, record);
+      return {
+        audio: { assetId, sha256: ref.sha256, durationMs: plan.durationMs },
+        evidence: plan.evidenceByQuestionId,
+        audioRanges: plan.audioRangeByQuestionId,
+      };
     }
-  };
-  await append(plan.header);
-  for (const range of plan.ranges)
-    for await (const part of readRange(range.start, range.endExclusive))
-      await append(part);
-  if (pending.length) await write(pending);
-  if (outputOffset !== plan.totalBytes)
-    throw invalid("선택한 문항 음원을 완성하지 못했습니다.");
-  const sha256 = hash.digest("hex");
-  const record: ListeningMediaRecord = {
-    ...staged,
-    revision: 1,
-    state: "ready",
-    receivedBytes: plan.totalBytes,
-    expectedSha256: sha256,
-    chunks,
-    playback: {
-      revision: 1,
-      mimeType: "audio/wav",
-      sha256,
-      totalBytes: plan.totalBytes,
-      chunks,
-    },
-    completion: {
-      setId: target.id,
+    if (external) {
+      // The selected WAV is streamed to private Drive; PostgreSQL receives only
+      // its immutable binding. Keep a rollback list until the surrounding SQL commits.
+      const ref = await external.upload({
+        bytes: plan.totalBytes,
+        mimeType: "audio/wav",
+        name: "listening-selected-audio.wav",
+        read: async function* () {
+          yield plan.header;
+          for (const range of plan.ranges)
+            yield* readPcmRange(range.start, range.endExclusive);
+        },
+      });
+      drive!.createdFiles.add(ref.fileId);
+      const assetId = randomUUID();
+      const record = driveReadyRecord({
+        assetId,
+        setId: target.id,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+        drive: ref,
+        mimeType: "audio/wav",
+        sha256: ref.originalSha256,
+        durationMs: plan.durationMs,
+        now: Date.parse(now),
+      });
+      await insertDriveAsset(tx, record);
+      return {
+        audio: {
+          assetId,
+          sha256: ref.originalSha256,
+          durationMs: plan.durationMs,
+        },
+        evidence: plan.evidenceByQuestionId,
+        audioRanges: plan.audioRangeByQuestionId,
+      };
+    }
+    const quota = await one<{ bytes: bigint; count: bigint }>(
+      tx,
+      Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL AND record->>'storageChunks' IS DISTINCT FROM 'true'`,
+    );
+    if (
+      !quota ||
+      Number(quota.bytes) + plan.totalBytes > LISTENING_MAX_OWNER_BYTES ||
+      Number(quota.count) >= LISTENING_MAX_OWNER_ASSETS
+    )
+      throw invalid("듣기 자료 보관 한도를 초과했습니다.");
+    const assetId = randomUUID();
+    const staged: ListeningMediaRecord = {
       assetId,
+      setId: target.id,
       ownerId: target.ownerId,
       branchId: target.branchId,
-      revision: 1,
-      receivedBytes: plan.totalBytes,
+      revision: 0,
+      state: "uploading",
       totalBytes: plan.totalBytes,
-      chunkBytes: staged.chunkBytes,
-      uploadExpiresAt: staged.uploadExpiresAt,
-      verifiedAt: Date.parse(now),
-      state: "ready",
-      publishable: true,
+      receivedBytes: 0,
       mimeType: "audio/wav",
-      sha256,
-      originalSha256: sha256,
-      durationMs: plan.durationMs,
-      playbackBytes: plan.totalBytes,
-      playbackRevision: 1,
-    },
-  };
-  await tx.$executeRaw(
-    Prisma.sql`UPDATE english_listening_media_asset SET revision=1,state='ready',record=${json(record)} WHERE "assetId"=${assetId}::uuid AND revision=0`,
-  );
-  return {
-    audio: { assetId, sha256, durationMs: plan.durationMs },
-    evidence: plan.evidenceByQuestionId,
-    audioRanges: plan.audioRangeByQuestionId,
-  };
+      expectedSha256: "0".repeat(64),
+      chunkBytes: 1024 * 1024,
+      uploadExpiresAt: Date.parse(now),
+      chunks: [],
+    };
+    await assertListeningDatabaseCapacity(tx, plan.totalBytes);
+    await tx.$executeRaw(
+      Prisma.sql`INSERT INTO english_listening_media_asset("assetId","ownerId","branchId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) VALUES(${assetId}::uuid,${target.ownerId}::uuid,${target.branchId}::uuid,${target.id}::uuid,0,'uploading',${new Date(staged.uploadExpiresAt)},${plan.totalBytes},${json(staged)})`,
+    );
+    const chunks: ListeningMediaRecord["chunks"] = [];
+    const hash = createHash("sha256");
+    let outputOffset = 0;
+    let pending = Buffer.alloc(0);
+    const write = async (buffer: Buffer) => {
+      const key = randomUUID();
+      hash.update(buffer);
+      const chunk = {
+        key,
+        offset: outputOffset,
+        byteLength: buffer.length,
+        sha256: createHash("sha256").update(buffer).digest("hex"),
+        expectedRevision: chunks.length,
+      };
+      await tx.$executeRaw(
+        Prisma.sql`INSERT INTO english_listening_media_blob(key,"assetId",bytes,"byteLength",committed) VALUES(${key}::uuid,${assetId}::uuid,${buffer},${buffer.length},true)`,
+      );
+      chunks.push(chunk);
+      outputOffset += buffer.length;
+    };
+    const append = async (buffer: Buffer) => {
+      pending = Buffer.concat([pending, buffer]);
+      while (pending.length >= staged.chunkBytes) {
+        await write(pending.subarray(0, staged.chunkBytes));
+        pending = pending.subarray(staged.chunkBytes);
+      }
+    };
+    await append(plan.header);
+    for (const range of plan.ranges)
+      for await (const part of readPcmRange(range.start, range.endExclusive))
+        await append(part);
+    if (pending.length) await write(pending);
+    if (outputOffset !== plan.totalBytes)
+      throw invalid("선택한 문항 음원을 완성하지 못했습니다.");
+    const sha256 = hash.digest("hex");
+    const record: ListeningMediaRecord = {
+      ...staged,
+      revision: 1,
+      state: "ready",
+      receivedBytes: plan.totalBytes,
+      expectedSha256: sha256,
+      chunks,
+      playback: {
+        revision: 1,
+        mimeType: "audio/wav",
+        sha256,
+        totalBytes: plan.totalBytes,
+        chunks,
+      },
+      completion: {
+        setId: target.id,
+        assetId,
+        ownerId: target.ownerId,
+        branchId: target.branchId,
+        revision: 1,
+        receivedBytes: plan.totalBytes,
+        totalBytes: plan.totalBytes,
+        chunkBytes: staged.chunkBytes,
+        uploadExpiresAt: staged.uploadExpiresAt,
+        verifiedAt: Date.parse(now),
+        state: "ready",
+        publishable: true,
+        mimeType: "audio/wav",
+        sha256,
+        originalSha256: sha256,
+        durationMs: plan.durationMs,
+        playbackBytes: plan.totalBytes,
+        playbackRevision: 1,
+      },
+    };
+    await tx.$executeRaw(
+      Prisma.sql`UPDATE english_listening_media_asset SET revision=1,state='ready',record=${json(record)} WHERE "assetId"=${assetId}::uuid AND revision=0`,
+    );
+    return {
+      audio: { assetId, sha256, durationMs: plan.durationMs },
+      evidence: plan.evidenceByQuestionId,
+      audioRanges: plan.audioRangeByQuestionId,
+    };
+  } finally {
+    await decoded?.dispose();
+  }
 }
 
 export async function composeListeningSet(
@@ -337,6 +568,7 @@ export async function composeListeningSet(
   account: AccountAccess,
   input: unknown,
   now: string,
+  drive?: ListeningComposeDrive,
 ) {
   const data = listeningComposeInputSchema.parse(input);
   const sourceIds = [
@@ -386,6 +618,22 @@ export async function composeListeningSet(
       ...[...sources.values()].map((source) => source.owner_id),
     ]),
   ].sort();
+  // Binary operations acquire the database lock before any owner/asset lock.
+  // Metadata-only Drive/Storage operations never reserve PostgreSQL audio bytes.
+  const mayWritePostgres = selections.filter(
+    (item) =>
+      !drive?.storage ||
+      (item.questions.length === item.group.questions.length &&
+        item.questions.every(
+          (question, index) => question.id === item.group.questions[index].id,
+        )),
+  );
+  if (mayWritePostgres.length) {
+    const [row] = await tx.$queryRaw<{ count: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "assetId" IN (${Prisma.join(mayWritePostgres.map((item) => Prisma.sql`${item.group.audio!.assetId}::uuid`))}) AND record->'drive' IS NULL AND record->'storage' IS NULL AND record->>'storageChunks' IS DISTINCT FROM 'true'`,
+    );
+    if (Number(row.count) > 0) await lockListeningDatabaseCapacity(tx);
+  }
   for (const id of ownerIds)
     await tx.$executeRaw(
       Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${id}`},0))`,
@@ -449,10 +697,17 @@ export async function composeListeningSet(
           item.questions,
           target,
           now,
+          drive,
         );
     const audio =
       clip?.audio ??
-      (await cloneReadyAudio(tx, item.source, item.group.audio!, target));
+      (await cloneReadyAudio(
+        tx,
+        item.source,
+        item.group.audio!,
+        target,
+        drive,
+      ));
     const questions = item.questions.map((question) => {
       const choiceIds = new Map(
         question.choices.map((choice) => [choice.id, randomUUID()]),

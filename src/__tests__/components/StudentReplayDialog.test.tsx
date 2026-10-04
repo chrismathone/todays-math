@@ -10,6 +10,24 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import StudentReplayDialog from "@/components/math-srs/StudentReplayDialog";
 import type { MathSrsReplay } from "@/contracts/mathSrsReplay.contract";
 
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math/ProblemContent", () => ({
@@ -18,7 +36,10 @@ vi.mock("@/components/math/ProblemContent", () => ({
 vi.mock("@/components/math/MathText", () => ({
   MathText: ({ text }: { text: string }) => <span>{text}</span>,
 }));
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => {
+  vi.unstubAllGlobals();
+  vi.clearAllMocks();
+});
 
 const problem: MathSrsReplay = {
   kind: "elementary",
@@ -86,6 +107,7 @@ describe("completed tile replay", () => {
       <StudentReplayDialog kind="elementary" step={2} onClose={vi.fn()} />,
     );
     await screen.findByRole("group", { name: "복습 답 고르기" });
+    expect(sounds.play).not.toHaveBeenCalled();
     expect(
       container.querySelector("[data-answer-feedback]"),
     ).not.toBeInTheDocument();
@@ -128,6 +150,11 @@ describe("completed tile replay", () => {
     expect(fetcher.mock.calls[0][0]).toContain(
       `dayId=${encodeURIComponent(dayId)}`,
     );
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `replay:elementary:${dayId}:1:${problem.problemId}:1`,
+    );
+    expect(sounds.gesture).toHaveBeenCalledOnce();
     expect(JSON.parse(fetcher.mock.calls[1][1].body)).toMatchObject({
       dayId,
       step: 1,

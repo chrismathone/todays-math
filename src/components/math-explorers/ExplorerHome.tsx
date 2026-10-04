@@ -20,6 +20,11 @@ import DailyJourneyBoard, {
   type DailyJourneyDay,
 } from "@/components/math-srs/DailyJourneyBoard";
 import { useLearningMotion } from "@/components/math-srs/LearningMotion";
+import {
+  useHasLearningSounds,
+  useLearningSounds,
+} from "@/components/math-srs/LearningSounds";
+import type { LearningSoundStatus } from "@/lib/math-srs/learningSoundEngine";
 import { kstDateOf } from "@/lib/kstDate";
 import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import {
@@ -226,14 +231,16 @@ export function ExplorerSheet({
  * 이 기기의 «움직임 줄이기»(3자 합의 v2 9항, 2026-10-04) — 학습 기록이 아니라 기기 설정이다.
  * 학년 · 단원 잠금, 상자 저장, 다른 요청과 무관하게 눌리고 서버에 아무것도 보내지 않는다.
  * 기기(OS)가 이미 줄이고 있으면 앱에서 끌 수 없다 — 켜진 채 잠기고 까닭을 말한다(보이는 값 = 실제 상태).
+ * 같은 덩이의 «효과음»은 `SoundSetting` 이 그린다.
  */
-function MotionSetting() {
+function DeviceSettings() {
   const {
     reduceMotion,
     appReducedMotion,
     osReducedMotion,
     setAppReducedMotion,
   } = useLearningMotion();
+  const hasSounds = useHasLearningSounds();
   const headingId = useId();
   const noteId = useId();
   return (
@@ -259,7 +266,61 @@ function MotionSetting() {
           ? "기기 설정에 따라 움직임을 줄이고 있어요."
           : "말이 움직이는 모습과 효과를 줄여요. 이 기기에만 저장돼요."}
       </p>
+      {hasSounds ? <SoundSetting /> : null}
     </section>
+  );
+}
+
+/** 효과음이 지금 어떤지는 이 줄만 말한다 — 풀이 화면에서는 실패도 조용하다. */
+const SOUND_NOTE: Record<LearningSoundStatus, string> = {
+  off: "켜면 답을 확인할 때 짧은 소리가 나요. 이 기기에만 저장돼요.",
+  idle: "미리 듣기를 누르면 소리를 준비해요. 이 기기에만 저장돼요.",
+  loading: "소리를 준비하는 중이에요. 이 기기에만 저장돼요.",
+  ready: "소리가 준비됐어요. 이 기기에만 저장돼요.",
+  unavailable: "지금은 소리를 낼 수 없어요. 풀이는 그대로 할 수 있어요.",
+};
+
+/**
+ * 이 기기의 «효과음»(3자 합의 사운드 v3 2항, 2026-10-04) — 움직임 줄이기와 같은 문법이고 서로 독립이다.
+ * 기본은 꺼짐. 켜기는 소리를 준비만 하고, «미리 듣기»는 켜진 때만 눌리며 준비된 뒤 누를 때 한 번 난다
+ * (준비 중에 누른 것은 버린다 — 나중에 저절로 나지 않는다).
+ * 효과음 공급자 밖(교사 · 개발 화면)에서는 그리지 않는다 — 눌러도 소리가 없는 스위치가 되기 때문이다.
+ */
+function SoundSetting() {
+  const { enabled, status, setEnabled, preview } = useLearningSounds();
+  const noteId = useId();
+  return (
+    // `data-learning-sound-status` 는 브라우저 검증이 준비됨을 기다리는 표지다.
+    <div className={a.sound} data-learning-sound-status={status}>
+      <div className={a.soundControls}>
+        <button
+          type="button"
+          role="switch"
+          className={a.motionSwitch}
+          aria-checked={enabled}
+          aria-describedby={noteId}
+          onClick={() => setEnabled(!enabled)}
+        >
+          <span>효과음</span>
+          <span className={a.switchState} aria-hidden="true">
+            {enabled ? "켜짐" : "꺼짐"}
+            <span className={a.switchTrack} />
+          </span>
+        </button>
+        <button
+          type="button"
+          className={a.soundPreview}
+          aria-describedby={noteId}
+          disabled={!enabled}
+          onClick={preview}
+        >
+          미리 듣기
+        </button>
+      </div>
+      <p id={noteId} className={a.deviceNote} aria-live="polite">
+        {SOUND_NOTE[status]}
+      </p>
+    </div>
   );
 }
 
@@ -632,7 +693,7 @@ export default function ExplorerHome({
       {sheet === "settings" ? (
         <ExplorerSheet title="학습 설정" onClose={closeSheet}>
           {/* 기기 설정은 맨 위 — 아래 학년 · 단원이 잠겨 있어도(미션 진행 중 · 저장 중) 눌린다. */}
-          <MotionSetting />
+          <DeviceSettings />
           <p className={`${s.quietNote} ${a.sheetNote}`}>
             {settingsLocked
               ? "진행 중인 오늘의 탐험을 마치면 설정을 바꿀 수 있어요."

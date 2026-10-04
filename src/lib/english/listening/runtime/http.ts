@@ -10,6 +10,12 @@ import {
 } from "@/contracts/englishListeningMedia.contract";
 import { ListeningMediaError } from "../media/errors";
 import { createListeningMediaService } from "../media/service";
+import { createListeningDriveApi } from "../media/driveApi";
+import { readListeningDriveConfig } from "../media/driveConfig";
+import {
+  createListeningStorageApi,
+  readListeningStorageConfig,
+} from "../media/storageApi";
 import { PrismaListeningMediaStore } from "../media/prismaStore";
 import { createListeningRuntime } from "./service";
 import {
@@ -31,8 +37,15 @@ import {
   LISTENING_MAX_DOCUMENT_BYTES,
 } from "@/contracts/englishListeningSource.contract";
 
-const runtime = createListeningRuntime(db);
+const driveConfig = readListeningDriveConfig();
+const drive = driveConfig ? createListeningDriveApi(driveConfig) : null;
+const storageConfig = readListeningStorageConfig();
+const storage = storageConfig ? createListeningStorageApi(storageConfig) : null;
+const runtime = createListeningRuntime(db, undefined, { drive, storage });
 const media = createListeningMediaService({
+  drive,
+  storage,
+  mp3PlaybackEncoding: "scrubbed_mp3",
   store: new PrismaListeningMediaStore(db),
   ...createListeningMediaAccess(db),
   limits: {

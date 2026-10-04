@@ -22,6 +22,7 @@ export const listeningDraftQuestionSchema = z.strictObject({
   instruction: listeningGroupSchema.shape.questions.element.shape.instruction,
   image: listeningGroupSchema.shape.questions.element.shape.image,
   sourceNumber: listeningGroupSchema.shape.questions.element.shape.sourceNumber,
+  metadata: listeningGroupSchema.shape.questions.element.shape.metadata,
   audioRange: listeningGroupSchema.shape.questions.element.shape.audioRange,
   choices: z
     .array(z.strictObject({ id: z.uuid(), text: z.string().max(2000) }))

@@ -85,6 +85,11 @@ const TEST_CONSOLE_RULES: readonly Rule[] = [
 const ACTIVE_RULES: readonly Rule[] = [
   {
     methods: PAGE,
+    path: "/audio/math-learning/**",
+    why: "학생 수학 학습의 공개 효과음",
+  },
+  {
+    methods: PAGE,
     path: "/q/{id}",
     why: "배정된 교재의 QR — 서버가 매 요청 권한 확인",
   },

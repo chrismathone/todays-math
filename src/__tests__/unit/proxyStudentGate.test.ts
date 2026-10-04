@@ -110,6 +110,7 @@ const LEARN_APIS = [
   "/api/learn/math-explorers",
 ];
 const STATIC = [
+  "/audio/math-learning/correct.wav",
   "/favicon.ico",
   "/icon.svg",
   "/apple-icon.png",
@@ -228,6 +229,29 @@ beforeEach(() => {
   vi.mocked(recordAudit).mockClear();
 });
 
+describe("learning WAV proxy access", () => {
+  it.each(["student", "anonymous"])(
+    "allows %s GET/HEAD, blocks writes and sibling prefixes",
+    async (who) => {
+      session.mockReturnValue(who === "student" ? studentSession(false) : null);
+      for (const method of ["GET", "HEAD"]) {
+        expect(
+          passed(await run(method, "/audio/math-learning/correct.wav")),
+        ).toBe(true);
+        for (const pathname of [
+          "/audio/other.wav",
+          "/audio/math-learning-extra/correct.wav",
+        ])
+          expect(passed(await run(method, pathname))).toBe(false);
+      }
+      expect(
+        passed(await run("POST", "/audio/math-learning/correct.wav")),
+      ).toBe(false);
+      expect(recordAudit).not.toHaveBeenCalled();
+    },
+  );
+});
+
 describe("모집단 — 파일 목록에서 뽑았다 (분모부터 검산)", () => {
   it("page·route 파일을 실제로 읽었다", () => {
     expect(PAGE_FILES.length).toBeGreaterThanOrEqual(10);
@@ -308,6 +332,8 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         ...SIGNED_RECEIVER,
         ...EXIT,
         ...brand,
+        "GET /audio/math-learning/correct.wav",
+        "HEAD /audio/math-learning/correct.wav",
         ...LAB,
       ].sort(),
     );

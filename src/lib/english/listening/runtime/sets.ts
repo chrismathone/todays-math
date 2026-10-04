@@ -19,6 +19,7 @@ import {
   validateListeningPublication,
 } from "../publication";
 import { publishListeningWithVerifiedMedia } from "../verifiedPublication";
+import { listeningQuestionMetadata } from "../metadata";
 import {
   audit,
   denied,
@@ -151,6 +152,13 @@ export async function updateSet(
       previous.translation === group.transcript.translation;
     return {
       ...group,
+      questions: group.questions.map((question) => ({
+        ...question,
+        metadata: listeningQuestionMetadata(question, {
+          source: row.document.source,
+          level: data.level,
+        }),
+      })),
       transcript: {
         ...group.transcript,
         revision: previous ? previous.revision + (unchanged ? 0 : 1) : 1,

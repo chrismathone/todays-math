@@ -30,6 +30,11 @@ import type { JourneyThemeId } from "@/lib/math-explorers/journeyThemes";
 import ExplorerBankActivity from "./ExplorerBankActivity";
 import { JourneyArtProvider } from "./JourneyArt";
 import { LearningMotionScope } from "@/components/math-srs/LearningMotion";
+import {
+  LearningSoundsProvider,
+  useLearningSounds,
+} from "@/components/math-srs/LearningSounds";
+import { learningSoundCue } from "@/components/math-srs/learningSoundCue";
 import ExplorerPractice from "./ExplorerPractice";
 import ExplorerSessionIntro from "./ExplorerSessionIntro";
 import {
@@ -109,13 +114,15 @@ export default function StudentMathExplorers({
   // 테마 소품(상자 · 기지 · 별) — 효과 · 은행 미션까지 한 벌로 따른다.
   return (
     <LearningMotionScope>
-      <JourneyArtProvider theme={journeyTheme}>
-        <ExplorerGame
-          key={initialView ?? "expedition"}
-          initialView={initialView}
-          journeyTheme={journeyTheme}
-        />
-      </JourneyArtProvider>
+      <LearningSoundsProvider>
+        <JourneyArtProvider theme={journeyTheme}>
+          <ExplorerGame
+            key={initialView ?? "expedition"}
+            initialView={initialView}
+            journeyTheme={journeyTheme}
+          />
+        </JourneyArtProvider>
+      </LearningSoundsProvider>
     </LearningMotionScope>
   );
 }
@@ -128,6 +135,14 @@ function ExplorerGame({
   journeyTheme?: JourneyThemeId;
 }) {
   const router = useRouter();
+  const { gesture, play, resetStudent } = useLearningSounds();
+  const soundEpoch = useRef(0);
+  const tileSound = useRef({
+    studentId: null as string | null,
+    sawIncomplete: false,
+    confirmed: false,
+    played: false,
+  });
   const [state, setState] = useState<ExplorerState | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Failure | null>(null);
@@ -194,13 +209,31 @@ function ExplorerGame({
     };
   }, []);
 
-  const showTile = useCallback((stars: number) => {
-    if (tileTimer.current) clearTimeout(tileTimer.current);
-    setTileStars(stars);
-    tileTimer.current = setTimeout(() => {
-      if (alive.current) setTileStars(null);
-    }, EFFECT_MS);
-  }, []);
+  const showTile = useCallback(
+    (stars: number) => {
+      if (tileTimer.current) clearTimeout(tileTimer.current);
+      setTileStars(stars);
+      const eligibility = tileSound.current;
+      const data = latest.current;
+      if (
+        data?.student.id === eligibility.studentId &&
+        data.expedition?.completedToday &&
+        eligibility.sawIncomplete &&
+        eligibility.confirmed &&
+        !eligibility.played
+      ) {
+        eligibility.played = true;
+        play(
+          "complete",
+          `complete:${data.student.id}:${data.expedition.mission?.id ?? "today"}`,
+        );
+      }
+      tileTimer.current = setTimeout(() => {
+        if (alive.current) setTileStars(null);
+      }, EFFECT_MS);
+    },
+    [play],
+  );
 
   // D-144 칸 효과: 화면에 보이던 «오늘 칸 없음»이 «있음»으로 바뀐 순간 한 번(개념 날은 정답 연출 뒤, 은행 날은 돌아온 뒤).
   // 처음 불러온 화면 · 새로고침은 바뀐 것이 아니라 띄우지 않는다.
@@ -209,6 +242,13 @@ function ExplorerGame({
     if (complete === undefined) return;
     const before = shownComplete.current;
     shownComplete.current = complete;
+    if (!complete) {
+      if (before === true) {
+        tileSound.current.confirmed = false;
+        tileSound.current.played = false;
+      }
+      tileSound.current.sawIncomplete = true;
+    }
     const stars = state?.expedition?.todayStars;
     if (before !== false || !complete || !stars) return;
     if (sheetOpen.current) waitingTile.current = stars.cards + stars.bonus;
@@ -275,6 +315,21 @@ function ExplorerGame({
           }
           data = again;
         }
+        resetStudent(data.student.id);
+        if (tileSound.current.studentId !== data.student.id) {
+          soundEpoch.current++;
+          tileSound.current = {
+            studentId: data.student.id,
+            sawIncomplete: false,
+            confirmed: false,
+            played: false,
+          };
+          shownComplete.current = null;
+          waitingTile.current = null;
+          confirmedAnswers.current.clear();
+          setReplay(null);
+          setReviewChoices(null);
+        }
         latest.current = data;
         setState(data);
         setError(null);
@@ -298,10 +353,21 @@ function ExplorerGame({
       controller.abort();
       clearTimeout(timeout);
     };
-  }, [reload, router]);
+  }, [reload, router, resetStudent]);
 
   async function send(action: ExplorerAction, sameRequest?: ExplorerRequest) {
     if (!state || pending.current || claimQueue.current.length) return;
+    const soundTurn = soundEpoch.current;
+    if (
+      action.type === "start" ||
+      action.type === "expedition-start" ||
+      action.type === "supplement-start" ||
+      action.type === "retry-unresolved" ||
+      action.type === "answer" ||
+      action.type === "supplement-answer" ||
+      (action.type.startsWith("lab-") && action.type !== "lab-solution")
+    )
+      gesture();
     pending.current = true;
     setBusy(true);
     setError(null);
@@ -374,6 +440,23 @@ function ExplorerGame({
         !confirmedAnswers.current.has(answerEvent)
       ) {
         confirmedAnswers.current.add(answerEvent);
+        if (confirmedAnswers.current.size > 16) {
+          const oldest = confirmedAnswers.current.values().next().value;
+          if (oldest !== undefined) confirmedAnswers.current.delete(oldest);
+        }
+        if (soundEpoch.current === soundTurn) {
+          if (
+            tileSound.current.studentId === input.studentId &&
+            tileSound.current.sawIncomplete
+          )
+            tileSound.current.confirmed = true;
+          // All workshop actions remain silent, but a confirmed answer grants tile eligibility.
+          const cue = learningSoundCue(
+            action as Parameters<typeof learningSoundCue>[0],
+            data.feedback.correct,
+          );
+          if (cue) play(cue, answerEvent);
+        }
         held = true;
         setCorrect(data.feedback.correct);
         setEffectKey(input.requestId);
@@ -683,6 +766,7 @@ function ExplorerGame({
   function startAfterIntro() {
     const id = state?.session?.id;
     if (!id) return;
+    gesture();
     markSessionIntroSeen(id);
     setIntroStarted(id);
   }
@@ -703,11 +787,14 @@ function ExplorerGame({
   }
   function refresh() {
     if (busy) return;
+    soundEpoch.current++;
+    tileSound.current.confirmed = false;
     setLoading(true);
     setReload((value) => value + 1);
   }
   function resume() {
     if (busy) return;
+    gesture();
     setPracticing(true);
     window.scrollTo({ top: 0, behavior: "instant" });
   }
@@ -747,7 +834,9 @@ function ExplorerGame({
   }
   function exitBank() {
     setBankKind(null);
+    const confirmed = tileSound.current.confirmed;
     refresh();
+    tileSound.current.confirmed = confirmed;
     window.scrollTo({ top: 0, behavior: "instant" });
   }
   function exitPractice() {
@@ -775,6 +864,13 @@ function ExplorerGame({
         kind={bankKind}
         onExit={exitBank}
         onComplete={exitBank}
+        onConfirmedAnswer={(studentId) => {
+          if (
+            tileSound.current.studentId === studentId &&
+            tileSound.current.sawIncomplete
+          )
+            tileSound.current.confirmed = true;
+        }}
       />
     );
 

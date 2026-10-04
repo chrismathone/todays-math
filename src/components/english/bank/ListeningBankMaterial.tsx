@@ -1,6 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import {
+  LISTENING_QUESTION_ORIGIN_LABELS,
+  LISTENING_QUESTION_TYPE_LABELS,
+} from "@/contracts/englishListeningMetadata.contract";
 import { useEffect, useRef, useState } from "react";
 import type {
   ListeningComposeSelection,
@@ -109,6 +113,19 @@ function MaterialGroup({
                   </strong>
                 </span>
               </label>
+              {question.metadata && (
+                <p className={b.meta}>
+                  {LISTENING_QUESTION_ORIGIN_LABELS[question.metadata.origin]} ·{" "}
+                  {
+                    LISTENING_QUESTION_TYPE_LABELS[
+                      question.metadata.questionType
+                    ]
+                  }
+                  {question.metadata.topics.length
+                    ? ` · ${question.metadata.topics.join(" · ")}`
+                    : ""}
+                </p>
+              )}
               {question.image ? (
                 <Image
                   className={c.questionImage}

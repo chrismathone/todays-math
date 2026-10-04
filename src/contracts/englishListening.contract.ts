@@ -1,6 +1,7 @@
 /** Listening domain contract. Parse strictly; never downgrade an unknown schema. */
 import { z } from "zod";
 import { englishV2RightsSchema } from "./englishV2.contract";
+import { listeningQuestionMetadataSchema } from "./englishListeningMetadata.contract";
 import {
   listeningAssessmentSourceSchema,
   listeningQuestionImageSchema,
@@ -35,6 +36,7 @@ export const listeningQuestionSchema = z.strictObject({
   instruction: text(2000).optional(),
   image: listeningQuestionImageSchema.optional(),
   sourceNumber: z.number().int().min(1).max(100).optional(),
+  metadata: listeningQuestionMetadataSchema.optional(),
   audioRange: listeningEvidenceSchema.optional(),
   choices: z.array(listeningChoiceSchema).min(2).max(5),
   answerChoiceId: id,
