@@ -12,6 +12,7 @@ import {
 import { EDITORIAL_CSS } from "./editorialCss";
 import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
 import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
+import { SOURCE_PROBLEM_CSS } from "./sourceProblemCss";
 import {
   renderAutomaticIntroHtml,
   AUTOMATIC_INTRO_CSS,
@@ -48,7 +49,7 @@ export function renderBlockHtml(
 ): string {
   const projected = block as EditorialBlock;
   const stage = editorialStage(projected);
-  return `<div class="tb-editorial${block.semantic || block.dialogueGuide || block.dialogueLesson ? " tb-recovery" : ""} tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}">${renderBlockContent(projected, resources, stage)}</div>`;
+  return `<div class="tb-editorial${block.semantic || block.dialogueGuide || block.dialogueLesson ? " tb-recovery" : ""} tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}"${block.semantic?.source ? ` data-source-kind="${esc(block.semantic.source.kind)}"` : ""}>${renderBlockContent(projected, resources, stage)}</div>`;
 }
 function renderBlockContent(
   block: EditorialBlock,
@@ -117,6 +118,7 @@ ${DIALOGUE_CSS}
 ${SEMANTIC_ACTIVITY_CSS}
 ${RECOVERY_FRAME_CSS}
 ${SOURCE_CHAPTER_CSS}
+${SOURCE_PROBLEM_CSS}
 ${AUTOMATIC_INTRO_CSS}
 `;
 
@@ -244,20 +246,48 @@ export function renderPageHtml(
         block.kind === "recall" &&
         block.semantic?.source?.kind === "fullmaster",
     );
-  const sourceFooter = sourceMemoryPage
-    ? sourceMemoryBlocks.find((block) => block.semantic?.sourceFooter)?.semantic
-        ?.sourceFooter
-    : undefined;
+  const sourceFooter = sourceMemoryBlocks.find(
+    (block) => block.semantic?.source && block.semantic.sourceFooter,
+  )?.semantic?.sourceFooter;
   // The original content box includes the final master's 2.5mm bottom margin.
   if (sourceMemoryPage) bodyEnd += 2.5;
   const sourceFooterHtml = sourceFooter
-    ? `<aside class="tb-source-study-footer" data-anchor="source-study-footer" style="left:${left}mm;right:${right}mm">${renderSourceFragments(sourceFooter, resources)}</aside>`
+    ? `<aside class="${sourceMemoryPage ? "tb-source-study-footer" : "tb-source-page-footer"}" data-anchor="${sourceMemoryPage ? "source-study-footer" : "source-page-footer"}" style="left:${left}mm;right:${right}mm">${renderSourceFragments(sourceFooter, resources)}</aside>`
     : "";
   const groupedIds = new Set<string>();
   const bodyHtml = bodyBlocks
-    .map((placement) => {
+    .map((placement, index) => {
       if (groupedIds.has(placement.blockId)) return "";
       const block = blocks.get(placement.blockId)!;
+      if (
+        block.kind === "problem" &&
+        block.semantic?.source &&
+        block.semantic.node?.kind !== "exampleGroup" &&
+        block.layout.columnSpan === 1
+      ) {
+        const members = [];
+        for (const candidate of bodyBlocks.slice(index)) {
+          const member = blocks.get(candidate.blockId)!;
+          if (
+            member.kind !== "problem" ||
+            !member.semantic?.source ||
+            member.semantic.source.kind !== block.semantic.source.kind ||
+            member.semantic.node?.kind === "exampleGroup" ||
+            member.layout.columnSpan !== 1
+          )
+            break;
+          members.push(candidate);
+          groupedIds.add(candidate.blockId);
+        }
+        const height =
+          Math.max(...members.map((member) => member.yMm + member.heightMm)) -
+          placement.yMm;
+        const grid =
+          block.semantic.source.kind === "drill"
+            ? "drill-grid"
+            : "question-grid";
+        return `<section class="tb-source-question-grid ${grid}" style="left:0;top:${placement.yMm - bodyTop}mm;width:${210 - left - right}mm;height:${height}mm">${members.map((member) => placementHtml(member, left, placement.yMm)).join("")}</section>`;
+      }
       const group =
         block.kind === "text" && block.semantic?.node?.kind === "exampleGroup"
           ? block.semantic.node

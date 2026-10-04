@@ -255,10 +255,21 @@ export const textbookSemanticSchema = z
       .min(1)
       .max(50)
       .optional(),
+    /** Native question heading children, preserved separately from its immutable prompt. */
+    sourceQuestionHeader: z
+      .array(textbookSourceFragmentSchema)
+      .min(1)
+      .max(30)
+      .optional(),
     node: textbookSemanticNodeSchema.optional(),
   })
   .superRefine((value, ctx) => {
-    if (value.node?.kind !== "fragments" && !value.sourceFooter) return;
+    if (
+      value.node?.kind !== "fragments" &&
+      !value.sourceFooter &&
+      !value.sourceQuestionHeader
+    )
+      return;
     let count = 0;
     const walk = (nodes: TextbookSourceFragment[], depth: number): boolean => {
       if (depth > 20) return false;
@@ -274,6 +285,7 @@ export const textbookSemanticSchema = z
     const fragments = [
       ...(value.node?.kind === "fragments" ? value.node.fragments : []),
       ...(value.sourceFooter ?? []),
+      ...(value.sourceQuestionHeader ?? []),
     ];
     if (!walk(fragments, 1))
       ctx.addIssue({

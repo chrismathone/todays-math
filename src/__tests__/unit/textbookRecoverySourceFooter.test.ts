@@ -27,6 +27,59 @@ const footer: TextbookSourceFragment[] = [
 ];
 
 describe("original memory page footer", () => {
+  it("preserves a source question page's authored checkbar outside its question grid", () => {
+    const exchange = textbookFixture(1, 2);
+    const section = exchange.units[0].sections[0];
+    section.templateKey = "reference-scriptcheck";
+    section.startPolicy = "continue";
+    const authoredFooter: TextbookSourceFragment[] = [
+      {
+        tag: "div",
+        attributes: { className: "checkbar" },
+        children: [
+          { tag: "strong", rawText: "합성 질문 확인" },
+          { tag: "span", rawText: "합성 표시" },
+        ],
+      },
+    ];
+    section.blocks.forEach((block, index) => {
+      block.semantic = {
+        activity: "dialogueCheck",
+        source: {
+          unit: "U01",
+          page: 17,
+          kind: "scriptcheck",
+          path: `synthetic[${index}]`,
+        },
+        ...(index === 0 ? { sourceFooter: authoredFooter } : {}),
+      };
+    });
+    const before = canonicalJson(exchange);
+    const model = createTextbookRenderModel(exchange, "student");
+    const layout = paginateTextbookSections(
+      model.sections,
+      model.sections.flatMap((s) =>
+        s.blocks.map((block) => ({
+          blockId: block.id,
+          widthMm: blockWidthMm(model.config, block),
+          heightMm: block.kind === "heading" ? 30 : 70,
+        })),
+      ),
+      model.config,
+      { firstPhysicalPageIndex: 17 },
+    );
+    const html = renderPageHtml(layout.pages[0], model, {
+      assetUrl: () => "",
+      qrDataUrl: () => "data:image/png;base64,AA==",
+    });
+    expect(html.match(/data-anchor="source-page-footer"/g)).toHaveLength(1);
+    expect(html).toContain("합성 질문 확인");
+    expect(html).toContain("tb-source-question-grid question-grid");
+    expect(html.indexOf("tb-source-page-footer")).toBeGreaterThan(
+      html.indexOf("tb-source-question-grid"),
+    );
+    expect(canonicalJson(exchange)).toBe(before);
+  });
   it.each(["study", "keywords", "sentences"] as const)(
     "preserves one public fixed footer outside the %s content box",
     (phase) => {
@@ -106,6 +159,10 @@ describe("original memory page footer", () => {
       node = { tag: "div", children: [node] };
     expect(
       textbookSemanticSchema.safeParse({ ...old, sourceFooter: [node] })
+        .success,
+    ).toBe(false);
+    expect(
+      textbookSemanticSchema.safeParse({ ...old, sourceQuestionHeader: [node] })
         .success,
     ).toBe(false);
     expect(

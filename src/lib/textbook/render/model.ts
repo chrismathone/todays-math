@@ -62,6 +62,8 @@ type BlockBase = {
   dialogueScriptTotal?: number;
   memoryContinuationTitle?: string;
   continuedPage?: boolean;
+  sourceQuestionHeadHeightMm?: number;
+  sourceQuestionPromptMinHeightMm?: number;
 };
 export type RenderBlock = BlockBase &
   (

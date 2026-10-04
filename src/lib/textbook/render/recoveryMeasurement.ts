@@ -1,6 +1,7 @@
 import type { TextbookRenderModel } from "./model";
 import { isDialoguePlacement } from "./blocks/dialogue";
 import { textbookBodyTopMm } from "../layout/paginate";
+import { sourceQuestionRowPlan } from "./sourceQuestionRows";
 
 export interface RecoveryMeasurePlan {
   rootSelector?: string;
@@ -15,11 +16,13 @@ export interface RecoveryMeasurePlan {
   }>;
   dialogueBodyTopMm: number;
   dialogueBottomMm: number;
+  sourceQuestionGroups?: Array<{ ids: string[]; alignPrompt: boolean }>;
 }
 export function recoveryMeasurePlan(
   model: TextbookRenderModel,
 ): RecoveryMeasurePlan {
   return {
+    sourceQuestionGroups: sourceQuestionRowPlan(model),
     sourceMemoryRowKeys: model.sections.flatMap((section) =>
       section.blocks.flatMap((block) =>
         block.kind === "recall" && block.semantic?.source
@@ -105,6 +108,7 @@ export function dialogueMeasurementModel(
   return result;
 }
 export interface RecoveryMeasureResult {
+  sourceQuestionSizesMm?: Record<string, { head: number; prompt?: number }>;
   rowHeightsMm: Record<string, number>;
   blockMinHeightsMm: Record<string, number>;
   dialogueSizesPt: Record<string, number>;
@@ -136,9 +140,16 @@ export function recallMeasurementModel(
         ...section,
         blocks: section.blocks.filter((block) => {
           const group = groups.get(block.id);
-          if (block.kind !== "recall" || group === undefined || !wanted.has(group))
+          if (
+            block.kind !== "recall" ||
+            group === undefined ||
+            !wanted.has(group)
+          )
             return false;
-          const partition = JSON.stringify([group, (block.displayRows ?? []).map((row) => row.rowKey)]);
+          const partition = JSON.stringify([
+            group,
+            (block.displayRows ?? []).map((row) => row.rowKey),
+          ]);
           if (seen.has(partition)) return false;
           seen.add(partition);
           return true;
@@ -153,25 +164,47 @@ export function assertRecoveryMeasurementBudget(
   sizing: TextbookRenderModel,
   probes?: TextbookRenderModel,
 ): void {
-  const count = [sizing, probes].reduce((sum, model) =>
-    sum + (model?.sections.reduce((total, section) => total + section.blocks.length, 0) ?? 0), 0);
+  const count = [sizing, probes].reduce(
+    (sum, model) =>
+      sum +
+      (model?.sections.reduce(
+        (total, section) => total + section.blocks.length,
+        0,
+      ) ?? 0),
+    0,
+  );
   if (sizing.sections.length > 8 || count > 600)
-    throw new Error("Render measurement exceeds 8 sections or 600 projected blocks including private helpers; split sections before publishing");
+    throw new Error(
+      "Render measurement exceeds 8 sections or 600 projected blocks including private helpers; split sections before publishing",
+    );
 }
 
 /** Self-contained DOM function used verbatim in the preview and trusted Chromium page. */
-export function measureIntroGeometry(root: ParentNode = document): Record<string, boolean> {
+export function measureIntroGeometry(
+  root: ParentNode = document,
+): Record<string, boolean> {
   const result: Record<string, boolean> = {};
-  const tolerance = 0.5 * 96 / 25.4;
-  for (const element of root.querySelectorAll<HTMLElement>("[data-measure-id]")) {
+  const tolerance = (0.5 * 96) / 25.4;
+  for (const element of root.querySelectorAll<HTMLElement>(
+    "[data-measure-id]",
+  )) {
     const intro = element.querySelector<HTMLElement>(".tb-auto-intro-left");
     if (!intro) continue;
     const frame = intro.getBoundingClientRect();
-    const slots = ["h2", ".tb-intro-question", "figure", ".tb-intro-explanation", ".tb-intro-key"]
-      .map((selector) => intro.querySelector<HTMLElement>(selector)?.getBoundingClientRect());
-    result[element.dataset.measureId!] = slots.every((rect, index) =>
-      rect !== undefined && rect.bottom <= frame.bottom + tolerance &&
-      (index === 0 || slots[index - 1]!.bottom <= rect.top + tolerance),
+    const slots = [
+      "h2",
+      ".tb-intro-question",
+      "figure",
+      ".tb-intro-explanation",
+      ".tb-intro-key",
+    ].map((selector) =>
+      intro.querySelector<HTMLElement>(selector)?.getBoundingClientRect(),
+    );
+    result[element.dataset.measureId!] = slots.every(
+      (rect, index) =>
+        rect !== undefined &&
+        rect.bottom <= frame.bottom + tolerance &&
+        (index === 0 || slots[index - 1]!.bottom <= rect.top + tolerance),
     );
   }
   return result;
@@ -192,6 +225,40 @@ export function measureRecoveryDom(
     ),
   );
   const rowHeightsMm: Record<string, number> = {};
+  const sourceQuestionSizesMm: Record<
+    string,
+    { head: number; prompt?: number }
+  > = {};
+  for (const group of plan.sourceQuestionGroups ?? []) {
+    const members = group.ids.map((id) => elements.get(id));
+    if (members.some((element) => !element))
+      throw new Error("Missing source question row measurement");
+    const heads = members.map((element) =>
+      element!.querySelector<HTMLElement>(".tb-problem-head"),
+    );
+    const prompts = members.map((element) =>
+      element!.querySelector<HTMLElement>(".tb-problem-question > .tb-prose"),
+    );
+    if (heads.some((head) => !head) || prompts.some((prompt) => !prompt))
+      throw new Error("Missing native question heading or prompt");
+    const head =
+      Math.max(
+        ...heads.map((element) => element!.getBoundingClientRect().height),
+      ) * mm;
+    const prompt = group.alignPrompt
+      ? Math.max(
+          ...prompts.map((element) => element!.getBoundingClientRect().height),
+        ) * mm
+      : undefined;
+    group.ids.forEach((id, index) => {
+      sourceQuestionSizesMm[id] = {
+        head,
+        ...(prompt === undefined ? {} : { prompt }),
+      };
+      heads[index]!.style.height = `${head}mm`;
+      if (prompt !== undefined) prompts[index]!.style.minHeight = `${prompt}mm`;
+    });
+  }
   const sourceRowKeys = new Set(plan.sourceMemoryRowKeys);
   for (const row of root.querySelectorAll<HTMLElement>(
     ".tb-memory-row[data-row-key]",
@@ -332,6 +399,7 @@ export function measureRecoveryDom(
   }
   return {
     rowHeightsMm,
+    sourceQuestionSizesMm,
     blockMinHeightsMm,
     dialogueSizesPt,
     dialogueGapsMm,
@@ -345,6 +413,15 @@ export function applyRecoveryMeasurements(
 ): void {
   for (const section of model.sections)
     for (const block of section.blocks) {
+      const sourceQuestionSize = result.sourceQuestionSizesMm?.[block.id];
+      if (
+        block.kind === "problem" &&
+        block.semantic?.source &&
+        sourceQuestionSize
+      ) {
+        block.sourceQuestionHeadHeightMm = sourceQuestionSize.head;
+        block.sourceQuestionPromptMinHeightMm = sourceQuestionSize.prompt;
+      }
       if (block.kind === "recall" && block.displayRows)
         block.rowHeightsMm = result.rowHeightsMm;
       if (result.blockMinHeightsMm[block.id])
