@@ -19,6 +19,10 @@ import {
 import { planListeningWaveClip } from "../media/clip";
 import { decodeListeningMp3Clip } from "../media/mp3Clip";
 import { MAX_ORIGINAL_BYTES } from "../media/mp3";
+import {
+  assertListeningDatabaseCapacity,
+  lockListeningDatabaseCapacity,
+} from "../media/databaseCapacity";
 import { listeningValueHash } from "../publication";
 import {
   audit,
@@ -198,9 +202,10 @@ async function cloneReadyAudio(
   )
     throw invalid("원본 음원 파일을 확인하지 못했습니다.");
   const bytes = blobs.reduce((total, blob) => total + blob.byteLength, 0);
+  await assertListeningDatabaseCapacity(tx, bytes);
   const quota = await one<{ bytes: bigint; count: bigint }>(
     tx,
-    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL`,
+    Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL AND record->>'storageChunks' IS DISTINCT FROM 'true'`,
   );
   if (
     !quota ||
@@ -447,7 +452,7 @@ async function clipReadyAudio(
     }
     const quota = await one<{ bytes: bigint; count: bigint }>(
       tx,
-      Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL`,
+      Prisma.sql`SELECT COALESCE(SUM("reservedBytes"),0)::bigint AS bytes,COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId"=${target.ownerId}::uuid AND record->'drive' IS NULL AND record->'storage' IS NULL AND record->>'storageChunks' IS DISTINCT FROM 'true'`,
     );
     if (
       !quota ||
@@ -471,6 +476,7 @@ async function clipReadyAudio(
       uploadExpiresAt: Date.parse(now),
       chunks: [],
     };
+    await assertListeningDatabaseCapacity(tx, plan.totalBytes);
     await tx.$executeRaw(
       Prisma.sql`INSERT INTO english_listening_media_asset("assetId","ownerId","branchId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) VALUES(${assetId}::uuid,${target.ownerId}::uuid,${target.branchId}::uuid,${target.id}::uuid,0,'uploading',${new Date(staged.uploadExpiresAt)},${plan.totalBytes},${json(staged)})`,
     );
@@ -612,6 +618,22 @@ export async function composeListeningSet(
       ...[...sources.values()].map((source) => source.owner_id),
     ]),
   ].sort();
+  // Binary operations acquire the database lock before any owner/asset lock.
+  // Metadata-only Drive/Storage operations never reserve PostgreSQL audio bytes.
+  const mayWritePostgres = selections.filter(
+    (item) =>
+      !drive?.storage ||
+      (item.questions.length === item.group.questions.length &&
+        item.questions.every(
+          (question, index) => question.id === item.group.questions[index].id,
+        )),
+  );
+  if (mayWritePostgres.length) {
+    const [row] = await tx.$queryRaw<{ count: bigint }[]>(
+      Prisma.sql`SELECT COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "assetId" IN (${Prisma.join(mayWritePostgres.map((item) => Prisma.sql`${item.group.audio!.assetId}::uuid`))}) AND record->'drive' IS NULL AND record->'storage' IS NULL AND record->>'storageChunks' IS DISTINCT FROM 'true'`,
+    );
+    if (Number(row.count) > 0) await lockListeningDatabaseCapacity(tx);
+  }
   for (const id of ownerIds)
     await tx.$executeRaw(
       Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${`listening-media:${id}`},0))`,
