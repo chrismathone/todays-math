@@ -155,6 +155,7 @@ function wireBlocks(
     conceptQrTargets: [],
   };
   for (const block of blocks) {
+    const semantic = block.semantic ? { semantic: block.semantic } : {};
     if (block.kind === "problems") {
       if (block.itemIds.length !== 1) {
         return refuse("문항 블록은 한 문항씩 저장합니다.");
@@ -188,7 +189,12 @@ function wireBlocks(
           used.qrTargets.push(qr);
         }
       } else missingQr = true;
-      wired.push({ blockId: block.id, kind: "problem", itemId: item.itemId });
+      wired.push({
+        blockId: block.id,
+        kind: "problem",
+        itemId: item.itemId,
+        ...semantic,
+      });
       continue;
     }
     if (block.kind === "concept") {
@@ -216,6 +222,7 @@ function wireBlocks(
         blockId: block.id,
         kind: "concept",
         conceptKey: concept.conceptKey,
+        ...semantic,
       });
       continue;
     }
@@ -226,6 +233,7 @@ function wireBlocks(
         kind: "image",
         assetId: block.assetId,
         caption: block.caption.length > 0 ? block.caption : null,
+        ...semantic,
       });
       continue;
     }
@@ -246,9 +254,10 @@ function wireBlocks(
           portraitAssetId: turn.portraitAssetId,
           mirrorPortrait: turn.mirror,
           markdown: turn.text,
+          ...(turn.presentation ? { presentation: turn.presentation } : {}),
         });
       }
-      wired.push({ blockId: block.id, kind: "dialogue", turns });
+      wired.push({ blockId: block.id, kind: "dialogue", turns, ...semantic });
       continue;
     }
     if (block.kind === "concept-recall") {
@@ -262,10 +271,16 @@ function wireBlocks(
         markdown: block.text,
         showRepetitionChecks: block.showRepetitionChecks,
         ...(block.conceptKey ? { conceptKey: block.conceptKey } : {}),
+        ...semantic,
       });
       continue;
     }
-    wired.push({ blockId: block.id, kind: "text", markdown: block.text });
+    wired.push({
+      blockId: block.id,
+      kind: "text",
+      markdown: block.text,
+      ...semantic,
+    });
   }
   const provisionalNotice = missingQr
     ? "이 구획에 예약된 QR이 없습니다. 해설 칸은 비워 두고, 발행할 때 예약된 주소만 넣습니다."

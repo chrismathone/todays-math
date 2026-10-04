@@ -1,6 +1,10 @@
 import { z } from "zod";
 import { textbookConceptIntegrationSchema } from "./textbookConcept.contract";
 import {
+  textbookDialoguePresentationSchema,
+  textbookSemanticSchema,
+} from "./textbookSemantic.contract";
+import {
   textbookCanonicalizationVersion,
   textbookDateSchema,
   textbookHashSchema,
@@ -231,6 +235,7 @@ export const textbookDialogueTurnSchema = z.strictObject({
   portraitAssetId: textbookIdSchema,
   mirrorPortrait: z.boolean(),
   markdown: textbookTextSchema,
+  presentation: textbookDialoguePresentationSchema.optional(),
 });
 export const textbookBlockSchema = z
   .discriminatedUnion("kind", [
@@ -238,27 +243,32 @@ export const textbookBlockSchema = z
       blockId: textbookIdSchema,
       kind: z.literal("text"),
       markdown: textbookTextSchema,
+      semantic: textbookSemanticSchema.optional(),
     }),
     z.strictObject({
       blockId: textbookIdSchema,
       kind: z.literal("problem"),
       itemId: textbookIdSchema,
+      semantic: textbookSemanticSchema.optional(),
     }),
     z.strictObject({
       blockId: textbookIdSchema,
       kind: z.literal("image"),
       assetId: textbookIdSchema,
       caption: z.string().max(2000).nullable(),
+      semantic: textbookSemanticSchema.optional(),
     }),
     z.strictObject({
       blockId: textbookIdSchema,
       kind: z.literal("dialogue"),
       turns: z.array(textbookDialogueTurnSchema).min(1).max(200),
+      semantic: textbookSemanticSchema.optional(),
     }),
     z.strictObject({
       blockId: textbookIdSchema,
       kind: z.literal("concept"),
       conceptKey: textbookKeySchema,
+      semantic: textbookSemanticSchema.optional(),
     }),
     z.strictObject({
       blockId: textbookIdSchema,
@@ -267,6 +277,7 @@ export const textbookBlockSchema = z
       markdown: textbookTextSchema,
       showRepetitionChecks: z.boolean(),
       conceptKey: textbookKeySchema.optional(),
+      semantic: textbookSemanticSchema.optional(),
     }),
   ])
   .superRefine((block, ctx) => {

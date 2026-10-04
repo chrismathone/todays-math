@@ -6,6 +6,10 @@ import type {
   TextbookItem,
 } from "@/contracts/textbookExchange.contract";
 import type { TextbookConceptBody } from "@/contracts/textbookConcept.contract";
+import type {
+  TextbookDialoguePresentation,
+  TextbookSemantic,
+} from "@/contracts/textbookSemantic.contract";
 import {
   recallPieces,
   splitRecallMarkdown,
@@ -14,6 +18,7 @@ import {
 } from "./markdown";
 import { splitConceptBody } from "./conceptParts";
 import { projectEditorialSection } from "./editorialProjection";
+import { frozenConceptGroups } from "../conceptRows";
 
 export {
   TEXTBOOK_RENDERER_VERSION,
@@ -39,6 +44,7 @@ type BlockBase = {
   editorialStage?: TextbookEditorialStage;
   startNewPage?: boolean;
   unitNumber?: number;
+  semantic?: TextbookSemantic;
 };
 export type RenderBlock = BlockBase &
   (
@@ -64,6 +70,7 @@ export type RenderBlock = BlockBase &
         portraitAssetId: string;
         mirrorPortrait: boolean;
         markdown: string;
+        presentation?: TextbookDialoguePresentation;
       }
     | {
         kind: "concept";
@@ -206,10 +213,13 @@ export function createTextbookRenderModel(
                 sourceBlockId: b.blockId,
                 unitKey: u.unitKey,
                 sectionKey: s.sectionKey,
+                ...(b.semantic ? { semantic: b.semantic } : {}),
               };
               switch (b.kind) {
                 case "text": {
-                  const parts = splitTextbookMarkdown(b.markdown);
+                  const parts = b.semantic?.node
+                    ? [b.markdown]
+                    : splitTextbookMarkdown(b.markdown);
                   return parts.map((markdown, i) => ({
                     ...base,
                     id:
@@ -261,15 +271,31 @@ export function createTextbookRenderModel(
                   const c = concepts.get(b.conceptKey);
                   if (!c) throw new Error(`Missing concept ${b.conceptKey}`);
                   const qr = conceptQrs.get(c.conceptKey);
-                  const parts = splitConceptBody(c.body);
+                  const groups = frozenConceptGroups(c);
+                  const parts = groups.length
+                    ? groups.map((group) => group.body)
+                    : splitConceptBody(c.body);
                   return parts.map((body, i) => ({
                     ...base,
                     id:
                       parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
                     kind: "concept",
                     conceptKey: c.conceptKey,
-                    title: c.title,
+                    title: groups[i]?.title ?? c.title,
                     body,
+                    ...(groups[i]
+                      ? {
+                          semantic: {
+                            activity: "concepts" as const,
+                            node: {
+                              kind: "concept" as const,
+                              conceptId: groups[i].conceptId,
+                              title: groups[i].title,
+                              rows: groups[i].rows,
+                            },
+                          },
+                        }
+                      : {}),
                     continuation: i > 0,
                     qr:
                       qr && i === parts.length - 1
