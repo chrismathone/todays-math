@@ -2867,7 +2867,7 @@ export function VideoPanel({
             </p>
           </div>
         ) : null}
-        <details>
+        <details className={styles.details}>
           <summary>고급 입력</summary>
           <p className={styles.muted}>
             비워 두면 위에서 고른 문항 · 영상과 확인한 내용의 해시를 씁니다.

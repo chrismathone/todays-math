@@ -6,6 +6,7 @@
  * 늦게 끝난 내보내기 · 보지 않은 내용의 해시로 보내는 영상 연결.
  */
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -39,6 +40,7 @@ import {
   TextbookStudioView,
   leavingHref,
 } from "@/components/textbook/TextbookStudioView";
+import { requestTextbookNavigation } from "@/lib/textbook/navigation";
 
 const book: BookSummary = {
   bookId: "book-1",
@@ -242,6 +244,22 @@ const edit = (value: string) =>
     target: { value },
   });
 
+/** 새로고침 · 탭 닫기를 흉내 낸다 — 화면이 막으면 true */
+const closing = () => {
+  const event = new Event("beforeunload", { cancelable: true });
+  window.dispatchEvent(event);
+  return event.defaultPrevented;
+};
+
+/** 작업실이 다른 화면으로 바꾸려 한다 — 붙잡히지 않았으면 true(부른 쪽이 바로 이동) */
+const leaveWorkspace = (proceed: () => void) => {
+  let allowed = true;
+  act(() => {
+    allowed = requestTextbookNavigation(proceed);
+  });
+  return allowed;
+};
+
 const prompt = () => screen.getByRole("group", { name: "저장하지 않은 수정" });
 const noPrompt = () =>
   expect(
@@ -440,11 +458,6 @@ describe("T02 · T03 — 저장하지 않은 원고를 덮는 이동", () => {
 
   it("고친 것이 남아 있을 때만 새로고침 · 탭 닫기를 경고한다 — 원래 값으로 되돌리면 풀린다", async () => {
     await openStudio(api());
-    const closing = () => {
-      const event = new Event("beforeunload", { cancelable: true });
-      window.dispatchEvent(event);
-      return event.defaultPrevented;
-    };
     expect(closing()).toBe(false);
     edit("고친 문장");
     expect(closing()).toBe(true);
@@ -1261,5 +1274,135 @@ describe("D06 — 영상 등록과 연결", () => {
         contentHash: "c".repeat(64),
       }),
     );
+  });
+});
+
+describe("T03 — 작업실이 교재 화면을 떠나려 할 때", () => {
+  const line = () => screen.getByRole("textbox", { name: "대사" });
+
+  it("고친 것이 없고 처리 중도 아니면 붙잡지 않는다 — 부른 쪽이 바로 이동한다", async () => {
+    await openStudio(api());
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(true);
+    expect(proceed).not.toHaveBeenCalled();
+    noPrompt();
+  });
+
+  it("계속 편집을 고르면 이동하지 않고 입력이 그대로다", async () => {
+    await openStudio(api());
+    edit("고친 문장");
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    expect(prompt()).toBeVisible();
+    fireEvent.click(within(prompt()).getByRole("button", { name: "계속 편집" }));
+    noPrompt();
+    expect(proceed).not.toHaveBeenCalled();
+    expect(line()).toHaveValue("고친 문장");
+  });
+
+  it("버리고 이동을 고르면 원고를 되돌린 뒤 한 번 이동한다 — 교재는 연 채로 남는다", async () => {
+    await openStudio(api());
+    edit("고친 문장");
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
+    noPrompt();
+    expect(line()).toHaveValue("저장된 문장");
+    // 고친 것이 없으니 이제는 붙잡지 않는다
+    expect(leaveWorkspace(vi.fn())).toBe(true);
+  });
+
+  it("저장 후 이동은 저장이 성공한 뒤에만 이동하고, 저장 중에는 다른 이동도 붙잡는다", async () => {
+    let release!: (value: {
+      revision: number;
+      aggregateRevision: number;
+    }) => void;
+    const saveSection = vi.fn(
+      () =>
+        new Promise<{ revision: number; aggregateRevision: number }>(
+          (resolve) => {
+            release = resolve;
+          },
+        ),
+    );
+    await openStudio(api({ saveSection }));
+    edit("고친 문장");
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    const go = within(prompt()).getByRole("button", { name: "저장 후 이동" });
+    fireEvent.click(go);
+    fireEvent.click(go);
+    await waitFor(() => expect(saveSection).toHaveBeenCalledOnce());
+    expect(proceed).not.toHaveBeenCalled();
+    // 저장이 도는 동안 다시 떠나려 하면 붙잡기만 한다 — 그 길은 부르지 않는다
+    const second = vi.fn();
+    expect(leaveWorkspace(second)).toBe(false);
+    expect(
+      screen.getByText("처리 중입니다. 끝난 뒤 다시 눌러 주세요."),
+    ).toBeVisible();
+    await act(async () => {
+      release({ revision: 4, aggregateRevision: 10 });
+    });
+    await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
+    expect(second).not.toHaveBeenCalled();
+    expect(saveSection).toHaveBeenCalledOnce();
+    expect(line()).toHaveValue("고친 문장");
+  });
+
+  it("저장이 실패하면 이동하지 않고 원고와 확인 칸이 남는다", async () => {
+    const saveSection = vi.fn(async () => {
+      throw new TextbookRequestError("저장하지 못했습니다.", 500);
+    });
+    await openStudio(api({ saveSection }));
+    edit("고친 문장");
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    fireEvent.click(within(prompt()).getByRole("button", { name: "저장 후 이동" }));
+    expect(await screen.findByText("저장하지 못했습니다.")).toBeVisible();
+    expect(proceed).not.toHaveBeenCalled();
+    expect(line()).toHaveValue("고친 문장");
+    expect(prompt()).toBeVisible();
+  });
+
+  it("이 화면이 가려져 있으면 붙잡지 않는다 — 다른 화면 사이의 이동을 막지 않는다", async () => {
+    const { container } = render(
+      <main>
+        <TextbookStudioView api={api()} />
+      </main>,
+    );
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
+    await screen.findByRole("textbox", { name: "대사" });
+    edit("고친 문장");
+    container.querySelector("main")!.hidden = true;
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(true);
+    expect(proceed).not.toHaveBeenCalled();
+  });
+
+  it("불러오기 · 저장이 도는 동안에는 새로고침 · 탭 닫기도 경고하고, 작업실 이동도 붙잡는다", async () => {
+    let release!: (value: SectionDetail) => void;
+    const getSection = vi.fn(
+      () =>
+        new Promise<SectionDetail>((resolve) => {
+          release = resolve;
+        }),
+    );
+    render(<TextbookStudioView api={api({ getSection })} />);
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    await waitFor(() => expect(getSection).toHaveBeenCalled());
+    // 고친 것은 없지만 처리 중이다
+    expect(closing()).toBe(true);
+    const proceed = vi.fn();
+    expect(leaveWorkspace(proceed)).toBe(false);
+    noPrompt();
+    await act(async () => {
+      release(section());
+    });
+    await screen.findByRole("button", { name: "세부 편집" });
+    expect(closing()).toBe(false);
+    expect(proceed).not.toHaveBeenCalled();
+    expect(leaveWorkspace(vi.fn())).toBe(true);
   });
 });

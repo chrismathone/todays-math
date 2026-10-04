@@ -81,6 +81,10 @@ import {
   type QuickCreateApi,
 } from "@/lib/textbook/quickCreateClient";
 import { finishTextbookPdf } from "@/lib/textbook/simplePublish";
+import {
+  TEXTBOOK_BEFORE_LEAVE,
+  type TextbookLeaveDetail,
+} from "@/lib/textbook/navigation";
 
 export type { PaperPreviewInput };
 
@@ -116,7 +120,9 @@ type PendingNav =
   | { kind: "list" }
   | { kind: "new-draft" }
   /** 작업실 밖으로 나가는 앱 안 링크 — 같은 출처의 경로만 담는다 */
-  | { kind: "link"; href: string };
+  | { kind: "link"; href: string }
+  /** 작업실이 다른 화면으로 바꾸려 한다 — 저장하거나 버린 뒤에만 `proceed` 를 부른다 */
+  | { kind: "workspace"; proceed: () => void };
 
 const hasConceptBlock = (section: SectionDetail, conceptKey: string) =>
   section.blocks.some(
@@ -641,6 +647,11 @@ export function TextbookStudioView({
     if (nav.kind === "link") {
       clearStudio();
       router.push(nav.href);
+      return;
+    }
+    if (nav.kind === "workspace") {
+      // 작업실의 다른 화면으로 — 교재는 연 채로 남는다(이미 저장했거나 버렸다)
+      nav.proceed();
       return;
     }
     await openSection(nav.sectionId);
@@ -1211,13 +1222,40 @@ export function TextbookStudioView({
     );
   }
 
-  // 새로고침 · 탭 닫기 — 브라우저 기본 경고만 낼 수 있다(저장 · 버리기를 고르게 할 수 없다)
+  // 새로고침 · 탭 닫기 — 브라우저 기본 경고만 낼 수 있다(저장 · 버리기를 고르게 할 수 없다).
+  // 저장 · 조판이 도는 동안에도 경고한다 — 닫으면 결과를 보지 못한다.
   useEffect(() => {
-    if (!workDirty && !leaving) return;
+    if (!workDirty && !leaving && !busy) return;
     const warn = (event: BeforeUnloadEvent) => event.preventDefault();
     window.addEventListener("beforeunload", warn);
     return () => window.removeEventListener("beforeunload", warn);
-  }, [workDirty, leaving]);
+  }, [workDirty, leaving, busy]);
+
+  // 작업실이 이 화면을 떠나려 한다(옆 메뉴 · 단축키 · 주소의 # · 뒤로가기) — `requestTextbookNavigation`.
+  // 저장하지 않은 수정이 있으면 붙잡아 같은 확인 칸을 띄우고, 저장 · 조판 중이면 붙잡기만 한다.
+  // 이 화면이 가려져 있을 때(다른 화면 사이의 이동)는 붙잡지 않는다 — 확인 칸이 보이지 않는다.
+  useEffect(() => {
+    if (!workDirty && !busy && !leaving) return;
+    const onLeave = (event: Event) => {
+      const root = rootRef.current;
+      if (!root || root.closest("[hidden]")) return;
+      event.preventDefault();
+      if (busy || leaving) {
+        setNotice("처리 중입니다. 끝난 뒤 다시 눌러 주세요.");
+        return;
+      }
+      const proceed = (event as CustomEvent<Partial<TextbookLeaveDetail>>)
+        .detail?.proceed;
+      // 떠날 길을 받지 못했으면 붙잡기만 한다 — 저장한 뒤에도 갈 곳을 모른다
+      if (typeof proceed !== "function") {
+        setNotice("저장하지 않은 수정이 있습니다. 저장한 뒤 이동해 주세요.");
+        return;
+      }
+      setPendingNav({ kind: "workspace", proceed });
+    };
+    window.addEventListener(TEXTBOOK_BEFORE_LEAVE, onLeave);
+    return () => window.removeEventListener(TEXTBOOK_BEFORE_LEAVE, onLeave);
+  }, [workDirty, busy, leaving]);
 
   // 앱 안 링크 — 이 화면이 보이는 동안 다른 경로로 나가는 링크를 누르면 먼저 묻는다.
   // 작업실의 다른 화면에 가려져 있을 때는 막지 않는다(막아도 확인 칸이 보이지 않는다).

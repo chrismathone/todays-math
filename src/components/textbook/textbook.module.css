@@ -400,3 +400,10 @@
     overflow-x: auto;
   }
 }
+
+/* 접어 둔 고급 입력 — 자동 만들기 칸의 펼침과 같은 모양이다 */
+.details summary {
+  cursor: pointer;
+  min-height: 32px;
+  font-weight: 600;
+}
