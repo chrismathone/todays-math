@@ -32,6 +32,7 @@ import {
   readListeningStyleGroundingJudgment,
   readListeningStyleJudgment,
   listeningStyleSemanticWarnings,
+  normalizeListeningStyleGeneration,
   type ListeningStyleTemplate,
   type ListeningStyleJudgment,
   type ListeningStyleRevisionAudit,
@@ -371,7 +372,8 @@ async function main() {
       model: { type: "string", default: DEEPSEEK_MODEL },
       "max-generation-usd": { type: "string", default: "2.30" },
       "max-generation-tokens": { type: "string", default: "24000" },
-      "instruction-version": { type: "string", default: "3" },
+      "instruction-version": { type: "string", default: "4" },
+      "normalize-structural-metadata": { type: "boolean", default: false },
       "judgment-version": { type: "string", default: "4" },
       "reuse-audit-root": { type: "string" },
       execute: { type: "boolean", default: false },
@@ -382,6 +384,10 @@ async function main() {
   if (!values.output)
     throw new Error(
       "--output is required and must be a new ignored output directory",
+    );
+  if (values["normalize-structural-metadata"] && !values["reuse-audit-root"])
+    throw new Error(
+      "Structural recovery requires --reuse-audit-root; no fresh generation is permitted",
     );
   const output = path.resolve(values.output),
     mainRoot = path.resolve(values["main-root"]!);
@@ -401,12 +407,12 @@ async function main() {
     !Number.isInteger(maximumGenerationTokens) ||
     maximumGenerationTokens < 8000 ||
     maximumGenerationTokens > 64000 ||
-    !["1", "2", "3"].includes(values["instruction-version"]!) ||
+    !["1", "2", "3", "4"].includes(values["instruction-version"]!) ||
     ![DEEPSEEK_MODEL, "deepseek-flash"].includes(values.model!) ||
     values["judgment-version"] !== "4"
   )
     throw new Error(
-      "Generation tokens 8000..64000, instruction version 1/2/3 and supported DeepSeek model required",
+      "Generation tokens 8000..64000, instruction version 1/2/3/4 and supported DeepSeek model required",
     );
   if (
     !Number.isFinite(maximumGenerationUsd) ||
@@ -859,7 +865,7 @@ async function main() {
             content: JSON.stringify({
               version: LISTENING_RECONSTRUCTION_STYLE_VERSION,
               instructionVersion: Number(values["instruction-version"]),
-              ...(["2", "3"].includes(values["instruction-version"]!)
+              ...(["2", "3", "4"].includes(values["instruction-version"]!)
                 ? {
                     revisionRules: [
                       "Improve the four distractors, not just translate old uneven options. First choose one semantic category and one grammatical pattern shared by all five choices. Each choice must have comparable specificity and length; pad no choice with irrelevant text. Preserve only the correct choice meaning and its fixed position; incorrect-choice meanings may change freely to make plausible parallel alternatives.",
@@ -867,7 +873,12 @@ async function main() {
                       "For reasons use five equally specific ~해서 phrases; actions use five ~하기 phrases; purposes use five similarly short ~하려고 phrases; book contents use five phrases describing the same kind of story; objects use five names from the same category. Avoid a long correct description among short unrelated distractors.",
                       "Each existing selected ASR segment list is binding; do not repair a weak fragment by inventing speaker names, context or new speech. Phrase around the directly supported proposition. For a concise explanation restate only the exact selected source proposition, without naming a book author/customer/product unless that fact is explicitly in selected speech; calculations must use only the stated numbers.",
                       "Use the plannedQuestionType and matching same-grade task templates; do not copy a generic detail label for a numeric task. This is a new explicit instruction revision; older receipts remain immutable.",
-                      ...(values["instruction-version"] === "3"
+                      ...(values["instruction-version"] === "4"
+                        ? [
+                            "Return only the exact named fields in the requested question object, with no copied sourceRecordId, level or planning fields. questionType must be exactly one of gist,purpose,opinion,detail,inference,number,relationship,location,emotion,sequence,reply,visual,unknown. Reasons and proposed actions belong to detail; never return reason or action labels. The enclosing object has only questions.",
+                          ]
+                        : []),
+                      ...(["3", "4"].includes(values["instruction-version"]!)
                         ? [
                             "Preserve every correct-choice temporal qualifier and unit exactly in meaning: by Friday means 금요일까지, before means 이전/전에, after means 이후, about means 약/쯤, at is an exact time. Do not turn a deadline into a precise event date. Preserve this/next/last, every/only, currency, quantities and duration units; equivalent unit conversions must be mathematically exact.",
                             "Selected ASR has no reliable speaker-gender labels unless literally labeled Man:/Woman:. Use a neutral Korean prompt such as 대화를 듣고, ... instead of 남자/여자. Do not introduce 상담원, 작가, 점원, 손님, 고객 or personal names unless selected speech explicitly identifies that role or name. Your book alone does not establish author identity.",
@@ -984,10 +995,17 @@ async function main() {
         throw new Error(
           "Incomplete generation retained; no automatic paid retry",
         );
+      const rawGenerated = JSON.parse(response.choices[0].message.content);
+      const normalized = values["normalize-structural-metadata"]
+        ? normalizeListeningStyleGeneration(rawGenerated, {
+            sourceRecordId: id,
+            level: payload.createInput.level!,
+          })
+        : null;
       const grounded = validateListeningStyleRevision(
         asr.segments,
         baseline,
-        JSON.parse(response.choices[0].message.content),
+        normalized?.value ?? rawGenerated,
       );
       const references: ListeningStyleRevisionAudit["receipts"] = [
         {
@@ -1003,30 +1021,48 @@ async function main() {
         styleJudgments = new Map<number, ListeningStyleJudgment | null>();
       const verify = async (stem: string, checks: unknown) => {
         const request = { model: "jev-latest", ...(checks as object) };
-        const receipt =
-          priorAuditDirectory && stem.startsWith("answer-")
-            ? await readExistingCall(priorAuditDirectory, stem, request)
-            : await cachedCall(auditDirectory, stem, request, async () => {
-                const result = await fetch(
-                  "https://api.typesafe.ai/v1/systemone",
-                  {
-                    method: "POST",
-                    headers: {
-                      Authorization: `Bearer ${env.TYPESAFE_API_KEY}`,
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(request),
-                    redirect: "error",
-                    signal: AbortSignal.timeout(45000),
+        const reuseVerification =
+          priorAuditDirectory &&
+          (stem.startsWith("answer-") ||
+            values["normalize-structural-metadata"]);
+        const priorReceiptExists =
+          reuseVerification &&
+          (await exists(
+            path.join(priorAuditDirectory!, `${stem}.receipt.json`),
+          ));
+        if (
+          reuseVerification &&
+          !priorReceiptExists &&
+          (await exists(
+            path.join(priorAuditDirectory!, `${stem}.started.json`),
+          ))
+        )
+          throw new Error(
+            `Prior paid verification has no successful receipt: ${stem}; no automatic retry`,
+          );
+        const receipt = priorReceiptExists
+          ? await readExistingCall(priorAuditDirectory, stem, request)
+          : await cachedCall(auditDirectory, stem, request, async () => {
+              const result = await fetch(
+                "https://api.typesafe.ai/v1/systemone",
+                {
+                  method: "POST",
+                  headers: {
+                    Authorization: `Bearer ${env.TYPESAFE_API_KEY}`,
+                    "Content-Type": "application/json",
                   },
+                  body: JSON.stringify(request),
+                  redirect: "error",
+                  signal: AbortSignal.timeout(45000),
+                },
+              );
+              const body: unknown = await result.json();
+              if (!result.ok)
+                throw new Error(
+                  `TypeSafe HTTP ${result.status}; no automatic retry`,
                 );
-                const body: unknown = await result.json();
-                if (!result.ok)
-                  throw new Error(
-                    `TypeSafe HTTP ${result.status}; no automatic retry`,
-                  );
-                return body;
-              });
+              return body;
+            });
         const parsed = jevResponseSchema.parse(receipt.response);
         references.push({
           kind: stem.startsWith("answer")
@@ -1145,6 +1181,9 @@ async function main() {
         originalQuestionNumbersRecovered: false,
         threshold: LISTENING_RECONSTRUCTION_STYLE_THRESHOLD,
         judgmentVersion: values["judgment-version"],
+        ...(normalized
+          ? { generationNormalization: normalized.generationNormalization }
+          : {}),
         receipts: references,
         questionVerdicts,
         eligibleQuestionIds: questionVerdicts
