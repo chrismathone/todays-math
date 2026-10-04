@@ -15,6 +15,7 @@ import * as sets from "./sets";
 import * as assignments from "./assignments";
 import * as students from "./students";
 import { searchListeningBank, searchListeningReferences } from "./bank";
+import { composeListeningSet, composeSource } from "./compose";
 
 /** Each command, receipt, revision and release exposure commits in one durable transaction.
  * The advisory lock serializes a set/assignment across processes; SQL CAS still checks the
@@ -26,6 +27,7 @@ export function createListeningRuntime(
   const transaction = <T>(
     key: string | undefined,
     fn: (tx: ListeningTx, now: string) => Promise<T>,
+    timeout = 30000,
   ) =>
     database.$transaction(
       async (tx) => {
@@ -34,7 +36,7 @@ export function createListeningRuntime(
         if (key) await lock(tx, key);
         return fn(tx, clock().toISOString());
       },
-      { maxWait: 10000, timeout: 30000 },
+      { maxWait: 10000, timeout },
     );
   const id = (value: string) => z.uuid().parse(value);
   return {
@@ -66,6 +68,22 @@ export function createListeningRuntime(
       transaction(undefined, async (tx, now) =>
         sets.createSet(tx, await teacher(tx, actor), input, now),
       ),
+    composeSet: (actor: ListeningActor, input: unknown) =>
+      transaction(
+        undefined,
+        async (tx, now) => {
+          const account = await teacher(tx, actor);
+          if (!account.menus.includes("english-bank")) throw denied();
+          return composeListeningSet(tx, account, input, now);
+        },
+        120000,
+      ),
+    composeSource: (actor: ListeningActor, setId: string) =>
+      transaction(id(setId), async (tx) => {
+        const account = await teacher(tx, actor);
+        if (!account.menus.includes("english-bank")) throw denied();
+        return composeSource(tx, account, setId);
+      }),
     setDetail: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) =>
         sets.setDetail(tx, await teacher(tx, actor), setId),

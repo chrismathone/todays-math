@@ -103,6 +103,11 @@ export async function handleListeningHttp(
     const method = request.method;
     if (kind === "teacher") {
       const [resource, rawId, action, rawAssetId, mediaAction] = path;
+      if (path.length === 1 && method === "POST" && resource === "compose")
+        return ok(
+          await runtime.composeSet(actor, await listeningJson(request)),
+          201,
+        );
       if (
         path.length === 1 &&
         method === "GET" &&
@@ -139,6 +144,12 @@ export async function handleListeningHttp(
         );
       const id = uuid(rawId);
       if (resource === "sets") {
+        if (
+          path.length === 3 &&
+          method === "GET" &&
+          action === "compose-source"
+        )
+          return ok(await runtime.composeSource(actor, id));
         if (path.length === 2 && method === "GET")
           return ok(await runtime.setDetail(actor, id));
         if (path.length === 2 && method === "PATCH")

@@ -1,0 +1,105 @@
+.material {
+  min-width: 0;
+}
+.group,
+.basket,
+.created {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--e-line-soft);
+}
+.player {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+}
+.questions,
+.choices,
+.basketList,
+.basketQuestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.questions > li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--e-line-soft);
+}
+label.questionLabel {
+  display: flex;
+  gap: 10px;
+  align-items: start;
+  cursor: pointer;
+}
+.questionLabel input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.questionLabel strong,
+.basketQuestions span {
+  overflow-wrap: anywhere;
+}
+.questionImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 12px 0;
+}
+.choices {
+  margin: 10px 0 14px 28px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.basketHeading,
+.orderActions,
+.basketQuestions > li,
+.createRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.basketHeading {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.basketHeading h2 {
+  margin: 0;
+}
+.basketList > li {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--e-line-soft);
+}
+.basketQuestions > li {
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.basketQuestions button,
+.orderActions button {
+  flex-shrink: 0;
+}
+.createRow {
+  align-items: end;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.createRow > label {
+  flex: 1 1 220px;
+  margin: 0;
+}
+.createRow > button {
+  flex: 0 1 auto;
+}
+.outputAudio {
+  margin-top: 16px;
+}
+@media (max-width: 680px) {
+  .createRow > button {
+    width: 100%;
+  }
+  .orderActions {
+    flex-wrap: wrap;
+  }
+}
