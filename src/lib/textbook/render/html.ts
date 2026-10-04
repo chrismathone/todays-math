@@ -162,13 +162,16 @@ export function renderPageHtml(
     .find((block) => block.semantic?.source?.scriptIndex)?.semantic?.source;
   const scriptIndex = dialogueSource?.scriptIndex;
   const scriptTotal = scriptIndex
-    ? Math.max(
+    ? (dialogue
+        .map((placement) => blocks.get(placement.blockId)?.dialogueScriptTotal)
+        .find((total) => total) ??
+      Math.max(
         ...dialoguePages
           .filter(
             (block) => block.semantic?.source?.unit === dialogueSource.unit,
           )
           .map((block) => block.semantic?.source?.scriptIndex ?? 0),
-      )
+      ))
     : 0;
   const continueNote = dialogue.length
     ? `<div class="tb-dialogue-page-note" style="left:${left}mm;right:${right}mm">${renderDialogueContinueHtml(
@@ -211,7 +214,7 @@ export function renderPageHtml(
     const blockSection = model.sections.find((s) =>
       s.blocks.some((b) => b.id === block.id),
     );
-    return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm - offsetX}mm;top:${p.yMm - offsetY}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
+    return `<div class="tb-block${p.continuation ? " tb-continuation" : ""}" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${block.semantic ? ` data-activity="${esc(block.semantic.activity)}"` : ""}${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm - offsetX}mm;top:${p.yMm - offsetY}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(p.continuation ? { ...block, continuedPage: true } : block, blockSection), resources)}</div></div>`;
   };
   const bodyBlocks = page.blocks.filter(
     (placement) => blocks.get(placement.blockId)?.kind !== "heading",
@@ -220,10 +223,41 @@ export function renderPageHtml(
     ...bodyBlocks.map((placement) => placement.yMm),
     ...dialogue.map((placement) => placement.yMm - 3),
   );
-  const bodyEnd = Math.max(
+  let bodyEnd = Math.max(
     ...bodyBlocks.map((placement) => placement.yMm + placement.heightMm),
     ...dialogue.map((placement) => placement.yMm + placement.heightMm + 3),
   );
+  const groupedIds = new Set<string>();
+  const bodyHtml = bodyBlocks
+    .map((placement) => {
+      if (groupedIds.has(placement.blockId)) return "";
+      const block = blocks.get(placement.blockId)!;
+      const group =
+        block.kind === "text" && block.semantic?.node?.kind === "exampleGroup"
+          ? block.semantic.node
+          : undefined;
+      if (!group) return placementHtml(placement, left, bodyTop);
+      const example = bodyBlocks.find(
+        (candidate) => candidate.itemId === group.exampleItemId,
+      );
+      const confirms = group.confirmItemIds.map((id) =>
+        bodyBlocks.find((candidate) => candidate.itemId === id),
+      );
+      if (!example || confirms.some((candidate) => !candidate))
+        throw new Error("Incomplete rendered example group");
+      for (const member of [example, ...confirms])
+        groupedIds.add(member!.blockId);
+      const columnsTop = placement.yMm + placement.heightMm;
+      const columnsEnd = Math.max(
+        example.yMm + example.heightMm,
+        ...confirms.map((member) => member!.yMm + member!.heightMm),
+      );
+      const height = Math.max(102, columnsEnd - placement.yMm);
+      bodyEnd = Math.max(bodyEnd, placement.yMm + height);
+      const rightX = confirms[0]!.xMm;
+      return `<section class="tb-paired-group paired-group" data-example-group="${esc(group.groupId)}" style="left:${placement.xMm - left}mm;top:${placement.yMm - bodyTop}mm;width:${placement.widthMm}mm;height:${height}mm">${placementHtml(placement, placement.xMm, placement.yMm)}<div class="tb-paired-cols paired-cols" style="left:0;top:${placement.heightMm}mm;width:100%;height:${columnsEnd - columnsTop}mm"><div class="tb-paired-worked worked" style="left:0;top:0;width:${example.widthMm}mm;height:${example.heightMm}mm">${placementHtml(example, example.xMm, columnsTop)}</div><div class="tb-paired-twins twins" style="left:${rightX - placement.xMm}mm;top:0;width:${confirms[0]!.widthMm}mm;height:${columnsEnd - columnsTop}mm">${confirms.map((member) => placementHtml(member!, rightX, columnsTop)).join("")}</div></div></section>`;
+    })
+    .join("");
   const content =
     recovered && bodyBlocks.length
       ? page.blocks
@@ -232,7 +266,7 @@ export function renderPageHtml(
           )
           .map((placement) => placementHtml(placement))
           .join("") +
-        `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyBlocks.map((placement) => placementHtml(placement, left, bodyTop)).join("")}</div>`
+        `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyHtml}</div>`
       : page.blocks.map((placement) => placementHtml(placement)).join("");
   return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }

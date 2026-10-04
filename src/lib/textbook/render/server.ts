@@ -470,7 +470,7 @@ export async function renderTextbookChunk(
       },
     );
     // Writing-space alignment is a student layout constraint, not answer padding.
-    if (input.variant === "student") alignTextbookSpreads(layout.pages);
+    if (input.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
@@ -722,8 +722,8 @@ export function planTextbookChunks(
       );
     // Each automatic lesson includes several recall forms and needs its own
     // bounded render job. Manual continuation chains remain together.
-    const automaticLesson = chain.some(
-      (i) => sections[i].templateKey === "auto-lesson",
+    const automaticLesson = chain.some((i) =>
+      sections[i].templateKey.startsWith("auto-lesson"),
     );
     if (
       group.length &&

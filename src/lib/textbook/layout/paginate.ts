@@ -32,6 +32,7 @@ export interface BlockPlacement {
   yMm: number;
   widthMm: number;
   heightMm: number;
+  continuation?: boolean;
 }
 export interface TextbookPage {
   physicalPageIndex: number;
@@ -292,7 +293,7 @@ export function paginateTextbookSections(
       cursor =
         Math.max(...page.blocks.map((b) => b.yMm + b.heightMm)) + A4.gapMm;
     }
-    const newPage = () => {
+    const newPage = (firstBlock = row[0]?.block ?? currentHeading) => {
       if (pages.length >= (options.maxPages ?? 5000))
         fail(
           "PAGE_LIMIT",
@@ -310,12 +311,12 @@ export function paginateTextbookSections(
         unitTitle: section.unitTitle,
         sectionTitle: section.title,
         kind: "content",
-        editorialStage: row[0]?.block.editorialStage ?? section.editorialStage,
+        editorialStage: firstBlock?.editorialStage ?? section.editorialStage,
         blocks: [],
       };
       next++;
       pages.push(page);
-      cursor = textbookBodyTopMm(section, row[0]?.block);
+      cursor = textbookBodyTopMm(section, firstBlock);
       if (
         recovered &&
         continuing &&
@@ -329,6 +330,7 @@ export function paginateTextbookSections(
             : config.print.innerMarginMm;
         page.blocks.push({
           blockId: currentHeading.id,
+          continuation: true,
           column: 1,
           xMm: x,
           yMm: cursor,
@@ -420,7 +422,9 @@ export function paginateTextbookSections(
       cursor += height + gap;
       row = [];
     };
+    const grouped = new Set<string>();
     for (const [blockIndex, block] of section.blocks.entries()) {
+      if (grouped.has(block.id)) continue;
       if (block.startNewPage) {
         flush();
         if (page?.blocks.length) {
@@ -443,6 +447,111 @@ export function paginateTextbookSections(
           section,
           block,
         );
+      const group =
+        block.kind === "text" && block.semantic?.node?.kind === "exampleGroup"
+          ? block.semantic.node
+          : undefined;
+      if (group) {
+        flush();
+        const itemIds = [group.exampleItemId, ...group.confirmItemIds];
+        const members = section.blocks.slice(
+          blockIndex + 1,
+          blockIndex + 1 + itemIds.length,
+        );
+        if (
+          members.length !== itemIds.length ||
+          members.some(
+            (member, index) =>
+              member.kind !== "problem" ||
+              member.itemId !== itemIds[index] ||
+              member.semantic?.node?.kind !== "exampleGroup" ||
+              member.semantic.node.groupId !== group.groupId ||
+              blockColumnSpan(member) !== 1,
+          )
+        )
+          fail(
+            "EXAMPLE_GROUP_MEMBERS",
+            "대표예제와 연결된 확인문제의 순서·열 배치를 확인하세요.",
+            section,
+            block,
+          );
+        const sizes = members.map((member) => {
+          const size = measure.get(member.id);
+          if (
+            !size ||
+            !Number.isFinite(size.heightMm) ||
+            size.heightMm <= 0 ||
+            Math.abs(size.widthMm - blockWidthMm(config, member)) >
+              A4.toleranceMm
+          )
+            fail(
+              "EXAMPLE_GROUP_MEASUREMENT",
+              "예제와 확인문제를 실제 열 폭으로 측정하세요.",
+              section,
+              member,
+            );
+          return size!;
+        });
+        if (Math.abs(m!.widthMm - blockWidthMm(config, block)) > A4.toleranceMm)
+          fail(
+            "MEASUREMENT_WIDTH",
+            "예제 제목의 실제 측정 폭을 확인하세요.",
+            section,
+            block,
+          );
+        const rightInset = 3;
+        const columnsHeight = Math.max(
+          sizes[0].heightMm,
+          rightInset +
+            sizes.slice(1).reduce((sum, size) => sum + size.heightMm, 0),
+        );
+        const groupHeight = Math.max(102, m!.heightMm + columnsHeight);
+        if (!page || cursor + groupHeight > bodyBottom) newPage(block);
+        if (cursor + groupHeight > bodyBottom)
+          fail(
+            "EXAMPLE_GROUP_OVERFLOW",
+            "예제와 확인문제를 한 지면에 넣을 수 없습니다. 원고·그림·풀이 공간을 조정하세요.",
+            section,
+            block,
+          );
+        const left =
+          page!.physicalPageIndex % 2 === 0
+            ? config.print.outerMarginMm
+            : config.print.innerMarginMm;
+        page!.blocks.push({
+          blockId: block.id,
+          column: 1,
+          xMm: left,
+          yMm: cursor,
+          widthMm: blockWidthMm(config, block),
+          heightMm: m!.heightMm,
+        });
+        let rightTop = cursor + m!.heightMm + rightInset;
+        members.forEach((member, index) => {
+          const problem = member as Extract<RenderBlock, { kind: "problem" }>;
+          const column = index === 0 ? 1 : 2;
+          const width = blockWidthMm(config, member);
+          page!.blocks.push({
+            blockId: member.id,
+            itemId: problem.itemId,
+            column,
+            xMm: left + (column - 1) * (width + A4.columnGapMm),
+            yMm: index === 0 ? cursor + m!.heightMm : rightTop,
+            widthMm: width,
+            heightMm: sizes[index].heightMm,
+          });
+          pageMap.push({
+            itemId: problem.itemId,
+            physicalPageIndex: page!.physicalPageIndex,
+            printedPageLabel: page!.printedPageLabel,
+            column,
+          });
+          if (index > 0) rightTop += sizes[index].heightMm;
+          grouped.add(member.id);
+        });
+        cursor += groupHeight + 3;
+        continue;
+      }
       if (block.kind === "unit-intro") {
         if (
           blockIndex !== 0 ||
@@ -522,7 +631,13 @@ export function paginateTextbookSections(
 }
 
 /** Align corresponding spread rows by adding actual writing space. Overflow remains an explicit editing failure. */
-export function alignTextbookSpreads(pages: TextbookPage[]): void {
+export function alignTextbookSpreads(
+  pages: TextbookPage[],
+  sections?: readonly RenderSection[],
+): void {
+  const originals = new Map(
+    sections?.flatMap((section) => section.blocks.map((block) => [block.id, block] as const)),
+  );
   const rows = (page: TextbookPage) => {
     const result: BlockPlacement[][] = [];
     for (const block of page.blocks) {
@@ -538,6 +653,7 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     if (
       left.kind !== "content" ||
       right.kind !== "content" ||
+      left.unitKey !== right.unitKey ||
       left.editorialStage !== right.editorialStage ||
       left.physicalPageIndex % 2 !== 0 ||
       right.physicalPageIndex !== left.physicalPageIndex + 1
@@ -551,7 +667,23 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     // section headings have their own semantic order and must not become exercises.
     const lr = rows(left).filter((row) => row.every((b) => b.itemId)),
       rr = rows(right).filter((row) => row.every((b) => b.itemId));
-    if (!lr.length || !rr.length) continue;
+    if (
+      !lr.length ||
+      lr.length !== rr.length ||
+      [...lr, ...rr].some((row) => row.length !== 2)
+    ) continue;
+    const sourceLeft = originals.get(lr[0][0].blockId)?.semantic?.source;
+    const sourceRight = originals.get(rr[0][0].blockId)?.semantic?.source;
+    if (sourceLeft || sourceRight) {
+      // The native template only aligns exercise grids of the same source section.
+      if (
+        sourceLeft?.kind !== "exercise" || sourceRight?.kind !== "exercise" ||
+        !sourceLeft.sectionName || sourceLeft.sectionName !== sourceRight.sectionName
+      ) continue;
+    } else if (left.sectionKey !== right.sectionKey) continue;
+    if ([...lr, ...rr].flat().some((placement) =>
+      originals.get(placement.blockId)?.semantic?.node?.kind === "exampleGroup",
+    )) continue;
     // Mixed prose between exercises needs a fresh measured layout, not row shifting.
     if (
       [left, right].some((p) => {

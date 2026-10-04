@@ -83,6 +83,7 @@ function semanticProjection(
   const blocks: RenderBlock[] = [];
   let current: TextbookActivity | undefined;
   let lessonTitle = "";
+  let exampleGroupNumber = 0;
   for (const block of source) {
     const semantic = block.semantic;
     const activity = semantic?.activity ?? current;
@@ -201,6 +202,16 @@ function semanticProjection(
     blocks.push({
       ...block,
       editorialStage: stage,
+      ...(semantic?.node?.kind === "exampleGroup" && block.kind === "text"
+        ? { exampleGroupNumber: ++exampleGroupNumber }
+        : {}),
+      ...(semantic?.node?.kind === "exampleGroup" && block.kind === "problem"
+        ? {
+            exampleConfirmIndex: semantic.node.confirmItemIds.indexOf(
+              block.itemId,
+            ),
+          }
+        : {}),
       ...(block.kind === "recall" && Object.hasOwn(MEMORY_COPY, activity ?? "")
         ? { memoryPhases: [] }
         : {}),
