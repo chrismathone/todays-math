@@ -9,6 +9,7 @@ import type { RenderBlock } from "../model";
 import { imageHtml, qrHtml, type RenderResources } from "./shared";
 import { ANSWER_CASE_GRID_STYLE } from "../answerLayout";
 import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
+import { renderSourceFragments } from "./semantic";
 
 export function renderProblemHtml(
   block: Extract<EditorialBlock, { kind: "problem" }>,
@@ -73,5 +74,22 @@ export function renderProblemHtml(
       );
   const qr = block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : "";
   // The QR sits beside the prompt: the ruled space below keeps the full column width.
-  return `<section class="tb-problem${source ? " tb-source-problem" : ""}${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 && !beside ? " tb-problem-wide" : ""}${beside ? " tb-problem-answer-beside" : ""}${qr ? " tb-problem-has-qr" : ""}"${source ? ` data-source-kind="${esc(source.kind)}"` : ""}${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"${role === "confirm" ? ` data-confirm-index="${block.exampleConfirmIndex ?? group.confirmItemIds.indexOf(block.itemId)}"` : ""}` : ""}${beside ? ' data-answer-placement="beside"' : ""}>${beside ? `<div class="tb-answer-case" style="${ANSWER_CASE_GRID_STYLE}"><div class="tb-answer-case-question${qr ? " tb-problem-has-qr" : ""}">` : ""}<header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType && !source ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${prose(block.content)}</div>${figures}</div>${beside ? "" : answer}</div>${qr}</div>${beside ? `</div>${answer}</div>` : ""}<div class="tb-work-area" style="min-height:${lines * 7}mm"${!lines ? " data-empty-work" : ""}>${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
+  const html = `<section class="tb-problem${source ? " tb-source-problem" : ""}${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 && !beside ? " tb-problem-wide" : ""}${beside ? " tb-problem-answer-beside" : ""}${qr ? " tb-problem-has-qr" : ""}"${source ? ` data-source-kind="${esc(source.kind)}"` : ""}${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"${role === "confirm" ? ` data-confirm-index="${block.exampleConfirmIndex ?? group.confirmItemIds.indexOf(block.itemId)}"` : ""}` : ""}${beside ? ' data-answer-placement="beside"' : ""}>${beside ? `<div class="tb-answer-case" style="${ANSWER_CASE_GRID_STYLE}"><div class="tb-answer-case-question${qr ? " tb-problem-has-qr" : ""}">` : ""}<header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType && !source ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${prose(block.content)}</div>${figures}</div>${beside ? "" : answer}</div>${qr}</div>${beside ? `</div>${answer}</div>` : ""}<div class="tb-work-area" style="min-height:${lines * 7}mm"${!lines ? " data-empty-work" : ""}>${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
+  if (!source) return html;
+  const header = block.semantic?.sourceQuestionHeader;
+  const headStyle =
+    block.sourceQuestionHeadHeightMm === undefined
+      ? ""
+      : ` style="height:${block.sourceQuestionHeadHeightMm}mm"`;
+  let sourceHtml = html.replace(
+    /<header class="tb-problem-head" data-anchor="problem-head">([\s\S]*?)<\/header>/,
+    (_, contents: string) =>
+      `<header class="tb-problem-head" data-anchor="problem-head"${headStyle}>${header ? renderSourceFragments(header, resources) : contents}</header>`,
+  );
+  if (block.sourceQuestionPromptMinHeightMm !== undefined)
+    sourceHtml = sourceHtml.replace(
+      '<div class="tb-prose">',
+      `<div class="tb-prose" style="min-height:${block.sourceQuestionPromptMinHeightMm}mm">`,
+    );
+  return sourceHtml;
 }

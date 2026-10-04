@@ -39,6 +39,10 @@ const semantic: TextbookSemantic = {
       ],
     },
   ],
+  sourceQuestionHeader: [
+    { tag: "strong", attributes: { className: "qid" }, rawText: "007" },
+    { tag: "span", attributes: { className: "tag" }, rawText: "합성 확인" },
+  ],
   node: {
     kind: "rows",
     groupKey: "U01.C01",

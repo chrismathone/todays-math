@@ -71,6 +71,9 @@ export function textbookBodyTopMm(
     section.templateKey === "auto-unit-intro"
   )
     return 16;
+  const sourceKind = (block ?? section.blocks[0])?.semantic?.source?.kind;
+  if (sourceKind === "drill") return 20;
+  if (sourceKind === "scriptcheck" || sourceKind === "basic") return 21;
   return (block?.editorialStage ?? section.editorialStage) === "opening" ||
     section.templateKey === "reference-paired" ||
     section.templateKey === "reference-types"
@@ -478,23 +481,47 @@ export function paginateTextbookSections(
       });
       // Dialogue turns and recall rows use the reference's compact vertical rhythm.
       // Exercise and prose rows keep their measured four-millimetre spacing.
-      const gap = row.every(({ block }) => block.kind === "recall")
-        ? row.every(
-            ({ block }) => block.semantic?.source?.kind === "fullmaster",
-          )
-          ? 4.7
-          : 1
-        : row.every(
-              ({ block }) =>
-                block.kind === "dialogue" ||
-                block.semantic?.node?.kind === "board",
+      const sourceKind = row[0].block.semantic?.source?.kind;
+      const sourceGap =
+        sourceKind && row[0].block.kind !== "heading"
+          ? row.every(({ block }) => block.kind === "problem")
+            ? (
+                { scriptcheck: 1, basic: 2, exercise: 5 } as Record<
+                  string,
+                  number
+                >
+              )[sourceKind]
+            : (
+                {
+                  scriptcheck: 2,
+                  basic: 3,
+                  concept1: 2.6,
+                  concept2: 2.6,
+                  concept3: 2.6,
+                  drill: 3,
+                  exercise: 4,
+                } as Record<string, number>
+              )[sourceKind]
+          : undefined;
+      const gap =
+        sourceGap ??
+        (row.every(({ block }) => block.kind === "recall")
+          ? row.every(
+              ({ block }) => block.semantic?.source?.kind === "fullmaster",
             )
-          ? (row[0].block.dialogueGapMm ?? 0.85)
-          : row[0].block.kind === "heading" && recovered
-            ? row[0].block.editorialStage === "opening"
-              ? 3.5
-              : 4
-            : A4.gapMm;
+            ? 4.7
+            : 1
+          : row.every(
+                ({ block }) =>
+                  block.kind === "dialogue" ||
+                  block.semantic?.node?.kind === "board",
+              )
+            ? (row[0].block.dialogueGapMm ?? 0.85)
+            : row[0].block.kind === "heading" && recovered
+              ? row[0].block.editorialStage === "opening"
+                ? 3.5
+                : 4
+              : A4.gapMm);
       cursor += height + gap;
       row = [];
     };
