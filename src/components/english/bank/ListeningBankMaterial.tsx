@@ -51,6 +51,10 @@ function MaterialGroup({
 }) {
   const player = useRef<HTMLAudioElement>(null);
   const stopAt = useRef<number | null>(null);
+  useEffect(() => {
+    const audio = player.current;
+    return () => audio?.pause();
+  }, [mediaUrl]);
   return (
     <section className={c.group}>
       <h3>

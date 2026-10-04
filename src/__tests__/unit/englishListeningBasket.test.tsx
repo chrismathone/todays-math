@@ -40,6 +40,9 @@ function source(title: string, ranges = true): ListeningComposeSource {
 describe("listening material basket", () => {
   beforeEach(() => {
     request.mockReset();
+    vi.spyOn(HTMLMediaElement.prototype, "pause")
+      .mockImplementation(() => {})
+      .mockClear();
   });
   it("keeps individual selections across source changes and adds a complete second round", async () => {
     const first = source("1회 평가"),
@@ -143,5 +146,28 @@ describe("listening material basket", () => {
     expect(
       screen.getByRole("heading", { name: "담은 문항 · 0문항" }),
     ).toBeInTheDocument();
+  });
+  it("pauses the captured source player when an inactive bank removes its DOM", async () => {
+    const first = source("재생 중인 원본");
+    request.mockResolvedValue(first);
+    const view = render(
+      <ListeningBankMaterial
+        active
+        setId={first.detail.id}
+        onOpenListening={vi.fn()}
+      />,
+    );
+    await screen.findByRole("heading", { name: "재생 중인 원본" });
+    const audio = view.container.querySelector("audio");
+    const pause = vi.mocked(HTMLMediaElement.prototype.pause);
+    view.rerender(
+      <ListeningBankMaterial
+        active={false}
+        setId={first.detail.id}
+        onOpenListening={vi.fn()}
+      />,
+    );
+    expect(view.container.querySelector("audio")).toBeNull();
+    expect(pause.mock.instances).toContain(audio);
   });
 });
