@@ -9,6 +9,7 @@ import { AccountStatus, accountDate } from "./AccountReview";
 import AccountReview from "./AccountReview";
 import AccountSyncBadge from "./AccountSyncBadge";
 import AdminAccountRelations from "./AdminAccountRelations";
+import BackLink from "@/components/ui/BackLink";
 import { accountRequest, requestMessage } from "./accountRequests";
 import {
   ADMIN_KIND_LABEL,
@@ -452,9 +453,9 @@ export default function AdminUserDetail({
   branchId: string;
 }) {
   const router = useRouter();
-  const [tab, setTab] = useState<"documents" | "relations" | "audit">(
-    "documents",
-  );
+  const [tab, setTab] = useState<
+    "documents" | "classes" | "students" | "audit"
+  >("documents");
   const [locked, setLocked] = useState(false);
   const resource = useAdminResource<{ data: ManagedAccount }>(
     `/api/admin/users/${encodeURIComponent(userId)}`,
@@ -484,20 +485,17 @@ export default function AdminUserDetail({
     >
       <AdminHeader identity={identity} />
       <main className={s.main}>
-        <Link
-          className={s.textLink}
+        <BackLink
           href={`/admin/branches/${encodeURIComponent(branchId)}`}
           onClick={(event) => {
             if (locked) event.preventDefault();
           }}
           aria-disabled={locked}
         >
-          ←{" "}
           {account?.branchName
             ? `${account.branchName} 계정 목록`
             : "미소속 계정 목록"}
-          으로 돌아가기
-        </Link>
+        </BackLink>
         {locked ? (
           <p className={s.unsaved}>
             변경을 저장하거나 취소한 뒤 목록으로 이동하세요.
@@ -612,10 +610,17 @@ export default function AdminUserDetail({
                   </button>
                   <button
                     type="button"
-                    aria-pressed={tab === "relations"}
-                    onClick={() => setTab("relations")}
+                    aria-pressed={tab === "classes"}
+                    onClick={() => setTab("classes")}
                   >
-                    반·학생
+                    반
+                  </button>
+                  <button
+                    type="button"
+                    aria-pressed={tab === "students"}
+                    onClick={() => setTab("students")}
+                  >
+                    학생
                   </button>
                   <button
                     type="button"
@@ -627,11 +632,12 @@ export default function AdminUserDetail({
                 </div>
                 {tab === "documents" ? (
                   <Documents userId={userId} />
-                ) : tab === "relations" ? (
+                ) : tab === "classes" || tab === "students" ? (
                   <AdminAccountRelations
-                    key={`${userId}:${branchId}`}
+                    key={`${tab}:${userId}:${branchId}`}
                     userId={userId}
                     branchId={branchId}
+                    kind={tab}
                   />
                 ) : (
                   <Audit key={userId} userId={userId} />

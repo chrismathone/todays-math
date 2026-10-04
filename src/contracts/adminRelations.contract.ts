@@ -14,6 +14,18 @@ export const adminRelationsQuerySchema = z.strictObject({
   kind: z.enum(["classes", "students"]),
   page: positiveQuery(100000, "1"),
   pageSize: positiveQuery(50, "20"),
+  q: z.string().trim().max(100).default(""),
+  classId: z.uuid().optional(),
+  grade: z.string().max(10).default("all"),
+  enrollment: z.enum(["all", "enrolled", "on-hold"]).default("all"),
+  login: z
+    .enum(["all", "unissued", "disabled", "locked", "enabled"])
+    .default("all"),
+  sync: z
+    .enum(["all", "local", "legacy", "active", "paused", "unverified"])
+    .default("all"),
+  sort: z.enum(["name", "class", "grade", "login"]).default("name"),
+  direction: z.enum(["asc", "desc"]).default("asc"),
 });
 export type AdminRelationsQuery = z.infer<typeof adminRelationsQuerySchema>;
 
@@ -65,6 +77,12 @@ export const adminRelationsResponseSchema = z.discriminatedUnion("kind", [
     kind: z.literal("students"),
     data: z.array(connectedStudentSchema),
     meta: metaSchema,
+    filters: z
+      .strictObject({
+        classes: z.array(z.strictObject({ id: z.uuid(), name: z.string() })),
+        grades: z.array(z.string()),
+      })
+      .optional(),
   }),
 ]);
 export type AdminRelationsResponse = z.infer<

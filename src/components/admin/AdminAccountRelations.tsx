@@ -11,6 +11,7 @@ import { accountRequest, requestMessage } from "./accountRequests";
 import s from "./admin.module.css";
 import d from "./detail.module.css";
 import r from "./relations.module.css";
+import BulkStudentAccountButton from "@/components/class/BulkStudentAccountButton";
 
 const SYNC_LABEL = {
   local: "직접 등록",
@@ -30,15 +31,32 @@ const LOGIN_LABEL = {
   locked: "일시 잠김",
   enabled: "사용 설정",
 };
+const STUDENT_FILTER_DEFAULTS = {
+  q: "",
+  classId: "",
+  grade: "all",
+  enrollment: "all",
+  login: "all",
+  sync: "all",
+  sort: "class",
+  direction: "asc",
+};
 
 function useRelations(
   userId: string,
   branchId: string,
   kind: "classes" | "students",
+  filters: Record<string, string>,
 ) {
-  const [page, setPage] = useState(1);
+  const filterKey = new URLSearchParams(filters).toString();
+  const [pagination, setPagination] = useState({ filterKey, page: 1 });
+  const page = pagination.filterKey === filterKey ? pagination.page : 1;
   const [retry, setRetry] = useState(0);
-  const url = `/api/admin/users/${encodeURIComponent(userId)}/relations?branchId=${encodeURIComponent(branchId)}&kind=${kind}&page=${page}&pageSize=20`;
+  const [filterOptions, setFilterOptions] =
+    useState<
+      Extract<AdminRelationsResponse, { kind: "students" }>["filters"]
+    >();
+  const url = `/api/admin/users/${encodeURIComponent(userId)}/relations?branchId=${encodeURIComponent(branchId)}&kind=${kind}&page=${page}&pageSize=20&${filterKey}`;
   const key = `${url}:${retry}`;
   const [state, setState] = useState<{
     key: string;
@@ -59,6 +77,8 @@ function useRelations(
           return;
         }
         setState({ key, data: result.data });
+        if (result.data.kind === "students")
+          setFilterOptions(result.data.filters);
       })
       .catch((error) => {
         if (!controller.signal.aborted)
@@ -69,7 +89,8 @@ function useRelations(
   return {
     data: state.key === key ? state.data : undefined,
     error: state.key === key ? state.error : undefined,
-    onPage: setPage,
+    filters: filterOptions,
+    onPage: (page: number) => setPagination({ filterKey, page }),
     reload: () => setRetry((value) => value + 1),
   };
 }
@@ -89,6 +110,7 @@ function ClassRows({ items }: { items: ConnectedClass[] }) {
             <th scope="col">학년</th>
             <th scope="col">계정과의 관계</th>
             <th scope="col">운영 상태</th>
+            <th scope="col">학생 계정</th>
           </tr>
         </thead>
         <tbody>
@@ -106,6 +128,13 @@ function ClassRows({ items }: { items: ConnectedClass[] }) {
                 ].join(" · ")}
               </td>
               <td>{c.active ? "운영 중" : "종료"}</td>
+              <td>
+                {c.active ? (
+                  <BulkStudentAccountButton classId={c.id} className={c.name} />
+                ) : (
+                  "발급 대상 제외"
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -169,7 +198,18 @@ function RelationPanel({
   branchId: string;
   kind: "classes" | "students";
 }) {
-  const resource = useRelations(userId, branchId, kind);
+  const defaults = STUDENT_FILTER_DEFAULTS;
+  const [filters, setFilters] = useState(defaults);
+  const [search, setSearch] = useState("");
+  const appliedFilters =
+    kind === "students"
+      ? Object.fromEntries(
+          Object.entries(filters).filter(([, value]) => value !== ""),
+        )
+      : {};
+  const resource = useRelations(userId, branchId, kind, appliedFilters);
+  const changeFilter = (key: keyof typeof defaults, value: string) =>
+    setFilters((current) => ({ ...current, [key]: value }));
   const heading = kind === "classes" ? "연결된 반" : "연결된 학생";
   const { data, error } = resource;
   const totalPages = data
@@ -192,6 +232,141 @@ function RelationPanel({
           새로고침
         </button>
       </div>
+      {kind === "students" ? (
+        <div className={r.filters}>
+          <form
+            className={r.search}
+            onSubmit={(event) => {
+              event.preventDefault();
+              changeFilter("q", search.trim());
+            }}
+          >
+            <label htmlFor={`student-search-${userId}`}>학생·반 검색</label>
+            <div>
+              <input
+                id={`student-search-${userId}`}
+                type="search"
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="학생 이름 또는 반 이름"
+                maxLength={100}
+              />
+              <button type="submit" className={s.secondary}>
+                검색
+              </button>
+            </div>
+          </form>
+          <label>
+            반
+            <select
+              value={filters.classId}
+              onChange={(event) => changeFilter("classId", event.target.value)}
+            >
+              <option value="">전체 반</option>
+              {resource.filters?.classes.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            학년
+            <select
+              value={filters.grade}
+              onChange={(event) => changeFilter("grade", event.target.value)}
+            >
+              <option value="all">전체 학년</option>
+              {resource.filters?.grades.map((grade) => (
+                <option key={grade} value={grade}>
+                  {grade}
+                </option>
+              ))}
+              <option value="unregistered">미등록</option>
+            </select>
+          </label>
+          <label>
+            수강 상태
+            <select
+              value={filters.enrollment}
+              onChange={(event) =>
+                changeFilter("enrollment", event.target.value)
+              }
+            >
+              <option value="all">전체 수강 상태</option>
+              <option value="enrolled">재원</option>
+              <option value="on-hold">휴원</option>
+            </select>
+          </label>
+          <label>
+            로그인 상태
+            <select
+              value={filters.login}
+              onChange={(event) => changeFilter("login", event.target.value)}
+            >
+              <option value="all">전체 로그인 상태</option>
+              {Object.entries(LOGIN_LABEL).map(([key, label]) => (
+                <option key={key} value={key}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            동기화 상태
+            <select
+              value={filters.sync}
+              onChange={(event) => changeFilter("sync", event.target.value)}
+            >
+              <option value="all">전체 동기화 상태</option>
+              {Object.entries(SYNC_LABEL).map(([key, label]) => (
+                <option key={key} value={key}>
+                  {label}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            정렬
+            <select
+              value={filters.sort}
+              onChange={(event) => changeFilter("sort", event.target.value)}
+            >
+              <option value="class">반별 정렬</option>
+              <option value="name">학생 이름순</option>
+              <option value="grade">학년순</option>
+              <option value="login">로그인 상태순</option>
+            </select>
+          </label>
+          <label>
+            정렬 방향
+            <select
+              value={filters.direction}
+              onChange={(event) =>
+                changeFilter("direction", event.target.value)
+              }
+            >
+              <option value="asc">오름차순</option>
+              <option value="desc">내림차순</option>
+            </select>
+          </label>
+          <button
+            type="button"
+            className={s.quiet}
+            onClick={() => {
+              setSearch("");
+              setFilters(defaults);
+            }}
+          >
+            필터 초기화
+          </button>
+        </div>
+      ) : (
+        <p className={r.panelNote}>
+          현재 운영 중인 반만 표시합니다. 전체 생성은 미발급 재원 학생에게만
+          적용됩니다.
+        </p>
+      )}
       {error ? (
         <div role="alert" className={s.empty}>
           <strong>{heading}을 불러오지 못했습니다.</strong>
@@ -210,10 +385,18 @@ function RelationPanel({
         </div>
       ) : !data.data.length ? (
         <div role="status" className={s.empty}>
-          <strong>{heading}이 없습니다.</strong>
+          <strong>
+            {kind === "students" &&
+            Object.entries(filters).some(
+              ([key, value]) =>
+                value !== defaults[key as keyof typeof defaults],
+            )
+              ? "조건에 맞는 학생이 없습니다."
+              : `${heading}이 없습니다.`}
+          </strong>
           <p>
             {kind === "classes"
-              ? "현재 지점에서 소유하거나 담당하는 반이 표시됩니다."
+              ? "현재 지점에서 소유하거나 담당하는 운영 중인 반이 표시됩니다."
               : "연결된 운영 중인 반의 재원·휴원 학생이 표시됩니다."}
           </p>
         </div>
@@ -258,33 +441,27 @@ function RelationPanel({
 export default function AdminAccountRelations({
   userId,
   branchId,
+  kind,
 }: {
   userId: string;
   branchId: string;
+  kind: "classes" | "students";
 }) {
   return (
     <div className={r.relations}>
-      <p className={r.description}>
-        소유하거나 현재 담당하는 반과 재원·휴원 학생을 읽기 전용으로 확인합니다.
-        소유 관계는 현재 업무 접근 권한과 다를 수 있습니다.
-      </p>
       <RelationPanel
-        key={`classes:${userId}:${branchId}`}
+        key={`${kind}:${userId}:${branchId}`}
         userId={userId}
         branchId={branchId}
-        kind="classes"
+        kind={kind}
       />
-      <RelationPanel
-        key={`students:${userId}:${branchId}`}
-        userId={userId}
-        branchId={branchId}
-        kind="students"
-      />
-      <p className={r.description}>
-        로그인 설정의 ‘사용 설정’은 학생 계정이 켜져 있다는 뜻입니다. 실제
-        접속에는 연동 상태와 수강 조건도 적용됩니다. 동기화 상태는 최근 확인된
-        정보를 기준으로 표시합니다.
-      </p>
+      {kind === "students" ? (
+        <p className={r.description}>
+          로그인 설정의 ‘사용 설정’은 학생 계정이 켜져 있다는 뜻입니다. 실제
+          접속에는 연동 상태와 수강 조건도 적용됩니다. 동기화 상태는 최근 확인된
+          정보를 기준으로 표시합니다.
+        </p>
+      ) : null}
     </div>
   );
 }

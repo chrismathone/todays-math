@@ -12,13 +12,19 @@ import "katex/dist/katex.min.css";
 import "./harness.css";
 
 const view = new URLSearchParams(location.search).get("view");
+const branchId =
+  new URLSearchParams(location.search).get("branchId") ?? "unassigned";
 createRoot(document.getElementById("root")!).render(
   view === "pending" || view === "rejected" ? (
     <ApprovalPending
       account={view === "rejected" ? rejectedAccount : pendingAccount}
     />
   ) : view === "detail" ? (
-    <AdminUserDetail identity={adminIdentity} userId={pendingAccount.id} />
+    <AdminUserDetail
+      identity={adminIdentity}
+      userId={pendingAccount.id}
+      branchId={branchId}
+    />
   ) : (
     <AdminAccounts identity={adminIdentity} />
   ),

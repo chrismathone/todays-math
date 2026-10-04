@@ -455,6 +455,8 @@
     font-size: 12px;
   }
   .tabs button {
-    padding-inline: 20px;
+    padding-inline: 12px;
+    min-width: 44px;
+    white-space: nowrap;
   }
 }
