@@ -4,6 +4,8 @@ export const RECOVERY_FRAME_CSS = `
 .tb-recovery .tb-stage-subtitle{margin:0}
 .tb-recovered .tb-footer-brand{font-size:6.8pt;line-height:1.65;display:flex;align-items:center;gap:2mm}
 .tb-recovered .tb-footer-brand i{margin-left:0}
+.tb-source-study-footer{position:absolute;top:270mm;height:8mm}
+.tb-source-study-footer>.study-footer{display:flex;justify-content:space-between;align-items:baseline;height:8mm;padding-top:1.5mm;border-top:.7pt solid var(--tb-light);font-size:6.8pt;line-height:1.6;color:#84958a}
 .tb-continuation-label{position:absolute;right:22mm;top:0;font-size:7pt;line-height:1.65;color:var(--tb-accent)}
 .tb-recovery .tb-stage-head{min-height:23mm;padding:0 19mm 0 0}.tb-recovery .tb-kicker{line-height:1.65}.tb-recovery .tb-section-heading{letter-spacing:-1.35px}.tb-recovery .tb-progress{margin-top:3mm;line-height:1.65}.tb-recovery .tb-stage-number{letter-spacing:-3px}
 .tb-recovery.tb-stage-concept .tb-stage-head{min-height:25mm;padding-right:29mm}.tb-recovery.tb-stage-concept .tb-section-heading{font-size:23pt}.tb-recovery.tb-stage-recall .tb-stage-head{min-height:22mm}

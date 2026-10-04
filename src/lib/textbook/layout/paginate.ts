@@ -86,6 +86,75 @@ export function blockWidthMm(
   return blockColumnSpan(block) === 1 ? (width - A4.columnGapMm) / 2 : width;
 }
 
+/** Reserve measured row space before breaking a new automatic exercise run into pages. */
+function reserveAutomaticExerciseRows(
+  section: RenderSection,
+  measurements: Map<string, BlockMeasurement>,
+  bodyBottom: number,
+): void {
+  if (!section.templateKey.startsWith("auto-lesson")) return;
+  let run: Extract<RenderBlock, { kind: "problem" }>[] = [];
+  let headingHeight = 0;
+  const finish = () => {
+    if (run.length >= 4) {
+      const heights: number[] = [];
+      for (let index = 0; index < run.length; index += 2) {
+        const pair = run
+          .slice(index, index + 2)
+          .map((block) => measurements.get(block.id)?.heightMm);
+        if (
+          pair.some(
+            (height) =>
+              height === undefined || !Number.isFinite(height) || height <= 0,
+          )
+        ) {
+          run = [];
+          return;
+        }
+        heights.push(Math.max(...(pair as number[])));
+      }
+      const available =
+        bodyBottom -
+        textbookBodyTopMm(section, run[0]) -
+        headingHeight -
+        A4.gapMm;
+      const naturalHeight =
+        heights.reduce((sum, height) => sum + height, 0) +
+        (heights.length - 1) * A4.gapMm;
+      if (naturalHeight > available) {
+        // Pagination must reserve the space that spread alignment will use. Uniform
+        // measured rows keep arbitrary long/short questions in source order and fit
+        // matching rows without moving them after the page breaks are already fixed.
+        const heightMm = Math.max(...heights);
+        for (const block of run) {
+          const measured = measurements.get(block.id)!;
+          measurements.set(block.id, { ...measured, heightMm });
+        }
+      }
+    }
+    run = [];
+  };
+  for (const block of section.blocks) {
+    if (
+      block.kind === "problem" &&
+      block.semantic &&
+      !block.semantic.source &&
+      block.semantic.node?.kind !== "exampleGroup" &&
+      block.layout.columnSpan === 1 &&
+      block.answer === undefined &&
+      !block.publicWorkedExample &&
+      !block.startNewPage
+    ) {
+      run.push(block);
+    } else {
+      finish();
+      if (block.kind === "heading")
+        headingHeight = measurements.get(block.id)?.heightMm ?? 0;
+    }
+  }
+  finish();
+}
+
 /** A continued section can share its predecessor's page only within the same unit.
  * Rest pages and auto-created lessons each occupy their own page(s).
  */
@@ -274,6 +343,7 @@ export function paginateTextbookSections(
       section.blocks.some((block) => block.editorialStage === "opening")
         ? 266
         : A4.bodyBottomMm;
+    reserveAutomaticExerciseRows(section, measure, bodyBottom);
     let page: TextbookPage | undefined,
       cursor = textbookBodyTopMm(section, section.blocks[0]);
     let currentHeading: RenderBlock | undefined;
@@ -409,7 +479,11 @@ export function paginateTextbookSections(
       // Dialogue turns and recall rows use the reference's compact vertical rhythm.
       // Exercise and prose rows keep their measured four-millimetre spacing.
       const gap = row.every(({ block }) => block.kind === "recall")
-        ? row.every(({ block }) => block.semantic?.source?.kind === "fullmaster") ? 4.7 : 1
+        ? row.every(
+            ({ block }) => block.semantic?.source?.kind === "fullmaster",
+          )
+          ? 4.7
+          : 1
         : row.every(
               ({ block }) =>
                 block.kind === "dialogue" ||
@@ -638,7 +712,9 @@ export function alignTextbookSpreads(
   sections?: readonly RenderSection[],
 ): void {
   const originals = new Map(
-    sections?.flatMap((section) => section.blocks.map((block) => [block.id, block] as const)),
+    sections?.flatMap((section) =>
+      section.blocks.map((block) => [block.id, block] as const),
+    ),
   );
   const rows = (page: TextbookPage) => {
     const result: BlockPlacement[][] = [];
@@ -673,19 +749,30 @@ export function alignTextbookSpreads(
       !lr.length ||
       lr.length !== rr.length ||
       [...lr, ...rr].some((row) => row.length !== 2)
-    ) continue;
+    )
+      continue;
     const sourceLeft = originals.get(lr[0][0].blockId)?.semantic?.source;
     const sourceRight = originals.get(rr[0][0].blockId)?.semantic?.source;
     if (sourceLeft || sourceRight) {
       // The native template only aligns exercise grids of the same source section.
       if (
-        sourceLeft?.kind !== "exercise" || sourceRight?.kind !== "exercise" ||
-        !sourceLeft.sectionName || sourceLeft.sectionName !== sourceRight.sectionName
-      ) continue;
+        sourceLeft?.kind !== "exercise" ||
+        sourceRight?.kind !== "exercise" ||
+        !sourceLeft.sectionName ||
+        sourceLeft.sectionName !== sourceRight.sectionName
+      )
+        continue;
     } else if (left.sectionKey !== right.sectionKey) continue;
-    if ([...lr, ...rr].flat().some((placement) =>
-      originals.get(placement.blockId)?.semantic?.node?.kind === "exampleGroup",
-    )) continue;
+    if (
+      [...lr, ...rr]
+        .flat()
+        .some(
+          (placement) =>
+            originals.get(placement.blockId)?.semantic?.node?.kind ===
+            "exampleGroup",
+        )
+    )
+      continue;
     // Mixed prose between exercises needs a fresh measured layout, not row shifting.
     if (
       [left, right].some((p) => {

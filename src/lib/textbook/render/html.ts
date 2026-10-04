@@ -29,6 +29,7 @@ import { DIALOGUE_CSS } from "./blocks/dialogueCss";
 import { TEXTBOOK_CONTENT_CSS } from "./blocks/contentCss";
 import {
   renderSemanticTextHtml,
+  renderSourceFragments,
   SEMANTIC_ACTIVITY_CSS,
 } from "./blocks/semantic";
 import {
@@ -219,16 +220,39 @@ export function renderPageHtml(
   const bodyBlocks = page.blocks.filter(
     (placement) => blocks.get(placement.blockId)?.kind !== "heading",
   );
-  const headingPlacement = page.blocks.find((placement) => blocks.get(placement.blockId)?.kind === "heading");
+  const headingPlacement = page.blocks.find(
+    (placement) => blocks.get(placement.blockId)?.kind === "heading",
+  );
   const bodyTop = Math.min(
     ...bodyBlocks.map((placement) => placement.yMm),
     ...dialogue.map((placement) => placement.yMm - 3),
-    ...(dialogue.length && headingPlacement ? [headingPlacement.yMm + headingPlacement.heightMm + 3.5] : []),
+    ...(dialogue.length && headingPlacement
+      ? [headingPlacement.yMm + headingPlacement.heightMm + 3.5]
+      : []),
   );
   let bodyEnd = Math.max(
     ...bodyBlocks.map((placement) => placement.yMm + placement.heightMm),
     ...dialogue.map((placement) => placement.yMm + placement.heightMm + 3),
   );
+  const sourceMemoryBlocks = bodyBlocks.map((placement) =>
+    blocks.get(placement.blockId)!,
+  );
+  const sourceMemoryPage =
+    sourceMemoryBlocks.length > 0 &&
+    sourceMemoryBlocks.every(
+      (block) =>
+        block.kind === "recall" &&
+        block.semantic?.source?.kind === "fullmaster",
+    );
+  const sourceFooter = sourceMemoryPage
+    ? sourceMemoryBlocks.find((block) => block.semantic?.sourceFooter)?.semantic
+        ?.sourceFooter
+    : undefined;
+  // The original content box includes the final master's 2.5mm bottom margin.
+  if (sourceMemoryPage) bodyEnd += 2.5;
+  const sourceFooterHtml = sourceFooter
+    ? `<aside class="tb-source-study-footer" data-anchor="source-study-footer" style="left:${left}mm;right:${right}mm">${renderSourceFragments(sourceFooter, resources)}</aside>`
+    : "";
   const groupedIds = new Set<string>();
   const bodyHtml = bodyBlocks
     .map((placement) => {
@@ -270,7 +294,7 @@ export function renderPageHtml(
           .join("") +
         `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyHtml}</div>`
       : page.blocks.map((placement) => placementHtml(placement)).join("");
-  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${sourceFooterHtml}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(
