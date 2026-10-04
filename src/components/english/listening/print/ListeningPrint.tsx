@@ -2,6 +2,12 @@
 
 import type { ListeningPrintDocument } from "@/lib/english/listening/print";
 import s from "./ListeningPrint.module.css";
+import {
+  hasFullListeningQuestionImage,
+  hasListeningChoiceText,
+  listeningChoiceBody,
+  listeningChoiceMarks,
+} from "@/lib/english/listening/questionPresentation";
 
 export function ListeningPrint({
   document,
@@ -35,16 +41,18 @@ export function ListeningPrint({
               <section key={question.id} className={s.question}>
                 <h3>
                   {question.number}.{" "}
-                  {question.image
+                  {hasFullListeningQuestionImage(question.image)
                     ? `원본 ${question.sourceNumber ?? question.number}번`
                     : question.prompt}
                 </h3>
                 {question.reconstructionLabel && (
                   <p>{question.reconstructionLabel}</p>
                 )}
-                {question.image && question.instruction && (
-                  <p>{question.instruction}</p>
-                )}
+                {question.instruction &&
+                  (hasFullListeningQuestionImage(question.image) ||
+                    !question.prompt.includes(question.instruction)) && (
+                    <p>{question.instruction}</p>
+                  )}
                 {question.image ? (
                   // A validated PNG crop keeps original tables and picture choices intact.
                   // eslint-disable-next-line @next/next/no-img-element
@@ -52,19 +60,26 @@ export function ListeningPrint({
                     src={question.image.dataUrl}
                     width={question.image.width}
                     height={question.image.height}
-                    alt={question.prompt}
+                    alt={
+                      hasFullListeningQuestionImage(question.image)
+                        ? question.prompt
+                        : `${question.number}번 시각 자료`
+                    }
                     style={{ maxWidth: "100%", height: "auto" }}
                   />
-                ) : (
+                ) : null}
+                {!hasFullListeningQuestionImage(question.image) &&
+                (!question.image ||
+                  hasListeningChoiceText(question.choices)) ? (
                   <ol className={s.choices}>
                     {question.choices.map((choice, choiceIndex) => (
                       <li key={choiceIndex}>
-                        <span>{["①", "②", "③", "④", "⑤"][choiceIndex]}</span>{" "}
-                        {choice}
+                        <span>{listeningChoiceMarks[choiceIndex]}</span>{" "}
+                        {listeningChoiceBody(choice, choiceIndex)}
                       </li>
                     ))}
                   </ol>
-                )}
+                ) : null}
                 {question.answer !== undefined && (
                   <div className={s.answer}>
                     <strong>정답 {question.answer}</strong>
