@@ -35,6 +35,7 @@ export function projectListeningStudentView(
     const questions = group.questions.map((question) => ({
       id: question.id,
       prompt: question.prompt,
+      ...(question.instruction ? { instruction: question.instruction } : {}),
       ...(question.metadata ? { origin: question.metadata.origin } : {}),
       ...(question.image
         ? {
@@ -42,6 +43,7 @@ export function projectListeningStudentView(
               dataUrl: question.image.dataUrl,
               width: question.image.width,
               height: question.image.height,
+              ...(question.image.role ? { role: question.image.role } : {}),
             },
           }
         : {}),

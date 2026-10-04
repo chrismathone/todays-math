@@ -82,6 +82,24 @@ export const SPECIMEN_ITEM_IDS = [
 ] as const;
 
 export const ITEMS: PrintCheckItem[] = [
+  {
+    id: "english-listening-native-visual",
+    title: "영어듣기 — DB 문항과 시각 자료 인쇄",
+    changed:
+      "문항 전체 이미지에는 발문·보기를 다시 출력하지 않고, 그림·표만 있는 이미지는 DB의 발문과 실제 보기와 함께 출력한다. 번호뿐인 그림 보기는 중복 출력하지 않는다.",
+    look:
+      "(제안) 문항 전체 이미지의 발문이 두 번 나오지 않는지, 그림·표 문항의 발문·보기·필수 시각 자료가 모두 보이는지 확인한다. 원본 번호와 시험지 번호를 구분하고, 공통 지시문이 빠지지 않으며 학생용에는 정답·해설·대본이 없는지 확인한다. 교사용에는 정답과 해설이 보여야 한다.",
+    lookFromSource: false,
+    evidence: [
+      "src/components/english/listening/print/ListeningPrint.tsx",
+      "src/__tests__/unit/englishListeningQuestionPresentation.test.tsx",
+      "src/contracts/englishListeningSource.contract.ts (question.image.role)",
+    ],
+    needs: "문항 전체 이미지·그림 보기·텍스트 보기·공통 지시문이 함께 있는 듣기 자료",
+    scale: "영어듣기 발행본 및 초안 학생용·교사용 인쇄",
+    status: "대기",
+    changedOn: "2026-10-04",
+  },
   { ...textbookPrintCheck, changedOn: "2026-10-03" },
   {
     id: "english-listening-bank-original-crops",

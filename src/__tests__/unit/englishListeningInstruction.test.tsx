@@ -99,7 +99,7 @@ describe("shared listening instruction", () => {
     }
   });
 
-  it("keeps shared instruction in the existing student prompt while excluding print metadata and answers", () => {
+  it("preserves shared instruction for the student while excluding teacher-only answers", () => {
     const { question, publication } = sharedResponseFixture();
     const view = projectListeningStudentView(
       publication,
@@ -113,7 +113,7 @@ describe("shared listening instruction", () => {
     const projected = view.groups[0].questions[0];
     expect(projected.prompt).toBe(question.prompt);
     expect(projected.prompt).toContain(instruction);
-    expect(projected).not.toHaveProperty("instruction");
+    expect(projected.instruction).toBe(instruction);
     expect(projected).not.toHaveProperty("answerChoiceId");
     expect(projected).not.toHaveProperty("explanation");
     expect(JSON.stringify(view)).not.toContain(question.explanation);

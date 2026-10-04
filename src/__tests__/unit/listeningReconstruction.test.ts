@@ -113,6 +113,29 @@ describe("audio-grounded listening reconstruction", () => {
       ),
     ).toThrow();
   });
+  it("accepts a filled schema wrapper only after validating actual questions and spoken evidence", () => {
+    const actual = { ...question, sourceSegmentIds: [4] };
+    const wrapped = { schema: { questions: [actual] }, source: { year: 9999 } };
+    expect(readListeningReconstructionGeneration(wrapped).questions).toEqual([
+      actual,
+    ]);
+    expect(
+      normalizeListeningReconstructionEvidenceQuotes(
+        [{ id: 4, text: source.items[0].transcript, uncertain: false }],
+        wrapped,
+      ).questions,
+    ).toEqual([actual]);
+    expect(() =>
+      normalizeListeningReconstructionEvidenceQuotes(
+        [{ id: 4, text: source.items[0].transcript, uncertain: false }],
+        {
+          schema: {
+            questions: [{ ...actual, evidenceQuotes: ["exact source quote"] }],
+          },
+        },
+      ),
+    ).toThrow("근거");
+  });
   it("preserves grounded text and rejects a quote invented by generation", () => {
     expect(
       validateListeningReconstruction(source, { questions: [question] })
