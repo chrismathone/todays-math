@@ -453,6 +453,15 @@ beforeAll(async () => {
     familyKey: "elem:two-types",
     problemType: "개념",
   });
+  // The same key on both rows, but not an engine family: a label is not recorded provenance.
+  await seed("otherKey1", rich, {
+    ...sum(142, 253),
+    familyKey: "book:addition-page-12",
+  });
+  await seed("otherKey2", rich, {
+    ...sum(263, 314),
+    familyKey: "book:addition-page-12",
+  });
   await seed("solo1", rich, sum(331, 142));
   await seed("solo2", rich, sum(152, 236));
   await seed("word1", rich, {
@@ -898,6 +907,8 @@ describe("worked examples are recorded pairs", () => {
       "twoDifficulties2",
       "twoTypes1",
       "twoTypes2",
+      "otherKey1",
+      "otherKey2",
       "solo1",
       "solo2",
     ])
@@ -930,6 +941,29 @@ describe("worked examples are recorded pairs", () => {
         strategy: example.solution,
       });
     }
+  });
+
+  it("pairs nothing else even when the whole maximum is free for examples", async () => {
+    const result = await create({
+      components: only({ workedExamples: true }),
+      problemCountPerUnit: 30,
+    });
+    const book = await read(result.book.draftEditionId!);
+    // Lone, solo, repeated, unsolved and mixed families stay unpaired however much room there is.
+    expect(book.problems.map((p) => [bankName(p.problemId), p.role])).toEqual([
+      ["pairA1", "example"],
+      ["pairA2", "confirm"],
+      ["pairB1", "example"],
+      ["pairB2", "confirm"],
+    ]);
+    expect(result.warnings).toEqual([
+      expect.stringContaining(
+        "대표예제와 확인문제 30문항 중 4문항을 넣었습니다.",
+      ),
+      expect.stringContaining(
+        "요청한 최대 30문항 중 출제 가능한 서로 다른 4문항을 넣었습니다.",
+      ),
+    ]);
   });
 
   it("accepts only recorded engine families with a solution as pair evidence", () => {
