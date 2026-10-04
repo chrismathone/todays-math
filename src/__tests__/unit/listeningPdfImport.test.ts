@@ -14,6 +14,49 @@ const text = (
 ): ListeningPdfText => ({ str, x, y, width, height });
 
 describe("original listening assessment PDF parsing", () => {
+  it("excludes separately split month/day headings in the official middle3 2025 round1 masthead", () => {
+    const boxes = listeningPdfQuestionBoxes(
+      [
+        text("2025.", 49.773, 75.56, 36.16, 15.68),
+        text("4.", 93.789, 75.56, 11.93, 15.68),
+        text("4.", 113.578, 75.56, 11.93, 15.68),
+        text("(금)", 129.649, 75.56, 22.28, 15.68),
+        text("시행", 157.714, 75.56, 24.17, 15.68),
+        text("1.", 30.104, 104.86),
+        text("대화를 듣고, 남자가 주문할 셔츠를 고르시오.", 41.25, 104.86, 160),
+        text("①", 58.88, 120.33),
+        text("2.", 30.104, 187),
+        text("대화를 듣고, 알맞은 것을 고르시오.", 41.25, 187, 160),
+        text("12.", 307.753, 104.86),
+        text("다음 표를 보면서 대화를 듣고 고르시오.", 323.46, 104.86, 206),
+      ],
+      595.28,
+      841.89,
+      20,
+    );
+    expect(boxes.map((box) => box.number)).toEqual([1, 2, 12]);
+    expect(boxes[0].width).toBeCloseTo(269.649);
+    expect(boxes[0].prompt).toContain("셔츠");
+  });
+
+  it("keeps a question containing a dotted date outside an assessment masthead", () => {
+    const [box] = listeningPdfQuestionBoxes(
+      [
+        text("1.", 40, 100),
+        text("2025.", 55, 100),
+        text("4.", 100, 100),
+        text("4.", 130, 100),
+        text("(금) is the due date.", 160, 100, 160),
+        text("① response", 55, 130, 160),
+      ],
+      728,
+      1031,
+      1,
+    );
+    expect(box.number).toBe(1);
+    expect(box.prompt).toContain("2025.");
+  });
+
   it("keeps real columns and excludes the weekday date fragment in the official high1 2026 round2 header", () => {
     const boxes = listeningPdfQuestionBoxes(
       [
@@ -52,6 +95,23 @@ describe("original listening assessment PDF parsing", () => {
     ).toEqual([2, 1, 2, 1, 3, 4, 2, 4, 1, 2, 4, 2, 0, 0, 1, 4, 0, 4, 3, 3]);
     expect(() => listeningPdfAnswers("1 ③ 1 ④")).toThrow("서로 다르게");
     expect(listeningPdfAnswers("1 2 3 4 5").size).toBe(0);
+  });
+
+  it("ignores the choice-count summary following the official 2018 answer table", () => {
+    const answers = listeningPdfAnswers(
+      "문항번호 정답 문항번호 정답 1 ② 11 ③ 2 ④ 12 ⑤ 3 ① 13 ① 4 ⑤ 14 ④ 5 ③ 15 ⑤ 6 ③ 16 ① 7 ④ 17 ② 8 ② 18 ② 9 ④ 19 ③ 10 ⑤ 20 ③ 정답번호 개수 ① 3 ② 4 ③ 5 ④ 4 ⑤ 4 합계 20",
+    );
+    expect(answers.size).toBe(20);
+    expect(answers.get(3)).toBe(0);
+    expect(answers.get(4)).toBe(4);
+  });
+
+  it("preserves the alternate circled choices printed in the official high1 2017 round2 answer sheet", () => {
+    const answers = listeningPdfAnswers(
+      "1 ⑤ 11 ⓸ 2 ② 12 ⓶ 3 ① 13 ⓵ 4 ② 14 ⓹ 5 ③ 15 ⓷ 6 ④ 16 ⓵ 7 ⓸ 17 ⓸ 8 ⓷ 18 ⓵ 9 ⓷ 19 ⓹ 10 ⓸ 20 ⓷ 정답번호 개수 ① 4 ② 3 ③ 5 ④ 5 ⑤ 3 합계 20",
+    );
+    expect(Array.from({ length: 20 }, (_, index) => answers.get(index + 1)))
+      .toEqual([4, 1, 0, 1, 2, 3, 3, 2, 2, 3, 3, 1, 0, 4, 2, 0, 3, 0, 4, 2]);
   });
 
   it.each(["【16-17】", "[16~17]"])(
