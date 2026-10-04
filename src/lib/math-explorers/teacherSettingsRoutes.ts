@@ -64,6 +64,8 @@ export async function handleExplorerTeacherSettings(
     const branchDenied = await requireTeacherBranch(
       owned.data.classId,
       scope.data.branchId,
+      db,
+      parsed.data.id,
     );
     if (branchDenied) return noStore(branchDenied);
     const now = new Date();
@@ -93,6 +95,7 @@ export async function handleExplorerTeacherSettings(
               tx,
               owned.data.classId,
               scope.data.branchId,
+              parsed.data.id,
             );
             return (tx.studentSrsState as unknown as SrsStateTable).create(
               args,
@@ -115,6 +118,7 @@ export async function handleExplorerTeacherSettings(
               tx,
               owned.data.classId,
               scope.data.branchId,
+              parsed.data.id,
             );
             return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
               args,

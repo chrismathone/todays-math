@@ -282,6 +282,13 @@ describe("admin explorer settings", () => {
   it("accepts a matching branch but refuses a branch change during persistence", async () => {
     const cls = (await db.class.findUnique({ where: { id: ids.classId } }))!;
     const branchId = randomUUID();
+    const canonical = (await db.student.findUnique({
+      where: { id: ids.studied },
+    }))!;
+    vi.spyOn(db.student, "findUnique").mockResolvedValue({
+      ...canonical,
+      branchId,
+    });
     const lookup = vi
       .spyOn(db.class, "findUnique")
       .mockResolvedValue({ ...cls, branchId });
@@ -292,6 +299,84 @@ describe("admin explorer settings", () => {
       .mockResolvedValueOnce({ ...cls, branchId })
       .mockResolvedValue({ ...cls, branchId: randomUUID() });
     expect((await save(input, `?branchId=${branchId}`)).status).toBe(403);
+    expect(world.writes).toBe(0);
+  });
+
+  it("rejects a student's canonical branch mismatch even when the class matches", async () => {
+    const branchId = randomUUID();
+    const cls = (await db.class.findUnique({ where: { id: ids.classId } }))!;
+    const canonical = (await db.student.findUnique({
+      where: { id: ids.studied },
+    }))!;
+    vi.spyOn(db.class, "findUnique").mockResolvedValue({ ...cls, branchId });
+    vi.spyOn(db.student, "findUnique").mockResolvedValue({
+      ...canonical,
+      branchId: randomUUID(),
+    });
+    expect(
+      (await read(`?branchId=${branchId}&classId=${ids.classId}`)).status,
+    ).toBe(404);
+    expect(
+      (await save(input, `?branchId=${branchId}&classId=${ids.classId}`))
+        .status,
+    ).toBe(404);
+    const coursePath = `/api/students/${ids.studied}/math-srs/course?branchId=${branchId}&classId=${ids.classId}`;
+    expect(
+      (await COURSE_DETAIL(req(coursePath), params(ids.studied))).status,
+    ).toBe(404);
+    expect(
+      (
+        await COURSE_PLAN(
+          req(coursePath, "POST", {
+            startSectionId: COURSE_SECTIONS[0].id,
+            dailyQuestionCount: 10,
+            enabled: true,
+            expectedRevision: 0,
+          }),
+          params(ids.studied),
+        )
+      ).status,
+    ).toBe(404);
+    expect(world.writes).toBe(0);
+  });
+
+  it("refuses a canonical student move after the scoped read and before the write", async () => {
+    const branchId = randomUUID();
+    const cls = (await db.class.findUnique({ where: { id: ids.classId } }))!;
+    const canonical = (await db.student.findUnique({
+      where: { id: ids.studied },
+    }))!;
+    vi.spyOn(db.class, "findUnique").mockResolvedValue({ ...cls, branchId });
+    vi.spyOn(db.student, "findUnique")
+      .mockResolvedValueOnce({ ...canonical, branchId })
+      .mockResolvedValueOnce({ ...canonical, branchId })
+      .mockResolvedValue({ ...canonical, branchId: randomUUID() });
+    expect((await save(input, `?branchId=${branchId}`)).status).toBe(403);
+    expect(world.writes).toBe(0);
+    expect(recordAudit).not.toHaveBeenCalled();
+  });
+
+  it("excludes students whose canonical branch differs from their roster class", async () => {
+    const branchId = randomUUID();
+    const canonical = (await db.student.findUnique({
+      where: { id: ids.studied },
+    }))!;
+    vi.spyOn(db.class, "findMany").mockResolvedValue([
+      { id: ids.classId, name: "지점 반" },
+    ]);
+    vi.spyOn(db.student, "findMany").mockResolvedValue([
+      { ...canonical, branchId },
+      { ...canonical, id: ids.noAccount, branchId: randomUUID() },
+    ]);
+    const response = await ROSTER(
+      req(`/api/math-srs/course?branchId=${branchId}`),
+    );
+    expect(response.status).toBe(200);
+    expect(
+      (await response.json()).data.students.map(
+        (student: { id: string }) => student.id,
+      ),
+    ).toEqual([ids.studied]);
     expect(world.writes).toBe(0);
   });
 

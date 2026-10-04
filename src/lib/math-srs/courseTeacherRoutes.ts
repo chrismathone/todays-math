@@ -130,6 +130,8 @@ export async function handleCourseTeacherStudent(
     const branchDenied = await requireTeacherBranch(
       owned.data.classId,
       scope.data.branchId,
+      db,
+      parsed.data.id,
     );
     if (branchDenied) return noStore(branchDenied);
     const student = await loadCourseStudent(parsed.data.id, owned.data.classId);
@@ -157,7 +159,12 @@ export async function handleCourseTeacherStudent(
             "progress:write",
           );
           await assertStudentEnrollment(tx, student.id, student.classId);
-          await assertTeacherBranch(tx, student.classId, scope.data.branchId);
+          await assertTeacherBranch(
+            tx,
+            student.classId,
+            scope.data.branchId,
+            student.id,
+          );
           return (tx.studentSrsState as unknown as SrsStateTable).create(args);
         }),
       updateMany: (args) =>
@@ -169,7 +176,12 @@ export async function handleCourseTeacherStudent(
             "progress:write",
           );
           await assertStudentEnrollment(tx, student.id, student.classId);
-          await assertTeacherBranch(tx, student.classId, scope.data.branchId);
+          await assertTeacherBranch(
+            tx,
+            student.classId,
+            scope.data.branchId,
+            student.id,
+          );
           return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
             args,
           );
