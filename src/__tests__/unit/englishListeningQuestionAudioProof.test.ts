@@ -8,6 +8,7 @@ import {
   verifyQuestionAudioEvidence,
   questionAudioCueNumbers,
   verifyQuestionAudioSourceSpeech,
+  questionAudioKoreanInstructionCueNumbers,
 } from "@/lib/english/listening/questionAudioProof";
 import { loadListeningQuestionAudioPlan } from "@/lib/english/listening/runtime/questionAudio";
 import {
@@ -48,10 +49,18 @@ describe("complete-source speech evidence", () => {
     const fixture = questionAudioEvidence().script;
     fixture.sourceTranscriptText = text;
     fixture.sections = [
-      { ...fixture.sections[0], startCharacter: first, endCharacter: last },
+      {
+        ...fixture.sections[0],
+        startCharacter: first,
+        endCharacter: text.indexOf("____________________"),
+      },
       { ...fixture.sections[1], startCharacter: next, endCharacter: end },
     ];
     expect(() => verifyQuestionAudioSourceSpeech(fixture)).not.toThrow();
+    fixture.sections[0].endCharacter = last;
+    expect(() => verifyQuestionAudioSourceSpeech(fixture)).toThrow(
+      /whole official speaker speech/,
+    );
     fixture.sections[0].endCharacter = text.indexOf("tomorrow.");
     expect(() => verifyQuestionAudioSourceSpeech(fixture)).toThrow(
       /whole official speaker speech/,
@@ -64,6 +73,37 @@ describe("complete-source speech evidence", () => {
       [16, 17],
     );
     expect(questionAudioCueNumbers("We will meet at sixteen.")).toEqual([]);
+  });
+  it("accepts digit-dot Korean notation only with the exact original listening instruction", () => {
+    const script = questionAudioEvidence().script;
+    const instruction =
+      "대화를 듣고, 남자의 심정으로 가장 적절한 것을 고르시오.";
+    script.sourceTranscriptText = `1번 ${instruction} W: Hello, friend.`;
+    const section = {
+      ...script.sections[0],
+      startCharacter: script.sourceTranscriptText.indexOf("Hello"),
+      endCharacter: script.sourceTranscriptText.length,
+    };
+    script.sections = [section];
+    expect(questionAudioCueNumbers(`1. ${instruction}`)).toEqual([]);
+    expect(
+      questionAudioKoreanInstructionCueNumbers(
+        `1. ${instruction.replace(",", "")}`,
+        script,
+        section,
+      ),
+    ).toEqual([1]);
+    for (const text of [
+      `2. ${instruction}`,
+      "1. 대화를 듣고 여자가 구입할 로봇을 고르시오.",
+      "1. 다음 답을 고르시오.",
+      "1. We will meet tomorrow.",
+      "1.23 is the correct price.",
+    ]) {
+      expect(
+        questionAudioKoreanInstructionCueNumbers(text, script, section),
+      ).toEqual([]);
+    }
   });
   it("cannot approve uncertain decisions, missing numbering or source hash disagreement", () => {
     for (const mutate of [
@@ -142,6 +182,92 @@ describe("complete-source speech evidence", () => {
     expect(() => verifyQuestionAudioEvidence(middle)).toThrow(
       /prefix or suffix/,
     );
+  });
+  it("rejects orphan activity between questions even when all selected dialogue remains complete", () => {
+    const proof = questionAudioEvidence();
+    proof.activity.events.splice(3, 0, {
+      id: 7,
+      startSample: 162000,
+      endSample: 174000,
+    });
+    proof.rawActivity.chunks.splice(3, 0, {
+      startSample: 162000,
+      endSample: 174000,
+    });
+    proof.rawActivity.unpaddedChunks.splice(3, 0, {
+      startSample: 164000,
+      endSample: 172000,
+    });
+    expect(() => verifyQuestionAudioEvidence(proof)).toThrow(
+      /unassigned.*activity/,
+    );
+  });
+  it("holds extra spoken text in a clip even when the selected official dialogue is complete", () => {
+    const proof = questionAudioEvidence();
+    proof.asr.english.segments.push({
+      id: 7,
+      text: "Monica?",
+      estimatedStartSeconds: 9.25,
+      estimatedEndSeconds: 9.4,
+      uncertain: false,
+    });
+    expect(() => verifyQuestionAudioEvidence(proof)).toThrow(
+      /unclassified.*ASR/,
+    );
+  });
+  it("requires the official repetition instruction to apply to the actual question numbers", () => {
+    const proof = questionAudioEvidence();
+    proof.script.sourceTranscriptText =
+      proof.script.sourceTranscriptText.replace(
+        "모든 문제는 한 번씩 방송됩니다.",
+        "1번부터 1번까지는 한 번씩 방송됩니다.",
+      );
+    const delta = "1번부터 1번까지는".length - "모든 문제는".length;
+    proof.script.sourceTranscriptSha256 = questionAudioSha256(
+      proof.script.sourceTranscriptText,
+    );
+    for (const section of proof.script.sections) {
+      section.startCharacter += delta;
+      section.endCharacter += delta;
+      for (const utterance of section.utterances) {
+        utterance.startCharacter += delta;
+        utterance.endCharacter += delta;
+      }
+      section.repetitionEvidence = {
+        startCharacter: 0,
+        endCharacter: proof.script.sourceTranscriptText.indexOf("\n"),
+        text: proof.script.sourceTranscriptText.split("\n")[0],
+      };
+    }
+    expect(() => verifyQuestionAudioEvidence(proof)).toThrow(
+      /repetition.*scope/,
+    );
+  });
+  it("cannot substitute all dialogue as the last anchor when the real closing sentence is absent", () => {
+    const proof = questionAudioEvidence();
+    proof.script.sections[0].utterances[1].text =
+      "W: Great, I will bring my book, and my red bag tomorrow. Goodbye.";
+    const text = proof.script.sections[0].utterances[1].text;
+    const old = "W: Great, I will bring my book.";
+    proof.script.sourceTranscriptText =
+      proof.script.sourceTranscriptText.replace(old, text);
+    proof.script.sourceTranscriptSha256 = questionAudioSha256(
+      proof.script.sourceTranscriptText,
+    );
+    const delta = text.length - old.length;
+    proof.asr.english.segments[2].text = text.replace(" Goodbye.", "");
+    proof.script.sections[0].utterances[1].endCharacter += delta;
+    proof.script.sections[0].endCharacter += delta;
+    for (const section of proof.script.sections.slice(1)) {
+      section.startCharacter += delta;
+      section.endCharacter += delta;
+      for (const utterance of section.utterances) {
+        utterance.startCharacter += delta;
+        utterance.endCharacter += delta;
+      }
+    }
+    proof.alignment.questions[0].copies[0].lastSegmentIds = [2, 3];
+    expect(() => verifyQuestionAudioEvidence(proof)).toThrow(/edge.*anchor/);
   });
   it("binds complementary ASR text/time/uncertainty to exact raw origins and rejects overlapping speech inflation", () => {
     const proof = questionAudioEvidence(),
