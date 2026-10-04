@@ -1,5 +1,7 @@
 # Independent audit: listening question-audio cuts (Grok, 2026-10-04)
 
+Adjudication dated 2026-10-04 is appended after the original stop line. It leaves the paragraphs below unchanged. Those paragraphs are the baseline audit at `228e2dff1`.
+
 Baseline `2549915f3bf2bf229986a39856fecd7231e80d02`. Source under review: `src/lib/english/listening/questionAudioProof.ts`, `src/lib/english/listening/runtime/questionAudio.ts`, `src/lib/english/listening/media/sampleClip.ts`, `scripts/import/adopt-listening-question-audio.mts`. No source file was edited. No database, Storage, or paid API call was made. `.env` was not read. This report was written before any other reviewer's verdict was opened.
 
 ## Verdict
@@ -163,3 +165,81 @@ Fix for the orphan: on final CAS failure, tombstone clip rows that this plan cre
 ## Concrete stop line
 
 Keep the applied artifact for this one source on the current gate, and do not describe it as human-verified or as silence-padded. Before any further source is adopted, fail closed on missing numeral tokens, on a second speech island that is not the cue, and on a VAD file whose PCM hash was not recomputed from the mpg123 buffer that `sampleClip.ts` cuts. Leave the 0.9 floor, the private-Storage requirement, the document CAS, and the owner lock where they are.
+
+## Adjudication appended 2026-10-04
+
+This section was added after `228e2dff1fc3fa9d4b45a816b79dd3dd8c1282f0`. The findings above stay as the record of the digit-character search and the island count. What follows is what a second pass found in the selected ASR lines and in the official brackets. No source file was edited. No database, Storage, or paid API call was made. The WAV files were not heard.
+
+Checked again, and the file bytes still match the alignment claims:
+
+| File | SHA-256 |
+| --- | --- |
+| `ebsi-high-1-2022-2.strict-alignment.json` | `95b92ef64d6c931dfd7a6c6708c4abcf34f9e545fedce5b39a3fa8ada3298bf7` |
+| `ebsi-high-1-2022-2.strict-script-complete.json` | `c76cb2bfa75502c15450f25d172a53664647f985b9965778cec99c8123665205` |
+| `asr-medium-multilingual.json` (auto) | `9a5475451daaf3ad17cc7590afb56a633a541e2e87c6e077acf6e44058b9b87c` |
+| `asr-medium-english-evidence.json` | `76cf24b10b614a72beee3e8c39e0a620f193ecdcd57513b94d3f5a9b3279dec6` |
+| `asr-medium-korean-announcements.json` | `5bd0ff953e1c8b646cb6365b4af8664c3231c7bc8192f4834a0348c73a81ad47` |
+| `ebsi-high-1-2022-2.strict-activity.json` | `d772e266bc38cdc387e48fcc945f9ce36357ed6169b271c13200fa74116a6dd0` |
+
+Codex's initial report was read at `BIGSHOL/listening-registration` commit `ec2b30b79fe696bd6f4920d1d76da02882b86fe7` (`docs/operations/reviews/english-listening-question-audio-codex-20261004.md`). Claude's initial report was read at `9fcdaeede18c49409b66a502af969590c2437843` (`docs/operations/reviews/english-listening-question-audio-claude-20261004.md` on `BIGSHOL/listening-audio-claude-review`). Their measurements are cited as theirs. The quotes below were read from the hash-checked JSON in this pass.
+
+### Finding 1, corrected: the quantities are spoken words
+
+`tokens()` at `questionAudioProof.ts` 249-260 still compares a digit character with a digit character. Official `50` and selected `fifty` are different tokens, so the 0.9 recall can pass while the digit is absent. A whole-cache search for `\b50\b` therefore reported an empty column. That search was the wrong identity for the quantity. The selected copy of each item contains the spoken amount. `uncertain` is false on every segment quoted here.
+
+| Item | Question id | Selected segment | Cache | Official utterance | Selected text |
+| --- | --- | --- | --- | --- | --- |
+| 7 | `44b16f62-1589-4bac-8ac6-97f03e432e9f` | auto 73, 452.59–458.59 s | auto | "It's originally 50 dollars. But it's on sale right now for 10 percent off." | "It's originally fifty dollars, but it's on sale right now for ten percent off." |
+| 10 | `7c4222cd-c4b2-45d3-9398-8b9ff621ac66` | english 213, 624.04–627.84 s | english | "Spending more than 200 dollars is too much." | "Spending more than two hundred dollars is too much." |
+| 15 | `cec3691b-19c0-4559-8277-57a0c4f8d7bd` | english 284, 896.704–903.604 s | english | "That'll be 55 dollars." | "Number two. How much do I owe you? That'll be fifty-five dollars." |
+| 18 | `453984c8-4130-42b4-a400-8eb9ecf3fafa` | english 337, 338, 339 at 1078.392–1083.472 s | english | "26?" / "No. It's 20." / "Just 20?" | "Twenty-six." / "No, it's twenty." / "Just twenty?" |
+
+The same sentences are the only cache hits for `fifty`, `ten percent`, `two hundred`, `fifty-five`, `twenty-six`, `it's twenty`, and `just twenty`. Auto also has the Q7 sentence; Q7's proof uses the auto copy, and segment 73 is inside that copy. English 213, 284, 337, 338, and 339 are inside the Q10, Q15, and Q18 copies. The missing-quantity reading is withdrawn. The digit-character column in finding 1 stays true as a statement about characters.
+
+`tokens()` splits on the hyphen, so `fifty-five` becomes `fifty` and `five`, and `twenty-six` becomes `twenty` and `six`. A later check that looks only at the token list will not see one token `fifty-five`. The normalizer has to read the raw selected string, or it has to join a hyphenated pair before the comparison.
+
+Numeral literals should normalize to spoken words on both sides, and a strict amount and count guard should then compare the resulting integers in order. The guard is per question, on that question's official utterances and its selected segments. It should pass this paper: 50↔fifty, 10↔ten, 200↔two hundred, 55↔fifty-five, 26↔twenty-six, 20↔twenty, including the repeated 20. It should fail when a value differs even if the other tokens still clear 0.9: fifty against 60, twenty against 26, fifty or five against 55, two hundred against two hundred fifty, or 20 then 26 where the script says 26 then 20. A dropped amount inside a long dialogue fails the same way. Counts already written as words (`two webcams`, `I'll take two`) stay in that sequence, and `2` on a future paper has to land on the same integer as `two`. `2017` is digits on both sides of Q10's selected line, so a symmetric normalizer keeps it. Korean `5번` and a cue spelled `2.` are cue numbers, not dollar amounts, and must not enter this list.
+
+The fix named in finding 1, "fail if any official numeral token is absent from the selected token multiset," would reject this paper. That rule is withdrawn. Allison/Alison on Q18, Dylan/Dillan on Q3, and Zenith on Q20 remain ordinary token mismatches. They are not missing quantities.
+
+### Finding 2, corrected: Q5's two islands follow the scripted ring
+
+Question 5 is `424ddc7a-fe05-4fa7-bd85-36328d5520b3`, samples `4852992..5659392` (303.312–353.712 s). Re-read activity events, hash above: event 7 is `4852992..4970752`, event 8 is `5035264..5659392`. The gap is 64,512 samples, 4.032 s.
+
+The complete script has four brackets. `[ Cellphone rings.]` at character 2926 sits 24 characters before section `source-5`, whose `startCharacter` is 2950. It is outside the section. The section's first utterance is "Hi, Ms. Brown." A second `[ Cellphone rings.]` at character 10667 sits 23 characters before `source-19`. `[ Pause]` at 4276 is inside `source-7`, and `[ Pause]` at 5008 is inside `source-8`. `tokens()` deletes bracket text, so none of these four are spoken-word requirements.
+
+Korean segment 6, cache hash above, is "5번. 대화를 듣고, 여자가 남자에게 전화한 목적으로 가장 적절한 것을 고르시오." at 303.312–310.832 s, `sourceEventId` 7. That is the first island. Selected English starts at segment 93, "Hi, Ms. Brown.", 315.09–316.09 s, which is the start of event 8. The selected copy then continues through "Thanks." at segment 113 and does not repeat. The Smith line in the selected copy is segment 94 at 316.09–318.09 s, inside event 8.
+
+The original sentence that put "Hello, Mr. Smith..." inside event 7 came from unselected English segment 92, timestamped 309.832–319.832 s. That 10-second window crosses the gap. It is not the selected copy. Island count by itself is not a second broadcast. The "6.56 s island must be a declared copy" fix would reject an instruction-length cue followed by the scripted ring. That fix is withdrawn.
+
+What remains uncertain, because these files were not heard: the 4.032 s gap is where the script places the ring, and VAD left it outside both speech events. Auto segment 47 timestamps the same Korean instruction as 305.02–315.03 s, which stretches across that gap. The Korean probe ends at 310.832 s. The text evidence says the gap is between the cue and "Hi, Ms. Brown." It does not decide whether a ringtone, room tone, or a smeared timestamp fills those 4 seconds. Question 19 has the same script shape: `[ Cellphone rings.]` before the section, Korean "19번" at 1110.512–1111.912 s on the short event 22 (`17768192..17792256`), then the 3.872 s gap before event 23. That parallel is the script and the timestamps. It is not a listening confirmation.
+
+### Finding 4, narrowed: loud RMS is not a chopped word
+
+The naming defect stands. `leadingSilenceMs: 400` and `trailingSilenceMs: 400` record the VAD pad, and the boundary-WAV RMS in finding 4 shows the leading pad and 12 trailing pads are loud. Claude's report at `9fcdaeede` measured the full native 48 kHz PCM and the 20 clip payloads. This pass did not decode mpg123 and did not recompute those clip SHA-256 values. Claude's figures, cited as Claude's: first energy above −60 dBFS is 130–370 ms after each start (question 4 at 130 ms); on items 1, 2, 4, 5, 7, 8, 10, 14, 15, 16, 17, and 20 the end cut falls inside a repeated tone after speech, with 440–890 ms quieter than −60 dBFS between the speech and the tone. Claude also states that the files were not heard. The RMS table and Claude's timing can both be true. Neither one is a chopped word. The silence name is still the wrong name for the pad.
+
+### Root code read, not adopted
+
+Commit `ec2b30b79fe696bd6f4920d1d76da02882b86fe7` on `BIGSHOL/listening-registration`, parent `2549915f3`, adds `verifyQuestionAudioSourceSpeech` and calls it from `verifyQuestionAudioEvidence`. It walks speaker labels in the full official transcript, skips `ANN`, cuts a span at a numbered instruction, a page footer, or a blank response, and requires the remaining words to match the section overlap exactly. That is the global speaker-completeness check. It does not change `tokens()` and it does not map digits to words.
+
+The registration worktree, on top of that commit and still uncommitted when read, adds `questionAudioKoreanInstructionCueNumbers`. It accepts a single `N.` cue only when the section has one number, the body matches `듣고` … `고르시오`, the official text before the section contains the same `N번`, and the instruction text matches after NFKC and punctuation removal. The proof uses it only when `questionAudioCueNumbers` is empty, the cache is `korean`, and there is no common scope. The accompanying test rejects a wrong number, a different instruction, an English sentence, and `1.23`. That is a source-bound Korean digit-dot guard. It is not a blanket digit-syntax change. Dialogue amounts still go through `tokens()`. The test was read and not run.
+
+### What this pass does not approve
+
+Expanded adoption of the other 2,397 original questions and 1,282 reconstructed questions stays unapproved. Three gates are in progress on the root and Claude side and are not signed off here:
+
+- Orphan speech. `verifyQuestionAudioSourceSpeech` covers official words outside a section. It does not require every VAD event between the first and last question to belong to one group, and it does not classify unselected in-clip ASR. Claude's B1 and B3 name that hole. Q5's unselected English segments are an example of text the selector may ignore.
+- Repeat source scope. The repetition regex still accepts the shared preamble at characters 313–328 for every section. The root commit does not change that regex.
+- Waveform quiet. The proof still stores the 400 ms pad under a silence name. Claude's measured lead and tail are not in `questionAudioProof.ts`.
+
+Finding 3 stands: the mpg123 bytes that are cut were not hashed in either pass of this audit. Findings 5, 6, and 7 stand as written.
+
+### Remaining tests, before a final review can pass this paper's number and island behavior
+
+1. Pass the four selected lines above after spoken-number normalization: auto 73 (`fifty`, `ten`), english 213 (`two hundred`), english 284 (`fifty-five` as one amount despite the hyphen), english 337–339 (`twenty-six`, `twenty`, `twenty`) against official 50, 10, 200, 55, 26, 20, 20.
+2. Fail a wrong amount inside an otherwise high recall: 60 for 50, `twenty` for 26, `fifty` or `five` for 55, `two hundred fifty` for 200, and the reversed pair 20 then 26. Fail a missing amount. Fail `three` where the script says `two`. Keep `2017` when both sides are digits.
+3. Keep Korean `5번` and `2.` out of the amount list. Keep the digit-dot cue tests already drafted, including the reject of `1.23` and of an English price sentence. Assert that `tokens()` is unchanged by that cue guard.
+4. Pass Q5's two events when `[ Cellphone rings.]` sits between the cue and "Hi, Ms. Brown." and the selected copy does not repeat. Fail a second island that repeats the dialogue with no such bracket. Do not use the island count alone, and do not require the cue island to be shorter than the cue's own ASR span.
+5. Leave orphan-event accounting, repetition-span scope, and a measured quiet lead and tail as open tests for the root and Claude changes. A pass on items 1–4 does not adopt another round.
+
+Still uncertain after this pass: the ringtone and the end tone were not heard; auto segment 47 and Korean segment 6 disagree about whether speech continues through Q5's 4.032 s gap; Q7's in-section `[ Pause]` sits between selected "Sure." (auto 69, 442.59–443.59 s) and "This model..." (auto 70, 444.59 s), and that one-second timestamp gap was not measured as energy.
