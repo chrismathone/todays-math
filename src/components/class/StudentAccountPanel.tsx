@@ -44,9 +44,13 @@ type PanelState =
 export function StudentAccountPanel({
   student,
   onClose,
+  title = "오늘의 개념 로그인",
+  onChanged,
 }: {
-  student: StudentEntity;
+  student: Pick<StudentEntity, "id" | "name">;
   onClose?: () => void;
+  title?: string;
+  onChanged?: () => void;
 }) {
   const [state, setState] = useState<PanelState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
@@ -113,6 +117,7 @@ export function StudentAccountPanel({
         locked: false,
         lockedUntil: null,
       });
+      onChanged?.();
     });
   }
 
@@ -131,6 +136,7 @@ export function StudentAccountPanel({
         locked: false,
         lockedUntil: null,
       });
+      onChanged?.();
     });
   }
 
@@ -142,6 +148,7 @@ export function StudentAccountPanel({
         return;
       }
       setAccount(result.data);
+      onChanged?.();
     });
   }
 
@@ -163,7 +170,7 @@ export function StudentAccountPanel({
       <p className={s.who}>{student.name}</p>
       <div className={s.headingRow}>
         <h3 id={headingId} className={s.title}>
-          오늘의 개념 로그인
+          {title}
         </h3>
         {onClose ? (
           <button

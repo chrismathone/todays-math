@@ -22,6 +22,8 @@ export function managedRelationDb() {
   ];
   for (const name of names) tables[name] = [];
   const relation = (row: Row, key: string) => {
+    if (key === "user")
+      return tables.user.find((u) => u.id === row.userId) ?? null;
     if (key === "class")
       return tables.class.find((c) => c.id === row.classId) ?? null;
     if (key === "enrollments")

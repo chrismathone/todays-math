@@ -174,16 +174,21 @@ export function courseDetailDto(
 export async function loadCourseDashboard(
   viewer: ScopeViewer & { menus?: readonly string[]; role?: string },
   now: Date,
+  branchId?: string,
 ) {
+  const accessible = await accessibleClassesWhere(viewer);
   const classes = await db.class.findMany({
-    where: await accessibleClassesWhere(viewer),
+    where: branchId ? { AND: [accessible, { branchId }] } : accessible,
     select: { id: true, name: true },
     orderBy: { name: "asc" },
   });
-  const students = await loadOperationalRoster(
+  const roster = await loadOperationalRoster(
     classes.map((c) => c.id),
     true,
   );
+  const students = branchId
+    ? roster.filter((student) => student.branchId === branchId)
+    : roster;
   try {
     const table = srsStateTable();
     if (!table)

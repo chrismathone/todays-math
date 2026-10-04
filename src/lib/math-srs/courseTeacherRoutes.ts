@@ -7,7 +7,10 @@ import {
   courseStudentDetailResponseSchema,
 } from "@/contracts/mathSrsCourse.contract";
 import { authorizeAccount } from "@/lib/accountAccess";
-import { accountRouteAllowed } from "@/lib/accountRouteAccess";
+import {
+  accountRouteAllowed,
+  srsTeacherManagementRoute,
+} from "@/lib/accountRouteAccess";
 import { recordAudit } from "@/lib/audit";
 import {
   jsonError,
@@ -30,7 +33,16 @@ import {
   loadCourseStudentDetail,
 } from "./courseServer";
 import { db } from "@/lib/db";
-import { assertClassWrite, assertStudentEnrollment } from "@/lib/classAccess";
+import {
+  assertClassWrite,
+  assertStudentEnrollment,
+  ClassAccessDenied,
+} from "@/lib/classAccess";
+import {
+  teacherScopeSchema,
+  requireTeacherBranch,
+  assertTeacherBranch,
+} from "./teacherScope";
 import {
   changeSrsState,
   srsStateTable,
@@ -42,11 +54,16 @@ export async function teacherGate(request: Request) {
   const access = await authorizeAccount(request);
   if (access.response) return access;
   const path = new URL(request.url).pathname;
+  // The admin console can manage only these established SRS endpoints without a workspace menu.
+  const adminTeacherRoute =
+    access.account.isSuperAdmin &&
+    srsTeacherManagementRoute(request.method, path);
   if (
     !accountRouteAllowed(access.account, request.method, path) ||
     (!access.account.isAdmin &&
+      !access.account.isSuperAdmin &&
       routeAccessFor(access.account.role, request.method, path) === "deny") ||
-    !access.account.menus.includes("srs")
+    (!adminTeacherRoute && !access.account.menus.includes("srs"))
   )
     return {
       account: null,
@@ -60,13 +77,23 @@ export async function teacherGate(request: Request) {
 export async function handleCourseDashboard(request: Request) {
   const access = await teacherGate(request);
   if (access.response) return noStore(access.response);
+  const scope = teacherScopeSchema.safeParse(
+    Object.fromEntries(new URL(request.url).searchParams),
+  );
+  if (!scope.success) return noStore(validationError(scope.error));
   try {
     return noStore(
       jsonOk(courseDashboardResponseSchema, {
-        data: await loadCourseDashboard(access.account, new Date()),
+        data: await loadCourseDashboard(
+          access.account,
+          new Date(),
+          scope.data.branchId,
+        ),
       }),
     );
   } catch (error) {
+    if (error instanceof ClassAccessDenied)
+      return noStore(jsonError("FORBIDDEN", error.message, 403));
     return courseFailureResponse(error);
   }
 }
@@ -79,6 +106,10 @@ export async function handleCourseTeacherStudent(
   if (access.response) return noStore(access.response);
   const parsed = idParamSchema.safeParse(await context.params);
   if (!parsed.success) return noStore(validationError(parsed.error));
+  const scope = teacherScopeSchema.safeParse(
+    Object.fromEntries(new URL(request.url).searchParams),
+  );
+  if (!scope.success) return noStore(validationError(scope.error));
   const requestedClassId = new URL(request.url).searchParams.get("classId");
   const classId =
     requestedClassId === null ? null : uuidSchema.safeParse(requestedClassId);
@@ -96,6 +127,13 @@ export async function handleCourseTeacherStudent(
     : await requireOwnedStudent(parsed.data.id, access.account, capability);
   if (!owned.ok) return noStore(owned.response);
   try {
+    const branchDenied = await requireTeacherBranch(
+      owned.data.classId,
+      scope.data.branchId,
+      db,
+      parsed.data.id,
+    );
+    if (branchDenied) return noStore(branchDenied);
     const student = await loadCourseStudent(parsed.data.id, owned.data.classId);
     if (!student) return noStore(notFoundError("학생"));
     const now = new Date();
@@ -121,6 +159,12 @@ export async function handleCourseTeacherStudent(
             "progress:write",
           );
           await assertStudentEnrollment(tx, student.id, student.classId);
+          await assertTeacherBranch(
+            tx,
+            student.classId,
+            scope.data.branchId,
+            student.id,
+          );
           return (tx.studentSrsState as unknown as SrsStateTable).create(args);
         }),
       updateMany: (args) =>
@@ -132,6 +176,12 @@ export async function handleCourseTeacherStudent(
             "progress:write",
           );
           await assertStudentEnrollment(tx, student.id, student.classId);
+          await assertTeacherBranch(
+            tx,
+            student.classId,
+            scope.data.branchId,
+            student.id,
+          );
           return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
             args,
           );
@@ -181,6 +231,8 @@ export async function handleCourseTeacherStudent(
       }),
     );
   } catch (error) {
+    if (error instanceof ClassAccessDenied)
+      return noStore(jsonError("FORBIDDEN", error.message, 403));
     return courseFailureResponse(error);
   }
 }

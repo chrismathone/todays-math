@@ -42,7 +42,11 @@ import {
   getCourseDashboard,
   getCourseStudentDetail,
   saveCourseStudentPlan,
+  getExplorerTeacherSettings,
+  saveExplorerTeacherSettings,
 } from "./courseApi";
+import type { ExplorerSettings } from "@/contracts/mathExplorerSettings.contract";
+import formStyles from "./CoursePlanForm.module.css";
 import s from "./course-dashboard.module.css";
 import g from "./curriculum-graph.module.css";
 
@@ -127,16 +131,18 @@ function ErrorNotice({ error }: { error: Failure }) {
 export default function CourseDashboard({
   admin = false,
   textbookEnabled = false,
+  initialBranchId,
 }: {
   admin?: boolean;
   textbookEnabled?: boolean;
+  initialBranchId?: string;
 }) {
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Failure | null>(null);
   const [reload, setReload] = useState(0);
   const [query, setQuery] = useState("");
-  const [classId, setClassId] = useState("");
+  const [classSelection, setClassId] = useState<string | null>(null);
   const [filter, setFilter] = useState<Filter>("all");
   const [selected, setSelected] = useState<CourseRosterStudent | null>(null);
   const [detailView, setDetailView] = useState<DetailView>("overview");
@@ -153,6 +159,16 @@ export default function CourseDashboard({
   const returnFocus = useRef<HTMLElement | null>(null);
   const replay = useRef(false);
   const urlParams = useScreenQuery();
+  const classId =
+    classSelection ?? contextParams(urlParams).get("classId") ?? "";
+  const branchId = admin
+    ? urlParams.has("branchId")
+      ? urlParams.get("branchId") || "invalid"
+      : initialBranchId
+    : undefined;
+  const [dataBranchId, setDataBranchId] = useState<string | undefined>(
+    branchId,
+  );
   const from: ReturnContext = admin ? "admin-srs" : "workspace-srs";
   const accountHref = (row: CourseRosterStudent) =>
     classManagerHref(
@@ -250,54 +266,71 @@ export default function CourseDashboard({
 
   useEffect(() => {
     let current = true;
-    void getCourseDashboard().then((result) => {
-      if (!current) return;
-      setLoading(false);
-      if (!result.ok) {
-        setError(result);
-        return;
-      }
-      setError(null);
-      // A list request begun before a plan save must not overwrite that save.
-      setData((previous) => {
-        const previousRows = new Map(
-          previous?.students.map((row) => [row.id, row]),
-        );
-        return {
-          ...result.data,
-          students: result.data.students.map((row) => {
-            const prior = previousRows.get(row.id);
-            return prior && prior.revision > row.revision
-              ? sharedCourseState(row, prior)
-              : row;
-          }),
-        };
-      });
-    });
+    void (branchId ? getCourseDashboard(branchId) : getCourseDashboard()).then(
+      (result) => {
+        if (!current) return;
+        setLoading(false);
+        if (!result.ok) {
+          setError(result);
+          return;
+        }
+        setError(null);
+        setDataBranchId(branchId);
+        // A list request begun before a plan save must not overwrite that save.
+        setData((previous) => {
+          const previousRows = new Map(
+            previous?.students.map((row) => [row.id, row]),
+          );
+          return {
+            ...result.data,
+            students: result.data.students.map((row) => {
+              const prior = previousRows.get(row.id);
+              return prior && prior.revision > row.revision
+                ? sharedCourseState(row, prior)
+                : row;
+            }),
+          };
+        });
+      },
+    );
     return () => {
       current = false;
     };
-  }, [reload]);
+  }, [reload, branchId]);
 
-  const students = data?.students ?? [];
+  const scopedData = dataBranchId === branchId ? data : null;
+  const students = scopedData?.students ?? [];
   const targets = courseTargets(students);
   const restored = useRef("");
   const requested = contextParams(urlParams);
   const requestedStudentId = requested.get("studentId");
+  const requestedClassId = requested.get("classId") ?? "";
   const requestedKey = `${requested.get("classId") ?? ""}:${requested.get("studentId") ?? ""}`;
   useEffect(() => {
-    if (!data || !requestedStudentId || restored.current === requestedKey)
+    if (!scopedData || restored.current === `${branchId ?? ""}:${requestedKey}`)
       return;
-    restored.current = requestedKey;
-    const row = data.students.find(
-      (row) => enrollmentKey(row) === requestedKey,
+    restored.current = `${branchId ?? ""}:${requestedKey}`;
+    const row = scopedData.students.find(
+      (row) =>
+        row.id === requestedStudentId &&
+        (!requestedClassId || row.classId === requestedClassId),
     );
     if (row)
       guard(() => {
         setSelected(row);
-        setDetailView(row.plan ? "overview" : "plan");
+        setDetailView(
+          admin && branchId ? "explorers" : row.plan ? "overview" : "plan",
+        );
       });
-  }, [data, requestedKey, requestedStudentId, guard]);
+  }, [
+    scopedData,
+    requestedKey,
+    requestedStudentId,
+    requestedClassId,
+    branchId,
+    admin,
+    guard,
+  ]);
   const selectedGraphStudent = selected
     ? (students.find((row) => enrollmentKey(row) === enrollmentKey(selected)) ??
       selected)
@@ -366,6 +399,8 @@ export default function CourseDashboard({
       opener.current = trigger;
       setDetailView(student.plan ? "overview" : "plan");
       setSelected(student);
+      setClassId(classId);
+      restored.current = `${branchId ?? ""}:${enrollmentKey(student)}`;
       replaceScreenQuery({ classId: student.classId, studentId: student.id });
       if (selected && enrollmentKey(selected) === enrollmentKey(student))
         document.getElementById(`${panelId}-title`)?.focus();
@@ -534,7 +569,7 @@ export default function CourseDashboard({
                   onChange={(event) => setClassId(event.target.value)}
                 >
                   <option value="">전체 반</option>
-                  {data.classes.map((item) => (
+                  {(scopedData?.classes ?? []).map((item) => (
                     <option key={item.id} value={item.id}>
                       {item.name}
                     </option>
@@ -820,12 +855,16 @@ export default function CourseDashboard({
             )
           ) : null}
         </div>
-        {selected ? (
+        {selected &&
+        students.some(
+          (row) => enrollmentKey(row) === enrollmentKey(selected),
+        ) ? (
           <StudentDetail
             key={enrollmentKey(selected)}
             id={panelId}
             student={selected}
             admin={admin}
+            branchId={branchId}
             textbookEnabled={textbookEnabled}
             view={detailView}
             onViewChange={(view) => guard(() => setDetailView(view))}
@@ -842,13 +881,20 @@ export default function CourseDashboard({
 }
 
 type DetailView =
-  "overview" | "sections" | "activity" | "attempts" | "plan" | "textbook";
+  | "overview"
+  | "sections"
+  | "activity"
+  | "attempts"
+  | "plan"
+  | "textbook"
+  | "explorers";
 const VIEWS: [DetailView, string][] = [
   ["overview", "개요"],
   ["sections", "소단원 분석"],
   ["activity", "일별 활동"],
   ["attempts", "풀이 기록"],
   ["plan", "학습 설정"],
+  ["explorers", "탐험 설정"],
   ["textbook", "교재·백지"],
 ];
 
@@ -856,6 +902,7 @@ function StudentDetail({
   id,
   student,
   admin,
+  branchId,
   textbookEnabled,
   view,
   onViewChange: setView,
@@ -868,6 +915,7 @@ function StudentDetail({
   id: string;
   student: CourseRosterStudent;
   admin: boolean;
+  branchId?: string;
   textbookEnabled: boolean;
   view: DetailView;
   onViewChange: (view: DetailView) => void;
@@ -896,6 +944,7 @@ function StudentDetail({
   const saving = useRef(false);
   const draft = useRef<CoursePlanInput | null>(null);
   const dirty = useRef(false);
+  const explorerControl = useRef<PlanControl | null>(null);
   const onDirtyChange = useCallback(
     (changed: boolean, input: CoursePlanInput | null) => {
       dirty.current = changed;
@@ -919,7 +968,11 @@ function StudentDetail({
   }, []);
   useEffect(() => {
     const token = ++request.current;
-    void getCourseStudentDetail(student.id, student.classId).then((result) => {
+    void (
+      branchId
+        ? getCourseStudentDetail(student.id, student.classId, branchId)
+        : getCourseStudentDetail(student.id, student.classId)
+    ).then((result) => {
       if (!active.current || request.current !== token) return;
       setLoading(false);
       if (!result.ok) {
@@ -959,7 +1012,7 @@ function StudentDetail({
     return () => {
       request.current += 1;
     };
-  }, [student.id, student.classId, reload]);
+  }, [student.id, student.classId, branchId, reload]);
 
   function refresh() {
     setLoading(true);
@@ -984,6 +1037,7 @@ function StudentDetail({
           expectedRevision: detail.student.revision,
         },
         student.classId,
+        ...(branchId ? [branchId] : []),
       );
       if (
         result.ok &&
@@ -1028,27 +1082,45 @@ function StudentDetail({
       setReload((value) => value + 1);
       return true;
     },
-    [detail, loading, loadError, conflict, student.id, student.classId],
+    [
+      detail,
+      loading,
+      loadError,
+      conflict,
+      student.id,
+      student.classId,
+      branchId,
+    ],
   );
   useImperativeHandle(
     controlRef,
     () => ({
       get dirty() {
-        return dirty.current;
+        return view === "explorers"
+          ? (explorerControl.current?.dirty ?? false)
+          : dirty.current;
       },
       get busy() {
-        return saving.current;
+        return saving.current || (explorerControl.current?.busy ?? false);
       },
       save: () =>
-        draft.current ? save(draft.current) : Promise.resolve(false),
+        view === "explorers"
+          ? (explorerControl.current?.save() ?? Promise.resolve(false))
+          : draft.current
+            ? save(draft.current)
+            : Promise.resolve(false),
       discard: () => {
+        if (view === "explorers") {
+          explorerControl.current?.discard();
+          return;
+        }
         dirty.current = false;
         setForm((previous) =>
           previous ? { ...previous, key: previous.key + 1 } : previous,
         );
       },
     }),
-    [save],
+    [save, view],
   );
 
   const record = detail?.student;
@@ -1113,18 +1185,20 @@ function StudentDetail({
         role="group"
         aria-label="학생 상세 보기 선택"
       >
-        {VIEWS.filter(([value]) => value !== "textbook" || textbookEnabled).map(
-          ([value, label]) => (
-            <button
-              type="button"
-              key={value}
-              aria-pressed={view === value}
-              onClick={() => setView(value)}
-            >
-              {label}
-            </button>
-          ),
-        )}
+        {VIEWS.filter(
+          ([value]) =>
+            (value !== "textbook" || textbookEnabled) &&
+            (value !== "explorers" || admin),
+        ).map(([value, label]) => (
+          <button
+            type="button"
+            key={value}
+            aria-pressed={view === value}
+            onClick={() => setView(value)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
       <div className={s.detailBody}>
         <div className={s.detailTools}>
@@ -1169,6 +1243,14 @@ function StudentDetail({
 
         {detail && record && !loadError && !loading ? (
           <>
+            {view === "explorers" && admin ? (
+              <ExplorerTeacherSettings
+                student={student}
+                branchId={branchId}
+                controlRef={explorerControl}
+                onSaved={() => setReload((value) => value + 1)}
+              />
+            ) : null}
             {view === "textbook" && textbookEnabled ? (
               <TextbookStudentEvidence
                 key={enrollmentKey(student)}
@@ -1552,6 +1634,259 @@ function StudentDetail({
           </section>
         ) : null}
       </div>
+    </section>
+  );
+}
+
+function ExplorerTeacherSettings({
+  student,
+  branchId,
+  controlRef,
+  onSaved,
+}: {
+  student: CourseRosterStudent;
+  branchId?: string;
+  controlRef: MutableRefObject<PlanControl | null>;
+  onSaved: () => void;
+}) {
+  const [settings, setSettings] = useState<ExplorerSettings | null>(null);
+  const [grade, setGrade] = useState(3);
+  const [unitId, setUnitId] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<Failure | null>(null);
+  const [message, setMessage] = useState("");
+  const [reload, setReload] = useState(0);
+  const active = useRef(false);
+  const saving = useRef(false);
+  const onSavedRef = useRef(onSaved);
+  const id = useId();
+  useEffect(() => {
+    onSavedRef.current = onSaved;
+  }, [onSaved]);
+  const selectedUnit = settings?.units.find(
+    (unit) =>
+      unit.id === settings.goalUnitId && unit.grade === settings.courseGrade,
+  );
+  const initialUnitId = selectedUnit?.id ?? "";
+  const dirty =
+    !!settings && (grade !== settings.courseGrade || unitId !== initialUnitId);
+  useEffect(() => {
+    let current = true;
+    active.current = true;
+    void getExplorerTeacherSettings(student.id, student.classId, branchId).then(
+      (result) => {
+        if (!current) return;
+        setLoading(false);
+        if (!result.ok) {
+          setError(result);
+          return;
+        }
+        if (result.data.studentId !== student.id) {
+          setError({
+            status: 0,
+            message: "학생 설정이 일치하지 않습니다. 다시 불러오세요.",
+          });
+          return;
+        }
+        setSettings(result.data);
+        setGrade(result.data.courseGrade);
+        setUnitId(
+          result.data.goalUnitId &&
+            result.data.units.some(
+              (unit) =>
+                unit.id === result.data.goalUnitId &&
+                unit.grade === result.data.courseGrade,
+            )
+            ? result.data.goalUnitId
+            : "",
+        );
+        setError(null);
+      },
+    );
+    return () => {
+      current = false;
+      active.current = false;
+    };
+  }, [student.id, student.classId, branchId, reload]);
+  const save = useCallback(async () => {
+    if (!settings || !unitId || loading || settings.locked || saving.current)
+      return false;
+    saving.current = true;
+    setBusy(true);
+    setError(null);
+    setMessage("");
+    const result = await saveExplorerTeacherSettings(
+      student.id,
+      student.classId,
+      {
+        expectedRevision: settings.revision,
+        courseGrade: grade,
+        goalUnitId: unitId,
+      },
+      branchId,
+    );
+    if (!active.current) return false;
+    saving.current = false;
+    setBusy(false);
+    if (!result.ok) {
+      setError(result);
+      return false;
+    }
+    if (result.data.studentId !== student.id) {
+      setError({
+        status: 0,
+        message: "저장한 학생 설정이 일치하지 않습니다. 다시 불러오세요.",
+      });
+      return false;
+    }
+    setSettings(result.data);
+    setGrade(result.data.courseGrade);
+    setUnitId(result.data.goalUnitId ?? "");
+    setMessage(
+      "탐험 학년과 목표 단원을 저장했습니다. 학생이 다음 탐험에서 이어갑니다.",
+    );
+    onSavedRef.current();
+    return true;
+  }, [settings, unitId, loading, grade, student.id, student.classId, branchId]);
+  useImperativeHandle(
+    controlRef,
+    () => ({
+      dirty,
+      get busy() {
+        return saving.current;
+      },
+      save,
+      discard: () => {
+        if (settings) {
+          setGrade(settings.courseGrade);
+          setUnitId(initialUnitId);
+        }
+      },
+    }),
+    [dirty, save, settings, initialUnitId],
+  );
+  const refresh = () => {
+    setLoading(true);
+    setReload((value) => value + 1);
+  };
+  return (
+    <section aria-label="탐험 학년과 목표 단원 설정">
+      <p className={formStyles.note}>
+        학생의 탐험 화면에 표시되는 학년과 목표 단원입니다. 모은 카드와 학습
+        기록은 이어집니다.
+      </p>
+      {loading ? (
+        <p role="status" className={s.notice}>
+          탐험 설정을 불러오는 중…
+        </p>
+      ) : null}
+      {error ? <ErrorNotice error={error} /> : null}
+      {message ? (
+        <p role="status" className={s.success}>
+          {message}
+        </p>
+      ) : null}
+      {settings?.locked ? (
+        <p className={s.notice}>
+          진행 중인 학습과 오답 복습을 마친 뒤 목표를 바꿀 수 있습니다.
+        </p>
+      ) : null}
+      {settings ? (
+        <form
+          className={formStyles.form}
+          onSubmit={(event) => {
+            event.preventDefault();
+            void save();
+          }}
+        >
+          <fieldset
+            className={formStyles.fields}
+            disabled={loading || busy || settings.locked}
+          >
+            <legend className={formStyles.legend}>탐험 목표</legend>
+            <div className={formStyles.grid}>
+              <label htmlFor={`${id}-grade`}>
+                탐험 학년
+                <select
+                  id={`${id}-grade`}
+                  value={grade}
+                  onChange={(event) => {
+                    setGrade(Number(event.target.value));
+                    setUnitId("");
+                    setMessage("");
+                  }}
+                >
+                  {[3, 4, 5, 6, 7, 8, 9].map((value) => (
+                    <option key={value} value={value}>
+                      {value < 7
+                        ? `초등 ${value}학년`
+                        : `중학교 ${value - 6}학년`}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <label htmlFor={`${id}-unit`}>
+                목표 단원
+                <select
+                  id={`${id}-unit`}
+                  value={unitId}
+                  required
+                  onChange={(event) => {
+                    setUnitId(event.target.value);
+                    setMessage("");
+                  }}
+                >
+                  <option value="">목표 단원 선택</option>
+                  {settings.units
+                    .filter((unit) => unit.grade === grade)
+                    .map((unit) => (
+                      <option key={unit.id} value={unit.id}>
+                        {unit.title}
+                      </option>
+                    ))}
+                </select>
+              </label>
+            </div>
+          </fieldset>
+          <button
+            type="submit"
+            className={formStyles.submit}
+            disabled={!dirty || !unitId || loading || busy || settings.locked}
+          >
+            {busy ? "저장 중…" : "탐험 설정 저장"}
+          </button>
+        </form>
+      ) : null}
+      <button
+        type="button"
+        className={s.textButton}
+        disabled={busy || loading || dirty}
+        onClick={refresh}
+      >
+        탐험 설정 새로고침
+      </button>
+      {error?.status === 409 ? (
+        <p className={formStyles.note}>
+          입력은 유지됩니다. 변경을 취소하고 최신 설정을 불러온 뒤 다시 저장해
+          주세요.
+        </p>
+      ) : null}
+      {dirty ? (
+        <button
+          type="button"
+          className={s.textButton}
+          disabled={busy}
+          onClick={() => {
+            if (settings) {
+              setGrade(settings.courseGrade);
+              setUnitId(initialUnitId);
+            }
+          }}
+        >
+          탐험 설정 변경 취소
+        </button>
+      ) : null}
     </section>
   );
 }

@@ -252,6 +252,13 @@ for (const width of [320, 390, 1440, 1920]) {
       page.getByRole("status").filter({ hasText: "생성 1명" }),
     ).toBeVisible();
     expect(issued).toBe(1);
+    const result = page.getByRole("dialog", {
+      name: "중등M 중2 JJPS 학생 계정 생성 결과",
+      exact: true,
+    });
+    await expect(result).toBeVisible();
+    await result.getByRole("button", { name: "닫기", exact: true }).click();
+    await expect(result).toHaveCount(0);
     await page.getByRole("button", { name: "학생", exact: true }).click();
     await expect(
       page.getByRole("region", { name: "연결된 반", exact: true }),

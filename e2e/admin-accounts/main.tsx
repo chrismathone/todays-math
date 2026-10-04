@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import AdminAccounts from "../../src/components/admin/AdminAccounts";
+import AdminBranchDetail from "../../src/components/admin/AdminBranchDetail";
 import AdminUserDetail from "../../src/components/admin/AdminUserDetail";
 import ApprovalPending from "../../src/components/approval-pending/ApprovalPending";
 import {
@@ -18,7 +19,7 @@ const branchRoute = location.pathname.match(
 );
 const view =
   new URLSearchParams(location.search).get("view") ??
-  (branchRoute?.[2] ? "detail" : null);
+  (branchRoute?.[2] ? "detail" : branchRoute ? "branch" : null);
 const branchId =
   new URLSearchParams(location.search).get("branchId") ??
   branchRoute?.[1] ??
@@ -31,6 +32,12 @@ createRoot(document.getElementById("root")!).render(
   ) : view === "pending" || view === "rejected" ? (
     <ApprovalPending
       account={view === "rejected" ? rejectedAccount : pendingAccount}
+    />
+  ) : view === "branch" ? (
+    <AdminBranchDetail
+      identity={adminIdentity}
+      branchId={branchId}
+      branchName="테스트 지점"
     />
   ) : view === "detail" ? (
     <AdminUserDetail

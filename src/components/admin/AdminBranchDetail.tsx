@@ -9,6 +9,7 @@ import type {
 } from "@/contracts/branchAdmin.contract";
 import AdminHeader from "./AdminHeader";
 import AdminAccounts from "./AdminAccounts";
+import AdminBranchLearning from "./AdminBranchLearning";
 import BranchMenuEditor from "./BranchMenuEditor";
 import { accountRequest, requestMessage } from "./accountRequests";
 import s from "./admin.module.css";
@@ -23,12 +24,16 @@ export default function AdminBranchDetail({
   branchName: string;
 }) {
   const params = useScreenQuery();
+  const requestedTab = params.get("tab");
   const tab =
-    params.get("tab") === "menus" && branchId !== "unassigned"
-      ? "menus"
+    branchId !== "unassigned" &&
+    (requestedTab === "menus" ||
+      requestedTab === "students" ||
+      requestedTab === "classes")
+      ? requestedTab
       : "accounts";
-  const setTab = (value: "accounts" | "menus") =>
-    replaceScreenQuery({ tab: value });
+  const setTab = (value: "accounts" | "menus" | "students" | "classes") =>
+    replaceScreenQuery({ tab: value, classId: null });
   const [branch, setBranch] = useState<BranchSummary | null>(null);
   const [loading, setLoading] = useState(branchId !== "unassigned");
   const [error, setError] = useState("");
@@ -110,17 +115,35 @@ export default function AdminBranchDetail({
             disabled={locked && tab !== "accounts"}
             onClick={() => setTab("accounts")}
           >
-            계정
+            교직원 계정
           </button>
           {branchId !== "unassigned" ? (
-            <button
-              type="button"
-              aria-pressed={tab === "menus"}
-              disabled={locked && tab !== "menus"}
-              onClick={() => setTab("menus")}
-            >
-              사용 메뉴
-            </button>
+            <>
+              <button
+                type="button"
+                aria-pressed={tab === "students"}
+                disabled={locked && tab !== "students"}
+                onClick={() => setTab("students")}
+              >
+                학생 계정
+              </button>
+              <button
+                type="button"
+                aria-pressed={tab === "classes"}
+                disabled={locked && tab !== "classes"}
+                onClick={() => setTab("classes")}
+              >
+                반 관리
+              </button>
+              <button
+                type="button"
+                aria-pressed={tab === "menus"}
+                disabled={locked && tab !== "menus"}
+                onClick={() => setTab("menus")}
+              >
+                사용 메뉴
+              </button>
+            </>
           ) : null}
         </div>
         {tab === "accounts" ? (
@@ -132,6 +155,12 @@ export default function AdminBranchDetail({
             embedded
             onLockChange={setLocked}
             onAccountsChange={() => setRevision((current) => current + 1)}
+          />
+        ) : tab === "students" || tab === "classes" ? (
+          <AdminBranchLearning
+            key={`${branchId}:${tab}:${params.get("classId") ?? ""}`}
+            branchId={branchId}
+            kind={tab}
           />
         ) : loading ? (
           <p role="status" className={s.empty}>

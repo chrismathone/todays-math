@@ -11,7 +11,9 @@ import { accountRequest, requestMessage } from "./accountRequests";
 import s from "./admin.module.css";
 import d from "./detail.module.css";
 import r from "./relations.module.css";
-import BulkStudentAccountButton from "@/components/class/BulkStudentAccountButton";
+import BulkStudentAccountButton, {
+  type StudentAccountIssuanceSummary,
+} from "@/components/class/BulkStudentAccountButton";
 
 const SYNC_LABEL = {
   local: "직접 등록",
@@ -60,9 +62,10 @@ function useRelations(
   const key = `${url}:${retry}`;
   const [state, setState] = useState<{
     key: string;
+    url: string;
     data?: AdminRelationsResponse;
     error?: string;
-  }>({ key });
+  }>({ key, url });
   useEffect(() => {
     const controller = new AbortController();
     accountRequest<unknown>(url, { signal: controller.signal })
@@ -70,32 +73,58 @@ function useRelations(
         if (controller.signal.aborted) return;
         const result = adminRelationsResponseSchema.safeParse(body);
         if (!result.success || result.data.kind !== kind) {
-          setState({
+          setState((current) => ({
             key,
+            url,
+            data:
+              kind === "classes" && current.url === url
+                ? current.data
+                : undefined,
             error: "조회 결과를 확인하지 못했습니다. 다시 불러와 주세요.",
-          });
+          }));
           return;
         }
-        setState({ key, data: result.data });
+        setState({ key, url, data: result.data });
         if (result.data.kind === "students")
           setFilterOptions(result.data.filters);
       })
       .catch((error) => {
         if (!controller.signal.aborted)
-          setState({ key, error: requestMessage(error) });
+          setState((current) => ({
+            key,
+            url,
+            data:
+              kind === "classes" && current.url === url
+                ? current.data
+                : undefined,
+            error: requestMessage(error),
+          }));
       });
     return () => controller.abort();
   }, [key, url, kind]);
   return {
-    data: state.key === key ? state.data : undefined,
+    // A summary refresh must retain row components and their open native dialogs.
+    data:
+      state.key === key || (kind === "classes" && state.url === url)
+        ? state.data
+        : undefined,
     error: state.key === key ? state.error : undefined,
+    refreshing: state.key !== key,
     filters: filterOptions,
     onPage: (page: number) => setPagination({ filterKey, page }),
     reload: () => setRetry((value) => value + 1),
   };
 }
 
-function ClassRows({ items }: { items: ConnectedClass[] }) {
+function ClassRows({
+  items,
+  onIssued,
+}: {
+  items: (ConnectedClass & {
+    issuanceSummary?: StudentAccountIssuanceSummary;
+  })[];
+  onIssued: () => void;
+}) {
   return (
     <div
       className={r.tableScroll}
@@ -130,7 +159,12 @@ function ClassRows({ items }: { items: ConnectedClass[] }) {
               <td>{c.active ? "운영 중" : "종료"}</td>
               <td>
                 {c.active ? (
-                  <BulkStudentAccountButton classId={c.id} className={c.name} />
+                  <BulkStudentAccountButton
+                    classId={c.id}
+                    className={c.name}
+                    issuanceSummary={c.issuanceSummary}
+                    onIssued={onIssued}
+                  />
                 ) : (
                   "발급 대상 제외"
                 )}
@@ -219,7 +253,7 @@ function RelationPanel({
     <section
       className={r.panel}
       aria-label={heading}
-      aria-busy={!data && !error}
+      aria-busy={resource.refreshing || (!data && !error)}
     >
       <div className={d.panelHeading}>
         <h2>{heading}</h2>
@@ -227,7 +261,7 @@ function RelationPanel({
           type="button"
           className={s.quiet}
           onClick={resource.reload}
-          disabled={!data && !error}
+          disabled={resource.refreshing || (!data && !error)}
         >
           새로고침
         </button>
@@ -379,11 +413,12 @@ function RelationPanel({
             다시 시도
           </button>
         </div>
-      ) : !data ? (
+      ) : null}
+      {!data && !error ? (
         <div role="status" className={s.empty}>
           {heading}을 불러오는 중입니다.
         </div>
-      ) : !data.data.length ? (
+      ) : !data ? null : !data.data.length ? (
         <div role="status" className={s.empty}>
           <strong>
             {kind === "students" &&
@@ -401,7 +436,7 @@ function RelationPanel({
           </p>
         </div>
       ) : data.kind === "classes" ? (
-        <ClassRows items={data.data} />
+        <ClassRows items={data.data} onIssued={resource.reload} />
       ) : (
         <StudentRows items={data.data} />
       )}

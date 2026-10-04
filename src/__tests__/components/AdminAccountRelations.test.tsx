@@ -6,7 +6,16 @@ import {
   waitFor,
   within,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vitest";
 import AdminAccountRelations from "@/components/admin/AdminAccountRelations";
 import AdminUserDetail from "@/components/admin/AdminUserDetail";
 import { adminIdentity, pendingAccount } from "./adminFixtures";
@@ -18,6 +27,27 @@ vi.mock("next/navigation", () => ({
 const id = (n: number) =>
   `20000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const fetchMock = vi.fn<typeof fetch>();
+const dialogMethods = ["showModal", "close"] as const;
+const originalDialogMethods = dialogMethods.map((name) =>
+  Object.getOwnPropertyDescriptor(HTMLDialogElement.prototype, name),
+);
+beforeAll(() => {
+  for (const name of dialogMethods)
+    Object.defineProperty(HTMLDialogElement.prototype, name, {
+      configurable: true,
+      value: function (this: HTMLDialogElement) {
+        this.open = name === "showModal";
+      },
+    });
+});
+afterAll(() => {
+  dialogMethods.forEach((name, index) => {
+    const original = originalDialogMethods[index];
+    if (original)
+      Object.defineProperty(HTMLDialogElement.prototype, name, original);
+    else Reflect.deleteProperty(HTMLDialogElement.prototype, name);
+  });
+});
 function TestRelations({
   userId,
   branchId,
@@ -105,6 +135,108 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("read-only connected account roster", () => {
+  it.each(["success", "failure"])(
+    "refreshes class summaries after issuance without unmounting the result dialog on refresh %s",
+    async (outcome) => {
+      let relationCalls = 0;
+      let resolveRefresh!: (response: Response) => void;
+      const student = {
+        studentId: id(2),
+        name: "김학생",
+        loginId: null,
+        status: "ready",
+      };
+      const summary = {
+        classId: id(1),
+        className: "방정식반 1",
+        total: 1,
+        ready: 1,
+        issued: 0,
+        existing: 0,
+        skipped: 0,
+        students: [student],
+      };
+      fetchMock.mockImplementation(async (input, init) => {
+        const url = new URL(String(input), "http://localhost");
+        if (url.pathname.endsWith("/relations")) {
+          relationCalls += 1;
+          return relationCalls === 1
+            ? Response.json(payload("classes"))
+            : new Promise<Response>((resolve) => {
+                resolveRefresh = resolve;
+              });
+        }
+        if (url.pathname.endsWith("/student-accounts"))
+          return Response.json({
+            data:
+              init?.method === "POST"
+                ? {
+                    ...summary,
+                    ready: 0,
+                    issued: 1,
+                    students: [
+                      { ...student, loginId: "김학생", status: "issued" },
+                    ],
+                  }
+                : summary,
+          });
+        throw new Error(`unexpected request: ${url}`);
+      });
+      render(
+        <AdminAccountRelations
+          userId={id(10)}
+          branchId={id(11)}
+          kind="classes"
+        />,
+      );
+      await screen.findByText("방정식반 1");
+      expect(fetchMock).toHaveBeenCalledTimes(1);
+      const trigger = screen.getByRole("button", {
+        name: "방정식반 1 발급 대상 확인",
+      });
+      fireEvent.click(trigger);
+      const dialog = await screen.findByRole("dialog");
+      fireEvent.click(
+        within(dialog).getByRole("button", { name: "선택한 학생 계정 생성" }),
+      );
+      await waitFor(() =>
+        expect(within(dialog).getByRole("status")).toHaveTextContent(
+          "생성 1명",
+        ),
+      );
+      expect(relationCalls).toBe(2);
+      expect(screen.getByRole("region", { name: "연결된 반" })).toHaveAttribute(
+        "aria-busy",
+        "true",
+      );
+      expect(screen.getByRole("dialog")).toBe(dialog);
+      expect(dialog).toHaveProperty("open", true);
+      await act(async () =>
+        resolveRefresh(
+          outcome === "success"
+            ? Response.json(payload("classes"))
+            : Response.json(
+                { error: { message: "새로고침 실패" } },
+                { status: 503 },
+              ),
+        ),
+      );
+      expect(screen.getByRole("dialog")).toBe(dialog);
+      expect(dialog).toHaveProperty("open", true);
+      expect(within(dialog).getByRole("list")).toHaveTextContent(
+        "아이디 김학생 · 생성 완료",
+      );
+      if (outcome === "failure")
+        expect(screen.getByRole("alert")).toHaveTextContent("새로고침 실패");
+      fireEvent.click(within(dialog).getByRole("button", { name: "닫기" }));
+      expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+      expect(trigger).toHaveFocus();
+      expect(
+        fetchMock.mock.calls.filter(([, init]) => init?.method === "POST"),
+      ).toHaveLength(1);
+    },
+  );
+
   it("loads both panels independently and shows distinct pending states", () => {
     fetchMock.mockImplementation(() => new Promise(() => {}));
     render(<TestRelations userId={id(10)} branchId={id(11)} />);

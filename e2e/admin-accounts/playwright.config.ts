@@ -5,6 +5,7 @@ export default defineConfig({
     "admin.spec.ts",
     "audit.spec.ts",
     "relations.spec.ts",
+    "branch-learning.spec.ts",
     "workbench.spec.ts",
   ],
   workers: 1,

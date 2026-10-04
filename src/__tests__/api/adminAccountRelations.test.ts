@@ -319,6 +319,55 @@ describe("superadmin read-only account relationships", () => {
     expect(body.data.map((r: { id: string }) => r.id)).toEqual([own.id]);
     expect(branch).not.toHaveBeenCalled();
   });
+  it("returns persistent class issuance counts including disabled accounts and distinct current enrollment identities", async () => {
+    const c = cls(10, teacher);
+    const issued = student(20, c.id, {
+      sourceStatus: "enrolled",
+      studentAccount: { disabledAt: now, lockedUntil: null },
+    });
+    enrollment(40, issued.id, c.id);
+    enrollment(41, issued.id, c.id);
+    const unissued = student(21, c.id, { sourceStatus: "enrolled" });
+    enrollment(42, unissued.id, c.id);
+    const held = student(22, c.id, { sourceStatus: "enrolled" });
+    enrollment(43, held.id, c.id, { onHold: true });
+    const foreign = student(23, c.id, {
+      branchId: branchB,
+      sourceStatus: "enrolled",
+    });
+    enrollment(44, foreign.id, c.id);
+    const wrongBinding = student(24, c.id, {
+      eywaBindingId: id(100),
+      sourceStatus: "enrolled",
+    });
+    enrollment(45, wrongBinding.id, c.id);
+    const withdrawn = student(25, c.id, { sourceStatus: "withdrawn" });
+    enrollment(46, withdrawn.id, c.id);
+    const body = await (await call()).json();
+    expect(body.data[0].issuanceSummary).toEqual({
+      total: 2,
+      issued: 1,
+      unissued: 1,
+    });
+    // A fresh read after issuing an account must update the persisted summary.
+    Object.assign(unissued, {
+      studentAccount: { disabledAt: now, lockedUntil: null },
+    });
+    const fresh = await (await call()).json();
+    expect(fresh.data[0].issuanceSummary).toEqual({
+      total: 2,
+      issued: 2,
+      unissued: 0,
+    });
+    expect(adminRelationsResponseSchema.safeParse(fresh).success).toBe(true);
+    const select = (
+      state.db as { student: { findMany: ReturnType<typeof vi.fn> } }
+    ).student.findMany.mock.calls[0][0].select;
+    expect(select.studentAccount).toEqual({ select: { studentId: true } });
+    expect(JSON.stringify(select)).not.toMatch(/password|phone|loginId|email/);
+    expect(mutation).not.toHaveBeenCalled();
+    expect(refresh).not.toHaveBeenCalled();
+  });
   it("uses active multi-enrollment edges, not compatibility classId, and returns one student once", async () => {
     const a = cls(10),
       b = cls(11),

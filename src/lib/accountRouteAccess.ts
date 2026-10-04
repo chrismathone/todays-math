@@ -7,6 +7,17 @@ import {
 const under = (path: string, base: string) =>
   path === base || path.startsWith(`${base}/`);
 
+/** Established admin SRS operations also work when workspace menus are disabled. */
+export function srsTeacherManagementRoute(method: string, path: string) {
+  return (
+    (method === "GET" && path === "/api/math-srs/course") ||
+    (["GET", "POST"].includes(method) &&
+      /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path)) ||
+    (method === "GET" &&
+      /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path))
+  );
+}
+
 /** 공통 목록 읽기와 각 메뉴의 전용 쓰기를 구분한다. 알 수 없는 영어 경로는 거절한다. */
 export function englishRouteAllowed(
   menus: readonly WorkspaceMenu[],
@@ -147,12 +158,16 @@ export function accountRouteAllowed(
   )
     return any("studio");
   if (path === "/api/studio/overview") return any("home", "teaching");
-  if (path === "/api/math-srs/course") return method === "GET" && any("srs");
-  if (/^\/api\/students\/[^/]+\/math-srs\/course$/.test(path))
-    return ["GET", "POST"].includes(method) && any("srs");
-  // 개념 카드(탐험) 기록의 교사 보기(27번 문서) — 읽기만, 메뉴는 위 줄과 같다. 반 쪽은 아래 `/api/classes` 줄이 연다.
-  if (/^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path))
-    return method === "GET" && any("srs");
+  // SRS teacher management: explorer summaries stay read-only; class routes use teaching below.
+  if (
+    path === "/api/math-srs/course" ||
+    /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path) ||
+    /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path)
+  )
+    return (
+      srsTeacherManagementRoute(method, path) &&
+      (account.isSuperAdmin === true || any("srs"))
+    );
   if (
     under(path, "/api/problems/transform") ||
     path === "/api/problems/generate"
