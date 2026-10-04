@@ -2,6 +2,7 @@
 
 import { useCallback } from "react";
 import Link from "next/link";
+import BackLink from "@/components/ui/BackLink";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
 
 import { useUnitGrades } from "@/components/problem/useUnitGrades";
@@ -62,12 +63,7 @@ export function TestReview({ testId }: Props) {
               다시 불러오기
             </Button>
           ) : null}
-          <Link
-            href="/"
-            className="inline-flex min-h-11 items-center px-3 text-[14px] font-bold text-ink underline-offset-2 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-g-blue"
-          >
-            오늘의 테스트로 돌아가기
-          </Link>
+          <BackLink href="/">오늘의 테스트로 돌아가기</BackLink>
         </div>
       </main>
     );

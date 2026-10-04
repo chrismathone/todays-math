@@ -31,12 +31,48 @@ describe("managed account editor", () => {
       />,
     );
     expect(screen.getByLabelText("지점")).toBeDisabled();
-    expect(screen.getByLabelText("계정 유형")).toBeDisabled();
+    expect(screen.getByLabelText("계정 유형")).toBeEnabled();
     expect(screen.getByLabelText("이름")).toBeEnabled();
     expect(screen.getByLabelText("오늘의 작업")).toBeEnabled();
     expect(
-      screen.getByText(/에이와 연동 계정의 소속과 계정 유형은/),
+      screen.getByText(/에이와 연동 계정의 소속 지점은/),
     ).toBeInTheDocument();
+  });
+  it("saves a managed account type without attempting a source branch edit", async () => {
+    const fetch = vi
+      .fn()
+      .mockImplementation(async (_url, init) =>
+        init?.method === "PATCH"
+          ? Response.json({
+              data: { ...account, branchRole: "manager", isAdmin: true },
+            })
+          : Response.json({ data: [] }),
+      );
+    vi.stubGlobal("fetch", fetch);
+    render(
+      <AccountReview
+        account={account}
+        onUpdate={vi.fn()}
+        onLockChange={vi.fn()}
+      />,
+    );
+    fireEvent.change(screen.getByLabelText("계정 유형"), {
+      target: { value: "manager" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+    await waitFor(() =>
+      expect(screen.getByRole("status")).toHaveTextContent(
+        "계정 변경을 저장했습니다.",
+      ),
+    );
+    const request = fetch.mock.calls.find(
+      ([, init]) => init?.method === "PATCH",
+    )!;
+    expect(JSON.parse(request[1].body)).toEqual({
+      expectedUpdatedAt: account.updatedAt,
+      expectedBranchId: branchId,
+      branchRole: "manager",
+    });
   });
   it("displays an action restriction and allows correcting the draft without a login loop", async () => {
     const message =

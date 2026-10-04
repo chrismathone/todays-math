@@ -224,7 +224,9 @@ export default function AccountReview({
             ...(email !== account.email ? { email } : {}),
             ...(branchChanged || branchRoleChanged
               ? {
-                  branchId: branchId || null,
+                  ...(!branchAssignmentLocked
+                    ? { branchId: branchId || null }
+                    : {}),
                   ...(branchId ? { branchRole } : {}),
                 }
               : account.branchId && branchManager !== account.isAdmin
@@ -501,9 +503,7 @@ export default function AccountReview({
               <select
                 className="min-h-11 rounded-lg border border-slate-300 bg-white px-3"
                 value={branchRole}
-                disabled={
-                  busy || conflict || authError || branchAssignmentLocked
-                }
+                disabled={busy || conflict || authError}
                 onChange={(event) => {
                   const nextRole = event.target.value as typeof branchRole;
                   const nextManager = nextRole !== "teacher";
@@ -524,8 +524,9 @@ export default function AccountReview({
           <p className="text-xs text-slate-600">
             {branchAssignmentLocked ? (
               <>
-                에이와 연동 계정의 소속과 계정 유형은 연결 관리에서 변경합니다.
-                이 화면에서는 이름·이메일·개인 메뉴를 변경할 수 있습니다.
+                에이와 연동 계정의 소속 지점은 연동 정보에 따라 고정됩니다.
+                최고관리자는 계정 유형·이름·이메일·개인 메뉴를 변경할 수
+                있습니다. 계정 유형은 이후 동기화에도 유지됩니다.
               </>
             ) : (
               <>
