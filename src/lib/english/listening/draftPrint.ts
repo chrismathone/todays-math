@@ -17,6 +17,9 @@ export function listeningDraftPrintDocument(
         id: question.id,
         number: ++number,
         prompt: question.prompt,
+        ...(question.metadata?.origin === "audio_reconstructed"
+          ? { reconstructionLabel: "원본 문제지 없음 · 음원 기반 재구성" }
+          : {}),
         ...(question.instruction ? { instruction: question.instruction } : {}),
         choices: question.choices.map((choice) => choice.text),
         ...(question.sourceNumber
