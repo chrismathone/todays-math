@@ -25,6 +25,7 @@ vi.mock("@/lib/textbook/render/blocks/semantic", async (importOriginal) => {
     },
   };
 });
+import * as quickCreateContract from "@/contracts/textbookQuickCreate.contract";
 import {
   DEFAULT_QUICK_CREATE_COMPONENTS,
   effectiveQuickCreateComponents,
@@ -211,6 +212,49 @@ describe("renderer privacy and resource wiring", () => {
         resources,
       ),
     ).toContain("나누어떨어지게");
+  });
+
+  it("reserves the same bar above rows without a concept name in every phase", () => {
+    const sheet = (phase: RecallPhase) =>
+      parse(
+        renderBlockHtml(
+          {
+            ...base,
+            kind: "recall",
+            phase,
+            pieces: [],
+            repetitionChecks: phase === "study",
+            answersVisible: false,
+            semantic: {
+              activity: "conceptStudy",
+              node: { kind: "rows", groupKey: "concept-x.memory-0", rows },
+            },
+          } as unknown as RenderBlock,
+          resources,
+        ),
+      ).querySelector(".tb-memory")!;
+    // What stands before the rows, element by element, decides where the first row starts.
+    const lead = (section: Element) =>
+      Array.from(section.children)
+        .filter((child) => !child.classList.contains("tb-memory-rows"))
+        .map((child) => child.className);
+    const phases = (["study", "keywords", "sentences"] as const).map(sheet);
+    expect(lead(phases[0])).toEqual([
+      "tb-recall-checkbar",
+      "tb-memory-title tb-memory-title-bare",
+    ]);
+    expect(lead(phases[1])).toEqual(lead(phases[0]));
+    expect(lead(phases[2])).toEqual(lead(phases[0]));
+    // The marks themselves are printed on the study sheet only; elsewhere the bar is empty.
+    const bar = (section: Element) =>
+      section.querySelector(".tb-memory-title-bare")!;
+    expect(bar(phases[0]).querySelectorAll(".tb-memory-rounds i")).toHaveLength(
+      4,
+    );
+    for (const section of phases.slice(1)) {
+      expect(bar(section).children).toHaveLength(0);
+      expect(bar(section).textContent).toBe("");
+    }
   });
 
   it("hands the resources to the shared fragment renderer for a concept block", () => {
@@ -826,13 +870,16 @@ describe("one maximum shared by the selected problem groups", () => {
         components: problemsOnly,
         problemCountPerUnit: count,
       });
+      const accepted = quickCreateInputSchema.safeParse(input).success;
       if (count < PROBLEM_GROUPS.length) {
-        expect(
-          quickCreateInputSchema.safeParse(input).success,
-          `count ${count}`,
-        ).toBe(false);
+        expect(accepted, `count ${count}`).toBe(false);
         continue;
       }
+      // One question per group cannot hold a pair. Seven is either refused (a minimum that
+      // leaves room for the pair) or printed without an example — never with half a pair.
+      if (count > PROBLEM_GROUPS.length)
+        expect(accepted, `count ${count}`).toBe(true);
+      if (!accepted) continue;
       const result = await createQuickTextbook(
         db,
         await newActor(),
@@ -1399,7 +1446,7 @@ describe("student pages never carry a confirmation's answer", () => {
     for (const confirm of confirms) expect(answers).toContain(confirm.answer);
   });
 
-  it("prints no hidden keyword or sentence of the memory sheets in the student HTML", async () => {
+  it("keeps hidden keywords and sentences out of the student DTO and HTML of the memory sheets", async () => {
     const book = await read(
       (
         await create({
@@ -1411,54 +1458,92 @@ describe("student pages never carry a confirmation's answer", () => {
         })
       ).book.draftEditionId!,
     );
-    const model = createTextbookRenderModel(book.exchange, "student");
-    const recall = model.sections
-      .flatMap((section) => section.blocks)
-      .filter((block) => block.kind === "recall");
+    // The canonical rows, with their keys, exist only in the saved manuscript.
+    const source = new Map(
+      book.blocks.flatMap((block) =>
+        block.kind === "concept-recall" && block.semantic?.node?.kind === "rows"
+          ? block.semantic.node.rows.map((row) => [row.rowKey, row] as const)
+          : [],
+      ),
+    );
+    expect(source.size).toBeGreaterThan(0);
+    const hiddenKeys = (rawText: string) => {
+      const visible = rawText.replace(/\{[^{}]*\}/g, "");
+      return Array.from(rawText.matchAll(/\{([^{}$]+)\}/g), (m) =>
+        m[1].trim(),
+      ).filter((key) => !visible.includes(key));
+    };
+    const plain = (rawText: string) => rawText.replace(/[{}]/g, "");
+    const sheets = (variant: "student" | "answers") =>
+      createTextbookRenderModel(book.exchange, variant)
+        .sections.flatMap((section) => section.blocks)
+        .filter((block) => block.kind === "recall");
     let keywords = 0,
       sentences = 0;
-    for (const block of recall) {
-      const node = block.semantic?.node;
-      if (node?.kind !== "rows") throw new Error("memory rows expected");
+    const student = sheets("student");
+    // One render block per manuscript block: every row is printed once per phase.
+    expect(student.map((block) => block.phase)).toEqual([
+      "study",
+      "keywords",
+      "sentences",
+    ]);
+    for (const block of student) {
+      const dto = JSON.stringify(block);
       const dom = parse(renderBlockHtml(block, resources));
-      for (const row of node.rows) {
-        const body = Array.from(dom.querySelectorAll("[data-row-key]"))
-          .find((el) => el.getAttribute("data-row-key") === row.rowKey)!
-          .querySelector(".tb-memory-body")!;
-        const keys = Array.from(row.rawText.matchAll(/\{([^{}$]+)\}/g), (m) =>
-          m[1].trim(),
-        );
+      const rows = Array.from(dom.querySelectorAll("[data-row-key]"));
+      expect(rows.map((row) => row.getAttribute("data-row-key"))).toEqual([
+        ...source.keys(),
+      ]);
+      for (const element of rows) {
+        const row = source.get(element.getAttribute("data-row-key")!)!;
+        const body = element.querySelector(".tb-memory-body")!;
+        if (block.phase === "study") {
+          expect(body.textContent).not.toBe("");
+          continue;
+        }
+        // Neither the canonical text nor a key travels in a hidden phase's DTO.
+        expect(dto, row.rowKey).not.toContain(row.rawText);
         if (block.phase === "sentences") {
           expect(body.textContent, row.rowKey).toBe("");
-          sentences++;
-        }
-        if (block.phase === "keywords") {
-          const visible = row.rawText.replace(/\{[^{}]*\}/g, "");
-          for (const key of keys)
-            if (!visible.includes(key)) {
-              expect(body.textContent, `${row.rowKey}: ${key}`).not.toContain(
-                key,
-              );
-              keywords++;
-            }
+          expect(dto, row.rowKey).not.toContain(plain(row.rawText));
           expect(
-            body.querySelectorAll(".tb-blank-keyword").length,
-            row.rowKey,
-          ).toBeGreaterThanOrEqual(keys.length);
-        }
+            body.querySelectorAll(".tb-write-line").length,
+          ).toBeGreaterThan(0);
+          sentences++;
+        } else
+          for (const key of hiddenKeys(row.rawText)) {
+            expect(body.textContent, `${row.rowKey}: ${key}`).not.toContain(
+              key,
+            );
+            expect(dto, `${row.rowKey}: ${key}`).not.toContain(key);
+            expect(
+              body.querySelectorAll(".tb-blank-keyword").length,
+            ).toBeGreaterThan(0);
+            keywords++;
+          }
       }
     }
     expect(keywords).toBeGreaterThan(0);
     expect(sentences).toBeGreaterThan(0);
+    // The answer variant is told so by the model and prints what the student writes.
+    for (const block of sheets("answers")) {
+      if (block.phase === "study") continue;
+      const dom = parse(renderBlockHtml(block, resources));
+      expect(dom.querySelectorAll(".tb-blank")).toHaveLength(0);
+      for (const element of dom.querySelectorAll("[data-row-key]")) {
+        const row = source.get(element.getAttribute("data-row-key")!)!;
+        for (const key of hiddenKeys(row.rawText))
+          expect(element.textContent, `${row.rowKey}: ${key}`).toContain(key);
+      }
+    }
   });
 });
 
 /**
- * Faults of the render model at 16dfd927d, outside this file's ownership. Each test states the
- * behaviour the plan requires and is marked `fails`: it turns red the moment the model is
- * fixed, and the mark must then be removed.
+ * What the render model must keep true for the writers' output. These were faults at 16dfd927d
+ * (reported with evidence) and are fixed from e8dd1baaf on.
  */
-describe("known render-model faults (remove `.fails` when fixed)", () => {
+describe("render model keeps the writers' structure", () => {
   async function lesson(components: QuickCreateComponents) {
     const book = await read(
       (await create({ components, problemCountPerUnit: 8 })).book
@@ -1472,53 +1557,89 @@ describe("known render-model faults (remove `.fails` when fixed)", () => {
     };
   }
 
-  it.fails(
-    "keeps a confirmation directly after its example, with no stage heading or page break between",
-    async () => {
-      const { book, blocks } = await lesson(
-        only({ workedExamples: true, practice: true }),
-      );
-      const example = book.problems.find((p) => p.role === "example")!;
+  it("keeps a confirmation directly after its example, with no heading or page break between", async () => {
+    const { book, blocks } = await lesson(
+      only({ workedExamples: true, practice: true }),
+    );
+    const groups = new Set(book.problems.flatMap((p) => p.groupId ?? []));
+    expect(groups.size).toBeGreaterThan(0);
+    for (const groupId of groups) {
+      const example = book.problems.find(
+        (p) => p.groupId === groupId && p.role === "example",
+      )!;
+      const confirm = book.problems.find(
+        (p) => p.groupId === groupId && p.role === "confirm",
+      )!;
       const at = blocks.findIndex(
         (b) => b.kind === "problem" && b.itemId === example.itemId,
       );
       const next = blocks[at + 1];
+      expect(next.kind === "problem" && next.itemId).toBe(confirm.itemId);
+      expect(next.startNewPage ?? false).toBe(false);
+      // The group title opens the group, directly before the example.
+      expect(blocks[at - 1].semantic?.node).toMatchObject({
+        kind: "exampleGroup",
+        groupId,
+      });
+    }
+  });
+
+  it("projects a memory block with source rows as one render block, so each row prints once", async () => {
+    const { blocks } = await lesson(only({ conceptStudy: true }));
+    const recall = blocks.filter((b) => b.kind === "recall");
+    expect(recall).toHaveLength(1);
+    const keys = Array.from(
+      parse(renderBlockHtml(recall[0], resources)).querySelectorAll(
+        "[data-row-key]",
+      ),
+      (el) => el.getAttribute("data-row-key"),
+    );
+    expect(keys.length).toBeGreaterThan(0);
+    expect(keys).toHaveLength(new Set(keys).size);
+  });
+
+  it("puts every activity heading directly before its own content", async () => {
+    const { blocks } = await lesson(
+      only({ practice: true, reasoning: true, review: true }),
+    );
+    const headings = blocks.flatMap((block, index) =>
+      block.kind === "heading" ? [{ block, index }] : [],
+    );
+    expect(headings.map(({ block }) => block.semantic?.activity)).toEqual([
+      "practice",
+      "reasoning",
+      "review",
+    ]);
+    for (const { block, index } of headings) {
+      const next = blocks[index + 1];
       expect(next.kind).toBe("problem");
-      expect(next.kind === "problem" && next.itemId).toBe(
-        book.problems.find((p) => p.role === "confirm")!.itemId,
-      );
-    },
-  );
+      expect(next.semantic?.activity).toBe(block.semantic?.activity);
+    }
+    // No stray title text is left behind on the previous activity's page.
+    expect(blocks.filter((b) => b.kind === "text")).toEqual([]);
+  });
+});
 
-  it.fails(
-    "projects a memory block with source rows as one render block, so each row prints once",
-    async () => {
-      const { blocks } = await lesson(only({ conceptStudy: true }));
-      const html = blocks
-        .filter((b) => b.kind === "recall")
-        .map((b) => renderBlockHtml(b, resources))
-        .join("");
-      const keys = Array.from(
-        parse(html).querySelectorAll("[data-row-key]"),
-        (el) => el.getAttribute("data-row-key"),
-      );
-      expect(keys.length).toBeGreaterThan(0);
-      expect(keys).toHaveLength(new Set(keys).size);
-    },
-  );
-
-  it.fails(
-    "keeps an activity title on the page of the questions it introduces",
-    async () => {
-      const { blocks } = await lesson(
-        only({ practice: true, reasoning: true }),
-      );
-      const title = blocks.findIndex(
-        (b) => b.kind === "text" && b.semantic?.activity === "reasoning",
-      );
-      expect(title).toBeGreaterThan(-1);
-      const next = blocks[title + 1];
-      expect(next.kind === "heading" && next.startNewPage).toBe(false);
-    },
-  );
+// The recommended selection is a contract export of the coordinator's next writer commit.
+describe.skipIf(
+  !("RECOMMENDED_QUICK_CREATE_COMPONENTS" in quickCreateContract),
+)("recommended selection", () => {
+  it("is a valid request and writes exactly the activities it selects", async () => {
+    const recommended = (
+      quickCreateContract as unknown as {
+        RECOMMENDED_QUICK_CREATE_COMPONENTS: QuickCreateComponents;
+      }
+    ).RECOMMENDED_QUICK_CREATE_COMPONENTS;
+    const groups = PROBLEM_GROUPS.filter((key) => recommended[key]).length;
+    const input = body({
+      ...quickCreateSelectionInput(recommended),
+      problemCountPerUnit: Math.max(8, groups + 1),
+    });
+    expect(quickCreateInputSchema.safeParse(input).success).toBe(true);
+    const result = await createQuickTextbook(db, await newActor(), input, deps);
+    const book = await read(result.book.draftEditionId!);
+    expect(KEYS.filter((key) => present(book, key))).toEqual(
+      KEYS.filter((key) => recommended[key]),
+    );
+  });
 });

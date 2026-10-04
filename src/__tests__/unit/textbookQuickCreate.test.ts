@@ -356,9 +356,30 @@ async function assertPaginates(
     );
     expect(layout.pages.length).toBeGreaterThan(0);
     expect(layout.issues).toEqual([]);
+    // Every block is placed. A continued page repeats the heading it continues, so a heading
+    // may appear on several pages — but nothing appears twice on one page, and no other
+    // block is ever placed twice.
+    const kinds = new Map(
+      model.sections.flatMap((section) =>
+        section.blocks.map((block) => [block.id, block.kind]),
+      ),
+    );
+    const placed = layout.pages.flatMap((page) =>
+      page.blocks.map((block) => block.blockId),
+    );
+    expect(new Set(placed)).toEqual(
+      new Set(measurements.map((measurement) => measurement.blockId)),
+    );
+    for (const page of layout.pages) {
+      const onPage = page.blocks.map((block) => block.blockId);
+      expect(new Set(onPage).size).toBe(onPage.length);
+    }
     expect(
-      layout.pages.flatMap((page) => page.blocks.map((block) => block.blockId)),
-    ).toHaveLength(measurements.length);
+      placed.filter(
+        (id, index) =>
+          placed.indexOf(id) !== index && kinds.get(id) !== "heading",
+      ),
+    ).toEqual([]);
   }
 }
 describe("quick create curriculum and validation", () => {

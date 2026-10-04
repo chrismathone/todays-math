@@ -291,9 +291,9 @@ function memoryHtml(
   const title =
     node.kind === "concept"
       ? `<header class="tb-memory-title" data-anchor="memory-title">${code ? `<span class="tb-memory-code">${esc(code)}</span>` : ""}<b>${esc(node.title)}</b>${rounds}</header>`
-      : rounds
-        ? `<header class="tb-memory-title tb-memory-title-bare">${rounds}</header>`
-        : "";
+      : // Rows without a concept name keep the same bar in every phase, so the first row starts
+        // at one height. Only the study sheet prints the repetition marks in it.
+        `<header class="tb-memory-title tb-memory-title-bare" data-anchor="memory-title">${rounds}</header>`;
   const page =
     block.relativePageIndex === undefined
       ? ""
