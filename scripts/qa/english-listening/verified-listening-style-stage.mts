@@ -69,7 +69,7 @@ const groundingSchema = z
     sourceSegmentIds: z.array(z.number().int().positive()).min(1),
     evidenceQuotes: z.array(z.string().min(1)).min(1).max(8),
     asrUncertain: z.boolean(),
-    included: z.literal(true),
+    included: z.boolean(),
   })
   .passthrough();
 const preparedSchema = z
@@ -669,7 +669,8 @@ export async function loadVerifiedListeningStyleStage(
   const originals = baseline.editableInput.groups.flatMap(
       (group) => group.questions,
     ),
-    grounding = baseline.verification.grounding;
+    allGrounding = baseline.verification.grounding,
+    grounding = allGrounding.filter((item) => item.included);
   if (
     !originals.length ||
     originals.length !== baseline.verification.questionCount ||
@@ -686,9 +687,17 @@ export async function loadVerifiedListeningStyleStage(
     "Duplicate generated ordinal.",
   );
   unique(
-    grounding.map((g) => g.generatedOrdinal),
+    allGrounding.map((g) => g.generatedOrdinal),
     "Duplicate baseline grounding ordinal.",
   );
+  if (
+    allGrounding.some(
+      (item, index) =>
+        index > 0 &&
+        item.generatedOrdinal <= allGrounding[index - 1].generatedOrdinal,
+    )
+  )
+    fail("Baseline grounding generated ordinals are out of order.");
   const baselineQuestions = originals.map((question, index) => {
     const evidence = grounding[index],
       metadata = question.metadata;
