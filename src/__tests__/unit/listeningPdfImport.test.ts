@@ -94,8 +94,30 @@ describe("original listening assessment PDF parsing", () => {
       expect(second.prompt).toContain("남자의 마지막 말");
       expect(second.prompt).not.toContain("First response");
       expect(first.prompt).not.toContain("16.");
+      expect(first).not.toHaveProperty("instruction");
+      expect(second).toHaveProperty("instruction");
+      expect(second).toMatchObject({
+        instruction:
+          "대화를 듣고, 남자의 마지막 말에 대한 여자의 응답으로 가장 적절한 것을 고르시오.",
+      });
     },
   );
+
+  it("rejects an oversized prompt instead of silently truncating the original", () => {
+    const original = "x".repeat(2001);
+    expect(() =>
+      listeningPdfQuestionBoxes(
+        [
+          text("1.", 40, 100),
+          text(original, 55, 100, 300),
+          text("① response", 55, 130, 150),
+        ],
+        728,
+        1031,
+        20,
+      ),
+    ).toThrow("2,000자");
+  });
 
   it("excludes the printed listening-end notice below the last mock-exam question", () => {
     const [box] = listeningPdfQuestionBoxes(
