@@ -101,6 +101,30 @@ async function main() {
     "audit",
     prepared.sourceRecordId,
   );
+  const balanceBlockedFile = path.join(
+    path.resolve(values.output!),
+    ".deepseek-balance-blocked.json",
+  );
+  const recordBalanceFailure = async (error: unknown): Promise<never> => {
+    if (error instanceof OpenAI.APIError && error.status === 402) {
+      await fs.mkdir(path.dirname(balanceBlockedFile), { recursive: true });
+      await fs
+        .writeFile(
+          balanceBlockedFile,
+          JSON.stringify({
+            status: 402,
+            reason: "insufficient_balance",
+            detectedAt: new Date().toISOString(),
+            sourceRecordId: prepared.sourceRecordId,
+          }),
+          { encoding: "utf8", flag: "wx" },
+        )
+        .catch((writeError: NodeJS.ErrnoException) => {
+          if (writeError.code !== "EEXIST") throw writeError;
+        });
+    }
+    throw error;
+  };
   const generationRequest = {
     model: DEEPSEEK_MODEL,
     system:
@@ -159,6 +183,10 @@ async function main() {
       );
     if (!env.DEEPSEEK_API_KEY)
       throw new Error("DeepSeek server credential missing");
+    if (await exists(balanceBlockedFile))
+      throw new Error(
+        "DeepSeek balance blocked; completed generation receipts remain reusable",
+      );
     const client = new OpenAI({
       apiKey: env.DEEPSEEK_API_KEY,
       baseURL: "https://api.deepseek.com",
@@ -166,15 +194,17 @@ async function main() {
       timeout: 600000,
     });
     const started = performance.now();
-    const response = await client.chat.completions.create({
-      model: DEEPSEEK_MODEL,
-      max_tokens: 64000,
-      response_format: { type: "json_object" },
-      messages: [
-        { role: "system", content: generationRequest.system },
-        { role: "user", content: generationRequest.prompt },
-      ],
-    });
+    const response = await client.chat.completions
+      .create({
+        model: DEEPSEEK_MODEL,
+        max_tokens: 64000,
+        response_format: { type: "json_object" },
+        messages: [
+          { role: "system", content: generationRequest.system },
+          { role: "user", content: generationRequest.prompt },
+        ],
+      })
+      .catch(recordBalanceFailure);
     await write(generationFile, {
       requestHash: generationHash,
       generatedAt: new Date().toISOString(),
@@ -232,6 +262,10 @@ async function main() {
         throw new Error(
           "Four-choice cache requires one --repair-four-choices request, not regeneration",
         );
+      if (await exists(balanceBlockedFile))
+        throw new Error(
+          "DeepSeek balance blocked; cached format repairs remain reusable",
+        );
       const client = new OpenAI({
         apiKey: env.DEEPSEEK_API_KEY,
         baseURL: "https://api.deepseek.com",
@@ -239,15 +273,17 @@ async function main() {
         timeout: 600000,
       });
       const started = performance.now();
-      const response = await client.chat.completions.create({
-        model: DEEPSEEK_MODEL,
-        max_tokens: 16000,
-        response_format: { type: "json_object" },
-        messages: [
-          { role: "system", content: request.system },
-          { role: "user", content: request.prompt },
-        ],
-      });
+      const response = await client.chat.completions
+        .create({
+          model: DEEPSEEK_MODEL,
+          max_tokens: 16000,
+          response_format: { type: "json_object" },
+          messages: [
+            { role: "system", content: request.system },
+            { role: "user", content: request.prompt },
+          ],
+        })
+        .catch(recordBalanceFailure);
       await write(repairFile, {
         requestHash,
         generatedAt: new Date().toISOString(),
@@ -320,6 +356,10 @@ async function main() {
       `jev-named-shuffled-${offset + 1}.json`,
     );
     if (!(await exists(cacheFile))) {
+      if (await exists(balanceBlockedFile))
+        throw new Error(
+          "Paid AI requests paused after DeepSeek 402; existing Jev receipts remain reusable",
+        );
       if (!values.verify)
         throw new Error(
           "Verification is absent; use --verify to authorize the cached batch",
@@ -517,7 +557,9 @@ async function main() {
     ],
   };
   listeningCreateSetSchema.parse(createInput);
-  listeningUpdateSetSchema.parse({ ...editableInput, expectedRevision: 1 });
+  listeningUpdateSetSchema
+    .omit({ expectedRevision: true })
+    .parse(editableInput);
   const outputFile = path.join(
     path.resolve(values.output!),
     `${prepared.sourceRecordId}.json`,

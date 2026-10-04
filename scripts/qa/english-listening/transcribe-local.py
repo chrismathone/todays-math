@@ -67,6 +67,9 @@ def main():
     if not 1 <= args.threads <= 16:
         raise ValueError("ASR CPU threads must be 1..16")
     os.environ.setdefault("OMP_NUM_THREADS", str(args.threads))
+    if args.device == "cuda" and os.name == "nt":
+        # Official CT2 alternative to the asynchronous CUDA memory pool.
+        os.environ.setdefault("CT2_CUDA_ALLOCATOR", "cub_caching")
     audio = Path(args.audio).resolve()
     destination = Path(args.output).resolve()
     if audio.stat().st_size > 64 * 1024 * 1024:
@@ -184,6 +187,7 @@ def main():
             "cpuThreads": args.threads,
             "numWorkers": 1,
             "ompNumThreads": os.environ["OMP_NUM_THREADS"],
+            "cudaAllocator": os.environ.get("CT2_CUDA_ALLOCATOR"),
             "requestedLanguage": args.language,
             "detectedLanguage": info.language,
             "languageProbability": info.language_probability,
