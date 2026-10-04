@@ -56,7 +56,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
     this.maxOwnerBytes = options.maxOwnerBytes ?? LISTENING_MAX_OWNER_BYTES;
     this.maxOwnerAssets = options.maxOwnerAssets ?? LISTENING_MAX_OWNER_ASSETS;
     this.orphanTtlMs = options.orphanTtlMs ?? 60 * 60 * 1000;
-    bound(this.maxOwnerBytes, 1, 2 ** 31 - 1);
+    bound(this.maxOwnerBytes, 1, Number.MAX_SAFE_INTEGER);
     bound(this.maxOwnerAssets, 1, 10000);
     bound(this.orphanTtlMs, 60000, 24 * 60 * 60 * 1000);
   }

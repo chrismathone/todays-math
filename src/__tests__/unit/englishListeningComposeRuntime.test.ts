@@ -25,7 +25,11 @@ import {
 import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import type { ListeningComposeSource } from "@/contracts/englishListeningCompose.contract";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
-import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
+import {
+  LISTENING_MAX_DOCUMENT_BYTES,
+  LISTENING_MAX_OWNER_BYTES,
+  LISTENING_MAX_OWNER_ASSETS,
+} from "@/contracts/englishListeningSource.contract";
 import {
   decodeMp3,
   parseMp3,
@@ -380,6 +384,78 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       ),
     );
   });
+  it("honors the 8GiB owner sum and 512 asset limit while individual reservations remain integers", async () => {
+    expect(LISTENING_MAX_OWNER_BYTES).toBe(8 * 1024 ** 3);
+    expect(LISTENING_MAX_OWNER_ASSETS).toBe(512);
+    const original = await source(10, true, true);
+    const setId = original.source.detail.id;
+    const existing = original.source.detail.document.groups[0].audio!.assetId;
+    // Four individually valid integer reservations exercise a sum greater than 2^31.
+    await db!.$executeRaw(
+      Prisma.sql`UPDATE english_listening_media_asset SET "reservedBytes"=${2 ** 31 - 1} WHERE "assetId"=${existing}::uuid`,
+    );
+    for (let index = 0; index < 3; index++) {
+      const quotaAssetId = randomUUID();
+      await db!.$executeRaw(
+        Prisma.sql`INSERT INTO english_listening_media_asset("assetId","ownerId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) SELECT ${quotaAssetId}::uuid,"ownerId","setId",0,'uploading',"uploadExpiresAt",${2 ** 31 - 1},(record-'playback'-'completion'-'finalizedFromRevision') || jsonb_build_object('assetId',${quotaAssetId}::text,'state','uploading','revision',0,'receivedBytes',0,'chunks','[]'::jsonb) FROM english_listening_media_asset WHERE "assetId"=${existing}::uuid`,
+      );
+      if (index === 1) {
+        const within = await archiveMedia!.beginUpload(
+          { actor: owner },
+          {
+            setId,
+            totalBytes: 1,
+            mimeType: "audio/mpeg",
+            expectedSha256: "a".repeat(64),
+          },
+        );
+        expect(within.state).toBe("uploading");
+        await db!.$executeRaw(
+          Prisma.sql`DELETE FROM english_listening_media_asset WHERE "assetId"=${within.assetId}::uuid`,
+        );
+      }
+    }
+    await expect(
+      archiveMedia!.beginUpload(
+        { actor: owner },
+        {
+          setId,
+          totalBytes: 1,
+          mimeType: "audio/mpeg",
+          expectedSha256: "a".repeat(64),
+        },
+      ),
+    ).rejects.toMatchObject({ code: "quota_exceeded" });
+    await db!.$executeRaw(
+      Prisma.sql`UPDATE english_listening_media_asset SET "reservedBytes"=1 WHERE "ownerId"=${ownerId}::uuid`,
+    );
+    const receipt = await archiveMedia!.beginUpload(
+      { actor: owner },
+      {
+        setId,
+        totalBytes: 1,
+        mimeType: "audio/mpeg",
+        expectedSha256: "a".repeat(64),
+      },
+    );
+    expect(receipt.state).toBe("uploading");
+    // Generate metadata-only rows in this isolated test DB to exercise the asset boundary.
+    await db!.$executeRaw(
+      Prisma.sql`WITH copies AS (SELECT gen_random_uuid() AS new_id,s.* FROM english_listening_media_asset s CROSS JOIN generate_series(1,507) WHERE "assetId"=${existing}::uuid) INSERT INTO english_listening_media_asset("assetId","ownerId","setId",revision,state,"uploadExpiresAt","reservedBytes",record) SELECT new_id,"ownerId","setId",0,'uploading',"uploadExpiresAt",0,(record-'playback'-'completion'-'finalizedFromRevision') || jsonb_build_object('assetId',new_id::text,'state','uploading','revision',0,'receivedBytes',0,'chunks','[]'::jsonb) FROM copies`,
+    );
+    await expect(
+      archiveMedia!.beginUpload(
+        { actor: owner },
+        {
+          setId,
+          totalBytes: 1,
+          mimeType: "audio/mpeg",
+          expectedSha256: "a".repeat(64),
+        },
+      ),
+    ).rejects.toMatchObject({ code: "quota_exceeded" });
+  });
+
   it("copies a full round with fresh IDs and set-owned sealed bytes while originals stay unchanged", async () => {
     const original = await source();
     const composed = await runtime!.composeSet(owner, {
