@@ -99,7 +99,7 @@ describe("private measurement material, without a browser", () => {
     );
   });
 
-  it("builds canonical probes for every enabled phase, also with the study phase off", () => {
+  it("builds one canonical probe per row partition, also with the study phase off", () => {
     const probes: Record<string, [number, number, number]> = {};
     for (const variant of MEMORY_VARIANTS) {
       const { model, answers } = chunkModel(variant);
@@ -116,9 +116,10 @@ describe("private measurement material, without a browser", () => {
       );
       probes[variant.name] = [blocks.length, rows.length, whole.length];
     }
+    // One block of six canonical rows whichever phases are on: the same rows are measured once.
     expect(probes).toEqual({
-      "all-three": [3, 18, 18],
-      "study-off": [2, 12, 12],
+      "all-three": [1, 6, 6],
+      "study-off": [1, 6, 6],
       "sentences-only": [1, 6, 6],
       "keywords-only": [1, 6, 6],
     });
@@ -133,9 +134,11 @@ describe("private measurement material, without a browser", () => {
     expect([...new Set(groups(model))]).toEqual([
       "synthetic-unit:concept-memory-proof.memory-0",
     ]);
-    expect(groups(recallMeasurementModel(answers, model))).toEqual(
-      groups(model),
-    );
+    // Two student blocks share the group; the probe measures its rows once.
+    expect(groups(model)).toHaveLength(2);
+    expect(groups(recallMeasurementModel(answers, model))).toEqual([
+      "synthetic-unit:concept-memory-proof.memory-0",
+    ]);
     // A chunk without memory rows asks for no probe at all.
     const general = { ...model, sections: [answers.sections[0]] };
     expect(recallMeasurementModel(answers, general).sections).toEqual([]);
@@ -152,7 +155,7 @@ describe("private measurement material, without a browser", () => {
     const html = recallMeasurementHtml(probe, resources);
     expect(html).not.toContain(PROBLEM_ANSWER);
     expect(html).not.toContain("data-measure-id=");
-    expect(html.match(/data-recall-probe-id=/g)).toHaveLength(2);
+    expect(html.match(/data-recall-probe-id=/g)).toHaveLength(1);
     expect(() => recallMeasurementHtml(answers, resources)).toThrow(
       "Canonical measurement probes must contain recall rows only",
     );
@@ -211,7 +214,7 @@ describe("private measurement material, without a browser", () => {
           label: "비공개 측정 문서",
         }),
       ),
-    ).toEqual(["hidden-key", "private-probe", "whole-sentence"]);
+    ).toEqual(["hidden-key", "private-probe"]);
     // One key put back into one student row is enough.
     const studentHtml = measurementHtml(model, resources);
     const leaked = studentHtml.replace(
@@ -247,9 +250,9 @@ describe.skipIf(!run)("recovery measurement in real Chromium", () => {
       const phases = variant.phases.length;
       // Document 1 carries the probes; the second measurement and the printed pages do not.
       expect(proof.measurementDocuments).toBe(3);
-      expect(proof.probeBlocks).toBe(phases);
-      expect(proof.probeRows).toBe(6 * phases);
-      expect(proof.probeRowsWithWholeSentence).toBe(6 * phases);
+      expect(proof.probeBlocks).toBe(1);
+      expect(proof.probeRows).toBe(6);
+      expect(proof.probeRowsWithWholeSentence).toBe(6);
       expect(proof.probeHoldsProblemAnswer).toBe(false);
       expect(proof.laterDocumentsWithProbe).toBe(0);
       expect(proof.evaluatorErrors).toEqual([]);
@@ -418,6 +421,12 @@ describe.skipIf(!run)("automatic introduction in real Chromium", () => {
   it("negative controls fail: dropped goal, missing art, overheight, privacy, source hash, bounds", async () => {
     const outcomes = await negativeControls(browser);
     expect(outcomes.map((outcome) => outcome.name)).toEqual(CONTROL_NAMES);
+    // A left face whose text leaves its slots is avoided by the renderer itself.
+    expect(
+      outcomes
+        .filter((outcome) => outcome.name.startsWith("left-face-"))
+        .map((outcome) => outcome.by),
+    ).toEqual(["renderer", "renderer"]);
     expect(
       outcomes
         .filter((outcome) => !outcome.caught)
@@ -466,7 +475,7 @@ describe.skipIf(!run)("DOM helpers under real tsx", () => {
     expect(report.measurement).toHaveLength(1);
     expect(report.measurement[0].evaluatorHasTranspilerHelper).toBe(false);
     expect(report.measurement[0].evaluatorErrors).toEqual([]);
-    expect(report.measurement[0].probeRows).toBe(12);
+    expect(report.measurement[0].probeRows).toBe(6);
     expect(report.measurement[0].heightFailures).toEqual([]);
     expect(report.measurement[0].privacyFailures).toEqual([]);
   }, 300_000);

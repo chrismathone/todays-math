@@ -474,6 +474,8 @@ export interface MeasuredForms {
   left: number;
   right: number;
   single: number;
+  /** False when the renderer found the text of the fixed left face outside its slots. */
+  leftTextFits?: boolean;
 }
 export interface IntroFailure {
   caseId: string;
@@ -533,12 +535,14 @@ export function verifyIntro(
   // odd start, it is the complete single page. Without measurements nothing excuses a single
   // page on an even start.
   const spreadFits = options.measured
-    ? fits(options.measured.left) && fits(options.measured.right)
+    ? fits(options.measured.left) &&
+      fits(options.measured.right) &&
+      options.measured.leftTextFits !== false
     : true;
   const wantedParts = even && spreadFits ? ["left", "right"] : ["single"];
   const parts = pages.map((page) => page.part);
   const sizes = options.measured
-    ? ` (측정 왼쪽 ${options.measured.left} · 오른쪽 ${options.measured.right} · 단면 ${options.measured.single}mm)`
+    ? ` (측정 왼쪽 ${options.measured.left}${options.measured.leftTextFits === false ? " 글 넘침" : ""} · 오른쪽 ${options.measured.right} · 단면 ${options.measured.single}mm)`
     : "";
   if (parts.join(",") !== wantedParts.join(","))
     fail(
@@ -979,12 +983,16 @@ export const captureIntroPages = (page: Page): Promise<CapturedIntroPage[]> =>
     CapturedIntroPage[]
   >;
 
+/** Prefix of an error raised while reading back a chunk the renderer had already returned. */
+export const CAPTURE_ERROR = "proof capture failed";
 export interface IntroRender {
   result: TextbookChunkResult;
   pages: CapturedIntroPage[];
   blocked: string[];
   /** Every block height the renderer's own second measurement returned. */
   measurements: Array<{ blockId: string; heightMm: number; widthMm: number }>;
+  /** What the renderer's own left-face text check returned, by block. */
+  textFits: Record<string, boolean>;
   /** The three forms of the first section's introduction. */
   measured: MeasuredForms | undefined;
 }
@@ -992,15 +1000,22 @@ export interface IntroRender {
 export function measuredForms(
   measurements: IntroRender["measurements"],
   sourceBlockId: string,
+  textFits: Readonly<Record<string, boolean>> = {},
 ): MeasuredForms | undefined {
   const height = (part: string) =>
     measurements.find(
       (item) => item.blockId === `${sourceBlockId}.intro-${part}`,
     )?.heightMm;
   const [left, right, single] = ["left", "right", "single"].map(height);
+  const leftTextFits = textFits[`${sourceBlockId}.intro-left`];
   return left === undefined || right === undefined || single === undefined
     ? undefined
-    : { left, right, single };
+    : {
+        left,
+        right,
+        single,
+        ...(leftTextFits === undefined ? {} : { leftTextFits }),
+      };
 }
 const introBlockId = (exchange: TextbookExchange, unitIndex: number) =>
   exchange.units[unitIndex]?.sections
@@ -1037,16 +1052,35 @@ export async function renderIntroChunk(
         call.source.includes("Math/figure width overflow") &&
         Array.isArray(call.value),
     )?.value ?? []) as IntroRender["measurements"];
-  const { page, blocked } = await openArtifact(browser, result.html);
+  const textFits = (log
+    .flatMap((page) => page.evaluations)
+    .find(
+      (call) =>
+        call.source.includes("tb-auto-intro-left") &&
+        call.source.includes("data-measure-id") &&
+        typeof call.value === "object" &&
+        call.value !== null &&
+        !Array.isArray(call.value),
+    )?.value ?? {}) as Record<string, boolean>;
+  // From here on the renderer has returned: an error below is the proof's own, and says so.
+  const { page, blocked } = await openArtifact(browser, result.html).catch(
+    (error: unknown) => {
+      throw new Error(`${CAPTURE_ERROR}: ${firstLine(error)}`);
+    },
+  );
   try {
     return {
       result,
-      pages: await captureIntroPages(page),
+      pages: await captureIntroPages(page).catch((error: unknown) => {
+        throw new Error(`${CAPTURE_ERROR}: ${firstLine(error)}`);
+      }),
       blocked,
       measurements,
+      textFits,
       measured: measuredForms(
         measurements,
         introBlockId(exchange, sectionIndices[0]),
+        textFits,
       ),
     };
   } finally {
@@ -1110,6 +1144,7 @@ export async function proveSequence(
         measured: measuredForms(
           render.measurements,
           introBlockId(exchange, index),
+          render.textFits,
         ),
       }),
     );
@@ -2067,10 +2102,11 @@ export async function negativeControls(
         render = await renderIntro(book, [0], start);
       });
       if (message !== null || !render) {
+        // Only the paginator's own refusal counts: a timeout or any other error is not a guard.
         outcomes.push({
           name: `${name}@${start}`,
           by: "renderer",
-          caught: true,
+          caught: Boolean(message?.includes("AUTO_INTRO_OVERFLOW")),
           detail: message ?? "",
         });
         continue;
@@ -2125,7 +2161,7 @@ export async function negativeControls(
       outcomes.push({
         name: `${name}@2`,
         by: "renderer",
-        caught: true,
+        caught: Boolean(message?.includes("AUTO_INTRO_OVERFLOW")),
         detail: message ?? "",
       });
       continue;
@@ -2144,18 +2180,22 @@ export async function negativeControls(
         measured: render.measured,
       },
     );
+    const parts = render.pages.map((page) => page.part).join("+");
+    // Required: the complete single page instead of a left face whose text leaves its slots.
+    const avoided = parts === "single" && failures.length === 0;
     outcomes.push({
       name: `${name}@2`,
-      by: "verifier",
-      caught: failures.some(
-        (f) => f.rule === "overheight" || f.rule === "overlap",
-      ),
-      detail:
-        `제품은 거절하지 않고 [${render.pages.map((page) => page.part)}] ${render.pages.length}쪽을 냈다 · ` +
-        failures
-          .slice(0, 3)
-          .map((f) => `${f.rule}/${f.anchor}: ${f.detail}`)
-          .join(" · "),
+      by: avoided ? "renderer" : "verifier",
+      caught:
+        avoided ||
+        failures.some((f) => f.rule === "overheight" || f.rule === "overlap"),
+      detail: avoided
+        ? `제품이 넘치는 맞쪽 대신 완전한 단면을 냈다 (왼쪽 면 글 맞음: ${render.measured?.leftTextFits}, 단면 ${render.measured?.single}mm)`
+        : `제품은 거절하지 않고 [${parts}] ${render.pages.length}쪽을 냈다 · ` +
+          failures
+            .slice(0, 3)
+            .map((f) => `${f.rule}/${f.anchor}: ${f.detail}`)
+            .join(" · "),
     });
   }
 
@@ -2237,17 +2277,11 @@ export async function negativeControls(
           browser,
         }),
       );
-    // The bound is kept by whichever of the renderer's two 600-block checks runs first. The
-    // dialogue sizing check now does, and words its refusal as a dialogue limit although this
-    // chunk holds no dialogue; the detail records which one answered.
     const blocks = await chunk(textbookFixture(1, 601));
     outcomes.push({
       name: "six-hundred-blocks",
       by: "renderer",
-      caught: Boolean(
-        blocks?.includes("exceeds 600 blocks") ||
-        blocks?.includes("대화의 공통 글자 크기 측정 한도"),
-      ),
+      caught: Boolean(blocks && /exceeds 600 (projected )?blocks/.test(blocks)),
       detail: blocks ?? "거절하지 않았다",
     });
     // The largest chunk the bound admits is not refused for its size.
@@ -2255,8 +2289,8 @@ export async function negativeControls(
     outcomes.push({
       name: "six-hundred-blocks-admitted",
       by: "renderer",
-      caught: !admitted?.includes("600") && !admitted?.includes("측정 한도"),
-      detail: admitted ?? "600블록 이하는 한도로 거절하지 않는다",
+      caught: !/600/.test(admitted ?? ""),
+      detail: firstLine(admitted ?? "600블록 이하는 한도로 거절하지 않는다"),
     });
     // 160 exercises of eighteen lines need more than the default 32 pages.
     const pages = await chunk(textbookFixture(1, 160));
@@ -2319,7 +2353,7 @@ export async function negativeControls(
         by: "verifier",
         caught:
           leaked.some((f) => f.rule === "private-probe") &&
-          leaked.some((f) => f.rule === "whole-sentence"),
+          leaked.some((f) => f.rule === "hidden-key"),
         detail: `${leaked.length}건: ${[...new Set(leaked.map((f) => f.rule))].join()}`,
       });
     } finally {
@@ -2526,8 +2560,20 @@ export const SOURCE_MUTANTS: readonly SourceMutant[] = [
   {
     name: "probes-not-selected",
     file: "src/lib/textbook/render/recoveryMeasurement.ts",
-    from: 'block.kind === "recall" && group !== undefined && wanted.has(group)',
-    to: 'block.kind === "recall" && group !== undefined && !wanted.has(group)',
+    from: 'if (block.kind !== "recall" || group === undefined || !wanted.has(group))',
+    to: 'if (block.kind !== "recall" || group === undefined || wanted.has(group))',
+  },
+  {
+    name: "probe-partition-repeated",
+    file: "src/lib/textbook/render/recoveryMeasurement.ts",
+    from: "if (seen.has(partition)) return false;",
+    to: "if (false) return false;",
+  },
+  {
+    name: "left-face-text-overflow-accepted",
+    file: PAGINATE,
+    from: "size.introTextFits !== false &&",
+    to: "true &&",
   },
   {
     name: "probe-accepts-general-blocks",
@@ -2714,7 +2760,9 @@ for r in m["renders"]:
                   "imagesPerPage": images, "missingText": missing,
                   "pagesWithoutArt": [r["start"] + i for i, part in enumerate(r["parts"]) if part != "right" and images[i] < 1],
                   "fonts": sorted({f[3] for p in doc for f in p.get_fonts()})})
-    thumbs.setdefault(r["caseId"], {"caption": r["caption"], "pngs": []})["pngs"] += pngs
+    kept = thumbs.setdefault(r["caseId"], {"caption": r["caption"], "labels": [], "pngs": []})
+    kept["pngs"] += pngs
+    kept["labels"].append(f'{r["start"]}쪽 시작 {"+".join(r["parts"])}')
 privacy = []
 for item in m["privacy"]:
     flat = squash("".join(page.get_text() for page in pymupdf.open(item["pdf"])))
@@ -2731,7 +2779,7 @@ for n in range(0, len(ids), 2):
     draw = ImageDraw.Draw(sheet)
     for row, case in enumerate(group):
         top = PAD + row * (H + CAP + PAD)
-        draw.text((PAD, top), thumbs[case]["caption"], fill="black", font=font)
+        draw.text((PAD, top), thumbs[case]["caption"] + " · " + " / ".join(thumbs[case]["labels"]), fill="black", font=font)
         for col, png in enumerate(thumbs[case]["pngs"][:3]):
             image = Image.open(png).convert("RGB").resize((W, H), Image.LANCZOS)
             left = PAD + col * (W + PAD)
@@ -2805,7 +2853,7 @@ async function main(): Promise<void> {
               chapter: introCase.opening.chapter,
               goals: expected.goals.length,
               start,
-              production: detail,
+              production: detail.startsWith(CAPTURE_ERROR) ? null : detail,
               measuredMm: null,
               layout: "none",
               pages: 0,
@@ -2816,8 +2864,12 @@ async function main(): Promise<void> {
               failures: [
                 {
                   caseId: introCase.caseId,
-                  rule: "production-render",
-                  anchor: "renderTextbookChunk",
+                  rule: detail.startsWith(CAPTURE_ERROR)
+                    ? "proof-capture"
+                    : "production-render",
+                  anchor: detail.startsWith(CAPTURE_ERROR)
+                    ? "openArtifact"
+                    : "renderTextbookChunk",
                   page: null,
                   detail,
                 },
@@ -2899,7 +2951,7 @@ async function main(): Promise<void> {
               start,
               pdf,
               parts: render.pages.map((page) => page.part),
-              caption: `${introCase.caseId} · ${introCase.opening.grade} ${introCase.opening.chapter} · 목표 ${expected.goals.length} · 맞쪽(2,3쪽) + 단면(3쪽)`,
+              caption: `${introCase.caseId} · ${introCase.opening.grade} ${introCase.opening.chapter} · 목표 ${expected.goals.length}`,
               plain: [
                 expected.title,
                 expected.question,

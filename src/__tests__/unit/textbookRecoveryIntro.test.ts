@@ -65,7 +65,14 @@ const resources = {
   },
 };
 
-type Heights = { left: number; right: number; single: number; other: number };
+type Heights = {
+  left: number;
+  right: number;
+  single: number;
+  other: number;
+  /** What the renderer's left-face text check reports; absent when it was not run. */
+  leftTextFits?: boolean;
+};
 const FITS: Heights = { left: 254, right: 200, single: 230, other: 20 };
 const heightOf = (block: RenderBlock, heights: Heights) =>
   block.unitIntroPart ? heights[block.unitIntroPart] : heights.other;
@@ -101,6 +108,9 @@ function lay(
         blockId: block.id,
         widthMm: blockWidthMm(model.config, block),
         heightMm: heightOf(block, all),
+        ...(block.unitIntroPart === "left" && all.leftTextFits !== undefined
+          ? { introTextFits: all.leftTextFits }
+          : {}),
       })),
     model.config,
     { firstPhysicalPageIndex: start, maxPages: options.maxPages ?? 32 },
@@ -412,6 +422,31 @@ describe("the longest chapter and measured heights", () => {
         }),
       ),
     ).toEqual(["layout-choice/pages"]);
+  });
+
+  it("falls back to the complete single page when the text of the fixed left face leaves its slots", () => {
+    const laid = lay(exchange, [0], 2, { leftTextFits: false });
+    expect(laid.pages.map((page) => page.part)).toEqual(["single"]);
+    expect(laid.layout.issues.map((issue) => issue.code)).toEqual([
+      "AUTO_INTRO_SINGLE_PAGE",
+    ]);
+    expect(
+      verifyIntro(expected, laid.pages, {
+        firstPhysicalPageIndex: 2,
+        issues: laid.layout.issues,
+        geometry: false,
+        measured: laid.measured,
+      }),
+    ).toEqual([]);
+    // A left face reported as fitting, or not reported at all, keeps the spread.
+    for (const leftTextFits of [true, undefined])
+      expect(
+        lay(exchange, [0], 2, { leftTextFits }).pages.map((page) => page.part),
+      ).toEqual(["left", "right"]);
+    // With the left text out of its slots and no single page that fits, nothing is printed.
+    expect(
+      codeOf(() => lay(exchange, [0], 2, { leftTextFits: false, single: 260 })),
+    ).toBe("AUTO_INTRO_OVERFLOW");
   });
 
   it("rejects an introduction that fits neither layout instead of cutting or shrinking it", () => {
