@@ -129,10 +129,20 @@ function semanticProjection(
                   : ACTIVITY_LABELS[activity])),
           subtitle:
             activity === "dialogue" && block.kind === "dialogue"
-              ? (block.presentation?.lessonTitle ?? section.title)
-              : (memory?.[1] ?? section.title),
+              ? semantic?.source
+                ? (semantic.title ?? section.title)
+                : (block.presentation?.lessonTitle ?? section.title)
+              : (memory?.[1] ??
+                (semantic?.source ? (semantic.subtitle ?? "") : section.title)),
           stageNumber: String(
-            steps.findIndex((step) => step.activity === activity) + 1,
+            semantic?.source?.scriptIndex ??
+              (memory
+                ? ["conceptStudy", "clozeRecall", "sentenceRecall"].indexOf(
+                    activity,
+                  ) + 1
+                : (section.blocks.find((candidate) => candidate.unitNumber)
+                    ?.unitNumber ??
+                  steps.findIndex((step) => step.activity === activity) + 1)),
           ).padStart(2, "0"),
           progressSteps:
             activity === "dialogue" || stage === "guide"

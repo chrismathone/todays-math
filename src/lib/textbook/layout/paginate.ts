@@ -413,7 +413,9 @@ export function paginateTextbookSections(
             )
           ? (row[0].block.dialogueGapMm ?? 0.85)
           : row[0].block.kind === "heading" && recovered
-            ? 3.5
+            ? row[0].block.editorialStage === "opening"
+              ? 3.5
+              : 4
             : A4.gapMm;
       cursor += height + gap;
       row = [];
