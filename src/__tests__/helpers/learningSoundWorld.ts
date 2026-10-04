@@ -50,6 +50,9 @@ export type SoundWorld = {
   decodeRejects: boolean;
   /** 옛 Safari — decodeAudioData 가 약속을 돌려주지 않고 콜백으로만 답한다 */
   decodeByCallback: boolean;
+  /** decode 를 붙잡아 둔다 — `releaseDecodes` 로 풀 때까지 끝나지 않는다 */
+  decodeHolds: boolean;
+  heldDecodes: (() => void)[];
   sourceThrows: boolean;
   startThrows: boolean;
   contexts: FakeContext[];
@@ -149,6 +152,10 @@ export class FakeContext {
       return undefined;
     }
     if (this.world.decodeRejects) return Promise.reject(new Error("decode"));
+    if (this.world.decodeHolds)
+      return new Promise<{ url: string }>((resolve) => {
+        this.world.heldDecodes.push(() => resolve(buffer));
+      });
     return Promise.resolve(buffer);
   }
 }
@@ -163,6 +170,8 @@ export function soundWorld(initial: Partial<SoundWorld> = {}): SoundWorld {
     resumeRejects: false,
     decodeRejects: false,
     decodeByCallback: false,
+    decodeHolds: false,
+    heldDecodes: [],
     sourceThrows: false,
     startThrows: false,
     contexts: [],
@@ -272,6 +281,12 @@ export function installSoundWorld(world: SoundWorld) {
 
 /** 대기 중인 약속을 다 흘려보낸다 */
 export const settle = () => new Promise<void>((done) => setTimeout(done, 0));
+
+/** 붙잡아 둔 decode 를 모두 끝낸다 */
+export async function releaseDecodes(world: SoundWorld) {
+  for (const release of world.heldDecodes.splice(0)) release();
+  await settle();
+}
 
 /** 아직 답하지 않은 요청에 모두 음원으로 답한다 */
 export async function serveSounds(world: SoundWorld) {
