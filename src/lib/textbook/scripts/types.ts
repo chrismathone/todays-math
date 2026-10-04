@@ -24,6 +24,36 @@ export type ConceptScriptSource =
       page: number;
     };
 
+/**
+ * How a turn is presented and which lesson it belongs to. `board` is writing on
+ * the board, not speech: the markdown is `**title**`, a blank line, then the body.
+ * Keys: `v15:{unit}:{scriptIndex}` | `concept:{conceptId}` | `section:{id}:open|wrap`.
+ * Titles are the v15 page title, the bank concept term, or the section name; they
+ * may contain inline $TeX$.
+ */
+export type ConceptScriptPresentation = {
+  kind: "speech" | "board";
+  lessonKey: string;
+  lessonTitle: string;
+};
+
+/** Particle pairs a role mention can carry; the form follows the chosen name's final consonant. */
+export type ConceptScriptParticle =
+  "은/는" | "이/가" | "을/를" | "과/와" | "아/야" | "";
+
+/**
+ * A cast member addressed by name inside the manuscript. `start`/`end` are UTF-16
+ * offsets of `name + written particle` in `markdown`. Only these anchored spans are
+ * replaced when a different cast is chosen; names are never searched for as text.
+ */
+export type ConceptScriptRoleMention = {
+  role: Exclude<ConceptScriptRole, "teacher">;
+  name: string;
+  particle: ConceptScriptParticle;
+  start: number;
+  end: number;
+};
+
 export type ConceptScriptTurn = {
   role: ConceptScriptRole;
   expression: ConceptScriptExpression;
@@ -32,12 +62,28 @@ export type ConceptScriptTurn = {
   markdown: string;
   conceptIds: string[];
   source: ConceptScriptSource;
+  presentation?: ConceptScriptPresentation;
+  roleMentions?: ConceptScriptRoleMention[];
 };
+
+/** Where a section's boards come from, or why it has none. Nothing is written at runtime. */
+export type ConceptScriptBoardProvenance =
+  | { status: "authored-v15"; count: number }
+  | {
+      status: "derived-bank";
+      count: number;
+      /** Bank concepts whose own `kind` is 공식 · 법칙 · 정리 · 단위. */
+      basis: "concept-kind";
+      entryIds: string[];
+    }
+  | { status: "absent"; reason: "no-board-kind-concept" };
 
 export type ConceptTeachingScript = {
   version: 1;
   sectionKey: string;
   grade: ConceptScriptGrade;
+  /** Curriculum semester of the section; the same rule the quick-create scope uses. */
+  semester?: 1 | 2;
   chapter: string;
   title: string;
   conceptIds: string[];
@@ -46,6 +92,7 @@ export type ConceptTeachingScript = {
     bank: "original-concept-blank";
     sourceFiles: string[];
     referenceUnits?: string[];
+    boards?: ConceptScriptBoardProvenance;
   };
 };
 
@@ -60,3 +107,10 @@ export type ConceptScriptCoverage = {
     coveredSections: number;
   }[];
 };
+
+export type ConceptScriptSemesterCoverage = {
+  grade: ConceptScriptGrade;
+  semester: 1 | 2;
+  sections: number;
+  concepts: number;
+}[];

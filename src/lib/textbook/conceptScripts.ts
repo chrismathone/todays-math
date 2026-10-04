@@ -9,18 +9,25 @@ import e6 from "./scripts/e6.json";
 import m1 from "./scripts/m1.json";
 import m2 from "./scripts/m2.json";
 import m3 from "./scripts/m3.json";
+import { applyRoleMentions } from "./scripts/roleMentions";
 import type {
   ConceptTeachingScript,
   ConceptScriptCoverage,
+  ConceptScriptSemesterCoverage,
 } from "./scripts/types";
 
 export type {
   ConceptTeachingScript,
+  ConceptScriptBoardProvenance,
   ConceptScriptCoverage,
   ConceptScriptGrade,
   ConceptScriptRole,
   ConceptScriptExpression,
+  ConceptScriptParticle,
+  ConceptScriptPresentation,
   ConceptScriptPurpose,
+  ConceptScriptRoleMention,
+  ConceptScriptSemesterCoverage,
   ConceptScriptSource,
   ConceptScriptTurn,
 } from "./scripts/types";
@@ -37,6 +44,30 @@ export function conceptScriptFor(
 ): ConceptTeachingScript | undefined {
   const script = bySection.get(sectionKey);
   return script ? structuredClone(script) : undefined;
+}
+
+/** The chosen students' given names. A missing name keeps the one written in the manuscript. */
+export type ConceptScriptCastNames = { student1?: string; student2?: string };
+
+/**
+ * The manuscript for a newly generated book: where the manuscript addresses a student
+ * by name, the chosen name and its particle are written into that anchored span.
+ * Names are never searched for as text, math is untouched, and "선생님" stays a role word.
+ * Do not apply this to dialogue that is already stored in a book.
+ */
+export function conceptScriptForCast(
+  sectionKey: string,
+  names: ConceptScriptCastNames,
+): ConceptTeachingScript | undefined {
+  const script = conceptScriptFor(sectionKey);
+  if (!script) return undefined;
+  for (const turn of script.dialogue) {
+    if (!turn.roleMentions) continue;
+    const cast = applyRoleMentions(turn.markdown, turn.roleMentions, names);
+    turn.markdown = cast.markdown;
+    turn.roleMentions = cast.roleMentions;
+  }
+  return script;
 }
 
 /** The denominator is the supported curriculum, including sections with no examples in the bank. */
@@ -68,4 +99,31 @@ export function conceptScriptCoverage(): ConceptScriptCoverage {
       };
     }),
   };
+}
+
+/** Manuscripts per grade and semester: seven grades × two semesters. */
+export function conceptScriptSemesterCoverage(): ConceptScriptSemesterCoverage {
+  return CONCEPT_BLANK_GRADES.flatMap((grade) =>
+    ([1, 2] as const).map((semester) => {
+      const found = scripts.filter(
+        (script) => script.grade === grade && script.semester === semester,
+      );
+      return {
+        grade,
+        semester,
+        sections: found.length,
+        concepts: found.reduce((n, script) => n + script.conceptIds.length, 0),
+      };
+    }),
+  );
+}
+
+/** Section keys of one grade and semester, in manuscript order. */
+export function conceptScriptSectionKeys(
+  grade: string,
+  semester: 1 | 2,
+): string[] {
+  return scripts
+    .filter((script) => script.grade === grade && script.semester === semester)
+    .map((script) => script.sectionKey);
 }

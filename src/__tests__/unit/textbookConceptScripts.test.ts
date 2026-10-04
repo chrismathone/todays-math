@@ -1,8 +1,11 @@
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import katex from "katex";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { z } from "zod";
+// Only quickCreateSemester is read from the server module: the product's own scope rule.
+vi.mock("server-only", () => ({}));
 import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
 import {
   BLANK_SECTIONS,
@@ -15,13 +18,33 @@ import { bank as e6 } from "@/lib/concept-blank/bank/e6";
 import { bank as m1 } from "@/lib/concept-blank/bank/m1";
 import { bank as m2 } from "@/lib/concept-blank/bank/m2";
 import { bank as m3 } from "@/lib/concept-blank/bank/m3";
+import { TEXTBOOK_CHARACTERS } from "@/lib/textbook/characters";
 import {
   conceptScriptFor,
+  conceptScriptForCast,
   conceptScriptCoverage,
+  conceptScriptSectionKeys,
+  conceptScriptSemesterCoverage,
 } from "@/lib/textbook/conceptScripts";
 import { AUTHORED_EXAMPLES } from "@/lib/textbook/scripts/authoredExamples";
+import {
+  BOARD_CONCEPT_KINDS,
+  GRADE_FILE_CODES,
+  materializeGrade,
+  sectionLessonTitle,
+  serializeScripts,
+  withoutPresentationMetadata,
+} from "@/lib/textbook/scripts/materialize";
 import { normalizeV15Text } from "@/lib/textbook/scripts/normalizeV15";
 import reference from "@/lib/textbook/scripts/reference-v15.json";
+import {
+  V15_ROLE_MENTIONS,
+  anchorRoleMentions,
+  applyRoleMentions,
+  particleAfter,
+} from "@/lib/textbook/scripts/roleMentions";
+import { quickCreateSemester } from "@/lib/textbook/server/quickCreate";
+import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 
 const parts = { e3, e4, e5, e6, m1, m2, m3 };
 const concepts = Object.values(parts).flatMap((bank) => bank.concepts);
@@ -64,10 +87,45 @@ const sourceSchema = z.discriminatedUnion("kind", [
     page: z.number().int().positive(),
   }),
 ]);
+// The root contract bounds: lessonKey ≤ 120, lessonTitle ≤ 200 characters.
+const presentationSchema = z.strictObject({
+  kind: z.enum(["speech", "board"]),
+  lessonKey: z
+    .string()
+    .max(120)
+    .regex(
+      /^(?:v15:U\d{2}:\d+|concept:[a-z]\d(?:-\d+)+-c\d+|section:[a-z]\d(?:-\d+)+:(?:open|wrap))$/,
+    ),
+  lessonTitle: z.string().min(1).max(200),
+});
+const roleMentionSchema = z.strictObject({
+  role: z.enum(["student1", "student2"]),
+  name: z.string().min(1),
+  particle: z.enum(["은/는", "이/가", "을/를", "과/와", "아/야", ""]),
+  start: z.number().int().nonnegative(),
+  end: z.number().int().positive(),
+});
+const boardsSchema = z.discriminatedUnion("status", [
+  z.strictObject({
+    status: z.literal("authored-v15"),
+    count: z.number().int().positive(),
+  }),
+  z.strictObject({
+    status: z.literal("derived-bank"),
+    count: z.number().int().positive(),
+    basis: z.literal("concept-kind"),
+    entryIds: z.array(z.string()).min(1),
+  }),
+  z.strictObject({
+    status: z.literal("absent"),
+    reason: z.literal("no-board-kind-concept"),
+  }),
+]);
 const manuscriptSchema = z.strictObject({
   version: z.literal(1),
   sectionKey: z.string().min(1),
   grade: z.enum(CONCEPT_BLANK_GRADES),
+  semester: z.union([z.literal(1), z.literal(2)]),
   chapter: z.string().min(1),
   title: z.string().min(1),
   conceptIds: z.array(z.string()).min(1),
@@ -88,6 +146,8 @@ const manuscriptSchema = z.strictObject({
         markdown: z.string().min(1),
         conceptIds: z.array(z.string()).min(1),
         source: sourceSchema,
+        presentation: presentationSchema,
+        roleMentions: z.array(roleMentionSchema).min(1).optional(),
       }),
     )
     .min(10),
@@ -95,8 +155,30 @@ const manuscriptSchema = z.strictObject({
     bank: z.literal("original-concept-blank"),
     sourceFiles: z.array(z.string()).min(1),
     referenceUnits: z.array(z.string()).optional(),
+    boards: boardsSchema,
   }),
 });
+const mathTokens = (markdown: string) => markdown.match(/\$[^$]*\$/g) ?? [];
+const students = TEXTBOOK_CHARACTERS.filter(
+  (character) => character.role === "student",
+);
+
+/**
+ * SHA-256 of each grade file with lesson, board, role-mention and semester metadata
+ * removed. These are the committed files of 122dad6dd, before that metadata existed:
+ * adding or changing metadata must leave every earlier turn, source and id as it was.
+ * A deliberate manuscript correction changes the affected grade's value, with its proof
+ * recorded in docs/planning/tracks/reports/textbook-recovery-content-implementation-20261005.md.
+ */
+const PRIOR_DIALOGUE_SHA256: Record<string, string> = {
+  e3: "34093da7236daa5839fd0c2ac2b2a1c9cdee7aa8d6741f1697df157432238986",
+  e4: "f2068af0b8c9725975161244bdb8eb585b01986ea28e8d7fa1b4070fb6442ad8",
+  e5: "b4d1590fd495741089205e9c4e2999d8bb8fe8a21672405975571d399c57b9fe",
+  e6: "e2df22749286bdb7dbc7e24b735f85cce1e7f65f2ede3c6c4c7f6093275ab720",
+  m1: "c50a6d80548eb7e92224b6523d59d51547afee1f3a7cd37b8f666580a4860e05",
+  m2: "8921d492464cdd9f444e097e803a3f191b5a54e32dc3a384972809a34aa5e238",
+  m3: "cc71b3a07fe5f2fc4e8a51e69cdf3fc0af143c20998d8729b6a4d6335bd8e87f",
+};
 
 describe("prewritten concept teaching manuscripts", () => {
   it("covers exactly every supported curriculum section in seven committed grade files", () => {
@@ -429,6 +511,490 @@ describe("prewritten concept teaching manuscripts", () => {
       }
     expect(checked).toBeGreaterThan(150);
     expect(faults).toEqual([]);
+  });
+});
+
+describe("lesson, board and semester metadata on the manuscripts", () => {
+  it("keeps every earlier turn, source and id byte for byte and stays reproducible from the authoring notes", () => {
+    for (const grade of CONCEPT_BLANK_GRADES) {
+      const code = GRADE_FILE_CODES[grade];
+      const committed = readFileSync(
+        resolve(`src/lib/textbook/scripts/${code}.json`),
+        "utf8",
+      ).replace(/\r\n/g, "\n");
+      // Writing nothing: the derivation is compared in memory.
+      expect(
+        serializeScripts(materializeGrade(grade)) === committed,
+        grade,
+      ).toBe(true);
+      expect(
+        createHash("sha256")
+          .update(
+            serializeScripts(
+              withoutPresentationMetadata(JSON.parse(committed)),
+            ),
+            "utf8",
+          )
+          .digest("hex"),
+        grade,
+      ).toBe(PRIOR_DIALOGUE_SHA256[code]);
+    }
+    const authoring = readFileSync(
+      resolve("src/lib/textbook/scripts/materialize.ts"),
+      "utf8",
+    );
+    // The only write sits behind the explicit --write flag of the command line.
+    expect(authoring.match(/writeFileSync\(/g)).toHaveLength(1);
+    expect(authoring).toMatch(/flags\.includes\("--write"\)/);
+    expect(authoring).toMatch(/!dialogueKept && !replaceDialogue/);
+  });
+
+  it("places every turn in exactly one contiguous lesson with a sourced title", () => {
+    let turns = 0;
+    for (const script of scripts) {
+      const sectionId = script.conceptIds[0]!.replace(/-c\d+$/, "");
+      const sectionTitle = sectionLessonTitle(script.grade, script.title);
+      const runs: string[] = [];
+      for (const turn of script.dialogue) {
+        turns += 1;
+        const { lessonKey, lessonTitle } = turn.presentation!;
+        if (runs.at(-1) !== lessonKey) runs.push(lessonKey);
+        const [origin, ...rest] = lessonKey.split(":");
+        if (origin === "v15") {
+          expect(turn.source.kind).toBe("v15");
+          const page = reference.pages.find(
+            (p) => p.unit === rest[0] && String(p.scriptIndex) === rest[1],
+          )!;
+          expect(page.sectionKey).toBe(script.sectionKey);
+          expect(lessonTitle).toBe(page.title);
+        } else if (origin === "concept") {
+          const concept = conceptById.get(rest.join(":"))!;
+          expect(concept.section).toBe(script.sectionKey);
+          expect(lessonTitle).toBe(concept.term);
+          expect(turn.conceptIds).toEqual([concept.id]);
+          expect(turn.source).toMatchObject({ entryId: concept.id });
+        } else {
+          expect(lessonKey).toMatch(
+            new RegExp(`^section:${sectionId}:(open|wrap)$`),
+          );
+          expect(lessonTitle).toBe(sectionTitle);
+        }
+        expect(turn.source.kind === "v15").toBe(origin === "v15");
+      }
+      // A lesson never resumes after another lesson has started.
+      expect(new Set(runs).size, script.sectionKey).toBe(runs.length);
+      const pages = reference.pages.filter(
+        (p) => p.sectionKey === script.sectionKey,
+      );
+      expect(runs).toEqual([
+        `section:${sectionId}:open`,
+        ...pages.map((p) => `v15:${p.unit}:${p.scriptIndex}`),
+        ...script.conceptIds.map((id) => `concept:${id}`),
+        `section:${sectionId}:wrap`,
+      ]);
+      expect(
+        script.dialogue.filter((turn) =>
+          turn.presentation!.lessonKey.endsWith(":open"),
+        ),
+      ).toHaveLength(2);
+      expect(script.dialogue.at(-1)!.presentation!.lessonKey).toBe(
+        `section:${sectionId}:wrap`,
+      );
+      if (script.grade.startsWith("초"))
+        expect(script.title).toBe(
+          `${script.title.split(" ")[0]} ${sectionTitle}`,
+        );
+      else expect(sectionTitle).toBe(script.title);
+    }
+    expect(turns).toBe(7792);
+    // Lesson titles may carry inline math; it must typeset like the dialogue itself.
+    for (const script of scripts)
+      for (const turn of script.dialogue)
+        for (const token of mathTokens(turn.presentation!.lessonTitle))
+          expect(() =>
+            katex.renderToString(token.slice(1, -1), {
+              throwOnError: true,
+              strict: "ignore",
+            }),
+          ).not.toThrow();
+  });
+
+  it("keeps the 24 original v15 boards as boards and never turns original speech into one", () => {
+    let boards = 0;
+    let speech = 0;
+    for (const page of reference.pages) {
+      const script = conceptScriptFor(page.sectionKey)!;
+      const lesson = script.dialogue.filter(
+        (turn) =>
+          turn.presentation!.lessonKey ===
+          `v15:${page.unit}:${page.scriptIndex}`,
+      );
+      expect(lesson).toHaveLength(page.blocks.length);
+      for (const [blockIndex, block] of page.blocks.entries()) {
+        const turn = lesson[blockIndex]!;
+        expect(turn.source).toEqual({
+          kind: "v15",
+          unit: page.unit,
+          scriptIndex: page.scriptIndex,
+          blockIndex,
+          page: page.page,
+        });
+        if (block.kind === "board" && "tex" in block) {
+          boards += 1;
+          expect(turn.presentation!.kind).toBe("board");
+          const note =
+            "note" in block && block.note
+              ? `\n\n${normalizeV15Text(block.note)}`
+              : "";
+          expect(turn.markdown).toBe(
+            `**${block.title}**\n\n$${block.tex}$${note}`,
+          );
+        } else {
+          speech += 1;
+          expect(turn.presentation!.kind).toBe("speech");
+        }
+      }
+      expect(script.provenance.boards?.status).toBe("authored-v15");
+    }
+    expect([boards, speech]).toEqual([24, 274]);
+    const authored = scripts.filter(
+      (script) => script.provenance.boards?.status === "authored-v15",
+    );
+    expect(authored).toHaveLength(7);
+    expect(
+      authored.reduce(
+        (n, script) =>
+          n + (script.provenance.boards as { count: number }).count,
+        0,
+      ),
+    ).toBe(24);
+    for (const script of authored)
+      expect(
+        script.dialogue.filter(
+          (turn) =>
+            turn.presentation!.kind === "board" && turn.source.kind !== "v15",
+        ),
+      ).toEqual([]);
+  });
+
+  it("derives a board only from a formula, law, theorem or unit statement of the bank and records that 273 sections have none", () => {
+    expect([...BOARD_CONCEPT_KINDS]).toEqual(["공식", "법칙", "정리", "단위"]);
+    const status = { "authored-v15": 0, "derived-bank": 0, absent: 0 };
+    let derivedBoards = 0;
+    for (const script of scripts) {
+      const boards = script.provenance.boards!;
+      status[boards.status] += 1;
+      if (boards.status === "authored-v15") continue;
+      const expected = script.conceptIds.filter((id) =>
+        BOARD_CONCEPT_KINDS.includes(conceptById.get(id)!.kind),
+      );
+      const found = script.dialogue.filter(
+        (turn) => turn.presentation!.kind === "board",
+      );
+      expect(
+        found.map((turn) => "entryId" in turn.source && turn.source.entryId),
+        script.sectionKey,
+      ).toEqual(expected);
+      for (const turn of found) {
+        const concept = conceptById.get(
+          (turn.source as { entryId: string }).entryId,
+        )!;
+        expect(turn).toMatchObject({
+          role: "teacher",
+          purpose: "explanation",
+          source: { kind: "bank-concept" },
+        });
+        // Title, blank line, body: the same shape as an original board.
+        expect(turn.markdown.startsWith(`**${concept.term}**\n\n`)).toBe(true);
+        expect(turn.markdown.replace(/\*\*/g, "")).toBe(
+          `${concept.term}\n\n${plain(concept.definition)}`,
+        );
+      }
+      derivedBoards += found.length;
+      if (expected.length)
+        expect(boards).toEqual({
+          status: "derived-bank",
+          count: expected.length,
+          basis: "concept-kind",
+          entryIds: expected,
+        });
+      else
+        expect(boards).toEqual({
+          status: "absent",
+          reason: "no-board-kind-concept",
+        });
+    }
+    expect(status).toEqual({
+      "authored-v15": 7,
+      "derived-bank": 80,
+      absent: 273,
+    });
+    expect(derivedBoards).toBe(163);
+  });
+
+  it("maps all 360 sections and 1657 concepts onto the fourteen grade-semester books", () => {
+    const coverage = conceptScriptSemesterCoverage();
+    expect(
+      coverage.map((row) => [row.grade, row.semester, row.sections]),
+    ).toEqual([
+      ["초3", 1, 31],
+      ["초3", 2, 25],
+      ["초4", 1, 32],
+      ["초4", 2, 30],
+      ["초5", 1, 26],
+      ["초5", 2, 30],
+      ["초6", 1, 27],
+      ["초6", 2, 29],
+      ["중1", 1, 28],
+      ["중1", 2, 24],
+      ["중2", 1, 33],
+      ["중2", 2, 23],
+      ["중3", 1, 12],
+      ["중3", 2, 10],
+    ]);
+    expect(coverage.reduce((n, row) => n + row.sections, 0)).toBe(360);
+    expect(coverage.reduce((n, row) => n + row.concepts, 0)).toBe(1657);
+    expect(coverage.every((row) => row.sections > 0 && row.concepts > 0)).toBe(
+      true,
+    );
+    // The same rule the product uses to scope a book, on the seeded curriculum.
+    const seeded = CURRICULUM_UNITS.filter((unit) =>
+      (CONCEPT_BLANK_GRADES as readonly string[]).includes(unit.grade),
+    );
+    expect(seeded).toHaveLength(360);
+    for (const unit of seeded) {
+      const script = conceptScriptFor(
+        `${unit.grade}::${unit.chapter}::${unit.section}`,
+      );
+      expect(script?.semester, unit.section).toBe(quickCreateSemester(unit));
+    }
+    for (const row of coverage)
+      expect(conceptScriptSectionKeys(row.grade, row.semester)).toHaveLength(
+        row.sections,
+      );
+    expect(
+      CONCEPT_BLANK_GRADES.flatMap((grade) => [
+        ...conceptScriptSectionKeys(grade, 1),
+        ...conceptScriptSectionKeys(grade, 2),
+      ]).sort(),
+    ).toEqual(sections.map((section) => section.key).sort());
+  });
+});
+
+describe("student names addressed inside the manuscript", () => {
+  const key = "중2::1. 수와 식::유리수와 소수";
+  const anchored = scripts.flatMap((script) =>
+    script.dialogue
+      .filter((turn) => turn.roleMentions)
+      .map((turn) => ({ script, turn })),
+  );
+
+  it("anchors the one turn that addresses students by name and nothing else", () => {
+    expect(Object.keys(V15_ROLE_MENTIONS)).toEqual(["U01:1:3"]);
+    expect(anchored).toHaveLength(1);
+    const { script, turn } = anchored[0]!;
+    expect(script.sectionKey).toBe(key);
+    expect(turn.source).toMatchObject({
+      kind: "v15",
+      unit: "U01",
+      scriptIndex: 1,
+      blockIndex: 3,
+    });
+    expect(
+      turn.roleMentions!.map((mention) => [
+        mention.role,
+        turn.markdown.slice(mention.start, mention.end),
+      ]),
+    ).toEqual([
+      ["student1", "민서는"],
+      ["student2", "지호는"],
+    ]);
+    // Every student name that appears as text anywhere is one of these anchors.
+    for (const candidate of scripts)
+      for (const item of candidate.dialogue)
+        for (const student of students) {
+          const outside = item.markdown.replace(/\$[^$]*\$/g, "");
+          if (outside.includes(student.name)) expect(item).toBe(turn);
+        }
+  });
+
+  it("writes the chosen names with the right particle and changes no other turn or math", () => {
+    const source = conceptScriptFor(key)!;
+    expect(
+      conceptScriptForCast(key, { student1: "민서", student2: "지호" }),
+    ).toEqual(source);
+    expect(conceptScriptForCast(key, {})).toEqual(source);
+    const cast = conceptScriptForCast(key, {
+      student1: "다은",
+      student2: "도현",
+    })!;
+    const changed = cast.dialogue.filter(
+      (turn, index) => turn.markdown !== source.dialogue[index]!.markdown,
+    );
+    expect(changed).toHaveLength(1);
+    const before = source.dialogue[cast.dialogue.indexOf(changed[0]!)]!;
+    expect(changed[0]!.markdown).toBe(
+      before.markdown
+        .replace("민서는 쓰인 모양을", "다은은 쓰인 모양을")
+        .replace("지호는 그 수의 값을", "도현은 그 수의 값을"),
+    );
+    expect(changed[0]!.markdown).toContain(
+      "다은은 쓰인 모양을, 도현은 그 수의 값을 봤어.",
+    );
+    expect(mathTokens(changed[0]!.markdown)).toEqual(
+      mathTokens(before.markdown),
+    );
+    expect(
+      changed[0]!.roleMentions!.map((mention) =>
+        changed[0]!.markdown.slice(mention.start, mention.end),
+      ),
+    ).toEqual(["다은은", "도현은"]);
+    const text = cast.dialogue.map((turn) => turn.markdown).join("\n");
+    expect(text).not.toMatch(/민서|지호/);
+    // Only one role chosen: the other keeps the name written in the manuscript.
+    expect(
+      conceptScriptForCast(key, { student2: "건우" })!.dialogue.find(
+        (turn) => turn.roleMentions,
+      )!.markdown,
+    ).toContain("민서는 쓰인 모양을, 건우는 그 수의 값을 봤어.");
+    expect(conceptScriptFor(key)).toEqual(source);
+  });
+
+  it("follows the final consonant for all ten students and never doubles the teacher's title", () => {
+    const withFinalConsonant = ["다은", "하준", "도현"];
+    expect(students.map((student) => student.name)).toEqual([
+      "민서",
+      "수아",
+      "유나",
+      "지아",
+      "다은",
+      "지호",
+      "하준",
+      "시우",
+      "도현",
+      "건우",
+    ]);
+    const { turn } = anchored[0]!;
+    const teacherWord = (markdown: string) =>
+      (markdown.match(/선생님/g) ?? []).length;
+    for (const first of students)
+      for (const second of students) {
+        if (first === second) continue;
+        const cast = conceptScriptForCast(key, {
+          student1: first.name,
+          student2: second.name,
+        })!;
+        const line = cast.dialogue.find((item) => item.roleMentions)!.markdown;
+        const particle = (name: string) =>
+          withFinalConsonant.includes(name) ? "은" : "는";
+        expect(line).toContain(
+          `${first.name}${particle(first.name)} 쓰인 모양을, ${second.name}${particle(second.name)} 그 수의 값을 봤어.`,
+        );
+        expect(mathTokens(line)).toEqual(mathTokens(turn.markdown));
+        const whole = cast.dialogue.map((item) => item.markdown).join("\n");
+        expect(teacherWord(whole)).toBe(
+          teacherWord(
+            conceptScriptFor(key)!
+              .dialogue.map((item) => item.markdown)
+              .join("\n"),
+          ),
+        );
+        expect(whole).not.toMatch(/선생님\s*선생님/);
+      }
+    expect(
+      (
+        [
+          ["은/는", "은", "는"],
+          ["이/가", "이", "가"],
+          ["을/를", "을", "를"],
+          ["과/와", "과", "와"],
+          ["아/야", "아", "야"],
+          ["", "", ""],
+        ] as const
+      ).map(([pair]) => [
+        pair,
+        particleAfter("도현", pair),
+        particleAfter("지호", pair),
+      ]),
+    ).toEqual([
+      ["은/는", "은", "는"],
+      ["이/가", "이", "가"],
+      ["을/를", "을", "를"],
+      ["과/와", "과", "와"],
+      ["아/야", "아", "야"],
+      ["", "", ""],
+    ]);
+    expect(particleAfter("Mina", "은/는")).toBe("은(는)");
+  });
+
+  it("leaves a name inside another word alone, such as 지은 in 짝지은", () => {
+    const paired = scripts.flatMap((script) =>
+      script.dialogue
+        .filter((turn) => turn.markdown.includes("짝지은"))
+        .map((turn) => ({ script, turn })),
+    );
+    expect(paired).toHaveLength(4);
+    for (const { script, turn } of paired) {
+      expect(turn.roleMentions).toBeUndefined();
+      for (const names of [
+        { student1: "지은", student2: "도현" },
+        { student1: "다은", student2: "지은" },
+      ]) {
+        const cast = conceptScriptForCast(script.sectionKey, names)!;
+        expect(cast.dialogue[script.dialogue.indexOf(turn)]!.markdown).toBe(
+          turn.markdown,
+        );
+        expect(cast).toEqual(conceptScriptFor(script.sectionKey));
+      }
+    }
+    // Across all 360 manuscripts a cast change touches the anchored turn only.
+    let changed = 0;
+    for (const script of scripts) {
+      const cast = conceptScriptForCast(script.sectionKey, {
+        student1: "다은",
+        student2: "도현",
+      })!;
+      for (const [index, turn] of cast.dialogue.entries())
+        if (turn.markdown !== script.dialogue[index]!.markdown) changed += 1;
+    }
+    expect(changed).toBe(1);
+  });
+
+  it("refuses a stale, overlapping, repeated or in-math anchor instead of guessing", () => {
+    const text = "민서는 $x$를 보고, 지호는 값을 봤어.";
+    const mentions = anchorRoleMentions(text, [
+      { role: "student2", name: "지호", particle: "은/는" },
+      { role: "student1", name: "민서", particle: "은/는" },
+    ]);
+    expect(mentions.map((mention) => mention.role)).toEqual([
+      "student1",
+      "student2",
+    ]);
+    expect(
+      applyRoleMentions(text, mentions, { student1: "도현", student2: "수아" })
+        .markdown,
+    ).toBe("도현은 $x$를 보고, 수아는 값을 봤어.");
+    expect(() =>
+      applyRoleMentions(`앞 ${text}`, mentions, { student1: "도현" }),
+    ).toThrow(/Stale/);
+    expect(() =>
+      applyRoleMentions(text, [mentions[0]!, mentions[0]!], {}),
+    ).toThrow(/Stale/);
+    expect(() =>
+      anchorRoleMentions("민서는 보고 민서는 썼어.", [
+        { role: "student1", name: "민서", particle: "은/는" },
+      ]),
+    ).toThrow(/exactly once/);
+    expect(() =>
+      anchorRoleMentions("값은 $민서는$이다.", [
+        { role: "student1", name: "민서", particle: "은/는" },
+      ]),
+    ).toThrow(/exactly once/);
+    expect(() =>
+      anchorRoleMentions("짝지은 순서쌍", [
+        { role: "student1", name: "지은", particle: "은/는" },
+      ]),
+    ).toThrow(/exactly once/);
   });
 });
 
