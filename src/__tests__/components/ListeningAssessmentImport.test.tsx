@@ -474,6 +474,42 @@ describe("ListeningAssessmentImport", () => {
     ).toBe(2);
   });
 
+  it("allows a rejected audio file to be replaced without losing the reviewed draft", async () => {
+    const server = serverFixture();
+    pdf.upload.mockRejectedValueOnce(
+      new ListeningRequestError(
+        "지원하지 않는 음원 파일",
+        422,
+        "audio_not_ready",
+      ),
+    );
+    const { onImported } = openForm();
+    await prepareFiles();
+    confirmRights();
+    register();
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "지원하지 않는 음원 파일",
+    );
+    expect(screen.getByLabelText("음원 MP3·WAV")).toBeEnabled();
+    expect(screen.getByLabelText("문제지 PDF")).toBeDisabled();
+    const replacement = chooseFile(
+      "음원 MP3·WAV",
+      "corrected.mp3",
+      "audio/mpeg",
+    );
+    register();
+    await waitFor(() => expect(onImported).toHaveBeenCalledOnce());
+    expect(pdf.upload.mock.calls[1][1]).toEqual(replacement);
+    expect(
+      server.calls("POST").filter((request) => request.path === "/sets"),
+    ).toHaveLength(1);
+    expect(
+      server
+        .calls("POST")
+        .filter((request) => request.path.endsWith("/review")),
+    ).toHaveLength(1);
+  });
+
   it("reuses completed audio and the same group after PATCH failure, fetching the latest revision", async () => {
     const server = serverFixture({ failPatch: true, retryRevision: 9 });
     const { onImported } = openForm();
@@ -485,6 +521,7 @@ describe("ListeningAssessmentImport", () => {
     );
     expect(onImported).not.toHaveBeenCalled();
     const first = listeningUpdateSetSchema.parse(server.calls("PATCH")[0].body);
+    expect(screen.getByLabelText("음원 MP3·WAV")).toBeDisabled();
     register();
     await waitFor(() => expect(onImported).toHaveBeenCalledOnce());
     expect(pdf.upload).toHaveBeenCalledOnce();
