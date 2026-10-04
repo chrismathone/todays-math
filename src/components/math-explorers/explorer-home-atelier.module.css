@@ -1,0 +1,195 @@
+/*
+ * 학생 수학 홈 — «수학 탐험 아틀리에» 표면 (3자 합의 v2 7 · 9항, 2026-10-04).
+ *
+ * - 색은 수학 뿌리(`LearningMotionScope` — `learning-motion.module.css`)의 `--math-atelier-*` 를 쓴다.
+ *   뿌리 밖(시험 · 개발 화면)에서는 뒤에 적은 같은 값으로 선다.
+ * - 조작색(단추 · 진행 막대 · 선택)은 코발트 그대로다 — 여기서 바꾸지 않는다. 금색 별 알약도 그대로.
+ * - 같은 요소의 바탕 규칙은 `math-explorers.module.css` 에 있다. 이 파일의 선택자는 늘 그보다 특이도가 높다
+ *   (홈 뿌리 `.home` 이나 요소 이름을 앞에 둔다) — CSS 가 묶이는 차례(가져오는 순서 · 개발/빌드)에 기대지 않는다.
+ * - 움직임을 더하지 않는다(`learningMotionCssParity.test.ts`).
+ * - 판 폭은 건드리지 않는다: 지도 판의 테두리는 그림자 한 줄로 그려 폰에서 판이 1px 도 좁아지지 않는다
+ *   (05 §8.17 의 판 폭 경계 300 · 480px).
+ */
+
+/* ── 판(카드) ───────────────────────────────────────────────────────────── */
+.home .mission,
+.home .journey {
+  border-radius: 20px;
+  background: var(--math-atelier-surface, #fff);
+}
+.home .mission {
+  border-color: var(--math-atelier-line, #dee4ea);
+  box-shadow: 0 6px 24px rgb(32 54 83 / 0.05);
+}
+.home .journey {
+  box-shadow:
+    0 0 0 1px var(--math-atelier-line, #dee4ea),
+    0 6px 24px rgb(32 54 83 / 0.05);
+}
+.home .mission h1 {
+  color: var(--math-atelier-ink, #203653);
+}
+.home .muted {
+  color: var(--math-atelier-muted, #52627a);
+}
+.home .done {
+  color: var(--math-atelier-done, #167052);
+}
+.home .retry {
+  color: var(--math-atelier-retry, #98531e);
+}
+
+/* ── 도구 줄(도감 · 학습 설정 · 우리 기지) ─────────────────────────────────── */
+.home .tools > button {
+  border-color: var(--math-atelier-line, #dee4ea);
+  border-radius: 12px;
+  background: var(--math-atelier-surface, #fff);
+  color: var(--math-atelier-ink, #203653);
+}
+
+/* ── 다시 살펴볼 개념 ─────────────────────────────────────────────────────── */
+.home .review {
+  background: var(--math-atelier-retry-bg, #fff0df);
+}
+.home .review > strong,
+.home .review > p {
+  color: var(--math-atelier-retry, #98531e);
+}
+
+/* ── 시트(도감 · 학습 설정 · 우리 기지 · 지난 학습 고르기) ─────────────────── */
+dialog.sheet {
+  border-radius: 20px;
+  background: var(--math-atelier-surface, #fff);
+  color: var(--math-atelier-ink, #203653);
+}
+dialog.sheet .sheetHeader {
+  border-bottom-color: var(--math-atelier-line, #dee4ea);
+}
+dialog.sheet .sheetNote {
+  color: var(--math-atelier-muted, #52627a);
+}
+
+/* ── 이 기기 설정 — 움직임 줄이기 ─────────────────────────────────────────── */
+.device {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--math-atelier-line, #dee4ea);
+}
+.device > h3 {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 750;
+  line-height: 1.4;
+}
+dialog.sheet button.motionSwitch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 48px;
+  padding: 8px 12px;
+  border: 1px solid var(--math-atelier-line, #dee4ea);
+  border-radius: 12px;
+  background: var(--math-atelier-surface, #fff);
+  color: var(--math-atelier-ink, #203653);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.switchState {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  gap: 8px;
+  color: var(--math-atelier-muted, #52627a);
+  font-size: 13px;
+  font-weight: 700;
+}
+/* 켜짐 · 꺼짐은 글자가 말한다 — 알약은 같은 뜻을 한 번 더 그릴 뿐이다(색만으로 말하지 않는다). */
+.switchTrack {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 24px;
+  border-radius: 999px;
+  background: #8492a6;
+}
+.switchTrack::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+}
+button.motionSwitch[aria-checked="true"] .switchTrack {
+  background: var(--learn-accent, #3159df);
+}
+button.motionSwitch[aria-checked="true"] .switchTrack::after {
+  left: 19px;
+}
+/* 기기(OS)가 이미 줄이고 있을 때 — 켜진 채 잠긴다. 글자는 흐리지 않는다(까닭은 아래 줄이 말한다). */
+dialog.sheet button.motionSwitch:disabled {
+  opacity: 1;
+  cursor: default;
+  background: #f4f6f8;
+}
+button.motionSwitch:disabled .switchTrack {
+  background: #8492a6;
+}
+.deviceNote {
+  margin: 8px 0 0;
+  color: var(--math-atelier-muted, #52627a);
+  font-size: 12px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+@media (max-width: 360px) {
+  .home .mission,
+  .home .journey {
+    border-radius: 18px;
+  }
+}
+
+/*
+ * 넓은 PC — 미션(왼쪽) · 지도(오른쪽). 768 · 1024 는 한 열 그대로.
+ * - 지도 칸 644px = 지금 PC 판 620px(05 §8.17 — 판 비율 1.45 · 칸 글자 16px) + 지도 판 안쪽 여백 12px 둘.
+ *   두 열이 되어도 판 크기가 한 열일 때와 같아 칸 이름 실측(`scripts/qa/daily-journey-board.mjs`)이 그대로다.
+ * - 좁아져도 지도 칸은 512px 밑으로 내려가지 않는다(판 480px 이상 — «넓은 판» 경계).
+ * - 1100px: 학생 수학 본문 틀(`student-review-home.module.css` `.main` — 폭 1120 · 옆 여백 28px 둘)에서
+ *   지도 칸 644px 를 주고도 미션 칸이 약 360px 남는 폭.
+ * - 순서(DOM)는 미션 → 지도 → 도구 → 다시 살펴볼 개념 그대로이고, 도구 · 다시 살펴볼 개념은 미션 아래에 선다.
+ *   마지막 줄(1fr)이 지도의 남는 높이를 받아 왼쪽 덩이 사이가 벌어지지 않는다.
+ */
+@media (min-width: 1100px) {
+  div.home {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr) minmax(512px, 644px);
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 24px;
+    align-items: start;
+  }
+  .home .mission {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .home .journey {
+    grid-column: 2;
+    grid-row: 1 / -1;
+  }
+  .home .tools {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .home .review {
+    grid-column: 1;
+    grid-row: 3;
+    margin: 0;
+  }
+}

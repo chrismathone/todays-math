@@ -654,23 +654,16 @@ button.next {
   display: block;
   transform-origin: 50% 90%;
 }
-.pawnShadow,
-.pawnLanding {
+.pawnShadow {
   position: absolute;
   left: 6%;
   right: 6%;
   height: 24%;
   bottom: 0;
   border-radius: 50%;
-}
-.pawnShadow {
   background: #775122;
   opacity: 0.3;
   filter: blur(1px);
-}
-.pawnLanding {
-  border: 2px solid #f5c659;
-  opacity: 0;
 }
 .boardFooter {
   display: flex;
@@ -802,12 +795,19 @@ button.next:active:enabled {
     font-size: 10px !important;
   }
 }
+/* 움직임 줄이기 — 기기(OS) 설정과 앱 설정(수학 뿌리의 `data-learning-motion`, `LearningMotion.tsx`)은
+   **같은 선언**을 쓴다. 한쪽만 고치면 `learningMotionCssParity.test.ts` 가 막는다. */
 @media (prefers-reduced-motion: reduce) {
   .pawn,
   .root button {
     animation: none !important;
     transition: none !important;
   }
+}
+[data-learning-motion="reduce"] .pawn,
+[data-learning-motion="reduce"] .root button {
+  animation: none !important;
+  transition: none !important;
 }
 
 /* ── 진도판 테마(학원 전체 한 벌 · 원장님 2026-09-30) ─────────────────────────────
@@ -984,9 +984,14 @@ button.next:active:enabled {
     transform: translate(1px, -2px);
   }
 }
+/* 가만히 몸짓과 바퀴 구름은 줄이기에서만 멈춘다 — 기기 설정과 앱 설정이 같은 선언. */
 @media (prefers-reduced-motion: reduce) {
   .rider .riderFigure,
   .rider .wheel {
     animation: none !important;
   }
+}
+[data-learning-motion="reduce"] .rider .riderFigure,
+[data-learning-motion="reduce"] .rider .wheel {
+  animation: none !important;
 }
