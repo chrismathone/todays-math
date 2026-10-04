@@ -336,7 +336,12 @@ function exampleGroups(blocks: Awaited<ReturnType<typeof saved>>["blocks"]) {
 }
 type QuickModel = ReturnType<typeof createTextbookRenderModel>;
 type QuickLayout = ReturnType<typeof paginateTextbookSections>;
-type Measurement = { blockId: string; widthMm: number; heightMm: number };
+type Measurement = {
+  blockId: string;
+  widthMm: number;
+  heightMm: number;
+  introTextFits?: boolean;
+};
 /** One fixed height per block: this checks which blocks are placed, never page geometry. */
 const mockMeasurements = (model: QuickModel): Measurement[] =>
   model.sections.flatMap((section) =>
@@ -453,6 +458,7 @@ function paginationFaults(
         Number.isFinite(measured.heightMm) &&
         measured.heightMm > 0 &&
         measured.heightMm <= 254 &&
+        measured.introTextFits !== false &&
         Math.abs(measured.widthMm - blockWidthMm(model.config, block)) <=
           A4.toleranceMm
       );
@@ -1466,18 +1472,25 @@ describe("the pagination check refuses what it must not accept", () => {
   });
 
   it("accepts the single page on an even start only when the measured spread does not fit", () => {
-    const tall = measurements.map((m) =>
-      m.blockId === introPart("left").id ? { ...m, heightMm: 300 } : m,
-    );
-    const layout = layoutFrom(2, tall);
-    expect(pageOf(layout, introPart("single").id).physicalPageIndex).toBe(2);
-    expect(layout.issues).toHaveLength(1);
-    expect(layout.issues[0].message).not.toContain("홀수 시작 쪽");
-    expect(faults(layout, tall)).toEqual([]);
-    // The same layout judged against measurements that do fit has no reason for one page.
-    expect(faults(layout)).toEqual([
-      expect.stringContaining("although its spread fits the even page 2"),
-    ]);
+    // Two ways a measured spread does not fit: a part taller than the page, and a part whose
+    // text was measured as not fitting its slot.
+    for (const [side, unfit] of [
+      ["left", { heightMm: 300 }],
+      ["right", { introTextFits: false }],
+    ] as const) {
+      const sizes = measurements.map((m) =>
+        m.blockId === introPart(side).id ? { ...m, ...unfit } : m,
+      );
+      const layout = layoutFrom(2, sizes);
+      expect(pageOf(layout, introPart("single").id).physicalPageIndex).toBe(2);
+      expect(layout.issues).toHaveLength(1);
+      expect(layout.issues[0].message).not.toContain("홀수 시작 쪽");
+      expect(faults(layout, sizes)).toEqual([]);
+      // The same layout judged against measurements that do fit has no reason for one page.
+      expect(faults(layout)).toEqual([
+        expect.stringContaining("although its spread fits the even page 2"),
+      ]);
+    }
   });
 
   it("reports a block that is missing, placed twice, or unknown", () => {
