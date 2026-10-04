@@ -28,8 +28,16 @@ import {
 } from "@/lib/textbook/conceptScripts";
 import { AUTHORED_EXAMPLES } from "@/lib/textbook/scripts/authoredExamples";
 import {
+  STATIC_CORRECTIONS,
+  STATIC_CORRECTIONS_REVIEW,
+  keepsMathTokens,
+  withoutStaticCorrections,
+} from "@/lib/textbook/scripts/corrections";
+import {
   BOARD_CONCEPT_KINDS,
   GRADE_FILE_CODES,
+  endsAsSentence,
+  exampleAnswerLine,
   materializeGrade,
   sectionLessonTitle,
   serializeScripts,
@@ -158,7 +166,8 @@ const manuscriptSchema = z.strictObject({
     boards: boardsSchema,
   }),
 });
-const mathTokens = (markdown: string) => markdown.match(/\$[^$]*\$/g) ?? [];
+const mathTokens = (markdown: string): string[] =>
+  markdown.match(/\$[^$]*\$/g) ?? [];
 const students = TEXTBOOK_CHARACTERS.filter(
   (character) => character.role === "student",
 );
@@ -167,8 +176,9 @@ const students = TEXTBOOK_CHARACTERS.filter(
  * SHA-256 of each grade file with lesson, board, role-mention and semester metadata
  * removed. These are the committed files of 122dad6dd, before that metadata existed:
  * adding or changing metadata must leave every earlier turn, source and id as it was.
- * A deliberate manuscript correction changes the affected grade's value, with its proof
- * recorded in docs/planning/tracks/reports/textbook-recovery-content-implementation-20261005.md.
+ * These values never change. A deliberate manuscript correction is an entry in
+ * static-corrections.json; the files are compared with those entries undone, so a turn
+ * that changes without an entry still fails here.
  */
 const PRIOR_DIALOGUE_SHA256: Record<string, string> = {
   e3: "34093da7236daa5839fd0c2ac2b2a1c9cdee7aa8d6741f1697df157432238986",
@@ -179,6 +189,18 @@ const PRIOR_DIALOGUE_SHA256: Record<string, string> = {
   m2: "8921d492464cdd9f444e097e803a3f191b5a54e32dc3a384972809a34aa5e238",
   m3: "cc71b3a07fe5f2fc4e8a51e69cdf3fc0af143c20998d8729b6a4d6335bd8e87f",
 };
+/** The hash of a grade file as first committed: corrections undone, then metadata removed. */
+const priorDialogueSha256 = (
+  committed: Parameters<typeof withoutStaticCorrections>[0],
+) =>
+  createHash("sha256")
+    .update(
+      serializeScripts(
+        withoutPresentationMetadata(withoutStaticCorrections(committed)),
+      ),
+      "utf8",
+    )
+    .digest("hex");
 
 describe("prewritten concept teaching manuscripts", () => {
   it("covers exactly every supported curriculum section in seven committed grade files", () => {
@@ -527,17 +549,9 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
         serializeScripts(materializeGrade(grade)) === committed,
         grade,
       ).toBe(true);
-      expect(
-        createHash("sha256")
-          .update(
-            serializeScripts(
-              withoutPresentationMetadata(JSON.parse(committed)),
-            ),
-            "utf8",
-          )
-          .digest("hex"),
-        grade,
-      ).toBe(PRIOR_DIALOGUE_SHA256[code]);
+      expect(priorDialogueSha256(JSON.parse(committed)), grade).toBe(
+        PRIOR_DIALOGUE_SHA256[code],
+      );
     }
     const authoring = readFileSync(
       resolve("src/lib/textbook/scripts/materialize.ts"),
@@ -547,6 +561,168 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
     expect(authoring.match(/writeFileSync\(/g)).toHaveLength(1);
     expect(authoring).toMatch(/flags\.includes\("--write"\)/);
     expect(authoring).toMatch(/!dialogueKept && !replaceDialogue/);
+  });
+
+  it("differs from the first manuscripts by exactly the 41 approved corrections", () => {
+    expect(STATIC_CORRECTIONS.map((correction) => correction.id)).toEqual(
+      Array.from(
+        { length: 41 },
+        (_, index) => `SC-${String(index + 1).padStart(3, "0")}`,
+      ),
+    );
+    expect(STATIC_CORRECTIONS_REVIEW.review).toMatch(/^AI 편집 검수/);
+    expect(STATIC_CORRECTIONS_REVIEW.review).toContain(
+      "사람이 읽은 검수가 아니다",
+    );
+    const kinds: Record<string, number> = {};
+    for (const correction of STATIC_CORRECTIONS) {
+      kinds[correction.kind] = (kinds[correction.kind] ?? 0) + 1;
+      const script = scripts.find(
+        (item) => item.sectionKey === correction.sectionKey,
+      )!;
+      const turn = script.dialogue[correction.turnIndex]!;
+      expect(turn.markdown, correction.id).toBe(correction.new);
+      expect(turn.source, correction.id).toEqual(correction.source);
+      expect(correction.old).not.toBe(correction.new);
+      expect(correction.reason.length).toBeGreaterThan(10);
+      // No number or formula was touched: every earlier math token is still there, in order.
+      expect(
+        keepsMathTokens(correction.old, correction.new),
+        correction.id,
+      ).toBe(true);
+      if (correction.kind === "sentence-answer-copula") {
+        const answer = conceptById.get(
+          (correction.source as { entryId: string }).entryId,
+        )!.example!.answer;
+        expect(endsAsSentence(answer), correction.id).toBe(true);
+        expect(correction.old).toBe(
+          `이 기준으로 물음에 답하면 **${answer}**입니다.`,
+        );
+        expect(correction.new).toBe(exampleAnswerLine(answer));
+        expect(mathTokens(correction.new)).toEqual(mathTokens(correction.old));
+      } else {
+        expect(correction.source.kind).toBe("authored-example");
+        // A condition added to a question is one the lesson already states elsewhere.
+        const lesson = script.dialogue
+          .filter((item) => item.source.kind === "authored-example")
+          .filter((item) => item.markdown !== correction.new)
+          .flatMap((item) => mathTokens(item.markdown));
+        const before = mathTokens(correction.old);
+        for (const token of mathTokens(correction.new))
+          if (!before.includes(token))
+            expect(lesson, correction.id).toContain(token);
+      }
+    }
+    expect(kinds).toEqual({
+      "sentence-answer-copula": 32,
+      particle: 1,
+      "missing-condition": 4,
+      "ambiguous-wording": 4,
+    });
+    // Every bank answer that ends as a sentence is among them, and none keeps "입니다".
+    const sentenceAnswers = concepts.filter(
+      (concept) => concept.example && endsAsSentence(concept.example.answer),
+    );
+    expect(sentenceAnswers).toHaveLength(32);
+    for (const script of scripts)
+      for (const turn of script.dialogue)
+        expect(turn.markdown).not.toMatch(
+          /다(?:\s?\([^()]*\))?\.?\*\*입니다\.$/,
+        );
+    expect(exampleAnswerLine("유리수이다")).toBe(
+      "이 기준으로 물음에 답하면 **유리수이다**.",
+    );
+    expect(exampleAnswerLine("된다 ($40=2^3\\times5$)")).toBe(
+      "이 기준으로 물음에 답하면 **된다 ($40=2^3\\times5$)**.",
+    );
+    expect(exampleAnswerLine("아니다. 조각의 크기가 같지 않다.")).toBe(
+      "이 기준으로 물음에 답하면 **아니다. 조각의 크기가 같지 않다.**",
+    );
+    expect(exampleAnswerLine("십의 자리")).toBe(
+      "이 기준으로 물음에 답하면 **십의 자리**입니다.",
+    );
+    expect(exampleAnswerLine("순환소수 ($0.1666\\cdots$)")).toBe(
+      "이 기준으로 물음에 답하면 **순환소수 ($0.1666\\cdots$)**입니다.",
+    );
+  });
+
+  it("still catches a turn that changes without an approved correction", () => {
+    const code = "m2";
+    const committed = JSON.parse(
+      readFileSync(resolve(`src/lib/textbook/scripts/${code}.json`), "utf8"),
+    ) as (typeof scripts)[number][];
+    expect(priorDialogueSha256(committed)).toBe(PRIOR_DIALOGUE_SHA256[code]);
+    const listed = new Set(
+      STATIC_CORRECTIONS.map(
+        (correction) => `${correction.sectionKey}#${correction.turnIndex}`,
+      ),
+    );
+    // A turn outside the ledger: one changed character is a different manuscript.
+    const stray = structuredClone(committed);
+    const target = stray[0]!.dialogue.findIndex(
+      (_, index) => !listed.has(`${stray[0]!.sectionKey}#${index}`),
+    );
+    stray[0]!.dialogue[target]!.markdown += " ";
+    expect(priorDialogueSha256(stray)).not.toBe(PRIOR_DIALOGUE_SHA256[code]);
+    // A corrected turn that reads differently from its ledger entry is refused outright.
+    const drifted = structuredClone(committed);
+    const entry = STATIC_CORRECTIONS.find((correction) =>
+      correction.sectionKey.startsWith("중2::"),
+    )!;
+    drifted.find((script) => script.sectionKey === entry.sectionKey)!.dialogue[
+      entry.turnIndex
+    ]!.markdown = entry.new.replace("**.", "**이다.");
+    expect(() => priorDialogueSha256(drifted)).toThrow(entry.id);
+    // An entry that is dropped from the ledger leaves its correction unexplained.
+    expect(
+      createHash("sha256")
+        .update(
+          serializeScripts(
+            withoutPresentationMetadata(
+              withoutStaticCorrections(
+                committed,
+                STATIC_CORRECTIONS.filter((correction) => correction !== entry),
+              ),
+            ),
+          ),
+          "utf8",
+        )
+        .digest("hex"),
+    ).not.toBe(PRIOR_DIALOGUE_SHA256[code]);
+  });
+
+  it("reads every plain number with a particle that fits its final sound", () => {
+    // 1 일, 3 삼, 6 육, 7 칠, 8 팔 and 0 (영, 십, 백 …) end in a consonant.
+    const endsInConsonant = (number: string) =>
+      "013678".includes(number.at(-1)!);
+    const pairs: [afterConsonant: string, afterVowel: string][] = [
+      ["이에요", "예요"],
+      ["은", "는"],
+      ["을", "를"],
+      ["과", "와"],
+    ];
+    const faults: string[] = [];
+    let checked = 0;
+    for (const script of scripts)
+      for (const turn of script.dialogue)
+        for (const match of turn.markdown.matchAll(
+          /\$-?(\d+(?:\.\d+)?)\$(이에요|예요|[은는을를과와](?![가-힣]))/g,
+        )) {
+          const pair = pairs.find((item) => item.includes(match[2]!))!;
+          checked += 1;
+          if (match[2] !== pair[endsInConsonant(match[1]!) ? 0 : 1])
+            faults.push(`${script.sectionKey}: ${match[0]}`);
+        }
+    expect(checked).toBeGreaterThan(300);
+    expect(faults).toEqual([]);
+    expect(
+      scripts
+        .find(
+          (script) =>
+            script.grade === "초5" && script.title.startsWith("2-4-6 "),
+        )!
+        .dialogue.map((turn) => turn.markdown),
+    ).toContain("곱은 $1.56$이에요.");
   });
 
   it("places every turn in exactly one contiguous lesson with a sourced title", () => {

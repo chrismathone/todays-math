@@ -4,8 +4,9 @@
  *   node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/sourceLedger.ts          (check)
  *   node node_modules/tsx/dist/cli.mjs src/lib/textbook/scripts/sourceLedger.ts --write
  * States follow the recovery plan: 자동 확인 (a calculation or a match in code),
- * 미검수 (no person has reviewed it), 수정 필요 (a defect is recorded). Nothing here is
- * 편집 확인: no editor has read these manuscripts, and a model's reading is recorded as such.
+ * 미검수 (nobody has reviewed it), 수정 필요 (an open defect is recorded), and AI 검수
+ * (a model read it item by item and recorded its basis and what it could not settle).
+ * No editor has read these manuscripts, so nothing here carries a person's approval.
  */
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -21,9 +22,17 @@ import { bank as m2 } from "@/lib/concept-blank/bank/m2";
 import { bank as m3 } from "@/lib/concept-blank/bank/m3";
 import { REST_STORIES, planRestStories } from "../restStories";
 import {
+  AI_READING_REVIEW,
+  AUTHORED_EXAMPLE_READINGS,
+  REST_BAND_READINGS,
+  type AiReading,
+} from "./aiReadings";
+import {
   AUTHORED_EXAMPLE_FINDINGS,
   reviewAuthoredExamples,
+  type AuthoredExampleReviewRow,
 } from "./authoredExampleReview";
+import { STATIC_CORRECTIONS, STATIC_CORRECTIONS_REVIEW } from "./corrections";
 import { checkNumericStatements } from "./mathCheck";
 import { GRADE_FILE_CODES } from "./materialize";
 import reference from "./reference-v15.json";
@@ -40,7 +49,7 @@ import type {
   ConceptTeachingScript,
 } from "./types";
 
-type State = "자동 확인" | "미검수" | "수정 필요" | "해당 없음";
+type State = "자동 확인" | "AI 검수" | "미검수" | "수정 필요" | "해당 없음";
 const parts = { 초3: e3, 초4: e4, 초5: e5, 초6: e6, 중1: m1, 중2: m2, 중3: m3 };
 const grades = Object.keys(parts) as ConceptScriptGrade[];
 const plain = (definition: string) =>
@@ -50,6 +59,19 @@ const plain = (definition: string) =>
 const directory = fileURLToPath(new URL(".", import.meta.url));
 const fileOf = (grade: ConceptScriptGrade) =>
   `src/lib/textbook/scripts/${GRADE_FILE_CODES[grade]}.json`;
+
+/**
+ * An open finding or a fault needs correcting. Otherwise a recalculated example is
+ * 자동 확인, and one with nothing to recalculate is AI 검수 once its reading is recorded.
+ */
+const exampleState = (row: AuthoredExampleReviewRow): State =>
+  row.faults.length || row.findings.some((finding) => finding.status === "open")
+    ? "수정 필요"
+    : row.method === "calculated"
+      ? "자동 확인"
+      : AUTHORED_EXAMPLE_READINGS[row.key]
+        ? "AI 검수"
+        : "미검수";
 
 export function readCommittedScripts(): ConceptTeachingScript[] {
   return grades.flatMap(
@@ -103,14 +125,21 @@ export type SourceLedgerSection = {
     /** The printed page. Outside this track. */
     printedPage: State;
   };
-  /** Defects that reach particular turns of this section. Frame-wide defects are under templateFrames. */
+  /** Open defects that reach particular turns of this section. Frame-wide defects are under templateFrames. */
   findings: { id: string; turns: number }[];
+  /** Ids of the approved static corrections applied to this section's turns. */
+  corrections: string[];
 };
 
 export type SourceLedger = {
   generatedBy: string;
   reviewedOn: string;
-  reviewers: { calculation: string; reading: string; editor: string };
+  reviewers: {
+    calculation: string;
+    reading: string;
+    corrections: string;
+    editor: string;
+  };
   totals: Record<string, unknown>;
   sections: SourceLedgerSection[];
   /**
@@ -143,6 +172,8 @@ export type SourceLedger = {
     claimsChecked: number;
     faults: string[];
     findings: { kind: string; status: string; finding: string }[];
+    /** The AI reading of an example with nothing to recalculate. */
+    reading?: AiReading;
     state: State;
   }[];
   templateFrames: {
@@ -163,6 +194,8 @@ export type SourceLedger = {
     faults: string[];
     firstTaught: string;
     ageBands: Record<string, { suitable: boolean; basis: string }>;
+    /** The AI reading of each age-band verdict. */
+    readings: Record<string, AiReading & { agrees: boolean }>;
     state: State;
   }[];
   restShortages: {
@@ -262,10 +295,12 @@ export function buildSourceLedger(
         ).length;
         return turns ? [{ id: finding.id, turns }] : [];
       }),
-      ...(example?.findings ?? []).map((finding) => ({
-        id: `authored-example:${finding.kind}`,
-        turns: 1,
-      })),
+      ...(example?.findings ?? [])
+        .filter((finding) => finding.status === "open")
+        .map((finding) => ({
+          id: `authored-example:${finding.kind}`,
+          turns: 1,
+        })),
     ];
     const matched =
       definitions === concepts.length &&
@@ -325,23 +360,18 @@ export function buildSourceLedger(
       status: {
         idsAndSources: matched ? "자동 확인" : "수정 필요",
         bankMathematics: "미검수",
-        newExample: !example
-          ? "해당 없음"
-          : example.faults.length
-            ? "수정 필요"
-            : example.method === "calculated"
-              ? "자동 확인"
-              : "미검수",
-        wordingAndFlow: findings.some(
-          (finding) =>
-            wrongSentence.has(finding.id) ||
-            finding.id === "authored-example:wording",
+        newExample: !example ? "해당 없음" : exampleState(example),
+        wordingAndFlow: findings.some((finding) =>
+          wrongSentence.has(finding.id),
         )
           ? "수정 필요"
           : "미검수",
         printedPage: "미검수",
       },
       findings,
+      corrections: STATIC_CORRECTIONS.filter(
+        (correction) => correction.sectionKey === script.sectionKey,
+      ).map((correction) => correction.id),
     };
   });
 
@@ -418,7 +448,8 @@ export function buildSourceLedger(
     reviewers: {
       calculation:
         "코드(mathCheck.ts · authoredExampleReview.ts · 이 파일의 일치 계산)",
-      reading: "Claude Opus 5.5 — 모델의 정독. 편집 검수가 아니다",
+      reading: AI_READING_REVIEW.reviewer,
+      corrections: STATIC_CORRECTIONS_REVIEW.review,
       editor: "없음 — 사람이 읽은 기록이 없다",
     },
     totals: {
@@ -489,6 +520,25 @@ export function buildSourceLedger(
         turnsAll: frames.reduce((n, m) => n + m.turns, 0),
         lessonsRepeatingTheirOpeningQuestion: repeatedOpeningQuestions(scripts),
       },
+      corrections: {
+        total: STATIC_CORRECTIONS.length,
+        byKind: tally(STATIC_CORRECTIONS.map((correction) => correction.kind)),
+        sections: new Set(
+          STATIC_CORRECTIONS.map((correction) => correction.sectionKey),
+        ).size,
+      },
+      aiReadings: {
+        examples: Object.keys(AUTHORED_EXAMPLE_READINGS).length,
+        examplesWithUnverified: Object.values(AUTHORED_EXAMPLE_READINGS).filter(
+          (reading) => reading.unverified,
+        ).length,
+        restBands: Object.values(REST_BAND_READINGS).flatMap((bands) =>
+          Object.values(bands),
+        ).length,
+        restBandsWithUnverified: Object.values(REST_BAND_READINGS)
+          .flatMap((bands) => Object.values(bands))
+          .filter((reading) => reading.unverified).length,
+      },
       rest: {
         stories: REST_STORIES.length,
         chapters: restShortages.reduce((n, r) => n + r.chapters, 0),
@@ -510,13 +560,10 @@ export function buildSourceLedger(
         status,
         finding,
       })),
-      state: row.faults.length
-        ? "수정 필요"
-        : row.findings.some((f) => f.kind === "wording" && f.status === "open")
-          ? "수정 필요"
-          : row.method === "calculated"
-            ? "자동 확인"
-            : "미검수",
+      ...(AUTHORED_EXAMPLE_READINGS[row.key]
+        ? { reading: AUTHORED_EXAMPLE_READINGS[row.key] }
+        : {}),
+      state: exampleState(row),
     })),
     templateFrames: frames.map((measure) => {
       const frame = TEMPLATE_FRAMES.find((f) => f.id === measure.id)!;
@@ -546,7 +593,8 @@ export function buildSourceLedger(
         faults: relations.faults,
         firstTaught: `${story.firstTaught.grade} ${story.firstTaught.semester}학기 ${story.firstTaught.chapter}`,
         ageBands: story.ageBands,
-        state: relations.faults.length ? "수정 필요" : "미검수",
+        readings: REST_BAND_READINGS[story.id],
+        state: relations.faults.length ? "수정 필요" : "AI 검수",
       };
     }),
     restShortages,

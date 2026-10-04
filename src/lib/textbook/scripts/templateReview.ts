@@ -4,6 +4,7 @@
  * not typed in: a frame is a turn with math, bold text and quotations masked.
  * A finding is a defect of the frame itself, so it reaches every turn the frame wrote.
  */
+import { endsAsSentence } from "./materialize";
 import type { ConceptTeachingScript, ConceptScriptTurn } from "./types";
 
 export const maskFrame = (markdown: string) =>
@@ -140,10 +141,13 @@ export const TEMPLATE_FRAMES: readonly TemplateFrame[] = [
     speaker: "teacher",
     findings: [
       {
+        // Corrected on 2026-10-05: a sentence answer now takes no "입니다". This stays
+        // as a guard and must reach no turn. It looks past math and a closing bracket,
+        // which the first count (27 of the 32) did not.
         id: "example-answer:predicate",
         finding:
           "은행의 답이 서술어이거나 문장일 때 ‘…이다**입니다.’처럼 틀린 문장이 된다.",
-        affects: (turn) => /(?:다|[.!?])$/.test(answerText(turn)?.trim() ?? ""),
+        affects: (turn) => endsAsSentence(answerText(turn) ?? ""),
       },
       {
         id: "example-answer:register",
@@ -153,6 +157,29 @@ export const TEMPLATE_FRAMES: readonly TemplateFrame[] = [
       },
     ],
   },
+  ...(
+    ["example-answer-sentence", "example-answer-sentence-closed"] as const
+  ).map((id): TemplateFrame => ({
+    id,
+    // The bank answer is a sentence: "…답하면 **유리수이다**." or, when the answer
+    // carries its own full stop, "…답하면 **아니다. 조각의 크기가 같지 않다.**"
+    frame:
+      id === "example-answer-sentence"
+        ? "이 기준으로 물음에 답하면 **B**."
+        : "이 기준으로 물음에 답하면 **B**",
+    match: "exact",
+    origin: "template",
+    repeatsAsWhole: id === "example-answer-sentence",
+    speaker: "teacher",
+    findings: [
+      {
+        id: `${id}:register`,
+        finding:
+          "문법은 맞지만 선생님 대사가 은행의 글말 답(‘…이다.’)으로 끝난다. 같은 수업의 반말과 말투가 다르다.",
+        affects: everyTurn,
+      },
+    ],
+  })),
   {
     id: "opening-elementary",
     frame: "어떤 뜻으로 생각해야 할까요? **B**부터 짚어 보고 싶어요.",
