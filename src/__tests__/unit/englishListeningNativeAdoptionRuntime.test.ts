@@ -26,7 +26,7 @@ import {
 import {
   adoptNativeListeningQuestions,
   loadNativeQuestionStage,
-} from "../../../scripts/import/adopt-native-listening-questions.mts";
+} from "../../../scripts/qa/english-listening/adopt-native-listening-questions.mts";
 
 const url = process.env.LISTENING_TEST_DATABASE_URL;
 if (

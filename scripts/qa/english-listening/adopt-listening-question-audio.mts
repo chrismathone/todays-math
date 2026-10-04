@@ -5,11 +5,11 @@ import { pathToFileURL } from "node:url";
 import { PrismaClient } from "@prisma/client";
 const require = createRequire(import.meta.url);
 const { questionAudioSourceIdSchema } =
-  require("../../src/lib/english/listening/questionAudioProof.ts") as typeof import("../../src/lib/english/listening/questionAudioProof.ts");
+  require("../../../src/lib/english/listening/questionAudioProof.ts") as typeof import("../../../src/lib/english/listening/questionAudioProof.ts");
 const { loadListeningQuestionAudioPlan, adoptListeningQuestionAudio } =
-  require("../../src/lib/english/listening/runtime/questionAudio.ts") as typeof import("../../src/lib/english/listening/runtime/questionAudio.ts");
+  require("../../../src/lib/english/listening/runtime/questionAudio.ts") as typeof import("../../../src/lib/english/listening/runtime/questionAudio.ts");
 const { readListeningStorageConfig, createListeningStorageApi } =
-  require("../../src/lib/english/listening/media/storageApi.ts") as typeof import("../../src/lib/english/listening/media/storageApi.ts");
+  require("../../../src/lib/english/listening/media/storageApi.ts") as typeof import("../../../src/lib/english/listening/media/storageApi.ts");
 const PROJECT_ID = "jyaguxwuaxgdnovtulna";
 const OWNER_ID = "6f361696-5eb5-4f7d-9c66-9313ad7bb06a";
 function fail(message: string): never {

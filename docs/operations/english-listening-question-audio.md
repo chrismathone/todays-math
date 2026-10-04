@@ -3,7 +3,7 @@
 기존 원본 세트의 문항을 검증된 passage별 음원 그룹으로 교체하는 trusted operator 작업이다. 원본 MP3/M4A·ready asset은 보존한다. WAV는 원본 전체를 엄격하게 디코딩한 PCM의 정확 sample frame 범위를 잘라 만들며 다시 압축하지 않는다. 음원은 private Supabase Storage의 immutable 1MiB objects, DB에는 기존 durable media metadata만 저장한다.
 
 ```powershell
-node --conditions=react-server --env-file=C:/Creative/testautocreator/.env --import=tsx scripts/import/adopt-listening-question-audio.mts ebsi-high-1-2022-2 --archive-root C:/Creative/testautocreator/output/listening-assessments
+node --conditions=react-server --env-file=C:/Creative/testautocreator/.env --import=tsx scripts/qa/english-listening/adopt-listening-question-audio.mts ebsi-high-1-2022-2 --archive-root C:/Creative/testautocreator/output/listening-assessments
 ```
 
 기본 실행은 로컬 파일 검증·전체 디코딩 후 SQL `SET TRANSACTION READ ONLY`로 현재 source scope/revision/document hash/rights/ready 원음/Storage quota를 확인한다. Storage credential을 읽거나 Storage에 연결하지 않는다. 쓰기는 같은 명령에 `--apply`를 명시한 경우에만 한다. 프로젝트 `jyaguxwuaxgdnovtulna`와 기존 운영 owner에 고정하며 public/anon key나 다른 프로젝트로 fallback하지 않는다. M4A는 trusted CLI 영역에서만 `--ffmpeg-path ABSOLUTE_PATH`와 기존 검증 변환 helper를 이용한다.

@@ -32,3 +32,11 @@
 - 빈 응답 자체는 발화로 만들지 않는다. 원문에 쓰인 호칭·접두부는 임의로 생략하지 않고 실제 ASR 근거까지 있어야 다음 절단을 승인한다.
 
 추가 7회차 137문항은 후보 106문항 통과·31문항 보류이며 **회차 전체 엄격 검증 통과는 0**이다. 한국어 12초 probe 밖의 원문 timestamp와 불완전한 후보 때문에 보류했고, 원문·시간·uncertain·해시는 고치지 않았다. 이는 문제나 원음 등록 실패가 아니라 문항별 자동 절단 승인 보류다.
+
+## 통합 검증 및 등록 관문
+
+Native PCM quiet 검사를 `loadListeningQuestionAudioPlan`에 연결했다. 전체 소스를 디코딩한 뒤, DB·Storage에 접근하기 전에 양쪽 실제 quiet 400ms와 첫·끝 50ms를 검사한다. 측정 중 읽은 WAV 전체 SHA와 업로드 예정 SHA를 대조하고, 실제 quiet와 VAD 여백을 서로 다른 필드로 audit에 저장한다. 새 plan hash에는 v2 정책과 고정 파형 기준을 포함한다. quiet 후보 탐색은 읽기 전용이며 절단 승인·VAD 검사 우회·이미 분할된 문서 덮어쓰기를 하지 않는다.
+
+Codex가 같은 원음과 원천 해시로 `codex-native-boundary-candidates.json`을 재측정했다. Claude 결과와 동일하게 기존 20구간 모두 실제 quiet 관문에서 거절됐고, 후보 19개·16번 보류였다. 모든 기존 적용 WAV SHA는 그대로 재현됐다. 5번의 비선택 ASR 시간 초과와 VAD가 신호음 일부를 발화로 잡은 11개 후보는 현재 엄격 절단 관문을 통과한 것으로 취급하지 않는다. 이 결과 때문에 기존 원음·초안은 그대로 유지했다.
+
+통합 PostgreSQL·Storage·PCM 검사 126개와 파형 회귀 검사가 통과했다. 별도 접근 분리 검사에서 기존 공통 표시 함수가 교사용 계약을 참조한 경로를 찾았다. 표시 함수는 계약·답·DB 의존성 없는 `src/lib/listeningQuestionPresentation.ts`로 옮겼다. 기존 듣기 전용 등록 CLI 3개도 이미 허용된 `scripts/qa/english-listening/`에 두고 상대 import 및 시험·운영 문서를 수정했다. 학생·수학의 영어 교사용 모듈 접근 허용을 넓히지 않았으며 private Storage chunk migration만 정확한 영어 DB 허용 목록에 추가했다. 접근 분리·학생 표시·인쇄·native 문항·CLI 검사 61개도 통과했다.

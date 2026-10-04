@@ -17,7 +17,7 @@ import {
   parseNativeListeningArgs,
   planNativeQuestionAdoption,
   validateNativeQuestionStage,
-} from "../../../scripts/import/adopt-native-listening-questions.mts";
+} from "../../../scripts/qa/english-listening/adopt-native-listening-questions.mts";
 
 const roots: string[] = [];
 async function fixture(preserve = false) {
@@ -256,7 +256,9 @@ describe("native PDF question adoption trust boundaries", () => {
       [
         "--conditions=react-server",
         "--import=tsx",
-        resolve("scripts/import/adopt-native-listening-questions.mts"),
+        resolve(
+          "scripts/qa/english-listening/adopt-native-listening-questions.mts",
+        ),
         "--help",
       ],
       {

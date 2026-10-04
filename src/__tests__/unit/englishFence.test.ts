@@ -117,6 +117,8 @@ const TABLE_ALLOWED = [
   // 세트의 «만든 조건» 칸(2026-10-01 원장님 «메타데이터 기억되게») — 마이그레이션과 그 적용 도구
   "prisma/migrations/20261001120000_english_set_meta/",
   "prisma/migrations/20261003120000_english_listening/",
+  // Private listening Storage chunk metadata migration, part of the English product.
+  "prisma/migrations/20261004071000_listening_storage_chunks/",
   "prisma/migrations/20261003160000_english_passage_bank/",
   // The managed identity migration adds branch ownership to English exams;
   // its isolated SQL probe verifies that backfill. Neither imports math logic.
