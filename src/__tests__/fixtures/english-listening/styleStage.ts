@@ -30,6 +30,7 @@ export async function makeListeningStyleStageFixture(
   judgmentVersion: "2" | "4" = "4",
   options: {
     legacy?: boolean;
+    koreanOnlyEvidence?: boolean;
     semanticCase?: "deadline_drift" | "deadline_preserved";
   } = {},
 ) {
@@ -66,9 +67,11 @@ export async function makeListeningStyleStageFixture(
   const segments = Array.from({ length: 5 }, (_, index) => ({
     id: index + 1,
     text:
-      options.semanticCase && index === 0
-        ? "You'll get the parcel by this Friday."
-        : `I will buy the square watch ${index + 1}.`,
+      options.koreanOnlyEvidence && index === 0
+        ? "네모난 시계를 살 거예요."
+        : options.semanticCase && index === 0
+          ? "You'll get the parcel by this Friday."
+          : `I will buy the square watch ${index + 1}.`,
     uncertain: index === 2,
   }));
   const asrSha256 = await write(asrPath, {

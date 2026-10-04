@@ -29,8 +29,8 @@ const actor = { kind: "teacher" as const, userId: owner };
 const roots: string[] = [];
 const runtime = db ? createListeningRuntime(db) : null;
 const json = (value: unknown) => Prisma.sql`${JSON.stringify(value)}::jsonb`;
-async function fixture(badReadyOriginal = false) {
-  const f = await makeListeningStyleStageFixture();
+async function fixture(badReadyOriginal = false, koreanOnlyEvidence = false) {
+  const f = await makeListeningStyleStageFixture("4", { koreanOnlyEvidence });
   roots.push(f.root);
   const loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
   const set = await runtime!.createSet(actor, loaded.baseline.createInput);
@@ -176,6 +176,38 @@ describe.skipIf(!db)(
       );
       expect(after.document.rights).toEqual(f.document.rights);
       expect(after.document.provenance).toEqual(f.document.provenance);
+    });
+    it("preserves a receipt-eligible item with Korean-only evidence while adopting other qualified items", async () => {
+      const f = await fixture(false, true);
+      const result = await applyListeningStyle(db!, f.loaded, f.backup, {
+        actor,
+        apply: true,
+      });
+      expect(result).toMatchObject({
+        status: "applied",
+        qualified: 1,
+        held: 4,
+      });
+      expect(result.adoptionHolds).toEqual([
+        {
+          questionId: f.document.groups[0].questions[0].id,
+          reasons: ["No English speech in the bound evidence quotations"],
+        },
+      ]);
+      const after = await stored(f.setId);
+      expect(after.document.groups[0].questions[0]).toEqual(
+        f.document.groups[0].questions[0],
+      );
+      expect(after.document.groups[0].questions[1]).toEqual(
+        f.loaded.staged.editableInput.groups[0].questions[1],
+      );
+      expect(after.document.groups[0].questions.slice(2)).toEqual(
+        f.document.groups[0].questions.slice(2),
+      );
+      expect(after.audits).toBe(1);
+      expect(
+        await applyListeningStyle(db!, f.loaded, f.backup, { actor }),
+      ).toMatchObject({ status: "already_applied", qualified: 1, held: 4 });
     });
     it("serializes concurrent identical applications and creates one adoption audit", async () => {
       const f = await fixture();
