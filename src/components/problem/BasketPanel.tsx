@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import type { BasketItem } from "@/contracts/basket.contract";
 import type { ClassEntity } from "@/contracts/class.contract";
 import { classOptionLabel, classOptionTitle } from "@/lib/class/ownerLabel";
+import { fetchClasses } from "@/lib/class/classApi";
+import { kstDateOf } from "@/lib/kstDate";
 
 /**
  * **담은 문항 목록 + 시험지 만들기** — 하단 바가 펼치는 한 겹.
@@ -31,9 +33,7 @@ export type BasketPanelProps = {
 
 /** 오늘 날짜(YYYY-MM-DD) — 시험 예정일의 기본값. */
 function today(): string {
-  const d = new Date();
-  const pad = (n: number): string => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  return kstDateOf(new Date());
 }
 
 export function BasketPanel({
@@ -53,13 +53,11 @@ export function BasketPanel({
     let alive = true;
     void (async () => {
       try {
-        const res = await fetch("/api/classes?page=1&pageSize=100");
-        if (!res.ok) throw new Error("반 목록을 불러오지 못했습니다");
-        const body = (await res.json()) as { data: ClassEntity[] };
+        const data = await fetchClasses();
         if (!alive) return;
-        setClasses(body.data);
+        setClasses(data);
         // 반이 하나뿐이면 고를 것이 없다 — 미리 골라 둔다(원장님 대부분이 그렇다).
-        if (body.data.length === 1) setClassId(body.data[0]!.id);
+        if (data.length === 1) setClassId(data[0]!.id);
       } catch (e) {
         if (alive) setLoadError(e instanceof Error ? e.message : String(e));
       }

@@ -7,6 +7,7 @@ import { TEMPLATE_COMPONENTS } from "./templateComponents";
 import { useMeasuredPages } from "./useMeasuredPages";
 import type { PrintMeta, PrintOptions, ProblemReview } from "./types";
 import s from "./WorksheetPrint.module.css";
+import { kstDateOf } from "@/lib/kstDate";
 import editor from "../WorksheetEditor.module.css";
 
 const EMPTY: ProblemReview[] = [];
@@ -68,9 +69,7 @@ export function WorksheetPrint({
       grade:
         result.grade ||
         [...new Set(selected.map((p) => p.grade).filter(Boolean))].join(" · "),
-      examDate:
-        result.examDate ||
-        `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`,
+      examDate: result.examDate || kstDateOf(today),
     };
   }, [printMeta, title, selected]);
   const Template = TEMPLATE_COMPONENTS[options.template];

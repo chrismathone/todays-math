@@ -49,7 +49,9 @@ export function DoneSummaryRow({ row, hot, onSelect }: Props) {
           ) : null}{" "}
           — {row.meta}
         </span>
-        <StageGauge stage="done" />
+        <span className="max-sm:col-span-2">
+          <StageGauge stage="done" />
+        </span>
       </button>
       <span className="text-center">완료</span>
     </div>

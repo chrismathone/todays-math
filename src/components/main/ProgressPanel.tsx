@@ -9,8 +9,8 @@ type Props = {
   units: readonly Pick<UnitEntity, "id" | "section" | "orderIndex">[];
   selectedClassId: string;
   selectedUnitId: string | null;
-  printedDays: number;
-  unmodifiedRate: number;
+  printedDays: number | null;
+  unmodifiedRate: number | null;
   error: string | null;
   /** 화면에 보이는 차시(열람 위치)가 실제 기록된 진도와 달라 "진도 기록"이 의미 있는 상태인가. */
   canRecord: boolean;
@@ -58,7 +58,7 @@ export function ProgressPanel({
   // 면은 물러난다 — 팔레트 「계기판」 설계 노트가 예고한 그 자리다.
   // 덤으로 패널 위 본문 대비가 5.11:1 → 6.21:1 로 올라간다.
   return (
-    <aside className="w-[250px] shrink-0 border-l-[3px] border-ink bg-surface px-5 py-4">
+    <aside className="w-full shrink-0 border-t-[3px] border-ink bg-surface px-5 py-4 md:w-[250px] md:border-t-0 md:border-l-[3px]">
       <h2 className="mb-2 border-t-[3px] border-ink pt-1.5 text-[10.5px] font-black tracking-[2.5px]">
         진도 입력
       </h2>
@@ -144,7 +144,7 @@ export function ProgressPanel({
             aria-label="이번 주 인쇄 일수"
             className="text-[26px] font-black leading-none tabular-nums text-g-blue"
           >
-            {printedDays}
+            {printedDays ?? "—"}
           </div>
           <div className="mt-1 text-[9.5px] font-extrabold tracking-[1.2px] text-faint">
             인쇄 일수
@@ -155,8 +155,10 @@ export function ProgressPanel({
             aria-label="이번 주 무수정 사용률"
             className="text-[26px] font-black leading-none tabular-nums text-g-blue"
           >
-            {unmodifiedRate}
-            <small className="text-[13px] font-extrabold text-faint">%</small>
+            {unmodifiedRate ?? "—"}
+            {unmodifiedRate !== null ? (
+              <small className="text-[13px] font-extrabold text-faint">%</small>
+            ) : null}
           </div>
           <div className="mt-1 text-[9.5px] font-extrabold tracking-[1.2px] text-faint">
             무수정
