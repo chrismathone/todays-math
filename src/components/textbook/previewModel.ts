@@ -14,6 +14,7 @@ import {
   TEXTBOOK_TEMPLATE_VERSION,
   type TextbookRenderModel,
 } from "@/lib/textbook/render/model";
+import { recallMeasurementModel } from "@/lib/textbook/render/recoveryMeasurement";
 
 import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 
@@ -38,6 +39,7 @@ export type SectionPreview =
   | {
       ok: true;
       model: TextbookRenderModel;
+      recallMeasurementModel?: TextbookRenderModel;
       resources: PreviewResources;
       /** 예약이 없는 초안·발행본. 측정은 하고, 해설 칸은 비운다. */
       provisionalNotice: string | null;
@@ -402,6 +404,10 @@ export function buildSectionPreview(input: {
   return {
     ok: true,
     model,
+    recallMeasurementModel: recallMeasurementModel(
+      createTextbookRenderModel(parsed.data, "answers"),
+      model,
+    ),
     resources,
     provisionalNotice: wired.provisionalNotice
       ? draft

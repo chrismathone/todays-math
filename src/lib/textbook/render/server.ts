@@ -29,10 +29,17 @@ import {
 } from "./model";
 import {
   measurementHtml,
+  recallMeasurementHtml,
   renderPageHtml,
   textbookHtmlDocument,
   type RenderResources,
 } from "./html";
+import {
+  recallMeasurementModel,
+  recoveryMeasurePlan,
+  measureRecoveryDom,
+  applyRecoveryMeasurements,
+} from "./recoveryMeasurement";
 import {
   dataUrl,
   editorialResourceUrl,
@@ -398,6 +405,27 @@ export async function renderTextbookChunk(
   input.signal?.addEventListener("abort", abort, { once: true });
   try {
     input.onProgress?.("measuring");
+    await loadReady(
+      page,
+      textbookHtmlDocument(
+        model.title,
+        measurementHtml(model, resolver) +
+          recallMeasurementHtml(
+            recallMeasurementModel(
+              createTextbookRenderModel(exchange, "answers"),
+              model,
+            ),
+            resolver,
+          ),
+        bundle.fontCss,
+        bundle.katexCss,
+      ),
+    );
+    const recoveryMeasurements = await page.evaluate(
+      measureRecoveryDom,
+      recoveryMeasurePlan(model),
+    );
+    applyRecoveryMeasurements(model, recoveryMeasurements);
     await loadReady(
       page,
       textbookHtmlDocument(

@@ -106,7 +106,7 @@ export async function readTextbookArchive(
       for (const match of css.matchAll(/url\(([^)]+)\)/g)) {
         const fontPath = match[1].replace(/^["']|["']$/g, "");
         if (
-          !/^runtime\/(?:katex\/)?fonts\/[A-Za-z0-9_.-]+$/.test(fontPath) ||
+          !/^runtime\/(?:(?:katex|editorial)\/)?fonts\/[A-Za-z0-9_.-]+$/.test(fontPath) ||
           !manifest.files.some(
             (f) => f.path === fontPath && f.mimeType.startsWith("font/"),
           )

@@ -5,6 +5,7 @@ import {
 import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
 import { composeFrozenTextbookBlank } from "@/lib/concept-blank/textbookPrint";
 import { checkChoiceFigureIndex } from "@/lib/problem/choiceFigureIndex";
+import { semanticFragmentAssetIds } from "./semanticAssets";
 
 export interface ReferenceOptions {
   mode?: "draft" | "archive" | "publish";
@@ -148,6 +149,7 @@ export function validateTextbookReferences(
           )
             add("CONCEPT_SECTION", "개념과 블록의 단원·구획이 다릅니다.", p);
         }
+        for (const assetId of semanticFragmentAssetIds(b.semantic)) image(assetId, [...p, "semantic", "node"]);
       });
       if (publish && !s.blocks.length)
         add("EMPTY_SECTION", "발행할 구획에 원고를 입력하세요.", location);
