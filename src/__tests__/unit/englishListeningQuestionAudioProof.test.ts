@@ -7,6 +7,7 @@ import {
   questionAudioSha256,
   verifyQuestionAudioEvidence,
   questionAudioCueNumbers,
+  verifyQuestionAudioSourceSpeech,
 } from "@/lib/english/listening/questionAudioProof";
 import { loadListeningQuestionAudioPlan } from "@/lib/english/listening/runtime/questionAudio";
 import {
@@ -21,6 +22,41 @@ afterEach(async () => {
     await rm(folder, { recursive: true, force: true });
 });
 describe("complete-source speech evidence", () => {
+  it("rejects omitted edge speech even when the producer shortens the section to hide it", () => {
+    for (const edge of ["first", "last"] as const) {
+      const proof = questionAudioEvidence();
+      const section = proof.script.sections[0];
+      if (edge === "first") section.utterances.shift();
+      else section.utterances.pop();
+      section.startCharacter = section.utterances[0].startCharacter;
+      section.endCharacter = section.utterances.at(-1)!.endCharacter;
+      expect(() => verifyQuestionAudioSourceSpeech(proof.script)).toThrow(
+        /whole official speaker speech/,
+      );
+      expect(() => verifyQuestionAudioEvidence(proof)).toThrow(
+        /whole official speaker speech/,
+      );
+    }
+  });
+  it("preserves real speaker text while excluding numbered instructions, page footers and blank responses", () => {
+    const text =
+      "ANN : 모든 문제는 한 번씩 들려드립니다. 1번 다음 대화를 듣고 고르시오. M : Hello, friend. W: Great, see you tomorrow. M: Alex, ____________________\n10 2. SkySymphony에 관한 내용을 듣고 고르시오. M: Welcome to the new school. [Pause] ANN: 수고하셨습니다.";
+    const first = text.indexOf("Hello"),
+      last = text.indexOf("tomorrow.") + "tomorrow.".length;
+    const next = text.indexOf("Welcome"),
+      end = text.indexOf(" [Pause]");
+    const fixture = questionAudioEvidence().script;
+    fixture.sourceTranscriptText = text;
+    fixture.sections = [
+      { ...fixture.sections[0], startCharacter: first, endCharacter: last },
+      { ...fixture.sections[1], startCharacter: next, endCharacter: end },
+    ];
+    expect(() => verifyQuestionAudioSourceSpeech(fixture)).not.toThrow();
+    fixture.sections[0].endCharacter = text.indexOf("tomorrow.");
+    expect(() => verifyQuestionAudioSourceSpeech(fixture)).toThrow(
+      /whole official speaker speech/,
+    );
+  });
   it("qualifies complete official dialogue, curly punctuation and exact independent passage boundaries", () => {
     const proof = questionAudioEvidence();
     expect(verifyQuestionAudioEvidence(proof)).toHaveLength(2);
@@ -183,6 +219,15 @@ describe("complete-source speech evidence", () => {
   });
   it("retains only a complete, genuinely shared passage as one group", () => {
     const proof = questionAudioEvidence();
+    // The official source itself contains one common dialogue, rather than an
+    // omitted second dialogue that a producer merely labels as shared.
+    proof.script.sourceTranscriptText = proof.script.sourceTranscriptText.slice(
+      0,
+      proof.script.sections[0].endCharacter,
+    );
+    proof.script.sourceTranscriptSha256 = questionAudioSha256(
+      proof.script.sourceTranscriptText,
+    );
     proof.script.sections = [
       { ...proof.script.sections[0], questionNumbers: [1, 2] },
     ];

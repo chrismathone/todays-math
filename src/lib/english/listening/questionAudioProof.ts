@@ -278,6 +278,68 @@ function coverage(expected: string, observed: string) {
     precision: b.length ? row[b.length] / b.length : 0,
   };
 }
+
+/** Check outside producer-selected bounds too: trimming a section must not hide speech. */
+export function verifyQuestionAudioSourceSpeech(script: QuestionAudioScript) {
+  const text = script.sourceTranscriptText;
+  const speakers = Array.from(
+    text.matchAll(/\b(ANN|[A-Z]\d?|[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*:\s*/g),
+  );
+  let sourceSpeechCount = 0;
+  let previousEnd = -1;
+  for (const section of script.sections) {
+    if (section.startCharacter < previousEnd)
+      fail("whole official speaker speech sections overlap or are reordered");
+    previousEnd = section.endCharacter;
+  }
+  for (const [index, speaker] of speakers.entries()) {
+    if (speaker[1] === "ANN") continue;
+    const start = speaker.index! + speaker[0].length;
+    let end = speakers[index + 1]?.index ?? text.length;
+    const body = text.slice(start, end);
+    const instruction =
+      /ⓒ|©|\b\d{1,2}\s*번|\b\d{1,2}\s*\.\s*(?=[가-힣]|[^:]{0,180}고르시오)|[\[【]\s*\d{1,2}\s*[~～–—-]\s*\d{1,2}\s*[\]】]/.exec(
+        body,
+      );
+    if (instruction) {
+      end = start + instruction.index;
+      // The mock-exam PDF puts a standalone page number before its next question.
+      const footer = /\n\s*\d{1,3}\s*$/.exec(text.slice(start, end));
+      if (footer) end = start + footer.index;
+    }
+    const spoken = text.slice(start, end);
+    // A missing response may retain only its written addressee, e.g. "Heather, ____".
+    // An actual sentence containing a blank is not silently excluded.
+    if (
+      /^\s*(?:[A-Z][A-Za-z’'-]*(?:\s+[A-Z][A-Za-z’'-]*)?,\s*)?_{3,}\s*[.!?]?\s*$/.test(
+        spoken,
+      )
+    )
+      continue;
+    const expected = tokens(spoken);
+    if (!expected.length) continue;
+    sourceSpeechCount++;
+    const covered = script.sections
+      .filter((s) => s.startCharacter < end && s.endCharacter > start)
+      .map((s) =>
+        text.slice(
+          Math.max(start, s.startCharacter),
+          Math.min(end, s.endCharacter),
+        ),
+      )
+      .join("\n");
+    const actual = tokens(covered);
+    if (
+      expected.length !== actual.length ||
+      expected.some((word, i) => word !== actual[i])
+    )
+      fail(
+        "whole official speaker speech is omitted outside selected section bounds",
+      );
+  }
+  if (!sourceSpeechCount)
+    fail("whole official speaker speech has no source labels");
+}
 const spokenNumbers = [
   "zero",
   "one",
@@ -623,6 +685,7 @@ export function verifyQuestionAudioEvidence(input: {
     )
       fail("repetition count has no explicit source evidence");
   }
+  verifyQuestionAudioSourceSpeech(script);
   const noSpeech = (start: number, end: number) =>
     !activity.events.some((e) => e.startSample < end && e.endSample > start);
   const selected = (
