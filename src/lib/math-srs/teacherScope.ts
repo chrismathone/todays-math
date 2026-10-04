@@ -16,17 +16,27 @@ export async function requireTeacherBranch(
   classId: string,
   branchId?: string,
   client: Prisma.TransactionClient = db,
+  studentId?: string,
 ) {
   if (!branchId) return null;
-  const cls = await client.class.findUnique({ where: { id: classId } });
-  return cls?.branchId === branchId ? null : notFoundError("학생");
+  const [cls, student] = await Promise.all([
+    client.class.findUnique({ where: { id: classId } }),
+    studentId
+      ? client.student.findUnique({ where: { id: studentId } })
+      : Promise.resolve(null),
+  ]);
+  return cls?.branchId === branchId &&
+    (!studentId || student?.branchId === branchId)
+    ? null
+    : notFoundError("학생");
 }
 
 export async function assertTeacherBranch(
   tx: Prisma.TransactionClient,
   classId: string,
   branchId?: string,
+  studentId?: string,
 ) {
-  if (await requireTeacherBranch(classId, branchId, tx))
+  if (await requireTeacherBranch(classId, branchId, tx, studentId))
     throw new ClassAccessDenied();
 }
