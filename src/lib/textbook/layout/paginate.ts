@@ -58,6 +58,19 @@ export class TextbookLayoutError extends Error {
 }
 export const blockColumnSpan = (block: RenderBlock): 1 | 2 =>
   block.kind === "problem" ? block.layout.columnSpan : 2;
+export function textbookBodyTopMm(
+  section: RenderSection,
+  block?: RenderBlock,
+): number {
+  if (!section.blocks.some((candidate) => candidate.semantic))
+    return A4.bodyTopMm;
+  if (section.templateKey.startsWith("reference-unitSpread")) return 16;
+  return (block?.editorialStage ?? section.editorialStage) === "opening" ||
+    section.templateKey === "reference-paired" ||
+    section.templateKey === "reference-types"
+    ? 21
+    : 23;
+}
 export function blockWidthMm(
   config: TextbookConfig,
   block: RenderBlock,
@@ -75,7 +88,9 @@ export function continuesTextbookSection(
   section: Pick<RenderSection, "unitKey" | "templateKey" | "startPolicy">,
 ): boolean {
   const isolated = (template: string) =>
-    template === "rest" || template === "auto-lesson";
+    template === "rest" ||
+    template.startsWith("auto-") ||
+    template.startsWith("reference-");
   return Boolean(
     previous &&
     section.startPolicy === "continue" &&
@@ -165,8 +180,15 @@ export function paginateTextbookSections(
         `주요 구획 ${section.sectionKey}이 홀수 ${next}쪽에서 시작합니다. 이전 구획 ${previousSection ?? "표지·본문 시작 면"}의 실제 원고 배치 또는 설정을 수정하세요. 빈 쪽은 자동 삽입하지 않습니다.`,
         section,
       );
+    const recovered = section.blocks.some((block) => block.semantic);
+    const bodyBottom =
+      recovered &&
+      section.blocks.some((block) => block.editorialStage === "opening")
+        ? 266
+        : A4.bodyBottomMm;
     let page: TextbookPage | undefined,
-      cursor = A4.bodyTopMm;
+      cursor = textbookBodyTopMm(section, section.blocks[0]);
+    let currentHeading: RenderBlock | undefined;
     const previousPage = pages[pages.length - 1];
     if (
       continuesTextbookSection(
@@ -192,6 +214,9 @@ export function paginateTextbookSections(
           "쪽 수 상한을 넘었습니다. 구획을 나눠 주세요.",
           section,
         );
+      const continuing = Boolean(
+        page?.blocks.length || pages.length > sectionPageStart,
+      );
       page = {
         physicalPageIndex: next,
         printedPageLabel: String(next),
@@ -205,20 +230,61 @@ export function paginateTextbookSections(
       };
       next++;
       pages.push(page);
-      cursor = A4.bodyTopMm;
+      cursor = textbookBodyTopMm(section, row[0]?.block);
+      if (
+        recovered &&
+        continuing &&
+        currentHeading &&
+        row[0]?.block.kind !== "heading"
+      ) {
+        const headingSize = measure.get(currentHeading.id)!;
+        const x =
+          page.physicalPageIndex % 2 === 0
+            ? config.print.outerMarginMm
+            : config.print.innerMarginMm;
+        page.blocks.push({
+          blockId: currentHeading.id,
+          column: 1,
+          xMm: x,
+          yMm: cursor,
+          widthMm: blockWidthMm(config, currentHeading),
+          heightMm: headingSize.heightMm,
+        });
+        cursor += headingSize.heightMm + A4.gapMm;
+      }
     };
     let row: { block: RenderBlock; measurement: BlockMeasurement }[] = [];
     const flush = () => {
       if (!row.length) return;
       const height = Math.max(...row.map((r) => r.measurement.heightMm));
-      if (height > A4.bodyBottomMm - A4.bodyTopMm)
+      if (height > bodyBottom - textbookBodyTopMm(section, row[0]?.block))
         fail(
           "BLOCK_OVERFLOW",
           `블록 높이 ${height.toFixed(1)}mm가 본문 영역보다 큽니다. 이 블록의 원고·그림·풀이선 수를 나누거나 줄여 주세요.`,
           section,
           row[0].block,
         );
-      if (!page || cursor + height > A4.bodyBottomMm) newPage();
+      if (!page || cursor + height > bodyBottom) newPage();
+      if (
+        row[0].block.dialogueTopMm &&
+        !page!.blocks.some((placement) => {
+          const placed = section.blocks.find(
+            (block) => block.id === placement.blockId,
+          );
+          return (
+            placed?.kind === "dialogue" ||
+            placed?.semantic?.node?.kind === "board"
+          );
+        })
+      )
+        cursor = Math.max(cursor, row[0].block.dialogueTopMm);
+      if (cursor + height > bodyBottom)
+        fail(
+          "BLOCK_OVERFLOW",
+          "계속되는 쪽의 제목과 원고를 함께 넣을 공간이 부족합니다.",
+          section,
+          row[0].block,
+        );
       const left =
         page!.physicalPageIndex % 2 === 0
           ? config.print.outerMarginMm
@@ -255,9 +321,15 @@ export function paginateTextbookSections(
       // Exercise and prose rows keep their measured four-millimetre spacing.
       const gap = row.every(({ block }) => block.kind === "recall")
         ? 1
-        : row.every(({ block }) => block.kind === "dialogue")
-          ? 1.5
-          : A4.gapMm;
+        : row.every(
+              ({ block }) =>
+                block.kind === "dialogue" ||
+                block.semantic?.node?.kind === "board",
+            )
+          ? (row[0].block.dialogueGapMm ?? 0.85)
+          : row[0].block.kind === "heading" && recovered
+            ? 3.5
+            : A4.gapMm;
       cursor += height + gap;
       row = [];
     };
@@ -266,9 +338,10 @@ export function paginateTextbookSections(
         flush();
         if (page?.blocks.length) {
           page = undefined;
-          cursor = A4.bodyTopMm;
+          cursor = textbookBodyTopMm(section, block);
         }
       }
+      if (block.kind === "heading") currentHeading = block;
       const m = measure.get(block.id);
       if (
         !m ||

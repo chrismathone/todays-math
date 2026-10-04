@@ -1,9 +1,11 @@
 import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
 import type { RenderBlock } from "../model";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
+import { imageHtml, type RenderResources } from "./shared";
+import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
 
 function inlineMarkdown(source: string): string {
-  const html = md(source);
+  const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
   return /^<p>[\s\S]*<\/p>$/.test(html) && !html.slice(3, -4).includes("<p>")
     ? html.slice(3, -4)
     : html;
@@ -12,13 +14,26 @@ function inlineMarkdown(source: string): string {
 /** The validated tree has no URL, arbitrary style, event handler or executable HTML. */
 export function renderSourceFragments(
   nodes: readonly TextbookSourceFragment[],
+  resources?: RenderResources,
 ): string {
   return nodes
     .map((node) => {
       const attributes = node.attributes;
       const attrs = `${attributes?.className ? ` class="${esc(attributes.className)}"` : ""}${attributes?.colSpan ? ` colspan="${attributes.colSpan}"` : ""}${attributes?.rowSpan ? ` rowspan="${attributes.rowSpan}"` : ""}`;
       if (node.tag === "br") return "<br>";
-      return `<${node.tag}${attrs}>${node.rawText ? inlineMarkdown(node.rawText) : ""}${renderSourceFragments(node.children ?? [])}</${node.tag}>`;
+      if (node.tag === "img") {
+        if (!resources || !attributes?.assetId)
+          throw new Error("원본 구조의 고정 그림 자산을 읽을 수 없습니다.");
+        return imageHtml(
+          resources,
+          attributes.assetId,
+          attributes.alt ?? "그림",
+        ).replace(
+          "<img ",
+          `<img${attributes.className ? ` class="${esc(attributes.className)}"` : ""} `,
+        );
+      }
+      return `<${node.tag}${attrs}>${node.rawText ? inlineMarkdown(node.rawText) : ""}${renderSourceFragments(node.children ?? [], resources)}</${node.tag}>`;
     })
     .join("");
 }
@@ -30,12 +45,13 @@ export function writingLinesHtml(lines: number): string {
 /** Independently selected activities use their own instructions and bounded writing spaces. */
 export function renderSemanticTextHtml(
   block: Extract<RenderBlock, { kind: "text" }>,
+  resources?: RenderResources,
 ): string | null {
   const semantic = block.semantic;
   const node = semantic?.node;
   if (!semantic || !node) return null;
   if (node.kind === "fragments")
-    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${renderSourceFragments(node.fragments)}</section>`;
+    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${renderSourceFragments(node.fragments, resources)}</section>`;
   if (node.kind === "writing")
     return `<section class="tb-writing-activity" data-activity="${semantic.activity}">${node.prompts.map((prompt) => `<div class="tb-writing-prompt">${md(prompt)}${writingLinesHtml(node.lines)}</div>`).join("")}</section>`;
   if (node.kind === "references")

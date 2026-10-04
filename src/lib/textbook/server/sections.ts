@@ -15,6 +15,7 @@ import type {
   Section,
 } from "@/contracts/textbookExchange.contract";
 import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
+import { semanticFragmentAssetIds } from "../semanticAssets";
 
 import {
   type TextbookActor,
@@ -139,6 +140,7 @@ export function blockReferences(blocks: readonly ManuscriptBlock[]): {
   const referencedConcepts: string[] = [];
   const assetIds: string[] = [];
   for (const block of blocks) {
+    assetIds.push(...semanticFragmentAssetIds(block.semantic));
     if (block.kind === "problem") itemIds.push(block.itemId);
     else if (block.kind === "concept") placedConcepts.push(block.conceptKey);
     else if (block.kind === "concept-recall") {

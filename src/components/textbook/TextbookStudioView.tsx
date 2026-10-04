@@ -1461,6 +1461,7 @@ export function TextbookStudioView({
           <SectionMeasure
             key={`${draft.sectionId}:${previewVariant}:${draft.revision}:${draft.parity}:${draft.title}`}
             model={preview.model}
+            recallMeasurementModel={preview.recallMeasurementModel}
             resources={preview.resources}
             zoom={zoom}
             physicalPageIndex={spreadIndex}

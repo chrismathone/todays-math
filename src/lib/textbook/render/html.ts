@@ -10,8 +10,23 @@ import {
   type EditorialStage,
 } from "./editorial";
 import { EDITORIAL_CSS } from "./editorialCss";
+import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
+import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
 import { renderConceptHtml } from "./blocks/concept";
-import { renderDialogueHtml } from "./blocks/dialogue";
+import {
+  renderDialogueHtml,
+  renderDialogueBoardHtml,
+  isDialoguePlacement,
+  renderDialogueContinueHtml,
+  renderDialogueLessonTitleHtml,
+  renderDialogueGuideHtml,
+} from "./blocks/dialogue";
+import { DIALOGUE_CSS } from "./blocks/dialogueCss";
+import { TEXTBOOK_CONTENT_CSS } from "./blocks/contentCss";
+import {
+  renderSemanticTextHtml,
+  SEMANTIC_ACTIVITY_CSS,
+} from "./blocks/semantic";
 import {
   renderCoverHtml,
   renderHeadingHtml,
@@ -28,7 +43,7 @@ export function renderBlockHtml(
 ): string {
   const projected = block as EditorialBlock;
   const stage = editorialStage(projected);
-  return `<div class="tb-editorial tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}">${renderBlockContent(projected, resources, stage)}</div>`;
+  return `<div class="tb-editorial${block.semantic || block.dialogueGuide || block.dialogueLesson ? " tb-recovery" : ""} tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}">${renderBlockContent(projected, resources, stage)}</div>`;
 }
 function renderBlockContent(
   block: EditorialBlock,
@@ -41,7 +56,14 @@ function renderBlockContent(
     case "heading":
       return renderHeadingHtml(block, resources, stage);
     case "text":
-      return `<div class="tb-prose">${md(block.markdown)}</div>`;
+      return block.dialogueGuide
+        ? renderDialogueGuideHtml(block.dialogueGuide)
+        : block.dialogueLesson
+          ? renderDialogueLessonTitleHtml(block.dialogueLesson)
+          : block.semantic?.node?.kind === "board"
+            ? renderDialogueBoardHtml(block, resources)
+            : (renderSemanticTextHtml(block, resources) ??
+              `<div class="tb-prose">${md(block.markdown)}</div>`);
     case "image":
       return `<figure class="tb-figure">${imageHtml(resources, block.assetId, block.caption ?? "그림")}${block.caption ? `<figcaption>${esc(block.caption)}</figcaption>` : ""}</figure>`;
     case "dialogue":
@@ -83,6 +105,11 @@ export const TEXTBOOK_CSS = `
 .tb-paper[data-template-key="rest"]{background:#fffdf6}.tb-block[data-template-key="rest"] .tb-section-heading,.tb-measure-block[data-template-key="rest"] .tb-section-heading{background:transparent;border:0;padding-left:0;color:#334d35}.tb-block[data-template-key="rest"] .tb-figure img,.tb-measure-block[data-template-key="rest"] .tb-figure img{max-height:85mm}.tb-block[data-template-key="rest"] .tb-prose,.tb-measure-block[data-template-key="rest"] .tb-prose{font-size:10pt;line-height:1.9;color:#354a37}.tb-block[data-template-key="rest"] .tb-prose h3,.tb-measure-block[data-template-key="rest"] .tb-prose h3{font-size:9pt;border-top:.65pt solid #d3dec7;padding-top:3mm;margin-top:4mm;color:#5b7550}
 @media screen{.tb-paper{box-shadow:0 2px 10px #0002}.tb-spread{overflow:auto}}@media print{.tb-spread{display:block}.tb-paper{box-shadow:none}}
 ${EDITORIAL_CSS}
+${TEXTBOOK_CONTENT_CSS}
+${DIALOGUE_CSS}
+${SEMANTIC_ACTIVITY_CSS}
+${RECOVERY_FRAME_CSS}
+${SOURCE_CHAPTER_CSS}
 `;
 
 export function renderPageHtml(
@@ -113,18 +140,77 @@ export function renderPageHtml(
       candidate.sectionKey === page.sectionKey,
   );
   const stage = editorialStage(blocks.get(page.blocks[0]?.blockId), section);
-  return `<article class="tb-paper tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small></span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${page.blocks
-    .map((p) => {
-      const block = blocks.get(p.blockId);
-      if (!block) throw new Error(`Missing rendered block ${p.blockId}`);
-      const blockSection = model.sections.find((s) =>
-        s.blocks.some((b) => b.id === block.id),
-      );
-      return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm}mm;top:${p.yMm}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
-    })
-    .join(
-      "",
-    )}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(page.printedPageLabel)}</strong><span>${esc(EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+  const dialogue = page.blocks.filter((placement) => {
+    const block = blocks.get(placement.blockId);
+    return block && isDialoguePlacement(block);
+  });
+  const backdrop = dialogue.length
+    ? `<div class="tb-dialogue-backdrop" aria-hidden="true" style="left:${dialogue[0].xMm}mm;top:${dialogue[0].yMm - 3}mm;width:${dialogue[0].widthMm}mm;height:${Math.max(...dialogue.map((placement) => placement.yMm + placement.heightMm)) - dialogue[0].yMm + 6}mm"></div>`
+    : "";
+  const dialoguePages = model.sections
+    .flatMap((candidate) => candidate.blocks)
+    .filter(isDialoguePlacement);
+  const dialogueSource = dialogue
+    .map((placement) => blocks.get(placement.blockId)!)
+    .find((block) => block.semantic?.source?.scriptIndex)?.semantic?.source;
+  const scriptIndex = dialogueSource?.scriptIndex;
+  const scriptTotal = scriptIndex
+    ? Math.max(
+        ...dialoguePages
+          .filter(
+            (block) => block.semantic?.source?.unit === dialogueSource.unit,
+          )
+          .map((block) => block.semantic?.source?.scriptIndex ?? 0),
+      )
+    : 0;
+  const continueNote = dialogue.length
+    ? `<div class="tb-dialogue-page-note" style="left:${left}mm;right:${right}mm">${renderDialogueContinueHtml(
+        {
+          label: "단원을 여는 수업",
+          index: scriptIndex ?? 1,
+          total: scriptTotal || 1,
+          note:
+            scriptIndex && scriptIndex < scriptTotal
+              ? "다음 쪽에서 이어집니다."
+              : "수업에서 배운 내용을 설명해 보세요.",
+        },
+      )}</div>`
+    : "";
+  const recovered = Boolean(section?.blocks.some((block) => block.semantic));
+  const placementHtml = (
+    p: TextbookPage["blocks"][number],
+    offsetX = 0,
+    offsetY = 0,
+  ) => {
+    const block = blocks.get(p.blockId);
+    if (!block) throw new Error(`Missing rendered block ${p.blockId}`);
+    const blockSection = model.sections.find((s) =>
+      s.blocks.some((b) => b.id === block.id),
+    );
+    return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm - offsetX}mm;top:${p.yMm - offsetY}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
+  };
+  const bodyBlocks = page.blocks.filter(
+    (placement) => blocks.get(placement.blockId)?.kind !== "heading",
+  );
+  const bodyTop = Math.min(
+    ...bodyBlocks.map((placement) => placement.yMm),
+    ...dialogue.map((placement) => placement.yMm - 3),
+  );
+  const bodyEnd = Math.max(
+    ...bodyBlocks.map((placement) => placement.yMm + placement.heightMm),
+    ...dialogue.map((placement) => placement.yMm + placement.heightMm + 3),
+  );
+  const content =
+    recovered && bodyBlocks.length
+      ? page.blocks
+          .filter(
+            (placement) => blocks.get(placement.blockId)?.kind === "heading",
+          )
+          .map((placement) => placementHtml(placement))
+          .join("") +
+        `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyBlocks.map((placement) => placementHtml(placement, left, bodyTop)).join("")}</div>`
+      : page.blocks.map((placement) => placementHtml(placement)).join("");
+  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small></span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(page.printedPageLabel)}</strong><span>${esc(EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(
@@ -135,10 +221,28 @@ export function measurementHtml(
     .flatMap((section) =>
       section.blocks.map(
         (block) =>
-          `<div class="tb-measure-block" data-template-key="${esc(section.templateKey)}" data-measure-id="${esc(block.id)}" style="width:${blockWidthMm(model.config, block)}mm">${renderBlockHtml(editorialBlock(block, section), resources)}</div>`,
+          `<div class="tb-measure-block" data-template-key="${esc(section.templateKey)}" data-measure-id="${esc(block.id)}" style="width:${blockWidthMm(model.config, block)}mm${block.measurementMinHeightMm ? `;min-height:${block.measurementMinHeightMm}mm` : ""}">${renderBlockHtml(editorialBlock(block, section), resources)}</div>`,
       ),
     )
     .join("")}</main>`;
+}
+/** Only an authorized private measurement DOM receives these recall probes. */
+export function recallMeasurementHtml(
+  model: TextbookRenderModel,
+  resources: RenderResources,
+): string {
+  if (
+    model.sections.some((section) =>
+      section.blocks.some((block) => block.kind !== "recall"),
+    )
+  )
+    throw new Error(
+      "Canonical measurement probes must contain recall rows only",
+    );
+  return measurementHtml(model, resources).replaceAll(
+    "data-measure-id=",
+    "data-recall-probe-id=",
+  );
 }
 export function textbookHtmlDocument(
   title: string,

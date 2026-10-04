@@ -5,7 +5,17 @@ import {
   paginateTextbookSections,
   type TextbookLayout,
 } from "../layout/paginate";
-import { measurementHtml, TEXTBOOK_CSS, type RenderResources } from "./html";
+import {
+  measurementHtml,
+  recallMeasurementHtml,
+  TEXTBOOK_CSS,
+  type RenderResources,
+} from "./html";
+import {
+  recoveryMeasurePlan,
+  measureRecoveryDom,
+  applyRecoveryMeasurements,
+} from "./recoveryMeasurement";
 import type { TextbookRenderModel } from "./model";
 import { getTextbookCharacter } from "../characters";
 
@@ -20,7 +30,12 @@ export const TEXTBOOK_PREVIEW_FONT_CSS = [400, 700]
 export async function measureTextbookPreview(
   model: TextbookRenderModel,
   resources: RenderResources,
-  options: { fontCss?: string; katexCss?: string; signal?: AbortSignal } = {},
+  options: {
+    fontCss?: string;
+    katexCss?: string;
+    signal?: AbortSignal;
+    recallMeasurementModel?: TextbookRenderModel;
+  } = {},
 ): Promise<TextbookLayout> {
   if (model.sections.reduce((n, s) => n + s.blocks.length, 0) > 600)
     throw new Error(
@@ -30,13 +45,18 @@ export async function measureTextbookPreview(
     style = document.createElement("style");
   host.style.cssText =
     "position:fixed;left:-10000px;top:0;visibility:hidden;pointer-events:none;contain:layout style;";
+  host.dataset.recoveryMeasureHost = crypto.randomUUID();
   style.textContent =
     (options.fontCss ?? TEXTBOOK_PREVIEW_FONT_CSS) +
     (options.katexCss ?? "") +
     TEXTBOOK_CSS;
   host.append(style);
   const content = document.createElement("div");
-  content.innerHTML = measurementHtml(model, resources);
+  content.innerHTML =
+    measurementHtml(model, resources) +
+    (options.recallMeasurementModel
+      ? recallMeasurementHtml(options.recallMeasurementModel, resources)
+      : "");
   host.append(content);
   document.body.append(host);
   try {
@@ -49,6 +69,18 @@ export async function measureTextbookPreview(
       Array.from(host.querySelectorAll("img")).map((i) => i.decode()),
     );
     if (options.signal?.aborted) throw new Error("Preview aborted");
+    applyRecoveryMeasurements(
+      model,
+      measureRecoveryDom({
+        ...recoveryMeasurePlan(model),
+        rootSelector: `[data-recovery-measure-host="${host.dataset.recoveryMeasureHost}"]`,
+      }),
+    );
+    // Remove private canonical text before measuring or returning the student layout.
+    content.innerHTML = measurementHtml(model, resources);
+    await Promise.all(
+      Array.from(host.querySelectorAll("img")).map((image) => image.decode()),
+    );
     const measurements = Array.from(
       host.querySelectorAll<HTMLElement>("[data-measure-id]"),
     ).map((e) => {

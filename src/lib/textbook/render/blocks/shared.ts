@@ -22,7 +22,15 @@ export const editorialImage = (
   alt: string,
 ) =>
   `<img data-textbook-editorial-image src="${attrUrl(resources.editorialAssetUrl?.(name) ?? `/textbook/editorial/${name}`)}" alt="${esc(alt)}">`;
-export const progressHtml = (stage: EditorialStage) => {
+export const progressHtml = (
+  stage: EditorialStage,
+  steps?: readonly { activity: string; label: string }[],
+  activity?: string,
+) => {
+  if (steps)
+    return steps.length === 0
+      ? ""
+      : `<nav class="tb-progress" aria-label="학습 단계">${steps.map((step) => `<span${step.activity === activity || step.activity === stage ? ' class="tb-progress-active" aria-current="step"' : ""}>${esc(step.label)}</span>`).join("")}</nav>`;
   const active = EDITORIAL_STAGES[stage].tab;
   return active < 0
     ? ""

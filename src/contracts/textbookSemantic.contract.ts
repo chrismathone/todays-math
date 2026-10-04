@@ -89,50 +89,86 @@ export type TextbookSourceFragment = {
     | "tr"
     | "th"
     | "td"
-    | "br";
-  attributes?: { className?: string; colSpan?: number; rowSpan?: number };
+    | "br"
+    | "img";
+  attributes?: {
+    className?: string;
+    colSpan?: number;
+    rowSpan?: number;
+    assetId?: string;
+    alt?: string;
+  };
   rawText?: string;
   children?: TextbookSourceFragment[];
 };
 /** Source layout is a bounded allowlist tree, never executable HTML or arbitrary attributes. */
 export const textbookSourceFragmentSchema: z.ZodType<TextbookSourceFragment> =
   z.lazy(() =>
-    z.strictObject({
-      tag: z.enum([
-        "div",
-        "section",
-        "span",
-        "p",
-        "h2",
-        "h3",
-        "h4",
-        "strong",
-        "em",
-        "ul",
-        "ol",
-        "li",
-        "table",
-        "thead",
-        "tbody",
-        "tr",
-        "th",
-        "td",
-        "br",
-      ]),
-      attributes: z
-        .strictObject({
-          className: z
-            .string()
-            .max(500)
-            .regex(/^[A-Za-z0-9 _-]*$/)
-            .optional(),
-          colSpan: z.number().int().min(1).max(20).optional(),
-          rowSpan: z.number().int().min(1).max(100).optional(),
-        })
-        .optional(),
-      rawText: textbookTextSchema.optional(),
-      children: z.array(textbookSourceFragmentSchema).max(500).optional(),
-    }),
+    z
+      .strictObject({
+        tag: z.enum([
+          "div",
+          "section",
+          "span",
+          "p",
+          "h2",
+          "h3",
+          "h4",
+          "strong",
+          "em",
+          "ul",
+          "ol",
+          "li",
+          "table",
+          "thead",
+          "tbody",
+          "tr",
+          "th",
+          "td",
+          "br",
+          "img",
+        ]),
+        attributes: z
+          .strictObject({
+            className: z
+              .string()
+              .max(500)
+              .regex(/^[A-Za-z0-9 _-]*$/)
+              .optional(),
+            colSpan: z.number().int().min(1).max(20).optional(),
+            rowSpan: z.number().int().min(1).max(100).optional(),
+            assetId: textbookIdSchema.optional(),
+            alt: z.string().max(500).optional(),
+          })
+          .optional(),
+        rawText: textbookTextSchema.optional(),
+        children: z.array(textbookSourceFragmentSchema).max(500).optional(),
+      })
+      .superRefine((fragment, ctx) => {
+        if (fragment.tag === "img" && !fragment.attributes?.assetId)
+          ctx.addIssue({
+            code: "custom",
+            path: ["attributes", "assetId"],
+            message: "그림은 고정 자산 ID가 필요합니다.",
+          });
+        if (
+          fragment.tag !== "img" &&
+          (fragment.attributes?.assetId || fragment.attributes?.alt)
+        )
+          ctx.addIssue({
+            code: "custom",
+            path: ["attributes"],
+            message: "그림 속성은 img 노드에만 허용됩니다.",
+          });
+        if (
+          fragment.tag === "img" &&
+          (fragment.rawText || fragment.children?.length)
+        )
+          ctx.addIssue({
+            code: "custom",
+            message: "그림 노드는 본문이나 자식 노드를 갖지 않습니다.",
+          });
+      }),
   );
 export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
   z.strictObject({

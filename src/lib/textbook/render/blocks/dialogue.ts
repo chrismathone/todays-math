@@ -130,7 +130,7 @@ export function dialogueMarkdownHtml(markdown: string): string {
 }
 
 /** Raw v15 text: `[[TeX]]` is a formula and `{{word}}` a key word. */
-function v15DisplayMarkdown(text: string): string {
+export function v15DisplayMarkdown(text: string): string {
   // Formulas are set aside first, so the braces inside TeX are never read as key words.
   const [open, close] = [
     String.fromCharCode(0xe000),

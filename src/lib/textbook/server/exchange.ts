@@ -30,6 +30,7 @@ import type { StoredOutline } from "./editions";
 import { notFound } from "./errors";
 import { type SectionContent, storedTeacherAnswer } from "./sections";
 import { type TextbookSql, isoColumn } from "./sql";
+import { semanticFragmentAssetIds } from "../semanticAssets";
 
 const EXTENSION: Record<string, string> = {
   "image/png": "png",
@@ -338,6 +339,7 @@ export async function assembleExchange(
     const conceptKeys = new Set<string>();
     const assetIds = new Set<string>();
     for (const block of blocks) {
+      for (const assetId of semanticFragmentAssetIds(block.semantic)) assetIds.add(assetId);
       if (block.kind === "concept") conceptKeys.add(block.conceptKey);
       else if (block.kind === "concept-recall" && block.conceptKey)
         conceptKeys.add(block.conceptKey);
