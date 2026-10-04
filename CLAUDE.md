@@ -37,6 +37,8 @@
 
 영어 자료은행은 [지문은행·듣기은행 계획](docs/planning/english-resource-bank-plan-20261003.md)과 [통합·운영 반영 기록](docs/planning/tracks/reports/english-bank-integration-20261003.md)을 따른다. 사용자 승인 A안·기존 스타일 및 Claude·Grok 합의로 구현했다. `/#english-bank`에서 독립 지문과 기존 듣기 자료·EBS 공식 참조를 검색한다. 지문 표 네 개와 메뉴 CHECK는 운영 반영했다. EBS 파일 재호스팅과 이미지 문항 학생 발행은 이번 완료 범위가 아니다.
 
+2026-10-04 후속 구현은 [듣기은행 원본 등록·시험지 구성 기록](docs/planning/tracks/reports/listening-bank-workflow-20261004.md)을 따른다. 전국 듣기평가·모의고사 원본 파일 등록, 은행 안 직접 재생, 회차 전체·개별 문항 담기, 새 시험지와 학생용·교사용 초안 인쇄를 지원한다. 개별 문항은 교사가 지정한 전체 음원 구간을 사용한다. 이미지 문항도 학생 화면·지면에 보존한다. 로컬에 확보한 원본은 운영 DB에 자동 등록하지 않았고 이용 범위를 임의 승인하지 않는다. 실물 출력 검수는 `/dev/print-check`의 `english-listening-bank-original-crops`에 대기로 남아 있다.
+
 관리 콘솔·지점 관리는 [지점 관리 고도화 계획](docs/planning/admin-branch-upgrade-20261003.md)과 [Codex·Claude·Grok 합의](docs/planning/tracks/reports/admin-branch-consensus-20261003.md)를 따른다. 계정 관리는 지점 내부로 이동하며, 원장도 지점 사용 메뉴를 따른다. 지점 제한과 개인 설정을 구분해 보존한다. Wire A·H1은 사용자의 3자 합의 후 실행 위임에 따라 선택했다. 지점 메뉴 상한 변경과 관리 콘솔은 최고관리자 전용이고, 기존 `/branch`·소유권·학생 정책은 보존한다. DB 먼저·코드 나중 순서를 지킨다.
 
 > ⚠️ **새 기획 문서 번호를 붙이기 전에 반드시 `ls docs/planning/` 로 확인하고,
