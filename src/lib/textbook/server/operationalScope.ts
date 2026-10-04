@@ -28,6 +28,7 @@ type JsonRow = Record<string, unknown>;
 interface TeacherRow {
   id: string;
   branchId: string | null;
+  branchRole: Parameters<typeof accountUsable>[0]["branchRole"];
   authSource: string;
   approvalStatus: Parameters<typeof accountUsable>[0]["approvalStatus"];
   deletedAt: string | null;
@@ -111,7 +112,7 @@ async function teacherRow(
   id: string,
 ): Promise<TeacherRow | undefined> {
   const [row] = await sql.query<TeacherRow>(
-    `SELECT u."id", u."branch_id" AS "branchId", u."auth_source" AS "authSource",
+    `SELECT u."id", u."branch_id" AS "branchId", u."branch_role"::text AS "branchRole", u."auth_source" AS "authSource",
             u."approval_status"::text AS "approvalStatus", u."is_admin" AS "isAdmin",
             u."is_super_admin" AS "isSuperAdmin", ${isoColumn('u."deleted_at"')} AS "deletedAt",
             ${isoColumn('u."suspended_at"')} AS "suspendedAt",

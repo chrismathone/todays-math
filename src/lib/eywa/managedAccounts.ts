@@ -536,6 +536,11 @@ export async function getManagedClassGrants(
     sourceClasses: controlUserSchema.shape.classes.parse(account.sourceClasses),
     classListRevision: account.classListRevision,
     leaseExpiresAt: account.leaseExpiresAt!,
+    // Derived only after the current mapping, local override and source lease
+    // pass accountUsable. A stale session admin flag cannot create this scope.
+    ...(account.user.isAdmin
+      ? { branchAdminScope: { branchId: account.binding.targetBranchId } }
+      : {}),
   };
 }
 export async function managedLoginAllowed(
