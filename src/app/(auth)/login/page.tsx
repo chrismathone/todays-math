@@ -1,6 +1,9 @@
 import { LoginForm } from "@/components/auth/LoginForm";
 import { AuthExperience } from "@/components/auth/AuthExperience";
-import { eywaLinkLoginNotice } from "@/contracts/eywaLink.contract";
+import {
+  eywaLinkLoginNotice,
+  eywaSsoLoginNotice,
+} from "@/contracts/eywaLink.contract";
 import { normalizeCallbackUrl } from "@/lib/callbackUrl";
 import { auth } from "@/lib/auth";
 import {
@@ -17,7 +20,10 @@ export const metadata = {
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ callbackUrl?: string | string[] }>;
+  searchParams: Promise<{
+    callbackUrl?: string | string[];
+    eywa?: string | string[];
+  }>;
 }) {
   const [query, session, jar] = await Promise.all([
     searchParams,
@@ -41,7 +47,10 @@ export default async function LoginPage({
     <AuthExperience>
       <LoginForm
         callbackUrl={destination}
-        notice={pending ? eywaLinkLoginNotice(pending) : undefined}
+        notice={
+          eywaSsoLoginNotice(query.eywa) ??
+          (pending ? eywaLinkLoginNotice(pending) : undefined)
+        }
       />
     </AuthExperience>
   );

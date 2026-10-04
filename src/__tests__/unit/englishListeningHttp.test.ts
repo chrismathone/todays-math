@@ -13,6 +13,11 @@ const mocks = vi.hoisted(() => ({
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
 vi.mock("@/lib/db", () => ({ db: {} }));
+// This HTTP/auth unit uses mocked persistence; never read live Storage credentials.
+vi.mock("@/lib/english/listening/media/storageApi", () => ({
+  readListeningStorageConfig: () => null,
+  createListeningStorageApi: vi.fn(),
+}));
 vi.mock("@/lib/english/listening/runtime/service", () => ({
   createListeningRuntime: () => ({
     teacherList: mocks.teacherList,

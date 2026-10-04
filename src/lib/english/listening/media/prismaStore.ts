@@ -308,7 +308,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
     }
     // Expired empty tombstones have no usable identity and can be removed after cleanup.
     await this.prisma
-      .$executeRaw`DELETE FROM english_listening_media_asset WHERE "assetId" IN (SELECT a."assetId" FROM english_listening_media_asset a WHERE a.state = 'expired' AND a."reservedBytes" = 0 AND jsonb_array_length(a.record->'chunks') = 0 AND NOT EXISTS (SELECT 1 FROM english_listening_media_blob b WHERE b."assetId" = a."assetId") ORDER BY a."uploadExpiresAt" LIMIT ${limit})`;
+      .$executeRaw`DELETE FROM english_listening_media_asset WHERE "assetId" IN (SELECT a."assetId" FROM english_listening_media_asset a WHERE a.state = 'expired' AND a.record->>'storageChunks' IS DISTINCT FROM 'true' AND a."reservedBytes" = 0 AND jsonb_array_length(a.record->'chunks') = 0 AND NOT EXISTS (SELECT 1 FROM english_listening_media_blob b WHERE b."assetId" = a."assetId") ORDER BY a."uploadExpiresAt" LIMIT ${limit})`;
     return removed;
   }
 }
