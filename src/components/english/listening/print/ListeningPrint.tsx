@@ -39,6 +39,9 @@ export function ListeningPrint({
                     ? `원본 ${question.sourceNumber ?? question.number}번`
                     : question.prompt}
                 </h3>
+                {question.image && question.instruction && (
+                  <p>{question.instruction}</p>
+                )}
                 {question.image ? (
                   // A validated PNG crop keeps original tables and picture choices intact.
                   // eslint-disable-next-line @next/next/no-img-element

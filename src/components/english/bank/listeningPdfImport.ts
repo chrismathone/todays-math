@@ -14,6 +14,7 @@ export interface ListeningPdfQuestionBox {
   width: number;
   height: number;
   prompt: string;
+  instruction?: string;
 }
 
 /** Only explicit numbered question headings become items; missing boundaries fail closed. */
@@ -135,13 +136,20 @@ export function listeningPdfQuestionBoxes(
         throw new Error(
           `${heading.number}번 문항의 범위를 확인하지 못했습니다.`,
         );
+      if (prompt.length > 2000)
+        throw new Error(
+          `${heading.number}번 문항의 안내문이 2,000자를 넘습니다.`,
+        );
       return {
         number: heading.number,
         x: left,
         y: top,
         width: right - left,
         height: bottom - top,
-        prompt: prompt.slice(0, 2000),
+        prompt,
+        ...(instruction && !startsInstruction
+          ? { instruction: instruction.prompt }
+          : {}),
       };
     });
 }
@@ -270,6 +278,7 @@ export async function readListeningQuestionPdf(
           id: crypto.randomUUID(),
           sourceNumber: box.number,
           prompt: box.prompt,
+          ...(box.instruction ? { instruction: box.instruction } : {}),
           image: { dataUrl, width: crop.width, height: crop.height },
           choices,
           answerChoiceId: null,

@@ -32,6 +32,7 @@ export const listeningChoiceSchema = z.strictObject({ id, text: text(2000) });
 export const listeningQuestionSchema = z.strictObject({
   id,
   prompt: text(2000),
+  instruction: text(2000).optional(),
   image: listeningQuestionImageSchema.optional(),
   sourceNumber: z.number().int().min(1).max(100).optional(),
   audioRange: listeningEvidenceSchema.optional(),

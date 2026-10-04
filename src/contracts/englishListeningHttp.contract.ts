@@ -19,6 +19,7 @@ export const listeningRevisionInputSchema = z.strictObject({
 export const listeningDraftQuestionSchema = z.strictObject({
   id: z.uuid(),
   prompt: z.string().max(2000),
+  instruction: listeningGroupSchema.shape.questions.element.shape.instruction,
   image: listeningGroupSchema.shape.questions.element.shape.image,
   sourceNumber: listeningGroupSchema.shape.questions.element.shape.sourceNumber,
   audioRange: listeningGroupSchema.shape.questions.element.shape.audioRange,

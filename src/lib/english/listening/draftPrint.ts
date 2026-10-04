@@ -17,6 +17,7 @@ export function listeningDraftPrintDocument(
         id: question.id,
         number: ++number,
         prompt: question.prompt,
+        ...(question.instruction ? { instruction: question.instruction } : {}),
         choices: question.choices.map((choice) => choice.text),
         ...(question.sourceNumber
           ? { sourceNumber: question.sourceNumber }
