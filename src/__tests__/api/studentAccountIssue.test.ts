@@ -108,7 +108,10 @@ beforeEach(async () => {
       },
     });
   }
-  for (const student of await prismaTestDouble.student.findMany())
+  const students = (await prismaTestDouble.student.findMany()) as {
+    id: string;
+  }[];
+  for (const student of students)
     await prismaTestDouble.student.update({
       where: { id: student.id },
       data: { phoneLast4: BRANCH_PASSWORD },

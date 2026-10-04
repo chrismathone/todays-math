@@ -26,6 +26,6 @@ createRoot(document.getElementById("root")!).render(
       branchId={branchId}
     />
   ) : (
-    <AdminAccounts identity={adminIdentity} />
+    <AdminAccounts identity={adminIdentity} branchId={branchId} />
   ),
 );
