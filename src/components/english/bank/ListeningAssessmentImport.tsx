@@ -9,7 +9,11 @@ import {
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
 import type { ListeningAudioRef } from "@/contracts/englishListening.contract";
 import type { ListeningEditQuestion } from "../listening/listeningDraft";
-import { listeningError, listeningRequest } from "../listening/listeningClient";
+import {
+  listeningError,
+  listeningRequest,
+  ListeningRequestError,
+} from "../listening/listeningClient";
 import { uploadListeningAudio } from "../listening/listeningUpload";
 import { ListeningTeacherAudio } from "../listening/ListeningTeacherAudio";
 import {
@@ -116,7 +120,10 @@ export function ListeningAssessmentImport({
         `${parsed.length}문항을 읽었습니다. 정답 ${parsed.filter((q) => q.answerChoiceId).length}개 확인. 그림과 문항 번호를 아래에서 확인하세요.`,
       );
     } catch (cause) {
-      if (!request.signal.aborted) setError(listeningError(cause));
+      if (!request.signal.aborted)
+        setError(
+          cause instanceof Error ? cause.message : listeningError(cause),
+        );
     } finally {
       if (!request.signal.aborted) setBusy(false);
     }
@@ -199,8 +206,10 @@ export function ListeningAssessmentImport({
       const audio = uploaded.current;
       for (const question of questions)
         if (question.audioRange && question.audioRange.endMs > audio.durationMs)
-          throw new Error(
+          throw new ListeningRequestError(
             `${question.sourceNumber}번 음원 구간이 파일 길이를 넘습니다.`,
+            400,
+            "question_audio_range",
           );
       const authoritative = saved.current!;
       await listeningRequest<ListeningSetDetail>(
