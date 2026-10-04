@@ -15,6 +15,8 @@ import { useQuestionPageTurn } from "./useQuestionPageTurn";
 import { EnterKey, NumberKey } from "./AnswerKeyCaps";
 import { answerKey, useAnswerKeys } from "./useAnswerKeys";
 import s from "./student-replay.module.css";
+import { useLearningSounds } from "./LearningSounds";
+import { learningSoundCue } from "./learningSoundCue";
 
 const ProblemContent = dynamic(() =>
   import("@/components/math/ProblemContent").then((m) => m.ProblemContent),
@@ -39,6 +41,8 @@ export default function StudentReplayDialog({
   onClose: () => void;
 }) {
   const router = useRouter();
+  const { gesture, play } = useLearningSounds();
+  const feedbackEventRef = useRef(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const solutionDialog = useRef<HTMLDialogElement>(null);
   const solutionOpener = useRef<HTMLButtonElement>(null);
@@ -66,6 +70,7 @@ export default function StudentReplayDialog({
       revealSolution?: boolean;
     }) => {
       if (request.current) return;
+      if (input && !input.revealSolution) gesture();
       const controller = new AbortController();
       request.current = controller;
       const timeout = setTimeout(() => controller.abort(), 15_000);
@@ -124,8 +129,24 @@ export default function StudentReplayDialog({
         if (controller.signal.aborted) throw new Error("late-response");
         setData(replay);
         if (input && !input.revealSolution && replay.correct !== null) {
-          setFeedbackEvent((current) => current + 1);
+          const event = ++feedbackEventRef.current;
+          setFeedbackEvent(event);
           setFeedbackCorrect(replay.correct);
+          if (
+            replay.problemId === input.problemId &&
+            replay.kind === kind &&
+            replay.step === currentStep
+          ) {
+            const cue = learningSoundCue(
+              { type: "replay", submittedAnswer: input.submittedAnswer },
+              replay.correct,
+            );
+            if (cue)
+              play(
+                cue,
+                `replay:${kind}:${dayId ?? "today"}:${currentStep}:${input.problemId}:${event}`,
+              );
+          }
         }
         if (input?.revealSolution && replay.solution) setSolutionOpen(true);
       } catch (failure) {
@@ -147,7 +168,7 @@ export default function StudentReplayDialog({
         }
       }
     },
-    [kind, currentStep, dayId, router],
+    [kind, currentStep, dayId, router, gesture, play],
   );
 
   useEffect(() => {
@@ -217,6 +238,9 @@ export default function StudentReplayDialog({
   }, [correct, feedbackEvent]);
 
   const closeReplay = () => {
+    const pending = request.current;
+    request.current = null;
+    pending?.abort();
     const modal = dialog.current;
     if (modal?.open) {
       if (modal.close) modal.close();

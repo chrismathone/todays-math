@@ -14,6 +14,24 @@ import { effectAppears } from "../helpers/answerFeedback";
  * 복습 화면의 콤보(05 §8.15) — 서버가 돌려준 미션 기록으로 세어, 첫 풀이 정답 연출에서만 말한다.
  * 규칙 자체는 `mathSrsCombo.test.ts`, 부품 모양은 `AnswerFeedbackEffectCombo.test.tsx`.
  */
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math-srs/mathSrsApi", () => ({
@@ -162,6 +180,10 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
     const status = await effect;
     expect(status).toHaveTextContent(/^모르는 부분을 확인했어요$/);
     expect(status).not.toHaveAttribute("data-streak");
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "soft",
+      `${state(before).student.id}:${missionId}:${pid(3)}`,
+    );
     expect(status.closest('[class*="answerDockHeading"]')).toBeInTheDocument();
     expect(api.submitMathSrsAttempt).toHaveBeenCalledWith(
       expect.objectContaining({ submittedAnswer: "", rating: "again" }),
@@ -170,6 +192,11 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
   it("셋째 빠른 정답에서 «3문제 연속 정답»", async () => {
     const status = await answerNext(["fast", "fast"], "fast");
     expect(status).toHaveTextContent(/^3문제 연속 정답$/);
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `${state(mission([])).student.id}:${missionId}:${pid(2)}`,
+    );
+    expect(sounds.gesture).toHaveBeenCalled();
     // 화면 읽기 — 정답 연출이 role=status 로 이 한 문장을 읽는다
     expect(status).toHaveAttribute("role", "status");
   });
@@ -237,6 +264,10 @@ describe("복습 화면 — 첫 풀이 정답 연출의 콤보", () => {
     );
     const status = await effect;
     expect(status).toHaveTextContent(/^이번에는 해결했어요$/);
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `${state(finished).student.id}:${missionId}:${pid(11)}:0`,
+    );
     expect(status).not.toHaveAttribute("data-streak");
     await act(async () => {});
   });

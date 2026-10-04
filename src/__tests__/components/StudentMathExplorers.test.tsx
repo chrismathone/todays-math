@@ -26,6 +26,24 @@ import type {
   ExpeditionPlan,
 } from "@/contracts/mathExpedition.contract";
 
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math-explorers/ExplorerBankActivity", () => ({
@@ -33,14 +51,19 @@ vi.mock("@/components/math-explorers/ExplorerBankActivity", () => ({
     kind,
     onExit,
     onComplete,
+    onConfirmedAnswer,
   }: {
     kind: string;
     onExit: () => void;
     onComplete: () => void;
+    onConfirmedAnswer?: (studentId: string) => void;
   }) => (
     <section aria-label={`은행 활동 ${kind}`}>
       <button onClick={onExit}>탐험판으로</button>
       <button onClick={onComplete}>은행 완료</button>
+      <button onClick={() => onConfirmedAnswer?.("student-ui")}>
+        은행 확정 답
+      </button>
     </section>
   ),
 }));
@@ -68,8 +91,14 @@ vi.mock("@/components/math-srs/StudentReplayDialog", () => ({
 }));
 const now = "2026-09-26";
 const student = { id: "student-ui", name: "학생", className: "테스트반" };
+async function userEventClickStart() {
+  fireEvent.click(
+    await screen.findByRole("button", { name: /오늘의 탐험 시작/ }),
+  );
+}
 
 beforeEach(() => {
+  vi.clearAllMocks();
   Object.defineProperty(HTMLDialogElement.prototype, "showModal", {
     configurable: true,
     value: function (this: HTMLDialogElement) {
@@ -91,6 +120,165 @@ afterEach(() => {
 });
 
 describe("StudentMathExplorers", () => {
+  it.each(["graded", "unknown", "workshop"] as const)(
+    "commits answer and completion sounds at existing transitions: %s",
+    async (mode) => {
+      const initial = stateView();
+      initial.expedition!.next = plan("explorers");
+      const active = structuredClone(initial);
+      active.session = afterAnswerSession();
+      active.currentActivity = {
+        questionId: "sound-question",
+        cardId: active.units[0].cards[0].id,
+        cardName: "자릿값",
+        unitId: active.units[0].id,
+        unitTitle: "덧셈과 뺄셈",
+        kind: "truth",
+        prompt: "이 설명이 맞나요?",
+        choices: [
+          { id: 0, label: "맞아요" },
+          { id: 1, label: "아니에요" },
+        ],
+      };
+      active.expedition!.mission = mission();
+      if (mode === "workshop")
+        active.workshop = {
+          memoryDate: null,
+          memoryDue: false,
+          blueprintAt: null,
+          discoveredAt: null,
+          rememberedAt: null,
+          session: {
+            id: "sound-workshop",
+            route: "explore",
+            stage: "predict",
+            attachedTo: {
+              sessionId: active.session.id,
+              questionId: "sound-question",
+              cardId: "g5-common-denominator",
+            },
+            questionId: "predict-question",
+            checkIndex: 0,
+            checkTotal: 2,
+            done: false,
+            prompt: "조각을 나누면 전체 크기가 변하나요?",
+            fractions: [{ numerator: 1, denominator: 2 }],
+            targetDenominator: null,
+            factors: [1, 1],
+            choices: [{ id: 0, label: "그대로예요" }],
+            predictionLabel: null,
+            stars: 0,
+          },
+        };
+      const completed = structuredClone(active);
+      completed.session!.done = true;
+      completed.currentActivity = null;
+      completed.expedition!.completedToday = true;
+      completed.expedition!.todayStars = { cards: 0, bonus: 3 };
+      completed.feedback = { message: "확정", correct: true };
+      const requests: ExplorerRequest[] = [];
+      let read = 0;
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(async (_url, options) => {
+          if (!options?.body)
+            return response(++read === 1 ? initial : completed);
+          const input = JSON.parse(options.body) as ExplorerRequest;
+          requests.push(input);
+          return response(
+            input.action.type === "expedition-start" ? active : completed,
+          );
+        }),
+      );
+      render(<StudentMathExplorers />);
+      await userEventClickStart();
+      const button = await screen.findByRole("button", {
+        name:
+          mode === "workshop"
+            ? /그대로예요/
+            : mode === "unknown"
+              ? "아직 모르겠어요"
+              : "1 맞아요",
+      });
+      expect(sounds.play).not.toHaveBeenCalled();
+      vi.useFakeTimers();
+      try {
+        await act(async () => fireEvent.click(button));
+        if (mode === "workshop") expect(sounds.play).not.toHaveBeenCalled();
+        else
+          expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+            mode === "unknown" ? "soft" : "correct",
+            `${student.id}:${requests[1].requestId}`,
+          );
+        await act(async () => vi.advanceTimersByTime(1200));
+        expect(sounds.play).toHaveBeenLastCalledWith(
+          "complete",
+          `complete:${student.id}:${mission().id}`,
+        );
+        expect(sounds.play).toHaveBeenCalledTimes(mode === "workshop" ? 1 : 2);
+      } finally {
+        vi.useRealTimers();
+      }
+    },
+  );
+  it.each(["confirmed", "no-answer", "other-student"] as const)(
+    "allows complete sound only after local bank confirmation: %s",
+    async (mode) => {
+      const initial = stateView();
+      const active = {
+        ...initial,
+        expedition: {
+          ...initial.expedition!,
+          mission: mission("elementary"),
+          next: null,
+        },
+      };
+      const completed = structuredClone(active);
+      completed.expedition!.completedToday = true;
+      completed.expedition!.canStart = false;
+      completed.expedition!.todayStars = { cards: 0, bonus: 3 };
+      completed.expedition!.mission!.status = "complete";
+      if (mode === "other-student")
+        completed.student = { ...student, id: "other-student" };
+      let reads = 0;
+      vi.stubGlobal(
+        "fetch",
+        vi.fn(async (_url, options) =>
+          options?.body
+            ? response(active)
+            : response(++reads === 1 ? initial : completed),
+        ),
+      );
+      render(<StudentMathExplorers />);
+      await userEventClickStart();
+      await screen.findByLabelText("은행 활동 elementary");
+      if (mode !== "no-answer")
+        fireEvent.click(screen.getByRole("button", { name: "은행 확정 답" }));
+      expect(sounds.play).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole("button", { name: "은행 완료" }));
+      await screen.findByText("오늘의 한 칸 완료");
+      if (mode === "confirmed")
+        expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+          "complete",
+          `complete:${student.id}:${mission().id}`,
+        );
+      else expect(sounds.play).not.toHaveBeenCalled();
+      expect(sounds.resetStudent).toHaveBeenCalledTimes(2);
+    },
+  );
+  it("keeps an initially completed day silent", async () => {
+    const initial = stateView();
+    initial.expedition!.completedToday = true;
+    initial.expedition!.todayStars = { cards: 0, bonus: 3 };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => response(initial)),
+    );
+    render(<StudentMathExplorers />);
+    await screen.findByText("오늘의 한 칸 완료");
+    expect(sounds.play).not.toHaveBeenCalled();
+    expect(sounds.gesture).not.toHaveBeenCalled();
+  });
   it.each(["lost", "duplicate", "other-student", "late"] as const)(
     "shows feedback only for the first confirmed local request: %s",
     async (mode) => {
@@ -180,6 +368,7 @@ describe("StudentMathExplorers", () => {
         expect(
           container.querySelector("[data-answer-feedback]"),
         ).not.toBeInTheDocument();
+        expect(sounds.play).not.toHaveBeenCalled();
         return;
       }
       if (mode === "lost") {
@@ -193,6 +382,11 @@ describe("StudentMathExplorers", () => {
         expect(requests[1]).toEqual(requests[0]);
       }
       const result = await screen.findByText("정확하게 풀었어요");
+      expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+        "correct",
+        `${student.id}:${requests[0].requestId}`,
+      );
+      expect(sounds.gesture).toHaveBeenCalled();
       expect(result.closest("[data-explorer-dock]")).toBeInTheDocument();
       expect(screen.queryByText("잘했어!")).not.toBeInTheDocument();
       if (mode === "duplicate") {
@@ -210,6 +404,7 @@ describe("StudentMathExplorers", () => {
         fireEvent.click(screen.getByRole("button", { name: "1 맞아요" }));
         await act(async () => {});
         await waitFor(() => expect(requests).toHaveLength(2));
+        expect(sounds.play).toHaveBeenCalledTimes(1);
         expect(
           container.querySelector("[data-answer-feedback]"),
         ).not.toBeInTheDocument();
@@ -360,6 +555,7 @@ describe("StudentMathExplorers", () => {
       fireEvent.click(screen.getByRole("button", { name: button }));
       expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
       expect(reads).toBe(2);
+      expect(sounds.play).not.toHaveBeenCalled();
       expect(
         screen.queryByRole("button", { name: /오늘의 탐험 시작/ }),
       ).not.toBeInTheDocument();

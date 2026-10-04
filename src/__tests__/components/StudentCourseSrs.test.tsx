@@ -25,6 +25,24 @@ import { publicCourseSession } from "@/lib/math-srs/courseAutomation";
 import type { CourseSession } from "@/lib/math-srs/elementary/types";
 import * as api from "@/components/math-srs/courseApi";
 
+const sounds = vi.hoisted(() => ({
+  enabled: true,
+  status: "ready" as const,
+  setEnabled: vi.fn(),
+  gesture: vi.fn(),
+  preview: vi.fn(),
+  play: vi.fn(),
+  resetStudent: vi.fn(),
+}));
+vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
+  ...(await importOriginal<
+    typeof import("@/components/math-srs/LearningSounds")
+  >()),
+  LearningSoundsProvider: ({ children }: { children: React.ReactNode }) =>
+    children,
+  useLearningSounds: () => sounds,
+}));
+
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/components/math-srs/courseApi", () => ({
@@ -854,6 +872,63 @@ async function begin() {
 }
 
 describe("persisted course practice", () => {
+  it.each([
+    "self-true",
+    "self-false",
+    "give-up",
+    "other-student",
+    "other-session",
+  ] as const)("maps actual confirmed course action: %s", async (mode) => {
+    const run = session();
+    if (mode.startsWith("self-")) {
+      run.problems[0].input.mode = "self-check";
+      run.problems[0].hint = { answer: "2", solution: "1 더하기 1은 2" };
+    }
+    vi.mocked(api.startCourse).mockResolvedValue({
+      ok: true,
+      data: state(run),
+    });
+    const saved = state(session(1));
+    if (mode === "self-false") saved.session!.attempts[0].correct = false;
+    if (mode === "other-student")
+      saved.student.id = "99999999-9999-4999-8999-999999999999";
+    if (mode === "other-session")
+      saved.session!.id = "99999999-9999-4999-8999-999999999999";
+    vi.mocked(api.answerCourse).mockResolvedValue({ ok: true, data: saved });
+    render(<StudentCourseSrs />);
+    await userEvent.click(
+      await screen.findByRole("button", { name: "오늘의 추천 학습 시작" }),
+    );
+    if (mode.startsWith("self-")) {
+      await userEvent.click(
+        await screen.findByRole("button", { name: "다 풀었어요" }),
+      );
+      await userEvent.click(
+        await screen.findByRole("button", {
+          name:
+            mode === "self-false"
+              ? "다시 연습할래요"
+              : "혼자 풀었다고 생각해요",
+        }),
+      );
+    } else if (mode === "give-up")
+      await userEvent.click(
+        await screen.findByRole("button", { name: "아직 모르겠어요" }),
+      );
+    else
+      await userEvent.type(
+        await screen.findByRole("textbox", { name: "나의 답" }),
+        "2{Enter}",
+      );
+    await waitFor(() => expect(api.answerCourse).toHaveBeenCalledOnce());
+    await act(async () => {});
+    if (mode.startsWith("other-")) expect(sounds.play).not.toHaveBeenCalled();
+    else
+      expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+        "soft",
+        `${state().student.id}:${run.id}:${run.problems[0].id}:first`,
+      );
+  });
   it("focuses the next recommendation at completion so Enter continues", async () => {
     const completed = state(session(5));
     vi.mocked(api.startCourse).mockResolvedValueOnce({
@@ -893,6 +968,11 @@ describe("persisted course practice", () => {
     await userEvent.keyboard("{Enter}");
     expect(api.answerCourse).toHaveBeenCalledTimes(1);
     await act(async () => resolve({ ok: true, data: state(session(1)) }));
+    expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+      "correct",
+      `${state().student.id}:${session().id}:${session().problems[0].id}:first`,
+    );
+    expect(sounds.gesture).toHaveBeenCalled();
     expect(screen.queryByText("서버가 알려 준 풀이")).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: /다음 문제/ })).toHaveFocus();
     await userEvent.keyboard("{Enter}");
@@ -910,6 +990,7 @@ describe("persisted course practice", () => {
     const input = await begin();
     await userEvent.type(input, "2{Enter}");
     expect(await screen.findByRole("alert")).toHaveTextContent("연결되지");
+    expect(sounds.play).not.toHaveBeenCalled();
     expect(input).toBeDisabled();
     expect(
       screen.queryByRole("button", { name: /다음 문제/ }),
@@ -923,6 +1004,7 @@ describe("persisted course practice", () => {
     expect(vi.mocked(api.answerCourse).mock.calls[0]).toEqual(
       vi.mocked(api.answerCourse).mock.calls[1],
     );
+    expect(sounds.play).toHaveBeenCalledTimes(1);
   });
 
   it("requires a fresh server reload after a 409", async () => {
@@ -934,6 +1016,7 @@ describe("persisted course practice", () => {
     const input = await begin();
     await userEvent.type(input, "2{Enter}");
     expect(await screen.findByRole("alert")).toHaveTextContent("다른 화면");
+    expect(sounds.play).not.toHaveBeenCalled();
     expect(input).toBeDisabled();
     expect(
       screen.queryByRole("button", { name: "같은 요청 다시 시도" }),

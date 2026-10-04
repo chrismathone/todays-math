@@ -24,6 +24,8 @@ import {
 } from "./courseApi";
 import s from "./student-course.module.css";
 import type { ExpeditionActivityCallbacks } from "@/components/math-explorers/ExplorerBankActivity";
+import { useLearningSounds } from "./LearningSounds";
+import { learningSoundCue } from "./learningSoundCue";
 
 const StudentCoursePractice = dynamic(() => import("./StudentCoursePractice"), {
   loading: () => <p role="status">학습 화면을 준비하고 있어요…</p>,
@@ -32,12 +34,16 @@ type Failure = { status: number; message: string };
 type Action = {
   run: () => Promise<Submitted<CourseStudentState>>;
   after?: (data: CourseStudentState) => void;
+  gesture?: boolean;
 };
 
 export default function StudentCourseSrs({
   expedition,
 }: { expedition?: ExpeditionActivityCallbacks } = {}) {
   const router = useRouter();
+  const { gesture, play, resetStudent } = useLearningSounds();
+  const soundEpoch = useRef(0);
+  const soundStudent = useRef<string | null>(null);
   const [state, setState] = useState<CourseStudentState | null>(null);
   const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(0);
@@ -86,6 +92,9 @@ export default function StudentCourseSrs({
     void getCourseState().then(async (result) => {
       if (!current) return;
       if (result.ok) {
+        soundEpoch.current++;
+        soundStudent.current = result.data.student.id;
+        resetStudent(result.data.student.id);
         setState(result.data);
         setError(null);
         if (expeditionRef.current) {
@@ -122,10 +131,11 @@ export default function StudentCourseSrs({
     return () => {
       current = false;
     };
-  }, [reload, handleFailure]);
+  }, [reload, handleFailure, resetStudent]);
 
   async function mutate(action: Action) {
     if (pending.current) return;
+    if (action.gesture) gesture();
     pending.current = true;
     setRetryAction(action);
     setBusy(true);
@@ -150,6 +160,7 @@ export default function StudentCourseSrs({
 
   function loadAgain() {
     if (pending.current) return;
+    soundEpoch.current++;
     setRetryAction(null);
     setError(null);
     setLoading(true);
@@ -166,6 +177,7 @@ export default function StudentCourseSrs({
       return;
     void mutate({
       run: startCourse,
+      gesture: true,
       after: (data) => {
         setFeedbackId(null);
         setPracticing(!!data.session);
@@ -264,6 +276,7 @@ export default function StudentCourseSrs({
             busy={blocked}
             onAuthFailure={authFailure}
             onExit={() => {
+              soundEpoch.current++;
               setPracticing(false);
               setFeedbackId(null);
               expedition?.onExit();
@@ -292,9 +305,38 @@ export default function StudentCourseSrs({
               });
             }}
             onAnswer={(input) => {
+              const studentId = state.student.id;
+              const soundTurn = soundEpoch.current;
               void mutate({
                 run: () => answerCourse(input),
-                after: () => setFeedbackId(input.problemId),
+                gesture: true,
+                after: (next) => {
+                  setFeedbackId(input.problemId);
+                  if (
+                    soundEpoch.current !== soundTurn ||
+                    soundStudent.current !== studentId ||
+                    next.student.id !== studentId ||
+                    next.session?.id !== input.sessionId
+                  )
+                    return;
+                  const attempt =
+                    input.retryIndex === undefined
+                      ? next.session.attempts.find(
+                          (item) => item.problemId === input.problemId,
+                        )
+                      : next.session.retry?.attempts[input.retryIndex];
+                  if (!attempt || attempt.problemId !== input.problemId) return;
+                  const cue = learningSoundCue(
+                    { type: "course", ...input },
+                    attempt.correct,
+                  );
+                  if (cue)
+                    play(
+                      cue,
+                      `${studentId}:${input.sessionId}:${input.problemId}:${input.retryIndex ?? "first"}`,
+                    );
+                  expeditionRef.current?.onConfirmedAnswer?.(studentId);
+                },
               });
             }}
           />

@@ -16,6 +16,7 @@ import {
 describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 빨개져 리뷰에 보인다", () => {
   it("첫 비밀번호를 바꾼 학생", () => {
     expect(STUDENT_CAPABILITIES).toStrictEqual([
+      "GET|HEAD /audio/math-learning/**",
       "GET|HEAD /q/{id}",
       "GET|HEAD /learn/textbook/{id}/concepts/{id}",
       "GET /api/learn/textbook/q/{id}",
@@ -93,6 +94,25 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
 
 describe("학생 세션 — 허용 목록 밖은 막힌다", () => {
   const active = (m: string, p: string) => studentGateFor(false, m, p);
+
+  it("opens only active students' GET/HEAD learning audio", () => {
+    for (const method of ["GET", "HEAD"]) {
+      expect(active(method, "/audio/math-learning/correct.wav")).toEqual({
+        kind: "allow",
+      });
+      expect(
+        studentGateFor(true, method, "/audio/math-learning/correct.wav").kind,
+      ).toBe("redirect");
+      for (const path of [
+        "/audio/other.wav",
+        "/audio/math-learning-extra/correct.wav",
+      ])
+        expect(active(method, path).kind).toBe("redirect");
+    }
+    expect(active("POST", "/audio/math-learning/correct.wav").kind).toBe(
+      "forbidden",
+    );
+  });
 
   it("학생 화면 넷", () => {
     for (const p of [
