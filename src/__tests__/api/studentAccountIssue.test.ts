@@ -252,6 +252,56 @@ describe("발급 — 지점 관리자 이상 · 한 명씩", () => {
     ).toBe(STUDENT_LOGIN_MESSAGES.accountExists);
   });
 
+  it("keeps a disabled account's password, login state and audit history on another issuance POST", async () => {
+    await issue(MOCK_STUDENT_1.id, "existing-student");
+    const [account] = learnRows.studentAccounts();
+    patchStudentAccount(account!.id, {
+      disabledAt: new Date("2026-10-01T00:00:00Z"),
+      mustChangePassword: false,
+      passwordChangedAt: new Date("2026-09-30T00:00:00Z"),
+      lastLoginAt: new Date("2026-09-30T01:00:00Z"),
+      failedCount: 5,
+      lockedUntil: new Date(Date.now() + 60_000),
+    });
+    const before = structuredClone(learnRows.studentAccounts());
+    const audits = structuredClone(learnRows.audits());
+    expect((await issue(MOCK_STUDENT_1.id, "new-student-id")).status).toBe(409);
+    expect(learnRows.studentAccounts()).toEqual(before);
+    expect(learnRows.audits()).toEqual(audits);
+  });
+
+  it("returns account_exists for simultaneous POSTs with different IDs for one student", async () => {
+    const responses = await Promise.all([
+      issue(MOCK_STUDENT_1.id, "first-student-id"),
+      issue(MOCK_STUDENT_1.id, "second-student-id"),
+    ]);
+    expect(responses.map((response) => response.status).sort()).toEqual([
+      201, 409,
+    ]);
+    const collision = responses.find((response) => response.status === 409)!;
+    expect((await collision.json()).error.message).toBe(
+      STUDENT_LOGIN_MESSAGES.accountExists,
+    );
+    expect(learnRows.studentAccounts()).toHaveLength(1);
+    expect(learnRows.audits()).toHaveLength(1);
+  });
+
+  it("returns login_id_taken when different students race for one normalized ID", async () => {
+    const responses = await Promise.all([
+      issue(MOCK_STUDENT_1.id, "shared-student-id"),
+      issue(MOCK_STUDENT_2.id, "SHARED-STUDENT-ID"),
+    ]);
+    expect(responses.map((response) => response.status).sort()).toEqual([
+      201, 409,
+    ]);
+    const collision = responses.find((response) => response.status === 409)!;
+    expect((await collision.json()).error.message).toBe(
+      STUDENT_LOGIN_MESSAGES.loginIdTaken,
+    );
+    expect(learnRows.studentAccounts()).toHaveLength(1);
+    expect(learnRows.audits()).toHaveLength(1);
+  });
+
   it("🔴 다른 학생이 쓰는 아이디는 409 «이미 쓰는 아이디입니다.» — 대소문자를 가리지 않는다", async () => {
     await issue(MOCK_STUDENT_1.id, "seo01");
     const res = await issue(MOCK_STUDENT_2.id, "SEO01");

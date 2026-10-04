@@ -60,7 +60,6 @@ import type { AccountAccess } from "@/contracts/accountAccess.contract";
 import { studentAccountIssueResponseSchema } from "@/contracts/studentAccount.contract";
 import { accountRouteAllowed } from "@/lib/accountRouteAccess";
 import { auth } from "@/lib/auth";
-import { BRANCH_INITIAL_PASSWORD } from "@/lib/branchInitialPassword";
 import { getSessionUser, type SessionUser } from "@/lib/session";
 import { studentGateFor } from "@/lib/studentRouteAccess";
 import { CLASS_A_ID, MOCK_STUDENT_1, USER_TEACHER_ID } from "@/mocks/data";
@@ -69,6 +68,7 @@ import { prismaTestDouble, seedUsers } from "@/mocks/prismaTestDouble";
 
 const ORIGIN = "http://localhost:3000";
 const PIN = "7392";
+const STUDENT_CONTACT_TAIL = "0042";
 const BRANCH = "20000000-0000-4000-8000-0000000000b1";
 const FAR_BRANCH = "20000000-0000-4000-8000-0000000000b2";
 /** 같은 지점의 원장 — 강사가 아닌 반의 담당 */
@@ -294,6 +294,13 @@ describe("반 만들기 · 반 설정 · 학생 삭제·이름 바꾸기는 여�
 });
 
 describe("로그인 발급 · 다시 발급 · 끄기 — 강사는 담당 반 학생이어도 거부", () => {
+  beforeEach(async () => {
+    await prismaTestDouble.student.update({
+      where: { id: MOCK_STUDENT_1.id },
+      data: { phoneLast4: STUDENT_CONTACT_TAIL },
+    });
+  });
+
   it("자기 반 학생 발급 403 — 계정과 감사 기록이 생기지 않는다", async () => {
     const res = await issue(MOCK_STUDENT_1.id, "kang01");
     expect(res.status).toBe(403);
@@ -307,16 +314,14 @@ describe("로그인 발급 · 다시 발급 · 끄기 — 강사는 담당 반 �
     const response = await issue(MOCK_STUDENT_1.id, "kang01");
     expect(response.status).toBe(201);
     const body = studentAccountIssueResponseSchema.parse(await response.json());
-    expect(body.data.initialPassword).toBe(BRANCH_INITIAL_PASSWORD);
+    expect(body.data.initialPassword).toBe(STUDENT_CONTACT_TAIL);
     const [row] = learnRows.studentAccounts();
     expect(row).toMatchObject({
       studentId: MOCK_STUDENT_1.id,
       loginId: "kang01",
       issuedById: OWNER_ID,
     });
-    expect(await compare(BRANCH_INITIAL_PASSWORD, row!.passwordHash)).toBe(
-      true,
-    );
+    expect(await compare(STUDENT_CONTACT_TAIL, row!.passwordHash)).toBe(true);
   });
 
   it("강사는 원장이 발급한 계정의 비밀번호와 로그인 상태를 바꿀 수 없다", async () => {

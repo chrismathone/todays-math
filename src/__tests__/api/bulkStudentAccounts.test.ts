@@ -1,7 +1,9 @@
 // @vitest-environment node
 import { NextRequest } from "next/server";
+import { Prisma } from "@prisma/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { ScopeViewer } from "@/lib/ownerScope";
+import type { IssuedAccount } from "@/lib/learn/issueStudentAccount";
 import { managedRelationDb } from "../helpers/managedRelationDb";
 
 const state = vi.hoisted(() => ({
@@ -10,12 +12,13 @@ const state = vi.hoisted(() => ({
   hash: vi.fn(),
   audit: vi.fn(),
   create: vi.fn(),
+  singleCreate: vi.fn(),
   lock: vi.fn(),
-  accounts: [] as {
+  accounts: [] as (Partial<IssuedAccount> & {
     studentId: string;
     loginId: string;
     passwordHash?: string;
-  }[],
+  })[],
 }));
 vi.mock("server-only", () => ({}));
 vi.mock("@/lib/session", () => ({ getSessionUser: state.session }));
@@ -31,6 +34,7 @@ vi.mock("@/lib/errorLog/withErrorLog", () => ({
   withErrorLog: (_path: string, handler: unknown) => handler,
 }));
 import { GET, POST } from "@/app/api/classes/[id]/student-accounts/route";
+import { POST as issueOne } from "@/app/api/students/[id]/account/route";
 import { refreshManagedBinding } from "@/lib/eywa/managedAccounts";
 import { planBulkStudentAccounts } from "@/lib/learn/bulkStudentAccounts";
 
@@ -58,6 +62,7 @@ function addStudent(
     classId,
     branchId,
     eywaBindingId: bindingId,
+    eywaStudentId: `70000000-0000-4000-8000-${String(number).padStart(12, "0")}`,
     eywaWithdrawnAt: null,
     isTest: false,
     sourceStatus: "enrolled",
@@ -91,6 +96,30 @@ const posted = (body: string) =>
     body,
   });
 const context = () => ({ params: Promise.resolve({ id: classId }) });
+
+const secondClassId = "40000000-0000-4000-8000-000000000002";
+function addSecondEnrollment(studentId: string) {
+  if (!fixture.tables.class.some((row) => row.id === secondClassId))
+    fixture.tables.class.push({
+      ...fixture.tables.class[0],
+      id: secondClassId,
+      name: "중2 B반",
+    });
+  fixture.tables.studentEnrollment.push({
+    ...fixture.tables.studentEnrollment[0],
+    id: `second-${studentId}`,
+    studentId,
+    classId: secondClassId,
+  });
+}
+const postSecondClass = () =>
+  POST(
+    new NextRequest(
+      `http://localhost/api/classes/${secondClassId}/student-accounts`,
+      { method: "POST", headers: { origin: "http://localhost" } },
+    ),
+    { params: Promise.resolve({ id: secondClassId }) },
+  );
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -136,6 +165,37 @@ beforeEach(() => {
     student.studentAccount = { loginId: item.loginId };
     return { count: 1 };
   });
+  state.singleCreate.mockImplementation(async ({ data }) => {
+    if (
+      state.accounts.some(
+        (row) =>
+          row.studentId === data.studentId || row.loginId === data.loginId,
+      )
+    )
+      throw new Prisma.PrismaClientKnownRequestError(
+        "synthetic unique collision",
+        {
+          code: "P2002",
+          clientVersion: "6.19.3",
+        },
+      );
+    const account = {
+      ...data,
+      id: "synthetic-account",
+      issuedAt: now,
+      mustChangePassword: true,
+      disabledAt: null,
+      passwordChangedAt: null,
+      lastLoginAt: null,
+      lockedUntil: null,
+      failedCount: 0,
+    };
+    state.accounts.push(account);
+    fixture.tables.student.find(
+      (row) => row.id === data.studentId,
+    )!.studentAccount = { loginId: data.loginId };
+    return account;
+  });
   Object.assign(fixture.tx, {
     $queryRaw: state.lock,
     accountAuditLog: { create: state.audit },
@@ -147,11 +207,14 @@ beforeEach(() => {
       ),
       findUnique: vi.fn(
         async ({ where }) =>
-          state.accounts.find(
-            (account) => account.studentId === where.studentId,
+          state.accounts.find((account) =>
+            where.studentId
+              ? account.studentId === where.studentId
+              : account.loginId === where.loginId,
           ) ?? null,
       ),
       createMany: state.create,
+      create: state.singleCreate,
     },
   });
   state.db = { ...fixture.tx, $transaction: fixture.transaction };
@@ -309,6 +372,261 @@ describe("class bulk account issuance", () => {
       loginId: "previous-id",
     });
     expect(state.accounts[0].passwordHash).toBe("racing-original");
+  });
+  it("preserves one account across sequential issuance in two enrolled classes", async () => {
+    const student = addStudent(1);
+    addSecondEnrollment(student.id);
+    expect((await (await POST(request(), context())).json()).data.issued).toBe(
+      1,
+    );
+    const original = structuredClone(state.accounts);
+    const second = await postSecondClass();
+    expect(second.status).toBe(200);
+    expect((await second.json()).data).toMatchObject({
+      total: 1,
+      issued: 0,
+      existing: 1,
+      students: [{ studentId: student.id, status: "existing" }],
+    });
+    expect(state.accounts).toEqual(original);
+    expect(state.hash).toHaveBeenCalledOnce();
+    expect(state.audit).toHaveBeenCalledOnce();
+  });
+  it("settles simultaneous POSTs for one student in two classes as issued and existing", async () => {
+    const student = addStudent(1);
+    addSecondEnrollment(student.id);
+    let release!: () => void;
+    const bothHashing = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    let arrivals = 0;
+    state.hash.mockImplementation(async () => {
+      if (++arrivals === 2) release();
+      await bothHashing;
+      return "synthetic-hash";
+    });
+    const responses = await Promise.all([
+      POST(request(), context()),
+      postSecondClass(),
+    ]);
+    expect(responses.map((response) => response.status)).toEqual([200, 200]);
+    const bodies = await Promise.all(
+      responses.map((response) => response.json()),
+    );
+    expect(bodies.map((body) => body.data.students[0].status).sort()).toEqual([
+      "existing",
+      "issued",
+    ]);
+    expect(state.accounts).toHaveLength(1);
+    expect(state.create).toHaveBeenCalledTimes(2);
+    expect(state.create.mock.calls.every(([args]) => args.skipDuplicates)).toBe(
+      true,
+    );
+    expect(state.audit).toHaveBeenCalledOnce();
+  });
+  it.each(["bulk", "single"])(
+    "preserves the %s winner when bulk and single issuance race with different login IDs",
+    async (winner) => {
+      const student = addStudent(1);
+      addSecondEnrollment(student.id);
+      // Unique failures occur before any fixture write. A losing request must
+      // not roll back another request's committed rows from a shared snapshot.
+      state.db = {
+        ...fixture.tx,
+        $transaction: (
+          run: (tx: Prisma.TransactionClient) => Promise<unknown>,
+        ) => run(fixture.tx),
+      };
+      let releaseBoth!: () => void;
+      let releaseLoser!: () => void;
+      const bothWriting = new Promise<void>((resolve) => {
+        releaseBoth = resolve;
+      });
+      const winnerInserted = new Promise<void>((resolve) => {
+        releaseLoser = resolve;
+      });
+      let arrivals = 0;
+      const bulkInsert = state.create.getMockImplementation()!;
+      const singleInsert = state.singleCreate.getMockImplementation()!;
+      const insert =
+        (kind: string, write: typeof bulkInsert) => async (args: object) => {
+          if (++arrivals === 2) releaseBoth();
+          await bothWriting;
+          if (winner !== kind) await winnerInserted;
+          const result = await write(args);
+          if (winner === kind) releaseLoser();
+          return result;
+        };
+      state.create.mockImplementation(insert("bulk", bulkInsert));
+      state.singleCreate.mockImplementation(insert("single", singleInsert));
+      const [bulkResponse, singleResponse] = await Promise.all([
+        postSecondClass(),
+        issueOne(
+          new NextRequest(
+            `http://localhost/api/students/${student.id}/account`,
+            {
+              method: "POST",
+              headers: {
+                origin: "http://localhost",
+                "content-type": "application/json",
+              },
+              body: JSON.stringify({ loginId: "custom-student-id" }),
+            },
+          ),
+          { params: Promise.resolve({ id: student.id }) },
+        ),
+      ]);
+      expect(bulkResponse.status).toBe(200);
+      expect(singleResponse.status).toBe(winner === "single" ? 201 : 409);
+      const bulk = await bulkResponse.json();
+      expect(bulk.data.students[0]).toMatchObject({
+        studentId: student.id,
+        status: winner === "bulk" ? "issued" : "existing",
+        loginId: winner === "bulk" ? student.name : "custom-student-id",
+      });
+      if (winner === "bulk")
+        expect((await singleResponse.json()).error.message).toBe(
+          "이미 계정이 있습니다.",
+        );
+      expect(state.accounts).toHaveLength(1);
+      expect(state.accounts[0].loginId).toBe(bulk.data.students[0].loginId);
+      expect(state.audit).toHaveBeenCalledOnce();
+      const original = structuredClone(state.accounts);
+      const hashCalls = state.hash.mock.calls.length;
+      expect((await (await postSecondClass()).json()).data).toMatchObject({
+        issued: 0,
+        existing: 1,
+      });
+      expect(state.accounts).toEqual(original);
+      expect(state.hash).toHaveBeenCalledTimes(hashCalls);
+      expect(state.audit).toHaveBeenCalledOnce();
+    },
+  );
+  it("treats a disabled account as existing in every class without resetting account state", async () => {
+    const student = addStudent(1);
+    addSecondEnrollment(student.id);
+    student.studentAccount = { loginId: "legacy-id" };
+    state.accounts.push({
+      studentId: student.id,
+      loginId: "legacy-id",
+      passwordHash: "synthetic-original-hash",
+      disabledAt: now,
+      mustChangePassword: false,
+      passwordChangedAt: now,
+      lastLoginAt: now,
+      failedCount: 5,
+      lockedUntil: new Date(now.getTime() + 60_000),
+    });
+    const original = structuredClone(state.accounts);
+    for (const response of [
+      await POST(request(), context()),
+      await postSecondClass(),
+    ]) {
+      expect((await response.json()).data).toMatchObject({
+        issued: 0,
+        existing: 1,
+      });
+    }
+    expect(state.accounts).toEqual(original);
+    expect(state.create).not.toHaveBeenCalled();
+    expect(state.hash).not.toHaveBeenCalled();
+    expect(state.audit).not.toHaveBeenCalled();
+  });
+  it("issues a repeated selected studentId only once", async () => {
+    const student = addStudent(1);
+    const response = await POST(
+      posted(
+        JSON.stringify({ studentIds: [student.id, student.id, student.id] }),
+      ),
+      context(),
+    );
+    expect(response.status).toBe(200);
+    expect((await response.json()).data).toMatchObject({ total: 1, issued: 1 });
+    expect(state.accounts).toHaveLength(1);
+    expect(state.create).toHaveBeenCalledOnce();
+    expect(state.hash).toHaveBeenCalledOnce();
+  });
+  it("rechecks stale preview eligibility and preserves accounts issued since preview", async () => {
+    const issuedElsewhere = addStudent(1);
+    const departed = addStudent(2);
+    const preview = await (await GET(request("GET"), context())).json();
+    expect(preview.data.ready).toBe(2);
+    issuedElsewhere.studentAccount = { loginId: "individually-issued" };
+    state.accounts.push({
+      studentId: issuedElsewhere.id,
+      loginId: "individually-issued",
+      passwordHash: "synthetic-original-hash",
+    });
+    fixture.tables.studentEnrollment[1].endedAt = now;
+    const original = structuredClone(state.accounts);
+    const response = await POST(
+      posted(JSON.stringify({ studentIds: [issuedElsewhere.id, departed.id] })),
+      context(),
+    );
+    expect((await response.json()).data).toMatchObject({
+      total: 1,
+      issued: 0,
+      existing: 1,
+    });
+    expect(state.accounts).toEqual(original);
+    expect(state.hash).not.toHaveBeenCalled();
+    expect(state.create).not.toHaveBeenCalled();
+  });
+  it("rechecks a changed name and contact after acquiring the student lock", async () => {
+    const student = addStudent(1, "이전이름", "0042");
+    expect(
+      (await (await GET(request("GET"), context())).json()).data.ready,
+    ).toBe(1);
+    state.lock.mockImplementation(async (parts) => {
+      if (parts[0].includes("FROM student")) {
+        student.name = "변경이름";
+        student.phoneLast4 = "0000";
+      }
+      return [];
+    });
+    const body = await (
+      await POST(
+        posted(JSON.stringify({ studentIds: [student.id] })),
+        context(),
+      )
+    ).json();
+    expect(body.data.students[0]).toMatchObject({
+      studentId: student.id,
+      loginId: "변경이름",
+      status: "issued",
+    });
+    expect(state.hash).toHaveBeenCalledExactlyOnceWith("0000");
+  });
+  it("does not merge different students with the same name across simultaneous class POSTs", async () => {
+    const first = addStudent(1, "동명이인");
+    const second = addStudent(2, "동명이인");
+    addSecondEnrollment(second.id);
+    fixture.tables.studentEnrollment[1].endedAt = now;
+    let release!: () => void;
+    const bothHashing = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    let arrivals = 0;
+    state.hash.mockImplementation(async () => {
+      if (++arrivals === 2) release();
+      await bothHashing;
+      return "synthetic-hash";
+    });
+    const responses = await Promise.all([
+      POST(request(), context()),
+      postSecondClass(),
+    ]);
+    const bodies = await Promise.all(
+      responses.map((response) => response.json()),
+    );
+    expect(bodies.map((body) => body.data.students[0].status).sort()).toEqual([
+      "duplicate_name",
+      "issued",
+    ]);
+    expect(bodies[0].data.students[0].studentId).toBe(first.id);
+    expect(bodies[1].data.students[0].studentId).toBe(second.id);
+    expect(state.accounts).toHaveLength(1);
+    expect(fixture.tables.student).toHaveLength(2);
   });
   it("issues nobody for an empty selection and rejects a present malformed body", async () => {
     addStudent(1, "김민서", "0042");
