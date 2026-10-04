@@ -1030,8 +1030,18 @@ export function verifyQuestionAudioEvidence(input: {
           numbering.every((n) => section.questionNumbers.includes(n)) &&
           numeralOnly;
         if (
-          segment.estimatedStartSeconds * 16000 >= question.startSample &&
-          segment.estimatedEndSeconds * 16000 <= question.endSample &&
+          segment.estimatedStartSeconds * 16000 < question.endSample &&
+          segment.estimatedEndSeconds * 16000 > question.startSample &&
+          !noSpeech(
+            Math.max(
+              question.startSample,
+              Math.floor(segment.estimatedStartSeconds * 16000),
+            ),
+            Math.min(
+              question.endSample,
+              Math.ceil(segment.estimatedEndSeconds * 16000),
+            ),
+          ) &&
           !assigned.has(segment.id) &&
           !numberingOnly
         )

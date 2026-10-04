@@ -4,6 +4,7 @@
  * that produces the clip. The threshold is a deterministic measurement policy: it is not a human
  * listening review and it does not prove that no speech quieter than the threshold exists.
  */
+import { createHash } from "node:crypto";
 import { planListeningSampleClip, type ListeningPcmSource } from "./sampleClip";
 
 /** Fixed. A noisier source stays uncertain; the threshold is never adapted to a file. */
@@ -73,6 +74,8 @@ export interface ListeningBoundarySide {
 }
 export interface ListeningBoundaryMeasurement {
   schemaVersion: 1;
+  /** SHA of the exact WAV bytes scanned, including its generated clip header. */
+  clipSha256: string;
   policy: typeof LISTENING_BOUNDARY_POLICY & Scale;
   source: {
     pcmSha256: string;
@@ -116,8 +119,10 @@ async function scan(
   let header = 44,
     index = 0,
     carry: Buffer = Buffer.alloc(0);
+  const clipHash = createHash("sha256");
   // plan.read() itself refuses a source that yields more or fewer bytes than the range.
   for await (const chunk of plan.read()) {
+    clipHash.update(chunk);
     const skipped = Math.min(header, chunk.length);
     header -= skipped;
     const part = carry.length
@@ -143,6 +148,7 @@ async function scan(
     carry = part.subarray(usable);
   }
   return {
+    clipSha256: clipHash.digest("hex"),
     windows: grids.map((grid) => grid.windows),
     spans: parts.map((span) => Math.max(...span.sums)),
   };
@@ -205,6 +211,7 @@ export async function measureListeningBoundaryQuiet(
     reasons.push("trailing_quiet_below_minimum");
   return {
     schemaVersion: 1,
+    clipSha256: measured.clipSha256,
     policy: { ...LISTENING_BOUNDARY_POLICY, ...scale },
     source: {
       pcmSha256: source.pcmSha256,

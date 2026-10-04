@@ -207,8 +207,8 @@ describe("complete-source speech evidence", () => {
     proof.asr.english.segments.push({
       id: 7,
       text: "Monica?",
-      estimatedStartSeconds: 9.25,
-      estimatedEndSeconds: 9.4,
+      estimatedStartSeconds: 8.25,
+      estimatedEndSeconds: 8.4,
       uncertain: false,
     });
     expect(() => verifyQuestionAudioEvidence(proof)).toThrow(
@@ -412,4 +412,24 @@ describe("complete-source speech evidence", () => {
       loadListeningQuestionAudioPlan(root, audioSourceId),
     ).rejects.toThrow(/frame identity/);
   });
+  it.each(["start", "end"] as const)(
+    "rejects insufficient actual %s quiet despite complete model VAD padding",
+    async (edge) => {
+      const root = await mkdtemp(resolve(tmpdir(), "listening-actual-quiet-"));
+      folders.push(root);
+      const fixture = await questionAudioArtifacts(root);
+      // VAD unpadded boundaries leave at least 400 ms, but the synthetic PCM
+      // has only 200 ms quiet at this proposed cut. No source waveform is edited.
+      if (edge === "start") fixture.alignment.questions[0].startSample = 12800;
+      else fixture.alignment.questions[0].endSample = 147200;
+      expect(verifyQuestionAudioEvidence(fixture)).toHaveLength(2);
+      const raw = JSON.stringify(fixture.alignment);
+      await writeFile(fixture.snapshot.alignment.path, raw);
+      fixture.snapshot.alignment.sha256 = questionAudioSha256(raw);
+      await fixture.writeSnapshot();
+      await expect(
+        loadListeningQuestionAudioPlan(root, audioSourceId),
+      ).rejects.toThrow(/native PCM boundary quiet/);
+    },
+  );
 });

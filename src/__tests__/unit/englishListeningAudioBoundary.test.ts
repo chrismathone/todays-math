@@ -8,6 +8,10 @@ import {
 } from "@/lib/english/listening/media/audioBoundary";
 import { waveHeader } from "@/lib/english/listening/media/mp3";
 import type { ListeningPcmSource } from "@/lib/english/listening/media/sampleClip";
+import {
+  listeningSampleClipSha256,
+  planListeningSampleClip,
+} from "@/lib/english/listening/media/sampleClip";
 
 /** One stretch of an alternating +A/-A square wave, whose RMS is exactly A in every window. */
 type Stretch = { ms: number; left: number; right?: number };
@@ -56,6 +60,34 @@ const plain = () =>
   ]);
 
 describe("measured native PCM boundary quiet", () => {
+  it("binds the measurement to streamed clip bytes and exposes a changed reader despite identical source labels", async () => {
+    const { source, at } = plain();
+    const range = { startFrame: at(600), endFrame: at(4400) };
+    const planned = await listeningSampleClipSha256(
+      planListeningSampleClip(source, range.startFrame, range.endFrame),
+    );
+    expect(
+      (await measureListeningBoundaryQuiet(source, range)).clipSha256,
+    ).toBe(planned);
+    const changed: ListeningPcmSource = {
+      ...source,
+      async *readRange(start, end) {
+        let first = true;
+        for await (const bytes of source.readRange(start, end)) {
+          const altered = Buffer.from(bytes);
+          if (first) {
+            altered.writeInt16LE(altered.readInt16LE(0) + 1, 0);
+            first = false;
+          }
+          yield altered;
+        }
+      },
+    };
+    const measured = await measureListeningBoundaryQuiet(changed, range);
+    expect(measured.source.pcmSha256).toBe(source.pcmSha256);
+    expect(measured.status).toBe("measured_quiet");
+    expect(measured.clipSha256).not.toBe(planned);
+  });
   it("measures a clip that starts and ends inside 400 ms of quiet on the exact source identity", async () => {
     const { source, at } = plain();
     const range = { startFrame: at(600), endFrame: at(4400) };
