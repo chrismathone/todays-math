@@ -16,39 +16,8 @@
   outline-offset: 5px;
 }
 .tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  composes: tabs from "./EnglishTabs.module.css";
   margin-bottom: 16px;
-  border-bottom: 1px solid var(--learn-track, #dde3ec);
-}
-.tabs button {
-  position: relative;
-  height: 44px;
-  padding: 0 20px;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: var(--learn-muted, #596c86);
-  font-size: var(--text-body, 14px);
-  font-weight: 600;
-  white-space: nowrap;
-}
-.tabs button[aria-selected="true"] {
-  color: var(--learn-accent, #3159df);
-}
-.tabs button[aria-selected="true"]::after {
-  position: absolute;
-  right: 16px;
-  bottom: -1px;
-  left: 16px;
-  height: 3px;
-  border-radius: 3px 3px 0 0;
-  background: var(--learn-accent, #3159df);
-  content: "";
-}
-.tabs button:hover {
-  color: var(--learn-accent, #3159df);
 }
 .panel {
   display: grid;
