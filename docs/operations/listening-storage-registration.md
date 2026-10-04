@@ -24,6 +24,10 @@ node --conditions=react-server --env-file=.env --import=tsx scripts/import/regis
 node --conditions=react-server --env-file=.env --import=tsx scripts/import/register-listening-assessment.mts ebs-middle-1-2026-2 --apply
 ```
 
+실제 원본이 M4A인 회차는 `--ffmpeg-path <설치된 FFmpeg 실행 파일>`을 추가한다.
+원본과 파생 MP3를 각각 Storage에 보관하고, 전체 원본 PCM 검증·파생 MP3 디코딩이
+성공한 경우만 등록한다. 검색 메타데이터의 음원 SHA는 M4A 원본을 가리킨다.
+
 진행 원장은 `output/listening-assessments/storage-registration/<sourceRecordId>.json`이다.
 같은 자료는 기존 세트·음원을 재사용한다. 이미 바뀐 문항이나 발행·사람 검수 자료는
 덮어쓰지 않는다. 완료 전에 앱의 비공개 음원 경로로 HEAD, Range와 전체 재생 SHA를

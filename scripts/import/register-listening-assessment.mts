@@ -6,6 +6,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import { z } from "zod";
 import type { ListeningDraft } from "../../src/contracts/englishListeningHttp.contract";
 import type { ListeningMediaCompletion } from "../../src/contracts/englishListeningMedia.contract";
+import type { VerifiedListeningM4aPlayback } from "../../src/lib/english/listening/media/trustedM4a";
 const require = createRequire(import.meta.url);
 const { createListeningRuntime } =
   require("../../src/lib/english/listening/runtime/service") as typeof import("../../src/lib/english/listening/runtime/service");
@@ -19,6 +20,8 @@ const { PrismaStorageListeningMediaStore } =
   require("../../src/lib/english/listening/media/storageStore") as typeof import("../../src/lib/english/listening/media/storageStore");
 const { validateListeningDriveMp3 } =
   require("../../src/lib/english/listening/runtime/driveAssets") as typeof import("../../src/lib/english/listening/runtime/driveAssets");
+const { prepareListeningM4aPlayback } =
+  require("../../src/lib/english/listening/media/trustedM4a") as typeof import("../../src/lib/english/listening/media/trustedM4a");
 const { createListeningMediaAccess } =
   require("../../src/lib/english/listening/runtime/mediaAccess") as typeof import("../../src/lib/english/listening/runtime/mediaAccess");
 const { listeningCreateSetSchema, listeningUpdateSetSchema } =
@@ -129,15 +132,30 @@ for (const f of payload.sourceFiles) {
 const audio = payload.sourceFiles.find((f) => f.kind === "audio");
 if (!audio || audio.path !== payload.audioFilePath)
   throw Error("Audio path mismatch");
-if (
-  (audio.detectedContentType ?? audio.contentType ?? "audio/mpeg") !==
-  "audio/mpeg"
-)
-  throw Error(
-    "Original M4A requires preserved source and a verified playback conversion",
-  );
 const audioBytes = await readFile(audio.path);
-await validateListeningDriveMp3(audioBytes);
+let playbackDerivative: VerifiedListeningM4aPlayback | undefined;
+const detectedMime =
+  audio.detectedContentType ?? audio.contentType ?? "audio/mpeg";
+if (detectedMime === "audio/mpeg") {
+  await validateListeningDriveMp3(audioBytes);
+} else if (detectedMime === "audio/mp4") {
+  const flag = process.argv.indexOf("--ffmpeg-path");
+  const ffmpegPath =
+    flag >= 0
+      ? process.argv[flag + 1]
+      : process.env.LISTENING_IMPORT_FFMPEG_PATH;
+  if (!ffmpegPath)
+    throw Error(
+      "M4A preflight requires --ffmpeg-path or LISTENING_IMPORT_FFMPEG_PATH",
+    );
+  const prepared = await prepareListeningM4aPlayback({
+    sourcePath: resolve(audio.path),
+    ffmpegPath: resolve(ffmpegPath),
+  });
+  if (!prepared.sourceBytes.equals(audioBytes))
+    throw Error("Original M4A changed during preflight");
+  playbackDerivative = prepared.playbackDerivative;
+} else throw Error("Unsupported original audio format");
 if (!process.argv.includes("--apply")) {
   console.log(
     `${sourceId}: read-only preflight passed, ${payload.editableInput.groups[0].questions.length} questions, ${audio.bytes}B audio`,
@@ -241,6 +259,7 @@ try {
     expectedSetRevision: detail.revision,
     assetId: checkpoint.assetId,
     bytes: audioBytes,
+    ...(playbackDerivative ? { playbackDerivative } : {}),
   });
   if (completion.state !== "ready" || !completion.playbackBytes)
     throw Error("Full decode and ready playback are required");
