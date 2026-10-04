@@ -1,6 +1,7 @@
-﻿import { useEffect, useRef, useState } from "react";
+﻿import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
+import { replaceScreenQuery } from "@/hooks/useScreenQuery";
 import {
   advanceProgress,
   createClass,
@@ -22,7 +23,7 @@ type Mutation = {
 };
 const idleMutation: Mutation = { pending: false, error: null, success: null };
 
-export function useClassManage() {
+export function useClassManage(requestedClassId = "") {
   const [classes, setClasses] = useState<ClassEntity[]>([]);
   const [students, setStudents] = useState<StudentEntity[]>([]);
   const [selectedClassId, setSelectedClassId] = useState("");
@@ -46,6 +47,30 @@ export function useClassManage() {
   const classPending = useRef(false);
   const studentRequests = useRef(new Map<string, Promise<boolean>>());
   const progressRequests = useRef(new Map<string, Promise<boolean>>());
+  const requested = useRef(requestedClassId);
+  useEffect(() => {
+    requested.current = requestedClassId;
+  }, [requestedClassId]);
+
+  const resetDetails = useCallback(() => {
+    selectionVersion.current += 1;
+    setStudents([]);
+    setCurrentUnitId(null);
+    setStudentsStatus("loading");
+    setProgressStatus("loading");
+    setReload((value) => value + 1);
+  }, []);
+
+  const selectClass = useCallback(
+    (classId: string) => {
+      if (activeClassId.current === classId) return;
+      activeClassId.current = classId;
+      setSelectedClassId(classId);
+      setError(null);
+      resetDetails();
+    },
+    [resetDetails],
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -53,8 +78,18 @@ export function useClassManage() {
       .then((rows) => {
         if (cancelled) return;
         setClasses(rows);
-        activeClassId.current = rows[0]?.id ?? "";
+        const wanted = activeClassId.current || requested.current;
+        activeClassId.current = wanted
+          ? rows.some((row) => row.id === wanted)
+            ? wanted
+            : ""
+          : (rows[0]?.id ?? "");
         setSelectedClassId(activeClassId.current);
+        setError(
+          wanted && !activeClassId.current
+            ? "요청한 반을 찾을 수 없거나 접근 권한이 없습니다. 반 목록에서 선택하세요."
+            : null,
+        );
         setStatus("ready");
       })
       .catch(() => {
@@ -66,6 +101,28 @@ export function useClassManage() {
       cancelled = true;
     };
   }, [classReload]);
+
+  useEffect(() => {
+    if (
+      status !== "ready" ||
+      !requestedClassId ||
+      requestedClassId === activeClassId.current
+    )
+      return;
+    if (!classes.some((row) => row.id === requestedClassId)) {
+      activeClassId.current = "";
+      // Synchronize the explicit URL selection with the loaded authorized roster.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setSelectedClassId("");
+      resetDetails();
+      setError(
+        "요청한 반을 찾을 수 없거나 접근 권한이 없습니다. 반 목록에서 선택하세요.",
+      );
+    } else {
+      setError(null);
+      selectClass(requestedClassId);
+    }
+  }, [requestedClassId, status, classes, selectClass, resetDetails]);
 
   useEffect(() => {
     if (!selectedClassId) return;
@@ -103,22 +160,6 @@ export function useClassManage() {
       cancelled = true;
     };
   }, [selectedClassId, reload]);
-
-  function selectClass(classId: string) {
-    if (activeClassId.current === classId) return;
-    activeClassId.current = classId;
-    setSelectedClassId(classId);
-    resetDetails();
-  }
-
-  function resetDetails() {
-    selectionVersion.current += 1;
-    setStudents([]);
-    setCurrentUnitId(null);
-    setStudentsStatus("loading");
-    setProgressStatus("loading");
-    setReload((value) => value + 1);
-  }
 
   function retryClasses() {
     setStatus("loading");
@@ -234,7 +275,10 @@ export function useClassManage() {
       // 내 반은 맨 위(D-132 ⑷) — 새로 고친 목록과 같은 자리. 담당이 없으면(관리자 아님) 지금처럼 끝에 붙는다.
       setClasses((prev) => mineFirst([...prev, created], (c) => c.owner));
       // A delayed creation must not undo a class the user selected meanwhile.
-      if (version === selectionVersion.current) selectClass(created.id);
+      if (version === selectionVersion.current) {
+        selectClass(created.id);
+        replaceScreenQuery({ classId: created.id, studentId: null });
+      }
       setClassMutation({
         ...idleMutation,
         success: `${created.name} 반을 추가했습니다.`,

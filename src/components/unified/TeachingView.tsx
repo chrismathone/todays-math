@@ -3,6 +3,8 @@
 import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 
 import WorkspacePageHeader from "./WorkspacePageHeader";
+import { replaceScreenQuery, useScreenQuery } from "@/hooks/useScreenQuery";
+import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
 import dynamic from "next/dynamic";
 import { signOut } from "next-auth/react";
 import {
@@ -43,6 +45,7 @@ type TeachingData = {
     name: string;
     email: string;
     isAdmin: boolean;
+    menus?: WorkspaceMenu[];
     branchId?: string | null;
     branchRole?: "owner" | "manager" | "teacher" | null;
   };
@@ -63,7 +66,11 @@ export default function TeachingView({
 }: {
   embedded?: boolean;
 }) {
-  const [tab, setTab] = useState<TeachingTab>("classes");
+  const query = useScreenQuery();
+  const tab: TeachingTab =
+    query.get("teachingTab") === "lessons" ? "lessons" : "classes";
+  const setTab = (next: TeachingTab) =>
+    replaceScreenQuery({ teachingTab: next });
   const [access, setAccess] = useState<AccessState>({ status: "loading" });
   const [signingOut, setSigningOut] = useState(false);
   const [accountError, setAccountError] = useState("");
@@ -258,7 +265,11 @@ export default function TeachingView({
             </div>
             {tab === "lessons" ? (
               <div className={s.lessonContent}>
-                <MainScreen embedded onEmpty={() => setTab("classes")} />
+                <MainScreen
+                  embedded
+                  allowedMenus={access.data.user.menus}
+                  onEmpty={() => setTab("classes")}
+                />
               </div>
             ) : null}
           </section>

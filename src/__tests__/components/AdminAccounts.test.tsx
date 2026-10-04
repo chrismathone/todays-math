@@ -33,6 +33,7 @@ const json = (body: unknown, status = 200) =>
     headers: { "Content-Type": "application/json" },
   });
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   vi.clearAllMocks();
   vi.stubGlobal("fetch", fetchMock);
   fetchMock.mockResolvedValue(json(accountsResponse()));
@@ -40,6 +41,24 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("account menu product tabs", () => {
+  it("restores direct-link list state and selection and carries a same-branch return to detail", async () => {
+    const params = new URLSearchParams({ q: "haneul@example.com", status: "pending", page: "2", tab: "accounts", selection: pendingAccount.id });
+    window.history.replaceState(null, "", `/admin/branches/unassigned?${params}#admin-main`);
+    fetchMock.mockResolvedValue(json(accountsResponse([pendingAccount], { page: 2, total: 51 })));
+    render(<AdminAccounts identity={adminIdentity} branchId="unassigned" />);
+    const link = await screen.findByRole("link", { name: "김하늘" });
+    expect(screen.getByRole("searchbox")).toHaveValue("haneul@example.com");
+    await screen.findByRole("button", { name: "검토 닫기" });
+    const request = new URL(String(fetchMock.mock.calls[0][0]), "http://localhost");
+    expect(request.searchParams.get("q")).toBe("haneul@example.com");
+    expect(request.searchParams.get("page")).toBe("2");
+    expect(request.searchParams.get("status")).toBe("pending");
+    const destination = new URL(link.getAttribute("href")!, "http://localhost");
+    const back = new URL(destination.searchParams.get("returnTo")!, "http://localhost");
+    expect(back.pathname).toBe("/admin/branches/unassigned");
+    for (const [key, value] of params) expect(back.searchParams.get(key)).toBe(value);
+    expect(back.hash).toBe("#admin-main");
+  });
   const mathLabels = [
     "오늘의 작업",
     "시험지 만들기",
@@ -538,7 +557,7 @@ describe("admin account management", () => {
     expect(screen.getByText("admin@example.com")).toBeInTheDocument();
     expect(await screen.findByRole("link", { name: "김하늘" })).toHaveAttribute(
       "href",
-      `/admin/branches/unassigned/users/${pendingAccount.id}`,
+      `/admin/branches/unassigned/users/${pendingAccount.id}?returnTo=${encodeURIComponent(`/admin/branches/unassigned?selection=${pendingAccount.id}`)}`,
     );
     fireEvent.submit(
       screen.getByRole("button", { name: "로그아웃" }).closest("form")!,

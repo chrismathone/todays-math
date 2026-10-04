@@ -77,18 +77,19 @@ export const getCourseDashboard = () =>
     async (value) =>
       (await contract()).courseDashboardResponseSchema.parse(value).data,
   );
-export const getCourseStudentDetail = (studentId: string) =>
+export const getCourseStudentDetail = (studentId: string, classId?: string) =>
   request(
-    `/api/students/${encodeURIComponent(studentId)}/math-srs/course`,
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/course${classId ? `?classId=${encodeURIComponent(classId)}` : ""}`,
     async (value) =>
       (await contract()).courseStudentDetailResponseSchema.parse(value).data,
   );
 export const saveCourseStudentPlan = (
   studentId: string,
   input: CoursePlanInput,
+  classId?: string,
 ) =>
   request(
-    `/api/students/${encodeURIComponent(studentId)}/math-srs/course`,
+    `/api/students/${encodeURIComponent(studentId)}/math-srs/course${classId ? `?classId=${encodeURIComponent(classId)}` : ""}`,
     async (value) =>
       (await contract()).courseRosterStudentResponseSchema.parse(value).data,
     input,

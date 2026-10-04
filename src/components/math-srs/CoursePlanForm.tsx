@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useState, type FormEvent } from "react";
 import type {
   CoursePlan,
   CoursePlanInput,
@@ -18,6 +18,7 @@ export interface CoursePlanFormProps {
   onSave: (input: CoursePlanInput) => void;
   submitLabel?: string;
   studentView?: boolean;
+  onDirtyChange?: (dirty: boolean, input: CoursePlanInput | null) => void;
 }
 
 export default function CoursePlanForm(props: CoursePlanFormProps) {
@@ -36,6 +37,7 @@ function PlanFields({
   onSave,
   submitLabel = "학습 설정 저장",
   studentView = false,
+  onDirtyChange,
 }: CoursePlanFormProps) {
   const id = useId();
   const initial = plan ? getCourseSection(plan.startSectionId) : undefined;
@@ -56,6 +58,26 @@ function PlanFields({
   const sections =
     chapters.find((chapter) => chapter.id === chapterId)?.sections ?? [];
   const selected = sections.find((section) => section.id === sectionId);
+  const dirty =
+    grade !== (initial ? String(initial.grade) : "") ||
+    semester !== (initial ? String(initial.semester) : "") ||
+    chapterId !== (initial?.chapterId ?? "") ||
+    sectionId !== (plan?.startSectionId ?? "") ||
+    daily !== (plan?.dailyQuestionCount ?? 10) ||
+    enabled !== (plan?.enabled ?? true);
+  useEffect(() => {
+    onDirtyChange?.(
+      dirty,
+      selected
+        ? {
+            startSectionId: selected.id,
+            dailyQuestionCount: daily,
+            enabled,
+            expectedRevision: revision,
+          }
+        : null,
+    );
+  }, [dirty, selected, daily, enabled, revision, onDirtyChange]);
 
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
