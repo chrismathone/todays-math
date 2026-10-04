@@ -1,16 +1,10 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
-import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
-import {
-  textbookConceptSchema,
-  type TextbookConcept,
-} from "@/contracts/textbookConcept.contract";
+import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import {
   textbookConfigSchema,
   textbookSectionSchema,
   type ManuscriptBlock,
-  type TextbookItem,
   type TextbookConfig,
 } from "@/contracts/textbookExchange.contract";
 import {
@@ -18,7 +12,6 @@ import {
   quickCreateInputSchema,
   quickCreateResultSchema,
   quickCreateScopeSchema,
-  type QuickCreateCast,
   type QuickCreateCatalog,
   type QuickCreateInput,
   type QuickCreateResult,
@@ -29,21 +22,14 @@ import {
   textbookVersion,
 } from "@/contracts/textbookPrimitives.contract";
 import { CURRICULUM_UNITS } from "../../../../prisma/seed-data/units";
-import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
-import { sectionKeyOf, sectionTitleTex } from "@/lib/concept-blank/sections";
+import { sectionTitleTex } from "@/lib/concept-blank/sections";
 import { classifyFormat } from "@/lib/problem/provenance";
 import { problemIneligibleReason } from "@/lib/problemEligibility";
 import { DEFAULT_PROBLEM_POOL } from "@/lib/problemPool";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import type { TextbookActor } from "../access";
-import { freezeTextbookConcept } from "../concepts";
 import { canonicalHash } from "../hash.server";
-import {
-  captureProblemSnapshot,
-  type CapturedSnapshot,
-  type FigureLoader,
-  type FrozenAsset,
-} from "../snapshotFromProblem";
+import type { FrozenAsset } from "../snapshotFromProblem";
 import {
   bookSummary,
   DRAFT_RENDERER_VERSION,
@@ -54,7 +40,6 @@ import type { OutlineUnitMeta } from "./editions";
 import { conflict, invalid } from "./errors";
 import {
   CAPTURE_MAX_FIGURE_BYTES,
-  DEFAULT_ITEM_LAYOUT,
   EDITION_MAX_ITEMS,
   insertSnapshots,
   loadProblemRows,
@@ -62,69 +47,41 @@ import {
 import { runOnce } from "./requests";
 import { EDITION_MAX_SECTIONS, SECTION_MAX_BYTES } from "./sections";
 import { SQL_NOW, type TextbookDb, type TextbookSql, uuidList } from "./sql";
+import {
+  appendConceptAndRecall,
+  wantsConceptFamily,
+} from "./quickCreate/conceptRecall";
+import {
+  conceptIndex,
+  DEFAULT_QUICK_CREATE_CAST,
+  gradeLabel,
+  keyOf,
+  QUICK_CREATE_DIFFICULTIES,
+  type ItemPlan,
+  type QuickCreateAssembly,
+  type QuickCreateDependencies,
+  type QuickCreateLesson,
+  type SectionPlan,
+  type UnitRow,
+} from "./quickCreate/context";
+import { prependDialogue } from "./quickCreate/dialogue";
+import { appendErrorCheck } from "./quickCreate/errorCheck";
+import { appendFrontMatter } from "./quickCreate/frontMatter";
+import { appendPreparation } from "./quickCreate/preparation";
+import {
+  appendProblemStages,
+  enabledProblemStages,
+  quickCreateItemLayout,
+} from "./quickCreate/problemStages";
+import { appendRest } from "./quickCreate/rest";
+import { appendUnitIntro } from "./quickCreate/unitIntro";
 
-/** Explicit, closed tier sets. A shortage reduces the count, never borrows a different difficulty. */
-export const QUICK_CREATE_DIFFICULTIES = {
-  basic: ["연산", "기본"],
-  standard: ["기본", "응용"],
-  challenge: ["응용", "심화하", "심화중", "심화상"],
-} as const;
-export const DEFAULT_QUICK_CREATE_CAST: QuickCreateCast = {
-  teacherId: "teacher-f1",
-  student1Id: "student-f1",
-  student2Id: "student-m1",
-};
-export interface QuickCreateDependencies {
-  loadFigure: FigureLoader;
-  dialogueForSection?: (
-    sectionKey: string,
-    cast: QuickCreateCast,
-  ) => Promise<{
-    turns: Extract<ManuscriptBlock, { kind: "dialogue" }>["turns"];
-    assets: FrozenAsset[];
-  }>;
-  prepareVisuals?: (
-    tx: TextbookSql,
-    input: {
-      userId: string;
-      editionId: string;
-      cast: QuickCreateCast;
-      units: readonly UnitRow[];
-      dialogue: boolean;
-      rest: boolean;
-    },
-  ) => Promise<{
-    assetIds: string[];
-    dialogueForSection: (
-      sectionKey: string,
-    ) => Extract<ManuscriptBlock, { kind: "dialogue" }>["turns"];
-    restForUnit: (unit: UnitRow) => {
-      title: string;
-      markdown: string;
-      reflectionQuestions: readonly string[];
-      imageAssetId: string;
-    };
-  }>;
-  now?: () => Date;
-}
-interface UnitRow {
-  id: string;
-  grade: string;
-  chapter: string;
-  section: string;
-  orderIndex: number;
-  problemCount: number;
-}
-const gradeLabel = (scope: QuickCreateScope) =>
-  `${scope.schoolLevel === "elementary" ? "초" : "중"}${scope.grade}`;
-const keyOf = (unit: Pick<UnitRow, "grade" | "chapter" | "section">) =>
-  sectionKeyOf(unit.grade, unit.chapter, unit.section);
-const conceptIndex = new Map<string, ConceptEntry[]>();
-for (const entry of CONCEPT_BLANK_BANK.concepts) {
-  const entries = conceptIndex.get(entry.section) ?? [];
-  entries.push(entry);
-  conceptIndex.set(entry.section, entries);
-}
+export {
+  DEFAULT_QUICK_CREATE_CAST,
+  QUICK_CREATE_DIFFICULTIES,
+} from "./quickCreate/context";
+export type { QuickCreateDependencies } from "./quickCreate/context";
+
 const seedKeys = new Set(CURRICULUM_UNITS.map(keyOf));
 /** Elementary seed chapters encode semester directly. Middle seed chapters 1–4 are algebra;
  * 5 onward are the second-semester geometry/statistics sequence (all three middle grades). */
@@ -221,85 +178,6 @@ export async function listQuickCreateUnits(
     })),
   };
 }
-const text = (markdown: string): ManuscriptBlock => ({
-  blockId: randomUUID(),
-  kind: "text",
-  markdown,
-});
-const plainDefinition = (entry: ConceptEntry) =>
-  splitBlankSentence(entry.definition)
-    .map((piece) => piece.text)
-    .join("");
-interface SectionPlan {
-  id: string;
-  unitKey: string;
-  sectionKey: string;
-  title: string;
-  templateKey: string;
-  startPolicy: "even-left" | "continue";
-  blocks: ManuscriptBlock[];
-}
-interface ItemPlan {
-  id: string;
-  unitKey: string;
-  sectionId: string;
-  stage: TextbookItem["learningStage"];
-  snapshot: CapturedSnapshot;
-  orderIndex: number;
-  conceptKeys: string[];
-}
-function conceptFor(
-  unit: UnitRow,
-  unitKey: string,
-  sectionKey: string,
-  entries: ConceptEntry[],
-  actor: TextbookActor,
-  now: string,
-  forms: TextbookConcept["blankForms"],
-) {
-  const concept = textbookConceptSchema.parse({
-    conceptKey: `concept-${unit.id}`,
-    unitKey,
-    sectionKey,
-    title: unit.section,
-    kind: entries[0].kind,
-    unitId: unit.id,
-    body: {
-      goal: `${sectionTitleTex(unit.section)}의 뜻과 적용 방법을 설명할 수 있습니다.`,
-      prerequisites: [],
-      definition: entries
-        .map((entry) => `**${entry.term}**: ${plainDefinition(entry)}`)
-        .join("\n\n"),
-      conditions: null,
-      examples: entries.flatMap((entry) =>
-        entry.example
-          ? [`${entry.example.prompt} → ${entry.example.answer}`]
-          : [],
-      ),
-      counterexamples: [],
-      misconceptions: [],
-      explainPrompt: "배운 개념을 자신의 말로 설명해 보세요.",
-    },
-    blankItems: entries.map((entry) => ({
-      blankSectionKey: keyOf(unit),
-      entryKind: "concept",
-      entryId: entry.id,
-      review: {
-        status: "confirmed",
-        candidateRule: "unit-triple",
-        reviewedBy: actor.id,
-        reviewedAt: now,
-        targetHash: canonicalHash(entry),
-      },
-    })),
-    blankForms: forms,
-    links: [],
-    mappingVersion: "quick-create.unit-triple.v1",
-    derivedFromConceptKey: null,
-    frozen: null,
-  });
-  return freezeTextbookConcept(concept);
-}
 
 /** One transaction owns the receipt and every native row. Failed captures/SQL writes roll back
  * the receipt as well; a retry can succeed, and completed retries don't touch mutable banks. */
@@ -336,36 +214,8 @@ export async function createQuickTextbook(
         if (start > end)
           throw invalid("끝 단원은 시작 단원보다 앞설 수 없습니다.");
         const units = catalog.slice(start, end + 1);
-        const wantsConcept =
-          components.concepts ||
-          components.termRecall ||
-          components.clozeRecall ||
-          components.sentenceRecall ||
-          components.errorCheck;
-        const stageOptions: Array<{
-          enabled: boolean;
-          stage: TextbookItem["learningStage"];
-          title: string;
-        }> = [
-          {
-            enabled: components.workedExamples,
-            stage: "worked-example",
-            title: "대표예제로 익히기",
-          },
-          { enabled: components.practice, stage: "basic", title: "유형 연습" },
-          {
-            enabled: components.review,
-            stage: "cumulative-review",
-            title: "누적 복습",
-          },
-          {
-            enabled: components.assessment,
-            stage: "unit-assessment",
-            title: "단원 평가",
-          },
-          { enabled: components.written, stage: "written", title: "서술형" },
-        ];
-        const stages = stageOptions.filter((stage) => stage.enabled);
+        const wantsConcept = wantsConceptFamily(components);
+        const stages = enabledProblemStages(components);
         if (
           stages.length &&
           units.length * input.problemCountPerUnit > EDITION_MAX_ITEMS
@@ -457,121 +307,57 @@ export async function createQuickTextbook(
         const outline: OutlineUnitMeta[] = [];
         const warnings: string[] = [];
         const now = (deps.now?.() ?? new Date()).toISOString();
-        let chapter = "",
-          unitKey = "";
-        const addSection = (
-          title: string,
-          templateKey: string,
-          blocks: ManuscriptBlock[],
-        ): SectionPlan => {
-          const section = {
-            id: randomUUID(),
-            unitKey,
-            sectionKey: `s-${randomUUID()}`,
-            title,
-            templateKey,
-            startPolicy: "continue" as const,
-            blocks,
-          };
-          sections.push(section);
-          return section;
+        const ctx: QuickCreateAssembly = {
+          tx,
+          actor,
+          input,
+          components,
+          deps,
+          units,
+          visuals,
+          stages,
+          now,
+          sections,
+          items,
+          concepts,
+          assets,
+          outline,
+          warnings,
+          chapter: "",
+          unitKey: "",
+          addSection: (
+            title: string,
+            templateKey: string,
+            blocks: ManuscriptBlock[],
+          ): SectionPlan => {
+            const section = {
+              id: randomUUID(),
+              unitKey: ctx.unitKey,
+              sectionKey: `s-${randomUUID()}`,
+              title,
+              templateKey,
+              startPolicy: "continue" as const,
+              blocks,
+            };
+            sections.push(section);
+            return section;
+          },
         };
-        const addRest = () => {
-          if (components.rest) {
-            const unit = units.find((u) => u.chapter === chapter)!;
-            const story = visuals?.restForUnit(unit);
-            if (!story)
-              throw invalid("쉬어가기 이야기와 그림을 준비하지 못했습니다.");
-            const restSection = addSection(
-              `쉬어가기 · ${story.title}`,
-              "rest",
-              [
-                {
-                  blockId: randomUUID(),
-                  kind: "image",
-                  assetId: story.imageAssetId,
-                  caption: story.title,
-                },
-                text(story.markdown),
-                text(
-                  `### 함께 생각해요\n\n${story.reflectionQuestions.map((question) => `- ${question}`).join("\n")}`,
-                ),
-              ],
-            );
-            restSection.startPolicy = "continue";
-          }
-        };
-        if (
-          components.learningGuide ||
-          components.learningPlan ||
-          components.questionLog
-        ) {
-          unitKey = "front-matter";
-          outline.push({
-            unitKey,
-            title: "교재 사용 안내",
-            sourceUnitIds: [],
-            prerequisites: [],
-            goals: [],
-            conceptLectureRefs: [],
-          });
-          if (components.learningGuide)
-            addSection("학습 안내", "learning-guide", [
-              text(
-                "### 나의 학습 순서\n\n1. 소단원 제목을 읽고 오늘 배울 내용을 말해 봅니다.\n2. 선택한 개념 대화와 설명을 읽으며 뜻과 조건을 확인합니다.\n3. 백지 활동은 답을 가리고 자신의 말로 씁니다.\n4. 문제를 푼 뒤 풀이 과정을 비교하고 질문을 남깁니다.\n5. 다음 학습 전에 잘 설명하지 못한 내용을 다시 확인합니다.\n\n빈칸의 개수나 정답 속도보다, 이유를 설명할 수 있는지 확인하세요.",
-              ),
-            ]);
-          if (components.learningPlan)
-            addSection("학습 계획", "learning-plan", [
-              text(
-                "| 차례 | 학습할 소단원 | 학습 예정일 | 학습한 날 | 스스로 설명 |\n|---|---|---|---|---|\n" +
-                  units
-                    .map(
-                      (unit, index) =>
-                        `| ${index + 1} | ${sectionTitleTex(unit.section)} |　　　　 |　　　　 | □ |`,
-                    )
-                    .join("\n"),
-              ),
-            ]);
-          if (components.questionLog)
-            addSection("질문 기록", "question-log", [
-              text(
-                "### 질문을 구체적으로 남겨요\n\n| 소단원·문항 번호 | 막힌 부분과 시도한 방법 | 물어볼 질문 | 알게 된 이유 |\n|---|---|---|---|\n" +
-                  Array.from(
-                    { length: 8 },
-                    () => "|　　　　　 |　　　　　 |　　　　　 |　　　　　 |",
-                  ).join("\n") +
-                  "\n\n설명을 들은 뒤에는 답을 옮겨 쓰는 대신, 무엇을 바꾸어 생각했는지 기록하세요.",
-              ),
-            ]);
-        }
+        appendFrontMatter(ctx);
         for (const unit of units) {
-          if (chapter !== unit.chapter) {
-            if (chapter) addRest();
-            chapter = unit.chapter;
-            unitKey = `u-${unit.id}`;
+          if (ctx.chapter !== unit.chapter) {
+            if (ctx.chapter) appendRest(ctx);
+            ctx.chapter = unit.chapter;
+            ctx.unitKey = `u-${unit.id}`;
             outline.push({
-              unitKey,
-              title: chapter,
+              unitKey: ctx.unitKey,
+              title: ctx.chapter,
               sourceUnitIds: [],
               prerequisites: [],
               goals: [],
               conceptLectureRefs: [],
             });
-            if (components.unitIntro)
-              addSection("단원 소개", "auto-unit-intro", [
-                text(
-                  `### ${chapter}의 학습 목표와 순서\n\n${units
-                    .filter((row) => row.chapter === chapter)
-                    .map(
-                      (row, index) =>
-                        `${index + 1}. ${sectionTitleTex(row.section)}`,
-                    )
-                    .join(
-                      "\n",
-                    )}\n\n학습 전에 각 소단원에서 이미 알고 있는 내용과 궁금한 점을 적어 보세요. 학습을 마친 뒤에는 처음의 질문으로 돌아와, 뜻과 조건을 자신의 말로 설명할 수 있는지 확인하세요.`,
-                ),
-              ]);
+            appendUnitIntro(ctx);
           }
           const meta = outline.at(-1)!;
           meta.sourceUnitIds.push(unit.id);
@@ -584,275 +370,21 @@ export async function createQuickTextbook(
             !stages.length
           )
             continue;
-          const section = addSection(unit.section, "auto-lesson", []);
-          const entries = conceptIndex.get(keyOf(unit)) ?? [];
-          if (components.preparation) {
-            if (!entries.length)
-              throw invalid(
-                `${unit.section}: 준비 학습에 사용할 개념이 없습니다.`,
-              );
-            section.blocks.push(
-              text(
-                `### 준비 학습\n\n오늘의 목표: ${sectionTitleTex(unit.section)}의 뜻과 적용 방법을 설명하기.\n\n${entries.map((entry) => `- **${entry.term}**에 대해 이미 알고 있는 뜻이나 조건을 적어 보세요.`).join("\n")}\n\n${entries.flatMap((entry) => (entry.example ? [`- ${entry.example.prompt}`] : [])).join("\n")}`,
-              ),
-            );
-          }
-          if (components.errorCheck) {
-            const checks = CONCEPT_BLANK_BANK.ox.filter(
-              (entry) => entry.section === keyOf(unit),
-            );
-            if (!checks.length)
-              throw invalid(
-                `${unit.section}: 준비된 오류 점검 문장이 없습니다.`,
-              );
-            section.blocks.push(
-              text(
-                "### 오류 점검 · 문장의 옳고 그름을 판단하고 이유를 설명하세요.",
-              ),
-              {
-                blockId: randomUUID(),
-                kind: "concept-recall",
-                phase: "sentences",
-                conceptKey: `concept-${unit.id}`,
-                showRepetitionChecks: false,
-                markdown: checks
-                  .slice(0, 3)
-                  .map(
-                    (entry, index) =>
-                      `${index + 1}. ${entry.statement}\n\n{{${entry.answer ? "옳음" : "틀림"}: ${entry.why}}}`,
-                  )
-                  .join("\n\n"),
-              },
-            );
-          }
-          if (wantsConcept) {
-            if (!entries.length)
-              throw invalid(`${unit.section}: 준비된 개념 설명이 없습니다.`);
-            const forms: NonNullable<TextbookConcept["blankForms"]> = [];
-            if (components.termRecall) forms.push("term");
-            if (components.clozeRecall) forms.push("cloze");
-            if (!forms.length) forms.push("term");
-            const concept = conceptFor(
-              unit,
-              unitKey,
-              section.sectionKey,
-              entries,
-              actor,
-              now,
-              forms,
-            );
-            concepts.push(concept);
-            if (components.concepts)
-              section.blocks.push({
-                blockId: randomUUID(),
-                kind: "concept",
-                conceptKey: concept.conceptKey,
-              });
-            const recall = (
-              title: string,
-              phase: "keywords" | "sentences",
-              markdown: string,
-            ) =>
-              section.blocks.push(text(`### ${title}`), {
-                blockId: randomUUID(),
-                kind: "concept-recall",
-                phase,
-                markdown,
-                showRepetitionChecks: false,
-                conceptKey: concept.conceptKey,
-              });
-            if (components.termRecall)
-              recall(
-                "용어 백지",
-                "keywords",
-                entries
-                  .map(
-                    (entry) => `[[${entry.term}]]: ${plainDefinition(entry)}`,
-                  )
-                  .join("\n\n"),
-              );
-            if (components.clozeRecall)
-              recall(
-                "핵심어 빈칸",
-                "keywords",
-                entries
-                  .map(
-                    (entry) =>
-                      `**${entry.term}**: ${splitBlankSentence(entry.definition)
-                        .map((p) =>
-                          p.kind === "key" ? `[[${p.text}]]` : p.text,
-                        )
-                        .join("")}`,
-                  )
-                  .join("\n\n"),
-              );
-            if (components.sentenceRecall)
-              recall(
-                "문장 백지",
-                "sentences",
-                entries
-                  .map(
-                    (entry) =>
-                      `**${entry.term}**\n\n{{${plainDefinition(entry)}}}`,
-                  )
-                  .join("\n\n"),
-              );
-          }
-          if (components.dialogue) {
-            const dialogue = visuals
-              ? { turns: visuals.dialogueForSection(keyOf(unit)), assets: [] }
-              : await deps.dialogueForSection?.(
-                  keyOf(unit),
-                  input.cast ?? DEFAULT_QUICK_CREATE_CAST,
-                );
-            if (!dialogue)
-              throw invalid("준비된 개념 대화와 등장인물을 읽지 못했습니다.");
-            if (!dialogue.turns.length)
-              throw invalid(`${unit.section}: 준비된 개념 대화가 없습니다.`);
-            for (const asset of dialogue.assets)
-              assets.set(asset.assetId, { asset, kind: "portrait" });
-            if (
-              dialogue.turns.some(
-                (turn) =>
-                  !assets.has(turn.portraitAssetId) &&
-                  !visuals?.assetIds.includes(turn.portraitAssetId),
-              )
-            )
-              throw invalid("개념 대화의 인물 그림을 읽지 못했습니다.");
-            section.blocks.unshift({
-              blockId: randomUUID(),
-              kind: "dialogue",
-              turns: dialogue.turns,
-            });
-          }
-          if (stages.length) {
-            const ids = await tx.query<{ id: string }>(
-              `SELECT "id" FROM "problem" WHERE "unit_id" = $1::uuid AND "difficulty"::text IN
-             (SELECT value FROM jsonb_array_elements_text($2::jsonb)) AND "pool"::text = $3::text
-             AND "review_status"::text = 'approved' AND "direct_use_allowed" = true AND "answer" <> $4::text
-             ORDER BY "problem_code", "id"`,
-              [
-                unit.id,
-                JSON.stringify(QUICK_CREATE_DIFFICULTIES[input.difficulty]),
-                DEFAULT_PROBLEM_POOL,
-                MISSING_ANSWER,
-              ],
-            );
-            const rows = [
-              ...(
-                await loadProblemRows(
-                  tx,
-                  ids.map((row) => row.id),
-                )
-              ).values(),
-            ];
-            const byId = new Map(rows.map((row) => [row.id, row]));
-            const ordered = ids
-              .map((row) => byId.get(row.id)!)
-              .filter((row) => row && !problemIneligibleReason(row));
-            const captured: Array<{
-              snapshot: CapturedSnapshot;
-              written: boolean;
-            }> = [];
-            // Reserve written candidates first; otherwise earlier components can consume them.
-            const wantedWritten = stages.findIndex(
-              (stage) => stage.stage === "written",
-            );
-            const quota = (index: number) =>
-              Math.floor(input.problemCountPerUnit / stages.length) +
-              (index < input.problemCountPerUnit % stages.length ? 1 : 0);
-            const writtenQuota = wantedWritten < 0 ? 0 : quota(wantedWritten);
-            const candidates = writtenQuota
-              ? [...ordered].sort(
-                  (a, b) =>
-                    Number(classifyFormat(b) === "descriptive") -
-                    Number(classifyFormat(a) === "descriptive"),
-                )
-              : ordered;
-            for (const row of candidates) {
-              const written = classifyFormat(row) === "descriptive";
-              if (captured.length >= input.problemCountPerUnit) break;
-              if (wantedWritten >= 0 && stages.length === 1 && !written)
-                continue;
-              const outcome = await captureProblemSnapshot(
-                row,
-                deps.loadFigure,
-              );
-              if (!outcome.ok) {
-                warnings.push(`${row.problemCode}: ${outcome.reason}`);
-                continue;
-              }
-              captured.push({ snapshot: outcome.snapshot, written });
-            }
-            const actualCount = Math.min(
-              input.problemCountPerUnit,
-              captured.length,
-            );
-            if (actualCount < input.problemCountPerUnit)
-              warnings.push(
-                `${unit.section}: 요청한 ${input.problemCountPerUnit}문항 중 선택한 난이도에서 출제 가능한 ${actualCount}문항을 넣었습니다.`,
-              );
-            const actualWrittenQuota = Math.min(
-              writtenQuota,
-              captured.filter((entry) => entry.written).length,
-            );
-            if (actualWrittenQuota < writtenQuota && stages.length > 1)
-              warnings.push(
-                `${unit.section}: 서술형 ${writtenQuota}문항 중 ${actualWrittenQuota}문항을 넣고, 부족한 수는 선택한 다른 문제 구성에 배분했습니다.`,
-              );
-            const writtenEntries = captured
-              .filter((entry) => entry.written)
-              .slice(0, actualWrittenQuota);
-            const reserved = new Set(
-              writtenEntries.map((entry) => entry.snapshot.source.problemId),
-            );
-            const otherEntries = captured.filter(
-              (entry) => !reserved.has(entry.snapshot.source.problemId),
-            );
-            const otherStages = stages.filter(
-              (stage) => stage.stage !== "written",
-            );
-            for (const stage of stages) {
-              const otherIndex = otherStages.indexOf(stage);
-              const otherCount = actualCount - actualWrittenQuota;
-              const adjustedQuota = otherStages.length
-                ? Math.floor(otherCount / otherStages.length) +
-                  (otherIndex < otherCount % otherStages.length ? 1 : 0)
-                : 0;
-              const selected =
-                stage.stage === "written"
-                  ? writtenEntries
-                  : otherEntries.splice(0, adjustedQuota);
-              if (!selected.length) continue;
-              section.blocks.push(text(`### ${stage.title}`));
-              for (const entry of selected) {
-                const item: ItemPlan = {
-                  id: randomUUID(),
-                  unitKey,
-                  sectionId: section.id,
-                  stage: stage.stage,
-                  snapshot: entry.snapshot,
-                  orderIndex: items.filter((i) => i.sectionId === section.id)
-                    .length,
-                  conceptKeys: concepts
-                    .filter((c) => c.unitId === unit.id)
-                    .map((c) => c.conceptKey),
-                };
-                items.push(item);
-                section.blocks.push({
-                  blockId: randomUUID(),
-                  kind: "problem",
-                  itemId: item.id,
-                });
-                for (const asset of entry.snapshot.assets)
-                  assets.set(asset.assetId, { asset, kind: "figure" });
-              }
-            }
-          }
+          const section = ctx.addSection(unit.section, "auto-lesson", []);
+          const lesson: QuickCreateLesson = {
+            unit,
+            section,
+            entries: conceptIndex.get(keyOf(unit)) ?? [],
+          };
+          appendPreparation(ctx, lesson);
+          appendErrorCheck(ctx, lesson);
+          appendConceptAndRecall(ctx, lesson);
+          await prependDialogue(ctx, lesson);
+          await appendProblemStages(ctx, lesson);
           if (!section.blocks.length)
             sections.splice(sections.indexOf(section), 1);
         }
-        addRest();
+        appendRest(ctx);
         if (
           stages.length &&
           !items.length &&
@@ -977,16 +509,7 @@ export async function createQuickTextbook(
                 item.sectionId,
                 item.stage,
                 item.orderIndex,
-                JSON.stringify(
-                  item.stage === "written"
-                    ? {
-                        ...DEFAULT_ITEM_LAYOUT,
-                        minWorkLines: 4,
-                        preferredWorkLines: 6,
-                        maxWorkLines: 10,
-                      }
-                    : DEFAULT_ITEM_LAYOUT,
-                ),
+                JSON.stringify(quickCreateItemLayout(item.stage)),
                 JSON.stringify(item.conceptKeys),
                 String(item.orderIndex + 1),
               ],
