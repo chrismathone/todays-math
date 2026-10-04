@@ -65,6 +65,50 @@ function fail(message: string): never {
   throw new ListeningStyleAdoptionError(message);
 }
 
+/** Additional adoption gate; saved model receipts and their verdicts stay immutable. */
+export function listeningStyleEvidenceHoldReasons(
+  evidenceQuotes: readonly string[],
+) {
+  return evidenceQuotes.length &&
+    evidenceQuotes.some((quote) => /[A-Za-z]{2,}/.test(quote))
+    ? []
+    : ["No English speech in the bound evidence quotations"];
+}
+
+export function prepareListeningStyleEvidenceAdoption(loaded: LoadedStage) {
+  assertVerifiedListeningStyleStage(loaded);
+  const adoptionHolds = loaded.audit.questionVerdicts
+    .filter((item) => item.eligible)
+    .map((item) => ({
+      questionId: item.questionId,
+      reasons: listeningStyleEvidenceHoldReasons(item.evidenceQuotes),
+    }))
+    .filter((item) => item.reasons.length > 0);
+  const excluded = new Set(adoptionHolds.map((item) => item.questionId));
+  const original = new Map(
+    loaded.baseline.editableInput.groups.flatMap((group) =>
+      group.questions.map((question) => [question.id, question] as const),
+    ),
+  );
+  const proposed = {
+    ...loaded.staged.editableInput,
+    groups: loaded.staged.editableInput.groups.map((group) => ({
+      ...group,
+      questions: group.questions.map((question) =>
+        excluded.has(question.id) ? original.get(question.id)! : question,
+      ),
+    })),
+  };
+  return {
+    proposed,
+    eligibleQuestionIds: loaded.audit.eligibleQuestionIds.filter(
+      (id) => !excluded.has(id),
+    ),
+    adoptionGuardVersion: "english-evidence-v1-20261005",
+    adoptionHolds,
+  };
+}
+
 export async function loadListeningStyleSnapshot(
   file: string,
   workspaceRoot: string,
@@ -135,6 +179,7 @@ export async function applyListeningStyle(
     fail(
       "Style adoption requires the exact imported material owner and baseline.",
     );
+  const evidencePlan = prepareListeningStyleEvidenceAdoption(loaded);
   return database.$transaction(
     async (tx) => {
       if (!options.apply)
@@ -154,8 +199,8 @@ export async function applyListeningStyle(
         current: row.document,
         expected: backup.snapshot.document,
         baseline: loaded.baseline.editableInput,
-        proposed: loaded.staged.editableInput,
-        eligibleQuestionIds: loaded.audit.eligibleQuestionIds,
+        proposed: evidencePlan.proposed,
+        eligibleQuestionIds: evidencePlan.eligibleQuestionIds,
         publicationCount: Number(publication?.count ?? 0),
       });
       for (const group of row.document.groups) {
@@ -173,7 +218,11 @@ export async function applyListeningStyle(
         setId,
         revision: row.revision,
         qualified: plan.qualifiedQuestionIds.length,
-        held: loaded.audit.needsReviewQuestionIds.length,
+        held:
+          loaded.audit.needsReviewQuestionIds.length +
+          evidencePlan.adoptionHolds.length,
+        adoptionGuardVersion: evidencePlan.adoptionGuardVersion,
+        adoptionHolds: evidencePlan.adoptionHolds,
         stageSha256: loaded.stageSha256,
         snapshotSha256: backup.snapshotSha256,
       };
@@ -197,8 +246,8 @@ export async function applyListeningStyle(
         current: saved.document,
         expected: backup.snapshot.document,
         baseline: loaded.baseline.editableInput,
-        proposed: loaded.staged.editableInput,
-        eligibleQuestionIds: loaded.audit.eligibleQuestionIds,
+        proposed: evidencePlan.proposed,
+        eligibleQuestionIds: evidencePlan.eligibleQuestionIds,
         publicationCount: 0,
       });
       if (!confirmed.alreadyApplied)
@@ -222,6 +271,8 @@ export async function applyListeningStyle(
           revision: saved.revision,
           threshold: loaded.audit.threshold,
           version: loaded.audit.version,
+          adoptionGuardVersion: evidencePlan.adoptionGuardVersion,
+          adoptionHolds: evidencePlan.adoptionHolds,
           humanReviewed: false,
           audioAlignmentVerified: false,
           receipts: loaded.audit.receipts.map((receipt) => ({

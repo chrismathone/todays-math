@@ -9,6 +9,7 @@ import {
   listeningStyleDatabaseUrl,
   loadListeningStyleSnapshot,
   parseListeningStyleArgs,
+  listeningStyleEvidenceHoldReasons,
 } from "../../../scripts/qa/english-listening/apply-listening-style.mts";
 vi.mock("server-only", () => ({}));
 const owner = "6f361696-5eb5-4f7d-9c66-9313ad7bb06a";
@@ -46,6 +47,24 @@ afterEach(async () => {
   }
 });
 describe("trusted listening style operator", () => {
+  it("holds evidence without English speech without treating this language gate as alignment proof", () => {
+    expect(
+      listeningStyleEvidenceHoldReasons([
+        "길거리에 너무 많은 차가 있어요",
+        "그래서 이번에는 택시를 타고 갈 거예요",
+      ]),
+    ).toHaveLength(1);
+    expect(
+      listeningStyleEvidenceHoldReasons(["いいえ、電車です"]),
+    ).toHaveLength(1);
+    expect(listeningStyleEvidenceHoldReasons([])).toHaveLength(1);
+    expect(
+      listeningStyleEvidenceHoldReasons([
+        "There are too many cars on the street.",
+        "그래서 택시를 타요",
+      ]),
+    ).toEqual([]);
+  });
   it("loads and freezes the exact saved owner/source/revision baseline", async () => {
     const f = await fixture();
     const result = await loadListeningStyleSnapshot(
