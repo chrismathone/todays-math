@@ -1684,13 +1684,18 @@ button.confirm {
     opacity: 0;
   }
 }
+/* 움직임 줄이기 — 기기(OS) 설정과 앱 설정(수학 뿌리의 `data-learning-motion`, `LearningMotion.tsx`)은
+   **같은 선언**을 쓴다(3자 합의 v2 9항, 2026-10-04). 아래 두 덩이는 선택자 · 선언이 한 쌍이다 — 한쪽만 고치면
+   `learningMotionCssParity.test.ts` 가 막는다. 모든 요소를 한꺼번에 멈추는 일괄 규칙은 쓰지 않는다:
+   상자 · 칸 효과는 움직임을 끄면 멈춘 그림으로 **남아야** 한다(끝 프레임이 투명이라 길이만 줄이면 사라진다). */
 @media (prefers-reduced-motion: reduce) {
   .chestArt,
   .chestBurst > svg,
   .chestBurst > .propImage,
   .tileBurstStar,
   .chestBurst > span,
-  .chestEffect {
+  .chestEffect,
+  .missionProgress > span {
     animation: none !important;
     transition: none !important;
   }
@@ -1702,6 +1707,23 @@ button.confirm {
   .answers button[data-anim]::before {
     animation: none !important;
   }
+}
+[data-learning-motion="reduce"] .chestArt,
+[data-learning-motion="reduce"] .chestBurst > svg,
+[data-learning-motion="reduce"] .chestBurst > .propImage,
+[data-learning-motion="reduce"] .tileBurstStar,
+[data-learning-motion="reduce"] .chestBurst > span,
+[data-learning-motion="reduce"] .chestEffect,
+[data-learning-motion="reduce"] .missionProgress > span {
+  animation: none !important;
+  transition: none !important;
+}
+[data-learning-motion="reduce"] .chestBurst > span {
+  display: none;
+}
+[data-learning-motion="reduce"] .answers button[data-anim],
+[data-learning-motion="reduce"] .answers button[data-anim]::before {
+  animation: none !important;
 }
 .expeditionHome {
   display: grid;
