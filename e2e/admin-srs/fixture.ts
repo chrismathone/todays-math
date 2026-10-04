@@ -76,6 +76,12 @@ const initial: CourseRosterStudent[] = [
 ];
 const storageKey = "admin-srs-browser-fixture";
 export interface SrsFixtureProbe {
+  explorerSaves: {
+    studentId: string;
+    classId: string | null;
+    branchId: string | null;
+    input: unknown;
+  }[];
   saves: { studentId: string; classId: string; input: CoursePlanInput }[];
   slowSave: boolean;
   failDetail: boolean;
@@ -104,6 +110,7 @@ export function installFixtureApi() {
     };
   };
   probe.srsFixture = {
+    explorerSaves: [],
     saves,
     slowSave: false,
     failDetail: false,
@@ -115,6 +122,10 @@ export function installFixtureApi() {
       headers: { "Content-Type": "application/json" },
     });
   const originalFetch = window.fetch.bind(window);
+  const explorerStorage = "admin-srs-explorer-fixture";
+  let explorerSettings = JSON.parse(
+    localStorage.getItem(explorerStorage) ?? "null",
+  ) ?? { revision: 1, courseGrade: 3, goalUnitId: "fixture-grade3" };
   window.fetch = async (input, init) => {
     const url = new URL(
       typeof input === "string"
@@ -127,6 +138,47 @@ export function installFixtureApi() {
     if (!url.pathname.startsWith("/api/")) return originalFetch(input, init);
     const method =
       init?.method ?? (input instanceof Request ? input.method : "GET");
+    const explorer = url.pathname.match(
+      /^\/api\/admin\/students\/([^/]+)\/explorer-settings$/,
+    );
+    if (explorer) {
+      if (method === "POST") {
+        const value = JSON.parse(String(init?.body));
+        if (value.expectedRevision !== explorerSettings.revision)
+          return response(
+            { error: { code: "CONFLICT", message: "설정 revision 충돌" } },
+            409,
+          );
+        probe.srsFixture.explorerSaves.push({
+          studentId: explorer[1],
+          classId: url.searchParams.get("classId"),
+          branchId: url.searchParams.get("branchId"),
+          input: value,
+        });
+        explorerSettings = {
+          revision: explorerSettings.revision + 1,
+          courseGrade: value.courseGrade,
+          goalUnitId: value.goalUnitId,
+        };
+        rows = rows.map((row) =>
+          row.id === explorer[1]
+            ? { ...row, revision: explorerSettings.revision }
+            : row,
+        );
+        localStorage.setItem(explorerStorage, JSON.stringify(explorerSettings));
+      }
+      return response({
+        data: {
+          studentId: explorer[1],
+          ...explorerSettings,
+          locked: false,
+          units: [
+            { id: "fixture-grade3", grade: 3, title: "덧셈과 뺄셈" },
+            { id: "fixture-grade4", grade: 4, title: "큰 수" },
+          ],
+        },
+      });
+    }
     if (url.pathname === "/api/math-srs/course") {
       const actor = new URLSearchParams(location.search).get("actor");
       return response({

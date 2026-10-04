@@ -11,11 +11,23 @@ export const metadata: Metadata = {
   title: "SRS 학습 현황 | 오늘의수학 관리자",
 };
 
-export default async function AdminSrsPage() {
+export default async function AdminSrsPage({
+  searchParams = Promise.resolve({}),
+}: {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+} = {}) {
   const account = await getAccountAccess();
   if (!account) redirect("/login?callbackUrl=%2Fadmin%2Fmath-srs");
   if (account.approvalStatus !== "approved") redirect("/approval-pending");
   if (!account.isSuperAdmin) redirect("/");
+  const query = await searchParams;
+  // Pass the scope before hydration so the first list request is already bounded.
+  const branchId =
+    typeof query.branchId === "string"
+      ? query.branchId
+      : query.branchId
+        ? "invalid"
+        : undefined;
 
   return (
     <div className={`${adminStyles.shell} ${styles.page}`}>
@@ -25,7 +37,7 @@ export default async function AdminSrsPage() {
       />
       <main className={styles.main}>
         <JourneyThemePicker />
-        <CourseDashboard admin />
+        <CourseDashboard admin initialBranchId={branchId} />
       </main>
     </div>
   );

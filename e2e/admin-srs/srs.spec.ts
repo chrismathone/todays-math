@@ -1,6 +1,54 @@
 import { test, expect, type Page } from "@playwright/test";
 import { CLASS_A, CLASS_B, STUDENT_A, STUDENT_B } from "./fixture";
 const base = "/e2e/admin-srs/index.html";
+for (const width of [320, 1440]) {
+  test(`branch explorer target settings are saved and restored at ${width}px`, async ({
+    page,
+  }, testInfo) => {
+    await page.setViewportSize({ width, height: 1000 });
+    const branchId = "60000000-0000-4000-8000-000000000001";
+    const errors: string[] = [];
+    page.on("pageerror", (error) => errors.push(error.message));
+    await page.goto(
+      `${base}?branchId=${branchId}&classId=${CLASS_A}&studentId=${STUDENT_A}`,
+    );
+    const setting = page.getByRole("region", {
+      name: "탐험 학년과 목표 단원 설정",
+    });
+    await expect(setting.getByLabel("탐험 학년")).toHaveValue("3");
+    await setting.getByLabel("탐험 학년").selectOption("4");
+    await setting.getByLabel("목표 단원").selectOption("fixture-grade4");
+    await setting.getByRole("button", { name: "탐험 설정 저장" }).click();
+    await expect(setting.getByRole("status")).toContainText(
+      "학생이 다음 탐험에서 이어갑니다.",
+    );
+    expect(await page.evaluate(() => window.srsFixture.explorerSaves)).toEqual([
+      {
+        studentId: STUDENT_A,
+        classId: CLASS_A,
+        branchId,
+        input: {
+          expectedRevision: 1,
+          courseGrade: 4,
+          goalUnitId: "fixture-grade4",
+        },
+      },
+    ]);
+    await page.screenshot({
+      path: testInfo.outputPath(`explorer-settings-${width}.png`),
+      fullPage: true,
+    });
+    await page.reload();
+    await expect(setting.getByLabel("탐험 학년")).toHaveValue("4");
+    await expect(setting.getByLabel("목표 단원")).toHaveValue("fixture-grade4");
+    expect(errors).toEqual([]);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
+}
 async function dashboard(page: Page, query = "") {
   await page.goto(base + query);
   await expect(

@@ -54,6 +54,7 @@ const student = (
   id,
   name,
   classId: ids.classId,
+  branchId: BRANCH_1,
   eywaBindingId: null,
   isTest: false,
   useIndividualProgress: false,

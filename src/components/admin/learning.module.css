@@ -1,0 +1,25 @@
+.className {
+  display: block;
+  margin-bottom: 6px;
+}
+.actionLink {
+  display: block;
+  width: fit-content;
+  min-height: 44px;
+  padding: 10px 0;
+  color: var(--learn-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.review {
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--learn-track);
+  border-radius: 12px;
+  background: var(--learn-surface);
+}
+.review h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}

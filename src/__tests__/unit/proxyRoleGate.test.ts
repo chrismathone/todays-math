@@ -81,6 +81,35 @@ describe("관문은 하나다", () => {
 });
 
 describe("역할 게이트 관문", () => {
+  it("passes menu-disabled superadmin SRS management through the real proxy only", async () => {
+    const user = {
+      id: "admin",
+      role: "director",
+      approvalStatus: "approved",
+      isAdmin: true,
+      isSuperAdmin: true,
+      menus: [],
+    };
+    session.mockReturnValue({ user });
+    for (const [method, path] of [
+      ["GET", "/api/math-srs/course"],
+      ["POST", "/api/students/student/math-srs/course"],
+      ["GET", "/api/students/student/math-srs/explorers"],
+      ["GET", "/api/admin/students/student/explorer-settings"],
+    ]) {
+      expect((await run(method, path)).status).toBe(200);
+    }
+    expect((await run("GET", "/api/problems")).status).toBe(403);
+    expect(
+      (await run("POST", "/api/students/student/math-srs/explorers")).status,
+    ).toBe(403);
+    session.mockReturnValue({ user: { ...user, isSuperAdmin: false } });
+    expect((await run("GET", "/api/math-srs/course")).status).toBe(403);
+    expect(
+      (await run("GET", "/api/admin/students/student/explorer-settings"))
+        .status,
+    ).toBe(403);
+  });
   it("opens only the landing reads to anonymous visitors and retains protected destinations", async () => {
     session.mockReturnValue(null);
     expect((await run("GET", "/")).status).toBe(200);
