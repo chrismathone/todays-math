@@ -35,6 +35,23 @@ const parse = (html: string) =>
   new DOMParser().parseFromString(html, "text/html");
 
 describe("v15 measured editorial page archetypes", () => {
+  it("preserves Korean word spaces around revealed recall markers", () => {
+    const block: RenderBlock = {
+      ...base,
+      kind: "recall",
+      phase: "keywords",
+      repetitionChecks: false,
+      pieces: [
+        { kind: "text", markdown: "합이 " },
+        { kind: "text", markdown: "10 이상" },
+        { kind: "text", markdown: " 이면 올린다." },
+      ],
+    };
+    const dom = parse(renderBlockHtml(block, resources));
+    expect(dom.querySelector(".tb-recall-content")?.textContent).toBe(
+      "합이 10 이상 이면 올린다.",
+    );
+  });
   it.each(["student", "answers"] as const)(
     "renders original cover art, title, code and edition for %s",
     (variant) => {

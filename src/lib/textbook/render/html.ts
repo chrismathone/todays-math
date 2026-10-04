@@ -46,6 +46,8 @@ const progressHtml = (stage: EditorialStage) => {
     ? ""
     : `<nav class="tb-progress" aria-label="학습 단계">${["개념 이해", "개념 정리", "기본 확인", "유형 연습", "설명·적용", "다시 꺼내기"].map((label, i) => `<span${i === active ? ' class="tb-progress-active" aria-current="step"' : ""}>${label}</span>`).join("")}</nav>`;
 };
+const recallTextHtml = (markdown: string) =>
+  `${/^\s/.test(markdown) ? " " : ""}${md(markdown)}${/\s$/.test(markdown) ? " " : ""}`;
 export function renderBlockHtml(
   block: RenderBlock,
   resources: RenderResources,
@@ -139,7 +141,7 @@ function renderBlockContent(
             .join(
               "",
             )}</div><div class="tb-recall-checkbar"><b>${modes[block.phase][1]}</b><span>이름 __________　날짜 __________</span></div>`;
-      return `<section class="tb-recall${block.continuation ? " tb-recall-continuation" : ""}" data-phase="${block.phase}">${introduction}<div class="tb-recall-content">${block.pieces.map((p) => (p.kind === "blank" ? `<span class="tb-blank tb-blank-${p.scope}" role="textbox" aria-label="${p.scope === "sentence" ? "문장으로 개념 쓰기" : "빈칸"}"></span>` : `<div class="tb-recall-text">${md(p.markdown)}</div>`)).join("")}</div>${block.repetitionChecks ? '<div class="tb-repetition" aria-label="학습 반복 확인">1회 ○　2회 ○　3회 ○　4회 ○</div>' : ""}${block.lastPart === false ? "" : `<p class="tb-study-footer">${block.phase === "study" ? "조건과 예를 함께 확인한다." : "이 단원의 개념학습으로 채점한다."}</p>`}</section>`;
+      return `<section class="tb-recall${block.continuation ? " tb-recall-continuation" : ""}" data-phase="${block.phase}">${introduction}<div class="tb-recall-content">${block.pieces.map((p) => (p.kind === "blank" ? `<span class="tb-blank tb-blank-${p.scope}" role="textbox" aria-label="${p.scope === "sentence" ? "문장으로 개념 쓰기" : "빈칸"}"></span>` : `<div class="tb-recall-text">${recallTextHtml(p.markdown)}</div>`)).join("")}</div>${block.repetitionChecks ? '<div class="tb-repetition" aria-label="학습 반복 확인">1회 ○　2회 ○　3회 ○　4회 ○</div>' : ""}${block.lastPart === false ? "" : `<p class="tb-study-footer">${block.phase === "study" ? "조건과 예를 함께 확인한다." : "이 단원의 개념학습으로 채점한다."}</p>`}</section>`;
     }
     case "problem": {
       const { choices } = parseProblemContent(block.content);
