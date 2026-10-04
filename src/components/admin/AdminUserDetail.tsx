@@ -8,6 +8,7 @@ import AdminHeader from "./AdminHeader";
 import { AccountStatus, accountDate } from "./AccountReview";
 import AccountReview from "./AccountReview";
 import AccountSyncBadge from "./AccountSyncBadge";
+import AdminAccountRelations from "./AdminAccountRelations";
 import { accountRequest, requestMessage } from "./accountRequests";
 import {
   ADMIN_KIND_LABEL,
@@ -451,7 +452,9 @@ export default function AdminUserDetail({
   branchId: string;
 }) {
   const router = useRouter();
-  const [tab, setTab] = useState<"documents" | "audit">("documents");
+  const [tab, setTab] = useState<"documents" | "relations" | "audit">(
+    "documents",
+  );
   const [locked, setLocked] = useState(false);
   const resource = useAdminResource<{ data: ManagedAccount }>(
     `/api/admin/users/${encodeURIComponent(userId)}`,
@@ -530,7 +533,7 @@ export default function AdminUserDetail({
               <AccountStatus account={account} />
             </div>
             <p className={d.intro}>
-              계정 내정보, 사용 자료, 변경 이력과 관리 설정을 확인합니다.
+              계정 내정보, 사용 자료, 연결된 반·학생과 변경 이력을 확인합니다.
             </p>
             <section className={d.profile} aria-label="사용자 내정보">
               <div className={d.profileHeading}>
@@ -609,6 +612,13 @@ export default function AdminUserDetail({
                   </button>
                   <button
                     type="button"
+                    aria-pressed={tab === "relations"}
+                    onClick={() => setTab("relations")}
+                  >
+                    반·학생
+                  </button>
+                  <button
+                    type="button"
                     aria-pressed={tab === "audit"}
                     onClick={() => setTab("audit")}
                   >
@@ -617,6 +627,12 @@ export default function AdminUserDetail({
                 </div>
                 {tab === "documents" ? (
                   <Documents userId={userId} />
+                ) : tab === "relations" ? (
+                  <AdminAccountRelations
+                    key={`${userId}:${branchId}`}
+                    userId={userId}
+                    branchId={branchId}
+                  />
                 ) : (
                   <Audit key={userId} userId={userId} />
                 )}
