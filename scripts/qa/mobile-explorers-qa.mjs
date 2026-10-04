@@ -945,7 +945,7 @@ const scenarios = {
     });
     await step("concept.exitResume", async () => {
       const index = explorerStored(sim).profile.definitions.session.index;
-      await tap(page.getByRole("button", { name: "← 진도판", exact: true }), mobile);
+      await tap(page.getByRole("button", { name: "진도판", exact: true }), mobile);
       await homeReady(page);
       await expect(page.locator("[data-expedition-mission=true]")).toContainText(`${index} / 15 활동`);
       await expect(page.locator("[data-expedition-start]")).toHaveText(/이어서 탐험하기/);
@@ -2196,7 +2196,7 @@ async function fitSupplementScenario({ page, sim, mobile, width, height, step },
       }
       measured += await measureFitSizes(page, width, height, row, 2);
       handled = sim.handled;
-      await tap(page.getByRole("button", { name: "← 진도판" }), mobile);
+      await tap(page.getByRole("button", { name: "진도판", exact: true }), mobile);
       await homeReady(page);
       // 도감에서 시작한 한 장이라 나오면 도감으로 돌아온다 — 그 시트가 뜬 뒤에 다음 카드로(WebKit 에서 시트가 늦게 떠
       // «도감» 단추를 누르려다 시트에 가려 멈췄다).
@@ -3063,7 +3063,7 @@ scenarios["atelier:home-motion"] = async ({ page, sim, mobile, width, step, shot
   await step("atelier.active-settings", async () => {
     await tap(page.locator("[data-expedition-start]"), mobile);
     await page.locator("[data-explorer-dock]").waitFor();
-    await tap(page.getByRole("button", { name: "← 진도판", exact: true }), mobile);
+    await tap(page.getByRole("button", { name: "진도판", exact: true }), mobile);
     await homeReady(page);
     await open();
     await expect(toggle()).toBeEnabled();
