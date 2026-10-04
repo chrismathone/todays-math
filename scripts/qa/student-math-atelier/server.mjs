@@ -3,6 +3,7 @@ import { createServer } from "vite";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
+import { realpathSync } from "node:fs";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
 const repo = resolve(root, "../../..");
@@ -41,7 +42,7 @@ const server = await createServer({
     port: 4338,
     strictPort: true,
     open: false,
-    fs: { allow: [repo] },
+    fs: { allow: [repo, realpathSync(resolve(repo, "node_modules"))] },
   },
 });
 await server.listen();

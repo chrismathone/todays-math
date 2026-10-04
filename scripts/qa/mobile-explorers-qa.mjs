@@ -3199,7 +3199,7 @@ scenarios["atelier:sound"] = async ({ page, sim, mobile, step, shot }) => {
   await step("sound.outside-boundary", async () => {
     audioRequests.length = 0;
     await page.goto(base + "/dev/mobile-practice-qa");
-    await page.getByRole("button", { name: "답 확인", exact: true }).waitFor();
+    await page.locator('[data-student-practice="true"][data-qa-ready="true"]').waitFor();
     const state = await log();
     assert.equal(state.contexts.length, 0); assert.equal(state.starts.length, 0); assert.equal(audioRequests.length, 0);
     return "기기 설정이 켜져 있어도 탐험 경계 밖에서는 생성/요청/재생 없음";
