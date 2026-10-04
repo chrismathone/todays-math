@@ -54,8 +54,151 @@ async function rewriteGeneration(
   saved.response.choices[0].message.content = JSON.stringify(raw);
   await f.rewriteReceipt(0, request, saved);
 }
+async function rewriteGrounding(
+  f: Fixture,
+  change: (grounding: Record<string, unknown>[]) => void,
+) {
+  const baseline = await json(f.baselinePath),
+    stage = await json(f.file);
+  change(baseline.verification.grounding);
+  stage.verification.grounding = baseline.verification.grounding;
+  stage.verification.styleRevision.baselineSha256 = await write(
+    f.baselinePath,
+    baseline,
+  );
+  await write(f.file, stage);
+}
 
 describe("trusted offline listening style stage", () => {
+  it("preserves complete excluded grounding provenance and maps existing IDs to included ordinals only", async () => {
+    const f = await fixture("4", {
+        excludedGrounding: true,
+        generationRecovery: true,
+        generationRecoveryVersion: "structural-metadata-v2",
+      }),
+      loaded = await loadVerifiedListeningStyleStage(f.file, f.root);
+    expect(
+      loaded.baseline.verification.grounding!.map(
+        (item) => item.generatedOrdinal,
+      ),
+    ).toEqual([1, 2, 3, 4, 5, 6]);
+    expect(
+      loaded.audit.questionVerdicts.map((item) => item.generatedOrdinal),
+    ).toEqual([1, 2, 4, 5, 6]);
+    expect(
+      loaded.staged.editableInput.groups[0].questions.map(
+        (item) => item.sourceNumber,
+      ),
+    ).toEqual([1, 2, 4, 5, 6]);
+    expect(loaded.staged.verification.grounding).toEqual(
+      f.baseline.verification.grounding,
+    );
+    expect(loaded.staged.verification.grounding![2]).toEqual({
+      generatedOrdinal: 3,
+      sourceSegmentIds: [3],
+      evidenceQuotes: ["The original attempt had no unique supported answer."],
+      asrUncertain: false,
+      included: false,
+      choiceOrderZeroBased: [4, 0, 3, 1, 2],
+      exclusionReason: "no_unique_supported_answer",
+    });
+    expect(Object.isFrozen(loaded.staged.verification.grounding![2])).toBe(
+      true,
+    );
+    expect(loaded.audit.eligibleQuestionIds).toHaveLength(2);
+    assertVerifiedListeningStyleStage(loaded);
+  });
+
+  it.each([
+    "flag flip",
+    "removed excluded entry",
+    "reordered excluded entry",
+    "changed excluded quote",
+    "changed excluded extra metadata",
+  ])(
+    "rejects staged grounding %s without rewriting retained provenance",
+    async (change) => {
+      const f = await fixture("4", { excludedGrounding: true }),
+        stage = await json(f.file),
+        grounding = stage.verification.grounding;
+      if (change === "flag flip") grounding[2].included = true;
+      if (change === "removed excluded entry") grounding.splice(2, 1);
+      if (change === "reordered excluded entry")
+        grounding.push(grounding.splice(2, 1)[0]);
+      if (change === "changed excluded quote")
+        grounding[2].evidenceQuotes = ["invented quote"];
+      if (change === "changed excluded extra metadata")
+        grounding[2].choiceOrderZeroBased.reverse();
+      await write(f.file, stage);
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow(/inherited verification/);
+    },
+  );
+
+  it.each([
+    "revived excluded flag",
+    "suppressed included flag",
+    "swapped inclusion",
+    "duplicate included ordinal",
+    "duplicate excluded ordinal",
+    "excluded reordered",
+    "included reordered",
+    "missing included coverage",
+    "missing flag",
+    "nonboolean flag",
+  ])(
+    "rejects baseline grounding %s even after file SHA and inherited provenance are rebound",
+    async (change) => {
+      const f = await fixture("4", { excludedGrounding: true });
+      await rewriteGrounding(f, (grounding) => {
+        if (change === "revived excluded flag") grounding[2].included = true;
+        if (change === "suppressed included flag")
+          grounding[3].included = false;
+        if (change === "swapped inclusion") {
+          grounding[2].included = true;
+          grounding[3].included = false;
+        }
+        if (change === "duplicate included ordinal")
+          grounding[2].generatedOrdinal = 1;
+        if (change === "duplicate excluded ordinal")
+          grounding.push({ ...grounding[2] });
+        if (change === "excluded reordered")
+          grounding.push(grounding.splice(2, 1)[0]);
+        if (change === "included reordered")
+          [grounding[0], grounding[1]] = [grounding[1], grounding[0]];
+        if (change === "missing included coverage") grounding.splice(3, 1);
+        if (change === "missing flag") delete grounding[2].included;
+        if (change === "nonboolean flag") grounding[2].included = 0;
+      });
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow();
+    },
+  );
+
+  it.each(["revived ordinal", "extra excluded candidate"])(
+    "rejects raw generation %s even with a rebuilt generation receipt",
+    async (change) => {
+      const f = await fixture("4", { excludedGrounding: true });
+      await rewriteGeneration(f, (raw) => {
+        if (change === "revived ordinal") raw.questions[2].sourceNumber = 3;
+        if (change === "extra excluded candidate")
+          raw.questions.splice(2, 0, {
+            ...raw.questions[2],
+            sourceNumber: 3,
+            sourceSegmentIds: [3],
+            evidenceQuotes: [
+              "The original attempt had no unique supported answer.",
+            ],
+          });
+      });
+      await expect(
+        loadVerifiedListeningStyleStage(f.file, f.root),
+      ).rejects.toThrow(/reorder|cover every/);
+    },
+  );
+
   it("replays exact structural recovery without changing immutable receipts or held edits", async () => {
     const f = await fixture("4", { generationRecovery: true }),
       reference = f.audit.receipts[0],
@@ -1155,6 +1298,86 @@ describe("trusted offline listening style stage", () => {
         /semantic guard/,
       );
     });
+
+  it("validates the actual primary stage with its retained excluded ordinal and exact included coverage", async (context) => {
+    const root = "C:/Creative/testautocreator/output/listening-assessments",
+      file = resolve(
+        root,
+        "style-revision-20261005-flash-v4/ebs-middle-1-2007-2.json",
+      );
+    if (
+      !(await access(file).then(
+        () => true,
+        () => false,
+      ))
+    ) {
+      context.skip();
+      return;
+    }
+    const loaded = await loadVerifiedListeningStyleStage(file, root);
+    expect(loaded.baseline.verification.grounding).toHaveLength(13);
+    expect(loaded.baseline.verification.grounding![6].included).toBe(false);
+    expect(loaded.baseline.verification.grounding![6].generatedOrdinal).toBe(7);
+    expect(
+      loaded.audit.questionVerdicts.map((item) => item.generatedOrdinal),
+    ).toEqual([1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13]);
+    expect(loaded.audit.eligibleQuestionIds).toHaveLength(4);
+    expect(loaded.audit.needsReviewQuestionIds).toHaveLength(8);
+    expect(loaded.staged.verification.grounding).toEqual(
+      loaded.baseline.verification.grounding,
+    );
+    assertVerifiedListeningStyleStage(loaded);
+  });
+
+  it("validates the actual explicit v2 recovery with ordered reason/action steps and unchanged raw generation", async (context) => {
+    const root = "C:/Creative/testautocreator/output/listening-assessments",
+      file = resolve(
+        root,
+        "style-revision-20261005-recovery-metadata-v2/ebs-middle-1-2017-2.json",
+      );
+    if (
+      !(await access(file).then(
+        () => true,
+        () => false,
+      ))
+    ) {
+      context.skip();
+      return;
+    }
+    const stage = await json(file),
+      receiptPath = stage.verification.styleRevision.receipts[0].receiptPath,
+      before = await readFile(receiptPath),
+      loaded = await loadVerifiedListeningStyleStage(file, root);
+    expect(loaded.audit.generationNormalization).toEqual({
+      version: "structural-metadata-v2",
+      steps: [
+        [6, "reason"],
+        [8, "action"],
+        [9, "action"],
+        [11, "reason"],
+        [15, "action"],
+        [16, "action"],
+      ].map(([sourceNumber, from]) => ({
+        sourceNumber,
+        field: "questionType",
+        from,
+        to: "detail",
+      })),
+    });
+    expect(loaded.audit.questionVerdicts).toHaveLength(18);
+    expect(loaded.audit.eligibleQuestionIds).toHaveLength(6);
+    expect(loaded.audit.needsReviewQuestionIds).toHaveLength(12);
+    expect(loaded.audit.receipts).toHaveLength(11);
+    expect(resolve(receiptPath)).toBe(
+      resolve(
+        root,
+        "style-revision-20261005-flash-v4/audit/ebs-middle-1-2017-2/generation.receipt.json",
+      ),
+    );
+    expect(await readFile(receiptPath)).toEqual(before);
+    expect(loaded.audit.receipts[0].receiptSha256).toBe(sha(before));
+    assertVerifiedListeningStyleStage(loaded);
+  });
 
   it("validates the saved failed-generation recovery with every gate and unchanged raw receipt", async (context) => {
     const root = "C:/Creative/testautocreator/output/listening-assessments",

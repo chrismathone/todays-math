@@ -32,6 +32,7 @@ export async function makeListeningStyleStageFixture(
     legacy?: boolean;
     semanticCase?: "deadline_drift" | "deadline_preserved";
     generationRecovery?: boolean;
+    excludedGrounding?: boolean;
     generationRecoveryVersion?:
       "structural-metadata-v1" | "structural-metadata-v2";
   } = {},
@@ -67,16 +68,24 @@ export async function makeListeningStyleStageFixture(
   await writeFile(pdfPath, pdfBytes);
   const pdfHash = sha(pdfBytes);
   const segments = Array.from({ length: 5 }, (_, index) => ({
-    id: index + 1,
+    id: options.excludedGrounding && index >= 2 ? index + 2 : index + 1,
     text:
       options.semanticCase && index === 0
         ? "You'll get the parcel by this Friday."
         : `I will buy the square watch ${index + 1}.`,
     uncertain: index === 2,
   }));
+  const excludedSpeech = "The original attempt had no unique supported answer.";
+  const allSegments = options.excludedGrounding
+    ? [
+        ...segments.slice(0, 2),
+        { id: 3, text: excludedSpeech, uncertain: false },
+        ...segments.slice(2),
+      ]
+    : segments;
   const asrSha256 = await write(asrPath, {
     sourceAudioSha256: audioHash,
-    segments: segments.map((segment) => ({
+    segments: allSegments.map((segment) => ({
       ...segment,
       start: 20,
       end: 30,
@@ -114,7 +123,7 @@ export async function makeListeningStyleStageFixture(
     ).map((text) => ({ id: randomUUID(), text }));
     return {
       id: randomUUID(),
-      sourceNumber: index + 1,
+      sourceNumber: segment.id,
       prompt:
         options.semanticCase && index === 0
           ? "By when will the parcel be delivered?"
@@ -163,21 +172,36 @@ export async function makeListeningStyleStageFixture(
           audio: null,
           transcript: {
             revision: 1,
-            text: segments.map((s) => s.text).join("\n"),
-            spokenText: segments.map((s) => s.text).join("\n"),
+            text: allSegments.map((s) => s.text).join("\n"),
+            spokenText: allSegments.map((s) => s.text).join("\n"),
             translation: null,
           },
           questions: oldQuestions,
         },
       ],
     });
-  const grounding = segments.map((segment) => ({
+  const includedGrounding = segments.map((segment) => ({
     generatedOrdinal: segment.id,
     sourceSegmentIds: [segment.id],
     evidenceQuotes: [segment.text],
     asrUncertain: segment.uncertain,
     included: true,
   }));
+  const grounding = options.excludedGrounding
+    ? [
+        ...includedGrounding.slice(0, 2),
+        {
+          generatedOrdinal: 3,
+          sourceSegmentIds: [3],
+          evidenceQuotes: [excludedSpeech],
+          asrUncertain: false,
+          included: false,
+          choiceOrderZeroBased: [4, 0, 3, 1, 2],
+          exclusionReason: "no_unique_supported_answer",
+        },
+        ...includedGrounding.slice(2),
+      ]
+    : includedGrounding;
   const baseline = {
     schemaVersion: 1,
     preparedAt: time,
@@ -288,11 +312,11 @@ export async function makeListeningStyleStageFixture(
     choices: q.choices.map((c) => c.text),
     correctChoiceOneBased: 2,
     explanation: q.explanation,
-    evidenceQuotes: grounding[index].evidenceQuotes,
+    evidenceQuotes: includedGrounding[index].evidenceQuotes,
     questionType: "detail" as const,
     topics: q.metadata!.topics,
     keywords: q.metadata!.keywords,
-    sourceSegmentIds: grounding[index].sourceSegmentIds,
+    sourceSegmentIds: includedGrounding[index].sourceSegmentIds,
   }));
   const candidates = baselines.map((question, index) => ({
     ...question,
@@ -413,7 +437,7 @@ export async function makeListeningStyleStageFixture(
       items = grounded.items.slice(offset, offset + 4);
     const answers = Object.fromEntries(
       questions.flatMap((q) => {
-        const choice = q.sourceNumber === 5 ? "1" : "2";
+        const choice = q.sourceNumber === baselines[4].sourceNumber ? "1" : "2";
         return [
           [
             `answer_${q.sourceNumber}`,
@@ -451,11 +475,17 @@ export async function makeListeningStyleStageFixture(
                 choice: "pass",
                 confidence: 0.98,
                 probabilities: {
-                  pass: q.sourceNumber === 4 ? 0.89 : 0.98,
-                  fail: q.sourceNumber === 4 ? 0.11 : 0.02,
+                  pass:
+                    q.sourceNumber === baselines[3].sourceNumber ? 0.89 : 0.98,
+                  fail:
+                    q.sourceNumber === baselines[3].sourceNumber ? 0.11 : 0.02,
                 },
               }
-            : { type: "noul", noul: q.sourceNumber === 4 ? 0.89 : 0.98 },
+            : {
+                type: "noul",
+                noul:
+                  q.sourceNumber === baselines[3].sourceNumber ? 0.89 : 0.98,
+              },
         ]),
       ),
     );
@@ -559,7 +589,10 @@ export async function makeListeningStyleStageFixture(
           generationNormalization: {
             version:
               options.generationRecoveryVersion ?? "structural-metadata-v1",
-            steps: [1, 3].flatMap((sourceNumber) => [
+            steps: [
+              baselines[0].sourceNumber,
+              baselines[2].sourceNumber,
+            ].flatMap((sourceNumber) => [
               { sourceNumber, field: "sourceRecordId", from: id, to: null },
               { sourceNumber, field: "level", from: "중3", to: null },
               {
@@ -567,7 +600,8 @@ export async function makeListeningStyleStageFixture(
                 field: "questionType",
                 from:
                   options.generationRecoveryVersion ===
-                    "structural-metadata-v2" && sourceNumber === 3
+                    "structural-metadata-v2" &&
+                  sourceNumber === baselines[2].sourceNumber
                     ? "action"
                     : "reason",
                 to: "detail",
