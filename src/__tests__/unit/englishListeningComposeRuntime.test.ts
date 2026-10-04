@@ -443,8 +443,8 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       return row;
     };
     const before = await inventory();
-    expect(before.sets).toBe(2n);
-    expect(before.assets).toBe(2n);
+    expect(before.sets).toBe(BigInt(2));
+    expect(before.assets).toBe(BigInt(2));
     await expect(
       runtime!.composeSet(owner, {
         title: "문서 한도 초과 시험지",
