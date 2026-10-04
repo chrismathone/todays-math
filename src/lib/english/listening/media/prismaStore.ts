@@ -100,7 +100,7 @@ export class PrismaListeningMediaStore implements ListeningMediaStore {
       await this.lockOwner(tx, record.ownerId);
       const quota = await tx.$queryRaw<
         { bytes: bigint; count: bigint }[]
-      >`SELECT COALESCE(SUM("reservedBytes"), 0)::bigint AS bytes, COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId" = ${record.ownerId}::uuid`;
+      >`SELECT COALESCE(SUM("reservedBytes"), 0)::bigint AS bytes, COUNT(*)::bigint AS count FROM english_listening_media_asset WHERE "ownerId" = ${record.ownerId}::uuid AND record->'drive' IS NULL`;
       if (
         Number(quota[0].bytes) + reserve > this.maxOwnerBytes ||
         Number(quota[0].count) >= this.maxOwnerAssets

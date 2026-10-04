@@ -4,6 +4,7 @@ import type {
   ListeningMediaScope,
   ListeningMediaUpload,
 } from "../../../../contracts/englishListeningMedia.contract";
+import type { ListeningDriveRef } from "./driveApi";
 
 export interface ListeningMediaChunkRecord {
   key: string;
@@ -29,6 +30,8 @@ export interface ListeningMediaRecord
   chunks: ListeningMediaChunkRecord[];
   /** Server-selected at upload start, never accepted from public upload inputs. */
   mp3PlaybackEncoding?: "scrubbed_mp3";
+  /** Private immutable external audio binding; never include in public DTOs. */
+  drive?: ListeningDriveRef;
   /** Original chunks/hash never change. Only this canonical identity is playable. */
   playback?: {
     revision: 1;

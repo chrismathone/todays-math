@@ -16,6 +16,7 @@ import * as assignments from "./assignments";
 import * as students from "./students";
 import { searchListeningBank, searchListeningReferences } from "./bank";
 import { composeListeningSet, composeSource } from "./compose";
+import type { ListeningDriveApi } from "../media/driveApi";
 
 /** Each command, receipt, revision and release exposure commits in one durable transaction.
  * The advisory lock serializes a set/assignment across processes; SQL CAS still checks the
@@ -23,6 +24,7 @@ import { composeListeningSet, composeSource } from "./compose";
 export function createListeningRuntime(
   database: ListeningDatabase,
   clock: () => Date = () => new Date(),
+  dependencies: { drive?: ListeningDriveApi | null } = {},
 ) {
   const transaction = <T>(
     key: string | undefined,
@@ -68,16 +70,35 @@ export function createListeningRuntime(
       transaction(undefined, async (tx, now) =>
         sets.createSet(tx, await teacher(tx, actor), input, now),
       ),
-    composeSet: (actor: ListeningActor, input: unknown) =>
-      transaction(
-        undefined,
-        async (tx, now) => {
-          const account = await teacher(tx, actor);
-          if (!account.menus.includes("english-bank")) throw denied();
-          return composeListeningSet(tx, account, input, now);
-        },
-        120000,
-      ),
+    composeSet: async (actor: ListeningActor, input: unknown) => {
+      const createdFiles = new Set<string>();
+      try {
+        return await transaction(
+          undefined,
+          async (tx, now) => {
+            const account = await teacher(tx, actor);
+            if (!account.menus.includes("english-bank")) throw denied();
+            return composeListeningSet(
+              tx,
+              account,
+              input,
+              now,
+              dependencies.drive
+                ? { api: dependencies.drive, createdFiles }
+                : undefined,
+            );
+          },
+          dependencies.drive ? 600000 : 120000,
+        );
+      } catch (error) {
+        // SQL rollback never leaves a playable metadata identity. Remove only
+        // newly created derivatives, never shared originals or existing files.
+        await Promise.allSettled(
+          [...createdFiles].map((fileId) => dependencies.drive!.trash(fileId)),
+        );
+        throw error;
+      }
+    },
     composeSource: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) => {
         const account = await teacher(tx, actor);
