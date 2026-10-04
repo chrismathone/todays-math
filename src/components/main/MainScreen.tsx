@@ -5,16 +5,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { ComponentProps } from "react";
 
 import { AppChrome } from "@/components/chrome/AppChrome";
-import type {
-  ClassEntity,
-  ProgressEntity,
-  ProgressSuggestion,
-} from "@/contracts/class.contract";
-import type { WeeklyMetrics } from "@/contracts/metrics.contract";
-import type { TestEntity } from "@/contracts/test.contract";
-import type { UnitEntity } from "@/contracts/unit.contract";
+import type { WorkspaceMenu } from "@/contracts/accountAccess.contract";
 import { recordProgress } from "@/lib/class/classApi";
-import { loadMainDashboard } from "@/lib/main/loadMainDashboard";
+import {
+  loadClassProgress,
+  loadMainDashboard,
+  type MainDashboardData,
+} from "@/lib/main/loadMainDashboard";
 import { buildClassRows, remainingCount } from "@/lib/main/pipeline";
 import { DashboardSkeleton } from "@/components/ui/PageSkeletons";
 import { Button } from "@/components/ui/Button";
@@ -28,15 +25,7 @@ import { ProgressPanel } from "./ProgressPanel";
 type LoadState =
   | { status: "loading" }
   | { status: "error"; message: string }
-  | {
-      status: "ready";
-      classes: ClassEntity[];
-      tests: TestEntity[];
-      progressByClass: Record<string, ProgressEntity | null>;
-      suggestByClass: Record<string, ProgressSuggestion | null>;
-      units: UnitEntity[];
-      metrics: WeeklyMetrics;
-    };
+  | ({ status: "ready" } & MainDashboardData);
 
 /**
  * 메인이 헤더에 더 붙이는 「전체 표 ⇄ / 오늘 작업 ⇄」 버튼의 모양.
@@ -52,11 +41,13 @@ type MainScreenProps = {
   /** Reuse the dashboard within a persistent workspace, without legacy chrome. */
   embedded?: boolean;
   onEmpty?: () => void;
+  allowedMenus?: readonly WorkspaceMenu[];
 };
 
 export function MainScreen({
   embedded = false,
   onEmpty,
+  allowedMenus,
 }: MainScreenProps = {}) {
   const router = useRouter();
   // 효과의 의존에 router 를 넣지 않는다 — 시험 더블처럼 렌더마다 새 객체를 주는 라우터면
@@ -72,31 +63,64 @@ export function MainScreen({
   );
   const [advanceError, setAdvanceError] = useState<string | null>(null);
   const [loadAttempt, setLoadAttempt] = useState(0);
+  const loadGeneration = useRef(0);
+  const committedProgress = useRef<MainDashboardData["progressByClass"]>({});
+  const [recording, setRecording] = useState(false);
+  const recordBusy = useRef(false);
+  const canExport =
+    allowedMenus === undefined || allowedMenus.includes("export");
+  const menuKey = allowedMenus?.join(",");
+  const effectiveMenus = useMemo(
+    () =>
+      menuKey === undefined
+        ? undefined
+        : (menuKey.split(",") as WorkspaceMenu[]),
+    [menuKey],
+  );
   // 차시이동 화살표로 "열람 중인" 차시(진도 미기록). null이면 현재 기록된 진도를 본다.
   // 반을 바꾸거나 진도를 기록하면 null로 되돌려 그 반의 실제 진도를 다시 본다.
   const [viewedUnitId, setViewedUnitId] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
-    loadMainDashboard()
-      .then((data) => {
-        if (cancelled) return;
-        // 🔴 반이 하나도 없으면 메인은 빈 표뿐이다 — S-02 대로 온보딩으로 보낸다.
-        //    2026-09-07 새 계정이 로그인 직후 빈 메인에 떨어졌다(가입 경로만 온보딩이었다).
-        if (data.classes.length === 0 && !embedded) {
-          routerRef.current.replace("/onboarding");
-          return;
-        }
-        setState({ status: "ready", ...data });
-        const rows = buildClassRows(
-          data.classes,
-          data.tests,
-          data.progressByClass,
-          data.units,
-        );
-        const firstOpen = rows.find((r) => r.stage !== "done");
-        setSelectedClassId(firstOpen?.classId ?? data.classes[0]?.id ?? "");
-      })
+    const controller = new AbortController();
+    loadGeneration.current += 1;
+    committedProgress.current = {};
+    const accept = (data: MainDashboardData) => {
+      if (cancelled) return;
+      // 🔴 반이 하나도 없으면 메인은 빈 표뿐이다 — S-02 대로 온보딩으로 보낸다.
+      //    2026-09-07 새 계정이 로그인 직후 빈 메인에 떨어졌다(가입 경로만 온보딩이었다).
+      if (data.classes.length === 0 && !embedded) {
+        routerRef.current.replace("/onboarding");
+        return;
+      }
+      setState({
+        status: "ready",
+        ...data,
+        progressByClass: {
+          ...data.progressByClass,
+          ...committedProgress.current,
+        },
+      });
+      const rows = buildClassRows(
+        data.classes,
+        data.tests,
+        data.progressByClass,
+        data.units,
+      );
+      const firstOpen = rows.find((r) => r.stage !== "done");
+      setSelectedClassId((previous) =>
+        data.classes.some((cls) => cls.id === previous)
+          ? previous
+          : (firstOpen?.classId ?? data.classes[0]?.id ?? ""),
+      );
+    };
+    loadMainDashboard({
+      allowedMenus: effectiveMenus,
+      signal: controller.signal,
+      onPartial: accept,
+    })
+      .then(accept)
       .catch(() => {
         if (!cancelled) {
           setState({ status: "error", message: "목록을 불러오지 못했습니다" });
@@ -104,8 +128,10 @@ export function MainScreen({
       });
     return () => {
       cancelled = true;
+      controller.abort();
+      loadGeneration.current += 1;
     };
-  }, [loadAttempt, embedded]);
+  }, [loadAttempt, embedded, effectiveMenus]);
 
   const rows = useMemo(() => {
     if (state.status !== "ready") return [];
@@ -145,9 +171,15 @@ export function MainScreen({
   const displayedUnitId =
     viewedUnitId ?? committedUnitId ?? suggestedUnitId ?? null;
   const canRecord =
-    displayedUnitId !== null && displayedUnitId !== committedUnitId;
+    !recording &&
+    (state.status !== "ready" ||
+      !state.progressStatusByClass?.[selectedClassId] ||
+      state.progressStatusByClass[selectedClassId] === "ready") &&
+    displayedUnitId !== null &&
+    displayedUnitId !== committedUnitId;
 
   const handleSelectClass = useCallback((classId: string) => {
+    if (recordBusy.current) return;
     setSelectedClassId(classId);
     setViewedUnitId(null); // 반을 바꾸면 그 반의 실제 진도를 보도록 열람 위치를 초기화한다.
   }, []);
@@ -163,13 +195,19 @@ export function MainScreen({
       !selectedClassId ||
       state.status !== "ready" ||
       displayedUnitId === null ||
-      displayedUnitId === committedUnitId
+      displayedUnitId === committedUnitId ||
+      recordBusy.current ||
+      (state.progressStatusByClass?.[selectedClassId] &&
+        state.progressStatusByClass[selectedClassId] !== "ready")
     ) {
       return;
     }
     setAdvanceError(null);
+    recordBusy.current = true;
+    setRecording(true);
     try {
       const next = await recordProgress(selectedClassId, displayedUnitId);
+      committedProgress.current[selectedClassId] = next;
       setState((prev) => {
         if (prev.status !== "ready") return prev;
         return {
@@ -183,8 +221,62 @@ export function MainScreen({
       setViewedUnitId(null); // 기록 후엔 방금 기록한 차시(=현재 진도)를 본다.
     } catch {
       setAdvanceError("진도를 저장하지 못했습니다");
+    } finally {
+      recordBusy.current = false;
+      setRecording(false);
     }
-  }, [selectedClassId, state.status, displayedUnitId, committedUnitId]);
+  }, [selectedClassId, state, displayedUnitId, committedUnitId]);
+
+  const retryClass = useCallback(async (classId: string) => {
+    const generation = loadGeneration.current;
+    setState((previous) =>
+      previous.status !== "ready"
+        ? previous
+        : {
+            ...previous,
+            progressStatusByClass: {
+              ...previous.progressStatusByClass,
+              [classId]: "loading",
+            },
+          },
+    );
+    try {
+      const next = await loadClassProgress(classId);
+      if (generation !== loadGeneration.current) return;
+      setState((previous) =>
+        previous.status !== "ready"
+          ? previous
+          : {
+              ...previous,
+              progressByClass: {
+                ...previous.progressByClass,
+                [classId]: next.progress,
+              },
+              suggestByClass: {
+                ...previous.suggestByClass,
+                [classId]: next.suggestion,
+              },
+              progressStatusByClass: {
+                ...previous.progressStatusByClass,
+                [classId]: "ready",
+              },
+            },
+      );
+    } catch {
+      if (generation !== loadGeneration.current) return;
+      setState((previous) =>
+        previous.status !== "ready"
+          ? previous
+          : {
+              ...previous,
+              progressStatusByClass: {
+                ...previous.progressStatusByClass,
+                [classId]: "error",
+              },
+            },
+      );
+    }
+  }, []);
 
   if (state.status === "loading") {
     return embedded ? (
@@ -246,10 +338,27 @@ export function MainScreen({
         </button>
       }
     >
-      <div className="flex min-h-0 flex-1">
+      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
         <div className="min-w-0 flex-1">
           {/* 오늘의 확인테스트 — eywa 학생별 진도 (원장님 확정 2026-08-21, 계기판) */}
-          <DailyReviewSection units={state.units} />
+          {canExport ? <DailyReviewSection units={state.units} /> : null}
+          {state.testsStatus === "error" || state.metricsStatus === "error" ? (
+            <div
+              role="alert"
+              className="flex flex-wrap items-center gap-3 p-4 text-sm"
+            >
+              <span>
+                일부 시험·통계 정보를 불러오지 못했습니다. 수업과 진도는 계속
+                확인할 수 있습니다.
+              </span>
+              <Button
+                variant="secondary"
+                onClick={() => setLoadAttempt((value) => value + 1)}
+              >
+                정보 다시 조회
+              </Button>
+            </div>
+          ) : null}
           {view === "stack" ? (
             <>
               {/*
@@ -268,6 +377,15 @@ export function MainScreen({
                   hot={row.classId === selectedClassId}
                   onSelect={handleSelectClass}
                   onProgress={handleSelectClass}
+                  canExport={canExport}
+                  testsPending={
+                    state.testsStatus === "loading" ||
+                    state.testsStatus === "error"
+                  }
+                  readStatus={state.progressStatusByClass?.[row.classId]}
+                  onRetry={(id) => {
+                    void retryClass(id);
+                  }}
                 />
               ))}
               {done.map((row) => (
@@ -285,6 +403,14 @@ export function MainScreen({
               selectedClassId={selectedClassId}
               onSelect={handleSelectClass}
               onProgress={handleSelectClass}
+              canExport={canExport}
+              testsPending={
+                state.testsStatus === "loading" || state.testsStatus === "error"
+              }
+              readStatusByClass={state.progressStatusByClass}
+              onRetry={(id) => {
+                void retryClass(id);
+              }}
             />
           )}
         </div>
@@ -293,8 +419,10 @@ export function MainScreen({
           units={state.units}
           selectedClassId={selectedClassId}
           selectedUnitId={displayedUnitId}
-          printedDays={metrics?.printedDays ?? 0}
-          unmodifiedRate={Math.round((metrics?.unmodifiedRate ?? 0) * 100)}
+          printedDays={metrics?.printedDays ?? null}
+          unmodifiedRate={
+            metrics ? Math.round(metrics.unmodifiedRate * 100) : null
+          }
           error={advanceError}
           canRecord={canRecord}
           suggestion={committedUnitId === null ? suggestion : null}

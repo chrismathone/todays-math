@@ -45,6 +45,11 @@ import type {
   ListeningStorageApi,
   ListeningStorageRef,
 } from "../media/storageApi";
+import {
+  cloneStorageChunkAsset,
+  storageChunkReferences,
+  writeStorageChunkAsset,
+} from "./storageChunkAssets";
 export interface ListeningComposeDrive {
   api?: ListeningDriveApi;
   storage?: ListeningStorageApi;
@@ -135,6 +140,17 @@ async function cloneReadyAudio(
     throw invalid(
       "담은 자료에 검증된 음원이 필요합니다. 원본 자료의 음원을 확인해 주세요.",
     );
+  if (original.storageChunks) {
+    if (!drive?.storage)
+      throw invalid("비공개 음원 저장소 연결을 확인해 주세요.");
+    const record = await cloneStorageChunkAsset(
+      tx,
+      original,
+      target,
+      drive.storage,
+    );
+    return { ...audio, assetId: record.assetId };
+  }
   if (original.storage) {
     await scopedStorage(original, drive);
     if (original.ownerId !== target.ownerId) throw denied();
@@ -292,6 +308,13 @@ async function clipReadyAudio(
   const storage = original.storage
     ? await scopedStorage(original, drive)
     : null;
+  const chunkStorage = original.storageChunks ? drive?.storage : null;
+  if (original.storageChunks && !chunkStorage)
+    throw invalid("비공개 음원 저장소 연결을 확인해 주세요.");
+  const chunkRefs = chunkStorage
+    ? await storageChunkReferences(tx, original, chunkStorage)
+    : null;
+  if (chunkStorage && original.ownerId !== target.ownerId) throw denied();
   if (storage && original.ownerId !== target.ownerId) throw denied();
   const sourceChunks = [...playback.chunks].sort((a, b) => a.offset - b.offset);
   let covered = 0;
@@ -331,6 +354,17 @@ async function clipReadyAudio(
       const from = Math.max(start, chunk.offset);
       const to = Math.min(endExclusive, chunk.offset + chunk.byteLength);
       if (from >= to) continue;
+      if (chunkStorage && chunkRefs) {
+        const ref = chunkRefs.get(chunk.key);
+        if (!ref) throw invalid("원본 음원 조각을 확인하지 못했습니다.");
+        for await (const part of chunkStorage.read(
+          ref,
+          (chunk.blobOffset ?? 0) + from - chunk.offset,
+          (chunk.blobOffset ?? 0) + to - chunk.offset,
+        ))
+          yield Buffer.from(part);
+        continue;
+      }
       const blob = await one<{ bytes: Uint8Array }>(
         tx,
         Prisma.sql`SELECT SUBSTRING(bytes FROM ${(chunk.blobOffset ?? 0) + from - chunk.offset + 1}::integer FOR ${to - from}::integer) AS bytes FROM english_listening_media_blob WHERE key=${chunk.key}::uuid AND "assetId"=${audio.assetId}::uuid AND committed=true AND "byteLength">=${(chunk.blobOffset ?? 0) + chunk.byteLength}`,
@@ -383,6 +417,37 @@ async function clipReadyAudio(
   try {
     if (drive?.storage) {
       const assetId = randomUUID();
+      if (plan.totalBytes > 32 * 1024 * 1024 || original.storageChunks) {
+        const record = await writeStorageChunkAsset(
+          tx,
+          drive.storage,
+          {
+            assetId,
+            setId: target.id,
+            ownerId: target.ownerId,
+            branchId: target.branchId,
+            mimeType: "audio/wav",
+            totalBytes: plan.totalBytes,
+            durationMs: plan.durationMs,
+            now: Date.parse(now),
+            read: async function* () {
+              yield plan.header;
+              for (const range of plan.ranges)
+                yield* readPcmRange(range.start, range.endExclusive);
+            },
+          },
+          drive.createdStorageRefs!,
+        );
+        return {
+          audio: {
+            assetId,
+            sha256: record.playback!.sha256,
+            durationMs: plan.durationMs,
+          },
+          evidence: plan.evidenceByQuestionId,
+          audioRanges: plan.audioRangeByQuestionId,
+        };
+      }
       const ref = await drive.storage.upload({
         ownerId: target.ownerId,
         assetId,
@@ -623,6 +688,7 @@ export async function composeListeningSet(
   const mayWritePostgres = selections.filter(
     (item) =>
       !drive?.storage ||
+      item.selection.audioMode === "whole_source" ||
       (item.questions.length === item.group.questions.length &&
         item.questions.every(
           (question, index) => question.id === item.group.questions[index].id,
@@ -641,7 +707,7 @@ export async function composeListeningSet(
   const id = randomUUID();
   const first = selections[0].document;
   const basis =
-    `듣기은행에서 구성: ${[...new Set(selections.map((item) => item.document.title))].join(" · ")}`.slice(
+    `듣기은행에서 구성: ${[...new Set(selections.map((item) => item.document.title))].join(" · ")}${selections.some((item) => item.selection.audioMode === "whole_source") ? " · 선택 문항에 원본 회차 전체 음원 포함" : ""}`.slice(
       0,
       1000,
     );
@@ -688,17 +754,18 @@ export async function composeListeningSet(
       item.group.questions.every(
         (question, index) => question.id === item.questions[index].id,
       );
-    const clip = fullRound
-      ? null
-      : await clipReadyAudio(
-          tx,
-          item.source,
-          item.group,
-          item.questions,
-          target,
-          now,
-          drive,
-        );
+    const clip =
+      fullRound || item.selection.audioMode === "whole_source"
+        ? null
+        : await clipReadyAudio(
+            tx,
+            item.source,
+            item.group,
+            item.questions,
+            target,
+            now,
+            drive,
+          );
     const audio =
       clip?.audio ??
       (await cloneReadyAudio(

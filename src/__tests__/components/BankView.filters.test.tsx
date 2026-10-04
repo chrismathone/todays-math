@@ -90,6 +90,8 @@ const initialData: BankData = {
 };
 const requests: URLSearchParams[] = [];
 const reviewCalls: { url: string; body: { reviewStatus: string } }[] = [];
+let freshEligibility = true;
+let freshReadFails = false;
 /**
  * 승격 응답은 `{ data: <완전한 ProblemEntity> }` 다(`problemResponseSchema`).
  * 손으로 지어내지 않고 계약이 요구하는 필드를 그대로 채운다 — 하나라도 빠지면
@@ -167,6 +169,8 @@ beforeEach(() => {
   // ⚠️ 이것도 비운다 — 안 비우면 시험들 사이에 호출이 쌓여 개수 단언이 실행 순서에
   //    따라 통과하기도 한다. 우연히 통과한 초록은 그물이 아니다.
   reviewCalls.length = 0;
+  freshEligibility = true;
+  freshReadFails = false;
   transformCalls.length = 0;
   servedProblems = [problem];
   Object.defineProperty(HTMLElement.prototype, "scrollIntoView", {
@@ -176,6 +180,19 @@ beforeEach(() => {
   vi.stubGlobal(
     "fetch",
     vi.fn(async (url: string, init?: RequestInit) => {
+      if (url === `/api/studio/problems/${BLOCKED_ID}`) {
+        if (freshReadFails) return Response.json({}, { status: 503 });
+        return Response.json({
+          data: {
+            id: BLOCKED_ID,
+            eligible: freshEligibility,
+            ineligibleReason: freshEligibility
+              ? null
+              : "출제가 잠긴 문항입니다.",
+            reviewStatus: "approved",
+          },
+        });
+      }
       // 🔴 검수 승격은 **전용 엔드포인트**다(`PATCH …/review-status`). 대역이 method 를
       //    안 보면 그 요청도 은행 목록을 받아 `problemResponseSchema` 가 거부하고,
       //    시험이 «성공 경로»가 아니라 «실패 경로»를 재게 된다.
@@ -567,6 +584,55 @@ describe("inspection rows cannot be added", () => {
         }),
       ).not.toBeInTheDocument(),
     );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "1번 문제 담기" }),
+      ).toBeEnabled(),
+    );
+  });
+
+  it("keeps an approved but locked row disabled using the server eligibility", async () => {
+    freshEligibility = false;
+    mount({ ...initialData, problems: [blocked] });
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    fireEvent.click(
+      within(screen.getByRole("dialog")).getByRole("button", { name: "승인" }),
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "1번 문제 담기" }),
+      ).toHaveAccessibleDescription("출제가 잠긴 문항입니다."),
+    );
+    expect(
+      screen.getByRole("button", { name: "1번 문제 담기" }),
+    ).toBeDisabled();
+  });
+
+  it("preserves the approved row after a read failure and retries only GET", async () => {
+    freshReadFails = true;
+    mount({ ...initialData, problems: [blocked] });
+    fireEvent.click(screen.getByRole("button", { name: "문제 상세" }));
+    fireEvent.click(
+      within(screen.getByRole("dialog")).getByRole("button", { name: "승인" }),
+    );
+    expect(
+      await screen.findByText(
+        "검수 상태는 저장했습니다. 출제 가능 여부 조회에 실패했습니다.",
+      ),
+    ).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: "1번 문제 담기" }),
+    ).toBeDisabled();
+    freshReadFails = false;
+    fireEvent.click(
+      screen.getByRole("button", { name: "문항 상태 다시 조회" }),
+    );
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "1번 문제 담기" }),
+      ).toBeEnabled(),
+    );
+    expect(reviewCalls).toHaveLength(1);
   });
 
   it("승인 단추는 검수 대기일 때만 선다", () => {

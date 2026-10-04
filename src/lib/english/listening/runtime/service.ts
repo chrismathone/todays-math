@@ -55,7 +55,7 @@ export function createListeningRuntime(
       input: unknown,
     ) =>
       transaction(undefined, async (tx) => {
-        const account = await teacher(tx, actor);
+        const account = await teacher(tx, actor, "materials");
         if (!account.menus.includes("english-bank")) throw denied();
         return resource === "bank"
           ? searchListeningBank(tx, account, input)
@@ -66,7 +66,11 @@ export function createListeningRuntime(
       resource: "sets" | "assignments" | "classes",
     ) =>
       transaction(undefined, async (tx) => {
-        const account = await teacher(tx, actor);
+        const account = await teacher(
+          tx,
+          actor,
+          resource === "sets" ? "materials" : "listening",
+        );
         return resource === "sets"
           ? sets.listSets(tx, account)
           : resource === "assignments"
@@ -75,7 +79,7 @@ export function createListeningRuntime(
       }),
     createSet: (actor: ListeningActor, input: unknown) =>
       transaction(undefined, async (tx, now) =>
-        sets.createSet(tx, await teacher(tx, actor), input, now),
+        sets.createSet(tx, await teacher(tx, actor, "materials"), input, now),
       ),
     composeSet: async (actor: ListeningActor, input: unknown) => {
       const createdFiles = new Set<string>();
@@ -84,7 +88,7 @@ export function createListeningRuntime(
         return await transaction(
           undefined,
           async (tx, now) => {
-            const account = await teacher(tx, actor);
+            const account = await teacher(tx, actor, "materials");
             if (!account.menus.includes("english-bank")) throw denied();
             return composeListeningSet(
               tx,
@@ -117,21 +121,33 @@ export function createListeningRuntime(
     },
     composeSource: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) => {
-        const account = await teacher(tx, actor);
+        const account = await teacher(tx, actor, "materials");
         if (!account.menus.includes("english-bank")) throw denied();
         return composeSource(tx, account, setId);
       }),
     setDetail: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) =>
-        sets.setDetail(tx, await teacher(tx, actor), setId),
+        sets.setDetail(tx, await teacher(tx, actor, "materials"), setId),
       ),
     updateSet: (actor: ListeningActor, setId: string, input: unknown) =>
       transaction(id(setId), async (tx, now) =>
-        sets.updateSet(tx, await teacher(tx, actor), setId, input, now),
+        sets.updateSet(
+          tx,
+          await teacher(tx, actor, "materials"),
+          setId,
+          input,
+          now,
+        ),
       ),
     reviewSet: (actor: ListeningActor, setId: string, input: unknown) =>
       transaction(id(setId), async (tx, now) =>
-        sets.reviewSet(tx, await teacher(tx, actor), setId, input, now),
+        sets.reviewSet(
+          tx,
+          await teacher(tx, actor, "materials"),
+          setId,
+          input,
+          now,
+        ),
       ),
     publishSet: (actor: ListeningActor, setId: string, input: unknown) =>
       transaction(id(setId), async (tx, now) =>
@@ -147,7 +163,7 @@ export function createListeningRuntime(
       transaction(id(setId), async (tx, now) =>
         sets.deleteSet(
           tx,
-          await teacher(tx, actor),
+          await teacher(tx, actor, "materials"),
           setId,
           listeningRevisionInputSchema.parse(input).expectedRevision,
           now,

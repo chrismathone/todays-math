@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { ClassEntity, StudentEntity } from "@/contracts/class.contract";
@@ -18,6 +18,8 @@ import {
   type DifficultyRatio,
 } from "@/contracts/difficulty";
 import type { UnitEntity } from "@/contracts/unit.contract";
+import { fetchClasses, fetchStudents } from "@/lib/class/classApi";
+import { kstDateOf } from "@/lib/kstDate";
 
 /**
  * 계약 스키마는 **런타임 값으로 정적 import 하지 않는다** (성능 수리 C-1).
@@ -26,7 +28,6 @@ import type { UnitEntity } from "@/contracts/unit.contract";
  * 번들에 zod + 계약 모듈(279KB)을 얹고 있었다. 여기 검증은 전부 `fetch` 응답
  * (또는 사용자 제출) 이후라 그 시점에 불러도 늦지 않다. 검증은 그대로 남는다.
  */
-const classContract = () => import("@/contracts/class.contract");
 const commonContract = () => import("@/contracts/common.contract");
 const problemContract = () => import("@/contracts/problem.contract");
 const testContract = () => import("@/contracts/test.contract");
@@ -45,10 +46,7 @@ type Props = {
 };
 
 function todayIso() {
-  const now = new Date();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
-  return `${now.getFullYear()}-${month}-${day}`;
+  return kstDateOf(new Date());
 }
 
 function applyClass(
@@ -66,6 +64,16 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   const [classes, setClasses] = useState<ClassEntity[]>([]);
   const [units, setUnits] = useState<UnitEntity[]>([]);
   const [students, setStudents] = useState<StudentEntity[]>([]);
+  const [studentState, setStudentState] = useState<{
+    key: string;
+    status: "loading" | "ready" | "error";
+  }>({ key: "", status: "loading" });
+  const [studentAttempt, setStudentAttempt] = useState(0);
+  const [selectionWarning, setSelectionWarning] = useState<string | null>(null);
+  const initialStudentApplied = useRef(false);
+  const manualRangeKey = useRef<string | null>(null);
+  const [manualRangeScope, setManualRangeScope] = useState<string | null>(null);
+  const submitting = useRef(false);
   const [ready, setReady] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -122,27 +130,26 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
 
   useEffect(() => {
     let cancelled = false;
-    Promise.all([
-      fetch("/api/classes?page=1&pageSize=100"),
-      fetch("/api/units"),
-    ])
-      .then(async ([classRes, unitRes]) => {
-        if (!classRes.ok || !unitRes.ok) {
+    Promise.all([fetchClasses(), fetch("/api/units")])
+      .then(async ([classData, unitRes]) => {
+        if (!unitRes.ok) {
           throw new Error("목록을 불러오지 못했습니다");
         }
-        const [{ classListResponseSchema }, { unitListResponseSchema }] =
-          await Promise.all([classContract(), unitContract()]);
-        const classBody = classListResponseSchema.parse(await classRes.json());
+        const { unitListResponseSchema } = await unitContract();
         const unitBody = unitListResponseSchema.parse(await unitRes.json());
         if (cancelled) return;
-        setClasses(classBody.data);
+        setClasses(classData);
         setUnits(unitBody.data);
-        const nextClass =
-          classBody.data.find((item) => item.id === initialClassId) ??
-          classBody.data[0];
+        const nextClass = initialClassId
+          ? classData.find((item) => item.id === initialClassId)
+          : classData[0];
         if (nextClass) {
           setClassId(nextClass.id);
           applyClass(nextClass, setProblemCount, setDifficultyRatio);
+        } else if (initialClassId) {
+          setSelectionWarning(
+            "요청한 반이 없거나 접근할 수 없습니다. 반을 직접 선택해 주세요.",
+          );
         }
         // ⚠️ 여기서 범위 기본값을 **정하지 않는다.** 예전에는 `units[0]`(초1 첫
         //    소단원) ~ `units[마지막]`(미적분2 마지막)을 넣었다 — 그게 전 교육과정
@@ -167,29 +174,33 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   useEffect(() => {
     if (!classId) return;
     let cancelled = false;
-    fetch(`/api/students?classId=${classId}`)
-      .then(async (res) => {
-        if (!res.ok) throw new Error("fail");
-        const { studentListResponseSchema } = await classContract();
-        return studentListResponseSchema.parse(await res.json());
-      })
-      .then((body) => {
+    fetchStudents(classId)
+      .then((data) => {
         if (cancelled) return;
-        setStudents(body.data);
-        const keep =
-          initialStudentId &&
-          body.data.some((item) => item.id === initialStudentId)
-            ? initialStudentId
-            : "";
-        setStudentId(keep);
+        setStudents(data);
+        setStudentState({ key: classId, status: "ready" });
+        if (!initialStudentApplied.current) {
+          initialStudentApplied.current = true;
+          if (initialStudentId && !manualRangeKey.current) {
+            if (data.some((item) => item.id === initialStudentId))
+              setStudentId(initialStudentId);
+            else
+              setSelectionWarning(
+                "요청한 학생이 현재 반 명단에 없습니다. 대상을 직접 선택해 주세요.",
+              );
+          }
+        }
       })
       .catch(() => {
-        if (!cancelled) setStudents([]);
+        if (!cancelled) {
+          setStudents([]);
+          setStudentState({ key: classId, status: "error" });
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, [classId, initialStudentId]);
+  }, [classId, initialStudentId, studentAttempt]);
 
   /**
    * 확인테스트 기본 범위 — **진도가 정한다**(원장님 확정 2026-08-19).
@@ -210,6 +221,10 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       })
       .then((body) => {
         if (cancelled) return;
+        if (manualRangeKey.current === key) {
+          setRangeState({ key, status: "ok" });
+          return;
+        }
         if (!body.data) {
           setRangeState({ key, status: "none" });
           setRangeStartUnitId("");
@@ -222,6 +237,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       })
       .catch(() => {
         if (cancelled) return;
+        if (manualRangeKey.current === key) return;
         setRangeState({ key, status: "error" });
         setRangeStartUnitId("");
         setRangeEndUnitId("");
@@ -232,13 +248,31 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
   }, [classId, studentId]);
 
   /** 지금 화면이 보고 있는 반/학생의 답이 아직 안 왔는가. */
-  const rangeLoading = rangeState?.key !== `${classId}:${studentId}`;
-  const rangeUnknown = !rangeLoading && rangeState?.status === "none";
-  const rangeError = !rangeLoading && rangeState?.status === "error";
+  const rangeLoading =
+    manualRangeScope !== `${classId}:${studentId}` &&
+    rangeState?.key !== `${classId}:${studentId}`;
+  const rangeUnknown =
+    manualRangeScope !== `${classId}:${studentId}` &&
+    !rangeLoading &&
+    rangeState?.status === "none";
+  const rangeError =
+    manualRangeScope !== `${classId}:${studentId}` &&
+    !rangeLoading &&
+    rangeState?.status === "error";
 
   const selectClass = useCallback(
     (nextId: string) => {
+      if (nextId === classId || submitting.current) return;
+      manualRangeKey.current = null;
+      setManualRangeScope(null);
+      initialStudentApplied.current = true;
       setClassId(nextId);
+      setStudentId("");
+      setStudents([]);
+      setStudentState({ key: nextId, status: "loading" });
+      setRangeStartUnitId("");
+      setRangeEndUnitId("");
+      setSelectionWarning(null);
       applyClass(
         classes.find((item) => item.id === nextId),
         setProblemCount,
@@ -253,7 +287,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       // 효과 안의 동기 setState 는 연쇄 렌더가 되고 ESLint 가 막는다.
       setRangeEditing(false);
     },
-    [classes],
+    [classes, classId],
   );
 
   /** 유형이 바뀌면 대상 단원이 바뀐다 — 반을 바꿀 때와 같은 이유로 검수 목록을 비운다. */
@@ -267,20 +301,48 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
    * 범위를 **한 번에** 바꾼다. 시작·끝을 따로 setState 하면 그 사이 한 렌더 동안
    * 거꾸로 된 범위(시작 > 끝)가 실재해, 그때 요약 줄이 엉뚱한 것을 그린다.
    */
-  const setRange = useCallback((start: string, end: string) => {
-    setRangeStartUnitId(start);
-    setRangeEndUnitId(end);
-  }, []);
+  const setRange = useCallback(
+    (start: string, end: string) => {
+      manualRangeKey.current = `${classId}:${studentId}`;
+      setManualRangeScope(`${classId}:${studentId}`);
+      setRangeStartUnitId(start);
+      setRangeEndUnitId(end);
+    },
+    [classId, studentId],
+  );
 
   /** 학생을 바꿔도 범위를 다시 묻는다 — 펼침은 같은 이유로 여기서 접는다. */
-  const selectStudent = useCallback((nextId: string) => {
-    setStudentId(nextId);
-    setRangeEditing(false);
-  }, []);
+  const selectStudent = useCallback(
+    (nextId: string) => {
+      if (nextId === studentId || submitting.current) return;
+      manualRangeKey.current = null;
+      setManualRangeScope(null);
+      initialStudentApplied.current = true;
+      setStudentId(nextId);
+      setRangeStartUnitId("");
+      setRangeEndUnitId("");
+      setSelectionWarning(null);
+      setRangeEditing(false);
+    },
+    [studentId],
+  );
+
+  const studentsLoading =
+    studentState.key !== classId || studentState.status === "loading";
+  const studentsError =
+    studentState.key === classId && studentState.status === "error";
+  const retryStudents = useCallback(() => {
+    setStudentState({ key: classId, status: "loading" });
+    setStudentAttempt((value) => value + 1);
+  }, [classId]);
 
   const generate = useCallback(
     async (countOverride?: number) => {
-      if (!classId) return;
+      if (!classId || submitting.current) return;
+      if (studentsLoading || studentsError || selectionWarning) {
+        setSubmitError("현재 반 명단과 출제 대상을 확인해 주세요.");
+        return;
+      }
       const count = countOverride ?? problemCount;
       const nextRatio =
         countOverride === undefined
@@ -313,6 +375,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
         setSubmitError("난이도 배분의 합이 문항 수와 같아야 합니다");
         return;
       }
+      submitting.current = true;
       setBusy(true);
       setSubmitError(null);
       // ⚠️ 여기서 `aiDrafts` 를 지우지 않는다. **이 함수는 「승인 뒤 부족분 다시 묻기」로도
@@ -376,6 +439,7 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       } catch {
         setSubmitError("출제하지 못했습니다");
       } finally {
+        submitting.current = false;
         setBusy(false);
       }
     },
@@ -389,6 +453,9 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
       rangeStartUnitId,
       rangeEndUnitId,
       rangeLoading,
+      studentsLoading,
+      studentsError,
+      selectionWarning,
       router,
     ],
   );
@@ -497,6 +564,11 @@ export function useGenerateSetup({ initialClassId, initialStudentId }: Props) {
     classes,
     units,
     students,
+    studentsLoading,
+    studentsError,
+    retryStudents,
+    selectionWarning,
+    confirmClassScope: () => setSelectionWarning(null),
     ready,
     loadError,
     retryLoad,

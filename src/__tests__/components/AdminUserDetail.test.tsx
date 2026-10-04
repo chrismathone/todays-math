@@ -71,12 +71,35 @@ function mockAuditRequests(
   });
 }
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   vi.clearAllMocks();
   vi.stubGlobal("fetch", fetchMock);
 });
 afterEach(() => vi.unstubAllGlobals());
 
 describe("administrator user detail", () => {
+  it("restores a detail tab and returns to the same branch list context", async () => {
+    const list = "/admin/branches/unassigned?q=teacher%40example.test&status=approved&page=3&tab=accounts&selection=user-2#admin-main";
+    window.history.replaceState(null, "", `/admin/branches/unassigned/users/${pendingAccount.id}?returnTo=${encodeURIComponent(list)}&detailTab=audit#admin-main`);
+    fetchMock.mockImplementation(() => new Promise(() => {}));
+    render(<AdminUserDetail branchId="unassigned" userId={pendingAccount.id} identity={adminIdentity} initialAccount={pendingAccount} />);
+    const back = screen.getByRole("link", { name: "미소속 계정 목록" });
+    const url = new URL(back.getAttribute("href")!, "http://localhost");
+    expect(url.pathname).toBe("/admin/branches/unassigned");
+    expect(url.searchParams.get("q")).toBe("teacher@example.test");
+    expect(url.searchParams.get("page")).toBe("3");
+    expect(url.hash).toBe("#admin-main");
+    expect(screen.getByRole("button", { name: "활동 기록" })).toHaveAttribute("aria-pressed", "true");
+    fireEvent.click(screen.getByRole("button", { name: "반", exact: true }));
+    expect(new URLSearchParams(window.location.search).get("detailTab")).toBe("classes");
+    expect(window.location.hash).toBe("#admin-main");
+  });
+  it.each(["/admin/branches/other?page=2", "/classes/manage", "//evil.test/", "/admin/branches/unassigned?returnTo=%2Fbranch"])("uses the fixed branch fallback for invalid detail return %s", value => {
+    window.history.replaceState(null, "", `/?returnTo=${encodeURIComponent(value)}`);
+    fetchMock.mockImplementation(() => new Promise(() => {}));
+    render(<AdminUserDetail branchId="unassigned" userId={pendingAccount.id} identity={adminIdentity} initialAccount={pendingAccount} />);
+    expect(screen.getByRole("link", { name: "미소속 계정 목록" })).toHaveAttribute("href", "/admin/branches/unassigned?tab=accounts");
+  });
   it("shows the account immediately while detail requests are pending", () => {
     fetchMock.mockImplementation(() => new Promise(() => {}));
     render(
@@ -519,6 +542,6 @@ describe("administrator user detail", () => {
     );
     expect(
       screen.getByRole("link", { name: "미소속 계정 목록" }),
-    ).toHaveAttribute("href", "/admin/branches/unassigned");
+    ).toHaveAttribute("href", "/admin/branches/unassigned?tab=accounts");
   });
 });

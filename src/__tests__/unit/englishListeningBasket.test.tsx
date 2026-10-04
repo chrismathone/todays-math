@@ -119,9 +119,16 @@ describe("listening material basket", () => {
       screen.getByRole("link", { name: "교사용 정답·해설 인쇄" }),
     ).toHaveAttribute("href", expect.stringContaining("revision=2"));
   });
-  it("requires full-question timing for a subset and enables full-round assembly without guessed timings", async () => {
+  it("allows selected questions with the explicit whole-source audio option and keeps clipping strict", async () => {
     const first = source("구간 없는 원본", false);
-    request.mockResolvedValue(first);
+    request.mockImplementation(async (path: string) =>
+      path === "/compose"
+        ? {
+            ...first.detail,
+            document: { ...first.detail.document, title: "선택 시험" },
+          }
+        : first,
+    );
     render(
       <ListeningBankMaterial
         active
@@ -134,8 +141,32 @@ describe("listening material basket", () => {
     fireEvent.click(screen.getByRole("button", { name: "선택 1문항 담기" }));
     expect(
       screen.getByRole("button", { name: "담은 문항으로 시험지 만들기" }),
+    ).toBeEnabled();
+    const wholeAudio = screen.getByRole("checkbox", {
+      name: "구간 미지정 문항은 회차 전체 음원과 함께 만들기",
+    });
+    expect(wholeAudio).toBeChecked();
+    fireEvent.click(wholeAudio);
+    expect(
+      screen.getByRole("button", { name: "담은 문항으로 시험지 만들기" }),
     ).toBeDisabled();
-    expect(screen.getByText(/전체 음원 구간이 필요합니다/)).toBeInTheDocument();
+    fireEvent.click(wholeAudio);
+    fireEvent.click(
+      screen.getByRole("button", { name: "담은 문항으로 시험지 만들기" }),
+    );
+    await waitFor(() =>
+      expect(request.mock.calls.some((call) => call[0] === "/compose")).toBe(
+        true,
+      ),
+    );
+    const composeCall = request.mock.calls.find(
+      (call) => call[0] === "/compose",
+    );
+    expect(composeCall![3].selections[0]).toMatchObject({
+      questionIds: [first.detail.document.groups[0].questions[0].id],
+      audioMode: "whole_source",
+    });
+    await screen.findByRole("heading", { name: "선택 시험" });
     fireEvent.click(screen.getByRole("button", { name: "전체 회차 담기" }));
     await waitFor(() =>
       expect(

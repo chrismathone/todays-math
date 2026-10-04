@@ -5,6 +5,7 @@ import {
 } from "@/lib/main/pipeline";
 
 import { OwnerTag } from "@/components/ui/OwnerTag";
+import type { ReadStatus } from "@/lib/main/loadMainDashboard";
 
 import { ActionControl } from "./ActionControl";
 import { StageGauge } from "./StageGauge";
@@ -15,9 +16,23 @@ type Props = {
   hot: boolean;
   onSelect: (classId: string) => void;
   onProgress: (classId: string) => void;
+  readStatus?: ReadStatus;
+  canExport?: boolean;
+  testsPending?: boolean;
+  onRetry?: (classId: string) => void;
 };
 
-export function ClassCard({ row, index, hot, onSelect, onProgress }: Props) {
+export function ClassCard({
+  row,
+  index,
+  hot,
+  onSelect,
+  onProgress,
+  readStatus = "ready",
+  canExport = true,
+  testsPending = false,
+  onRetry,
+}: Props) {
   const waiting = row.stage === "progress";
 
   return (
@@ -82,12 +97,39 @@ export function ClassCard({ row, index, hot, onSelect, onProgress }: Props) {
               waiting ? "font-bold text-g-red-text" : "text-muted"
             }`}
           >
-            {row.meta}
+            {readStatus === "loading"
+              ? "진도를 불러오는 중…"
+              : readStatus === "error"
+                ? "진도 조회 실패"
+                : row.meta}
           </span>
         </span>
-        <StageGauge stage={row.stage} waiting={waiting} />
+        <span className="max-sm:col-span-2">
+          {readStatus === "ready" ? (
+            <StageGauge stage={row.stage} waiting={waiting} />
+          ) : (
+            <span className="text-sm text-text-2">
+              {readStatus === "loading" ? "조회 중" : "조회 필요"}
+            </span>
+          )}
+        </span>
       </button>
-      <ActionControl row={row} onProgress={onProgress} />
+      {readStatus === "error" ? (
+        <button
+          type="button"
+          className="min-h-11 cursor-pointer border border-control px-3 text-sm"
+          onClick={() => onRetry?.(row.classId)}
+        >
+          진도 다시 조회
+        </button>
+      ) : (
+        <ActionControl
+          row={row}
+          onProgress={onProgress}
+          canExport={canExport}
+          readPending={readStatus !== "ready" || (canExport && testsPending)}
+        />
+      )}
     </article>
   );
 }

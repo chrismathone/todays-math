@@ -14,6 +14,7 @@ import type {
   CourseStudentDetail,
 } from "@/contracts/mathSrsCourse.contract";
 import { COURSE_SECTIONS } from "@/lib/math-srs/elementary/catalog";
+import { requestCourseNavigation } from "@/lib/math-srs/courseNavigation";
 import {
   getCourseDashboard,
   getCourseStudentDetail,
@@ -46,6 +47,7 @@ function student(
     name: "김하늘",
     classId: "class-1",
     className: "초등 새싹반",
+    classGrade: "초3",
     hasAccount: true,
     revision: 3,
     plan: {
@@ -188,6 +190,7 @@ function roster(rows = [learner, other]) {
   dashboardApi.mockResolvedValue({
     ok: true,
     data: {
+      management: { canOpen: true, branchId: null, branchRole: null },
       classes: [
         { id: "class-1", name: "초등 새싹반" },
         { id: "class-2", name: "초등 나무반" },
@@ -222,7 +225,11 @@ function deferred<T>() {
 }
 
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   vi.resetAllMocks();
+  HTMLDialogElement.prototype.showModal = function () {
+    this.open = true;
+  };
   roster();
   detailApi.mockImplementation(async (id) => ({
     ok: true,
@@ -232,6 +239,229 @@ beforeEach(() => {
 afterEach(cleanup);
 
 describe("CourseDashboard", () => {
+  it("selects enrollments independently and updates shared plans without changing class metadata", async () => {
+    const user = userEvent.setup();
+    const secondEnrollment = student({
+      classId: "class-2",
+      className: "보충 나무반",
+      classGrade: "중1",
+    });
+    roster([learner, secondEnrollment]);
+    detailApi.mockImplementation(async (_id, classId) => ({
+      ok: true,
+      data: detail(classId === "class-2" ? secondEnrollment : learner),
+    }));
+    render(<CourseDashboard />);
+    const buttons = await screen.findAllByRole("button", {
+      name: "김하늘 상세 보기",
+    });
+    expect(
+      screen.getByText(/학생.*등록 2건/, { selector: "span" }),
+    ).toHaveTextContent("학생 1명 · 등록 2건");
+    await user.click(buttons[1]);
+    const panel = within(
+      screen.getByRole("region", { name: "김하늘 · 학습 상세" }),
+    );
+    await panel.findByText("보충 나무반 · 계정 사용 가능");
+    expect(buttons[0].closest("tr")).toHaveAttribute("data-selected", "false");
+    expect(buttons[1].closest("tr")).toHaveAttribute("data-selected", "true");
+    await panel.findByRole("button", { name: "학습 설정" });
+    await user.click(panel.getByRole("button", { name: "학습 설정" }));
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "15");
+    const saved = {
+      ...secondEnrollment,
+      revision: 4,
+      plan: { ...learner.plan!, dailyQuestionCount: 15 as const },
+      summary: { ...learner.summary, todayGoal: 15 as const },
+    };
+    saveApi.mockResolvedValueOnce({ ok: true, data: saved });
+    detailApi.mockResolvedValueOnce({ ok: true, data: detail(saved) });
+    await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
+    await waitFor(() =>
+      expect(buttons[0].closest("tr")).toHaveTextContent("5 / 15"),
+    );
+    expect(buttons[0].closest("tr")).toHaveTextContent("초등 새싹반 · 초3");
+    expect(buttons[1].closest("tr")).toHaveTextContent("보충 나무반 · 중1");
+    expect(buttons[1].closest("tr")).toHaveTextContent("5 / 15");
+    expect(saveApi).toHaveBeenCalledWith(
+      learner.id,
+      expect.objectContaining({ dailyQuestionCount: 15 }),
+      "class-2",
+    );
+  });
+
+  it("counts any exact elementary enrollment once and keeps supplementary students visible", async () => {
+    const user = userEvent.setup();
+    const base = { ...other, hasAccount: true };
+    const supplementary = {
+      ...base,
+      id: "student-3",
+      name: "중등 보충",
+      classGrade: "중1",
+    };
+    const unknown = {
+      ...base,
+      id: "student-4",
+      name: "학년 미확인",
+      classGrade: null,
+    };
+    roster([
+      { ...base, classGrade: "중1" },
+      { ...base, classId: "class-1", classGrade: "초6" },
+      supplementary,
+      unknown,
+    ]);
+    render(<CourseDashboard />);
+    const totals = await screen.findByLabelText("전체 학생 학습 요약");
+    expect(
+      within(totals).getByText("설정 필요").nextElementSibling,
+    ).toHaveTextContent("1명");
+    expect(screen.getByText(/기본 대상 1명/)).toHaveTextContent(
+      "보충 / 학년 확인 필요 2명",
+    );
+    await user.click(
+      screen.getByRole("button", { name: /^보충 \/ 학년 확인 필요/ }),
+    );
+    expect(
+      screen.getByRole("button", { name: "중등 보충 진도 설정" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "학년 미확인 진도 설정" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "이바다 진도 설정" }),
+    ).not.toBeInTheDocument();
+    detailApi.mockResolvedValueOnce({ ok: true, data: detail(supplementary) });
+    await user.click(
+      screen.getByRole("button", { name: "중등 보충 진도 설정" }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: /보충학습 · 시작 진도/ }),
+    ).toBeInTheDocument();
+  });
+
+  it("protects dirty state on same-student different-class selection, Escape and actual-value reversion", async () => {
+    const user = userEvent.setup();
+    const secondEnrollment = student({
+      classId: "class-2",
+      className: "다른 반",
+    });
+    roster([learner, secondEnrollment]);
+    detailApi.mockImplementation(async (_id, classId) => ({
+      ok: true,
+      data: detail(classId === "class-2" ? secondEnrollment : learner),
+    }));
+    render(<CourseDashboard />);
+    const buttons = await screen.findAllByRole("button", {
+      name: "김하늘 상세 보기",
+    });
+    await user.click(buttons[0]);
+    const panel = within(
+      screen.getByRole("region", { name: "김하늘 · 학습 상세" }),
+    );
+    await panel.findByLabelText("하루 학습량");
+    await user.click(panel.getByRole("button", { name: "학습 설정" }));
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    const unload = new Event("beforeunload", { cancelable: true });
+    window.dispatchEvent(unload);
+    expect(unload.defaultPrevented).toBe(true);
+    await user.click(buttons[0]);
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
+    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    await user.click(buttons[1]);
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
+    expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
+    expect(detailApi).toHaveBeenCalledTimes(1);
+    await user.keyboard("{Escape}");
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "10");
+    const reverted = new Event("beforeunload", { cancelable: true });
+    window.dispatchEvent(reverted);
+    expect(reverted.defaultPrevented).toBe(false);
+    await user.click(buttons[1]);
+    await waitFor(() =>
+      expect(buttons[1].closest("tr")).toHaveAttribute("data-selected", "true"),
+    );
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("saves the original student before a queued move and keeps success after detail reload failure", async () => {
+    const user = userEvent.setup();
+    render(<CourseDashboard />);
+    const panel = await openStudent(user);
+    await user.click(panel.getByRole("button", { name: "학습 설정" }));
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "15");
+    await user.click(screen.getByRole("button", { name: "이바다 진도 설정" }));
+    saveApi.mockResolvedValueOnce({
+      ok: true,
+      data: student({
+        revision: 4,
+        plan: { ...learner.plan!, dailyQuestionCount: 15 },
+        summary: { ...learner.summary, todayGoal: 15 },
+      }),
+    });
+    detailApi.mockImplementation(async (id) =>
+      id === learner.id
+        ? { ok: false, status: 503, message: "후속 조회 실패" }
+        : { ok: true, data: detail(other) },
+    );
+    await user.click(screen.getByRole("button", { name: "저장하고 이동" }));
+    expect(
+      await screen.findByRole("region", { name: "이바다 · 학습 상세" }),
+    ).toBeInTheDocument();
+    expect(saveApi).toHaveBeenCalledTimes(1);
+    expect(saveApi).toHaveBeenCalledWith(
+      learner.id,
+      expect.objectContaining({ dailyQuestionCount: 15 }),
+      learner.classId,
+    );
+    expect(
+      screen.getByRole("button", { name: "김하늘 상세 보기" }).closest("tr"),
+    ).toHaveTextContent("5 / 15");
+  });
+
+  it("guards tabs and internal links outside the panel, then replays only an explicit discard", async () => {
+    const user = userEvent.setup();
+    const navigate = vi.fn();
+    render(
+      <>
+        <nav>
+          <button onClick={navigate}>다른 작업실 탭</button>
+        </nav>
+        <a
+          href="/classes/manage"
+          onClick={(event) => {
+            event.preventDefault();
+            navigate();
+          }}
+        >
+          내부 이동
+        </a>
+        <CourseDashboard />
+      </>,
+    );
+    const panel = await openStudent(user);
+    await user.click(panel.getByRole("button", { name: "학습 설정" }));
+    await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
+    await user.click(screen.getByRole("link", { name: "내부 이동" }));
+    expect(navigate).not.toHaveBeenCalled();
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
+    let allowed = true;
+    act(() => {
+      allowed = requestCourseNavigation(navigate);
+    });
+    expect(allowed).toBe(false);
+    expect(navigate).not.toHaveBeenCalled();
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
+    await user.click(screen.getByRole("button", { name: "다른 작업실 탭" }));
+    expect(navigate).not.toHaveBeenCalled();
+    await user.click(screen.getByRole("button", { name: "버리고 이동" }));
+    expect(navigate).toHaveBeenCalledTimes(1);
+    expect(panel.getByLabelText("하루 학습량")).toHaveValue("10");
+  });
   it("shows all accessible students, honest totals, account link and combined class/name filters", async () => {
     const user = userEvent.setup();
     const finished = student({
@@ -251,7 +481,10 @@ describe("CourseDashboard", () => {
     expect(screen.getByText(/지원 교육과정 초3–초6/)).toBeInTheDocument();
     expect(
       screen.getByRole("link", { name: "계정 확인 필요 · 계정 관리 ↗" }),
-    ).toHaveAttribute("href", "/classes/class-2");
+    ).toHaveAttribute(
+      "href",
+      "/classes/manage?classId=class-2&studentId=student-2&from=admin-srs&teachingTab=classes",
+    );
     const totals = screen.getByLabelText("전체 학생 학습 요약");
     expect(
       within(totals).getByText("계획 설정").nextElementSibling,
@@ -307,9 +540,13 @@ describe("CourseDashboard", () => {
     async (status, label) => {
       const user = userEvent.setup();
       roster([
-        student({ summary: { ...learner.summary, status } }),
+        student({
+          plan: status === "setup" ? null : learner.plan,
+          summary: { ...learner.summary, status },
+        }),
         student({
           ...other,
+          plan: status === "setup" ? learner.plan : null,
           summary: {
             ...other.summary,
             status: status === "setup" ? "done" : "setup",
@@ -317,7 +554,9 @@ describe("CourseDashboard", () => {
         }),
       ]);
       render(<CourseDashboard />);
-      await screen.findByRole("button", { name: "김하늘 상세 보기" });
+      const expectedAction =
+        status === "setup" ? "김하늘 진도 설정" : "김하늘 상세 보기";
+      await screen.findByRole("button", { name: expectedAction });
       await user.click(
         within(screen.getByRole("group", { name: "학습 상태 필터" })).getByRole(
           "button",
@@ -325,10 +564,12 @@ describe("CourseDashboard", () => {
         ),
       );
       expect(
-        screen.getByRole("button", { name: "김하늘 상세 보기" }),
+        screen.getByRole("button", { name: expectedAction }),
       ).toBeInTheDocument();
       expect(
-        screen.queryByRole("button", { name: "이바다 진도 설정" }),
+        screen.queryByRole("button", {
+          name: status === "setup" ? "이바다 상세 보기" : "이바다 진도 설정",
+        }),
       ).not.toBeInTheDocument();
     },
   );
@@ -411,12 +652,16 @@ describe("CourseDashboard", () => {
     detailApi.mockResolvedValueOnce({ ok: true, data: detail(paused) });
     await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
     await waitFor(() => expect(detailApi).toHaveBeenCalledTimes(2));
-    expect(saveApi).toHaveBeenCalledWith(learner.id, {
-      startSectionId: first.id,
-      dailyQuestionCount: 15,
-      enabled: false,
-      expectedRevision: 3,
-    });
+    expect(saveApi).toHaveBeenCalledWith(
+      learner.id,
+      {
+        startSectionId: first.id,
+        dailyQuestionCount: 15,
+        enabled: false,
+        expectedRevision: 3,
+      },
+      learner.classId,
+    );
     await waitFor(() =>
       expect(
         panel.getByRole("button", { name: "학습 계획 저장" }),
@@ -440,6 +685,7 @@ describe("CourseDashboard", () => {
       expect(saveApi).toHaveBeenLastCalledWith(
         learner.id,
         expect.objectContaining({ enabled: true, expectedRevision: 4 }),
+        learner.classId,
       ),
     );
   });
@@ -458,7 +704,10 @@ describe("CourseDashboard", () => {
       await panel.findByLabelText("학년");
       expect(
         panel.getByRole("link", { name: /계정 확인하러 가기/ }),
-      ).toHaveAttribute("href", "/classes/class-2");
+      ).toHaveAttribute(
+        "href",
+        "/classes/manage?classId=class-2&studentId=student-2&from=workspace-srs&teachingTab=classes",
+      );
       expect(panel.getByRole("button", { name: "학습 설정" })).toHaveAttribute(
         "aria-pressed",
         "true",
@@ -484,6 +733,7 @@ describe("CourseDashboard", () => {
             startSectionId: first.id,
             expectedRevision: 0,
           }),
+          other.classId,
         ),
       );
     },
@@ -496,6 +746,8 @@ describe("CourseDashboard", () => {
     await user.selectOptions(panel.getByLabelText("학년"), "4");
     await user.selectOptions(panel.getByLabelText("하루 학습량"), "20");
     await user.click(panel.getByRole("button", { name: "개요" }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
     await user.click(
       screen.getByRole("button", { name: `${other.name} 시작 진도 설정` }),
     );
@@ -548,7 +800,7 @@ describe("CourseDashboard", () => {
       second.id,
     );
     await user.click(panel.getByRole("button", { name: "개요" }));
-    await user.click(panel.getByRole("button", { name: "학습 설정" }));
+    await user.click(screen.getByRole("button", { name: "계속 편집" }));
     expect(panel.getByLabelText("하루 학습량")).toHaveValue("20");
     saveApi.mockResolvedValueOnce({
       ok: true,
@@ -556,12 +808,16 @@ describe("CourseDashboard", () => {
     });
     await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
     await waitFor(() =>
-      expect(saveApi).toHaveBeenLastCalledWith(learner.id, {
-        startSectionId: second.id,
-        dailyQuestionCount: 20,
-        enabled: true,
-        expectedRevision: 9,
-      }),
+      expect(saveApi).toHaveBeenLastCalledWith(
+        learner.id,
+        {
+          startSectionId: second.id,
+          dailyQuestionCount: 20,
+          enabled: true,
+          expectedRevision: 9,
+        },
+        learner.classId,
+      ),
     );
   });
 
@@ -628,7 +884,7 @@ describe("CourseDashboard", () => {
     ).not.toBeInTheDocument();
   });
 
-  it("keeps a pending save scoped to its original student while another panel is opened", async () => {
+  it("locks transitions during a pending save and retains its original student target", async () => {
     const user = userEvent.setup();
     const pending =
       deferred<Awaited<ReturnType<typeof saveCourseStudentPlan>>>();
@@ -637,7 +893,14 @@ describe("CourseDashboard", () => {
     const panel = await openStudent(user);
     await user.click(panel.getByRole("button", { name: "학습 설정" }));
     await user.click(panel.getByRole("button", { name: "학습 계획 저장" }));
-    await openStudent(user, other.name);
+    await user.click(screen.getByRole("button", { name: "이바다 진도 설정" }));
+    expect(
+      screen.getByRole("region", { name: "김하늘 · 학습 상세" }),
+    ).toBeInTheDocument();
+    await user.keyboard("{Escape}");
+    expect(
+      screen.getByRole("region", { name: "김하늘 · 학습 상세" }),
+    ).toBeInTheDocument();
     const paused = student({
       revision: 4,
       summary: { ...learner.summary, status: "paused" },
@@ -645,15 +908,23 @@ describe("CourseDashboard", () => {
     await act(async () => {
       pending.resolve({ ok: true, data: paused });
     });
-    expect(
-      screen.getByRole("region", { name: "이바다 · 학습 상세" }),
-    ).toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        panel.getByRole("button", { name: "학습 계획 저장" }),
+      ).toBeEnabled(),
+    );
+    await openStudent(user, other.name);
     expect(
       screen.getByRole("button", { name: "김하늘 상세 보기" }).closest("tr"),
     ).toHaveTextContent("일시정지");
     expect(saveApi).toHaveBeenCalledTimes(1);
-    expect(saveApi).toHaveBeenCalledWith(learner.id, expect.anything());
+    expect(saveApi).toHaveBeenCalledWith(
+      learner.id,
+      expect.anything(),
+      learner.classId,
+    );
     expect(detailApi.mock.calls.map(([id]) => id)).toEqual([
+      learner.id,
       learner.id,
       other.id,
     ]);

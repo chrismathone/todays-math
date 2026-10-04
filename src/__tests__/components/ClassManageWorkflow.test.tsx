@@ -91,6 +91,7 @@ async function switchToB(user: ReturnType<typeof userEvent.setup>) {
 }
 
 beforeEach(() => {
+  window.history.replaceState(null, "", "/");
   vi.resetAllMocks();
   mocked.fetchClasses.mockResolvedValue([MOCK_CLASS_A, MOCK_CLASS_B]);
   mocked.fetchStudents.mockImplementation(async (id) =>
@@ -110,6 +111,50 @@ beforeEach(() => {
 });
 
 describe("class management context and reads", () => {
+  it("restores an authorized class and student directly while retaining the SRS return context", async () => {
+    const selectedStudent = studentsB[0]!;
+    window.history.replaceState(
+      null,
+      "",
+      `/classes/manage?classId=${CLASS_B_ID}&studentId=${selectedStudent.id}&from=workspace-srs&teachingTab=classes#details`,
+    );
+    renderManage();
+    await screen.findByText(selectedStudent.name);
+    expect(mocked.fetchStudents).toHaveBeenCalledWith(CLASS_B_ID);
+    expect(mocked.fetchStudents).not.toHaveBeenCalledWith(CLASS_A_ID);
+    expect(
+      studentSection().getByText(
+        `${MOCK_CLASS_B.name} · ${MOCK_CLASS_B.grade}`,
+      ),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(selectedStudent.name).closest("li"),
+    ).toHaveAttribute("data-selected", "true");
+    expect(
+      screen.getByText(/계정 발급·관리는 지점 관리자에게/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "이전 화면으로 돌아가기" }),
+    ).toHaveAttribute(
+      "href",
+      `/?classId=${CLASS_B_ID}&studentId=${selectedStudent.id}&teachingTab=classes#srs`,
+    );
+  });
+
+  it("shows an unavailable requested class instead of silently selecting another class", async () => {
+    window.history.replaceState(
+      null,
+      "",
+      "/classes/manage?classId=unowned-class&studentId=unowned-student",
+    );
+    renderManage();
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "요청한 반을 찾을 수 없거나 접근 권한이 없습니다",
+    );
+    expect(mocked.fetchStudents).not.toHaveBeenCalled();
+    expect(mocked.fetchProgress).not.toHaveBeenCalled();
+  });
+
   it("identifies the selected class in both sections and keeps data on repeated selection", async () => {
     const user = await readyManage();
     const identity = `${MOCK_CLASS_A.name} · ${MOCK_CLASS_A.grade}`;

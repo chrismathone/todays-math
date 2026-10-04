@@ -220,7 +220,7 @@ export function createListeningStorageApi(
     ownerId: string;
     assetId: string;
     bytes: number;
-    mimeType: "audio/wav" | "audio/mpeg";
+    mimeType: "audio/wav" | "audio/mpeg" | "audio/mp4";
     read: () => AsyncIterable<Uint8Array>;
   }): Promise<ListeningStorageRef> => {
     const key = `${input.ownerId}/${input.assetId}/${randomUUID()}`,
@@ -344,6 +344,83 @@ export function createListeningStorageApi(
       throw error;
     }
   };
-  return { config, check, read, upload, remove };
+  /** Immutable <=1MiB object at a durable preallocated key. Ambiguous POST replies
+   * are reconciled by HEAD and a remote SHA read, never by replacing the object. */
+  const uploadChunk = async (input: {
+    ownerId: string;
+    assetId: string;
+    key: string;
+    bytes: Uint8Array;
+    mimeType: "audio/wav" | "audio/mpeg" | "audio/mp4";
+    signal?: AbortSignal;
+  }): Promise<ListeningStorageRef> => {
+    const scope = {
+      bucket: config.bucket,
+      ownerId: input.ownerId,
+      key: `${input.ownerId}/${input.assetId}/${input.key}`,
+    };
+    const url = object(scope);
+    if (
+      input.bytes.byteLength < 1 ||
+      input.bytes.byteLength > 1024 * 1024 ||
+      !["audio/wav", "audio/mpeg", "audio/mp4"].includes(input.mimeType)
+    )
+      throw failed();
+    const sha256 = createHash("sha256").update(input.bytes).digest("hex");
+    await privateBucket();
+    for (let attempt = 0; attempt < 3; attempt++) {
+      input.signal?.throwIfAborted();
+      try {
+        const response = await request(
+          `${base}/object/${config.bucket}/${scope.key}`,
+          {
+            method: "POST",
+            signal: input.signal,
+            headers: {
+              "Content-Type": input.mimeType,
+              "Cache-Control": "no-store",
+              "x-upsert": "false",
+            },
+            body: new Uint8Array(input.bytes),
+          },
+        );
+        await response.body?.cancel();
+      } catch {
+        input.signal?.throwIfAborted();
+      }
+      const response = await request(url, {
+        method: "HEAD",
+        signal: input.signal,
+      });
+      if (response.status === 404) {
+        await response.body?.cancel();
+        continue;
+      }
+      const etag = response.headers.get("etag");
+      if (
+        !response.ok ||
+        !etag ||
+        Number(response.headers.get("content-length")) !==
+          input.bytes.byteLength
+      )
+        throw failed();
+      const ref: ListeningStorageRef = {
+        ...scope,
+        etag,
+        bytes: input.bytes.byteLength,
+        sha256,
+        start: 0,
+        endExclusive: input.bytes.byteLength,
+      };
+      await check(ref);
+      const hash = createHash("sha256");
+      for await (const bytes of read(ref, 0, ref.bytes, input.signal))
+        hash.update(bytes);
+      if (hash.digest("hex") !== sha256) throw failed();
+      return ref;
+    }
+    throw failed();
+  };
+  return { config, check, read, upload, uploadChunk, remove };
 }
 export type ListeningStorageApi = ReturnType<typeof createListeningStorageApi>;

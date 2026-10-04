@@ -762,6 +762,45 @@ export default function BankView({
   /** 상세 모달에 띄운 문항 (05 §8.6 확정 — 카드를 펼치지 않는다). */
   const [detail, setDetail] = useState<BankProblem | null>(null);
   const [reviewBusy, setReviewBusy] = useState(false);
+  const reviewInFlight = useRef(false);
+  const [reviewReadError, setReviewReadError] = useState<{
+    id: string;
+    message: string;
+  } | null>(null);
+
+  const refreshReviewedRow = useCallback(async (id: string) => {
+    const response = await fetch(
+      `/api/studio/problems/${encodeURIComponent(id)}`,
+      { cache: "no-store" },
+    );
+    if (!response.ok) throw new Error("최신 문항 조회에 실패했습니다.");
+    const json = await response.json();
+    const fresh = json?.data;
+    if (
+      !fresh ||
+      fresh.id !== id ||
+      typeof fresh.eligible !== "boolean" ||
+      !["pending", "approved", "rejected"].includes(fresh.reviewStatus) ||
+      (fresh.ineligibleReason !== null &&
+        typeof fresh.ineligibleReason !== "string")
+    )
+      throw new Error("최신 문항 정보를 확인하지 못했습니다.");
+    const apply = (row: BankProblem) =>
+      row.id === id
+        ? {
+            ...row,
+            reviewStatus: fresh.reviewStatus as BankProblem["reviewStatus"],
+            eligible: fresh.eligible as boolean,
+            ineligibleReason: fresh.ineligibleReason as string | null,
+          }
+        : row;
+    setResponse((current) => ({
+      ...current,
+      data: { ...current.data, problems: current.data.problems.map(apply) },
+    }));
+    setDetail((current) => (current ? apply(current) : current));
+    setReviewReadError((current) => (current?.id === id ? null : current));
+  }, []);
 
   /**
    * 같은 조건으로 **다시 조회한다** — 변형 채택처럼 목록 «밖에서» 행이 늘었을 때 쓴다.
@@ -786,7 +825,10 @@ export default function BankView({
    */
   const handleReviewStatusChange = useCallback(
     async (id: string, next: "approved" | "rejected") => {
+      if (reviewInFlight.current) return;
+      reviewInFlight.current = true;
       setReviewBusy(true);
+      setReviewReadError(null);
       try {
         const { data: updated } = await updateReviewStatus(id, next);
         setResponse((current) => ({
@@ -795,29 +837,51 @@ export default function BankView({
             ...current.data,
             problems: current.data.problems.map((row) =>
               row.id === id
-                ? { ...row, reviewStatus: updated.reviewStatus }
+                ? {
+                    ...row,
+                    reviewStatus: updated.reviewStatus,
+                    eligible: false,
+                    ineligibleReason: "출제 가능 여부를 확인 중입니다.",
+                  }
                 : row,
             ),
           },
         }));
         setDetail((current) =>
           current && current.id === id
-            ? { ...current, reviewStatus: updated.reviewStatus }
+            ? {
+                ...current,
+                reviewStatus: updated.reviewStatus,
+                eligible: false,
+                ineligibleReason: "출제 가능 여부를 확인 중입니다.",
+              }
             : current,
         );
+        try {
+          await refreshReviewedRow(id);
+        } catch {
+          setReviewReadError({
+            id,
+            message:
+              "검수 상태는 저장했습니다. 출제 가능 여부 조회에 실패했습니다.",
+          });
+        }
       } catch (caught) {
-        setResponse((current) => ({
-          ...current,
-          error:
-            caught instanceof Error
-              ? caught.message
-              : "검수 상태를 바꾸지 못했습니다.",
-        }));
+        setReviewReadError({
+          id,
+          message:
+            caught instanceof TypeError || caught instanceof SyntaxError
+              ? "검수 변경 결과를 확인하지 못했습니다. 현재 상태를 다시 조회해 주세요."
+              : caught instanceof Error
+                ? caught.message
+                : "검수 상태를 바꾸지 못했습니다.",
+        });
       } finally {
+        reviewInFlight.current = false;
         setReviewBusy(false);
       }
     },
-    [],
+    [refreshReviewedRow],
   );
 
   useEffect(() => {
@@ -1059,6 +1123,30 @@ export default function BankView({
         titleId={headingId}
         description="출제 범위를 정하고, 필요한 문제를 골라 시험지를 완성하세요."
       />
+      {reviewReadError ? (
+        <div
+          role="alert"
+          className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-control p-4 text-sm"
+        >
+          <span>{reviewReadError.message}</span>
+          <button
+            type="button"
+            className={styles.outlineButton}
+            disabled={reviewBusy}
+            onClick={() => {
+              void refreshReviewedRow(reviewReadError.id).catch(() =>
+                setReviewReadError({
+                  id: reviewReadError.id,
+                  message:
+                    "최신 문항을 불러오지 못했습니다. 연결을 확인하고 다시 조회해 주세요.",
+                }),
+              );
+            }}
+          >
+            문항 상태 다시 조회
+          </button>
+        </div>
+      ) : null}
       <ol className={styles.buildSteps} aria-label="시험지 만드는 순서">
         <li>
           <span>1</span> 범위 설정

@@ -75,6 +75,46 @@ async function setup() {
   };
 }
 describe("Supabase private listening storage", () => {
+  it("reconciles an ambiguous immutable chunk POST and verifies remote SHA without replacing the object", async () => {
+    const fake = fakeListeningStorage();
+    let fail = true;
+    const api = createListeningStorageApi(fake.config, async (url, init) => {
+      const response = await fake.fetchImpl(url, init);
+      if (init?.method === "POST" && String(url).includes("/object/") && fail) {
+        fail = false;
+        throw new Error("Reply lost after Storage committed");
+      }
+      return response;
+    });
+    const input = {
+      ownerId: randomUUID(),
+      assetId: randomUUID(),
+      key: randomUUID(),
+      bytes: Buffer.from("private chunk"),
+      mimeType: "audio/mpeg" as const,
+    };
+    const ref = await api.uploadChunk(input);
+    expect(fake.files.get(ref.key)).toEqual(input.bytes);
+    expect(await api.uploadChunk(input)).toEqual(ref);
+    expect(fake.files.size).toBe(1);
+    await expect(
+      api.uploadChunk({ ...input, bytes: Buffer.from("wrong content") }),
+    ).rejects.toThrow();
+    expect(fake.files.get(ref.key)).toEqual(input.bytes);
+    expect(
+      fake.calls
+        .filter((c) => c.method === "POST")
+        .every((c) => c.length <= 1024 * 1024),
+    ).toBe(true);
+    const count = fake.calls.length;
+    await expect(
+      api.uploadChunk({ ...input, key: "../elsewhere" }),
+    ).rejects.toThrow();
+    await expect(
+      api.uploadChunk({ ...input, bytes: Buffer.alloc(1024 * 1024 + 1) }),
+    ).rejects.toThrow();
+    expect(fake.calls).toHaveLength(count);
+  });
   it("uses opaque secret keys as apikey only and rejects malformed/public keys without fallback", async () => {
     const secret = "sb_secret_test_private",
       ownerId = randomUUID(),
