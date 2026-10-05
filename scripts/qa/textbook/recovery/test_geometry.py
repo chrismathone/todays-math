@@ -364,12 +364,51 @@ class Guards(unittest.TestCase):
         self.check("PDF_FIGURE_OUTSIDE_PAGE")
 
 
+def check_frozen_rows(folder, derived_folder, variant="student"):
+    """Three controls on real authored slots, preserving the frozen PDF/witness."""
+    pdf = folder / f"{variant}.pdf"
+    witness_file = derived_folder / f"{variant}-witness.json"
+    witness = json.loads(witness_file.read_text(encoding="utf-8"))
+    baseline = verify(pdf, witness)
+    assert baseline["status"] == "passed", baseline["issues"]
+    selected_page = next(p for p in witness["pages"]
+                         if any(r.get("activity") == "explainActivity" for r in p["rows"]))
+    selected = next(r for r in selected_page["rows"] if r.get("activity") == "explainActivity")
+    controls = []
+    for name, code in (("missing authored explanation slot", "ROW_KEYS"),
+                       ("duplicate same authored explanation slot", "ROW_DUPLICATE"),
+                       ("wrong authored owner with unchanged row key", "ROW_KEYS")):
+        changed = copy.deepcopy(witness)
+        page = next(p for p in changed["pages"] if p["pdfPageIndex"] == selected_page["pdfPageIndex"])
+        row = next(r for r in page["rows"] if r["rowKey"] == selected["rowKey"])
+        if name.startswith("missing"):
+            page["rows"].remove(row)
+        elif name.startswith("duplicate"):
+            page["rows"].append(copy.deepcopy(row))
+        else:
+            row["blockId"] = "wrong-authored-owner"
+        result = verify(pdf, changed)
+        assert any(i["code"] == code for i in result["issues"]), name
+        controls.append({"control": name, "expectedFailure": code, "rejected": True})
+    return {"key": folder.name, "variant": variant, "pdfSha256": witness["pdfSha256"],
+            "witnessSha256": hashlib.sha256(witness_file.read_bytes()).hexdigest(),
+            "baseline": baseline, "realEvidenceControls": controls}
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--frozen-directory", type=Path)
+    parser.add_argument("--derived-directory", type=Path)
     args = parser.parse_args()
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(Guards))
+    real = []
+    if args.frozen_directory:
+        assert args.derived_directory, "Fresh derived witness directory required"
+        real = [check_frozen_rows(args.frozen_directory / key, args.derived_directory / key)
+                for key in ("초3-1", "중2-1")]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps({"passed": result.wasSuccessful(), "tests": result.testsRun,
-                                      "syntheticOnly": True, "mutations": Guards.evidence}, indent=2), encoding="utf-8")
+                                      "syntheticOnly": not real, "mutations": Guards.evidence,
+                                      "realEvidence": real}, indent=2), encoding="utf-8")
     raise SystemExit(0 if result.wasSuccessful() else 1)
