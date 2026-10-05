@@ -50,6 +50,22 @@ def reference(path):
     return {"path": str(Path(path).resolve()), "sha256": sha(path)}
 
 
+def queue_provenance(queue, ledger_ref):
+    """Queue lane ownership is independent of the actual evidence assembler."""
+    result = {"laneProvider": queue["provider"], "ledger": ledger_ref, "compilerDeclared": False}
+    names = ("compilerProvider", "compilerModel", "upstreamProducer", "upstreamArtifacts")
+    if any(name in queue for name in names):
+        require(all(isinstance(queue.get(name), str) and queue[name].strip() for name in names[:3]), "incomplete_compiler_provenance")
+        require(queue["upstreamProducer"] == queue["provider"], "compiler_upstream_lane_mismatch")
+        refs = queue.get("upstreamArtifacts")
+        require(isinstance(refs, list) and refs, "missing_compiler_upstream_artifacts")
+        for ref in refs:
+            require(isinstance(ref, dict) and isinstance(ref.get("path"), str)
+                    and sha(ref["path"]) == ref.get("sha256"), "compiler_upstream_artifact_corruption")
+        result.update({name: queue[name] for name in names}, compilerDeclared=True)
+    return result
+
+
 def checked_ref(ref, expected=None):
     require(isinstance(ref, dict) and isinstance(ref.get("path"), str), "missing_immutable_reference")
     if expected:
@@ -517,7 +533,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
     require(len(source_ids) == len(inventory["records"]), "duplicate_inventory_source")
     require(len(clock_index) == len(clocks["records"]) and set(clock_index) == source_ids, "incomplete_or_duplicate_source_clocks")
     require(len(frozen) == len(frozen_rows) and set(frozen) == source_ids, "incomplete_or_duplicate_frozen_sources")
-    queues, rows, errors = {}, {}, []
+    queues, rows, errors, provenance = {}, {}, [], {}
     references = {"inventory": inventory_ref, "liveSnapshot": reference(inventory["liveSnapshotPath"]), "clock": clock_ref, "frozen": frozen_ref}
     expected = {(s["sourceRecordId"], q["id"]): (s, q) for s in inventory["records"] for q in s["questions"]}
     require(len(expected) == sum(len(s["questions"]) for s in inventory["records"]), "duplicate_inventory_question")
@@ -528,6 +544,9 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
         require(provider in ("claude", "grok") and provider not in queues, "duplicate_or_unknown_provider_queue")
         queues[provider] = queue
         references[provider] = queue_ref
+        provenance[provider] = queue_provenance(queue, queue_ref)
+        for i, ref in enumerate(provenance[provider].get("upstreamArtifacts", [])):
+            references[f"{provider}:upstream:{i}"] = ref
         if not integer(queue.get("schemaVersion")) or queue.get("schemaVersion") != 1 or not integer(queue.get("evidenceContractVersion")) or queue.get("evidenceContractVersion") != 1 or queue.get("inventorySha256") != inv_hash:
             errors.append(f"queue_contract_or_inventory_mismatch:{provider}")
         require(isinstance(queue.get("records"), list), "missing_provider_rows")
@@ -670,7 +689,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
         require(sha(ref["path"]) == ref["sha256"], "replay_input_or_implementation_changed_during_run")
     certificate = {"schemaVersion": 1, "evidenceContractVersion": 1, "completeReplay": complete,
                    "productionApplicationAuthorized": False, "writesDatabase": False, "writesStorage": False, "writesMedia": False, "humanReviewed": False,
-                   "inputs": references, "implementation": implementation,
+                   "inputs": references, "implementation": implementation, "producerProvenance": provenance,
                    "counts": {"sources": len(inventory["records"]), "questions": len(results), "providers": dict(collections.Counter(r["provider"] for r in results)), "outcomes": dict(collections.Counter(r["status"] for r in results)),
                               "evidenceGrades": dict(collections.Counter(r.get("evidenceGrade") for r in results if r["status"] == "admitted"))},
                    "preservedExisting": preservation, "sourceChecks": source_checks, "errors": errors, "records": results}

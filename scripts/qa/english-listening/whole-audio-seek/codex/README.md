@@ -53,3 +53,16 @@ preserved starts.
 The TypeSafe design and evidence boundaries are documented in [CONTRACT.md](CONTRACT.md).
 No new recognition runs are launched by this verifier. Producers use the shared
 serialized GPU queue; replay itself is CPU-only.
+
+Run the independent complete reconstructed mapping audit with `mapping_audit.py
+--inventory INVENTORY --clock CLOCK --frozen FROZEN --probes-root GROK_PROBES
+--proposal IMMUTABLE_LEDGER --output NEW_REPORT.json`. Its complete rows preserve
+frozen anchors, original scope/cue IDs, peer IDs, raw uncertainty holds, producer
+cross-checks and available bounded recognition references. Native support in
+this report is structural evidence requiring the full actual replay. Replacement
+assembler provenance is exposed separately from frozen queue lane ownership.
+
+`audit-english-routing.py` routes complete official candidates through the
+existing alignment requirements and literal source-section/opening checks. It
+stops before native dialogue decoding and lists missing openings for bounded
+producer enrichment; its diagnostic results never admit starts.

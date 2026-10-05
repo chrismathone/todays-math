@@ -1,9 +1,28 @@
 import copy
+import re
 import unittest
 from types import SimpleNamespace
 
 import claude_adapter as a
 import verifier as v
+
+
+class SectionHeadingBoundaryTests(unittest.TestCase):
+    def test_only_next_heading_whitespace_can_be_in_prior_section(self):
+        text = "1번 W: Hello there. \n2번 W: Next dialogue."
+        markers = list(re.finditer(r"(?:^|\s)(\d{1,2})번(?=\s)", text))
+        start, next_heading = text.index(" W:"), text.index("2번")
+        a.section_stays_before_next_heading(text, start, next_heading, markers)
+        with self.assertRaisesRegex(v.InvalidEvidence, "overlaps_next"):
+            a.section_stays_before_next_heading(text, start, next_heading + 1, markers)
+
+    def test_literal_joint_bracket_is_part_of_next_heading(self):
+        text = "18번 W: Prior. 【19-20】 공동 지시문"
+        markers = list(re.finditer(r"【(\d+)-(\d+)】", text))
+        at = text.index("【")
+        a.section_stays_before_next_heading(text, 4, at, markers)
+        with self.assertRaisesRegex(v.InvalidEvidence, "overlaps_next"):
+            a.section_stays_before_next_heading(text, 4, at + 1, markers)
 
 
 class DialogueOffsetTests(unittest.TestCase):
@@ -151,6 +170,13 @@ class OriginalMarkerTests(unittest.TestCase):
     def test_literal_dot_style_requires_same_complete_ordered_uniqueness(self):
         source = {"questions": [{"sourceNumber": 1}, {"sourceNumber": 2}]}
         self.assertEqual([int(m[1]) for m in a.original_script_markers(source, "1. 지시 M: Hello. 2. 지시 W: Hi.")], [1, 2])
+
+    def test_source_pdf_space_before_dot_keeps_literal_ordinal(self):
+        source = {"questions": [{"sourceNumber": 9}, {"sourceNumber": 10}, {"sourceNumber": 11}]}
+        text = "9. 지시 W: First. 10 . 지시 M: Second. 11. 지시 W: Third."
+        self.assertEqual([int(m[1]) for m in a.original_script_markers(source, text)], [9, 10, 11])
+        with self.assertRaisesRegex(v.InvalidEvidence, "numbering_not_unique"):
+            a.original_script_markers(source, text + " 10 . 다른 지시")
 
     def test_true_original_joint_header_completes_style_without_individual_passage_guessing(self):
         instruction = "다음을 듣고, 물음에 답하시오."

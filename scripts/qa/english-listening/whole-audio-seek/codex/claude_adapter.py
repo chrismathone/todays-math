@@ -93,7 +93,7 @@ def original_script_markers(source, text):
     """Select a complete ordered literal source style, excluding incidental dates."""
     expected = sorted(q["sourceNumber"] for q in source["questions"])
     v.require(expected and len(expected) == len(set(expected)), "official_transcript_numbering_not_unique")
-    for pattern in (r"(?:^|\s)(\d{1,2})번(?=\s)", r"(?:^|\s)(\d{1,2})\.(?=\s)"):
+    for pattern in (r"(?:^|\s)(\d{1,2})번(?=\s)", r"(?:^|\s)(\d{1,2})[ \t]*\.(?=\s)"):
         markers = list(re.finditer(pattern, text))
         groups = {n: [m for m in markers if int(m[1]) == n] for n in expected}
         if any(len(group) > 1 for group in groups.values()):
@@ -353,6 +353,14 @@ def exact_opening_words(proof, text, turns):
     return combined
 
 
+def section_stays_before_next_heading(text, start, end, markers):
+    next_markers = [m for m in markers if m.start() >= start]
+    if next_markers:
+        marker = next_markers[0]
+        heading_start = marker.start() + len(marker[0]) - len(marker[0].lstrip())
+        v.require(end <= heading_start, "official_section_overlaps_next_original_question")
+
+
 def first_dialogue_alignment(row, source, probe, replay, *, require_instruction):
     """Explicit evidence for a bare/uncertain ordinal; never a nearest-number repair."""
     proof = row.get("scriptEvidence")
@@ -368,8 +376,7 @@ def first_dialogue_alignment(row, source, probe, replay, *, require_instruction)
     v.require(len(current) == 1, "official_section_not_current_original_number")
     if current[0].re.groups == 2:
         v.require(row.get("kind") == "shared_passage" and row.get("scopeQuestionNumbers") == [int(current[0][1]), int(current[0][2])], "official_shared_marker_scope_mismatch")
-    next_markers = [m for m in markers if m.start() >= start]
-    v.require(not next_markers or end <= next_markers[0].start(), "official_section_overlaps_next_original_question")
+    section_stays_before_next_heading(text, start, end, markers)
     body = text[start:end]
     turns = original_turns(body, start)
     v.require(turns, "official_first_dialogue_missing")

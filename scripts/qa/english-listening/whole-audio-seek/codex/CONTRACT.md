@@ -291,3 +291,30 @@ MP3 decode matches the frozen playback duration. These measured artifacts are
 combined with the other 192 complete original-MPEG-frame proofs. Zero offset was
 measured rather than assumed from duration. New seeking evidence for this source
 must still bind the correct original/playback clock and actual spoken cue.
+
+## Independent reconstructed mapping audit and assembler provenance
+
+`mapping_audit.py` checks every current reconstructed question against the frozen
+live revision/content, source/hash, actual clock and generation alignment. Exact
+immutable ASR array positions determine the one numbered passage containing all
+frozen anchor IDs. Uncertain and unresolved numbered headings remain barriers;
+they are never skipped to attach anchors to a prior reliable number. Raw times
+stay estimates and cannot become seek timestamps. Unknown, duplicate, uncertain,
+cross-passage anchors and contradictory array/time order remain held.
+
+Several current generated questions may share original scope `[N]`. Each needs
+its own frozen current-question grounding, with identical actual native proof
+identity and start for all peers. Generated row multiplicity never establishes
+original scope `[N,N+1]`; a true joint spoken instruction or an explicitly
+separate member cue is required by the existing scope rules. Official duplicate
+single-number rows remain rejected. The audit includes explicit producer mapping
+cross-checks and structurally supported source-bound probe references; it is
+diagnostic only and does not replace actual source decode/onset/hash replay.
+
+The queue `provider` remains the frozen lane (`claude` or `grok`). A replacement
+assembler declares `compilerProvider`, `compilerModel`, `upstreamProducer` and
+nonempty `upstreamArtifacts` containing immutable path/SHA references. All four
+fields are required together; upstream producer must match the lane. Certificates
+expose `producerProvenance` separately from lane counts, and upstream artifact
+hashes are checked before and after replay. An undeclared compiler is recorded
+as undeclared, without inventing an actual provider/model.
