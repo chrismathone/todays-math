@@ -482,8 +482,16 @@ export function paginateTextbookSections(
       // Dialogue turns and recall rows use the reference's compact vertical rhythm.
       // Exercise and prose rows keep their measured four-millimetre spacing.
       const sourceKind = row[0].block.semantic?.source?.kind;
-      const sourceGap =
-        sourceKind && row[0].block.kind !== "heading"
+      const followingSourceBlock =
+        section.blocks[section.blocks.indexOf(row[row.length - 1].block) + 1];
+      const afterScriptCheckGrid =
+        sourceKind === "scriptcheck" &&
+        row.every(({ block }) => block.kind === "problem") &&
+        followingSourceBlock?.kind === "text" &&
+        followingSourceBlock.semantic?.source?.kind === "scriptcheck";
+      const sourceGap = afterScriptCheckGrid
+        ? 2
+        : sourceKind && row[0].block.kind !== "heading"
           ? row.every(({ block }) => block.kind === "problem")
             ? (
                 { scriptcheck: 1, basic: 2, exercise: 5 } as Record<
