@@ -10,6 +10,10 @@
 #         quotes+controls | quotes+tile | truncation (adversarial, own folder,
 #         own numbering).
 # A stage that plans nothing is skipped and does not use a round number.
+# A round number that already has a request, raw containers or a temporary
+# folder is never used again: the stage takes the next free one (lib/rounds.sh).
+# Every stage leaves one line in logs/stages.jsonl; a recognizer that fails
+# stops the driver with its exit status, after that line is written.
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -23,19 +27,39 @@ scope="$1"
 round="$2"
 shift 2
 mkdir -p "$OUT/logs"
+STAGES="$OUT/logs/stages.jsonl"
 # shellcheck source=lib/cleanup.sh
 . "$HERE/lib/cleanup.sh"
+# shellcheck source=lib/rounds.sh
+. "$HERE/lib/rounds.sh"
+
+# The tests stand in for the planner and the recognizer through the two
+# NATIVE_RECOVERY_TEST_* variables; nothing else sets them.
+plan() { # <out root> <stage name> <round id> [planner flags]
+  if [ -n "${NATIVE_RECOVERY_TEST_PLANNER:-}" ]; then
+    "$NATIVE_RECOVERY_TEST_PLANNER" "$@"
+  else
+    (cd "$HERE" && node plan.mjs --stage "$2" --round "$3" --scope "$scope" "${@:4}")
+  fi
+}
 
 recognize() { # <out root> <round id>
-  PYTHONIOENCODING=utf-8 "$PYTHON" -u "$HERE/../claude/run_probes.py" \
-    --requests "$1/probe-requests/round-$2.json" --out "$1" \
-    --lock "$SEEK/gpu-probe.lock" \
-    --model-cache "$MAIN/output/listening-assessments/reconstruction/model-cache" \
-    --owner "$OWNER" --runtime-root "$SEEK/decoder-runtime" \
-    >>"$OUT/logs/probes-$(basename "$1")-round-$2.log" 2>&1
+  local status=0 log
+  log="$OUT/logs/probes-$(basename "$1")-round-$2.log"
+  if [ -n "${NATIVE_RECOVERY_TEST_RECOGNIZER:-}" ]; then
+    "$NATIVE_RECOVERY_TEST_RECOGNIZER" "$1" "$2" >>"$log" 2>&1 || status=$?
+  else
+    PYTHONIOENCODING=utf-8 "$PYTHON" -u "$HERE/../claude/run_probes.py" \
+      --requests "$1/probe-requests/round-$2.json" --out "$1" \
+      --lock "$SEEK/gpu-probe.lock" \
+      --model-cache "$MAIN/output/listening-assessments/reconstruction/model-cache" \
+      --owner "$OWNER" --runtime-root "$SEEK/decoder-runtime" \
+      >>"$log" 2>&1 || status=$?
+  fi
   # The runner deletes each source's temporary clips; remove this round's own
   # folder if that left it empty. Never sweep tmp: another round may be extracting.
   cleanup_round "$1" "$2"
+  return "$status"
 }
 
 for stage in "$@"; do
@@ -47,23 +71,26 @@ for stage in "$@"; do
   esac
   if [ "$name" = "truncation" ]; then
     root="$OUT/adversarial"
-    id="$(printf '%03d' "$(( $(ls "$root/probe-requests" 2>/dev/null | wc -l) + 1 ))")"
+    id="$(next_round "$root" "$(($(ls "$root/probe-requests" 2>/dev/null | wc -l) + 1))")"
   else
     root="$OUT"
-    # A round id that already has a request is never reused: an earlier
-    # request, finished or interrupted, stays as it was written, and this stage
-    # is planned afresh under the next free id from everything heard so far.
-    while [ -e "$root/probe-requests/round-$(printf '%03d' "$round").json" ]; do
-      round=$((round + 1))
-    done
-    id="$(printf '%03d' "$round")"
+    id="$(next_round "$root" "$round")"
+    round=$((10#$id))
   fi
-  planned="$(cd "$HERE" && node plan.mjs --stage "$name" --round "$id" --scope "$scope" "${flags[@]}")"
+  planned="$(plan "$root" "$name" "$id" "${flags[@]}")"
   echo "$planned" | tee -a "$OUT/logs/rounds.log"
-  if echo "$planned" | grep -q '"probes":0'; then
+  probes="$(planned_probes "$planned")"
+  if [ "$probes" -eq 0 ]; then
+    record_stage "$STAGES" run-rounds "$scope" "$stage" - "$root" 0 -
     continue
   fi
-  recognize "$root" "$id"
+  status=0
+  recognize "$root" "$id" || status=$?
+  record_stage "$STAGES" run-rounds "$scope" "$stage" "$id" "$root" "$probes" "$status"
+  if [ "$status" -ne 0 ]; then
+    echo "stage-failed scope=$scope stage=$stage round=$id exit=$status" | tee -a "$OUT/logs/rounds.log"
+    exit "$status"
+  fi
   tail -n 1 "$OUT/logs/probes-$(basename "$root")-round-$id.log" | tee -a "$OUT/logs/rounds.log"
   [ "$name" = "truncation" ] || round=$((round + 1))
 done

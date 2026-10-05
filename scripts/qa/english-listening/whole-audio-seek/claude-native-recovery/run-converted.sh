@@ -5,6 +5,9 @@
 #
 #   ./run-converted.sh <first round number> <stage> [<stage> ...]
 #   ./run-converted.sh 40 headings context variants gaps variants terminal quotes+controls
+#
+# Round numbers, the stage record and a failing recognizer are handled as in
+# run-rounds.sh (lib/rounds.sh).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -17,8 +20,38 @@ PYTHON="$SEEK/claude/asr-venv/Scripts/python.exe"
 round="$1"
 shift
 mkdir -p "$OUT/logs"
+STAGES="$OUT/logs/stages.jsonl"
 # shellcheck source=lib/cleanup.sh
 . "$HERE/lib/cleanup.sh"
+# shellcheck source=lib/rounds.sh
+. "$HERE/lib/rounds.sh"
+
+# The tests stand in for the planner and the recognizer through the two
+# NATIVE_RECOVERY_TEST_* variables; nothing else sets them.
+plan() { # <out root> <stage name> <round id> [planner flags]
+  if [ -n "${NATIVE_RECOVERY_TEST_PLANNER:-}" ]; then
+    "$NATIVE_RECOVERY_TEST_PLANNER" "$@"
+  else
+    (cd "$HERE" && node plan.mjs --stage "$2" --round "$3" --scope reconstructed "${@:4}")
+  fi
+}
+
+recognize() { # <out root> <round id>
+  local status=0 log
+  log="$OUT/logs/probes-claude-round-$2.log"
+  if [ -n "${NATIVE_RECOVERY_TEST_RECOGNIZER:-}" ]; then
+    "$NATIVE_RECOVERY_TEST_RECOGNIZER" "$1" "$2" >>"$log" 2>&1 || status=$?
+  else
+    PYTHONIOENCODING=utf-8 "$PYTHON" -u "$HERE/run_converted_probes.py" \
+      --requests "$1/probe-requests/round-$2.json" --out "$1" \
+      --lock "$SEEK/gpu-probe.lock" \
+      --model-cache "$MAIN/output/listening-assessments/reconstruction/model-cache" \
+      --owner "$OWNER" --main "$MAIN" \
+      >>"$log" 2>&1 || status=$?
+  fi
+  cleanup_round "$1" "$2"
+  return "$status"
+}
 
 for stage in "$@"; do
   flags=(--converted)
@@ -27,23 +60,22 @@ for stage in "$@"; do
     *+controls) flags+=(--controls) ;;
     *+tile) flags+=(--tile) ;;
   esac
-  # A round id that already has a request is never reused.
-  while [ -e "$OUT/probe-requests/round-$(printf '%03d' "$round").json" ]; do
-    round=$((round + 1))
-  done
-  id="$(printf '%03d' "$round")"
-  planned="$(cd "$HERE" && node plan.mjs --stage "$name" --round "$id" --scope reconstructed "${flags[@]}")"
+  id="$(next_round "$OUT" "$round")"
+  round=$((10#$id))
+  planned="$(plan "$OUT" "$name" "$id" "${flags[@]}")"
   echo "$planned" | tee -a "$OUT/logs/rounds.log"
-  if echo "$planned" | grep -q '"probes":0'; then
+  probes="$(planned_probes "$planned")"
+  if [ "$probes" -eq 0 ]; then
+    record_stage "$STAGES" run-converted reconstructed "$stage" - "$OUT" 0 -
     continue
   fi
-  PYTHONIOENCODING=utf-8 "$PYTHON" -u "$HERE/run_converted_probes.py" \
-    --requests "$OUT/probe-requests/round-$id.json" --out "$OUT" \
-    --lock "$SEEK/gpu-probe.lock" \
-    --model-cache "$MAIN/output/listening-assessments/reconstruction/model-cache" \
-    --owner "$OWNER" --main "$MAIN" \
-    >>"$OUT/logs/probes-claude-round-$id.log" 2>&1
-  cleanup_round "$OUT" "$id"
+  status=0
+  recognize "$OUT" "$id" || status=$?
+  record_stage "$STAGES" run-converted reconstructed "$stage" "$id" "$OUT" "$probes" "$status"
+  if [ "$status" -ne 0 ]; then
+    echo "stage-failed driver=run-converted stage=$stage round=$id exit=$status" | tee -a "$OUT/logs/rounds.log"
+    exit "$status"
+  fi
   tail -n 1 "$OUT/logs/probes-claude-round-$id.log" | tee -a "$OUT/logs/rounds.log"
   round=$((round + 1))
 done
