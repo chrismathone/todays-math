@@ -86,6 +86,8 @@ async function main() {
                   ? [
                       ".content",
                       ".content > *",
+                      ".repair-example",
+                      ".repair-example *",
                       ".page-head",
                       ".progress",
                       ".q",
@@ -138,6 +140,8 @@ async function main() {
                       ".tb-reference-content",
                       ".tb-reference-content > [data-block-id]",
                       ".tb-source-fragments > *",
+                      ".repair-example",
+                      ".repair-example *",
                       ".tb-stage-head",
                       ".tb-progress",
                       ".tb-source-problem",

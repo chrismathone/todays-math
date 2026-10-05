@@ -163,6 +163,26 @@ async function main() {
       "Native mindmap card paint keeps the original final CSS cascade after comments",
     count: cardShapes.length,
   });
+  const textTags = Array.from(mindmapSvg.matchAll(/<text\b[^>]*>/g));
+  const nativeSpacings = [
+    ["1px", 4],
+    ["-.5px", 4],
+    [".3px", 1],
+    ["1.3px", 1],
+  ] as const;
+  for (const [spacing, count] of nativeSpacings) {
+    assert.equal(
+      textTags.filter((tag) => tag[0].includes(`letter-spacing="${spacing}"`))
+        .length,
+      count,
+      `Original SVG text letter spacing ${spacing} must retain its exact population`,
+    );
+  }
+  tests.push({
+    check:
+      "Native SVG text spacing preserves all ten original code/title/root labels",
+    count: 10,
+  });
   let footersChecked = 0;
   const findNativeFooter = (
     tree: import("./convert-reference").Tree,
