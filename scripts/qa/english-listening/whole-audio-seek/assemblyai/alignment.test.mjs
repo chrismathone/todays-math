@@ -26,35 +26,62 @@ const AUDIO = "a".repeat(64);
 const PLAYBACK = "b".repeat(64);
 const DOCUMENT = "d".repeat(64);
 const RAW = "c".repeat(64);
+const RAW_ENGLISH = "f".repeat(64);
 const UPLOAD_URL = "https://cdn.example.invalid/upload/private-token-123";
 
-/** Speaks the lines in order: 400 ms a word, 100 ms between words, a pause before each line. */
+const say = (text, at, options = {}) =>
+  text.split(/\s+/).map((piece, k) => ({
+    text: piece,
+    start: at + 500 * k,
+    end: at + 500 * k + 400,
+    confidence: options.low?.[piece] ?? options.confidence ?? 0.95,
+    speaker: null,
+  }));
+
+/**
+ * Speaks the lines in order on one clock: 400 ms a word, 100 ms between words,
+ * a pause before each line. Returns what the transcript that hears Korean
+ * wrote (`words`) and what the English-only one wrote (`english`): no Korean
+ * line, unless the line gives it words to write. Line options: pauseMs, low,
+ * confidence; onlyInEnglish (the other transcript dropped it); english (other
+ * words for the same speech); englishFirstWordMs (its first word left early or
+ * late by the provider).
+ */
 function speak(lines) {
   const words = [];
+  const english = [];
   let at = 10_000;
   for (const line of lines) {
     const [text, options = {}] = Array.isArray(line) ? line : [line];
     at += options.pauseMs ?? 1500;
-    for (const piece of text.split(/\s+/)) {
-      words.push({
-        text: piece,
-        start: at,
-        end: at + 400,
-        confidence: options.low?.[piece] ?? options.confidence ?? 0.95,
-        speaker: null,
-      });
-      at += 500;
+    const spoken = say(text, at, options);
+    if (!options.onlyInEnglish) words.push(...spoken);
+    if (options.english !== undefined || !/[가-힣]/.test(text)) {
+      const heard = say(options.english ?? text, at, { confidence: 0.99 });
+      if (options.englishFirstWordMs) {
+        heard[0].start += options.englishFirstWordMs;
+        heard[0].end += options.englishFirstWordMs;
+      }
+      english.push(...heard);
     }
+    at += 500 * spoken.length;
   }
-  return words;
+  english.sort((a, b) => a.start - b.start);
+  return { words, english };
 }
 
 /**
  * One whole source. `questions`: { id, shown, quotes?, existingStartMs?,
  * existingScope? } — `shown` is the current displayed number.
  */
-function source({ lines, questions, reconstructed = true, scriptText = null }) {
-  const words = speak(lines);
+function source({
+  lines,
+  questions,
+  reconstructed = true,
+  scriptText = null,
+  dual = false,
+}) {
+  const { words, english } = speak(lines);
   const durationMs = Math.ceil((words.at(-1).end + 5000) / 1000) * 1000;
   const record = {
     sourceRecordId: "fixture-source",
@@ -160,6 +187,48 @@ function source({ lines, questions, reconstructed = true, scriptText = null }) {
         )
       : null,
     scriptText,
+    // The English-only transcript of the same bytes, as the provider shapes it.
+    ...(dual
+      ? {
+          english: {
+            envelope: {
+              schemaVersion: 1,
+              provider: "assemblyai",
+              sourceRecordId: record.sourceRecordId,
+              sourceAudioSha256: AUDIO,
+              playbackSha256: PLAYBACK,
+              durationMs,
+              request: {
+                speech_models: ["universal-3-5-pro"],
+                language_code: "en",
+                punctuate: true,
+                format_text: false,
+              },
+              requestedModel: "universal-3-5-pro",
+              actualModel: "universal-3-5-pro",
+              transcriptId: "transcript-english",
+              raw: { path: "english.raw.json", sha256: RAW_ENGLISH },
+              wordCount: english.length,
+              providerDurationSeconds: durationMs / 1000,
+              writesDatabase: false,
+              writesStorage: false,
+              originalAudioModified: false,
+              humanReviewed: false,
+              alignmentVerified: false,
+            },
+            raw: {
+              id: "transcript-english",
+              status: "completed",
+              words: english,
+              audio_duration: durationMs / 1000,
+              language_code: "en_us",
+              speech_model_used: "universal-3-5-pro",
+              audio_url: UPLOAD_URL,
+            },
+            rawSha256: RAW_ENGLISH,
+          },
+        }
+      : {}),
   };
 }
 
@@ -298,9 +367,10 @@ test("a shown number that was announced perfectly proves nothing without generat
     assert.equal(question.candidate, undefined);
     assert.equal(question.evidence?.passage ?? null, null);
   }
+  // One word in common with the transcript is not even worth a hint.
   assert.equal(
-    row(report, "q-e").evidence.quotes[0].longestExactRunNotEvidence.tokens,
-    1,
+    row(report, "q-e").evidence.quotes[0].longestExactRunNotEvidence,
+    null,
   );
 });
 
@@ -810,6 +880,19 @@ test("a proposal may not fall on the wrong side of an existing start", () => {
   assert.deepEqual(row(report, "q-d").reasons, [
     "conflicts_with_existing_start_order",
   ]);
+
+  // And the other way: a start of a higher number that lies before them all.
+  const early = run({
+    questions: [
+      ...QUESTIONS,
+      { id: "q-y", shown: 9, existingStartMs: 1000, existingScope: [9] },
+    ],
+  });
+  assert.equal(early.report.existingStartChecks[0].status, "not_comparable");
+  for (const id of ["q-a", "q-b", "q-c", "q-d"])
+    assert.deepEqual(row(early.report, id).reasons, [
+      "conflicts_with_existing_start_order",
+    ]);
 });
 
 // ------------------------------------------------------- existing starts ----
@@ -1069,10 +1152,13 @@ const OD45 =
   "Good morning, class. Today we're going to look at the history of ocean exploration.";
 const O4 = "4번. 여자가 하는 말의 주제로 가장 적절한 것을 고르시오.";
 const O5 = "5번. 항해를 했던 사람들로 언급되지 않은 것을 고르시요.";
+/** What the English-only transcript wrote where the other wrote Korean for English speech. */
+const OD1_ENGLISH =
+  "Ms. Smith, how is your stay? The hotel has a safe. Would you like to use it?";
 const OFFICIAL_LINES = [
   "이제 시작하겠습니다",
   O1,
-  OD1,
+  [OD1, { english: OD1_ENGLISH }],
   O2,
   OD2,
   O3,
@@ -1256,6 +1342,19 @@ test("a script whose numbering cannot be followed offers no section", () => {
     assert.deepEqual(question.reasons, [
       "official_script_numbering_not_unique",
     ]);
+  // Every number printed, one of them twice; and every number once, out of order.
+  for (const scriptText of [
+    SCRIPT.replace("Dessert has become", "2번 Dessert has become"),
+    SCRIPT.replace("1번 대화를", "9번 대화를")
+      .replace("2번 대화를", "1번 대화를")
+      .replace("9번 대화를", "2번 대화를"),
+  ]) {
+    assert.notEqual(scriptText, SCRIPT);
+    assert.equal(
+      officialSections(scriptText, [1, 2, 3, 4, 5]).reason,
+      "official_script_numbering_not_unique",
+    );
+  }
   const none = official({ scriptText: "" });
   assert.deepEqual(row(none.report, "o-1").reasons, [
     "official_script_has_no_text",
@@ -1300,13 +1399,302 @@ test("official existing starts check the clock by their printed numbers and shar
   assert.equal(report.counts.existingStartsPreserved, 3);
 });
 
+// -------------------------------------------------------- two transcripts ----
+
+/** The numbers from the transcript that hears Korean, the dialogue from the English-only one. */
+const dual = (options = {}, change) => run({ dual: true, ...options }, change);
+
+test("with an English-only transcript, numbers come from one and dialogue from the other", () => {
+  const { input, report } = dual();
+  assert.equal(report.binding.status, "passed");
+  assert.equal(report.transcripts.quotesPlacedBy, "provider_time");
+  assert.equal(report.transcripts.headings.model, "universal-2");
+  assert.deepEqual(report.transcripts.quotes.languages, ["en"]);
+  assert.equal(report.counts.candidates, 4);
+  const b = row(report, "q-b");
+  assert.deepEqual(b.candidate.originalScopeNumbers, [3]);
+  const [occurrence] = b.evidence.quotes[0].occurrences;
+  // The quote's word indexes are the English transcript's own.
+  const english = input.english.raw.words;
+  assert.equal(english[occurrence.wordIndexes[0]].text, "We");
+  assert.equal(english[occurrence.wordIndexes[1]].text, "hour.");
+  assert.equal(occurrence.transcriptQuote, BUS);
+  assert.equal(occurrence.placement, "inside");
+  // The announcement's are the other's.
+  const heading = wordIndex(input, "3번");
+  assert.deepEqual(b.evidence.passage.announcement.wordIndexes, [
+    heading,
+    heading,
+  ]);
+  // A passage holds what is spoken after its own instruction and before the
+  // next number's instruction begins.
+  assert.deepEqual(b.evidence.passage.contentMs, {
+    fromMs: input.raw.words[wordIndex(input, "고르시오.", 2)].end,
+    toMs: input.raw.words[wordIndex(input, "4번") + 1].start,
+  });
+  assert.ok(b.evidence.passage.contentMs.fromMs <= occurrence.startMs);
+  assert.ok(occurrence.endMs <= b.evidence.passage.contentMs.toMs);
+  assert.equal(JSON.stringify(report).includes(UPLOAD_URL), false);
+});
+
+test("dialogue the Korean-hearing transcript dropped is heard in the English one, inside the same bounds", () => {
+  // As the provider really wrote: "3번 … 고르시오. 4번 …" with nothing between.
+  const lines = replace(LINES, D3, [D3, { onlyInEnglish: true }]);
+  const single = run({ lines });
+  assert.deepEqual(row(single.report, "q-b").reasons, [
+    "generation_quote_missing_in_transcript",
+  ]);
+  const { report } = dual({ lines });
+  const b = row(report, "q-b");
+  assert.equal(b.outcome, "candidate");
+  assert.deepEqual(b.candidate.originalScopeNumbers, [3]);
+  assert.deepEqual(
+    b.evidence.passage.contentWordIndexes[0],
+    b.evidence.passage.contentWordIndexes[1],
+  );
+  assert.equal(report.counts.candidates, 4);
+});
+
+test("a quote the English transcript runs across a Korean heading it did not write is refused", () => {
+  // Contiguous in the English transcript: it wrote no "2번 …" between the two.
+  const crossing = "I'd like a square one. Hello, this is Mega Home Shopping.";
+  const { input, report } = dual({
+    questions: [
+      { id: "q-a", shown: 1, quotes: [crossing] },
+      ...QUESTIONS.slice(1),
+    ],
+  });
+  const heard = matchTokens(
+    input.english.raw.words.map((w) => w.text).join(" "),
+  ).join(" ");
+  assert.ok(heard.includes(matchTokens(crossing).join(" ")));
+  const a = row(report, "q-a");
+  assert.deepEqual(a.reasons, ["generation_quote_crosses_announcement"]);
+  assert.equal(
+    a.evidence.quotes[0].occurrences[0].placement,
+    "crosses_announcement",
+  );
+  assert.equal(a.evidence.passage, null);
+});
+
+test("an English rendering of a Korean heading is never a number", () => {
+  // The transcript that hears Korean lost "3번 …"; the English one wrote this for it.
+  const lines = replace(LINES, H3, [
+    H3,
+    {
+      onlyInEnglish: true,
+      english: "Number three. 3번 Listen and choose what this is about.",
+    },
+  ]);
+  const { input, report } = dual({ lines });
+  assert.ok(input.english.raw.words.some((word) => word.text === "3번"));
+  assert.deepEqual(
+    report.passages.map((p) => p.spokenNumbers.join()),
+    ["1", "2", "4"],
+  );
+  for (const question of report.questions)
+    assert.notDeepEqual(question.candidate?.originalScopeNumbers, [3]);
+  // What followed the lost heading lies under "2번", whose end is not established.
+  const b = row(report, "q-b");
+  assert.equal(b.outcome, "held");
+  assert.deepEqual(b.evidence.passage.spokenNumbers, [2]);
+  assert.ok(b.reasons.includes("next_announcement_not_contiguous"));
+});
+
+test("words only the Korean-hearing transcript wrote are not the English evidence", () => {
+  // One wrote digits, the English one spelled the numbers out.
+  const lines = replace(LINES, D3, [
+    D3.replace("nine to seven", "9 to 7"),
+    { english: D3 },
+  ]);
+  const questions = [
+    QUESTIONS[0],
+    { id: "q-b", shown: 2, quotes: ["The center is open from 9 to 7."] },
+    QUESTIONS[2],
+    QUESTIONS[3],
+  ];
+  assert.equal(
+    row(run({ lines, questions }).report, "q-b").outcome,
+    "candidate",
+  );
+  const { report } = dual({ lines, questions });
+  const b = row(report, "q-b");
+  assert.deepEqual(b.reasons, ["generation_quote_missing_in_transcript"]);
+  const [quote] = b.evidence.quotes;
+  assert.deepEqual(quote.occurrences, []);
+  assert.equal(
+    quote.longestExactRunNotEvidence.transcriptQuote,
+    "The center is open from",
+  );
+  assert.equal(quote.inHeadingsTranscriptNotEvidence.length, 1);
+  assert.equal(quote.inHeadingsTranscriptNotEvidence[0].placement, "inside");
+  assert.deepEqual(
+    quote.inHeadingsTranscriptNotEvidence[0].passageSpokenNumbers,
+    [3],
+  );
+});
+
+test("a word the provider left seconds early does not move its quote into a passage", () => {
+  // "We" timed inside the Korean instruction before its own dialogue.
+  const outside = dual({
+    lines: replace(LINES, D3, [D3, { englishFirstWordMs: -3000 }]),
+  });
+  assert.deepEqual(row(outside.report, "q-b").reasons, [
+    "generation_quote_outside_any_passage",
+  ]);
+  // … and before that instruction began, where the passage of "2번" still runs.
+  const across = dual({
+    lines: replace(LINES, D3, [D3, { englishFirstWordMs: -4300 }]),
+  });
+  const b = row(across.report, "q-b");
+  assert.deepEqual(b.reasons, ["generation_quote_crosses_announcement"]);
+  assert.deepEqual(
+    b.evidence.quotes[0].occurrences[0].passageSpokenNumbers,
+    [2],
+  );
+  // Up to the tolerance between two transcripts' clocks is not that.
+  const near = dual({
+    lines: replace(LINES, D3, [D3, { englishFirstWordMs: -2000 }]),
+  });
+  assert.equal(row(near.report, "q-b").outcome, "candidate");
+  const far = dual({
+    lines: replace(LINES, D3, [D3, { englishFirstWordMs: -2200 }]),
+  });
+  assert.equal(row(far.report, "q-b").outcome, "held");
+});
+
+test("English words in the window of a number without its own instruction go to neither side", () => {
+  const lines = [
+    PREAMBLE,
+    H1,
+    D1,
+    H2,
+    D2,
+    "3번과 4번은 대화를 듣고 남자의 마지막 말에 이어질 여자의 응답으로 가장 알맞은 것을 고르는 문제입니다. 잘 듣고 답하세요.",
+    "3번입니다.",
+    D3,
+    "4번입니다.",
+    [D4, { onlyInEnglish: true }], // "4번입니다. 수고하셨습니다." in the other
+    CLOSING,
+  ];
+  const { report } = dual({ lines });
+  const b = row(report, "q-b");
+  assert.equal(b.outcome, "candidate");
+  assert.equal(b.candidate.evidenceGrade, "shared_instruction_member_cue");
+  // Dropped words between the number and the closing could as well be the
+  // end of the dialogue before it: the provider did not time the number.
+  const d = row(report, "q-d");
+  assert.deepEqual(d.reasons, ["generation_quote_outside_any_passage"]);
+  assert.equal(d.evidence.passage, null);
+});
+
+test("the English transcript must be of the same bytes and clock, English-only, and another transcript", () => {
+  const changes = {
+    english_source_audio_sha256: (i) =>
+      (i.english.envelope.sourceAudioSha256 = "e".repeat(64)),
+    english_playback_sha256: (i) =>
+      (i.english.envelope.playbackSha256 = "e".repeat(64)),
+    english_playback_duration_ms: (i) => (i.english.envelope.durationMs += 40),
+    english_raw_response_sha256: (i) => (i.english.rawSha256 = "e".repeat(64)),
+    english_transcript_id: (i) => (i.english.raw.id = "transcript-other"),
+    english_transcript_completed: (i) => (i.english.raw.status = "error"),
+    english_speech_model: (i) =>
+      (i.english.raw.speech_model_used = "universal-2"),
+    english_language_codes: (i) => (i.english.raw.language_code = "ko"),
+    english_transcript_role: (i) => {
+      i.english.envelope.request = { ...i.envelope.request };
+      i.english.raw.language_codes = ["en", "ko"];
+    },
+    english_word_count: (i) => (i.english.envelope.wordCount -= 1),
+    english_provider_duration: (i) => {
+      i.english.raw.audio_duration += 5;
+      i.english.envelope.providerDurationSeconds += 5;
+    },
+    english_original_audio_not_modified: (i) =>
+      (i.english.envelope.writesStorage = true),
+    english_transcript_words_valid: (i) =>
+      (i.english.raw.words[7].confidence = 7),
+    english_words_within_duration: (i) =>
+      (i.english.raw.words.at(-1).end += 60_000),
+    english_is_another_transcript: (i) => {
+      i.english.envelope.transcriptId = i.envelope.transcriptId;
+      i.english.raw.id = i.envelope.transcriptId;
+    },
+  };
+  for (const [name, change] of Object.entries(changes)) {
+    const { report } = dual({}, change);
+    assert.equal(report.binding.status, "failed", name);
+    assert.deepEqual(report.binding.reasons, ["binding_failed:" + name], name);
+    assert.equal(report.counts.candidates, 0, name);
+    assert.equal(report.counts.heldByClass.binding, 4, name);
+    assert.deepEqual(report.passages, [], name);
+  }
+  // The transcript asked for the numbers must have been asked to hear Korean.
+  const deaf = run({}, (i) => {
+    i.envelope.request = {
+      speech_models: ["universal-3-5-pro"],
+      language_code: "en",
+    };
+    i.raw.language_code = "en_us";
+    delete i.raw.language_codes;
+  });
+  assert.deepEqual(deaf.report.binding.reasons, [
+    "binding_failed:transcript_role",
+  ]);
+});
+
+test("an official section's own dialogue is taken from the English transcript", () => {
+  // The Korean-hearing transcript wrote this monologue in Korean.
+  const lines = replace(OFFICIAL_LINES, OD3, [
+    "안녕하세요, 오늘 디저트로 무엇을 드셨나요? 디저트는 일부 사람들에게 하나의 습관이 되었습니다. 그들은 디저트에 더 많은 돈을 씁니다.",
+    { english: OD3 },
+  ]);
+  const single = official({ lines });
+  assert.deepEqual(row(single.report, "o-3").reasons, [
+    "official_section_dialogue_not_heard_in_passage",
+  ]);
+  const { report } = official({ lines, dual: true });
+  assert.equal(report.counts.candidates, 5);
+  const three = row(report, "o-3");
+  assert.equal(three.evidence.ownDialogue.heardInsidePassage, 2);
+  assert.equal(three.evidence.ownDialogue.openingSentenceHeard, true);
+  // Sections 2 and 3 heard under each other's numbers are still refused.
+  const swapped = official({
+    dual: true,
+    lines: [
+      "이제 시작하겠습니다",
+      O1,
+      OD1,
+      O2,
+      OD3,
+      O3.replace("3번", "3번."),
+      OD2,
+      O45,
+      OD45,
+      O4,
+      O5,
+      CLOSING,
+    ],
+  });
+  for (const id of ["o-2", "o-3"])
+    for (const reason of [
+      "official_section_dialogue_not_heard_in_passage",
+      "official_section_dialogue_heard_outside_passage",
+      "other_section_dialogue_inside_passage",
+    ])
+      assert.ok(
+        row(swapped.report, id).reasons.includes(reason),
+        id + " " + reason,
+      );
+});
+
 // ------------------------------------------------------------------ words ----
 
 test("only digits followed by 번 are numbers; the raw words are never repaired", () => {
   const words = transcriptWords({
     words: speak([
       "한 번씩만 두 번 번호 1 번입니다. 12번. 0번 51번 3 번째 7번이 8번부터 10번까지는 문제입니다.",
-    ]),
+    ]).words,
   }).words;
   const seen = findObservations(words).map((o) => [
     o.kind,
@@ -1338,7 +1726,7 @@ test("the same input gives the same report, byte for byte", () => {
 // -------------------------------------------------------------------- CLI ----
 
 /** Writes one reconstructed and one official source as the real files are shaped. */
-function corpus() {
+function corpus({ dual = false } = {}) {
   const dir = mkdtempSync(path.join(os.tmpdir(), "assemblyai-alignment-"));
   const write = (name, value) => {
     const file = path.join(dir, name);
@@ -1353,6 +1741,7 @@ function corpus() {
   const clocks = [];
   const snapshots = [];
   const envelopes = [];
+  const englishEnvelopes = [];
   const build = (name, input, extra) => {
     const audio = write(
       name + ".mp3",
@@ -1391,8 +1780,20 @@ function corpus() {
         raw: { path: raw.file, sha256: raw.sha256 },
       }).file,
     );
+    if (!input.english) return;
+    const englishRaw = write(name + ".english.raw.json", input.english.raw);
+    englishEnvelopes.push(
+      write(name + ".english.envelope.json", {
+        ...input.english.envelope,
+        sourceRecordId: name,
+        sourceAudioSha256: audio.sha256,
+        originalAudioPath: audio.file,
+        originalAudioBytes: readFileSync(audio.file).length,
+        raw: { path: englishRaw.file, sha256: englishRaw.sha256 },
+      }).file,
+    );
   };
-  const generated = source({ lines: LINES, questions: QUESTIONS });
+  const generated = source({ lines: LINES, questions: QUESTIONS, dual });
   build("generated", generated, (audio) => {
     const prepared = write("generated.prepared.json", {
       verification: {
@@ -1423,6 +1824,7 @@ function corpus() {
     lines: OFFICIAL_LINES,
     questions: OFFICIAL,
     scriptText: SCRIPT,
+    dual,
   });
   const document = {
     groups: [
@@ -1452,7 +1854,7 @@ function corpus() {
     },
     records: certificateRows,
   });
-  return { dir, inventory, clock, certificate, envelopes };
+  return { dir, inventory, clock, certificate, envelopes, englishEnvelopes };
 }
 
 const cli = (files, out, extra = []) => [
@@ -1463,6 +1865,10 @@ const cli = (files, out, extra = []) => [
   "--clock",
   files.clock.file,
   ...files.envelopes.flatMap((file) => ["--envelope", file]),
+  ...(files.englishEnvelopes ?? []).flatMap((file) => [
+    "--english-envelope",
+    file,
+  ]),
   "--out",
   out,
   ...extra,
@@ -1520,8 +1926,12 @@ test("the command reads bound files, writes each report once and leaves every in
   // Nothing outside the output directory changed.
   for (const [name, hash] of before)
     assert.equal(sha256(readFileSync(path.join(files.dir, name))), hash, name);
-  // A report is written once; a second run does not overwrite it.
+  // A report is written once; a second run replaces nothing that is there.
+  for (const name of readdirSync(out))
+    writeFileSync(path.join(out, name), "kept: " + name);
   assert.throws(() => main(cli(files, out)), /EEXIST/);
+  for (const name of readdirSync(out))
+    assert.equal(readFileSync(path.join(out, name), "utf8"), "kept: " + name);
 });
 
 test("the command refuses unreviewed, unbound or misplaced inputs", () => {
@@ -1545,33 +1955,184 @@ test("the command refuses unreviewed, unbound or misplaced inputs", () => {
     () => main(cli({ ...files, clock: { file: otherClock } }, out)),
     /not the one this certificate/,
   );
+  const otherInventory = path.join(files.dir, "other-inventory.json");
+  writeFileSync(
+    otherInventory,
+    readFileSync(files.inventory.file, "utf8") + "\n",
+  );
+  assert.throws(
+    () => main(cli({ ...files, inventory: { file: otherInventory } }, out)),
+    /not the one this certificate/,
+  );
   assert.deepEqual(readdirSync(files.dir).includes("out"), false);
 });
 
-test("a changed original audio, prepared file or live document fails the binding of that source", () => {
-  const files = corpus();
-  const inventory = JSON.parse(readFileSync(files.inventory.file, "utf8"));
-  writeFileSync(inventory.records[0].sourceAudioPath, "re-encoded");
-  writeFileSync(
-    inventory.records[0].preparedPath,
-    JSON.stringify({ verification: { grounding: [] } }),
+test("a changed original audio, prepared file or live document fails the binding of that source alone", () => {
+  /** Runs a fresh corpus after `change` and returns [generated, printed] binding reasons. */
+  const reasonsAfter = (change) => {
+    const files = corpus();
+    change(JSON.parse(readFileSync(files.inventory.file, "utf8")), files);
+    const summary = main(cli(files, path.join(files.dir, "out")));
+    return summary.sources.map((entry) => {
+      const report = JSON.parse(readFileSync(entry.report.path, "utf8"));
+      assert.equal(
+        report.counts.candidates,
+        entry.binding === "passed" ? report.counts.questions : 0,
+      );
+      return report.binding.reasons;
+    });
+  };
+  const flipFirstByte = (file) => {
+    const bytes = readFileSync(file);
+    bytes[0] ^= 1; // the same length, other bytes
+    writeFileSync(file, bytes);
+  };
+  assert.deepEqual(
+    reasonsAfter((inventory) =>
+      flipFirstByte(inventory.records[0].sourceAudioPath),
+    ),
+    [["binding_failed:original_audio_file"], []],
   );
-  const summary = main(cli(files, path.join(files.dir, "out")));
-  assert.equal(summary.sources[0].binding, "failed");
-  assert.deepEqual(summary.sources[0].counts.heldByClass, {
-    binding: 4,
-    structure: 0,
-    provider_timing: 0,
-    confidence_only: 0,
-  });
+  // The envelope says the provider was sent another number of bytes.
+  assert.deepEqual(
+    reasonsAfter((inventory, files) =>
+      writeFileSync(
+        files.envelopes[0],
+        readFileSync(files.envelopes[0], "utf8").replace(
+          /"originalAudioBytes":(\d+)/,
+          (whole, bytes) => `"originalAudioBytes":${Number(bytes) + 1}`,
+        ),
+      ),
+    ),
+    [["binding_failed:original_audio_file"], []],
+  );
+  assert.deepEqual(
+    reasonsAfter((inventory) =>
+      writeFileSync(
+        inventory.records[0].sourceAudioPath,
+        Buffer.concat([
+          readFileSync(inventory.records[0].sourceAudioPath),
+          Buffer.from("tag"),
+        ]),
+      ),
+    ),
+    [["binding_failed:original_audio_file"], []],
+  );
+  assert.deepEqual(
+    reasonsAfter((inventory) =>
+      writeFileSync(
+        inventory.records[0].preparedPath,
+        JSON.stringify({ verification: { grounding: [] } }),
+      ),
+    ),
+    [
+      [
+        "binding_failed:prepared_sha256",
+        "binding_failed:generation_alignment_questions",
+      ],
+      [],
+    ],
+  );
+  // The alignment file names another recording's generation.
+  assert.deepEqual(
+    reasonsAfter((inventory) =>
+      writeFileSync(
+        inventory.records[0].alignmentPath,
+        readFileSync(inventory.records[0].alignmentPath, "utf8").replace(
+          inventory.records[0].sourceAudioSha256,
+          "e".repeat(64),
+        ),
+      ),
+    ),
+    [["binding_failed:generation_alignment_identity"], []],
+  );
+  assert.deepEqual(
+    reasonsAfter((inventory) =>
+      writeFileSync(
+        inventory.liveSnapshotPath,
+        readFileSync(inventory.liveSnapshotPath, "utf8").replace(
+          "Ms. Smith",
+          "Ms. Smyth",
+        ),
+      ),
+    ),
+    [
+      [],
+      ["binding_failed:live_snapshot_sha256", "binding_failed:live_document"],
+    ],
+  );
+});
+
+test("the command pairs each English envelope with the headings envelope of its source", () => {
+  const files = corpus({ dual: true });
+  const out = path.join(files.dir, "out");
+  const summary = main(cli(files, out));
+  assert.deepEqual(
+    summary.sources.map((entry) => [entry.binding, entry.counts.candidates]),
+    [
+      ["passed", 4],
+      ["passed", 5],
+    ],
+  );
   const report = JSON.parse(
     readFileSync(summary.sources[0].report.path, "utf8"),
   );
-  for (const name of [
-    "original_audio_file",
-    "prepared_sha256",
-    "generation_alignment_questions",
-  ])
-    assert.ok(report.binding.reasons.includes("binding_failed:" + name), name);
-  assert.equal(summary.sources[1].binding, "passed");
+  assert.equal(report.transcripts.quotesPlacedBy, "provider_time");
+  assert.equal(report.inputs.englishEnvelope.path, files.englishEnvelopes[0]);
+  assert.equal(
+    report.inputs.englishRawResponse.sha256,
+    report.transcripts.quotes.rawSha256,
+  );
+  for (const name of readdirSync(out))
+    assert.equal(
+      readFileSync(path.join(out, name), "utf8").includes(UPLOAD_URL),
+      false,
+      name,
+    );
+
+  // An English envelope with no headings envelope, or two for one source.
+  const alone = corpus({ dual: true });
+  assert.throws(
+    () =>
+      main(
+        cli(
+          { ...alone, envelopes: alone.envelopes.slice(1) },
+          path.join(alone.dir, "out"),
+        ),
+      ),
+    /no single headings envelope/,
+  );
+  assert.throws(
+    () =>
+      main(
+        cli(
+          {
+            ...alone,
+            englishEnvelopes: [
+              alone.englishEnvelopes[0],
+              alone.englishEnvelopes[0],
+            ],
+          },
+          path.join(alone.dir, "out"),
+        ),
+      ),
+    /no single headings envelope/,
+  );
+
+  // The English envelope says other bytes were sent.
+  const other = corpus({ dual: true });
+  writeFileSync(
+    other.englishEnvelopes[0],
+    readFileSync(other.englishEnvelopes[0], "utf8").replace(
+      /"originalAudioBytes":(\d+)/,
+      (whole, bytes) => `"originalAudioBytes":${Number(bytes) + 1}`,
+    ),
+  );
+  const changed = main(cli(other, path.join(other.dir, "out")));
+  assert.deepEqual(
+    JSON.parse(readFileSync(changed.sources[0].report.path, "utf8")).binding
+      .reasons,
+    ["binding_failed:original_audio_file"],
+  );
+  assert.equal(changed.sources[1].binding, "passed");
 });

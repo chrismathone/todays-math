@@ -34,6 +34,8 @@ export const POLICY = Object.freeze({
   maxInstructionWords: 40,
   existingStartToleranceMs: 2500,
   durationToleranceMs: 1500,
+  // Added with the English-only quote transcript, before that pass was run.
+  crossTranscriptToleranceMs: 500,
 });
 
 export const sha256 = (bytes) =>
@@ -478,10 +480,8 @@ export function buildPassages(
     } else issues.push("instruction_context_missing");
     headings.forEach((other, j) => {
       if (j === k) return;
-      if (
-        isMulti(j) === isMulti(k) &&
-        other.numbers.join() === heading.numbers.join()
-      )
+      // A member repeats nothing: its heading names several numbers, it names one.
+      if (other.numbers.join() === heading.numbers.join())
         issues.push("number_announced_more_than_once");
       const [earlier, later] = j < k ? [j, k] : [k, j];
       const low = headings[later].numbers[0];
@@ -519,6 +519,22 @@ export function buildPassages(
           issues.push("second_instruction_inside_passage");
           break;
         }
+    // What may be heard of this passage in another transcript of the same
+    // recording: after its own instruction, before the next number's
+    // instruction begins. A number without an instruction of its own leaves
+    // its whole window to neither side.
+    passage.contentMs = {
+      fromMs: headings[k].instruction
+        ? words[headings[k].instruction.lastWord].endMs
+        : passage.window.toMs,
+      toMs: next
+        ? headings[k + 1].instruction
+          ? next.window.toMs
+          : next.window.fromMs
+        : closing >= 0
+          ? words[closing].startMs
+          : durationMs,
+    };
   });
   return passages;
 }
@@ -536,6 +552,27 @@ function placeOf(passages, fromWord, toWord) {
   return { placement: "inside", passageId: passage.id };
 }
 
+/**
+ * Where a quote written by ANOTHER transcript of the same recording stands
+ * among these passages, by the provider's times of both. Both are estimates;
+ * a quote that does not lie wholly inside one passage's interval is not placed.
+ */
+function placeByTime(passages, startMs, endMs, toleranceMs) {
+  const begins = passages.filter(
+    (p) =>
+      startMs >= p.contentMs.fromMs - toleranceMs &&
+      startMs <= p.contentMs.toMs + toleranceMs,
+  );
+  const holds = begins.filter((p) => endMs <= p.contentMs.toMs + toleranceMs);
+  if (holds.length === 1)
+    return { placement: "inside", passageId: holds[0].id };
+  if (holds.length > 1)
+    return { placement: "between_two_passages", passageId: null };
+  if (begins.length)
+    return { placement: "crosses_announcement", passageId: begins[0].id };
+  return { placement: "outside", passageId: null };
+}
+
 // -------------------------------------------------------------- binding ----
 
 const allEqual = (...values) =>
@@ -543,7 +580,12 @@ const allEqual = (...values) =>
     (value) => value !== undefined && value !== null && value === values[0],
   );
 
-/** The transcript belongs to this recording, this clock and this certificate — or nothing is read from it. */
+/**
+ * The transcript belongs to this recording, this clock and this certificate —
+ * or nothing is read from it. `role` "headings": the transcript that hears
+ * Korean and gives the numbers; "quotes": the English-only one that gives the
+ * dialogue words (its checks are named english_…).
+ */
 export function checkBinding({
   envelope,
   raw,
@@ -555,9 +597,13 @@ export function checkBinding({
   wordProblems,
   policy,
   inputProblems = [],
+  role = "headings",
 }) {
   const checks = [];
-  const check = (name, ok) => checks.push({ name, ok: Boolean(ok) });
+  const prefix = role === "quotes" ? "english_" : "";
+  const check = (name, ok) =>
+    checks.push({ name: prefix + name, ok: Boolean(ok) });
+  const request = envelope?.request ?? {};
   const audio = record?.audio ?? {};
   check(
     "envelope_schema",
@@ -639,9 +685,22 @@ export function checkBinding({
   );
   check(
     "language_codes",
-    Array.isArray(raw?.language_codes) &&
-      JSON.stringify(raw.language_codes) ===
-        JSON.stringify(envelope?.request?.language_codes),
+    Array.isArray(request.language_codes)
+      ? Array.isArray(raw?.language_codes) &&
+          JSON.stringify(raw.language_codes) ===
+            JSON.stringify(request.language_codes)
+      : typeof request.language_code === "string" &&
+          typeof raw?.language_code === "string" &&
+          (raw.language_code === request.language_code ||
+            raw.language_code.startsWith(request.language_code + "_")),
+  );
+  check(
+    "transcript_role",
+    role === "quotes"
+      ? request.language_code === "en" && request.language_codes === undefined
+      : [...(request.language_codes ?? []), request.language_code].includes(
+          "ko",
+        ),
   );
   check("word_count", raw?.words?.length === envelope?.wordCount);
   check(
@@ -942,6 +1001,7 @@ const describePassage = (passage, context) => {
         }
       : null,
     contentWordIndexes: [passage.contentFromWord, passage.toWordExclusive],
+    contentMs: passage.contentMs,
     boundedBy: passage.boundedBy,
     searchWindowMs: {
       fromMs: passage.window.fromMs,
@@ -952,20 +1012,16 @@ const describePassage = (passage, context) => {
   };
 };
 
-const describeOccurrence = (occurrence, context) => ({
+const describeOccurrence = (
+  occurrence,
+  context,
+  words = context.quoteWords,
+) => ({
   wordIndexes: [occurrence.fromWord, occurrence.toWord],
-  transcriptQuote: quoteOf(
-    context.words,
-    occurrence.fromWord,
-    occurrence.toWord,
-  ),
-  startMs: context.words[occurrence.fromWord].startMs,
-  endMs: context.words[occurrence.toWord].endMs,
-  minConfidence: minConfidence(
-    context.words,
-    occurrence.fromWord,
-    occurrence.toWord,
-  ),
+  transcriptQuote: quoteOf(words, occurrence.fromWord, occurrence.toWord),
+  startMs: words[occurrence.fromWord].startMs,
+  endMs: words[occurrence.toWord].endMs,
+  minConfidence: minConfidence(words, occurrence.fromWord, occurrence.toWord),
   placement: occurrence.placement,
   passageSpokenNumbers:
     occurrence.passageId === null
@@ -973,10 +1029,21 @@ const describeOccurrence = (occurrence, context) => ({
       : context.passages[occurrence.passageId].numbers,
 });
 
+/** Among the passages: by time when the quotes are another transcript's, else by word order. */
+const placeQuote = (context, fromWord, toWord) =>
+  context.quotesByTime
+    ? placeByTime(
+        context.passages,
+        context.quoteWords[fromWord].startMs,
+        context.quoteWords[toWord].endMs,
+        context.policy.crossTranscriptToleranceMs,
+      )
+    : placeOf(context.passages, fromWord, toWord);
+
 const occurrencesOf = (tokens, context) =>
-  locate(context.stream, tokens).map((occurrence) => ({
+  locate(context.quoteStream, tokens).map((occurrence) => ({
     ...occurrence,
-    ...placeOf(context.passages, occurrence.fromWord, occurrence.toWord),
+    ...placeQuote(context, occurrence.fromWord, occurrence.toWord),
   }));
 
 /** Reasons a passage adds to a question placed in it, and the scope it gives. */
@@ -1073,7 +1140,7 @@ function alignReconstructed(question, context) {
         continue;
       }
       const confidences = inside.map((o) =>
-        minConfidence(context.words, o.fromWord, o.toWord),
+        minConfidence(context.quoteWords, o.fromWord, o.toWord),
       );
       // An anchor stands on every place it was written; a short quote on its best one.
       low = Math.min(
@@ -1099,21 +1166,41 @@ function alignReconstructed(question, context) {
         ? {}
         : {
             longestExactRunNotEvidence: (() => {
-              const run = longestExactRun(context.stream, quote.tokens);
-              return run
+              const run = longestExactRun(context.quoteStream, quote.tokens);
+              // A word or two in common points nowhere in particular.
+              return run && run.tokens >= policy.minAnchorQuoteWords
                 ? {
                     tokens: run.tokens,
                     ofTokens: run.ofTokens,
                     ...describeOccurrence(
                       {
                         ...run,
-                        ...placeOf(context.passages, run.fromWord, run.toWord),
+                        ...placeQuote(context, run.fromWord, run.toWord),
                       },
                       context,
                     ),
                   }
                 : null;
             })(),
+            // Where the transcript that gave the numbers wrote these words.
+            // It is asked for numbers only; this proves nothing.
+            ...(context.quotesByTime
+              ? {
+                  inHeadingsTranscriptNotEvidence: locate(
+                    context.stream,
+                    quote.tokens,
+                  ).map((o) =>
+                    describeOccurrence(
+                      {
+                        ...o,
+                        ...placeOf(context.passages, o.fromWord, o.toWord),
+                      },
+                      context,
+                      context.words,
+                    ),
+                  ),
+                }
+              : {}),
           }),
     })),
     passage: passage ? describePassage(passage, context) : null,
@@ -1192,7 +1279,7 @@ function alignOfficial(question, context) {
       ...heardInside.flatMap((entry) =>
         entry.occurrences
           .filter(isInside)
-          .map((o) => minConfidence(context.words, o.fromWord, o.toWord)),
+          .map((o) => minConfidence(context.quoteWords, o.fromWord, o.toWord)),
       ),
     );
     if (heardInside.length && best < context.policy.minQuoteWordConfidence)
@@ -1256,25 +1343,77 @@ function alignOfficial(question, context) {
 
 /**
  * One source. `input`: { record, clock, certificateRecords, envelope, raw,
- * rawSha256, generation (Map questionId -> { generatedOrdinal, evidenceQuotes,
- * included }) for a reconstructed source, scriptText for an official one,
- * policy?, inputProblems? }. Reads nothing else and writes nothing.
+ * rawSha256, english? ({ envelope, raw, rawSha256 } of the English-only
+ * transcript), generation (Map questionId -> { generatedOrdinal,
+ * evidenceQuotes, included }) for a reconstructed source, scriptText for an
+ * official one, policy?, inputProblems? }. Reads nothing else and writes
+ * nothing.
+ *
+ * Numbers, instructions and passages always come from `raw`, the transcript
+ * that hears Korean. With `english`, the dialogue words come from that
+ * transcript alone and are placed among the passages by time; an English word
+ * is never read as a number. Without it they come from `raw` and are placed
+ * by word order.
  */
 export function alignSource(input) {
   const policy = Object.freeze({ ...POLICY, ...(input.policy ?? {}) });
   const { record, clock, envelope, raw, rawSha256, certificateRecords } = input;
+  const english = input.english ?? null;
   const { words, problems } = transcriptWords(raw);
-  const binding = checkBinding({
-    envelope,
-    raw,
-    rawSha256,
-    record,
-    clock,
-    certificateRecords,
-    words,
-    wordProblems: problems,
-    policy,
-    inputProblems: input.inputProblems,
+  const quoted = english ? transcriptWords(english.raw) : null;
+  const bound = [
+    checkBinding({
+      envelope,
+      raw,
+      rawSha256,
+      record,
+      clock,
+      certificateRecords,
+      words,
+      wordProblems: problems,
+      policy,
+      inputProblems: input.inputProblems,
+    }),
+  ];
+  if (english) {
+    bound.push(
+      checkBinding({
+        envelope: english.envelope,
+        raw: english.raw,
+        rawSha256: english.rawSha256,
+        record,
+        clock,
+        certificateRecords,
+        words: quoted.words,
+        wordProblems: quoted.problems,
+        policy,
+        role: "quotes",
+      }),
+    );
+    const distinct =
+      english.envelope?.transcriptId !== envelope?.transcriptId &&
+      english.rawSha256 !== rawSha256;
+    bound.push({
+      checks: [{ name: "english_is_another_transcript", ok: distinct }],
+      wordProblems: [],
+      reasons: distinct ? [] : ["binding_failed:english_is_another_transcript"],
+    });
+  }
+  const binding = {
+    status: bound.some((entry) => entry.reasons.length) ? "failed" : "passed",
+    checks: bound.flatMap((entry) => entry.checks),
+    wordProblems: unique(bound.flatMap((entry) => entry.wordProblems)),
+    reasons: bound.flatMap((entry) => entry.reasons),
+  };
+  const describeTranscript = (from, hash, list) => ({
+    provider: from?.provider ?? null,
+    transcriptId: from?.transcriptId ?? null,
+    model: from?.actualModel ?? null,
+    languages:
+      from?.request?.language_codes ??
+      (from?.request?.language_code ? [from.request.language_code] : null),
+    rawSha256: hash ?? null,
+    wordCount: list.length,
   });
   const report = {
     schemaVersion: 1,
@@ -1301,13 +1440,12 @@ export function alignSource(input) {
       revision: record.revision,
       documentSha256: record.documentSha256,
     },
-    transcript: {
-      provider: envelope?.provider ?? null,
-      transcriptId: envelope?.transcriptId ?? null,
-      model: envelope?.actualModel ?? null,
-      languageCodes: envelope?.request?.language_codes ?? null,
-      rawSha256: rawSha256 ?? null,
-      wordCount: words.length,
+    transcripts: {
+      headings: describeTranscript(envelope, rawSha256, words),
+      quotes: english
+        ? describeTranscript(english.envelope, english.rawSha256, quoted.words)
+        : "same_as_headings",
+      quotesPlacedBy: english ? "provider_time" : "word_order",
     },
     binding,
     existingStartChecks: [],
@@ -1341,6 +1479,9 @@ export function alignSource(input) {
       policy,
       words,
       stream: tokenStream(words),
+      quoteWords: english ? quoted.words : words,
+      quoteStream: tokenStream(english ? quoted.words : words),
+      quotesByTime: Boolean(english),
       observations,
       passages,
       existing,
@@ -1575,6 +1716,15 @@ const markdown = (summary, reports) => {
   for (const report of reports) {
     lines.push("", `## ${report.source.sourceRecordId}`, "");
     lines.push(
+      `Numbers from ${report.transcripts.headings.model} (${(report.transcripts.headings.languages ?? []).join("+")}); dialogue words from ${
+        report.transcripts.quotes === "same_as_headings"
+          ? "the same transcript, placed by word order"
+          : report.transcripts.quotes.model +
+            " (" +
+            (report.transcripts.quotes.languages ?? []).join("+") +
+            "), placed by provider time"
+      }.`,
+      "",
       `Binding ${report.binding.status}. Spoken numbers written: ${
         report.passages
           .map(
@@ -1624,6 +1774,7 @@ export function main(argv) {
       "certificate-sha256": { type: "string" },
       clock: { type: "string" },
       envelope: { type: "string", multiple: true },
+      "english-envelope": { type: "string", multiple: true },
       out: { type: "string" },
       policy: { type: "string" },
       "skip-audio-hash": { type: "boolean", default: false },
@@ -1649,14 +1800,38 @@ export function main(argv) {
     );
   const policy = values.policy ? readJson(values.policy).value : undefined;
   const out = path.resolve(values.out);
+  const englishPaths = values["english-envelope"] ?? [];
   const inputFiles = [
     values.inventory,
     values.certificate,
     values.clock,
     ...values.envelope,
+    ...englishPaths,
   ];
   if (inputFiles.some((file) => sameFile(path.dirname(file), out)))
     throw new Error("Output directory holds an input file");
+  const headingSources = values.envelope.map(
+    (file) => readJson(file).value.sourceRecordId,
+  );
+  const englishBySource = new Map();
+  for (const file of englishPaths) {
+    const source = readJson(file).value.sourceRecordId;
+    if (!headingSources.includes(source) || englishBySource.has(source))
+      throw new Error(
+        "English envelope has no single headings envelope: " + file,
+      );
+    englishBySource.set(source, file);
+  }
+  // Only these fields are read; the provider's upload URL never leaves the raw file.
+  const readable = (value) => ({
+    id: value.id,
+    status: value.status,
+    words: value.words,
+    audio_duration: value.audio_duration,
+    language_code: value.language_code,
+    language_codes: value.language_codes,
+    speech_model_used: value.speech_model_used,
+  });
   mkdirSync(out, { recursive: true });
   let snapshot = null;
   const reports = [];
@@ -1674,12 +1849,34 @@ export function main(argv) {
       envelope: { path: envelopePath, sha256: envelope.sha256 },
       rawResponse: { path: envelope.value.raw.path, sha256: raw.sha256 },
     };
+    let english = null;
+    if (englishBySource.has(record.sourceRecordId)) {
+      const englishPath = englishBySource.get(record.sourceRecordId);
+      const englishEnvelope = readJson(englishPath);
+      const englishRaw = readJson(englishEnvelope.value.raw.path);
+      english = {
+        envelope: englishEnvelope.value,
+        raw: readable(englishRaw.value),
+        rawSha256: englishRaw.sha256,
+      };
+      inputs.englishEnvelope = {
+        path: englishPath,
+        sha256: englishEnvelope.sha256,
+      };
+      inputs.englishRawResponse = {
+        path: englishEnvelope.value.raw.path,
+        sha256: englishRaw.sha256,
+      };
+    }
     if (!values["skip-audio-hash"]) {
       const audio = readFileSync(record.sourceAudioPath);
       if (
         sha256(audio) !== record.sourceAudioSha256 ||
-        audio.length !== envelope.value.originalAudioBytes ||
-        !sameFile(record.sourceAudioPath, envelope.value.originalAudioPath)
+        [envelope.value, ...(english ? [english.envelope] : [])].some(
+          (sent) =>
+            audio.length !== sent.originalAudioBytes ||
+            !sameFile(record.sourceAudioPath, sent.originalAudioPath),
+        )
       )
         problems.push("original_audio_file");
       inputs.originalAudio = {
@@ -1713,16 +1910,9 @@ export function main(argv) {
       ),
       certificateRecords,
       envelope: envelope.value,
-      raw: {
-        // Only these fields are read; the provider's upload URL never leaves the raw file.
-        id: raw.value.id,
-        status: raw.value.status,
-        words: raw.value.words,
-        audio_duration: raw.value.audio_duration,
-        language_codes: raw.value.language_codes,
-        speech_model_used: raw.value.speech_model_used,
-      },
+      raw: readable(raw.value),
       rawSha256: raw.sha256,
+      english,
       generation,
       scriptText,
       policy,
