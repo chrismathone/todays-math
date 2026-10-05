@@ -494,32 +494,44 @@ export function paginateTextbookSections(
         row.every(({ block }) => block.kind === "problem") &&
         followingSourceBlock?.kind === "text" &&
         followingSourceBlock.semantic?.source?.kind === "scriptcheck";
+      const afterSourceGrid =
+        row.every(({ block }) => block.kind === "problem") &&
+        followingSourceBlock?.kind === "text" &&
+        followingSourceBlock.semantic?.source?.kind === sourceKind;
       const sourceGap = afterScriptCheckGrid
         ? 2
-        : sourceKind && row[0].block.kind !== "heading"
-          ? row.every(({ block }) => block.kind === "problem")
-            ? (
-                {
-                  scriptcheck: 1,
-                  basic: 2,
-                  drill: 0,
-                  exercise: 5,
-                  oral: 0,
-                } as Record<string, number>
-              )[sourceKind]
-            : (
-                {
-                  scriptcheck: 2,
-                  basic: 3,
-                  concept1: 2.6,
-                  concept2: 2.6,
-                  concept3: 2.6,
-                  drill: 3,
-                  exercise: 4,
-                  oral: 4,
-                } as Record<string, number>
-              )[sourceKind]
-          : undefined;
+        : afterSourceGrid && sourceKind === "exercise"
+          ? 4
+          : afterSourceGrid && sourceKind === "practice"
+            ? 5
+            : sourceKind && row[0].block.kind !== "heading"
+              ? row.every(({ block }) => block.kind === "problem")
+                ? (
+                    {
+                      scriptcheck: 1,
+                      basic: 2,
+                      drill: 0,
+                      exercise: 5,
+                      practice: 4,
+                      clinic: 4,
+                      oral: 0,
+                    } as Record<string, number>
+                  )[sourceKind]
+                : (
+                    {
+                      scriptcheck: 2,
+                      basic: 3,
+                      concept1: 2.6,
+                      concept2: 2.6,
+                      concept3: 2.6,
+                      drill: 3,
+                      exercise: 4,
+                      practice: 5,
+                      clinic: 5,
+                      oral: 4,
+                    } as Record<string, number>
+                  )[sourceKind]
+              : undefined;
       const gap =
         sourceGap ??
         (row.every(({ block }) => block.kind === "recall")
