@@ -118,6 +118,60 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-05",
   },
   {
+    id: "textbook-structure-edit-intro",
+    title: "교재 제작 — 단원 도입의 글을 고친 판본",
+    changed:
+      "세부 편집의 «내용 수정» 으로 자동 단원 도입의 도입 제목 · 질문 · 설명 · 핵심 문구 · 학습 목표 · 학습 순서 · 출발점 질문 · 날짜 문구를 고칠 수 있다. 조판은 그대로다 — 글만 바뀐다.",
+    look: "표본 셋을 뽑는다 — ⑴ 모든 칸을 고친 판본 ⑵ 핵심 문구 · 날짜 문구 · 도입 제목을 비운 판본 ⑶ 질문 · 설명을 길게 고쳐 두 면이 한 면으로 바뀐 판본. 불합격: 고친 글이 하나라도 빠졌다 · 옛 글이 남았다 · 왼쪽 면에서 제목 · 질문 · 삽화 · 설명 · 핵심 문구가 겹친다 · 오른쪽 면이나 한 면 배치에서 목표 · 순서 · 출발점이 잘린다 · ⑵ 에서 빈 칸의 자리에 기본 문구(«단원 도입» · «공부를 시작한 날»)가 아닌 것이 찍혔다 · ⑶ 에서 종이는 한 면인데 화면의 미리보기는 그것을 알리지 않았다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/textbook-structure-editor-20261006.md",
+      "src/components/textbook/structureFields.ts",
+      "src/lib/textbook/render/blocks/automaticIntro.ts",
+    ],
+    scale: "자동 단원 도입이 든 교재 전부(고친 것만)",
+    status: "대기",
+    needs:
+      "같은 교재의 고치기 전 PDF 와 고친 뒤 PDF — 질문 · 설명을 은행 원고의 가장 긴 것(질문 45자 · 설명 98자)보다 길게 고친 판본 포함",
+    changedOn: "2026-10-06",
+  },
+  {
+    id: "textbook-structure-edit-writing-board",
+    title: "교재 제작 — 질문 기록 · 판서의 글을 고친 판본",
+    changed:
+      "질문 기록의 질문 문구와 «질문마다 작성선» 수(1~30), 판서의 제목 · 수식 · 주석을 고칠 수 있다. 질문의 개수는 그대로다.",
+    look: "질문 기록 — 작성선을 1줄 · 8줄 · 30줄로 고친 판본 셋. 불합격: 새 질문이 안 찍혔다 · 질문마다 작성선 수가 고른 수와 다르다 · 선 간격이 7mm±0.5mm 를 벗어난다 · 질문 · 선 · 꼬리말이 겹친다 · 30줄 판본이 화면에서는 넘침으로 막혔는데 종이가 나왔다(또는 그 반대). 판서 — 제목 · 수식 · 주석을 고친 판본. 불합격: 새 글이 빠졌다 · 수식이 잘리거나 오류 표시로 찍혔다 · 판서 뒤의 대화가 겹친다 · 같은 단원의 대화 글자가 9.2pt 보다 작다(조판이 허용하는 최소 크기).",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/textbook-structure-editor-20261006.md",
+      "src/lib/textbook/render/blocks/semantic.ts",
+      "src/lib/textbook/render/blocks/dialogue.ts",
+    ],
+    scale: "질문 기록 · 판서가 든 교재(고친 것만)",
+    status: "대기",
+    needs:
+      "작성선을 1 · 8 · 30줄로 고친 질문 기록, 수식을 길게 고친 판서가 든 단원의 학생용 PDF",
+    changedOn: "2026-10-06",
+  },
+  {
+    id: "textbook-draft-copy-structure-refs",
+    title: "교재 제작 — 새 초안으로 복사한 교재의 재발행",
+    changed:
+      "새 초안 복사 · 가져오기가 구조 안의 문항 번호(유형 묶음의 대표예제 · 확인문제, 색인의 대상)도 새 번호로 바꾼다. 전에는 문제 블록의 번호만 바꿔, 복사한 초안에서 대표예제 역할과 색인의 쪽 번호가 끊겼다.",
+    look: "발행한 교재를 ⑴ 새 초안으로 복사해 ⑵ 교환 파일로 내보냈다가 새 원고로 가져와, 각각 그대로 다시 발행하고 원본 PDF 와 나란히 본다. 불합격: 유형 묶음에서 대표예제의 풀이가 빠지거나 확인문제에 풀이가 붙었다(역할이 원본과 다르다) · 유형 색인 · 차례의 쪽 번호가 실제 쪽과 다르거나 비었다 · 학생용 · 해설판의 QR 이 다른 문항을 가리킨다 · 원본 복원 교재의 본문 조각 · 머리말 · 꼬리말 그림이 빠졌다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/textbook-structure-editor-20261006.md",
+      "src/lib/textbook/semanticRefs.ts",
+      "src/lib/textbook/server/books.ts",
+    ],
+    scale: "대표예제 묶음이나 유형 색인이 든 교재의 복사본 전부",
+    status: "대기",
+    needs:
+      "간편 생성한 교재(대표예제 · 유형 색인 켬)와 원본 복원 교재(그림이 든 꼬리말)의 원본 PDF · 복사본 PDF · 가져온 원고의 PDF",
+    changedOn: "2026-10-06",
+  },
+  {
     id: "english-listening-native-visual",
     title: "영어듣기 — DB 문항과 시각 자료 인쇄",
     changed:

@@ -1,4 +1,5 @@
 // @vitest-environment node
+/* eslint-disable @typescript-eslint/no-explicit-any -- 시험이 임의 모양의 JSON 을 읽는다 */
 /**
  * 확정본이 이미 있는 출처 — 재출제한 시험지에서 다시 담기 · 가져온 문항의 연결 확정 · 조판 걸음의 임대.
  * 여기서 지키는 것은 하나다: **확정본이 있으면 살아 있는 은행 문항의 내용을 다시 읽지 않는다.**
@@ -628,5 +629,128 @@ describe("조판 걸음의 임대 — 잡는 문장 자체", () => {
       [requestId],
     );
     expect(await claimStep(db, step)).toBeNull();
+  });
+});
+
+describe("가져오기 — 구조 메타의 id 대응", () => {
+  it("예제 묶음 · 참조 항목은 새 배치 id 를, 원본 그림 트리는 새 자산 id 를 가리킨다", async () => {
+    const book = await publishedBook(owner);
+    const exchange = await assembleExchange(db, book.editionId, {
+      exportedAt: "2026-10-03T00:00:00.000Z",
+    });
+    const oldItemId = exchange.items[0]!.itemId;
+    // 패키지의 자산 번호를 «내용 해시가 아닌» 번호로 바꿔 둔다 — 가져오면 해시 번호로 새로 지어지므로,
+    // 구조 안의 번호가 따라 바뀌지 않으면 옛 번호가 그대로 남아 드러난다(같은 번호면 안 바꿔도 통과한다).
+    const packagedAssetId = exchange.assets[0]!.assetId;
+    const oldAssetId = "legacy-figure-1";
+    const rename = (value: any, key?: string): any =>
+      typeof value === "string"
+        ? value === packagedAssetId && key !== "sha256" && key !== "packagePath"
+          ? oldAssetId
+          : value
+        : Array.isArray(value)
+          ? value.map((entry) => rename(entry, key))
+          : value && typeof value === "object"
+            ? Object.fromEntries(
+                Object.entries(value).map(([name, entry]) => [
+                  name,
+                  rename(entry, name),
+                ]),
+              )
+            : value;
+    Object.assign(exchange, rename(exchange));
+    const img = {
+      tag: "img" as const,
+      attributes: { assetId: oldAssetId },
+    };
+    const group = {
+      activity: "workedExamples" as const,
+      node: {
+        kind: "exampleGroup" as const,
+        groupId: "example-g1",
+        title: "예제",
+        strategy: "전략",
+        exampleItemId: oldItemId,
+        confirmItemIds: [oldItemId, randomUUID()],
+      },
+    };
+    const unknownTarget = randomUUID();
+    const section = exchange.units[0]!.sections[0]!;
+    section.blocks = [
+      { blockId: "h1", kind: "text", markdown: "예제", semantic: group },
+      { blockId: "p1", kind: "problem", itemId: oldItemId, semantic: group },
+      {
+        blockId: "r1",
+        kind: "text",
+        markdown: "참조",
+        semantic: {
+          activity: "tableOfContents",
+          node: {
+            kind: "references",
+            entries: [
+              { key: "k1", label: "문항", targetItemId: oldItemId },
+              { key: "k2", label: "모름", targetItemId: unknownTarget },
+            ],
+          },
+          sourceFooter: [{ tag: "div", children: [img] }],
+          sourceQuestionHeader: [{ tag: "p", children: [{ ...img }] }],
+        },
+      },
+    ];
+    const files = new Map<string, Uint8Array>();
+    for (const asset of exchange.assets) {
+      const blob = await pg.query<{ bytes: Uint8Array }>(
+        `SELECT "bytes" FROM "textbook_blob" WHERE "sha256" = $1`,
+        [asset.sha256],
+      );
+      files.set(asset.packagePath, blob.rows[0]!.bytes);
+    }
+    const archive: VerifiedArchive = { exchange, files, validation: {} };
+    const zip = Buffer.from(`PK-${randomUUID()}`);
+    await putUploadChunk(db, colleague, sha256(zip), 0, zip);
+    const upload = await completeUpload(db, colleague, sha256(zip), {
+      byteLength: zip.length,
+    });
+    const result = await importPackage(
+      db,
+      colleague,
+      requestKey(colleague, "import"),
+      { mode: "copy", uploadId: upload.uploadId, expectedSha256: sha256(zip) },
+      async () => archive,
+      loadFigure,
+    );
+    const newItemId = result.idMap.find(
+      (entry) => entry.namespace === "item" && entry.from === oldItemId,
+    )!.to;
+    const newAssetId = result.idMap.find(
+      (entry) => entry.namespace === "asset" && entry.from === oldAssetId,
+    )!.to;
+    const [row] = (
+      await pg.query<{ content: { blocks: Array<Record<string, any>> } }>(
+        `SELECT "content" FROM "textbook_section" WHERE "edition_id" = $1`,
+        [result.editionId],
+      )
+    ).rows;
+    const blocks = row!.content.blocks;
+    for (const index of [0, 1])
+      expect(blocks[index]!.semantic.node).toMatchObject({
+        exampleItemId: newItemId,
+        confirmItemIds: [newItemId, group.node.confirmItemIds[1]],
+      });
+    expect(blocks[1]!.itemId).toBe(newItemId);
+    const meta = blocks[2]!.semantic;
+    expect(meta.node.entries.map((e: any) => e.targetItemId)).toEqual([
+      newItemId,
+      unknownTarget,
+    ]);
+    expect(meta.sourceFooter[0].children[0].attributes.assetId).toBe(
+      newAssetId,
+    );
+    expect(meta.sourceQuestionHeader[0].children[0].attributes.assetId).toBe(
+      newAssetId,
+    );
+    expect(JSON.stringify(row!.content)).not.toContain(oldItemId);
+    expect(newAssetId).not.toBe(oldAssetId);
+    expect(JSON.stringify(row!.content)).not.toContain(oldAssetId);
   });
 });

@@ -16,5 +16,7 @@ export function semanticFragmentAssetIds(
     }
   };
   if (semantic?.node?.kind === "fragments") walk(semantic.node.fragments);
+  if (semantic?.sourceFooter) walk(semantic.sourceFooter);
+  if (semantic?.sourceQuestionHeader) walk(semantic.sourceQuestionHeader);
   return ids;
 }

@@ -8,7 +8,10 @@
  */
 import { describe, expect, it } from "vitest";
 
-import type { TextbookSemantic } from "@/contracts/textbookSemantic.contract";
+import {
+  textbookSemanticSchema,
+  type TextbookSemantic,
+} from "@/contracts/textbookSemantic.contract";
 import { textPrintsFromStructure } from "@/lib/textbook/render/blocks/semantic";
 import { renderBlockHtml } from "@/lib/textbook/render/html";
 import type { RenderBlock } from "@/lib/textbook/render/model";
@@ -51,7 +54,7 @@ const structured: [string, TextbookSemantic][] = [
   [
     "references",
     {
-      activity: "contents",
+      activity: "tableOfContents",
       title: "차례",
       node: {
         kind: "references",
@@ -111,11 +114,67 @@ const unitIntro = {
 describe("본문이 아니라 구조에서 나오는 글 블록", () => {
   it.each(structured)(
     "%s 는 본문을 바꿔도 지면이 같고, 판정도 «구조에서 나온다» 다",
-    (_kind, semantic) => {
+    (_kind, raw) => {
+      // 계약을 통과하는 구조로만 잰다 — 계약 밖의 값으로 초록을 만들지 않는다
+      const semantic = textbookSemanticSchema.parse(raw);
       expect(printsSame(semantic)).toBe(true);
       expect(textPrintsFromStructure(semantic, "basic")).toBe(true);
     },
   );
+
+  it("은행 활동은 설명 활동만 본문을 읽지 않는다 — 자유 백지 · 개념 지도는 본문이 «작성 방법» 으로 찍힌다", () => {
+    const bank = (activity: string, extra: object = {}) =>
+      textbookSemanticSchema.parse({
+        activity,
+        node: {
+          kind: "rows",
+          groupKey: `bank-activity.v1.${activity}.1`,
+          rows: [
+            {
+              rowKey: "row-1",
+              label: "선분",
+              rawText: "두 점을 곧게 이은 선",
+              textFormat: "bank-blank",
+            },
+          ],
+        },
+        ...extra,
+      });
+    const oral = bank("explainActivity");
+    expect(printsSame(oral)).toBe(true);
+    expect(textPrintsFromStructure(oral, "basic")).toBe(true);
+    for (const activity of ["conceptBlankTest", "conceptMap"]) {
+      const reads = bank(activity);
+      expect(printsSame(reads)).toBe(false);
+      expect(textPrintsFromStructure(reads, "basic")).toBe(false);
+    }
+    // 묶음 표지가 없거나 다른 활동의 것이면 은행 활동으로 그리지 않는다 — 본문이 그대로 지면이다
+    for (const groupKey of [undefined, "bank-activity.v1.conceptMap.1"]) {
+      const loose = textbookSemanticSchema.parse({
+        activity: "explainActivity",
+        node: {
+          kind: "rows",
+          ...(groupKey ? { groupKey } : {}),
+          rows: [
+            {
+              rowKey: "row-1",
+              label: "선분",
+              rawText: "두 점을 곧게 이은 선",
+              textFormat: "bank-blank",
+            },
+          ],
+        },
+      });
+      expect(printsSame(loose)).toBe(false);
+      expect(textPrintsFromStructure(loose, "basic")).toBe(false);
+    }
+    // 원본 출처가 붙은 행은 은행 활동이 아니다 — 본문이 그대로 지면이다
+    const sourced = bank("explainActivity", {
+      source: { unit: "1", page: 3, kind: "note", path: "u1/p3" },
+    });
+    expect(printsSame(sourced)).toBe(false);
+    expect(textPrintsFromStructure(sourced, "basic")).toBe(false);
+  });
 
   it("구조가 없는 글은 본문이 곧 지면이고, 판정도 «본문에서 나온다» 다", () => {
     expect(printsSame(undefined)).toBe(false);
