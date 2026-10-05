@@ -98,6 +98,12 @@ class NativeProofFixture(Fixture):
                                         "startFrame": 1600, "onsetFrame": 8000, "quietBeforeFrames": 8000, "leadPeakDbfs": None,
                                         "cachePath": str(cache_path), "cacheSha256": v.sha(cache_path), "energyPath": str(energy_path), "energySha256": v.sha(energy_path)})
         self.clock["decodedInterleavedInt16Sha256"] = "full-pcm"
+        self.asr["segments"][0].update(text="1번입니다. " + instruction, estimatedStartSeconds=.4)
+        self.write(self.asr_path, self.asr)
+        self.source["asrSha256"] = self.row["asrSha256"] = v.sha(self.asr_path)
+        self.alignment["asrSha256"] = self.source["asrSha256"]
+        self.write(self.alignment_path, self.alignment)
+        self.row["mappingEvidence"]["alignment"] = v.reference(self.alignment_path)
         self.refresh()
         self.source_replay = SimpleNamespace(actual=self.actual, energy=self.energy, replay=lambda p: {
             "clipPcmSha256": "clip-pcm", "inputMonoFloat32Sha256": "mono-pcm", "inputSampleCount": 160000})
@@ -199,6 +205,24 @@ class FullNativeAdmissionTests(unittest.TestCase):
         f.source["reconstructed"] = True
         f.row["anchorSegmentIds"] = [2, 3]
         with self.assertRaisesRegex(v.InvalidEvidence, "anchor_outside_original_passage"):
+            f.validate()
+
+    def test_unique_native_number_cannot_bind_an_answer_option_far_from_original_cue(self):
+        f = self.f; f.source["reconstructed"] = True
+        f.asr["segments"][0]["estimatedStartSeconds"] = 1.5
+        with self.assertRaisesRegex(v.InvalidEvidence, "native_original_cue_search_span_mismatch"):
+            f.validate()
+
+    def test_translated_original_heading_blocks_prior_anchor_assignment(self):
+        f = self.f; f.source["reconstructed"] = True
+        f.asr["segments"].insert(1, segment(4, "2. Listen to the conversation and choose a picture.", 2.1, 2.4))
+        with self.assertRaisesRegex(v.InvalidEvidence, "anchor_outside_original_passage"):
+            f.validate()
+
+    def test_missing_original_neighbor_cannot_make_many_questions_share_previous_number(self):
+        f = self.f; f.source["reconstructed"] = True
+        f.asr["segments"][2]["text"] = "3번입니다."
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_neighbor_scope_unresolved_gap"):
             f.validate()
 
     def duplicate_raw_cue(self):

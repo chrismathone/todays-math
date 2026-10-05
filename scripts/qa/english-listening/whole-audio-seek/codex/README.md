@@ -66,3 +66,10 @@ assembler provenance is exposed separately from frozen queue lane ownership.
 existing alignment requirements and literal source-section/opening checks. It
 stops before native dialogue decoding and lists missing openings for bounded
 producer enrichment; its diagnostic results never admit starts.
+
+`recover_queue_identity.py` performs an explicitly attributed mechanical join of
+four blank source identity fields from the frozen inventory into a separate
+immutable reconstructed proposal. It rejects conflicting or stale identities,
+duplicate/missing questions and existing verification, and preserves every
+status, cue, scope, seek timestamp and raw evidence reference. Its changes report
+is diagnostic only; full actual-source replay remains mandatory.

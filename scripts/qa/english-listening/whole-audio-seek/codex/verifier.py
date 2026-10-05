@@ -63,6 +63,10 @@ def queue_provenance(queue, ledger_ref):
             require(isinstance(ref, dict) and isinstance(ref.get("path"), str)
                     and sha(ref["path"]) == ref.get("sha256"), "compiler_upstream_artifact_corruption")
         result.update({name: queue[name] for name in names}, compilerDeclared=True)
+    if "metadataAdapters" in queue:
+        adapters = queue["metadataAdapters"]
+        require(isinstance(adapters, list) and all(isinstance(item, dict) for item in adapters), "invalid_metadata_adapter_provenance")
+        result["metadataAdapters"] = adapters
     return result
 
 

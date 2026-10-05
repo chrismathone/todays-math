@@ -15,13 +15,7 @@ JOINT = r"물음에\s*답하|두\s*물음|두\s*질문"
 
 def boundaries(index):
     """Use immutable array order, retaining unresolved/uncertain cue barriers."""
-    result = []
-    for position, segment in enumerate(index.values()):
-        spoken, _ = a.leading_cue(segment["text"])
-        bare = re.match(r"^\s*\d{1,2}\s*[.,]\s*[가-힣]", segment["text"])
-        if spoken or bare:
-            result.append({"position": position, "segment": segment, "spoken": spoken})
-    return result
+    return a.original_scope_boundaries(index)
 
 
 def passage_mapping(source, question, alignment, index):
@@ -57,6 +51,7 @@ def passage_mapping(source, question, alignment, index):
             v.require(following and following["spoken"] == [spoken[1]]
                       and not v.uncertain(following["segment"]), "shared_instruction_missing_separate_member_cue")
             kind, scope = "shared_instruction_head", [spoken[0]]
+    _, _, _, instruction_context = a.original_scope_context(index, cue["segment"]["id"], scope, kind)
     cue_start = v.segment_bounds(cue["segment"])[0]
     next_start = v.segment_bounds(following["segment"])[0] if following else None
     # Array identity determines membership; reject contradictory raw time order.
@@ -72,6 +67,7 @@ def passage_mapping(source, question, alignment, index):
             "rawEstimatedCueStartSeconds": cue_start,
             "rawEstimatedCueEndSeconds": v.segment_bounds(cue["segment"])[1],
             "rawEstimatedNextCueStartSeconds": next_start,
+            "scopeBoundaryContract": "original_instruction_neighbors_v2", "instructionContext": instruction_context,
             "mappingEvidence": {"alignment": v.reference(source["alignmentPath"]),
                                 "questionId": question["id"], "sourceSegmentIds": ids,
                                 "method": "verified_generation_evidence_segments"}}
@@ -88,6 +84,7 @@ def native_support(container, probe, request_source, source, clock, index):
     v.require(pcm.get("sha256") == clock["decodedInterleavedInt16Sha256"], "native_probe_pcm_hash_mismatch")
     requested = [p for p in request_source.get("probes", []) if p.get("id") == probe.get("id")]
     v.require(len(requested) == 1, "native_probe_missing_unique_request")
+    v.require(requested[0].get("purpose") in (None, probe.get("purpose")), "native_probe_request_purpose_mismatch")
     for key in ("startFrame", "frameCount", "onsetFrame", "quietBeforeFrames"):
         v.require(v.integer(probe.get(key)) and probe[key] == requested[0].get(key), "native_probe_request_mismatch:" + key)
     rate, start, count = pcm["sampleRate"], probe["startFrame"], probe["frameCount"]
@@ -97,6 +94,9 @@ def native_support(container, probe, request_source, source, clock, index):
     raw = a.probe_segments(probe)
     first = next(iter(raw.values()))
     v.require(not v.uncertain(first) and first["estimatedStartSeconds"] <= 2, "native_cue_uncertain_or_not_opening")
+    if probe.get("purpose") in ("noise_floor_contrast_v1", "noise_floor_contrast_1second_v1"):
+        relative_onset = (probe["onsetFrame"] - start) / rate
+        v.require(first["estimatedStartSeconds"] - .5 <= relative_onset <= first["estimatedEndSeconds"], "noise_onset_raw_cue_correspondence_missing")
     spoken, _ = a.leading_cue(first["text"])
     v.require(spoken is not None, "native_spoken_number_missing")
     cue_id = probe.get("asrSegmentId", requested[0].get("asrSegmentId"))
@@ -109,6 +109,9 @@ def native_support(container, probe, request_source, source, clock, index):
         onset = probe["onsetFrame"] / rate
         containing = [s for s in matching if v.segment_bounds(s)[0] <= onset <= v.segment_bounds(s)[1]]
         v.require(len(containing) == 1 and containing[0]["id"] == cue_id, "duplicate_original_cue_not_uniquely_bound_to_native_onset")
+    else:
+        onset = probe["onsetFrame"] / rate
+        v.require(v.segment_bounds(cue)[0] <= onset <= v.segment_bounds(cue)[1], "native_original_cue_search_span_mismatch")
     v.require(probe.get("inputSampleRate") == 16000 and v.integer(probe.get("inputSampleCount"))
               and probe["inputSampleCount"] > 0, "invalid_native_recognizer_input_clock")
     for key in ("clipPcmSha256", "inputMonoFloat32Sha256"):
@@ -225,7 +228,7 @@ def run(inventory_path, clock_path, frozen_path, probes_root, proposal_paths, ou
               "generatedNumberDiffersFromOriginalScope": sum(r.get("generatedNumberDiffersFromOriginalScope", False) for r in records),
               "probeStatus": dict(collections.Counter(r["status"] for r in probe_diagnostics)),
               "proposalCrossCheckStatus": dict(collections.Counter(c["status"] for r in records for c in r["proposalCrossChecks"]))}
-    report = {"schemaVersion": 1, "evidenceContractVersion": 1, "auditKind": "frozen_anchor_original_passage_v1",
+    report = {"schemaVersion": 1, "evidenceContractVersion": 1, "auditKind": "frozen_anchor_original_passage_v2",
               "diagnosticOnly": True, "productionApplicationAuthorized": False, "humanReviewed": False,
               "writesDatabase": False, "writesStorage": False, "writesMedia": False,
               "inputs": inputs, "implementation": implementation, "probeArtifacts": probe_refs,

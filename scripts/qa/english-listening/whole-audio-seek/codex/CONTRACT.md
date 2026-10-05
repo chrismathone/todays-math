@@ -336,3 +336,47 @@ dotted letter initials (`H.J.`, `p.m.`, `U.S.A.`) compare to their undotted form
 Literal source quotes, raw ASR text, hashes and character positions remain
 unchanged. Spaces, names, spelling and numeric values are never repaired.
 Dialogue proof keys expose both normalization and the opening method.
+
+## Explicit incomplete-identity metadata adapter
+
+`recover_queue_identity.py` can derive a separate immutable reconstructed queue
+by filling only blank `sourceAudioSha256`, `playbackSha256`, `asrPath` and
+`asrSha256` from the frozen inventory. It requires the complete current question
+population and all other typed source/current/revision/document identities.
+Populated conflicting identities, stale revisions, wrong or duplicate IDs,
+omissions and existing verified rows reject the join. It never changes a
+question, choice, script, raw evidence, scope, cue, timestamp or row status.
+The original assembler artifact stays unchanged and its compiler provenance is
+retained; `metadataAdapters` explicitly attributes the mechanical join to Codex
+and binds its implementation, original proposal and inventory hashes. The
+complete actual-source verifier must then replay all derived proposals; metadata
+completion provides no cue, timestamp, semantic or admission authority.
+
+## Original reconstructed scope boundaries v2
+
+`original_instruction_neighbors_v2` binds a reconstructed current question to
+its immutable anchor array positions and the selected original heading.
+Literal numbered Korean headings and bare numbered English instruction headings
+starting `Listen`, `Choose`, `Look at` or `Read` remain passage barriers even
+when unresolved or uncertain. Bare headings do not become heard ordinals.
+English answer options such as `Number 1`, `4. Sorry ...` and `5. Are you ...`
+are not promoted to original question headings. A Korean spoken ordinal needs
+literal reliable question-instruction context before the first English utterance;
+an immediate separately announced second member can inherit its explicit paired
+instruction. Generated order and question multiplicity provide no such evidence.
+
+The next literal original heading must begin with the next number after the
+proven scope. A missing ordinal, contradictory number or missing following
+heading is held explicitly, including the terminal interval when no original
+terminal identity is available. This conservative identity proof neither claims
+a complete-dialogue ending nor requires quiet/cut evidence. Playback of every
+admitted start continues to the full original source end.
+
+Every independently measured reconstructed native onset, including a unique
+ordinal, must be contained in the selected immutable full-ASR cue search span.
+Duplicate ordinals still require one uniquely containing span. Raw times stay
+estimates: the rule can hold a legitimate onset outside an inaccurate estimate;
+it never clamps, pads, rewrites the estimate, guesses by proximity or treats an
+answer-option ordinal elsewhere in the source as the question cue. The v2
+mapping audit scans every finished round receipt and is diagnostic until actual
+source/clock/PCM/raw recognition/onset replay succeeds.

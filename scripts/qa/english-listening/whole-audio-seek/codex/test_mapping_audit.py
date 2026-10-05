@@ -64,14 +64,54 @@ class FrozenMappingTests(unittest.TestCase):
 
     def test_true_joint_scope_requires_literal_shared_instruction(self):
         self.index[10]["text"] = "2번과 3번 다음을 듣고 물음에 답하시오."
+        self.index[70]["text"] = "4번 다음을 듣고"
         proof = self.mapping()
         self.assertEqual(proof["scopeQuestionNumbers"], [2, 3])
         self.assertEqual(proof["kind"], "shared_passage")
         self.index[10]["text"] = "2번과 3번 다음을 듣고 적절한 것을 고르시오."
+        self.index[70]["text"] = "3번 다음을 듣고"
         self.assertEqual(self.mapping()["scopeQuestionNumbers"], [2])
         self.assertEqual(self.mapping()["kind"], "shared_instruction_head")
         self.index[70]["text"] = "4번 다음을 듣고"
         with self.assertRaisesRegex(v.InvalidEvidence, "missing_separate_member"):
+            self.mapping()
+
+    def test_translated_heading_is_an_unresolved_barrier_not_a_spoken_ordinal(self):
+        self.index[10]["text"] = "2. Choose the most appropriate conversation for the next picture."
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_cue_number_unresolved"):
+            self.mapping()
+
+    def test_answer_options_are_not_promoted_to_original_headings(self):
+        for text in ("Number 1.", "4. Sorry, but dogs are not allowed here.", "5. Are you ready to order now?"):
+            self.assertEqual(m.boundaries(v.index_segments({"segments": [segment(1, text, 1, 2)]}, 10)), [])
+
+    def test_missing_neighbor_number_is_not_a_broad_passage(self):
+        self.index[70]["text"] = "16번 다음을 듣고"
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_neighbor_scope_unresolved_gap"):
+            self.mapping()
+
+    def test_missing_next_heading_is_explicitly_held_without_invented_terminal_number(self):
+        del self.index[70]
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_next_heading_unresolved"):
+            self.mapping()
+
+    def test_native_answer_ordinal_requires_pre_dialogue_question_instruction(self):
+        self.index[10]["text"] = "2번"
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_question_instruction_context_missing"):
+            self.mapping()
+
+    def test_unnumbered_instruction_immediately_after_cue_is_same_question_context(self):
+        self.index = v.index_segments({"segments": [segment(10, "2번", 10, 11), segment(11, "다음을 듣고 고르시오.", 11, 12),
+                                                   segment(30, "Welcome to the museum.", 14, 16), segment(70, "3번", 25, 28)]}, 100)
+        self.assertEqual(self.mapping()["instructionContext"]["segmentIds"], [10, 11])
+
+    def test_separate_member_can_inherit_only_immediately_announced_pair_instruction(self):
+        self.index = v.index_segments({"segments": [segment(1, "1번과 2번 다음 두 대화를 듣고 고르시오.", 1, 2),
+                                                   segment(2, "First original passage is here.", 3, 4), segment(10, "2번", 10, 12),
+                                                   segment(30, "Welcome to the museum.", 14, 16), segment(70, "3번", 25, 28)]}, 100)
+        self.assertEqual(self.mapping()["instructionContext"]["method"], "literal_separate_member_instruction_v1")
+        self.index[1]["text"] = "1번 다음을 듣고 고르시오."
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_question_instruction_context_missing"):
             self.mapping()
 
     def test_many_current_questions_can_share_original_single_scope_same_proof(self):
@@ -108,6 +148,13 @@ class NativeStructuralSupportTests(FrozenMappingTests):
         self.assertTrue(result["independentSourceDecodeRequired"])
         self.assertEqual(result["cueSegmentId"], 10)
 
+    def test_noise_onset_must_correspond_to_opening_raw_cue_estimate(self):
+        data = self.native(); data[1]["purpose"] = "noise_floor_contrast_v1"
+        self.assertEqual(self.support(data)["cueSegmentId"], 10)
+        data[1]["segments"][0]["localStartSeconds"] = 1.5
+        with self.assertRaisesRegex(v.InvalidEvidence, "noise_onset_raw_cue_correspondence_missing"):
+            self.support(data)
+
     def test_wrong_requested_original_cue_is_rejected(self):
         data = self.native(); data[1]["asrSegmentId"] = 70
         with self.assertRaisesRegex(v.InvalidEvidence, "native_probe_request_cue_identity_mismatch"):
@@ -133,6 +180,11 @@ class NativeStructuralSupportTests(FrozenMappingTests):
         self.index[70]["estimatedStartSeconds"] = 9
         self.index[70]["estimatedEndSeconds"] = 13
         with self.assertRaisesRegex(v.InvalidEvidence, "duplicate_original_cue_not_uniquely"):
+            self.support(self.native())
+
+    def test_even_unique_ordinal_requires_native_original_cue_search_span(self):
+        self.index[10]["estimatedStartSeconds"] = 11
+        with self.assertRaisesRegex(v.InvalidEvidence, "native_original_cue_search_span_mismatch"):
             self.support(self.native())
 
 

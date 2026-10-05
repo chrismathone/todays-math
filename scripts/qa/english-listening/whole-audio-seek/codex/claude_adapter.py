@@ -44,6 +44,64 @@ def compact(text):
     return re.sub(r"[^0-9a-z가-힣]", "", unicodedata.normalize("NFKC", str(text)).lower())
 
 
+ORIGINAL_ENGLISH_INSTRUCTION = r"(?:listen\b|choose\b|look\s+at\b|read\b)"
+
+
+def original_scope_boundaries(index):
+    """Retain literal unresolved headings; answer-option numbers are not headings."""
+    result = []
+    for position, segment in enumerate(index.values()):
+        spoken, _ = leading_cue(segment["text"])
+        bare = re.match(r"^\s*(\d{1,2})\s*[.,]\s*(?:[가-힣]|" + ORIGINAL_ENGLISH_INSTRUCTION + r")", segment["text"], re.I)
+        if spoken or bare:
+            result.append({"position": position, "segment": segment, "spoken": spoken,
+                           "literalHeadingNumbers": spoken or [int(bare[1])],
+                           "headingForm": "spoken_korean" if spoken else "unresolved_bare_instruction"})
+    return result
+
+
+def original_instruction_context(index, boundaries, ci):
+    """Require a question instruction before the first actual English utterance."""
+    cue = boundaries[ci]
+    stop = boundaries[ci + 1]["position"] if ci + 1 < len(boundaries) else len(index)
+    selected = []
+    for s in list(index.values())[cue["position"]:stop]:
+        text = s["text"]
+        instruction = bool(re.search(r"듣고|고르시오|답하시오|선택하시오", text)
+                           or re.match(r"^\s*(?:\d{1,2}\s*[.,]\s*)?" + ORIGINAL_ENGLISH_INSTRUCTION, text, re.I))
+        if instruction:
+            v.require(not v.uncertain(s), "original_question_instruction_uncertain")
+            return {"method": "literal_pre_dialogue_instruction_v1", "segmentIds": [x["id"] for x in selected] + [s["id"]]}
+        if len(english_words(text)) >= 4 and len(re.findall(r"[가-힣]", text)) < 8:
+            break
+        selected.append(s)
+    # An explicitly announced two-dialogue instruction can apply to its
+    # immediately separate second member, never to an arbitrary nearby number.
+    if ci:
+        previous = boundaries[ci - 1]
+        pair = previous["spoken"]
+        if pair and len(pair) == 2 and pair[1] == pair[0] + 1 and cue["spoken"] == [pair[1]]:
+            proof = original_instruction_context(index, boundaries, ci - 1)
+            v.require(not re.search(r"물음에\s*답하|두\s*물음|두\s*질문", previous["segment"]["text"]), "shared_scope_contains_separate_member_cue")
+            return {"method": "literal_separate_member_instruction_v1", "headSegmentId": previous["segment"]["id"], **{"segmentIds": proof["segmentIds"]}}
+    raise v.InvalidEvidence("original_question_instruction_context_missing")
+
+
+def original_scope_context(index, cue_id, scope, kind):
+    boundaries = original_scope_boundaries(index)
+    matches = [i for i, c in enumerate(boundaries) if c["segment"]["id"] == cue_id]
+    v.require(len(matches) == 1, "original_cue_not_heading")
+    ci = matches[0]
+    instruction = original_instruction_context(index, boundaries, ci)
+    following = boundaries[ci + 1] if ci + 1 < len(boundaries) else None
+    # Missing original headings cannot license broad many-to-one assignment.
+    # This is a scope/identity boundary, not dialogue-end or quiet-cut proof.
+    v.require(following is not None, "original_next_heading_unresolved")
+    expected = scope[-1] + 1
+    v.require(following["literalHeadingNumbers"][0] == expected, "original_neighbor_scope_unresolved_gap")
+    return boundaries, ci, following, instruction
+
+
 def coverage(official, raw):
     want, have = compact(official), compact(raw)
     a = collections.Counter(want[i:i+2] for i in range(len(want)-1))
@@ -458,9 +516,20 @@ def reconstructed_scope(row, source, question, spoken, full_index):
         # unique exact containment of the independently measured native onset
         # disambiguates duplicated raw ordinals; distance never does.
         v.require(len(containing) == 1 and containing[0]["id"] == cues[0]["id"], "reconstructed_duplicate_cue_not_uniquely_bound_to_native_onset")
-    next_start = min((v.segment_bounds(s)[0] for s, numbers in numbered if numbers and v.segment_bounds(s)[0] > cue_start), default=math.inf)
-    v.require(all(cue_start <= v.segment_bounds(s)[0] < next_start for s in anchors), "anchor_outside_original_passage")
+    else:
+        native = row["nativeEvidence"]
+        onset = native["onsetFrame"] / native["sampleRate"]
+        v.require(v.segment_bounds(cues[0])[0] <= onset <= v.segment_bounds(cues[0])[1], "reconstructed_native_original_cue_search_span_mismatch")
     kind = row.get("kind")
+    boundaries = original_scope_boundaries(full_index)
+    selected_boundary = next((i for i, c in enumerate(boundaries) if c["segment"]["id"] == cues[0]["id"]), None)
+    v.require(selected_boundary is not None, "original_cue_not_heading")
+    following_boundary = boundaries[selected_boundary + 1] if selected_boundary + 1 < len(boundaries) else None
+    next_start = v.segment_bounds(following_boundary["segment"])[0] if following_boundary else math.inf
+    positions = {sid: i for i, sid in enumerate(full_index)}
+    stop = following_boundary["position"] if following_boundary else len(full_index)
+    v.require(all(boundaries[selected_boundary]["position"] <= positions[s["id"]] < stop
+                  and cue_start <= v.segment_bounds(s)[0] < next_start for s in anchors), "anchor_outside_original_passage")
     if kind in ("single", "shared_instruction_member"):
         v.require(len(spoken) == 1 and spoken == scope, "single_original_scope_mismatch")
     elif kind == "shared_passage":
@@ -475,15 +544,18 @@ def reconstructed_scope(row, source, question, spoken, full_index):
         v.require(not re.search(r"물음에\s*답하|두\s*물음|두\s*질문", " ".join(s["text"] for s in cues)), "instruction_incorrectly_split_from_shared_passage")
     else:
         raise v.InvalidEvidence("unknown_original_question_kind")
+    _, _, neighbor, instruction = original_scope_context(full_index, cues[0]["id"], scope, kind)
     # The frozen generation evidence, current question ID and source hash remain
     # mandatory. Generated ordinal equality contributes no evidence.
     v.validate_mapping(row, source, question, full_index)
-    return {"method": "unique_native_onset_containment" if len(matching) > 1 else "unique_raw_ordinal",
+    return {"method": "unique_native_onset_containment" if len(matching) > 1 else "native_onset_search_span_v2",
             "selectedSegmentId": cues[0]["id"], "matchingSegmentIds": [s["id"] for s in matching],
             "selectedEstimatedStartSeconds": v.segment_bounds(cues[0])[0],
             "selectedEstimatedEndSeconds": v.segment_bounds(cues[0])[1],
             "nativeOnsetFrame": row["nativeEvidence"]["onsetFrame"],
-            "nativeSampleRate": row["nativeEvidence"]["sampleRate"]}
+            "nativeSampleRate": row["nativeEvidence"]["sampleRate"],
+            "scopeBoundaryContract": "original_instruction_neighbors_v2", "instructionContext": instruction,
+            "nextHeadingSegmentId": neighbor["segment"]["id"], "nextHeadingForm": neighbor["headingForm"]}
 
 
 def official_asr_references(row, spoken, full_index):

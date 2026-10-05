@@ -37,6 +37,13 @@ class NoiseFloorTests(unittest.TestCase):
         cache["energy"]["sha256"] = native["energySha256"]
         f.write(native["cachePath"], cache)
         native["cacheSha256"] = v.sha(native["cachePath"])
+        f.asr["segments"][0].update(estimatedStartSeconds=2.3, estimatedEndSeconds=3.)
+        f.asr["segments"][1].update(estimatedStartSeconds=3.5, estimatedEndSeconds=4.)
+        f.write(f.asr_path, f.asr)
+        f.source["asrSha256"] = f.row["asrSha256"] = v.sha(f.asr_path)
+        f.alignment["asrSha256"] = f.source["asrSha256"]
+        f.write(f.alignment_path, f.alignment)
+        f.row["mappingEvidence"]["alignment"] = v.reference(f.alignment_path)
         f.refresh()
 
     def tearDown(self):
