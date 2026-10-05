@@ -148,8 +148,6 @@ export function assembleRow({
         officialFirstWords: section.words.slice(0, FIRST_DIALOGUE_WORDS),
       };
       identity.push("official_first_dialogue_at_start");
-      if (!pick.dialogue.quote)
-        notes.push("first_utterance_not_heard_as_exact_quote");
     }
     if (grade === "ordinal_only") {
       // The frozen prompt of an image-only question is "original paper
@@ -171,6 +169,8 @@ export function assembleRow({
       notes.push("official_instruction_matched_on_hangul_only");
       if (!supported) notes.push("hangul_only_without_first_dialogue_support");
     }
+    const opening = pick.dialogue?.quote ?? null;
+    const single = Boolean(opening) && opening.quotes.length === 1;
     if (section)
       scriptEvidence = {
         source: "frozen live snapshot group transcript text",
@@ -182,11 +182,18 @@ export function assembleRow({
         instructionProbeSegmentIds:
           pick.grounding === "instruction" ? probeEvidence.segmentIds : null,
         firstUtteranceStartCharacter: section.firstUtterance?.start ?? null,
-        firstDialogueQuote: pick.dialogue?.quote?.quote ?? null,
-        firstDialogueStartCharacter:
-          pick.dialogue?.quote?.startCharacter ?? null,
-        firstDialogueWords: pick.dialogue?.quote?.words ?? null,
-        dialogueProbeSegmentIds: pick.dialogue?.quote?.segmentIds ?? null,
+        // One utterance of four words or more is quoted alone; a shorter first
+        // utterance ("Hello?") is quoted whole together with what follows it.
+        firstDialogueQuote: single ? opening.quotes[0].text : null,
+        firstDialogueStartCharacter: single
+          ? opening.quotes[0].startCharacter
+          : null,
+        firstDialogueOpeningEvidence:
+          opening && !single
+            ? { method: "exact_original_opening_v1", quotes: opening.quotes }
+            : null,
+        firstDialogueWords: opening?.words ?? null,
+        dialogueProbeSegmentIds: opening?.segmentIds ?? null,
       };
   } else if (row.status === "existing_verified") {
     const exact = (row.seekStartMs * pcm.sampleRate) / 1000;

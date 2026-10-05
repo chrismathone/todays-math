@@ -126,20 +126,36 @@ export const MINIMUM_QUOTE_WORDS = 4;
 const WORD = /[A-Za-z0-9]+(?:[’'][A-Za-z]+)*/g;
 
 /**
- * The longest exact prefix of the official first utterance (4 to 8 words) that
- * a probe heard word for word, in order, in its certain segments.
- * `utterance` is { start, text } from the official script. Returns
- * { quote, startCharacter, words, segmentIds } or null.
+ * The longest exact opening of the official dialogue (4 to 8 words) that a
+ * probe heard word for word, in order, in its certain segments. The opening
+ * starts at the first actual utterance; when that utterance is shorter than
+ * four words ("Hello?") it continues into the next one. Every utterance before
+ * the last is quoted whole and the last as an exact prefix.
+ *
+ * `utterances` are { start, end, text } from the official script. Returns
+ * { quotes: [{ text, startCharacter, endCharacter }], words, segmentIds } or
+ * null. A stage direction ends the opening: nothing printed in brackets is
+ * spoken text.
  */
-export function heardFirstUtterance(utterance, probe) {
-  if (!utterance) return null;
+export function heardOpening(utterances, probe) {
+  if (!utterances?.length) return null;
   const tokens = [];
-  const stop = utterance.text.indexOf("[");
-  for (const match of utterance.text.matchAll(WORD)) {
-    if (stop >= 0 && match.index > stop) break;
-    for (const word of englishWords(match[0]))
-      tokens.push({ word, end: match.index + match[0].length });
-    if (tokens.length >= QUOTE_WORDS) break;
+  // A first utterance of four words or more is quoted alone; the next one is
+  // taken in only while the opening is still shorter than a quote.
+  for (
+    let u = 0;
+    u < utterances.length && tokens.length < MINIMUM_QUOTE_WORDS;
+    u++
+  ) {
+    const text = utterances[u].text;
+    const direction = text.indexOf("[");
+    for (const match of text.matchAll(WORD)) {
+      if (direction >= 0 && match.index > direction) break;
+      for (const word of englishWords(match[0]))
+        tokens.push({ word, utterance: u, end: match.index + match[0].length });
+      if (tokens.length >= QUOTE_WORDS) break;
+    }
+    if (direction >= 0) break;
   }
   const heard = [];
   for (const segment of probe.segments) {
@@ -157,9 +173,22 @@ export function heardFirstUtterance(utterance, probe) {
       for (let i = 0; i < count && same; i++)
         same = heard[at + i].word === tokens[i].word;
       if (!same) continue;
+      const last = tokens[count - 1];
+      const quotes = [];
+      for (let u = 0; u <= last.utterance; u++) {
+        const { start, end, text } = utterances[u];
+        quotes.push(
+          u < last.utterance
+            ? { text, startCharacter: start, endCharacter: end }
+            : {
+                text: text.slice(0, last.end),
+                startCharacter: start,
+                endCharacter: start + last.end,
+              },
+        );
+      }
       return {
-        quote: utterance.text.slice(0, tokens[count - 1].end),
-        startCharacter: utterance.start,
+        quotes,
         words: count,
         segmentIds: [
           ...new Set(heard.slice(at, at + count).map((item) => item.id)),
@@ -167,6 +196,19 @@ export function heardFirstUtterance(utterance, probe) {
       };
     }
   return null;
+}
+
+/** The same for one utterance alone: { quote, startCharacter, words, segmentIds }. */
+export function heardFirstUtterance(utterance, probe) {
+  const found = utterance ? heardOpening([utterance], probe) : null;
+  return found
+    ? {
+        quote: found.quotes[0].text,
+        startCharacter: found.quotes[0].startCharacter,
+        words: found.words,
+        segmentIds: found.segmentIds,
+      }
+    : null;
 }
 
 const sameNumbers = (a, b) =>

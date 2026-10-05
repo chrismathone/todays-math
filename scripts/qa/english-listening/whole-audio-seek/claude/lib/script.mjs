@@ -134,16 +134,17 @@ function exactSpan(transcript, from, to) {
 }
 
 /**
- * The first utterance actually spoken in [from, to): the exact transcript text
- * after the first speaker label that carries English words. An answer blank
- * printed before the dialogue has no words and is skipped.
+ * The first utterances actually spoken in [from, to), in order: the exact
+ * transcript text after each speaker label that carries English words. An
+ * answer blank printed before the dialogue has no words and is skipped.
  */
-function firstSpokenUtterance(transcript, from, to) {
+function spokenUtterances(transcript, from, to, limit = 4) {
   const labels = [];
   ANY_SPEAKER.lastIndex = from;
   for (let match; (match = ANY_SPEAKER.exec(transcript)) && match.index < to;)
     labels.push({ at: match.index, end: match.index + match[0].length });
-  for (let i = 0; i < labels.length; i++) {
+  const found = [];
+  for (let i = 0; i < labels.length && found.length < limit; i++) {
     const stop = Math.min(labels[i + 1]?.at ?? to, to);
     let raw = transcript.slice(labels[i].end, stop);
     const furniture = raw.indexOf("ⓒ");
@@ -152,10 +153,18 @@ function firstSpokenUtterance(transcript, from, to) {
     const start = labels[i].end + lead;
     const text = raw.slice(lead).trimEnd();
     const words = englishWords(text.replace(DIRECTION, " "));
-    if (words.length) return { start, end: start + text.length, text, words };
+    if (words.length)
+      found.push({ start, end: start + text.length, text, words });
+    // Page furniture inside the dialogue ends what can be quoted in order.
+    if (furniture >= 0) break;
   }
-  return null;
+  return found;
 }
+
+const opening = (utterances) => ({
+  utterances,
+  firstUtterance: utterances[0] ?? null,
+});
 
 /** First index at or after `from` where `pattern` matches, or `fallback`. */
 function nextMatch(text, pattern, from, fallback) {
@@ -214,11 +223,7 @@ export function scriptSections(transcript, plans, prompts) {
           speechAt > 0
             ? exactSpan(transcript, head.end, head.end + speechAt)
             : null,
-        firstUtterance: firstSpokenUtterance(
-          transcript,
-          head.end,
-          firstMarker.at,
-        ),
+        ...opening(spokenUtterances(transcript, head.end, firstMarker.at)),
       });
       return;
     }
@@ -247,7 +252,7 @@ export function scriptSections(transcript, plans, prompts) {
         : dialogueAt > 0
           ? exactSpan(transcript, marker.end, marker.end + dialogueAt)
           : null,
-      firstUtterance: firstSpokenUtterance(transcript, marker.end, end),
+      ...opening(spokenUtterances(transcript, marker.end, end)),
       words: spokenEnglish(body),
       charStart: marker.end,
       charEnd: end,

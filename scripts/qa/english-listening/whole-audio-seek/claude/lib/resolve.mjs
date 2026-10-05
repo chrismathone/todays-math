@@ -9,10 +9,9 @@
  */
 import { dbfsOfEnergy, energyAtDbfs, quietBefore } from "./activity.mjs";
 import {
-  MINIMUM_FIRST_DIALOGUE_SHARE,
   assertProbeShape,
   firstDialogueShare,
-  heardFirstUtterance,
+  heardOpening,
   judgeProbe,
   readProbe,
 } from "./evidence.mjs";
@@ -144,11 +143,12 @@ export function proveAtStart(
       if (!DIALOGUE_PURPOSES.has(item.probe.purpose) || item.probe.overflow)
         continue;
       const share = firstDialogueShare(section.words, item.probe);
-      const quote = heardFirstUtterance(section.firstUtterance, item.probe);
+      // Only an exact opening of the official dialogue counts as heard; the
+      // word-trigram share is recorded but decides nothing.
+      const quote = heardOpening(section.utterances, item.probe);
       if (dialogueShare === null || share > dialogueShare)
         dialogueShare = share;
-      const heard = share >= MINIMUM_FIRST_DIALOGUE_SHARE || Boolean(quote);
-      if (heard && (!dialogue || share > dialogue.share))
+      if (quote && (!dialogue || quote.words > dialogue.quote.words))
         dialogue = { item, share, quote };
     }
   let proof = null;

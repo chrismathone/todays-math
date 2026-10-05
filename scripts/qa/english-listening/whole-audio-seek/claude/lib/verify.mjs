@@ -309,6 +309,8 @@ export function verifyMarks(marks, env) {
           : Number.isInteger(start) &&
             transcriptText.slice(start, start + quote.length) === quote;
       const heard = proof.dialogue?.quote ?? null;
+      const single = Boolean(heard) && heard.quotes.length === 1;
+      const chain = script.firstDialogueOpeningEvidence ?? null;
       if (
         script.transcriptSha256 !== transcriptSha256 ||
         script.sectionStartCharacter !== section.charStart ||
@@ -316,7 +318,19 @@ export function verifyMarks(marks, env) {
         !exact(script.instructionQuote, script.instructionStartCharacter) ||
         script.instructionQuote !== (section.instruction?.text ?? null) ||
         !exact(script.firstDialogueQuote, script.firstDialogueStartCharacter) ||
-        script.firstDialogueQuote !== (heard?.quote ?? null) ||
+        script.firstDialogueQuote !== (single ? heard.quotes[0].text : null) ||
+        // A chain of whole utterances and a last exact prefix, as recomputed.
+        !same(
+          chain,
+          heard && !single
+            ? { method: "exact_original_opening_v1", quotes: heard.quotes }
+            : null,
+        ) ||
+        (chain?.quotes ?? []).some(
+          (quote) =>
+            !exact(quote.text, quote.startCharacter) ||
+            quote.endCharacter !== quote.startCharacter + quote.text.length,
+        ) ||
         !same(script.dialogueProbeSegmentIds, heard?.segmentIds ?? null) ||
         (script.firstDialogueQuote !== null &&
           script.firstDialogueStartCharacter !== section.firstUtterance.start)
