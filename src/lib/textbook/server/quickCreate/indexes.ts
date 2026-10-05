@@ -30,23 +30,35 @@ export async function appendIndexes(ctx: QuickCreateAssembly): Promise<void> {
   if (components.conceptIndex) {
     const entries: References = units.flatMap((unit) => {
       const concept = concepts.find((entry) => entry.unitId === unit.id);
-      const owner =
+      const definitionOwner =
         concept &&
-        sections.find(
-          (entry) =>
-            entry.sectionKey === concept.sectionKey ||
-            entry.blocks.some(
-              (block) =>
-                (block.kind === "concept" || block.kind === "concept-recall") &&
-                block.conceptKey === concept.conceptKey,
-            ),
+        sections.find((section) =>
+          section.blocks.some(
+            (block) =>
+              block.kind === "concept" &&
+              block.conceptKey === concept.conceptKey,
+          ),
         );
+      const owner =
+        definitionOwner ??
+        (concept &&
+          sections.find(
+            (entry) =>
+              entry.sectionKey === concept.sectionKey ||
+              entry.blocks.some(
+                (block) =>
+                  (block.kind === "concept" ||
+                    block.kind === "concept-recall") &&
+                  block.conceptKey === concept.conceptKey,
+              ),
+          ));
       return coreConceptsForSection(keyOf(unit)).map((entry) => ({
         key: entry.id,
         label: `${entry.term} · ${unit.section}`,
         ...(owner
           ? { targetUnitKey: owner.unitKey, targetSectionKey: owner.sectionKey }
           : { pageLabel: "—" }),
+        ...(definitionOwner ? { targetConceptId: entry.id } : {}),
       }));
     });
     addSection(

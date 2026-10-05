@@ -9,9 +9,14 @@ import { textbookFixture } from "../helpers/textbookFixture";
 import type { TextbookPage } from "@/lib/textbook/layout/paginate";
 
 describe("fixed page references", () => {
-  it.each([true, false])(
-    "prefers the first printed concept definition and falls back when it is absent (definition printed: %s)",
-    (definitionPrinted) => {
+  it.each([
+    [true, true],
+    [true, false],
+    [false, true],
+    [false, false],
+  ])(
+    "resolves concept definitions for explicit and saved section targets (definition printed: %s, concept target: %s)",
+    (definitionPrinted, explicitTarget) => {
       const exchange = textbookFixture(1, 0);
       const section = exchange.units[0].sections[0];
       section.blocks = [
@@ -24,7 +29,16 @@ describe("fixed page references", () => {
             node: {
               kind: "references",
               entries: [
-                { key: "concept", label: "개념", targetConceptId: "c1" },
+                {
+                  key: "c1",
+                  label: "개념",
+                  ...(explicitTarget
+                    ? { targetConceptId: "c1" }
+                    : {
+                        targetUnitKey: exchange.units[0].unitKey,
+                        targetSectionKey: section.sectionKey,
+                      }),
+                },
               ],
             },
           },

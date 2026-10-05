@@ -22,6 +22,7 @@ export function withTextbookPageReferences(
   const items = new Map<string, string>();
   const concepts = new Map<string, string>();
   const conceptDefinitions = new Map<string, string>();
+  const conceptUnits = new Map<string, Set<string>>();
   const blocks = new Map(
     model.sections.flatMap((section) =>
       section.blocks.map((block) => [block.id, block] as const),
@@ -40,6 +41,9 @@ export function withTextbookPageReferences(
           sections.set(ownerKey, page.printedPageLabel);
         if (block.semantic?.node?.kind === "concept") {
           const conceptId = block.semantic.node.conceptId;
+          const owners = conceptUnits.get(conceptId) ?? new Set<string>();
+          owners.add(block.unitKey);
+          conceptUnits.set(conceptId, owners);
           if (!concepts.has(conceptId))
             concepts.set(conceptId, page.printedPageLabel);
           // Review and explanation activities can precede the actual concept card.
@@ -69,6 +73,17 @@ export function withTextbookPageReferences(
             node: {
               ...semantic.node,
               entries: semantic.node.entries.map((entry) => {
+                // Earlier automatic manuscripts saved a section pointer, but their
+                // concept-index entry key still identifies the printed concept.
+                const conceptId =
+                  entry.targetConceptId ??
+                  (semantic.activity === "conceptIndex" &&
+                  entry.targetSectionKey &&
+                  concepts.has(entry.key) &&
+                  (!entry.targetUnitKey ||
+                    conceptUnits.get(entry.key)?.has(entry.targetUnitKey))
+                    ? entry.key
+                    : undefined);
                 const sectionMatches =
                   entry.targetSectionKey && !entry.targetUnitKey
                     ? [...sections].filter(([key]) =>
@@ -82,9 +97,9 @@ export function withTextbookPageReferences(
                   throw new Error(`PAGE_REFERENCE_AMBIGUOUS: ${entry.key}`);
                 const pageLabel = entry.targetItemId
                   ? items.get(entry.targetItemId)
-                  : entry.targetConceptId
-                    ? (conceptDefinitions.get(entry.targetConceptId) ??
-                      concepts.get(entry.targetConceptId))
+                  : conceptId
+                    ? (conceptDefinitions.get(conceptId) ??
+                      concepts.get(conceptId))
                     : entry.targetSectionKey
                       ? (sections.get(
                           `${entry.targetUnitKey ?? block.unitKey}:${entry.targetSectionKey}`,

@@ -719,6 +719,30 @@ describe("quick create component composition", () => {
         visualDeps,
       );
       await assertPaginates(result);
+      const exchange = await assembleExchange(db, result.book.draftEditionId!, {
+        exportedAt: new Date().toISOString(),
+      });
+      const indexEntries = exchange.units
+        .flatMap((unit) => unit.sections)
+        .flatMap((section) => section.blocks)
+        .filter((block) => block.semantic?.activity === "conceptIndex")
+        .flatMap((block) =>
+          block.semantic?.node?.kind === "references"
+            ? block.semantic.node.entries
+            : [],
+        );
+      expect(indexEntries.length).toBeGreaterThan(0);
+      for (const entry of indexEntries) {
+        expect(entry.targetConceptId).toBe(entry.key);
+        const owner = exchange.units
+          .find((unit) => unit.unitKey === entry.targetUnitKey)
+          ?.sections.find(
+            (section) => section.sectionKey === entry.targetSectionKey,
+          );
+        expect(owner?.blocks.some((block) => block.kind === "concept")).toBe(
+          true,
+        );
+      }
       expect(result.problemCount).toBe(24);
       expect(
         result.warnings.filter((warning) => warning.includes("요청한 최대")),
