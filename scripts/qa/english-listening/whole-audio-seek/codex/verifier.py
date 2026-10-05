@@ -372,6 +372,20 @@ class NativeReplay:
         return self.cache[key]
 
 
+def shared_native_key(row):
+    proof = row["proofKey"]
+    if row.get("evidenceAdapter") != "native-localized-generation-v2":
+        return proof
+    # Every generated question has its own separately verified quote mapping.
+    # A common passage key retains all common physical head/neighbor identity.
+    native = row.get("nativeEvidence", {})
+    return {"adapter": proof.get("adapter"), "sourceAudioSha256": row.get("sourceAudioSha256"),
+            "scopeQuestionNumbers": row.get("scopeQuestionNumbers"), "cueSpokenNumbers": row.get("cueSpokenNumbers"),
+            "nativeClock": {key: native.get(key) for key in ("sampleRate", "channels", "frameCount", "pcmSha256", "startFrame", "onsetFrame")},
+            "probe": proof.get("probe"), "nextProbe": proof.get("nextProbe"),
+            "nextOnsetFrame": proof.get("nextOnsetFrame"), "nextSpokenNumbers": proof.get("nextSpokenNumbers")}
+
+
 def check_order(rows):
     """Rows may be shuffled by generated index. Sort by actual original ordinals."""
     errors = collections.defaultdict(list)
@@ -399,7 +413,7 @@ def check_order(rows):
                 for r in group:
                     errors[r["questionId"]].append("duplicate_single_question_passage")
             if len(group) > 1:
-                native_keys = {json.dumps(r["proofKey"], sort_keys=True) for r in group}
+                native_keys = {json.dumps(shared_native_key(r), sort_keys=True) for r in group}
                 if len(native_keys) != 1:
                     for r in group:
                         errors[r["questionId"]].append("shared_passage_evidence_mismatch")
@@ -546,6 +560,48 @@ def validate_frozen_source(source, manifest):
         require(sha(ref["path"]) == ref.get("sha256"), "frozen_input_changed")
 
 
+def reconstructed_admission_origin(row):
+    """An additive grade inherits only its own complete, hash-bound proof shape."""
+    if row.get("evidenceGrade") == "reconstructed_numbered_probe":
+        return bool(row.get("scopeQuestionNumbers")) and integer(row.get("nativeEvidence", {}).get("onsetFrame"))
+    if row.get("evidenceGrade") != "localized_generation_native":
+        return False
+    from localized_adapter import ADAPTER
+    proof = row.get("proofKey", {})
+    mapping = proof.get("localizedMapping", {})
+    claim = row.get("localizedMappingEvidence", {})
+    if not (row.get("evidenceAdapter") == proof.get("adapter") == ADAPTER
+            and row.get("scopeQuestionNumbers") and integer(row.get("nativeEvidence", {}).get("onsetFrame"))
+            and proof.get("onsetFrame") == row["nativeEvidence"]["onsetFrame"]
+            and all(proof.get(key) == row.get(key) for key in ("scopeQuestionNumbers", "cueNumber", "cueSpokenNumbers", "kind"))
+            and integer(proof.get("nextOnsetFrame")) and proof["nextOnsetFrame"] > proof["onsetFrame"]
+            and proof.get("providerTimingAuthority") is False
+            and mapping.get("method") == claim.get("method") == "exact_generation_anchor_native_v2"
+            and mapping.get("questionId") == claim.get("questionId") == row.get("questionId")
+            and mapping.get("sourceSegmentIds") == claim.get("sourceSegmentIds")
+            and mapping.get("sourceSegmentIds") and mapping.get("quotes")
+            and mapping.get("alignment") == claim.get("alignment") == row.get("mappingEvidence", {}).get("alignment")
+            and proof.get("probe") == row.get("probeEvidence") and
+            proof.get("probeCatalog") == row.get("probeCatalog") and
+            proof.get("sharedHeadProbe") == row.get("sharedHeadProbeEvidence") and
+            proof.get("nextProbe") == (row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"))):
+        return False
+    refs = proof.get("boundReferences")
+    if not isinstance(refs, list) or not refs:
+        return False
+    required = [claim.get("alignment"), claim.get("prepared"), row.get("probeEvidence"),
+                row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"), row.get("dialogueProbeEvidence"), row.get("probeCatalog")]
+    if row.get("kind") == "shared_instruction_member":
+        required.append(row.get("sharedHeadProbeEvidence"))
+    for ref in required:
+        if not isinstance(ref, dict) or not any(r.get("sha256") == ref.get("sha256") and
+                Path(r.get("path", "")).resolve() == Path(ref.get("path", "")).resolve() for r in refs):
+            return False
+    for ref in refs:
+        require(sha(ref["path"]) == ref["sha256"], "ancestor_localized_nested_evidence_corruption")
+    return True
+
+
 def verified_ancestor_rows(inventory, clocks, snapshots):
     """Preserve an exact previous adoption while retaining original cue scope."""
     claim = inventory.get("verifiedAncestor")
@@ -598,8 +654,7 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
                 question["audioRange"] = copy.deepcopy(row["audioRange"])
                 new_count += 1
                 if source["reconstructed"]:
-                    require(row.get("evidenceGrade") == "reconstructed_numbered_probe" and row.get("scopeQuestionNumbers") and
-                            integer(row.get("nativeEvidence", {}).get("onsetFrame")), "ancestor_original_scope_unverified")
+                    require(reconstructed_admission_origin(row), "ancestor_original_scope_unverified")
                     inherited[(sid, question["id"])] = {"method": "previous_complete_source_admission_v1",
                         "certificate": claim["certificate"], "scopeQuestionNumbers": row["scopeQuestionNumbers"],
                         "onsetFrame": row["nativeEvidence"]["onsetFrame"]}
@@ -623,7 +678,7 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
                                if r["sourceRecordId"] == sid and r["questionId"] == question["id"]]
                     require(len(matches) == 1, "ancestor_preserved_original_scope_origin_not_unique")
                     original = matches[0]
-                    require(original.get("status") == "admitted" and original.get("evidenceGrade") == "reconstructed_numbered_probe" and
+                    require(original.get("status") == "admitted" and reconstructed_admission_origin(original) and
                             all(original.get(key) == row.get(key) for key in
                                 ("sourceRecordId", "setId", "questionId", "sourceNumber", "sourceAudioSha256", "playbackSha256", "audioRange")) and
                             evidence.get("scopeQuestionNumbers") == original.get("scopeQuestionNumbers") and
@@ -785,7 +840,12 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                 require(not source["reconstructed"] or row.get("probeEvidence"), "reconstructed_requires_explicit_native_adapter_v2")
                 if row.get("probeEvidence"):
                     require(adapter_replay is not None, "native_adapter_replay_failed:" + str(adapter_error))
-                    from claude_adapter import validate as validate_adapter
+                    adapter = row.get("evidenceAdapter", "claude-native-probe-v1")
+                    require(adapter in ("claude-native-probe-v1", "native-localized-generation-v2"), "unknown_native_adapter")
+                    if adapter == "native-localized-generation-v2":
+                        from localized_adapter import validate as validate_adapter
+                    else:
+                        from claude_adapter import validate as validate_adapter
                     proof_key, native_segments, grade, original_identity = validate_adapter(row, source, question, clock_index[sid], adapter_replay, index)
                     full_cues = select_segments(index, row["cueSegmentIds"], allow_uncertain=True) if row["cueSegmentIds"] else []
                     anchors = select_segments(index, row["anchorSegmentIds"], allow_uncertain=True) if row["anchorSegmentIds"] else []
@@ -802,7 +862,8 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                     proof_key = {"probe": n["probe"], "cueProbeSegmentIds": n["cueProbeSegmentIds"], "cueOnsetFrame": n["cueOnsetFrame"]}
                     native_segments = native_cues
                     grade, original_identity = "official_alignment" if row.get("startEvidence", {}).get("method") == "official_alignment" else "numbered_probe", None
-                validate_mapping(row, source, question, index)
+                if row.get("evidenceAdapter") != "native-localized-generation-v2":
+                    validate_mapping(row, source, question, index)
                 observed = diagnostic_segments(row, index)
                 require(0 <= row["seekStartMs"] < source["audio"]["durationMs"], "invalid_seek_range")
                 require(row.get("seekEndMs", source["audio"]["durationMs"]) == source["audio"]["durationMs"], "continuation_must_end_at_full_original")
@@ -814,7 +875,11 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                               nativeEvidence=n, probeEvidence=row.get("probeEvidence"), rawNativeSegments=native_segments, evidenceGrade=grade,
                               originalQuestionIdentity=original_identity, cueSpokenNumbers=row.get("cueSpokenNumbers"),
                               mappingEvidence=row.get("mappingEvidence"), scriptEvidence=row.get("scriptEvidence"),
-                              dialogueProbeEvidence=row.get("dialogueProbeEvidence"), reasons=[],
+                              dialogueProbeEvidence=row.get("dialogueProbeEvidence"), nextProbeEvidence=row.get("nextProbeEvidence"),
+                              terminalProbeEvidence=row.get("terminalProbeEvidence"), sharedHeadProbeEvidence=row.get("sharedHeadProbeEvidence"),
+                              probeCatalog=row.get("probeCatalog"), nextNativeEvidence=row.get("nextNativeEvidence"),
+                              sharedHeadNativeEvidence=row.get("sharedHeadNativeEvidence"), terminalNativeEvidence=row.get("terminalNativeEvidence"),
+                              evidenceAdapter=row.get("evidenceAdapter"), localizedMappingEvidence=row.get("localizedMappingEvidence"), reasons=[],
                               diagnostics=(row.get("reasons", []) + row.get("notes", [])))
             except (InvalidEvidence, OSError, KeyError, ValueError, TypeError, ImportError) as e:
                 result["reasons"].append(str(e))
@@ -830,6 +895,9 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
     complete = set(queues) == {s["assignedAgent"] for s in inventory["records"]} and not errors and len(rows) == len(expected)
     for ref in list(references.values()) + implementation:
         require(sha(ref["path"]) == ref["sha256"], "replay_input_or_implementation_changed_during_run")
+    for result in results:
+        for ref in result.get("proofKey", {}).get("boundReferences", []):
+            require(sha(ref["path"]) == ref["sha256"], "nested_native_evidence_changed_during_run")
     certificate = {"schemaVersion": 1, "evidenceContractVersion": 1, "completeReplay": complete,
                    "productionApplicationAuthorized": False, "writesDatabase": False, "writesStorage": False, "writesMedia": False, "humanReviewed": False,
                    "inputs": references, "implementation": implementation, "producerProvenance": provenance,

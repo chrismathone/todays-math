@@ -51,6 +51,12 @@ CPU speech-onset estimates as diagnostics, including comparison with known
 preserved starts.
 
 The TypeSafe design and evidence boundaries are documented in [CONTRACT.md](CONTRACT.md).
+The additive `native-localized-generation-v2` route, complete raw probe catalog,
+all original grounding quotes, shared/range/closing boundaries and ancestry
+requirements are documented in [LOCALIZED-CONTRACT.md](LOCALIZED-CONTRACT.md).
+`archive-implementation.py` creates a new byte-for-byte implementation archive.
+`evaluate-native.py` replays all original PCM and frozen family-separated controls
+plus the pilot search windows; its findings remain diagnostic.
 No new recognition runs are launched by this verifier. Producers use the shared
 serialized GPU queue; replay itself is CPU-only.
 

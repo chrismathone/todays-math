@@ -42,8 +42,12 @@ def main():
              "inputs": {k: v.reference(getattr(args, k)) for k in ("inventory", "clock", "frozen", "marks")},
              "implementation": [v.reference(p) for p in sorted(Path(__file__).parent.iterdir()) if p.suffix in (".py", ".mts", ".md")]}
     try:
-        key, segments, grade, identity = a.validate(row, source, question, clock, replay, index)
-        v.validate_mapping(row, source, question, index)
+        if row.get("evidenceAdapter") == "native-localized-generation-v2":
+            from localized_adapter import validate
+            key, segments, grade, identity = validate(row, source, question, clock, replay, index)
+        else:
+            key, segments, grade, identity = a.validate(row, source, question, clock, replay, index)
+            v.validate_mapping(row, source, question, index)
         v.require(0 <= row["seekStartMs"] < source["audio"]["durationMs"] and row.get("seekEndMs", source["audio"]["durationMs"]) == source["audio"]["durationMs"], "invalid_full_original_continuation")
         proof.update(startProofStatus="passed", reasons=[], proofKey=key, rawNativeSegments=segments, evidenceGrade=grade,
                      originalQuestionIdentity=identity, scopeQuestionNumbers=row["scopeQuestionNumbers"], cueNumber=row["cueNumber"],

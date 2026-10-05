@@ -1,5 +1,8 @@
 # Whole-original seek admission, evidence contract 1
 
+The additive 2026-10-06 localized generation route is specified in
+[LOCALIZED-CONTRACT.md](LOCALIZED-CONTRACT.md). It preserves all existing routes.
+
 This independent verifier admits starts into the entire original recording. A
 range ends at the frozen playback duration. Dialogue completeness, repetition
 completion, quiet cuts, and physical splitting are outside this proof. Existing
