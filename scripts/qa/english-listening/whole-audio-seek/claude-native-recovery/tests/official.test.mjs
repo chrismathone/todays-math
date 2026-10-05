@@ -124,6 +124,30 @@ test("only the exact first-utterance opening from a clip at a measured onset is 
   assert.equal(bare.numberClipEvidence.startFrame, bare.probeEvidence.startFrame);
   assert.equal(bare.cueForm, "bare");
   assert.equal(bare.instructionProbeEvidence, null);
+  // The number alone must be in a clip of at most three seconds. A four-second
+  // clip that wrote it is a reading, not a number clip: the row is not offered
+  // to the adapter, and its length is never edited.
+  const long = makeOfficialInput([2]);
+  long.enListenings = measured.enListenings;
+  long.koListenings = long.koListenings.filter((l) => l.startFrame !== startOf(AT[2]));
+  long.koListenings.push(
+    heading(AT[2], "2. 다음을 듣고, 여자가 할 일을 고르시오."),
+    listening("ko", startOf(AT[2]), 200, [segment("2번", 0.4, 1.1)]),
+  );
+  const refused = rowOf(resolveOfficial(long), "o-2");
+  assert.equal(refused.status, "candidate");
+  assert.equal(refused.evidenceAdapter, null);
+  assert.equal(refused.nativeRecovery.literalNumberClipAtMostThreeSeconds, false);
+  // A genuinely new, shorter clip from the same start: the shortest one is the number clip.
+  long.koListenings.push(
+    listening("ko", startOf(AT[2]), 125, [segment("2번", 0.4, 1.1)]),
+    listening("ko", startOf(AT[2]), 150, [segment("2번", 0.4, 1.1)]),
+  );
+  const offered = rowOf(resolveOfficial(long), "o-2");
+  assert.equal(offered.evidenceAdapter, OFFICIAL_ADAPTER);
+  assert.equal(offered.numberClipEvidence.frameCount, 125 * FRAMES);
+  assert.equal(offered.numberClipEvidence.durationSeconds, (125 * FRAMES) / RATE);
+  assert.match(offered.nextProbeEvidence.text, /^3번입니다\. /);
   // A later own sentence alone never gets the adapter: question 4's first turn is "Hi, Minsoo."
   const later = rowOf(resolveOfficial(makeOfficialInput([4])), "o-4");
   assert.equal(later.status, "candidate");

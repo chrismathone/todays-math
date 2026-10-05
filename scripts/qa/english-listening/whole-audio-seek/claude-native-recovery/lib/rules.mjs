@@ -510,6 +510,16 @@ export function establishHeadings(native, listenings, options = {}) {
       probe: chosen.probe,
       reading: chosen.reading,
       siblings,
+      // Every reading from this start that wrote this literal number first and
+      // reliably, whatever its length: a number clip has a length limit of its own.
+      literalReadings: good
+        .filter((e) => e.reading.cue.numbers.join(",") === key)
+        .map((e) => ({
+          ref: e.ref,
+          probe: e.probe,
+          onsetFrame: e.onsetFrame,
+          reading: e.reading,
+        })),
       // Official recordings: a long recognition often writes the number as
       // bare digits before the instruction, while a short clip from the same
       // start writes the literal number alone. Together they are one heading;
