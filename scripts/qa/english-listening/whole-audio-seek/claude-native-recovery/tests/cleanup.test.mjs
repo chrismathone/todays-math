@@ -1,59 +1,18 @@
 import assert from "node:assert/strict";
-import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { bash, slash } from "./shell.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const slash = (path) => path.replace(/\\/g, "/");
 const CLEANUP = slash(join(HERE, "..", "lib", "cleanup.sh"));
-
-/**
- * The shell the drivers run in. On Windows a bare `bash` on PATH can be the WSL
- * launcher (System32), which runs nothing of this and prints nothing — the
- * tests would then pass or fail for no reason. Git for Windows' bash is named
- * explicitly, or given by NATIVE_RECOVERY_BASH; elsewhere it is plain `bash`.
- */
-function driverShell() {
-  if (process.env.NATIVE_RECOVERY_BASH) return process.env.NATIVE_RECOVERY_BASH;
-  if (process.platform !== "win32") return "bash";
-  const candidates = [
-    process.env.ProgramFiles && join(process.env.ProgramFiles, "Git", "bin", "bash.exe"),
-    process.env["ProgramFiles(x86)"] &&
-      join(process.env["ProgramFiles(x86)"], "Git", "bin", "bash.exe"),
-    process.env.LOCALAPPDATA &&
-      join(process.env.LOCALAPPDATA, "Programs", "Git", "bin", "bash.exe"),
-  ].filter(Boolean);
-  const found = candidates.find((path) => existsSync(path));
-  assert.ok(
-    found,
-    "Git for Windows bash.exe not found; set NATIVE_RECOVERY_BASH to its path",
-  );
-  return found;
-}
-const SHELL = driverShell();
 
 function tree() {
   const root = slash(mkdtempSync(join(tmpdir(), "native-recovery-tmp-")));
   const make = (...parts) => mkdirSync(join(root, ...parts), { recursive: true });
   return { root, make, has: (...parts) => existsSync(join(root, ...parts)) };
-}
-
-/** Runs a script in the drivers' shell; a shell that did not run it fails here, loudly. */
-function bash(script, env) {
-  const done = spawnSync(
-    SHELL,
-    // The coreutils the drivers use, whatever PATH this process was started with.
-    ["-c", 'export PATH="/usr/bin:/bin:$PATH"; ' + script + '; echo "ran status=$?"'],
-    { env: { ...process.env, ...env }, encoding: "utf8" },
-  );
-  assert.equal(done.error, undefined, String(done.error));
-  assert.equal(done.status, 0, "shell exit " + done.status + ": " + done.stderr);
-  assert.equal(done.stderr, "");
-  assert.match(done.stdout, /ran status=0\s*$/);
-  return done;
 }
 
 const cleanup = (root, round) =>
