@@ -45,11 +45,15 @@ import {
   linkedGroupExpectation,
   linkedGroupSections,
   rowGapsMm,
+  LONG_PROMPT,
+  SHORT_HEADER,
+  SHORT_PROMPT,
   SOURCE_PAGE,
   SOURCE_ROW_PROBE,
   sourceRowsExchange,
   standardExpectation,
   standardSections,
+  WRAPPING_HEADER,
   type Box,
   type CapturedSourcePage,
   type MeasuredSizes,
@@ -313,6 +317,61 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     ).toEqual(page.problems.map((problem) => problem.blockBoxMm));
   }, 180_000);
 
+  it("final render: the number's inner raw-text span prints with the 12.5pt font of its strong element", async () => {
+    const rendered = await render(standardExchange(), [0]);
+    const numbered = rendered.pages[0].problems.filter(
+      (problem) => problem.numberFont,
+    );
+    // Five authored headings carry the native strong > span number; b2 has the default heading.
+    expect(numbered.map((problem) => problem.blockId)).toEqual([
+      "q-a1",
+      "q-a2",
+      "q-b1",
+      "q-c1",
+      "q-w1",
+    ]);
+    for (const problem of numbered) {
+      const font = problem.numberFont!;
+      expect(font.strongPx).toBeCloseTo((12.5 * 96) / 72, 2);
+      expect(font.spanPx).toBe(font.strongPx);
+      expect(font.spanWeight).toBe(font.strongWeight);
+      expect(font.spanSpacing).toBe(font.strongSpacing);
+      expect(problem.numberLines).toBe(1);
+      expect(problem.tagLines).toBe(1);
+    }
+  }, 180_000);
+
+  it("final render: a label long enough to wrap leaves the question number and the tag on one line", async () => {
+    const rendered = await render(
+      textbookExchangeSchema.parse(
+        sourceRowsExchange([
+          {
+            sectionKey: "sc",
+            title: "합성",
+            kind: "scriptcheck",
+            activity: "dialogueCheck",
+            blocks: [
+              { id: "a1", content: SHORT_PROMPT, header: WRAPPING_HEADER },
+              { id: "a2", content: LONG_PROMPT, header: SHORT_HEADER },
+            ],
+          },
+        ]),
+      ),
+      [0],
+    );
+    const [wrapped, short] = ["q-a1", "q-a2"].map((id) =>
+      onPage(rendered.pages, id),
+    );
+    // The label does wrap: this heading is taller than one line, and both columns follow it.
+    expect(height(wrapped.headBoxMm)).toBeGreaterThan(8);
+    expect(height(short.headBoxMm)).toBeCloseTo(height(wrapped.headBoxMm), 1);
+    expect(short.numberLines).toBe(1);
+    expect({
+      number: wrapped.numberLines,
+      tag: wrapped.tagLines,
+    }).toEqual({ number: 1, tag: 1 });
+  }, 180_000);
+
   it("final render: a linked source group aligns its headings only", async () => {
     const rendered = await render(
       textbookExchangeSchema.parse(sourceRowsExchange(linkedGroupSections())),
@@ -574,6 +633,16 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
           script: `(function () { ${head}.innerHTML = "<strong>001</strong>"; return true; })()`,
         }),
       ).toEqual(["header-kept"]);
+      // The rule that lets the number's inner span inherit the strong's font, taken away.
+      expect(
+        await mutated(rendered, {
+          html: (html) =>
+            html.replace(
+              ".tb-source-problem .tb-problem-head strong span{",
+              ".tb-rule-removed-by-the-test{",
+            ),
+        }),
+      ).toEqual(["head-number-font"]);
       // The note taken out of its fixed place, three ways.
       expect(
         await mutated(rendered, {

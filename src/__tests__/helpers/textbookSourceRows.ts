@@ -54,13 +54,16 @@ export interface SourceSectionSpec {
 export const blockIdOf = (id: string) => `q-${id}`;
 export const itemIdOf = (id: string) => `item-${id}`;
 
-/** A heading tree in the shape the native template uses: number, label, tag. */
+/**
+ * A heading tree in the shape the native template uses: the question number as raw text in a span
+ * inside the strong element (so the number's glyphs must inherit the strong's font), a label, a tag.
+ */
 export const syntheticHeader = (
   number: string,
   label: string,
   tag?: string,
 ): TextbookSourceFragment[] => [
-  { tag: "strong", rawText: number },
+  { tag: "strong", children: [{ tag: "span", rawText: number }] },
   { tag: "span", attributes: { className: "qlabel" }, rawText: label },
   ...(tag
     ? [
@@ -96,7 +99,22 @@ export const syntheticFooter = (label: string): TextbookSourceFragment[] => [
 export const SHORT_PROMPT = "합성 발문: 짧은 물음.";
 export const LONG_PROMPT =
   "합성 발문: 어떤 수에 삼을 더한 다음 그 결과를 두 배 한 값이 처음 수의 네 배보다 이만큼 작을 때, 처음 수를 구하는 과정을 식으로 쓰고 단계마다 무엇을 했는지 한 문장씩 설명하시오.";
-export const LONG_HEADER = syntheticHeader(
+/** A heading two lines tall by an explicit break: taller than its neighbour, never wider than its column. */
+export const LONG_HEADER: TextbookSourceFragment[] = [
+  { tag: "strong", children: [{ tag: "span", rawText: "01" }] },
+  {
+    tag: "span",
+    attributes: { className: "qlabel" },
+    children: [
+      { tag: "span", rawText: "합성으로 지은 머리말 첫 줄" },
+      { tag: "br" },
+      { tag: "span", rawText: "합성으로 지은 머리말 둘째 줄" },
+    ],
+  },
+  { tag: "span", attributes: { className: "tag" }, rawText: "합성 표지" },
+];
+/** A heading whose label is too long for one line of its column and has to wrap. */
+export const WRAPPING_HEADER = syntheticHeader(
   "01",
   "합성으로 지은 아주 긴 머리말을 두 줄이 되도록 이어 쓴 문항 제목입니다 그리고 조금 더 이어 씁니다",
   "합성 표지",
@@ -455,6 +473,18 @@ export interface CapturedProblem {
   headText: string;
   /** How far the heading's own children reach below its box. */
   headOverflowMm: number;
+  /** The number's inner raw-text span beside the strong element that holds it. */
+  numberFont: {
+    strongPx: number;
+    spanPx: number;
+    strongWeight: string;
+    spanWeight: string;
+    strongSpacing: string;
+    spanSpacing: string;
+  } | null;
+  /** Lines the question number and the tag chip are set on (1 unless they were broken). */
+  numberLines: number;
+  tagLines: number;
   promptBoxMm: Box;
   promptStyleMinHeight: string;
   promptText: string;
@@ -516,6 +546,34 @@ export const SOURCE_ROW_PROBE = String.raw`function (document) {
           inGrid: inGrid,
           headBoxMm: headBox, headStyleHeight: head.style.height || "", headText: strip(head.textContent),
           headOverflowMm: round(deepest - headBox[3]),
+          numberFont: (function () {
+            var strong = head.querySelector("strong"), span = strong && strong.querySelector("span");
+            if (!span || !view) return null;
+            var outer = view.getComputedStyle(strong), inner = view.getComputedStyle(span);
+            return {
+              strongPx: parseFloat(outer.fontSize), spanPx: parseFloat(inner.fontSize),
+              strongWeight: outer.fontWeight, spanWeight: inner.fontWeight,
+              strongSpacing: outer.letterSpacing, spanSpacing: inner.letterSpacing
+            };
+          })(),
+          numberLines: (function () {
+            var strong = head.querySelector("strong");
+            var text = strong && (strong.querySelector("span") || strong);
+            return text && text.getClientRects ? text.getClientRects().length : 1;
+          })(),
+          tagLines: (function () {
+            var tag = head.querySelector(".tag");
+            if (!tag || !document.createRange) return 1;
+            var range = document.createRange();
+            range.selectNodeContents(tag);
+            if (!range.getClientRects) return 1;
+            var tops = {}, rects = range.getClientRects(), count = 0;
+            for (var r = 0; r < rects.length; r++) {
+              var key = Math.round(rects[r].top);
+              if (rects[r].width > 0.5 && !tops[key]) { tops[key] = true; count++; }
+            }
+            return count || 1;
+          })(),
           promptBoxMm: box(prompt), promptStyleMinHeight: prompt.style.minHeight || "", promptText: strip(prompt.textContent),
           workTopMm: work ? box(work)[1] : null
         });
@@ -575,11 +633,15 @@ export interface SourceRowFailure {
     | "untouched"
     | "header-kept"
     | "footer-fixed"
+    | "head-number-font"
+    | "head-number-wrap"
     | "no-clip";
   id: string;
   detail: string;
 }
 const TOLERANCE_MM = 0.06;
+/** The native question number is set at 12.5pt. */
+const NUMBER_FONT_PX = (12.5 * 96) / 72;
 const height = (box: Box) => box[3] - box[1];
 
 /**
@@ -756,6 +818,27 @@ export function judgeSourceRows(
           "no-clip",
           problem.blockId,
           `머리 글이 머리 상자 아래로 ${problem.headOverflowMm}mm`,
+        );
+      // The number is raw text in a span inside the strong: it prints with the strong's own font.
+      const font = problem.numberFont;
+      if (
+        font &&
+        (Math.abs(font.spanPx - font.strongPx) > 0.01 ||
+          Math.abs(font.strongPx - NUMBER_FONT_PX) > 0.05 ||
+          font.spanWeight !== font.strongWeight ||
+          font.spanSpacing !== font.strongSpacing)
+      )
+        fail(
+          "head-number-font",
+          problem.blockId,
+          `번호 글자 ${font.spanPx}px/${font.spanWeight}/${font.spanSpacing} ≠ 머리 번호 ${font.strongPx}px/${font.strongWeight}/${font.strongSpacing} (12.5pt 여야 한다)`,
+        );
+      // A question number or a tag chip is never broken over two lines.
+      if (problem.source && (problem.numberLines > 1 || problem.tagLines > 1))
+        fail(
+          "head-number-wrap",
+          problem.blockId,
+          `번호 ${problem.numberLines}줄 · 표지 ${problem.tagLines}줄 (한 줄이어야 한다)`,
         );
     }
     // Rows keep their order down the page and never run into each other.
