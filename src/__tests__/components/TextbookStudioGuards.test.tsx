@@ -1144,6 +1144,48 @@ describe("늦은 응답 — 그사이 다른 판본이 열렸을 때", () => {
     expect(closing()).toBe(false);
   });
 
+  it("구획을 추가한 뒤 그 구획을 읽는 사이에 다른 판본이 열리면, 늦게 온 읽기가 그 판본의 원고를 덮지 않는다", async () => {
+    const reading = deferred<SectionDetail>();
+    const created = section({
+      sectionId: "section-7",
+      sectionKey: "added",
+      title: "새 구획",
+    });
+    const block = created.blocks[0]!;
+    if (block.kind === "dialogue") block.turns[0]!.text = "새 구획 문장";
+    const getSection = vi.fn((editionId: string, sectionId: string) =>
+      editionId === E2
+        ? Promise.resolve(otherSection())
+        : sectionId === "section-7"
+          ? reading.promise
+          : Promise.resolve(section()),
+    );
+    const client = api({
+      openEdition: openEdition(),
+      getSection,
+      createSection: vi.fn(async () => ({
+        ...created,
+        aggregateRevision: 12,
+      })) as unknown as TextbookStudioApi["createSection"],
+    });
+    const view = await openStudio(client);
+    fireEvent.change(screen.getByRole("textbox", { name: "새 구획 제목" }), {
+      target: { value: "새 구획" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "구획 추가" }));
+    await waitFor(() =>
+      expect(getSection).toHaveBeenCalledWith("edition-1", "section-7"),
+    );
+    await switchEdition(view, client);
+
+    await act(async () => {
+      reading.resolve(created);
+    });
+    await waitFor(() => expect(line()).toBeEnabled());
+    expect(line()).toHaveValue("다른 판본 문장");
+    expect(closing()).toBe(false);
+  });
+
   it("다시 고정의 응답이 다른 판본의 문항 목록에 끼어들지 않는다", async () => {
     type Recaptured = Awaited<ReturnType<TextbookStudioApi["recaptureItem"]>>;
     const request = deferred<Recaptured>();

@@ -370,13 +370,19 @@ export function TextbookStudioView({
     };
   }, [api]);
 
+  /** 구획 읽기의 차례 — 겹친 읽기 가운데 마지막 것만 화면에 올린다 */
+  const loadTurn = useRef(0);
   const loadSection = useCallback(
     async function loadSection(
       nextEdition: EditionDetail,
       sectionId: string,
       entry: "first" | "last" = "first",
     ) {
+      // 읽는 사이에 다른 구획 · 판본을 읽기 시작했으면(주소 동기화는 처리 중에도 판본을 연다) 이 읽기는 버린다 —
+      // 늦게 온 앞 읽기가 뒤에 연 원고와 개념 상태를 덮지 않는다.
+      const turn = ++loadTurn.current;
       const section = await api.getSection(nextEdition.editionId, sectionId);
+      if (turn !== loadTurn.current) return;
       if (
         sectionId ===
         nextEdition.units.flatMap((unit) => unit.sections)[0]?.sectionId
@@ -396,6 +402,7 @@ export function TextbookStudioView({
             nextEdition.editionId,
             conceptBlock.conceptKey,
           );
+          if (turn !== loadTurn.current) return;
           setConceptSource(loaded.concept);
           setConceptRevision(loaded.revision);
           setConceptLinks(loaded.concept.links);
@@ -404,6 +411,7 @@ export function TextbookStudioView({
           setConfirmEntryIds([]);
           aligned = { ...aligned, concept: loaded.draft };
         } catch (reason) {
+          if (turn !== loadTurn.current) return;
           setConceptSource(null);
           setConceptRevision(0);
           setConceptLinks([]);
@@ -709,6 +717,8 @@ export function TextbookStudioView({
   }
 
   function clearStudio() {
+    // 목록으로 나간 뒤에 끝난 구획 읽기가 원고를 다시 세우지 않게 한다
+    loadTurn.current += 1;
     forgetExport();
     setEdition(null);
     setDraft(null);
@@ -2399,7 +2409,9 @@ export function TextbookStudioView({
                         setNewSectionKey("");
                         await loadSection(nextEdition, created.sectionId);
                       })
-                      .catch((reason: unknown) => setNotice(messageOf(reason)))
+                      .catch((reason: unknown) => {
+                        if (editionOpen(target)) setNotice(messageOf(reason));
+                      })
                       .finally(() => setBusy(false));
                   }}
                 >
@@ -2622,7 +2634,9 @@ export function TextbookStudioView({
                       setEdition(next);
                       setNotice("설정을 저장했습니다.");
                     })
-                    .catch((reason: unknown) => setNotice(messageOf(reason)))
+                    .catch((reason: unknown) => {
+                      if (editionOpen(target)) setNotice(messageOf(reason));
+                    })
                     .finally(() => setBusy(false));
                 }}
               />
