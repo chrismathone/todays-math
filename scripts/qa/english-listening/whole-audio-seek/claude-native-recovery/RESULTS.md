@@ -24,7 +24,7 @@ Artifacts are under
 | population                         | rows | offered                          | reported, not offered | held |
 | ---------------------------------- | ---: | -------------------------------- | --------------------: | ---: |
 | reconstructed, 15 pilot sources    |  216 | 64 (50 original passages)        |                     — |  152 |
-| official, all 47 sources           |   87 | 22 (verifier's official wrapper; 19 in the first freeze) | 22 |   43 |
+| official, all 47 sources           |   87 | 17 (verifier's official wrapper; third freeze) | 27 |   43 |
 | reconstructed, other 57 sources    |  669 | see "Full run" below             |                     — |      |
 
 ### Pilot — `runs/pilot-002/` (supersedes `pilot-001`; same evidence, per-source catalogs)
@@ -152,6 +152,29 @@ satisfies "the number alone" is the verifier's call. The seventh is no longer
 offered: with the raw-word check its English segment is a barrier. This freeze
 has not been replayed by the verifier at the time of writing.
 
+### Official, third freeze — `runs/official-003/` (the current one)
+
+The coordinator held to the existing gate: a number clip says the number and
+nothing after it. So the producer now takes as number clip only the shortest
+reading of at most 3 s that is one segment, the literal number, and at most
+"입니다" and punctuation; and 39 more clips of 1.4, 1.6 and 1.8 s were recorded
+from the same measured starts (round 036, 0 overflow).
+
+| file                                    | SHA-256                                                            |
+| --------------------------------------- | ------------------------------------------------------------------ |
+| `official-candidates.json`              | `c70c9e35f9bed9743e401c8f1337adac1f017d73f2759382e090e0926eb7aba8` |
+| `official-later-sentence-findings.json` | `6dbd2b67a43540d0f9c07020438e72dc09c08aa28cdeb1fd3b3ccee9365d57f1` |
+| `ledger.json`                           | `7a04b68048de810c70f3273e800f9a81738e0125531c2b4db74542da068c5eaa` |
+| `summary.json`                          | `9ebd1073eeca1e3127dc304a1d808199b555dd7d72bb87a6d86148a1e16922fa` |
+
+87 rows: **17 offered**, 27 not offered, 43 held. Every number clip among the
+offered rows reads exactly `1번`, `2번` or `8번`. Offers fell from 22 to 17
+because the rule removed six rows whose only short literal reading also carried
+instruction words; no evidence was lost, and those rows say so. Of the seven
+rows first refused for an over-long number clip, four now have a number-only
+clip of 1.1–2.46 s, two have none at any length tried and are not offered, and
+one is held. Not yet replayed by the verifier at the time of writing.
+
 ### A passage may end where the next number is first heard — `runs/pilot-003/`
 
 Added **after** the pilot outcome was seen, and reported as such. In
@@ -224,7 +247,7 @@ overflow in every round.
 | 001–005, 010 (pilot)      | Korean: headings, shorter and longer same-start clips, gap and terminal scans |          1,041 |
 | 006 (pilot)               | English passage clips (3,779 s)                                 |                   87 |
 | adversarial 001           | truncated clips, own folder, never evidence                     |                  380 |
-| 030–035 (official)        | Korean 198 + 5 + 304 + 48 number clips (+ 10 of a round stopped as planned too broadly), English 3 |    568 |
+| 030–036 (official)        | Korean 198 + 5 + 304 + 48 + 39 number clips (+ 10 of a round stopped as planned too broadly), English 3 |    607 |
 | 040–044 (converted)       | `ebs-middle-1-2006-2` on its authenticated playback clock, own runner: Korean 100, English 13 | 113 |
 | 011 (pilot)               | English clips for passages ended by a first-speech boundary     |                   25 |
 | 020 onward                | the other 56 reconstructed sources — see "Full run"             |                      |
