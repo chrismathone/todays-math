@@ -36,6 +36,12 @@ export const START_PURPOSES = new Set([
 ]);
 /** English listenings for the official first utterance; never a number proof. */
 export const DIALOGUE_PURPOSES = new Set(["member_dialogue", "first_dialogue"]);
+/**
+ * How long after a start its own first utterance may begin: right after a
+ * member's number, or after the number and its sentence for any other question.
+ */
+export const dialogueReachSeconds = (plan) =>
+  plan.kind === "shared_instruction_member" ? 6 : 20;
 /** Proven starts closer than this are one cue heard from two nearby onsets. */
 const SAME_CUE_SECONDS = 3;
 /** Frozen-ASR utterances of a question, all placed elsewhere, that hold its start. */
@@ -98,7 +104,13 @@ export function measureStart(native, startFrame) {
  * its own dialogue also needs an English probe from the same frame that heard
  * the official first utterance, whenever an official script section exists.
  */
-export function proveAtStart(plan, items, sharedInstruction, section) {
+export function proveAtStart(
+  plan,
+  items,
+  sharedInstruction,
+  section,
+  later = [],
+) {
   const judged = items
     .filter((item) => !DIALOGUE_PURPOSES.has(item.probe.purpose))
     .map((item) => ({
@@ -120,12 +132,15 @@ export function proveAtStart(plan, items, sharedInstruction, section) {
     null;
   const needsDialogue =
     plan.kind === "shared_instruction_member" && Boolean(section);
-  // The best English listening from this frame, where an official script
-  // section exists: required for a member, supporting for any other question.
+  // The best English listening for the official first utterance, where an
+  // official script section exists: required for a member, supporting for any
+  // other question. It begins at this frame or at a later measured onset
+  // (`later`): a recognizer that hears "Number 20" and then a pause ends its
+  // window there, so the dialogue is heard from its own first sound instead.
   let dialogue = null;
   let dialogueShare = null;
   if (section)
-    for (const item of items) {
+    for (const item of [...items, ...later]) {
       if (!DIALOGUE_PURPOSES.has(item.probe.purpose) || item.probe.overflow)
         continue;
       const share = firstDialogueShare(section.words, item.probe);
@@ -252,6 +267,57 @@ export function resolveSource({
   for (const startFrame of byStart.keys())
     measured.set(startFrame, measureStart(native, startFrame));
 
+  // English listenings that begin at a later measured onset, close enough after
+  // a start to be that question's own first utterance.
+  const dialogueItems = heard
+    .filter(
+      (item) =>
+        DIALOGUE_PURPOSES.has(item.probe.purpose) &&
+        !measured.get(item.probe.startFrame).reason,
+    )
+    .sort((a, b) => a.probe.startFrame - b.probe.startFrame);
+  // Every frame where a Korean probe heard some number for certain. The first
+  // such frame after a start that belongs to ANOTHER question ends the stretch
+  // in which that start's own dialogue can begin.
+  const numberFrames = heard
+    .filter(
+      (item) =>
+        START_PURPOSES.has(item.probe.purpose) &&
+        !DIALOGUE_PURPOSES.has(item.probe.purpose) &&
+        item.reading.certainCue,
+    )
+    .map((item) => ({
+      frame: item.probe.startFrame,
+      number: item.reading.certainCue.numbers[0],
+    }))
+    .sort((a, b) => a.frame - b.frame);
+  const dialogueAfter = (startFrame, plan) => {
+    const reach = dialogueReachSeconds(plan) * rate;
+    const stop =
+      numberFrames.find(
+        (entry) =>
+          entry.frame > startFrame + 2 * rate &&
+          entry.number !== plan.sourceNumber,
+      )?.frame ?? Infinity;
+    return dialogueItems.filter(
+      (item) =>
+        item.probe.startFrame > startFrame &&
+        item.probe.startFrame <= startFrame + reach &&
+        item.probe.startFrame < stop,
+    );
+  };
+  // Where the dialogue can begin: after everything the number probe heard for
+  // certain (the number, and its sentence when it has one).
+  const afterNumber = (item) => {
+    const end = item.probe.segments
+      .filter((segment) => !segment.uncertain)
+      .reduce((max, segment) => Math.max(max, segment.localEndSeconds), 0);
+    return (
+      item.probe.startFrame +
+      Math.max(native.windowFrames, Math.round((end - 0.5) * rate))
+    );
+  };
+
   // 2. Proven starts per question.
   const proofs = plans.map((plan) => {
     const shared = sharedInstructionFor(plans, plan);
@@ -260,7 +326,8 @@ export function resolveSource({
     const near = [];
     for (const [startFrame, items] of byStart) {
       const fact = measured.get(startFrame);
-      const outcome = proveAtStart(plan, items, shared, section);
+      const later = dialogueAfter(startFrame, plan);
+      const outcome = proveAtStart(plan, items, shared, section, later);
       if (outcome.proof && !fact.reason) {
         found.push({ startFrame, fact, ...outcome.proof });
         continue;
@@ -286,10 +353,9 @@ export function resolveSource({
         probe: (outcome.numbered ?? sameNumber).item,
         numberProven: Boolean(outcome.numbered),
         hasCueOnly: items.some((item) => item.probe.purpose === "cue_only"),
-        hasDialogue: items.some((item) =>
-          DIALOGUE_PURPOSES.has(item.probe.purpose),
-        ),
+        hasDialogue: later.length > 0,
         needsDialogue: outcome.wantsDialogue,
+        afterFrame: afterNumber((outcome.numbered ?? sameNumber).item),
       });
     }
     found.sort((a, b) => a.startFrame - b.startFrame);
@@ -601,6 +667,8 @@ export function resolveSource({
         memberDialogue.push({
           sourceNumber: row.plan.sourceNumber,
           startFrame: item.startFrame,
+          afterFrame: item.afterFrame,
+          reachFrames: dialogueReachSeconds(row.plan) * rate,
         });
     }
   });
@@ -614,10 +682,9 @@ export function resolveSource({
     if (row.plan.kind === "shared_instruction_member") continue;
     if (!sections?.get(row.plan.sourceNumber)?.firstUtterance) continue;
     const pick = row.accepted;
-    const listened = byStart
-      .get(pick.startFrame)
-      .some((item) => DIALOGUE_PURPOSES.has(item.probe.purpose));
-    if (listened) continue;
+    // Already supported, or already listened to from a later onset.
+    if (pick.dialogue || dialogueAfter(pick.startFrame, row.plan).length)
+      continue;
     const heardText = pick.cue.item.reading.certainCue?.rest ?? "";
     const onHangulOnly =
       row.plan.officialInstruction &&
@@ -627,6 +694,8 @@ export function resolveSource({
       dialogueWanted.push({
         sourceNumber: row.plan.sourceNumber,
         startFrame: pick.startFrame,
+        afterFrame: afterNumber(pick.cue.item),
+        reachFrames: dialogueReachSeconds(row.plan) * rate,
       });
   }
   const candidateStarts = rows

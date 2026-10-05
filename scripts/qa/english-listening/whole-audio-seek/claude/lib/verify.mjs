@@ -10,6 +10,7 @@ import { POLICY } from "./policy.mjs";
 import {
   DIALOGUE_PURPOSES,
   START_PURPOSES,
+  dialogueReachSeconds,
   measureStart,
   proveAtStart,
 } from "./resolve.mjs";
@@ -75,6 +76,7 @@ export function verifyMarks(marks, env) {
 
   const counts = { candidate: 0, held: 0, existing_verified: 0 };
   const positions = new Map();
+  const dialogueStarts = new Map();
   const caches = new Map();
   const cached = (kind, record, load) => {
     const key = kind + ":" + record.sourceRecordId;
@@ -167,6 +169,7 @@ export function verifyMarks(marks, env) {
       report("continuation_must_end_at_full_original", record, question);
 
     const items = [];
+    const later = [];
     const load = (reference, role) => {
       if (!reference) return null;
       let file;
@@ -202,10 +205,16 @@ export function verifyMarks(marks, env) {
         report("malformed_probe", record, question, error.message);
         return null;
       }
-      if (
-        probe.startFrame !== n.startFrame ||
-        !START_PURPOSES.has(probe.purpose)
-      ) {
+      // The number probe begins exactly at the start. An English listening
+      // may begin there or at a later measured onset within reach of it.
+      const offset = probe.startFrame - n.startFrame;
+      const inPlace =
+        role === "first_dialogue"
+          ? offset >= 0 &&
+            offset <= dialogueReachSeconds(plan) * pcm.sampleRate &&
+            !measureStart(native, probe.startFrame).reason
+          : offset === 0;
+      if (!inPlace || !START_PURPOSES.has(probe.purpose)) {
         report("probe_does_not_begin_at_start", record, question, role);
         return null;
       }
@@ -224,7 +233,7 @@ export function verifyMarks(marks, env) {
       }
       const language = probe.requestedLanguage ?? artifact.requestedLanguage;
       const item = { probe, reading: readProbe(probe), language, set: null };
-      items.push(item);
+      (offset > 0 ? later : items).push(item);
       return item;
     };
     const cueItem = load(row.probeEvidence, "spoken_number");
@@ -257,6 +266,7 @@ export function verifyMarks(marks, env) {
       items,
       sharedInstructionFor(plans, plan),
       section,
+      later,
     );
     if (!outcome.proof)
       return report(
@@ -366,6 +376,11 @@ export function verifyMarks(marks, env) {
       }
     }
     positions.set(question.id, row.seekStartMs);
+    if (dialogueItem)
+      dialogueStarts.set(
+        question.id,
+        (dialogueItem.probe.startFrame * 1000) / pcm.sampleRate,
+      );
   });
 
   // Order inside each original, and one start per shared passage.
@@ -386,9 +401,18 @@ export function verifyMarks(marks, env) {
       }
       if (ms === undefined) return;
       const block = plan.blockHead ?? plan.sourceNumber;
+      // A question's first utterance is heard before the next question begins.
+      if (
+        previous &&
+        previous.block !== block &&
+        previous.dialogueMs !== undefined &&
+        previous.dialogueMs >= ms
+      )
+        report("dialogue_probe_beyond_next_question", record, question);
       if (previous && previous.block !== block && ms <= previous.ms)
         report("ordinal_order_conflict", record, question);
-      if (!previous || previous.block !== block) previous = { block, ms };
+      if (!previous || previous.block !== block)
+        previous = { block, ms, dialogueMs: dialogueStarts.get(question.id) };
     });
   }
 

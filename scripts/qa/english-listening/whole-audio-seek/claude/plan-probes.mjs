@@ -46,6 +46,9 @@ const { values } = parseArgs({
     "window-seconds": { type: "string" },
     "dry-run": { type: "boolean" },
     modal: { type: "boolean" },
+    // gaps mode: "held" listens only for questions still held, "support" only
+    // adds English first-utterance listenings to rows that are candidates.
+    only: { type: "string" },
     "only-unprobed": { type: "boolean" },
     "source-id": { type: "string", multiple: true },
   },
@@ -152,9 +155,7 @@ for (const record of records) {
     const bounds = probeBounds(
       candidate,
       native.energy.length,
-      purpose === "first_dialogue"
-        ? POLICY.dialogueProbeWindows
-        : POLICY.probeWindows,
+      POLICY.probeWindows,
     );
     if (!bounds) return false;
     return add(
@@ -257,26 +258,34 @@ for (const record of records) {
         ),
       );
     };
-    for (const item of source.cueOnly)
+    const heldWork = values.only !== "support";
+    for (const item of heldWork ? source.cueOnly : [])
       for (const candidate of around(item.startFrame))
         addCueOnly(candidate, item.sourceNumber);
-    for (const item of source.memberDialogue ?? [])
-      for (const candidate of around(item.startFrame))
-        addDialogue(candidate, item.sourceNumber);
-    // Supporting English listening at a start that is already a candidate.
-    for (const item of source.dialogueWanted ?? []) {
-      const candidate = at(item.startFrame);
-      if (candidate)
-        addCandidate("first_dialogue", candidate, {
-          questionNumber: item.sourceNumber,
-          language: "en",
-        });
+    // English listening from the first measured onsets after the number (and
+    // its sentence): a recognizer that hears "Number 20" and then a pause ends
+    // its window there, so the dialogue is heard from its own first sound.
+    for (const item of [
+      ...(values.only === "support" ? [] : (source.memberDialogue ?? [])),
+      ...(values.only === "held" ? [] : (source.dialogueWanted ?? [])),
+    ]) {
+      const after = item.afterFrame ?? item.startFrame + frames;
+      const reach = item.reachFrames ?? 6 * sampleRate;
+      candidates
+        .filter(
+          (c) =>
+            onset(c) >= after &&
+            frameOf(c) > item.startFrame &&
+            frameOf(c) <= item.startFrame + reach,
+        )
+        .slice(0, 2)
+        .forEach((candidate) => addDialogue(candidate, item.sourceNumber));
     }
 
     // A candidate start that sits before a sound too short to be a spoken
     // number (a click after the bridge music): also listen from the next onset,
     // so the start can move up to the number itself if it is heard there.
-    for (const item of source.candidateStarts ?? []) {
+    for (const item of heldWork ? (source.candidateStarts ?? []) : []) {
       const first = at(item.startFrame);
       if (!first || first.islandWindows > SHORTEST_NUMBER_WINDOWS) continue;
       const next = candidates.find(
@@ -297,7 +306,7 @@ for (const record of records) {
       [candidates, "bridge_onset"],
       [fine, "fine_onset"],
     ])
-      for (const candidate of list) {
+      for (const candidate of heldWork ? list : []) {
         if (!followsBridge(candidate)) continue;
         const gap = source.openGaps.find((g) => inGap(g, candidate));
         if (gap)
@@ -305,7 +314,7 @@ for (const record of records) {
             questionNumber: gap.sourceNumber,
           });
       }
-    for (const gap of source.openGaps) {
+    for (const gap of heldWork ? source.openGaps : []) {
       const inside = candidates.filter((c) => inGap(gap, c));
       const pad = 1.5 * sampleRate;
       let pool = inside.filter((c) =>
@@ -344,7 +353,12 @@ for (const record of records) {
           // both at once where the island looks like a spoken number.
           if (member && candidate.islandWindows <= 100) {
             addCueOnly(candidate, gap.sourceNumber);
-            addDialogue(candidate, gap.sourceNumber);
+            const next = candidates.find(
+              (c) =>
+                c.onsetWindow >=
+                candidate.onsetWindow + candidate.islandWindows,
+            );
+            if (next) addDialogue(next, gap.sourceNumber);
           }
         }
       }

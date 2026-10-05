@@ -141,6 +141,9 @@ export function assembleRow({
           item,
           item.probe.segments.filter((segment) => !segment.uncertain),
         ),
+        // Where this English listening begins relative to the start: 0, or a
+        // later measured onset within reach of it.
+        offsetFromStartFrames: item.probe.startFrame - pick.fact.startFrame,
         firstDialogueShare: pick.dialogue.share,
         officialFirstWords: section.words.slice(0, FIRST_DIALOGUE_WORDS),
       };
