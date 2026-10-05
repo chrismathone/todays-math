@@ -5,6 +5,7 @@ import { referenceActivityBlocks } from "../quickCreateRecovery";
 import { keyOf, type QuickCreateAssembly } from "./context";
 import { DEFAULT_PROBLEM_POOL } from "@/lib/problemPool";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
+import { contentsEntries } from "./contents";
 
 type References = Extract<
   NonNullable<TextbookSemantic["node"]>,
@@ -95,12 +96,7 @@ export async function appendIndexes(ctx: QuickCreateAssembly): Promise<void> {
   }
   if (components.tableOfContents) {
     // Include the independently selected index sections after they exist.
-    const entries: References = sections.map((section) => ({
-      key: section.sectionKey,
-      label: section.title,
-      targetUnitKey: section.unitKey,
-      targetSectionKey: section.sectionKey,
-    }));
+    const entries: References = contentsEntries(sections);
     if (!entries.length)
       entries.push(
         ...units.map((unit) => ({
