@@ -81,6 +81,7 @@ const NATURAL_PROBE = String.raw`(function () {
       out[blocks[i].getAttribute("data-measure-id")] = {
         head: head.getBoundingClientRect().height * mm,
         prompt: prompt.getBoundingClientRect().height * mm,
+        main: blocks[i].querySelector(".tb-problem-main").getBoundingClientRect().height * mm,
         styled: !!(head.getAttribute("style") || prompt.getAttribute("style"))
       };
   }
@@ -191,7 +192,10 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
   async function naturalSizes(
     html: string,
   ): Promise<
-    Record<string, { head: number; prompt: number; styled: boolean }>
+    Record<
+      string,
+      { head: number; prompt: number; main: number; styled: boolean }
+    >
   > {
     const { page } = await bundledPage(false);
     try {
@@ -199,7 +203,7 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
       expect(await page.evaluate(fontsLoaded)).toBe(true);
       return (await page.evaluate(NATURAL_PROBE)) as Record<
         string,
-        { head: number; prompt: number; styled: boolean }
+        { head: number; prompt: number; main: number; styled: boolean }
       >;
     } finally {
       await page.close();
@@ -370,6 +374,85 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
       number: wrapped.numberLines,
       tag: wrapped.tagLines,
     }).toEqual({ number: 1, tag: 1 });
+  }, 180_000);
+
+  it("final render: a QR beside one prompt reserves the whole prompt row on both sides, and the work areas start level", async () => {
+    const pair = (qrLeft: boolean, qrRight: boolean) =>
+      textbookExchangeSchema.parse(
+        sourceRowsExchange([
+          {
+            sectionKey: "sc",
+            title: "합성",
+            kind: "scriptcheck",
+            activity: "dialogueCheck",
+            blocks: [
+              {
+                id: "a1",
+                content: SHORT_PROMPT,
+                header: SHORT_HEADER,
+                qr: qrLeft,
+              },
+              {
+                id: "a2",
+                content: LONG_PROMPT,
+                header: SHORT_HEADER,
+                qr: qrRight,
+              },
+            ],
+          },
+        ]),
+      );
+    const expectation = (sizes: MeasuredSizes): SourceRowExpectation => ({
+      pairs: [
+        { ids: ["q-a1", "q-a2"], alignPrompt: true, sizes: sizes["q-a1"] },
+      ],
+      untouched: [],
+      headers: {},
+      footers: {},
+    });
+    for (const [qrLeft, qrRight] of [
+      [true, false],
+      [false, true],
+      [true, true],
+    ]) {
+      const rendered = await render(pair(qrLeft, qrRight), [0]);
+      const natural = await naturalSizes(rendered.firstDocument);
+      const [left, right] = ["q-a1", "q-a2"].map((id) =>
+        onPage(rendered.pages, id),
+      );
+      expect([left.hasQr, right.hasQr]).toEqual([qrLeft, qrRight]);
+      // The QR is taller than the short prose beside it: that side's row is the taller one.
+      if (qrLeft)
+        expect(natural["q-a1"].main).toBeGreaterThan(
+          natural["q-a1"].prompt + 5,
+        );
+      const main = Math.max(natural["q-a1"].main, natural["q-a2"].main);
+      for (const id of ["q-a1", "q-a2"])
+        expect(rendered.sizes[id].main!).toBeCloseTo(main, 3);
+      expect(
+        judgeSourceRows(rendered.pages, expectation(rendered.sizes)),
+      ).toEqual([]);
+      expect(left.workTopMm).toBeCloseTo(right.workTopMm!, 1);
+      expect(height(left.mainBoxMm)).toBeCloseTo(height(right.mainBoxMm), 1);
+      expect(rendered.result.qrChecks).toHaveLength(
+        Number(qrLeft) + Number(qrRight),
+      );
+    }
+    // Without any QR the row is not reserved at all.
+    const plain = await render(pair(false, false), [0]);
+    expect(plain.sizes["q-a1"].main).toBeUndefined();
+    expect(onPage(plain.pages, "q-a1").mainStyleMinHeight).toBe("");
+    expect(judgeSourceRows(plain.pages, expectation(plain.sizes))).toEqual([]);
+  }, 300_000);
+
+  it("final render: a linked heading that does not fit its fixed slot is refused, not printed over the prompt", async () => {
+    const sections = linkedGroupSections();
+    const entry = sections[0].blocks[0];
+    if (!("group" in entry)) throw new Error("A linked group is expected");
+    entry.group.example.header = WRAPPING_HEADER;
+    await expect(
+      render(textbookExchangeSchema.parse(sourceRowsExchange(sections)), [0]),
+    ).rejects.toThrow("SOURCE_HEADER_OVERFLOW");
   }, 180_000);
 
   it("final render: a linked source group aligns its headings only", async () => {
@@ -792,7 +875,8 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
           sizes: value.sourceQuestionSizesMm,
         }));
       } finally {
-        await browser.close();
+        // Windows may still hold the profile lock: closing must not fail the proof.
+        await browser.close().catch(() => {});
       }
     `;
     const out = execFileSync(

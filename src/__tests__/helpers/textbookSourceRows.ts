@@ -334,7 +334,10 @@ export const standardSections = (): SourceSectionSpec[] => [
     ],
   },
 ];
-export type MeasuredSizes = Record<string, { head: number; prompt?: number }>;
+export type MeasuredSizes = Record<
+  string,
+  { head: number; prompt?: number; main?: number }
+>;
 /** What the standard pages must show; `sizes` are the renderer's own measured values when known. */
 export const standardExpectation = (
   sizes?: MeasuredSizes,
@@ -488,6 +491,10 @@ export interface CapturedProblem {
   promptBoxMm: Box;
   promptStyleMinHeight: string;
   promptText: string;
+  /** The prompt row (prose beside its QR or above its figure) and the height reserved for it. */
+  mainBoxMm: Box;
+  mainStyleMinHeight: string;
+  hasQr: boolean;
   workTopMm: number | null;
 }
 export interface CapturedSourcePage {
@@ -575,6 +582,9 @@ export const SOURCE_ROW_PROBE = String.raw`function (document) {
             return count || 1;
           })(),
           promptBoxMm: box(prompt), promptStyleMinHeight: prompt.style.minHeight || "", promptText: strip(prompt.textContent),
+          mainBoxMm: box(section.querySelector(".tb-problem-main")),
+          mainStyleMinHeight: section.querySelector(".tb-problem-main").style.minHeight || "",
+          hasQr: !!section.querySelector(".tb-qr"),
           workTopMm: work ? box(work)[1] : null
         });
       }
@@ -614,7 +624,7 @@ export interface SourceRowExpectation {
     ids: [string, string];
     alignPrompt: boolean;
     /** What the renderer's own measurement returned for the pair, when it is known. */
-    sizes?: { head: number; prompt?: number };
+    sizes?: { head: number; prompt?: number; main?: number };
   }>;
   /** Source or saved problems that belong to no pair: nothing may be set on them. */
   untouched: string[];
@@ -629,6 +639,7 @@ export interface SourceRowFailure {
     | "pair-head-height"
     | "pair-head-top"
     | "pair-prompt-height"
+    | "pair-main-height"
     | "work-top"
     | "untouched"
     | "header-kept"
@@ -732,18 +743,45 @@ export function judgeSourceRows(
         name,
         `발문 높이 지정 ${a.promptStyleMinHeight} ≠ 측정값 ${pair.sizes.prompt}mm`,
       );
-    if (!geometry) continue;
     if (
-      Math.abs(height(a.promptBoxMm) - height(b.promptBoxMm)) > TOLERANCE_MM ||
-      (pair.sizes?.prompt !== undefined &&
-        Math.abs(height(a.promptBoxMm) - pair.sizes.prompt) > TOLERANCE_MM)
+      geometry &&
+      (Math.abs(height(a.promptBoxMm) - height(b.promptBoxMm)) > TOLERANCE_MM ||
+        (pair.sizes?.prompt !== undefined &&
+          Math.abs(height(a.promptBoxMm) - pair.sizes.prompt) > TOLERANCE_MM))
     )
       fail(
         "pair-prompt-height",
         name,
         `발문 상자 ${height(a.promptBoxMm).toFixed(2)} / ${height(b.promptBoxMm).toFixed(2)}mm${pair.sizes?.prompt !== undefined ? ` (측정값 ${pair.sizes.prompt.toFixed(2)})` : ""}`,
       );
+    // A QR or a figure makes the prompt row taller than its prose: then the whole row is reserved
+    // on both sides. Without one, nothing is reserved.
+    const reserved =
+      pair.sizes?.main !== undefined || a.hasQr || b.hasQr
+        ? a.mainStyleMinHeight !== "" &&
+          a.mainStyleMinHeight === b.mainStyleMinHeight &&
+          (pair.sizes?.main === undefined ||
+            Math.abs(parseFloat(a.mainStyleMinHeight) - pair.sizes.main) <=
+              0.001)
+        : a.mainStyleMinHeight === "" && b.mainStyleMinHeight === "";
+    if (!reserved)
+      fail(
+        "pair-main-height",
+        name,
+        `발문 줄 높이 지정 «${a.mainStyleMinHeight}» / «${b.mainStyleMinHeight}»${pair.sizes?.main !== undefined ? ` (측정값 ${pair.sizes.main}mm)` : ""}`,
+      );
+    else if (
+      geometry &&
+      Math.abs(height(a.mainBoxMm) - height(b.mainBoxMm)) > TOLERANCE_MM &&
+      (a.hasQr || b.hasQr)
+    )
+      fail(
+        "pair-main-height",
+        name,
+        `발문 줄 상자 ${height(a.mainBoxMm).toFixed(2)} / ${height(b.mainBoxMm).toFixed(2)}mm`,
+      );
     if (
+      geometry &&
       a.workTopMm !== null &&
       b.workTopMm !== null &&
       Math.abs(a.workTopMm - b.workTopMm) > TOLERANCE_MM

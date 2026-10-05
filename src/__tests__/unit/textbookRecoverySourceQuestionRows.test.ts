@@ -398,6 +398,51 @@ describe("measured sizes in the markup", () => {
     ).toEqual([]);
   });
 
+  it("reserves the whole prompt row on both members where the result carries its height", () => {
+    // The renderer measures this only for a row with a QR or a figure beside or below the prose.
+    const reserved: MeasuredSizes = {
+      ...STATED,
+      "q-a1": { ...STATED["q-a1"], main: 29.5 },
+      "q-a2": { ...STATED["q-a2"], main: 29.5 },
+    };
+    const model = standardModel();
+    applyRecoveryMeasurements(model, result(reserved));
+    for (const id of ["q-a1", "q-a2"])
+      expect(
+        parse(renderBlockHtml(problem(model, id), resources))
+          .querySelector(".tb-problem-main")!
+          .getAttribute("style"),
+      ).toBe("min-height:29.5mm");
+    // A row without such a height keeps its prompt row unstyled.
+    for (const id of ["q-b1", "q-b2", "q-c1", "q-w1", "q-s1"])
+      expect(
+        parse(renderBlockHtml(problem(model, id), resources))
+          .querySelector(".tb-problem-main")!
+          .getAttribute("style"),
+      ).toBeNull();
+    const judge = (sizes: MeasuredSizes) => {
+      const fresh = standardModel();
+      applyRecoveryMeasurements(fresh, result(sizes));
+      return rules(
+        judgeSourceRows(pages(fresh).captured, standardExpectation(reserved), {
+          geometry: false,
+        }),
+      );
+    };
+    expect(judge(reserved)).toEqual([]);
+    // Reserved on one side only, or at another height than measured.
+    expect(judge({ ...reserved, "q-a2": { ...STATED["q-a2"] } })).toEqual([
+      "pair-main-height",
+    ]);
+    expect(
+      judge({
+        ...reserved,
+        "q-a1": { ...STATED["q-a1"], main: 20 },
+        "q-a2": { ...STATED["q-a2"], main: 20 },
+      }),
+    ).toEqual(["pair-main-height"]);
+  });
+
   it("leaves an unpaired, a wide and a saved problem exactly as they were, even when a size names them", () => {
     const before = standardModel();
     const after = standardModel();
