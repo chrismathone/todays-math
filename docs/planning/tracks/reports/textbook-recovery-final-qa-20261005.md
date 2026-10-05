@@ -1,14 +1,35 @@
 # Independent final recovery QA — 2026-10-05
 
-**Current checkpoint: eight of nine focused jobs pass; R30 and the final integrated replay remain pending.** Fresh production `06845c836` rendering with the v7 conserved source fixture and all 437 original writing rules passes R24/R26/R29/R34/R36/R40/R41/R42/R43 with zero issues. R30 fails 49 actual anchor/rule checks, narrowed to its authored repair example's native 17 pt formula rendering as 10 pt. The frozen `83e6b72c4` full source pair remains failed, and a new full pair is held until the focused jobs all pass. The completed historical `c761012f6` real-bank run checked 1,216 pages and produced 212 PDF samples, but neither that draft-only harness nor its old problem-only reference checks prove the final publisher's complete TOC/index references; the new QA pipeline is being checked through actual local publish reservation and two-stage bounded rendering. No G0–G6 acceptance, human approval, mathematical editorial approval or physical approval is asserted.
+**Current checkpoint: the complete `7660aded5` source pair remains failed; the repaired R9/R23 focused replay passes.** All actual 36 student and 48 answer pages have been individually read at 180 DPI. Student geometry fails 14 R23 native PDF coordinates; both variants have R9 connection-card overlap, and answer pages 8 and 10 orphan their CHECK headings. Authorized `182625813` repairs pass fresh R9/R23 PDF/DOM checks, but a whole-source replay awaits the coordinator's answer-heading repair. The real local two-stage publisher smoke passes its complete reference proof; the historical 14-bank runs remain failed and a separate coordinator-owned final bank replay is pending. No G0–G6 acceptance, human approval, mathematical editorial approval or physical approval is asserted.
 
 ## Scope and immutable inputs
 
-This dispatch began from accepted QA `eb3c06706`, read `docs/planning/tracks/reports/textbook-recovery-reference-implementation-20261005.md`, merged main through `b0901f34a8eb2facd895401f258cf84a9c61b0da`, and merged authorized coordinator changes through `06845c836` (frozen local merge `4218c42a2111321f41e1c610537baa7189e266ee`). Owned edits are confined to `scripts/qa/textbook/recovery/**` and this report. There were no direct production app/contracts/manuscript/DB edits, production writes, pushes, deployments or new-agent actions. Actual bank capture used a verified read-only transaction; actual book construction wrote only isolated local PGlite.
+This dispatch began from accepted QA `eb3c06706`, read `docs/planning/tracks/reports/textbook-recovery-reference-implementation-20261005.md`, merged main through `b0901f34a8eb2facd895401f258cf84a9c61b0da`, and merged authorized coordinator changes through `182625813398f92ff819fa33d92461ff91246c25` (local merge `42c172e698046988f8cbb9d8833090b7f89b0990`). The complete `7660aded5` run freezes local merge `29f003b03528c7526e26140952b395a0f2d49ebb`. Owned edits are confined to `scripts/qa/textbook/recovery/**` and this report. There were no direct production app/contracts/manuscript/DB edits, production writes, pushes, deployments or new-agent actions. Actual bank capture used a verified read-only transaction; actual book construction wrote only isolated local PGlite.
 
 The canonical UTF-8 LF Git bytes of `docs/planning/textbook-v15-recovery-plan-final-20261005.md` hash to `0ab8ac18fc033936e52a300752dd73894fbccfa52c740c0acc52c0d03cb04bb7`. Windows CRLF working bytes are a distinct representation. The original 259-page student PDF is SHA `6c24ba6e65e7dd4dec18dd24fafe0fb483e0bde0f7bbd5144f6d2411d0c773d0`; the original manuscript is SHA `520d1f437599ac6cc627aa5ba9962844e7b8a98eb12d8521aa1b4797c3c00cdb`. The original answer PDF has not been fixed as a visual reference, so no original-answer visual equality is claimed.
 
 Private evidence is under `C:/Users/user/Downloads/교재_복구_실행검증_20261005`. No private manuscript, question bodies, credentials or large evidence assets were added to Git.
+
+## Complete 7660 source review and 182625 focused repair
+
+`reference/runs/7660aded5-complete-source-v8` contains two actual production exports made with 18 bounded jobs, four source sections per job. Coverage flags are computed from actual final DOM block/row/activity populations, placements and PDF hashes. Geometry and AI findings remain independent of those population flags.
+
+| Variant | Actual pages | PDF SHA                                                            | Independent result                                                                        |
+| ------- | -----------: | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| Student |           36 | `a305f6dc4945c290aafc6b887299aa1f73a8a865b84428b894f4a5ad23d1803b` | Failed: 14 R23 native writing coordinates                                                 |
+| Answers |           48 | `045802b2a5a1f3dc26e0472c0f919951b5b0f4a49337e6850e20f431877ce679` | Geometry passed; 142 actual printed student references passed; three visible failed pages |
+
+Actual student extraction checks 3,139 PDF spans, 151 image placements, 1,212 DOM clips, 1,769 anchors, 304 semantic nodes, 111 dialogue font spans, 165 writing boxes and 36 rows. Answers check 4,525 spans, 151 image placements, 1,175 clips, 344 anchors, 438 semantic nodes, 111 dialogue spans, two native free-writing boxes and 36 rows. Student witness SHA is `4904b3eb401bd198a71111e867652befb72f72d90b7a840d4be3fcff7e49f482`; answer witness SHA is `b20b3e6ea04b6af57ccebeab97140e6d4eb946340943a50c262a2708082ae84e`. Geometry SHAs are `69a6d2321fd9097dceeb724f435a04529fc655bbf58b953e7ea39fd520c41021` and `727b613e606fc8c216a0e3e08e6ced516b3073b856ddd293942d50f2baa8b5ab` respectively. Combined independent verification SHA is `9f1512580b7f54063534fad69899e484221e7c7ae04281e4dc493ef44a2960a5`.
+
+All 84 real pages were individually viewed. The actual raster manifest SHA is `8bcf603f9737a608a4ed5577d8a6992a1348bfafae087174c441a68e9afb038d`; the AI reading ledger SHA is `c99f8f33b47b19936c0aeeff1cddf5e49ee84f0e90a8669cde09b75a39cea404`. Each ledger record pins its variant, actual PDF page, source/physical mapping, PDF/image hashes, 180-DPI render and observation. Student results comprise 32 pages with no visible defect observed, one visible failure, one geometry failure and two source-wrap observations. Answer results comprise 43 pages with no visible defect observed, three visible failures and two review notes. These are AI observations; human editorial and physical approvals remain pending. The 36-region original/current gallery has manifest SHA `7fbe344370eab40427597d60262c8b4b42324cdeec1614bff39c538b4ea6ed57` and preserves both actual PDFs and all 72 original/current region images.
+
+Failures were sent immediately through Orca. R9's native three painted cards had become an unpainted vertical flow crossing the readiness checklist in both variants. The student R23 mini-concept heading inherited line-height 1.65 rather than native 1.8, reducing its height by 0.434082 mm; B0045–B0058 then fail actual original/current PDF y coordinates by 0.529167 mm. Original/current x positions and 0.264583 mm rule thickness match. Answer physical pages 8 and 10 end with authored CHECK headings while B0015/B0016 and B0017/B0018 start on pages 9 and 11. The exact orphan witness SHA is `4b10c9aa92ff0ef0122fc720692ec74db15c282da79fd303b08d00b8834e20a6`. Odd-page footer diamond order differs; the native running-rule requirement applies only to unit spreads. Answer pages 12 and 20 have panel backgrounds behind a pinned guide rule without observed text collision, retained as review notes rather than proven content overlap.
+
+B0062 and B0096 wrap differently from the original PDF, but native DOM also reproduces those wraps and exact native/current CSS font size, line height, width and KaTeX positions agree. Native/current regular and bold TTF resources have identical hashes `2f840a5d2d8bf48581dd1a28407920673e765140676a8af6d5d6af1d72421453` and `030b934a58b2fd48b589d311549f6af2da6a56b6b20a9cd35bc74701c3aa07f2`. Font proof SHA is `ce12460017fafc27eb74e64c7df5ab7275781675064a553132b9b2d85b82f57c`. No independent typography failure or invented line-count acceptance criterion is asserted. R41's three original/current PDF writing vectors match exactly; an apparent image-only gap was not supported by actual vector geometry. Standalone SVG font identity remains unproven.
+
+The fresh focused run `reference/runs/182625813-focused-r09-r23-v8` freezes local `42c172e6`. R9 PDF SHA is `c8df87aae4b02057c3a1ceb74da18781f51f084f3412d879d5fd547d342c6639`; R23 is `940c32b56ce3dd82bc6434ddf0ec8f644312d89952fe28f62df23c9285d0b811`. Both pass independent geometry with zero issues and were individually read at 180 DPI. Actual R9 has three cards sharing one top, native grid/padding/paint/typography values match, and connection bottom 224.751139 mm clears readiness top 231.998242 mm by 7.247103 mm. All 16 R23 native containers/vectors pass original/current PDF geometry. The computed focused repair verification SHA is `4112d3f3399613380ce16534d0adc9521dab38a5edfa0ead41530e94ab427282`.
+
+`native_population.py` independently proves exact-once consumption from the immutable all-rule oracle and both real PDFs, keyed by source page plus question identity or free-area selector/ordinal. It verifies oracle question IDs are unique and matches each original oracle vector back to actual original PDF paint. The 7660 baseline contains all 132 question containers/416 vectors plus two free containers/21 vectors: 134 containers and 437 unique original/current vector uses, with zero missing or duplicate containers. It still fails the same 14 R23 coordinate checks; proof SHA is `d6b3c4f16df0098ec707ffaad13e8c0d990bca438b7d388ceaf1eafd5a40c867`. The repaired R23 passes 16/16. Seven real-witness negative controls reject missing and duplicate containers even with adjusted local candidate counts, a substituted question ID, missing DOM line, missing original reference, missing source page and duplicate oracle question identity. The original oracle and all coordinate/thickness/pitch tolerances remain unchanged.
 
 ## Lossless source adapter and complete original oracle
 
@@ -20,7 +41,7 @@ The original `fullSheet` relocates only its final direct-child checkbar, study f
 
 The latest oral fixture at `reference/fixtures/native-oral-flow-v4` has canonical exchange hash `f2b74c1c0897868d3759b40a4b337e25b3c7e54138baec39373f3c563d7d534b`: 60 selected sections, 356 blocks, 222 original questions/snapshots, 50 speech nodes, four boards, 11 linked public examples, 36 common concept rows, 1,347 TeX bodies, 47 end notes and 222 native headers. Source conservation passes, including exact R40 order `authored, B0145, authored.flow1, B0146, authored.flow2`; changed answers and TeX are rejected.
 
-A later image-adapter correction produces fresh `reference/fixtures/native-svg-paint-v7`, canonical hash `e3509021bee2a18aa8737c518e4fc0907baa9b28df389747e3e98f9bbf36c772`, with the same counts and source trees. The old trusted CSS parser included section block comments in its selector string, skipping the first `.map-card-shape` editorial rule. Stripping those comments restores the actual final native card fill `#f9fcf7`, stroke `#b1c7ba` and width 1; the old adapted SVG had `#fcfdf9`, `#b6c8af` and 1.1. Four unchanged native path geometries pass the new paint regression, and the old v4 fixture fails that check as expected. Source conservation also proves raw authored/page/unit trees and existing asset IDs unchanged against the prior fixture. The previous v4 files remain preserved. SVG text letter spacing is absent from the current production safe-SVG allowance, so native spacing and standalone SVG font identity remain limitations; the converter does not bypass that contract.
+A later image-adapter correction produces fresh `reference/fixtures/native-svg-paint-v7`, canonical hash `e3509021bee2a18aa8737c518e4fc0907baa9b28df389747e3e98f9bbf36c772`, with the same counts and source trees. The old trusted CSS parser included section block comments in its selector string, skipping the first `.map-card-shape` editorial rule. Stripping those comments restores the actual final native card fill `#f9fcf7`, stroke `#b1c7ba` and width 1; the old adapted SVG had `#fcfdf9`, `#b6c8af` and 1.1. Four unchanged native path geometries pass the new paint regression, and the old v4 fixture fails that check as expected. Source conservation also proves raw authored/page/unit trees and existing asset IDs unchanged against the prior fixture. The previous v4 files remain preserved. At v7, SVG text letter spacing was absent from the production allowance. The authorized `a2569385b` checkpoint adds only finite scalar spacing; fresh v8 preserves all ten native label spacing attributes and changes only the SVG asset hash. Its canonical fixture hash is `39468cfa3f8ef3e3527d099d37cf8ae2c00eb94a4358b168856abe696db9bf4a` and file SHA is `e114b25d50fe6febea6bba7c9a5bdaa04f5910df8ef76fb9f5344ae450101542`. All source text/TeX/questions/answers/raw trees remain immutable. Source conservation passes; standalone SVG font identity remains unproven.
 
 `source-computed.ts` measures every original U01 sheet R8–R43 after original fonts/images load and exact original alignment, writing expansion and dialogue-fit functions run. `reference/source-complete-u01-oracle-v3/source-computed-geometry.json` has SHA `49572d668fcc863ae0493acb50ba688baf8e1ab5b47e97c3891668ed17ad8182`. Every compared rendered source page must have a nonempty actual original anchor population and this pinned oracle hash. Earlier 14-page oracles remain diagnostic and cannot establish full 36-page coverage. Container boxes, text-Range boxes and original PDF glyph ink are distinct measurements.
 
@@ -28,10 +49,10 @@ A later image-adapter correction produces fresh `reference/fixtures/native-svg-p
 
 The frozen full `83e6b72c4a011c059b0ba5825a3afb16be46b6ab` export is in `reference/runs/83e6b72c4-complete-source-v3`. Fixture-file SHA is `514e10f1eca7eb484fbcbe5c1c7ca177bf8a4eb0570e928eed9fb7c161bd2e6a`; canonical exchange hash is `e9d74e31cd001248882393a6a0532b5d771ab82e5745e3502d2468d6c0b761fb`. Each variant used nine bounded four-section jobs.
 
-| Variant | Pages | PDF SHA | Current complete result |
-| --- | ---: | --- | --- |
-| Student | 36 | `b28b1f3ece8222689e88bbd9fade68824ecd9c382be15e568837623c11c3ad4c` | Failed: 445 coordinates |
-| Answers | 47 | `eeea5e0a8ed7b7eb2ba6e71cce9fc66a6baf9039b5fb72e85f01a5d2d66b4a9c` | Geometry passed; 142 references verified |
+| Variant | Pages | PDF SHA                                                            | Current complete result                  |
+| ------- | ----: | ------------------------------------------------------------------ | ---------------------------------------- |
+| Student |    36 | `b28b1f3ece8222689e88bbd9fade68824ecd9c382be15e568837623c11c3ad4c` | Failed: 445 coordinates                  |
+| Answers |    47 | `eeea5e0a8ed7b7eb2ba6e71cce9fc66a6baf9039b5fb72e85f01a5d2d66b4a9c` | Geometry passed; 142 references verified |
 
 The original full witness failed 449 checks: 445 coordinates, three checkbar populations and one coverage declaration. Actual stored-DOM inspection proved all three master guide bars exist as `.tb-recall-checkbar`, match their native boxes within 0.009 mm and had simply been omitted from the QA selector mapping. The independent `new-u01-semantic-student-all-guides-complete-witness.json` corrects that mapping and has all six computed population flags true; its corresponding geometry still fails 445 coordinates. The original 449-failure witness, all PDFs and placements remain unchanged. Population coverage is distinct from coordinate equality. A further audit found native safe-fragment `.work`/`.recall-rules` containers outside the typed writing candidate selectors: that historical writing flag certifies declared typed containers, not every native free-writing rule. Expanded native container/vector extraction is implemented and verified in the later focused checkpoint below; it does not retroactively make the historical witness complete.
 
@@ -45,12 +66,12 @@ Exact original/stored CSS evidence includes `first-cohort-computed-css.json` SHA
 
 The later focused `05fd660f021221465c76078247022a19992309ef` replay on oral v4 is in `reference/runs/05fd660f0-focused-cohorts-v4`. Each source page is one separately saved PDF; these noncontiguous pages are not merged into a purported complete export.
 
-| Source page | Result | PDF SHA |
-| --- | --- | --- |
-| R21 recall | Passed, 0 issues | `54e95b3c2aace004a2b11bed4c93f43430edb2b1f91e10ef1bea8a065cb54f21` |
-| R22 drill | Passed, 0 issues | `094e7b24829d5f507e66cbda26f415d2120276ee898225c1cb90ce83b84a4cae` |
-| R24 paired | Failed, 14 coordinates | `91d53b5845865e984f1b5b16e4b16ea673550a76ed057e4ca1256d2ecad6d769` |
-| R26 types | Failed, 14 coordinates | `ac1866a193108a3ccf3e8d1b5962f327c5568398b5bf14f51d4b0ab0fa6982ed` |
+| Source page | Result                 | PDF SHA                                                            |
+| ----------- | ---------------------- | ------------------------------------------------------------------ |
+| R21 recall  | Passed, 0 issues       | `54e95b3c2aace004a2b11bed4c93f43430edb2b1f91e10ef1bea8a065cb54f21` |
+| R22 drill   | Passed, 0 issues       | `094e7b24829d5f507e66cbda26f415d2120276ee898225c1cb90ce83b84a4cae` |
+| R24 paired  | Failed, 14 coordinates | `91d53b5845865e984f1b5b16e4b16ea673550a76ed057e4ca1256d2ecad6d769` |
+| R26 types   | Failed, 14 coordinates | `ac1866a193108a3ccf3e8d1b5962f327c5568398b5bf14f51d4b0ab0fa6982ed` |
 
 All four focused pages have all six actual population flags true. Worked-example boxes now match. The remaining second twin question has native top padding 2.5 mm and margin 1 mm, while the producer uses 3 mm and zero margin. Its first neighbor's height, prompt font/height and writing lines match; the propagated content shift is about 0.59 mm. Exact JSON `focused-cohort-native-css.json`, SHA `f8f9df243f3cdec830adb36fba1caf6e180c8a2c84a5a9a2eec3c6e174bb7343`, records all coordinates/CSS. The 0.5 mm tolerance remains unchanged.
 
@@ -64,17 +85,17 @@ Independent re-extraction of the unchanged `05fd660f0` R21 PDF passes zero issue
 
 The later `reference/runs/6580fc43c-focused-native-v5` run freezes renderer `6580fc43c3b062bf1d29adad5f74f2aa3a05d60b`, oral v4 source and the expanded oracle. It renders nine bounded jobs/ten actual pages, including R42/R43 in one call to preserve original spread allocation. Noncontiguous jobs remain separate PDFs.
 
-| Source pages | Geometry | Actual PDF SHA |
-| --- | --- | --- |
-| R24 | Passed, 0 issues | `ad2f68c6c3a24a2b09404a4634b5fac6a67597a3472f6eec665009de6db9fd8a` |
-| R26 | Passed, 0 issues | `8e547a645e05b308aefab45993f9589025425a2c63fa78a37373a82704ed0cf6` |
-| R29 | Failed, 9 coordinates | `190b43cb23b582a1f47af026167ddf85e8863701d4c3868a2e04b0c46667bbe7` |
-| R30 | Failed, 21 coordinates | `a06372dd01e550ddae69399c35d98ce35609ef131bf2a4c24d7f89f5a2a9090f` |
-| R34 | Failed, 37 coordinates | `32b30e34efd609bef84adbb63875e0024a65263ee156b0ed4e2ed5884a8c27eb` |
-| R36 | Failed, 17 coordinates | `157424525392fa40f94518377218ca7c6afa78f508920fa2f96f055c66160b64` |
-| R40 | Passed, 0 issues | `8e3e814d58f52bd3f5746d613fc3b36332aa6a2e0552a47fa1f3a3861af18bea` |
-| R41 | Passed, 0 issues including three native rules | `44d243e522aed9701ac3065f2dbd3133060867e475ca0687807966cf808dc38c` |
-| R42/R43 | Failed, 10 coordinates | `553cb4bb0cc8632d79f0d2d53ed10c9a86bac0705df47e4560932246abc6dce1` |
+| Source pages | Geometry                                      | Actual PDF SHA                                                     |
+| ------------ | --------------------------------------------- | ------------------------------------------------------------------ |
+| R24          | Passed, 0 issues                              | `ad2f68c6c3a24a2b09404a4634b5fac6a67597a3472f6eec665009de6db9fd8a` |
+| R26          | Passed, 0 issues                              | `8e547a645e05b308aefab45993f9589025425a2c63fa78a37373a82704ed0cf6` |
+| R29          | Failed, 9 coordinates                         | `190b43cb23b582a1f47af026167ddf85e8863701d4c3868a2e04b0c46667bbe7` |
+| R30          | Failed, 21 coordinates                        | `a06372dd01e550ddae69399c35d98ce35609ef131bf2a4c24d7f89f5a2a9090f` |
+| R34          | Failed, 37 coordinates                        | `32b30e34efd609bef84adbb63875e0024a65263ee156b0ed4e2ed5884a8c27eb` |
+| R36          | Failed, 17 coordinates                        | `157424525392fa40f94518377218ca7c6afa78f508920fa2f96f055c66160b64` |
+| R40          | Passed, 0 issues                              | `8e3e814d58f52bd3f5746d613fc3b36332aa6a2e0552a47fa1f3a3861af18bea` |
+| R41          | Passed, 0 issues including three native rules | `44d243e522aed9701ac3065f2dbd3133060867e475ca0687807966cf808dc38c` |
+| R42/R43      | Failed, 10 coordinates                        | `553cb4bb0cc8632d79f0d2d53ed10c9a86bac0705df47e4560932246abc6dce1` |
 
 All nine witnesses have actual computed population flags true; their coordinate failures remain failed. Immediate coordinator report `msg_5a1897ff4e82` includes exact failures: R29 body +1.637 mm, R30 question start −5.064 mm, R34 body −2.960 mm, R36 body −13.705 mm and R42 body +1.034 mm. R42's third prompt is 5.779 mm high versus original 11.559 mm, and its writing start is 6.983 mm earlier despite matching bottom. Exact CSS/runtime diagnosis and the subsequent complete replay remain pending.
 
@@ -96,19 +117,37 @@ Other superseded source runs remain separate and failed, including the 46-page `
 
 Production checkpoint `06845c836`, frozen local merge `4218c42a2111321f41e1c610537baa7189e266ee`, was replayed with native SVG paint fixture v7 and the pinned all-437-rule v6 oracle. Nine bounded jobs cover ten actual sheets; all six population flags are computed true. Coordinate/vector failures remain independent of those flags.
 
-| Source pages | Strict issues | Actual PDF SHA |
-| --- | ---: | --- |
-| R024 | 0 | `c2312009ea2db6471c0dbe372a4c39ffdc01faec550d5119c2bc3ba0e4b47aed` |
-| R026 | 0 | `c14635e1075c58f7b5bc7663e898f81c06d0ef347de7cdc371681eb5f126d048` |
-| R029 | 0 | `d17704ff271e06dfa9f8514f1fe51427951608e0e63acb5aa374710a9aa4f854` |
-| R030 | 49 | `c2f7ef2a8aa8e7551866ed43609b16d7b9e20ece93f0777b79d0737ebdbcd6e0` |
-| R034 | 0 | `39cd8e62b24e0c6cdfa85690bc61c5b7ae0dd66015343ad45bb1026f96fac708` |
-| R036 | 0 | `775cad792a1fc6f40b2aa2aa4fc88d5ea7db65a66bb9e7ca25fc8a8e9689fcb8` |
-| R040 | 0 | `57142f740f7312a7abb7b5a559d8a7f0085a3e5427be09befe26270db6105096` |
-| R041 | 0 | `a36f50f4309755d5c2fcc6fdb8404f71a42bac7526beaa8f141863d6727aacf4` |
-| R042,R043 | 0 | `ed8c0c008b308e129b8fc69d77507d4a162b307648ef3eeb0a1aba839154eb71` |
+| Source pages | Strict issues | Actual PDF SHA                                                     |
+| ------------ | ------------: | ------------------------------------------------------------------ |
+| R024         |             0 | `c2312009ea2db6471c0dbe372a4c39ffdc01faec550d5119c2bc3ba0e4b47aed` |
+| R026         |             0 | `c14635e1075c58f7b5bc7663e898f81c06d0ef347de7cdc371681eb5f126d048` |
+| R029         |             0 | `d17704ff271e06dfa9f8514f1fe51427951608e0e63acb5aa374710a9aa4f854` |
+| R030         |            49 | `c2f7ef2a8aa8e7551866ed43609b16d7b9e20ece93f0777b79d0737ebdbcd6e0` |
+| R034         |             0 | `39cd8e62b24e0c6cdfa85690bc61c5b7ae0dd66015343ad45bb1026f96fac708` |
+| R036         |             0 | `775cad792a1fc6f40b2aa2aa4fc88d5ea7db65a66bb9e7ca25fc8a8e9689fcb8` |
+| R040         |             0 | `57142f740f7312a7abb7b5a559d8a7f0085a3e5427be09befe26270db6105096` |
+| R041         |             0 | `a36f50f4309755d5c2fcc6fdb8404f71a42bac7526beaa8f141863d6727aacf4` |
+| R042,R043    |             0 | `ed8c0c008b308e129b8fc69d77507d4a162b307648ef3eeb0a1aba839154eb71` |
 
 The 49 R30 issues are 21 original anchor coordinates, 12 original PDF rule coordinates, 12 original DOM rule coordinates and four writing bounds. Its repair example is 24.796419 mm tall versus native 28.876790 mm. The clinic intro matches at 19.388997 mm and the following 5 mm gap now matches. Expanded actual source/stored descendant inspection proves native math is 17 pt with 1.65 line height, whereas the adapted canonical math wrapper still inherits 10 pt. Immediate coordinator reports `msg_b510f8e17625`, `msg_f9dae36efd0f` and `msg_416abbcd026b` retain exact evidence; `r30-native-css.json` SHA is `b80adf133d35e8ffdc7eabfa25b0922a8a46a8b9d4414d1e221bd25f3102b8eb`. The full 36-page replay remains held until all nine strict jobs pass.
+
+The subsequent authorized `a2569385b` focused replay uses v8 and freezes local merge `7940495e867be872b18223eace8c784973a387e1`. Eight jobs still pass with zero issues. The repair card now places the first question within 0.013 mm of the original, but clinic question-header bottom margins are 2 mm versus actual original 1.2 mm. Both question prompt heights match exactly; the extra margin propagates +0.810 mm in row one and +1.612 mm in row two. R30 remains failed with 17 anchors, four bounds and 24 rule-coordinate issues. Immediate messages `msg_f485a5f109a7`/`msg_239736bc73f5` preserve the failure; exact CSS SHA is `6d3a163881d25b4bd2df1fdc2d2efb70cf2a42b4e1010bdc949bb9cfb7041644`. Tolerances and all 437 original rules are unchanged.
+
+| Latest source pages | Strict issues | Actual PDF SHA                                                     |
+| ------------------- | ------------: | ------------------------------------------------------------------ |
+| R024                |             0 | `bca1db24dc7efa8d50228f13adfae7a444ae44d02728197e15207e681f42a395` |
+| R026                |             0 | `365ad943d563e3c226203b07acda92c199cc765540b4ad1b22b4a87f26f57311` |
+| R029                |             0 | `8fab3ca5086892ffea61c1ee4199620db3792d7771be2e3c7d25c6d978d3ca22` |
+| R030                |            45 | `a4b29c2bef7a4e9eb1560ffcda0c0756dcb2c57960dda0c697bdd5db8b1239aa` |
+| R034                |             0 | `9610ab19ebf66c6f344d0762c2193d36ffd0f6b1ebd7eab698ad1715730dedff` |
+| R036                |             0 | `ff435de742d9aca24d2627606e50d96da4f8892d706c06b96836e89a4cd24253` |
+| R040                |             0 | `c143f8107d0d884bc0e260359239aa9259b9ae53e4ce3dab21d7d5ffe75ec745` |
+| R041                |             0 | `d9e67a08a727246a4868194a87a175a041881608d99db6b91b1d687b007f194c` |
+| R042,R043           |             0 | `6847096649188ca735d613428c912361febeeb179af7b123059b5a531901fdb1` |
+
+Source v8 conservation passes all 356 blocks/222 questions/1,347 TeX bodies, all ten native SVG text-spacing attributes, four final card paints and two corruption rejections. A read-only recursive v7/v8 comparison finds only `/assets/5/sha256` changed. The old v7 fixture fails the new spacing guard as expected and stays preserved.
+
+The next `7660aded5` checkpoint restores clinic header margin to the measured 1.2 mm while keeping practice at 2 mm. Fresh `reference/runs/7660aded5-focused-native-v8` freezes local merge `29f003b03528c7526e26140952b395a0f2d49ebb`; all nine strict jobs/ten sheets pass zero issues with all six actual population flags true. R30 PDF SHA is `771d8305c8fab8f8385d33d31b45e0ffd3040ad337b736ebc340a1a5ff5286cc`. Immediate coordinator message `msg_44bd31db9daf` records the pass and start of the bounded full-source pair. This diagnostic pass does not substitute for full-source geometry or visual review.
 
 The new local-book harness exercises actual official `reservePublish` in isolated PGlite, reserves every bounded chunk of each variant, then rerenders every final chunk with the full variant reference pages and its own reserved layout. It preserves both stages and records actual PDF hashes/placements; filled model references are used for final DOM witnesses. Production publisher bounds remain four sections/300 manuscript blocks, inside eight sections/600 projected blocks/32 pages. The independent reference oracle joins immutable exchange entries to actual placed blocks and footer page numbers, then checks complete TOC/concept/type row populations, titles, model numbers, DOM numbers and printed PDF ink. Numeric page identity distinguishes the native three-digit footer ornament from unpadded reference numbers.
 
@@ -125,21 +164,21 @@ The actual E3-1 fixture has five fraction and 26 figure questions among 30 candi
 The settled `automatic/runs/c761012f6-final14` run freezes renderer `c761012f65d7981cc4e972c91b4e3051b5d1168a`. It created 14 local books, exported 28 actual PDFs, checked all 1,216 pages, verified all 281 actual printed answer references against student placements, and saved 212 PDF samples. Its verification JSON SHA is `95425e668a8ca8822f1bbfea46948a17fbb6a31b2a3439e1574a5cc4209784a4`; the durable PGlite manifest SHA is `37e94a75ff390747270c3eca40e1925e1ed493adc298c89f13513ea646b62a36`, 26,858,172 bytes.
 
 | Combination | Student pages / issues / samples | Answers pages / issues / samples |
-| --- | --- | --- |
-| E3-1 | 29 / 0 / 8 | 29 / 0 / 8 |
-| E3-2 | 61 / 0 / 8 | 65 / 0 / 8 |
-| E4-1 | 27 / 0 / 7 | 27 / 0 / 7 |
-| E4-2 | 29 / 0 / 8 | 28 / 0 / 8 |
-| E5-1 | 57 / 1 / 8 | 57 / 1 / 8 |
-| E5-2 | 27 / 0 / 7 | 27 / 0 / 7 |
-| E6-1 | 44 / 0 / 8 | 46 / 0 / 8 |
-| E6-2 | 60 / 0 / 8 | 62 / 0 / 8 |
-| M1-1 | 34 / 0 / 8 | 36 / 0 / 8 |
-| M1-2 | 30 / 0 / 7 | 35 / 0 / 7 |
-| M2-1 | 65 / 0 / 7 | 68 / 0 / 7 |
-| M2-2 | 40 / 0 / 7 | 44 / 0 / 7 |
-| M3-1 | 50 / 0 / 8 | 48 / 0 / 8 |
-| M3-2 | 41 / 0 / 7 | 50 / 0 / 7 |
+| ----------- | -------------------------------- | -------------------------------- |
+| E3-1        | 29 / 0 / 8                       | 29 / 0 / 8                       |
+| E3-2        | 61 / 0 / 8                       | 65 / 0 / 8                       |
+| E4-1        | 27 / 0 / 7                       | 27 / 0 / 7                       |
+| E4-2        | 29 / 0 / 8                       | 28 / 0 / 8                       |
+| E5-1        | 57 / 1 / 8                       | 57 / 1 / 8                       |
+| E5-2        | 27 / 0 / 7                       | 27 / 0 / 7                       |
+| E6-1        | 44 / 0 / 8                       | 46 / 0 / 8                       |
+| E6-2        | 60 / 0 / 8                       | 62 / 0 / 8                       |
+| M1-1        | 34 / 0 / 8                       | 36 / 0 / 8                       |
+| M1-2        | 30 / 0 / 7                       | 35 / 0 / 7                       |
+| M2-1        | 65 / 0 / 7                       | 68 / 0 / 7                       |
+| M2-2        | 40 / 0 / 7                       | 44 / 0 / 7                       |
+| M3-1        | 50 / 0 / 8                       | 48 / 0 / 8                       |
+| M3-2        | 41 / 0 / 7                       | 50 / 0 / 7                       |
 
 Exact PDF hashes and sample names for all 28 outputs are recorded in the settled verification/manifests. Representative E3-1 student/answers hashes are `702ff1de2efc4088277d464078392d995ec1de5d247beb706724258935cd4da7` / `83fafe37c2169a613d3e02f25dc3b8178b371ddf3d4f419e7bd6f82ccc8a6032`; M2-1 hashes are `1c619736e0ec27ad5be59f718df9d0701467c12496477b352184288c5ad944ff` / `b0f387d04a577baa95e37334ddaaeab12b3bb76f4bde64401b38dbe34b3cb12d`. Those books have 11 and 41 distinct real snapshots respectively, with five and 39 fraction snapshots, and no synthetic question substitutions.
 
@@ -150,6 +189,8 @@ AI inspected at least three actual PNGs per E3-1/M2-1 variant. Despite zero geom
 Every automatic export manifest preserves canonical source version: script-tree Git OID `b90e7e1e05084513153e81cbd96de4e6d1a06278`, schema version 1, source script versions/provenance, frozen concept composition hashes, actual working-byte SHA and canonical Git-byte SHA for all seven script banks and metadata. Canonical ledger Git SHA is `949f0acaab4a12689ea81abe7abef9ecd097c7a02de69e6d8d51a1792a5e1fd5`; corrected-static metadata Git SHA is `b10eb1c956b050751ddedcda2e012adc6c297091dc4fd00ae19b6da890f9a29f`. These fields remain part of the final replay manifest rather than being replaced by an unpinned generic source label.
 
 Earlier automatic runs remain failed. The settled `d693559f3-resource-dedup` run created 14 books but produced only 18 PDFs; ten final outputs were missing. Its DB SHA is `5b3e5fb315bf6bdb873054b9fba96b8fac31a7f4628d9d399d02059f394b8bf5`; verification SHA is `947b76d1d555c969d334db2ff38987b4dec941aed741036dd2c52aef06a34f59`. Earlier SVG validation, spread alignment, continuation, overflow and owned-browser failures remain attributed to their frozen versions.
+
+An independent later actual-bank peer report at `docs/reports/textbook-final-bank-qa-20261005.md`, commit `1c4c94afb599751830b8793fef655e819a1ccd1f`, preserves failed renderer `441fa1f84bdfa0ddcb967e15930820fcfe178435`: 14 settled attempts, 13 complete pairs/27 PDFs, 1,171 pages and 253 printed problem references; M3-2 answers fail `EXAMPLE_GROUP_OVERFLOW`. Whole geometry on existing PDFs passes, but 17 variants/86 pages retain raw-TeX title failures, and the old draft harness lacks final TOC/index references. That peer evidence remains failed; the newer QA pipeline and a final production checkpoint require a separate fresh all-14 run. Its review counts and hashes are attributed to the peer, not duplicated as this worker's independent reading.
 
 ## Evidence integrity, guard checks and remaining gates
 
