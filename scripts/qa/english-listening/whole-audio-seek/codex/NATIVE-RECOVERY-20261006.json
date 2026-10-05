@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "kind": "immutable-verifier-run-index",
+  "admissionAuthority": false,
+  "humanReviewed": false,
+  "humanGold": false,
+  "artifactRoot": "output/listening-assessments/whole-audio-seek-20261006/native-recovery/codex",
+  "implementation": {
+    "codeCommit": "9a9a905a8c4f1051b067d948ded8e19c5f20a092",
+    "archive": "implementation-013",
+    "files": 47,
+    "manifestSha256": "4cd144fbacfa65d39b6048e4ce6fc3ae220abe7fd365d9b0e138aab85c578f04",
+    "regressionTestsPassed": 363,
+    "testReceiptSha256": "faa0d6ae79e66fb7356808b9eba6cf0cf9c5ce61a83913ca13cce2490ed32e43"
+  },
+  "counts": {
+    "sources": 193,
+    "questions": 3699,
+    "existingExactPreserved": 2727,
+    "baselineHeldAccounted": 972,
+    "offered": 340,
+    "offeredAdmitted": 282,
+    "offeredHeld": 58,
+    "unofferedHeld": 632,
+    "totalHeld": 690,
+    "totalRanges": 3009,
+    "offeredSourcesWithCpuNativeReplay": 81,
+    "sourcesWithNewAdmissions": 70,
+    "prior75AdmissionsExact": 75,
+    "certificateErrors": 0
+  },
+  "artifacts": {
+    "certificate": {
+      "path": "full-native-certificate-001/certificate.json",
+      "sha256": "bbc6f268191fe6bbe839fb5da41917cba2a97bdf79272654eea55f9830101756"
+    },
+    "evaluation": {
+      "path": "full-native-evaluation-001.json",
+      "sha256": "d795a1922767bd7284baa6560e6ab93628eff1fdbc25aae681b54ce7c821bc32"
+    },
+    "independentReport": {
+      "path": "full-native-independent-report-001.json",
+      "sha256": "40035d3a37744b52c41bfcf1bbd837adb1b90469e0f35e68d3cb2efb24912701"
+    },
+    "proofClosure": {
+      "path": "full-native-proof-closure-001.json",
+      "sha256": "4c018d92a4b738a1b3701b3be8172fdb14b7897f495e640bcfdb48d9d107435a"
+    },
+    "stableInputAudit": {
+      "path": "full-native-input-audit-002.json",
+      "sha256": "714c1767c668db879d7f746003902d3ec3aee60fe0619ae52e5269960541aa17"
+    },
+    "prior75ExactComparison": {
+      "path": "full-native-prior75-exact-comparison-001.json",
+      "sha256": "56eba62413f64a3cd841576d6fec2d0380f17dda1d2425cfa6339887259b772d"
+    },
+    "convertedTen": {
+      "path": "full-native-converted-ten-001.json",
+      "sha256": "ede44b0fd11d5d0107b39f36d162296869ef3ee0bfbb61b92bc1a8839aafd42e"
+    },
+    "convertedOriginalFingerprint": {
+      "path": "full-native-converted-original-fingerprint-001.json",
+      "sha256": "4dc56dfac9acdabb2b5ff074178cf810d1ae2b5c2d4a366431db780358291056"
+    }
+  },
+  "regressionEvidence": {
+    "allSourcePhysicalControls": 193,
+    "knownNativeOnsetsExact": 2689,
+    "knownControlsWithoutStoredNativeOnset": 38,
+    "pilotHeadingSources": 15,
+    "pilotRawHeadings": 685,
+    "qualifiedNativeHeadings": 176,
+    "heldHeadings": 509,
+    "matchedNegativeCutsHeld": 312,
+    "unmatchedNegativeCuts": 68,
+    "researchPilotAdmitted": 7,
+    "researchPilotHeld": 28
+  },
+  "convertedSource": {
+    "offered": 10,
+    "admitted": 8,
+    "held": 2,
+    "nativeTimingDomain": "actual whole-original MP3 playback PCM",
+    "originalBinding": "original M4A bytes and independently decoded mono PCM fingerprint",
+    "playbackBinding": "playback bytes and independently decoded mono PCM fingerprint",
+    "frozenClockLandmarks": 9,
+    "newAsr": false,
+    "newCorrelationExperiment": false
+  },
+  "constraints": {
+    "oldGatesGloballyWeakened": false,
+    "originalGenerationAnchorsPreserved": true,
+    "sharedFirstMemberStartsAtOriginalSharedHeading": true,
+    "providerSpanTimingIsPhysicalIdentityAuthority": false,
+    "allNestedRawEnvelopeProbeHashesRequired": true,
+    "allAdmittedEndsAtEntireOriginalEnd": true,
+    "verifierWritesDatabase": false,
+    "verifierWritesStorage": false,
+    "verifierWritesMedia": false
+  },
+  "limits": [
+    "Existing certified starts are regression references, not human or external phonetic gold.",
+    "The completed earlier all-source control and negative replays were reused without duplicate heavy replay.",
+    "Pilot outcomes informed adapter design; partition counts are not blind holdout accuracy.",
+    "The 58 offered holds and 632 unoffered holds remain excluded.",
+    "The frozen complete certificate and its input revision identities describe the pre-adoption baseline; the coordinator owns adoption and post-application validation."
+  ]
+}
