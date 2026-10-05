@@ -45,9 +45,15 @@ start/onset. The next heading begins at the next original number. The complete
 English clip must fit between head start and next heading start. A quote timestamp
 alone cannot make a clip crossing a boundary admissible.
 The introductory word `듣고` is incomplete. The first literal reliable instruction
-prefix must finish with `고르시오`, `고르세요`, `답하시오`, or `선택하시오`.
+prefix must finish with `고르시오`, `고르세요`, `답하시오`, `답하세요`, or `선택하시오`.
 Only this complete prefix classifies shared scope; a beginning of dialogue in the
 same unchanged raw segment remains retained without altering that classification.
+When a declared head selects only the introductory segment, the verifier may
+derive the first complete contiguous reliable raw prefix, retaining the declared
+text and IDs unchanged and recording `literal_complete_native_instruction_v1`
+context with the additional original IDs/raw flags. It stops before any new
+numbered heading, English dialogue, or uncertain segment. `고르는 문제입니다`
+alone is incomplete; actual subsequent `잘 듣고 답하세요` completes the instruction.
 
 Exactly one next boundary is required. A known next original scope can instead use
 `nextCertificateEvidence:{certificate:{path,sha256},questionId,scopeQuestionNumbers,

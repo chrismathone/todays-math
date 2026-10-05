@@ -112,6 +112,28 @@ def head_coverage(spoken, raw_text):
     return spoken
 
 
+def complete_instruction_prefix(index, selected):
+    ordered = list(index.values())
+    v.require([s["id"] for s in selected] == [s["id"] for s in ordered[:len(selected)]],
+              "localized_instruction_selected_not_contiguous_prefix")
+    prefix = [ordered[0]]
+    endings = r"(?:고르시오|고르세요|답하시오|답하세요|선택하시오)(?=[\s.!?。]|$)"
+    for segment in ordered[1:]:
+        if re.search(endings, " ".join(s["text"] for s in prefix)):
+            break
+        numbers, _ = literal_cue(segment["text"])
+        v.require(not numbers, "localized_instruction_crosses_next_heading")
+        v.require(not (len(a.english_words(segment["text"])) >= 4 and len(re.findall(r"[가-힣]", segment["text"])) < 8),
+                  "localized_instruction_crosses_dialogue")
+        v.require(not v.uncertain(segment), "uncertain_raw_evidence")
+        prefix.append(segment)
+    text = " ".join(s["text"] for s in prefix)
+    _, rest = literal_cue(text)
+    ending = re.search(endings, rest)
+    v.require(ending is not None, "localized_instruction_missing_or_incomplete")
+    return prefix, rest[:ending.end()]
+
+
 def exact_occurrences(needle, haystack):
     return [i for i in range(len(haystack) - len(needle) + 1)
             if haystack[i:i + len(needle)] == needle]
@@ -214,12 +236,10 @@ def numbered_probe(row, source, replay, field, *, require_instruction=True):
                       "localized_number_at_two_distant_onsets")
     # 듣고 is only the introductory clause; later words can change a pair
     # into a genuinely joint passage. Classify only a complete instruction.
-    ending = re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", rest)
-    v.require(not require_instruction or ending is not None, "localized_instruction_missing_or_incomplete")
     if require_instruction:
         # Preserve the full raw segments, but classify only the literal first
         # complete instruction. A following English turn may share a segment.
-        rest = rest[:ending.end()]
+        selected, rest = complete_instruction_prefix(index, selected)
     relative = (probe["onsetFrame"] - probe["startFrame"]) / probe["sampleRate"]
     v.require(selected[0]["estimatedStartSeconds"] - .5 <= relative <= selected[0]["estimatedEndSeconds"],
               "localized_onset_number_correspondence")
@@ -444,6 +464,9 @@ def validate(row, source, question, clock, replay, full_index):
              "nextCertificate": row.get("nextCertificateEvidence"),
              "nextBoundaryKind": "exact_preserved_original_scope_v1" if certified else "literal_original_closing_v1" if terminal else "next_numbered_native",
              "sharedHeadProbe": row.get("sharedHeadProbeEvidence"),
+             "instructionContext": {"method": "literal_complete_native_instruction_v1",
+                                    "segmentIds": [s["id"] for s in raw], "rawSegments": raw},
+             "sharedHeadRawSegments": joint_raw if kind == "shared_instruction_member" else None,
              "nextOnsetFrame": neighbor["onsetFrame"],
              "nextSpokenNumbers": next_spoken if certified else next_numbers,
              "nextScopeQuestionNumbers": next_numbers, "nextRawSegments": next_raw, "localizedMapping": mapping,
