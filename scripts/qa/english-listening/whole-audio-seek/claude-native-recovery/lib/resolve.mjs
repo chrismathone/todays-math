@@ -13,6 +13,7 @@ import {
   bindQuotes,
   countOccurrences,
   establishHeadings,
+  instructed,
   estimateContradiction,
   locateFrozenQuote,
   passageStarts,
@@ -148,7 +149,7 @@ export function passageEvidence(input, passage, tested = {}) {
         h.startFrame === start.startFrame &&
         h.onsetFrame === start.onsetFrame &&
         (start.native.kind === "shared_instruction_member" ||
-          h.reading.instruction),
+          instructed(h)),
     );
     if (same && same !== heading)
       heading = { ...same, kind: heading.kind, sharedHead: heading.sharedHead };
@@ -192,6 +193,15 @@ export function passageEvidence(input, passage, tested = {}) {
         ...placeEvidence(heading),
       },
       probeEvidence: headingReference(heading),
+      // The same-start reading that wrote the instruction after bare digits.
+      instructionProbeEvidence: heading.instructionSibling
+        ? reference(
+            heading.instructionSibling.ref,
+            heading.instructionSibling.probe.segments.filter((s) =>
+              heading.instructionSibling.reading.instruction.segmentIds.includes(s.id),
+            ),
+          )
+        : null,
       nextProbeEvidence: nextHeading ? headingReference(nextHeading) : null,
       nextNativeEvidence: nextHeading ? placeEvidence(nextHeading) : null,
       sharedHeadProbeEvidence:
@@ -248,6 +258,7 @@ export function sourceStructure(input) {
   const { headings, closings, held, written } = establishHeadings(
     native,
     input.koListenings,
+    { instructionFromBareSibling: Boolean(input.instructionFromBareSibling) },
   );
   const nativeStarts = passageStarts(headings);
   const certified = input.blind
@@ -360,7 +371,24 @@ export function sourceStructure(input) {
       // closing listened to.
       const closing = closings.find((c) => c.startFrame > start.startFrame);
       const scan = input.terminalScan?.(start.startFrame, closing?.startFrame);
-      if (!closing || last < hintedMaximum || (scan && scan.missing > 0))
+      if (
+        input.lastOfficialNumber !== undefined &&
+        last === input.lastOfficialNumber &&
+        last >= hintedMaximum
+      )
+        // An official source prints its questions: after its last number
+        // nothing but that question's passage and the closing remain.
+        boundary = {
+          startFrame: closing?.startFrame ?? native.frameCount,
+          kind: closing
+            ? "closing_announcement"
+            : "source_end_after_last_official_number",
+          originalNumbers: [],
+          closing: closing ?? null,
+          largestNumberWrittenAnywhere: hintedMaximum,
+          lastOfficialNumber: input.lastOfficialNumber,
+        };
+      else if (!closing || last < hintedMaximum || (scan && scan.missing > 0))
         reason = "terminal_boundary_not_established";
       else
         boundary = {
@@ -430,7 +458,8 @@ export function sourceStructure(input) {
         onsetFrame: h.onsetFrame,
         startMs: startMsOf(h.startFrame, rate),
         text: h.reading.text,
-        instruction: h.reading.instruction?.text ?? null,
+        instruction: instructed(h)?.text ?? null,
+        instructionFromBareSibling: Boolean(h.instructionSibling),
         probe: h.ref,
       })),
       closings: closings.map((c) => ({

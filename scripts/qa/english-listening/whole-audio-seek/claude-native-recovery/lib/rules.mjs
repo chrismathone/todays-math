@@ -230,6 +230,10 @@ export function headingReading(probe) {
   };
 }
 
+/** A heading's instruction: its own reading's, or a same-start bare sibling's. */
+export const instructed = (heading) =>
+  heading.reading.instruction ?? heading.instructionSibling?.reading.instruction ?? null;
+
 /** True when the reading is this literal heading, first and reliably. */
 export function readsHeading(reading, numbers) {
   return Boolean(
@@ -369,7 +373,7 @@ export const startMsOf = (startFrame, sampleRate) =>
  * onsetFrame, place, ref, reading, siblings }, kind "single" | "shared_head" |
  * "member". `held` maps an original number to the reason no heading stands.
  */
-export function establishHeadings(native, listenings) {
+export function establishHeadings(native, listenings, options = {}) {
   const rate = native.sampleRate;
   const byStart = new Map();
   for (const listening of listenings) {
@@ -502,6 +506,21 @@ export function establishHeadings(native, listenings) {
       probe: chosen.probe,
       reading: chosen.reading,
       siblings,
+      // Official recordings: a long recognition often writes the number as
+      // bare digits before the instruction, while a short clip from the same
+      // start writes the literal number alone. Together they are one heading;
+      // the bare reading only lends its instruction, never a number.
+      instructionSibling:
+        options.instructionFromBareSibling && !chosen.reading.instruction
+          ? (entries.find(
+              (e) =>
+                e !== chosen &&
+                e.reading.reliable &&
+                e.reading.cue?.form === "bare" &&
+                e.reading.cue.numbers.join(",") === key &&
+                e.reading.instruction,
+            ) ?? null)
+          : null,
       reason,
     });
   }
@@ -539,7 +558,7 @@ export function establishHeadings(native, listenings) {
     // onset where the number begins right at the start, then the later onset.
     const [best, ...others] = [...usable].sort(
       (a, b) =>
-        Boolean(b.reading.instruction) - Boolean(a.reading.instruction) ||
+        Boolean(instructed(b)) - Boolean(instructed(a)) ||
         a.reading.firstSpeechSeconds - b.reading.firstSpeechSeconds ||
         b.onsetFrame - a.onsetFrame,
     );
@@ -557,7 +576,7 @@ export function establishHeadings(native, listenings) {
   const out = [];
   for (const heading of headings) {
     if (heading.numbers.length > 1) {
-      if (!heading.reading.instruction) {
+      if (!instructed(heading)) {
         for (const n of heading.covers)
           if (!held.has(n)) held.set(n, "instruction_context_not_heard");
         head = null;
@@ -575,7 +594,7 @@ export function establishHeadings(native, listenings) {
       out.push(heading);
       continue;
     }
-    if (!heading.reading.instruction) {
+    if (!instructed(heading)) {
       held.set(n, "instruction_context_not_heard");
       continue;
     }

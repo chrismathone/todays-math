@@ -6,6 +6,7 @@ import {
   scriptAnchors,
   sectionSentences,
 } from "../lib/official.mjs";
+import { resolveSource } from "../lib/resolve.mjs";
 import {
   AT,
   FRAMES,
@@ -13,8 +14,12 @@ import {
   RATE,
   SCRIPT,
   english,
+  heading,
+  listening,
+  makeInput,
   makeOfficialInput,
   rowOf,
+  segment,
   startOf,
 } from "./fixture.mjs";
 
@@ -87,6 +92,50 @@ test("without its own sentence, its own measured number or a usable script, an o
   assert.match(reason(resolveOfficial(doubled), "o-2"), /^official_script_sections_unavailable:/);
   const unbound = makeOfficialInput([2], { script: { reason: "official_script_not_bound:x" } });
   assert.equal(reason(resolveOfficial(unbound), "o-2"), "official_script_not_bound:x");
+});
+
+test("bare digits before the instruction and the literal number alone, from one start, are one official heading", () => {
+  const split = (input) => {
+    input.koListenings = input.koListenings.filter((l) => l.startFrame !== startOf(AT[2]));
+    input.koListenings.push(
+      heading(AT[2], "2. 다음을 듣고, 여자가 할 일을 고르시오."),
+      listening("ko", startOf(AT[2]), 150, [segment("2번", 0.4, 1.1)]),
+    );
+    return input;
+  };
+  const row = rowOf(resolveOfficial(split(makeOfficialInput([2]))), "o-2");
+  assert.equal(row.status, "candidate");
+  assert.equal(row.probeEvidence.text, "2번");
+  assert.match(row.instructionProbeEvidence.text, /^2\. 다음을 듣고/);
+  assert.equal(row.instructionProbeEvidence.startFrame, row.probeEvidence.startFrame);
+  // The bare reading lends an instruction, never a number: alone it is no heading.
+  const bareOnly = makeOfficialInput([2]);
+  bareOnly.koListenings = bareOnly.koListenings.filter((l) => l.startFrame !== startOf(AT[2]));
+  bareOnly.koListenings.push(heading(AT[2], "2. 다음을 듣고, 여자가 할 일을 고르시오."));
+  assert.equal(rowOf(resolveOfficial(bareOnly), "o-2").status, "held");
+  // Another number's bare digits lend nothing.
+  const other = makeOfficialInput([2]);
+  other.koListenings = other.koListenings.filter((l) => l.startFrame !== startOf(AT[2]));
+  other.koListenings.push(
+    heading(AT[2], "3. 다음을 듣고, 여자가 할 일을 고르시오."),
+    listening("ko", startOf(AT[2]), 150, [segment("2번", 0.4, 1.1)]),
+  );
+  assert.equal(reason(resolveOfficial(other), "o-2"), "instruction_context_not_heard");
+  // The reconstructed route does not use this: number and instruction in one reading.
+  const reconstructed = split(makeInput());
+  assert.equal(resolveSource(reconstructed).table.held[2], "instruction_context_not_heard");
+});
+
+test("after the last official number the passage may end with the recording; a later number written anywhere holds it", () => {
+  const input = makeOfficialInput([5]);
+  input.koListenings = input.koListenings.filter((l) => l.startFrame !== startOf(AT.closing));
+  const row = rowOf(resolveOfficial(input), "o-5");
+  assert.equal(row.status, "candidate");
+  assert.equal(row.nativeRecovery.nextBoundary.kind, "source_end_after_last_official_number");
+  assert.equal(row.nativeRecovery.passageFrames.toFrame, input.native.frameCount);
+  assert.equal(row.terminalProbeEvidence, null);
+  input.hints.numbers.push({ source: "frozen_asr", number: 6, segmentStartMs: 1, segmentEndMs: 2 });
+  assert.equal(reason(resolveOfficial(input), "o-5"), "terminal_boundary_not_established");
 });
 
 test("the next number's certified start bounds an official passage", () => {

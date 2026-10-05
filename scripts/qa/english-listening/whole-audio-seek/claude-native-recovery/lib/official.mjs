@@ -76,7 +76,12 @@ export function scriptAnchors(text, questions) {
  */
 export function resolveOfficial(input) {
   const { record } = input;
-  const structure = sourceStructure({ ...input, blind: false });
+  const structure = sourceStructure({
+    ...input,
+    blind: false,
+    instructionFromBareSibling: true,
+    lastOfficialNumber: Math.max(...record.questions.map((q) => q.sourceNumber)),
+  });
   const { passages, held, table } = structure;
   const questions = record.questions.map((q) => ({
     sourceNumber: q.sourceNumber,
