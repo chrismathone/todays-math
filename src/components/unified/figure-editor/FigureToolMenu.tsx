@@ -34,7 +34,7 @@ export function toolMenuOwnsKey(e: KeyboardEvent): boolean {
  * (한 글자 단축키로 골라도 — 겉은 편집기가 쥐고 있다). 켜진 도구가 이 무리면 겉과 ▾ 가 같이 눌린 모양이다(시안 `.split[data-on]`).
  *
  * 키보드(시안 그대로): 겉 = 여느 단추(Tab·Enter), ▾ = 메뉴 단추 — Enter·Space·↓ 로 열고(↑ 는 끝에서부터) ↑↓·Home·End 로 옮겨
- * Enter·Space 로 고르고 Esc 로 닫는다. 열린 동안 Tab 은 메뉴 안에서 돈다(초점 가두기). 바깥을 누르면 닫힌다.
+ * Enter·Space 로 고르고 Esc 로 닫는다. Tab·Shift+Tab 은 메뉴를 닫고 문서의 다음·이전 단추로 이동한다. 바깥을 누르면 닫힌다.
  * 초점: 고르면 **겉 단추**로, Esc 면 ▾ 로 돌린다 — 메뉴가 사라지며 초점이 <body> 로 떨어지면 이어 누른 단축키가
  * «편집기 밖»으로 걸러진다(트랙 43 «맨 뒤로» 뒤 Ctrl+Z 가 안 먹던 것과 같은 자리).
  */
@@ -151,12 +151,16 @@ export function FigureToolMenu({
           aria-label={`${name} 도구`}
           data-figure-tool-menu=""
           onKeyDown={(e) => {
+            if (e.key === "Tab") {
+              // Anchor native tab order at ▾ before the focused menu item unmounts.
+              close();
+              return;
+            }
             const keys: Record<string, () => void> = {
               ArrowDown: () => move(target + 1),
               ArrowUp: () => move(target - 1),
               Home: () => move(0),
               End: () => move(tools.length - 1),
-              Tab: () => move(target + (e.shiftKey ? -1 : 1)),
               Enter: () => choose(tools[target]),
               " ": () => choose(tools[target]),
               Escape: close,
