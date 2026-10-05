@@ -60,6 +60,9 @@ export class TextbookLayoutError extends Error {
 }
 export const blockColumnSpan = (block: RenderBlock): 1 | 2 =>
   block.kind === "problem" ? block.layout.columnSpan : 2;
+/** The native calculation grid alone uses a nine-millimetre gutter. */
+export const blockColumnGapMm = (block: RenderBlock): number =>
+  block.semantic?.source?.kind === "drill" ? 9 : A4.columnGapMm;
 export function textbookBodyTopMm(
   section: RenderSection,
   block?: RenderBlock,
@@ -86,7 +89,9 @@ export function blockWidthMm(
 ): number {
   const width =
     A4.widthMm - config.print.innerMarginMm - config.print.outerMarginMm;
-  return blockColumnSpan(block) === 1 ? (width - A4.columnGapMm) / 2 : width;
+  return blockColumnSpan(block) === 1
+    ? (width - blockColumnGapMm(block)) / 2
+    : width;
 }
 
 /** Reserve measured row space before breaking a new automatic exercise run into pages. */
@@ -457,7 +462,7 @@ export function paginateTextbookSections(
         const placement: BlockPlacement = {
           blockId: block.id,
           column,
-          xMm: left + i * (width + A4.columnGapMm),
+          xMm: left + i * (width + blockColumnGapMm(block)),
           yMm: cursor,
           widthMm: width,
           heightMm: height,
@@ -494,7 +499,7 @@ export function paginateTextbookSections(
         : sourceKind && row[0].block.kind !== "heading"
           ? row.every(({ block }) => block.kind === "problem")
             ? (
-                { scriptcheck: 1, basic: 2, exercise: 5 } as Record<
+                { scriptcheck: 1, basic: 2, drill: 0, exercise: 5 } as Record<
                   string,
                   number
                 >
@@ -526,9 +531,11 @@ export function paginateTextbookSections(
               )
             ? (row[0].block.dialogueGapMm ?? 0.85)
             : row[0].block.kind === "heading" && recovered
-              ? row[0].block.editorialStage === "opening"
-                ? 3.5
-                : 4
+              ? sourceKind === "drill"
+                ? 2
+                : row[0].block.editorialStage === "opening"
+                  ? 3.5
+                  : 4
               : A4.gapMm);
       cursor += height + gap;
       row = [];

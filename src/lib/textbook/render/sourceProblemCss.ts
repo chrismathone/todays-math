@@ -32,4 +32,12 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-editorial[data-source-kind="scriptcheck"] .tb-stage-head{min-height:20mm}
 .tb-editorial[data-source-kind="basic"] .tb-stage-head{min-height:21mm}
 .tb-editorial[data-source-kind="drill"] .tb-stage-head{min-height:20mm}
+.tb-editorial[data-source-kind="recall"] .tb-stage-head{min-height:23mm}
+.tb-source-fragments[data-source-kind="drill"] .drill-labels{display:grid;grid-template-columns:1fr 1fr;gap:9mm;font-size:8pt;line-height:1.65;color:var(--tb-accent)}
+.tb-source-fragments[data-source-kind="drill"] .drill-labels strong{padding:1.5mm 0;border-bottom:1.5pt solid var(--tb-accent);background:none}
+.tb-recovery .tb-source-problem[data-example-role="example"] .tb-worked{font-size:8.3pt;line-height:1.95;border-top:.55pt solid var(--tb-light)}
+.tb-recovery .tb-source-problem[data-example-role="example"] .tb-worked h4{display:table;font-size:7pt;line-height:1.95;margin:0 0 1.5mm;background:white;padding:.3mm 1.6mm;border-radius:4mm}
+.tb-recovery .tb-source-problem[data-example-role="example"] .tb-worked-answer{display:block;font-size:8.5pt;line-height:1.65;border-top:.5pt solid var(--tb-light);padding:1.5mm 0 0;margin-top:2mm;color:var(--tb-accent)}
+.tb-source-problem[data-example-role="example"] .tb-worked-answer>b{display:inline-block;padding:0 1mm 0 0;font-size:7pt;line-height:1.65}
+.tb-source-problem[data-example-role="example"] .tb-worked-answer p{display:inline}
 `;

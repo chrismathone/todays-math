@@ -13,6 +13,7 @@ import { EDITORIAL_CSS } from "./editorialCss";
 import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
 import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
 import { SOURCE_PROBLEM_CSS } from "./sourceProblemCss";
+import { SOURCE_ACTIVITY_CSS } from "./sourceActivityCss";
 import { dialoguePageProgress } from "./dialoguePageProgress";
 import {
   renderAutomaticIntroHtml,
@@ -120,6 +121,7 @@ ${SEMANTIC_ACTIVITY_CSS}
 ${RECOVERY_FRAME_CSS}
 ${SOURCE_CHAPTER_CSS}
 ${SOURCE_PROBLEM_CSS}
+${SOURCE_ACTIVITY_CSS}
 ${AUTOMATIC_INTRO_CSS}
 `;
 

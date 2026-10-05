@@ -14,6 +14,12 @@ If work can be split into independent sessions, do that with Orca by default
 (worktrees), then merge completed sessions into `main`. Sequential solo work
 is only for tasks that cannot be split.
 
+# Codex workers
+
+Launch Orca worktree workers with Codex. The user's standing preference is to
+use Codex for future worktree execution and transfer unfinished Claude work to
+Codex while preserving its files, branches, and evidence.
+
 # Check the remote before every push
 
 Immediately before every push, fetch the target remote branch and compare it
