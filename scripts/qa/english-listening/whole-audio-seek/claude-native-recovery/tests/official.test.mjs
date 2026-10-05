@@ -66,9 +66,10 @@ test("only the exact first-utterance opening from a clip at a measured onset is 
   // The fixture clip has no measured onset of its own: a finding, no adapter.
   const loose = rowOf(resolveOfficial(makeOfficialInput([2])), "o-2");
   assert.equal(loose.evidenceAdapter, null);
-  assert.equal(loose.firstUtteranceOpening.method, "first_utterance_prefix");
-  assert.equal(loose.firstUtteranceOpening.clipBeginsAtMeasuredOnset, false);
-  assert.equal(loose.officialIdentityEvidence, null);
+  assert.equal(loose.nativeRecovery.firstUtteranceOpening.method, "first_utterance_prefix");
+  assert.equal(loose.nativeRecovery.firstUtteranceOpening.clipBeginsAtMeasuredOnset, false);
+  assert.equal(loose.officialIdentityEvidence, undefined);
+  assert.equal(loose.scriptEvidence.method, "script_unique_own_sentence_inside_native_passage_v1");
   // The same words from a clip that begins at the measured lead before the dialogue's first sound.
   const measured = makeOfficialInput([2]);
   measured.enListenings.push(
@@ -83,12 +84,46 @@ test("only the exact first-utterance opening from a clip at a measured onset is 
   const row = rowOf(resolveOfficial(measured), "o-2");
   assert.equal(row.evidenceAdapter, OFFICIAL_ADAPTER);
   assert.deepEqual(row.officialIdentityEvidence, { method: "numbered_section_own_dialogue_v1" });
-  const [quote] = row.firstUtteranceOpening.quotes;
-  assert.equal(SCRIPT.slice(quote.startCharacter, quote.endCharacter), quote.text);
+  // The existing gate's keys, with their roles: the instruction reading is the
+  // probe, the exact opening is quoted at its literal place in the script.
+  const script = row.scriptEvidence;
   assert.equal(
-    row.firstUtteranceOpening.openingProbeEvidence.offsetFromStartFrames,
+    SCRIPT.slice(
+      script.firstDialogueStartCharacter,
+      script.firstDialogueStartCharacter + script.firstDialogueQuote.length,
+    ),
+    script.firstDialogueQuote,
+  );
+  assert.equal(script.firstDialogueOpeningEvidence, null);
+  assert.equal(script.firstUtteranceStartCharacter, script.firstDialogueStartCharacter);
+  assert.equal(
+    SCRIPT.slice(
+      script.instructionStartCharacter,
+      script.instructionStartCharacter + script.instructionQuote.length,
+    ),
+    script.instructionQuote,
+  );
+  assert.deepEqual(script.instructionProbeSegmentIds, row.probeEvidence.segmentIds);
+  assert.deepEqual(script.dialogueProbeSegmentIds, row.dialogueProbeEvidence.segmentIds);
+  assert.equal(
+    row.dialogueProbeEvidence.offsetFromStartFrames,
     (3300 - 20) * FRAMES - startOf(AT[2]),
   );
+  assert.equal(row.dialogueProbeEvidence.onsetFrame, 3300 * FRAMES);
+  assert.equal(row.numberClipEvidence, null);
+  // Bare digits in the long reading: it stays the probe, the short literal clip is the number clip.
+  measured.koListenings = measured.koListenings.filter((l) => l.startFrame !== startOf(AT[2]));
+  measured.koListenings.push(
+    heading(AT[2], "2. 다음을 듣고, 여자가 할 일을 고르시오."),
+    listening("ko", startOf(AT[2]), 150, [segment("2번", 0.4, 1.1)]),
+  );
+  const bare = rowOf(resolveOfficial(measured), "o-2");
+  assert.equal(bare.evidenceAdapter, OFFICIAL_ADAPTER);
+  assert.match(bare.probeEvidence.text, /^2\. 다음을 듣고/);
+  assert.equal(bare.numberClipEvidence.text, "2번");
+  assert.equal(bare.numberClipEvidence.startFrame, bare.probeEvidence.startFrame);
+  assert.equal(bare.cueForm, "bare");
+  assert.equal(bare.instructionProbeEvidence, null);
   // A later own sentence alone never gets the adapter: question 4's first turn is "Hi, Minsoo."
   const later = rowOf(resolveOfficial(makeOfficialInput([4])), "o-4");
   assert.equal(later.status, "candidate");

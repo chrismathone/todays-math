@@ -215,71 +215,142 @@ export function resolveOfficial(input) {
       }
       const adapter = opening?.atMeasuredOnset ? OFFICIAL_ADAPTER : null;
       const { heading } = common;
-      rows.push({
+      const ownSentences = heard.map(({ sentence, hits }) => ({
+        text: sentence.text,
+        startCharacter: sentence.startCharacter,
+        endCharacter: sentence.endCharacter,
+        words: sentence.words.length,
+        probeSegmentIds: hits[0].segmentIds,
+      }));
+      const shared = {
         ...base,
         status: "candidate",
         evidenceAdapter: adapter,
         ...common.fields,
         cueSegmentIds: [],
         anchorSegmentIds: [],
-        officialIdentityEvidence: adapter
-          ? { method: "numbered_section_own_dialogue_v1" }
-          : null,
         officialInstruction: own.section.instruction
           ? { text: own.section.instruction.text, source: "official_script_section" }
-          : null,
-        firstUtteranceOpening: opening
-          ? {
-              method: opening.candidate.method,
-              quotes: opening.candidate.quotes,
-              words: opening.candidate.words.length,
-              clipBeginsAtMeasuredOnset: opening.atMeasuredOnset,
-              openingProbeEvidence: reference(
-                opening.clip.ref,
-                opening.clip.probe.segments.filter((s) =>
-                  opening.hit.segmentIds.includes(s.id),
-                ),
-                {
-                  purpose: opening.clip.purpose,
-                  onsetFrame: opening.clip.onsetFrame,
-                  offsetFromStartFrames:
-                    opening.clip.startFrame - common.fields.nativeEvidence.startFrame,
-                },
-              ),
-            }
           : null,
         numberWrittenAs: heading.instructionSibling
           ? "literal_number_clip_and_bare_digits_before_the_instruction"
           : "literal_number_before_the_instruction",
+        nativeRecovery: {
+          ...common.nativeRecovery,
+          englishClipsInsidePassage: inside.length,
+          ownScriptUniqueSentences: own.anchors.length,
+          ownSentencesHeard: ownSentences,
+          ownSentenceClip: reference(
+            listening.ref,
+            listening.probe.segments.filter((s) => quoted.has(s.id)),
+            { purpose: listening.purpose },
+          ),
+          otherSectionsSentencesHeardInPassage: 0,
+          firstUtteranceOpening: opening
+            ? {
+                method: opening.candidate.method,
+                words: opening.candidate.words.length,
+                clipBeginsAtMeasuredOnset: opening.atMeasuredOnset,
+              }
+            : null,
+        },
+      };
+      if (!adapter) {
+        // A later own sentence only: this producer's finding, in its own shape.
+        rows.push({
+          ...shared,
+          dialogueProbeEvidence: shared.nativeRecovery.ownSentenceClip,
+          scriptEvidence: {
+            method: "script_unique_own_sentence_inside_native_passage_v1",
+            transcriptSha256: input.script.sha256,
+            sectionStartCharacter: own.section.sectionStartCharacter,
+            sectionEndCharacter: own.section.sectionEndCharacter,
+            instructionQuote: own.section.instruction?.text ?? null,
+            sentences: ownSentences,
+          },
+        });
+        continue;
+      }
+      // The verifier's existing official gate, key for key: the reading that
+      // wrote the instruction is the probe; where it wrote bare digits, the
+      // short literal reading from the same start is the number clip; the
+      // dialogue probe is the clip at a measured onset that wrote the exact
+      // first-utterance opening; offsets address the original transcript.
+      const long = heading.instructionSibling ?? heading;
+      const instructionIds = long.reading.instruction.segmentIds;
+      const single = opening.candidate.method === "first_utterance_prefix";
+      const terminal =
+        passage.boundary.kind === "source_end_after_last_official_number";
+      rows.push({
+        ...shared,
+        cueForm: heading.instructionSibling ? "bare" : shared.cueForm,
+        officialIdentityEvidence: { method: "numbered_section_own_dialogue_v1" },
+        probeEvidence: reference(
+          long.ref,
+          long.probe.segments.filter((s) => instructionIds.includes(s.id)),
+        ),
+        instructionProbeEvidence: null,
+        numberClipEvidence: heading.instructionSibling
+          ? reference(
+              heading.ref,
+              heading.probe.segments.filter(
+                (s) => s.id === heading.reading.firstSegmentId,
+              ),
+              {
+                purpose: heading.probe.purpose ?? null,
+                requestedLanguage: "ko",
+                sampleRate: input.native.sampleRate,
+                durationSeconds: heading.probe.durationSeconds,
+                onsetFrame: heading.onsetFrame,
+                overflow: heading.probe.overflow,
+              },
+            )
+          : null,
         dialogueProbeEvidence: reference(
-          listening.ref,
-          listening.probe.segments.filter((s) => quoted.has(s.id)),
-          { purpose: listening.purpose },
+          opening.clip.ref,
+          opening.clip.probe.segments.filter((s) =>
+            opening.hit.segmentIds.includes(s.id),
+          ),
+          {
+            purpose: opening.clip.purpose,
+            requestedLanguage: "en",
+            sampleRate: input.native.sampleRate,
+            durationSeconds: opening.clip.probe.durationSeconds,
+            onsetFrame: opening.clip.onsetFrame,
+            quietBeforeFrames: opening.clip.probe.quietBeforeFrames ?? null,
+            overflow: opening.clip.probe.overflow,
+            offsetFromStartFrames:
+              opening.clip.startFrame - shared.nativeEvidence.startFrame,
+          },
         ),
         scriptEvidence: {
-          method: "script_unique_own_sentence_inside_native_passage_v1",
+          source:
+            "original prepared file group transcript text (identical to the frozen live snapshot's)",
           transcriptSha256: input.script.sha256,
           sectionStartCharacter: own.section.sectionStartCharacter,
           sectionEndCharacter: own.section.sectionEndCharacter,
           instructionQuote: own.section.instruction?.text ?? null,
-          ownScriptUniqueSentences: own.anchors.length,
-          sentences: heard.map(({ sentence, hits }) => ({
-            text: sentence.text,
-            startCharacter: sentence.startCharacter,
-            endCharacter: sentence.endCharacter,
-            words: sentence.words.length,
-            probeSegmentIds: hits[0].segmentIds,
-          })),
-          otherSectionsSentencesHeardInPassage: 0,
+          instructionStartCharacter: own.section.instruction?.startCharacter ?? null,
+          instructionProbeSegmentIds: instructionIds,
+          firstUtteranceStartCharacter: own.section.turns[0].startCharacter,
+          firstDialogueQuote: single ? opening.candidate.quotes[0].text : null,
+          firstDialogueStartCharacter: opening.candidate.quotes[0].startCharacter,
+          firstDialogueOpeningEvidence: single
+            ? null
+            : { method: opening.candidate.method, quotes: opening.candidate.quotes },
+          firstDialogueWords: opening.candidate.words.length,
+          dialogueProbeSegmentIds: opening.hit.segmentIds,
         },
-        nativeRecovery: {
-          ...common.nativeRecovery,
-          dialogueClipFrames: {
-            startFrame: listening.startFrame,
-            frameCount: listening.frameCount,
-          },
-          englishClipsInsidePassage: inside.length,
-        },
+        officialTerminalEvidence: terminal
+          ? {
+              method: "exact_official_original_population_end_v1",
+              prepared: input.script.prepared ?? null,
+              originalPrepared: input.script.originalPrepared ?? null,
+              questionFile: input.script.questionFile ?? null,
+              lastOriginalNumber: passage.boundary.lastOfficialNumber,
+              sourceFrameCount: input.native.frameCount,
+            }
+          : null,
       });
     } catch (error) {
       if (!(error instanceof Hold)) throw error;
