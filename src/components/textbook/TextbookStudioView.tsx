@@ -229,7 +229,17 @@ export function TextbookStudioView({
   const [reissueClasses, setReissueClasses] = useState<NamedChoice[]>([]);
   const [reissueUnits, setReissueUnits] = useState<NamedChoice[]>([]);
   const [diffSummary, setDiffSummary] = useState<string | null>(null);
-  const [busy, setBusy] = useState(false);
+  // 처리 중인 작업의 수 — 겹쳐 도는 작업 하나가 먼저 끝나도 나머지가 끝날 때까지 «처리 중» 이다.
+  // (참/거짓 하나였을 때는 먼저 끝난 작업이 다른 작업의 표시를 껐다)
+  const [busyCount, setBusyCount] = useState(0);
+  const busy = busyCount > 0;
+  const setBusy = useCallback(
+    (on: boolean) =>
+      setBusyCount((count) => Math.max(0, count + (on ? 1 : -1))),
+    [],
+  );
+  /** busy 가운데 «이 구획 저장» 이 도는 동안 — 이때만 원고 입력을 열어 둔다 */
+  const [savingManuscript, setSavingManuscript] = useState(false);
   const [showManual, setShowManual] = useState(false);
   const [simplePreview, setSimplePreview] = useState(true);
   const [collapsed, setCollapsed] = useState<ReadonlySet<string>>(new Set());
@@ -425,11 +435,65 @@ export function TextbookStudioView({
     [api],
   );
 
+  /** 직접 생성의 요청 — 같은 입력이면 성공할 때까지 같은 번호를 쓴다 */
+  const manualRequest = useRef<{
+    plan: string;
+    requestId: string;
+    bookId: string;
+  } | null>(null);
+
   /** 늦게 끝난 요청이 «지금 연 판본»의 것인지 견줄 때 본다 */
   const editionRef = useRef<EditionDetail | null>(null);
   useEffect(() => {
     editionRef.current = edition;
   }, [edition]);
+
+  /** 저장을 기다리는 사이에 원고를 더 고쳤는지 볼 때 쓴다 */
+  const draftRef = useRef<SectionDetail | null>(null);
+  useEffect(() => {
+    draftRef.current = draft;
+  }, [draft]);
+
+  /** 늦게 끝난 요청이 «지금 처리 중인가»를 볼 때 쓴다 — 요청을 시작한 때의 함수는 그때의 busy 를 쥐고 있다 */
+  const busyRef = useRef(false);
+  useEffect(() => {
+    busyRef.current = busy;
+  }, [busy]);
+
+  /**
+   * 간편 생성이 «시작한 때의 생성 양식» 에서 끝났는지 본다. 판본을 열거나, 목록으로 돌아오거나, 직접 원고 양식으로 바꾸면
+   * 그 양식은 화면에서 사라지고(돌아와도 새 양식이다) 이 값이 오른다 — 그 뒤에 끝난 생성은 화면을 옮기지 않고
+   * 만든 사실만 알리며, 실패도 사라진 양식 대신 지금 화면에 알린다.
+   */
+  const listEpoch = useRef(0);
+  const openEditionId = edition?.editionId ?? null;
+  useEffect(() => {
+    listEpoch.current += 1;
+  }, [openEditionId, showManual]);
+  /** 가져오기 양식을 펴 둔 채로는 만든 교재로 옮기지 않는다 — 고른 파일이 사라진다 */
+  const importOpenRef = useRef(false);
+  useEffect(() => {
+    importOpenRef.current = showImport;
+  }, [showImport]);
+  const createdAt = useRef(new WeakMap<object, number>());
+  const trackedQuickApi = useMemo<QuickCreateApi>(
+    () => ({
+      listUnits: (scope) => quickApi.listUnits(scope),
+      create: async (input) => {
+        const epoch = listEpoch.current;
+        try {
+          const result = await quickApi.create(input);
+          createdAt.current.set(result, epoch);
+          return result;
+        } catch (reason) {
+          if (listEpoch.current !== epoch)
+            setNotice(`교재를 만들지 못했습니다. ${messageOf(reason)}`);
+          throw reason;
+        }
+      },
+    }),
+    [quickApi],
+  );
 
   const dirtyRef = useRef(false);
   useEffect(() => {
@@ -494,11 +558,12 @@ export function TextbookStudioView({
       }),
     [api],
   );
+  // 읽지 못한 것과 빈 목록은 다르다 — null 이면 가져오기 칸이 «없습니다» 라고 하지 않고 제출도 열지 않는다
   const loadProblems = useCallback(
-    (unitId: string) =>
+    (unitId: string): Promise<NamedChoice[] | null> =>
       api.listUnitProblems(unitId).catch((reason: unknown) => {
         setNotice(messageOf(reason));
-        return [];
+        return null;
       }),
     [api],
   );
@@ -519,10 +584,10 @@ export function TextbookStudioView({
     [api],
   );
   const loadTests = useCallback(
-    (classId: string, studentId?: string) =>
+    (classId: string, studentId?: string): Promise<NamedChoice[] | null> =>
       api.listOwnedTests(classId, studentId).catch((reason: unknown) => {
         setNotice(messageOf(reason));
-        return [];
+        return null;
       }),
     [api],
   );
@@ -575,6 +640,17 @@ export function TextbookStudioView({
     (draft !== null && saved === null) ||
     (draft !== null && saved !== null && !sameDraft(draft, saved)) ||
     linksDirty;
+
+  /** 확정 응답도 판본 읽기도 받지 못했다 — 발행됐는지 모르는 동안에는 고치지도, 다시 확정하지도 않는다 */
+  const publishUnknown =
+    publishRead !== null &&
+    publishRead.unknown &&
+    publishRead.editionId === edition?.editionId;
+  /**
+   * 처리 중에는 원고 입력과 구조 변경을 잠근다 — 늦은 응답이 덮거나 발행 잠금에 갇힐 «그사이의 수정» 을 만들지 않는다.
+   * 구획 저장만은 열어 둔다: 가장 잦고 짧은 일이고, 그사이에 고친 것은 saveDraft 가 보존한다.
+   */
+  const frozen = leaving || (busy && !savingManuscript) || publishUnknown;
 
   function refuseLocked(): boolean {
     if (!locked) return false;
@@ -723,6 +799,8 @@ export function TextbookStudioView({
           JSON.stringify(targetSaved?.picks ?? []));
     const linksStill = !base?.conceptSaved && linksDirty;
     setBusy(true);
+    // 화면의 «이 구획 저장» 만 입력을 열어 둔다 — 저장 후 이동은 이동이 끝날 때까지 잠근다
+    if (!base) setSavingManuscript(true);
     try {
       const result = await api.saveSection({
         editionId: edition.editionId,
@@ -737,7 +815,27 @@ export function TextbookStudioView({
         aggregateRevision: result.aggregateRevision,
         status: "saved" as const,
       };
-      setDraft(next);
+      // 응답은 요청 때의 원고(target)를 저장했을 뿐이다 — 기다리는 사이에 더 고친 원고를 그것으로 되돌리지 않는다.
+      // 더 고친 원고는 새 revision 위에 «저장 전» 으로 남는다.
+      const live = draftRef.current;
+      const here = (current: SectionDetail | null): current is SectionDetail =>
+        current !== null &&
+        current.editionId === target.editionId &&
+        current.sectionId === target.sectionId;
+      // 응답이 왔을 때 화면이 다른 판본 · 구획이면 그 원고와 저장본은 건드리지 않는다 — 저장 자체는 끝났다
+      if (!here(live)) return true;
+      // 저장 후 이동(base)은 입력을 잠근 채 돈다 — 그사이에 고칠 수 없다
+      const edited = !base && live !== target;
+      setDraft((current) => {
+        if (!here(current)) return current;
+        return current === target
+          ? next
+          : {
+              ...current,
+              revision: result.revision,
+              aggregateRevision: result.aggregateRevision,
+            };
+      });
       setSaved((current) =>
         structuredClone({
           ...next,
@@ -757,7 +855,9 @@ export function TextbookStudioView({
                     ? {
                         ...section,
                         status:
-                          conceptStill || linksStill ? section.status : "saved",
+                          conceptStill || linksStill || edited
+                            ? section.status
+                            : "saved",
                       }
                     : section,
                 ),
@@ -767,9 +867,11 @@ export function TextbookStudioView({
       );
       setConflict(null);
       setNotice(
-        conceptStill || linksStill
-          ? "구획을 저장했습니다. 개념 수정은 아직 저장되지 않았습니다."
-          : "저장됨",
+        edited
+          ? "구획을 저장했습니다. 저장 중에 고친 내용은 아직 저장되지 않았습니다."
+          : conceptStill || linksStill
+            ? "구획을 저장했습니다. 개념 수정은 아직 저장되지 않았습니다."
+            : "저장됨",
       );
       return true;
     } catch (reason) {
@@ -785,6 +887,7 @@ export function TextbookStudioView({
       return false;
     } finally {
       setBusy(false);
+      setSavingManuscript(false);
     }
   }
 
@@ -1126,7 +1229,7 @@ export function TextbookStudioView({
   }
 
   async function makeSimplePdf() {
-    if (!edition || busy || refuseLocked()) return;
+    if (!edition || busy || publishUnknown || refuseLocked()) return;
     if (dirtyRef.current) {
       setNotice("수정한 원고를 저장한 뒤 PDF를 만들어 주세요.");
       return;
@@ -1243,17 +1346,26 @@ export function TextbookStudioView({
     }
   }
 
-  function rememberItem(result: {
-    item: SectionDetail["items"][number];
-    aggregateRevision: number;
-  }) {
+  /**
+   * 문항 하나의 작업 결과를 원고에 올린다. 이 작업들은 이동을 막지 않으므로, 응답이 왔을 때
+   * 요청한 판본 · 구획이 아직 열려 있을 때만 올린다 — 다른 구획의 목록에 끼워 넣지 않는다.
+   */
+  function rememberItem(
+    result: {
+      item: SectionDetail["items"][number];
+      aggregateRevision: number;
+    },
+    target: { editionId: string; sectionId: string },
+  ) {
     setEdition((current) =>
-      current
+      current && current.editionId === target.editionId
         ? { ...current, aggregateRevision: result.aggregateRevision }
         : current,
     );
     setDraft((current) =>
-      current
+      current &&
+      current.editionId === target.editionId &&
+      current.sectionId === target.sectionId
         ? {
             ...current,
             aggregateRevision: result.aggregateRevision,
@@ -1615,7 +1727,7 @@ export function TextbookStudioView({
         <div className={styles.stack}>
           {!showManual ? (
             <AutoCreatePanel
-              api={quickApi}
+              api={trackedQuickApi}
               onCreated={async (result) => {
                 const book: BookSummary = {
                   bookId: result.book.id,
@@ -1632,6 +1744,19 @@ export function TextbookStudioView({
                   ),
                   book,
                 ]);
+                // 생성을 기다리는 사이 다른 교재를 열었거나(열고 있거나) 목록을 떠났다 돌아왔으면 화면을 옮기지 않는다.
+                // 이 함수는 생성을 시작한 때의 것이라 지금 상태는 ref 로 본다.
+                if (
+                  createdAt.current.get(result) !== listEpoch.current ||
+                  editionRef.current !== null ||
+                  busyRef.current ||
+                  importOpenRef.current
+                ) {
+                  setNotice(
+                    `${book.title} 교재를 만들었습니다. 목록에서 열 수 있습니다.${result.warnings.length ? ` ${result.warnings.join(" ")}` : ""}`,
+                  );
+                  return;
+                }
                 await openBook(book);
                 setPane("preview");
                 setNotice(
@@ -1683,6 +1808,7 @@ export function TextbookStudioView({
           {showManual ? (
             <BookList
               books={[]}
+              emptyNote={books.length === 0}
               title={title}
               volumeCode={volumeCode}
               busy={busy}
@@ -1747,30 +1873,54 @@ export function TextbookStudioView({
                   setNotice("여백은 8mm 이상 40mm 이하입니다.");
                   return;
                 }
+                const plan = {
+                  title: title.trim(),
+                  volumeCode: volumeCode.trim(),
+                  curriculumVersion: curriculumVersion.trim(),
+                  pageTarget: pages,
+                  videoPolicy,
+                  studentSolutionPolicy: solutionPolicy,
+                  schoolLevel,
+                  grade: chosenGrade,
+                  semester: semester === "2" ? (2 as const) : (1 as const),
+                  mode: bookMode,
+                  innerMarginMm: inner,
+                  outerMarginMm: outer,
+                  coverMode,
+                };
+                // 응답을 못 받은 생성은 서버에서 성공했을 수 있다 — 같은 입력의 다시 시도는 같은 요청 · 같은 교재 번호로 보낸다
+                const serialized = JSON.stringify(plan);
+                if (manualRequest.current?.plan !== serialized)
+                  manualRequest.current = {
+                    plan: serialized,
+                    requestId: newRequestId(),
+                    bookId: crypto.randomUUID(),
+                  };
+                const { requestId, bookId } = manualRequest.current;
                 setBusy(true);
                 api
-                  .createBook({
-                    title: title.trim(),
-                    volumeCode: volumeCode.trim(),
-                    curriculumVersion: curriculumVersion.trim(),
-                    pageTarget: pages,
-                    videoPolicy,
-                    studentSolutionPolicy: solutionPolicy,
-                    schoolLevel,
-                    grade: chosenGrade,
-                    semester: semester === "2" ? 2 : 1,
-                    mode: bookMode,
-                    innerMarginMm: inner,
-                    outerMarginMm: outer,
-                    coverMode,
-                    requestId: newRequestId(),
-                  })
+                  .createBook({ ...plan, requestId, bookId })
                   .then((book) => {
-                    setBooks((current) => [...(current ?? []), book]);
-                    setTitle("");
-                    setVolumeCode("");
-                    setCurriculumVersion("");
-                    setPageTarget("");
+                    manualRequest.current = null;
+                    setBooks((current) => [
+                      ...(current ?? []).filter(
+                        (row) => row.bookId !== book.bookId,
+                      ),
+                      book,
+                    ]);
+                    // 보낸 값과 같은 칸만 비운다 — 기다리는 사이 다음 권을 적기 시작했으면 그대로 둔다
+                    setTitle((value) =>
+                      value.trim() === plan.title ? "" : value,
+                    );
+                    setVolumeCode((value) =>
+                      value.trim() === plan.volumeCode ? "" : value,
+                    );
+                    setCurriculumVersion((value) =>
+                      value.trim() === plan.curriculumVersion ? "" : value,
+                    );
+                    setPageTarget((value) =>
+                      Number(value) === plan.pageTarget ? "" : value,
+                    );
                   })
                   .catch((reason: unknown) => setNotice(messageOf(reason)))
                   .finally(() => setBusy(false));
@@ -1841,7 +1991,7 @@ export function TextbookStudioView({
               <button
                 type="button"
                 className={styles.primary}
-                disabled={busy}
+                disabled={busy || publishUnknown}
                 onClick={() => void makeSimplePdf()}
               >
                 {busy ? "PDF를 만들고 있습니다…" : "PDF 만들기"}
@@ -2096,7 +2246,7 @@ export function TextbookStudioView({
                 collapsed={collapsed}
                 currentId={draft?.sectionId ?? null}
                 pendingSectionId={workDirty ? (draft?.sectionId ?? null) : null}
-                movesDisabled={locked}
+                movesDisabled={locked || frozen}
                 onToggle={(unitKey) => {
                   const next = new Set(collapsed);
                   if (next.has(unitKey)) next.delete(unitKey);
@@ -2124,7 +2274,7 @@ export function TextbookStudioView({
               {edition.units.every((unit) => unit.sections.length === 0) ? (
                 <p className={styles.muted}>구획이 없습니다.</p>
               ) : null}
-              <fieldset className={styles.stack} disabled={locked}>
+              <fieldset className={styles.stack} disabled={locked || frozen}>
                 <form
                   className={styles.stack}
                   onSubmit={(event) => {
@@ -2433,6 +2583,7 @@ export function TextbookStudioView({
                   orderMessage={order.ok ? null : order.message}
                   diffSummary={diffSummary}
                   saving={busy}
+                  frozen={frozen}
                   onChange={(next) => {
                     if (conceptManuscriptChanged(draft.concept, next.concept)) {
                       setConfirmLinkIds([]);
@@ -2453,8 +2604,17 @@ export function TextbookStudioView({
                   onCopy={() => requestNav({ kind: "new-draft" })}
                   onCapture={(testId, problemIds) => {
                     if (refuseLocked()) return;
+                    // 가져오기는 구획을 바꾼다 — 도는 동안 이동 · 입력 · 다시 누르기를 막아, 늦은 응답이 덮을 것을 만들지 않는다
+                    if (busy || busyRef.current) return;
                     const currentDraft = draft;
                     const currentSaved = saved;
+                    // 화면 안의 이동은 busy 가 막지만, 주소 동기화는 다른 판본을 열 수 있다 — 응답을 올리기 전에 다시 본다
+                    const here = () =>
+                      editionRef.current?.editionId === edition.editionId &&
+                      draftRef.current?.editionId === currentDraft.editionId &&
+                      draftRef.current.sectionId === currentDraft.sectionId;
+                    busyRef.current = true;
+                    setBusy(true);
                     api
                       .captureItems({
                         editionId: edition.editionId,
@@ -2466,7 +2626,7 @@ export function TextbookStudioView({
                       })
                       .then(async (result) => {
                         setEdition((current) =>
-                          current
+                          current && current.editionId === edition.editionId
                             ? {
                                 ...current,
                                 aggregateRevision: result.aggregateRevision,
@@ -2482,14 +2642,20 @@ export function TextbookStudioView({
                               .join(" "),
                           );
                         }
+                        // 문항은 서버에 담겼다 — 지금 화면이 그 구획이 아니면 그 구획을 다시 열 때 보인다
+                        if (!here()) return;
                         try {
                           const fresh = await api.getSection(
                             edition.editionId,
                             currentDraft.sectionId,
                           );
+                          if (!here()) return;
+                          // 다시 읽은 구획에는 개념 원고와 백지 선택이 없다(따로 저장한다) — 저장본의 것을 이어 둔다
                           const aligned = {
                             ...fresh,
                             aggregateRevision: result.aggregateRevision,
+                            concept: currentSaved?.concept ?? null,
+                            picks: currentSaved?.picks ?? [],
                           };
                           setDraft(
                             currentSaved
@@ -2505,18 +2671,33 @@ export function TextbookStudioView({
                           setNotice(
                             `${messageOf(reason)} 문항은 담겼습니다. 구획을 다시 열면 붙은 블록이 보입니다.`,
                           );
+                          // 서버는 이번에 담은 문항만 돌려준다 — 이미 있던 목록에 더한다
                           setDraft((current) =>
-                            current
+                            current &&
+                            current.editionId === currentDraft.editionId &&
+                            current.sectionId === currentDraft.sectionId
                               ? {
                                   ...current,
-                                  items: result.items,
+                                  items: [
+                                    ...current.items.filter(
+                                      (old) =>
+                                        !result.items.some(
+                                          (item) => item.itemId === old.itemId,
+                                        ),
+                                    ),
+                                    ...result.items,
+                                  ],
                                   aggregateRevision: result.aggregateRevision,
                                 }
                               : current,
                           );
                         }
                       })
-                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                      .catch((reason: unknown) => setNotice(messageOf(reason)))
+                      .finally(() => {
+                        busyRef.current = false;
+                        setBusy(false);
+                      });
                   }}
                   onDiff={(itemId) => {
                     api
@@ -2526,6 +2707,10 @@ export function TextbookStudioView({
                   }}
                   onRecapture={(itemId) => {
                     if (refuseLocked()) return;
+                    const target = {
+                      editionId: edition.editionId,
+                      sectionId: draft.sectionId,
+                    };
                     api
                       .recaptureItem(
                         edition.editionId,
@@ -2533,7 +2718,7 @@ export function TextbookStudioView({
                         newRequestId(),
                         edition.aggregateRevision,
                       )
-                      .then((result) => rememberItem(result))
+                      .then((result) => rememberItem(result, target))
                       .catch((reason: unknown) => setNotice(messageOf(reason)));
                   }}
                   onLoadLinks={async (itemId) => {
@@ -2557,6 +2742,10 @@ export function TextbookStudioView({
                       setNotice("연결할 은행 문항을 고르세요.");
                       return;
                     }
+                    const target = {
+                      editionId: edition.editionId,
+                      sectionId: draft.sectionId,
+                    };
                     api
                       .linkItem(
                         edition.editionId,
@@ -2565,11 +2754,15 @@ export function TextbookStudioView({
                         edition.aggregateRevision,
                         problemId,
                       )
-                      .then((result) => rememberItem(result))
+                      .then((result) => rememberItem(result, target))
                       .catch((reason: unknown) => setNotice(messageOf(reason)));
                   }}
                   onRegister={async (itemId, fields) => {
                     if (refuseLocked()) return null;
+                    const target = {
+                      editionId: edition.editionId,
+                      sectionId: draft.sectionId,
+                    };
                     try {
                       const result = await api.registerItem(
                         edition.editionId,
@@ -2578,7 +2771,7 @@ export function TextbookStudioView({
                         edition.aggregateRevision,
                         fields,
                       );
-                      rememberItem(result);
+                      rememberItem(result, target);
                       setNotice(
                         `검수 대기 문항 ${result.problem.problemCode}을 등록했습니다. 연결은 따로 고릅니다.`,
                       );
@@ -2622,7 +2815,14 @@ export function TextbookStudioView({
                     setDraft({ ...draft, concept });
                   }}
                   onSaveConcept={() => {
-                    void persistConcept();
+                    // 개념 저장도 원고를 덮는 응답이다 — 도는 동안 입력과 다시 누르기를 막는다
+                    if (busy || busyRef.current) return;
+                    busyRef.current = true;
+                    setBusy(true);
+                    void persistConcept().finally(() => {
+                      busyRef.current = false;
+                      setBusy(false);
+                    });
                   }}
                   unattachedConcepts={unattachedConcepts}
                   onAttachConcept={(conceptKey) =>
@@ -2635,11 +2835,18 @@ export function TextbookStudioView({
                   }
                   onRetryConceptLink={() => void retryConceptLink()}
                   onSearchCatalog={(query) => {
+                    // 찾은 항목은 찾기를 누른 구획에만 더한다 — 그사이 연 다른 구획에 섞지 않는다
+                    const target = {
+                      editionId: draft.editionId,
+                      sectionId: draft.sectionId,
+                    };
                     api
                       .searchCatalog(query)
                       .then((picks) =>
                         setDraft((current) =>
-                          current
+                          current &&
+                          current.editionId === target.editionId &&
+                          current.sectionId === target.sectionId
                             ? {
                                 ...current,
                                 picks: [...current.picks, ...picks],
@@ -2670,7 +2877,7 @@ export function TextbookStudioView({
                   lectureLink={
                     <>
                       <LectureLink
-                        disabled={locked}
+                        disabled={locked || frozen}
                         conceptKey={draft.concept?.conceptKey ?? null}
                         sourceUnitIds={sourceUnitIdsFor(
                           edition.structureSource,
@@ -2753,7 +2960,7 @@ export function TextbookStudioView({
                 <PublishPanel
                   status={publishStatus}
                   issues={issues}
-                  busy={busy}
+                  busy={busy || publishUnknown}
                   locked={locked}
                   onPreflight={() => {
                     if (refuseLocked()) return;

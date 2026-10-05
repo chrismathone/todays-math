@@ -44,6 +44,7 @@ import styles from "@/components/textbook/textbook.module.css";
 
 export function BookList({
   books,
+  emptyNote = true,
   title,
   volumeCode,
   curriculumVersion,
@@ -76,6 +77,8 @@ export function BookList({
   onImport,
 }: {
   books: BookSummary[];
+  /** 목록 없이 생성 양식으로만 쓸 때 — 다른 자리에 목록이 있으면 «없습니다» 를 내지 않는다 */
+  emptyNote?: boolean;
   title: string;
   volumeCode: string;
   curriculumVersion: string;
@@ -111,7 +114,7 @@ export function BookList({
   return (
     <section className={styles.panel} aria-label="교재 목록">
       <h2>교재</h2>
-      {books.length === 0 ? (
+      {books.length === 0 && emptyNote ? (
         <p className={styles.muted}>만든 교재가 없습니다.</p>
       ) : null}
       <ul className={styles.list}>
@@ -441,6 +444,7 @@ export function SectionEditor({
   orderMessage,
   diffSummary,
   saving,
+  frozen = false,
   existingBlankItems,
   confirmEntryIds,
   onConfirmEntries,
@@ -484,6 +488,8 @@ export function SectionEditor({
   orderMessage: string | null;
   diffSummary: string | null;
   saving: boolean;
+  /** 처리 중 — 응답이 올 때까지 원고 입력과 구획을 바꾸는 단추를 잠근다(발행 잠금과 달리 끝나면 풀린다) */
+  frozen?: boolean;
   existingBlankItems: TextbookConcept["blankItems"];
   confirmEntryIds: string[];
   onConfirmEntries: (ids: string[]) => void;
@@ -510,10 +516,13 @@ export function SectionEditor({
     fields: RegisterFields,
   ) => Promise<{ problemId: string; problemCode: string }[] | null>;
   onLoadUnits: () => Promise<NamedChoice[]>;
-  onLoadProblems: (unitId: string) => Promise<NamedChoice[]>;
+  onLoadProblems: (unitId: string) => Promise<NamedChoice[] | null>;
   onLoadClasses: () => Promise<NamedChoice[]>;
   onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
-  onLoadTests: (classId: string, studentId?: string) => Promise<NamedChoice[]>;
+  onLoadTests: (
+    classId: string,
+    studentId?: string,
+  ) => Promise<NamedChoice[] | null>;
   onSaveConcept: () => void;
   onCreateConcept: (conceptKey: string, title: string) => void;
   /** 이 판본에 저장돼 있지만 어느 구획에도 놓이지 않은 개념 */
@@ -533,7 +542,7 @@ export function SectionEditor({
   );
   return (
     <div className={styles.stack}>
-      <fieldset className={styles.stack} disabled={locked}>
+      <fieldset className={styles.stack} disabled={locked || frozen}>
         <label className={styles.field}>
           <span>구획 제목</span>
           <input
@@ -953,12 +962,12 @@ export function SectionEditor({
           key={`${editionId}:${draft.concept.conceptKey}`}
           links={conceptLinks}
           confirmLinkIds={confirmLinkIds}
-          disabled={locked}
+          disabled={locked || frozen}
           onChange={onConceptLinks}
         />
       ) : null}
       {lectureLink}
-      <fieldset className={styles.stack} disabled={locked}>
+      <fieldset className={styles.stack} disabled={locked || frozen}>
         <ItemCapture
           items={draft.items}
           diffSummary={diffSummary}
@@ -1571,10 +1580,13 @@ function ItemCapture({
     fields: RegisterFields,
   ) => Promise<{ problemId: string; problemCode: string }[] | null>;
   onLoadUnits: () => Promise<NamedChoice[]>;
-  onLoadProblems: (unitId: string) => Promise<NamedChoice[]>;
+  onLoadProblems: (unitId: string) => Promise<NamedChoice[] | null>;
   onLoadClasses: () => Promise<NamedChoice[]>;
   onLoadStudents: (classId: string) => Promise<NamedChoice[]>;
-  onLoadTests: (classId: string, studentId?: string) => Promise<NamedChoice[]>;
+  onLoadTests: (
+    classId: string,
+    studentId?: string,
+  ) => Promise<NamedChoice[] | null>;
 }) {
   const [links, setLinks] = useState<{
     itemId: string;
@@ -1594,6 +1606,13 @@ function ItemCapture({
   const [unitId, setUnitId] = useState("");
   const [problems, setProblems] = useState<NamedChoice[]>([]);
   const [problemIds, setProblemIds] = useState<string[]>([]);
+  // 화면의 목록이 «어느 선택» 의 것인지 — 상위 선택을 바꾼 직후에는 앞 선택의 목록이 남아 있다
+  const [testsFor, setTestsFor] = useState<string | null>(null);
+  const [problemsFor, setProblemsFor] = useState<string | null>(null);
+  const [testsFailedFor, setTestsFailedFor] = useState<string | null>(null);
+  const testsKey = `${classId}|${studentId}`;
+  const testsReady = classId !== "" && testsFor === testsKey;
+  const problemsReady = unitId !== "" && problemsFor === unitId;
   const [registerFor, setRegisterFor] = useState<string | null>(null);
   const [registerUnits, setRegisterUnits] = useState<NamedChoice[]>([]);
   const [registerUnitId, setRegisterUnitId] = useState("");
@@ -1617,8 +1636,14 @@ function ItemCapture({
     let cancel = false;
     void onLoadTests(classId, studentId || undefined).then((rows) => {
       if (cancel) return;
+      // null = 읽지 못했다 — 빈 목록으로 치지 않는다(«없습니다» 도 제출도 열리지 않는다)
+      if (rows === null) {
+        setTestsFailedFor(`${classId}|${studentId}`);
+        return;
+      }
       setTests(rows);
       setTestId(rows[0]?.id ?? "");
+      setTestsFor(`${classId}|${studentId}`);
     });
     return () => {
       cancel = true;
@@ -1629,9 +1654,10 @@ function ItemCapture({
     if (sourceMode !== "problems" || !unitId) return;
     let cancel = false;
     void onLoadProblems(unitId).then((rows) => {
-      if (cancel) return;
+      if (cancel || rows === null) return;
       setProblems(rows);
       setProblemIds([]);
+      setProblemsFor(unitId);
     });
     return () => {
       cancel = true;
@@ -1645,13 +1671,14 @@ function ItemCapture({
         className={styles.stack}
         onSubmit={(event) => {
           event.preventDefault();
+          // 지금 고른 반 · 단원의 목록이 도착한 뒤에만 보낸다 — 앞 선택의 것을 싣지 않는다
           if (sourceMode === "test") {
-            if (!testId) return;
+            if (!testsReady || !testId) return;
             onCapture(testId, []);
             return;
           }
           if (sourceMode === "problems") {
-            if (problemIds.length === 0) return;
+            if (!problemsReady || problemIds.length === 0) return;
             onCapture("", problemIds);
           }
         }}
@@ -1707,9 +1734,15 @@ function ItemCapture({
             />
             <ChoiceSelect
               label="시험지"
-              value={testId}
-              options={tests}
-              empty="시험지가 없습니다"
+              value={testsReady ? testId : ""}
+              options={testsReady ? tests : []}
+              empty={
+                testsReady || !classId
+                  ? "시험지가 없습니다"
+                  : testsFailedFor === testsKey
+                    ? "시험지를 읽지 못했습니다"
+                    : "시험지를 불러오는 중입니다"
+              }
               onChange={setTestId}
             />
           </>
@@ -1721,10 +1754,13 @@ function ItemCapture({
               value={unitId}
               options={units}
               empty="단원이 없습니다"
-              onChange={setUnitId}
+              onChange={(id) => {
+                setUnitId(id);
+                setProblemIds([]);
+              }}
             />
             <ul className={styles.list}>
-              {problems.map((problem) => (
+              {(problemsReady ? problems : []).map((problem) => (
                 <li key={problem.id}>
                   <label>
                     <input
@@ -1746,12 +1782,19 @@ function ItemCapture({
                 </li>
               ))}
             </ul>
-            {unitId && problems.length === 0 ? (
+            {problemsReady && problems.length === 0 ? (
               <p className={styles.muted}>이 단원의 문제가 없습니다.</p>
             ) : null}
           </>
         ) : null}
-        <button type="submit" className={styles.button}>
+        <button
+          type="submit"
+          className={styles.button}
+          disabled={
+            (sourceMode === "test" && !testsReady) ||
+            (sourceMode === "problems" && !problemsReady)
+          }
+        >
           문항 가져오기
         </button>
       </form>

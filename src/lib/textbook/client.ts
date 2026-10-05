@@ -216,6 +216,8 @@ export interface TextbookStudioApi {
     videoPolicy: VideoPolicy;
     studentSolutionPolicy: SolutionPolicy;
     requestId: string;
+    /** 다시 시도가 같은 요청으로 읽히려면 교재 번호도 같아야 한다 — 없으면 새로 짓는다 */
+    bookId?: string;
     schoolLevel?: "elementary" | "middle" | "high";
     grade?: number;
     semester?: 1 | 2;
@@ -1149,7 +1151,7 @@ export function createTextbookApi(
       return parsed.data.data.map(toBook);
     },
     async createBook(input) {
-      const bookId = crypto.randomUUID();
+      const bookId = input.bookId ?? crypto.randomUUID();
       const payload = parseRequest(textbookCreateBookSchema, {
         requestId: input.requestId,
         config: {
@@ -1494,7 +1496,8 @@ export function createTextbookApi(
                 (block) =>
                   Boolean(block.semantic) &&
                   (block.kind === "dialogue" ||
-                    (block.kind === "text" && block.semantic?.node?.kind === "board")),
+                    (block.kind === "text" &&
+                      block.semantic?.node?.kind === "board")),
               ),
             }))
             .filter((section) => section.blocks.length > 0),

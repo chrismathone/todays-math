@@ -244,6 +244,36 @@ describe("textbook editor rules", () => {
     expect(body.config?.displayCode).toBe("2-1-1");
   });
 
+  it("sends an identical body when a retry carries the book id of the first attempt", async () => {
+    // 서버는 요청 번호가 같아도 본문 해시가 다르면 «다른 내용» 으로 거절한다 — 교재 번호까지 같아야 첫 결과를 돌려받는다
+    const bodies: string[] = [];
+    const api = createTextbookApi(async (_url, init) => {
+      bodies.push(String(init?.body));
+      return Response.json({ data: bookSummary() });
+    });
+    const input = {
+      title: "분수의 덧셈",
+      volumeCode: "2-1-1",
+      curriculumVersion: "2022",
+      pageTarget: 32,
+      videoPolicy: "optional" as const,
+      studentSolutionPolicy: "never" as const,
+      requestId,
+    };
+    const bookId = "00000000-0000-4000-8000-0000000000c1";
+    await api.createBook({ ...input, bookId });
+    await api.createBook({ ...input, bookId });
+    expect(bodies[1]).toBe(bodies[0]);
+    expect(JSON.parse(bodies[0]!).config.bookId).toBe(bookId);
+
+    // 번호를 주지 않으면 지금처럼 호출마다 새로 짓는다
+    await api.createBook(input);
+    await api.createBook(input);
+    expect(JSON.parse(bodies[3]!).config.bookId).not.toBe(
+      JSON.parse(bodies[2]!).config.bookId,
+    );
+  });
+
   it("sends the chosen grade and margins and keeps the even-left start", async () => {
     let body: {
       config?: {
