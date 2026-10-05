@@ -9,6 +9,21 @@ import verifier as v
 ADAPTER = "native-localized-generation-v2"
 
 
+def upstream_refs(container, source):
+    refs = []
+    for ref in container.get("upstreamArtifacts", []):
+        artifact = v.checked_ref(ref)
+        refs.append(ref)
+        for key in ("sourceRecordId", "sourceAudioSha256"):
+            if key in artifact:
+                v.require(artifact[key] == source[key], "localized_upstream_wrong_source:" + key)
+        if artifact.get("rawPath") is not None or artifact.get("rawSha256") is not None:
+            raw_ref = {"path": artifact.get("rawPath"), "sha256": artifact.get("rawSha256")}
+            v.checked_ref(raw_ref)
+            refs.append(raw_ref)
+    return refs
+
+
 def catalog_probes(row, source):
     ref = row.get("probeCatalog")
     catalog = v.checked_ref(ref)
@@ -55,11 +70,16 @@ def replay_catalog(row, source, replay):
         return cached[cache_key]
     probes, refs = catalog_probes(row, source)
     diagnostics = []
+    checked_containers = set()
     for container, probe, artifact in probes:
         a.checked_full_pcm(container, replay.actual, "localized_catalog_full_pcm_mismatch")
+        container_key = (str(Path(artifact["path"]).resolve()), artifact["sha256"])
+        if container_key not in checked_containers:
+            refs.extend(upstream_refs(container, source))
+            refs.append({"path": container["requestPath"], "sha256": container["requestSha256"]})
+            checked_containers.add(container_key)
         reference = {**artifact, "probeId": probe.get("id")}
         a.checked_probe({"probeEvidence": reference}, source)
-        refs.append({"path": container["requestPath"], "sha256": container["requestSha256"]})
         actual = replay.actual
         for key in ("sampleRate", "channels", "startFrame", "frameCount"):
             v.require(v.integer(probe.get(key)), "localized_catalog_invalid_clock:" + key)
@@ -129,13 +149,7 @@ def replay_probe(row, source, replay, field, *, language, maximum):
     refs = [v.reference(evidence["path"]), {"path": container["requestPath"], "sha256": container["requestSha256"]}]
     # Any provider profiles supplied for discovery retain their nested raw hashes.
     # A valid profile is diagnostic; it never supplies physical onset authority.
-    for ref in container.get("upstreamArtifacts", []):
-        artifact = v.checked_ref(ref)
-        refs.append(ref)
-        if artifact.get("rawPath") is not None or artifact.get("rawSha256") is not None:
-            raw_ref = {"path": artifact.get("rawPath"), "sha256": artifact.get("rawSha256")}
-            v.checked_ref(raw_ref)
-            refs.append(raw_ref)
+    refs.extend(upstream_refs(container, source))
     return probe, index, selected, refs
 
 
