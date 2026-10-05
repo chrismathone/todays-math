@@ -22,6 +22,7 @@ import {
   READABLE_BOOKS_WHERE,
   requireOwnedBook,
 } from "../access";
+import { remapSemanticRefs } from "../semanticRefs";
 import { getEditionDetail } from "./editions";
 import { conflict, invalid, notFound } from "./errors";
 import { type RequestKey, runOnce } from "./requests";
@@ -315,11 +316,15 @@ async function copyEditionChildren(
     start_policy: section.startPolicy,
     content: {
       ...section.content,
-      blocks: section.content.blocks.map((block) =>
-        block.kind === "problem" && itemIds.has(block.itemId)
-          ? { ...block, itemId: itemIds.get(block.itemId)! }
-          : block,
-      ),
+      blocks: section.content.blocks.map((block) => {
+        const placed =
+          block.kind === "problem" && itemIds.has(block.itemId)
+            ? { ...block, itemId: itemIds.get(block.itemId)! }
+            : block;
+        // 구조 메타(예제 묶음 · 참조 항목)도 같은 새 id 를 가리켜야 역할 · 참조가 따라온다
+        const semantic = remapSemanticRefs(placed.semantic, { itemIds });
+        return semantic === placed.semantic ? placed : { ...placed, semantic };
+      }),
     },
   }));
   if (sectionRows.length)

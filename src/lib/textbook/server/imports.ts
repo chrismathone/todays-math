@@ -28,6 +28,7 @@ import {
 
 import type { TextbookActor } from "../access";
 import { contentHash, sha256, snapshotHash } from "../hash.server";
+import { remapSemanticRefs } from "../semanticRefs";
 import {
   type FigureLoader,
   captureProblemSnapshot,
@@ -520,7 +521,13 @@ async function copyAsDraft(
       map("item", item.itemId, randomUUID()),
     ]),
   );
-  const remapBlock = (block: ManuscriptBlock): ManuscriptBlock =>
+  const remapBlock = (block: ManuscriptBlock): ManuscriptBlock => {
+    const placed = remapPlacement(block);
+    // 구조 메타 안의 배치 id · 자산 id 도 같은 대응표로 — 빠지면 예제 역할 · 참조 · 원본 그림이 끊긴다
+    const semantic = remapSemanticRefs(placed.semantic, { itemIds, assetIds });
+    return semantic === placed.semantic ? placed : { ...placed, semantic };
+  };
+  const remapPlacement = (block: ManuscriptBlock): ManuscriptBlock =>
     block.kind === "problem"
       ? { ...block, itemId: itemIds.get(block.itemId) ?? block.itemId }
       : block.kind === "image"
