@@ -245,24 +245,58 @@ class SourceReplay:
         wanted = {}
         for row in rows:
             if row and row.get("status") == "candidate":
-                for field in ("probeEvidence", "dialogueProbeEvidence", "numberClipEvidence"):
+                for field in ("probeEvidence", "dialogueProbeEvidence", "numberClipEvidence", "nextProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence"):
                     if row.get(field):
                         try:
                             _, p = checked_probe(row, source, field)
                             key = f"{p['startFrame']}:{p['frameCount']}"
                             wanted[key] = {"id": key, "startFrame": p["startFrame"], "frameCount": p["frameCount"],
-                                           "maxDurationSeconds": 60 if field == "dialogueProbeEvidence" and p.get("purpose") == "first_dialogue" else 14}
+                                           "maxDurationSeconds": 60 if field == "dialogueProbeEvidence" and
+                                           (p.get("purpose") == "first_dialogue" or (row.get("evidenceAdapter") == "native-localized-generation-v2" and p.get("purpose") == "localized_generation")) else 14}
                         except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
                             pass  # Invalid rows are diagnosed individually.
+                if row.get("evidenceAdapter") == "native-localized-generation-v2" and row.get("probeCatalog"):
+                    try:
+                        from localized_adapter import catalog_probes
+                        catalog, _ = catalog_probes(row, source)
+                        for _, p, _ in catalog:
+                            key = f"{p['startFrame']}:{p['frameCount']}"
+                            wanted[key] = {"id": key, "startFrame": p["startFrame"], "frameCount": p["frameCount"],
+                                           "maxDurationSeconds": 60 if p.get("purpose") in ("first_dialogue", "localized_generation") else 14}
+                    except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
+                        pass
         spec = {"root": root, "source": source, "clock": clock, "probes": list(wanted.values())}
         script = Path(__file__).with_name("native-windows.mts")
         cli = Path(root) / "node_modules/tsx/dist/cli.mjs"
-        completed = subprocess.run(["node", str(cli), str(script)], input=json.dumps(spec).encode("utf-8"), capture_output=True, timeout=180)
-        v.require(completed.returncode == 0, "native_cpu_source_replay_failed:" + completed.stderr.decode("utf-8", errors="replace")[-1000:])
-        self.actual = json.loads(completed.stdout)
-        self.energy = [x[0] for x in struct.iter_unpack("<d", base64.b64decode(self.actual.pop("energyBase64")))]
-        self.clips = {p["id"]: p for p in self.actual.pop("probes")}
+        localized = any(r and r.get("status") == "candidate" and r.get("evidenceAdapter") == "native-localized-generation-v2" for r in rows)
+        batches, current, allocated = [], [], 0
+        if localized:
+            v.require(len(wanted) <= 2048, "unbounded_localized_source_probe_catalog")
+            for p in wanted.values():
+                size = p["frameCount"] * clock.get("channels", 2) * 2
+                if current and (len(current) == 128 or allocated + size > 512 * 1024 * 1024):
+                    batches.append(current)
+                    current, allocated = [], 0
+                current.append(p)
+                allocated += size
+            batches.append(current)
+        else:
+            batches = [spec["probes"]]
+        self.actual, self.clips = None, {}
         self.mono = {}
+        for batch in batches:
+            completed = subprocess.run(["node", str(cli), str(script)], input=json.dumps({**spec, "probes": batch}).encode("utf-8"), capture_output=True, timeout=180)
+            v.require(completed.returncode == 0, "native_cpu_source_replay_failed:" + completed.stderr.decode("utf-8", errors="replace")[-1000:])
+            actual = json.loads(completed.stdout)
+            energy = [x[0] for x in struct.iter_unpack("<d", base64.b64decode(actual.pop("energyBase64")))]
+            clips = {p["id"]: p for p in actual.pop("probes")}
+            if self.actual is not None:
+                v.require(actual == self.actual and energy == self.energy, "localized_batch_source_replay_changed")
+            self.actual, self.energy = actual, energy
+            self.clips.update(clips)
+            if localized and len(batches) > 1:
+                for p in batch:
+                    self.replay(p)  # Release each batch's PCM after actual mono hashing.
 
     def replay(self, probe):
         key = f"{probe['startFrame']}:{probe['frameCount']}"
