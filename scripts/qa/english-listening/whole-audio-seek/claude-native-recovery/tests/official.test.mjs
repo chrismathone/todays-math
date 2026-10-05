@@ -138,6 +138,14 @@ test("only the exact first-utterance opening from a clip at a measured onset is 
   assert.equal(refused.status, "candidate");
   assert.equal(refused.evidenceAdapter, null);
   assert.equal(refused.nativeRecovery.literalNumberClipAtMostThreeSeconds, false);
+  // A short clip that also wrote the first words of the instruction is a
+  // reading of the heading, not the number alone.
+  long.koListenings.push(
+    listening("ko", startOf(AT[2]), 100, [segment("2번 다음을 듣고", 0.4, 1.9)]),
+  );
+  const tailed = rowOf(resolveOfficial(long), "o-2");
+  assert.equal(tailed.evidenceAdapter, null);
+  assert.equal(tailed.nativeRecovery.literalNumberClipAtMostThreeSeconds, false);
   // A genuinely new, shorter clip from the same start: the shortest one is the number clip.
   long.koListenings.push(
     listening("ko", startOf(AT[2]), 125, [segment("2번", 0.4, 1.1)]),

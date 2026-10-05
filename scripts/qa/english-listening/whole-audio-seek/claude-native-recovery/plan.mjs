@@ -14,9 +14,9 @@
  * context     Korean, 14 s, from a start where the number was written first and
  *             the announcer's sentence began but eight seconds ended before
  *             its verb (a long shared heading).
- * numberclip  Korean, 2, 2.5 and 3 s, the number alone from a start where a
- *             long reading wrote bare digits before the instruction and the
- *             literal number is so far only in a clip longer than 3 s.
+ * numberclip  Korean, 1.4 to 3 s, the number alone from a start where a long
+ *             reading wrote bare digits before the instruction and no clip of
+ *             at most 3 s has yet written the literal number and nothing else.
  * variants    Korean, 6 s and 4.5 s, from a start where the number was written
  *             first but with a recognizer time that lags the measured onset.
  * quotes      English, up to 60 s: the dialogue of an established passage, from
@@ -38,6 +38,7 @@ import {
   RULES,
   establishHeadings,
   headingReading,
+  isNumberOnly,
   quoteWords,
   readsHeading,
 } from "./lib/rules.mjs";
@@ -276,9 +277,17 @@ for (const id of session.scope(values.scope, values["source-id"])) {
       const wanted = heldNumbers(w);
       if (wanted && !wanted.has(number)) continue;
       const literal = readings.filter(({ r }) => r.cue && readsHeading(r, [number]));
-      if (literal.some(({ l }) => l.frameCount <= 150 * frames)) continue;
+      // Enough when a clip of at most three seconds wrote the number and nothing else.
+      if (
+        literal.some(
+          ({ l, r }) => l.frameCount <= 150 * frames && isNumberOnly(l.probe, r),
+        )
+      )
+        continue;
       const have = new Set(list.map((x) => x.frameCount));
-      for (const windows of [100, 125, 150]) {
+      // 1.4, 1.6 and 1.8 s end before the announcer's sentence; 2, 2.5 and 3 s
+      // were the first attempt and often ran into it.
+      for (const windows of [70, 80, 90, 100, 125, 150]) {
         if (have.has(windows * frames)) continue;
         push({
           purpose: "number_only_clip_at_most_three_seconds",

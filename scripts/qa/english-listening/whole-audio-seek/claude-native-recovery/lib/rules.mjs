@@ -230,6 +230,23 @@ export function headingReading(probe) {
   };
 }
 
+/**
+ * True when a recognition wrote the literal number and nothing else: one
+ * segment, the number, at most "입니다" and punctuation after it. A short clip
+ * that also wrote the first words of the instruction is a reading of the
+ * heading, not the number alone.
+ */
+export function isNumberOnly(probe, reading) {
+  return Boolean(
+    reading.cue &&
+      reading.reliable &&
+      reading.cue.form !== "bare" &&
+      reading.cue.numbers.length === 1 &&
+      spoken(probe).length === 1 &&
+      /^(?:입니다)?[\s.,:;!?]*$/.test(reading.cue.rest),
+  );
+}
+
 /** A heading's instruction: its own reading's, or a same-start bare sibling's. */
 export const instructed = (heading) =>
   heading.reading.instruction ?? heading.instructionSibling?.reading.instruction ?? null;
