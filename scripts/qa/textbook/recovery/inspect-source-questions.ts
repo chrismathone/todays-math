@@ -1,7 +1,7 @@
 /** Exact stored final DOM versus native original source question CSS; never rerenders a book. */
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { launchExportBrowser } from "../../../../src/lib/export/pdfServer";
 import { loadFinalDom, readFinalHtml } from "./load-final-dom";
@@ -12,6 +12,15 @@ async function main() {
   assert(directory && nativeDirectory && output);
   const focused = scope === "focused";
   const focusedSelection = scope.startsWith("focused:");
+  const focusedExports =
+    focused || focusedSelection
+      ? (JSON.parse(
+          await readFile(
+            path.join(directory, "focused-u01-semantic-student-export.json"),
+            "utf8",
+          ),
+        ).exports as { sourceSectionKeys: string[] }[])
+      : undefined;
   const pages = focused
     ? [14, 17, 23]
     : focusedSelection
@@ -41,7 +50,19 @@ async function main() {
                 focused || focusedSelection
                   ? "focused-u01-semantic-student"
                   : "new-u01-semantic-student",
-                `chunk-${focused || focusedSelection ? pages.indexOf(sourcePage) : Math.floor((sourcePage - 8) / 4)}.html`,
+                `chunk-${
+                  focusedExports
+                    ? (() => {
+                        const index = focusedExports.findIndex((exported) =>
+                          exported.sourceSectionKeys.includes(
+                            `reference-p${String(sourcePage).padStart(3, "0")}`,
+                          ),
+                        );
+                        assert(index >= 0);
+                        return index;
+                      })()
+                    : Math.floor((sourcePage - 8) / 4)
+                }.html`,
               );
         const html = await readFinalHtml(file);
         const page = await browser.newPage();
@@ -69,8 +90,13 @@ async function main() {
                       ".progress",
                       ".q",
                       ".qhead",
+                      ".qhead > *",
                       ".qid",
                       ".prompt",
+                      ".prompt > *",
+                      ".prompt .math",
+                      ".prompt .katex",
+                      ".prompt .katex-html",
                       ".work",
                       ".work > span",
                       ".question-grid",
@@ -115,9 +141,14 @@ async function main() {
                       ".tb-progress",
                       ".tb-source-problem",
                       ".tb-problem-head",
+                      ".tb-problem-head > *",
                       ".tb-problem-head > strong",
                       ".tb-problem-question > .tb-prose",
+                      ".tb-problem-question > .tb-prose > *",
+                      ".tb-problem-question .katex",
+                      ".tb-problem-question .katex-html",
                       ".tb-work-area:not([data-empty-work])",
+                      ".tb-work-line",
                       ".checkbar",
                       ".tb-source-problem .qid > span",
                       ".tb-source-fragments .daily-banner",
@@ -176,6 +207,9 @@ async function main() {
                 "align-items",
                 "box-sizing",
                 "overflow",
+                "overflow-wrap",
+                "word-break",
+                "white-space",
                 "padding-top",
                 "padding-bottom",
                 "padding-left",
