@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-05",
+  "scope": "Impeccable S1/S2, source math editor and actual read-only OCR renderer",
+  "baseline": {
+    "formulaControls": 4,
+    "distinctControlNames": 1,
+    "fixedName": "수식 편집",
+    "readOnlyMathMLTrees": 0,
+    "cause": "HTML-only KaTeX output hides the visual tree from accessibility without providing MathML; editorTokens is also used by the read-only OCR reader."
+  },
+  "libraryAssumptions": {
+    "katexVersion": "0.16.47",
+    "mathliveVersion": "0.110.0",
+    "katexOptionsReference": "https://katex.org/docs/options",
+    "visualOutput": "The entire katex-html subtree and data-export-tex value match the existing HTML-only output; the repair and trust rules are unchanged.",
+    "source": "prepareVisualDocument removes rendered children from raw data-math-tex tokens; documentMarkdown saves the original node attrs, not accessibility markup.",
+    "export": "TipTap HTML stays metadata-only; HWPX reads data-export-tex and excludes text descendants of katex. The separate print/library renderer and PDF request path are unchanged."
+  },
+  "confirmed": {
+    "browser": "Headless Chromium via Playwright, isolated Vite harness on port 4249",
+    "distinctControlNames": 4,
+    "names": "Existing 문제 본문/정답 field context plus current LaTeX expression, refreshed on edits and reopening",
+    "accessTree": {
+      "MathMLMath": 3,
+      "MathMLFraction": 2,
+      "MathMLSup": 2,
+      "visualKaTeXRootsIgnored": 3
+    },
+    "keyboard": "Real browser Enter/Space activation and Escape/Enter closing",
+    "editing": "MathLive value assignment plus input dispatch, actual TipTap update, source serialization, save and remount",
+    "clipboard": "Native Ctrl+C plain text matches the old visual-only DOM exactly; native text/html excludes MathML and annotations; semantic trees are restored after copying",
+    "layout": "Byte-identical screenshots and matching formula rectangles with/without MathML in screen and print media",
+    "hwpx": "Three equations emitted once each, no semantic-only text, and identical layout objects with/without MathML",
+    "unitTests": "106 passed in 4 focused files",
+    "browserTests": "6 passed",
+    "eslint": "Exit 0, zero errors, four existing native-image warnings"
+  },
+  "commands": {
+    "unit": "node node_modules/vitest/vitest.mjs run src/__tests__/components/sourceMathAccessibility.test.tsx src/__tests__/components/editorSourceRepair.test.tsx src/__tests__/unit/mixedNumberPolicy.test.ts src/__tests__/unit/hwpxLayout.test.ts",
+    "browser": "node node_modules/@playwright/test/cli.js test --config e2e/source-math-accessibility/playwright.config.ts",
+    "eslint": "node node_modules/eslint/bin/eslint.js src/components/math/editor/SourceMathTextEditor.tsx src/components/math/editor/SourceEditorRenderer.tsx src/components/math/editor/katexRender.ts src/__tests__/components/sourceMathAccessibility.test.tsx e2e/source-math-accessibility"
+  },
+  "limits": [
+    "No physical screen-reader speech, math navigation, or pronunciation test; access-tree evidence is not a speech certification.",
+    "Browser and native clipboard checks cover Chromium, not Firefox or WebKit.",
+    "Screen/print media comparisons use synthetic local fixtures; no generated production PDF or HWPX file was requested.",
+    "No real OCR/AI calls, database writes, production writes, dependency install, or Prisma generation.",
+    "Global TypeScript validation and integration are the coordinator's responsibility."
+  ]
+}
