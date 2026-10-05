@@ -101,9 +101,11 @@ Every output file is written once (`wx`).
 OUT=C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude
 
 node measure-native.mjs --scope reconstructed        # full decode against the frozen clock; keeps 20 ms loudness only
+node measure-native.mjs --scope official             # official sources that still hold a question
 node plan.mjs --stage headings --round 001 --scope pilot [--dry-run]
-./run-rounds.sh pilot 2 headings variants terminal quotes+controls truncation
-node build-ledger.mjs --run pilot-001 --scope pilot [--dry-run]
+./run-rounds.sh pilot 2 headings context variants gaps variants terminal quotes+controls truncation
+./run-rounds.sh official 31 headings context variants quotes
+node build-ledger.mjs --run pilot-002 --scope pilot [--dry-run]      # scopes: pilot | reconstructed | official | held
 
 node --test "tests/*.test.mjs"                        # synthetic fixtures; no corpus, GPU or network
 ```
@@ -113,16 +115,40 @@ and recognizes it with `../claude/run_probes.py` (Whisper medium int8, the
 frozen snapshot, one model resident only under the shared exclusive GPU lock,
 temporary clips deleted after each source). A start frame already listened to
 is not asked again; earlier bounded recognitions by the same runner are read by
-hash from `claude-held-validation-20261005`.
+hash from `claude-held-validation-20261005` and `whole-audio-seek-20261005/claude`.
+Do not edit `run-rounds.sh` while it runs: the shell reads it as it goes.
 
 | stage        | what it listens to                                                                                         |
 | ------------ | ---------------------------------------------------------------------------------------------------------- |
 | `headings`   | Korean, 8 s, from every measured onset in the seconds before the provider's instruction for a number       |
+| `context`    | Korean, 14 s, from a start where the number was written but eight seconds ended before the instruction verb |
 | `variants`   | Korean, 6 s and 4.5 s, from a start where the number was written first but stamped late by the recognizer   |
 | `terminal`   | Korean, from every long-quiet onset after the last heading                                                 |
 | `gaps`       | Korean, from long-quiet onsets between two established headings whose numbers are not consecutive          |
 | `quotes`     | English, up to 60 s: the dialogue of an established passage, from the end of its heading to the next start |
 | `truncation` | adversarial clips at established headings, in their own folder: cut after 400 ms; begun 300 ms into it     |
+
+For an official source only a held question's own number, and the next number
+where that has no certified start, are sought.
+
+## Official questions
+
+An official question keeps its own number, so the passage is its own measured
+heading to the next number's start (a certified start bounds it, named with the
+certificate that admitted it). Two things an official source allows: a short
+clip that wrote the literal number and a long reading from the same start that
+wrote bare digits before the instruction are one heading; and after the last
+printed question number the passage may end with the recording.
+
+Identity in this producer's route (`native_numbered_passage_script_sentence_v1`,
+`lib/official.mjs`) is a sentence of four words or more of the question's own
+script section that the whole script prints once, written by an English clip
+wholly inside the passage — with no other section's such sentence inside it.
+The independent verifier's official route needs more: the exact opening of the
+first utterance, from a clip that begins at a measured onset. A row that has
+that too is shaped for the verifier's wrapper (`official-candidates.json`); a
+row bound only by a later own sentence is reported apart
+(`official-later-sentence-findings.json`) and is **not** offered for admission.
 
 ## A run (`<OUT>/runs/<run>/`)
 
@@ -138,8 +164,14 @@ hash from `claude-held-validation-20261005`.
 - `controls.json` — the blind replay of questions that already have a
   certified start (the same code, the certificate unread while deciding), the
   heading-level comparison, and the adversarial inputs.
-- `probe-catalog.json` — every bounded recognition of these sources that
-  exists in the roots, used or not.
+- `official-candidates.json`, `official-later-sentence-findings.json` — see
+  above.
+- `catalogs/<sourceRecordId>.json` — one immutable catalog per source: every
+  bounded recognition of that source that exists in the roots, used or not, by
+  literal round folder and file name, and the raw recognitions behind a
+  certified start that bounds one of its passages. A row's `probeCatalog` names
+  its own source's catalog. `adversarial-catalogs/` lists the deliberately
+  damaged clips, which are never a row's evidence. `catalogs.json` indexes both.
 - `summary.json` — counts, the 35-question pilot cohort one line each, input
   and tool hashes.
 
