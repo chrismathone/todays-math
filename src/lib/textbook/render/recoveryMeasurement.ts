@@ -108,7 +108,10 @@ export function dialogueMeasurementModel(
   return result;
 }
 export interface RecoveryMeasureResult {
-  sourceQuestionSizesMm?: Record<string, { head: number; prompt?: number }>;
+  sourceQuestionSizesMm?: Record<
+    string,
+    { head: number; prompt?: number; main?: number }
+  >;
   rowHeightsMm: Record<string, number>;
   blockMinHeightsMm: Record<string, number>;
   dialogueSizesPt: Record<string, number>;
@@ -227,7 +230,7 @@ export function measureRecoveryDom(
   const rowHeightsMm: Record<string, number> = {};
   const sourceQuestionSizesMm: Record<
     string,
-    { head: number; prompt?: number }
+    { head: number; prompt?: number; main?: number }
   > = {};
   for (const group of plan.sourceQuestionGroups ?? []) {
     const members = group.ids.map((id) => elements.get(id));
@@ -241,6 +244,17 @@ export function measureRecoveryDom(
     );
     if (heads.some((head) => !head) || prompts.some((prompt) => !prompt))
       throw new Error("Missing native question heading or prompt");
+    if (
+      !group.alignPrompt &&
+      heads.some(
+        (element) =>
+          element!.scrollHeight > element!.clientHeight + 2 ||
+          element!.scrollWidth > element!.clientWidth + 2,
+      )
+    )
+      throw new Error(
+        "SOURCE_HEADER_OVERFLOW: linked question heading exceeds its native slot",
+      );
     const head =
       Math.max(
         ...heads.map((element) => element!.getBoundingClientRect().height),
@@ -258,6 +272,28 @@ export function measureRecoveryDom(
       heads[index]!.style.height = `${head}mm`;
       if (prompt !== undefined) prompts[index]!.style.minHeight = `${prompt}mm`;
     });
+    // A figure or QR may be taller than the prose. Reserve that complete prompt row
+    // before the writing area, without placing the QR inside it or changing stored data.
+    if (
+      group.alignPrompt &&
+      members.some((element) =>
+        element!.querySelector(".tb-qr,.tb-problem-figure"),
+      )
+    ) {
+      const mains = members.map((element) =>
+        element!.querySelector<HTMLElement>(".tb-problem-main"),
+      );
+      if (mains.some((element) => !element))
+        throw new Error("Missing source question body measurement");
+      const main =
+        Math.max(
+          ...mains.map((element) => element!.getBoundingClientRect().height),
+        ) * mm;
+      group.ids.forEach((id, index) => {
+        sourceQuestionSizesMm[id].main = main;
+        mains[index]!.style.minHeight = `${main}mm`;
+      });
+    }
   }
   const sourceRowKeys = new Set(plan.sourceMemoryRowKeys);
   for (const row of root.querySelectorAll<HTMLElement>(
@@ -421,6 +457,7 @@ export function applyRecoveryMeasurements(
       ) {
         block.sourceQuestionHeadHeightMm = sourceQuestionSize.head;
         block.sourceQuestionPromptMinHeightMm = sourceQuestionSize.prompt;
+        block.sourceQuestionMainMinHeightMm = sourceQuestionSize.main;
       }
       if (block.kind === "recall" && block.displayRows)
         block.rowHeightsMm = result.rowHeightsMm;

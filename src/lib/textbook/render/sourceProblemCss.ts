@@ -4,6 +4,7 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-editorial[data-source-tone="tree"],.tb-paper[data-source-tone="tree"]{--tb-accent:#6250a0;--tb-dark:#342752;--tb-soft:#f3f0f8;--tb-light:#e1dced;--tb-signal:#ffbea4;--tb-subink:#635d70;color:#253836}
 .tb-source-problem:not([data-example-role]){padding:3mm 0 3mm;border:0;min-height:0}
 .tb-source-problem .tb-problem-head strong{font-size:12.5pt;line-height:1.1;letter-spacing:-.5px}
+.tb-source-problem .tb-problem-head>strong,.tb-source-problem .tb-problem-head>.tag{flex:none;white-space:nowrap;overflow-wrap:normal;word-break:normal}
 .tb-source-problem .tb-problem-head strong span{font:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;background:none;padding:0;border-radius:0}
 .tb-source-fragments .daily-banner{display:flex;justify-content:space-between;align-items:baseline;background:var(--tb-soft);padding:3mm 4mm;border-top:1.4pt solid var(--tb-accent);border-radius:0 3mm 0 0}
 .tb-source-fragments .daily-banner>strong{font-size:10pt;color:var(--tb-accent)}.tb-source-fragments .daily-banner>span{font-size:7pt;color:var(--tb-subink,#526461)}

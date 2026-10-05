@@ -64,6 +64,7 @@ type BlockBase = {
   continuedPage?: boolean;
   sourceQuestionHeadHeightMm?: number;
   sourceQuestionPromptMinHeightMm?: number;
+  sourceQuestionMainMinHeightMm?: number;
 };
 export type RenderBlock = BlockBase &
   (
