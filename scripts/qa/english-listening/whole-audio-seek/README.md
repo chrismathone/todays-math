@@ -87,3 +87,43 @@ number, instruction and dialogue input is hash-bound and decoded independently;
 neighbors must survive to the final certificate. The earlier unique-instruction
 route retains its original constraints. Producer-only judgments remain
 diagnostic until the independent replay and actual DB readback pass.
+
+## Completed Claude held-question verification, 2026-10-05
+
+Claude examined the 1,496 previously held questions and supplied 310 official
+and 214 reconstructed candidates. Root independently replayed all 524 candidates
+from their whole original recordings, checked the complete 193-source /
+3,699-question population and settled ordering and boundary dependencies. All
+524 passed; every one of the 2,203 existing ranges was preserved exactly.
+
+The actual root application at `2026-10-05T12:16:59Z` registered the 524 starts
+across 139 sources in Supabase project `jyaguxwuaxgdnovtulna`. Readback checked all
+193 sets and their unchanged original assets: 2,727 total starts, 972 held
+questions, 185 sources with a start, 74 fully located sources and eight sources
+without a verified start. The original audio, prompts, choices, images, answers,
+metadata and human-review/publication state were retained. Every new range ends
+at the whole original recording's end; no new Storage object was written.
+
+Completed evidence under
+`output/listening-assessments/whole-audio-seek-20261005/`:
+
+- Claude census: `claude-held-validation-20261005/report/report-001/`, all 1,496
+  unique held IDs with actual listening coverage and explicit remaining reasons.
+- Independent certificate: `codex-held-validation-20261005/replay-final-002/certificate.json`,
+  SHA-256 `776d313ae3ffc626627c722a93e2c24e7eff0284890f4e268bf676114d6e6046`.
+- Executed immutable code: `codex-held-validation-20261005/final-implementation-003/`,
+  30-file manifest SHA-256
+  `247d5f0c5c319c30da167701a15887bbc7e19539425227a969c2b44f2174d720`.
+- Actual application: `.qa-artifacts/whole-audio-seek-20261005/adoption-2026-10-05T12-16-32-530Z/report.json`.
+- Authorized runtime readback: `.qa-artifacts/claude-held-validation-20261005/runtime-readback-2026-10-05T12-19-46-365Z.json`,
+  eight question starts in seven sources and 16 real private-Storage Range
+  requests, all HTTP 206, through the production media service and teacher scope.
+
+Screenshot source `ebsi-high-2-2018-2` Q2 and Q3 are registered at 87,800 ms and
+123,380 ms, both continuing to 1,540,224 ms. The earlier interrupted
+`codex-held-validation-20261005/replay-final-001` produced no certificate or DB
+application; only completed replay 002 supplied admission authority.
+
+Root regression checks pass 191 Python and 31 Node tests; the executed archive
+contains the 188 Python tests available before the later-wave scope inheritance
+guard was added. Claude's 49 Node tests also passed independently at root.

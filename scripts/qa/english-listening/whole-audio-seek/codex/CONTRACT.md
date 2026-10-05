@@ -429,3 +429,10 @@ have the identical existing start and native cue onset. Original-scope overlap
 or a conflicting preceding/following start remains held. Every new candidate
 still needs complete original-byte/native-PCM/probe/mapping replay; inherited
 scope does not create new source identity or timestamp authority.
+
+An older preserved `originalScopeEvidence` survives another wave only after its
+referenced complete certificate is hash-checked and the original admitted row
+matches the same question, source/playback bytes, range, scope and native onset.
+It retains that actual admission's reference. Those older references are added
+to final inputs and rechecked at completion; display numbering cannot silently
+replace an older proven original scope.

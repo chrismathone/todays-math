@@ -74,6 +74,51 @@ class AncestorTests(unittest.TestCase):
         with self.assertRaisesRegex(v.InvalidEvidence, "artifact_hash_mismatch"):
             v.verified_ancestor_rows(self.inventory, self.clock, self.snapshots)
 
+    def later_wave(self, **corrupt):
+        folder = Path(self.temp.name)
+        admission_ref = self.inventory["verifiedAncestor"]["certificate"]
+        original = v.checked_ref(admission_ref)["records"][0]
+        parent_inventory = copy.deepcopy(self.inventory)
+        parent_inventory.pop("verifiedAncestor")
+        snapshot_path = folder / "second-snapshot.json"
+        v.immutable_write(snapshot_path, {"snapshots": self.snapshots})
+        parent_inventory.update(liveSnapshotPath=str(snapshot_path), liveSnapshotSha256=v.sha(snapshot_path))
+        inventory_path = folder / "second-inventory.json"
+        v.immutable_write(inventory_path, parent_inventory)
+        parent_clock = copy.deepcopy(self.clock)
+        parent_clock["inventorySha256"] = v.sha(inventory_path)
+        clock_path = folder / "second-clock.json"
+        v.immutable_write(clock_path, parent_clock)
+        row = copy.deepcopy(original)
+        row.update(revision=4, documentSha256="current-document", status="preserved",
+                   originalScopeEvidence={"method": "previous_complete_source_admission_v1", "certificate": admission_ref,
+                                          "scopeQuestionNumbers": [2], "onsetFrame": 22400, **corrupt})
+        for key in ("evidenceGrade", "scopeQuestionNumbers", "nativeEvidence"):
+            row.pop(key)
+        parent = {"completeReplay": True, "errors": [], "humanReviewed": False, "writesDatabase": False, "writesStorage": False,
+                  "inputs": {"inventory": v.reference(inventory_path), "clock": v.reference(clock_path)}, "records": [row]}
+        certificate_path = folder / "second-certificate.json"
+        v.immutable_write(certificate_path, parent)
+        self.inventory["verifiedAncestor"] = {"certificate": v.reference(certificate_path), "inventory": v.reference(inventory_path), "clock": v.reference(clock_path)}
+        return admission_ref
+
+    def test_third_wave_keeps_older_scope_only_from_the_actual_original_admission(self):
+        origin = self.later_wave()
+        scopes, ref = v.verified_ancestor_rows(self.inventory, self.clock, self.snapshots)
+        self.assertEqual(scopes[("S", "q")]["scopeQuestionNumbers"], [2])
+        self.assertEqual(scopes[("S", "q")]["onsetFrame"], 22400)
+        self.assertEqual(scopes[("S", "q")]["certificate"], origin)
+
+    def test_third_wave_cannot_change_older_scope(self):
+        self.later_wave(scopeQuestionNumbers=[3])
+        with self.assertRaisesRegex(v.InvalidEvidence, "differs_from_actual_admission"):
+            v.verified_ancestor_rows(self.inventory, self.clock, self.snapshots)
+
+    def test_third_wave_cannot_change_older_native_onset(self):
+        self.later_wave(onsetFrame=22401)
+        with self.assertRaisesRegex(v.InvalidEvidence, "differs_from_actual_admission"):
+            v.verified_ancestor_rows(self.inventory, self.clock, self.snapshots)
+
 
 class PreservedOriginalOrderTests(unittest.TestCase):
     def rows(self, *, scope, start, onset=46400):

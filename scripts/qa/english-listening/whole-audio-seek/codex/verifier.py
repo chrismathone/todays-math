@@ -578,6 +578,7 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
             len(old_clocks) == len(old_clock["records"]) == len(old_sources) and set(old_clocks) == set(old_sources),
             "ancestor_physical_clock_population_differs")
     inherited = {}
+    scope_origins = {}
     import copy
     for sid, old_source in old_sources.items():
         source = sources[sid]
@@ -604,6 +605,31 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
                         "onsetFrame": row["nativeEvidence"]["onsetFrame"]}
             elif row["status"] == "preserved":
                 require(question.get("audioRange") == row.get("audioRange"), "ancestor_previous_range_changed")
+                evidence = row.get("originalScopeEvidence")
+                if source["reconstructed"] and evidence is not None:
+                    require(isinstance(evidence, dict) and evidence.get("method") == "previous_complete_source_admission_v1",
+                            "ancestor_preserved_original_scope_method_invalid")
+                    origin_ref = evidence.get("certificate")
+                    require(isinstance(origin_ref, dict) and isinstance(origin_ref.get("path"), str),
+                            "ancestor_preserved_original_scope_reference_missing")
+                    origin_key = (str(Path(origin_ref["path"]).resolve()), origin_ref.get("sha256"))
+                    if origin_key not in scope_origins:
+                        origin = checked_ref(origin_ref)
+                        require(origin.get("completeReplay") is True and origin.get("errors") == [] and
+                                origin.get("humanReviewed") is False and origin.get("writesDatabase") is False and
+                                origin.get("writesStorage") is False, "ancestor_preserved_original_scope_origin_incomplete")
+                        scope_origins[origin_key] = origin
+                    matches = [r for r in scope_origins[origin_key]["records"]
+                               if r["sourceRecordId"] == sid and r["questionId"] == question["id"]]
+                    require(len(matches) == 1, "ancestor_preserved_original_scope_origin_not_unique")
+                    original = matches[0]
+                    require(original.get("status") == "admitted" and original.get("evidenceGrade") == "reconstructed_numbered_probe" and
+                            all(original.get(key) == row.get(key) for key in
+                                ("sourceRecordId", "setId", "questionId", "sourceNumber", "sourceAudioSha256", "playbackSha256", "audioRange")) and
+                            evidence.get("scopeQuestionNumbers") == original.get("scopeQuestionNumbers") and
+                            evidence.get("onsetFrame") == original.get("nativeEvidence", {}).get("onsetFrame") and
+                            integer(evidence.get("onsetFrame")), "ancestor_preserved_original_scope_differs_from_actual_admission")
+                    inherited[(sid, question["id"])] = copy.deepcopy(evidence)
             else:
                 require(row["status"] == "held" and not question.get("audioRange") and not row.get("audioRange"),
                         "ancestor_unproven_existing_range")
@@ -655,6 +681,13 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
     if ancestor_ref:
         references.update({"ancestorCertificate": ancestor_ref, "ancestorInventory": inventory["verifiedAncestor"]["inventory"],
                            "ancestorClock": inventory["verifiedAncestor"]["clock"]})
+        known = {(str(Path(ref["path"]).resolve()), ref["sha256"]) for ref in references.values()}
+        for evidence in inherited_original_scopes.values():
+            ref = evidence["certificate"]
+            key = (str(Path(ref["path"]).resolve()), ref["sha256"])
+            if key not in known:
+                references["ancestorScope:" + str(len(known))] = ref
+                known.add(key)
     expected = {(s["sourceRecordId"], q["id"]): (s, q) for s in inventory["records"] for q in s["questions"]}
     require(len(expected) == sum(len(s["questions"]) for s in inventory["records"]), "duplicate_inventory_question")
     for p in marks_paths:
