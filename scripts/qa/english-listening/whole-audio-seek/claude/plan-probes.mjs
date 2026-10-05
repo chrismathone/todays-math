@@ -12,7 +12,13 @@
  *
  * A request file is never overwritten. Probes are places to listen, not starts.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
 import {
@@ -27,6 +33,7 @@ import {
 } from "./lib/inventory.mjs";
 import { loadNative } from "./lib/native.mjs";
 import { POLICY } from "./lib/policy.mjs";
+import { questionPlans } from "./lib/questions.mjs";
 
 const { values } = parseArgs({
   options: {
@@ -38,6 +45,8 @@ const { values } = parseArgs({
     "max-per-gap": { type: "string" },
     "window-seconds": { type: "string" },
     "dry-run": { type: "boolean" },
+    modal: { type: "boolean" },
+    "only-unprobed": { type: "boolean" },
     "source-id": { type: "string", multiple: true },
   },
 });
@@ -62,16 +71,23 @@ if (existsSync(requestPath)) throw new Error("Round exists: " + requestPath);
 const probeKey = (probe) =>
   `${probe.startFrame}:${probe.frameCount}:${probe.language ?? "ko"}`;
 
-/** Listenings already requested in earlier rounds, per source. */
+/**
+ * Listenings that were actually carried out, per source. Read from the stored
+ * results, not from requests: a round that was planned but not run for a source
+ * has heard nothing there.
+ */
 const heard = new Map();
 for (const record of all) heard.set(record.sourceRecordId, new Set());
-for (let n = 1; n < Number(values.round); n++) {
-  const prior = join(requestDir, `round-${String(n).padStart(3, "0")}.json`);
-  if (!existsSync(prior)) continue;
-  for (const source of JSON.parse(readFileSync(prior, "utf8")).sources)
-    for (const probe of source.probes)
-      heard.get(source.sourceRecordId).add(probeKey(probe));
-}
+const probeRoot = join(values.out, "probes");
+for (const round of existsSync(probeRoot) ? readdirSync(probeRoot) : [])
+  for (const record of all) {
+    const path = join(probeRoot, round, record.sourceRecordId + ".json");
+    if (!existsSync(path)) continue;
+    for (const probe of JSON.parse(readFileSync(path, "utf8")).probes)
+      heard
+        .get(record.sourceRecordId)
+        .add(probeKey({ ...probe, language: probe.requestedLanguage }));
+  }
 
 const ledger = values.ledger
   ? JSON.parse(readFileSync(values.ledger, "utf8"))
@@ -81,8 +97,36 @@ if (values.mode === "gaps" && !ledger)
 const maxPerGap = Number(values["max-per-gap"] ?? 5);
 const windowSeconds = Number(values["window-seconds"] ?? 15);
 
+/**
+ * Length range of the bridge music: the largest set of long islands whose
+ * lengths lie within one second of each other, when it is large enough to be
+ * the same clip reused across the recording. Null when no such set exists.
+ */
+function modalBridge(candidates) {
+  const lengths = candidates
+    .map((c) => c.previousIslandWindows)
+    .filter((n) => n >= POLICY.bridgeIslandWindows)
+    .sort((a, b) => a - b);
+  let best = { count: 0, from: 0, to: 0 };
+  for (let i = 0; i < lengths.length; i++) {
+    let j = i;
+    while (j < lengths.length && lengths[j] - lengths[i] <= 50) j++;
+    if (j - i > best.count)
+      best = { count: j - i, from: lengths[i], to: lengths[j - 1] };
+  }
+  return best.count >= 15 ? { from: best.from - 25, to: best.to + 25 } : null;
+}
+
 const sources = [];
 for (const record of records) {
+  if (
+    values["only-unprobed"] &&
+    existsSync(probeRoot) &&
+    readdirSync(probeRoot).some((round) =>
+      existsSync(join(probeRoot, round, record.sourceRecordId + ".json")),
+    )
+  )
+    continue;
   const native = loadNative(values.out, record, inventorySha256);
   const { sampleRate, channels, frameCount, sha256: pcm } = native.meta.pcm;
   const frames = native.windowFrames;
@@ -134,50 +178,100 @@ for (const record of records) {
         wholeFrame: Number.isInteger(exact),
       });
     }
-    for (const candidate of candidates)
-      if (followsBridge(candidate)) addCandidate("bridge_onset", candidate);
+    // With --modal, a recording whose long islands cluster at one length (its
+    // bridge music, reused before every question) is first heard only after
+    // islands of that length; other long islands are left to a gaps round.
+    const bridge = values.modal ? modalBridge(candidates) : null;
+    for (const candidate of candidates) {
+      if (!followsBridge(candidate)) continue;
+      if (
+        bridge &&
+        candidate.quietWindows < POLICY.longQuietWindows &&
+        (candidate.previousIslandWindows < bridge.from ||
+          candidate.previousIslandWindows > bridge.to)
+      )
+        continue;
+      addCandidate("bridge_onset", candidate);
+    }
   } else if (values.mode === "gaps") {
     const source = ledger.sources.find(
       (s) => s.sourceRecordId === record.sourceRecordId,
     );
     if (!source) throw new Error("Ledger lacks " + record.sourceRecordId);
-    // A short clip that holds the spoken number alone, at a start whose long
-    // probe heard this number but in a segment the recognizer marked uncertain.
-    for (const item of source.cueOnly) {
-      const candidate = candidates.find(
-        (c) => c.startWindow * frames === item.startFrame,
-      );
-      if (!candidate || candidate.islandWindows > 100) continue;
+    const fine = onsetCandidates(
+      native.energy,
+      frames,
+      POLICY.fineBridgeWindows,
+    );
+    const frameOf = (c) => c.startWindow * frames;
+    const onset = (c) => c.onsetWindow * frames;
+    const at = (startFrame) =>
+      candidates.find((c) => frameOf(c) === startFrame) ??
+      fine.find((c) => frameOf(c) === startFrame);
+    const kindOf = new Map(
+      questionPlans(record).map((plan) => [plan.sourceNumber, plan.kind]),
+    );
+    // A short clip that holds the spoken number alone.
+    const addCueOnly = (candidate, sourceNumber) => {
+      if (candidate.islandWindows > 100) return;
       const tail = Math.min(candidate.nextGapWindows ?? 15, 15);
-      add(
-        "cue_only",
-        item.startFrame,
-        (POLICY.leadWindows + candidate.islandWindows + tail) * frames,
-        {
-          onsetFrame: candidate.onsetWindow * frames,
-          quietBeforeFrames: candidate.quietWindows * frames,
-          questionNumber: item.sourceNumber,
-        },
-      );
-    }
+      const windows =
+        candidate.onsetWindow -
+        candidate.startWindow +
+        candidate.islandWindows +
+        tail;
+      add("cue_only", frameOf(candidate), windows * frames, {
+        onsetFrame: onset(candidate),
+        quietBeforeFrames: candidate.quietWindows * frames,
+        questionNumber: sourceNumber,
+      });
+    };
     // An English recognition from the same frame, for a question whose number
     // is followed directly by its own dialogue instead of a Korean sentence.
-    for (const item of source.memberDialogue ?? []) {
-      const candidate = candidates.find(
-        (c) => c.startWindow * frames === item.startFrame,
-      );
-      if (!candidate) continue;
+    const addDialogue = (candidate, sourceNumber) =>
       addCandidate("member_dialogue", candidate, {
-        questionNumber: item.sourceNumber,
+        questionNumber: sourceNumber,
         language: "en",
       });
-    }
-    for (const gap of source.openGaps) {
-      const onset = (c) => c.onsetWindow * frames;
-      const inside = candidates.filter(
-        (c) =>
-          c.startWindow * frames > gap.afterFrame && onset(c) < gap.beforeFrame,
+    // A start whose long probe heard the number in an uncertain segment, and
+    // any onset right after it: a click before the number makes two onsets.
+    const around = (startFrame) => {
+      const first = at(startFrame);
+      if (!first) return [];
+      return [first].concat(
+        candidates.filter(
+          (c) =>
+            c.onsetWindow > first.onsetWindow &&
+            c.onsetWindow <= first.onsetWindow + 100,
+        ),
       );
+    };
+    for (const item of source.cueOnly)
+      for (const candidate of around(item.startFrame))
+        addCueOnly(candidate, item.sourceNumber);
+    for (const item of source.memberDialogue ?? [])
+      for (const candidate of around(item.startFrame))
+        addDialogue(candidate, item.sourceNumber);
+
+    const inGap = (gap, c) =>
+      frameOf(c) > gap.afterFrame && onset(c) < gap.beforeFrame;
+    // Every first sound after a long island or long quiet that is still unheard
+    // inside an open gap, under the normal and the finer split. The finer split
+    // finds a spoken number that follows bridge music after a very short quiet.
+    for (const [list, purpose] of [
+      [candidates, "bridge_onset"],
+      [fine, "fine_onset"],
+    ])
+      for (const candidate of list) {
+        if (!followsBridge(candidate)) continue;
+        const gap = source.openGaps.find((g) => inGap(g, candidate));
+        if (gap)
+          addCandidate(purpose, candidate, {
+            questionNumber: gap.sourceNumber,
+          });
+      }
+    for (const gap of source.openGaps) {
+      const inside = candidates.filter((c) => inGap(gap, c));
       const pad = 1.5 * sampleRate;
       let pool = inside.filter((c) =>
         gap.hints.some(
@@ -200,6 +294,8 @@ for (const record of records) {
           expected === null ? onset(c) : Math.abs(onset(c) - expected);
       }
       pool.sort((x, y) => anchor(x) - anchor(y));
+      const member =
+        kindOf.get(gap.sourceNumber) === "shared_instruction_member";
       let added = 0;
       for (const candidate of pool) {
         if (added >= maxPerGap) break;
@@ -207,8 +303,15 @@ for (const record of records) {
           addCandidate("gap_onset", candidate, {
             questionNumber: gap.sourceNumber,
           })
-        )
+        ) {
           added++;
+          // A member's number stands alone before its dialogue: listen for
+          // both at once where the island looks like a spoken number.
+          if (member && candidate.islandWindows <= 100) {
+            addCueOnly(candidate, gap.sourceNumber);
+            addDialogue(candidate, gap.sourceNumber);
+          }
+        }
       }
     }
   } else throw new Error("Unknown mode " + values.mode);

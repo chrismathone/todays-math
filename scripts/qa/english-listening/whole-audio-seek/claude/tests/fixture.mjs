@@ -107,7 +107,8 @@ export const resetProbeIds = () => {
 
 /** A stored probe that begins a fixed lead before `onsetWindow`. */
 export function makeProbe(onsetWindow, texts, options = {}) {
-  const startFrame = (onsetWindow - POLICY.leadWindows) * FRAMES;
+  const lead = options.lead ?? POLICY.leadWindows;
+  const startFrame = (onsetWindow - lead) * FRAMES;
   const frameCount = (options.windows ?? POLICY.probeWindows) * FRAMES;
   const durationSeconds = frameCount / RATE;
   const list = Array.isArray(texts) ? texts : [texts];

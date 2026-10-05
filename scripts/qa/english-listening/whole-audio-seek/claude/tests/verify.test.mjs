@@ -65,7 +65,14 @@ test("a start that is not the measured native frame is rejected", () => {
   // Moving the frame itself lands in sound or loses the quiet lead.
   const moved = fresh();
   rowOf(moved, 1).nativeEvidence.startFrame += 30 * FRAMES;
-  assert.ok(codes(moved).includes("quiet_before_onset_too_short"));
+  assert.ok(codes(moved).includes("start_is_inside_sound"));
+  // Ten windows earlier is still quiet, but it is no longer the policy lead.
+  const early = fresh();
+  rowOf(early, 1).nativeEvidence.startFrame -= 10 * FRAMES;
+  assert.ok(codes(early).includes("no_sound_at_onset"));
+  const late = fresh();
+  rowOf(late, 1).nativeEvidence.startFrame += 10 * FRAMES;
+  assert.ok(codes(late).includes("start_is_not_the_policy_lead"));
   const offGrid = fresh();
   rowOf(offGrid, 1).nativeEvidence.startFrame += 13;
   assert.ok(codes(offGrid).includes("start_off_window_grid"));

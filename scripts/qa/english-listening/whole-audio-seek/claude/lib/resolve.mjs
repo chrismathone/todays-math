@@ -15,7 +15,7 @@ import {
   judgeProbe,
   readProbe,
 } from "./evidence.mjs";
-import { POLICY } from "./policy.mjs";
+import { POLICY, leadFor } from "./policy.mjs";
 import { coverage, hintNumbers, leadingCue } from "./text.mjs";
 
 export class ResolveError extends Error {}
@@ -28,6 +28,7 @@ const fail = (message) => {
 export const START_PURPOSES = new Set([
   "bridge_onset",
   "gap_onset",
+  "fine_onset",
   "cue_only",
   "member_dialogue",
 ]);
@@ -45,15 +46,32 @@ export function measureStart(native, startFrame) {
   if (!Number.isSafeInteger(startFrame) || startFrame % frames !== 0)
     return { reason: "start_off_window_grid" };
   const startWindow = startFrame / frames;
-  const onsetWindow = startWindow + POLICY.leadWindows;
   const energy = native.energy;
-  if (startWindow < 0 || onsetWindow >= energy.length)
+  if (startWindow < 0 || startWindow >= energy.length)
     return { reason: "start_outside_audio" };
   const threshold = energyAtDbfs(POLICY.quietThresholdDbfs, frames);
-  if (energy[onsetWindow] < threshold) return { reason: "no_sound_at_onset" };
+  if (energy[startWindow] >= threshold)
+    return { reason: "start_is_inside_sound" };
+  // The onset is the first sound after the start; it is measured, not given.
+  let onsetWindow = startWindow;
+  while (
+    onsetWindow < energy.length &&
+    onsetWindow - startWindow <= POLICY.leadWindows &&
+    energy[onsetWindow] < threshold
+  )
+    onsetWindow++;
+  if (
+    onsetWindow >= energy.length ||
+    onsetWindow - startWindow > POLICY.leadWindows
+  )
+    return { reason: "no_sound_at_onset" };
   const quiet = quietBefore(energy, threshold, onsetWindow);
   if (quiet < POLICY.minimumQuietBeforeWindows)
     return { reason: "quiet_before_onset_too_short" };
+  // Either the full lead, or the whole of a shorter quiet: never a point that
+  // leaves measured quiet unused behind it or reaches back into sound.
+  if (onsetWindow - startWindow !== leadFor(quiet))
+    return { reason: "start_is_not_the_policy_lead" };
   let peak = 0;
   for (let w = startWindow; w < onsetWindow; w++)
     if (energy[w] > peak) peak = energy[w];

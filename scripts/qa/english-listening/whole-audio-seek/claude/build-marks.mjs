@@ -9,6 +9,7 @@
  * directory is refused. Reads frozen inputs only; writes no database, storage,
  * original audio, original ASR cache or prepared file.
  */
+import { spawnSync } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
@@ -61,12 +62,29 @@ const runDir = join(values.out, "runs", values.run);
 if (existsSync(runDir)) throw new Error("Run exists: " + runDir);
 
 const here = dirname(fileURLToPath(import.meta.url));
+// Hashed with line ends folded to LF, so a checkout that converts line ends
+// names the same tools.
 const toolSha256 = {};
 for (const file of [
   "build-marks.mjs",
   ...readdirSync(join(here, "lib")).map((name) => "lib/" + name),
 ])
-  toolSha256[file] = sha256(readFileSync(join(here, file)));
+  toolSha256[file] = sha256(
+    Buffer.from(
+      readFileSync(join(here, file), "utf8").replaceAll("\r\n", "\n"),
+      "utf8",
+    ),
+  );
+const git = (args) => {
+  const run = spawnSync("git", args, { cwd: here, encoding: "utf8" });
+  return run.status === 0 ? run.stdout.trim() : null;
+};
+const toolGit = {
+  commit: git(["rev-parse", "HEAD"]),
+  uncommittedToolFiles: (git(["status", "--porcelain", "--", "."]) ?? "")
+    .split("\n")
+    .filter(Boolean).length,
+};
 
 const probeRoot = join(values.out, "probes");
 const rounds = existsSync(probeRoot) ? readdirSync(probeRoot).sort() : [];
@@ -181,6 +199,7 @@ const marks = {
   statement:
     "seekStartMs is a measured native frame of the original recording, a fixed lead inside quiet before the question's spoken number. Playback continues to playbackEndMs, the full original duration. No clip, cut end, equal division or model timestamp is used as a start.",
   toolSha256,
+  toolGit,
   writesDatabase: false,
   writesStorage: false,
   originalAudioModified: false,

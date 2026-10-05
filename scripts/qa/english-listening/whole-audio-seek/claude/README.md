@@ -23,9 +23,14 @@ Artifacts live under
 2. Loudness is measured in fixed 20 ms windows (larger channel's sum of squared
    PCM16 samples — an exact integer). A window at or above −50 dBFS is sound.
    Runs of sound separated by less than 300 ms of quiet form one island.
-3. The start is **400 ms before the first window of the spoken-number island**,
-   and all of those 400 ms are measured quiet. `seekStartMs = startFrame × 1000 /
-sampleRate` is an exact integer on the window grid.
+3. The start is **400 ms before the first sound window of the spoken number**,
+   and all of those 400 ms are measured quiet. Where bridge music runs closer
+   than that to the number (about 200 places in these recordings), the start is
+   the **first quiet window after the music** instead; at least 100 ms of
+   measured quiet must precede the number. The lead is always
+   `min(400 ms, measured quiet)` — never a point that leaves quiet unused behind
+   it or reaches back into sound. `seekStartMs = startFrame × 1000 / sampleRate`
+   is an exact integer on the window grid.
 4. A bounded recognition probe (≤ 14 s, Korean, same frozen Whisper medium/int8
    snapshot as the whole-record ASR) is cut from the native PCM **beginning
    exactly at that frame**. The start is a candidate only when the first thing
@@ -107,9 +112,18 @@ node --test "tests/*.test.mjs"
 
 Every output is written once (`wx`); an existing round, run or cache is refused,
 never overwritten. `gaps` rounds listen only where the previous ledger still has
-a held question: onsets near any place the frozen ASR wrote that number in any
-form (including its own English rendering — a hint, never evidence), or near the
-position the recording's own measured spacing predicts.
+a held question:
+
+- every still-unheard first sound after a long island or long quiet inside the
+  open stretch, under the normal 300 ms split and a finer 100 ms split (the finer
+  split separates a spoken number from bridge music that runs into it);
+- onsets near any place the frozen ASR wrote that number in any form (including
+  its own English rendering — a hint, never evidence), or near the position the
+  recording's own measured spacing predicts;
+- for a shared-instruction member, the short number-only clip and the English
+  first-dialogue probe at each such onset.
+
+`summarize.mjs --marks <marks.json>` prints the exact counts of a ledger.
 
 ## Probe runner and GPU lock
 

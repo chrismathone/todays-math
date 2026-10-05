@@ -10,6 +10,7 @@ import {
   windowFrames,
 } from "../lib/activity.mjs";
 import {
+  fineTailCandidates,
   followsBridge,
   onsetCandidates,
   probeBounds,
@@ -90,6 +91,38 @@ test("candidates are onsets with measured quiet; bridges are long islands or lon
   });
   assert.equal(probeBounds({ startWindow: 1950 }, 2000), null);
   assert.equal(probeBounds({ startWindow: -5 }, 2000), null);
+});
+
+test("the finer split finds a number that follows bridge music closely", () => {
+  const frames = 960;
+  const loud = energyAtDbfs(-10, frames);
+  const energy = new Float64Array(2000);
+  energy.fill(loud, 100, 600); // bridge music
+  energy.fill(loud, 607, 640); // spoken number after 140 ms of quiet
+  energy.fill(loud, 690, 900); // its sentence
+  // The normal split sees one island of music and number.
+  assert.deepEqual(
+    onsetCandidates(energy, frames).map((c) => c.onsetWindow),
+    [100, 690],
+  );
+  const fine = onsetCandidates(energy, frames, POLICY.fineBridgeWindows);
+  const number = fine.find((c) => c.onsetWindow === 607);
+  // The start is the first quiet window after the music, not 400 ms back.
+  assert.equal(number.startWindow, 600);
+  assert.equal(number.quietWindows, 7);
+  assert.equal(followsBridge(number), true);
+  assert.deepEqual(
+    fineTailCandidates(energy, frames, 690).map((c) => c.onsetWindow),
+    [607],
+  );
+  // A dip shorter than 100 ms is not an onset under any split.
+  energy.fill(loud, 600, 604);
+  assert.equal(
+    onsetCandidates(energy, frames, POLICY.fineBridgeWindows).some(
+      (c) => c.onsetWindow === 607,
+    ),
+    false,
+  );
 });
 
 test("playback bytes are the original without its ID3 containers", () => {

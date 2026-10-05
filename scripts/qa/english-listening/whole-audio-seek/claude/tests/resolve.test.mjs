@@ -148,13 +148,54 @@ test("a start without measured quiet before the number is refused", () => {
   const record = makeRecord();
   const native = makeNative(record);
   // Sound right up to the spoken number: no quiet lead exists.
-  for (let w = ONSETS[2] - 10; w < ONSETS[2]; w++)
-    native.energy[w] = energyAtDbfs(-20, FRAMES);
+  paint(native, ONSETS[2] - 10, ONSETS[2]);
   const ledger = buildLedger({ record, native, probes: goodProbes() });
   const held = row(ledger, 2);
   assert.equal(held.status, "held");
+  // The probe's start is not a policy lead before the first sound after it.
   assert.ok(
     held.heldDiagnostics.numberHeard.some((n) =>
+      n.reasons.includes("start_is_not_the_policy_lead"),
+    ),
+  );
+});
+
+test("where music runs close to the number the start is the first quiet window", () => {
+  const record = makeRecord();
+  const native = makeNative(record);
+  // Bridge music until 160 ms before the spoken number.
+  paint(native, ONSETS[2] - 300, ONSETS[2] - 8);
+  const text = "2번. 다음을 듣고, 내일의 날씨로 가장 적절한 것을 고르시오.";
+  const probes = goodProbes().filter(
+    (p) => p.onsetFrame !== ONSETS[2] * FRAMES,
+  );
+  probes.push(makeProbe(ONSETS[2], text, { lead: 8, purpose: "fine_onset" }));
+  let ledger = buildLedger({ record, native, probes });
+  const short = row(ledger, 2);
+  assert.equal(short.status, "candidate");
+  assert.equal(short.seekStartMs, ((ONSETS[2] - 8) * FRAMES * 1000) / RATE);
+  assert.equal(short.nativeEvidence.leadFrames, 8 * FRAMES);
+  assert.equal(short.nativeEvidence.quietBeforeFrames, 8 * FRAMES);
+  // A point that reaches back into the music is refused,
+  const inMusic = probes
+    .slice(0, -1)
+    .concat(makeProbe(ONSETS[2], text, { lead: 12 }));
+  ledger = buildLedger({ record, native, probes: inMusic });
+  assert.equal(row(ledger, 2).status, "held");
+  // and so is one that leaves measured quiet unused behind it.
+  const late = probes
+    .slice(0, -1)
+    .concat(makeProbe(ONSETS[2], text, { lead: 4 }));
+  ledger = buildLedger({ record, native, probes: late });
+  assert.equal(row(ledger, 2).status, "held");
+  // Less than 100 ms of quiet is no measured onset at all.
+  paint(native, ONSETS[2] - 8, ONSETS[2] - 3);
+  const tiny = probes
+    .slice(0, -1)
+    .concat(makeProbe(ONSETS[2], text, { lead: 3 }));
+  ledger = buildLedger({ record, native, probes: tiny });
+  assert.ok(
+    row(ledger, 2).heldDiagnostics.numberHeard.some((n) =>
       n.reasons.includes("quiet_before_onset_too_short"),
     ),
   );
