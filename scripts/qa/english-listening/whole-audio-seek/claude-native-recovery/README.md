@@ -153,12 +153,24 @@ having planned nothing; every request from before the stage records must stand
 exactly as pinned there (round 020 at 56 sources and 3,676 probes, the two
 stopped rounds at their partial counts); each stage record must agree with its
 request; and a request that no stage planned must be declared stopped. A
-declared stop never stands in for a planned stage. A stage added later is
-appended to the plan, never inserted.
+declared stop never stands in for a planned stage.
+
+`full-run-plan.json` is the plan `runs/full-001/` was gated against and is
+closed: it stays byte for byte as that run's receipt names it. Further
+listening is a new run with a plan of its own, never an edit of this one.
+`future-closing-pass-plan.json` is such a plan, written down and **not run**:
+the stages for the 13 probes the sweep after `full-001` still asked for.
+Nothing reads that file.
 
 `build-ledger.mjs --scope held` writes no run unless coverage is complete, and
 every run carries `listening-receipt.json`. `--sweep` adds what each stage
-would still plan, in dry-run, from everything heard.
+would still plan, in dry-run, from everything heard: a count of what the rules
+would ask for, not a list of unfinished requests.
+
+The code and configuration behind `full-001` are kept beside the output in
+`<OUT>/provenance/full-001/` (`MANIFEST.json`), written once: the drivers and
+libraries as they ran, the chain's command, the plan, the stopped list, the
+stage records and an archive of the code at the build's commit.
 
 | stage        | what it listens to                                                                                                                                                                     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
