@@ -7,6 +7,8 @@ import claude_adapter as a
 import verifier as v
 
 ADAPTER = "native-localized-generation-v2"
+END_BOUNDARY_ADAPTER = "native-localized-generation-boundary-v3"
+END_BOUNDARY_GRADE = "localized_generation_native_boundary_v3"
 
 
 def upstream_refs(container, source):
@@ -55,7 +57,7 @@ def catalog_probes(row, source):
         for probe in container.get("probes", []):
             probes.append((container, probe, artifact_ref))
     v.require(probes, "localized_source_missing_from_catalog")
-    for field in ("probeEvidence", "nextProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence", "dialogueProbeEvidence"):
+    for field in ("probeEvidence", "nextProbeEvidence", "nextBoundaryProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence", "dialogueProbeEvidence"):
         evidence = row.get(field)
         if evidence:
             v.require(any(str(Path(r["path"]).resolve()) == str(Path(evidence["path"]).resolve())
@@ -183,6 +185,7 @@ def measure_probe_onset(row, source, replay, field, probe):
     onset = {"startFrame": probe["startFrame"], "onsetFrame": probe["onsetFrame"],
              "quietBeforeFrames": probe["quietBeforeFrames"], "leadPeakDbfs": peak}
     named = {"probeEvidence": "nativeEvidence", "nextProbeEvidence": "nextNativeEvidence",
+             "nextBoundaryProbeEvidence": "nextBoundaryNativeEvidence",
              "sharedHeadProbeEvidence": "sharedHeadNativeEvidence", "terminalProbeEvidence": "terminalNativeEvidence"}.get(field)
     supplied = row.get(named) if named else None
     if supplied is not None:
@@ -217,7 +220,9 @@ def measure_probe_onset(row, source, replay, field, probe):
     a.measured_onset(onset, replay)
 
 
-def numbered_probe(row, source, replay, field, *, require_instruction=True):
+def numbered_probe(row, source, replay, field, *, require_instruction=True, end_boundary_only=False):
+    v.require(not end_boundary_only or (row.get("evidenceAdapter") == END_BOUNDARY_ADAPTER
+              and field == "nextBoundaryProbeEvidence"), "localized_boundary_not_next_end_only")
     probe, index, selected, refs = replay_probe(row, source, replay, field, language="ko", maximum=14)
     v.require(selected[0]["id"] == next(iter(index)) and selected[0]["estimatedStartSeconds"] <= 2,
               "localized_probe_missing_first_syllable")
@@ -244,9 +249,14 @@ def numbered_probe(row, source, replay, field, *, require_instruction=True):
         # Preserve the full raw segments, but classify only the literal first
         # complete instruction. A following English turn may share a segment.
         selected, rest = complete_instruction_prefix(index, selected)
+        if end_boundary_only:
+            v.require(len(re.findall(r"[가-힣]", rest)) >= 8 and
+                      re.search(r"듣고|보고|대화|담화|물음|다음|질문", rest),
+                      "localized_boundary_not_genuine_korean_instruction")
     relative = (probe["onsetFrame"] - probe["startFrame"]) / probe["sampleRate"]
-    v.require(selected[0]["estimatedStartSeconds"] - .5 <= relative <= selected[0]["estimatedEndSeconds"],
-              "localized_onset_number_correspondence")
+    if not end_boundary_only:
+        v.require(selected[0]["estimatedStartSeconds"] - .5 <= relative <= selected[0]["estimatedEndSeconds"],
+                  "localized_onset_number_correspondence")
     measure_probe_onset(row, source, replay, field, probe)
     return probe, spoken, rest, selected, refs
 
@@ -372,8 +382,10 @@ def generation_quotes(row, source, question, full_index, dialogue, native_index,
             "sourceSegmentIds": ids, "rawGenerationSegments": anchors, "quotes": proof}, [claim["alignment"], claim["prepared"]]
 
 
-def validate(row, source, question, clock, replay, full_index):
-    v.require(row.get("evidenceAdapter") == ADAPTER and source["reconstructed"], "localized_adapter_requires_reconstructed_source")
+def validate(row, source, question, clock, replay, full_index, *, end_boundary_only=False):
+    adapter = END_BOUNDARY_ADAPTER if end_boundary_only else ADAPTER
+    v.require(row.get("evidenceAdapter") == adapter and source["reconstructed"], "localized_adapter_requires_reconstructed_source")
+    v.require(end_boundary_only or not row.get("nextBoundaryProbeEvidence"), "localized_boundary_requires_explicit_v3")
     for ids, quote in ((row.get("cueSegmentIds"), row.get("cueText")), (row.get("anchorSegmentIds"), row.get("anchorText"))):
         v.require(isinstance(ids, list), "missing_full_asr_reference_arrays")
         selected = v.select_segments(full_index, ids, allow_uncertain=True) if ids else []
@@ -420,9 +432,31 @@ def validate(row, source, question, clock, replay, full_index):
         raise v.InvalidEvidence("localized_unproven_shared_member_or_kind")
     terminal = row.get("terminalProbeEvidence") is not None
     certified = row.get("nextCertificateEvidence") is not None
-    v.require(sum(bool(row.get(k)) for k in ("nextProbeEvidence", "terminalProbeEvidence", "nextCertificateEvidence")) == 1,
+    fields = ("nextProbeEvidence", "terminalProbeEvidence", "nextCertificateEvidence", "nextBoundaryProbeEvidence")
+    v.require(sum(bool(row.get(k)) for k in fields) == 1,
               "localized_missing_or_multiple_next_boundaries")
-    if certified:
+    v.require(not end_boundary_only or (row.get("nextBoundaryProbeEvidence") and row.get("nextBoundaryNativeEvidence")),
+              "localized_boundary_missing_explicit_raw_and_native")
+    boundary_proof = None
+    if end_boundary_only:
+        shared_coverage = coverage if kind == "shared_instruction_head" else joint_coverage if kind == "shared_instruction_member" else []
+        shared_member = scope[-1] + 1 in shared_coverage
+        neighbor, next_numbers, next_rest, next_raw, next_refs = numbered_probe(
+            row, source, replay, "nextBoundaryProbeEvidence", require_instruction=not shared_member, end_boundary_only=True)
+        v.require(next_numbers[0] == scope[-1] + 1 and (not shared_member or next_numbers == [scope[-1] + 1]),
+                  "localized_wrong_neighbor")
+        first = next_raw[0]
+        relative = (neighbor["onsetFrame"] - neighbor["startFrame"]) / neighbor["sampleRate"]
+        boundary_proof = {"method": "complete_original_identity_next_end_v3", "maySupplySeekStart": False,
+            "probe": row["nextBoundaryProbeEvidence"], "nativeEvidence": row["nextBoundaryNativeEvidence"],
+            "firstSpeechStartSeconds": first["estimatedStartSeconds"], "firstSpeechEndSeconds": first["estimatedEndSeconds"],
+            "onsetNumberCorrespondence": first["estimatedStartSeconds"] - .5 <= relative <= first["estimatedEndSeconds"],
+            "identityMethod": "proved_original_shared_instruction_member" if shared_member else "literal_complete_korean_instruction",
+            "instructionText": next_rest, "rawInstructionSegments": next_raw,
+            "sharedCoverage": shared_coverage if shared_member else None,
+            "sharedHeadProbe": row["probeEvidence"] if kind == "shared_instruction_head" and shared_member
+                               else row.get("sharedHeadProbeEvidence") if shared_member else None}
+    elif certified:
         from certified_boundary import validate as certified_boundary
         neighbor, next_numbers, next_spoken, next_refs = certified_boundary(row, source, replay)
         next_raw = []
@@ -462,11 +496,12 @@ def validate(row, source, question, clock, replay, full_index):
     for s in native_index.values():
         numbers, _ = a.leading_cue(s["text"])
         v.require(not numbers or numbers == spoken, "localized_internal_neighbor_heading")
-    proof = {"adapter": ADAPTER, "probe": row["probeEvidence"], "onsetFrame": n["onsetFrame"],
+    proof = {"adapter": adapter, "probe": row["probeEvidence"], "onsetFrame": n["onsetFrame"],
              "scopeQuestionNumbers": scope, "cueNumber": row["cueNumber"], "cueSpokenNumbers": spoken, "kind": kind,
-             "nextProbe": row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"),
+             "nextProbe": row.get("nextBoundaryProbeEvidence") or row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"),
              "nextCertificate": row.get("nextCertificateEvidence"),
-             "nextBoundaryKind": "exact_preserved_original_scope_v1" if certified else "literal_original_closing_v1" if terminal else "next_numbered_native",
+             "nextBoundaryKind": "next_number_first_speech_boundary_v3" if end_boundary_only else "exact_preserved_original_scope_v1" if certified else "literal_original_closing_v1" if terminal else "next_numbered_native",
+             "nextEndIdentity": boundary_proof,
              "sharedHeadProbe": row.get("sharedHeadProbeEvidence"),
              "instructionContext": {"method": "literal_complete_native_instruction_v1",
                                     "segmentIds": [s["id"] for s in raw], "rawSegments": raw},
@@ -479,4 +514,4 @@ def validate(row, source, question, clock, replay, full_index):
              "probeCatalog": row.get("probeCatalog"),
              "boundReferences": refs + next_refs + dialogue_refs + mapping_refs + catalog_refs + [cache_ref, energy_ref],
              "providerTimingAuthority": False}
-    return proof, raw, "localized_generation_native", None
+    return proof, raw, END_BOUNDARY_GRADE if end_boundary_only else "localized_generation_native", None

@@ -48,6 +48,8 @@ def main():
     try:
         if row.get("evidenceAdapter") == "native-localized-generation-v2":
             from localized_adapter import validate
+        elif row.get("evidenceAdapter") == "native-localized-generation-boundary-v3":
+            from localized_boundary_adapter import validate
             key, segments, grade, identity = validate(row, source, question, clock, replay, index)
         elif row.get("evidenceAdapter") == "official-catalogued-native-v1":
             from official_catalog_adapter import validate
