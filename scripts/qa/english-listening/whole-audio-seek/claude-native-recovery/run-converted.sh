@@ -17,6 +17,8 @@ PYTHON="$SEEK/claude/asr-venv/Scripts/python.exe"
 round="$1"
 shift
 mkdir -p "$OUT/logs"
+# shellcheck source=lib/cleanup.sh
+. "$HERE/lib/cleanup.sh"
 
 for stage in "$@"; do
   flags=(--converted)
@@ -37,7 +39,7 @@ for stage in "$@"; do
     --model-cache "$MAIN/output/listening-assessments/reconstruction/model-cache" \
     --owner "$OWNER" --main "$MAIN" \
     >>"$OUT/logs/probes-claude-round-$id.log" 2>&1
-  find "$OUT/tmp" -type d -empty -delete 2>/dev/null || true
+  cleanup_round "$OUT" "$id"
   tail -n 1 "$OUT/logs/probes-claude-round-$id.log" | tee -a "$OUT/logs/rounds.log"
   round=$((round + 1))
 done
