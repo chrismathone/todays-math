@@ -31,7 +31,7 @@ import {
 /** Measured in the answer variant, in mm: heading, body, subheading, the two questions. */
 const MEASURED = {
   heading: 35,
-  /** Page 14: everything stays on one page. */
+  /** Page 14 before reserving its guide: the answers entered the guide's 270mm region. */
   fits: { whole: 150.78, body: 138.11, check: 10.08, questions: [59.31, 57.2] },
   /** Page 15: the questions move on. */
   moves: {
@@ -380,20 +380,20 @@ describe("the answer pages of a native concept page", () => {
     ]);
   });
 
-  it("leave a page that holds everything as it was: the questions stand where they stood", () => {
-    // Body + 2.6 + subheading is the height of the block they are cut from. Each of the two is
-    // measured to a hundredth, rounded up: on page 14 that puts the questions 0.01 mm lower.
-    const tail = (page: TextbookPage) => page.blocks.filter((p) => p.itemId);
+  it("reserves a printed native guide for answers while preserving students and pages without a guide", () => {
     const unsplit = world("student").layout(MEASURED.fits).pages;
     const split = world("answers").layout(MEASURED.fits).pages;
     expect(unsplit).toHaveLength(1);
-    expect(split).toHaveLength(1);
+    expect(split).toHaveLength(2);
     expect(rows(split[0])).toEqual([
       ["authored.activity-heading", 1, 13, 23, 35, false],
       ["authored", 1, 13, 62, 138.11, false],
-      ["authored.subheading", 1, 13, 202.71, 10.08, false],
-      ["block-0", 1, 13, 215.39, 59.31, false],
-      ["block-1", 2, 106, 215.39, 59.31, false],
+    ]);
+    expect(rows(split[1])).toEqual([
+      ["authored.activity-heading", 1, 18, 23, 35, true],
+      ["authored.subheading", 1, 18, 62, 10.08, false],
+      ["block-0", 1, 18, 74.68, 59.31, false],
+      ["block-1", 2, 111, 74.68, 59.31, false],
     ]);
     expect(rows(unsplit[0]).slice(1)).toEqual([
       ["authored", 1, 13, 62, 150.78, false],
@@ -401,26 +401,23 @@ describe("the answer pages of a native concept page", () => {
       ["block-1", 2, 106, 215.38, 59.31, false],
     ]);
     expect(split[0].blocks[0]).toEqual(unsplit[0].blocks[0]);
-    expect(tail(split[0]).map((p) => ({ ...p, yMm: 0 }))).toEqual(
-      tail(unsplit[0]).map((p) => ({ ...p, yMm: 0 })),
-    );
-    // Sizes that add up exactly leave the questions exactly where they were.
-    const exact = { ...MEASURED.fits, body: 138.1 };
-    const same = world("answers").layout(exact).pages;
-    expect(tail(same[0]).map((p) => round(p.yMm))).toEqual([215.38, 215.38]);
-    expect(tail(same[0]).map((p) => ({ ...p, yMm: 0 }))).toEqual(
-      tail(unsplit[0]).map((p) => ({ ...p, yMm: 0 })),
-    );
+    const withoutGuide = world("answers");
+    delete withoutGuide.section.blocks[1].semantic!.sourceFooter;
+    const unchanged = withoutGuide.layout(MEASURED.fits).pages;
+    expect(unchanged).toHaveLength(1);
+    expect(
+      unchanged[0].blocks.filter((p) => p.itemId).map((p) => round(p.yMm)),
+    ).toEqual([215.39, 215.39]);
   });
 
   it("keep the subheading where it is when the questions fit by a hundredth, and move it a hundredth later", () => {
-    // Under the subheading the row may be 277 − (62 + 153.8 + 2.6 + 10.08 + 2.6) = 45.92 mm tall.
+    // The printed guide starts at 270mm: 270 − (62 + 153.8 + 2.6 + 10.08 + 2.6) = 38.92mm.
     const at = (height: number) =>
       world("answers").layout({
         ...MEASURED.moves,
         questions: [height, height],
       });
-    const stays = at(45.91);
+    const stays = at(38.91);
     expect(stays.pages).toHaveLength(1);
     expect(rows(stays.pages[0])[2]).toEqual([
       "authored.subheading",
@@ -430,7 +427,7 @@ describe("the answer pages of a native concept page", () => {
       10.08,
       false,
     ]);
-    const moves = at(45.93);
+    const moves = at(38.93);
     expect(moves.pages).toHaveLength(2);
     expect(moves.pages[0].blocks.map((p) => p.blockId)).toEqual([
       "authored.activity-heading",

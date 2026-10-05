@@ -346,6 +346,16 @@ export function paginateTextbookSections(
         section,
       );
     const recovered = section.blocks.some((block) => block.semantic);
+    const sourceFooterIds = new Set(
+      section.blocks
+        .filter(
+          (block) =>
+            block.kind !== "heading" &&
+            block.semantic?.source &&
+            block.semantic.sourceFooter?.length,
+        )
+        .map((block) => block.id),
+    );
     const bodyBottom =
       recovered &&
       section.blocks.some((block) => block.editorialStage === "opening")
@@ -434,14 +444,31 @@ export function paginateTextbookSections(
           row[0].block,
         );
       const held = kept;
-      if (!page || cursor + height > bodyBottom) {
+      const sourceAnswerRow = row.every(
+        ({ block }) =>
+          block.kind === "problem" &&
+          block.answer !== undefined &&
+          block.semantic?.source &&
+          !block.publicWorkedExample,
+      );
+      // The native page-end guide begins at 270mm. Reserve it only on source answer
+      // pages that actually print it; student/native writing allocation is unchanged.
+      const rowBottom = () =>
+        sourceAnswerRow &&
+        (row.some(({ block }) => sourceFooterIds.has(block.id)) ||
+          page?.blocks.some((placement) =>
+            sourceFooterIds.has(placement.blockId),
+          ))
+          ? Math.min(bodyBottom, 270)
+          : bodyBottom;
+      if (!page || cursor + height > rowBottom()) {
         const previous = page;
         newPage();
         if (
           held &&
           previous?.blocks.at(-1) === held.placement &&
-          cursor + height <= bodyBottom &&
-          cursor + held.placement.heightMm + held.gapMm + height > bodyBottom
+          cursor + height <= rowBottom() &&
+          cursor + held.placement.heightMm + held.gapMm + height > rowBottom()
         )
           fail(
             "BLOCK_OVERFLOW",
@@ -461,7 +488,7 @@ export function paginateTextbookSections(
               section.blocks.find((block) => block.id === placement.blockId)
                 ?.kind !== "heading",
           ) &&
-          cursor + held.placement.heightMm + held.gapMm + height <= bodyBottom
+          cursor + held.placement.heightMm + held.gapMm + height <= rowBottom()
         ) {
           previous.blocks.pop();
           held.placement.xMm =
@@ -486,7 +513,7 @@ export function paginateTextbookSections(
         })
       )
         cursor = Math.max(cursor, row[0].block.dialogueTopMm);
-      if (cursor + height > bodyBottom)
+      if (cursor + height > rowBottom())
         fail(
           "BLOCK_OVERFLOW",
           "계속되는 쪽의 제목과 원고를 함께 넣을 공간이 부족합니다.",
