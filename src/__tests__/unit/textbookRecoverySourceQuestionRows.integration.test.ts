@@ -22,6 +22,7 @@ import {
   textbookExchangeSchema,
   type TextbookExchange,
 } from "@/contracts/textbookExchange.contract";
+import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
 import { launchExportBrowser } from "@/lib/export/pdfServer";
 import { canonicalJson } from "@/lib/textbook/canonical";
 import { loadTextbookLocalBundle } from "@/lib/textbook/render/bundle.server";
@@ -219,6 +220,252 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     if (!found) throw new Error(`No problem ${id} on the pages`);
     return found;
   };
+
+  it("final render: native chapter connection cards clear readiness and retain converted label fonts", async () => {
+    const exchange = sourceRowsExchange(
+      [
+        {
+          sectionKey: "chapter-route",
+          title: "합성 단원 안내",
+          kind: "unitSpreadRight",
+          activity: "unitIntro",
+          blocks: [],
+        },
+      ],
+      9,
+    );
+    const text = (rawText: string): TextbookSourceFragment => ({
+      tag: "span",
+      rawText,
+    });
+    const small = (rawText: string): TextbookSourceFragment => ({
+      tag: "span",
+      attributes: { className: "tb-source-small" },
+      children: [text(rawText)],
+    });
+    const section = (
+      className: string,
+      children: TextbookSourceFragment[],
+    ): TextbookSourceFragment => ({
+      tag: "section",
+      attributes: { className },
+      children,
+    });
+    exchange.units[0].sections[0].blocks.push({
+      blockId: "chapter-route-body",
+      kind: "text",
+      markdown: "합성 단원 안내",
+      semantic: {
+        activity: "unitIntro",
+        source: {
+          unit: "U01",
+          page: 9,
+          kind: "unitSpreadRight",
+          path: "synthetic/chapter-route",
+        },
+        node: {
+          kind: "fragments",
+          fragments: [
+            section("chapter-goals", [
+              { tag: "h2", children: [text("합성 목표")] },
+            ]),
+            section("chapter-roadmap", [
+              { tag: "h2", children: [text("합성 개념"), small("합성 안내")] },
+              {
+                tag: "div",
+                attributes: { className: "chapter-topics" },
+                children: [
+                  {
+                    tag: "div",
+                    children: [
+                      small("01"),
+                      { tag: "strong", children: [text("합성 개념 이름")] },
+                      {
+                        tag: "span",
+                        children: [
+                          text("014"),
+                          { tag: "em", children: [text("쪽")] },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ]),
+            section("chapter-connections", [
+              { tag: "h2", children: [text("합성 연결")] },
+              {
+                tag: "div",
+                attributes: { className: "connection-columns" },
+                children: Array.from(
+                  { length: 3 },
+                  (_, index): TextbookSourceFragment => ({
+                    tag: "div",
+                    attributes: { className: index === 1 ? "current" : "" },
+                    children: [
+                      small(`합성 카드 ${index}`),
+                      ...Array.from(
+                        { length: 3 },
+                        (): TextbookSourceFragment => ({
+                          tag: "p",
+                          children: [text("합성 내용")],
+                        }),
+                      ),
+                    ],
+                  }),
+                ),
+              },
+            ]),
+            section("chapter-readiness", [
+              { tag: "h2", children: [text("합성 확인")] },
+              { tag: "p", children: [text("합성 확인 항목")] },
+            ]),
+          ],
+        },
+      },
+    });
+    const before = canonicalJson(exchange);
+    const rendered = await render(
+      exchange,
+      [0],
+      "student",
+      (inner) => inner,
+      9,
+    );
+    const { page } = await openArtifact(browser, rendered.result.html);
+    try {
+      const actual = await page.evaluate(() => {
+        const mm = 25.4 / 96;
+        const root = document.querySelector(
+          '.tb-source-fragments[data-source-kind="unitSpreadRight"]',
+        )!;
+        const cards = Array.from(
+          root.querySelectorAll(".connection-columns>div"),
+        );
+        const font = (selector: string) =>
+          parseFloat(getComputedStyle(root.querySelector(selector)!).fontSize) *
+          0.75;
+        return {
+          cards: cards.map((card) => ({
+            x: card.getBoundingClientRect().x * mm,
+            top: card.getBoundingClientRect().top * mm,
+            bottom: card.getBoundingClientRect().bottom * mm,
+            background: getComputedStyle(card).backgroundColor,
+          })),
+          readinessTop:
+            root.querySelector(".chapter-readiness")!.getBoundingClientRect()
+              .top * mm,
+          headingFont: font(".chapter-goals h2"),
+          smallFont: font(".chapter-topics .tb-source-small"),
+          titleFont: font(".chapter-topics strong>span"),
+          pageFont: font(".chapter-topics>div>span:not(.tb-source-small)>span"),
+          suffixFont: font(".chapter-topics em>span"),
+          headerBorderPt:
+            parseFloat(
+              getComputedStyle(document.querySelector(".tb-header")!)
+                .borderBottomWidth,
+            ) * 0.75,
+          footerDirection: getComputedStyle(
+            document.querySelector(".tb-footer-brand")!,
+          ).flexDirection,
+        };
+      });
+      expect(actual.cards).toHaveLength(3);
+      expect(new Set(actual.cards.map((card) => card.top))).toHaveLength(1);
+      expect(actual.cards[0].x).toBeLessThan(actual.cards[1].x);
+      expect(actual.cards[1].x).toBeLessThan(actual.cards[2].x);
+      expect(Math.max(...actual.cards.map((card) => card.bottom))).toBeLessThan(
+        actual.readinessTop,
+      );
+      expect(actual.cards.map((card) => card.background)).toEqual([
+        "rgb(229, 238, 227)",
+        "rgb(34, 109, 84)",
+        "rgb(229, 238, 227)",
+      ]);
+      expect(actual.headingFont).toBeCloseTo(9, 3);
+      expect(actual.smallFont).toBeCloseTo(9, 3);
+      expect(actual.titleFont).toBeCloseTo(10.2, 3);
+      expect(actual.pageFont).toBeCloseTo(12, 3);
+      expect(actual.suffixFont).toBeCloseTo(6, 3);
+      expect(actual.headerBorderPt).toBeGreaterThan(0);
+      expect(actual.footerDirection).toBe("row-reverse");
+      expect(canonicalJson(exchange)).toBe(before);
+    } finally {
+      await page.close();
+    }
+  }, 120_000);
+
+  it("final render: native mini-concept headings retain inherited line height before the question grid", async () => {
+    const exchange = sourceRowsExchange(
+      [
+        {
+          sectionKey: "mini",
+          title: "합성 기본 확인",
+          kind: "basic",
+          activity: "basicCheck",
+          blocks: [{ id: "mini-question", content: SHORT_PROMPT }],
+        },
+      ],
+      23,
+    );
+    exchange.units[0].sections[0].blocks.unshift({
+      blockId: "mini-intro",
+      kind: "text",
+      markdown: "합성 개념 안내",
+      semantic: {
+        activity: "basicCheck",
+        source: {
+          unit: "U01",
+          page: 23,
+          kind: "basic",
+          path: "synthetic/mini-intro",
+        },
+        node: {
+          kind: "fragments",
+          fragments: [
+            {
+              tag: "div",
+              attributes: { className: "mini-concepts" },
+              children: ["합성 개념 하나", "합성 개념 둘"].map(
+                (rawText): TextbookSourceFragment => ({
+                  tag: "div",
+                  children: [
+                    { tag: "strong", children: [{ tag: "span", rawText }] },
+                    { tag: "p", rawText: "합성 개념 설명입니다." },
+                  ],
+                }),
+              ),
+            },
+          ],
+        },
+      },
+    });
+    const rendered = await render(
+      exchange,
+      [0],
+      "student",
+      (inner) => inner,
+      23,
+    );
+    const { page } = await openArtifact(browser, rendered.result.html);
+    try {
+      const headings = await page.evaluate(() =>
+        Array.from(document.querySelectorAll(".mini-concepts strong")).map(
+          (element) => ({
+            fontPt: parseFloat(getComputedStyle(element).fontSize) * 0.75,
+            linePx: parseFloat(getComputedStyle(element).lineHeight),
+          }),
+        ),
+      );
+      expect(headings).toHaveLength(2);
+      for (const heading of headings) {
+        expect(heading.fontPt).toBeCloseTo(8.2, 3);
+        expect(heading.linePx).toBeCloseTo(19.68, 2);
+      }
+    } finally {
+      await page.close();
+    }
+  }, 120_000);
 
   it("final render: canonical repair math and clinic headings retain their native sizes", async () => {
     const exchange = sourceRowsExchange(
