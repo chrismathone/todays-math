@@ -1,0 +1,199 @@
+# Results — native recovery of held whole-original starts
+
+Run of 2026-10-06. Method and field meanings are in [README.md](README.md) and
+[PROTOCOL.md](PROTOCOL.md). Every count below is read from the files named
+here.
+
+- writesDatabase **false** · writesStorage **false** · writesMedia **false** ·
+  humanReview **false** · paid transcription requests **0**
+- "Offered" means an offline finding handed to the independent verifier. It is
+  not an admission. Nobody listened to these starts.
+- Baseline: inventory `58a53b05…`, clock `bb8b37dd…` (exact-live rebase of
+  2026-10-06, all 2,727 starts in the live documents), certificate `776d313a…`.
+  No existing start was re-decided; a passage that has one keeps exactly it.
+
+Artifacts are under
+`C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/`
+(`<OUT>`); each run directory is written once.
+
+## What was held, and what this run says
+
+972 questions had no start: 885 reconstructed (72 sources) and 87 official
+(47 sources).
+
+| population                         | rows | offered                          | reported, not offered | held |
+| ---------------------------------- | ---: | -------------------------------- | --------------------: | ---: |
+| reconstructed, 15 pilot sources    |  216 | 64 (50 original passages)        |                     — |  152 |
+| official, all 47 sources           |   87 | 19 (verifier's official wrapper) |                    19 |   49 |
+| reconstructed, other 57 sources    |  669 | see "Full run" below             |                     — |      |
+
+### Pilot — `runs/pilot-002/` (supersedes `pilot-001`; same evidence, per-source catalogs)
+
+| file              | SHA-256                                                            |
+| ----------------- | ------------------------------------------------------------------ |
+| `candidates.json` | `14a01c6143428034d3a27388f64673df220a856f9409e6b427951ce337270a73` |
+| `ledger.json`     | `d2a32191d3bddbc54f56bbe665e814e5a8186c4ee6d52681eb8ae9119e504ce6` |
+| `catalogs.json`   | `5c384383bc0f505bfd97f203c3ca8859969dc95f8d33cda2a7a682978bd14196` |
+| `controls.json`   | `d79c975fa31c45188dbcd2a189688025abd5e2f5d13d95d0dbc340114ca700eb` |
+| `summary.json`    | `5ddd7f101de9a536d1e368e4ef46a71261ea6d17e2419fd37686967d69d95204` |
+
+64 offered rows: 58 single, 4 first members of a shared instruction (start at
+the shared heading), 2 later members (start at their own number). Onset tier:
+absolute 17, noise floor 47 — the 2006–2008 recordings hiss above −50 dBFS in
+93–100 % of their windows, so a heading there is measurable only against its
+own noise floor (the verifier's existing named tiers, unchanged). Next
+boundary: the next number's own native heading in 63, a literal closing in 1.
+
+The research plan's 35 pilot questions (15 sources, 29 scopes): **12 offered,
+23 held**. All 12 carry the same original scope the provider-transcript
+diagnostic had guessed, though here the scope came only from native headings
+and the clip that wrote the quotes. Three of the seven first members of a
+shared instruction are offered, each at the shared heading. The other four are
+held and none was moved to the member's own number: in three the member or
+closing that ends the passage was not established, and in one
+(`ebs-middle-1-2009-2`) the shared heading itself follows bridge music with
+under 100 ms of quiet and no stationary noise floor, so no start can be stated
+for it.
+
+Held, by first reason (152):
+
+| rows | reason                                                                                         |
+| ---: | ---------------------------------------------------------------------------------------------- |
+|  137 | no anchor quote heard in an established passage; each row says where the frozen recognition places it and what stands there (below) |
+|    6 | no quote of four words                                                                         |
+|    5 | a quote stands more than once in the frozen recognition                                        |
+|    4 | not every frozen quote written by one clip inside the passage                                  |
+
+The 137, by what stands where the frozen recognition places the question (a
+diagnosis from estimates; it decided nothing):
+
+| rows | at that place                                                          |
+| ---: | ---------------------------------------------------------------------- |
+|   94 | a heading stands, the very next number's heading does not              |
+|   17 | the last standing heading, with no closing or with later numbers unheard |
+|    7 | another possible heading was written inside the passage                |
+|    7 | no native heading before it                                            |
+|    6 | the passage stands and was listened to; the quote was not written      |
+|    4 | the passage's own start is missing                                     |
+|    2 | a native start on the wrong side of a certified one                    |
+
+So the pilot is limited by missing headings, not by quotes: where both ends of
+a passage stand, the quote was written in all but 6 cases.
+
+### Official — `runs/official-001/`
+
+| file                                    | SHA-256                                                            |
+| --------------------------------------- | ------------------------------------------------------------------ |
+| `official-candidates.json`              | `412d16079e12be2b62627f194dda2df328475dcd19ae69b10e232752d195559a` |
+| `official-later-sentence-findings.json` | `8587bcd9bc6886798143fdfd0be1700380ac1d1ac90dcbb6210b918d2a5aa718` |
+| `ledger.json`                           | `6eb54811bae25fa4ad37463cf4317d3b585799bc618197e47b3802292989d75d` |
+| `catalogs.json`                         | `cad9fceae0a7480100ccffb4b95998282e33bc8a5fce006607b916f1c1f4b1b3` |
+| `summary.json`                          | `c453bbaadc228161fc7993e65e1a6791fa5f047d848970de10fd0b3e79dcb157` |
+
+- **19 offered** in the verifier's existing official key roles: the literal
+  number at a measured onset (12 through a short literal clip beside a long
+  reading that wrote bare digits before the instruction), the question's own
+  instruction, and the exact opening of its first utterance from a clip that
+  begins at a measured onset inside the passage. None uses a later sentence.
+  They were held before because their next question was itself held, or
+  because the recognizer stamped the number late and a shorter clip from the
+  same start now places it at the onset.
+- **19 reported, not offered**: the question's own later script sentence was
+  heard inside its passage, but not the exact first opening (a name spelled
+  another way, a first turn under four words with no measured-onset clip). The
+  verifier has no route for that, and it was not asked to make one.
+- **49 held**: 12 another possible heading written inside the passage, 11
+  instruction not heard after the literal number, 7 no official script, 6 own
+  number not heard at a measured onset, 3 next heading missing, 3 number at two
+  distant places, 3 last-question boundary, 2 number stamped late, 1 script
+  numbering not unique, 1 own sentence not heard.
+
+## Controls and adversarial inputs (pilot sources; `runs/pilot-002/controls.json`)
+
+The same code, with the certificate unread while deciding, replayed the 50
+reconstructed questions of the pilot sources that already have a certified
+start:
+
+| outcome         | rows | note                                                                                                   |
+| --------------- | ---: | ------------------------------------------------------------------------------------------------------ |
+| identical start |   23 | to the millisecond                                                                                     |
+| later           |    3 | 140–760 ms: the certified start is an absolute-threshold crossing of hiss, the replay the noise-tier speech onset of the same announcement |
+| earlier         |    0 |                                                                                                        |
+| other scope     |    0 | no control question was bound to another original passage                                              |
+| held            |   24 | passage or quote not established by this route                                                         |
+
+Heading level: 26 original numbers have both a certified start and a blind
+native heading — 24 identical, 2 later.
+
+| adversarial input on real evidence                                         | tried | accepted |
+| -------------------------------------------------------------------------- | ----: | -------: |
+| a heading asked for the number before and after it                         |   378 |        0 |
+| an offered row's quotes, its own passage taken away                        |    64 |        0 |
+| first member of a shared heading moved to its own number                   |    14 |        0 |
+| another source's recognition container                                     |    14 |        0 |
+| real clip cut 400 ms after the onset (38 still wrote the number)           |   190 |        0 |
+| real clip begun 300 ms into the number (23 still wrote the number first)   |   190 |        0 |
+
+The last two rows are why the rules are physical: a recognizer still writes the
+number from a damaged clip; the row is refused because the clip is not the
+measured lead before a measured onset, or carries no instruction.
+
+The control figures are reported by the coordinator's family-separated
+partition in `summary.json`; three pilot sources whose readings were read by
+eye while the rules were written (`ebs-middle-1-2007-2`, `ebs-middle-1-2009-2`,
+`ebs-middle-2-2007-2`) are counted apart. The certified starts are themselves
+machine-certified: agreement is a regression check, not a listening test.
+
+## Recognition actually run
+
+Whisper medium int8 (the frozen snapshot), one model resident only under the
+shared exclusive GPU lock, temporary clips deleted after each source, 0
+overflow in every round.
+
+| rounds                    | what                                                            | bounded recognitions |
+| ------------------------- | --------------------------------------------------------------- | -------------------: |
+| 001–005, 010 (pilot)      | Korean: headings, shorter and longer same-start clips, gap and terminal scans |          1,041 |
+| 006 (pilot)               | English passage clips (3,779 s)                                 |                   87 |
+| adversarial 001           | truncated clips, own folder, never evidence                     |                  380 |
+| 030–034 (official)        | Korean 198 + 5 + 304 (+ 10 of a round stopped as planned too broadly), English 3 |    520 |
+| 020 onward                | the other 56 reconstructed sources — see "Full run"             |                      |
+
+All 71 reconstructed MP3 originals and the 47 official sources with a held
+question were decoded once and reproduced the frozen clock (PCM SHA-256); only
+20 ms loudness was kept.
+
+## Full run
+
+To be completed when `runs/full-001/` is written (heading round 020 for the
+other 56 reconstructed sources, then context, shorter-clip, gap, terminal and
+English rounds, then one ledger over the whole held population).
+
+## What stays held, and what it would take
+
+- **A lower-level sound runs into the number** (many 2008–2010 headings): the
+  measured onset is a chime or breath about a second before the number, with no
+  100 ms of quiet and no stationary noise floor between. The recognizer writes
+  the number, but not at the onset. A start before that sound would be a
+  natural place to seek to; stating one needs a named onset tier that the
+  verifier agrees to, which this work did not introduce.
+- **A shared heading straight after bridge music**: the same, for the heading
+  of the first member.
+- **Quotes that repeat or are too short**: held by the frozen side alone; no
+  audio decides them.
+- **`ebs-middle-1-2006-2`** (11 rows): its verified clock is the decode of the
+  authenticated playback MP3, not of the M4A original. The existing bounded
+  runner cannot be pointed at it, and the one converted runner is fixed to
+  another producer's folder with a 14 s clip cap. It needs its own runner and
+  the verifier's confirmation of the container shape — a separate job.
+- **Official rows with only a later own sentence** (19): a route the verifier
+  would have to evaluate.
+
+## Not done
+
+- No database or Storage write, no upload, no clip kept, no transcoding, no
+  change to audio, questions, transcripts, recognition caches or any existing
+  script. No push, no merge. No file outside
+  `scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/` was
+  changed in the repository.
+- The commit hooks of this worktree do not run; the folder holds `.mjs`, `.md`
+  and one `.sh`.
