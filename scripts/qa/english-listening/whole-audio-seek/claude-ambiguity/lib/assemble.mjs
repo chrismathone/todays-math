@@ -7,6 +7,15 @@ import { RULES, cueReading, uncertain } from "./identity.mjs";
 import { ScriptError, scriptSection, sectionOpenings } from "./script.mjs";
 import { englishWords, occurrences } from "./words.mjs";
 
+/**
+ * A clip planned to hold the spoken number alone: the plain one, the one
+ * through the pause after it, and the one that ends at its last sound.
+ */
+export const isNumberOnlyClip = (purpose) =>
+  purpose === "cue_only" ||
+  purpose === "cue_only_wide" ||
+  purpose === "cue_only_tight";
+
 const languageOf = (loaded, probe) =>
   probe.requestedLanguage ?? loaded.container.requestedLanguage;
 
@@ -73,7 +82,7 @@ export function findNumberClip(
     startFrame,
   ).filter(
     (r) =>
-      (r.purpose === "cue_only" || r.purpose === "cue_context") &&
+      (isNumberOnlyClip(r.purpose) || r.purpose === "cue_context") &&
       r.onsetFrame === onsetFrame &&
       r.frameCount <= RULES.maximumNumberClipSeconds * rate,
   );
@@ -88,7 +97,7 @@ export function findNumberClip(
   );
   // The number alone first (three seconds at most); the four-second listening
   // only where no number-only clip wrote the literal number reliably.
-  const numberOnly = good.filter((r) => r.purpose === "cue_only");
+  const numberOnly = good.filter((r) => isNumberOnlyClip(r.purpose));
   const chosen = numberOnly.at(-1) ?? good.at(-1) ?? null;
   return {
     reference: chosen

@@ -12,7 +12,9 @@
  * Tiers the agreed route does not cover stay out of the supplement. They are
  * reported with their evidence as diagnostics, never as candidates.
  */
+import { resolve } from "node:path";
 import { leadingCue } from "../../claude/lib/text.mjs";
+import { isNumberOnlyClip } from "./assemble.mjs";
 import { METHOD, uncertain } from "./identity.mjs";
 import { settleOrder } from "./official.mjs";
 import { compact, strictCoverage } from "./words.mjs";
@@ -149,7 +151,8 @@ export function classify(result) {
   const { tier, numberGrade, sentence, number } = result.proof;
   const literal = numberGrade === "literal_number_at_start";
   const clipped = numberGrade === "bare_digits_with_literal_number_clip";
-  const clipIsNumberOnly = clipped && result.numberClipPurpose === "cue_only";
+  const clipIsNumberOnly =
+    clipped && isNumberOnlyClip(result.numberClipPurpose);
   switch (tier) {
     case "number_sentence_and_own_dialogue":
       if (literal || clipIsNumberOnly)
@@ -218,7 +221,7 @@ export function settleOffered(context, results, sources, store) {
         const row = supplementRow(
           result,
           context.marksByQuestion.get(result.questionId),
-          script,
+          sources.get(result.sourceRecordId),
           store,
         );
         const problem = interfacePrecheck(row, question, store);
@@ -257,7 +260,11 @@ const probeEvidenceOf = (loaded, probe, extra = {}) => ({
 });
 
 /** One supplement row for an offered result. `frozen` is the producer's frozen row. */
-export function supplementRow(result, frozen, script, store) {
+export function supplementRow(result, frozen, world, store) {
+  const { script, native, facts } = world;
+  const question = facts.questions.find(
+    (q) => q.questionId === result.questionId,
+  );
   const row = structuredClone(frozen);
   const { proof, claim } = result;
   const replaced = [];
@@ -270,6 +277,84 @@ export function supplementRow(result, frozen, script, store) {
     row.seekStartMs = claim.seekStartMs;
     row.seekEndMs = claim.seekEndMs;
     replaced.push("seekStartMs");
+  }
+  // The bounded recognition the row rests its number on. Where only a number
+  // clip wrote the literal number of a question without official text, that
+  // clip is the row's probe: the existing routes read the number from it.
+  const numberFromClip =
+    result.route === "existing_ordinal_only_route" &&
+    proof.numberGrade === "bare_digits_with_literal_number_clip";
+  const cueReference = numberFromClip ? claim.numberClip : claim.cueProbe;
+  const sameCueProbe =
+    row.nativeEvidence &&
+    row.probeEvidence &&
+    row.nativeEvidence.startFrame === claim.startFrame &&
+    row.nativeEvidence.onsetFrame === claim.onsetFrame &&
+    row.probeEvidence.probeId === cueReference.probeId &&
+    resolve(row.probeEvidence.path) === resolve(cueReference.path);
+  if (!sameCueProbe) {
+    // The producer held this row, or its own probe is not the one that proves
+    // the number: state the place and the probe from this replay, and claim
+    // nothing about the whole-record recognition.
+    const loaded = store.load(result.sourceRecordId, cueReference.path);
+    const probe = loaded.container.probes.find(
+      (p) => p.id === cueReference.probeId,
+    );
+    const used = probe.segments.filter((s, i) => i === 0 || !uncertain(s));
+    const heard = leadingCue(used.map((s) => s.text).join(" "));
+    row.startGrade =
+      proof.tier === "ordinal_only_complete_chronology"
+        ? "ordinal_only"
+        : proof.dialogue
+          ? "first_dialogue_grounded"
+          : "instruction_grounded";
+    row.cueNumber = question.scopeQuestionNumbers[0];
+    row.cueSpokenNumbers = question.spokenNumbers;
+    row.cueForm = heard?.form ?? null;
+    row.scopeQuestionNumbers = question.scopeQuestionNumbers;
+    Object.assign(row, {
+      cueSegmentIds: [],
+      cueText: null,
+      anchorSegmentIds: [],
+      anchorText: null,
+      diagnosticAsrSegmentIds: [],
+      diagnosticAsrText: null,
+    });
+    row.nativeEvidence = {
+      sourceAudioSha256: row.sourceAudioSha256,
+      sampleRate: native.sampleRate,
+      channels: native.channels,
+      frameCount: native.frameCount,
+      pcmSha256: native.pcmSha256,
+      windowFrames: native.windowFrames,
+      quietThresholdDbfs: -50,
+      cachePath: native.cachePath,
+      cacheSha256: native.cacheSha256,
+      energyPath: native.energyPath,
+      energySha256: native.energySha256,
+      startFrame: claim.startFrame,
+      onsetFrame: claim.onsetFrame,
+      cueOnsetFrame: claim.onsetFrame,
+      leadFrames: proof.place.leadFrames,
+      quietBeforeFrames: proof.place.quietBeforeFrames,
+      leadPeakDbfs: proof.place.leadPeakDbfs,
+      probe: { path: loaded.path, sha256: loaded.containerSha256 },
+      probeOffsetFrame: probe.startFrame,
+      probeFrameCount: probe.frameCount,
+      cueProbeSegmentIds: [used[0].id],
+    };
+    row.probeEvidence = {
+      ...probeEvidenceOf(loaded, probe),
+      segmentIds: used.map((s) => s.id),
+      text: used.map((s) => s.text).join(" "),
+      firstSpeechSeconds: used[0].localStartSeconds,
+      spokenNumbers: heard?.numbers ?? null,
+      cueForm: heard?.form ?? null,
+    };
+    row.identityEvidence = ["spoken_ordinal_first_at_start"];
+    row.notes = [];
+    row.heldDiagnostics = null;
+    replaced.push("nativeEvidence", "probeEvidence", "cueFields");
   }
   if (result.route === "explicit_numbered_section_own_dialogue") {
     row.officialIdentityEvidence = { method: METHOD };
@@ -346,6 +431,20 @@ export function supplementRow(result, frozen, script, store) {
     priorHoldReasons: result.priorReasons,
     dependsOnProposedQuestionIds: result.dependsOnProposed ?? [],
     evidenceFieldsStatedByThisReplay: replaced,
+    // Every other stored Korean recognition that begins at this same start,
+    // whatever it wrote and whether or not the recognizer flagged it. A row
+    // whose number is reliable in one listening and flagged in others says so.
+    otherRecognitionsFromSameStart: (
+      result.diagnostics?.otherReadingsAtStart ?? []
+    ).map((reading) => ({
+      path: reading.path,
+      probeId: reading.probeId,
+      purpose: reading.purpose,
+      text: reading.text,
+      numbers: reading.numbers,
+      form: reading.form,
+      flaggedUncertain: !reading.firstSegmentReliable,
+    })),
     producerIdentityKeptFromFrozenRow: true,
   };
   return row;

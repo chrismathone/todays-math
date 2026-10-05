@@ -51,7 +51,10 @@ for (const row of held) {
   const { script } = sources.get(row.sourceRecordId);
   const frozen = context.marksByQuestion.get(row.questionId);
   const offered = result.outcome === "candidate";
-  if (offered) records.push(supplementRow(result, frozen, script, store));
+  if (offered)
+    records.push(
+      supplementRow(result, frozen, sources.get(row.sourceRecordId), store),
+    );
   const proof = result.proof ?? null;
   disposition.push({
     questionId: row.questionId,
@@ -98,6 +101,14 @@ for (const row of held) {
     dependsOnProposedQuestionIds: result.dependsOnProposed ?? [],
     tested: result.diagnostics ?? null,
     placesTried: result.placesTried ?? 0,
+    // Where the replay looked, also for a row that holds no proof.
+    replayedPlace: result.claim
+      ? {
+          startFrame: result.claim.startFrame,
+          onsetFrame: result.claim.onsetFrame,
+          startMs: result.claim.seekStartMs,
+        }
+      : null,
   });
 }
 if (records.some((row) => !heldIds.has(row.questionId)))

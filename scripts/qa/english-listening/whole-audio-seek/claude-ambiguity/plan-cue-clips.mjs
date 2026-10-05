@@ -34,11 +34,16 @@ const { values } = parseArgs({
     targets: { type: "string" },
     out: { type: "string" },
     round: { type: "string" },
+    variants: { type: "string", default: "cue_only,cue_context" },
   },
 });
 for (const key of ["inventory", "native", "targets", "out", "round"])
   if (!values[key]) throw new Error(`--${key} is required`);
 if (!/^\d{3}$/.test(values.round)) throw new Error("--round is three digits");
+const KNOWN = ["cue_only", "cue_context", "cue_only_wide", "cue_only_tight"];
+const variants = values.variants.split(",");
+if (!variants.length || variants.some((name) => !KNOWN.includes(name)))
+  throw new Error("--variants: " + KNOWN.join(", "));
 
 const { inventory, inventorySha256 } = loadInventory(values.inventory);
 const targets = JSON.parse(readFileSync(values.targets, "utf8"));
@@ -112,25 +117,46 @@ for (const record of inventory.records) {
     };
     // The number runs into its sentence without a measurable pause: no clip
     // of the number alone exists there.
-    if (windows > MAXIMUM_CLIP_WINDOWS)
+    if (windows > MAXIMUM_CLIP_WINDOWS) {
       skipped.push({ ...target, reason: "number_island_not_separate" });
-    else
+      if (!variants.includes("cue_context")) continue;
+    }
+    const lead = onsetWindow - startWindow;
+    const islandWindows = island.end - island.start;
+    const lengths = {
+      cue_only: windows,
+      // The same start with a little of what follows the number: a fixed four
+      // seconds, so the recognizer has more than one word to stand on.
+      cue_context: Math.min(CONTEXT_WINDOWS, energy.length - startWindow),
+      // Still the number alone, differently bounded: through the whole pause
+      // after it (ending two windows before the next sound), and ending right
+      // after its last sound.
+      cue_only_wide: Math.min(
+        MAXIMUM_CLIP_WINDOWS,
+        lead + islandWindows + Math.max(0, gap - 2),
+      ),
+      cue_only_tight: lead + islandWindows + 3,
+    };
+    const used = new Set();
+    for (const purpose of variants) {
+      const length = lengths[purpose];
+      const numberOnly = purpose !== "cue_context";
+      if (
+        used.has(length) ||
+        (numberOnly && length > MAXIMUM_CLIP_WINDOWS) ||
+        (purpose === "cue_context" && length <= windows) ||
+        // A variant that is the plain number clip again adds nothing.
+        (purpose.startsWith("cue_only_") && length === windows)
+      )
+        continue;
+      used.add(length);
       probes.push({
         id: probes.length + 1,
-        purpose: "cue_only",
-        frameCount: windows * frames,
+        purpose,
+        frameCount: length * frames,
         ...common,
       });
-    // The same start with a little of what follows the number: a fixed four
-    // seconds, so the recognizer has more than one word to stand on.
-    const context = Math.min(CONTEXT_WINDOWS, energy.length - startWindow);
-    if (context > windows)
-      probes.push({
-        id: probes.length + 1,
-        purpose: "cue_context",
-        frameCount: context * frames,
-        ...common,
-      });
+    }
   }
   if (!probes.length) continue;
   sources.push({
