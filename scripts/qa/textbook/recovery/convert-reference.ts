@@ -543,6 +543,7 @@ async function sourceSvgAsset(tree: Tree, sourceDir: string): Promise<string> {
     "stroke-dasharray",
     "font-size",
     "font-weight",
+    "letter-spacing",
   ]);
   const rules = Array.from(
     css.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{([^{}]*)\}/g),

@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pymupdf as fitz
 from geometry import verify
+from page_references import reference_labels, reference_phase_evidence
 
 
 def answer_references(student_witness, answer_witness, document):
@@ -64,6 +65,16 @@ def inspect(folder, variant):
     result["pdfSha256"] = hashlib.sha256(pdf.read_bytes()).hexdigest()
     (folder / f"{variant}-geometry.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     document = fitz.open(pdf)
+    exchange_path = folder / "exchange.private.json"
+    if not exchange_path.exists() or hashlib.sha256(exchange_path.read_bytes()).hexdigest() != witness.get("fixtureSha256"):
+        result["issues"].append({"code": "INDEX_SOURCE_EXCHANGE_HASH"})
+    else:
+        indexes = reference_labels(witness, document, json.loads(exchange_path.read_text(encoding="utf-8")))
+        result["indexReferenceVerification"] = indexes
+        result["issues"].extend(indexes["issues"])
+    phases = reference_phase_evidence(folder, variant)
+    result["referencePhaseVerification"] = phases
+    result["issues"].extend(phases["issues"])
     if variant == "answers":
         student_pdf, student_path = folder / "student.pdf", folder / "student-witness.json"
         if student_pdf.exists() and student_path.exists():
@@ -76,8 +87,8 @@ def inspect(folder, variant):
                 result["issues"].append({"code": "ANSWER_STUDENT_WITNESS_HASH"})
         else:
             result["issues"].append({"code": "ANSWER_STUDENT_WITNESS_MISSING"})
-        if result["issues"]:
-            result["status"] = "failed"
+    if result["issues"]:
+        result["status"] = "failed"
     blocks = {block["id"]: block for section in witness["projectedModel"]["sections"] for block in section["blocks"]}
     candidates = {}
     for page in witness["pages"]:
