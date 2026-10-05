@@ -1,4 +1,7 @@
-import type { TextbookSemanticRow } from "@/contracts/textbookSemantic.contract";
+import type {
+  TextbookSemantic,
+  TextbookSemanticRow,
+} from "@/contracts/textbookSemantic.contract";
 import type { RenderBlock } from "../model";
 import {
   escapeHtml as esc,
@@ -53,10 +56,13 @@ function conceptMap(
 }
 
 /** Explicit NEW-bank opt-in only: immutable source and legacy writing fall through. */
-export function renderBankActivityHtml(
-  block: Extract<RenderBlock, { kind: "text" }>,
-): string | null {
-  const semantic = block.semantic;
+/**
+ * 이 구조가 새 은행 활동으로 그려지는가 — 그려진다면 어느 활동인가.
+ * 렌더(아래)와 «본문을 읽는가» 판정(`textPrintsFromStructure`)이 같은 조건을 쓴다.
+ */
+export function bankActivityOf(
+  semantic: TextbookSemantic | undefined,
+): (typeof activities)[number] | null {
   const node = semantic?.node;
   if (!semantic || semantic.source || node?.kind !== "rows") return null;
   const activity = activities.find((value) => value === semantic.activity);
@@ -67,6 +73,16 @@ export function renderBankActivityHtml(
     )
   )
     return null;
+  return activity;
+}
+
+export function renderBankActivityHtml(
+  block: Extract<RenderBlock, { kind: "text" }>,
+): string | null {
+  const semantic = block.semantic;
+  const node = semantic?.node;
+  const activity = bankActivityOf(semantic);
+  if (!semantic || !activity || node?.kind !== "rows") return null;
   const limit = activity === "explainActivity" ? 2 : 4;
   if (
     !node.rows.length ||

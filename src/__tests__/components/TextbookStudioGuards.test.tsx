@@ -6,7 +6,6 @@
  */
 import {
   act,
-  cleanup,
   fireEvent,
   render,
   screen,
@@ -38,6 +37,7 @@ import type {
   SectionDetail,
 } from "@/components/textbook/model";
 import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
+import { textbookSemanticSchema } from "@/contracts/textbookSemantic.contract";
 import { TextbookStudioView } from "@/components/textbook/TextbookStudioView";
 
 const book: BookSummary = {
@@ -2006,7 +2006,7 @@ describe("B05 — 지면이 구조에서 나오는 본문", () => {
     "이 본문은 저장된 구조에서 생성됩니다. 이 입력 칸에서는 수정할 수 없습니다.";
   const withText = (
     templateKey: string,
-    semantic?: SectionDetail["blocks"][number]["semantic"],
+    semantic?: NonNullable<SectionDetail["blocks"][number]["semantic"]>,
   ) =>
     section({
       templateKey,
@@ -2042,13 +2042,19 @@ describe("B05 — 지면이 구조에서 나오는 본문", () => {
     };
   }
 
-  it("질문 기록처럼 구조에서 나오는 본문은 읽기 전용이고, 이유를 곁에 알린다 — 고친 줄 알았는데 지면에 안 나오는 일이 없다", async () => {
+  it("차례처럼 구조 편집을 열지 않은 블록의 본문은 읽기 전용이고, 이유를 곁에 알린다 — 고친 줄 알았는데 지면에 안 나오는 일이 없다", async () => {
     const { body } = await openWith(
-      withText("auto-question-log", {
-        activity: "questionLog",
-        title: "질문 기록",
-        node: { kind: "writing", prompts: ["처음 본문"], lines: 4 },
-      } as SectionDetail["blocks"][number]["semantic"]),
+      withText(
+        "auto-contents",
+        textbookSemanticSchema.parse({
+          activity: "tableOfContents",
+          title: "차례",
+          node: {
+            kind: "references",
+            entries: [{ key: "unit-1", label: "1 덧셈과 뺄셈" }],
+          },
+        }),
+      ),
     );
     expect(body).toHaveAttribute("readonly");
     const text = screen.getByText(note);
@@ -2058,6 +2064,9 @@ describe("B05 — 지면이 구조에서 나오는 본문", () => {
     fireEvent.change(body, { target: { value: "고친 본문" } });
     expect(body).toHaveValue("처음 본문");
     expect(closing()).toBe(false);
+    expect(
+      screen.queryByRole("button", { name: "내용 수정" }),
+    ).not.toBeInTheDocument();
   });
 
   it("구조가 없는 본문은 지금처럼 고칠 수 있고 안내도 없다", async () => {
@@ -2073,8 +2082,8 @@ describe("B05 — 지면이 구조에서 나오는 본문", () => {
     ).toMatchObject({ section: { blocks: [{ text: "고친 본문" }] } });
   });
 
-  it("단원 도입 구조는 자동 단원 도입 틀에서만 지면을 정한다 — 다른 틀에서는 본문이 지면에 나오므로 고칠 수 있다", async () => {
-    const intro = {
+  it("단원 도입 구조는 자동 단원 도입 틀에서만 지면을 정한다 — 다른 틀에서는 본문이 지면에 나오므로 본문 칸을 그대로 고친다", async () => {
+    const intro = textbookSemanticSchema.parse({
       activity: "unitIntro",
       title: "평면도형",
       node: {
@@ -2085,12 +2094,13 @@ describe("B05 — 지면이 구조에서 나오는 본문", () => {
         path: [],
         check: [],
       },
-    } as SectionDetail["blocks"][number]["semantic"];
-    const first = await openWith(withText("auto-unit-intro", intro));
-    expect(first.body).toHaveAttribute("readonly");
-    cleanup();
-    const second = await openWith(withText("basic", intro));
-    expect(second.body).not.toHaveAttribute("readonly");
+    });
+    const { body } = await openWith(withText("basic", intro));
+    expect(body).not.toHaveAttribute("readonly");
+    expect(screen.queryByText(note)).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "내용 수정" }),
+    ).not.toBeInTheDocument();
   });
 });
 

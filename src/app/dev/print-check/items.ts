@@ -118,6 +118,59 @@ export const ITEMS: PrintCheckItem[] = [
     changedOn: "2026-10-05",
   },
   {
+    id: "textbook-structure-edit-intro",
+    title: "교재 제작 — 단원 도입의 글을 고친 판본",
+    changed:
+      "세부 편집의 «내용 수정» 으로 자동 단원 도입의 도입 제목 · 질문 · 설명 · 핵심 문구 · 학습 목표 · 학습 순서 · 출발점 질문 · 날짜 문구를 고칠 수 있다. 조판은 그대로다 — 글만 바뀐다.",
+    look: "고친 글이 전부 찍혔는지, 옛 글이 남지 않았는지 본다. 왼쪽 면에서 제목 · 질문 · 삽화 · 설명 · 핵심 문구가 서로 겹치지 않아야 한다. 오른쪽 면 또는 한 면 배치에서 목표 · 순서 · 출발점이 잘리지 않아야 한다. 글이 길어 두 면이 한 면으로 바뀌었으면 화면의 미리보기가 그것을 알렸는지 대조한다. 핵심 문구를 비운 판본도 한 벌 본다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/textbook-structure-editor-20261006.md",
+      "src/components/textbook/structureFields.ts",
+      "src/lib/textbook/render/blocks/automaticIntro.ts",
+    ],
+    scale: "자동 단원 도입이 든 교재 전부(고친 것만)",
+    status: "대기",
+    needs:
+      "같은 교재의 고치기 전 PDF 와 고친 뒤 PDF — 질문 · 설명을 은행 원고의 가장 긴 것(질문 45자 · 설명 98자)보다 길게 고친 판본 포함",
+    changedOn: "2026-10-06",
+  },
+  {
+    id: "textbook-structure-edit-writing-board",
+    title: "교재 제작 — 질문 기록 · 판서의 글을 고친 판본",
+    changed:
+      "질문 기록의 질문 문구와 «질문마다 작성선» 수(1~30), 판서의 제목 · 수식 · 주석을 고칠 수 있다. 질문의 개수는 그대로다.",
+    look: "질문 기록: 새 질문이 찍히고, 질문마다 작성선 수가 고른 수와 같으며 간격이 7mm±0.5mm 인지, 질문 · 선 · 꼬리말이 겹치지 않는지 본다. 판서: 새 제목 · 식 · 주석이 찍히고 수식이 잘리지 않는지, 긴 판서 뒤의 대화가 겹치거나 글자가 눈에 띄게 작아지지 않았는지 본다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/textbook-structure-editor-20261006.md",
+      "src/lib/textbook/render/blocks/semantic.ts",
+      "src/lib/textbook/render/blocks/dialogue.ts",
+    ],
+    scale: "질문 기록 · 판서가 든 교재(고친 것만)",
+    status: "대기",
+    needs:
+      "작성선을 4줄에서 8줄로 늘린 질문 기록, 수식을 길게 고친 판서가 든 단원의 학생용 PDF",
+    changedOn: "2026-10-06",
+  },
+  {
+    id: "textbook-draft-copy-structure-refs",
+    title: "교재 제작 — 새 초안으로 복사한 교재의 재발행",
+    changed:
+      "새 초안 복사 · 가져오기가 구조 안의 문항 번호(유형 묶음의 대표예제 · 확인문제, 색인의 대상)도 새 번호로 바꾼다. 전에는 문제 블록의 번호만 바꿔, 복사한 초안에서 대표예제 역할과 색인의 쪽 번호가 끊겼다.",
+    look: "발행한 교재를 새 초안으로 복사해 그대로 다시 발행한다. 유형 묶음에서 대표예제에 풀이가 붙고 확인문제에는 붙지 않는지(원본과 같은지), 유형 색인 · 차례의 쪽 번호가 실제 쪽과 맞는지, 학생용 · 해설판의 QR 이 그 문항을 가리키는지 원본 PDF 와 나란히 본다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/planning/tracks/reports/textbook-structure-editor-20261006.md",
+      "src/lib/textbook/semanticRefs.ts",
+      "src/lib/textbook/server/books.ts",
+    ],
+    scale: "대표예제 묶음이나 유형 색인이 든 교재의 복사본 전부",
+    status: "대기",
+    needs: "간편 생성한 교재(대표예제 · 유형 색인 켬)의 원본 PDF 와 복사본 PDF",
+    changedOn: "2026-10-06",
+  },
+  {
     id: "english-listening-native-visual",
     title: "영어듣기 — DB 문항과 시각 자료 인쇄",
     changed:

@@ -6,7 +6,7 @@ import type { RenderBlock } from "../model";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { imageHtml, type RenderResources } from "./shared";
 import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
-import { renderBankActivityHtml } from "./bankActivities";
+import { bankActivityOf, renderBankActivityHtml } from "./bankActivities";
 
 function inlineMarkdown(source: string): string {
   const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
@@ -46,7 +46,7 @@ export function renderSourceFragments(
  * 이 글 블록의 **지면에 찍히는 글**이 본문(markdown)이 아니라 구조(`semantic.node`)에서 나오는가.
  * 편집 화면이 «본문» 입력을 열어 둘지 정할 때 쓴다 — 본문을 고쳐도 지면의 글이 바뀌지 않는 블록은 입력을 닫는다.
  * 아래 `renderSemanticTextHtml` · 판서(`board`) · 단원 도입(`auto-unit-intro` 틀의 `unitIntro`)의 갈래와 같은 종류만 답한다.
- * 은행 활동(`rows`)처럼 본문을 일부라도 읽는 종류와, 여기서 확인하지 않은 종류는 false 다(지금처럼 고칠 수 있다).
+ * 은행 활동(`rows`)은 설명 활동만 참이다 — 자유 백지 · 개념 지도는 본문을 읽는다. 여기서 확인하지 않은 종류는 false 다(지금처럼 고칠 수 있다).
  *
  * ⚠️ 재는 것은 «찍히는 글» 이지 «쪽 나눔» 이 아니다. 조판(`layout/paginate.ts`)은 글 블록의 본문이 «제목 한 줄» 꼴이면
  * 다음 블록과 붙여 넘긴다 — 구조에서 나오는 블록도 저장된 본문이 그 꼴이면 그렇게 놓인다. 입력을 닫아도 저장된 본문은
@@ -58,6 +58,8 @@ export function textPrintsFromStructure(
 ): boolean {
   const node = semantic?.node;
   if (!node) return false;
+  // 은행 활동 셋 가운데 설명 활동만 본문을 읽지 않는다(자유 백지 · 개념 지도는 본문이 «작성 방법» 으로 찍힌다)
+  if (bankActivityOf(semantic) === "explainActivity") return true;
   switch (node.kind) {
     case "fragments":
     case "writing":
