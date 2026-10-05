@@ -137,3 +137,48 @@ application; only completed replay 002 supplied admission authority.
 Root regression checks pass 191 Python and 31 Node tests; the executed archive
 contains the 188 Python tests available before the later-wave scope inheritance
 guard was added. Claude's 49 Node tests also passed independently at root.
+
+## Completed native recovery and adoption, 2026-10-06 KST
+
+The complete population check covers 193 sources and 3,699 questions. Independent
+native replay evaluated all 340 offered starts from 81 original recordings:
+282 passed and 58 were held. The 632 remaining unoffered questions also remain
+held. Every one of the 2,727 previously registered ranges was preserved exactly,
+including all 75 starts admitted by the earlier research pilot. The final result
+is 3,009 registered starts and 690 held questions. These are automated evidence
+checks, not a claim of human listening accuracy.
+
+The actual DB application completed at `2026-10-05T23:15:46.066Z` in Supabase
+project `jyaguxwuaxgdnovtulna`: 282 starts were added to 70 sets. It checked 4,338
+evidence files and read back all 193 sets. Original prompts, choices, images,
+answers, metadata, human-review/publication state and whole-recording assets were
+retained. Every new range continues to the complete recording's end; no new
+Storage object or question clip was created.
+
+Actual runtime verification subsequently checked seven new starts through the
+teacher-scoped composition service and the production media service against
+the real private Storage bucket. All 14 first/last-byte Range requests returned
+HTTP 206 with the exact byte count, content range and original asset ETag. This
+checks the runtime services and Storage, rather than every browser interaction.
+
+Completed evidence:
+
+- Independent certificate:
+  `output/listening-assessments/whole-audio-seek-20261006/native-recovery/codex/full-native-certificate-001/certificate.json`,
+  SHA-256 `bbc6f268191fe6bbe839fb5da41917cba2a97bdf79272654eea55f9830101756`.
+- Exact executed implementation: `native-recovery/codex/implementation-013/`,
+  47 files, manifest SHA-256
+  `4cd144fbacfa65d39b6048e4ce6fc3ae220abe7fd365d9b0e138aab85c578f04`.
+- Actual application:
+  `.qa-artifacts/whole-audio-seek-20261005/adoption-2026-10-05T23-15-33-473Z/report.json`,
+  SHA-256 `6d00126e5b91e4c74a04ddcece3765ed19451a328f33f55b9dd9acabfeb62a36`.
+- Actual runtime/Storage readback:
+  `.qa-artifacts/whole-audio-seek-20261005/runtime-readback-2026-10-05T23-21-50-654Z.json`,
+  SHA-256 `6bcf5a453d40ce9a99e58f0d291e6ffb891e450e731ba7a75a242ce136d5dc06`.
+
+Root independently passed the 363 Python verifier tests, 78 producer Node tests,
+21 admission tests, 15 baseline-rebase tests, eight CTC diagnostic tests and the
+full TypeScript check. Original-source physical controls cover all 193 recordings;
+380 actual damaged native replay controls and the separate Korean CTC comparison
+remain diagnostic evidence. No diagnostic score grants admission or relaxes the
+start-position requirements.
