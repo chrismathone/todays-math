@@ -520,7 +520,8 @@ export function sourceStructure(input) {
  */
 export function resolveSource(input) {
   const { record, native, hints } = input;
-  const { rate, passages, known, table } = sourceStructure(input);
+  const structure = sourceStructure(input);
+  const { rate, passages, known, table } = structure;
 
   const englishFlat = [];
   hints.englishWords.forEach((word, i) =>
@@ -720,6 +721,39 @@ export function resolveSource(input) {
     } catch (error) {
       if (!(error instanceof Hold)) throw error;
       if (error.detail?.quotes) tested.quotes = error.detail.quotes;
+      // Where the frozen recognition estimated the question's own segments,
+      // and what stands there. A diagnosis for the reader; it decides nothing.
+      const estimate = generation?.frozenSourceSegmentIds
+        ?.map((id) => asrById.get(id))
+        .filter(Boolean);
+      if (estimate?.length) {
+        const at = Math.min(...estimate.map((s) => s.startSeconds)) * rate;
+        const before = structure.headings.filter((h) => h.startFrame <= at).at(-1);
+        const number = before?.covers[0] ?? null;
+        const passage = passages.find(
+          (p) => p.fromFrame <= at && at < p.toFrame,
+        );
+        tested.whereTheFrozenRecognitionPlacesIt = {
+          estimatedStartSeconds: at / rate,
+          lastNativeHeadingBefore: before?.numbers ?? null,
+          establishedPassage: passage?.scope ?? null,
+          englishClipsInsideThatPassage: passage
+            ? input.enListenings.filter(
+                (l) =>
+                  l.startFrame >= passage.fromFrame &&
+                  l.startFrame + l.frameCount <= passage.toFrame,
+              ).length
+            : 0,
+          whyNoPassage: passage
+            ? null
+            : number === null
+              ? "no_native_heading_before_it"
+              : (structure.held.get(number + ":next") ??
+                structure.held.get(number + ":inside") ??
+                structure.held.get(number) ??
+                "passage_start_missing"),
+        };
+      }
       rows.push({ ...base, status: "held", reasons: [error.reason], tested });
     }
   }

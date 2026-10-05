@@ -64,6 +64,15 @@ export function openSession(values = {}) {
             ),
         )
         .map((r) => r.sourceRecordId);
+    if (name === "held")
+      // Every source that still holds a question: the whole held population.
+      return all
+        .filter((r) =>
+          (baseline.certBySource.get(r.sourceRecordId) ?? []).some(
+            (row) => row.status === "held",
+          ),
+        )
+        .map((r) => r.sourceRecordId);
     throw new Error("Unknown scope: " + name);
   };
 
