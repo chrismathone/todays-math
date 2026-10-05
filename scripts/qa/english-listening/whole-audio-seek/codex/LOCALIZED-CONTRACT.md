@@ -156,6 +156,33 @@ the named adapter, exact scope/onset, questionId/generation mapping, head/neighb
 proof and intact nested references. Merely changing the evidenceGrade cannot
 license inheritance.
 
+## Explicit next-END boundary version
+
+`evidenceAdapter:"native-localized-generation-boundary-v3"` and grade
+`localized_generation_native_boundary_v3` cover reconstructed candidates with
+`nextBoundaryProbeEvidence` and `nextBoundaryNativeEvidence`. Exactly one next
+boundary route is allowed. All v2 seek-START, original generation, scope, actual
+PCM/cache/energy/quiet/lead and complete catalog rules remain mandatory. Only the
+next-END onset-to-number timestamp correspondence is waived: an earlier physical
+precursor yields a conservative English passage end and cannot supply a new seek
+start. The entire English clip must finish before that physical boundary start.
+
+The next probe's literal original number is reliable FIRST raw speech within two
+seconds and is exactly the very next original number. Its complete genuine Korean
+instruction must occupy contiguous reliable raw segments before English dialogue
+or another heading. Number-only, incomplete clauses, generic commands, bare
+answers, wrong language, conflicting numbers and distant repeats stay held. A
+number-only shared member is permitted only when the candidate has already
+independently proved the complete original shared instruction and that exact next
+member belongs to its coverage; producer coverage flags supply no authority.
+
+The certificate retains `nextEndIdentity`, including unchanged raw context,
+physical native evidence, actual first-speech timing, correspondence diagnostic,
+identity method and `maySupplySeekStart:false`. New ancestry must bind this exact
+named proof and all nested references. V2 and the official wrapper retain their
+previous correspondence gates. This route was designed after pilot outcomes and
+is outcome-informed research, not a preregistered or external-gold result.
+
 ## Additive official wrapper
 
 `evidenceAdapter:"official-catalogued-native-v1"` is official-only. It first

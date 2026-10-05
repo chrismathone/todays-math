@@ -374,7 +374,7 @@ class NativeReplay:
 
 def shared_native_key(row):
     proof = row["proofKey"]
-    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "official-catalogued-native-v1"):
+    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1"):
         return proof
     # Every generated question has its own separately verified quote mapping.
     # A common passage key retains all common physical head/neighbor identity.
@@ -566,13 +566,16 @@ def reconstructed_admission_origin(row):
     """An additive grade inherits only its own complete, hash-bound proof shape."""
     if row.get("evidenceGrade") == "reconstructed_numbered_probe":
         return bool(row.get("scopeQuestionNumbers")) and integer(row.get("nativeEvidence", {}).get("onsetFrame"))
-    if row.get("evidenceGrade") != "localized_generation_native":
+    from localized_adapter import ADAPTER, END_BOUNDARY_ADAPTER, END_BOUNDARY_GRADE
+    boundary_only = row.get("evidenceGrade") == END_BOUNDARY_GRADE
+    if row.get("evidenceGrade") != "localized_generation_native" and not boundary_only:
         return False
-    from localized_adapter import ADAPTER
     proof = row.get("proofKey", {})
     mapping = proof.get("localizedMapping", {})
     claim = row.get("localizedMappingEvidence", {})
-    if not (row.get("evidenceAdapter") == proof.get("adapter") == ADAPTER
+    adapter = END_BOUNDARY_ADAPTER if boundary_only else ADAPTER
+    next_probe = row.get("nextBoundaryProbeEvidence") if boundary_only else row.get("nextProbeEvidence") or row.get("terminalProbeEvidence")
+    if not (row.get("evidenceAdapter") == proof.get("adapter") == adapter
             and row.get("scopeQuestionNumbers") and integer(row.get("nativeEvidence", {}).get("onsetFrame"))
             and proof.get("onsetFrame") == row["nativeEvidence"]["onsetFrame"]
             and all(proof.get(key) == row.get(key) for key in ("scopeQuestionNumbers", "cueNumber", "cueSpokenNumbers", "kind"))
@@ -587,12 +590,23 @@ def reconstructed_admission_origin(row):
             proof.get("probeCatalog") == row.get("probeCatalog") and
             proof.get("sharedHeadProbe") == row.get("sharedHeadProbeEvidence") and
             proof.get("nextCertificate") == row.get("nextCertificateEvidence") and
-            proof.get("nextProbe") == (row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"))):
+            proof.get("nextProbe") == next_probe):
         return False
+    if boundary_only:
+        end_identity = proof.get("nextEndIdentity", {})
+        if not (proof.get("nextBoundaryKind") == "next_number_first_speech_boundary_v3"
+                and end_identity.get("method") == "complete_original_identity_next_end_v3"
+                and end_identity.get("maySupplySeekStart") is False
+                and end_identity.get("identityMethod") in ("proved_original_shared_instruction_member", "literal_complete_korean_instruction")
+                and end_identity.get("probe") == next_probe
+                and end_identity.get("nativeEvidence") == row.get("nextBoundaryNativeEvidence")
+                and end_identity.get("rawInstructionSegments") == proof.get("nextRawSegments")
+                and end_identity.get("rawInstructionSegments")):
+            return False
     refs = proof.get("boundReferences")
     if not isinstance(refs, list) or not refs:
         return False
-    next_ref = row.get("nextProbeEvidence") or row.get("terminalProbeEvidence") or (row.get("nextCertificateEvidence") or {}).get("certificate")
+    next_ref = next_probe or (row.get("nextCertificateEvidence") or {}).get("certificate")
     required = [claim.get("alignment"), claim.get("prepared"), row.get("probeEvidence"),
                 next_ref, row.get("dialogueProbeEvidence"), row.get("probeCatalog")]
     if row.get("kind") == "shared_instruction_member":
@@ -864,9 +878,11 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                 if row.get("probeEvidence"):
                     require(adapter_replay is not None, "native_adapter_replay_failed:" + str(adapter_error))
                     adapter = row.get("evidenceAdapter", "claude-native-probe-v1")
-                    require(adapter in ("claude-native-probe-v1", "native-localized-generation-v2", "official-catalogued-native-v1"), "unknown_native_adapter")
+                    require(adapter in ("claude-native-probe-v1", "native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1"), "unknown_native_adapter")
                     if adapter == "native-localized-generation-v2":
                         from localized_adapter import validate as validate_adapter
+                    elif adapter == "native-localized-generation-boundary-v3":
+                        from localized_boundary_adapter import validate as validate_adapter
                     elif adapter == "official-catalogued-native-v1":
                         from official_catalog_adapter import validate as validate_adapter
                     else:
@@ -887,7 +903,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                     proof_key = {"probe": n["probe"], "cueProbeSegmentIds": n["cueProbeSegmentIds"], "cueOnsetFrame": n["cueOnsetFrame"]}
                     native_segments = native_cues
                     grade, original_identity = "official_alignment" if row.get("startEvidence", {}).get("method") == "official_alignment" else "numbered_probe", None
-                if row.get("evidenceAdapter") != "native-localized-generation-v2":
+                if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3"):
                     validate_mapping(row, source, question, index)
                 observed = diagnostic_segments(row, index)
                 require(0 <= row["seekStartMs"] < source["audio"]["durationMs"], "invalid_seek_range")
@@ -901,6 +917,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                               originalQuestionIdentity=original_identity, cueSpokenNumbers=row.get("cueSpokenNumbers"),
                               mappingEvidence=row.get("mappingEvidence"), scriptEvidence=row.get("scriptEvidence"),
                               dialogueProbeEvidence=row.get("dialogueProbeEvidence"), nextProbeEvidence=row.get("nextProbeEvidence"),
+                              nextBoundaryProbeEvidence=row.get("nextBoundaryProbeEvidence"), nextBoundaryNativeEvidence=row.get("nextBoundaryNativeEvidence"),
                               terminalProbeEvidence=row.get("terminalProbeEvidence"), sharedHeadProbeEvidence=row.get("sharedHeadProbeEvidence"),
                               nextCertificateEvidence=row.get("nextCertificateEvidence"),
                               officialTerminalEvidence=row.get("officialTerminalEvidence"),
