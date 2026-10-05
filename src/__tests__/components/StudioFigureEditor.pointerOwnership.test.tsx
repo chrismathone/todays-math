@@ -218,7 +218,7 @@ describe("figure drag pointer ownership (synthetic)", () => {
 
   it("drawing retains the first pointer's origin and one history entry", async () => {
     await open();
-    fireEvent.click(screen.getByRole("button", { name: "선분", exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "선분" }));
     fireEvent.pointerDown(canvas(), pointer());
     fireEvent.pointerMove(surface(), pointer(1, 80));
     fireEvent.pointerDown(canvas(), pointer(2, 200));
