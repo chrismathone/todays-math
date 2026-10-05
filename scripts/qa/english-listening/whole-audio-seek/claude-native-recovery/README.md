@@ -143,9 +143,22 @@ complete when every request is finished or named in `stopped-requests.json`
 with its reason, no stage on record failed without such a declaration, and no
 raw folder lies without its request. A stopped request is not thereby finished:
 the receipt says how many of its probes were heard in another round and how
-many nowhere. `build-ledger.mjs --scope held` writes no run unless coverage is
-complete, and every run carries `listening-receipt.json`. `--sweep` adds what
-each stage would still plan, in dry-run, from everything heard.
+many nowhere.
+
+A finished set of requests is not yet a finished run: a planner that fails
+before it writes a request leaves nothing to compare. So coverage is also held
+against `full-run-plan.json`. The stages that had to follow heading round 020
+must be on record in exactly that order, each heard to the end or recorded as
+having planned nothing; every request from before the stage records must stand
+exactly as pinned there (round 020 at 56 sources and 3,676 probes, the two
+stopped rounds at their partial counts); each stage record must agree with its
+request; and a request that no stage planned must be declared stopped. A
+declared stop never stands in for a planned stage. A stage added later is
+appended to the plan, never inserted.
+
+`build-ledger.mjs --scope held` writes no run unless coverage is complete, and
+every run carries `listening-receipt.json`. `--sweep` adds what each stage
+would still plan, in dry-run, from everything heard.
 
 | stage        | what it listens to                                                                                                                                                                     |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
