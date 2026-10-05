@@ -20,7 +20,11 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { OFFICIAL_ROUTE, resolveOfficial } from "./lib/official.mjs";
+import {
+  OFFICIAL_ADAPTER,
+  OFFICIAL_ROUTE,
+  resolveOfficial,
+} from "./lib/official.mjs";
 import { ADAPTER, certifiedStarts, resolveSource } from "./lib/resolve.mjs";
 import {
   Hold,
@@ -402,6 +406,15 @@ const summary = {
   sources: ids.length,
   questions: ledger.length,
   offered: candidates.length,
+  offeredReconstructed: candidates.filter((r) => r.reconstructed).length,
+  offeredOfficialForVerifierAdapter: candidates.filter(
+    (r) => !r.reconstructed && r.evidenceAdapter,
+  ).length,
+  officialLaterSentenceFindings: candidates.filter(
+    (r) => !r.reconstructed && !r.evidenceAdapter,
+  ).length,
+  heldReconstructed: ledger.filter((r) => r.status === "held" && r.reconstructed).length,
+  heldOfficial: ledger.filter((r) => r.status === "held" && !r.reconstructed).length,
   offeredOriginalPassages: passages.size,
   offeredByKind: byKind,
   pilotCohort: {
@@ -457,6 +470,20 @@ if (!values["dry-run"]) {
   // source that exists in the roots, by literal round folder and file name,
   // used or not. A later round, or another source's round, changes none of them.
   const slash = (path) => path.replace(/\\/g, "/");
+  const neighborArtifacts = (sourceRecordId) => {
+    const seen = new Map();
+    for (const row of ledger)
+      if (row.sourceRecordId === sourceRecordId && row.nextCertificateEvidence)
+        for (const artifact of session.baseline.admissionArtifacts.get(
+          row.nextCertificateEvidence.questionId,
+        ) ?? [])
+          seen.set(artifact.path, {
+            ...artifact,
+            certificate: row.nextCertificateEvidence.certificate,
+            questionId: row.nextCertificateEvidence.questionId,
+          });
+    return [...seen.values()];
+  };
   const sourceCatalogs = (store, folder) => {
     const refs = {};
     const bySource = new Map();
@@ -495,6 +522,9 @@ if (!values["dry-run"]) {
           layout: "<root>/probes/<round>/<sourceRecordId>.json; request at <root>/probe-requests/<round>.json",
           roots,
           rawArtifacts: artifacts,
+          // Raw recognitions behind a certified start that bounds one of this
+          // source's offered passages; they live in the earlier producers' folders.
+          certifiedNeighborArtifacts: neighborArtifacts(sourceRecordId),
         }),
       };
     }
@@ -523,12 +553,26 @@ if (!values["dry-run"]) {
       evidenceAdapter: ADAPTER,
       records: candidates.filter((r) => r.reconstructed),
     }),
+    // Official rows whose exact first-utterance opening was heard from a clip
+    // at a measured onset: shaped for the verifier's official wrapper.
     "official-candidates.json": write("official-candidates.json", {
       ...header,
       route: OFFICIAL_ROUTE,
-      evidenceAdapter: null,
-      records: candidates.filter((r) => !r.reconstructed),
+      evidenceAdapter: OFFICIAL_ADAPTER,
+      records: candidates.filter((r) => !r.reconstructed && r.evidenceAdapter),
     }),
+    // Official rows bound only by a later own script sentence: a finding of
+    // this producer's route, for which the verifier has no admission route.
+    "official-later-sentence-findings.json": write(
+      "official-later-sentence-findings.json",
+      {
+        ...header,
+        route: OFFICIAL_ROUTE,
+        evidenceAdapter: null,
+        admissionRoute: "none: reported, not offered for admission",
+        records: candidates.filter((r) => !r.reconstructed && !r.evidenceAdapter),
+      },
+    ),
     "tables.json": write("tables.json", { ...header, sources: tables }),
     "controls.json": write("controls.json", { ...header, ...controls }),
   };

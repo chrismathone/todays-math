@@ -16,6 +16,7 @@
 import {
   ScriptError,
   scriptSection,
+  sectionOpenings,
   spokenCorpus,
 } from "../../claude-ambiguity/lib/script.mjs";
 import { passageEvidence, reference, sourceStructure } from "./resolve.mjs";
@@ -25,10 +26,13 @@ import {
   clipInside,
   countOccurrences,
   hearQuote,
+  measuredStart,
   quoteWords,
 } from "./rules.mjs";
 
 export const OFFICIAL_ROUTE = "native_numbered_passage_script_sentence_v1";
+/** The verifier's wrapper around its existing official gates. */
+export const OFFICIAL_ADAPTER = "official-catalogued-native-v1";
 
 /** Sentences of a section's spoken turns, each with its literal character bounds. */
 export function sectionSentences(section) {
@@ -181,13 +185,72 @@ export function resolveOfficial(input) {
       const common = passageEvidence(input, passage, tested);
       const [{ listening, heard }] = perClip;
       const quoted = new Set(heard.flatMap((entry) => entry.hits[0].segmentIds));
+
+      // The independent verifier's official route needs the exact opening of
+      // the first utterance, from a clip that begins at a measured onset. Say
+      // whether that stricter thing was heard too; only then is the row shaped
+      // for its adapter. A later own sentence alone stays a separate finding.
+      let opening = null;
+      for (const candidate of sectionOpenings(input.script.text, own.section)) {
+        for (const clip of inside) {
+          const hits = hearQuote(clip.probe, candidate.words);
+          if (hits.length !== 1) continue;
+          let atMeasuredOnset = false;
+          if (clip.onsetFrame !== null)
+            try {
+              measuredStart(
+                input.native,
+                clip.startFrame,
+                clip.onsetFrame,
+                clip.probe.onsetMethod,
+              );
+              atMeasuredOnset = true;
+            } catch (error) {
+              if (!(error instanceof Hold)) throw error;
+            }
+          if (!opening || (atMeasuredOnset && !opening.atMeasuredOnset))
+            opening = { candidate, clip, hit: hits[0], atMeasuredOnset };
+        }
+        if (opening?.atMeasuredOnset) break;
+      }
+      const adapter = opening?.atMeasuredOnset ? OFFICIAL_ADAPTER : null;
+      const { heading } = common;
       rows.push({
         ...base,
         status: "candidate",
-        evidenceAdapter: null,
+        evidenceAdapter: adapter,
         ...common.fields,
         cueSegmentIds: [],
         anchorSegmentIds: [],
+        officialIdentityEvidence: adapter
+          ? { method: "numbered_section_own_dialogue_v1" }
+          : null,
+        officialInstruction: own.section.instruction
+          ? { text: own.section.instruction.text, source: "official_script_section" }
+          : null,
+        firstUtteranceOpening: opening
+          ? {
+              method: opening.candidate.method,
+              quotes: opening.candidate.quotes,
+              words: opening.candidate.words.length,
+              clipBeginsAtMeasuredOnset: opening.atMeasuredOnset,
+              openingProbeEvidence: reference(
+                opening.clip.ref,
+                opening.clip.probe.segments.filter((s) =>
+                  opening.hit.segmentIds.includes(s.id),
+                ),
+                {
+                  purpose: opening.clip.purpose,
+                  onsetFrame: opening.clip.onsetFrame,
+                  offsetFromStartFrames:
+                    opening.clip.startFrame - common.fields.nativeEvidence.startFrame,
+                },
+              ),
+            }
+          : null,
+        numberWrittenAs: heading.instructionSibling
+          ? "literal_number_clip_and_bare_digits_before_the_instruction"
+          : "literal_number_before_the_instruction",
         dialogueProbeEvidence: reference(
           listening.ref,
           listening.probe.segments.filter((s) => quoted.has(s.id)),

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  OFFICIAL_ADAPTER,
   OFFICIAL_ROUTE,
   resolveOfficial,
   scriptAnchors,
@@ -59,6 +60,39 @@ test("an official question is offered at its own measured number when its own sc
   assert.equal(SCRIPT.slice(sentence.startCharacter, sentence.endCharacter), sentence.text);
   assert.equal(row.dialogueProbeEvidence.startFrame, 3400 * FRAMES);
   assert.equal(row.scriptEvidence.transcriptSha256, "5".repeat(64));
+});
+
+test("only the exact first-utterance opening from a clip at a measured onset is shaped for the verifier's official adapter", () => {
+  // The fixture clip has no measured onset of its own: a finding, no adapter.
+  const loose = rowOf(resolveOfficial(makeOfficialInput([2])), "o-2");
+  assert.equal(loose.evidenceAdapter, null);
+  assert.equal(loose.firstUtteranceOpening.method, "first_utterance_prefix");
+  assert.equal(loose.firstUtteranceOpening.clipBeginsAtMeasuredOnset, false);
+  assert.equal(loose.officialIdentityEvidence, null);
+  // The same words from a clip that begins at the measured lead before the dialogue's first sound.
+  const measured = makeOfficialInput([2]);
+  measured.enListenings.push(
+    listening(
+      "en",
+      (3300 - 20) * FRAMES,
+      900,
+      [segment("First of all, turn off the light when you leave the room.", 0.4, 5)],
+      { onsetFrame: 3300 * FRAMES },
+    ),
+  );
+  const row = rowOf(resolveOfficial(measured), "o-2");
+  assert.equal(row.evidenceAdapter, OFFICIAL_ADAPTER);
+  assert.deepEqual(row.officialIdentityEvidence, { method: "numbered_section_own_dialogue_v1" });
+  const [quote] = row.firstUtteranceOpening.quotes;
+  assert.equal(SCRIPT.slice(quote.startCharacter, quote.endCharacter), quote.text);
+  assert.equal(
+    row.firstUtteranceOpening.openingProbeEvidence.offsetFromStartFrames,
+    (3300 - 20) * FRAMES - startOf(AT[2]),
+  );
+  // A later own sentence alone never gets the adapter: question 4's first turn is "Hi, Minsoo."
+  const later = rowOf(resolveOfficial(makeOfficialInput([4])), "o-4");
+  assert.equal(later.status, "candidate");
+  assert.equal(later.evidenceAdapter, null);
 });
 
 test("another section's sentence inside the passage, or the own sentence outside it, holds the question", () => {

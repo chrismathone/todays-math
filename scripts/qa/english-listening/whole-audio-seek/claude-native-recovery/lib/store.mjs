@@ -131,9 +131,17 @@ export function loadBaseline(overrides = {}) {
   // Where each certified start was actually admitted: this certificate, or the
   // complete certificate before it for a row this one only preserves.
   const admissions = new Map();
+  /** The raw recognitions each admission rested on, by question id. */
+  const admissionArtifacts = new Map();
   const admit = (reference, rows) => {
     for (const row of rows)
-      if (row.status === "admitted" && row.audioRange && !admissions.has(row.questionId))
+      if (row.status === "admitted" && row.audioRange && !admissions.has(row.questionId)) {
+        admissionArtifacts.set(
+          row.questionId,
+          [row.probeEvidence, row.dialogueProbeEvidence, row.numberClipEvidence]
+            .filter((e) => e?.path && e.sha256)
+            .map((e) => ({ path: e.path, sha256: e.sha256 })),
+        );
         admissions.set(row.questionId, {
           certificate: reference,
           questionId: row.questionId,
@@ -141,6 +149,7 @@ export function loadBaseline(overrides = {}) {
           nativeOnsetFrame: row.nativeEvidence?.onsetFrame ?? null,
           startMs: row.audioRange.startMs,
         });
+      }
   };
   admit(inputs.certificate, certificate.records);
   const ancestor = certificate.inputs?.ancestorCertificate;
@@ -163,6 +172,7 @@ export function loadBaseline(overrides = {}) {
     certificate,
     certBySource,
     admissions,
+    admissionArtifacts,
   };
 }
 
