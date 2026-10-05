@@ -604,5 +604,19 @@ export function resolveSource({
         startFrame: pick.startFrame,
       });
   }
-  return { rows, openGaps, cueOnly, memberDialogue, dialogueWanted, heard };
+  const candidateStarts = rows
+    .filter((row) => row.status === "candidate")
+    .map((row) => ({
+      sourceNumber: row.plan.sourceNumber,
+      startFrame: row.accepted.startFrame,
+    }));
+  return {
+    rows,
+    openGaps,
+    cueOnly,
+    memberDialogue,
+    dialogueWanted,
+    candidateStarts,
+    heard,
+  };
 }

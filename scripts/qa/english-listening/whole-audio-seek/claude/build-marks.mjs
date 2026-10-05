@@ -180,6 +180,7 @@ for (const record of records) {
     cueOnly: resolved.cueOnly,
     memberDialogue: resolved.memberDialogue,
     dialogueWanted: resolved.dialogueWanted,
+    candidateStarts: resolved.candidateStarts,
   });
 }
 

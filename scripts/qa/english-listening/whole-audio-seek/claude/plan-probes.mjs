@@ -95,6 +95,8 @@ const ledger = values.ledger
 if (values.mode === "gaps" && !ledger)
   throw new Error("--mode gaps needs --ledger");
 const maxPerGap = Number(values["max-per-gap"] ?? 5);
+/** A spoken "N번" is longer than this many windows (240 ms). */
+const SHORTEST_NUMBER_WINDOWS = 12;
 const windowSeconds = Number(values["window-seconds"] ?? 15);
 
 /**
@@ -263,6 +265,21 @@ for (const record of records) {
           questionNumber: item.sourceNumber,
           language: "en",
         });
+    }
+
+    // A candidate start that sits before a sound too short to be a spoken
+    // number (a click after the bridge music): also listen from the next onset,
+    // so the start can move up to the number itself if it is heard there.
+    for (const item of source.candidateStarts ?? []) {
+      const first = at(item.startFrame);
+      if (!first || first.islandWindows > SHORTEST_NUMBER_WINDOWS) continue;
+      const next = candidates.find(
+        (c) =>
+          c.onsetWindow > first.onsetWindow &&
+          c.onsetWindow <= first.onsetWindow + 75,
+      );
+      if (next)
+        addCandidate("gap_onset", next, { questionNumber: item.sourceNumber });
     }
 
     const inGap = (gap, c) =>
