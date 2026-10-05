@@ -264,7 +264,7 @@ const jobOf = (world: TextbookWorld, requestId: string, status: string) => ({
 });
 
 /** 가로채기를 건다. 다른 출처 · 모르는 API 는 실패로 적고 끊는다 */
-export async function installTextbookApi(page: Page): Promise<TextbookWorld> {
+export async function installTextbookApi(page: Page, origin = ORIGIN): Promise<TextbookWorld> {
   const world = newWorld();
   const json = (route: Route, data: unknown, status = 200) =>
     route.fulfill({
@@ -278,7 +278,7 @@ export async function installTextbookApi(page: Page): Promise<TextbookWorld> {
   await page.route("**/*", async (route) => {
     const request = route.request();
     const url = new URL(request.url());
-    if (url.origin !== ORIGIN) {
+    if (url.origin !== origin) {
       world.unexpected.push(url.href);
       return route.abort();
     }

@@ -7,6 +7,7 @@ import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
+import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
@@ -71,7 +72,11 @@ export function JaseupTemplate({
               fontSize: 11,
             }}
           >
-            <span style={{ fontWeight: 700, color: accent }}>내 정답</span>
+            <span
+              style={{ fontWeight: 700, color: readablePaperColor(accent) }}
+            >
+              내 정답
+            </span>
             <span
               style={{
                 flex: 1,
@@ -111,7 +116,7 @@ export function JaseupTemplate({
                 right: 8,
                 fontFamily: "var(--paper-font-sans)",
                 fontSize: 9,
-                color: PAPER_COLORS.ink30,
+                color: PAPER_COLORS.mutedText,
                 letterSpacing: "0.12em",
               }}
             >
@@ -177,7 +182,7 @@ export function JaseupTemplate({
                   fontFamily: "var(--paper-font-sans)",
                   fontSize: 10,
                   fontWeight: 700,
-                  color: accent,
+                  color: readablePaperColor(accent),
                   letterSpacing: "0.3em",
                   marginBottom: 4,
                 }}
@@ -248,7 +253,7 @@ export function JaseupTemplate({
                   fontFamily: "var(--paper-font-sans)",
                   fontSize: 10.5,
                   fontWeight: 800,
-                  color: accent,
+                  color: readablePaperColor(accent),
                   letterSpacing: "0.16em",
                   marginBottom: 6,
                 }}
@@ -298,7 +303,7 @@ export function JaseupTemplate({
         <span
           style={{
             fontWeight: 700,
-            color: accent,
+            color: readablePaperColor(accent),
             letterSpacing: "0.12em",
           }}
         >

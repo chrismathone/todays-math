@@ -349,6 +349,38 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 
+describe("교재 편집 칸 키보드 이동", () => {
+  it("원고와 미리보기의 선택, 포커스, 연결된 패널을 함께 바꾼다", async () => {
+    render(<TextbookStudioView api={api()} viewport="mobile" />);
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
+    await screen.findByRole("textbox", { name: "대사" });
+    const tabs = within(screen.getByRole("tablist", { name: "편집 칸" }));
+    const manuscript = tabs.getByRole("tab", { name: "원고" });
+    const preview = tabs.getByRole("tab", { name: "미리보기" });
+    manuscript.focus();
+    expect(manuscript.tabIndex).toBe(0);
+    expect(preview.tabIndex).toBe(-1);
+    fireEvent.keyDown(manuscript, { key: "ArrowRight" });
+    expect(preview).toHaveFocus();
+    expect(preview).toHaveAttribute("aria-selected", "true");
+    expect(
+      document.getElementById(preview.getAttribute("aria-controls")!),
+    ).toHaveAttribute("aria-labelledby", preview.id);
+    fireEvent.keyDown(preview, { key: "Home" });
+    expect(manuscript).toHaveFocus();
+    expect(
+      document.getElementById(manuscript.getAttribute("aria-controls")!),
+    ).toHaveAttribute("aria-labelledby", manuscript.id);
+    fireEvent.keyDown(manuscript, { key: "End" });
+    expect(preview).toHaveFocus();
+    fireEvent.keyDown(preview, { key: "ArrowLeft" });
+    expect(manuscript).toHaveFocus();
+    expect(manuscript.tabIndex).toBe(0);
+    expect(preview.tabIndex).toBe(-1);
+  });
+});
+
 describe("T01 — 구획 정답 메모", () => {
   it("저장 요청에 실리고, PDF 에 인쇄되지 않는다고 원고와 미리보기에서 알린다", async () => {
     const saveSection = vi.fn(async () => ({
@@ -396,7 +428,9 @@ describe("T02 · T03 — 저장하지 않은 원고를 덮는 이동", () => {
     // 경고는 완성 보기에서도 보인다 — 구획을 읽으러 가지 않았다
     expect(prompt()).toBeVisible();
     expect(getSection).toHaveBeenCalledTimes(before);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "계속 편집" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "계속 편집" }),
+    );
     noPrompt();
     fireEvent.click(screen.getByRole("button", { name: "세부 편집" }));
     expect(screen.getByRole("textbox", { name: "대사" })).toHaveValue(
@@ -412,7 +446,9 @@ describe("T02 · T03 — 저장하지 않은 원고를 덮는 이동", () => {
     expect(prompt()).toBeVisible();
     // 아직 떠나지 않았다
     expect(screen.queryByRole("button", { name: "열기" })).toBeNull();
-    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "버리고 이동" }),
+    );
     expect(await screen.findByRole("button", { name: "열기" })).toBeVisible();
   });
 
@@ -482,7 +518,9 @@ describe("T02 · T03 — 저장하지 않은 원고를 덮는 이동", () => {
     );
     expect(prompt()).toBeVisible();
     expect(navigation.push).not.toHaveBeenCalled();
-    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "버리고 이동" }),
+    );
     await waitFor(() =>
       expect(navigation.push).toHaveBeenCalledWith("/account"),
     );
@@ -1031,10 +1069,14 @@ describe("D05 — 배정과 새 구획", () => {
     fireEvent.click(screen.getByRole("button", { name: "배정" }));
     const panel = await screen.findByRole("region", { name: "배정" });
     expect(
-      within(panel).getByRole("option", { name: "반 목록을 불러오는 중입니다" }),
+      within(panel).getByRole("option", {
+        name: "반 목록을 불러오는 중입니다",
+      }),
     ).toBeInTheDocument();
     expect(within(panel).queryByText("반이 없습니다")).toBeNull();
-    expect(within(panel).getByRole("button", { name: "배정 추가" })).toBeDisabled();
+    expect(
+      within(panel).getByRole("button", { name: "배정 추가" }),
+    ).toBeDisabled();
     release([]);
     expect(
       await within(panel).findByRole("option", { name: "반이 없습니다" }),
@@ -1234,7 +1276,9 @@ describe("D06 — 영상 등록과 연결", () => {
     await screen.findByRole("option", { name: "1번" });
     fireEvent.click(screen.getByRole("button", { name: "영상 연결" }));
     expect(
-      await screen.findByText("문항과 영상을 고르고 문항 내용을 확인해 주세요."),
+      await screen.findByText(
+        "문항과 영상을 고르고 문항 내용을 확인해 주세요.",
+      ),
     ).toBeVisible();
     expect(bindVideo).not.toHaveBeenCalled();
   });
@@ -1294,7 +1338,9 @@ describe("T03 — 작업실이 교재 화면을 떠나려 할 때", () => {
     const proceed = vi.fn();
     expect(leaveWorkspace(proceed)).toBe(false);
     expect(prompt()).toBeVisible();
-    fireEvent.click(within(prompt()).getByRole("button", { name: "계속 편집" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "계속 편집" }),
+    );
     noPrompt();
     expect(proceed).not.toHaveBeenCalled();
     expect(line()).toHaveValue("고친 문장");
@@ -1305,7 +1351,9 @@ describe("T03 — 작업실이 교재 화면을 떠나려 할 때", () => {
     edit("고친 문장");
     const proceed = vi.fn();
     expect(leaveWorkspace(proceed)).toBe(false);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "버리고 이동" }),
+    );
     await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
     noPrompt();
     expect(line()).toHaveValue("저장된 문장");
@@ -1358,7 +1406,9 @@ describe("T03 — 작업실이 교재 화면을 떠나려 할 때", () => {
     edit("고친 문장");
     const proceed = vi.fn();
     expect(leaveWorkspace(proceed)).toBe(false);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "저장 후 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "저장 후 이동" }),
+    );
     expect(await screen.findByText("저장하지 못했습니다.")).toBeVisible();
     expect(proceed).not.toHaveBeenCalled();
     expect(line()).toHaveValue("고친 문장");
@@ -1426,7 +1476,9 @@ describe("T03 — 승인한 이동이 같은 이동을 다시 물어 올 때 (�
     edit("고친 문장");
     const { outcomes, proceed } = reentrant();
     expect(leaveWorkspace(proceed)).toBe(false);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "버리고 이동" }),
+    );
     await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
     expect(outcomes).toEqual([true]);
     noPrompt();
@@ -1441,7 +1493,9 @@ describe("T03 — 승인한 이동이 같은 이동을 다시 물어 올 때 (�
     edit("고친 문장");
     const { outcomes, proceed } = reentrant();
     expect(leaveWorkspace(proceed)).toBe(false);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "저장 후 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "저장 후 이동" }),
+    );
     await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
     expect(outcomes).toEqual([true]);
     expect(saveSection).toHaveBeenCalledOnce();
@@ -1456,7 +1510,9 @@ describe("T03 — 승인한 이동이 같은 이동을 다시 물어 올 때 (�
     edit("고친 문장");
     const { proceed } = reentrant();
     expect(leaveWorkspace(proceed)).toBe(false);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "버리고 이동" }),
+    );
     await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
     edit("또 고친 문장");
     const later = vi.fn();
@@ -1470,7 +1526,9 @@ describe("T03 — 승인한 이동이 같은 이동을 다시 물어 올 때 (�
     edit("고친 문장");
     const proceed = vi.fn();
     expect(leaveWorkspace(proceed)).toBe(false);
-    fireEvent.click(within(prompt()).getByRole("button", { name: "버리고 이동" }));
+    fireEvent.click(
+      within(prompt()).getByRole("button", { name: "버리고 이동" }),
+    );
     await waitFor(() => expect(proceed).toHaveBeenCalledOnce());
     edit("또 고친 문장");
     expect(leaveWorkspace(vi.fn())).toBe(false);

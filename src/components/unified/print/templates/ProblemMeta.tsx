@@ -5,6 +5,7 @@
 
 import React from "react";
 import { PAPER_COLORS } from "../tokens";
+import { inkOnColor, readablePaperColor } from "../readableColor";
 import type { PrintOptions, PrintTemplate, ProblemReview } from "../types";
 
 /** One shared first row, also rendered unchanged by the measurement pass. */
@@ -82,6 +83,7 @@ interface QuestionNumberProps {
 }
 
 export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
+  const textAccent = readablePaperColor(accent);
   const printStyle: React.CSSProperties = {
     WebkitPrintColorAdjust: "exact" as const,
   };
@@ -95,7 +97,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
             fontWeight: 800,
             fontFamily: "var(--paper-font-serif)",
             fontSize: 14,
-            color: accent,
+            color: textAccent,
             marginRight: 6,
             ...printStyle,
           }}
@@ -112,7 +114,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
             fontWeight: 800,
             fontFamily: "var(--paper-font-serif)",
             fontSize: 14,
-            color: accent,
+            color: textAccent,
             marginRight: 6,
             ...printStyle,
           }}
@@ -128,7 +130,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
           style={{
             fontSize: 22,
             fontWeight: 800,
-            color: accent,
+            color: textAccent,
             fontFamily: "var(--paper-font-sans)",
             letterSpacing: "-0.02em",
             fontVariantNumeric: "tabular-nums",
@@ -149,7 +151,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
             width: 22,
             height: 22,
             background: accent,
-            color: "white",
+            color: inkOnColor(accent),
             fontWeight: 700,
             fontSize: 12,
             marginRight: 6,
@@ -169,7 +171,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
             fontFamily: "var(--paper-font-serif)",
             fontWeight: 800,
             fontSize: 18,
-            color: accent,
+            color: textAccent,
             marginRight: 8,
             lineHeight: 1,
             ...printStyle,
@@ -193,7 +195,7 @@ export function QuestionNumber({ template, num, accent }: QuestionNumberProps) {
             fontSize: 12,
             marginRight: 6,
             verticalAlign: "middle",
-            color: accent,
+            color: textAccent,
             ...printStyle,
           }}
         >
@@ -239,7 +241,7 @@ export function TopicLabel({ topic, accent }: TopicLabelProps) {
       style={{
         fontSize: 10,
         fontWeight: 700,
-        color: accent ?? PAPER_COLORS.ink50,
+        color: accent ? readablePaperColor(accent) : PAPER_COLORS.ink50,
         fontFamily: "var(--paper-font-sans)",
         letterSpacing: "0.08em",
         textTransform: "uppercase",

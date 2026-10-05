@@ -6,6 +6,7 @@ import { printPagePadding, scaledItemStyle } from "../geometry";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
+import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
@@ -108,7 +109,7 @@ export function ModernTemplate({
                 style={{
                   fontSize: 11,
                   fontWeight: 700,
-                  color: accent,
+                  color: readablePaperColor(accent),
                   letterSpacing: "0.32em",
                   fontFamily: "var(--paper-font-sans)",
                   marginBottom: 4,
@@ -148,7 +149,7 @@ export function ModernTemplate({
               style={{
                 padding: "8px 14px",
                 border: `2px solid ${accent}`,
-                color: accent,
+                color: readablePaperColor(accent),
                 fontFamily: "var(--paper-font-sans)",
                 fontWeight: 800,
                 fontSize: 14,
@@ -198,7 +199,7 @@ export function ModernTemplate({
                     fontSize: 9.5,
                     fontWeight: 700,
                     letterSpacing: "0.1em",
-                    color: accent,
+                    color: readablePaperColor(accent),
                     marginBottom: 3,
                   }}
                 >
@@ -224,7 +225,11 @@ export function ModernTemplate({
               flexShrink: 0,
             }}
           >
-            <span style={{ fontWeight: 700, color: accent }}>! </span>
+            <span
+              style={{ fontWeight: 700, color: readablePaperColor(accent) }}
+            >
+              !{" "}
+            </span>
             OMR 카드에 컴퓨터용 사인펜으로 표기 · 한 문항 중복 표기 시 0점 처리
             · 계산기·전자기기 사용 금지
           </div>
@@ -272,7 +277,7 @@ export function ModernTemplate({
           {meta.schoolName ?? "○○고등학교"} · {meta.grade ?? "2학년"}{" "}
           {meta.subject}
         </span>
-        <span style={{ fontWeight: 700, color: accent }}>
+        <span style={{ fontWeight: 700, color: readablePaperColor(accent) }}>
           {page} / {totalPages}
         </span>
       </div>
