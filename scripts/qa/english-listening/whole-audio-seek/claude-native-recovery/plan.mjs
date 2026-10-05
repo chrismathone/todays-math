@@ -11,6 +11,9 @@
  *
  * headings    Korean, 8 s, from every measured onset inside the band that the
  *             transcripts point at for each written number.
+ * context     Korean, 14 s, from a start where the number was written first and
+ *             the announcer's sentence began but eight seconds ended before
+ *             its verb (a long shared heading).
  * variants    Korean, 6 s and 4.5 s, from a start where the number was written
  *             first but with a recognizer time that lags the measured onset.
  * quotes      English, up to 60 s: the dialogue of an established passage, from
@@ -70,6 +73,7 @@ if (existsSync(requestPath)) throw new Error("Round exists: " + requestPath);
 const cap = Number(values["max-per-number"]);
 
 const HEADING_WINDOWS = 400;
+const CONTEXT_WINDOWS = 700;
 const QUOTE_WINDOWS = 3000;
 const MINIMUM_WINDOWS = 150;
 
@@ -169,6 +173,45 @@ for (const id of session.scope(values.scope, values["source-id"])) {
       if (!provider.length && !asr.length) bump("numbersWithoutOnsetInBand");
       for (const onset of [...provider, ...asr])
         korean(onset, "heading_onset", { hintedNumber: number });
+    }
+  } else if (values.stage === "context") {
+    // A start where the number was written first and reliably and the
+    // announcer's sentence had begun, but eight seconds ended before its verb
+    // (a long shared heading): the same start is heard once more for fourteen
+    // seconds. The short readings stay on record beside it.
+    const byStart = new Map();
+    for (const l of w.koListenings) {
+      if (!byStart.has(l.startFrame)) byStart.set(l.startFrame, []);
+      byStart.get(l.startFrame).push(l);
+    }
+    for (const [startFrame, list] of byStart) {
+      const readings = list.map((l) => ({ l, r: headingReading(l.probe) }));
+      const numbered = readings.filter(
+        ({ r }) => r.cue && readsHeading(r, r.cue.numbers),
+      );
+      if (!numbered.length || numbered.some(({ r }) => r.instruction)) continue;
+      const begun = numbered.some(
+        ({ l, r }) =>
+          l.probe.segments
+            .map((s) => s.text)
+            .join(" ")
+            .slice(r.text.length - r.cue.rest.length)
+            .replace(/입니다/g, "")
+            .replace(/[^가-힣]/g, "").length >= 4,
+      );
+      if (!begun) continue;
+      const windows = Math.min(CONTEXT_WINDOWS, Math.floor((native.frameCount - startFrame) / frames));
+      if (list.some((l) => l.frameCount >= windows * frames)) continue;
+      const [{ l }] = numbered;
+      push({
+        purpose: "heading_onset_longer_context",
+        language: "ko",
+        startFrame,
+        frameCount: windows * frames,
+        onsetFrame: l.onsetFrame,
+        onsetMethod: l.probe.onsetMethod,
+        quietBeforeFrames: l.probe.quietBeforeFrames,
+      });
     }
   } else if (values.stage === "variants") {
     // A start where the number was written first and reliably, but with a

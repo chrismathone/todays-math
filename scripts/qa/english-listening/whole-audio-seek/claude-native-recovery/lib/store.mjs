@@ -312,6 +312,8 @@ export class ProbeStore {
               frameCount: probe.frameCount,
               clipPcmSha256: probe.clipPcmSha256,
               inputMonoFloat32Sha256: probe.inputMonoFloat32Sha256,
+              requestPath: String(container.requestPath).replace(/\\/g, "/"),
+              requestSha256: container.requestSha256,
             },
             language: probe.requestedLanguage ?? container.requestedLanguage,
             purpose: probe.purpose ?? null,

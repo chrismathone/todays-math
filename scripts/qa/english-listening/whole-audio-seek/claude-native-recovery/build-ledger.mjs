@@ -20,8 +20,8 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
-import { resolveOfficial } from "./lib/official.mjs";
-import { certifiedStarts, resolveSource } from "./lib/resolve.mjs";
+import { OFFICIAL_ROUTE, resolveOfficial } from "./lib/official.mjs";
+import { ADAPTER, certifiedStarts, resolveSource } from "./lib/resolve.mjs";
 import {
   Hold,
   ROUTE,
@@ -451,17 +451,38 @@ if (!values["dry-run"]) {
     rules: RULES,
   };
   // Every bounded recognition of these sources that exists, used or not.
+  // Fixed at this moment: every container of these sources that exists in the
+  // roots, by explicit round folder. A later round does not change this file.
+  const slash = (path) => path.replace(/\\/g, "/");
+  const artifacts = session.store.catalog;
+  const bySource = {};
+  for (const artifact of artifacts)
+    (bySource[artifact.sourceRecordId] ??= []).push(artifact);
   const catalog = {
     schemaVersion: 1,
     producer: "claude-native-recovery",
     run: values.run,
-    layout: "<root>/probes/round-NNN/<sourceRecordId>.json; request at <root>/probe-requests/round-NNN.json",
+    frozenAt: new Date().toISOString(),
+    layout:
+      "<root>/probes/<round>/<sourceRecordId>.json; request at <root>/probe-requests/<round>.json",
     roots: session.store.roots.map((path) => ({
-      path: path.replace(/\\/g, "/"),
-      pattern: "probes/round-*/<sourceRecordId>.json",
+      path: slash(path),
+      rounds: [
+        ...new Set(
+          artifacts.filter((x) => x.root === slash(path)).map((x) => x.round),
+        ),
+      ].sort(),
+      patterns: [
+        ...new Set(
+          artifacts.filter((x) => x.root === slash(path)).map((x) => x.round),
+        ),
+      ]
+        .sort()
+        .map((round) => "probes/" + round + "/<sourceRecordId>.json"),
     })),
-    rawArtifacts: session.store.catalog,
-    adversarialRoot: join(session.out, "adversarial").replace(/\\/g, "/"),
+    sources: bySource,
+    rawArtifacts: artifacts,
+    adversarialRoot: slash(join(session.out, "adversarial")),
     adversarialArtifacts: adversarialStore.catalog,
   };
   const probeCatalog = {
@@ -474,7 +495,19 @@ if (!values["dry-run"]) {
   summary.files = {
     "probe-catalog.json": probeCatalog.sha256,
     "ledger.json": write("ledger.json", { ...header, records: ledger }),
-    "candidates.json": write("candidates.json", { ...header, records: candidates }),
+    // The verifier's adapter covers the reconstructed route only; official
+    // rows are a separately named route and are never mixed into that file.
+    "candidates.json": write("candidates.json", {
+      ...header,
+      evidenceAdapter: ADAPTER,
+      records: candidates.filter((r) => r.reconstructed),
+    }),
+    "official-candidates.json": write("official-candidates.json", {
+      ...header,
+      route: OFFICIAL_ROUTE,
+      evidenceAdapter: null,
+      records: candidates.filter((r) => !r.reconstructed),
+    }),
     "tables.json": write("tables.json", { ...header, sources: tables }),
     "controls.json": write("controls.json", { ...header, ...controls }),
   };

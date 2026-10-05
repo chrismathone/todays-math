@@ -88,18 +88,45 @@ function headingReference(heading) {
   );
 }
 
-const placeEvidence = (place) => ({
-  onsetMethod: place.onsetMethod,
-  startFrame: place.startFrame,
-  onsetFrame: place.onsetFrame,
-  quietBeforeFrames: place.quietBeforeFrames,
-  leadFrames: place.leadFrames,
-  leadPeakDbfs: place.leadPeakDbfs,
-  soundWindowsInFirstTwoSeconds: place.soundWindowsInFirstTwoSeconds,
-  ...(place.noiseFloorEvidence
-    ? { noiseFloorEvidence: place.noiseFloorEvidence }
-    : {}),
-});
+/**
+ * The measured place of a heading or closing. Where the request that found a
+ * noise-tier onset wrote only the baseline length as its quiet (rounds planned
+ * before the full count was stored), the row states the full measured quiet
+ * and names that raw value and its baseline, in the independent verifier's
+ * terms; nothing in the raw request or container is changed.
+ */
+function placeEvidence(at) {
+  const { place, probe, ref } = at;
+  const evidence = {
+    onsetMethod: place.onsetMethod,
+    startFrame: place.startFrame,
+    onsetFrame: place.onsetFrame,
+    quietBeforeFrames: place.quietBeforeFrames,
+    leadFrames: place.leadFrames,
+    leadPeakDbfs: place.leadPeakDbfs,
+    soundWindowsInFirstTwoSeconds: place.soundWindowsInFirstTwoSeconds,
+  };
+  const noise = place.noiseFloorEvidence;
+  if (!noise) return evidence;
+  evidence.noiseFloorEvidence = noise;
+  if (
+    probe.quietBeforeFrames !== place.quietBeforeFrames &&
+    probe.quietBeforeFrames ===
+      Math.min(place.quietBeforeFrames, noise.baselineFrameCount)
+  ) {
+    evidence.quietEvidenceMethod = "independent_full_source_quiet_v1";
+    evidence.rawProbeQuietBeforeFrames = probe.quietBeforeFrames;
+    evidence.quietDiscoveryEvidence = {
+      method: "noise_baseline_capped_discovery_v1",
+      contextStartFrame: noise.baselineStartFrame,
+      contextFrameCount: noise.baselineFrameCount,
+      contextEnergySha256: noise.baselineEnergySha256,
+      request: { path: ref.requestPath, sha256: ref.requestSha256 },
+      probeId: ref.probeId,
+    };
+  }
+  return evidence;
+}
 
 /**
  * What every offered row says about its passage: the heading that starts it,
@@ -162,15 +189,15 @@ export function passageEvidence(input, passage, tested = {}) {
         channels: native.channels,
         frameCount: native.frameCount,
         pcmSha256: native.pcmSha256,
-        ...placeEvidence(heading.place),
+        ...placeEvidence(heading),
       },
       probeEvidence: headingReference(heading),
       nextProbeEvidence: nextHeading ? headingReference(nextHeading) : null,
-      nextNativeEvidence: nextHeading ? placeEvidence(nextHeading.place) : null,
+      nextNativeEvidence: nextHeading ? placeEvidence(nextHeading) : null,
       sharedHeadProbeEvidence:
         kind === "shared_instruction_member" ? headingReference(head) : null,
       sharedHeadNativeEvidence:
-        kind === "shared_instruction_member" ? placeEvidence(head.place) : null,
+        kind === "shared_instruction_member" ? placeEvidence(head) : null,
       terminalProbeEvidence: boundary.closing
         ? reference(
             boundary.closing.ref,
@@ -180,7 +207,7 @@ export function passageEvidence(input, passage, tested = {}) {
           )
         : null,
       terminalNativeEvidence: boundary.closing
-        ? placeEvidence(boundary.closing.place)
+        ? placeEvidence(boundary.closing)
         : null,
     },
     nativeRecovery: {

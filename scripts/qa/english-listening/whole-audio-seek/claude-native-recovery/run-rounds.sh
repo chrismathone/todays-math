@@ -6,8 +6,9 @@
 #   ./run-rounds.sh <scope> <first round number> <stage> [<stage> ...]
 #   ./run-rounds.sh pilot 2 headings variants terminal quotes+controls truncation
 #
-# Stages: headings | variants | terminal | gaps | quotes | quotes+controls |
-#         quotes+tile | truncation (adversarial, own folder, own numbering).
+# Stages: headings | context | variants | terminal | gaps | quotes |
+#         quotes+controls | quotes+tile | truncation (adversarial, own folder,
+#         own numbering).
 # A stage that plans nothing is skipped and does not use a round number.
 set -euo pipefail
 
