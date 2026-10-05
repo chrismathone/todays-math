@@ -23,6 +23,8 @@ scope="$1"
 round="$2"
 shift 2
 mkdir -p "$OUT/logs"
+# shellcheck source=lib/cleanup.sh
+. "$HERE/lib/cleanup.sh"
 
 recognize() { # <out root> <round id>
   PYTHONIOENCODING=utf-8 "$PYTHON" -u "$HERE/../claude/run_probes.py" \
@@ -31,8 +33,9 @@ recognize() { # <out root> <round id>
     --model-cache "$MAIN/output/listening-assessments/reconstruction/model-cache" \
     --owner "$OWNER" --runtime-root "$SEEK/decoder-runtime" \
     >>"$OUT/logs/probes-$(basename "$1")-round-$2.log" 2>&1
-  # The runner deletes each source's temporary clips; remove the empty folders too.
-  find "$1/tmp" -type d -empty -delete 2>/dev/null || true
+  # The runner deletes each source's temporary clips; remove this round's own
+  # folder if that left it empty. Never sweep tmp: another round may be extracting.
+  cleanup_round "$1" "$2"
 }
 
 for stage in "$@"; do

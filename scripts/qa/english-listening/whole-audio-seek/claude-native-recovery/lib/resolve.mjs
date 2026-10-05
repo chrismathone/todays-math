@@ -15,6 +15,7 @@ import {
   establishHeadings,
   instructed,
   estimateContradiction,
+  measuredStart,
   locateFrozenQuote,
   passageStarts,
   quoteWords,
@@ -23,6 +24,8 @@ import {
 
 /** The independent verifier's adapter these rows are shaped for. */
 export const ADAPTER = "native-localized-generation-v2";
+/** Its separately named tier for a passage that ends at a first-speech boundary. */
+export const BOUNDARY_ADAPTER = "native-localized-generation-boundary-v3";
 
 /** Certified starts of a source by the first original number of their proven scope. */
 export function certifiedStarts(certRows, sampleRate, admissions = null) {
@@ -216,6 +219,20 @@ export function passageEvidence(input, passage, tested = {}) {
       nextNativeEvidence: nextHeading ? placeEvidence(nextHeading) : null,
       // Where no native heading bounds the passage: the certificate that
       // admitted the next number's start, in the verifier's shape.
+      // Where the next number is known only as the first speech of a reading
+      // that begins at a measured start: that reading and its place. It ends
+      // this passage and starts nothing.
+      nextBoundaryProbeEvidence: boundary.boundaryReading
+        ? reference(
+            boundary.boundaryReading.ref,
+            boundary.boundaryReading.probe.segments.filter(
+              (s) => s.id === boundary.boundaryReading.firstSegmentId,
+            ),
+          )
+        : null,
+      nextBoundaryNativeEvidence: boundary.boundaryReading
+        ? placeEvidence(boundary.boundaryReading)
+        : null,
       nextCertificateEvidence:
         !nextHeading && boundary.existing?.admission
           ? boundary.existing.admission
@@ -261,6 +278,85 @@ export function passageEvidence(input, passage, tested = {}) {
       siblingReadings: heading.siblings,
     },
   };
+}
+
+/**
+ * Where a passage ENDS when the next number's heading does not stand as a
+ * start: the measured start of a Korean recognition whose first speech is the
+ * literal next number, reliably, followed by its complete instruction (or the
+ * number is a later member of a shared heading that stands) — whatever time the
+ * recognizer wrote for the number. Every frame before that start
+ * precedes the next question's heading, so nothing of the next passage lies
+ * before it. It ends a passage; it is never a seek start.
+ *
+ * Refused when the number was written at two distant places, when another
+ * number was written from the same start, when the start is not a measured
+ * lead before a measured onset, or when it lies beyond a later known start.
+ * The earliest such start is taken: the passage only gets shorter.
+ */
+export function firstSpeechBoundary(
+  native,
+  written,
+  number,
+  afterFrame,
+  beforeFrame,
+  headings = [],
+) {
+  const rate = native.sampleRate;
+  const readings = written.filter(
+    (r) => r.form !== "bare" && r.numbers[0] === number && r.startFrame > afterFrame,
+  );
+  const reliable = readings.filter((r) => r.reliable);
+  if (!reliable.length) return null;
+  // Flagged readings of the same number count for "one place", not as a boundary.
+  const sorted = [...readings].sort((a, b) => a.startFrame - b.startFrame);
+  if (
+    (sorted.at(-1).startFrame - sorted[0].startFrame) / rate >
+    RULES.onePlaceSeconds
+  )
+    return null;
+  for (const reading of [...reliable].sort((a, b) => a.startFrame - b.startFrame)) {
+    if (reading.startFrame >= beforeFrame) return null;
+    const contradicted = written.some(
+      (other) =>
+        other.startFrame === reading.startFrame &&
+        other.form !== "bare" &&
+        other.numbers.join() !== reading.numbers.join(),
+    );
+    if (contradicted) continue;
+    // A number alone can be an answer option read aloud. The reading must
+    // carry the announcer's complete instruction after the number, or the
+    // number must be a later member of a shared heading that already stands.
+    const member = headings.some(
+      (h) =>
+        h.kind === "shared_head" &&
+        h.covers.includes(number) &&
+        h.covers[0] !== number &&
+        h.startFrame < reading.startFrame,
+    );
+    if (!reading.instruction && !member) continue;
+    let place;
+    try {
+      place = measuredStart(
+        native,
+        reading.startFrame,
+        reading.onsetFrame,
+        reading.probe.onsetMethod,
+      );
+    } catch (error) {
+      if (!(error instanceof Hold)) throw error;
+      continue;
+    }
+    return {
+      startFrame: reading.startFrame,
+      kind: "next_number_first_speech_boundary",
+      originalNumbers: reading.numbers,
+      heading: null,
+      existing: null,
+      boundaryReading: { ...reading, place },
+    };
+  }
+  return null;
 }
 
 /**
@@ -380,6 +476,17 @@ export function sourceStructure(input) {
         heading,
         existing,
       };
+    } else if (
+      (boundary = firstSpeechBoundary(
+        native,
+        written,
+        last + 1,
+        start.startFrame,
+        ordered.find((other) => other.number > last)?.startFrame ?? Infinity,
+        headings,
+      ))
+    ) {
+      // boundary set
     } else if (ordered.some((other) => other.number > last))
       reason = "next_heading_not_established";
     else {
@@ -659,7 +766,10 @@ export function resolveSource(input) {
       rows.push({
         ...base,
         status: "candidate",
-        evidenceAdapter: ADAPTER,
+        evidenceAdapter:
+          passage.boundary.kind === "next_number_first_speech_boundary"
+            ? BOUNDARY_ADAPTER
+            : ADAPTER,
         ...common.fields,
         cueSegmentIds: [],
         anchorSegmentIds: ids,

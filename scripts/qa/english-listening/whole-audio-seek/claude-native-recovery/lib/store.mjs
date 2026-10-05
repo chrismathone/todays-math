@@ -187,13 +187,23 @@ export function clockIdentity(record, clock) {
     clock.durationMs !== record.audio.durationMs
   )
     return { unavailable: "clock_record_does_not_bind_this_source" };
-  if (clock.convertedClockProof || !/\.mp3$/i.test(record.sourceAudioPath))
-    return { unavailable: "converted_playback_clock_source_not_listened" };
-  return {
+  const identity = {
     sampleRate: clock.sampleRate,
     channels: clock.channels,
     frameCount: clock.frameCount,
     pcmSha256: clock.decodedInterleavedInt16Sha256,
+  };
+  if (!clock.convertedClockProof)
+    return /\.mp3$/i.test(record.sourceAudioPath)
+      ? identity
+      : { unavailable: "original_is_not_mpeg_and_has_no_converted_clock_proof" };
+  // The one converted original: the clock is its authenticated playback's
+  // decode, bound to the original by the verifier's landmark proof. It is
+  // listened to by its own runner (run_converted_probes.py), never by the
+  // MPEG one.
+  return {
+    ...identity,
+    converted: { convertedClockProof: clock.convertedClockProof },
   };
 }
 
@@ -225,9 +235,23 @@ export function loadNativeCache(outDir, record, identity) {
       Math.floor(meta.pcm.frameCount / meta.energy.windowFrames)
   )
     problems.push("native_energy_shape_mismatch");
+  if (
+    identity.converted &&
+    (meta.decodedFrom !== "converted-playback-mp3" ||
+      JSON.stringify(meta.convertedClockProof) !==
+        JSON.stringify(identity.converted.convertedClockProof) ||
+      meta.playback?.sha256 !== record.audio.sha256)
+  )
+    problems.push("native_cache_is_not_the_converted_playback_clock");
   if (problems.length)
     throw new FrozenInputError(problems.join(",") + ": " + metaPath);
   return {
+    converted: identity.converted
+      ? {
+          playbackAudioPath: meta.playbackAudioPath,
+          convertedClockProof: meta.convertedClockProof,
+        }
+      : null,
     energy: new Float64Array(
       energyBytes.buffer.slice(
         energyBytes.byteOffset,

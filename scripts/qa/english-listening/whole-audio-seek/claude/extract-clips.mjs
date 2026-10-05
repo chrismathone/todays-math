@@ -10,7 +10,13 @@
  * meant to be played, stored or uploaded. The original file is only read.
  */
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
 import { readBound } from "./lib/inventory.mjs";
@@ -38,6 +44,12 @@ const runtimeRoot =
 
 mkdirSync(values.tmp, { recursive: true });
 if (readdirSync(values.tmp).length) throw new Error("Temporary dir not empty");
+// The whole decode below takes seconds, and the folder would stand empty all
+// that time: a cleanup of empty folders running beside it once removed it and
+// the first clip could not be written. The marker keeps it non-empty until the
+// clips and their manifest are there.
+const inProgress = join(values.tmp, ".extracting");
+writeFileSync(inProgress, String(process.pid), { flag: "wx" });
 
 const bytes = readBound(
   source.sourceAudioPath,
@@ -113,4 +125,5 @@ writeFileSync(
   }),
   { flag: "wx" },
 );
+rmSync(inProgress);
 console.log(JSON.stringify({ clips: clips.length }));

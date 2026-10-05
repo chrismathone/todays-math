@@ -39,6 +39,7 @@ import {
   readsHeading,
 } from "./lib/rules.mjs";
 import { openSession } from "./lib/session.mjs";
+import { clockIdentity } from "./lib/store.mjs";
 
 const { values } = parseArgs({
   options: {
@@ -48,6 +49,7 @@ const { values } = parseArgs({
     "source-id": { type: "string", multiple: true },
     controls: { type: "boolean" },
     tile: { type: "boolean" },
+    converted: { type: "boolean" },
     "max-per-number": { type: "string", default: "5" },
     "dry-run": { type: "boolean" },
     out: { type: "string" },
@@ -107,6 +109,18 @@ const summary = { stage: values.stage, sources: 0, probes: 0, audioSeconds: 0 };
 const bump = (key, n = 1) => (summary[key] = (summary[key] ?? 0) + n);
 
 for (const id of session.scope(values.scope, values["source-id"])) {
+  // The converted original has its own runner and its own rounds (--converted);
+  // an ordinary round never holds it, and a converted round holds nothing else.
+  const converted = Boolean(
+    clockIdentity(
+      session.baseline.recordById.get(id),
+      session.baseline.clockBySource.get(id),
+    ).converted,
+  );
+  if (converted !== Boolean(values.converted)) {
+    if (converted) bump("convertedSourceLeftToItsOwnRunner");
+    continue;
+  }
   const w = session.world(id);
   if (w.identity.unavailable) {
     bump("sourcesNotListened");
@@ -400,9 +414,13 @@ for (const id of session.scope(values.scope, values["source-id"])) {
         const begin = Math.max(first, first + Math.floor((after * rate) / frames));
         const starts = [begin];
         if (last - begin > QUOTE_WINDOWS) starts.push(last - QUOTE_WINDOWS);
-        if (values.tile)
+        if (values.tile) {
+          // Alternate clips of the same passage: one that begins two seconds
+          // earlier, and others three seconds later and every fifteen seconds.
+          starts.push(Math.max(first, begin - 100));
           for (let at = begin + 150; at < last - MINIMUM_WINDOWS; at += 750)
             starts.push(at);
+        }
         for (const startWindow of new Set(starts)) {
           const startFrame = startWindow * frames;
           const windows = Math.min(QUOTE_WINDOWS, last - startWindow);
@@ -439,6 +457,14 @@ for (const id of session.scope(values.scope, values["source-id"])) {
     channels: native.channels,
     frameCount: native.frameCount,
     pcmSha256: native.pcmSha256,
+    ...(native.converted
+      ? {
+          decodedFrom: "converted-playback-mp3",
+          playbackSha256: w.record.audio.sha256,
+          playbackAudioPath: native.converted.playbackAudioPath,
+          convertedClockProof: native.converted.convertedClockProof,
+        }
+      : {}),
     probes,
   });
 }

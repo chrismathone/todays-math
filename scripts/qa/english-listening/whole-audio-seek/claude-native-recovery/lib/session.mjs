@@ -12,6 +12,7 @@ import {
 } from "../../claude/lib/inventory.mjs";
 import { ABSOLUTE, Hold, NOISE_TIERS, RULES, noiseFloor } from "./rules.mjs";
 import {
+  FrozenInputError,
   OUT,
   PILOT_PLAN,
   ProbeStore,
@@ -81,9 +82,48 @@ export function openSession(values = {}) {
   const script = (record) => {
     try {
       liveBySet ??= loadLiveSnapshot(baseline.inventory);
-      return officialTranscript(record, liveBySet);
+      const live = officialTranscript(record, liveBySet);
+      // The independent verifier addresses the original prepared transcript;
+      // offsets are stated on it, and only where the live text is the same.
+      const prepared = readBoundJson(
+        record.preparedPath,
+        record.preparedSha256,
+        "Prepared file",
+      );
+      if (!prepared.originalPreparedPath || !prepared.originalPreparedSha256)
+        return { reason: "official_original_prepared_unbound" };
+      const original = readBoundJson(
+        prepared.originalPreparedPath,
+        prepared.originalPreparedSha256,
+        "Original prepared file",
+      );
+      const text = original.editableInput.groups
+        .map((group) => group.transcript.text)
+        .join("\n");
+      if (text !== live.text) return { reason: "official_script_sources_disagree" };
+      const questions = (original.sourceFiles ?? []).find(
+        (file) => file.kind === "questions",
+      );
+      return {
+        text,
+        sha256: live.sha256,
+        prepared: { path: record.preparedPath, sha256: record.preparedSha256 },
+        originalPrepared: {
+          path: prepared.originalPreparedPath,
+          sha256: prepared.originalPreparedSha256,
+        },
+        questionFile: questions
+          ? { path: questions.path, sha256: questions.sha256 }
+          : null,
+      };
     } catch (error) {
-      if (!(error instanceof InventoryError)) throw error;
+      // A script that is not bound, changed or missing is a reason, not a crash.
+      if (
+        !(error instanceof InventoryError) &&
+        !(error instanceof FrozenInputError) &&
+        error.code !== "ENOENT"
+      )
+        throw error;
       return { reason: "official_script_not_bound:" + error.message };
     }
   };
