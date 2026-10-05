@@ -16,6 +16,8 @@ const PAGE_FURNITURE = /ⓒ[^\n]*?-\s*\d+\s*-/g;
 const BLOCK_HEAD = /[【\[]\s*(\d{1,2})\s*[-~～∼]\s*(\d{1,2})\s*[】\]]/g;
 const CLOSING = /시그널\s*IN|ANN\s*:/g;
 const FIRST_SPEECH = /(?:^|\s)(?:\[|[A-Z][A-Za-z]*\s*:)/;
+const ANY_SPEAKER = /(?:^|\s)[A-Z][A-Za-z]*\s*:/g;
+const LEADING_DIRECTIONS = /^\s*(?:\[[^\]]{0,48}\]\s*)*/;
 
 /** All printed positions of a number followed by "번" or ".". */
 function markerPositions(text) {
@@ -98,6 +100,39 @@ const spokenEnglish = (text) =>
       .replace(SPEAKER, " "),
   );
 
+/** Exact transcript substring of [from, to) without surrounding white space. */
+function exactSpan(transcript, from, to) {
+  const raw = transcript.slice(from, to);
+  const lead = raw.length - raw.trimStart().length;
+  const text = raw.trim();
+  if (!text || text.includes("ⓒ")) return null;
+  return { start: from + lead, end: from + lead + text.length, text };
+}
+
+/**
+ * The first utterance actually spoken in [from, to): the exact transcript text
+ * after the first speaker label that carries English words. An answer blank
+ * printed before the dialogue has no words and is skipped.
+ */
+function firstSpokenUtterance(transcript, from, to) {
+  const labels = [];
+  ANY_SPEAKER.lastIndex = from;
+  for (let match; (match = ANY_SPEAKER.exec(transcript)) && match.index < to;)
+    labels.push({ at: match.index, end: match.index + match[0].length });
+  for (let i = 0; i < labels.length; i++) {
+    const stop = Math.min(labels[i + 1]?.at ?? to, to);
+    let raw = transcript.slice(labels[i].end, stop);
+    const furniture = raw.indexOf("ⓒ");
+    if (furniture >= 0) raw = raw.slice(0, furniture);
+    const lead = raw.match(LEADING_DIRECTIONS)[0].length;
+    const start = labels[i].end + lead;
+    const text = raw.slice(lead).trimEnd();
+    const words = englishWords(text.replace(DIRECTION, " "));
+    if (words.length) return { start, end: start + text.length, text, words };
+  }
+  return null;
+}
+
 /** First index at or after `from` where `pattern` matches, or `fallback`. */
 function nextMatch(text, pattern, from, fallback) {
   pattern.lastIndex = from;
@@ -139,12 +174,24 @@ export function scriptSections(transcript, plans, prompts) {
           )
         ];
       if (!head || head.end > firstMarker.at) return;
+      const speechAt = transcript
+        .slice(head.end, firstMarker.at)
+        .search(FIRST_SPEECH);
       sections.set(plan.sourceNumber, {
         words: spokenEnglish(transcript.slice(head.end, firstMarker.at)),
         charStart: head.end,
         charEnd: firstMarker.at,
         sharedWith: plan.scopeQuestionNumbers,
         headText: "",
+        instruction:
+          speechAt > 0
+            ? exactSpan(transcript, head.end, head.end + speechAt)
+            : null,
+        firstUtterance: firstSpokenUtterance(
+          transcript,
+          head.end,
+          firstMarker.at,
+        ),
       });
       return;
     }
@@ -155,7 +202,24 @@ export function scriptSections(transcript, plans, prompts) {
     if (!nextMarker) end = nextMatch(transcript, CLOSING, marker.end, end);
     const body = transcript.slice(marker.end, end);
     const dialogueAt = body.search(FIRST_SPEECH);
+    // A shared instruction is printed once, between the block head and the
+    // first member's own number.
+    const blockHead =
+      plan.kind === "shared_instruction_head"
+        ? heads.find(
+            (h) =>
+              h.first === plan.spokenNumbers[0] &&
+              h.last === plan.spokenNumbers[1] &&
+              h.end <= marker.at,
+          )
+        : null;
     sections.set(plan.sourceNumber, {
+      instruction: blockHead
+        ? exactSpan(transcript, blockHead.end, marker.at)
+        : dialogueAt > 0
+          ? exactSpan(transcript, marker.end, marker.end + dialogueAt)
+          : null,
+      firstUtterance: firstSpokenUtterance(transcript, marker.end, end),
       words: spokenEnglish(body),
       charStart: marker.end,
       charEnd: end,

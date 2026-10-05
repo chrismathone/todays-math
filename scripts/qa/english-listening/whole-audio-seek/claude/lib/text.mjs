@@ -165,6 +165,22 @@ export function coverage(official, recognized) {
   return total ? found / total : 0;
 }
 
+/**
+ * The same share over ALL of the official sentence's letters, digits and
+ * Hangul. Lower than `coverage` exactly when the sentence prints an English
+ * name or a numeral that a Korean recognizer wrote in Hangul.
+ */
+export function strictCoverage(official, recognized) {
+  const have = bigrams(compact(recognized));
+  let total = 0;
+  let found = 0;
+  for (const [gram, count] of bigrams(compact(official))) {
+    total += count;
+    found += Math.min(count, have.get(gram) ?? 0);
+  }
+  return total ? found / total : 0;
+}
+
 /** Lowercase English words with apostrophes folded; used for dialogue alignment. */
 export const englishWords = (text) =>
   String(text)

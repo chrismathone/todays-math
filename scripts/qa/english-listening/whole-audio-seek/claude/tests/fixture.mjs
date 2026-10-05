@@ -10,6 +10,7 @@ import { POLICY } from "../lib/policy.mjs";
 import { questionPlans } from "../lib/questions.mjs";
 import { resolveSource } from "../lib/resolve.mjs";
 import { assembleRow } from "../lib/rows.mjs";
+import { scriptSections } from "../lib/script.mjs";
 
 export const RATE = 48000;
 export const FRAMES = 960;
@@ -224,54 +225,33 @@ export const ASR = {
   ],
 };
 
-export function sectionsFor() {
-  const words = (text) => text.split(" ");
-  return new Map([
-    [
-      1,
-      {
-        words: words("good afternoon hello what can i do for you"),
-        sharedWith: null,
-        headText: "",
-      },
-    ],
-    [
-      2,
-      {
-        words: words("good morning here is the weather for tomorrow"),
-        sharedWith: null,
-        headText: "",
-      },
-    ],
-    [
-      3,
-      {
-        words: words("jimin look at these roses here they are beautiful"),
-        sharedWith: null,
-        headText: "",
-      },
-    ],
-    [4, { words: MEMBER_WORDS, sharedWith: null, headText: "" }],
-    [
-      5,
-      {
-        words: words("hello everyone some animals find their way home"),
-        sharedWith: [5, 6],
-        headText: "",
-      },
-    ],
-    [
-      6,
-      {
-        words: words("hello everyone some animals find their way home"),
-        sharedWith: [5, 6],
-        headText: "",
-      },
-    ],
-  ]);
+/** The official script of the fixture, as a transcript prints it. */
+export const TRANSCRIPT = [
+  "ANN : 이제 시작하겠습니다.",
+  "1번 대화를 듣고, 남자가 구입할 물병으로 가장 적절한 것을 고르시오. M: Good afternoon. W: Hello, what can I do for you today?",
+  "2번 다음을 듣고, 내일의 날씨로 가장 적절한 것을 고르시오. W: Good morning, here is the weather for tomorrow.",
+  "【3-4】대화를 듣고, 남자의 마지막 말에 이어질 여자의 응답으로 가장 적절한 것을 고르시오.",
+  "3번 Woman: ________ M: Jimin, look at these roses here. W: Wow, they are really beautiful.",
+  "4번 W: Hi Dave, what are you doing here? M: I am waiting for the bus to go home.",
+  "【5-6】 다음을 듣고, 물음에 답하시오. W: Hello everyone, some animals find their way home without a map.",
+  "5번 여자가 하는 말의 주제로 가장 적절한 것을 고르시오. 6번 언급된 동물이 아닌 것을 고르시오.",
+  "시그널 IN ANN : 수고하셨습니다.",
+].join(" ");
+export const TRANSCRIPT_SHA = "7".repeat(64);
+
+/** Sections exactly as the tools split the fixture transcript. */
+export function sectionsFor(record = makeRecord()) {
+  const plans = questionPlans(record);
+  const { sections, reason } = scriptSections(
+    TRANSCRIPT,
+    plans,
+    plans.map((plan) => plan.ownSentence),
+  );
+  if (!sections)
+    throw new Error("Fixture transcript does not split: " + reason);
+  return sections;
 }
 
-/** Resolves the fixture and assembles ledger rows exactly as the builder does. */
 export function buildLedger({
   record,
   native,
@@ -296,6 +276,7 @@ export function buildLedger({
       native,
       row,
       section: sections?.get(row.plan.sourceNumber) ?? null,
+      transcriptSha256: TRANSCRIPT_SHA,
       check:
         resolved.heard.find(
           (item) =>
@@ -321,7 +302,12 @@ export function buildLedger({
   const env = {
     inventorySha256: INVENTORY_SHA,
     records: [record],
-    context: () => ({ plans, sections }),
+    context: () => ({
+      plans,
+      sections,
+      transcriptText: TRANSCRIPT,
+      transcriptSha256: TRANSCRIPT_SHA,
+    }),
     native: () => native,
     asr: () => asr,
     probeFile: (path) => {

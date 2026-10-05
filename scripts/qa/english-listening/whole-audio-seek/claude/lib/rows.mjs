@@ -2,10 +2,12 @@
  * One ledger row per current question, in the start-only evidence contract.
  *
  * Every quoted text is copied verbatim from a hash-bound file and named by its
- * raw segment ids, so a replay can read the same bytes and compare.
+ * raw segment ids or its character position, so a replay can read the same
+ * bytes and compare.
  */
 import { FIRST_DIALOGUE_WORDS } from "./evidence.mjs";
 import { POLICY } from "./policy.mjs";
+import { strictCoverage } from "./text.mjs";
 
 const joined = (segments) => segments.map((segment) => segment.text).join(" ");
 
@@ -32,7 +34,7 @@ export function probeReference(item, segments) {
   };
 }
 
-const certainLead = (probe) => {
+export const certainLead = (probe) => {
   const out = [];
   for (const segment of probe.segments) {
     if (segment.uncertain) break;
@@ -42,13 +44,32 @@ const certainLead = (probe) => {
 };
 
 /**
+ * How a candidate start is grounded:
+ *   instruction_grounded     its number and its official sentence in one probe
+ *   first_dialogue_grounded  its number, then its own official first utterance
+ *   ordinal_only             its number in order; no official text exists
+ */
+export function startGrade(plan, pick) {
+  if (plan.officialInstruction) return "instruction_grounded";
+  return pick.dialogue ? "first_dialogue_grounded" : "ordinal_only";
+}
+
+/**
  * @param record   frozen inventory record
  * @param native   measured native cache
  * @param row      one row of resolveSource(...)
  * @param section  official script section of the question, or null
+ * @param transcriptSha256 SHA-256 of the frozen official transcript text
  * @param check    probe item heard at an existing verified start, or null
  */
-export function assembleRow({ record, native, row, section, check }) {
+export function assembleRow({
+  record,
+  native,
+  row,
+  section,
+  transcriptSha256,
+  check,
+}) {
   const { plan, question } = row;
   const pcm = native.meta.pcm;
   const identity = [...row.identity];
@@ -58,6 +79,8 @@ export function assembleRow({ record, native, row, section, check }) {
   let probeEvidence = null;
   let dialogueProbeEvidence = null;
   let existingCheckProbe = null;
+  let scriptEvidence = null;
+  let grade = null;
   const cache = {
     sourceAudioSha256: record.sourceAudioSha256,
     sampleRate: pcm.sampleRate,
@@ -74,12 +97,19 @@ export function assembleRow({ record, native, row, section, check }) {
   if (row.status === "candidate") {
     const pick = row.accepted;
     const cueItem = pick.cue.item;
+    const strict = plan.officialInstruction
+      ? strictCoverage(
+          plan.officialInstruction,
+          cueItem.reading.certainCue.rest,
+        )
+      : null;
     probeEvidence = {
       ...probeReference(cueItem, certainLead(cueItem.probe)),
       firstSpeechSeconds: cueItem.reading.firstSpeechSeconds,
       spokenNumbers: cueItem.reading.cue.numbers,
       cueForm: pick.cue.verdict.cueForm,
       instructionCoverage: pick.cue.verdict.instructionCoverage,
+      strictInstructionCoverage: strict,
     };
     nativeEvidence = {
       ...cache,
@@ -95,16 +125,10 @@ export function assembleRow({ record, native, row, section, check }) {
       probeFrameCount: cueItem.probe.frameCount,
       cueProbeSegmentIds: probeEvidence.segmentIds,
     };
+    grade = startGrade(plan, pick);
     identity.unshift("spoken_ordinal_first_at_start");
     if (plan.officialInstruction)
       identity.push("official_instruction_after_ordinal");
-    else if (plan.kind === "single") {
-      // The frozen prompt is only "original paper question N"; the number is
-      // the whole printed identity of this question.
-      if (plan.placeholderNumber === plan.sourceNumber)
-        identity.push("frozen_prompt_names_original_question_number");
-      notes.push("official_text_unavailable");
-    }
     if (pick.dialogue) {
       const item = pick.dialogue.item;
       dialogueProbeEvidence = {
@@ -116,11 +140,47 @@ export function assembleRow({ record, native, row, section, check }) {
         officialFirstWords: section.words.slice(0, FIRST_DIALOGUE_WORDS),
       };
       identity.push("official_first_dialogue_at_start");
-    } else if (plan.kind === "shared_instruction_member")
-      notes.push("member_first_dialogue_unverifiable_no_official_script");
+      if (!pick.dialogue.quote)
+        notes.push("first_utterance_not_heard_as_exact_quote");
+    }
+    if (grade === "ordinal_only") {
+      // The frozen prompt of an image-only question is "original paper
+      // question N": its number is its whole printed identity.
+      if (plan.placeholderNumber === plan.sourceNumber)
+        identity.push("frozen_prompt_names_original_question_number");
+      reasons.push("official_text_unavailable");
+      if (plan.kind === "shared_instruction_member")
+        notes.push("member_first_dialogue_unverifiable_no_official_script");
+    }
     identity.push("starts_in_question_order");
-    if (probeEvidence.cueForm !== "beon")
-      notes.push("spoken_number_written_as_" + probeEvidence.cueForm);
+    const supported = Boolean(pick.dialogue);
+    if (probeEvidence.cueForm === "bare") {
+      notes.push("spoken_number_written_as_bare_digits");
+      if (!supported) notes.push("bare_digits_without_first_dialogue_support");
+    } else if (probeEvidence.cueForm === "spelled")
+      notes.push("spoken_number_spelled_out");
+    if (strict !== null && strict < POLICY.minimumInstructionCoverage) {
+      notes.push("official_instruction_matched_on_hangul_only");
+      if (!supported) notes.push("hangul_only_without_first_dialogue_support");
+    }
+    if (section)
+      scriptEvidence = {
+        source: "frozen live snapshot group transcript text",
+        transcriptSha256,
+        sectionStartCharacter: section.charStart,
+        sectionEndCharacter: section.charEnd,
+        instructionQuote: section.instruction?.text ?? null,
+        instructionStartCharacter: section.instruction?.start ?? null,
+        instructionProbeSegmentIds: plan.officialInstruction
+          ? probeEvidence.segmentIds
+          : null,
+        firstUtteranceStartCharacter: section.firstUtterance?.start ?? null,
+        firstDialogueQuote: pick.dialogue?.quote?.quote ?? null,
+        firstDialogueStartCharacter:
+          pick.dialogue?.quote?.startCharacter ?? null,
+        firstDialogueWords: pick.dialogue?.quote?.words ?? null,
+        dialogueProbeSegmentIds: pick.dialogue?.quote?.segmentIds ?? null,
+      };
   } else if (row.status === "existing_verified") {
     const exact = (row.seekStartMs * pcm.sampleRate) / 1000;
     nativeEvidence = {
@@ -130,6 +190,7 @@ export function assembleRow({ record, native, row, section, check }) {
       measuredBy:
         "earlier verification; the stored value is preserved unchanged",
     };
+    grade = "existing_verified";
     identity.unshift("existing_verified_start_preserved");
     if (check) {
       existingCheckProbe = {
@@ -153,6 +214,7 @@ export function assembleRow({ record, native, row, section, check }) {
     questionId: question.id,
     sourceNumber: question.sourceNumber,
     status: row.status,
+    startGrade: grade,
     seekStartMs: row.seekStartMs,
     seekEndMs: settled ? record.audio.durationMs : null,
     sourceAudioSha256: record.sourceAudioSha256,
@@ -165,6 +227,7 @@ export function assembleRow({ record, native, row, section, check }) {
     anchorText: row.anchorSegments.length ? joined(row.anchorSegments) : null,
     cueNumber: settled ? plan.spokenNumbers[0] : null,
     cueSpokenNumbers: settled ? plan.spokenNumbers : null,
+    cueForm: probeEvidence ? probeEvidence.cueForm : null,
     scopeQuestionNumbers: plan.scopeQuestionNumbers,
     kind: plan.kind,
     officialInstruction: plan.officialInstruction
@@ -173,6 +236,7 @@ export function assembleRow({ record, native, row, section, check }) {
     nativeEvidence,
     probeEvidence,
     dialogueProbeEvidence,
+    scriptEvidence,
     existingCheckProbe,
     identityEvidence: identity,
     notes,

@@ -135,6 +135,7 @@ for (const record of records) {
         native,
         row,
         section: sections?.get(row.plan.sourceNumber) ?? null,
+        transcriptSha256,
         check:
           resolved.heard.find(
             (item) =>
@@ -178,6 +179,7 @@ for (const record of records) {
     openGaps: resolved.openGaps,
     cueOnly: resolved.cueOnly,
     memberDialogue: resolved.memberDialogue,
+    dialogueWanted: resolved.dialogueWanted,
   });
 }
 

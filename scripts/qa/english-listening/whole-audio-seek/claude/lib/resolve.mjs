@@ -12,11 +12,12 @@ import {
   MINIMUM_FIRST_DIALOGUE_SHARE,
   assertProbeShape,
   firstDialogueShare,
+  heardFirstUtterance,
   judgeProbe,
   readProbe,
 } from "./evidence.mjs";
 import { POLICY, leadFor } from "./policy.mjs";
-import { coverage, hintNumbers, leadingCue } from "./text.mjs";
+import { coverage, hintNumbers, leadingCue, strictCoverage } from "./text.mjs";
 
 export class ResolveError extends Error {}
 
@@ -31,7 +32,10 @@ export const START_PURPOSES = new Set([
   "fine_onset",
   "cue_only",
   "member_dialogue",
+  "first_dialogue",
 ]);
+/** English listenings for the official first utterance; never a number proof. */
+export const DIALOGUE_PURPOSES = new Set(["member_dialogue", "first_dialogue"]);
 /** Proven starts closer than this are one cue heard from two nearby onsets. */
 const SAME_CUE_SECONDS = 3;
 /** Frozen-ASR utterances of a question, all placed elsewhere, that hold its start. */
@@ -96,7 +100,7 @@ export function measureStart(native, startFrame) {
  */
 export function proveAtStart(plan, items, sharedInstruction, section) {
   const judged = items
-    .filter((item) => item.probe.purpose !== "member_dialogue")
+    .filter((item) => !DIALOGUE_PURPOSES.has(item.probe.purpose))
     .map((item) => ({
       item,
       verdict: judgeProbe(plan, item.reading, sharedInstruction),
@@ -104,20 +108,21 @@ export function proveAtStart(plan, items, sharedInstruction, section) {
   const cue = judged.find((entry) => entry.verdict.ok) ?? null;
   const needsDialogue =
     plan.kind === "shared_instruction_member" && Boolean(section);
+  // The best English listening from this frame, where an official script
+  // section exists: required for a member, supporting for any other question.
   let dialogue = null;
   let dialogueShare = null;
-  if (needsDialogue)
+  if (section)
     for (const item of items) {
-      if (item.probe.purpose !== "member_dialogue" || item.probe.overflow)
+      if (!DIALOGUE_PURPOSES.has(item.probe.purpose) || item.probe.overflow)
         continue;
       const share = firstDialogueShare(section.words, item.probe);
+      const quote = heardFirstUtterance(section.firstUtterance, item.probe);
       if (dialogueShare === null || share > dialogueShare)
         dialogueShare = share;
-      if (
-        share >= MINIMUM_FIRST_DIALOGUE_SHARE &&
-        (!dialogue || share > dialogue.share)
-      )
-        dialogue = { item, share };
+      const heard = share >= MINIMUM_FIRST_DIALOGUE_SHARE || Boolean(quote);
+      if (heard && (!dialogue || share > dialogue.share))
+        dialogue = { item, share, quote };
     }
   const proof = cue && (!needsDialogue || dialogue) ? { cue, dialogue } : null;
   return { proof, judged, cue, needsDialogue, dialogueShare };
@@ -240,8 +245,8 @@ export function resolveSource({
         probe: (outcome.cue ?? sameNumber).item,
         numberProven: Boolean(outcome.cue),
         hasCueOnly: items.some((item) => item.probe.purpose === "cue_only"),
-        hasDialogue: items.some(
-          (item) => item.probe.purpose === "member_dialogue",
+        hasDialogue: items.some((item) =>
+          DIALOGUE_PURPOSES.has(item.probe.purpose),
         ),
         needsDialogue: outcome.needsDialogue,
       });
@@ -533,5 +538,30 @@ export function resolveSource({
         });
     }
   });
-  return { rows, openGaps, cueOnly, memberDialogue, heard };
+  // 8. Supporting English listenings for starts whose number was written as
+  //    bare digits, or whose official sentence prints an English name or numeral
+  //    that the Korean probe wrote in Hangul. They add evidence to a candidate;
+  //    they never decide its status here.
+  const dialogueWanted = [];
+  for (const row of rows) {
+    if (row.status !== "candidate") continue;
+    if (row.plan.kind === "shared_instruction_member") continue;
+    if (!sections?.get(row.plan.sourceNumber)?.firstUtterance) continue;
+    const pick = row.accepted;
+    const listened = byStart
+      .get(pick.startFrame)
+      .some((item) => DIALOGUE_PURPOSES.has(item.probe.purpose));
+    if (listened) continue;
+    const heardText = pick.cue.item.reading.certainCue?.rest ?? "";
+    const onHangulOnly =
+      row.plan.officialInstruction &&
+      strictCoverage(row.plan.officialInstruction, heardText) <
+        POLICY.minimumInstructionCoverage;
+    if (pick.cue.verdict.cueForm === "bare" || onHangulOnly)
+      dialogueWanted.push({
+        sourceNumber: row.plan.sourceNumber,
+        startFrame: pick.startFrame,
+      });
+  }
+  return { rows, openGaps, cueOnly, memberDialogue, dialogueWanted, heard };
 }

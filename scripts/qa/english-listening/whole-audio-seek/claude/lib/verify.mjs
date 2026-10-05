@@ -7,7 +7,13 @@
  */
 import { assertProbeShape, readProbe } from "./evidence.mjs";
 import { POLICY } from "./policy.mjs";
-import { START_PURPOSES, measureStart, proveAtStart } from "./resolve.mjs";
+import {
+  DIALOGUE_PURPOSES,
+  START_PURPOSES,
+  measureStart,
+  proveAtStart,
+} from "./resolve.mjs";
+import { startGrade } from "./rows.mjs";
 import { leadingCue } from "./text.mjs";
 
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
@@ -225,7 +231,7 @@ export function verifyMarks(marks, env) {
     if (!cueItem) return;
     if (
       cueItem.language !== "ko" ||
-      cueItem.probe.purpose === "member_dialogue"
+      DIALOGUE_PURPOSES.has(cueItem.probe.purpose)
     )
       return report("number_probe_is_not_korean", record, question);
     if (
@@ -236,9 +242,14 @@ export function verifyMarks(marks, env) {
     )
       report("native_probe_binding_differs", record, question);
     const section = sections?.get(plan.sourceNumber) ?? null;
+    let dialogueItem = null;
     if (row.dialogueProbeEvidence) {
-      const dialogueItem = load(row.dialogueProbeEvidence, "first_dialogue");
-      if (dialogueItem && dialogueItem.language !== "en")
+      dialogueItem = load(row.dialogueProbeEvidence, "first_dialogue");
+      if (!dialogueItem) return;
+      if (
+        dialogueItem.language !== "en" ||
+        !DIALOGUE_PURPOSES.has(dialogueItem.probe.purpose)
+      )
         report("dialogue_probe_is_not_english", record, question);
     }
     const outcome = proveAtStart(
@@ -256,6 +267,50 @@ export function verifyMarks(marks, env) {
       );
     if (outcome.proof.cue.item !== cueItem)
       report("number_proof_is_another_probe", record, question);
+    const proof = outcome.proof;
+    if (dialogueItem && proof.dialogue?.item !== dialogueItem)
+      report("first_dialogue_not_proven", record, question);
+    if (row.cueForm !== proof.cue.verdict.cueForm)
+      report("cue_form_differs", record, question);
+    const grade = startGrade(plan, proof);
+    if (row.startGrade !== grade)
+      report("start_grade_differs", record, question, grade);
+    if (
+      grade === "ordinal_only" &&
+      !row.reasons?.includes("official_text_unavailable")
+    )
+      report("ordinal_only_without_stated_reason", record, question);
+
+    // Official script quotes are exact text at the stated characters.
+    const script = row.scriptEvidence;
+    if (Boolean(script) !== Boolean(section))
+      report("script_evidence_presence_differs", record, question);
+    else if (script) {
+      const { transcriptText, transcriptSha256 } = cached(
+        "context",
+        record,
+        env.context,
+      );
+      const exact = (quote, start) =>
+        quote === null
+          ? start === null
+          : Number.isInteger(start) &&
+            transcriptText.slice(start, start + quote.length) === quote;
+      const heard = proof.dialogue?.quote ?? null;
+      if (
+        script.transcriptSha256 !== transcriptSha256 ||
+        script.sectionStartCharacter !== section.charStart ||
+        script.sectionEndCharacter !== section.charEnd ||
+        !exact(script.instructionQuote, script.instructionStartCharacter) ||
+        script.instructionQuote !== (section.instruction?.text ?? null) ||
+        !exact(script.firstDialogueQuote, script.firstDialogueStartCharacter) ||
+        script.firstDialogueQuote !== (heard?.quote ?? null) ||
+        !same(script.dialogueProbeSegmentIds, heard?.segmentIds ?? null) ||
+        (script.firstDialogueQuote !== null &&
+          script.firstDialogueStartCharacter !== section.firstUtterance.start)
+      )
+        report("script_quote_differs", record, question);
+    }
 
     // Frozen whole-record ASR quotes.
     const asr = cached("asr", record, env.asr);

@@ -120,6 +120,55 @@ export function firstDialogueShare(officialWords, probe) {
   return found / total;
 }
 
+/** Words of an exact official quote, and the fewest that make one. */
+export const QUOTE_WORDS = 8;
+export const MINIMUM_QUOTE_WORDS = 4;
+const WORD = /[A-Za-z0-9]+(?:[’'][A-Za-z]+)*/g;
+
+/**
+ * The longest exact prefix of the official first utterance (4 to 8 words) that
+ * a probe heard word for word, in order, in its certain segments.
+ * `utterance` is { start, text } from the official script. Returns
+ * { quote, startCharacter, words, segmentIds } or null.
+ */
+export function heardFirstUtterance(utterance, probe) {
+  if (!utterance) return null;
+  const tokens = [];
+  const stop = utterance.text.indexOf("[");
+  for (const match of utterance.text.matchAll(WORD)) {
+    if (stop >= 0 && match.index > stop) break;
+    for (const word of englishWords(match[0]))
+      tokens.push({ word, end: match.index + match[0].length });
+    if (tokens.length >= QUOTE_WORDS) break;
+  }
+  const heard = [];
+  for (const segment of probe.segments) {
+    if (segment.uncertain) continue;
+    for (const word of englishWords(segment.text))
+      heard.push({ word, id: segment.id });
+  }
+  for (
+    let count = Math.min(QUOTE_WORDS, tokens.length);
+    count >= MINIMUM_QUOTE_WORDS;
+    count--
+  )
+    for (let at = 0; at + count <= heard.length; at++) {
+      let same = true;
+      for (let i = 0; i < count && same; i++)
+        same = heard[at + i].word === tokens[i].word;
+      if (!same) continue;
+      return {
+        quote: utterance.text.slice(0, tokens[count - 1].end),
+        startCharacter: utterance.start,
+        words: count,
+        segmentIds: [
+          ...new Set(heard.slice(at, at + count).map((item) => item.id)),
+        ],
+      };
+    }
+  return null;
+}
+
 const sameNumbers = (a, b) =>
   a.length === b.length && a.every((value, index) => value === b[index]);
 

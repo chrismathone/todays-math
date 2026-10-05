@@ -252,6 +252,15 @@ for (const record of records) {
     for (const item of source.memberDialogue ?? [])
       for (const candidate of around(item.startFrame))
         addDialogue(candidate, item.sourceNumber);
+    // Supporting English listening at a start that is already a candidate.
+    for (const item of source.dialogueWanted ?? []) {
+      const candidate = at(item.startFrame);
+      if (candidate)
+        addCandidate("first_dialogue", candidate, {
+          questionNumber: item.sourceNumber,
+          language: "en",
+        });
+    }
 
     const inGap = (gap, c) =>
       frameOf(c) > gap.afterFrame && onset(c) < gap.beforeFrame;

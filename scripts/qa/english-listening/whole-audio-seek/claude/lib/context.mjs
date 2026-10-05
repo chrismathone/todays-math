@@ -31,6 +31,7 @@ export function sourceContext(record, liveBySet) {
     plans,
     sections,
     scriptReason: reason,
+    transcriptText: transcript.text,
     transcriptSha256: transcript.sha256,
   };
 }
