@@ -21,11 +21,11 @@ Artifacts are under
 972 questions had no start: 885 reconstructed (72 sources) and 87 official
 (47 sources).
 
-| population                         | rows | offered                          | reported, not offered | held |
-| ---------------------------------- | ---: | -------------------------------- | --------------------: | ---: |
-| reconstructed, 15 pilot sources    |  216 | 64 (50 original passages)        |                     — |  152 |
-| official, all 47 sources           |   87 | 17 (verifier's official wrapper; third freeze) | 27 |   43 |
-| reconstructed, other 57 sources    |  669 | see "Full run" below             |                     — |      |
+| population                      | rows | offered                                        | reported, not offered | held |
+| ------------------------------- | ---: | ---------------------------------------------- | --------------------: | ---: |
+| reconstructed, 15 pilot sources |  216 | 64 (50 original passages)                      |                     — |  152 |
+| official, all 47 sources        |   87 | 17 (verifier's official wrapper; third freeze) |                    27 |   43 |
+| reconstructed, other 57 sources |  669 | see "Full run" below                           |                     — |      |
 
 ### Pilot — `runs/pilot-002/` (supersedes `pilot-001`; same evidence, per-source catalogs)
 
@@ -57,25 +57,25 @@ for it.
 
 Held, by first reason (152):
 
-| rows | reason                                                                                         |
-| ---: | ---------------------------------------------------------------------------------------------- |
+| rows | reason                                                                                                                              |
+| ---: | ----------------------------------------------------------------------------------------------------------------------------------- |
 |  137 | no anchor quote heard in an established passage; each row says where the frozen recognition places it and what stands there (below) |
-|    6 | no quote of four words                                                                         |
-|    5 | a quote stands more than once in the frozen recognition                                        |
-|    4 | not every frozen quote written by one clip inside the passage                                  |
+|    6 | no quote of four words                                                                                                              |
+|    5 | a quote stands more than once in the frozen recognition                                                                             |
+|    4 | not every frozen quote written by one clip inside the passage                                                                       |
 
 The 137, by what stands where the frozen recognition places the question (a
 diagnosis from estimates; it decided nothing):
 
-| rows | at that place                                                          |
-| ---: | ---------------------------------------------------------------------- |
-|   94 | a heading stands, the very next number's heading does not              |
+| rows | at that place                                                            |
+| ---: | ------------------------------------------------------------------------ |
+|   94 | a heading stands, the very next number's heading does not                |
 |   17 | the last standing heading, with no closing or with later numbers unheard |
-|    7 | another possible heading was written inside the passage                |
-|    7 | no native heading before it                                            |
-|    6 | the passage stands and was listened to; the quote was not written      |
-|    4 | the passage's own start is missing                                     |
-|    2 | a native start on the wrong side of a certified one                    |
+|    7 | another possible heading was written inside the passage                  |
+|    7 | no native heading before it                                              |
+|    6 | the passage stands and was listened to; the quote was not written        |
+|    4 | the passage's own start is missing                                       |
+|    2 | a native start on the wrong side of a certified one                      |
 
 So the pilot is limited by missing headings, not by quotes: where both ends of
 a passage stand, the quote was written in all but 6 cases.
@@ -115,9 +115,9 @@ the original bytes (`codex/pilot-official-certificate-001`, SHA-256
 `0e6ff4dc64de25541efc7a810c4d62dd92fa784a4839ec562c42f5756372af55`), with all
 2,727 existing starts preserved:
 
-| offered                 | passed | held by the verifier                                                                                                   |
-| ----------------------- | -----: | ---------------------------------------------------------------------------------------------------------------------- |
-| 64 reconstructed, pilot |     50 | 14: instruction incomplete 4, number at two distant onsets 3, a number read inside the passage 3, raw-word artefact in the English clip 3, a word outside its segment 1 |
+| offered                 | passed | held by the verifier                                                                                                                                                                              |
+| ----------------------- | -----: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 64 reconstructed, pilot |     50 | 14: instruction incomplete 4, number at two distant onsets 3, a number read inside the passage 3, raw-word artefact in the English clip 3, a word outside its segment 1                           |
 | 19 official             |      0 | 19: number clip longer than its 3 s cap 7, instruction not the current question's 4, own instruction absent in the probe 3, next-boundary instruction incomplete 3, neighbour boundary metadata 2 |
 
 The official result stands as it is. The seven number clips are this
@@ -181,7 +181,7 @@ Added **after** the pilot outcome was seen, and reported as such. In
 `pilot-002`, 94 of the 152 held rows sat where a heading stands but the very
 next number's heading does not; in 41 of those 48 passages a stored Korean
 probe had written the next number first and reliably and failed only as a
-*start* (a chime runs into the number, so the recognizer stamps it about a
+_start_ (a chime runs into the number, so the recognizer stamps it about a
 second after the measured onset). The rule lets such a reading **end** the
 passage before it; it never becomes a seek start.
 
@@ -206,25 +206,25 @@ The same code, with the certificate unread while deciding, replayed the 50
 reconstructed questions of the pilot sources that already have a certified
 start:
 
-| outcome         | rows | note                                                                                                   |
-| --------------- | ---: | ------------------------------------------------------------------------------------------------------ |
-| identical start |   23 | to the millisecond                                                                                     |
+| outcome         | rows | note                                                                                                                                       |
+| --------------- | ---: | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| identical start |   23 | to the millisecond                                                                                                                         |
 | later           |    3 | 140–760 ms: the certified start is an absolute-threshold crossing of hiss, the replay the noise-tier speech onset of the same announcement |
-| earlier         |    0 |                                                                                                        |
-| other scope     |    0 | no control question was bound to another original passage                                              |
-| held            |   24 | passage or quote not established by this route                                                         |
+| earlier         |    0 |                                                                                                                                            |
+| other scope     |    0 | no control question was bound to another original passage                                                                                  |
+| held            |   24 | passage or quote not established by this route                                                                                             |
 
 Heading level: 26 original numbers have both a certified start and a blind
 native heading — 24 identical, 2 later.
 
-| adversarial input on real evidence                                         | tried | accepted |
-| -------------------------------------------------------------------------- | ----: | -------: |
-| a heading asked for the number before and after it                         |   378 |        0 |
-| an offered row's quotes, its own passage taken away                        |    64 |        0 |
-| first member of a shared heading moved to its own number                   |    14 |        0 |
-| another source's recognition container                                     |    14 |        0 |
-| real clip cut 400 ms after the measured onset (38 still wrote the number)  |   190 |        0 |
-| real clip begun 300 ms after the measured onset (23 still wrote the number first) | 190 |   0 |
+| adversarial input on real evidence                                                | tried | accepted |
+| --------------------------------------------------------------------------------- | ----: | -------: |
+| a heading asked for the number before and after it                                |   378 |        0 |
+| an offered row's quotes, its own passage taken away                               |    64 |        0 |
+| first member of a shared heading moved to its own number                          |    14 |        0 |
+| another source's recognition container                                            |    14 |        0 |
+| real clip cut 400 ms after the measured onset (38 still wrote the number)         |   190 |        0 |
+| real clip begun 300 ms after the measured onset (23 still wrote the number first) |   190 |        0 |
 
 What the last two rows are, and are not. Both cuts are placed from the
 **machine-measured energy onset** of the heading. Nobody listened to these 380
@@ -258,15 +258,15 @@ Whisper medium int8 (the frozen snapshot), one model resident only under the
 shared exclusive GPU lock, temporary clips deleted after each source, 0
 overflow in every round.
 
-| rounds                    | what                                                            | bounded recognitions |
-| ------------------------- | --------------------------------------------------------------- | -------------------: |
-| 001–005, 010 (pilot)      | Korean: headings, shorter and longer same-start clips, gap and terminal scans |          1,041 |
-| 006 (pilot)               | English passage clips (3,779 s)                                 |                   87 |
-| adversarial 001           | clips cut short or begun late relative to the measured onset, own folder, never evidence | 380 |
-| 030–036 (official)        | Korean 198 + 5 + 304 + 48 + 39 number clips (+ 10 of a round stopped as planned too broadly), English 3 |    607 |
-| 040–044 (converted)       | `ebs-middle-1-2006-2` on its authenticated playback clock, own runner: Korean 100, English 13 | 113 |
-| 011 (pilot)               | English clips for passages ended by a first-speech boundary     |                   25 |
-| 020 onward                | the other 56 reconstructed sources — see "Full run"             |                      |
+| rounds               | what                                                                                                    | bounded recognitions |
+| -------------------- | ------------------------------------------------------------------------------------------------------- | -------------------: |
+| 001–005, 010 (pilot) | Korean: headings, shorter and longer same-start clips, gap and terminal scans                           |                1,041 |
+| 006 (pilot)          | English passage clips (3,779 s)                                                                         |                   87 |
+| adversarial 001      | clips cut short or begun late relative to the measured onset, own folder, never evidence                |                  380 |
+| 030–036 (official)   | Korean 198 + 5 + 304 + 48 + 39 number clips (+ 10 of a round stopped as planned too broadly), English 3 |                  607 |
+| 040–044 (converted)  | `ebs-middle-1-2006-2` on its authenticated playback clock, own runner: Korean 100, English 13           |                  113 |
+| 011 (pilot)          | English clips for passages ended by a first-speech boundary                                             |                   25 |
+| 020 onward           | the other 56 reconstructed sources — see "Full run"                                                     |                      |
 
 All 71 reconstructed MP3 originals and the 47 official sources with a held
 question were decoded once and reproduced the frozen clock (PCM SHA-256); only

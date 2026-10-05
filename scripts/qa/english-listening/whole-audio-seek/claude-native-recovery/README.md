@@ -26,12 +26,12 @@ before the sound — the row was held. The audio itself was never the problem.
 
 So this route measures the structure instead of estimating it:
 
-| link    | what decides                                                                                                                  |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| clock   | a full decode of the original bytes that reproduces the frozen clock record (rate, channels, frames, PCM SHA-256)             |
-| heading | a measured native onset after measured quiet; the start is the existing fixed lead before it                                  |
-| number  | a bounded Korean recognition that **begins at that start** writes the literal number first, reliably, then an instruction     |
-| passage | the native frames from that start to the start of the very next original number, found the same way                           |
+| link    | what decides                                                                                                                   |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| clock   | a full decode of the original bytes that reproduces the frozen clock record (rate, channels, frames, PCM SHA-256)              |
+| heading | a measured native onset after measured quiet; the start is the existing fixed lead before it                                   |
+| number  | a bounded Korean recognition that **begins at that start** writes the literal number first, reliably, then an instruction      |
+| passage | the native frames from that start to the start of the very next original number, found the same way                            |
 | mapping | **every** frozen generation quote of the question, word for word, in **one** English clip that lies wholly inside those frames |
 
 Containment is physical. A clip cut from frames inside a passage cannot hold
@@ -69,7 +69,12 @@ All in `lib/rules.mjs` (pure) and `lib/resolve.mjs` (one source).
   else. A skipped number leaves both neighbours open. After the last number:
   a literal closing announcement at a measured onset, no larger number written
   by any transcript or recognition, and every long-quiet onset up to the
-  closing listened to.
+  closing listened to. Added after the pilot and countable apart
+  (`summary.offeredByNextBoundary`): where the next number's heading does not
+  stand as a start, a passage may end at the measured start of a recognition
+  whose first speech is the literal next number with its complete instruction
+  (or a later member of a standing shared heading). That ends a passage; it is
+  never a seek start.
 - **Nothing else inside.** If any stored Korean recognition that begins inside
   a passage wrote another possible heading first — in any form, flagged or not
   — the passage is held. A missed heading must not let one passage swallow the
@@ -142,14 +147,14 @@ many nowhere. `build-ledger.mjs --scope held` writes no run unless coverage is
 complete, and every run carries `listening-receipt.json`. `--sweep` adds what
 each stage would still plan, in dry-run, from everything heard.
 
-| stage        | what it listens to                                                                                         |
-| ------------ | ---------------------------------------------------------------------------------------------------------- |
-| `headings`   | Korean, 8 s, from every measured onset in the seconds before the provider's instruction for a number       |
-| `context`    | Korean, 14 s, from a start where the number was written but eight seconds ended before the instruction verb |
-| `variants`   | Korean, 6 s and 4.5 s, from a start where the number was written first but stamped late by the recognizer   |
-| `terminal`   | Korean, from every long-quiet onset after the last heading                                                 |
-| `gaps`       | Korean, from long-quiet onsets between two established headings whose numbers are not consecutive          |
-| `quotes`     | English, up to 60 s: the dialogue of an established passage, from the end of its heading to the next start |
+| stage        | what it listens to                                                                                                                                                                     |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `headings`   | Korean, 8 s, from every measured onset in the seconds before the provider's instruction for a number                                                                                   |
+| `context`    | Korean, 14 s, from a start where the number was written but eight seconds ended before the instruction verb                                                                            |
+| `variants`   | Korean, 6 s and 4.5 s, from a start where the number was written first but stamped late by the recognizer                                                                              |
+| `terminal`   | Korean, from every long-quiet onset after the last heading                                                                                                                             |
+| `gaps`       | Korean, from long-quiet onsets between two established headings whose numbers are not consecutive                                                                                      |
+| `quotes`     | English, up to 60 s: the dialogue of an established passage, from the end of its heading to the next start                                                                             |
 | `truncation` | adversarial clips at established headings, in their own folder: cut 400 ms after the measured onset; begun 300 ms after it (machine-placed cuts, not proved truncations of the number) |
 
 For an official source only a held question's own number, and the next number
@@ -211,5 +216,8 @@ row bound only by a later own sentence is reported apart
 - The control replay compares with certified starts that were themselves
   machine-certified. Agreement shows the routes do not disagree; it is not a
   listening test.
-- `ebs-middle-1-2006-2`, the converted original with its own playback clock, is
-  not listened to here.
+- `ebs-middle-1-2006-2`, the converted original (M4A), is not decoded here: it
+  is listened to on the verifier's authenticated playback clock, with clips cut
+  by the verifier's own tool (`run-converted.sh`).
+- The damaged-clip controls are cut from a machine-measured onset; they are not
+  proved truncations of a spoken number.
