@@ -112,6 +112,45 @@ class GpuLock:
         os.remove(self.path)
         self.held = False
 
+    # A waiter says so with its own small marker beside the lock. The holder keeps
+    # the GPU across batches only while nobody waits; it never needs to guess.
+
+    def _marker(self):
+        return self.path.with_name(self.path.name + f".waiting-{os.getpid()}")
+
+    def announce_waiting(self):
+        if self.held or self._marker().exists():
+            return
+        self._marker().write_text(
+            json.dumps({"owner": self.owner, "pid": os.getpid(), "host": os.environ.get("COMPUTERNAME"), "since": utc_now()}),
+            "utf8",
+        )
+
+    def withdraw_waiting(self):
+        try:
+            os.remove(self._marker())
+        except FileNotFoundError:
+            pass
+
+    def others_waiting(self):
+        for marker in self.path.parent.glob(self.path.name + ".waiting-*"):
+            try:
+                other = json.loads(marker.read_text("utf8"))
+            except (OSError, ValueError):
+                continue
+            if other.get("pid") == os.getpid():
+                continue
+            same_host = other.get("host") == os.environ.get("COMPUTERNAME")
+            if same_host and isinstance(other.get("pid"), int) and not process_alive(other["pid"]):
+                # A marker is not the lock; a dead waiter's marker is just litter.
+                try:
+                    os.remove(marker)
+                except OSError:
+                    pass
+                continue
+            return True
+        return False
+
 
 def read_wave(path):
     with wave.open(str(path), "rb") as handle:
@@ -184,9 +223,25 @@ def main():
         return tmp, json.loads((tmp / "clips.json").read_text("utf8")), time.monotonic() - started
 
     lock = GpuLock(args.lock, args.owner)
-    model = None
+    state = {"model": None}
     model_loads = 0
+
+    def unload():
+        """The model is resident only while the lock is held: always before a release."""
+        model = state["model"]
+        if model is None:
+            return
+        state["model"] = None
+        try:
+            model.model.unload_model()
+        except Exception:
+            pass
+        del model
+        gc.collect()
+
     pool = ThreadPoolExecutor(max_workers=1)
+    # Say that we wait before the first clip is even cut, so a holder can hand over.
+    lock.announce_waiting()
     upcoming = pool.submit(extract, pending[0])
     run_started = time.monotonic()
     done_probes = 0
@@ -198,20 +253,19 @@ def main():
             if manifest["sourceAudioSha256"] != source["sourceAudioSha256"] or manifest["pcmSha256"] != source["pcmSha256"]:
                 raise ValueError("Extracted clips belong to another original")
             waited = time.monotonic()
-            while not lock.try_acquire():
-                if model is not None:
-                    # Another worker holds the GPU: free ours before waiting.
-                    del model
-                    model = None
-                    gc.collect()
-                if time.monotonic() - waited > args.max_wait_seconds:
-                    raise TimeoutError("GPU lock stayed busy; it was not touched")
-                time.sleep(POLL_SECONDS)
+            if not lock.held:
+                lock.announce_waiting()
+                while not lock.try_acquire():
+                    if time.monotonic() - waited > args.max_wait_seconds:
+                        raise TimeoutError("GPU lock stayed busy; it was not touched")
+                    time.sleep(POLL_SECONDS)
+                lock.withdraw_waiting()
             lock_wait = time.monotonic() - waited
-            try:
-                if model is None:
-                    model = WhisperModel(str(snapshot), device="cuda", compute_type="int8", cpu_threads=1, num_workers=1)
+            if True:
+                if state["model"] is None:
+                    state["model"] = WhisperModel(str(snapshot), device="cuda", compute_type="int8", cpu_threads=1, num_workers=1)
                     model_loads += 1
+                model = state["model"]
                 started = time.monotonic()
                 probes = []
                 by_id = {clip["id"]: clip for clip in manifest["clips"]}
@@ -266,8 +320,7 @@ def main():
                         "segments": segments,
                     })
                 gpu_seconds = time.monotonic() - started
-            finally:
-                lock.release()
+                del model
             artifact = {
                 "schemaVersion": 1,
                 "provider": request["provider"],
@@ -325,15 +378,20 @@ def main():
                 "done": index + 1, "of": len(pending), "doneProbes": done_probes,
                 "elapsedSeconds": round(time.monotonic() - run_started, 1), "modelLoads": model_loads,
             }), flush=True)
-            if index + 1 < len(pending):
-                # Let a waiting worker take the GPU between source-sized batches.
+            if index + 1 < len(pending) and lock.others_waiting():
+                # Hand the GPU over between source-sized batches: unload first,
+                # then release, then stay away long enough for a waiter to take it.
+                unload()
+                lock.release()
+                lock.announce_waiting()
                 time.sleep(YIELD_SECONDS)
     finally:
+        # Also on any error: never leave a resident model behind a released lock.
+        unload()
         if lock.held:
             lock.release()
+        lock.withdraw_waiting()
         pool.shutdown(wait=False, cancel_futures=True)
-        del model
-        gc.collect()
     print(json.dumps({"stage": "probe-queue-complete", "round": round_id, "sources": len(pending), "probes": done_probes,
                       "elapsedSeconds": round(time.monotonic() - run_started, 1)}), flush=True)
 
