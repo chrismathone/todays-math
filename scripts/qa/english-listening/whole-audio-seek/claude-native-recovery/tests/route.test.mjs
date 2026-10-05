@@ -14,6 +14,7 @@ import {
   headingCue,
   headingReading,
   hearQuote,
+  isNumberOnly,
   measuredStart,
   noiseFloor,
   quoteWords,
@@ -52,6 +53,21 @@ test("a spoken number is read only at the very start, in its literal forms", () 
   assert.equal(headingCue("한 번만 들려드립니다"), null);
   assert.equal(headingCue("20번과 19번"), null);
   assert.equal(headingCue("1번부터 15번까지는"), null);
+});
+
+test("the number alone is one segment that says the number and nothing after it", () => {
+  const only = (segments) => {
+    const { probe } = listening("ko", startOf(AT[2]), 80, segments);
+    return isNumberOnly(probe, headingReading(probe));
+  };
+  assert.equal(only([segment("2번", 0.4, 1.0)]), true);
+  assert.equal(only([segment("2번입니다.", 0.4, 1.2)]), true);
+  assert.equal(only([segment("이번.", 0.4, 1.0)]), true);
+  assert.equal(only([segment("2번 대화를 듣고", 0.4, 1.4)]), false);
+  assert.equal(only([segment("2번", 0.4, 1.0), segment("대화를", 1.0, 1.4)]), false);
+  assert.equal(only([segment("2.", 0.4, 1.0)]), false);
+  assert.equal(only([segment("2번과 3번", 0.4, 1.2)]), false);
+  assert.equal(only([segment("2번", 0.4, 1.0, { avgLogProbability: -1.4 })]), false);
 });
 
 test("offers each question in the passage where its own quote is heard, never by its shown number", () => {

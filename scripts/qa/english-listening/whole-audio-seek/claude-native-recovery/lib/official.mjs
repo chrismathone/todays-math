@@ -26,6 +26,7 @@ import {
   clipInside,
   countOccurrences,
   hearQuote,
+  isNumberOnly,
   measuredStart,
   quoteWords,
 } from "./rules.mjs";
@@ -244,16 +245,18 @@ export function resolveOfficial(input) {
       }
       const { heading } = common;
       // Where the instruction came from a long reading that wrote bare digits,
-      // the literal number must stand alone in a clip of at most three seconds
-      // from the same start and onset. The shortest such reading is the number
-      // clip; a longer one is never passed off as one.
+      // the literal number must stand alone — nothing after it — in a clip of
+      // at most three seconds from the same start and onset. The shortest such
+      // reading is the number clip; a longer one, or one that also wrote the
+      // first words of the instruction, is never passed off as one.
       const shortLiteral = (h) =>
         [...(h.literalReadings ?? [])]
           .filter(
             (r) =>
               r.onsetFrame === h.onsetFrame &&
               r.probe.durationSeconds <= NUMBER_CLIP_SECONDS + 1e-9 &&
-              !r.probe.overflow,
+              !r.probe.overflow &&
+              isNumberOnly(r.probe, r.reading),
           )
           .sort((a, b) => a.probe.durationSeconds - b.probe.durationSeconds)[0] ??
         null;
