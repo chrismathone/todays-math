@@ -9,7 +9,10 @@ import {
   energyThreshold,
   interpretCueProbe,
   nativeLeadProblem,
+  planCleanSourceProbe,
   planHypothesisProbe,
+  planNoiseFloor1SecondProbe,
+  planNoiseFloorProbe,
   seekStartMs,
   windowFrames,
   type RecognitionClock,
@@ -89,6 +92,16 @@ describe("hypothesis probes", () => {
     const energy = new Float64Array(400);
     energy.fill(energyThreshold(FRAMES) * 4);
     assert.equal(planHypothesisProbe(energy, RATE, energy.length * FRAMES, 2), null);
+  });
+
+  it("can look further back without treating an interior edge as the onset", () => {
+    const energy = energyWithIsland(80);
+    const hypothesis = 80 * 0.02 + 4;
+    assert.equal(planHypothesisProbe(energy, RATE, energy.length * FRAMES, hypothesis), null);
+    const recovered = planHypothesisProbe(energy, RATE, energy.length * FRAMES, hypothesis, { before: 8 });
+    assert.ok(recovered);
+    assert.equal(recovered.onsetFrame, 80 * FRAMES);
+    assert.equal(recovered.hypothesisMayBeLate, true);
   });
 
   it("marks a late ASR estimate without moving the onset onto it", () => {
@@ -174,6 +187,29 @@ describe("whisper reading", () => {
       nativeLeadProblem(probe({ onsetFrame: probe().startFrame }), clock),
       "held_native_lead",
     );
+    const shortQuiet = probe().startFrame;
+    assert.equal(
+      nativeLeadProblem(
+        probe({
+          startFrame: shortQuiet,
+          onsetFrame: shortQuiet + 17 * FRAMES,
+          quietBeforeFrames: 17 * FRAMES,
+        }),
+        clock,
+      ),
+      null,
+    );
+    assert.equal(
+      nativeLeadProblem(
+        probe({
+          startFrame: shortQuiet - 3 * FRAMES,
+          onsetFrame: shortQuiet + 17 * FRAMES,
+          quietBeforeFrames: 17 * FRAMES,
+        }),
+        clock,
+      ),
+      "held_native_lead",
+    );
   });
 
   it("keeps grounding anchors inside the spoken passage and holds anchors past the next cue", () => {
@@ -202,6 +238,166 @@ describe("measured 2006-1 energy", () => {
     assert.equal(planned.hypothesisMayBeLate, true);
     assert.equal(planned.onsetFrame - planned.startFrame, 20 * FRAMES);
     assert.equal(planned.frameCount / RATE, 14);
+  });
+
+  it("selects the 92.04s rise from the measured hiss floor and does not call that floor quiet", () => {
+    const path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/grok/native/ebs-middle-1-2006-1.energy.f64";
+    const bytes = readFileSync(path);
+    assert.equal(
+      createHash("sha256").update(bytes).digest("hex"),
+      "877729dbb33b42171a899d4aa91b3c874a49d91442fc445a709196508b7c5f36",
+    );
+    const copy = Buffer.from(bytes);
+    const energy = new Float64Array(copy.buffer, copy.byteOffset, copy.length / 8);
+    const planned = planNoiseFloorProbe(energy, RATE, 39924224, { fromSeconds: 68.29, toSeconds: 93.3 });
+    assert.ok(planned);
+    assert.equal(planned.purpose, "noise_floor_contrast_v1");
+    assert.equal(planned.onsetWindow, 4602);
+    assert.equal(planned.onsetSeconds, 92.04);
+    assert.equal(planned.baselineStartFrame, 3970764);
+    assert.equal(planned.baselineFrameCount, 100 * FRAMES);
+    assert.ok(Math.abs(planned.medianDbfs - -46.03755040145689) < 1e-8);
+    assert.ok(Math.abs(planned.p10Dbfs - -46.55362846446592) < 1e-8);
+    assert.ok(Math.abs(planned.p90Dbfs - -45.521646015262355) < 1e-8);
+    assert.ok(planned.p90Dbfs - planned.p10Dbfs <= 6);
+    assert.equal(planned.quietWindows, 127);
+    assert.equal(planned.absoluteQuietWindows, 0);
+    assert.equal(planned.quietBeforeFrames, 127 * FRAMES);
+    assert.equal(planned.startFrame, 4041324);
+    assert.equal(planned.onsetFrame, 4058964);
+    assert.equal(planned.onsetFrame - planned.startFrame, 20 * FRAMES);
+    assert.ok(planned.leadPeakDbfs != null && Math.abs(planned.leadPeakDbfs - -44.86753161662287) < 1e-8);
+    const cleanOnHiss = planCleanSourceProbe(energy, RATE, 39924224, {
+      fromSeconds: 68.29,
+      toSeconds: 93.3,
+    });
+    if (cleanOnHiss) {
+      assert.ok(cleanOnHiss.quietWindows >= 5);
+      assert.equal(cleanOnHiss.leadWindows, Math.min(20, cleanOnHiss.quietWindows));
+      assert.notEqual(cleanOnHiss.onsetFrame, planned.onsetFrame);
+    }
+    const clock: RecognitionClock = {
+      sampleRate: RATE,
+      channels: 2,
+      frameCount: 39924224,
+      durationMs: 905312,
+      pcmSha256: "a71554b09a530fbdafd44d80d5bd489d9713888eb30e1cc43675120e12c4a1a7",
+      sourceAudioSha256: "ed621f67a023e1449bb18fbcde7a669e0db58b86625752b6fd93aea6c91bb12d",
+      playbackSha256: "3888e7b4c772a0c342a66944beb331222bce8483a2a575b20ed339d0a09d9fbc",
+    };
+    assert.equal(
+      nativeLeadProblem(
+        {
+          id: 1,
+          startFrame: planned.startFrame,
+          frameCount: planned.frameCount,
+          onsetFrame: planned.onsetFrame,
+          quietBeforeFrames: planned.absoluteQuietWindows * FRAMES,
+          sampleRate: RATE,
+          durationSeconds: planned.frameCount / RATE,
+          overflow: false,
+          segments: [],
+        },
+        clock,
+      ),
+      "held_native_lead",
+    );
+  });
+});
+
+describe("one-second stationary floor", () => {
+  it("does not let a 50-bin floor satisfy the two-second tier", () => {
+    const floor = FRAMES * 32768 * 32768 * 10 ** (-40 / 10);
+    const speech = FRAMES * 32768 * 32768 * 10 ** (-20 / 10);
+    const energy = new Float64Array(120);
+    for (let index = 0; index < 50; index += 1) energy[index] = speech;
+    for (let index = 50; index < 100; index += 1) energy[index] = floor;
+    for (let index = 100; index < 120; index += 1) energy[index] = speech;
+    const search = { fromSeconds: 0, toSeconds: 2.4 };
+    const sourceFrames = 1000 * FRAMES;
+    assert.equal(planNoiseFloorProbe(energy, RATE, sourceFrames, search), null);
+    const planned = planNoiseFloor1SecondProbe(energy, RATE, sourceFrames, search);
+    assert.ok(planned);
+    assert.equal(planned.purpose, "noise_floor_contrast_1second_v1");
+    assert.equal(planned.onsetWindow, 100);
+    assert.equal(planned.baselineFrameCount, 50 * FRAMES);
+    assert.equal(planned.onsetFrame - planned.startFrame, 20 * FRAMES);
+    assert.equal(planned.quietWindows, 50);
+  });
+});
+
+describe("clean-source v2", () => {
+  const clock: RecognitionClock = {
+    sampleRate: RATE,
+    channels: 2,
+    frameCount: 400 * FRAMES,
+    durationMs: Math.round((400 * FRAMES * 1000) / RATE),
+    pcmSha256: "0",
+    sourceAudioSha256: "0",
+    playbackSha256: "0",
+  };
+
+  function reading(planned: {
+    startFrame: number;
+    frameCount: number;
+    onsetFrame: number;
+    quietBeforeFrames: number;
+  }): WhisperProbe {
+    return {
+      id: 1,
+      startFrame: planned.startFrame,
+      frameCount: planned.frameCount,
+      onsetFrame: planned.onsetFrame,
+      quietBeforeFrames: planned.quietBeforeFrames,
+      sampleRate: RATE,
+      durationSeconds: planned.frameCount / RATE,
+      overflow: false,
+      segments: [],
+    };
+  }
+
+  it("keeps a 140 ms lead and does not stretch it to 400 ms", () => {
+    const energy = new Float64Array(400);
+    const loud = energyThreshold(FRAMES) * 4;
+    for (let window = 7; window < energy.length; window += 1) energy[window] = loud;
+    const planned = planCleanSourceProbe(energy, RATE, energy.length * FRAMES, {
+      fromSeconds: 0,
+      toSeconds: 8,
+    });
+    assert.ok(planned);
+    assert.equal(planned.purpose, "absolute_energy_v2");
+    assert.equal(planned.onsetWindow, 7);
+    assert.equal(planned.quietWindows, 7);
+    assert.equal(planned.leadWindows, 7);
+    assert.equal(planned.quietBeforeFrames, 7 * FRAMES);
+    assert.equal(planned.onsetFrame - planned.startFrame, 7 * FRAMES);
+    assert.equal(nativeLeadProblem(reading(planned), clock), null);
+  });
+
+  it("returns null when the gap is shorter than 100 ms", () => {
+    const energy = new Float64Array(400);
+    const loud = energyThreshold(FRAMES) * 4;
+    for (let window = 4; window < energy.length; window += 1) energy[window] = loud;
+    assert.equal(
+      planCleanSourceProbe(energy, RATE, energy.length * FRAMES, { fromSeconds: 0, toSeconds: 8 }),
+      null,
+    );
+  });
+
+  it("caps a longer quiet at a 400 ms lead", () => {
+    const energy = new Float64Array(400);
+    const loud = energyThreshold(FRAMES) * 4;
+    for (let window = 30; window < energy.length; window += 1) energy[window] = loud;
+    const planned = planCleanSourceProbe(energy, RATE, energy.length * FRAMES, {
+      fromSeconds: 0,
+      toSeconds: 8,
+    });
+    assert.ok(planned);
+    assert.equal(planned.quietWindows, 30);
+    assert.equal(planned.leadWindows, 20);
+    assert.equal(planned.quietBeforeFrames, 30 * FRAMES);
+    assert.equal(planned.onsetFrame - planned.startFrame, 20 * FRAMES);
+    assert.equal(nativeLeadProblem(reading(planned), clock), null);
   });
 });
 
