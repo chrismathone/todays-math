@@ -108,6 +108,51 @@ a passage stand, the quote was written in all but 6 cases.
   distant places, 3 last-question boundary, 2 number stamped late, 1 script
   numbering not unique, 1 own sentence not heard.
 
+### What the independent verifier did with these (its certificate, not this producer's claim)
+
+Codex replayed the 64 pilot rows of `pilot-002` and the 19 official rows from
+the original bytes (`codex/pilot-official-certificate-001`, SHA-256
+`0e6ff4dc64de25541efc7a810c4d62dd92fa784a4839ec562c42f5756372af55`), with all
+2,727 existing starts preserved:
+
+| offered                 | passed | held by the verifier                                                                                                   |
+| ----------------------- | -----: | ---------------------------------------------------------------------------------------------------------------------- |
+| 64 reconstructed, pilot |     50 | 14: instruction incomplete 4, number at two distant onsets 3, a number read inside the passage 3, raw-word artefact in the English clip 3, a word outside its segment 1 |
+| 19 official             |      0 | 19: number clip longer than its 3 s cap 7, instruction not the current question's 4, own instruction absent in the probe 3, next-boundary instruction incomplete 3, neighbour boundary metadata 2 |
+
+The official result stands as it is. The seven number clips are this
+producer's 4.5 s and 6 s same-start readings; the earlier wave's shorter
+number-only clips at those starts had been flagged, and no duration was edited.
+The other twelve are differences between this export and the existing gate's
+instruction and neighbour roles that were not resolved here. The verifier's
+raw-word checks were added to this producer afterwards, so a quoted segment
+whose words do not spell it is now a barrier here too.
+
+### A passage may end where the next number is first heard — `runs/pilot-003/`
+
+Added **after** the pilot outcome was seen, and reported as such. In
+`pilot-002`, 94 of the 152 held rows sat where a heading stands but the very
+next number's heading does not; in 41 of those 48 passages a stored Korean
+probe had written the next number first and reliably and failed only as a
+*start* (a chime runs into the number, so the recognizer stamps it about a
+second after the measured onset). The rule lets such a reading **end** the
+passage before it; it never becomes a seek start.
+
+`pilot-003` (candidates `73e24dbd…`, ledger `335e1053…`, controls
+`89e86a2d…`, summary `380f8772…`) is frozen with the first form of the rule:
+85 offered — the same 63 + 1 as before and **21** that end at such a boundary.
+Blind controls through that boundary: 3 identical, 0 later, 0 earlier, 0 other
+scope. The coordinator then constrained it: the reading must also carry the
+complete instruction, or the number must be a later member of a shared heading
+that stands (a number alone can be an answer option read aloud). The code and
+the full run follow the constrained form; such rows are tagged
+`native-localized-generation-boundary-v3`, the verifier's separately named
+tier, and can be dropped by that tag. `pilot-003` itself was not altered.
+
+After it, what holds the pilot rows is no longer the passage's end but its own
+start: 51 rows whose number is written first and reliably 0.9–2 s after the
+measured onset. That is a start-policy question and was not touched.
+
 ## Controls and adversarial inputs (pilot sources; `runs/pilot-002/controls.json`)
 
 The same code, with the certificate unread while deciding, replayed the 50
@@ -156,11 +201,18 @@ overflow in every round.
 | 006 (pilot)               | English passage clips (3,779 s)                                 |                   87 |
 | adversarial 001           | truncated clips, own folder, never evidence                     |                  380 |
 | 030–034 (official)        | Korean 198 + 5 + 304 (+ 10 of a round stopped as planned too broadly), English 3 |    520 |
+| 040–044 (converted)       | `ebs-middle-1-2006-2` on its authenticated playback clock, own runner: Korean 100, English 13 | 113 |
+| 011 (pilot)               | English clips for passages ended by a first-speech boundary     |                   25 |
 | 020 onward                | the other 56 reconstructed sources — see "Full run"             |                      |
 
 All 71 reconstructed MP3 originals and the 47 official sources with a held
 question were decoded once and reproduced the frozen clock (PCM SHA-256); only
-20 ms loudness was kept.
+20 ms loudness was kept. The one converted original (`ebs-middle-1-2006-2`,
+M4A) was not decoded: its clock is the decode of the authenticated playback
+MP3, bound to the original by the verifier's nine-landmark proof, and every
+clip was cut by the verifier's own `codex/native-windows.mts` (read only),
+which re-checks the original's hash, the proof and the full PCM. Its loudness
+hash equals the value the earlier converted runner had recorded.
 
 ## Full run
 
@@ -180,11 +232,6 @@ English rounds, then one ledger over the whole held population).
   of the first member.
 - **Quotes that repeat or are too short**: held by the frozen side alone; no
   audio decides them.
-- **`ebs-middle-1-2006-2`** (11 rows): its verified clock is the decode of the
-  authenticated playback MP3, not of the M4A original. The existing bounded
-  runner cannot be pointed at it, and the one converted runner is fixed to
-  another producer's folder with a 14 s clip cap. It needs its own runner and
-  the verifier's confirmation of the container shape — a separate job.
 - **Official rows with only a later own sentence** (19): a route the verifier
   would have to evaluate.
 
