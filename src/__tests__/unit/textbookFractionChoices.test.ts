@@ -288,6 +288,14 @@ describe("which lines become choice rows", () => {
     expect(fractionChoiceRows(listed, 2)).toBe(listed);
   });
 
+  it("reads only top-level paragraphs, so a quoted mark never pairs with a later line", () => {
+    const tall = `<span data-textbook-math>${katex.renderToString("\\dfrac{1}{2}", { output: "html" })}</span>`;
+    // Without the depth check the quote's paragraph would open a line that ends inside the
+    // following block and cut across both: a row tag that could not close where it opened.
+    const html = `<blockquote><p>① ${tall}</p></blockquote><div>가<br>나</div><p>② ${tall}</p>`;
+    expect(fractionChoiceRows(html, 2)).toBe(html);
+  });
+
   it("returns the input for malformed markup", () => {
     expect(fractionChoiceRows("</p>① x", 2)).toBe("</p>① x");
     expect(fractionChoiceRows("<p>① x<br>② y", 2)).toBe("<p>① x<br>② y");
