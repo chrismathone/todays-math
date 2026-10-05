@@ -633,57 +633,101 @@ export function paginateTextbookSections(
             section,
             block,
           );
-        const rightInset = 3;
-        const columnsHeight = Math.max(
-          sizes[0].heightMm,
-          rightInset +
-            sizes.slice(1).reduce((sum, size) => sum + size.heightMm, 0),
-        );
-        const groupHeight = Math.max(102, m!.heightMm + columnsHeight);
-        if (!page || cursor + groupHeight > bodyBottom) newPage(block);
-        if (cursor + groupHeight > bodyBottom)
-          fail(
-            "EXAMPLE_GROUP_OVERFLOW",
-            "예제와 확인문제를 한 지면에 넣을 수 없습니다. 원고·그림·풀이 공간을 조정하세요.",
-            section,
-            block,
+        // The confirmations stand 3mm below the top of the example beside them. A part of a
+        // continued group that has no example has nothing to stand below.
+        const rightInset = (indexes: readonly number[]) =>
+          indexes[0] === 0 ? 3 : 0;
+        /** The title and the members `indexes` (0 is the example) in their columns. */
+        const partHeight = (indexes: readonly number[]) =>
+          Math.max(
+            102,
+            m!.heightMm +
+              Math.max(
+                indexes[0] === 0 ? sizes[0].heightMm : 0,
+                rightInset(indexes) +
+                  indexes
+                    .filter((index) => index > 0)
+                    .reduce((sum, index) => sum + sizes[index].heightMm, 0),
+              ),
           );
-        const left =
-          page!.physicalPageIndex % 2 === 0
-            ? config.print.outerMarginMm
-            : config.print.innerMarginMm;
-        page!.blocks.push({
-          blockId: block.id,
-          column: 1,
-          xMm: left,
-          yMm: cursor,
-          widthMm: blockWidthMm(config, block),
-          heightMm: m!.heightMm,
-        });
-        let rightTop = cursor + m!.heightMm + rightInset;
-        members.forEach((member, index) => {
-          const problem = member as Extract<RenderBlock, { kind: "problem" }>;
-          const column = index === 0 ? 1 : 2;
-          const width = blockWidthMm(config, member);
+        let rest = members.map((_, index) => index);
+        // Students read an example and its confirmations on one page. The answer book is
+        // paginated on its own: there a bank group taller than a page continues under its
+        // repeated title, every problem placed once in the column it always has. A group of
+        // an original page keeps that page's layout in both variants.
+        const continues =
+          !block.semantic?.source &&
+          members.every(
+            (member) =>
+              member.kind === "problem" && member.answer !== undefined,
+          );
+        // A new page has no more room than one that holds only the heading it would repeat.
+        const atPageTop = () =>
+          page!.blocks.every(
+            (placement) => placement.blockId === currentHeading?.id,
+          );
+        if (
+          !page ||
+          (cursor + partHeight(rest) > bodyBottom &&
+            !(continues && atPageTop()))
+        )
+          newPage(block);
+        for (let continued = false; rest.length; continued = true) {
+          if (continued) newPage(block);
+          let part = rest;
+          if (cursor + partHeight(part) > bodyBottom) {
+            // As many members as this page holds, in order; at least one, or nothing fits.
+            part = continues ? rest.slice(0, -1) : [];
+            while (part.length && cursor + partHeight(part) > bodyBottom)
+              part = part.slice(0, -1);
+            if (!part.length)
+              fail(
+                "EXAMPLE_GROUP_OVERFLOW",
+                "예제와 확인문제를 한 지면에 넣을 수 없습니다. 원고·그림·풀이 공간을 조정하세요.",
+                section,
+                block,
+              );
+          }
+          const left =
+            page!.physicalPageIndex % 2 === 0
+              ? config.print.outerMarginMm
+              : config.print.innerMarginMm;
           page!.blocks.push({
-            blockId: member.id,
-            itemId: problem.itemId,
-            column,
-            xMm: left + (column - 1) * (width + A4.columnGapMm),
-            yMm: index === 0 ? cursor + m!.heightMm : rightTop,
-            widthMm: width,
-            heightMm: sizes[index].heightMm,
+            blockId: block.id,
+            ...(continued ? { continuation: true } : {}),
+            column: 1,
+            xMm: left,
+            yMm: cursor,
+            widthMm: blockWidthMm(config, block),
+            heightMm: m!.heightMm,
           });
-          pageMap.push({
-            itemId: problem.itemId,
-            physicalPageIndex: page!.physicalPageIndex,
-            printedPageLabel: page!.printedPageLabel,
-            column,
-          });
-          if (index > 0) rightTop += sizes[index].heightMm;
-          grouped.add(member.id);
-        });
-        cursor += groupHeight + 3;
+          let rightTop = cursor + m!.heightMm + rightInset(part);
+          for (const index of part) {
+            const member = members[index];
+            const problem = member as Extract<RenderBlock, { kind: "problem" }>;
+            const column = index === 0 ? 1 : 2;
+            const width = blockWidthMm(config, member);
+            page!.blocks.push({
+              blockId: member.id,
+              itemId: problem.itemId,
+              column,
+              xMm: left + (column - 1) * (width + A4.columnGapMm),
+              yMm: index === 0 ? cursor + m!.heightMm : rightTop,
+              widthMm: width,
+              heightMm: sizes[index].heightMm,
+            });
+            pageMap.push({
+              itemId: problem.itemId,
+              physicalPageIndex: page!.physicalPageIndex,
+              printedPageLabel: page!.printedPageLabel,
+              column,
+            });
+            if (index > 0) rightTop += sizes[index].heightMm;
+            grouped.add(member.id);
+          }
+          cursor += partHeight(part) + 3;
+          rest = rest.slice(part.length);
+        }
         continue;
       }
       if (block.kind === "unit-intro") {

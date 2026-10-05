@@ -321,22 +321,39 @@ export function renderPageHtml(
       const example = bodyBlocks.find(
         (candidate) => candidate.itemId === group.exampleItemId,
       );
-      const confirms = group.confirmItemIds.map((id) =>
-        bodyBlocks.find((candidate) => candidate.itemId === id),
+      const confirmIndexes = group.confirmItemIds.flatMap((id, index) =>
+        bodyBlocks.some((candidate) => candidate.itemId === id) ? [index] : [],
       );
-      if (!example || confirms.some((candidate) => !candidate))
-        throw new Error("Incomplete rendered example group");
-      for (const member of [example, ...confirms])
-        groupedIds.add(member!.blockId);
+      const confirms = confirmIndexes.map((index) =>
+        bodyBlocks.find(
+          (candidate) => candidate.itemId === group.confirmItemIds[index],
+        )!,
+      );
+      // A page carries the whole group. Only the answer book continues a bank group that is
+      // taller than a page (see paginateTextbookSections): the example with the confirmations
+      // beside it first, then the rest in order under the repeated title.
+      const whole =
+        !placement.continuation &&
+        Boolean(example) &&
+        confirms.length === group.confirmItemIds.length;
+      const part =
+        model.variant === "answers" &&
+        !block.semantic?.source &&
+        confirmIndexes.every((n, i) => n === confirmIndexes[0] + i) &&
+        (placement.continuation
+          ? !example && confirms.length > 0
+          : Boolean(example) && (confirmIndexes[0] ?? 0) === 0);
+      if (!whole && !part) throw new Error("Incomplete rendered example group");
+      const members = [...(example ? [example] : []), ...confirms];
+      for (const member of members) groupedIds.add(member.blockId);
       const columnsTop = placement.yMm + placement.heightMm;
       const columnsEnd = Math.max(
-        example.yMm + example.heightMm,
-        ...confirms.map((member) => member!.yMm + member!.heightMm),
+        ...members.map((member) => member.yMm + member.heightMm),
       );
       const height = Math.max(102, columnsEnd - placement.yMm);
       bodyEnd = Math.max(bodyEnd, placement.yMm + height);
-      const rightX = confirms[0]!.xMm;
-      return `<section class="tb-paired-group paired-group" data-example-group="${esc(group.groupId)}" style="left:${placement.xMm - left}mm;top:${placement.yMm - bodyTop}mm;width:${placement.widthMm}mm;height:${height}mm">${placementHtml(placement, placement.xMm, placement.yMm)}<div class="tb-paired-cols paired-cols" style="left:0;top:${placement.heightMm}mm;width:100%;height:${columnsEnd - columnsTop}mm"><div class="tb-paired-worked worked" style="left:0;top:0;width:${example.widthMm}mm;height:${example.heightMm}mm">${placementHtml(example, example.xMm, columnsTop)}</div><div class="tb-paired-twins twins" style="left:${rightX - placement.xMm}mm;top:0;width:${confirms[0]!.widthMm}mm;height:${columnsEnd - columnsTop}mm">${confirms.map((member) => placementHtml(member!, rightX, columnsTop)).join("")}</div></div></section>`;
+      const rightX = confirms[0]?.xMm ?? 0;
+      return `<section class="tb-paired-group paired-group" data-example-group="${esc(group.groupId)}" style="left:${placement.xMm - left}mm;top:${placement.yMm - bodyTop}mm;width:${placement.widthMm}mm;height:${height}mm">${placementHtml(placement, placement.xMm, placement.yMm)}${placement.continuation ? '<small class="tb-continuation-label" data-continuation style="right:0;top:0;line-height:8.5mm">계속</small>' : ""}<div class="tb-paired-cols paired-cols" style="left:0;top:${placement.heightMm}mm;width:100%;height:${columnsEnd - columnsTop}mm">${example ? `<div class="tb-paired-worked worked" style="left:0;top:0;width:${example.widthMm}mm;height:${example.heightMm}mm">${placementHtml(example, example.xMm, columnsTop)}</div>` : ""}${confirms.length ? `<div class="tb-paired-twins twins" style="left:${rightX - placement.xMm}mm;top:0;width:${confirms[0].widthMm}mm;height:${columnsEnd - columnsTop}mm">${confirms.map((member) => placementHtml(member, rightX, columnsTop)).join("")}</div>` : ""}</div></section>`;
     })
     .join("");
   const content =
