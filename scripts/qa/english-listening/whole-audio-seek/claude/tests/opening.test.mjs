@@ -113,6 +113,17 @@ test("a member grounded by a greeting chain replays; share alone grounds nothing
     "exact_original_opening_v1",
   );
   assert.deepEqual(verifyMarks(ledger.marks, ledger.env).errors, []);
+  // The name of the method is recomputed too: this chain is not the other one.
+  member.scriptEvidence.firstDialogueOpeningEvidence.method =
+    "exact_original_opening_v2";
+  assert.ok(
+    verifyMarks(ledger.marks, ledger.env).errors.some(
+      (error) => error.code === "script_quote_differs",
+    ),
+  );
+  member.scriptEvidence.firstDialogueOpeningEvidence.method =
+    "exact_original_opening_v1";
+  assert.deepEqual(verifyMarks(ledger.marks, ledger.env).errors, []);
   // A changed chain no longer replays.
   member.scriptEvidence.firstDialogueOpeningEvidence.quotes[1].text =
     "Hi, this";
