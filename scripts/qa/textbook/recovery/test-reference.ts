@@ -138,6 +138,31 @@ async function main() {
     check: "Exact native portrait PNG bytes and source palette retained",
     count: 3,
   });
+  const mindmapAsset = lossless.assets.find(
+    (asset: { assetId: string }) => asset.assetId === "v15.p41.svg1",
+  );
+  assert(mindmapAsset, "Native U01 mindmap image is missing");
+  const mindmapSvg = await readFile(
+    path.join(out, mindmapAsset.packagePath),
+    "utf8",
+  );
+  const cardShapes = Array.from(
+    mindmapSvg.matchAll(
+      /<path\b[^>]*\bd="M18 0H202Q240 0 240 38V137Q240 155 222 155H38Q0 155 0 117V18Q0 0 18 0Z"[^>]*>/g,
+    ),
+  );
+  assert.equal(cardShapes.length, 4, "Native mindmap card geometry changed");
+  for (const shape of cardShapes) {
+    // These are the actual final editorial values; the rule follows a block comment.
+    assert.match(shape[0], /\bfill="#f9fcf7"/);
+    assert.match(shape[0], /\bstroke="#b1c7ba"/);
+    assert.match(shape[0], /\bstroke-width="1"/);
+  }
+  tests.push({
+    check:
+      "Native mindmap card paint keeps the original final CSS cascade after comments",
+    count: cardShapes.length,
+  });
   let footersChecked = 0;
   const findNativeFooter = (
     tree: import("./convert-reference").Tree,

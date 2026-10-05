@@ -544,10 +544,13 @@ async function sourceSvgAsset(tree: Tree, sourceDir: string): Promise<string> {
     "font-size",
     "font-weight",
   ]);
-  const rules = Array.from(css.matchAll(/([^{}]+)\{([^{}]*)\}/g), (m) => ({
-    selector: m[1].trim(),
-    body: m[2],
-  }));
+  const rules = Array.from(
+    css.replace(/\/\*[\s\S]*?\*\//g, "").matchAll(/([^{}]+)\{([^{}]*)\}/g),
+    (m) => ({
+      selector: m[1].trim(),
+      body: m[2],
+    }),
+  );
   const attrsAllowed = new Set([
     "viewBox",
     "x",
