@@ -27,9 +27,11 @@ def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testau
     inventory_map = {r["sourceRecordId"]: r for r in inventory_data["records"]}
         
     import sys
-    if verifier_root not in sys.path:
-        sys.path.append(verifier_root)
+    sys.path.insert(0, verifier_root)
+    if 'noise_floor' in sys.modules:
+        del sys.modules['noise_floor']
     import noise_floor
+    assert os.path.normpath(verifier_root) in os.path.normpath(noise_floor.__file__), f"noise_floor loaded from wrong path: {noise_floor.__file__}"
     
     records = []
     
