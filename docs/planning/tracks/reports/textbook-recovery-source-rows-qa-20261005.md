@@ -1,6 +1,6 @@
 # 교재 복구 — 원본 문항 행(머리 · 발문 높이 맞춤) 검증 (2026-10-05)
 
-작성: Claude Opus 5.5 (Orca 작업자, Task `task_53aafccb9540`). 가지 `BIGSHOL/textbook-recovery-content-20261005`. 잰 스냅샷은 `3aa8d8f8d`(= 내 가지에 root `4186c8b01` 을 병합한 것)이다.
+작성: Claude Opus 5.5 (Orca 작업자, Task `task_53aafccb9540`). 가지 `BIGSHOL/textbook-recovery-content-20261005`. 잰 스냅샷은 `3aa8d8f8d`(= 내 가지에 root `4186c8b01` 을 병합한 것)이다. 그 뒤 root 의 문서 병합 `9d656938f`(앱 코드 변경 없음)까지 받아 시험 56개를 한 번 더 돌렸다(통과).
 
 **앱 코드와 기존 시험은 한 줄도 고치지 않았다.** 새로 만든 것은 시험 둘 · 시험 도우미 하나 · 이 보고서다. 찾은 것은 root 에 보냈고, root 가 고친 뒤 다시 쟀다(§4). 앞서 끝낸 도입 보고서 · 증명 · 시험은 그대로다(`09c323e55` 와 바이트가 같다).
 
