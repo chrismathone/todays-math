@@ -1143,6 +1143,7 @@ export function auditMarks(
         problems.push(`verified reason ${record.questionId}`);
       if (
         !Number.isSafeInteger(record.seekEndMs) ||
+        record.seekEndMs == null ||
         record.seekStartMs == null ||
         record.seekEndMs <= record.seekStartMs
       )

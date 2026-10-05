@@ -391,7 +391,7 @@ async function main() {
   throw new Error(
     "Withdrawn: an energy edge nearest an ASR estimate is not spoken-cue recognition. run.ts does not write marks.json or probe files.",
   );
-  const inventoryPath = resolve(values.inventory);
+  const inventoryPath = resolve(values.inventory!);
   const mediaPath = resolve(
     values["media-bindings"] ??
       "C:/Creative/testautocreator/.qa-artifacts/whole-audio-seek-20261005/media-bindings.json",
@@ -406,7 +406,7 @@ async function main() {
   let assigned = inventory.records.filter((record) => record.assignedAgent === "grok");
   if (values.only)
     assigned = assigned.filter((record) => record.sourceRecordId === values.only);
-  const out = resolve(values.out);
+  const out = resolve(values.out!);
   const probeDirectory = resolve(out, "probes");
   mkdirSync(probeDirectory, { recursive: true });
   const sources: SourceInput[] = [];

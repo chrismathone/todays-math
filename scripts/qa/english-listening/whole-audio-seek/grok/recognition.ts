@@ -390,7 +390,7 @@ export function copiedFullAsrProbe(probe: {
   );
 }
 
-export function metricsUncertain(segment: WhisperSegment): boolean {
+export function metricsUncertain(segment: Pick<WhisperSegment, "avgLogProbability" | "noSpeechProbability" | "compressionRatio">): boolean {
   return (
     segment.avgLogProbability < -1 ||
     segment.compressionRatio > 2.4 ||
