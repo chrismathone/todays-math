@@ -128,6 +128,27 @@ export function loadBaseline(overrides = {}) {
   if (clock.inventorySha256 && overrides.requireClockOfInventory)
     if (clock.inventorySha256 !== inputs.inventory.sha256)
       throw new FrozenInputError("Clock belongs to another inventory");
+  // Where each certified start was actually admitted: this certificate, or the
+  // complete certificate before it for a row this one only preserves.
+  const admissions = new Map();
+  const admit = (reference, rows) => {
+    for (const row of rows)
+      if (row.status === "admitted" && row.audioRange && !admissions.has(row.questionId))
+        admissions.set(row.questionId, {
+          certificate: reference,
+          questionId: row.questionId,
+          scopeQuestionNumbers: row.scopeQuestionNumbers ?? null,
+          nativeOnsetFrame: row.nativeEvidence?.onsetFrame ?? null,
+          startMs: row.audioRange.startMs,
+        });
+  };
+  admit(inputs.certificate, certificate.records);
+  const ancestor = certificate.inputs?.ancestorCertificate;
+  if (ancestor?.path && ancestor.sha256)
+    admit(
+      { path: ancestor.path.replace(/\\/g, "/"), sha256: ancestor.sha256 },
+      readBoundJson(ancestor.path, ancestor.sha256, "Ancestor certificate").records,
+    );
   const certBySource = new Map();
   for (const row of certificate.records) {
     if (!certBySource.has(row.sourceRecordId))
@@ -141,6 +162,7 @@ export function loadBaseline(overrides = {}) {
     clockBySource: new Map(clock.records.map((r) => [r.sourceRecordId, r])),
     certificate,
     certBySource,
+    admissions,
   };
 }
 

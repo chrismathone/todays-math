@@ -151,7 +151,23 @@ for (const id of session.scope(values.scope, values["source-id"])) {
   const spokenEnough = (o) => o.soundWindows >= RULES.minimumSoundAfterOnsetWindows;
 
   if (values.stage === "headings") {
+    // An official source keeps its certified starts: only a held question's
+    // own number and, where it has no certified start, the next one are sought.
+    let only = null;
+    if (!w.record.reconstructed) {
+      const certified = new Set(
+        w.certRows
+          .filter((r) => r.audioRange)
+          .flatMap((r) => r.scopeQuestionNumbers ?? [r.sourceNumber]),
+      );
+      only = new Set();
+      for (const row of w.certRows.filter((r) => r.status === "held")) {
+        only.add(row.sourceNumber);
+        if (!certified.has(row.sourceNumber + 1)) only.add(row.sourceNumber + 1);
+      }
+    }
     for (const [number, bands] of bandsFor(w.hints)) {
+      if (only && !only.has(number)) continue;
       const within = (why) =>
         onsets.filter(
           (o) =>
@@ -300,6 +316,7 @@ for (const id of session.scope(values.scope, values["source-id"])) {
       generation: w.generation,
       hints: w.hints,
       certificateSha256: session.baseline.inputs.certificate.sha256,
+      admissions: session.baseline.admissions,
       terminalScan: session.terminalScan(w),
     };
     const held = w.certRows.filter((r) => r.status === "held" && r.reconstructed);

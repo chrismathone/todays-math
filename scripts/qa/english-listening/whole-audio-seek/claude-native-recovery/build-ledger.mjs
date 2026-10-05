@@ -141,6 +141,7 @@ for (const id of ids) {
       enListenings: w.enListenings,
       hints: w.hints,
       certificateSha256,
+    admissions: session.baseline.admissions,
       terminalScan: session.terminalScan(w),
       script: w.script,
       targets: held,
@@ -162,6 +163,7 @@ for (const id of ids) {
     generation: w.generation,
     hints: w.hints,
     certificateSha256,
+    admissions: session.baseline.admissions,
     terminalScan: session.terminalScan(w),
   };
   const resolved = resolveSource({

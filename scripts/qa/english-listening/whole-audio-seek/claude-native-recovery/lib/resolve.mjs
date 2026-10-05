@@ -25,7 +25,7 @@ import {
 export const ADAPTER = "native-localized-generation-v2";
 
 /** Certified starts of a source by the first original number of their proven scope. */
-export function certifiedStarts(certRows, sampleRate) {
+export function certifiedStarts(certRows, sampleRate, admissions = null) {
   const starts = new Map();
   for (const row of certRows) {
     if (!row.audioRange) continue;
@@ -56,6 +56,16 @@ export function certifiedStarts(certRows, sampleRate) {
         row.originalScopeEvidence?.onsetFrame ??
         null,
       questionIds: [row.questionId],
+      // The certificate that admitted this start, when one did and still agrees.
+      admission: (() => {
+        const found = admissions?.get(row.questionId);
+        return found &&
+          found.startMs === row.audioRange.startMs &&
+          found.scopeQuestionNumbers?.join() === scope.join() &&
+          Number.isInteger(found.nativeOnsetFrame)
+          ? found
+          : null;
+      })(),
       conflict: !Number.isInteger(startFrame),
     });
   }
@@ -204,6 +214,12 @@ export function passageEvidence(input, passage, tested = {}) {
         : null,
       nextProbeEvidence: nextHeading ? headingReference(nextHeading) : null,
       nextNativeEvidence: nextHeading ? placeEvidence(nextHeading) : null,
+      // Where no native heading bounds the passage: the certificate that
+      // admitted the next number's start, in the verifier's shape.
+      nextCertificateEvidence:
+        !nextHeading && boundary.existing?.admission
+          ? boundary.existing.admission
+          : null,
       sharedHeadProbeEvidence:
         kind === "shared_instruction_member" ? headingReference(head) : null,
       sharedHeadNativeEvidence:
@@ -263,7 +279,7 @@ export function sourceStructure(input) {
   const nativeStarts = passageStarts(headings);
   const certified = input.blind
     ? new Map()
-    : certifiedStarts(input.certRows, rate);
+    : certifiedStarts(input.certRows, rate, input.admissions);
 
   // Every known passage start by original number; a certified one wins.
   const starts = new Map();
@@ -347,6 +363,7 @@ export function sourceStructure(input) {
               startMs: next.certified.startMs,
               scope: next.certified.scope,
               startFrame: next.certified.startFrame,
+              admission: next.certified.admission,
             }
           : null;
       boundary = {
@@ -686,6 +703,11 @@ export function resolveSource(input) {
           uncoveredAnchorSegmentIds: uncovered,
           verifierPreconditions: {
             nextHeadingIsANativeProbe: Boolean(nextHeading),
+            nextBoundaryIsProvable: Boolean(
+              nextHeading ||
+                passage.boundary.closing ||
+                passage.boundary.existing?.admission,
+            ),
             everyAnchorSegmentTouchedByAQuote: uncovered.length === 0,
             everyUntouchedAnchorSegmentHeardWhole: true,
             anchorSegmentsContiguous: contiguous,

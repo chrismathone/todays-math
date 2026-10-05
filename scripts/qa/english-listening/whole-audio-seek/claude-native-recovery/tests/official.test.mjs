@@ -155,4 +155,20 @@ test("the next number's certified start bounds an official passage", () => {
   assert.equal(row.nativeRecovery.nextBoundary.kind, "existing_certificate_start");
   assert.equal(row.nextProbeEvidence, null);
   assert.equal(row.nativeRecovery.passageFrames.toFrame, startOf(AT[3]));
+  // Nobody said which certificate admitted number 3: the boundary is named, not proven.
+  assert.equal(row.nextCertificateEvidence, null);
+  const admission = {
+    certificate: { path: "certificate.json", sha256: "7".repeat(64) },
+    questionId: "o-3",
+    scopeQuestionNumbers: [3],
+    nativeOnsetFrame: AT[3] * FRAMES,
+    startMs: ms(AT[3]),
+  };
+  input.admissions = new Map([["o-3", admission]]);
+  assert.deepEqual(rowOf(resolveOfficial(input), "o-2").nextCertificateEvidence, admission);
+  // An admission of another start or scope is not this boundary's.
+  input.admissions = new Map([["o-3", { ...admission, startMs: ms(AT[3]) + 20 }]]);
+  assert.equal(rowOf(resolveOfficial(input), "o-2").nextCertificateEvidence, null);
+  input.admissions = new Map([["o-3", { ...admission, scopeQuestionNumbers: [3, 4] }]]);
+  assert.equal(rowOf(resolveOfficial(input), "o-2").nextCertificateEvidence, null);
 });

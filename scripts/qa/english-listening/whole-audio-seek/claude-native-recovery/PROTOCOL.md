@@ -1,199 +1,193 @@
-# Native recovery of held whole-original starts — evidence protocol 1
+# Native recovery of held whole-original starts — evidence protocol 2
 
-Producer: `claude-native-recovery`. Route name:
-**`native_numbered_passage_literal_quote_v1`**.
+Producer: `claude-native-recovery`. Reconstructed route
+**`native_numbered_passage_literal_quote_v1`**, offered in the independent
+verifier's adapter shape `native-localized-generation-v2`. Official route
+**`native_numbered_passage_script_sentence_v1`**, offered apart, with no
+verifier adapter yet.
 
-This is what an offered row carries and what an independent replay can
-recompute from the original bytes and the frozen mappings. An offered row is an
-offline finding. Admission is the independent verifier's; nothing here writes a
-database, Storage, media or a clip, and no row claims human review.
+Protocol 1 (sent before any recognition ran) is kept unchanged at
+`<OUT>/protocol/PROTOCOL-v1.md`. Protocol 2 differs where the coordinator and
+the verifier asked for more: **every** frozen quote in **one** clip, cited
+generation segments without a quote heard whole, the verifier's field names,
+its named noise tiers, a complete probe catalog. Nothing was loosened.
 
-## Why a new route
+An offered row is an offline finding. Admission is the independent verifier's;
+nothing here writes a database, Storage, media or a clip, and no row claims
+human review.
 
-The 885 held reconstructed questions are held because the frozen whole-record
-recognition (or the provider transcript) lacks a reliable number, instruction
-or neighbour for the passage — or timed it badly. The existing reconstructed
-route binds a question to its passage through that recognition's segment order
-and estimated spans. This route replaces **estimated structure** with
-**measured structure**:
+## What decides, and what never does
 
-| link         | authority                                                                                            | never                                              |
-| ------------ | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| clock        | full decode of the original bytes, PCM SHA-256 equal to the frozen clock proof                       | a provider duration, a second decode's estimate    |
-| heading      | measured native onset after measured quiet; start = onset − min(400 ms, quiet)                       | a provider or model timestamp                      |
-| number       | a bounded Korean recognition that **begins at that start** writes the literal number first, reliably | a displayed number, a neighbour, a confidence      |
-| next heading | the same, for the very next original number (or an existing certified start, or the closing)         | "the next number we happened to find"              |
-| passage      | the native frames `[headingStartFrame, nextHeadingStartFrame)`                                       | a transcript window                                |
-| mapping      | the question's own frozen generation quote, word for word, in an English recognition whose **whole clip lies inside the passage frames** | similarity, topic, recognizer time of the words |
+| link         | authority                                                                                                              | never                                           |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| clock        | full decode of the original bytes; PCM SHA-256 equal to the frozen clock record                                        | a provider duration, a second decode's estimate |
+| heading      | a measured native onset after measured quiet; start = onset − min(400 ms, quiet)                                       | a provider or recognizer time                   |
+| number       | a bounded Korean recognition that begins at that start writes the literal number first, reliably, at the onset         | a displayed number, a neighbour, a confidence   |
+| next heading | the same, for the very next original number; after the last number a literal closing                                   | the next number that happened to be found       |
+| passage      | native frames `[headingStartFrame, nextHeadingStartFrame)`                                                             | a transcript window                             |
+| mapping      | every frozen generation quote, word for word, in one English clip whose **whole clip lies inside the passage frames** | similarity, topic, recognizer time of the words |
 
-Containment is physical: a clip cut from frames inside the passage cannot hold
-words spoken outside it, whatever times the recognizer writes. Recognizer and
-provider times are used to decide **where to listen** and to **hold** a row,
-never to admit one.
+Provider and recognizer times are read to decide where to listen and in two
+hold-only checks. The only numbers taken from this corpus are those search
+bands; a wrong band can lose a row and cannot admit one.
 
-## Inputs (all bound by SHA-256 of bytes)
+## Inputs (bound by SHA-256 of bytes)
 
-- inventory, clock, certificate (`776d313a…`) — the frozen baseline. Identity
-  fields of a row (`revision`, `documentSha256`) are joined from the inventory
-  given on the command line, so the same physical evidence can be rebuilt on a
-  later exact metadata rebase without new recognition.
-- original audio (`record.sourceAudioPath`, `sourceAudioSha256`).
-- prepared file (`record.preparedPath`, `preparedSha256`): the generation quotes
-  are `verification.grounding[generatedOrdinal].evidenceQuotes`.
-- generation alignment (`record.alignmentPath`, hash recorded in the row): joins
-  `questionId` to `generatedOrdinal` and names its frozen whole-record segments.
-- search hints only: the two provider transcripts (raw response hashes) and the
-  frozen whole-record recognition (`asrPath`, `asrSha256`).
+- inventory `58a53b05…`, clock `bb8b37dd…` (the exact-live rebase of
+  2026-10-06) and certificate `776d313a…`. Row identity (`revision`,
+  `documentSha256`) is joined from the inventory, so the same physical evidence
+  can be rebuilt on a later exact rebase without new recognition.
+- original audio; prepared file (`verification.grounding[ordinal].evidenceQuotes`
+  and `sourceSegmentIds`); generation alignment (joins `questionId` to the
+  ordinal; must name the same frozen recognition and the same segment ids);
+  frozen whole-record recognition (the literal text of those segments).
+- search only: the two provider transcripts (raw response hashes).
+- `ebs-middle-1-2006-2` (converted original, own playback clock) is not
+  listened to; its rows stay held.
 
-`ebs-middle-1-2006-2` (converted original with its own playback clock) is not
-listened to by this route; its rows stay held.
-
-## Measurement (unchanged policy `whole-audio-seek-start-v3`)
+## Measurement
 
 20 ms windows; a window's level is the larger channel's sum of squared PCM16
-samples; sound is ≥ −50 dBFS. An onset is the first sound window after at least
-100 ms of measured quiet. `startFrame = onsetFrame − min(20, quietWindows) ×
-windowFrames`. The two seconds after the onset hold at least 240 ms of sound.
-`seekStartMs = floor(startFrame × 1000 / sampleRate)`, `seekEndMs` = the frozen
-playback duration. Noise-floor tiers are not used by this producer (rows whose
-heading has no absolute-quiet onset are held as such).
+samples. `absolute_energy_v2`: sound is ≥ −50 dBFS; an onset follows ≥ 100 ms of
+quiet. `noise_floor_contrast_v1` / `noise_floor_contrast_1second_v1` (the
+verifier's existing named tiers, unchanged): a stationary baseline of 100 / 50
+windows before the onset (nearest-rank p90 − p10 ≤ 6 dB, all below median +
+10 dB), the onset and three of its first five windows at or above that level.
+Either way: `startFrame = onsetFrame − min(20, quietWindows) × windowFrames`,
+quiet counted against the tier's own threshold; the two seconds after the onset
+hold at least 240 ms of sound; `seekStartMs = floor(startFrame × 1000 /
+sampleRate)`; `seekEndMs` is the frozen playback duration.
 
-## Row (`ledger.json` → `records[]`, one per held question)
+## Rules an offered reconstructed row satisfies
 
-Common identity: `sourceRecordId setId revision documentSha256 questionId
-sourceNumber sourceAudioSha256 playbackSha256 reconstructed provider`.
-`status` is `candidate` or `held`; a held row has `reasons[]` and whatever
-evidence exists under `tested`.
-
-A `candidate` adds:
-
-```
-route                 "native_numbered_passage_literal_quote_v1"
-seekStartMs seekEndMs
-cueNumber             first original number of the scope
-cueSpokenNumbers      numbers literally announced by the heading ([19,20]; a range "18번부터 20번" is [18,20] with cueForm "range")
-cueForm               "beon" | "spelled" | "pair" | "range"
-scopeQuestionNumbers  the one original passage that starts here, e.g. [18]
-kind                  "single" | "shared_instruction_head" | "shared_instruction_member"
-nativeEvidence        { onsetMethod:"absolute_energy_v2", sampleRate, channels, frameCount, pcmSha256,
-                        startFrame, onsetFrame, quietBeforeFrames, leadFrames, leadPeakDbfs,
-                        soundWindowsInFirstTwoSeconds }
-headingEvidence       { source:"native_probe"|"existing_certificate",
-                        probe:{ path, sha256, probeId, startFrame, frameCount, clipPcmSha256, inputMonoFloat32Sha256 },
-                        segmentIds, text, firstSpeechSeconds, instruction:{ segmentIds, text, verb } | null,
-                        siblingReadings:[{ probe ref, text, numbers, form, flaggedUncertain }],
-                        sharedHead:{ ...same shape... } | null        // members only
-                        existing:{ certificateSha256, questionId, startMs, scope } | null }
-nextBoundaryEvidence  { kind:"next_heading_native_probe"|"existing_certificate_start"|"closing_announcement",
-                        originalNumbers, startFrame, onsetFrame, probe ref / existing ref, text }
-passageFrames         { fromFrame: heading startFrame, toFrame: next boundary startFrame }
-mappingEvidence       { prepared:{ path, sha256 }, generationAlignment:{ path, sha256 },
-                        generatedOrdinal, frozenSourceSegmentIds, evidenceQuotes:[literal strings],
-                        quotes:[{ index, text, words, anchor:boolean,
-                                  heard:[{ probe ref, segmentIds, wordRange:[from,to] }] }],
-                        anchorsHeardInPassage, anchorsTotal }
-holdOnlyChecks        { nativeOtherPassageHearings:[], providerEnglishOccurrences:[{ startMs, endMs, insidePassage }],
-                        frozenAsrSegmentSpanSeconds:[from,to], frozenAsrOverlapsPassage }
-peers                 other question ids offered for the same passage (identical start and native proof)
-neighbors             { previous:{ originalNumber, startMs, provenance }, next:{ ... } }
-```
-
-Probe containers are written by the existing runner (`../claude/run_probes.py`,
-shape `claude-native-probe-v1`): request path and SHA-256, source and full-PCM
-identity, model and decode settings, and per probe `startFrame frameCount
-clipPcmSha256 inputMonoFloat32Sha256 durationSeconds overflow segments[words]`
-exactly as returned. The existing adapter's decode-and-hash replay of a
-container applies unchanged.
-
-## Rules an offered row satisfies
-
-1. **Clock.** Decoded PCM identity equals the frozen clock record (rate,
-   channels, frame count, SHA-256); the clock record is `passed`, offset 0.
-2. **Heading place.** `onsetFrame`/`startFrame` satisfy the measurement policy
-   when recomputed from the decode.
+1. **Clock.** The decode reproduces the frozen clock record.
+2. **Heading place.** `onsetFrame` / `startFrame` satisfy the measurement above.
 3. **Heading number.** The Korean probe begins at `startFrame`, is at most 14 s,
-   has no overflow. Its first non-empty segment is reliable (flag recomputed
-   from raw metrics), begins within 2 s, and starts with the literal cue
-   (`N번`, or a spelled ordinal with `번`; never bare digits). No other stored
-   recognition from the same start wrote a different number.
-4. **Heading is a question heading.** After the cue the same probe writes a
-   Korean instruction ending on an instruction verb, in reliable segments. A
-   member (`N번입니다.` followed by its dialogue) instead needs its shared head:
-   a heading by rules 2–4 that literally announces a pair or range containing
-   `N`, earlier, with only members of that head between them.
-5. **First member keeps the shared head.** The passage of the first number of a
-   shared instruction starts at the shared heading (`kind
-   shared_instruction_head`, `cueSpokenNumbers` the pair or range, scope the
-   first number). Later members start at their own cue.
-6. **One place.** The same literal number as a heading at two measured onsets
-   more than 3 s apart holds every row of that number.
-7. **Next boundary.** The very next original number's heading by rules 2–4 (a
-   shared head counts for its first number), or an existing certified start
-   whose proven original scope begins with that number, or — after the last
-   number only — a literal closing announcement at a measured onset. A missing
-   or skipped next heading holds the row.
-8. **Existing start wins.** If the passage already has a certified start, the
-   row takes exactly that start and scope; nothing is re-measured for it.
-9. **Quote.** At least one of the question's frozen quotes with four or more
-   words is heard word for word (lower case, punctuation and apostrophe style
-   aside; `dotted_initialism_v1`; nothing respelled) as consecutive words of
-   reliable segments of **one** English probe with
-   `passageFrames.fromFrame ≤ probe.startFrame` and `probe.startFrame +
-   probe.frameCount ≤ passageFrames.toFrame`. A flagged segment is a barrier:
-   no match crosses or uses it.
-10. **No contradiction.** No quote of the question is heard word for word in a
-    stored English probe that lies outside the passage. Hold-only, from
-    estimates: a literal occurrence of a heard anchor in the provider English
-    transcript or in the frozen whole-record recognition whose estimated
-    midpoint is more than 10 s outside the passage holds the row; so does a
-    frozen anchor segment span that does not overlap the passage ±10 s.
-11. **Order.** Starts increase with original number against every certified
-    start (by its proven original scope) and every offered row; equal starts
-    only for an identical scope.
+   has no overflow and no segment without duration. Its first segment is its
+   first speech, reliable by its raw metrics (recomputed; never cleared), begins
+   no later than 0.5 s after the onset and does not end before it, and starts
+   with a literal `N번` (or a spelled ordinal with `번`). Bare digits and
+   `N번째` are not a number. Every other recognition from the same start is
+   listed; a different number in any of them holds the start.
+4. **Instruction.** The same probe writes the announcer's instruction after the
+   number, in reliable segments. A lone `N번입니다.` is a member only inside
+   the nearest earlier shared heading that names it.
+5. **Shared instruction.** The first member starts at the shared heading
+   (`kind shared_instruction_head`, `cueSpokenNumbers` the pair or the two ends
+   of a range, scope the first number). Later members start at their own cue
+   and carry `sharedHeadProbeEvidence`.
+6. **One place.** The same number as a heading at two measured onsets more than
+   3 s apart holds every row of that number.
+7. **Next boundary.** The heading of the very next original number by rules
+   2–4 (`nextProbeEvidence`, `nextNativeEvidence`). After the last number: a
+   literal closing announcement at a measured onset (`terminalProbeEvidence`),
+   no larger number written by any transcript or recognition, and every
+   long-quiet onset up to the closing listened to. A passage ends at the
+   earlier of the native and the certified start of the next number. Where
+   only a certified start bounds it, `nextProbeEvidence` is null and the row
+   says so.
+8. **Nothing else inside.** No stored Korean recognition that begins inside the
+   passage frames wrote another possible heading first, in any form, flagged or
+   not (bare digits count before an instruction).
+9. **Certified start wins.** A passage with a certified start is offered only
+   with a native heading at exactly the certified start and onset frames.
+10. **Frozen quotes.** Every `evidenceQuote` stands literally in a contiguous
+    run of the question's frozen generation segments (`sourceSegmentIds`,
+    `startCharacter`, `endCharacter` in their space-joined text) and exactly
+    once in the whole frozen recognition. At least one has four words.
+11. **Native quotes.** The quotes of four words or more are heard in exactly
+    one passage and in no clip that lies wholly elsewhere. One English clip
+    (`dialogueProbeEvidence`, purpose `localized_generation`, at most 60 s) with
+    `passage.fromFrame ≤ startFrame` and `startFrame + frameCount ≤
+    passage.toFrame` writes every quote, short ones included, as consecutive
+    words of reliable segments (`probeSegmentIds`). A flagged segment is a
+    barrier. Words are compared by the verifier's `dotted_initialism_v1` rule.
+12. **Cited segments without a quote.** Each frozen generation segment that no
+    quote touches is written whole, exactly once, by the same clip
+    (`localizedMappingEvidence.anchorSegments`).
+13. **Estimates hold only.** A literal occurrence of a heard anchor in the
+    provider's English transcript more than 10 s outside the passage, or frozen
+    anchor segments estimated more than 10 s outside it, holds the row.
+14. **Order.** Starts increase with original number against every certified
+    start and every native heading; a native start on the wrong side is dropped.
 
-Rules 1–9 and 11 contain no number taken from this corpus. The only
-data-chosen quantity is where to listen first; a wrong search band can lose a
-row and cannot admit one.
+## Row (`candidates.json`)
 
-## What stays held, by name
+Identity `sourceRecordId setId revision documentSha256 questionId sourceNumber
+sourceAudioSha256 playbackSha256 provider reconstructed`; then
 
-`converted_playback_clock_source_not_listened`, `no_search_hint_for_heading`,
-`no_measured_quiet_onset_in_search_band`, `number_not_written_first_at_any_onset`,
-`number_written_bare_or_flagged`, `contradictory_number_at_same_start`,
-`number_heard_at_two_distant_places`, `instruction_context_not_heard`,
-`shared_head_not_established`, `next_heading_not_established`,
-`terminal_boundary_not_established`, `no_anchor_quote_of_four_words`,
-`anchor_quote_not_heard_in_any_established_passage`,
-`quote_heard_in_two_passages`, `quote_also_placed_elsewhere_by_frozen_transcript`,
-`frozen_anchor_segments_outside_passage`, `original_order_conflict`,
-`passage_start_conflicts_with_certified_scope`, `probe_overflow`,
-`official_question_not_in_scope_of_this_route`.
+```
+status "candidate"   route   evidenceAdapter "native-localized-generation-v2"
+seekStartMs seekEndMs cueNumber cueSpokenNumbers cueForm scopeQuestionNumbers kind
+cueSegmentIds []      anchorSegmentIds = frozen generation ids
+nativeEvidence        { cachePath cacheSha256 energyPath energySha256 sampleRate channels frameCount pcmSha256
+                        onsetMethod startFrame onsetFrame quietBeforeFrames leadFrames leadPeakDbfs
+                        soundWindowsInFirstTwoSeconds [noiseFloorEvidence]
+                        [quietEvidenceMethod rawProbeQuietBeforeFrames quietDiscoveryEvidence] }
+probeEvidence         { path sha256 probeId segmentIds text inputMonoFloat32Sha256 clipPcmSha256 startFrame frameCount }
+nextProbeEvidence nextNativeEvidence | sharedHeadProbeEvidence sharedHeadNativeEvidence | terminalProbeEvidence terminalNativeEvidence
+dialogueProbeEvidence same reference shape, purpose "localized_generation"
+mappingEvidence       { alignment questionId sourceSegmentIds }
+localizedMappingEvidence { method "exact_generation_anchor_native_v2" alignment prepared questionId generatedOrdinal
+                        sourceSegmentIds quotes[{ text sourceSegmentIds startCharacter endCharacter probeSegmentIds }]
+                        anchorSegments[{ sourceSegmentId text probeSegmentIds }] }
+nativeRecovery        { passageFrames dialogueClipFrames headCovers sharedHeadCovers existingCertifiedStart
+                        nextBoundary{kind …} quotes siblingReadings uncoveredAnchorSegmentIds
+                        verifierPreconditions holdOnlyChecks peers neighbors }
+probeCatalog          { path sha256 }
+```
 
-## Controls and adversarial inputs (reported with every run)
+The three quiet fields appear only where the request that found a noise-tier
+onset stored the baseline length as its quiet; the block then states the full
+measured quiet and names the raw value and its baseline. Raw requests and
+containers are never changed.
 
-- **Blind control replay.** Reconstructed questions that already have a
-  certified start are run through the same code as if held; their start, onset
-  and scope are not read until the comparison. Reported per stratum: identical
-  start, earlier, later (false late), other scope, held (with reasons).
-- **Wrong number.** The heading reading of `N` is asked for `N−1` and `N+1`.
-- **Neighbour quote.** Each heard quote is tested against the previous and the
-  next established passage's probes.
-- **Shared member as head / head as member.**
-- **Truncation.** The same clips cut to stop before the number ends, and quote
-  clips cut inside the quote; a clip whose bounds leave the passage.
-- **Another source's clock or probe container.**
+`probe-catalog.json` is fixed when a run is written: explicit round folders per
+root, and every container of the run's sources in those roots — used or not —
+with path, SHA-256, request path and hash. Containers are written by the
+existing runner (`../claude/run_probes.py`, shape `claude-native-probe-v1`) at
+`<root>/probes/round-NNN/<sourceRecordId>.json`.
 
-Every adversarial case that passes is listed by name; the expected count is 0.
+## Official rows (`official-candidates.json`)
 
-## Replay recipe for an independent verifier
+The passage is built the same way, with two things an official source allows:
+bare digits before the instruction and the literal number alone, from one
+start, are one heading (`probeEvidence` the number, `instructionProbeEvidence`
+the instruction); and after the last printed question number the passage may
+end with the recording. Identity is `scriptEvidence`: sentences of four words
+or more of the question's own script section that the whole script prints once,
+heard by one English clip wholly inside the passage, while no other section's
+such sentence is heard in any clip inside it and no own sentence in a clip
+wholly outside it. The existing verifier route needs the exact opening of the
+first utterance; this one does not, which is why it is named and offered apart.
+
+## Controls and adversarial inputs (in every run's `controls.json`)
+
+- **Blind control replay.** Questions that already have a certified start are
+  run through the same code with the certificate unread; reported by the
+  coordinator's family-separated partition, with the sources inspected during
+  development apart: identical start, earlier, later, other scope, held.
+- **Heading comparison.** For each original number with both a certified start
+  and a blind native heading: the difference in milliseconds.
+- **Wrong number.** Each established heading is asked for `N−1` and `N+1`.
+- **Neighbour quote.** Each offered row's quotes, with its own passage taken
+  away, must bind to no other passage.
+- **Shared head.** The first member of every shared heading starts at the
+  heading even where its own number was also heard.
+- **Truncation.** Real clips cut 400 ms after the onset, and begun 300 ms into
+  the number, recognized and judged by the same rules.
+- **Another source's container.** Refused by hash.
+
+## Replay recipe
 
 For each candidate: hash the original; decode; compare with the clock record;
-recompute 20 ms energy; check onset, quiet, lead and sound at `onsetFrame` /
-`startFrame`; for every referenced probe recompute the clip PCM SHA-256 from
-the decode at `[startFrame, startFrame + frameCount)` and the 16 kHz mono
-float32 SHA-256, check container and request hashes, recompute each segment's
-uncertainty; parse the literal cue of the heading and next-boundary probes;
-check clip bounds against `passageFrames`; re-read the prepared file and the
-generation alignment by hash and check that the quote text is literally
-`evidenceQuotes[index]` of this `questionId`; re-match the quote words in the
-named segments; re-run the order check against the certificate.
+recompute 20 ms energy; re-measure onset, quiet, lead and sound of the head,
+next, shared-head and terminal places under their named tier; for every
+referenced probe recompute the clip PCM SHA-256 at `[startFrame, startFrame +
+frameCount)` and the 16 kHz mono float32 SHA-256, check container and request
+hashes, recompute each segment's uncertainty; parse the literal cue of each
+Korean probe; check the English clip's bounds against the head and next starts;
+re-read the prepared file, the alignment and the frozen recognition by hash and
+check each quote's literal text and character span; re-match the quote words in
+the named native segments; read every other container of the source from the
+catalog for a contradicting number; re-run the order check.
