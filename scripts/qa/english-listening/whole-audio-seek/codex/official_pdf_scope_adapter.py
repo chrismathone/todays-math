@@ -103,9 +103,11 @@ def placeholder_identity(row, source, question, replay):
 def first_native_opening(row, source, replay, binding):
     v.require(row.get("dialogueProbeEvidence") and row.get("scriptEvidence"), "official_scope_requires_first_native_dialogue")
     _, probe = a.checked_probe(row, source, "dialogueProbeEvidence")
-    v.require(probe.get("requestedLanguage") == "en" and probe.get("purpose") == "first_dialogue",
+    member = row.get("kind") == "shared_instruction_member"
+    expected_purpose = "member_dialogue" if member else "first_dialogue"
+    v.require(probe.get("requestedLanguage") == "en" and probe.get("purpose") == expected_purpose,
               "official_scope_wrong_opening_language_or_purpose")
-    index = a.probe_segments(probe, max_duration=60)
+    index = a.probe_segments(probe, max_duration=14 if member else 60)
     selected = v.select_segments(index, row["scriptEvidence"].get("dialogueProbeSegmentIds"))
     evidence = row["dialogueProbeEvidence"]
     v.require(evidence.get("segmentIds") == [s["id"] for s in selected]
@@ -131,6 +133,7 @@ def first_native_opening(row, source, replay, binding):
                       and previous <= lo and word["probability"] > 0, "official_scope_opening_word_timing_or_confidence_artifact")
             previous = lo
     return {"method": "first_literal_native_opening_v2", "probe": row["dialogueProbeEvidence"],
+            "purpose": expected_purpose, "maximumInputSeconds": 14 if member else 60,
             "rawSegments": selected, "selectedStartFrame": probe["startFrame"] + math.floor(selected[0]["estimatedStartSeconds"] * replay.actual["sampleRate"]),
             "selectedEndFrame": binding["selectedEstimatedEndFrame"]}
 

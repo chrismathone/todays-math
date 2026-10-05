@@ -247,6 +247,10 @@ ordered nonzero word times and confidence. Its entire actual input clip and all
 selected speech must remain before the independently proved next original
 heading. All catalog, nested request/envelope/raw, source PCM, mono, cache, energy,
 quiet lead, and ancestry checks still apply.
+The raw purpose remains unchanged: placeholder openings require `first_dialogue`
+with the existing 60-second maximum; question-19 member openings require
+`member_dialogue` with the existing 14-second maximum. Purpose and limit are
+retained in the named opening and ancestor proof, never relabeled in raw evidence.
 
 Its grade is `official_pdf_native_scope_v2`. The proof retains the old offset
 method and names the physical order contract
