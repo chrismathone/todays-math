@@ -453,49 +453,68 @@ if (!values["dry-run"]) {
     rules: RULES,
   };
   // Every bounded recognition of these sources that exists, used or not.
-  // Fixed at this moment: every container of these sources that exists in the
-  // roots, by explicit round folder. A later round does not change this file.
+  // Fixed at this moment, one catalog per source: every container of that
+  // source that exists in the roots, by literal round folder and file name,
+  // used or not. A later round, or another source's round, changes none of them.
   const slash = (path) => path.replace(/\\/g, "/");
-  const artifacts = session.store.catalog;
-  const bySource = {};
-  for (const artifact of artifacts)
-    (bySource[artifact.sourceRecordId] ??= []).push(artifact);
-  const catalog = {
-    schemaVersion: 1,
-    producer: "claude-native-recovery",
-    run: values.run,
-    frozenAt: new Date().toISOString(),
-    layout:
-      "<root>/probes/<round>/<sourceRecordId>.json; request at <root>/probe-requests/<round>.json",
-    roots: session.store.roots.map((path) => ({
-      path: slash(path),
-      rounds: [
-        ...new Set(
-          artifacts.filter((x) => x.root === slash(path)).map((x) => x.round),
-        ),
-      ].sort(),
-      patterns: [
-        ...new Set(
-          artifacts.filter((x) => x.root === slash(path)).map((x) => x.round),
-        ),
-      ]
-        .sort()
-        .map((round) => "probes/" + round + "/<sourceRecordId>.json"),
-    })),
-    sources: bySource,
-    rawArtifacts: artifacts,
-    adversarialRoot: slash(join(session.out, "adversarial")),
-    adversarialArtifacts: adversarialStore.catalog,
+  const sourceCatalogs = (store, folder) => {
+    const refs = {};
+    const bySource = new Map();
+    for (const artifact of store.catalog) {
+      if (!bySource.has(artifact.sourceRecordId))
+        bySource.set(artifact.sourceRecordId, []);
+      bySource.get(artifact.sourceRecordId).push(artifact);
+    }
+    if (bySource.size) mkdirSync(join(runDir, folder), { recursive: true });
+    for (const [sourceRecordId, artifacts] of bySource) {
+      const roots = store.roots
+        .map((root) => {
+          const rounds = [
+            ...new Set(
+              artifacts.filter((x) => x.root === slash(root)).map((x) => x.round),
+            ),
+          ].sort();
+          return {
+            path: slash(root),
+            rounds,
+            patterns: rounds.map(
+              (round) => "probes/" + round + "/" + sourceRecordId + ".json",
+            ),
+          };
+        })
+        .filter((root) => root.rounds.length);
+      const name = folder + "/" + sourceRecordId + ".json";
+      refs[sourceRecordId] = {
+        path: slash(join(runDir, name)),
+        sha256: write(name, {
+          schemaVersion: 1,
+          producer: "claude-native-recovery",
+          run: values.run,
+          sourceRecordId,
+          frozenAt: new Date().toISOString(),
+          layout: "<root>/probes/<round>/<sourceRecordId>.json; request at <root>/probe-requests/<round>.json",
+          roots,
+          rawArtifacts: artifacts,
+        }),
+      };
+    }
+    return refs;
   };
-  const probeCatalog = {
-    path: join(runDir, "probe-catalog.json").replace(/\\/g, "/"),
-    sha256: write("probe-catalog.json", catalog),
-  };
-  header.probeCatalog = probeCatalog;
-  for (const row of ledger) if (row.status === "candidate") row.probeCatalog = probeCatalog;
-  summary.probeCatalog = probeCatalog;
+  const catalogs = sourceCatalogs(session.store, "catalogs");
+  // Deliberately damaged clips: their own catalogs, never a row's evidence.
+  const adversarialCatalogs = sourceCatalogs(adversarialStore, "adversarial-catalogs");
+  header.probeCatalogs = catalogs;
+  for (const row of ledger)
+    if (row.status === "candidate") row.probeCatalog = catalogs[row.sourceRecordId];
+  summary.probeCatalogs = Object.keys(catalogs).length;
+  controls.adversarial.catalogs = adversarialCatalogs;
   summary.files = {
-    "probe-catalog.json": probeCatalog.sha256,
+    "catalogs.json": write("catalogs.json", {
+      ...header,
+      note: "One immutable catalog per source; a row's probeCatalog names its own source's.",
+      catalogs,
+      adversarialCatalogs,
+    }),
     "ledger.json": write("ledger.json", { ...header, records: ledger }),
     // The verifier's adapter covers the reconstructed route only; official
     // rows are a separately named route and are never mixed into that file.

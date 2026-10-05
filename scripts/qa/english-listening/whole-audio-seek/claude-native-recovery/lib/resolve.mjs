@@ -704,6 +704,11 @@ export function resolveSource(input) {
           uncoveredAnchorSegmentIds: uncovered,
           verifierPreconditions: {
             nextHeadingIsANativeProbe: Boolean(nextHeading),
+            // The verifier's complete-instruction endings; a shared heading that ends
+            // "…고르는 문제입니다. 잘 듣고 답하세요." has none of them.
+            headInstructionEndsWithVerifierVerb:
+              common.fields.kind === "shared_instruction_member" ||
+              /고르시오|고르세요|답하시오|선택하시오/.test(instructed(heading)?.text ?? ""),
             nextBoundaryIsProvable: Boolean(
               nextHeading ||
                 passage.boundary.closing ||
