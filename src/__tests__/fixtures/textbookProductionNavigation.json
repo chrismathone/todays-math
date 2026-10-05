@@ -1,0 +1,410 @@
+{
+  "description": "Navigation-only projection of immutable post-create-readonly.json captured 2026-10-05T08:17:54.697Z; body content, assets, snapshots and account details omitted.",
+  "units": [
+    {
+      "unitKey": "front-matter",
+      "title": "교재 사용 안내",
+      "sections": [
+        {
+          "id": "6dc8d7ad-0eb9-4f6f-91c5-5c761cdbcd01",
+          "sectionKey": "s-86a01bfe-bb5b-421a-a282-2d682067f4ed",
+          "title": "목차",
+          "templateKey": "auto-table-of-contents",
+          "startPolicy": "continue",
+          "blocks": [
+            {
+              "blockId": "c67ad947-b816-4a29-b9dd-47f2d39f9251",
+              "kind": "text",
+              "markdown": "목차",
+              "semantic": {
+                "activity": "tableOfContents",
+                "title": "목차",
+                "node": {
+                  "kind": "references",
+                  "entries": [
+                    {
+                      "key": "s-a334ad07-6a80-4130-ae8c-4d104aae28ed",
+                      "label": "학습 안내",
+                      "targetSectionKey": "s-a334ad07-6a80-4130-ae8c-4d104aae28ed",
+                      "targetUnitKey": "front-matter"
+                    },
+                    {
+                      "key": "s-1b4a3732-9733-4550-8baf-7e2c419b24d1",
+                      "label": "학습 계획",
+                      "targetSectionKey": "s-1b4a3732-9733-4550-8baf-7e2c419b24d1",
+                      "targetUnitKey": "front-matter"
+                    },
+                    {
+                      "key": "s-ccd9493a-8578-4b79-a956-6530014feb36",
+                      "label": "질문 기록",
+                      "targetSectionKey": "s-ccd9493a-8578-4b79-a956-6530014feb36",
+                      "targetUnitKey": "front-matter"
+                    },
+                    {
+                      "key": "s-24e37c0d-2c30-49e6-9db6-28a6e5f713ca",
+                      "label": "수와 식",
+                      "targetSectionKey": "s-24e37c0d-2c30-49e6-9db6-28a6e5f713ca",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175",
+                      "label": "유리수와 소수 · 개념 대화",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-2",
+                      "label": "유리수와 소수 · 준비 학습",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-2",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-3",
+                      "label": "유리수와 소수 · 오류 점검",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-3",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-4",
+                      "label": "유리수와 소수 · 개념 이해",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-4",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-5",
+                      "label": "유리수와 소수 · 용어 암기",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-5",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-6",
+                      "label": "유리수와 소수 · 개념 학습",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-6",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-7",
+                      "label": "유리수와 소수 · 핵심어 빈칸",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-7",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-8",
+                      "label": "유리수와 소수 · 통문장 개념 암기",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-8",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-9",
+                      "label": "유리수와 소수 · 대화 읽기 확인",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-9",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-10",
+                      "label": "유리수와 소수 · 자유 개념 백지",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-10",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-11",
+                      "label": "유리수와 소수 · 설명 활동",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-11",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-12",
+                      "label": "유리수와 소수 · 개념 지도",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-12",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-13",
+                      "label": "유리수와 소수 · 개념 기초 확인",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-13",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-14",
+                      "label": "유리수와 소수 · 대표예제와 확인",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-14",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "blockId": "c17d6204-905d-4e06-a128-a1cc3eee4749",
+              "kind": "text",
+              "markdown": "목차",
+              "semantic": {
+                "activity": "tableOfContents",
+                "title": "목차",
+                "node": {
+                  "kind": "references",
+                  "entries": [
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-15",
+                      "label": "유리수와 소수 · 유형 연습",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-15",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-16",
+                      "label": "유리수와 소수 · 추론 활동",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-16",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-17",
+                      "label": "유리수와 소수 · 누적 복습",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-17",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-18",
+                      "label": "유리수와 소수 · 단원 평가",
+                      "targetSectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-18",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-edba2987-8b4e-455b-8d92-d34ad22f63f8",
+                      "label": "쉬어가기 · 지도 위의 작은 걸음",
+                      "targetSectionKey": "s-edba2987-8b4e-455b-8d92-d34ad22f63f8",
+                      "targetUnitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911"
+                    },
+                    {
+                      "key": "s-52d5a092-23f4-417d-951e-953d29312dc7",
+                      "label": "개념 색인",
+                      "targetSectionKey": "s-52d5a092-23f4-417d-951e-953d29312dc7",
+                      "targetUnitKey": "indexes"
+                    },
+                    {
+                      "key": "s-d9b751c7-eff2-4999-9a29-5d9454c93981",
+                      "label": "유형 색인",
+                      "targetSectionKey": "s-d9b751c7-eff2-4999-9a29-5d9454c93981",
+                      "targetUnitKey": "indexes"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "8cfdd7ba-dd30-437d-baec-686364fab427",
+          "sectionKey": "s-a334ad07-6a80-4130-ae8c-4d104aae28ed",
+          "title": "학습 안내",
+          "templateKey": "auto-learning-guide",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "8ad16712-8056-45c0-9dcc-aad7be336e64",
+          "sectionKey": "s-1b4a3732-9733-4550-8baf-7e2c419b24d1",
+          "title": "학습 계획",
+          "templateKey": "auto-learning-plan",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "988c6f3e-54b4-46c4-95ab-68c5bc1bfe56",
+          "sectionKey": "s-ccd9493a-8578-4b79-a956-6530014feb36",
+          "title": "질문 기록",
+          "templateKey": "auto-question-log",
+          "startPolicy": "continue",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "unitKey": "u-da7a052e-597d-4a48-a7c8-295c17e0c911",
+      "title": "1. 수와 식",
+      "sections": [
+        {
+          "id": "89bfdd8a-3b6c-4f77-9849-2f550f8e7dc5",
+          "sectionKey": "s-24e37c0d-2c30-49e6-9db6-28a6e5f713ca",
+          "title": "수와 식",
+          "templateKey": "auto-unit-intro",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "75fc48be-8c63-461f-888b-f08de76701bc",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "72c67529-2b32-4737-a8b5-5fee39fdbaf8",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-2",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "c79f9230-909d-443d-aab6-8d7bdc7e9f1b",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-3",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "9f2f879c-1d73-41b4-bb85-b3b1d73fc3e3",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-4",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "34c48730-46dc-4472-b11c-df8113607e15",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-5",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "5db1678f-3346-472b-9c7e-83f0e7f05deb",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-6",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "f51bcf3d-e7f6-42e5-a889-077693f18532",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-7",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "cea354a8-1747-44ed-accd-1433367a0ad3",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-8",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "1e120b56-31a1-471b-a35c-7b1ccf743d34",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-9",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "72cf8103-a7fd-4956-9b7d-da7d0d382ac3",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-10",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "b40cf4fb-1baa-4fc2-b0ec-1026bb4170b1",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-11",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "b0051800-f904-43c9-a294-f8df08c95480",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-12",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "20b5c598-6375-496e-8afe-70e2b59105b7",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-13",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "15ad9d93-c3da-430b-96d9-8bf8a8cb42a4",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-14",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "85533dc9-88f2-4c5e-b055-3ab3ada248ac",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-15",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "9c234c09-4c6b-458a-9bcd-883d3a9c9384",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-16",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "f6545e01-c303-4441-a06b-afafca7ca311",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-17",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "fad1929f-d70e-4474-aa02-ca22dcf9862b",
+          "sectionKey": "s-e1d56a02-1e9a-4fb8-b5f9-811289d98175.part-18",
+          "title": "유리수와 소수",
+          "templateKey": "auto-lesson-part",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "8075d5d7-e0cd-4f00-a7ce-7a4403990835",
+          "sectionKey": "s-edba2987-8b4e-455b-8d92-d34ad22f63f8",
+          "title": "쉬어가기 · 지도 위의 작은 걸음",
+          "templateKey": "rest",
+          "startPolicy": "continue",
+          "blocks": []
+        }
+      ]
+    },
+    {
+      "unitKey": "indexes",
+      "title": "찾아보기",
+      "sections": [
+        {
+          "id": "594c0441-3ca2-4319-a5ce-849a1fd71714",
+          "sectionKey": "s-52d5a092-23f4-417d-951e-953d29312dc7",
+          "title": "개념 색인",
+          "templateKey": "auto-concept-index",
+          "startPolicy": "continue",
+          "blocks": []
+        },
+        {
+          "id": "6da80e56-9eda-4b69-91e6-de5c2ee011cc",
+          "sectionKey": "s-d9b751c7-eff2-4999-9a29-5d9454c93981",
+          "title": "유형 색인",
+          "templateKey": "auto-type-index",
+          "startPolicy": "continue",
+          "blocks": []
+        }
+      ]
+    }
+  ]
+}

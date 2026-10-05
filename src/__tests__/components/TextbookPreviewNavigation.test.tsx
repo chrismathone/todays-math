@@ -10,6 +10,9 @@ import { describe, expect, it, vi } from "vitest";
 import type { EditionDetail, SectionDetail } from "@/components/textbook/model";
 import type { TextbookStudioApi } from "@/lib/textbook/client";
 import type { TextbookRenderModel } from "@/lib/textbook/render/model";
+import type { TextbookSemantic } from "@/contracts/textbookSemantic.contract";
+import { simpleSectionLabels } from "@/components/textbook/simpleNavigation";
+import productionNavigation from "@/__tests__/fixtures/textbookProductionNavigation.json";
 import {
   alignTextbookSpreads,
   blockWidthMm,
@@ -197,6 +200,62 @@ function fixture() {
   return { client, edition, sections };
 }
 
+function capturedNavigationFixture() {
+  const base = fixture();
+  const sections: SectionDetail[] = productionNavigation.units.flatMap((unit) =>
+    unit.sections.map((section) => ({
+      ...base.sections[0]!,
+      sectionId: section.id,
+      unitKey: unit.unitKey,
+      sectionKey: section.sectionKey,
+      templateKey: section.templateKey,
+      title: section.title,
+      parity: section.startPolicy as SectionDetail["parity"],
+      blocks: section.blocks.map((block) => ({
+        id: block.blockId,
+        kind: "text" as const,
+        text: block.markdown,
+        semantic: block.semantic as TextbookSemantic,
+      })),
+    })),
+  );
+  const units = productionNavigation.units.map((unit) => ({
+    unitKey: unit.unitKey,
+    title: unit.title,
+    sections: sections.filter((section) => section.unitKey === unit.unitKey),
+  }));
+  const edition: EditionDetail = {
+    ...base.edition,
+    units,
+    structureSource: {
+      ...base.edition.structureSource!,
+      outline: productionNavigation.units.map((unit) => ({
+        unitKey: unit.unitKey,
+        title: unit.title,
+        sourceUnitIds: [],
+        prerequisites: [],
+        goals: [],
+        conceptLectureRefs: [],
+        sections: unit.sections.map((section) => ({
+          id: section.id,
+          sectionKey: section.sectionKey,
+          title: section.title,
+          revision: 1,
+        })),
+      })),
+    },
+  };
+  vi.mocked(base.client.openEdition).mockResolvedValue(edition);
+  vi.mocked(base.client.getSection).mockImplementation(
+    async (_editionId, sectionId) => {
+      const section = sections.find((row) => row.sectionId === sectionId);
+      if (!section) throw new Error("missing captured navigation section");
+      return structuredClone(section);
+    },
+  );
+  return { client: base.client, edition, sections };
+}
+
 async function openPreview(client: TextbookStudioApi) {
   render(<TextbookStudioView api={client} />);
   fireEvent.click(await screen.findByRole("button", { name: "열기" }));
@@ -208,6 +267,150 @@ async function openPreview(client: TextbookStudioApi) {
 }
 
 describe("textbook preview page and section navigation", () => {
+  it("names all captured production activities and retains their destinations after leaving the contents", async () => {
+    const { client, sections } = capturedNavigationFixture();
+    const preview = await openPreview(client);
+    const navigation = screen.getByRole("navigation", { name: "교재 내용" });
+    const expected = [
+      "표지 · 목차",
+      "학습 안내",
+      "학습 계획",
+      "질문 기록",
+      "수와 식",
+      "유리수와 소수 · 개념 대화",
+      "유리수와 소수 · 준비 학습",
+      "유리수와 소수 · 오류 점검",
+      "유리수와 소수 · 개념 이해",
+      "유리수와 소수 · 용어 암기",
+      "유리수와 소수 · 개념 학습",
+      "유리수와 소수 · 핵심어 빈칸",
+      "유리수와 소수 · 통문장 개념 암기",
+      "유리수와 소수 · 대화 읽기 확인",
+      "유리수와 소수 · 자유 개념 백지",
+      "유리수와 소수 · 설명 활동",
+      "유리수와 소수 · 개념 지도",
+      "유리수와 소수 · 개념 기초 확인",
+      "유리수와 소수 · 대표예제와 확인",
+      "유리수와 소수 · 유형 연습",
+      "유리수와 소수 · 추론 활동",
+      "유리수와 소수 · 누적 복습",
+      "유리수와 소수 · 단원 평가",
+      "쉬어가기 · 지도 위의 작은 걸음",
+      "개념 색인",
+      "유형 색인",
+    ];
+    const names = () =>
+      within(navigation)
+        .getAllByRole("button")
+        .map((button) => button.textContent);
+    expect(names()).toEqual(expected);
+    expect(new Set(names()).size).toBe(expected.length);
+    expect(within(preview).getByText("표지", { exact: true })).toBeVisible();
+    expect(
+      within(navigation).getByRole("button", { name: "표지 · 목차" }),
+    ).toHaveAttribute("aria-pressed", "true");
+
+    const target = within(navigation).getByRole("button", {
+      name: "유리수와 소수 · 자유 개념 백지",
+    });
+    fireEvent.click(target);
+    await waitFor(() => expect(target).toHaveAttribute("aria-pressed", "true"));
+    expect(client.getSection).toHaveBeenLastCalledWith(
+      editionId,
+      sections[14]!.sectionId,
+    );
+    expect(client.getSection).toHaveBeenCalledTimes(2);
+    expect(names()).toEqual(expected);
+    expect(preview.querySelector(".tb-cover")).toBeNull();
+  });
+
+  it("numbers repeated activity fragments in outline order without numbering different activities or changing input", () => {
+    const { edition, sections } = capturedNavigationFixture();
+    const contents = sections[0]!;
+    const dialogue = sections[5]!;
+    const references = contents.blocks[0]!.semantic!.node;
+    if (references?.kind !== "references")
+      throw new Error("missing captured contents references");
+    const dialogueReference = references.entries.find(
+      (entry) => entry.targetSectionKey === dialogue.sectionKey,
+    )!;
+    dialogueReference.label += " (1/7)";
+    const second = {
+      ...dialogue,
+      sectionId: "dialogue-continuation",
+      sectionKey: `${dialogue.sectionKey}.part-19`,
+    };
+    edition.units[1]!.sections.push(second);
+    edition.structureSource!.outline[1]!.sections.push({
+      id: second.sectionId,
+      sectionKey: second.sectionKey,
+      title: second.title,
+      revision: 1,
+    });
+    references.entries.push({
+      ...dialogueReference,
+      key: second.sectionKey,
+      targetSectionKey: second.sectionKey,
+      label: "유리수와 소수 · 개념 대화 (2/7)",
+    });
+    const before = JSON.stringify({ edition, contents });
+    const labels = simpleSectionLabels(edition, contents);
+    expect(labels.get(dialogue.sectionId)).toBe(
+      "유리수와 소수 · 개념 대화 (1/2)",
+    );
+    expect(labels.get(second.sectionId)).toBe(
+      "유리수와 소수 · 개념 대화 (2/2)",
+    );
+    expect(labels.get(sections[10]!.sectionId)).toBe(
+      "유리수와 소수 · 개념 학습",
+    );
+    expect(JSON.stringify({ edition, contents })).toBe(before);
+  });
+
+  it("preserves legacy/manual titles and rejects missing, unknown, renamed or other-edition metadata", () => {
+    const { edition, sections } = capturedNavigationFixture();
+    const contents = sections[0]!;
+    const original = edition.units.flatMap((unit) =>
+      unit.sections.map((section) => section.title),
+    );
+    for (const metadata of [
+      null,
+      { ...contents, templateKey: "manual-contents" },
+      { ...contents, editionId: "another-edition" },
+    ]) {
+      expect([...simpleSectionLabels(edition, metadata).values()]).toEqual(
+        original,
+      );
+    }
+    const references = contents.blocks[0]!.semantic!.node;
+    if (references?.kind !== "references")
+      throw new Error("missing captured contents references");
+    references.entries.find(
+      (entry) => entry.targetSectionKey === sections[5]!.sectionKey,
+    )!.label = "유리수와 소수 · 알 수 없는 활동";
+    edition.units[1]!.sections[2]!.title = "선생님이 붙인 제목";
+    const labels = simpleSectionLabels(edition, contents);
+    expect(labels.get(sections[5]!.sectionId)).toBe("유리수와 소수");
+    expect(labels.get(sections[6]!.sectionId)).toBe("선생님이 붙인 제목");
+    expect(labels.get(sections[23]!.sectionId)).toBe(
+      "쉬어가기 · 지도 위의 작은 걸음",
+    );
+  });
+
+  it("names the contents alone when the cover is separate or belongs to another first section", () => {
+    const { edition, sections } = capturedNavigationFixture();
+    const contents = sections[0]!;
+    edition.structureSource!.config.print.coverMode = "separate";
+    expect(simpleSectionLabels(edition, contents).get(contents.sectionId)).toBe(
+      "목차",
+    );
+    edition.structureSource!.config.print.coverMode = "included";
+    edition.units[0]!.sections.reverse();
+    expect(simpleSectionLabels(edition, contents).get(contents.sectionId)).toBe(
+      "목차",
+    );
+  });
+
   it("advances from the cover through measured spreads and every continue section, then returns to the prior last spread", async () => {
     const { client, sections } = fixture();
     const preview = await openPreview(client);

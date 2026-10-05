@@ -75,6 +75,7 @@ import {
 } from "@/components/textbook/parts";
 import { SectionMeasure } from "@/components/textbook/measuredPreview";
 import { buildSectionPreview } from "@/components/textbook/previewModel";
+import { simpleSectionLabels } from "@/components/textbook/simpleNavigation";
 import styles from "@/components/textbook/textbook.module.css";
 import { AutoCreatePanel } from "./AutoCreatePanel";
 import {
@@ -188,6 +189,8 @@ export function TextbookStudioView({
   const [edition, setEdition] = useState<EditionDetail | null>(null);
   const [draft, setDraft] = useState<SectionDetail | null>(null);
   const [saved, setSaved] = useState<SectionDetail | null>(null);
+  const [navigationContents, setNavigationContents] =
+    useState<SectionDetail | null>(null);
   const [conflict, setConflict] = useState<{
     message: string;
     serverText: string | null;
@@ -362,6 +365,12 @@ export function TextbookStudioView({
       entry: "first" | "last" = "first",
     ) {
       const section = await api.getSection(nextEdition.editionId, sectionId);
+      if (
+        sectionId ===
+        nextEdition.units.flatMap((unit) => unit.sections)[0]?.sectionId
+      ) {
+        setNavigationContents(section);
+      }
       let aligned = {
         ...section,
         aggregateRevision: nextEdition.aggregateRevision,
@@ -1411,6 +1420,18 @@ export function TextbookStudioView({
       conceptSource,
     });
   }, [conceptSource, edition, draft, material, previewVariant]);
+  const sectionLabels = useMemo(
+    () =>
+      edition
+        ? simpleSectionLabels(
+            edition,
+            draft?.sectionId === navigationContents?.sectionId
+              ? draft
+              : navigationContents,
+          )
+        : new Map<string, string>(),
+    [edition, draft, navigationContents],
+  );
   const pageAnchor = measuredSpreadAnchor(measuredPages, spreadIndex);
   const pageLabel = (() => {
     if (pageAnchor !== null) {
@@ -1865,7 +1886,7 @@ export function TextbookStudioView({
                       disabled={busy}
                       onClick={() => selectSection(section.sectionId)}
                     >
-                      {section.title}
+                      {sectionLabels.get(section.sectionId) ?? section.title}
                     </button>
                   ))}
                 </div>
