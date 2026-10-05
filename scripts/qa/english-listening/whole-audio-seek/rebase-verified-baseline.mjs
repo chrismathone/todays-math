@@ -1,5 +1,6 @@
 /** Mechanical metadata adapter for a second, independently replayed seek wave. */
 import {isDeepStrictEqual} from 'node:util';
+import {resolve} from 'node:path';
 import {contentSha256,planSource,requireEvidence,validateCertificate,valueSha256} from './admission-plan.mjs';
 
 export function rebaseVerifiedBaseline({inventory,snapshot,certificate,baseline,clock,queues,candidates}) {
@@ -56,7 +57,8 @@ export function rebaseVerifiedBaseline({inventory,snapshot,certificate,baseline,
       documentSha256:oldSource.documentSha256,sourceNumber:question.sourceNumber,
       sourceAudioSha256:oldSource.sourceAudioSha256,playbackSha256:oldSource.audio.sha256,
       asrSha256:oldSource.asrSha256}))requireEvidence(row[field]===value,'Supplement original identity differs: '+field);
-    requireEvidence(row.asrPath===oldSource.asrPath,'Supplement original ASR path differs');
+    requireEvidence(typeof row.asrPath==='string'&&resolve(row.asrPath)===resolve(oldSource.asrPath),
+      'Supplement original ASR path differs');
     proposed.set(key,structuredClone(row));
   }
   const nextQueues=queues.map(queue=>{

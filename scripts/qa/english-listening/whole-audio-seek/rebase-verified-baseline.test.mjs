@@ -45,6 +45,7 @@ test('rebinds revisions only after exact prior adoption and preserves actual clo
  assert.equal(f.queues[0].records[0].status,'candidate');
 });
 for(const [name,corrupt] of [
+ ['different ASR file path',f=>{f.candidates[0].asrPath='another-asr.json';}],
  ['source content edit',f=>{f.baseline.records[0].document.title='edited';}],
  ['existing range change',f=>{f.baseline.records[0].document.groups[0].questions[0].audioRange.startMs=110;}],
  ['different current revision',f=>{f.baseline.records[0].revision=5;}],
@@ -58,3 +59,11 @@ for(const [name,corrupt] of [
  ['incomplete queue',f=>{f.queues[0].records.pop();}],
  ['duplicate queue question',f=>{f.queues[0].records[1]=structuredClone(f.queues[0].records[0]);}],
 ])test('rejects '+name,()=>{const f=fixture();corrupt(f);assert.throws(()=>rebaseVerifiedBaseline(f));});
+
+test('canonical paths admit equivalent spelling of the same unchanged ASR file',()=>{
+ const f=fixture();f.candidates[0].asrPath='./asr.json';
+ const result=rebaseVerifiedBaseline(f);
+ assert.equal(result.report.supplementalCandidates,1);
+ assert.equal(result.queues[0].records[1].asrPath,'./asr.json');
+ assert.equal(result.inventory.records[0].asrPath,'asr.json');
+});
