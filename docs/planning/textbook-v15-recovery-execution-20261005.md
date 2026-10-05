@@ -2,6 +2,16 @@
 
 2026-10-05 Codex 인계 및 동일 영역 재검사 갱신. 사용자의 “실행해”에 따라 고정 최종 계획 v02를 실행한다. 계획의 UTF-8 LF SHA-256 `0ab8ac18fc033936e52a300752dd73894fbccfa52c740c0acc52c0d03cb04bb7`은 보존한다. 이 문서는 진행 중인 실행 원장이며 완료 선언이 아니다.
 
+## 18:00 실제 운영 생성·발행·다운로드·보관 검수
+
+작성기 `062104046`의 실제 Vercel 배포 success와 catalog `writerReady:true`를 확인한 뒤 지정 계정으로 신규 검수 교재를 한 번 생성했다(HTTP 201). 중2-1 첫 소단원·표준·8문항·28구성·준호/유나/하준 선택이며, 같은 발행 요청 88/88 및 finalize HTTP 200으로 학생용·해설 각 41쪽이 완성됐다. 실제 두 다운로드는 HTTP 200·전체 Content-Length·서버 보관 SHA가 모두 일치한다. 학생 SHA `bd82e90bb6adffbc735a0ec40c2a2438cb3d55d4bb00ae49f8abd52e61c3a2fc`, 해설 SHA `a709cbbb3fbdd5bc2cf53aa4f22ca2ec0bb346ffe28301bf714f1124eb699255`다.
+
+45단계 뒤 HTTP 500 HTML 중단은 원고/요청/완료 단계 보존과 임대 만료를 읽기 전용으로 확인하고 같은 UI/원래 요청으로 이어서 완료했다. 오류 기록 0행으로 상세 플랫폼 원인은 미확정이다. 신규 교재나 다른 발행 작업을 재생성하지 않았다. 실제 390/820/1600에서 학생·해설 첫/중간/마지막 구획 18개 조합이 가로 넘침 없이 측정/선택/모드를 확인했고 최종 PDF 8개 페이지 PNG를 직접 읽었다. 미리보기는 구획 로컬 번호이며 전체 PDF 확정 번호와 구분한다. 초기 자동화의 로딩/번호 가정 실패는 보존하고 수용에서 제외했다.
+
+다운로드 PDF의 QR 픽셀 독립 판독 16/16, 실제 교사 QR 8/8 HTTP 200, 비로그인 로그인 이동을 확인했다. 신규 검수 교재만 한 번 보관했고 기존 두 초안 상세/교환 네 SHA가 변경 전과 같았다. 실제 학생 배정/세션·영상 바인딩 0·휴대폰·실물 인쇄·360수업 사람 편집 승인은 대기다. [실제 운영 검수 보고서](../reports/textbook-production-flow-20261005.md)에 성공과 실패의 범위를 구분했다.
+
+활동 버튼 18개의 같은 이름 문제는 독립 Codex `a1c47662a`에서 26개 구별되는 표시로 수정했고 회귀 10/10 및 lint를 통과하여 main에 통합했다. `70f797eb6` push의 필수 DB 읽기 네 검사/전체 TypeScript를 통과했으며 직전 origin/main fetch/비교와 다른 작업 보존을 수행했다. 후속 main `cfe6d6c92`의 Vercel 배포 failure가 있어 최종 화면 이름의 운영 반영 확인은 다음 배포 성공 뒤에 기록한다. CLI 계정은 해당 팀 scope 접근 오류이며 최신 main의 형 검사 보완도 보존해 통합했다.
+
 ## 읽기 운영 배포 합격 및 작성기 설정 활성화
 
 읽기 코드 main `17fa12e0bd9cb5e8d5772b4599ab997ad3380096`을 push했으며 Vercel의 실제 Git 상태가 success다. 배포 URL은 `https://vercel.com/bigshols-projects/todays-math/44B2dJSvhFEcMX4kzVwgtBasoSjE`다. push 직전 origin/main을 fetch·비교했고 새 원격 변경은 없었다. 필수 pre-push의 실제 DB 읽기 검사 4종과 TypeScript가 통과했다. 최초 TypeScript 실행은 Node 기본 약 4GB 한도에서 OOM으로 실패하여 push되지 않았으며, 검사 프로세스만 `NODE_OPTIONS=--max-old-space-size=8192`로 재실행하여 통과했다. 검사를 우회하지 않았다.
