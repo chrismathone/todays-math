@@ -80,7 +80,10 @@ export const TOOLS = Object.freeze({
   runtimeRoot: SEEK5 + "/decoder-runtime",
   transcripts: MAIN + "/.qa-artifacts/assemblyai-seek-20261005/transcripts",
   /** Earlier bounded recognitions written by the same runner; read by hash only. */
-  priorProbeRoots: [SEEK5 + "/claude-held-validation-20261005"],
+  priorProbeRoots: [
+    SEEK5 + "/claude-held-validation-20261005",
+    SEEK5 + "/claude",
+  ],
 });
 
 const parse = (bytes) =>
@@ -248,6 +251,7 @@ export class ProbeStore {
         if (!existsSync(path)) continue;
         const bytes = readFileSync(path);
         const container = parse(bytes);
+        const containerSha256 = sha256(bytes);
         if (
           container.sourceRecordId !== id ||
           container.sourceAudioSha256 !== record.sourceAudioSha256 ||
@@ -258,9 +262,21 @@ export class ProbeStore {
           container.vadFilter !== false ||
           container.conditionOnPreviousText !== false ||
           this.requestSha(container.requestPath) !== container.requestSha256
-        )
-          throw new FrozenInputError("Probe container is not bound: " + path);
-        const containerSha256 = sha256(bytes);
+        ) {
+          // This producer's own container must bind; an earlier one that does
+          // not is listed as rejected and nothing is read from it.
+          if (rootIndex === 0)
+            throw new FrozenInputError("Probe container is not bound: " + path);
+          this.catalog.push({
+            path: resolve(path).replace(/\\/g, "/"),
+            sha256: containerSha256,
+            sourceRecordId: id,
+            root: root.replace(/\\/g, "/"),
+            round,
+            rejected: "container_not_bound_to_source_clock_model_or_request",
+          });
+          continue;
+        }
         const language = (probe) =>
           probe.requestedLanguage ?? container.requestedLanguage;
         this.catalog.push({

@@ -487,6 +487,35 @@ test("a passage that already has a certified start gives exactly that start", ()
   assert.equal(rowOf(blind, "q-b").nativeRecovery.existingCertifiedStart, null);
 });
 
+test("a certified start at another measured onset of the same place is used as it is", () => {
+  // Two measured onsets 1.2 s apart both read number 2 first; the later one is
+  // this producer's choice, the earlier one is what the certificate holds.
+  const input = makeInput();
+  input.native = makeNative([[AT[2] - 60, 30]]);
+  input.koListenings.push(heading(AT[2] - 60, "2번입니다. 대화를 듣고 남자가 할 일을 고르세요."));
+  const blind = rowOf(resolveSource({ ...input, blind: true }), "q-b");
+  assert.equal(blind.seekStartMs, ms(AT[2]));
+  input.certRows = [
+    {
+      questionId: "q-old",
+      reconstructed: true,
+      status: "preserved",
+      audioRange: { startMs: ms(AT[2] - 60), endMs: 1 },
+      originalScopeEvidence: { scopeQuestionNumbers: [2], onsetFrame: (AT[2] - 60) * FRAMES },
+    },
+  ];
+  const peer = rowOf(resolveSource(input), "q-b");
+  assert.equal(peer.status, "candidate");
+  assert.equal(peer.seekStartMs, ms(AT[2] - 60));
+  assert.equal(peer.nativeEvidence.onsetFrame, (AT[2] - 60) * FRAMES);
+  assert.equal(peer.probeEvidence.startFrame, startOf(AT[2] - 60));
+  // Passage 1 ends at the certified start, the earlier of the two.
+  assert.equal(
+    rowOf(resolveSource(input), "q-a").nativeRecovery.passageFrames.toFrame,
+    startOf(AT[2] - 60),
+  );
+});
+
 test("a native start on the wrong side of a certified start is dropped", () => {
   const input = makeInput();
   input.certRows = [

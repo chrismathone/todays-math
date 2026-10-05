@@ -15,7 +15,8 @@ import {
   energyAtDbfs,
   quietBefore,
 } from "../../claude/lib/activity.mjs";
-import { englishWords } from "../../claude/lib/text.mjs";
+// The independent verifier's own English word rule (`dotted_initialism_v1`).
+import { englishWords } from "../../claude-ambiguity/lib/words.mjs";
 
 export const ROUTE = "native_numbered_passage_literal_quote_v1";
 
@@ -534,14 +535,18 @@ export function establishHeadings(native, listenings) {
       for (const n of numbers) held.set(n, list[0][0].reason);
       continue;
     }
-    // Within one place, the onset where the number begins right at the start.
-    headings.push(
-      [...usable].sort(
-        (a, b) =>
-          a.reading.firstSpeechSeconds - b.reading.firstSpeechSeconds ||
-          b.onsetFrame - a.onsetFrame,
-      )[0],
+    // Within one place: a reading that also carries the instruction, then the
+    // onset where the number begins right at the start, then the later onset.
+    const [best, ...others] = [...usable].sort(
+      (a, b) =>
+        Boolean(b.reading.instruction) - Boolean(a.reading.instruction) ||
+        a.reading.firstSpeechSeconds - b.reading.firstSpeechSeconds ||
+        b.onsetFrame - a.onsetFrame,
     );
+    // The other measured onsets of the same place stay known: a certified
+    // start of this number may sit at one of them.
+    best.alternates = others;
+    headings.push(best);
   }
   headings.sort((a, b) => a.onsetFrame - b.onsetFrame);
 

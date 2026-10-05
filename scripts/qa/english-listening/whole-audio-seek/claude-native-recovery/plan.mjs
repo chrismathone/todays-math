@@ -26,6 +26,7 @@
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { parseArgs } from "node:util";
+import { resolveOfficial } from "./lib/official.mjs";
 import { resolveSource } from "./lib/resolve.mjs";
 import {
   RULES,
@@ -260,9 +261,29 @@ for (const id of session.scope(values.scope, values["source-id"])) {
     };
     const held = w.certRows.filter((r) => r.status === "held" && r.reconstructed);
     const existing = w.certRows.filter((r) => r.audioRange && r.reconstructed);
-    const jobs = [{ targets: held, blind: false }];
-    if (values.controls) jobs.push({ targets: existing, blind: true });
+    const jobs = [];
+    if (w.record.reconstructed) {
+      jobs.push({ targets: held, blind: false });
+      if (values.controls) jobs.push({ targets: existing, blind: true });
+    }
     const english = heard("en");
+    const planned = [];
+    if (!w.record.reconstructed) {
+      // An official question keeps its number: the clip is its own passage's.
+      const resolved = resolveOfficial({
+        ...base,
+        script: w.script,
+        targets: w.certRows.filter((r) => r.status === "held"),
+      });
+      for (const row of resolved.rows)
+        if (
+          row.status === "held" &&
+          row.reasons[0] === "own_script_sentence_not_heard_in_passage_clip"
+        ) {
+          const passage = resolved.passages.find((x) => x.key === row.sourceNumber);
+          if (passage) planned.push({ passage, blind: false });
+        }
+    }
     const flat = [];
     w.hints.englishWords.forEach((word, i) =>
       quoteWords(word.text).forEach((part) => flat.push({ part, i })),
@@ -298,7 +319,10 @@ for (const id of session.scope(values.scope, values["source-id"])) {
             wanted.add(passage);
         }
       }
-      for (const passage of wanted) {
+      for (const passage of wanted) planned.push({ passage, blind: job.blind });
+    }
+    {
+      for (const { passage, blind } of planned) {
         // One clip for the whole dialogue of the passage: it begins where the
         // heading probe estimated the announcer's sentence to end (a place to
         // start listening, nothing more) and ends at the next heading's start.
@@ -334,7 +358,7 @@ for (const id of session.scope(values.scope, values["source-id"])) {
             frameCount: windows * frames,
             passageOriginalNumbers: passage.scope,
             passageFrames: [passage.fromFrame, passage.toFrame],
-            forControlReplay: job.blind,
+            forControlReplay: blind,
           });
         }
       }

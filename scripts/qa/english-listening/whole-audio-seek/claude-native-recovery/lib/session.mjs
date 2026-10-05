@@ -5,6 +5,11 @@
  */
 import { energyAtDbfs, quietBefore } from "../../claude/lib/activity.mjs";
 import { onsetCandidates } from "../../claude/lib/candidates.mjs";
+import {
+  InventoryError,
+  loadLiveSnapshot,
+  officialTranscript,
+} from "../../claude/lib/inventory.mjs";
 import { ABSOLUTE, Hold, NOISE_TIERS, RULES, noiseFloor } from "./rules.mjs";
 import {
   OUT,
@@ -48,7 +53,30 @@ export function openSession(values = {}) {
     }
     if (name === "reconstructed")
       return all.filter((r) => r.reconstructed).map((r) => r.sourceRecordId);
+    if (name === "official")
+      // Official sources that still hold a question without a start.
+      return all
+        .filter(
+          (r) =>
+            !r.reconstructed &&
+            (baseline.certBySource.get(r.sourceRecordId) ?? []).some(
+              (row) => row.status === "held",
+            ),
+        )
+        .map((r) => r.sourceRecordId);
     throw new Error("Unknown scope: " + name);
+  };
+
+  /** The official script of a source as the frozen live snapshot holds it. */
+  let liveBySet = null;
+  const script = (record) => {
+    try {
+      liveBySet ??= loadLiveSnapshot(baseline.inventory);
+      return officialTranscript(record, liveBySet);
+    } catch (error) {
+      if (!(error instanceof InventoryError)) throw error;
+      return { reason: "official_script_not_bound:" + error.message };
+    }
   };
 
   const world = (sourceRecordId) => {
@@ -124,6 +152,7 @@ export function openSession(values = {}) {
         allListenings: listenings,
         hints: loadHints(record),
         generation: record.reconstructed ? loadGeneration(record) : null,
+        script: record.reconstructed ? null : script(record),
       };
     }
     worlds.set(sourceRecordId, value);

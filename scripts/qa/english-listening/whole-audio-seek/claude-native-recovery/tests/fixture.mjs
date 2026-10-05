@@ -190,5 +190,45 @@ export function makeInput(overrides = {}) {
   };
 }
 
+/** An official script of the same recording: every number printed once, in order. */
+export const SCRIPT = [
+  "1번 대화를 듣고, 남자가 한 일을 고르시오.",
+  "M: How was your weekend?",
+  "W: " + QUOTES.a,
+  "2번 다음을 듣고, 여자가 할 일을 고르시오.",
+  "W: First of all, turn off the light when you leave the room.",
+  "3번 다음을 듣고, 무엇에 관한 안내인지 고르시오.",
+  "M: " + QUOTES.c + " Thank you.",
+  "4번 대화를 듣고, 이어질 응답을 고르시오.",
+  "M: Hi, Minsoo.",
+  "W: " + QUOTES.d,
+  "5번 대화를 듣고, 이어질 응답을 고르시오.",
+  "M: I like spiders best.",
+  "W: " + QUOTES.e,
+].join("\n");
+
+/** The same source as an official one: questions keep their own numbers. */
+export function makeOfficialInput(numbers, overrides = {}) {
+  const input = makeInput({ targets: [] });
+  delete input.generation;
+  input.record = {
+    ...input.record,
+    reconstructed: false,
+    questions: [1, 2, 3, 4, 5].map((n) => ({ id: "o-" + n, sourceNumber: n })),
+  };
+  return {
+    ...input,
+    script: { text: SCRIPT, sha256: "5".repeat(64) },
+    targets: numbers.map((n) => ({
+      questionId: "o-" + n,
+      sourceNumber: n,
+      provider: "claude",
+      status: "held",
+      reconstructed: false,
+    })),
+    ...overrides,
+  };
+}
+
 export const rowOf = (result, questionId) =>
   result.rows.find((row) => row.questionId === questionId);

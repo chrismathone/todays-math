@@ -62,7 +62,7 @@ export function certifiedStarts(certRows, sampleRate) {
 }
 
 /** A stored probe in the verifier's raw reference shape, with the segments it is quoted for. */
-function reference(listeningRef, segments, extra = {}) {
+export function reference(listeningRef, segments, extra = {}) {
   return {
     path: listeningRef.path,
     sha256: listeningRef.sha256,
@@ -102,12 +102,121 @@ const placeEvidence = (place) => ({
 });
 
 /**
- * `input`: { record, native, certRows, koListenings, enListenings, generation,
- * hints, targets:[certificate rows], blind, certificateSha256, terminalScan }.
- * Returns { table, passages, rows }.
+ * What every offered row says about its passage: the heading that starts it,
+ * the boundary that ends it, and their probes in the verifier's reference
+ * shape. A passage that already has a certified start is offered only with a
+ * native heading at exactly the certified frames.
  */
-export function resolveSource(input) {
-  const { record, native, hints } = input;
+export function passageEvidence(input, passage, tested = {}) {
+  const { record, native } = input;
+  const rate = native.sampleRate;
+  const { start, boundary } = passage;
+  const certifiedStart = start.source === "certified";
+  let heading = start.native?.heading ?? null;
+  if (certifiedStart && heading) {
+    // Another measured onset of the same place, with the same kind of
+    // reading, may be the very frame the certificate holds.
+    const same = [heading, ...(heading.alternates ?? [])].find(
+      (h) =>
+        h.startFrame === start.startFrame &&
+        h.onsetFrame === start.onsetFrame &&
+        (start.native.kind === "shared_instruction_member" ||
+          h.reading.instruction),
+    );
+    if (same && same !== heading)
+      heading = { ...same, kind: heading.kind, sharedHead: heading.sharedHead };
+  }
+  if (
+    certifiedStart &&
+    (!heading ||
+      heading.startFrame !== start.startFrame ||
+      heading.onsetFrame !== start.onsetFrame)
+  ) {
+    tested.certifiedStartMs = start.certified.startMs;
+    tested.nativeHeadingStartMs = heading
+      ? startMsOf(heading.startFrame, rate)
+      : null;
+    throw new Hold("native_heading_differs_from_certified_start");
+  }
+  const kind = start.native.kind;
+  const head = heading.sharedHead ?? null;
+  const nextHeading = boundary.heading ?? null;
+  return {
+    heading,
+    head,
+    nextHeading,
+    fields: {
+      seekStartMs: startMsOf(start.startFrame, rate),
+      seekEndMs: record.audio.durationMs,
+      cueNumber: start.number,
+      cueSpokenNumbers: start.native.cueSpokenNumbers,
+      cueForm: start.native.cueForm,
+      scopeQuestionNumbers: start.scope,
+      kind,
+      nativeEvidence: {
+        cachePath: native.cachePath,
+        cacheSha256: native.cacheSha256,
+        energyPath: native.energyPath,
+        energySha256: native.energySha256,
+        sampleRate: rate,
+        channels: native.channels,
+        frameCount: native.frameCount,
+        pcmSha256: native.pcmSha256,
+        ...placeEvidence(heading.place),
+      },
+      probeEvidence: headingReference(heading),
+      nextProbeEvidence: nextHeading ? headingReference(nextHeading) : null,
+      nextNativeEvidence: nextHeading ? placeEvidence(nextHeading.place) : null,
+      sharedHeadProbeEvidence:
+        kind === "shared_instruction_member" ? headingReference(head) : null,
+      sharedHeadNativeEvidence:
+        kind === "shared_instruction_member" ? placeEvidence(head.place) : null,
+      terminalProbeEvidence: boundary.closing
+        ? reference(
+            boundary.closing.ref,
+            boundary.closing.probe.segments.filter(
+              (s) => s.id === boundary.closing.reading.firstSegmentId,
+            ),
+          )
+        : null,
+      terminalNativeEvidence: boundary.closing
+        ? placeEvidence(boundary.closing.place)
+        : null,
+    },
+    nativeRecovery: {
+      evidenceProtocol: 1,
+      passageFrames: { fromFrame: passage.fromFrame, toFrame: passage.toFrame },
+      headCovers: heading.covers,
+      sharedHeadCovers: head?.covers ?? null,
+      existingCertifiedStart: certifiedStart
+        ? {
+            certificateSha256: input.certificateSha256,
+            questionId: start.certified.questionIds[0],
+            startMs: start.certified.startMs,
+            scope: start.certified.scope,
+          }
+        : null,
+      nextBoundary: {
+        kind: boundary.kind,
+        originalNumbers: boundary.originalNumbers,
+        startFrame: boundary.startFrame,
+        existing: boundary.existing ?? null,
+        largestNumberWrittenAnywhere:
+          boundary.largestNumberWrittenAnywhere ?? null,
+        longQuietOnsetsListened: boundary.longQuietOnsetsListened ?? null,
+      },
+      siblingReadings: heading.siblings,
+    },
+  };
+}
+
+/**
+ * The measured structure of one source: native headings, certified starts and
+ * the passages that stand on both sides. `input`: { native, certRows,
+ * koListenings, hints, blind, certificateSha256, terminalScan }.
+ */
+export function sourceStructure(input) {
+  const { native, hints } = input;
   const rate = native.sampleRate;
   const { headings, closings, held, written } = establishHeadings(
     native,
@@ -272,6 +381,74 @@ export function resolveSource(input) {
     });
   }
 
+  const known = [...starts.values()].sort((a, b) => a.number - b.number);
+  return {
+    rate,
+    headings,
+    closings,
+    held,
+    written,
+    starts,
+    known,
+    passages,
+    hintedMaximum,
+    table: {
+      headings: headings.map((h) => ({
+        numbers: h.numbers,
+        covers: h.covers,
+        form: h.form,
+        kind: h.kind,
+        onsetMethod: h.place.onsetMethod,
+        startFrame: h.startFrame,
+        onsetFrame: h.onsetFrame,
+        startMs: startMsOf(h.startFrame, rate),
+        text: h.reading.text,
+        instruction: h.reading.instruction?.text ?? null,
+        probe: h.ref,
+      })),
+      closings: closings.map((c) => ({
+        startFrame: c.startFrame,
+        startMs: startMsOf(c.startFrame, rate),
+        text: c.reading.text,
+      })),
+      numbersWritten: written.map((r) => ({
+        startMs: startMsOf(r.startFrame, rate),
+        numbers: r.numbers,
+        form: r.form,
+        reliable: r.reliable,
+        possibleHeading: r.possibleHeading,
+      })),
+      held: Object.fromEntries(held),
+      starts: known.map((s) => ({
+        number: s.number,
+        scope: s.scope,
+        source: s.source,
+        startMs: startMsOf(s.startFrame, rate),
+        nativeStartMs: s.native
+          ? startMsOf(s.native.heading.startFrame, rate)
+          : null,
+      })),
+      passages: passages.map((p) => ({
+        key: p.key,
+        scope: p.scope,
+        fromFrame: p.fromFrame,
+        toFrame: p.toFrame,
+        boundary: p.boundary.kind,
+      })),
+      largestNumberWrittenAnywhere: hintedMaximum,
+    },
+  };
+}
+
+/**
+ * `input`: { record, native, certRows, koListenings, enListenings, generation,
+ * hints, targets:[certificate rows], blind, certificateSha256, terminalScan }.
+ * Returns { table, passages, rows }.
+ */
+export function resolveSource(input) {
+  const { record, native, hints } = input;
+  const { rate, passages, known, table } = sourceStructure(input);
+
   const englishFlat = [];
   hints.englishWords.forEach((word, i) =>
     quoteWords(word.text).forEach((part) => englishFlat.push({ part, i })),
@@ -392,25 +569,8 @@ export function resolveSource(input) {
       const contradiction = estimateContradiction(seconds, occurrences, frozenSpan);
       if (contradiction) throw new Hold(contradiction);
 
-      const { start, boundary } = passage;
-      const certifiedStart = start.source === "certified";
-      const heading = start.native?.heading ?? null;
-      // A peer of a certified passage takes exactly that start and onset; it
-      // needs a native recognition from that very frame to say so.
-      if (
-        certifiedStart &&
-        (!heading ||
-          heading.startFrame !== start.startFrame ||
-          heading.onsetFrame !== start.onsetFrame)
-      ) {
-        tested.certifiedStartMs = start.certified.startMs;
-        tested.nativeHeadingStartMs = heading
-          ? startMsOf(heading.startFrame, rate)
-          : null;
-        throw new Hold("native_heading_differs_from_certified_start");
-      }
-      const kind = start.native.kind;
-      const head = heading.sharedHead ?? null;
+      const common = passageEvidence(input, passage, tested);
+      const { heading, head, nextHeading } = common;
 
       const clip = input.enListenings.find(
         (l) =>
@@ -422,49 +582,13 @@ export function resolveSource(input) {
         ...bound.anchorSegments.flatMap((a) => a.probeSegmentIds),
       ]);
       const alignment = input.generation.inputs.generationAlignment;
-      const nextHeading = boundary.heading ?? null;
       rows.push({
         ...base,
         status: "candidate",
         evidenceAdapter: ADAPTER,
-        seekStartMs: startMsOf(start.startFrame, rate),
-        seekEndMs: record.audio.durationMs,
-        cueNumber: start.number,
-        cueSpokenNumbers: start.native.cueSpokenNumbers,
-        cueForm: start.native.cueForm,
-        scopeQuestionNumbers: start.scope,
-        kind,
+        ...common.fields,
         cueSegmentIds: [],
         anchorSegmentIds: ids,
-        nativeEvidence: {
-          cachePath: native.cachePath,
-          cacheSha256: native.cacheSha256,
-          energyPath: native.energyPath,
-          energySha256: native.energySha256,
-          sampleRate: rate,
-          channels: native.channels,
-          frameCount: native.frameCount,
-          pcmSha256: native.pcmSha256,
-          ...placeEvidence(heading.place),
-        },
-        probeEvidence: headingReference(heading),
-        nextProbeEvidence: nextHeading ? headingReference(nextHeading) : null,
-        nextNativeEvidence: nextHeading ? placeEvidence(nextHeading.place) : null,
-        sharedHeadProbeEvidence:
-          kind === "shared_instruction_member" ? headingReference(head) : null,
-        sharedHeadNativeEvidence:
-          kind === "shared_instruction_member" ? placeEvidence(head.place) : null,
-        terminalProbeEvidence: boundary.closing
-          ? reference(
-              boundary.closing.ref,
-              boundary.closing.probe.segments.filter(
-                (s) => s.id === boundary.closing.reading.firstSegmentId,
-              ),
-            )
-          : null,
-        terminalNativeEvidence: boundary.closing
-          ? placeEvidence(boundary.closing.place)
-          : null,
         dialogueProbeEvidence: reference(
           clip.ref,
           clip.probe.segments.filter((s) => quoted.has(s.id)),
@@ -491,30 +615,10 @@ export function resolveSource(input) {
           anchorSegments: bound.anchorSegments,
         },
         nativeRecovery: {
-          evidenceProtocol: 1,
-          passageFrames: { fromFrame: passage.fromFrame, toFrame: passage.toFrame },
+          ...common.nativeRecovery,
           dialogueClipFrames: {
             startFrame: clip.startFrame,
             frameCount: clip.frameCount,
-          },
-          headCovers: heading.covers,
-          sharedHeadCovers: head?.covers ?? null,
-          existingCertifiedStart: certifiedStart
-            ? {
-                certificateSha256: input.certificateSha256,
-                questionId: start.certified.questionIds[0],
-                startMs: start.certified.startMs,
-                scope: start.certified.scope,
-              }
-            : null,
-          nextBoundary: {
-            kind: boundary.kind,
-            originalNumbers: boundary.originalNumbers,
-            startFrame: boundary.startFrame,
-            existing: boundary.existing ?? null,
-            largestNumberWrittenAnywhere:
-              boundary.largestNumberWrittenAnywhere ?? null,
-            longQuietOnsetsListened: boundary.longQuietOnsetsListened ?? null,
           },
           quotes: bound.quotes.map((q) => ({
             index: q.index,
@@ -523,7 +627,6 @@ export function resolveSource(input) {
             wordRange: q.wordRange,
             hearings: q.heard.length,
           })),
-          siblingReadings: heading.siblings,
           uncoveredAnchorSegmentIds: uncovered,
           verifierPreconditions: {
             nextHeadingIsANativeProbe: Boolean(nextHeading),
@@ -549,7 +652,6 @@ export function resolveSource(input) {
       if (!byPassage.has(row.cueNumber)) byPassage.set(row.cueNumber, []);
       byPassage.get(row.cueNumber).push(row.questionId);
     }
-  const known = [...starts.values()].sort((a, b) => a.number - b.number);
   for (const row of rows)
     if (row.status === "candidate") {
       const lower = known.filter((s) => s.number < row.cueNumber).at(-1);
@@ -571,52 +673,5 @@ export function resolveSource(input) {
       };
     }
 
-  return {
-    table: {
-      headings: headings.map((h) => ({
-        numbers: h.numbers,
-        covers: h.covers,
-        form: h.form,
-        kind: h.kind,
-        onsetMethod: h.place.onsetMethod,
-        startFrame: h.startFrame,
-        onsetFrame: h.onsetFrame,
-        startMs: startMsOf(h.startFrame, rate),
-        text: h.reading.text,
-        instruction: h.reading.instruction?.text ?? null,
-        probe: h.ref,
-      })),
-      closings: closings.map((c) => ({
-        startFrame: c.startFrame,
-        startMs: startMsOf(c.startFrame, rate),
-        text: c.reading.text,
-      })),
-      numbersWritten: written.map((r) => ({
-        startMs: startMsOf(r.startFrame, rate),
-        numbers: r.numbers,
-        form: r.form,
-        reliable: r.reliable,
-      })),
-      held: Object.fromEntries(held),
-      starts: known.map((s) => ({
-        number: s.number,
-        scope: s.scope,
-        source: s.source,
-        startMs: startMsOf(s.startFrame, rate),
-        nativeStartMs: s.native
-          ? startMsOf(s.native.heading.startFrame, rate)
-          : null,
-      })),
-      passages: passages.map((p) => ({
-        key: p.key,
-        scope: p.scope,
-        fromFrame: p.fromFrame,
-        toFrame: p.toFrame,
-        boundary: p.boundary.kind,
-      })),
-      largestNumberWrittenAnywhere: hintedMaximum,
-    },
-    passages,
-    rows,
-  };
+  return { table, passages, rows };
 }

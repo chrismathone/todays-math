@@ -20,6 +20,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { resolveOfficial } from "./lib/official.mjs";
 import { certifiedStarts, resolveSource } from "./lib/resolve.mjs";
 import {
   Hold,
@@ -119,15 +120,36 @@ for (const id of ids) {
     route: ROUTE,
     priorReasons: row.reasons,
   });
-  if (w.identity.unavailable || !w.record.reconstructed) {
+  if (w.identity.unavailable) {
     for (const row of held)
       ledger.push({
         ...identityOf(row),
         status: "held",
-        reasons: [
-          w.identity.unavailable ?? "official_question_not_in_scope_of_this_route",
-        ],
+        reasons: [w.identity.unavailable],
         tested: { newListening: false },
+      });
+    continue;
+  }
+  if (!w.record.reconstructed) {
+    // Official questions: the same measured passages, bound by the question's
+    // own printed script section. A separate named route.
+    const official = resolveOfficial({
+      record: w.record,
+      native: w.native,
+      certRows: w.certRows,
+      koListenings: w.koListenings,
+      enListenings: w.enListenings,
+      hints: w.hints,
+      certificateSha256,
+      terminalScan: session.terminalScan(w),
+      script: w.script,
+      targets: held,
+    });
+    tables[id] = official.table;
+    for (const row of official.rows)
+      ledger.push({
+        ...row,
+        priorReasons: held.find((r) => r.questionId === row.questionId).reasons,
       });
     continue;
   }
