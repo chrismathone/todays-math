@@ -395,6 +395,9 @@ export function establishHeadings(native, listenings, options = {}) {
           covers: entry.reading.cue.covers,
           form: entry.reading.cue.form,
           reliable: entry.reading.reliable,
+          onsetFrame: entry.onsetFrame,
+          probe: entry.probe,
+          firstSegmentId: entry.reading.firstSegmentId,
           // Bare digits are a possible heading only before an instruction:
           // "4. 대화를 듣고 …" may be question 4, "4. You don't look well" is
           // an answer option read aloud inside another question.

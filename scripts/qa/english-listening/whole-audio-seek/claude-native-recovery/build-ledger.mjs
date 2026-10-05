@@ -206,6 +206,7 @@ for (const id of ids) {
         replayedStartMs: row.seekStartMs,
         replayedScope: row.scopeQuestionNumbers,
         replayedKind: row.kind,
+        replayedNextBoundary: row.nativeRecovery.nextBoundary.kind,
         deltaMs: delta,
         outcome: !sameScope
           ? "other_scope"
@@ -417,6 +418,13 @@ const summary = {
   heldOfficial: ledger.filter((r) => r.status === "held" && !r.reconstructed).length,
   offeredOriginalPassages: passages.size,
   offeredByKind: byKind,
+  // How each offered passage ends. A first-speech boundary is a rule added
+  // after the pilot; its rows are countable apart and can be left out.
+  offeredByNextBoundary: candidates.reduce((map, row) => {
+    const kind = row.nativeRecovery.nextBoundary.kind;
+    map[kind] = (map[kind] ?? 0) + 1;
+    return map;
+  }, {}),
   pilotCohort: {
     plan: PILOT_PLAN,
     questionsInPlan: pilotPlan.candidateQuestions.length,
