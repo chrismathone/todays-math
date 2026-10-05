@@ -11,6 +11,8 @@ export const RECOVERY_FRAME_CSS = `
 .tb-source-page-footer>.checkbar>strong,.tb-source-page-footer>.checkbar>b{font-size:7.6pt;line-height:1.6}
 .tb-source-page-footer>.checkbar>span{font-size:6.7pt;color:#89958e;white-space:nowrap}
 .tb-source-page-footer .checkbar em:empty{display:inline-block;width:1.8mm;height:1.8mm;margin:0 .8mm;border:.265mm solid #a7b6ab;border-radius:50%;vertical-align:middle}
+.tb-source-page-footer>.script-continue{display:flex;align-items:baseline;gap:2mm;justify-content:flex-end;height:8mm;margin:0;padding:1.5mm 0 0;border-top:.5pt solid var(--tb-light);font-size:6pt;line-height:1.6;color:#8d978a}
+.tb-source-page-footer>.script-continue>strong{background:#edf4e9;color:var(--tb-accent);padding:.4mm 1.5mm;border-radius:2mm;margin-right:auto;font-size:6.8pt}
 .tb-continuation-label{position:absolute;right:22mm;top:0;font-size:7pt;line-height:1.65;color:var(--tb-accent)}
 .tb-recovery .tb-stage-head{min-height:23mm;padding:0 19mm 0 0}.tb-recovery .tb-kicker{line-height:1.65}.tb-recovery .tb-section-heading{letter-spacing:-1.35px}.tb-recovery .tb-progress{margin-top:3mm;line-height:1.65}.tb-recovery .tb-stage-number{letter-spacing:-3px}
 .tb-recovery.tb-stage-concept .tb-stage-head{min-height:25mm;padding-right:29mm}.tb-recovery.tb-stage-concept .tb-section-heading{font-size:23pt}.tb-recovery.tb-stage-recall .tb-stage-head{min-height:22mm}
