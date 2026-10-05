@@ -25,6 +25,7 @@ import {
   officialSections,
   reasonCategory,
   sha256,
+  startPassageOf,
   transcriptWords,
 } from "./alignment.mjs";
 
@@ -1110,7 +1111,7 @@ test("one instruction for two numbers, then each number with its own dialogue", 
   const b = row(report, "q-b");
   assert.equal(b.outcome, "candidate");
   assert.deepEqual(b.candidate.originalScopeNumbers, [3]);
-  assert.equal(b.candidate.evidenceGrade, "shared_instruction_member_cue");
+  assert.equal(b.candidate.evidenceGrade, "shared_instruction_first_member_heading");
   assert.equal(b.evidence.passage.announcement.quote, "3번입니다.");
   assert.equal(b.evidence.passage.instruction, null);
   assert.equal(b.evidence.passage.sharedHeading.quote, "3번과 4번은");
@@ -1139,6 +1140,39 @@ test("one instruction for two numbers, then each number with its own dialogue", 
 });
 
 // --------------------------------------------------------------- official ----
+
+test("shared instruction starts at its heading for the first original member only", () => {
+  const head = { id: 2, kind: "shared_instruction_head", numbers: [3, 4] };
+  const first = { id: 3, kind: "shared_instruction_member", numbers: [3], headPassageId: 2 };
+  const second = { id: 4, kind: "shared_instruction_member", numbers: [4], headPassageId: 2 };
+  const passages = [null, null, head, first, second];
+  assert.equal(startPassageOf(first, passages), head);
+  assert.equal(startPassageOf(second, passages), second);
+  assert.equal(startPassageOf({ ...first, id: 5 }, passages).id, 5);
+  assert.equal(startPassageOf(first, [null, null, { ...head, kind: "shared_passage" }]), first);
+});
+
+test("existing first-member shared heading agrees without changing its range or a later member's start", () => {
+  const lines = [PREAMBLE, H1, D1, H2, D2,
+    "3번과 4번은 대화를 듣고 남자의 마지막 말에 이어질 여자의 응답으로 가장 알맞은 것을 고르는 문제입니다. 잘 듣고 답하세요.",
+    "3번입니다.", D3, "4번입니다.", D4, CLOSING];
+  const fixture = run({ lines });
+  const headMs = fixture.input.raw.words[wordIndex(fixture.input, "3번과")].start - 400;
+  const secondMs = fixture.input.raw.words[wordIndex(fixture.input, "4번입니다.")].start - 400;
+  const questions = QUESTIONS.map(q => q.id === "q-b"
+    ? { ...q, existingStartMs: headMs, existingScope: [3] }
+    : q.id === "q-d" ? { ...q, existingStartMs: secondMs, existingScope: [4] } : q);
+  const { report, input } = run({ lines, questions });
+  assert.deepEqual(report.existingStartChecks.map(c => [c.scope, c.status]), [[[3], "agrees"], [[4], "agrees"]]);
+  assert.equal(report.existingStartChecks[0].startDefinition, "first_member_shared_instruction_heading");
+  assert.equal(report.existingStartChecks[1].startDefinition, undefined);
+  assert.equal(row(report, "q-b").existingAudioRange.startMs, headMs);
+  assert.equal(row(report, "q-d").existingAudioRange.startMs, secondMs);
+  assertExistingStartsUntouched(input.certificateRecords, report);
+  const wrong = run({ lines, questions: questions.map(q => q.id === "q-d" ? { ...q, existingStartMs: headMs } : q) });
+  assert.equal(wrong.report.existingStartChecks.find(c => c.scope[0] === 4).status, "disagrees");
+  assert.ok(row(wrong.report, "q-a").reasons.includes("source_existing_start_outside_announcement_window"));
+});
 
 const SCRIPT = [
   "ⓒ 본 평가 문항의 저작권은 교육청에 있습니다.(고3) - 1 -  시그널 IN ANN : 여러분 안녕하십니까? 시그널 OUT ANN : 이제 시작하겠습니다.",
@@ -1590,7 +1624,7 @@ test("English words in the window of a number without its own instruction go to 
   const { report } = dual({ lines });
   const b = row(report, "q-b");
   assert.equal(b.outcome, "candidate");
-  assert.equal(b.candidate.evidenceGrade, "shared_instruction_member_cue");
+  assert.equal(b.candidate.evidenceGrade, "shared_instruction_first_member_heading");
   // Dropped words between the number and the closing could as well be the
   // end of the dialogue before it: the provider did not time the number.
   const d = row(report, "q-d");

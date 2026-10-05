@@ -42,9 +42,9 @@ export const sha256 = (bytes) =>
   createHash("sha256").update(bytes).digest("hex");
 
 /**
- * binding: the transcript is not this recording's. timing: the provider did not
- * time a number, so what follows it directly is not measured. confidence: only
- * the provider's own doubt. Everything else is what the words themselves show.
+ * The historical binding class includes both identity failures and source-wide
+ * timing checks. It does not by itself mean a recording has the wrong identity.
+ * Timing covers an unmeasured number; confidence is the provider's own doubt.
  */
 export const reasonCategory = (code) =>
   /^(binding_failed|source_)/.test(code)
@@ -774,9 +774,22 @@ const passageScope = (passage, passages) =>
     ? passages[passage.headPassageId].numbers
     : passage.numbers;
 
+/** A shared instruction belongs at the beginning of its first member only. */
+export function startPassageOf(passage, passages) {
+  if (passage.kind !== "shared_instruction_member") return passage;
+  const head = passages[passage.headPassageId];
+  return head?.kind === "shared_instruction_head" &&
+    passage.numbers.length === 1 &&
+    head.numbers[0] === passage.numbers[0] &&
+    passage.id === head.id + 1
+    ? head
+    : passage;
+}
+
 /**
  * Each existing start against the window in which the transcript wrote the
- * same scope's number. One start outside its window means the transcript and
+ * same scope's start announcement, including the first member's shared heading.
+ * One start outside its window means the transcript and
  * the verified clock disagree, and nothing more is read from this transcript.
  */
 function checkExistingStarts(existing, passages, observations, policy) {
@@ -802,7 +815,8 @@ function checkExistingStarts(existing, passages, observations, policy) {
           ? "number_announced_more_than_once"
           : "announcement_not_found",
       };
-    const { window } = matching[0];
+    const startPassage = startPassageOf(matching[0], passages);
+    const { window } = startPassage;
     const inside =
       group.startMs >= window.fromMs - policy.existingStartToleranceMs &&
       group.startMs <= window.toMs + policy.existingStartToleranceMs;
@@ -810,11 +824,14 @@ function checkExistingStarts(existing, passages, observations, policy) {
       ...base,
       status: inside ? "agrees" : "disagrees",
       passageId: matching[0].id,
+      ...(startPassage !== matching[0]
+        ? { startPassageId: startPassage.id, startDefinition: "first_member_shared_instruction_heading" }
+        : {}),
       windowMs: { fromMs: window.fromMs, toMs: window.toMs },
       providerTokenStartMinusExistingMs: window.tokenStartMs - group.startMs,
       announcement: {
-        quote: observations[matching[0].observationId].quote,
-        minConfidence: observations[matching[0].observationId].minConfidence,
+        quote: observations[startPassage.observationId].quote,
+        minConfidence: observations[startPassage.observationId].minConfidence,
       },
     };
   });
@@ -1051,33 +1068,38 @@ function passageVerdict(passage, context) {
   const scope = passageScope(passage, context.passages);
   const conflicts = existingStartConflicts(
     scope,
-    passage.window,
+    startPassageOf(passage, context.passages).window,
     context.existing,
   );
   reasons.push(...conflicts.reasons);
   return { reasons, scope, shares: conflicts.shares };
 }
 
-const candidateOf = (passage, verdict, context) => ({
-  originalScopeNumbers: verdict.scope,
-  evidenceGrade:
-    passage.kind === "shared_passage"
-      ? "shared_passage_heading"
-      : passage.kind === "shared_instruction_member"
-        ? "shared_instruction_member_cue"
-        : "numbered_announcement",
-  announcementSearchWindowMs: {
-    fromMs: passage.window.fromMs,
-    toMs: passage.window.toMs,
-  },
-  providerTokenMs: {
-    startMs: passage.window.tokenStartMs,
-    endMs: passage.window.tokenEndMs,
-  },
-  wholeOriginalEndMs: context.durationMs,
-  sharesExistingStart: verdict.shares,
-  providerTimeIsAnEstimateNotAMeasuredOnset: true,
-});
+const candidateOf = (passage, verdict, context) => {
+  const startPassage = startPassageOf(passage, context.passages);
+  return {
+    originalScopeNumbers: verdict.scope,
+    evidenceGrade:
+      passage.kind === "shared_passage"
+        ? "shared_passage_heading"
+        : passage.kind === "shared_instruction_member"
+          ? startPassage !== passage
+            ? "shared_instruction_first_member_heading"
+            : "shared_instruction_member_cue"
+          : "numbered_announcement",
+    announcementSearchWindowMs: {
+      fromMs: startPassage.window.fromMs,
+      toMs: startPassage.window.toMs,
+    },
+    providerTokenMs: {
+      startMs: startPassage.window.tokenStartMs,
+      endMs: startPassage.window.tokenEndMs,
+    },
+    wholeOriginalEndMs: context.durationMs,
+    sharesExistingStart: verdict.shares,
+    providerTimeIsAnEstimateNotAMeasuredOnset: true,
+  };
+};
 
 /** A reconstructed question, by its unchanged generation quotes alone. */
 function alignReconstructed(question, context) {

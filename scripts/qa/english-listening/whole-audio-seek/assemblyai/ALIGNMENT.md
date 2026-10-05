@@ -92,6 +92,14 @@ outside its window (±2.5 s) holds the whole source as
 that already has a start names it (`sharesExistingStart`); a proposal on the
 wrong side of another scope's start is held.
 
+For a shared instruction followed immediately by its first original member,
+the comparison and candidate search use the **shared heading's** window. The
+first member keeps its own singleton scope and dialogue evidence. Later members
+use their own number's window. The first-member candidate is explicitly labeled
+`shared_instruction_first_member_heading`; its estimate still requires native
+re-recognition, measured onset and independent admission. This semantic correction
+was added after the 2026-10-06 investigation; prior immutable reports are unchanged.
+
 **Two transcripts.** The transcript that hears Korean gives numbers,
 instructions and passages. With `--english-envelope`, dialogue words come from
 the English-only transcript **alone** and are placed by provider time: a
@@ -122,6 +130,13 @@ Provider confidence can hold a row and never admits one. A quote found word for
 word is already two recognizers, or a recognizer and the printed script,
 writing the same words; that, not a score, is the evidence. No similarity
 measure decides anything here.
+
+The historical `binding` label also includes source-wide timing diagnostics
+(provider duration, words beyond the end, and existing-window disagreement).
+It alone does not establish wrong source identity. Consumers must read the
+specific checks and reasons. A localized native-evidence route can investigate
+other spans independently, while retaining every original raw timing issue and
+the strict physical source, document and clock checks.
 
 ## What was fixed before the data, and what was not
 
