@@ -20,9 +20,10 @@ export interface RecoveryMeasurePlan {
 }
 export function recoveryMeasurePlan(
   model: TextbookRenderModel,
+  firstPhysicalPageIndex?: number,
 ): RecoveryMeasurePlan {
   return {
-    sourceQuestionGroups: sourceQuestionRowPlan(model),
+    sourceQuestionGroups: sourceQuestionRowPlan(model, firstPhysicalPageIndex),
     sourceMemoryRowKeys: model.sections.flatMap((section) =>
       section.blocks.flatMap((block) =>
         block.kind === "recall" && block.semantic?.source
@@ -363,9 +364,7 @@ export function measureRecoveryDom(
     ),
   ];
   for (const group of groups) {
-    const blocks = plan.blocks.filter(
-      (block) => block.dialogueGroup === group,
-    );
+    const blocks = plan.blocks.filter((block) => block.dialogueGroup === group);
     if (blocks.some((block) => !elements.has(block.id)))
       throw new Error("Missing dialogue unit measurement");
     const pages = [...new Set(blocks.map((block) => block.dialoguePage!))];
