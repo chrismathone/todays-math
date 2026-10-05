@@ -1,6 +1,7 @@
 /** Measured v15 frame values. Applied only to semantic recovery projections. */
 export const RECOVERY_FRAME_CSS = `
 .tb-recovery{font-size:10pt;line-height:1.65}
+.tb-recovered.tb-stage-recall,.tb-recovery.tb-stage-recall{--tb-accent:#086c61;--tb-dark:#073f3b;--tb-soft:#edf5f0;--tb-light:#d6e4df;--tb-signal:#d6ed75}
 .tb-recovery .tb-stage-subtitle{margin:0}
 .tb-recovered .tb-footer-brand{font-size:6.8pt;line-height:1.65;display:flex;align-items:center;gap:2mm}
 .tb-recovered .tb-footer-brand i{margin-left:0}

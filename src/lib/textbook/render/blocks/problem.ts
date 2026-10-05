@@ -91,5 +91,10 @@ export function renderProblemHtml(
       '<div class="tb-prose">',
       `<div class="tb-prose" style="min-height:${block.sourceQuestionPromptMinHeightMm}mm">`,
     );
+  if (block.sourceQuestionMainMinHeightMm !== undefined)
+    sourceHtml = sourceHtml.replace(
+      '<div class="tb-problem-main">',
+      `<div class="tb-problem-main" style="min-height:${block.sourceQuestionMainMinHeightMm}mm">`,
+    );
   return sourceHtml;
 }
