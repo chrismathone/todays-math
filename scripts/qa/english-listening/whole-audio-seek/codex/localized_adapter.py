@@ -18,13 +18,17 @@ def catalog_probes(row, source):
     v.require(len(registered) == len(artifacts), "localized_duplicate_catalog_artifact")
     observed = set()
     for root in roots:
-        pattern = root.get("pattern", "")
-        v.require(pattern in ("*.json", "*.probes.json", "probe.json") or
-                  re.fullmatch(r"probes/round-(?:\*|\d+)/[a-z0-9-]+\.json", pattern), "localized_invalid_catalog_pattern")
         path = Path(root["path"])
         v.require(path.is_dir(), "localized_missing_catalog_root")
-        matches = path.glob(pattern) if "/" in pattern else path.rglob(pattern)
-        observed.update(str(p.resolve()) for p in matches if p.is_file())
+        patterns = root.get("patterns", [root.get("pattern")])
+        v.require(isinstance(patterns, list) and patterns and len(patterns) == len(set(patterns)), "localized_invalid_catalog_patterns")
+        for pattern in patterns:
+            v.require(isinstance(pattern, str) and (pattern in ("*.json", "*.probes.json", "probe.json") or
+                      re.fullmatch(r"probes/round-(?:\*|\d+)/[a-z0-9-]+\.json", pattern)), "localized_invalid_catalog_pattern")
+            if root.get("rounds") is not None:
+                v.require("/" in pattern and pattern.split("/")[1] in root["rounds"], "localized_catalog_unbound_round")
+            matches = path.glob(pattern) if "/" in pattern else path.rglob(pattern)
+            observed.update(str(p.resolve()) for p in matches if p.is_file())
     v.require(observed == registered, "localized_incomplete_probe_catalog")
     probes, refs = [], [ref]
     for artifact_ref in artifacts:
@@ -135,7 +139,7 @@ def replay_probe(row, source, replay, field, *, language, maximum):
     return probe, index, selected, refs
 
 
-def measure_probe_onset(row, replay, field, probe):
+def measure_probe_onset(row, source, replay, field, probe):
     wf = replay.actual["windowFrames"]
     bins = replay.energy[probe["startFrame"] // wf:probe["onsetFrame"] // wf]
     peak = 10 * math.log10(max(bins) / wf / 32768 ** 2) if bins and max(bins) > 0 else None
@@ -145,7 +149,28 @@ def measure_probe_onset(row, replay, field, probe):
              "sharedHeadProbeEvidence": "sharedHeadNativeEvidence", "terminalProbeEvidence": "terminalNativeEvidence"}.get(field)
     supplied = row.get(named) if named else None
     if supplied is not None:
-        v.require(all(supplied.get(k) == probe[k] for k in ("startFrame", "onsetFrame", "quietBeforeFrames")), "localized_auxiliary_onset_bounds")
+        v.require(all(supplied.get(k) == probe[k] for k in ("startFrame", "onsetFrame")), "localized_auxiliary_onset_bounds")
+        if supplied.get("quietEvidenceMethod") == "independent_full_source_quiet_v1":
+            v.require(v.integer(supplied.get("quietBeforeFrames")) and
+                      supplied.get("rawProbeQuietBeforeFrames") == probe["quietBeforeFrames"], "localized_raw_discovery_quiet_changed")
+            context = supplied.get("quietDiscoveryEvidence", {})
+            baseline = supplied.get("noiseFloorEvidence", {})
+            expected_windows = {"noise_floor_contrast_v1": 100, "noise_floor_contrast_1second_v1": 50}.get(supplied.get("onsetMethod"))
+            v.require(expected_windows is not None and context.get("method") == "noise_baseline_capped_discovery_v1",
+                      "localized_unproven_discovery_quiet_context")
+            expected_frames = expected_windows * wf
+            v.require(context.get("contextFrameCount") == baseline.get("baselineFrameCount") == expected_frames
+                      and context.get("contextStartFrame") == baseline.get("baselineStartFrame") == probe["onsetFrame"] - expected_frames
+                      and context.get("contextEnergySha256") == baseline.get("baselineEnergySha256")
+                      and probe["quietBeforeFrames"] == min(supplied["quietBeforeFrames"], expected_frames),
+                      "localized_discovery_quiet_cap_relation")
+            container, _ = a.checked_probe(row, source, field)
+            request = {"path": container["requestPath"], "sha256": container["requestSha256"]}
+            v.require(context.get("request") == request and context.get("probeId") == probe["id"],
+                      "localized_discovery_quiet_wrong_raw_request")
+        else:
+            v.require(supplied.get("quietEvidenceMethod") is None and
+                      supplied.get("quietBeforeFrames") == probe["quietBeforeFrames"], "localized_auxiliary_onset_bounds")
         onset = supplied
     if "onsetMethod" in probe:
         v.require(probe["onsetMethod"] == onset.get("onsetMethod", "absolute_energy_v2"), "localized_probe_onset_method_mismatch")
@@ -173,15 +198,22 @@ def numbered_probe(row, source, replay, field, *, require_instruction=True):
             v.require(v.integer(sibling.get("onsetFrame")) and
                       abs(sibling["onsetFrame"] - probe["onsetFrame"]) <= 3 * probe["sampleRate"],
                       "localized_number_at_two_distant_onsets")
-    v.require(not require_instruction or re.search(r"듣고|고르시오|고르세요|답하시오|선택하시오", rest), "localized_instruction_missing")
+    # 듣고 is only the introductory clause; later words can change a pair
+    # into a genuinely joint passage. Classify only a complete instruction.
+    ending = re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", rest)
+    v.require(not require_instruction or ending is not None, "localized_instruction_missing_or_incomplete")
+    if require_instruction:
+        # Preserve the full raw segments, but classify only the literal first
+        # complete instruction. A following English turn may share a segment.
+        rest = rest[:ending.end()]
     relative = (probe["onsetFrame"] - probe["startFrame"]) / probe["sampleRate"]
     v.require(selected[0]["estimatedStartSeconds"] - .5 <= relative <= selected[0]["estimatedEndSeconds"],
               "localized_onset_number_correspondence")
-    measure_probe_onset(row, replay, field, probe)
+    measure_probe_onset(row, source, replay, field, probe)
     return probe, spoken, rest, selected, refs
 
 
-def terminal_probe(row, source, replay, catalog):
+def terminal_probe(row, source, replay, catalog, *, original_last_number=None):
     probe, index, selected, refs = replay_probe(row, source, replay, "terminalProbeEvidence", language="ko", maximum=14)
     v.require(selected[0]["id"] == next(iter(index)), "localized_closing_not_first_segment")
     text = " ".join(s["text"] for s in selected)
@@ -190,7 +222,7 @@ def terminal_probe(row, source, replay, catalog):
     relative = (probe["onsetFrame"] - probe["startFrame"]) / probe["sampleRate"]
     v.require(selected[0]["estimatedStartSeconds"] <= relative + .5 and
               selected[0]["estimatedEndSeconds"] >= relative, "localized_closing_onset_correspondence")
-    measure_probe_onset(row, replay, "terminalProbeEvidence", probe)
+    measure_probe_onset(row, source, replay, "terminalProbeEvidence", probe)
     observed = []
     for _, other, _ in catalog:
         if other.get("requestedLanguage") == "ko" and other.get("segments"):
@@ -200,8 +232,13 @@ def terminal_probe(row, source, replay, catalog):
                 observed.extend(numbers)
     # This specifically named tier covers the original twenty-question middle
     # school recording. A closing after an arbitrary observed number is unsafe.
-    v.require(source.get("source", {}).get("provider") == "EBS 중학" and row["scopeQuestionNumbers"][-1] == 20
-              and observed and max(observed) == 20, "localized_terminal_original_population_unproved")
+    if original_last_number is None:
+        v.require(source.get("source", {}).get("provider") == "EBS 중학" and row["scopeQuestionNumbers"][-1] == 20
+                  and observed and max(observed) == 20, "localized_terminal_original_population_unproved")
+    else:
+        v.require(not source["reconstructed"] and row.get("officialTerminalEvidence")
+                  and row["scopeQuestionNumbers"][-1] == original_last_number
+                  and observed and max(observed) == original_last_number, "official_terminal_original_population_unproved")
     return probe, [], selected, refs
 
 
@@ -344,7 +381,15 @@ def validate(row, source, question, clock, replay, full_index):
     else:
         raise v.InvalidEvidence("localized_unproven_shared_member_or_kind")
     terminal = row.get("terminalProbeEvidence") is not None
-    if terminal:
+    certified = row.get("nextCertificateEvidence") is not None
+    v.require(sum(bool(row.get(k)) for k in ("nextProbeEvidence", "terminalProbeEvidence", "nextCertificateEvidence")) == 1,
+              "localized_missing_or_multiple_next_boundaries")
+    if certified:
+        from certified_boundary import validate as certified_boundary
+        neighbor, next_numbers, next_spoken, next_refs = certified_boundary(row, source, replay)
+        next_raw = []
+        v.require(next_numbers[0] == scope[-1] + 1, "localized_wrong_neighbor")
+    elif terminal:
         v.require(not row.get("nextProbeEvidence"), "localized_two_next_boundary_kinds")
         neighbor, next_numbers, next_raw, next_refs = terminal_probe(row, source, replay, catalog)
     else:
@@ -368,6 +413,9 @@ def validate(row, source, question, clock, replay, full_index):
             if not bare and re.match(r"^\s*\d{1,2}\s*[.,]", raw_text):
                 bare = re.search(r"듣고|고르시오|고르세요|답하시오|선택하시오", raw_text)
             v.require(not bare and (not numbers or numbers == spoken), "localized_unresolved_internal_number_reading")
+        if certified and other.get("requestedLanguage") == "ko" and other["startFrame"] == neighbor["startFrame"]:
+            numbers, _ = literal_cue(raw_segments[0].get("text", ""))
+            v.require(not numbers or numbers == next_spoken, "localized_contradictory_certified_next_number")
         if other.get("requestedLanguage") == "en" and (other["startFrame"] + other["frameCount"] <= head["startFrame"] or other["startFrame"] >= neighbor["startFrame"]):
             words = a.english_words(" ".join(s.get("text", "") for s in raw_segments))
             for quote in row["localizedMappingEvidence"]["quotes"]:
@@ -379,10 +427,12 @@ def validate(row, source, question, clock, replay, full_index):
     proof = {"adapter": ADAPTER, "probe": row["probeEvidence"], "onsetFrame": n["onsetFrame"],
              "scopeQuestionNumbers": scope, "cueNumber": row["cueNumber"], "cueSpokenNumbers": spoken, "kind": kind,
              "nextProbe": row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"),
-             "nextBoundaryKind": "literal_original_closing_v1" if terminal else "next_numbered_native",
+             "nextCertificate": row.get("nextCertificateEvidence"),
+             "nextBoundaryKind": "exact_preserved_original_scope_v1" if certified else "literal_original_closing_v1" if terminal else "next_numbered_native",
              "sharedHeadProbe": row.get("sharedHeadProbeEvidence"),
              "nextOnsetFrame": neighbor["onsetFrame"],
-             "nextSpokenNumbers": next_numbers, "nextRawSegments": next_raw, "localizedMapping": mapping,
+             "nextSpokenNumbers": next_spoken if certified else next_numbers,
+             "nextScopeQuestionNumbers": next_numbers, "nextRawSegments": next_raw, "localizedMapping": mapping,
              "rawNativeDialogueSegments": list(native_index.values()),
              "catalogDiagnostics": catalog_diagnostics,
              "probeCatalog": row.get("probeCatalog"),

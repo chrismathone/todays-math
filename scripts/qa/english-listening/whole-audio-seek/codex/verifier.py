@@ -374,7 +374,7 @@ class NativeReplay:
 
 def shared_native_key(row):
     proof = row["proofKey"]
-    if row.get("evidenceAdapter") != "native-localized-generation-v2":
+    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "official-catalogued-native-v1"):
         return proof
     # Every generated question has its own separately verified quote mapping.
     # A common passage key retains all common physical head/neighbor identity.
@@ -383,6 +383,8 @@ def shared_native_key(row):
             "scopeQuestionNumbers": row.get("scopeQuestionNumbers"), "cueSpokenNumbers": row.get("cueSpokenNumbers"),
             "nativeClock": {key: native.get(key) for key in ("sampleRate", "channels", "frameCount", "pcmSha256", "startFrame", "onsetFrame")},
             "probe": proof.get("probe"), "nextProbe": proof.get("nextProbe"),
+            "probeId": proof.get("probeId"),
+            "nextCertificate": {k: (proof.get("nextCertificate") or {}).get(k) for k in ("certificate", "scopeQuestionNumbers", "nativeOnsetFrame", "startMs")},
             "nextOnsetFrame": proof.get("nextOnsetFrame"), "nextSpokenNumbers": proof.get("nextSpokenNumbers")}
 
 
@@ -584,13 +586,15 @@ def reconstructed_admission_origin(row):
             and proof.get("probe") == row.get("probeEvidence") and
             proof.get("probeCatalog") == row.get("probeCatalog") and
             proof.get("sharedHeadProbe") == row.get("sharedHeadProbeEvidence") and
+            proof.get("nextCertificate") == row.get("nextCertificateEvidence") and
             proof.get("nextProbe") == (row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"))):
         return False
     refs = proof.get("boundReferences")
     if not isinstance(refs, list) or not refs:
         return False
+    next_ref = row.get("nextProbeEvidence") or row.get("terminalProbeEvidence") or (row.get("nextCertificateEvidence") or {}).get("certificate")
     required = [claim.get("alignment"), claim.get("prepared"), row.get("probeEvidence"),
-                row.get("nextProbeEvidence") or row.get("terminalProbeEvidence"), row.get("dialogueProbeEvidence"), row.get("probeCatalog")]
+                next_ref, row.get("dialogueProbeEvidence"), row.get("probeCatalog")]
     if row.get("kind") == "shared_instruction_member":
         required.append(row.get("sharedHeadProbeEvidence"))
     for ref in required:
@@ -602,11 +606,15 @@ def reconstructed_admission_origin(row):
     return True
 
 
-def verified_ancestor_rows(inventory, clocks, snapshots):
+def verified_ancestor_rows(inventory, clocks, snapshots, boundary_authority=None, _ancestry_stack=None):
     """Preserve an exact previous adoption while retaining original cue scope."""
     claim = inventory.get("verifiedAncestor")
     if claim is None:
         return {}, None
+    stack = set(_ancestry_stack or ())
+    ancestor_key = (str(Path(claim["certificate"]["path"]).resolve()), claim["certificate"]["sha256"])
+    require(ancestor_key not in stack, "cyclic_verified_ancestor_chain")
+    stack.add(ancestor_key)
     require(isinstance(claim, dict) and set(claim) == {"certificate", "inventory", "clock"}, "invalid_verified_ancestor")
     previous = checked_ref(claim["certificate"])
     old_inventory = checked_ref(claim["inventory"])
@@ -635,6 +643,7 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
             "ancestor_physical_clock_population_differs")
     inherited = {}
     scope_origins = {}
+    pending_boundaries = {}
     import copy
     for sid, old_source in old_sources.items():
         source = sources[sid]
@@ -653,6 +662,10 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
                         "ancestor_admission_overwrites_original")
                 question["audioRange"] = copy.deepcopy(row["audioRange"])
                 new_count += 1
+                if row.get("scopeQuestionNumbers") and integer(row.get("nativeEvidence", {}).get("onsetFrame")):
+                    pending_boundaries[(sid, question["id"])] = {"certificate": claim["certificate"],
+                        "scopeQuestionNumbers": row["scopeQuestionNumbers"], "onsetFrame": row["nativeEvidence"]["onsetFrame"],
+                        "startMs": row["audioRange"]["startMs"]}
                 if source["reconstructed"]:
                     require(reconstructed_admission_origin(row), "ancestor_original_scope_unverified")
                     inherited[(sid, question["id"])] = {"method": "previous_complete_source_admission_v1",
@@ -685,6 +698,8 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
                             evidence.get("onsetFrame") == original.get("nativeEvidence", {}).get("onsetFrame") and
                             integer(evidence.get("onsetFrame")), "ancestor_preserved_original_scope_differs_from_actual_admission")
                     inherited[(sid, question["id"])] = copy.deepcopy(evidence)
+                    pending_boundaries[(sid, question["id"])] = {**copy.deepcopy(evidence),
+                                                               "startMs": row["audioRange"]["startMs"]}
             else:
                 require(row["status"] == "held" and not question.get("audioRange") and not row.get("audioRange"),
                         "ancestor_unproven_existing_range")
@@ -705,6 +720,11 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
         rebound["revision"] = old_clocks[sid]["revision"]
         rebound["documentSha256"] = old_clocks[sid]["documentSha256"]
         require(rebound == old_clocks[sid], "ancestor_physical_clock_changed")
+    if boundary_authority is not None:
+        prior_boundaries = {}
+        verified_ancestor_rows(old_inventory, old_clock, old_snapshot["snapshots"], prior_boundaries, stack)
+        prior_boundaries.update(pending_boundaries)
+        boundary_authority.update(prior_boundaries)
     return inherited, claim["certificate"]
 
 
@@ -722,7 +742,8 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
     clock_ref = reference(clock_path)
     clocks = checked_ref(clock_ref)
     require(clocks.get("inventorySha256") == inv_hash, "clock_wrong_inventory")
-    inherited_original_scopes, ancestor_ref = verified_ancestor_rows(inventory, clocks, snapshot_rows)
+    trusted_boundaries = {}
+    inherited_original_scopes, ancestor_ref = verified_ancestor_rows(inventory, clocks, snapshot_rows, trusted_boundaries)
     clock_index = {s["sourceRecordId"]: s for s in clocks["records"]}
     frozen_ref = reference(frozen_path)
     frozen_rows = checked_ref(frozen_ref)["records"]
@@ -802,6 +823,8 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
             try:
                 from claude_adapter import SourceReplay
                 adapter_replay = (source_replay_factory or SourceReplay)(inventory["root"], source, clock_index[sid], source_rows)
+                adapter_replay.trusted_boundaries = {qid: evidence for (source_id, qid), evidence in trusted_boundaries.items()
+                                                     if source_id == sid}
             except (InvalidEvidence, OSError, KeyError, TypeError, ValueError, subprocess.SubprocessError) as e:
                 adapter_error = str(e)
         for question in source["questions"]:
@@ -841,9 +864,11 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                 if row.get("probeEvidence"):
                     require(adapter_replay is not None, "native_adapter_replay_failed:" + str(adapter_error))
                     adapter = row.get("evidenceAdapter", "claude-native-probe-v1")
-                    require(adapter in ("claude-native-probe-v1", "native-localized-generation-v2"), "unknown_native_adapter")
+                    require(adapter in ("claude-native-probe-v1", "native-localized-generation-v2", "official-catalogued-native-v1"), "unknown_native_adapter")
                     if adapter == "native-localized-generation-v2":
                         from localized_adapter import validate as validate_adapter
+                    elif adapter == "official-catalogued-native-v1":
+                        from official_catalog_adapter import validate as validate_adapter
                     else:
                         from claude_adapter import validate as validate_adapter
                     proof_key, native_segments, grade, original_identity = validate_adapter(row, source, question, clock_index[sid], adapter_replay, index)
@@ -877,6 +902,8 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                               mappingEvidence=row.get("mappingEvidence"), scriptEvidence=row.get("scriptEvidence"),
                               dialogueProbeEvidence=row.get("dialogueProbeEvidence"), nextProbeEvidence=row.get("nextProbeEvidence"),
                               terminalProbeEvidence=row.get("terminalProbeEvidence"), sharedHeadProbeEvidence=row.get("sharedHeadProbeEvidence"),
+                              nextCertificateEvidence=row.get("nextCertificateEvidence"),
+                              officialTerminalEvidence=row.get("officialTerminalEvidence"),
                               probeCatalog=row.get("probeCatalog"), nextNativeEvidence=row.get("nextNativeEvidence"),
                               sharedHeadNativeEvidence=row.get("sharedHeadNativeEvidence"), terminalNativeEvidence=row.get("terminalNativeEvidence"),
                               evidenceAdapter=row.get("evidenceAdapter"), localizedMappingEvidence=row.get("localizedMappingEvidence"), reasons=[],

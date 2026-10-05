@@ -255,7 +255,7 @@ class SourceReplay:
                                            (p.get("purpose") == "first_dialogue" or (row.get("evidenceAdapter") == "native-localized-generation-v2" and p.get("purpose") == "localized_generation")) else 14}
                         except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
                             pass  # Invalid rows are diagnosed individually.
-                if row.get("evidenceAdapter") == "native-localized-generation-v2" and row.get("probeCatalog"):
+                if row.get("evidenceAdapter") in ("native-localized-generation-v2", "official-catalogued-native-v1") and row.get("probeCatalog"):
                     try:
                         from localized_adapter import catalog_probes
                         catalog, _ = catalog_probes(row, source)
@@ -265,10 +265,23 @@ class SourceReplay:
                                            "maxDurationSeconds": 60 if p.get("purpose") in ("first_dialogue", "localized_generation") else 14}
                     except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
                         pass
+                if row.get("nextCertificateEvidence"):
+                    try:
+                        from certified_boundary import origin_record
+                        _, origin = origin_record(row, source)
+                        for field in ("probeEvidence", "dialogueProbeEvidence", "numberClipEvidence"):
+                            if origin.get(field):
+                                _, p = checked_probe(origin, source, field)
+                                key = f"{p['startFrame']}:{p['frameCount']}"
+                                wanted[key] = {"id": key, "startFrame": p["startFrame"], "frameCount": p["frameCount"],
+                                               "maxDurationSeconds": 60 if field == "dialogueProbeEvidence" else 14}
+                    except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
+                        pass
         spec = {"root": root, "source": source, "clock": clock, "probes": list(wanted.values())}
         script = Path(__file__).with_name("native-windows.mts")
         cli = Path(root) / "node_modules/tsx/dist/cli.mjs"
-        localized = any(r and r.get("status") == "candidate" and r.get("evidenceAdapter") == "native-localized-generation-v2" for r in rows)
+        localized = any(r and r.get("status") == "candidate" and r.get("evidenceAdapter") in
+                        ("native-localized-generation-v2", "official-catalogued-native-v1") for r in rows)
         batches, current, allocated = [], [], 0
         if localized:
             v.require(len(wanted) <= 2048, "unbounded_localized_source_probe_catalog")
