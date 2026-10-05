@@ -2137,6 +2137,8 @@ export function ObservationForm({
 }
 
 export function PreviewPane({
+  panelId,
+  tabLabelledBy,
   input,
   zoom,
   pageLabel,
@@ -2151,6 +2153,8 @@ export function PreviewPane({
   measured,
   unavailable,
 }: {
+  panelId?: string;
+  tabLabelledBy?: string;
   input: PaperPreviewInput;
   zoom: ZoomMode;
   pageLabel: string;
@@ -2169,8 +2173,11 @@ export function PreviewPane({
 }) {
   return (
     <section
+      id={panelId}
+      role={tabLabelledBy ? "tabpanel" : undefined}
+      aria-labelledby={tabLabelledBy}
       className={`${styles.panel} ${styles.preview}`}
-      aria-label="미리보기"
+      aria-label={tabLabelledBy ? undefined : "미리보기"}
     >
       <h2>미리보기</h2>
       {showModes ? (

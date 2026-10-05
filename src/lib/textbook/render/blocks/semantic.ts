@@ -3,6 +3,7 @@ import type { RenderBlock } from "../model";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { imageHtml, type RenderResources } from "./shared";
 import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
+import { renderBankActivityHtml } from "./bankActivities";
 
 function inlineMarkdown(source: string): string {
   const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
@@ -50,6 +51,8 @@ export function renderSemanticTextHtml(
   const semantic = block.semantic;
   const node = semantic?.node;
   if (!semantic || !node) return null;
+  const bankActivity = renderBankActivityHtml(block);
+  if (bankActivity !== null) return bankActivity;
   if (node.kind === "fragments") {
     const content = renderSourceFragments(node.fragments, resources);
     const marked =

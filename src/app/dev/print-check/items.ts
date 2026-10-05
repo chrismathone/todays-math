@@ -83,6 +83,22 @@ export const SPECIMEN_ITEM_IDS = [
 
 export const ITEMS: PrintCheckItem[] = [
   {
+    id: "paper-readable-accent-20261005",
+    title: "시험지 선택 색상 — 문항 번호·안내 글자 대비",
+    changed:
+      "밝은 선택 색상은 장식에 유지하고 문항 번호·안내 글자는 읽을 수 있는 잉크로 보완한다. 색상 상자 안 글자는 배경에 맞춰 표시한다.",
+    look: "사이언·노랑·주황과 기본 남색으로 문항 번호, 총점, 학원 표식, 안내·쪽수를 컬러와 흑백으로 확인한다. 숫자와 안내가 흐리거나 구분되지 않으면 불합격이다. A4 크기·열·문항 배치가 유지되는지도 확인한다.",
+    lookFromSource: false,
+    evidence: [
+      "docs/qa/impeccable-audit-2026-10-05.md",
+      "src/components/unified/print/readableColor.ts",
+    ],
+    scale: "수학 시험지 6개 템플릿 · 선택 색상 8개",
+    status: "대기",
+    needs: "동일 시험지의 밝은 색상·기본색 컬러/흑백 출력",
+    changedOn: "2026-10-05",
+  },
+  {
     id: "textbook-v15-recovery-20261005",
     title: "교재 제작 — 2-1-1 기준 조판 복구",
     changed:
@@ -105,15 +121,15 @@ export const ITEMS: PrintCheckItem[] = [
     title: "영어듣기 — DB 문항과 시각 자료 인쇄",
     changed:
       "문항 전체 이미지에는 발문·보기를 다시 출력하지 않고, 그림·표만 있는 이미지는 DB의 발문과 실제 보기와 함께 출력한다. 번호뿐인 그림 보기는 중복 출력하지 않는다.",
-    look:
-      "(제안) 문항 전체 이미지의 발문이 두 번 나오지 않는지, 그림·표 문항의 발문·보기·필수 시각 자료가 모두 보이는지 확인한다. 원본 번호와 시험지 번호를 구분하고, 공통 지시문이 빠지지 않으며 학생용에는 정답·해설·대본이 없는지 확인한다. 교사용에는 정답과 해설이 보여야 한다.",
+    look: "(제안) 문항 전체 이미지의 발문이 두 번 나오지 않는지, 그림·표 문항의 발문·보기·필수 시각 자료가 모두 보이는지 확인한다. 원본 번호와 시험지 번호를 구분하고, 공통 지시문이 빠지지 않으며 학생용에는 정답·해설·대본이 없는지 확인한다. 교사용에는 정답과 해설이 보여야 한다.",
     lookFromSource: false,
     evidence: [
       "src/components/english/listening/print/ListeningPrint.tsx",
       "src/__tests__/unit/englishListeningQuestionPresentation.test.tsx",
       "src/contracts/englishListeningSource.contract.ts (question.image.role)",
     ],
-    needs: "문항 전체 이미지·그림 보기·텍스트 보기·공통 지시문이 함께 있는 듣기 자료",
+    needs:
+      "문항 전체 이미지·그림 보기·텍스트 보기·공통 지시문이 함께 있는 듣기 자료",
     scale: "영어듣기 발행본 및 초안 학생용·교사용 인쇄",
     status: "대기",
     changedOn: "2026-10-04",

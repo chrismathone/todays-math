@@ -372,7 +372,12 @@ const prerenderAllKatex = (
   ): string => {
     const id = String(nextId++);
     texMap.set(id, tex);
-    map.set(id, renderKatex(tex, kind === "block"));
+    map.set(
+      id,
+      // editorTokens is also used by the read-only OCR card. Metadata does not
+      // replace semantics; prepareVisualDocument removes this markup on import.
+      renderKatex(tex, kind === "block", "htmlAndMathml"),
+    );
     const tallAttr = tall ? ' data-katex-tall="1"' : "";
     return kind === "block"
       ? `\n\n<div data-katex-id="${id}"${tallAttr}></div>\n\n`
@@ -552,6 +557,44 @@ const boxRect = (box: FigBox | undefined): FigureRect | undefined =>
         height: (box[2] - box[0]) / 1000,
       }
     : undefined;
+
+/** Keep native text/HTML copying identical to the visual-only renderer. */
+const preserveVisualMathCopy = (root: HTMLElement | null) => {
+  if (!root) return;
+  let restorePending: (() => void) | undefined;
+  const copy = (event: ClipboardEvent) => {
+    if (event.defaultPrevented) return;
+    restorePending?.();
+    const selection = root.ownerDocument.getSelection();
+    if (!selection?.rangeCount || selection.isCollapsed) return;
+    const range = selection.getRangeAt(0);
+    if (!range.intersectsNode(root)) return;
+    // user-select:none alone still puts empty MathML wrappers into Chromium's
+    // text/html clipboard and changes plain-text whitespace. Detach only the
+    // selected semantic trees until the native copy default action finishes.
+    const removed = [...root.querySelectorAll(".katex-mathml")]
+      .filter((node) => range.intersectsNode(node))
+      .map((node) => {
+        const marker = root.ownerDocument.createComment("");
+        node.replaceWith(marker);
+        return { node, marker };
+      });
+    if (!removed.length) return;
+    const restore = () => {
+      clearTimeout(timer);
+      for (const { node, marker } of removed) marker.replaceWith(node);
+      restorePending = undefined;
+    };
+    const timer = setTimeout(restore, 0);
+    restorePending = restore;
+  };
+  // Copy can target document.body when selection is in a read-only card.
+  root.ownerDocument.addEventListener("copy", copy);
+  return () => {
+    root.ownerDocument.removeEventListener("copy", copy);
+    restorePending?.();
+  };
+};
 
 const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
   content: source,
@@ -845,7 +888,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
     : `prose prose-slate max-w-none prose-p:my-2 prose-headings:my-3 ${className}`;
 
   return (
-    <Tag className={wrapperClass}>
+    <Tag className={wrapperClass} ref={preserveVisualMathCopy}>
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkBreaks]}
         rehypePlugins={[rehypeRaw]}

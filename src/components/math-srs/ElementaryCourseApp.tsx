@@ -221,6 +221,7 @@ export default function ElementaryCourseApp() {
             <label htmlFor="course-learner">학습자</label>
             <select
               id="course-learner"
+              aria-label="학습자"
               value={learner.id}
               disabled={!ready || busy}
               onChange={(event) => {

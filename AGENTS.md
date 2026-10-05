@@ -19,6 +19,10 @@ is only for tasks that cannot be split.
 Launch Orca worktree workers with Codex. The user's standing preference is to
 use Codex for future worktree execution and transfer unfinished Claude work to
 Codex while preserving its files, branches, and evidence.
+For the current textbook recovery, the user explicitly reauthorized active
+Claude and Grok collaboration on 2026-10-05 after Claude's limit reset.
+Keep the existing Codex work intact and use independently scoped Claude/Grok
+sessions where they help finish this task.
 
 # Check the remote before every push
 

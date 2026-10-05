@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -181,6 +182,7 @@ export function TextbookStudioView({
   quickApi?: QuickCreateApi;
 }) {
   const router = useRouter();
+  const editorTabsId = useId();
   const [books, setBooks] = useState<BookSummary[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [edition, setEdition] = useState<EditionDetail | null>(null);
@@ -1446,6 +1448,10 @@ export function TextbookStudioView({
           </p>
         )}
       <PreviewPane
+        panelId={!simplePreview ? `${editorTabsId}-preview-panel` : undefined}
+        tabLabelledBy={
+          narrow && !simplePreview ? `${editorTabsId}-preview-tab` : undefined
+        }
         input={paperInput(
           draft,
           audience,
@@ -1881,12 +1887,42 @@ export function TextbookStudioView({
           >
             완성 교재 보기
           </button>
-          <div className={styles.tabs} role="tablist" aria-label="편집 칸">
+          <div
+            className={styles.tabs}
+            role="tablist"
+            aria-label="편집 칸"
+            onKeyDown={(event) => {
+              if (
+                event.altKey ||
+                event.ctrlKey ||
+                event.metaKey ||
+                !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)
+              )
+                return;
+              event.preventDefault();
+              const next =
+                event.key === "Home"
+                  ? "manuscript"
+                  : event.key === "End"
+                    ? "preview"
+                    : pane === "manuscript"
+                      ? "preview"
+                      : "manuscript";
+              setPane(next);
+              event.currentTarget
+                .querySelector<HTMLButtonElement>(`[data-editor-tab="${next}"]`)
+                ?.focus();
+            }}
+          >
             <button
               type="button"
               className={styles.tab}
               role="tab"
+              id={`${editorTabsId}-manuscript-tab`}
+              data-editor-tab="manuscript"
               aria-selected={pane === "manuscript"}
+              tabIndex={pane === "manuscript" ? 0 : -1}
+              aria-controls={`${editorTabsId}-manuscript-panel`}
               onClick={() => setPane("manuscript")}
             >
               원고
@@ -1895,7 +1931,11 @@ export function TextbookStudioView({
               type="button"
               className={styles.tab}
               role="tab"
+              id={`${editorTabsId}-preview-tab`}
+              data-editor-tab="preview"
               aria-selected={pane === "preview"}
+              tabIndex={pane === "preview" ? 0 : -1}
+              aria-controls={`${editorTabsId}-preview-panel`}
               onClick={() => setPane("preview")}
             >
               미리보기
@@ -2338,7 +2378,14 @@ export function TextbookStudioView({
                 }}
               />
             </div>
-            <div className={styles.manuscript}>
+            <div
+              className={styles.manuscript}
+              id={`${editorTabsId}-manuscript-panel`}
+              role={narrow ? "tabpanel" : undefined}
+              aria-labelledby={
+                narrow ? `${editorTabsId}-manuscript-tab` : undefined
+              }
+            >
               {panel === "edit" && draft ? (
                 <SectionEditor
                   draft={draft}
