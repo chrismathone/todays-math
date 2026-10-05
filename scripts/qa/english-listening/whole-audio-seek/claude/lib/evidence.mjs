@@ -217,8 +217,20 @@ export function heardOpening(utterances, probe, transcriptWords = null) {
               },
         );
       }
+      // More than one utterance is quoted in two cases only: a first utterance
+      // too short to be a quote (v1), or a complete first utterance that the
+      // script prints more than once, continued into the next turn (v2).
+      const firstUtteranceWords = longer.filter(
+        (token) => token.utterance === 0,
+      ).length;
       return {
         quotes,
+        method:
+          quotes.length === 1
+            ? null
+            : firstUtteranceWords < MINIMUM_QUOTE_WORDS
+              ? "exact_original_opening_v1"
+              : "exact_original_opening_v2",
         words: taken,
         // False when the script prints even the longest heard opening twice.
         unique,

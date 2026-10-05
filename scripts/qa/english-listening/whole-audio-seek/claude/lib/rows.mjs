@@ -193,7 +193,7 @@ export function assembleRow({
           : null,
         firstDialogueOpeningEvidence:
           opening && !single
-            ? { method: "exact_original_opening_v1", quotes: opening.quotes }
+            ? { method: opening.method, quotes: opening.quotes }
             : null,
         firstDialogueWords: opening?.words ?? null,
         dialogueProbeSegmentIds: opening?.segmentIds ?? null,

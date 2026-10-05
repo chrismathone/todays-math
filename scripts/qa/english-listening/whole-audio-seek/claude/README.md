@@ -112,8 +112,14 @@ supplied first-dialogue support); `reasons` explain holds.
 transcript (the live snapshot's `group.transcript.text`): the question's section,
 its instruction sentence, and the opening that the English probe heard word for
 word — `firstDialogueQuote` for one utterance, or `firstDialogueOpeningEvidence`
-(`exact_original_opening_v1`: whole earlier utterances and a last exact prefix)
-— with the probe segment ids that carry it.
+(whole earlier utterances and a last exact prefix) — with the probe segment ids
+that carry it. More than one utterance is quoted in two cases only, named by
+`method`: `exact_original_opening_v1` when the first utterance is shorter than
+four words ("Hello?"), and `exact_original_opening_v2` when a complete first
+utterance of four words or more is printed more than once in the official
+script ("Hello, may I help you?") and the quote therefore continues, word for
+word as heard, into the next turn until the script holds it in one place only.
+No earlier word is ever skipped and no name or spelling is repaired.
 
 Frozen whole-record ASR references are strict: `cueSegmentIds` is the one
 segment that wrote this number and whose estimated span holds the measured onset

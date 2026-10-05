@@ -171,6 +171,17 @@ test("an opening the script prints twice is quoted on until it is unique", () =>
   );
   assert.equal(heard.words, 6);
   assert.deepEqual(heard.segmentIds, [1, 2]);
+  // A complete first utterance continued into the next turn has its own name;
+  // the short-greeting chain keeps the first one, and one utterance has none.
+  assert.equal(heard.method, "exact_original_opening_v2");
+  assert.equal(short.method, null);
+  assert.equal(
+    heardOpening(
+      sectionsOf(SHORT).get(4).utterances,
+      makeProbe(ONSETS[4], ["Hello?", "Hi, this is Minsoo."]),
+    ).method,
+    "exact_original_opening_v1",
+  );
   for (const quote of heard.quotes)
     assert.equal(
       TWICE.slice(quote.startCharacter, quote.endCharacter),

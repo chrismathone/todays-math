@@ -324,7 +324,7 @@ export function verifyMarks(marks, env) {
         !same(
           chain,
           heard && !single
-            ? { method: "exact_original_opening_v1", quotes: heard.quotes }
+            ? { method: heard.method, quotes: heard.quotes }
             : null,
         ) ||
         (chain?.quotes ?? []).some(
