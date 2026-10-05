@@ -114,6 +114,7 @@ function FittedSpread({
 export function SectionMeasure({
   model,
   recallMeasurementModel,
+  dialogueMeasurementModel,
   resources,
   zoom,
   physicalPageIndex,
@@ -122,6 +123,7 @@ export function SectionMeasure({
 }: {
   model: TextbookRenderModel;
   recallMeasurementModel?: TextbookRenderModel;
+  dialogueMeasurementModel?: TextbookRenderModel;
   resources: PreviewResources;
   zoom: ZoomMode;
   physicalPageIndex: number | null;
@@ -141,6 +143,7 @@ export function SectionMeasure({
         return measureTextbookPreview(model, prepared, {
           signal: controller.signal,
           recallMeasurementModel,
+          dialogueMeasurementModel,
         }).then((layout) => ({ layout, prepared }));
       })
       .then((result) => {
@@ -172,7 +175,7 @@ export function SectionMeasure({
       cancel = true;
       controller.abort();
     };
-  }, [model, onPages, resources, recallMeasurementModel]);
+  }, [model, onPages, resources, recallMeasurementModel, dialogueMeasurementModel]);
 
   if (state.status === "pending") return <p>지면을 측정하는 중입니다.</p>;
   if (state.status === "empty") return <p>측정된 쪽이 없습니다.</p>;

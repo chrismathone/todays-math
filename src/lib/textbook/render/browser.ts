@@ -17,6 +17,7 @@ import {
   applyRecoveryMeasurements,
   assertRecoveryMeasurementBudget,
   measureIntroGeometry,
+  dialogueMeasurementModel as buildDialogueMeasurementModel,
 } from "./recoveryMeasurement";
 import type { TextbookRenderModel } from "./model";
 import { getTextbookCharacter } from "../characters";
@@ -37,9 +38,14 @@ export async function measureTextbookPreview(
     katexCss?: string;
     signal?: AbortSignal;
     recallMeasurementModel?: TextbookRenderModel;
+    dialogueMeasurementModel?: TextbookRenderModel;
   } = {},
 ): Promise<TextbookLayout> {
-  assertRecoveryMeasurementBudget(model, options.recallMeasurementModel);
+  const sizingModel = buildDialogueMeasurementModel(
+    options.dialogueMeasurementModel ?? model,
+    model,
+  );
+  assertRecoveryMeasurementBudget(sizingModel, options.recallMeasurementModel);
   if (model.sections.reduce((n, s) => n + s.blocks.length, 0) > 600)
     throw new Error(
       "한 번에 미리 볼 구획을 줄여 주세요. 최대 600개 블록입니다.",
@@ -56,7 +62,7 @@ export async function measureTextbookPreview(
   host.append(style);
   const content = document.createElement("div");
   content.innerHTML =
-    measurementHtml(model, resources) +
+    measurementHtml(sizingModel, resources) +
     (options.recallMeasurementModel
       ? recallMeasurementHtml(options.recallMeasurementModel, resources)
       : "");
@@ -75,7 +81,7 @@ export async function measureTextbookPreview(
     applyRecoveryMeasurements(
       model,
       measureRecoveryDom({
-        ...recoveryMeasurePlan(model),
+        ...recoveryMeasurePlan(sizingModel),
         rootSelector: `[data-recovery-measure-host="${host.dataset.recoveryMeasureHost}"]`,
       }),
     );
@@ -121,7 +127,9 @@ export async function measureTextbookPreview(
         blockId: e.dataset.measureId!,
         heightMm: Math.ceil(((rect.height * 25.4) / 96) * 100) / 100,
         widthMm: (rect.width * 25.4) / 96,
-        ...(introFits[e.dataset.measureId!] === undefined ? {} : { introTextFits: introFits[e.dataset.measureId!] }),
+        ...(introFits[e.dataset.measureId!] === undefined
+          ? {}
+          : { introTextFits: introFits[e.dataset.measureId!] }),
       };
     });
     const layout = paginateTextbookSections(
@@ -130,7 +138,8 @@ export async function measureTextbookPreview(
       model.config,
       { includeCover: model.config.print.coverMode === "included" },
     );
-    if (model.variant === "student") alignTextbookSpreads(layout.pages, model.sections);
+    if (model.variant === "student")
+      alignTextbookSpreads(layout.pages, model.sections);
     if (
       layout.pages.some((p) =>
         p.blocks.some(

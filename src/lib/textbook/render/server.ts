@@ -491,7 +491,7 @@ export async function renderTextbookChunk(
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
-      .map((p) => renderPageHtml(p, model, resolver))
+      .map((p) => renderPageHtml(p, model, resolver, input.referencePages ?? layout.pages))
       .join("");
     await loadReady(
       page,
@@ -524,7 +524,7 @@ export async function renderTextbookChunk(
     };
     const sharedImages = shareInlineTextbookImages(
       layout.pages
-        .map((p) => renderPageHtml(p, model, inlineResolver))
+        .map((p) => renderPageHtml(p, model, inlineResolver, input.referencePages ?? layout.pages))
         .join(""),
     );
     const html = textbookHtmlDocument(
@@ -812,7 +812,7 @@ export async function renderTextbookOfflineHtml(input: {
       )
         throw new Error("Offline pages must preserve physical order");
       seen.add(page.physicalPageIndex);
-      return renderPageHtml(page, model, resolver);
+      return renderPageHtml(page, model, resolver, input.pages);
     })
     .join("");
   const sharedImages = shareInlineTextbookImages(body);

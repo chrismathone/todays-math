@@ -364,8 +364,10 @@ export function measureRecoveryDom(
   ];
   for (const group of groups) {
     const blocks = plan.blocks.filter(
-      (block) => block.dialogueGroup === group && elements.has(block.id),
+      (block) => block.dialogueGroup === group,
     );
+    if (blocks.some((block) => !elements.has(block.id)))
+      throw new Error("Missing dialogue unit measurement");
     const pages = [...new Set(blocks.map((block) => block.dialoguePage!))];
     let chosen = 9.2;
     for (let tenth = 105; tenth >= 92; tenth--) {
