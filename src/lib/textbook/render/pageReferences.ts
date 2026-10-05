@@ -21,6 +21,7 @@ export function withTextbookPageReferences(
   const sections = new Map<string, string>();
   const items = new Map<string, string>();
   const concepts = new Map<string, string>();
+  const conceptDefinitions = new Map<string, string>();
   const blocks = new Map(
     model.sections.flatMap((section) =>
       section.blocks.map((block) => [block.id, block] as const),
@@ -37,11 +38,19 @@ export function withTextbookPageReferences(
         const ownerKey = `${block.unitKey}:${block.sectionKey}`;
         if (!sections.has(ownerKey))
           sections.set(ownerKey, page.printedPageLabel);
-        if (
-          block.semantic?.node?.kind === "concept" &&
-          !concepts.has(block.semantic.node.conceptId)
-        )
-          concepts.set(block.semantic.node.conceptId, page.printedPageLabel);
+        if (block.semantic?.node?.kind === "concept") {
+          const conceptId = block.semantic.node.conceptId;
+          if (!concepts.has(conceptId))
+            concepts.set(conceptId, page.printedPageLabel);
+          // Review and explanation activities can precede the actual concept card.
+          // Prefer its first printed definition; keep the first visible occurrence
+          // for legacy manuscripts and books with the concepts activity disabled.
+          if (
+            block.semantic.activity === "concepts" &&
+            !conceptDefinitions.has(conceptId)
+          )
+            conceptDefinitions.set(conceptId, page.printedPageLabel);
+        }
       }
       if (placement.itemId) items.set(placement.itemId, page.printedPageLabel);
     }
@@ -74,7 +83,8 @@ export function withTextbookPageReferences(
                 const pageLabel = entry.targetItemId
                   ? items.get(entry.targetItemId)
                   : entry.targetConceptId
-                    ? concepts.get(entry.targetConceptId)
+                    ? (conceptDefinitions.get(entry.targetConceptId) ??
+                      concepts.get(entry.targetConceptId))
                     : entry.targetSectionKey
                       ? (sections.get(
                           `${entry.targetUnitKey ?? block.unitKey}:${entry.targetSectionKey}`,
