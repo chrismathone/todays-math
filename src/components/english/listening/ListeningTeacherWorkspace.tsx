@@ -9,6 +9,7 @@ import {
 } from "react";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import { ListeningTeacherAudio } from "./ListeningTeacherAudio";
+import { usesWholeSourceAssessmentAudio } from "@/lib/english/listening/wholeSource";
 import styles from "./ListeningTeacherWorkspace.module.css";
 import {
   hasFullListeningQuestionImage,
@@ -311,6 +312,12 @@ export function TeacherWorkbench({
             </button>
           ))}
         </nav>
+      ) : null}
+      {usesWholeSourceAssessmentAudio({
+        source: document.source,
+        groups: [group],
+      }) ? (
+        <p className={styles.muted}>회차 전체 원본 음원</p>
       ) : null}
       <ListeningTeacherAudio
         key={`${group.id}:${group.audio.sha256}:${url ?? ""}:${playbackEpoch}`}
