@@ -20,6 +20,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { listeningCoverage } from "./lib/coverage.mjs";
 import {
   OFFICIAL_ADAPTER,
   OFFICIAL_ROUTE,
@@ -65,6 +66,15 @@ if (!values.run) throw new Error("--run is required");
 const session = openSession(values);
 const runDir = join(session.out, "runs", values.run);
 if (existsSync(runDir)) throw new Error("Run exists: " + runDir);
+// The full run stands on every round that was asked for. It is not built while
+// a request is unfinished without being declared stopped, a stage failed, or
+// raw containers lie without their request (lib/coverage.mjs).
+const listening = listeningCoverage(session.out);
+if (values.scope === "held" && !listening.complete) {
+  console.error("Listening coverage is not complete; no run is written.");
+  console.error(JSON.stringify(listening.summary, null, 1));
+  process.exit(3);
+}
 const certificateSha256 = session.baseline.inputs.certificate.sha256;
 const adversarialStore = new ProbeStore([join(session.out, "adversarial")]);
 
@@ -534,6 +544,7 @@ if (!values["dry-run"]) {
   for (const row of ledger)
     if (row.status === "candidate") row.probeCatalog = catalogs[row.sourceRecordId];
   summary.probeCatalogs = Object.keys(catalogs).length;
+  summary.listening = { complete: listening.complete, ...listening.summary };
   controls.adversarial.catalogs = adversarialCatalogs;
   summary.files = {
     "catalogs.json": write("catalogs.json", {
@@ -571,6 +582,13 @@ if (!values["dry-run"]) {
       },
     ),
     "tables.json": write("tables.json", { ...header, sources: tables }),
+    // What was asked for against what was heard, as it stood when this run was
+    // built. The full run (scope held) is built only when this is complete.
+    "listening-receipt.json": write("listening-receipt.json", {
+      ...listening,
+      run: values.run,
+      requiredComplete: values.scope === "held",
+    }),
     "controls.json": write("controls.json", { ...header, ...controls }),
   };
   write("summary.json", summary);

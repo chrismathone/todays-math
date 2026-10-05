@@ -1,5 +1,12 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import test from "node:test";
@@ -25,7 +32,10 @@ function tree() {
     raw(id, ...sources) {
       mkdirSync(at("probes", "round-" + id), { recursive: true });
       for (const source of sources)
-        writeFileSync(at("probes", "round-" + id, source + ".json"), "raw " + id + " " + source);
+        writeFileSync(
+          at("probes", "round-" + id, source + ".json"),
+          "raw " + id + " " + source,
+        );
       return t;
     },
     temporary(id) {
@@ -34,7 +44,8 @@ function tree() {
     },
     has: (...parts) => existsSync(at(...parts)),
     read: (...parts) => readFileSync(at(...parts), "utf8"),
-    requests: () => (t.has("probe-requests") ? readdirSync(at("probe-requests")).sort() : []),
+    requests: () =>
+      t.has("probe-requests") ? readdirSync(at("probe-requests")).sort() : [],
     stages: () =>
       t.has("logs", "stages.jsonl")
         ? t
@@ -48,11 +59,20 @@ function tree() {
 }
 
 const next = (root, from) =>
-  run('. "$ROUNDS"; next_round "$ROOT" "$FROM"', { ROUNDS, ROOT: root, FROM: from });
+  run('. "$ROUNDS"; next_round "$ROOT" "$FROM"', {
+    ROUNDS,
+    ROOT: root,
+    FROM: from,
+  });
 
 test("a free round number is given as it is, in three digits", () => {
   const t = tree();
-  for (const [from, id] of [["21", "021"], ["021", "021"], ["7", "007"], ["999", "999"]]) {
+  for (const [from, id] of [
+    ["21", "021"],
+    ["021", "021"],
+    ["7", "007"],
+    ["999", "999"],
+  ]) {
     const done = next(t.root, from);
     assert.equal(done.status, 0, done.stderr);
     assert.equal(done.stdout, id + "\n");
@@ -75,7 +95,17 @@ test("a finished round, an interrupted one, raw containers without a request and
 
 test("a number that is not 001..999 is refused, and so is a root with no free number left", () => {
   const t = tree().request("998").raw("999");
-  for (const from of ["", "0", "000", "1000", "0021", "2x", "-1", "2 1", "../21"]) {
+  for (const from of [
+    "",
+    "0",
+    "000",
+    "1000",
+    "0021",
+    "2x",
+    "-1",
+    "2 1",
+    "../21",
+  ]) {
     const done = next(t.root, from);
     assert.equal(done.status, 2, JSON.stringify(from));
     assert.equal(done.stdout, "");
@@ -139,7 +169,13 @@ test("stages after an unfinished round take new numbers and leave every earlier 
     .request("022", "old interrupted request")
     .raw("022", "a")
     .raw("023", "orphan");
-  const done = drive(t, DRIVER, ["reconstructed", "21", "context", "variants", "quotes+controls"]);
+  const done = drive(t, DRIVER, [
+    "reconstructed",
+    "21",
+    "context",
+    "variants",
+    "quotes+controls",
+  ]);
   assert.equal(done.status, 0, done.stderr + done.stdout);
   assert.deepEqual(t.requests(), [
     "round-021.json",
@@ -148,16 +184,41 @@ test("stages after an unfinished round take new numbers and leave every earlier 
     "round-025.json",
     "round-026.json",
   ]);
-  assert.equal(t.read("probe-requests", "round-021.json"), "old finished request");
-  assert.equal(t.read("probe-requests", "round-022.json"), "old interrupted request");
+  assert.equal(
+    t.read("probe-requests", "round-021.json"),
+    "old finished request",
+  );
+  assert.equal(
+    t.read("probe-requests", "round-022.json"),
+    "old interrupted request",
+  );
   assert.equal(t.read("probes", "round-021", "b.json"), "raw 021 b");
-  assert.deepEqual(readdirSync(join(t.root, "probes", "round-022")), ["a.json"]);
-  assert.deepEqual(readdirSync(join(t.root, "probes", "round-023")), ["orphan.json"]);
+  assert.deepEqual(readdirSync(join(t.root, "probes", "round-022")), [
+    "a.json",
+  ]);
+  assert.deepEqual(readdirSync(join(t.root, "probes", "round-023")), [
+    "orphan.json",
+  ]);
   // The planner was given the stage's own flags and the new number.
-  assert.equal(t.read("probe-requests", "round-024.json"), "request 024 context \n");
-  assert.equal(t.read("probe-requests", "round-026.json"), "request 026 quotes --controls\n");
+  assert.equal(
+    t.read("probe-requests", "round-024.json"),
+    "request 024 context \n",
+  );
+  assert.equal(
+    t.read("probe-requests", "round-026.json"),
+    "request 026 quotes --controls\n",
+  );
   assert.deepEqual(
-    t.stages().map((s) => [s.driver, s.scope, s.stage, s.round, s.plannedProbes, s.runnerExit]),
+    t
+      .stages()
+      .map((s) => [
+        s.driver,
+        s.scope,
+        s.stage,
+        s.round,
+        s.plannedProbes,
+        s.runnerExit,
+      ]),
     [
       ["run-rounds", "reconstructed", "context", "024", 3, 0],
       ["run-rounds", "reconstructed", "variants", "025", 3, 0],
@@ -169,11 +230,20 @@ test("stages after an unfinished round take new numbers and leave every earlier 
 
 test("a stage that plans nothing uses no round number and is recorded as such", () => {
   const t = tree().request("021").raw("021", "a");
-  const done = drive(t, DRIVER, ["held", "21", "context", "gaps", "terminal", "variants"], {
-    ZERO_STAGES: "gaps terminal",
-  });
+  const done = drive(
+    t,
+    DRIVER,
+    ["held", "21", "context", "gaps", "terminal", "variants"],
+    {
+      ZERO_STAGES: "gaps terminal",
+    },
+  );
   assert.equal(done.status, 0, done.stderr + done.stdout);
-  assert.deepEqual(t.requests(), ["round-021.json", "round-022.json", "round-023.json"]);
+  assert.deepEqual(t.requests(), [
+    "round-021.json",
+    "round-022.json",
+    "round-023.json",
+  ]);
   assert.deepEqual(readdirSync(join(t.root, "probes")).sort(), [
     "round-021",
     "round-022",
@@ -192,7 +262,9 @@ test("a stage that plans nothing uses no round number and is recorded as such", 
 
 test("a recognizer that fails stops the driver with its status, on record, before any later stage", () => {
   const t = tree();
-  const done = drive(t, DRIVER, ["held", "5", "context", "variants", "gaps"], { FAIL_ROUND: "006" });
+  const done = drive(t, DRIVER, ["held", "5", "context", "variants", "gaps"], {
+    FAIL_ROUND: "006",
+  });
   assert.equal(done.status, 7);
   assert.deepEqual(t.requests(), ["round-005.json", "round-006.json"]);
   assert.deepEqual(
@@ -202,18 +274,29 @@ test("a recognizer that fails stops the driver with its status, on record, befor
       ["variants", "006", 7],
     ],
   );
-  assert.match(done.stdout, /stage-failed scope=held stage=variants round=006 exit=7/);
+  assert.match(
+    done.stdout,
+    /stage-failed scope=held stage=variants round=006 exit=7/,
+  );
   assert.doesNotMatch(done.stdout, /rounds-complete/);
   // Run again, the stages are planned under new numbers: 006 is not touched.
   const again = drive(t, DRIVER, ["held", "6", "variants"]);
   assert.equal(again.status, 0, again.stderr + again.stdout);
-  assert.equal(t.read("probe-requests", "round-006.json"), "request 006 variants \n");
-  assert.equal(t.read("probe-requests", "round-007.json"), "request 007 variants \n");
+  assert.equal(
+    t.read("probe-requests", "round-006.json"),
+    "request 006 variants \n",
+  );
+  assert.equal(
+    t.read("probe-requests", "round-007.json"),
+    "request 007 variants \n",
+  );
 });
 
 test("a planner that reports no probe count, or a round number out of range, runs no recognizer", () => {
   const silent = tree();
-  const done = drive(silent, DRIVER, ["held", "5", "context"], { SILENT_PLANNER: "1" });
+  const done = drive(silent, DRIVER, ["held", "5", "context"], {
+    SILENT_PLANNER: "1",
+  });
   assert.notEqual(done.status, 0);
   assert.equal(silent.has("probes"), false);
   assert.deepEqual(silent.stages(), []);
@@ -227,13 +310,26 @@ test("a planner that reports no probe count, or a round number out of range, run
 });
 
 test("the converted source's driver takes new numbers the same way and asks the planner for that source", () => {
-  const t = tree().request("050", "old converted request").raw("050", "a").raw("051", "orphan");
-  const done = drive(t, CONVERTED, ["50", "quotes+controls", "gaps"], { ZERO_STAGES: "gaps" });
+  const t = tree()
+    .request("050", "old converted request")
+    .raw("050", "a")
+    .raw("051", "orphan");
+  const done = drive(t, CONVERTED, ["50", "quotes+controls", "gaps"], {
+    ZERO_STAGES: "gaps",
+  });
   assert.equal(done.status, 0, done.stderr + done.stdout);
-  assert.equal(t.read("probe-requests", "round-050.json"), "old converted request");
-  assert.equal(t.read("probe-requests", "round-052.json"), "request 052 quotes --converted --controls\n");
+  assert.equal(
+    t.read("probe-requests", "round-050.json"),
+    "old converted request",
+  );
+  assert.equal(
+    t.read("probe-requests", "round-052.json"),
+    "request 052 quotes --converted --controls\n",
+  );
   assert.deepEqual(
-    t.stages().map((s) => [s.driver, s.stage, s.round, s.plannedProbes, s.runnerExit]),
+    t
+      .stages()
+      .map((s) => [s.driver, s.stage, s.round, s.plannedProbes, s.runnerExit]),
     [
       ["run-converted", "quotes+controls", "052", 3, 0],
       ["run-converted", "gaps", null, 0, null],

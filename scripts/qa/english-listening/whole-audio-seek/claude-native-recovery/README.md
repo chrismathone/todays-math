@@ -118,6 +118,30 @@ is not asked again; earlier bounded recognitions by the same runner are read by
 hash from `claude-held-validation-20261005` and `whole-audio-seek-20261005/claude`.
 Do not edit `run-rounds.sh` while it runs: the shell reads it as it goes.
 
+A round number is three digits, 001..999, and is used once. The number given to
+a driver is where it starts looking: a number that already has a request, raw
+containers (with or without their request) or a temporary folder is passed over
+(`lib/rounds.sh`), so an earlier request, finished or interrupted, is never
+planned over. A stage that plans nothing uses no number. Each stage appends one
+line to `logs/stages.jsonl` (driver, scope, stage, round or null, planned
+probes, recognizer exit or null); a recognizer that fails stops the driver with
+its status after that line is written.
+
+```sh
+node receipt.mjs --name <name> [--sweep]   # $OUT/receipts/<name>.json, written once; exit 3 when coverage is not complete
+```
+
+The receipt compares every request with its round's raw containers: one
+container per requested source, bound to the request's bytes and the original's
+bytes, holding exactly the requested probes (`lib/coverage.mjs`). Coverage is
+complete when every request is finished or named in `stopped-requests.json`
+with its reason, no stage on record failed without such a declaration, and no
+raw folder lies without its request. A stopped request is not thereby finished:
+the receipt says how many of its probes were heard in another round and how
+many nowhere. `build-ledger.mjs --scope held` writes no run unless coverage is
+complete, and every run carries `listening-receipt.json`. `--sweep` adds what
+each stage would still plan, in dry-run, from everything heard.
+
 | stage        | what it listens to                                                                                         |
 | ------------ | ---------------------------------------------------------------------------------------------------------- |
 | `headings`   | Korean, 8 s, from every measured onset in the seconds before the provider's instruction for a number       |
