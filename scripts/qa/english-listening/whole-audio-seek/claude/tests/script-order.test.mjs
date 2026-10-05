@@ -50,6 +50,20 @@ test("a section ends at the next number as printed, not as numbered", () => {
   );
 });
 
+test("a printed answer blank is not the first utterance", () => {
+  const { sections } = scriptSections(TRANSCRIPT, plans, prompts);
+  // Question 3 prints "Woman: ________" before its dialogue.
+  const first = sections.get(3).firstUtterance;
+  assert.equal(first.text, "Jimin, look at these roses here.");
+  assert.equal(TRANSCRIPT.slice(first.start, first.end), first.text);
+  assert.equal(
+    sections.get(3).instruction.text.startsWith("대화를 듣고"),
+    true,
+  );
+  // A member's number is followed by its dialogue: no sentence of its own.
+  assert.equal(sections.get(4).instruction, null);
+});
+
 test("out-of-order numbering is followed only when every sentence is unique", () => {
   const swapped = TRANSCRIPT.replace(Q1 + " " + Q2, Q2 + " " + Q1);
   // A member has no own sentence after its number, so nothing can vouch for it.
