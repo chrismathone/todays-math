@@ -154,8 +154,12 @@ export function renderPageHtml(
     const block = blocks.get(placement.blockId);
     return block && isDialoguePlacement(block);
   });
+  const dialogueBody = page.blocks.filter((placement) => {
+    const block = blocks.get(placement.blockId);
+    return block && (isDialoguePlacement(block) || block.dialogueLesson);
+  });
   const backdrop = dialogue.length
-    ? `<div class="tb-dialogue-backdrop" aria-hidden="true" style="left:${dialogue[0].xMm}mm;top:${dialogue[0].yMm - 3}mm;width:${dialogue[0].widthMm}mm;height:${Math.max(...dialogue.map((placement) => placement.yMm + placement.heightMm)) - dialogue[0].yMm + 6}mm"></div>`
+    ? `<div class="tb-dialogue-backdrop" aria-hidden="true" style="left:${dialogueBody[0].xMm}mm;top:${dialogueBody[0].yMm - 3}mm;width:${dialogueBody[0].widthMm}mm;height:${Math.max(...dialogueBody.map((placement) => placement.yMm + placement.heightMm)) - dialogueBody[0].yMm + 6}mm"></div>`
     : "";
   const dialoguePages = model.sections
     .flatMap((candidate) => candidate.blocks)
