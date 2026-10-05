@@ -380,3 +380,5 @@ it never clamps, pads, rewrites the estimate, guesses by proximity or treats an
 answer-option ordinal elsewhere in the source as the question cue. The v2
 mapping audit scans every finished round receipt and is diagnostic until actual
 source/clock/PCM/raw recognition/onset replay succeeds.
+Reconstructed candidates must use the explicit native adapter with
+`probeEvidence`; an older generic probe format cannot bypass these v2 guards.

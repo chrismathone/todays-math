@@ -631,6 +631,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                 require(not source_error, f"source_replay_failed:{source_error}")
                 n = row.get("nativeEvidence", {})
                 require(isinstance(n, dict), "missing_native_evidence")
+                require(not source["reconstructed"] or row.get("probeEvidence"), "reconstructed_requires_explicit_native_adapter_v2")
                 if row.get("probeEvidence"):
                     require(adapter_replay is not None, "native_adapter_replay_failed:" + str(adapter_error))
                     from claude_adapter import validate as validate_adapter
