@@ -1,5 +1,7 @@
 # Corrected bank concept-index evidence — 2026-10-05
 
+Final strict verification **passed all 14 combinations and all 28 PDFs: 1,308 pages, zero issues**, using coordinator-approved QA commit `dc46949944359006ac1438c05eb90693f3862e02`. All 1,420 frozen PDF, witness, image, equality and AI-review records retained their exact hashes before and after verification. The original baseline remains FAILED.
+
 The narrow harness is `scripts/qa/textbook/recovery/refinalize-bank.ts`. It reads saved, completed automatic-writer exports and produces fresh private evidence on D:. It never creates books, opens a database, reserves new pages, mutates exchanges, or changes the original FAILED verdict.
 
 The immutable baseline is `D:/교재_복구_실행검증_20261005/automatic/runs/final-07fee6f60392-20261005-045910-attempt1`, rendered at `07fee6f6039220443f0aab58058b9d949f835cce`. The feasibility manifest SHA256 is `5fd7c112714a311d4a84f07d888f706b320caeb8945383c6c14cf9ab7921a7b7`. The original full14 writer has now settled; its completion manifest is separate from this correction.
@@ -31,29 +33,43 @@ The first strict preflight pinned the peer leaf `4a60bd3` and correctly refused 
 
 All 14 saved combinations have now completed correction: 28 fresh merged PDFs, 1,308 pages, 28 rerendered index-containing chunks, exactly 28 changed index PNGs, and 1,280 identical untouched-page PNGs. The second output root is `D:/교재_복구_실행검증_20261005/automatic/runs/corrected-index-36ba3bc4-other12-20261005-attempt1`, frozen at integrated product/QA tree `36ba3bc4`. The executed harness SHA256 is `3e8588dc735e544b267cbdd00938aa23c97df05067c53ef3dbe43427c500f351`.
 
+The supplemental copied-byte audit passed all 3,144 recorded files, totaling 10,447,017,822 bytes. It independently reread the original bytes (or decoded archived HTML), corrected copies, expected sizes, and every recorded SHA256. `other12/copy-preservation-audit.private.json` has SHA256 `eb92b85e42ae1dcc735c13f46ca937a7f5224488c01b712442c7e8e68a450e3b`.
+
 All 28 changed full-page images were individually AI-read. The records preserve 276 original AI findings through exact PNG equality: E3's 58 unchanged pages, root's 146 unchanged M2 pages, and three original samples for each of the other 24 variants. Together with the 28 fresh index readings this covers 304 individually reviewed pages; the other 1,004 pages have deterministic image equality without a claim of individual AI reading. M3-2 student page 44 has tight spacing between its long seventh label and destination 13; the label and number remain readable. This was recorded as a cosmetic observation.
 
-Initial strict QA passed 22 variants and failed six variants in three pairs. The only failures are unsupported label notation: M2-2 has four `\\mathrm` labels, M3-1 has six quadratic-expression labels with superscripts, and M3-2 has one `\\sin`/`\\cos`/`\\tan` label, in both variants. The oracle currently compares literal source math with rendered math and orders raised exponent glyphs before prose. There are no destination, reserve-layout, answer-reference, or geometry failures. Final acceptance remains pending the coordinator's independently checked, integrated label-oracle correction; this worker does not own that helper.
+Root separately inspected the two fresh M2 index images. The supplemental receipt `E3M2run/중2-1/root-corrected-two-index-page-review-20261005.json`, SHA256 `24cde6ee22e82b933314224a5f3d6b8dde76406c28c3740978aa2c18f86b0772`, confirms the eleven readable destination labels. These are repeat independent readings of two already counted pages, not additional unique pages.
+
+Initial strict QA passed 22 variants and failed six variants in three pairs. The failures were unsupported label notation: M2-2 had four `\\mathrm` labels, M3-1 had six quadratic-expression labels with superscripts, and M3-2 had one `\\sin`/`\\cos`/`\\tan` label, in both variants. The earlier oracle compared literal source math with rendered math and ordered raised exponent glyphs before prose. There were no destination, reserve-layout, answer-reference, or geometry failures. A separately owned QA correction added supported notation and checked raised-glyph placement without changing product content. Root independently accepted it at `dc4694994`; all 28 variants now pass the same updated strict oracle. The initial failures remain preserved.
 
 The complete initial strict results are preserved in `other12/qa-attempts/36ba3bc4-initial-label-limit`. `other12/corrected-all14-artifacts-initial-strict.private.json`, SHA256 `d38c85a24da4f86bbbc86329bbdb33ae1fe2d544804e844ed3478adf427e8747`, records all 28 exact PDF hashes, witness/image/review hashes, destinations, and statuses. `other12/label-oracle-failure-handoff.private.json`, SHA256 `bed7766878fef528e5b73ff1bc04c855246032315932682c149835a6d04ae5ea`, contains the 11 unsupported labels and 22 variant cases. No product rerender is required for that QA correction.
+
+The final pass invoked `verify_exports.py` directly over both saved output roots with the same accepted Python helper hashes. It preserved DOM capture provenance at `36ba3bc4` and performed no renderer execution, DOM recapture, or regeneration of the full 1,308-page review image collection. The existing verifier re-emitted its routine sampled PNGs while writing fresh verdict JSON. The original E3/M2 successes are also archived under `E3M2run/qa-attempts/36ba3bc4-initial-passed`.
+
+Final durable receipts in the other12 output root:
+
+- `corrected-all14-verification.private.json`: SHA256 `6d7f644e1b6ac0c83d73af8dcad69005985bbfb48f6101e2e1000e80898c02a4`.
+- `strict-QA-authority-dc4694994.private.json`: SHA256 `2709d5e7e485775ef50cd4b3db00d7b562aa33de00ab02aed6ee38b21a0e6859`.
+- `final-strict-run-freeze.private.json`: SHA256 `349d0ac687a7ff4cfa8e619ba28de14a923da5b72b1cdec45ac8feb691a4676f`.
+
+There are no remaining correction-worker dependencies. Scoped TypeScript, ESLint and formatting checks passed; the code hash remained unchanged throughout correction and final verification.
 
 Root owns main integration, build and deployment. Human review, complete mathematical editorial approval, phone scanning and physical printing remain outside this evidence's claims. The immutable baseline remains FAILED.
 
 All corrected PDF hashes (student and answer files are in their corresponding output root):
 
-| Combination | Pages S/A | Chunk | Changed pages S/A | Initial strict | Student PDF SHA256                                                 | Answers PDF SHA256                                                 |
-| ----------- | --------- | ----: | ----------------- | -------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| 초3-1       | 30/30     |    18 | 29/29             | passed         | `f08e64fc98f644f55bf9eb454f9482edffb3ae7889d9f521e5c2c187a37b2cad` | `5e9ed1740bae58215ae6e48db655832933afe9a0ef5dd9614c48e5bffe942d99` |
-| 초3-2       | 64/69     |    21 | 63/68             | passed         | `415180f617421599802ca0657fdfc48a4dbc3432d1b48abed279c9c66873597f` | `38b80330d60d36dc4ca84747ced48f8d85360028ef0f0d6ce99ed882f1d6b842` |
-| 초4-1       | 27/27     |     3 | 26/26             | passed         | `ef809d890887378736b296171909b05053dca6536c80a75e36f86050e39c9c16` | `bd5081d5e02132bb5351ec53a6df8e3f4959631558ab88dbb826c0adc37a3997` |
-| 초4-2       | 29/28     |     3 | 28/27             | passed         | `d6cd304a022919bd1034a2317641d85449d9da444b2364c08eef8402a54ccefb` | `4e06b727fd7f5364adc0877bb69dc6c214186a64f8c5074da23486f956d7b73a` |
-| 초5-1       | 58/60     |     6 | 57/59             | passed         | `5a989af56aff563d37eb1b2bef616888fb61504e42546a8ace57fc4cc65f9d1c` | `ea9830205debd0271407f89ba0bd313f7cd7383bc0b1e8722e40ae60b9b763e5` |
-| 초5-2       | 28/28     |    17 | 27/27             | passed         | `b73f3706745e89c8687a053cfc3a64389ad863e79171896645b9890d8799a9a0` | `91f3276fbcb0070f75ae6553f5bbae5ba1e03215ed6cc92a1e157db67534a801` |
-| 초6-1       | 45/47     |    18 | 44/46             | passed         | `5d97da807436dbeafa60b73e3f84812c818f7ab1b84e19c665f7d516347b3cb6` | `7a6c7399b9acc867289ff773110605a4176a8ea159be285b249f88f6d23d6505` |
-| 초6-2       | 65/67     |    20 | 64/66             | passed         | `67f70ed64b3a9fb59f91c72aedc1170b11ad79045b2a9ef9c36a54b973c2908f` | `0978af44cdbcfed3b690161b5f422ee976395c90179573402288fbc415732708` |
-| 중1-1       | 38/40     |    21 | 37/39             | passed         | `ec769d4f7b5143e5ad2c150fcdc4343fe1dab1fd1498b9bde172acb3987f659c` | `5e8cb35b6394780cc274242de47cf3e465b2fcdef9b8dd8b31e481f24fe40c8b` |
-| 중1-2       | 33/37     |    17 | 32/36             | passed         | `d1cfea630efe0d1e6d96fc330f3deba9fe3aba502b201eac21f57e2ba0ad7442` | `68020d31aa1f01ff9af9e1bcd2ed72898f38d3a2f8082c49939dd52f884299bd` |
-| 중2-1       | 73/75     |    35 | 72/74             | passed         | `60c5cd08705e30a4cd68e82f6214e918cd7073e24c5da4ad01d14938be89ca1f` | `f6638591063feb7594932628e44847fef8ed6d0625a12971451d4aa3fdfae5e5` |
-| 중2-2       | 46/49     |    20 | 45/48             | failed         | `19a82c6941b6e9192572670e6c8d2dc6e5fc7d28e844f9816b421a75f24af7d6` | `e666dd3eb0506793993b3397acc91af510fe44ef467dfa1ac7b91a273be759f2` |
-| 중3-1       | 61/57     |    20 | 60/56             | failed         | `ef36dc06c18f781b89c131b2bc136197623786f51ba966af5f0d2fce3ecb289d` | `8f576a775dd84b547169949c50b1b488efee61c74d49a41c2103debdfcb0720a` |
-| 중3-2       | 45/52     |    20 | 44/51             | failed         | `a05212fc3bb1e402cdf68a7a0f946dc48ce2c6d12814d562287707144811235c` | `ab1627b2b7fee031d42304661e41a9031b86db45c9b804be95cd646fe8cb031b` |
+| Combination | Pages S/A | Chunk | Changed pages S/A | Initial strict | Final strict | Student PDF SHA256                                                 | Answers PDF SHA256                                                 |
+| ----------- | --------- | ----: | ----------------- | -------------- | ------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| 초3-1        | 30/30     |    18 | 29/29             | passed         | passed       | `f08e64fc98f644f55bf9eb454f9482edffb3ae7889d9f521e5c2c187a37b2cad` | `5e9ed1740bae58215ae6e48db655832933afe9a0ef5dd9614c48e5bffe942d99` |
+| 초3-2        | 64/69     |    21 | 63/68             | passed         | passed       | `415180f617421599802ca0657fdfc48a4dbc3432d1b48abed279c9c66873597f` | `38b80330d60d36dc4ca84747ced48f8d85360028ef0f0d6ce99ed882f1d6b842` |
+| 초4-1        | 27/27     |     3 | 26/26             | passed         | passed       | `ef809d890887378736b296171909b05053dca6536c80a75e36f86050e39c9c16` | `bd5081d5e02132bb5351ec53a6df8e3f4959631558ab88dbb826c0adc37a3997` |
+| 초4-2        | 29/28     |     3 | 28/27             | passed         | passed       | `d6cd304a022919bd1034a2317641d85449d9da444b2364c08eef8402a54ccefb` | `4e06b727fd7f5364adc0877bb69dc6c214186a64f8c5074da23486f956d7b73a` |
+| 초5-1        | 58/60     |     6 | 57/59             | passed         | passed       | `5a989af56aff563d37eb1b2bef616888fb61504e42546a8ace57fc4cc65f9d1c` | `ea9830205debd0271407f89ba0bd313f7cd7383bc0b1e8722e40ae60b9b763e5` |
+| 초5-2        | 28/28     |    17 | 27/27             | passed         | passed       | `b73f3706745e89c8687a053cfc3a64389ad863e79171896645b9890d8799a9a0` | `91f3276fbcb0070f75ae6553f5bbae5ba1e03215ed6cc92a1e157db67534a801` |
+| 초6-1        | 45/47     |    18 | 44/46             | passed         | passed       | `5d97da807436dbeafa60b73e3f84812c818f7ab1b84e19c665f7d516347b3cb6` | `7a6c7399b9acc867289ff773110605a4176a8ea159be285b249f88f6d23d6505` |
+| 초6-2        | 65/67     |    20 | 64/66             | passed         | passed       | `67f70ed64b3a9fb59f91c72aedc1170b11ad79045b2a9ef9c36a54b973c2908f` | `0978af44cdbcfed3b690161b5f422ee976395c90179573402288fbc415732708` |
+| 중1-1        | 38/40     |    21 | 37/39             | passed         | passed       | `ec769d4f7b5143e5ad2c150fcdc4343fe1dab1fd1498b9bde172acb3987f659c` | `5e8cb35b6394780cc274242de47cf3e465b2fcdef9b8dd8b31e481f24fe40c8b` |
+| 중1-2        | 33/37     |    17 | 32/36             | passed         | passed       | `d1cfea630efe0d1e6d96fc330f3deba9fe3aba502b201eac21f57e2ba0ad7442` | `68020d31aa1f01ff9af9e1bcd2ed72898f38d3a2f8082c49939dd52f884299bd` |
+| 중2-1        | 73/75     |    35 | 72/74             | passed         | passed       | `60c5cd08705e30a4cd68e82f6214e918cd7073e24c5da4ad01d14938be89ca1f` | `f6638591063feb7594932628e44847fef8ed6d0625a12971451d4aa3fdfae5e5` |
+| 중2-2        | 46/49     |    20 | 45/48             | failed         | passed       | `19a82c6941b6e9192572670e6c8d2dc6e5fc7d28e844f9816b421a75f24af7d6` | `e666dd3eb0506793993b3397acc91af510fe44ef467dfa1ac7b91a273be759f2` |
+| 중3-1        | 61/57     |    20 | 60/56             | failed         | passed       | `ef36dc06c18f781b89c131b2bc136197623786f51ba966af5f0d2fce3ecb289d` | `8f576a775dd84b547169949c50b1b488efee61c74d49a41c2103debdfcb0720a` |
+| 중3-2        | 45/52     |    20 | 44/51             | failed         | passed       | `a05212fc3bb1e402cdf68a7a0f946dc48ce2c6d12814d562287707144811235c` | `ab1627b2b7fee031d42304661e41a9031b86db45c9b804be95cd646fe8cb031b` |
