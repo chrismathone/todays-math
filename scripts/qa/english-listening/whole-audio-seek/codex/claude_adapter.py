@@ -261,7 +261,7 @@ class SourceReplay:
         wanted = {}
         for row in rows:
             if row and row.get("status") == "candidate":
-                for field in ("probeEvidence", "dialogueProbeEvidence", "numberClipEvidence", "nextProbeEvidence", "nextBoundaryProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence"):
+                for field in ("probeEvidence", "dialogueProbeEvidence", "numberClipEvidence", "nextProbeEvidence", "nextNumberClipEvidence", "nextBoundaryProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence"):
                     if row.get(field):
                         try:
                             _, p = checked_probe(row, source, field)
@@ -271,7 +271,7 @@ class SourceReplay:
                                            (p.get("purpose") == "first_dialogue" or (row.get("evidenceAdapter") in ("native-localized-generation-v2", "native-localized-generation-boundary-v3") and p.get("purpose") == "localized_generation")) else 14}
                         except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
                             pass  # Invalid rows are diagnosed individually.
-                if row.get("evidenceAdapter") in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2") and row.get("probeCatalog"):
+                if row.get("evidenceAdapter") in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2", "official-native-next-pair-v3") and row.get("probeCatalog"):
                     try:
                         from localized_adapter import catalog_probes
                         catalog, _ = catalog_probes(row, source)
@@ -297,7 +297,7 @@ class SourceReplay:
         script = Path(__file__).with_name("native-windows.mts")
         cli = Path(root) / "node_modules/tsx/dist/cli.mjs"
         localized = any(r and r.get("status") == "candidate" and r.get("evidenceAdapter") in
-                        ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2") for r in rows)
+                        ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2", "official-native-next-pair-v3") for r in rows)
         if localized:
             batches = localized_probe_batches(list(wanted.values()), clock["channels"])
         else:

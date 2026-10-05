@@ -33,7 +33,7 @@ def terminal_population(row, source, replay):
     return [prepared_ref, original_ref, claim["questionFile"]]
 
 
-def validate(row, source, question, clock, replay, full_index, *, native_scope=False, placeholder_identity=None):
+def validate(row, source, question, clock, replay, full_index, *, native_scope=False, placeholder_identity=None, _next_boundary=None):
     adapter = "official-pdf-native-scope-v2" if native_scope else ADAPTER
     v.require(row.get("evidenceAdapter") == adapter and not source["reconstructed"], "official_catalog_adapter_wrong_source_or_version")
     v.require(native_scope or placeholder_identity is None, "official_placeholder_requires_explicit_version")
@@ -63,8 +63,11 @@ def validate(row, source, question, clock, replay, full_index, *, native_scope=F
         neighbor, next_scope, next_spoken, next_refs = certified_boundary(row, source, replay)
         refs.extend(next_refs)
     else:
-        neighbor, next_spoken, _, _, next_refs = l.numbered_probe(row, source, replay, "nextProbeEvidence",
-                                                                require_instruction=row.get("kind") != "shared_instruction_head")
+        if _next_boundary is None:
+            neighbor, next_spoken, _, _, next_refs = l.numbered_probe(row, source, replay, "nextProbeEvidence",
+                                                                    require_instruction=row.get("kind") != "shared_instruction_head")
+        else:
+            neighbor, next_spoken, next_refs = _next_boundary(row, source, replay)
         next_scope = [next_spoken[0]]
         refs.extend(next_refs)
     v.require((terminal or next_scope[0] == scope[-1] + 1) and neighbor["startFrame"] > head_start,

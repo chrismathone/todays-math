@@ -138,7 +138,7 @@ def first_native_opening(row, source, replay, binding):
             "selectedEndFrame": binding["selectedEstimatedEndFrame"]}
 
 
-def validate(row, source, question, clock, replay, full_index):
+def validate(row, source, question, clock, replay, full_index, *, _next_boundary=None):
     v.require(row.get("evidenceAdapter") == ADAPTER and not source["reconstructed"], "official_scope_wrong_source_or_version")
     for field in ("probeEvidence", "numberClipEvidence"):
         if row.get(field):
@@ -157,7 +157,8 @@ def validate(row, source, question, clock, replay, full_index):
                   and question.get("instruction"), "official_scope_outside_demonstrated_representation_gaps")
         identity, _, _, _ = source_identity(row, source, question, replay)
     proof, raw, _, _ = official.validate(row, source, question, clock, replay, full_index,
-                                        native_scope=True, placeholder_identity=identity if placeholder else None)
+                                        native_scope=True, placeholder_identity=identity if placeholder else None,
+                                        _next_boundary=_next_boundary)
     binding = proof.get("dialogueBinding", {})
     v.require(binding and proof.get("nextSpokenNumbers") and proof["nextSpokenNumbers"][0] == row["scopeQuestionNumbers"][-1] + 1,
               "official_scope_missing_exact_native_order_identity")

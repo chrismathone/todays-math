@@ -259,3 +259,37 @@ does not erase independently replayed next-heading identity. The old global
 order check remains unchanged for old versions. A later ancestor can inherit
 this grade only with the complete named source, opening, order, and nested-hash
 proof. Provider estimates remain per-span diagnostics, not physical timestamps.
+
+## Official paired next-END tier, version three
+
+`official-native-next-pair-v3` (`official_native_next_pair_v3`) preserves the
+explicit `originalStartAdapter` contract: catalogued official v1, or the exact
+image-PDF placeholder v2. It accepts only an own single-question START. The
+original own numeral-only, 0.8 instruction coverage, half-second onset
+correspondence, quiet lead, unique first original English opening, raw word
+times/confidence, physical order, whole-original end, and complete nested
+request/envelope/catalog hashes remain required. No shared member START uses it.
+
+Its next END requires both unchanged raw `nextNumberClipEvidence` (at most three
+seconds, literal very-next numeral and no instruction tail) and
+`nextProbeEvidence` (at most fourteen seconds, complete first contiguous Korean
+instruction). Both explicitly request Korean and have identical original
+sample clock, native start, onset, and quiet frames. Their actual source PCM,
+clip PCM, mono input, input counts, source requests and full catalog are replayed
+independently. The short numeral retains the old half-second physical onset
+correspondence. A bare numeral in the long context does not establish identity
+alone: the original very-next question ID/ordinal, actual original PDF,
+native/original prepared files, current snapshot/revision, complete original
+script header and at least 0.8 Hangul coverage must agree. First-speech,
+uncertainty, overflow, dialogue barriers, contradictory neighboring evidence,
+and distant repeated occurrences still hold. Raw texts, flags, times, source
+identity and generation anchors are retained.
+
+`same_native_onset_next_numeral_instruction_v3` explicitly sets
+`maySupplySeekStart:false` and `providerTimingAuthority:false`. This is an
+outcome-informed additive END evidence route, not a phonetic accuracy claim or
+human gold. Old adapters retain their original END behavior. Inherited new
+grades must preserve the complete named own START and paired END proof and all
+actual frozen nested hashes. Metadata adaptation tooling changes only named
+adapter fields (and explicitly authorized bindings to existing joint END
+references), proving all other record fields identical.
