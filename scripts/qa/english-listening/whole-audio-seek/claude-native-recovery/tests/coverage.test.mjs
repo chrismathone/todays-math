@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import test from "node:test";
 import {
   FULL_RUN_PLAN_PATH,
+  PROVENANCE_PATH,
   STOPPED_REQUESTS_PATH,
   coverageOf,
   readStages,
@@ -693,4 +695,47 @@ test("the tracked plan pins heading round 020 at 56 sources and 3,676 probes and
       "run-converted reconstructed quotes+controls",
     ],
   );
+});
+
+// ----------------------------------------------------------- provenance ----
+
+test("the provenance record names the driver and the library it had loaded for each part, with hashes that git reproduces", () => {
+  const record = JSON.parse(readFileSync(PROVENANCE_PATH, "utf8"));
+  const repo = execFileSync("git", ["rev-parse", "--show-toplevel"], {
+    cwd: dirname(PROVENANCE_PATH),
+    encoding: "utf8",
+  }).trim();
+  const blob = (entry) =>
+    createHash("sha256")
+      .update(
+        execFileSync(
+          "git",
+          ["-C", repo, "show", entry.commit + ":" + entry.path],
+          {
+            maxBuffer: 1 << 28,
+          },
+        ),
+      )
+      .digest("hex");
+  const follow = record.executions.find((e) => e.rounds?.includes("023"));
+  const converted = record.executions.find((e) => /converted/.test(e.what));
+  // The main driver ran with the library as it was when its shell started,
+  // which is not the library the converted driver loaded later.
+  const libraryOf = (e) =>
+    e.librariesLoadedAtStart.find((l) => l.path.endsWith("lib/rounds.sh"));
+  assert.notEqual(libraryOf(follow).sha256, libraryOf(converted).sha256);
+  assert.deepEqual(follow.rounds, ["023", "024", "025", "026", "027", "028"]);
+  for (const entry of [
+    follow.driver,
+    converted.driver,
+    ...follow.librariesLoadedAtStart,
+    ...converted.librariesLoadedAtStart,
+    ...record.planner.files,
+  ]) {
+    assert.match(entry.sha256, /^[0-9a-f]{64}$/);
+    // Where the working copy had other line endings the blob's hash is named apart.
+    assert.equal(blob(entry), entry.blobSha256 ?? entry.sha256, entry.path);
+  }
+  const twice = record.executions.filter((e) => e.rounds?.join() === "020");
+  assert.equal(twice.length, 2);
 });

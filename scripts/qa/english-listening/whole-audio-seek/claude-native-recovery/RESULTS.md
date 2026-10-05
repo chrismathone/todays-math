@@ -173,7 +173,21 @@ because the rule removed six rows whose only short literal reading also carried
 instruction words; no evidence was lost, and those rows say so. Of the seven
 rows first refused for an over-long number clip, four now have a number-only
 clip of 1.1–2.46 s, two have none at any length tried and are not offered, and
-one is held. Not yet replayed by the verifier at the time of writing.
+one is held.
+
+The verifier replayed all 17 against the original PCM (its finding, relayed by
+the coordinator; diagnosis `codex/official-scope-failure-diagnostics-002.json`,
+SHA-256 `ae77e5dfb6d0db074439056640d38a624039ea71b63718f61bac06848b3a4caa`):
+**5 admitted, 12 held**, every one of the 2,727 baseline starts unchanged. Seven
+of the twelve are held for one reason: the _next_ heading is a long reading
+with the complete instruction and bare digits plus a separate clip with the
+literal next number, which the verifier's frozen next-number route does not
+combine. Both readings are left exactly as recorded — nothing was concatenated
+or relabelled; combining them would need a new, explicitly end-only contract
+on the verifier's side. The other five: one next heading rests on an old
+round-001 container without a requested-language field, two fail Korean
+instruction coverage, one source repeats a number far away, and one newly
+proved placeholder identity lay outside the cases the route was labelled for.
 
 ### A passage may end where the next number is first heard — `runs/pilot-003/`
 

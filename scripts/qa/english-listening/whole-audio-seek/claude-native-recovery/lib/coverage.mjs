@@ -18,6 +18,7 @@ import { fileURLToPath } from "node:url";
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const STOPPED_REQUESTS_PATH = join(HERE, "..", "stopped-requests.json");
 export const FULL_RUN_PLAN_PATH = join(HERE, "..", "full-run-plan.json");
+export const PROVENANCE_PATH = join(HERE, "..", "full-run-provenance.json");
 
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const slash = (path) => resolve(path).replace(/\\/g, "/");
@@ -389,6 +390,16 @@ export function listeningCoverage(
     fullRunPlanFile: { path: slash(planPath), sha256: sha256(planBytes) },
     stageRecordsFile: existsSync(stagesPath)
       ? { path: slash(stagesPath), sha256: sha256(readFileSync(stagesPath)) }
+      : null,
+    // Which bytes ran which part of the run, as recorded beside this module.
+    executionProvenance: existsSync(PROVENANCE_PATH)
+      ? {
+          file: {
+            path: slash(PROVENANCE_PATH),
+            sha256: sha256(readFileSync(PROVENANCE_PATH)),
+          },
+          ...JSON.parse(readFileSync(PROVENANCE_PATH, "utf8")),
+        }
       : null,
   };
 }
