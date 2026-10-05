@@ -128,6 +128,8 @@ function standIns(t) {
       "#!/usr/bin/env bash",
       "# <out root> <stage> <round id> [flags]",
       'if [ -n "${SILENT_PLANNER:-}" ]; then echo "planned something"; exit 0; fi',
+      // A planner that fails before it has written anything.
+      '[ "$2" != "${PLANNER_FAILS_AT:-none}" ] || { echo "planner broke" >&2; exit 5; }',
       "n=3",
       'case " ${ZERO_STAGES:-} " in *" $2 "*) n=0 ;; esac',
       'if [ "$n" -gt 0 ]; then',
@@ -135,6 +137,8 @@ function standIns(t) {
       '  [ ! -e "$1/probe-requests/round-$3.json" ] || { echo "Round exists: $3" >&2; exit 9; }',
       '  echo "request $3 $2 ${*:4}" >"$1/probe-requests/round-$3.json"',
       "fi",
+      // A planner that fails after its request is on disk.
+      '[ "$2" != "${PLANNER_FAILS_AFTER_WRITING:-none}" ] || exit 6',
       'echo "{\\"stage\\":\\"$2\\",\\"sources\\":1,\\"probes\\":$n}"',
       "",
     ].join("\n"),
@@ -339,3 +343,100 @@ test("the converted source's driver takes new numbers the same way and asks the 
   assert.equal(failed.status, 7);
   assert.equal(t.stages().at(-1).runnerExit, 7);
 });
+
+// run-rounds.sh joins this list once the version that records planner failures is installed.
+const PLANNER_FAILURE_DRIVERS = [[CONVERTED, ["5"], "converted driver"]];
+
+// A planner failure must leave a record: without one, a later check of the
+// stage records cannot tell a stage that failed from one that was never due.
+for (const [driver, args, name] of PLANNER_FAILURE_DRIVERS) {
+  const record = (s) => [
+    s.stage,
+    s.round,
+    s.plannedSources,
+    s.plannedProbes,
+    s.plannerExit,
+    s.runnerExit,
+  ];
+
+  test(
+    name +
+      ": a planner that fails before writing its request is on record, and no later stage runs",
+    () => {
+      const t = tree();
+      const done = drive(t, driver, [...args, "context", "variants", "gaps"], {
+        PLANNER_FAILS_AT: "variants",
+      });
+      assert.equal(done.status, 5);
+      assert.deepEqual(t.requests(), ["round-005.json"]);
+      assert.deepEqual(t.stages().map(record), [
+        ["context", "005", 1, 3, 0, 0],
+        ["variants", null, null, null, 5, null],
+      ]);
+      assert.match(
+        done.stdout,
+        /stage-failed .*stage=variants round=- planner-exit=5/,
+      );
+      assert.doesNotMatch(done.stdout, /complete next=/);
+      // The failed stage used no round number: run again, it takes 006.
+      const again = drive(t, driver, [...args, "variants"]);
+      assert.equal(again.status, 0, again.stderr + again.stdout);
+      assert.deepEqual(t.stages().map(record).at(-1), [
+        "variants",
+        "006",
+        1,
+        3,
+        0,
+        0,
+      ]);
+    },
+  );
+
+  test(
+    name +
+      ": a planner that reports no count, or fails after its request is written, is on record with what it left",
+    () => {
+      const silent = tree();
+      const quiet = drive(silent, driver, [...args, "context"], {
+        SILENT_PLANNER: "1",
+      });
+      assert.equal(quiet.status, 2);
+      assert.deepEqual(silent.stages().map(record), [
+        ["context", null, null, null, 2, null],
+      ]);
+      assert.equal(silent.has("probes"), false);
+
+      const t = tree();
+      const done = drive(t, driver, [...args, "context"], {
+        PLANNER_FAILS_AFTER_WRITING: "context",
+      });
+      assert.equal(done.status, 6);
+      // The request exists, so the record names its round; nothing was recognized.
+      assert.deepEqual(t.requests(), ["round-005.json"]);
+      assert.deepEqual(t.stages().map(record), [
+        ["context", "005", null, null, 6, null],
+      ]);
+      assert.equal(t.has("probes"), false);
+      // That number is not given out again.
+      const again = drive(t, driver, [...args, "context"]);
+      assert.equal(again.status, 0, again.stderr + again.stdout);
+      assert.deepEqual(t.requests(), ["round-005.json", "round-006.json"]);
+    },
+  );
+
+  test(
+    name +
+      ": a stage that planned nothing is on record with the planner's own counts",
+    () => {
+      const t = tree();
+      const done = drive(t, driver, [...args, "gaps", "context"], {
+        ZERO_STAGES: "gaps",
+      });
+      assert.equal(done.status, 0, done.stderr + done.stdout);
+      assert.deepEqual(t.stages().map(record), [
+        ["gaps", null, 1, 0, 0, null],
+        ["context", "005", 1, 3, 0, 0],
+      ]);
+    },
+  );
+}

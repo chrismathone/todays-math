@@ -6,8 +6,8 @@
 #   ./run-converted.sh <first round number> <stage> [<stage> ...]
 #   ./run-converted.sh 40 headings context variants gaps variants terminal quotes+controls
 #
-# Round numbers, the stage record and a failing recognizer are handled as in
-# run-rounds.sh (lib/rounds.sh).
+# Round numbers, the stage record, a failing planner and a failing recognizer
+# are handled as in run-rounds.sh (lib/rounds.sh).
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -38,7 +38,7 @@ plan() { # <out root> <stage name> <round id> [planner flags]
 
 recognize() { # <out root> <round id>
   local status=0 log
-  log="$OUT/logs/probes-claude-round-$2.log"
+  log="$OUT/logs/probes-$(basename "$1")-round-$2.log"
   if [ -n "${NATIVE_RECOVERY_TEST_RECOGNIZER:-}" ]; then
     "$NATIVE_RECOVERY_TEST_RECOGNIZER" "$1" "$2" >>"$log" 2>&1 || status=$?
   else
@@ -55,28 +55,15 @@ recognize() { # <out root> <round id>
 
 for stage in "$@"; do
   flags=(--converted)
-  name="${stage%%+*}"
   case "$stage" in
     *+controls) flags+=(--controls) ;;
     *+tile) flags+=(--tile) ;;
   esac
   id="$(next_round "$OUT" "$round")"
   round=$((10#$id))
-  planned="$(plan "$OUT" "$name" "$id" "${flags[@]}")"
-  echo "$planned" | tee -a "$OUT/logs/rounds.log"
-  probes="$(planned_probes "$planned")"
-  if [ "$probes" -eq 0 ]; then
-    record_stage "$STAGES" run-converted reconstructed "$stage" - "$OUT" 0 -
-    continue
-  fi
   status=0
-  recognize "$OUT" "$id" || status=$?
-  record_stage "$STAGES" run-converted reconstructed "$stage" "$id" "$OUT" "$probes" "$status"
-  if [ "$status" -ne 0 ]; then
-    echo "stage-failed driver=run-converted stage=$stage round=$id exit=$status" | tee -a "$OUT/logs/rounds.log"
-    exit "$status"
-  fi
-  tail -n 1 "$OUT/logs/probes-claude-round-$id.log" | tee -a "$OUT/logs/rounds.log"
-  round=$((round + 1))
+  run_stage run-converted reconstructed "$stage" "$OUT" "$id" "${flags[@]}" || status=$?
+  [ "$status" -eq 0 ] || exit "$status"
+  round=$((round + STAGE_USED_ROUND))
 done
 echo "converted-rounds-complete next=$round" | tee -a "$OUT/logs/rounds.log"

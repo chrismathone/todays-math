@@ -17,6 +17,7 @@ import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 export const STOPPED_REQUESTS_PATH = join(HERE, "..", "stopped-requests.json");
+export const FULL_RUN_PLAN_PATH = join(HERE, "..", "full-run-plan.json");
 
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const slash = (path) => resolve(path).replace(/\\/g, "/");
@@ -79,6 +80,9 @@ function rootCoverage(root) {
       root: root.name,
       round,
       stage: request.summary?.stage ?? request.mode ?? null,
+      // The planner's own counts, written into the request when it was planned.
+      plannerSources: request.summary?.sources ?? null,
+      plannerProbes: request.summary?.probes ?? null,
       requestPath: slash(path),
       requestSha256,
       sourcesRequested: request.sources.length,
@@ -141,12 +145,115 @@ function rootCoverage(root) {
   };
 }
 
+const stageKey = (s) => [s.driver, s.scope, s.stage].join("/");
+const stageName = (s) => [s.driver, s.stage, s.round ?? "-"].join(":");
+const plannerFailed = (s) => (s.plannerExit ?? 0) !== 0;
+const runnerFailed = (s) => s.runnerExit !== 0 && s.runnerExit !== null;
+/** A stage that did what it was asked: planned nothing, or was heard to the end. */
+const succeeded = (s) =>
+  !plannerFailed(s) &&
+  !runnerFailed(s) &&
+  (s.round === null ? s.plannedProbes === 0 : s.runnerExit === 0);
+
+/**
+ * The plan of a full run against what is on record (full-run-plan.json):
+ * the earlier requests exactly as they stood, and the stages that had to
+ * follow, in order. A declared stop never stands in for a stage of the plan.
+ */
+function planCoverage(plan, requests, stages, rootOf) {
+  const row = (root, round) =>
+    requests.find((r) => r.root === root && r.round === round);
+  const PINNED = [
+    "stage",
+    "requestSha256",
+    "sourcesRequested",
+    "sourcesComplete",
+    "probesRequested",
+    "probesHeard",
+  ];
+  const pinnedRequestMismatches = [];
+  for (const pinned of plan.requests) {
+    const found = row(pinned.root, pinned.round);
+    const differs = PINNED.filter((key) => found?.[key] !== pinned[key]);
+    if (!found || differs.length)
+      pinnedRequestMismatches.push({
+        request: pinned.root + ":" + pinned.round,
+        differs: found ? differs : ["missing"],
+      });
+  }
+  const pinned = new Set(plan.requests.map((r) => r.root + ":" + r.round));
+  const recorded = new Set(
+    stages
+      .filter((s) => s.round !== null)
+      .map((s) => rootOf(s) + ":" + s.round),
+  );
+  // A request nobody answers for: not there before the stage records began,
+  // and no stage on record planned it.
+  const requestsWithoutStageRecord = requests
+    .map((r) => r.root + ":" + r.round)
+    .filter((key) => !pinned.has(key) && !recorded.has(key));
+  // Each stage that names a round: its request, as the planner counted it.
+  const stageRequestMismatches = [];
+  for (const stage of stages) {
+    if (stage.round === null || plannerFailed(stage)) continue;
+    const found = row(rootOf(stage), stage.round);
+    if (!found) continue; // reported as stagesWithoutRequest
+    const differs = [];
+    if (found.stage !== stage.stage.split("+")[0]) differs.push("stage");
+    if (found.probesRequested !== stage.plannedProbes)
+      differs.push("plannedProbes");
+    if (found.plannerProbes !== found.probesRequested)
+      differs.push("plannerProbes");
+    if (found.plannerSources !== found.sourcesRequested)
+      differs.push("plannerSources");
+    if (
+      (stage.plannedSources ?? null) !== null &&
+      stage.plannedSources !== found.sourcesRequested
+    )
+      differs.push("plannedSources");
+    if (stage.runnerExit === 0 && !found.complete)
+      differs.push("recorded_success_but_request_incomplete");
+    if (differs.length)
+      stageRequestMismatches.push({ stage: stageName(stage), differs });
+  }
+  const done = stages.filter(succeeded).map(stageKey);
+  const expected = plan.stages.map(stageKey);
+  let firstDifference = null;
+  for (let i = 0; i < Math.max(done.length, expected.length); i++)
+    if (done[i] !== expected[i]) {
+      firstDifference = {
+        position: i + 1,
+        expected: expected[i] ?? null,
+        onRecord: done[i] ?? null,
+      };
+      break;
+    }
+  return {
+    planned: {
+      requestsPinned: plan.requests.length,
+      stagesExpected: expected,
+    },
+    stagesSucceededInOrder: done,
+    stageSequenceComplete: firstDifference === null,
+    firstStageDifference: firstDifference,
+    pinnedRequestMismatches,
+    requestsWithoutStageRecord,
+    stageRequestMismatches,
+    complete:
+      firstDifference === null &&
+      pinnedRequestMismatches.length === 0 &&
+      stageRequestMismatches.length === 0,
+  };
+}
+
 /**
  * @param roots    [{ name, path }]
  * @param stopped  [{ root, round, reason }] requests declared stopped
  * @param stages   stage records of the drivers (logs/stages.jsonl), oldest first
+ * @param plan     { requests, stages } of a full run, or null: then only what
+ *                 exists is compared and nothing is said about what should
  */
-export function coverageOf({ roots, stopped = [], stages = [] }) {
+export function coverageOf({ roots, stopped = [], stages = [], plan = null }) {
   const parts = roots.map(rootCoverage);
   const heard = new Set(parts.flatMap((part) => [...part.heard]));
   const declared = new Map(stopped.map((s) => [s.root + ":" + s.round, s]));
@@ -170,9 +277,7 @@ export function coverageOf({ roots, stopped = [], stages = [] }) {
   const undeclared = requests.filter((row) => !row.complete && !row.stopped);
   const rootOf = (stage) =>
     roots.find((root) => slash(root.path) === slash(stage.root))?.name ?? null;
-  const failedStages = stages.filter(
-    (s) => s.runnerExit !== 0 && s.runnerExit !== null,
-  );
+  const failedStages = stages.filter(runnerFailed);
   const unresolved = failedStages.filter(
     (s) => !declared.has(rootOf(s) + ":" + s.round),
   );
@@ -181,6 +286,11 @@ export function coverageOf({ roots, stopped = [], stages = [] }) {
     (s) =>
       s.round !== null &&
       !requests.some((row) => row.root === rootOf(s) && row.round === s.round),
+  );
+  const planned = plan ? planCoverage(plan, requests, stages, rootOf) : null;
+  // A request no stage answers for must be declared stopped by name.
+  const unaccounted = (planned?.requestsWithoutStageRecord ?? []).filter(
+    (key) => !declared.has(key),
   );
   const list = (name) => parts.flatMap((part) => part[name]);
   const summary = {
@@ -199,19 +309,25 @@ export function coverageOf({ roots, stopped = [], stages = [] }) {
     unexpectedRequestFiles: list("unexpectedRequestFiles"),
     unexpectedRawFolders: list("unexpectedRawFolders"),
     stagesOnRecord: stages.length,
-    stagesThatPlannedNothing: stages.filter((s) => s.round === null).length,
-    stagesFailed: failedStages.map(
-      (s) => s.driver + ":" + s.stage + ":" + s.round,
-    ),
-    stagesFailedUndeclared: unresolved.map(
-      (s) => s.driver + ":" + s.stage + ":" + s.round,
-    ),
-    stagesWithoutRequest: stagesWithoutRequest.map(
-      (s) => s.driver + ":" + s.stage + ":" + s.round,
-    ),
+    stagesThatPlannedNothing: stages.filter(
+      (s) => s.round === null && succeeded(s),
+    ).length,
+    stagesPlannerFailed: stages.filter(plannerFailed).map(stageName),
+    stagesFailed: failedStages.map(stageName),
+    stagesFailedUndeclared: unresolved.map(stageName),
+    stagesWithoutRequest: stagesWithoutRequest.map(stageName),
+    plan: planned
+      ? {
+          stageSequenceComplete: planned.stageSequenceComplete,
+          firstStageDifference: planned.firstStageDifference,
+          pinnedRequestMismatches: planned.pinnedRequestMismatches,
+          stageRequestMismatches: planned.stageRequestMismatches,
+          requestsWithoutStageRecordUndeclared: unaccounted,
+        }
+      : null,
   };
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     producer: "claude-native-recovery",
     kind: "listening-coverage-receipt",
     roots: roots.map((root) => ({ name: root.name, path: slash(root.path) })),
@@ -221,8 +337,12 @@ export function coverageOf({ roots, stopped = [], stages = [] }) {
       stagesWithoutRequest.length === 0 &&
       summary.rawFoldersWithoutRequest.length === 0 &&
       summary.unexpectedRequestFiles.length === 0 &&
-      summary.unexpectedRawFolders.length === 0,
+      summary.unexpectedRawFolders.length === 0 &&
+      (planned === null || (planned.complete && unaccounted.length === 0)),
+    // Without a plan nothing is said about stages that should have run.
+    comparedWithPlan: planned !== null,
     summary,
+    plan: planned,
     stoppedRequests: stopped,
     requests,
     stages,
@@ -239,9 +359,17 @@ export function readStages(path) {
     .map((line) => JSON.parse(line));
 }
 
-/** The producer's own output root: its rounds and its adversarial rounds. */
-export function listeningCoverage(out, stoppedPath = STOPPED_REQUESTS_PATH) {
+/**
+ * The producer's own output root, its rounds and its adversarial rounds,
+ * against the full run's plan.
+ */
+export function listeningCoverage(
+  out,
+  stoppedPath = STOPPED_REQUESTS_PATH,
+  planPath = FULL_RUN_PLAN_PATH,
+) {
   const stoppedBytes = readFileSync(stoppedPath);
+  const planBytes = readFileSync(planPath);
   const stagesPath = join(out, "logs", "stages.jsonl");
   const receipt = coverageOf({
     roots: [
@@ -250,6 +378,7 @@ export function listeningCoverage(out, stoppedPath = STOPPED_REQUESTS_PATH) {
     ],
     stopped: JSON.parse(stoppedBytes.toString("utf8")).requests,
     stages: readStages(stagesPath),
+    plan: JSON.parse(planBytes.toString("utf8")),
   });
   return {
     ...receipt,
@@ -257,10 +386,9 @@ export function listeningCoverage(out, stoppedPath = STOPPED_REQUESTS_PATH) {
       path: slash(stoppedPath),
       sha256: sha256(stoppedBytes),
     },
+    fullRunPlanFile: { path: slash(planPath), sha256: sha256(planBytes) },
     stageRecordsFile: existsSync(stagesPath)
       ? { path: slash(stagesPath), sha256: sha256(readFileSync(stagesPath)) }
       : null,
-    stageRecordsNote:
-      "Stage records exist from round 023 on; earlier rounds are covered by their requests and containers only.",
   };
 }
