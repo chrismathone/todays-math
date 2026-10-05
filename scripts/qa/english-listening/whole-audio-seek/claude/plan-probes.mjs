@@ -149,7 +149,13 @@ for (const record of records) {
     return true;
   };
   const addCandidate = (purpose, candidate, extra = {}) => {
-    const bounds = probeBounds(candidate, native.energy.length);
+    const bounds = probeBounds(
+      candidate,
+      native.energy.length,
+      purpose === "first_dialogue"
+        ? POLICY.dialogueProbeWindows
+        : POLICY.probeWindows,
+    );
     if (!bounds) return false;
     return add(
       purpose,

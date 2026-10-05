@@ -31,6 +31,12 @@ export const POLICY = Object.freeze({
   /** Bounded confirmation probe that begins exactly at the proposed start. */
   probeWindows: 700,
   minimumProbeWindows: 150,
+  /**
+   * English first-dialogue probe of a question whose number is followed by its
+   * sentence: same start frame, long enough to reach past the sentence into the
+   * first utterance, still one bounded recognition window.
+   */
+  dialogueProbeWindows: 1200,
   /** Round one candidates: first sound after a long island or a long quiet. */
   bridgeIslandWindows: 300,
   longQuietWindows: 150,

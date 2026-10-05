@@ -73,10 +73,14 @@ export const followsBridge = (candidate) =>
   candidate.quietWindows >= POLICY.longQuietWindows;
 
 /** Probe bounds in windows for a candidate; null when too little audio remains. */
-export function probeBounds(candidate, windowCount) {
+export function probeBounds(
+  candidate,
+  windowCount,
+  length = POLICY.probeWindows,
+) {
   const start = candidate.startWindow;
   if (start < 0) return null;
-  const end = Math.min(windowCount, start + POLICY.probeWindows);
+  const end = Math.min(windowCount, start + length);
   if (end - start < POLICY.minimumProbeWindows) return null;
   return { startWindow: start, windowCount: end - start };
 }
