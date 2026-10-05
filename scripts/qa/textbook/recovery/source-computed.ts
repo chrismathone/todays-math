@@ -7,7 +7,7 @@ import { launchExportBrowser } from "../../../../src/lib/export/pdfServer";
 
 const sha = (bytes: string | Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
-const selected = Array.from({ length: 36 }, (_, index) => index + 8);
+const defaultSelected = Array.from({ length: 36 }, (_, index) => index + 8);
 const selectors = [
   ".running",
   ".page-head",
@@ -69,10 +69,28 @@ const selectors = [
 ];
 
 async function main() {
-  const [sourceDirectory, outputDirectory, mode = "geometry"] =
+  const [sourceDirectory, outputDirectory, mode = "geometry", pageList = ""] =
     process.argv.slice(2);
   assert(sourceDirectory && outputDirectory);
-  assert(["geometry", "allocation-only", "native-writing-only"].includes(mode));
+  assert(
+    [
+      "geometry",
+      "allocation-only",
+      "native-writing-only",
+      "spread-alignment-only",
+    ].includes(mode),
+  );
+  const selected =
+    mode === "spread-alignment-only"
+      ? pageList.split(",").map(Number)
+      : defaultSelected;
+  assert(
+    selected.length > 0 &&
+      selected.every(
+        (number) => Number.isInteger(number) && number >= 8 && number <= 43,
+      ),
+  );
+  assert(mode !== "spread-alignment-only" || selected.length <= 8);
   const source = path.resolve(sourceDirectory),
     output = path.resolve(outputDirectory);
   assert(
@@ -186,6 +204,81 @@ async function main() {
       await document.fonts.ready;
       await Promise.all(Array.from(document.images).map((i) => i.decode()));
     });
+    if (mode === "spread-alignment-only") {
+      const captureSpread = () =>
+        page.evaluate(() => {
+          const native = window as unknown as {
+            matchingSpread: (sheet: Element) => HTMLElement | null;
+          };
+          const mm = 25.4 / 96;
+          return Array.from(
+            document.querySelectorAll<HTMLElement>(".sheet"),
+          ).map((sheet) => {
+            const pr = sheet.getBoundingClientRect();
+            const box = (element: Element) => {
+              const r = element.getBoundingClientRect();
+              return [
+                r.left - pr.left,
+                r.top - pr.top,
+                r.right - pr.left,
+                r.bottom - pr.top,
+              ].map((value) => value * mm);
+            };
+            const next = native.matchingSpread(sheet);
+            return {
+              sourcePage: Number(sheet.dataset.page),
+              unit: sheet.dataset.unit,
+              section: sheet.dataset.section,
+              classes: sheet.className,
+              dailyBanner: !!sheet.querySelector(".daily-banner"),
+              matchedNextPage: next ? Number(next.dataset.page) : null,
+              fontsLoaded:
+                document.fonts.check("400 12px NotoKR", "가나다") &&
+                document.fonts.check("700 12px NotoKR", "가나다"),
+              questions: Array.from(
+                sheet.querySelectorAll<HTMLElement>(".question-grid > .q"),
+              ).map((question, index) => ({
+                questionId: question.dataset.qid,
+                rowIndex: Math.floor(index / 2),
+                questionBoxMm: box(question),
+                headBoxMm: box(question.querySelector(".qhead")!),
+                promptBoxMm: box(question.querySelector(".prompt")!),
+                headHeightStyle:
+                  question.querySelector<HTMLElement>(".qhead")!.style.height,
+                promptMinHeightStyle:
+                  question.querySelector<HTMLElement>(".prompt")!.style
+                    .minHeight,
+              })),
+            };
+          });
+        });
+      const before = await captureSpread();
+      await page.evaluate("alignQuestionRows();");
+      const afterLocalRows = await captureSpread();
+      await page.evaluate("alignSpreadRows();");
+      const afterSpreadRows = await captureSpread();
+      const result = {
+        manuscriptSha256: sha(raw),
+        files,
+        selectedPhysicalPages: selected,
+        method:
+          "Actual immutable original DOM before alignment, after exact alignQuestionRows, and after exact alignSpreadRows; no book rendering or whole-oracle recapture",
+        before,
+        afterLocalRows,
+        afterSpreadRows,
+      };
+      const file = path.join(output, "source-spread-alignment.json");
+      await writeFile(file, JSON.stringify(result, null, 2) + "\n");
+      console.info(
+        JSON.stringify({
+          output: file,
+          sha256: sha(await readFile(file)),
+          sourcePages: selected,
+        }),
+      );
+      await page.close();
+      return;
+    }
     await page.evaluate("alignQuestionRows(); alignSpreadRows();");
     const captureAllocation = () =>
       page.evaluate(() => {

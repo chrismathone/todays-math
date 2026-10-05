@@ -59,6 +59,20 @@ export const anchorMappings = [
     ".tb-source-problem .tb-work-area:not([data-empty-work]),.tb-source-fragments .work",
   ],
 ] as const;
+interface NativeWritingArea {
+  id: string;
+  selector: string;
+  ordinal: number;
+  questionId?: string | null;
+  boxMm: number[];
+  lines: { boxMm: number[]; thicknessMm: number }[];
+  referencePdfVectors: {
+    x0: number;
+    x1: number;
+    y: number;
+    thicknessMm: number;
+  }[];
+}
 export interface SourceGeometry {
   nativeWritingReference?: { originalPdfSha256: string; domSha256: string };
   pages: {
@@ -69,19 +83,8 @@ export interface SourceGeometry {
       ordinal: number;
       boxMm: number[];
     }[];
-    nativeWritingAreas?: {
-      id: string;
-      selector: string;
-      ordinal: number;
-      boxMm: number[];
-      lines: { boxMm: number[]; thicknessMm: number }[];
-      referencePdfVectors: {
-        x0: number;
-        x1: number;
-        y: number;
-        thicknessMm: number;
-      }[];
-    }[];
+    nativeWritingAreas?: NativeWritingArea[];
+    nativeQuestionWritingAreas?: NativeWritingArea[];
   }[];
 }
 
@@ -295,6 +298,13 @@ export async function captureDomWitness(
             !writeCandidates.some((other) => other !== e && other.contains(e)),
         );
         const writeBoxes = writeElements.map((el, i) => {
+          const block = blockById.get(
+            el.closest<HTMLElement>("[data-block-id]")?.dataset.blockId ?? "",
+          );
+          const sourceQuestionId =
+            variant === "student" && el.closest(".tb-source-problem")
+              ? block?.semantic?.source?.questionId
+              : undefined;
           const nativeSelector =
             el.matches(".work,.recall-rules") &&
             !!el.closest(".tb-source-fragments")
@@ -309,34 +319,43 @@ export async function captureDomWitness(
                 ),
               ).indexOf(el)
             : null;
-          const nativeLines = nativeSelector
-            ? Array.from(el.querySelectorAll<HTMLElement>(":scope > span")).map(
-                (line) => ({
+          const nativeLines =
+            nativeSelector || sourceQuestionId
+              ? Array.from(
+                  el.querySelectorAll<HTMLElement>(
+                    nativeSelector ? ":scope > span" : ".tb-work-line",
+                  ),
+                ).map((line) => ({
                   boxMm: rect(line),
                   thicknessMm:
                     parseFloat(getComputedStyle(line).borderBottomWidth) * mm,
-                }),
-              )
-            : undefined;
+                }))
+              : undefined;
           const nativeOriginal = nativeSelector
             ? original?.nativeWritingAreas?.find(
                 (area) =>
                   area.selector === nativeSelector &&
                   area.ordinal === nativeOrdinal,
               )
-            : undefined;
+            : sourceQuestionId
+              ? original?.nativeQuestionWritingAreas?.find(
+                  (area) => area.questionId === sourceQuestionId,
+                )
+              : undefined;
           const nativeReference =
             variant === "student" ? nativeOriginal : undefined;
           return {
             id: `${physicalPageIndex}.write${i}`,
             boxMm: rect(el),
-            writingSpace: nativeSelector
-              ? "native-source"
-              : el.dataset.writingSpace || "ruled",
-            ...(nativeSelector
+            writingSpace:
+              nativeSelector || sourceQuestionId
+                ? "native-source"
+                : el.dataset.writingSpace || "ruled",
+            ...(nativeSelector || sourceQuestionId
               ? {
                   nativeSelector,
                   nativeOrdinal,
+                  sourceQuestionId,
                   nativeLines,
                   nativeExpectedLineCount: nativeOriginal?.lines.length,
                   ...(variant === "student"
