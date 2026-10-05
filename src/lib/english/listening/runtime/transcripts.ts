@@ -50,7 +50,7 @@ const wordSchema = z.object({
 });
 type SourceWord = z.infer<typeof wordSchema>;
 const validInterval = (word: SourceWord, durationMs: number) =>
-  word.start >= 0 && word.start < word.end && word.end <= durationMs;
+  word.start >= 0 && word.start <= word.end && word.end <= durationMs;
 /** Only group unchanged contiguous provider words within the certified whole audio.
  * Invalid intervals split runs, without clamping, shifting, translation, or new speech.
  * The raw words in storage are never modified.
@@ -100,7 +100,11 @@ export function sourceTranscriptSegments(
         append(index);
     }
   }
-  return segments;
+  // A zero-duration word can be real speech with an imprecise estimate. Keep its
+  // text; if its entire paragraph has no interval, render complete reading text.
+  return segments.every((segment) => segment.startMs < segment.endMs)
+    ? segments
+    : [];
 }
 
 export async function sourceTranscripts(
@@ -157,7 +161,10 @@ export async function sourceTranscripts(
         generatedAt: row.generated_at.toISOString(),
         excludedWordCount,
         timingReviewNeeded:
-          !durationMatched || excludedWordCount > 0 || !parsedWords.success,
+          !durationMatched ||
+          excludedWordCount > 0 ||
+          !parsedWords.success ||
+          (quality.success && quality.data.nonPositiveWordCount > 0),
         segments: durationMatched
           ? sourceTranscriptSegments(row.words, row.duration_ms)
           : [],

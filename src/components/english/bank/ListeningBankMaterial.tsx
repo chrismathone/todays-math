@@ -67,7 +67,7 @@ function TranscriptText({
         <p className={b.notice}>
           AI 전사 시각 확인 필요 · 전체 원본을 듣고 확인해 주세요.
           {transcript.excludedWordCount > 0
-            ? ` 음원 범위를 벗어나거나 길이가 없는 단어 ${transcript.excludedWordCount}개를 제외했습니다.`
+            ? ` 음원 범위를 벗어난 단어 ${transcript.excludedWordCount}개를 제외했습니다.`
             : ""}
         </p>
       ) : null}

@@ -282,7 +282,7 @@ describe("private current whole-source transcript reads", () => {
         "Original speech. Continue listening.",
         JSON.stringify(rawWords),
         JSON.stringify({
-          outOfBoundsWordCount: 1,
+          outOfBoundsWordCount: 2,
           nonPositiveWordCount: 1,
           durationDeltaMs: 0,
           durationMatched: true,
@@ -537,19 +537,59 @@ describe("transcript search with the existing bank filters", () => {
 });
 
 describe("estimated paragraphs and private migration", () => {
-  it("splits valid contiguous runs around excluded intervals without moving or rewriting words", () => {
+  it("keeps zero-duration word text while excluding words outside the recording", () => {
     const rawWords = [
       { text: "First.", start: 1000, end: 2000 },
-      { text: "Invalid", start: 3000, end: 3000 },
+      { text: "Point-estimate", start: 3000, end: 3000 },
       { text: "Second.", start: 4000, end: 5000 },
       { text: "Out of bounds.", start: 15000, end: 16000 },
     ];
     const before = structuredClone(rawWords);
     expect(sourceTranscriptSegments(rawWords, 15000)).toEqual([
-      { startMs: 1000, endMs: 2000, text: "First." },
-      { startMs: 4000, endMs: 5000, text: "Second." },
+      { startMs: 1000, endMs: 5000, text: "First. Point-estimate Second." },
     ]);
     expect(rawWords).toEqual(before);
+  });
+  it("preserves a zero-duration short word in reading, search and paragraph text with a timing notice", async () => {
+    const rawWords = [
+      ...words.slice(0, 1),
+      { text: "a", start: 2450, end: 2450, confidence: 0.9 },
+      ...words.slice(1),
+    ];
+    const text = "Original a speech. Continue listening.";
+    await memory.query(
+      "UPDATE english_listening_source_transcript SET text=$1,display_text=$1,words=$2::jsonb,timing_quality=$3::jsonb",
+      [
+        text,
+        JSON.stringify(rawWords),
+        JSON.stringify({
+          outOfBoundsWordCount: 0,
+          nonPositiveWordCount: 1,
+          durationDeltaMs: 0,
+          durationMatched: true,
+        }),
+      ],
+    );
+    const result = await runtime.sourceTranscripts(teacher, setId);
+    expect(result.items[0]).toMatchObject({
+      text,
+      excludedWordCount: 0,
+      timingReviewNeeded: true,
+    });
+    expect(
+      result.items[0].segments.map((segment) => segment.text).join(" "),
+    ).toBe(text);
+    expect(
+      (await searchListeningBank(tx, access(), { q: "Original a speech" }))
+        .data,
+    ).toHaveLength(1);
+    expect(
+      (
+        await memory.query<{ words: unknown }>(
+          "SELECT words FROM english_listening_source_transcript",
+        )
+      ).rows[0].words,
+    ).toEqual(rawWords);
   });
   it("preserves every contiguous provider word, including punctuation and mixed language", () => {
     const value = Array.from({ length: 151 }, (_, index) => ({
