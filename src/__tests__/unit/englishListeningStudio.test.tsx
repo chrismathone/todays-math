@@ -99,6 +99,47 @@ afterEach(() => {
 });
 
 describe("ListeningStudio connected teacher flow", () => {
+  it.each(["national_listening", "mock_exam"] as const)(
+    "carries a saved %s source into the editor when questions have no metadata",
+    async (kind) => {
+      const detail = makeDetail();
+      detail.document.groups = [detail.document.groups[0]];
+      detail.document.source = {
+        kind,
+        provider: "공식 평가",
+        year: 2022,
+        round: 1,
+        month: null,
+        originalFilename: "original.mp3",
+      };
+      const audio = detail.document.groups[0].audio!;
+      detail.mediaUrlsByAssetId[audio.assetId] = "/national-original.mp3";
+      const fetcher = vi.fn(async (url: string) =>
+        receipt(url === `${base}/sets` ? [summary(detail)] : detail),
+      );
+      vi.stubGlobal("fetch", fetcher);
+      const { container } = render(
+        <ListeningStudio openSetRequest={{ id: detail.id, version: 1 }} />,
+      );
+      await screen.findByRole("heading", { name: detail.document.title });
+      expect(screen.getByText("회차 전체 원본 음원")).toBeInTheDocument();
+      expect(container.querySelector("audio")).toHaveAttribute(
+        "src",
+        "/national-original.mp3",
+      );
+      fireEvent.click(screen.getByRole("button", { name: "자료 수정" }));
+      await screen.findByRole("heading", { name: "듣기 자료 수정" });
+      expect(screen.getAllByText(/회차 전체 원본 음원/)).toHaveLength(1);
+      expect(
+        screen.queryByLabelText(/전체 음원 (시작|끝)/),
+      ).not.toBeInTheDocument();
+      expect(screen.getByLabelText("묶음 1 문항 1 문제")).toHaveValue(
+        detail.document.groups[0].questions[0].prompt,
+      );
+      expect(fetcher).toHaveBeenCalledTimes(2);
+    },
+  );
+
   it("opens a bank request after list loading and consumes it once", async () => {
     const detail = makeDetail();
     const opened = vi.fn();

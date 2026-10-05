@@ -15,6 +15,7 @@ import type {
   ListeningSetDetail,
 } from "@/contracts/englishListeningHttp.contract";
 import { listeningError, listeningRequest } from "../listening/listeningClient";
+import { usesWholeSourceAssessmentAudio } from "@/lib/english/listening/wholeSource";
 import w from "@/components/unified/Workroom.module.css";
 import s from "../EnglishStudio.module.css";
 import b from "./EnglishResourceBank.module.css";
@@ -50,12 +51,14 @@ function MaterialGroup({
   group,
   index,
   mediaUrl,
+  wholeSourceAudio,
   checked,
   onToggle,
 }: {
   group: Group;
   index: number;
   mediaUrl?: string;
+  wholeSourceAudio: boolean;
   checked: Set<string>;
   onToggle: (id: string) => void;
 }) {
@@ -73,6 +76,7 @@ function MaterialGroup({
       <h3>
         음원 {index + 1} · {group.questions.length}문항
       </h3>
+      {wholeSourceAudio ? <p className={b.meta}>회차 전체 원본 음원</p> : null}
       {mediaUrl ? (
         <audio
           ref={player}
@@ -188,7 +192,9 @@ function MaterialGroup({
                   className={w.outlineButton}
                   onClick={() => {
                     if (player.current) {
-                      stopAt.current = question.audioRange!.endMs / 1000;
+                      stopAt.current = wholeSourceAudio
+                        ? null
+                        : question.audioRange!.endMs / 1000;
                       const start = question.audioRange!.startMs / 1000;
                       if (player.current.readyState >= 1) {
                         pendingStart.current = null;
@@ -201,10 +207,11 @@ function MaterialGroup({
                     }
                   }}
                 >
-                  {timeLabel(question.audioRange.startMs)}–
-                  {timeLabel(question.audioRange.endMs)} 문항 듣기
+                  {wholeSourceAudio
+                    ? `${timeLabel(question.audioRange.startMs)}부터 이어 듣기`
+                    : `${timeLabel(question.audioRange.startMs)}–${timeLabel(question.audioRange.endMs)} 문항 듣기`}
                 </button>
-              ) : (
+              ) : wholeSourceAudio ? null : (
                 <span className={b.meta}>
                   개별 음원 구간 미지정 · 회차 전체 음원 제공
                 </span>
@@ -282,6 +289,7 @@ export default function ListeningBankMaterial({
   }, [onState, questionCount, busy]);
   useEffect(() => () => onState?.(false, false), [onState]);
   const missingRanges = basket.some((entry) => {
+    if (entry.selection.audioMode === "whole_source") return false;
     const full =
       entry.sourceQuestionIds.length === entry.questions.length &&
       entry.sourceQuestionIds.every(
@@ -293,6 +301,10 @@ export default function ListeningBankMaterial({
     if (!current) return;
     const additions: BasketEntry[] = current.detail.document.groups.flatMap(
       (group, index) => {
+        const wholeSourceAudio = usesWholeSourceAssessmentAudio({
+          source: current.detail.document.source,
+          groups: [group],
+        });
         const questions = group.questions.filter(
           (question) => all || checked.has(question.id),
         );
@@ -305,6 +317,9 @@ export default function ListeningBankMaterial({
               documentHash: current.documentHash,
               groupId: group.id,
               questionIds: questions.map((question) => question.id),
+              ...(wholeSourceAudio
+                ? { audioMode: "whole_source" as const }
+                : {}),
             },
             title: current.detail.document.title,
             sourceNumber: index + 1,
@@ -536,6 +551,10 @@ export default function ListeningBankMaterial({
                 key={`${setId}:${group.id}`}
                 group={group}
                 index={index}
+                wholeSourceAudio={usesWholeSourceAssessmentAudio({
+                  source: current.detail.document.source,
+                  groups: [group],
+                })}
                 mediaUrl={
                   group.audio
                     ? current.detail.mediaUrlsByAssetId[group.audio.assetId]

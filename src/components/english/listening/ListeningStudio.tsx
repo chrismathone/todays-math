@@ -539,6 +539,7 @@ export default function ListeningStudio({
           <ListeningDraftEditor
             key={editorSession}
             draft={draft}
+            source={editorTarget?.document.source}
             setDraft={setDraft}
             saved={editorTarget !== null}
             busy={busy || !active}
