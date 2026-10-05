@@ -477,6 +477,21 @@ list, the stage records, a `git archive` of the producer and recognizer code at
 the build's commit, and the two recognizer files with the CRLF line endings
 their interpreters actually read.
 
+So that the evidence does not depend on this worktree, the receipt was also
+bound to copies that cannot move. `<OUT>/archive/full-001-producer-code-5da0bd609/`
+holds the producer folder and the recognizer code as the git blobs of the
+build's commit (55 files; `CODE-MANIFEST.json`, SHA-256
+`c6e72d6af24895ed193de0e651ab428415f6255463756fde7ebdd01c2eb67075`). Its
+builder files equal `summary.tool`; its plan, stopped list and provenance equal
+what `full-001`'s receipt names and the coordinator's own frozen copies, byte
+for byte. Run from that archive, without a sweep, `receipt.mjs` wrote
+`receipts/full-001-archived-code.json` (SHA-256
+`6e14f0443269cf8a8d2cb0149bebd04fb3d4b27362bd8824628208aecf7f4e5c`): complete,
+and its requests, stage records, plan result, stopped list and summary are
+identical to those in `runs/full-001/listening-receipt.json`; only the paths of
+the three configuration files differ — they now point into the archive. The
+two earlier receipts are unchanged.
+
 ## What stays held, and what it would take
 
 The counts are those of `full-001` ("What is held, and where it stops").
@@ -568,9 +583,13 @@ these attempts left is still where it was written.
    producer proposed to recognize the 13 probes of the sweep and build a second
    run, and had appended ten stages to the plan in its working copy. The
    coordinator had already directed that no further recognition be run. Nothing
-   was started: 0 requests planned, 0 probes recognized, no process. The plan
-   was restored to the exact bytes `full-001` was gated against and the
-   appended stages were written down apart, as `future-closing-pass-plan.json`.
+   was started: 0 requests planned, 0 probes recognized, no process. For some
+   minutes, though, the plan and provenance files in the working copy did not
+   have the bytes `full-001`'s receipt names — the verifier noticed the
+   mismatch. Both were restored to exactly those bytes (never committed
+   otherwise), the appended stages were written down apart as
+   `future-closing-pass-plan.json`, and the receipt was bound to copies that
+   cannot move (see "What was asked against what was heard").
 
 In `full-001` itself no stage failed: seven stage records, recognizer exit 0
 for six, an explicit zero plan for the seventh.
