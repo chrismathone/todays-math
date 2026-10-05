@@ -1074,6 +1074,8 @@ export function auditMarks(
       if (record.cueSegmentIds.length === 0 || record.anchorSegmentIds.length === 0)
         problems.push(`candidate refs ${record.questionId}`);
       const requireNative = options?.requireNative === true;
+      if (requireNative)
+        problems.push(`energy_onset_is_not_recognition ${record.questionId}`);
       for (const reason of requireNative
         ? ["generated_ordinal_not_used_as_evidence", "seek_start_uses_source_frame_clock"]
         : [

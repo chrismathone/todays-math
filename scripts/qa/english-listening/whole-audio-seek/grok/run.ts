@@ -388,6 +388,9 @@ async function main() {
   });
   if (!values.inventory || !values.out)
     throw new Error("--inventory and --out are required");
+  throw new Error(
+    "Withdrawn: an energy edge nearest an ASR estimate is not spoken-cue recognition. run.ts does not write marks.json or probe files.",
+  );
   const inventoryPath = resolve(values.inventory);
   const mediaPath = resolve(
     values["media-bindings"] ??

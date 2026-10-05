@@ -8,11 +8,9 @@ Seek candidates for the 72 audio-reconstructed national listening sources assign
 
 `schemaVersion` 1, `evidenceContractVersion` 1, `provider` `grok`, `inventorySha256`, and one row per assigned current question. Every row carries `documentSha256`.
 
-A candidate has integer `seekStartMs` from the production playback decode: `floor(startFrame * 1000 / sampleRate)`. The measured frame is the rising-edge onset closest to the cue's ASR estimate, and it must fall within 1.2 seconds of that estimate. `startFrame` equals `cueOnsetFrame`, so the start precedes the onset by 0 ms (inside the 0–500 ms rule). `seekEndMs` is null. The range end stays the full original duration.
+The earlier 1,100 rows that placed `startFrame` on an energy edge nearest an ASR estimate, and that copied full-ASR segment times into a 2-second float32 probe, are not admitted starts. Codex replay `replay-grok-001` held all 1,282 rows. `run.ts` now refuses to write that ledger. `auditMarks(..., { requireNative: true })` rejects it.
 
-`nativeEvidence` binds `sourceAudioSha256`, `sampleRate`, `startFrame`, `probe` (a JSON file hash), `probeOffsetFrame`, `probeFrameCount`, `cueProbeSegmentIds`, `cueOnsetFrame`, and `pcmSha256`. `decodedAudioSha256` is the playback byte hash. `pcmLayout` is `float32le-interleaved`. The probe JSON keeps the source path and hash, the playback byte offset and count, the PCM path and hash, and raw ASR segments with their uncertainty and metrics. Local segment times are the raw estimates minus the probe offset. Nothing in the raw ASR file is rewritten.
-
-The PCM window is 2 seconds from the onset, or the remainder of the file. No full-source PCM is kept.
+An admitted start has to be a Whisper recognition of a bounded native clip. The clip begins exactly 400 ms before a -50 dBFS island onset that already has at least 400 ms of measured quiet. Local word and segment times stay inside that clip. `seekEndMs` is the full original duration. Generated `sourceNumber` is not the spoken number. No full-source PCM is kept.
 
 `mappingEvidence.alignment` is `{path, sha256}` of the question-alignment file. Anchor ids must match that file's `verified_generation_evidence_segments` list for the current question id.
 
@@ -25,8 +23,7 @@ A printed `19번과 20번` instruction narrows to the individual `19번입니다
 ## Run
 
 ```text
-node --experimental-strip-types --test scripts/qa/english-listening/whole-audio-seek/grok/seekBeginnings.test.ts
-node --experimental-strip-types scripts/qa/english-listening/whole-audio-seek/grok/run.ts --inventory <inventory.json> --out <grok-artifact-dir>
+node --experimental-strip-types --test scripts/qa/english-listening/whole-audio-seek/grok/seekBeginnings.test.ts scripts/qa/english-listening/whole-audio-seek/grok/recognition.test.ts
 ```
 
-The interpreter is Node with `--experimental-strip-types`. The runner writes `marks.json`, `summary.json`, and `probes/*.probe.json` plus `probes/*.f32`. The inventory, snapshot, original audio, and existing assessment files are read only.
+`run.ts` exits before writing. Recognition uses `run_one_probe.py` on Claude's frozen medium snapshot, one source at a time, and unloads the model before releasing `gpu-probe.lock`. The inventory, snapshot, original audio, and existing assessment files are read only.

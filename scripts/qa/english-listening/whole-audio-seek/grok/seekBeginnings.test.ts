@@ -603,7 +603,7 @@ describe("ledger", () => {
     expect(auditMarks([input], marks, "f".repeat(64))).toEqual([]);
   });
 
-  it("admits a frame clock and rejects a start after the cue onset", () => {
+  it("does not admit an energy edge nearest an ASR estimate", () => {
     const input = source();
     const [provisional] = buildSourceRecords(input);
     const native: NativeEvidence = {
@@ -628,8 +628,8 @@ describe("ledger", () => {
     expect(published?.reasons).toContain("asr_cue_estimate_ms:68290");
     const marks = buildMarks([input], "f".repeat(64));
     marks.records = [published!];
-    expect(auditMarks([input], marks, "f".repeat(64), { requireNative: true })).toEqual(
-      [],
+    expect(auditMarks([input], marks, "f".repeat(64), { requireNative: true })).toContain(
+      "energy_onset_is_not_recognition q-generated-1",
     );
     expect(
       publishNativeStart(provisional, {
