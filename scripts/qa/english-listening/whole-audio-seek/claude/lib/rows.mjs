@@ -229,6 +229,13 @@ export function assembleRow({
     cueText: row.cueSegments.length ? joined(row.cueSegments) : null,
     anchorSegmentIds: row.anchorSegments.map((segment) => segment.id),
     anchorText: row.anchorSegments.length ? joined(row.anchorSegments) : null,
+    // Nearby frozen-ASR text that supports the row but is not bound to a cue.
+    diagnosticAsrSegmentIds: row.diagnosticSegments.map(
+      (segment) => segment.id,
+    ),
+    diagnosticAsrText: row.diagnosticSegments.length
+      ? joined(row.diagnosticSegments)
+      : null,
     cueNumber: settled ? plan.spokenNumbers[0] : null,
     cueSpokenNumbers: settled ? plan.spokenNumbers : null,
     cueForm: probeEvidence ? probeEvidence.cueForm : null,

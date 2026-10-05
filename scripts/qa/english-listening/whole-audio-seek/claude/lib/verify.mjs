@@ -320,6 +320,7 @@ export function verifyMarks(marks, env) {
     for (const [idsField, textField] of [
       ["cueSegmentIds", "cueText"],
       ["anchorSegmentIds", "anchorText"],
+      ["diagnosticAsrSegmentIds", "diagnosticAsrText"],
     ]) {
       const ids = row[idsField];
       if (!Array.isArray(ids) || new Set(ids).size !== ids.length) {
@@ -335,12 +336,34 @@ export function verifyMarks(marks, env) {
         : null;
       if (row[textField] !== text)
         report("full_asr_quote_changed", record, question, textField);
-      if (idsField === "cueSegmentIds")
+      if (idsField === "cueSegmentIds") {
+        const onsetSeconds = fact.onsetFrame / pcm.sampleRate;
         for (const id of ids) {
-          const cue = leadingCue(byId.get(id).text);
+          const segment = byId.get(id);
+          const cue = leadingCue(segment.text);
           if (!cue || !same(cue.numbers, plan.spokenNumbers))
             report("cue_segment_has_another_number", record, question, id);
+          // Its estimated span must hold the measured onset: a number written
+          // elsewhere in the recording is not this start's cue.
+          if (
+            segment.estimatedStartSeconds - 2 > onsetSeconds ||
+            onsetSeconds > segment.estimatedEndSeconds + 2
+          )
+            report("cue_segment_not_at_onset", record, question, id);
         }
+      }
+      if (idsField === "anchorSegmentIds") {
+        // An anchor is the cue segment itself or the very next raw segment.
+        const order = asr.segments.map((segment) => segment.id);
+        const cueIds = Array.isArray(row.cueSegmentIds)
+          ? row.cueSegmentIds
+          : [];
+        for (const id of ids) {
+          const before = order[order.indexOf(id) - 1];
+          if (!cueIds.includes(id) && !cueIds.includes(before))
+            report("anchor_not_bound_to_cue", record, question, id);
+        }
+      }
     }
     positions.set(question.id, row.seekStartMs);
   });

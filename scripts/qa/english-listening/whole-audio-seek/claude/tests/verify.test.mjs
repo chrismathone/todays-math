@@ -224,6 +224,30 @@ test("frozen ASR quotes are replayed by raw id", () => {
   const twice = fresh();
   rowOf(twice, 1).cueSegmentIds = [1, 1];
   assert.ok(codes(twice).includes("malformed_segment_reference"));
+  // The official sentence right at the cue is the anchor; nothing else is.
+  const bound = fresh();
+  assert.deepEqual(rowOf(bound, 1).anchorSegmentIds, [2]);
+  assert.deepEqual(rowOf(bound, 1).diagnosticAsrSegmentIds, []);
+  const loose = fresh();
+  rowOf(loose, 1).anchorSegmentIds = [4];
+  rowOf(loose, 1).anchorText = "수고하셨습니다.";
+  assert.ok(codes(loose).includes("anchor_not_bound_to_cue"));
+  // The same number written far from the measured onset is not its cue.
+  const far = fresh();
+  far.env.asr = () => ({
+    segments: [
+      {
+        id: 1,
+        text: "1번",
+        estimatedStartSeconds: 40,
+        estimatedEndSeconds: 41,
+        uncertain: false,
+      },
+    ],
+  });
+  rowOf(far, 1).anchorSegmentIds = [];
+  rowOf(far, 1).anchorText = null;
+  assert.ok(codes(far).includes("cue_segment_not_at_onset"));
 });
 
 test("the header binds the inventory, the provider and the policy", () => {

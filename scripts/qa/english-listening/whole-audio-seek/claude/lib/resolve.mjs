@@ -438,35 +438,54 @@ export function resolveSource({
     const accepted = chosen.get(plan.sourceNumber) ?? null;
     const isExisting = existing.has(plan.sourceNumber);
     const startMs = positionMs(plan.sourceNumber);
+    // Frozen whole-record ASR references. A cue segment is one that wrote this
+    // number and whose estimated span holds the measured onset. An anchor is the
+    // official sentence written right at that cue segment. Everything else that
+    // merely lies nearby is quoted as diagnostic, not as cue or anchor.
     const cueSegments = [];
     const anchorSegments = [];
+    const diagnosticSegments = [];
     const identity = [];
     if (startMs !== null) {
       const startSeconds = startMs / 1000;
-      for (const segment of segments) {
-        const around =
+      const onsetSeconds = accepted
+        ? accepted.fact.onsetFrame / rate
+        : startSeconds + (POLICY.leadWindows * POLICY.windowMs) / 1000;
+      const numbers = plan.spokenNumbers.join();
+      const official = plan.officialInstruction;
+      const heardOfficial = (text) =>
+        official &&
+        coverage(official, text) >= POLICY.minimumInstructionCoverage;
+      segments.forEach((segment, at) => {
+        const cue = leadingCue(segment.text);
+        const bound =
+          cue &&
+          cue.numbers.join() === numbers &&
+          segment.estimatedStartSeconds - 2 <= onsetSeconds &&
+          onsetSeconds <= segment.estimatedEndSeconds + 2;
+        if (bound) {
+          cueSegments.push(segment);
+          if (heardOfficial(cue.rest)) anchorSegments.push(segment);
+          else if (segments[at + 1] && heardOfficial(segments[at + 1].text))
+            anchorSegments.push(segments[at + 1]);
+          return;
+        }
+        const nearby =
           segment.estimatedEndSeconds >= startSeconds - 2 &&
           segment.estimatedStartSeconds <= startSeconds + 20;
-        if (!around) continue;
-        const cue = leadingCue(segment.text);
-        if (cue && cue.numbers.join() === plan.spokenNumbers.join())
-          cueSegments.push(segment);
-        else if (
-          plan.officialInstruction &&
-          coverage(plan.officialInstruction, segment.text) >=
-            POLICY.minimumInstructionCoverage
-        )
-          anchorSegments.push(segment);
-      }
+        if (nearby && heardOfficial(segment.text))
+          diagnosticSegments.push(segment);
+      });
       const anchor = anchors.get(plan.sourceNumber);
       if (anchor.supporting.length) {
         identity.push(
           anchor.conflicting ? "dialogue_anchor_partial" : "dialogue_anchor",
         );
         for (const segment of anchor.supporting.slice(0, 3))
-          anchorSegments.push(segment);
+          diagnosticSegments.push(segment);
       }
     }
+    const unique = (list) => [...new Set(list)].sort((x, y) => x.id - y.id);
     if (!isExisting && !accepted && !rowReasons.length)
       rowReasons.push(
         clusters.length
@@ -492,7 +511,13 @@ export function resolveSource({
       near,
       clusters,
       cueSegments,
-      anchorSegments: [...new Set(anchorSegments)].sort((a, b) => a.id - b.id),
+      anchorSegments: unique(anchorSegments),
+      diagnosticSegments: unique(
+        diagnosticSegments.filter(
+          (segment) =>
+            !cueSegments.includes(segment) && !anchorSegments.includes(segment),
+        ),
+      ),
       identity,
       reasons: rowReasons,
     };
