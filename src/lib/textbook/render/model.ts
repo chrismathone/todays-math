@@ -9,6 +9,7 @@ import type { TextbookConceptBody } from "@/contracts/textbookConcept.contract";
 import type {
   TextbookDialoguePresentation,
   TextbookSemantic,
+  TextbookSourceFragment,
 } from "@/contracts/textbookSemantic.contract";
 import {
   recallPieces,
@@ -56,6 +57,8 @@ type BlockBase = {
   dialogueLesson?: { lessonKey: string; lessonTitle: string };
   dialogueGuide?: string;
   measurementMinHeightMm?: number;
+  /** Pagination moves this block to the page of the row after it when that row leaves its page. */
+  keepWithNext?: boolean;
   unitIntroPart?: "left" | "right" | "single";
   exampleGroupNumber?: number;
   exampleConfirmIndex?: number;
@@ -156,6 +159,35 @@ export interface TextbookRenderModel {
   variant: TextbookVariant;
   sections: RenderSection[];
   assets: AssetRef[];
+}
+
+/** Native concept pages. Their container sets its children 2.6mm apart (see contentCss). */
+const NATIVE_CONCEPT_KINDS = ["concept1", "concept2", "concept3"];
+/**
+ * Answer variant only. The authored body of a native concept page ends with the «CHECK»
+ * subheading of the questions that follow it. In the answer book those questions are taller and
+ * may leave the page, so the subheading becomes a block of its own that pagination keeps with
+ * them. The fragments are the manuscript's own objects in their order; nothing is rewritten.
+ * Body and subheading stand 2.6mm apart either way: that is the gap of the page's container and
+ * the distance pagination puts between two blocks of a concept page.
+ */
+function closingCheckHeading(
+  semantic: TextbookSemantic | undefined,
+  nextKind: string | undefined,
+):
+  | { body: TextbookSourceFragment[]; heading: TextbookSourceFragment }
+  | undefined {
+  const node = semantic?.node;
+  if (
+    node?.kind !== "fragments" ||
+    nextKind !== "problem" ||
+    !NATIVE_CONCEPT_KINDS.includes(semantic?.source?.kind ?? "")
+  )
+    return undefined;
+  const heading = node.fragments.at(-1);
+  return heading?.attributes?.className?.split(/\s+/).includes("subheading")
+    ? { body: node.fragments.slice(0, -1), heading }
+    : undefined;
 }
 
 /** Allowlist projection: exercise answers/solutions and teacher source data never enter student render DTOs. */
@@ -266,6 +298,50 @@ export function createTextbookRenderModel(
                 };
                 switch (b.kind) {
                   case "text": {
+                    const check =
+                      variant === "answers"
+                        ? closingCheckHeading(
+                            b.semantic,
+                            s.blocks[s.blocks.indexOf(b) + 1]?.kind,
+                          )
+                        : undefined;
+                    if (check) {
+                      // A body that is nothing but the subheading stays one block.
+                      if (!check.body.length)
+                        return [
+                          {
+                            ...base,
+                            kind: "text",
+                            markdown: b.markdown,
+                            keepWithNext: true,
+                          },
+                        ];
+                      // The page-end note stays with the body.
+                      const semantic: TextbookSemantic = {
+                        ...b.semantic!,
+                        node: { kind: "fragments", fragments: [check.heading] },
+                      };
+                      delete semantic.sourceFooter;
+                      return [
+                        {
+                          ...base,
+                          kind: "text",
+                          markdown: b.markdown,
+                          semantic: {
+                            ...b.semantic!,
+                            node: { kind: "fragments", fragments: check.body },
+                          },
+                        },
+                        {
+                          ...base,
+                          id: `${b.blockId}.subheading`,
+                          kind: "text",
+                          markdown: "",
+                          keepWithNext: true,
+                          semantic,
+                        },
+                      ];
+                    }
                     const parts = b.semantic?.node
                       ? [b.markdown]
                       : splitTextbookMarkdown(b.markdown);

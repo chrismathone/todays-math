@@ -421,6 +421,8 @@ export function paginateTextbookSections(
       }
     };
     let row: { block: RenderBlock; measurement: BlockMeasurement }[] = [];
+    // The block last placed, when it is kept with the row after it, and the gap under it.
+    let kept: { placement: BlockPlacement; gapMm: number } | undefined;
     const flush = () => {
       if (!row.length) return;
       const height = Math.max(...row.map((r) => r.measurement.heightMm));
@@ -431,7 +433,34 @@ export function paginateTextbookSections(
           section,
           row[0].block,
         );
-      if (!page || cursor + height > bodyBottom) newPage();
+      const held = kept;
+      if (!page || cursor + height > bodyBottom) {
+        const previous = page;
+        newPage();
+        // The kept block follows this row to the new page when it still ends the page it is on,
+        // that page keeps other content, and both fit here. Otherwise it stays where it was.
+        if (
+          held &&
+          previous &&
+          previous.blocks.at(-1) === held.placement &&
+          previous.blocks.some(
+            (placement) =>
+              placement !== held.placement &&
+              section.blocks.find((block) => block.id === placement.blockId)
+                ?.kind !== "heading",
+          ) &&
+          cursor + held.placement.heightMm + held.gapMm + height <= bodyBottom
+        ) {
+          previous.blocks.pop();
+          held.placement.xMm =
+            page!.physicalPageIndex % 2 === 0
+              ? config.print.outerMarginMm
+              : config.print.innerMarginMm;
+          held.placement.yMm = cursor;
+          page!.blocks.push(held.placement);
+          cursor += held.placement.heightMm + held.gapMm;
+        }
+      }
       if (
         row[0].block.dialogueTopMm &&
         !page!.blocks.some((placement) => {
@@ -554,6 +583,10 @@ export function paginateTextbookSections(
                   : 4
               : A4.gapMm);
       cursor += height + gap;
+      kept =
+        row.length === 1 && row[0].block.keepWithNext
+          ? { placement: page!.blocks[page!.blocks.length - 1], gapMm: gap }
+          : undefined;
       row = [];
     };
     const grouped = new Set<string>();
