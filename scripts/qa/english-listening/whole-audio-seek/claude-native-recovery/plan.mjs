@@ -414,9 +414,13 @@ for (const id of session.scope(values.scope, values["source-id"])) {
         const begin = Math.max(first, first + Math.floor((after * rate) / frames));
         const starts = [begin];
         if (last - begin > QUOTE_WINDOWS) starts.push(last - QUOTE_WINDOWS);
-        if (values.tile)
+        if (values.tile) {
+          // Alternate clips of the same passage: one that begins two seconds
+          // earlier, and others three seconds later and every fifteen seconds.
+          starts.push(Math.max(first, begin - 100));
           for (let at = begin + 150; at < last - MINIMUM_WINDOWS; at += 750)
             starts.push(at);
+        }
         for (const startWindow of new Set(starts)) {
           const startFrame = startWindow * frames;
           const windows = Math.min(QUOTE_WINDOWS, last - startWindow);

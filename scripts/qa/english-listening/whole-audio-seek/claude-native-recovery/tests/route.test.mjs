@@ -171,12 +171,10 @@ test("another number written inside a passage, however unreliably, holds that pa
   const lost = makeInput();
   lost.koListenings = lost.koListenings.filter((l) => l.startFrame !== startOf(AT.head));
   const after = resolveSource(lost);
-  // Passage 3 ends where number 4 is first heard; it does not run to the closing.
-  const c = rowOf(after, "q-c");
-  assert.equal(c.status, "candidate");
-  assert.equal(c.nativeRecovery.nextBoundary.kind, "next_number_first_speech_boundary");
-  assert.equal(c.nativeRecovery.passageFrames.toFrame, startOf(AT[4]));
-  // Number 4 itself has no start: its shared heading was never heard.
+  // "4번입니다." alone, with no instruction and no shared heading standing,
+  // could be anything: it neither starts passage 4 nor ends passage 3.
+  assert.equal(after.table.held["3:next"], "terminal_boundary_not_established");
+  assert.equal(rowOf(after, "q-c").status, "held");
   assert.equal(rowOf(after, "q-d").status, "held");
   assert.equal(rowOf(after, "q-e").status, "held");
   // With no later number heard at all, nothing bounds passage 3 but a closing
@@ -276,8 +274,28 @@ test("a passage may end where the next number is first heard, even when that num
   assert.equal(a.nativeRecovery.verifierPreconditions.nextBoundaryIsProvable, false);
   // It is an end only: question b's own passage has no start.
   assert.equal(rowOf(result, "q-b").status, "held");
-  // The instruction need not be reached for an end.
-  assert.equal(rowOf(resolveSource(withNext(lagging("2번입니다."))), "q-a").status, "candidate");
+  assert.equal(a.evidenceAdapter, "native-localized-generation-boundary-v3");
+  // A number alone can be an answer option read aloud: without its complete
+  // instruction it ends nothing.
+  assert.equal(rowOf(resolveSource(withNext(lagging("2번입니다."))), "q-a").status, "held");
+  assert.equal(
+    rowOf(resolveSource(withNext(lagging("2번입니다. 대화를 듣고 남자가"))), "q-a").status,
+    "held",
+  );
+  // A later member of a shared heading that stands needs no instruction of its own.
+  const member = makeInput();
+  member.koListenings = member.koListenings.map((l) => {
+    if (l.startFrame !== startOf(AT[5])) return l;
+    const late = heading(AT[5], "5번입니다.");
+    late.probe.segments[0].localStartSeconds = 1.2;
+    late.probe.segments[0].words[0].localStartSeconds = 1.2;
+    return late;
+  });
+  const d = rowOf(resolveSource(member), "q-d");
+  assert.equal(d.status, "candidate");
+  assert.equal(d.kind, "shared_instruction_head");
+  assert.equal(d.nativeRecovery.nextBoundary.kind, "next_number_first_speech_boundary");
+  assert.equal(rowOf(resolveSource(member), "q-e").status, "held");
   // Refused: bare digits, a flagged number, another number from the same
   // start, the number at two distant places, a start that is not a measured lead.
   assert.equal(rowOf(resolveSource(withNext(lagging("2. 대화를 듣고 고르세요."))), "q-a").status, "held");
@@ -365,6 +383,23 @@ test("a quote cut short, respelled, or interrupted by a flagged segment is not h
   assert.equal(hears([segment(QUOTES.a, 0, 3, { compressionRatio: 2.6 })]), 0);
   assert.equal(hearQuote({ ...english(900, 1000, QUOTES.a).probe, overflow: true }, words).length, 0);
   assert.equal(hears([segment("i MOVED to a new house, last saturday", 0, 3)]), 1);
+  // Raw words that do not spell the segment, have no duration, run backwards,
+  // carry no probability or leave the segment make it a barrier too.
+  const broken = (words) => hears([{ ...segment(QUOTES.a, 0, 3), words }]);
+  const word = (text, lo, hi, probability = 0.9) => ({
+    text,
+    localStartSeconds: lo,
+    localEndSeconds: hi,
+    probability,
+  });
+  assert.equal(broken([word(QUOTES.a, 0, 3)]), 1);
+  assert.equal(broken([word("I moved to a new house", 0, 2), word(" last Saturday.", 2, 3)]), 1);
+  assert.equal(broken([]), 0);
+  assert.equal(broken([word("I moved to a new house last", 0, 3)]), 0);
+  assert.equal(broken([word(QUOTES.a, 1, 1)]), 0);
+  assert.equal(broken([word(QUOTES.a, 0, 3, 0)]), 0);
+  assert.equal(broken([word(QUOTES.a, 0, 3.5)]), 0);
+  assert.equal(broken([word("I moved to a new house", 2, 3), word(" last Saturday.", 1, 2)]), 0);
 });
 
 test("a quote heard in two passages, or in a clip wholly elsewhere, binds to neither", () => {

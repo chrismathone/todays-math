@@ -24,6 +24,8 @@ import {
 
 /** The independent verifier's adapter these rows are shaped for. */
 export const ADAPTER = "native-localized-generation-v2";
+/** Its separately named tier for a passage that ends at a first-speech boundary. */
+export const BOUNDARY_ADAPTER = "native-localized-generation-boundary-v3";
 
 /** Certified starts of a source by the first original number of their proven scope. */
 export function certifiedStarts(certRows, sampleRate, admissions = null) {
@@ -281,8 +283,9 @@ export function passageEvidence(input, passage, tested = {}) {
 /**
  * Where a passage ENDS when the next number's heading does not stand as a
  * start: the measured start of a Korean recognition whose first speech is the
- * literal next number, reliably — whatever time the recognizer wrote for it and
- * whether or not its instruction was reached. Every frame before that start
+ * literal next number, reliably, followed by its complete instruction (or the
+ * number is a later member of a shared heading that stands) — whatever time the
+ * recognizer wrote for the number. Every frame before that start
  * precedes the next question's heading, so nothing of the next passage lies
  * before it. It ends a passage; it is never a seek start.
  *
@@ -291,7 +294,14 @@ export function passageEvidence(input, passage, tested = {}) {
  * lead before a measured onset, or when it lies beyond a later known start.
  * The earliest such start is taken: the passage only gets shorter.
  */
-export function firstSpeechBoundary(native, written, number, afterFrame, beforeFrame) {
+export function firstSpeechBoundary(
+  native,
+  written,
+  number,
+  afterFrame,
+  beforeFrame,
+  headings = [],
+) {
   const rate = native.sampleRate;
   const readings = written.filter(
     (r) => r.form !== "bare" && r.numbers[0] === number && r.startFrame > afterFrame,
@@ -314,6 +324,17 @@ export function firstSpeechBoundary(native, written, number, afterFrame, beforeF
         other.numbers.join() !== reading.numbers.join(),
     );
     if (contradicted) continue;
+    // A number alone can be an answer option read aloud. The reading must
+    // carry the announcer's complete instruction after the number, or the
+    // number must be a later member of a shared heading that already stands.
+    const member = headings.some(
+      (h) =>
+        h.kind === "shared_head" &&
+        h.covers.includes(number) &&
+        h.covers[0] !== number &&
+        h.startFrame < reading.startFrame,
+    );
+    if (!reading.instruction && !member) continue;
     let place;
     try {
       place = measuredStart(
@@ -462,6 +483,7 @@ export function sourceStructure(input) {
         last + 1,
         start.startFrame,
         ordered.find((other) => other.number > last)?.startFrame ?? Infinity,
+        headings,
       ))
     ) {
       // boundary set
@@ -744,7 +766,10 @@ export function resolveSource(input) {
       rows.push({
         ...base,
         status: "candidate",
-        evidenceAdapter: ADAPTER,
+        evidenceAdapter:
+          passage.boundary.kind === "next_number_first_speech_boundary"
+            ? BOUNDARY_ADAPTER
+            : ADAPTER,
         ...common.fields,
         cueSegmentIds: [],
         anchorSegmentIds: ids,

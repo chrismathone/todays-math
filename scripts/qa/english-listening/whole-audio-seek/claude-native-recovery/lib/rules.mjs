@@ -398,6 +398,7 @@ export function establishHeadings(native, listenings, options = {}) {
           onsetFrame: entry.onsetFrame,
           probe: entry.probe,
           firstSegmentId: entry.reading.firstSegmentId,
+          instruction: entry.reading.instruction ?? null,
           // Bare digits are a possible heading only before an instruction:
           // "4. 대화를 듣고 …" may be question 4, "4. You don't look well" is
           // an answer option read aloud inside another question.
@@ -682,11 +683,39 @@ export function hearQuote(probe, words) {
     run = [];
   };
   for (const segment of spoken(probe)) {
-    if (uncertain(segment)) flush();
+    if (uncertain(segment) || !wordsClean(segment)) flush();
     else run.push(segment);
   }
   flush();
   return found;
+}
+
+/**
+ * The independent verifier's raw-word checks for a segment a quote is taken
+ * from: its words spell the segment's own text, lie inside it, in order, each
+ * with a duration and a probability. A segment that fails is a barrier, like a
+ * flagged one; nothing in it is repaired.
+ */
+export function wordsClean(segment) {
+  const words = segment.words ?? [];
+  if (!words.length) return false;
+  if (
+    englishWords(words.map((w) => w.text).join(" ")).join(" ") !==
+    englishWords(segment.text).join(" ")
+  )
+    return false;
+  let previous = -1;
+  for (const word of words) {
+    const [lo, hi] = [word.localStartSeconds, word.localEndSeconds];
+    if (!(previous <= lo && lo < hi && word.probability > 0)) return false;
+    if (
+      lo < segment.localStartSeconds - 1e-6 ||
+      hi > segment.localEndSeconds + 1e-6
+    )
+      return false;
+    previous = lo;
+  }
+  return true;
 }
 
 /** A probe lies inside a passage when its whole clip does. */
