@@ -1186,6 +1186,99 @@ describe("늦은 응답 — 그사이 다른 판본이 열렸을 때", () => {
     expect(closing()).toBe(false);
   });
 
+  it("구획 읽기가 늦게 끝나거나 늦게 실패해도, 그사이 연 구획 없는 판본에 옛 원고나 오류를 올리지 않는다", async () => {
+    const E3 = "00000000-0000-4000-8000-0000000000e3";
+    const empty = (): EditionDetail => {
+      const base = editionOf();
+      return {
+        ...base,
+        editionId: E3,
+        bookId: "book-3",
+        title: "빈 교재",
+        structureSource: {
+          ...base.structureSource,
+          outline: [],
+        } as unknown as NonNullable<EditionDetail["structureSource"]>,
+        units: [],
+      };
+    };
+    const second = deferred<SectionDetail>();
+    const getSection = vi.fn((_edition: string, sectionId: string) =>
+      sectionId === "section-2" ? second.promise : Promise.resolve(section()),
+    );
+    const client = api({
+      openEdition: vi.fn(async (id: string) =>
+        id === E3 ? empty() : editionOf(),
+      ),
+      getSection,
+    });
+    const view = await openStudio(client);
+    // 다른 구획으로 옮기는 중 — 그 구획을 읽고 있다
+    fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
+    fireEvent.click(screen.getByRole("button", { name: "연습" }));
+    await waitFor(() =>
+      expect(getSection).toHaveBeenCalledWith("edition-1", "section-2"),
+    );
+    view.rerender(<TextbookStudioView api={client} initialEditionId={E3} />);
+    expect(await screen.findByText("빈 교재")).toBeVisible();
+
+    // 앞 판본의 읽기가 뒤늦게 실패한다 — 지금 화면의 일이 아니다
+    await act(async () => {
+      second.reject(new Error("구획을 읽지 못했습니다."));
+    });
+    expect(
+      screen.queryByText("구획을 읽지 못했습니다."),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "세부 편집" }));
+    expect(
+      screen.queryByRole("textbox", { name: "대사" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("구획을 읽는 사이에 구획 없는 판본이 열리면, 늦게 온 읽기가 그 빈 판본에 옛 원고를 세우지 않는다", async () => {
+    const E3 = "00000000-0000-4000-8000-0000000000e3";
+    const base = editionOf();
+    const empty: EditionDetail = {
+      ...base,
+      editionId: E3,
+      bookId: "book-3",
+      title: "빈 교재",
+      structureSource: {
+        ...base.structureSource,
+        outline: [],
+      } as unknown as NonNullable<EditionDetail["structureSource"]>,
+      units: [],
+    };
+    const second = deferred<SectionDetail>();
+    const getSection = vi.fn((_edition: string, sectionId: string) =>
+      sectionId === "section-2" ? second.promise : Promise.resolve(section()),
+    );
+    const client = api({
+      openEdition: vi.fn(async (id: string) =>
+        id === E3 ? empty : editionOf(),
+      ),
+      getSection,
+    });
+    const view = await openStudio(client);
+    fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
+    fireEvent.click(screen.getByRole("button", { name: "연습" }));
+    await waitFor(() =>
+      expect(getSection).toHaveBeenCalledWith("edition-1", "section-2"),
+    );
+    view.rerender(<TextbookStudioView api={client} initialEditionId={E3} />);
+    expect(await screen.findByText("빈 교재")).toBeVisible();
+
+    await act(async () => {
+      second.resolve(
+        section({ sectionId: "section-2", title: "연습", parity: "continue" }),
+      );
+    });
+    fireEvent.click(screen.getByRole("button", { name: "세부 편집" }));
+    expect(
+      screen.queryByRole("textbox", { name: "대사" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("다시 고정의 응답이 다른 판본의 문항 목록에 끼어들지 않는다", async () => {
     type Recaptured = Awaited<ReturnType<TextbookStudioApi["recaptureItem"]>>;
     const request = deferred<Recaptured>();

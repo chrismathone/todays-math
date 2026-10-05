@@ -381,7 +381,14 @@ export function TextbookStudioView({
       // 읽는 사이에 다른 구획 · 판본을 읽기 시작했으면(주소 동기화는 처리 중에도 판본을 연다) 이 읽기는 버린다 —
       // 늦게 온 앞 읽기가 뒤에 연 원고와 개념 상태를 덮지 않는다.
       const turn = ++loadTurn.current;
-      const section = await api.getSection(nextEdition.editionId, sectionId);
+      let section: SectionDetail;
+      try {
+        section = await api.getSection(nextEdition.editionId, sectionId);
+      } catch (reason) {
+        // 지난 차례의 실패는 지금 화면의 일이 아니다 — 부른 쪽이 다른 판본에 오류를 띄우지 않게 삼킨다
+        if (turn !== loadTurn.current) return;
+        throw reason;
+      }
       if (turn !== loadTurn.current) return;
       if (
         sectionId ===
@@ -527,6 +534,8 @@ export function TextbookStudioView({
         setMode("student");
         const first = next.units.flatMap((unit) => unit.sections)[0];
         if (!first) {
+          // 읽을 구획이 없어도 앞서 시작한 읽기는 무효다 — 늦게 와서 빈 판본에 옛 원고를 세우지 않게 한다
+          loadTurn.current += 1;
           setDraft(null);
           setSaved(null);
           return;
@@ -618,6 +627,7 @@ export function TextbookStudioView({
       setMode("student");
       const first = next.units.flatMap((unit) => unit.sections)[0];
       if (!first) {
+        loadTurn.current += 1;
         setDraft(null);
         setSaved(null);
         return;
@@ -749,6 +759,7 @@ export function TextbookStudioView({
       setNotice("새 초안을 만들었습니다.");
       const first = next.units.flatMap((unit) => unit.sections)[0];
       if (!first) {
+        loadTurn.current += 1;
         setDraft(null);
         setSaved(null);
         setConceptLinks([]);
