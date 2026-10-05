@@ -21,7 +21,9 @@ export function sourceContext(record, liveBySet) {
   for (const plan of plans) {
     if (plan.kind !== "single" || plan.officialInstruction || !sections)
       continue;
-    const head = sections.get(plan.sourceNumber).headText;
+    // The exact transcript text between the number and the first speech (a
+    // bracketed stage direction is not spoken and is not part of it).
+    const head = sections.get(plan.sourceNumber).instruction?.text ?? "";
     if (hasHangul(head) && /[.?]$/.test(head)) {
       plan.officialInstruction = head;
       plan.instructionSource = "official_transcript_section_head";
