@@ -12,6 +12,7 @@ import {
 } from "@/contracts/englishListeningHttp.contract";
 import { listeningMediaCompletionSchema } from "@/contracts/englishListeningMedia.contract";
 import { freezeListeningValue, listeningValueHash } from "../publication";
+import { usesWholeSourceAssessmentAudio } from "../wholeSource";
 import { decodeListeningMp3Pcm } from "../media/mp3Clip";
 import { MAX_DURATION_MS, MAX_ORIGINAL_BYTES, parseMp3 } from "../media/mp3";
 import { inspectListeningMedia } from "../media/inspect";
@@ -486,6 +487,10 @@ async function lockedSource(
     set.branch_id !== target.branchId
   )
     throw denied();
+  if (usesWholeSourceAssessmentAudio(set.document))
+    fail(
+      "national listening and mock assessments require whole-source audio; question audio splitting is disabled (including dry runs)",
+    );
   if (
     !set.document.rightsReview ||
     set.document.rights.rightsStatus !== "approved" ||
