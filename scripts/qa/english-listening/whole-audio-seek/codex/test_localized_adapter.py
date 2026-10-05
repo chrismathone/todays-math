@@ -141,6 +141,33 @@ class LocalizedAdmissionTests(unittest.TestCase):
         self.f.sync()
         self.assertEqual(self.f.validate()[2], "localized_generation_native")
 
+    def test_actual_shared_declarative_instruction_requires_reliable_answer_ending(self):
+        self.f.raw["segments"][0]["text"] = "1번과 2번은 대화를 듣고 가장 알맞은 것을 고르는 문제입니다."
+        self.f.row.update(kind="shared_instruction_head", cueSpokenNumbers=[1, 2])
+        self.f.sync()
+        self.rejects("localized_instruction_missing_or_incomplete")
+        self.f.raw["segments"].append({**segment(102, "잘 듣고 답하세요.", 2.1, 3),
+                                      "localStartSeconds": 2.1, "localEndSeconds": 3, "words": []})
+        self.f.sync()
+        # Preserve the producer's first-segment quote. The verifier independently
+        # derives completion from the next reliable contiguous raw segment.
+        evidence = self.f.row["probeEvidence"]
+        evidence.update(segmentIds=[101], text=self.f.raw["segments"][0]["text"])
+        proof = self.f.validate()[0]
+        self.assertEqual(proof["instructionContext"]["segmentIds"], [101, 102])
+        self.assertEqual(evidence["segmentIds"], [101])
+
+    def test_partial_instruction_cannot_borrow_completion_after_dialogue(self):
+        self.f.raw["segments"][0]["text"] = "1번과 2번은 대화를 듣고"
+        self.f.raw["segments"].extend([
+            {**segment(102, "We have two questions now.", 2.1, 3), "localStartSeconds": 2.1, "localEndSeconds": 3, "words": []},
+            {**segment(103, "잘 듣고 답하세요.", 3.1, 4), "localStartSeconds": 3.1, "localEndSeconds": 4, "words": []}])
+        self.f.row.update(kind="shared_instruction_head", cueSpokenNumbers=[1, 2])
+        self.f.sync()
+        self.rejects("localized_instruction_crosses_dialogue")
+        self.f.row["probeEvidence"].update(segmentIds=[101], text=self.f.raw["segments"][0]["text"])
+        self.rejects("localized_instruction_crosses_dialogue")
+
     def test_final_reliable_segment_reveals_true_joint_passage(self):
         self.f.raw["segments"][0]["text"] = "1번과 2번입니다. 다음 대화를 듣고"
         self.f.raw["segments"].append({**segment(102, "두 물음에 답하시오.", 2.1, 3),
