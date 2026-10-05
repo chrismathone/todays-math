@@ -522,18 +522,17 @@ export function resolveSource({
       const heardOfficial = (text) =>
         official &&
         coverage(official, text) >= POLICY.minimumInstructionCoverage;
+      // Segments that wrote this number with the measured onset in their span.
+      const holding = [];
       segments.forEach((segment, at) => {
         const cue = leadingCue(segment.text);
-        const bound =
+        const holds =
           cue &&
           cue.numbers.join() === numbers &&
           segment.estimatedStartSeconds - 2 <= onsetSeconds &&
           onsetSeconds <= segment.estimatedEndSeconds + 2;
-        if (bound) {
-          cueSegments.push(segment);
-          if (heardOfficial(cue.rest)) anchorSegments.push(segment);
-          else if (segments[at + 1] && heardOfficial(segments[at + 1].text))
-            anchorSegments.push(segments[at + 1]);
+        if (holds) {
+          holding.push({ segment, at, cue });
           return;
         }
         const nearby =
@@ -542,6 +541,17 @@ export function resolveSource({
         if (nearby && heardOfficial(segment.text))
           diagnosticSegments.push(segment);
       });
+      // Exactly one such segment is a bound cue. When the frozen ASR repeated
+      // the announcement, none of the repeats is singled out: all are quoted
+      // as diagnostic text and the native probe alone carries the number.
+      if (holding.length === 1) {
+        const { segment, at, cue } = holding[0];
+        cueSegments.push(segment);
+        if (heardOfficial(cue.rest)) anchorSegments.push(segment);
+        else if (segments[at + 1] && heardOfficial(segments[at + 1].text))
+          anchorSegments.push(segments[at + 1]);
+      } else
+        for (const entry of holding) diagnosticSegments.push(entry.segment);
       const anchor = anchors.get(plan.sourceNumber);
       if (anchor.supporting.length) {
         identity.push(

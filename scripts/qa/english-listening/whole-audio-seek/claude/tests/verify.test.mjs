@@ -224,6 +224,38 @@ test("frozen ASR quotes are replayed by raw id", () => {
   const twice = fresh();
   rowOf(twice, 1).cueSegmentIds = [1, 1];
   assert.ok(codes(twice).includes("malformed_segment_reference"));
+  // When the frozen ASR wrote the announcement twice, neither is the cue.
+  const repeated = {
+    segments: [
+      {
+        id: 1,
+        text: "1번",
+        estimatedStartSeconds: 5,
+        estimatedEndSeconds: 10.2,
+        uncertain: false,
+      },
+      {
+        id: 2,
+        text: "1번",
+        estimatedStartSeconds: 10.2,
+        estimatedEndSeconds: 11,
+        uncertain: false,
+      },
+    ],
+  };
+  const record = makeRecord();
+  const doubled = buildLedger({
+    record,
+    native: makeNative(record),
+    probes: goodProbes(),
+    asr: repeated,
+  });
+  assert.deepEqual(rowOf(doubled, 1).cueSegmentIds, []);
+  assert.deepEqual(rowOf(doubled, 1).diagnosticAsrSegmentIds, [1, 2]);
+  assert.deepEqual(codes(doubled), []);
+  rowOf(doubled, 1).cueSegmentIds = [1, 2];
+  rowOf(doubled, 1).cueText = "1번 1번";
+  assert.ok(codes(doubled).includes("ambiguous_cue_reference"));
   // The official sentence right at the cue is the anchor; nothing else is.
   const bound = fresh();
   assert.deepEqual(rowOf(bound, 1).anchorSegmentIds, [2]);

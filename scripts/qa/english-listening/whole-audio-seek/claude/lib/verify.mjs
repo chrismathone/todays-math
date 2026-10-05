@@ -347,6 +347,8 @@ export function verifyMarks(marks, env) {
       if (row[textField] !== text)
         report("full_asr_quote_changed", record, question, textField);
       if (idsField === "cueSegmentIds") {
+        // A repeated announcement in the frozen ASR singles out no cue.
+        if (ids.length > 1) report("ambiguous_cue_reference", record, question);
         const onsetSeconds = fact.onsetFrame / pcm.sampleRate;
         for (const id of ids) {
           const segment = byId.get(id);
