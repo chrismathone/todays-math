@@ -127,6 +127,42 @@ def verify(pdf, witness):
     for key in required:
         if witness.get("coverage", {}).get(key) is not True:
             fail("WITNESS_COVERAGE_REQUIRED", check=key)
+    if witness.get("version", 1) >= 2:
+        evidence = witness.get("coverageEvidence", {})
+        if evidence.get("pdfSha256") != witness.get("pdfSha256"):
+            fail("COVERAGE_EVIDENCE_HASH")
+        if evidence.get("expectedPages") != len(document) or evidence.get("observedPages") != len(expected):
+            fail("COVERAGE_PAGE_ACCOUNTING")
+        actual_blocks = sum(p.get("accounting", {}).get("actualBlocks", 0) for p in expected)
+        if evidence.get("expectedPlacedBlocks") != actual_blocks or evidence.get("observedBlocks") != actual_blocks:
+            fail("COVERAGE_BLOCK_ACCOUNTING")
+        for p in expected:
+            accounting = p.get("accounting", {})
+            if witness.get("sourceComparisonRequired"):
+                if not re.fullmatch(r"[a-f0-9]{64}", witness.get("sourceGeometrySha256", "")):
+                    fail("SOURCE_ORACLE_HASH_REQUIRED", p.get("physicalPageIndex"))
+                if p.get("sourceReferenceFound") is not True or not p.get("anchorAccounting"):
+                    fail("SOURCE_ORACLE_PAGE_REQUIRED", p.get("physicalPageIndex"))
+            if (accounting.get("placementFound") is not True
+                    or accounting.get("expectedBlocks") != accounting.get("actualBlocks")
+                    or any(accounting.get(k) for k in ("missingBlocks", "unexpectedBlocks", "duplicateBlocks"))):
+                fail("DOM_BLOCK_POPULATION", p.get("physicalPageIndex"))
+            if p.get("fontsLoaded") is not True:
+                fail("DOM_FONT_LOADING", p.get("physicalPageIndex"))
+            if accounting.get("missingWritingIds"):
+                fail("DOM_WRITING_POPULATION", p.get("physicalPageIndex"), nodes=accounting["missingWritingIds"])
+            if accounting.get("missingQrIds"):
+                fail("DOM_QR_POPULATION", p.get("physicalPageIndex"), nodes=accounting["missingQrIds"])
+            if accounting.get("missingActivityIds"):
+                fail("DOM_ACTIVITY_POPULATION", p.get("physicalPageIndex"), nodes=accounting["missingActivityIds"])
+            if accounting.get("missingNumberIds"):
+                fail("DISPLAY_NUMBER", p.get("physicalPageIndex"), nodes=accounting["missingNumberIds"])
+            for key, count in (("clips", "clipCandidates"), ("writeBoxes", "writeCandidates"), ("qrs", "qrCandidates")):
+                if accounting.get(count) != len(p.get(key, [])):
+                    fail("DOM_POPULATION_ACCOUNTING", p.get("physicalPageIndex"), check=key)
+            for anchor in p.get("anchorAccounting", []):
+                if not anchor.get("found") or anchor.get("expectedCount") != anchor.get("actualCount"):
+                    fail("ANCHOR_POPULATION", p.get("physicalPageIndex"), anchor.get("id"))
     disabled = set(witness.get("disabledActivities", []))
     public = set(witness.get("publicExampleItemIds", []))
     phases = defaultdict(list)
@@ -221,10 +257,59 @@ def verify(pdf, witness):
                 width = write.get("columnWidthMm", bounds[2] - bounds[0])
                 if write.get("written") and line["x1"] - line["x0"] < 0.95 * width - 0.05:
                     fail("WRITE_LENGTH", number, write.get("id"), actual=line["x1"] - line["x0"])
-            ys = sorted(set(round(v["y"], 3) for v in found))
-            for a, b in zip(ys, ys[1:]):
-                if abs(b - a - 7) > TOL:
-                    fail("WRITE_PITCH", number, write.get("id"), actual=b - a)
+            if write.get("writingSpace") == "native-source":
+                lines = write.get("nativeLines")
+                expected_count = write.get("nativeExpectedLineCount")
+                if not isinstance(lines, list) or not isinstance(expected_count, int) or expected_count < 1:
+                    fail("NATIVE_WRITE_DOM_REQUIRED", number, write.get("id"))
+                    lines = []
+                if len(lines) != expected_count or len(found) != expected_count:
+                    fail("NATIVE_WRITE_VECTOR_POPULATION", number, write.get("id"),
+                         actualPdf=len(found), actualDom=len(lines), expected=expected_count)
+                found.sort(key=lambda vector: vector["y"])
+                for dom, vector in zip(lines, found):
+                    box = dom.get("boxMm") if isinstance(dom, dict) else None
+                    thickness = dom.get("thicknessMm") if isinstance(dom, dict) else None
+                    if not finite_box(box) or not isinstance(thickness, (int, float)) or not math.isfinite(thickness) or thickness <= 0:
+                        fail("NATIVE_WRITE_DOM_INVALID", number, write.get("id"))
+                        continue
+                    expected_vector = [box[0], box[2], box[3] - thickness / 2]
+                    if max(abs(a - b) for a, b in zip(expected_vector, [vector["x0"], vector["x1"], vector["y"]])) > TOL:
+                        fail("NATIVE_WRITE_DOM_PDF_COORDINATE", number, write.get("id"))
+                    if abs(thickness - vector["thicknessMm"]) > .005:
+                        fail("NATIVE_WRITE_DOM_PDF_THICKNESS", number, write.get("id"))
+                if write.get("nativeReferenceRequired"):
+                    reference = write.get("nativeReference")
+                    reference_lines = reference.get("lines") if isinstance(reference, dict) else None
+                    reference_vectors = reference.get("referencePdfVectors") if isinstance(reference, dict) else None
+                    if (write.get("nativeReferencePdfSha256") != "6c24ba6e65e7dd4dec18dd24fafe0fb483e0bde0f7bbd5144f6d2411d0c773d0"
+                            or not isinstance(write.get("nativeReferenceDomSha256"), str)
+                            or not re.fullmatch(r"[a-f0-9]{64}", write["nativeReferenceDomSha256"])
+                            or not isinstance(reference, dict)
+                            or not finite_box(reference.get("boxMm"))
+                            or not isinstance(reference_lines, list)
+                            or len(reference_lines) != expected_count
+                            or not all(isinstance(line, dict) and finite_box(line.get("boxMm")) for line in reference_lines)
+                            or not isinstance(reference_vectors, list)
+                            or len(reference_vectors) != expected_count
+                            or not all(isinstance(vector, dict) and all(isinstance(vector.get(key), (int, float)) and math.isfinite(vector[key]) for key in ["x0", "x1", "y", "thicknessMm"]) for vector in reference_vectors)):
+                        fail("NATIVE_WRITE_REFERENCE_REQUIRED", number, write.get("id"))
+                    else:
+                        if max(abs(a - b) for a, b in zip(bounds, reference["boxMm"])) > TOL:
+                            fail("NATIVE_WRITE_BOUNDS", number, write.get("id"))
+                        for actual, native in zip(found, reference["referencePdfVectors"]):
+                            if max(abs(actual[key] - native[key]) for key in ["x0", "x1", "y"]) > TOL:
+                                fail("NATIVE_WRITE_PDF_COORDINATE", number, write.get("id"))
+                            if abs(actual["thicknessMm"] - native["thicknessMm"]) > .005:
+                                fail("NATIVE_WRITE_PDF_THICKNESS", number, write.get("id"))
+                        for actual, native in zip(lines, reference["lines"]):
+                            if not isinstance(actual, dict) or not finite_box(actual.get("boxMm")) or max(abs(a - b) for a, b in zip(actual["boxMm"], native["boxMm"])) > TOL:
+                                fail("NATIVE_WRITE_DOM_COORDINATE", number, write.get("id"))
+            else:
+                ys = sorted(set(round(v["y"], 3) for v in found))
+                for a, b in zip(ys, ys[1:]):
+                    if abs(b - a - 7) > TOL:
+                        fail("WRITE_PITCH", number, write.get("id"), actual=b - a)
             for band in bands:
                 if contains(bounds, band) and band[2] - band[0] >= (bounds[2] - bounds[0]) * 0.5:
                     fail("WRITE_GREY_BAND", number, write.get("id"), boxMm=band)
@@ -237,7 +322,7 @@ def verify(pdf, witness):
                 fail("QR_CLIPPED", number, qr.get("id"))
         for row in expected_page.get("rows", []):
             checked["rows"] += 1
-            phases[row.get("phase")].append(row)
+            phases[row.get("phase") or "unphased"].append(row)
         for node in expected_page.get("nodes", []):
             checked["semanticNodes"] += 1
             all_nodes.append(node)
