@@ -35,7 +35,7 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-source-problem[data-source-kind="drill"]{padding:2.5mm 0 2mm}
 .tb-source-problem[data-source-kind="exercise"]{padding:2mm 0;min-height:40mm}
 .tb-source-problem[data-source-kind="practice"]{padding:2.5mm 0 3mm}
-.tb-source-problem[data-source-kind="practice"] .tb-problem-head,.tb-source-problem[data-source-kind="clinic"] .tb-problem-head{margin-bottom:2mm}
+.tb-source-problem[data-source-kind="practice"] .tb-problem-head{margin-bottom:2mm}
 .tb-source-problem[data-source-kind="clinic"]{padding:2.5mm 0 3mm}
 .tb-source-fragments[data-source-kind="practice"] .reflection{background:var(--tb-soft);border:0;border-radius:0 4mm 0 0;padding:3mm 4mm;font-size:8pt;line-height:1.8}
 .tb-source-fragments[data-source-kind="practice"] .reflection strong{display:block;color:var(--tb-accent);font-size:9pt;margin-bottom:1.3mm}
