@@ -49,6 +49,9 @@ const { values } = parseArgs({
     // gaps mode: "held" listens only for questions still held, "support" only
     // adds English first-utterance listenings to rows that are candidates.
     only: { type: "string" },
+    // gaps mode: add support only for the questions named in this JSON file
+    // ({ records: [{ sourceRecordId, sourceNumber }] } or a bare array).
+    "support-list": { type: "string" },
     "only-unprobed": { type: "boolean" },
     "source-id": { type: "string", multiple: true },
   },
@@ -97,6 +100,14 @@ const ledger = values.ledger
   : null;
 if (values.mode === "gaps" && !ledger)
   throw new Error("--mode gaps needs --ledger");
+const supportList = values["support-list"]
+  ? new Set(
+      (() => {
+        const parsed = JSON.parse(readFileSync(values["support-list"], "utf8"));
+        return Array.isArray(parsed) ? parsed : parsed.records;
+      })().map((item) => item.sourceRecordId + "#" + item.sourceNumber),
+    )
+  : null;
 const maxPerGap = Number(values["max-per-gap"] ?? 5);
 /** A spoken "N번" is longer than this many windows (240 ms). */
 const SHORTEST_NUMBER_WINDOWS = 12;
@@ -267,7 +278,13 @@ for (const record of records) {
     // its window there, so the dialogue is heard from its own first sound.
     for (const item of [
       ...(values.only === "support" ? [] : (source.memberDialogue ?? [])),
-      ...(values.only === "held" ? [] : (source.dialogueWanted ?? [])),
+      ...(values.only === "held"
+        ? []
+        : (source.dialogueWanted ?? []).filter(
+            (item) =>
+              !supportList ||
+              supportList.has(record.sourceRecordId + "#" + item.sourceNumber),
+          )),
     ]) {
       const after = item.afterFrame ?? item.startFrame + frames;
       const reach = item.reachFrames ?? 6 * sampleRate;
