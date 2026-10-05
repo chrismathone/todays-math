@@ -350,7 +350,8 @@ def native_adapter_validator(adapter):
                "native-localized-generation-v2": "localized_adapter",
                "native-localized-generation-boundary-v3": "localized_boundary_adapter",
                "official-catalogued-native-v1": "official_catalog_adapter",
-               "official-pdf-native-scope-v2": "official_pdf_scope_adapter"}
+               "official-pdf-native-scope-v2": "official_pdf_scope_adapter",
+               "official-native-next-pair-v3": "official_next_pair_adapter"}
     require(adapter in modules, "unknown_native_adapter")
     return importlib.import_module(modules[adapter]).validate
 
@@ -385,7 +386,7 @@ class NativeReplay:
 
 def shared_native_key(row):
     proof = row["proofKey"]
-    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2"):
+    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2", "official-native-next-pair-v3"):
         return proof
     # Every generated question has its own separately verified quote mapping.
     # A common passage key retains all common physical head/neighbor identity.
@@ -482,7 +483,7 @@ def check_dialogue_order(results, sources):
         expected = sorted(q["sourceNumber"] for q in source["questions"])
         for row in rows:
             binding = row.get("proofKey", {}).get("dialogueBinding", {})
-            if row["status"] == "admitted" and row.get("evidenceAdapter") == "official-pdf-native-scope-v2":
+            if row["status"] == "admitted" and row.get("evidenceAdapter") in ("official-pdf-native-scope-v2", "official-native-next-pair-v3"):
                 if not official_native_admission_origin(row):
                     errors[row["questionId"]].append("official_scope_native_order_proof_missing_or_changed")
                 continue
@@ -579,6 +580,9 @@ def validate_frozen_source(source, manifest):
 
 def official_native_admission_origin(row):
     """A named official PDF tier cannot inherit as an ordinary numbered grade."""
+    if isinstance(row, dict) and row.get("evidenceGrade") == "official_native_next_pair_v3":
+        from official_next_pair_adapter import admission_origin
+        return admission_origin(row)
     if not isinstance(row, dict) or not isinstance(row.get("proofKey"), dict):
         return False
     proof = row.get("proofKey", {})
@@ -757,7 +761,7 @@ def verified_ancestor_rows(inventory, clocks, snapshots, boundary_authority=None
                 require(not question.get("audioRange") and row["audioRange"]["endMs"] == source["audio"]["durationMs"],
                         "ancestor_admission_overwrites_original")
                 question["audioRange"] = copy.deepcopy(row["audioRange"])
-                if row.get("evidenceGrade") == "official_pdf_native_scope_v2":
+                if row.get("evidenceGrade") in ("official_pdf_native_scope_v2", "official_native_next_pair_v3"):
                     require(official_native_admission_origin(row), "ancestor_official_native_scope_unverified")
                 new_count += 1
                 if row.get("scopeQuestionNumbers") and integer(row.get("nativeEvidence", {}).get("onsetFrame")):
@@ -995,6 +999,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                               originalQuestionIdentity=original_identity, cueSpokenNumbers=row.get("cueSpokenNumbers"),
                               mappingEvidence=row.get("mappingEvidence"), scriptEvidence=row.get("scriptEvidence"),
                               dialogueProbeEvidence=row.get("dialogueProbeEvidence"), nextProbeEvidence=row.get("nextProbeEvidence"),
+                              nextNumberClipEvidence=row.get("nextNumberClipEvidence"), originalStartAdapter=row.get("originalStartAdapter"),
                               nextBoundaryProbeEvidence=row.get("nextBoundaryProbeEvidence"), nextBoundaryNativeEvidence=row.get("nextBoundaryNativeEvidence"),
                               terminalProbeEvidence=row.get("terminalProbeEvidence"), sharedHeadProbeEvidence=row.get("sharedHeadProbeEvidence"),
                               nextCertificateEvidence=row.get("nextCertificateEvidence"),
