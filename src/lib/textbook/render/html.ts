@@ -13,6 +13,7 @@ import { EDITORIAL_CSS } from "./editorialCss";
 import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
 import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
 import { SOURCE_PROBLEM_CSS } from "./sourceProblemCss";
+import { dialoguePageProgress } from "./dialoguePageProgress";
 import {
   renderAutomaticIntroHtml,
   AUTOMATIC_INTRO_CSS,
@@ -126,6 +127,7 @@ export function renderPageHtml(
   page: TextbookPage,
   model: TextbookRenderModel,
   resources: RenderResources,
+  contextPages: readonly TextbookPage[] = [page],
 ): string {
   if (page.kind === "cover") {
     return renderCoverHtml(page, model, resources);
@@ -184,15 +186,18 @@ export function renderPageHtml(
     const block = blocks.get(placement.blockId);
     return Boolean(block?.semantic?.source && block.semantic.sourceFooter);
   });
+  const progress = dialoguePageProgress(page, contextPages, model);
+  const dialogueIndex = scriptIndex ?? progress?.index ?? 1;
+  const dialogueTotal = scriptTotal || progress?.total || 1;
   const continueNote =
     dialogue.length && !hasSourceDialogueFooter
       ? `<div class="tb-dialogue-page-note" style="left:${left}mm;right:${right}mm">${renderDialogueContinueHtml(
           {
             label: "단원을 여는 수업",
-            index: scriptIndex ?? 1,
-            total: scriptTotal || 1,
+            index: dialogueIndex,
+            total: dialogueTotal,
             note:
-              scriptIndex && scriptIndex < scriptTotal
+              dialogueIndex < dialogueTotal
                 ? "다음 쪽에서 이어집니다."
                 : "수업에서 배운 내용을 설명해 보세요.",
           },

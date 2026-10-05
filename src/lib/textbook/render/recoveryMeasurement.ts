@@ -52,11 +52,7 @@ export function recoveryMeasurePlan(
           ...((isDialoguePlacement(block) && block.semantic) ||
           block.dialogueLesson
             ? {
-                dialogueGroup: section.blocks.some(
-                  (candidate) => candidate.semantic?.source?.kind === "opening",
-                )
-                  ? section.unitKey
-                  : section.sectionKey,
+                dialogueGroup: section.unitKey,
                 dialoguePage: section.sectionKey,
                 ...(block.dialogueLesson ? { dialogueCaption: true } : {}),
               }
@@ -66,7 +62,7 @@ export function recoveryMeasurePlan(
     ),
   };
 }
-/** Original multi-page scripts are fitted as one unit even when publishing divides the pages into steps. */
+/** Semantic lessons share their unit's font even when publishing divides sections into steps. */
 export function dialogueMeasurementModel(
   whole: TextbookRenderModel,
   selected: TextbookRenderModel,
@@ -74,7 +70,9 @@ export function dialogueMeasurementModel(
   const wanted = new Set(
     selected.sections.flatMap((section) =>
       section.blocks.flatMap((block) =>
-        block.semantic?.source?.kind === "opening" ? [section.unitKey] : [],
+        (isDialoguePlacement(block) && block.semantic) || block.dialogueLesson
+          ? [section.unitKey]
+          : [],
       ),
     ),
   );
@@ -366,8 +364,10 @@ export function measureRecoveryDom(
   ];
   for (const group of groups) {
     const blocks = plan.blocks.filter(
-      (block) => block.dialogueGroup === group && elements.has(block.id),
+      (block) => block.dialogueGroup === group,
     );
+    if (blocks.some((block) => !elements.has(block.id)))
+      throw new Error("Missing dialogue unit measurement");
     const pages = [...new Set(blocks.map((block) => block.dialoguePage!))];
     let chosen = 9.2;
     for (let tenth = 105; tenth >= 92; tenth--) {

@@ -14,7 +14,10 @@ import {
   TEXTBOOK_TEMPLATE_VERSION,
   type TextbookRenderModel,
 } from "@/lib/textbook/render/model";
-import { recallMeasurementModel } from "@/lib/textbook/render/recoveryMeasurement";
+import {
+  recallMeasurementModel,
+  dialogueMeasurementModel,
+} from "@/lib/textbook/render/recoveryMeasurement";
 
 import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 
@@ -40,6 +43,7 @@ export type SectionPreview =
       ok: true;
       model: TextbookRenderModel;
       recallMeasurementModel?: TextbookRenderModel;
+      dialogueMeasurementModel?: TextbookRenderModel;
       resources: PreviewResources;
       /** 예약이 없는 초안·발행본. 측정은 하고, 해설 칸은 비운다. */
       provisionalNotice: string | null;
@@ -367,6 +371,7 @@ export function buildSectionPreview(input: {
   const parsed = textbookExchangeSchema.safeParse(exchange);
   if (!parsed.success) return refuse("미리보기 원고가 계약과 맞지 않습니다.");
   let model: TextbookRenderModel;
+  let dialogueSizing: TextbookRenderModel | undefined;
   try {
     model = createTextbookRenderModel(parsed.data, input.variant);
     // Adjust only the render model: later sections must not prepend the book's
@@ -386,6 +391,25 @@ export function buildSectionPreview(input: {
         },
       };
     }
+    const siblings = input.material?.dialogueUnits
+      ?.find((unit) => unit.unitKey === model.sections[0]?.unitKey)
+      ?.sections.filter((row) => row.sectionKey !== section.sectionKey);
+    if (siblings?.length) {
+      const context = textbookExchangeSchema.parse({
+        ...parsed.data,
+        units: [
+          {
+            ...parsed.data.units[0],
+            sections: [...parsed.data.units[0].sections, ...siblings],
+          },
+        ],
+        assets: input.material!.assets,
+      });
+      dialogueSizing = dialogueMeasurementModel(
+        createTextbookRenderModel(context, input.variant),
+        model,
+      );
+    }
   } catch (reason) {
     const message =
       reason instanceof Error && reason.message
@@ -404,6 +428,7 @@ export function buildSectionPreview(input: {
   return {
     ok: true,
     model,
+    ...(dialogueSizing ? { dialogueMeasurementModel: dialogueSizing } : {}),
     recallMeasurementModel: recallMeasurementModel(
       createTextbookRenderModel(parsed.data, "answers"),
       model,

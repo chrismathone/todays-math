@@ -67,7 +67,7 @@ export function TextbookSpread({
             key={page.physicalPageIndex}
             data-textbook-paper-host
             dangerouslySetInnerHTML={{
-              __html: renderPageHtml(page, model, resources),
+              __html: renderPageHtml(page, model, resources, pages),
             }}
           />
         ))}
