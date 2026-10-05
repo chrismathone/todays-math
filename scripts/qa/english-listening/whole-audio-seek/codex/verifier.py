@@ -627,7 +627,7 @@ def verified_ancestor_rows(inventory, clocks, snapshots):
     return inherited, claim["certificate"]
 
 
-def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_replay=None, report_progress=False):
+def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_replay=None, report_progress=False, source_replay_factory=None):
     started = time.monotonic()
     implementation = [reference(p) for p in sorted(Path(__file__).parent.iterdir()) if p.suffix in (".py", ".mts", ".md")]
     inventory_ref = reference(inventory_path)
@@ -713,7 +713,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
         if not source_error and any(r and r.get("status") == "candidate" and r.get("probeEvidence") for r in source_rows):
             try:
                 from claude_adapter import SourceReplay
-                adapter_replay = SourceReplay(inventory["root"], source, clock_index[sid], source_rows)
+                adapter_replay = (source_replay_factory or SourceReplay)(inventory["root"], source, clock_index[sid], source_rows)
             except (InvalidEvidence, OSError, KeyError, TypeError, ValueError, subprocess.SubprocessError) as e:
                 adapter_error = str(e)
         for question in source["questions"]:

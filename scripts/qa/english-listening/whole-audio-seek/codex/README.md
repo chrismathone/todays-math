@@ -54,6 +54,13 @@ The TypeSafe design and evidence boundaries are documented in [CONTRACT.md](CONT
 No new recognition runs are launched by this verifier. Producers use the shared
 serialized GPU queue; replay itself is CPU-only.
 
+`parallel_verifier.py` accepts the same complete replay arguments and prefetches
+at most two actual CPU source decodes. It calls the same `verifier.run` and
+`claude_adapter.SourceReplay`; no identity, physical hash, uncertainty, order or
+admission check changes. PCM stays in bounded memory and is never cached on disk.
+The executor closes and clears pending results on completion or failure. Include
+this runner in the immutable implementation archive when executing it.
+
 Run the independent complete reconstructed mapping audit with `mapping_audit.py
 --inventory INVENTORY --clock CLOCK --frozen FROZEN --probes-root GROK_PROBES
 --proposal IMMUTABLE_LEDGER --output NEW_REPORT.json`. Its complete rows preserve
