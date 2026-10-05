@@ -204,6 +204,23 @@ class LocalizedAdmissionTests(unittest.TestCase):
         self.f.request_path.write_text("{}", encoding="utf-8")
         self.rejects("hash_mismatch")
 
+    def test_diagnostic_provider_envelope_cannot_hide_wrong_raw_hash(self):
+        raw_path = self.f.folder / "provider-raw.json"
+        envelope_path = self.f.folder / "provider-envelope.json"
+        self.f.write(raw_path, {"segments": []})
+        self.f.write(envelope_path, {"sourceAudioSha256": self.f.source["sourceAudioSha256"],
+                                     "rawPath": str(raw_path), "rawSha256": "wrong-hash"})
+        self.f.container["upstreamArtifacts"] = [v.reference(envelope_path)]
+        self.f.sync()
+        self.rejects("artifact_hash_mismatch")
+
+    def test_hash_valid_provider_envelope_cannot_change_physical_source(self):
+        envelope_path = self.f.folder / "provider-envelope.json"
+        self.f.write(envelope_path, {"sourceAudioSha256": "other-original"})
+        self.f.container["upstreamArtifacts"] = [v.reference(envelope_path)]
+        self.f.sync()
+        self.rejects("localized_upstream_wrong_source:sourceAudioSha256")
+
     def test_wrong_actual_clip_pcm_is_held(self):
         self.f.dialogue["clipPcmSha256"] = "bad"
         self.f.sync()
@@ -256,6 +273,32 @@ class LocalizedAdmissionTests(unittest.TestCase):
 
     def test_unreferenced_raw_artifact_cannot_be_omitted_from_catalog(self):
         self.f.write(self.f.probe_path.parent / "omitted.json", self.f.container)
+        self.rejects("localized_incomplete_probe_catalog")
+
+    def fixed_round_catalog(self):
+        folder = self.f.folder / "probes" / "round-001"
+        folder.mkdir(parents=True)
+        self.f.probe_path = folder / "source-a.json"
+        self.f.sync()
+        catalog = self.f.folder / "catalog.json"
+        self.f.write(catalog, {"rawArtifacts": [v.reference(self.f.probe_path)],
+                               "roots": [{"path": str(self.f.folder), "rounds": ["round-001"],
+                                          "patterns": ["probes/round-001/source-a.json"]}]})
+        self.f.row["probeCatalog"] = v.reference(catalog)
+
+    def test_fixed_round_catalog_replays_actual_declared_source(self):
+        self.fixed_round_catalog()
+        self.assertEqual(self.f.validate()[2], "localized_generation_native")
+
+    def test_fixed_round_catalog_cannot_hide_declared_raw_container(self):
+        self.fixed_round_catalog()
+        extra = self.f.probe_path.parent / "source-b.json"
+        self.f.write(extra, self.f.container)
+        catalog = self.f.folder / "catalog.json"
+        value = v.read(catalog)
+        value["roots"][0]["patterns"].append("probes/round-001/source-b.json")
+        self.f.write(catalog, value)
+        self.f.row["probeCatalog"] = v.reference(catalog)
         self.rejects("localized_incomplete_probe_catalog")
 
     def test_localized_english_clip_needs_no_invented_native_speech_onset(self):
