@@ -33,15 +33,25 @@ const resources = {
 };
 const parse = (html: string) =>
   new DOMParser().parseFromString(html, "text/html");
-/** The rendered prompt with every choice row tag taken out again. */
-const unwrap = (html: string) =>
-  html.replace(
-    new RegExp(
-      `<span class="${CHOICE_ROW_CLASS}" data-choice-row="\\d+">([\\s\\S]*?)<\\/span>(?=<br>|<\\/p>)`,
-      "g",
-    ),
-    "$1",
-  );
+/** The rendered prompt with every choice row tag, and its own closing tag, taken out again. */
+function unwrap(html: string): string {
+  let out = "";
+  let at = 0;
+  const rows: boolean[] = [];
+  for (const tag of html.matchAll(
+    /<(\/?)([a-zA-Z][a-zA-Z0-9]*)\b[^>]*?(\/?)>/g,
+  )) {
+    if (/^(br|hr|img)$/i.test(tag[2]) || tag[3]) continue;
+    const drop = tag[1]
+      ? rows.pop()
+      : rows.push(tag[0].startsWith(`<span class="${CHOICE_ROW_CLASS}"`)) &&
+        rows[rows.length - 1];
+    if (!drop) continue;
+    out += html.slice(at, tag.index);
+    at = tag.index + tag[0].length;
+  }
+  return out + html.slice(at);
+}
 const prose = (html: string) =>
   /<div class="tb-prose">([\s\S]*?)<\/div><\/div><\/div>/.exec(html)![1];
 
@@ -264,7 +274,7 @@ describe("which lines become choice rows", () => {
       "물음\n① $\\dfrac{1}{2}$ ② $\\dfrac{1}{3}$ ③ $\\dfrac{1}{4}$",
       "물음\n1. $\\dfrac{1}{2}$\n2. $\\dfrac{1}{3}$",
       "물음\n① $\\dfrac{1}{2}$",
-      // A line broken inside emphasis has no clean lines.
+      // Choices that open inside emphasis do not start with a mark.
       "물음\n**① $\\dfrac{1}{2}$\n② $\\dfrac{1}{3}$**",
       // A stem line that opens with a mark makes the marks repeat.
       "①번 물음\n① $\\dfrac{1}{2}$\n② $\\dfrac{1}{3}$",
@@ -281,6 +291,30 @@ describe("which lines become choice rows", () => {
   it("returns the input for malformed markup", () => {
     expect(fractionChoiceRows("</p>① x", 2)).toBe("</p>① x");
     expect(fractionChoiceRows("<p>① x<br>② y", 2)).toBe("<p>① x<br>② y");
+  });
+
+  it("keeps a break inside emphasis inside its own line, so every row stays well formed", () => {
+    for (const content of [
+      // The break is in the stem.
+      "물음 **강조\n계속** 이다.\n① $\\dfrac{1}{2}$\n② $\\dfrac{1}{3}$",
+      // The break is inside the first choice.
+      "물음\n① **$\\dfrac{1}{2}$\n강조**\n② $\\dfrac{1}{3}$",
+    ]) {
+      expect(parseProblemContent(content).choices, content).toHaveLength(2);
+      const html = renderProblemHtml(problem(content), resources);
+      const rows = parse(html).querySelectorAll<HTMLElement>(
+        `.tb-prose > p > .${CHOICE_ROW_CLASS}`,
+      );
+      expect(rows, content).toHaveLength(2);
+      expect(rows[0].textContent!.trim()[0]).toBe("①");
+      expect(rows[1].textContent!.trim()[0]).toBe("②");
+      // Every emphasis closes inside the line it opened in.
+      for (const row of Array.from(rows))
+        expect(row.innerHTML.split("<strong>").length).toBe(
+          row.innerHTML.split("</strong>").length,
+        );
+      expect(unwrap(prose(html))).toBe(md(content));
+    }
   });
 
   it("finds choices that sit in a paragraph after the stem's own paragraph", () => {

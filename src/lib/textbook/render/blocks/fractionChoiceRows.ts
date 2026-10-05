@@ -59,40 +59,34 @@ interface Line {
 
 /**
  * The lines of the top-level paragraphs: the pieces between the `<br>`s that sit directly in a
- * `<p>`. A paragraph that breaks a line inside emphasis has no clean lines and gives none.
+ * `<p>`. Both ends of a piece are at the paragraph's own depth, so every piece is balanced and a
+ * row tag can enclose it; a break inside emphasis stays inside its piece.
  */
 function paragraphLines(html: string): Line[] | null {
   const lines: Line[] = [];
   let depth = 0;
   let lineStart = -1;
-  let own: Line[] = [];
-  let clean = true;
   for (const tag of html.matchAll(TAG)) {
     const name = tag[2].toLowerCase();
     const at = tag.index;
     const after = at + tag[0].length;
     if (name === "br") {
       if (lineStart >= 0 && depth === 1) {
-        own.push({ start: lineStart, end: at });
+        lines.push({ start: lineStart, end: at });
         lineStart = after;
-      } else if (lineStart >= 0) clean = false;
+      }
       continue;
     }
     if (VOID.has(name) || tag[3]) continue;
     if (!tag[1]) {
-      if (name === "p" && depth === 0) {
-        lineStart = after;
-        own = [];
-        clean = true;
-      }
+      if (name === "p" && depth === 0) lineStart = after;
       depth++;
       continue;
     }
     depth--;
     if (depth < 0) return null;
     if (name === "p" && depth === 0 && lineStart >= 0) {
-      own.push({ start: lineStart, end: at });
-      if (clean) lines.push(...own);
+      lines.push({ start: lineStart, end: at });
       lineStart = -1;
     }
   }
