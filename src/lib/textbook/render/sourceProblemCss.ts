@@ -15,7 +15,7 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-editorial-problem[data-source-kind] .tb-source-problem{height:auto}
 .tb-source-fragments[data-source-kind="basic"] .mini-concepts{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
 .tb-source-fragments[data-source-kind="basic"] .mini-concepts>div{padding:2mm 3mm;border:0;border-top:1.3pt solid var(--tb-accent);border-radius:0 3mm 0 0;background:var(--tb-soft);font-size:7.8pt;line-height:1.8}
-.tb-source-fragments[data-source-kind="basic"] .mini-concepts strong{display:block;font-size:8.2pt;line-height:1.65;margin-bottom:1mm;color:var(--tb-accent)}
+.tb-source-fragments[data-source-kind="basic"] .mini-concepts strong{display:block;font-size:8.2pt;line-height:1.8;margin-bottom:1mm;color:var(--tb-accent)}
 .tb-source-question-grid{position:absolute;min-width:0}
 .tb-source-question-grid:before{content:'';position:absolute;left:50%;top:1mm;bottom:2mm;border-left:.5pt solid #edf0eb}
 .tb-source-problem .tb-problem-head>.tag{margin-left:auto;font-size:6.2pt;line-height:1.65;padding:.5mm 1.5mm;border-radius:4mm;background:var(--tb-soft);color:var(--tb-accent);font-weight:700}
