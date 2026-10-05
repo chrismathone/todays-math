@@ -268,7 +268,7 @@ test("a member needs its own number and its own first dialogue", () => {
   assert.equal(row(ledger, 4).status, "held");
   assert.ok(
     row(ledger, 4).heldDiagnostics.numberHeard[0].reasons.includes(
-      "member_first_dialogue_not_probed",
+      "first_dialogue_not_probed",
     ),
   );
   assert.equal(ledger.resolved.memberDialogue.length, 1);
@@ -283,7 +283,7 @@ test("a member needs its own number and its own first dialogue", () => {
   assert.equal(row(ledger, 4).status, "held");
   assert.ok(
     row(ledger, 4).heldDiagnostics.numberHeard[0].reasons.includes(
-      "member_first_dialogue_not_heard",
+      "first_dialogue_not_heard",
     ),
   );
 

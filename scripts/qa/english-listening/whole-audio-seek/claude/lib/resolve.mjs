@@ -105,7 +105,19 @@ export function proveAtStart(plan, items, sharedInstruction, section) {
       item,
       verdict: judgeProbe(plan, item.reading, sharedInstruction),
     }));
-  const cue = judged.find((entry) => entry.verdict.ok) ?? null;
+  const whole = judged.find((entry) => entry.verdict.ok) ?? null;
+  // The number itself is proven although its sentence was not heard well
+  // enough; bare digits never stand without their sentence.
+  const numbered =
+    whole ??
+    judged.find(
+      (entry) =>
+        entry.verdict.cueForm !== "bare" &&
+        entry.verdict.reasons.every(
+          (reason) => reason === "official_instruction_not_heard",
+        ),
+    ) ??
+    null;
   const needsDialogue =
     plan.kind === "shared_instruction_member" && Boolean(section);
   // The best English listening from this frame, where an official script
@@ -124,8 +136,37 @@ export function proveAtStart(plan, items, sharedInstruction, section) {
       if (heard && (!dialogue || share > dialogue.share))
         dialogue = { item, share, quote };
     }
-  const proof = cue && (!needsDialogue || dialogue) ? { cue, dialogue } : null;
-  return { proof, judged, cue, needsDialogue, dialogueShare };
+  let proof = null;
+  if (whole && (!needsDialogue || dialogue))
+    proof = {
+      cue: whole,
+      dialogue,
+      grounding: plan.officialInstruction
+        ? "instruction"
+        : dialogue
+          ? "first_dialogue"
+          : "ordinal",
+    };
+  else if (numbered && plan.officialInstruction && dialogue?.quote)
+    // Its own official first utterance, heard word for word from the same
+    // frame, grounds a number whose sentence the recognizer garbled.
+    proof = { cue: numbered, dialogue, grounding: "first_dialogue" };
+  return {
+    proof,
+    judged,
+    cue: whole,
+    numbered,
+    needsDialogue,
+    wantsDialogue:
+      needsDialogue ||
+      Boolean(
+        !whole &&
+        numbered &&
+        plan.officialInstruction &&
+        section?.firstUtterance,
+      ),
+    dialogueShare,
+  };
 }
 
 /** Longest strictly increasing subsequence by value; returns kept indexes. */
@@ -233,22 +274,22 @@ export function resolveSource({
       const why = [];
       if (fact.reason) why.push(fact.reason);
       if (!outcome.cue && sameNumber) why.push(...sameNumber.verdict.reasons);
-      if (outcome.cue && outcome.needsDialogue && !outcome.proof)
+      if (outcome.numbered && outcome.wantsDialogue && !outcome.proof)
         why.push(
           outcome.dialogueShare === null
-            ? "member_first_dialogue_not_probed"
-            : "member_first_dialogue_not_heard",
+            ? "first_dialogue_not_probed"
+            : "first_dialogue_not_heard",
         );
       near.push({
         startFrame,
         reasons: why,
-        probe: (outcome.cue ?? sameNumber).item,
-        numberProven: Boolean(outcome.cue),
+        probe: (outcome.numbered ?? sameNumber).item,
+        numberProven: Boolean(outcome.numbered),
         hasCueOnly: items.some((item) => item.probe.purpose === "cue_only"),
         hasDialogue: items.some((item) =>
           DIALOGUE_PURPOSES.has(item.probe.purpose),
         ),
-        needsDialogue: outcome.needsDialogue,
+        needsDialogue: outcome.wantsDialogue,
       });
     }
     found.sort((a, b) => a.startFrame - b.startFrame);

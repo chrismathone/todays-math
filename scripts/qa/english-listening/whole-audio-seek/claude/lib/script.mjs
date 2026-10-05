@@ -9,7 +9,7 @@
  */
 import { coverage, englishWords } from "./text.mjs";
 
-const MARKER = /(?:^|\s)(\d{1,2})(번|\.)(?=\s)/g;
+const MARKER = /(?:^|\s)(\d{1,2}) ?(번|\.)(?=\s)/g;
 const SPEAKER = /(?:^|\s)(?:M|W|B|G|Man|Woman|Boy|Girl)\s*:/g;
 const DIRECTION = /\[[^\]]{0,48}\]/g;
 const PAGE_FURNITURE = /ⓒ[^\n]*?-\s*\d+\s*-/g;
@@ -92,6 +92,30 @@ function chooseMarkers(text, plans, prompts) {
   return chosen;
 }
 
+/**
+ * For a transcript that prints its numbers out of question order: every question
+ * must have exactly one number that is followed by its own official sentence.
+ * Returns null when any question lacks such a unique place.
+ */
+function chooseByOwnSentence(text, plans, prompts) {
+  const positions = markerPositions(text);
+  const chosen = [];
+  for (let index = 0; index < plans.length; index++) {
+    const official = prompts[index];
+    if (!official) return null;
+    const matching = (positions.get(plans[index].sourceNumber) ?? []).filter(
+      (marker) =>
+        coverage(
+          official,
+          text.slice(marker.end, marker.end + official.length + 24),
+        ) >= 0.9,
+    );
+    if (matching.length !== 1) return null;
+    chosen.push(matching[0]);
+  }
+  return chosen;
+}
+
 const spokenEnglish = (text) =>
   englishWords(
     text
@@ -149,9 +173,12 @@ function nextMatch(text, pattern, from, fallback) {
 export function scriptSections(transcript, plans, prompts) {
   if (!/[A-Za-z]{3}/.test(transcript))
     return { sections: null, reason: "official_script_has_no_text" };
-  const markers = chooseMarkers(transcript, plans, prompts);
+  const markers =
+    chooseMarkers(transcript, plans, prompts) ??
+    chooseByOwnSentence(transcript, plans, prompts);
   if (!markers)
     return { sections: null, reason: "official_script_numbering_not_unique" };
+  const printed = [...markers].sort((a, b) => a.at - b.at);
   const heads = [...transcript.matchAll(BLOCK_HEAD)].map((match) => ({
     at: match.index,
     end: match.index + match[0].length,
@@ -195,7 +222,8 @@ export function scriptSections(transcript, plans, prompts) {
       });
       return;
     }
-    const nextMarker = markers[index + 1];
+    // The next number as PRINTED: a transcript may print a page out of order.
+    const nextMarker = printed[printed.indexOf(marker) + 1];
     let end = nextMarker ? nextMarker.at : transcript.length;
     const head = heads.find((h) => h.at >= marker.end && h.at < end);
     if (head) end = head.at;

@@ -229,10 +229,13 @@ for (const record of records) {
     // An English recognition from the same frame, for a question whose number
     // is followed directly by its own dialogue instead of a Korean sentence.
     const addDialogue = (candidate, sourceNumber) =>
-      addCandidate("member_dialogue", candidate, {
-        questionNumber: sourceNumber,
-        language: "en",
-      });
+      addCandidate(
+        kindOf.get(sourceNumber) === "shared_instruction_member"
+          ? "member_dialogue"
+          : "first_dialogue",
+        candidate,
+        { questionNumber: sourceNumber, language: "en" },
+      );
     // A start whose long probe heard the number in an uncertain segment, and
     // any onset right after it: a click before the number makes two onsets.
     const around = (startFrame) => {

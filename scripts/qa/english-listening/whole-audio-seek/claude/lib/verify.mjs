@@ -260,7 +260,9 @@ export function verifyMarks(marks, env) {
     );
     if (!outcome.proof)
       return report(
-        outcome.cue ? "first_dialogue_not_proven" : "spoken_number_not_proven",
+        outcome.numbered
+          ? "first_dialogue_not_proven"
+          : "spoken_number_not_proven",
         record,
         question,
         outcome.judged.flatMap((entry) => entry.verdict.reasons).join("+"),
@@ -272,7 +274,7 @@ export function verifyMarks(marks, env) {
       report("first_dialogue_not_proven", record, question);
     if (row.cueForm !== proof.cue.verdict.cueForm)
       report("cue_form_differs", record, question);
-    const grade = startGrade(plan, proof);
+    const grade = startGrade(proof);
     if (row.startGrade !== grade)
       report("start_grade_differs", record, question, grade);
     if (

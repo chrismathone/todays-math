@@ -49,9 +49,12 @@ export const certainLead = (probe) => {
  *   first_dialogue_grounded  its number, then its own official first utterance
  *   ordinal_only             its number in order; no official text exists
  */
-export function startGrade(plan, pick) {
-  if (plan.officialInstruction) return "instruction_grounded";
-  return pick.dialogue ? "first_dialogue_grounded" : "ordinal_only";
+export function startGrade(pick) {
+  return {
+    instruction: "instruction_grounded",
+    first_dialogue: "first_dialogue_grounded",
+    ordinal: "ordinal_only",
+  }[pick.grounding];
 }
 
 /**
@@ -125,10 +128,12 @@ export function assembleRow({
       probeFrameCount: cueItem.probe.frameCount,
       cueProbeSegmentIds: probeEvidence.segmentIds,
     };
-    grade = startGrade(plan, pick);
+    grade = startGrade(pick);
     identity.unshift("spoken_ordinal_first_at_start");
-    if (plan.officialInstruction)
+    if (pick.grounding === "instruction")
       identity.push("official_instruction_after_ordinal");
+    else if (plan.officialInstruction)
+      notes.push("official_instruction_not_fully_heard");
     if (pick.dialogue) {
       const item = pick.dialogue.item;
       dialogueProbeEvidence = {
@@ -171,9 +176,8 @@ export function assembleRow({
         sectionEndCharacter: section.charEnd,
         instructionQuote: section.instruction?.text ?? null,
         instructionStartCharacter: section.instruction?.start ?? null,
-        instructionProbeSegmentIds: plan.officialInstruction
-          ? probeEvidence.segmentIds
-          : null,
+        instructionProbeSegmentIds:
+          pick.grounding === "instruction" ? probeEvidence.segmentIds : null,
         firstUtteranceStartCharacter: section.firstUtterance?.start ?? null,
         firstDialogueQuote: pick.dialogue?.quote?.quote ?? null,
         firstDialogueStartCharacter:

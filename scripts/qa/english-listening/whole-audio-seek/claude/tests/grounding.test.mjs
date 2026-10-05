@@ -240,3 +240,62 @@ test("the stated form, grade and script quotes are recomputed on replay", () => 
   rowOf(noDialogue, 4).dialogueProbeEvidence = null;
   assert.ok(codes(noDialogue).includes("first_dialogue_not_proven"));
 });
+
+test("a garbled sentence is rescued only by the exact official first utterance", () => {
+  const record = makeRecord();
+  const native = makeNative(record);
+  const sections = sectionsFor();
+  // The recognizer heard the number but garbled the sentence after it.
+  const garbled = "2번. 다음을 듣고 내 이름 날짜로 가자 정절 한 거슬 고르시오.";
+  const probes = goodProbes().filter((p) => p.onsetFrame !== ONSETS[2] * 960);
+  probes.push(makeProbe(ONSETS[2], garbled));
+  let ledger = buildLedger({ record, native, probes, sections });
+  assert.equal(row(ledger, 2).status, "held");
+  assert.ok(
+    row(ledger, 2).heldDiagnostics.numberHeard[0].reasons.includes(
+      "first_dialogue_not_probed",
+    ),
+  );
+  // The next round is asked to listen in English from the same frame.
+  assert.deepEqual(
+    ledger.resolved.memberDialogue.map((item) => item.sourceNumber),
+    [2],
+  );
+  // Related words that are not the first utterance do not rescue it.
+  const related = probes.concat(
+    makeProbe(ONSETS[2], "Here is the weather for tomorrow, everyone.", {
+      purpose: "first_dialogue",
+      language: "en",
+    }),
+  );
+  ledger = buildLedger({ record, native, probes: related, sections });
+  assert.equal(row(ledger, 2).status, "held");
+  // The exact first utterance does, and the row says how it is grounded.
+  const exact = probes.concat(
+    makeProbe(ONSETS[2], "Good morning, here is the weather for tomorrow.", {
+      purpose: "first_dialogue",
+      language: "en",
+    }),
+  );
+  ledger = buildLedger({ record, native, probes: exact, sections });
+  const rescued = row(ledger, 2);
+  assert.equal(rescued.status, "candidate");
+  assert.equal(rescued.startGrade, "first_dialogue_grounded");
+  assert.ok(rescued.notes.includes("official_instruction_not_fully_heard"));
+  assert.equal(
+    rescued.identityEvidence.includes("official_instruction_after_ordinal"),
+    false,
+  );
+  assert.equal(rescued.scriptEvidence.instructionProbeSegmentIds, null);
+  assert.equal(
+    rescued.scriptEvidence.firstDialogueQuote,
+    "Good morning, here is the weather for tomorrow",
+  );
+  assert.deepEqual(verifyMarks(ledger.marks, ledger.env).errors, []);
+  // Bare digits with a garbled sentence are never rescued this way.
+  const bare = probes
+    .slice(0, -1)
+    .concat(makeProbe(ONSETS[2], garbled.replace("2번.", "2.")), exact.at(-1));
+  ledger = buildLedger({ record, native, probes: bare, sections });
+  assert.equal(row(ledger, 2).status, "held");
+});
