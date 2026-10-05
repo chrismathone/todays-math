@@ -437,8 +437,20 @@ export function paginateTextbookSections(
       if (!page || cursor + height > bodyBottom) {
         const previous = page;
         newPage();
+        if (
+          held &&
+          previous?.blocks.at(-1) === held.placement &&
+          cursor + height <= bodyBottom &&
+          cursor + held.placement.heightMm + held.gapMm + height > bodyBottom
+        )
+          fail(
+            "BLOCK_OVERFLOW",
+            "계속되는 쪽의 확인 제목과 문제를 함께 넣을 공간이 부족합니다.",
+            section,
+            row[0].block,
+          );
         // The kept block follows this row to the new page when it still ends the page it is on,
-        // that page keeps other content, and both fit here. Otherwise it stays where it was.
+        // that page keeps other content, and both fit here.
         if (
           held &&
           previous &&

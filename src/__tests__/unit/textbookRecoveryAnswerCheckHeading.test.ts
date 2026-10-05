@@ -465,38 +465,18 @@ describe("the answer pages of a native concept page", () => {
 });
 
 describe("what keeping a block with the next row never does", () => {
-  it("does not fail a layout that held: a row too tall to follow the subheading leaves it behind", () => {
+  it("rejects a row that fits alone but cannot fit with its kept subheading", () => {
     // The row fits a page of its own (62 + 205 ≤ 277) but not under the subheading (74.68 + 205).
     const sizes = { ...MEASURED.moves, questions: [205, 205] };
-    const result = world("answers").layout(sizes);
-    expect(
-      result.pages.map((page) => page.blocks.map((p) => p.blockId)),
-    ).toEqual([
-      ["authored.activity-heading", "authored", "authored.subheading"],
-      ["authored.activity-heading", "block-0", "block-1"],
-    ]);
-    expect(rows(result.pages[1])[1]).toEqual([
-      "block-0",
-      1,
-      18,
-      62,
-      205,
-      false,
-    ]);
+    expect(world("student").layout(sizes).pages).toHaveLength(2);
+    expect(() => world("answers").layout(sizes)).toThrow("BLOCK_OVERFLOW");
   });
 
-  it("does not leave a page with its heading alone: a subheading that opens a page stays there", () => {
+  it("rejects an impossible kept pair even when the subheading already opens a new page", () => {
     // The body fills its page, so the subheading already opens the next one; the row after it
-    // is too tall to follow and goes on alone.
+    // is too tall to follow on any page.
     const sizes = { whole: 0, body: 206, check: 10.08, questions: [205, 205] };
-    const result = world("answers").layout(sizes);
-    expect(
-      result.pages.map((page) => page.blocks.map((p) => p.blockId)),
-    ).toEqual([
-      ["authored.activity-heading", "authored"],
-      ["authored.activity-heading", "authored.subheading"],
-      ["authored.activity-heading", "block-0", "block-1"],
-    ]);
+    expect(() => world("answers").layout(sizes)).toThrow("BLOCK_OVERFLOW");
   });
 
   it("does not move twice: a subheading that itself went to the next page takes its questions there", () => {
