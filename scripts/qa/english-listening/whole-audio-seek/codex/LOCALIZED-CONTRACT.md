@@ -21,12 +21,45 @@ when their actual source needs that tier. Every raw segment,
 word, metric, uncertainty flag and overflow is retained and validated. A producer
 summary cannot substitute for any missing probe, request or source hash.
 
+`quietEvidenceMethod:"independent_full_source_quiet_v1"` with
+`rawProbeQuietBeforeFrames` retains a raw discovery window's original bounded
+quiet count while the row's `quietBeforeFrames` carries the separately remeasured
+full-source quiet. This applies only to the named v2 route. Raw request, start and
+onset frames stay exact; the actual full-source count, threshold, min(400ms,quiet)
+lead and lead peak must pass the unchanged independent waveform policy. Without
+this explicit method, the raw/row quiet counts must match. A capped search window
+does not become physical measurement authority.
+The override additionally requires
+`quietDiscoveryEvidence:{method:"noise_baseline_capped_discovery_v1",
+contextStartFrame,contextFrameCount,contextEnergySha256,request:{path,sha256},probeId}`.
+The exact hashed noise baseline of the named one/two-second tier defines the
+discovery context. Raw quiet must equal min(actual full quiet,contextFrameCount),
+and request/probe identity must equal the unchanged raw request. Unknown context,
+wrong cap, altered request, unproved absolute-threshold caps or full quiet mismatch
+stay held.
+
 The heading and next numbered heading have a reliable literal ordinal first and
-an actual Korean instruction, and their starts are remeasured by the existing
+an actual complete Korean instruction, and their starts are remeasured by the existing
 absolute/noise onset policy. The head probe must reproduce the row's exact native
 start/onset. The next heading begins at the next original number. The complete
 English clip must fit between head start and next heading start. A quote timestamp
 alone cannot make a clip crossing a boundary admissible.
+The introductory word `듣고` is incomplete. The first literal reliable instruction
+prefix must finish with `고르시오`, `고르세요`, `답하시오`, or `선택하시오`.
+Only this complete prefix classifies shared scope; a beginning of dialogue in the
+same unchanged raw segment remains retained without altering that classification.
+
+Exactly one next boundary is required. A known next original scope can instead use
+`nextCertificateEvidence:{certificate:{path,sha256},questionId,scopeQuestionNumbers,
+nativeOnsetFrame,startMs}`. The allowed certificate/scope/onset/start comes only
+from `verified_ancestor_rows` after it validates the frozen inventory's exact
+adoption and ancestry chain. A producer-created complete-certificate lookalike or
+a preserved echo has no boundary authority. The original admitted record must
+equal the current preserved range/source identity. Its actual full PCM, cache,
+energy, onset, raw request, selected raw quote, clip PCM and mono recognition input
+replay again. Every historical raw container must appear in the complete catalog,
+and all nested refs stay in the new certificate. Displayed numbering contributes
+no reconstructed boundary identity.
 
 `kind:single` has one original number. A true `shared_passage` requires the
 complete spoken adjacent pair and literal shared question instruction. A
@@ -93,7 +126,9 @@ visible under this separately named native replacement route.
 
 `probeCatalog:{path,sha256}` binds a complete source probe inventory. Its
 `rawArtifacts` list contains every immutable used/rejected raw container from
-the declared `roots:[{path,pattern}]`. The verifier enumerates actual files and
+the declared `roots:[{path,pattern}]` or fixed
+`roots:[{path,rounds:["round-001"],patterns:["probes/round-001/SOURCE.json"]}]`.
+The verifier enumerates actual files and
 rejects omitted containers. Patterns cover raw JSON directories or exact
 `probes/round-N/SOURCE.json` paths; explicit fixed rounds preserve later replay
 while additional rounds run. All same-source source/full/clip/mono/request hashes
@@ -111,6 +146,28 @@ Later waves inherit this grade only when the original complete certificate retai
 the named adapter, exact scope/onset, questionId/generation mapping, head/neighbor
 proof and intact nested references. Merely changing the evidenceGrade cannot
 license inheritance.
+
+## Additive official wrapper
+
+`evidenceAdapter:"official-catalogued-native-v1"` is official-only. It first
+replays the complete catalog and then runs the unchanged old native adapter:
+own instruction coverage, original PDF-bound ordinal-only identity/chronology,
+literal original script sections, and actual first-dialogue opening gates remain
+authoritative. An arbitrary unique later script sentence cannot replace them.
+It adds independently measured next-number/certified-neighbor boundaries,
+contradiction barriers and containment of the entire optional English clip.
+The old evidence grades remain unchanged.
+
+After the exact final official original question only,
+`officialTerminalEvidence:{method:"exact_official_original_population_end_v1",
+prepared:{path,sha256},originalPrepared:{path,sha256},questionFile:{path,sha256},
+lastOriginalNumber,sourceFrameCount}` can use the actual full PCM source end or an
+additionally measured literal closing. Every current ID/number must equal the
+complete native prepared population, original prepared numbers must equal that
+complete contiguous population, and all current original question metadata must
+bind to the actual question PDF bytes. The claimed last number and source frame
+count must match exactly. An observed maximum, omitted original question, changed
+paper, missing provenance or reconstructed source cannot supply this boundary.
 
 `evaluate-native.py` decodes all 193 originals on CPU, reproduces the full frozen
 PCM clocks, remeasures available historical onsets for all 2727 controls in the

@@ -36,6 +36,10 @@ def main():
     asr = v.read(source["asrPath"])
     index = v.index_segments(asr, v.validate_clock(clock, source, asr))
     replay = a.SourceReplay(inventory["root"], source, clock, [row])
+    trusted = {}
+    v.verified_ancestor_rows(inventory, clocks, v.checked_ref({"path": inventory["liveSnapshotPath"],
+                            "sha256": inventory["liveSnapshotSha256"]})["snapshots"], trusted)
+    replay.trusted_boundaries = {qid: evidence for (sid, qid), evidence in trusted.items() if sid == source["sourceRecordId"]}
     proof = {"schemaVersion": 1, "diagnosticOnly": True, "admissionRequiresCompleteQueueOrderAndPreservation": True,
              "writesDatabase": False, "writesStorage": False, "writesMedia": False, "humanReviewed": False,
              "sourceRecordId": source["sourceRecordId"], "questionId": question["id"], "sourceNumber": question["sourceNumber"],
@@ -44,6 +48,9 @@ def main():
     try:
         if row.get("evidenceAdapter") == "native-localized-generation-v2":
             from localized_adapter import validate
+            key, segments, grade, identity = validate(row, source, question, clock, replay, index)
+        elif row.get("evidenceAdapter") == "official-catalogued-native-v1":
+            from official_catalog_adapter import validate
             key, segments, grade, identity = validate(row, source, question, clock, replay, index)
         else:
             key, segments, grade, identity = a.validate(row, source, question, clock, replay, index)

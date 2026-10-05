@@ -1,9 +1,11 @@
 import copy
+import math
 import struct
 import tempfile
 import unittest
 
 import localized_adapter as l
+import noise_floor as noise
 import verifier as v
 from test_adapters import NativeProofFixture
 from test_verifier import segment
@@ -128,10 +130,70 @@ class LocalizedAdmissionTests(unittest.TestCase):
         self.f.sync()
         self.rejects("localized_shared_member_confusion")
 
+    def test_partial_shared_instruction_cannot_classify_before_final_clause(self):
+        self.f.raw["segments"][0]["text"] = "1번과 2번입니다. 다음 대화를 듣고"
+        self.f.row.update(kind="shared_instruction_head", cueSpokenNumbers=[1, 2])
+        self.f.sync()
+        self.rejects("localized_instruction_missing_or_incomplete")
+
+    def test_complete_instruction_and_dialogue_in_one_raw_segment(self):
+        self.f.raw["segments"][0]["text"] += " Hello. We answer two questions today."
+        self.f.sync()
+        self.assertEqual(self.f.validate()[2], "localized_generation_native")
+
+    def test_final_reliable_segment_reveals_true_joint_passage(self):
+        self.f.raw["segments"][0]["text"] = "1번과 2번입니다. 다음 대화를 듣고"
+        self.f.raw["segments"].append({**segment(102, "두 물음에 답하시오.", 2.1, 3),
+                                      "localStartSeconds": 2.1, "localEndSeconds": 3, "words": []})
+        self.f.row.update(kind="shared_instruction_head", cueSpokenNumbers=[1, 2])
+        self.f.sync()
+        self.rejects("localized_shared_member_confusion")
+
     def test_truncated_first_syllable_or_quiet_lead_is_held(self):
         self.f.row["nativeEvidence"]["startFrame"] = 8000
         self.f.row["seekStartMs"] = 500
         self.rejects("native_start_or_onset_overflow|localized_auxiliary_onset_bounds")
+
+    def test_bounded_raw_quiet_is_preserved_under_named_full_source_measurement(self):
+        self.noise_discovery_fixture()
+        self.assertEqual(self.f.validate()[2], "localized_generation_native")
+        self.assertEqual(self.f.raw["quietBeforeFrames"], 32000)
+        self.f.row["nativeEvidence"]["quietBeforeFrames"] = 32000
+        self.rejects("native_quiet_lead_mismatch")
+
+    def test_named_full_source_quiet_cannot_change_raw_discovery_or_start(self):
+        self.f.row["nativeEvidence"].update(quietEvidenceMethod="independent_full_source_quiet_v1", rawProbeQuietBeforeFrames=6000)
+        self.rejects("localized_raw_discovery_quiet_changed")
+
+    def noise_discovery_fixture(self):
+        f = self.f
+        f.energy[:200] = [1e5] * 200
+        f.energy[200:1250] = [1e8] * 1050
+        f.energy_path.write_bytes(b"".join(struct.pack("<d", e) for e in f.energy))
+        f.actual["energySha256"] = v.sha(f.energy_path)
+        cache = v.read(f.row["nativeEvidence"]["cachePath"])
+        cache["energy"]["sha256"] = f.actual["energySha256"]
+        f.write(f.row["nativeEvidence"]["cachePath"], cache)
+        f.raw.update(startFrame=57600, onsetFrame=64000, quietBeforeFrames=32000, onsetMethod=noise.METHOD)
+        f.dialogue.update(startFrame=57600)
+        f.dialogue.pop("onsetFrame", None)
+        f.dialogue.pop("quietBeforeFrames", None)
+        n = f.row["nativeEvidence"]
+        baseline, _ = noise.measure(f.source_replay, 64000)
+        n.update(startFrame=57600, onsetFrame=64000, quietBeforeFrames=64000, onsetMethod=noise.METHOD,
+                 leadPeakDbfs=10 * math.log10(1e5 / 320 / 32768 ** 2), noiseFloorEvidence=baseline,
+                 cacheSha256=v.sha(n["cachePath"]), energySha256=f.actual["energySha256"],
+                 quietEvidenceMethod="independent_full_source_quiet_v1", rawProbeQuietBeforeFrames=32000)
+        f.row["seekStartMs"] = 3600
+        f.sync()
+        n["quietDiscoveryEvidence"] = {"method": "noise_baseline_capped_discovery_v1", "contextFrameCount": 32000,
+                                       "contextStartFrame": 32000, "contextEnergySha256": baseline["baselineEnergySha256"],
+                                       "request": v.reference(f.request_path), "probeId": f.raw["id"]}
+
+    def test_discovery_quiet_override_requires_exact_hash_bound_context_cap(self):
+        self.noise_discovery_fixture()
+        self.f.row["nativeEvidence"]["quietDiscoveryEvidence"]["contextFrameCount"] = 16000
+        self.rejects("localized_discovery_quiet_cap_relation")
 
     def test_wrong_raw_source_hash_is_held(self):
         self.f.container["sourceAudioSha256"] = "bad"

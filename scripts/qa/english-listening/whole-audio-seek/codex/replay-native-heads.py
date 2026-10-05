@@ -2,6 +2,7 @@
 import argparse
 import collections
 import math
+import re
 from pathlib import Path
 
 import claude_adapter as a
@@ -45,18 +46,41 @@ def main():
                 first = next(iter(index.values()))
                 v.require(not v.uncertain(first), "uncertain_raw_evidence")
                 numbers, rest = l.literal_cue(first["text"])
-                v.require(numbers and __import__("re").search(r"듣고|고르시오|고르세요|답하시오|선택하시오", rest), "pilot_not_numbered_instruction")
+                v.require(numbers, "pilot_not_numbered_instruction")
+                selected = [first]
+                for segment in list(index.values())[1:]:
+                    if re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", " ".join(s["text"] for s in selected)):
+                        break
+                    other_numbers, _ = l.literal_cue(segment["text"])
+                    v.require(not other_numbers, "pilot_instruction_crosses_next_heading")
+                    if len(a.english_words(segment["text"])) >= 4 and len(re.findall(r"[가-힣]", segment["text"])) < 8:
+                        break
+                    v.require(not v.uncertain(segment), "uncertain_raw_evidence")
+                    selected.append(segment)
+                v.require(re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", " ".join(s["text"] for s in selected)), "pilot_not_complete_numbered_instruction")
                 rate, wf = replay.actual["sampleRate"], replay.actual["windowFrames"]
                 onset = probe["onsetFrame"]
                 method = probe.get("onsetMethod", "absolute_energy_v2")
                 native = {"startFrame": probe["startFrame"], "onsetFrame": onset,
                           "quietBeforeFrames": probe["quietBeforeFrames"], "onsetMethod": method}
                 if method in (noise.METHOD, noise.METHOD_ONE_SECOND):
-                    evidence, _ = noise.measure(replay, onset, baseline_windows=50 if method == noise.METHOD_ONE_SECOND else 100)
+                    evidence, threshold = noise.measure(replay, onset, baseline_windows=50 if method == noise.METHOD_ONE_SECOND else 100)
                     native["noiseFloorEvidence"] = evidence
+                    quiet = 0
+                    for window in range(onset // wf - 1, -1, -1):
+                        if replay.energy[window] >= threshold:
+                            break
+                        quiet += 1
+                    full_quiet = quiet * wf
+                    if full_quiet != probe["quietBeforeFrames"]:
+                        native.update(quietBeforeFrames=full_quiet, rawProbeQuietBeforeFrames=probe["quietBeforeFrames"],
+                            quietEvidenceMethod="independent_full_source_quiet_v1", quietDiscoveryEvidence={
+                                "method": "noise_baseline_capped_discovery_v1", "contextStartFrame": evidence["baselineStartFrame"],
+                                "contextFrameCount": evidence["baselineFrameCount"], "contextEnergySha256": evidence["baselineEnergySha256"],
+                                "request": {"path": container["requestPath"], "sha256": container["requestSha256"]}, "probeId": probe["id"]})
                 bins = replay.energy[probe["startFrame"] // wf:onset // wf]
                 native["leadPeakDbfs"] = 10 * math.log10(max(bins) / wf / 32768 ** 2) if bins and max(bins) > 0 else None
-                a.measured_onset(native, replay)
+                l.measure_probe_onset({"nativeEvidence": native, "probeEvidence": row["probeEvidence"]}, source, replay, "probeEvidence", probe)
                 relative = (onset - probe["startFrame"]) / rate
                 v.require(first["estimatedStartSeconds"] - .5 <= relative <= first["estimatedEndSeconds"], "pilot_onset_cue_correspondence_missing")
                 result.update(status="native_heading_replayed", spokenNumbers=numbers, measuredNativeEvidence=native,
