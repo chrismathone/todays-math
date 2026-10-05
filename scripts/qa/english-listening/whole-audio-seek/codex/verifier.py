@@ -611,12 +611,12 @@ def verified_ancestor_rows(inventory, clocks, snapshots, boundary_authority=None
     claim = inventory.get("verifiedAncestor")
     if claim is None:
         return {}, None
+    require(isinstance(claim, dict) and set(claim) == {"certificate", "inventory", "clock"}, "invalid_verified_ancestor")
+    previous = checked_ref(claim["certificate"])
     stack = set(_ancestry_stack or ())
     ancestor_key = (str(Path(claim["certificate"]["path"]).resolve()), claim["certificate"]["sha256"])
     require(ancestor_key not in stack, "cyclic_verified_ancestor_chain")
     stack.add(ancestor_key)
-    require(isinstance(claim, dict) and set(claim) == {"certificate", "inventory", "clock"}, "invalid_verified_ancestor")
-    previous = checked_ref(claim["certificate"])
     old_inventory = checked_ref(claim["inventory"])
     old_clock = checked_ref(claim["clock"])
     def same_reference(left, right):
