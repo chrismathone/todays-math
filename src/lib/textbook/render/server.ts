@@ -827,7 +827,10 @@ export async function renderTextbookOfflineHtml(input: {
     mode: "archive",
     readAsset: input.readAsset,
   });
-  const model = createTextbookRenderModel(input.exchange, input.variant);
+  const model = withTextbookPageReferences(
+    createTextbookRenderModel(input.exchange, input.variant),
+    input.pages,
+  );
   const [bundle, assets, qrs] = await Promise.all([
     loadTextbookLocalBundle(),
     loadTextbookAssets(model.assets, input.readAsset),

@@ -103,11 +103,12 @@ export const ITEMS: PrintCheckItem[] = [
     title: "교재 제작 — 2-1-1 기준 조판 복구",
     changed:
       "대화·판서·개념 묶음과 암기 공통 행을 보존하고, 선택한 구성의 안내·목차·색인을 출력한다. 문제 풀이선과 쪽수 참조는 실측 후 확정한다.",
-    look: "A4 100%로 기준 교재와 같은 영역을 비교한다. 제목·본문·열·푸터·암기 행의 차이 ±0.5mm, 풀이선 0.2~0.35mm·간격 7mm±0.5mm, 서술형 풀이 폭 열의 95% 이상, QR은 풀이 칸 밖인지 확인한다. 휴대폰으로 학생용·답지·펼침면 QR을 실제 스캔한다.",
+    look: "A4 100%로 기준 교재와 같은 영역을 비교한다. 제목·본문·열·푸터·암기 행의 차이 ±0.5mm, 은행 풀이선 0.2~0.35mm·간격 7mm±0.5mm, 원본 풀이선은 해당 영역의 7mm·8mm 기준, 서술형 풀이 폭 열의 95% 이상, QR은 풀이 칸 밖인지 확인한다. 답지에서 이어진 예제 묶음의 둘째 쪽에 제목·계속 표시·오른쪽 열 확인문제가 나오고 꼬리말과 겹치지 않는지 확인한다. 휴대폰으로 학생용·답지·펼침면 QR을 실제 스캔한다.",
     lookFromSource: true,
     evidence: [
       "docs/planning/textbook-v15-recovery-plan-final-20261005.md",
       "docs/planning/textbook-v15-recovery-execution-20261005.md",
+      "docs/reports/textbook-m3-paired-overflow-20261005.md",
     ],
     scale: "초3~중3 · 두 학기 · 28가지 선택 구성",
     status: "대기",
