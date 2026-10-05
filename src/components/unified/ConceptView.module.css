@@ -18,7 +18,7 @@
   --c-draft-bg: #fbf0d4;
   --c-draft-ink: #86590a;
   --c-none-bg: #eef1f5;
-  --c-none-ink: #6b7a90;
+  --c-none-ink: var(--c-muted);
   --c-warn: var(--learn-warning, #8a5a06);
   --c-bad: var(--learn-danger, #b42318);
   container-type: inline-size;

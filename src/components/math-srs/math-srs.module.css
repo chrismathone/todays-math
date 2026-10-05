@@ -513,7 +513,8 @@
   padding: 9px 12px;
   border-radius: 8px;
   background: transparent;
-  color: var(--srs-muted);
+  /* The hover surface is darker than the page's neutral background. */
+  color: #52637b;
   min-height: 38px;
 }
 .memoryFilters button[aria-pressed="true"] {
