@@ -1,0 +1,137 @@
+/**
+ * 편집 화면은 «본문을 고쳐도 지면에 나오지 않는 글 블록» 의 입력을 닫는다(검수 보고서 B05).
+ * 그 판정(`textPrintsFromStructure`)이 실제 렌더 갈래와 같은 말을 하는지 본다 —
+ * 종류마다 본문만 바꿔 두 번 그려, «지면이 같다 ⇔ 구조에서 나온다» 가 성립해야 한다.
+ */
+import { describe, expect, it } from "vitest";
+
+import type { TextbookSemantic } from "@/contracts/textbookSemantic.contract";
+import { textPrintsFromStructure } from "@/lib/textbook/render/blocks/semantic";
+import { renderBlockHtml } from "@/lib/textbook/render/html";
+import type { RenderBlock } from "@/lib/textbook/render/model";
+
+const resources = {
+  assetUrl: (id: string) => `/assets/${id}.png`,
+  qrDataUrl: () => "data:image/png;base64,AA==",
+};
+
+type TextBlock = Extract<RenderBlock, { kind: "text" }>;
+
+/** 같은 블록을 본문만 바꿔 그린다 — 지면이 본문을 읽으면 두 결과가 다르다 */
+function printsSame(semantic: TextbookSemantic | undefined, extra = {}) {
+  const draw = (markdown: string) =>
+    renderBlockHtml(
+      {
+        id: "block-1",
+        sourceBlockId: "block-1",
+        unitKey: "unit-1",
+        sectionKey: "section-1",
+        kind: "text",
+        markdown,
+        ...(semantic ? { semantic } : {}),
+        ...extra,
+      } as unknown as TextBlock,
+      resources,
+    );
+  return draw("처음 본문") === draw("고친 본문");
+}
+
+const structured: [string, TextbookSemantic][] = [
+  [
+    "writing",
+    {
+      activity: "questionLog",
+      title: "질문 기록",
+      node: { kind: "writing", prompts: ["막힌 부분을 적으세요."], lines: 4 },
+    },
+  ],
+  [
+    "references",
+    {
+      activity: "contents",
+      title: "차례",
+      node: {
+        kind: "references",
+        entries: [{ key: "unit-1", label: "1 덧셈과 뺄셈", pageLabel: "6" }],
+      },
+    },
+  ],
+  [
+    "exampleGroup",
+    {
+      activity: "workedExamples",
+      title: "유형",
+      node: {
+        kind: "exampleGroup",
+        groupId: "group-1",
+        title: "받아올림",
+        strategy: "일의 자리부터 더한다.",
+        exampleItemId: "00000000-0000-4000-8000-000000000001",
+        confirmItemIds: ["00000000-0000-4000-8000-000000000002"],
+      },
+    },
+  ],
+  [
+    "fragments",
+    {
+      activity: "practice",
+      title: "원본",
+      node: {
+        kind: "fragments",
+        fragments: [{ tag: "p", rawText: "원본 고정 원고" }],
+      },
+    },
+  ],
+  [
+    "board",
+    {
+      activity: "dialogue",
+      title: "판서",
+      node: { kind: "board", title: "판서", tex: "1+1=2" },
+    },
+  ],
+] as unknown as [string, TextbookSemantic][];
+
+const unitIntro = {
+  activity: "unitIntro",
+  title: "평면도형",
+  node: {
+    kind: "unitIntro",
+    question: "선은 어디까지 이어질까?",
+    explanation: "선분, 반직선, 직선을 가른다.",
+    goals: ["선분을 안다."],
+    path: ["선분"],
+    check: ["선분은 무엇인가?"],
+  },
+} as unknown as TextbookSemantic;
+
+describe("본문이 아니라 구조에서 나오는 글 블록", () => {
+  it.each(structured)(
+    "%s 는 본문을 바꿔도 지면이 같고, 판정도 «구조에서 나온다» 다",
+    (_kind, semantic) => {
+      expect(printsSame(semantic)).toBe(true);
+      expect(textPrintsFromStructure(semantic, "basic")).toBe(true);
+    },
+  );
+
+  it("구조가 없는 글은 본문이 곧 지면이고, 판정도 «본문에서 나온다» 다", () => {
+    expect(printsSame(undefined)).toBe(false);
+    expect(textPrintsFromStructure(undefined, "basic")).toBe(false);
+    // 활동 표지만 있고 노드가 없는 글(학습 계획 등)도 본문이 지면이다
+    const plain = {
+      activity: "learningPlan",
+      title: "학습 계획",
+    } as unknown as TextbookSemantic;
+    expect(printsSame(plain)).toBe(false);
+    expect(textPrintsFromStructure(plain, "auto-learning-plan")).toBe(false);
+  });
+
+  it("단원 도입 구조는 자동 단원 도입 틀에서 펼쳐진 면만 구조에서 나온다 — 판정이 틀을 본다", () => {
+    // 자동 단원 도입 틀에서는 투영이 블록을 면(왼쪽 · 오른쪽 · 한 면)으로 펼친다 — 그 면은 본문을 읽지 않는다
+    expect(printsSame(unitIntro, { unitIntroPart: "single" })).toBe(true);
+    expect(textPrintsFromStructure(unitIntro, "auto-unit-intro")).toBe(true);
+    // 다른 틀에서는 펼치지 않는다 — 본문이 그대로 지면에 나온다
+    expect(printsSame(unitIntro)).toBe(false);
+    expect(textPrintsFromStructure(unitIntro, "basic")).toBe(false);
+  });
+});

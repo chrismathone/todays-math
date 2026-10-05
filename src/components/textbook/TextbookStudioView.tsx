@@ -233,11 +233,13 @@ export function TextbookStudioView({
   // (참/거짓 하나였을 때는 먼저 끝난 작업이 다른 작업의 표시를 껐다)
   const [busyCount, setBusyCount] = useState(0);
   const busy = busyCount > 0;
-  const setBusy = useCallback(
-    (on: boolean) =>
-      setBusyCount((count) => Math.max(0, count + (on ? 1 : -1))),
-    [],
-  );
+  // 수는 ref 가 정본이다 — 시작과 끝이 한 번에 묶여 그려져도(값이 0 → 1 → 0) 어긋나지 않고,
+  // 늦게 끝난 요청의 함수도 «지금 처리 중인가» 를 그 자리에서 읽는다.
+  const busyOps = useRef(0);
+  const setBusy = useCallback((on: boolean) => {
+    busyOps.current = Math.max(0, busyOps.current + (on ? 1 : -1));
+    setBusyCount(busyOps.current);
+  }, []);
   /** busy 가운데 «이 구획 저장» 이 도는 동안 — 이때만 원고 입력을 열어 둔다 */
   const [savingManuscript, setSavingManuscript] = useState(false);
   const [showManual, setShowManual] = useState(false);
@@ -448,17 +450,14 @@ export function TextbookStudioView({
     editionRef.current = edition;
   }, [edition]);
 
+  /** 판본 다시 읽기의 차례 — 겹친 읽기 가운데 마지막 것만 반영한다 */
+  const publishReadTurn = useRef(0);
+
   /** 저장을 기다리는 사이에 원고를 더 고쳤는지 볼 때 쓴다 */
   const draftRef = useRef<SectionDetail | null>(null);
   useEffect(() => {
     draftRef.current = draft;
   }, [draft]);
-
-  /** 늦게 끝난 요청이 «지금 처리 중인가»를 볼 때 쓴다 — 요청을 시작한 때의 함수는 그때의 busy 를 쥐고 있다 */
-  const busyRef = useRef(false);
-  useEffect(() => {
-    busyRef.current = busy;
-  }, [busy]);
 
   /**
    * 간편 생성이 «시작한 때의 생성 양식» 에서 끝났는지 본다. 판본을 열거나, 목록으로 돌아오거나, 직접 원고 양식으로 바꾸면
@@ -514,6 +513,7 @@ export function TextbookStudioView({
       .openEdition(id)
       .then((next) => {
         if (cancel) return;
+        setPublishRead(null);
         setEdition(next);
         setSimplePreview(true);
         setMode("student");
@@ -651,6 +651,33 @@ export function TextbookStudioView({
    * 구획 저장만은 열어 둔다: 가장 잦고 짧은 일이고, 그사이에 고친 것은 saveDraft 가 보존한다.
    */
   const frozen = leaving || (busy && !savingManuscript) || publishUnknown;
+
+  /**
+   * 원고나 구조를 바꾸는 작업은 한 번에 하나만 돈다. 진입은 ref 로 그 자리에서 가른다 — 같은 틱의 거듭 누르기나
+   * 다시 그려지기 전의 다른 단추가 끼어들지 못한다. 끝낼 때는 `setBusy(false)` 를 부른다.
+   */
+  function begin(): boolean {
+    if (publishUnknown) {
+      setNotice(
+        "발행 결과를 확인하지 못했습니다. 판본 상태를 다시 불러와 확인해 주세요.",
+      );
+      return false;
+    }
+    if (busy || busyOps.current > 0) {
+      setNotice("처리 중입니다. 끝난 뒤 다시 눌러 주세요.");
+      return false;
+    }
+    setBusy(true);
+    return true;
+  }
+  /** 늦은 응답을 올리기 전에 — 요청한 판본이 아직 열려 있는가 */
+  const editionOpen = (editionId: string) =>
+    editionRef.current?.editionId === editionId;
+  /** 늦은 응답을 올리기 전에 — 요청한 구획이 아직 화면의 원고인가(화면 안의 이동은 막혀도 주소 동기화는 판본을 바꾼다) */
+  const sectionOpen = (target: SectionDetail) =>
+    editionOpen(target.editionId) &&
+    draftRef.current?.editionId === target.editionId &&
+    draftRef.current.sectionId === target.sectionId;
 
   function refuseLocked(): boolean {
     if (!locked) return false;
@@ -817,15 +844,14 @@ export function TextbookStudioView({
       };
       // 응답은 요청 때의 원고(target)를 저장했을 뿐이다 — 기다리는 사이에 더 고친 원고를 그것으로 되돌리지 않는다.
       // 더 고친 원고는 새 revision 위에 «저장 전» 으로 남는다.
-      const live = draftRef.current;
       const here = (current: SectionDetail | null): current is SectionDetail =>
         current !== null &&
         current.editionId === target.editionId &&
         current.sectionId === target.sectionId;
       // 응답이 왔을 때 화면이 다른 판본 · 구획이면 그 원고와 저장본은 건드리지 않는다 — 저장 자체는 끝났다
-      if (!here(live)) return true;
+      if (!sectionOpen(target)) return true;
       // 저장 후 이동(base)은 입력을 잠근 채 돈다 — 그사이에 고칠 수 없다
-      const edited = !base && live !== target;
+      const edited = !base && draftRef.current !== target;
       setDraft((current) => {
         if (!here(current)) return current;
         return current === target
@@ -844,7 +870,7 @@ export function TextbookStudioView({
         }),
       );
       setEdition((current) =>
-        current
+        current && current.editionId === edition.editionId
           ? {
               ...current,
               aggregateRevision: result.aggregateRevision,
@@ -929,7 +955,7 @@ export function TextbookStudioView({
           aggregateRevision: result.aggregateRevision,
         };
         setEdition((current) =>
-          current
+          current && current.editionId === edition.editionId
             ? { ...current, aggregateRevision: result.aggregateRevision }
             : current,
         );
@@ -966,6 +992,7 @@ export function TextbookStudioView({
     if (!edition || !draft?.concept || !saved) return { ok: false };
     if (refuseLocked()) return { ok: false };
     const concept = draft.concept;
+    const requested = draft;
     let savedConcept: Awaited<ReturnType<TextbookStudioApi["saveConcept"]>>;
     try {
       savedConcept = await api.saveConcept({
@@ -995,6 +1022,8 @@ export function TextbookStudioView({
       setNotice(messageOf(reason));
       return { ok: false };
     }
+    // 개념은 서버에 저장됐다 — 그사이 다른 판본이 열렸으면 그 화면의 개념 상태 · revision · 원고는 건드리지 않는다
+    if (!sectionOpen(requested)) return { ok: false };
     const status = new Map(
       (savedConcept.concept.blankItems ?? []).map((item) => [
         `${item.entryKind}:${item.entryId}`,
@@ -1023,7 +1052,7 @@ export function TextbookStudioView({
     setConfirmLinkIds([]);
     setConfirmEntryIds([]);
     setEdition((current) =>
-      current
+      current && current.editionId === edition.editionId
         ? { ...current, aggregateRevision: savedConcept.aggregateRevision }
         : current,
     );
@@ -1043,6 +1072,7 @@ export function TextbookStudioView({
         { draft: nextDraft, saved: nextSaved },
         false,
       );
+      if (!sectionOpen(requested)) return { ok: false };
       if (!linked.ok) {
         // 개념은 저장됐다 — 그 사실과 원고를 남기고, 다시 시도는 잇기만 한다
         setDraft(nextDraft);
@@ -1076,6 +1106,7 @@ export function TextbookStudioView({
       true,
     );
     setBusy(false);
+    if (!sectionOpen(draft)) return;
     if (!linked.ok) {
       setConceptLink({ ...conceptLink, message: linked.message });
       setNotice("개념 저장 완료 · 구획 연결 실패");
@@ -1098,6 +1129,7 @@ export function TextbookStudioView({
     setBusy(true);
     try {
       const linked = await attachConcept(conceptKey, { draft, saved }, true);
+      if (!sectionOpen(draft)) return;
       if (!linked.ok) {
         setNotice(`구획에 연결하지 못했습니다. ${linked.message}`);
         return;
@@ -1106,6 +1138,7 @@ export function TextbookStudioView({
       let nextSaved = linked.saved;
       try {
         const loaded = await api.readConcept(edition.editionId, conceptKey);
+        if (!sectionOpen(draft)) return;
         setConceptSource(loaded.concept);
         setConceptRevision(loaded.revision);
         setConceptLinks(loaded.concept.links);
@@ -1116,10 +1149,12 @@ export function TextbookStudioView({
         nextSaved = { ...nextSaved, concept: loaded.draft };
         setNotice("구획에 개념을 연결했습니다.");
       } catch (reason) {
+        if (!sectionOpen(draft)) return;
         setNotice(
           `구획에 개념을 연결했습니다. 개념 원고는 불러오지 못했습니다. ${messageOf(reason)}`,
         );
       }
+      if (!sectionOpen(draft)) return;
       setConceptLink(null);
       setDraft(nextDraft);
       setSaved(structuredClone(nextSaved));
@@ -1168,16 +1203,21 @@ export function TextbookStudioView({
    * 다시 읽기가 실패해도 발행은 이미 끝났다. 그때는 읽기만 다시 시도하게 한다.
    */
   async function refreshPublished(editionId: string, unknown = false) {
-    setPublishRead(null);
+    // 읽는 동안에는 앞 상태(결과 불명 · 읽기 실패)를 그대로 둔다 — 판본을 실제로 읽은 뒤에만 거둔다.
+    // 거듭 눌러 겹친 읽기는 마지막 것만 반영한다.
+    const turn = ++publishReadTurn.current;
     try {
       const next = await api.openEdition(editionId);
+      if (turn !== publishReadTurn.current) return;
       if (editionRef.current?.editionId !== editionId) return;
+      setPublishRead(null);
       setEdition(next);
       if (next.structureSource?.edition?.status === "published") {
         setFinalizedEditionId(editionId);
         setPublishStatus("finalized");
       }
     } catch (reason) {
+      if (turn !== publishReadTurn.current) return;
       if (editionRef.current?.editionId !== editionId) return;
       setPublishRead({ editionId, message: messageOf(reason), unknown });
     }
@@ -1293,21 +1333,26 @@ export function TextbookStudioView({
       setNotice(edited.message);
       return;
     }
+    // 목차 저장도 구조를 바꾸는 작업이다 — 도는 동안 이동 · 입력 · 다른 구조 변경을 막고, 응답은 그 판본에만 올린다
+    if (!begin()) return;
     const previous = edition;
     setEdition({ ...edition, units });
     try {
-      setEdition(
-        await api.patchEdition({
-          editionId: edition.editionId,
-          expectedRevision: edition.structureRevision,
-          requestId: newRequestId(),
-          source: edited.source,
-        }),
-      );
+      const next = await api.patchEdition({
+        editionId: edition.editionId,
+        expectedRevision: edition.structureRevision,
+        requestId: newRequestId(),
+        source: edited.source,
+      });
+      if (!editionOpen(previous.editionId)) return;
+      setEdition(next);
       setNotice("목차를 저장했습니다.");
     } catch (reason) {
+      if (!editionOpen(previous.editionId)) return;
       setEdition(previous);
       setNotice(messageOf(reason));
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -1329,20 +1374,24 @@ export function TextbookStudioView({
       setNotice(edited.message);
       return;
     }
+    if (!begin()) return;
     const previous = edition;
     try {
-      setEdition(
-        await api.patchEdition({
-          editionId: edition.editionId,
-          expectedRevision: edition.structureRevision,
-          requestId: newRequestId(),
-          source: edited.source,
-        }),
-      );
+      const next = await api.patchEdition({
+        editionId: edition.editionId,
+        expectedRevision: edition.structureRevision,
+        requestId: newRequestId(),
+        source: edited.source,
+      });
+      if (!editionOpen(previous.editionId)) return;
+      setEdition(next);
       setNotice(linked ? "강의를 연결했습니다." : "강의 연결을 뺐습니다.");
     } catch (reason) {
+      if (!editionOpen(previous.editionId)) return;
       setEdition(previous);
       setNotice(messageOf(reason));
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -1563,6 +1612,17 @@ export function TextbookStudioView({
     if (draft.parity === "continue") return "이어짐";
     return "시작 면 미정";
   })();
+  /** 미리보기는 구획 하나만 놓고 센다 — 쪽 번호가 보이면 그것이 전체 교재의 번호가 아님을 곁에 알린다 */
+  const pageNote =
+    pageAnchor !== null &&
+    measuredPages.some(
+      (page) =>
+        (page.physicalPageIndex === pageAnchor ||
+          page.physicalPageIndex === pageAnchor + 1) &&
+        page.printedPageLabel.length > 0,
+    )
+      ? "구획 미리보기의 임시 쪽 번호입니다. 전체 교재의 쪽 번호는 PDF에서 확인하세요."
+      : null;
   const sectionOrder = edition ? spreadStarts(edition.units) : [];
   const sectionIndex = draft ? sectionOrder.indexOf(draft.sectionId) : -1;
   const canPrev =
@@ -1594,6 +1654,7 @@ export function TextbookStudioView({
         )}
         zoom={zoom}
         pageLabel={pageLabel}
+        pageNote={pageNote}
         showModes={audience === "teacher"}
         onMode={setMode}
         onZoom={setZoom}
@@ -1749,7 +1810,7 @@ export function TextbookStudioView({
                 if (
                   createdAt.current.get(result) !== listEpoch.current ||
                   editionRef.current !== null ||
-                  busyRef.current ||
+                  busyOps.current > 0 ||
                   importOpenRef.current
                 ) {
                   setNotice(
@@ -1992,6 +2053,7 @@ export function TextbookStudioView({
                 type="button"
                 className={styles.primary}
                 disabled={busy || publishUnknown}
+                aria-describedby={`pdf-publish-note-${edition.editionId}`}
                 onClick={() => void makeSimplePdf()}
               >
                 {busy ? "PDF를 만들고 있습니다…" : "PDF 만들기"}
@@ -2016,6 +2078,15 @@ export function TextbookStudioView({
               </>
             ) : null}
           </div>
+          {!locked ? (
+            <p
+              className={styles.muted}
+              id={`pdf-publish-note-${edition.editionId}`}
+            >
+              PDF가 완성되면 이 판본이 발행되어 원고가 잠깁니다. 수정하려면 새
+              초안을 만드세요.
+            </p>
+          ) : null}
           {busy && pdfJob ? (
             <p role="status">
               PDF 조판 {pdfJob.completedSteps ?? 0}/{pdfJob.totalSteps ?? "…"}
@@ -2302,7 +2373,9 @@ export function TextbookStudioView({
                               : [],
                         ),
                       );
-                    setBusy(true);
+                    // 구획을 만들고 그 구획으로 옮긴다 — 다른 작업과 겹쳐 돌지 않고, 응답은 그 판본에만 올린다
+                    if (!begin()) return;
+                    const target = edition.editionId;
                     api
                       .createSection({
                         editionId: edition.editionId,
@@ -2316,6 +2389,7 @@ export function TextbookStudioView({
                         const reopened = await api.openEdition(
                           edition.editionId,
                         );
+                        if (!editionOpen(target)) return;
                         const nextEdition = {
                           ...reopened,
                           aggregateRevision: created.aggregateRevision,
@@ -2465,6 +2539,7 @@ export function TextbookStudioView({
                 </form>
               </fieldset>
               <ConfigPanel
+                frozen={frozen}
                 title={edition.title}
                 volumeCode={edition.config.volumeCode}
                 pageTarget={String(
@@ -2532,7 +2607,9 @@ export function TextbookStudioView({
                     setNotice(edited.message);
                     return;
                   }
-                  setBusy(true);
+                  // 설정 저장도 판본을 바꾼다 — 다른 작업과 겹쳐 돌지 않고, 응답은 그 판본에만 올린다
+                  if (!begin()) return;
+                  const target = edition.editionId;
                   api
                     .patchEdition({
                       editionId: edition.editionId,
@@ -2541,6 +2618,7 @@ export function TextbookStudioView({
                       source: edited.source,
                     })
                     .then((next) => {
+                      if (!editionOpen(target)) return;
                       setEdition(next);
                       setNotice("설정을 저장했습니다.");
                     })
@@ -2605,16 +2683,11 @@ export function TextbookStudioView({
                   onCapture={(testId, problemIds) => {
                     if (refuseLocked()) return;
                     // 가져오기는 구획을 바꾼다 — 도는 동안 이동 · 입력 · 다시 누르기를 막아, 늦은 응답이 덮을 것을 만들지 않는다
-                    if (busy || busyRef.current) return;
+                    if (!begin()) return;
                     const currentDraft = draft;
                     const currentSaved = saved;
                     // 화면 안의 이동은 busy 가 막지만, 주소 동기화는 다른 판본을 열 수 있다 — 응답을 올리기 전에 다시 본다
-                    const here = () =>
-                      editionRef.current?.editionId === edition.editionId &&
-                      draftRef.current?.editionId === currentDraft.editionId &&
-                      draftRef.current.sectionId === currentDraft.sectionId;
-                    busyRef.current = true;
-                    setBusy(true);
+                    const here = () => sectionOpen(currentDraft);
                     api
                       .captureItems({
                         editionId: edition.editionId,
@@ -2694,10 +2767,7 @@ export function TextbookStudioView({
                         }
                       })
                       .catch((reason: unknown) => setNotice(messageOf(reason)))
-                      .finally(() => {
-                        busyRef.current = false;
-                        setBusy(false);
-                      });
+                      .finally(() => setBusy(false));
                   }}
                   onDiff={(itemId) => {
                     api
@@ -2707,6 +2777,8 @@ export function TextbookStudioView({
                   }}
                   onRecapture={(itemId) => {
                     if (refuseLocked()) return;
+                    // 문항 하나의 작업도 원고를 바꾼다 — 다른 작업과 겹쳐 돌지 않는다
+                    if (!begin()) return;
                     const target = {
                       editionId: edition.editionId,
                       sectionId: draft.sectionId,
@@ -2719,7 +2791,8 @@ export function TextbookStudioView({
                         edition.aggregateRevision,
                       )
                       .then((result) => rememberItem(result, target))
-                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                      .catch((reason: unknown) => setNotice(messageOf(reason)))
+                      .finally(() => setBusy(false));
                   }}
                   onLoadLinks={async (itemId) => {
                     try {
@@ -2742,6 +2815,7 @@ export function TextbookStudioView({
                       setNotice("연결할 은행 문항을 고르세요.");
                       return;
                     }
+                    if (!begin()) return;
                     const target = {
                       editionId: edition.editionId,
                       sectionId: draft.sectionId,
@@ -2755,10 +2829,12 @@ export function TextbookStudioView({
                         problemId,
                       )
                       .then((result) => rememberItem(result, target))
-                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                      .catch((reason: unknown) => setNotice(messageOf(reason)))
+                      .finally(() => setBusy(false));
                   }}
                   onRegister={async (itemId, fields) => {
                     if (refuseLocked()) return null;
+                    if (!begin()) return null;
                     const target = {
                       editionId: edition.editionId,
                       sectionId: draft.sectionId,
@@ -2779,6 +2855,8 @@ export function TextbookStudioView({
                     } catch (reason) {
                       setNotice(messageOf(reason));
                       return null;
+                    } finally {
+                      setBusy(false);
                     }
                   }}
                   onLoadUnits={loadUnits}
@@ -2816,13 +2894,8 @@ export function TextbookStudioView({
                   }}
                   onSaveConcept={() => {
                     // 개념 저장도 원고를 덮는 응답이다 — 도는 동안 입력과 다시 누르기를 막는다
-                    if (busy || busyRef.current) return;
-                    busyRef.current = true;
-                    setBusy(true);
-                    void persistConcept().finally(() => {
-                      busyRef.current = false;
-                      setBusy(false);
-                    });
+                    if (!begin()) return;
+                    void persistConcept().finally(() => setBusy(false));
                   }}
                   unattachedConcepts={unattachedConcepts}
                   onAttachConcept={(conceptKey) =>
@@ -2835,7 +2908,9 @@ export function TextbookStudioView({
                   }
                   onRetryConceptLink={() => void retryConceptLink()}
                   onSearchCatalog={(query) => {
-                    // 찾은 항목은 찾기를 누른 구획에만 더한다 — 그사이 연 다른 구획에 섞지 않는다
+                    // 찾은 항목은 찾기를 누른 구획에만 더한다 — 그사이 연 다른 구획에 섞지 않는다.
+                    // 찾는 동안 다른 작업이 시작되면 늦게 온 항목이 그 작업의 결과에 섞인다 — 같이 줄을 세운다.
+                    if (!begin()) return;
                     const target = {
                       editionId: draft.editionId,
                       sectionId: draft.sectionId,
@@ -2854,10 +2929,14 @@ export function TextbookStudioView({
                             : current,
                         ),
                       )
-                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                      .catch((reason: unknown) => setNotice(messageOf(reason)))
+                      .finally(() => setBusy(false));
                   }}
                   onDelete={() => {
                     if (refuseLocked()) return;
+                    // 삭제가 도는 동안 다른 구획을 열어 고치면, 늦은 응답이 그 원고를 비운다 — 이동과 입력을 막는다
+                    if (!begin()) return;
+                    const target = edition.editionId;
                     api
                       .deleteSection(
                         edition.editionId,
@@ -2867,12 +2946,14 @@ export function TextbookStudioView({
                       )
                       .then(() => api.openEdition(edition.editionId))
                       .then((next) => {
+                        if (!editionOpen(target)) return;
                         setEdition(next);
                         setDraft(null);
                         setSaved(null);
                         setNotice("구획을 삭제했습니다.");
                       })
-                      .catch((reason: unknown) => setNotice(messageOf(reason)));
+                      .catch((reason: unknown) => setNotice(messageOf(reason)))
+                      .finally(() => setBusy(false));
                   }}
                   lectureLink={
                     <>

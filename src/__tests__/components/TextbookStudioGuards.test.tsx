@@ -6,6 +6,7 @@
  */
 import {
   act,
+  cleanup,
   fireEvent,
   render,
   screen,
@@ -863,6 +864,7 @@ describe("늦은 응답 — 그사이 다른 판본이 열렸을 때", () => {
       editionId: E2,
       bookId: "book-2",
       title: "소수의 곱셈",
+      aggregateRevision: 20,
       structureSource: {
         ...base.structureSource,
         outline: [
@@ -992,6 +994,255 @@ describe("늦은 응답 — 그사이 다른 판본이 열렸을 때", () => {
     await waitFor(() => expect(line()).toBeEnabled());
     expect(line()).toHaveValue("다른 판본 문장");
     expect(screen.queryByText("문항 블록")).not.toBeInTheDocument();
+  });
+
+  it("개념 저장 응답이 다른 판본의 개념 상태와 원고를 덮지 않는다 — 저장돼 있던 개념을 그대로 다시 저장할 때", async () => {
+    type SavedConcept = Awaited<ReturnType<TextbookStudioApi["saveConcept"]>>;
+    const request = deferred<SavedConcept>();
+    const concept: TextbookConcept = {
+      conceptKey: "common-denominator",
+      unitKey: "unit-1",
+      sectionKey: "dialogue",
+      title: "통분",
+      kind: "정의",
+      unitId: null,
+      body: {
+        goal: "",
+        prerequisites: [],
+        definition: "분모를 같게 한다",
+        conditions: null,
+        examples: [],
+        counterexamples: [],
+        misconceptions: [],
+        explainPrompt: null,
+      },
+      blankItems: [],
+      links: [],
+      mappingVersion: "1",
+      derivedFromConceptKey: null,
+      frozen: null,
+    };
+    const withConcept = section();
+    withConcept.blocks = [
+      ...withConcept.blocks,
+      { id: "block-concept", kind: "concept", conceptKey: concept.conceptKey },
+    ];
+    const saveConcept = vi.fn(() => request.promise);
+    const client = api({
+      openEdition: openEdition(),
+      getSection: vi.fn(async (editionId: string) =>
+        editionId === E2 ? otherSection() : withConcept,
+      ),
+      readConcept: vi.fn(async () => ({
+        concept,
+        revision: 1,
+        draft: {
+          conceptKey: concept.conceptKey,
+          title: "통분",
+          kind: "정의",
+          goal: "",
+          prerequisites: "",
+          definition: "분모를 같게 한다",
+          conditions: "",
+          examples: "",
+          counterexamples: "",
+          misconceptions: "",
+          explainPrompt: "",
+          blankForms: ["term", "cloze"],
+        },
+      })) as unknown as TextbookStudioApi["readConcept"],
+      saveConcept: saveConcept as unknown as TextbookStudioApi["saveConcept"],
+    });
+    const view = await openStudio(client);
+    expect(screen.getByRole("group", { name: "개념 원고" })).toBeVisible();
+    // 고친 것이 없어도 저장은 누를 수 있다 — 이때는 «미저장» 이 아니라서 주소 동기화가 판본을 바꿀 수 있다
+    fireEvent.click(screen.getByRole("button", { name: "개념 저장" }));
+    await waitFor(() => expect(saveConcept).toHaveBeenCalledOnce());
+    await switchEdition(view, client);
+
+    await act(async () => {
+      request.resolve({
+        revision: 2,
+        aggregateRevision: 11,
+        concept,
+      } as SavedConcept);
+    });
+    await waitFor(() => expect(line()).toBeEnabled());
+    expect(line()).toHaveValue("다른 판본 문장");
+    expect(
+      screen.queryByRole("group", { name: "개념 원고" }),
+    ).not.toBeInTheDocument();
+    expect(closing()).toBe(false);
+  });
+
+  it("기존 개념 연결의 개념 읽기가 늦게 실패해도 다른 판본의 원고와 알림을 건드리지 않는다", async () => {
+    type Loaded = Awaited<ReturnType<TextbookStudioApi["readConcept"]>>;
+    type Material = Awaited<
+      ReturnType<TextbookStudioApi["readPreviewMaterial"]>
+    >;
+    const request = deferred<Loaded>();
+    const orphan = {
+      conceptKey: "orphan",
+      unitKey: "unit-1",
+      sectionKey: null,
+      title: "통분",
+      kind: "정의",
+      unitId: null,
+      body: {
+        goal: "",
+        prerequisites: [],
+        definition: "분모를 같게 한다",
+        conditions: null,
+        examples: [],
+        counterexamples: [],
+        misconceptions: [],
+        explainPrompt: null,
+      },
+      blankItems: [],
+      links: [],
+      mappingVersion: "1",
+      derivedFromConceptKey: null,
+      frozen: null,
+    };
+    const readConcept = vi.fn(() => request.promise);
+    const client = api({
+      openEdition: openEdition(),
+      getSection: vi.fn(async (editionId: string) =>
+        editionId === E2 ? otherSection() : section(),
+      ),
+      readPreviewMaterial: vi.fn(
+        async () =>
+          ({
+            items: [],
+            snapshots: [],
+            assets: [],
+            concepts: [orphan],
+            qrTargets: [],
+            conceptQrTargets: [],
+          }) as unknown as Material,
+      ),
+      saveSection: vi.fn(async () => ({
+        revision: 4,
+        aggregateRevision: 10,
+      })) as unknown as TextbookStudioApi["saveSection"],
+      readConcept: readConcept as unknown as TextbookStudioApi["readConcept"],
+    });
+    const view = await openStudio(client);
+    await screen.findByRole("combobox", { name: "저장된 개념" });
+    fireEvent.click(screen.getByRole("button", { name: "이 구획에 연결" }));
+    await waitFor(() => expect(readConcept).toHaveBeenCalledOnce());
+    await switchEdition(view, client);
+
+    await act(async () => {
+      request.reject(new Error("개념을 읽지 못했습니다."));
+    });
+    await waitFor(() => expect(line()).toBeEnabled());
+    expect(line()).toHaveValue("다른 판본 문장");
+    expect(
+      screen.queryByText(/개념 원고는 불러오지 못했습니다/),
+    ).not.toBeInTheDocument();
+    expect(closing()).toBe(false);
+  });
+
+  it("다시 고정의 응답이 다른 판본의 문항 목록에 끼어들지 않는다", async () => {
+    type Recaptured = Awaited<ReturnType<TextbookStudioApi["recaptureItem"]>>;
+    const request = deferred<Recaptured>();
+    const item = {
+      itemId: "item-1",
+      problemId: "problem-1",
+      label: "기존 문항",
+      snapshotHash: null,
+      currentHash: null,
+      state: "uncompared" as const,
+    };
+    const first = section({ items: [item] });
+    first.blocks = [
+      ...first.blocks,
+      { id: "block-old", kind: "problems", itemIds: ["item-1"] },
+    ];
+    const recaptureItem = vi.fn(() => request.promise);
+    const client = api({
+      openEdition: openEdition(),
+      getSection: vi.fn(async (editionId: string) =>
+        editionId === E2 ? otherSection() : first,
+      ),
+      recaptureItem:
+        recaptureItem as unknown as TextbookStudioApi["recaptureItem"],
+    });
+    const view = await openStudio(client);
+    fireEvent.click(screen.getByRole("button", { name: "다시 고정" }));
+    await waitFor(() => expect(recaptureItem).toHaveBeenCalledOnce());
+    await switchEdition(view, client);
+
+    await act(async () => {
+      request.resolve({
+        item: { ...item, label: "다시 고정한 문항" },
+        aggregateRevision: 12,
+      } as Recaptured);
+    });
+    await waitFor(() => expect(line()).toBeEnabled());
+    expect(screen.queryByText(/다시 고정한 문항/)).not.toBeInTheDocument();
+    expect(closing()).toBe(false);
+  });
+
+  it("다른 판본의 구획을 읽는 사이에 끝난 저장이 그 판본의 revision 을 바꾸지 않는다", async () => {
+    const save = deferred<{ revision: number; aggregateRevision: number }>();
+    const other = deferred<SectionDetail>();
+    let otherReads = 0;
+    const saveSection = vi.fn(() => save.promise);
+    const captureItems = vi.fn(async () => ({
+      items: [],
+      excluded: [],
+      aggregateRevision: 21,
+    }));
+    const client = api({
+      openEdition: openEdition(),
+      getSection: vi.fn((editionId: string) =>
+        editionId === E2
+          ? otherReads++ === 0
+            ? other.promise
+            : Promise.resolve(otherSection())
+          : Promise.resolve(section()),
+      ),
+      saveSection: saveSection as unknown as TextbookStudioApi["saveSection"],
+      captureItems:
+        captureItems as unknown as TextbookStudioApi["captureItems"],
+      listUnits: vi.fn(async () => [
+        { id: "00000000-0000-4000-8000-0000000000a1", label: "초5 분수 통분" },
+      ]),
+      listUnitProblems: vi.fn(async () => [
+        { id: "00000000-0000-4000-8000-0000000000b1", label: "E51402-K7M2" },
+      ]),
+    });
+    const view = await openStudio(client);
+    fireEvent.click(screen.getByRole("button", { name: "이 구획 저장" }));
+    await waitFor(() => expect(saveSection).toHaveBeenCalledOnce());
+    view.rerender(<TextbookStudioView api={client} initialEditionId={E2} />);
+    // 판본은 바뀌었고 그 구획은 아직 읽는 중이다 — 화면의 원고는 앞 판본의 것이다
+    expect(await screen.findByText("소수의 곱셈")).toBeVisible();
+
+    await act(async () => {
+      save.resolve({ revision: 4, aggregateRevision: 10 });
+    });
+    await act(async () => {
+      other.resolve(otherSection());
+    });
+    fireEvent.click(screen.getByRole("button", { name: "세부 편집" }));
+    await waitFor(() => expect(line()).toHaveValue("다른 판본 문장"));
+    await waitFor(() => expect(line()).toBeEnabled());
+
+    // 이 판본의 다음 요청은 이 판본의 revision 으로 나간다 — 앞 판본의 저장이 남긴 값이 아니다
+    fireEvent.click(screen.getByRole("button", { name: "문제에서 가져오기" }));
+    fireEvent.click(
+      await screen.findByRole("checkbox", { name: "E51402-K7M2" }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "문항 가져오기" }));
+    await waitFor(() => expect(captureItems).toHaveBeenCalledOnce());
+    expect(
+      (
+        captureItems.mock.calls as unknown as [Record<string, unknown>][]
+      )[0]![0],
+    ).toMatchObject({ editionId: E2, expectedRevision: 20 });
   });
 });
 
@@ -1165,48 +1416,45 @@ describe("B01 · B02 보완 — 저장 후 이동 · 가져오기가 남기는 �
   });
 });
 
-describe("B02 인접 — 문항 하나의 작업이 늦게 끝났을 때", () => {
-  it("다시 고정의 응답이 그사이 연 다른 구획의 문항 목록에 끼어들지 않는다", async () => {
-    type Recaptured = Awaited<ReturnType<TextbookStudioApi["recaptureItem"]>>;
-    const request = deferred<Recaptured>();
-    const item = {
-      itemId: "item-1",
-      problemId: "problem-1",
-      label: "기존 문항",
-      snapshotHash: null,
-      currentHash: null,
-      state: "uncompared" as const,
-    };
+describe("B02 인접 — 문항 하나의 작업 · 삭제 · 검색이 도는 사이", () => {
+  const item = {
+    itemId: "item-1",
+    problemId: "problem-1",
+    label: "기존 문항",
+    snapshotHash: null,
+    currentHash: null,
+    state: "uncompared" as const,
+  };
+  const withItem = () => {
     const first = section({ items: [item] });
     first.blocks = [
       ...first.blocks,
       { id: "block-old", kind: "problems", itemIds: ["item-1"] },
     ];
-    const second = section({
-      sectionId: "section-2",
-      sectionKey: "practice",
-      title: "연습",
-      parity: "continue",
-    });
+    return first;
+  };
+
+  it("다시 고정이 도는 동안에는 다른 구획으로 옮기지 않고 입력도 잠근다 — 응답이 다른 구획의 목록에 끼어들 틈이 없다", async () => {
+    type Recaptured = Awaited<ReturnType<TextbookStudioApi["recaptureItem"]>>;
+    const request = deferred<Recaptured>();
     const recaptureItem = vi.fn(() => request.promise);
+    const getSection = vi.fn(async () => withItem());
     await openStudio(
       api({
-        getSection: vi.fn(async (_edition: string, sectionId: string) =>
-          sectionId === "section-2" ? second : first,
-        ),
+        getSection,
         recaptureItem:
           recaptureItem as unknown as TextbookStudioApi["recaptureItem"],
       }),
     );
     fireEvent.click(screen.getByRole("button", { name: "다시 고정" }));
     await waitFor(() => expect(recaptureItem).toHaveBeenCalledOnce());
-    // 이 작업은 이동을 막지 않는다 — 그사이 다른 구획을 연다
+    expect(line()).toBeDisabled();
+    const before = getSection.mock.calls.length;
     fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
-    fireEvent.click(screen.getByRole("button", { name: "연습" }));
-    fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
-    await waitFor(() =>
-      expect(screen.queryByText(/기존 문항/)).not.toBeInTheDocument(),
-    );
+    const other = screen.getByRole("button", { name: "연습" });
+    expect(other).toBeDisabled();
+    fireEvent.click(other);
+    expect(getSection).toHaveBeenCalledTimes(before);
 
     await act(async () => {
       request.resolve({
@@ -1214,8 +1462,99 @@ describe("B02 인접 — 문항 하나의 작업이 늦게 끝났을 때", () =>
         aggregateRevision: 12,
       } as Recaptured);
     });
-    expect(screen.queryByText(/다시 고정한 문항/)).not.toBeInTheDocument();
-    expect(closing()).toBe(false);
+    fireEvent.click(screen.getByRole("button", { name: "세부 편집" }));
+    expect(await screen.findByText(/다시 고정한 문항/)).toBeVisible();
+    await waitFor(() => expect(line()).toBeEnabled());
+  });
+
+  it("시작하자마자 실패한 작업 뒤에도 다음 작업이 막히지 않는다 — «처리 중» 이 남지 않는다", async () => {
+    const recaptureItem = vi.fn(async () => ({
+      item: { ...item, label: "다시 고정한 문항" },
+      aggregateRevision: 12,
+    }));
+    await openStudio(
+      api({
+        getSection: vi.fn(async () => withItem()),
+        listUnits: vi.fn(async () => [
+          {
+            id: "00000000-0000-4000-8000-0000000000a1",
+            label: "초5 분수 통분",
+          },
+        ]),
+        // 응답을 기다릴 것도 없이 그 자리에서 실패한다 — 시작과 끝이 같은 그리기에 묶인다
+        registerItem: vi.fn(() => {
+          throw new Error("등록하지 못했습니다.");
+        }) as unknown as TextbookStudioApi["registerItem"],
+        recaptureItem:
+          recaptureItem as unknown as TextbookStudioApi["recaptureItem"],
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "등록" }));
+    const submit = await screen.findByRole("button", {
+      name: "검수 대기로 등록",
+    });
+    await waitFor(() => expect(submit).toBeEnabled());
+    fireEvent.click(submit);
+    expect(await screen.findByText("등록하지 못했습니다.")).toBeVisible();
+    expect(line()).toBeEnabled();
+
+    fireEvent.click(screen.getByRole("button", { name: "다시 고정" }));
+    await waitFor(() => expect(recaptureItem).toHaveBeenCalledOnce());
+    expect(await screen.findByText(/다시 고정한 문항/)).toBeVisible();
+  });
+
+  it("구획 삭제가 도는 동안에는 다른 구획을 열 수 없다 — 늦은 응답이 새로 연 원고를 비우지 않는다", async () => {
+    const request = deferred<void>();
+    const deleteSection = vi.fn(() => request.promise);
+    const getSection = vi.fn(async () => section());
+    await openStudio(
+      api({
+        getSection,
+        deleteSection:
+          deleteSection as unknown as TextbookStudioApi["deleteSection"],
+      }),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "구획 삭제" }));
+    await waitFor(() => expect(deleteSection).toHaveBeenCalledOnce());
+    expect(line()).toBeDisabled();
+    const before = getSection.mock.calls.length;
+    fireEvent.click(screen.getByRole("button", { name: "완성 교재 보기" }));
+    const other = screen.getByRole("button", { name: "연습" });
+    expect(other).toBeDisabled();
+    fireEvent.click(other);
+    expect(getSection).toHaveBeenCalledTimes(before);
+
+    await act(async () => {
+      request.resolve();
+    });
+    expect(await screen.findByText("구획을 삭제했습니다.")).toBeVisible();
+  });
+
+  it("은행 검색이 도는 동안에는 가져오기 · 저장을 시작할 수 없다 — 늦게 온 항목이 다른 작업의 결과에 섞이지 않는다", async () => {
+    type Picks = Awaited<ReturnType<TextbookStudioApi["searchCatalog"]>>;
+    const request = deferred<Picks>();
+    const searchCatalog = vi.fn(() => request.promise);
+    await openStudio(
+      api({
+        searchCatalog:
+          searchCatalog as unknown as TextbookStudioApi["searchCatalog"],
+      }),
+    );
+    fireEvent.change(screen.getByRole("textbox", { name: "은행 검색" }), {
+      target: { value: "통분" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "검색" }));
+    await waitFor(() => expect(searchCatalog).toHaveBeenCalledOnce());
+    expect(line()).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "문항 가져오기" }),
+    ).toBeDisabled();
+    expect(screen.getByRole("button", { name: "이 구획 저장" })).toBeDisabled();
+
+    await act(async () => {
+      request.resolve([] as unknown as Picks);
+    });
+    await waitFor(() => expect(line()).toBeEnabled());
   });
 });
 
@@ -1314,12 +1653,17 @@ describe("B03 보완 — 생성 양식이 화면에서 사라진 뒤", () => {
 describe("B04 보완 — 발행 결과를 확인하지 못한 동안", () => {
   const job = { jobId: "job-1", issues: [], completedSteps: 1, totalSteps: 1 };
 
-  it("결과를 모르는 동안에는 원고와 확정을 잠그고, 판본을 다시 읽어 초안이면 푼다", async () => {
+  it("결과를 모르는 동안에는 원고와 확정을 잠그고, 다시 읽는 중에도 · 다시 읽기에 실패해도 풀지 않는다 — 판본을 읽어 초안이면 푼다", async () => {
+    const first = deferred<EditionDetail>();
+    const earlier = deferred<EditionDetail>();
+    const later = deferred<EditionDetail>();
     const openEdition = vi
       .fn()
       .mockResolvedValueOnce(editionOf())
       .mockRejectedValueOnce(new TypeError("Failed to fetch"))
-      .mockResolvedValue(editionOf());
+      .mockImplementationOnce(() => first.promise)
+      .mockImplementationOnce(() => earlier.promise)
+      .mockImplementationOnce(() => later.promise);
     const finalize = vi.fn(async () => {
       throw new TypeError("Failed to fetch");
     });
@@ -1347,17 +1691,82 @@ describe("B04 보완 — 발행 결과를 확인하지 못한 동안", () => {
     );
     fireEvent.click(screen.getByRole("button", { name: "원고" }));
     expect(line()).toBeDisabled();
+    expect(screen.getByRole("button", { name: "구획 추가" })).toBeDisabled();
 
-    fireEvent.click(
-      within(unknown).getByRole("button", { name: "판본 다시 불러오기" }),
-    );
+    // 다시 읽는 중 — 아직 모른다
+    const reread = () =>
+      fireEvent.click(
+        screen.getByRole("button", { name: "판본 다시 불러오기" }),
+      );
+    reread();
     await waitFor(() => expect(openEdition).toHaveBeenCalledTimes(3));
+    expect(line()).toBeDisabled();
+    // 다시 읽기도 실패 — 여전히 모른다
+    await act(async () => {
+      first.reject(new TypeError("Failed to fetch"));
+    });
+    expect(line()).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "발행" }));
+    expect(screen.getByRole("button", { name: "확정" })).toBeDisabled();
+
+    // 거듭 눌러 읽기가 둘 겹쳤다 — 뒤의 것이 판본을 읽었다(초안이다)
+    reread();
+    reread();
+    await waitFor(() => expect(openEdition).toHaveBeenCalledTimes(5));
+    await act(async () => {
+      later.resolve(editionOf());
+    });
+    fireEvent.click(screen.getByRole("button", { name: "원고" }));
     await waitFor(() => expect(line()).toBeEnabled());
+    // 앞의 것이 뒤늦게 실패해도 «결과 불명» 을 되살리지 않는다
+    await act(async () => {
+      earlier.reject(new TypeError("Failed to fetch"));
+    });
+    expect(line()).toBeEnabled();
+    expect(screen.queryByRole("alert")).not.toBeInTheDocument();
     expect(finalize).toHaveBeenCalledOnce();
   });
 });
 
 describe("B06 보완 — 목록을 읽지 못했을 때", () => {
+  it("출처를 바꿨다 돌아와 다시 읽기에 실패하면, 앞서 받아 둔 목록을 준비된 것으로 두지 않는다", async () => {
+    const captureItems = vi.fn();
+    const listOwnedTests = vi
+      .fn()
+      .mockResolvedValueOnce([{ id: "test-a", label: "A반 시험지" }])
+      .mockRejectedValue(new Error("시험지 목록을 읽지 못했습니다."));
+    await openStudio(
+      api({
+        captureItems,
+        listClasses: vi.fn(async () => [{ id: "class-a", label: "A반" }]),
+        listStudents: vi.fn(async () => []),
+        listOwnedTests,
+        listUnits: vi.fn(async () => []),
+      }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "시험지에서 가져오기" }),
+    );
+    await screen.findByRole("option", { name: "A반 시험지" });
+    fireEvent.click(screen.getByRole("button", { name: "문제에서 가져오기" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "시험지에서 가져오기" }),
+    );
+
+    expect(
+      await screen.findByText("시험지 목록을 읽지 못했습니다."),
+    ).toBeVisible();
+    expect(
+      await screen.findByRole("option", { name: "시험지를 읽지 못했습니다" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("option", { name: "A반 시험지" }),
+    ).not.toBeInTheDocument();
+    const submit = screen.getByRole("button", { name: "문항 가져오기" });
+    expect(submit).toBeDisabled();
+    fireEvent.click(submit);
+    expect(captureItems).not.toHaveBeenCalled();
+  });
   it("읽기 실패를 «문제가 없다» 로 말하지 않고, 가져오기도 열지 않는다", async () => {
     const captureItems = vi.fn();
     await openStudio(
@@ -1424,6 +1833,129 @@ describe("B07 보완 — 생성을 기다리는 사이 양식에 적은 것", ()
     );
     expect(screen.getByRole("textbox", { name: "권 코드" })).toHaveValue("");
     expect(screen.getByRole("textbox", { name: "목표 쪽수" })).toHaveValue("");
+  });
+});
+
+describe("U01 — «PDF 만들기» 가 하는 일을 누르기 전에 알린다", () => {
+  const note =
+    "PDF가 완성되면 이 판본이 발행되어 원고가 잠깁니다. 수정하려면 새 초안을 만드세요.";
+
+  it("초안의 완성 보기에서 단추 곁에 발행 · 잠금을 미리 알리고, 단추가 그 안내를 가리킨다", async () => {
+    render(<TextbookStudioView api={api()} />);
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    const button = await screen.findByRole("button", { name: "PDF 만들기" });
+    const text = screen.getByText(note);
+    expect(text).toBeVisible();
+    expect(button).toHaveAttribute("aria-describedby", text.id);
+  });
+
+  it("이미 발행된 판본에는 단추도 안내도 없다", async () => {
+    render(
+      <TextbookStudioView
+        api={api({ openEdition: vi.fn(async () => editionOf("published")) })}
+      />,
+    );
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    expect(
+      await screen.findByRole("link", { name: "학생용 PDF 내려받기" }),
+    ).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "PDF 만들기" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(note)).not.toBeInTheDocument();
+  });
+});
+
+describe("B05 — 지면이 구조에서 나오는 본문", () => {
+  const note =
+    "이 본문은 저장된 구조에서 생성됩니다. 이 입력 칸에서는 수정할 수 없습니다.";
+  const withText = (
+    templateKey: string,
+    semantic?: SectionDetail["blocks"][number]["semantic"],
+  ) =>
+    section({
+      templateKey,
+      blocks: [
+        {
+          id: "block-text",
+          kind: "text",
+          text: "처음 본문",
+          ...(semantic ? { semantic } : {}),
+        },
+      ],
+    });
+
+  async function openWith(detail: SectionDetail) {
+    const saveSection = vi.fn(async () => ({
+      revision: 4,
+      aggregateRevision: 10,
+    }));
+    render(
+      <TextbookStudioView
+        api={api({
+          getSection: vi.fn(async () => detail),
+          saveSection:
+            saveSection as unknown as TextbookStudioApi["saveSection"],
+        })}
+      />,
+    );
+    fireEvent.click(await screen.findByRole("button", { name: "열기" }));
+    fireEvent.click(await screen.findByRole("button", { name: "세부 편집" }));
+    return {
+      body: await screen.findByRole("textbox", { name: "본문" }),
+      saveSection,
+    };
+  }
+
+  it("질문 기록처럼 구조에서 나오는 본문은 읽기 전용이고, 이유를 곁에 알린다 — 고친 줄 알았는데 지면에 안 나오는 일이 없다", async () => {
+    const { body } = await openWith(
+      withText("auto-question-log", {
+        activity: "questionLog",
+        title: "질문 기록",
+        node: { kind: "writing", prompts: ["처음 본문"], lines: 4 },
+      } as SectionDetail["blocks"][number]["semantic"]),
+    );
+    expect(body).toHaveAttribute("readonly");
+    const text = screen.getByText(note);
+    expect(text).toBeVisible();
+    expect(body).toHaveAttribute("aria-describedby", text.id);
+    // 읽기 전용 칸에 값이 들어와도 원고는 바뀌지 않는다 — «저장 전» 이 되지 않는다
+    fireEvent.change(body, { target: { value: "고친 본문" } });
+    expect(body).toHaveValue("처음 본문");
+    expect(closing()).toBe(false);
+  });
+
+  it("구조가 없는 본문은 지금처럼 고칠 수 있고 안내도 없다", async () => {
+    const { body, saveSection } = await openWith(withText("basic"));
+    expect(body).not.toHaveAttribute("readonly");
+    expect(screen.queryByText(note)).not.toBeInTheDocument();
+    fireEvent.change(body, { target: { value: "고친 본문" } });
+    expect(body).toHaveValue("고친 본문");
+    fireEvent.click(screen.getByRole("button", { name: "이 구획 저장" }));
+    await waitFor(() => expect(saveSection).toHaveBeenCalledOnce());
+    expect(
+      (saveSection.mock.calls as unknown as [Record<string, unknown>][])[0]![0],
+    ).toMatchObject({ section: { blocks: [{ text: "고친 본문" }] } });
+  });
+
+  it("단원 도입 구조는 자동 단원 도입 틀에서만 지면을 정한다 — 다른 틀에서는 본문이 지면에 나오므로 고칠 수 있다", async () => {
+    const intro = {
+      activity: "unitIntro",
+      title: "평면도형",
+      node: {
+        kind: "unitIntro",
+        question: "선은 어디까지 이어질까?",
+        explanation: "선분, 반직선, 직선을 가른다.",
+        goals: [],
+        path: [],
+        check: [],
+      },
+    } as SectionDetail["blocks"][number]["semantic"];
+    const first = await openWith(withText("auto-unit-intro", intro));
+    expect(first.body).toHaveAttribute("readonly");
+    cleanup();
+    const second = await openWith(withText("basic", intro));
+    expect(second.body).not.toHaveAttribute("readonly");
   });
 });
 

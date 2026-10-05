@@ -1,4 +1,7 @@
-import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
+import type {
+  TextbookSemantic,
+  TextbookSourceFragment,
+} from "@/contracts/textbookSemantic.contract";
 import type { RenderBlock } from "../model";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { imageHtml, type RenderResources } from "./shared";
@@ -39,6 +42,32 @@ export function renderSourceFragments(
     .join("");
 }
 
+/**
+ * 이 글 블록의 지면이 본문(markdown)이 아니라 구조(`semantic.node`)에서 나오는가.
+ * 편집 화면이 «본문» 입력을 열어 둘지 정할 때 쓴다 — 본문을 고쳐도 지면에 나오지 않는 블록은 입력을 닫는다.
+ * 아래 `renderSemanticTextHtml` · 판서(`board`) · 단원 도입(`auto-unit-intro` 틀의 `unitIntro`)의 갈래와 같은 종류만 답한다.
+ * 은행 활동(`rows`)처럼 본문을 일부라도 읽는 종류와, 여기서 확인하지 않은 종류는 false 다(지금처럼 고칠 수 있다).
+ */
+export function textPrintsFromStructure(
+  semantic: TextbookSemantic | undefined,
+  templateKey: string,
+): boolean {
+  const node = semantic?.node;
+  if (!node) return false;
+  switch (node.kind) {
+    case "fragments":
+    case "writing":
+    case "references":
+    case "exampleGroup":
+    case "board":
+      return true;
+    case "unitIntro":
+      return templateKey === "auto-unit-intro";
+    default:
+      return false;
+  }
+}
+
 export function writingLinesHtml(lines: number): string {
   return `<div class="tb-semantic-lines" data-writing-space aria-label="작성 공간">${'<div class="tb-semantic-line"></div>'.repeat(lines)}</div>`;
 }
@@ -69,7 +98,9 @@ export function renderSemanticTextHtml(
   if (node.kind === "references")
     return `<section class="tb-references" data-activity="${semantic.activity}" aria-label="${esc(semantic.title ?? "쪽수 안내")}">${node.entries.map((entry) => `<div class="tb-reference-row" data-reference-key="${esc(entry.key)}"><span>${md(entry.label)}</span><span class="tb-reference-page" aria-label="쪽수">${esc(entry.pageLabel ?? "")}</span></div>`).join("")}</section>`;
   if (node.kind === "exampleGroup") {
-    const sourceTitle = semantic.source ? /^Y(\d+)\s+(.+)$/.exec(node.title) : null;
+    const sourceTitle = semantic.source
+      ? /^Y(\d+)\s+(.+)$/.exec(node.title)
+      : null;
     const number = sourceTitle?.[1] ?? block.exampleGroupNumber;
     return `<section class="tb-example-group tb-pair-heading${semantic.source ? " tb-source-example-heading" : ""}" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? `<b>풀이전략</b>${dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy))}` : md(node.strategy)}</div>`}</section>`;
   }

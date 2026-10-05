@@ -458,6 +458,10 @@ describe("textbook preview page and section navigation", () => {
       await within(preview).findByText("표지", { exact: true }),
     ).toBeVisible();
     expect(preview.querySelector(".tb-cover")).not.toBeNull();
+    // 쪽 번호가 없는 면에는 쪽 번호 안내도 없다
+    expect(
+      within(preview).queryByText(/구획 미리보기의 임시 쪽 번호입니다/),
+    ).toBeNull();
     expect(previous).toBeDisabled();
     expect(client.getSection).toHaveBeenCalledTimes(5);
   });
@@ -470,6 +474,12 @@ describe("textbook preview page and section navigation", () => {
     expect(await within(preview).findByText("유형 연습 본문 1")).toBeVisible();
     expect(preview.querySelector(".tb-cover")).toBeNull();
     expect(within(preview).getByText("유형 연습 · 2 · 3쪽")).toBeVisible();
+    // 이 번호는 구획 하나만 놓고 센 것이다 — 전체 교재의 쪽 번호가 아님을 곁에 알린다
+    expect(
+      within(preview).getByText(
+        "구획 미리보기의 임시 쪽 번호입니다. 전체 교재의 쪽 번호는 PDF에서 확인하세요.",
+      ),
+    ).toBeVisible();
   });
 
   it.each(["editor", "complete preview"])(

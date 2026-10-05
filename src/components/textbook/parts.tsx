@@ -6,6 +6,7 @@ import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import type { ProblemType } from "@/contracts/problem.contract";
 import { TextbookConceptLinkEditor } from "@/components/textbook/TextbookConceptLinkEditor";
 import { getTextbookCharacter } from "@/lib/textbook/characters";
+import { textPrintsFromStructure } from "@/lib/textbook/render/blocks/semantic";
 import {
   CONCEPT_KINDS,
   EXPRESSIONS,
@@ -584,17 +585,32 @@ export function SectionEditor({
               ),
             });
           if (block.kind === "text") {
+            // 지면이 본문이 아니라 구조에서 나오는 블록 — 여기서 고쳐도 지면에 나오지 않으므로 입력을 닫는다
+            const structured = textPrintsFromStructure(
+              block.semantic,
+              draft.templateKey,
+            );
+            const noteId = `text-structure-note-${block.id}`;
             return (
               <div key={block.id} className={styles.stack}>
                 <label className={styles.field}>
                   <span>본문</span>
                   <textarea
                     value={block.text}
-                    onChange={(event) =>
-                      replace({ ...block, text: event.target.value })
-                    }
+                    readOnly={structured}
+                    aria-describedby={structured ? noteId : undefined}
+                    onChange={(event) => {
+                      if (structured) return;
+                      replace({ ...block, text: event.target.value });
+                    }}
                   />
                 </label>
+                {structured ? (
+                  <p className={styles.muted} id={noteId}>
+                    이 본문은 저장된 구조에서 생성됩니다. 이 입력 칸에서는
+                    수정할 수 없습니다.
+                  </p>
+                ) : null}
                 <div className={styles.row}>
                   <button
                     type="button"
@@ -1689,6 +1705,8 @@ function ItemCapture({
             className={styles.button}
             aria-pressed={sourceMode === "test"}
             onClick={() => {
+              // 출처를 바꾸면 목록을 다시 읽는다 — 그 읽기가 끝날 때까지 앞서 받아 둔 목록을 «준비됨» 으로 두지 않는다
+              if (sourceMode !== "test") setTestsFor(null);
               setSourceMode("test");
               void onLoadClasses().then((rows) => {
                 setClasses(rows);
@@ -1703,6 +1721,7 @@ function ItemCapture({
             className={styles.button}
             aria-pressed={sourceMode === "problems"}
             onClick={() => {
+              if (sourceMode !== "problems") setProblemsFor(null);
               setSourceMode("problems");
               void onLoadUnits().then((rows) => {
                 setUnits(rows);
@@ -2185,6 +2204,7 @@ export function PreviewPane({
   input,
   zoom,
   pageLabel,
+  pageNote = null,
   onMode,
   onZoom,
   onPrev,
@@ -2201,6 +2221,8 @@ export function PreviewPane({
   input: PaperPreviewInput;
   zoom: ZoomMode;
   pageLabel: string;
+  /** 쪽 번호 곁의 안내 — 번호가 보일 때만 넘긴다 */
+  pageNote?: string | null;
   onMode: (mode: PreviewMode) => void;
   onZoom: (zoom: ZoomMode) => void;
   onPrev: () => void;
@@ -2282,6 +2304,7 @@ export function PreviewPane({
           다음 쪽
         </button>
       </div>
+      {pageNote ? <p className={styles.muted}>{pageNote}</p> : null}
       <div
         className={styles.spread}
         role="region"
@@ -3066,6 +3089,7 @@ export function ConfigPanel({
   studentSolutionPolicy,
   print,
   locked,
+  frozen = false,
   busy,
   onSave,
 }: {
@@ -3079,6 +3103,8 @@ export function ConfigPanel({
     firstPhysicalPageIndex: number;
   };
   locked: boolean;
+  /** 처리 중 — 끝날 때까지 설정 입력을 잠근다 */
+  frozen?: boolean;
   busy: boolean;
   onSave: (value: {
     volumeCode: string;
@@ -3121,7 +3147,7 @@ export function ConfigPanel({
       }}
     >
       <h2>설정</h2>
-      <fieldset className={styles.stack} disabled={locked}>
+      <fieldset className={styles.stack} disabled={locked || frozen}>
         <label className={styles.field}>
           <span>제목</span>
           <input name="title" defaultValue={title} />
