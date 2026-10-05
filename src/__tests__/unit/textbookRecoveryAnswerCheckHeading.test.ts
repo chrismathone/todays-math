@@ -282,7 +282,11 @@ describe("the projection of a native concept page that ends with its check subhe
     expect(section.blocks.some((b) => b.keepWithNext)).toBe(false);
     const authored = section.blocks.find((b) => b.id === "authored")!;
     expect(fragmentsOf(authored)).toEqual(
-      options.fragments ?? [BODY, TABLE, CHECK],
+      ("fragments" in options ? options.fragments : undefined) ?? [
+        BODY,
+        TABLE,
+        CHECK,
+      ],
     );
   });
 
@@ -510,7 +514,7 @@ describe("what keeping a block with the next row never does", () => {
     section.blocks.push(
       ...extra.units[0].sections[0].blocks.slice(2).map((block) => ({
         ...block,
-        semantic: (first as { semantic: object }).semantic,
+        semantic: first.semantic,
       })),
     );
     const base = createTextbookRenderModel(exchange, "answers");
