@@ -485,7 +485,8 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     ["scriptcheck", "dialogueCheck", 1],
     ["basic", "basicCheck", 2],
     ["exercise", "practice", 5],
-    ["drill", "practice", 4],
+    // Native R22 has adjoining rows; sourceDrillLayout also pins the 9mm gutter.
+    ["drill", "practice", 0],
     ["practice", "practice", 4],
     ["reasoning", "reasoning", 4],
     ["concept1", "concepts", 4],
