@@ -20,6 +20,7 @@ import {
   AUTOMATIC_INTRO_CSS,
 } from "./blocks/automaticIntro";
 import { renderConceptHtml } from "./blocks/concept";
+import { FRACTION_CHOICE_CSS } from "./blocks/fractionChoiceRows";
 import {
   renderDialogueHtml,
   renderDialogueBoardHtml,
@@ -122,6 +123,7 @@ ${RECOVERY_FRAME_CSS}
 ${SOURCE_CHAPTER_CSS}
 ${SOURCE_PROBLEM_CSS}
 ${SOURCE_ACTIVITY_CSS}
+${FRACTION_CHOICE_CSS}
 ${AUTOMATIC_INTRO_CSS}
 `;
 
