@@ -2,6 +2,16 @@
 
 2026-10-05 Codex 인계 및 동일 영역 재검사 갱신. 사용자의 “실행해”에 따라 고정 최종 계획 v02를 실행한다. 계획의 UTF-8 LF SHA-256 `0ab8ac18fc033936e52a300752dd73894fbccfa52c740c0acc52c0d03cb04bb7`은 보존한다. 이 문서는 진행 중인 실행 원장이며 완료 선언이 아니다.
 
+## 읽기 운영 배포 합격 및 작성기 설정 활성화
+
+읽기 코드 main `17fa12e0bd9cb5e8d5772b4599ab997ad3380096`을 push했으며 Vercel의 실제 Git 상태가 success다. 배포 URL은 `https://vercel.com/bigshols-projects/todays-math/44B2dJSvhFEcMX4kzVwgtBasoSjE`다. push 직전 origin/main을 fetch·비교했고 새 원격 변경은 없었다. 필수 pre-push의 실제 DB 읽기 검사 4종과 TypeScript가 통과했다. 최초 TypeScript 실행은 Node 기본 약 4GB 한도에서 OOM으로 실패하여 push되지 않았으며, 검사 프로세스만 `NODE_OPTIONS=--max-old-space-size=8192`로 재실행하여 통과했다. 검사를 우회하지 않았다.
+
+실제 지정 계정의 브라우저를 새로 불러와 기존 두 초안의 상세와 교환 JSON을 GET 200으로 확인했다. `exportedAt`만 제외하는 기존 방식으로 비교한 네 SHA가 모두 변경 전과 일치했다. GET catalog는 200 / 중2-1 33소단원 / `writerReady:false`다. 배포 후 읽기 영수증 SHA `67e636fafc8f12267b643a08d9feb1aa03c6079e50f73ca0718a98e88973ba4d`, 운영 쓰기 0회다. 기존 발행본은 0건이므로 발행본 보존 검사로 확대하지 않는다.
+
+이 관문을 통과한 뒤 `vercel.json`의 기존 작성기 Boolean만 true로 설정한다. [Vercel의 공식 env 문서](https://vercel.com/docs/project-configuration/vercel-json#env)는 이 설정을 함수 실행 시 전달하는 값으로 설명하며 Project Settings 사용을 권장한다. 현재 CLI·연결 앱이 올바른 팀에 접근하지 못해 Git 배포 설정을 사용한다. 비밀정보를 추가하지 않으며 제품의 기본 false 판정과 계정 권한 검사는 유지한다. 이 설정은 해당 설정을 사용하는 Vercel 배포에 적용된다. 팀 설정 접근이 확보되면 동일 Boolean을 Project Settings로 옮길 수 있다. 아직 활성화 배포 성공이나 신규 운영 생성 결과를 기록한 것이 아니다.
+
+완료된 reference/content/extraction 세 작업의 변경은 main에 병합됐고 작업자는 release됐다. 남은 터미널은 미사용 PowerShell 프롬프트임을 읽어서 확인한 뒤 종료했고 `ptyKilled:true`를 확인했다. 공유 node_modules 정션만 재귀 없이 분리한 후 Orca 등록을 제거했으며 세 Git 브랜치는 보존했다. 공유 의존성은 여전히 52,190파일이다. extraction 경로에는 빈 폴더가 남아 있으며 자동 승인 검토가 추가 삭제를 정책상 차단하여 보존한다. 다른 작업자의 세션은 정리 대상에 포함하지 않는다.
+
 ## 공유 의존성 복구 및 독립 확인
 
 완료된 Orca 워크트리 정리 중 공유 `node_modules`가 비워지는 부작용이 발생했다. 교재 소스·원고·검수 PDF·브랜치는 보존됐다. 루트에 보존한 원본 의존성에서 누락된 52,154파일만 하드링크로 복구하고 기존 36파일은 덮어쓰지 않았다. 패키지 설치나 Prisma 생성은 실행하지 않았다. 복구 영수증 SHA는 `9febc577b666c5dd11274a7e608fdd25a2483a5136b3bff77b2b4cb76f55543d`다.

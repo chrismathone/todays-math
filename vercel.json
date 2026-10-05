@@ -1,6 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "regions": ["icn1"],
+  "env": {
+    "TEXTBOOK_RECOVERY_WRITER_ENABLED": "true"
+  },
   "functions": {
     "api/mathgen-engine.py": {
       "maxDuration": 60,
