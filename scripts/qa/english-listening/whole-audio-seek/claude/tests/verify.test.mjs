@@ -3,6 +3,7 @@ import { test } from "node:test";
 import { verifyMarks } from "../lib/verify.mjs";
 import {
   FRAMES,
+  ONSETS,
   buildLedger,
   goodProbes,
   makeNative,
@@ -82,6 +83,19 @@ test("a start that is not the measured native frame is rejected", () => {
   const otherPcm = fresh();
   rowOf(otherPcm, 1).nativeEvidence.pcmSha256 = "0".repeat(64);
   assert.ok(codes(otherPcm).includes("off_native_clock"));
+});
+
+test("a start followed by less sound than a spoken number does not replay", () => {
+  const ledger = fresh();
+  assert.deepEqual(codes(ledger), []);
+  // The same onset, the same quiet before it, but only 220 ms of sound in the
+  // two seconds in which the number has to be heard.
+  const energy = ledger.env.native().energy;
+  for (let w = ONSETS[1] + 11; w < ONSETS[1] + 300; w++) energy[w] = 0;
+  assert.ok(codes(ledger).includes("too_little_sound_after_onset"));
+  // One more window of sound within those seconds is a spoken number's worth.
+  energy[ONSETS[1] + 50] = energy[ONSETS[1]];
+  assert.ok(!codes(ledger).includes("too_little_sound_after_onset"));
 });
 
 test("playback must continue to the end of the whole original", () => {

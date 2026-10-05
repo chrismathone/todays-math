@@ -15,6 +15,11 @@ test("a spoken number is read only at the very beginning", () => {
   assert.deepEqual(leadingCue("19번과 20번. 대화를 듣고").numbers, [19, 20]);
   assert.deepEqual(leadingCue("십구번과 이십번 다음을").numbers, [19, 20]);
   assert.equal(leadingCue("십구번과 이십번 다음을").form, "spelled");
+  // The 2017 announcement of a shared block names both numbers with "에서".
+  assert.deepEqual(leadingCue("16번에서 17번 대화를 듣고").numbers, [16, 17]);
+  assert.equal(leadingCue("16번에서 17번 대화를 듣고").rest, "대화를 듣고");
+  // A particle with no second number after it joins nothing.
+  assert.deepEqual(leadingCue("16번에서 대화를 듣고").numbers, [16]);
   assert.equal(
     leadingCue("19번과 20번. 대화를 듣고 | 19번").rest,
     "대화를 듣고 | 19번",
@@ -90,5 +95,43 @@ test("english words fold punctuation and apostrophes", () => {
     "like",
     "it",
     "please",
+  ]);
+  // An initialism is one word with or without its periods.
+  assert.deepEqual(englishWords("Hello. H.J. Ski Resort."), [
+    "hello",
+    "hj",
+    "ski",
+    "resort",
+  ]);
+  assert.deepEqual(englishWords("Hello, HJ Ski Resort."), [
+    "hello",
+    "hj",
+    "ski",
+    "resort",
+  ]);
+  assert.deepEqual(englishWords("at 7 p.m. in the U.S.A"), [
+    "at",
+    "7",
+    "pm",
+    "in",
+    "the",
+    "usa",
+  ]);
+  // A sentence that ends in one letter does not join the next sentence.
+  assert.deepEqual(englishWords("I got an A. I am glad."), [
+    "i",
+    "got",
+    "an",
+    "a",
+    "i",
+    "am",
+    "glad",
+  ]);
+  assert.deepEqual(englishWords("Plan b.c is odd"), [
+    "plan",
+    "b",
+    "c",
+    "is",
+    "odd",
   ]);
 });

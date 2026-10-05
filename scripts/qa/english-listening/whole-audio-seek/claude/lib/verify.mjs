@@ -11,6 +11,7 @@ import {
   DIALOGUE_PURPOSES,
   START_PURPOSES,
   dialogueReachSeconds,
+  measureCueStart,
   measureStart,
   proveAtStart,
 } from "./resolve.mjs";
@@ -148,7 +149,7 @@ export function verifyMarks(marks, env) {
       n.cacheSha256 !== native.metaSha256
     )
       return report("off_native_clock", record, question);
-    const fact = measureStart(native, n.startFrame);
+    const fact = measureCueStart(native, n.startFrame);
     if (fact.reason) return report(fact.reason, record, question);
     if (
       n.onsetFrame !== fact.onsetFrame ||

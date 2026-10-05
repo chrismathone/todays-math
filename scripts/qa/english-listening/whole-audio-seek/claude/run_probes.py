@@ -167,6 +167,9 @@ def main():
     parser.add_argument("--model-cache", required=True)
     parser.add_argument("--owner", required=True)
     parser.add_argument("--node", default="node")
+    # Folder whose node_modules holds the pinned MP3 decoder; the inventory
+    # root when omitted. The decoded PCM is bound to the frozen clock by hash.
+    parser.add_argument("--runtime-root")
     parser.add_argument("--source-id", action="append")
     parser.add_argument("--max-sources", type=int)
     parser.add_argument("--max-wait-seconds", type=int, default=6 * 3600)
@@ -221,7 +224,8 @@ def main():
         tmp.mkdir(parents=True)
         started = time.monotonic()
         subprocess.run(
-            [args.node, str(extractor), "--requests", str(request_path), "--source-id", source["sourceRecordId"], "--tmp", str(tmp)],
+            [args.node, str(extractor), "--requests", str(request_path), "--source-id", source["sourceRecordId"], "--tmp", str(tmp)]
+            + (["--runtime-root", args.runtime_root] if args.runtime_root else []),
             check=True, stdout=subprocess.DEVNULL,
         )
         return tmp, json.loads((tmp / "clips.json").read_text("utf8")), time.monotonic() - started

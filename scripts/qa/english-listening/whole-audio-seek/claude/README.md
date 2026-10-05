@@ -31,6 +31,13 @@ Artifacts live under
    quiet unused behind it or reaches back into sound.
    `seekStartMs = startFrame × 1000 / sampleRate` is an exact integer on the
    window grid.
+
+   The two seconds after that first sound must hold at least 240 ms of measured
+   sound — a spoken number is longer. A click followed by silence is therefore
+   never a start, whatever time a recognizer writes for speech that comes later
+   (a recognizer that began 4.6 s early at a 40 ms click, before a chime, wrote
+   the number at 1.9 s). Every accepted start has 520 ms or more.
+
 4. A bounded recognition probe (≤ 14 s, Korean, the same frozen Whisper
    medium/int8 snapshot as the whole-record ASR) is cut from the native PCM
    **beginning exactly at that frame**. The start is a candidate only when the
@@ -57,7 +64,8 @@ Derived from the frozen official fields only (`lib/questions.mjs`):
 | `shared_passage`            | "19번과 20번" + "다음을 듣고, 물음에 답하시오." + ONE passage | both rows share one start; `cueNumber 19`, `scope [19,20]`                         |
 
 A shared instruction is not a shared passage: its second question has its own
-number and its own dialogue.
+number and its own dialogue. The 2017 recordings announce a shared block as
+"16번에서 17번"; both particles name the same two numbers.
 
 ## How a start is grounded (`startGrade`)
 
@@ -72,6 +80,9 @@ number and its own dialogue.
   only way a number whose sentence the recognizer garbled becomes a candidate.
   Only an **exact opening** of the official dialogue counts: four to eight words,
   word for word and in order, in segments the recognizer did not mark uncertain.
+  Words are compared in lower case without punctuation; an initialism is one
+  word however it is printed ("H.J." = "HJ"). A name the recognizer spelled
+  differently ("Minsu" / "Minsoo") is a different word and ends the opening.
   A first utterance of four words or more is quoted alone; a shorter one
   ("Hello?") is quoted whole together with the exact start of the next utterance.
   A word-trigram share is recorded but decides nothing.
@@ -115,6 +126,14 @@ sentence at that segment, and anything merely nearby is quoted under
 All commands run from this directory. Node and the decoder come from the
 installed checkout named by the inventory (`inventory.root`); this worktree needs
 no `node_modules`. `<inv>` is the frozen inventory path.
+
+`--runtime-root <dir>` (on `measure-native.mjs`, `extract-clips.mjs`,
+`run_probes.py` and `verify-marks.mjs --decode`) names another folder whose
+`node_modules` holds the same pinned decoder (`mpg123-decoder` 1.0.3,
+`@wasm-audio-decoders/common` 9.0.7, `@eshaz/web-worker` 1.2.2, `simple-yenc`
+1.0.4). Whatever decoder is used, a decode whose sample rate, channels, frame
+count or PCM SHA-256 differs from the measured native cache is refused, so the
+clock cannot move with the runtime.
 
 ```sh
 # 1. Native clock and loudness of every original (CPU, ~15 s per source)
@@ -167,10 +186,17 @@ held there.
   sentence, for a start whose number was written as bare digits, whose sentence
   matched on Hangul only, or whose sentence was garbled.
 
-`--only held` listens for held questions only; `--only support` adds English
-support to candidates only, and `--support-list <json>` limits that to the
-questions an independent verifier named (`{records:[{sourceRecordId,
-sourceNumber}]}`).
+- where a probe heard a held question's number a few seconds in (a chime or a
+  breath came first, or a sound effect follows the number and the recognizer
+  wrote its time late), or wrote it as bare digits before a sentence that has no
+  official text: every onset of that short stretch as a full probe and as the
+  clip that holds the number alone, and for a member English from the onsets
+  that follow. The probe's own time only bounds where to listen.
+
+`--only held` listens for held questions only; `--only number` only for that
+last kind; `--only support` adds English support to candidates only, and
+`--support-list <json>` limits that to the questions an independent verifier
+named (`{records:[{sourceRecordId, sourceNumber}]}`).
 
 ## Probe runner and GPU lock
 

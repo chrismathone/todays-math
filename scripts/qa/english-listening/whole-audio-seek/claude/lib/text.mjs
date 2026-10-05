@@ -35,7 +35,8 @@ const DIGITS = /^(\d{1,2})\s*번/;
 const BARE = /^(\d{1,2})\s*[.,](?=\s|$)/;
 const SPELLED_HEAD =
   /^(이십|십[일이삼사오육칠팔구]?|[일이삼사오육칠팔구])\s*번/;
-const JOINER = /^\s*(?:과|와|,|그리고|하고|부터)\s*/;
+// "에서" is the 2017 announcement of a shared block ("16번에서 17번").
+const JOINER = /^\s*(?:과|와|,|그리고|하고|부터|에서)\s*/;
 const LEAD = /^[\s"'“”‘’.,·\-–—(\[]+/;
 
 /**
@@ -181,12 +182,17 @@ export function strictCoverage(official, recognized) {
   return total ? found / total : 0;
 }
 
-/** Lowercase English words with apostrophes folded; used for dialogue alignment. */
+/**
+ * Lowercase English words with apostrophes folded; used for dialogue alignment.
+ * An initialism is one word however it is printed: "H.J." and "HJ" are read
+ * aloud the same way.
+ */
 export const englishWords = (text) =>
   String(text)
     .normalize("NFKC")
     .toLowerCase()
     .replace(/[’‘`]/g, "'")
+    .replace(/(?<![a-z0-9'.])(?:[a-z]\.){2,}/g, (run) => run.replace(/\./g, ""))
     .replace(/[^a-z0-9' ]+/g, " ")
     .split(/\s+/)
     .map((word) => word.replace(/^'+|'+$/g, ""))

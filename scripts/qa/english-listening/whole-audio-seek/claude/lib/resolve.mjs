@@ -43,6 +43,8 @@ export const dialogueReachSeconds = (plan) =>
   plan.kind === "shared_instruction_member" ? 6 : 20;
 /** Proven starts closer than this are one cue heard from two nearby onsets. */
 const SAME_CUE_SECONDS = 3;
+/** A number heard this late in a probe is looked for at the onsets up to it. */
+const LATE_NUMBER_SECONDS = 6;
 /** Frozen-ASR utterances of a question, all placed elsewhere, that hold its start. */
 const ANCHOR_CONFLICT_SEGMENTS = 3;
 
@@ -81,6 +83,14 @@ export function measureStart(native, startFrame) {
   // leaves measured quiet unused behind it or reaches back into sound.
   if (onsetWindow - startWindow !== leadFor(quiet))
     return { reason: "start_is_not_the_policy_lead" };
+  // Sound within the seconds in which a number would have to be heard.
+  const reach = Math.min(
+    energy.length,
+    onsetWindow + (POLICY.maximumFirstSpeechSeconds * 1000) / POLICY.windowMs,
+  );
+  let soundAfterOnset = 0;
+  for (let w = onsetWindow; w < reach; w++)
+    if (energy[w] >= threshold) soundAfterOnset++;
   let peak = 0;
   for (let w = startWindow; w < onsetWindow; w++)
     if (energy[w] > peak) peak = energy[w];
@@ -91,7 +101,22 @@ export function measureStart(native, startFrame) {
     // Unrounded, so a replay can compare the same arithmetic.
     leadPeakDbfs: peak > 0 ? dbfsOfEnergy(peak, frames) : null,
     onsetDbfs: dbfsOfEnergy(energy[onsetWindow], frames),
+    soundAfterOnsetWindows: soundAfterOnset,
   };
+}
+
+/**
+ * A measured start that can carry a spoken number: the number has to be heard
+ * within the first seconds, so those seconds must hold at least a spoken
+ * number's worth of sound on the native clock. A place where an English probe
+ * merely begins to listen for a dialogue is not held to this.
+ */
+export function measureCueStart(native, startFrame) {
+  const fact = measureStart(native, startFrame);
+  return !fact.reason &&
+    fact.soundAfterOnsetWindows < POLICY.minimumSoundAfterOnsetWindows
+    ? { reason: "too_little_sound_after_onset" }
+    : fact;
 }
 
 /**
@@ -162,7 +187,7 @@ export function proveAtStart(
           ? "first_dialogue"
           : "ordinal",
     };
-  else if (numbered && plan.officialInstruction && dialogue?.quote)
+  else if (numbered && plan.officialInstruction && dialogue)
     // Its own official first utterance, heard word for word from the same
     // frame, grounds a number whose sentence the recognizer garbled.
     proof = { cue: numbered, dialogue, grounding: "first_dialogue" };
@@ -325,7 +350,7 @@ export function resolveSource({
     const found = [];
     const near = [];
     for (const [startFrame, items] of byStart) {
-      const fact = measured.get(startFrame);
+      const fact = measureCueStart(native, startFrame);
       const later = dialogueAfter(startFrame, plan);
       const outcome = proveAtStart(plan, items, shared, section, later);
       if (outcome.proof && !fact.reason) {
@@ -608,6 +633,7 @@ export function resolveSource({
   const openGaps = [];
   const cueOnly = [];
   const memberDialogue = [];
+  const numberOnly = [];
   const spacings = [];
   for (let i = 1; i < plans.length; i++) {
     const a = positionMs(plans[i - 1].sourceNumber);
@@ -660,9 +686,51 @@ export function resolveSource({
         expectedMs === null ? null : Math.round((expectedMs * rate) / 1000),
       hints,
     });
+    // No probe that begins inside the stretch heard this number for certain.
+    const unplaced = (fromFrame, untilFrame) =>
+      !row.near.some(
+        (item) =>
+          item.numberProven &&
+          item.startFrame >= fromFrame &&
+          item.startFrame <= untilFrame,
+      );
     for (const item of row.near) {
       const startMs = (item.startFrame * 1000) / rate;
       if (startMs <= low || startMs >= high) continue;
+      // The number was heard a few seconds into a probe: either a breath or a
+      // chime came first and the number is spoken at a later onset, or a sound
+      // effect follows the number and the recognizer wrote its time late. The
+      // probe's own time only says how far to listen; it is never a start.
+      const late = item.probe.reading.firstSpeechSeconds;
+      const untilFrame = item.startFrame + Math.round((late + 1.5) * rate);
+      if (
+        item.reasons.includes("first_speech_late") &&
+        late <= LATE_NUMBER_SECONDS &&
+        unplaced(item.startFrame, untilFrame)
+      )
+        numberOnly.push({
+          sourceNumber: row.plan.sourceNumber,
+          fromFrame: item.startFrame,
+          untilFrame,
+          // English from the onsets that follow, for a number that is followed
+          // directly by its own dialogue.
+          reachFrames:
+            row.plan.kind === "shared_instruction_member"
+              ? dialogueReachSeconds(row.plan) * rate
+              : 0,
+        });
+      // The number was written as bare digits before a sentence that cannot be
+      // compared with an official one: the clip that holds the number alone.
+      if (
+        item.reasons.length === 1 &&
+        item.reasons[0] === "bare_number_without_official_instruction"
+      )
+        numberOnly.push({
+          sourceNumber: row.plan.sourceNumber,
+          fromFrame: item.startFrame,
+          untilFrame: item.startFrame + 2 * rate,
+          reachFrames: 0,
+        });
       if (
         row.plan.kind === "shared_instruction_member" &&
         !item.numberProven &&
@@ -725,6 +793,7 @@ export function resolveSource({
     openGaps,
     cueOnly,
     memberDialogue,
+    numberOnly,
     dialogueWanted,
     candidateStarts,
     heard,

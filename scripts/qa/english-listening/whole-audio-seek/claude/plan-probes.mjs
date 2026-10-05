@@ -269,10 +269,39 @@ for (const record of records) {
         ),
       );
     };
-    const heldWork = values.only !== "support";
+    const heldWork = values.only !== "support" && values.only !== "number";
     for (const item of heldWork ? source.cueOnly : [])
       for (const candidate of around(item.startFrame))
         addCueOnly(candidate, item.sourceNumber);
+    // A number that a probe heard late, or wrote as bare digits before a
+    // sentence with no official text: every onset of the stretch where it is
+    // spoken, under both splits, as a full probe and as the clip that holds the
+    // number alone; for a member also English from the onsets that follow.
+    for (const item of values.only === "support"
+      ? []
+      : (source.numberOnly ?? [])) {
+      const within = (c) =>
+        frameOf(c) >= item.fromFrame && onset(c) <= item.untilFrame;
+      for (const [list, purpose] of [
+        [candidates, "gap_onset"],
+        [fine, "fine_onset"],
+      ])
+        for (const candidate of list.filter(within)) {
+          addCandidate(purpose, candidate, {
+            questionNumber: item.sourceNumber,
+          });
+          addCueOnly(candidate, item.sourceNumber);
+        }
+      if (!item.reachFrames) continue;
+      candidates
+        .filter(
+          (c) =>
+            frameOf(c) > item.fromFrame &&
+            frameOf(c) <= item.untilFrame + item.reachFrames,
+        )
+        .slice(0, 5)
+        .forEach((candidate) => addDialogue(candidate, item.sourceNumber));
+    }
     // English listening from the first measured onsets after the number (and
     // its sentence): a recognizer that hears "Number 20" and then a pause ends
     // its window there, so the dialogue is heard from its own first sound.
@@ -281,7 +310,7 @@ for (const record of records) {
       // With a named list, every listed candidate that has a script section,
       // no exact first utterance yet and no later English listening is asked
       // for; without one, the ledger's own wish list is used.
-      ...(values.only === "held"
+      ...(values.only === "held" || (values.only === "number" && !supportList)
         ? []
         : supportList
           ? (source.candidateStarts ?? []).filter(

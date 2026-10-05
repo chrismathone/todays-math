@@ -57,6 +57,28 @@ test("a member's first utterance may be heard from the next measured onset", () 
   assert.deepEqual(verifyMarks(ledger.marks, ledger.env).errors, []);
 });
 
+test("a dialogue may be listened to from a click's onset; only a number may not begin there", () => {
+  const record = makeRecord();
+  const native = makeNative(record);
+  // After question 4's number: a two-window click, two seconds of silence and
+  // only then the dialogue.
+  const click = ONSETS[4] + 60;
+  for (let w = ONSETS[4] + AFTER_NUMBER; w < ONSETS[4] + 170; w++)
+    native.energy[w] = 0;
+  native.energy[click] = native.energy[ONSETS[4]];
+  native.energy[click + 1] = native.energy[ONSETS[4]];
+  const probes = goodProbes().filter((p) => p.purpose !== "member_dialogue");
+  probes.push(
+    makeProbe(click, DIALOGUE, { purpose: "member_dialogue", language: "en" }),
+  );
+  const ledger = buildLedger({ record, native, probes });
+  const member = row(ledger, 4);
+  assert.equal(member.status, "candidate");
+  assert.equal(member.startGrade, "first_dialogue_grounded");
+  assert.equal(member.dialogueProbeEvidence.offsetFromStartFrames, 60 * FRAMES);
+  assert.deepEqual(verifyMarks(ledger.marks, ledger.env).errors, []);
+});
+
 test("a later listening must hear this question's own first utterance", () => {
   const ledger = withMemberDialogueAt(
     ONSETS[4] + AFTER_NUMBER,

@@ -2,10 +2,15 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { energyAtDbfs } from "../lib/activity.mjs";
 import { POLICY } from "../lib/policy.mjs";
-import { ResolveError, measureStart } from "../lib/resolve.mjs";
+import {
+  ResolveError,
+  measureCueStart,
+  measureStart,
+} from "../lib/resolve.mjs";
 import {
   FRAMES,
   ONSETS,
+  PROMPTS,
   RATE,
   SHARED_INSTRUCTION,
   buildLedger,
@@ -220,6 +225,46 @@ test("the lead is re-measured, never taken from the request", () => {
   assert.equal(row(ledger, 1).status, "held");
 });
 
+test("a click followed by silence is not a place a number is spoken", () => {
+  const record = makeRecord();
+  // A two-window click 4.6 s before question 1, as before a chime.
+  const click = ONSETS[1] - 230;
+  const native = makeNative(record);
+  paint(native, click, click + 2);
+  const clickStart = (click - POLICY.leadWindows) * FRAMES;
+  assert.equal(
+    measureCueStart(native, clickStart).reason,
+    "too_little_sound_after_onset",
+  );
+  // It is still a measured place where a dialogue probe may begin to listen.
+  assert.equal(measureStart(native, clickStart).onsetFrame, click * FRAMES);
+  assert.equal(measureStart(native, clickStart).soundAfterOnsetWindows, 2);
+  // One window short of a spoken number is still refused; a full one passes.
+  const short = makeNative(record);
+  paint(short, click, click + POLICY.minimumSoundAfterOnsetWindows - 1);
+  assert.equal(
+    measureCueStart(short, clickStart).reason,
+    "too_little_sound_after_onset",
+  );
+  const enough = makeNative(record);
+  paint(enough, click, click + POLICY.minimumSoundAfterOnsetWindows);
+  assert.equal(measureCueStart(enough, clickStart).onsetFrame, click * FRAMES);
+  // A recognizer that writes the number early from the click's frame proves
+  // nothing: the only start left for the question is the spoken one.
+  const probes = goodProbes();
+  probes.push(
+    makeProbe(click, ["1번 " + PROMPTS[1]], { purpose: "fine_onset" }),
+  );
+  const ledger = buildLedger({ record, native, probes });
+  assert.equal(row(ledger, 1).status, "candidate");
+  assert.equal(row(ledger, 1).seekStartMs, startMs(ONSETS[1]));
+  // With a spoken number's worth of sound there, two places prove the same
+  // question and neither is chosen.
+  const twice = buildLedger({ record, native: enough, probes });
+  assert.equal(row(twice, 1).status, "held");
+  assert.deepEqual(row(twice, 1).reasons, ["ambiguous_cue_positions"]);
+});
+
 test("an existing verified start is preserved exactly", () => {
   const record = makeRecord();
   record.questions[1].audioRange = {
@@ -369,4 +414,66 @@ test("several frozen-ASR utterances placed elsewhere hold a start", () => {
     sections: null,
   });
   assert.equal(again.rows[0].status, "candidate");
+});
+
+test("a number heard late or as bare digits asks for the number-only clip, nothing more", () => {
+  const record = makeRecord();
+  const native = makeNative(record);
+  // Question 1's number was written three seconds into its probe.
+  const late = goodProbes();
+  late[0].segments[0].localStartSeconds = 3;
+  const ledger = buildLedger({ record, native, probes: late });
+  assert.equal(row(ledger, 1).status, "held");
+  const start = (ONSETS[1] - POLICY.leadWindows) * FRAMES;
+  assert.deepEqual(ledger.resolved.numberOnly, [
+    {
+      sourceNumber: 1,
+      fromFrame: start,
+      untilFrame: start + 4.5 * RATE,
+      reachFrames: 0,
+    },
+  ]);
+  // Much later than that the probe's time says nothing about a place.
+  const far = goodProbes();
+  far[0].segments[0].localStartSeconds = 9;
+  assert.deepEqual(
+    buildLedger({ record, native, probes: far }).resolved.numberOnly,
+    [],
+  );
+  // Bare digits before a sentence that has no official text.
+  const blank = makeRecord();
+  blank.questions[0].prompt = "원본 문제지 1번 문항";
+  const bare = goodProbes();
+  bare[0] = makeProbe(ONSETS[1], "1. 어떤 문장");
+  const held = buildLedger({
+    record: blank,
+    native,
+    probes: bare,
+    sections: null,
+  });
+  assert.equal(row(held, 1).status, "held");
+  assert.deepEqual(held.resolved.numberOnly, [
+    {
+      sourceNumber: 1,
+      fromFrame: start,
+      untilFrame: start + 2 * RATE,
+      reachFrames: 0,
+    },
+  ]);
+  // The clip that holds the number alone then proves the ordinal-only start.
+  bare.push(makeProbe(ONSETS[1], "1번", { purpose: "cue_only", windows: 150 }));
+  const proven = buildLedger({
+    record: blank,
+    native,
+    probes: bare,
+    sections: null,
+  });
+  assert.equal(row(proven, 1).status, "candidate");
+  assert.equal(row(proven, 1).startGrade, "ordinal_only");
+  assert.deepEqual(proven.resolved.numberOnly, []);
+  // A candidate asks for nothing.
+  assert.deepEqual(
+    buildLedger({ record, native, probes: goodProbes() }).resolved.numberOnly,
+    [],
+  );
 });

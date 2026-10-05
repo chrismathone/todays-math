@@ -8,7 +8,7 @@
  * original from there.
  */
 export const POLICY = Object.freeze({
-  id: "whole-audio-seek-start-v2",
+  id: "whole-audio-seek-start-v3",
   windowMs: 20,
   /** A window at or above this level is sound; below it is quiet. */
   quietThresholdDbfs: -50,
@@ -42,6 +42,12 @@ export const POLICY = Object.freeze({
   longQuietWindows: 150,
   /** Recognized speech must begin this soon after the probe start. */
   maximumFirstSpeechSeconds: 2,
+  /**
+   * Measured sound those same seconds must hold after the onset: a spoken
+   * number is longer than this. A click followed by silence is not a cue,
+   * whatever time a recognizer writes for the speech that comes later.
+   */
+  minimumSoundAfterOnsetWindows: 12,
   /** Share of the official instruction that must be heard after the number. */
   minimumInstructionCoverage: 0.8,
   /** A shared-instruction member must not be followed by that instruction. */

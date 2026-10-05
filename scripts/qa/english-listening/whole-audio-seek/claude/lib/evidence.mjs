@@ -123,7 +123,9 @@ export function firstDialogueShare(officialWords, probe) {
 /** Words of an exact official quote, and the fewest that make one. */
 export const QUOTE_WORDS = 8;
 export const MINIMUM_QUOTE_WORDS = 4;
-const WORD = /[A-Za-z0-9]+(?:[’'][A-Za-z]+)*/g;
+// An initialism printed with periods ("H.J.") is one word, as in englishWords.
+const WORD =
+  /(?<![A-Za-z0-9'’.])(?:[A-Za-z]\.){2,}[A-Za-z0-9]*|[A-Za-z0-9]+(?:[’'][A-Za-z]+)*/g;
 
 /**
  * The longest exact opening of the official dialogue (4 to 8 words) that a

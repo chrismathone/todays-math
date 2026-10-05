@@ -179,6 +179,7 @@ for (const record of records) {
     openGaps: resolved.openGaps,
     cueOnly: resolved.cueOnly,
     memberDialogue: resolved.memberDialogue,
+    numberOnly: resolved.numberOnly,
     dialogueWanted: resolved.dialogueWanted,
     candidateStarts: resolved.candidateStarts,
   });
