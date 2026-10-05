@@ -13,9 +13,9 @@
  * a record of sizes and identifiers into TEXTBOOK_RECOVERY_EVIDENCE_DIR (a private folder) —
  * never manuscript, question or answer text. Without the run folder the suite is skipped.
  *
- * TEXTBOOK_ANSWER_CHECK_HEADING_PIN_FROZEN=1 also requires the student pages, and every answer
- * page without such a subheading, to be placed exactly as that run placed them. It is a pin on
- * that run, not a rule of the layout: leave it off after an intended change of block sizes.
+ * TEXTBOOK_ANSWER_CHECK_HEADING_PIN_FROZEN=1 requires the student pages to retain their exact
+ * placements. Answer pages may grow to keep CHECK with its questions and reserve the printed
+ * source guide; their identifiers, fragments, styles and student references remain conserved.
  */
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -46,7 +46,6 @@ import { textbookExchangeSchema } from "@/contracts/textbookExchange.contract";
 import { launchExportBrowser } from "@/lib/export/pdfServer";
 import {
   A4,
-  paginateTextbookSections,
   type BlockMeasurement,
   type TextbookPage,
 } from "@/lib/textbook/layout/paginate";
@@ -80,8 +79,8 @@ const sha256 = (bytes: Uint8Array | string) =>
   createHash("sha256").update(bytes).digest("hex");
 /** The two chunks of four sections that hold the three pages, as the source run rendered them. */
 const CHUNKS = [
-  { index: 1, offset: 4, answersFrom: 5, studentFrom: 12 },
-  { index: 2, offset: 8, answersFrom: 10, studentFrom: 16 },
+  { index: 1, offset: 4, studentFrom: 12 },
+  { index: 2, offset: 8, studentFrom: 16 },
 ];
 /** The distance pagination puts between two blocks of a native concept page. */
 const GAP = 2.6;
@@ -170,6 +169,7 @@ describe.skipIf(!run)(
         selected,
         studentChunks,
         frozenAnswers,
+        renderedAnswerPages: new Map<number, TextbookPage[]>(),
         resources: {
           assetUrl: (assetId: string) => {
             const { asset, bytes } = bytesOf(assetId);
@@ -191,13 +191,19 @@ describe.skipIf(!run)(
       chunk: (typeof CHUNKS)[number],
     ) {
       const before = paginated.length;
+      const previous = data.renderedAnswerPages.get(chunk.index - 1);
+      if (variant === "answers" && chunk.index !== CHUNKS[0].index)
+        expect(previous?.length).toBeGreaterThan(0);
+      const answerFrom = previous
+        ? previous[previous.length - 1].physicalPageIndex + 1
+        : data.frozenAnswers(chunk.index)[0].physicalPageIndex;
       const result = await renderTextbookChunk({
         exchange: data.exchange,
         officialOrigin: "https://reference-qa.invalid",
         readAsset: data.readAsset,
         sectionIndices: data.selected.slice(chunk.offset, chunk.offset + 4),
         firstPhysicalPageIndex:
-          variant === "answers" ? chunk.answersFrom : chunk.studentFrom,
+          variant === "answers" ? answerFrom : chunk.studentFrom,
         variant,
         browser,
         mode: "draft",
@@ -206,6 +212,8 @@ describe.skipIf(!run)(
           : {}),
       });
       expect(paginated.length).toBe(before + 1);
+      if (variant === "answers")
+        data.renderedAnswerPages.set(chunk.index, result.pages);
       return { chunk: result, ...paginated[before] };
     }
 
@@ -382,29 +390,8 @@ describe.skipIf(!run)(
         const cut = bodyMm + GAP + checkMm - whole.heightMm;
         expect(cut).toBeGreaterThanOrEqual(-0.011);
         expect(cut).toBeLessThanOrEqual(0.021);
-        // With the run's sizes the unsplit block still gives the run's pages for this section.
-        const replay = paginateTextbookSections(
-          [unsplit],
-          [
-            ...unsplit.blocks.map((block) => ({
-              blockId: block.id,
-              widthMm: was
-                .flatMap((p) => p.blocks)
-                .find((p) => p.blockId === block.id)!.widthMm,
-              heightMm:
-                block.id === authored.id
-                  ? whole.heightMm
-                  : block.kind === "heading"
-                    ? heading.heightMm
-                    : size.get(block.id)!,
-            })),
-          ],
-          data.exchange.config,
-          { firstPhysicalPageIndex: was[0].physicalPageIndex },
-        );
-        expect(replay.pages.map((p) => p.blocks)).toEqual(
-          was.map((p) => p.blocks),
-        );
+        // Historical placements are evidence of the old 277 mm boundary, not an oracle
+        // for the current paginator's source-guide reservation.
         const orphaned = was.length === 2;
         if (orphaned) {
           expect(was[0].blocks.map((p) => p.blockId)).toEqual([
@@ -419,11 +406,8 @@ describe.skipIf(!run)(
           );
         }
 
-        // Now: the same pages, the subheading on the page of its questions.
+        // Now: the subheading and its questions share a page above any printed guide.
         const now = pages.filter((p) => p.sectionKey === section.sectionKey);
-        expect(now.map((p) => p.physicalPageIndex)).toEqual(
-          was.map((p) => p.physicalPageIndex),
-        );
         const last = now[now.length - 1];
         const placedCheck = last.blocks.find((p) => p.blockId === check.id)!;
         const row = last.blocks.filter((p) => p.itemId);
@@ -448,7 +432,9 @@ describe.skipIf(!run)(
         expect(now[0].blocks[0]).toEqual(heading);
         const wasRow = was[was.length - 1].blocks.filter((p) => p.itemId);
         let moved: number | null = null;
-        if (orphaned) {
+        const movedToContinuation =
+          last.physicalPageIndex !== now[0].physicalPageIndex;
+        if (movedToContinuation) {
           // Page one ends with the body; page two opens with the subheading under the heading.
           expect(now[0].blocks.map((p) => p.blockId)).toEqual([
             heading.blockId,
@@ -461,7 +447,10 @@ describe.skipIf(!run)(
             [check.id, false],
             ...row.map((p) => [p.blockId, false]),
           ]);
-          expect(placedCheck.yMm).toBe(wasRow[0].yMm);
+          expect(placedCheck.yMm).toBeCloseTo(
+            last.blocks[0].yMm + last.blocks[0].heightMm + A4.gapMm,
+            6,
+          );
           expect(placedCheck.xMm).toBe(last.blocks[0].xMm);
         } else {
           // Everything stayed on its page: the questions stand where they stood, to the
@@ -487,6 +476,7 @@ describe.skipIf(!run)(
           sourceKind: authored.semantic?.source?.kind,
           pages: now.map((p) => p.physicalPageIndex),
           leftBehindBefore: orphaned,
+          movedToContinuation,
           wholeMm: whole.heightMm,
           bodyMm,
           checkMm,
@@ -512,7 +502,7 @@ describe.skipIf(!run)(
       // The second question of the last page is the taller one: the row decides, not the first.
       const uneven = records[2];
       expect(uneven.questionsMm[0]).toBeLessThan(uneven.questionsMm[1]!);
-      // Pages without such a subheading are placed exactly as the run placed them.
+      // Record historical placement equality without pinning intentional answer-page moves.
       expect(untouched.size).toBeGreaterThanOrEqual(5);
       const same = [...untouched].map((sectionKey) => ({
         sectionKey,
@@ -520,12 +510,16 @@ describe.skipIf(!run)(
           JSON.stringify(pages.filter((p) => p.sectionKey === sectionKey)) ===
           JSON.stringify(frozen.filter((p) => p.sectionKey === sectionKey)),
       }));
-      if (PIN) expect(same.every((s) => s.equal)).toBe(true);
-      // Each question once, on one page; the chunks are as long as they were.
+      expect(records.every((r) => r.movedToContinuation)).toBe(true);
+      // Each question once; actual answer pages are consecutive even when a chunk grows.
       for (const [n, { chunk }] of answers.entries()) {
         expect(chunk.pages.map((p) => p.physicalPageIndex)).toEqual(
-          data.frozenAnswers(CHUNKS[n].index).map((p) => p.physicalPageIndex),
+          chunk.pages.map((_, i) => chunk.pages[0].physicalPageIndex + i),
         );
+        if (n > 0)
+          expect(chunk.pages[0].physicalPageIndex).toBe(
+            answers[n - 1].chunk.pages.at(-1)!.physicalPageIndex + 1,
+          );
         expect((await PDFDocument.load(chunk.pdf)).getPageCount()).toBe(
           chunk.pages.length,
         );
@@ -677,6 +671,16 @@ describe.skipIf(!run)(
           // The page-end note is printed with the body, once.
           expect(printed.find((p) => p.page === body.page)!.footers).toBe(1);
           if (check.page !== body.page) expect(page.footers).toBe(0);
+          const sectionPages = new Set(
+            answers.chunk.pages
+              .filter((p) => p.sectionKey === section.sectionKey)
+              .map((p) => p.physicalPageIndex),
+          );
+          expect(
+            printed
+              .filter((p) => sectionPages.has(p.page!))
+              .reduce((sum, p) => sum + p.footers, 0),
+          ).toBe(1);
           records.push({
             sectionKey: section.sectionKey,
             bodyPage: body.page,
@@ -706,11 +710,9 @@ describe.skipIf(!run)(
             `정답 · 문제 ${studentLabel.get(question.itemId!)}쪽`,
           );
       }
-      expect(records.map((r) => [r.bodyPage, r.checkPage])).toEqual([
-        [7, 7],
-        [8, 9],
-        [10, 11],
-      ]);
+      expect(records).toHaveLength(3);
+      for (const record of records)
+        expect(record.checkPage).toBeGreaterThan(record.bodyPage!);
       writeFileSync(
         path.join(OUT, "answer-check-heading-conservation.json"),
         JSON.stringify(
