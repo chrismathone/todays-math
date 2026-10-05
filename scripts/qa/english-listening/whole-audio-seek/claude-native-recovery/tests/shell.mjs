@@ -15,7 +15,8 @@ function driverShell() {
   if (process.env.NATIVE_RECOVERY_BASH) return process.env.NATIVE_RECOVERY_BASH;
   if (process.platform !== "win32") return "bash";
   const candidates = [
-    process.env.ProgramFiles && join(process.env.ProgramFiles, "Git", "bin", "bash.exe"),
+    process.env.ProgramFiles &&
+      join(process.env.ProgramFiles, "Git", "bin", "bash.exe"),
     process.env["ProgramFiles(x86)"] &&
       join(process.env["ProgramFiles(x86)"], "Git", "bin", "bash.exe"),
     process.env.LOCALAPPDATA &&
@@ -44,7 +45,11 @@ export function run(script, env, args = []) {
     { env: { ...process.env, ...env }, encoding: "utf8" },
   );
   assert.equal(done.error, undefined, String(done.error));
-  assert.equal(done.status, 0, "shell exit " + done.status + ": " + done.stderr);
+  assert.equal(
+    done.status,
+    0,
+    "shell exit " + done.status + ": " + done.stderr,
+  );
   const ran = /ran status=(\d+)\s*$/.exec(done.stdout);
   assert.ok(ran, "the shell ran nothing: " + JSON.stringify(done.stdout));
   return {

@@ -1,16 +1,23 @@
-# Native recovery of held whole-original starts — evidence protocol 2
+# Native recovery of held whole-original starts — evidence protocol 3
 
 Producer: `claude-native-recovery`. Reconstructed route
 **`native_numbered_passage_literal_quote_v1`**, offered in the independent
 verifier's adapter shape `native-localized-generation-v2`. Official route
-**`native_numbered_passage_script_sentence_v1`**, offered apart, with no
-verifier adapter yet.
+**`native_numbered_passage_script_sentence_v1`**, offered apart; its rows that
+also meet the verifier's official gate are shaped for the verifier's wrapper
+`official-catalogued-native-v1`.
 
-Protocol 1 (sent before any recognition ran) is kept unchanged at
-`<OUT>/protocol/PROTOCOL-v1.md`. Protocol 2 differs where the coordinator and
-the verifier asked for more: **every** frozen quote in **one** clip, cited
-generation segments without a quote heard whole, the verifier's field names,
-its named noise tiers, a complete probe catalog. Nothing was loosened.
+Protocol 1 (sent before any recognition ran) and protocol 2 are kept unchanged
+at `<OUT>/protocol/PROTOCOL-v1.md` and `PROTOCOL-v2.md`. Protocol 2 differed
+where the coordinator and the verifier asked for more: **every** frozen quote
+in **one** clip, cited generation segments without a quote heard whole, the
+verifier's field names, its named noise tiers, a complete probe catalog.
+Protocol 3 writes down what was added after the pilot, each at the
+coordinator's or the verifier's request: one catalog per source, raw-word
+checks on a quote, a passage that may end where the next number is first heard
+(rule 7b, countable apart), the official wrapper with its number clip, the
+converted original on its own clock, and a receipt of what was asked against
+what was heard. Nothing was loosened; no start tier was added or changed.
 
 An offered row is an offline finding. Admission is the independent verifier's;
 nothing here writes a database, Storage, media or a clip, and no row claims
@@ -18,13 +25,13 @@ human review.
 
 ## What decides, and what never does
 
-| link         | authority                                                                                                              | never                                           |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| clock        | full decode of the original bytes; PCM SHA-256 equal to the frozen clock record                                        | a provider duration, a second decode's estimate |
-| heading      | a measured native onset after measured quiet; start = onset − min(400 ms, quiet)                                       | a provider or recognizer time                   |
-| number       | a bounded Korean recognition that begins at that start writes the literal number first, reliably, at the onset         | a displayed number, a neighbour, a confidence   |
-| next heading | the same, for the very next original number; after the last number a literal closing                                   | the next number that happened to be found       |
-| passage      | native frames `[headingStartFrame, nextHeadingStartFrame)`                                                             | a transcript window                             |
+| link         | authority                                                                                                             | never                                           |
+| ------------ | --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| clock        | full decode of the original bytes; PCM SHA-256 equal to the frozen clock record                                       | a provider duration, a second decode's estimate |
+| heading      | a measured native onset after measured quiet; start = onset − min(400 ms, quiet)                                      | a provider or recognizer time                   |
+| number       | a bounded Korean recognition that begins at that start writes the literal number first, reliably, at the onset        | a displayed number, a neighbour, a confidence   |
+| next heading | the same, for the very next original number; after the last number a literal closing                                  | the next number that happened to be found       |
+| passage      | native frames `[headingStartFrame, nextHeadingStartFrame)`                                                            | a transcript window                             |
 | mapping      | every frozen generation quote, word for word, in one English clip whose **whole clip lies inside the passage frames** | similarity, topic, recognizer time of the words |
 
 Provider and recognizer times are read to decide where to listen and in two
@@ -42,8 +49,12 @@ bands; a wrong band can lose a row and cannot admit one.
   ordinal; must name the same frozen recognition and the same segment ids);
   frozen whole-record recognition (the literal text of those segments).
 - search only: the two provider transcripts (raw response hashes).
-- `ebs-middle-1-2006-2` (converted original, own playback clock) is not
-  listened to; its rows stay held.
+- `ebs-middle-1-2006-2` (converted original, M4A) is not decoded here. Its
+  clock is the decode of the authenticated playback MP3, bound to the original
+  by the verifier's landmark proof (`convertedClockProof`); its clips are cut
+  by the verifier's own `codex/native-windows.mts`, read only, by a separate
+  runner (`run-converted.sh`). Its rows carry that proof in their clock
+  identity and are otherwise judged by the same rules.
 
 ## Measurement
 
@@ -85,7 +96,22 @@ sampleRate)`; `seekEndMs` is the frozen playback duration.
    long-quiet onset up to the closing listened to. A passage ends at the
    earlier of the native and the certified start of the next number. Where
    only a certified start bounds it, `nextProbeEvidence` is null and the row
-   says so.
+   names the certificate that admitted that start (`nextCertificateEvidence`).
+
+   **7b. First speech of the next number** (`nextBoundary.kind
+next_number_first_speech_boundary`, added after the pilot). Where the next
+   number's heading does not stand as a start, a passage may still END at the
+   measured start of a Korean recognition whose first speech is the literal
+   next number, reliably, followed by its complete instruction — or the number
+   is a later member of a shared heading that stands — whatever time the
+   recognizer wrote for the number. The start must be the measured lead before
+   a measured onset; the number must not be written at two places more than 3 s
+   apart nor contradicted from the same start; the earliest such start is
+   taken. It ends a passage and is never a seek start
+   (`nextBoundaryProbeEvidence`, `nextBoundaryNativeEvidence`). Rows that rest
+   on it are counted apart in `summary.offeredByNextBoundary` and can be left
+   out as a group.
+
 8. **Nothing else inside.** No stored Korean recognition that begins inside the
    passage frames wrote another possible heading first, in any form, flagged or
    not (bare digits count before an instruction).
@@ -99,9 +125,12 @@ sampleRate)`; `seekEndMs` is the frozen playback duration.
     one passage and in no clip that lies wholly elsewhere. One English clip
     (`dialogueProbeEvidence`, purpose `localized_generation`, at most 60 s) with
     `passage.fromFrame ≤ startFrame` and `startFrame + frameCount ≤
-    passage.toFrame` writes every quote, short ones included, as consecutive
+passage.toFrame` writes every quote, short ones included, as consecutive
     words of reliable segments (`probeSegmentIds`). A flagged segment is a
-    barrier. Words are compared by the verifier's `dotted_initialism_v1` rule.
+    barrier, and so is a segment whose raw words do not spell its own text,
+    in order and inside it, each with a duration and a probability (the
+    verifier's raw-word checks; nothing is repaired). Words are compared by the
+    verifier's `dotted_initialism_v1` rule.
 12. **Cited segments without a quote.** Each frozen generation segment that no
     quote touches is written whole, exactly once, by the same clip
     (`localizedMappingEvidence.anchorSegments`).
@@ -142,24 +171,42 @@ onset stored the baseline length as its quiet; the block then states the full
 measured quiet and names the raw value and its baseline. Raw requests and
 containers are never changed.
 
-`probe-catalog.json` is fixed when a run is written: explicit round folders per
-root, and every container of the run's sources in those roots — used or not —
-with path, SHA-256, request path and hash. Containers are written by the
-existing runner (`../claude/run_probes.py`, shape `claude-native-probe-v1`) at
-`<root>/probes/round-NNN/<sourceRecordId>.json`.
+`catalogs/<sourceRecordId>.json` is fixed when a run is written, one per
+source: every container of that source in the roots — used or not — as one
+entry per file (`roots[{ path, pattern }]`, the pattern a literal file path),
+with SHA-256, request path and hash, and the raw recognitions behind a
+certified start that bounds one of its passages. `catalogs.json` indexes them;
+`adversarial-catalogs/` lists the deliberately damaged clips apart. Containers
+are written by the existing runner (`../claude/run_probes.py`, shape
+`claude-native-probe-v1`) at `<root>/probes/round-NNN/<sourceRecordId>.json`.
 
 ## Official rows (`official-candidates.json`)
 
 The passage is built the same way, with two things an official source allows:
-bare digits before the instruction and the literal number alone, from one
-start, are one heading (`probeEvidence` the number, `instructionProbeEvidence`
-the instruction); and after the last printed question number the passage may
-end with the recording. Identity is `scriptEvidence`: sentences of four words
-or more of the question's own script section that the whole script prints once,
-heard by one English clip wholly inside the passage, while no other section's
-such sentence is heard in any clip inside it and no own sentence in a clip
-wholly outside it. The existing verifier route needs the exact opening of the
-first utterance; this one does not, which is why it is named and offered apart.
+a long reading that wrote bare digits before the instruction and a short clip
+from the same start that wrote the literal number are one heading; and after
+the last printed question number the passage may end with the recording
+(`officialTerminalEvidence`). Identity in this producer's route is a sentence
+of four words or more of the question's own script section that the whole
+script prints once, heard by one English clip wholly inside the passage, while
+no other section's such sentence is heard in any clip inside it and no own
+sentence in a clip wholly outside it. Script offsets are on the original
+prepared transcript, which must equal the live snapshot's text.
+
+A row is shaped for the verifier's wrapper (`official-candidates.json`,
+`evidenceAdapter official-catalogued-native-v1`) only when, in addition, the
+exact opening of the section's first utterance is heard in a clip that begins
+at a measured onset inside the passage, and — where the heading rests on a
+separate number clip — that clip is at most 3 s, one segment, the literal
+number, and nothing after it but an optional `입니다` and punctuation. Keys:
+`probeEvidence` the long reading with the instruction, `numberClipEvidence`,
+`nextProbeEvidence` and `nextNumberClipEvidence` for the next heading,
+`scriptEvidence` (transcript hash, the section's characters, the instruction
+quote with its start character and probe segments, the first dialogue quote
+with its opening evidence and probe segments). A row bound only by a later own
+sentence is reported in `official-later-sentence-findings.json` and is not
+offered for admission. The verifier's own route for placeholder and
+question-19 rows (`official-pdf-native-scope-v2`) is not touched here.
 
 ## Controls and adversarial inputs (in every run's `controls.json`)
 
@@ -174,9 +221,27 @@ first utterance; this one does not, which is why it is named and offered apart.
   away, must bind to no other passage.
 - **Shared head.** The first member of every shared heading starts at the
   heading even where its own number was also heard.
-- **Truncation.** Real clips cut 400 ms after the onset, and begun 300 ms into
-  the number, recognized and judged by the same rules.
+- **Damaged clips.** Real clips cut 400 ms after the measured onset, and begun
+  300 ms after it, recognized and judged by the same rules. The cuts are placed
+  from the machine-measured energy onset: they are not human-marked and are
+  not proved truncations of the spoken number (where the onset is a sound
+  before the number, the late clip still holds the whole number).
 - **Another source's container.** Refused by hash.
+
+## What was asked against what was heard
+
+A round is a request file (`probe-requests/round-NNN.json`) and one raw
+container per requested source. A round number is used once: a number that has
+a request, raw containers or a temporary folder is never planned over. Each
+driver stage leaves a line in `logs/stages.jsonl`. `listening-receipt.json` in
+a run (and `<OUT>/receipts/<name>.json`) lists every request with its exact
+source and probe counts, checked container by container against the request's
+bytes, the original's bytes and the requested probes; the requests declared
+stopped, by name and reason (`stopped-requests.json`), with how many of their
+unanswered probes were heard in another round and how many nowhere; and the
+stage records. The full run is built only when every request is finished or
+declared stopped, no stage failed undeclared and no raw folder lies without its
+request. A stopped request's containers are read like any other.
 
 ## Replay recipe
 

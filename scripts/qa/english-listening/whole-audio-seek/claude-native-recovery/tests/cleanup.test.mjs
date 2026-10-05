@@ -11,12 +11,17 @@ const CLEANUP = slash(join(HERE, "..", "lib", "cleanup.sh"));
 
 function tree() {
   const root = slash(mkdtempSync(join(tmpdir(), "native-recovery-tmp-")));
-  const make = (...parts) => mkdirSync(join(root, ...parts), { recursive: true });
+  const make = (...parts) =>
+    mkdirSync(join(root, ...parts), { recursive: true });
   return { root, make, has: (...parts) => existsSync(join(root, ...parts)) };
 }
 
 const cleanup = (root, round) =>
-  bash('. "$CLEANUP"; cleanup_round "$ROOT" "$ROUND"', { CLEANUP, ROOT: root, ROUND: round });
+  bash('. "$CLEANUP"; cleanup_round "$ROOT" "$ROUND"', {
+    CLEANUP,
+    ROOT: root,
+    ROUND: round,
+  });
 
 test("the tests run in the drivers' own shell, which has the tools the drivers use", () => {
   const done = bash("command -v rmdir find >/dev/null && uname -s");
@@ -44,9 +49,15 @@ test("the sweep it replaces did remove that folder, and a marker file is what st
   assert.equal(bare.has("tmp", "round-020", "ebs-middle-2-2006-1"), false);
   const marked = tree();
   marked.make("tmp", "round-020", "ebs-middle-2-2006-1");
-  writeFileSync(join(marked.root, "tmp", "round-020", "ebs-middle-2-2006-1", ".extracting"), "1");
+  writeFileSync(
+    join(marked.root, "tmp", "round-020", "ebs-middle-2-2006-1", ".extracting"),
+    "1",
+  );
   bash(SWEEP, { ROOT: marked.root });
-  assert.equal(marked.has("tmp", "round-020", "ebs-middle-2-2006-1", ".extracting"), true);
+  assert.equal(
+    marked.has("tmp", "round-020", "ebs-middle-2-2006-1", ".extracting"),
+    true,
+  );
 });
 
 test("a round that still holds a source's clips is kept, and an emptied one is then removed", () => {
