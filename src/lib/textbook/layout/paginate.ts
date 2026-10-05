@@ -689,6 +689,7 @@ export function paginateTextbookSections(
         flush();
         if (
           (block.kind === "heading" ||
+            block.dialogueLesson ||
             (block.kind === "text" &&
               /^#{1,6}\s+[^\n]+\s*$/.test(block.markdown))) &&
           page
@@ -697,8 +698,11 @@ export function paginateTextbookSections(
           const nextHeight = following
             ? (measure.get(following.id)?.heightMm ?? 0)
             : 0;
-          if (cursor + m!.heightMm + A4.gapMm + nextHeight > A4.bodyBottomMm)
-            newPage();
+          if (
+            cursor + m!.heightMm + A4.gapMm + nextHeight >
+            (block.dialogueLesson ? bodyBottom : A4.bodyBottomMm)
+          )
+            newPage(block);
         }
         row.push({ block, measurement: m! });
         flush();
