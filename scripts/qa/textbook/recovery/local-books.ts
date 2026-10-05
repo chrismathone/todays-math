@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { randomUUID, createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { openTextbookDb } from "../../../../src/__tests__/helpers/textbookPglite";
@@ -16,6 +16,9 @@ import { prepareQuickCreateVisuals } from "../../../../src/lib/textbook/server/q
 import { createFigureLoader } from "../../../../src/lib/textbook/server/figureBytes";
 import { assembleExchange } from "../../../../src/lib/textbook/server/exchange";
 import { codexRenderer } from "../../../../src/lib/textbook/publish/codexRenderer";
+import { reservePublish } from "../../../../src/lib/textbook/publish/reserve";
+import { publishDeps } from "../../../../src/lib/textbook/publish/deps.server";
+import { officialOriginIssue } from "../../../../src/lib/textbook/publish/rendererAdapter";
 import { readBlobRange } from "../../../../src/lib/textbook/server/blobs";
 import {
   DEFAULT_QUICK_CREATE_COMPONENTS,
@@ -33,6 +36,7 @@ import {
   TEXTBOOK_TEMPLATE_VERSION,
 } from "../../../../src/lib/textbook/render/versions";
 import type { TextbookPage } from "../../../../src/lib/textbook/layout/paginate";
+import { withTextbookPageReferences } from "../../../../src/lib/textbook/render/pageReferences";
 import type { TextbookExchange } from "../../../../src/contracts/textbookExchange.contract";
 import type { ProblemSourceRow } from "../../../../src/lib/textbook/snapshotFromProblem";
 import { classifyFormat } from "../../../../src/lib/problem/provenance";
@@ -62,8 +66,13 @@ type Fixture = {
   problems: (ProblemSourceRow & { source: string })[];
 };
 async function main() {
-  const [outputDirectory, mainRoot, only = "all", runTag = ""] =
-    process.argv.slice(2);
+  const [
+    outputDirectory,
+    mainRoot,
+    only = "all",
+    runTag = "",
+    originOverride = "",
+  ] = process.argv.slice(2);
   assert(outputDirectory && mainRoot);
   assert(!runTag || /^[A-Za-z0-9-]+$/.test(runTag));
   const fixtureDirectory = path.resolve(outputDirectory);
@@ -81,6 +90,19 @@ async function main() {
   );
   // Figure CDN configuration only; production DB credentials never enter the local writer.
   const mainEnv = await readFile(path.join(mainRoot, ".env"), "utf8");
+  const configuredOrigin = /^TEXTBOOK_PUBLIC_ORIGIN\s*=\s*(.*)$/m.exec(
+    mainEnv,
+  )?.[1];
+  const officialOrigin =
+    (originOverride || configuredOrigin)
+      ?.trim()
+      .replace(/^(['"])(.*)\1$/, "$2")
+      .replace(/\/$/, "") ?? null;
+  assert.equal(
+    officialOriginIssue(officialOrigin),
+    null,
+    "A configured official origin is required for the isolated publisher; no credentials are logged",
+  );
   const cdn = /^SHARED_FIGURE_CDN_BASE_URL\s*=\s*(.*)$/m.exec(mainEnv)?.[1];
   if (cdn)
     process.env.SHARED_FIGURE_CDN_BASE_URL = cdn
@@ -96,15 +118,28 @@ async function main() {
     combinations: Fixture[];
   };
   assert.equal(fixtures.transactionReadOnly, "on");
+  const selectedCombinations = fixtures.combinations.filter(
+    (c) => only === "all" || only.split(",").includes(c.key),
+  );
+  for (const fixture of selectedCombinations) {
+    const existing = await readdir(path.join(out, fixture.key)).catch(
+      (error: NodeJS.ErrnoException) => {
+        if (error.code === "ENOENT") return [];
+        throw error;
+      },
+    );
+    assert.equal(
+      existing.length,
+      0,
+      "QA evidence directory must be fresh before opening local DB or browser",
+    );
+  }
   const db = await openTextbookDb(),
     sql = pgliteTextbookDb(db),
     actor = await insertTeacher(db, { name: "Isolated actual-bank QA" });
   const browser = await launchExportBrowser();
   const summaries: unknown[] = [];
   try {
-    const selectedCombinations = fixtures.combinations.filter(
-      (c) => only === "all" || only.split(",").includes(c.key),
-    );
     selectedCombinations.sort((a, b) => {
       const order = ["초3-1", "중2-1"];
       const rank = (key: string) =>
@@ -114,9 +149,15 @@ async function main() {
     for (const fixture of selectedCombinations) {
       const folder = path.join(out, fixture.key);
       await mkdir(folder, { recursive: true });
+      assert.equal(
+        (await readdir(folder)).length,
+        0,
+        "QA evidence directory must be fresh; preserve earlier exports",
+      );
       let activeRender: {
         variant: string;
         chunkIndex: number;
+        referencePhase: "reserve" | "final";
         sectionIndices: number[];
         firstPhysicalPageIndex: number;
         stage: string;
@@ -191,8 +232,29 @@ async function main() {
           JSON.stringify(result, null, 2),
         );
         const editionId = result.book.draftEditionId!;
+        const [edition] = await sql.query<{ revision: number }>(
+          `SELECT revision FROM textbook_edition WHERE id=$1::uuid`,
+          [editionId],
+        );
+        const reservationInput = {
+          requestId: randomUUID(),
+          expectedRevision: edition.revision,
+        };
+        const reservation = await reservePublish(
+          sql,
+          actor,
+          editionId,
+          reservationInput,
+          sha(JSON.stringify(reservationInput)),
+          { ...publishDeps(codexRenderer), officialOrigin },
+        );
+        await writeFile(
+          path.join(folder, "publish-reservation.json"),
+          JSON.stringify(reservation, null, 2),
+        );
         const exchange = await assembleExchange(sql, editionId, {
           exportedAt: new Date().toISOString(),
+          qrStates: ["reserved", "active"],
         });
         const sourceRows = new Map(
           fixture.problems.map((problem) => [problem.id, problem]),
@@ -305,119 +367,244 @@ async function main() {
           pageMap: TextbookExchange["pageMap"] = [];
         const exports = [];
         for (const variant of ["student", "answers"] as const) {
-          const chunks = [],
-            dom: Awaited<ReturnType<typeof captureDomWitness>> = [];
-          let physical = 1;
-          const model = createTextbookRenderModel(
+          const reserved = new Map<number, TextbookPage[]>();
+          const phaseEvidence: {
+            referencePhase: "reserve" | "final";
+            chunkIndex: number;
+            firstPhysicalPageIndex: number;
+            nextPhysicalPageIndex: number;
+            pdfSha256: string;
+            pages: TextbookPage[];
+          }[] = [];
+          const baseModel = createTextbookRenderModel(
             { ...exchange, pageMap },
             variant,
           );
-          for (const [chunkIndex, sectionIndices] of publisherPlan.entries()) {
-            assert(sectionIndices.length <= 4);
-            assert(
-              manuscriptSections
-                .filter((_, i) => sectionIndices.includes(i))
-                .reduce((n, s) => n + s.blocks.length, 0) <= 300,
-              "Publisher-step block bound exceeded",
-            );
-            const started = Date.now();
-            activeRender = {
-              variant,
+          const chunks = [],
+            dom: Awaited<ReturnType<typeof captureDomWitness>> = [];
+          let model = baseModel;
+          for (const referencePhase of ["reserve", "final"] as const) {
+            let physical = exchange.config.print.firstPhysicalPageIndex;
+            const referencePages =
+              referencePhase === "final"
+                ? publisherPlan.flatMap((_, index) => reserved.get(index)!)
+                : undefined;
+            if (referencePages) {
+              assert.equal(reserved.size, publisherPlan.length);
+              model = withTextbookPageReferences(baseModel, referencePages);
+            }
+            for (const [
               chunkIndex,
               sectionIndices,
-              firstPhysicalPageIndex: physical,
-              stage: "production-render",
-              sections: sectionIndices.map((index) => ({
-                sectionKey: model.sections[index].sectionKey,
-                blockIds: model.sections[index].blocks.map((block) => block.id),
-              })),
-              progress: [],
-            };
-            const saveProgress = () =>
-              writeFileSync(
-                path.join(folder, "active-render.json"),
-                JSON.stringify({ rendererGitCommit, ...activeRender }, null, 2),
+            ] of publisherPlan.entries()) {
+              assert(sectionIndices.length <= 4);
+              assert(
+                manuscriptSections
+                  .filter((_, i) => sectionIndices.includes(i))
+                  .reduce((n, s) => n + s.blocks.length, 0) <= 300,
+                "Publisher-step block bound exceeded",
               );
-            saveProgress();
-            const chunk = await renderTextbookChunk({
-              exchange: { ...exchange, pageMap },
-              officialOrigin: "https://local-qa.invalid",
-              readAsset,
-              sectionIndices,
-              firstPhysicalPageIndex: physical,
-              variant,
-              browser,
-              mode: "draft",
-              onProgress: (phase) => {
-                activeRender!.progress.push({
-                  phase,
-                  elapsedMs: Date.now() - started,
-                });
-                saveProgress();
-              },
-              ...(variant === "answers"
-                ? { studentPages: studentChunks.get(chunkIndex)! }
-                : {}),
-            });
-            assert(chunk.pages.length <= 32);
-            chunks.push({ ...chunk, html: "" });
-            physical = chunk.nextPhysicalPageIndex;
-            if (variant === "student") {
-              studentChunks.set(chunkIndex, chunk.pages);
-              pageMap.push(...chunk.pageMap);
-            }
-            await writeFile(
-              path.join(folder, `${variant}-chunk-${chunkIndex}.html`),
-              chunk.html,
-            );
-            await writeFile(
-              path.join(folder, `${variant}-chunk-${chunkIndex}.pdf`),
-              chunk.pdf,
-            );
-            await writeFile(
-              path.join(
-                folder,
-                `${variant}-chunk-${chunkIndex}-placements.json`,
-              ),
-              JSON.stringify(
-                {
-                  rendererGitCommit,
-                  artifactHash: chunk.artifactHash,
-                  pages: chunk.pages,
-                  qrPlacements: chunk.qrPlacements,
-                },
-                null,
-                2,
-              ),
-            );
-            activeRender.stage = "final-dom-recapture";
-            saveProgress();
-            const page = await browser.newPage();
-            await loadFinalDom(
-              page,
-              chunk.html,
-              path.join(
-                folder,
-                `${variant}-chunk-${chunkIndex}-dom-resources.json`,
-              ),
-            );
-            dom.push(...(await captureDomWitness(page, model, chunk.pages)));
-            await page.close();
-            console.info(
-              JSON.stringify({
-                combo: fixture.key,
-                variant,
-                chunk: chunkIndex,
-                sectionIndices,
-                manuscriptBlocks: sectionIndices.reduce(
-                  (sum, index) => sum + manuscriptSections[index].blocks.length,
+              assert(sectionIndices.length <= 8);
+              assert(
+                sectionIndices.reduce(
+                  (n, index) => n + model.sections[index].blocks.length,
                   0,
+                ) <= 600,
+                "Production projected-block bound exceeded",
+              );
+              const started = Date.now();
+              activeRender = {
+                variant,
+                chunkIndex,
+                referencePhase,
+                sectionIndices,
+                firstPhysicalPageIndex: physical,
+                stage: "production-render",
+                sections: sectionIndices.map((index) => ({
+                  sectionKey: model.sections[index].sectionKey,
+                  blockIds: model.sections[index].blocks.map(
+                    (block) => block.id,
+                  ),
+                })),
+                progress: [],
+              };
+              const saveProgress = () =>
+                writeFileSync(
+                  path.join(folder, "active-render.json"),
+                  JSON.stringify(
+                    { rendererGitCommit, ...activeRender },
+                    null,
+                    2,
+                  ),
+                );
+              saveProgress();
+              const chunk = await renderTextbookChunk({
+                exchange: { ...exchange, pageMap },
+                officialOrigin: officialOrigin!,
+                readAsset,
+                sectionIndices,
+                firstPhysicalPageIndex: physical,
+                variant,
+                browser,
+                mode: "publish",
+                maxPages: 32,
+                ...(referencePages
+                  ? {
+                      referencePages,
+                      reservedPages: reserved.get(chunkIndex)!,
+                    }
+                  : {}),
+                onProgress: (phase) => {
+                  activeRender!.progress.push({
+                    phase,
+                    elapsedMs: Date.now() - started,
+                  });
+                  saveProgress();
+                },
+                ...(variant === "answers"
+                  ? { studentPages: studentChunks.get(chunkIndex)! }
+                  : {}),
+              });
+              assert(chunk.pages.length <= 32);
+              if (referencePhase === "final")
+                chunks.push({ ...chunk, html: "" });
+              phaseEvidence.push({
+                referencePhase,
+                chunkIndex,
+                firstPhysicalPageIndex: physical,
+                nextPhysicalPageIndex: chunk.nextPhysicalPageIndex,
+                pdfSha256: sha(chunk.pdf),
+                pages: chunk.pages,
+              });
+              physical = chunk.nextPhysicalPageIndex;
+              if (referencePhase === "reserve")
+                reserved.set(chunkIndex, chunk.pages);
+              if (variant === "student" && referencePhase === "final") {
+                studentChunks.set(chunkIndex, chunk.pages);
+                pageMap.push(...chunk.pageMap);
+              }
+              const phaseFolder =
+                referencePhase === "reserve"
+                  ? path.join(folder, "reserve")
+                  : folder;
+              await mkdir(phaseFolder, { recursive: true });
+              await writeFile(
+                path.join(phaseFolder, `${variant}-chunk-${chunkIndex}.html`),
+                chunk.html,
+              );
+              await writeFile(
+                path.join(phaseFolder, `${variant}-chunk-${chunkIndex}.pdf`),
+                chunk.pdf,
+              );
+              await writeFile(
+                path.join(
+                  phaseFolder,
+                  `${variant}-chunk-${chunkIndex}-placements.json`,
                 ),
-                pages: chunk.pages.length,
-                blocks: chunk.metrics.measuredBlocks,
-              }),
-            );
+                JSON.stringify(
+                  {
+                    rendererGitCommit,
+                    referencePhase,
+                    artifactHash: chunk.artifactHash,
+                    pages: chunk.pages,
+                    qrPlacements: chunk.qrPlacements,
+                  },
+                  null,
+                  2,
+                ),
+              );
+              if (referencePhase === "reserve") {
+                console.info(
+                  JSON.stringify({
+                    combo: fixture.key,
+                    variant,
+                    referencePhase,
+                    chunk: chunkIndex,
+                    sectionIndices,
+                    pages: chunk.pages.length,
+                    blocks: chunk.metrics.measuredBlocks,
+                  }),
+                );
+                continue;
+              }
+              activeRender.stage = "final-dom-recapture";
+              saveProgress();
+              const page = await browser.newPage();
+              await loadFinalDom(
+                page,
+                chunk.html,
+                path.join(
+                  folder,
+                  `${variant}-chunk-${chunkIndex}-dom-resources.json`,
+                ),
+              );
+              dom.push(...(await captureDomWitness(page, model, chunk.pages)));
+              await page.close();
+              console.info(
+                JSON.stringify({
+                  combo: fixture.key,
+                  variant,
+                  referencePhase,
+                  chunk: chunkIndex,
+                  sectionIndices,
+                  manuscriptBlocks: sectionIndices.reduce(
+                    (sum, index) =>
+                      sum + manuscriptSections[index].blocks.length,
+                    0,
+                  ),
+                  pages: chunk.pages.length,
+                  blocks: chunk.metrics.measuredBlocks,
+                }),
+              );
+            }
           }
+          await writeFile(
+            path.join(folder, `${variant}-reference-phases.json`),
+            JSON.stringify(
+              {
+                version: 1,
+                rendererGitCommit,
+                mode: "publish",
+                publisherPlan,
+                finalLayoutMatchesReserved:
+                  phaseEvidence.filter((p) => p.referencePhase === "final")
+                    .length === publisherPlan.length &&
+                  phaseEvidence
+                    .filter((p) => p.referencePhase === "final")
+                    .every((final) => {
+                      const before = reserved.get(final.chunkIndex)!;
+                      return (
+                        before.length === final.pages.length &&
+                        before.every((p, i) => {
+                          const after = final.pages[i];
+                          return (
+                            p.physicalPageIndex === after.physicalPageIndex &&
+                            p.printedPageLabel === after.printedPageLabel &&
+                            p.sectionKey === after.sectionKey &&
+                            p.blocks.length === after.blocks.length &&
+                            p.blocks.every((b, j) => {
+                              const a = after.blocks[j];
+                              return (
+                                b.blockId === a.blockId &&
+                                b.itemId === a.itemId &&
+                                b.column === a.column &&
+                                ["xMm", "yMm", "widthMm", "heightMm"].every(
+                                  (k) =>
+                                    Math.abs(b[k as "xMm"] - a[k as "xMm"]) <=
+                                    0.01,
+                                )
+                              );
+                            })
+                          );
+                        })
+                      );
+                    }),
+                phases: phaseEvidence,
+              },
+              null,
+              2,
+            ),
+          );
           if (activeRender) activeRender.stage = "merge-pdf";
           const merged = await mergeTextbookPdfs(
               chunks,
@@ -552,6 +739,13 @@ async function main() {
           actualFeatures,
           sections: indices.length,
           publisherPlan,
+          publishReservation: {
+            requestId: reservationInput.requestId,
+            status: reservation.status,
+            totalSteps: reservation.totalSteps,
+          },
+          referencePipeline:
+            "reserve-all-variant-chunks-then-final-with-global-pages-and-reserved-layout",
           sourceMetadata:
             exchange.conceptIntegration?.concepts.map((c) => ({
               conceptKey: c.conceptKey,
@@ -584,6 +778,7 @@ async function main() {
           exports,
           limits: [
             "Local PGlite automatic books from actual bank rows; no production write or real-account claim.",
+            "Official local publish reservation and bounded final rendering are exercised; production publication/finalization is not claimed.",
             "A shortage is recorded and cannot satisfy demanding feature acceptance.",
             "AI image reading is not human or physical approval.",
           ],

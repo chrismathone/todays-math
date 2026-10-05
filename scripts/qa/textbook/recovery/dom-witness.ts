@@ -258,6 +258,24 @@ export async function captureDomWitness(
             })),
           ];
         });
+        const references = Array.from(
+          paper.querySelectorAll<HTMLElement>(".tb-reference-row"),
+        ).map((row) => {
+          const owner = row.closest<HTMLElement>("[data-block-id]");
+          const label = row.querySelector<HTMLElement>(
+            ":scope > span:first-child",
+          );
+          const number = row.querySelector<HTMLElement>(".tb-reference-page");
+          return {
+            blockId: owner?.dataset.blockId ?? null,
+            key: row.dataset.referenceKey ?? null,
+            label: label?.textContent?.trim() ?? null,
+            pageLabel: number?.textContent?.trim() ?? null,
+            boxMm: rect(row),
+            labelBoxMm: label ? rect(label) : null,
+            pageBoxMm: number ? rect(number) : null,
+          };
+        });
         const rows = Array.from(
           paper.querySelectorAll<HTMLElement>("[data-row-key]"),
         ).map((el) => {
@@ -508,6 +526,9 @@ export async function captureDomWitness(
         });
         return {
           physicalPageIndex,
+          printedPageLabel:
+            paper.querySelector(".tb-footer strong")?.textContent?.trim() ??
+            null,
           widthMm: pr.width * mm,
           heightMm: pr.height * mm,
           sectionKey: paper.dataset.sectionKey,
@@ -528,6 +549,7 @@ export async function captureDomWitness(
           qrs,
           clips,
           nodes,
+          references,
           dialogueBoxes,
           accounting: {
             placementFound: !!placed,

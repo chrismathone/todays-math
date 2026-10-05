@@ -152,7 +152,10 @@ describe("new bank activity assembly conserves canonical content", () => {
       },
     };
     const structure = () =>
-      memoryActivityBlocks(input).map(({ blockId: _, ...block }) => block);
+      memoryActivityBlocks(input).map((block) => ({
+        ...block,
+        blockId: "stable",
+      }));
     const before = structure();
     generate(list, {
       ...input.components,
