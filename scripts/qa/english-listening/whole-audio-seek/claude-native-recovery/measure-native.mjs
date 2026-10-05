@@ -50,6 +50,10 @@ for (const id of session.scope(values.scope, values["source-id"])) {
     console.log("skipped", id, identity.unavailable);
     continue;
   }
+  if (identity.converted) {
+    console.log("skipped", id, "converted playback clock: measure-converted.mjs");
+    continue;
+  }
   const metaPath = join(nativeDir, id + ".native.json");
   if (existsSync(metaPath)) {
     console.log("kept", id);
