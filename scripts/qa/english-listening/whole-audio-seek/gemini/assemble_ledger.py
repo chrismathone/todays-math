@@ -17,9 +17,14 @@ def get_file_sha256(path):
             h.update(chunk)
     return h.hexdigest()
 
-def assemble(mapping_audit_path, output_path):
+def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testautocreator/.qa-artifacts/whole-audio-seek-20261005/inventory.json"):
     with open(mapping_audit_path, "r", encoding="utf-8") as f:
         audit_data = json.load(f)
+    
+    with open(inventory_path, "r", encoding="utf-8") as f:
+        inventory_data = json.load(f)
+        
+    inventory_map = {r["sourceRecordId"]: r for r in inventory_data["records"]}
         
     import sys
     sys.path.append('C:/Users/user/orca/workspaces/testautocreator/listening-seek-codex/scripts/qa/english-listening/whole-audio-seek/codex')
@@ -73,10 +78,10 @@ def assemble(mapping_audit_path, output_path):
             "documentSha256": r.get("documentSha256"),
             "questionId": r.get("questionId"),
             "sourceNumber": r.get("generatedSourceNumber"),
-            "sourceAudioSha256": r.get("sourceAudioSha256", ""),
-            "playbackSha256": r.get("playbackSha256", ""),
-            "asrPath": r.get("asrPath", ""),
-            "asrSha256": r.get("asrSha256", ""),
+            "sourceAudioSha256": inventory_map[src_id].get("sourceAudioSha256", ""),
+            "playbackSha256": inventory_map[src_id].get("audio", {}).get("sha256", ""),
+            "asrPath": inventory_map[src_id].get("asrPath", "").replace("\\", "/"),
+            "asrSha256": inventory_map[src_id].get("asrSha256", ""),
             "kind": r.get("kind", ""),
             "cueNumber": r.get("cueNumber"),
             "cueSpokenNumbers": r.get("cueSpokenNumbers", []),
@@ -164,9 +169,10 @@ def assemble(mapping_audit_path, output_path):
             # Held row logic
             reasons = []
             if r.get("status") == "held":
-                # The audit itself held it (e.g. uncertain raw cue, etc.)
-                # We can copy its diagnostic reasons if any, or just say audit_held
-                reasons.append("audit_held")
+                if r.get("reason"):
+                    reasons.append(r["reason"])
+                else:
+                    reasons.append("audit_held")
             
             if not r.get("nativeSupport"):
                 reasons.append("missing_actual_probe")
@@ -193,7 +199,7 @@ def assemble(mapping_audit_path, output_path):
         "records": records
     }
     
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(output_path, "x", encoding="utf-8") as f:
         json.dump(out_data, f, indent=2, ensure_ascii=False)
     
     print(f"Wrote {len(records)} records to {output_path}")
@@ -203,6 +209,6 @@ def assemble(mapping_audit_path, output_path):
 
 if __name__ == "__main__":
     import sys
-    mapping_audit_path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/codex/reconstructed-mapping-audit-001.json"
-    output_path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/gemini/ledger1282.json"
+    mapping_audit_path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/codex/reconstructed-mapping-audit-002.json"
+    output_path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/gemini/ledger1282-003.json"
     assemble(mapping_audit_path, output_path)
