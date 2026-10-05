@@ -341,6 +341,7 @@ export default function MathSrsApp() {
             <select
               disabled={!ready}
               id="srs-learner"
+              aria-label="학습자"
               value={learner.id}
               onChange={(event) => chooseLearner(event.target.value)}
             >

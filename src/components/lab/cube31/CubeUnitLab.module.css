@@ -10,6 +10,7 @@
   color: var(--learn-ink);
   --cube-blue: var(--learn-accent);
   --cube-line: var(--learn-track);
+  --cube-muted: var(--learn-muted);
   font-family: var(--font-pretendard), sans-serif;
 }
 .header {
@@ -212,7 +213,7 @@
 }
 .eyebrow {
   font-size: 11px;
-  color: #677c96;
+  color: var(--cube-muted);
   font-weight: 700;
   letter-spacing: 0.09em;
 }
@@ -308,7 +309,7 @@
 }
 .lessonButton[aria-current] .lessonNumber {
   color: white;
-  background: #ffffff22;
+  background: var(--learn-accent-hover);
   border-color: #ffffff50;
 }
 .lessonButton b {
@@ -322,7 +323,7 @@
   color: #94a9c9;
 }
 .lessonButton[aria-current] small {
-  color: #d2e0ff;
+  color: var(--learn-on-accent);
 }
 .sourceNote {
   font-size: 11px;
@@ -361,7 +362,7 @@
   outline: none;
 }
 .lessonHeading p {
-  color: #69788e;
+  color: var(--cube-muted);
   font-size: 13px;
   line-height: 1.7;
   margin: 0;
@@ -537,7 +538,7 @@
 .hintButton {
   border-color: transparent;
   background: #f5f7fc;
-  color: #627593;
+  color: var(--cube-muted);
   font-size: 13px;
 }
 .hint {
@@ -643,7 +644,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-  color: #75839a;
+  color: var(--cube-muted);
   font-size: 11px;
   line-height: 1.7;
   padding-top: 0;
@@ -953,7 +954,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0;
-    color: #7a879c;
+    color: var(--cube-muted);
     font-size: 12px;
   }
   .lessonHeading {

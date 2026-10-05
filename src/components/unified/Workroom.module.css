@@ -1184,7 +1184,7 @@
     min-height: var(--control-height, 44px);
     padding: 7px 0 5px;
     border-radius: var(--control-radius, 8px);
-    color: #73849e;
+    color: var(--muted);
   }
   .navigation button svg {
     color: #788da9;

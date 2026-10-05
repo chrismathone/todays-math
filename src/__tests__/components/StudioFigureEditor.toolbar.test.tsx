@@ -208,7 +208,7 @@ describe("도구 줄 — 선·도형 무리, 마지막에 쓴 도구가 겉에",
   });
 });
 
-describe("▾ 메뉴 키보드 — ↓ 열기 · ↑↓ · Enter · Esc · 초점 가두기", () => {
+describe("▾ 메뉴 키보드 — ↓ 열기 · ↑↓ · Enter · Esc · Tab 종료", () => {
   it("▾ 에서 ↓ 로 열면 겉 도구에 초점, ↑↓ 는 돌고, Enter 로 고르면 겉 단추로 돌아온다", () => {
     open();
     const opener = toggle("선");
@@ -243,18 +243,19 @@ describe("▾ 메뉴 키보드 — ↓ 열기 · ↑↓ · Enter · Esc · 초�
     expect(button("다각형")).toHaveAttribute("aria-pressed", "true");
   });
 
-  it("Tab 은 메뉴 안에서 돈다 — 열린 동안 초점이 메뉴 밖으로 안 나간다", () => {
-    open();
-    const opener = toggle("선");
-    act(() => opener.focus());
-    key(opener, { key: "ArrowDown" });
-    key(focused()!, { key: "Tab" });
-    expect(focused()).toBe(item("화살표"));
-    key(focused()!, { key: "Tab", shiftKey: true });
-    key(focused()!, { key: "Tab", shiftKey: true });
-    expect(focused()).toBe(item("곡선"));
-    expect(menu()).not.toBeNull();
-  });
+  it.each([false, true])(
+    "Tab 은 메뉴를 닫고 기본 초점 이동을 허용한다 (shift=%s)",
+    (shiftKey) => {
+      open();
+      const opener = toggle("선");
+      act(() => opener.focus());
+      key(opener, { key: "ArrowDown" });
+      expect(key(focused()!, { key: "Tab", shiftKey })).toBe(true);
+      expect(menu()).toBeNull();
+      // jsdom has no native Tab action; the browser harness asserts its actual target.
+      expect(focused()).toBe(opener);
+    },
+  );
 
   it("Esc 는 메뉴만 닫고 ▾ 로 돌아온다 — 편집기도 안 닫히고 고른 요소도 그대로, ↓ 가 요소를 옮기지도 않는다", () => {
     const onClose = open();

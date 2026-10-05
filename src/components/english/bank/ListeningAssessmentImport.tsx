@@ -16,6 +16,7 @@ import {
 } from "../listening/listeningClient";
 import { uploadListeningAudio } from "../listening/listeningUpload";
 import { ListeningTeacherAudio } from "../listening/ListeningTeacherAudio";
+import { usesWholeSourceAssessmentAudio } from "@/lib/english/listening/wholeSource";
 import {
   listeningPdfAnswers,
   readListeningPdfText,
@@ -64,6 +65,10 @@ export function ListeningAssessmentImport({
   const saved = useRef<ListeningSetDetail | null>(null);
   const uploaded = useRef<ListeningAudioRef | null>(null);
   const groupId = useRef("");
+  const wholeSourceAudio = usesWholeSourceAssessmentAudio({
+    source: { kind },
+    groups: [{ questions }],
+  });
   useEffect(() => {
     onState?.(Boolean(title || audioFile || questionFile), busy);
   }, [title, audioFile, questionFile, busy, onState]);
@@ -408,12 +413,15 @@ export function ListeningAssessmentImport({
             그림·표를 보존하며 정답이 없는 문항은 미정으로 남깁니다.
           </p>
           {previewUrl && active && (
-            <ListeningTeacherAudio
-              key={previewUrl}
-              url={previewUrl}
-              durationMs={LISTENING_MAX_DURATION_MS}
-              disabled={busy}
-            />
+            <>
+              {wholeSourceAudio ? <p>회차 전체 원본 음원</p> : null}
+              <ListeningTeacherAudio
+                key={previewUrl}
+                url={previewUrl}
+                durationMs={LISTENING_MAX_DURATION_MS}
+                disabled={busy}
+              />
+            </>
           )}
           <button
             type="button"
@@ -471,87 +479,91 @@ export function ListeningAssessmentImport({
                       ))}
                     </select>
                   </label>
-                  <div className={b.range}>
-                    <label className={s.field}>
-                      전체 음원 시작 (초)
-                      <input
-                        disabled={busy}
-                        type="number"
-                        min={0}
-                        step={0.001}
-                        value={
-                          question.audioRange
-                            ? question.audioRange.startMs / 1000
-                            : ""
-                        }
-                        onChange={(event) => {
-                          const startMs = Math.round(
-                            Number(event.target.value) * 1000,
-                          );
-                          setQuestions((rows) =>
-                            rows.map((row, i) =>
-                              i === index
-                                ? {
-                                    ...row,
-                                    audioRange:
-                                      event.target.value === ""
-                                        ? undefined
-                                        : {
-                                            startMs,
-                                            endMs: Math.max(
-                                              startMs + 1,
-                                              row.audioRange?.endMs ??
-                                                startMs + 1000,
-                                            ),
-                                          },
-                                  }
-                                : row,
-                            ),
-                          );
-                        }}
-                      />
-                    </label>
-                    <label className={s.field}>
-                      전체 음원 끝 (초)
-                      <input
-                        disabled={busy}
-                        type="number"
-                        min={0}
-                        step={0.001}
-                        value={
-                          question.audioRange
-                            ? question.audioRange.endMs / 1000
-                            : ""
-                        }
-                        onChange={(event) => {
-                          const endMs = Math.round(
-                            Number(event.target.value) * 1000,
-                          );
-                          setQuestions((rows) =>
-                            rows.map((row, i) =>
-                              i === index
-                                ? {
-                                    ...row,
-                                    audioRange:
-                                      event.target.value === ""
-                                        ? undefined
-                                        : {
-                                            startMs:
-                                              row.audioRange?.startMs ?? 0,
-                                            endMs,
-                                          },
-                                  }
-                                : row,
-                            ),
-                          );
-                        }}
-                      />
-                    </label>
-                  </div>
-                  <p>
-                    회차 전체는 바로 담을 수 있습니다. 문항별로 골라 담으려면
-                    해당 문항 전체가 들리는 시작·끝을 지정하세요.
-                  </p>
+                  {wholeSourceAudio ? null : (
+                    <>
+                      <div className={b.range}>
+                        <label className={s.field}>
+                          전체 음원 시작 (초)
+                          <input
+                            disabled={busy}
+                            type="number"
+                            min={0}
+                            step={0.001}
+                            value={
+                              question.audioRange
+                                ? question.audioRange.startMs / 1000
+                                : ""
+                            }
+                            onChange={(event) => {
+                              const startMs = Math.round(
+                                Number(event.target.value) * 1000,
+                              );
+                              setQuestions((rows) =>
+                                rows.map((row, i) =>
+                                  i === index
+                                    ? {
+                                        ...row,
+                                        audioRange:
+                                          event.target.value === ""
+                                            ? undefined
+                                            : {
+                                                startMs,
+                                                endMs: Math.max(
+                                                  startMs + 1,
+                                                  row.audioRange?.endMs ??
+                                                    startMs + 1000,
+                                                ),
+                                              },
+                                      }
+                                    : row,
+                                ),
+                              );
+                            }}
+                          />
+                        </label>
+                        <label className={s.field}>
+                          전체 음원 끝 (초)
+                          <input
+                            disabled={busy}
+                            type="number"
+                            min={0}
+                            step={0.001}
+                            value={
+                              question.audioRange
+                                ? question.audioRange.endMs / 1000
+                                : ""
+                            }
+                            onChange={(event) => {
+                              const endMs = Math.round(
+                                Number(event.target.value) * 1000,
+                              );
+                              setQuestions((rows) =>
+                                rows.map((row, i) =>
+                                  i === index
+                                    ? {
+                                        ...row,
+                                        audioRange:
+                                          event.target.value === ""
+                                            ? undefined
+                                            : {
+                                                startMs:
+                                                  row.audioRange?.startMs ?? 0,
+                                                endMs,
+                                              },
+                                      }
+                                    : row,
+                                ),
+                              );
+                            }}
+                          />
+                        </label>
+                      </div>
+                      <p>
+                        회차 전체는 바로 담을 수 있습니다. 문항별로 골라
+                        담으려면 해당 문항 전체가 들리는 시작·끝을 지정하세요.
+                      </p>
+                    </>
+                  )}
                 </details>
               ))}
             </div>

@@ -11,14 +11,15 @@
   --e-line-soft: #eef1f7;
   --e-ink: var(--ink, #172b4d);
   --e-muted: var(--muted, #596c86);
-  --e-faint: #8c98ab;
+  /* Readable supplementary text; decorative icons keep their own colors. */
+  --e-meta: var(--e-muted);
   --e-accent: var(--accent, #3159df);
   --e-accent-ink: #2447b8;
   --e-soft: #edf2ff;
   --e-draft-bg: #fbf0d4;
   --e-draft-ink: #86590a;
   --e-review-bg: #eef1f5;
-  --e-review-ink: #6b7a90;
+  --e-review-ink: var(--e-muted);
   --e-done-bg: #e4eafc;
   --e-done-ink: #2447b8;
   --e-danger: #b42318;
@@ -121,7 +122,7 @@
   padding: 1px 7px;
   border-radius: 5px;
   background: #eef3fd;
-  color: #6e87b0;
+  color: var(--e-meta);
   font-size: var(--text-caption, 12px);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
@@ -135,7 +136,7 @@
   border: 1px solid transparent;
   border-radius: var(--control-radius, 8px);
   background: transparent;
-  color: #667d9e;
+  color: var(--e-muted);
   font-size: 13px;
   font-weight: 600;
   white-space: nowrap;
@@ -146,7 +147,7 @@
 }
 .desc {
   margin: 6px 0 0;
-  color: #8793a7;
+  color: var(--e-meta);
   font-size: 13px;
 }
 
@@ -163,7 +164,7 @@
   font-size: var(--text-caption, 12px);
   font-weight: 700;
   letter-spacing: 0.6px;
-  color: #8194b1;
+  color: var(--e-meta);
 }
 .stepsTitle {
   margin: 4px 0 0;
@@ -206,7 +207,7 @@
   height: 36px;
   border-radius: 50%;
   background: #edf2f9;
-  color: #8fa0b8;
+  color: var(--e-meta);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
@@ -221,7 +222,7 @@
 .step small {
   font-size: var(--text-caption, 12px);
   font-weight: 400;
-  color: var(--e-faint);
+  color: var(--e-meta);
 }
 
 /* ── 두 열 ─────────────────────────────────────────────────── */
@@ -285,7 +286,7 @@
   display: block;
   margin-top: 2px;
   font-size: var(--text-caption, 12px);
-  color: #99a5b6;
+  color: var(--e-meta);
 }
 .rowDelete {
   display: grid;
@@ -304,7 +305,7 @@
 .footnote {
   margin: 12px 0 0;
   font-size: var(--text-caption, 12px);
-  color: var(--e-faint);
+  color: var(--e-meta);
   line-height: 1.6;
 }
 
@@ -390,13 +391,13 @@
 }
 .setMeta {
   margin: 0;
-  color: #91a0b5;
+  color: var(--e-meta);
   font-size: var(--text-caption, 12px);
   overflow-wrap: anywhere;
 }
 .count {
   text-align: right;
-  color: #71829c;
+  color: var(--e-meta);
   font-size: var(--text-caption, 12px);
   white-space: nowrap;
 }
@@ -437,7 +438,7 @@
 .under {
   margin: 10px 0 0;
   text-align: center;
-  color: #98a4b6;
+  color: var(--e-meta);
   font-size: var(--text-caption, 12px);
 }
 .empty {
