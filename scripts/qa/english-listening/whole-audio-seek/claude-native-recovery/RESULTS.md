@@ -24,7 +24,7 @@ Artifacts are under
 | population                         | rows | offered                          | reported, not offered | held |
 | ---------------------------------- | ---: | -------------------------------- | --------------------: | ---: |
 | reconstructed, 15 pilot sources    |  216 | 64 (50 original passages)        |                     — |  152 |
-| official, all 47 sources           |   87 | 19 (verifier's official wrapper) |                    19 |   49 |
+| official, all 47 sources           |   87 | 22 (verifier's official wrapper; 19 in the first freeze) | 22 |   43 |
 | reconstructed, other 57 sources    |  669 | see "Full run" below             |                     — |      |
 
 ### Pilot — `runs/pilot-002/` (supersedes `pilot-001`; same evidence, per-source catalogs)
@@ -128,6 +128,30 @@ instruction and neighbour roles that were not resolved here. The verifier's
 raw-word checks were added to this producer afterwards, so a quoted segment
 whose words do not spell it is now a barrier here too.
 
+### Official, second freeze — `runs/official-002/`
+
+After that result the seven starts whose literal number existed only in a
+4-second clip were heard again: 48 new clips of 2, 2.5 and 3 s from the
+identical measured start and onset of 16 starts (round 035, 0 overflow). A
+bare-digit instruction reading now needs the shortest reliable literal reading
+of **at most 3 s** as its number clip, or the row is not offered; the next
+heading is exported by the reading that carries its complete instruction.
+
+| file                                    | SHA-256                                                            |
+| --------------------------------------- | ------------------------------------------------------------------ |
+| `official-candidates.json`              | `e98c6aae3ad9374d68b7691a56307aadd1dd43d03926640ceb91c5adcf469f60` |
+| `official-later-sentence-findings.json` | `f35c7c6bc12015ce70aa35e567d484969e4b7fca35abaa70b0ee802bff28e602` |
+| `ledger.json`                           | `2119c72a7b724b81d74ec1a742af651b6b9d7be26f9ef490a92b2669b01d1929` |
+| `summary.json`                          | `3ff04fdedce1fc79353378d3fc3e634ad3f39abff992501e5cdc242ecf7546ae` |
+
+87 rows: **22 offered** to the verifier's official wrapper, 22 later-sentence
+findings not offered, 43 held. Six of the seven now have a number clip of
+1.1–2.5 s; in four of them the short clip wrote the literal number and the first
+words of the instruction, because the announcer runs on — whether that
+satisfies "the number alone" is the verifier's call. The seventh is no longer
+offered: with the raw-word check its English segment is a barrier. This freeze
+has not been replayed by the verifier at the time of writing.
+
 ### A passage may end where the next number is first heard — `runs/pilot-003/`
 
 Added **after** the pilot outcome was seen, and reported as such. In
@@ -200,7 +224,7 @@ overflow in every round.
 | 001–005, 010 (pilot)      | Korean: headings, shorter and longer same-start clips, gap and terminal scans |          1,041 |
 | 006 (pilot)               | English passage clips (3,779 s)                                 |                   87 |
 | adversarial 001           | truncated clips, own folder, never evidence                     |                  380 |
-| 030–034 (official)        | Korean 198 + 5 + 304 (+ 10 of a round stopped as planned too broadly), English 3 |    520 |
+| 030–035 (official)        | Korean 198 + 5 + 304 + 48 number clips (+ 10 of a round stopped as planned too broadly), English 3 |    568 |
 | 040–044 (converted)       | `ebs-middle-1-2006-2` on its authenticated playback clock, own runner: Korean 100, English 13 | 113 |
 | 011 (pilot)               | English clips for passages ended by a first-speech boundary     |                   25 |
 | 020 onward                | the other 56 reconstructed sources — see "Full run"             |                      |
@@ -234,6 +258,22 @@ English rounds, then one ledger over the whole held population).
   audio decides them.
 - **Official rows with only a later own sentence** (19): a route the verifier
   would have to evaluate.
+
+## One failure during the run, and its cause
+
+Heading round 020 stopped after 19 of 56 sources: the extractor could not write
+the first clip of `ebs-middle-2-2006-1`. The cause was this producer's own
+drivers, which swept every empty folder under `tmp` after each round; another
+round's extractor makes its source folder seconds before it writes into it, and
+a concurrent sweep removed it. (A first guess of memory contention was wrong.)
+A follow-up driver that had been stopped also survived as an orphan and ran one
+round beside the resumed one before it was found and killed. Fix, commit
+`413115b24`: a round's cleanup removes only its own folder and only when
+empty; the extractor keeps a marker file in its folder until the clips and
+their manifest are written. On a real, already recognized probe the patched
+extractor produced the identical clip hash. Round 020 was resumed on the same
+request; the 19 finished containers were not touched and nothing was recognized
+twice.
 
 ## Not done
 

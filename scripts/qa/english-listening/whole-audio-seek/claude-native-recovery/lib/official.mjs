@@ -34,6 +34,35 @@ export const OFFICIAL_ROUTE = "native_numbered_passage_script_sentence_v1";
 /** The verifier's wrapper around its existing official gates. */
 export const OFFICIAL_ADAPTER = "official-catalogued-native-v1";
 
+/** The existing official gate's own limit on a clip that holds the number alone. */
+export const NUMBER_CLIP_SECONDS = 3;
+
+/** A short literal-number reading in the raw reference shape, with its clip facts. */
+function clipReference(reading, input) {
+  return reference(
+    reading.ref,
+    reading.probe.segments.filter((s) => s.id === reading.reading.firstSegmentId),
+    {
+      purpose: reading.probe.purpose ?? null,
+      requestedLanguage: "ko",
+      sampleRate: input.native.sampleRate,
+      durationSeconds: reading.probe.durationSeconds,
+      onsetFrame: reading.onsetFrame,
+      overflow: reading.probe.overflow,
+    },
+  );
+}
+
+/** The reading of a heading that carries its instruction, quoted through the verb. */
+function instructionReference(heading) {
+  const long = heading.instructionSibling ?? heading;
+  const ids = long.reading.instruction?.segmentIds ?? [long.reading.firstSegmentId];
+  return reference(
+    long.ref,
+    long.probe.segments.filter((s) => ids.includes(s.id)),
+  );
+}
+
 /** Sentences of a section's spoken turns, each with its literal character bounds. */
 export function sectionSentences(section) {
   const sentences = [];
@@ -213,8 +242,26 @@ export function resolveOfficial(input) {
         }
         if (opening?.atMeasuredOnset) break;
       }
-      const adapter = opening?.atMeasuredOnset ? OFFICIAL_ADAPTER : null;
       const { heading } = common;
+      // Where the instruction came from a long reading that wrote bare digits,
+      // the literal number must stand alone in a clip of at most three seconds
+      // from the same start and onset. The shortest such reading is the number
+      // clip; a longer one is never passed off as one.
+      const shortLiteral = (h) =>
+        [...(h.literalReadings ?? [])]
+          .filter(
+            (r) =>
+              r.onsetFrame === h.onsetFrame &&
+              r.probe.durationSeconds <= NUMBER_CLIP_SECONDS + 1e-9 &&
+              !r.probe.overflow,
+          )
+          .sort((a, b) => a.probe.durationSeconds - b.probe.durationSeconds)[0] ??
+        null;
+      const numberClip = heading.instructionSibling ? shortLiteral(heading) : null;
+      const adapter =
+        opening?.atMeasuredOnset && (!heading.instructionSibling || numberClip)
+          ? OFFICIAL_ADAPTER
+          : null;
       const ownSentences = heard.map(({ sentence, hits }) => ({
         text: sentence.text,
         startCharacter: sentence.startCharacter,
@@ -252,6 +299,9 @@ export function resolveOfficial(input) {
                 words: opening.candidate.words.length,
                 clipBeginsAtMeasuredOnset: opening.atMeasuredOnset,
               }
+            : null,
+          literalNumberClipAtMostThreeSeconds: heading.instructionSibling
+            ? Boolean(numberClip)
             : null,
         },
       };
@@ -297,22 +347,18 @@ export function resolveOfficial(input) {
           long.probe.segments.filter((s) => instructionIds.includes(s.id)),
         ),
         instructionProbeEvidence: null,
-        numberClipEvidence: heading.instructionSibling
-          ? reference(
-              heading.ref,
-              heading.probe.segments.filter(
-                (s) => s.id === heading.reading.firstSegmentId,
-              ),
-              {
-                purpose: heading.probe.purpose ?? null,
-                requestedLanguage: "ko",
-                sampleRate: input.native.sampleRate,
-                durationSeconds: heading.probe.durationSeconds,
-                onsetFrame: heading.onsetFrame,
-                overflow: heading.probe.overflow,
-              },
-            )
+        numberClipEvidence: numberClip ? clipReference(numberClip, input) : null,
+        // The next heading in the same roles: the reading that carries its
+        // complete instruction, and its own short literal number where that
+        // reading wrote bare digits.
+        nextProbeEvidence: common.nextHeading
+          ? instructionReference(common.nextHeading)
           : null,
+        nextNumberClipEvidence:
+          common.nextHeading?.instructionSibling &&
+          shortLiteral(common.nextHeading)
+            ? clipReference(shortLiteral(common.nextHeading), input)
+            : null,
         dialogueProbeEvidence: reference(
           opening.clip.ref,
           opening.clip.probe.segments.filter((s) =>

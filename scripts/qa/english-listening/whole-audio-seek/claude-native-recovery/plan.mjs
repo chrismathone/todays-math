@@ -14,6 +14,9 @@
  * context     Korean, 14 s, from a start where the number was written first and
  *             the announcer's sentence began but eight seconds ended before
  *             its verb (a long shared heading).
+ * numberclip  Korean, 2, 2.5 and 3 s, the number alone from a start where a
+ *             long reading wrote bare digits before the instruction and the
+ *             literal number is so far only in a clip longer than 3 s.
  * variants    Korean, 6 s and 4.5 s, from a start where the number was written
  *             first but with a recognizer time that lags the measured onset.
  * quotes      English, up to 60 s: the dialogue of an established passage, from
@@ -104,6 +107,26 @@ function bandsFor(hints) {
   return bands;
 }
 
+/**
+ * For an official source: the numbers a held question needs — its own, and the
+ * next one where that has no certified start. Null for a reconstructed source,
+ * where every number is sought.
+ */
+function heldNumbers(w) {
+  if (w.record.reconstructed) return null;
+  const certified = new Set(
+    w.certRows
+      .filter((r) => r.audioRange)
+      .flatMap((r) => r.scopeQuestionNumbers ?? [r.sourceNumber]),
+  );
+  const only = new Set();
+  for (const row of w.certRows.filter((r) => r.status === "held")) {
+    only.add(row.sourceNumber);
+    if (!certified.has(row.sourceNumber + 1)) only.add(row.sourceNumber + 1);
+  }
+  return only;
+}
+
 const sources = [];
 const summary = { stage: values.stage, sources: 0, probes: 0, audioSeconds: 0 };
 const bump = (key, n = 1) => (summary[key] = (summary[key] ?? 0) + n);
@@ -167,19 +190,7 @@ for (const id of session.scope(values.scope, values["source-id"])) {
   if (values.stage === "headings") {
     // An official source keeps its certified starts: only a held question's
     // own number and, where it has no certified start, the next one are sought.
-    let only = null;
-    if (!w.record.reconstructed) {
-      const certified = new Set(
-        w.certRows
-          .filter((r) => r.audioRange)
-          .flatMap((r) => r.scopeQuestionNumbers ?? [r.sourceNumber]),
-      );
-      only = new Set();
-      for (const row of w.certRows.filter((r) => r.status === "held")) {
-        only.add(row.sourceNumber);
-        if (!certified.has(row.sourceNumber + 1)) only.add(row.sourceNumber + 1);
-      }
-    }
+    const only = heldNumbers(w);
     for (const [number, bands] of bandsFor(w.hints)) {
       if (only && !only.has(number)) continue;
       const within = (why) =>
@@ -242,6 +253,44 @@ for (const id of session.scope(values.scope, values["source-id"])) {
         onsetMethod: l.probe.onsetMethod,
         quietBeforeFrames: l.probe.quietBeforeFrames,
       });
+    }
+  } else if (values.stage === "numberclip") {
+    // A start where a long reading wrote bare digits before the instruction
+    // and the literal number is so far only in a clip longer than three
+    // seconds: the number alone is heard again, from the same start, in clips
+    // of 2, 2.5 and 3 seconds. Genuinely new recognitions; every older reading
+    // stays on record beside them.
+    const byStart = new Map();
+    for (const l of w.koListenings) {
+      if (!byStart.has(l.startFrame)) byStart.set(l.startFrame, []);
+      byStart.get(l.startFrame).push(l);
+    }
+    for (const [startFrame, list] of byStart) {
+      const readings = list.map((l) => ({ l, r: headingReading(l.probe) }));
+      const bare = readings.find(
+        ({ r }) => r.cue?.form === "bare" && r.reliable && r.instruction,
+      );
+      if (!bare) continue;
+      const number = bare.r.cue.numbers[0];
+      // Only where a held question needs it: its own number or its next one.
+      const wanted = heldNumbers(w);
+      if (wanted && !wanted.has(number)) continue;
+      const literal = readings.filter(({ r }) => r.cue && readsHeading(r, [number]));
+      if (literal.some(({ l }) => l.frameCount <= 150 * frames)) continue;
+      const have = new Set(list.map((x) => x.frameCount));
+      for (const windows of [100, 125, 150]) {
+        if (have.has(windows * frames)) continue;
+        push({
+          purpose: "number_only_clip_at_most_three_seconds",
+          language: "ko",
+          startFrame,
+          frameCount: windows * frames,
+          onsetFrame: bare.l.onsetFrame,
+          onsetMethod: bare.l.probe.onsetMethod,
+          quietBeforeFrames: bare.l.probe.quietBeforeFrames,
+          hintedNumber: number,
+        });
+      }
     }
   } else if (values.stage === "variants") {
     // A start where the number was written first and reliably, but with a
