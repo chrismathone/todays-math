@@ -520,12 +520,40 @@ function MaterialDialog({
       returnFocus={returnFocus}
       onClose={onClose}
     >
-      <div className={s.tabs} role="tablist" aria-label="자료 종류">
+      <div
+        className={s.tabs}
+        role="tablist"
+        aria-label="자료 종류"
+        onKeyDown={(event) => {
+          if (
+            event.altKey ||
+            event.ctrlKey ||
+            event.metaKey ||
+            !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)
+          )
+            return;
+          event.preventDefault();
+          const next =
+            event.key === "Home"
+              ? "file"
+              : event.key === "End"
+                ? "text"
+                : tab === "file"
+                  ? "text"
+                  : "file";
+          setTab(next);
+          setError(null);
+          event.currentTarget
+            .querySelector<HTMLButtonElement>(`#english-material-tab-${next}`)
+            ?.focus();
+        }}
+      >
         <button
           type="button"
           role="tab"
           id="english-material-tab-file"
           aria-selected={tab === "file"}
+          tabIndex={tab === "file" ? 0 : -1}
           aria-controls="english-material-panel"
           className={s.tab}
           onClick={() => {
@@ -540,6 +568,7 @@ function MaterialDialog({
           role="tab"
           id="english-material-tab-text"
           aria-selected={tab === "text"}
+          tabIndex={tab === "text" ? 0 : -1}
           aria-controls="english-material-panel"
           className={s.tab}
           onClick={() => {

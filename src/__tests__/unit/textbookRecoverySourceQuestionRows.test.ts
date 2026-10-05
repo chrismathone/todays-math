@@ -303,6 +303,112 @@ describe("native question heading is a safe tree", () => {
 });
 
 describe("row plan", () => {
+  const spreadModel = () => {
+    const exchange = sourceRowsExchange(
+      [0, 1].map((side) => ({
+        sectionKey: `spread-${side}`,
+        title: "합성 단원 마무리",
+        kind: "exercise",
+        activity: "assessment" as const,
+        blocks: Array.from({ length: 4 }, (_, index) => ({
+          id: `spread-${side}-${index}`,
+          content: SHORT_PROMPT,
+        })),
+      })),
+      42,
+    );
+    exchange.units[0].sections.forEach((section, side) => {
+      section.blocks.forEach((block) => {
+        block.semantic!.source!.page = 42 + side;
+        block.semantic!.source!.sectionName = "단원 마무리";
+      });
+    });
+    return createTextbookRenderModel(exchange, "student");
+  };
+  it("measures a native even/odd first grid as four questions per row, without changing the model", () => {
+    const model = spreadModel(),
+      before = JSON.stringify(model);
+    expect(sourceQuestionRowPlan(model, 42)).toEqual([
+      {
+        ids: ["q-spread-0-0", "q-spread-0-1", "q-spread-1-0", "q-spread-1-1"],
+        alignPrompt: true,
+      },
+      {
+        ids: ["q-spread-0-2", "q-spread-0-3", "q-spread-1-2", "q-spread-1-3"],
+        alignPrompt: true,
+      },
+    ]);
+    expect(recoveryMeasurePlan(model, 42).sourceQuestionGroups).toEqual(
+      sourceQuestionRowPlan(model, 42),
+    );
+    expect(JSON.stringify(model)).toBe(before);
+  });
+  it.each([
+    "unplaced",
+    "relocated",
+    "odd",
+    "different unit",
+    "different section",
+    "different kind",
+    "unequal count",
+    "daily mismatch",
+    "answers",
+  ])("keeps local source pairs for %s", (condition) => {
+    const model = spreadModel();
+    let first: number | undefined = 42;
+    const right = model.sections[1];
+    if (condition === "unplaced") first = undefined;
+    if (condition === "relocated") first = 2;
+    if (condition === "odd") {
+      first = 43;
+      model.sections.forEach((section) =>
+        section.blocks.forEach((block) => {
+          if (block.semantic?.source) block.semantic.source.page++;
+        }),
+      );
+    }
+    if (condition === "different unit")
+      right.blocks.forEach((block) => {
+        if (block.semantic?.source) block.semantic.source.unit = "U02";
+      });
+    if (condition === "different section")
+      right.blocks.forEach((block) => {
+        if (block.semantic?.source)
+          block.semantic.source.sectionName = "다른 활동";
+      });
+    if (condition === "different kind")
+      right.blocks.forEach((block) => {
+        if (block.semantic?.source) block.semantic.source.kind = "practice";
+      });
+    if (condition === "unequal count") right.blocks.pop();
+    if (condition === "daily mismatch")
+      right.blocks.unshift({
+        ...right.blocks[0],
+        id: "daily",
+        kind: "text",
+        markdown: "합성 하루",
+        semantic: {
+          activity: "assessment",
+          source: right.blocks[0].semantic!.source,
+          node: {
+            kind: "fragments",
+            fragments: [
+              {
+                tag: "div",
+                attributes: { className: "daily-banner" },
+                rawText: "합성 하루",
+              },
+            ],
+          },
+        },
+      });
+    if (condition === "answers") model.variant = "answers";
+    expect(
+      sourceQuestionRowPlan(model, first).every(
+        (group) => group.ids.length === 2,
+      ),
+    ).toBe(true);
+  });
   it("pairs consecutive column problems of a source page and nothing else", () => {
     const model = standardModel();
     expect(sourceQuestionRowPlan(model)).toEqual([

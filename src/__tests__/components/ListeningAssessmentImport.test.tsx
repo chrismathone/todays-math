@@ -321,12 +321,11 @@ describe("ListeningAssessmentImport", () => {
     expect(
       within(first).getByRole("img", { name: "1번 원본 문항" }),
     ).toHaveAttribute("src", image.dataUrl);
-    fireEvent.change(within(first).getByLabelText("전체 음원 시작 (초)"), {
-      target: { value: "1.25" },
-    });
-    fireEvent.change(within(first).getByLabelText("전체 음원 끝 (초)"), {
-      target: { value: "8.75" },
-    });
+    expect(screen.getAllByText("회차 전체 원본 음원")).toHaveLength(1);
+    expect(
+      screen.queryByLabelText(/전체 음원 (시작|끝)/),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText(/시작·끝을 지정하세요/)).not.toBeInTheDocument();
     fireEvent.click(screen.getByLabelText(distributionLabel));
     confirmRights();
     register();
@@ -381,7 +380,6 @@ describe("ListeningAssessmentImport", () => {
     });
     const expected = questionFixture();
     expected[0].answerChoiceId = expected[0].choices[2].id;
-    expected[0].audioRange = { startMs: 1250, endMs: 8750 };
     expect(patch.groups[0].questions).toEqual(expected);
     const final = server.getDetail().document;
     expect(final.provenance).toEqual({
@@ -412,6 +410,10 @@ describe("ListeningAssessmentImport", () => {
     const server = serverFixture();
     const { onImported } = openForm();
     const files = await prepareFiles({ mockExam: true, optional: false });
+    expect(screen.getAllByText("회차 전체 원본 음원")).toHaveLength(1);
+    expect(
+      screen.queryByLabelText(/전체 음원 (시작|끝)/),
+    ).not.toBeInTheDocument();
     confirmRights();
     register();
     await waitFor(() => expect(onImported).toHaveBeenCalledOnce());
@@ -626,6 +628,9 @@ describe("ListeningAssessmentImport", () => {
   it("allows correcting an out-of-file question range and reuses the uploaded audio on retry", async () => {
     const server = serverFixture();
     const { onImported } = openForm();
+    fireEvent.change(screen.getByLabelText("시험 종류", { exact: true }), {
+      target: { value: "other" },
+    });
     await prepareFiles();
     const first = screen.getByText(/^1번 ·/).closest("details")!;
     fireEvent.click(within(first).getByText(/^1번 ·/));

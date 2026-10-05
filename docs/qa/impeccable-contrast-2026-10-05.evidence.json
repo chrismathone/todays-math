@@ -1,0 +1,876 @@
+{
+  "phase": "after",
+  "labStates": [
+    {
+      "width": 1440,
+      "route": "/lab/math-srs",
+      "selectNameViolations": [],
+      "overflow": 0,
+      "selectFocusable": true,
+      "labelDisplay": "block"
+    },
+    {
+      "width": 1440,
+      "route": "/lab/math-srs/algebra",
+      "selectNameViolations": [],
+      "overflow": 0,
+      "selectFocusable": true,
+      "labelDisplay": "block",
+      "filters": [
+        {
+          "index": 0,
+          "normal": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "hover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selectedHover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selected": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "pressed": "true"
+        },
+        {
+          "index": 1,
+          "normal": {
+            "foreground": "rgb(82, 99, 123)",
+            "background": "rgb(244, 246, 250)",
+            "ratio": 5.66,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "hover": {
+            "foreground": "rgb(82, 99, 123)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 5.045,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selectedHover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selected": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "pressed": "true"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "route": "/lab/cube-3-1",
+      "text": [
+        {
+          "selector": "[class*=\"lessonHeading\"] [class*=\"eyebrow\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"lessonHeading\"] p",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"keyboardHint\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(242, 246, 252)",
+          "ratio": 4.947,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"hintButton\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(245, 247, 252)",
+          "ratio": 5.006,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"footnote\"] > span",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"footnote\"] > span",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "11px",
+          "disabled": false
+        }
+      ],
+      "overflow": 0,
+      "selectedLesson": {
+        "subtitle": {
+          "foreground": "rgb(255, 255, 255)",
+          "background": "linear-gradient(105deg, rgb(52, 95, 218), rgb(58, 112, 227))",
+          "ratio": 4.558,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        "number": {
+          "foreground": "rgb(255, 255, 255)",
+          "background": "rgb(36, 72, 189)",
+          "ratio": 7.673,
+          "fontSize": "11px",
+          "disabled": false
+        }
+      },
+      "hintExpanded": "true",
+      "activityChanged": "step"
+    },
+    {
+      "width": 390,
+      "route": "/lab/math-srs",
+      "selectNameViolations": [],
+      "overflow": 0,
+      "selectFocusable": true,
+      "labelDisplay": "none"
+    },
+    {
+      "width": 390,
+      "route": "/lab/math-srs/algebra",
+      "selectNameViolations": [],
+      "overflow": 0,
+      "selectFocusable": true,
+      "labelDisplay": "none",
+      "filters": [
+        {
+          "index": 0,
+          "normal": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "hover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selectedHover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selected": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "pressed": "true"
+        },
+        {
+          "index": 1,
+          "normal": {
+            "foreground": "rgb(82, 99, 123)",
+            "background": "rgb(244, 246, 250)",
+            "ratio": 5.66,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "hover": {
+            "foreground": "rgb(82, 99, 123)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 5.045,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selectedHover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selected": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "pressed": "true"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "route": "/lab/cube-3-1",
+      "text": [
+        {
+          "selector": "[class*=\"lessonHeading\"] [class*=\"eyebrow\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"keyboardHint\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(242, 246, 252)",
+          "ratio": 4.947,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"hintButton\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(245, 247, 252)",
+          "ratio": 5.006,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"mobileBar\"] > span",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ],
+      "overflow": 0,
+      "hintExpanded": "true",
+      "activityChanged": "step"
+    },
+    {
+      "width": 320,
+      "route": "/lab/math-srs",
+      "selectNameViolations": [],
+      "overflow": 0,
+      "selectFocusable": true,
+      "labelDisplay": "none"
+    },
+    {
+      "width": 320,
+      "route": "/lab/math-srs/algebra",
+      "selectNameViolations": [],
+      "overflow": 0,
+      "selectFocusable": true,
+      "labelDisplay": "none",
+      "filters": [
+        {
+          "index": 0,
+          "normal": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "hover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selectedHover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selected": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "pressed": "true"
+        },
+        {
+          "index": 1,
+          "normal": {
+            "foreground": "rgb(82, 99, 123)",
+            "background": "rgb(244, 246, 250)",
+            "ratio": 5.66,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "hover": {
+            "foreground": "rgb(82, 99, 123)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 5.045,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selectedHover": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(225, 233, 255)",
+            "ratio": 11.618,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "selected": {
+            "foreground": "rgb(23, 43, 77)",
+            "background": "rgb(237, 242, 255)",
+            "ratio": 12.588,
+            "fontSize": "11px",
+            "disabled": false
+          },
+          "pressed": "true"
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "route": "/lab/cube-3-1",
+      "text": [
+        {
+          "selector": "[class*=\"lessonHeading\"] [class*=\"eyebrow\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"keyboardHint\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(242, 246, 252)",
+          "ratio": 4.947,
+          "fontSize": "11px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"hintButton\"]",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(245, 247, 252)",
+          "ratio": 5.006,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "selector": "[class*=\"mobileBar\"] > span",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(244, 246, 250)",
+          "ratio": 4.959,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ],
+      "overflow": 0,
+      "hintExpanded": "true",
+      "activityChanged": "step"
+    }
+  ],
+  "workspaceCssFixtures": [
+    {
+      "width": 1440,
+      "file": "unified/Workroom",
+      "samples": []
+    },
+    {
+      "width": 1440,
+      "file": "english/EnglishStudio",
+      "samples": [
+        {
+          "text": "이번 시험 준비",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "자료 설명",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "자료 안내",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "세트 상태",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "문항 수",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "안내",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "자료 추가",
+          "foreground": "rgb(23, 43, 77)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 14.102,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "1",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(237, 242, 249)",
+          "ratio": 4.77,
+          "fontSize": "16px",
+          "disabled": false
+        },
+        {
+          "text": "자료 모으기",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "2",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 243, 253)",
+          "ratio": 4.822,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "검토 중",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "보관함 자료 상태",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ],
+      "libraryHover": {
+        "foreground": "rgb(89, 108, 134)",
+        "background": "rgb(247, 249, 255)",
+        "ratio": 5.097,
+        "fontSize": "12px",
+        "disabled": false
+      }
+    },
+    {
+      "width": 1440,
+      "file": "unified/ConceptView",
+      "samples": [
+        {
+          "text": "영상 없음",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "2",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "15px",
+          "disabled": false
+        },
+        {
+          "text": "없음",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "file": "unified/Workroom",
+      "samples": [
+        {
+          "text": "문제 추출",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "시험지",
+          "foreground": "rgb(49, 89, 223)",
+          "background": "rgb(238, 243, 255)",
+          "ratio": 5.214,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "file": "english/EnglishStudio",
+      "samples": [
+        {
+          "text": "이번 시험 준비",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "자료 설명",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "자료 안내",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "세트 상태",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "문항 수",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "안내",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "자료 추가",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "1",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(237, 242, 249)",
+          "ratio": 4.77,
+          "fontSize": "16px",
+          "disabled": false
+        },
+        {
+          "text": "자료 모으기",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "2",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 243, 253)",
+          "ratio": 4.822,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "검토 중",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "보관함 자료 상태",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ],
+      "libraryHover": {
+        "foreground": "rgb(89, 108, 134)",
+        "background": "rgb(247, 249, 255)",
+        "ratio": 5.097,
+        "fontSize": "12px",
+        "disabled": false
+      }
+    },
+    {
+      "width": 390,
+      "file": "unified/ConceptView",
+      "samples": [
+        {
+          "text": "영상 없음",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "2",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "15px",
+          "disabled": false
+        },
+        {
+          "text": "없음",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "file": "unified/Workroom",
+      "samples": [
+        {
+          "text": "문제 추출",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "시험지",
+          "foreground": "rgb(49, 89, 223)",
+          "background": "rgb(238, 243, 255)",
+          "ratio": 5.214,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "file": "english/EnglishStudio",
+      "samples": [
+        {
+          "text": "이번 시험 준비",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "자료 설명",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "자료 안내",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "세트 상태",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "문항 수",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "안내",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "자료 추가",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "1",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(237, 242, 249)",
+          "ratio": 4.77,
+          "fontSize": "16px",
+          "disabled": false
+        },
+        {
+          "text": "자료 모으기",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(255, 255, 255)",
+          "ratio": 5.365,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "2",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 243, 253)",
+          "ratio": 4.822,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "검토 중",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "12px",
+          "disabled": false
+        },
+        {
+          "text": "보관함 자료 상태",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(247, 249, 255)",
+          "ratio": 5.097,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ],
+      "libraryHover": {
+        "foreground": "rgb(89, 108, 134)",
+        "background": "rgb(247, 249, 255)",
+        "ratio": 5.097,
+        "fontSize": "12px",
+        "disabled": false
+      }
+    },
+    {
+      "width": 320,
+      "file": "unified/ConceptView",
+      "samples": [
+        {
+          "text": "영상 없음",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "13px",
+          "disabled": false
+        },
+        {
+          "text": "2",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "15px",
+          "disabled": false
+        },
+        {
+          "text": "없음",
+          "foreground": "rgb(89, 108, 134)",
+          "background": "rgb(238, 241, 245)",
+          "ratio": 4.736,
+          "fontSize": "12px",
+          "disabled": false
+        }
+      ]
+    }
+  ],
+  "sourceBase": "b0901f34a8eb2facd895401f258cf84a9c61b0da",
+  "measurementScope": "Real local lab pages; Workroom, English, and Concept use actual module CSS and the compiled layout stylesheet on representative DOM; gradients use conservative stop contrast and alpha compositing."
+}

@@ -457,7 +457,7 @@ export async function renderTextbookChunk(
     );
     const recoveryMeasurements = await page.evaluate(
       measureRecoveryDom,
-      recoveryMeasurePlan(sizingModel),
+      recoveryMeasurePlan(sizingModel, input.firstPhysicalPageIndex),
     );
     applyRecoveryMeasurements(model, recoveryMeasurements);
     await loadReady(

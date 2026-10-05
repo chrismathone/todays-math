@@ -18,6 +18,7 @@ import {
 } from "@/lib/textbook/render/blocks/recall";
 import { renderBlockHtml } from "@/lib/textbook/render/html";
 import type { RenderBlock } from "@/lib/textbook/render/model";
+import { renderTextbookLabel } from "@/lib/textbook/render/markdown";
 
 const resources = {
   assetUrl: (id: string) => `/assets/${id}.png`,
@@ -110,6 +111,61 @@ function memory(
   } as RenderBlock;
 }
 const render = (block: RenderBlock) => renderBlockHtml(block, resources);
+
+describe("math in plain concept labels", () => {
+  it("typesets the observed 10 and n title forms while preserving surrounding plain text", () => {
+    for (const label of [
+      "분모를 $10$의 거듭제곱으로 고치기",
+      "소수점 아래 $n$번째 자리의 숫자",
+      "분모가 $\\frac{1}{2}$인 경우",
+    ]) {
+      const dom = parse(renderTextbookLabel(label));
+      expect(dom.querySelectorAll("[data-textbook-math]")).toHaveLength(1);
+      expect(dom.body.textContent).not.toContain("$");
+      expect(dom.querySelector("p,h1,h2,h3")).toBeNull();
+    }
+    expect(
+      renderTextbookLabel(" **이름** <img src=x onerror=alert(1)> & `글` "),
+    ).toBe(" **이름** &lt;img src=x onerror=alert(1)&gt; &amp; `글` ");
+  });
+  it("uses the existing untrusted math restrictions for labels too", () => {
+    expect(() =>
+      renderTextbookLabel("값 $\\href{https://example.com}{x}$"),
+    ).toThrow("지원하지 않는 수식 명령");
+    expect(() => renderTextbookLabel("값 $\\frac{1}$")).toThrow();
+    expect(renderTextbookLabel("가격 $5")).toBe("가격 $5");
+    expect(renderTextbookLabel("수식 미완성 $n")).toBe("수식 미완성 $n");
+  });
+  it.each(PHASES)(
+    "renders visible row names in %s without revealing hidden body keys",
+    (phase) => {
+      const node = {
+        kind: "concept" as const,
+        conceptId: "label-math",
+        title: "자리 $n$",
+        rows: [
+          {
+            rowKey: "label-math.r1",
+            label: "분모 $10$",
+            rawText: "공개 {숨긴답}",
+            textFormat: "bank-blank" as const,
+          },
+        ],
+      };
+      const before = JSON.stringify(node);
+      const dom = parse(render(memory(phase, "student", {}, node)));
+      expect(
+        dom.querySelector(".tb-memory-title [data-textbook-math]"),
+      ).not.toBeNull();
+      expect(
+        dom.querySelector(".tb-memory-label [data-textbook-math]"),
+      ).not.toBeNull();
+      if (phase !== "study")
+        expect(dom.body.textContent).not.toContain("숨긴답");
+      expect(JSON.stringify(node)).toBe(before);
+    },
+  );
+});
 
 describe("memory sheets share one immutable row list", () => {
   it("keeps row keys, order, group and line count identical in all three phases", () => {
@@ -592,6 +648,36 @@ describe("concept cards", () => {
       },
     ],
   };
+
+  it("typesets a mathematical concept name and row label on the card and continued title", () => {
+    const mathematical = {
+      ...node,
+      title: "분모를 $10$의 거듭제곱으로 고치기",
+      rows: [{ ...node.rows[0], label: "자리 $n$" }],
+    };
+    const dom = parse(
+      render(
+        concept({ semantic: { activity: "concepts", node: mathematical } }),
+      ),
+    );
+    expect(
+      dom.querySelector(".tb-concept-title [data-textbook-math]"),
+    ).not.toBeNull();
+    expect(
+      dom.querySelector(".tb-concept-row-label [data-textbook-math]"),
+    ).not.toBeNull();
+    const continued = parse(
+      render(
+        concept({
+          continuation: true,
+          semantic: { activity: "concepts", node: mathematical },
+        }),
+      ),
+    );
+    expect(
+      continued.querySelector(".tb-concept-continuation [data-textbook-math]"),
+    ).not.toBeNull();
+  });
 
   it("prints the source concept's own name and rows, never a number mined from a key", () => {
     const dom = parse(

@@ -11,6 +11,7 @@ export const PAPER_COLORS = {
   ink90: "#1F1F23",
   ink70: "#3A3A40",
   ink50: "#6B6B72",
+  mutedText: "#6B6B72", // Information on paper; ink30 remains a decorative rule color.
   ink30: "#A0A0A8",
   ink15: "#D4D4D8",
   ink08: "#E8E8EB",

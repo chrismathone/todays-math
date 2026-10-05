@@ -26,6 +26,48 @@ interface MarkdownNode {
 }
 const parser = unified().use(remarkParse).use(remarkMath).use(remarkGfm);
 
+function renderMath(tex: string, displayMode: boolean): string {
+  if (
+    /\\(?:href|url|includegraphics|html\w*|def|gdef|newcommand|renewcommand)\b/.test(
+      tex,
+    )
+  )
+    throw new Error("지원하지 않는 수식 명령입니다.");
+  const html = katex.renderToString(tex, {
+    throwOnError: true,
+    strict: false,
+    trust: false,
+    output: "html",
+    displayMode,
+    maxExpand: 1000,
+    maxSize: 20,
+  });
+  if (html.includes("katex-error") || /#cc0000/i.test(html))
+    throw new Error("수식 렌더 실패");
+  return `<span data-textbook-math>${html}</span>`;
+}
+
+/** A plain-text label with mathematical notation; all non-math bytes stay escaped text. */
+export function renderTextbookLabel(label: string): string {
+  const root = parser.parse(label) as unknown as MarkdownNode;
+  const math: MarkdownNode[] = [];
+  const visit = (node: MarkdownNode) => {
+    if (node.type === "inlineMath" || node.type === "math") math.push(node);
+    else node.children?.forEach(visit);
+  };
+  visit(root);
+  let at = 0,
+    html = "";
+  for (const node of math) {
+    const position = node.position!;
+    html +=
+      escapeHtml(label.slice(at, position.start.offset)) +
+      renderMath(node.value ?? "", false);
+    at = position.end.offset;
+  }
+  return html + escapeHtml(label.slice(at));
+}
+
 /** Keep paragraphs, formulas, tables and fenced code intact; long lists can cross pages. */
 export function splitTextbookMarkdown(
   source: string,
@@ -128,27 +170,8 @@ export function renderTextbookMarkdown(markdown: string): string {
       case "tableCell":
         return `<td>${body()}</td>`;
       case "math":
-      case "inlineMath": {
-        const tex = node.value ?? "";
-        if (
-          /\\(?:href|url|includegraphics|html\w*|def|gdef|newcommand|renewcommand)\b/.test(
-            tex,
-          )
-        )
-          throw new Error("지원하지 않는 수식 명령입니다.");
-        const html = katex.renderToString(tex, {
-          throwOnError: true,
-          strict: false,
-          trust: false,
-          output: "html",
-          displayMode: node.type === "math",
-          maxExpand: 1000,
-          maxSize: 20,
-        });
-        if (html.includes("katex-error") || /#cc0000/i.test(html))
-          throw new Error("수식 렌더 실패");
-        return `<span data-textbook-math>${html}</span>`;
-      }
+      case "inlineMath":
+        return renderMath(node.value ?? "", node.type === "math");
       default:
         throw new Error(`지원하지 않는 Markdown 요소: ${node.type}`);
     }

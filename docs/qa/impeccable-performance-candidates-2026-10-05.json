@@ -1,0 +1,997 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-05T02:03:14.919Z",
+  "taskId": "task_2ca62c76c396",
+  "dispatchId": "ctx_e33cc7ce63e7",
+  "scope": "Bounded read-only diagnosis of all five audit PERFORMANCE CANDIDATES; no performance defects declared or optimizations implemented",
+  "audit": "C:/Creative/testautocreator/docs/qa/impeccable-audit-2026-10-05.md",
+  "sourceCommitPreserved": "ed5612429effc9ce6f1dc862cd89560b9b6ac639",
+  "environment": {
+    "engine": "151.0.7922.34",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "deviceScaleFactor": 1,
+    "headless": true,
+    "cpuThrottle": "none",
+    "network": "loopback fixture only; external requests aborted",
+    "build": "Vite development transform of actual components, React without StrictMode",
+    "fonts": "system/fallback, actual local KaTeX fonts",
+    "concurrency": "other Orca sessions may contend for machine resources",
+    "server": "Owned synthetic fixture at http://127.0.0.1:4194; ports 4334/4335 untouched",
+    "cacheConditions": "First print24 document in fresh browser context; subsequent datasets and repeated mounts share warmed module/font/image caches. No production or OS cold-cache measurement. Workspace timing begins after module import and uses fresh delay doubles.",
+    "units": "Milliseconds unless labeled otherwise; raw CDP duration fields in browser-evidence.json are seconds, converted here to milliseconds",
+    "timingPrecision": "performance.now measurements are quantized near 0.1ms; zeros can mean below clock precision",
+    "attribution": "Synchronous callback timing includes instrumentation overhead and any pending fixture layout flushed by reads. CDP deltas cover the whole fixture phase, not an isolated component or production CWV."
+  },
+  "candidates": [
+    {
+      "id": "workspace-initial-query-gating",
+      "auditPriority": "P2",
+      "status": "candidate retained; measured control flow, real TTFB unavailable",
+      "source": [
+        "src/components/unified/WorkspacePage.tsx:9",
+        "src/components/unified/WorkspacePage.tsx:13",
+        "src/lib/unifiedPreview.ts:235",
+        "src/lib/unifiedPreview.ts:253"
+      ],
+      "method": "actual WorkspacePage and loadUnifiedBank invoked directly without Next/RSC render",
+      "dataset": {
+        "syntheticProblemRows": 12,
+        "syntheticUnits": 1,
+        "formatFilter": "absent",
+        "imposedDelaysMs": {
+          "account": 20,
+          "count": 40,
+          "unitsWithCounts": 80,
+          "rows": 60
+        },
+        "samplesPerAccessMode": 3
+      },
+      "measurements": {
+        "bankAccessInvocationMs": [
+          192.644,
+          230.909,
+          186.373
+        ],
+        "bankAccessInvocationRangeMs": {
+          "min": 186.373,
+          "max": 230.909
+        },
+        "bankAccessQueryCallsPerInvocation": 3,
+        "noBankQueryCallsPerInvocation": 0,
+        "noBankInvocationMs": [
+          29.327,
+          32.035,
+          40.894
+        ],
+        "timeAfterAccountDoubleResolvedMs": [
+          166.019,
+          195.963,
+          147.891
+        ],
+        "sequences": [
+          {
+            "run": 0,
+            "calls": [
+              {
+                "kind": "account-double",
+                "startMs": 0.131,
+                "endMs": 26.626
+              },
+              {
+                "kind": "problem.count",
+                "startMs": 29.509,
+                "endMs": 77.81
+              },
+              {
+                "kind": "unit.findMany-with-count",
+                "startMs": 29.67,
+                "endMs": 109.694
+              },
+              {
+                "kind": "problem.findMany",
+                "startMs": 109.885,
+                "endMs": 183.057
+              }
+            ]
+          },
+          {
+            "run": 1,
+            "calls": [
+              {
+                "kind": "account-double",
+                "startMs": 0.013,
+                "endMs": 34.945
+              },
+              {
+                "kind": "problem.count",
+                "startMs": 35.064,
+                "endMs": 93.027
+              },
+              {
+                "kind": "unit.findMany-with-count",
+                "startMs": 35.159,
+                "endMs": 124.593
+              },
+              {
+                "kind": "problem.findMany",
+                "startMs": 124.678,
+                "endMs": 229.822
+              }
+            ]
+          },
+          {
+            "run": 2,
+            "calls": [
+              {
+                "kind": "account-double",
+                "startMs": 0.009,
+                "endMs": 38.482
+              },
+              {
+                "kind": "problem.count",
+                "startMs": 38.603,
+                "endMs": 105.818
+              },
+              {
+                "kind": "unit.findMany-with-count",
+                "startMs": 38.634,
+                "endMs": 123.743
+              },
+              {
+                "kind": "problem.findMany",
+                "startMs": 123.801,
+                "endMs": 186.203
+              }
+            ]
+          }
+        ]
+      },
+      "findings": [
+        "Bank entitlement makes WorkspacePage wait for loadUnifiedBank before returning the workspace React element; initial client menu/hash is not part of this server decision.",
+        "Actual loader starts problem.count and unit.findMany-with-count together, then starts problem.findMany only after the aggregate pair completes.",
+        "Nonbank fixture returns after the account double and performs no problem-bank query. This entitlement comparison is not a measured lazy-loading optimization."
+      ],
+      "decision": "Keep query gating as a candidate for production read-only tracing; no latency savings or duplicated account-query defect established.",
+      "unavailable": [
+        "No real database, network, authorization, React request cache, RSC streaming, HTTP response, TTFB or CWV measured",
+        "Query wall times are imposed delay-double times, not SQL performance",
+        "Module import/transform startup excluded from timed invocation"
+      ]
+    },
+    {
+      "id": "measured-print-repagination",
+      "auditPriority": "P2",
+      "status": "candidate retained; repeated work confirmed, benefit of optimization unmeasured",
+      "source": [
+        "src/components/unified/print/useMeasuredPages.tsx:40",
+        "src/components/unified/print/useMeasuredPages.tsx:73",
+        "src/components/unified/print/useMeasuredPages.tsx:121",
+        "src/components/unified/print/useMeasuredPages.tsx:150",
+        "src/components/unified/print/WorksheetPrint.tsx:76"
+      ],
+      "method": "Actual WorksheetPrint and useMeasuredPages, unchanged source served with temporary timing transforms and DOM API probes",
+      "dataset": "24 and 96 variable-length synthetic Korean algebra problems, local KaTeX, one data SVG per four problems; two columns, count mode with 3 problems/column, system font pack, answers enabled; separate title-only and content-number changes",
+      "measurements": [
+        {
+          "problems": 24,
+          "run": 0,
+          "condition": "first document for dataset; Vite initial compile excluded; system fonts",
+          "pagesIncludingAnswers": 6,
+          "hiddenMeasureImages": 6,
+          "mounted": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 1,
+              "maxMs": 0.6
+            },
+            "itemRectReads": 96,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 6,
+            "maximumSingleImageDecodeWaitMs": 0.3,
+            "readyFalseToTrueMs": 297.2,
+            "wholeFixturePhaseCdp": null
+          },
+          "titleOnly": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 1.2,
+              "maxMs": 0.5
+            },
+            "itemRectReads": 96,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 6,
+            "maximumSingleImageDecodeWaitMs": 0.1,
+            "readyFalseToTrueMs": 53.1,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 1.134,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 58.86,
+              "TaskDurationMs": 70.711
+            },
+            "existingPaperNodesRetained": true
+          },
+          "contentChange": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 1.1,
+              "maxMs": 0.5
+            },
+            "itemRectReads": 96,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 6,
+            "maximumSingleImageDecodeWaitMs": 0.1,
+            "readyFalseToTrueMs": 176.7,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 2,
+              "RecalcStyleCount": 4,
+              "LayoutDurationMs": 11.038,
+              "RecalcStyleDurationMs": 3.953,
+              "ScriptDurationMs": 250.679,
+              "TaskDurationMs": 277.973
+            }
+          }
+        },
+        {
+          "problems": 24,
+          "run": 1,
+          "condition": "same context cached modules/fonts/images, fresh React mount",
+          "pagesIncludingAnswers": 6,
+          "hiddenMeasureImages": 6,
+          "mounted": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 0.7,
+              "maxMs": 0.2
+            },
+            "itemRectReads": 96,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 6,
+            "maximumSingleImageDecodeWaitMs": 0.1,
+            "readyFalseToTrueMs": 278.4,
+            "wholeFixturePhaseCdp": null
+          },
+          "titleOnly": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 0.8,
+              "maxMs": 0.4
+            },
+            "itemRectReads": 96,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 6,
+            "maximumSingleImageDecodeWaitMs": 0.2,
+            "readyFalseToTrueMs": 52.4,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0.388,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 56.501,
+              "TaskDurationMs": 65.085
+            },
+            "existingPaperNodesRetained": true
+          },
+          "contentChange": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 0.9,
+              "maxMs": 0.3
+            },
+            "itemRectReads": 96,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 6,
+            "maximumSingleImageDecodeWaitMs": 0.1,
+            "readyFalseToTrueMs": 205.5,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 2,
+              "RecalcStyleCount": 4,
+              "LayoutDurationMs": 11.365,
+              "RecalcStyleDurationMs": 4.05,
+              "ScriptDurationMs": 260.681,
+              "TaskDurationMs": 289.299
+            }
+          }
+        },
+        {
+          "problems": 96,
+          "run": 0,
+          "condition": "first document for dataset; Vite initial compile excluded; system fonts",
+          "pagesIncludingAnswers": 21,
+          "hiddenMeasureImages": 24,
+          "mounted": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 2.7,
+              "maxMs": 1
+            },
+            "itemRectReads": 384,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 24,
+            "maximumSingleImageDecodeWaitMs": 0.4,
+            "readyFalseToTrueMs": 812.7,
+            "wholeFixturePhaseCdp": null
+          },
+          "titleOnly": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 3.7,
+              "maxMs": 2.4
+            },
+            "itemRectReads": 384,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 24,
+            "maximumSingleImageDecodeWaitMs": 0.3,
+            "readyFalseToTrueMs": 122,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0.539,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 214.413,
+              "TaskDurationMs": 242.579
+            },
+            "existingPaperNodesRetained": true
+          },
+          "contentChange": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 2.8,
+              "maxMs": 1.3
+            },
+            "itemRectReads": 384,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 24,
+            "maximumSingleImageDecodeWaitMs": 0.6,
+            "readyFalseToTrueMs": 540.8,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 2,
+              "RecalcStyleCount": 4,
+              "LayoutDurationMs": 54.216,
+              "RecalcStyleDurationMs": 18.243,
+              "ScriptDurationMs": 675.694,
+              "TaskDurationMs": 788.681
+            }
+          }
+        },
+        {
+          "problems": 96,
+          "run": 1,
+          "condition": "same context cached modules/fonts/images, fresh React mount",
+          "pagesIncludingAnswers": 21,
+          "hiddenMeasureImages": 24,
+          "mounted": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 2.7,
+              "maxMs": 0.8
+            },
+            "itemRectReads": 384,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 24,
+            "maximumSingleImageDecodeWaitMs": 0.2,
+            "readyFalseToTrueMs": 807,
+            "wholeFixturePhaseCdp": null
+          },
+          "titleOnly": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 2.8,
+              "maxMs": 1.3
+            },
+            "itemRectReads": 384,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 24,
+            "maximumSingleImageDecodeWaitMs": 0.3,
+            "readyFalseToTrueMs": 142,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0.61,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 212.452,
+              "TaskDurationMs": 237.769
+            },
+            "existingPaperNodesRetained": true
+          },
+          "contentChange": {
+            "synchronousMeasure": {
+              "count": 4,
+              "totalMs": 2.6,
+              "maxMs": 0.9
+            },
+            "itemRectReads": 384,
+            "availableBodyRectReads": 8,
+            "imageDecodeCalls": 24,
+            "maximumSingleImageDecodeWaitMs": 0.3,
+            "readyFalseToTrueMs": 462.6,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 2,
+              "RecalcStyleCount": 4,
+              "LayoutDurationMs": 34.732,
+              "RecalcStyleDurationMs": 14.748,
+              "ScriptDurationMs": 606.315,
+              "TaskDurationMs": 696.127
+            }
+          }
+        }
+      ],
+      "findings": [
+        "Every tested mount, title-only update and content update caused four measure callbacks: two hooks with an initial pass plus initial ResizeObserver delivery; item rectangle reads were 4*N and body reads eight.",
+        "Title-only updates repeated six or 24 image decode calls and complete item measurements; all existing paper nodes remained connected and identical at their positions.",
+        "Title-only synchronous measure sums were 0.8-1.2ms for 24 problems and 2.8-3.7ms for 96. Whole-fixture title update CDP script sums were 56.5-58.86ms and 212.452-214.413ms respectively, including development React rendering and probe/driver work; they are not isolated repagination cost."
+      ],
+      "decision": "Repeated title-only work is reproducible, but the measured synchronous scan is small here. Keep as a candidate; do not infer production responsiveness or sacrifice A4 measurement/contentKey node retention.",
+      "unavailable": [
+        "No real worksheet data, remote/cold image downloads, production build, web-font failure variants, print-media output or physical print validation",
+        "packMeasured and React render timings were not separately isolated; callback timing excludes any deferred React state updater/render",
+        "Image decode calls run concurrently; per-image durations cannot be summed as wall time"
+      ]
+    },
+    {
+      "id": "all-page-rect-scroll-reads",
+      "auditPriority": "P3",
+      "status": "decline optimization for this fixture; scaling candidate remains",
+      "source": [
+        "src/components/unified/print/WorksheetPrint.tsx:245"
+      ],
+      "method": "Actual React scroll handler: 40 synthetic scroll events at fixed scroll position, one event per requestAnimationFrame, then a native Playwright horizontal mouse wheel with scroll snap",
+      "measurements": [
+        {
+          "problems": 24,
+          "pages": 6,
+          "run": 0,
+          "syntheticEvents": {
+            "handlerCalls": 40,
+            "paperRectReads": 240,
+            "viewportRectReads": 40,
+            "handlerMeanMs": 0.128,
+            "handlerMaxMs": 0.3,
+            "handlerP95Ms": 0.3,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 0,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 7.61,
+              "TaskDurationMs": 23.421
+            }
+          },
+          "nativeWheel": {
+            "handlerCalls": 10,
+            "paperRectReads": 60,
+            "viewportRectReads": 10,
+            "handlerMeanMs": 0.15,
+            "handlerMaxMs": 0.5,
+            "handlerP95Ms": 0.5,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 1,
+              "LayoutDurationMs": 0.29,
+              "RecalcStyleDurationMs": 0.047,
+              "ScriptDurationMs": 48.34,
+              "TaskDurationMs": 77.317
+            },
+            "finalScrollLeftPx": 818
+          }
+        },
+        {
+          "problems": 24,
+          "pages": 6,
+          "run": 1,
+          "syntheticEvents": {
+            "handlerCalls": 40,
+            "paperRectReads": 240,
+            "viewportRectReads": 40,
+            "handlerMeanMs": 0.135,
+            "handlerMaxMs": 0.3,
+            "handlerP95Ms": 0.2,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 0,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 6.764,
+              "TaskDurationMs": 22.327
+            }
+          },
+          "nativeWheel": {
+            "handlerCalls": 11,
+            "paperRectReads": 66,
+            "viewportRectReads": 11,
+            "handlerMeanMs": 0.173,
+            "handlerMaxMs": 0.4,
+            "handlerP95Ms": 0.4,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 1,
+              "LayoutDurationMs": 0.137,
+              "RecalcStyleDurationMs": 0.048,
+              "ScriptDurationMs": 32.177,
+              "TaskDurationMs": 62.462
+            },
+            "finalScrollLeftPx": 818
+          }
+        },
+        {
+          "problems": 96,
+          "pages": 21,
+          "run": 0,
+          "syntheticEvents": {
+            "handlerCalls": 40,
+            "paperRectReads": 840,
+            "viewportRectReads": 40,
+            "handlerMeanMs": 0.32,
+            "handlerMaxMs": 0.7,
+            "handlerP95Ms": 0.5,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 0,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 16.226,
+              "TaskDurationMs": 54.941
+            }
+          },
+          "nativeWheel": {
+            "handlerCalls": 8,
+            "paperRectReads": 168,
+            "viewportRectReads": 8,
+            "handlerMeanMs": 0.35,
+            "handlerMaxMs": 0.5,
+            "handlerP95Ms": 0.5,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 1,
+              "LayoutDurationMs": 0.188,
+              "RecalcStyleDurationMs": 0.057,
+              "ScriptDurationMs": 94.735,
+              "TaskDurationMs": 147.447
+            },
+            "finalScrollLeftPx": 818
+          }
+        },
+        {
+          "problems": 96,
+          "pages": 21,
+          "run": 1,
+          "syntheticEvents": {
+            "handlerCalls": 40,
+            "paperRectReads": 840,
+            "viewportRectReads": 40,
+            "handlerMeanMs": 0.398,
+            "handlerMaxMs": 1,
+            "handlerP95Ms": 0.8,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 0,
+              "RecalcStyleCount": 0,
+              "LayoutDurationMs": 0,
+              "RecalcStyleDurationMs": 0,
+              "ScriptDurationMs": 18.537,
+              "TaskDurationMs": 51.209
+            }
+          },
+          "nativeWheel": {
+            "handlerCalls": 8,
+            "paperRectReads": 168,
+            "viewportRectReads": 8,
+            "handlerMeanMs": 0.288,
+            "handlerMaxMs": 0.5,
+            "handlerP95Ms": 0.5,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 1,
+              "RecalcStyleCount": 1,
+              "LayoutDurationMs": 0.141,
+              "RecalcStyleDurationMs": 0.054,
+              "ScriptDurationMs": 93.288,
+              "TaskDurationMs": 135.567
+            },
+            "finalScrollLeftPx": 818
+          }
+        }
+      ],
+      "findings": [
+        "Six-page fixtures read 240 paper rectangles for 40 handler calls; 21-page fixtures read 840, plus one viewport rectangle per call. The scan is linear in page count.",
+        "Mean synthetic handler time was 0.128-0.135ms for six pages and 0.320-0.398ms for 21; maximum was 1ms, p95 at most 0.8ms. All controlled-scroll CDP LayoutCount deltas were zero.",
+        "Native wheel produced 8-11 scroll callbacks per input, moved scrollLeft to 818px, and also read every page; handler maxima were at most 0.5ms."
+      ],
+      "decision": "No observed frame-budget issue in the warmed six/21-page desktop sample, so no rAF/windowing change is justified by these measurements. Retain larger-document or low-end-device investigation as a candidate.",
+      "unavailable": [
+        "No physical touch scroll, low-end CPU throttling, production browser/CWV measurement, concurrent DOM mutation during controlled events or documents above 21 pages",
+        "Grouped reads with zero new layout here do not prove all future scroll phases are layout-free"
+      ]
+    },
+    {
+      "id": "explorer-journey-font-fit",
+      "auditPriority": "P3",
+      "status": "bounded settling confirmed; initial layout flush remains a candidate",
+      "source": [
+        "src/components/math-explorers/ExplorerMath.tsx:40",
+        "src/components/math-explorers/ExplorerMath.tsx:80",
+        "src/components/math-srs/DailyJourneyBoard.tsx:179",
+        "src/components/math-srs/DailyJourneyBoard.tsx:198"
+      ],
+      "method": "Actual ExplorerChoiceText/ExplorerMath and DailyJourneyBoard/TileTitle with local CSS and KaTeX; timed fit callbacks and actual sizing reads, followed by an 800ms idle period and width resize",
+      "dataset": "Four formulas (quadratic formula, radical, polynomial expansion, circle equation) and 12 journey titles, four each long/medium/short; narrow containers 390/320px inside a 1440x1000 desktop viewport; fonts/modules partly warmed by prior print scenes",
+      "measurements": [
+        {
+          "containerWidthPx": 390,
+          "mounted": {
+            "explorerRun": {
+              "count": 20,
+              "totalMs": 32.3,
+              "maxMs": 31.3
+            },
+            "journeyRun": {
+              "count": 36,
+              "totalMs": 0.7,
+              "maxMs": 0.2
+            },
+            "explorerOffsetHeightReads": {
+              "count": 20,
+              "totalMs": 31,
+              "maxMs": 30.9
+            },
+            "explorerLabelAndKatexRectReads": {
+              "count": 32,
+              "totalMs": 0.1,
+              "maxMs": 0.1
+            },
+            "journeyScrollHeightReads": {
+              "count": 36,
+              "totalMs": 0.1,
+              "maxMs": 0.1
+            },
+            "journeyClientHeightReadCount": 36,
+            "journeyScrollWidthReadCount": 36,
+            "journeyClientWidthReadCount": 36,
+            "wholeFixturePhaseCdp": null
+          },
+          "settledScaleCounts": {
+            "choice@1": 4,
+            "journey@1": 12
+          },
+          "actualRenderedTitleSnippets": [
+            "세 자리 수 덧셈 (받아올림 두·세 번)",
+            "연립일차방정식의 풀이",
+            "분수의 덧셈"
+          ],
+          "idle800ms": {
+            "explorerRun": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyRun": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "explorerOffsetHeightReads": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "explorerLabelAndKatexRectReads": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyScrollHeightReads": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyClientHeightReadCount": 0,
+            "journeyScrollWidthReadCount": 0,
+            "journeyClientWidthReadCount": 0,
+            "wholeFixturePhaseCdp": null
+          },
+          "resizedToPx": 320,
+          "resized": {
+            "explorerRun": {
+              "count": 3,
+              "totalMs": 16.3,
+              "maxMs": 11.5
+            },
+            "journeyRun": {
+              "count": 12,
+              "totalMs": 4.9,
+              "maxMs": 3.2
+            },
+            "explorerOffsetHeightReads": {
+              "count": 7,
+              "totalMs": 15.6,
+              "maxMs": 6.4
+            },
+            "explorerLabelAndKatexRectReads": {
+              "count": 14,
+              "totalMs": 0.3,
+              "maxMs": 0.1
+            },
+            "journeyScrollHeightReads": {
+              "count": 17,
+              "totalMs": 3.6,
+              "maxMs": 1.6
+            },
+            "journeyClientHeightReadCount": 17,
+            "journeyScrollWidthReadCount": 12,
+            "journeyClientWidthReadCount": 12,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 17,
+              "RecalcStyleCount": 18,
+              "LayoutDurationMs": 18.985,
+              "RecalcStyleDurationMs": 5.638,
+              "ScriptDurationMs": 15.95,
+              "TaskDurationMs": 49.934
+            }
+          }
+        },
+        {
+          "containerWidthPx": 320,
+          "mounted": {
+            "explorerRun": {
+              "count": 17,
+              "totalMs": 14.9,
+              "maxMs": 4.4
+            },
+            "journeyRun": {
+              "count": 36,
+              "totalMs": 7,
+              "maxMs": 0.8
+            },
+            "explorerOffsetHeightReads": {
+              "count": 23,
+              "totalMs": 13.2,
+              "maxMs": 2.3
+            },
+            "explorerLabelAndKatexRectReads": {
+              "count": 38,
+              "totalMs": 0.5,
+              "maxMs": 0.1
+            },
+            "journeyScrollHeightReads": {
+              "count": 51,
+              "totalMs": 2.9,
+              "maxMs": 0.3
+            },
+            "journeyClientHeightReadCount": 51,
+            "journeyScrollWidthReadCount": 36,
+            "journeyClientWidthReadCount": 36,
+            "wholeFixturePhaseCdp": null
+          },
+          "settledScaleCounts": {
+            "choice@0.8": 1,
+            "choice@1": 3,
+            "journey@0.8": 1,
+            "journey@1": 8,
+            "journey@0.9": 3
+          },
+          "actualRenderedTitleSnippets": [
+            "세 자리 수 덧셈 (받아올림 두·세 번)",
+            "연립일차방정식의 풀이",
+            "분수의 덧셈"
+          ],
+          "idle800ms": {
+            "explorerRun": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyRun": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "explorerOffsetHeightReads": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "explorerLabelAndKatexRectReads": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyScrollHeightReads": {
+              "count": 0,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyClientHeightReadCount": 0,
+            "journeyScrollWidthReadCount": 0,
+            "journeyClientWidthReadCount": 0,
+            "wholeFixturePhaseCdp": null
+          },
+          "resizedToPx": 390,
+          "resized": {
+            "explorerRun": {
+              "count": 3,
+              "totalMs": 2.9,
+              "maxMs": 1.4
+            },
+            "journeyRun": {
+              "count": 12,
+              "totalMs": 2,
+              "maxMs": 0.5
+            },
+            "explorerOffsetHeightReads": {
+              "count": 3,
+              "totalMs": 2.6,
+              "maxMs": 1.3
+            },
+            "explorerLabelAndKatexRectReads": {
+              "count": 6,
+              "totalMs": 0.1,
+              "maxMs": 0.1
+            },
+            "journeyScrollHeightReads": {
+              "count": 12,
+              "totalMs": 0,
+              "maxMs": 0
+            },
+            "journeyClientHeightReadCount": 12,
+            "journeyScrollWidthReadCount": 12,
+            "journeyClientWidthReadCount": 12,
+            "wholeFixturePhaseCdp": {
+              "LayoutCount": 12,
+              "RecalcStyleCount": 13,
+              "LayoutDurationMs": 4.453,
+              "RecalcStyleDurationMs": 3.147,
+              "ScriptDurationMs": 14.874,
+              "TaskDurationMs": 30.326
+            }
+          }
+        }
+      ],
+      "findings": [
+        "Mounts ran Explorer fit 20/17 times across four labels and journey fit 36 times across 12 labels; the source caps each fit at four candidate sizes. Neither component ran any fit callback during either 800ms settled idle period.",
+        "The first 390px Explorer callback took 31.3ms, with 30.9ms spent in its first offsetHeight read; this read flushes pending layout of the entire newly mounted fixture, so it cannot be assigned wholly to this component or compared with production CWV.",
+        "At 320px the formula and four long journey labels settled below scale 1. Resize 390->320 recorded 17 layouts/18 style recalculations (18.985ms/5.638ms), while 320->390 recorded 12/13 (4.453ms/3.147ms), over the entire fixture phase."
+      ],
+      "decision": "No evidence of an unbounded observer/fit loop; decline broad fitting rewrite. Keep the first layout flush and dense narrow-layout cost as candidates requiring representative production/device profiling.",
+      "unavailable": [
+        "Desktop narrow-container fixture is not a physical mobile viewport or mobile-device validation",
+        "No isolated whole-page mount LayoutCount snapshot, cold Korean web-font load, real question bank density, CPU throttling or production build"
+      ]
+    },
+    {
+      "id": "hidden-teaching-class-queries",
+      "auditPriority": "P3",
+      "status": "candidate retained; hidden first-entry calls confirmed",
+      "source": [
+        "src/components/unified/TeachingView.tsx:231",
+        "src/components/unified/TeachingView.tsx:243",
+        "src/hooks/useClassManage.ts:77",
+        "src/components/class/ProgressPlanSection.tsx:83"
+      ],
+      "method": "Actual TeachingView/ClassManage/useClassManage/classApi/ProgressPlanSection; in-memory GET-only responses; visible MainScreen substituted to isolate hidden panel reads; Next navigation/dynamic/link adapters",
+      "dataset": "Initial teachingTab=lessons, one synthetic class, ten synthetic learners, no units/progress/plan, synthetic teacher role, artificial 10ms delay per GET; two fresh mounts in warmed browser context",
+      "measurements": [
+        {
+          "run": 0,
+          "hiddenPanel": {
+            "hidden": true,
+            "rectCount": 0,
+            "childCount": 115
+          },
+          "totalInitialGetCalls": 5,
+          "bootstrapGetCalls": 1,
+          "hiddenClassGetCalls": 4,
+          "readCalls": [
+            {
+              "path": "/api/studio/teaching",
+              "replyWaitMs": 10.3
+            },
+            {
+              "path": "/api/classes",
+              "replyWaitMs": 10.2
+            },
+            {
+              "path": "/api/classes/10000000-0000-4000-8000-000000000001/progress-plan",
+              "replyWaitMs": 12.3
+            },
+            {
+              "path": "/api/progress",
+              "replyWaitMs": 12.2
+            },
+            {
+              "path": "/api/students",
+              "replyWaitMs": 11.4
+            }
+          ],
+          "hiddenQueryGroupFirstStartToLastEndMs": 36.8,
+          "revisitClassThenLessonGetCalls": 0
+        },
+        {
+          "run": 1,
+          "hiddenPanel": {
+            "hidden": true,
+            "rectCount": 0,
+            "childCount": 115
+          },
+          "totalInitialGetCalls": 5,
+          "bootstrapGetCalls": 1,
+          "hiddenClassGetCalls": 4,
+          "readCalls": [
+            {
+              "path": "/api/studio/teaching",
+              "replyWaitMs": 11
+            },
+            {
+              "path": "/api/classes",
+              "replyWaitMs": 10.8
+            },
+            {
+              "path": "/api/classes/10000000-0000-4000-8000-000000000001/progress-plan",
+              "replyWaitMs": 10.6
+            },
+            {
+              "path": "/api/progress",
+              "replyWaitMs": 10.5
+            },
+            {
+              "path": "/api/students",
+              "replyWaitMs": 10.2
+            }
+          ],
+          "hiddenQueryGroupFirstStartToLastEndMs": 27.1,
+          "revisitClassThenLessonGetCalls": 0
+        }
+      ],
+      "findings": [
+        "While classes panel had hidden=true and zero client rectangles, both mounts performed classes, students, progress and progress-plan GETs, in addition to the teaching bootstrap GET.",
+        "Classes resolves first; selected-class progress-plan/progress/students requests then overlap. Response wait times are artificial fixture delays, not API/database timings.",
+        "Switching lessons->classes->lessons after settling triggered no additional GET in either run, consistent with intentional mounted state retention."
+      ],
+      "decision": "A lazy first mount could avoid four class-panel reads for users who never open it, but production benefit and counterfactual lazy behavior were not measured. Preserve state retention after visiting; keep candidate status.",
+      "unavailable": [
+        "Actual HTTP, database latency/cardinality, authorization, server load and production cache behavior",
+        "Visible lesson MainScreen work, nested account-action panels and error/empty-class branches were intentionally excluded"
+      ]
+    }
+  ],
+  "verification": {
+    "serverFixture": "One focused Vitest test passed; six actual loader invocations with mocked account/db and disabled fetch; no full type check",
+    "browserFixture": {
+      "printScenes": 4,
+      "fontScenes": 2,
+      "teachingScenes": 2,
+      "errors": [],
+      "externalRequestsBlocked": [],
+      "runtimeInstrumentationRestoredEachScene": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "repository": "No application or repository changes; no additional commit; original figure commit preserved",
+    "lifecycle": "Owned Vite server is stopped before worker completion; browser/context closed; source instrumentation was virtual and never written to repository files",
+    "ownedServerShutdown": {
+      "ownedServerPort": 4194,
+      "processId": 51096,
+      "stopped": true,
+      "stoppedAt": "2026-10-05T02:04:05.8718549Z"
+    }
+  },
+  "rawEvidence": [
+    "impeccable-performance-workspace-2026-10-05.json",
+    "impeccable-performance-browser-2026-10-05.json"
+  ],
+  "reproduction": {
+    "directory": "C:/Users/user/orca/artifacts/impeccable-20261005/performance-candidates-figure",
+    "server": "node node_modules/vite/bin/vite.js --config C:/Users/user/orca/artifacts/impeccable-20261005/performance-candidates-figure/vite.config.mts --configLoader runner",
+    "browser": "node C:/Users/user/orca/artifacts/impeccable-20261005/performance-candidates-figure/browser-probe.mjs",
+    "serverFixture": "node node_modules/vitest/vitest.mjs run --config C:/Users/user/orca/artifacts/impeccable-20261005/performance-candidates-figure/server.vitest.config.mts",
+    "report": "node C:/Users/user/orca/artifacts/impeccable-20261005/performance-candidates-figure/build-report.mjs"
+  }
+}

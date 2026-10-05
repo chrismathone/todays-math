@@ -24,6 +24,7 @@ import {
   lockListeningDatabaseCapacity,
 } from "../media/databaseCapacity";
 import { listeningValueHash } from "../publication";
+import { usesWholeSourceAssessmentAudio } from "../wholeSource";
 import {
   audit,
   conflict,
@@ -664,7 +665,13 @@ export async function composeListeningSet(
       if (!question) throw conflict();
       return question;
     });
-    return { selection, source, document, group, questions };
+    const wholeSource =
+      selection.audioMode === "whole_source" ||
+      usesWholeSourceAssessmentAudio({
+        source: document.source,
+        groups: [group],
+      });
+    return { selection, source, document, group, questions, wholeSource };
   });
   const transcripts = selections
     .map((item) => item.group.transcript.text)
@@ -688,7 +695,7 @@ export async function composeListeningSet(
   const mayWritePostgres = selections.filter(
     (item) =>
       !drive?.storage ||
-      item.selection.audioMode === "whole_source" ||
+      item.wholeSource ||
       (item.questions.length === item.group.questions.length &&
         item.questions.every(
           (question, index) => question.id === item.group.questions[index].id,
@@ -707,7 +714,7 @@ export async function composeListeningSet(
   const id = randomUUID();
   const first = selections[0].document;
   const basis =
-    `듣기은행에서 구성: ${[...new Set(selections.map((item) => item.document.title))].join(" · ")}${selections.some((item) => item.selection.audioMode === "whole_source") ? " · 선택 문항에 원본 회차 전체 음원 포함" : ""}`.slice(
+    `듣기은행에서 구성: ${[...new Set(selections.map((item) => item.document.title))].join(" · ")}${selections.some((item) => item.wholeSource) ? " · 선택 문항에 원본 회차 전체 음원 포함" : ""}`.slice(
       0,
       1000,
     );
@@ -755,7 +762,7 @@ export async function composeListeningSet(
         (question, index) => question.id === item.questions[index].id,
       );
     const clip =
-      fullRound || item.selection.audioMode === "whole_source"
+      fullRound || item.wholeSource
         ? null
         : await clipReadyAudio(
             tx,

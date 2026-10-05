@@ -183,6 +183,10 @@ type Tool = FigureTool;
 const SNAP_PX = 8;
 /** 노란 점이 직사각형·이등변·직각에 붙는 거리(화면 px) */
 const ADJUST_SNAP_PX = 6;
+const releasePointer = (element: HTMLElement | null, pointerId: number) => {
+  if (element?.hasPointerCapture?.(pointerId))
+    element.releasePointerCapture(pointerId);
+};
 /** 화면용 — 라벨의 임자 꼭짓점 표지를 걷는다(원문은 그대로 둔다). */
 const withoutLabelOwner = (source: string) =>
   source.replace(/ data-p[xy]="[^"]*"/g, "");
@@ -358,6 +362,7 @@ export function FigureEditor({
   const viewport = useRef<HTMLDivElement>(null);
   const spaceDown = useRef(false);
   const pan = useRef<{
+    pointerId: number;
     x: number;
     y: number;
     offsetX: number;
@@ -377,6 +382,7 @@ export function FigureEditor({
     null,
   );
   const drag = useRef<{
+    pointerId: number;
     original: string;
     start: DOMPoint;
     transform: string;
@@ -1081,7 +1087,14 @@ export function FigureEditor({
       ];
     });
   const down = (e: React.PointerEvent, hitTarget?: SVGGraphicsElement) => {
-    if (busy || e.button !== 0) return;
+    if (
+      busy ||
+      e.button !== 0 ||
+      e.isPrimary === false ||
+      drag.current ||
+      pan.current
+    )
+      return;
     surface.current?.focus({ preventScroll: true });
     const root = canvas.current?.querySelector("svg");
     if (!root) return;
@@ -1123,6 +1136,7 @@ export function FigureEditor({
         return;
       }
       drag.current = {
+        pointerId: e.pointerId,
         original: svg,
         start,
         inverse,
@@ -1167,6 +1181,7 @@ export function FigureEditor({
       return;
     } else {
       drag.current = {
+        pointerId: e.pointerId,
         original: svg,
         start,
         inverse,
@@ -1181,7 +1196,15 @@ export function FigureEditor({
     surface.current?.setPointerCapture(e.pointerId);
   };
   const groupDown = (e: React.PointerEvent, border: boolean) => {
-    if (busy || e.button !== 0 || tool !== "select") return;
+    if (
+      busy ||
+      e.button !== 0 ||
+      e.isPrimary === false ||
+      drag.current ||
+      pan.current ||
+      tool !== "select"
+    )
+      return;
     const root = canvas.current?.querySelector("svg");
     const matrix = root?.getScreenCTM();
     if (!root || !matrix) return;
@@ -1214,6 +1237,7 @@ export function FigureEditor({
     if (!multiple.length) return;
     const inverse = matrix.inverse();
     drag.current = {
+      pointerId: e.pointerId,
       original: svg,
       start: point(e, inverse),
       inverse,
@@ -1226,7 +1250,16 @@ export function FigureEditor({
     e.stopPropagation();
   };
   const handleDown = (e: React.PointerEvent, handle: string) => {
-    if (busy || e.button !== 0 || !selected || !selection) return;
+    if (
+      busy ||
+      e.button !== 0 ||
+      e.isPrimary === false ||
+      drag.current ||
+      pan.current ||
+      !selected ||
+      !selection
+    )
+      return;
     if (currentLocked && !isMoveHandle(handle)) return;
     surface.current?.focus({ preventScroll: true });
     const node = canvas.current?.querySelector<SVGGraphicsElement>(
@@ -1236,6 +1269,7 @@ export function FigureEditor({
     if (!matrix) return;
     const inverse = matrix.inverse();
     drag.current = {
+      pointerId: e.pointerId,
       original: svg,
       start: point(e, inverse),
       inverse,
@@ -1385,11 +1419,12 @@ export function FigureEditor({
     setFrozenCanvas(null);
   };
   const up = (event: React.PointerEvent) => {
-    if (drag.current?.moved && drag.current.pointer)
-      move({ ...drag.current.pointer, shiftKey: event.shiftKey });
     const d = drag.current;
+    if (!d || d.pointerId !== event.pointerId) return;
+    if (d.moved && d.pointer) move({ ...d.pointer, shiftKey: event.shiftKey });
     drag.current = null;
     releaseCanvas(d);
+    releasePointer(surface.current, d.pointerId);
     if (d?.moved && d.original !== liveSvg.current) {
       // 끌어 그린 새 요소도 놓는 걸음에 번호를 적는다(다른 편집은 `commit` 이 적는다)
       const numbered = numberFigureObjects(liveSvg.current);
@@ -1403,6 +1438,21 @@ export function FigureEditor({
       }));
       setTool("select");
     }
+  };
+  const cancel = (event: React.PointerEvent) => {
+    const d = drag.current;
+    if (!d || d.pointerId !== event.pointerId) return;
+    drag.current = null;
+    liveSvg.current = d.original;
+    setSvg(d.original);
+    releaseCanvas(d);
+    releasePointer(surface.current, d.pointerId);
+  };
+  const finishPan = (event: React.PointerEvent) => {
+    const p = pan.current;
+    if (!p || p.pointerId !== event.pointerId) return;
+    pan.current = null;
+    releasePointer(viewport.current, p.pointerId);
   };
   useEffect(() => {
     const modifier = (event: KeyboardEvent | Event) => {
@@ -1895,9 +1945,11 @@ export function FigureEditor({
             className={styles.viewport}
             style={{ cursor: tool === "pan" ? "grab" : undefined }}
             onPointerDownCapture={(e) => {
+              if (e.isPrimary === false || pan.current || drag.current) return;
               if ((tool === "pan" || spaceDown.current) && e.button === 0) {
                 const node = viewport.current!;
                 pan.current = {
+                  pointerId: e.pointerId,
                   x: e.clientX,
                   y: e.clientY,
                   offsetX: panOffset.x,
@@ -1910,20 +1962,17 @@ export function FigureEditor({
               }
             }}
             onPointerMove={(e) => {
-              if (pan.current) {
-                const p = pan.current;
+              const p = pan.current;
+              if (p && p.pointerId === e.pointerId) {
                 setPanOffset({
                   x: p.offsetX + e.clientX - p.x,
                   y: p.offsetY + e.clientY - p.y,
                 });
               }
             }}
-            onPointerUp={() => {
-              pan.current = null;
-            }}
-            onPointerCancel={() => {
-              pan.current = null;
-            }}
+            onPointerUp={finishPan}
+            onPointerCancel={finishPan}
+            onLostPointerCapture={finishPan}
           >
             <div
               ref={surface}
@@ -1931,7 +1980,11 @@ export function FigureEditor({
               aria-label="도형 편집 캔버스"
               aria-busy={!typeset.ready && !typeset.failed}
               className={styles.surface}
-              onPointerMove={move}
+              onPointerMove={(e) => {
+                if (drag.current && drag.current.pointerId !== e.pointerId)
+                  return;
+                move(e);
+              }}
               onPointerUp={up}
               // 두 번 누르기는 여기(겉)서 받는다 — 누를 때 겉이 포인터를 잡아(setPointerCapture) 브라우저가
               // click·dblclick 을 겉에 보낸다. 안쪽 그림 칸에 두면 안 불려 글자 칸으로 못 갔다(2026-09-21 실측).
@@ -1950,15 +2003,8 @@ export function FigureEditor({
                   if (input instanceof HTMLInputElement) input.select();
                 }
               }}
-              onPointerCancel={() => {
-                const d = drag.current;
-                drag.current = null;
-                if (d) {
-                  liveSvg.current = d.original;
-                  setSvg(d.original);
-                }
-                releaseCanvas(d);
-              }}
+              onPointerCancel={cancel}
+              onLostPointerCapture={cancel}
               style={{
                 width: `${fittedWidth * zoom}px`,
                 aspectRatio: String(ratio),

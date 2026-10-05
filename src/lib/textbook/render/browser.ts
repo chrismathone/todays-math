@@ -89,7 +89,10 @@ export async function measureTextbookPreview(
     applyRecoveryMeasurements(
       model,
       measureRecoveryDom({
-        ...recoveryMeasurePlan(sizingModel),
+        ...recoveryMeasurePlan(
+          sizingModel,
+          model.config.print.firstPhysicalPageIndex,
+        ),
         rootSelector: `[data-recovery-measure-host="${host.dataset.recoveryMeasureHost}"]`,
       }),
     );

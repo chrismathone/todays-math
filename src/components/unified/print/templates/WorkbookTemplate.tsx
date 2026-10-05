@@ -5,6 +5,7 @@ import { printPagePadding, scaledItemStyle } from "../geometry";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
+import { readablePaperColor, inkOnColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
@@ -81,7 +82,7 @@ export function WorkbookTemplate({
                 fontFamily: "var(--paper-font-sans)",
                 fontSize: 9.5,
                 fontWeight: 700,
-                color: accent,
+                color: readablePaperColor(accent),
                 letterSpacing: "0.1em",
               }}
             >
@@ -148,7 +149,7 @@ export function WorkbookTemplate({
                   width: 36,
                   height: 36,
                   background: accent,
-                  color: "white",
+                  color: inkOnColor(accent),
                   display: "grid",
                   placeItems: "center",
                   fontFamily: "var(--paper-font-sans)",
@@ -234,11 +235,11 @@ export function WorkbookTemplate({
               }}
             >
               <span>
-                <span style={{ color: PAPER_COLORS.ink30 }}>이름</span>{" "}
+                <span style={{ color: PAPER_COLORS.mutedText }}>이름</span>{" "}
                 ___________
               </span>
               <span>
-                <span style={{ color: PAPER_COLORS.ink30 }}>날짜</span>{" "}
+                <span style={{ color: PAPER_COLORS.mutedText }}>날짜</span>{" "}
                 ___________
               </span>
             </div>

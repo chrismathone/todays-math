@@ -3,6 +3,7 @@ import type { RenderBlock } from "../model";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import { imageHtml, type RenderResources } from "./shared";
 import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
+import { renderBankActivityHtml } from "./bankActivities";
 
 function inlineMarkdown(source: string): string {
   const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
@@ -50,6 +51,8 @@ export function renderSemanticTextHtml(
   const semantic = block.semantic;
   const node = semantic?.node;
   if (!semantic || !node) return null;
+  const bankActivity = renderBankActivityHtml(block);
+  if (bankActivity !== null) return bankActivity;
   if (node.kind === "fragments") {
     const content = renderSourceFragments(node.fragments, resources);
     const marked =
@@ -68,7 +71,7 @@ export function renderSemanticTextHtml(
   if (node.kind === "exampleGroup") {
     const sourceTitle = semantic.source ? /^Y(\d+)\s+(.+)$/.exec(node.title) : null;
     const number = sourceTitle?.[1] ?? block.exampleGroupNumber;
-    return `<section class="tb-example-group tb-pair-heading" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy)) : md(node.strategy)}</div>`}</section>`;
+    return `<section class="tb-example-group tb-pair-heading${semantic.source ? " tb-source-example-heading" : ""}" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? `<b>풀이전략</b>${dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy))}` : md(node.strategy)}</div>`}</section>`;
   }
   return null;
 }

@@ -29,7 +29,7 @@ ${C} .clinic-intro p{font-size:7.5pt;margin-top:1.5mm;color:var(--tb-subink)}
 ${C} .repair-example{display:grid;grid-template-columns:1fr 1fr;gap:9mm}
 ${C} .repair-example>div{border-top:.7pt solid var(--tb-light);padding:3mm 0}
 ${C} .repair-example .tb-source-small{font-size:7pt;display:block;margin-bottom:2mm;color:var(--tb-subink)}
-${C} .repair-example .math{font-size:17pt;color:var(--tb-accent)}
+${C} .repair-example .math,${C} .repair-example [data-textbook-math]{font-size:17pt;line-height:1.65;display:inline-block;white-space:nowrap;vertical-align:baseline;color:var(--tb-accent)}
 ${C} .repair-example p{font-size:8pt;margin-top:2mm;color:var(--tb-subink)}
 ${O} .oral-route{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-bottom:2mm}
 ${O} .oral-route>span{border-bottom:1pt solid var(--tb-light);font-size:8pt;padding-bottom:3mm;color:var(--tb-subink)}

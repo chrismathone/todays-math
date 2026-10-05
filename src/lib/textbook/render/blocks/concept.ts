@@ -1,6 +1,10 @@
 import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
 import type { EditorialBlock } from "../editorial";
-import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
+import {
+  escapeHtml as esc,
+  renderTextbookMarkdown as md,
+  renderTextbookLabel as labelHtml,
+} from "../markdown";
 import { displayStyleMath } from "./dialogue";
 import { recallDisplayRows, typesetRecallPieces } from "./recall";
 import { renderSourceFragments } from "./semantic";
@@ -34,9 +38,9 @@ function conceptNumber(block: ConceptBlock): string {
 function titleHtml(block: ConceptBlock, title: string): string {
   // A continued part repeats the name in a small line. The number chip stays with the first part.
   if (block.continuation)
-    return `<div class="tb-concept-continuation" data-continuation data-anchor="concept-continuation">${esc(title)}<small>계속</small></div>`;
+    return `<div class="tb-concept-continuation" data-continuation data-anchor="concept-continuation">${labelHtml(title)}<small>계속</small></div>`;
   const number = conceptNumber(block);
-  return `<h3 class="tb-concept-title" data-anchor="concept-title">${number ? `<span class="tb-concept-number">${esc(number)}</span>` : ""}${esc(title)}</h3>`;
+  return `<h3 class="tb-concept-title" data-anchor="concept-title">${number ? `<span class="tb-concept-number">${esc(number)}</span>` : ""}${labelHtml(title)}</h3>`;
 }
 
 export function renderConceptHtml(
@@ -58,7 +62,7 @@ export function renderConceptHtml(
     )
       .map(
         (row) =>
-          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${esc(row.label)}</div><div class="tb-concept-row-body">${typesetRecallPieces(
+          `<div class="tb-concept-row" data-row-key="${esc(row.rowKey)}" data-concept-id="${esc(node.conceptId)}"><div class="tb-concept-row-label">${labelHtml(row.label)}</div><div class="tb-concept-row-body">${typesetRecallPieces(
             row.pieces.map((piece) =>
               piece.kind === "blank" ? "" : piece.markdown,
             ),

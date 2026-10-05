@@ -28,6 +28,7 @@ import {
 import { englishListeningFixture } from "@/mocks/englishListeningFixture";
 import type { ListeningComposeSource } from "@/contracts/englishListeningCompose.contract";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
+import type { ListeningAssessmentSource } from "@/contracts/englishListeningSource.contract";
 import { LISTENING_MAX_DOCUMENT_BYTES } from "@/contracts/englishListeningSource.contract";
 import {
   decodeMp3,
@@ -243,11 +244,24 @@ async function source(
   archive = false,
   external = false,
   useStorage = false,
+  assessmentKind?: ListeningAssessmentSource["kind"],
 ) {
   let set = await runtime!.createSet(owner, {
     title: "원본 듣기 " + marker,
     rights,
     basis: "직접 작성한 테스트 문항과 PCM",
+    ...(assessmentKind
+      ? {
+          source: {
+            kind: assessmentKind,
+            provider: "Self-authored assessment policy fixture",
+            year: 2026,
+            round: 1,
+            month: null,
+            originalFilename: "self-authored.pdf",
+          },
+        }
+      : {}),
   });
   set = await runtime!.reviewSet(owner, set.id, {
     expectedRevision: set.revision,
@@ -278,7 +292,32 @@ async function source(
   }
   const uploadMedia = archive ? archiveMedia! : media!;
   let ready;
-  if (external) {
+  if (external && useStorage && !archive) {
+    // Canonical self-authored PCM is already decoded; the archive registrar accepts MP3.
+    const assetId = randomUUID();
+    const ref = await storageApi.upload({
+      ownerId,
+      assetId,
+      bytes: original.length,
+      mimeType: "audio/wav",
+      read: async function* () {
+        yield original;
+      },
+    });
+    const record = storageReadyRecord({
+      assetId,
+      setId: set.id,
+      ownerId,
+      branchId: set.document.branchId,
+      storage: ref,
+      mimeType: "audio/wav",
+      sha256: sha(original),
+      durationMs: 15000,
+      now: now.getTime(),
+    });
+    await db!.$transaction((tx) => insertStorageAsset(tx, record));
+    ready = record.completion!;
+  } else if (external) {
     ready = useStorage
       ? await registerStorageListeningAsset(
           db!,
@@ -1406,6 +1445,163 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       before.length,
     );
   });
+  it.each(
+    (["national_listening", "mock_exam"] as const).flatMap((kind) =>
+      ([undefined, "clip"] as const).flatMap((audioMode) =>
+        [false, true].map((useStorage) => ({ kind, audioMode, useStorage })),
+      ),
+    ),
+  )(
+    "keeps complete $kind audio with mode $audioMode and Storage $useStorage, without requiring clip ranges",
+    async ({ kind, audioMode, useStorage }) => {
+      const original = await source(
+        51,
+        false,
+        false,
+        useStorage,
+        useStorage,
+        kind,
+      );
+      const selected = original.source.detail.document.groups[0].questions[1];
+      const before = structuredClone(original.source.detail.document);
+      const composed = await (
+        useStorage ? storageRuntime! : runtime!
+      ).composeSet(owner, {
+        title: "전국 평가 선택 문항과 전체 음원",
+        selections: [
+          { ...selection(original.source, [selected.id]), audioMode },
+        ],
+      });
+      const group = composed.document.groups[0];
+      expect(group.questions).toHaveLength(1);
+      expect(group.questions[0]).toMatchObject({
+        prompt: selected.prompt,
+        explanation: selected.explanation,
+        evidence: selected.evidence,
+        metadata: selected.metadata,
+      });
+      expect(group.questions[0].choices.map((c) => c.text)).toEqual(
+        selected.choices.map((c) => c.text),
+      );
+      expect(group.questions[0].answerChoiceId).toBe(
+        group.questions[0].choices[
+          selected.choices.findIndex((c) => c.id === selected.answerChoiceId)
+        ].id,
+      );
+      expect(group.audio!.sha256).toBe(before.groups[0].audio!.sha256);
+      expect(group.audio!.durationMs).toBe(before.groups[0].audio!.durationMs);
+      expect(group.audio!.assetId).not.toBe(before.groups[0].audio!.assetId);
+      expect(group.transcript).toEqual(before.groups[0].transcript);
+      expect(composed.document.provenance.basis).toContain("전체 음원 포함");
+      const reviewed = await runtime!.reviewSet(owner, composed.id, {
+        expectedRevision: composed.revision,
+        kind: "rights",
+        basis: "Self-authored isolated whole-source fixture",
+      });
+      const printable = await db!.$transaction(async (tx) =>
+        printableDraft(
+          tx,
+          await teacher(tx, owner),
+          reviewed.id,
+          reviewed.revision,
+          "student",
+        ),
+      );
+      expect(printable.groups[0].questions).toHaveLength(1);
+      if (useStorage)
+        await verifyStorageProxy(reviewed, original.wav, "audio/wav");
+      else {
+        const response = await media!.serve(
+          { actor: owner },
+          { setId: reviewed.id, assetId: group.audio!.assetId, method: "GET" },
+        );
+        expect(response.status).toBe(200);
+        expect(Buffer.from(await response.arrayBuffer())).toEqual(original.wav);
+      }
+      expect(
+        (await runtime!.setDetail(owner, original.source.detail.id)).document,
+      ).toEqual(before);
+    },
+  );
+
+  it.each([
+    { assessmentKind: "national_listening" as const, sourceRecordId: null },
+    { assessmentKind: "mock_exam" as const, sourceRecordId: null },
+    { assessmentKind: null, sourceRecordId: "ebs-middle-1-2026-1" },
+    { assessmentKind: null, sourceRecordId: "ebsi-high-1-2022-2" },
+  ])(
+    "uses question provenance $assessmentKind/$sourceRecordId when source is absent",
+    async (metadata) => {
+      const original = await source(52, true, false, true, true);
+      const input = edit(original.source.detail);
+      input.groups[0].questions[1] = {
+        ...input.groups[0].questions[1],
+        image: documentBudgetImage(),
+        metadata: { ...input.groups[0].questions[1].metadata!, ...metadata },
+      };
+      const updated = await runtime!.updateSet(
+        owner,
+        original.source.detail.id,
+        input,
+      );
+      const saved = await runtime!.composeSource(owner, updated.id);
+      const selected = saved.detail.document.groups[0].questions[1];
+      const composed = await storageRuntime!.composeSet(owner, {
+        title: "메타데이터의 전국 평가 원본",
+        selections: [{ ...selection(saved, [selected.id]), audioMode: "clip" }],
+      });
+      const group = composed.document.groups[0];
+      expect(group.audio!.sha256).toBe(
+        saved.detail.document.groups[0].audio!.sha256,
+      );
+      expect(group.audio!.durationMs).toBe(15000);
+      expect(group.questions[0].audioRange).toEqual(selected.audioRange);
+      expect(group.questions[0].evidence).toEqual(selected.evidence);
+      expect(group.questions[0].metadata).toEqual(selected.metadata);
+      expect(group.questions[0].image).toEqual(selected.image);
+    },
+  );
+
+  it("preserves custom clipping in a mixed assembled set whose other group has national provenance", async () => {
+    const national = await source(53, true, false, true, true, "mock_exam");
+    const custom = await source(54, true, false, true, true);
+    const mixed = await storageRuntime!.composeSet(owner, {
+      title: "전국 평가와 자체 제작 문항",
+      selections: [selection(national.source), selection(custom.source)],
+    });
+    const reviewed = await runtime!.reviewSet(owner, mixed.id, {
+      expectedRevision: mixed.revision,
+      kind: "rights",
+      basis: "Self-authored mixed fixture",
+    });
+    expect(reviewed.document.source).toBeUndefined();
+    const saved = await runtime!.composeSource(owner, reviewed.id);
+    const [nationalGroup, customGroup] = saved.detail.document.groups;
+    const composed = await storageRuntime!.composeSet(owner, {
+      title: "선택한 전국 평가와 자체 제작 문항",
+      selections: [nationalGroup, customGroup].map((g) => ({
+        setId: saved.detail.id,
+        expectedRevision: saved.detail.revision,
+        documentHash: saved.documentHash,
+        groupId: g.id,
+        questionIds: [g.questions[1].id],
+        audioMode: "clip",
+      })),
+    });
+    expect(composed.document.groups[0].audio!.sha256).toBe(
+      nationalGroup.audio!.sha256,
+    );
+    expect(composed.document.groups[0].audio!.durationMs).toBe(15000);
+    expect(composed.document.groups[1].audio!.sha256).not.toBe(
+      customGroup.audio!.sha256,
+    );
+    expect(composed.document.groups[1].audio!.durationMs).toBe(7000);
+    expect(composed.document.groups[1].questions[0].audioRange).toEqual({
+      startMs: 0,
+      endMs: 7000,
+    });
+  });
+
   it("selects only requested questions while retaining the original private Storage audio when whole_source is explicit", async () => {
     const original = await source(44, false, true, true, true);
     const sourceGroup = original.source.detail.document.groups[0];

@@ -5,6 +5,7 @@ import { printPagePadding, scaledItemStyle } from "../geometry";
 import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
+import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
@@ -158,7 +159,7 @@ export function YuhyungTemplate({
                   fontFamily: "var(--paper-font-sans)",
                   fontSize: 10.5,
                   fontWeight: 700,
-                  color: accent,
+                  color: readablePaperColor(accent),
                   letterSpacing: "0.12em",
                 }}
               >
@@ -219,7 +220,7 @@ export function YuhyungTemplate({
         <span
           style={{
             fontWeight: 700,
-            color: accent,
+            color: readablePaperColor(accent),
             letterSpacing: "0.1em",
           }}
         >

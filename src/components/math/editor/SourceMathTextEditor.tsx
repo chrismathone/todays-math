@@ -98,12 +98,29 @@ const createMathNode = (active: {
         const dom = document.createElement("span");
         dom.className = "visual-math";
         dom.contentEditable = "false";
-        dom.tabIndex = 0;
-        dom.setAttribute("role", "button");
-        dom.setAttribute("aria-label", "수식 편집");
-        dom.title = "클릭해서 수식 수정";
+
+        const label = (action: string) => {
+          // Node views are constructed before editor.view is mounted.
+          const attributes = editor.options.editorProps?.attributes;
+          const context =
+            typeof attributes === "function"
+              ? attributes(editor.state)?.["aria-label"]
+              : attributes?.["aria-label"];
+          return `${context ?? "문제 본문"} ${action}: ${String(node.attrs.tex).trim() || "빈 수식"}`;
+        };
+        const nameControl = () => {
+          if (field) {
+            field.setAttribute("aria-label", label("수식 입력"));
+          } else {
+            dom.tabIndex = 0;
+            dom.setAttribute("role", "button");
+            dom.setAttribute("aria-label", label("수식 편집"));
+            dom.title = "클릭해서 수식 수정";
+          }
+        };
 
         const paint = () => {
+          nameControl();
           dom.dataset.mathDisplay = String(node.attrs.display);
           dom.dataset.mathTex = encodeURIComponent(node.attrs.tex);
           dom.innerHTML = renderKatexSafe(
@@ -148,7 +165,10 @@ const createMathNode = (active: {
           field.value = String(node.attrs.tex);
           field.mathVirtualKeyboardPolicy = "manual";
           field.smartFence = true;
-          field.setAttribute("aria-label", "수식 입력");
+          // The MathLive input owns semantics while open, without a containing button.
+          for (const name of ["tabindex", "role", "aria-label", "title"])
+            dom.removeAttribute(name);
+          nameControl();
           active.set(field);
           dom.replaceChildren(field);
           // 한컴 수식 낱말 «작은 판»(트랙 8) — `root2` → √2, `a over b` → 분수.
@@ -202,6 +222,7 @@ const createMathNode = (active: {
             if (next.type !== node.type) return false;
             node = next;
             if (!field) paint();
+            else nameControl();
             return true;
           },
           destroy: () => {

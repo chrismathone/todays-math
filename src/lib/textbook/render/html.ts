@@ -22,6 +22,7 @@ import {
 } from "./blocks/automaticIntro";
 import { renderConceptHtml } from "./blocks/concept";
 import { FRACTION_CHOICE_CSS } from "./blocks/fractionChoiceRows";
+import { BANK_ACTIVITY_CSS } from "./blocks/bankActivities";
 import {
   renderDialogueHtml,
   renderDialogueBoardHtml,
@@ -120,6 +121,7 @@ ${EDITORIAL_CSS}
 ${TEXTBOOK_CONTENT_CSS}
 ${DIALOGUE_CSS}
 ${SEMANTIC_ACTIVITY_CSS}
+${BANK_ACTIVITY_CSS}
 ${RECOVERY_FRAME_CSS}
 ${SOURCE_CHAPTER_CSS}
 ${SOURCE_PROBLEM_CSS}

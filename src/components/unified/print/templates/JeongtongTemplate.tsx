@@ -223,7 +223,7 @@ export function JeongtongTemplate({
                       fontWeight: 700,
                     }}
                   >
-                    <span style={{ color: PAPER_COLORS.ink30 }}>
+                    <span style={{ color: PAPER_COLORS.mutedText }}>
                       /{meta.totalScore ?? 100}
                     </span>
                   </td>

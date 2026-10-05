@@ -76,6 +76,7 @@ export function assertSafeSvg(text: string): void {
     "font-size",
     "font-weight",
     "font-style",
+    "letter-spacing",
     "text-anchor",
     "dominant-baseline",
     "alignment-baseline",
@@ -154,6 +155,12 @@ export function assertSafeSvg(text: string): void {
         throw new Error("SVG attribute entities are unsupported");
       if (key === "data-anchor" && !/^(start|middle|end)$/.test(value))
         throw new Error("Unsupported SVG label anchor");
+      if (
+        key === "letter-spacing" &&
+        (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:px)?$/.test(value) ||
+          !Number.isFinite(Number(value.replace(/px$/, ""))))
+      )
+        throw new Error("Unsupported SVG letter spacing");
       if (
         (key === "data-c" && !/^[0-9A-Fa-f]+$/.test(value)) ||
         (key === "data-mml-node" && !/^[A-Za-z][A-Za-z0-9-]*$/.test(value)) ||

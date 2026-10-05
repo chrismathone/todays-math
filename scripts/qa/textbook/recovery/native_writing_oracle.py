@@ -1,4 +1,4 @@
-"""Attach measured native free-writing DOM and pinned original PDF vectors to a copied oracle."""
+"""Attach measured native writing DOM and pinned original PDF vectors to a copied oracle."""
 import argparse
 import hashlib
 import json
@@ -24,14 +24,13 @@ def main():
     assert source["selectedPhysicalPages"] == writing["selectedPhysicalPages"] == list(range(8, 44))
     assert all(page["fontsLoaded"] for page in writing["pages"])
     document = fitz.open(args.original_pdf)
-    containers, rules = 0, 0
+    containers, rules, question_containers, question_rules = 0, 0, 0, 0
     for original in source["pages"]:
         native = next(page for page in writing["pages"] if page["sourcePage"] == original["physicalPageIndex"])
         original["nativeWritingAreas"] = []
+        original["nativeQuestionWritingAreas"] = []
         vectors, _ = horizontal_vectors(document[original["physicalPageIndex"] - 1])
         for container in native["containers"]:
-            if container["questionId"] is not None:
-                continue
             bounds = container["boxMm"]
             found = [v for v in vectors if v["x0"] >= bounds[0] - .5 and v["x1"] <= bounds[2] + .5
                      and bounds[1] - .5 <= v["y"] <= bounds[3] + .5]
@@ -41,9 +40,14 @@ def main():
                 expected = [dom["boxMm"][0], dom["boxMm"][2], dom["boxMm"][3] - dom["thicknessMm"] / 2]
                 assert max(abs(a - b) for a, b in zip(expected, [vector["x0"], vector["x1"], vector["y"]])) <= .5
                 assert abs(dom["thicknessMm"] - vector["thicknessMm"]) <= .005
-            original["nativeWritingAreas"].append({**container, "referencePdfVectors": found})
-            containers += 1
-            rules += len(found)
+            if container["questionId"] is None:
+                original["nativeWritingAreas"].append({**container, "referencePdfVectors": found})
+                containers += 1
+                rules += len(found)
+            else:
+                original["nativeQuestionWritingAreas"].append({**container, "referencePdfVectors": found})
+                question_containers += 1
+                question_rules += len(found)
     document.close()
     source["nativeWritingReference"] = {
         "originalPdfSha256": pdf_sha,
@@ -51,13 +55,16 @@ def main():
         "priorSourceGeometrySha256": hashlib.sha256(source_bytes).hexdigest(),
         "containerCount": containers,
         "pdfVectorCount": rules,
-        "method": "Actual native free-writing DOM matched to exact pinned original PDF vectors; generic bank 7mm pitch is unchanged",
+        "questionContainerCount": question_containers,
+        "questionPdfVectorCount": question_rules,
+        "method": "Actual native writing DOM matched to exact pinned original PDF vectors; generic bank 7mm pitch is unchanged",
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     assert not args.output.exists(), "Preserve the previous oracle; choose a fresh output"
     args.output.write_text(json.dumps(source, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"output": str(args.output), "sha256": hashlib.sha256(args.output.read_bytes()).hexdigest(),
-                      "nativeContainers": containers, "nativePdfVectors": rules}))
+                      "nativeContainers": containers, "nativePdfVectors": rules,
+                      "nativeQuestionContainers": question_containers, "nativeQuestionPdfVectors": question_rules}))
 
 
 if __name__ == "__main__":

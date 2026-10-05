@@ -256,6 +256,32 @@ describe("[EnglishStudio] 학교별 내신 대비", () => {
     requests.off();
   });
 
+  it("자료 종류는 방향키와 Home/End로 선택하고 선택한 탭만 Tab으로 방문한다", async () => {
+    render(<Harness log={makeLog()} />);
+    await screen.findByRole("heading", { name: "학교별 내신 대비" });
+    fireEvent.click(screen.getByRole("button", { name: "자료 추가" }));
+    const dialog = within(screen.getByRole("dialog", { name: "자료 추가" }));
+    const file = dialog.getByRole("tab", { name: "파일 업로드" });
+    const text = dialog.getByRole("tab", { name: "지문 직접 입력" });
+    file.focus();
+    expect(file.tabIndex).toBe(0);
+    expect(text.tabIndex).toBe(-1);
+    fireEvent.keyDown(file, { key: "ArrowRight" });
+    expect(text).toHaveFocus();
+    expect(text).toHaveAttribute("aria-selected", "true");
+    expect(dialog.getByRole("tabpanel", { name: "지문 직접 입력" }).id).toBe(
+      text.getAttribute("aria-controls"),
+    );
+    fireEvent.keyDown(text, { key: "Home" });
+    expect(file).toHaveFocus();
+    fireEvent.keyDown(file, { key: "End" });
+    expect(text).toHaveFocus();
+    fireEvent.keyDown(text, { key: "ArrowLeft" });
+    expect(file).toHaveFocus();
+    expect(file.tabIndex).toBe(0);
+    expect(text.tabIndex).toBe(-1);
+  });
+
   it("지문 직접 입력으로 자료를 더하면 목록과 단계 수가 바뀐다", async () => {
     const log = makeLog();
     render(<Harness log={log} />);

@@ -5,6 +5,7 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 import { PrismaClient } from "@prisma/client";
+import type { ListeningDraft } from "@/contracts/englishListeningHttp.contract";
 import {
   afterAll,
   afterEach,
@@ -29,14 +30,6 @@ import {
   adoptListeningQuestionAudio,
   type PreparedQuestionAudioPlan,
 } from "@/lib/english/listening/runtime/questionAudio";
-import {
-  LISTENING_STORAGE_OWNER_BYTES,
-  LISTENING_STORAGE_OWNER_ASSETS,
-} from "@/lib/english/listening/media/storageQuota";
-import {
-  LISTENING_MAX_OWNER_BYTES,
-  LISTENING_MAX_OWNER_ASSETS,
-} from "@/contracts/englishListeningSource.contract";
 import { questionAudioSha256 as sha } from "@/lib/english/listening/questionAudioProof";
 import { fakeListeningStorage } from "../fixtures/english-listening/fakeStorage";
 import {
@@ -57,26 +50,7 @@ const db = url ? new PrismaClient({ datasourceUrl: url }) : null,
   owner = { kind: "teacher" as const, userId: ownerId },
   now = new Date();
 const fake = fakeListeningStorage();
-let uploadHook: (() => Promise<void>) | undefined;
-let failUploads = false;
-const storage = createListeningStorageApi(fake.config, async (url, init) => {
-  if (
-    failUploads &&
-    init?.method === "POST" &&
-    String(url).includes("/object/")
-  )
-    throw Error("synthetic remote outage");
-  if (
-    init?.method === "POST" &&
-    String(url).includes("/object/") &&
-    uploadHook
-  ) {
-    const hook = uploadHook;
-    uploadHook = undefined;
-    await hook();
-  }
-  return fake.fetchImpl(url, init);
-});
+const storage = createListeningStorageApi(fake.config, fake.fetchImpl);
 const runtime = db ? createListeningRuntime(db, () => now, { storage }) : null;
 const store = db ? new PrismaStorageListeningMediaStore(db, storage) : null;
 const media = db
@@ -173,8 +147,6 @@ describe.runIf(Boolean(db))("trusted question audio atomic adoption", () => {
       });
   });
   afterEach(async () => {
-    uploadHook = undefined;
-    failUploads = false;
     for (const plan of plans.splice(0)) await plan.dispose();
     for (const folder of folders.splice(0))
       await rm(folder, { recursive: true, force: true });
@@ -193,205 +165,107 @@ describe.runIf(Boolean(db))("trusted question audio atomic adoption", () => {
     await db!.user.deleteMany({ where: { id: { in: [ownerId, otherId] } } });
     await db!.$disconnect();
   });
-  it("previews without SQL/Storage mutations, then stores exact standalone PCM while preserving IDs, answers, metadata and original asset", async () => {
-    const { set, plan, fixture, original } = await setup(),
-      calls = fake.calls.length;
-    const preview = await adoptListeningQuestionAudio(db!, null, plan, {
-      actor: owner,
-      clock: () => now,
-    });
-    expect(preview.status).toBe("read_only");
-    expect(fake.calls).toHaveLength(calls);
-    expect((await runtime!.setDetail(owner, set.id)).revision).toBe(
-      set.revision,
-    );
-    const applied = await adoptListeningQuestionAudio(db!, storage, plan, {
-      actor: owner,
-      apply: true,
-      clock: () => now,
-    });
-    expect(applied.status).toBe("applied");
-    const result = await runtime!.setDetail(owner, set.id);
-    expect(result.document.groups).toHaveLength(2);
-    const old = set.document.groups.flatMap((g) => g.questions),
-      actual = result.document.groups.flatMap((g) => g.questions);
-    for (let i = 0; i < old.length; i++)
-      expect(actual[i]).toEqual({
-        ...old[i],
-        evidence: old[i].evidence.map((e) => ({
-          startMs: e.startMs - (i ? 11000 : 0),
-          endMs: e.endMs - (i ? 11000 : 0),
-        })),
-        audioRange: { startMs: 0, endMs: plan.groups[i].clip.durationMs },
-      });
-    for (const [i, group] of result.document.groups.entries()) {
-      const audio = await output(set.id, group.audio!.assetId);
-      expect(sha(audio)).toBe(plan.groups[i].sha256);
-      expect(audio.subarray(44)).toEqual(
-        fixture.audio.subarray(
-          44 + plan.groups[i].clip.startFrame * 2,
-          44 + plan.groups[i].clip.endFrame * 2,
-        ),
-      );
-      const head = await media!.serve(
-        { actor: owner },
-        { setId: set.id, assetId: group.audio!.assetId, method: "HEAD" },
-      );
-      expect(head.headers.get("content-length")).toBe(String(audio.length));
-      const range = await media!.serve(
-        { actor: owner },
-        {
-          setId: set.id,
-          assetId: group.audio!.assetId,
-          method: "GET",
-          range: "bytes=43-71",
-        },
-      );
-      expect(range.status).toBe(206);
-      expect(Buffer.from(await range.arrayBuffer())).toEqual(
-        audio.subarray(43, 72),
-      );
-    }
-    expect(await store!.get(original.assetId)).toEqual(original);
-    expect(await output(set.id, original.assetId)).toEqual(fixture.audio);
-    expect(
-      (
-        await db!.$queryRaw<
-          { n: bigint }[]
-        >`SELECT COUNT(*) AS n FROM english_listening_media_blob WHERE "assetId" IN(SELECT "assetId" FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid)`
-      )[0].n,
-    ).toBe(BigInt(0));
-    const assets = await db!.$queryRaw<
-      { n: bigint }[]
-    >`SELECT COUNT(*) AS n FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`;
-    const objectCount = fake.files.size;
-    expect(
-      (
-        await adoptListeningQuestionAudio(db!, storage, plan, {
+  it.each(
+    [
+      "national_listening",
+      "mock_exam",
+      "metadata_national",
+      "metadata_mock",
+      "ebs-middle-1-2026-1",
+      "ebsi-high-1-2022-2",
+    ].flatMap((policy) => [false, true].map((apply) => ({ policy, apply }))),
+  )(
+    "rejects $policy before any Storage access with apply=$apply and preserves the complete original",
+    async ({ policy, apply }) => {
+      const { set, plan, fixture, original } = await setup();
+      const document: ListeningDraft = structuredClone(set.document);
+      for (const group of document.groups)
+        for (const question of group.questions) {
+          question.metadata!.assessmentKind = null;
+          question.metadata!.sourceRecordId = null;
+        }
+      if (policy === "national_listening" || policy === "mock_exam")
+        document.source!.kind = policy;
+      else {
+        delete document.source;
+        const metadata = document.groups[0].questions[1].metadata!;
+        if (policy.startsWith("metadata_"))
+          metadata.assessmentKind =
+            policy === "metadata_national" ? "national_listening" : "mock_exam";
+        else metadata.sourceRecordId = policy;
+      }
+      // This is an isolated database fixture; prove each policy signal independently.
+      await db!
+        .$executeRaw`UPDATE english_listening_set SET document=${JSON.stringify(document)}::jsonb WHERE id=${set.id}::uuid`;
+      const before = await runtime!.setDetail(owner, set.id);
+      const [inventory] = await db!.$queryRaw<
+        { assets: bigint; chunks: bigint; audits: bigint }[]
+      >`
+      SELECT
+        (SELECT COUNT(*) FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS assets,
+        (SELECT COUNT(*) FROM english_listening_media_storage_blob b JOIN english_listening_media_asset a ON a."assetId"=b."assetId" WHERE a."ownerId"=${ownerId}::uuid) AS chunks,
+        (SELECT COUNT(*) FROM english_listening_audit WHERE resource_id=${set.id}::uuid) AS audits`;
+      const calls = fake.calls.length;
+      const files = new Map(fake.files);
+      await expect(
+        adoptListeningQuestionAudio(db!, apply ? storage : null, plan, {
           actor: owner,
-          apply: true,
+          apply,
           clock: () => now,
-        })
-      ).status,
-    ).toBe("already_split");
-    const callsBeforeReadOnly = fake.calls.length;
-    expect(
-      await adoptListeningQuestionAudio(db!, null, plan, {
-        actor: owner,
-        clock: () => now,
-      }),
-    ).toMatchObject({
-      status: "already_split",
-      revision: result.revision,
+        }),
+      ).rejects.toThrow(
+        /national listening and mock assessments require whole-source audio.*including dry runs/,
+      );
+      expect(fake.calls).toHaveLength(calls);
+      expect(fake.files).toEqual(files);
+      const after = await runtime!.setDetail(owner, set.id);
+      expect(after.document).toEqual(before.document);
+      expect(after.revision).toBe(before.revision);
+      expect(await store!.get(original.assetId)).toEqual(original);
+      const [actualInventory] = await db!.$queryRaw<
+        { assets: bigint; chunks: bigint; audits: bigint }[]
+      >`
+      SELECT
+        (SELECT COUNT(*) FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid) AS assets,
+        (SELECT COUNT(*) FROM english_listening_media_storage_blob b JOIN english_listening_media_asset a ON a."assetId"=b."assetId" WHERE a."ownerId"=${ownerId}::uuid) AS chunks,
+        (SELECT COUNT(*) FROM english_listening_audit WHERE resource_id=${set.id}::uuid) AS audits`;
+      expect(actualInventory).toEqual(inventory);
+      expect(await output(set.id, original.assetId)).toEqual(fixture.audio);
+    },
+  );
+
+  it("rejects a national assessment even when a prior split audit matches the current document", async () => {
+    const { set, plan } = await setup();
+    const payload = {
       planHash: plan.planHash,
-    });
-    expect(fake.calls).toHaveLength(callsBeforeReadOnly);
-    expect(fake.files.size).toBe(objectCount);
-    expect(
-      (
-        await db!.$queryRaw<
-          { n: bigint }[]
-        >`SELECT COUNT(*) AS n FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`
-      )[0].n,
-    ).toBe(assets[0].n);
-    const selected = await runtime!.composeSource(owner, set.id);
-    const group = selected.detail.document.groups[0];
-    const composed = await runtime!.composeSet(owner, {
-      title: "Only first verified dialogue",
-      selections: [
-        {
-          setId: set.id,
-          expectedRevision: selected.detail.revision,
-          documentHash: selected.documentHash,
-          groupId: group.id,
-          questionIds: [group.questions[0].id],
-        },
-      ],
-    });
-    const rights = await runtime!.reviewSet(owner, composed.id, {
-      expectedRevision: composed.revision,
-      kind: "rights",
-      basis: "self authored exact subset",
-    });
-    expect(
-      await output(rights.id, rights.document.groups[0].audio!.assetId),
-    ).toEqual(await output(set.id, result.document.groups[0].audio!.assetId));
+      documentSha256: listeningValueHash(set.document),
+      revision: set.revision,
+    };
+    await db!
+      .$executeRaw`INSERT INTO english_listening_audit(id,resource_id,actor_id,kind,payload,created_at) VALUES(${randomUUID()}::uuid,${set.id}::uuid,${ownerId}::uuid,'question_audio_split',${JSON.stringify(payload)}::jsonb,${now})`;
+    const calls = fake.calls.length;
+    for (const apply of [false, true])
+      await expect(
+        adoptListeningQuestionAudio(db!, storage, plan, {
+          actor: owner,
+          apply,
+        }),
+      ).rejects.toThrow(/require whole-source audio/);
+    expect(fake.calls).toHaveLength(calls);
+    expect((await runtime!.setDetail(owner, set.id)).document).toEqual(
+      set.document,
+    );
   });
-  it("rejects wrong owner, stale whole-document proof and human-reviewed sources before remote writes", async () => {
-    const { set, plan } = await setup(),
-      calls = fake.calls.length;
+
+  it("continues to reject wrong ownership and copied untrusted plans without Storage writes", async () => {
+    const { set, plan } = await setup();
+    const calls = fake.calls.length;
     await expect(
       adoptListeningQuestionAudio(db!, storage, plan, {
         actor: { kind: "teacher", userId: otherId },
         apply: true,
       }),
     ).rejects.toThrow();
-    expect(fake.calls).toHaveLength(calls);
-    await runtime!.reviewSet(owner, set.id, {
-      expectedRevision: set.revision,
-      groupId: set.document.groups[0].id,
-      kind: "content",
-    });
-    await expect(
-      adoptListeningQuestionAudio(db!, storage, plan, {
-        actor: owner,
-        apply: true,
-      }),
-    ).rejects.toThrow(/human-reviewed/);
-    expect(fake.calls).toHaveLength(calls);
-  });
-  it("refuses a source publication committed during remote upload and preserves the published original", async () => {
-    const { set, plan } = await setup();
-    let publishedRevision = 0;
-    uploadHook = async () => {
-      let current = set;
-      for (const kind of ["content", "audio", "alignment"] as const)
-        current = await runtime!.reviewSet(owner, set.id, {
-          expectedRevision: current.revision,
-          groupId: set.document.groups[0].id,
-          kind,
-          basis: "Synthetic self-authored test review",
-        });
-      await runtime!.publishSet(owner, set.id, {
-        expectedRevision: current.revision,
-      });
-      publishedRevision = current.revision;
-    };
-    await expect(
-      adoptListeningQuestionAudio(db!, storage, plan, {
-        actor: owner,
-        apply: true,
-        clock: () => now,
-      }),
-    ).rejects.toThrow();
-    expect(publishedRevision).toBeGreaterThan(set.revision);
-    const source = await runtime!.setDetail(owner, set.id);
-    expect(source.revision).toBe(publishedRevision);
-    expect(source.document.groups[0].audio!.assetId).toBe(
-      plan.snapshot.expectedSet.originalAssetId,
-    );
-    expect(source.publications).toHaveLength(1);
-  });
-  it("refuses a changed document hash even when a snapshot claims the current revision", async () => {
-    const { set, plan, fixture } = await setup();
-    fixture.snapshot.expectedSet.documentSha256 = "f".repeat(64);
-    await fixture.writeSnapshot();
-    const forged = await loadListeningQuestionAudioPlan(
-      resolve(fixture.snapshotPath, "../.."),
-      audioSourceId,
-    );
-    plans.push(forged);
-    const calls = fake.calls.length;
-    await expect(
-      adoptListeningQuestionAudio(db!, storage, forged, {
-        actor: owner,
-        apply: true,
-      }),
-    ).rejects.toThrow(/full source document hash/);
-    expect(fake.calls).toHaveLength(calls);
-    expect((await runtime!.setDetail(owner, set.id)).revision).toBe(
-      set.revision,
-    );
     await expect(
       adoptListeningQuestionAudio(
         db!,
@@ -400,81 +274,9 @@ describe.runIf(Boolean(db))("trusted question audio atomic adoption", () => {
         { actor: owner, apply: true },
       ),
     ).rejects.toThrow(/plan must be loaded/);
-  });
-  it("keeps document atomic when an edit occurs during upload; stable prepared clips survive as resumable checkpoints", async () => {
-    const { set, plan } = await setup();
-    uploadHook = async () => {
-      await runtime!.updateSet(owner, set.id, {
-        title: "User edited during upload",
-        level: set.document.level,
-        examId: set.document.examId,
-        rights: set.document.rights,
-        basis: set.document.provenance.basis,
-        expectedRevision: set.revision,
-        groups: set.document.groups.map(({ reviews, ...g }) => {
-          void reviews;
-          return g;
-        }),
-      });
-    };
-    await expect(
-      adoptListeningQuestionAudio(db!, storage, plan, {
-        actor: owner,
-        apply: true,
-        clock: () => now,
-      }),
-    ).rejects.toThrow();
-    const actual = await runtime!.setDetail(owner, set.id);
-    expect(actual.document.title).toBe("User edited during upload");
-    expect(actual.document.groups[0].audio!.assetId).toBe(
-      plan.snapshot.expectedSet.originalAssetId,
+    expect(fake.calls).toHaveLength(calls);
+    expect((await runtime!.setDetail(owner, set.id)).document).toEqual(
+      set.document,
     );
-    expect(actual.document.groups).toHaveLength(1);
-    expect(
-      (
-        await db!.$queryRaw<
-          { n: bigint }[]
-        >`SELECT COUNT(*) AS n FROM english_listening_audit WHERE resource_id=${set.id}::uuid AND kind='question_audio_split'`
-      )[0].n,
-    ).toBe(BigInt(0));
-    const original = await store!.get(
-      plan.snapshot.expectedSet.originalAssetId,
-    );
-    expect(original!.state).toBe("ready");
-  });
-  it("resumes exact chunks after a remote failure without changing the original and isolates large Storage quota from PostgreSQL", async () => {
-    const { set, plan } = await setup();
-    failUploads = true;
-    await expect(
-      adoptListeningQuestionAudio(db!, storage, plan, {
-        actor: owner,
-        apply: true,
-        clock: () => now,
-      }),
-    ).rejects.toThrow();
-    failUploads = false;
-    expect((await runtime!.setDetail(owner, set.id)).revision).toBe(
-      set.revision,
-    );
-    expect(
-      (
-        await adoptListeningQuestionAudio(db!, storage, plan, {
-          actor: owner,
-          apply: true,
-          clock: () => now,
-        })
-      ).status,
-    ).toBe("applied");
-    expect(LISTENING_STORAGE_OWNER_BYTES).toBe(80 * 1024 ** 3);
-    expect(LISTENING_STORAGE_OWNER_ASSETS).toBe(8192);
-    expect(LISTENING_MAX_OWNER_BYTES).toBe(2 ** 31 - 1);
-    expect(LISTENING_MAX_OWNER_ASSETS).toBe(128);
-    expect(
-      (
-        await db!.$queryRaw<
-          { n: bigint }[]
-        >`SELECT COUNT(*) AS n FROM english_listening_media_asset WHERE "ownerId"=${ownerId}::uuid`
-      )[0].n,
-    ).toBe(BigInt(3));
   });
 });

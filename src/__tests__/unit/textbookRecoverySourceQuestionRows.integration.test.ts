@@ -114,6 +114,7 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     sectionIndices: number[],
     variant: "student" | "answers" = "student",
     wrap: (inner: Browser) => Browser = (inner) => inner,
+    firstPhysicalPageIndex = SOURCE_PAGE,
   ): Promise<Rendered> {
     const log: WitnessedPage[] = [];
     const result = await renderTextbookChunk({
@@ -121,7 +122,7 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
       readAsset: noAssets,
       officialOrigin: SYNTHETIC_ORIGIN,
       sectionIndices,
-      firstPhysicalPageIndex: SOURCE_PAGE,
+      firstPhysicalPageIndex,
       variant,
       mode: "draft",
       browser: witnessBrowser(wrap(browser), log),
@@ -218,6 +219,137 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     if (!found) throw new Error(`No problem ${id} on the pages`);
     return found;
   };
+
+  it("final render: canonical repair math wrappers retain the native 17pt inline box", async () => {
+    const exchange = sourceRowsExchange(
+      [
+        {
+          sectionKey: "repair",
+          title: "합성 오류 점검",
+          kind: "clinic",
+          activity: "errorCheck",
+          blocks: [],
+        },
+      ],
+      30,
+    );
+    exchange.units[0].sections[0].blocks.push({
+      blockId: "repair-text",
+      kind: "text",
+      markdown: "합성 오류 점검",
+      semantic: {
+        activity: "errorCheck",
+        source: {
+          unit: "U01",
+          page: 30,
+          kind: "clinic",
+          path: "synthetic/repair",
+        },
+        node: {
+          kind: "fragments",
+          fragments: [
+            {
+              tag: "div",
+              attributes: { className: "repair-example" },
+              children: ["합성 표현 하나", "합성 표현 둘"].map((label) => ({
+                tag: "div",
+                children: [
+                  {
+                    tag: "span",
+                    attributes: { className: "tb-source-small" },
+                    rawText: label,
+                  },
+                  { tag: "span", rawText: "$0.\\dot2 3\\dot4$" },
+                  { tag: "p", rawText: "합성 설명 문장입니다." },
+                ],
+              })),
+            },
+          ],
+        },
+      },
+    });
+    const rendered = await render(
+      exchange,
+      [0],
+      "student",
+      (inner) => inner,
+      30,
+    );
+    const { page } = await openArtifact(browser, rendered.result.html);
+    try {
+      const boxes = await page.evaluate(() =>
+        Array.from(
+          document.querySelectorAll(".repair-example [data-textbook-math]"),
+        ).map((element) => {
+          const css = getComputedStyle(element);
+          return {
+            fontPt: parseFloat(css.fontSize) * 0.75,
+            linePx: parseFloat(css.lineHeight),
+            display: css.display,
+            heightMm: (element.getBoundingClientRect().height * 25.4) / 96,
+          };
+        }),
+      );
+      expect(boxes).toHaveLength(2);
+      for (const box of boxes) {
+        expect(box.fontPt).toBeCloseTo(17, 3);
+        expect(box.linePx).toBeCloseTo(37.4, 2);
+        expect(box.display).toBe("inline-block");
+        expect(box.heightMm).toBeCloseTo(9.897, 1);
+      }
+    } finally {
+      await page.close();
+    }
+  }, 120_000);
+
+  it("final render: native four-question spread prompts reserve the same height before writing allocation", async () => {
+    const exchange = sourceRowsExchange(
+      [0, 1].map((side) => ({
+        sectionKey: `native-spread-${side}`,
+        title: "합성 단원 마무리",
+        kind: "exercise",
+        activity: "assessment" as const,
+        blocks: Array.from({ length: 4 }, (_, index) => ({
+          id: `native-${side}-${index}`,
+          content: side === 1 && index === 2 ? LONG_PROMPT : SHORT_PROMPT,
+          workLines: 2,
+        })),
+      })),
+      42,
+    );
+    exchange.units[0].sections.forEach((section, side) => {
+      section.startPolicy = "even-left";
+      section.blocks.forEach((block) => {
+        block.semantic!.source!.page = 42 + side;
+        block.semantic!.source!.sectionName = "단원 마무리";
+      });
+      if (side === 1) section.startPolicy = "continue";
+    });
+    const before = canonicalJson(exchange);
+    const rendered = await render(
+      exchange,
+      [0, 1],
+      "student",
+      (inner) => inner,
+      42,
+    );
+    const ids = [
+      "q-native-0-2",
+      "q-native-0-3",
+      "q-native-1-2",
+      "q-native-1-3",
+    ];
+    const heights = ids.map((id) =>
+      height(onPage(rendered.pages, id).promptBoxMm),
+    );
+    expect(Math.max(...heights) - Math.min(...heights)).toBeLessThan(0.03);
+    expect(heights[0]).toBeGreaterThan(10);
+    expect(rendered.evaluatorErrors).toEqual([]);
+    expect(
+      rendered.result.issues.filter((issue) => issue.severity === "error"),
+    ).toEqual([]);
+    expect(canonicalJson(exchange)).toBe(before);
+  }, 180_000);
 
   it("final render: the longest heading and the longest prompt set both columns, and the work areas start level", async () => {
     const exchange = standardExchange();

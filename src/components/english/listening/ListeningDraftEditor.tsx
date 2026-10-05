@@ -2,6 +2,8 @@
 
 import { useState, type Dispatch, type SetStateAction } from "react";
 import type { EnglishV2Use } from "@/contracts/englishV2.contract";
+import type { ListeningAssessmentSource } from "@/contracts/englishListeningSource.contract";
+import { usesWholeSourceAssessmentAudio } from "@/lib/english/listening/wholeSource";
 import { ListeningTeacherAudio } from "./ListeningTeacherAudio";
 import {
   newListeningGroup,
@@ -28,6 +30,7 @@ export function ListeningDraftEditor({
   onClose,
   onConfirmRights,
   rightsReviewed,
+  source,
 }: {
   draft: ListeningEdit;
   setDraft: Dispatch<SetStateAction<ListeningEdit | null>>;
@@ -39,8 +42,11 @@ export function ListeningDraftEditor({
   onClose: () => void;
   onConfirmRights: () => void;
   rightsReviewed: boolean;
+  source?: ListeningAssessmentSource;
 }) {
   const [rightsChecked, setRightsChecked] = useState(false);
+  const usesWholeAudio = (group: ListeningEditGroup) =>
+    usesWholeSourceAssessmentAudio({ source, groups: [group] });
   function change(patch: Partial<ListeningEdit>) {
     if (patch.basis !== undefined || patch.rights !== undefined)
       setRightsChecked(false);
@@ -195,7 +201,8 @@ export function ListeningDraftEditor({
           {group.audio ? (
             <>
               <p>
-                음원 등록됨 · {(group.audio.durationMs / 1000).toFixed(1)}초
+                {usesWholeAudio(group) ? "회차 전체 원본 음원" : "음원 등록됨"}{" "}
+                · {(group.audio.durationMs / 1000).toFixed(1)}초
               </p>
               <ListeningTeacherAudio
                 key={`${group.audio.assetId}:${group.audio.sha256}:${mediaUrls[group.audio.assetId] ?? ""}`}
@@ -321,70 +328,75 @@ export function ListeningDraftEditor({
                     />
                   </>
                 )}
-                <div className={s.formGrid}>
-                  <label>
-                    {prefix} 전체 음원 시작 (초)
-                    <input
-                      type="number"
-                      min={0}
-                      step={0.001}
-                      value={
-                        question.audioRange
-                          ? question.audioRange.startMs / 1000
-                          : ""
-                      }
-                      onChange={(event) => {
-                        const startMs = Math.round(
-                          Number(event.target.value) * 1000,
-                        );
-                        update({
-                          audioRange:
-                            event.target.value === ""
-                              ? undefined
-                              : {
-                                  startMs,
-                                  endMs: Math.max(
-                                    startMs + 1,
-                                    question.audioRange?.endMs ??
-                                      startMs + 1000,
-                                  ),
-                                },
-                        });
-                      }}
-                    />
-                  </label>
-                  <label>
-                    {prefix} 전체 음원 끝 (초)
-                    <input
-                      type="number"
-                      min={0}
-                      step={0.001}
-                      value={
-                        question.audioRange
-                          ? question.audioRange.endMs / 1000
-                          : ""
-                      }
-                      onChange={(event) => {
-                        const endMs = Math.round(
-                          Number(event.target.value) * 1000,
-                        );
-                        update({
-                          audioRange:
-                            event.target.value === ""
-                              ? undefined
-                              : {
-                                  startMs: question.audioRange?.startMs ?? 0,
-                                  endMs,
-                                },
-                        });
-                      }}
-                    />
-                  </label>
-                </div>
-                <p className={s.muted}>
-                  문항별로 담을 때 사용할 전체 구간입니다. 아래 정답 근거 구간과
-                  별도로 지정합니다.
-                </p>
+                {usesWholeAudio(group) ? null : (
+                  <>
+                    <div className={s.formGrid}>
+                      <label>
+                        {prefix} 전체 음원 시작 (초)
+                        <input
+                          type="number"
+                          min={0}
+                          step={0.001}
+                          value={
+                            question.audioRange
+                              ? question.audioRange.startMs / 1000
+                              : ""
+                          }
+                          onChange={(event) => {
+                            const startMs = Math.round(
+                              Number(event.target.value) * 1000,
+                            );
+                            update({
+                              audioRange:
+                                event.target.value === ""
+                                  ? undefined
+                                  : {
+                                      startMs,
+                                      endMs: Math.max(
+                                        startMs + 1,
+                                        question.audioRange?.endMs ??
+                                          startMs + 1000,
+                                      ),
+                                    },
+                            });
+                          }}
+                        />
+                      </label>
+                      <label>
+                        {prefix} 전체 음원 끝 (초)
+                        <input
+                          type="number"
+                          min={0}
+                          step={0.001}
+                          value={
+                            question.audioRange
+                              ? question.audioRange.endMs / 1000
+                              : ""
+                          }
+                          onChange={(event) => {
+                            const endMs = Math.round(
+                              Number(event.target.value) * 1000,
+                            );
+                            update({
+                              audioRange:
+                                event.target.value === ""
+                                  ? undefined
+                                  : {
+                                      startMs:
+                                        question.audioRange?.startMs ?? 0,
+                                      endMs,
+                                    },
+                            });
+                          }}
+                        />
+                      </label>
+                    </div>
+                    <p className={s.muted}>
+                      문항별로 담을 때 사용할 전체 구간입니다. 아래 정답 근거
+                      구간과 별도로 지정합니다.
+                    </p>
+                  </>
+                )}
                 {question.choices.map((choice, ci) => (
                   <div key={choice.id} className={s.choiceFields}>
                     <label>

@@ -123,46 +123,48 @@ export function additionalConceptActivities(input: {
         ),
       );
   }
-  if (components.conceptBlankTest)
-    blocks.push(
-      writingActivity(
-        "conceptBlankTest",
-        "자유 개념 백지",
-        [
-          "책을 덮고 기억나는 개념을 정리하세요. 뜻, 조건, 예를 자신의 말과 그림으로 표현하세요.",
-        ],
-        16,
-      ),
-    );
-  if (components.explainActivity)
-    for (let offset = 0; offset < entries.length; offset += 4)
-      blocks.push(
-        writingActivity(
-          "explainActivity",
-          "설명 활동",
-          [
-            "짝에게 설명한 뒤 서로 질문하세요. 설명에서 빠진 조건을 찾아 고쳐 쓰세요.",
-            ...entries
-              .slice(offset, offset + 4)
-              .map(
-                (entry) =>
-                  `${entry.term}의 뜻과 사용할 때의 조건을 예와 함께 설명하세요.`,
-              ),
-          ],
-          3,
-        ),
+  // Versioned rows opt NEW bank activities into native scaffolds. Saved writing
+  // nodes and source fragments retain their original render paths and bytes.
+  const rows = conceptMemoryRows(entries);
+  const scaffolds = [
+    {
+      activity: "conceptBlankTest",
+      title: "자유 개념 백지",
+      size: 4,
+      instruction:
+        "책을 보지 않고 기억나는 개념을 정리하세요. 각 정의에 알맞은 예를 쓰세요.",
+    },
+    {
+      activity: "explainActivity",
+      title: "설명 활동",
+      size: 2,
+      instruction: "예를 들어 설명한 뒤, 친구의 질문에 답하세요.",
+    },
+    {
+      activity: "conceptMap",
+      title: "개념 지도",
+      size: 4,
+      instruction:
+        "각 개념의 정의와 예를 쓰고, 직접 설명할 수 있는 관계를 정리하세요.",
+    },
+  ] as const;
+  for (const scaffold of scaffolds) {
+    if (!components[scaffold.activity]) continue;
+    for (let offset = 0; offset < rows.length; offset += scaffold.size) {
+      const block = activityText(
+        scaffold.activity,
+        scaffold.title,
+        scaffold.instruction,
+        {
+          kind: "rows",
+          groupKey: `bank-activity.v1.${scaffold.activity}.${offset / scaffold.size}`,
+          rows: rows.slice(offset, offset + scaffold.size),
+        },
       );
-  if (components.conceptMap)
-    blocks.push(
-      writingActivity(
-        "conceptMap",
-        "개념 지도",
-        [
-          `아래 개념을 써 놓고, 직접 설명할 수 있는 관계를 선과 문장으로 연결하세요.\n\n${entries.map((entry) => entry.term).join(" · ")}`,
-        ],
-        15,
-      ),
-    );
+      block.semantic!.continuation = offset > 0;
+      blocks.push(block);
+    }
+  }
   return blocks;
 }
 
