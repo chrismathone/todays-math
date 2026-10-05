@@ -165,6 +165,12 @@ export async function handleListeningHttp(
         if (
           path.length === 3 &&
           method === "GET" &&
+          action === "source-transcripts"
+        )
+          return ok(await runtime.sourceTranscripts(actor, id));
+        if (
+          path.length === 3 &&
+          method === "GET" &&
           action === "compose-source"
         )
           return ok(await runtime.composeSource(actor, id));

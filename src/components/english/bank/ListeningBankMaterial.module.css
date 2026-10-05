@@ -95,7 +95,57 @@ label.questionLabel {
 .outputAudio {
   margin-top: 16px;
 }
+.sourceTranscript,
+.officialTranscript,
+.bilingualTranscript {
+  min-width: 0;
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid var(--e-line-soft);
+  border-radius: 8px;
+}
+.sourceTranscript summary,
+.officialTranscript summary,
+.bilingualTranscript summary {
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.transcriptText,
+.transcriptRaw {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.transcriptRaw {
+  white-space: pre-wrap;
+}
+.transcriptParagraph {
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+.transcriptParagraph span {
+  min-width: 0;
+  white-space: pre-wrap;
+}
+.transcriptSeek {
+  flex: 0 0 auto;
+  padding: 8px;
+  border: 1px solid var(--e-line-soft);
+  border-radius: 6px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+.transcriptSeek:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
 @media (max-width: 680px) {
+  .transcriptParagraph {
+    flex-direction: column;
+    gap: 4px;
+  }
   .createRow > button {
     width: 100%;
   }

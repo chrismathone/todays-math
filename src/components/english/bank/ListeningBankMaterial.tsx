@@ -5,7 +5,13 @@ import {
   LISTENING_QUESTION_ORIGIN_LABELS,
   LISTENING_QUESTION_TYPE_LABELS,
 } from "@/contracts/englishListeningMetadata.contract";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  LISTENING_SOURCE_TRANSCRIPT_LABEL,
+  listeningSourceTranscriptsResponseSchema,
+  type ListeningSourceTranscript,
+  type ListeningSourceTranscriptsResponse,
+} from "@/contracts/englishListeningTranscript.contract";
 import type {
   ListeningComposeSelection,
   ListeningComposeSource,
@@ -47,11 +53,144 @@ const entryKey = (item: ListeningComposeSelection) =>
 const timeLabel = (ms: number) =>
   `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, "0")}`;
 
+function TranscriptText({
+  transcript,
+  onSeek,
+}: {
+  transcript: ListeningSourceTranscript;
+  onSeek: (startMs: number) => void;
+}) {
+  return (
+    <div className={c.transcriptText}>
+      <p className={b.meta}>{LISTENING_SOURCE_TRANSCRIPT_LABEL}</p>
+      {transcript.timingReviewNeeded ? (
+        <p className={b.notice}>
+          AI 전사 시각 확인 필요 · 전체 원본을 듣고 확인해 주세요.
+          {transcript.excludedWordCount > 0
+            ? ` 음원 범위를 벗어나거나 길이가 없는 단어 ${transcript.excludedWordCount}개를 제외했습니다.`
+            : ""}
+        </p>
+      ) : null}
+      {transcript.segments.length ? (
+        <>
+          <p className={b.note}>
+            문단 시각은 AI 추정 위치이며 검증된 문항 시작점이 아닙니다. 시각을
+            누르면 같은 전체 원본 음원이 해당 위치부터 계속 재생됩니다.
+          </p>
+          {transcript.segments.map((segment, index) => (
+            <p
+              key={`${transcript.id}:${index}`}
+              className={c.transcriptParagraph}
+            >
+              <button
+                type="button"
+                className={c.transcriptSeek}
+                onClick={() => onSeek(segment.startMs)}
+                aria-label={`AI 추정 ${timeLabel(segment.startMs)}부터 전체 원본 이어 듣기`}
+              >
+                {timeLabel(segment.startMs)} · 추정
+              </button>
+              <span>{segment.text}</span>
+            </p>
+          ))}
+        </>
+      ) : (
+        <p className={c.transcriptRaw}>{transcript.text}</p>
+      )}
+    </div>
+  );
+}
+
+function SourceTranscriptPanel({
+  assetId,
+  durationMs,
+  loadTranscripts,
+  onSeek,
+}: {
+  assetId: string;
+  durationMs: number;
+  loadTranscripts: () => Promise<ListeningSourceTranscriptsResponse>;
+  onSeek: (startMs: number) => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const [response, setResponse] =
+    useState<ListeningSourceTranscriptsResponse | null>(null);
+  const [error, setError] = useState("");
+  const [attempt, setAttempt] = useState(0);
+  useEffect(() => {
+    if (!expanded || response || error) return;
+    let cancelled = false;
+    void loadTranscripts()
+      .then((result) => {
+        if (!cancelled) setResponse(result);
+      })
+      .catch((cause) => {
+        if (!cancelled) setError(listeningError(cause));
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [expanded, response, error, attempt, loadTranscripts]);
+  const items =
+    response?.items.filter(
+      (item) => item.assetId === assetId && item.durationMs === durationMs,
+    ) ?? [];
+  const english = items.find((item) => item.profile === "english");
+  const bilingual = items.find((item) => item.profile === "bilingual");
+  return (
+    <details
+      data-source-transcript
+      className={c.sourceTranscript}
+      onToggle={(event) => setExpanded(event.currentTarget.open)}
+    >
+      <summary>{LISTENING_SOURCE_TRANSCRIPT_LABEL} · 영어 전사 보기</summary>
+      {expanded ? (
+        error ? (
+          <div role="alert">
+            <p>{error}</p>
+            <button
+              type="button"
+              className={w.outlineButton}
+              onClick={() => {
+                setError("");
+                setAttempt((value) => value + 1);
+              }}
+            >
+              다시 불러오기
+            </button>
+          </div>
+        ) : !response ? (
+          <p role="status">전사를 불러오는 중…</p>
+        ) : (
+          <>
+            {english ? (
+              <TranscriptText transcript={english} onSeek={onSeek} />
+            ) : (
+              <p className={b.note}>
+                현재 원본 음원에 맞는 영어 전사가 없습니다.
+              </p>
+            )}
+            {bilingual ? (
+              <details className={c.bilingualTranscript}>
+                <summary>
+                  {LISTENING_SOURCE_TRANSCRIPT_LABEL} · 한국어·영어 전사 보기
+                </summary>
+                <TranscriptText transcript={bilingual} onSeek={onSeek} />
+              </details>
+            ) : null}
+          </>
+        )
+      ) : null}
+    </details>
+  );
+}
+
 function MaterialGroup({
   group,
   index,
   mediaUrl,
   wholeSourceAudio,
+  loadTranscripts,
   checked,
   onToggle,
 }: {
@@ -59,6 +198,7 @@ function MaterialGroup({
   index: number;
   mediaUrl?: string;
   wholeSourceAudio: boolean;
+  loadTranscripts: () => Promise<ListeningSourceTranscriptsResponse>;
   checked: Set<string>;
   onToggle: (id: string) => void;
 }) {
@@ -71,6 +211,20 @@ function MaterialGroup({
     pendingStart.current = null;
     return () => audio?.pause();
   }, [mediaUrl]);
+  function seek(startMs: number, endMs?: number) {
+    const audio = player.current;
+    if (!audio) return;
+    stopAt.current = endMs === undefined ? null : endMs / 1000;
+    const start = startMs / 1000;
+    if (audio.readyState >= 1) {
+      pendingStart.current = null;
+      audio.currentTime = start;
+    } else pendingStart.current = start;
+    void audio.play().catch(() => {
+      stopAt.current = null;
+      pendingStart.current = null;
+    });
+  }
   return (
     <section className={c.group}>
       <h3>
@@ -117,6 +271,20 @@ function MaterialGroup({
         <p className={b.meta}>
           음원 길이 {timeLabel(group.audio.durationMs)} · 재생할 때 불러옵니다.
         </p>
+      ) : null}
+      {group.transcript?.text ? (
+        <details className={c.officialTranscript}>
+          <summary>기존 대본 보기</summary>
+          <p className={c.transcriptRaw}>{group.transcript.text}</p>
+        </details>
+      ) : null}
+      {wholeSourceAudio && mediaUrl && group.audio ? (
+        <SourceTranscriptPanel
+          assetId={group.audio.assetId}
+          durationMs={group.audio.durationMs}
+          loadTranscripts={loadTranscripts}
+          onSeek={(startMs) => seek(startMs)}
+        />
       ) : null}
       <ol className={c.questions}>
         {group.questions.map((raw, questionIndex) => {
@@ -190,22 +358,12 @@ function MaterialGroup({
                 <button
                   type="button"
                   className={w.outlineButton}
-                  onClick={() => {
-                    if (player.current) {
-                      stopAt.current = wholeSourceAudio
-                        ? null
-                        : question.audioRange!.endMs / 1000;
-                      const start = question.audioRange!.startMs / 1000;
-                      if (player.current.readyState >= 1) {
-                        pendingStart.current = null;
-                        player.current.currentTime = start;
-                      } else pendingStart.current = start;
-                      void player.current.play().catch(() => {
-                        stopAt.current = null;
-                        pendingStart.current = null;
-                      });
-                    }
-                  }}
+                  onClick={() =>
+                    seek(
+                      question.audioRange!.startMs,
+                      wholeSourceAudio ? undefined : question.audioRange!.endMs,
+                    )
+                  }
                 >
                   {wholeSourceAudio
                     ? `${timeLabel(question.audioRange.startMs)}부터 이어 듣기`
@@ -251,6 +409,11 @@ export default function ListeningBankMaterial({
   const [created, setCreated] = useState<ListeningSetDetail | null>(null);
   const [rightsBasis, setRightsBasis] = useState("");
   const command = useRef<AbortController | null>(null);
+  const transcriptRequest = useRef<{
+    key: string;
+    controller: AbortController;
+    promise: Promise<ListeningSourceTranscriptsResponse>;
+  } | null>(null);
   const materialElement = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!active)
@@ -280,6 +443,38 @@ export default function ListeningBankMaterial({
     return () => controller.abort();
   }, [active, setId, generation]);
   const current = source?.detail.id === setId ? source : null;
+  const documentHash = current?.documentHash;
+  useEffect(
+    () => () => {
+      transcriptRequest.current?.controller.abort();
+      transcriptRequest.current = null;
+    },
+    [setId, documentHash],
+  );
+  const loadTranscripts = useCallback(() => {
+    const key = `${setId}:${documentHash}`;
+    if (transcriptRequest.current?.key === key)
+      return transcriptRequest.current.promise;
+    transcriptRequest.current?.controller.abort();
+    const controller = new AbortController();
+    const promise = listeningRequest<ListeningSourceTranscriptsResponse>(
+      `/sets/${setId}/source-transcripts`,
+      controller.signal,
+    )
+      .then((result) => {
+        const response = listeningSourceTranscriptsResponseSchema.parse(result);
+        if (response.setId !== setId)
+          throw new Error("자료를 새로 불러와 주세요.");
+        return response;
+      })
+      .catch((cause) => {
+        if (transcriptRequest.current?.controller === controller)
+          transcriptRequest.current = null;
+        throw cause;
+      });
+    transcriptRequest.current = { key, controller, promise };
+    return promise;
+  }, [setId, documentHash]);
   const questionCount = basket.reduce(
     (total, entry) => total + entry.questions.length,
     0,
@@ -548,13 +743,14 @@ export default function ListeningBankMaterial({
             </div>
             {current.detail.document.groups.map((group, index) => (
               <MaterialGroup
-                key={`${setId}:${group.id}`}
+                key={`${setId}:${group.id}:${current.documentHash}`}
                 group={group}
                 index={index}
                 wholeSourceAudio={usesWholeSourceAssessmentAudio({
                   source: current.detail.document.source,
                   groups: [group],
                 })}
+                loadTranscripts={loadTranscripts}
                 mediaUrl={
                   group.audio
                     ? current.detail.mediaUrlsByAssetId[group.audio.assetId]

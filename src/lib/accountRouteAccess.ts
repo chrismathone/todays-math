@@ -51,6 +51,8 @@ export function englishRouteAllowed(
     return bank && method === "POST";
   if (/^\/api\/english\/listening\/sets\/[^/]+\/compose-source$/.test(path))
     return bank && method === "GET";
+  if (/^\/api\/english\/listening\/sets\/[^/]+\/source-transcripts$/.test(path))
+    return bank && method === "GET";
   if (/^\/english\/listening\/sets\/[^/]+\/draft-print$/.test(path))
     return listeningMaterial && read;
   if (/^\/english\/listening\/sets\/[^/]+\/print$/.test(path))

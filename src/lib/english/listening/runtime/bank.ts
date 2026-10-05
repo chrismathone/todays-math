@@ -10,6 +10,7 @@ import {
 import catalog from "../../../../../docs/listening-samples/ebs-catalog-20261003.json";
 import { decodeBankCursor, encodeBankCursor } from "../../bank/service";
 import { invalid, type ListeningTx } from "./database";
+import { currentSourceTranscriptPredicate } from "./transcripts";
 
 export async function searchListeningBank(
   tx: ListeningTx,
@@ -41,7 +42,16 @@ export async function searchListeningBank(
       (SELECT count(*) FROM english_listening_publication p WHERE p.set_id=s.id) AS publication_count,s.updated_at
     FROM english_listening_set s WHERE s.deleted_at IS NULL
       AND (${account.isSuperAdmin === true} OR (s.owner_id=${account.id}::uuid AND (s.branch_id IS NULL OR s.branch_id=${account.branchId ?? null}::uuid)) OR (${account.isAdmin && !!account.branchId} AND s.branch_id=${account.branchId ?? null}::uuid))
-      ${query.q ? Prisma.sql`AND (s.document->>'title' ILIKE ${"%" + escaped + "%"} OR s.document->'source'->>'provider' ILIKE ${"%" + escaped + "%"} OR EXISTS (SELECT 1 FROM jsonb_array_elements(s.document->'groups') g WHERE g->'transcript'->>'text' ILIKE ${"%" + escaped + "%"} OR EXISTS (SELECT 1 FROM jsonb_array_elements(g->'questions') q WHERE q->>'prompt' ILIKE ${"%" + escaped + "%"} OR q->'metadata'->>'questionType' ILIKE ${"%" + escaped + "%"} OR (q->'metadata'->'topics')::text ILIKE ${"%" + escaped + "%"} OR (q->'metadata'->'keywords')::text ILIKE ${"%" + escaped + "%"})))` : Prisma.empty}
+      ${
+        query.q
+          ? Prisma.sql`AND (s.document->>'title' ILIKE ${"%" + escaped + "%"} OR s.document->'source'->>'provider' ILIKE ${"%" + escaped + "%"} OR EXISTS (SELECT 1 FROM jsonb_array_elements(s.document->'groups') g WHERE g->'transcript'->>'text' ILIKE ${"%" + escaped + "%"} OR EXISTS (SELECT 1 FROM jsonb_array_elements(g->'questions') q WHERE q->>'prompt' ILIKE ${"%" + escaped + "%"} OR q->'metadata'->>'questionType' ILIKE ${"%" + escaped + "%"} OR (q->'metadata'->'topics')::text ILIKE ${"%" + escaped + "%"} OR (q->'metadata'->'keywords')::text ILIKE ${"%" + escaped + "%"})) OR EXISTS (
+        SELECT 1 FROM english_listening_source_transcript t
+        JOIN english_listening_media_asset a ON a."assetId"=t.asset_id
+        CROSS JOIN LATERAL jsonb_array_elements(s.document->'groups') g
+        WHERE ${currentSourceTranscriptPredicate()} AND t.display_text ILIKE ${"%" + escaped + "%"}
+      ))`
+          : Prisma.empty
+      }
       ${query.level ? Prisma.sql`AND s.document->>'level'=${query.level}` : Prisma.empty}
       ${query.year ? Prisma.sql`AND s.document->'source'->>'year'=${String(query.year)}` : Prisma.empty}
       ${query.round ? Prisma.sql`AND s.document->'source'->>'round'=${String(query.round)}` : Prisma.empty}

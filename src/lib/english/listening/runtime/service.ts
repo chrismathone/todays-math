@@ -16,6 +16,7 @@ import * as assignments from "./assignments";
 import * as students from "./students";
 import { searchListeningBank, searchListeningReferences } from "./bank";
 import { composeListeningSet, composeSource } from "./compose";
+import { sourceTranscripts } from "./transcripts";
 import type { ListeningDriveApi } from "../media/driveApi";
 import type {
   ListeningStorageApi,
@@ -124,6 +125,13 @@ export function createListeningRuntime(
         const account = await teacher(tx, actor, "materials");
         if (!account.menus.includes("english-bank")) throw denied();
         return composeSource(tx, account, setId);
+      }),
+    sourceTranscripts: (actor: ListeningActor, setId: string) =>
+      transaction(undefined, async (tx) => {
+        id(setId);
+        const account = await teacher(tx, actor, "materials");
+        if (!account.menus.includes("english-bank")) throw denied();
+        return sourceTranscripts(tx, account, setId);
       }),
     setDetail: (actor: ListeningActor, setId: string) =>
       transaction(id(setId), async (tx) =>
