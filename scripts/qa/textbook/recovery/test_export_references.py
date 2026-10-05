@@ -3,12 +3,165 @@ import argparse
 import copy
 import hashlib
 import json
+import unittest
 from pathlib import Path
 
 import pymupdf as fitz
 
 from verify_exports import answer_references
-from page_references import reference_labels, reference_phase_evidence, INDEX_ACTIVITIES, visible_label, printed_label
+from page_references import (reference_labels, reference_phase_evidence, INDEX_ACTIVITIES,
+                             compact, visible_label, printed_label,
+                             _label_notation, _printed_label_evidence)
+
+
+class MathLabelControls(unittest.TestCase):
+    def test_frozen_upright_letters_and_trigonometric_tokens(self):
+        for letters in ("R", "H", "A", "S", "RHA", "RHS"):
+            self.assertEqual(visible_label(r"$\mathrm{" + letters + "}$ 합동"), letters + " 합동")
+        self.assertEqual(visible_label(r"$\sin$ · $\cos$ · $\tan$"), "sin · cos · tan")
+
+    def test_all_six_frozen_quadratics_keep_every_glyph_and_exponent_position(self):
+        for source, visible in (("y=x^2", "y=x2"), ("y=-x^2", "y=−x2"),
+                                ("y=ax^2", "y=ax2"), ("y=ax^2+q", "y=ax2+q"),
+                                ("y=a(x-p)^2", "y=a(x−p)2"), ("y=a(x-p)^2+q", "y=a(x−p)2+q")):
+            text, raised = _label_notation("이차함수 $" + source + "$의 그래프")
+            self.assertEqual(text, "이차함수 " + visible + "의 그래프")
+            self.assertEqual(raised, [4 + source.index("^")])
+
+    def test_unknown_or_malformed_notation_fails_closed(self):
+        for source in (r"$\sqrt{x}$", r"$\mathrm{B}$", r"$\mathrm{RH}$", r"$\sinh$",
+                       r"$\sin x$", "$x^3$", "$y=x^{2}$", "$x_2$", "$y=x^2+1$",
+                       "$y=x^2", "$y=x^2$$", "$y={x}$", r"\cos"):
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                visible_label(source)
+
+    def test_existing_numbers_variables_and_operators_remain_sensitive(self):
+        for source, expected in (("$10$", "10"), ("$n$", "n"), (r"$\times$", "×"),
+                                 (r"$\div$", "÷"), (r"$\cdot$", "⋅")):
+            self.assertEqual(visible_label(source), expected)
+        for changed in ("y=x", "y=x3", "y=−x2", "y=2", "y=x2+q"):
+            self.assertNotEqual(visible_label("$y=x^2$"), changed)
+        self.assertNotEqual(_label_notation("$y=x^2$"), _label_notation("$y=x2$"))
+
+    @staticmethod
+    def page(wrapped=False, raised=True, duplicate=False):
+        # Deliberately reversed text-object order, with font boxes overlapping
+        # vertically just as actual baseline and superscript PDF spans do.
+        spans = []
+        for char, x, baseline, size, font in (("B", 40, 50, 10, "Prose"),
+                                             ("2", 34, 46.25 if raised else 50, 7, "KaTeX_Main-Regular"),
+                                             ("A", 10, 50, 10, "Prose"),
+                                             ("x", 28, 50, 10, "KaTeX_Math-Italic")):
+            spans.append({"size": size, "font": font,
+                          "chars": [{"c": char, "origin": [x, baseline],
+                                     "bbox": [x, baseline-size, x+6 if size == 10 else x+3.5, baseline+2]}]})
+        if duplicate:
+            spans.append(copy.deepcopy(spans[1]))
+        if wrapped:
+            spans.append({"size": 10, "font": "Prose", "chars": [
+                {"c": "C", "origin": [10, 64], "bbox": [10, 54, 16, 66]}]})
+        class Page:
+            def get_text(self, *_args, **_kwargs):
+                return {"blocks": [{"lines": [{"spans": spans}]}]}
+        return Page()
+
+    def test_superscript_and_baseline_glyphs_follow_true_x_order(self):
+        self.assertEqual(_printed_label_evidence(self.page(), [0, 0, 100, 100]), ("Ax2B", [2]))
+
+    def test_wrapped_lines_remain_in_line_order(self):
+        self.assertEqual(printed_label(self.page(wrapped=True), [0, 0, 100, 100]), "Ax2B\nC")
+
+    def test_baseline_digit_is_distinct_from_raised_exponent(self):
+        self.assertEqual(_printed_label_evidence(self.page(raised=False), [0, 0, 100, 100]), ("Ax2B", []))
+
+    def test_duplicate_raised_glyph_is_preserved_and_rejected(self):
+        self.assertEqual(_printed_label_evidence(self.page(duplicate=True), [0, 0, 100, 100]), ("Ax22B", [2, 3]))
+
+
+def check_math_label_controls(folder, variant):
+    """Read frozen exchanges and actual boxes; mutate only in-memory evidence."""
+    witness_file, pdf = folder / f"{variant}-witness.json", folder / f"{variant}.pdf"
+    exchange_file = folder / "exchange.private.json"
+    witness = json.loads(witness_file.read_text(encoding="utf-8"))
+    exchange = json.loads(exchange_file.read_text(encoding="utf-8"))
+    assert hashlib.sha256(pdf.read_bytes()).hexdigest() == witness["pdfSha256"]
+    assert hashlib.sha256(exchange_file.read_bytes()).hexdigest() == witness["fixtureSha256"]
+    evidence, controls = [], []
+    with fitz.open(pdf) as document:
+        baseline = reference_labels(witness, document, exchange)
+        assert not baseline["issues"], baseline["issues"]
+        entries = [(b, e) for u in exchange["units"] for s in u["sections"] for b in s["blocks"]
+                   if (b.get("semantic") or {}).get("node", {}).get("kind") == "references"
+                   for e in b["semantic"]["node"]["entries"]
+                   if any(token in e["label"] for token in (r"\mathrm", r"\sin", "^2"))]
+        assert entries, "No supported frozen math labels in requested pair"
+        for block, entry in entries:
+            identity = (block["blockId"], entry["key"])
+            page, row = next((p, r) for p in witness["pages"] for r in p["references"]
+                             if (r["blockId"], r["key"]) == identity)
+            expected, exponents = _label_notation(entry["label"])
+            actual, raised = _printed_label_evidence(document[page["pdfPageIndex"] - 1], row["labelBoxMm"])
+            assert compact(expected) == compact(row["label"]) == compact(actual) and exponents == raised
+            evidence.append({"blockId": identity[0], "key": identity[1], "sourceLabel": entry["label"],
+                             "expectedVisibleLabel": expected, "actualDomLabel": row["label"],
+                             "actualPrintedLabel": actual, "superscriptPositions": raised,
+                             "pdfPageIndex": page["pdfPageIndex"], "labelBoxMm": row["labelBoxMm"]})
+
+            def rejected(changed, ink, name, code):
+                result = reference_labels(changed, ink, exchange)
+                assert any(i["code"] == code and (code == "INDEX_REFERENCE_POPULATION"
+                           or (i.get("blockId"), i.get("key")) == identity) for i in result["issues"]), name
+                controls.append({"key": identity[1], "control": name, "expectedFailure": code, "rejected": True})
+
+            def changed_row(changed):
+                return next(r for p in changed["pages"] for r in p["references"]
+                            if (r["blockId"], r["key"]) == identity)
+
+            cases = []
+            if "^2" in entry["label"]:
+                cases.extend((("missing exponent", expected.replace("2", "", 1), "2"),
+                              ("changed exponent", expected.replace("2", "3", 1), None),
+                              ("missing variable", expected.replace("x", "", 1), "x")))
+                if "−" in expected:
+                    cases.append(("changed sign", expected.replace("−", "+", 1), "−"))
+            elif r"\mathrm" in entry["label"]:
+                cases.append(("missing mathrm letter", expected.replace("R", "", 1), "R"))
+            else:
+                cases.append(("wrong trigonometric token", expected.replace("sin", "cos", 1), "n"))
+            bounds = fitz.Rect([v * 72 / 25.4 for v in row["labelBoxMm"]])
+            glyphs = [(span, char) for b in document[page["pdfPageIndex"] - 1].get_text("rawdict", clip=bounds)["blocks"]
+                      for line in b.get("lines", []) for span in line["spans"] for char in span["chars"]]
+            for name, wrong, removed in cases:
+                changed = copy.deepcopy(witness)
+                changed_row(changed)["label"] = wrong
+                rejected(changed, document, name + " in actual DOM label", "INDEX_DOM_LABEL")
+                if removed is None:
+                    continue
+                span, char = next((s, c) for s, c in glyphs if s["font"].startswith("KaTeX") and c["c"] == removed)
+                with fitz.open(stream=document.tobytes(), filetype="pdf") as ink:
+                    ink_page = ink[page["pdfPageIndex"] - 1]
+                    rect = fitz.Rect(char["bbox"])
+                    ink_page.add_redact_annot(fitz.Rect(rect.x0 + .05, rect.y0 + .05, rect.x1 - .05, rect.y1 - .05))
+                    ink_page.apply_redactions()
+                    rejected(witness, ink, "missing actual PDF glyph " + removed, "INDEX_PRINTED_LABEL")
+                    if removed == "2":
+                        math_baseline = next(c["origin"][1] for s, c in glyphs
+                                             if s["font"].startswith("KaTeX") and c["c"] == "x")
+                        ink_page.insert_text((char["origin"][0], math_baseline), "2", fontsize=span["size"])
+                        flat, positions = _printed_label_evidence(ink_page, row["labelBoxMm"])
+                        assert compact(flat) == compact(expected) and positions == []
+                        rejected(witness, ink, "exponent moved to baseline with identical glyph sequence", "INDEX_PRINTED_LABEL")
+            changed = copy.deepcopy(witness)
+            changed_row(changed)["pageLabel"] = "999999"
+            rejected(changed, document, "wrong destination", "INDEX_DOM_PAGE_REFERENCE")
+            changed = copy.deepcopy(witness)
+            changed_page = next(p for p in changed["pages"] if p["pdfPageIndex"] == page["pdfPageIndex"])
+            changed_page["references"].append(copy.deepcopy(changed_row(changed)))
+            rejected(changed, document, "duplicate reference population", "INDEX_REFERENCE_POPULATION")
+    return {"key": folder.name, "variant": variant, "labelOnlyEvidence": True,
+            "pdfSha256": witness["pdfSha256"], "fixtureSha256": witness["fixtureSha256"],
+            "witnessSha256": hashlib.sha256(witness_file.read_bytes()).hexdigest(),
+            "baseline": baseline, "mathEvidence": evidence, "controls": controls, "controlsPassed": True}
 
 
 def check_indexes(folder, variant, witness, exchange):
@@ -239,7 +392,20 @@ def main():
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--answers-only", action="store_true", help="Historical problem-reference scope only; never complete index acceptance")
     parser.add_argument("--frozen-qa-controls", action="store_true", help="Narrow real-evidence controls with known target defects preserved")
+    parser.add_argument("--math-label-controls", action="store_true", help="Frozen math labels and in-memory DOM/PDF sensitivity controls only")
     args = parser.parse_args()
+    if args.math_label_controls:
+        units = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(MathLabelControls))
+        assert units.wasSuccessful(), "Focused math-label unit controls failed"
+        result = [check_math_label_controls(args.directory / key, variant)
+                  for key in args.only.split(",") for variant in ("student", "answers")]
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps({"labelOnlyEvidence": True, "unitTests": units.testsRun, "pairs": result},
+                                         ensure_ascii=False, indent=2), encoding="utf-8")
+        print(json.dumps({"labelOnlyEvidence": True, "unitTests": units.testsRun,
+                          "actualMathLabels": sum(len(r["mathEvidence"]) for r in result),
+                          "rejectedControls": sum(len(r["controls"]) for r in result)}))
+        return
     if args.frozen_qa_controls:
         result = [check_frozen_controls(args.directory / key, variant)
                   for key in args.only.split(",") for variant in ("student", "answers")]

@@ -14,50 +14,108 @@ def compact(value):
     return re.sub(r"\s+", "", value or "")
 
 
-def visible_label(source):
+def _label_notation(source):
     """Decode only independently understood inline notation; never discard math.
 
     Unknown TeX/markup fails closed rather than erasing commands, digits or signs.
-    The frozen bank labels use integers, a variable, multiplication and division.
+    Superscript positions are retained separately from the visible glyph sequence
+    because DOM textContent represents a raised 2 as an ordinary character.
     """
     symbols = {r"\times": "×", r"\div": "÷", r"\cdot": "⋅"}
+    upright = {r"\mathrm{" + letters + "}": letters
+               for letters in ("R", "H", "A", "S", "RHA", "RHS")}
+    functions = {r"\sin": "sin", r"\cos": "cos", r"\tan": "tan"}
+    quadratics = {"y=x^2", "y=-x^2", "y=ax^2", "y=ax^2+q",
+                  "y=a(x-p)^2", "y=a(x-p)^2+q"}
+    superscripts, pieces, cursor = [], [], 0
 
-    def math_ink(match):
-        value = match[1].strip()
+    def math_ink(value):
+        value = value.strip()
         if value in symbols:
-            return symbols[value]
+            return symbols[value], None
+        if value in upright:
+            return upright[value], None
+        if value in functions:
+            return functions[value], None
+        if value in quadratics:
+            return value.replace("^2", "2").replace("-", "−"), value.index("^")
         if re.fullmatch(r"[A-Za-z0-9()+\-=/<>., :]+", value):
-            return value.replace("-", "−")
+            return value.replace("-", "−"), None
         raise ValueError("unsupported inline math label")
 
-    result = re.sub(r"\$([^$]+)\$", math_ink, source)
+    for match in re.finditer(r"\$([^$]+)\$", source):
+        pieces.append(source[cursor:match.start()])
+        ink, exponent = math_ink(match[1])
+        if exponent is not None:
+            superscripts.append(len(compact("".join(pieces))) + exponent)
+        pieces.append(ink)
+        cursor = match.end()
+    pieces.append(source[cursor:])
+    result = "".join(pieces)
     if "$" in result or "\\" in result:
         raise ValueError("unsupported label notation")
-    return result
+    return result, superscripts
 
 
-def printed_label(page, box):
+def visible_label(source):
+    return _label_notation(source)[0]
+
+
+def _printed_label_evidence(page, box):
     """Read bounded painted glyphs by baseline then x, independent of PDF runs.
 
     KaTeX and prose are separate PDF text objects even on one visible line.
     Stream order appends the math after the prose; glyph geometry restores its
-    actual position. No glyph is dropped or replaced, and wrapped lines remain
-    ordered by their measured baseline.
+    actual position. A smaller raised KaTeX glyph attaches only to an adjacent
+    math base on the lower baseline, within the measured font-size bounds.
+    Every glyph survives, wrapped lines remain separate, and raised positions
+    remain available to reject a baseline digit substituted for an exponent.
     """
     bounds = fitz.Rect([v * 72 / 25.4 for v in box])
     glyphs = []
     for block in page.get_text("rawdict", clip=bounds)["blocks"]:
         for line in block.get("lines", []):
             for span in line["spans"]:
-                glyphs.extend((span["origin"][1], char["bbox"][0], char["c"])
+                glyphs.extend({"baseline": char["origin"][1], "x": char["bbox"][0],
+                               "char": char["c"], "bbox": char["bbox"],
+                               "size": span["size"], "font": span["font"], "raised": False}
                               for char in span["chars"])
     lines = []
-    for baseline, x, char in sorted(glyphs):
-        if not lines or abs(baseline - lines[-1][0]) > .75:
-            lines.append((baseline, []))
-        lines[-1][1].append((x, char))
-    return "\n".join("".join(char for _, char in sorted(chars, key=lambda g: g[0]))
-                     for _, chars in lines)
+    for glyph in sorted(glyphs, key=lambda g: (g["baseline"], g["x"])):
+        if not lines or abs(glyph["baseline"] - lines[-1][0]) > .75:
+            lines.append((glyph["baseline"], []))
+        lines[-1][1].append(glyph)
+    for baseline, chars in lines:
+        for glyph in list(chars):
+            if glyph["raised"] or not glyph["font"].startswith("KaTeX") or glyph["char"].isspace():
+                continue
+            candidates = [(other, base) for lower, other in lines if lower > baseline + .75
+                          for base in other if base["font"].startswith("KaTeX")
+                          and not base["char"].isspace() and not base["raised"]
+                          and glyph["size"] <= .8 * base["size"]
+                          and lower - baseline <= .6 * base["size"]
+                          and -.15 * base["size"] <= glyph["x"] - base["bbox"][2] <= .6 * base["size"]
+                          and min(glyph["bbox"][3], base["bbox"][3]) > max(glyph["bbox"][1], base["bbox"][1])]
+            if candidates:
+                target, _ = min(candidates, key=lambda c: abs(glyph["x"] - c[1]["bbox"][2]))
+                chars.remove(glyph)
+                glyph["raised"] = True
+                target.append(glyph)
+    pieces, superscripts, offset = [], [], 0
+    for _, chars in lines:
+        if not chars:
+            continue
+        for glyph in sorted(chars, key=lambda g: g["x"]):
+            pieces.append(glyph["char"])
+            if glyph["raised"]:
+                superscripts.append(offset)
+            offset += len(compact(glyph["char"]))
+        pieces.append("\n")
+    return "".join(pieces).rstrip("\n"), superscripts
+
+
+def printed_label(page, box):
+    return _printed_label_evidence(page, box)[0]
 
 
 def reference_labels(witness, document, exchange):
@@ -140,10 +198,11 @@ def reference_labels(witness, document, exchange):
         if row.get("pageLabel") != desired:
             issues.append({"code": "INDEX_DOM_PAGE_REFERENCE", **detail, "actual": row.get("pageLabel"), "expected": desired})
         try:
-            expected_label = visible_label(entry["label"])
+            expected_label, expected_superscripts = _label_notation(entry["label"])
         except ValueError as error:
             issues.append({"code": "INDEX_LABEL_NOT_SUPPORTED", **detail, "reason": str(error)})
             expected_label = entry["label"]
+            expected_superscripts = []
         if compact(row.get("label")) != compact(expected_label):
             issues.append({"code": "INDEX_DOM_LABEL", **detail,
                            "actual": row.get("label"), "expected": expected_label})
@@ -153,9 +212,12 @@ def reference_labels(witness, document, exchange):
             if not isinstance(box, list) or len(box) != 4 or not all(isinstance(v, (int, float)) and math.isfinite(v) for v in box):
                 issues.append({"code": code, **detail, "reason": "actual DOM box missing"})
                 continue
-            text = printed_label(document[page["pdfPageIndex"] - 1], box)
-            if compact(text) != compact(target):
+            text, superscripts = _printed_label_evidence(document[page["pdfPageIndex"] - 1], box)
+            script_mismatch = field == "labelBoxMm" and superscripts != expected_superscripts
+            if compact(text) != compact(target) or script_mismatch:
                 issues.append({"code": code, **detail, "actual": compact(text), "expected": compact(target)})
+                if script_mismatch:
+                    issues[-1].update(actualSuperscripts=superscripts, expectedSuperscripts=expected_superscripts)
             else:
                 checked[field] += 1
         model = blocks.get(row["blockId"], {})
@@ -165,7 +227,7 @@ def reference_labels(witness, document, exchange):
             issues.append({"code": "INDEX_MODEL_PAGE_REFERENCE", **detail})
         samples.append({**detail, "targetPageLabel": desired, **target_evidence,
                         "expectedVisibleLabel": expected_label, "labelBoxMm": row.get("labelBoxMm"),
-                        "printedLabelMethod": "bounded-glyph-baseline-then-x"})
+                        "printedLabelMethod": "bounded-glyph-line-then-x-with-superscript-positions"})
     activities = Counter(b["semantic"]["activity"] for _, _, b, _ in expected.values())
     missing_activities = sorted(INDEX_ACTIVITIES - set(activities))
     if missing_activities:
