@@ -6,7 +6,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { collectFileReferences, currentPlanState, planSource, requireEvidence, validateCertificate, valueSha256 } from './admission-plan.mjs';
+import { certifiedQueueBindings, collectFileReferences, collectQueueFileReferences, currentPlanState, planSource, requireEvidence, validateCertificate, valueSha256 } from './admission-plan.mjs';
 
 const require = createRequire(import.meta.url);
 const { listeningDraftSchema } = require('../../../../src/contracts/englishListeningHttp.contract');
@@ -62,11 +62,19 @@ for (const source of frozen.records) {
 // Recheck nested admitted proof artifacts and their request/native manifests.
 // Grow the queue as immutable JSON manifests reference further actual files.
 const checked = new Set<string>();
+const queueBindings = await certifiedQueueBindings(certificate, (ref: any) => readJson(ref.path, ref.sha256));
+const queueInventoryLabels: any[] = [];
 for (const [path, hash] of evidenceReferences) {
   requireEvidence(await fileHash(path) === hash, 'Nested replay artifact changed: ' + path);
   if (path.toLowerCase().endsWith('.json') && !checked.has(path)) {
     checked.add(path);
-    collectFileReferences(await readJson(path, hash), evidenceReferences);
+    const manifest = await readJson(path, hash);
+    const binding = queueBindings.get(resolve(path));
+    if (binding) {
+      requireEvidence(binding.sha256 === hash, 'Certified queue bytes differ');
+      queueInventoryLabels.push({ queue: { path, sha256: hash },
+        ...collectQueueFileReferences(manifest, evidenceReferences, binding) });
+    } else collectFileReferences(manifest, evidenceReferences);
   }
 }
 const records = validateCertificate(inventory, snapshot, certificate);
@@ -139,7 +147,8 @@ async function inspectBatch() {
 try {
   const before = await inspectBatch();
   await mkdir(output, { recursive: true });
-  await writeFile(resolve(output, 'before-and-plan.json'), JSON.stringify({ certificateSha256, inventorySha256, before, plans }, null, 2), { flag: 'wx' });
+  await writeFile(resolve(output, 'before-and-plan.json'), JSON.stringify({ certificateSha256, inventorySha256,
+    checkedEvidenceFiles: evidenceReferences.size, queueInventoryLabels, before, plans }, null, 2), { flag: 'wx' });
   if (values.apply) {
     for (const plan of plans.filter((p: any) => p.markers.length)) {
       const receipt = await db.$transaction(async tx => {
@@ -179,6 +188,8 @@ try {
   const additions = plans.reduce((n: number, p: any) => n + p.markers.length, 0);
   const report = { checkedAt: new Date().toISOString(), mode: values.apply ? 'apply' : 'dry-run',
     certificateSha256, inventorySha256, sourceSets: 193, questions: 3699,
+    checkedEvidenceFiles: evidenceReferences.size,
+    staleQueueInventoryLabels: queueInventoryLabels.filter(row => row.labelDiffers).length,
     changedSources: plans.filter((p: any) => p.markers.length).length, newlyVerifiedStarts: additions,
     preservedStarts, totalStarts: preservedStarts + additions, held: certificate.counts.outcomes.held ?? 0,
     writesStorage: false, audioFilesChanged: false, questionContentChanged: false, humanReviewChanged: false,

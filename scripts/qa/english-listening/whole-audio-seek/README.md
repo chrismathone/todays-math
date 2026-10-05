@@ -51,6 +51,16 @@ An exact audited previous application can be resumed; concurrent edits abort.
 Proposed document hashes are canonical so JSONB property ordering cannot break
 readback. Original frozen file/document hashes keep their original definition.
 
+Queue discovery headers sometimes retain an old `inventoryPath` after a rebase.
+The operator resolves only the root header of a queue explicitly consumed by
+the reviewed certificate or its authenticated inventory ancestor chain. The
+queue's whole-file hash, provider and `inventorySha256` must still match that
+certificate, and the authoritative inventory file is checked with its own hash.
+Every nested probe, request, media and mapping reference remains strict. Raw
+queue bytes are never rewritten. The before/plan receipt records both the
+observed header and the authoritative inventory, including stale labels; a
+producer-shaped certificate or unrelated queue cannot grant this exception.
+
 Run the operator first without `--apply`, using actual reviewed paths and hashes:
 
 ```powershell

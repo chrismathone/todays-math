@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
+import { resolve } from 'node:path';
 
 export const valueSha256 = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const canonical = value => Array.isArray(value) ? value.map(canonical) : value && typeof value === 'object'
@@ -21,6 +22,62 @@ export function collectFileReferences(value, references = new Map()) {
     collectFileReferences(item, references);
   }
   return references;
+}
+
+/** Queue headers describe their discovery location; the replay binds the actual inventory. */
+export function collectQueueFileReferences(queue, references, binding) {
+  requireEvidence(queue?.schemaVersion === 1 && queue.evidenceContractVersion === 1 &&
+    queue.provider === binding.provider && Array.isArray(queue.records) &&
+    typeof queue.inventoryPath === 'string' && queue.inventorySha256 === binding.inventory.sha256,
+    'Certified queue inventory or provider differs');
+  const observed = { path: queue.inventoryPath, sha256: queue.inventorySha256 };
+  // Only this root header is resolved through its hash-checked consuming certificate.
+  // Keep the original queue bytes and every nested request/probe reference unchanged.
+  collectFileReferences({ ...queue, inventoryPath: binding.inventory.path }, references);
+  return { observed, authoritative: binding.inventory,
+    labelDiffers: resolve(observed.path) !== resolve(binding.inventory.path) };
+}
+
+/** Discover queue bindings only along the current inventory's authenticated ancestor chain. */
+export async function certifiedQueueBindings(certificate, readBoundJson) {
+  const bindings = new Map(), seen = new Set();
+  const equalRef = (a, b) => a && b && typeof a.path === 'string' && typeof b.path === 'string' &&
+    a.sha256 === b.sha256 && resolve(a.path) === resolve(b.path);
+  let current = certificate;
+  while (current) {
+    requireEvidence(current.schemaVersion === 1 && current.evidenceContractVersion === 1 &&
+      current.completeReplay === true && Array.isArray(current.errors) && current.errors.length === 0 &&
+      current.writesDatabase === false && current.writesStorage === false && current.humanReviewed === false,
+      'Unverified queue binding certificate');
+    const inventoryRef = current.inputs?.inventory;
+    requireEvidence(typeof inventoryRef?.path === 'string' && /^[0-9a-f]{64}$/.test(inventoryRef.sha256), 'Missing certified inventory');
+    const inventory = await readBoundJson(inventoryRef);
+    for (const provider of ['grok', 'claude']) {
+      const queue = current.inputs[provider];
+      if (!queue) continue;
+      requireEvidence(typeof queue.path === 'string' && /^[0-9a-f]{64}$/.test(queue.sha256), 'Invalid certified queue');
+      const key = resolve(queue.path), prior = bindings.get(key);
+      requireEvidence(!prior || (prior.sha256 === queue.sha256 && prior.provider === provider &&
+        equalRef(prior.inventory, inventoryRef)), 'Conflicting certified queue inventories');
+      bindings.set(key, { ...queue, provider, inventory: inventoryRef });
+    }
+    const ancestor = inventory.verifiedAncestor;
+    if (!ancestor) {
+      requireEvidence(!current.inputs.ancestorCertificate && !current.inputs.ancestorInventory &&
+        !current.inputs.ancestorClock, 'Undeclared ancestor queue authority');
+      break;
+    }
+    requireEvidence(equalRef(ancestor.certificate, current.inputs.ancestorCertificate) &&
+      equalRef(ancestor.inventory, current.inputs.ancestorInventory) &&
+      equalRef(ancestor.clock, current.inputs.ancestorClock), 'Ancestor queue authority differs');
+    const key = resolve(ancestor.certificate.path);
+    requireEvidence(!seen.has(key), 'Cyclic queue authority');
+    seen.add(key);
+    current = await readBoundJson(ancestor.certificate);
+    requireEvidence(equalRef(current.inputs?.inventory, ancestor.inventory) &&
+      equalRef(current.inputs?.clock, ancestor.clock), 'Ancestor certificate input differs');
+  }
+  return bindings;
 }
 export function requireEvidence(condition, message) {
   if (!condition) throw new Error(message);

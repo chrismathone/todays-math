@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { collectFileReferences, contentSha256, currentPlanState, planSource, validateCertificate, valueSha256 } from './admission-plan.mjs';
+import { certifiedQueueBindings, collectFileReferences, collectQueueFileReferences, contentSha256, currentPlanState, planSource, validateCertificate, valueSha256 } from './admission-plan.mjs';
+import { resolve } from 'node:path';
 
 function fixture() {
   const questions = [
@@ -107,4 +108,82 @@ test('a source with no new admitted starts keeps its original revision and docum
   const plan = planSource(f.source, f.baseline, validateCertificate(f.inventory, f.snapshot, f.certificate));
   assert.equal(plan.markers.length, 0);
   assert.deepEqual(plan.next, f.baseline.document);
+});
+
+test('a stale discovery header resolves only through its consuming inventory while raw bytes stay unchanged', () => {
+  const original = 'a'.repeat(64), rebased = 'b'.repeat(64);
+  const queue = { schemaVersion: 1, evidenceContractVersion: 1, provider: 'claude',
+    inventoryPath: '/old.json', inventorySha256: rebased,
+    records: [{ probeEvidence: { path: '/probe.json', sha256: original } }] };
+  const before = structuredClone(queue);
+  const refs = collectFileReferences({ inventoryPath: '/old.json', inventorySha256: original });
+  const audit = collectQueueFileReferences(queue, refs,
+    { provider: 'claude', inventory: { path: '/rebased.json', sha256: rebased } });
+  assert.deepEqual(queue, before);
+  assert.equal(refs.get('/old.json'), original);
+  assert.equal(refs.get('/rebased.json'), rebased);
+  assert.equal(refs.get('/probe.json'), original);
+  assert.equal(audit.labelDiffers, true);
+  assert.deepEqual(audit.observed, { path: '/old.json', sha256: rebased });
+});
+
+test('the queue header exception cannot hide changed hashes, providers or nested probe references', () => {
+  const hash = 'a'.repeat(64), wrong = 'b'.repeat(64);
+  const binding = { provider: 'grok', inventory: { path: '/inventory.json', sha256: hash } };
+  const queue = { schemaVersion: 1, evidenceContractVersion: 1, provider: 'grok',
+    inventoryPath: '/old.json', inventorySha256: hash, records: [] };
+  assert.throws(() => collectQueueFileReferences({ ...queue, inventorySha256: wrong }, new Map(), binding));
+  assert.throws(() => collectQueueFileReferences({ ...queue, provider: 'claude' }, new Map(), binding));
+  const refs = collectFileReferences({ path: '/probe.json', sha256: hash });
+  assert.throws(() => collectQueueFileReferences({ ...queue,
+    records: [{ inventoryPath: '/probe.json', inventorySha256: wrong }] }, refs, binding));
+});
+
+function queueAuthorityFixture() {
+  const ref = (path, digit) => ({ path, sha256: digit.repeat(64) });
+  const oldInv = ref('/old-inventory.json', 'a'), oldClock = ref('/old-clock.json', 'b');
+  const oldCert = ref('/old-cert.json', 'c'), newInv = ref('/new-inventory.json', 'd');
+  const complete = inputs => ({ schemaVersion: 1, evidenceContractVersion: 1, completeReplay: true, errors: [], writesDatabase: false,
+    writesStorage: false, humanReviewed: false, inputs });
+  const old = complete({ inventory: oldInv, clock: oldClock, claude: ref('/old-queue.json', 'e') });
+  const current = complete({ inventory: newInv, grok: ref('/new-queue.json', 'f'),
+    ancestorCertificate: oldCert, ancestorInventory: oldInv, ancestorClock: oldClock });
+  const values = new Map([
+    [newInv.path, { ref: newInv, value: { verifiedAncestor: { certificate: oldCert, inventory: oldInv, clock: oldClock } } }],
+    [oldInv.path, { ref: oldInv, value: {} }], [oldCert.path, { ref: oldCert, value: old }],
+  ]);
+  const read = async r => {
+    const found = values.get(r.path);
+    assert.equal(r.sha256, found?.ref.sha256, 'Reader must enforce immutable bytes');
+    return found.value;
+  };
+  return { current, old, values, read, oldInv, oldCert };
+}
+
+test('only explicitly authenticated ancestor certificates supply queue inventory bindings', async () => {
+  const f = queueAuthorityFixture();
+  const bindings = await certifiedQueueBindings(f.current, f.read);
+  assert.equal(bindings.size, 2);
+  assert.deepEqual(bindings.get(resolve('/old-queue.json')).inventory, f.oldInv);
+  const bad = structuredClone(f.current);
+  bad.inputs.ancestorInventory = { ...f.oldInv, path: '/unrelated.json' };
+  await assert.rejects(() => certifiedQueueBindings(bad, f.read), /Ancestor queue authority differs/);
+  f.old.completeReplay = false;
+  await assert.rejects(() => certifiedQueueBindings(f.current, f.read), /Unverified queue binding certificate/);
+});
+
+test('an undeclared ancestor, wrong ancestor input or cycle cannot supply queue authority', async () => {
+  const f = queueAuthorityFixture();
+  f.values.get('/new-inventory.json').value = {};
+  await assert.rejects(() => certifiedQueueBindings(f.current, f.read), /Undeclared ancestor/);
+  f.values.get('/new-inventory.json').value = { verifiedAncestor: {
+    certificate: f.oldCert, inventory: f.oldInv, clock: f.current.inputs.ancestorClock } };
+  f.old.inputs.inventory = { ...f.oldInv, path: '/other.json' };
+  await assert.rejects(() => certifiedQueueBindings(f.current, f.read), /Ancestor certificate input differs/);
+  f.old.inputs.inventory = f.oldInv;
+  const ancestor = { certificate: f.oldCert, inventory: f.oldInv, clock: f.current.inputs.ancestorClock };
+  f.values.get(f.oldInv.path).value.verifiedAncestor = ancestor;
+  Object.assign(f.old.inputs, { ancestorCertificate: ancestor.certificate, ancestorInventory: ancestor.inventory,
+    ancestorClock: ancestor.clock });
+  await assert.rejects(() => certifiedQueueBindings(f.current, f.read), /Cyclic queue authority/);
 });
