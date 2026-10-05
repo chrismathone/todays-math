@@ -37,6 +37,90 @@ const passageKey = (row) =>
   row.sourceRecordId + "#" + row.cueSegmentIds.join(",");
 
 /**
+ * The one place where a passage's own number was written first, or why there
+ * is none. `listened`: every stored Korean recognition near the number, each
+ * with { startFrame, onsetFrame, onsetSeconds, insideEstimatedCueSpan, numbers,
+ * form, firstSpeechSeconds, hearsOwnNumberFirst }. `numberedSegments`: where
+ * the frozen whole-record recognition wrote a number first.
+ * Returns { outcome: "heard", chosen } or { outcome: "held", reason }.
+ */
+export function chooseNumberPlace(
+  listened,
+  spokenNumbers,
+  cueSegmentIds,
+  numberedSegments,
+) {
+  const heard = listened.filter((e) => e.hearsOwnNumberFirst);
+  const inside = heard.filter((e) => e.insideEstimatedCueSpan);
+  const places = [];
+  for (const entry of inside) {
+    const last = places.at(-1);
+    if (
+      last &&
+      entry.onsetSeconds - last.at(-1).onsetSeconds <= ONE_PLACE_SECONDS
+    )
+      last.push(entry);
+    else places.push([entry]);
+  }
+  if (places.length !== 1) {
+    const numberSomewhere = listened.some((e) =>
+      sameNumbers(e.numbers, spokenNumbers),
+    );
+    return {
+      outcome: "held",
+      reason:
+        places.length > 1
+          ? "original_number_heard_at_two_distant_places"
+          : heard.length
+            ? "original_number_heard_first_only_outside_frozen_cue_span"
+            : listened.some((e) => e.wroteOwnNumberFirst)
+              ? // Written first and reliably, but from a start that is not an
+                // absolute-quiet measured onset (hiss or music before it).
+                "original_number_heard_only_where_no_quiet_onset_is_measured"
+              : numberSomewhere
+                ? "original_number_written_late_bare_or_flagged_uncertain"
+                : !listened.some((e) => e.insideEstimatedCueSpan)
+                  ? "no_listening_at_a_measured_onset_inside_cue_span"
+                  : "original_number_not_heard_at_any_measured_onset",
+    };
+  }
+  // The onset where the number begins right at the probe start; the later one on a tie.
+  const chosen = [...places[0]].sort(
+    (a, b) =>
+      a.firstSpeechSeconds - b.firstSpeechSeconds ||
+      b.onsetFrame - a.onsetFrame,
+  )[0];
+  const otherNumber = listened.some(
+    (e) =>
+      e.startFrame === chosen.startFrame &&
+      e.numbers &&
+      e.form !== "bare" &&
+      !sameNumbers(e.numbers, spokenNumbers),
+  );
+  if (otherNumber)
+    return {
+      outcome: "held",
+      reason: "contradictory_spoken_number_at_same_start",
+    };
+  // Where the frozen whole-record recognition wrote this number more than
+  // once, only the selected segment's estimated span may hold the onset.
+  const rival = numberedSegments.some(
+    (s) =>
+      s.reliable &&
+      sameNumbers(s.numbers, spokenNumbers) &&
+      !cueSegmentIds.includes(s.id) &&
+      s.start <= chosen.onsetSeconds &&
+      chosen.onsetSeconds <= s.end,
+  );
+  if (rival)
+    return {
+      outcome: "held",
+      reason: "duplicate_original_cue_not_uniquely_bound_to_native_onset",
+    };
+  return { outcome: "heard", chosen };
+}
+
+/**
  * `context`: loadContext() plus { audit, ledger, nativeDir, probeRoots }.
  * Returns { census: [one row per held reconstructed question], candidates: [ledger-shaped rows] }.
  */
@@ -60,12 +144,10 @@ export function replayReconstructed(context) {
     if (!baseline.has(row.sourceRecordId))
       baseline.set(row.sourceRecordId, new Map());
     for (const number of row.scopeQuestionNumbers)
-      baseline
-        .get(row.sourceRecordId)
-        .set(number, {
-          startMs: row.audioRange.startMs,
-          provenance: "certificate_admitted",
-        });
+      baseline.get(row.sourceRecordId).set(number, {
+        startMs: row.audioRange.startMs,
+        provenance: "certificate_admitted",
+      });
   }
 
   const passages = new Map();
@@ -182,22 +264,27 @@ export function replayReconstructed(context) {
             firstSegmentText: probe.segments[0]?.text ?? null,
             inputMonoFloat32Sha256: probe.inputMonoFloat32Sha256,
           });
-          const place = measuredStart(
-            w.native,
-            probe.startFrame,
-            probe.onsetFrame,
-          );
-          entry.place = place;
           const first = reading.firstSegmentNumbers;
-          entry.hearsOwnNumberFirst =
-            place.soundWindowsInFirstTwoSeconds >=
-              RULES.minimumSoundAfterOnsetWindows &&
+          // What the recognition wrote, before asking where it began.
+          entry.wroteOwnNumberFirst =
             reading.form !== null &&
             reading.form !== "bare" &&
             sameNumbers(reading.numbers, audit.cueSpokenNumbers) &&
             sameNumbers(first, audit.cueSpokenNumbers) &&
             reading.firstSegmentReliable &&
             reading.firstSpeechSeconds <= RULES.maximumFirstSpeechSeconds;
+          // A place counts only as a measured onset after measured quiet, with
+          // sound enough for a spoken number; a refusal here is the catch below.
+          const place = measuredStart(
+            w.native,
+            probe.startFrame,
+            probe.onsetFrame,
+          );
+          entry.place = place;
+          entry.hearsOwnNumberFirst =
+            entry.wroteOwnNumberFirst &&
+            place.soundWindowsInFirstTwoSeconds >=
+              RULES.minimumSoundAfterOnsetWindows;
         } catch (error) {
           if (!(error instanceof Hold)) throw error;
           entry.notUsable = error.reason;
@@ -207,73 +294,15 @@ export function replayReconstructed(context) {
       }
     passage.listened.sort((a, b) => a.onsetFrame - b.onsetFrame);
 
-    const heard = passage.listened.filter((e) => e.hearsOwnNumberFirst);
-    const inside = heard.filter((e) => e.insideEstimatedCueSpan);
-    const places = [];
-    for (const entry of inside) {
-      const last = places.at(-1);
-      if (
-        last &&
-        entry.onsetSeconds - last.at(-1).onsetSeconds <= ONE_PLACE_SECONDS
-      )
-        last.push(entry);
-      else places.push([entry]);
-    }
-    const otherNumber = (startFrame) =>
-      passage.listened.filter(
-        (e) =>
-          e.startFrame === startFrame &&
-          e.numbers &&
-          e.form !== "bare" &&
-          !sameNumbers(e.numbers, audit.cueSpokenNumbers),
-      );
-    if (places.length === 1) {
-      // The onset where the number begins right at the probe start; the later one on a tie.
-      const chosen = [...places[0]].sort(
-        (a, b) =>
-          a.firstSpeechSeconds - b.firstSpeechSeconds ||
-          b.onsetFrame - a.onsetFrame,
-      )[0];
-      // Where the frozen whole-record recognition wrote this number more than
-      // once, only the selected segment's estimated span may hold the onset.
-      const rivals = w.numberedSegments.filter(
-        (s) =>
-          s.reliable &&
-          sameNumbers(s.numbers, audit.cueSpokenNumbers) &&
-          !audit.cueSegmentIds.includes(s.id) &&
-          s.start <= chosen.onsetSeconds &&
-          chosen.onsetSeconds <= s.end,
-      );
-      if (otherNumber(chosen.startFrame).length) {
-        passage.outcome = "held";
-        passage.reason = "contradictory_spoken_number_at_same_start";
-      } else if (rivals.length) {
-        passage.outcome = "held";
-        passage.reason =
-          "duplicate_original_cue_not_uniquely_bound_to_native_onset";
-      } else {
-        passage.outcome = "heard";
-        passage.chosen = chosen;
-      }
-    } else {
-      passage.outcome = "held";
-      const anyMeasuredOnsetInside = passage.listened.some(
-        (e) => e.insideEstimatedCueSpan,
-      );
-      const numberSomewhere = passage.listened.some((e) =>
-        sameNumbers(e.numbers, audit.cueSpokenNumbers),
-      );
-      passage.reason =
-        places.length > 1
-          ? "original_number_heard_at_two_distant_places"
-          : heard.length
-            ? "original_number_heard_first_only_outside_frozen_cue_span"
-            : numberSomewhere
-              ? "original_number_written_late_bare_or_flagged_uncertain"
-              : !anyMeasuredOnsetInside
-                ? "no_listening_at_a_measured_onset_inside_cue_span"
-                : "original_number_not_heard_at_any_measured_onset";
-    }
+    Object.assign(
+      passage,
+      chooseNumberPlace(
+        passage.listened,
+        audit.cueSpokenNumbers,
+        audit.cueSegmentIds,
+        w.numberedSegments,
+      ),
+    );
   }
 
   // 2. Order by original spoken number against every known start, to a fixed point.
@@ -399,6 +428,7 @@ export function replayReconstructed(context) {
         form: e.form ?? null,
         firstSegmentReliable: e.firstSegmentReliable ?? null,
         firstSpeechSeconds: e.firstSpeechSeconds ?? null,
+        wroteOwnNumberFirst: e.wroteOwnNumberFirst ?? false,
         hearsOwnNumberFirst: e.hearsOwnNumberFirst,
         notUsable: e.notUsable ?? null,
       })),
