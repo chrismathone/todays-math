@@ -125,6 +125,48 @@ class ExactOpeningTests(unittest.TestCase):
             a.exact_opening_words(self.proof, self.text, self.turns)
 
 
+class RepeatedOpeningAndInitialismTests(unittest.TestCase):
+    def setUp(self):
+        self.text = "1번 M: Hello, may I help you? W: Yes, please. 2번 M: Hello, may I help you? W: No, thanks."
+        self.turns = a.original_turns(self.text[:self.text.index("2번")], 0)
+        quotes = []
+        for literal in ("Hello, may I help you?", "Yes"):
+            at = self.text.index(literal)
+            quotes.append({"text": literal, "startCharacter": at, "endCharacter": at + len(literal)})
+        self.proof = {"firstDialogueOpeningEvidence": {"method": "exact_original_opening_v2", "quotes": quotes}}
+
+    def test_repeated_complete_greeting_plus_immediate_reply_is_unique(self):
+        self.assertEqual(a.exact_opening_words(self.proof, self.text, self.turns), ["hello", "may", "i", "help", "you", "yes"])
+        self.proof["firstDialogueOpeningEvidence"]["method"] = "exact_original_opening_v1"
+        with self.assertRaisesRegex(v.InvalidEvidence, "requires_actual_short"):
+            a.exact_opening_words(self.proof, self.text, self.turns)
+
+    def test_repeated_greeting_cannot_be_truncated_or_borrow_other_reply(self):
+        quote = self.proof["firstDialogueOpeningEvidence"]["quotes"][0]
+        quote["text"] = "Hello, may I"
+        quote["endCharacter"] = quote["startCharacter"] + len(quote["text"])
+        with self.assertRaisesRegex(v.InvalidEvidence, "truncated_prior"):
+            a.exact_opening_words(self.proof, self.text, self.turns)
+        self.setUp()
+        quote = self.proof["firstDialogueOpeningEvidence"]["quotes"][1]
+        quote.update(text="No", startCharacter=self.text.index("No"), endCharacter=self.text.index("No") + 2)
+        with self.assertRaisesRegex(v.InvalidEvidence, "character_bounds_or_quote_mismatch"):
+            a.exact_opening_words(self.proof, self.text, self.turns)
+
+    def test_v2_does_not_accept_unique_first_utterance_or_repeated_context(self):
+        with self.assertRaisesRegex(v.InvalidEvidence, "requires_repeated_complete"):
+            a.exact_opening_words(self.proof, self.text[:self.text.index("2번")], self.turns)
+        repeated = self.text.replace("No, thanks.", "Yes, please.")
+        with self.assertRaisesRegex(v.InvalidEvidence, "original_opening_not_unique"):
+            a.exact_opening_words(self.proof, repeated, self.turns)
+
+    def test_dotted_initialisms_are_punctuation_only_without_name_repair(self):
+        self.assertEqual(a.english_words("H.J. called at 5 p.m. in the U.S.A."), a.english_words("HJ called at 5 pm in the USA"))
+        self.assertNotEqual(a.english_words("This is Minsu Kim"), a.english_words("This is Minsoo Kim"))
+        self.assertNotEqual(a.english_words("H. J. Kim"), a.english_words("HJ Kim"))
+        self.assertNotEqual(a.english_words("Pay 13.50"), a.english_words("Pay 1350"))
+
+
 class DialogueBoundaryTests(unittest.TestCase):
     def setUp(self):
         self.source = {"sourceRecordId": "A", "audio": {"durationMs": 100000}, "questions": [{"sourceNumber": 19}, {"sourceNumber": 20}]}

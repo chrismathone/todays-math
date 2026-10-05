@@ -318,3 +318,21 @@ fields are required together; upstream producer must match the lane. Certificate
 expose `producerProvenance` separately from lane counts, and upstream artifact
 hashes are checked before and after replay. An undeclared compiler is recorded
 as undeclared, without inventing an actual provider/model.
+
+## Repeated exact first utterance
+
+`exact_original_opening_v1` retains its short-first-utterance rule.
+`exact_original_opening_v2` covers a complete first utterance of at least four
+English words whose literal words occur multiple times in the original script.
+It requires the complete first utterance plus an exact immediate next-turn
+prefix (at most three turns total) that makes the complete opening unique.
+Exact source character bounds, complete preceding turns, no skipped words,
+unchanged reliable native raw words and all source/onset/neighbor checks remain
+mandatory. A unique first utterance uses the existing single-prefix route.
+Repeated combined context, truncation or a borrowed later reply remains held.
+
+English word comparison uses deterministic `dotted_initialism_v1`: contiguous
+dotted letter initials (`H.J.`, `p.m.`, `U.S.A.`) compare to their undotted forms.
+Literal source quotes, raw ASR text, hashes and character positions remain
+unchanged. Spaces, names, spelling and numeric values are never repaired.
+Dialogue proof keys expose both normalization and the opening method.

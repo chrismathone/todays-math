@@ -262,7 +262,9 @@ def measured_onset(native, replay):
 
 
 def english_words(text):
-    return re.findall(r"[a-z0-9]+(?:'[a-z]+)?", unicodedata.normalize("NFKC", text).lower().replace("’", "'"))
+    normalized = unicodedata.normalize("NFKC", text).lower().replace("’", "'")
+    normalized = re.sub(r"\b(?:[a-z]\.)+[a-z](?:\.)?(?![a-z])", lambda m: m[0].replace(".", ""), normalized)
+    return re.findall(r"[a-z0-9]+(?:'[a-z]+)?", normalized)
 
 
 def dialogue_offset_binding(row, probe, dialogue_probe, replay):
@@ -327,9 +329,15 @@ def original_turns(body, source_start):
 
 def exact_opening_words(proof, text, turns):
     opening = proof.get("firstDialogueOpeningEvidence")
-    v.require(isinstance(opening, dict) and opening.get("method") == "exact_original_opening_v1", "invalid_original_opening_method")
+    v.require(isinstance(opening, dict) and opening.get("method") in ("exact_original_opening_v1", "exact_original_opening_v2"), "invalid_original_opening_method")
     quotes = opening.get("quotes")
-    v.require(len(english_words(turns[0]["text"])) < 4, "opening_route_requires_actual_short_first_utterance")
+    first_words = english_words(turns[0]["text"])
+    if opening["method"] == "exact_original_opening_v1":
+        v.require(len(first_words) < 4, "opening_route_requires_actual_short_first_utterance")
+    else:
+        corpus = english_words(re.sub(SPEAKER, " ", text))
+        first_occurrences = sum(corpus[i:i+len(first_words)] == first_words for i in range(len(corpus) - len(first_words) + 1))
+        v.require(len(first_words) >= 4 and first_occurrences > 1, "opening_v2_requires_repeated_complete_first_utterance")
     v.require(isinstance(quotes, list) and 2 <= len(quotes) <= 3 and len(quotes) <= len(turns), "invalid_original_opening_quotes")
     combined = []
     for i, quote in enumerate(quotes):
@@ -424,6 +432,9 @@ def first_dialogue_alignment(row, source, probe, replay, *, require_instruction)
     binding.update(probe={"path": row[dialogue_field]["path"], "sha256": row[dialogue_field]["sha256"]},
                    probeId=row[dialogue_field]["probeId"], selectedSegmentIds=[s["id"] for s in selected],
                    selectedEstimatedEndFrame=dialogue_probe["startFrame"] + math.ceil(max(v.segment_bounds(s)[1] for s in selected) * replay.actual["sampleRate"]))
+    binding["englishWordNormalization"] = "dotted_initialism_v1"
+    if proof.get("firstDialogueOpeningEvidence"):
+        binding["openingMethod"] = proof["firstDialogueOpeningEvidence"]["method"]
     return binding
 
 
