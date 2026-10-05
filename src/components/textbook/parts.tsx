@@ -551,10 +551,20 @@ export function SectionEditor({
   const mirrorsOk = draft.portraits.every((portrait) =>
     portraitMirrorAllowed(portrait.side, portrait.mirror),
   );
-  /** 구조 편집 칸을 연 블록 — 열고 닫는 것은 화면의 일이다(원고를 바꾸지 않는다) */
-  const [openStructure, setOpenStructure] = useState<ReadonlySet<string>>(
-    () => new Set(),
-  );
+  /**
+   * 구조 편집 칸을 연 블록 — 열고 닫는 것은 화면의 일이다(원고를 바꾸지 않는다).
+   * 연 상태는 그 판본 · 구획에 묶는다: 다른 구획으로 옮겼다 돌아오거나 새 초안으로 넘어가면 다시 닫혀 있다.
+   */
+  const structureScope = `${editionId}:${draft.sectionId}`;
+  const [openState, setOpenState] = useState<{
+    scope: string;
+    ids: ReadonlySet<string>;
+  }>(() => ({ scope: structureScope, ids: new Set() }));
+  // 구획이 바뀌면 그 자리에서 비운다 — 옮겼다 돌아와도 앞서 연 칸이 되살아나지 않는다
+  if (openState.scope !== structureScope)
+    setOpenState({ scope: structureScope, ids: NO_OPEN_STRUCTURE });
+  const openStructure: ReadonlySet<string> =
+    openState.scope === structureScope ? openState.ids : NO_OPEN_STRUCTURE;
   const structureIssue = sectionStructureProblem(draft);
   return (
     <div className={styles.stack}>
@@ -612,10 +622,13 @@ export function SectionEditor({
                   <div className={styles.row}>
                     <span>
                       {view.head}
-                      {stored &&
-                      JSON.stringify(stored) !== JSON.stringify(block)
-                        ? " · 저장 전"
-                        : ""}
+                      {
+                        // 저장본에 없는 블록(아직 저장한 적 없는 것)도 저장 전이다
+                        !stored ||
+                        JSON.stringify(stored) !== JSON.stringify(block)
+                          ? " · 저장 전"
+                          : ""
+                      }
                     </span>
                     <button
                       type="button"
@@ -623,10 +636,12 @@ export function SectionEditor({
                       aria-expanded={open}
                       aria-controls={panelId}
                       onClick={() =>
-                        setOpenStructure((current) => {
-                          const next = new Set(current);
+                        setOpenState((current) => {
+                          const next = new Set(
+                            current.scope === structureScope ? current.ids : [],
+                          );
                           if (!next.delete(block.id)) next.add(block.id);
-                          return next;
+                          return { scope: structureScope, ids: next };
                         })
                       }
                     >
@@ -1636,6 +1651,8 @@ function conceptLabel(
 }
 
 const PROBLEM_TYPES = ["계산", "개념", "활용", "서술형"] as const;
+
+const NO_OPEN_STRUCTURE: ReadonlySet<string> = new Set();
 
 /** 구획 안에서 조판이 거절하는 구조가 있으면 그 사유 — 저장을 막는 자리(화면 · 저장 함수)가 같이 쓴다 */
 export function sectionStructureProblem(section: SectionDetail): string | null {

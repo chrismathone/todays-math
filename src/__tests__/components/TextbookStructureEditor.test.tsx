@@ -6,6 +6,7 @@
  * 자료는 자동 구성이 실제로 만드는 블록이다. 열어 보기만 한 블록은 저장본과 글자 하나 다르지 않아야 한다.
  */
 import {
+  act,
   fireEvent,
   render,
   screen,
@@ -318,13 +319,17 @@ function realSave() {
   return { puts, saveSection: real.saveSection };
 }
 
-async function openStudio(detail: SectionDetail) {
+async function openStudio(
+  detail: SectionDetail,
+  overrides: Partial<TextbookStudioApi> = {},
+) {
   const save = realSave();
   render(
     <TextbookStudioView
       api={api({
         getSection: vi.fn(async () => structuredClone(detail)),
         saveSection: save.saveSection,
+        ...overrides,
       })}
     />,
   );
@@ -574,6 +579,138 @@ describe("고친 구조의 저장 — 실제 저장 요청으로 본다", () => 
       tex: "\\overline{CD}",
       note: "두 점을 잇는다",
     });
+  });
+});
+
+describe("저장을 막는 구조 — 단추만 막은 것이 아니다", () => {
+  const invalid = (): ManuscriptBlock => ({
+    ...boardBlock(),
+    semantic: textbookSemanticSchema.parse({
+      activity: "dialogue",
+      title: "선분의 뜻",
+      node: { kind: "board", title: "선분", tex: "$\\overline{AB}$" },
+    }),
+  });
+  const reason = "판서 수식에는 $ 기호와 줄바꿈을 쓸 수 없습니다.";
+
+  it("저장 후 이동도 같은 사유로 저장하지 않고, 이동하지도 않는다", async () => {
+    const { requestTextbookNavigation } =
+      await import("@/lib/textbook/navigation");
+    const { puts } = await openStudio(sectionWith("auto-lesson", boardBlock()));
+    fireEvent.click(screen.getByRole("button", { name: "내용 수정" }));
+    fireEvent.change(screen.getByRole("textbox", { name: "수식" }), {
+      target: { value: "$x$" },
+    });
+    const proceed = vi.fn();
+    act(() => {
+      requestTextbookNavigation(proceed);
+    });
+    fireEvent.click(
+      within(
+        screen.getByRole("group", { name: "저장하지 않은 수정" }),
+      ).getByRole("button", { name: "저장 후 이동" }),
+    );
+    await act(async () => {});
+    expect(puts).toHaveLength(0);
+    expect(proceed).not.toHaveBeenCalled();
+    expect(screen.getAllByText(reason).length).toBeGreaterThan(0);
+  });
+
+  it("개념을 구획에 잇는 저장도 저장본에 든 잘못된 판서를 다시 싣지 않는다", async () => {
+    const saveConcept = vi.fn(async (input: { conceptKey: string }) => ({
+      revision: 1,
+      aggregateRevision: 11,
+      concept: {
+        conceptKey: input.conceptKey,
+        unitKey: "unit-1",
+        sectionKey: "opening",
+        title: "통분",
+        kind: "정의",
+        unitId: null,
+        body: {
+          goal: "",
+          prerequisites: [],
+          definition: "",
+          conditions: null,
+          examples: [],
+          counterexamples: [],
+          misconceptions: [],
+          explainPrompt: null,
+        },
+        blankItems: [],
+        links: [],
+        mappingVersion: "1",
+        derivedFromConceptKey: null,
+        frozen: null,
+      },
+    }));
+    const { puts } = await openStudio(sectionWith("auto-lesson", invalid()), {
+      saveConcept: saveConcept as unknown as TextbookStudioApi["saveConcept"],
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "개념 키" }), {
+      target: { value: "common-denominator" },
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "개념 제목" }), {
+      target: { value: "통분" },
+    });
+    fireEvent.click(screen.getByRole("button", { name: "개념 원고 만들기" }));
+    fireEvent.click(screen.getByRole("button", { name: "개념 저장" }));
+    await waitFor(() => expect(saveConcept).toHaveBeenCalledOnce());
+    expect(
+      (await screen.findAllByText("개념 저장 완료 · 구획 연결 실패")).length,
+    ).toBeGreaterThan(0);
+    // 개념은 저장됐고, 구획에는 아무것도 쓰지 않았다
+    expect(puts).toHaveLength(0);
+    expect(screen.getAllByText(reason).length).toBeGreaterThan(0);
+  });
+});
+
+describe("연 상태는 그 구획의 것이다", () => {
+  it("다른 구획에 다녀오면 구조 편집 칸은 다시 닫혀 있다 — 고친 것은 없으니 묻지도 않는다", async () => {
+    const OTHER = "00000000-0000-4000-8000-0000000000d2";
+    const first = sectionWith("auto-unit-intro", introBlock());
+    const second: SectionDetail = {
+      ...sectionWith("basic", {
+        blockId: "00000000-0000-4000-8000-0000000000b9",
+        kind: "text",
+        markdown: "둘째 쪽 본문",
+      }),
+      sectionId: OTHER,
+      sectionKey: "second",
+      title: "둘째 쪽",
+      parity: "continue",
+    };
+    const two = edition();
+    two.units[0]!.sections.push({
+      sectionId: OTHER,
+      title: "둘째 쪽",
+      status: "saved",
+      parity: "continue",
+    });
+    await openStudio(first, {
+      openEdition: vi.fn(async () => two),
+      getSection: vi.fn(async (_edition: string, sectionId: string) =>
+        structuredClone(sectionId === OTHER ? second : first),
+      ),
+    });
+    fireEvent.click(screen.getByRole("button", { name: "내용 수정" }));
+    expect(screen.getByRole("button", { name: "접기" })).toBeVisible();
+
+    // 세부 화면의 목차로 옮긴다 — 편집기는 화면에 그대로 남고 원고만 바뀐다
+    const outline = within(screen.getByRole("navigation", { name: "단원" }));
+    const sectionButton = (title: string) =>
+      outline
+        .getAllByRole("button", { name: new RegExp(title) })
+        .find((button) => !button.hasAttribute("aria-label"))!;
+    fireEvent.click(sectionButton("둘째 쪽"));
+    expect(await screen.findByRole("textbox", { name: "본문" })).toHaveValue(
+      "둘째 쪽 본문",
+    );
+    fireEvent.click(sectionButton("여는 쪽"));
+    expect(
+      await screen.findByRole("button", { name: "내용 수정" }),
+    ).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("button", { name: "접기" })).toBeNull();
   });
 });
 

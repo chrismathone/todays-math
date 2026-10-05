@@ -306,6 +306,71 @@ describe("한 칸을 고치면", () => {
   });
 });
 
+describe("저장본과 지금 구조의 꼴이 다르면 — 저장본에서 다시 얹지 않는다", () => {
+  const writing = (prompts: string[], lines = 4) =>
+    textbookSemanticSchema.parse({
+      activity: "questionLog",
+      title: "질문 기록",
+      node: { kind: "writing", prompts, lines },
+    });
+
+  it("지금 구조에 항목이 더 있으면 그 항목을 지우지 않는다", () => {
+    const saved = writing(["가"]);
+    const current = writing(["가", "나"]);
+    const next = editStructure(saved, current, "node.prompts.1", "고친 나");
+    expect((next.node as { prompts: string[] }).prompts).toEqual([
+      "가",
+      "고친 나",
+    ]);
+    // 저장본에만 맞는 번호가 아니라 지금 구조의 번호로 받는다
+    const first = editStructure(saved, current, "node.prompts.0", "고친 가");
+    expect((first.node as { prompts: string[] }).prompts).toEqual([
+      "고친 가",
+      "나",
+    ]);
+  });
+
+  it("지금 구조에 항목이 덜 있으면 저장본의 항목을 되살리지 않는다", () => {
+    const saved = writing(["가", "나", "다"]);
+    const current = writing(["가", "나"]);
+    const next = editStructure(saved, current, "node.lines", "6");
+    expect(next.node).toEqual({
+      kind: "writing",
+      prompts: ["가", "나"],
+      lines: 6,
+    });
+  });
+
+  it("종류가 다르거나 저장본에 구조가 없으면 지금 구조에 그 칸만 고친다", () => {
+    const current = board();
+    const other = writing(["가"]);
+    const plain = textbookSemanticSchema.parse({ activity: "dialogue" });
+    for (const saved of [other, plain]) {
+      const next = editStructure(saved, current, "node.title", "직선");
+      expect(next.node).toEqual({ ...current.node, title: "직선" });
+      expect(next.title).toBe(current.title);
+    }
+  });
+
+  it("칸 밖의 내용이 다르면(출처 기록 등) 지금 구조의 것을 지킨다", () => {
+    const { semantic } = unitIntro();
+    const node = semantic.node!;
+    if (node.kind !== "unitIntro" || !node.provenance)
+      throw new Error("출처 기록이 있는 단원 도입이 아니다");
+    const current = textbookSemanticSchema.parse({
+      ...semantic,
+      node: {
+        ...node,
+        provenance: { ...node.provenance, editor: "다른 편집자" },
+      },
+    });
+    const next = editStructure(semantic, current, "node.question", "새 질문");
+    const after = next.node as typeof node;
+    expect(after.question).toBe("새 질문");
+    expect(after.provenance?.editor).toBe("다른 편집자");
+  });
+});
+
 describe("있어도 되고 없어도 되는 칸", () => {
   it("없던 칸은 비워 두면 생기지 않고, 적으면 생기고, 다시 비우면 사라진다", () => {
     const semantic = board();

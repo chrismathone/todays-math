@@ -970,6 +970,9 @@ export function TextbookStudioView({
       if (!hasConceptBlock(server, conceptKey)) {
         block = { id: crypto.randomUUID(), kind: "concept", conceptKey };
         const next = { ...server, blocks: [...server.blocks, block] };
+        // 이 길은 저장본(또는 서버의 지금 구획)에 블록만 더해 보낸다 — 그 안에 조판이 거절하는 구조가 있으면 다시 싣지 않는다
+        const structureIssue = sectionStructureProblem(next);
+        if (structureIssue) return { ok: false, message: structureIssue };
         const result = await api.saveSection({
           editionId: edition.editionId,
           sectionId: server.sectionId,

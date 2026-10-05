@@ -639,7 +639,26 @@ describe("가져오기 — 구조 메타의 id 대응", () => {
       exportedAt: "2026-10-03T00:00:00.000Z",
     });
     const oldItemId = exchange.items[0]!.itemId;
-    const oldAssetId = exchange.assets[0]!.assetId;
+    // 패키지의 자산 번호를 «내용 해시가 아닌» 번호로 바꿔 둔다 — 가져오면 해시 번호로 새로 지어지므로,
+    // 구조 안의 번호가 따라 바뀌지 않으면 옛 번호가 그대로 남아 드러난다(같은 번호면 안 바꿔도 통과한다).
+    const packagedAssetId = exchange.assets[0]!.assetId;
+    const oldAssetId = "legacy-figure-1";
+    const rename = (value: any, key?: string): any =>
+      typeof value === "string"
+        ? value === packagedAssetId && key !== "sha256" && key !== "packagePath"
+          ? oldAssetId
+          : value
+        : Array.isArray(value)
+          ? value.map((entry) => rename(entry, key))
+          : value && typeof value === "object"
+            ? Object.fromEntries(
+                Object.entries(value).map(([name, entry]) => [
+                  name,
+                  rename(entry, name),
+                ]),
+              )
+            : value;
+    Object.assign(exchange, rename(exchange));
     const img = {
       tag: "img" as const,
       attributes: { assetId: oldAssetId },
@@ -731,7 +750,7 @@ describe("가져오기 — 구조 메타의 id 대응", () => {
       newAssetId,
     );
     expect(JSON.stringify(row!.content)).not.toContain(oldItemId);
-    if (oldAssetId !== newAssetId)
-      expect(JSON.stringify(row!.content)).not.toContain(oldAssetId);
+    expect(newAssetId).not.toBe(oldAssetId);
+    expect(JSON.stringify(row!.content)).not.toContain(oldAssetId);
   });
 });

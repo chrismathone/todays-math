@@ -243,17 +243,15 @@ export function structureViewOf(
 ): StructureView | null {
   if (!opens(semantic, templateKey)) return null;
   const node = semantic.node!;
-  const fields = specsOf(semantic).map(
-    (spec): StructureField => ({
-      key: spec.key,
-      label: spec.label,
-      group: spec.group,
-      input: spec.input,
-      ...(spec.placeholder ? { placeholder: spec.placeholder } : {}),
-      ...(spec.choices ? { choices: spec.choices } : {}),
-      value: spec.read(semantic),
-    }),
-  );
+  const fields = specsOf(semantic).map((spec): StructureField => ({
+    key: spec.key,
+    label: spec.label,
+    group: spec.group,
+    input: spec.input,
+    ...(spec.placeholder ? { placeholder: spec.placeholder } : {}),
+    ...(spec.choices ? { choices: spec.choices } : {}),
+    value: spec.read(semantic),
+  }));
   if (node.kind === "unitIntro")
     return {
       head: semantic.title
@@ -296,10 +294,36 @@ export function structureViewOf(
   return null;
 }
 
+/** 고칠 수 있는 칸을 전부 비운 뼈대 — 두 구조가 «칸의 값 말고는 같다» 를 견줄 때 쓴다 */
+function skeleton(semantic: TextbookSemantic): string {
+  return JSON.stringify(
+    specsOf(semantic).reduce(
+      (current, spec) =>
+        spec.write(current, spec.choices ? spec.choices[0]! : "") ?? current,
+      semantic,
+    ),
+  );
+}
+
+/** 저장본에서부터 다시 얹어도 되는가 — 종류 · 칸의 구성 · 칸 밖의 내용이 지금 구조와 같아야 한다 */
+function sameShape(original: TextbookSemantic, current: TextbookSemantic) {
+  if (original === current) return true;
+  const before = specsOf(original).map((spec) => spec.key);
+  const now = specsOf(current).map((spec) => spec.key);
+  return (
+    before.length === now.length &&
+    before.every((key, index) => key === now[index]) &&
+    skeleton(original) === skeleton(current)
+  );
+}
+
 /**
  * 한 칸을 고친 구조. `original` 은 저장본의 구조, `current` 는 지금 화면의 구조다.
  * 지금 값들에 이 칸의 새 값을 더해 **저장본에서부터 다시 얹는다** — 저장본과 값이 같은 칸은 저장본 그대로 두므로,
  * 전부 되돌리면 저장본과 같은 객체가 나온다. 모르는 칸 · 받을 수 없는 값이면 `current` 를 그대로 돌려준다.
+ *
+ * 저장본과 지금 구조의 꼴이 다르면(종류가 다르다 · 항목 수가 다르다 · 칸 밖의 내용이 다르다) 저장본에서 다시 얹지 않는다 —
+ * 그러면 지금 구조에만 있는 내용이 사라진다. 그때는 지금 구조에 이 칸만 고친다.
  */
 export function editStructure(
   original: TextbookSemantic,
@@ -309,7 +333,9 @@ export function editStructure(
 ): TextbookSemantic {
   const specs = specsOf(current);
   const target = specs.find((spec) => spec.key === key);
-  if (!target || target.write(current, value) === null) return current;
+  const direct = target?.write(current, value) ?? null;
+  if (!target || direct === null) return current;
+  if (!sameShape(original, current)) return direct;
   const values = new Map(specs.map((spec) => [spec.key, spec.read(current)]));
   values.set(key, value);
   let next = original;
@@ -317,8 +343,7 @@ export function editStructure(
     const wanted = values.get(spec.key);
     if (wanted === undefined || wanted === spec.read(original)) continue;
     const written = spec.write(next, wanted);
-    // 저장본과 꼴이 달라 얹을 수 없으면(종류 · 개수가 다르다) 지금 구조에 이 칸만 고친다
-    if (written === null) return target.write(current, value) ?? current;
+    if (written === null) return direct;
     next = written;
   }
   return next;

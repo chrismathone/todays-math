@@ -148,6 +148,26 @@ describe("본문이 아니라 구조에서 나오는 글 블록", () => {
       expect(printsSame(reads)).toBe(false);
       expect(textPrintsFromStructure(reads, "basic")).toBe(false);
     }
+    // 묶음 표지가 없거나 다른 활동의 것이면 은행 활동으로 그리지 않는다 — 본문이 그대로 지면이다
+    for (const groupKey of [undefined, "bank-activity.v1.conceptMap.1"]) {
+      const loose = textbookSemanticSchema.parse({
+        activity: "explainActivity",
+        node: {
+          kind: "rows",
+          ...(groupKey ? { groupKey } : {}),
+          rows: [
+            {
+              rowKey: "row-1",
+              label: "선분",
+              rawText: "두 점을 곧게 이은 선",
+              textFormat: "bank-blank",
+            },
+          ],
+        },
+      });
+      expect(printsSame(loose)).toBe(false);
+      expect(textPrintsFromStructure(loose, "basic")).toBe(false);
+    }
     // 원본 출처가 붙은 행은 은행 활동이 아니다 — 본문이 그대로 지면이다
     const sourced = bank("explainActivity", {
       source: { unit: "1", page: 3, kind: "note", path: "u1/p3" },

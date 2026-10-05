@@ -106,6 +106,37 @@ function assertCounterAlive(): void {
     throw new Error("세는 함수 대조 실패 — 이 전수의 0 은 믿을 수 없다");
 }
 
+/**
+ * 꼬리말 · 머리말(`sourceFooter` · `sourceQuestionHeader`)의 그림 자산 번호.
+ * 자산 수집(`semanticFragmentAssetIds`)이 이 둘도 훑게 되면서 저장 · 내보내기의 참조 검사가 이 그림들까지 본다 —
+ * 판본의 자산 목록에 없는 것이 있으면 그 판본은 새로 걸린다. 그 수를 같이 센다.
+ */
+export function footerHeaderAssetIds(content: Json): string[] {
+  const ids: string[] = [];
+  const walk = (nodes: Json) => {
+    if (!Array.isArray(nodes)) return;
+    for (const node of nodes) {
+      if (!isObject(node)) continue;
+      const attributes = node.attributes;
+      if (
+        node.tag === "img" &&
+        isObject(attributes) &&
+        typeof attributes.assetId === "string"
+      )
+        ids.push(attributes.assetId);
+      walk(node.children);
+    }
+  };
+  const blocks =
+    isObject(content) && Array.isArray(content.blocks) ? content.blocks : [];
+  for (const block of blocks) {
+    if (!isObject(block) || !isObject(block.semantic)) continue;
+    walk(block.semantic.sourceFooter);
+    walk(block.semantic.sourceQuestionHeader);
+  }
+  return ids;
+}
+
 async function main(): Promise<void> {
   assertCounterAlive();
   const prisma = new PrismaClient();
@@ -134,6 +165,21 @@ async function main(): Promise<void> {
     >(
       readOnly(`SELECT "edition_id" AS "editionId", "id" FROM "textbook_item"`),
     );
+    const assets = await prisma.$queryRawUnsafe<
+      Array<{ editionId: string; assetId: string }>
+    >(
+      readOnly(
+        `SELECT "edition_id" AS "editionId", "asset_id" AS "assetId" FROM "textbook_edition_asset"`,
+      ),
+    );
+    const assetsOf = new Map<string, Set<string>>();
+    for (const asset of assets) {
+      const set = assetsOf.get(asset.editionId) ?? new Set<string>();
+      set.add(asset.assetId);
+      assetsOf.set(asset.editionId, set);
+    }
+    let footerHeaderImages = 0;
+    const missingAssets = new Map<string, number>();
     const itemsOf = new Map<string, Set<string>>();
     for (const item of items) {
       const set = itemsOf.get(item.editionId) ?? new Set<string>();
@@ -151,6 +197,14 @@ async function main(): Promise<void> {
     const editions = new Set<string>();
     for (const section of sections) {
       editions.add(section.editionId);
+      for (const assetId of footerHeaderAssetIds(section.content)) {
+        footerHeaderImages++;
+        if (!assetsOf.get(section.editionId)?.has(assetId))
+          missingAssets.set(
+            section.editionId,
+            (missingAssets.get(section.editionId) ?? 0) + 1,
+          );
+      }
       const counts = staleRefsInContent(
         section.content,
         itemsOf.get(section.editionId) ?? new Set(),
@@ -184,6 +238,11 @@ async function main(): Promise<void> {
       );
       if (LIST) console.log(`      구획: ${row.sections.join(", ")}`);
     }
+    console.log(
+      `꼬리말 · 머리말의 그림 ${footerHeaderImages}개 · 그 가운데 판본의 자산 목록에 없는 그림이 있는 판본 ${missingAssets.size}개`,
+    );
+    for (const [editionId, count] of missingAssets)
+      console.log(`   ${editionId}  없는 그림 ${count}`);
   } finally {
     await prisma.$disconnect();
   }
