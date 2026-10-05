@@ -37,7 +37,7 @@ def leading_cue(text):
                 text = text[joined.end():]
             else:
                 break
-    return (numbers or None), text.lstrip(" .,:;까지입니다")
+    return (numbers or None), re.sub(r"^\s*(?:까지)?(?:입니다)?[\s.,:;]*", "", text)
 
 
 def compact(text):
@@ -245,7 +245,7 @@ class SourceReplay:
         wanted = {}
         for row in rows:
             if row and row.get("status") == "candidate":
-                for field in ("probeEvidence", "dialogueProbeEvidence"):
+                for field in ("probeEvidence", "dialogueProbeEvidence", "numberClipEvidence"):
                     if row.get(field):
                         try:
                             _, p = checked_probe(row, source, field)
@@ -427,6 +427,79 @@ def section_stays_before_next_heading(text, start, end, markers):
         v.require(end <= heading_start, "official_section_overlaps_next_original_question")
 
 
+def numbered_section_identity(row, source, probe, replay):
+    """An explicit literal-number proof, never a repair of bare or absent speech."""
+    claim = row.get("officialIdentityEvidence")
+    v.require(isinstance(claim, dict) and claim.get("method") == "numbered_section_own_dialogue_v1",
+              "unknown_official_identity_method")
+    v.require(not source["reconstructed"] and row.get("kind") == "single" and
+              row.get("scopeQuestionNumbers") == [row.get("sourceNumber")] and
+              row.get("cueNumber") == row.get("sourceNumber"), "numbered_section_requires_own_official_single")
+    selected = v.select_segments(probe_segments(probe), row["probeEvidence"].get("segmentIds"))
+    raw = " ".join(s["text"] for s in selected)
+    spoken, rest = leading_cue(raw)
+    expected = [row["sourceNumber"]]
+    number_evidence = None
+    if spoken is None:
+        bare = re.match(r"^\s*(\d{1,2})\.\s+", raw)
+        v.require(bare is not None and [int(bare[1])] == expected,
+                  "numbered_section_requires_literal_or_confirmed_bare_number")
+        rest = raw[bare.end():]
+        container, number_probe = checked_probe(row, source, "numberClipEvidence")
+        checked_full_pcm(container, replay.actual, "number_clip_wrong_full_native_pcm")
+        for key in ("sampleRate", "channels", "startFrame", "onsetFrame", "quietBeforeFrames"):
+            v.require(v.integer(number_probe.get(key)) and number_probe[key] == probe.get(key),
+                      "number_clip_wrong_native_start:" + key)
+        rate = replay.actual["sampleRate"]
+        v.require(v.integer(number_probe.get("frameCount")) and 0 < number_probe["frameCount"] <= 3 * rate and
+                  number_probe["startFrame"] + number_probe["frameCount"] <= replay.actual["frameCount"] and
+                  number_probe.get("durationSeconds") == number_probe["frameCount"] / rate,
+                  "number_clip_unbounded_or_overflow")
+        actual = replay.replay(number_probe)
+        for key in ("clipPcmSha256", "inputMonoFloat32Sha256", "inputSampleCount"):
+            v.require(number_probe.get(key) == actual[key], "number_clip_decode_hash:" + key)
+        index = probe_segments(number_probe, max_duration=3)
+        evidence = row["numberClipEvidence"]
+        number_segments = v.select_segments(index, evidence.get("segmentIds"))
+        v.require(number_segments[0]["id"] == next(iter(index)) and number_segments[0]["estimatedStartSeconds"] <= 2,
+                  "number_clip_not_first_at_measured_start")
+        text = " ".join(s["text"] for s in number_segments)
+        v.require(evidence.get("text") == text and evidence.get("inputMonoFloat32Sha256") == actual["inputMonoFloat32Sha256"],
+                  "number_clip_quote_or_hash_mismatch")
+        spoken, tail = leading_cue(text)
+        v.require(spoken == expected and not tail.strip(), "number_clip_not_literal_own_number_only")
+        local_onset = (number_probe["onsetFrame"] - number_probe["startFrame"]) / rate
+        v.require(number_segments[0]["estimatedStartSeconds"] - .5 <= local_onset <= number_segments[0]["estimatedEndSeconds"],
+                  "number_clip_onset_cue_correspondence_missing")
+        number_evidence = {"probe": {"path": evidence["path"], "sha256": evidence["sha256"]},
+                           "probeId": evidence["probeId"], "segmentIds": evidence["segmentIds"], "text": text}
+    v.require(spoken == expected and row.get("cueSpokenNumbers") == expected,
+              "numbered_section_contradictory_spoken_number")
+    return {"method": claim["method"], "spokenNumbers": spoken, "numberClipEvidence": number_evidence}, rest
+
+
+def scoped_instruction_identity(row, source, probe, replay, text, start, speaker, instruction, instruction_segments):
+    number, rest = numbered_section_identity(row, source, probe, replay)
+    proof = row["scriptEvidence"]
+    at = proof.get("instructionStartCharacter")
+    end = at + len(instruction) if v.integer(at) else -1
+    v.require(v.integer(at) and start <= at < end <= speaker.start() + start and text[at:end] == instruction,
+              "numbered_section_instruction_not_at_own_header")
+    questions = [q for q in source["questions"] if q["id"] == row["questionId"] and q["sourceNumber"] == row["sourceNumber"]]
+    v.require(len(questions) == 1 and compact(own_instruction(questions[0])) == compact(instruction),
+              "numbered_section_instruction_not_current_question")
+    kernel = lambda value: re.sub(r"[^가-힣]", "", unicodedata.normalize("NFKC", value))
+    want = kernel(instruction)
+    raw = " ".join(s["text"] for s in instruction_segments)
+    # The full Hangul kernel is compared deterministically. English names are
+    # grounded by the unchanged own unique dialogue, never phonetic repairs.
+    share = coverage(want, kernel(raw))
+    v.require(len(want) >= 12 and share >= .8 and coverage(want, kernel(rest)) >= .8,
+              "numbered_section_own_instruction_absent_in_probe")
+    return {**number, "instructionStartCharacter": at, "instructionEndCharacter": end,
+            "instructionQuote": instruction, "hangulSyllables": len(want), "hangulCoverage": share}
+
+
 def first_dialogue_alignment(row, source, probe, replay, *, require_instruction):
     """Explicit evidence for a bare/uncertain ordinal; never a nearest-number repair."""
     proof = row.get("scriptEvidence")
@@ -474,7 +547,10 @@ def first_dialogue_alignment(row, source, probe, replay, *, require_instruction)
     v.require(any(heard[i:i+len(words)] == words for i in range(len(heard) - len(words) + 1)), "official_first_dialogue_quote_absent_in_probe")
     if require_instruction:
         instruction = proof.get("instructionQuote", "")
-        v.require(len(compact(instruction)) >= 12 and instruction in text and v.normalize(text).count(v.normalize(instruction)) == 1, "official_instruction_not_unique")
+        explicit = row.get("officialIdentityEvidence") is not None
+        v.require(len(compact(instruction)) >= 12 and instruction in text, "official_instruction_not_unique")
+        if not explicit:
+            v.require(v.normalize(text).count(v.normalize(instruction)) == 1, "official_instruction_not_unique")
         if "instructionStartCharacter" in proof:
             at = proof["instructionStartCharacter"]
             v.require(v.integer(at) and 0 <= at < end and text[at:at + len(instruction)] == instruction, "official_instruction_offset_mismatch")
@@ -486,7 +562,11 @@ def first_dialogue_alignment(row, source, probe, replay, *, require_instruction)
         v.require(at_section or shared_head, "official_instruction_not_at_source_question")
         number_index = probe_segments(probe)
         instruction_segments = v.select_segments(number_index, proof.get("instructionProbeSegmentIds"))
-        v.require(coverage(instruction, " ".join(s["text"] for s in instruction_segments)) >= .8, "official_unique_instruction_absent_in_probe")
+        if explicit:
+            binding["officialIdentityEvidence"] = scoped_instruction_identity(
+                row, source, probe, replay, text, start, speaker, instruction, instruction_segments)
+        else:
+            v.require(coverage(instruction, " ".join(s["text"] for s in instruction_segments)) >= .8, "official_unique_instruction_absent_in_probe")
     binding.update(probe={"path": row[dialogue_field]["path"], "sha256": row[dialogue_field]["sha256"]},
                    probeId=row[dialogue_field]["probeId"], selectedSegmentIds=[s["id"] for s in selected],
                    selectedEstimatedEndFrame=dialogue_probe["startFrame"] + math.ceil(max(v.segment_bounds(s)[1] for s in selected) * replay.actual["sampleRate"]))
@@ -585,6 +665,12 @@ def official_asr_references(row, spoken, full_index):
 
 
 def validate(row, source, question, clock, replay, full_index):
+    explicit = row.get("officialIdentityEvidence") is not None
+    if explicit:
+        v.require(isinstance(row["officialIdentityEvidence"], dict) and
+                  row["officialIdentityEvidence"].get("method") == "numbered_section_own_dialogue_v1",
+                  "unknown_official_identity_method")
+        v.require(not source["reconstructed"], "numbered_section_requires_official_source")
     n = row.get("nativeEvidence")
     v.require(isinstance(n, dict), "missing_native_evidence")
     cache = v.checked_ref({"path": n.get("cachePath"), "sha256": n.get("cacheSha256")})
@@ -637,7 +723,17 @@ def validate(row, source, question, clock, replay, full_index):
         v.require(bare is not None, "bare_cue_not_literal_original_number")
         spoken, rest = [int(bare[1])], raw_text[bare.end():]
     dialogue_binding = None
-    if ambiguous:
+    if explicit:
+        v.require(row.get("dialogueProbeEvidence"), "numbered_section_requires_own_dialogue_probe")
+        _, own_dialogue_probe = checked_probe(row, source, "dialogueProbeEvidence")
+        v.require(own_dialogue_probe.get("requestedLanguage") == "en" and
+                  own_dialogue_probe.get("startFrame", -1) > probe["startFrame"],
+                  "numbered_section_requires_separate_english_dialogue")
+        dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True)
+        numbered_proof, rest = numbered_section_identity(row, source, probe, replay)
+        spoken = numbered_proof["spokenNumbers"]
+        ambiguous = False
+    elif ambiguous:
         dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True)
     aligned_without_number = not spoken and row.get("cueForm") == "official_alignment"
     v.require((spoken and spoken == row.get("cueSpokenNumbers")) or (aligned_without_number and row.get("cueSpokenNumbers") == []), "bounded_spoken_ordinal_mismatch")
@@ -648,7 +744,7 @@ def validate(row, source, question, clock, replay, full_index):
     scope = row.get("scopeQuestionNumbers")
     v.require(isinstance(scope, list) and scope and all(v.integer(i) and 1 <= i <= 50 for i in scope) and scope == sorted(set(scope)) and question["sourceNumber"] in scope and v.integer(row.get("cueNumber")) and row.get("cueNumber") == scope[0], "bounded_current_question_scope_mismatch")
     kind = row.get("kind")
-    grade = "official_alignment" if ambiguous else "numbered_instruction"
+    grade = "numbered_section_own_dialogue" if explicit else "official_alignment" if ambiguous else "numbered_instruction"
     original_identity = None
     if kind == "single":
         v.require(spoken == scope == [question["sourceNumber"]], "single_question_scope_mismatch")
@@ -678,7 +774,7 @@ def validate(row, source, question, clock, replay, full_index):
             grade = "ordinal_only"
         else:
             original_identity = None
-            if len(compact(instruction)) < 12 or coverage(instruction, rest) < .8:
+            if not explicit and (len(compact(instruction)) < 12 or coverage(instruction, rest) < .8):
                 dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True)
     else:
         # A member must have its own source dialogue; a repeated shared instruction

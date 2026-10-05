@@ -70,7 +70,9 @@ for (const [path, hash] of evidenceReferences) {
   }
 }
 const records = validateCertificate(inventory, snapshot, certificate);
-requireEvidence(certificate.preservedExisting.length === 38, 'The exact existing38 starts are required');
+const preservedStarts = inventory.records.reduce((count: number, source: any) =>
+  count + source.questions.filter((question: any) => question.audioRange).length, 0);
+requireEvidence(certificate.preservedExisting.length === preservedStarts, 'Every frozen existing start must be preserved');
 const snapshots = new Map<string, any>(snapshot.snapshots.map((row: any) => [row.id, row]));
 const bindings = new Map<string, any>(media.proofs.map((row: any) => [row.setId, row]));
 requireEvidence(bindings.size === 193, 'Duplicate or missing original media record');
@@ -178,7 +180,7 @@ try {
   const report = { checkedAt: new Date().toISOString(), mode: values.apply ? 'apply' : 'dry-run',
     certificateSha256, inventorySha256, sourceSets: 193, questions: 3699,
     changedSources: plans.filter((p: any) => p.markers.length).length, newlyVerifiedStarts: additions,
-    preservedStarts: 38, totalStarts: 38 + additions, held: certificate.counts.outcomes.held ?? 0,
+    preservedStarts, totalStarts: preservedStarts + additions, held: certificate.counts.outcomes.held ?? 0,
     writesStorage: false, audioFilesChanged: false, questionContentChanged: false, humanReviewChanged: false,
     playback: 'seek_full_source_and_continue_to_end', before, after, outputDirectory: output };
   await writeFile(resolve(output, 'report.json'), JSON.stringify(report, null, 2), { flag: 'wx' });

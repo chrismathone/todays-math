@@ -382,3 +382,50 @@ mapping audit scans every finished round receipt and is diagnostic until actual
 source/clock/PCM/raw recognition/onset replay succeeds.
 Reconstructed candidates must use the explicit native adapter with
 `probeEvidence`; an older generic probe format cannot bypass these v2 guards.
+
+## Explicit numbered official section and own dialogue
+
+`officialIdentityEvidence.method: numbered_section_own_dialogue_v1` is a
+separate route for one original official question. Its own reliable native
+number is required. A long recognition writing bare `N.` needs an additional
+`numberClipEvidence` containing reliable literal `N번` at the identical
+measured start/onset, at most three seconds long. The number-only source PCM,
+resampling hashes, request bounds, uncertainty, actual duration and onset
+correspondence are independently reproduced. Missing, contradictory or bare
+number-only recognition stays held.
+
+The immutable numbered source section must be the current question. Its full
+instruction quote and character positions must lie before its own first
+speaker and match the unchanged current instruction. At least twelve Hangul
+syllables and 0.8 character-bigram coverage of the entire Hangul kernel must be
+heard in the reliable long probe directly after the number. This named comparison
+does not repair English names or model spelling. A separate English probe must
+hear an exact script-unique opening of this section's own first turn(s), using
+the existing literal opening methods, actual measured offset and native hashes.
+The dialogue cannot extend beyond the following verified original question.
+Together the literal number and unique own dialogue disambiguate a repeated
+instruction; the default unique-instruction route remains unchanged.
+
+Number completion is parsed as an exact optional suffix. It cannot strip
+characters from the following Korean instruction (in particular `다음을`).
+Order, dialogue boundaries and ordinal completeness settle to a fixed point:
+if a candidate boundary is held, every candidate depending on it is rechecked.
+Held boundaries never supply final admission authority.
+
+## Later waves preserve actual verified original scope
+
+A `verifiedAncestor` binds the previous complete certificate, source inventory
+and actual clocks by immutable path/hash. The current complete source documents
+must equal the exact previous adoption, including all newly existing ranges.
+No prompt, answer, image, metadata, source/media identity or physical clock value
+may change during this metadata rebase. Previously accepted starts are preserved,
+never re-decided as fresh candidates.
+
+For existing reconstructed questions, `originalScopeEvidence` inherits the
+previous actual spoken scope and native onset from that checked certificate.
+New candidates are ordered against this original scope rather than displayed
+question indices. A newly admitted peer sharing the same original passage must
+have the identical existing start and native cue onset. Original-scope overlap
+or a conflicting preceding/following start remains held. Every new candidate
+still needs complete original-byte/native-PCM/probe/mapping replay; inherited
+scope does not create new source identity or timestamp authority.

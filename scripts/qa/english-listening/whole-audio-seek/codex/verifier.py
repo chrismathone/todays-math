@@ -413,8 +413,15 @@ def check_order(rows):
             continue
         scope, start = r["scopeQuestionNumbers"], r["audioRange"]["startMs"]
         for old in preserved[r["sourceRecordId"]]:
-            ordinal, old_start = old["sourceNumber"], old["audioRange"]["startMs"]
-            bad = (ordinal < scope[0] and old_start >= start) or (ordinal > scope[-1] and old_start <= start) or (ordinal in scope and old_start != start)
+            inherited = old.get("originalScopeEvidence")
+            old_scope = inherited["scopeQuestionNumbers"] if inherited else [old["sourceNumber"]]
+            old_start = old["audioRange"]["startMs"]
+            overlap = bool(set(old_scope) & set(scope))
+            bad = (old_scope[-1] < scope[0] and old_start >= start) or (old_scope[0] > scope[-1] and old_start <= start)
+            if overlap:
+                bad = bad or old_scope != scope or old_start != start
+                if inherited:
+                    bad = bad or r.get("nativeEvidence", {}).get("onsetFrame") != inherited["onsetFrame"]
             if bad:
                 errors[r["questionId"]].append("start_order_conflicts_with_existing_verified")
     return errors
@@ -467,6 +474,30 @@ def check_dialogue_order(results, sources):
     return errors
 
 
+def settle_candidate_order(results, sources):
+    """A candidate may depend only on neighbors that survive every order gate."""
+    while True:
+        errors = check_order(results)
+        for qid, reasons in check_dialogue_order(results, sources).items():
+            errors[qid].extend(reasons)
+        changed = False
+        for row in results:
+            if row["status"] == "admitted" and row["questionId"] in errors:
+                row["status"] = "held"
+                row["reasons"].extend(errors[row["questionId"]])
+                row.pop("audioRange", None)
+                changed = True
+        chronology_errors = check_ordinal_chronology(results, sources)
+        for row in results:
+            if row["status"] == "admitted" and row["questionId"] in chronology_errors:
+                row["status"] = "held"
+                row["reasons"].extend(chronology_errors[row["questionId"]])
+                row.pop("audioRange", None)
+                changed = True
+        if not changed:
+            return
+
+
 def freeze_inputs(inventory, destination):
     records = []
     for s in inventory["records"]:
@@ -515,6 +546,87 @@ def validate_frozen_source(source, manifest):
         require(sha(ref["path"]) == ref.get("sha256"), "frozen_input_changed")
 
 
+def verified_ancestor_rows(inventory, clocks, snapshots):
+    """Preserve an exact previous adoption while retaining original cue scope."""
+    claim = inventory.get("verifiedAncestor")
+    if claim is None:
+        return {}, None
+    require(isinstance(claim, dict) and set(claim) == {"certificate", "inventory", "clock"}, "invalid_verified_ancestor")
+    previous = checked_ref(claim["certificate"])
+    old_inventory = checked_ref(claim["inventory"])
+    old_clock = checked_ref(claim["clock"])
+    def same_reference(left, right):
+        return isinstance(left, dict) and left.get("sha256") == right.get("sha256") and isinstance(left.get("path"), str) and Path(left["path"]).resolve() == Path(right["path"]).resolve()
+    require(previous.get("completeReplay") is True and previous.get("errors") == [] and
+            previous.get("humanReviewed") is False and previous.get("writesDatabase") is False and
+            previous.get("writesStorage") is False and same_reference(previous.get("inputs", {}).get("inventory"), claim["inventory"]) and
+            same_reference(previous.get("inputs", {}).get("clock"), claim["clock"]), "ancestor_is_not_complete_reviewed_source_proof")
+    old_snapshot = checked_ref({"path": old_inventory["liveSnapshotPath"], "sha256": old_inventory["liveSnapshotSha256"]})
+    old_sources = {s["sourceRecordId"]: s for s in old_inventory["records"]}
+    sources = {s["sourceRecordId"]: s for s in inventory["records"]}
+    require(len(old_sources) == len(old_inventory["records"]) == len(sources) == len(inventory["records"]) and
+            set(old_sources) == set(sources), "ancestor_source_population_differs")
+    previous_rows = {(r["sourceRecordId"], r["questionId"]): r for r in previous["records"]}
+    expected = {(s["sourceRecordId"], q["id"]) for s in old_sources.values() for q in s["questions"]}
+    require(len(previous_rows) == len(previous["records"]) == len(expected) and set(previous_rows) == expected,
+            "ancestor_question_population_differs")
+    old_docs = {s["id"]: s for s in old_snapshot["snapshots"]}
+    new_docs = {s["id"]: s for s in snapshots}
+    old_clocks = {s["sourceRecordId"]: s for s in old_clock["records"]}
+    new_clocks = {s["sourceRecordId"]: s for s in clocks["records"]}
+    require(old_clock.get("completeSourceClockReplay") is True and old_clock.get("inventorySha256") == claim["inventory"]["sha256"] and
+            len(old_clocks) == len(old_clock["records"]) == len(old_sources) and set(old_clocks) == set(old_sources),
+            "ancestor_physical_clock_population_differs")
+    inherited = {}
+    import copy
+    for sid, old_source in old_sources.items():
+        source = sources[sid]
+        require(source["setId"] == old_source["setId"], "ancestor_set_identity_differs")
+        old = old_docs[old_source["setId"]]
+        expected_doc = copy.deepcopy(old["document"])
+        new_count = 0
+        for question in expected_doc["groups"][0]["questions"]:
+            row = previous_rows[(sid, question["id"])]
+            for key, value in (("setId", old_source["setId"]), ("revision", old_source["revision"]),
+                               ("documentSha256", old_source["documentSha256"]), ("sourceNumber", question["sourceNumber"]),
+                               ("sourceAudioSha256", old_source["sourceAudioSha256"]), ("playbackSha256", old_source["audio"]["sha256"])):
+                require(row.get(key) == value, "ancestor_row_identity_differs:" + key)
+            if row["status"] == "admitted":
+                require(not question.get("audioRange") and row["audioRange"]["endMs"] == source["audio"]["durationMs"],
+                        "ancestor_admission_overwrites_original")
+                question["audioRange"] = copy.deepcopy(row["audioRange"])
+                new_count += 1
+                if source["reconstructed"]:
+                    require(row.get("evidenceGrade") == "reconstructed_numbered_probe" and row.get("scopeQuestionNumbers") and
+                            integer(row.get("nativeEvidence", {}).get("onsetFrame")), "ancestor_original_scope_unverified")
+                    inherited[(sid, question["id"])] = {"method": "previous_complete_source_admission_v1",
+                        "certificate": claim["certificate"], "scopeQuestionNumbers": row["scopeQuestionNumbers"],
+                        "onsetFrame": row["nativeEvidence"]["onsetFrame"]}
+            elif row["status"] == "preserved":
+                require(question.get("audioRange") == row.get("audioRange"), "ancestor_previous_range_changed")
+            else:
+                require(row["status"] == "held" and not question.get("audioRange") and not row.get("audioRange"),
+                        "ancestor_unproven_existing_range")
+        expected_revision = old["revision"] + bool(new_count)
+        if new_count:
+            expected_doc["revision"] = expected_revision
+        require(new_docs[source["setId"]]["document"] == expected_doc and source["revision"] == expected_revision and
+                new_docs[source["setId"]]["revision"] == expected_revision, "current_baseline_not_exact_ancestor_adoption")
+        projected = copy.deepcopy(source)
+        projected["revision"] = old_source["revision"]
+        projected["documentSha256"] = old_source["documentSha256"]
+        for question in projected["questions"]:
+            matching = [q for q in old_source["questions"] if q["id"] == question["id"]]
+            require(len(matching) == 1, "ancestor_unknown_current_question")
+            question["audioRange"] = matching[0].get("audioRange")
+        require(projected == old_source, "ancestor_original_source_content_or_media_changed")
+        rebound = copy.deepcopy(new_clocks[sid])
+        rebound["revision"] = old_clocks[sid]["revision"]
+        rebound["documentSha256"] = old_clocks[sid]["documentSha256"]
+        require(rebound == old_clocks[sid], "ancestor_physical_clock_changed")
+    return inherited, claim["certificate"]
+
+
 def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_replay=None, report_progress=False):
     started = time.monotonic()
     implementation = [reference(p) for p in sorted(Path(__file__).parent.iterdir()) if p.suffix in (".py", ".mts", ".md")]
@@ -529,6 +641,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
     clock_ref = reference(clock_path)
     clocks = checked_ref(clock_ref)
     require(clocks.get("inventorySha256") == inv_hash, "clock_wrong_inventory")
+    inherited_original_scopes, ancestor_ref = verified_ancestor_rows(inventory, clocks, snapshot_rows)
     clock_index = {s["sourceRecordId"]: s for s in clocks["records"]}
     frozen_ref = reference(frozen_path)
     frozen_rows = checked_ref(frozen_ref)["records"]
@@ -539,6 +652,9 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
     require(len(frozen) == len(frozen_rows) and set(frozen) == source_ids, "incomplete_or_duplicate_frozen_sources")
     queues, rows, errors, provenance = {}, {}, [], {}
     references = {"inventory": inventory_ref, "liveSnapshot": reference(inventory["liveSnapshotPath"]), "clock": clock_ref, "frozen": frozen_ref}
+    if ancestor_ref:
+        references.update({"ancestorCertificate": ancestor_ref, "ancestorInventory": inventory["verifiedAncestor"]["inventory"],
+                           "ancestorClock": inventory["verifiedAncestor"]["clock"]})
     expected = {(s["sourceRecordId"], q["id"]): (s, q) for s in inventory["records"] for q in s["questions"]}
     require(len(expected) == sum(len(s["questions"]) for s in inventory["records"]), "duplicate_inventory_question")
     for p in marks_paths:
@@ -610,6 +726,8 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
             old = question.get("audioRange")
             if old:
                 result.update(status="preserved", audioRange=old.copy(), reasons=[])
+                if key in inherited_original_scopes:
+                    result["originalScopeEvidence"] = inherited_original_scopes[key]
                 preservation.append({"sourceRecordId": sid, "questionId": question["id"], "audioRange": old.copy()})
                 if row is None:
                     errors.append(f"missing_existing_verified_row:{key}")
@@ -673,20 +791,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                                          "lastSourceRecordId": sid, "processedQuestions": len(results),
                                          "outcomesBeforeOrderChecks": dict(collections.Counter(r["status"] for r in results)),
                                          "elapsedSeconds": round(time.monotonic() - started, 2)}}), file=sys.stderr, flush=True)
-    order_errors = check_order(results)
-    for qid, reasons in check_dialogue_order(results, inventory["records"]).items():
-        order_errors[qid].extend(reasons)
-    for r in results:
-        if r["questionId"] in order_errors:
-            r["status"] = "held"
-            r["reasons"].extend(order_errors[r["questionId"]])
-            r.pop("audioRange", None)
-    chronology_errors = check_ordinal_chronology(results, inventory["records"])
-    for r in results:
-        if r["questionId"] in chronology_errors:
-            r["status"] = "held"
-            r["reasons"].extend(chronology_errors[r["questionId"]])
-            r.pop("audioRange", None)
+    settle_candidate_order(results, inventory["records"])
     omitted = set(expected) - set(rows)
     errors.extend(f"omitted_question_row:{key}" for key in sorted(omitted))
     complete = set(queues) == {s["assignedAgent"] for s in inventory["records"]} and not errors and len(rows) == len(expected)

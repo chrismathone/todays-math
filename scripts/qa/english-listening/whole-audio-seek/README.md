@@ -33,8 +33,10 @@ full-source PCM. Run heavy TypeScript checks after recognition queues settle.
 ## Independent evidence and root adoption
 
 Freeze the live source snapshot, original/prepared/ASR/script/answer files and
-actual production media bindings before producing starts. Preserve the existing
-38 ranges exactly. The independently replayed certificate must cover all 193
+actual production media bindings before producing starts. Preserve every range
+already in the frozen live snapshot exactly. The first wave retained 38 starts;
+the second wave retains all 2,203 starts adopted from its completed proof.
+The independently replayed certificate must cover all 193
 sources and 3,699 questions, have no structural errors, and retain held reasons.
 Only admitted proof artifacts can supply new starts. Existing clip-end criteria
 remain in the earlier strict split verifier; a seek-start proof continues to the
@@ -65,4 +67,23 @@ Run the root adoption regression suite with:
 
 ```powershell
 node --test scripts/qa/english-listening/whole-audio-seek/admission-plan.test.mjs
+node --test scripts/qa/english-listening/whole-audio-seek/rebase-verified-baseline.test.mjs
 ```
+
+`rebase-verified-baseline.mjs` prepares a later verification wave only after
+checking that the complete current documents are the exact previous adoption.
+It retains every existing range and changes only revision/document references
+on the unchanged physical clock and proposal identities. The independent
+verifier checks the previous immutable certificate, inventory and clocks again.
+Existing reconstructed starts retain their proven original spoken scope, which
+can differ from displayed question numbers. Conflicting new starts are held.
+
+For repeated official instructions and mixed English/Korean wording, the
+explicit `numbered_section_own_dialogue_v1` route needs a reliable literal
+number, the current numbered source section's unchanged instruction and an
+exact, unique opening of its own dialogue. A bare numeral also needs a separate
+reliable number-only native recognition at the same measured start. Every
+number, instruction and dialogue input is hash-bound and decoded independently;
+neighbors must survive to the final certificate. The earlier unique-instruction
+route retains its original constraints. Producer-only judgments remain
+diagnostic until the independent replay and actual DB readback pass.
