@@ -73,3 +73,27 @@ immutable reconstructed proposal. It rejects conflicting or stale identities,
 duplicate/missing questions and existing verification, and preserves every
 status, cue, scope, seek timestamp and raw evidence reference. Its changes report
 is diagnostic only; full actual-source replay remains mandatory.
+
+The completed 2026-10-05 replay is stored under
+`C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/codex/replay-final-002/`.
+Its `certificate.json` SHA-256 is
+`99c5bc17db4c18e5b3b683776947df21b4b1b4c3ac83f9fe1159a3e5eb972368`.
+It checked all 193 sources and 3,699 current questions with zero completeness
+errors and 193 passed source checks: 2,165 admitted starts, 38 exactly preserved
+starts and 1,496 held questions. Every admitted start continues to its full
+original recording end. New starts cover 180 sources; 181 sources have an
+admitted or preserved start. The remaining 12 sources have explicit holds.
+
+`held-diagnostics.json` contains every held question and its reason;
+`source-coverage.json` contains all 193 sources and independent final population,
+identity, existing-range, full-endpoint and frozen-reference checks. Its SHA-256
+is `85c70f5a9cc79b1e2e29b86616f12f1d16176837fe07d6381d2c43f54969cd8d`.
+The exact executed implementation is the immutable 23-file
+`codex/final-implementation-006/` archive from code commit
+`eb87244144d87e004dc4d924e4c9824d508f710d`, with 165 passing offline tests.
+The coordinator independently passed those tests and the full TypeScript check.
+Final provider inputs are Claude `runs/final-002/marks.json` and Gemini's
+immutable Grok-lane `ledger1282-004.json`; actual compiler provenance remains
+separate from lane ownership. Archive 005 is superseded and has no completed
+admission certificate. Source spans labeled `short_asr_cue_span` remain estimates
+and cannot substitute for a measured native-onset method.
