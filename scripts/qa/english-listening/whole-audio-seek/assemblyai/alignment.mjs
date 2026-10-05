@@ -727,12 +727,7 @@ export function checkBinding({
   const reasons = checks
     .filter((entry) => !entry.ok)
     .map((entry) => "binding_failed:" + entry.name);
-  return {
-    status: reasons.length ? "failed" : "passed",
-    checks,
-    wordProblems,
-    reasons,
-  };
+  return { checks, wordProblems, reasons };
 }
 
 // ------------------------------------------------------- existing starts ----
@@ -1248,8 +1243,26 @@ function alignOfficial(question, context) {
   const isInside = (o) =>
     passage && o.placement === "inside" && o.passageId === passage.id;
   const heardInside = own.filter((entry) => entry.occurrences.some(isInside));
+  // The English provider leaves the first words after a stretch of Korean
+  // seconds early. A sentence timed between the end of the passage before and
+  // the end of this one, but not wholly inside this one, lies over this
+  // passage's own number and instruction: it is not heard, and it is not
+  // elsewhere either. (Added after the first English pass; see ALIGNMENT.md.)
+  const isUnplacedHere = (o) => {
+    if (!passage || !context.quotesByTime || o.placement === "inside")
+      return false;
+    const tolerance = context.policy.crossTranscriptToleranceMs;
+    const before = context.passages[passage.id - 1]?.contentMs.toMs ?? 0;
+    return (
+      context.quoteWords[o.fromWord].startMs >= before - tolerance &&
+      context.quoteWords[o.toWord].endMs <= passage.contentMs.toMs + tolerance
+    );
+  };
+  const unplaced = own.filter((entry) =>
+    entry.occurrences.some(isUnplacedHere),
+  );
   const heardElsewhere = own.filter((entry) =>
-    entry.occurrences.some((o) => !isInside(o)),
+    entry.occurrences.some((o) => !isInside(o) && !isUnplacedHere(o)),
   );
   const foreign = [];
   if (passage)
@@ -1323,6 +1336,7 @@ function alignOfficial(question, context) {
       ),
       examples: heardInside.slice(0, 5).map(example),
       heardOutsidePassage: heardElsewhere.slice(0, 5).map(example),
+      timedOverOwnHeadingNotCounted: unplaced.slice(0, 5).map(example),
     },
     otherSectionsInsidePassage: foreign.slice(0, 5).map((entry) => ({
       sectionNumber: entry.sectionNumber,

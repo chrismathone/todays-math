@@ -44,8 +44,8 @@ const say = (text, at, options = {}) =>
  * wrote (`words`) and what the English-only one wrote (`english`): no Korean
  * line, unless the line gives it words to write. Line options: pauseMs, low,
  * confidence; onlyInEnglish (the other transcript dropped it); english (other
- * words for the same speech); englishFirstWordMs (its first word left early or
- * late by the provider).
+ * words for the same speech); englishFirstWordMs / englishLastWordMs (that
+ * word left early or late by the provider).
  */
 function speak(lines) {
   const words = [];
@@ -58,10 +58,14 @@ function speak(lines) {
     if (!options.onlyInEnglish) words.push(...spoken);
     if (options.english !== undefined || !/[가-힣]/.test(text)) {
       const heard = say(options.english ?? text, at, { confidence: 0.99 });
-      if (options.englishFirstWordMs) {
-        heard[0].start += options.englishFirstWordMs;
-        heard[0].end += options.englishFirstWordMs;
-      }
+      for (const [word, shift] of [
+        [heard[0], options.englishFirstWordMs],
+        [heard.at(-1), options.englishLastWordMs],
+      ])
+        if (shift) {
+          word.start += shift;
+          word.end += shift;
+        }
       english.push(...heard);
     }
     at += 500 * spoken.length;
@@ -1586,6 +1590,35 @@ test("English words in the window of a number without its own instruction go to 
   const d = row(report, "q-d");
   assert.deepEqual(d.reasons, ["generation_quote_outside_any_passage"]);
   assert.equal(d.evidence.passage, null);
+
+  // The provider can write a whole sentence into a tenth of a second. Where a
+  // number without an instruction is followed at once by its dialogue, such
+  // words fit the end of the passage before and the start of its own alike.
+  const tight = dual(
+    {
+      lines: [
+        ...lines.slice(0, 8),
+        ["4번입니다.", { pauseMs: 0 }],
+        [D4, { pauseMs: 0 }],
+        CLOSING,
+      ],
+    },
+    (i) => {
+      const cue = i.raw.words[wordIndex(i, "4번입니다.")];
+      for (const word of i.english.raw.words)
+        if (word.start > cue.start) {
+          word.start = cue.start + 100;
+          word.end = cue.start + 200;
+        }
+    },
+  );
+  assert.equal(tight.report.binding.status, "passed");
+  const between = row(tight.report, "q-d");
+  assert.deepEqual(between.reasons, ["generation_quote_outside_any_passage"]);
+  assert.equal(
+    between.evidence.quotes[0].occurrences[0].placement,
+    "between_two_passages",
+  );
 });
 
 test("the English transcript must be of the same bytes and clock, English-only, and another transcript", () => {
@@ -1621,6 +1654,14 @@ test("the English transcript must be of the same bytes and clock, English-only, 
       i.english.raw.id = i.envelope.transcriptId;
     },
   };
+  // The very same response bytes offered under another transcript id.
+  const sameBytes = dual({}, (i) => {
+    i.english.rawSha256 = i.rawSha256;
+    i.english.envelope.raw.sha256 = i.rawSha256;
+  });
+  assert.deepEqual(sameBytes.report.binding.reasons, [
+    "binding_failed:english_is_another_transcript",
+  ]);
   for (const [name, change] of Object.entries(changes)) {
     const { report } = dual({}, change);
     assert.equal(report.binding.status, "failed", name);
@@ -1686,6 +1727,62 @@ test("an official section's own dialogue is taken from the English transcript", 
         row(swapped.report, id).reasons.includes(reason),
         id + " " + reason,
       );
+});
+
+test("a first sentence the English provider timed over its own heading is not heard, and not elsewhere", () => {
+  // "Hi," left three seconds early: inside the Korean instruction of "3번".
+  const early = official({
+    dual: true,
+    lines: replace(OFFICIAL_LINES, OD3, [OD3, { englishFirstWordMs: -3000 }]),
+  });
+  const three = row(early.report, "o-3");
+  assert.equal(three.outcome, "candidate");
+  assert.equal(three.evidence.ownDialogue.heardInsidePassage, 1);
+  assert.equal(three.evidence.ownDialogue.openingSentenceHeard, false);
+  assert.deepEqual(three.evidence.ownDialogue.heardOutsidePassage, []);
+  assert.deepEqual(
+    three.evidence.ownDialogue.timedOverOwnHeadingNotCounted.map(
+      (entry) => entry.scriptSentence,
+    ),
+    ["Hi,   what   did   you   have   for   dessert   today?"],
+  );
+  // If that were the only sentence of the section, nothing would be heard.
+  const only = official({
+    dual: true,
+    lines: replace(OFFICIAL_LINES, OD3, [
+      OD3,
+      {
+        english: "Hi, what did you have for dessert today?",
+        englishFirstWordMs: -3000,
+      },
+    ]),
+  });
+  assert.deepEqual(row(only.report, "o-3").reasons, [
+    "official_section_dialogue_not_heard_in_passage",
+  ]);
+  // Left early enough to begin while the passage of "2번" still runs: elsewhere.
+  const before = official({
+    dual: true,
+    lines: replace(OFFICIAL_LINES, OD3, [OD3, { englishFirstWordMs: -8000 }]),
+  });
+  assert.ok(
+    row(before.report, "o-3").reasons.includes(
+      "official_section_dialogue_heard_outside_passage",
+    ),
+  );
+  // A last word left late, over the instruction of the next number: the
+  // sentence runs out of its passage, and that is not waved through.
+  const late = official({
+    dual: true,
+    lines: replace(OFFICIAL_LINES, OD3, [OD3, { englishLastWordMs: 4000 }]),
+  });
+  assert.ok(
+    row(late.report, "o-3").reasons.includes(
+      "official_section_dialogue_heard_outside_passage",
+    ),
+  );
+  // The same early word in a transcript placed by word order changes nothing.
+  assert.equal(official().report.counts.candidates, 5);
 });
 
 // ------------------------------------------------------------------ words ----
