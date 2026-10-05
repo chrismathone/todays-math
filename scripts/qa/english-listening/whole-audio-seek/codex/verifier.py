@@ -880,6 +880,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                               probeCatalog=row.get("probeCatalog"), nextNativeEvidence=row.get("nextNativeEvidence"),
                               sharedHeadNativeEvidence=row.get("sharedHeadNativeEvidence"), terminalNativeEvidence=row.get("terminalNativeEvidence"),
                               evidenceAdapter=row.get("evidenceAdapter"), localizedMappingEvidence=row.get("localizedMappingEvidence"), reasons=[],
+                              kind=row.get("kind"),
                               diagnostics=(row.get("reasons", []) + row.get("notes", [])))
             except (InvalidEvidence, OSError, KeyError, ValueError, TypeError, ImportError) as e:
                 result["reasons"].append(str(e))

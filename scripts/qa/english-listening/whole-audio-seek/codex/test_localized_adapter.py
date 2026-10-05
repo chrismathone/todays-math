@@ -303,6 +303,28 @@ class LocalizedAdmissionTests(unittest.TestCase):
         with self.assertRaisesRegex(v.InvalidEvidence, "ancestor_localized_nested_evidence_corruption"):
             v.reconstructed_admission_origin(row)
 
+    def test_complete_certificate_retains_actual_additive_ancestry_shape(self):
+        f = self.f
+        snapshot_path = f.folder / "fresh-snapshot.json"
+        f.write(snapshot_path, {"snapshots": [{"id": f.source["setId"], "revision": f.source["revision"],
+                                               "document": {"groups": [{"id": f.source["groupId"], "audio": f.source["audio"],
+                                                                         "questions": f.source["questions"]}]}}]})
+        f.inventory.update(root=str(f.folder), liveSnapshotPath=str(snapshot_path), liveSnapshotSha256=v.sha(snapshot_path))
+        f.write(f.inventory_path, f.inventory)
+        f.write(f.clock_path, {"inventorySha256": v.sha(f.inventory_path), "records": [f.clock]})
+        f.frozen_path.unlink()
+        v.freeze_inputs(f.inventory, f.frozen_path)
+        marks = f.folder / "complete-marks.json"
+        f.write(marks, {"schemaVersion": 1, "evidenceContractVersion": 1, "provider": "grok",
+                        "inventorySha256": v.sha(f.inventory_path), "records": [f.row]})
+        certificate = v.run(f.inventory_path, [marks], f.clock_path, f.frozen_path, f.folder / "certificate",
+                            source_replay_factory=lambda *args: f.source_replay)
+        self.assertTrue(certificate["completeReplay"])
+        row = certificate["records"][0]
+        self.assertEqual(row["status"], "admitted", row["reasons"])
+        self.assertEqual(row["kind"], "single")
+        self.assertTrue(v.reconstructed_admission_origin(row))
+
     def test_same_native_scope_can_have_separate_current_question_grounding(self):
         first = self.origin()
         first.update(reconstructed=True, audioRange={"startMs": 100, "endMs": 100000})
