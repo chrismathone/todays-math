@@ -4,10 +4,16 @@
  * ("1번", "5번.", "1번입니다.", "19번과 20번은", "한 번씩만").
  */
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import {
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import test from "node:test";
+import test, { after } from "node:test";
 
 import {
   POLICY,
@@ -1823,8 +1829,14 @@ test("the same input gives the same report, byte for byte", () => {
 // -------------------------------------------------------------------- CLI ----
 
 /** Writes one reconstructed and one official source as the real files are shaped. */
+const corpora = [];
+after(() => {
+  for (const dir of corpora) rmSync(dir, { recursive: true, force: true });
+});
+
 function corpus({ dual = false } = {}) {
   const dir = mkdtempSync(path.join(os.tmpdir(), "assemblyai-alignment-"));
+  corpora.push(dir);
   const write = (name, value) => {
     const file = path.join(dir, name);
     const bytes = Buffer.isBuffer(value)
