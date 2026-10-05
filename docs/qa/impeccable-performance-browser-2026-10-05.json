@@ -1,0 +1,3640 @@
+{
+  "environment": {
+    "engine": "151.0.7922.34",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "deviceScaleFactor": 1,
+    "headless": true,
+    "cpuThrottle": "none",
+    "network": "loopback fixture only; external requests aborted",
+    "build": "Vite development transform of actual components, React without StrictMode",
+    "fonts": "system/fallback, actual local KaTeX fonts",
+    "concurrency": "other Orca sessions may contend for machine resources"
+  },
+  "print": [
+    {
+      "count": 24,
+      "run": 0,
+      "condition": "first document for dataset; Vite initial compile excluded; system fonts",
+      "columns": 2,
+      "problemsPerColumn": 3,
+      "showAnswers": true,
+      "layoutMode": "count",
+      "articleCount": 6,
+      "measuredImages": 6,
+      "mounted": {
+        "elapsedMs": 1175.699999988079,
+        "kinds": {
+          "print-ready": {
+            "count": 3,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 6,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 6,
+            "totalMs": 1.300000011920929,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.29999999701976776
+          },
+          "measure-item-rect": {
+            "count": 96,
+            "totalMs": 0.4000000059604645,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 1,
+            "maxMs": 0.5999999940395355,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.5999999940395355
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1213.0999999940395,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1499.4000000059605,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1510.2999999970198,
+            "ready": true
+          }
+        ]
+      },
+      "titleOnly": {
+        "elapsedMs": 538.3000000119209,
+        "kinds": {
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 6,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 6,
+            "totalMs": 0.6000000536441803,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-item-rect": {
+            "count": 96,
+            "totalMs": 0.29999999701976776,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 1.2000000029802322,
+            "maxMs": 0.5,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.5
+          },
+          "resize-observer": {
+            "count": 2,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2048.0999999940395,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2049.0999999940395,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2100.4000000059605,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2101.2000000029802,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0.0011340000000000239,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.05886000000000002,
+          "TaskDuration": 0.07071099999999997
+        },
+        "existingPaperNodesRetained": true
+      },
+      "contentChange": {
+        "elapsedMs": 725.2999999970198,
+        "kinds": {
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 6,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 6,
+            "totalMs": 0.5999999642372131,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "measure-item-rect": {
+            "count": 96,
+            "totalMs": 0.19999998807907104,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 1.0999999940395355,
+            "maxMs": 0.5,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.5
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2682.2999999970198,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2685.7000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2849.0999999940395,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2859,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 2,
+          "RecalcStyleCount": 4,
+          "LayoutDuration": 0.011037999999999992,
+          "RecalcStyleDuration": 0.003953000000000002,
+          "ScriptDuration": 0.250679,
+          "TaskDuration": 0.27797300000000014
+        }
+      },
+      "scroll": {
+        "elapsedMs": 658.5,
+        "kinds": {
+          "preview-rect": {
+            "count": 40,
+            "totalMs": 1.2000000029802322,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "paper-rect": {
+            "count": 240,
+            "totalMs": 0.5000000149011612,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "print-scroll-handler": {
+            "count": 40,
+            "totalMs": 5.100000008940697,
+            "maxMs": 0.30000001192092896,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.30000001192092896
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3298.2000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 3298.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3304.7999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3321.7999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3338.4000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3355.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3371.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 3389,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3404.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3421.4000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3439.7999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 3454.9000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3471.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3488.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 3504.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3520.9000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3537.7999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3554.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3571.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3587.9000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3605.2000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 3621.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3638.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3654.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 3671.4000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3688.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3704.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3720.9000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3738.0999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 3754.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3771.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 3788.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 3805.4000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 3821.9000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3838.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3856,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3871.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3888.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3904.9000000059605,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 3921.5999999940395,
+            "pages": 6
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 0,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.007610000000000006,
+          "TaskDuration": 0.023421000000000136
+        },
+        "synchronousDispatchMs": [
+          0.5,
+          0.09999999403953552,
+          0.29999999701976776,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.29999999701976776,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.10000000894069672,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.19999998807907104,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.29999999701976776,
+          0.20000000298023224,
+          0.09999999403953552,
+          0.30000001192092896,
+          0.20000000298023224,
+          0.10000000894069672,
+          0.20000000298023224,
+          0.19999998807907104,
+          0.09999999403953552,
+          0.20000000298023224,
+          0.19999998807907104,
+          0.20000000298023224,
+          0.30000001192092896,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.09999999403953552,
+          0.09999999403953552,
+          0.10000000894069672,
+          0.19999998807907104
+        ]
+      },
+      "nativeScroll": {
+        "elapsedMs": 466.29999999701977,
+        "kinds": {
+          "preview-rect": {
+            "count": 10,
+            "totalMs": 0.6000000089406967,
+            "maxMs": 0.4000000059604645,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.4000000059604645
+          },
+          "paper-rect": {
+            "count": 60,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "print-scroll-handler": {
+            "count": 10,
+            "totalMs": 1.5000000149011612,
+            "maxMs": 0.5,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.5
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 4173.20000000298,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 4218,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 4223.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 4237.70000000298,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 4255.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 4271.20000000298,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 4288,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 4305.70000000298,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 4321.70000000298,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 4338.5,
+            "pages": 6
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 1,
+          "LayoutDuration": 0.0002899999999999847,
+          "RecalcStyleDuration": 0.00004699999999999843,
+          "ScriptDuration": 0.04833999999999994,
+          "TaskDuration": 0.07731700000000008
+        },
+        "scrollLeft": 818
+      }
+    },
+    {
+      "count": 24,
+      "run": 1,
+      "condition": "same context cached modules/fonts/images, fresh React mount",
+      "columns": 2,
+      "problemsPerColumn": 3,
+      "showAnswers": true,
+      "layoutMode": "count",
+      "articleCount": 6,
+      "measuredImages": 6,
+      "mounted": {
+        "elapsedMs": 919.5999999940395,
+        "kinds": {
+          "print-ready": {
+            "count": 3,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 6,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 6,
+            "totalMs": 0.5999999642372131,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "measure-item-rect": {
+            "count": 96,
+            "totalMs": 0.40000002086162567,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 0.7000000178813934,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.20000000298023224
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 727.7000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 994.3999999910593,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1006.0999999940395,
+            "ready": true
+          }
+        ]
+      },
+      "titleOnly": {
+        "elapsedMs": 459,
+        "kinds": {
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 6,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 6,
+            "totalMs": 0.7000000476837158,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.20000000298023224
+          },
+          "measure-item-rect": {
+            "count": 96,
+            "totalMs": 0.10000000894069672,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 0.800000011920929,
+            "maxMs": 0.4000000059604645,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.4000000059604645
+          },
+          "resize-observer": {
+            "count": 2,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1458.7000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1460.3999999910593,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1510.5999999940395,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1511.0999999940395,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0.00038799999999999946,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.05650099999999997,
+          "TaskDuration": 0.06508499999999995
+        },
+        "existingPaperNodesRetained": true
+      },
+      "contentChange": {
+        "elapsedMs": 732.2000000029802,
+        "kinds": {
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 6,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 6,
+            "totalMs": 0.5999999642372131,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "measure-item-rect": {
+            "count": 96,
+            "totalMs": 0.4999999701976776,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0.10000000894069672,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 0.8999999761581421,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.29999999701976776
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2019.2000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2022.2000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2214.5,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2224.7000000029802,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 2,
+          "RecalcStyleCount": 4,
+          "LayoutDuration": 0.011365,
+          "RecalcStyleDuration": 0.00405,
+          "ScriptDuration": 0.26068100000000005,
+          "TaskDuration": 0.2892990000000001
+        }
+      },
+      "scroll": {
+        "elapsedMs": 659.2000000029802,
+        "kinds": {
+          "preview-rect": {
+            "count": 40,
+            "totalMs": 1.1000000089406967,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "paper-rect": {
+            "count": 240,
+            "totalMs": 0.7000000178813934,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "print-scroll-handler": {
+            "count": 40,
+            "totalMs": 5.400000020861626,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.20000000298023224
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 2666.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2666.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 2668,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 2684.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 2701.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 2718.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 2735.0999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2751.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2768.2000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 2785.0999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2801.2000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2817.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 2834.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 2851.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 2868.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2885,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2901.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2919.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 2951.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 2968.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 2985.2000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3001.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 3018.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3034.8999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3051.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3068.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3085,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3101.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3118.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3134.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3151.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3168,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0,
+            "atMs": 3184.5999999940395,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3202.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3217.7999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3234.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3251.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3268.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3285,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3301.3999999910593,
+            "pages": 6
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 0,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.006763999999999992,
+          "TaskDuration": 0.022326999999999986
+        },
+        "synchronousDispatchMs": [
+          0.19999998807907104,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.09999999403953552,
+          0.19999998807907104,
+          0.19999998807907104,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.10000000894069672,
+          0.09999999403953552,
+          0.10000000894069672,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.10000000894069672,
+          0.29999999701976776,
+          0.19999998807907104,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.19999998807907104,
+          0.09999999403953552,
+          0.20000000298023224,
+          0.09999999403953552,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.29999999701976776,
+          0.10000000894069672,
+          0.09999999403953552,
+          0.20000000298023224,
+          0.09999999403953552,
+          0.19999998807907104,
+          0.29999999701976776,
+          0.20000000298023224,
+          0.20000000298023224,
+          0.19999998807907104
+        ]
+      },
+      "nativeScroll": {
+        "elapsedMs": 391,
+        "kinds": {
+          "preview-rect": {
+            "count": 11,
+            "totalMs": 0.9000000059604645,
+            "maxMs": 0.30000001192092896,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.30000001192092896
+          },
+          "paper-rect": {
+            "count": 66,
+            "totalMs": 0.19999998807907104,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "print-scroll-handler": {
+            "count": 11,
+            "totalMs": 1.9000000059604645,
+            "maxMs": 0.4000000059604645,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.4000000059604645
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 3435.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3464.5,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3468.8999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 3486,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3501.7000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3517.8999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3535.2000000029802,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 3551.3999999910593,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 3568.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 3585.2999999970198,
+            "pages": 6
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 3602.2000000029802,
+            "pages": 6
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 1,
+          "LayoutDuration": 0.00013699999999999823,
+          "RecalcStyleDuration": 0.00004799999999999943,
+          "ScriptDuration": 0.03217700000000001,
+          "TaskDuration": 0.062461999999999906
+        },
+        "scrollLeft": 818
+      }
+    },
+    {
+      "count": 96,
+      "run": 0,
+      "condition": "first document for dataset; Vite initial compile excluded; system fonts",
+      "columns": 2,
+      "problemsPerColumn": 3,
+      "showAnswers": true,
+      "layoutMode": "count",
+      "articleCount": 21,
+      "measuredImages": 24,
+      "mounted": {
+        "elapsedMs": 2303.5999999940395,
+        "kinds": {
+          "print-ready": {
+            "count": 3,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 24,
+            "totalMs": 6.299999907612801,
+            "maxMs": 0.4000000059604645,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.29999999701976776
+          },
+          "measure-item-rect": {
+            "count": 384,
+            "totalMs": 0.8999999910593033,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 2.699999988079071,
+            "maxMs": 1,
+            "medianMs": 0.699999988079071,
+            "p95Ms": 1
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1526.7000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2292.7000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2339.4000000059605,
+            "ready": true
+          }
+        ]
+      },
+      "titleOnly": {
+        "elapsedMs": 703.2000000029802,
+        "kinds": {
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 24,
+            "totalMs": 4.900000065565109,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.20000000298023224
+          },
+          "measure-item-rect": {
+            "count": 384,
+            "totalMs": 0.7000000178813934,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 3.7000000029802322,
+            "maxMs": 2.4000000059604645,
+            "medianMs": 0.5,
+            "p95Ms": 2.4000000059604645
+          },
+          "resize-observer": {
+            "count": 2,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3303.2000000029802,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3305,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3424,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3425.2000000029802,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0.0005390000000000117,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.2144130000000002,
+          "TaskDuration": 0.24257899999999988
+        },
+        "existingPaperNodesRetained": true
+      },
+      "contentChange": {
+        "elapsedMs": 1331.8999999910593,
+        "kinds": {
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 24,
+            "totalMs": 7.999999910593033,
+            "maxMs": 0.5999999940395355,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.5999999940395355
+          },
+          "measure-item-rect": {
+            "count": 384,
+            "totalMs": 1.0000000149011612,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.20000000298023224
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 2.7999999970197678,
+            "maxMs": 1.2999999970197678,
+            "medianMs": 0.7000000029802322,
+            "p95Ms": 1.2999999970197678
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 4146.70000000298,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 4158.600000008941,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 4640.100000008941,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 4687.5,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 2,
+          "RecalcStyleCount": 4,
+          "LayoutDuration": 0.054216,
+          "RecalcStyleDuration": 0.018243000000000002,
+          "ScriptDuration": 0.675694,
+          "TaskDuration": 0.7886810000000002
+        }
+      },
+      "scroll": {
+        "elapsedMs": 655.6999999880791,
+        "kinds": {
+          "preview-rect": {
+            "count": 40,
+            "totalMs": 1.100000023841858,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "paper-rect": {
+            "count": 840,
+            "totalMs": 2.399999976158142,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "print-scroll-handler": {
+            "count": 40,
+            "totalMs": 12.800000011920929,
+            "maxMs": 0.7000000029802322,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.5
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5243.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 5244.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 5251.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5268.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5284.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5301.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5319.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 5334.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.7000000029802322,
+            "atMs": 5352.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5368.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5385.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5402.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5419.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5435.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5451.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 5468.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5484.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 5502.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5518.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5535.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 5551.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5568.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5584.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 5601.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5619.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5635.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 5651.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 5669.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 5685.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5701.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5718.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5735.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5751.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 5768.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5785.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 5802.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5818.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5835.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5851.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 5868.70000000298,
+            "pages": 21
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 0,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.016226000000000074,
+          "TaskDuration": 0.05494100000000035
+        },
+        "synchronousDispatchMs": [
+          0.5,
+          0.4000000059604645,
+          0.6000000089406967,
+          0.29999999701976776,
+          0.4000000059604645,
+          0.29999999701976776,
+          0.3999999910593033,
+          0.5,
+          0.7000000029802322,
+          0.29999999701976776,
+          0.5,
+          0.29999999701976776,
+          0.4000000059604645,
+          0.6000000089406967,
+          0.3999999910593033,
+          0.4000000059604645,
+          0.3999999910593033,
+          0.30000001192092896,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.29999999701976776,
+          0.4000000059604645,
+          0.29999999701976776,
+          0.3999999910593033,
+          0.6000000089406967,
+          0.5,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.29999999701976776,
+          0.29999999701976776,
+          0.4000000059604645,
+          0.3999999910593033,
+          0.4000000059604645,
+          0.5,
+          0.5,
+          0.3999999910593033,
+          0.5
+        ]
+      },
+      "nativeScroll": {
+        "elapsedMs": 560.5999999940395,
+        "kinds": {
+          "preview-rect": {
+            "count": 8,
+            "totalMs": 0.3999999910593033,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.29999999701976776
+          },
+          "paper-rect": {
+            "count": 168,
+            "totalMs": 0.5999999940395355,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.20000000298023224
+          },
+          "print-scroll-handler": {
+            "count": 8,
+            "totalMs": 2.7999999672174454,
+            "maxMs": 0.5,
+            "medianMs": 0.3999999910593033,
+            "p95Ms": 0.5
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 6121.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 6210.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 6215.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 6222.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 6234.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 6251.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 6269,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 6284.70000000298,
+            "pages": 21
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 1,
+          "LayoutDuration": 0.00018799999999999373,
+          "RecalcStyleDuration": 0.000057000000000001494,
+          "ScriptDuration": 0.09473500000000001,
+          "TaskDuration": 0.1474470000000001
+        },
+        "scrollLeft": 818
+      }
+    },
+    {
+      "count": 96,
+      "run": 1,
+      "condition": "same context cached modules/fonts/images, fresh React mount",
+      "columns": 2,
+      "problemsPerColumn": 3,
+      "showAnswers": true,
+      "layoutMode": "count",
+      "articleCount": 21,
+      "measuredImages": 24,
+      "mounted": {
+        "elapsedMs": 2049.5,
+        "kinds": {
+          "print-ready": {
+            "count": 3,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 24,
+            "totalMs": 4.799999728798866,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.19999998807907104,
+            "p95Ms": 0.19999998807907104
+          },
+          "measure-item-rect": {
+            "count": 384,
+            "totalMs": 0.9000000059604645,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 2.7000000029802322,
+            "maxMs": 0.7999999970197678,
+            "medianMs": 0.7000000029802322,
+            "p95Ms": 0.7999999970197678
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0.10000000894069672,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 1317.800000011921,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2084.9000000059605,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2124.800000011921,
+            "ready": true
+          }
+        ]
+      },
+      "titleOnly": {
+        "elapsedMs": 622.2999999970198,
+        "kinds": {
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 24,
+            "totalMs": 7.199999928474426,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.29999999701976776
+          },
+          "measure-item-rect": {
+            "count": 384,
+            "totalMs": 1,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 2.7999999970197678,
+            "maxMs": 1.2999999970197678,
+            "medianMs": 0.5999999940395355,
+            "p95Ms": 1.2999999970197678
+          },
+          "resize-observer": {
+            "count": 2,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2795.9000000059605,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2798.1000000089407,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2935.800000011921,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 2937.9000000059605,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0.0006100000000000133,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.21245200000000009,
+          "TaskDuration": 0.2377689999999999
+        },
+        "existingPaperNodesRetained": true
+      },
+      "contentChange": {
+        "elapsedMs": 1135,
+        "kinds": {
+          "resize-observer": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-ready": {
+            "count": 4,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-call": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "measure-image-decode-finished": {
+            "count": 24,
+            "totalMs": 5.000000059604645,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.29999999701976776
+          },
+          "measure-item-rect": {
+            "count": 384,
+            "totalMs": 1.0999999791383743,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "measure-available-rect": {
+            "count": 8,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "print-measure-run": {
+            "count": 4,
+            "totalMs": 2.5999999940395355,
+            "maxMs": 0.8999999910593033,
+            "medianMs": 0.7000000029802322,
+            "p95Ms": 0.8999999910593033
+          },
+          "paper-rect": {
+            "count": 1,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "preview-rect": {
+            "count": 1,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          }
+        },
+        "events": [
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3556.800000011921,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3566.4000000059605,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 3978.300000011921,
+            "ready": false
+          },
+          {
+            "kind": "print-ready",
+            "durationMs": 0,
+            "atMs": 4019.4000000059605,
+            "ready": true
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 2,
+          "RecalcStyleCount": 4,
+          "LayoutDuration": 0.034732,
+          "RecalcStyleDuration": 0.014747999999999997,
+          "ScriptDuration": 0.6063149999999999,
+          "TaskDuration": 0.6961269999999999
+        }
+      },
+      "scroll": {
+        "elapsedMs": 646.4000000059605,
+        "kinds": {
+          "preview-rect": {
+            "count": 40,
+            "totalMs": 1.6000000536441803,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.20000000298023224
+          },
+          "paper-rect": {
+            "count": 840,
+            "totalMs": 2.2000000178813934,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "print-scroll-handler": {
+            "count": 40,
+            "totalMs": 15.900000035762787,
+            "maxMs": 1,
+            "medianMs": 0.4000000059604645,
+            "p95Ms": 0.7999999970197678
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4487.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 4488.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4495.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 4511.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4526.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 4543.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4561.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 4577,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.6000000089406967,
+            "atMs": 4594.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4611,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4626.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 1,
+            "atMs": 4644.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4661.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4677.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.7999999970197678,
+            "atMs": 4698,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4710.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4727.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4744.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 4760,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 4777,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5999999940395355,
+            "atMs": 4794.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4810.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.7999999970197678,
+            "atMs": 4827.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4844.300000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 4860.600000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 4877.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.30000001192092896,
+            "atMs": 4893.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4909.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.7000000029802322,
+            "atMs": 4927.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 4943.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 4960.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 4977.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 4994.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5010.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5027.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.6000000089406967,
+            "atMs": 5044.800000011921,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 5060.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5077.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 5093.70000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.20000000298023224,
+            "atMs": 5110.800000011921,
+            "pages": 21
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 0,
+          "RecalcStyleCount": 0,
+          "LayoutDuration": 0,
+          "RecalcStyleDuration": 0,
+          "ScriptDuration": 0.018536999999999804,
+          "TaskDuration": 0.05120900000000006
+        },
+        "synchronousDispatchMs": [
+          0.6000000089406967,
+          0.29999999701976776,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.29999999701976776,
+          0.30000001192092896,
+          0.6000000089406967,
+          0.29999999701976776,
+          0.7000000029802322,
+          0.29999999701976776,
+          0.4000000059604645,
+          1,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.8999999910593033,
+          0.3999999910593033,
+          0.4000000059604645,
+          0.3999999910593033,
+          0.29999999701976776,
+          0.5,
+          0.7000000029802322,
+          0.4000000059604645,
+          0.9000000059604645,
+          0.4000000059604645,
+          0.4000000059604645,
+          0.20000000298023224,
+          0.4000000059604645,
+          0.5,
+          0.7999999970197678,
+          0.6000000089406967,
+          0.5,
+          0.6000000089406967,
+          0.3999999910593033,
+          0.4000000059604645,
+          0.29999999701976776,
+          0.7000000029802322,
+          0.5,
+          0.29999999701976776,
+          0.6000000089406967,
+          0.4000000059604645
+        ]
+      },
+      "nativeScroll": {
+        "elapsedMs": 437.5,
+        "kinds": {
+          "preview-rect": {
+            "count": 8,
+            "totalMs": 0.5,
+            "maxMs": 0.29999999701976776,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.29999999701976776
+          },
+          "paper-rect": {
+            "count": 168,
+            "totalMs": 0.5,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "print-scroll-handler": {
+            "count": 8,
+            "totalMs": 2.2999999821186066,
+            "maxMs": 0.5,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.5
+          }
+        },
+        "events": [
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.4000000059604645,
+            "atMs": 5262.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.5,
+            "atMs": 5351.9000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.10000000894069672,
+            "atMs": 5360.100000008941,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.09999999403953552,
+            "atMs": 5361,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.19999998807907104,
+            "atMs": 5376.5,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5394.4000000059605,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.3999999910593033,
+            "atMs": 5411.20000000298,
+            "pages": 21
+          },
+          {
+            "kind": "print-scroll-handler",
+            "durationMs": 0.29999999701976776,
+            "atMs": 5426.9000000059605,
+            "pages": 21
+          }
+        ],
+        "cdpDelta": {
+          "LayoutCount": 1,
+          "RecalcStyleCount": 1,
+          "LayoutDuration": 0.00014099999999998836,
+          "RecalcStyleDuration": 0.00005400000000000543,
+          "ScriptDuration": 0.09328800000000026,
+          "TaskDuration": 0.135567
+        },
+        "scrollLeft": 818
+      }
+    }
+  ],
+  "fontFit": [
+    {
+      "width": 390,
+      "dataset": "4 actual ExplorerChoiceText formulas plus 12 DailyJourneyBoard titles, 4 long/4 medium/4 short",
+      "mounted": {
+        "elapsedMs": 995.7000000029802,
+        "kinds": {
+          "choice-offsetHeight": {
+            "count": 20,
+            "totalMs": 30.99999998509884,
+            "maxMs": 30.899999991059303,
+            "medianMs": 30.899999991059303,
+            "p95Ms": 30.899999991059303
+          },
+          "choice-rect": {
+            "count": 32,
+            "totalMs": 0.10000000894069672,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "explorer-fit-run": {
+            "count": 20,
+            "totalMs": 32.30000001192093,
+            "maxMs": 31.30000001192093,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 31.30000001192093
+          },
+          "journey-scrollHeight": {
+            "count": 36,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "journey-clientHeight": {
+            "count": 36,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-scrollWidth": {
+            "count": 36,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-clientWidth": {
+            "count": 36,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-fit-run": {
+            "count": 36,
+            "totalMs": 0.7000000029802322,
+            "maxMs": 0.20000000298023224,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.20000000298023224
+          },
+          "resize-observer": {
+            "count": 24,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": []
+      },
+      "labels": [
+        {
+          "kind": "choice",
+          "text": "x=−b±b2−4ac2a\\displaystyle x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}x=2a−b±b2−4ac​​",
+          "scale": "1"
+        },
+        {
+          "kind": "choice",
+          "text": "9=3\\displaystyle \\sqrt{9}=39​=3",
+          "scale": "1"
+        },
+        {
+          "kind": "choice",
+          "text": "(a+b)2=a2+2ab+b2\\displaystyle (a+b)^{2}=a^{2}+2ab+b^{2}(a+b)2=a2+2ab+b2",
+          "scale": "1"
+        },
+        {
+          "kind": "choice",
+          "text": "x2+y2=25\\displaystyle x^{2}+y^{2}=25x2+y2=25",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        }
+      ],
+      "idle": {
+        "elapsedMs": 807.2999999970198,
+        "kinds": {},
+        "events": []
+      },
+      "resized": {
+        "elapsedMs": 524.8999999910593,
+        "kinds": {
+          "resize-observer": {
+            "count": 15,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "choice-offsetHeight": {
+            "count": 7,
+            "totalMs": 15.599999994039536,
+            "maxMs": 6.4000000059604645,
+            "medianMs": 1.2999999970197678,
+            "p95Ms": 6.4000000059604645
+          },
+          "choice-rect": {
+            "count": 14,
+            "totalMs": 0.30000001192092896,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "explorer-fit-run": {
+            "count": 3,
+            "totalMs": 16.30000001192093,
+            "maxMs": 11.5,
+            "medianMs": 3.7000000029802322,
+            "p95Ms": 11.5
+          },
+          "journey-scrollHeight": {
+            "count": 17,
+            "totalMs": 3.5999999940395355,
+            "maxMs": 1.5999999940395355,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 1.5999999940395355
+          },
+          "journey-clientHeight": {
+            "count": 17,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "journey-scrollWidth": {
+            "count": 12,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-clientWidth": {
+            "count": 12,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-fit-run": {
+            "count": 12,
+            "totalMs": 4.899999991059303,
+            "maxMs": 3.199999988079071,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 3.199999988079071
+          }
+        },
+        "events": [],
+        "cdpDelta": {
+          "LayoutCount": 17,
+          "RecalcStyleCount": 18,
+          "LayoutDuration": 0.018984999999999995,
+          "RecalcStyleDuration": 0.005638000000000001,
+          "ScriptDuration": 0.015949999999999992,
+          "TaskDuration": 0.04993399999999998
+        }
+      }
+    },
+    {
+      "width": 320,
+      "dataset": "4 actual ExplorerChoiceText formulas plus 12 DailyJourneyBoard titles, 4 long/4 medium/4 short",
+      "mounted": {
+        "elapsedMs": 982.4000000059605,
+        "kinds": {
+          "choice-offsetHeight": {
+            "count": 23,
+            "totalMs": 13.199999988079071,
+            "maxMs": 2.2999999970197678,
+            "medianMs": 1.0999999940395355,
+            "p95Ms": 2.2999999970197678
+          },
+          "choice-rect": {
+            "count": 38,
+            "totalMs": 0.5,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.10000000894069672
+          },
+          "explorer-fit-run": {
+            "count": 17,
+            "totalMs": 14.900000050663948,
+            "maxMs": 4.4000000059604645,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 4.4000000059604645
+          },
+          "journey-scrollHeight": {
+            "count": 51,
+            "totalMs": 2.9000000059604645,
+            "maxMs": 0.30000001192092896,
+            "medianMs": 0.20000000298023224,
+            "p95Ms": 0.30000001192092896
+          },
+          "journey-clientHeight": {
+            "count": 51,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "journey-scrollWidth": {
+            "count": 36,
+            "totalMs": 0.09999999403953552,
+            "maxMs": 0.09999999403953552,
+            "medianMs": 0.09999999403953552,
+            "p95Ms": 0.09999999403953552
+          },
+          "journey-clientWidth": {
+            "count": 36,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-fit-run": {
+            "count": 36,
+            "totalMs": 7.000000014901161,
+            "maxMs": 0.7999999970197678,
+            "medianMs": 0.30000001192092896,
+            "p95Ms": 0.7999999970197678
+          },
+          "resize-observer": {
+            "count": 25,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          }
+        },
+        "events": []
+      },
+      "labels": [
+        {
+          "kind": "choice",
+          "text": "x=−b±b2−4ac2a\\displaystyle x=\\dfrac{-b\\pm\\sqrt{b^{2}-4ac}}{2a}x=2a−b±b2−4ac​​",
+          "scale": "0.8"
+        },
+        {
+          "kind": "choice",
+          "text": "9=3\\displaystyle \\sqrt{9}=39​=3",
+          "scale": "1"
+        },
+        {
+          "kind": "choice",
+          "text": "(a+b)2=a2+2ab+b2\\displaystyle (a+b)^{2}=a^{2}+2ab+b^{2}(a+b)2=a2+2ab+b2",
+          "scale": "1"
+        },
+        {
+          "kind": "choice",
+          "text": "x2+y2=25\\displaystyle x^{2}+y^{2}=25x2+y2=25",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "0.8"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "0.9"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "0.9"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "세 자리 수 덧셈 (받아올림 두·세 번)",
+          "scale": "0.9"
+        },
+        {
+          "kind": "journey",
+          "text": "연립일차방정식의 풀이",
+          "scale": "1"
+        },
+        {
+          "kind": "journey",
+          "text": "분수의 덧셈",
+          "scale": "1"
+        }
+      ],
+      "idle": {
+        "elapsedMs": 814.5,
+        "kinds": {},
+        "events": []
+      },
+      "resized": {
+        "elapsedMs": 523.1000000089407,
+        "kinds": {
+          "resize-observer": {
+            "count": 15,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "choice-offsetHeight": {
+            "count": 3,
+            "totalMs": 2.5999999940395355,
+            "maxMs": 1.2999999970197678,
+            "medianMs": 1.2000000029802322,
+            "p95Ms": 1.2999999970197678
+          },
+          "choice-rect": {
+            "count": 6,
+            "totalMs": 0.10000000894069672,
+            "maxMs": 0.10000000894069672,
+            "medianMs": 0.10000000894069672,
+            "p95Ms": 0.10000000894069672
+          },
+          "explorer-fit-run": {
+            "count": 3,
+            "totalMs": 2.8999999910593033,
+            "maxMs": 1.3999999910593033,
+            "medianMs": 1.2999999970197678,
+            "p95Ms": 1.3999999910593033
+          },
+          "journey-scrollHeight": {
+            "count": 12,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-clientHeight": {
+            "count": 12,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-scrollWidth": {
+            "count": 12,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-clientWidth": {
+            "count": 12,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "journey-fit-run": {
+            "count": 12,
+            "totalMs": 2.000000014901161,
+            "maxMs": 0.5,
+            "medianMs": 0.29999999701976776,
+            "p95Ms": 0.5
+          }
+        },
+        "events": [],
+        "cdpDelta": {
+          "LayoutCount": 12,
+          "RecalcStyleCount": 13,
+          "LayoutDuration": 0.004452999999999999,
+          "RecalcStyleDuration": 0.0031470000000000005,
+          "ScriptDuration": 0.014874000000000012,
+          "TaskDuration": 0.030325999999999992
+        }
+      }
+    }
+  ],
+  "teaching": [
+    {
+      "run": 0,
+      "dataset": "1 synthetic class, 10 synthetic learners, no unit/progress/plan, 10ms artificial in-memory GET delay",
+      "initialTab": "lessons",
+      "visibleMainScreen": "stubbed to isolate hidden ClassManage reads",
+      "actualComponents": "TeachingView, ClassManage, useClassManage, classApi, ProgressPlanSection",
+      "hidden": {
+        "hidden": true,
+        "rectCount": 0,
+        "childCount": 115
+      },
+      "initial": {
+        "elapsedMs": 1417.7999999970198,
+        "kinds": {
+          "fixture-read-start": {
+            "count": 5,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "fixture-read-end": {
+            "count": 5,
+            "totalMs": 56.400000020861626,
+            "maxMs": 12.299999997019768,
+            "medianMs": 11.400000005960464,
+            "p95Ms": 12.299999997019768
+          }
+        },
+        "events": [
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 472.59999999403954,
+            "path": "/api/studio/teaching",
+            "query": ""
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 10.300000011920929,
+            "atMs": 482.90000000596046,
+            "path": "/api/studio/teaching",
+            "status": 200
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 1169.2000000029802,
+            "path": "/api/classes",
+            "query": "?page=1&pageSize=100"
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 10.200000002980232,
+            "atMs": 1179.4000000059605,
+            "path": "/api/classes",
+            "status": 200
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 1193.2999999970198,
+            "path": "/api/classes/10000000-0000-4000-8000-000000000001/progress-plan",
+            "query": "?day=2026-10-05"
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 1193.7000000029802,
+            "path": "/api/progress",
+            "query": "?classId=10000000-0000-4000-8000-000000000001"
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 1194.5999999940395,
+            "path": "/api/students",
+            "query": "?classId=10000000-0000-4000-8000-000000000001&page=1&pageSize=100"
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 12.299999997019768,
+            "atMs": 1205.7000000029802,
+            "path": "/api/classes/10000000-0000-4000-8000-000000000001/progress-plan",
+            "status": 200
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 12.200000002980232,
+            "atMs": 1205.9000000059605,
+            "path": "/api/progress",
+            "status": 204
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 11.400000005960464,
+            "atMs": 1206,
+            "path": "/api/students",
+            "status": 200
+          }
+        ]
+      },
+      "revisit": {
+        "elapsedMs": 934.5,
+        "kinds": {},
+        "events": [],
+        "cdpDelta": {
+          "LayoutCount": 2,
+          "RecalcStyleCount": 11,
+          "LayoutDuration": 0.020412,
+          "RecalcStyleDuration": 0.0053679999999999995,
+          "ScriptDuration": 0.016486999999999988,
+          "TaskDuration": 0.06686199999999998
+        }
+      }
+    },
+    {
+      "run": 1,
+      "dataset": "1 synthetic class, 10 synthetic learners, no unit/progress/plan, 10ms artificial in-memory GET delay",
+      "initialTab": "lessons",
+      "visibleMainScreen": "stubbed to isolate hidden ClassManage reads",
+      "actualComponents": "TeachingView, ClassManage, useClassManage, classApi, ProgressPlanSection",
+      "hidden": {
+        "hidden": true,
+        "rectCount": 0,
+        "childCount": 115
+      },
+      "initial": {
+        "elapsedMs": 985.2000000029802,
+        "kinds": {
+          "fixture-read-start": {
+            "count": 5,
+            "totalMs": 0,
+            "maxMs": 0,
+            "medianMs": 0,
+            "p95Ms": 0
+          },
+          "fixture-read-end": {
+            "count": 5,
+            "totalMs": 53.1000000089407,
+            "maxMs": 11,
+            "medianMs": 10.600000008940697,
+            "p95Ms": 11
+          }
+        },
+        "events": [
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 582.6000000089407,
+            "path": "/api/studio/teaching",
+            "query": ""
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 11,
+            "atMs": 593.5,
+            "path": "/api/studio/teaching",
+            "status": 200
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 931.3000000119209,
+            "path": "/api/classes",
+            "query": "?page=1&pageSize=100"
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 10.799999997019768,
+            "atMs": 942.1000000089407,
+            "path": "/api/classes",
+            "status": 200
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 947.5,
+            "path": "/api/classes/10000000-0000-4000-8000-000000000001/progress-plan",
+            "query": "?day=2026-10-05"
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 947.8000000119209,
+            "path": "/api/progress",
+            "query": "?classId=10000000-0000-4000-8000-000000000001"
+          },
+          {
+            "kind": "fixture-read-start",
+            "durationMs": 0,
+            "atMs": 948.2000000029802,
+            "path": "/api/students",
+            "query": "?classId=10000000-0000-4000-8000-000000000001&page=1&pageSize=100"
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 10.600000008940697,
+            "atMs": 958.1000000089407,
+            "path": "/api/classes/10000000-0000-4000-8000-000000000001/progress-plan",
+            "status": 200
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 10.5,
+            "atMs": 958.3000000119209,
+            "path": "/api/progress",
+            "status": 204
+          },
+          {
+            "kind": "fixture-read-end",
+            "durationMs": 10.200000002980232,
+            "atMs": 958.4000000059605,
+            "path": "/api/students",
+            "status": 200
+          }
+        ]
+      },
+      "revisit": {
+        "elapsedMs": 830.5,
+        "kinds": {},
+        "events": [],
+        "cdpDelta": {
+          "LayoutCount": 2,
+          "RecalcStyleCount": 11,
+          "LayoutDuration": 0.001515,
+          "RecalcStyleDuration": 0.002948,
+          "ScriptDuration": 0.012502999999999993,
+          "TaskDuration": 0.03470199999999998
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "externalRequestsBlocked": [],
+  "navigation": [
+    {
+      "label": "print-24-run-0",
+      "navigationAndModuleWaitMs": 1322.9012999999998,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "print-24-run-1",
+      "navigationAndModuleWaitMs": 777.2163,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "print-96-run-0",
+      "navigationAndModuleWaitMs": 2624.1856000000007,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "print-96-run-1",
+      "navigationAndModuleWaitMs": 2247.160899999999,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "fonts-390",
+      "navigationAndModuleWaitMs": 656.2504999999983,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "fonts-320",
+      "navigationAndModuleWaitMs": 479.91809999999896,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "teaching-lessons-0",
+      "navigationAndModuleWaitMs": 478.5039999999972,
+      "countedAsComponentTime": false
+    },
+    {
+      "label": "teaching-lessons-1",
+      "navigationAndModuleWaitMs": 612.1791000000012,
+      "countedAsComponentTime": false
+    }
+  ],
+  "instrumentationRestored": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ]
+}

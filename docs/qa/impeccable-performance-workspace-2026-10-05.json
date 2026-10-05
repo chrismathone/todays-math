@@ -1,0 +1,162 @@
+{
+  "mode": "actual WorkspacePage and loadUnifiedBank invoked directly without Next/RSC render",
+  "imposedDelaysMs": {
+    "account": 20,
+    "count": 40,
+    "unitsWithCounts": 80,
+    "rows": 60
+  },
+  "syntheticRows": 12,
+  "formatFilter": "absent",
+  "samples": [
+    {
+      "bankAccess": true,
+      "run": 0,
+      "condition": "first invocation after module import; not database cold cache",
+      "durationMs": 192.64409999999998,
+      "returnProblemCount": 12,
+      "calls": [
+        {
+          "kind": "account-double",
+          "start": 0.1313000000000102,
+          "end": 26.625599999999963,
+          "durationMs": 26.494299999999953
+        },
+        {
+          "kind": "problem.count",
+          "start": 29.50929999999994,
+          "end": 77.81020000000001,
+          "durationMs": 48.30090000000007
+        },
+        {
+          "kind": "unit.findMany-with-count",
+          "start": 29.669599999999946,
+          "end": 109.69409999999993,
+          "durationMs": 80.02449999999999
+        },
+        {
+          "kind": "problem.findMany",
+          "start": 109.88479999999993,
+          "end": 183.0574999999999,
+          "durationMs": 73.17269999999996
+        }
+      ]
+    },
+    {
+      "bankAccess": true,
+      "run": 1,
+      "condition": "same module repeated invocation; fresh doubles",
+      "durationMs": 230.9085,
+      "returnProblemCount": 12,
+      "calls": [
+        {
+          "kind": "account-double",
+          "start": 0.01269999999999527,
+          "end": 34.945199999999886,
+          "durationMs": 34.93249999999989
+        },
+        {
+          "kind": "problem.count",
+          "start": 35.06439999999998,
+          "end": 93.02679999999987,
+          "durationMs": 57.96239999999989
+        },
+        {
+          "kind": "unit.findMany-with-count",
+          "start": 35.1592999999998,
+          "end": 124.5927999999999,
+          "durationMs": 89.4335000000001
+        },
+        {
+          "kind": "problem.findMany",
+          "start": 124.67840000000001,
+          "end": 229.82150000000001,
+          "durationMs": 105.1431
+        }
+      ]
+    },
+    {
+      "bankAccess": true,
+      "run": 2,
+      "condition": "same module repeated invocation; fresh doubles",
+      "durationMs": 186.37310000000002,
+      "returnProblemCount": 12,
+      "calls": [
+        {
+          "kind": "account-double",
+          "start": 0.008900000000039654,
+          "end": 38.482099999999946,
+          "durationMs": 38.473199999999906
+        },
+        {
+          "kind": "problem.count",
+          "start": 38.60349999999994,
+          "end": 105.81809999999996,
+          "durationMs": 67.21460000000002
+        },
+        {
+          "kind": "unit.findMany-with-count",
+          "start": 38.63359999999989,
+          "end": 123.74250000000006,
+          "durationMs": 85.10890000000018
+        },
+        {
+          "kind": "problem.findMany",
+          "start": 123.8010999999999,
+          "end": 186.2032999999999,
+          "durationMs": 62.40219999999999
+        }
+      ]
+    },
+    {
+      "bankAccess": false,
+      "run": 0,
+      "condition": "first invocation after module import; not database cold cache",
+      "durationMs": 29.326999999999998,
+      "returnProblemCount": 0,
+      "calls": [
+        {
+          "kind": "account-double",
+          "start": 0.007800000000088403,
+          "end": 29.24459999999999,
+          "durationMs": 29.236799999999903
+        }
+      ]
+    },
+    {
+      "bankAccess": false,
+      "run": 1,
+      "condition": "same module repeated invocation; fresh doubles",
+      "durationMs": 32.03500000000008,
+      "returnProblemCount": 0,
+      "calls": [
+        {
+          "kind": "account-double",
+          "start": 0.009000000000014552,
+          "end": 31.90000000000009,
+          "durationMs": 31.891000000000076
+        }
+      ]
+    },
+    {
+      "bankAccess": false,
+      "run": 2,
+      "condition": "same module repeated invocation; fresh doubles",
+      "durationMs": 40.894000000000005,
+      "returnProblemCount": 0,
+      "calls": [
+        {
+          "kind": "account-double",
+          "start": 0.007799999999861029,
+          "end": 40.816499999999905,
+          "durationMs": 40.808700000000044
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No real database, network, authorization, React request cache, RSC streaming, HTTP response, TTFB or CWV measured",
+    "Query wall times are imposed delay-double times, not SQL performance",
+    "Module import/transform startup excluded from timed invocation"
+  ]
+}
