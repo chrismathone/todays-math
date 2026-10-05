@@ -461,7 +461,7 @@ describe("assigned inventory replay", () => {
         record?: { storage?: { start?: number; endExclusive?: number } };
       };
       const storage = proof.record?.storage;
-      if (Number.isInteger(storage?.start) && Number.isInteger(storage?.endExclusive)) {
+      if (storage && Number.isInteger(storage.start) && Number.isInteger(storage.endExclusive)) {
         const slice = file.subarray(storage.start, storage.endExclusive);
         assert.equal(createHash("sha256").update(slice).digest("hex"), record.audio.sha256);
         slices += 1;

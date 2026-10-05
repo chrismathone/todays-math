@@ -53,7 +53,12 @@ const cues = segments.filter((segment: { text: string; uncertain?: boolean; esti
   left.estimatedStartSeconds - right.estimatedStartSeconds || left.id - right.id);
 
 const used = new Set<number>(source.probes.map((probe: { onsetFrame: number }) => probe.onsetFrame));
-const probes = [];
+const probes: Array<{
+  id: number; purpose: string; asrSegmentId: number;
+  startFrame: number; frameCount: number; onsetFrame: number;
+  quietBeforeFrames: number; search: string; onsetSeconds: number;
+  discovery: object | null;
+}> = [];
 const notes = [];
 
 function collect(fromSeconds: number, toSeconds: number, label: string, limit: number) {
@@ -129,7 +134,7 @@ for (const cue of cues) {
         "around-heard-ordinal",
         4,
       );
-      pushHits(cue, hits, discoveries.at(-1));
+      pushHits(cue, hits, discoveries.at(-1) ?? null);
     }
   }
   const onsetSeconds = heardProbes.map((probe: { onsetFrame: number }) => probe.onsetFrame / rate);
