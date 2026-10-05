@@ -340,6 +340,10 @@ describe.skipIf(!run)(
         ),
       );
       const records = [];
+      const leftMm = (page: TextbookPage) =>
+        page.physicalPageIndex % 2 === 0
+          ? data.exchange.config.print.outerMarginMm
+          : data.exchange.config.print.innerMarginMm;
       const untouched = new Set(frozen.map((page) => page.sectionKey));
       for (const section of sections) {
         const unsplit = data.student.sections.find(
@@ -424,12 +428,18 @@ describe.skipIf(!run)(
           now.flatMap((p) => p.blocks).filter((p) => p.blockId === check.id),
         ).toHaveLength(1);
         const placedBody = now[0].blocks.find((p) => p.blockId === body.id)!;
-        expect([placedBody.xMm, placedBody.yMm, placedBody.widthMm]).toEqual([
-          whole.xMm,
+        // A moved answer section uses its actual page's inner/outer margin.
+        // Its vertical position and width still match the preserved source body.
+        expect(whole.xMm).toBe(leftMm(was[0]));
+        expect(placedBody.xMm).toBe(leftMm(now[0]));
+        expect([placedBody.yMm, placedBody.widthMm]).toEqual([
           whole.yMm,
           whole.widthMm,
         ]);
-        expect(now[0].blocks[0]).toEqual(heading);
+        expect(now[0].blocks[0]).toEqual({
+          ...heading,
+          xMm: leftMm(now[0]),
+        });
         const wasRow = was[was.length - 1].blocks.filter((p) => p.itemId);
         let moved: number | null = null;
         const movedToContinuation =
@@ -464,9 +474,19 @@ describe.skipIf(!run)(
           moved = row[0].yMm - wasRow[0].yMm;
           expect(Math.abs(moved)).toBeLessThanOrEqual(0.021);
           expect(
-            row.map((p) => [p.xMm, p.widthMm, p.heightMm, p.column]),
+            row.map((p) => [
+              p.xMm - leftMm(last),
+              p.widthMm,
+              p.heightMm,
+              p.column,
+            ]),
           ).toEqual(
-            wasRow.map((p) => [p.xMm, p.widthMm, p.heightMm, p.column]),
+            wasRow.map((p) => [
+              p.xMm - leftMm(was.at(-1)!),
+              p.widthMm,
+              p.heightMm,
+              p.column,
+            ]),
           );
         }
         for (const p of now.flatMap((page) => page.blocks))
@@ -475,6 +495,9 @@ describe.skipIf(!run)(
           sectionKey: section.sectionKey,
           sourceKind: authored.semantic?.source?.kind,
           pages: now.map((p) => p.physicalPageIndex),
+          historicalPages: was.map((p) => p.physicalPageIndex),
+          historicalBodyLeftMm: whole.xMm,
+          currentBodyLeftMm: placedBody.xMm,
           leftBehindBefore: orphaned,
           movedToContinuation,
           wholeMm: whole.heightMm,
