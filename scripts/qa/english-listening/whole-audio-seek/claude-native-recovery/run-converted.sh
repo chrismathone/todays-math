@@ -27,6 +27,10 @@ for stage in "$@"; do
     *+controls) flags+=(--controls) ;;
     *+tile) flags+=(--tile) ;;
   esac
+  # A round id that already has a request is never reused.
+  while [ -e "$OUT/probe-requests/round-$(printf '%03d' "$round").json" ]; do
+    round=$((round + 1))
+  done
   id="$(printf '%03d' "$round")"
   planned="$(cd "$HERE" && node plan.mjs --stage "$name" --round "$id" --scope reconstructed "${flags[@]}")"
   echo "$planned" | tee -a "$OUT/logs/rounds.log"

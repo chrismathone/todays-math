@@ -50,6 +50,12 @@ for stage in "$@"; do
     id="$(printf '%03d' "$(( $(ls "$root/probe-requests" 2>/dev/null | wc -l) + 1 ))")"
   else
     root="$OUT"
+    # A round id that already has a request is never reused: an earlier
+    # request, finished or interrupted, stays as it was written, and this stage
+    # is planned afresh under the next free id from everything heard so far.
+    while [ -e "$root/probe-requests/round-$(printf '%03d' "$round").json" ]; do
+      round=$((round + 1))
+    done
     id="$(printf '%03d' "$round")"
   fi
   planned="$(cd "$HERE" && node plan.mjs --stage "$name" --round "$id" --scope "$scope" "${flags[@]}")"
