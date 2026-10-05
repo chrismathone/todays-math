@@ -68,7 +68,7 @@ export function renderSemanticTextHtml(
   if (node.kind === "exampleGroup") {
     const sourceTitle = semantic.source ? /^Y(\d+)\s+(.+)$/.exec(node.title) : null;
     const number = sourceTitle?.[1] ?? block.exampleGroupNumber;
-    return `<section class="tb-example-group tb-pair-heading" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy)) : md(node.strategy)}</div>`}</section>`;
+    return `<section class="tb-example-group tb-pair-heading${semantic.source ? " tb-source-example-heading" : ""}" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? `<b>풀이전략</b>${dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy))}` : md(node.strategy)}</div>`}</section>`;
   }
   return null;
 }

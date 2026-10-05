@@ -135,6 +135,30 @@ describe("strict textbook archive transport", () => {
     ])
       expect(() => assertSafeSvg(`<svg><g ${attrs}/></svg>`)).toThrow();
   });
+  it("retains native SVG text letter spacing as a finite scalar only", () => {
+    for (const spacing of ["1px", "-.5px", ".3px", "1.3px", "0", "+.5"])
+      expect(() =>
+        assertSafeSvg(
+          `<svg><text letter-spacing="${spacing}">개념</text></svg>`,
+        ),
+      ).not.toThrow();
+    for (const spacing of [
+      "normal",
+      "Infinity",
+      "NaN",
+      "1em",
+      "1px;color:red",
+      "calc(1px)",
+      "url(https://x)",
+      "&#49;px",
+      "9".repeat(400),
+    ])
+      expect(() =>
+        assertSafeSvg(
+          `<svg><text letter-spacing="${spacing}">개념</text></svg>`,
+        ),
+      ).toThrow(/SVG/);
+  });
   it("exports actual page labels and protects spreadsheet formula cells without changing JSON", () => {
     const e = publishedFixture();
     e.items[0].displayNumber = '=HYPERLINK("x")';

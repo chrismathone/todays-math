@@ -22,6 +22,11 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-source-problem .tb-prose{overflow-wrap:normal}
 .tb-source-problem [data-textbook-math],.tb-source-fragments .math{display:inline-block;white-space:nowrap;vertical-align:baseline}
 .tb-source-problem[data-example-role] .tb-problem-question>.tb-prose{min-height:12mm}
+.tb-source-example-heading .tb-example-strategy{display:flex;align-items:baseline;gap:2mm}
+.tb-source-example-heading .tb-example-strategy>b{flex:none;font-size:6.6pt;font-weight:700;color:var(--tb-dark);background:var(--tb-signal);padding:.35mm 1.4mm;border-radius:4mm}
+.tb-recovery .tb-source-problem[data-example-role="example"]{position:relative;border-radius:0 5mm 0 0}
+.tb-recovery .tb-source-problem[data-example-role="example"]:before{content:'';position:absolute;top:0;left:0;height:1.2mm;width:12mm;background:var(--tb-accent)}
+.tb-source-problem[data-example-role="example"] .tb-problem-head>.tag{background:white;border:.5pt solid var(--tb-light)}
 .tb-source-problem[data-source-kind^="concept"]:not([data-example-role]){padding:1mm 0 3mm}
 .tb-source-problem[data-source-kind="scriptcheck"]{padding:1mm 0}
 .tb-source-problem[data-source-kind="basic"]{padding:1.4mm 0}

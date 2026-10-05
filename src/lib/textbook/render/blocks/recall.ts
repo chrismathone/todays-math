@@ -1,7 +1,11 @@
 import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
 import type { TextbookSemanticRow } from "@/contracts/textbookSemantic.contract";
 import type { EditorialBlock } from "../editorial";
-import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
+import {
+  escapeHtml as esc,
+  renderTextbookMarkdown as md,
+  renderTextbookLabel as labelHtml,
+} from "../markdown";
 import { displayStyleMath } from "./dialogue";
 
 export type RecallPhase = "study" | "keywords" | "sentences";
@@ -336,11 +340,11 @@ function memoryHtml(
   // continues in the bar it reserves anyway, in every phase, so the bar keeps one height.
   const continued =
     continuation && !origin
-      ? `<span class="tb-memory-continuation" data-continuation>${block.memoryContinuationTitle ? `<span class="tb-memory-continuation-title">${esc(block.memoryContinuationTitle)}</span>` : ""}<small>계속</small></span>`
+      ? `<span class="tb-memory-continuation" data-continuation>${block.memoryContinuationTitle ? `<span class="tb-memory-continuation-title">${labelHtml(block.memoryContinuationTitle)}</span>` : ""}<small>계속</small></span>`
       : "";
   const title =
     node.kind === "concept"
-      ? `<header class="tb-memory-title" data-anchor="memory-title">${code ? `<span class="tb-memory-code">${esc(code)}</span>` : ""}<b>${esc(node.title)}</b>${rounds}</header>`
+      ? `<header class="tb-memory-title" data-anchor="memory-title">${code ? `<span class="tb-memory-code">${esc(code)}</span>` : ""}<b>${labelHtml(node.title)}</b>${rounds}</header>`
       : // Rows without a concept name keep the same bar in every phase, so the first row starts
         // at one height. Only the study sheet prints the repetition marks in it.
         `<header class="tb-memory-title tb-memory-title-bare" data-anchor="memory-title">${continued}${rounds}</header>`;
@@ -362,7 +366,7 @@ function memoryHtml(
               Math.floor((measured - padding) / RECALL_LINE_PITCH_MM),
             );
       const written = origin && measured === undefined ? 1 : lines;
-      return `<div class="tb-memory-row${origin ? " tb-memory-row-source" : ""}${measured === undefined ? "" : " tb-memory-row-measured"}" data-row-key="${esc(row.rowKey)}" data-row-group="${esc(group)}" data-concept-id="${esc(conceptId)}" data-phase="${phase}"${origin ? ' data-row-origin="source"' : ""}${page} style="--tb-row-lines:${lines}${measured === undefined ? "" : `;height:${measured}mm`}"><div class="tb-memory-label" data-anchor="row-label">${esc(row.label)}</div><div class="tb-memory-body" data-anchor="row-body">${rowBodyHtml(row, written, !!origin)}</div></div>`;
+      return `<div class="tb-memory-row${origin ? " tb-memory-row-source" : ""}${measured === undefined ? "" : " tb-memory-row-measured"}" data-row-key="${esc(row.rowKey)}" data-row-group="${esc(group)}" data-concept-id="${esc(conceptId)}" data-phase="${phase}"${origin ? ' data-row-origin="source"' : ""}${page} style="--tb-row-lines:${lines}${measured === undefined ? "" : `;height:${measured}mm`}"><div class="tb-memory-label" data-anchor="row-label">${labelHtml(row.label)}</div><div class="tb-memory-body" data-anchor="row-body">${rowBodyHtml(row, written, !!origin)}</div></div>`;
     })
     .join("");
   return `<section class="tb-recall tb-memory${origin ? ` ${RECALL_SOURCE_CLASS}` : ""}${continuation ? " tb-recall-continuation" : ""}" data-phase="${phase}" data-activity="${block.semantic!.activity}" data-row-group="${esc(group)}"${conceptId ? ` data-concept-id="${esc(conceptId)}"` : ""}${origin ? ` data-memory-origin="source" data-source-kind="${esc(origin.kind)}"` : ""}>${intro}${title}<div class="tb-memory-rows">${body}</div></section>`;
@@ -408,7 +412,7 @@ function termRecallHtml(block: RecallBlock): string {
     rows = recallDisplayRows(node.rows, "study", true)
       .map((row) => {
         const term = reveal
-          ? `<span class="tb-memory-key">${esc(row.label)}</span>`
+          ? `<span class="tb-memory-key">${labelHtml(row.label)}</span>`
           : keywordBlank(
               Math.round(
                 Math.min(40, Math.max(4, advanceEm(row.label) + 1)) * 10,

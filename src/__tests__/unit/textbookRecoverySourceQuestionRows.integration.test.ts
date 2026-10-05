@@ -220,6 +220,88 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     return found;
   };
 
+  it("final render: canonical repair math wrappers retain the native 17pt inline box", async () => {
+    const exchange = sourceRowsExchange(
+      [
+        {
+          sectionKey: "repair",
+          title: "합성 오류 점검",
+          kind: "clinic",
+          activity: "errorCheck",
+          blocks: [],
+        },
+      ],
+      30,
+    );
+    exchange.units[0].sections[0].blocks.push({
+      blockId: "repair-text",
+      kind: "text",
+      markdown: "합성 오류 점검",
+      semantic: {
+        activity: "errorCheck",
+        source: {
+          unit: "U01",
+          page: 30,
+          kind: "clinic",
+          path: "synthetic/repair",
+        },
+        node: {
+          kind: "fragments",
+          fragments: [
+            {
+              tag: "div",
+              attributes: { className: "repair-example" },
+              children: ["합성 표현 하나", "합성 표현 둘"].map((label) => ({
+                tag: "div",
+                children: [
+                  {
+                    tag: "span",
+                    attributes: { className: "tb-source-small" },
+                    rawText: label,
+                  },
+                  { tag: "span", rawText: "$0.\\dot2 3\\dot4$" },
+                  { tag: "p", rawText: "합성 설명 문장입니다." },
+                ],
+              })),
+            },
+          ],
+        },
+      },
+    });
+    const rendered = await render(
+      exchange,
+      [0],
+      "student",
+      (inner) => inner,
+      30,
+    );
+    const { page } = await openArtifact(browser, rendered.result.html);
+    try {
+      const boxes = await page.evaluate(() =>
+        Array.from(
+          document.querySelectorAll(".repair-example [data-textbook-math]"),
+        ).map((element) => {
+          const css = getComputedStyle(element);
+          return {
+            fontPt: parseFloat(css.fontSize) * 0.75,
+            linePx: parseFloat(css.lineHeight),
+            display: css.display,
+            heightMm: (element.getBoundingClientRect().height * 25.4) / 96,
+          };
+        }),
+      );
+      expect(boxes).toHaveLength(2);
+      for (const box of boxes) {
+        expect(box.fontPt).toBeCloseTo(17, 3);
+        expect(box.linePx).toBeCloseTo(37.4, 2);
+        expect(box.display).toBe("inline-block");
+        expect(box.heightMm).toBeCloseTo(9.897, 1);
+      }
+    } finally {
+      await page.close();
+    }
+  }, 120_000);
+
   it("final render: native four-question spread prompts reserve the same height before writing allocation", async () => {
     const exchange = sourceRowsExchange(
       [0, 1].map((side) => ({
