@@ -145,9 +145,11 @@ replay on CPU. Contradictory sibling numerals, duplicated numerals at distant
 onsets, unresolved internal instruction headings and quotes heard in physically
 separate passages are hold barriers even when omitted from the selected IDs.
 Rejected raw timing failures stay per-probe diagnostics; none supplies authority.
-Large localized catalogs replay in batches retaining the original 128-probe and
-512MiB native decoder limits; every batch must reproduce identical full PCM and
-energy. The old adapter keeps its original bounds.
+Large localized catalogs use tighter caller transport batches of at most 64
+probes and 64MiB PCM. The native decoder retains its original 128-probe and
+512MiB limits; every batch must reproduce identical full PCM and energy. Actual
+base64 transport buffers are released before mono replay. The old adapter keeps
+its original bounds.
 
 Certificates retain original generation/raw dialogue evidence and every nested
 input reference. All nested hashes are checked again before certificate writing.

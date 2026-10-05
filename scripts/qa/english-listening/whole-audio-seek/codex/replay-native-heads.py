@@ -2,7 +2,7 @@
 import argparse
 import collections
 import math
-import re
+import sys
 from pathlib import Path
 
 import claude_adapter as a
@@ -16,12 +16,26 @@ def main():
     for name in ("inventory", "clock", "output"):
         parser.add_argument("--" + name, required=True)
     parser.add_argument("--probes", action="append", required=True)
+    parser.add_argument("--grouped-controls")
     args = parser.parse_args()
     inputs = {k: v.reference(getattr(args, k)) for k in ("inventory", "clock")}
     inventory, clocks = v.checked_ref(inputs["inventory"]), v.checked_ref(inputs["clock"])
     v.require(clocks["inventorySha256"] == inputs["inventory"]["sha256"], "clock_wrong_inventory")
     clock_index = {c["sourceRecordId"]: c for c in clocks["records"]}
     sources = {s["sourceRecordId"]: s for s in inventory["records"]}
+    families = {}
+    if args.grouped_controls:
+        inputs["groupedControls"] = v.reference(args.grouped_controls)
+        grouped = v.checked_ref(inputs["groupedControls"])
+        control_inventory = grouped["inputs"]["inventory"]
+        v.checked_ref(control_inventory, inputs["inventory"]["path"])
+        v.require(control_inventory["sha256"] == inputs["inventory"]["sha256"], "heading_controls_wrong_inventory")
+        for partition, groups in grouped["partitions"].items():
+            for group in groups:
+                identity = {"partition": partition, "familyId": group["familyId"]}
+                sid = group["sourceRecordId"]
+                v.require(sid not in families or families[sid] == identity, "heading_source_split_between_control_families")
+                families[sid] = identity
     results, source_checks, references = [], [], list(inputs.values())
     implementation = [v.reference(p) for p in sorted(Path(__file__).parent.iterdir()) if p.suffix in (".py", ".mts", ".md")]
     for path in args.probes:
@@ -29,14 +43,16 @@ def main():
         container = v.checked_ref(ref)
         source = sources[container["sourceRecordId"]]
         raw = [p for p in container["probes"] if p.get("requestedLanguage") == "ko"]
-        rows = [{"status": "candidate", "probeEvidence": {**ref, "probeId": p["id"]}} for p in raw]
+        rows = [{"status": "candidate", "evidenceAdapter": l.ADAPTER, "probeEvidence": {**ref, "probeId": p["id"]}} for p in raw]
         replay = a.SourceReplay(inventory["root"], source, clock_index[source["sourceRecordId"]], rows)
         a.checked_full_pcm(container, replay.actual, "pilot_actual_full_pcm_mismatch")
         source_checks.append(replay.actual)
         references.extend([ref, {"path": container["requestPath"], "sha256": container["requestSha256"]}])
+        references.extend(l.upstream_refs(container, source))
         for row, probe in zip(rows, raw):
             result = {"sourceRecordId": source["sourceRecordId"], "probe": row["probeEvidence"],
-                      "rawProbe": probe, "admissionAuthority": False, "status": "held", "reasons": []}
+                      "rawProbe": probe, "admissionAuthority": False, "status": "held", "reasons": [],
+                      "controlFamily": families.get(source["sourceRecordId"])}
             try:
                 a.checked_probe(row, source)
                 actual = replay.replay(probe)
@@ -45,19 +61,10 @@ def main():
                 index = a.probe_segments(probe)
                 first = next(iter(index.values()))
                 v.require(not v.uncertain(first), "uncertain_raw_evidence")
+                v.require(first["estimatedStartSeconds"] <= 2, "localized_probe_missing_first_syllable")
                 numbers, rest = l.literal_cue(first["text"])
                 v.require(numbers, "pilot_not_numbered_instruction")
-                selected = [first]
-                for segment in list(index.values())[1:]:
-                    if re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", " ".join(s["text"] for s in selected)):
-                        break
-                    other_numbers, _ = l.literal_cue(segment["text"])
-                    v.require(not other_numbers, "pilot_instruction_crosses_next_heading")
-                    if len(a.english_words(segment["text"])) >= 4 and len(re.findall(r"[가-힣]", segment["text"])) < 8:
-                        break
-                    v.require(not v.uncertain(segment), "uncertain_raw_evidence")
-                    selected.append(segment)
-                v.require(re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", " ".join(s["text"] for s in selected)), "pilot_not_complete_numbered_instruction")
+                selected, rest = l.complete_instruction_prefix(index, [first])
                 rate, wf = replay.actual["sampleRate"], replay.actual["windowFrames"]
                 onset = probe["onsetFrame"]
                 method = probe.get("onsetMethod", "absolute_energy_v2")
@@ -89,6 +96,8 @@ def main():
             except (v.InvalidEvidence, KeyError, ValueError, TypeError) as error:
                 result["reasons"].append(str(error))
             results.append(result)
+        print({"processedSources": len(source_checks), "probes": len(results),
+               "counts": dict(collections.Counter(r["status"] for r in results))}, file=sys.stderr, flush=True)
     for ref in references + implementation:
         v.require(v.sha(ref["path"]) == ref["sha256"], "pilot_raw_input_changed_during_replay")
     counts = dict(collections.Counter(r["status"] for r in results))

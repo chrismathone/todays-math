@@ -1,7 +1,7 @@
 """CPU replay of actual truncated pilot ASR; negative diagnostics, never admission."""
 import argparse
 import collections
-import re
+import sys
 from pathlib import Path
 
 import claude_adapter as a
@@ -32,12 +32,13 @@ def main():
         ref = v.reference(path)
         container = v.checked_ref(ref)
         source = sources[container["sourceRecordId"]]
-        rows = [{"status": "candidate", "probeEvidence": {**ref, "probeId": p["id"]}} for p in container["probes"]]
+        rows = [{"status": "candidate", "evidenceAdapter": l.ADAPTER, "probeEvidence": {**ref, "probeId": p["id"]}} for p in container["probes"]]
         replay = a.SourceReplay(inventory["root"], source, clock_index[source["sourceRecordId"]], rows)
         a.checked_full_pcm(container, replay.actual, "adversarial_full_pcm_mismatch")
         v.require(replay.actual == physical[source["sourceRecordId"]], "adversarial_original_changed_from_heading_controls")
         source_checks.append(replay.actual)
         refs.extend([ref, {"path": container["requestPath"], "sha256": container["requestSha256"]}])
+        refs.extend(l.upstream_refs(container, source))
         for row, probe in zip(rows, container["probes"]):
             a.checked_probe(row, source)
             actual = replay.replay(probe)
@@ -45,22 +46,30 @@ def main():
                 v.require(probe.get(key) == actual[key], "adversarial_actual_probe_hash:" + key)
             record = {"sourceRecordId": source["sourceRecordId"], "probe": row["probeEvidence"], "rawProbe": probe,
                       "physicalInputReplayed": True, "admissionAuthority": False, "status": "unmatched_control",
-                      "expectedNumbersAuthority": False, "reasons": []}
+                      "expectedNumbersAuthority": False, "reasons": ["no_independently_replayed_complete_heading_at_this_native_onset"]}
             head = heads.get((source["sourceRecordId"], probe.get("onsetFrame")))
             if head:
                 native = head["measuredNativeEvidence"]
                 a.measured_onset(native, replay)
                 record["control"] = {"probe": head["probe"], "nativeEvidence": native,
                                      "spokenNumbers": head["spokenNumbers"]}
+                record["controlFamily"] = head.get("controlFamily")
+                record["reasons"] = []
                 index = {}
                 try:
                     index = a.probe_segments(probe)
                     first = next(iter(index.values()))
                     spoken, rest = l.literal_cue(first["text"])
-                    record["recognizerReportsCompleteReliableHeading"] = bool(spoken and not v.uncertain(first)
-                        and re.search(r"(?:고르시오|고르세요|답하시오|선택하시오)(?=[\s.!?。]|$)", rest))
+                    # A confident numeral cannot replace the omitted physical
+                    # first syllable or borrow an instruction after dialogue.
+                    if spoken and not v.uncertain(first):
+                        l.complete_instruction_prefix(index, [first])
+                        record["recognizerReportsCompleteReliableHeading"] = True
+                    else:
+                        record["recognizerReportsCompleteReliableHeading"] = False
                 except (v.InvalidEvidence, KeyError, ValueError, TypeError) as error:
                     record["recognitionDiagnostics"] = [str(error)]
+                    record["recognizerReportsCompleteReliableHeading"] = False
                 if probe["startFrame"] > native["onsetFrame"]:
                     claimed_native = {**native, "startFrame": probe["startFrame"]}
                     try:
@@ -80,6 +89,8 @@ def main():
                 else:
                     record["reasons"].append("adversarial_cut_effect_not_independently_established")
             results.append(record)
+        print({"processedSources": len(source_checks), "probes": len(results),
+               "counts": dict(collections.Counter(r["status"] for r in results))}, file=sys.stderr, flush=True)
     for ref in refs + implementation:
         v.require(v.sha(ref["path"]) == ref["sha256"], "adversarial_input_or_implementation_changed")
     counts = dict(collections.Counter(r["status"] for r in results))
