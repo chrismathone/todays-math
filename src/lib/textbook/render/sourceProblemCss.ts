@@ -9,6 +9,8 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-source-fragments .daily-banner{display:flex;justify-content:space-between;align-items:baseline;background:var(--tb-soft);padding:3mm 4mm;border-top:1.4pt solid var(--tb-accent);border-radius:0 3mm 0 0}
 .tb-source-fragments .daily-banner>strong{font-size:10pt;color:var(--tb-accent)}.tb-source-fragments .daily-banner>span{font-size:7pt;color:var(--tb-subink,#526461)}
 .tb-source-fragments .return-strip{border-top:.6pt solid var(--tb-light);padding-top:3mm;display:flex;gap:4mm;font-size:7.3pt;align-items:baseline}.tb-source-fragments .return-strip>strong{color:var(--tb-accent);white-space:nowrap}
+.tb-source-fragments[data-source-kind="exercise"] .review-note{border-top:.6pt solid var(--tb-light);padding-top:3mm;font-size:8pt;line-height:1.65;display:flex;gap:4mm;margin-top:3mm}
+.tb-source-fragments[data-source-kind="exercise"] .review-note>strong{color:var(--tb-accent);white-space:nowrap}
 .tb-source-problem .tb-problem-head{flex-wrap:nowrap;min-height:5.5mm;margin-bottom:1.2mm;line-height:1.65}
 .tb-editorial-problem[data-source-kind] .tb-source-problem{height:auto}
 .tb-source-fragments[data-source-kind="basic"] .mini-concepts{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
@@ -40,4 +42,5 @@ export const SOURCE_PROBLEM_CSS = `
 .tb-recovery .tb-source-problem[data-example-role="example"] .tb-worked-answer{display:block;font-size:8.5pt;line-height:1.65;border-top:.5pt solid var(--tb-light);padding:1.5mm 0 0;margin-top:2mm;color:var(--tb-accent)}
 .tb-source-problem[data-example-role="example"] .tb-worked-answer>b{display:inline-block;padding:0 1mm 0 0;font-size:7pt;line-height:1.65}
 .tb-source-problem[data-example-role="example"] .tb-worked-answer p{display:inline}
+.tb-recovery .tb-source-problem[data-example-role="confirm"]:not([data-confirm-index="0"]){margin-top:1mm;padding-top:2.5mm}
 `;

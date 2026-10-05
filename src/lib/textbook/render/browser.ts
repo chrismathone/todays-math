@@ -9,6 +9,7 @@ import {
   measurementHtml,
   recallMeasurementHtml,
   TEXTBOOK_CSS,
+  renderPageHtml,
   type RenderResources,
 } from "./html";
 import {
@@ -21,6 +22,12 @@ import {
 } from "./recoveryMeasurement";
 import type { TextbookRenderModel } from "./model";
 import { getTextbookCharacter } from "../characters";
+import {
+  applySourceWriting,
+  measureSourceWritingDom,
+  resetSourceWriting,
+  sourceWritingBlockIds,
+} from "./sourceWriting";
 
 export const TEXTBOOK_PREVIEW_FONT_CSS = [400, 700]
   .map(
@@ -41,6 +48,7 @@ export async function measureTextbookPreview(
     dialogueMeasurementModel?: TextbookRenderModel;
   } = {},
 ): Promise<TextbookLayout> {
+  resetSourceWriting(model);
   const sizingModel = buildDialogueMeasurementModel(
     options.dialogueMeasurementModel ?? model,
     model,
@@ -140,6 +148,25 @@ export async function measureTextbookPreview(
     );
     if (model.variant === "student")
       alignTextbookSpreads(layout.pages, model.sections);
+    const sourceWritingIds = sourceWritingBlockIds(model);
+    if (sourceWritingIds.length) {
+      content.innerHTML = layout.pages
+        .map((page) => renderPageHtml(page, model, resources, layout.pages))
+        .join("");
+      await Promise.all(
+        Array.from(host.querySelectorAll("img")).map((image) => image.decode()),
+      );
+      if (options.signal?.aborted)
+        throw new DOMException("Aborted", "AbortError");
+      applySourceWriting(
+        model,
+        layout,
+        measureSourceWritingDom({
+          blockIds: sourceWritingIds,
+          rootSelector: `[data-recovery-measure-host="${host.dataset.recoveryMeasureHost}"]`,
+        }),
+      );
+    }
     if (
       layout.pages.some((p) =>
         p.blocks.some(

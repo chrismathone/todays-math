@@ -3,6 +3,8 @@ import {
   EDITORIAL_STAGES,
   editorialUnitAsset,
   editorialUnitNumber,
+  sourceStageLabel,
+  sourceProgressTab,
   type EditorialBlock,
   type EditorialStage,
 } from "../editorial";
@@ -30,7 +32,27 @@ export function renderHeadingHtml(
   const meta = EDITORIAL_STAGES[stage];
   const rawNumber = heading.stageNumber ?? meta.number;
   const number = rawNumber === "" ? "" : String(rawNumber).padStart(2, "0");
-  return `<section class="tb-stage-heading"><header class="tb-stage-head"><div class="tb-kicker">${esc(meta.label)}</div><h2 class="tb-section-heading">${esc(block.title)}</h2>${block.continuedPage ? '<small class="tb-continuation-label" data-continuation>계속</small>' : ""}<p class="tb-stage-subtitle">${esc(heading.subtitle ?? meta.subtitle)}</p>${number.trim() ? `<span class="tb-stage-number" aria-hidden="true">${esc(number)}</span>` : ""}${stage === "rest" ? `<figure class="tb-rest-sprout">${editorialImage(resources, "learning-sprout.png", "책에서 자라는 배움의 새싹")}</figure>` : ""}</header>${progressHtml(stage, block.progressSteps, block.semantic?.activity)}</section>`;
+  const sourceKind = block.semantic?.source?.kind;
+  const progress =
+    sourceKind && sourceKind !== "fullmaster"
+      ? [
+          "answers",
+          "opening",
+          "toc",
+          "guide",
+          "studyplan",
+          "conceptindex",
+          "typeindex",
+        ].includes(sourceKind)
+        ? ""
+        : progressHtml(
+            stage,
+            undefined,
+            undefined,
+            sourceProgressTab(block, stage),
+          )
+      : progressHtml(stage, block.progressSteps, block.semantic?.activity);
+  return `<section class="tb-stage-heading"><header class="tb-stage-head"><div class="tb-kicker">${esc(sourceStageLabel(block, stage))}</div><h2 class="tb-section-heading">${esc(block.title)}</h2>${block.continuedPage ? '<small class="tb-continuation-label" data-continuation>계속</small>' : ""}<p class="tb-stage-subtitle">${esc(heading.subtitle ?? meta.subtitle)}</p>${number.trim() ? `<span class="tb-stage-number" aria-hidden="true">${esc(number)}</span>` : ""}${stage === "rest" ? `<figure class="tb-rest-sprout">${editorialImage(resources, "learning-sprout.png", "책에서 자라는 배움의 새싹")}</figure>` : ""}</header>${progress}</section>`;
 }
 
 function unitHeading(

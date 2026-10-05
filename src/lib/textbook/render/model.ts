@@ -65,6 +65,9 @@ type BlockBase = {
   sourceQuestionHeadHeightMm?: number;
   sourceQuestionPromptMinHeightMm?: number;
   sourceQuestionMainMinHeightMm?: number;
+  sourceWorkLines?: number;
+  sourceWorkMarginTopMm?: number;
+  sourceQuestionMinHeightMm?: number;
 };
 export type RenderBlock = BlockBase &
   (

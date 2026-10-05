@@ -6,6 +6,7 @@ import {
   editorialBlock,
   editorialStage,
   EDITORIAL_STAGES,
+  sourceStageLabel,
   type EditorialBlock,
   type EditorialStage,
 } from "./editorial";
@@ -156,6 +157,10 @@ export function renderPageHtml(
       candidate.sectionKey === page.sectionKey,
   );
   const stage = editorialStage(blocks.get(page.blocks[0]?.blockId), section);
+  const stageLabel = sourceStageLabel(
+    blocks.get(page.blocks[0]?.blockId),
+    stage,
+  );
   const dialogue = page.blocks.filter((placement) => {
     const block = blocks.get(placement.blockId);
     return block && isDialoguePlacement(block);
@@ -345,7 +350,7 @@ export function renderPageHtml(
   const sourceTone = section?.blocks.find(
     (block) => block.semantic?.source?.tone,
   )?.semantic?.source?.tone;
-  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"${sourceTone ? ` data-source-tone="${sourceTone}"` : ""}><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${backdrop}${content}${sourceFooterHtml}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"${sourceTone ? ` data-source-tone="${sourceTone}"` : ""}><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : stageLabel)}</aside>${backdrop}${content}${sourceFooterHtml}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(

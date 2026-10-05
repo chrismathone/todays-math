@@ -499,10 +499,13 @@ export function paginateTextbookSections(
         : sourceKind && row[0].block.kind !== "heading"
           ? row.every(({ block }) => block.kind === "problem")
             ? (
-                { scriptcheck: 1, basic: 2, drill: 0, exercise: 5 } as Record<
-                  string,
-                  number
-                >
+                {
+                  scriptcheck: 1,
+                  basic: 2,
+                  drill: 0,
+                  exercise: 5,
+                  oral: 0,
+                } as Record<string, number>
               )[sourceKind]
             : (
                 {
@@ -513,6 +516,7 @@ export function paginateTextbookSections(
                   concept3: 2.6,
                   drill: 3,
                   exercise: 4,
+                  oral: 4,
                 } as Record<string, number>
               )[sourceKind]
           : undefined;

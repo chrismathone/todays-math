@@ -141,3 +141,44 @@ export function editorialUnitNumber(block: EditorialBlock): number {
 export function editorialUnitAsset(block: EditorialBlock): string {
   return `u${String(((editorialUnitNumber(block) - 1) % 6) + 1).padStart(2, "0")}.png`;
 }
+
+/** Native section captions are distinct from the bank's selected activity. */
+export function sourceStageLabel(
+  block: RenderBlock | undefined,
+  stage: EditorialStage,
+): string {
+  return (
+    block?.semantic?.source?.sectionName?.replace(
+      /누적 복습 Daily \d+/,
+      "누적 복습",
+    ) || EDITORIAL_STAGES[stage].label
+  );
+}
+
+/** Native fullSheet progress classification; memory sheets retain their own three steps. */
+export function sourceProgressTab(
+  block: RenderBlock,
+  stage: EditorialStage,
+): number {
+  const source = block.semantic?.source;
+  if (!source) return EDITORIAL_STAGES[stage].tab;
+  const byName: Record<string, number> = {
+    "개념 이해": 0,
+    "개념 정리": 1,
+    "기본 확인": 2,
+    "유형 연습": 3,
+    "누적 복습": 5,
+  };
+  if (source.sectionName && byName[source.sectionName] !== undefined)
+    return byName[source.sectionName];
+  if (block.semantic?.activity === "review") return 5;
+  if (
+    source.kind === "lesson" ||
+    (source.kind.startsWith("concept") && source.kind !== "conceptindex")
+  )
+    return 0;
+  if (["typepage", "paired", "types"].includes(source.kind)) return 3;
+  if (["unitmap", "mindmap"].includes(source.kind)) return 1;
+  if (["basic", "drill", "scriptcheck"].includes(source.kind)) return 2;
+  return 4;
+}

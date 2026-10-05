@@ -57,7 +57,9 @@ export function renderProblemHtml(
         : "";
   const lines =
     block.answer === undefined && !block.publicWorkedExample
-      ? block.layout.preferredWorkLines
+      ? source
+        ? (block.sourceWorkLines ?? block.layout.preferredWorkLines)
+        : block.layout.preferredWorkLines
       : 0;
   // In a linked group the writer names the solved example; every other member is an unsolved
   // confirmation, whatever stage its parent activity gave it.
@@ -83,12 +85,22 @@ export function renderProblemHtml(
   // The QR sits beside the prompt: the ruled space below keeps the full column width.
   const html = `<section class="tb-problem${source ? " tb-source-problem" : ""}${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 && !beside ? " tb-problem-wide" : ""}${beside ? " tb-problem-answer-beside" : ""}${qr ? " tb-problem-has-qr" : ""}"${source ? ` data-source-kind="${esc(source.kind)}"` : ""}${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"${role === "confirm" ? ` data-confirm-index="${block.exampleConfirmIndex ?? group.confirmItemIds.indexOf(block.itemId)}"` : ""}` : ""}${beside ? ' data-answer-placement="beside"' : ""}>${beside ? `<div class="tb-answer-case" style="${ANSWER_CASE_GRID_STYLE}"><div class="tb-answer-case-question${qr ? " tb-problem-has-qr" : ""}">` : ""}<header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType && !source ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${prompt}</div>${figures}</div>${beside ? "" : answer}</div>${qr}</div>${beside ? `</div>${answer}</div>` : ""}<div class="tb-work-area" style="min-height:${lines * 7}mm"${!lines ? " data-empty-work" : ""}>${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
   if (!source) return html;
+  const allocatedHtml = html
+    .replace(/^(<section\s[^>]*)(>)/, (_, opening: string, closing: string) =>
+      block.sourceQuestionMinHeightMm === undefined
+        ? opening + closing
+        : `${opening} style="min-height:${block.sourceQuestionMinHeightMm}mm"${closing}`,
+    )
+    .replace(
+      '<div class="tb-work-area" style="',
+      `<div class="tb-work-area" style="${block.sourceWorkMarginTopMm === undefined ? "" : `margin-top:${block.sourceWorkMarginTopMm}mm;`}`,
+    );
   const header = block.semantic?.sourceQuestionHeader;
   const headStyle =
     block.sourceQuestionHeadHeightMm === undefined
       ? ""
       : ` style="height:${block.sourceQuestionHeadHeightMm}mm"`;
-  let sourceHtml = html.replace(
+  let sourceHtml = allocatedHtml.replace(
     /<header class="tb-problem-head" data-anchor="problem-head">([\s\S]*?)<\/header>/,
     (_, contents: string) =>
       `<header class="tb-problem-head" data-anchor="problem-head"${headStyle}>${header ? renderSourceFragments(header, resources) : contents}</header>`,

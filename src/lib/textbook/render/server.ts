@@ -14,6 +14,11 @@ import { sha256 } from "../hash.server";
 import { canonicalJson } from "../canonical";
 import { TEXTBOOK_CHARACTERS } from "../characters";
 import {
+  applySourceWriting,
+  measureSourceWritingDom,
+  sourceWritingBlockIds,
+} from "./sourceWriting";
+import {
   A4,
   alignTextbookSpreads,
   continuesTextbookSection,
@@ -488,10 +493,45 @@ export async function renderTextbookChunk(
     // Writing-space alignment is a student layout constraint, not answer padding.
     if (input.variant === "student")
       alignTextbookSpreads(layout.pages, model.sections);
+    const sourceWritingIds = sourceWritingBlockIds(model);
+    if (sourceWritingIds.length) {
+      await loadReady(
+        page,
+        textbookHtmlDocument(
+          model.title,
+          layout.pages
+            .map((p) =>
+              renderPageHtml(
+                p,
+                model,
+                resolver,
+                input.referencePages ?? layout.pages,
+              ),
+            )
+            .join(""),
+          bundle.fontCss,
+          bundle.katexCss,
+        ),
+      );
+      applySourceWriting(
+        model,
+        layout,
+        await page.evaluate(measureSourceWritingDom, {
+          blockIds: sourceWritingIds,
+        }),
+      );
+    }
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
-      .map((p) => renderPageHtml(p, model, resolver, input.referencePages ?? layout.pages))
+      .map((p) =>
+        renderPageHtml(
+          p,
+          model,
+          resolver,
+          input.referencePages ?? layout.pages,
+        ),
+      )
       .join("");
     await loadReady(
       page,
@@ -524,7 +564,14 @@ export async function renderTextbookChunk(
     };
     const sharedImages = shareInlineTextbookImages(
       layout.pages
-        .map((p) => renderPageHtml(p, model, inlineResolver, input.referencePages ?? layout.pages))
+        .map((p) =>
+          renderPageHtml(
+            p,
+            model,
+            inlineResolver,
+            input.referencePages ?? layout.pages,
+          ),
+        )
         .join(""),
     );
     const html = textbookHtmlDocument(
