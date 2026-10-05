@@ -170,6 +170,10 @@ def main():
     parser.add_argument("--source-id", action="append")
     parser.add_argument("--max-sources", type=int)
     parser.add_argument("--max-wait-seconds", type=int, default=6 * 3600)
+    # A hand-over happens at a source boundary once this many probes ran in the
+    # current hold, so a round of many small sources is one source-sized batch
+    # per turn rather than one model reload per handful of probes.
+    parser.add_argument("--min-probes-per-hold", type=int, default=30)
     args = parser.parse_args()
     faulthandler.enable()
     os.environ.setdefault("OMP_NUM_THREADS", "1")
@@ -245,6 +249,7 @@ def main():
     upcoming = pool.submit(extract, pending[0])
     run_started = time.monotonic()
     done_probes = 0
+    probes_in_hold = 0
     try:
         for index, source in enumerate(pending):
             tmp, manifest, extract_seconds = upcoming.result()
@@ -260,6 +265,7 @@ def main():
                         raise TimeoutError("GPU lock stayed busy; it was not touched")
                     time.sleep(POLL_SECONDS)
                 lock.withdraw_waiting()
+                probes_in_hold = 0
             lock_wait = time.monotonic() - waited
             if True:
                 if state["model"] is None:
@@ -378,7 +384,9 @@ def main():
                 "done": index + 1, "of": len(pending), "doneProbes": done_probes,
                 "elapsedSeconds": round(time.monotonic() - run_started, 1), "modelLoads": model_loads,
             }), flush=True)
-            if index + 1 < len(pending) and lock.others_waiting():
+            probes_in_hold += len(probes)
+            if (index + 1 < len(pending) and probes_in_hold >= args.min_probes_per_hold
+                    and lock.others_waiting()):
                 # Hand the GPU over between source-sized batches: unload first,
                 # then release, then stay away long enough for a waiter to take it.
                 unload()
