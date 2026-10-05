@@ -524,6 +524,57 @@ export async function captureDomWitness(
               : null,
           };
         });
+        const sourceGuideElements = Array.from(
+          paper.querySelectorAll<HTMLElement>(
+            ".tb-source-page-footer,.tb-source-study-footer",
+          ),
+        );
+        const sourceQuestionElements = Array.from(
+          paper.querySelectorAll<HTMLElement>(".tb-source-problem"),
+        );
+        const sourceAnswerElements = Array.from(
+          paper.querySelectorAll<HTMLElement>(".tb-source-problem .tb-answer"),
+        );
+        const sourceGuideBands = sourceGuideElements.map(
+          (element, ordinal) => ({
+            id: `${physicalPageIndex}.source-guide${ordinal}`,
+            boxMm: rect(element),
+            className: element.className,
+          }),
+        );
+        const sourceGuideOwnerIds = (placed?.blocks ?? [])
+          .filter((placement) => {
+            const block = blockById.get(placement.blockId);
+            return (
+              block?.kind !== "heading" &&
+              block?.semantic?.source &&
+              block.semantic.sourceFooter
+            );
+          })
+          .map((placement) => placement.blockId);
+        const expectedSourceQuestionIds = (placed?.blocks ?? [])
+          .filter((placement) => {
+            const block = blockById.get(placement.blockId);
+            return block?.kind === "problem" && block.semantic?.source;
+          })
+          .map((placement) => placement.blockId);
+        const sourceQuestionRegions = [
+          ...sourceQuestionElements.map((element) => ({
+            element,
+            role: "container",
+          })),
+          ...sourceAnswerElements.map((element) => ({
+            element,
+            role: "answer-panel",
+          })),
+        ].map(({ element, role }, ordinal) => ({
+          id: `${physicalPageIndex}.source-question-region${ordinal}`,
+          blockId:
+            element.closest<HTMLElement>("[data-block-id]")?.dataset.blockId,
+          boxMm: rect(element),
+          role,
+          backgroundColor: getComputedStyle(element).backgroundColor,
+        }));
         return {
           physicalPageIndex,
           printedPageLabel:
@@ -551,6 +602,10 @@ export async function captureDomWitness(
           nodes,
           references,
           dialogueBoxes,
+          sourceGuideBands,
+          sourceQuestionRegions,
+          sourceGuideOwnerIds,
+          expectedSourceQuestionIds,
           accounting: {
             placementFound: !!placed,
             expectedBlocks: expectedIds.length,
@@ -569,6 +624,9 @@ export async function captureDomWitness(
             missingWritingIds,
             missingActivityIds,
             missingNumberIds,
+            sourceGuideCandidates: sourceGuideElements.length,
+            sourceQuestionCandidates: sourceQuestionElements.length,
+            sourceAnswerCandidates: sourceAnswerElements.length,
           },
           fontsLoaded:
             loadedRequiredFaces &&

@@ -62,6 +62,28 @@ async function main() {
   const rendererGitCommit = execFileSync("git", ["rev-parse", "HEAD"], {
     encoding: "utf8",
   }).trim();
+  const productGitCommit = execFileSync(
+    "git",
+    ["rev-parse", process.env.TEXTBOOK_RECOVERY_PRODUCT_COMMIT ?? "HEAD"],
+    {
+      encoding: "utf8",
+    },
+  ).trim();
+  const productionIdentityPaths = [
+    "src",
+    "public",
+    "package.json",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "next.config.ts",
+    ":(exclude)src/__tests__/unit/textbookRecoveryAnswerCheckHeading.integration.test.ts",
+  ];
+  // A QA-only HEAD must not silently relabel a different production implementation.
+  execFileSync(
+    "git",
+    ["diff", "--exit-code", productGitCommit, "--", ...productionIdentityPaths],
+    { stdio: "pipe" },
+  );
   const fixtureBytes = await readFile(path.join(out, `exchange-${mode}.json`));
   const exchange = textbookExchangeSchema.parse(
     JSON.parse(fixtureBytes.toString("utf8")),
@@ -500,6 +522,8 @@ async function main() {
       const result = {
         scope: focused ? "focused-diagnostic-only" : "whole-U01",
         rendererGitCommit,
+        productGitCommit,
+        productionIdentityPaths,
         sourceVersion: "v15-original",
         sourceManuscriptSha256: sourceMap.manuscriptSha256,
         variant,
