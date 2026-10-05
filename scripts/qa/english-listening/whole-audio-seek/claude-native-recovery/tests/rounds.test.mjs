@@ -280,7 +280,7 @@ test("a recognizer that fails stops the driver with its status, on record, befor
   );
   assert.match(
     done.stdout,
-    /stage-failed scope=held stage=variants round=006 exit=7/,
+    /stage-failed driver=run-rounds scope=held stage=variants round=006 exit=7/,
   );
   assert.doesNotMatch(done.stdout, /rounds-complete/);
   // Run again, the stages are planned under new numbers: 006 is not touched.
@@ -303,7 +303,11 @@ test("a planner that reports no probe count, or a round number out of range, run
   });
   assert.notEqual(done.status, 0);
   assert.equal(silent.has("probes"), false);
-  assert.deepEqual(silent.stages(), []);
+  // The stage is on record as a planner failure, not as a stage that ran.
+  assert.deepEqual(
+    silent.stages().map((s) => [s.stage, s.round, s.plannerExit, s.runnerExit]),
+    [["context", null, 2, null]],
+  );
   for (const from of ["0", "1000", "x"]) {
     const t = tree();
     const refused = drive(t, DRIVER, ["held", from, "context"]);
@@ -344,8 +348,10 @@ test("the converted source's driver takes new numbers the same way and asks the 
   assert.equal(t.stages().at(-1).runnerExit, 7);
 });
 
-// run-rounds.sh joins this list once the version that records planner failures is installed.
-const PLANNER_FAILURE_DRIVERS = [[CONVERTED, ["5"], "converted driver"]];
+const PLANNER_FAILURE_DRIVERS = [
+  [DRIVER, ["held", "5"], "main driver"],
+  [CONVERTED, ["5"], "converted driver"],
+];
 
 // A planner failure must leave a record: without one, a later check of the
 // stage records cannot tell a stage that failed from one that was never due.

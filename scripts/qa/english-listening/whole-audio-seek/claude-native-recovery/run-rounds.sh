@@ -12,8 +12,8 @@
 # A stage that plans nothing is skipped and does not use a round number.
 # A round number that already has a request, raw containers or a temporary
 # folder is never used again: the stage takes the next free one (lib/rounds.sh).
-# Every stage leaves one line in logs/stages.jsonl; a recognizer that fails
-# stops the driver with its exit status, after that line is written.
+# Every stage leaves one line in logs/stages.jsonl; a planner or a recognizer
+# that fails stops the driver with its exit status, after that line is written.
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -77,21 +77,9 @@ for stage in "$@"; do
     id="$(next_round "$root" "$round")"
     round=$((10#$id))
   fi
-  planned="$(plan "$root" "$name" "$id" "${flags[@]}")"
-  echo "$planned" | tee -a "$OUT/logs/rounds.log"
-  probes="$(planned_probes "$planned")"
-  if [ "$probes" -eq 0 ]; then
-    record_stage "$STAGES" run-rounds "$scope" "$stage" - "$root" 0 -
-    continue
-  fi
   status=0
-  recognize "$root" "$id" || status=$?
-  record_stage "$STAGES" run-rounds "$scope" "$stage" "$id" "$root" "$probes" "$status"
-  if [ "$status" -ne 0 ]; then
-    echo "stage-failed scope=$scope stage=$stage round=$id exit=$status" | tee -a "$OUT/logs/rounds.log"
-    exit "$status"
-  fi
-  tail -n 1 "$OUT/logs/probes-$(basename "$root")-round-$id.log" | tee -a "$OUT/logs/rounds.log"
-  [ "$name" = "truncation" ] || round=$((round + 1))
+  run_stage run-rounds "$scope" "$stage" "$root" "$id" "${flags[@]}" || status=$?
+  [ "$status" -eq 0 ] || exit "$status"
+  [ "$name" = "truncation" ] || round=$((round + STAGE_USED_ROUND))
 done
 echo "rounds-complete next=$round" | tee -a "$OUT/logs/rounds.log"

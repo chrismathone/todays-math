@@ -240,8 +240,16 @@ bytes, the original's bytes and the requested probes; the requests declared
 stopped, by name and reason (`stopped-requests.json`), with how many of their
 unanswered probes were heard in another round and how many nowhere; and the
 stage records. The full run is built only when every request is finished or
-declared stopped, no stage failed undeclared and no raw folder lies without its
-request. A stopped request's containers are read like any other.
+declared stopped, no stage failed undeclared, no raw folder lies without its
+request, and the run's plan (`full-run-plan.json`) is met: the stages that had
+to follow the heading round are on record in exactly the planned order, each
+heard to the end or recorded as having planned nothing; every earlier request
+stands exactly as pinned; each stage record agrees with its request; and no
+request exists that no stage planned. A declared stop never stands in for a
+planned stage. A stopped request's containers are read like any other. Which
+bytes ran which part is in `full-run-provenance.json`, embedded in the
+receipts. A dry-run sweep of every stage after the build counts what the rules
+would still ask for; that count is diagnostic, not unfinished coverage.
 
 ## Replay recipe
 
