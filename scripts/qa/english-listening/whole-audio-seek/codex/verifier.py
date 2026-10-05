@@ -607,6 +607,8 @@ def official_native_admission_origin(row):
             and integer(proof.get("nextStartFrame")) and integer(proof.get("nextOnsetFrame"))
             and binding.get("nextStartFrame") == proof["nextStartFrame"] < proof["nextOnsetFrame"] == binding.get("nextOnsetFrame")
             and opening.get("method") == "first_literal_native_opening_v2"
+            and opening.get("purpose") == ("member_dialogue" if row.get("kind") == "shared_instruction_member" else "first_dialogue")
+            and opening.get("maximumInputSeconds") == (14 if row.get("kind") == "shared_instruction_member" else 60)
             and opening.get("probe") == row.get("dialogueProbeEvidence")
             and integer(opening.get("selectedStartFrame")) and integer(opening.get("selectedEndFrame"))
             and native.get("onsetFrame", math.inf) <= opening["selectedStartFrame"] < opening["selectedEndFrame"]

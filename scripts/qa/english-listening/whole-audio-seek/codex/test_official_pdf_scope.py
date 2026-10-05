@@ -343,6 +343,7 @@ class OfficialPdfScopeTests(unittest.TestCase):
         f.native_question.update(sourceNumber=19, prompt=f.question["prompt"], instruction=f.instruction)
         f.row.update(sourceNumber=19, cueNumber=19, kind="shared_instruction_member",
             scopeQuestionNumbers=[19], cueSpokenNumbers=[19])
+        f.dialogue["purpose"] = "member_dialogue"
         f.row.pop("officialIdentityEvidence")
         f.row.pop("numberClipEvidence")
         f.raw["segments"][0]["text"] = "19번."
@@ -387,9 +388,21 @@ class OfficialPdfScopeTests(unittest.TestCase):
         self.rejects("official_original_question_identity_mismatch")
         self.f.native_question["questionId"] = self.f.question["id"]
         self.f.sync_identity()
-        self.f.dialogue.update(frameCount=400000, durationSeconds=25, inputSampleCount=400000)
+        self.f.dialogue.update(frameCount=400000, durationSeconds=25, inputSampleCount=400000, purpose="first_dialogue")
         self.f.sync()
         self.rejects("dialogue_clip_crosses_passage")
+
+    def test_member_rejects_unrelated_first_dialogue_purpose(self):
+        self.member_fixture()
+        self.f.dialogue["purpose"] = "first_dialogue"
+        self.f.sync()
+        self.rejects("wrong_opening_language_or_purpose")
+
+    def test_member_dialogue_input_cannot_use_sixty_second_first_dialogue_limit(self):
+        self.member_fixture()
+        self.f.dialogue.update(frameCount=240000, durationSeconds=15, inputSampleCount=240000)
+        self.f.sync()
+        self.rejects("invalid_bounded_probe_duration")
 
 
 if __name__ == "__main__":
