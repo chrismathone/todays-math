@@ -240,6 +240,22 @@ def probe_segments(probe, *, max_duration=14):
     return v.index_segments({"segments": converted}, duration)
 
 
+def localized_probe_batches(probes, channels):
+    """Tight transport bounds; the native decoder's original caps stay intact."""
+    v.require(v.integer(channels) and 1 <= channels <= 8, "invalid_localized_batch_channels")
+    v.require(len(probes) <= 2048, "unbounded_localized_source_probe_catalog")
+    batches, current, allocated = [], [], 0
+    for probe in probes:
+        size = probe["frameCount"] * channels * 2
+        v.require(v.integer(probe["frameCount"]) and 0 < size <= 64 * 1024 * 1024, "unbounded_localized_transport_probe")
+        if current and (len(current) == 64 or allocated + size > 64 * 1024 * 1024):
+            batches.append(current)
+            current, allocated = [], 0
+        current.append(probe)
+        allocated += size
+    return batches + [current]
+
+
 class SourceReplay:
     def __init__(self, root, source, clock, rows):
         wanted = {}
@@ -282,17 +298,8 @@ class SourceReplay:
         cli = Path(root) / "node_modules/tsx/dist/cli.mjs"
         localized = any(r and r.get("status") == "candidate" and r.get("evidenceAdapter") in
                         ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1") for r in rows)
-        batches, current, allocated = [], [], 0
         if localized:
-            v.require(len(wanted) <= 2048, "unbounded_localized_source_probe_catalog")
-            for p in wanted.values():
-                size = p["frameCount"] * clock.get("channels", 2) * 2
-                if current and (len(current) == 128 or allocated + size > 512 * 1024 * 1024):
-                    batches.append(current)
-                    current, allocated = [], 0
-                current.append(p)
-                allocated += size
-            batches.append(current)
+            batches = localized_probe_batches(list(wanted.values()), clock["channels"])
         else:
             batches = [spec["probes"]]
         self.actual, self.clips = None, {}
@@ -301,6 +308,7 @@ class SourceReplay:
             completed = subprocess.run(["node", str(cli), str(script)], input=json.dumps({**spec, "probes": batch}).encode("utf-8"), capture_output=True, timeout=180)
             v.require(completed.returncode == 0, "native_cpu_source_replay_failed:" + completed.stderr.decode("utf-8", errors="replace")[-1000:])
             actual = json.loads(completed.stdout)
+            del completed  # Do not retain base64 transport while decoding mono.
             energy = [x[0] for x in struct.iter_unpack("<d", base64.b64decode(actual.pop("energyBase64")))]
             clips = {p["id"]: p for p in actual.pop("probes")}
             if self.actual is not None:
