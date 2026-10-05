@@ -277,14 +277,21 @@ export function resolveOfficial(input) {
       // dialogue probe is the clip at a measured onset that wrote the exact
       // first-utterance opening; offsets address the original transcript.
       const long = heading.instructionSibling ?? heading;
-      const instructionIds = long.reading.instruction.segmentIds;
+      // A member of a shared instruction has no instruction of its own: its
+      // number is followed directly by its dialogue.
+      const member = shared.kind === "shared_instruction_member";
+      const instructionIds = long.reading.instruction?.segmentIds ?? [
+        long.reading.firstSegmentId,
+      ];
       const single = opening.candidate.method === "first_utterance_prefix";
       const terminal =
         passage.boundary.kind === "source_end_after_last_official_number";
       rows.push({
         ...shared,
         cueForm: heading.instructionSibling ? "bare" : shared.cueForm,
-        officialIdentityEvidence: { method: "numbered_section_own_dialogue_v1" },
+        officialIdentityEvidence: member
+          ? null
+          : { method: "numbered_section_own_dialogue_v1" },
         probeEvidence: reference(
           long.ref,
           long.probe.segments.filter((s) => instructionIds.includes(s.id)),
@@ -331,7 +338,7 @@ export function resolveOfficial(input) {
           sectionEndCharacter: own.section.sectionEndCharacter,
           instructionQuote: own.section.instruction?.text ?? null,
           instructionStartCharacter: own.section.instruction?.startCharacter ?? null,
-          instructionProbeSegmentIds: instructionIds,
+          instructionProbeSegmentIds: member ? [] : instructionIds,
           firstUtteranceStartCharacter: own.section.turns[0].startCharacter,
           firstDialogueQuote: single ? opening.candidate.quotes[0].text : null,
           firstDialogueStartCharacter: opening.candidate.quotes[0].startCharacter,
