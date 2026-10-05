@@ -41,7 +41,8 @@ def validate(row, source, replay):
     if source["reconstructed"]:
         v.require(v.reconstructed_admission_origin(origin), "next_certificate_reconstructed_origin_unverified")
     else:
-        v.require(origin.get("evidenceGrade") in ("numbered_instruction", "numbered_section_own_dialogue", "official_alignment", "ordinal_only")
+        v.require((origin.get("evidenceGrade") in ("numbered_instruction", "numbered_section_own_dialogue", "official_alignment", "ordinal_only")
+                   or v.official_native_admission_origin(origin))
                   and question["sourceNumber"] in scope, "next_certificate_official_origin_unverified")
     native = origin.get("nativeEvidence", {})
     for key in ("sampleRate", "channels", "frameCount", "pcmSha256"):
@@ -76,7 +77,8 @@ def validate(row, source, replay):
         actual = replay.replay(probe)
         for key in ("clipPcmSha256", "inputMonoFloat32Sha256", "inputSampleCount"):
             v.require(probe.get(key) == actual[key], "next_certificate_raw_probe_hash:" + key)
-        index = a.probe_segments(probe)
+        index = a.probe_segments(probe, max_duration=60 if field == "dialogueProbeEvidence" and
+                                 origin.get("evidenceAdapter") == "official-pdf-native-scope-v2" and probe.get("purpose") == "first_dialogue" else 14)
         selected = v.select_segments(index, origin[field].get("segmentIds"), allow_uncertain=bool(origin.get("scriptEvidence")))
         v.require(origin[field].get("text") == " ".join(s["text"] for s in selected)
                   and origin[field].get("inputMonoFloat32Sha256") == probe["inputMonoFloat32Sha256"],

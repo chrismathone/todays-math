@@ -57,7 +57,7 @@ def catalog_probes(row, source):
         for probe in container.get("probes", []):
             probes.append((container, probe, artifact_ref))
     v.require(probes, "localized_source_missing_from_catalog")
-    for field in ("probeEvidence", "nextProbeEvidence", "nextBoundaryProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence", "dialogueProbeEvidence"):
+    for field in ("probeEvidence", "numberClipEvidence", "nextProbeEvidence", "nextBoundaryProbeEvidence", "sharedHeadProbeEvidence", "terminalProbeEvidence", "dialogueProbeEvidence"):
         evidence = row.get(field)
         if evidence:
             v.require(any(str(Path(r["path"]).resolve()) == str(Path(evidence["path"]).resolve())
