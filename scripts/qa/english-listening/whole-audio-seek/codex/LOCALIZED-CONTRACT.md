@@ -34,7 +34,10 @@ The override additionally requires
 contextStartFrame,contextFrameCount,contextEnergySha256,request:{path,sha256},probeId}`.
 The exact hashed noise baseline of the named one/two-second tier defines the
 discovery context. Raw quiet must equal min(actual full quiet,contextFrameCount),
-and request/probe identity must equal the unchanged raw request. Unknown context,
+and request/probe identity must equal the unchanged raw request. File paths compare
+by resolved exact identity while the SHA and probe ID remain exact, so Windows
+slash spelling cannot cause a false hold; another file with the same bytes cannot
+replace the request. Unknown context,
 wrong cap, altered request, unproved absolute-threshold caps or full quiet mismatch
 stay held.
 
@@ -52,7 +55,7 @@ When a declared head selects only the introductory segment, the verifier may
 derive the first complete contiguous reliable raw prefix, retaining the declared
 text and IDs unchanged and recording `literal_complete_native_instruction_v1`
 context with the additional original IDs/raw flags. It stops before any new
-numbered heading, English dialogue, or uncertain segment. `고르는 문제입니다`
+numbered heading, English dialogue (including one-word Latin speech), or uncertain segment. `고르는 문제입니다`
 alone is incomplete; actual subsequent `잘 듣고 답하세요` completes the instruction.
 
 Exactly one next boundary is required. A known next original scope can instead use

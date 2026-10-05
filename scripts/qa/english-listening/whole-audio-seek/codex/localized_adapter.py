@@ -123,7 +123,8 @@ def complete_instruction_prefix(index, selected):
             break
         numbers, _ = literal_cue(segment["text"])
         v.require(not numbers, "localized_instruction_crosses_next_heading")
-        v.require(not (len(a.english_words(segment["text"])) >= 4 and len(re.findall(r"[가-힣]", segment["text"])) < 8),
+        words, hangul = a.english_words(segment["text"]), re.findall(r"[가-힣]", segment["text"])
+        v.require(not (words and not hangul) and not (len(words) >= 4 and len(hangul) < 8),
                   "localized_instruction_crosses_dialogue")
         v.require(not v.uncertain(segment), "uncertain_raw_evidence")
         prefix.append(segment)
@@ -202,7 +203,10 @@ def measure_probe_onset(row, source, replay, field, probe):
                       "localized_discovery_quiet_cap_relation")
             container, _ = a.checked_probe(row, source, field)
             request = {"path": container["requestPath"], "sha256": container["requestSha256"]}
-            v.require(context.get("request") == request and context.get("probeId") == probe["id"],
+            claimed_request = context.get("request", {})
+            v.require(isinstance(claimed_request.get("path"), str) and
+                      Path(claimed_request["path"]).resolve() == Path(request["path"]).resolve()
+                      and claimed_request.get("sha256") == request["sha256"] and context.get("probeId") == probe["id"],
                       "localized_discovery_quiet_wrong_raw_request")
         else:
             v.require(supplied.get("quietEvidenceMethod") is None and

@@ -176,6 +176,26 @@ class LocalizedAdmissionTests(unittest.TestCase):
         self.f.sync()
         self.rejects("localized_shared_member_confusion")
 
+    def test_short_latin_dialogue_cannot_bridge_partial_instruction(self):
+        self.f.raw["segments"][0]["text"] = "1번과 2번은 다음 대화를 듣고"
+        self.f.row.update(kind="shared_instruction_head", cueSpokenNumbers=[1, 2])
+        for text in ("Yes.", "I am sorry.", "Oh no."):
+            with self.subTest(text=text):
+                self.f.raw["segments"][1:] = [
+                    {**segment(102, text, 2.1, 3), "localStartSeconds": 2.1, "localEndSeconds": 3, "words": []},
+                    {**segment(103, "잘 듣고 답하세요.", 3.1, 4), "localStartSeconds": 3.1, "localEndSeconds": 4, "words": []}]
+                self.f.sync()
+                self.f.row["probeEvidence"].update(segmentIds=[101], text=self.f.raw["segments"][0]["text"])
+                self.rejects("localized_instruction_crosses_dialogue")
+
+    def test_korean_instruction_can_literally_mention_tv(self):
+        self.f.raw["segments"][0]["text"] = "1번입니다. 다음을 듣고"
+        self.f.raw["segments"].append({**segment(102, "TV 프로그램에서 가장 알맞은 것을 고르세요.", 2.1, 3),
+                                      "localStartSeconds": 2.1, "localEndSeconds": 3, "words": []})
+        self.f.sync()
+        self.f.row["probeEvidence"].update(segmentIds=[101], text=self.f.raw["segments"][0]["text"])
+        self.assertEqual(self.f.validate()[2], "localized_generation_native")
+
     def test_truncated_first_syllable_or_quiet_lead_is_held(self):
         self.f.row["nativeEvidence"]["startFrame"] = 8000
         self.f.row["seekStartMs"] = 500
@@ -221,6 +241,19 @@ class LocalizedAdmissionTests(unittest.TestCase):
         self.noise_discovery_fixture()
         self.f.row["nativeEvidence"]["quietDiscoveryEvidence"]["contextFrameCount"] = 16000
         self.rejects("localized_discovery_quiet_cap_relation")
+
+    def test_discovery_request_windows_slashes_resolve_to_same_immutable_file(self):
+        self.noise_discovery_fixture()
+        ref = self.f.row["nativeEvidence"]["quietDiscoveryEvidence"]["request"]
+        ref["path"] = ref["path"].replace("\\", "/")
+        self.assertEqual(self.f.validate()[2], "localized_generation_native")
+
+    def test_discovery_request_same_bytes_in_different_file_cannot_replace_origin(self):
+        self.noise_discovery_fixture()
+        copied = self.f.folder / "different-request.json"
+        copied.write_bytes(self.f.request_path.read_bytes())
+        self.f.row["nativeEvidence"]["quietDiscoveryEvidence"]["request"] = v.reference(copied)
+        self.rejects("localized_discovery_quiet_wrong_raw_request")
 
     def test_wrong_raw_source_hash_is_held(self):
         self.f.container["sourceAudioSha256"] = "bad"
