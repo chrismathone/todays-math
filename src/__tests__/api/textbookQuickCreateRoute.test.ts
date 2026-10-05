@@ -61,10 +61,20 @@ const post = (body: unknown, raw?: string) =>
     body: raw ?? JSON.stringify(body),
   });
 beforeEach(() => {
+  vi.stubEnv("TEXTBOOK_RECOVERY_WRITER_ENABLED", "true");
   gate.allowed = true;
   vi.clearAllMocks();
 });
 describe("automatic textbook route", () => {
+  it("keeps new writes disabled until the reader release is activated", async () => {
+    vi.stubEnv("TEXTBOOK_RECOVERY_WRITER_ENABLED", undefined);
+    const response = await POST(post(input()));
+    expect(response.status).toBe(409);
+    expect(gate.create).not.toHaveBeenCalled();
+    vi.stubEnv("TEXTBOOK_RECOVERY_WRITER_ENABLED", "false");
+    expect((await POST(post(input()))).status).toBe(409);
+    expect(gate.create).not.toHaveBeenCalled();
+  });
   it("authorizes GET and POST before touching composition services", async () => {
     gate.allowed = false;
     expect(
@@ -100,7 +110,7 @@ describe("automatic textbook route", () => {
       ),
     );
     expect(response.status).toBe(200);
-    expect(await response.json()).toEqual(catalog);
+    expect(await response.json()).toEqual({ ...catalog, writerReady: true });
     expect(response.headers.get("cache-control")).toBe("private, no-store");
     expect(gate.list).toHaveBeenCalledWith(expect.anything(), {
       schoolLevel: "middle",

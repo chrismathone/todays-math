@@ -14,6 +14,11 @@ import { sha256 } from "../hash.server";
 import { canonicalJson } from "../canonical";
 import { TEXTBOOK_CHARACTERS } from "../characters";
 import {
+  applySourceWriting,
+  measureSourceWritingDom,
+  sourceWritingBlockIds,
+} from "./sourceWriting";
+import {
   A4,
   alignTextbookSpreads,
   continuesTextbookSection,
@@ -29,10 +34,20 @@ import {
 } from "./model";
 import {
   measurementHtml,
+  recallMeasurementHtml,
   renderPageHtml,
   textbookHtmlDocument,
   type RenderResources,
 } from "./html";
+import {
+  recallMeasurementModel,
+  dialogueMeasurementModel,
+  recoveryMeasurePlan,
+  measureRecoveryDom,
+  applyRecoveryMeasurements,
+  assertRecoveryMeasurementBudget,
+  measureIntroGeometry,
+} from "./recoveryMeasurement";
 import {
   dataUrl,
   editorialResourceUrl,
@@ -156,7 +171,8 @@ async function loadReady(page: Page, html: string): Promise<void> {
   });
 }
 async function measure(page: Page): Promise<BlockMeasurement[]> {
-  return page.evaluate(
+  const introFits = await page.evaluate(measureIntroGeometry);
+  const measured = await page.evaluate(
     (atlasSpeakers) =>
       Array.from(
         document.querySelectorAll<HTMLElement>("[data-measure-id]"),
@@ -181,7 +197,14 @@ async function measure(page: Page): Promise<BlockMeasurement[]> {
               ? frame
               : child;
           const r = visible.getBoundingClientRect();
-          if (r.left < rect.left - 1.89 || r.right > rect.right + 1.89)
+          const bleedPx =
+            child.dataset.textbookDecorativeBleedMm === "4"
+              ? (4 * 96) / 25.4
+              : 0;
+          if (
+            r.left < rect.left - 1.89 - bleedPx ||
+            r.right > rect.right + 1.89 + bleedPx
+          )
             throw new Error(
               `Math/figure width overflow: ${element.dataset.measureId}`,
             );
@@ -194,6 +217,12 @@ async function measure(page: Page): Promise<BlockMeasurement[]> {
       }),
     TEXTBOOK_CHARACTERS.map((character) => `tb-portrait-${character.id}`),
   );
+  return measured.map((block) => ({
+    ...block,
+    ...(introFits[block.blockId] === undefined
+      ? {}
+      : { introTextFits: introFits[block.blockId] }),
+  }));
 }
 
 export async function validateRenderedPages(
@@ -243,11 +272,15 @@ export async function validateRenderedPages(
                 ? frame
                 : child;
             const c = visible.getBoundingClientRect();
+            const bleedMm =
+              child.dataset.textbookDecorativeBleedMm === "4" ? 4 : 0;
             if (
               (c.bottom - rect.bottom) * scale > tolerance ||
               (rect.top - c.top) * scale > tolerance ||
-              (rect.left - c.left) * scale > tolerance ||
-              (c.right - rect.right) * scale > tolerance
+              (rect.left - c.left) * scale > tolerance + bleedMm ||
+              (c.right - rect.right) * scale > tolerance + bleedMm ||
+              (pageRect.left - c.left) * scale > tolerance ||
+              (c.right - pageRect.right) * scale > tolerance
             )
               throw new Error(`Content overflow: ${block.dataset.blockId}`);
           }
@@ -334,8 +367,9 @@ export async function renderTextbookChunk(
   if (input.studentPages) {
     if (input.variant !== "answers")
       throw new Error("Student page references are only accepted for answers");
+    const studentModel = createTextbookRenderModel(exchange, "student");
     const pageMap = studentPageMapFromPages(
-      input.sectionIndices.map((i) => wholeModel.sections[i]),
+      input.sectionIndices.map((i) => studentModel.sections[i]),
       input.studentPages,
       exchange.config,
     );
@@ -350,6 +384,19 @@ export async function renderTextbookChunk(
     ...wholeModel,
     sections: input.sectionIndices.map((i) => wholeModel.sections[i]),
   };
+  if (
+    model.sections.reduce((sum, section) => sum + section.blocks.length, 0) >
+    600
+  )
+    throw new Error(
+      "Render chunk exceeds 600 projected blocks; split sections before publishing",
+    );
+  const sizingModel = dialogueMeasurementModel(wholeModel, model);
+  const recallProbes = recallMeasurementModel(
+    createTextbookRenderModel(exchange, "answers"),
+    model,
+  );
+  assertRecoveryMeasurementBudget(sizingModel, recallProbes);
   if (
     continuesTextbookSection(
       wholeModel.sections[input.sectionIndices[0] - 1],
@@ -402,6 +449,21 @@ export async function renderTextbookChunk(
       page,
       textbookHtmlDocument(
         model.title,
+        measurementHtml(sizingModel, resolver) +
+          recallMeasurementHtml(recallProbes, resolver),
+        bundle.fontCss,
+        bundle.katexCss,
+      ),
+    );
+    const recoveryMeasurements = await page.evaluate(
+      measureRecoveryDom,
+      recoveryMeasurePlan(sizingModel, input.firstPhysicalPageIndex),
+    );
+    applyRecoveryMeasurements(model, recoveryMeasurements);
+    await loadReady(
+      page,
+      textbookHtmlDocument(
+        model.title,
         measurementHtml(model, resolver),
         bundle.fontCss,
         bundle.katexCss,
@@ -429,11 +491,47 @@ export async function renderTextbookChunk(
       },
     );
     // Writing-space alignment is a student layout constraint, not answer padding.
-    if (input.variant === "student") alignTextbookSpreads(layout.pages);
+    if (input.variant === "student")
+      alignTextbookSpreads(layout.pages, model.sections);
+    const sourceWritingIds = sourceWritingBlockIds(model);
+    if (sourceWritingIds.length) {
+      await loadReady(
+        page,
+        textbookHtmlDocument(
+          model.title,
+          layout.pages
+            .map((p) =>
+              renderPageHtml(
+                p,
+                model,
+                resolver,
+                input.referencePages ?? layout.pages,
+              ),
+            )
+            .join(""),
+          bundle.fontCss,
+          bundle.katexCss,
+        ),
+      );
+      applySourceWriting(
+        model,
+        layout,
+        await page.evaluate(measureSourceWritingDom, {
+          blockIds: sourceWritingIds,
+        }),
+      );
+    }
     if (input.reservedPages)
       assertTextbookReferenceLayoutUnchanged(input.reservedPages, layout.pages);
     const body = layout.pages
-      .map((p) => renderPageHtml(p, model, resolver))
+      .map((p) =>
+        renderPageHtml(
+          p,
+          model,
+          resolver,
+          input.referencePages ?? layout.pages,
+        ),
+      )
       .join("");
     await loadReady(
       page,
@@ -464,12 +562,22 @@ export async function renderTextbookChunk(
         dataUrl(resources.get(editorialResourceUrl(name))!),
       assetUrl: (id) => dataUrl(resources.get(resolver.assetUrl(id))!),
     };
+    const sharedImages = shareInlineTextbookImages(
+      layout.pages
+        .map((p) =>
+          renderPageHtml(
+            p,
+            model,
+            inlineResolver,
+            input.referencePages ?? layout.pages,
+          ),
+        )
+        .join(""),
+    );
     const html = textbookHtmlDocument(
       model.title,
-      layout.pages
-        .map((p) => renderPageHtml(p, model, inlineResolver))
-        .join(""),
-      inlineBundleCss(bundle.fontCss, resources),
+      sharedImages.body,
+      inlineBundleCss(bundle.fontCss, resources) + "\n" + sharedImages.css,
       inlineBundleCss(bundle.katexCss, resources),
     );
     return {
@@ -681,8 +789,8 @@ export function planTextbookChunks(
       );
     // Each automatic lesson includes several recall forms and needs its own
     // bounded render job. Manual continuation chains remain together.
-    const automaticLesson = chain.some(
-      (i) => sections[i].templateKey === "auto-lesson",
+    const automaticLesson = chain.some((i) =>
+      sections[i].templateKey.startsWith("auto-lesson"),
     );
     if (
       group.length &&
@@ -719,7 +827,10 @@ export async function renderTextbookOfflineHtml(input: {
     mode: "archive",
     readAsset: input.readAsset,
   });
-  const model = createTextbookRenderModel(input.exchange, input.variant);
+  const model = withTextbookPageReferences(
+    createTextbookRenderModel(input.exchange, input.variant),
+    input.pages,
+  );
   const [bundle, assets, qrs] = await Promise.all([
     loadTextbookLocalBundle(),
     loadTextbookAssets(model.assets, input.readAsset),
@@ -751,7 +862,7 @@ export async function renderTextbookOfflineHtml(input: {
       )
         throw new Error("Offline pages must preserve physical order");
       seen.add(page.physicalPageIndex);
-      return renderPageHtml(page, model, resolver);
+      return renderPageHtml(page, model, resolver, input.pages);
     })
     .join("");
   const sharedImages = shareInlineTextbookImages(body);

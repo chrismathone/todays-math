@@ -10,6 +10,7 @@ import { AutoCreatePanel } from "@/components/textbook/AutoCreatePanel";
 import type { QuickCreateApi } from "@/lib/textbook/quickCreateClient";
 import {
   DEFAULT_QUICK_CREATE_COMPONENTS,
+  RECOMMENDED_QUICK_CREATE_COMPONENTS,
   type QuickCreateCatalog,
   type QuickCreateInput,
   type QuickCreateResult,
@@ -84,7 +85,7 @@ function availableCatalog(
 function enableAllComponents() {
   fireEvent.click(screen.getByText("교재 구성 선택"));
   const controls = screen.getAllByRole("switch");
-  expect(controls).toHaveLength(18);
+  expect(controls).toHaveLength(28);
   for (const control of controls)
     if (control.getAttribute("aria-checked") !== "true")
       fireEvent.click(control);
@@ -141,6 +142,16 @@ describe("simple textbook creation", () => {
     const teacherChoices = screen.getAllByRole("button", { name: /^선생님 / });
     expect(teacherChoices).toHaveLength(10);
     fireEvent.click(teacherChoices[9]!);
+    const firstStudentChoices = screen.getAllByRole("button", {
+      name: /^첫 번째 학생 /,
+    });
+    const secondStudentChoices = screen.getAllByRole("button", {
+      name: /^두 번째 학생 /,
+    });
+    expect(firstStudentChoices).toHaveLength(10);
+    expect(secondStudentChoices).toHaveLength(10);
+    fireEvent.click(firstStudentChoices[9]!);
+    fireEvent.click(secondStudentChoices[8]!);
     fireEvent.click(
       screen.getByRole("button", { name: "이 범위로 교재 만들기" }),
     );
@@ -148,13 +159,17 @@ describe("simple textbook creation", () => {
     expect(client.create).toHaveBeenCalledWith(
       expect.objectContaining({
         components: expect.objectContaining({ dialogue: false, rest: true }),
-        cast: expect.objectContaining({ teacherId: "teacher-m5" }),
+        cast: expect.objectContaining({
+          teacherId: "teacher-m5",
+          student1Id: "student-m5",
+          student2Id: "student-m4",
+        }),
       }),
     );
   });
 
   it.each([0, 1])(
-    "creates with all 18 components and an eight-question maximum when only %i written questions are available",
+    "creates with all 28 components and an eight-question maximum when only %i written questions are available",
     async (written) => {
       const adjustedResult = {
         ...result,
@@ -182,7 +197,7 @@ describe("simple textbook creation", () => {
           /서술형이 부족하면 부족한 수만큼 켜 둔 .*자동 배분합니다/,
         ),
       ).toBeVisible();
-      expect(screen.getByText(/18가지 구성 · 최대 8문제/)).toBeVisible();
+      expect(screen.getByText(/28가지 구성 · 최대 8문제/)).toBeVisible();
       fireEvent.click(screen.getByText("등장인물 선택"));
       fireEvent.click(screen.getAllByRole("button", { name: /^선생님 / })[9]!);
       const submit = screen.getByRole("button", {
@@ -321,23 +336,13 @@ describe("simple textbook creation", () => {
       });
       render(<AutoCreatePanel api={client} onCreated={async () => {}} />);
       await screen.findAllByRole("option", { name: "유리수와 소수" });
-      enableAllComponents();
-      for (const label of [
-        "개념 대화",
-        "개념 정리",
-        "용어 암기",
-        "빈칸 개념 암기",
-        "통문장 개념 암기",
-        "준비 학습",
-        "오류 점검",
-        ...(writtenOnly
-          ? ["대표예제와 풀이", "유형·실전 문제", "복습 문제", "단원 확인"]
-          : []),
-      ]) {
-        fireEvent.click(
-          screen.getByRole("switch", { name: new RegExp(label) }),
-        );
-      }
+      fireEvent.click(screen.getByText("교재 구성 선택"));
+      fireEvent.click(screen.getByRole("button", { name: "모두 끄기" }));
+      fireEvent.click(
+        screen.getByRole("switch", {
+          name: writtenOnly ? /서술형/ : /유형·실전 문제/,
+        }),
+      );
       expect(screen.getByRole("alert")).toHaveTextContent(
         "사용 가능한 문제가 없습니다. 범위나 난이도를 바꾸거나 개념 구성을 켜 주세요.",
       );
@@ -450,9 +455,8 @@ describe("simple textbook creation", () => {
     expect(create.mock.calls[0]![0].requestId).toBe(
       create.mock.calls[1]![0].requestId,
     );
-    expect(create.mock.calls[1]![0].components).toEqual({
-      ...DEFAULT_QUICK_CREATE_COMPONENTS,
-      workedExamples: true,
-    });
+    expect(create.mock.calls[1]![0].components).toEqual(
+      RECOMMENDED_QUICK_CREATE_COMPONENTS,
+    );
   });
 });

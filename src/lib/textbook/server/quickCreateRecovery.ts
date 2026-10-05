@@ -8,6 +8,7 @@ import type {
 } from "@/contracts/textbookSemantic.contract";
 import { conceptMemoryRows, memoryRowMarkdown } from "../conceptRows";
 import { conceptScriptFor } from "../conceptScripts";
+import { ACTIVITY_LABELS } from "../activities";
 
 export function activityText(
   activity: TextbookActivity,
@@ -109,89 +110,65 @@ export function additionalConceptActivities(input: {
         .map((turn) => turn.markdown) ?? [];
     if (!questions.length)
       throw new Error(`대화 읽기 확인 원고가 없습니다: ${input.sectionKey}`);
-    blocks.push(
-      writingActivity(
-        "dialogueCheck",
-        "대화 읽기 확인",
-        [
-          "수업을 떠올리며 물음에 답하고, 그렇게 생각한 이유를 쓰세요.",
-          ...questions,
-        ],
-        4,
-      ),
-    );
+    for (let offset = 0; offset < questions.length; offset += 3)
+      blocks.push(
+        writingActivity(
+          "dialogueCheck",
+          "대화 읽기 확인",
+          [
+            "수업을 떠올리며 물음에 답하고, 그렇게 생각한 이유를 쓰세요.",
+            ...questions.slice(offset, offset + 3),
+          ],
+          4,
+        ),
+      );
   }
-  if (components.conceptBlankTest)
-    blocks.push(
-      writingActivity(
-        "conceptBlankTest",
-        "자유 개념 백지",
-        [
-          "책을 덮고 기억나는 개념을 정리하세요. 뜻, 조건, 예를 자신의 말과 그림으로 표현하세요.",
-        ],
-        16,
-      ),
-    );
-  if (components.explainActivity)
-    blocks.push(
-      writingActivity(
-        "explainActivity",
-        "설명 활동",
-        [
-          "짝에게 설명한 뒤 서로 질문하세요. 설명에서 빠진 조건을 찾아 고쳐 쓰세요.",
-          ...entries.map(
-            (entry) =>
-              `${entry.term}의 뜻과 사용할 때의 조건을 예와 함께 설명하세요.`,
-          ),
-        ],
-        3,
-      ),
-    );
-  if (components.conceptMap)
-    blocks.push(
-      writingActivity(
-        "conceptMap",
-        "개념 지도",
-        [
-          "아래 개념을 써 놓고, 직접 설명할 수 있는 관계를 선과 문장으로 연결하세요.",
-          entries.map((entry) => entry.term).join(" · "),
-        ],
-        15,
-      ),
-    );
+  // Versioned rows opt NEW bank activities into native scaffolds. Saved writing
+  // nodes and source fragments retain their original render paths and bytes.
+  const rows = conceptMemoryRows(entries);
+  const scaffolds = [
+    {
+      activity: "conceptBlankTest",
+      title: "자유 개념 백지",
+      size: 4,
+      instruction:
+        "책을 보지 않고 기억나는 개념을 정리하세요. 각 정의에 알맞은 예를 쓰세요.",
+    },
+    {
+      activity: "explainActivity",
+      title: "설명 활동",
+      size: 2,
+      instruction: "예를 들어 설명한 뒤, 친구의 질문에 답하세요.",
+    },
+    {
+      activity: "conceptMap",
+      title: "개념 지도",
+      size: 4,
+      instruction:
+        "각 개념의 정의와 예를 쓰고, 직접 설명할 수 있는 관계를 정리하세요.",
+    },
+  ] as const;
+  for (const scaffold of scaffolds) {
+    if (!components[scaffold.activity]) continue;
+    for (let offset = 0; offset < rows.length; offset += scaffold.size) {
+      const block = activityText(
+        scaffold.activity,
+        scaffold.title,
+        scaffold.instruction,
+        {
+          kind: "rows",
+          groupKey: `bank-activity.v1.${scaffold.activity}.${offset / scaffold.size}`,
+          rows: rows.slice(offset, offset + scaffold.size),
+        },
+      );
+      block.semantic!.continuation = offset > 0;
+      blocks.push(block);
+    }
+  }
   return blocks;
 }
 
-export const ACTIVITY_LABELS: Record<TextbookActivity, string> = {
-  cover: "표지",
-  unitIntro: "단원 도입",
-  dialogue: "개념 대화",
-  concepts: "개념 이해",
-  termRecall: "용어 암기",
-  clozeRecall: "핵심어 빈칸",
-  sentenceRecall: "통문장 개념 암기",
-  practice: "유형 연습",
-  workedExamples: "대표예제와 확인",
-  review: "누적 복습",
-  assessment: "단원 평가",
-  written: "서술형",
-  rest: "쉬어가기",
-  learningGuide: "학습 안내",
-  learningPlan: "학습 계획",
-  questionLog: "질문 기록",
-  preparation: "준비 학습",
-  errorCheck: "오류 점검",
-  tableOfContents: "목차",
-  dialogueCheck: "대화 읽기 확인",
-  conceptStudy: "개념 학습",
-  conceptBlankTest: "자유 개념 백지",
-  basicCheck: "개념 기초 확인",
-  explainActivity: "설명 활동",
-  conceptMap: "개념 지도",
-  reasoning: "추론 활동",
-  conceptIndex: "개념 색인",
-  typeIndex: "유형 색인",
-};
+export { ACTIVITY_LABELS } from "../activities";
 export function selectedLearningGuide(
   components: QuickCreateComponents,
 ): ManuscriptBlock[] {

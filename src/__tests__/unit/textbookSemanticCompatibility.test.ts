@@ -29,6 +29,20 @@ const id = "00000000-0000-4000-8000-000000000001";
 const semantic: TextbookSemantic = {
   activity: "conceptStudy",
   source: { unit: "U01", page: 18, kind: "fullmaster", path: "pages[17].rows" },
+  sourceFooter: [
+    {
+      tag: "div",
+      attributes: { className: "study-footer" },
+      children: [
+        { tag: "span", rawText: "합성 학습 확인 안내" },
+        { tag: "span", rawText: "확인 날짜: ______" },
+      ],
+    },
+  ],
+  sourceQuestionHeader: [
+    { tag: "strong", attributes: { className: "qid" }, rawText: "007" },
+    { tag: "span", attributes: { className: "tag" }, rawText: "합성 확인" },
+  ],
   node: {
     kind: "rows",
     groupKey: "U01.C01",

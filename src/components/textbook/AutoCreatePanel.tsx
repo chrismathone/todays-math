@@ -5,7 +5,9 @@ import Image from "next/image";
 import { newRequestId } from "@/lib/textbook/client";
 import type { QuickCreateApi } from "@/lib/textbook/quickCreateClient";
 import {
-  DEFAULT_QUICK_CREATE_COMPONENTS,
+  RECOMMENDED_QUICK_CREATE_COMPONENTS,
+  minimumQuickCreateProblemCount,
+  quickCreateSelectionInput,
   type QuickCreateCatalog,
   type QuickCreateComponents,
   type QuickCreateResult,
@@ -80,7 +82,43 @@ const COMPONENTS: {
   { key: "review", label: "복습 문제", hint: "선택한 범위 다시 연습하기" },
   { key: "assessment", label: "단원 확인", hint: "배운 내용 확인하기" },
   { key: "rest", label: "쉬어가기", hint: "수학 삽화와 짧은 이야기" },
+  { key: "tableOfContents", label: "목차", hint: "선택한 활동과 실제 쪽수" },
+  {
+    key: "dialogueCheck",
+    label: "대화 읽기 확인",
+    hint: "읽은 수업의 핵심을 짚기",
+  },
+  {
+    key: "conceptStudy",
+    label: "개념 학습",
+    hint: "같은 개념표로 읽고 반복 확인",
+  },
+  {
+    key: "conceptBlankTest",
+    label: "자유 개념 백지",
+    hint: "기억한 개념을 스스로 정리",
+  },
+  {
+    key: "basicCheck",
+    label: "개념 기초 확인",
+    hint: "배운 개념을 짧은 문제로 확인",
+  },
+  {
+    key: "explainActivity",
+    label: "설명 활동",
+    hint: "개념을 말하고 이유를 쓰기",
+  },
+  { key: "conceptMap", label: "개념 지도", hint: "선택한 개념을 연결해 정리" },
+  { key: "reasoning", label: "추론 활동", hint: "근거와 판단 과정을 설명" },
+  {
+    key: "conceptIndex",
+    label: "개념 색인",
+    hint: "개념 이름으로 해당 쪽 찾기",
+  },
+  { key: "typeIndex", label: "유형 색인", hint: "수록한 문제 유형으로 찾기" },
 ];
+const RECOMMENDED_COMPONENTS: QuickCreateComponents =
+  RECOMMENDED_QUICK_CREATE_COMPONENTS;
 
 const errorMessage = (error: unknown) =>
   error instanceof Error
@@ -104,10 +142,9 @@ export function AutoCreatePanel({
   >("standard");
   const [count, setCount] = useState("8");
   const [title, setTitle] = useState("");
-  const [components, setComponents] = useState<QuickCreateComponents>({
-    ...DEFAULT_QUICK_CREATE_COMPONENTS,
-    workedExamples: true,
-  });
+  const [components, setComponents] = useState<QuickCreateComponents>(
+    RECOMMENDED_COMPONENTS,
+  );
   const [cast, setCast] = useState({ ...DEFAULT_TEXTBOOK_CAST });
   const [error, setError] = useState<string | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -164,18 +201,22 @@ export function AutoCreatePanel({
     components.written,
     components.review,
     components.assessment,
+    components.basicCheck,
+    components.reasoning,
   ].filter(Boolean).length;
   const problemCount = Number(count);
+  const minimumProblemCount = minimumQuickCreateProblemCount(components);
   const validCount =
     Number.isSafeInteger(problemCount) &&
-    problemCount >= Math.max(1, problemComponents) &&
+    problemCount >= minimumProblemCount &&
     problemCount <= 30;
   const nonWrittenStages = COMPONENTS.filter(
     ({ key }) =>
       (key === "practice" ||
         key === "workedExamples" ||
         key === "review" ||
-        key === "assessment") &&
+        key === "assessment" ||
+        key === "basicCheck") &&
       components[key],
   ).map(({ label }) => label);
   const availability = selected.map((unit) => unit.availability?.[difficulty]);
@@ -203,18 +244,12 @@ export function AutoCreatePanel({
   const noAvailableQuestions =
     availabilityComplete &&
     (nonWrittenStages.length ? availableTotal : availableWritten) === 0;
-  const learningContentEnabled = [
-    components.dialogue,
-    components.concepts,
-    components.termRecall,
-    components.clozeRecall,
-    components.sentenceRecall,
-    components.preparation,
-    components.errorCheck,
-  ].some(Boolean);
+  const learningContentEnabled =
+    quickCreateSelectionInput(components).includeConcepts;
   const noQuestionContent =
     problemComponents > 0 && noAvailableQuestions && !learningContentEnabled;
   const ready =
+    catalog?.writerReady !== false &&
     selected.length > 0 &&
     contentEnabled &&
     (!problemComponents || validCount) &&
@@ -230,6 +265,7 @@ export function AutoCreatePanel({
           문제와 준비된 개념 원고를 자동으로 담습니다. 필요한 구성은 켜고, 필요
           없는 구성은 꺼 주세요.
         </p>
+        <p>개념 원고: 초3–중3 준비됨 · 어휘와 수업 흐름은 전체 편집 검수 전</p>
       </div>
       <form
         onSubmit={async (event) => {
@@ -243,8 +279,7 @@ export function AutoCreatePanel({
             endUnitId: endId,
             difficulty,
             problemCountPerUnit: problemComponents ? problemCount : 8,
-            includeConcepts: true,
-            components,
+            ...quickCreateSelectionInput(components),
             cast,
             ...(title.trim() ? { title: title.trim() } : {}),
           };
@@ -267,6 +302,11 @@ export function AutoCreatePanel({
           }
         }}
       >
+        {catalog?.writerReady === false && (
+          <p role="status">
+            교재 제작 기능을 업데이트하고 있습니다. 잠시 후 다시 시도해 주세요.
+          </p>
+        )}
         <fieldset disabled={busy} className={styles.fields}>
           <legend className={styles.step}>1. 학년과 학기</legend>
           <div className={styles.scope}>
@@ -378,7 +418,7 @@ export function AutoCreatePanel({
               소단원당 최대 문제 수
               <input
                 type="number"
-                min={Math.max(1, problemComponents)}
+                min={minimumProblemCount}
                 max="30"
                 value={count}
                 disabled={!problemComponents}
@@ -392,6 +432,38 @@ export function AutoCreatePanel({
             <p>
               {COMPONENTS.length}가지 구성을 켜고 끌 수 있습니다. 기본은
               표지·단원 도입·개념·문제로 시작합니다.
+            </p>
+            <p>
+              <button
+                type="button"
+                onClick={() => setComponents(RECOMMENDED_COMPONENTS)}
+              >
+                추천 구성
+              </button>{" "}
+              <button
+                type="button"
+                onClick={() =>
+                  setComponents(
+                    Object.fromEntries(
+                      COMPONENTS.map(({ key }) => [key, true]),
+                    ) as QuickCreateComponents,
+                  )
+                }
+              >
+                모두 켜기
+              </button>{" "}
+              <button
+                type="button"
+                onClick={() =>
+                  setComponents(
+                    Object.fromEntries(
+                      COMPONENTS.map(({ key }) => [key, false]),
+                    ) as QuickCreateComponents,
+                  )
+                }
+              >
+                모두 끄기
+              </button>
             </p>
             <div className={styles.toggleGrid}>
               {COMPONENTS.map(({ key, label, hint }) => (
@@ -473,7 +545,7 @@ export function AutoCreatePanel({
               교재 제목
               <input
                 value={title}
-                maxLength={200}
+                maxLength={120}
                 placeholder={suggestedTitle}
                 onChange={(event) => setTitle(event.target.value)}
               />
@@ -540,8 +612,7 @@ export function AutoCreatePanel({
           ) : null}
           {problemComponents > 0 && !validCount ? (
             <p className={styles.error}>
-              문제 수는 {Math.max(1, problemComponents)}~30 사이의 정수로 입력해
-              주세요.
+              문제 수는 {minimumProblemCount}~30 사이의 정수로 입력해 주세요.
             </p>
           ) : null}
           {error ? (

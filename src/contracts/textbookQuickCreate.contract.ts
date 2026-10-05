@@ -56,6 +56,36 @@ export const DEFAULT_QUICK_CREATE_COMPONENTS = {
   conceptIndex: false,
   typeIndex: false,
 } as const;
+export const RECOMMENDED_QUICK_CREATE_COMPONENTS = {
+  ...DEFAULT_QUICK_CREATE_COMPONENTS,
+  workedExamples: true,
+  learningGuide: true,
+  tableOfContents: true,
+  conceptStudy: true,
+  termRecall: false,
+} as const;
+export function minimumQuickCreateProblemCount(components: {
+  practice: boolean;
+  workedExamples: boolean;
+  review: boolean;
+  assessment: boolean;
+  written: boolean;
+  basicCheck: boolean;
+  reasoning: boolean;
+}): number {
+  return Math.max(
+    1,
+    [
+      components.practice,
+      components.workedExamples,
+      components.review,
+      components.assessment,
+      components.written,
+      components.basicCheck,
+      components.reasoning,
+    ].filter(Boolean).length + Number(components.workedExamples),
+  );
+}
 export const quickCreateComponentsSchema = z.strictObject({
   unitIntro: z.boolean(),
   dialogue: z.boolean(),
@@ -123,20 +153,21 @@ export const quickCreateInputSchema = textbookRequestSchema
         path: ["components"],
         message: "교재 구성요소를 하나 이상 선택하세요.",
       });
-    const problemComponents = [
-      components.practice,
-      components.workedExamples,
-      components.review,
-      components.assessment,
-      components.written,
-      components.basicCheck,
-      components.reasoning,
-    ].filter(Boolean).length;
-    if (problemComponents > input.problemCountPerUnit)
+    if (components.workedExamples && input.problemCountPerUnit < 2)
       ctx.addIssue({
         code: "custom",
         path: ["problemCountPerUnit"],
-        message: "문항 수는 선택한 문제 구성요소 수 이상이어야 합니다.",
+        message:
+          "대표예제와 확인문제는 한 쌍이므로 문항 수를 2개 이상 선택하세요.",
+      });
+    else if (
+      minimumQuickCreateProblemCount(components) > input.problemCountPerUnit
+    )
+      ctx.addIssue({
+        code: "custom",
+        path: ["problemCountPerUnit"],
+        message:
+          "선택한 문제 활동마다 최소 1문항이 필요하며 대표예제와 확인문제는 2문항으로 셉니다.",
       });
   });
 export type QuickCreateComponents = z.infer<typeof quickCreateComponentsSchema>;
@@ -191,6 +222,7 @@ export function quickCreateSelectionInput(components: QuickCreateComponents) {
   };
 }
 export const quickCreateCatalogSchema = z.strictObject({
+  writerReady: z.boolean().optional(),
   units: z
     .array(
       z.strictObject({

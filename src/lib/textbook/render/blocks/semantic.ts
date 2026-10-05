@@ -1,24 +1,40 @@
 import type { TextbookSourceFragment } from "@/contracts/textbookSemantic.contract";
 import type { RenderBlock } from "../model";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
+import { imageHtml, type RenderResources } from "./shared";
+import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
+import { renderBankActivityHtml } from "./bankActivities";
 
 function inlineMarkdown(source: string): string {
-  const html = md(source);
+  const html = dialogueMarkdownHtml(v15DisplayMarkdown(source));
   return /^<p>[\s\S]*<\/p>$/.test(html) && !html.slice(3, -4).includes("<p>")
-    ? html.slice(3, -4)
+    ? `${/^\s/.test(source) ? " " : ""}${html.slice(3, -4)}${/\s$/.test(source) ? " " : ""}`
     : html;
 }
 
 /** The validated tree has no URL, arbitrary style, event handler or executable HTML. */
 export function renderSourceFragments(
   nodes: readonly TextbookSourceFragment[],
+  resources?: RenderResources,
 ): string {
   return nodes
     .map((node) => {
       const attributes = node.attributes;
       const attrs = `${attributes?.className ? ` class="${esc(attributes.className)}"` : ""}${attributes?.colSpan ? ` colspan="${attributes.colSpan}"` : ""}${attributes?.rowSpan ? ` rowspan="${attributes.rowSpan}"` : ""}`;
       if (node.tag === "br") return "<br>";
-      return `<${node.tag}${attrs}>${node.rawText ? inlineMarkdown(node.rawText) : ""}${renderSourceFragments(node.children ?? [])}</${node.tag}>`;
+      if (node.tag === "img") {
+        if (!resources || !attributes?.assetId)
+          throw new Error("원본 구조의 고정 그림 자산을 읽을 수 없습니다.");
+        return imageHtml(
+          resources,
+          attributes.assetId,
+          attributes.alt ?? "그림",
+        ).replace(
+          "<img ",
+          `<img${attributes.className ? ` class="${esc(attributes.className)}"` : ""} `,
+        );
+      }
+      return `<${node.tag}${attrs}>${node.rawText ? inlineMarkdown(node.rawText) : ""}${renderSourceFragments(node.children ?? [], resources)}</${node.tag}>`;
     })
     .join("");
 }
@@ -30,18 +46,33 @@ export function writingLinesHtml(lines: number): string {
 /** Independently selected activities use their own instructions and bounded writing spaces. */
 export function renderSemanticTextHtml(
   block: Extract<RenderBlock, { kind: "text" }>,
+  resources?: RenderResources,
 ): string | null {
   const semantic = block.semantic;
   const node = semantic?.node;
   if (!semantic || !node) return null;
-  if (node.kind === "fragments")
-    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${renderSourceFragments(node.fragments)}</section>`;
+  const bankActivity = renderBankActivityHtml(block);
+  if (bankActivity !== null) return bankActivity;
+  if (node.kind === "fragments") {
+    const content = renderSourceFragments(node.fragments, resources);
+    const marked =
+      semantic.source?.kind === "unitSpreadLeft"
+        ? content.replaceAll(
+            "<img ",
+            '<img data-textbook-decorative-bleed-mm="4" ',
+          )
+        : content;
+    return `<section class="tb-source-fragments" data-source-kind="${esc(semantic.source?.kind ?? semantic.activity)}">${marked}</section>`;
+  }
   if (node.kind === "writing")
     return `<section class="tb-writing-activity" data-activity="${semantic.activity}">${node.prompts.map((prompt) => `<div class="tb-writing-prompt">${md(prompt)}${writingLinesHtml(node.lines)}</div>`).join("")}</section>`;
   if (node.kind === "references")
     return `<section class="tb-references" data-activity="${semantic.activity}" aria-label="${esc(semantic.title ?? "쪽수 안내")}">${node.entries.map((entry) => `<div class="tb-reference-row" data-reference-key="${esc(entry.key)}"><span>${md(entry.label)}</span><span class="tb-reference-page" aria-label="쪽수">${esc(entry.pageLabel ?? "")}</span></div>`).join("")}</section>`;
-  if (node.kind === "exampleGroup")
-    return `<section class="tb-example-group" data-example-group="${esc(node.groupId)}"><h3>${esc(node.title)}</h3><div class="tb-example-strategy">${md(node.strategy)}</div><p>대표예제의 풀이를 확인하고 연결된 확인 문제를 스스로 풀어 보세요.</p></section>`;
+  if (node.kind === "exampleGroup") {
+    const sourceTitle = semantic.source ? /^Y(\d+)\s+(.+)$/.exec(node.title) : null;
+    const number = sourceTitle?.[1] ?? block.exampleGroupNumber;
+    return `<section class="tb-example-group tb-pair-heading${semantic.source ? " tb-source-example-heading" : ""}" data-example-group="${esc(node.groupId)}"><div class="tb-paired-title">${number ? `<span class="tb-pair-index"><small>유형</small><b>${String(number).padStart(2, "0")}</b></span>` : ""}<h3>${esc(sourceTitle?.[2] ?? node.title)}</h3></div>${node.strategyKind === "captured-solution" ? "" : `<div class="tb-example-strategy">${semantic.source ? `<b>풀이전략</b>${dialogueMarkdownHtml(v15DisplayMarkdown(node.strategy))}` : md(node.strategy)}</div>`}</section>`;
+  }
   return null;
 }
 

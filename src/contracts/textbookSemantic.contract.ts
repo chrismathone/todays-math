@@ -3,6 +3,7 @@ import {
   textbookIdSchema,
   textbookKeySchema,
   textbookTextSchema,
+  textbookHashSchema,
 } from "./textbookPrimitives.contract";
 
 /** Independent activities. This vocabulary is shared by the request, manuscript and renderer. */
@@ -55,6 +56,8 @@ export const textbookSemanticSourceSchema = z.strictObject({
   unit: z.string().min(1).max(200),
   page: z.number().int().positive().max(10_000),
   kind: z.string().min(1).max(100),
+  tone: z.enum(["forest", "tree"]).optional(),
+  sectionName: z.string().max(200).optional(),
   path: z.string().min(1).max(500),
   scriptIndex: z.number().int().nonnegative().optional(),
   blockIndex: z.number().int().nonnegative().optional(),
@@ -89,50 +92,86 @@ export type TextbookSourceFragment = {
     | "tr"
     | "th"
     | "td"
-    | "br";
-  attributes?: { className?: string; colSpan?: number; rowSpan?: number };
+    | "br"
+    | "img";
+  attributes?: {
+    className?: string;
+    colSpan?: number;
+    rowSpan?: number;
+    assetId?: string;
+    alt?: string;
+  };
   rawText?: string;
   children?: TextbookSourceFragment[];
 };
 /** Source layout is a bounded allowlist tree, never executable HTML or arbitrary attributes. */
 export const textbookSourceFragmentSchema: z.ZodType<TextbookSourceFragment> =
   z.lazy(() =>
-    z.strictObject({
-      tag: z.enum([
-        "div",
-        "section",
-        "span",
-        "p",
-        "h2",
-        "h3",
-        "h4",
-        "strong",
-        "em",
-        "ul",
-        "ol",
-        "li",
-        "table",
-        "thead",
-        "tbody",
-        "tr",
-        "th",
-        "td",
-        "br",
-      ]),
-      attributes: z
-        .strictObject({
-          className: z
-            .string()
-            .max(500)
-            .regex(/^[A-Za-z0-9 _-]*$/)
-            .optional(),
-          colSpan: z.number().int().min(1).max(20).optional(),
-          rowSpan: z.number().int().min(1).max(100).optional(),
-        })
-        .optional(),
-      rawText: textbookTextSchema.optional(),
-      children: z.array(textbookSourceFragmentSchema).max(500).optional(),
-    }),
+    z
+      .strictObject({
+        tag: z.enum([
+          "div",
+          "section",
+          "span",
+          "p",
+          "h2",
+          "h3",
+          "h4",
+          "strong",
+          "em",
+          "ul",
+          "ol",
+          "li",
+          "table",
+          "thead",
+          "tbody",
+          "tr",
+          "th",
+          "td",
+          "br",
+          "img",
+        ]),
+        attributes: z
+          .strictObject({
+            className: z
+              .string()
+              .max(500)
+              .regex(/^[A-Za-z0-9 _-]*$/)
+              .optional(),
+            colSpan: z.number().int().min(1).max(20).optional(),
+            rowSpan: z.number().int().min(1).max(100).optional(),
+            assetId: textbookIdSchema.optional(),
+            alt: z.string().max(500).optional(),
+          })
+          .optional(),
+        rawText: textbookTextSchema.optional(),
+        children: z.array(textbookSourceFragmentSchema).max(500).optional(),
+      })
+      .superRefine((fragment, ctx) => {
+        if (fragment.tag === "img" && !fragment.attributes?.assetId)
+          ctx.addIssue({
+            code: "custom",
+            path: ["attributes", "assetId"],
+            message: "그림은 고정 자산 ID가 필요합니다.",
+          });
+        if (
+          fragment.tag !== "img" &&
+          (fragment.attributes?.assetId || fragment.attributes?.alt)
+        )
+          ctx.addIssue({
+            code: "custom",
+            path: ["attributes"],
+            message: "그림 속성은 img 노드에만 허용됩니다.",
+          });
+        if (
+          fragment.tag === "img" &&
+          (fragment.rawText || fragment.children?.length)
+        )
+          ctx.addIssue({
+            code: "custom",
+            message: "그림 노드는 본문이나 자식 노드를 갖지 않습니다.",
+          });
+      }),
   );
 export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
   z.strictObject({
@@ -162,6 +201,7 @@ export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
     groupId: textbookKeySchema,
     title: z.string().max(200),
     strategy: textbookTextSchema,
+    strategyKind: z.literal("captured-solution").optional(),
     exampleItemId: textbookIdSchema,
     confirmItemIds: z.array(textbookIdSchema).min(1).max(20),
   }),
@@ -172,6 +212,19 @@ export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
   }),
   z.strictObject({
     kind: z.literal("unitIntro"),
+    keyPhrase: z.string().max(200).optional(),
+    provenance: z
+      .strictObject({
+        origin: z.literal("bank-derived"),
+        sourceHash: textbookHashSchema,
+        sourceConceptIds: z.array(textbookKeySchema).max(1657),
+        sourceHashes: z.array(textbookHashSchema).max(360),
+        editor: z.string().max(200),
+        reviewer: z.string().max(200),
+        status: z.literal("AI 검수"),
+        humanReview: z.literal(false),
+      })
+      .optional(),
     question: textbookTextSchema,
     explanation: textbookTextSchema,
     goals: z.array(textbookTextSchema).max(100),
@@ -197,10 +250,27 @@ export const textbookSemanticSchema = z
     title: z.string().max(200).optional(),
     subtitle: z.string().max(500).optional(),
     continuation: z.boolean().optional(),
+    /** Original source's fixed instruction/footer tree; absence stays absent in old editions. */
+    sourceFooter: z
+      .array(textbookSourceFragmentSchema)
+      .min(1)
+      .max(50)
+      .optional(),
+    /** Native question heading children, preserved separately from its immutable prompt. */
+    sourceQuestionHeader: z
+      .array(textbookSourceFragmentSchema)
+      .min(1)
+      .max(30)
+      .optional(),
     node: textbookSemanticNodeSchema.optional(),
   })
   .superRefine((value, ctx) => {
-    if (value.node?.kind !== "fragments") return;
+    if (
+      value.node?.kind !== "fragments" &&
+      !value.sourceFooter &&
+      !value.sourceQuestionHeader
+    )
+      return;
     let count = 0;
     const walk = (nodes: TextbookSourceFragment[], depth: number): boolean => {
       if (depth > 20) return false;
@@ -213,7 +283,12 @@ export const textbookSemanticSchema = z
       }
       return true;
     };
-    if (!walk(value.node.fragments, 1))
+    const fragments = [
+      ...(value.node?.kind === "fragments" ? value.node.fragments : []),
+      ...(value.sourceFooter ?? []),
+      ...(value.sourceQuestionHeader ?? []),
+    ];
+    if (!walk(fragments, 1))
       ctx.addIssue({
         code: "custom",
         path: ["node", "fragments"],

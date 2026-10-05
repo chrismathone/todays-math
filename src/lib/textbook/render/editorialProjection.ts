@@ -3,6 +3,222 @@ import type {
   RenderSection,
   TextbookEditorialStage,
 } from "./model";
+import { ACTIVITY_LABELS } from "../activities";
+import type { TextbookActivity } from "@/contracts/textbookSemantic.contract";
+
+const ACTIVITY_STAGE: Record<TextbookActivity, TextbookEditorialStage> = {
+  cover: "guide",
+  unitIntro: "unit",
+  dialogue: "opening",
+  concepts: "concept",
+  termRecall: "recall",
+  conceptStudy: "recall",
+  clozeRecall: "recall",
+  sentenceRecall: "recall",
+  practice: "practice",
+  workedExamples: "practice",
+  review: "review",
+  assessment: "application",
+  written: "application",
+  rest: "rest",
+  learningGuide: "guide",
+  learningPlan: "guide",
+  questionLog: "guide",
+  preparation: "basic",
+  errorCheck: "application",
+  tableOfContents: "guide",
+  dialogueCheck: "basic",
+  conceptBlankTest: "recall",
+  basicCheck: "basic",
+  explainActivity: "application",
+  conceptMap: "recall",
+  reasoning: "application",
+  conceptIndex: "guide",
+  typeIndex: "guide",
+};
+const MEMORY_COPY = {
+  conceptStudy: ["개념학습", "정의와 성질을 읽고 예를 들어 설명하시오."],
+  clozeRecall: ["빈칸개념암기", "빈칸에 알맞은 용어와 식을 쓰시오."],
+  sentenceRecall: [
+    "통문장개념암기",
+    "책을 보지 않고 각 항목을 문장으로 쓰시오.",
+  ],
+} as const;
+
+function semanticProjection(
+  section: RenderSection,
+  enabledActivities?: readonly TextbookActivity[],
+): RenderSection {
+  const source = section.blocks.filter(
+    (block) => block.sourceBlockId !== "section-heading",
+  );
+  const steps = [
+    ...new Set(
+      source.flatMap((block) =>
+        block.semantic ? [block.semantic.activity] : [],
+      ),
+    ),
+  ].map((activity) => ({ activity, label: ACTIVITY_LABELS[activity] }));
+  const enabled = enabledActivities ?? steps.map((step) => step.activity);
+  const phases = enabled
+    .filter((activity) => Object.hasOwn(MEMORY_COPY, activity))
+    .map((activity) => ({
+      activity,
+      label: MEMORY_COPY[activity as keyof typeof MEMORY_COPY][0],
+    }));
+  const majorSteps = (
+    [
+      ["concept", "개념 이해"],
+      ["recall", "개념 정리"],
+      ["basic", "기본 확인"],
+      ["practice", "유형 연습"],
+      ["application", "설명·적용"],
+      ["review", "다시 꺼내기"],
+    ] as const
+  )
+    .filter(([stage]) =>
+      enabled.some((activity) => ACTIVITY_STAGE[activity] === stage),
+    )
+    .map(([activity, label]) => ({ activity, label }));
+  const blocks: RenderBlock[] = [];
+  let current: TextbookActivity | undefined;
+  let lessonTitle = "";
+  let exampleGroupNumber = 0;
+  for (const block of source) {
+    const semantic = block.semantic;
+    const activity = semantic?.activity ?? current;
+    const stage = activity ? ACTIVITY_STAGE[activity] : "guide";
+    if (
+      semantic?.node?.kind === "unitIntro" &&
+      section.templateKey === "auto-unit-intro" &&
+      block.kind === "text"
+    ) {
+      for (const part of ["left", "right", "single"] as const)
+        blocks.push({
+          ...block,
+          id: `${block.id}.intro-${part}`,
+          unitIntroPart: part,
+          unitNumber: section.blocks.find((candidate) => candidate.unitNumber)
+            ?.unitNumber,
+          editorialStage: "unit",
+        });
+      current = activity;
+      continue;
+    }
+    if (activity && activity !== current) {
+      const memory = Object.hasOwn(MEMORY_COPY, activity)
+        ? MEMORY_COPY[activity as keyof typeof MEMORY_COPY]
+        : undefined;
+      const skip =
+        section.templateKey.startsWith("reference-unitSpread") ||
+        section.templateKey === "auto-unit-intro";
+      if (!skip)
+        blocks.push({
+          id: `${block.id}.activity-heading`,
+          sourceBlockId: block.sourceBlockId,
+          unitKey: section.unitKey,
+          sectionKey: section.sectionKey,
+          kind: "heading",
+          editorialStage: stage,
+          semantic: { ...semantic!, node: undefined },
+          title:
+            activity === "dialogue"
+              ? "단원을 여는 수업"
+              : (memory?.[0] ??
+                (section.templateKey.startsWith("reference-")
+                  ? section.title
+                  : ACTIVITY_LABELS[activity])),
+          subtitle:
+            activity === "dialogue" && block.kind === "dialogue"
+              ? semantic?.source
+                ? (semantic.title ?? section.title)
+                : (block.presentation?.lessonTitle ?? section.title)
+              : (memory?.[1] ??
+                (semantic?.source ? (semantic.subtitle ?? "") : section.title)),
+          stageNumber: String(
+            semantic?.source?.scriptIndex ??
+              (memory
+                ? ["conceptStudy", "clozeRecall", "sentenceRecall"].indexOf(
+                    activity,
+                  ) + 1
+                : (section.blocks.find((candidate) => candidate.unitNumber)
+                    ?.unitNumber ??
+                  steps.findIndex((step) => step.activity === activity) + 1)),
+          ).padStart(2, "0"),
+          progressSteps:
+            activity === "dialogue" || stage === "guide"
+              ? []
+              : memory
+                ? phases
+                : majorSteps,
+          unitNumber: section.blocks.find((candidate) => candidate.unitNumber)
+            ?.unitNumber,
+          startNewPage: blocks.length > 0,
+        });
+      if (
+        activity === "dialogue" &&
+        (semantic?.source?.scriptIndex === 1 || !semantic?.source)
+      )
+        blocks.push({
+          id: `${block.id}.dialogue-guide`,
+          sourceBlockId: block.sourceBlockId,
+          kind: "text",
+          markdown: "",
+          unitKey: section.unitKey,
+          sectionKey: section.sectionKey,
+          editorialStage: "opening",
+          dialogueGuide: semantic?.source
+            ? "민서와 지호의 대화를 읽으며, 선생님의 질문에 먼저 답해 보시오."
+            : "학생들의 대화를 읽으며, 선생님의 질문에 먼저 답해 보시오.",
+        });
+      current = activity;
+    }
+    if (
+      block.kind === "text" &&
+      !semantic?.node &&
+      /^#{1,6}\s+[^\n]+\s*$/.test(block.markdown)
+    )
+      continue;
+    if (
+      block.kind === "dialogue" &&
+      block.presentation?.lessonTitle !== lessonTitle
+    ) {
+      if (lessonTitle && block.presentation)
+        blocks.push({
+          id: `${block.id}.lesson-title`,
+          sourceBlockId: block.sourceBlockId,
+          unitKey: block.unitKey,
+          sectionKey: block.sectionKey,
+          kind: "text",
+          markdown: block.presentation.lessonTitle,
+          editorialStage: "opening",
+          dialogueLesson: {
+            lessonKey: block.presentation.lessonKey,
+            lessonTitle: block.presentation.lessonTitle,
+          },
+        });
+      lessonTitle = block.presentation?.lessonTitle ?? "";
+    }
+    blocks.push({
+      ...block,
+      editorialStage: stage,
+      ...(semantic?.node?.kind === "exampleGroup" && block.kind === "text"
+        ? { exampleGroupNumber: ++exampleGroupNumber }
+        : {}),
+      ...(semantic?.node?.kind === "exampleGroup" && block.kind === "problem"
+        ? {
+            exampleConfirmIndex: semantic.node.confirmItemIds.indexOf(
+              block.itemId,
+            ),
+          }
+        : {}),
+      ...(block.kind === "recall" && Object.hasOwn(MEMORY_COPY, activity ?? "")
+        ? { memoryPhases: [] }
+        : {}),
+    });
+  }
+  return { ...section, blocks, editorialStage: blocks[0]?.editorialStage };
+}
 
 const labels: Record<TextbookEditorialStage, string> = {
   opening: "단원을 여는 수업",
@@ -60,7 +276,16 @@ function blockStage(
 }
 
 /** Editorial metadata affects only the render projection, never saved manuscript bytes. */
-export function projectEditorialSection(section: RenderSection): RenderSection {
+export function projectEditorialSection(
+  section: RenderSection,
+  enabledActivities?: readonly TextbookActivity[],
+): RenderSection {
+  if (
+    section.blocks.some((block) => block.semantic) &&
+    (section.templateKey.startsWith("auto-") ||
+      section.templateKey.startsWith("reference-"))
+  )
+    return semanticProjection(section, enabledActivities);
   if (section.templateKey !== "auto-lesson") {
     const editorialStage =
       section.templateKey === "rest"

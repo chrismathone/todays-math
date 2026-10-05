@@ -1,6 +1,7 @@
 """Mutation proof for the independent guards, with no original private content."""
 from __future__ import annotations
 import argparse
+import copy
 import hashlib
 import json
 import tempfile
@@ -78,6 +79,95 @@ class Guards(unittest.TestCase):
     def test_valid_no_false_positive_words_choices_and_public_example(self):
         self.check(None)
 
+    def v2(self):
+        self.witness["version"] = 2
+        self.witness["coverageEvidence"] = {"pdfSha256": self.witness["pdfSha256"],
+            "expectedPages": 3, "observedPages": 3, "expectedPlacedBlocks": 6, "observedBlocks": 6}
+        for page in self.witness["pages"]:
+            page["fontsLoaded"] = True
+            page["accounting"] = {"placementFound": True, "expectedBlocks": 2, "actualBlocks": 2,
+                "missingBlocks": [], "unexpectedBlocks": [], "duplicateBlocks": [],
+                "clipCandidates": 1, "writeCandidates": 1, "qrCandidates": 1}
+
+    def test_v2_complete_accounting(self):
+        self.v2()
+        self.check(None)
+
+    def test_v2_forged_true_flags_without_accounting(self):
+        self.witness["version"] = 2
+        self.check("COVERAGE_BLOCK_ACCOUNTING")
+
+    def test_v2_missing_final_block(self):
+        self.v2()
+        self.witness["pages"][0]["accounting"]["missingBlocks"] = ["missing"]
+        self.check("DOM_BLOCK_POPULATION")
+
+    def test_v2_unloaded_font(self):
+        self.v2()
+        self.witness["pages"][0]["fontsLoaded"] = False
+        self.check("DOM_FONT_LOADING")
+
+    def test_v2_missing_clip_candidate(self):
+        self.v2()
+        self.witness["pages"][0]["accounting"]["clipCandidates"] = 2
+        self.check("DOM_POPULATION_ACCOUNTING")
+
+    def test_v2_missing_writing_block(self):
+        self.v2()
+        self.witness["pages"][0]["accounting"]["missingWritingIds"] = ["writing"]
+        self.check("DOM_WRITING_POPULATION")
+
+    def test_v2_missing_qr_block(self):
+        self.v2()
+        self.witness["pages"][0]["accounting"]["missingQrIds"] = ["qr"]
+        self.check("DOM_QR_POPULATION")
+
+    def test_v2_missing_activity_block(self):
+        self.v2()
+        self.witness["pages"][0]["accounting"]["missingActivityIds"] = ["activity"]
+        self.check("DOM_ACTIVITY_POPULATION")
+
+    def test_v2_missing_display_number(self):
+        self.v2()
+        self.witness["pages"][0]["accounting"]["missingNumberIds"] = ["problem"]
+        self.check("DISPLAY_NUMBER")
+
+    def test_v2_missing_original_anchor(self):
+        self.v2()
+        self.witness["pages"][0]["anchorAccounting"] = [{"id": "missing", "found": False, "expectedCount": 1, "actualCount": 0}]
+        self.check("ANCHOR_POPULATION")
+
+    def source_oracle(self):
+        self.v2()
+        self.witness["sourceComparisonRequired"] = True
+        self.witness["sourceGeometrySha256"] = "a" * 64
+        for page in self.witness["pages"]:
+            page["sourceReferenceFound"] = True
+            page["anchorAccounting"] = [{"id": "title", "found": True, "expectedCount": 1, "actualCount": 1}]
+
+    def test_v2_source_oracle_complete(self):
+        self.source_oracle()
+        self.check(None)
+
+    def test_v2_source_oracle_missing_sheet(self):
+        self.source_oracle()
+        self.witness["pages"][1]["sourceReferenceFound"] = False
+        self.check("SOURCE_ORACLE_PAGE_REQUIRED")
+
+    def test_v2_source_oracle_empty_anchor_population(self):
+        self.source_oracle()
+        self.witness["pages"][1]["anchorAccounting"] = []
+        self.check("SOURCE_ORACLE_PAGE_REQUIRED")
+
+    def test_v2_source_oracle_missing_hash(self):
+        self.source_oracle()
+        del self.witness["sourceGeometrySha256"]
+        self.check("SOURCE_ORACLE_HASH_REQUIRED")
+
+    def test_pdf_hash_mismatch(self):
+        self.witness["pdfSha256"] = "0" * 64
+        self.check("WITNESS_PDF_HASH")
+
     def test_broken_thickness(self):
         self.witness = fixture(self.pdf, thickness=0.8)
         self.check("WRITE_THICKNESS")
@@ -85,6 +175,78 @@ class Guards(unittest.TestCase):
     def test_broken_pitch(self):
         self.witness = fixture(self.pdf, pitch=9)
         self.check("WRITE_PITCH")
+
+    def native_writing(self, reference_required=True):
+        self.witness = fixture(self.pdf, pitch=8)
+        for page in self.witness["pages"]:
+            write = page["writeBoxes"][0]
+            lines = [{"boxMm": [20, y - 6, 120, y + .125], "thicknessMm": .25}
+                     for y in [57, 65, 73]]
+            write.update({"writingSpace": "native-source", "nativeLines": lines,
+                          "nativeExpectedLineCount": 3, "nativeReferenceRequired": reference_required,
+                          "nativeReferencePdfSha256": "6c24ba6e65e7dd4dec18dd24fafe0fb483e0bde0f7bbd5144f6d2411d0c773d0",
+                          "nativeReferenceDomSha256": "a" * 64,
+                          "nativeReference": {"boxMm": list(write["boxMm"]), "lines": copy.deepcopy(lines),
+                            "referencePdfVectors": [{"x0": 20, "x1": 120, "y": y, "thicknessMm": .25}
+                                                    for y in [57, 65, 73]]}})
+        return self.witness["pages"][0]["writeBoxes"][0]
+
+    def test_native_original_pitch_population_and_pdf_vectors(self):
+        self.native_writing()
+        self.check(None)
+
+    def test_bank_pitch_still_seven(self):
+        self.witness = fixture(self.pdf, pitch=8)
+        self.check("WRITE_PITCH")
+
+    def test_native_missing_dom_rule(self):
+        self.native_writing()["nativeLines"].pop()
+        self.check("NATIVE_WRITE_VECTOR_POPULATION")
+
+    def test_native_extra_expected_rule(self):
+        self.native_writing()["nativeExpectedLineCount"] = 4
+        self.check("NATIVE_WRITE_VECTOR_POPULATION")
+
+    def test_native_dom_pdf_rule_shift(self):
+        self.native_writing()["nativeLines"][0]["boxMm"][3] += .6
+        self.check("NATIVE_WRITE_DOM_PDF_COORDINATE")
+
+    def test_native_dom_pdf_rule_thickness(self):
+        self.native_writing()["nativeLines"][0]["thicknessMm"] = .3
+        self.check("NATIVE_WRITE_DOM_PDF_THICKNESS")
+
+    def test_native_original_container_shift(self):
+        self.native_writing()["nativeReference"]["boxMm"][1] += .6
+        self.check("NATIVE_WRITE_BOUNDS")
+
+    def test_native_original_pdf_rule_shift(self):
+        self.native_writing()["nativeReference"]["referencePdfVectors"][0]["y"] += .6
+        self.check("NATIVE_WRITE_PDF_COORDINATE")
+
+    def test_native_original_pdf_rule_thickness(self):
+        self.native_writing()["nativeReference"]["referencePdfVectors"][0]["thicknessMm"] = .3
+        self.check("NATIVE_WRITE_PDF_THICKNESS")
+
+    def test_native_wrong_original_pdf_hash(self):
+        self.native_writing()["nativeReferencePdfSha256"] = "0" * 64
+        self.check("NATIVE_WRITE_REFERENCE_REQUIRED")
+
+    def test_native_malformed_original_line_population(self):
+        self.native_writing()["nativeReference"]["lines"] = None
+        self.check("NATIVE_WRITE_REFERENCE_REQUIRED")
+
+    def test_native_malformed_original_vector(self):
+        self.native_writing()["nativeReference"]["referencePdfVectors"][0] = {"y": 57}
+        self.check("NATIVE_WRITE_REFERENCE_REQUIRED")
+
+    def test_native_invalid_actual_dom_rule(self):
+        self.native_writing()["nativeLines"][0] = None
+        self.check("NATIVE_WRITE_DOM_INVALID")
+
+    def test_native_answer_checks_actual_rules_without_original_answer_position_claim(self):
+        self.native_writing(reference_required=False)
+        self.witness["variant"] = "answers"
+        self.check(None)
 
     def test_broken_line_length(self):
         self.witness = fixture(self.pdf, length=90)
@@ -202,12 +364,51 @@ class Guards(unittest.TestCase):
         self.check("PDF_FIGURE_OUTSIDE_PAGE")
 
 
+def check_frozen_rows(folder, derived_folder, variant="student"):
+    """Three controls on real authored slots, preserving the frozen PDF/witness."""
+    pdf = folder / f"{variant}.pdf"
+    witness_file = derived_folder / f"{variant}-witness.json"
+    witness = json.loads(witness_file.read_text(encoding="utf-8"))
+    baseline = verify(pdf, witness)
+    assert baseline["status"] == "passed", baseline["issues"]
+    selected_page = next(p for p in witness["pages"]
+                         if any(r.get("activity") == "explainActivity" for r in p["rows"]))
+    selected = next(r for r in selected_page["rows"] if r.get("activity") == "explainActivity")
+    controls = []
+    for name, code in (("missing authored explanation slot", "ROW_KEYS"),
+                       ("duplicate same authored explanation slot", "ROW_DUPLICATE"),
+                       ("wrong authored owner with unchanged row key", "ROW_KEYS")):
+        changed = copy.deepcopy(witness)
+        page = next(p for p in changed["pages"] if p["pdfPageIndex"] == selected_page["pdfPageIndex"])
+        row = next(r for r in page["rows"] if r["rowKey"] == selected["rowKey"])
+        if name.startswith("missing"):
+            page["rows"].remove(row)
+        elif name.startswith("duplicate"):
+            page["rows"].append(copy.deepcopy(row))
+        else:
+            row["blockId"] = "wrong-authored-owner"
+        result = verify(pdf, changed)
+        assert any(i["code"] == code for i in result["issues"]), name
+        controls.append({"control": name, "expectedFailure": code, "rejected": True})
+    return {"key": folder.name, "variant": variant, "pdfSha256": witness["pdfSha256"],
+            "witnessSha256": hashlib.sha256(witness_file.read_bytes()).hexdigest(),
+            "baseline": baseline, "realEvidenceControls": controls}
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--frozen-directory", type=Path)
+    parser.add_argument("--derived-directory", type=Path)
     args = parser.parse_args()
     result = unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(Guards))
+    real = []
+    if args.frozen_directory:
+        assert args.derived_directory, "Fresh derived witness directory required"
+        real = [check_frozen_rows(args.frozen_directory / key, args.derived_directory / key)
+                for key in ("초3-1", "중2-1")]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps({"passed": result.wasSuccessful(), "tests": result.testsRun,
-                                      "syntheticOnly": True, "mutations": Guards.evidence}, indent=2), encoding="utf-8")
+                                      "syntheticOnly": not real, "mutations": Guards.evidence,
+                                      "realEvidence": real}, indent=2), encoding="utf-8")
     raise SystemExit(0 if result.wasSuccessful() else 1)

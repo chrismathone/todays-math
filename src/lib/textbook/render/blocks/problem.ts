@@ -7,11 +7,19 @@ import type { EditorialBlock } from "../editorial";
 import { escapeHtml as esc, renderTextbookMarkdown as md } from "../markdown";
 import type { RenderBlock } from "../model";
 import { imageHtml, qrHtml, type RenderResources } from "./shared";
+import { ANSWER_CASE_GRID_STYLE } from "../answerLayout";
+import { dialogueMarkdownHtml, v15DisplayMarkdown } from "./dialogue";
+import { fractionChoiceRows } from "./fractionChoiceRows";
+import { renderSourceFragments } from "./semantic";
 
 export function renderProblemHtml(
   block: Extract<EditorialBlock, { kind: "problem" }>,
   resources: RenderResources,
 ): string {
+  const source = block.semantic?.source;
+  const prose = source
+    ? (text: string) => dialogueMarkdownHtml(v15DisplayMarkdown(text))
+    : md;
   const { choices } = parseProblemContent(block.content);
   // Classify with the shared parser, but render the original Markdown.
   // Its normalized output has no source offsets, so place the one notice
@@ -23,25 +31,89 @@ export function renderProblemHtml(
   )
     ? `<p class="tb-choice-figure-notice">${esc(UNLINKED_FIGURE_CHOICES_NOTICE)}</p>`
     : "";
+  // Only a new semantic bank problem marks its choice rows; saved legacy and original-source
+  // problems keep their bytes.
+  const prompt =
+    block.semantic && !source
+      ? fractionChoiceRows(prose(block.content), choices.length)
+      : prose(block.content);
   const figures = block.figures
     .map(
       (f) =>
         `<figure class="tb-problem-figure" data-choice-index="${f.choiceIndex ?? "unknown"}">${f.choiceIndex && f.choiceIndex > 0 ? `<span class="tb-choice-label">${f.choiceIndex}번 보기</span>` : ""}${imageHtml(resources, f.assetId, f.altText ?? "문제 그림", f.sourceWidthMm ?? undefined)}</figure>`,
     )
     .join("");
+  // Answer variant: an ordinary one-column problem keeps its question in a student column and
+  // sets the answer in the column beside it (see answerLayout).
+  const beside =
+    block.answer !== undefined &&
+    (block as RenderBlock & { answerPlacement?: string }).answerPlacement ===
+      "beside";
   const answer =
     block.answer !== undefined
-      ? `<section class="tb-answer"><h4>정답${block.sourcePageLabel ? ` · 문제 ${esc(block.sourcePageLabel)}쪽` : ""}</h4>${md(block.answer)}${block.solution !== null && block.solution !== undefined ? `<div>${md(block.solution)}</div>` : ""}</section>`
+      ? `<section class="tb-answer"${beside ? ' style="margin-top:0"' : ""}><h4>정답${block.sourcePageLabel ? ` · 문제 ${esc(block.sourcePageLabel)}쪽` : ""}</h4>${prose(block.answer)}${block.solution !== null && block.solution !== undefined ? `<div>${prose(block.solution)}</div>` : ""}</section>`
       : block.publicWorkedExample
-        ? `<section class="tb-worked"><h4>함께 풀어 보기 · 풀이</h4>${block.publicWorkedExample.solution ? `<div class="tb-worked-solution">${md(block.publicWorkedExample.solution)}</div>` : ""}<div class="tb-worked-answer"><b>답</b>${md(block.publicWorkedExample.answer)}</div></section>`
+        ? `<section class="tb-worked"><h4>${source ? "풀이" : "함께 풀어 보기 · 풀이"}</h4>${block.publicWorkedExample.solution ? `<div class="tb-worked-solution">${prose(block.publicWorkedExample.solution)}</div>` : ""}<div class="tb-worked-answer"><b>답</b>${prose(block.publicWorkedExample.answer)}</div></section>`
         : "";
   const lines =
     block.answer === undefined && !block.publicWorkedExample
-      ? block.layout.preferredWorkLines
+      ? source
+        ? (block.sourceWorkLines ?? block.layout.preferredWorkLines)
+        : block.layout.preferredWorkLines
       : 0;
-  const worked =
-    block.publicWorkedExample ||
-    (block as RenderBlock & { learningStage?: string }).learningStage ===
-      "worked-example";
-  return `<section class="tb-problem${worked ? " tb-problem-worked" : ""}${block.layout.columnSpan === 2 ? " tb-problem-wide" : ""}"${worked ? ' aria-label="대표예제"' : ""}><header class="tb-problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${block.questionType ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${md(block.content)}</div>${figures}</div>${answer}</div><div class="tb-work-area" style="min-height:${Math.max(lines * 7, block.qr ? 27 : 0)}mm">${lines ? `<div class="tb-work-lines" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}${block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : ""}</div></section>`;
+  // In a linked group the writer names the solved example; every other member is an unsolved
+  // confirmation, whatever stage its parent activity gave it.
+  const group =
+    block.semantic?.node?.kind === "exampleGroup"
+      ? block.semantic.node
+      : undefined;
+  const role = !group
+    ? undefined
+    : block.itemId === group.exampleItemId
+      ? "example"
+      : group.confirmItemIds.includes(block.itemId)
+        ? "confirm"
+        : undefined;
+  const worked = role
+    ? role === "example"
+    : Boolean(
+        block.publicWorkedExample ||
+        (block as RenderBlock & { learningStage?: string }).learningStage ===
+          "worked-example",
+      );
+  const qr = block.qr ? qrHtml(resources, block.qr.id, block.qr.url) : "";
+  // The QR sits beside the prompt: the ruled space below keeps the full column width.
+  const html = `<section class="tb-problem${source ? " tb-source-problem" : ""}${worked ? " tb-problem-worked" : ""}${role === "confirm" ? " tb-problem-confirm" : ""}${block.layout.columnSpan === 2 && !beside ? " tb-problem-wide" : ""}${beside ? " tb-problem-answer-beside" : ""}${qr ? " tb-problem-has-qr" : ""}"${source ? ` data-source-kind="${esc(source.kind)}"` : ""}${worked ? ' aria-label="대표예제"' : ""}${block.semantic ? ` data-activity="${block.semantic.activity}"` : ""}${group && role ? ` data-example-group="${esc(group.groupId)}" data-example-role="${role}"${role === "confirm" ? ` data-confirm-index="${block.exampleConfirmIndex ?? group.confirmItemIds.indexOf(block.itemId)}"` : ""}` : ""}${beside ? ' data-answer-placement="beside"' : ""}>${beside ? `<div class="tb-answer-case" style="${ANSWER_CASE_GRID_STYLE}"><div class="tb-answer-case-question${qr ? " tb-problem-has-qr" : ""}">` : ""}<header class="tb-problem-head" data-anchor="problem-head"><strong>${esc(block.displayNumber)}</strong>${worked ? '<span class="tb-example-label">대표예제</span>' : ""}${role === "confirm" ? '<span class="tb-confirm-label">확인문제</span>' : ""}${block.questionType && !source ? `<span>${esc(block.questionType)}</span>` : ""}</header><div class="tb-problem-main"><div class="tb-problem-body"><div class="tb-problem-question">${figureNotice}<div class="tb-prose">${prompt}</div>${figures}</div>${beside ? "" : answer}</div>${qr}</div>${beside ? `</div>${answer}</div>` : ""}<div class="tb-work-area" style="min-height:${lines * 7}mm"${!lines ? " data-empty-work" : ""}>${lines ? `<div class="tb-work-lines" data-writing-space="work" aria-label="풀이 공간" style="min-height:${lines * 7}mm">${'<div class="tb-work-line"></div>'.repeat(lines)}</div>` : ""}</div></section>`;
+  if (!source) return html;
+  const allocatedHtml = html
+    .replace(/^(<section\s[^>]*)(>)/, (_, opening: string, closing: string) =>
+      block.sourceQuestionMinHeightMm === undefined
+        ? opening + closing
+        : `${opening} style="min-height:${block.sourceQuestionMinHeightMm}mm"${closing}`,
+    )
+    .replace(
+      '<div class="tb-work-area" style="',
+      `<div class="tb-work-area" style="${block.sourceWorkMarginTopMm === undefined ? "" : `margin-top:${block.sourceWorkMarginTopMm}mm;`}`,
+    );
+  const header = block.semantic?.sourceQuestionHeader;
+  const headStyle =
+    block.sourceQuestionHeadHeightMm === undefined
+      ? ""
+      : ` style="height:${block.sourceQuestionHeadHeightMm}mm"`;
+  let sourceHtml = allocatedHtml.replace(
+    /<header class="tb-problem-head" data-anchor="problem-head">([\s\S]*?)<\/header>/,
+    (_, contents: string) =>
+      `<header class="tb-problem-head" data-anchor="problem-head"${headStyle}>${header ? renderSourceFragments(header, resources) : contents}</header>`,
+  );
+  if (block.sourceQuestionPromptMinHeightMm !== undefined)
+    sourceHtml = sourceHtml.replace(
+      '<div class="tb-prose">',
+      `<div class="tb-prose" style="min-height:${block.sourceQuestionPromptMinHeightMm}mm">`,
+    );
+  if (block.sourceQuestionMainMinHeightMm !== undefined)
+    sourceHtml = sourceHtml.replace(
+      '<div class="tb-problem-main">',
+      `<div class="tb-problem-main" style="min-height:${block.sourceQuestionMainMinHeightMm}mm">`,
+    );
+  return sourceHtml;
 }

@@ -23,6 +23,7 @@ export interface BlockMeasurement {
   blockId: string;
   heightMm: number;
   widthMm: number;
+  introTextFits?: boolean;
 }
 export interface BlockPlacement {
   blockId: string;
@@ -32,6 +33,7 @@ export interface BlockPlacement {
   yMm: number;
   widthMm: number;
   heightMm: number;
+  continuation?: boolean;
 }
 export interface TextbookPage {
   physicalPageIndex: number;
@@ -58,13 +60,107 @@ export class TextbookLayoutError extends Error {
 }
 export const blockColumnSpan = (block: RenderBlock): 1 | 2 =>
   block.kind === "problem" ? block.layout.columnSpan : 2;
+/** The native calculation grid alone uses a nine-millimetre gutter. */
+export const blockColumnGapMm = (block: RenderBlock): number =>
+  block.semantic?.source?.kind === "drill" ? 9 : A4.columnGapMm;
+export function textbookBodyTopMm(
+  section: RenderSection,
+  block?: RenderBlock,
+): number {
+  if (!section.blocks.some((candidate) => candidate.semantic))
+    return A4.bodyTopMm;
+  if (
+    section.templateKey.startsWith("reference-unitSpread") ||
+    section.templateKey === "auto-unit-intro"
+  )
+    return 16;
+  const sourceKind = (block ?? section.blocks[0])?.semantic?.source?.kind;
+  if (sourceKind === "drill") return 20;
+  if (sourceKind === "scriptcheck" || sourceKind === "basic") return 21;
+  return (block?.editorialStage ?? section.editorialStage) === "opening" ||
+    section.templateKey === "reference-paired" ||
+    section.templateKey === "reference-types"
+    ? 21
+    : 23;
+}
 export function blockWidthMm(
   config: TextbookConfig,
   block: RenderBlock,
 ): number {
   const width =
     A4.widthMm - config.print.innerMarginMm - config.print.outerMarginMm;
-  return blockColumnSpan(block) === 1 ? (width - A4.columnGapMm) / 2 : width;
+  return blockColumnSpan(block) === 1
+    ? (width - blockColumnGapMm(block)) / 2
+    : width;
+}
+
+/** Reserve measured row space before breaking a new automatic exercise run into pages. */
+function reserveAutomaticExerciseRows(
+  section: RenderSection,
+  measurements: Map<string, BlockMeasurement>,
+  bodyBottom: number,
+): void {
+  if (!section.templateKey.startsWith("auto-lesson")) return;
+  let run: Extract<RenderBlock, { kind: "problem" }>[] = [];
+  let headingHeight = 0;
+  const finish = () => {
+    if (run.length >= 4) {
+      const heights: number[] = [];
+      for (let index = 0; index < run.length; index += 2) {
+        const pair = run
+          .slice(index, index + 2)
+          .map((block) => measurements.get(block.id)?.heightMm);
+        if (
+          pair.some(
+            (height) =>
+              height === undefined || !Number.isFinite(height) || height <= 0,
+          )
+        ) {
+          run = [];
+          return;
+        }
+        heights.push(Math.max(...(pair as number[])));
+      }
+      const available =
+        bodyBottom -
+        textbookBodyTopMm(section, run[0]) -
+        headingHeight -
+        A4.gapMm;
+      const naturalHeight =
+        heights.reduce((sum, height) => sum + height, 0) +
+        (heights.length - 1) * A4.gapMm;
+      if (naturalHeight > available) {
+        // Pagination must reserve the space that spread alignment will use. Uniform
+        // measured rows keep arbitrary long/short questions in source order and fit
+        // matching rows without moving them after the page breaks are already fixed.
+        const heightMm = Math.max(...heights);
+        for (const block of run) {
+          const measured = measurements.get(block.id)!;
+          measurements.set(block.id, { ...measured, heightMm });
+        }
+      }
+    }
+    run = [];
+  };
+  for (const block of section.blocks) {
+    if (
+      block.kind === "problem" &&
+      block.semantic &&
+      !block.semantic.source &&
+      block.semantic.node?.kind !== "exampleGroup" &&
+      block.layout.columnSpan === 1 &&
+      block.answer === undefined &&
+      !block.publicWorkedExample &&
+      !block.startNewPage
+    ) {
+      run.push(block);
+    } else {
+      finish();
+      if (block.kind === "heading")
+        headingHeight = measurements.get(block.id)?.heightMm ?? 0;
+    }
+  }
+  finish();
 }
 
 /** A continued section can share its predecessor's page only within the same unit.
@@ -75,7 +171,9 @@ export function continuesTextbookSection(
   section: Pick<RenderSection, "unitKey" | "templateKey" | "startPolicy">,
 ): boolean {
   const isolated = (template: string) =>
-    template === "rest" || template === "auto-lesson";
+    template === "rest" ||
+    template.startsWith("auto-") ||
+    template.startsWith("reference-");
   return Boolean(
     previous &&
     section.startPolicy === "continue" &&
@@ -159,14 +257,114 @@ export function paginateTextbookSections(
         "원고가 없는 구획입니다. 원고를 입력하거나 구획을 명시적으로 삭제하세요.",
         section,
       );
+    const introParts =
+      section.templateKey === "auto-unit-intro"
+        ? section.blocks.filter((block) => block.unitIntroPart)
+        : [];
+    if (introParts.length) {
+      if (introParts.length !== 3 || section.blocks.length !== 3)
+        fail(
+          "AUTO_INTRO_SOURCE",
+          "단원 도입의 공통 원고와 세 가지 측정 모형을 확인하세요.",
+          section,
+        );
+      const part = (name: RenderBlock["unitIntroPart"]) =>
+        introParts.find((block) => block.unitIntroPart === name)!;
+      const fits = (block: RenderBlock) => {
+        const size = measure.get(block.id);
+        return (
+          size &&
+          Number.isFinite(size.heightMm) &&
+          size.heightMm > 0 &&
+          size.heightMm <= 254 &&
+          size.introTextFits !== false &&
+          Math.abs(size.widthMm - blockWidthMm(config, block)) <= A4.toleranceMm
+        );
+      };
+      const spread =
+        next % 2 === 0 && fits(part("left")) && fits(part("right"));
+      if (!spread && !fits(part("single")))
+        fail(
+          "AUTO_INTRO_OVERFLOW",
+          "선택한 단원 도입의 전체 내용이 한 쪽에 들어가지 않습니다. 선택 범위를 줄이거나 도입 원고를 편집하세요.",
+          section,
+          part("single"),
+        );
+      const chosen = spread ? [part("left"), part("right")] : [part("single")];
+      if (pages.length + chosen.length > (options.maxPages ?? 5000))
+        fail(
+          "PAGE_LIMIT",
+          "쪽 수 상한을 넘었습니다. 구획을 나눠 주세요.",
+          section,
+        );
+      if (!spread)
+        issues.push({
+          code: "AUTO_INTRO_SINGLE_PAGE",
+          severity: "warning",
+          path: ["units", section.unitKey, "sections", section.sectionKey],
+          physicalPageIndex: next,
+          message:
+            next % 2 !== 0
+              ? "홀수 시작 쪽이므로 도입의 질문·설명·목표·학습 순서·출발점을 한 쪽에 함께 배치했습니다."
+              : "두 쪽 도입의 측정 공간이 부족하여 같은 전체 내용을 한 쪽에 함께 배치했습니다.",
+        });
+      for (const block of chosen) {
+        const size = measure.get(block.id)!;
+        pages.push({
+          physicalPageIndex: next,
+          printedPageLabel: String(next),
+          unitKey: section.unitKey,
+          sectionKey: section.sectionKey,
+          unitTitle: section.unitTitle,
+          sectionTitle: section.title,
+          kind: "content",
+          editorialStage: "unit",
+          blocks: [
+            {
+              blockId: block.id,
+              column: 1,
+              xMm:
+                next % 2 === 0
+                  ? config.print.outerMarginMm
+                  : config.print.innerMarginMm,
+              yMm: 16,
+              widthMm: blockWidthMm(config, block),
+              heightMm: spread ? 254 : size.heightMm,
+            },
+          ],
+        });
+        next++;
+      }
+      previousSection = section.sectionKey;
+      previousTemplate = section.templateKey;
+      continue;
+    }
     if (section.startPolicy === "even-left" && next % 2 !== 0)
       fail(
         "SECTION_PARITY",
         `주요 구획 ${section.sectionKey}이 홀수 ${next}쪽에서 시작합니다. 이전 구획 ${previousSection ?? "표지·본문 시작 면"}의 실제 원고 배치 또는 설정을 수정하세요. 빈 쪽은 자동 삽입하지 않습니다.`,
         section,
       );
+    const recovered = section.blocks.some((block) => block.semantic);
+    const sourceFooterIds = new Set(
+      section.blocks
+        .filter(
+          (block) =>
+            block.kind !== "heading" &&
+            block.semantic?.source &&
+            block.semantic.sourceFooter?.length,
+        )
+        .map((block) => block.id),
+    );
+    const bodyBottom =
+      recovered &&
+      section.blocks.some((block) => block.editorialStage === "opening")
+        ? 266
+        : A4.bodyBottomMm;
+    reserveAutomaticExerciseRows(section, measure, bodyBottom);
     let page: TextbookPage | undefined,
-      cursor = A4.bodyTopMm;
+      cursor = textbookBodyTopMm(section, section.blocks[0]);
+    let currentHeading: RenderBlock | undefined;
     const previousPage = pages[pages.length - 1];
     if (
       continuesTextbookSection(
@@ -185,13 +383,16 @@ export function paginateTextbookSections(
       cursor =
         Math.max(...page.blocks.map((b) => b.yMm + b.heightMm)) + A4.gapMm;
     }
-    const newPage = () => {
+    const newPage = (firstBlock = row[0]?.block ?? currentHeading) => {
       if (pages.length >= (options.maxPages ?? 5000))
         fail(
           "PAGE_LIMIT",
           "쪽 수 상한을 넘었습니다. 구획을 나눠 주세요.",
           section,
         );
+      const continuing = Boolean(
+        page?.blocks.length || pages.length > sectionPageStart,
+      );
       page = {
         physicalPageIndex: next,
         printedPageLabel: String(next),
@@ -200,25 +401,125 @@ export function paginateTextbookSections(
         unitTitle: section.unitTitle,
         sectionTitle: section.title,
         kind: "content",
-        editorialStage: row[0]?.block.editorialStage ?? section.editorialStage,
+        editorialStage: firstBlock?.editorialStage ?? section.editorialStage,
         blocks: [],
       };
       next++;
       pages.push(page);
-      cursor = A4.bodyTopMm;
+      cursor = textbookBodyTopMm(section, firstBlock);
+      if (
+        recovered &&
+        continuing &&
+        currentHeading &&
+        row[0]?.block.kind !== "heading"
+      ) {
+        const headingSize = measure.get(currentHeading.id)!;
+        const x =
+          page.physicalPageIndex % 2 === 0
+            ? config.print.outerMarginMm
+            : config.print.innerMarginMm;
+        page.blocks.push({
+          blockId: currentHeading.id,
+          continuation: true,
+          column: 1,
+          xMm: x,
+          yMm: cursor,
+          widthMm: blockWidthMm(config, currentHeading),
+          heightMm: headingSize.heightMm,
+        });
+        cursor += headingSize.heightMm + A4.gapMm;
+      }
     };
     let row: { block: RenderBlock; measurement: BlockMeasurement }[] = [];
+    // The block last placed, when it is kept with the row after it, and the gap under it.
+    let kept: { placement: BlockPlacement; gapMm: number } | undefined;
     const flush = () => {
       if (!row.length) return;
       const height = Math.max(...row.map((r) => r.measurement.heightMm));
-      if (height > A4.bodyBottomMm - A4.bodyTopMm)
+      if (height > bodyBottom - textbookBodyTopMm(section, row[0]?.block))
         fail(
           "BLOCK_OVERFLOW",
           `블록 높이 ${height.toFixed(1)}mm가 본문 영역보다 큽니다. 이 블록의 원고·그림·풀이선 수를 나누거나 줄여 주세요.`,
           section,
           row[0].block,
         );
-      if (!page || cursor + height > A4.bodyBottomMm) newPage();
+      const held = kept;
+      const sourceAnswerRow = row.every(
+        ({ block }) =>
+          block.kind === "problem" &&
+          block.answer !== undefined &&
+          block.semantic?.source &&
+          !block.publicWorkedExample,
+      );
+      // The native page-end guide begins at 270mm. Reserve it only on source answer
+      // pages that actually print it; student/native writing allocation is unchanged.
+      const rowBottom = () =>
+        sourceAnswerRow &&
+        (row.some(({ block }) => sourceFooterIds.has(block.id)) ||
+          page?.blocks.some((placement) =>
+            sourceFooterIds.has(placement.blockId),
+          ))
+          ? Math.min(bodyBottom, 270)
+          : bodyBottom;
+      if (!page || cursor + height > rowBottom()) {
+        const previous = page;
+        newPage();
+        if (
+          held &&
+          previous?.blocks.at(-1) === held.placement &&
+          cursor + height <= rowBottom() &&
+          cursor + held.placement.heightMm + held.gapMm + height > rowBottom()
+        )
+          fail(
+            "BLOCK_OVERFLOW",
+            "계속되는 쪽의 확인 제목과 문제를 함께 넣을 공간이 부족합니다.",
+            section,
+            row[0].block,
+          );
+        // The kept block follows this row to the new page when it still ends the page it is on,
+        // that page keeps other content, and both fit here.
+        if (
+          held &&
+          previous &&
+          previous.blocks.at(-1) === held.placement &&
+          previous.blocks.some(
+            (placement) =>
+              placement !== held.placement &&
+              section.blocks.find((block) => block.id === placement.blockId)
+                ?.kind !== "heading",
+          ) &&
+          cursor + held.placement.heightMm + held.gapMm + height <= rowBottom()
+        ) {
+          previous.blocks.pop();
+          held.placement.xMm =
+            page!.physicalPageIndex % 2 === 0
+              ? config.print.outerMarginMm
+              : config.print.innerMarginMm;
+          held.placement.yMm = cursor;
+          page!.blocks.push(held.placement);
+          cursor += held.placement.heightMm + held.gapMm;
+        }
+      }
+      if (
+        row[0].block.dialogueTopMm &&
+        !page!.blocks.some((placement) => {
+          const placed = section.blocks.find(
+            (block) => block.id === placement.blockId,
+          );
+          return (
+            placed?.kind === "dialogue" ||
+            placed?.semantic?.node?.kind === "board"
+          );
+        })
+      )
+        cursor = Math.max(cursor, row[0].block.dialogueTopMm);
+      if (cursor + height > rowBottom())
+        fail(
+          "BLOCK_OVERFLOW",
+          "계속되는 쪽의 제목과 원고를 함께 넣을 공간이 부족합니다.",
+          section,
+          row[0].block,
+        );
       const left =
         page!.physicalPageIndex % 2 === 0
           ? config.print.outerMarginMm
@@ -229,7 +530,7 @@ export function paginateTextbookSections(
         const placement: BlockPlacement = {
           blockId: block.id,
           column,
-          xMm: left + i * (width + A4.columnGapMm),
+          xMm: left + i * (width + blockColumnGapMm(block)),
           yMm: cursor,
           widthMm: width,
           heightMm: height,
@@ -253,22 +554,91 @@ export function paginateTextbookSections(
       });
       // Dialogue turns and recall rows use the reference's compact vertical rhythm.
       // Exercise and prose rows keep their measured four-millimetre spacing.
-      const gap = row.every(({ block }) => block.kind === "recall")
-        ? 1
-        : row.every(({ block }) => block.kind === "dialogue")
-          ? 1.5
-          : A4.gapMm;
+      const sourceKind = row[0].block.semantic?.source?.kind;
+      const followingSourceBlock =
+        section.blocks[section.blocks.indexOf(row[row.length - 1].block) + 1];
+      const afterScriptCheckGrid =
+        sourceKind === "scriptcheck" &&
+        row.every(({ block }) => block.kind === "problem") &&
+        followingSourceBlock?.kind === "text" &&
+        followingSourceBlock.semantic?.source?.kind === "scriptcheck";
+      const afterSourceGrid =
+        row.every(({ block }) => block.kind === "problem") &&
+        followingSourceBlock?.kind === "text" &&
+        followingSourceBlock.semantic?.source?.kind === sourceKind;
+      const sourceGap = afterScriptCheckGrid
+        ? 2
+        : afterSourceGrid && sourceKind === "exercise"
+          ? 4
+          : afterSourceGrid && sourceKind === "practice"
+            ? 5
+            : sourceKind && row[0].block.kind !== "heading"
+              ? row.every(({ block }) => block.kind === "problem")
+                ? (
+                    {
+                      scriptcheck: 1,
+                      basic: 2,
+                      drill: 0,
+                      exercise: 5,
+                      practice: 4,
+                      clinic: 4,
+                      oral: 0,
+                    } as Record<string, number>
+                  )[sourceKind]
+                : (
+                    {
+                      scriptcheck: 2,
+                      basic: 3,
+                      concept1: 2.6,
+                      concept2: 2.6,
+                      concept3: 2.6,
+                      drill: 3,
+                      exercise: 4,
+                      practice: 5,
+                      clinic: 5,
+                      oral: 4,
+                    } as Record<string, number>
+                  )[sourceKind]
+              : undefined;
+      const gap =
+        sourceGap ??
+        (row.every(({ block }) => block.kind === "recall")
+          ? row.every(
+              ({ block }) => block.semantic?.source?.kind === "fullmaster",
+            )
+            ? 4.7
+            : 1
+          : row.every(
+                ({ block }) =>
+                  block.kind === "dialogue" ||
+                  block.semantic?.node?.kind === "board",
+              )
+            ? (row[0].block.dialogueGapMm ?? 0.85)
+            : row[0].block.kind === "heading" && recovered
+              ? sourceKind === "drill"
+                ? 2
+                : row[0].block.editorialStage === "opening"
+                  ? 3.5
+                  : 4
+              : A4.gapMm);
       cursor += height + gap;
+      kept =
+        row.length === 1 && row[0].block.keepWithNext
+          ? { placement: page!.blocks[page!.blocks.length - 1], gapMm: gap }
+          : undefined;
       row = [];
     };
+    const grouped = new Set<string>();
     for (const [blockIndex, block] of section.blocks.entries()) {
+      if (grouped.has(block.id)) continue;
       if (block.startNewPage) {
         flush();
         if (page?.blocks.length) {
           page = undefined;
-          cursor = A4.bodyTopMm;
+          cursor = textbookBodyTopMm(section, block);
         }
       }
+      if (block.kind === "heading") currentHeading = block;
       const m = measure.get(block.id);
       if (
         !m ||
@@ -283,6 +653,155 @@ export function paginateTextbookSections(
           section,
           block,
         );
+      const group =
+        block.kind === "text" && block.semantic?.node?.kind === "exampleGroup"
+          ? block.semantic.node
+          : undefined;
+      if (group) {
+        flush();
+        const itemIds = [group.exampleItemId, ...group.confirmItemIds];
+        const members = section.blocks.slice(
+          blockIndex + 1,
+          blockIndex + 1 + itemIds.length,
+        );
+        if (
+          members.length !== itemIds.length ||
+          members.some(
+            (member, index) =>
+              member.kind !== "problem" ||
+              member.itemId !== itemIds[index] ||
+              member.semantic?.node?.kind !== "exampleGroup" ||
+              member.semantic.node.groupId !== group.groupId ||
+              blockColumnSpan(member) !== 1,
+          )
+        )
+          fail(
+            "EXAMPLE_GROUP_MEMBERS",
+            "대표예제와 연결된 확인문제의 순서·열 배치를 확인하세요.",
+            section,
+            block,
+          );
+        const sizes = members.map((member) => {
+          const size = measure.get(member.id);
+          if (
+            !size ||
+            !Number.isFinite(size.heightMm) ||
+            size.heightMm <= 0 ||
+            Math.abs(size.widthMm - blockWidthMm(config, member)) >
+              A4.toleranceMm
+          )
+            fail(
+              "EXAMPLE_GROUP_MEASUREMENT",
+              "예제와 확인문제를 실제 열 폭으로 측정하세요.",
+              section,
+              member,
+            );
+          return size!;
+        });
+        if (Math.abs(m!.widthMm - blockWidthMm(config, block)) > A4.toleranceMm)
+          fail(
+            "MEASUREMENT_WIDTH",
+            "예제 제목의 실제 측정 폭을 확인하세요.",
+            section,
+            block,
+          );
+        // The confirmations stand 3mm below the top of the example beside them. A part of a
+        // continued group that has no example has nothing to stand below.
+        const rightInset = (indexes: readonly number[]) =>
+          indexes[0] === 0 ? 3 : 0;
+        /** The title and the members `indexes` (0 is the example) in their columns. */
+        const partHeight = (indexes: readonly number[]) =>
+          Math.max(
+            102,
+            m!.heightMm +
+              Math.max(
+                indexes[0] === 0 ? sizes[0].heightMm : 0,
+                rightInset(indexes) +
+                  indexes
+                    .filter((index) => index > 0)
+                    .reduce((sum, index) => sum + sizes[index].heightMm, 0),
+              ),
+          );
+        let rest = members.map((_, index) => index);
+        // Students read an example and its confirmations on one page. The answer book is
+        // paginated on its own: there a bank group taller than a page continues under its
+        // repeated title, every problem placed once in the column it always has. A group of
+        // an original page keeps that page's layout in both variants.
+        const continues =
+          !block.semantic?.source &&
+          members.every(
+            (member) =>
+              member.kind === "problem" && member.answer !== undefined,
+          );
+        // A new page has no more room than one that holds only the heading it would repeat.
+        const atPageTop = () =>
+          page!.blocks.every(
+            (placement) => placement.blockId === currentHeading?.id,
+          );
+        if (
+          !page ||
+          (cursor + partHeight(rest) > bodyBottom &&
+            !(continues && atPageTop()))
+        )
+          newPage(block);
+        for (let continued = false; rest.length; continued = true) {
+          if (continued) newPage(block);
+          let part = rest;
+          if (cursor + partHeight(part) > bodyBottom) {
+            // As many members as this page holds, in order; at least one, or nothing fits.
+            part = continues ? rest.slice(0, -1) : [];
+            while (part.length && cursor + partHeight(part) > bodyBottom)
+              part = part.slice(0, -1);
+            if (!part.length)
+              fail(
+                "EXAMPLE_GROUP_OVERFLOW",
+                "예제와 확인문제를 한 지면에 넣을 수 없습니다. 원고·그림·풀이 공간을 조정하세요.",
+                section,
+                block,
+              );
+          }
+          const left =
+            page!.physicalPageIndex % 2 === 0
+              ? config.print.outerMarginMm
+              : config.print.innerMarginMm;
+          page!.blocks.push({
+            blockId: block.id,
+            ...(continued ? { continuation: true } : {}),
+            column: 1,
+            xMm: left,
+            yMm: cursor,
+            widthMm: blockWidthMm(config, block),
+            heightMm: m!.heightMm,
+          });
+          let rightTop = cursor + m!.heightMm + rightInset(part);
+          for (const index of part) {
+            const member = members[index];
+            const problem = member as Extract<RenderBlock, { kind: "problem" }>;
+            const column = index === 0 ? 1 : 2;
+            const width = blockWidthMm(config, member);
+            page!.blocks.push({
+              blockId: member.id,
+              itemId: problem.itemId,
+              column,
+              xMm: left + (column - 1) * (width + A4.columnGapMm),
+              yMm: index === 0 ? cursor + m!.heightMm : rightTop,
+              widthMm: width,
+              heightMm: sizes[index].heightMm,
+            });
+            pageMap.push({
+              itemId: problem.itemId,
+              physicalPageIndex: page!.physicalPageIndex,
+              printedPageLabel: page!.printedPageLabel,
+              column,
+            });
+            if (index > 0) rightTop += sizes[index].heightMm;
+            grouped.add(member.id);
+          }
+          cursor += partHeight(part) + 3;
+          rest = rest.slice(part.length);
+        }
+        continue;
+      }
       if (block.kind === "unit-intro") {
         if (
           blockIndex !== 0 ||
@@ -317,6 +836,7 @@ export function paginateTextbookSections(
         flush();
         if (
           (block.kind === "heading" ||
+            block.dialogueLesson ||
             (block.kind === "text" &&
               /^#{1,6}\s+[^\n]+\s*$/.test(block.markdown))) &&
           page
@@ -325,8 +845,11 @@ export function paginateTextbookSections(
           const nextHeight = following
             ? (measure.get(following.id)?.heightMm ?? 0)
             : 0;
-          if (cursor + m!.heightMm + A4.gapMm + nextHeight > A4.bodyBottomMm)
-            newPage();
+          if (
+            cursor + m!.heightMm + A4.gapMm + nextHeight >
+            (block.dialogueLesson ? bodyBottom : A4.bodyBottomMm)
+          )
+            newPage(block);
         }
         row.push({ block, measurement: m! });
         flush();
@@ -362,7 +885,15 @@ export function paginateTextbookSections(
 }
 
 /** Align corresponding spread rows by adding actual writing space. Overflow remains an explicit editing failure. */
-export function alignTextbookSpreads(pages: TextbookPage[]): void {
+export function alignTextbookSpreads(
+  pages: TextbookPage[],
+  sections?: readonly RenderSection[],
+): void {
+  const originals = new Map(
+    sections?.flatMap((section) =>
+      section.blocks.map((block) => [block.id, block] as const),
+    ),
+  );
   const rows = (page: TextbookPage) => {
     const result: BlockPlacement[][] = [];
     for (const block of page.blocks) {
@@ -378,6 +909,7 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     if (
       left.kind !== "content" ||
       right.kind !== "content" ||
+      left.unitKey !== right.unitKey ||
       left.editorialStage !== right.editorialStage ||
       left.physicalPageIndex % 2 !== 0 ||
       right.physicalPageIndex !== left.physicalPageIndex + 1
@@ -391,7 +923,34 @@ export function alignTextbookSpreads(pages: TextbookPage[]): void {
     // section headings have their own semantic order and must not become exercises.
     const lr = rows(left).filter((row) => row.every((b) => b.itemId)),
       rr = rows(right).filter((row) => row.every((b) => b.itemId));
-    if (!lr.length || !rr.length) continue;
+    if (
+      !lr.length ||
+      lr.length !== rr.length ||
+      [...lr, ...rr].some((row) => row.length !== 2)
+    )
+      continue;
+    const sourceLeft = originals.get(lr[0][0].blockId)?.semantic?.source;
+    const sourceRight = originals.get(rr[0][0].blockId)?.semantic?.source;
+    if (sourceLeft || sourceRight) {
+      // The native template only aligns exercise grids of the same source section.
+      if (
+        sourceLeft?.kind !== "exercise" ||
+        sourceRight?.kind !== "exercise" ||
+        !sourceLeft.sectionName ||
+        sourceLeft.sectionName !== sourceRight.sectionName
+      )
+        continue;
+    } else if (left.sectionKey !== right.sectionKey) continue;
+    if (
+      [...lr, ...rr]
+        .flat()
+        .some(
+          (placement) =>
+            originals.get(placement.blockId)?.semantic?.node?.kind ===
+            "exampleGroup",
+        )
+    )
+      continue;
     // Mixed prose between exercises needs a fresh measured layout, not row shifting.
     if (
       [left, right].some((p) => {
@@ -485,6 +1044,7 @@ export function studentPageMapFromPages(
   )
     fail("STUDENT_PAGE_COUNT", "검증한 학생용 묶음 쪽 참조가 필요합니다.");
   pages.forEach((page, i) => {
+    const pageSeen = new Set<string>();
     if (
       !Array.isArray(page.blocks) ||
       page.physicalPageIndex !== firstPhysicalPageIndex + i
@@ -509,7 +1069,11 @@ export function studentPageMapFromPages(
       fail("STUDENT_PAGE_LABEL", "학생용 본문 쪽 참조를 확인하세요.", page);
     for (const p of page.blocks) {
       const b = blocks.get(p.blockId);
-      if (!b || seen.has(p.blockId))
+      if (
+        !b ||
+        pageSeen.has(p.blockId) ||
+        (seen.has(p.blockId) && b.kind !== "heading")
+      )
         fail(
           "STUDENT_BLOCK_REF",
           "정답지와 학생용 블록의 일치 여부를 확인하세요.",
@@ -517,6 +1081,7 @@ export function studentPageMapFromPages(
           p.blockId,
         );
       seen.add(p.blockId);
+      pageSeen.add(p.blockId);
       if (
         ![p.xMm, p.yMm, p.widthMm, p.heightMm].every(Number.isFinite) ||
         ![1, 2].includes(p.column) ||
@@ -524,7 +1089,13 @@ export function studentPageMapFromPages(
         p.xMm + p.widthMm > A4.widthMm ||
         p.heightMm <= 0 ||
         Math.abs(p.widthMm - blockWidthMm(config, b!)) > A4.toleranceMm ||
-        p.yMm < A4.bodyTopMm ||
+        p.yMm <
+          textbookBodyTopMm(
+            sections.find((section) =>
+              section.blocks.some((block) => block.id === p.blockId),
+            )!,
+            b!,
+          ) ||
         p.yMm + p.heightMm > A4.bodyBottomMm + A4.toleranceMm
       )
         fail(
@@ -557,10 +1128,33 @@ export function studentPageMapFromPages(
         );
     }
   });
-  if (seen.size !== blocks.size)
+  if (
+    [...blocks.values()].some(
+      (block) => !block.unitIntroPart && !seen.has(block.id),
+    )
+  )
     fail(
       "STUDENT_MISSING_BLOCK",
       "학생용 배치에서 누락된 원고 블록이 있습니다.",
     );
+  for (const section of sections) {
+    const alternatives = section.blocks.filter((block) => block.unitIntroPart);
+    if (!alternatives.length) continue;
+    const selected = alternatives
+      .filter((block) => seen.has(block.id))
+      .map((block) => block.unitIntroPart);
+    if (
+      !(selected.length === 1 && selected[0] === "single") &&
+      !(
+        selected.length === 2 &&
+        selected.includes("left") &&
+        selected.includes("right")
+      )
+    )
+      fail(
+        "STUDENT_INTRO_SELECTION",
+        "학생용 단원 도입의 전체 내용 배치를 확인하세요.",
+      );
+  }
   return pageMap;
 }

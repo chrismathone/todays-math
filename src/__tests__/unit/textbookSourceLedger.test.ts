@@ -157,8 +157,8 @@ describe("the 210 newly written lesson examples", () => {
       ["초6::2-3-1", "condition", "fixed"],
       ["중3::원의 접선", "wording", "fixed"],
       ["중3::이차함수와 그래프", "wording", "fixed"],
-      ["초6::1-2-3", "condition", "open"],
-      ["초6::2-3-2", "condition", "open"],
+      ["초6::1-2-3", "condition", "fixed"],
+      ["초6::2-3-2", "condition", "fixed"],
     ]);
     for (const finding of AUTHORED_EXAMPLE_FINDINGS) {
       const [grade, name] = finding.key.split("::");
@@ -201,6 +201,60 @@ describe("the 210 newly written lesson examples", () => {
     expect(AUTHORED_EXAMPLE_FINDINGS.filter((f) => f.kind === "math")).toEqual(
       [],
     );
+    // The two conditions found by the reading: each question now states the premise
+    // its own solution and answer already used, and nothing else in the example changed.
+    const prism = AUTHORED_EXAMPLES["초6"]!["1-2-3"]!;
+    expect(prism.question).toBe(
+      "밑면 삼각형의 변이 $3,4,5\\,\\mathrm{cm}$이고 높이가 $6\\,\\mathrm{cm}$인 삼각기둥 전개도의 옆면 직사각형 폭은 마음대로 정해도 될까?",
+    );
+    expect(prism.steps[1]).toBe(
+      "삼각형 변이 $3,4,5\\,\\mathrm{cm}$이고 높이가 $6\\,\\mathrm{cm}$면 세 직사각형 높이는 모두 $6\\,\\mathrm{cm}$야.",
+    );
+    expect(prism.answer).toBe("폭은 각각 $3,4,5\\,\\mathrm{cm}$로 맞춰요.");
+    const tower = AUTHORED_EXAMPLES["초6"]!["2-3-2"]!;
+    expect(tower.question).toBe(
+      "공중에 뜬 블록 없이 쌓은 세 층짜리 기둥에서 꼭대기 한 블록만 보인다고 한 개라 세도 될까?",
+    );
+    expect(tower.steps[0]).toContain("공중에 뜬 블록 없이 쌓았다고 정했으므로");
+    expect(tower.answer).toBe("이 기둥에는 $3$개가 있어요.");
+  });
+
+  it("leaves no confirmed defect open: only the corrected manuscripts pass", () => {
+    expect(
+      AUTHORED_EXAMPLE_FINDINGS.filter((finding) => finding.status === "open"),
+    ).toEqual([]);
+    expect(rows.flatMap((row) => row.faults)).toEqual([]);
+    expect(
+      ledger.authoredExamples.filter((row) => row.state === "수정 필요"),
+    ).toEqual([]);
+    expect(
+      ledger.sections.filter(
+        (section) =>
+          section.status.newExample === "수정 필요" ||
+          section.status.idsAndSources === "수정 필요",
+      ),
+    ).toEqual([]);
+    // Every corrected lesson example is in the manuscripts as corrected, twice: once as
+    // the opening question and once in the worked example.
+    for (const finding of AUTHORED_EXAMPLE_FINDINGS) {
+      const turns = STATIC_CORRECTIONS.filter(
+        (correction) =>
+          correction.source.kind === "authored-example" &&
+          correction.source.key === finding.key,
+      );
+      expect(turns.length, finding.key).toBe(
+        finding.key === "초5::2-4-6" ? 1 : 2,
+      );
+      const script = scripts.find(
+        (item) => item.sectionKey === turns[0]!.sectionKey,
+      )!;
+      for (const turn of turns) {
+        expect(script.dialogue[turn.turnIndex]!.markdown).toBe(turn.new);
+        expect(script.dialogue.map((item) => item.markdown)).not.toContain(
+          turn.old,
+        );
+      }
+    }
   });
 
   it("records an AI reading, with what it could not settle, for each of the 46 examples it cannot recalculate", () => {
@@ -231,8 +285,6 @@ describe("the 210 newly written lesson examples", () => {
       "초4::2-4-1",
       "초4::2-4-4",
       "초4::2-6-1",
-      "초6::1-2-3",
-      "초6::2-3-2",
       "중3::원의 접선",
     ]);
     expect(AI_READING_REVIEW.reviewer).toMatch(/^AI 정독/);
@@ -451,26 +503,25 @@ describe("the 360-section source ledger", () => {
         newExample: {
           "해당 없음": 150,
           "자동 확인": 164,
-          "AI 검수": 44,
-          "수정 필요": 2,
+          "AI 검수": 46,
         },
         // The wrong sentences are corrected; nobody has read the lessons for flow.
         wordingAndFlow: { 미검수: 360 },
         printedPage: { 미검수: 360 },
       },
       corrections: {
-        total: 41,
+        total: 45,
         byKind: {
           "sentence-answer-copula": 32,
           particle: 1,
-          "missing-condition": 4,
+          "missing-condition": 8,
           "ambiguous-wording": 4,
         },
-        sections: 30,
+        sections: 32,
       },
       aiReadings: {
         examples: 46,
-        examplesWithUnverified: 8,
+        examplesWithUnverified: 6,
         restBands: 18,
         restBandsWithUnverified: 9,
       },
@@ -480,10 +531,10 @@ describe("the 360-section source ledger", () => {
       ledger.authoredExamples
         .filter((row) => row.state === "수정 필요")
         .map((row) => row.key),
-    ).toEqual(["초6::1-2-3", "초6::2-3-2"]);
+    ).toEqual([]);
     expect(
       ledger.authoredExamples.filter((row) => row.state === "AI 검수"),
-    ).toHaveLength(44);
+    ).toHaveLength(46);
     for (const row of ledger.authoredExamples)
       expect(row.reading !== undefined, row.key).toBe(
         row.method === "read-only",
@@ -495,7 +546,7 @@ describe("the 360-section source ledger", () => {
     expect(ledger.restStories.flatMap((story) => story.faults)).toEqual([]);
     expect(
       ledger.sections.reduce((n, section) => n + section.corrections.length, 0),
-    ).toBe(41);
+    ).toBe(45);
     // The G0b section: its three sentence answers are corrected and no open defect remains.
     expect(
       ledger.sections.find(

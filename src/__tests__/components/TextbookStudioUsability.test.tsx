@@ -996,7 +996,7 @@ describe("T07 — 내보낸 파일 링크", () => {
     await waitFor(() =>
       expect(screen.queryByRole("link", { name: /교환 파일/ })).toBeNull(),
     );
-    expect(revoke).toHaveBeenCalledWith("blob:old");
+    await waitFor(() => expect(revoke).toHaveBeenCalledWith("blob:old"));
   });
 
   it("늦게 끝난 내보내기는 화면에 올리지 않고 주소를 해제한다", async () => {

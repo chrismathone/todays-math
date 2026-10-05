@@ -22,8 +22,17 @@ export const editorialImage = (
   alt: string,
 ) =>
   `<img data-textbook-editorial-image src="${attrUrl(resources.editorialAssetUrl?.(name) ?? `/textbook/editorial/${name}`)}" alt="${esc(alt)}">`;
-export const progressHtml = (stage: EditorialStage) => {
-  const active = EDITORIAL_STAGES[stage].tab;
+export const progressHtml = (
+  stage: EditorialStage,
+  steps?: readonly { activity: string; label: string }[],
+  activity?: string,
+  activeTab?: number,
+) => {
+  if (steps)
+    return steps.length === 0
+      ? ""
+      : `<nav class="tb-progress" aria-label="학습 단계">${steps.map((step) => `<span${step.activity === activity || step.activity === stage ? ' class="tb-progress-active" aria-current="step"' : ""}>${esc(step.label)}</span>`).join("")}</nav>`;
+  const active = activeTab ?? EDITORIAL_STAGES[stage].tab;
   return active < 0
     ? ""
     : `<nav class="tb-progress" aria-label="학습 단계">${["개념 이해", "개념 정리", "기본 확인", "유형 연습", "설명·적용", "다시 꺼내기"].map((label, i) => `<span${i === active ? ' class="tb-progress-active" aria-current="step"' : ""}>${label}</span>`).join("")}</nav>`;

@@ -9,6 +9,7 @@ import type { TextbookConceptBody } from "@/contracts/textbookConcept.contract";
 import type {
   TextbookDialoguePresentation,
   TextbookSemantic,
+  TextbookSourceFragment,
 } from "@/contracts/textbookSemantic.contract";
 import {
   recallPieces,
@@ -16,9 +17,12 @@ import {
   splitTextbookMarkdown,
   type RecallPiece,
 } from "./markdown";
+import { answerCaseLayout, type AnswerPlacement } from "./answerLayout";
 import { splitConceptBody } from "./conceptParts";
 import { projectEditorialSection } from "./editorialProjection";
 import { frozenConceptGroups } from "../conceptRows";
+import { memoryRowMarkdown } from "../conceptRows";
+import { recallDisplayRows, type RecallDisplayRow } from "./blocks/recall";
 
 export {
   TEXTBOOK_RENDERER_VERSION,
@@ -45,6 +49,28 @@ type BlockBase = {
   startNewPage?: boolean;
   unitNumber?: number;
   semantic?: TextbookSemantic;
+  progressSteps?: readonly { activity: string; label: string }[];
+  relativePageIndex?: number;
+  dialogueSizePt?: number;
+  dialogueGapMm?: number;
+  dialogueTopMm?: number;
+  dialogueLesson?: { lessonKey: string; lessonTitle: string };
+  dialogueGuide?: string;
+  measurementMinHeightMm?: number;
+  /** Pagination moves this block to the page of the row after it when that row leaves its page. */
+  keepWithNext?: boolean;
+  unitIntroPart?: "left" | "right" | "single";
+  exampleGroupNumber?: number;
+  exampleConfirmIndex?: number;
+  dialogueScriptTotal?: number;
+  memoryContinuationTitle?: string;
+  continuedPage?: boolean;
+  sourceQuestionHeadHeightMm?: number;
+  sourceQuestionPromptMinHeightMm?: number;
+  sourceQuestionMainMinHeightMm?: number;
+  sourceWorkLines?: number;
+  sourceWorkMarginTopMm?: number;
+  sourceQuestionMinHeightMm?: number;
 };
 export type RenderBlock = BlockBase &
   (
@@ -71,6 +97,7 @@ export type RenderBlock = BlockBase &
         mirrorPortrait: boolean;
         markdown: string;
         presentation?: TextbookDialoguePresentation;
+        speakerName?: string;
       }
     | {
         kind: "concept";
@@ -79,6 +106,7 @@ export type RenderBlock = BlockBase &
         body: TextbookConceptBody;
         continuation?: boolean;
         qr: RenderQr | null;
+        ordinal?: number;
       }
     | {
         kind: "recall";
@@ -87,6 +115,10 @@ export type RenderBlock = BlockBase &
         repetitionChecks: boolean;
         continuation?: boolean;
         lastPart?: boolean;
+        answersVisible?: boolean;
+        memoryPhases?: readonly ("study" | "keywords" | "sentences")[];
+        displayRows?: RecallDisplayRow[];
+        rowHeightsMm?: Readonly<Record<string, number>>;
       }
     | {
         kind: "problem";
@@ -101,6 +133,8 @@ export type RenderBlock = BlockBase &
         sourcePageLabel: string | null;
         answer?: string;
         solution?: string | null;
+        /** Answer variant only: the answer stands beside the question (see answerLayout). */
+        answerPlacement?: AnswerPlacement;
         publicWorkedExample?: { answer: string; solution: string | null };
       }
   );
@@ -127,6 +161,35 @@ export interface TextbookRenderModel {
   assets: AssetRef[];
 }
 
+/** Native concept pages. Their container sets its children 2.6mm apart (see contentCss). */
+const NATIVE_CONCEPT_KINDS = ["concept1", "concept2", "concept3"];
+/**
+ * Answer variant only. The authored body of a native concept page ends with the «CHECK»
+ * subheading of the questions that follow it. In the answer book those questions are taller and
+ * may leave the page, so the subheading becomes a block of its own that pagination keeps with
+ * them. The fragments are the manuscript's own objects in their order; nothing is rewritten.
+ * Body and subheading stand 2.6mm apart either way: that is the gap of the page's container and
+ * the distance pagination puts between two blocks of a concept page.
+ */
+function closingCheckHeading(
+  semantic: TextbookSemantic | undefined,
+  nextKind: string | undefined,
+):
+  | { body: TextbookSourceFragment[]; heading: TextbookSourceFragment }
+  | undefined {
+  const node = semantic?.node;
+  if (
+    node?.kind !== "fragments" ||
+    nextKind !== "problem" ||
+    !NATIVE_CONCEPT_KINDS.includes(semantic?.source?.kind ?? "")
+  )
+    return undefined;
+  const heading = node.fragments.at(-1);
+  return heading?.attributes?.className?.split(/\s+/).includes("subheading")
+    ? { body: node.fragments.slice(0, -1), heading }
+    : undefined;
+}
+
 /** Allowlist projection: exercise answers/solutions and teacher source data never enter student render DTOs. */
 export function createTextbookRenderModel(
   exchange: TextbookExchange,
@@ -144,7 +207,24 @@ export function createTextbookRenderModel(
   const pages = new Map(
     exchange.pageMap.map((p) => [p.itemId, p.printedPageLabel]),
   );
-  return {
+  const memoryPhases = [
+    ...new Set(
+      exchange.units.flatMap((unit) =>
+        unit.sections.flatMap((section) =>
+          section.blocks.flatMap((block) =>
+            block.kind === "concept-recall" &&
+            ["conceptStudy", "clozeRecall", "sentenceRecall"].includes(
+              block.semantic?.activity ?? "",
+            )
+              ? [block.phase]
+              : [],
+          ),
+        ),
+      ),
+    ),
+  ];
+  let conceptOrdinal = 0;
+  const model: TextbookRenderModel = {
     title: exchange.config.title,
     editionId: exchange.edition.editionId,
     config: exchange.config,
@@ -152,198 +232,348 @@ export function createTextbookRenderModel(
     assets: exchange.assets,
     sections: exchange.units.flatMap((u) =>
       u.sections.map((s): RenderSection =>
-        projectEditorialSection({
-          unitKey: u.unitKey,
-          sectionKey: s.sectionKey,
-          unitTitle: u.title,
-          title: s.title,
-          // Earlier quick-create drafts used "basic" for every lesson. Their frozen
-          // concept provenance identifies them without rewriting the saved manuscript.
-          templateKey:
-            s.templateKey === "basic" &&
-            s.blocks.some(
-              (b) =>
-                b.kind === "concept" &&
-                concepts.get(b.conceptKey)?.mappingVersion ===
-                  "quick-create.unit-triple.v1",
-            )
-              ? "auto-lesson"
-              : s.templateKey,
-          startPolicy: s.startPolicy,
-          blocks: [
-            ...(s.templateKey === "unit-intro"
-              ? [
-                  {
-                    id: `generated-intro:${u.unitKey}:${s.sectionKey}`,
-                    sourceBlockId: "unit-intro",
-                    unitKey: u.unitKey,
-                    sectionKey: s.sectionKey,
-                    kind: "unit-intro" as const,
-                    unitNumber: exchange.units.indexOf(u) + 1,
-                    title: u.title,
-                    goals: u.goals,
-                    prerequisites: u.prerequisites,
-                  },
-                ]
-              : []),
-            {
-              id: `generated-heading:${u.unitKey}:${s.sectionKey}`,
-              sourceBlockId: "section-heading",
-              unitKey: u.unitKey,
-              sectionKey: s.sectionKey,
-              kind: "heading",
-              unitNumber:
-                exchange.units
-                  .filter((candidate) =>
-                    candidate.sections.some(
-                      (section) =>
-                        section.templateKey === "auto-unit-intro" ||
-                        section.templateKey === "auto-lesson" ||
-                        section.blocks.some(
-                          (block) => block.kind === "concept",
-                        ),
-                    ),
-                  )
-                  .indexOf(u) + 1,
-              title: s.title,
-            },
-            ...s.blocks.flatMap((b): RenderBlock[] => {
-              const base: BlockBase = {
-                id: b.blockId,
-                sourceBlockId: b.blockId,
+        projectEditorialSection(
+          {
+            unitKey: u.unitKey,
+            sectionKey: s.sectionKey,
+            unitTitle: u.title,
+            title: s.title,
+            // Earlier quick-create drafts used "basic" for every lesson. Their frozen
+            // concept provenance identifies them without rewriting the saved manuscript.
+            templateKey:
+              s.templateKey === "basic" &&
+              s.blocks.some(
+                (b) =>
+                  b.kind === "concept" &&
+                  concepts.get(b.conceptKey)?.mappingVersion ===
+                    "quick-create.unit-triple.v1",
+              )
+                ? "auto-lesson"
+                : s.templateKey,
+            startPolicy: s.startPolicy,
+            blocks: [
+              ...(s.templateKey === "unit-intro"
+                ? [
+                    {
+                      id: `generated-intro:${u.unitKey}:${s.sectionKey}`,
+                      sourceBlockId: "unit-intro",
+                      unitKey: u.unitKey,
+                      sectionKey: s.sectionKey,
+                      kind: "unit-intro" as const,
+                      unitNumber: exchange.units.indexOf(u) + 1,
+                      title: u.title,
+                      goals: u.goals,
+                      prerequisites: u.prerequisites,
+                    },
+                  ]
+                : []),
+              {
+                id: `generated-heading:${u.unitKey}:${s.sectionKey}`,
+                sourceBlockId: "section-heading",
                 unitKey: u.unitKey,
                 sectionKey: s.sectionKey,
-                ...(b.semantic ? { semantic: b.semantic } : {}),
-              };
-              switch (b.kind) {
-                case "text": {
-                  const parts = b.semantic?.node
-                    ? [b.markdown]
-                    : splitTextbookMarkdown(b.markdown);
-                  return parts.map((markdown, i) => ({
-                    ...base,
-                    id:
-                      parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
-                    kind: "text",
-                    markdown,
-                  }));
-                }
-                case "image":
-                  return [
-                    {
-                      ...base,
-                      kind: "image",
-                      assetId: b.assetId,
-                      caption: b.caption,
-                    },
-                  ];
-                case "dialogue":
-                  return b.turns.map((turn, i) => ({
-                    ...base,
-                    ...turn,
-                    id: `${b.blockId}.turn-${i}`,
-                    kind: "dialogue",
-                  }));
-                case "concept-recall": {
-                  const phase = variant === "answers" ? "study" : b.phase;
-                  // Validate the complete source before projecting any individual paragraphs.
-                  recallPieces(b.markdown, phase);
-                  const parts = splitRecallMarkdown(b.markdown);
-                  return parts.map((markdown, i) => ({
-                    ...base,
-                    id:
-                      parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
-                    kind: "recall",
-                    phase: b.phase,
-                    continuation: i > 0,
-                    lastPart: i === parts.length - 1,
-                    pieces: recallPieces(
-                      markdown,
-                      /\[\[|\{\{/.test(markdown) ? phase : "study",
-                    ),
-                    repetitionChecks:
-                      b.phase === "study" &&
-                      b.showRepetitionChecks &&
-                      i === parts.length - 1,
-                  }));
-                }
-                case "concept": {
-                  const c = concepts.get(b.conceptKey);
-                  if (!c) throw new Error(`Missing concept ${b.conceptKey}`);
-                  const qr = conceptQrs.get(c.conceptKey);
-                  const groups = frozenConceptGroups(c);
-                  const parts = groups.length
-                    ? groups.map((group) => group.body)
-                    : splitConceptBody(c.body);
-                  return parts.map((body, i) => ({
-                    ...base,
-                    id:
-                      parts.length === 1 ? b.blockId : `${b.blockId}.part-${i}`,
-                    kind: "concept",
-                    conceptKey: c.conceptKey,
-                    title: groups[i]?.title ?? c.title,
-                    body,
-                    ...(groups[i]
-                      ? {
-                          semantic: {
-                            activity: "concepts" as const,
-                            node: {
-                              kind: "concept" as const,
-                              conceptId: groups[i].conceptId,
-                              title: groups[i].title,
-                              rows: groups[i].rows,
-                            },
+                kind: "heading",
+                unitNumber:
+                  exchange.units
+                    .filter((candidate) =>
+                      candidate.sections.some(
+                        (section) =>
+                          section.templateKey === "auto-unit-intro" ||
+                          section.templateKey.startsWith("auto-lesson") ||
+                          section.blocks.some(
+                            (block) => block.kind === "concept",
+                          ),
+                      ),
+                    )
+                    .indexOf(u) + 1,
+                title: s.title,
+              },
+              ...s.blocks.flatMap((b): RenderBlock[] => {
+                const base: BlockBase = {
+                  id: b.blockId,
+                  sourceBlockId: b.blockId,
+                  unitKey: u.unitKey,
+                  sectionKey: s.sectionKey,
+                  ...(b.semantic ? { semantic: b.semantic } : {}),
+                };
+                switch (b.kind) {
+                  case "text": {
+                    const check =
+                      variant === "answers"
+                        ? closingCheckHeading(
+                            b.semantic,
+                            s.blocks[s.blocks.indexOf(b) + 1]?.kind,
+                          )
+                        : undefined;
+                    if (check) {
+                      // A body that is nothing but the subheading stays one block.
+                      if (!check.body.length)
+                        return [
+                          {
+                            ...base,
+                            kind: "text",
+                            markdown: b.markdown,
+                            keepWithNext: true,
                           },
-                        }
-                      : {}),
-                    continuation: i > 0,
-                    qr:
-                      qr && i === parts.length - 1
-                        ? { id: qr.qrTargetId, url: qr.url }
-                        : null,
-                  }));
-                }
-                case "problem": {
-                  const item = items.get(b.itemId);
-                  if (!item) throw new Error(`Missing item ${b.itemId}`);
-                  const snapshot = snapshots.get(item.snapshotId);
-                  if (!snapshot)
-                    throw new Error(`Missing snapshot ${item.snapshotId}`);
-                  const qr = item.qrTargetId
-                    ? qrs.get(item.qrTargetId)
-                    : undefined;
-                  const payload = snapshot.payload;
-                  return [
-                    {
+                        ];
+                      // The page-end note stays with the body.
+                      const semantic: TextbookSemantic = {
+                        ...b.semantic!,
+                        node: { kind: "fragments", fragments: [check.heading] },
+                      };
+                      delete semantic.sourceFooter;
+                      return [
+                        {
+                          ...base,
+                          kind: "text",
+                          markdown: b.markdown,
+                          semantic: {
+                            ...b.semantic!,
+                            node: { kind: "fragments", fragments: check.body },
+                          },
+                        },
+                        {
+                          ...base,
+                          id: `${b.blockId}.subheading`,
+                          kind: "text",
+                          markdown: "",
+                          keepWithNext: true,
+                          semantic,
+                        },
+                      ];
+                    }
+                    const parts = b.semantic?.node
+                      ? [b.markdown]
+                      : splitTextbookMarkdown(b.markdown);
+                    return parts.map((markdown, i) => ({
                       ...base,
-                      kind: "problem",
-                      itemId: item.itemId,
-                      displayNumber: item.displayNumber,
-                      content: payload.content,
-                      figures: payload.figures,
-                      questionType: payload.questionType,
-                      learningStage: item.learningStage,
-                      layout: item.layout,
-                      qr: qr ? { id: qr.qrTargetId, url: qr.url } : null,
-                      sourcePageLabel: pages.get(item.itemId) ?? null,
-                      ...(variant === "answers"
-                        ? { answer: payload.answer, solution: payload.solution }
-                        : item.learningStage === "worked-example"
-                          ? {
-                              publicWorkedExample: {
-                                answer: payload.answer,
-                                solution: payload.solution,
+                      id:
+                        parts.length === 1
+                          ? b.blockId
+                          : `${b.blockId}.part-${i}`,
+                      kind: "text",
+                      markdown,
+                    }));
+                  }
+                  case "image":
+                    return [
+                      {
+                        ...base,
+                        kind: "image",
+                        assetId: b.assetId,
+                        caption: b.caption,
+                      },
+                    ];
+                  case "dialogue":
+                    return b.turns.map((turn, i) => ({
+                      ...base,
+                      ...turn,
+                      id: `${b.blockId}.turn-${i}`,
+                      kind: "dialogue",
+                      ...(b.semantic?.source?.kind === "opening" &&
+                      turn.speakerId.includes("teacher-")
+                        ? { speakerName: "선생님" }
+                        : {}),
+                    }));
+                  case "concept-recall": {
+                    const phase = variant === "answers" ? "study" : b.phase;
+                    const node = b.semantic?.node;
+                    const rows =
+                      node?.kind === "rows" || node?.kind === "concept"
+                        ? node.rows
+                        : null;
+                    const edited =
+                      rows?.every((row) => row.textFormat === "bank-blank") &&
+                      rows
+                        .map((row) => memoryRowMarkdown(row, b.phase))
+                        .join("\n\n") !== b.markdown;
+                    if (rows && !edited) {
+                      const hidden =
+                        variant === "student" && b.phase !== "study";
+                      const safeNode = hidden
+                        ? {
+                            ...node!,
+                            rows: rows.map((row) => ({ ...row, rawText: "" })),
+                          }
+                        : node;
+                      const previous = s.blocks[s.blocks.indexOf(b) - 1];
+                      return [
+                        {
+                          ...base,
+                          kind: "recall",
+                          phase: b.phase,
+                          semantic: { ...b.semantic!, node: safeNode },
+                          answersVisible: variant === "answers",
+                          memoryPhases,
+                          displayRows: recallDisplayRows(
+                            rows,
+                            b.phase,
+                            variant === "answers",
+                          ),
+                          // Structured rows are validated/projected by their own format parser.
+                          // TeX braces are not legacy recall delimiters.
+                          pieces: [],
+                          continuation:
+                            b.semantic?.continuation ??
+                            (previous?.kind === "concept-recall" &&
+                              previous.semantic?.activity ===
+                                b.semantic?.activity),
+                          memoryContinuationTitle: s.title,
+                          lastPart: true,
+                          repetitionChecks:
+                            b.phase === "study" && b.showRepetitionChecks,
+                        },
+                      ];
+                    }
+                    recallPieces(b.markdown, phase);
+                    const parts = splitRecallMarkdown(b.markdown);
+                    return parts.map((markdown, i) => ({
+                      ...base,
+                      ...(edited
+                        ? { semantic: { ...b.semantic!, node: undefined } }
+                        : {}),
+                      id:
+                        parts.length === 1
+                          ? b.blockId
+                          : `${b.blockId}.part-${i}`,
+                      kind: "recall",
+                      phase: b.phase,
+                      answersVisible: variant === "answers",
+                      continuation: i > 0,
+                      lastPart: i === parts.length - 1,
+                      pieces: recallPieces(
+                        markdown,
+                        /\[\[|\{\{/.test(markdown) ? phase : "study",
+                      ),
+                      repetitionChecks:
+                        b.phase === "study" &&
+                        b.showRepetitionChecks &&
+                        i === parts.length - 1,
+                    }));
+                  }
+                  case "concept": {
+                    const c = concepts.get(b.conceptKey);
+                    if (!c) throw new Error(`Missing concept ${b.conceptKey}`);
+                    const qr = conceptQrs.get(c.conceptKey);
+                    const groups = frozenConceptGroups(c);
+                    const parts = groups.length
+                      ? groups.map((group) => group.body)
+                      : splitConceptBody(c.body);
+                    // Frozen groups are distinct concept cards. A split authored body is
+                    // one concept continued over several blocks, with one printed number.
+                    const bodyOrdinal = groups.length
+                      ? undefined
+                      : ++conceptOrdinal;
+                    return parts.map((body, i) => ({
+                      ...base,
+                      id:
+                        parts.length === 1
+                          ? b.blockId
+                          : `${b.blockId}.part-${i}`,
+                      kind: "concept",
+                      ordinal: groups.length ? ++conceptOrdinal : bodyOrdinal,
+                      conceptKey: c.conceptKey,
+                      title: groups[i]?.title ?? c.title,
+                      body,
+                      ...(groups[i]
+                        ? {
+                            semantic: {
+                              activity: "concepts" as const,
+                              node: {
+                                kind: "concept" as const,
+                                conceptId: groups[i].conceptId,
+                                title: groups[i].title,
+                                rows: groups[i].rows,
                               },
-                            }
+                            },
+                          }
+                        : {}),
+                      continuation: !groups.length && i > 0,
+                      qr:
+                        qr && i === parts.length - 1
+                          ? { id: qr.qrTargetId, url: qr.url }
+                          : null,
+                    }));
+                  }
+                  case "problem": {
+                    const item = items.get(b.itemId);
+                    if (!item) throw new Error(`Missing item ${b.itemId}`);
+                    const snapshot = snapshots.get(item.snapshotId);
+                    if (!snapshot)
+                      throw new Error(`Missing snapshot ${item.snapshotId}`);
+                    const qr = item.qrTargetId
+                      ? qrs.get(item.qrTargetId)
+                      : undefined;
+                    const payload = snapshot.payload;
+                    // The answer book is paginated on its own: an ordinary one-column problem
+                    // takes the whole row there, its answer beside the question. The student
+                    // variant and the saved layout are not touched.
+                    const answerCase =
+                      variant === "answers"
+                        ? answerCaseLayout(item.layout, b.semantic)
+                        : undefined;
+                    return [
+                      {
+                        ...base,
+                        kind: "problem",
+                        itemId: item.itemId,
+                        displayNumber: item.displayNumber,
+                        content: payload.content,
+                        figures: payload.figures,
+                        questionType: payload.questionType,
+                        learningStage: item.learningStage,
+                        layout: answerCase?.layout ?? item.layout,
+                        ...(answerCase?.placement
+                          ? { answerPlacement: answerCase.placement }
                           : {}),
-                    },
-                  ];
+                        qr: qr ? { id: qr.qrTargetId, url: qr.url } : null,
+                        sourcePageLabel: pages.get(item.itemId) ?? null,
+                        ...(variant === "answers"
+                          ? {
+                              answer: payload.answer,
+                              solution: payload.solution,
+                            }
+                          : item.learningStage === "worked-example"
+                            ? {
+                                publicWorkedExample: {
+                                  answer: payload.answer,
+                                  solution: payload.solution,
+                                },
+                              }
+                            : {}),
+                      },
+                    ];
+                  }
                 }
-              }
-            }),
+              }),
+            ],
+          },
+          [
+            ...new Set(
+              u.sections.flatMap((section) =>
+                section.blocks.flatMap((block) =>
+                  block.semantic ? [block.semantic.activity] : [],
+                ),
+              ),
+            ),
           ],
-        }),
+        ),
       ),
     ),
   };
+  const scriptTotals = new Map<string, number>();
+  for (const block of model.sections.flatMap((section) => section.blocks)) {
+    const source = block.semantic?.source;
+    if (source?.kind === "opening" && source.scriptIndex)
+      scriptTotals.set(
+        source.unit,
+        Math.max(scriptTotals.get(source.unit) ?? 0, source.scriptIndex),
+      );
+  }
+  for (const block of model.sections.flatMap((section) => section.blocks)) {
+    const source = block.semantic?.source;
+    if (source?.kind === "opening")
+      block.dialogueScriptTotal = scriptTotals.get(source.unit);
+  }
+  return model;
 }

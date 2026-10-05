@@ -97,6 +97,7 @@ import {
   type QrTarget,
   type Section,
   type TextbookItem,
+  type TextbookExchange,
 } from "@/contracts/textbookExchange.contract";
 import {
   textbookIssueSchema,
@@ -201,6 +202,8 @@ export type PreviewMaterial = {
   concepts: TextbookConcept[];
   qrTargets: QrTarget[];
   conceptQrTargets: ConceptQrTarget[];
+  /** Authorized dialogue source only; the preview measures one selected unit within the normal cap. */
+  dialogueUnits?: TextbookExchange["units"];
 };
 
 export interface TextbookStudioApi {
@@ -1481,6 +1484,22 @@ export function createTextbookApi(
         textbookExportResponseSchema,
         await request(fetchImpl, `${BASE}/editions/${editionId}/export`),
       );
+      const dialogueUnits = parsed.data.units
+        .map((unit) => ({
+          ...unit,
+          sections: unit.sections
+            .map((section) => ({
+              ...section,
+              blocks: section.blocks.filter(
+                (block) =>
+                  Boolean(block.semantic) &&
+                  (block.kind === "dialogue" ||
+                    (block.kind === "text" && block.semantic?.node?.kind === "board")),
+              ),
+            }))
+            .filter((section) => section.blocks.length > 0),
+        }))
+        .filter((unit) => unit.sections.length > 0);
       return {
         items: parsed.data.items,
         snapshots: parsed.data.snapshots,
@@ -1488,6 +1507,7 @@ export function createTextbookApi(
         concepts: parsed.data.conceptIntegration?.concepts ?? [],
         qrTargets: parsed.data.qrTargets,
         conceptQrTargets: parsed.data.conceptQrTargets ?? [],
+        ...(dialogueUnits.length ? { dialogueUnits } : {}),
       };
     },
     async readConcept(editionId, conceptKey) {

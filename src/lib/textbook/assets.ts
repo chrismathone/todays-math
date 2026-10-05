@@ -76,6 +76,7 @@ export function assertSafeSvg(text: string): void {
     "font-size",
     "font-weight",
     "font-style",
+    "letter-spacing",
     "text-anchor",
     "dominant-baseline",
     "alignment-baseline",
@@ -88,6 +89,20 @@ export function assertSafeSvg(text: string): void {
     // The local figure renderer records original MathJax/editing labels as inert text.
     "data-mj",
     "data-label",
+    "data-anchor",
+    "data-x",
+    "data-y",
+    "data-base",
+    "data-fs",
+    "data-w",
+    "data-a",
+    "data-d",
+    "data-halo",
+    "data-px",
+    "data-py",
+    "data-c",
+    "data-mml-node",
+    "data-mjx-texclass",
   ]);
   const stack: string[] = [];
   let at = 0,
@@ -138,6 +153,26 @@ export function assertSafeSvg(text: string): void {
         throw new Error("Unsupported SVG label entity");
       if (!labelMetadata && value.includes("&"))
         throw new Error("SVG attribute entities are unsupported");
+      if (key === "data-anchor" && !/^(start|middle|end)$/.test(value))
+        throw new Error("Unsupported SVG label anchor");
+      if (
+        key === "letter-spacing" &&
+        (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:px)?$/.test(value) ||
+          !Number.isFinite(Number(value.replace(/px$/, ""))))
+      )
+        throw new Error("Unsupported SVG letter spacing");
+      if (
+        (key === "data-c" && !/^[0-9A-Fa-f]+$/.test(value)) ||
+        (key === "data-mml-node" && !/^[A-Za-z][A-Za-z0-9-]*$/.test(value)) ||
+        (key === "data-mjx-texclass" && !/^[A-Z]+$/.test(value))
+      )
+        throw new Error("Unsupported SVG MathJax metadata");
+      if (
+        /^data-(?:x|y|base|fs|w|a|d|halo|px|py)$/.test(key) &&
+        (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value) ||
+          !Number.isFinite(Number(value)))
+      )
+        throw new Error("Unsupported SVG label coordinate");
       if (
         !labelMetadata &&
         /url\s*\(/i.test(value) &&

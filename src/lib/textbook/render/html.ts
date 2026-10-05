@@ -6,12 +6,38 @@ import {
   editorialBlock,
   editorialStage,
   EDITORIAL_STAGES,
+  sourceStageLabel,
   type EditorialBlock,
   type EditorialStage,
 } from "./editorial";
 import { EDITORIAL_CSS } from "./editorialCss";
+import { RECOVERY_FRAME_CSS } from "./recoveryFrameCss";
+import { SOURCE_CHAPTER_CSS } from "./sourceChapterCss";
+import { SOURCE_PROBLEM_CSS } from "./sourceProblemCss";
+import { SOURCE_ACTIVITY_CSS } from "./sourceActivityCss";
+import { dialoguePageProgress } from "./dialoguePageProgress";
+import {
+  renderAutomaticIntroHtml,
+  AUTOMATIC_INTRO_CSS,
+} from "./blocks/automaticIntro";
 import { renderConceptHtml } from "./blocks/concept";
-import { renderDialogueHtml } from "./blocks/dialogue";
+import { FRACTION_CHOICE_CSS } from "./blocks/fractionChoiceRows";
+import { BANK_ACTIVITY_CSS } from "./blocks/bankActivities";
+import {
+  renderDialogueHtml,
+  renderDialogueBoardHtml,
+  isDialoguePlacement,
+  renderDialogueContinueHtml,
+  renderDialogueLessonTitleHtml,
+  renderDialogueGuideHtml,
+} from "./blocks/dialogue";
+import { DIALOGUE_CSS } from "./blocks/dialogueCss";
+import { TEXTBOOK_CONTENT_CSS } from "./blocks/contentCss";
+import {
+  renderSemanticTextHtml,
+  renderSourceFragments,
+  SEMANTIC_ACTIVITY_CSS,
+} from "./blocks/semantic";
 import {
   renderCoverHtml,
   renderHeadingHtml,
@@ -28,20 +54,29 @@ export function renderBlockHtml(
 ): string {
   const projected = block as EditorialBlock;
   const stage = editorialStage(projected);
-  return `<div class="tb-editorial tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}">${renderBlockContent(projected, resources, stage)}</div>`;
+  return `<div class="tb-editorial${block.semantic || block.dialogueGuide || block.dialogueLesson ? " tb-recovery" : ""} tb-editorial-${block.kind} tb-stage-${stage}" data-editorial-stage="${stage}"${block.semantic?.source ? ` data-source-kind="${esc(block.semantic.source.kind)}"${block.semantic.source.tone ? ` data-source-tone="${block.semantic.source.tone}"` : ""}` : ""}>${renderBlockContent(projected, resources, stage)}</div>`;
 }
 function renderBlockContent(
   block: EditorialBlock,
   resources: RenderResources,
   stage: EditorialStage,
 ): string {
+  const intro = renderAutomaticIntroHtml(block, resources);
+  if (intro) return intro;
   switch (block.kind) {
     case "unit-intro":
       return renderUnitIntroHtml(block, resources);
     case "heading":
       return renderHeadingHtml(block, resources, stage);
     case "text":
-      return `<div class="tb-prose">${md(block.markdown)}</div>`;
+      return block.dialogueGuide
+        ? renderDialogueGuideHtml(block.dialogueGuide)
+        : block.dialogueLesson
+          ? renderDialogueLessonTitleHtml(block.dialogueLesson)
+          : block.semantic?.node?.kind === "board"
+            ? renderDialogueBoardHtml(block, resources)
+            : (renderSemanticTextHtml(block, resources) ??
+              `<div class="tb-prose">${md(block.markdown)}</div>`);
     case "image":
       return `<figure class="tb-figure">${imageHtml(resources, block.assetId, block.caption ?? "그림")}${block.caption ? `<figcaption>${esc(block.caption)}</figcaption>` : ""}</figure>`;
     case "dialogue":
@@ -83,12 +118,23 @@ export const TEXTBOOK_CSS = `
 .tb-paper[data-template-key="rest"]{background:#fffdf6}.tb-block[data-template-key="rest"] .tb-section-heading,.tb-measure-block[data-template-key="rest"] .tb-section-heading{background:transparent;border:0;padding-left:0;color:#334d35}.tb-block[data-template-key="rest"] .tb-figure img,.tb-measure-block[data-template-key="rest"] .tb-figure img{max-height:85mm}.tb-block[data-template-key="rest"] .tb-prose,.tb-measure-block[data-template-key="rest"] .tb-prose{font-size:10pt;line-height:1.9;color:#354a37}.tb-block[data-template-key="rest"] .tb-prose h3,.tb-measure-block[data-template-key="rest"] .tb-prose h3{font-size:9pt;border-top:.65pt solid #d3dec7;padding-top:3mm;margin-top:4mm;color:#5b7550}
 @media screen{.tb-paper{box-shadow:0 2px 10px #0002}.tb-spread{overflow:auto}}@media print{.tb-spread{display:block}.tb-paper{box-shadow:none}}
 ${EDITORIAL_CSS}
+${TEXTBOOK_CONTENT_CSS}
+${DIALOGUE_CSS}
+${SEMANTIC_ACTIVITY_CSS}
+${BANK_ACTIVITY_CSS}
+${RECOVERY_FRAME_CSS}
+${SOURCE_CHAPTER_CSS}
+${SOURCE_PROBLEM_CSS}
+${SOURCE_ACTIVITY_CSS}
+${FRACTION_CHOICE_CSS}
+${AUTOMATIC_INTRO_CSS}
 `;
 
 export function renderPageHtml(
   page: TextbookPage,
   model: TextbookRenderModel,
   resources: RenderResources,
+  contextPages: readonly TextbookPage[] = [page],
 ): string {
   if (page.kind === "cover") {
     return renderCoverHtml(page, model, resources);
@@ -113,18 +159,217 @@ export function renderPageHtml(
       candidate.sectionKey === page.sectionKey,
   );
   const stage = editorialStage(blocks.get(page.blocks[0]?.blockId), section);
-  return `<article class="tb-paper tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small></span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : EDITORIAL_STAGES[stage].label)}</aside>${page.blocks
-    .map((p) => {
-      const block = blocks.get(p.blockId);
-      if (!block) throw new Error(`Missing rendered block ${p.blockId}`);
-      const blockSection = model.sections.find((s) =>
-        s.blocks.some((b) => b.id === block.id),
+  const stageLabel = sourceStageLabel(
+    blocks.get(page.blocks[0]?.blockId),
+    stage,
+  );
+  const dialogue = page.blocks.filter((placement) => {
+    const block = blocks.get(placement.blockId);
+    return block && isDialoguePlacement(block);
+  });
+  const dialogueBody = page.blocks.filter((placement) => {
+    const block = blocks.get(placement.blockId);
+    return block && (isDialoguePlacement(block) || block.dialogueLesson);
+  });
+  const backdrop = dialogue.length
+    ? `<div class="tb-dialogue-backdrop" aria-hidden="true" style="left:${dialogueBody[0].xMm}mm;top:${dialogueBody[0].yMm - 3}mm;width:${dialogueBody[0].widthMm}mm;height:${Math.max(...dialogueBody.map((placement) => placement.yMm + placement.heightMm)) - dialogueBody[0].yMm + 6}mm"></div>`
+    : "";
+  const dialoguePages = model.sections
+    .flatMap((candidate) => candidate.blocks)
+    .filter(isDialoguePlacement);
+  const dialogueSource = dialogue
+    .map((placement) => blocks.get(placement.blockId)!)
+    .find((block) => block.semantic?.source?.scriptIndex)?.semantic?.source;
+  const scriptIndex = dialogueSource?.scriptIndex;
+  const scriptTotal = scriptIndex
+    ? (dialogue
+        .map((placement) => blocks.get(placement.blockId)?.dialogueScriptTotal)
+        .find((total) => total) ??
+      Math.max(
+        ...dialoguePages
+          .filter(
+            (block) => block.semantic?.source?.unit === dialogueSource.unit,
+          )
+          .map((block) => block.semantic?.source?.scriptIndex ?? 0),
+      ))
+    : 0;
+  const hasSourceDialogueFooter = dialogue.some((placement) => {
+    const block = blocks.get(placement.blockId);
+    return Boolean(block?.semantic?.source && block.semantic.sourceFooter);
+  });
+  const progress = dialoguePageProgress(page, contextPages, model);
+  const dialogueIndex = scriptIndex ?? progress?.index ?? 1;
+  const dialogueTotal = scriptTotal || progress?.total || 1;
+  const continueNote =
+    dialogue.length && !hasSourceDialogueFooter
+      ? `<div class="tb-dialogue-page-note" style="left:${left}mm;right:${right}mm">${renderDialogueContinueHtml(
+          {
+            label: "단원을 여는 수업",
+            index: dialogueIndex,
+            total: dialogueTotal,
+            note:
+              dialogueIndex < dialogueTotal
+                ? "다음 쪽에서 이어집니다."
+                : "수업에서 배운 내용을 설명해 보세요.",
+          },
+        )}</div>`
+      : "";
+  const recovered = Boolean(section?.blocks.some((block) => block.semantic));
+  const schoolLabel = {
+    elementary: "초등수학",
+    middle: "중등수학",
+    high: "고등수학",
+  }[model.config.schoolLevel];
+  const runningUnit = section?.templateKey.startsWith("reference-unitSpread")
+    ? model.title
+        .replace(/^인재원\s*수학\s*/, "")
+        .replace(model.config.displayCode, "")
+        .trim()
+    : page.unitTitle;
+  const running = recovered
+    ? `${esc(schoolLabel)} ${esc(model.config.displayCode)} <small> / ${esc(runningUnit)}</small>`
+    : `${esc(model.config.displayCode)} · ${esc(model.title)}<small>${esc(page.unitTitle)}</small>`;
+  const footerNumber = recovered
+    ? `${model.variant === "answers" ? "A" : ""}${String(page.physicalPageIndex).padStart(3, "0")}`
+    : page.printedPageLabel;
+  const placementHtml = (
+    p: TextbookPage["blocks"][number],
+    offsetX = 0,
+    offsetY = 0,
+  ) => {
+    const block = blocks.get(p.blockId);
+    if (!block) throw new Error(`Missing rendered block ${p.blockId}`);
+    const blockSection = model.sections.find((s) =>
+      s.blocks.some((b) => b.id === block.id),
+    );
+    return `<div class="tb-block${p.continuation ? " tb-continuation" : ""}" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${block.semantic ? ` data-activity="${esc(block.semantic.activity)}"` : ""}${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm - offsetX}mm;top:${p.yMm - offsetY}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(p.continuation ? { ...block, continuedPage: true } : block, blockSection), resources)}</div></div>`;
+  };
+  const bodyBlocks = page.blocks.filter(
+    (placement) => blocks.get(placement.blockId)?.kind !== "heading",
+  );
+  const headingPlacement = page.blocks.find(
+    (placement) => blocks.get(placement.blockId)?.kind === "heading",
+  );
+  const bodyTop = Math.min(
+    ...bodyBlocks.map((placement) => placement.yMm),
+    ...dialogue.map((placement) => placement.yMm - 3),
+    ...(dialogue.length && headingPlacement
+      ? [headingPlacement.yMm + headingPlacement.heightMm + 3.5]
+      : []),
+  );
+  let bodyEnd = Math.max(
+    ...bodyBlocks.map((placement) => placement.yMm + placement.heightMm),
+    ...dialogue.map((placement) => placement.yMm + placement.heightMm + 3),
+  );
+  const sourceMemoryBlocks = bodyBlocks.map((placement) =>
+    blocks.get(placement.blockId)!,
+  );
+  const sourceMemoryPage =
+    sourceMemoryBlocks.length > 0 &&
+    sourceMemoryBlocks.every(
+      (block) =>
+        block.kind === "recall" &&
+        block.semantic?.source?.kind === "fullmaster",
+    );
+  const sourceFooter = sourceMemoryBlocks.find(
+    (block) => block.semantic?.source && block.semantic.sourceFooter,
+  )?.semantic?.sourceFooter;
+  // The original content box includes the final master's 2.5mm bottom margin.
+  if (sourceMemoryPage) bodyEnd += 2.5;
+  const sourceFooterHtml = sourceFooter
+    ? `<aside class="${sourceMemoryPage ? "tb-source-study-footer" : "tb-source-page-footer"}" data-anchor="${sourceMemoryPage ? "source-study-footer" : "source-page-footer"}" style="left:${left}mm;right:${right}mm">${renderSourceFragments(sourceFooter, resources)}</aside>`
+    : "";
+  const groupedIds = new Set<string>();
+  const bodyHtml = bodyBlocks
+    .map((placement, index) => {
+      if (groupedIds.has(placement.blockId)) return "";
+      const block = blocks.get(placement.blockId)!;
+      if (
+        block.kind === "problem" &&
+        block.semantic?.source &&
+        block.semantic.node?.kind !== "exampleGroup" &&
+        block.layout.columnSpan === 1
+      ) {
+        const members = [];
+        for (const candidate of bodyBlocks.slice(index)) {
+          const member = blocks.get(candidate.blockId)!;
+          if (
+            member.kind !== "problem" ||
+            !member.semantic?.source ||
+            member.semantic.source.kind !== block.semantic.source.kind ||
+            member.semantic.node?.kind === "exampleGroup" ||
+            member.layout.columnSpan !== 1
+          )
+            break;
+          members.push(candidate);
+          groupedIds.add(candidate.blockId);
+        }
+        const height =
+          Math.max(...members.map((member) => member.yMm + member.heightMm)) -
+          placement.yMm;
+        const grid =
+          block.semantic.source.kind === "drill"
+            ? "drill-grid"
+            : "question-grid";
+        return `<section class="tb-source-question-grid ${grid}" style="left:0;top:${placement.yMm - bodyTop}mm;width:${210 - left - right}mm;height:${height}mm">${members.map((member) => placementHtml(member, left, placement.yMm)).join("")}</section>`;
+      }
+      const group =
+        block.kind === "text" && block.semantic?.node?.kind === "exampleGroup"
+          ? block.semantic.node
+          : undefined;
+      if (!group) return placementHtml(placement, left, bodyTop);
+      const example = bodyBlocks.find(
+        (candidate) => candidate.itemId === group.exampleItemId,
       );
-      return `<div class="tb-block" data-template-key="${esc(templates.get(block.id) ?? "")}" data-block-id="${esc(block.id)}"${p.itemId ? ` data-item-id="${esc(p.itemId)}"` : ""} style="left:${p.xMm}mm;top:${p.yMm}mm;width:${p.widthMm}mm;height:${p.heightMm}mm"><div class="tb-block-inner">${renderBlockHtml(editorialBlock(block, blockSection), resources)}</div></div>`;
+      const confirmIndexes = group.confirmItemIds.flatMap((id, index) =>
+        bodyBlocks.some((candidate) => candidate.itemId === id) ? [index] : [],
+      );
+      const confirms = confirmIndexes.map((index) =>
+        bodyBlocks.find(
+          (candidate) => candidate.itemId === group.confirmItemIds[index],
+        )!,
+      );
+      // A page carries the whole group. Only the answer book continues a bank group that is
+      // taller than a page (see paginateTextbookSections): the example with the confirmations
+      // beside it first, then the rest in order under the repeated title.
+      const whole =
+        !placement.continuation &&
+        Boolean(example) &&
+        confirms.length === group.confirmItemIds.length;
+      const part =
+        model.variant === "answers" &&
+        !block.semantic?.source &&
+        confirmIndexes.every((n, i) => n === confirmIndexes[0] + i) &&
+        (placement.continuation
+          ? !example && confirms.length > 0
+          : Boolean(example) && (confirmIndexes[0] ?? 0) === 0);
+      if (!whole && !part) throw new Error("Incomplete rendered example group");
+      const members = [...(example ? [example] : []), ...confirms];
+      for (const member of members) groupedIds.add(member.blockId);
+      const columnsTop = placement.yMm + placement.heightMm;
+      const columnsEnd = Math.max(
+        ...members.map((member) => member.yMm + member.heightMm),
+      );
+      const height = Math.max(102, columnsEnd - placement.yMm);
+      bodyEnd = Math.max(bodyEnd, placement.yMm + height);
+      const rightX = confirms[0]?.xMm ?? 0;
+      return `<section class="tb-paired-group paired-group" data-example-group="${esc(group.groupId)}" style="left:${placement.xMm - left}mm;top:${placement.yMm - bodyTop}mm;width:${placement.widthMm}mm;height:${height}mm">${placementHtml(placement, placement.xMm, placement.yMm)}${placement.continuation ? '<small class="tb-continuation-label" data-continuation style="right:0;top:0;line-height:8.5mm">계속</small>' : ""}<div class="tb-paired-cols paired-cols" style="left:0;top:${placement.heightMm}mm;width:100%;height:${columnsEnd - columnsTop}mm">${example ? `<div class="tb-paired-worked worked" style="left:0;top:0;width:${example.widthMm}mm;height:${example.heightMm}mm">${placementHtml(example, example.xMm, columnsTop)}</div>` : ""}${confirms.length ? `<div class="tb-paired-twins twins" style="left:${rightX - placement.xMm}mm;top:0;width:${confirms[0].widthMm}mm;height:${columnsEnd - columnsTop}mm">${confirms.map((member) => placementHtml(member, rightX, columnsTop)).join("")}</div>` : ""}</div></section>`;
     })
-    .join(
-      "",
-    )}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(page.printedPageLabel)}</strong><span>${esc(EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
+    .join("");
+  const content =
+    recovered && bodyBlocks.length
+      ? page.blocks
+          .filter(
+            (placement) => blocks.get(placement.blockId)?.kind === "heading",
+          )
+          .map((placement) => placementHtml(placement))
+          .join("") +
+        `<div class="tb-reference-content" data-source-body style="position:absolute;left:${left}mm;top:${bodyTop}mm;right:${right}mm;height:${bodyEnd - bodyTop}mm">${bodyHtml}</div>`
+      : page.blocks.map((placement) => placementHtml(placement)).join("");
+  const sourceTone = section?.blocks.find(
+    (block) => block.semantic?.source?.tone,
+  )?.semantic?.source?.tone;
+  return `<article class="tb-paper${recovered ? " tb-recovered" : ""} tb-stage-${stage} tb-page-${page.physicalPageIndex % 2 === 0 ? "even" : "odd"}" data-editorial-stage="${stage}" data-textbook-page="${page.physicalPageIndex}" data-section-key="${esc(page.sectionKey)}" data-template-key="${esc(section?.templateKey ?? "")}"${sourceTone ? ` data-source-tone="${sourceTone}"` : ""}><header class="tb-header" style="left:${left}mm;right:${right}mm"><span class="tb-running-brand"><i aria-hidden="true"></i>인재원 수학</span><span class="tb-running-context">${running}</span></header><aside class="tb-edge-tab" aria-label="현재 학습 단계">${esc(model.variant === "answers" ? "정답과 해설" : stageLabel)}</aside>${backdrop}${content}${sourceFooterHtml}${continueNote}<footer class="tb-footer" style="left:${left}mm;right:${right}mm"><strong>${esc(footerNumber)}</strong><span>${esc(recovered ? page.unitTitle : EDITORIAL_STAGES[stage].label)}</span><span class="tb-footer-brand">INJAEWON<i aria-hidden="true"></i></span></footer></article>`;
 }
 
 export function measurementHtml(
@@ -135,10 +380,28 @@ export function measurementHtml(
     .flatMap((section) =>
       section.blocks.map(
         (block) =>
-          `<div class="tb-measure-block" data-template-key="${esc(section.templateKey)}" data-measure-id="${esc(block.id)}" style="width:${blockWidthMm(model.config, block)}mm">${renderBlockHtml(editorialBlock(block, section), resources)}</div>`,
+          `<div class="tb-measure-block" data-template-key="${esc(section.templateKey)}" data-measure-id="${esc(block.id)}" style="width:${blockWidthMm(model.config, block)}mm${block.measurementMinHeightMm ? `;min-height:${block.measurementMinHeightMm}mm` : ""}">${renderBlockHtml(editorialBlock(block, section), resources)}</div>`,
       ),
     )
     .join("")}</main>`;
+}
+/** Only an authorized private measurement DOM receives these recall probes. */
+export function recallMeasurementHtml(
+  model: TextbookRenderModel,
+  resources: RenderResources,
+): string {
+  if (
+    model.sections.some((section) =>
+      section.blocks.some((block) => block.kind !== "recall"),
+    )
+  )
+    throw new Error(
+      "Canonical measurement probes must contain recall rows only",
+    );
+  return measurementHtml(model, resources).replaceAll(
+    "data-measure-id=",
+    "data-recall-probe-id=",
+  );
 }
 export function textbookHtmlDocument(
   title: string,
