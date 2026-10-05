@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "note": "Which bytes ran which part of the full run. A shell reads a sourced library once, when it starts: the main driver's functions are those of lib/rounds.sh as it was then (commit 066601acb), not the library as it stands in the working copy, which was changed afterwards and is what the converted driver loaded. Every hash here was computed from the git blob of the named commit; the driver bytes are also kept beside the output.",
+  "chain": {
+    "startedAt": "2026-10-05T19:05:52Z",
+    "what": "One inline shell command, started once and not restarted: heading round 020 resumed by the recognizer directly (up to three attempts), then the main driver, then the converted driver, then the ledger builder. It goes on to the next step whatever the previous one returned, which is why the builder checks coverage itself.",
+    "command": {
+      "path": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/provenance/full-001/chain-command.txt",
+      "sha256": "f18e6f75e8b8bdb06c19f483daac6a1cba57fe37c9865a9c9afcb525d1f2bbeb"
+    }
+  },
+  "planner": {
+    "what": "node plan.mjs, started afresh for every stage; unchanged since commit 094ef3d8c, before any stage of the chain was planned.",
+    "files": [
+      {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/plan.mjs",
+        "commit": "094ef3d8c",
+        "sha256": "226902013363693af3edea57a9c61aa2c80cc8aae9c42546944786bbb674b52a",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      },
+      {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/rules.mjs",
+        "commit": "094ef3d8c",
+        "sha256": "1e732d32e3089fae4cf7f3d976bac176d71afc06b4d219da83bcacd046a1b066",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      },
+      {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/store.mjs",
+        "commit": "094ef3d8c",
+        "sha256": "c4c9ddc866c455ddc2eeda65220e61e11870dfb97cd0d75aff1403f02b54fd58",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      },
+      {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/session.mjs",
+        "commit": "094ef3d8c",
+        "sha256": "30fe0312b0d04063514f7d670bf5c1ba2e814e3d0d0bb2cb7409c9bfc0ee4f08",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      },
+      {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/resolve.mjs",
+        "commit": "094ef3d8c",
+        "sha256": "db21a217c86f530e3ea2f927ec2af664f65c9f194e043528e48a293aeee5d2c8",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      },
+      {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/official.mjs",
+        "commit": "094ef3d8c",
+        "sha256": "4008ec44add018a5f5500b197ff8fee9fe172702f8b9a725905f3872adcc05d9",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      }
+    ]
+  },
+  "executions": [
+    {
+      "what": "heading round 020, first run",
+      "rounds": ["020"],
+      "requestCreatedAt": "2026-10-05T18:20:09Z",
+      "outcome": "failed at 19 of 56 sources (extractor could not write into a folder another round's cleanup had removed); 19 containers kept, created 18:21:49Z to 19:04:22Z",
+      "recognizer": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude/run_probes.py",
+        "commit": "413115b24",
+        "sha256": "f107ad8a5cd0675112d36931c596315cd38c4c6bc7126a513fe00a8172ad8440",
+        "blobSha256": "8fdd3b658bb513c043ff14ca9124cd6bf15c0c92149372febfbccec3e449a1ed",
+        "bytesAre": "the working copy with CRLF line endings; identical to the commit's blob apart from line endings"
+      },
+      "extractor": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude/extract-clips.mjs",
+        "commit": "7fd5c0239",
+        "sha256": "222ed52f02fa0986bb253bbbe5391120d0ff897c75a32f879e2fab5b03b5fac3",
+        "bytesAre": "the commit's blob; the working copy of that time (CRLF line endings, as now) was not kept, so the bytes that ran differ from this hash by line endings only"
+      }
+    },
+    {
+      "what": "heading round 020, resumed on the same request",
+      "rounds": ["020"],
+      "outcome": "37 containers, created 19:07:47Z to 20:43:34Z, first attempt; 56 of 56 sources, 3,676 of 3,676 probes in all",
+      "recognizer": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude/run_probes.py",
+        "commit": "413115b24",
+        "sha256": "f107ad8a5cd0675112d36931c596315cd38c4c6bc7126a513fe00a8172ad8440",
+        "blobSha256": "8fdd3b658bb513c043ff14ca9124cd6bf15c0c92149372febfbccec3e449a1ed",
+        "bytesAre": "the working copy with CRLF line endings; identical to the commit's blob apart from line endings"
+      },
+      "extractor": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude/extract-clips.mjs",
+        "commit": "413115b24",
+        "sha256": "c42970b5b6dff4bf36bdc9aafaec0f3a734e9aa239bf6897d33cbe938fd66589",
+        "blobSha256": "1d253df6965b9618ff0b7ccbf8d904965abf6dd7de11a5f8849ea1ed6c7f4be5",
+        "bytesAre": "the working copy with CRLF line endings; identical to the commit's blob apart from line endings"
+      },
+      "extractorNote": "The patched extractor was in the working copy and tried on a real probe before the chain started; it was committed as 413115b24 at 19:29Z with the same bytes."
+    },
+    {
+      "what": "reconstructed follow-up stages: context, variants, gaps, variants, terminal, quotes+controls",
+      "rounds": ["023", "024", "025", "026", "027", "028"],
+      "driverStartedAbout": "2026-10-05T20:45Z",
+      "driver": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/run-rounds.sh",
+        "commit": "066601acb",
+        "sha256": "c8966c2b64be3792de597c4d62b5a5bbbceb544c5503b43cf7005efb22d87f3c",
+        "bytesAre": "the working copy, identical to the commit's blob",
+        "keptCopy": {
+          "path": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/provenance/full-001/run-rounds.sh",
+          "sha256": "c8966c2b64be3792de597c4d62b5a5bbbceb544c5503b43cf7005efb22d87f3c"
+        }
+      },
+      "librariesLoadedAtStart": [
+        {
+          "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/rounds.sh",
+          "commit": "066601acb",
+          "sha256": "9dd45483bc8e8ff465a53229ec09718aa3c16cc8d736465a9fd62781744f0ded",
+          "bytesAre": "the commit's blob",
+          "keptCopy": {
+            "path": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/provenance/full-001/lib-rounds.sh.as-loaded-by-run-rounds",
+            "sha256": "9dd45483bc8e8ff465a53229ec09718aa3c16cc8d736465a9fd62781744f0ded"
+          }
+        },
+        {
+          "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/cleanup.sh",
+          "commit": "413115b24",
+          "sha256": "835b9457c5c59adab6d2a44303ae7a35e024f07e9826b7c28cd1c9d882813be4",
+          "bytesAre": "the working copy, identical to the commit's blob",
+          "keptCopy": {
+            "path": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/provenance/full-001/lib-cleanup.sh",
+            "sha256": "835b9457c5c59adab6d2a44303ae7a35e024f07e9826b7c28cd1c9d882813be4"
+          }
+        }
+      ],
+      "stageRecordShape": "written by that library's record_stage: no plannedSources and no plannerExit key",
+      "recognizer": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude/run_probes.py",
+        "commit": "413115b24",
+        "sha256": "f107ad8a5cd0675112d36931c596315cd38c4c6bc7126a513fe00a8172ad8440",
+        "blobSha256": "8fdd3b658bb513c043ff14ca9124cd6bf15c0c92149372febfbccec3e449a1ed",
+        "bytesAre": "the working copy with CRLF line endings; identical to the commit's blob apart from line endings"
+      },
+      "extractor": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude/extract-clips.mjs",
+        "commit": "413115b24",
+        "sha256": "c42970b5b6dff4bf36bdc9aafaec0f3a734e9aa239bf6897d33cbe938fd66589",
+        "blobSha256": "1d253df6965b9618ff0b7ccbf8d904965abf6dd7de11a5f8849ea1ed6c7f4be5",
+        "bytesAre": "the working copy with CRLF line endings; identical to the commit's blob apart from line endings"
+      }
+    },
+    {
+      "what": "converted original ebs-middle-1-2006-2: quotes+controls",
+      "driver": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/run-converted.sh",
+        "commit": "7114a35cc",
+        "sha256": "fb1b2a8ead768e7e896076c7cbf5db28702f80d4ccf7c0edc0bb67c43bd9e0b7",
+        "bytesAre": "the working copy, identical to the commit's blob",
+        "keptCopy": {
+          "path": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/provenance/full-001/run-converted.sh",
+          "sha256": "fb1b2a8ead768e7e896076c7cbf5db28702f80d4ccf7c0edc0bb67c43bd9e0b7"
+        }
+      },
+      "librariesLoadedAtStart": [
+        {
+          "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/rounds.sh",
+          "commit": "7114a35cc",
+          "sha256": "93c542062b56c351ee4d92215cbf07c54dcba1fee61c55b0954aa8c23667212d",
+          "bytesAre": "the working copy, identical to the commit's blob",
+          "keptCopy": {
+            "path": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261006/native-recovery/claude/provenance/full-001/lib-rounds.sh.as-loaded-by-run-converted",
+            "sha256": "93c542062b56c351ee4d92215cbf07c54dcba1fee61c55b0954aa8c23667212d"
+          }
+        },
+        {
+          "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/lib/cleanup.sh",
+          "commit": "413115b24",
+          "sha256": "835b9457c5c59adab6d2a44303ae7a35e024f07e9826b7c28cd1c9d882813be4",
+          "bytesAre": "the working copy, identical to the commit's blob"
+        }
+      ],
+      "stageRecordShape": "written by run_stage: plannedSources and plannerExit present",
+      "recognizer": {
+        "path": "scripts/qa/english-listening/whole-audio-seek/claude-native-recovery/run_converted_probes.py",
+        "commit": "fdb3716ec",
+        "sha256": "c702270bd40a11c59541604b3e465c7a608788353acb665edff3b65fcfca77d3",
+        "bytesAre": "the working copy, identical to the commit's blob"
+      },
+      "clipCutter": {
+        "path": "C:/Creative/testautocreator/scripts/qa/english-listening/whole-audio-seek/codex/native-windows.mts",
+        "sha256": "71b1cf0bef3ca6734a5de40c2fc4565d0288f192afa74075b00ff907edf90154",
+        "note": "the verifier's own tool in the main checkout, read only"
+      }
+    }
+  ],
+  "builder": "build-ledger.mjs at the commit and tool hash its summary.json names.",
+  "recognition": {
+    "interpreter": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/claude/asr-venv/Scripts/python.exe",
+    "model": "Systran/faster-whisper-medium, int8, snapshot 08e178d48790749d25932bbc082711ddcfdfbc4f",
+    "lock": "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/gpu-probe.lock"
+  }
+}
