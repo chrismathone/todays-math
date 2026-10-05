@@ -245,8 +245,9 @@ class EvidenceTests(unittest.TestCase):
         self.rejects(lambda: v.validate_mapping(row, source, self.f.question, index), "generated_index_mapping_without_grounding")
 
     def test_legacy_reconstructed_probe_cannot_bypass_v2_scope_and_native_identity(self):
-        f = Fixture(self.temp.name, reconstructed=True)
-        result = f.run()
+        with tempfile.TemporaryDirectory() as folder:
+            f = Fixture(folder, reconstructed=True)
+            result = f.run()
         self.assertEqual(result["counts"]["outcomes"], {"held": 1})
         self.assertIn("reconstructed_requires_explicit_native_adapter_v2", result["records"][0]["reasons"])
 

@@ -5,9 +5,11 @@ import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
 
 const sha = (b: Buffer) => createHash("sha256").update(b).digest("hex");
+type NativeProbe = { id: string | number; startFrame: number; frameCount: number; maxDurationSeconds?: number };
 const spec = JSON.parse(fs.readFileSync(0, "utf8"));
-const { source, clock, probes, root } = spec;
-if (probes.length > 128) throw Error("Unbounded replay probe count");
+const { source, clock, root } = spec;
+const probes: NativeProbe[] = spec.probes;
+if (!Array.isArray(probes) || probes.length > 128) throw Error("Unbounded replay probe count");
 const { parseMp3, decodeMp3, MAX_DURATION_MS, MAX_PLAYBACK_BYTES } = await import(
   pathToFileURL(path.join(root, "src/lib/english/listening/media/mp3.ts")).href
 );
@@ -40,7 +42,7 @@ const rate = parsed.sampleRate, channels = parsed.channels, frameBytes = channel
 const windowFrames = rate / 50;
 if (!Number.isSafeInteger(windowFrames)) throw Error("Unsupported native 20ms clock");
 let allocated = 0;
-const clips = probes.map((p: { id: string; startFrame: number; frameCount: number; maxDurationSeconds?: number }) => {
+const clips = probes.map(p => {
   const limit = p.maxDurationSeconds ?? 14;
   if (![14, 60].includes(limit) || !Number.isSafeInteger(p.startFrame) || !Number.isSafeInteger(p.frameCount) || p.startFrame < 0 || p.frameCount <= 0 || p.frameCount > limit * rate || p.startFrame + p.frameCount > clock.frameCount)
     throw Error("Probe outside actual source or its explicit cue/dialogue duration bound");
