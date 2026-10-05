@@ -220,7 +220,7 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
     return found;
   };
 
-  it("final render: canonical repair math wrappers retain the native 17pt inline box", async () => {
+  it("final render: canonical repair math and clinic headings retain their native sizes", async () => {
     const exchange = sourceRowsExchange(
       [
         {
@@ -228,12 +228,12 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
           title: "합성 오류 점검",
           kind: "clinic",
           activity: "errorCheck",
-          blocks: [],
+          blocks: [{ id: "clinic-1", content: SHORT_PROMPT }],
         },
       ],
       30,
     );
-    exchange.units[0].sections[0].blocks.push({
+    exchange.units[0].sections[0].blocks.unshift({
       blockId: "repair-text",
       kind: "text",
       markdown: "합성 오류 점검",
@@ -297,6 +297,18 @@ describe.skipIf(!run)("native source question rows in real Chromium", () => {
         expect(box.display).toBe("inline-block");
         expect(box.heightMm).toBeCloseTo(9.897, 1);
       }
+      const headingGaps = await page.evaluate(() =>
+        Array.from(
+          document.querySelectorAll(
+            '.tb-source-problem[data-source-kind="clinic"] .tb-problem-head',
+          ),
+        ).map(
+          (element) =>
+            (parseFloat(getComputedStyle(element).marginBottom) * 25.4) / 96,
+        ),
+      );
+      expect(headingGaps).toHaveLength(1);
+      expect(headingGaps[0]).toBeCloseTo(1.2, 3);
     } finally {
       await page.close();
     }
