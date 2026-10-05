@@ -110,8 +110,22 @@ const controls = {
     neighbourQuote: { tested: 0, passed: 0, cases: [] },
     firstMemberKeepsSharedHead: { tested: 0, violated: 0, cases: [] },
     anotherSourcesContainer: { tested: 0, passed: 0 },
+    // Both cuts are placed from the machine-measured energy onset of the
+    // heading, not from a heard or marked beginning of the spoken number.
+    // Where that onset is a sound before the number, a clip begun 300 ms after
+    // it still holds the whole number; these are damaged inputs for the rules,
+    // not gold truncations of a number. (Request purpose
+    // "adversarial_begun_300ms_into_number" and the earlier runs' key
+    // begun300msIntoNumber name the same clips by what was intended.)
+    cutPlacement:
+      "relative to the machine-measured energy onset; not human-marked, not a proved truncation of the spoken number",
     cutAfter400ms: { tested: 0, wroteTheNumber: 0, passed: 0, cases: [] },
-    begun300msIntoNumber: { tested: 0, wroteTheNumberFirst: 0, passed: 0, cases: [] },
+    begun300msAfterMeasuredOnset: {
+      tested: 0,
+      wroteTheNumberFirst: 0,
+      passed: 0,
+      cases: [],
+    },
   },
 };
 const ids = session.scope(values.scope, values["source-id"]);
@@ -330,7 +344,7 @@ for (const id of ids) {
     const bucket =
       listening.purpose === "adversarial_cut_after_400ms"
         ? adv.cutAfter400ms
-        : adv.begun300msIntoNumber;
+        : adv.begun300msAfterMeasuredOnset;
     bucket.tested++;
     if (wrote) count(bucket, bucket === adv.cutAfter400ms ? "wroteTheNumber" : "wroteTheNumberFirst");
     if (accepted) {
@@ -457,6 +471,7 @@ const summary = {
     headingComparisonOutcomes: headingDelta,
     adversarial: Object.fromEntries(
       Object.entries(controls.adversarial).map(([name, value]) => {
+        if (typeof value !== "object") return [name, value];
         const { cases, ...numbers } = value;
         return [name, numbers];
       }),

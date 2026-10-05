@@ -349,7 +349,8 @@ test("a start that is not the measured lead before a measured onset is no headin
   assert.throws(() => measuredStart(native, startOf(AT[2]) + 1, onset), /start_not_on_measurement_grid/);
   assert.throws(() => measuredStart(native, (900 - 20) * FRAMES, 900 * FRAMES), /no_measured_quiet_before_onset/);
   const input = makeInput();
-  // Begun 300 ms into the number: the recognizer still writes it, physics refuses it.
+  // Begun 300 ms after the measured onset: the recognizer still writes the
+  // number, and the start is refused because it is not the measured lead.
   input.koListenings = input.koListenings.map((l) =>
     l.startFrame === startOf(AT[2])
       ? { ...l, startFrame: onset + 15 * FRAMES, onsetFrame: onset }

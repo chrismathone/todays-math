@@ -150,7 +150,7 @@ each stage would still plan, in dry-run, from everything heard.
 | `terminal`   | Korean, from every long-quiet onset after the last heading                                                 |
 | `gaps`       | Korean, from long-quiet onsets between two established headings whose numbers are not consecutive          |
 | `quotes`     | English, up to 60 s: the dialogue of an established passage, from the end of its heading to the next start |
-| `truncation` | adversarial clips at established headings, in their own folder: cut after 400 ms; begun 300 ms into it     |
+| `truncation` | adversarial clips at established headings, in their own folder: cut 400 ms after the measured onset; begun 300 ms after it (machine-placed cuts, not proved truncations of the number) |
 
 For an official source only a held question's own number, and the next number
 where that has no certified start, are sought.

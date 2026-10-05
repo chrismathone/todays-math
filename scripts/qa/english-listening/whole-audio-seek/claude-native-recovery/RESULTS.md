@@ -223,12 +223,28 @@ native heading — 24 identical, 2 later.
 | an offered row's quotes, its own passage taken away                        |    64 |        0 |
 | first member of a shared heading moved to its own number                   |    14 |        0 |
 | another source's recognition container                                     |    14 |        0 |
-| real clip cut 400 ms after the onset (38 still wrote the number)           |   190 |        0 |
-| real clip begun 300 ms into the number (23 still wrote the number first)   |   190 |        0 |
+| real clip cut 400 ms after the measured onset (38 still wrote the number)  |   190 |        0 |
+| real clip begun 300 ms after the measured onset (23 still wrote the number first) | 190 |   0 |
 
-The last two rows are why the rules are physical: a recognizer still writes the
-number from a damaged clip; the row is refused because the clip is not the
-measured lead before a measured onset, or carries no instruction.
+What the last two rows are, and are not. Both cuts are placed from the
+**machine-measured energy onset** of the heading. Nobody listened to these 380
+clips and nothing establishes where the spoken number begins in them, so they
+are not gold truncations of a number and must not be counted as such. Where the
+measured onset is a sound before the number (a chime, a breath), a clip "begun
+300 ms after the onset" still holds the whole number: the independent CTC study
+found exactly that for one of them (`c30` in
+`../native-korean-alignment/RESULTS.md` — the clip starts 160 ms _before_ the
+models' first-syllable estimate). The request purpose
+`adversarial_begun_300ms_into_number` and the key `begun300msIntoNumber` in the
+runs frozen before this note name the clips by what was intended; later runs
+call the key `begun300msAfterMeasuredOnset`. The coordinator's independent
+replay of the same 380 clips reports 312 matched as held and 68 unmatched; that
+replay is the coordinator's, not reproduced here.
+
+What the rows do show is narrower: from a clip whose start is not the measured
+lead before a measured onset, or which carries no instruction, this producer
+accepted nothing (0 of 380), although the recognizer wrote the number in 61 of
+them. That is a statement about this producer's rule, not about truncation.
 
 The control figures are reported by the coordinator's family-separated
 partition in `summary.json`; three pilot sources whose readings were read by
@@ -246,7 +262,7 @@ overflow in every round.
 | ------------------------- | --------------------------------------------------------------- | -------------------: |
 | 001–005, 010 (pilot)      | Korean: headings, shorter and longer same-start clips, gap and terminal scans |          1,041 |
 | 006 (pilot)               | English passage clips (3,779 s)                                 |                   87 |
-| adversarial 001           | truncated clips, own folder, never evidence                     |                  380 |
+| adversarial 001           | clips cut short or begun late relative to the measured onset, own folder, never evidence | 380 |
 | 030–036 (official)        | Korean 198 + 5 + 304 + 48 + 39 number clips (+ 10 of a round stopped as planned too broadly), English 3 |    607 |
 | 040–044 (converted)       | `ebs-middle-1-2006-2` on its authenticated playback clock, own runner: Korean 100, English 13 | 113 |
 | 011 (pilot)               | English clips for passages ended by a first-speech boundary     |                   25 |
@@ -282,21 +298,52 @@ English rounds, then one ledger over the whole held population).
 - **Official rows with only a later own sentence** (19): a route the verifier
   would have to evaluate.
 
-## One failure during the run, and its cause
+## Attempts that failed, were stopped or were resumed
 
-Heading round 020 stopped after 19 of 56 sources: the extractor could not write
-the first clip of `ebs-middle-2-2006-1`. The cause was this producer's own
-drivers, which swept every empty folder under `tmp` after each round; another
-round's extractor makes its source folder seconds before it writes into it, and
-a concurrent sweep removed it. (A first guess of memory contention was wrong.)
-A follow-up driver that had been stopped also survived as an orphan and ran one
-round beside the resumed one before it was found and killed. Fix, commit
-`413115b24`: a round's cleanup removes only its own folder and only when
-empty; the extractor keeps a marker file in its folder until the clips and
-their manifest are written. On a real, already recognized probe the patched
-extractor produced the identical clip hash. Round 020 was resumed on the same
-request; the 19 finished containers were not touched and nothing was recognized
-twice.
+Nothing below was removed or rewritten: every request and every raw container
+these attempts left is still where it was written.
+
+1. **A driver edited while it ran** (pilot). `run-rounds.sh` was changed while
+   the shell was still reading it; the driver ended with status 127 after its
+   last stage had already completed. No round was lost. The drivers are no
+   longer edited while one runs.
+2. **Official heading round 030, planned too broadly.** It asked for 2,279
+   probes over every number of the 47 official sources instead of the held
+   numbers. Stopped on purpose after 1 source (33 probes). The planner was
+   narrowed and the stage planned again as round 031 (198 probes, complete).
+   Round 030 stays unfinished and is named in `stopped-requests.json`.
+3. **Heading round 020 failed at 19 of 56 sources.** The extractor could not
+   write the first clip of `ebs-middle-2-2006-1`. The cause was this producer's
+   own drivers, which swept every empty folder under `tmp` after each round;
+   another round's extractor makes its source folder seconds before it writes
+   into it, and a concurrent sweep removed it. (A first guess of memory
+   contention was wrong and was withdrawn.) Fix, commit `413115b24`: a round's
+   cleanup removes only its own folder and only when empty; the extractor keeps
+   a marker file in its folder until the clips and their manifest are written.
+   On a real, already recognized probe the patched extractor produced the
+   identical clip hash. Round 020 was then **resumed on the same request**: the
+   finished containers were not touched, nothing was recognized twice, and it
+   ended at 56 of 56 sources, 3,676 of 3,676 probes.
+4. **A follow-up driver outlived its stop.** After round 020 failed, the chain
+   went on to rounds 021 (longer context, 14 sources, 29 probes, complete) and
+   022 (shorter clips) from the 19 sources heard so far. Stopping its parent
+   shell left the driver running as an orphan beside the resumed round 020; it
+   was found and ended by hand after 16 of 38 sources of round 022 (122 of 224
+   probes). Round 022 stays unfinished and is named in
+   `stopped-requests.json`; its containers are read like any other.
+5. **A commit failed for lack of disk space** (0.63 GB free). Nothing was
+   written; the commit was repeated after space was freed.
+6. **Round numbers.** The follow-up stages after the resumed round 020 would
+   have been planned as 021 again and stopped on the existing request, and the
+   chain would have gone on to build a ledger without them. Found before it
+   happened (coordinator and producer independently); fixed in commits
+   `b0b525b30` and `066601acb`: a stage takes the next number that has no
+   request, no raw containers and no temporary folder, and everything round 022
+   had not finished was planned afresh from all 56 sources under new numbers.
+7. **Since then** every stage leaves a record (`logs/stages.jsonl`) and
+   `build-ledger.mjs --scope held` writes no run unless every request is
+   finished or named as stopped (`lib/coverage.mjs`, commit `89f442162`). The
+   full run's receipt is in "Full run" below.
 
 ## Not done
 
