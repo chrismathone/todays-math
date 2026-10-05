@@ -278,13 +278,22 @@ for (const record of records) {
     // its window there, so the dialogue is heard from its own first sound.
     for (const item of [
       ...(values.only === "support" ? [] : (source.memberDialogue ?? [])),
+      // With a named list, every listed candidate that has a script section,
+      // no exact first utterance yet and no later English listening is asked
+      // for; without one, the ledger's own wish list is used.
       ...(values.only === "held"
         ? []
-        : (source.dialogueWanted ?? []).filter(
-            (item) =>
-              !supportList ||
-              supportList.has(record.sourceRecordId + "#" + item.sourceNumber),
-          )),
+        : supportList
+          ? (source.candidateStarts ?? []).filter(
+              (item) =>
+                supportList.has(
+                  record.sourceRecordId + "#" + item.sourceNumber,
+                ) &&
+                item.hasScript &&
+                !item.supported &&
+                !item.heardLater,
+            )
+          : (source.dialogueWanted ?? [])),
     ]) {
       const after = item.afterFrame ?? item.startFrame + frames;
       const reach = item.reachFrames ?? 6 * sampleRate;

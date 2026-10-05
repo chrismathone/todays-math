@@ -67,10 +67,23 @@ number and its own dialogue.
   announcer reads them and a Korean recognizer writes them in Hangul
   (`strictInstructionCoverage` records the share with them counted).
 - `first_dialogue_grounded` — the number, then the question's **own official
-  first utterance** heard by an English probe from the same frame. This is how a
-  shared-instruction member is grounded (its number is followed directly by its
-  dialogue), and the only way a number whose sentence the recognizer garbled
-  becomes a candidate — then the first utterance must be heard word for word.
+  first utterance** heard by an English probe. This is how a shared-instruction
+  member is grounded (its number is followed directly by its dialogue), and the
+  only way a number whose sentence the recognizer garbled becomes a candidate.
+  Only an **exact opening** of the official dialogue counts: four to eight words,
+  word for word and in order, in segments the recognizer did not mark uncertain.
+  A first utterance of four words or more is quoted alone; a shorter one
+  ("Hello?") is quoted whole together with the exact start of the next utterance.
+  A word-trigram share is recorded but decides nothing.
+
+  The English probe begins at the start or at a **later measured onset**: an
+  English recognition that begins at the spoken number often writes only
+  "Number 20" and ends its window at the pause that follows, so the dialogue is
+  heard from its own first sound instead. That onset lies within 6 s of the start
+  for a member and 20 s otherwise (after the number and its sentence), is itself
+  a policy start on the native clock, and never lies past a frame where another
+  question's number was heard. The row's `seekStartMs` stays at the number.
+
 - `ordinal_only` — the number in question order, for questions with no official
   text at all in the frozen inputs (image-only prompt "원본 문제지 N번 문항" in a
   source whose official script is empty). Such rows keep
@@ -86,8 +99,16 @@ supplied first-dialogue support); `reasons` explain holds.
 
 `scriptEvidence` gives exact character positions in the frozen official
 transcript (the live snapshot's `group.transcript.text`): the question's section,
-its instruction sentence, and the first-utterance quote that the English probe
-heard word for word, with the probe segment ids that carry it.
+its instruction sentence, and the opening that the English probe heard word for
+word — `firstDialogueQuote` for one utterance, or `firstDialogueOpeningEvidence`
+(`exact_original_opening_v1`: whole earlier utterances and a last exact prefix)
+— with the probe segment ids that carry it.
+
+Frozen whole-record ASR references are strict: `cueSegmentIds` is the one
+segment that wrote this number and whose estimated span holds the measured onset
+(none when the ASR repeated the announcement), `anchorSegmentIds` is the official
+sentence at that segment, and anything merely nearby is quoted under
+`diagnosticAsrSegmentIds`.
 
 ## Pipeline
 
@@ -137,10 +158,19 @@ held there.
 - onsets near any place the frozen ASR wrote that number in any form (including
   its own English rendering — a hint, never evidence), or near the position the
   recording's own measured spacing predicts;
-- for a shared-instruction member, the short number-only clip and the English
-  first-dialogue probe at each such onset;
-- an English first-dialogue probe at a start whose number was written as bare
-  digits, whose sentence matched on Hangul only, or whose sentence was garbled.
+- where a candidate start sits before a sound too short to be a spoken number
+  (a click after the music), the next onset, so the start can move up to the
+  number itself;
+- for a shared-instruction member, the short number-only clip and an English
+  first-dialogue probe from the first onsets after the number;
+- an English first-dialogue probe from the first onsets after the number and its
+  sentence, for a start whose number was written as bare digits, whose sentence
+  matched on Hangul only, or whose sentence was garbled.
+
+`--only held` listens for held questions only; `--only support` adds English
+support to candidates only, and `--support-list <json>` limits that to the
+questions an independent verifier named (`{records:[{sourceRecordId,
+sourceNumber}]}`).
 
 ## Probe runner and GPU lock
 
@@ -159,10 +189,11 @@ Lock protocol (`<shared>/gpu-probe.lock`, shared with the other providers):
   owner's lock is never touched;
 - **the model is resident only while the lock is held** — it is unloaded before
   every release, on errors too;
-- a waiter writes `gpu-probe.lock.waiting-<pid>` beside the lock. One source is
-  one batch; after each batch the holder hands over (unload, release, stay away
-  3 s) only when another live waiter has announced itself, so a single runner
-  does not reload its model between sources.
+- a waiter writes `gpu-probe.lock.waiting-<pid>` beside the lock. At a source
+  boundary, once a source-sized batch ran in the current hold
+  (`--min-probes-per-hold`, default 30 probes), the holder hands over (unload,
+  release, stay away 3 s) — but only when another live waiter has announced
+  itself, so a single runner does not reload its model between sources.
 
 Another provider can call this runner as is with its own `--requests`, `--out`
 and `--owner`; `--max-sources 1` alternates fairly, one source each.
@@ -183,16 +214,18 @@ sourceAudioSha256 playbackSha256 asrPath asrSha256`
 - `seekStartMs` (integer or null) and `seekEndMs` (the full original duration)
 - `cueNumber cueSpokenNumbers cueForm scopeQuestionNumbers kind
 officialInstruction`
-- `cueSegmentIds cueText anchorSegmentIds anchorText` — frozen whole-record ASR,
-  verbatim, possibly empty when that ASR skipped the Korean cue
+- `cueSegmentIds cueText anchorSegmentIds anchorText diagnosticAsrSegmentIds
+diagnosticAsrText` — frozen whole-record ASR, verbatim, possibly empty when
+  that ASR skipped or repeated the Korean cue
 - `nativeEvidence`: `sampleRate channels frameCount pcmSha256 startFrame
 onsetFrame/cueOnsetFrame leadFrames quietBeforeFrames leadPeakDbfs`, the native
   cache and energy file hashes, and the probe binding
   (`probe{path,sha256} probeOffsetFrame probeFrameCount cueProbeSegmentIds`)
 - `probeEvidence`: the stored Korean probe that begins at the start
   (`path sha256 probeId segmentIds text inputMonoFloat32Sha256 clipPcmSha256 …`)
-- `dialogueProbeEvidence`: the English probe from the same frame, where one was
-  heard; `scriptEvidence`; `existingCheckProbe` (existing rows)
+- `dialogueProbeEvidence`: the English probe that heard the opening, with its own
+  `startFrame` and `offsetFromStartFrames`; `scriptEvidence`;
+  `existingCheckProbe` (existing rows)
 - `identityEvidence notes heldDiagnostics reasons`
 
 `existing_verified` rows reproduce the frozen `audioRange` exactly and are never

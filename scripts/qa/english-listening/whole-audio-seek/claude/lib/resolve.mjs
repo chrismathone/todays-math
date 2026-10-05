@@ -713,6 +713,12 @@ export function resolveSource({
     .map((row) => ({
       sourceNumber: row.plan.sourceNumber,
       startFrame: row.accepted.startFrame,
+      // For a named request to add English first-utterance support.
+      afterFrame: afterNumber(row.accepted.cue.item),
+      reachFrames: dialogueReachSeconds(row.plan) * rate,
+      hasScript: Boolean(sections?.get(row.plan.sourceNumber)?.firstUtterance),
+      supported: Boolean(row.accepted.dialogue),
+      heardLater: dialogueAfter(row.accepted.startFrame, row.plan).length,
     }));
   return {
     rows,
