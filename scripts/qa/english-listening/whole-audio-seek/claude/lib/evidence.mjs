@@ -123,6 +123,8 @@ export function firstDialogueShare(officialWords, probe) {
 /** Words of an exact official quote, and the fewest that make one. */
 export const QUOTE_WORDS = 8;
 export const MINIMUM_QUOTE_WORDS = 4;
+/** How far an opening that the script prints twice may be quoted on. */
+export const UNIQUE_QUOTE_WORDS = 24;
 // An initialism printed with periods ("H.J.") is one word, as in englishWords.
 const WORD =
   /(?<![A-Za-z0-9'’.])(?:[A-Za-z]\.){2,}[A-Za-z0-9]*|[A-Za-z0-9]+(?:[’'][A-Za-z]+)*/g;
@@ -139,26 +141,41 @@ const WORD =
  * null. A stage direction ends the opening: nothing printed in brackets is
  * spoken text.
  */
-export function heardOpening(utterances, probe) {
+export function heardOpening(utterances, probe, transcriptWords = null) {
   if (!utterances?.length) return null;
-  const tokens = [];
+  // Official words in order, up to `enough` of them: an utterance is taken in
+  // only while fewer than `minimum` words are held.
+  const official = (minimum, enough) => {
+    const list = [];
+    for (let u = 0; u < utterances.length && list.length < minimum; u++) {
+      const text = utterances[u].text;
+      const direction = text.indexOf("[");
+      for (const match of text.matchAll(WORD)) {
+        if (direction >= 0 && match.index > direction) break;
+        for (const word of englishWords(match[0]))
+          list.push({ word, utterance: u, end: match.index + match[0].length });
+        if (list.length >= enough) break;
+      }
+      if (direction >= 0) break;
+    }
+    return list;
+  };
   // A first utterance of four words or more is quoted alone; the next one is
   // taken in only while the opening is still shorter than a quote.
-  for (
-    let u = 0;
-    u < utterances.length && tokens.length < MINIMUM_QUOTE_WORDS;
-    u++
-  ) {
-    const text = utterances[u].text;
-    const direction = text.indexOf("[");
-    for (const match of text.matchAll(WORD)) {
-      if (direction >= 0 && match.index > direction) break;
-      for (const word of englishWords(match[0]))
-        tokens.push({ word, utterance: u, end: match.index + match[0].length });
-      if (tokens.length >= QUOTE_WORDS) break;
+  const tokens = official(MINIMUM_QUOTE_WORDS, QUOTE_WORDS);
+  // The same opening continued, for one the official script prints twice.
+  const longer = official(UNIQUE_QUOTE_WORDS, UNIQUE_QUOTE_WORDS);
+  const printed = (count) => {
+    if (!transcriptWords) return 1;
+    let found = 0;
+    for (let at = 0; at + count <= transcriptWords.length; at++) {
+      let same = true;
+      for (let i = 0; i < count && same; i++)
+        same = transcriptWords[at + i] === longer[i].word;
+      if (same) found++;
     }
-    if (direction >= 0) break;
-  }
+    return found;
+  };
   const heard = [];
   for (const segment of probe.segments) {
     if (segment.uncertain) continue;
@@ -175,7 +192,18 @@ export function heardOpening(utterances, probe) {
       for (let i = 0; i < count && same; i++)
         same = heard[at + i].word === tokens[i].word;
       if (!same) continue;
-      const last = tokens[count - 1];
+      // Quote on, word for word, while the official script prints these words
+      // in more than one place and the probe heard the next one too.
+      let taken = count;
+      while (
+        printed(taken) > 1 &&
+        taken < longer.length &&
+        heard[at + taken]?.word === longer[taken].word
+      )
+        taken++;
+      const unique = printed(taken) === 1;
+      if (!unique) taken = count;
+      const last = longer[taken - 1];
       const quotes = [];
       for (let u = 0; u <= last.utterance; u++) {
         const { start, end, text } = utterances[u];
@@ -191,9 +219,11 @@ export function heardOpening(utterances, probe) {
       }
       return {
         quotes,
-        words: count,
+        words: taken,
+        // False when the script prints even the longest heard opening twice.
+        unique,
         segmentIds: [
-          ...new Set(heard.slice(at, at + count).map((item) => item.id)),
+          ...new Set(heard.slice(at, at + taken).map((item) => item.id)),
         ],
       };
     }

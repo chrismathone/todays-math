@@ -170,7 +170,11 @@ export function proveAtStart(
       const share = firstDialogueShare(section.words, item.probe);
       // Only an exact opening of the official dialogue counts as heard; the
       // word-trigram share is recorded but decides nothing.
-      const quote = heardOpening(section.utterances, item.probe);
+      const quote = heardOpening(
+        section.utterances,
+        item.probe,
+        section.transcriptWords ?? null,
+      );
       if (dialogueShare === null || share > dialogueShare)
         dialogueShare = share;
       if (quote && (!dialogue || quote.words > dialogue.quote.words))

@@ -269,6 +269,15 @@ export function scriptSections(transcript, plans, prompts) {
     if (!section || section.words.length < 4)
       return { sections: null, reason: "official_script_section_empty" };
   }
+  // The spoken English of the whole official script (no speaker labels or
+  // stage directions), shared by every section: an opening that the script
+  // prints more than once is quoted further until it is unique.
+  const transcriptWords = spokenEnglish(transcript);
+  for (const section of sections.values())
+    Object.defineProperty(section, "transcriptWords", {
+      value: transcriptWords,
+      enumerable: false,
+    });
   return { sections, reason: null };
 }
 

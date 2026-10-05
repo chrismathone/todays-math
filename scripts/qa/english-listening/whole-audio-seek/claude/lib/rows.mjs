@@ -171,6 +171,9 @@ export function assembleRow({
     }
     const opening = pick.dialogue?.quote ?? null;
     const single = Boolean(opening) && opening.quotes.length === 1;
+    // The official script prints even the longest heard opening in two places.
+    if (opening && !opening.unique)
+      notes.push("first_dialogue_opening_printed_twice_in_script");
     if (section)
       scriptEvidence = {
         source: "frozen live snapshot group transcript text",

@@ -141,3 +141,63 @@ test("a member grounded by a greeting chain replays; share alone grounds nothing
   });
   assert.equal(loose.rows.find((r) => r.sourceNumber === 4).status, "held");
 });
+
+test("an opening the script prints twice is quoted on until it is unique", () => {
+  // Two questions begin with the same greeting.
+  const TWICE = TRANSCRIPT.replace(
+    "4번 W: Hi Dave, what are you doing here? M: I am waiting for the bus to go home.",
+    "4번 W: Hello, may I help you? M: Yes, I bought this computer a month ago.",
+  ).replace("M: Good afternoon.", "M: Hello, may I help you?");
+  assert.notEqual(TWICE, TRANSCRIPT);
+  const sections = sectionsOf(TWICE);
+  assert.equal(sections.get(1).utterances[0].text, "Hello, may I help you?");
+  const section = sections.get(4);
+  const probe = makeProbe(ONSETS[4], [
+    "Hello. May I help you?",
+    "Yes. I bought this computer a month ago.",
+  ]);
+  // Alone the greeting is five exact words, but the script has it twice.
+  const short = heardOpening(section.utterances, probe);
+  assert.equal(short.words, 5);
+  const heard = heardOpening(
+    section.utterances,
+    probe,
+    section.transcriptWords,
+  );
+  assert.equal(heard.unique, true);
+  assert.deepEqual(
+    heard.quotes.map((q) => q.text),
+    ["Hello, may I help you?", "Yes"],
+  );
+  assert.equal(heard.words, 6);
+  assert.deepEqual(heard.segmentIds, [1, 2]);
+  for (const quote of heard.quotes)
+    assert.equal(
+      TWICE.slice(quote.startCharacter, quote.endCharacter),
+      quote.text,
+    );
+  // The probe did not hear the next word: the opening stays as heard and is
+  // marked as not unique; nothing is added to it.
+  const greeting = makeProbe(ONSETS[4], "Hello. May I help you? No.");
+  const twice = heardOpening(
+    section.utterances,
+    greeting,
+    section.transcriptWords,
+  );
+  assert.equal(twice.unique, false);
+  assert.deepEqual(
+    twice.quotes.map((q) => q.text),
+    ["Hello, may I help you"],
+  );
+  // An opening printed once is never lengthened.
+  const once = heardOpening(
+    sectionsOf(TRANSCRIPT).get(4).utterances,
+    makeProbe(ONSETS[4], "Hi Dave, what are you doing here? I am waiting."),
+    sectionsOf(TRANSCRIPT).get(4).transcriptWords,
+  );
+  assert.equal(once.unique, true);
+  assert.deepEqual(
+    once.quotes.map((q) => q.text),
+    ["Hi Dave, what are you doing here"],
+  );
+});
