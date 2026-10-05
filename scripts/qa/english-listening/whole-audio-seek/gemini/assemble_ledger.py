@@ -17,7 +17,7 @@ def get_file_sha256(path):
             h.update(chunk)
     return h.hexdigest()
 
-def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testautocreator/.qa-artifacts/whole-audio-seek-20261005/inventory.json"):
+def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testautocreator/.qa-artifacts/whole-audio-seek-20261005/inventory.json", verifier_root="C:/Creative/testautocreator/scripts/qa/english-listening/whole-audio-seek/codex"):
     with open(mapping_audit_path, "r", encoding="utf-8") as f:
         audit_data = json.load(f)
     
@@ -27,7 +27,8 @@ def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testau
     inventory_map = {r["sourceRecordId"]: r for r in inventory_data["records"]}
         
     import sys
-    sys.path.append('C:/Users/user/orca/workspaces/testautocreator/listening-seek-codex/scripts/qa/english-listening/whole-audio-seek/codex')
+    if verifier_root not in sys.path:
+        sys.path.append(verifier_root)
     import noise_floor
     
     records = []
@@ -97,13 +98,12 @@ def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testau
             ns = r["nativeSupport"][0]
             rec["seekStartMs"] = ns["seekStartMs"]
             
-            # The prompt says: "measured native frame-derived start, endMs full playback"
-            # But the existing grok candidate uses `seekEndMs` = playback length maybe?
-            # Or the total duration? `audit_data` `clock` input has it.
-            # But let's look at `anchor-matched-1282.json`. It had `seekEndMs`: duration.
-            # Wait, `native_caches[src_id]["n_data"]["playback"]["durationMs"]` is the seekEndMs!
             if src_id in native_caches:
-                rec["seekEndMs"] = native_caches[src_id]["n_data"]["playback"]["durationMs"]
+                inv_duration = inventory_map[src_id].get("audio", {}).get("durationMs")
+                native_duration = native_caches[src_id]["n_data"]["playback"]["durationMs"]
+                if inv_duration != native_duration:
+                    raise ValueError(f"Duration mismatch for {src_id}: inventory={inv_duration}, native={native_duration}")
+                rec["seekEndMs"] = inv_duration
             
             # Now build nativeEvidence
             cache_info = native_caches.get(src_id)
@@ -202,13 +202,33 @@ def assemble(mapping_audit_path, output_path, inventory_path="C:/Creative/testau
     with open(output_path, "x", encoding="utf-8") as f:
         json.dump(out_data, f, indent=2, ensure_ascii=False)
     
+    noise_floor_path = os.path.join(verifier_root, "noise_floor.py")
+    nf_hash = get_file_sha256(noise_floor_path) if os.path.exists(noise_floor_path) else None
+    
+    receipt = {
+        "output_path": output_path,
+        "mapping_audit_path": mapping_audit_path,
+        "verifier_root": verifier_root,
+        "noise_floor_sha256": nf_hash
+    }
+    
+    receipt_path = output_path + ".receipt.json"
+    with open(receipt_path, "x", encoding="utf-8") as f:
+        json.dump(receipt, f, indent=2, ensure_ascii=False)
+        
     print(f"Wrote {len(records)} records to {output_path}")
+    print(f"Wrote receipt to {receipt_path}")
     cand = sum(1 for r in records if r["status"] == "candidate")
     held = sum(1 for r in records if r["status"] == "held")
     print(f"Candidates: {cand}, Held: {held}")
 
 if __name__ == "__main__":
-    import sys
-    mapping_audit_path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/codex/reconstructed-mapping-audit-002.json"
-    output_path = "C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/gemini/ledger1282-003.json"
-    assemble(mapping_audit_path, output_path)
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--mapping-audit", required=True, help="Path to mapping audit JSON")
+    parser.add_argument("--output", required=True, help="Path to output ledger JSON")
+    parser.add_argument("--inventory", default="C:/Creative/testautocreator/.qa-artifacts/whole-audio-seek-20261005/inventory.json", help="Path to inventory JSON")
+    parser.add_argument("--verifier-root", default="C:/Creative/testautocreator/scripts/qa/english-listening/whole-audio-seek/codex", help="Path to codex helper root")
+    args = parser.parse_args()
+    
+    assemble(args.mapping_audit, args.output, args.inventory, args.verifier_root)
