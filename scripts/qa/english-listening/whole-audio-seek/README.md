@@ -6,8 +6,10 @@ playback duration. The UI seeks the same recording and continues to its end.
 These tools do not create clip assets, upload media, rewrite question content,
 publish materials, or confer human review.
 
-Claude produces evidence for the 121 official sources. Grok produces evidence
-for the 72 reconstructed sources. Codex independently replays source bytes,
+Claude produces evidence for the 121 official sources. Grok planned the
+72 reconstructed sources; after its weekly quota stopped compilation, Gemini
+3.1 Pro through Antigravity resumed the unfinished recognition queue and
+compiled its evidence with explicit model provenance. Codex independently replays source bytes,
 production playback clocks, bounded recognition input, native onsets, question
 identity, actual spoken scope and reconstruction grounding. Producer candidate
 counts are **not** admission counts. Every current question receives an explicit

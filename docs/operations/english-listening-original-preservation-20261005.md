@@ -46,6 +46,14 @@ DB에는 기존 `audioRange.startMs`로 확인된 원음 시작 위치를 저장
 | `BIGSHOL/listening-drive-media` | `1954e0c72e7dfa2ce78222e7105019c521fe730b` |
 | `BIGSHOL/listening-mp3-archive` | `007deb2f3d785608ef735e7899a4526619f4abfb` |
 
+이어 듣기 위치 분석의 완료 작업트리도 결과와 검증 도구를 main에 병합한 뒤, 깨끗한 상태·종료된 프로세스·main 밖 작업트리를 가리키지 않는 증명을 확인하고 정리했다. Grok은 주간 사용 한도로 중단됐으며, 실제 Antigravity CLI의 Gemini 3.1 Pro가 기존 32회차의 결과를 보존하고 남은 39회차·513개 분석 구간을 이어서 처리했다. Gemini의 재생 위치 후보 184개는 DB 등록 수와 구분한다. 전체 193회차의 원음 대조와 최종 등록은 별도 독립 검증 및 root 등록 절차를 따른다.
+
+| 브랜치 | 보존 SHA |
+| --- | --- |
+| `BIGSHOL/listening-seek-claude` | `397be0e1c9032f8f3ede653495667238b296e4c6` |
+| `BIGSHOL/listening-seek-grok` | `66c7db00910103506197be70e8b17d6e07493334` |
+| `BIGSHOL/listening-seek-gemini` | `eec600e6b8a5afb80cd44eeabc28daf48210ccb6` |
+
 ## 이전 분할 작업 기록
 
 이전 `ebsi-high-1-2022-2`의 20개 파생 파일은 보관용으로 남기고 사이트의 원본 자료 연결에서 제외했다. 추가 분할 후보도 운영에 연결하지 않는다. 아래 검증 결과는 이전 작업의 기록이며 현재 운영 정책은 전체 원본 재생이다. 검증 산출물은 사람의 청취 검수·내용 검수·발행 승인으로 승격하지 않는다.
