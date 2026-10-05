@@ -139,6 +139,17 @@ test('the queue header exception cannot hide changed hashes, providers or nested
     records: [{ inventoryPath: '/probe.json', inventorySha256: wrong }] }, refs, binding));
 });
 
+test('a certified queue with no discovery path binds its explicit inventory without inventing a raw header', () => {
+  const hash = 'a'.repeat(64), refs = new Map();
+  const queue = { schemaVersion: 1, evidenceContractVersion: 1, provider: 'grok', inventorySha256: hash, records: [] };
+  const audit = collectQueueFileReferences(queue, refs,
+    { provider: 'grok', inventory: { path: '/inventory.json', sha256: hash } });
+  assert.equal(Object.hasOwn(queue, 'inventoryPath'), false);
+  assert.equal(audit.observed, null);
+  assert.equal(audit.labelDiffers, false);
+  assert.equal(refs.get('/inventory.json'), hash);
+});
+
 function queueAuthorityFixture() {
   const ref = (path, digit) => ({ path, sha256: digit.repeat(64) });
   const oldInv = ref('/old-inventory.json', 'a'), oldClock = ref('/old-clock.json', 'b');

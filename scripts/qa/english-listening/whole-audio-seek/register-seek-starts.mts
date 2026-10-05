@@ -59,6 +59,7 @@ for (const source of frozen.records) {
   for (const ref of Object.values(source.files) as any[])
     requireEvidence(await fileHash(ref.path) === ref.sha256, 'Original source input changed: ' + source.sourceRecordId);
 }
+console.log(JSON.stringify({ stage: 'immutable-source-inputs-checked', sources: frozen.records.length }));
 // Recheck nested admitted proof artifacts and their request/native manifests.
 // Grow the queue as immutable JSON manifests reference further actual files.
 const checked = new Set<string>();
@@ -77,6 +78,8 @@ for (const [path, hash] of evidenceReferences) {
     } else collectFileReferences(manifest, evidenceReferences);
   }
 }
+console.log(JSON.stringify({ stage: 'admitted-proof-files-checked', files: evidenceReferences.size,
+  staleQueueInventoryLabels: queueInventoryLabels.filter(row => row.labelDiffers).length }));
 const records = validateCertificate(inventory, snapshot, certificate);
 const preservedStarts = inventory.records.reduce((count: number, source: any) =>
   count + source.questions.filter((question: any) => question.audioRange).length, 0);

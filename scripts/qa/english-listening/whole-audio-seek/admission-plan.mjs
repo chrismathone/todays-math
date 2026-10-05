@@ -28,14 +28,17 @@ export function collectFileReferences(value, references = new Map()) {
 export function collectQueueFileReferences(queue, references, binding) {
   requireEvidence(queue?.schemaVersion === 1 && queue.evidenceContractVersion === 1 &&
     queue.provider === binding.provider && Array.isArray(queue.records) &&
-    typeof queue.inventoryPath === 'string' && queue.inventorySha256 === binding.inventory.sha256,
+    (!Object.hasOwn(queue, 'inventoryPath') || typeof queue.inventoryPath === 'string') &&
+    queue.inventorySha256 === binding.inventory.sha256,
     'Certified queue inventory or provider differs');
-  const observed = { path: queue.inventoryPath, sha256: queue.inventorySha256 };
+  const observed = Object.hasOwn(queue, 'inventoryPath')
+    ? { path: queue.inventoryPath, sha256: queue.inventorySha256 } : null;
   // Only this root header is resolved through its hash-checked consuming certificate.
   // Keep the original queue bytes and every nested request/probe reference unchanged.
-  collectFileReferences({ ...queue, inventoryPath: binding.inventory.path }, references);
+  collectFileReferences(observed ? { ...queue, inventoryPath: binding.inventory.path } : queue, references);
+  collectFileReferences(binding.inventory, references);
   return { observed, authoritative: binding.inventory,
-    labelDiffers: resolve(observed.path) !== resolve(binding.inventory.path) };
+    labelDiffers: observed !== null && resolve(observed.path) !== resolve(binding.inventory.path) };
 }
 
 /** Discover queue bindings only along the current inventory's authenticated ancestor chain. */
