@@ -8,7 +8,7 @@ from pathlib import Path
 import pymupdf as fitz
 
 from verify_exports import answer_references
-from page_references import reference_labels, reference_phase_evidence, INDEX_ACTIVITIES
+from page_references import reference_labels, reference_phase_evidence, INDEX_ACTIVITIES, visible_label, printed_label
 
 
 def check_indexes(folder, variant, witness, exchange):
@@ -144,13 +144,111 @@ def check(folder, answers_only=False):
             "mutations": results, "indexes": indexes, "passed": True}
 
 
+def check_frozen_controls(folder, variant="student"):
+    """Small real-evidence controls; known frozen target defects must stay failed."""
+    witness_file = folder / f"{variant}-witness.json"
+    witness = json.loads(witness_file.read_text(encoding="utf-8"))
+    exchange = json.loads((folder / "exchange.private.json").read_text(encoding="utf-8"))
+    assert hashlib.sha256((folder / f"{variant}.pdf").read_bytes()).hexdigest() == witness["pdfSha256"]
+    with fitz.open(folder / f"{variant}.pdf") as document:
+        baseline = reference_labels(witness, document, exchange)
+        target_codes = {"INDEX_DOM_PAGE_REFERENCE", "INDEX_PRINTED_PAGE_REFERENCE", "INDEX_MODEL_PAGE_REFERENCE"}
+        assert baseline["printedLabelsChecked"] == baseline["expectedReferences"]
+        assert baseline["issues"] and all(i["code"] in target_codes and i["activity"] == "conceptIndex"
+                                          for i in baseline["issues"]), baseline["issues"]
+        controls, math_evidence = [], []
+        entries = [(b, e) for u in exchange["units"] for s in u["sections"] for b in s["blocks"]
+                   if (b.get("semantic") or {}).get("activity") == "conceptIndex"
+                   for e in b["semantic"]["node"]["entries"]]
+        for block, entry in entries:
+            if "$" not in entry["label"]:
+                continue
+            page, row = next((p, r) for p in witness["pages"] for r in p["references"]
+                             if r["blockId"] == block["blockId"] and r["key"] == entry["key"])
+            expected = visible_label(entry["label"])
+            actual = printed_label(document[page["pdfPageIndex"] - 1], row["labelBoxMm"])
+            math_evidence.append({"key": entry["key"], "sourceLabel": entry["label"],
+                                  "expectedVisibleLabel": expected, "actualDomLabel": row["label"],
+                                  "actualPrintedLabel": actual, "labelBoxMm": row["labelBoxMm"],
+                                  "pdfPageIndex": page["pdfPageIndex"]})
+        if math_evidence:
+            proof = math_evidence[0]
+            wrong = proof["expectedVisibleLabel"]
+            for token, replacement in (("10", "11"), ("×", "÷"), ("÷", "×"), ("0", "1"), ("n", "m")):
+                if token in wrong:
+                    wrong = wrong.replace(token, replacement, 1)
+                    break
+            assert wrong != proof["expectedVisibleLabel"]
+            changed = copy.deepcopy(witness)
+            next(r for p in changed["pages"] for r in p["references"] if r["key"] == proof["key"])["label"] = wrong
+            checked = reference_labels(changed, document, exchange)
+            assert any(i["code"] == "INDEX_DOM_LABEL" and i.get("key") == proof["key"] for i in checked["issues"])
+            controls.append({"control": "changed meaningful inline math in actual DOM label", "expectedFailure": "INDEX_DOM_LABEL", "rejected": True})
+            # In-memory PDF only: remove the actual math glyph run while keeping prose.
+            ink = fitz.open(stream=document.tobytes(), filetype="pdf")
+            ink_page = ink[proof["pdfPageIndex"] - 1]
+            bounds = fitz.Rect([v * 72 / 25.4 for v in proof["labelBoxMm"]])
+            math_span = next(span for b in ink_page.get_text("dict", clip=bounds)["blocks"]
+                             for line in b.get("lines", []) for span in line["spans"]
+                             if "KaTeX" in span["font"])
+            ink_page.add_redact_annot(fitz.Rect(math_span["bbox"]), fill=(1, 1, 1))
+            ink_page.apply_redactions()
+            checked = reference_labels(witness, ink, exchange)
+            assert any(i["code"] == "INDEX_PRINTED_LABEL" and i.get("key") == proof["key"] for i in checked["issues"])
+            controls.append({"control": "missing actual inline math ink inside original label box", "expectedFailure": "INDEX_PRINTED_LABEL", "rejected": True})
+            ink.close()
+        sample = next(s for s in baseline["samples"] if s.get("targetResolution") == "semantic-concepts-activity")
+        assert any(i["code"] == "INDEX_PRINTED_PAGE_REFERENCE" and i.get("key") == sample["key"]
+                   for i in baseline["issues"])
+        controls.append({"control": "unchanged frozen section pointer misses actual definition card",
+                         "expectedFailure": "INDEX_PRINTED_PAGE_REFERENCE", "rejected": True})
+        competing = copy.deepcopy(witness)
+        canonical = next(b for s in competing["projectedModel"]["sections"] for b in s["blocks"]
+                         if b["id"] == sample["targetPlacement"]["blockId"])
+        earlier = next(b for s in competing["projectedModel"]["sections"] for b in s["blocks"]
+                       if b["unitKey"] == canonical["unitKey"] and (b.get("semantic") or {}).get("activity") == "errorCheck"
+                       and any(p["physicalPageIndex"] < sample["targetPlacement"]["pdfPageIndex"]
+                               and any(n["id"] == b["id"] for n in p["nodes"]) for p in competing["pages"]))
+        earlier["semantic"]["node"] = copy.deepcopy(canonical["semantic"]["node"])
+        preferred = reference_labels(competing, document, exchange)
+        preferred_sample = next(s for s in preferred["samples"] if s["key"] == sample["key"] and s["blockId"] == sample["blockId"])
+        assert preferred_sample["firstPlacedConcept"]["blockId"] == earlier["id"]
+        assert preferred_sample["targetPlacement"]["blockId"] == canonical["id"]
+        controls.append({"control": "canonical definition preferred over earlier observed errorCheck concept",
+                         "supported": True, "evidence": preferred_sample})
+        legacy = copy.deepcopy(witness)
+        canonical = next(b for s in legacy["projectedModel"]["sections"] for b in s["blocks"]
+                         if b["id"] == sample["targetPlacement"]["blockId"])
+        canonical["semantic"]["activity"] = "explainActivity"
+        fallback = reference_labels(legacy, document, exchange)
+        fallback_sample = next(s for s in fallback["samples"] if s["key"] == sample["key"] and s["blockId"] == sample["blockId"])
+        assert fallback_sample["targetResolution"] == "legacy-first-placed-concept"
+        assert fallback_sample["targetPlacement"]["blockId"] == canonical["id"]
+        controls.append({"control": "legacy no concepts-activity target retains placed semantic fallback",
+                         "supported": True, "evidence": fallback_sample})
+    return {"key": folder.name, "variant": variant, "controlsPassed": True,
+            "productAccepted": False, "pdfSha256": witness["pdfSha256"],
+            "witnessSha256": hashlib.sha256(witness_file.read_bytes()).hexdigest(),
+            "baseline": baseline, "mathEvidence": math_evidence, "controls": controls}
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("directory", type=Path)
     parser.add_argument("--only", default="초3-1,중2-1")
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--answers-only", action="store_true", help="Historical problem-reference scope only; never complete index acceptance")
+    parser.add_argument("--frozen-qa-controls", action="store_true", help="Narrow real-evidence controls with known target defects preserved")
     args = parser.parse_args()
+    if args.frozen_qa_controls:
+        result = [check_frozen_controls(args.directory / key, variant)
+                  for key in args.only.split(",") for variant in ("student", "answers")]
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(json.dumps({"controlsPassed": True, "productAccepted": False,
+                          "knownTargetIssues": sum(len(r["baseline"]["issues"]) for r in result),
+                          "controls": sum(len(r["controls"]) for r in result)}))
+        return
     result = [check(args.directory / key, args.answers_only) for key in args.only.split(",")]
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps({"passed": True, "actualReferences": sum(r["actualBaselineReferences"] for r in result),

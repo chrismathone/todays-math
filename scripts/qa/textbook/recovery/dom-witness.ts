@@ -288,8 +288,9 @@ export async function captureDomWitness(
           if (!phaseStarts.has(key)) phaseStarts.set(key, physicalPageIndex);
           return {
             rowKey: el.dataset.rowKey,
-            conceptId: el.dataset.conceptId,
+            conceptId: el.dataset.conceptId ?? "",
             unitKey: b?.unitKey,
+            activity: b?.semantic?.activity ?? "",
             phase,
             relativePageIndex: physicalPageIndex - phaseStarts.get(key)!,
             boxMm: rect(el),
@@ -681,7 +682,11 @@ export function computedCoverage(
       JSON.stringify(
         actualRows
           .filter((r) => (r.phase ?? "unphased") === phase)
-          .map((r) => [r.conceptId, r.rowKey]),
+          .map((r) =>
+            phase === "unphased"
+              ? [r.conceptId, r.rowKey, r.unitKey, r.activity, r.blockId]
+              : [r.conceptId, r.rowKey],
+          ),
       ) === JSON.stringify(expectedRows[phase] ?? []),
   );
   return {
@@ -736,7 +741,10 @@ export function computedCoverage(
   };
 }
 
-/** Include unphased concept-card rows as well as the three memory forms. */
+/** Count each authored row slot, including explanation and map occurrences.
+ * Memory rows retain their cross-phase logical keys; unphased rows also carry
+ * the unit, activity and exact model owner, so reuse never masks a lost slot.
+ */
 export function expectedRenderedRows(model: TextbookRenderModel) {
   const expected: Record<string, string[][]> = {};
   const seen = new Set<string>();
@@ -744,15 +752,27 @@ export function expectedRenderedRows(model: TextbookRenderModel) {
     const node = block.semantic?.node;
     if (!node || (node.kind !== "concept" && node.kind !== "rows")) continue;
     const conceptCard = block.kind === "concept" && node.kind === "concept";
-    if (!conceptCard && block.kind !== "recall") continue;
+    const bankRows =
+      block.kind === "text" &&
+      node.kind === "rows" &&
+      !block.semantic?.source &&
+      ["explainActivity", "conceptMap"].includes(block.semantic?.activity ?? "") &&
+      new RegExp(`^bank-activity\\.v1\\.${block.semantic?.activity}\\.\\d+$`).test(
+        node.groupKey ?? "",
+      );
+    // conceptBlankTest uses a free recall canvas, with no authored DOM row slots.
+    if (!conceptCard && !bankRows && block.kind !== "recall") continue;
     const phase = block.kind === "recall" ? block.phase : "unphased";
-    const key = conceptCard ? block.id : `${block.sourceBlockId}:${phase}`;
+    const key = phase === "unphased" ? block.id : `${block.sourceBlockId}:${phase}`;
     if (seen.has(key)) continue;
     seen.add(key);
     (expected[phase] ??= []).push(
       ...node.rows.map((row) => [
         node.kind === "concept" ? node.conceptId : "",
         row.rowKey,
+        ...(phase === "unphased"
+          ? [block.unitKey, block.semantic?.activity ?? "", block.id]
+          : []),
       ]),
     );
   }

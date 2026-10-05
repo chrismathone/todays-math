@@ -363,18 +363,22 @@ def verify(pdf, witness):
             fail("DIALOGUE_FONT_COMMON", node=unit, minPt=min(sizes), maxPt=max(sizes))
     for phase, rows in phases.items():
         seen, sequence = set(), []
+        desired = expected_rows.get(phase)
+        authored_slots = phase == "unphased" and desired and len(desired[0]) == 5
         for row in rows:
-            key = (row.get("conceptId"), row.get("rowKey"))
+            key = (row.get("conceptId") or "", row.get("rowKey"))
+            if authored_slots:
+                key += (row.get("unitKey"), row.get("activity"), row.get("blockId"))
             if key in seen:
-                fail("ROW_DUPLICATE", node=row.get("rowKey"), phase=phase)
+                fail("ROW_DUPLICATE", node=row.get("rowKey"), phase=phase,
+                     blockId=row.get("blockId"), activity=row.get("activity"))
             seen.add(key)
             if not finite_box(row.get("boxMm")):
                 fail("ROW_BOX_INVALID", node=row.get("rowKey"))
                 continue
             sequence.append((key, row.get("relativePageIndex"), row["boxMm"][1], row["boxMm"][3]))
         normalized[phase] = sequence
-        desired = expected_rows.get(phase)
-        if desired is not None and [[r[0][0], r[0][1]] for r in sequence] != desired:
+        if desired is not None and [list(r[0]) for r in sequence] != desired:
             fail("ROW_KEYS", phase=phase)
     for phase, desired in expected_rows.items():
         if phase not in normalized and desired:
