@@ -87,6 +87,14 @@ duplicate/missing questions and existing verification, and preserves every
 status, cue, scope, seek timestamp and raw evidence reference. Its changes report
 is diagnostic only; full actual-source replay remains mandatory.
 
+`evaluate-native-certificate.py` audits every offered row against a completed
+independent certificate, checks the complete population and exact preserved
+identity/ranges against the fresh baseline, and records passed/held outcomes by
+input cohort and frozen source family. `--previous` compares independent runs;
+`--cohort NAME=PATH` uses the first matching immutable candidate list. It reports
+all research-pilot questions, unoffered holds and explicitly unassigned source
+families. It runs no recognition and supplies no new admission authority.
+
 The completed 2026-10-05 replay is stored under
 `C:/Creative/testautocreator/output/listening-assessments/whole-audio-seek-20261005/codex/replay-final-002/`.
 Its `certificate.json` SHA-256 is
