@@ -33,10 +33,13 @@ def terminal_population(row, source, replay):
     return [prepared_ref, original_ref, claim["questionFile"]]
 
 
-def validate(row, source, question, clock, replay, full_index):
-    v.require(row.get("evidenceAdapter") == ADAPTER and not source["reconstructed"], "official_catalog_adapter_wrong_source_or_version")
+def validate(row, source, question, clock, replay, full_index, *, native_scope=False, placeholder_identity=None):
+    adapter = "official-pdf-native-scope-v2" if native_scope else ADAPTER
+    v.require(row.get("evidenceAdapter") == adapter and not source["reconstructed"], "official_catalog_adapter_wrong_source_or_version")
+    v.require(native_scope or placeholder_identity is None, "official_placeholder_requires_explicit_version")
     catalog, refs, diagnostics = l.replay_catalog(row, source, replay)
-    old_proof, segments, grade, identity = a.validate(row, source, question, clock, replay, full_index)
+    old_proof, segments, grade, identity = a.validate(row, source, question, clock, replay, full_index,
+                                                    placeholder_identity=placeholder_identity)
     _, head_probe = a.checked_probe(row, source)
     l.measure_probe_onset(row, source, replay, "probeEvidence", head_probe)
     scope = row["scopeQuestionNumbers"]
@@ -88,8 +91,8 @@ def validate(row, source, question, clock, replay, full_index):
                       "official_catalog_dialogue_clip_crosses_passage")
     refs.extend([{"path": row["nativeEvidence"]["cachePath"], "sha256": row["nativeEvidence"]["cacheSha256"]},
                  {"path": row["nativeEvidence"]["energyPath"], "sha256": row["nativeEvidence"]["energySha256"]}])
-    proof = {**old_proof, "adapter": ADAPTER, "nextProbe": row.get("nextProbeEvidence"),
-             "nextCertificate": row.get("nextCertificateEvidence"), "nextOnsetFrame": neighbor["onsetFrame"],
+    proof = {**old_proof, "adapter": adapter, "nextProbe": row.get("nextProbeEvidence"),
+             "nextCertificate": row.get("nextCertificateEvidence"), "nextStartFrame": neighbor["startFrame"], "nextOnsetFrame": neighbor["onsetFrame"],
              "officialTerminalEvidence": row.get("officialTerminalEvidence"),
              "nextBoundaryKind": "exact_official_original_population_end_v1" if terminal else
                                  "exact_preserved_original_scope_v1" if row.get("nextCertificateEvidence") else "next_numbered_native",

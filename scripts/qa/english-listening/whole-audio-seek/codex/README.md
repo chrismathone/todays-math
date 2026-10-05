@@ -118,3 +118,17 @@ immutable Grok-lane `ledger1282-004.json`; actual compiler provenance remains
 separate from lane ownership. Archive 005 is superseded and has no completed
 admission certificate. Source spans labeled `short_asr_cue_span` remain estimates
 and cannot substitute for a measured native-onset method.
+# Official image-paper and next-member scope
+
+The explicit `official-pdf-native-scope-v2` adapter covers exact frozen original
+image-PDF placeholders and the demonstrated question-19 shared-member order
+case. It binds original/current question identity and the actual original PDF,
+prepared crop, snapshot, complete raw catalog, original PCM, first native English
+opening, and very-next native heading. The original numeral-only, instruction
+recognition, and whole-clip containment gates remain strict. Its separate grade
+and ancestry proof prevent inheritance as an ordinary numbered-instruction
+claim; see [LOCALIZED-CONTRACT.md](LOCALIZED-CONTRACT.md).
+
+`replay-question.py` uses the same explicit adapter dispatcher as the complete
+verifier. Its output remains a producer diagnostic; admission requires the full
+population replay, exact existing-range preservation, and order checks.

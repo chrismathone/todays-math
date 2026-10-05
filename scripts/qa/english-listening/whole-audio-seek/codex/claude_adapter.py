@@ -271,7 +271,7 @@ class SourceReplay:
                                            (p.get("purpose") == "first_dialogue" or (row.get("evidenceAdapter") in ("native-localized-generation-v2", "native-localized-generation-boundary-v3") and p.get("purpose") == "localized_generation")) else 14}
                         except (v.InvalidEvidence, OSError, ValueError, KeyError, TypeError):
                             pass  # Invalid rows are diagnosed individually.
-                if row.get("evidenceAdapter") in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1") and row.get("probeCatalog"):
+                if row.get("evidenceAdapter") in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2") and row.get("probeCatalog"):
                     try:
                         from localized_adapter import catalog_probes
                         catalog, _ = catalog_probes(row, source)
@@ -297,7 +297,7 @@ class SourceReplay:
         script = Path(__file__).with_name("native-windows.mts")
         cli = Path(root) / "node_modules/tsx/dist/cli.mjs"
         localized = any(r and r.get("status") == "candidate" and r.get("evidenceAdapter") in
-                        ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1") for r in rows)
+                        ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2") for r in rows)
         if localized:
             batches = localized_probe_batches(list(wanted.values()), clock["channels"])
         else:
@@ -533,7 +533,7 @@ def numbered_section_identity(row, source, probe, replay):
     return {"method": claim["method"], "spokenNumbers": spoken, "numberClipEvidence": number_evidence}, rest
 
 
-def scoped_instruction_identity(row, source, probe, replay, text, start, speaker, instruction, instruction_segments):
+def scoped_instruction_identity(row, source, probe, replay, text, start, speaker, instruction, instruction_segments, *, placeholder_identity=None):
     number, rest = numbered_section_identity(row, source, probe, replay)
     proof = row["scriptEvidence"]
     at = proof.get("instructionStartCharacter")
@@ -541,8 +541,17 @@ def scoped_instruction_identity(row, source, probe, replay, text, start, speaker
     v.require(v.integer(at) and start <= at < end <= speaker.start() + start and text[at:end] == instruction,
               "numbered_section_instruction_not_at_own_header")
     questions = [q for q in source["questions"] if q["id"] == row["questionId"] and q["sourceNumber"] == row["sourceNumber"]]
-    v.require(len(questions) == 1 and compact(own_instruction(questions[0])) == compact(instruction),
-              "numbered_section_instruction_not_current_question")
+    v.require(len(questions) == 1, "numbered_section_instruction_not_current_question")
+    if placeholder_identity is not None:
+        v.require(row.get("evidenceAdapter") == "official-pdf-native-scope-v2"
+                  and placeholder_identity.get("method") == "exact_original_pdf_placeholder_v2"
+                  and placeholder_identity.get("questionId") == row["questionId"]
+                  and placeholder_identity.get("sourceNumber") == row["sourceNumber"]
+                  and placeholder_identity.get("instructionQuote") == instruction,
+                  "official_placeholder_override_not_exact_named_identity")
+    else:
+        v.require(compact(own_instruction(questions[0])) == compact(instruction),
+                  "numbered_section_instruction_not_current_question")
     kernel = lambda value: re.sub(r"[^가-힣]", "", unicodedata.normalize("NFKC", value))
     want = kernel(instruction)
     raw = " ".join(s["text"] for s in instruction_segments)
@@ -555,7 +564,7 @@ def scoped_instruction_identity(row, source, probe, replay, text, start, speaker
             "instructionQuote": instruction, "hangulSyllables": len(want), "hangulCoverage": share}
 
 
-def first_dialogue_alignment(row, source, probe, replay, *, require_instruction):
+def first_dialogue_alignment(row, source, probe, replay, *, require_instruction, placeholder_identity=None):
     """Explicit evidence for a bare/uncertain ordinal; never a nearest-number repair."""
     proof = row.get("scriptEvidence")
     v.require(isinstance(proof, dict), "ambiguous_cue_missing_official_alignment")
@@ -619,7 +628,8 @@ def first_dialogue_alignment(row, source, probe, replay, *, require_instruction)
         instruction_segments = v.select_segments(number_index, proof.get("instructionProbeSegmentIds"))
         if explicit:
             binding["officialIdentityEvidence"] = scoped_instruction_identity(
-                row, source, probe, replay, text, start, speaker, instruction, instruction_segments)
+                row, source, probe, replay, text, start, speaker, instruction, instruction_segments,
+                placeholder_identity=placeholder_identity)
         else:
             v.require(coverage(instruction, " ".join(s["text"] for s in instruction_segments)) >= .8, "official_unique_instruction_absent_in_probe")
     binding.update(probe={"path": row[dialogue_field]["path"], "sha256": row[dialogue_field]["sha256"]},
@@ -719,7 +729,9 @@ def official_asr_references(row, spoken, full_index):
     # independently proves the actual physical start.
 
 
-def validate(row, source, question, clock, replay, full_index):
+def validate(row, source, question, clock, replay, full_index, *, placeholder_identity=None):
+    v.require(placeholder_identity is None or row.get("evidenceAdapter") == "official-pdf-native-scope-v2",
+              "official_placeholder_requires_explicit_version")
     explicit = row.get("officialIdentityEvidence") is not None
     if explicit:
         v.require(isinstance(row["officialIdentityEvidence"], dict) and
@@ -784,12 +796,12 @@ def validate(row, source, question, clock, replay, full_index):
         v.require(own_dialogue_probe.get("requestedLanguage") == "en" and
                   own_dialogue_probe.get("startFrame", -1) > probe["startFrame"],
                   "numbered_section_requires_separate_english_dialogue")
-        dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True)
+        dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True, placeholder_identity=placeholder_identity)
         numbered_proof, rest = numbered_section_identity(row, source, probe, replay)
         spoken = numbered_proof["spokenNumbers"]
         ambiguous = False
     elif ambiguous:
-        dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True)
+        dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True, placeholder_identity=placeholder_identity)
     aligned_without_number = not spoken and row.get("cueForm") == "official_alignment"
     v.require((spoken and spoken == row.get("cueSpokenNumbers")) or (aligned_without_number and row.get("cueSpokenNumbers") == []), "bounded_spoken_ordinal_mismatch")
     if aligned_without_number:
@@ -803,7 +815,7 @@ def validate(row, source, question, clock, replay, full_index):
     original_identity = None
     if kind == "single":
         v.require(spoken == scope == [question["sourceNumber"]], "single_question_scope_mismatch")
-        instruction = own_instruction(question)
+        instruction = placeholder_identity["instructionQuote"] if placeholder_identity else own_instruction(question)
         if not instruction and (row.get("officialInstruction") or {}).get("source") == "official_transcript_section_head":
             instruction = instruction_head_from_transcript(source, question, row["officialInstruction"])
     elif kind == "shared_passage":
@@ -830,7 +842,7 @@ def validate(row, source, question, clock, replay, full_index):
         else:
             original_identity = None
             if not explicit and (len(compact(instruction)) < 12 or coverage(instruction, rest) < .8):
-                dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True)
+                dialogue_binding = first_dialogue_alignment(row, source, probe, replay, require_instruction=True, placeholder_identity=placeholder_identity)
     else:
         # A member must have its own source dialogue; a repeated shared instruction
         # is not sufficient to declare a second start.

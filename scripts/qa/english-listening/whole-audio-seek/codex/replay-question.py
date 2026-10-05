@@ -40,22 +40,17 @@ def main():
     v.verified_ancestor_rows(inventory, clocks, v.checked_ref({"path": inventory["liveSnapshotPath"],
                             "sha256": inventory["liveSnapshotSha256"]})["snapshots"], trusted)
     replay.trusted_boundaries = {qid: evidence for (sid, qid), evidence in trusted.items() if sid == source["sourceRecordId"]}
+    replay.current_snapshot_ref = {"path": inventory["liveSnapshotPath"], "sha256": inventory["liveSnapshotSha256"]}
+    replay.current_snapshot_document = next(s for s in v.checked_ref(replay.current_snapshot_ref)["snapshots"] if s["id"] == source["setId"])
     proof = {"schemaVersion": 1, "diagnosticOnly": True, "admissionRequiresCompleteQueueOrderAndPreservation": True,
              "writesDatabase": False, "writesStorage": False, "writesMedia": False, "humanReviewed": False,
              "sourceRecordId": source["sourceRecordId"], "questionId": question["id"], "sourceNumber": question["sourceNumber"],
              "inputs": {k: v.reference(getattr(args, k)) for k in ("inventory", "clock", "frozen", "marks")},
              "implementation": [v.reference(p) for p in sorted(Path(__file__).parent.iterdir()) if p.suffix in (".py", ".mts", ".md")]}
     try:
-        if row.get("evidenceAdapter") == "native-localized-generation-v2":
-            from localized_adapter import validate
-        elif row.get("evidenceAdapter") == "native-localized-generation-boundary-v3":
-            from localized_boundary_adapter import validate
-            key, segments, grade, identity = validate(row, source, question, clock, replay, index)
-        elif row.get("evidenceAdapter") == "official-catalogued-native-v1":
-            from official_catalog_adapter import validate
-            key, segments, grade, identity = validate(row, source, question, clock, replay, index)
-        else:
-            key, segments, grade, identity = a.validate(row, source, question, clock, replay, index)
+        validate = v.native_adapter_validator(row.get("evidenceAdapter", "claude-native-probe-v1"))
+        key, segments, grade, identity = validate(row, source, question, clock, replay, index)
+        if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3"):
             v.validate_mapping(row, source, question, index)
         v.require(0 <= row["seekStartMs"] < source["audio"]["durationMs"] and row.get("seekEndMs", source["audio"]["durationMs"]) == source["audio"]["durationMs"], "invalid_full_original_continuation")
         proof.update(startProofStatus="passed", reasons=[], proofKey=key, rawNativeSegments=segments, evidenceGrade=grade,

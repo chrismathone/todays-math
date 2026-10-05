@@ -344,6 +344,17 @@ def validate_official_alignment(row, source, native_index, full_index):
     return sections[0]["questionNumbers"]
 
 
+def native_adapter_validator(adapter):
+    import importlib
+    modules = {"claude-native-probe-v1": "claude_adapter",
+               "native-localized-generation-v2": "localized_adapter",
+               "native-localized-generation-boundary-v3": "localized_boundary_adapter",
+               "official-catalogued-native-v1": "official_catalog_adapter",
+               "official-pdf-native-scope-v2": "official_pdf_scope_adapter"}
+    require(adapter in modules, "unknown_native_adapter")
+    return importlib.import_module(modules[adapter]).validate
+
+
 class NativeReplay:
     """One full original in RAM at a time; VAD CPU only, no recognition/model download."""
     def __init__(self):
@@ -374,7 +385,7 @@ class NativeReplay:
 
 def shared_native_key(row):
     proof = row["proofKey"]
-    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1"):
+    if row.get("evidenceAdapter") not in ("native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1", "official-pdf-native-scope-v2"):
         return proof
     # Every generated question has its own separately verified quote mapping.
     # A common passage key retains all common physical head/neighbor identity.
@@ -471,6 +482,10 @@ def check_dialogue_order(results, sources):
         expected = sorted(q["sourceNumber"] for q in source["questions"])
         for row in rows:
             binding = row.get("proofKey", {}).get("dialogueBinding", {})
+            if row["status"] == "admitted" and row.get("evidenceAdapter") == "official-pdf-native-scope-v2":
+                if not official_native_admission_origin(row):
+                    errors[row["questionId"]].append("official_scope_native_order_proof_missing_or_changed")
+                continue
             if row["status"] != "admitted" or binding.get("method") != "measured_original_passage_offset_v1":
                 continue
             later = [n for n in expected if n > row["scopeQuestionNumbers"][-1]]
@@ -560,6 +575,71 @@ def validate_frozen_source(source, manifest):
         require(isinstance(ref, dict) and isinstance(ref.get("path"), str) and Path(ref["path"]).resolve() == Path(path).resolve(), "frozen_source_file_path_mismatch:" + key)
         require(expected_sha is None or ref.get("sha256") == expected_sha, "frozen_source_file_hash_mismatch:" + key)
         require(sha(ref["path"]) == ref.get("sha256"), "frozen_input_changed")
+
+
+def official_native_admission_origin(row):
+    """A named official PDF tier cannot inherit as an ordinary numbered grade."""
+    if not isinstance(row, dict) or not isinstance(row.get("proofKey"), dict):
+        return False
+    proof = row.get("proofKey", {})
+    identity = proof.get("officialSourceIdentity", {})
+    binding = proof.get("dialogueBinding", {})
+    opening = proof.get("nativeFirstOpening", {})
+    scope, native = row.get("scopeQuestionNumbers"), row.get("nativeEvidence", {})
+    if not all(isinstance(item, dict) for item in (identity, binding, opening, native)):
+        return False
+    if not (row.get("status") == "admitted" and row.get("reconstructed") is False
+            and integer(row.get("sourceNumber")) and 1 <= row["sourceNumber"] <= 50
+            and row.get("evidenceGrade") == "official_pdf_native_scope_v2"
+            and row.get("evidenceAdapter") == proof.get("adapter") == "official-pdf-native-scope-v2"
+            and identity == row.get("originalQuestionIdentity")
+            and identity.get("method") in ("exact_original_pdf_placeholder_v2", "exact_original_pdf_native_member_v2")
+            and identity.get("questionId") == proof.get("questionId") == row.get("questionId")
+            and identity.get("sourceRecordId") == row.get("sourceRecordId")
+            and identity.get("sourceNumber") == row.get("sourceNumber")
+            and scope == [row.get("sourceNumber")]
+            and all(proof.get(k) == row.get(k) for k in ("scopeQuestionNumbers", "cueNumber", "cueSpokenNumbers", "kind"))
+            and proof.get("onsetFrame") == native.get("onsetFrame")
+            and binding.get("method") == "measured_native_original_next_scope_v2"
+            and binding.get("sampleRate") == native.get("sampleRate")
+            and binding.get("nextScopeQuestionNumbers") == [scope[-1] + 1]
+            and proof.get("nextSpokenNumbers") and proof["nextSpokenNumbers"][0] == scope[-1] + 1
+            and integer(proof.get("nextStartFrame")) and integer(proof.get("nextOnsetFrame"))
+            and binding.get("nextStartFrame") == proof["nextStartFrame"] < proof["nextOnsetFrame"] == binding.get("nextOnsetFrame")
+            and opening.get("method") == "first_literal_native_opening_v2"
+            and opening.get("probe") == row.get("dialogueProbeEvidence")
+            and integer(opening.get("selectedStartFrame")) and integer(opening.get("selectedEndFrame"))
+            and native.get("onsetFrame", math.inf) <= opening["selectedStartFrame"] < opening["selectedEndFrame"]
+                == binding.get("selectedEstimatedEndFrame") <= proof["nextStartFrame"]
+            and binding.get("dialogueOnsetFrame", math.inf) < proof["nextStartFrame"]
+            and proof.get("nextProbe") == row.get("nextProbeEvidence")
+            and proof.get("nextCertificate") == row.get("nextCertificateEvidence")
+            and proof.get("probeCatalog") == row.get("probeCatalog") and proof.get("providerTimingAuthority") is False):
+        return False
+    if identity["method"] == "exact_original_pdf_placeholder_v2":
+        crop = identity.get("crop", {})
+        if not (row.get("kind") == "single" and isinstance(crop, dict)
+                and isinstance(identity.get("instructionQuote"), str) and identity["instructionQuote"]
+                and identity.get("originalEditableQuestionSha256") == identity.get("currentQuestionSha256")
+                and isinstance(identity.get("currentQuestionSha256"), str) and len(identity["currentQuestionSha256"]) == 64
+                and crop.get("method") == "original_image_preserved" and crop.get("visualSha256")
+                and integer(crop.get("width")) and crop["width"] > 0 and integer(crop.get("height")) and crop["height"] > 0):
+            return False
+    elif row.get("kind") != "shared_instruction_member" or row["sourceNumber"] != 19:
+        return False
+    refs = proof.get("boundReferences")
+    if not isinstance(refs, list) or not refs or not all(isinstance(r, dict) for r in refs):
+        return False
+    next_ref = row.get("nextProbeEvidence") or (row.get("nextCertificateEvidence") or {}).get("certificate")
+    required = [identity.get(k) for k in ("prepared", "originalPrepared", "questionFile", "liveSnapshot")]
+    required.extend((row.get("probeEvidence"), row.get("dialogueProbeEvidence"), row.get("probeCatalog"), next_ref))
+    for ref in required:
+        if not isinstance(ref, dict) or not any(r.get("sha256") == ref.get("sha256") and
+                Path(r.get("path", "")).resolve() == Path(ref.get("path", "")).resolve() for r in refs):
+            return False
+    for ref in refs:
+        require(sha(ref["path"]) == ref["sha256"], "ancestor_official_scope_nested_evidence_corruption")
+    return True
 
 
 def reconstructed_admission_origin(row):
@@ -675,6 +755,8 @@ def verified_ancestor_rows(inventory, clocks, snapshots, boundary_authority=None
                 require(not question.get("audioRange") and row["audioRange"]["endMs"] == source["audio"]["durationMs"],
                         "ancestor_admission_overwrites_original")
                 question["audioRange"] = copy.deepcopy(row["audioRange"])
+                if row.get("evidenceGrade") == "official_pdf_native_scope_v2":
+                    require(official_native_admission_origin(row), "ancestor_official_native_scope_unverified")
                 new_count += 1
                 if row.get("scopeQuestionNumbers") and integer(row.get("nativeEvidence", {}).get("onsetFrame")):
                     pending_boundaries[(sid, question["id"])] = {"certificate": claim["certificate"],
@@ -837,6 +919,8 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
             try:
                 from claude_adapter import SourceReplay
                 adapter_replay = (source_replay_factory or SourceReplay)(inventory["root"], source, clock_index[sid], source_rows)
+                adapter_replay.current_snapshot_ref = references["liveSnapshot"]
+                adapter_replay.current_snapshot_document = snapshots[source["setId"]]
                 adapter_replay.trusted_boundaries = {qid: evidence for (source_id, qid), evidence in trusted_boundaries.items()
                                                      if source_id == sid}
             except (InvalidEvidence, OSError, KeyError, TypeError, ValueError, subprocess.SubprocessError) as e:
@@ -878,15 +962,7 @@ def run(inventory_path, marks_paths, clock_path, frozen_path, output, native_rep
                 if row.get("probeEvidence"):
                     require(adapter_replay is not None, "native_adapter_replay_failed:" + str(adapter_error))
                     adapter = row.get("evidenceAdapter", "claude-native-probe-v1")
-                    require(adapter in ("claude-native-probe-v1", "native-localized-generation-v2", "native-localized-generation-boundary-v3", "official-catalogued-native-v1"), "unknown_native_adapter")
-                    if adapter == "native-localized-generation-v2":
-                        from localized_adapter import validate as validate_adapter
-                    elif adapter == "native-localized-generation-boundary-v3":
-                        from localized_boundary_adapter import validate as validate_adapter
-                    elif adapter == "official-catalogued-native-v1":
-                        from official_catalog_adapter import validate as validate_adapter
-                    else:
-                        from claude_adapter import validate as validate_adapter
+                    validate_adapter = native_adapter_validator(adapter)
                     proof_key, native_segments, grade, original_identity = validate_adapter(row, source, question, clock_index[sid], adapter_replay, index)
                     full_cues = select_segments(index, row["cueSegmentIds"], allow_uncertain=True) if row["cueSegmentIds"] else []
                     anchors = select_segments(index, row["anchorSegmentIds"], allow_uncertain=True) if row["anchorSegmentIds"] else []

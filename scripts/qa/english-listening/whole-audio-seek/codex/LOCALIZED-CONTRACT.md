@@ -221,3 +221,37 @@ Jev integration/call is added. Identity, hashes, bounds and policy remain in cod
 ambiguous source-value selection remains held. Documentation:
 https://docs.typesafe.ai/confidence and
 https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook.
+# Official PDF scope, version two
+
+`official-pdf-native-scope-v2` is a separate, outcome-informed route for two
+demonstrated representation gaps. It accepts an exact image-paper placeholder
+with empty instruction, or original question 19 as a shared-instruction member
+with a separately proved native question-20 boundary. Other substantive prompts,
+first shared members, other member numbers, and terminal shortcuts remain held.
+
+For a placeholder, the current full question must equal the frozen original
+editable question, except its playback range and the added question-image role.
+The native prepared question must retain the same ID, original ordinal, prompt,
+choices, answer, and embedded PNG bytes. Actual original PDF and original/native
+prepared hashes, original-image-preservation flags, crop bounds, page, visual
+hash, dimensions, current set revision, and frozen live snapshot are bound.
+This verifies the existing original crop binding; it does not claim a new human
+review or independent rasterization of the original PDF crop.
+
+The original numbered-section script, unique first English opening, literal
+number-only clip of at most three seconds, and at least 0.8 Hangul instruction
+coverage keep their existing gates. No producer flag, recognition text, original
+generation anchor, source identity, or current question is rewritten. The English
+opening must be the first actual raw speech and first raw words, with genuine
+ordered nonzero word times and confidence. Its entire actual input clip and all
+selected speech must remain before the independently proved next original
+heading. All catalog, nested request/envelope/raw, source PCM, mono, cache, energy,
+quiet lead, and ancestry checks still apply.
+
+Its grade is `official_pdf_native_scope_v2`. The proof retains the old offset
+method and names the physical order contract
+`measured_native_original_next_scope_v2`; missing admission of the next question
+does not erase independently replayed next-heading identity. The old global
+order check remains unchanged for old versions. A later ancestor can inherit
+this grade only with the complete named source, opening, order, and nested-hash
+proof. Provider estimates remain per-span diagnostics, not physical timestamps.
