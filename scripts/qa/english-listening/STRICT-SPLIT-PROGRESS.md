@@ -48,7 +48,9 @@ The fixed policy remains **400 ms quiet at −60 dBFS**, measured on every nativ
 
 No ASR text or timestamp was rewritten. No prompt, instruction, choice, answer, image, metadata, or original group was rewritten. `humanReviewed:false` remains accurate, and this run makes no new TypeSafe/LLM/provider call. The project skill and live TypeSafe documentation were read; deterministic evidence checks remain in code.
 
-## Operator adoption instructions
+## Historical operator adoption instructions — superseded
+
+**2026-10-05 policy change:** the user cancelled question-level audio for national assessments and requested original whole-round playback for every national listening/mock assessment. Do not adopt these staged clips. The only previously split production source, `ebsi-high-1-2022-2`, has been restored to its archived original whole-round group; its derivative files remain archival records. The trusted importer rejects national sources before Storage writes. The instructions below describe the earlier staging contract and are no longer an active adoption plan. See `docs/operations/english-listening-original-preservation-20261005.md` for the actual production verification.
 
 The production `loadListeningQuestionAudioPlan` still requires whole-round admission through `verifyQuestionAudioEvidence`. The new `verifyQuestionAudioPassageEvidence` is an offline staging contract. These artifacts cannot be passed off as a production complete-round alignment or used to bypass the existing importer.
 
