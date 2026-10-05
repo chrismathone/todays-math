@@ -47,6 +47,31 @@ export const DEFAULT_INPUTS = Object.freeze({
   },
 });
 
+/** Family-separated partition of the certified controls, frozen by the coordinator. */
+export const GROUPED_CONTROLS = Object.freeze({
+  path:
+    MAIN +
+    "/.qa-artifacts/listening-seek-research-20261006/grouped-controls-001.json",
+  sha256: "b47efb3b546d39857a47c209073b38027781a7ccc690ccb2a84f21940819e52f",
+});
+
+/** The research plan's 35 pilot questions (diagnostic scopes, no measured start). */
+export const PILOT_PLAN = Object.freeze({
+  path: MAIN + "/.qa-artifacts/listening-seek-research-20261006/pilot-plan.json",
+  sha256: "5cd2a36c076379a11041dce24ec52457e1153ebd8dfaa2292ba6c64c86c439ff",
+});
+
+/**
+ * Sources whose stored recognitions or loudness were read by eye while these
+ * rules were being written. Control figures for them are reported apart: a
+ * rule shaped on a recording is not tested by that recording.
+ */
+export const INSPECTED_DURING_DEVELOPMENT = Object.freeze([
+  "ebs-middle-1-2007-2",
+  "ebs-middle-1-2009-2",
+  "ebs-middle-2-2007-2",
+]);
+
 export const TOOLS = Object.freeze({
   python: SEEK5 + "/claude/asr-venv/Scripts/python.exe",
   lock: SEEK5 + "/gpu-probe.lock",
@@ -196,6 +221,8 @@ export class ProbeStore {
     this.roots = roots;
     this.cache = new Map();
     this.requests = new Map();
+    /** Every container read, used or not: [{ path, sha256, ... }]. */
+    this.catalog = [];
   }
 
   requestSha(path) {
@@ -234,6 +261,20 @@ export class ProbeStore {
         )
           throw new FrozenInputError("Probe container is not bound: " + path);
         const containerSha256 = sha256(bytes);
+        const language = (probe) =>
+          probe.requestedLanguage ?? container.requestedLanguage;
+        this.catalog.push({
+          path: resolve(path).replace(/\\/g, "/"),
+          sha256: containerSha256,
+          sourceRecordId: id,
+          root: root.replace(/\\/g, "/"),
+          round,
+          requestPath: String(container.requestPath).replace(/\\/g, "/"),
+          requestSha256: container.requestSha256,
+          probes: container.probes.length,
+          koProbes: container.probes.filter((x) => language(x) === "ko").length,
+          enProbes: container.probes.filter((x) => language(x) === "en").length,
+        });
         for (const probe of container.probes) {
           if (
             probe.sampleRate !== identity.sampleRate ||

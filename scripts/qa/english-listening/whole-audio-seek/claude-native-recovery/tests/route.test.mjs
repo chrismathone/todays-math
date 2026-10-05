@@ -29,6 +29,7 @@ import {
   heading,
   koreanListenings,
   englishListenings,
+  frozenSegments,
   listening,
   makeInput,
   makeNative,
@@ -370,14 +371,55 @@ test("a frozen quote must stand literally, and once, in the frozen recognition t
   const changed = makeInput();
   changed.generation.byQuestion.get("q-a").groundingIntact = false;
   assert.equal(reason(resolveSource(changed), "q-a"), "generation_grounding_differs_from_alignment");
-  // A named anchor segment that no quote touches is said, not hidden.
-  const loose = makeInput({
-    targets: [{ questionId: "q-l", sourceNumber: 1, quotes: [QUOTES.a], segmentIds: [101, 106] }],
-  });
-  const row = rowOf(resolveSource(loose), "q-l");
+});
+
+test("a generation segment that no quote touches must be written whole by the same clip", () => {
+  const targets = [
+    { questionId: "q-l", sourceNumber: 1, quotes: [QUOTES.a], segmentIds: [101, 106] },
+  ];
+  // Segment 106 ("Yes, I do.") was cited by the generation and never quoted.
+  const unheard = makeInput({ targets });
+  const held = rowOf(resolveSource(unheard), "q-l");
+  assert.equal(held.reasons[0], "generation_segment_without_quote_not_heard_in_passage_clip");
+  assert.deepEqual(held.tested.generationSegmentsWithoutQuote, [106]);
+  const heard = makeInput({ targets });
+  heard.enListenings = heard.enListenings.map((l) =>
+    l.startFrame === 900 * FRAMES
+      ? english(900, 1000, "How was your weekend? " + QUOTES.a + " Yes, I do.")
+      : l,
+  );
+  const row = rowOf(resolveSource(heard), "q-l");
+  assert.equal(row.status, "candidate");
   assert.deepEqual(row.nativeRecovery.uncoveredAnchorSegmentIds, [106]);
+  assert.deepEqual(
+    row.localizedMappingEvidence.anchorSegments.map((a) => [a.sourceSegmentId, a.text]),
+    [[106, "Yes, I do."]],
+  );
   assert.equal(row.nativeRecovery.verifierPreconditions.everyAnchorSegmentTouchedByAQuote, false);
   assert.equal(row.nativeRecovery.verifierPreconditions.anchorSegmentsContiguous, false);
+  // Written twice in the clip: which one the generation meant is not known.
+  const twice = makeInput({ targets });
+  twice.enListenings = twice.enListenings.map((l) =>
+    l.startFrame === 900 * FRAMES
+      ? english(900, 1000, "Yes, I do. " + QUOTES.a + " Yes, I do.")
+      : l,
+  );
+  assert.equal(
+    reason(resolveSource(twice), "q-l"),
+    "generation_segment_without_quote_not_heard_in_passage_clip",
+  );
+  // A cited segment with no English in it cannot be heard by an English clip.
+  const korean = makeInput({
+    targets: [{ questionId: "q-k", sourceNumber: 1, quotes: [QUOTES.a], segmentIds: [101, 107] }],
+    asrSegments: [
+      ...frozenSegments(),
+      { id: 107, text: "1번입니다. 대화를 듣고 고르세요.", startSeconds: 10, endSeconds: 18 },
+    ],
+  });
+  assert.equal(
+    reason(resolveSource(korean), "q-k"),
+    "generation_segment_without_quote_has_no_english_words",
+  );
 });
 
 test("a number written long after the measured onset is not what sounds at that onset", () => {

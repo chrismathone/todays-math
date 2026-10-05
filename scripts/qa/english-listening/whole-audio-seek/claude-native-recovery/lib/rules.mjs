@@ -151,6 +151,10 @@ export function probeUsable(probe, maximumSeconds) {
       segment.localEndSeconds > probe.durationSeconds + 1e-9
     )
       return "probe_overflow";
+    // A segment without duration is a recognizer artefact; the independent
+    // verifier refuses the whole probe for it, and so does this producer.
+    if (!(segment.localStartSeconds < segment.localEndSeconds))
+      return "probe_segment_without_duration";
     for (const word of segment.words ?? [])
       if (
         word.localStartSeconds < 0 ||
@@ -675,8 +679,12 @@ export const clipInside = (clip, fromFrame, toFrame) =>
  * exactly one passage and in no clip that lies wholly elsewhere. Every quote,
  * anchors and short ones alike, must then be written word for word by ONE clip
  * that lies wholly inside that passage. One convenient quote is not enough.
+ * `required`: frozen generation segments ({ id, text }) that no quote touches;
+ * the same clip must write each of them whole, exactly once.
  */
-export function bindQuotes(quotes, passages, listenings) {
+export function bindQuotes(quotes, passages, listenings, required = []) {
+  if (required.some((segment) => !/[A-Za-z]/.test(segment.text)))
+    hold("generation_segment_without_quote_has_no_english_words");
   const rows = quotes.map((text, index) => {
     const words = quoteWords(text);
     return {
@@ -747,7 +755,31 @@ export function bindQuotes(quotes, passages, listenings) {
     hold("not_every_frozen_quote_heard_in_one_passage_clip", {
       quotes: clean(),
     });
-  const [clip] = complete;
+  // A generation segment that no quote touches must itself be written, whole
+  // and once, by the same clip.
+  const withSegments = [];
+  for (const clip of complete) {
+    const listening = listenings.find(
+      (l) => l.ref.path === clip.ref.path && l.ref.probeId === clip.ref.probeId,
+    );
+    const anchorSegments = [];
+    for (const segment of required) {
+      const hits = hearQuote(listening.probe, quoteWords(segment.text));
+      if (hits.length !== 1) break;
+      anchorSegments.push({
+        sourceSegmentId: segment.id,
+        text: segment.text,
+        probeSegmentIds: hits[0].segmentIds,
+      });
+    }
+    if (anchorSegments.length === required.length)
+      withSegments.push({ clip, anchorSegments });
+  }
+  if (!withSegments.length)
+    hold("generation_segment_without_quote_not_heard_in_passage_clip", {
+      quotes: clean(),
+    });
+  const [{ clip, anchorSegments }] = withSegments;
   return {
     passageKey: key,
     clip: { ref: clip.ref, startFrame: clip.startFrame, frameCount: clip.frameCount },
@@ -756,6 +788,7 @@ export function bindQuotes(quotes, passages, listenings) {
       probeSegmentIds: clip.hits.get(row.index).segmentIds,
       wordRange: clip.hits.get(row.index).wordRange,
     })),
+    anchorSegments,
     anchorsTotal: rows.filter((row) => row.anchor).length,
   };
 }

@@ -374,7 +374,8 @@ const request = {
   summary,
   sources,
 };
-if (!values["dry-run"]) {
+// A round that would listen to nothing is not written.
+if (!values["dry-run"] && sources.length) {
   mkdirSync(requestDir, { recursive: true });
   writeFileSync(requestPath, JSON.stringify(request, null, 1), { flag: "wx" });
 }

@@ -336,10 +336,33 @@ export function resolveSource(input) {
       if (frozen.some((q) => q.occurrencesInFrozenRecognition !== 1))
         throw new Hold("quote_repeats_in_frozen_recognition");
 
+      // Frozen anchor segments that no frozen quote touches.
+      const covered = new Set();
+      for (const q of frozen) {
+        let cursor = 0;
+        for (const id of q.located.sourceSegmentIds) {
+          const end = cursor + asrById.get(id).text.length;
+          if (
+            Math.max(q.located.startCharacter, cursor) <
+            Math.min(q.located.endCharacter, end)
+          )
+            covered.add(id);
+          cursor = end + 1;
+        }
+      }
+      const uncovered = ids.filter((id) => !covered.has(id));
+      const position = new Map(hints.asrSegments.map((s, i) => [s.id, i]));
+      const contiguous = ids.every(
+        (id, i) => !i || position.get(id) === position.get(ids[i - 1]) + 1,
+      );
+
+      tested.generationSegmentsWithoutQuote = uncovered;
+
       const bound = bindQuotes(
         generation.evidenceQuotes,
         passages,
         input.enListenings,
+        uncovered.map((id) => ({ id, text: asrById.get(id).text })),
       );
       tested.quotes = bound.quotes;
       const passage = passages.find((p) => p.key === bound.passageKey);
@@ -389,32 +412,15 @@ export function resolveSource(input) {
       const kind = start.native.kind;
       const head = heading.sharedHead ?? null;
 
-      // Frozen anchor segments that no frozen quote touches.
-      const covered = new Set();
-      for (const q of frozen) {
-        let cursor = 0;
-        for (const id of q.located.sourceSegmentIds) {
-          const end = cursor + asrById.get(id).text.length;
-          if (
-            Math.max(q.located.startCharacter, cursor) <
-            Math.min(q.located.endCharacter, end)
-          )
-            covered.add(id);
-          cursor = end + 1;
-        }
-      }
-      const uncovered = ids.filter((id) => !covered.has(id));
-      const position = new Map(hints.asrSegments.map((s, i) => [s.id, i]));
-      const contiguous = ids.every(
-        (id, i) => !i || position.get(id) === position.get(ids[i - 1]) + 1,
-      );
-
       const clip = input.enListenings.find(
         (l) =>
           l.ref.path === bound.clip.ref.path &&
           l.ref.probeId === bound.clip.ref.probeId,
       );
-      const quoted = new Set(bound.quotes.flatMap((q) => q.probeSegmentIds));
+      const quoted = new Set([
+        ...bound.quotes.flatMap((q) => q.probeSegmentIds),
+        ...bound.anchorSegments.flatMap((a) => a.probeSegmentIds),
+      ]);
       const alignment = input.generation.inputs.generationAlignment;
       const nextHeading = boundary.heading ?? null;
       rows.push({
@@ -481,6 +487,8 @@ export function resolveSource(input) {
             ...q.located,
             probeSegmentIds: bound.quotes[index].probeSegmentIds,
           })),
+          // Generation segments no quote touches, each written whole by the same clip.
+          anchorSegments: bound.anchorSegments,
         },
         nativeRecovery: {
           evidenceProtocol: 1,
@@ -520,6 +528,7 @@ export function resolveSource(input) {
           verifierPreconditions: {
             nextHeadingIsANativeProbe: Boolean(nextHeading),
             everyAnchorSegmentTouchedByAQuote: uncovered.length === 0,
+            everyUntouchedAnchorSegmentHeardWhole: true,
             anchorSegmentsContiguous: contiguous,
             headIsAnAdjacentPairOrSingle:
               heading.form !== "range" && (head?.form ?? "pair") !== "range",

@@ -3,13 +3,12 @@
  * the frozen record and clock identity, the measured loudness, measured onsets,
  * stored recognitions, search hints, generation quotes and certificate rows.
  */
-import { readFileSync } from "node:fs";
-import { energyAtDbfs } from "../../claude/lib/activity.mjs";
+import { energyAtDbfs, quietBefore } from "../../claude/lib/activity.mjs";
 import { onsetCandidates } from "../../claude/lib/candidates.mjs";
 import { ABSOLUTE, Hold, NOISE_TIERS, RULES, noiseFloor } from "./rules.mjs";
 import {
-  MAIN,
   OUT,
+  PILOT_PLAN,
   ProbeStore,
   TOOLS,
   clockIdentity,
@@ -17,10 +16,8 @@ import {
   loadGeneration,
   loadHints,
   loadNativeCache,
+  readBoundJson,
 } from "./store.mjs";
-
-const PILOT_PLAN =
-  MAIN + "/.qa-artifacts/listening-seek-research-20261006/pilot-plan.json";
 
 export function openSession(values = {}) {
   const baseline = loadBaseline({
@@ -43,7 +40,7 @@ export function openSession(values = {}) {
         .filter((r) => explicit.includes(r.sourceRecordId))
         .map((r) => r.sourceRecordId);
     if (name === "pilot") {
-      const plan = JSON.parse(readFileSync(PILOT_PLAN, "utf8"));
+      const plan = readBoundJson(PILOT_PLAN.path, PILOT_PLAN.sha256, "Pilot plan");
       const wanted = new Set(plan.candidateQuestions.map((q) => q.sourceRecordId));
       return all
         .filter((r) => wanted.has(r.sourceRecordId))
@@ -107,7 +104,8 @@ export function openSession(values = {}) {
           onsets.set(at, {
             onsetWindow: at,
             startWindow: at - RULES.leadWindows,
-            quietWindows: windows,
+            // Every window below the measured noise limit, not only the baseline.
+            quietWindows: quietBefore(native.energy, noise.limit, at),
             soundWindows: soundFrom(at, noise.limit),
             method,
           });

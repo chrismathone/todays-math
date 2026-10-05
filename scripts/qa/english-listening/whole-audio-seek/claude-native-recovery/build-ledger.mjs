@@ -32,7 +32,14 @@ import {
   readsHeading,
 } from "./lib/rules.mjs";
 import { openSession } from "./lib/session.mjs";
-import { ProbeStore, sha256 } from "./lib/store.mjs";
+import {
+  GROUPED_CONTROLS,
+  INSPECTED_DURING_DEVELOPMENT,
+  PILOT_PLAN,
+  ProbeStore,
+  readBoundJson,
+  sha256,
+} from "./lib/store.mjs";
 
 const { values } = parseArgs({
   options: {
@@ -57,8 +64,26 @@ const certificateSha256 = session.baseline.inputs.certificate.sha256;
 const adversarialStore = new ProbeStore([join(session.out, "adversarial")]);
 
 const count = (map, key, n = 1) => (map[key] = (map[key] ?? 0) + n);
+// The coordinator's family-separated partition of the certified controls.
+const groups = readBoundJson(
+  GROUPED_CONTROLS.path,
+  GROUPED_CONTROLS.sha256,
+  "Grouped controls",
+);
+const partitionOf = new Map();
+for (const family of groups.families)
+  for (const id of family.sourceRecordIds) partitionOf.set(id, family.partition);
 const stratum = (record) =>
-  `${record.source.year <= 2012 ? "2006-2012" : record.source.year <= 2017 ? "2013-2017" : "2018+"}`;
+  [
+    INSPECTED_DURING_DEVELOPMENT.includes(record.sourceRecordId)
+      ? "inspected_during_development"
+      : (partitionOf.get(record.sourceRecordId) ?? "no_partition"),
+    record.source.year <= 2012
+      ? "2006-2012"
+      : record.source.year <= 2017
+        ? "2013-2017"
+        : "2018+",
+  ].join("/");
 
 const ledger = [];
 const tables = {};
@@ -308,6 +333,31 @@ try {
   commit = null;
 }
 const passages = new Set(candidates.map((r) => r.sourceRecordId + "#" + r.cueNumber));
+// The 35 questions the research plan named as a pilot, one line each. Their
+// diagnostic scope is the provider transcript's and is shown beside what the
+// native route found; it decided nothing here.
+const pilotPlan = readBoundJson(PILOT_PLAN.path, PILOT_PLAN.sha256, "Pilot plan");
+const byQuestion = new Map(ledger.map((row) => [row.questionId, row]));
+const pilotRows = pilotPlan.candidateQuestions
+  .filter((q) => byQuestion.has(q.questionId))
+  .map((q) => {
+    const row = byQuestion.get(q.questionId);
+    return {
+      questionId: q.questionId,
+      sourceRecordId: q.sourceRecordId,
+      displayedNumber: q.displayedNumber,
+      diagnosticScope: q.originalScopeNumbers,
+      diagnosticGrade: q.evidenceGrade,
+      outcome: row.status,
+      reason: row.status === "held" ? row.reasons[0] : null,
+      nativeScope: row.scopeQuestionNumbers ?? null,
+      kind: row.kind ?? null,
+      seekStartMs: row.seekStartMs ?? null,
+      onsetMethod: row.nativeEvidence?.onsetMethod ?? null,
+    };
+  });
+const pilotReasons = {};
+for (const row of pilotRows) if (row.outcome === "held") count(pilotReasons, row.reason);
 const summary = {
   schemaVersion: 1,
   producer: "claude-native-recovery",
@@ -330,6 +380,18 @@ const summary = {
   offered: candidates.length,
   offeredOriginalPassages: passages.size,
   offeredByKind: byKind,
+  pilotCohort: {
+    plan: PILOT_PLAN,
+    questionsInPlan: pilotPlan.candidateQuestions.length,
+    questionsInThisRun: pilotRows.length,
+    offered: pilotRows.filter((r) => r.outcome === "candidate").length,
+    held: pilotRows.filter((r) => r.outcome === "held").length,
+    heldByReason: pilotReasons,
+    scopeAgreesWithDiagnostic: pilotRows.filter(
+      (r) => r.nativeScope && r.nativeScope.join() === r.diagnosticScope.join(),
+    ).length,
+    rows: pilotRows,
+  },
   held: ledger.length - candidates.length,
   heldByReason: reasons,
   controls: {
@@ -366,7 +428,29 @@ if (!values["dry-run"]) {
     inputs: session.baseline.inputs,
     rules: RULES,
   };
+  // Every bounded recognition of these sources that exists, used or not.
+  const catalog = {
+    schemaVersion: 1,
+    producer: "claude-native-recovery",
+    run: values.run,
+    layout: "<root>/probes/round-NNN/<sourceRecordId>.json; request at <root>/probe-requests/round-NNN.json",
+    roots: session.store.roots.map((path) => ({
+      path: path.replace(/\\/g, "/"),
+      pattern: "probes/round-*/<sourceRecordId>.json",
+    })),
+    rawArtifacts: session.store.catalog,
+    adversarialRoot: join(session.out, "adversarial").replace(/\\/g, "/"),
+    adversarialArtifacts: adversarialStore.catalog,
+  };
+  const probeCatalog = {
+    path: join(runDir, "probe-catalog.json").replace(/\\/g, "/"),
+    sha256: write("probe-catalog.json", catalog),
+  };
+  header.probeCatalog = probeCatalog;
+  for (const row of ledger) if (row.status === "candidate") row.probeCatalog = probeCatalog;
+  summary.probeCatalog = probeCatalog;
   summary.files = {
+    "probe-catalog.json": probeCatalog.sha256,
     "ledger.json": write("ledger.json", { ...header, records: ledger }),
     "candidates.json": write("candidates.json", { ...header, records: candidates }),
     "tables.json": write("tables.json", { ...header, sources: tables }),
