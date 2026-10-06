@@ -300,6 +300,7 @@ export function completeFadingStep(
       phase: "rating",
       // 지금 표적은 표적 차례로. 지금 표적에 없는 옛 id(은행의 문장이 고쳐지기 전에 적힌 틀림)도 버리지 않는다 —
       // 버리면 고친 문장에서 다 맞히는 순간 «4단계에서 틀리면 다시뿐»이 풀린다.
+      // 묶음 구성이 그대로면 합친 수는 상한에 닿지 않는다(다섯 문장 × 핵심어 넷 — 시험이 잠근다). 자르는 것은 구성이 바뀐 예외뿐이다.
       missedAtFour: [
         ...order.filter((id) => missed.has(id)),
         ...session.missedAtFour.filter((id) => !order.includes(id)),
