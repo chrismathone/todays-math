@@ -13,6 +13,9 @@ const page = await browser.newPage({
   viewport: { width: 390, height: 844 },
   deviceScaleFactor: 1,
 });
+// Fresh navigation loads every case; live hot reload is unnecessary here.
+// Avoid opening hundreds of dev HMR sockets during a Windows measurement run.
+await page.routeWebSocket(/\/_next\/hmr(?:\?|$)/, () => {});
 const errors = [];
 const external = new Set();
 page.on("pageerror", (error) => errors.push(error.message));

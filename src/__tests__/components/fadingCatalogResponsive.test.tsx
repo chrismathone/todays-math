@@ -42,6 +42,16 @@ const concepts: FadingConcept[] = Array.from({ length: 8 }, (_, index) => ({
     },
   ],
 }));
+// The production catalog exposes seven grades. A single-grade fixture would
+// miss the tall, squeezed grade filter reported in the teacher phone preview.
+for (const grade of ["초3", "초4", "초6", "중1", "중2", "중3"])
+  concepts.push({
+    ...concepts[0]!,
+    id: `responsive-grade-${grade}`,
+    section: `${grade}::도형::단원`,
+    ordinal: 1,
+    siblings: 1,
+  });
 
 const rawCss = readFileSync(
   resolve("src/components/fading/FadingCatalogScreen.module.css"),
@@ -109,6 +119,11 @@ describe("catalog layouts follow available width", () => {
               mainWidth: el("featuredMain").getBoundingClientRect().width,
               headingFont: getComputedStyle(el("featured").querySelector("h2")!)
                 .fontSize,
+              gradeRows: new Set(
+                [...document.getElementsByClassName(styles.gradeChip!)].map(
+                  (chip) => Math.round(chip.getBoundingClientRect().top),
+                ),
+              ).size,
               overflow: document.documentElement.scrollWidth - innerWidth,
               smallControls: [
                 ...document.querySelectorAll("button,input"),
@@ -122,6 +137,7 @@ describe("catalog layouts follow available width", () => {
           { styles },
         );
         expect(list.columns).toBe(columns);
+        expect(list.gradeRows).toBeLessThanOrEqual(2);
         expect(list.featuredDirection).toBe(width >= 1024 ? "row" : "column");
         expect(list.mainWidth).toBeGreaterThanOrEqual(
           width >= 1024 ? 400 : width - 34,

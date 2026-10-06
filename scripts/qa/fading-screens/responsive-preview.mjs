@@ -10,6 +10,9 @@ const output = resolve(".qa-artifacts/fading-responsive-preview");
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+// Each case navigates afresh; dev hot reload is not part of the student flow.
+// Mock this one socket so long Windows QA runs do not exhaust socket buffers.
+await page.routeWebSocket(/\/_next\/hmr(?:\?|$)/, () => {});
 const rows = [];
 const errors = [];
 const writes = [];
@@ -45,6 +48,12 @@ async function capture(name) {
     const grid = root.querySelector('[class*="cardGrid"]');
     const heading = root.querySelector('[class*="featured"] h2');
     const tabs = root.querySelector('nav[aria-label="오늘의 기억 메뉴"]');
+    const smallControls = [...root.querySelectorAll("button,a,input,select")].filter((control) => {
+      const style = getComputedStyle(control);
+      if (!control.getClientRects().length || style.visibility === "hidden" || style.display === "none") return false;
+      const rect = control.getBoundingClientRect();
+      return rect.width < 43.5 || rect.height < 43.5;
+    }).map((control) => control.getAttribute("aria-label") || control.textContent);
     return {
       viewport: innerWidth,
       rootWidth: width(root),
@@ -53,12 +62,14 @@ async function capture(name) {
       featuredHeadingWidth: width(heading),
       featuredHeadingHeight: heading?.getBoundingClientRect().height ?? null,
       navigationPosition: tabs ? getComputedStyle(tabs).position : null,
+      smallControls,
     };
   });
   rows.push({ name, ...row });
   await page.evaluate(() => scrollTo(0, 0));
   await page.screenshot({ path: resolve(output, `${name}.png`), fullPage: true });
   check(row.documentOverflow === 0, `${name}: document overflow ${row.documentOverflow}`);
+  check(row.smallControls.length === 0, `${name}: undersized controls ${row.smallControls.join(", ")}`);
   if (row.featuredHeadingWidth !== null)
     check(row.featuredHeadingWidth >= 160, `${name}: squeezed featured heading ${row.featuredHeadingWidth}`);
   console.log(`${name}: root=${row.rootWidth}, columns=${row.catalogColumns}, overflow=${row.documentOverflow}`);
@@ -84,7 +95,7 @@ async function previewCatalog(device, prefix) {
   await page.getByRole("button", { name: /개념 읽기/ }).first().click();
   await page.getByRole("heading", { name: "개념 읽기", exact: true }).waitFor();
   await capture(`${prefix}-${device === "PC" ? "desktop" : "mobile"}-read`);
-  await page.getByRole("button", { name: "고르고 첫 풀이", exact: true }).click();
+  await page.getByRole("button", { name: "복습에 추가하고 시작", exact: true }).click();
   await page.locator("[data-fading-session]").waitFor();
   await page.getByRole("button", { name: "읽었어요 · 다음 단계", exact: true }).click();
   await page.locator('[data-fading-session][data-step="2"]').waitFor();
@@ -106,6 +117,11 @@ async function teacherStates() {
       await page.screenshot({ path: resolve(output, `teacher-${width}-${state}.png`), fullPage: true });
     }
   }
+}
+async function navigatePreview(tab, scene) {
+  await page.getByRole("button", { name: tab, exact: true }).click();
+  if (scene === "catalog") await page.locator('[data-fading-catalog="true"]').waitFor();
+  if (scene === "stats") await page.locator('[data-fading-stats="true"]').waitFor();
 }
 
 try {
@@ -134,8 +150,18 @@ try {
   for (const device of ["모바일", "PC"]) {
     await page.getByRole("button", { name: `${device} 미리 보기`, exact: true }).click();
     for (const [tab, scene] of [["오늘의 복습", "home"], ["개념 소거", "erase"], ["학습 통계", "stats"]]) {
-      await page.getByRole("button", { name: tab, exact: true }).click();
+      await navigatePreview(tab, scene);
       await capture(`preview-${device === "PC" ? "desktop" : "mobile"}-${scene}`);
+    }
+  }
+  for (const width of [320, 390, 768]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto(`${base}/dev/fading?preview=1`, { waitUntil: "networkidle" });
+    await page.getByRole("button", { name: "모바일 미리 보기", exact: true }).click();
+    for (const [tab, scene] of [["오늘의 복습", "home"], ["개념 소거", "erase"], ["개념 목록", "catalog"], ["학습 통계", "stats"]]) {
+      await navigatePreview(tab, scene);
+      const row = await capture(`preview-${width}-${scene}`);
+      if (scene === "catalog") check(row.catalogColumns === 1, `Preview catalog missing at ${width}`);
     }
   }
   // The actual teacher preview host adds another layout boundary.
