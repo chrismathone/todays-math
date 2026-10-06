@@ -77,3 +77,4 @@ export const listeningFeedbackReportsSchema = z.strictObject({
   counts: z.strictObject({ like: z.number().int().nonnegative(), dislike: z.number().int().nonnegative() }),
 });
 export type ListeningFeedbackReports = z.infer<typeof listeningFeedbackReportsSchema>;
+export type ListeningFeedbackReportsResponse = ListeningFeedbackReports;
