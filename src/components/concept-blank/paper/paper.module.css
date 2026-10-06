@@ -363,6 +363,10 @@
   min-height: calc(var(--cb-rule) * 2);
 }
 
+.termRuled {
+  min-height: calc(var(--cb-rule) * var(--cb-answer-lines));
+}
+
 .field {
   flex: 1;
   display: inline-flex;

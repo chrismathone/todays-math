@@ -10,6 +10,7 @@ import {
 import { sectionStock } from "./bank/stock";
 import { getBlankSection, sectionTitleTex } from "./sections";
 import { composeExactSheets, type ResolvedBlankSection } from "./exactPick";
+import { conceptSupportsForm } from "./questions";
 
 /**
  * 고르기 → 지면(D-150). 🔴 고정이다: 무작위 없이 «소단원 순서(교육과정) → 은행 파일 순서»로 세우고,
@@ -144,7 +145,10 @@ export function composeSheets(
             {
               form,
               header: header(form),
-              terms: takeByLevel(all("concepts"), counts),
+              terms: takeByLevel(
+                all("concepts").filter((c) => conceptSupportsForm(c, "term")),
+                counts,
+              ),
               ox: takeByLevel(all("ox"), extras),
             },
           ];
@@ -153,7 +157,10 @@ export function composeSheets(
             {
               form,
               header: header(form),
-              sentences: takeByLevel(all("concepts"), counts),
+              sentences: takeByLevel(
+                all("concepts").filter((c) => conceptSupportsForm(c, "cloze")),
+                counts,
+              ),
               apply: takeByLevel(all("apply"), extras),
             },
           ];
@@ -227,6 +234,8 @@ export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
       const zero = () => ({ 하: 0, 중: 0, 상: 0 });
       r = {
         concepts: zero(),
+        term: zero(),
+        cloze: zero(),
         recall: zero(),
         ox: zero(),
         apply: zero(),
@@ -243,8 +252,12 @@ export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
       r[kind][item.level] += 1;
       r.total += 1;
     }
-  for (const concept of bank.concepts)
-    if (recallable(concept)) row(concept.section).recall[concept.level] += 1;
+  for (const concept of bank.concepts) {
+    const r = row(concept.section);
+    if (recallable(concept)) r.recall[concept.level] += 1;
+    if (conceptSupportsForm(concept, "term")) r.term[concept.level] += 1;
+    if (conceptSupportsForm(concept, "cloze")) r.cloze[concept.level] += 1;
+  }
   return table;
 }
 
@@ -257,6 +270,12 @@ export function stockCounts(key: string, bank: ConceptBlankBank) {
     ) as LevelCounts;
   return {
     concepts: byLevel(s.concepts),
+    term: byLevel(
+      s.concepts.filter((entry) => conceptSupportsForm(entry, "term")),
+    ),
+    cloze: byLevel(
+      s.concepts.filter((entry) => conceptSupportsForm(entry, "cloze")),
+    ),
     /** A(완전 백지)에 실을 수 있는 개념 — 사례 문항을 뺀 수(`total` 에는 더하지 않는다). */
     recall: byLevel(s.concepts.filter(recallable)),
     ox: byLevel(s.ox),

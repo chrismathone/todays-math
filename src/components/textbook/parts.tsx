@@ -1446,7 +1446,7 @@ function PickAdd({ onAdd }: { onAdd: (pick: BlankPick) => void }) {
 
 const FORM_LABEL: Record<BlankForm, string> = {
   recall: "완전 백지",
-  term: "용어",
+  term: "질문",
   cloze: "빈칸",
   map: "지도",
   figure: "그림",

@@ -21,16 +21,16 @@ test("단원 오버레이가 문항 수 표를 늘리지 않고 선택을 유지
   await dialog.getByRole("button", { name: "선택 완료" }).click();
   await expect(opener).toBeFocused();
   await expect(
-    page.getByRole("spinbutton", { name: "용어 → 뜻 ○× 중" }),
+    page.getByRole("spinbutton", { name: "개념 질문 ○× 중" }),
   ).toBeEnabled();
-  await page.getByRole("spinbutton", { name: "용어 → 뜻 ○× 중" }).fill("0");
+  await page.getByRole("spinbutton", { name: "개념 질문 ○× 중" }).fill("0");
   await opener.click();
   await expect(
     dialog.getByRole("checkbox", { name: "2-3 합동과 대칭", exact: true }),
   ).toBeChecked();
   await page.keyboard.press("Escape");
   await expect(
-    page.getByRole("spinbutton", { name: "용어 → 뜻 ○× 중" }),
+    page.getByRole("spinbutton", { name: "개념 질문 ○× 중" }),
   ).toHaveValue("0");
   await page.screenshot({
     path: "test-results/concept-blank-paper/builder-desktop.png",

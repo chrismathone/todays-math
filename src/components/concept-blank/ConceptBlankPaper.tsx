@@ -130,7 +130,18 @@ function studentPages(
         style={{ ["--cb-num" as string]: `${numberColumnWidth(sheet)}px` }}
       >
         {i === 0 ? (
-          <SheetHead header={sheet.header} />
+          <SheetHead
+            header={sheet.header}
+            goal={
+              sheet.form === "term" &&
+              sheet.terms.some((entry) => entry.bQuestion)
+                ? "물음을 읽고, 답이나 풀이 방법 · 까닭을 쓰세요."
+                : sheet.form === "cloze" &&
+                    sheet.sentences.some((entry) => entry.clozeQuestion)
+                  ? "주어진 상황을 생각하며 빈칸에 알맞은 말이나 수를 쓰세요."
+                  : undefined
+            }
+          />
         ) : (
           <ContinuationHead header={sheet.header} page={i + 1} />
         )}

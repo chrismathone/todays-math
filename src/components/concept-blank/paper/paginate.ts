@@ -7,6 +7,13 @@ import {
   type OxItem,
 } from "@/contracts/conceptBlank.contract";
 import { termIsKeyword } from "@/lib/concept-blank/audit";
+import {
+  clozeAlternatives,
+  clozeSentence,
+  termAnswer,
+  termCriteria,
+  termPrompt,
+} from "@/lib/concept-blank/questions";
 
 import {
   BOLD_MATH,
@@ -148,6 +155,8 @@ export type KeyRow =
       kind: "concept";
       n: string;
       entry: ConceptEntry;
+      /** B/C는 일반 설명이 아니라 당시 문항의 답으로 채점한다. 없는 값은 옛 지면 또는 A/D다. */
+      questionForm?: "term" | "cloze";
       /** 채점 칸 아래 작은 글(A 의 소단원 · D 의 지도 이름). */
       place?: string;
       /** 예 줄 — D 는 예 칸의 답(예가 없으면 «뜻에 맞는 예»), A 는 참고로 은행의 예. */
@@ -244,13 +253,16 @@ export function numberColumnWidth(sheet: ConceptBlankSheet): 44 | 52 {
 }
 
 /**
- * B 용어 칸의 쓰기 줄 수(가장 적을 때) — 뜻 문장이 짧으면 한 줄, 아니면 두 줄(시안 «이상» 한 줄 · 나머지 두 줄).
+ * B 답 칸의 최소 쓰기 줄 — 새 질문은 참고 답의 보이는 글 32자마다 한 줄을 남긴다.
+ * 옛 동결 자료는 뜻 문장이 짧으면 한 줄, 아니면 두 줄인 기존 규칙을 유지한다.
  * 길이는 **보이는 글자 수**(계약의 `visibleLength` — 띄어쓰기 빼고)로 잰다. 수식 마크업까지 세면 `$1000\,\mathrm{m}$` 하나가
  * 열여덟 자라, 짧은 뜻도 다 두 줄이 된다.
  */
-export const termRuledLines = (entry: ConceptEntry): 1 | 2 => {
-  const shown = plainSentence(entry.definition);
+export const termRuledLines = (entry: ConceptEntry): number => {
+  const shown = plainSentence(termAnswer(entry));
   const spaces = shown.replace(/\$[^$]*\$/g, "").match(/\s/g)?.length ?? 0;
+  if (entry.bQuestion)
+    return Math.max(1, Math.ceil((visibleLength(shown) - spaces) / 32));
   return visibleLength(shown) - spaces <= 18 ? 1 : 2;
 };
 
@@ -376,17 +388,13 @@ export function termCost(
   prev: TermBlock | undefined,
 ): number {
   if (block.kind === "term") {
+    const prompt = termPrompt(block.entry);
     // 용어는 굵은 글이다 — 그 안의 수식도 굵은 벌로 그려져 넓다
-    const lines = estimateLines(
-      block.entry.term,
-      G.term.font,
-      qWidth,
-      BOLD_MATH,
-    );
+    const lines = estimateLines(prompt, G.term.font, qWidth, BOLD_MATH);
     return (
       G.term.fixed +
       lines * G.term.line +
-      mathExtra(block.entry.term, lines, G.term.font, G.term.line) +
+      mathExtra(prompt, lines, G.term.font, G.term.line) +
       termRuledLines(block.entry) * G.term.ruledLine
     );
   }
@@ -406,7 +414,7 @@ export function clozeCost(
   prev: ClozeBlock | undefined,
 ): number {
   if (block.kind === "sentence") {
-    const text = block.entry.definition;
+    const text = clozeSentence(block.entry);
     const lines = wrapLines(sentenceAtoms(text, G.sentence.font), qWidth);
     // 학생지에 그려지는 수식은 글 조각의 것뿐이다 — 핵심어의 수식(`{$\frac{1}{2}$}`)은 밑줄 빈칸이라 줄을 높이지 않는다
     const shown = splitSentence(text)
@@ -435,7 +443,14 @@ export function clozeCost(
 }
 
 /** 뜻 문장 글 — 채점표는 핵심어를 굵게 그대로 쓴다(수식 안의 TeX 묶음 { } 는 건드리지 않는다). */
-const keyText = (entry: ConceptEntry) => plainSentence(entry.definition);
+const keySentence = (row: Extract<KeyRow, { kind: "concept" }>) =>
+  row.questionForm === "cloze"
+    ? clozeSentence(row.entry)
+    : row.questionForm === "term"
+      ? termAnswer(row.entry)
+      : row.entry.definition;
+const keyText = (row: Extract<KeyRow, { kind: "concept" }>) =>
+  plainSentence(keySentence(row));
 
 export function keyRowCost(row: KeyRow): number {
   const k = G.key;
@@ -469,6 +484,14 @@ export function keyRowCost(row: KeyRow): number {
   switch (row.kind) {
     case "concept": {
       const ex = row.entry.example;
+      const criteria =
+        row.questionForm === "term" ? termCriteria(row.entry) : [];
+      const alternatives =
+        row.questionForm === "cloze" ? clozeAlternatives(row.entry) : [];
+      const assessmentLines = [
+        ...criteria.map((line, index) => `확인할 내용 ${index + 1}: ${line}`),
+        ...alternatives,
+      ].reduce((sum, line) => sum + sub(line), 0);
       // 예의 답 · 핵심어는 굵다 — 거기 수식이 있으면 그 글줄의 수식을 굵은 벌로 센다(넉넉한 쪽)
       const exLine =
         row.example && ex
@@ -476,14 +499,15 @@ export function keyRowCost(row: KeyRow): number {
           : row.example === "free"
             ? sub("예 — 학생이 든 예가 뜻에 맞으면 ○")
             : 0;
-      const boldKey = sentenceKeywords(row.entry.definition).some((key) =>
+      const boldKey = sentenceKeywords(keySentence(row)).some((key) =>
         key.includes("$"),
       );
       return (
         k.fixed +
         Math.max(
-          concept(row.entry.term, row.place) + rise(keyText(row.entry)),
-          main(keyText(row.entry), k.textWidth, boldKey) +
+          concept(row.entry.term, row.place) + rise(keyText(row)),
+          main(keyText(row), k.textWidth, boldKey) +
+            assessmentLines +
             exLine +
             rise(row.entry.term),
         )
@@ -559,13 +583,17 @@ export function keyNotes(sheet: ConceptBlankSheet): string[] {
       ];
     case "term":
       return [
-        `문항 하나가 한 개. ${MEANING_RULE}`,
-        ...nameOnly(sheet.terms),
+        ...(sheet.terms.some((entry) => entry.bQuestion)
+          ? [
+              "문항 하나가 한 개. 확인할 내용을 모두 답했으면 ○. 참고 답과 말 · 식의 꼴이 달라도 뜻이 같으면 ○.",
+            ]
+          : [`문항 하나가 한 개. ${MEANING_RULE}`]),
+        ...nameOnly(sheet.terms.filter((entry) => !entry.bQuestion)),
         ...(sheet.ox.length ? ["○× 는 표시와 까닭이 둘 다 맞아야 한 개."] : []),
       ];
     case "cloze": {
       const blanks = sheet.sentences.reduce(
-        (sum, s) => sum + sentenceKeywords(s.definition).length,
+        (sum, s) => sum + sentenceKeywords(clozeSentence(s)).length,
         0,
       );
       return [
@@ -659,7 +687,19 @@ function keyRows(sheet: ConceptBlankSheet, student: StudentPage[]): KeyRow[] {
           ? page.blocks.map((b): KeyRow => {
               const n = String(b.n);
               if (b.kind === "term" || b.kind === "sentence")
-                return { kind: "concept", n, entry: b.entry };
+                return {
+                  kind: "concept",
+                  n,
+                  entry: b.entry,
+                  questionForm:
+                    b.kind === "term"
+                      ? b.entry.bQuestion
+                        ? "term"
+                        : undefined
+                      : b.entry.clozeQuestion
+                        ? "cloze"
+                        : undefined,
+                };
               return b.kind === "ox"
                 ? { kind: "ox", n, item: b.item }
                 : { kind: "apply", n, item: b.item };
@@ -816,7 +856,7 @@ function tallyOf(sheet: ConceptBlankSheet): string {
       return `맞은 개수 ____ / ${sheet.terms.length + sheet.ox.length}`;
     case "cloze": {
       const blanks = sheet.sentences.reduce(
-        (sum, s) => sum + sentenceKeywords(s.definition).length,
+        (sum, s) => sum + sentenceKeywords(clozeSentence(s)).length,
         0,
       );
       const parts = [];

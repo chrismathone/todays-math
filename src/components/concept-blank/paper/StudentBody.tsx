@@ -1,6 +1,7 @@
 import { Fragment, type CSSProperties } from "react";
 
 import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
+import { clozeSentence, termPrompt } from "@/lib/concept-blank/questions";
 
 import { FigureSvg } from "./FigureSvg";
 import type { StudentPage } from "./paginate";
@@ -95,11 +96,16 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
                   문 {block.n}
                 </span>
                 <span className={styles.term}>
-                  <PaperText text={block.entry.term} />
+                  <PaperText text={termPrompt(block.entry)} />
                 </span>
               </div>
               <div
-                className={`${styles.ruled} ${termRuledLines(block.entry) === 1 ? styles.r1 : styles.r2}`}
+                className={`${styles.ruled} ${styles.termRuled}`}
+                style={
+                  {
+                    "--cb-answer-lines": termRuledLines(block.entry),
+                  } as CSSProperties
+                }
                 data-cb-ruled=""
               />
             </div>
@@ -153,7 +159,7 @@ function ClozeBody({
       {sentences.length ? (
         <>
           <div className={styles.part}>
-            <span>가</span>빈칸에 알맞은 말이나 수를 쓰시오.
+            <span>가</span>빈칸에 알맞은 말, 수, 식이나 기호를 쓰세요.
           </div>
           {/* 적용이 없는 장은 문장 칸이 늘어나 장을 채운다 — 적용이 있으면 적용 칸이 채운다 */}
           <ol
@@ -167,7 +173,7 @@ function ClozeBody({
                 </span>
                 {/* <p> 가 아니다 — 제품 MathText(인라인)가 <div> 를 내서 HTML 파서가 문단을 끊는다 */}
                 <div className={styles.sentText}>
-                  <BlankSentence sentence={b.entry.definition} />
+                  <BlankSentence sentence={clozeSentence(b.entry)} />
                 </div>
               </li>
             ))}

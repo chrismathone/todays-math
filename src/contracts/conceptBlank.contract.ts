@@ -26,7 +26,7 @@ export const CONCEPT_BLANK_FORM_LABELS: Readonly<
   Record<ConceptBlankForm, string>
 > = {
   recall: "완전 백지",
-  term: "용어 → 뜻",
+  term: "개념 질문",
   cloze: "문장 빈칸",
   map: "개념 지도",
   figure: "그림 보고 쓰기",
@@ -152,29 +152,118 @@ export const blankSentenceSchema = paperText(8, 160).refine((s) => {
   return n >= 1 && n <= 4 && !stray;
 }, "핵심어 { } 는 1~4곳, 겹치거나 짝이 안 맞으면 안 된다");
 
-/** 개념 한 장 — B · C 문항, A 의 채점 항목, D 의 가지가 모두 여기서 나온다. */
-export const conceptEntrySchema = z.strictObject({
-  id: idSchema,
-  section: sectionKeySchema,
-  term: paperText(1, 40),
-  kind: z.enum(CONCEPT_KINDS),
-  level: levelSchema,
-  definition: blankSentenceSchema,
-  /** D 가지의 «예» — 짧은 물음과 답(없으면 빈 예 칸). */
-  example: z
-    .strictObject({
-      prompt: paperText(4, 80),
-      answer: paperText(1, 60),
-    })
-    .optional(),
-  /**
-   * 사례 문항 — 굵은 답이 **용어에 주어진 값**으로 정해진다(«$4\,\mathrm{m}$의 $0.3$배 구하기» → `{$1.2\,\mathrm{m}$}`).
-   * A(완전 백지)는 소단원 이름만 보여 주므로 이런 카드는 떠올릴 수도, 채점표 줄과 맞춰 볼 수도 없다 — A 채점표에 싣지 않는다
-   * (전수 검토 2026-10-02 합의 안건 11 · 26 §10). 답이 낱말이어도 해당한다. 단위 환산 · 자리값 · 직각 $90^\circ$처럼
-   * 수 자체가 개념인 카드는 사례가 아니다. 읽는 곳은 A 를 고르는 `composeSheets` 하나다.
-   */
-  givenCase: z.literal(true).optional(),
+/** B의 물음과 참고 답. anyOf는 같은 내용을 표현한 대안이며, 자동 문자열 채점 규칙이 아니다. */
+export type ConceptQuestion = {
+  prompt: string;
+  answer: string;
+  requiredIdeas: { anyOf: string[] }[];
+};
+// 중첩 스키마의 내부 제네릭을 모든 교재 계약으로 전파하지 않고 입출력 타입을 명시한다.
+export const conceptQuestionSchema: z.ZodType<
+  ConceptQuestion,
+  ConceptQuestion
+> = z.strictObject({
+  prompt: paperText(6, 240),
+  answer: paperText(1, 240),
+  requiredIdeas: z
+    .array(
+      z.strictObject({
+        anyOf: z.array(paperText(1, 160)).min(1).max(8),
+      }),
+    )
+    .min(1)
+    .max(6),
 });
+
+/** C는 일반 설명과 별도의 문항이다. 유지한 문항도 문장과 빈칸별 인정 답을 명시적으로 저장한다. */
+export type ConceptClozeQuestion = {
+  sentence: string;
+  acceptedAnswers: string[][];
+};
+export const conceptClozeQuestionSchema: z.ZodType<
+  ConceptClozeQuestion,
+  ConceptClozeQuestion
+> = z
+  .strictObject({
+    sentence: blankSentenceSchema,
+    acceptedAnswers: z
+      .array(z.array(paperText(1, 80)).min(1).max(10))
+      .min(1)
+      .max(4),
+  })
+  .superRefine((question, ctx) => {
+    const keys = blankKeywords(question.sentence);
+    if (
+      keys.length !== question.acceptedAnswers.length ||
+      keys.some((key, index) => !question.acceptedAnswers[index]?.includes(key))
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        message: "빈칸마다 지문의 정답을 포함한 인정 답이 필요합니다.",
+      });
+    }
+  });
+
+/** 개념 한 장 — B · C 문항, A 의 채점 항목, D 의 가지가 모두 여기서 나온다. */
+export const conceptEntrySchema = z
+  .strictObject({
+    id: idSchema,
+    section: sectionKeySchema,
+    term: paperText(1, 40),
+    kind: z.enum(CONCEPT_KINDS),
+    level: levelSchema,
+    definition: blankSentenceSchema,
+    /** 새 발행물에 질문의 판을 남긴다. 없는 옛 동결 자료는 당시 내용으로만 읽는다. */
+    questionRevision: z.string().min(1).max(80).optional(),
+    bQuestion: conceptQuestionSchema.nullable().optional(),
+    clozeQuestion: conceptClozeQuestionSchema.nullable().optional(),
+    /** null은 이 형식에서만 제외한다는 뜻이다. 개념 ID나 학습 설명을 폐기하지 않는다. */
+    questionExclusions: z
+      .strictObject({
+        term: paperText(4, 240).optional(),
+        cloze: paperText(4, 240).optional(),
+      })
+      .optional(),
+    /** D 가지의 «예» — 짧은 물음과 답(없으면 빈 예 칸). */
+    example: z
+      .strictObject({
+        prompt: paperText(4, 80),
+        answer: paperText(1, 60),
+      })
+      .optional(),
+    /**
+     * 사례 문항 — 굵은 답이 **용어에 주어진 값**으로 정해진다(«$4\,\mathrm{m}$의 $0.3$배 구하기» → `{$1.2\,\mathrm{m}$}`).
+     * A(완전 백지)는 소단원 이름만 보여 주므로 이런 카드는 떠올릴 수도, 채점표 줄과 맞춰 볼 수도 없다 — A 채점표에 싣지 않는다
+     * (전수 검토 2026-10-02 합의 안건 11 · 26 §10). 답이 낱말이어도 해당한다. 단위 환산 · 자리값 · 직각 $90^\circ$처럼
+     * 수 자체가 개념인 카드는 사례가 아니다. 읽는 곳은 A 를 고르는 `composeSheets` 하나다.
+     */
+    givenCase: z.literal(true).optional(),
+  })
+  .superRefine((entry, ctx) => {
+    const assessed =
+      entry.bQuestion !== undefined ||
+      entry.clozeQuestion !== undefined ||
+      entry.questionRevision !== undefined;
+    if (!assessed) return;
+    if (
+      !entry.questionRevision ||
+      entry.bQuestion === undefined ||
+      entry.clozeQuestion === undefined
+    )
+      ctx.addIssue({
+        code: "custom",
+        message:
+          "새 문항에는 판 번호와 B·C의 질문 또는 제외 결정이 모두 필요합니다.",
+      });
+    if (
+      (entry.bQuestion === null && !entry.questionExclusions?.term) ||
+      (entry.clozeQuestion === null && !entry.questionExclusions?.cloze)
+    )
+      ctx.addIssue({
+        code: "custom",
+        message: "출제에서 제외한 형식에는 사유가 필요합니다.",
+      });
+  });
 export type ConceptEntry = z.infer<typeof conceptEntrySchema>;
 
 /** ○× — B 뒤에 붙는다. */

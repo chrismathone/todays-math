@@ -8,6 +8,7 @@ import {
   type SheetHeader,
 } from "@/contracts/conceptBlank.contract";
 import { getBlankSection, sectionTitleTex } from "./sections";
+import { conceptSupportsForm } from "./questions";
 
 export const EXACT_COMPOSITION_VERSION = "injaewon.concept-blank.exact.v1";
 export const EXACT_PARSER_VERSION = "injaewon.concept-blank.entries.v1";
@@ -76,6 +77,14 @@ export function composeExactSheets(
     if (entry.section !== pick.blankSectionKey || entry.level !== pick.level)
       throw new RangeError(
         `선택 항목의 소단원·난이도가 다릅니다: ${pick.entryId}`,
+      );
+    if (
+      pick.entryKind === "concept" &&
+      (pick.form === "term" || pick.form === "cloze") &&
+      !conceptSupportsForm(concepts.get(pick.entryId)!, pick.form)
+    )
+      throw new RangeError(
+        `선택한 형식에서 사용할 수 없는 개념: ${pick.entryId}`,
       );
     if (pick.form === "recall" && "givenCase" in entry && entry.givenCase)
       throw new RangeError(

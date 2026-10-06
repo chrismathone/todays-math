@@ -275,7 +275,7 @@ describe("administrator user detail", () => {
     );
     expect(screen.getByText(/개념 백지 · 읽기 전용/)).toBeInTheDocument();
     expect(screen.getByText("2-3-1 도형의 합동 알아보기")).toBeInTheDocument();
-    expect(screen.getByText(/용어 → 뜻/)).toBeInTheDocument();
+    expect(screen.getByText(/개념 질문/)).toBeInTheDocument();
     expect(
       screen.queryByText("이 자료에 저장된 문항이 없습니다."),
     ).not.toBeInTheDocument();

@@ -87,6 +87,23 @@ export function bankNotationFaults(bank: ConceptBlankBank): NotationFault[] {
   for (const c of bank.concepts) {
     scan(c.id, "term", c.term);
     scan(c.id, "definition", c.definition, true);
+    if (c.bQuestion) {
+      scan(c.id, "bQuestion.prompt", c.bQuestion.prompt);
+      scan(c.id, "bQuestion.answer", c.bQuestion.answer);
+      c.bQuestion.requiredIdeas.forEach((idea, i) =>
+        idea.anyOf.forEach((text, j) =>
+          scan(c.id, `bQuestion.requiredIdeas.${i}.${j}`, text),
+        ),
+      );
+    }
+    if (c.clozeQuestion) {
+      scan(c.id, "clozeQuestion.sentence", c.clozeQuestion.sentence, true);
+      c.clozeQuestion.acceptedAnswers.forEach((answers, i) =>
+        answers.forEach((text, j) =>
+          scan(c.id, `clozeQuestion.acceptedAnswers.${i}.${j}`, text),
+        ),
+      );
+    }
     if (c.example) {
       scan(c.id, "example.prompt", c.example.prompt);
       scan(c.id, "example.answer", c.example.answer);
