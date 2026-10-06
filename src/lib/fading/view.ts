@@ -18,6 +18,7 @@ import {
   fadingContentChanged,
   fadingProgressOf,
   fadingRatingsFor,
+  fadingSolvedContentChanged,
   fadingSummary,
 } from "./state";
 
@@ -100,6 +101,8 @@ export function fadingStateView(input: {
   trapsOf?: (concept: FadingConcept) => readonly FadingTrap[];
   /** 열린 풀이의 개념의 그림 — 안 주거나 없으면 `null` 로 내려간다. */
   figureOf?: (concept: FadingConcept) => FadingFigure | null;
+  /** 새로 여는 풀이가 카드 풀이인가(서버의 하위 문) — 켜져 있을 때만 `mode` 가 실린다. */
+  cards?: boolean;
 }): FadingState {
   const { fading, today, concepts } = input;
   const cap = input.cap ?? FADING_DAILY_CAP;
@@ -139,6 +142,10 @@ export function fadingStateView(input: {
     ? previewFadingIntervals(fadingProgressOf(stored!), fadingDayOfDate(today))
     : null;
   const traps = session ? (input.trapsOf?.(opened!) ?? []) : [];
+  // 카드 풀이에서 4단계를 푼 뒤에 문장이 고쳐졌다 — 대조를 기다리는 글은 판정하지 않고(«다시»뿐) 평가는 푼 내용의 지문으로 적힌다.
+  // 칩 풀이에는 싣지 않는다(문이 꺼진 동안 응답이 지금 꼴 그대로이게).
+  const stale =
+    session?.mode === "cards" && fadingSolvedContentChanged(session, opened!);
   return {
     today,
     revision: input.revision,
@@ -160,10 +167,18 @@ export function fadingStateView(input: {
           seed: session.seed,
           phase: session.phase,
           missedAtFour: session.missedAtFour,
-          ratings: fadingRatingsFor(session).map((rating) => ({
-            rating,
-            intervalDays: intervals![rating],
-          })),
+          ratings: fadingRatingsFor(session, undefined, opened!).map(
+            (rating) => ({
+              rating,
+              intervalDays: intervals![rating],
+            }),
+          ),
+          // 카드 풀이의 칸 — 값이 없으면 키도 싣지 않는다(지금 화면이 받는 꼴 그대로).
+          ...(session.mode === "cards" ? { mode: "cards" as const } : {}),
+          ...(session.unjudged?.length
+            ? { unjudged: session.unjudged.map((u) => ({ ...u })) }
+            : {}),
+          ...(stale ? { stale: true as const } : {}),
         }
       : null,
     opened: session
@@ -176,6 +191,7 @@ export function fadingStateView(input: {
     days: fading.days.slice(-FADING_VIEW_DAYS),
     receipt:
       fading.receipts.find((r) => r.requestId === input.requestId) ?? null,
+    ...(input.cards ? { mode: "cards" as const } : {}),
   };
 }
 
