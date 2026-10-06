@@ -11,7 +11,7 @@
     "analyze": "next build --experimental-analyze && node scripts/perf/report-bundle.mjs",
     "analyze:webpack": "node scripts/perf/analyze-webpack.mjs",
     "bundle:report": "node scripts/perf/report-bundle.mjs",
-    "type-check": "tsc --noEmit",
+    "type-check": "node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit",
     "prepare": "husky",
     "test": "node scripts/qa/run-tests.mjs",
     "test:raw": "vitest run",
