@@ -1,9 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { ENGLISH_GRADES } from "@/contracts/english.contract";
-import {
-  englishListeningBankResponseSchema,
-  englishListeningReferencesResponseSchema,
-} from "@/contracts/englishBank.contract";
+import { englishListeningBankResponseSchema } from "@/contracts/englishBank.contract";
 import w from "@/components/unified/Workroom.module.css";
 import s from "../EnglishStudio.module.css";
 import { bankUrl, useBankQuery } from "./bankClient";
@@ -11,30 +8,6 @@ import { BankError, BankLoading, BankPagination } from "./BankFeedback";
 import { ListeningAssessmentImport } from "./ListeningAssessmentImport";
 import ListeningBankMaterial from "./ListeningBankMaterial";
 import b from "./EnglishResourceBank.module.css";
-
-function officialPage(url: string) {
-  try {
-    const parsed = new URL(url);
-    const page =
-      (parsed.hostname === "mid.ebs.co.kr" &&
-        parsed.pathname === "/english/engGrade") ||
-      (parsed.hostname === "www.ebsi.co.kr" &&
-        [
-          "/ebs/pot/potg/EnglishListening01.ebs",
-          "/ebs/pot/potg/EnglishListening02.ebs",
-          "/ebs/pot/potg/EnglishListening03.ebs",
-        ].includes(parsed.pathname));
-    return parsed.protocol === "https:" &&
-      !parsed.username &&
-      !parsed.password &&
-      !parsed.port &&
-      page
-      ? url
-      : null;
-  } catch {
-    return null;
-  }
-}
 
 export default function ListeningBank({
   active,
@@ -69,9 +42,7 @@ export default function ListeningBank({
     },
     [onState],
   );
-  const [kind, setKind] = useState<
-    "own" | "official" | "reconstructed" | "ebs"
-  >("own");
+  const [kind, setKind] = useState<"own" | "authored" | "reconstructed">("own");
   const [query, setQuery] = useState("");
   const [level, setLevel] = useState("");
   const [year, setYear] = useState("");
@@ -91,8 +62,8 @@ export default function ListeningBank({
     year: filter.year,
     round: filter.round,
     origin:
-      kind === "official"
-        ? "official_original"
+      kind === "authored"
+        ? "teacher_authored"
         : kind === "reconstructed"
           ? "audio_reconstructed"
           : "",
@@ -100,29 +71,11 @@ export default function ListeningBank({
     limit: 20,
   };
   const own = useBankQuery(
-    active && kind !== "ebs"
-      ? bankUrl("/api/english/listening/bank", params)
-      : null,
+    active ? bankUrl("/api/english/listening/bank", params) : null,
     englishListeningBankResponseSchema,
     generation,
   );
-  const references = useBankQuery(
-    active && kind === "ebs"
-      ? bankUrl("/api/english/listening/references", {
-          ...params,
-          year: filter.year,
-          round: filter.round,
-        })
-      : null,
-    englishListeningReferencesResponseSchema,
-    generation,
-  );
-  const result = kind !== "ebs" ? own : references;
-  const reference =
-    kind === "ebs" && references.status === "ready"
-      ? references.data.data.find((item) => item.id === selected)
-      : undefined;
-  const sourceUrl = reference ? officialPage(reference.sourceUrl) : null;
+  const result = own;
   return (
     <>
       <ListeningAssessmentImport
@@ -183,9 +136,8 @@ export default function ListeningBank({
               }}
             >
               <option value="own">내 범위의 듣기 자료</option>
-              <option value="official">공식 원본 자료</option>
+              <option value="authored">직접 작성한 문항</option>
               <option value="reconstructed">음원 기반 재구성 자료</option>
-              <option value="ebs">EBS 공식 참조</option>
             </select>
           </label>
           <label className={`${s.field} ${b.listeningYear}`}>
@@ -227,9 +179,8 @@ export default function ListeningBank({
         </form>
       </div>
       <p className={b.note}>
-        {kind !== "ebs"
-          ? "자료를 선택해 바로 듣고, 회차 전체 또는 필요한 문항을 담아 시험지를 만드세요. 전국 듣기평가·모의고사 원본은 파일 등록으로 추가할 수 있습니다."
-          : "EBS 공식 페이지의 참조 목록입니다. 음원·문서를 이 서비스에 복제하거나 외부 모델에 전송하지 않습니다."}
+        직접 작성·녹음하거나 직접 작성한 대본으로 만든 TTS 자료를 듣고, 필요한
+        문항을 담아 시험지를 만드세요.
       </p>
       <div className={b.layout}>
         <section className={s.card} aria-label="듣기 목록">
@@ -243,8 +194,7 @@ export default function ListeningBank({
           ) : (
             <>
               <ul className={b.list}>
-                {kind !== "ebs" &&
-                  own.status === "ready" &&
+                {own.status === "ready" &&
                   own.data.data.map((item) => (
                     <li key={item.id}>
                       <button
@@ -271,25 +221,6 @@ export default function ListeningBank({
                       </button>
                     </li>
                   ))}
-                {kind === "ebs" &&
-                  references.status === "ready" &&
-                  references.data.data.map((item) => (
-                    <li key={item.id}>
-                      <button
-                        type="button"
-                        className={b.rowButton}
-                        aria-pressed={selected === item.id}
-                        onClick={() => setSelected(item.id)}
-                      >
-                        <strong>{item.title}</strong>
-                        <span className={b.meta}>
-                          {item.school === "middle" ? "중" : "고"}
-                          {item.grade} · {item.year}년 {item.round}회 ·{" "}
-                          {item.provider}
-                        </span>
-                      </button>
-                    </li>
-                  ))}
               </ul>
               {!result.data.data.length && (
                 <p className={b.note}>조건에 맞는 듣기 자료가 없습니다.</p>
@@ -308,45 +239,11 @@ export default function ListeningBank({
         </section>
         <section className={b.detail} aria-label="듣기 상세">
           <ListeningBankMaterial
-            active={active && kind !== "ebs"}
-            setId={kind !== "ebs" ? selected : ""}
+            active={active}
+            setId={selected}
             onOpenListening={onOpenListening}
             onState={reportBasket}
           />
-          {kind === "ebs" &&
-            (reference ? (
-              <>
-                <h2>{reference.title}</h2>
-                <p className={b.meta}>
-                  {reference.school === "middle" ? "중" : "고"}
-                  {reference.grade} · {reference.year}년 {reference.round}회 ·{" "}
-                  {reference.provider}
-                </p>
-                <p className={b.note}>
-                  공식 출처 링크입니다. 복제·변형·재배포에는 별도의 이용 허락이
-                  필요합니다.
-                </p>
-                {sourceUrl ? (
-                  <a
-                    href={sourceUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={b.link}
-                  >
-                    EBS 공식 자료 열기 ↗
-                  </a>
-                ) : (
-                  <BankError message="공식 페이지 주소를 확인할 수 없습니다." />
-                )}
-              </>
-            ) : (
-              <>
-                <h2>듣기 자료를 선택하세요</h2>
-                <p className={b.note}>
-                  공식 참조 자료를 선택하면 출처를 확인할 수 있습니다.
-                </p>
-              </>
-            ))}
         </section>
       </div>
     </>

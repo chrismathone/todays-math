@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ENGLISH_GRADES } from "@/contracts/english.contract";
-import {
-  LISTENING_MAX_DURATION_MS,
-  type ListeningAssessmentSource,
-} from "@/contracts/englishListeningSource.contract";
+import { LISTENING_MAX_DURATION_MS } from "@/contracts/englishListeningSource.contract";
 import type { ListeningSetDetail } from "@/contracts/englishListeningHttp.contract";
 import type { ListeningAudioRef } from "@/contracts/englishListening.contract";
 import type { ListeningEditQuestion } from "../listening/listeningDraft";
@@ -38,12 +35,9 @@ export function ListeningAssessmentImport({
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [level, setLevel] = useState("중1");
-  const [kind, setKind] =
-    useState<ListeningAssessmentSource["kind"]>("national_listening");
   const [year, setYear] = useState(new Date().getFullYear());
   const [round, setRound] = useState(2);
-  const [month, setMonth] = useState(9);
-  const [provider, setProvider] = useState("시·도교육청");
+  const [provider, setProvider] = useState("직접 제작");
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [questionFile, setQuestionFile] = useState<File | null>(null);
   const [answerFile, setAnswerFile] = useState<File | null>(null);
@@ -66,7 +60,7 @@ export function ListeningAssessmentImport({
   const uploaded = useRef<ListeningAudioRef | null>(null);
   const groupId = useRef("");
   const wholeSourceAudio = usesWholeSourceAssessmentAudio({
-    source: { kind },
+    source: { kind: "other" },
     groups: [{ questions }],
   });
   useEffect(() => {
@@ -102,7 +96,7 @@ export function ListeningAssessmentImport({
     try {
       const parsed = await readListeningQuestionPdf(
         questionFile,
-        kind === "mock_exam" ? 17 : 30,
+        30,
         request.signal,
       );
       if (answerFile) {
@@ -177,11 +171,11 @@ export function ListeningAssessmentImport({
             basis: basis.trim(),
             rights,
             source: {
-              kind,
+              kind: "other",
               provider: provider.trim(),
               year,
-              round: kind === "national_listening" ? round : null,
-              month: kind === "mock_exam" ? month : null,
+              round,
+              month: null,
               originalFilename: questionFile.name,
             },
           },
@@ -289,7 +283,7 @@ export function ListeningAssessmentImport({
             void register();
           }}
         >
-          <h2>전국 듣기평가·모의고사 등록</h2>
+          <h2>직접 제작한 듣기 자료 등록</h2>
           <fieldset disabled={busy || hasSaved} className={b.fields}>
             <label className={s.field}>
               제목
@@ -311,22 +305,6 @@ export function ListeningAssessmentImport({
               </select>
             </label>
             <label className={s.field}>
-              시험 종류
-              <select
-                value={kind}
-                onChange={(event) => {
-                  setKind(event.target.value as typeof kind);
-                  setQuestions([]);
-                }}
-              >
-                <option value="national_listening">
-                  전국 영어듣기능력평가
-                </option>
-                <option value="mock_exam">모의고사·학력평가 듣기</option>
-                <option value="other">기타 듣기 자료</option>
-              </select>
-            </label>
-            <label className={s.field}>
               출제 기관
               <input
                 maxLength={200}
@@ -345,17 +323,13 @@ export function ListeningAssessmentImport({
               />
             </label>
             <label className={s.field}>
-              {kind === "mock_exam" ? "시행월" : "회차"}
+              회차
               <input
                 type="number"
                 min={1}
-                max={kind === "mock_exam" ? 12 : 10}
-                value={kind === "mock_exam" ? month : round}
-                onChange={(event) =>
-                  kind === "mock_exam"
-                    ? setMonth(Number(event.target.value))
-                    : setRound(Number(event.target.value))
-                }
+                max={10}
+                value={round}
+                onChange={(event) => setRound(Number(event.target.value))}
               />
             </label>
           </fieldset>
@@ -409,8 +383,9 @@ export function ListeningAssessmentImport({
             </label>
           </fieldset>
           <p>
-            음원 최대 64MB·30분. 모의고사는 듣기 1~17번을 읽습니다. 원본
-            그림·표를 보존하며 정답이 없는 문항은 미정으로 남깁니다.
+            직접 작성·녹음하거나 직접 작성한 대본으로 만든 TTS 음원과 문제지를
+            등록하세요. 음원 최대 64MB·30분. 그림·표를 보존하며 정답이 없는
+            문항은 미정으로 남깁니다.
           </p>
           {previewUrl && active && (
             <>

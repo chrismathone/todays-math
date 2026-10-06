@@ -1,5 +1,6 @@
 import type { ListeningMediaAuthorizationTarget } from "../media/service";
 import {
+  availableListeningDocument,
   denied,
   ownedSet,
   readablePublishedSet,
@@ -94,7 +95,7 @@ export function createListeningMediaAccess(
         const rows = await tx.$queryRaw<
           { ownerId: string; branchId: string | null }[]
         >(
-          Prisma.sql`SELECT owner_id AS "ownerId",branch_id AS "branchId" FROM english_listening_set WHERE id=${setId}::uuid AND deleted_at IS NULL`,
+          Prisma.sql`SELECT owner_id AS "ownerId",branch_id AS "branchId" FROM english_listening_set WHERE id=${setId}::uuid AND deleted_at IS NULL AND ${availableListeningDocument(Prisma.sql`document`)}`,
         );
         return rows[0] ?? null;
       }),

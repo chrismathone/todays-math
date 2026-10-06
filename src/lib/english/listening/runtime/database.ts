@@ -11,6 +11,12 @@ import {
   assertClassWrite,
 } from "@/lib/classAccess";
 import type { ListeningDraft } from "@/contracts/englishListeningHttp.contract";
+import {
+  isKnownExternalListeningDocument,
+  RETIRED_LISTENING_ASSESSMENT_KINDS,
+  RETIRED_LISTENING_PROVIDERS,
+  RETIRED_LISTENING_SOURCE_ID_PATTERN,
+} from "../externalSourcePolicy";
 import type {
   EnglishListeningAssignment,
   EnglishListeningAttempt,
@@ -49,6 +55,19 @@ export async function one<T>(
 }
 export const json = (value: unknown) =>
   Prisma.sql`${JSON.stringify(value)}::jsonb`;
+/** Apply the same provenance rules before SQL pagination, including assembled questions. */
+export function availableListeningDocument(document: Prisma.Sql) {
+  return Prisma.sql`NOT EXISTS (
+    SELECT 1 FROM (
+      SELECT ${document}->'source' AS metadata
+      UNION ALL SELECT jsonb_path_query(${document}, '$.groups[*].questions[*].metadata')
+    ) listening_source
+    WHERE metadata->>'kind' IN (${Prisma.join([...RETIRED_LISTENING_ASSESSMENT_KINDS])})
+      OR metadata->>'assessmentKind' IN (${Prisma.join([...RETIRED_LISTENING_ASSESSMENT_KINDS])})
+      OR lower(btrim(metadata->>'provider')) IN (${Prisma.join([...RETIRED_LISTENING_PROVIDERS])})
+      OR metadata->>'sourceRecordId' ~ ${RETIRED_LISTENING_SOURCE_ID_PATTERN}
+  )`;
+}
 export async function lock(tx: ListeningTx, resource: string) {
   await tx.$executeRaw(
     Prisma.sql`SELECT pg_advisory_xact_lock(hashtextextended(${"listening:" + resource},0))`,
@@ -161,7 +180,8 @@ export async function ownedSet(
   if (
     !row ||
     row.deleted_at ||
-    !withinOwnerScope(account, row.owner_id, row.branch_id)
+    !withinOwnerScope(account, row.owner_id, row.branch_id) ||
+    isKnownExternalListeningDocument(row.document)
   )
     throw denied();
   return row;
@@ -191,8 +211,9 @@ export async function readablePublishedSet(
   if (
     !publications.some(
       (p) =>
-        !assetId ||
-        p.snapshot.document.groups.some((g) => g.audio.assetId === assetId),
+        !isKnownExternalListeningDocument(p.snapshot.document) &&
+        (!assetId ||
+          p.snapshot.document.groups.some((g) => g.audio.assetId === assetId)),
     )
   )
     throw denied();
@@ -200,7 +221,8 @@ export async function readablePublishedSet(
     tx,
     Prisma.sql`SELECT * FROM english_listening_set WHERE id=${id}::uuid`,
   );
-  if (!row || row.deleted_at) throw denied();
+  if (!row || row.deleted_at || isKnownExternalListeningDocument(row.document))
+    throw denied();
   return row;
 }
 export async function ownedAssignment(
