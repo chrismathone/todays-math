@@ -7,7 +7,7 @@ import type {
 import type { FadingSource } from "@/lib/fading/source";
 import { FadingMath as ExplorerMath } from "./FadingMath";
 import { FadingIcon } from "./FadingIcon";
-import { stepNames } from "./labels";
+import { curriculumName, stepNames } from "./labels";
 import { FadingTerms } from "./FadingTerms";
 import s from "./fading.module.css";
 
@@ -90,11 +90,11 @@ export function FadingEraseScreen({
         {section?.concepts.slice(0, 3).map((concept) => (
           <article className={s.recommendCard} key={concept.id}>
             <span className={s.sectionTag}>
-              {catalog!.grade} · {section.chapter}
+              {catalog!.grade} · {curriculumName(section.chapter)}
             </span>
             <h3>
-              {section.unit} · {concept.level} · {concept.ordinal}/
-              {concept.siblings}
+              {curriculumName(section.unit)} · {concept.level} ·{" "}
+              {concept.ordinal}/{concept.siblings}
             </h3>
             <FadingTerms terms={concept.terms} />
             <div className={s.queueAction}>

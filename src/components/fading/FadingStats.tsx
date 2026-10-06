@@ -6,7 +6,7 @@ import {
 import { fadingDateOf, fadingDayOfDate } from "@/lib/fading/schedule";
 import { toPercent } from "@/lib/fading/numbers";
 import { FadingIcon } from "./FadingIcon";
-import { stepNames } from "./labels";
+import { curriculumName, stepNames } from "./labels";
 import s from "./FadingStats.module.css";
 
 const periods = [
@@ -324,11 +324,11 @@ export function FadingStats({
                   <article className={s.unitCard} key={unit.key}>
                     <div className={s.unitHeader}>
                       <span className={s.ordinal}>{index + 1}</span>
-                      <h3>{name}</h3>
+                      <h3>{curriculumName(name)}</h3>
                       <strong>고른 개념 {unit.picked}개</strong>
                     </div>
                     <div className={s.small}>
-                      {grade} · {chapter}
+                      {grade} · {curriculumName(chapter)}
                     </div>
                     <div
                       className={s.unitTrack}

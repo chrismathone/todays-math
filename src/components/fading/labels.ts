@@ -1,5 +1,9 @@
 import type { FadingStep } from "@/lib/fading/erasure";
 import type { FsrsRating } from "@/lib/fading/fsrs";
+/** 단원 번호와 제목 속 수량을 표시에서만 구분한다. 원본 이름·키는 보존한다. */
+export function curriculumName(name = "") {
+  return name.replace(/^(\d+(?:-\d+)+)\s+(?=\S)/, "$1 · ");
+}
 export const stepNames: Record<FadingStep, string> = {
   1: "정독",
   2: "핵심어 소거",

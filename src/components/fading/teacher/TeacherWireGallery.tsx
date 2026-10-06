@@ -7,6 +7,7 @@ import type {
   FadingTeacherStudent,
 } from "@/contracts/fadingTeacher.contract";
 import { FADING_TEACHER_FLAGS } from "@/contracts/fadingTeacher.contract";
+import { curriculumName } from "../labels";
 import type { TeacherWireFixture } from "./fixture";
 import {
   teacherWireKey,
@@ -224,7 +225,11 @@ function StudentDetail({
             <li key={concept.id}>
               <strong>{concept.terms.join(" · ")}</strong>
               <span className={s.muted}>
-                {concept.section.split("::").slice(1).join(" · ")}
+                {concept.section
+                  .split("::")
+                  .slice(1)
+                  .map(curriculumName)
+                  .join(" · ")}
               </span>
               <span>
                 {concept.step}단계 ·{" "}

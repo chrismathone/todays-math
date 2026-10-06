@@ -59,28 +59,37 @@ function renderCatalog(
 }
 
 describe("목록·단원 — 받은 개념과 상태", () => {
-  it("번호가 든 학년·대단원·소단원 이름은 수식 렌더러를 거치지 않는다", async () => {
-    const catalog = await local().catalog();
-    catalog.sections[0]!.chapter = "1-5 길이와 시간";
-    catalog.sections[0]!.unit = "1-5-1 1cm보다 작은 단위";
-    renderCatalog(catalog);
-    expect(
-      screen.getByRole("heading", { name: "1-5-1 1cm보다 작은 단위", level: 2 })
-        .childElementCount,
-    ).toBe(0);
-    expect(
-      screen
-        .getAllByText("중2 · 1-5 길이와 시간")
-        .every((element) => element.childElementCount === 0),
-    ).toBe(true);
-    fireEvent.click(
-      screen.getAllByRole("button", { name: /1-5-1.*단원 보기/ })[0]!,
-    );
-    expect(
-      screen.getByRole("heading", { name: "1-5-1 1cm보다 작은 단위", level: 1 })
-        .childElementCount,
-    ).toBe(0);
-  });
+  it.each([
+    ["1-5-1 1cm보다 작은 단위", "1-5-1 · 1cm보다 작은 단위"],
+    ["1-5-1 10 알아보기", "1-5-1 · 10 알아보기"],
+    ["1-6-3 1cm²보다 더 큰 넓이의 단위", "1-6-3 · 1cm²보다 더 큰 넓이의 단위"],
+  ])(
+    "번호와 제목의 수량을 구분하고 수식으로 해석하지 않는다: %s",
+    async (original, displayed) => {
+      const catalog = await local().catalog();
+      catalog.sections[0]!.chapter = "1-5 길이와 시간";
+      catalog.sections[0]!.unit = original;
+      const unchanged = structuredClone(catalog);
+      renderCatalog(catalog);
+      expect(
+        screen.getByRole("heading", { name: displayed, level: 2 })
+          .childElementCount,
+      ).toBe(0);
+      expect(
+        screen
+          .getAllByText("중2 · 1-5 · 길이와 시간")
+          .every((element) => element.childElementCount === 0),
+      ).toBe(true);
+      fireEvent.click(
+        screen.getAllByRole("button", { name: `${displayed} · 단원 보기` })[0]!,
+      );
+      expect(
+        screen.getByRole("heading", { name: displayed, level: 1 })
+          .childElementCount,
+      ).toBe(0);
+      expect(catalog).toEqual(unchanged);
+    },
+  );
   it("개념 제목은 소단원·난이도·순번이며 용어를 제목에서 반복하지 않는다", async () => {
     renderCatalog(await local().catalog());
     expect(
@@ -251,10 +260,12 @@ describe("통계 — 기간 집계·기록 없음", () => {
     ];
     render(<FadingStats state={state} onCatalog={vi.fn()} />);
     expect(
-      screen.getByRole("heading", { name: "1-5-1 1cm보다 작은 단위" })
+      screen.getByRole("heading", { name: "1-5-1 · 1cm보다 작은 단위" })
         .childElementCount,
     ).toBe(0);
-    expect(screen.getByText("초3 · 1-5 길이와 시간").childElementCount).toBe(0);
+    expect(screen.getByText("초3 · 1-5 · 길이와 시간").childElementCount).toBe(
+      0,
+    );
   });
   it("기간 안 집계만 더하며 passed를 정답률로 만들지 않는다", async () => {
     const state = await local().state();

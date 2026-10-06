@@ -18,7 +18,7 @@ import { FadingStats } from "./FadingStats";
 import { FadingCatalogScreen } from "./FadingCatalogScreen";
 import { FadingSessionScreen } from "./FadingSessionScreen";
 import { FadingIcon } from "./FadingIcon";
-import { dueLabel } from "./labels";
+import { curriculumName, dueLabel } from "./labels";
 import s from "./fading.module.css";
 
 export type FadingTab = "home" | "erase" | "catalog" | "stats";
@@ -311,8 +311,11 @@ export function FadingApp({
               </div>
               <section className={`${s.card} ${s.stack}`}>
                 <p className={s.small}>
-                  {detail.content.concept.section.split("::").join(" · ")} ·{" "}
-                  {detail.content.concept.level}
+                  {detail.content.concept.section
+                    .split("::")
+                    .map(curriculumName)
+                    .join(" · ")}{" "}
+                  · {detail.content.concept.level}
                 </p>
                 <h2 className={s.subheading}>
                   <ExplorerMath
