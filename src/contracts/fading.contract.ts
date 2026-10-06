@@ -51,14 +51,6 @@ const marksTextSchema = z
   .string()
   .regex(new RegExp(`^[0-3]{1,${FADING_MARKS_MAX}}$`));
 
-/**
- * 풀이가 열릴 때의 내용 지문 — 개념 내용의 지문(`fadingConceptDigest` 의 여덟 자) 뒤에, 칩 차례에 닿는 다른 재료
- * (함정 칩 · 덧씌움 판)의 지문을 점으로 붙인다. 앞 여덟 자가 곧 개념 칸의 `digest` 와 같은 꼴이다.
- */
-const sessionDigestSchema = z
-  .string()
-  .regex(/^[0-9a-f]{8}(?:\.[0-9a-z]{1,16})?$/);
-
 const uniqueIds = (ids: readonly string[]) => new Set(ids).size === ids.length;
 
 /**
@@ -154,8 +146,6 @@ export const storedFadingSessionSchema = z
      */
     /** 풀이의 방식 — 열 때 정해 풀이 끝까지 그대로다. `cards` 는 1단계 카드 · 4단계 자판 입력(A′)이다. 없으면 칩. */
     mode: z.enum(["chips", "cards"]).optional(),
-    /** 열 때의 내용 지문 — 그 뒤에 내용이 바뀌면 넣은 것을 다시 돌리지 않고 거절한다(칩 · 표적의 번호가 다른 답을 가리킨다). */
-    digest: sessionDigestSchema.optional(),
     /** 1단계 카드의 «사전 확인» — 진단. */
     seen: marksTextSchema.optional(),
     /** 4단계 카드의 확신(복습으로 연 풀이만) — 진단. */
@@ -165,6 +155,15 @@ export const storedFadingSessionSchema = z
       .array(storedFadingUnjudgedSchema)
       .max(FADING_TARGETS_MAX)
       .optional(),
+    /**
+     * 4단계를 푼 내용의 개념 지문 — 평가 차례로 넘어갈 때 적고, 평가는 이 지문으로 기록한다(그사이 은행의 문장이 고쳐져도
+     * «고친 문장의 평가»로 적지 않는다). 선택 칸이다 — 이 칸이 없던 때의 풀이는 지문 없이 그대로 읽는다.
+     * 🔴 이 칸을 **읽는** 배포판이 쓰는 배포판보다 먼저 나간다(파일 머리의 규칙).
+     */
+    digest: z
+      .string()
+      .regex(/^[0-9a-f]{8}$/)
+      .optional(),
   })
   .refine(
     (session) => uniqueIds(session.missedAtFour),
@@ -173,6 +172,10 @@ export const storedFadingSessionSchema = z
   .refine(
     (session) => uniqueIds((session.unjudged ?? []).map((u) => u.targetId)),
     "대조를 기다리는 빈칸이 겹쳐 적혔습니다.",
+  )
+  .refine(
+    (session) => session.digest === undefined || session.phase === "rating",
+    "4단계를 푼 내용의 지문은 평가 차례에서만 적힙니다.",
   );
 export type StoredFadingSession = z.infer<typeof storedFadingSessionSchema>;
 

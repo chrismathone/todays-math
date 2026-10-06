@@ -11,6 +11,7 @@ import {
 import { chipFits, chipTray } from "@/lib/fading/chips";
 import {
   buildFadingConcepts,
+  fadingConceptDigest,
   fadingTargets,
   proposeFadingGroups,
   type FadingConcept,
@@ -125,10 +126,10 @@ const ARRIVING = {
     ...LEGACY.session!,
     phase: "rating",
     mode: "cards",
-    digest: "0a1b2c3d.5e6f7a8b",
     seen: "123",
     sure: "300",
     unjudged: [{ targetId: `${A.id}#3`, text: "가장 긴 변" }],
+    digest: "0a1b2c3d",
   },
 } as const;
 
@@ -164,7 +165,10 @@ function expectLegacyShape(state: StoredFading) {
     expect(Object.keys(stored).sort()).toEqual([...LEGACY_KEYS.concept].sort());
   if (state.session)
     expect(Object.keys(state.session).sort()).toEqual(
-      [...LEGACY_KEYS.session].sort(),
+      [
+        ...LEGACY_KEYS.session,
+        ...(state.session.digest ? ["digest"] : []),
+      ].sort(),
     );
 }
 
@@ -193,7 +197,7 @@ describe("읽기 호환 — 옛 기록은 글자 하나 다르지 않게", () =>
     expect(json(row.fading)).toBe(json(LEGACY));
   });
 
-  it("옛 풀이 전부(열기 · 정독 · 단계 · 4단계 틀림 · 평가 · 빼기)를 지나도 새 칸은 하나도 생기지 않는다", () => {
+  it("옛 풀이 전부를 지나도 새 카드 칸은 생기지 않는다 — 기존 D1의 완료 지문은 보존한다", () => {
     const B = concept("b");
     let state = openFadingSession(emptyFading(), A, DAY1, {
       sessionId: uuid(11),
@@ -261,10 +265,10 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
       missedAtFour: [],
     };
     delete open.unjudged;
+    delete open.digest;
     const steps = storedFadingSchema.parse({ ...ARRIVING, session: open });
     const extras = {
       mode: "cards",
-      digest: "0a1b2c3d.5e6f7a8b",
       seen: "123",
       sure: "300",
     };
@@ -295,6 +299,7 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     expect(storedFadingSchema.parse(done).session).toStrictEqual({
       ...missed.session,
       phase: "rating",
+      digest: fadingConceptDigest(A),
     });
     // 평가 전 개념의 정독은 그 개념의 풀이에서만 — 풀이의 칸은 건드리지 않는다.
     const learning = storedFadingSchema.parse({
