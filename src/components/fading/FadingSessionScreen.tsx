@@ -30,6 +30,9 @@ import { FadingIcon } from "./FadingIcon";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingComparisonSheet } from "./FadingComparisonSheet";
 import { FadingConceptLabel } from "./FadingConceptLabel";
+import { FadingSentenceCaption } from "./FadingSentenceCaption";
+import { FadingSentencePager } from "./FadingSentencePager";
+import { fadingSafeTopic } from "./sentenceTopic";
 import {
   FadingDraggedChip,
   useFadingChipDrag,
@@ -178,6 +181,12 @@ export function FadingSessionScreen({
       ? startFadingSession(concept, practice.status?.step ?? 1, 42)
       : resumed(state),
   );
+  const [card, setCard] = useState({
+    step: local.step,
+    index: 0,
+    pending: null as string | null,
+  });
+  const [lastTarget, setLastTarget] = useState<string | null>(null);
   const [compare, setCompare] = useState<FadingStepResult | null>(null);
   const [canonical, setCanonical] = useState(false);
   const [comparisonPlacements, setComparisonPlacements] = useState<
@@ -228,6 +237,34 @@ export function FadingSessionScreen({
     wrong?.targetId ??
     blanks.find((blank) => !local.filled[blank.id])?.id ??
     null;
+  // Paging only controls presentation. Targets, tray and placements remain step-wide.
+  const followingTarget = pendingBlank ?? lastTarget;
+  const followingIndex = concept.propositions.findIndex((proposition) =>
+    proposition.pieces.some(
+      (piece) => piece.kind === "target" && piece.target.id === followingTarget,
+    ),
+  );
+  const cardIndex =
+    card.step !== local.step ||
+    (local.phase === "filling" && card.pending !== pendingBlank)
+      ? Math.max(0, followingIndex)
+      : card.index;
+  function showCard(index: number) {
+    const proposition = concept.propositions[index];
+    if (!proposition) return;
+    const target = proposition.pieces.find(
+      (piece) =>
+        piece.kind === "target" &&
+        erased.has(piece.target.id) &&
+        !local.filled[piece.target.id],
+    );
+    const nextPending =
+      local.phase === "filling" && target?.kind === "target"
+        ? target.target.id
+        : pendingBlank;
+    setCard({ step: local.step, index, pending: nextPending });
+    if (local.phase === "filling" && nextPending) setActiveBlank(nextPending);
+  }
   useFadingBlankSize({
     root: sessionRoot,
     targets: blanks,
@@ -331,6 +368,7 @@ export function FadingSessionScreen({
       return;
     const result = placeChip(local, concept, targetId, chipId, content.traps);
     placements.current.push({ targetId, chipId });
+    setLastTarget(targetId);
     setSelected(null);
     setActiveBlank(null);
     if (!result.correct) {
@@ -435,6 +473,17 @@ export function FadingSessionScreen({
   }
   const termTitle = concept.propositions.map((p) => p.term).join(" · ");
   const chapter = concept.section.split("::");
+  const identityTargets =
+    done || compare || local.phase === "rating" ? [] : blanks;
+  const safeChapter = chapter.filter(
+    (name) => fadingSafeTopic(name, identityTargets) !== undefined,
+  );
+  const safeLevel = fadingSafeTopic(concept.level, identityTargets);
+  const identityMeta = [
+    ...safeChapter.slice(0, -1).map(curriculumName),
+    ...(safeLevel !== undefined ? [safeLevel] : []),
+    `${concept.ordinal}/${concept.siblings}`,
+  ].join(" · ");
   const disabled = saving || !!failure;
   function chooseNumber(index: number) {
     if (disabled || compare || done) return;
@@ -547,6 +596,12 @@ export function FadingSessionScreen({
           </div>
         </div>
       </header>
+      <div className={s.singleCardIdentity}>
+        <p className={s.caps}>{identityMeta}</p>
+        <p className={s.small}>
+          {curriculumName(safeChapter.at(-1)) || "개념 문장"}
+        </p>
+      </div>
       {practice && <p className={s.notice}>연습 · 기록되지 않음</p>}
       {!done && !compare && local.phase !== "rating" && (
         <div className={s.pcStageStrip} aria-label="네 단계 흐름">
@@ -807,11 +862,9 @@ export function FadingSessionScreen({
       ) : (
         <>
           <header className={s.sessionHeading}>
-            <p className={s.caps}>
-              {chapter[0]} · {curriculumName(chapter[1])} · {concept.level} ·{" "}
-              {concept.ordinal}/{concept.siblings}
-            </p>
-            <h1 className={s.heading}>{curriculumName(chapter.at(-1))}</h1>
+            <h1 className={s.heading}>
+              {curriculumName(safeChapter.at(-1)) || "개념 문장"}
+            </h1>
             <p className={s.muted}>
               {local.step === 1
                 ? "문장을 읽고 핵심어의 뜻을 살펴보세요."
@@ -841,39 +894,61 @@ export function FadingSessionScreen({
                   </span>
                 )}
               </div>
-              {concept.propositions.map((p, i) => (
-                <article
-                  className={s.proposition}
-                  key={p.id}
-                  data-missed={missedCounts[i]! > 0}
-                >
-                  <h2 className={s.propositionHeading}>
-                    <span className={s.propositionLabel}>
-                      <FadingConceptLabel
-                        index={i}
-                        term={local.phase === "reading" ? p.term : undefined}
-                      />
-                    </span>
-                    {local.step === 1 ? (
-                      <svg
-                        className={s.readingCheck}
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="m5 12 4 4L19 6" />
-                      </svg>
-                    ) : (
-                      <span
-                        className={s.propositionState}
-                        data-state={
-                          p.pieces.some(
+              {(() => {
+                const i = cardIndex;
+                const p = concept.propositions[i]!;
+                return (
+                  <article
+                    className={`${s.proposition} ${s.singleCard}`}
+                    data-fading-sentence={p.id}
+                    key={p.id}
+                    data-missed={missedCounts[i]! > 0}
+                  >
+                    <h2 className={s.propositionHeading}>
+                      <span className={s.propositionLabel}>
+                        <FadingSentenceCaption
+                          proposition={p}
+                          index={i}
+                          section={concept.section}
+                          erased={blanks}
+                        />
+                      </span>
+                      {local.step === 1 ? (
+                        <svg
+                          className={s.readingCheck}
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="m5 12 4 4L19 6" />
+                        </svg>
+                      ) : (
+                        <span
+                          className={s.propositionState}
+                          data-state={
+                            p.pieces.some(
+                              (piece) =>
+                                piece.kind === "target" &&
+                                erased.has(piece.target.id),
+                            )
+                              ? p.pieces.some(
+                                  (piece) =>
+                                    piece.kind === "target" &&
+                                    erased.has(piece.target.id) &&
+                                    !local.filled[piece.target.id],
+                                )
+                                ? "waiting"
+                                : "filled"
+                              : "reading"
+                          }
+                        >
+                          {p.pieces.some(
                             (piece) =>
                               piece.kind === "target" &&
                               erased.has(piece.target.id),
@@ -884,145 +959,145 @@ export function FadingSessionScreen({
                                   erased.has(piece.target.id) &&
                                   !local.filled[piece.target.id],
                               )
-                              ? "waiting"
-                              : "filled"
-                            : "reading"
-                        }
-                      >
-                        {p.pieces.some(
-                          (piece) =>
-                            piece.kind === "target" &&
-                            erased.has(piece.target.id),
-                        )
-                          ? p.pieces.some(
-                              (piece) =>
-                                piece.kind === "target" &&
-                                erased.has(piece.target.id) &&
-                                !local.filled[piece.target.id],
-                            )
-                            ? "미입력"
-                            : "채워짐"
-                          : "이 단계에서는 안 비는 문장"}
-                      </span>
-                    )}
-                  </h2>
-                  <div className={s.sentence}>
-                    {p.pieces.map((piece, index) => {
-                      if (piece.kind === "text")
+                              ? "미입력"
+                              : "채워짐"
+                            : "이 단계에서는 안 비는 문장"}
+                        </span>
+                      )}
+                    </h2>
+                    <div className={s.sentence}>
+                      {p.pieces.map((piece, index) => {
+                        if (piece.kind === "text")
+                          return (
+                            <span key={index}>
+                              <ExplorerMath text={piece.text} />
+                            </span>
+                          );
+                        const target = piece.target;
+                        if (!erased.has(target.id))
+                          return (
+                            <span
+                              key={target.id}
+                              className={
+                                local.phase === "reading"
+                                  ? target.tier === "math"
+                                    ? s.readingMathTarget
+                                    : s.readingTextTarget
+                                  : undefined
+                              }
+                            >
+                              <ExplorerMath text={target.text} />
+                            </span>
+                          );
+                        const blankIndex =
+                          blanks.findIndex((t) => t.id === target.id) + 1;
+                        const filled = local.filled[target.id];
+                        const missed = local.missed.includes(target.id);
+                        if (filled)
+                          return (
+                            <span
+                              key={target.id}
+                              className={`${s.filled} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                              role={missed ? "group" : undefined}
+                              aria-label={
+                                missed
+                                  ? `빈칸 ${blankIndex} · 틀린 기록이 있는 빈칸`
+                                  : undefined
+                              }
+                              data-fading-slot={target.id}
+                            >
+                              <ExplorerMath
+                                text={tray.find((c) => c.id === filled)!.text}
+                              />
+                              {missed && (
+                                <span
+                                  className={s.missedMarker}
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </span>
+                          );
                         return (
-                          <span key={index}>
-                            <ExplorerMath text={piece.text} />
-                          </span>
-                        );
-                      const target = piece.target;
-                      if (!erased.has(target.id))
-                        return (
-                          <span
+                          <button
                             key={target.id}
-                            className={
-                              local.phase === "reading"
-                                ? target.tier === "math"
-                                  ? s.readingMathTarget
-                                  : s.readingTextTarget
-                                : undefined
-                            }
-                          >
-                            <ExplorerMath text={target.text} />
-                          </span>
-                        );
-                      const blankIndex =
-                        blanks.findIndex((t) => t.id === target.id) + 1;
-                      const filled = local.filled[target.id];
-                      const missed = local.missed.includes(target.id);
-                      if (filled)
-                        return (
-                          <span
-                            key={target.id}
-                            className={`${s.filled} ${s.stableSlot} ${missed ? s.missed : ""}`}
-                            role={missed ? "group" : undefined}
-                            aria-label={
-                              missed
-                                ? `빈칸 ${blankIndex} · 틀린 기록이 있는 빈칸`
-                                : undefined
-                            }
+                            className={`${s.blank} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                            aria-label={`빈칸 ${blankIndex}${missed ? " · 틀린 기록이 있는 빈칸" : ""}`}
+                            aria-pressed={pendingBlank === target.id}
+                            data-pending={pendingBlank === target.id}
                             data-fading-slot={target.id}
+                            data-fading-blank={target.id}
+                            data-drag-available={!!dragging.drag}
+                            data-drag-over={dragging.over === target.id}
+                            disabled={disabled}
+                            onClick={() => chooseBlank(target.id)}
                           >
-                            <ExplorerMath
-                              text={tray.find((c) => c.id === filled)!.text}
-                            />
+                            {wrong?.targetId === target.id ? (
+                              <span className={s.wrongPlaced}>
+                                <ExplorerMath text={wrong.text} />
+                              </span>
+                            ) : (
+                              <>
+                                <FadingIcon name="erase" />
+                                <span className={s.blankCaption}>
+                                  빈칸 터치
+                                </span>
+                              </>
+                            )}
                             {missed && (
                               <span
                                 className={s.missedMarker}
                                 aria-hidden="true"
                               />
                             )}
-                          </span>
+                          </button>
                         );
-                      return (
-                        <button
-                          key={target.id}
-                          className={`${s.blank} ${s.stableSlot} ${missed ? s.missed : ""}`}
-                          aria-label={`빈칸 ${blankIndex}${missed ? " · 틀린 기록이 있는 빈칸" : ""}`}
-                          aria-pressed={pendingBlank === target.id}
-                          data-pending={pendingBlank === target.id}
-                          data-fading-slot={target.id}
-                          data-fading-blank={target.id}
-                          data-drag-available={!!dragging.drag}
-                          data-drag-over={dragging.over === target.id}
-                          disabled={disabled}
-                          onClick={() => chooseBlank(target.id)}
-                        >
-                          {wrong?.targetId === target.id ? (
-                            <span className={s.wrongPlaced}>
-                              <ExplorerMath text={wrong.text} />
-                            </span>
-                          ) : (
-                            <>
-                              <FadingIcon name="erase" />
-                              <span className={s.blankCaption}>빈칸 터치</span>
-                            </>
-                          )}
-                          {missed && (
-                            <span
-                              className={s.missedMarker}
-                              aria-hidden="true"
-                            />
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {missedCounts[i]! > 0 && (
-                    <p className={s.missedNote} data-fading-missed-note>
-                      틀린 기록이 있는 빈칸 {missedCounts[i]}개 · 다시 채워도
-                      기록은 남습니다
-                    </p>
-                  )}
-                  {wrong &&
-                    p.pieces.some(
-                      (piece) =>
-                        piece.kind === "target" &&
-                        piece.target.id === wrong.targetId,
-                    ) && (
-                      <div className={s.wrongBanner}>
-                        <span className={s.wrongChip}>
-                          <ExplorerMath text={wrong.text} />
-                        </span>
-                        <strong>맞지 않는 칩</strong>
-                        <button
-                          disabled={disabled}
-                          onClick={() => {
-                            setWrong(null);
-                            setActiveBlank(wrong.targetId);
-                          }}
-                          className={s.danger}
-                        >
-                          다시 고르기
-                        </button>
-                      </div>
+                      })}
+                    </div>
+                    {missedCounts[i]! > 0 && (
+                      <p className={s.missedNote} data-fading-missed-note>
+                        틀린 기록이 있는 빈칸 {missedCounts[i]}개 · 다시 채워도
+                        기록은 남습니다
+                      </p>
                     )}
-                </article>
-              ))}
+                    {wrong &&
+                      p.pieces.some(
+                        (piece) =>
+                          piece.kind === "target" &&
+                          piece.target.id === wrong.targetId,
+                      ) && (
+                        <div className={s.wrongBanner}>
+                          <span className={s.wrongChip}>
+                            <ExplorerMath text={wrong.text} />
+                          </span>
+                          <strong>맞지 않는 칩</strong>
+                          <button
+                            disabled={disabled}
+                            onClick={() => {
+                              setWrong(null);
+                              setActiveBlank(wrong.targetId);
+                            }}
+                            className={s.danger}
+                          >
+                            다시 고르기
+                          </button>
+                        </div>
+                      )}
+                  </article>
+                );
+              })()}
+              <FadingSentencePager
+                index={cardIndex}
+                count={concept.propositions.length}
+                onChange={showCard}
+                disabled={disabled}
+                advanceAction={local.phase === "reading"}
+              />
+              {local.phase === "reading" && (
+                <p className={`${s.small} ${s.singleCardKeyboard}`}>
+                  Space·Enter 다음 문장 · 이전 문장으로 돌아가 다시 읽을 수
+                  있어요
+                </p>
+              )}
             </section>
             {local.phase === "filling" && (
               <aside className={`${s.card} ${s.tray}`} aria-label="칩 고르기">
@@ -1199,19 +1274,23 @@ export function FadingSessionScreen({
           </div>
           <div className={s.actions}>
             {local.phase === "reading" ? (
-              <button
-                className={s.primary}
-                disabled={disabled}
-                data-fading-action="true"
-                onClick={() => {
-                  const next = finishReading(local);
-                  if (practice) setLocal(next);
-                  else
-                    void send({ action: "read", ...ref }, () => setLocal(next));
-                }}
-              >
-                읽었어요 · 다음 단계
-              </button>
+              cardIndex === concept.propositions.length - 1 ? (
+                <button
+                  className={s.primary}
+                  disabled={disabled}
+                  data-fading-action="true"
+                  onClick={() => {
+                    const next = finishReading(local);
+                    if (practice) setLocal(next);
+                    else
+                      void send({ action: "read", ...ref }, () =>
+                        setLocal(next),
+                      );
+                  }}
+                >
+                  읽었어요 · 다음 단계
+                </button>
+              ) : null
             ) : (
               <>
                 <button

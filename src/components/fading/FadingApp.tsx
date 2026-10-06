@@ -6,7 +6,6 @@ import type {
   FadingCatalog,
   FadingState,
 } from "@/contracts/fadingApi.contract";
-import { FadingMath as ExplorerMath } from "./FadingMath";
 import {
   FadingSourceError,
   type FadingConceptDetail,
@@ -18,8 +17,7 @@ import { FadingStats } from "./FadingStats";
 import { FadingCatalogScreen } from "./FadingCatalogScreen";
 import { FadingSessionScreen } from "./FadingSessionScreen";
 import { FadingIcon } from "./FadingIcon";
-import { FadingConceptLabel } from "./FadingConceptLabel";
-import { curriculumName, dueLabel } from "./labels";
+import { FadingConceptReader } from "./FadingConceptReader";
 import s from "./fading.module.css";
 
 export type FadingTab = "home" | "erase" | "catalog" | "stats";
@@ -310,124 +308,40 @@ export function FadingApp({
           ) : (
             <main className={s.shell}>
               {detail ? (
-                <div className={s.stack}>
-                  <div className={s.row}>
-                    <h1 className={s.heading}>개념 읽기</h1>
-                    <button className={s.quiet} onClick={() => setDetail(null)}>
-                      목록으로
-                    </button>
-                  </div>
-                  <section className={`${s.card} ${s.stack}`}>
-                    <p className={s.small}>
-                      {detail.content.concept.section
-                        .split("::")
-                        .map(curriculumName)
-                        .join(" · ")}{" "}
-                      · {detail.content.concept.level}
-                    </p>
-                    <h2 className={s.subheading}>
-                      <ExplorerMath
-                        text={detail.content.concept.propositions
-                          .map((p) => p.term)
-                          .join(" · ")}
-                      />
-                    </h2>
-                    {detail.status && (
-                      <p className={s.pill}>
-                        {detail.status.step}단계 ·{" "}
-                        {dueLabel(detail.status.daysUntil)}
-                      </p>
-                    )}
-                    <div className={s.propositions}>
-                      {detail.content.concept.propositions.map((p, i) => (
-                        <article className={s.proposition} key={p.id}>
-                          <h3 className={s.propositionHeading}>
-                            <span className={s.propositionLabel}>
-                              <FadingConceptLabel index={i} term={p.term} />
-                            </span>
-                          </h3>
-                          <div className={s.sentence}>
-                            {p.pieces.map((piece, index) => (
-                              <span
-                                key={index}
-                                className={
-                                  piece.kind === "target"
-                                    ? piece.target.tier === "math"
-                                      ? s.readingMathTarget
-                                      : s.readingTextTarget
-                                    : undefined
-                                }
-                              >
-                                <ExplorerMath
-                                  text={
-                                    piece.kind === "text"
-                                      ? piece.text
-                                      : piece.target.text
-                                  }
-                                />
-                              </span>
-                            ))}
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                    {detail.status?.rated &&
-                    (detail.status.daysUntil ?? 0) > 0 ? (
-                      <>
-                        <p className={s.muted}>
-                          복습일 전에는 연습할 수 있어요. 평가와 일정은 바뀌지
-                          않습니다.
-                        </p>
-                        <button
-                          className={s.primary}
-                          onClick={() => {
-                            setPractising(detail);
-                            setInSession(true);
-                            setSessionKey((k) => k + 1);
-                          }}
-                        >
-                          연습하기
-                        </button>
-                      </>
-                    ) : (
-                      <button
-                        className={s.primary}
-                        disabled={busy}
-                        onClick={() =>
-                          detail.status
-                            ? open(detail.content.concept.id)
-                            : pickAndOpen()
-                        }
-                      >
-                        {detail.status ? "풀이 시작" : "복습에 추가하고 시작"}
-                      </button>
-                    )}
-                    {detail.status &&
-                      !detail.status.rated &&
-                      (!state.session ||
-                        state.session.conceptId !==
-                          detail.content.concept.id) && (
-                        <button
-                          className={s.quiet}
-                          disabled={busy}
-                          onClick={() =>
-                            void run(async () => {
-                              setState(
-                                await source.act({
-                                  action: "drop",
-                                  conceptId: detail.content.concept.id,
-                                }),
-                              );
-                              setDetail(null);
-                              setCatalog(await source.catalog(catalog?.grade));
-                            })
-                          }
-                        >
-                          선택에서 빼기
-                        </button>
-                      )}
-                  </section>
-                </div>
+                <FadingConceptReader
+                  key={detail.content.concept.id}
+                  detail={detail}
+                  busy={busy}
+                  canDrop={
+                    !!detail.status &&
+                    !detail.status.rated &&
+                    (!state.session ||
+                      state.session.conceptId !== detail.content.concept.id)
+                  }
+                  onBack={() => setDetail(null)}
+                  onStart={() =>
+                    detail.status
+                      ? open(detail.content.concept.id)
+                      : pickAndOpen()
+                  }
+                  onPractice={() => {
+                    setPractising(detail);
+                    setInSession(true);
+                    setSessionKey((k) => k + 1);
+                  }}
+                  onDrop={() =>
+                    void run(async () => {
+                      setState(
+                        await source.act({
+                          action: "drop",
+                          conceptId: detail.content.concept.id,
+                        }),
+                      );
+                      setDetail(null);
+                      setCatalog(await source.catalog(catalog?.grade));
+                    })
+                  }
+                />
               ) : tab === "home" ? (
                 <FadingHome
                   source={source}
