@@ -76,7 +76,7 @@ describe("오늘의 기억 — 개념 표시 문구", () => {
       />,
     );
     const header = screen.getByRole("heading", {
-      name: new RegExp(`^개념 1 ·\\s*${term}$`),
+      name: /^개념 1 ·/,
     });
     expect(within(header).getByText("개념 1 ·")).toHaveAttribute(
       "data-fading-concept-number",
@@ -84,9 +84,11 @@ describe("오늘의 기억 — 개념 표시 문구", () => {
     expect(
       within(header).getByText(term).closest("[data-fading-concept-term]"),
     ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: /^개념 2 ·\s*명제$/ }),
-    ).toBeInTheDocument();
+    expect(screen.queryByText("개념 2 ·")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
+    const second = screen.getByRole("heading", { name: /^개념 2 ·/ });
+    expect(within(second).getByText("명제")).toBeInTheDocument();
+    expect(screen.queryByText("개념 1 ·")).not.toBeInTheDocument();
     expect((await source.concept(concept.id)).content.concept).toEqual(concept);
   });
 
@@ -102,7 +104,7 @@ describe("오늘의 기억 — 개념 표시 문구", () => {
         />,
       );
       expect(
-        screen.getByRole("heading", { name: /^개념 1/ }),
+        screen.getByRole("heading", { name: /^개념 [12]/ }),
       ).toBeInTheDocument();
       expect(container.querySelector("[data-fading-concept-term]")).toBeNull();
       expect(
@@ -137,9 +139,15 @@ describe("오늘의 기억 — 개념 표시 문구", () => {
     expect(within(sheet).getByText("개념 1 ·")).toHaveAttribute(
       "data-fading-concept-number",
     );
-    expect(within(sheet).getByText("개념 2 ·")).toBeInTheDocument();
     expect(sheet.querySelectorAll("[data-fading-concept-term]")).toHaveLength(
-      2,
+      1,
+    );
+    expect(within(sheet).queryByText("개념 2 ·")).not.toBeInTheDocument();
+    fireEvent.click(within(sheet).getByRole("button", { name: "다음 문장" }));
+    expect(within(sheet).getByText("개념 2 ·")).toBeInTheDocument();
+    expect(within(sheet).queryByText("개념 1 ·")).not.toBeInTheDocument();
+    expect(sheet.querySelectorAll("[data-fading-concept-term]")).toHaveLength(
+      1,
     );
   });
 
@@ -153,18 +161,23 @@ describe("오늘의 기억 — 개념 표시 문구", () => {
     expect(screen.queryByText(/전체 명제|명제 2개/)).not.toBeInTheDocument();
     fireEvent.click(await screen.findByRole("button", { name: /개념 읽기$/ }));
     await screen.findByRole("heading", { name: "개념 읽기" });
-    expect(
-      screen.getByRole("heading", {
-        name: new RegExp(`^개념 1 ·\\s*${term}$`),
-      }),
-    ).toBeInTheDocument();
+    const first = screen.getByRole("heading", { name: /^개념 1 ·/ });
+    expect(within(first).getByText(term)).toBeInTheDocument();
     expect(
       container.querySelectorAll("[data-fading-concept-number]"),
-    ).toHaveLength(2);
+    ).toHaveLength(1);
+    fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
+    expect(
+      screen.getByRole("heading", { name: /^개념 2 ·/ }),
+    ).toBeInTheDocument();
     fireEvent.click(
       screen.getByRole("button", { name: "복습에 추가하고 시작" }),
     );
-    await screen.findByRole("button", { name: "읽었어요 · 다음 단계" });
+    await screen.findByRole("heading", { name: /^개념 1 ·/ });
+    fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
+    expect(
+      screen.getByRole("button", { name: "읽었어요 · 다음 단계" }),
+    ).toBeInTheDocument();
     expect((await source.state()).concepts[concept.id]).toBeDefined();
   });
 });
