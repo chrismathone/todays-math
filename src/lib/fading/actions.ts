@@ -2,7 +2,9 @@ import type { StoredFading } from "@/contracts/fading.contract";
 import type { FadingAction } from "@/contracts/fadingApi.contract";
 import type { FadingTrap } from "./chips";
 import type { FadingConcept } from "./concepts";
+import { fadingContentKey, fadingSessionToken } from "./contentKey";
 import {
+  FadingConflict,
   completeFadingReading,
   completeFadingStep,
   dropFadingConcept,
@@ -31,10 +33,37 @@ export function fadingActionNeedsConcept(action: FadingAction): boolean {
   return "conceptId" in action && action.action !== "drop";
 }
 
+/** 열린 풀이의 내용이 화면이 받은 것과 다를 때 — 화면은 이 409 를 받고 상태를 다시 읽는다. */
+export const FADING_CONTENT_CHANGED =
+  "풀이 내용이 바뀌어 화면을 다시 불러왔습니다.";
+
+/**
+ * 화면이 보낸 풀이 번호(토큰 — `contentKey.ts`)를 저장된 번호로 바꾼다.
+ * 열린 풀이의 개념인데 지금 내용의 토큰이 아니면 받지 않는다 — 은행의 문장 · 함정 표가 그 뒤에 바뀌었거나, 토큰 이전의 화면이
+ * 저장 번호를 보낸 것이다. 409 를 받은 화면은 상태를 다시 읽어 지금 내용 · 같은 풀이 · 같은 씨앗으로 이어 간다(서 있는 단계 · 틀림은 그대로).
+ * 다른 개념이거나 열린 풀이가 없으면 받은 번호를 그대로 넘긴다 — 상태 함수가 지금처럼 «열려 있지 않습니다»로 답한다.
+ */
+function storedSessionId(
+  fading: StoredFading,
+  conceptId: string,
+  sessionId: string,
+  concept: FadingConcept | undefined,
+  traps: readonly FadingTrap[],
+): string {
+  const session = fading.session;
+  if (!session || !concept || session.conceptId !== conceptId) return sessionId;
+  if (
+    sessionId ===
+    fadingSessionToken(session.id, fadingContentKey(concept, traps))
+  )
+    return session.id;
+  throw new FadingConflict(FADING_CONTENT_CHANGED);
+}
+
 /**
  * `fresh` 는 풀이를 새로 열 때 쓰는 번호와 칩 차례의 씨앗 — 부르는 쪽이 한 번만 짓는다(저장이 다시 시도돼도 같은 값).
  * `traps` 는 그 개념의 함정 칩이다 — 🔴 화면에 내려보낸 것과 **같은 것**을 넘긴다. 칩의 번호는 묶음 안의 자리라, 함정이 하나 들고 나면
- * 화면이 보낸 번호가 다른 칩을 가리킨다.
+ * 화면이 보낸 번호가 다른 칩을 가리킨다. 그래서 풀이 번호는 그 내용의 토큰이다(`storedSessionId`).
  */
 export function applyFadingAction(
   fading: StoredFading,
@@ -44,6 +73,8 @@ export function applyFadingAction(
   fresh: { sessionId: string; seed: number },
   traps: readonly FadingTrap[] = [],
 ): StoredFading {
+  const stored = (ref: { conceptId: string; sessionId: string }) =>
+    storedSessionId(fading, ref.conceptId, ref.sessionId, concept, traps);
   switch (action.action) {
     case "pick":
       return pickFadingConcept(fading, action.conceptId, today);
@@ -52,12 +83,12 @@ export function applyFadingAction(
     case "open":
       return openFadingSession(fading, concept!, today, fresh);
     case "read":
-      return completeFadingReading(fading, action.conceptId, action.sessionId);
+      return completeFadingReading(fading, action.conceptId, stored(action));
     case "miss":
       return reportFadingMiss(
         fading,
         concept!,
-        action.sessionId,
+        stored(action),
         action.placement,
         traps,
       );
@@ -65,16 +96,19 @@ export function applyFadingAction(
       return completeFadingStep(
         fading,
         concept!,
-        action.sessionId,
+        stored(action),
         action.step,
         action.placements,
         { gaveUp: action.gaveUp, traps },
       );
     case "rate":
+      // 이미 적용한 평가의 되풀이는 토큰보다 먼저 본다 — 풀이가 닫힌 뒤에 와도 영수증으로 답한다.
+      if (fading.receipts.some((r) => r.requestId === action.requestId))
+        return fading;
       return rateFadingSession(
         fading,
         concept!,
-        action.sessionId,
+        stored(action),
         action.rating,
         today,
         action.requestId,
