@@ -20,8 +20,10 @@ import {
 } from "../publication";
 import { publishListeningWithVerifiedMedia } from "../verifiedPublication";
 import { listeningQuestionMetadata } from "../metadata";
+import { isKnownExternalListeningDocument } from "../externalSourcePolicy";
 import {
   audit,
+  availableListeningDocument,
   denied,
   expected,
   invalid,
@@ -63,7 +65,8 @@ export async function listSets(
     (SetRow & { publication_count: bigint })[]
   >(Prisma.sql`
     SELECT s.*, (SELECT count(*) FROM english_listening_publication p WHERE p.set_id=s.id) AS publication_count
-    FROM english_listening_set s WHERE s.deleted_at IS NULL AND
+    FROM english_listening_set s WHERE s.deleted_at IS NULL
+    AND ${availableListeningDocument(Prisma.sql`s.document`)} AND
     (${account.isSuperAdmin === true} OR (s.owner_id=${account.id}::uuid AND (s.branch_id IS NULL OR s.branch_id=${account.branchId ?? null}::uuid)) OR (${account.isAdmin && !!account.branchId} AND s.branch_id=${account.branchId ?? null}::uuid)) ORDER BY s.updated_at DESC LIMIT 200`);
   return rows.map((r) => ({
     id: r.id,
@@ -88,7 +91,9 @@ export async function setDetail(
     id,
     revision: row.revision,
     document: listeningDraftSchema.parse(row.document),
-    publications: rows.map((p) => validateListeningPublication(p.snapshot)),
+    publications: rows
+      .filter((p) => !isKnownExternalListeningDocument(p.snapshot.document))
+      .map((p) => validateListeningPublication(p.snapshot)),
     mediaUrlsByAssetId: teacherMediaUrls(
       id,
       row.document.groups.flatMap((g) => (g.audio ? [g.audio.assetId] : [])),
@@ -102,6 +107,7 @@ export async function createSet(
   now: string,
 ) {
   const data = listeningCreateSetSchema.parse(input);
+  if (isKnownExternalListeningDocument({ source: data.source })) throw denied();
   await checkExam(tx, account, data.examId ?? null);
   const id = randomUUID();
   const document = listeningDraftSchema.parse({
@@ -188,6 +194,7 @@ export async function updateSet(
         },
     groups,
   });
+  if (isKnownExternalListeningDocument(document)) throw denied();
   const ids = [
     id,
     ...groups.flatMap((g) => [
@@ -221,6 +228,7 @@ export async function verifiedMedia(
   set: SetRow,
   assetId: string,
 ) {
+  if (isKnownExternalListeningDocument(set.document)) throw denied();
   const row = await one<{ record: unknown }>(
     tx,
     Prisma.sql`SELECT record FROM english_listening_media_asset WHERE "assetId"=${assetId}::uuid AND "setId"=${set.id}::uuid AND state='ready'`,
@@ -321,7 +329,11 @@ export async function publishSet(
     tx,
     Prisma.sql`SELECT * FROM english_listening_publication WHERE set_id=${id}::uuid AND source_revision=${row.document.revision}`,
   );
-  if (existing) return validateListeningPublication(existing.snapshot);
+  if (existing) {
+    if (isKnownExternalListeningDocument(existing.snapshot.document))
+      throw denied();
+    return validateListeningPublication(existing.snapshot);
+  }
   const publication = await publishListeningWithVerifiedMedia(
     row.document,
     { id: randomUUID(), publishedAt: now },

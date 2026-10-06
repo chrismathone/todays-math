@@ -72,6 +72,7 @@ import {
   SectionEditor,
   VideoPanel,
   paperInput,
+  sectionStructureProblem,
 } from "@/components/textbook/parts";
 import { SectionMeasure } from "@/components/textbook/measuredPreview";
 import { buildSectionPreview } from "@/components/textbook/previewModel";
@@ -839,6 +840,12 @@ export function TextbookStudioView({
     if (refuseLocked()) return false;
     const order = orderBlankPicks(target.picks);
     if (!order.ok) return false;
+    // 조판이 거절하는 구조(판서 수식의 $ · 줄바꿈)는 저장하지 않는다 — 저장 후 이동도 이 길을 지난다
+    const structureIssue = sectionStructureProblem(target);
+    if (structureIssue) {
+      setNotice(structureIssue);
+      return false;
+    }
     const conceptStill =
       !base?.conceptSaved &&
       (JSON.stringify(target.concept) !==
@@ -963,6 +970,9 @@ export function TextbookStudioView({
       if (!hasConceptBlock(server, conceptKey)) {
         block = { id: crypto.randomUUID(), kind: "concept", conceptKey };
         const next = { ...server, blocks: [...server.blocks, block] };
+        // 이 길은 저장본(또는 서버의 지금 구획)에 블록만 더해 보낸다 — 그 안에 조판이 거절하는 구조가 있으면 다시 싣지 않는다
+        const structureIssue = sectionStructureProblem(next);
+        if (structureIssue) return { ok: false, message: structureIssue };
         const result = await api.saveSection({
           editionId: edition.editionId,
           sectionId: server.sectionId,
@@ -2687,6 +2697,7 @@ export function TextbookStudioView({
                   diffSummary={diffSummary}
                   saving={busy}
                   frozen={frozen}
+                  savedBlocks={saved?.blocks}
                   onChange={(next) => {
                     if (conceptManuscriptChanged(draft.concept, next.concept)) {
                       setConfirmLinkIds([]);

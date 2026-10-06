@@ -1,0 +1,4061 @@
+{
+  "schemaVersion": 1,
+  "population": {
+    "sources": 193,
+    "questions": 3699,
+    "official": {
+      "sources": 121,
+      "questions": 2417
+    },
+    "reconstructed": {
+      "sources": 72,
+      "questions": 1282
+    }
+  },
+  "coverage": {
+    "inventoryRecords": 193,
+    "liveDocuments": 193,
+    "matchedInventorySources": 193,
+    "frozenQuestionCountDifferences": 0,
+    "asrFilesRead": 193,
+    "preparedFilesRead": 193,
+    "alignmentFilesRead": 193,
+    "asrFilesMissing": 0,
+    "preparedFilesMissing": 0,
+    "alignmentFilesMissing": 0,
+    "databaseEnglishRows": 193,
+    "databaseBilingualRows": 193,
+    "unmatchedDatabaseRows": 0,
+    "duplicateDatabaseProfiles": 0,
+    "liveQuestionsProcessed": 3699
+  },
+  "totals": {
+    "official": {
+      "sources": 121,
+      "questions": 2417,
+      "questionCountHistogram": [
+        {
+          "questionCount": 17,
+          "sources": 1
+        },
+        {
+          "questionCount": 20,
+          "sources": 120
+        }
+      ],
+      "types": {
+        "observedMetadata": {
+          "detail": 281,
+          "emotion": 45,
+          "relationship": 78,
+          "location": 44,
+          "reply": 395,
+          "purpose": 112,
+          "visual": 165,
+          "number": 83,
+          "gist": 108,
+          "opinion": 62,
+          "inference": 0,
+          "sequence": 0,
+          "unknown": 0
+        },
+        "inferredMetadata": {
+          "detail": 0,
+          "emotion": 0,
+          "relationship": 0,
+          "location": 0,
+          "reply": 0,
+          "purpose": 0,
+          "visual": 0,
+          "number": 0,
+          "gist": 0,
+          "opinion": 0,
+          "inference": 0,
+          "sequence": 0,
+          "unknown": 0
+        },
+        "inferredStem": {
+          "detail": 359,
+          "emotion": 0,
+          "relationship": 0,
+          "location": 0,
+          "reply": 96,
+          "purpose": 36,
+          "visual": 0,
+          "number": 54,
+          "gist": 0,
+          "opinion": 36,
+          "inference": 0,
+          "sequence": 0,
+          "unknown": 0
+        },
+        "unresolved": 463,
+        "effective": {
+          "detail": 640,
+          "emotion": 45,
+          "relationship": 78,
+          "location": 44,
+          "reply": 491,
+          "purpose": 148,
+          "visual": 165,
+          "number": 137,
+          "gist": 108,
+          "opinion": 98,
+          "inference": 0,
+          "sequence": 0,
+          "unknown": 463
+        }
+      },
+      "stemForms": {
+        "detail_selection": 341,
+        "negative_selection": 301,
+        "speaker_intention": 148,
+        "affective_state": 45,
+        "participant_relation": 78,
+        "setting_identification": 45,
+        "response_completion": 412,
+        "visual_matching": 90,
+        "quantity_calculation": 137,
+        "global_meaning": 108,
+        "speaker_position": 98,
+        "implicit_meaning": 0,
+        "event_order": 0,
+        "unmatched": 614
+      },
+      "responseForms": {
+        "fiveChoice": 2417,
+        "shortResponse": 0,
+        "otherChoice": 0,
+        "unknown": 0
+      },
+      "stemLanguage": {
+        "koreanPresent": 2417,
+        "koreanAbsent": 0,
+        "empty": 0
+      },
+      "choiceLanguage": {
+        "korean": 1202,
+        "english": 635,
+        "mixed": 30,
+        "nonverbal_or_empty": 550
+      },
+      "questionStructure": {
+        "dialogueInferred": 1793,
+        "monologueInferred": 179,
+        "unknown": 445,
+        "sharedInstructionQuestionsInferred": 0,
+        "sharedInstructionSourcesInferred": 0,
+        "sharedStructureUnknownQuestions": 2417,
+        "imagePresent": 458,
+        "twoGenderRolesMentioned": 590
+      },
+      "topics": {
+        "questionMetadataInferred": {
+          "school": 0,
+          "home": 0,
+          "shopping": 0,
+          "travel": 0,
+          "health": 0,
+          "leisure": 0,
+          "work": 0,
+          "community": 0,
+          "environment": 0,
+          "technology": 0,
+          "culture": 0
+        },
+        "questionTextInferred": {
+          "school": 321,
+          "home": 119,
+          "shopping": 185,
+          "travel": 185,
+          "health": 186,
+          "leisure": 59,
+          "work": 110,
+          "community": 149,
+          "environment": 50,
+          "technology": 82,
+          "culture": 110
+        },
+        "transcriptSourcesInferred": {
+          "school": 121,
+          "home": 115,
+          "shopping": 118,
+          "travel": 105,
+          "health": 91,
+          "leisure": 91,
+          "work": 114,
+          "community": 106,
+          "environment": 51,
+          "technology": 98,
+          "culture": 95
+        },
+        "questionsWithoutTopicSignal": 1304,
+        "transcriptSourcesWithoutTopicSignal": 0
+      },
+      "distractorSignalsInferred": {
+        "numeric_alternatives": 156,
+        "negative_truth_selection": 301,
+        "response_alternatives": 491,
+        "visual_alternatives": 165,
+        "shared_vocabulary_alternatives": 12,
+        "parallel_brief_alternatives": 1722
+      },
+      "transcript": {
+        "selectedDatabaseEnglish": 121,
+        "selectedDocument": 0,
+        "selectedLocalAsr": 0,
+        "missing": 0,
+        "databaseEnglishMissing": 0,
+        "databaseBilingualMissing": 0,
+        "documentMissing": 5,
+        "localAsrMissing": 0,
+        "selectedContainsKorean": 121,
+        "sourceTextWithSpeakerMarkers": 0,
+        "asrWithDiarization": 0,
+        "speakerCountUnknown": 121,
+        "turnCountUnknown": 121,
+        "asrHumanReviewed": 0,
+        "uncertainAsrSegments": 744,
+        "totalAsrSegments": 23276
+      },
+      "timing": {
+        "databaseDurationMatched": 118,
+        "databaseDurationUnmatchedOrUnknown": 3,
+        "databasePositiveInBoundsWords": 40,
+        "databaseDefectiveOrMissingWords": 81,
+        "alignmentHumanReviewed": 0,
+        "inBoundsSeekRanges": 2339,
+        "invalidOrMissingSeekRanges": 78,
+        "seekRangesEndingAtSourceEnd": 2339,
+        "sourcesWithOverlappingSeekRanges": 121
+      },
+      "proxies": {
+        "sourceDurationSeconds": {
+          "count": 121,
+          "missing": 0,
+          "min": 927.264,
+          "p10": 1030.793,
+          "median": 1283.735,
+          "p90": 1435.992,
+          "max": 1632.792,
+          "mean": 1263.958
+        },
+        "englishWordsPerSource": {
+          "count": 121,
+          "missing": 0,
+          "min": 845,
+          "p10": 982,
+          "median": 1773,
+          "p90": 2164,
+          "max": 2312,
+          "mean": 1672.926
+        },
+        "englishWordsPerAudioMinute": {
+          "count": 121,
+          "missing": 0,
+          "min": 48.584,
+          "p10": 58.562,
+          "median": 80.74,
+          "p90": 92.764,
+          "max": 99.029,
+          "mean": 78.179
+        },
+        "englishLongWordRatio": {
+          "count": 121,
+          "missing": 0,
+          "min": 0.035,
+          "p10": 0.047,
+          "median": 0.07,
+          "p90": 0.1,
+          "max": 0.117,
+          "mean": 0.072
+        },
+        "englishUniqueWordRatio": {
+          "count": 121,
+          "missing": 0,
+          "min": 0.316,
+          "p10": 0.339,
+          "median": 0.363,
+          "p90": 0.4,
+          "max": 0.464,
+          "mean": 0.367
+        },
+        "englishWordsPerPunctuationSentence": {
+          "count": 121,
+          "missing": 0,
+          "min": 4.942,
+          "p10": 5.402,
+          "median": 6.463,
+          "p90": 7.854,
+          "max": 8.285,
+          "mean": 6.61
+        },
+        "labeledTurnsPerSource": {
+          "count": 0,
+          "missing": 121,
+          "min": null,
+          "p10": null,
+          "median": null,
+          "p90": null,
+          "max": null,
+          "mean": null
+        },
+        "labeledSpeakersPerSource": {
+          "count": 0,
+          "missing": 121,
+          "min": null,
+          "p10": null,
+          "median": null,
+          "p90": null,
+          "max": null,
+          "mean": null
+        }
+      }
+    },
+    "reconstructed": {
+      "sources": 72,
+      "questions": 1282,
+      "questionCountHistogram": [
+        {
+          "questionCount": 7,
+          "sources": 1
+        },
+        {
+          "questionCount": 10,
+          "sources": 1
+        },
+        {
+          "questionCount": 12,
+          "sources": 2
+        },
+        {
+          "questionCount": 13,
+          "sources": 2
+        },
+        {
+          "questionCount": 14,
+          "sources": 3
+        },
+        {
+          "questionCount": 15,
+          "sources": 6
+        },
+        {
+          "questionCount": 16,
+          "sources": 2
+        },
+        {
+          "questionCount": 17,
+          "sources": 7
+        },
+        {
+          "questionCount": 18,
+          "sources": 8
+        },
+        {
+          "questionCount": 19,
+          "sources": 12
+        },
+        {
+          "questionCount": 20,
+          "sources": 28
+        }
+      ],
+      "types": {
+        "observedMetadata": {
+          "detail": 0,
+          "emotion": 0,
+          "relationship": 0,
+          "location": 0,
+          "reply": 0,
+          "purpose": 0,
+          "visual": 0,
+          "number": 0,
+          "gist": 0,
+          "opinion": 0,
+          "inference": 0,
+          "sequence": 0,
+          "unknown": 0
+        },
+        "inferredMetadata": {
+          "detail": 940,
+          "emotion": 24,
+          "relationship": 15,
+          "location": 49,
+          "reply": 10,
+          "purpose": 49,
+          "visual": 0,
+          "number": 97,
+          "gist": 18,
+          "opinion": 22,
+          "inference": 48,
+          "sequence": 10,
+          "unknown": 0
+        },
+        "inferredStem": {
+          "detail": 0,
+          "emotion": 0,
+          "relationship": 0,
+          "location": 0,
+          "reply": 0,
+          "purpose": 0,
+          "visual": 0,
+          "number": 0,
+          "gist": 0,
+          "opinion": 0,
+          "inference": 0,
+          "sequence": 0,
+          "unknown": 0
+        },
+        "unresolved": 0,
+        "effective": {
+          "detail": 940,
+          "emotion": 24,
+          "relationship": 15,
+          "location": 49,
+          "reply": 10,
+          "purpose": 49,
+          "visual": 0,
+          "number": 97,
+          "gist": 18,
+          "opinion": 22,
+          "inference": 48,
+          "sequence": 10,
+          "unknown": 0
+        }
+      },
+      "stemForms": {
+        "detail_selection": 55,
+        "negative_selection": 12,
+        "speaker_intention": 19,
+        "affective_state": 7,
+        "participant_relation": 6,
+        "setting_identification": 28,
+        "response_completion": 0,
+        "visual_matching": 1,
+        "quantity_calculation": 8,
+        "global_meaning": 1,
+        "speaker_position": 0,
+        "implicit_meaning": 0,
+        "event_order": 0,
+        "unmatched": 1145
+      },
+      "responseForms": {
+        "fiveChoice": 1282,
+        "shortResponse": 0,
+        "otherChoice": 0,
+        "unknown": 0
+      },
+      "stemLanguage": {
+        "koreanPresent": 336,
+        "koreanAbsent": 946,
+        "empty": 0
+      },
+      "choiceLanguage": {
+        "korean": 314,
+        "english": 888,
+        "mixed": 17,
+        "nonverbal_or_empty": 63
+      },
+      "questionStructure": {
+        "dialogueInferred": 282,
+        "monologueInferred": 6,
+        "unknown": 994,
+        "sharedInstructionQuestionsInferred": 0,
+        "sharedInstructionSourcesInferred": 0,
+        "sharedStructureUnknownQuestions": 1282,
+        "imagePresent": 0,
+        "twoGenderRolesMentioned": 0
+      },
+      "topics": {
+        "questionMetadataInferred": {
+          "school": 57,
+          "home": 42,
+          "shopping": 78,
+          "travel": 75,
+          "health": 52,
+          "leisure": 26,
+          "work": 29,
+          "community": 19,
+          "environment": 8,
+          "technology": 9,
+          "culture": 25
+        },
+        "questionTextInferred": {
+          "school": 252,
+          "home": 89,
+          "shopping": 180,
+          "travel": 153,
+          "health": 93,
+          "leisure": 71,
+          "work": 87,
+          "community": 63,
+          "environment": 8,
+          "technology": 42,
+          "culture": 97
+        },
+        "transcriptSourcesInferred": {
+          "school": 69,
+          "home": 64,
+          "shopping": 64,
+          "travel": 62,
+          "health": 50,
+          "leisure": 70,
+          "work": 62,
+          "community": 45,
+          "environment": 10,
+          "technology": 45,
+          "culture": 57
+        },
+        "questionsWithoutTopicSignal": 441,
+        "transcriptSourcesWithoutTopicSignal": 0
+      },
+      "distractorSignalsInferred": {
+        "numeric_alternatives": 122,
+        "negative_truth_selection": 12,
+        "response_alternatives": 10,
+        "visual_alternatives": 0,
+        "shared_vocabulary_alternatives": 117,
+        "parallel_brief_alternatives": 957
+      },
+      "transcript": {
+        "selectedDatabaseEnglish": 72,
+        "selectedDocument": 0,
+        "selectedLocalAsr": 0,
+        "missing": 0,
+        "databaseEnglishMissing": 0,
+        "databaseBilingualMissing": 0,
+        "documentMissing": 0,
+        "localAsrMissing": 0,
+        "selectedContainsKorean": 69,
+        "sourceTextWithSpeakerMarkers": 0,
+        "asrWithDiarization": 0,
+        "speakerCountUnknown": 72,
+        "turnCountUnknown": 72,
+        "asrHumanReviewed": 0,
+        "uncertainAsrSegments": 186,
+        "totalAsrSegments": 10022
+      },
+      "timing": {
+        "databaseDurationMatched": 72,
+        "databaseDurationUnmatchedOrUnknown": 0,
+        "databasePositiveInBoundsWords": 40,
+        "databaseDefectiveOrMissingWords": 32,
+        "alignmentHumanReviewed": 0,
+        "inBoundsSeekRanges": 670,
+        "invalidOrMissingSeekRanges": 612,
+        "seekRangesEndingAtSourceEnd": 670,
+        "sourcesWithOverlappingSeekRanges": 70
+      },
+      "proxies": {
+        "sourceDurationSeconds": {
+          "count": 72,
+          "missing": 0,
+          "min": 822.791,
+          "p10": 878.356,
+          "median": 1028.205,
+          "p90": 1256.707,
+          "max": 1357.416,
+          "mean": 1045.845
+        },
+        "englishWordsPerSource": {
+          "count": 72,
+          "missing": 0,
+          "min": 528,
+          "p10": 752.3,
+          "median": 1044.5,
+          "p90": 1391.7,
+          "max": 1643,
+          "mean": 1062.25
+        },
+        "englishWordsPerAudioMinute": {
+          "count": 72,
+          "missing": 0,
+          "min": 34.993,
+          "p10": 49.486,
+          "median": 59.404,
+          "p90": 73.078,
+          "max": 86.436,
+          "mean": 60.317
+        },
+        "englishLongWordRatio": {
+          "count": 72,
+          "missing": 0,
+          "min": 0.032,
+          "p10": 0.042,
+          "median": 0.053,
+          "p90": 0.067,
+          "max": 0.073,
+          "mean": 0.054
+        },
+        "englishUniqueWordRatio": {
+          "count": 72,
+          "missing": 0,
+          "min": 0.339,
+          "p10": 0.363,
+          "median": 0.401,
+          "p90": 0.449,
+          "max": 0.467,
+          "mean": 0.403
+        },
+        "englishWordsPerPunctuationSentence": {
+          "count": 72,
+          "missing": 0,
+          "min": 4.557,
+          "p10": 5.075,
+          "median": 5.838,
+          "p90": 6.587,
+          "max": 7.335,
+          "mean": 5.827
+        },
+        "labeledTurnsPerSource": {
+          "count": 0,
+          "missing": 72,
+          "min": null,
+          "p10": null,
+          "median": null,
+          "p90": null,
+          "max": null,
+          "mean": null
+        },
+        "labeledSpeakersPerSource": {
+          "count": 0,
+          "missing": 72,
+          "min": null,
+          "p10": null,
+          "median": null,
+          "p90": null,
+          "max": null,
+          "mean": null
+        }
+      }
+    }
+  },
+  "grades": {
+    "middle1": {
+      "official": {
+        "sources": 18,
+        "questions": 360,
+        "questionCountHistogram": [
+          {
+            "questionCount": 20,
+            "sources": 18
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 24,
+            "emotion": 16,
+            "relationship": 2,
+            "location": 17,
+            "reply": 4,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 87,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 32,
+            "purpose": 18,
+            "visual": 0,
+            "number": 18,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 142,
+          "effective": {
+            "detail": 111,
+            "emotion": 16,
+            "relationship": 2,
+            "location": 17,
+            "reply": 36,
+            "purpose": 18,
+            "visual": 0,
+            "number": 18,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 142
+          }
+        },
+        "stemForms": {
+          "detail_selection": 85,
+          "negative_selection": 26,
+          "speaker_intention": 18,
+          "affective_state": 16,
+          "participant_relation": 2,
+          "setting_identification": 17,
+          "response_completion": 36,
+          "visual_matching": 0,
+          "quantity_calculation": 18,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 142
+        },
+        "responseForms": {
+          "fiveChoice": 360,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 360,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 226,
+          "english": 59,
+          "mixed": 3,
+          "nonverbal_or_empty": 72
+        },
+        "questionStructure": {
+          "dialogueInferred": 302,
+          "monologueInferred": 0,
+          "unknown": 58,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 360,
+          "imagePresent": 72,
+          "twoGenderRolesMentioned": 74
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 39,
+            "home": 18,
+            "shopping": 13,
+            "travel": 44,
+            "health": 23,
+            "leisure": 10,
+            "work": 21,
+            "community": 8,
+            "environment": 2,
+            "technology": 11,
+            "culture": 13
+          },
+          "transcriptSourcesInferred": {
+            "school": 18,
+            "home": 17,
+            "shopping": 16,
+            "travel": 18,
+            "health": 12,
+            "leisure": 17,
+            "work": 14,
+            "community": 13,
+            "environment": 3,
+            "technology": 10,
+            "culture": 12
+          },
+          "questionsWithoutTopicSignal": 212,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 18,
+          "negative_truth_selection": 26,
+          "response_alternatives": 36,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 344
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 18,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 18,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 18,
+          "turnCountUnknown": 18,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 31,
+          "totalAsrSegments": 2367
+        },
+        "timing": {
+          "databaseDurationMatched": 18,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 7,
+          "databaseDefectiveOrMissingWords": 11,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 357,
+          "invalidOrMissingSeekRanges": 3,
+          "seekRangesEndingAtSourceEnd": 357,
+          "sourcesWithOverlappingSeekRanges": 18
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 18,
+            "missing": 0,
+            "min": 927.264,
+            "p10": 965.729,
+            "median": 999.72,
+            "p90": 1045.935,
+            "max": 1060.871,
+            "mean": 1003.646
+          },
+          "englishWordsPerSource": {
+            "count": 18,
+            "missing": 0,
+            "min": 845,
+            "p10": 854.8,
+            "median": 962,
+            "p90": 1018.9,
+            "max": 1047,
+            "mean": 951.556
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 18,
+            "missing": 0,
+            "min": 48.584,
+            "p10": 53.061,
+            "median": 56.725,
+            "p90": 60.655,
+            "max": 62.359,
+            "mean": 56.905
+          },
+          "englishLongWordRatio": {
+            "count": 18,
+            "missing": 0,
+            "min": 0.035,
+            "p10": 0.036,
+            "median": 0.05,
+            "p90": 0.061,
+            "max": 0.061,
+            "mean": 0.049
+          },
+          "englishUniqueWordRatio": {
+            "count": 18,
+            "missing": 0,
+            "min": 0.374,
+            "p10": 0.391,
+            "median": 0.406,
+            "p90": 0.426,
+            "max": 0.464,
+            "mean": 0.409
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 18,
+            "missing": 0,
+            "min": 4.942,
+            "p10": 5.028,
+            "median": 5.367,
+            "p90": 5.712,
+            "max": 5.743,
+            "mean": 5.378
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 18,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 18,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      },
+      "reconstructed": {
+        "sources": 24,
+        "questions": 409,
+        "questionCountHistogram": [
+          {
+            "questionCount": 7,
+            "sources": 1
+          },
+          {
+            "questionCount": 12,
+            "sources": 1
+          },
+          {
+            "questionCount": 13,
+            "sources": 1
+          },
+          {
+            "questionCount": 14,
+            "sources": 1
+          },
+          {
+            "questionCount": 15,
+            "sources": 3
+          },
+          {
+            "questionCount": 16,
+            "sources": 1
+          },
+          {
+            "questionCount": 17,
+            "sources": 3
+          },
+          {
+            "questionCount": 18,
+            "sources": 2
+          },
+          {
+            "questionCount": 19,
+            "sources": 5
+          },
+          {
+            "questionCount": 20,
+            "sources": 6
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 301,
+            "emotion": 7,
+            "relationship": 6,
+            "location": 27,
+            "reply": 7,
+            "purpose": 5,
+            "visual": 0,
+            "number": 31,
+            "gist": 5,
+            "opinion": 3,
+            "inference": 16,
+            "sequence": 1,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 0,
+          "effective": {
+            "detail": 301,
+            "emotion": 7,
+            "relationship": 6,
+            "location": 27,
+            "reply": 7,
+            "purpose": 5,
+            "visual": 0,
+            "number": 31,
+            "gist": 5,
+            "opinion": 3,
+            "inference": 16,
+            "sequence": 1,
+            "unknown": 0
+          }
+        },
+        "stemForms": {
+          "detail_selection": 13,
+          "negative_selection": 4,
+          "speaker_intention": 2,
+          "affective_state": 2,
+          "participant_relation": 1,
+          "setting_identification": 12,
+          "response_completion": 0,
+          "visual_matching": 0,
+          "quantity_calculation": 2,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 373
+        },
+        "responseForms": {
+          "fiveChoice": 409,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 115,
+          "koreanAbsent": 294,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 108,
+          "english": 268,
+          "mixed": 7,
+          "nonverbal_or_empty": 26
+        },
+        "questionStructure": {
+          "dialogueInferred": 95,
+          "monologueInferred": 0,
+          "unknown": 314,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 409,
+          "imagePresent": 0,
+          "twoGenderRolesMentioned": 0
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 17,
+            "home": 19,
+            "shopping": 21,
+            "travel": 25,
+            "health": 17,
+            "leisure": 12,
+            "work": 15,
+            "community": 2,
+            "environment": 0,
+            "technology": 0,
+            "culture": 6
+          },
+          "questionTextInferred": {
+            "school": 91,
+            "home": 28,
+            "shopping": 43,
+            "travel": 57,
+            "health": 39,
+            "leisure": 27,
+            "work": 34,
+            "community": 15,
+            "environment": 1,
+            "technology": 14,
+            "culture": 38
+          },
+          "transcriptSourcesInferred": {
+            "school": 24,
+            "home": 22,
+            "shopping": 21,
+            "travel": 19,
+            "health": 21,
+            "leisure": 23,
+            "work": 20,
+            "community": 10,
+            "environment": 2,
+            "technology": 14,
+            "culture": 19
+          },
+          "questionsWithoutTopicSignal": 139,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 39,
+          "negative_truth_selection": 4,
+          "response_alternatives": 7,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 33,
+          "parallel_brief_alternatives": 335
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 24,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 22,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 24,
+          "turnCountUnknown": 24,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 34,
+          "totalAsrSegments": 2838
+        },
+        "timing": {
+          "databaseDurationMatched": 24,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 14,
+          "databaseDefectiveOrMissingWords": 10,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 202,
+          "invalidOrMissingSeekRanges": 207,
+          "seekRangesEndingAtSourceEnd": 202,
+          "sourcesWithOverlappingSeekRanges": 22
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 24,
+            "missing": 0,
+            "min": 822.791,
+            "p10": 845.998,
+            "median": 917.536,
+            "p90": 1042.49,
+            "max": 1193.904,
+            "mean": 934.063
+          },
+          "englishWordsPerSource": {
+            "count": 24,
+            "missing": 0,
+            "min": 528,
+            "p10": 666.7,
+            "median": 810,
+            "p90": 932.3,
+            "max": 1003,
+            "mean": 799.042
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 24,
+            "missing": 0,
+            "min": 34.993,
+            "p10": 45.007,
+            "median": 52.567,
+            "p90": 56.597,
+            "max": 60.328,
+            "mean": 51.37
+          },
+          "englishLongWordRatio": {
+            "count": 24,
+            "missing": 0,
+            "min": 0.032,
+            "p10": 0.038,
+            "median": 0.047,
+            "p90": 0.056,
+            "max": 0.064,
+            "mean": 0.048
+          },
+          "englishUniqueWordRatio": {
+            "count": 24,
+            "missing": 0,
+            "min": 0.379,
+            "p10": 0.4,
+            "median": 0.432,
+            "p90": 0.454,
+            "max": 0.467,
+            "mean": 0.428
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 24,
+            "missing": 0,
+            "min": 4.557,
+            "p10": 4.721,
+            "median": 5.288,
+            "p90": 5.636,
+            "max": 5.972,
+            "mean": 5.256
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 24,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 24,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      }
+    },
+    "middle2": {
+      "official": {
+        "sources": 18,
+        "questions": 360,
+        "questionCountHistogram": [
+          {
+            "questionCount": 20,
+            "sources": 18
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 56,
+            "emotion": 14,
+            "relationship": 18,
+            "location": 18,
+            "reply": 0,
+            "purpose": 17,
+            "visual": 16,
+            "number": 6,
+            "gist": 1,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 55,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 36,
+            "purpose": 18,
+            "visual": 0,
+            "number": 4,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 101,
+          "effective": {
+            "detail": 111,
+            "emotion": 14,
+            "relationship": 18,
+            "location": 18,
+            "reply": 36,
+            "purpose": 35,
+            "visual": 16,
+            "number": 10,
+            "gist": 1,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 101
+          }
+        },
+        "stemForms": {
+          "detail_selection": 53,
+          "negative_selection": 59,
+          "speaker_intention": 35,
+          "affective_state": 14,
+          "participant_relation": 18,
+          "setting_identification": 18,
+          "response_completion": 36,
+          "visual_matching": 16,
+          "quantity_calculation": 10,
+          "global_meaning": 1,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 100
+        },
+        "responseForms": {
+          "fiveChoice": 360,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 360,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 236,
+          "english": 52,
+          "mixed": 5,
+          "nonverbal_or_empty": 67
+        },
+        "questionStructure": {
+          "dialogueInferred": 308,
+          "monologueInferred": 18,
+          "unknown": 34,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 360,
+          "imagePresent": 54,
+          "twoGenderRolesMentioned": 55
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 59,
+            "home": 11,
+            "shopping": 23,
+            "travel": 38,
+            "health": 27,
+            "leisure": 6,
+            "work": 7,
+            "community": 19,
+            "environment": 2,
+            "technology": 13,
+            "culture": 11
+          },
+          "transcriptSourcesInferred": {
+            "school": 18,
+            "home": 17,
+            "shopping": 17,
+            "travel": 15,
+            "health": 12,
+            "leisure": 14,
+            "work": 17,
+            "community": 15,
+            "environment": 4,
+            "technology": 12,
+            "culture": 14
+          },
+          "questionsWithoutTopicSignal": 201,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 18,
+          "negative_truth_selection": 59,
+          "response_alternatives": 36,
+          "visual_alternatives": 16,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 325
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 18,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 1,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 18,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 18,
+          "turnCountUnknown": 18,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 71,
+          "totalAsrSegments": 2941
+        },
+        "timing": {
+          "databaseDurationMatched": 18,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 5,
+          "databaseDefectiveOrMissingWords": 13,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 343,
+          "invalidOrMissingSeekRanges": 17,
+          "seekRangesEndingAtSourceEnd": 343,
+          "sourcesWithOverlappingSeekRanges": 18
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 18,
+            "missing": 0,
+            "min": 1079.046,
+            "p10": 1101.083,
+            "median": 1138.176,
+            "p90": 1215.689,
+            "max": 1246.992,
+            "mean": 1146.966
+          },
+          "englishWordsPerSource": {
+            "count": 18,
+            "missing": 0,
+            "min": 1234,
+            "p10": 1239.9,
+            "median": 1282,
+            "p90": 1320.6,
+            "max": 1334,
+            "mean": 1278.056
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 18,
+            "missing": 0,
+            "min": 61.588,
+            "p10": 63.269,
+            "median": 67.665,
+            "p90": 70.235,
+            "max": 70.6,
+            "mean": 66.944
+          },
+          "englishLongWordRatio": {
+            "count": 18,
+            "missing": 0,
+            "min": 0.039,
+            "p10": 0.045,
+            "median": 0.057,
+            "p90": 0.07,
+            "max": 0.071,
+            "mean": 0.057
+          },
+          "englishUniqueWordRatio": {
+            "count": 18,
+            "missing": 0,
+            "min": 0.342,
+            "p10": 0.354,
+            "median": 0.38,
+            "p90": 0.397,
+            "max": 0.399,
+            "mean": 0.377
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 18,
+            "missing": 0,
+            "min": 5.353,
+            "p10": 5.392,
+            "median": 5.713,
+            "p90": 5.925,
+            "max": 6.047,
+            "mean": 5.699
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 18,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 18,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      },
+      "reconstructed": {
+        "sources": 24,
+        "questions": 429,
+        "questionCountHistogram": [
+          {
+            "questionCount": 10,
+            "sources": 1
+          },
+          {
+            "questionCount": 12,
+            "sources": 1
+          },
+          {
+            "questionCount": 14,
+            "sources": 2
+          },
+          {
+            "questionCount": 15,
+            "sources": 1
+          },
+          {
+            "questionCount": 17,
+            "sources": 2
+          },
+          {
+            "questionCount": 18,
+            "sources": 3
+          },
+          {
+            "questionCount": 19,
+            "sources": 4
+          },
+          {
+            "questionCount": 20,
+            "sources": 10
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 306,
+            "emotion": 11,
+            "relationship": 6,
+            "location": 15,
+            "reply": 2,
+            "purpose": 25,
+            "visual": 0,
+            "number": 26,
+            "gist": 8,
+            "opinion": 9,
+            "inference": 15,
+            "sequence": 6,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 0,
+          "effective": {
+            "detail": 306,
+            "emotion": 11,
+            "relationship": 6,
+            "location": 15,
+            "reply": 2,
+            "purpose": 25,
+            "visual": 0,
+            "number": 26,
+            "gist": 8,
+            "opinion": 9,
+            "inference": 15,
+            "sequence": 6,
+            "unknown": 0
+          }
+        },
+        "stemForms": {
+          "detail_selection": 16,
+          "negative_selection": 3,
+          "speaker_intention": 10,
+          "affective_state": 5,
+          "participant_relation": 4,
+          "setting_identification": 9,
+          "response_completion": 0,
+          "visual_matching": 1,
+          "quantity_calculation": 2,
+          "global_meaning": 1,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 378
+        },
+        "responseForms": {
+          "fiveChoice": 429,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 113,
+          "koreanAbsent": 316,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 108,
+          "english": 304,
+          "mixed": 4,
+          "nonverbal_or_empty": 13
+        },
+        "questionStructure": {
+          "dialogueInferred": 93,
+          "monologueInferred": 4,
+          "unknown": 332,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 429,
+          "imagePresent": 0,
+          "twoGenderRolesMentioned": 0
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 22,
+            "home": 14,
+            "shopping": 22,
+            "travel": 27,
+            "health": 20,
+            "leisure": 9,
+            "work": 9,
+            "community": 10,
+            "environment": 5,
+            "technology": 7,
+            "culture": 6
+          },
+          "questionTextInferred": {
+            "school": 88,
+            "home": 28,
+            "shopping": 49,
+            "travel": 48,
+            "health": 36,
+            "leisure": 23,
+            "work": 17,
+            "community": 27,
+            "environment": 4,
+            "technology": 12,
+            "culture": 32
+          },
+          "transcriptSourcesInferred": {
+            "school": 21,
+            "home": 21,
+            "shopping": 19,
+            "travel": 21,
+            "health": 15,
+            "leisure": 24,
+            "work": 20,
+            "community": 16,
+            "environment": 3,
+            "technology": 14,
+            "culture": 19
+          },
+          "questionsWithoutTopicSignal": 155,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 27,
+          "negative_truth_selection": 3,
+          "response_alternatives": 2,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 38,
+          "parallel_brief_alternatives": 329
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 24,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 23,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 24,
+          "turnCountUnknown": 24,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 59,
+          "totalAsrSegments": 3313
+        },
+        "timing": {
+          "databaseDurationMatched": 24,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 14,
+          "databaseDefectiveOrMissingWords": 10,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 208,
+          "invalidOrMissingSeekRanges": 221,
+          "seekRangesEndingAtSourceEnd": 208,
+          "sourcesWithOverlappingSeekRanges": 24
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 24,
+            "missing": 0,
+            "min": 875.558,
+            "p10": 940.211,
+            "median": 1027.513,
+            "p90": 1261.721,
+            "max": 1357.416,
+            "mean": 1069.592
+          },
+          "englishWordsPerSource": {
+            "count": 24,
+            "missing": 0,
+            "min": 764,
+            "p10": 833.3,
+            "median": 1054.5,
+            "p90": 1344.3,
+            "max": 1389,
+            "mean": 1097
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 24,
+            "missing": 0,
+            "min": 47.514,
+            "p10": 55.562,
+            "median": 60.251,
+            "p90": 70.431,
+            "max": 79.042,
+            "mean": 61.374
+          },
+          "englishLongWordRatio": {
+            "count": 24,
+            "missing": 0,
+            "min": 0.038,
+            "p10": 0.043,
+            "median": 0.057,
+            "p90": 0.069,
+            "max": 0.073,
+            "mean": 0.056
+          },
+          "englishUniqueWordRatio": {
+            "count": 24,
+            "missing": 0,
+            "min": 0.347,
+            "p10": 0.363,
+            "median": 0.391,
+            "p90": 0.432,
+            "max": 0.459,
+            "mean": 0.395
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 24,
+            "missing": 0,
+            "min": 4.623,
+            "p10": 5.458,
+            "median": 5.84,
+            "p90": 6.575,
+            "max": 7,
+            "mean": 5.877
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 24,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 24,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      }
+    },
+    "middle3": {
+      "official": {
+        "sources": 18,
+        "questions": 360,
+        "questionCountHistogram": [
+          {
+            "questionCount": 20,
+            "sources": 18
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 36,
+            "emotion": 13,
+            "relationship": 0,
+            "location": 6,
+            "reply": 68,
+            "purpose": 32,
+            "visual": 31,
+            "number": 18,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 59,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 4,
+            "purpose": 0,
+            "visual": 0,
+            "number": 22,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 71,
+          "effective": {
+            "detail": 95,
+            "emotion": 13,
+            "relationship": 0,
+            "location": 6,
+            "reply": 72,
+            "purpose": 32,
+            "visual": 31,
+            "number": 40,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 71
+          }
+        },
+        "stemForms": {
+          "detail_selection": 59,
+          "negative_selection": 36,
+          "speaker_intention": 32,
+          "affective_state": 13,
+          "participant_relation": 0,
+          "setting_identification": 6,
+          "response_completion": 54,
+          "visual_matching": 18,
+          "quantity_calculation": 40,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 102
+        },
+        "responseForms": {
+          "fiveChoice": 360,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 360,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 161,
+          "english": 108,
+          "mixed": 1,
+          "nonverbal_or_empty": 90
+        },
+        "questionStructure": {
+          "dialogueInferred": 288,
+          "monologueInferred": 18,
+          "unknown": 54,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 360,
+          "imagePresent": 64,
+          "twoGenderRolesMentioned": 90
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 44,
+            "home": 10,
+            "shopping": 31,
+            "travel": 20,
+            "health": 18,
+            "leisure": 11,
+            "work": 10,
+            "community": 18,
+            "environment": 3,
+            "technology": 13,
+            "culture": 18
+          },
+          "transcriptSourcesInferred": {
+            "school": 18,
+            "home": 16,
+            "shopping": 18,
+            "travel": 15,
+            "health": 13,
+            "leisure": 17,
+            "work": 17,
+            "community": 16,
+            "environment": 7,
+            "technology": 14,
+            "culture": 15
+          },
+          "questionsWithoutTopicSignal": 218,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 52,
+          "negative_truth_selection": 36,
+          "response_alternatives": 72,
+          "visual_alternatives": 31,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 284
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 18,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 1,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 18,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 18,
+          "turnCountUnknown": 18,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 73,
+          "totalAsrSegments": 3318
+        },
+        "timing": {
+          "databaseDurationMatched": 18,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 5,
+          "databaseDefectiveOrMissingWords": 13,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 349,
+          "invalidOrMissingSeekRanges": 11,
+          "seekRangesEndingAtSourceEnd": 349,
+          "sourcesWithOverlappingSeekRanges": 18
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 18,
+            "missing": 0,
+            "min": 1139.112,
+            "p10": 1203.024,
+            "median": 1271.001,
+            "p90": 1311.649,
+            "max": 1333.528,
+            "mean": 1263.631
+          },
+          "englishWordsPerSource": {
+            "count": 18,
+            "missing": 0,
+            "min": 1466,
+            "p10": 1483.3,
+            "median": 1596.5,
+            "p90": 1734.5,
+            "max": 1816,
+            "mean": 1605.111
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 18,
+            "missing": 0,
+            "min": 67.415,
+            "p10": 72.122,
+            "median": 75.447,
+            "p90": 81.291,
+            "max": 83.165,
+            "mean": 76.212
+          },
+          "englishLongWordRatio": {
+            "count": 18,
+            "missing": 0,
+            "min": 0.044,
+            "p10": 0.049,
+            "median": 0.058,
+            "p90": 0.076,
+            "max": 0.092,
+            "mean": 0.061
+          },
+          "englishUniqueWordRatio": {
+            "count": 18,
+            "missing": 0,
+            "min": 0.327,
+            "p10": 0.335,
+            "median": 0.361,
+            "p90": 0.373,
+            "max": 0.386,
+            "mean": 0.357
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 18,
+            "missing": 0,
+            "min": 5.895,
+            "p10": 6.025,
+            "median": 6.323,
+            "p90": 6.582,
+            "max": 6.817,
+            "mean": 6.309
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 18,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 18,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      },
+      "reconstructed": {
+        "sources": 24,
+        "questions": 444,
+        "questionCountHistogram": [
+          {
+            "questionCount": 13,
+            "sources": 1
+          },
+          {
+            "questionCount": 15,
+            "sources": 2
+          },
+          {
+            "questionCount": 16,
+            "sources": 1
+          },
+          {
+            "questionCount": 17,
+            "sources": 2
+          },
+          {
+            "questionCount": 18,
+            "sources": 3
+          },
+          {
+            "questionCount": 19,
+            "sources": 3
+          },
+          {
+            "questionCount": 20,
+            "sources": 12
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 333,
+            "emotion": 6,
+            "relationship": 3,
+            "location": 7,
+            "reply": 1,
+            "purpose": 19,
+            "visual": 0,
+            "number": 40,
+            "gist": 5,
+            "opinion": 10,
+            "inference": 17,
+            "sequence": 3,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 0,
+          "effective": {
+            "detail": 333,
+            "emotion": 6,
+            "relationship": 3,
+            "location": 7,
+            "reply": 1,
+            "purpose": 19,
+            "visual": 0,
+            "number": 40,
+            "gist": 5,
+            "opinion": 10,
+            "inference": 17,
+            "sequence": 3,
+            "unknown": 0
+          }
+        },
+        "stemForms": {
+          "detail_selection": 26,
+          "negative_selection": 5,
+          "speaker_intention": 7,
+          "affective_state": 0,
+          "participant_relation": 1,
+          "setting_identification": 7,
+          "response_completion": 0,
+          "visual_matching": 0,
+          "quantity_calculation": 4,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 394
+        },
+        "responseForms": {
+          "fiveChoice": 444,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 108,
+          "koreanAbsent": 336,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 98,
+          "english": 316,
+          "mixed": 6,
+          "nonverbal_or_empty": 24
+        },
+        "questionStructure": {
+          "dialogueInferred": 94,
+          "monologueInferred": 2,
+          "unknown": 348,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 444,
+          "imagePresent": 0,
+          "twoGenderRolesMentioned": 0
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 18,
+            "home": 9,
+            "shopping": 35,
+            "travel": 23,
+            "health": 15,
+            "leisure": 5,
+            "work": 5,
+            "community": 7,
+            "environment": 3,
+            "technology": 2,
+            "culture": 13
+          },
+          "questionTextInferred": {
+            "school": 73,
+            "home": 33,
+            "shopping": 88,
+            "travel": 48,
+            "health": 18,
+            "leisure": 21,
+            "work": 36,
+            "community": 21,
+            "environment": 3,
+            "technology": 16,
+            "culture": 27
+          },
+          "transcriptSourcesInferred": {
+            "school": 24,
+            "home": 21,
+            "shopping": 24,
+            "travel": 22,
+            "health": 14,
+            "leisure": 23,
+            "work": 22,
+            "community": 19,
+            "environment": 5,
+            "technology": 17,
+            "culture": 19
+          },
+          "questionsWithoutTopicSignal": 147,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 56,
+          "negative_truth_selection": 5,
+          "response_alternatives": 1,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 46,
+          "parallel_brief_alternatives": 293
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 24,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 24,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 24,
+          "turnCountUnknown": 24,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 93,
+          "totalAsrSegments": 3871
+        },
+        "timing": {
+          "databaseDurationMatched": 24,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 12,
+          "databaseDefectiveOrMissingWords": 12,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 260,
+          "invalidOrMissingSeekRanges": 184,
+          "seekRangesEndingAtSourceEnd": 260,
+          "sourcesWithOverlappingSeekRanges": 24
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 24,
+            "missing": 0,
+            "min": 1020.381,
+            "p10": 1028.095,
+            "median": 1133.583,
+            "p90": 1266.91,
+            "max": 1322.064,
+            "mean": 1133.88
+          },
+          "englishWordsPerSource": {
+            "count": 24,
+            "missing": 0,
+            "min": 933,
+            "p10": 1017.7,
+            "median": 1308,
+            "p90": 1531.2,
+            "max": 1643,
+            "mean": 1290.708
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 24,
+            "missing": 0,
+            "min": 52.295,
+            "p10": 58.673,
+            "median": 68.073,
+            "p90": 77.95,
+            "max": 86.436,
+            "mean": 68.206
+          },
+          "englishLongWordRatio": {
+            "count": 24,
+            "missing": 0,
+            "min": 0.037,
+            "p10": 0.049,
+            "median": 0.056,
+            "p90": 0.067,
+            "max": 0.071,
+            "mean": 0.057
+          },
+          "englishUniqueWordRatio": {
+            "count": 24,
+            "missing": 0,
+            "min": 0.339,
+            "p10": 0.357,
+            "median": 0.388,
+            "p90": 0.423,
+            "max": 0.43,
+            "mean": 0.387
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 24,
+            "missing": 0,
+            "min": 5.827,
+            "p10": 5.843,
+            "median": 6.317,
+            "p90": 6.923,
+            "max": 7.335,
+            "mean": 6.349
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 24,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 24,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      }
+    },
+    "high1": {
+      "official": {
+        "sources": 23,
+        "questions": 457,
+        "questionCountHistogram": [
+          {
+            "questionCount": 17,
+            "sources": 1
+          },
+          {
+            "questionCount": 20,
+            "sources": 22
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 45,
+            "emotion": 2,
+            "relationship": 18,
+            "location": 2,
+            "reply": 85,
+            "purpose": 21,
+            "visual": 40,
+            "number": 19,
+            "gist": 29,
+            "opinion": 15,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 80,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 24,
+            "purpose": 0,
+            "visual": 0,
+            "number": 9,
+            "gist": 0,
+            "opinion": 1,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 67,
+          "effective": {
+            "detail": 125,
+            "emotion": 2,
+            "relationship": 18,
+            "location": 2,
+            "reply": 109,
+            "purpose": 21,
+            "visual": 40,
+            "number": 28,
+            "gist": 29,
+            "opinion": 16,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 67
+          }
+        },
+        "stemForms": {
+          "detail_selection": 75,
+          "negative_selection": 51,
+          "speaker_intention": 21,
+          "affective_state": 2,
+          "participant_relation": 18,
+          "setting_identification": 3,
+          "response_completion": 88,
+          "visual_matching": 18,
+          "quantity_calculation": 28,
+          "global_meaning": 29,
+          "speaker_position": 16,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 108
+        },
+        "responseForms": {
+          "fiveChoice": 457,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 457,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 206,
+          "english": 117,
+          "mixed": 11,
+          "nonverbal_or_empty": 123
+        },
+        "questionStructure": {
+          "dialogueInferred": 335,
+          "monologueInferred": 20,
+          "unknown": 102,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 457,
+          "imagePresent": 108,
+          "twoGenderRolesMentioned": 133
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 59,
+            "home": 26,
+            "shopping": 50,
+            "travel": 26,
+            "health": 37,
+            "leisure": 15,
+            "work": 10,
+            "community": 44,
+            "environment": 8,
+            "technology": 10,
+            "culture": 21
+          },
+          "transcriptSourcesInferred": {
+            "school": 23,
+            "home": 23,
+            "shopping": 23,
+            "travel": 20,
+            "health": 15,
+            "leisure": 19,
+            "work": 22,
+            "community": 22,
+            "environment": 10,
+            "technology": 20,
+            "culture": 17
+          },
+          "questionsWithoutTopicSignal": 239,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 28,
+          "negative_truth_selection": 51,
+          "response_alternatives": 109,
+          "visual_alternatives": 40,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 321
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 23,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 1,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 23,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 23,
+          "turnCountUnknown": 23,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 191,
+          "totalAsrSegments": 4825
+        },
+        "timing": {
+          "databaseDurationMatched": 22,
+          "databaseDurationUnmatchedOrUnknown": 1,
+          "databasePositiveInBoundsWords": 10,
+          "databaseDefectiveOrMissingWords": 13,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 441,
+          "invalidOrMissingSeekRanges": 16,
+          "seekRangesEndingAtSourceEnd": 441,
+          "sourcesWithOverlappingSeekRanges": 23
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 23,
+            "missing": 0,
+            "min": 1081.608,
+            "p10": 1209.166,
+            "median": 1306.416,
+            "p90": 1417.017,
+            "max": 1557.029,
+            "mean": 1310.163
+          },
+          "englishWordsPerSource": {
+            "count": 23,
+            "missing": 0,
+            "min": 1414,
+            "p10": 1549.4,
+            "median": 1814,
+            "p90": 2074.8,
+            "max": 2109,
+            "mean": 1804.87
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 23,
+            "missing": 0,
+            "min": 71.28,
+            "p10": 74.049,
+            "median": 83.652,
+            "p90": 89.186,
+            "max": 92.943,
+            "mean": 82.641
+          },
+          "englishLongWordRatio": {
+            "count": 23,
+            "missing": 0,
+            "min": 0.051,
+            "p10": 0.062,
+            "median": 0.073,
+            "p90": 0.09,
+            "max": 0.105,
+            "mean": 0.074
+          },
+          "englishUniqueWordRatio": {
+            "count": 23,
+            "missing": 0,
+            "min": 0.316,
+            "p10": 0.33,
+            "median": 0.351,
+            "p90": 0.373,
+            "max": 0.386,
+            "mean": 0.351
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 23,
+            "missing": 0,
+            "min": 6.017,
+            "p10": 6.237,
+            "median": 6.62,
+            "p90": 6.968,
+            "max": 7.78,
+            "mean": 6.639
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 23,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 23,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      },
+      "reconstructed": {
+        "sources": 0,
+        "questions": 0,
+        "questionCountHistogram": [],
+        "types": {
+          "observedMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 0,
+          "effective": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          }
+        },
+        "stemForms": {
+          "detail_selection": 0,
+          "negative_selection": 0,
+          "speaker_intention": 0,
+          "affective_state": 0,
+          "participant_relation": 0,
+          "setting_identification": 0,
+          "response_completion": 0,
+          "visual_matching": 0,
+          "quantity_calculation": 0,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 0
+        },
+        "responseForms": {
+          "fiveChoice": 0,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 0,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 0,
+          "english": 0,
+          "mixed": 0,
+          "nonverbal_or_empty": 0
+        },
+        "questionStructure": {
+          "dialogueInferred": 0,
+          "monologueInferred": 0,
+          "unknown": 0,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 0,
+          "imagePresent": 0,
+          "twoGenderRolesMentioned": 0
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "transcriptSourcesInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionsWithoutTopicSignal": 0,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 0,
+          "negative_truth_selection": 0,
+          "response_alternatives": 0,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 0
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 0,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 0,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 0,
+          "turnCountUnknown": 0,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 0,
+          "totalAsrSegments": 0
+        },
+        "timing": {
+          "databaseDurationMatched": 0,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 0,
+          "databaseDefectiveOrMissingWords": 0,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 0,
+          "invalidOrMissingSeekRanges": 0,
+          "seekRangesEndingAtSourceEnd": 0,
+          "sourcesWithOverlappingSeekRanges": 0
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishLongWordRatio": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishUniqueWordRatio": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      }
+    },
+    "high2": {
+      "official": {
+        "sources": 22,
+        "questions": 440,
+        "questionCountHistogram": [
+          {
+            "questionCount": 20,
+            "sources": 22
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 63,
+            "emotion": 0,
+            "relationship": 21,
+            "location": 0,
+            "reply": 124,
+            "purpose": 23,
+            "visual": 40,
+            "number": 21,
+            "gist": 40,
+            "opinion": 26,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 42,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 18,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 22,
+          "effective": {
+            "detail": 105,
+            "emotion": 0,
+            "relationship": 21,
+            "location": 0,
+            "reply": 124,
+            "purpose": 23,
+            "visual": 40,
+            "number": 21,
+            "gist": 40,
+            "opinion": 44,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 22
+          }
+        },
+        "stemForms": {
+          "detail_selection": 36,
+          "negative_selection": 69,
+          "speaker_intention": 23,
+          "affective_state": 0,
+          "participant_relation": 21,
+          "setting_identification": 0,
+          "response_completion": 103,
+          "visual_matching": 19,
+          "quantity_calculation": 21,
+          "global_meaning": 40,
+          "speaker_position": 44,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 64
+        },
+        "responseForms": {
+          "fiveChoice": 440,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 440,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 196,
+          "english": 155,
+          "mixed": 8,
+          "nonverbal_or_empty": 81
+        },
+        "questionStructure": {
+          "dialogueInferred": 294,
+          "monologueInferred": 65,
+          "unknown": 81,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 440,
+          "imagePresent": 62,
+          "twoGenderRolesMentioned": 124
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 65,
+            "home": 34,
+            "shopping": 38,
+            "travel": 33,
+            "health": 46,
+            "leisure": 9,
+            "work": 26,
+            "community": 32,
+            "environment": 12,
+            "technology": 16,
+            "culture": 28
+          },
+          "transcriptSourcesInferred": {
+            "school": 22,
+            "home": 22,
+            "shopping": 22,
+            "travel": 19,
+            "health": 19,
+            "leisure": 14,
+            "work": 22,
+            "community": 20,
+            "environment": 11,
+            "technology": 20,
+            "culture": 18
+          },
+          "questionsWithoutTopicSignal": 204,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 21,
+          "negative_truth_selection": 69,
+          "response_alternatives": 124,
+          "visual_alternatives": 40,
+          "shared_vocabulary_alternatives": 5,
+          "parallel_brief_alternatives": 212
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 22,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 1,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 22,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 22,
+          "turnCountUnknown": 22,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 155,
+          "totalAsrSegments": 4836
+        },
+        "timing": {
+          "databaseDurationMatched": 21,
+          "databaseDurationUnmatchedOrUnknown": 1,
+          "databasePositiveInBoundsWords": 6,
+          "databaseDefectiveOrMissingWords": 16,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 432,
+          "invalidOrMissingSeekRanges": 8,
+          "seekRangesEndingAtSourceEnd": 432,
+          "sourcesWithOverlappingSeekRanges": 22
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 22,
+            "missing": 0,
+            "min": 1266.913,
+            "p10": 1301.317,
+            "median": 1377.346,
+            "p90": 1495.712,
+            "max": 1632.792,
+            "mean": 1396.353
+          },
+          "englishWordsPerSource": {
+            "count": 22,
+            "missing": 0,
+            "min": 1836,
+            "p10": 1905.9,
+            "median": 2070,
+            "p90": 2191,
+            "max": 2215,
+            "mean": 2056.682
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 22,
+            "missing": 0,
+            "min": 81.394,
+            "p10": 84.563,
+            "median": 87.866,
+            "p90": 94.043,
+            "max": 95.683,
+            "mean": 88.5
+          },
+          "englishLongWordRatio": {
+            "count": 22,
+            "missing": 0,
+            "min": 0.061,
+            "p10": 0.076,
+            "median": 0.089,
+            "p90": 0.101,
+            "max": 0.108,
+            "mean": 0.088
+          },
+          "englishUniqueWordRatio": {
+            "count": 22,
+            "missing": 0,
+            "min": 0.327,
+            "p10": 0.34,
+            "median": 0.359,
+            "p90": 0.381,
+            "max": 0.384,
+            "mean": 0.359
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 22,
+            "missing": 0,
+            "min": 6.914,
+            "p10": 7.167,
+            "median": 7.383,
+            "p90": 8.096,
+            "max": 8.206,
+            "mean": 7.523
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 22,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 22,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      },
+      "reconstructed": {
+        "sources": 0,
+        "questions": 0,
+        "questionCountHistogram": [],
+        "types": {
+          "observedMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 0,
+          "effective": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          }
+        },
+        "stemForms": {
+          "detail_selection": 0,
+          "negative_selection": 0,
+          "speaker_intention": 0,
+          "affective_state": 0,
+          "participant_relation": 0,
+          "setting_identification": 0,
+          "response_completion": 0,
+          "visual_matching": 0,
+          "quantity_calculation": 0,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 0
+        },
+        "responseForms": {
+          "fiveChoice": 0,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 0,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 0,
+          "english": 0,
+          "mixed": 0,
+          "nonverbal_or_empty": 0
+        },
+        "questionStructure": {
+          "dialogueInferred": 0,
+          "monologueInferred": 0,
+          "unknown": 0,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 0,
+          "imagePresent": 0,
+          "twoGenderRolesMentioned": 0
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "transcriptSourcesInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionsWithoutTopicSignal": 0,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 0,
+          "negative_truth_selection": 0,
+          "response_alternatives": 0,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 0
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 0,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 0,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 0,
+          "turnCountUnknown": 0,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 0,
+          "totalAsrSegments": 0
+        },
+        "timing": {
+          "databaseDurationMatched": 0,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 0,
+          "databaseDefectiveOrMissingWords": 0,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 0,
+          "invalidOrMissingSeekRanges": 0,
+          "seekRangesEndingAtSourceEnd": 0,
+          "sourcesWithOverlappingSeekRanges": 0
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishLongWordRatio": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishUniqueWordRatio": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      }
+    },
+    "high3": {
+      "official": {
+        "sources": 22,
+        "questions": 440,
+        "questionCountHistogram": [
+          {
+            "questionCount": 20,
+            "sources": 22
+          }
+        ],
+        "types": {
+          "observedMetadata": {
+            "detail": 57,
+            "emotion": 0,
+            "relationship": 19,
+            "location": 1,
+            "reply": 114,
+            "purpose": 19,
+            "visual": 38,
+            "number": 19,
+            "gist": 38,
+            "opinion": 21,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 36,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 1,
+            "gist": 0,
+            "opinion": 17,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 60,
+          "effective": {
+            "detail": 93,
+            "emotion": 0,
+            "relationship": 19,
+            "location": 1,
+            "reply": 114,
+            "purpose": 19,
+            "visual": 38,
+            "number": 20,
+            "gist": 38,
+            "opinion": 38,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 60
+          }
+        },
+        "stemForms": {
+          "detail_selection": 33,
+          "negative_selection": 60,
+          "speaker_intention": 19,
+          "affective_state": 0,
+          "participant_relation": 19,
+          "setting_identification": 1,
+          "response_completion": 95,
+          "visual_matching": 19,
+          "quantity_calculation": 20,
+          "global_meaning": 38,
+          "speaker_position": 38,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 98
+        },
+        "responseForms": {
+          "fiveChoice": 440,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 440,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 177,
+          "english": 144,
+          "mixed": 2,
+          "nonverbal_or_empty": 117
+        },
+        "questionStructure": {
+          "dialogueInferred": 266,
+          "monologueInferred": 58,
+          "unknown": 116,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 440,
+          "imagePresent": 98,
+          "twoGenderRolesMentioned": 114
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 55,
+            "home": 20,
+            "shopping": 30,
+            "travel": 24,
+            "health": 35,
+            "leisure": 8,
+            "work": 36,
+            "community": 28,
+            "environment": 23,
+            "technology": 19,
+            "culture": 19
+          },
+          "transcriptSourcesInferred": {
+            "school": 22,
+            "home": 20,
+            "shopping": 22,
+            "travel": 18,
+            "health": 20,
+            "leisure": 10,
+            "work": 22,
+            "community": 20,
+            "environment": 16,
+            "technology": 22,
+            "culture": 19
+          },
+          "questionsWithoutTopicSignal": 230,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 19,
+          "negative_truth_selection": 60,
+          "response_alternatives": 114,
+          "visual_alternatives": 38,
+          "shared_vocabulary_alternatives": 7,
+          "parallel_brief_alternatives": 236
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 22,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 1,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 22,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 22,
+          "turnCountUnknown": 22,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 223,
+          "totalAsrSegments": 4989
+        },
+        "timing": {
+          "databaseDurationMatched": 21,
+          "databaseDurationUnmatchedOrUnknown": 1,
+          "databasePositiveInBoundsWords": 7,
+          "databaseDefectiveOrMissingWords": 15,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 417,
+          "invalidOrMissingSeekRanges": 23,
+          "seekRangesEndingAtSourceEnd": 417,
+          "sourcesWithOverlappingSeekRanges": 22
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 22,
+            "missing": 0,
+            "min": 1248.391,
+            "p10": 1311.576,
+            "median": 1380.725,
+            "p90": 1491.742,
+            "max": 1529.784,
+            "mean": 1392.228
+          },
+          "englishWordsPerSource": {
+            "count": 22,
+            "missing": 0,
+            "min": 1783,
+            "p10": 1968.6,
+            "median": 2152,
+            "p90": 2212,
+            "max": 2312,
+            "mean": 2120
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 22,
+            "missing": 0,
+            "min": 85.694,
+            "p10": 86.46,
+            "median": 91.077,
+            "p90": 97.346,
+            "max": 99.029,
+            "mean": 91.4
+          },
+          "englishLongWordRatio": {
+            "count": 22,
+            "missing": 0,
+            "min": 0.076,
+            "p10": 0.084,
+            "median": 0.094,
+            "p90": 0.107,
+            "max": 0.117,
+            "mean": 0.095
+          },
+          "englishUniqueWordRatio": {
+            "count": 22,
+            "missing": 0,
+            "min": 0.332,
+            "p10": 0.343,
+            "median": 0.354,
+            "p90": 0.381,
+            "max": 0.4,
+            "mean": 0.359
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 22,
+            "missing": 0,
+            "min": 6.884,
+            "p10": 7.323,
+            "median": 7.683,
+            "p90": 7.953,
+            "max": 8.285,
+            "mean": 7.665
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 22,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 22,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      },
+      "reconstructed": {
+        "sources": 0,
+        "questions": 0,
+        "questionCountHistogram": [],
+        "types": {
+          "observedMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredMetadata": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "inferredStem": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          },
+          "unresolved": 0,
+          "effective": {
+            "detail": 0,
+            "emotion": 0,
+            "relationship": 0,
+            "location": 0,
+            "reply": 0,
+            "purpose": 0,
+            "visual": 0,
+            "number": 0,
+            "gist": 0,
+            "opinion": 0,
+            "inference": 0,
+            "sequence": 0,
+            "unknown": 0
+          }
+        },
+        "stemForms": {
+          "detail_selection": 0,
+          "negative_selection": 0,
+          "speaker_intention": 0,
+          "affective_state": 0,
+          "participant_relation": 0,
+          "setting_identification": 0,
+          "response_completion": 0,
+          "visual_matching": 0,
+          "quantity_calculation": 0,
+          "global_meaning": 0,
+          "speaker_position": 0,
+          "implicit_meaning": 0,
+          "event_order": 0,
+          "unmatched": 0
+        },
+        "responseForms": {
+          "fiveChoice": 0,
+          "shortResponse": 0,
+          "otherChoice": 0,
+          "unknown": 0
+        },
+        "stemLanguage": {
+          "koreanPresent": 0,
+          "koreanAbsent": 0,
+          "empty": 0
+        },
+        "choiceLanguage": {
+          "korean": 0,
+          "english": 0,
+          "mixed": 0,
+          "nonverbal_or_empty": 0
+        },
+        "questionStructure": {
+          "dialogueInferred": 0,
+          "monologueInferred": 0,
+          "unknown": 0,
+          "sharedInstructionQuestionsInferred": 0,
+          "sharedInstructionSourcesInferred": 0,
+          "sharedStructureUnknownQuestions": 0,
+          "imagePresent": 0,
+          "twoGenderRolesMentioned": 0
+        },
+        "topics": {
+          "questionMetadataInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionTextInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "transcriptSourcesInferred": {
+            "school": 0,
+            "home": 0,
+            "shopping": 0,
+            "travel": 0,
+            "health": 0,
+            "leisure": 0,
+            "work": 0,
+            "community": 0,
+            "environment": 0,
+            "technology": 0,
+            "culture": 0
+          },
+          "questionsWithoutTopicSignal": 0,
+          "transcriptSourcesWithoutTopicSignal": 0
+        },
+        "distractorSignalsInferred": {
+          "numeric_alternatives": 0,
+          "negative_truth_selection": 0,
+          "response_alternatives": 0,
+          "visual_alternatives": 0,
+          "shared_vocabulary_alternatives": 0,
+          "parallel_brief_alternatives": 0
+        },
+        "transcript": {
+          "selectedDatabaseEnglish": 0,
+          "selectedDocument": 0,
+          "selectedLocalAsr": 0,
+          "missing": 0,
+          "databaseEnglishMissing": 0,
+          "databaseBilingualMissing": 0,
+          "documentMissing": 0,
+          "localAsrMissing": 0,
+          "selectedContainsKorean": 0,
+          "sourceTextWithSpeakerMarkers": 0,
+          "asrWithDiarization": 0,
+          "speakerCountUnknown": 0,
+          "turnCountUnknown": 0,
+          "asrHumanReviewed": 0,
+          "uncertainAsrSegments": 0,
+          "totalAsrSegments": 0
+        },
+        "timing": {
+          "databaseDurationMatched": 0,
+          "databaseDurationUnmatchedOrUnknown": 0,
+          "databasePositiveInBoundsWords": 0,
+          "databaseDefectiveOrMissingWords": 0,
+          "alignmentHumanReviewed": 0,
+          "inBoundsSeekRanges": 0,
+          "invalidOrMissingSeekRanges": 0,
+          "seekRangesEndingAtSourceEnd": 0,
+          "sourcesWithOverlappingSeekRanges": 0
+        },
+        "proxies": {
+          "sourceDurationSeconds": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerAudioMinute": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishLongWordRatio": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishUniqueWordRatio": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "englishWordsPerPunctuationSentence": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledTurnsPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          },
+          "labeledSpeakersPerSource": {
+            "count": 0,
+            "missing": 0,
+            "min": null,
+            "p10": null,
+            "median": null,
+            "p90": null,
+            "max": null,
+            "mean": null
+          }
+        }
+      }
+    }
+  }
+}

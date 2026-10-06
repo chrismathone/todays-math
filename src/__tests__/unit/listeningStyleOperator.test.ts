@@ -60,7 +60,7 @@ describe("trusted listening style operator", () => {
     expect(listeningStyleEvidenceHoldReasons([])).toHaveLength(1);
     expect(
       listeningStyleEvidenceHoldReasons([
-        "There are too many cars on the street.",
+        "A tiny robot waters my balcony plants each morning.",
         "그래서 택시를 타요",
       ]),
     ).toEqual([]);

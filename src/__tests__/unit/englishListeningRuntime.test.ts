@@ -283,8 +283,8 @@ describe.skipIf(!db)(
 
     it("searches question metadata with year, round and origin within the actor scope", async () => {
       const source = {
-        kind: "national_listening" as const,
-        provider: "테스트 교육청",
+        kind: "other" as const,
+        provider: "직접 제작",
         year: 2020,
         round: 2,
         month: null,

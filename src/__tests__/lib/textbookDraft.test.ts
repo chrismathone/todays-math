@@ -1282,6 +1282,117 @@ describe("새 판본", () => {
     expect(item.rows[0]!.section_id).toBe(copied.rows[0]!.id);
   });
 
+  it("복제하면 구조 메타(예제 묶음 · 참조 항목)의 배치 id 도 새 배치를 가리킨다 — 옛 id 는 어디에도 남지 않는다", async () => {
+    const draft = await draftWithContent(
+      pg,
+      { ...world, userA: owner.id },
+      owner.id,
+    );
+    const second = await insertSnapshot(pg, {
+      userId: owner.id,
+      problem: world.problem2,
+      snapshotSeed: `${draft.editionId}-2`,
+    });
+    const secondItemId = await insertItem(pg, {
+      editionId: draft.editionId,
+      userId: owner.id,
+      snapshotId: second.id,
+      sectionId: draft.sectionId,
+    });
+    const group = {
+      activity: "workedExamples",
+      node: {
+        kind: "exampleGroup",
+        groupId: "example-g1",
+        title: "예제",
+        strategy: "전략",
+        exampleItemId: draft.itemId,
+        confirmItemIds: [secondItemId],
+      },
+    };
+    await pg.query(
+      `UPDATE "textbook_section" SET "content" = $2::jsonb WHERE "id" = $1`,
+      [
+        draft.sectionId,
+        JSON.stringify({
+          blocks: [
+            { blockId: "h1", kind: "text", markdown: "예제", semantic: group },
+            {
+              blockId: "p1",
+              kind: "problem",
+              itemId: draft.itemId,
+              semantic: group,
+            },
+            {
+              blockId: "p2",
+              kind: "problem",
+              itemId: secondItemId,
+              semantic: group,
+            },
+            {
+              blockId: "r1",
+              kind: "text",
+              markdown: "참조",
+              semantic: {
+                activity: "tableOfContents",
+                node: {
+                  kind: "references",
+                  entries: [
+                    { key: "k1", label: "예제", targetItemId: draft.itemId },
+                    { key: "k2", label: "확인", targetItemId: secondItemId },
+                    { key: "k3", label: "없는 대상" },
+                  ],
+                },
+              },
+            },
+          ],
+        }),
+      ],
+    );
+    const plan = await reservePublish(pg, draft);
+    await runSteps(pg, draft, plan);
+    await finalizePublish(pg, draft, plan);
+    const { edition } = await createEdition(
+      db,
+      owner,
+      draft.bookId,
+      requestKey(owner, "edition-create"),
+      { sourceEditionId: draft.editionId, label: "2판" },
+    );
+    const nextId = edition.edition.editionId;
+    const copied = await pg.query<{
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- 시험이 임의 모양의 JSON 을 읽는다
+      content: { blocks: Array<Record<string, any>> };
+    }>(`SELECT "content" FROM "textbook_section" WHERE "edition_id" = $1`, [
+      nextId,
+    ]);
+    const items = await pg.query<{ id: string; derived: string }>(
+      `SELECT "id", "derived_from_item_id" AS "derived" FROM "textbook_item" WHERE "edition_id" = $1`,
+      [nextId],
+    );
+    const newOf = (old: string) =>
+      items.rows.find((row) => row.derived === old)!.id;
+    const newExample = newOf(draft.itemId);
+    const newConfirm = newOf(secondItemId);
+    const blocks = copied.rows[0]!.content.blocks;
+    for (const index of [0, 1, 2]) {
+      expect(blocks[index]!.semantic.node).toMatchObject({
+        exampleItemId: newExample,
+        confirmItemIds: [newConfirm],
+      });
+    }
+    expect(blocks[1]!.itemId).toBe(newExample);
+    expect(blocks[2]!.itemId).toBe(newConfirm);
+    expect(blocks[3]!.semantic.node.entries).toEqual([
+      { key: "k1", label: "예제", targetItemId: newExample },
+      { key: "k2", label: "확인", targetItemId: newConfirm },
+      { key: "k3", label: "없는 대상" },
+    ]);
+    const text = JSON.stringify(copied.rows[0]!.content);
+    expect(text).not.toContain(draft.itemId);
+    expect(text).not.toContain(secondItemId);
+  });
+
   it("남의 책에는 판본을 만들지 못한다 — 공유받은 책이어도", async () => {
     const book = await publishedBook(true);
     const error = await refusal(

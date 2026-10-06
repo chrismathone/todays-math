@@ -207,28 +207,24 @@ function chooseFile(label: string, name: string, type: string) {
   return file;
 }
 
-async function prepareFiles({ mockExam = false, optional = true } = {}) {
+async function prepareFiles({ optional = true } = {}) {
   fireEvent.change(screen.getByLabelText("제목", { exact: true }), {
-    target: { value: "  2025 중2 전국 듣기평가  " },
+    target: { value: "  2025 중2 직접 제작 듣기  " },
   });
   fireEvent.change(screen.getByLabelText("학년", { exact: true }), {
     target: { value: "중2" },
   });
-  if (mockExam)
-    fireEvent.change(screen.getByLabelText("시험 종류", { exact: true }), {
-      target: { value: "mock_exam" },
-    });
   fireEvent.change(screen.getByLabelText("출제 기관"), {
-    target: { value: "  부산광역시교육청  " },
+    target: { value: "  직접 제작  " },
   });
   fireEvent.change(screen.getByLabelText("연도"), {
     target: { value: "2025" },
   });
-  fireEvent.change(screen.getByLabelText(mockExam ? "시행월" : "회차"), {
-    target: { value: mockExam ? "6" : "1" },
+  fireEvent.change(screen.getByLabelText("회차"), {
+    target: { value: "1" },
   });
   fireEvent.change(screen.getByLabelText("출처·사용 근거"), {
-    target: { value: "  학교 제공 원본 · 교사 수업 보관  " },
+    target: { value: "  직접 작성·녹음 · 교사 수업 보관  " },
   });
   const audioFile = chooseFile("음원 MP3·WAV", "original.mp3", "audio/mpeg");
   const questionFile = chooseFile(
@@ -321,11 +317,9 @@ describe("ListeningAssessmentImport", () => {
     expect(
       within(first).getByRole("img", { name: "1번 원본 문항" }),
     ).toHaveAttribute("src", image.dataUrl);
-    expect(screen.getAllByText("회차 전체 원본 음원")).toHaveLength(1);
-    expect(
-      screen.queryByLabelText(/전체 음원 (시작|끝)/),
-    ).not.toBeInTheDocument();
-    expect(screen.queryByText(/시작·끝을 지정하세요/)).not.toBeInTheDocument();
+    expect(screen.queryByText("회차 전체 원본 음원")).not.toBeInTheDocument();
+    expect(screen.getAllByLabelText(/전체 음원 (시작|끝)/)).toHaveLength(4);
+    expect(screen.getAllByText(/시작·끝을 지정하세요/)).toHaveLength(2);
     fireEvent.click(screen.getByLabelText(distributionLabel));
     confirmRights();
     register();
@@ -334,17 +328,17 @@ describe("ListeningAssessmentImport", () => {
     );
     const posts = server.calls("POST");
     expect(posts[0].body).toEqual({
-      title: "2025 중2 전국 듣기평가",
+      title: "2025 중2 직접 제작 듣기",
       level: "중2",
       examId: null,
-      basis: "학교 제공 원본 · 교사 수업 보관",
+      basis: "직접 작성·녹음 · 교사 수업 보관",
       rights: {
         rightsStatus: "approved",
         allowedUses: ["store_original", "teacher_review", "distribution"],
       },
       source: {
-        kind: "national_listening",
-        provider: "부산광역시교육청",
+        kind: "other",
+        provider: "직접 제작",
         year: 2025,
         round: 1,
         month: null,
@@ -354,7 +348,7 @@ describe("ListeningAssessmentImport", () => {
     expect(posts[1].body).toEqual({
       expectedRevision: 1,
       kind: "rights",
-      basis: "학교 제공 원본 · 교사 수업 보관",
+      basis: "직접 작성·녹음 · 교사 수업 보관",
     });
     expect(server.events).toEqual([
       "POST /sets",
@@ -386,13 +380,13 @@ describe("ListeningAssessmentImport", () => {
       kind: "uploaded_assessment",
       recordedBy: listeningFixtureIds.owner,
       recordedAt: listeningFixtureNow,
-      basis: "학교 제공 원본 · 교사 수업 보관",
+      basis: "직접 작성·녹음 · 교사 수업 보관",
     });
     expect(final.source).toEqual((posts[0].body as { source: unknown }).source);
     expect(final.rightsReview).toEqual({
       confirmedBy: listeningFixtureIds.owner,
       confirmedAt: listeningFixtureNow,
-      basis: "학교 제공 원본 · 교사 수업 보관",
+      basis: "직접 작성·녹음 · 교사 수업 보관",
     });
     expect(final.groups[0].reviews).toEqual({
       content: null,
@@ -406,31 +400,29 @@ describe("ListeningAssessmentImport", () => {
     expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:assessment-audio");
   });
 
-  it("imports mock-exam listening with the 17-question bound and leaves absent answers undecided", async () => {
+  it("imports own listening with the 30-question bound and leaves absent answers undecided", async () => {
     const server = serverFixture();
     const { onImported } = openForm();
-    const files = await prepareFiles({ mockExam: true, optional: false });
-    expect(screen.getAllByText("회차 전체 원본 음원")).toHaveLength(1);
-    expect(
-      screen.queryByLabelText(/전체 음원 (시작|끝)/),
-    ).not.toBeInTheDocument();
+    const files = await prepareFiles({ optional: false });
+    expect(screen.queryByText("회차 전체 원본 음원")).not.toBeInTheDocument();
+    expect(screen.getAllByLabelText(/전체 음원 (시작|끝)/)).toHaveLength(4);
     confirmRights();
     register();
     await waitFor(() => expect(onImported).toHaveBeenCalledOnce());
     expect(pdf.questions).toHaveBeenCalledWith(
       files.questionFile,
-      17,
+      30,
       expect.any(AbortSignal),
     );
     expect(pdf.text).not.toHaveBeenCalled();
     expect(pdf.answers).not.toHaveBeenCalled();
     const create = listeningCreateSetSchema.parse(server.calls("POST")[0].body);
     expect(create.source).toEqual({
-      kind: "mock_exam",
-      provider: "부산광역시교육청",
+      kind: "other",
+      provider: "직접 제작",
       year: 2025,
-      round: null,
-      month: 6,
+      round: 1,
+      month: null,
       originalFilename: "questions.pdf",
     });
     expect(create.rights.allowedUses).toEqual([
@@ -628,9 +620,6 @@ describe("ListeningAssessmentImport", () => {
   it("allows correcting an out-of-file question range and reuses the uploaded audio on retry", async () => {
     const server = serverFixture();
     const { onImported } = openForm();
-    fireEvent.change(screen.getByLabelText("시험 종류", { exact: true }), {
-      target: { value: "other" },
-    });
     await prepareFiles();
     const first = screen.getByText(/^1번 ·/).closest("details")!;
     fireEvent.click(within(first).getByText(/^1번 ·/));

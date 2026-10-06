@@ -8,6 +8,12 @@ import { TextbookConceptLinkEditor } from "@/components/textbook/TextbookConcept
 import { getTextbookCharacter } from "@/lib/textbook/characters";
 import { textPrintsFromStructure } from "@/lib/textbook/render/blocks/semantic";
 import {
+  editStructure,
+  structureProblem,
+  structureViewOf,
+  type StructureField,
+} from "./structureFields";
+import {
   CONCEPT_KINDS,
   EXPRESSIONS,
   SIDES,
@@ -36,6 +42,7 @@ import {
   type PreviewMode,
   type PublishStatus,
   type RegisterFields,
+  type SectionBlock,
   type SectionDetail,
   type StudioIssue,
   type VideoBinding,
@@ -446,6 +453,7 @@ export function SectionEditor({
   diffSummary,
   saving,
   frozen = false,
+  savedBlocks,
   existingBlankItems,
   confirmEntryIds,
   onConfirmEntries,
@@ -491,6 +499,8 @@ export function SectionEditor({
   saving: boolean;
   /** 처리 중 — 응답이 올 때까지 원고 입력과 구획을 바꾸는 단추를 잠근다(발행 잠금과 달리 끝나면 풀린다) */
   frozen?: boolean;
+  /** 저장본의 블록 — 구조 편집이 «저장본에서부터» 고치고, 고친 블록에 «저장 전» 을 붙이는 기준이다 */
+  savedBlocks?: readonly SectionBlock[];
   existingBlankItems: TextbookConcept["blankItems"];
   confirmEntryIds: string[];
   onConfirmEntries: (ids: string[]) => void;
@@ -541,6 +551,21 @@ export function SectionEditor({
   const mirrorsOk = draft.portraits.every((portrait) =>
     portraitMirrorAllowed(portrait.side, portrait.mirror),
   );
+  /**
+   * 구조 편집 칸을 연 블록 — 열고 닫는 것은 화면의 일이다(원고를 바꾸지 않는다).
+   * 연 상태는 그 판본 · 구획에 묶는다: 다른 구획으로 옮겼다 돌아오거나 새 초안으로 넘어가면 다시 닫혀 있다.
+   */
+  const structureScope = `${editionId}:${draft.sectionId}`;
+  const [openState, setOpenState] = useState<{
+    scope: string;
+    ids: ReadonlySet<string>;
+  }>(() => ({ scope: structureScope, ids: new Set() }));
+  // 구획이 바뀌면 그 자리에서 비운다 — 옮겼다 돌아와도 앞서 연 칸이 되살아나지 않는다
+  if (openState.scope !== structureScope)
+    setOpenState({ scope: structureScope, ids: NO_OPEN_STRUCTURE });
+  const openStructure: ReadonlySet<string> =
+    openState.scope === structureScope ? openState.ids : NO_OPEN_STRUCTURE;
+  const structureIssue = sectionStructureProblem(draft);
   return (
     <div className={styles.stack}>
       <fieldset className={styles.stack} disabled={locked || frozen}>
@@ -585,6 +610,91 @@ export function SectionEditor({
               ),
             });
           if (block.kind === "text") {
+            // 구조를 고칠 수 있는 블록(쓰기 활동 · 자동 단원 도입 · 판서) — 본문 칸 대신 지면에 찍히는 글을 보이고 고친다
+            const view = structureViewOf(block.semantic, draft.templateKey);
+            if (view && block.semantic) {
+              const semantic = block.semantic;
+              const stored = savedBlocks?.find((row) => row.id === block.id);
+              const open = openStructure.has(block.id);
+              const panelId = `structure-${block.id}`;
+              return (
+                <div key={block.id} className={styles.stack}>
+                  <div className={styles.row}>
+                    <span>
+                      {view.head}
+                      {
+                        // 저장본에 없는 블록(아직 저장한 적 없는 것)도 저장 전이다
+                        !stored ||
+                        JSON.stringify(stored) !== JSON.stringify(block)
+                          ? " · 저장 전"
+                          : ""
+                      }
+                    </span>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      aria-expanded={open}
+                      aria-controls={panelId}
+                      onClick={() =>
+                        setOpenState((current) => {
+                          const next = new Set(
+                            current.scope === structureScope ? current.ids : [],
+                          );
+                          if (!next.delete(block.id)) next.add(block.id);
+                          return { scope: structureScope, ids: next };
+                        })
+                      }
+                    >
+                      {open ? "접기" : "내용 수정"}
+                    </button>
+                  </div>
+                  <div id={panelId} className={styles.stack}>
+                    {open ? (
+                      <StructureInputs
+                        fields={view.fields}
+                        onField={(key, value) =>
+                          replace({
+                            ...block,
+                            // 저장본의 구조에서부터 고친다 — 되돌리면 저장본과 같은 구조로 돌아온다
+                            semantic: editStructure(
+                              stored?.semantic ?? semantic,
+                              semantic,
+                              key,
+                              value,
+                            ),
+                          })
+                        }
+                      />
+                    ) : (
+                      view.summary.map((row, index) => (
+                        <p key={index}>
+                          {row.label ? (
+                            <span className={styles.muted}>{row.label} </span>
+                          ) : null}
+                          {row.text}
+                        </p>
+                      ))
+                    )}
+                  </div>
+                  <div className={styles.row}>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      onClick={() => move(-1)}
+                    >
+                      위로
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.button}
+                      onClick={() => move(1)}
+                    >
+                      아래로
+                    </button>
+                  </div>
+                </div>
+              );
+            }
             // 지면이 본문이 아니라 구조에서 나오는 블록 — 여기서 고쳐도 지면에 나오지 않으므로 입력을 닫는다
             const structured = textPrintsFromStructure(
               block.semantic,
@@ -961,6 +1071,11 @@ export function SectionEditor({
             {orderMessage}
           </p>
         ) : null}
+        {structureIssue ? (
+          <p className={styles.alert} role="alert">
+            {structureIssue}
+          </p>
+        ) : null}
         <ConceptFields
           draft={draft}
           onChange={onChange}
@@ -1093,7 +1208,9 @@ export function SectionEditor({
           <button
             type="button"
             className={styles.primary}
-            disabled={saving || !order.ok || !mirrorsOk}
+            disabled={
+              saving || !order.ok || !mirrorsOk || structureIssue !== null
+            }
             onClick={onSave}
           >
             이 구획 저장
@@ -1534,6 +1651,77 @@ function conceptLabel(
 }
 
 const PROBLEM_TYPES = ["계산", "개념", "활용", "서술형"] as const;
+
+const NO_OPEN_STRUCTURE: ReadonlySet<string> = new Set();
+
+/** 구획 안에서 조판이 거절하는 구조가 있으면 그 사유 — 저장을 막는 자리(화면 · 저장 함수)가 같이 쓴다 */
+export function sectionStructureProblem(section: SectionDetail): string | null {
+  for (const block of section.blocks) {
+    if (block.kind !== "text") continue;
+    const problem = structureProblem(block.semantic, section.templateKey);
+    if (problem) return problem;
+  }
+  return null;
+}
+
+/** 구조 편집 칸의 입력들 — 지면의 제목을 칸 이름으로, 묶음은 legend 로 */
+function StructureInputs({
+  fields,
+  onField,
+}: {
+  fields: readonly StructureField[];
+  onField: (key: string, value: string) => void;
+}) {
+  const groups: { name: string | null; fields: StructureField[] }[] = [];
+  for (const field of fields) {
+    const last = groups.at(-1);
+    if (last && last.name === field.group) last.fields.push(field);
+    else groups.push({ name: field.group, fields: [field] });
+  }
+  const input = (field: StructureField) => (
+    <label key={field.key} className={styles.field}>
+      <span>{field.label}</span>
+      {field.input === "choice" ? (
+        <select
+          value={field.value}
+          onChange={(event) => onField(field.key, event.target.value)}
+        >
+          {(field.choices ?? []).map((choice) => (
+            <option key={choice} value={choice}>
+              {choice}
+            </option>
+          ))}
+        </select>
+      ) : field.input === "text" ? (
+        <textarea
+          value={field.value}
+          placeholder={field.placeholder}
+          onChange={(event) => onField(field.key, event.target.value)}
+        />
+      ) : (
+        <input
+          value={field.value}
+          placeholder={field.placeholder}
+          onChange={(event) => onField(field.key, event.target.value)}
+        />
+      )}
+    </label>
+  );
+  return (
+    <>
+      {groups.map((group) =>
+        group.name ? (
+          <fieldset key={group.name} className={styles.stack}>
+            <legend>{group.name}</legend>
+            {group.fields.map(input)}
+          </fieldset>
+        ) : (
+          group.fields.map(input)
+        ),
+      )}
+    </>
+  );
+}
 
 function ChoiceSelect({
   label,
