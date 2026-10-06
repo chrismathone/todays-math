@@ -65,7 +65,7 @@ export const listeningFeedbackReportSchema = z.strictObject({
   setId: z.uuid(), questionId: z.uuid(), groupId: z.uuid(),
   questionNumber: z.number().int().positive().nullable(), setTitle: z.string(),
   rating: voteFields.rating, reasons: voteFields.reasons, comment: voteFields.comment,
-  playbackMs: position, suggestedStartMs: position, originalStartMs: position,
+  playbackMs: position, suggestedStartMs: position, originalStartMs: z.number().int().nonnegative(),
   audioAssetId: z.uuid(), durationMs: z.number().int().positive(),
   reporterKind: z.enum(["teacher", "student"]), createdAt: z.iso.datetime(),
 });
@@ -77,4 +77,3 @@ export const listeningFeedbackReportsSchema = z.strictObject({
   counts: z.strictObject({ like: z.number().int().nonnegative(), dislike: z.number().int().nonnegative() }),
 });
 export type ListeningFeedbackReports = z.infer<typeof listeningFeedbackReportsSchema>;
-export type ListeningFeedbackReportsResponse = ListeningFeedbackReports;
