@@ -620,6 +620,9 @@
   margin-top: 16px;
   min-height: 26px;
   font-size: 14px;
+  color: var(--f-muted);
+}
+.feedback[data-error="true"] {
   color: var(--f-bad);
 }
 .actions {
@@ -635,6 +638,25 @@
 .compare {
   max-width: 780px;
   margin: auto;
+}
+.compareWide {
+  max-width: none;
+  width: 100%;
+}
+.compareResults {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .compareResults {
+    grid-template-columns: 1fr;
+  }
+}
+@container (max-width:450px) {
+  .compareResults {
+    grid-template-columns: 1fr;
+  }
 }
 .canonical {
   margin-top: 18px;
@@ -708,15 +730,16 @@
   padding: 0 16px 24px;
   max-width: 1280px;
 }
+.sessionHeader {
+  display: grid;
+  gap: 0;
+  padding-bottom: 8px;
+}
 .sessionTop {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 64px;
-  margin: 0 -16px;
-  padding: 0 12px;
-  background: #f8f9ff;
-  box-shadow: 0 1px 8px #0000000a;
+  min-height: 48px;
 }
 .sessionTop > .quiet {
   padding: 8px;
@@ -735,11 +758,6 @@
 .sessionBrand .brandMark svg {
   width: 17px;
   height: 17px;
-}
-.sessionTopTitle {
-  font-size: 18px;
-  font-weight: 700;
-  margin-left: 12px;
 }
 .figureCard {
   background: #fff;
@@ -954,9 +972,9 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 0;
 }
 .sessionStatus .left {
   gap: 4px;
@@ -980,7 +998,7 @@
   font-weight: 600;
 }
 .sessionProgress {
-  height: 6px;
+  height: 3px;
   background: #d3e4fe;
   border-radius: 8px;
   width: 100%;
@@ -992,7 +1010,7 @@
   display: block;
 }
 .sessionHeading {
-  padding: 10px 0 16px;
+  padding: 8px 0 12px;
   margin: 0;
   gap: 2px;
 }
@@ -1234,22 +1252,22 @@
   .session {
     padding: 0 32px 32px;
   }
-  .sessionTop {
-    margin: 0 -32px;
-    padding-inline: 24px;
+  .sessionHeader {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 24px;
+    padding-bottom: 4px;
   }
   .sessionHeading {
-    padding: 18px 0 24px;
+    padding: 8px 0 16px;
   }
   .sessionHeading .heading {
     font-size: 30px;
   }
   .sessionStatus {
-    padding: 16px 0;
-  }
-  .stepPill,
-  .erasurePill {
-    padding: 6px 14px;
+    max-width: 420px;
+    width: 100%;
+    justify-self: end;
   }
   .sessionGrid {
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -1279,10 +1297,6 @@
   }
   .sessionBrand {
     font-size: 12px;
-  }
-  .sessionTopTitle {
-    font-size: 16px;
-    margin-left: 4px;
   }
   .propositionState {
     max-width: 45%;
@@ -2660,11 +2674,11 @@
 }
 .pcStage {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  padding: 12px 18px;
-  border-radius: 9px;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 6px;
   background: #eff4ff;
   min-width: 0;
 }
@@ -2672,16 +2686,11 @@
   font-size: 14px;
   font-weight: 600;
 }
-.pcStage > span:last-child {
-  font-size: 12px;
-  color: #536176;
-}
 .pcStage[data-current="true"] {
   background: #1e2238;
   color: white;
 }
-.pcStage[data-current="true"] .code,
-.pcStage[data-current="true"] > span:last-child {
+.pcStage[data-current="true"] .code {
   color: #85f8c4;
 }
 .queueCard[data-risk-tone="high"] .riskRail {
@@ -2709,11 +2718,20 @@
   .pcStageStrip {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 12px;
-    margin: 8px 0 16px;
+    gap: 8px;
+    margin: 0 0 8px;
   }
 }
 @container (max-width:450px) {
+  .sessionHeader {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+  .sessionStatus {
+    max-width: none;
+    width: auto;
+    justify-self: stretch;
+  }
   .pcStageStrip {
     display: none;
   }

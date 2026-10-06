@@ -872,6 +872,107 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       screen.queryByRole("button", { name: "기준안 보기" }),
     ).not.toBeInTheDocument();
   });
+  it("입력란의 초점을 고정한 채 Tab으로 칩 선택을 순환하고 Enter로 선택한 칩을 넣는다", async () => {
+    const user = userEvent.setup();
+    const { source } = await startAt(4);
+    await resume(source);
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const chips = screen.getAllByRole("button", { name: /^칩 / });
+    const act = vi.spyOn(source, "act");
+    input.focus();
+    await user.tab();
+    expect(input).toHaveFocus();
+    expect(chips[0]).toHaveAttribute("aria-pressed", "true");
+    await user.tab({ shift: true });
+    expect(input).toHaveFocus();
+    expect(chips.at(-1)).toHaveAttribute("aria-pressed", "true");
+    const index = chips.findIndex(
+      (chip) => chip.getAttribute("aria-label") === "칩 수직이등분선",
+    );
+    for (let i = 0; i <= index; i++) await user.tab();
+    expect(input).toHaveFocus();
+    expect(chips[index]).toHaveAttribute("aria-pressed", "true");
+    expect(
+      chips.filter((chip) => chip.getAttribute("aria-pressed") === "true"),
+    ).toHaveLength(1);
+    expect(act).not.toHaveBeenCalled();
+    await user.keyboard("{Enter}");
+    expect(
+      screen.queryByRole("button", { name: "빈칸 1" }),
+    ).not.toBeInTheDocument();
+    expect(input).toHaveFocus();
+    expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
+    screen.getByRole("button", { name: "칩 외심" }).focus();
+    await user.keyboard(" ");
+    expect(
+      screen.queryByRole("button", { name: "빈칸 2" }),
+    ).not.toBeInTheDocument();
+    screen.getByRole("button", { name: "칩 반지름" }).focus();
+    await user.keyboard("{Enter}");
+    const finish = screen.getByRole("button", { name: /단계 마치기/ });
+    await waitFor(() => expect(finish).toHaveFocus());
+    await user.keyboard("{Enter}");
+    await screen.findByRole("heading", { name: "4단계를 마쳤어요" });
+  });
+  it("칩에 초점이 있어도 Tab은 선택을 옮기고 Esc 뒤에는 일반 Tab으로 나올 수 있다", async () => {
+    const user = userEvent.setup();
+    const { source } = await startAt(4);
+    await resume(source);
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const chips = screen.getAllByRole("button", { name: /^칩 / });
+    chips[0]!.focus();
+    await user.tab();
+    expect(chips[0]).toHaveFocus();
+    expect(chips[1]).toHaveAttribute("aria-pressed", "true");
+    await user.tab({ shift: true });
+    expect(chips[0]).toHaveAttribute("aria-pressed", "true");
+    await user.keyboard("{Escape}");
+    expect(input).toHaveFocus();
+    expect(
+      chips.every((chip) => chip.getAttribute("aria-pressed") === "false"),
+    ).toBe(true);
+    await user.tab({ shift: true });
+    expect(screen.getByRole("button", { name: "빈칸 3" })).toHaveFocus();
+    await user.tab();
+    expect(input).toHaveFocus();
+    await user.tab();
+    expect(input).toHaveFocus();
+    expect(chips[0]).toHaveAttribute("aria-pressed", "true");
+    await user.type(input, "외심");
+    expect(
+      chips.every((chip) => chip.getAttribute("aria-pressed") === "false"),
+    ).toBe(true);
+  });
+  it("칩의 Enter로 넣은 오답도 즉시 기록하고 입력란의 방향키는 글자 편집에 남긴다", async () => {
+    const user = userEvent.setup();
+    const { source } = await startAt(4);
+    await resume(source);
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const act = vi.spyOn(source, "act");
+    input.focus();
+    await user.keyboard("12{ArrowLeft}{ArrowRight}");
+    expect(input).toHaveValue("12");
+    expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
+    screen.getByRole("button", { name: "칩 외심" }).focus();
+    await user.keyboard("{Enter}");
+    await waitFor(() =>
+      expect(act).toHaveBeenCalledWith(
+        expect.objectContaining({ action: "miss" }),
+      ),
+    );
+    expect((await source.state()).session!.missedAtFour).toContain("p0#1");
+    expect(
+      screen.getByRole("button", {
+        name: "빈칸 1 · 틀린 기록이 있는 빈칸",
+      }),
+    ).toHaveTextContent("외심");
+  });
   it("키보드로 빈칸부터 골라 칩을 넣을 수 있다", async () => {
     const user = userEvent.setup();
     const { source } = await startAt(4);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 import type { FadingAction, FadingState } from "@/contracts/fadingApi.contract";
 import type { FadingPlacement } from "@/contracts/fading.contract";
 import { FadingMath as ExplorerMath } from "./FadingMath";
@@ -184,6 +185,8 @@ export function FadingSessionScreen({
   const [selected, setSelected] = useState<string | null>(null);
   const [typed, setTyped] = useState("");
   const chipInputId = useId();
+  const chipInput = useRef<HTMLInputElement>(null);
+  const nativeTab = useRef(false);
   const [activeBlank, setActiveBlank] = useState<string | null>(null);
   const [feedback, setFeedback] = useState("");
   const [wrong, setWrong] = useState<{ targetId: string; text: string } | null>(
@@ -347,8 +350,50 @@ export function FadingSessionScreen({
     setWrong(null);
     setFeedback("");
   }
+  function cycleChip(event: KeyboardEvent<HTMLElement>, focusedChip?: string) {
+    if (
+      event.key !== "Tab" ||
+      event.ctrlKey ||
+      event.altKey ||
+      event.metaKey ||
+      event.nativeEvent.isComposing ||
+      nativeTab.current ||
+      disabled ||
+      stageReady ||
+      !pendingBlank
+    )
+      return false;
+    const available = choices.filter((choice) => choice.chipId);
+    if (!available.length) return false;
+    event.preventDefault();
+    if (event.repeat) return true;
+    const current = available.findIndex(
+      (choice) => choice.chipId === (selected ?? focusedChip),
+    );
+    const direction = event.shiftKey ? -1 : 1;
+    const index =
+      current < 0
+        ? event.shiftKey
+          ? available.length - 1
+          : 0
+        : (current + direction + available.length) % available.length;
+    setSelected(available[index]!.chipId);
+    setFeedback("");
+    return true;
+  }
+  function cancelChipKeyboard() {
+    clearSelection();
+    chipInput.current?.focus();
+    // Escape restores normal Tab traversal so the chip selector cannot trap focus.
+    nativeTab.current = true;
+  }
   function submitTypedChip() {
     if (disabled || stageReady || !pendingBlank) return;
+    if (selected && !used.has(selected)) {
+      place(pendingBlank, selected);
+      setTyped("");
+      return;
+    }
     const text = fadingChipInputText(typed);
     const matching = choices.filter(
       (choice) => choice.chipId && fadingChipInputText(choice.text) === text,
@@ -386,10 +431,14 @@ export function FadingSessionScreen({
   useFadingKeyboard({
     disabled: disabled || exit,
     onChoose: chooseNumber,
-    onAdvance: () =>
-      sessionRoot.current
-        ?.querySelector<HTMLButtonElement>('[data-fading-action="true"]')
-        ?.click(),
+    onAdvance: () => {
+      if (selected && pendingBlank && local.phase === "filling")
+        place(pendingBlank, selected);
+      else
+        sessionRoot.current
+          ?.querySelector<HTMLButtonElement>('[data-fading-action="true"]')
+          ?.click();
+    },
     onMove: (direction) => {
       if (local.phase !== "filling" || compare || done || stageReady) return;
       const remaining = blanks.filter((blank) => !local.filled[blank.id]);
@@ -424,57 +473,59 @@ export function FadingSessionScreen({
       data-fading-session="true"
       data-step={local.step}
     >
-      <div className={s.sessionTop}>
-        <button
-          ref={exitButton}
-          className={s.quiet}
-          onClick={() => setExit(true)}
-          disabled={saving}
-          aria-label="풀이 나가기"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            aria-hidden="true"
+      <header className={s.sessionHeader}>
+        <div className={s.sessionTop}>
+          <button
+            ref={exitButton}
+            className={s.quiet}
+            onClick={() => setExit(true)}
+            disabled={saving}
+            aria-label="풀이 나가기"
           >
-            <path d="M20 12H4m6-6-6 6 6 6" />
-          </svg>
-        </button>
-        <div className={s.sessionBrand}>
-          <span className={s.brandMark}>
-            <FadingIcon name="erase" />
-          </span>
-          <strong>오늘의 기억</strong>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              aria-hidden="true"
+            >
+              <path d="M20 12H4m6-6-6 6 6 6" />
+            </svg>
+          </button>
+          <div className={s.sessionBrand}>
+            <span className={s.brandMark}>
+              <FadingIcon name="erase" />
+            </span>
+            <strong>오늘의 기억</strong>
+          </div>
         </div>
-        <span className={s.sessionTopTitle}>개념 풀이</span>
-      </div>
+        <div className={s.sessionStatus}>
+          <div className={s.left}>
+            <span className={s.stepPill}>
+              STEP {String(local.step).padStart(2, "0")} ·{" "}
+              {stepNames[local.step]}
+            </span>
+            <span className={s.erasurePill}>
+              소거율 {toPercent(erasureRate(concept, local.step))}%
+            </span>
+          </div>
+          {local.step !== 1 && (
+            <span className={s.code}>
+              {Object.keys(local.filled).length} / {blanks.length} 완료
+            </span>
+          )}
+          <div className={s.sessionProgress}>
+            <span
+              style={{
+                width: `${toPercent(blanks.length ? Object.keys(local.filled).length / blanks.length : 0)}%`,
+              }}
+            />
+          </div>
+        </div>
+      </header>
       {practice && <p className={s.notice}>연습 · 기록되지 않음</p>}
-      <div className={s.sessionStatus}>
-        <div className={s.left}>
-          <span className={s.stepPill}>
-            STEP {String(local.step).padStart(2, "0")} · {stepNames[local.step]}
-          </span>
-          <span className={s.erasurePill}>
-            소거율 {toPercent(erasureRate(concept, local.step))}%
-          </span>
-        </div>
-        {local.step !== 1 && (
-          <span className={s.code}>
-            {Object.keys(local.filled).length} / {blanks.length} 완료
-          </span>
-        )}
-        <div className={s.sessionProgress}>
-          <span
-            style={{
-              width: `${toPercent(blanks.length ? Object.keys(local.filled).length / blanks.length : 0)}%`,
-            }}
-          />
-        </div>
-      </div>
       {!done && !compare && local.phase !== "rating" && (
         <div className={s.pcStageStrip} aria-label="네 단계 흐름">
           {([1, 2, 3, 4] as const).map((step) => (
@@ -483,11 +534,8 @@ export function FadingSessionScreen({
               data-current={step === local.step}
               key={step}
             >
-              <span className={s.code}>
-                STEP {String(step).padStart(2, "0")}
-              </span>
+              <span className={s.code}>{String(step).padStart(2, "0")}</span>
               <strong>{stepNames[step]}</strong>
-              <span>소거율 {toPercent(erasureRate(concept, step))}%</span>
             </div>
           ))}
         </div>
@@ -612,7 +660,7 @@ export function FadingSessionScreen({
           </button>
         </div>
       ) : compare ? (
-        <div className={`${s.card} ${s.compare} ${s.stack}`}>
+        <div className={`${s.card} ${s.compare} ${s.compareWide} ${s.stack}`}>
           <p className={s.caps}>
             STEP {String(compare.step).padStart(2, "0")} · 대조
           </p>
@@ -621,7 +669,7 @@ export function FadingSessionScreen({
             {compare.blanks}개 빈칸 가운데 {compare.missed.length}개에 틀림이
             남았어요.
           </p>
-          <div className={s.list}>
+          <div className={`${s.list} ${s.compareResults}`}>
             {concept.propositions.map((p, i) => {
               const targets = erasedTargets(concept, compare.step).filter((t) =>
                 p.pieces.some(
@@ -983,32 +1031,44 @@ export function FadingSessionScreen({
                   </label>
                   <div>
                     <input
+                      ref={chipInput}
                       id={chipInputId}
                       className={s.input}
                       value={typed}
                       disabled={disabled || !!stageReady}
                       autoComplete="off"
                       placeholder="칩 글을 입력하고 Enter"
-                      onChange={(event) => setTyped(event.target.value)}
+                      onFocus={() => {
+                        nativeTab.current = false;
+                      }}
+                      onChange={(event) => {
+                        setTyped(event.target.value);
+                        setSelected(null);
+                        nativeTab.current = false;
+                      }}
                       onKeyDown={(event) => {
                         if (event.nativeEvent.isComposing) {
                           if (event.key === "Enter") event.preventDefault();
                           return;
                         }
+                        if (cycleChip(event)) return;
                         if (
                           event.key === "Escape" ||
                           (event.key === "Backspace" && !typed)
                         ) {
                           event.preventDefault();
                           setTyped("");
-                          clearSelection();
+                          if (event.key === "Escape") cancelChipKeyboard();
+                          else clearSelection();
                         }
                       }}
                     />
                     <button
                       type="submit"
                       className={s.secondary}
-                      disabled={disabled || !!stageReady || !typed.trim()}
+                      disabled={
+                        disabled || !!stageReady || (!typed.trim() && !selected)
+                      }
                     >
                       넣기
                     </button>
@@ -1025,12 +1085,53 @@ export function FadingSessionScreen({
                         disabled={disabled || !!stageReady}
                         aria-pressed={selected === choice.chipId}
                         aria-label={`칩 ${choice.text}`}
+                        onKeyDown={(event) => {
+                          if (cycleChip(event, choice.chipId!)) return;
+                          if (event.key === "Escape") {
+                            event.preventDefault();
+                            cancelChipKeyboard();
+                            return;
+                          }
+                          if (
+                            event.nativeEvent.isComposing ||
+                            (event.key !== "Enter" && event.key !== " ") ||
+                            !pendingBlank
+                          )
+                            return;
+                          event.preventDefault();
+                          if (event.repeat) return;
+                          const button = event.currentTarget;
+                          const index = Array.from(
+                            sessionRoot.current!.querySelectorAll(
+                              "[data-fading-chip]",
+                            ),
+                          ).indexOf(button);
+                          place(pendingBlank, selected ?? choice.chipId!);
+                          requestAnimationFrame(() => {
+                            if (button.isConnected && !button.disabled) return;
+                            const remaining =
+                              sessionRoot.current?.querySelectorAll<HTMLButtonElement>(
+                                "[data-fading-chip]:not(:disabled)",
+                              );
+                            const next =
+                              remaining?.[
+                                Math.min(index, remaining.length - 1)
+                              ];
+                            (
+                              next ??
+                              sessionRoot.current?.querySelector<HTMLButtonElement>(
+                                '[data-fading-action="true"]:not(:disabled)',
+                              )
+                            )?.focus();
+                          });
+                        }}
                         {...dragging.handlers(
                           choice.chipId,
                           choice.text,
                           false,
                         )}
                         onClick={() => {
+                          nativeTab.current = false;
                           if (!dragging.consumeClick())
                             chooseChip(choice.chipId!);
                         }}
@@ -1050,21 +1151,30 @@ export function FadingSessionScreen({
                   )}
                 </div>
                 <p className={`${s.small} ${s.keyboardHint}`}>
-                  깜빡이는 빈칸에 숫자키로 입력 · ← → 빈칸 이동 · Enter 다음
-                  단계
+                  Tab·Shift+Tab 칩 선택 이동 · Enter로 선택한 칩 넣기 · 칩에서
+                  Enter·Space로 넣기 · 입력란 밖 ← → 빈칸 이동 · 숫자키로 넣기
                   {choices.length > 9 && " · 0은 10번, Shift+숫자는 11번부터"}
-                  {" · Backspace·Esc 선택 취소"}
+                  {" · Backspace 선택 취소 · Esc 선택 취소 후 일반 Tab 이동"}
                 </p>
-                <p role="status" aria-live="polite" className={s.feedback}>
+                <div
+                  role="status"
+                  aria-live="polite"
+                  className={s.feedback}
+                  data-error={!!wrong || (!!feedback && !stageReady)}
+                >
                   {feedback ||
-                    (saving
-                      ? "저장 중…"
-                      : selected
-                        ? "넣을 빈칸을 눌러 주세요."
-                        : activeBlank
-                          ? "넣을 칩을 골라 주세요."
-                          : "")}
-                </p>
+                    (saving ? (
+                      "저장 중…"
+                    ) : selected ? (
+                      <ExplorerMath
+                        text={`선택한 칩: ${choices.find((choice) => choice.chipId === selected)?.text} · Enter로 현재 빈칸에 넣으세요.`}
+                      />
+                    ) : activeBlank ? (
+                      "넣을 칩을 골라 주세요."
+                    ) : (
+                      ""
+                    ))}
+                </div>
               </aside>
             )}
           </div>

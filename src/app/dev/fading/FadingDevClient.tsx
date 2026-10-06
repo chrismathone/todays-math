@@ -86,10 +86,17 @@ export function FadingDevClient({
   return (
     <div className={s.root}>
       <details
-        style={{ padding: "12px 16px", borderBottom: "1px solid #dce4f2" }}
+        style={{ padding: "0 16px", borderBottom: "1px solid #dce4f2" }}
         data-qa-controls="true"
       >
-        <summary style={{ minHeight: 44, cursor: "pointer", fontSize: 14 }}>
+        <summary
+          style={{
+            minHeight: 44,
+            lineHeight: "44px",
+            cursor: "pointer",
+            fontSize: 14,
+          }}
+        >
           화면 확인 · 저장되지 않음
         </summary>
         <div className={s.stack} style={{ marginTop: 12 }}>
