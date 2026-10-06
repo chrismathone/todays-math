@@ -5,3 +5,6 @@ docs/design/mockups/math-prerequisite-hifi.html text eol=lf
 
 # Keep CC0 audio and the archived license byte-exact on Windows.
 /public/audio/math-learning/* -text
+
+# Keep the retired-corpus aggregate reproducible across Windows worktrees.
+/src/lib/english/listening/creation/assessment-patterns.json text eol=lf

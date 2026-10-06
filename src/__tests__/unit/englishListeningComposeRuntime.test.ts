@@ -1467,7 +1467,8 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
     "rejects tainted question provenance $assessmentKind/$sourceRecordId when source is absent",
     async (metadata) => {
       const original = await source(52, true, false, true, true);
-      const input = edit(original.source.detail);
+      const originalDocument = structuredClone(original.source.detail.document);
+      const input = structuredClone(edit(original.source.detail));
       input.groups[0].questions[1] = {
         ...input.groups[0].questions[1],
         image: documentBudgetImage(),
@@ -1478,7 +1479,7 @@ describe.skipIf(!db)("listening compose (isolated PostgreSQL)", () => {
       ).rejects.toMatchObject({ status: 404 });
       expect(
         (await runtime!.setDetail(owner, original.source.detail.id)).document,
-      ).toEqual(original.source.detail.document);
+      ).toEqual(originalDocument);
     },
   );
 

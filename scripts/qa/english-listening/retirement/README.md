@@ -55,3 +55,13 @@ ambiguities, and reverify every candidate's root, real path, link status, size
 and modification time immediately before deleting it. Existing archives are
 catalogued as files; their members are not extracted or claimed as independently
 enumerated. Public model/runtime descendants are outside material coverage.
+
+## Scoped disposal operators
+
+`purge-live.mts` requires an ignored, reviewed retirement manifest tied to the correct database and private Storage project. Its dry run checks quarantined sets, exact frozen asset records, object ownership and overlap with preserved authored recordings. Applying additionally requires the exact SHA256 of both the manifest and reviewed abstract patterns. Remote deletion is read back before the database cleanup transaction; original publications cannot be silently discarded. The transcript immutability trigger is suspended and restored only inside an exclusive cleanup transaction. Retained authored document hashes and revisions are checked afterward.
+
+The actual Storage server can return HTTP400 with an exact404/not_found error body for deleted objects; the operator verifies that body and accepts no other400 response. The transcript service retains a tombstone with text `Deleted by user.` and audio URL `http://deleted_by_user`; words, utterances, translations and summary must be absent. `--remote-already-deleted` skips repeated delete calls but still requires full remote absence/content readback before any database deletion.
+
+`purge-local.ps1` accepts only the reviewed MAIN private plan and pinned pattern hash. It validates every exact untracked file, relative/root containment, model/runtime exclusions, file size, modification time and linked ancestors before deleting any file. Deletion uses native PowerShell literal file paths. `-Resume` permits already removed files while validating any remaining file again. Windows timestamp conversion has a one-millisecond tolerance; the reviewed execution additionally checked native Node stat equality for every file.
+
+Both operators retain only count summaries. They require the private inputs during disposal; those inputs are destroyed once the coordinator verifies the results. The completed operation and retained generation references are described in [RETIREMENT.md](../../../../docs/listening-production/RETIREMENT.md).
