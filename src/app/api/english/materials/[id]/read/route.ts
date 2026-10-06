@@ -124,31 +124,32 @@ async function handlePost(request: NextRequest, { params }: RouteContext) {
       return jsonError("VALIDATION_ERROR", NOT_PHOTO, 400);
     if (error instanceof EnglishReadConfigError)
       return failed(NOT_CONFIGURED, 503);
+    // 🔴 `error` 를 instanceof 로 줄줄이 좁혀 쓰지 않는다 — 갈래마다 따로 한 번 묻고 그 값만 쓴다.
+    //    멤버를 더하지 않은 Error 의 하위 클래스(`EnglishReadEmptyError`)는 Error 와 모양이 같아, 타입 검사기가
+    //    «형을 만든 차례»에 따라 그 뒤의 `error` 를 `never` 로 좁힌다. 같은 코드가 한 빌드에서는 통과하고
+    //    다른 빌드에서는 TS2358 로 죽었다(2026-10-06 미리보기 배포 · 25 §13.10 — 로컬 타입 검사는 초록이었다).
+    const upstream = error instanceof StudioApiError ? error : null;
+    const empty = error instanceof EnglishReadEmptyError;
     const timedOut = error instanceof Error && error.name === "TimeoutError";
-    if (
-      !timedOut &&
-      !(error instanceof StudioApiError) &&
-      !(error instanceof EnglishReadEmptyError)
-    )
-      throw error;
+    if (!timedOut && !upstream && !empty) throw error;
     // AI 쪽 실패 — 모델이 왜 멈췄는지는 화면이 아니라 기록에(상류의 거절 원문은 배관이 이미 실었다)
     noteErrorLog({ kind: "ai-rejected", detail: describeFailure(error) });
     if (timedOut) return failed(TIMED_OUT, 504);
-    if (error instanceof EnglishReadEmptyError) return failed(READ_EMPTY, 502);
-    if (error instanceof StudioApiError) {
-      if (error.status === 429) {
+    if (empty) return failed(READ_EMPTY, 502);
+    if (upstream) {
+      if (upstream.status === 429) {
         const res = failed(RATE_LIMITED, 429);
-        if (error.retryAfterMs)
+        if (upstream.retryAfterMs)
           res.headers.set(
             "Retry-After",
-            String(Math.ceil(error.retryAfterMs / 1000)),
+            String(Math.ceil(upstream.retryAfterMs / 1000)),
           );
         return res;
       }
-      if ([401, 403, 404].includes(error.status))
+      if ([401, 403, 404].includes(upstream.status))
         return failed(NOT_CONFIGURED, 503);
       // 배관이 스스로 낸 실패(끝까지 쓰지 않음 · 빈 응답)는 502 다 — 상류의 5xx 만 «바쁘다»
-      if (error.status >= 500 && error.status !== 502)
+      if (upstream.status >= 500 && upstream.status !== 502)
         return failed(UPSTREAM_BUSY, 503);
     }
     return failed(READ_FAILED, 502);
