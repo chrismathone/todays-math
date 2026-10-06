@@ -61,14 +61,15 @@ runs `src/lib/fading/session.ts` locally with `chipTray(concept, step, { seed, t
 then posts `read` / `step` (every placement in order, wrong ones included) /
 `miss` (at step 4, the moment a wrong chip is placed) / `rate` (with a
 request id the screen generates). Practising a concept that is not due uses
-the concept endpoint and sends nothing. The routes answer 404 unless the
-server flag `MATH_FADING=on` is set; it must stay off in production until the
-deployment that can read the new record section has settled. Do not turn it on
-against the shared database to develop: a student record that gains the new
-section cannot be read by the deployment that is live today. `MATH_FADING=read`
-is the read-only state (`src/lib/fading/enabled.ts`): it opens the two teacher
-status reads and nothing that writes the new section, so it is safe against
-the shared database and is what ships first. Screens talk to a
+the concept endpoint and sends nothing. The server flag `MATH_FADING`
+(`src/lib/fading/enabled.ts`) is **on when unset** (owner's decision,
+2026-10-06): the student routes and page are open, `/learn` sends a student to
+the new app, and the workspace SRS menu opens on the new status tab.
+`MATH_FADING=off` (or any unknown value) closes everything with 404;
+`MATH_FADING=read` opens only the two teacher status reads and writes nothing.
+A student record that has gained the new section cannot be read by code older
+than main `c77df4669` — merge main before running an older branch against the
+shared database. Screens talk to a
 `FadingSource` (`src/lib/fading/source.ts`); `createLocalFadingSource`
 (`src/lib/fading/local.ts`) runs the same rules and returns the same shapes in
 memory, with no server — develop and measure screens on that, and use it for

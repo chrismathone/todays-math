@@ -1300,14 +1300,20 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/enabled.ts",
     note: "모르는 값이 문을 켠다",
-    from: 'return value === "on" ? "on" : value === "read" ? "read" : "off";',
-    to: 'return value === "read" ? "read" : value ? "on" : "off";',
+    from: 'return value === "read" ? "read" : "off";',
+    to: 'return value === "read" ? "read" : "on";',
   },
   {
     file: "fading/enabled.ts",
     note: "모르는 값이 읽기만으로 열린다",
-    from: 'return value === "on" ? "on" : value === "read" ? "read" : "off";',
-    to: 'return value === "on" ? "on" : value ? "read" : "off";',
+    from: 'return value === "read" ? "read" : "off";',
+    to: 'return value === "off" ? "off" : "read";',
+  },
+  {
+    file: "fading/enabled.ts",
+    note: "값이 없을 때 꺼진다(기본이 켜짐이 아니다)",
+    from: 'if (value === undefined || value === "" || value === "on") return "on";',
+    to: 'if (value === "on") return "on";',
   },
   {
     file: "fading/enabled.ts",

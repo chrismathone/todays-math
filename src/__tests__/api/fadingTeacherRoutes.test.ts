@@ -134,7 +134,7 @@ afterEach(() => {
 
 describe("문지기 — 옛 «SRS 현황» 끝점과 같다", () => {
   it("꺼져 있으면 두 길이 다 없다", async () => {
-    vi.stubEnv("MATH_FADING", "");
+    vi.stubEnv("MATH_FADING", "off");
     expect((await readDashboard()).status).toBe(404);
     expect((await readStudent()).status).toBe(404);
     // 모르는 값은 꺼짐이다 — 오타가 문을 열지 않는다.

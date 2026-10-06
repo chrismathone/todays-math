@@ -213,7 +213,7 @@ afterEach(() => {
 
 describe("문지기", () => {
   it("꺼져 있으면 네 길이 전부 없다 — 학생 기록을 읽지도 않는다", async () => {
-    vi.stubEnv("MATH_FADING", "");
+    vi.stubEnv("MATH_FADING", "off");
     for (const response of [
       await read(),
       await postRaw({ action: "all-today", on: true }),
@@ -225,14 +225,18 @@ describe("문지기", () => {
     expect(f.writes).toBe(0);
   });
 
-  it("문의 세 상태 — 꺼짐 · 읽기만 · 켜짐. 모르는 값은 꺼짐이다", () => {
-    const at = (value: string) => {
+  it("문의 세 상태 — 꺼짐 · 읽기만 · 켜짐. 값이 없으면 켜짐이고, 모르는 값은 꺼짐이다", () => {
+    const at = (value: string | undefined) => {
       vi.stubEnv("MATH_FADING", value);
       return [fadingGate(), fadingReadable(), fadingEnabled()];
     };
     expect(at("on")).toEqual(["on", true, true]);
+    // 값이 없으면 켜짐이다(원장님 2026-10-06 «새 SRS 로 보이도록») — 그 전까지는 꺼짐이 기본이었다.
+    expect(at(undefined)).toEqual(["on", true, true]);
+    expect(at("")).toEqual(["on", true, true]);
     expect(at("read")).toEqual(["read", true, false]);
-    for (const value of ["", "off", "ON", "Read", "true", "1"])
+    // 끄는 값은 `off` 다. 모르는 값도 꺼짐이다 — 끄려다 낸 오타가 문을 열어 두지 않는다.
+    for (const value of ["off", "of", "OFF", "ON", "Read", "true", "1", "0"])
       expect(at(value), value).toEqual(["off", false, false]);
   });
 

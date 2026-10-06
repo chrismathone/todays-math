@@ -13,7 +13,7 @@ afterEach(() => {
 });
 
 describe("작업실 서버 문 전달", () => {
-  it.each(["off", "read", "on", "unknown"])(
+  it.each(["off", "read", "on", "unknown", undefined])(
     "서버의 %s 값을 prop으로 내려준다",
     async (gate) => {
       vi.stubEnv("MATH_FADING", gate);
@@ -26,7 +26,10 @@ describe("작업실 서버 문 전달", () => {
           isAdmin: false,
         },
       });
-      expect(page.props.fadingGate).toBe(gate === "unknown" ? "off" : gate);
+      // 모르는 값은 꺼짐, 값이 없으면 켜짐이다(2026-10-06).
+      expect(page.props.fadingGate).toBe(
+        gate === "unknown" ? "off" : (gate ?? "on"),
+      );
       expect(page.props.allowedMenus).toEqual([]);
       expect(mocks.bank).not.toHaveBeenCalled();
     },
