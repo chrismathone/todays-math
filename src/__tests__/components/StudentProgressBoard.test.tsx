@@ -175,36 +175,69 @@ describe("CourseProgressBoard adapter", () => {
       currentSectionId: current.id,
       recommendation: { ...summary.recommendation!, sectionId: next.id },
     };
+    // 705544df6 — 판은 «하루 한 칸» 여정이다. 단원 이름은 제목이 아니라 «지금 배우는 단원» 글과 오늘 칸의 이름이다.
     const { rerender } = render(<CourseProgressBoard summary={nextSummary} />);
-    expect(screen.getByRole("heading", { name: next.title })).toBeVisible();
+    expect(
+      screen.getByRole("heading", { name: "전체 학습 진도" }),
+    ).toBeVisible();
+    expect(screen.getByText("지금 배우는 단원")).toBeVisible();
+    expect(screen.getByText(next.title)).toBeVisible();
+    expect(
+      screen.getByLabelText(`1일차, ${next.title}, 오늘의 학습`),
+    ).toBeInTheDocument();
     rerender(
       <CourseProgressBoard
         summary={nextSummary}
         session={{ ...session, sectionId: current.id }}
       />,
     );
-    expect(screen.getByRole("heading", { name: current.title })).toBeVisible();
+    expect(screen.getByText(current.title)).toBeVisible();
+    expect(
+      screen.getByLabelText(`1일차, ${current.title}, 오늘의 학습`),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(next.title)).not.toBeInTheDocument();
   });
 
-  it("keeps explanations unavailable until the wrong-answer round ends", () => {
+  it("offers replay only for a completed day of the journey, never from the session itself", () => {
+    const replay = { name: /풀이 보기|다시 풀기/ };
+    const retried = {
+      ...session,
+      retry: { ...session.retry!, completedAt: "2026-09-25T10:10:00.000Z" },
+    };
     const { rerender } = render(
       <CourseProgressBoard summary={summary} session={session} />,
     );
-    expect(
-      screen.queryByRole("button", { name: /풀이 보기/ }),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", replay)).not.toBeInTheDocument();
+    // 오답 한 바퀴를 마친 것만으로는 칸이 열리지 않는다 — 완료한 «날»은 서버 원장이 정한다(dailyJourney.ts collect).
+    rerender(<CourseProgressBoard summary={summary} session={retried} />);
+    expect(screen.queryByRole("button", replay)).not.toBeInTheDocument();
     rerender(
       <CourseProgressBoard
         summary={summary}
-        session={{
-          ...session,
-          retry: { ...session.retry!, completedAt: "2026-09-25T10:10:00.000Z" },
+        session={retried}
+        journey={{
+          completedDays: 1,
+          todayComplete: true,
+          todayAnswered: 10,
+          todayGoal: 10,
+          days: [
+            {
+              id: "elementary:2026-09-25",
+              date: "2026-09-25",
+              completedAt: "2026-09-25T10:10:00.000Z",
+              title: "약수와 배수",
+              subtitle: "초5 · 1학기",
+              reviewCount: 10,
+            },
+          ],
+          upcoming: [{ title: "다음 단원", subtitle: "초등 수학" }],
         }}
       />,
     );
-    expect(screen.getAllByRole("button", { name: /다시 풀기/ })).toHaveLength(
-      5,
-    );
+    expect(
+      screen.getByRole("button", { name: /^1일차, 약수와 배수.*다시 풀기$/ }),
+    ).toBeEnabled();
+    expect(screen.getAllByRole("button", replay)).toHaveLength(1);
   });
 
   it("does not reveal explanations for an unfinished first round", () => {

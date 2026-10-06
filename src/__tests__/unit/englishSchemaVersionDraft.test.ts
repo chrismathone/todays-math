@@ -22,6 +22,7 @@ import {
   NEW_CHECKS,
   NEW_COLUMNS,
   REVERT_STATEMENTS,
+  TABLE,
   lintAdditiveDraft,
   splitSqlStatements,
 } from "../../../scripts/qa/english-schema-version/checks";
@@ -113,6 +114,8 @@ describe("🔴 형식 판 SQL 초안 — 미적용인 동안의 문", () => {
     for (const name of migrations) {
       if (name === "migration_lock.toml") continue;
       const sql = read(`prisma/migrations/${name}/migration.sql`);
+      // 초안의 칸은 영어 세트 표의 것이다 — 다른 표의 같은 이름 칸(교재 제작의 `textbook_edition.schema_version`)은 상관없다.
+      if (!sql.includes(TABLE)) continue;
       for (const column of NEW_COLUMNS)
         expect(sql.includes(`"${column}"`), `${name} 에 ${column}`).toBe(false);
     }

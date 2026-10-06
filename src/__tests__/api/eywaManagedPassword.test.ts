@@ -60,6 +60,8 @@ describe("managed account recovery boundaries", () => {
       id,
       isSuperAdmin: false,
       authSource: "eywa",
+      branchId: null,
+      updatedAt: new Date(updatedAt),
     });
     expect((await call()).status).toBe(403);
     expect(mocks.update).not.toHaveBeenCalled();

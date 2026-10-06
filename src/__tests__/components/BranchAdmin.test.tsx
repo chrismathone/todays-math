@@ -64,6 +64,8 @@ const patches = () =>
 const payload = () => JSON.parse(String(patches().at(-1)?.[1]?.body));
 
 beforeEach(() => {
+  // 목록 상태(검색 · 쪽 · 선택 · 탭)가 주소에 산다(388ecdee5) — jsdom 주소는 시험 사이에 남는다.
+  window.history.replaceState(null, "", "/");
   vi.clearAllMocks();
   vi.stubGlobal("fetch", fetchMock);
   fetchMock.mockResolvedValue(json(branchList()));
@@ -469,9 +471,20 @@ describe("branch management scope and explicit saves", () => {
         branchName={branch.name}
       />,
     );
-    expect(
-      await screen.findByRole("link", { name: owner.name }),
-    ).toHaveAttribute("href", `/admin/branches/${branchId}/users/${owner.id}`);
+    const detail = new URL(
+      (await screen.findByRole("link", { name: owner.name })).getAttribute(
+        "href",
+      )!,
+      "http://localhost",
+    );
+    expect(detail.pathname).toBe(
+      `/admin/branches/${branchId}/users/${owner.id}`,
+    );
+    // 388ecdee5 — 상세로 가는 링크가 «돌아올 목록»을 같은 지점 안에서 싣는다.
+    expect([...detail.searchParams.keys()]).toEqual(["returnTo"]);
+    expect(detail.searchParams.get("returnTo")).toBe(
+      `/admin/branches/${branchId}?selection=${owner.id}`,
+    );
     expect(
       screen.getByRole("button", { name: "승인 대기 7개" }),
     ).toBeInTheDocument();
@@ -638,14 +651,14 @@ describe("branch management scope and explicit saves", () => {
     await screen.findByRole("link", { name: owner.name });
     fireEvent.click(screen.getByRole("button", { name: "사용 메뉴" }));
     fireEvent.click(await screen.findByRole("checkbox", { name: "문제 추출" }));
-    expect(screen.getByRole("button", { name: "계정" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "교직원 계정" })).toBeDisabled();
     expect(
       fireEvent.click(
         screen.getByRole("link", { name: /지점 목록으로 돌아가기/ }),
       ),
     ).toBe(false);
     fireEvent.click(screen.getByRole("button", { name: "변경 취소" }));
-    expect(screen.getByRole("button", { name: "계정" })).toBeEnabled();
+    expect(screen.getByRole("button", { name: "교직원 계정" })).toBeEnabled();
   });
   it("an account response moved out of scope is hidden behind an explicit current-scope link", async () => {
     fetchMock.mockResolvedValue(

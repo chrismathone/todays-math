@@ -42,7 +42,8 @@ describe("English menu compatibility", () => {
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
     ).toEqual(ALL_WORKSPACE_MENUS);
-    expect(workspaceMenusOf("math")).toHaveLength(9);
+    // «교재 제작» 메뉴가 더해져 열이다(2026-10-03 `577ca29a0`).
+    expect(workspaceMenusOf("math")).toHaveLength(10);
     expect(workspaceMenusOf("english")).toEqual([
       ...englishMenus,
       "english-listening",
@@ -153,13 +154,21 @@ describe("English route permissions", () => {
     ).toBe(true);
     for (const endpoint of ["bank", "references"]) {
       const path = `/api/english/listening/${endpoint}`;
-      for (const menus of [
-        ["english-bank"],
-        ["english-listening"],
-      ] as WorkspaceMenu[][])
-        expect(accountRouteAllowed({ ...account, menus }, "GET", path)).toBe(
-          false,
-        );
+      // 듣기은행의 읽기는 자료은행 권한으로 열린다 — 듣기 권한만으로는 안 열린다(2026-10-04 `2de110c7e`).
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["english-bank"] },
+          "GET",
+          path,
+        ),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["english-listening"] },
+          "GET",
+          path,
+        ),
+      ).toBe(false);
       expect(
         accountRouteAllowed(
           { ...account, menus: ["english-bank", "english-listening"] },

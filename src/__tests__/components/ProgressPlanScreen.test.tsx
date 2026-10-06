@@ -17,7 +17,7 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { ClassManage } from "@/components/class/ClassManage";
 import { ProgressPlanSection } from "@/components/class/ProgressPlanSection";
@@ -29,6 +29,9 @@ import {
 import { CLASS_A_ID, MOCK_UNITS } from "@/mocks/data";
 import { mockPlanSchedule } from "@/mocks/handlers/progressPlan";
 import { server } from "@/mocks/server";
+
+// 반을 만들면 화면이 주소에 `?classId=` 를 적는다(c8de0a7bb) — jsdom 주소는 시험 사이에 남는다.
+beforeEach(() => window.history.replaceState(null, "", "/"));
 
 const TODAY = "2026-09-16"; // 수요일
 const U = (i: number) => MOCK_UNITS[i]!;

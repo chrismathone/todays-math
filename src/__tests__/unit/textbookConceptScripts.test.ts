@@ -1,3 +1,5 @@
+// @vitest-environment node
+// 불러오는 스크립트 모듈이 맨 위에서 `fileURLToPath(new URL(".", import.meta.url))` 을 돈다 — 기본(jsdom) 환경에서는 그 주소가 http 가 돼 수집부터 죽는다.
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";

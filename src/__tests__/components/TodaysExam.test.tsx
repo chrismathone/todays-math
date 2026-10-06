@@ -60,7 +60,7 @@ describe("오늘의 시험 계기판", () => {
     await renderDashboard();
 
     // 선택된 쪽은 링크가 아니라 현재 위치 표시다.
-    expect(screen.getByText("오늘의시험")).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "오늘의시험" })).toHaveAttribute(
       "aria-current",
       "page",
     );

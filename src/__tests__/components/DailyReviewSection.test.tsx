@@ -539,7 +539,9 @@ describe("[D-133] 오늘의 확인테스트 — 검수 줄의 «자동 출제» 
     expect(tagAfter(manual)).toBeNull();
     expect(section.querySelectorAll("[data-auto-draft-tag]")).toHaveLength(1);
     // 표지는 링크 **밖**이다 — 링크 이름(학생 이름)이 흐려지지 않는다
-    expect(auto).toHaveTextContent(/^김민준$/);
+    expect(auto).toHaveAccessibleName("김민준");
+    expect(auto.querySelector("[data-auto-draft-tag]")).toBeNull();
+    expect(auto).not.toHaveTextContent("자동 출제");
   });
 
   it("🔴 자동 초안이 없으면 표지가 없다 — 이 화면에서 방금 낸 초안에도 없다", async () => {
