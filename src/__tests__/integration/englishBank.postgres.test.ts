@@ -4,7 +4,8 @@
  * Never writes public or resets the coordinator's fixtures. */
 import { randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { PrismaClient } from "@prisma/client";
@@ -185,7 +186,7 @@ describe.skipIf(!dsn)(
           !path.basename(resolved).startsWith("english-bank-probe-")
         )
           throw new Error("Unsafe temporary directory cleanup");
-        rmSync(resolved, { recursive: true });
+        await rm(resolved, { recursive: true });
       }
       vi.unstubAllEnvs();
     });

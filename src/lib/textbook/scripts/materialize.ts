@@ -12,7 +12,7 @@
  * No model, network, database, or independent practice answers are used.
  */
 import { readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   splitBlankSentence,
@@ -418,7 +418,8 @@ export function withoutPresentationMetadata(
 export const serializeScripts = (scripts: unknown) =>
   `${JSON.stringify(scripts, null, 2)}\n`;
 
-const directory = fileURLToPath(new URL(".", import.meta.url));
+// A string, not a URL object: under jsdom the global URL is not Node's and is refused.
+const directory = dirname(fileURLToPath(import.meta.url));
 const committed = (grade: ConceptScriptGrade) =>
   readFileSync(
     resolve(directory, `${GRADE_FILE_CODES[grade]}.json`),

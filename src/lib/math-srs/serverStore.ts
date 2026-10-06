@@ -36,6 +36,13 @@ export interface SrsStateTable {
 }
 export const srsStateTable = () =>
   (db as unknown as { studentSrsState: SrsStateTable }).studentSrsState;
+/**
+ * The same table inside a caller's transaction — for teacher routes that re-check
+ * authorization in that transaction before writing. Naming the table stays in this
+ * module (`mathSrsRecordIsolation.test.ts` pins that).
+ */
+export const srsStateTableIn = (tx: { studentSrsState: unknown }) =>
+  tx.studentSrsState as SrsStateTable;
 
 function errorCode(error: unknown) {
   return error && typeof error === "object" && "code" in error
