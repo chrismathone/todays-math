@@ -1,4 +1,5 @@
 import {
+  act,
   cleanup,
   fireEvent,
   render,
@@ -88,6 +89,13 @@ function place(targetIndex: number, text: string) {
       name: new RegExp(`^빈칸 ${targetIndex}(?:$| ·)`),
     }),
   );
+}
+function blurDisabledControl() {
+  // jsdom keeps disabled controls focused; removing a focused temporary control models Chrome's body focus.
+  const temporary = document.createElement("button");
+  document.body.append(temporary);
+  temporary.focus();
+  temporary.remove();
 }
 function dragChip(chip: HTMLElement, blank: HTMLElement, pointerType: string) {
   const previous = document.elementFromPoint;
@@ -972,6 +980,183 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
         name: "빈칸 1 · 틀린 기록이 있는 빈칸",
       }),
     ).toHaveTextContent("외심");
+  });
+  it.each(["글 입력 Enter", "Tab 선택 Enter", "칩 Enter", "칩 Space"])(
+    "4단계의 %s 오답 저장 뒤 초점을 복구해 바로 Tab·Enter로 다시 채운다",
+    async (method) => {
+      const user = userEvent.setup();
+      const { source } = await startAt(4);
+      await resume(source);
+      let release!: () => void;
+      const delayed = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      const original = source.act.bind(source);
+      const actionSpy = vi
+        .spyOn(source, "act")
+        .mockImplementation(async (action) => {
+          if (action.action === "miss") await delayed;
+          return original(action);
+        });
+      const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+      if (method === "글 입력 Enter") {
+        await user.type(input, "외심");
+        await user.keyboard("{Enter}");
+      } else if (method === "Tab 선택 Enter") {
+        input.focus();
+        const index = screen
+          .getAllByRole("button", { name: /^칩 / })
+          .findIndex((chip) => chip.getAttribute("aria-label") === "칩 외심");
+        for (let i = 0; i <= index; i++) await user.tab();
+        await user.keyboard("{Enter}");
+      } else {
+        screen.getByRole("button", { name: "칩 외심" }).focus();
+        await user.keyboard(method === "칩 Enter" ? "{Enter}" : " ");
+      }
+      expect(input).toBeDisabled();
+      blurDisabledControl();
+      expect(document.body).toHaveFocus();
+      await user.keyboard("{Enter}1{Enter}");
+      fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+      expect(actionSpy).toHaveBeenCalledTimes(1);
+      expect(actionSpy).toHaveBeenCalledWith(
+        expect.objectContaining({ action: "miss" }),
+      );
+      await act(async () => release());
+      await waitFor(() => expect(input).toHaveFocus());
+      expect(input).toBeEnabled();
+      const index = screen
+        .getAllByRole("button", { name: /^칩 / })
+        .findIndex(
+          (chip) => chip.getAttribute("aria-label") === "칩 수직이등분선",
+        );
+      for (let i = 0; i <= index; i++) await user.tab();
+      expect(input).toHaveFocus();
+      expect(
+        screen.getByRole("button", { name: "칩 수직이등분선" }),
+      ).toHaveAttribute("aria-pressed", "true");
+      await user.keyboard("{Enter}");
+      expect(
+        screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
+      ).toHaveTextContent("수직이등분선");
+      expect((await source.state()).session!.missedAtFour).toContain("p0#1");
+      expect(actionSpy).toHaveBeenCalledTimes(1);
+    },
+  );
+  it.each([
+    "빈칸 먼저 누름",
+    "칩 먼저 누름",
+    "손가락 누름",
+    "마우스 드래그",
+    "손가락 드래그",
+    "숫자키",
+  ])(
+    "4단계 %s 오답 저장 뒤에는 입력란으로 초점을 옮기지 않는다",
+    async (method) => {
+      const user = userEvent.setup();
+      const { source } = await startAt(4);
+      await resume(source);
+      let release!: () => void;
+      const delayed = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      const original = source.act.bind(source);
+      const actionSpy = vi
+        .spyOn(source, "act")
+        .mockImplementation(async (action) => {
+          if (action.action === "miss") await delayed;
+          return original(action);
+        });
+      const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+      const chip = screen.getByRole("button", { name: "칩 외심" });
+      const blank = screen.getByRole("button", { name: "빈칸 1" });
+      input.focus();
+      if (method === "빈칸 먼저 누름") {
+        await user.click(blank);
+        await user.click(chip);
+      } else if (method === "칩 먼저 누름") {
+        await user.click(chip);
+        await user.click(blank);
+      } else if (method === "손가락 누름") {
+        await user.pointer([
+          { keys: "[TouchA>]", target: blank },
+          { keys: "[/TouchA]" },
+        ]);
+        await user.pointer([
+          { keys: "[TouchA>]", target: chip },
+          { keys: "[/TouchA]" },
+        ]);
+      } else if (method.endsWith("드래그")) {
+        dragChip(chip, blank, method === "손가락 드래그" ? "touch" : "mouse");
+      } else {
+        blurDisabledControl();
+        const index = screen
+          .getAllByRole("button", { name: /^칩 / })
+          .indexOf(chip);
+        fireEvent.keyDown(window, {
+          key: String(index + 1),
+          code: `Numpad${index + 1}`,
+        });
+      }
+      expect(input).toBeDisabled();
+      blurDisabledControl();
+      await act(async () => release());
+      await waitFor(() => expect(input).toBeEnabled());
+      expect(document.activeElement).not.toBe(input);
+      expect(actionSpy).toHaveBeenCalledTimes(1);
+      expect((await source.state()).session!.missedAtFour).toContain("p0#1");
+    },
+  );
+  it("3단계 오답은 저장과 초점 복구를 추가하지 않고 기존 초점을 유지한다", async () => {
+    const user = userEvent.setup();
+    const { source } = await startAt(3);
+    await resume(source);
+    const actionSpy = vi.spyOn(source, "act");
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    await user.type(input, "반지름");
+    await user.keyboard("{Enter}");
+    expect(input).toHaveFocus();
+    expect(input).toBeEnabled();
+    const chip = screen.getByRole("button", { name: "칩 반지름" });
+    chip.focus();
+    await user.keyboard("{Enter}");
+    expect(chip).toHaveFocus();
+    expect(actionSpy).not.toHaveBeenCalled();
+  });
+  it("4단계 오답 저장 실패 때에는 잠금을 유지하고 재시도 성공 뒤 초점을 복구한다", async () => {
+    const user = userEvent.setup();
+    const { source } = await startAt(4);
+    await resume(source);
+    let reject!: (error: Error) => void;
+    const delayed = new Promise<void>((_, fail) => {
+      reject = fail;
+    });
+    const original = source.act.bind(source);
+    const actionSpy = vi
+      .spyOn(source, "act")
+      .mockImplementationOnce(async (action) => {
+        await delayed;
+        return original(action);
+      });
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    await user.type(input, "외심");
+    await user.keyboard("{Enter}");
+    blurDisabledControl();
+    await act(async () =>
+      reject(new FadingSourceError("OFFLINE", "오답 저장 실패", 0)),
+    );
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "오답 저장 실패",
+    );
+    expect(input).toBeDisabled();
+    expect(input).not.toHaveFocus();
+    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    expect(actionSpy).toHaveBeenCalledTimes(1);
+    await user.click(screen.getByRole("button", { name: "저장 다시 시도" }));
+    await waitFor(() => expect(input).toHaveFocus());
+    expect(input).toBeEnabled();
+    expect(actionSpy).toHaveBeenCalledTimes(2);
+    expect(actionSpy.mock.calls[1]![0]).toEqual(actionSpy.mock.calls[0]![0]);
   });
   it("키보드로 빈칸부터 골라 칩을 넣을 수 있다", async () => {
     const user = userEvent.setup();

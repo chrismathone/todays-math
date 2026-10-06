@@ -187,6 +187,7 @@ export function FadingSessionScreen({
   const chipInputId = useId();
   const chipInput = useRef<HTMLInputElement>(null);
   const nativeTab = useRef(false);
+  const restoreMissFocus = useRef(false);
   const [activeBlank, setActiveBlank] = useState<string | null>(null);
   const [feedback, setFeedback] = useState("");
   const [wrong, setWrong] = useState<{ targetId: string; text: string } | null>(
@@ -237,6 +238,23 @@ export function FadingSessionScreen({
     pendingBlank,
     local.phase === "filling" && !compare && !done && !exit,
   );
+  useEffect(() => {
+    if (
+      !restoreMissFocus.current ||
+      saving ||
+      failure ||
+      exit ||
+      compare ||
+      done ||
+      local.step !== 4 ||
+      local.phase !== "filling"
+    )
+      return;
+    // Restore after React removes disabled; a failed miss keeps its lock until a successful retry.
+    restoreMissFocus.current = false;
+    nativeTab.current = false;
+    chipInput.current?.focus({ preventScroll: true });
+  }, [saving, failure, exit, compare, done, local.step, local.phase, wrong]);
 
   async function send(
     action: FadingAction,
@@ -296,7 +314,7 @@ export function FadingSessionScreen({
         },
       );
   }
-  function place(targetId: string, chipId: string) {
+  function place(targetId: string, chipId: string, restoreInputFocus = false) {
     if (
       locked.current ||
       failure ||
@@ -323,8 +341,10 @@ export function FadingSessionScreen({
       setFeedback(
         "맞지 않는 칩이에요. 다른 칩을 골라 주세요. 이 빈칸의 틀림 기록은 남습니다.",
       );
-      if (local.step === 4 && !practice)
+      if (local.step === 4 && !practice) {
+        restoreMissFocus.current = restoreInputFocus;
         void send({ action: "miss", ...ref, placement: { targetId, chipId } });
+      }
     } else if (result.session.results.length > local.results.length) {
       setWrong(null);
       setStageReady(result.session);
@@ -389,8 +409,9 @@ export function FadingSessionScreen({
   }
   function submitTypedChip() {
     if (disabled || stageReady || !pendingBlank) return;
+    const restoreInputFocus = document.activeElement === chipInput.current;
     if (selected && !used.has(selected)) {
-      place(pendingBlank, selected);
+      place(pendingBlank, selected, restoreInputFocus);
       setTyped("");
       return;
     }
@@ -402,7 +423,7 @@ export function FadingSessionScreen({
       setFeedback("지금 고를 수 있는 칩의 글을 입력해 주세요.");
       return;
     }
-    place(pendingBlank, matching[0]!.chipId!);
+    place(pendingBlank, matching[0]!.chipId!, restoreInputFocus);
     setTyped("");
   }
   function nextStep() {
@@ -1106,7 +1127,7 @@ export function FadingSessionScreen({
                               "[data-fading-chip]",
                             ),
                           ).indexOf(button);
-                          place(pendingBlank, selected ?? choice.chipId!);
+                          place(pendingBlank, selected ?? choice.chipId!, true);
                           requestAnimationFrame(() => {
                             if (button.isConnected && !button.disabled) return;
                             const remaining =
