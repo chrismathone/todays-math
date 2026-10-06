@@ -46,6 +46,7 @@ import {
 import {
   changeSrsState,
   srsStateTable,
+  srsStateTableIn,
   type SrsStateTable,
 } from "./serverStore";
 
@@ -165,7 +166,7 @@ export async function handleCourseTeacherStudent(
             scope.data.branchId,
             student.id,
           );
-          return (tx.studentSrsState as unknown as SrsStateTable).create(args);
+          return srsStateTableIn(tx).create(args);
         }),
       updateMany: (args) =>
         db.$transaction(async (tx) => {
@@ -182,9 +183,7 @@ export async function handleCourseTeacherStudent(
             scope.data.branchId,
             student.id,
           );
-          return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
-            args,
-          );
+          return srsStateTableIn(tx).updateMany(args);
         }),
     };
     const saved = await changeSrsState(

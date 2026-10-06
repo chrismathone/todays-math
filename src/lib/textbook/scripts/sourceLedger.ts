@@ -10,7 +10,7 @@
  */
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
 import { bank as e3 } from "@/lib/concept-blank/bank/e3";
@@ -56,7 +56,8 @@ const plain = (definition: string) =>
   splitBlankSentence(definition)
     .map((piece) => piece.text)
     .join("");
-const directory = fileURLToPath(new URL(".", import.meta.url));
+// A string, not a URL object: under jsdom the global URL is not Node's and is refused.
+const directory = dirname(fileURLToPath(import.meta.url));
 const fileOf = (grade: ConceptScriptGrade) =>
   `src/lib/textbook/scripts/${GRADE_FILE_CODES[grade]}.json`;
 

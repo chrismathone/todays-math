@@ -24,6 +24,7 @@ import {
   changeSrsState,
   readSrsState,
   srsStateTable,
+  srsStateTableIn,
   type SrsStateTable,
 } from "@/lib/math-srs/serverStore";
 import {
@@ -97,9 +98,7 @@ export async function handleExplorerTeacherSettings(
               scope.data.branchId,
               parsed.data.id,
             );
-            return (tx.studentSrsState as unknown as SrsStateTable).create(
-              args,
-            );
+            return srsStateTableIn(tx).create(args);
           }),
         updateMany: (args) =>
           db.$transaction(async (tx) => {
@@ -120,9 +119,7 @@ export async function handleExplorerTeacherSettings(
               scope.data.branchId,
               parsed.data.id,
             );
-            return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
-              args,
-            );
+            return srsStateTableIn(tx).updateMany(args);
           }),
       };
       const requestIds: [string, string] = [randomUUID(), randomUUID()];

@@ -59,11 +59,11 @@ describe("오늘의 시험 계기판", () => {
   it("워드마크가 두 제품으로 갈리고 '오늘의시험' 쪽이 현재 탭이다 (D-39)", async () => {
     await renderDashboard();
 
-    // 선택된 쪽은 링크가 아니라 현재 위치 표시다.
-    expect(screen.getByText("오늘의시험")).toHaveAttribute(
-      "aria-current",
-      "page",
-    );
+    // 선택된 쪽은 옆 메뉴에서 현재 위치로 표시된다. 본문 머리의 굵은 제목도 같은 글자라
+    // 글자가 아니라 역할(현재 위치인 링크)로 찾는다.
+    expect(
+      screen.getByRole("link", { name: /오늘의시험/, current: "page" }),
+    ).toHaveAttribute("href", "/exam");
     // 반대쪽은 '오늘의 수학'으로 건너가는 링크여야 한다.
     expect(screen.getByRole("link", { name: "오늘의수학" })).toHaveAttribute(
       "href",

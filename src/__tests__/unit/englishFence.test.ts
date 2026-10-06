@@ -119,6 +119,9 @@ const TABLE_ALLOWED = [
   "prisma/migrations/20261003120000_english_listening/",
   // Private listening Storage chunk metadata migration, part of the English product.
   "prisma/migrations/20261004071000_listening_storage_chunks/",
+  // Private whole-original ASR transcripts for listening sets (2026-10-05) — creates
+  // english_listening_source_transcript only; part of the English product, no math table.
+  "prisma/migrations/20261005142000_listening_source_transcripts/",
   "prisma/migrations/20261003160000_english_passage_bank/",
   // The managed identity migration adds branch ownership to English exams;
   // its isolated SQL probe verifies that backfill. Neither imports math logic.

@@ -1,12 +1,7 @@
 // @vitest-environment node
 import { spawnSync } from "node:child_process";
-import {
-  copyFileSync,
-  mkdtempSync,
-  readFileSync,
-  readdirSync,
-  rmSync,
-} from "node:fs";
+import { copyFileSync, mkdtempSync, readFileSync, readdirSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -31,7 +26,7 @@ function run(directory: string, args: string[]) {
     timeout: 10000,
   });
 }
-afterEach(() => {
+afterEach(async () => {
   for (const directory of sandboxes.splice(0)) {
     // Check the absolute target before recursive removal, including on Windows.
     const target = resolve(directory);
@@ -42,7 +37,7 @@ afterEach(() => {
       throw new Error(
         "Refusing cleanup outside this test's named temporary directories",
       );
-    rmSync(target, { recursive: true, force: true });
+    await rm(target, { recursive: true, force: true });
   }
 });
 

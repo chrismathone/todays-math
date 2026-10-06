@@ -469,9 +469,19 @@ describe("branch management scope and explicit saves", () => {
         branchName={branch.name}
       />,
     );
-    expect(
-      await screen.findByRole("link", { name: owner.name }),
-    ).toHaveAttribute("href", `/admin/branches/${branchId}/users/${owner.id}`);
+    const accountHref = new URL(
+      (await screen.findByRole("link", { name: owner.name })).getAttribute(
+        "href",
+      )!,
+      "http://localhost",
+    );
+    expect(accountHref.pathname).toBe(
+      `/admin/branches/${branchId}/users/${owner.id}`,
+    );
+    // Since 2026-10-04 the link also says where to come back to: this branch's list, this row selected.
+    expect(accountHref.searchParams.get("returnTo")).toBe(
+      `/admin/branches/${branchId}?selection=${owner.id}`,
+    );
     expect(
       screen.getByRole("button", { name: "승인 대기 7개" }),
     ).toBeInTheDocument();
@@ -638,14 +648,18 @@ describe("branch management scope and explicit saves", () => {
     await screen.findByRole("link", { name: owner.name });
     fireEvent.click(screen.getByRole("button", { name: "사용 메뉴" }));
     fireEvent.click(await screen.findByRole("checkbox", { name: "문제 추출" }));
-    expect(screen.getByRole("button", { name: "계정" })).toBeDisabled();
+    // The areas are «교직원 계정 · 학생 계정 · 반 관리 · 사용 메뉴» since 2026-10-05 (was «계정 · 사용 메뉴»).
+    const otherAreas = ["교직원 계정", "학생 계정", "반 관리"];
+    for (const name of otherAreas)
+      expect(screen.getByRole("button", { name })).toBeDisabled();
     expect(
       fireEvent.click(
         screen.getByRole("link", { name: /지점 목록으로 돌아가기/ }),
       ),
     ).toBe(false);
     fireEvent.click(screen.getByRole("button", { name: "변경 취소" }));
-    expect(screen.getByRole("button", { name: "계정" })).toBeEnabled();
+    for (const name of otherAreas)
+      expect(screen.getByRole("button", { name })).toBeEnabled();
   });
   it("an account response moved out of scope is hidden behind an explicit current-scope link", async () => {
     fetchMock.mockResolvedValue(

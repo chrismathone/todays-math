@@ -17,7 +17,7 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { http, HttpResponse } from "msw";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 
 import { ClassManage } from "@/components/class/ClassManage";
 import { ProgressPlanSection } from "@/components/class/ProgressPlanSection";
@@ -29,6 +29,15 @@ import {
 import { CLASS_A_ID, MOCK_UNITS } from "@/mocks/data";
 import { mockPlanSchedule } from "@/mocks/handlers/progressPlan";
 import { server } from "@/mocks/server";
+
+/**
+ * 🔴 반 관리는 고른 반을 주소(`?classId=`)에 적는다(2026-10-04 · `replaceScreenQuery`). jsdom 의 주소는 시험 사이에
+ *    남으므로, 반을 만든 시험 뒤의 시험은 «방금 만든 반»을 주소에서 읽고 — 가짜 목록에 그 반이 없어 —
+ *    «요청한 반을 찾을 수 없습니다»로 서서 명단이 안 뜬다. 시험마다 주소를 처음으로 돌린다.
+ */
+afterEach(() => {
+  window.history.replaceState(null, "", "/");
+});
 
 const TODAY = "2026-09-16"; // 수요일
 const U = (i: number) => MOCK_UNITS[i]!;

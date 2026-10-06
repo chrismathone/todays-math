@@ -127,7 +127,7 @@ label.questionLabel {
   min-width: 0;
   white-space: pre-wrap;
 }
-.transcriptSeek {
+button.transcriptSeek {
   flex: 0 0 auto;
   padding: 8px;
   border: 1px solid var(--e-line-soft);
@@ -137,7 +137,7 @@ label.questionLabel {
   cursor: pointer;
   font: inherit;
 }
-.transcriptSeek:focus-visible {
+button.transcriptSeek:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }

@@ -7,6 +7,7 @@ import {
   textbookStudentQrSchema,
   type TextbookStudentQr,
 } from "@/contracts/textbookStudent.contract";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import {
   studentTextbookRequest,
   studentTextbookError,
@@ -107,7 +108,9 @@ export function TextbookQrScreen({
           <summary>정답과 풀이 확인</summary>
           <MarkdownRenderer content={data.answer ?? ""} />
           {data.solution !== null && (
-            <MarkdownRenderer content={data.solution} />
+            <MarkdownRenderer
+              content={solutionForDisplay(data.solution) ?? ""}
+            />
           )}
         </details>
       )}

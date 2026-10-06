@@ -110,6 +110,15 @@ const FORBIDDEN_ROOTS = [
 ];
 
 /**
+ * ⑵ 에서 빼는 시험 하네스 — `scripts/` 아래에 있지만 `src/__tests__/**` 와 같은 **시험**이다.
+ * 메모리 DB mock 위에 학생 복습 라우트를 띄우는 브라우저 QA 서버(2026-10-03 선수 학습 흐름 검증)라
+ * 그 라우트를 거쳐 quick 에 닿는다. 운영 스크립트가 아니어서 문제은행 · 시험지로 나가는 길이 없다 —
+ * 같은 까닭으로 `mathSrsRecordIsolation.test.ts` 의 `TEST_FIXTURES` 도 이 파일 하나를 뺀다.
+ * 폴더째 빼지 않는다. 이름 하나만.
+ */
+const TEST_HARNESSES = new Set(["scripts/qa/math-prerequisite/server.test.ts"]);
+
+/**
  * 🔴 원장님 연구실(`/lab/math-srs/algebra`, 브라우저 기록 · 글자 입력칸뿐)은 숫자형 그대로다(2026-09-27).
  * 연구실 화면과 그것이 쓰는 미션·생성기·브라우저 기록 모듈에서 import 사슬이 quick 에 닿으면 빨갛다 —
  * 한 걸음 공급은 `serverState.ts` 가 `createMission` 에 넘기고, `mission.ts` 는 quick 을 모른다.
@@ -333,10 +342,19 @@ describe("한 걸음 문항 격리 울타리", () => {
       const r = rel(file);
       if (!FORBIDDEN_ROOTS.some((root) => r === root || r.startsWith(root)))
         continue;
+      if (TEST_HARNESSES.has(r)) continue;
       const chain = pathToQuick(file);
       if (chain) leaks.push(chain.join(" → "));
     }
     expect(leaks).toEqual([]);
+  });
+
+  it("빼 둔 시험 하네스는 실제로 있고 시험 파일이다 — 지워졌거나 스크립트로 바뀌면 여기서 운다", () => {
+    const scanned = new Set([...SCAN.graph.keys()].map(rel));
+    for (const harness of TEST_HARNESSES) {
+      expect(scanned.has(harness), harness).toBe(true);
+      expect(harness).toMatch(/\.test\.tsx?$/);
+    }
   });
 
   it("원장님 연구실 쪽(화면·미션·생성기·브라우저 기록)은 quick 에 닿지 않는다", () => {

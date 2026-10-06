@@ -136,13 +136,15 @@ describe("listening teacher live branch policy", () => {
   it.each([false, true])(
     "denies direct runtime reads for a capped owner/superadmin=%s",
     async (isSuperAdmin) => {
+      const runtime = createListeningRuntime(database);
       userLookup.mockResolvedValue({
         ...account,
         isSuperAdmin,
         branch: { disabledMenus: ["english-listening"], menuRevision: 2 },
       });
+      // Assignments belong to the listening menu: a capped branch is refused before any query.
       await expect(
-        createListeningRuntime(database).teacherList(actor, "sets"),
+        runtime.teacherList(actor, "assignments"),
       ).rejects.toMatchObject({ status: 404 });
       expect(query).not.toHaveBeenCalled();
       expect(userLookup).toHaveBeenCalledWith({
@@ -151,21 +153,39 @@ describe("listening teacher live branch policy", () => {
           branch: { select: { disabledMenus: true, menuRevision: true } },
         },
       });
+      // Sets are material work since 2026-10-04 (2de110c7e): the bank menu alone still opens them …
+      await expect(runtime.teacherList(actor, "sets")).resolves.toEqual([]);
+      // … and a branch that caps both menus closes them, again before any query.
+      query.mockClear();
+      userLookup.mockResolvedValue({
+        ...account,
+        isSuperAdmin,
+        branch: {
+          disabledMenus: ["english-listening", "english-bank"],
+          menuRevision: 3,
+        },
+      });
+      await expect(runtime.teacherList(actor, "sets")).rejects.toMatchObject({
+        status: 404,
+      });
+      expect(query).not.toHaveBeenCalled();
     },
   );
   it("rechecks branch changes between calls and preserves personal denials", async () => {
+    // Set lists open through either menu (see above), so «capped» here means both are off.
+    const both = ["english-listening", "english-bank"];
     const runtime = createListeningRuntime(database);
     await expect(runtime.teacherList(actor, "sets")).resolves.toEqual([]);
     userLookup.mockResolvedValue({
       ...account,
-      branch: { disabledMenus: ["english-listening"], menuRevision: 2 },
+      branch: { disabledMenus: both, menuRevision: 2 },
     });
     await expect(runtime.teacherList(actor, "sets")).rejects.toMatchObject({
       status: 404,
     });
     userLookup.mockResolvedValue({
       ...account,
-      disabledMenus: ["english-listening"],
+      disabledMenus: both,
       branch: { disabledMenus: [], menuRevision: 3 },
     });
     await expect(runtime.teacherList(actor, "sets")).rejects.toMatchObject({

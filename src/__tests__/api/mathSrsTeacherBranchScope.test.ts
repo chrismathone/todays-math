@@ -69,15 +69,20 @@ afterEach(() => vi.unstubAllEnvs());
 
 describe("반 복습 현황 — GET /api/classes/{id}/math-srs", () => {
   it.each([false, true])(
-    "denies direct class/course endpoints after the effective menu cap, superadmin=%s",
+    "applies the effective menu cap to direct class/course endpoints — only the superadmin keeps SRS management, superadmin=%s",
     async (isSuperAdmin) => {
       world.session = sameBranchAdmin({ isSuperAdmin, menus: [] });
+      // The class dashboard opens with the «수업 · 학생 관리» menu — the cap holds for everyone.
       expect((await readClass()).status).toBe(403);
-      expect((await readDetail()).status).toBe(403);
-      expect((await writePlan()).status).toBe(403);
-      expect((await readRoster()).status).toBe(403);
-      expect(world.writes).toBe(0);
-      expect(world.rows.size).toBe(0);
+      // The three SRS management endpoints stay open to the superadmin with menus disabled
+      // (2026-10-05 · `srsTeacherManagementRoute`; accountRouteAccess.test.ts states the same rule).
+      // A branch admin without the menu is still denied.
+      const expected = isSuperAdmin ? 200 : 403;
+      expect((await readDetail()).status).toBe(expected);
+      expect((await writePlan()).status).toBe(expected);
+      expect((await readRoster()).status).toBe(expected);
+      expect(world.writes).toBe(isSuperAdmin ? 1 : 0);
+      if (!isSuperAdmin) expect(world.rows.size).toBe(0);
     },
   );
   it("다른 지점 관리자는 403 · 같은 지점 관리자는 200", async () => {
