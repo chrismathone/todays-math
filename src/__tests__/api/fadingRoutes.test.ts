@@ -206,6 +206,8 @@ beforeEach(() => {
   vi.setSystemTime(DAY1);
   vi.stubEnv("AUTH_URL", base);
   vi.stubEnv("MATH_FADING", "on");
+  // 카드 풀이의 문은 값이 없으면 켜짐이다 — 칩 풀이를 보는 시험은 명시적 `off` 로 돈다(카드 풀이는 아래 묶음이 따로 본다).
+  vi.stubEnv("MATH_FADING_CARDS", "off");
 });
 afterEach(() => {
   vi.useRealTimers();
@@ -1037,7 +1039,32 @@ describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
   const storedSession = () =>
     parseSrsState(f.rows.get(f.studentId)!.payload).fading!.session;
 
-  it("값이 없으면 꺼짐 — 처음부터 평가까지 응답 · 저장 칸에 새 칸이 하나도 없다", async () => {
+  it("학생 라우트의 문이 `on` 이 아니면 카드 문이 켜져 있어도 네 길이 닫혀 있고 아무것도 쓰지 않는다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    for (const parent of ["off", "read"]) {
+      vi.stubEnv("MATH_FADING", parent);
+      expect((await read()).status).toBe(404);
+      expect(
+        (await postRaw({ action: "pick", conceptId: "m2-01-01-c1" })).status,
+      ).toBe(404);
+    }
+    expect(f.writes).toBe(0);
+  });
+
+  it("열린 칩 풀이는 문이 켜진 뒤에도 칩으로 끝난다 — 새 풀이만 카드 풀이다", async () => {
+    const [first] = await someConcepts();
+    let view = await act({ action: "open", conceptId: first! });
+    expect(view.session).not.toHaveProperty("mode");
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    view = await act({ action: "open", conceptId: first! });
+    expect(view.session).not.toHaveProperty("mode");
+    expect(storedSession()).not.toHaveProperty("mode");
+    const { view: rated } = await toRating(first!);
+    expect(rated.session).toMatchObject({ phase: "rating", missedAtFour: [] });
+    expect(rated.session).not.toHaveProperty("mode");
+  });
+
+  it("명시적으로 끄면(`off`) 칩 풀이 — 처음부터 평가까지 응답 · 저장 칸에 카드 풀이의 칸이 하나도 없다", async () => {
     const [first] = await someConcepts();
     expect(await state(await read())).not.toHaveProperty("mode");
     const { view, sessionId } = await toRating(first!);
@@ -1081,8 +1108,8 @@ describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
     expect(stored).not.toHaveProperty("marks");
   });
 
-  it("켜면 새 풀이가 카드 풀이다 — 4단계는 글로 쓰고, 모르는 글은 대조를 기다리고, 칩은 409 다 · 서버 없이 도는 길과 응답이 같다", async () => {
-    vi.stubEnv("MATH_FADING_CARDS", "on");
+  it("값이 없으면 켜짐 — 새 풀이가 카드 풀이다 · 4단계는 글로 쓰고, 모르는 글은 대조를 기다리고, 칩은 409 다 · 서버 없이 도는 길과 응답이 같다", async () => {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
     const [first] = await someConcepts();
     const fresh = { sessionId: uuid(0), seed: 0 };
     const local = createLocalFadingSource({

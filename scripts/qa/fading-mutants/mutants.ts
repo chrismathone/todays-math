@@ -1919,15 +1919,15 @@ export const MUTANTS: Mutant[] = [
   },
   {
     file: "fading/enabled.ts",
-    note: "카드 문의 기본이 켜짐이다",
-    from: 'process.env.MATH_FADING_CARDS === "on"',
-    to: 'process.env.MATH_FADING_CARDS !== "off"',
+    note: "카드 문의 기본이 꺼짐이다",
+    from: 'return value === undefined || value === "" || value === "on";',
+    to: 'return value === "on";',
   },
   {
     file: "fading/enabled.ts",
     note: "카드 문이 학생 문을 보지 않는다",
-    from: 'return fadingEnabled() && process.env.MATH_FADING_CARDS === "on";',
-    to: 'return process.env.MATH_FADING_CARDS === "on";',
+    from: "  if (!fadingEnabled()) return false;\n",
+    to: "",
   },
   {
     file: "fading/actions.ts",
@@ -1958,5 +1958,11 @@ export const MUTANTS: Mutant[] = [
     note: "진단의 «다시» 빈칸이 상한을 넘는다",
     from: "[...session.missedAtFour, ...different].slice(\n    0,\n    FADING_TARGETS_MAX,\n  );",
     to: "[...session.missedAtFour, ...different];",
+  },
+  {
+    file: "fading/enabled.ts",
+    note: "카드 문이 모르는 값에도 켜진다",
+    from: 'return value === undefined || value === "" || value === "on";',
+    to: 'return value !== "off";',
   },
 ];
