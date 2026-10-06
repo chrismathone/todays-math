@@ -2895,6 +2895,82 @@
     position: static;
   }
 }
+.singleCardReader {
+  max-width: 760px;
+  margin-inline: auto;
+  gap: 16px;
+}
+.singleCardIdentity {
+  min-width: 0;
+  margin-block: 12px;
+  display: grid;
+  gap: 6px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.singleCardReadingIntro {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+.singleCard {
+  min-width: 0;
+  padding: 20px;
+}
+.singleCardHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.singleCardCaption {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #e5eeff;
+  color: #1e2238;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.singleCardUnit {
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.singleCardKind {
+  font-size: 12px;
+  font-weight: 500;
+}
+.singleCardPager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding-block: 8px;
+}
+.singleCardPager > button {
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: 10px;
+  white-space: normal;
+}
+.singleCardCount {
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--muted, #536176);
+  font-variant-numeric: tabular-nums;
+}
+.singleCardKeyboard {
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
 
 /* Keep mobile scrolling inside this app; teacher/workspace scrollbars are untouched. */
 .scrollBody:focus-visible {
