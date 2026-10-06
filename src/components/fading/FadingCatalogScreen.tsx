@@ -112,7 +112,7 @@ export function FadingCatalogScreen({
               </div>
               <div className={s.unitMetrics}>
                 <div>
-                  <span>전체 명제</span>
+                  <span>전체 개념 문장</span>
                   <strong>
                     {detailCounts.propositions}
                     <small>개</small>
@@ -218,8 +218,8 @@ export function FadingCatalogScreen({
                   </span>
                   <span className={s.conceptRowMeta}>
                     <span>
-                      {concept.level} · 명제 {concept.propositions}개 · 빈칸{" "}
-                      {concept.targets}개
+                      {concept.level} · 개념 문장 {concept.propositions}개 ·
+                      빈칸 {concept.targets}개
                     </span>
                     <span>
                       {concept.status
@@ -331,7 +331,7 @@ export function FadingCatalogScreen({
                   </div>
                   <h2>{curriculumName(featured.unit)}</h2>
                   <p className={s.small}>
-                    개념 {featured.concepts.length}개 · 명제{" "}
+                    개념 {featured.concepts.length}개 · 개념 문장{" "}
                     {featuredCounts.propositions}개
                   </p>
                   <div className={s.progressPanel}>
@@ -419,8 +419,8 @@ export function FadingCatalogScreen({
                       </div>
                       <div className={s.cardFacts}>
                         <span>
-                          명제 {concept.propositions}개 · 빈칸 {concept.targets}
-                          개
+                          개념 문장 {concept.propositions}개 · 빈칸{" "}
+                          {concept.targets}개
                         </span>
                         <span>
                           {concept.status

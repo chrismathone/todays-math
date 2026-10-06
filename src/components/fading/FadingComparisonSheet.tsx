@@ -8,6 +8,7 @@ import type { FadingStepResult } from "@/lib/fading/session";
 import type { FadingFigure } from "@/lib/fading/figures";
 import { FadingMath as ExplorerMath } from "./FadingMath";
 import { FadingFigureView } from "./FadingFigureView";
+import { FadingConceptLabel } from "./FadingConceptLabel";
 import { curriculumName } from "./labels";
 import s from "./fading.module.css";
 
@@ -90,7 +91,7 @@ export function FadingComparisonSheet({
         </p>
         <FadingFigureView figure={figure} answers />
         <div className={s.sectionTitle}>
-          <h3>명제별 대조</h3>
+          <h3>개념별 대조</h3>
           <span className={s.code}>틀림 기록 유지</span>
         </div>
         {concept.propositions.map((p, i) => {
@@ -117,8 +118,7 @@ export function FadingComparisonSheet({
             <article className={s.comparisonRow} key={p.id}>
               <div className={s.row}>
                 <strong>
-                  <span className={s.roundNumber}>{i + 1}</span>
-                  <ExplorerMath text={p.term} />
+                  <FadingConceptLabel index={i} term={p.term} />
                 </strong>
                 <span
                   className={s.propositionState}
