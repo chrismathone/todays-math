@@ -29,6 +29,7 @@ import { curriculumName, ratingNames, stepNames } from "./labels";
 import { FadingIcon } from "./FadingIcon";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingComparisonSheet } from "./FadingComparisonSheet";
+import { FadingConceptLabel } from "./FadingConceptLabel";
 import {
   FadingDraggedChip,
   useFadingChipDrag,
@@ -704,7 +705,7 @@ export function FadingSessionScreen({
               return (
                 <div className={s.listItem} key={p.id}>
                   <span className={s.listTitle}>
-                    명제 {i + 1} · <ExplorerMath text={p.term} />
+                    <FadingConceptLabel index={i} term={p.term} />
                   </span>
                   <span className={s.small}>
                     {targets.length}개 빈칸 · 틀림 {missed}개
@@ -848,13 +849,10 @@ export function FadingSessionScreen({
                 >
                   <h2 className={s.propositionHeading}>
                     <span className={s.propositionLabel}>
-                      명제 {String(i + 1).padStart(2, "0")}
-                      {local.phase === "reading" && (
-                        <>
-                          {" "}
-                          · <ExplorerMath text={p.term} />
-                        </>
-                      )}
+                      <FadingConceptLabel
+                        index={i}
+                        term={local.phase === "reading" ? p.term : undefined}
+                      />
                     </span>
                     {local.step === 1 ? (
                       <svg

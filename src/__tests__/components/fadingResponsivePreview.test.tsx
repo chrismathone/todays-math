@@ -101,7 +101,7 @@ describe("학생 앱 기기 미리 보기", () => {
     );
     fireEvent.click(await screen.findByRole("button", { name: /개념 읽기$/ }));
     fireEvent.click(
-      await screen.findByRole("button", { name: "고르고 첫 풀이" }),
+      await screen.findByRole("button", { name: "복습에 추가하고 시작" }),
     );
     fireEvent.click(
       await screen.findByRole("button", { name: "읽었어요 · 다음 단계" }),

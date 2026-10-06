@@ -528,6 +528,7 @@
 }
 .propositionHeading {
   display: flex;
+  min-width: 0;
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
@@ -826,6 +827,7 @@
   align-items: start;
   gap: 7px;
   flex: 1;
+  min-width: 0;
   font-size: 14px;
 }
 .roundNumber {
@@ -1031,6 +1033,9 @@
   font-size: 12px;
 }
 .propositionLabel {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
   background: #e5eeff;
   color: #1e2238;
   padding: 2px 6px;
@@ -1038,6 +1043,34 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1.5;
+}
+.propositionTitle {
+  display: inline-grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  column-gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+.propositionNumber {
+  white-space: nowrap;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.propositionTerm {
+  min-width: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.propositionTerm :global(.prose) {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 .propositionState {
   color: #536176;

@@ -18,6 +18,7 @@ import { FadingStats } from "./FadingStats";
 import { FadingCatalogScreen } from "./FadingCatalogScreen";
 import { FadingSessionScreen } from "./FadingSessionScreen";
 import { FadingIcon } from "./FadingIcon";
+import { FadingConceptLabel } from "./FadingConceptLabel";
 import { curriculumName, dueLabel } from "./labels";
 import s from "./fading.module.css";
 
@@ -341,18 +342,31 @@ export function FadingApp({
                       {detail.content.concept.propositions.map((p, i) => (
                         <article className={s.proposition} key={p.id}>
                           <h3 className={s.propositionHeading}>
-                            명제 {i + 1} · <ExplorerMath text={p.term} />
+                            <span className={s.propositionLabel}>
+                              <FadingConceptLabel index={i} term={p.term} />
+                            </span>
                           </h3>
-                          <div>
-                            <ExplorerMath
-                              text={p.pieces
-                                .map((piece) =>
-                                  piece.kind === "text"
-                                    ? piece.text
-                                    : piece.target.text,
-                                )
-                                .join("")}
-                            />
+                          <div className={s.sentence}>
+                            {p.pieces.map((piece, index) => (
+                              <span
+                                key={index}
+                                className={
+                                  piece.kind === "target"
+                                    ? piece.target.tier === "math"
+                                      ? s.readingMathTarget
+                                      : s.readingTextTarget
+                                    : undefined
+                                }
+                              >
+                                <ExplorerMath
+                                  text={
+                                    piece.kind === "text"
+                                      ? piece.text
+                                      : piece.target.text
+                                  }
+                                />
+                              </span>
+                            ))}
                           </div>
                         </article>
                       ))}
@@ -385,7 +399,7 @@ export function FadingApp({
                             : pickAndOpen()
                         }
                       >
-                        {detail.status ? "풀이 시작" : "고르고 첫 풀이"}
+                        {detail.status ? "풀이 시작" : "복습에 추가하고 시작"}
                       </button>
                     )}
                     {detail.status &&

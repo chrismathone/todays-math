@@ -53,7 +53,7 @@ export function selectFadingSamples(all: readonly FadingConcept[]) {
       });
   };
   add(max("targets"), "표적 최다");
-  add(max("longestSentence"), "명제 최장");
+  add(max("longestSentence"), "개념 문장 최장");
   add(max("longestChip"), "칩 최장");
   add(max("mathTargets"), "수식 표적 최다");
   const illustrated = rows.filter((row) => figures[row.concept.id]);
