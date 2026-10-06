@@ -1,0 +1,24 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/__tests__/unit/fadingTraps.test.ts",
+    "src/__tests__/unit/fadingGroups.test.ts",
+    "src/__tests__/unit/fadingSource.test.ts",
+    "src/__tests__/unit/fadingConcepts.test.ts"
+  ],
+  "integrationHead": "74512d89306312b51d0c462e438febf2e46aacdb",
+  "exitCode": 1,
+  "files": 4,
+  "tests": 40,
+  "passed": 36,
+  "failed": 4,
+  "failures": [
+    "stale content digests: seven accepted rows",
+    "one-target source mismatch: e4-1-1-1-xc14|네 자리 수",
+    "stale digest prevents chip tray serving reviewed trap",
+    "default product table differs from served map"
+  ],
+  "observedOutput": "Captured from the initial executed Vitest invocation; the final preserved raw run verifies the unchanged tests after data regeneration."
+}

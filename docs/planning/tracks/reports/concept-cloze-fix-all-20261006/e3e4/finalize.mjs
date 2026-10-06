@@ -1,0 +1,37 @@
+import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { createRequire } from 'node:module';
+import { records } from './prepare.mjs';
+const require = createRequire(import.meta.url);
+const { splitBlankSentence } = require('../../../../../../src/contracts/conceptBlank.contract.ts');
+const directory = new URL('./', import.meta.url);
+const relative = 'docs/planning/tracks/reports/concept-cloze-fix-all-20261006/e3e4';
+const sha = text => createHash('sha256').update(text).digest('hex');
+const parsed = name => {
+  const input = readFileSync(new URL(`${name}-input.md`, directory), 'utf8');
+  const raw = readFileSync(new URL(`${name}-raw.md`, directory), 'utf8');
+  const prompt = JSON.parse(input.slice(input.indexOf('{\n  "cases"'), input.lastIndexOf('}') + 1));
+  const reply = JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1));
+  const meta = JSON.parse(readFileSync(new URL(`${name}-meta.json`, directory), 'utf8'));
+  if (meta.provider !== 'claude') throw Error(`Unexpected provider ${name}`);
+  if (new Set(reply.cases.map(c => c.id)).size !== prompt.cases.length || prompt.cases.some(c => !reply.cases.some(p => p.id === c.id))) throw Error(`Missing/duplicate response ${name}`);
+  return { prompt, reply, meta, inputHash: sha(input), rawHash: sha(raw) };
+};
+const names = readdirSync(directory).filter(f => f.endsWith('-raw.md')).map(f => f.slice(0, -7)).sort();
+const all = names.map(name => ({ name, phase: name.includes('-informed-') ? 'informed' : 'blind', ...parsed(name) }));
+const coverage = records.map(r => {
+  const student = splitBlankSentence(r.after).map(p => p.kind === 'key' ? '□' : p.text).join('');
+  const blind = all.filter(v => v.phase === 'blind' && v.prompt.cases.some(c => c.id === r.id && c.student === student));
+  const informed = all.filter(v => v.phase === 'informed' && v.prompt.cases.some(c => c.id === r.id && c.afterRawDefinition === r.after));
+  if (!blind.length || !informed.length) throw Error(`No current-version cross-review ${r.id}`);
+  const verdicts = informed.flatMap(v => v.reply.cases.filter(c => c.id === r.id).map(c => ({ name: v.name, ...c })));
+  if (verdicts.some(c => c.verdict !== 'pass')) throw Error(`Unresolved current-version objection ${r.id}`);
+  return { id: r.id, afterHash: sha(r.after), currentBlindReviews: blind.map(v => v.name), currentInformedReviews: verdicts.map(v => v.name), verdict: 'pass', reason: verdicts.map(v => v.reason).join('\n') };
+});
+const ledgerPath = new URL('./changes.json', directory);
+const ledger = JSON.parse(readFileSync(ledgerPath, 'utf8'));
+if (ledger.resolutions.length !== records.length || new Set(ledger.resolutions.map(r => r.id)).size !== records.length) throw Error('Resolution ledger coverage');
+ledger.reviews = all.map(v => ({ name: v.name, phase: v.phase, ids: v.prompt.cases.map(c => c.id), inputFile: `${relative}/${v.name}-input.md`, rawFile: `${relative}/${v.name}-raw.md`, metaFile: `${relative}/${v.name}-meta.json` }));
+writeFileSync(ledgerPath, JSON.stringify(ledger, null, 2) + '\n');
+writeFileSync(new URL('./review-coverage.json', directory), JSON.stringify({ sourceCommit: ledger.sourceCommit, resolvedIds: records.length, currentVersionPasses: coverage.length, explanation: 'Coverage uses exact current student sentences and exact afterRawDefinition. Codex read every raw reply and resolved mathematical and wording objections; this is an evidence-binding check, not a model vote.', reviews: all.map(v => ({ name: v.name, phase: v.phase, inputHash: v.inputHash, rawHash: v.rawHash })), cases: coverage }, null, 2) + '\n');
+console.log(`Bound ${all.length} preserved reviews to ${coverage.length} current-version passes.`);

@@ -4,7 +4,7 @@
   "reviewers": {
     "calculation": "코드(mathCheck.ts · authoredExampleReview.ts · 이 파일의 일치 계산)",
     "reading": "AI 정독 — Claude Opus 5.5. 사람이 읽은 검수가 아니다.",
-    "corrections": "AI 편집 검수 — 기존 SC-001~045의 Claude 검수에 이어, SC-046 이후 초6 분수 나눗셈은 Codex·Claude가 교차 검토했다. 사람이 읽은 검수가 아니다.",
+    "corrections": "AI 편집 검수 — 기존 교정을 보존하고 전 학년 공용 은행의 문항별 Codex·Claude 교차 검토에 맞춰 설명·예제 속 정의·확인 답을 동기화했다. 사람이 읽은 검수가 아니다.",
     "editor": "없음 — 사람이 읽은 기록이 없다"
   },
   "totals": {
@@ -171,15 +171,15 @@
       "lessonsRepeatingTheirOpeningQuestion": 360
     },
     "corrections": {
-      "total": 64,
+      "total": 147,
       "byKind": {
         "sentence-answer-copula": 32,
         "missing-condition": 8,
         "particle": 1,
         "ambiguous-wording": 4,
-        "bank-definition": 19
+        "bank-definition": 102
       },
-      "sections": 37
+      "sections": 81
     },
     "aiReadings": {
       "examples": 46,
@@ -328,7 +328,7 @@
       "title": "1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
       "evidence": {
         "file": "src/lib/textbook/scripts/e3.json",
-        "dialogueSha256": "b84210ad11fa5d81"
+        "dialogueSha256": "d161bb8f13ac43f2"
       },
       "concepts": 3,
       "lessons": 5,
@@ -360,7 +360,11 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-065",
+        "SC-066",
+        "SC-067"
+      ]
     },
     {
       "id": "초3::1-2 평면도형::1-2-1 선분, 반직선, 직선",
@@ -673,7 +677,7 @@
       "title": "1-3-3 나눗셈의 몫을 곱셈식으로 구하기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e3.json",
-        "dialogueSha256": "32d1602efdb41ba5"
+        "dialogueSha256": "30a902cdeef4de48"
       },
       "concepts": 3,
       "lessons": 5,
@@ -705,7 +709,14 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-068",
+        "SC-069",
+        "SC-070",
+        "SC-071",
+        "SC-072",
+        "SC-073"
+      ]
     },
     {
       "id": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
@@ -1530,7 +1541,7 @@
       "title": "2-1-1 (세 자리 수)×(한 자리 수) (1)",
       "evidence": {
         "file": "src/lib/textbook/scripts/e3.json",
-        "dialogueSha256": "5106998ad3197455"
+        "dialogueSha256": "6aa7b9acf59ef43e"
       },
       "concepts": 3,
       "lessons": 5,
@@ -1562,7 +1573,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-074",
+        "SC-075"
+      ]
     },
     {
       "id": "초3::2-1 곱셈::2-1-2 (세 자리 수)×(한 자리 수) (2)",
@@ -3118,7 +3132,7 @@
       "title": "1-2-6 사각형의 네 각의 크기의 합 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e4.json",
-        "dialogueSha256": "d46d44790d48fd6c"
+        "dialogueSha256": "af85a92b37b453d7"
       },
       "concepts": 2,
       "lessons": 4,
@@ -3159,7 +3173,9 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-076"
+      ]
     },
     {
       "id": "초4::1-3 곱셈과 나눗셈::1-3-1 (세 자리 수)×(몇십)의 계산",
@@ -4312,7 +4328,7 @@
       "title": "2-2-5 삼각형을 두 가지 기준으로 분류하기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e4.json",
-        "dialogueSha256": "28a51942079caf95"
+        "dialogueSha256": "59c1d4b10bb222d4"
       },
       "concepts": 2,
       "lessons": 4,
@@ -4344,7 +4360,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-077"
+      ]
     },
     {
       "id": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
@@ -4903,7 +4921,7 @@
       "title": "2-4-7 여러 가지 사각형",
       "evidence": {
         "file": "src/lib/textbook/scripts/e4.json",
-        "dialogueSha256": "747a6cf97b22115a"
+        "dialogueSha256": "04ed7d5f50412e72"
       },
       "concepts": 4,
       "lessons": 6,
@@ -4935,7 +4953,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-078"
+      ]
     },
     {
       "id": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
@@ -5491,7 +5511,7 @@
       "title": "1-2-4 최대공약수 구하는 방법",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "7bd44a0bb9a89ab2"
+        "dialogueSha256": "b8077658f438479f"
       },
       "concepts": 3,
       "lessons": 5,
@@ -5523,7 +5543,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-079",
+        "SC-080"
+      ]
     },
     {
       "id": "초5::1-2 약수와 배수::1-2-5 공배수와 최소공배수",
@@ -5575,7 +5598,7 @@
       "title": "1-2-6 최소공배수 구하는 방법",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "0b35e0b16453122f"
+        "dialogueSha256": "9799eb557766af8a"
       },
       "concepts": 3,
       "lessons": 5,
@@ -5607,7 +5630,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-081",
+        "SC-082"
+      ]
     },
     {
       "id": "초5::1-3 대응 관계::1-3-1 두 양 사이의 대응 관계",
@@ -5953,7 +5979,7 @@
       "title": "1-5-1 진분수의 덧셈",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "e7c87037a26597f1"
+        "dialogueSha256": "64d1a2d9767ecfdd"
       },
       "concepts": 2,
       "lessons": 4,
@@ -5985,7 +6011,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-083",
+        "SC-084"
+      ]
     },
     {
       "id": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
@@ -6037,7 +6066,7 @@
       "title": "1-5-3 진분수의 뺄셈",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "e9fd793f8d1e4e37"
+        "dialogueSha256": "aca78625bed688bf"
       },
       "concepts": 2,
       "lessons": 4,
@@ -6069,7 +6098,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-085",
+        "SC-086"
+      ]
     },
     {
       "id": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
@@ -6121,7 +6153,7 @@
       "title": "1-6-1 정다각형과 사각형의 둘레",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "8efebf6503a61bce"
+        "dialogueSha256": "8ac5960ad8135fc5"
       },
       "concepts": 6,
       "lessons": 8,
@@ -6160,7 +6192,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-087"
+      ]
     },
     {
       "id": "초5::1-6 다각형의 둘레와 넓이::1-6-2 1cm², 직사각형과 정사각형의 넓이",
@@ -6379,7 +6413,7 @@
       "title": "2-1-1 이상과 이하 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "cd359363afab546e"
+        "dialogueSha256": "ac511ba2de8d8ce8"
       },
       "concepts": 3,
       "lessons": 5,
@@ -6411,7 +6445,11 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-088",
+        "SC-089",
+        "SC-090"
+      ]
     },
     {
       "id": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
@@ -6505,7 +6543,7 @@
       "title": "2-1-4 올림 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "2665dd14166d8f2c"
+        "dialogueSha256": "ae3c184e0aee8c1f"
       },
       "concepts": 3,
       "lessons": 5,
@@ -6537,7 +6575,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-091",
+        "SC-092"
+      ]
     },
     {
       "id": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
@@ -6589,7 +6630,7 @@
       "title": "2-1-6 반올림 알아보기와 어림의 활용",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "68f1dd2c708f7947"
+        "dialogueSha256": "88c9be5318a3dbc6"
       },
       "concepts": 3,
       "lessons": 5,
@@ -6621,7 +6662,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-093",
+        "SC-094"
+      ]
     },
     {
       "id": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
@@ -6925,7 +6969,7 @@
       "title": "2-3-4 점대칭도형과 그 성질 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e5.json",
-        "dialogueSha256": "4edbd4f15fee8ec3"
+        "dialogueSha256": "2a82549d44ff7968"
       },
       "concepts": 7,
       "lessons": 9,
@@ -6957,7 +7001,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-095",
+        "SC-096"
+      ]
     },
     {
       "id": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
@@ -7846,7 +7893,7 @@
       "title": "1-2-2 각기둥의 이름과 구성 요소",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "56f927a25d5ff638"
+        "dialogueSha256": "f9817293134f401d"
       },
       "concepts": 5,
       "lessons": 7,
@@ -7882,7 +7929,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-097"
+      ]
     },
     {
       "id": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
@@ -7937,7 +7986,7 @@
       "title": "1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "ecc374bda6eacbf0"
+        "dialogueSha256": "9fc996244628012b"
       },
       "concepts": 4,
       "lessons": 6,
@@ -7969,7 +8018,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-146",
+        "SC-147"
+      ]
     },
     {
       "id": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
@@ -7979,7 +8031,7 @@
       "title": "1-2-5 각뿔의 이름과 구성 요소",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "b339d7582435ceab"
+        "dialogueSha256": "59f6ebc346e76e12"
       },
       "concepts": 6,
       "lessons": 8,
@@ -8015,7 +8067,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-098"
+      ]
     },
     {
       "id": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
@@ -8067,7 +8121,7 @@
       "title": "1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "8fa323f7d0c6ac26"
+        "dialogueSha256": "8aa9758d0d967251"
       },
       "concepts": 3,
       "lessons": 5,
@@ -8104,7 +8158,9 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-099"
+      ]
     },
     {
       "id": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
@@ -8114,7 +8170,7 @@
       "title": "1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "0a8b1cb99cefed22"
+        "dialogueSha256": "e12ca3f0b9b24730"
       },
       "concepts": 3,
       "lessons": 5,
@@ -8146,7 +8202,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-100"
+      ]
     },
     {
       "id": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
@@ -8459,7 +8517,7 @@
       "title": "1-4-6 백분율이 사용되는 경우",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "281d08f8b34cdf41"
+        "dialogueSha256": "1cc0432a47fe4d7d"
       },
       "concepts": 3,
       "lessons": 5,
@@ -8491,7 +8549,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-101"
+      ]
     },
     {
       "id": "초6::1-5 여러 가지 그래프::1-5-1 띠그래프",
@@ -9355,7 +9415,7 @@
       "title": "2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "f491a2a16683ec9c"
+        "dialogueSha256": "a0bc5fd5d8f3544a"
       },
       "concepts": 3,
       "lessons": 5,
@@ -9389,7 +9449,9 @@
       "findings": [],
       "corrections": [
         "SC-044",
-        "SC-045"
+        "SC-045",
+        "SC-102",
+        "SC-103"
       ]
     },
     {
@@ -9615,7 +9677,7 @@
       "title": "2-4-2 간단한 자연수의 비로 나타내기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "7aacac3643a3cf85"
+        "dialogueSha256": "0626d91eaf4bca89"
       },
       "concepts": 3,
       "lessons": 5,
@@ -9647,7 +9709,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-104"
+      ]
     },
     {
       "id": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
@@ -10236,7 +10300,7 @@
       "title": "공약수와 최대공약수",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "31b4299e8a33d878"
+        "dialogueSha256": "21852fa3a4645e42"
       },
       "concepts": 5,
       "lessons": 7,
@@ -10269,7 +10333,10 @@
       },
       "findings": [],
       "corrections": [
-        "SC-014"
+        "SC-014",
+        "SC-105",
+        "SC-106",
+        "SC-107"
       ]
     },
     {
@@ -10280,7 +10347,7 @@
       "title": "공배수와 최소공배수",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "e30af8b36b5fd196"
+        "dialogueSha256": "e05925b9231ac744"
       },
       "concepts": 5,
       "lessons": 7,
@@ -10312,7 +10379,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-108"
+      ]
     },
     {
       "id": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
@@ -10364,7 +10433,7 @@
       "title": "정수와 유리수",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "7a73c30dc6c3c07a"
+        "dialogueSha256": "77e569961edda48d"
       },
       "concepts": 8,
       "lessons": 10,
@@ -10397,7 +10466,8 @@
       },
       "findings": [],
       "corrections": [
-        "SC-015"
+        "SC-015",
+        "SC-109"
       ]
     },
     {
@@ -10629,7 +10699,7 @@
       "title": "일차식의 뜻Ⅰ",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "29deb5dfdc843da1"
+        "dialogueSha256": "2e75dfc3de9db37a"
       },
       "concepts": 10,
       "lessons": 12,
@@ -10661,7 +10731,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-110"
+      ]
     },
     {
       "id": "중1::3. 방정식::일차식의 뜻Ⅱ",
@@ -11292,7 +11364,7 @@
       "title": "정비례 관계 y=ax의 그래프",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "b89618fbe187550a"
+        "dialogueSha256": "5025efd7d3c51466"
       },
       "concepts": 7,
       "lessons": 9,
@@ -11328,7 +11400,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-111"
+      ]
     },
     {
       "id": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
@@ -11338,7 +11412,7 @@
       "title": "반비례 관계 y=a/x의 그래프",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "49dddf59c63a24d7"
+        "dialogueSha256": "b1f3175a9085d70d"
       },
       "concepts": 7,
       "lessons": 9,
@@ -11374,7 +11448,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-112"
+      ]
     },
     {
       "id": "중1::5. 기본 도형::점, 선, 면",
@@ -11470,7 +11546,7 @@
       "title": "두 직선의 위치 관계",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "7b9c4420ff82201c"
+        "dialogueSha256": "c99cdb07a1da9dec"
       },
       "concepts": 6,
       "lessons": 8,
@@ -11502,7 +11578,11 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-113",
+        "SC-114",
+        "SC-115"
+      ]
     },
     {
       "id": "중1::5. 기본 도형::공간에서 평면의 위치 관계",
@@ -11640,7 +11720,7 @@
       "title": "합동",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "f614cb120955276e"
+        "dialogueSha256": "e42b8ed96cbf1684"
       },
       "concepts": 10,
       "lessons": 12,
@@ -11672,7 +11752,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-116",
+        "SC-117"
+      ]
     },
     {
       "id": "중1::6. 평면도형::다각형",
@@ -12168,7 +12251,7 @@
       "title": "구의 겉넓이와 부피",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "9ece290ade1961a4"
+        "dialogueSha256": "73b86f63df4d69a9"
       },
       "concepts": 6,
       "lessons": 8,
@@ -12205,7 +12288,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-118",
+        "SC-119"
+      ]
     },
     {
       "id": "중1::8. 통계::대푯값",
@@ -12391,7 +12477,7 @@
       "title": "도수분포다각형",
       "evidence": {
         "file": "src/lib/textbook/scripts/m1.json",
-        "dialogueSha256": "ccdc40310e42893e"
+        "dialogueSha256": "9e8f34613cad1747"
       },
       "concepts": 5,
       "lessons": 7,
@@ -12423,7 +12509,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-120"
+      ]
     },
     {
       "id": "중1::8. 통계::상대도수",
@@ -12759,7 +12847,7 @@
       "title": "다항식의 덧셈과 뺄셈",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "12815257370683ae",
+        "dialogueSha256": "249de7620565565b",
         "referenceUnits": [
           "U06"
         ]
@@ -12794,7 +12882,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-121",
+        "SC-122"
+      ]
     },
     {
       "id": "중2::1. 수와 식::다항식의 곱셈과 나눗셈",
@@ -12942,7 +13033,7 @@
       "title": "일차부등식의 응용",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "4d84a8fb692d3f87"
+        "dialogueSha256": "8604cdc85fbf1c5a"
       },
       "concepts": 5,
       "lessons": 7,
@@ -12974,7 +13065,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-123"
+      ]
     },
     {
       "id": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
@@ -13352,7 +13445,7 @@
       "title": "해가 특수한 연립방정식",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "757d22b38f7c0dc6"
+        "dialogueSha256": "552a7f553215cf14"
       },
       "concepts": 5,
       "lessons": 7,
@@ -13386,7 +13479,9 @@
       "findings": [],
       "corrections": [
         "SC-031",
-        "SC-032"
+        "SC-032",
+        "SC-124",
+        "SC-125"
       ]
     },
     {
@@ -13727,7 +13822,7 @@
       "title": "일차함수의 그래프의 성질",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "b3a347bbc136f212"
+        "dialogueSha256": "4fc63075b2e37deb"
       },
       "concepts": 8,
       "lessons": 10,
@@ -13759,7 +13854,11 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-126",
+        "SC-127",
+        "SC-128"
+      ]
     },
     {
       "id": "중2::4. 함수::일차함수의 식 구하기",
@@ -14182,7 +14281,7 @@
       "title": "평행사변형의 성질",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "500f7eb8f40e8324"
+        "dialogueSha256": "0ba0716c74561e25"
       },
       "concepts": 9,
       "lessons": 11,
@@ -14214,7 +14313,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-129"
+      ]
     },
     {
       "id": "중2::5. 도형의 성질::평행사변형이 되는 조건",
@@ -14224,7 +14325,7 @@
       "title": "평행사변형이 되는 조건",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "3b9c4dc34d02a404"
+        "dialogueSha256": "760b3e4632fac31e"
       },
       "concepts": 8,
       "lessons": 10,
@@ -14256,7 +14357,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-130"
+      ]
     },
     {
       "id": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
@@ -14529,7 +14632,7 @@
       "title": "삼각형의 각의 이등분선",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "25dbdae359dd0c6d"
+        "dialogueSha256": "60757b4ec2162286"
       },
       "concepts": 5,
       "lessons": 7,
@@ -14566,7 +14669,9 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-131"
+      ]
     },
     {
       "id": "중2::7. 닮음의 활용::평행선 사이의 선분의 길이의 비",
@@ -14665,7 +14770,7 @@
       "title": "삼각형의 무게중심",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "8c79a77e9a876ce0"
+        "dialogueSha256": "33c0b285fd74e86d"
       },
       "concepts": 7,
       "lessons": 9,
@@ -14697,7 +14802,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-132",
+        "SC-133"
+      ]
     },
     {
       "id": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
@@ -14758,7 +14866,7 @@
       "title": "피타고라스 정리",
       "evidence": {
         "file": "src/lib/textbook/scripts/m2.json",
-        "dialogueSha256": "031b85e0c2f0e5bc"
+        "dialogueSha256": "7be2becc18506565"
       },
       "concepts": 9,
       "lessons": 11,
@@ -14795,7 +14903,8 @@
       },
       "findings": [],
       "corrections": [
-        "SC-037"
+        "SC-037",
+        "SC-134"
       ]
     },
     {
@@ -15128,7 +15237,7 @@
       "title": "근호를 포함한 식의 계산",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "96fab457060e67d5"
+        "dialogueSha256": "1a7ee8d10da8b0c7"
       },
       "concepts": 7,
       "lessons": 9,
@@ -15166,7 +15275,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-135"
+      ]
     },
     {
       "id": "중3::2. 다항식의 곱셈과 인수분해::다항식의 곱셈",
@@ -15318,7 +15429,7 @@
       "title": "이차방정식의 풀이",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "65c69d4f9d5d3422"
+        "dialogueSha256": "dbd6a892987b895a"
       },
       "concepts": 9,
       "lessons": 11,
@@ -15355,7 +15466,11 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-136",
+        "SC-137",
+        "SC-138"
+      ]
     },
     {
       "id": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
@@ -15413,7 +15528,7 @@
       "title": "이차방정식의 활용",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "25769b29fce9ba0a"
+        "dialogueSha256": "5db75e53f7fe00b6"
       },
       "concepts": 5,
       "lessons": 7,
@@ -15445,7 +15560,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-139"
+      ]
     },
     {
       "id": "중3::4. 이차함수::이차함수와 그래프",
@@ -15455,7 +15572,7 @@
       "title": "이차함수와 그래프",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "b4ab2f5bbbbbe2be"
+        "dialogueSha256": "5fa7dcad7c4ba42b"
       },
       "concepts": 16,
       "lessons": 18,
@@ -15489,7 +15606,8 @@
       "findings": [],
       "corrections": [
         "SC-038",
-        "SC-039"
+        "SC-039",
+        "SC-140"
       ]
     },
     {
@@ -15500,7 +15618,7 @@
       "title": "이차함수 y=ax^2+bx+c의 그래프",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "cbebfe8bf680c02b"
+        "dialogueSha256": "05d84600438264b1"
       },
       "concepts": 7,
       "lessons": 9,
@@ -15537,7 +15655,9 @@
           "turns": 2
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-141"
+      ]
     },
     {
       "id": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
@@ -15547,7 +15667,7 @@
       "title": "이차함수의 최댓값과 최솟값",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "76ca5f9799f8c240"
+        "dialogueSha256": "9c35ea705ca7efbb"
       },
       "concepts": 6,
       "lessons": 8,
@@ -15579,7 +15699,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-142"
+      ]
     },
     {
       "id": "중3::5. 삼각비::삼각비의 뜻",
@@ -15684,7 +15806,7 @@
       "title": "삼각비의 활용",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "c9593e929ad30684"
+        "dialogueSha256": "22328169c4b3098e"
       },
       "concepts": 8,
       "lessons": 10,
@@ -15725,7 +15847,9 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-143"
+      ]
     },
     {
       "id": "중3::6. 원의 성질::원과 현",
@@ -15781,7 +15905,7 @@
       "title": "원의 접선",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "6e703b2fd2efb4c3"
+        "dialogueSha256": "b9d107f7bd1f6b00"
       },
       "concepts": 8,
       "lessons": 10,
@@ -15824,7 +15948,8 @@
       ],
       "corrections": [
         "SC-040",
-        "SC-041"
+        "SC-041",
+        "SC-144"
       ]
     },
     {
@@ -15835,7 +15960,7 @@
       "title": "원주각",
       "evidence": {
         "file": "src/lib/textbook/scripts/m3.json",
-        "dialogueSha256": "e74cea527bff0571"
+        "dialogueSha256": "84618c26648c38e2"
       },
       "concepts": 6,
       "lessons": 8,
@@ -15876,7 +16001,9 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-145"
+      ]
     },
     {
       "id": "중3::6. 원의 성질::원주각의 활용",

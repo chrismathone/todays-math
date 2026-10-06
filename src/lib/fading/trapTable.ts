@@ -16,7 +16,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "두 곳",
       ox: "e3-1-2-3-xo14",
-      digest: "8474096e",
+      digest: "8baa69b1",
     },
   ],
   "e3-1-2-3-c3": [
@@ -75,6 +75,13 @@ export const FADING_TRAPS: Readonly<
       digest: "cf606318",
     },
   ],
+  "e3-1-1-3-xc23": [
+    {
+      text: "커진다",
+      ox: "e3-1-1-3-xo25",
+      digest: "9fb9b25e",
+    },
+  ],
   "e3-1-5-2-xc4": [
     {
       text: "$10\\,\\mathrm{cm}$",
@@ -114,14 +121,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "$180^\\circ$",
       ox: "e4-2-4-1-xo13",
-      digest: "0a4c7e2b",
-    },
-  ],
-  "e4-1-1-1-xc14": [
-    {
-      text: "네 자리 수",
-      ox: "e4-1-1-1-xo3",
-      digest: "ccb705c8",
+      digest: "ebd88403",
     },
   ],
   "e4-1-5-3-xc5": [
@@ -254,7 +254,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "면이 겹치도록",
       ox: "e5-2-5-6-xo10",
-      digest: "6971f845",
+      digest: "27406a63",
     },
   ],
   "e5-2-6-1-xc6": [
@@ -303,7 +303,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "소수 둘째",
       ox: "e6-2-2-4-xo15",
-      digest: "5ab84d18",
+      digest: "04df97df",
     },
   ],
   "e6-2-3-2-xc14": [
@@ -324,14 +324,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "$ab$",
       ox: "m1-03-01-xo10",
-      digest: "a699bdc1",
-    },
-  ],
-  "m3-05-03-c3": [
-    {
-      text: "$c\\cos B$",
-      ox: "m3-05-03-xo11",
-      digest: "0129aab4",
+      digest: "f577b7a7",
     },
   ],
 };

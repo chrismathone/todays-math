@@ -1,0 +1,73 @@
+{
+  "reviewedOn": "2026-10-06",
+  "contentHash": "c1fb425f0536e8f0f304ec5317511ad44219cc3be230b199571a769109e61f25",
+  "resolved": 401,
+  "rewritten": 395,
+  "kept": 6,
+  "manuscriptChangedTurns": 83,
+  "staticCorrectionCount": 147,
+  "checks": [
+    {
+      "command": "verify-remediation.ts",
+      "result": "passed",
+      "details": "Original 394 findings and seven supplemental IDs resolved exactly once. Replacing only recorded definitions recovers the complete baseline hash. IDs, order, metadata, examples and all other forms preserved."
+    },
+    {
+      "command": "sync-manuscripts.ts --write (repeat after synchronization)",
+      "result": "passed",
+      "details": "Zero pending turns, no write. Prior 81-turn history retained with two added turns, total 83."
+    },
+    {
+      "command": "materialize.ts; sourceLedger.ts",
+      "result": "passed",
+      "details": "All seven grades and the source ledger match the committed data."
+    },
+    {
+      "command": "authored.ts",
+      "result": "passed",
+      "details": "67 candidates, 45 accepted, 22 rejected; unread 0, obsolete active decisions 0. Final supplemental definitions do not share an accepted trap row."
+    },
+    {
+      "files": [
+        "conceptBlankBank.test.ts",
+        "conceptBlankClarityIntegration.test.ts",
+        "fadingTraps.test.ts",
+        "fadingCatalogStats.test.tsx",
+        "fadingTeacherHifi.test.tsx"
+      ],
+      "result": "passed",
+      "tests": 120,
+      "stage": "Final bank and latest remote screen changes merged."
+    },
+    {
+      "files": ["fadingScreens.test.tsx"],
+      "result": "passed",
+      "tests": 49,
+      "durationSeconds": 34.47,
+      "earlierAttempt": "In the six-file run, the synthetic numeric-key miss-save focus test failed its immediate disabled assertion. The isolated case passed, then the full unchanged 49-test file passed. No test or screen code was changed to hide this failure. The cause was not established."
+    },
+    {
+      "files": [
+        "textbookConceptScripts.test.ts",
+        "textbookSourceLedger.test.ts"
+      ],
+      "result": "passed",
+      "tests": 37,
+      "stage": "Final 147-correction ledger. First-manuscript hashes unchanged."
+    },
+    {
+      "command": "Playwright clarity.spec.ts and photo.spec.ts",
+      "result": "passed",
+      "details": "All seven grade cases initially passed; m3 then e4/e6 rerun after final corrections. Final coverage: 395 sentences, 432 student/key pages. Overflow, math errors and leaks all zero. Existing photo regression: three pages passed."
+    },
+    {
+      "command": "Scoped ESLint and git diff --check",
+      "result": "passed"
+    }
+  ],
+  "pushRequirements": "Fetch and integrate origin/main immediately before a normal push. Do not bypass the five pre-push checks. Verify the production deployment for the pushed commit.",
+  "studentRecordsWritten": false,
+  "publishedSnapshotsWritten": false,
+  "serviceFlagsChanged": false,
+  "orcaCleanup": "Four completed, clean, merged workers released and removed; Git branches preserved. Shared node_modules junctions unlinked without deleting the target."
+}
