@@ -6,12 +6,14 @@ export function FadingSentencePager({
   onChange,
   disabled = false,
   advanceAction = false,
+  forwardDisabled = false,
 }: {
   index: number;
   count: number;
   onChange: (index: number) => void;
   disabled?: boolean;
   advanceAction?: boolean;
+  forwardDisabled?: boolean;
 }) {
   return (
     <nav className={s.singleCardPager} aria-label="개념 문장 이동">
@@ -29,7 +31,7 @@ export function FadingSentencePager({
       <button
         type="button"
         className={s.secondary}
-        disabled={disabled || index === count - 1}
+        disabled={disabled || forwardDisabled || index === count - 1}
         data-fading-action={
           advanceAction && index < count - 1 ? "true" : undefined
         }

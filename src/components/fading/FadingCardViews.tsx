@@ -2,6 +2,8 @@
 
 import type { FadingConcept, FadingProposition } from "@/lib/fading/concepts";
 import { FadingMath } from "./FadingMath";
+import { FadingConceptLabel } from "./FadingConceptLabel";
+import { FadingSentencePager } from "./FadingSentencePager";
 import s from "./fading.module.css";
 
 export const seenLabels = ["처음 봄", "들어 봄", "알고 있었음"] as const;
@@ -120,6 +122,10 @@ export function FadingTypedComparison({
   judgments,
   disabled,
   onJudge,
+  index = 0,
+  onPage,
+  forwardDisabled = false,
+  keyboardTarget,
 }: {
   concept: FadingConcept;
   answers: Readonly<Record<string, string>>;
@@ -127,18 +133,22 @@ export function FadingTypedComparison({
   judgments: Readonly<Record<string, "same" | "different">>;
   disabled: boolean;
   onJudge: (targetId: string, judgment: "same" | "different") => void;
+  index?: number;
+  onPage?: (index: number) => void;
+  forwardDisabled?: boolean;
+  keyboardTarget?: string;
 }) {
   const unknown = new Set(unjudged.map((item) => item.targetId));
   return (
     <section className={s.typedComparison} aria-label="내 답과 기준안 대조">
-      {concept.propositions.map((proposition, index) => (
+      {concept.propositions.slice(index, index + 1).map((proposition) => (
         <article
           className={s.comparisonRow}
           key={proposition.id}
           data-fading-comparison-sentence={proposition.id}
         >
           <h2 className={s.singleCardCaption}>
-            문장 {index + 1} · <FadingMath text={proposition.term} /> ·{" "}
+            <FadingConceptLabel index={index} term={proposition.term} /> ·{" "}
             {proposition.kind}
           </h2>
           <div className={s.comparisonColumns}>
@@ -200,6 +210,13 @@ export function FadingTypedComparison({
                         key={judgment}
                         className={s.secondary}
                         aria-pressed={judgments[targetId] === judgment}
+                        aria-keyshortcuts={
+                          keyboardTarget === targetId
+                            ? judgment === "same"
+                              ? "1"
+                              : "2"
+                            : undefined
+                        }
                         onClick={() => onJudge(targetId, judgment)}
                       >
                         {judgment === "same" ? "같은 뜻" : "다름"}
@@ -211,6 +228,15 @@ export function FadingTypedComparison({
             })}
         </article>
       ))}
+      {onPage && (
+        <FadingSentencePager
+          index={index}
+          count={concept.propositions.length}
+          disabled={disabled}
+          forwardDisabled={forwardDisabled}
+          onChange={onPage}
+        />
+      )}
     </section>
   );
 }

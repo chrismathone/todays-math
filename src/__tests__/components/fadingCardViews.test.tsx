@@ -105,7 +105,7 @@ describe("카드 앞뒤와 묶음 대조", () => {
     expect(onSeen.mock.calls).toEqual([["1"], ["2"], ["3"]]);
   });
 
-  it("완료된 묶음의 모든 문장을 대조하고 모름 칸에만 자기 대조를 받는다", () => {
+  it("완료된 묶음에서 한 문장만 대조하고 모름 칸에만 자기 대조를 받는다", () => {
     const onJudge = vi.fn();
     render(
       <FadingTypedComparison
@@ -119,7 +119,7 @@ describe("카드 앞뒤와 묶음 대조", () => {
     );
     expect(
       document.querySelectorAll("[data-fading-comparison-sentence]"),
-    ).toHaveLength(2);
+    ).toHaveLength(1);
     const comparison = screen.getByRole("region", {
       name: "내 답과 기준안 대조",
     });

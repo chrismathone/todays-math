@@ -79,6 +79,7 @@ export function FadingDevClient({
         traps={traps}
         figures={figures}
         today="2026-10-06"
+        cards={options.cards}
       />
     );
   const selected =
@@ -105,6 +106,7 @@ export function FadingDevClient({
             {selected.reason}
           </p>
           <form action="/dev/fading" className={s.filters}>
+            {options.cards && <input type="hidden" name="cards" value="1" />}
             <label className={s.left}>
               장면
               <select
@@ -137,7 +139,24 @@ export function FadingDevClient({
               열기
             </button>
           </form>
-          <a className={s.secondary} href="/dev/fading?preview=1">
+          <a
+            className={s.secondary}
+            href={
+              options.cards
+                ? "/dev/fading?scene=step1"
+                : "/dev/fading?scene=step1&cards=1"
+            }
+          >
+            {options.cards ? "기존 칩 풀이 확인" : "새 카드 풀이 확인"}
+          </a>
+          <a
+            className={s.secondary}
+            href={
+              options.cards
+                ? "/dev/fading?preview=1&cards=1"
+                : "/dev/fading?preview=1"
+            }
+          >
             작업실 미리 보기 알맹이
           </a>
         </div>
