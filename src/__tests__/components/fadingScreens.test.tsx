@@ -43,9 +43,9 @@ const concept: FadingConcept = {
   })),
 };
 
-function local() {
+function local(sample: FadingConcept = concept) {
   return createLocalFadingSource({
-    concepts: [concept],
+    concepts: [sample],
     today: "2026-10-06",
     fresh: () => ({
       sessionId: "11111111-1111-4111-8111-111111111111",
@@ -53,11 +53,14 @@ function local() {
     }),
   });
 }
-async function startAt(step: 1 | 2 | 3 | 4 = 2) {
-  const source = local();
-  await source.act({ action: "pick", conceptId: concept.id });
-  let state = await source.act({ action: "open", conceptId: concept.id });
-  const ref = { conceptId: concept.id, sessionId: state.session!.id };
+async function startAt(
+  step: 1 | 2 | 3 | 4 = 2,
+  sample: FadingConcept = concept,
+) {
+  const source = local(sample);
+  await source.act({ action: "pick", conceptId: sample.id });
+  let state = await source.act({ action: "open", conceptId: sample.id });
+  const ref = { conceptId: sample.id, sessionId: state.session!.id };
   if (step > 1) state = await source.act({ action: "read", ...ref });
   for (const current of [2, 3] as const) {
     if (current >= step) break;
@@ -80,7 +83,11 @@ async function resume(source: ReturnType<typeof local>) {
 }
 function place(targetIndex: number, text: string) {
   fireEvent.click(screen.getByRole("button", { name: `칩 ${text}` }));
-  fireEvent.click(screen.getByRole("button", { name: `빈칸 ${targetIndex}` }));
+  fireEvent.click(
+    screen.getByRole("button", {
+      name: new RegExp(`^빈칸 ${targetIndex}(?:$| ·)`),
+    }),
+  );
 }
 function dragChip(chip: HTMLElement, blank: HTMLElement, pointerType: string) {
   const previous = document.elementFromPoint;
@@ -220,7 +227,74 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       "true",
     );
   });
-  it("13개 칩의 10번과 11번도 입력 상자 없이 0·Shift+1로 넣는다", async () => {
+  it.each(["Backspace", "Escape"])(
+    "%s로 칩·빈칸 선택과 틀린 칩 표시를 취소하며 틀림 기록과 채운 답은 남긴다",
+    async (key) => {
+      const { source } = await startAt(4);
+      await resume(source);
+      const act = vi.spyOn(source, "act");
+      const chip = screen.getByRole("button", { name: "칩 외심" });
+      fireEvent.click(chip);
+      expect(chip).toHaveAttribute("aria-pressed", "true");
+      expect(fireEvent.keyDown(window, { key })).toBe(false);
+      expect(chip).toHaveAttribute("aria-pressed", "false");
+      fireEvent.click(screen.getByRole("button", { name: "빈칸 2" }));
+      fireEvent.keyDown(window, { key });
+      expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
+        "aria-pressed",
+        "false",
+      );
+      expect(act).not.toHaveBeenCalled();
+      place(1, "외심");
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: "칩 수직이등분선" }),
+        ).toBeEnabled(),
+      );
+      const missed = screen.getByRole("button", {
+        name: "빈칸 1 · 틀린 기록이 있는 빈칸",
+      });
+      expect(missed).toHaveTextContent("외심");
+      const writes = act.mock.calls.length;
+      fireEvent.keyDown(window, { key });
+      expect(missed).not.toHaveTextContent("외심");
+      expect(
+        screen.queryByRole("button", { name: "다시 고르기" }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.getByText(
+          "틀린 기록이 있는 빈칸 1개 · 다시 채워도 기록은 남습니다",
+        ),
+      ).toBeInTheDocument();
+      expect((await source.state()).session!.missedAtFour).toContain(
+        erasedTargets(concept, 4)[0]!.id,
+      );
+      expect(act).toHaveBeenCalledTimes(writes);
+      place(1, "수직이등분선");
+      fireEvent.keyDown(window, { key });
+      expect(
+        screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
+      ).toHaveTextContent("수직이등분선");
+    },
+  );
+  it.each(["Backspace", "Escape"])(
+    "입력 필드의 %s는 선택 취소로 가로채지 않는다",
+    async (key) => {
+      const { source } = await startAt(4);
+      await resume(source);
+      const chip = screen.getByRole("button", { name: "칩 외심" });
+      fireEvent.click(chip);
+      const input = document.createElement("input");
+      document.body.append(input);
+      try {
+        expect(fireEvent.keyDown(input, { key })).toBe(true);
+        expect(chip).toHaveAttribute("aria-pressed", "true");
+      } finally {
+        input.remove();
+      }
+    },
+  );
+  it("13개 칩의 10번과 11번도 0·Shift+1로 넣는다", async () => {
     const many: FadingConcept = {
       ...concept,
       id: "many-chips",
@@ -257,7 +331,9 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       await screen.findByRole("button", { name: "풀이 이어 하기" }),
     );
     await screen.findByRole("button", { name: "아직 모르겠어요" });
-    expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("textbox", { name: "칩 글 입력" }),
+    ).toBeInTheDocument();
     const tray = chipTray(many, 4, { seed: opened.session!.seed });
     for (const [index, key, code, shiftKey] of [
       [9, "0", "Numpad0", false],
@@ -273,8 +349,8 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
         screen.queryByRole("button", { name: `빈칸 ${blank}` }),
       ).not.toBeInTheDocument();
       expect(
-        screen.getByRole("button", { name: `칩 ${tray[index]!.text}` }),
-      ).toBeDisabled();
+        screen.queryByRole("button", { name: `칩 ${tray[index]!.text}` }),
+      ).not.toBeInTheDocument();
     }
     expect(screen.queryByText("맞지 않는 칩")).not.toBeInTheDocument();
   });
@@ -330,6 +406,100 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       measured.mockRestore();
     }
   });
+  it("중복 칩은 하나만 보이고 숨긴 수량을 전부 쓰기 전까지 계속 고를 수 있다", async () => {
+    const duplicate: FadingConcept = {
+      ...concept,
+      propositions: concept.propositions.map((p, index) => ({
+        ...p,
+        pieces: [
+          {
+            kind: "target",
+            target: {
+              id: `duplicate-${index}`,
+              text: index < 2 ? "속력" : "거리",
+              tier: "text",
+            },
+          },
+        ],
+      })),
+    };
+    const { source } = await startAt(4, duplicate);
+    const act = vi.spyOn(source, "act");
+    await resume(source);
+    expect(screen.getAllByRole("button", { name: "칩 속력" })).toHaveLength(1);
+    const chips = screen.getByRole("complementary", { name: "칩 고르기" });
+    expect(chips.textContent).not.toMatch(/2개|남은 수량|수량/);
+    expect(chips.querySelector("[data-count], [data-remaining]")).toBeNull();
+    place(1, "속력");
+    expect(screen.getByRole("button", { name: "칩 속력" })).toBeEnabled();
+    place(2, "속력");
+    expect(
+      screen.queryByRole("button", { name: "칩 속력" }),
+    ).not.toBeInTheDocument();
+    place(3, "거리");
+    fireEvent.click(screen.getByRole("button", { name: /단계 마치기/ }));
+    await screen.findByRole("button", { name: "자가 평가하기" });
+    const action = act.mock.calls.find(
+      ([action]) => action.action === "step",
+    )![0];
+    expect(action.action).toBe("step");
+    if (action.action === "step")
+      expect(new Set(action.placements.map((p) => p.chipId)).size).toBe(3);
+  });
+  it("칩 글을 타이핑하거나 눌러 넣어도 같은 풀이·틀림 기록을 사용한다", async () => {
+    const { source } = await startAt(4);
+    const act = vi.spyOn(source, "act");
+    await resume(source);
+    act.mockClear();
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    const type = (text: string) => {
+      fireEvent.change(input, { target: { value: text } });
+      fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    };
+    type("목록에 없는 글");
+    expect(screen.getByRole("status")).toHaveTextContent(
+      "지금 고를 수 있는 칩의 글",
+    );
+    expect(act).not.toHaveBeenCalled();
+    type("외심");
+    await waitFor(() => expect(input).toBeEnabled());
+    expect(act).toHaveBeenCalledWith(
+      expect.objectContaining({ action: "miss" }),
+    );
+    fireEvent.keyDown(input, { key: "Escape" });
+    expect(input).toHaveValue("");
+    expect(
+      screen.getByRole("button", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
+    ).not.toHaveTextContent("외심");
+    type(" 수직이등분선 ");
+    expect(
+      screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
+    ).toHaveTextContent("수직이등분선");
+    place(2, "외심");
+    type("반지름");
+    fireEvent.click(screen.getByRole("button", { name: /단계 마치기/ }));
+    fireEvent.click(
+      await screen.findByRole("button", { name: "자가 평가하기" }),
+    );
+    expect(
+      await screen.findByRole("button", { name: /다시.*일 뒤/ }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole("button", { name: /일 뒤/ })).toHaveLength(1);
+  });
+  it("수식 칩은 달러 표시 없이 타이핑해도 고를 수 있다", async () => {
+    const sample = structuredClone(concept);
+    const target = sample.propositions[0]!.pieces[1];
+    if (target?.kind === "target") target.target.text = "$n+1$";
+    const { source } = await startAt(4, sample);
+    await resume(source);
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    fireEvent.change(input, { target: { value: "n + 1" } });
+    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    expect(
+      screen.queryByRole("button", { name: "빈칸 1" }),
+    ).not.toBeInTheDocument();
+    expect(input).toHaveValue("");
+  });
   it("마지막 평가는 1~4 키로 기존 rate 요청을 보낸다", async () => {
     const { source } = await startAt(4);
     const act = vi.spyOn(source, "act");
@@ -370,9 +540,9 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       "mouse",
     );
     expect(screen.getByRole("status")).toHaveTextContent("맞지 않는 칩");
-    expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveTextContent(
-      "외심",
-    );
+    expect(
+      screen.getByRole("button", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
+    ).toHaveTextContent("외심");
     await waitFor(() =>
       expect(act).toHaveBeenCalledWith(
         expect.objectContaining({ action: "miss" }),
@@ -425,7 +595,23 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       ).toBeEnabled(),
     );
     place(1, "수직이등분선");
-    expect(screen.getByText("다시 채움 · 틀림 기록 유지")).toBeInTheDocument();
+    const filled = screen.getByRole("group", {
+      name: "빈칸 1 · 틀린 기록이 있는 빈칸",
+    });
+    expect(filled).toHaveTextContent("수직이등분선");
+    expect(filled.textContent).toBe("수직이등분선");
+    expect(filled.querySelector('[aria-hidden="true"]')).toBeEmptyDOMElement();
+    expect(
+      screen.queryByText("다시 채움 · 틀림 기록 유지"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "틀린 기록이 있는 빈칸 1개 · 다시 채워도 기록은 남습니다",
+      ),
+    ).toBeInTheDocument();
+    expect(
+      filled.closest("article")?.querySelectorAll("[data-fading-missed-note]"),
+    ).toHaveLength(1);
     place(2, "외심");
     place(3, "반지름");
     fireEvent.click(screen.getByRole("button", { name: /단계 마치기/ }));
@@ -447,6 +633,57 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       await screen.findByRole("button", { name: /다시.*일 뒤/ }),
     ).toBeInTheDocument();
     expect(screen.getAllByRole("button", { name: /일 뒤/ })).toHaveLength(1);
+  });
+  it("한 카드의 틀린 기록 수를 한 번만 쓰고 다른 카드에는 설명을 넣지 않는다", async () => {
+    const sample = structuredClone(concept);
+    sample.propositions[0]!.pieces.push({
+      kind: "target",
+      target: { id: "p0#2", text: "중점", tier: "text" },
+    });
+    const { source } = await startAt(4, sample);
+    await resume(source);
+    expect(document.querySelectorAll("[data-fading-missed-note]")).toHaveLength(
+      0,
+    );
+    place(1, "외심");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "칩 수직이등분선" }),
+      ).toBeEnabled(),
+    );
+    place(1, "수직이등분선");
+    expect(
+      screen.getByText(
+        "틀린 기록이 있는 빈칸 1개 · 다시 채워도 기록은 남습니다",
+      ),
+    ).toBeInTheDocument();
+    place(2, "반지름");
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "칩 중점" })).toBeEnabled(),
+    );
+    place(2, "중점");
+    const note = screen.getByText(
+      "틀린 기록이 있는 빈칸 2개 · 다시 채워도 기록은 남습니다",
+    );
+    expect(document.querySelectorAll("[data-fading-missed-note]")).toHaveLength(
+      1,
+    );
+    const card = note.closest("article")!;
+    expect(
+      card.querySelectorAll(
+        '[role="group"][aria-label*="틀린 기록이 있는 빈칸"]',
+      ),
+    ).toHaveLength(2);
+    expect(
+      card.querySelectorAll("[data-fading-slot] [aria-hidden=true]"),
+    ).toHaveLength(2);
+    expect(card.querySelector("[data-fading-slot]")?.textContent).toBe(
+      "수직이등분선",
+    );
+    for (const other of document.querySelectorAll("article")) {
+      if (other !== card)
+        expect(other.querySelector("[data-fading-missed-note]")).toBeNull();
+    }
   });
   it("중간에 나갔다 돌아오면 같은 단계와 칩 차례다", async () => {
     const { source } = await startAt(3);
@@ -649,8 +886,8 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       screen.queryByRole("button", { name: "빈칸 1" }),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "칩 수직이등분선" }),
-    ).toBeDisabled();
+      screen.queryByRole("button", { name: "칩 수직이등분선" }),
+    ).not.toBeInTheDocument();
   });
   it("추가 칩도 같은 모습으로 그리며 4단계에 넣으면 즉시 miss를 보낸다", async () => {
     const source = createLocalFadingSource({

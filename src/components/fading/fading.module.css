@@ -581,6 +581,8 @@
   display: block;
   font-size: 12px;
   line-height: 1.6;
+  color: var(--f-bad);
+  margin-top: 12px !important;
 }
 .tray {
   position: sticky;
@@ -1949,7 +1951,7 @@
   }
 }
 .proposition[data-missed="true"] {
-  border-top: 4px solid #ba1a1a;
+  box-shadow: inset 0 0 0 1px var(--f-bad);
 }
 .wrongBanner {
   display: flex;
@@ -2753,16 +2755,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.stableSlot .missedNote,
-.stableSlot > .small {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  font-size: 12px;
+.root .stableSlot.missed {
+  background: var(--f-bad-bg);
+  color: var(--f-bad);
 }
-.root .stableSlot .missedNote {
-  width: 100%;
-  font-size: 12px;
+.root .stableSlot > .missedMarker {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
 }
 .blankCaption {
   white-space: nowrap;
@@ -2779,6 +2784,24 @@
   font-size: 15px;
   font-weight: 600;
   white-space: nowrap;
+}
+.chipInput {
+  display: grid;
+  gap: 6px;
+  margin-top: 16px;
+}
+.chipInput > div {
+  display: flex;
+  gap: 8px;
+}
+.chipInput input {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  font-size: 16px;
+}
+.chipInput button {
+  flex-shrink: 0;
 }
 .blank[data-pending="true"] {
   animation: fading-blank-pulse 1.6s ease-in-out infinite;

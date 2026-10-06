@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { FadingAction, FadingState } from "@/contracts/fadingApi.contract";
 import type { FadingPlacement } from "@/contracts/fading.contract";
 import { FadingMath as ExplorerMath } from "./FadingMath";
@@ -34,6 +34,8 @@ import {
   useFadingKeyboard,
   useFadingBlankSize,
   useFadingPendingScroll,
+  fadingChipChoices,
+  fadingChipInputText,
 } from "./FadingChipInput";
 import s from "./fading.module.css";
 
@@ -180,6 +182,8 @@ export function FadingSessionScreen({
     FadingPlacement[]
   >([]);
   const [selected, setSelected] = useState<string | null>(null);
+  const [typed, setTyped] = useState("");
+  const chipInputId = useId();
   const [activeBlank, setActiveBlank] = useState<string | null>(null);
   const [feedback, setFeedback] = useState("");
   const [wrong, setWrong] = useState<{ targetId: string; text: string } | null>(
@@ -204,8 +208,16 @@ export function FadingSessionScreen({
     traps: content.traps,
   });
   const blanks = erasedTargets(concept, local.step);
+  const missedCounts = concept.propositions.map(
+    (proposition) =>
+      proposition.pieces.filter(
+        (piece) =>
+          piece.kind === "target" && local.missed.includes(piece.target.id),
+      ).length,
+  );
   const erased = new Set(blanks.map((t) => t.id));
   const used = new Set(Object.values(local.filled));
+  const choices = fadingChipChoices(tray, used);
   const pendingBlank =
     activeBlank ??
     wrong?.targetId ??
@@ -329,6 +341,25 @@ export function FadingSessionScreen({
     if (selected) place(targetId, selected);
     else setActiveBlank((current) => (current === targetId ? null : targetId));
   }
+  function clearSelection() {
+    setActiveBlank(null);
+    setSelected(null);
+    setWrong(null);
+    setFeedback("");
+  }
+  function submitTypedChip() {
+    if (disabled || stageReady || !pendingBlank) return;
+    const text = fadingChipInputText(typed);
+    const matching = choices.filter(
+      (choice) => choice.chipId && fadingChipInputText(choice.text) === text,
+    );
+    if (!text || matching.length !== 1) {
+      setFeedback("지금 고를 수 있는 칩의 글을 입력해 주세요.");
+      return;
+    }
+    place(pendingBlank, matching[0]!.chipId!);
+    setTyped("");
+  }
   function nextStep() {
     setCompare(null);
     setCanonical(false);
@@ -348,9 +379,9 @@ export function FadingSessionScreen({
         ?.click();
       return;
     }
-    const chip = tray[index];
+    const chip = choices[index];
     const target = pendingBlank;
-    if (chip && target) place(target, chip.id);
+    if (chip?.chipId && target) place(target, chip.chipId);
   }
   useFadingKeyboard({
     disabled: disabled || exit,
@@ -373,10 +404,7 @@ export function FadingSessionScreen({
       setActiveBlank(remaining[index]!.id);
       setSelected(null);
     },
-    onClear: () => {
-      setActiveBlank(null);
-      setSelected(null);
-    },
+    onClear: clearSelection,
   });
   const dragging = useFadingChipDrag({
     disabled:
@@ -747,11 +775,7 @@ export function FadingSessionScreen({
                 <article
                   className={s.proposition}
                   key={p.id}
-                  data-missed={p.pieces.some(
-                    (piece) =>
-                      piece.kind === "target" &&
-                      local.missed.includes(piece.target.id),
-                  )}
+                  data-missed={missedCounts[i]! > 0}
                 >
                   <h2 className={s.propositionHeading}>
                     <span className={s.propositionLabel}>
@@ -842,28 +866,36 @@ export function FadingSessionScreen({
                       const blankIndex =
                         blanks.findIndex((t) => t.id === target.id) + 1;
                       const filled = local.filled[target.id];
+                      const missed = local.missed.includes(target.id);
                       if (filled)
                         return (
                           <span
                             key={target.id}
-                            className={`${s.filled} ${s.stableSlot} ${local.missed.includes(target.id) ? s.missed : ""}`}
+                            className={`${s.filled} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                            role={missed ? "group" : undefined}
+                            aria-label={
+                              missed
+                                ? `빈칸 ${blankIndex} · 틀린 기록이 있는 빈칸`
+                                : undefined
+                            }
                             data-fading-slot={target.id}
                           >
                             <ExplorerMath
                               text={tray.find((c) => c.id === filled)!.text}
                             />
-                            {local.missed.includes(target.id) && (
-                              <span className={s.missedNote}>
-                                다시 채움 · 틀림 기록 유지
-                              </span>
+                            {missed && (
+                              <span
+                                className={s.missedMarker}
+                                aria-hidden="true"
+                              />
                             )}
                           </span>
                         );
                       return (
                         <button
                           key={target.id}
-                          className={`${s.blank} ${s.stableSlot} ${local.missed.includes(target.id) ? s.missed : ""}`}
-                          aria-label={`빈칸 ${blankIndex}`}
+                          className={`${s.blank} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                          aria-label={`빈칸 ${blankIndex}${missed ? " · 틀린 기록이 있는 빈칸" : ""}`}
                           aria-pressed={pendingBlank === target.id}
                           data-pending={pendingBlank === target.id}
                           data-fading-slot={target.id}
@@ -875,7 +907,6 @@ export function FadingSessionScreen({
                         >
                           {wrong?.targetId === target.id ? (
                             <span className={s.wrongPlaced}>
-                              <span aria-hidden="true">×</span>
                               <ExplorerMath text={wrong.text} />
                             </span>
                           ) : (
@@ -884,13 +915,22 @@ export function FadingSessionScreen({
                               <span className={s.blankCaption}>빈칸 터치</span>
                             </>
                           )}
-                          {local.missed.includes(target.id) && (
-                            <span className={s.small}>틀림</span>
+                          {missed && (
+                            <span
+                              className={s.missedMarker}
+                              aria-hidden="true"
+                            />
                           )}
                         </button>
                       );
                     })}
                   </div>
+                  {missedCounts[i]! > 0 && (
+                    <p className={s.missedNote} data-fading-missed-note>
+                      틀린 기록이 있는 빈칸 {missedCounts[i]}개 · 다시 채워도
+                      기록은 남습니다
+                    </p>
+                  )}
                   {wrong &&
                     p.pieces.some(
                       (piece) =>
@@ -930,43 +970,90 @@ export function FadingSessionScreen({
                 <p className={s.muted} style={{ marginTop: 10 }}>
                   칩과 빈칸을 눌러 고르거나 칩을 빈칸으로 끌어 넣으세요.
                 </p>
-                <div className={s.chips}>
-                  {tray.map((chip, index) => (
-                    <button
-                      key={chip.id}
-                      className={s.chip}
-                      data-used={used.has(chip.id)}
-                      data-fading-chip="true"
-                      data-dragging={dragging.drag?.chipId === chip.id}
-                      disabled={disabled || !!stageReady || used.has(chip.id)}
-                      aria-pressed={selected === chip.id}
-                      aria-label={`칩 ${chip.text}`}
-                      {...dragging.handlers(
-                        chip.id,
-                        chip.text,
-                        used.has(chip.id),
-                      )}
-                      onClick={() => {
-                        if (!dragging.consumeClick()) chooseChip(chip.id);
+                <form
+                  className={s.chipInput}
+                  aria-label="칩 글로 입력"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    submitTypedChip();
+                  }}
+                >
+                  <label htmlFor={chipInputId} className={s.small}>
+                    칩 글 입력
+                  </label>
+                  <div>
+                    <input
+                      id={chipInputId}
+                      className={s.input}
+                      value={typed}
+                      disabled={disabled || !!stageReady}
+                      autoComplete="off"
+                      placeholder="칩 글을 입력하고 Enter"
+                      onChange={(event) => setTyped(event.target.value)}
+                      onKeyDown={(event) => {
+                        if (event.nativeEvent.isComposing) {
+                          if (event.key === "Enter") event.preventDefault();
+                          return;
+                        }
+                        if (
+                          event.key === "Escape" ||
+                          (event.key === "Backspace" && !typed)
+                        ) {
+                          event.preventDefault();
+                          setTyped("");
+                          clearSelection();
+                        }
                       }}
+                    />
+                    <button
+                      type="submit"
+                      className={s.secondary}
+                      disabled={disabled || !!stageReady || !typed.trim()}
                     >
-                      <span className={s.chipDot} />
-                      <span className={s.chipNumber} aria-hidden="true">
-                        {index + 1}
-                      </span>
-                      <span
-                        className={s.chipText}
-                        data-fading-chip-text={chip.id}
-                      >
-                        <ExplorerMath text={chip.text} />
-                      </span>
+                      넣기
                     </button>
-                  ))}
+                  </div>
+                </form>
+                <div className={s.chips}>
+                  {choices.map((choice, index) =>
+                    choice.chipId ? (
+                      <button
+                        key={choice.id}
+                        className={s.chip}
+                        data-fading-chip="true"
+                        data-dragging={dragging.drag?.chipId === choice.chipId}
+                        disabled={disabled || !!stageReady}
+                        aria-pressed={selected === choice.chipId}
+                        aria-label={`칩 ${choice.text}`}
+                        {...dragging.handlers(
+                          choice.chipId,
+                          choice.text,
+                          false,
+                        )}
+                        onClick={() => {
+                          if (!dragging.consumeClick())
+                            chooseChip(choice.chipId!);
+                        }}
+                      >
+                        <span className={s.chipDot} />
+                        <span className={s.chipNumber} aria-hidden="true">
+                          {index + 1}
+                        </span>
+                        <span
+                          className={s.chipText}
+                          data-fading-chip-text={choice.id}
+                        >
+                          <ExplorerMath text={choice.text} />
+                        </span>
+                      </button>
+                    ) : null,
+                  )}
                 </div>
                 <p className={`${s.small} ${s.keyboardHint}`}>
                   깜빡이는 빈칸에 숫자키로 입력 · ← → 빈칸 이동 · Enter 다음
                   단계
-                  {tray.length > 9 && " · 0은 10번, Shift+숫자는 11번부터"}
+                  {choices.length > 9 && " · 0은 10번, Shift+숫자는 11번부터"}
+                  {" · Backspace·Esc 선택 취소"}
                 </p>
                 <p role="status" aria-live="polite" className={s.feedback}>
                   {feedback ||

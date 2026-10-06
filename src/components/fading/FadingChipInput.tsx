@@ -62,7 +62,8 @@ export function useFadingKeyboard({
     } else if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
       event.preventDefault();
       onMove(event.key === "ArrowLeft" ? -1 : 1);
-    } else if (event.key === "Escape") {
+    } else if (event.key === "Escape" || event.key === "Backspace") {
+      event.preventDefault();
       onClear();
     }
   });
@@ -80,6 +81,32 @@ export function useFadingKeyboard({
  */
 export const FADING_BLANK_WIDTH_MODE: "answer" | "uniform" = "uniform";
 type SlotSize = { width: number; height: number };
+export function fadingChipChoices(
+  tray: readonly { id: string; text: string }[],
+  used: ReadonlySet<string>,
+) {
+  const choices = new Map<
+    string,
+    { id: string; text: string; chipId: string | null }
+  >();
+  for (const chip of tray) {
+    const choice = choices.get(chip.text) ?? {
+      id: chip.id,
+      text: chip.text,
+      chipId: null,
+    };
+    if (choice.chipId === null && !used.has(chip.id)) choice.chipId = chip.id;
+    choices.set(chip.text, choice);
+  }
+  return [...choices.values()];
+}
+/** Input is a shortcut for choosing a visible chip, not a second grading rule. */
+export function fadingChipInputText(text: string): string {
+  return text
+    .replace(/\$/g, "")
+    .replace(/\\\(|\\\)|\\\[|\\\]/g, "")
+    .replace(/\s+/g, "");
+}
 export function fadingBlankSize(
   answer: SlotSize,
   sizes: Iterable<SlotSize>,
@@ -105,10 +132,17 @@ export function useFadingBlankSize({
   tray: readonly { id: string; text: string }[];
   step: number;
 }) {
+  const measurements = useRef<{ key: string; sizes: Map<string, SlotSize> }>({
+    key: "",
+    sizes: new Map(),
+  });
   const fit = useEffectEvent(() => {
     const node = root.current;
     if (!node) return;
-    const sizes = new Map<string, SlotSize>();
+    const key = JSON.stringify([step, tray]);
+    if (measurements.current.key !== key)
+      measurements.current = { key, sizes: new Map() };
+    const sizes = measurements.current.sizes;
     for (const text of node.querySelectorAll<HTMLElement>(
       "[data-fading-chip-text]",
     )) {
