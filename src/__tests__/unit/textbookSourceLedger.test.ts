@@ -510,14 +510,15 @@ describe("the 360-section source ledger", () => {
         printedPage: { 미검수: 360 },
       },
       corrections: {
-        total: 45,
+        total: 64,
         byKind: {
           "sentence-answer-copula": 32,
           particle: 1,
           "missing-condition": 8,
           "ambiguous-wording": 4,
+          "bank-definition": 19,
         },
-        sections: 32,
+        sections: 37,
       },
       aiReadings: {
         examples: 46,
@@ -546,7 +547,7 @@ describe("the 360-section source ledger", () => {
     expect(ledger.restStories.flatMap((story) => story.faults)).toEqual([]);
     expect(
       ledger.sections.reduce((n, section) => n + section.corrections.length, 0),
-    ).toBe(45);
+    ).toBe(64);
     // The G0b section: its three sentence answers are corrected and no open defect remains.
     expect(
       ledger.sections.find(

@@ -16,7 +16,8 @@ export type StaticCorrection = {
     | "sentence-answer-copula"
     | "particle"
     | "missing-condition"
-    | "ambiguous-wording";
+    | "ambiguous-wording"
+    | "bank-definition";
   old: string;
   new: string;
   reason: string;
