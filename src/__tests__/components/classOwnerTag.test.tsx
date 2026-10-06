@@ -411,7 +411,11 @@ describe.each([
 
       const select = screen.getByLabelText("반") as HTMLSelectElement;
       await waitFor(() => expect(select).toHaveValue(CLASS_A_ID));
-      const texts = Array.from(select.options).map((o) => o.text);
+      // 맨 위의 고를 수 없는 안내 항목(«반을 선택해 주세요» — 2026-10-04)은 반이 아니다. 반 항목만 본다.
+      const [placeholder, ...classOptions] = Array.from(select.options);
+      expect(placeholder).toHaveValue("");
+      expect(placeholder).toBeDisabled();
+      const texts = classOptions.map((o) => o.text);
       if (!admin) {
         expect(texts).toEqual([MOCK_CLASS_A.name, MOCK_CLASS_B.name]);
         expect(select).not.toHaveAttribute("title");
@@ -430,7 +434,7 @@ describe.each([
         "title",
         `${MOCK_CLASS_B.name} · ${LONGEST_OWNER}`,
       );
-      expect(select.options[1]).toHaveAttribute(
+      expect(classOptions[1]).toHaveAttribute(
         "title",
         `${MOCK_CLASS_B.name} · ${LONGEST_OWNER}`,
       );

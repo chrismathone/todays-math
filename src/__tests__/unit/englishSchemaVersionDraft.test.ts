@@ -103,6 +103,22 @@ describe("형식 판 SQL 초안 — 더하기만 한다", () => {
   });
 });
 
+/**
+ * 이 초안의 칸이 **영어 세트 표에** 들어갔는가 — 한 문장 안에 표 이름과 칸 이름이 같이 있을 때만 그렇다.
+ * 파일 전체에서 칸 이름만 찾으면 다른 표의 같은 이름 칸에 운다(교재 `textbook_edition.schema_version` —
+ * 2026-10-03 교재 마이그레이션이 들어온 뒤 이 문이 그렇게 빨갰다).
+ */
+const addsDraftColumn = (sql: string, column: string) =>
+  sql
+    .split(";")
+    .some(
+      (statement) =>
+        statement.includes("english_question_set") &&
+        new RegExp(`(?<![A-Za-z0-9_])${column}(?![A-Za-z0-9_])`).test(
+          statement,
+        ),
+    );
+
 describe("🔴 형식 판 SQL 초안 — 미적용인 동안의 문", () => {
   it("초안은 prisma/migrations 밖에 있다 — prisma migrate 가 모른다", () => {
     expect(DRAFT_PATH.startsWith("prisma/drafts/")).toBe(true);
@@ -114,8 +130,39 @@ describe("🔴 형식 판 SQL 초안 — 미적용인 동안의 문", () => {
       if (name === "migration_lock.toml") continue;
       const sql = read(`prisma/migrations/${name}/migration.sql`);
       for (const column of NEW_COLUMNS)
-        expect(sql.includes(`"${column}"`), `${name} 에 ${column}`).toBe(false);
+        expect(addsDraftColumn(sql, column), `${name} 에 ${column}`).toBe(
+          false,
+        );
     }
+  });
+
+  it("그 문은 초안이 마이그레이션에 들어오면 울고, 다른 표의 같은 이름 칸에는 울지 않는다", () => {
+    // 양성 대조 — 초안 그대로가 prisma/migrations 에 놓였다면 칸마다 잡힌다
+    for (const column of NEW_COLUMNS)
+      expect(addsDraftColumn(draft, column), column).toBe(true);
+    // 따옴표 없이 적어도 잡힌다
+    expect(
+      addsDraftColumn(
+        `ALTER TABLE english_question_set ADD COLUMN schema_version INTEGER NOT NULL DEFAULT 1;`,
+        "schema_version",
+      ),
+    ).toBe(true);
+    // 음성 대조 — 다른 표의 같은 이름 칸 · 같은 파일의 다른 문장에 있는 영어 세트 표
+    const otherTable = `CREATE TABLE "textbook_edition" ("schema_version" VARCHAR(40) NOT NULL);`;
+    expect(addsDraftColumn(otherTable, "schema_version")).toBe(false);
+    expect(
+      addsDraftColumn(
+        `${otherTable}\nALTER TABLE "english_question_set" ADD COLUMN "note" TEXT;`,
+        "schema_version",
+      ),
+    ).toBe(false);
+    // 칸 이름이 더 긴 이름의 일부일 때는 아니다
+    expect(
+      addsDraftColumn(
+        `ALTER TABLE "english_question_set" ADD COLUMN "schema_version_note" TEXT;`,
+        "schema_version",
+      ),
+    ).toBe(false);
   });
 
   it("schema.prisma 의 영어 세트 모델에 새 칸이 없다 — 칸 없는 DB 에서 읽기가 500 이 되지 않는다", () => {

@@ -42,7 +42,9 @@ describe("English menu compatibility", () => {
     expect(
       workspaceMenuSchema.options.filter((menu) => menu !== "english"),
     ).toEqual(ALL_WORKSPACE_MENUS);
-    expect(workspaceMenusOf("math")).toHaveLength(9);
+    // Ten since the textbook menu («교재 제작») joined the math product on 2026-10-03.
+    expect(workspaceMenusOf("math")).toHaveLength(10);
+    expect(workspaceMenusOf("math")).toContain("textbook");
     expect(workspaceMenusOf("english")).toEqual([
       ...englishMenus,
       "english-listening",
@@ -153,13 +155,22 @@ describe("English route permissions", () => {
     ).toBe(true);
     for (const endpoint of ["bank", "references"]) {
       const path = `/api/english/listening/${endpoint}`;
-      for (const menus of [
-        ["english-bank"],
-        ["english-listening"],
-      ] as WorkspaceMenu[][])
-        expect(accountRouteAllowed({ ...account, menus }, "GET", path)).toBe(
-          false,
-        );
+      // Since 2026-10-04 (2de110c7e) bank material work is authorized by the bank menu alone;
+      // the listening menu is for assignments and does not open the bank by itself.
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["english-bank"] },
+          "GET",
+          path,
+        ),
+      ).toBe(true);
+      expect(
+        accountRouteAllowed(
+          { ...account, menus: ["english-listening"] },
+          "GET",
+          path,
+        ),
+      ).toBe(false);
       expect(
         accountRouteAllowed(
           { ...account, menus: ["english-bank", "english-listening"] },

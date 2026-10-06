@@ -175,24 +175,36 @@ describe("CourseProgressBoard adapter", () => {
       currentSectionId: current.id,
       recommendation: { ...summary.recommendation!, sectionId: next.id },
     };
+    // Since 2026-09-26 (705544df6) this adapter draws the journey (StudentJourney), not the
+    // square board: the unit is read as the name of today's tile, no longer as a heading.
+    const today = (title: string) =>
+      screen.getByLabelText(`1일차, ${title}, 오늘의 학습`);
     const { rerender } = render(<CourseProgressBoard summary={nextSummary} />);
-    expect(screen.getByRole("heading", { name: next.title })).toBeVisible();
+    expect(today(next.title)).toBeVisible();
     rerender(
       <CourseProgressBoard
         summary={nextSummary}
         session={{ ...session, sectionId: current.id }}
       />,
     );
-    expect(screen.getByRole("heading", { name: current.title })).toBeVisible();
+    expect(today(current.title)).toBeVisible();
   });
 
-  it("keeps explanations unavailable until the wrong-answer round ends", () => {
+  it("offers neither explanations nor replays on the journey, before or after the wrong-answer round", () => {
+    // The square board's per-problem «풀이 보기» · «다시 풀기» tiles left this adapter with the
+    // journey; replay now starts from the explorer screens. They must not come back here unnoticed.
+    const none = () => {
+      expect(
+        screen.queryByRole("button", { name: /풀이 보기/ }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /다시 풀기/ }),
+      ).not.toBeInTheDocument();
+    };
     const { rerender } = render(
       <CourseProgressBoard summary={summary} session={session} />,
     );
-    expect(
-      screen.queryByRole("button", { name: /풀이 보기/ }),
-    ).not.toBeInTheDocument();
+    none();
     rerender(
       <CourseProgressBoard
         summary={summary}
@@ -202,9 +214,7 @@ describe("CourseProgressBoard adapter", () => {
         }}
       />,
     );
-    expect(screen.getAllByRole("button", { name: /다시 풀기/ })).toHaveLength(
-      5,
-    );
+    none();
   });
 
   it("does not reveal explanations for an unfinished first round", () => {

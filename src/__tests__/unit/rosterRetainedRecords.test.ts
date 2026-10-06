@@ -23,7 +23,11 @@ import { DELETE as deleteClass } from "@/app/api/classes/[id]/route";
 const id = "30000000-0000-4000-8000-000000000001";
 beforeEach(() => {
   vi.resetAllMocks();
-  mocks.owned.mockResolvedValue({ ok: true });
+  // The real helpers return the owned row; both routes read its eywa binding before deleting.
+  mocks.owned.mockResolvedValue({
+    ok: true,
+    data: { id, eywaBindingId: null },
+  });
 });
 for (const [name, handler] of [
   ["students", deleteStudent],
@@ -40,6 +44,21 @@ for (const [name, handler] of [
     expect(response.status).toBe(409);
     expect((await response.json()).error.code).toBe("RECORDS_RETAINED");
     expect(mocks.remove).toHaveBeenCalledExactlyOnceWith({ where: { id } });
+  });
+  it(`${name}: an eywa-managed row returns 409 and is never deleted here`, async () => {
+    mocks.owned.mockResolvedValue({
+      ok: true,
+      data: { id, eywaBindingId: "40000000-0000-4000-8000-000000000001" },
+    });
+    const response = await handler(
+      new NextRequest(`http://localhost/api/${name}/${id}`, {
+        method: "DELETE",
+      }),
+      { params: Promise.resolve({ id }) },
+    );
+    expect(response.status).toBe(409);
+    expect((await response.json()).error.code).toBe("RECORDS_RETAINED");
+    expect(mocks.remove).not.toHaveBeenCalled();
   });
   it(`${name}: unexpected database errors still reach error logging`, async () => {
     const error = new Error("database unavailable");

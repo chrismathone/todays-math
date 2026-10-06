@@ -8,8 +8,10 @@
  *   vi.mock("@/lib/auth", async () => (await import("../helpers/srsTeacherWorld")).authModule);
  *   vi.mock("@/lib/db", async () => (await import("../helpers/srsTeacherWorld")).dbModule);
  */
-export const BRANCH_1 = "branch-1";
-export const BRANCH_2 = "branch-2";
+// Real ids: the roster response now reports the viewer's branch (`management.branchId`),
+// and the contract accepts only a UUID there.
+export const BRANCH_1 = "b1000000-0000-4000-8000-000000000001";
+export const BRANCH_2 = "b2000000-0000-4000-8000-000000000002";
 
 export const ids = {
   owner: "d56e582b-a5af-4763-8b0a-801ecff4b5a5",
