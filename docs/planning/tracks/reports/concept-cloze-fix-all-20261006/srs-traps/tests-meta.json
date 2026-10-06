@@ -1,0 +1,18 @@
+{
+  "command": [
+    "node",
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/__tests__/unit/fadingTraps.test.ts",
+    "src/__tests__/unit/fadingGroups.test.ts",
+    "src/__tests__/unit/fadingConcepts.test.ts",
+    "src/__tests__/unit/fadingSource.test.ts",
+    "src/__tests__/components/fadingApiSource.test.ts",
+    "src/__tests__/api/fadingRoutes.test.ts"
+  ],
+  "started": "2026-10-06T10:26:54.473Z",
+  "finished": "2026-10-06T10:27:40.986Z",
+  "exitCode": 0,
+  "signal": null,
+  "error": null
+}
