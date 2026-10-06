@@ -10,6 +10,7 @@ import {
   fadingRatingSchema,
   storedFadingDaySchema,
   storedFadingReceiptSchema,
+  storedFadingUnjudgedSchema,
 } from "@/contracts/fading.contract";
 import { CONCEPT_KINDS } from "@/lib/math-explorers/conceptKinds";
 
@@ -138,13 +139,26 @@ const sessionViewSchema = z.strictObject({
   seed: z.number().int(),
   phase: z.enum(["steps", "rating"]),
   missedAtFour: z.array(z.string()),
-  /** 지금 고를 수 있는 평가와, 고르면 잡히는 다음 복습까지의 날 수. 평가 차례가 아니면 비어 있다. */
+  /**
+   * 지금 고를 수 있는 평가와, 고르면 잡히는 다음 복습까지의 날 수. 평가 차례가 아니면 비어 있다.
+   * 대조를 기다리는 글이 있으면 «다 같은 뜻»일 때의 것이다 — 화면은 `fadingRatingsAfterJudging` 으로 고른 것에 맞춰 좁힌다.
+   */
   ratings: z.array(
     z.strictObject({
       rating: fadingRatingSchema,
       intervalDays: z.number().int().min(1),
     }),
   ),
+  /*
+   * 아래는 카드 풀이(4단계 A′ 합의 2026-10-07)에서만 실리는 칸이다 — 값이 없으면 키도 없다(지금 화면이 받는 꼴 그대로).
+   * 🔴 응답의 꼴은 모르는 키를 거절한다 — 이 칸을 읽는 판(화면)이 그 칸을 싣는 판보다 먼저 나간다.
+   */
+  /** 카드 풀이 — 1단계 카드 · 4단계 자판. 없으면 칩 풀이다. 풀이를 연 때 정해져 끝까지 그대로다. */
+  mode: z.literal("cards").optional(),
+  /** 평가 차례에서 학생의 대조를 기다리는 글(빈칸 차례). 새로고침해도 같은 대조가 다시 선다. */
+  unjudged: z.array(storedFadingUnjudgedSchema).optional(),
+  /** 풀이를 연 뒤에 개념의 내용이 바뀌었다 — `read` · `step` · `miss` 는 409 다. `open` 으로 다시 연다. */
+  stale: z.literal(true).optional(),
 });
 
 /** 통계 탭에 내려가는 날 수(여덟 주). */
@@ -203,6 +217,8 @@ export const fadingStateSchema = z.strictObject({
   days: z.array(storedFadingDaySchema).max(FADING_VIEW_DAYS),
   /** 이번 요청이 평가였을 때 — 적용된(또는 이미 적용돼 있던) 평가. */
   receipt: storedFadingReceiptSchema.nullable(),
+  /** 새로 여는 풀이가 카드 풀이다(서버의 하위 문 `MATH_FADING_CARDS`). 없으면 칩 풀이 — 연습도 이 방식으로 돈다. */
+  mode: z.literal("cards").optional(),
 });
 export type FadingState = z.infer<typeof fadingStateSchema>;
 export const fadingStateResponseSchema = z.strictObject({
@@ -307,5 +323,7 @@ export const fadingConceptResponseSchema = z.strictObject({
     content: fadingContentSchema,
     /** 고르지 않은 개념이면 `null`. */
     status: fadingConceptStatusSchema.nullable(),
+    /** 새로 여는 풀이 · 연습이 카드 풀이다(상태의 `mode` 와 같은 값). 없으면 칩 풀이. */
+    mode: z.literal("cards").optional(),
   }),
 });

@@ -28,7 +28,11 @@ import {
   rateFadingSession,
   reportFadingMiss,
 } from "@/lib/fading/state";
-import { fadingStateView } from "@/lib/fading/view";
+import {
+  fadingConceptResponseSchema,
+  fadingStateResponseSchema,
+} from "@/contracts/fadingApi.contract";
+import { fadingConceptStatus, fadingStateView } from "@/lib/fading/view";
 import { updateExpedition } from "@/lib/math-explorers/expedition";
 import { updateDailyJourney } from "@/lib/math-srs/dailyJourney";
 import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
@@ -436,6 +440,78 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
           ...ARRIVING.concepts,
           [A.id]: { ...ARRIVING.concepts[A.id], step: 3 },
         },
+      }).success,
+    ).toBe(false);
+  });
+});
+
+describe("읽기 호환 — 화면이 받는 응답의 꼴", () => {
+  const view = () =>
+    fadingStateView({
+      fading: storedFadingSchema.parse(LEGACY),
+      revision: 2,
+      today: "2026-10-09",
+      concepts: new Map([[A.id, A]]),
+    });
+
+  it("지금의 응답은 글자 하나 다르지 않게 읽히고, 선택 칸이 하나도 붙지 않는다", () => {
+    const data = view();
+    const parsed = fadingStateResponseSchema.parse({ data });
+    expect(parsed.data).toStrictEqual(data);
+    expect(json(parsed.data)).toBe(json(data));
+    expect(parsed.data).not.toHaveProperty("mode");
+    expect(Object.keys(parsed.data.session!)).not.toContain("mode");
+  });
+
+  it("카드 풀이의 칸(새 풀이의 방식 · 풀이의 방식 · 대조를 기다리는 글 · 바뀐 내용)이 든 응답도 읽힌다 — 값이 어긋나면 거절한다", () => {
+    const data = view();
+    const arriving = {
+      ...data,
+      mode: "cards",
+      session: {
+        ...data.session!,
+        mode: "cards",
+        unjudged: [{ targetId: `${A.id}#3`, text: "가장 긴 변" }],
+        stale: true,
+      },
+    };
+    const parsed = fadingStateResponseSchema.parse({ data: arriving });
+    expect(json(parsed.data)).toBe(json(arriving));
+    const reject = (patch: object, session: object = {}) =>
+      expect(
+        fadingStateResponseSchema.safeParse({
+          data: {
+            ...arriving,
+            ...patch,
+            session: { ...arriving.session, ...session },
+          },
+        }).success,
+      ).toBe(false);
+    reject({ mode: "chips" });
+    reject({}, { mode: "typed" });
+    reject({}, { stale: false });
+    reject({}, { unjudged: [{ targetId: `${A.id}#3`, text: "" }] });
+    reject({}, { unjudged: [{ targetId: `${A.id}#3`, text: "x".repeat(81) }] });
+    reject({}, { judged: {} });
+    reject({ cards: true });
+  });
+
+  it("개념 하나의 응답도 방식을 실을 수 있다 — 없으면 지금의 꼴 그대로", () => {
+    const fading = storedFadingSchema.parse(LEGACY);
+    const data = {
+      content: { concept: A, traps: [], figure: null },
+      status: fadingConceptStatus(A, fading.concepts[A.id]!, "2026-10-09"),
+    };
+    expect(json(fadingConceptResponseSchema.parse({ data }).data)).toBe(
+      json(data),
+    );
+    expect(
+      fadingConceptResponseSchema.parse({ data: { ...data, mode: "cards" } })
+        .data.mode,
+    ).toBe("cards");
+    expect(
+      fadingConceptResponseSchema.safeParse({
+        data: { ...data, mode: "chips" },
       }).success,
     ).toBe(false);
   });
