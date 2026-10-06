@@ -15,6 +15,7 @@ import {
   proposeFadingGroups,
   type FadingConcept,
 } from "@/lib/fading/concepts";
+import { fadingContentKey, fadingSessionToken } from "@/lib/fading/contentKey";
 import { erasedTargets, type FadingStep } from "@/lib/fading/erasure";
 import { FADING_DAILY_CAP } from "@/lib/fading/numbers";
 import {
@@ -386,7 +387,8 @@ describe("상태 — 홈 · 통계 · 풀이가 읽는 한 꼴", () => {
     state = completeFadingReading(state, A.id, uuid(1));
     const open = view(state);
     expect(open.session).toEqual({
-      id: uuid(1),
+      // 저장 번호가 아니라 «저장 번호 + 지금 내용»의 토큰이다(`contentKey.ts`).
+      id: fadingSessionToken(uuid(1), fadingContentKey(A)),
       conceptId: A.id,
       startStep: 1,
       step: 2,

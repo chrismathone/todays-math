@@ -235,7 +235,19 @@ async function actionable() {
   for (let i = 0; i < (await actions.count()); i++) {
     const action = actions.nth(i);
     if (!(await action.isVisible())) continue;
-    await action.scrollIntoViewIfNeeded();
+    await action.evaluate((el) =>
+      el.scrollIntoView({
+        block: "center",
+        inline: "nearest",
+        behavior: "instant",
+      }),
+    );
+    await page.evaluate(
+      () =>
+        new Promise((resolve) =>
+          requestAnimationFrame(() => requestAnimationFrame(resolve)),
+        ),
+    );
     const exposed = await action.evaluate((el) => {
       const r = el.getBoundingClientRect();
       const top = document.elementFromPoint(
@@ -251,7 +263,17 @@ async function actionable() {
 
 const results = [];
 async function measure(name, capture = false) {
+  await page.waitForFunction(
+    () => !document.querySelector('[data-fading-math-ready="false"]'),
+    { timeout: 120000 },
+  );
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(
+    () =>
+      new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      ),
+  );
   const row = {
     name,
     width: page.viewportSize().width,
@@ -265,7 +287,8 @@ async function measure(name, capture = false) {
     row.overflow ||
     row.smallControls.length ||
     row.smallText.length ||
-    row.ink.failures.length
+    row.ink.failures.length ||
+    row.coveredActions.length
   ) {
     await page.evaluate(() => scrollTo(0, 0));
     await page.screenshot({

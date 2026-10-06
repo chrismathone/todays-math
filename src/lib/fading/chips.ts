@@ -15,7 +15,10 @@ export type FadingChip = { id: string; text: string };
  */
 export type FadingTrap = { text: string; why?: string };
 
-const normalized = (text: string) => text.trim().replace(/\s+/g, " ");
+/** 칩의 글 — 앞뒤 공백과 겹친 공백을 지운 것. 칩 묶음 · 맞음 판정 · 내용 지문(`contentKey.ts`)이 같은 규칙을 쓴다. */
+export const normalizeChipText = (text: string) =>
+  text.trim().replace(/\s+/g, " ");
+const normalized = normalizeChipText;
 
 /** 그 단계의 칩 묶음 — 지운 표적마다 하나 + 함정. 같은 개념 · 단계 · 씨앗이면 언제나 같은 차례다. */
 export function chipTray(

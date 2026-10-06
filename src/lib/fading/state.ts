@@ -1,5 +1,6 @@
 import {
   FADING_RECEIPTS_MAX,
+  FADING_TARGETS_MAX,
   type FadingPlacement,
   type StoredFading,
   type StoredFadingConcept,
@@ -223,7 +224,9 @@ export function reportFadingMiss(
   if (!chip) throw conflict("이 단계에 없는 칩입니다.");
   if (chipFits(concept, placement.targetId, chip))
     throw conflict("맞게 넣은 칩입니다.");
-  return session.missedAtFour.includes(placement.targetId)
+  // 이미 적혔거나, 옛 틀림으로 칸이 다 찼으면 그대로다(틀림이 하나라도 있으니 평가는 어차피 «다시»뿐이다).
+  return session.missedAtFour.includes(placement.targetId) ||
+    session.missedAtFour.length >= FADING_TARGETS_MAX
     ? state
     : {
         ...state,
@@ -288,15 +291,22 @@ export function completeFadingStep(
       ...stored,
       step: (step + 1) as FadingStep,
     });
+  const order = fadingTargets(concept).map((t) => t.id);
   const missed = new Set([...session.missedAtFour, ...result.missed]);
   return {
     ...state,
     session: {
       ...session,
       phase: "rating",
-      missedAtFour: fadingTargets(concept)
-        .map((t) => t.id)
-        .filter((id) => missed.has(id)),
+      // 지금 표적은 표적 차례로. 지금 표적에 없는 옛 id(은행의 문장이 고쳐지기 전에 적힌 틀림)도 버리지 않는다 —
+      // 버리면 고친 문장에서 다 맞히는 순간 «4단계에서 틀리면 다시뿐»이 풀린다.
+      // 묶음 구성이 그대로면 합친 수는 상한에 닿지 않는다(다섯 문장 × 핵심어 넷 — 시험이 잠근다). 자르는 것은 구성이 바뀐 예외뿐이다.
+      missedAtFour: [
+        ...order.filter((id) => missed.has(id)),
+        ...session.missedAtFour.filter((id) => !order.includes(id)),
+      ].slice(0, FADING_TARGETS_MAX),
+      // 이 4단계를 푼 내용 — 평가는 이 지문으로 적는다(그사이 문장이 고쳐져도 «고친 문장의 평가»로 적지 않는다).
+      digest: fadingConceptDigest(concept),
     },
   };
 }
@@ -313,10 +323,16 @@ const toStreak = (streak: StoredFading["streak"]): FadingStreak => ({
   lastDay: streak.lastOn ? fadingDayOfDate(streak.lastOn) : null,
 });
 
-/** 지금 고를 수 있는 평가 — 평가 차례가 아니면 없고, 4단계에서 틀렸으면 «다시»뿐이다. */
+/**
+ * 지금 고를 수 있는 평가 — 평가 차례가 아니면 없고, 4단계에서 틀렸으면 «다시»뿐이다.
+ * 대조를 기다리는 글(`unjudged`)이 남아 있어도 «다시»뿐이다 — 이 판은 그 대조를 받지 못하므로, 판정 없이 «같은 뜻»으로 읽지 않는다
+ * (그 칸을 쓰는 판에서 되돌렸을 때의 안전한 쪽).
+ */
 export function fadingRatingsFor(session: StoredFadingSession): FsrsRating[] {
   if (session.phase !== "rating") return [];
-  return session.missedAtFour.length ? ["again"] : [...FSRS_RATINGS];
+  return session.missedAtFour.length || session.unjudged?.length
+    ? ["again"]
+    : [...FSRS_RATINGS];
 }
 
 /**
@@ -362,7 +378,9 @@ export function rateFadingSession(
         difficulty: next.memory!.difficulty,
         reviewedOn: today,
         dueOn,
-        digest: fadingConceptDigest(concept),
+        // 4단계를 푼 내용의 지문 — 그 뒤에 문장이 고쳐졌으면 고친 문장의 평가로 적지 않는다(«바뀜»이 선다).
+        // 지문이 없는 풀이(이 칸 이전에 평가 차례가 된 것)는 지금 지문이다.
+        digest: session.digest ?? fadingConceptDigest(concept),
         reviews: next.reviews,
         lapses: next.lapses,
         addedOn: stored.addedOn,
