@@ -23,6 +23,7 @@ import {
   ENGLISH_DIFFICULTIES,
   ENGLISH_GENERATE_MODES,
   ENGLISH_GENERATED_TYPES,
+  ENGLISH_GENERATE_COUNT_MAX,
   ENGLISH_SOURCE_PASSAGE_MIN,
   ENGLISH_PASSAGE_MAX,
   englishDraftSchema,
@@ -109,6 +110,15 @@ function exclusiveUnderline(types: readonly GeneratedType[]): GeneratedType[] {
       ? "어휘"
       : "어법";
   return types.filter((type) => type !== drop);
+}
+
+/**
+ * 고를 수 있는 유형은 한 번에 만드는 문항 수(8)까지다 — 유형마다 한 문항 이상이라서.
+ * 유형이 13개가 된 뒤로 아홉을 고르면 «유형 수 이상으로 문항 수를 정해 주세요»에서 나갈 길이 없었다(D-158 검토 #4).
+ */
+const TYPE_LIMIT_NOTICE = `유형은 한 세트에 ${ENGLISH_GENERATE_COUNT_MAX}개까지 고를 수 있습니다`;
+function capTypes(types: readonly GeneratedType[]): GeneratedType[] {
+  return types.slice(0, ENGLISH_GENERATE_COUNT_MAX);
 }
 
 /** 유형 수가 문항 수보다 크면, 그 수를 담는 가장 작은 선택으로 올린다. 줄이지는 않는다. */
@@ -277,8 +287,8 @@ export default function EnglishMakerView({
   const panelId = (id: MakerTab) => `${uid}-panel-${id}`;
   const [tab, setTab] = useState<MakerTab>("chatgpt");
   const [conditions, setConditions] = useState<Conditions>(() => {
-    const types = exclusiveUnderline(
-      exam.types.length ? [...exam.types] : ["주제"],
+    const types = capTypes(
+      exclusiveUnderline(exam.types.length ? [...exam.types] : ["주제"]),
     );
     return {
       mode: "new",
@@ -452,6 +462,10 @@ export default function EnglishMakerView({
       onNotice("어법과 어휘는 한 세트에 넣지 않습니다", "alert");
       return;
     }
+    if (adding && conditions.types.length >= ENGLISH_GENERATE_COUNT_MAX) {
+      onNotice(TYPE_LIMIT_NOTICE, "alert");
+      return;
+    }
     setConditions((previous) => {
       const types = previous.types.includes(type)
         ? previous.types.filter((item) => item !== type)
@@ -472,7 +486,9 @@ export default function EnglishMakerView({
       onNotice("이 시험에 저장된 출제 설정이 없습니다.", "alert");
       return;
     }
-    const types = exclusiveUnderline([...exam.types]);
+    const wanted = exclusiveUnderline([...exam.types]);
+    const types = capTypes(wanted);
+    if (types.length < wanted.length) onNotice(TYPE_LIMIT_NOTICE, "alert");
     setConditions((previous) => ({
       ...previous,
       types,

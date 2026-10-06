@@ -3,7 +3,7 @@
  * 세트 저장 라우트가 **같은 규칙**을 지난다. 계약(`english.contract.ts`)은 모양만 잠그고, 여기서는 지문과
  * 문항을 같이 보는 뜻을 본다 — 보기 다섯 · 정답 번호 범위 · 근거가 지문 안 · 유형별 보기 유무 · 요청과의 일치.
  * D-158(25 §13): «언급 없음»만 보기 넷도 받고, 정답 번호는 그 문항의 보기 수 안이어야 한다. 공통 빈칸 · 단어 배열은
- * 문제용 표지(빈칸 둘 이상 · « / » 로 나눈 말)가 발문에 있어야 한다 — 빈칸 추론의 빈칸 규칙과 같은 결이다.
+ * 문제용 표지(빈칸 둘 이상 · 한 괄호 안에 « / » 로 나눈 말 셋 이상)가 발문에 있어야 한다 — 빈칸 추론의 빈칸 규칙과 같은 결이다.
  *
  * 순수 함수다(서버·클라이언트 같이). 통과 ≠ 검토 완료 — 저장은 늘 «초안».
  */
@@ -42,6 +42,13 @@ export type EnglishDraftVerdict =
   | { ok: false; issues: EnglishDraftIssue[] };
 
 export const ENGLISH_CHOICE_COUNT = 5;
+
+/**
+ * 단어 배열의 문제용 표지 — «( 말 / 말 / 말 )»: **한 괄호 안**에 빗금이 둘 이상(전각 괄호 · 전각 빗금 · 대괄호도 같은 표지).
+ * 빗금만 세면 날짜(2026/10) · and/or · 닫는 꺾쇠(`</u>`)가 표지로 읽힌다(D-158 검토 #7).
+ */
+const ARRANGE_LIST =
+  /[(（[][^()（）[\]]*[/／][^()（）[\]]*[/／][^()（）[\]]*[)）\]]/;
 
 /** 근거가 지문에 없을 때의 사유 — 고쳐 쓰기 되먹임(`feedback.ts`)이 이 줄 뒤에 자리 짚기를 붙인다 */
 export const ENGLISH_EVIDENCE_NOT_FOUND =
@@ -98,14 +105,11 @@ function questionIssues(
       question: index,
       message: "공통 빈칸 문항에는 빈칸(____)이 든 문장을 둘 이상 넣어 주세요.",
     });
-  if (
-    question.type === "단어 배열" &&
-    (question.prompt.match(/\//g) ?? []).length < 2
-  )
+  if (question.type === "단어 배열" && !ARRANGE_LIST.test(question.prompt))
     issues.push({
       question: index,
       message:
-        "단어 배열 문항에는 배열할 말을 « / »로 나눠 셋 이상 넣어 주세요.",
+        "단어 배열 문항에는 배열할 말을 «( 말 / 말 / 말 )» 꼴로 셋 이상 넣어 주세요.",
     });
   const evidence = normalizeEnglishText(question.evidence);
   if (!evidence)

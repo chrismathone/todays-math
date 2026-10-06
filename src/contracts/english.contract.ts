@@ -130,6 +130,11 @@ export const ENGLISH_PASSAGE_MAX = 24_000;
  */
 export const ENGLISH_SOURCE_PASSAGE_MIN = 20;
 export const ENGLISH_WORDS_MIN = 30;
+/**
+ * 한 번에 만드는 문항 수의 상한. 유형마다 한 문항 이상이라 **고를 수 있는 유형 수의 상한**이기도 하다 —
+ * 유형이 13개가 된 뒤로 만들기 화면이 이 수를 넘겨 고르게 두면 요청이 늘 거절된다(D-158 검토 #4).
+ */
+export const ENGLISH_GENERATE_COUNT_MAX = 8;
 
 /** Exact immutable bank revision; source text lives in the server-side usage snapshot. */
 export const englishPassageRefSchema = z.strictObject({
@@ -351,7 +356,7 @@ export const englishGenerateRequestSchema = z
     topic: z.string().trim().max(300).default(""),
     passage: z.string().trim().max(18_000).default(""),
     difficulty: englishDifficultySchema,
-    count: z.number().int().min(1).max(8),
+    count: z.number().int().min(1).max(ENGLISH_GENERATE_COUNT_MAX),
     /** 지문 길이(단어 수, 약) — original 에서는 무시 */
     words: z.number().int().min(ENGLISH_WORDS_MIN).max(400),
     types: z

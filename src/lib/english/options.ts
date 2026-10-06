@@ -24,6 +24,21 @@ export interface EnglishOptionLayout {
   lines: EnglishOptionLine[];
 }
 
+/**
+ * 끝의 빈 보기 칸을 걷는다 — 편집 화면은 칸을 늘 다섯 그리므로 비운 끝 칸은 «없는 보기»다.
+ * 🔴 가운데 빈 칸은 걷지 않는다: 걷으면 뒤 보기의 번호가 당겨져 정답이 다른 보기를 가리킨다(D-158 검토 #1).
+ */
+export function trimTrailingBlankOptions(options: readonly string[]): string[] {
+  let end = options.length;
+  while (end > 0 && !options[end - 1]!.trim()) end -= 1;
+  return options.slice(0, end);
+}
+
+/** 채운 보기 사이에 빈 칸이 있는가 */
+export function englishOptionGap(options: readonly string[]): boolean {
+  return trimTrailingBlankOptions(options).some((option) => !option.trim());
+}
+
 const markOf = (index: number) =>
   ENGLISH_CHOICE_MARKS[index] ?? `${index + 1}.`;
 
