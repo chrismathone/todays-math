@@ -1,0 +1,234 @@
+// @vitest-environment node
+/**
+ * 오늘의 영어 — 사진 자료에서 글 읽기 `POST /api/english/materials/[id]/read` (D-158 · 25 §13.8).
+ *
+ * 순서: 세션 401 → 메뉴 403 → 같은 출처 403 → 없는 자료 404 → 남의 시험 403 → 사진이 아닌 자료 400 → 모델.
+ * 읽은 글은 **저장하지 않는다** — 선생님이 고친 뒤 글 자료로 저장한다(자료 POST).
+ * 🔴 실호출 금지 — 모델 호출 배관(`runModelApi`)을 대역으로 바꾼다.
+ */
+import { NextRequest } from "next/server";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+type Viewer = {
+  id: string;
+  email: string;
+  name: string;
+  isAdmin: boolean;
+  menus?: import("@/contracts/accountAccess.contract").WorkspaceMenu[];
+};
+const sessionState = vi.hoisted(() => ({ user: null as Viewer | null }));
+const model = vi.hoisted(() => ({ run: vi.fn() }));
+
+vi.mock("server-only", () => ({}));
+vi.mock("@/lib/auth", () => ({ auth: vi.fn() }));
+vi.mock("@/lib/session", () => ({
+  getSessionUser: vi.fn(async () => sessionState.user),
+}));
+vi.mock("@/lib/db", async () => {
+  const { prismaTestDouble } = await import("@/mocks/prismaTestDouble");
+  const { composeEnglishDb } = await import("@/mocks/englishTestDouble");
+  return { db: composeEnglishDb(prismaTestDouble) };
+});
+vi.mock("@/lib/studio-ai/api", () => ({ runModelApi: model.run }));
+
+import { POST as readMaterial } from "@/app/api/english/materials/[id]/read/route";
+
+import { errorResponseSchema } from "@/contracts/common.contract";
+import { englishMaterialReadResponseSchema } from "@/contracts/english.contract";
+import { StudioApiError } from "@/lib/studio-ai/errors";
+import { USER_OTHER_ID, USER_TEACHER_ID } from "@/mocks/data";
+import {
+  englishRows,
+  seedEnglishExam,
+  seedEnglishMaterial,
+} from "@/mocks/englishTestDouble";
+
+const ORIGIN = "http://localhost";
+const TEACHER: Viewer = {
+  id: USER_TEACHER_ID,
+  email: "teacher@example.com",
+  name: "김원장",
+  isAdmin: false,
+  menus: ["english"],
+};
+const JPEG = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 1, 2, 3]);
+
+const withId = (id: string) => ({ params: Promise.resolve({ id }) });
+const request = (
+  id: string,
+  headers: Record<string, string> = { origin: ORIGIN },
+) =>
+  new NextRequest(`${ORIGIN}/api/english/materials/${id}/read`, {
+    method: "POST",
+    headers,
+  });
+const messageOf = async (res: Response) =>
+  errorResponseSchema.parse(await res.json()).error.message;
+
+let photoId: string;
+let textId: string;
+let pdfId: string;
+let othersPhotoId: string;
+
+afterEach(() => vi.unstubAllEnvs());
+
+beforeEach(() => {
+  vi.stubEnv("AUTH_URL", "");
+  vi.stubEnv("NEXTAUTH_URL", "");
+  for (const key of [
+    "GEMINI_API_KEY",
+    "OPENAI_API_KEY",
+    "ANTHROPIC_API_KEY",
+    "DEEPSEEK_API_KEY",
+    "ENGLISH_READ_VENDOR",
+  ])
+    vi.stubEnv(key, "");
+  vi.stubEnv("GEMINI_API_KEY", "test-key");
+  model.run.mockReset();
+  model.run.mockResolvedValue("Upcycling is a fun way to reuse old things.");
+  sessionState.user = TEACHER;
+  const exam = seedEnglishExam({
+    userId: USER_TEACHER_ID,
+    school: "한빛고등학교",
+    grade: "고1",
+    title: "2학기 총괄 평가",
+  });
+  const others = seedEnglishExam({
+    userId: USER_OTHER_ID,
+    school: "남의학교",
+    grade: "고1",
+    title: "남의 시험",
+  });
+  photoId = seedEnglishMaterial({
+    examId: exam.id,
+    name: "총괄평가 1쪽.jpg",
+    mimeType: "image/jpeg",
+    size: JPEG.byteLength,
+    bytes: JPEG,
+  }).id;
+  textId = seedEnglishMaterial({
+    examId: exam.id,
+    name: "Lesson 2 본문",
+    content: "Plain passage text.",
+  }).id;
+  pdfId = seedEnglishMaterial({
+    examId: exam.id,
+    name: "범위.pdf",
+    mimeType: "application/pdf",
+    size: 4,
+    bytes: new Uint8Array([37, 80, 68, 70]),
+  }).id;
+  othersPhotoId = seedEnglishMaterial({
+    examId: others.id,
+    name: "남의 사진.png",
+    mimeType: "image/png",
+    size: JPEG.byteLength,
+    bytes: JPEG,
+  }).id;
+});
+
+describe("POST /api/english/materials/[id]/read — 관문", () => {
+  it("401 — 로그인하지 않았다", async () => {
+    sessionState.user = null;
+    const res = await readMaterial(request(photoId), withId(photoId));
+    expect(res.status).toBe(401);
+    expect(model.run).not.toHaveBeenCalled();
+  });
+
+  it("403 — 자료를 다루는 메뉴(학교별 내신 대비)가 없다", async () => {
+    sessionState.user = { ...TEACHER, menus: ["english-library"] };
+    const res = await readMaterial(request(photoId), withId(photoId));
+    expect(res.status).toBe(403);
+    expect(model.run).not.toHaveBeenCalled();
+  });
+
+  it("403 — 다른 사이트에서 온 요청", async () => {
+    const res = await readMaterial(
+      request(photoId, { origin: "https://evil.example" }),
+      withId(photoId),
+    );
+    expect(res.status).toBe(403);
+    expect(model.run).not.toHaveBeenCalled();
+  });
+
+  it("404 — 없는 자료 · 403 — 남의 시험의 자료", async () => {
+    const missing = "00000000-0000-4000-8000-00000000dead";
+    expect((await readMaterial(request(missing), withId(missing))).status).toBe(
+      404,
+    );
+    expect(
+      (await readMaterial(request(othersPhotoId), withId(othersPhotoId)))
+        .status,
+    ).toBe(403);
+    expect(model.run).not.toHaveBeenCalled();
+  });
+
+  it("400 — 사진이 아닌 자료(글 자료 · PDF)는 읽지 않는다", async () => {
+    for (const id of [textId, pdfId]) {
+      const res = await readMaterial(request(id), withId(id));
+      expect(res.status).toBe(400);
+      expect(await messageOf(res)).toBe("사진 자료만 글을 읽을 수 있습니다.");
+    }
+    expect(model.run).not.toHaveBeenCalled();
+  });
+});
+
+describe("POST /api/english/materials/[id]/read — 읽기", () => {
+  it("200 — 읽은 글을 돌려주고 아무것도 저장하지 않는다", async () => {
+    const before = englishRows.materials().length;
+    const res = await readMaterial(request(photoId), withId(photoId));
+    expect(res.status).toBe(200);
+    const body = englishMaterialReadResponseSchema.parse(await res.json());
+    expect(body.data.text).toBe("Upcycling is a fun way to reuse old things.");
+    expect(englishRows.materials()).toHaveLength(before);
+    expect(model.run).toHaveBeenCalledTimes(1);
+    const input = model.run.mock.calls[0]![0] as {
+      vendor: string;
+      imageDataUrl: string;
+    };
+    expect(input.vendor).toBe("gemini");
+    expect(input.imageDataUrl.startsWith("data:image/jpeg;base64,")).toBe(true);
+    expect(res.headers.get("Cache-Control")).toBe("private, no-store");
+  });
+
+  it("503 — 사진을 보는 모델의 키가 없다", async () => {
+    vi.stubEnv("GEMINI_API_KEY", "");
+    vi.stubEnv("DEEPSEEK_API_KEY", "only-text");
+    const res = await readMaterial(request(photoId), withId(photoId));
+    expect(res.status).toBe(503);
+    expect(await messageOf(res)).toBe("AI 연결이 설정되지 않았습니다.");
+    expect(model.run).not.toHaveBeenCalled();
+  });
+
+  it("429 — 사용량 한도는 그대로 알린다", async () => {
+    model.run.mockRejectedValue(
+      new StudioApiError(
+        "AI 사용량 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.",
+        429,
+        true,
+      ),
+    );
+    const res = await readMaterial(request(photoId), withId(photoId));
+    expect(res.status).toBe(429);
+    expect(await messageOf(res)).toBe(
+      "AI 사용량 한도에 도달했습니다. 잠시 후 다시 시도해 주세요.",
+    );
+  });
+
+  it("502 — 모델이 실패했거나 글이 비어 있으면 «읽지 못했습니다»", async () => {
+    const failed =
+      "글을 읽지 못했습니다. 사진이 흐리거나 글자가 작을 수 있습니다. 다시 찍어 올리거나 지문을 직접 입력해 주세요.";
+    model.run.mockRejectedValue(
+      new StudioApiError("모델 API 요청에 실패했습니다.", 500),
+    );
+    const broken = await readMaterial(request(photoId), withId(photoId));
+    expect(broken.status).toBe(502);
+    expect(await messageOf(broken)).toBe(failed);
+
+    model.run.mockReset();
+    model.run.mockResolvedValue("   \n  ");
+    const empty = await readMaterial(request(photoId), withId(photoId));
+    expect(empty.status).toBe(502);
+    expect(await messageOf(empty)).toBe(failed);
+  });
+});

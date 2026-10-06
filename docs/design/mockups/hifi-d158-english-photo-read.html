@@ -1,0 +1,378 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>영어 사진 읽기 Hi-fi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Hi-fi — 05 §8.23 «작업실 그대로»(D-148): 새 색 · 새 글꼴 없음. 값은 제품 CSS 에서 읽었다(2026-10-06 · main 5f6b60e79).
+   · 색 — EnglishStudio.module.css `.studio` 토큰(--e-line #d4dce8 · --e-line-soft #eef1f7 · --e-accent #3159df · --e-soft #edf2ff · --e-danger #b42318 …)
+   · 창 — Workroom.module.css `.dialog`(테두리 #dce3ef · 모서리 18 · padding 30 · 그림자) · 머리 12px/18px · 닫기 44×44
+   · 단추 — `.primaryButton` #3159df · `.outlineButton` 테두리 #d2ddeb 글자 #486185 · 높이 44 · 모서리 8
+   · 고르는 단추 — EnglishTabs.module.css `.tab`(테두리 #b8c4d6 · 고른 것 #edf2ff 면 + #3159df) — «폭 맞춤 · 크게»에 그대로 쓴다
+   · 칸 — `.field`(14px 650 · 입력 테두리 #d5dfec) · `.footnote` 12px · `.formError`(#fff2ed 면 · #a33d2a)
+   Wire 2차에서 고르신 것: 가 나란히(1080px) · 저장하고 다음 사진 · 안내 문구 가(사실만) · 통째로 읽고 지운다.
+   화면은 밝은 판 하나다(제품이 그렇다). */
+:root {
+  color-scheme: light;
+  --page: #f4f6fa; --surface: #ffffff; --ink: #172b4d; --muted: #596c86; --accent: #3159df; --accent-ink: #2447b8; --soft: #edf2ff;
+  --line: #d4dce8; --line-soft: #eef1f7; --danger: #b42318; --danger-bg: #fff2ed; --danger-ink: #a33d2a;
+  --dlg-line: #dce3ef; --btn-line: #d2ddeb; --btn-ink: #486185; --tab-line: #b8c4d6; --field-line: #d5dfec; --close: #70849f; --close-line: #e2e8f2;
+  --note: #2064b3;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+}
+body { margin: 0; background: var(--page); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.board { max-width: 1240px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.eyebrow { margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+h1 { margin: 0 0 10px; font-size: 26px; font-weight: 700; letter-spacing: -.8px; line-height: 1.3; text-wrap: balance; }
+.lede { margin: 0; max-width: 76ch; color: var(--muted); font-size: 15px; }
+.lede b { color: var(--ink); }
+.ask { margin: 22px 0 6px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 18px 20px; display: grid; gap: 10px; }
+.ask h2 { margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -.5px; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 8px; color: var(--muted); }
+.ask li b { color: var(--ink); }
+h2.sec { margin: 36px 0 6px; font-size: 20px; font-weight: 700; letter-spacing: -.6px; }
+.note { margin: 0; max-width: 80ch; font-size: 13px; color: var(--muted); }
+.note b { color: var(--ink); }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.pick { height: 44px; padding: 0 14px; border: 1px solid var(--tab-line); border-radius: 8px; background: var(--surface); font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.pick:hover { background: #edf0f6; }
+.pick[aria-selected="true"] { border-color: var(--accent); background: var(--soft); color: var(--accent); }
+.thesis { padding-top: 14px; }
+.thesis h3 { margin: 0 0 4px; font-size: 17px; font-weight: 700; letter-spacing: -.4px; }
+.thesis p { margin: 0 0 12px; max-width: 80ch; color: var(--muted); }
+
+/* 제품 폭 그대로 그리고, 화면이 좁으면 통째로 줄인다 */
+.fit { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #8792a8; }
+.fit.plain { background: var(--page); }
+.fit > .stage { transform-origin: 0 0; padding: 22px; display: flex; gap: 22px; align-items: flex-start; }
+.cap { font-size: 12px; color: var(--muted); margin: 0 0 6px; font-weight: 600; }
+.fit:not(.plain) .cap { color: #fff; }
+
+/* ── 제품 부품 ─────────────────────────────── */
+.dlg { width: 1080px; flex: none; background: var(--surface); border: 1px solid var(--dlg-line); border-radius: 18px; padding: 30px; box-shadow: 0 25px 100px #10203f33; color: var(--ink); }
+.dlg.s570 { width: 570px; }
+.dh { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 25px; }
+.dh .k { display: block; font-size: 12px; font-weight: 600; color: var(--muted); }
+.dh .t { display: block; margin-top: 7px; font-size: 18px; font-weight: 750; letter-spacing: -.7px; line-height: 1.4; }
+.xbtn { display: grid; place-items: center; width: 44px; height: 44px; flex: none; color: var(--close); border: 1px solid var(--close-line); border-radius: 8px; font-size: 15px; background: var(--surface); }
+.hright { display: flex; align-items: center; gap: 8px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--btn-line); border-radius: 8px; background: var(--surface); color: var(--btn-ink); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.btn.pri { background: var(--accent); border-color: transparent; color: #fff; }
+.btn.off { opacity: .45; }
+.btn.quiet { border-color: transparent; background: transparent; color: var(--muted); font-size: 13px; padding: 0 10px; }
+.seg { display: inline-flex; align-items: center; height: 44px; padding: 0 14px; border: 1px solid var(--tab-line); border-radius: 8px; background: var(--surface); font-size: 13px; font-weight: 700; white-space: nowrap; }
+.seg.on { border-color: var(--accent); background: var(--soft); color: var(--accent); }
+.meta { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.two { display: flex; gap: 20px; align-items: stretch; }
+.pp { width: 500px; flex: none; display: flex; flex-direction: column; gap: 10px; }
+.tp { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ptools { display: flex; align-items: center; gap: 8px; }
+.ptools .sp { margin-left: auto; }
+.pview { position: relative; flex: 1; min-height: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--line-soft); }
+.pview.white { background: var(--surface); }
+.pg { position: absolute; left: 0; top: 0; width: 498px; height: 664px; background: #fdfdfb; box-shadow: 0 1px 0 #cfd6e2; padding: 26px 30px; font-size: 7.5px; line-height: 1.75; color: #3a3f4a; font-family: Georgia, "Times New Roman", serif; }
+.pg .ph { display: flex; border: 1px solid #555; margin-bottom: 10px; font-family: var(--sans); font-size: 8px; }
+.pg .ph span { padding: 3px 8px; border-right: 1px solid #555; }
+.pg .ph span:last-child { border-right: 0; flex: 1; }
+.pg .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pg .bx { border: 1px solid #555; padding: 5px 7px; margin: 3px 0 5px; text-align: justify; }
+.pg .q { font-family: var(--sans); font-size: 7.5px; margin: 0; }
+.pg .hw { color: #c8541a; font-family: var(--sans); font-style: italic; }
+.sbar { position: absolute; right: 3px; top: 6px; width: 5px; height: 280px; border-radius: 3px; background: #9aa7bd; }
+.field { display: block; margin-bottom: 16px; font-size: 14px; font-weight: 650; }
+.field .sm { float: right; font-size: 12px; font-weight: 400; color: var(--muted); }
+.lr { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.lr .sm { float: none; }
+.inp, .ta { display: block; margin-top: 8px; border: 1px solid var(--field-line); border-radius: 8px; background: var(--surface); font-weight: 400; font-size: 14px; }
+.inp { height: 44px; padding: 0 13px; line-height: 42px; }
+.ta { padding: 10px 13px; line-height: 1.6; white-space: pre-wrap; overflow: hidden; }
+.tp .field.grow { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.tp .field.grow .ta { flex: 1; min-height: 0; }
+.fn { margin: 0 0 12px; font-size: 12px; line-height: 1.6; color: var(--muted); }
+.acts { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+.foot { display: flex; align-items: center; gap: 16px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line-soft); }
+.foot .fn { margin: 0; flex: 1; }
+.pager { display: flex; align-items: center; gap: 8px; }
+.pager .meta b { color: var(--ink); font-weight: 600; }
+.progress { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font-size: 14px; }
+.progress i { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--accent); flex: none; }
+.err { margin: 0 0 12px; padding: 10px 12px; border-radius: 8px; background: var(--danger-bg); color: var(--danger-ink); font-size: 14px; line-height: 1.6; }
+
+.card { width: 411px; flex: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+.card .sh { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card h4 { margin: 0; font-size: 17px; font-weight: 700; display: flex; gap: 8px; align-items: center; }
+.num { padding: 1px 7px; border-radius: 5px; background: #eef3fd; color: var(--muted); font-size: 12px; font-weight: 600; }
+.desc { margin: 6px 0 0; font-size: 13px; color: var(--muted); }
+.rows { list-style: none; margin: 4px 0 0; padding: 0; }
+.rows > li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line-soft); }
+.rows > li:last-child { border-bottom: 0; }
+.ico { flex: none; width: 36px; height: 40px; border-radius: 8px; background: #edf3ff; color: #4b7cd6; display: grid; place-items: center; font-size: 11px; font-weight: 700; }
+.rb { flex: 1; min-width: 0; }
+.rt { display: block; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.rt.plain { text-decoration: none; }
+.rm { display: block; margin-top: 2px; font-size: 12px; color: var(--muted); }
+.del { flex: none; width: 44px; height: 44px; display: grid; place-items: center; color: #8296b6; font-size: 15px; }
+.dtabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 18px; }
+.mini { width: 336px; flex: none; }
+</style>
+
+<div class="board">
+  <p class="eyebrow">오늘의 영어 · D-158 후속 · Hi-fi(2026-10-06)</p>
+  <h1>사진에서 글 읽기 — 읽기 창의 마감</h1>
+  <p class="lede">Wire 2차에서 고르신 대로입니다: <b>나란히(1080px) · 저장하고 다음 사진 · 안내 문구는 사실만 · 통째로 읽고 지운다</b>. 색과 글꼴은 작업실 그대로이고 새로 들인 것은 없습니다. 남은 것은 <b>쪽 넘김과 단추 줄을 어디에 두느냐</b>입니다. 사진 속 주황 글씨는 학생 필기를 흉내 낸 것으로, 읽은 글에는 들어가지 않습니다.</p>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">골라 주실 것</h2>
+    <ol>
+      <li><b>읽기 창 — H1 · H2 · H3 · H4 가운데 하나.</b> 제 추천은 <b>H3</b>입니다. 사진을 다루는 장치(넘김 · 크기)가 사진 칸 위 한 줄에 모여 머리가 조용하고, 사진 칸이 가장 높습니다(488px).</li>
+      <li><b>자료 줄의 «글 읽기» — r1 테두리 단추 · r2 조용한 단추.</b> 제 추천은 <b>r2</b>입니다. 줄마다 테두리 단추가 서면 «자료 추가»보다 눈에 띄고, 좁은 카드(371px)에서 이름 자리를 더 먹습니다.</li>
+    </ol>
+  </section>
+
+  <h2 class="sec">읽기 창</h2>
+  <div class="toolbar" role="tablist" aria-label="읽기 창 안">
+    <button class="pick" role="tab" id="h1" aria-controls="ph1" aria-selected="false" tabindex="-1">H1 넘김은 머리에</button>
+    <button class="pick" role="tab" id="h2" aria-controls="ph2" aria-selected="false" tabindex="-1">H2 넘김은 사진 아래</button>
+    <button class="pick" role="tab" id="h3" aria-controls="ph3" aria-selected="true">H3 사진 위 한 줄</button>
+    <button class="pick" role="tab" id="h4" aria-controls="ph4" aria-selected="false" tabindex="-1">H4 단추 줄을 창 아래로</button>
+  </div>
+
+  <template id="page-mock">
+    <div class="pg">
+      <div class="ph"><span><b>2학기</b></span><span>총괄 평가 (&nbsp;&nbsp;&nbsp;)</span><span>1학년 (&nbsp;&nbsp;)반 이름: <span class="hw" style="border:0;padding:0">조○○</span></span></div>
+      <div class="cols">
+        <div>
+          <p class="q">7. 다음 글을 읽고 알 수 <u>없는</u> 것은?</p>
+          <div class="bx">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. At home, people can make use of old items in many creative ways. Companies also use waste materials to create new products. For example, Samsung encourages people to make pet houses and shelves from cardboard boxes. Upcycling helps us reduce waste and protect the environment by giving old things a new purpose.</div>
+          <p class="q">① 업사이클링의 의미 &nbsp; ② 개인의 실천 사례<br>③ 기업의 실천 사례 &nbsp; ④ 업사이클링의 문제점</p>
+          <p class="q hw">help A B: A가 B하는 것을 돕다</p>
+          <p class="q" style="margin-top:6px">9. 다음 글을 읽고 알 수 <u>없는</u> 것은?</p>
+          <div class="bx">Earth Day is a special day to emphasize the importance of protecting the environment. The day is celebrated on April 22 every year. It started in the United States in 1970 to help people learn about environmental problems. Today, many people around the world take part in a variety of eco-friendly activities.</div>
+        </div>
+        <div>
+          <p class="q">① 지구의 날 목적 &nbsp; ② 지구의 날 유래</p>
+          <p class="q">[서술형 10] 윗글의 밑줄 친 부분을 우리말로 해석하시오.</p>
+          <p class="q hw">지구의 날은 모든 사람을 북돋운다 / 실천에 옮기도록</p>
+          <p class="q" style="margin-top:6px">11. 다음 글을 읽고 알 수 <u>없는</u> 것은?</p>
+          <div class="bx">Plogging is a new type of exercise from Sweden that combines jogging and picking up trash. Its goal is to keep people healthy and make the environment cleaner. While jogging, people pick up trash and put it in their bags. After running, they recycle the trash.</div>
+          <p class="q">① 플로깅 단어의 유래 &nbsp; ② 플로깅 방법</p>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- H1 -->
+  <section class="thesis" role="tabpanel" id="ph1" aria-labelledby="h1" hidden>
+    <h3>H1. 넘김은 창 머리에 — Wire 그대로</h3>
+    <p>«1 / 3 · 이전 · 다음»이 닫기 단추 옆에 섭니다. 머리에 단추가 넷이라 닫기와 가까워 잘못 누를 수 있습니다.</p>
+    <div class="fit" data-w="1124"><div class="stage">
+      <div class="dlg">
+        <div class="dh">
+          <div><span class="k">한빛고등학교 · 고1 2학기 총괄 평가</span><span class="t">사진에서 글 읽기</span></div>
+          <div class="hright"><span class="meta">총괄평가 1쪽.jpg · 1 / 3</span><span class="btn off">이전</span><span class="btn">다음</span><span class="xbtn">✕</span></div>
+        </div>
+        <div class="two" style="height:488px">
+          <div class="pp">
+            <div class="ptools"><span class="seg on">폭 맞춤</span><span class="seg">크게</span><span class="meta sp">1920 × 2560</span></div>
+            <div class="pview" data-mock></div>
+          </div>
+          <div class="tp">
+            <p class="fn">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+            <label class="field grow"><span class="lr">읽은 글 <span class="sm">지문만 남기고 지워 주세요</span></span>
+              <span class="ta" data-read></span></label>
+            <label class="field">자료 이름<span class="inp">총괄평가 1쪽 — Upcycling</span></label>
+            <div class="acts"><span class="btn">닫기</span><span class="btn">지문 자료로 저장</span><span class="btn pri">저장하고 다음 사진</span></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- H2 -->
+  <section class="thesis" role="tabpanel" id="ph2" aria-labelledby="h2" hidden>
+    <h3>H2. 넘김은 사진 칸 아래</h3>
+    <p>사진 바로 밑에서 넘깁니다. 머리는 제목과 닫기뿐입니다. 사진 칸이 그 줄만큼 낮아집니다(434px).</p>
+    <div class="fit" data-w="1124"><div class="stage">
+      <div class="dlg">
+        <div class="dh">
+          <div><span class="k">한빛고등학교 · 고1 2학기 총괄 평가</span><span class="t">사진에서 글 읽기</span></div>
+          <span class="xbtn">✕</span>
+        </div>
+        <div class="two" style="height:542px">
+          <div class="pp">
+            <div class="ptools"><span class="seg on">폭 맞춤</span><span class="seg">크게</span><span class="meta sp">1920 × 2560</span></div>
+            <div class="pview" data-mock></div>
+            <div class="pager"><span class="btn off">이전</span><span class="meta" style="flex:1;text-align:center"><b>총괄평가 1쪽.jpg</b> · 1 / 3</span><span class="btn">다음</span></div>
+          </div>
+          <div class="tp">
+            <p class="fn">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+            <label class="field grow"><span class="lr">읽은 글 <span class="sm">지문만 남기고 지워 주세요</span></span>
+              <span class="ta" data-read></span></label>
+            <label class="field">자료 이름<span class="inp">총괄평가 1쪽 — Upcycling</span></label>
+            <div class="acts"><span class="btn">닫기</span><span class="btn">지문 자료로 저장</span><span class="btn pri">저장하고 다음 사진</span></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- H3 -->
+  <section class="thesis" role="tabpanel" id="ph3" aria-labelledby="h3">
+    <h3>H3. 사진 위 한 줄에 넘김과 크기</h3>
+    <p>사진을 다루는 장치가 한 줄에 모입니다 — 왼쪽에 넘김, 오른쪽에 크기. 머리는 조용하고 사진 칸이 가장 높습니다(488px).</p>
+    <div class="fit" data-w="1124"><div class="stage">
+      <div class="dlg">
+        <div class="dh">
+          <div><span class="k">한빛고등학교 · 고1 2학기 총괄 평가</span><span class="t">사진에서 글 읽기</span></div>
+          <span class="xbtn">✕</span>
+        </div>
+        <div class="two" style="height:542px">
+          <div class="pp">
+            <div class="ptools"><span class="btn off">이전</span><span class="meta"><b style="color:var(--ink);font-weight:600">1 / 3</b></span><span class="btn">다음</span><span class="seg on sp">폭 맞춤</span><span class="seg">크게</span></div>
+            <div class="pview" data-mock></div>
+          </div>
+          <div class="tp">
+            <p class="fn">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+            <label class="field grow"><span class="lr">읽은 글 <span class="sm">지문만 남기고 지워 주세요</span></span>
+              <span class="ta" data-read></span></label>
+            <label class="field">자료 이름<span class="inp">총괄평가 1쪽 — Upcycling</span></label>
+            <div class="acts"><span class="btn">닫기</span><span class="btn">지문 자료로 저장</span><span class="btn pri">저장하고 다음 사진</span></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- H4 -->
+  <section class="thesis" role="tabpanel" id="ph4" aria-labelledby="h4" hidden>
+    <h3>H4. 단추 줄을 창 맨 아래 전체 폭으로</h3>
+    <p>안내 문구와 단추 셋이 창 아래 한 줄에 섭니다. 글 칸이 사진 칸과 같은 높이를 온전히 쓰고, 사진 쪽에서도 저장 단추가 가깝습니다. 넘김은 H3 처럼 사진 위에 둡니다.</p>
+    <div class="fit" data-w="1124"><div class="stage">
+      <div class="dlg">
+        <div class="dh">
+          <div><span class="k">한빛고등학교 · 고1 2학기 총괄 평가</span><span class="t">사진에서 글 읽기</span></div>
+          <span class="xbtn">✕</span>
+        </div>
+        <div class="two" style="height:470px">
+          <div class="pp">
+            <div class="ptools"><span class="btn off">이전</span><span class="meta"><b style="color:var(--ink);font-weight:600">1 / 3</b></span><span class="btn">다음</span><span class="seg on sp">폭 맞춤</span><span class="seg">크게</span></div>
+            <div class="pview" data-mock></div>
+          </div>
+          <div class="tp">
+            <label class="field grow"><span class="lr">읽은 글 <span class="sm">지문만 남기고 지워 주세요</span></span>
+              <span class="ta" data-read></span></label>
+            <label class="field" style="margin-bottom:0">자료 이름<span class="inp">총괄평가 1쪽 — Upcycling</span></label>
+          </div>
+        </div>
+        <div class="foot">
+          <p class="fn">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+          <span class="btn">닫기</span><span class="btn">지문 자료로 저장</span><span class="btn pri">저장하고 다음 사진</span>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <h2 class="sec">자료 줄의 «글 읽기» · 자료 추가의 셋째 탭</h2>
+  <p class="note">탭은 지금 탭 단추 그대로라 고를 것이 없습니다. 올리면 사진이 자료 줄에 생기고 읽기 창이 열립니다.</p>
+  <div class="fit plain" data-w="1494" style="margin-top:10px"><div class="stage">
+    <div>
+      <p class="cap">r1 — 테두리 단추</p>
+      <div class="card">
+        <div class="sh"><h4>시험 자료 <span class="num">3</span></h4><span class="btn quiet">＋ 자료 추가</span></div>
+        <p class="desc">기출, 시험 범위, 수업 지문을 모아 둡니다.</p>
+        <ul class="rows">
+          <li><span class="ico">글</span><span class="rb"><span class="rt plain">Lesson 2 본문</span><span class="rm">612자 · 10월 6일</span></span><span class="del">✕</span></li>
+          <li><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 1쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn">글 읽기</span><span class="del">✕</span></li>
+          <li><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 2쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn">글 읽기</span><span class="del">✕</span></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <p class="cap">r2 — 조용한 단추(«자료 추가»와 같은 꼴)</p>
+      <div class="card">
+        <div class="sh"><h4>시험 자료 <span class="num">3</span></h4><span class="btn quiet">＋ 자료 추가</span></div>
+        <p class="desc">기출, 시험 범위, 수업 지문을 모아 둡니다.</p>
+        <ul class="rows">
+          <li><span class="ico">글</span><span class="rb"><span class="rt plain">Lesson 2 본문</span><span class="rm">612자 · 10월 6일</span></span><span class="del">✕</span></li>
+          <li><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 1쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn quiet">글 읽기</span><span class="del">✕</span></li>
+          <li><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 2쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn quiet">글 읽기</span><span class="del">✕</span></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <p class="cap">«자료 추가» 창 — 셋째 탭</p>
+      <div class="dlg s570">
+        <div class="dh"><div><span class="k">한빛고등학교 · 고1 2학기 총괄 평가</span><span class="t">자료 추가</span></div><span class="xbtn">✕</span></div>
+        <div class="dtabs"><span class="seg">파일 업로드</span><span class="seg">지문 직접 입력</span><span class="seg on">사진에서 읽기</span></div>
+        <label class="field">사진 <span class="sm">4MB 이하 · png jpg</span><span class="inp">총괄평가 3쪽.jpg</span></label>
+        <p class="fn">사진은 자료로 보관되고, 글을 읽을 때 AI 서버로 보냅니다. 손글씨는 읽지 않습니다.</p>
+        <div class="acts"><span class="btn">취소</span><span class="btn pri">올리고 읽기</span></div>
+      </div>
+    </div>
+  </div></div>
+
+  <h2 class="sec">상태 — 어느 안에나 같다</h2>
+  <div class="fit plain" data-w="1124" style="margin-top:10px"><div class="stage" style="flex-wrap:wrap">
+    <div class="mini"><p class="cap">읽는 중 — 글 칸 자리에(사진 칸은 그대로 보인다)</p><div class="progress"><i></i>글을 읽는 중입니다… <span class="meta" style="margin-left:auto">0:07</span></div></div>
+    <div class="mini"><p class="cap">읽지 못했을 때</p><p class="err">글을 읽지 못했습니다. 사진이 흐리거나 글자가 작을 수 있습니다. 다시 찍어 올리거나 지문을 직접 입력해 주세요.</p><div class="acts" style="justify-content:flex-start"><span class="btn">다시 읽기</span></div></div>
+    <div class="mini"><p class="cap">마지막 사진 — 넘길 것이 없으면</p><div class="acts" style="justify-content:flex-start"><span class="btn">닫기</span><span class="btn pri">지문 자료로 저장</span></div><p class="fn" style="margin-top:8px">«저장하고 다음 사진»은 사라지고 «지문 자료로 저장»이 주 단추가 됩니다. «다음»은 흐려집니다.</p></div>
+    <div class="mini"><p class="cap">글을 고치다 넘기려 할 때</p><p class="err" style="background:#fbf0d4;color:#86590a">저장하지 않은 글이 있습니다. 넘기면 고친 글이 사라집니다.</p><div class="acts" style="justify-content:flex-start"><span class="btn">계속 고치기</span><span class="btn">버리고 넘기기</span></div></div>
+    <div class="mini"><p class="cap">«크게» — 2배 · 칸 안에서 가로세로로 굴린다</p><div class="pview white" style="height:150px;flex:none"><div class="pg" style="transform:scale(2);transform-origin:0 0;left:-150px;top:-120px"><div class="bx" style="margin-top:60px">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. At home, people can make use of old items in many creative ways.</div></div></div></div>
+    <div class="mini"><p class="cap">저장한 뒤 — 자료 줄에 글 자료가 한 줄 더</p><ul class="rows" style="background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 16px"><li><span class="ico">글</span><span class="rb"><span class="rt plain">총괄평가 1쪽 — Upcycling</span><span class="rm">412자 · 10월 6일</span></span><span class="del">✕</span></li></ul></div>
+  </div></div>
+</div>
+
+<script>
+(function () {
+  var READ = "Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. At home, people can make use of old items in many creative ways. Companies also use waste materials to create new products. For example, Samsung encourages people to make pet houses and shelves from cardboard boxes. Upcycling helps us reduce waste and protect the environment by giving old things a new purpose.\n\n① 업사이클링의 의미  ② 개인의 실천 사례\n③ 기업의 실천 사례  ④ 업사이클링의 문제점\n\n9. 다음 글을 읽고 알 수 없는 것은?\nEarth Day is a special day to emphasize the importance of protecting the environment. …";
+  document.querySelectorAll("[data-read]").forEach(function (el) { el.textContent = READ; });
+  var mock = document.getElementById("page-mock");
+  document.querySelectorAll("[data-mock]").forEach(function (el) {
+    el.appendChild(mock.content.cloneNode(true));
+    var bar = document.createElement("span"); bar.className = "sbar"; el.appendChild(bar);
+  });
+  function fitAll() {
+    document.querySelectorAll(".fit").forEach(function (box) {
+      var stage = box.firstElementChild;
+      var w = Number(box.getAttribute("data-w"));
+      stage.style.width = w + "px";
+      stage.style.transform = "none";
+      box.style.height = "";
+      if (!box.clientWidth) return;
+      var k = Math.min(1, box.clientWidth / w);
+      stage.style.transform = "scale(" + k + ")";
+      box.style.height = Math.ceil(stage.offsetHeight * k) + "px";
+    });
+  }
+  document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    function pick(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      fitAll();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { pick(t); });
+      t.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus(); pick(next);
+      });
+    });
+  });
+  window.addEventListener("resize", fitAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+  fitAll();
+})();
+</script>

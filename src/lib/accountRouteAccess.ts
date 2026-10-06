@@ -94,6 +94,9 @@ export function englishRouteAllowed(
     return (method === "PATCH" || method === "DELETE") && school;
   if (/^\/api\/english\/exams\/[^/]+\/materials$/.test(path))
     return read ? school || maker : method === "POST" && school;
+  // 사진 자료에서 글 읽기(D-158) — 자료를 올리는 쪽(학교별 내신 대비)의 일이다. 사진이 외부 모델로 나간다
+  if (/^\/api\/english\/materials\/[^/]+\/read$/.test(path))
+    return method === "POST" && school;
   if (/^\/api\/english\/materials\/[^/]+$/.test(path))
     return read ? school || maker : method === "DELETE" && school;
   if (/^\/api\/english\/exams\/[^/]+\/sets$/.test(path))

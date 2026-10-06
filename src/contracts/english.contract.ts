@@ -10,6 +10,7 @@
  *   POST   /api/english/exams/{id}/materials     — JSON {name, content} 또는 multipart file(≤10MB)
  *   GET    /api/english/materials/{id}           — 내려받기 (JSON 아님 — 이 파일의 대상이 아니다)
  *   DELETE /api/english/materials/{id}
+ *   POST   /api/english/materials/{id}/read      — 사진 자료에서 읽은 글(저장하지 않는다 · D-158)
  *   GET    /api/english/exams/{id}/sets          — 세트 요약 목록
  *   POST   /api/english/exams/{id}/sets          — 세트 저장(검증기 통과 · 항상 «초안»)
  *   GET    /api/english/sets/{id}                — 세트 전체
@@ -233,6 +234,19 @@ export const englishMaterialListResponseSchema = dataResponseSchema(
 export const englishMaterialResponseSchema = dataResponseSchema(
   englishMaterialSchema,
 );
+
+/**
+ * 사진 자료에서 읽은 글 (D-158 · 25 §13.8) — **저장 전**이다. 선생님이 사진과 견주어 고친 뒤 글 자료
+ * (`englishMaterialTextCreateSchema`)로 저장한다. 그래서 상한이 자료 지문과 같다.
+ */
+export const englishMaterialReadResponseSchema = dataResponseSchema(
+  z.strictObject({
+    text: z.string().min(1).max(ENGLISH_MATERIAL_CONTENT_MAX),
+  }),
+);
+export type EnglishMaterialRead = z.infer<
+  typeof englishMaterialReadResponseSchema
+>["data"];
 
 // ─────────────────────────────────────────────
 // 문항 · 세트 (english_question_set)

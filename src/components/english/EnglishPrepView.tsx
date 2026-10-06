@@ -30,17 +30,22 @@ import {
 import AutoGrowTextarea from "./AutoGrowTextarea";
 import EnglishDialog from "./EnglishDialog";
 import EnglishExamPicker from "./EnglishExamPicker";
+import EnglishPhotoReadDialog from "./EnglishPhotoReadDialog";
 import {
   MATERIAL_ACCEPT,
   MATERIAL_BAD_TYPE,
   MATERIAL_FILE_PATTERN,
   MATERIAL_TOO_LARGE,
+  PHOTO_ACCEPT,
+  PHOTO_BAD_TYPE,
+  PHOTO_FILE_PATTERN,
   SOURCE_LABEL,
   STATUS_TONE,
   formatBytes,
   formatChars,
   formatDay,
   formatExamDate,
+  isEnglishPhoto,
   jsonInit,
   messageOf,
   requestEnglish,
@@ -94,6 +99,9 @@ export default function EnglishPrepView({
   const [materialDialog, setMaterialDialog] = useState(false);
   const [settingsDialog, setSettingsDialog] = useState(false);
   const [deleting, setDeleting] = useState<EnglishMaterial | null>(null);
+  /** «사진에서 글 읽기» 창이 처음 열 사진(자료 id) — 닫혀 있으면 null (D-158) */
+  const [reading, setReading] = useState<string | null>(null);
+  const readRef = useRef<HTMLElement | null>(null);
   const [examDeleting, setExamDeleting] = useState(false);
   const [busy, setBusy] = useState(false);
   const [dialogError, setDialogError] = useState<string | null>(null);
@@ -264,6 +272,19 @@ export default function EnglishPrepView({
                         · {formatDay(material.createdAt)}
                       </span>
                     </div>
+                    {isEnglishPhoto(material) && (
+                      <button
+                        type="button"
+                        className={s.quiet}
+                        aria-label={`${material.name} 글 읽기`}
+                        onClick={(event) => {
+                          readRef.current = event.currentTarget;
+                          setReading(material.id);
+                        }}
+                      >
+                        글 읽기
+                      </button>
+                    )}
                     <button
                       type="button"
                       className={s.rowDelete}
@@ -417,10 +438,25 @@ export default function EnglishPrepView({
           exam={exam}
           returnFocus={addRef}
           onClose={() => setMaterialDialog(false)}
-          onAdded={(material) => {
+          onAdded={(material, read) => {
             setMaterialDialog(false);
             onMaterialAdded(material);
+            // «사진에서 읽기» 탭 — 올린 사진을 바로 읽기 창으로(창이 아래로 길어지지 않게 · Wire 2차)
+            if (read) {
+              readRef.current = addRef.current;
+              setReading(material.id);
+            }
           }}
+        />
+      )}
+      {reading && materialList && (
+        <EnglishPhotoReadDialog
+          exam={exam}
+          photos={materialList.filter(isEnglishPhoto)}
+          startId={reading}
+          returnFocus={readRef}
+          onClose={() => setReading(null)}
+          onSaved={onMaterialAdded}
         />
       )}
       {settingsDialog && (
@@ -462,7 +498,17 @@ export default function EnglishPrepView({
   );
 }
 
-/** «자료 추가» 창 — 파일 업로드(multipart · 상한은 계약 `ENGLISH_MATERIAL_MAX_BYTES` 4MB · pdf docx txt png jpg) / 지문 직접 입력(이름 + 글) */
+/**
+ * «자료 추가» 창 — 파일 업로드(multipart · 상한은 계약 `ENGLISH_MATERIAL_MAX_BYTES` 4MB · pdf docx txt png jpg) / 지문 직접 입력(이름 + 글)
+ * / 사진에서 읽기(D-158 — 사진을 올리고 닫으면 부모가 «사진에서 글 읽기» 창을 연다. 사진은 자료로 보관된다).
+ */
+const MATERIAL_TABS = ["file", "text", "photo"] as const;
+type MaterialTab = (typeof MATERIAL_TABS)[number];
+const MATERIAL_TAB_LABEL: Record<MaterialTab, string> = {
+  file: "파일 업로드",
+  text: "지문 직접 입력",
+  photo: "사진에서 읽기",
+};
 function MaterialDialog({
   exam,
   returnFocus,
@@ -472,39 +518,45 @@ function MaterialDialog({
   exam: EnglishExam;
   returnFocus: RefObject<HTMLElement | null>;
   onClose: () => void;
-  onAdded: (material: EnglishMaterial) => void;
+  /** `read` — 올린 사진을 바로 읽기 창으로 넘긴다 */
+  onAdded: (material: EnglishMaterial, read?: boolean) => void;
 }) {
-  const [tab, setTab] = useState<"file" | "text">("file");
+  const [tab, setTab] = useState<MaterialTab>("file");
   const [file, setFile] = useState<File | null>(null);
   const [name, setName] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  const send = async (init: RequestInit) => {
+  const send = async (init: RequestInit, read = false) => {
     setBusy(true);
     setError(null);
     try {
       const body = englishMaterialResponseSchema.parse(
         await requestEnglish(`/api/english/exams/${exam.id}/materials`, init),
       );
-      onAdded(body.data);
+      onAdded(body.data, read);
     } catch (caught) {
       setError(messageOf(caught));
     } finally {
       setBusy(false);
     }
   };
-  const upload = () => {
-    if (!file) return setError("파일을 골라 주세요.");
+  const upload = (photo = false) => {
+    if (!file)
+      return setError(photo ? "사진을 골라 주세요." : "파일을 골라 주세요.");
     // 받는 쪽보다 먼저 자른다 — 상한(4MB, Vercel 본문 상한)을 넘는 파일은 보내지 않는다(25 §3 · 교훈 2026-09-21).
     if (file.size > ENGLISH_MATERIAL_MAX_BYTES)
       return setError(MATERIAL_TOO_LARGE);
-    if (!MATERIAL_FILE_PATTERN.test(file.name))
-      return setError(MATERIAL_BAD_TYPE);
+    if (
+      photo
+        ? !PHOTO_FILE_PATTERN.test(file.name)
+        : !MATERIAL_FILE_PATTERN.test(file.name)
+    )
+      return setError(photo ? PHOTO_BAD_TYPE : MATERIAL_BAD_TYPE);
     const form = new FormData();
     form.append("file", file);
-    void send({ method: "POST", body: form });
+    void send({ method: "POST", body: form }, photo);
   };
   const addText = () => {
     if (!name.trim()) return setError("자료 이름을 입력해 주세요.");
@@ -533,51 +585,42 @@ function MaterialDialog({
           )
             return;
           event.preventDefault();
-          const next =
+          const at = MATERIAL_TABS.indexOf(tab);
+          const step = event.key === "ArrowLeft" ? MATERIAL_TABS.length - 1 : 1;
+          const next: MaterialTab =
             event.key === "Home"
               ? "file"
               : event.key === "End"
-                ? "text"
-                : tab === "file"
-                  ? "text"
-                  : "file";
+                ? "photo"
+                : MATERIAL_TABS[(at + step) % MATERIAL_TABS.length]!;
           setTab(next);
+          setFile(null);
           setError(null);
           event.currentTarget
             .querySelector<HTMLButtonElement>(`#english-material-tab-${next}`)
             ?.focus();
         }}
       >
-        <button
-          type="button"
-          role="tab"
-          id="english-material-tab-file"
-          aria-selected={tab === "file"}
-          tabIndex={tab === "file" ? 0 : -1}
-          aria-controls="english-material-panel"
-          className={s.tab}
-          onClick={() => {
-            setTab("file");
-            setError(null);
-          }}
-        >
-          파일 업로드
-        </button>
-        <button
-          type="button"
-          role="tab"
-          id="english-material-tab-text"
-          aria-selected={tab === "text"}
-          tabIndex={tab === "text" ? 0 : -1}
-          aria-controls="english-material-panel"
-          className={s.tab}
-          onClick={() => {
-            setTab("text");
-            setError(null);
-          }}
-        >
-          지문 직접 입력
-        </button>
+        {MATERIAL_TABS.map((id) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            id={`english-material-tab-${id}`}
+            aria-selected={tab === id}
+            tabIndex={tab === id ? 0 : -1}
+            aria-controls="english-material-panel"
+            className={s.tab}
+            onClick={() => {
+              setTab(id);
+              // 파일 칸은 탭마다 받는 종류가 다르다 — 고른 파일을 들고 넘어가지 않는다
+              setFile(null);
+              setError(null);
+            }}
+          >
+            {MATERIAL_TAB_LABEL[id]}
+          </button>
+        ))}
       </div>
       <form
         id="english-material-panel"
@@ -586,16 +629,32 @@ function MaterialDialog({
         onSubmit={(event) => {
           event.preventDefault();
           if (tab === "file") upload();
+          else if (tab === "photo") upload(true);
           else addText();
         }}
       >
-        {tab === "file" ? (
+        {tab === "photo" ? (
+          <label className={s.field}>
+            사진 <small>{ENGLISH_MATERIAL_MAX_LABEL} 이하 · png jpg</small>
+            <input
+              key="photo"
+              type="file"
+              aria-label="사진"
+              accept={PHOTO_ACCEPT}
+              onChange={(event) => {
+                setFile(event.target.files?.[0] ?? null);
+                setError(null);
+              }}
+            />
+          </label>
+        ) : tab === "file" ? (
           <label className={s.field}>
             파일{" "}
             <small>
               {ENGLISH_MATERIAL_MAX_LABEL} 이하 · pdf docx txt png jpg
             </small>
             <input
+              key="file"
               type="file"
               aria-label="파일"
               accept={MATERIAL_ACCEPT}
@@ -631,7 +690,9 @@ function MaterialDialog({
           </>
         )}
         <p className={s.footnote}>
-          PDF·이미지는 보관용입니다. 문제 제작에는 지문 텍스트를 입력해 주세요.
+          {tab === "photo"
+            ? "사진은 자료로 보관되고, 글을 읽을 때 AI 서버로 보냅니다. 손글씨는 읽지 않습니다."
+            : "사진은 «사진에서 읽기»로 지문을 만들 수 있습니다. PDF 는 보관용입니다."}
         </p>
         {error && (
           <p className={s.formError} role="alert">
@@ -648,7 +709,11 @@ function MaterialDialog({
             취소
           </button>
           <button type="submit" className={w.primaryButton} disabled={busy}>
-            {tab === "file" ? "올리기" : "추가"}
+            {tab === "photo"
+              ? "올리고 읽기"
+              : tab === "file"
+                ? "올리기"
+                : "추가"}
           </button>
         </div>
       </form>
