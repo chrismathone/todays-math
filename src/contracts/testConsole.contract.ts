@@ -23,6 +23,8 @@ export const RESET_PARTS = [
   "expedition",
   "course",
   "journey",
+  // «오늘의 기억» 새 앱의 칸(2026-10-06)
+  "fading",
 ] as const;
 export type ResetPart = (typeof RESET_PARTS)[number];
 

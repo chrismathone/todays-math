@@ -46,6 +46,7 @@ const RESETS: { part: string; label: string }[] = [
   { part: "expedition", label: "원정" },
   { part: "course", label: "코스" },
   { part: "journey", label: "하루 여정" },
+  { part: "fading", label: "오늘의 기억(새)" },
 ];
 
 const snapshotKey = (loginId: string) => `learn-test-console:${loginId}`;

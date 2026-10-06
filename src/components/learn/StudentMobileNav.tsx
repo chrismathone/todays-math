@@ -60,7 +60,12 @@ export function StudentMobileNav({ previewPath }: { previewPath?: string }) {
   const listening =
     pathname === "/learn/english-listening" ||
     pathname.startsWith("/learn/english-listening/");
-  if (pathname === "/learn/login" || pathname === "/learn/password")
+  if (
+    pathname === "/learn/login" ||
+    pathname === "/learn/password" ||
+    pathname === "/learn/fading" ||
+    pathname.startsWith("/learn/fading/")
+  )
     return null;
 
   return (

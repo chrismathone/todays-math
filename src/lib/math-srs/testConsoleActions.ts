@@ -23,6 +23,8 @@ export function resetSrsPart(
       return { ...state, course: undefined };
     case "journey":
       return { ...state, dailyJourney: undefined };
+    case "fading":
+      return { ...state, fading: undefined };
   }
 }
 

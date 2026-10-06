@@ -1,0 +1,68 @@
+{
+  "model": "jev-1.13.0",
+  "rules": {
+    "t1MinOriginalTrue": 0.95,
+    "t2MaxAcceptableJudgedFalse": 0.05,
+    "t3MinWrongCaught": 0.5
+  },
+  "confidentFalse": 0.1,
+  "samples": 42,
+  "ref": {
+    "failedRequests": 0,
+    "inputTokens": 89340,
+    "usd": 0.0038,
+    "t1OriginalTrue": {
+      "value": 1,
+      "n": 42
+    },
+    "t1OriginalConfidentFalse": 0,
+    "t2AcceptableJudgedFalse": {
+      "value": 0,
+      "n": 44,
+      "items": []
+    },
+    "t3WrongCaught": {
+      "value": 0.3628,
+      "n": 113
+    },
+    "unclear": {
+      "n": 8,
+      "judgedFalse": 0
+    },
+    "unmeasured": 0,
+    "pass": {
+      "t1": true,
+      "t2": true,
+      "t3": false
+    }
+  },
+  "ref-minus": {
+    "failedRequests": 0,
+    "inputTokens": 87609,
+    "usd": 0.0037,
+    "t1OriginalTrue": {
+      "value": 0.9762,
+      "n": 42
+    },
+    "t1OriginalConfidentFalse": 0,
+    "t2AcceptableJudgedFalse": {
+      "value": 0,
+      "n": 44,
+      "items": []
+    },
+    "t3WrongCaught": {
+      "value": 0.2478,
+      "n": 113
+    },
+    "unclear": {
+      "n": 8,
+      "judgedFalse": 0
+    },
+    "unmeasured": 0,
+    "pass": {
+      "t1": true,
+      "t2": true,
+      "t3": false
+    }
+  }
+}

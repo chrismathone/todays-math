@@ -49,6 +49,12 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET|POST /api/learn/math-srs",
       "POST /api/learn/math-srs/attempts",
       "POST /api/learn/math-srs/hint",
+      // «오늘의 기억» 새 앱(2026-10-06) — 서버 문이 꺼져 있으면 화면도 라우트도 404 로 답한다
+      "GET|HEAD /learn/fading",
+      "GET|HEAD /learn/fading/**",
+      "GET|POST /api/learn/fading",
+      "GET /api/learn/fading/catalog",
+      "GET /api/learn/fading/concepts/{id}",
       "GET /api/learn/lectures",
       "GET /api/learn/lectures/{id}",
       "POST /api/learn/watch",

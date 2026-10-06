@@ -1,0 +1,160 @@
+.root {
+  min-height: 100dvh;
+  background: var(--learn-bg);
+  color: var(--learn-ink);
+  font-family: var(--font-pretendard), "Malgun Gothic", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.rail {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 240px;
+  padding: 28px 20px;
+  background: var(--learn-nav);
+  color: var(--learn-on-nav);
+}
+.rail > strong {
+  font-size: 24px;
+  font-weight: 600;
+}
+.rail > p {
+  margin: 20px 0;
+  color: var(--learn-on-nav-muted);
+}
+.rail > div {
+  margin: 8px 0;
+  padding: 14px 12px;
+}
+.rail .currentMenu {
+  background: var(--learn-on-nav);
+  color: var(--learn-nav);
+  border-radius: var(--control-radius);
+  font-weight: 600;
+}
+.rail .railFoot {
+  position: absolute;
+  bottom: 20px;
+  font-size: 12px;
+}
+.main {
+  margin-left: 240px;
+  padding: 24px 20px 48px;
+  min-width: 0;
+}
+.galleryHeading {
+  margin-bottom: 28px;
+}
+.galleryHeading h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+.galleryHeading > p {
+  margin: 0 0 6px;
+  color: var(--learn-muted);
+}
+.galleryHeading > p:first-child {
+  font-size: 12px;
+}
+.galleryHeading nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.galleryHeading a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 8px 14px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  color: var(--learn-ink);
+  cursor: pointer;
+}
+.galleryHeading a:hover {
+  background: var(--learn-soft-hover);
+}
+.galleryHeading a[aria-current="page"] {
+  color: var(--learn-accent);
+  border-color: var(--learn-accent);
+  background: var(--learn-soft);
+}
+.statePicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.statePicker select {
+  font: inherit;
+  font-size: 14px;
+  min-width: 160px;
+  min-height: 44px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.root :is(a, select):focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 3px;
+}
+.proposal {
+  margin-bottom: 36px;
+  min-width: 0;
+}
+.proposalHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 12px;
+}
+.proposalHeading h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.proposalHeading p {
+  color: var(--learn-muted);
+  margin: 0;
+  font-size: 12px;
+}
+.proposalHeading > span {
+  font-size: 12px;
+  color: var(--learn-accent);
+  background: var(--learn-soft);
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+@media (max-width: 1050px) and (min-width: 761px) {
+  .rail {
+    width: 212px;
+    padding-inline: 13px;
+  }
+  .main {
+    margin-left: 212px;
+  }
+}
+@media (max-width: 760px) {
+  .rail {
+    display: none;
+  }
+  .main {
+    margin-left: 0;
+    padding: 20px 16px 40px;
+  }
+}
