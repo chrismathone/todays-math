@@ -73,7 +73,7 @@ const coverage = conceptScriptCoverage(); // coveragePercent: 100
 
 2026-10-06에는 개념백지 실물에서 지적된 초6 「2-1 분수의 나눗셈」을 Codex·Claude가 교차 검토했다. 기본 은행 정의의 교정에 맞춰 설명·확인 답 19대사를 동기화했다(`bank-definition`, SC-046~064). 대사 수·출처·개념 ID·수업 표지와 최초 원고의 기준 해시는 유지한다. 이 유형은 새 은행 정의와 정확히 일치하는지 검사하고, 기존 45개 문장 교정에는 기존 수식 토큰 보존 규칙을 계속 적용한다. 이미 발행된 교재를 덮어쓰는 작업은 아니다. 상세 범위와 검토 한계는 `docs/planning/tracks/reports/concept-cloze-clarity-20261006.md`에 기록했다.
 
-이어 초3~중3 전체 검토에서 C형 문장 393개를 교정했고, 기본 은행을 인용하는 교재 대사 81곳을 함께 동기화했다(`bank-definition`, SC-065~145). 설명·확인 답뿐 아니라 원본 정의를 사용하는 적용 예도 새 정의와 일치한다. 교정 원장은 총 145곳이며 그중 은행 정의 동기화는 100곳이다. 수정 전후의 문장, 독립 검토와 연결 검사는 [전체 학년 적용 기록](../../../../docs/planning/tracks/reports/concept-cloze-fix-all-20261006/README.md)에 있다. 새 교재의 원고에 적용하며 저장된 교재의 스냅샷과 학생 기록은 유지한다.
+이어 초3~중3 전체 검토에서 C형 문장 395개를 교정했고, 기본 은행을 인용하는 교재 대사 83곳을 함께 동기화했다(`bank-definition`, SC-065~147). 설명·확인 답뿐 아니라 원본 정의를 사용하는 적용 예도 새 정의와 일치한다. 교정 원장은 총 147곳이며 그중 은행 정의 동기화는 102곳이다. 수정 전후의 문장, 독립 검토와 연결 검사는 [전체 학년 적용 기록](../../../../docs/planning/tracks/reports/concept-cloze-fix-all-20261006/README.md)에 있다. 새 교재의 원고에 적용하며 저장된 교재의 스냅샷과 학생 기록은 유지한다.
 
 ```text
 node node_modules/vitest/vitest.mjs run --config scripts/qa/textbook/vitest.config.mts src/__tests__/unit/textbookConceptScripts.test.ts src/__tests__/unit/textbookSourceLedger.test.ts src/__tests__/unit/textbookRestStories.test.ts

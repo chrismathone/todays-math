@@ -171,15 +171,15 @@
       "lessonsRepeatingTheirOpeningQuestion": 360
     },
     "corrections": {
-      "total": 145,
+      "total": 147,
       "byKind": {
         "sentence-answer-copula": 32,
         "missing-condition": 8,
         "particle": 1,
         "ambiguous-wording": 4,
-        "bank-definition": 100
+        "bank-definition": 102
       },
-      "sections": 80
+      "sections": 81
     },
     "aiReadings": {
       "examples": 46,
@@ -7986,7 +7986,7 @@
       "title": "1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "ecc374bda6eacbf0"
+        "dialogueSha256": "9fc996244628012b"
       },
       "concepts": 4,
       "lessons": 6,
@@ -8018,7 +8018,10 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-146",
+        "SC-147"
+      ]
     },
     {
       "id": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",

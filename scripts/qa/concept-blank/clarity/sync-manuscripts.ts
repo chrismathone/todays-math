@@ -2,7 +2,7 @@
  * Records each changed turn while keeping the first-manuscript baseline intact.
  */
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { CONCEPT_BLANK_GRADES } from "@/lib/concept-blank/sections";
 import {
@@ -114,22 +114,45 @@ for (const grade of CONCEPT_BLANK_GRADES) {
   }
   pending.push({ file, content: serializeScripts(next) });
 }
-ledger.reviewedOn = "2026-10-06";
-ledger.review =
-  "AI 편집 검수 — 기존 교정을 보존하고 전 학년 공용 은행의 문항별 Codex·Claude 교차 검토에 맞춰 설명·예제 속 정의·확인 답을 동기화했다. 사람이 읽은 검수가 아니다.";
-ledger.authority +=
-  " · 2026-10-06 run_82506ef814c5: 사용자 전 학년 완전 교정·적용 지시.";
+const reportPath = resolve(reportDirectory, "manuscript-changes.json");
+const previous = existsSync(reportPath)
+  ? read<{ turnChanges: typeof turnChanges }>(reportPath).turnChanges
+  : [];
+const history = new Map(
+  previous.map((row) => [`${row.sectionKey}|${row.turnIndex}`, row]),
+);
+for (const row of turnChanges) {
+  const key = `${row.sectionKey}|${row.turnIndex}`;
+  const prior = history.get(key);
+  if (prior) {
+    assert.equal(prior.new, row.old, "Manuscript history chain mismatch");
+    history.set(key, { ...row, old: prior.old });
+  } else {
+    history.set(key, row);
+  }
+}
+if (turnChanges.length > 0) {
+  ledger.reviewedOn = "2026-10-06";
+  ledger.review =
+    "AI 편집 검수 — 기존 교정을 보존하고 전 학년 공용 은행의 문항별 Codex·Claude 교차 검토에 맞춰 설명·예제 속 정의·확인 답을 동기화했다. 사람이 읽은 검수가 아니다.";
+  const authority =
+    " · 2026-10-06 run_82506ef814c5: 사용자 전 학년 완전 교정·적용 지시.";
+  if (!ledger.authority.includes(authority)) ledger.authority += authority;
+}
 pending.push({
   file: ledgerPath,
   content: JSON.stringify(ledger, null, 2) + "\n",
 });
-assert.ok(turnChanges.length > 0);
-if (process.argv.includes("--write")) {
+const written = process.argv.includes("--write") && turnChanges.length > 0;
+if (written) {
   for (const item of pending) writeFileSync(item.file, item.content, "utf8");
   writeFileSync(
-    resolve(reportDirectory, "manuscript-changes.json"),
+    reportPath,
     JSON.stringify(
-      { turnChanges, correctionCount: ledger.corrections.length },
+      {
+        turnChanges: [...history.values()],
+        correctionCount: ledger.corrections.length,
+      },
       null,
       2,
     ) + "\n",
@@ -145,7 +168,7 @@ console.log(
         grade,
         changedTurns: turnChanges.filter((row) => row.grade === grade).length,
       })),
-      written: process.argv.includes("--write"),
+      written,
     },
     null,
     2,

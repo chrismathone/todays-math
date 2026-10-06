@@ -23,6 +23,7 @@ type Resolution = {
 type Report = {
   sourceCommit: string;
   grades: string[];
+  supplemental?: boolean;
   changes: Change[];
   resolutions: Resolution[];
 };
@@ -71,8 +72,16 @@ const changeById = new Map(changes.map((c) => [c.id, c]));
 const resolutionById = new Map(resolutions.map((r) => [r.id, r]));
 for (const report of reports) {
   assert.equal(report.sourceCommit, manifest.sourceCommit);
+  if (report.supplemental) {
+    assert.ok(
+      report.resolutions.every(
+        (row) => !audited.findings.some((finding) => finding.id === row.id),
+      ),
+      "Supplemental reports must contain only newly discovered IDs",
+    );
+  }
   const expectedIds = audited.findings
-    .filter((f) => report.grades.includes(f.grade))
+    .filter((f) => !report.supplemental && report.grades.includes(f.grade))
     .map((f) => f.id);
   const additionalIds = report.resolutions
     .filter((r) => !audited.findings.some((f) => f.id === r.id))
