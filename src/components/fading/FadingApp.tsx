@@ -16,6 +16,7 @@ import { FadingEraseScreen } from "./FadingEraseScreen";
 import { FadingStats } from "./FadingStats";
 import { FadingCatalogScreen } from "./FadingCatalogScreen";
 import { FadingSessionScreen } from "./FadingSessionScreen";
+import { FadingScrollFade } from "./FadingScrollFade";
 import { FadingIcon } from "./FadingIcon";
 import { FadingConceptReader } from "./FadingConceptReader";
 import s from "./fading.module.css";
@@ -61,6 +62,7 @@ export function FadingApp({
   const pending = useRef<(() => Promise<void>) | null>(null);
   const lock = useRef(false);
   const header = useRef<HTMLDivElement>(null);
+  const appBody = useRef<HTMLDivElement>(null);
   useEffect(() => {
     let live = true;
     if (!initialState)
@@ -170,7 +172,7 @@ export function FadingApp({
   return (
     <div className={s.viewport} data-fading-viewport="true">
       <div
-        className={s.root}
+        className={`${s.root} ${s.scrollRoot}`}
         data-fading-root="true"
         data-preview={preview}
         data-session={inSession}
@@ -236,7 +238,14 @@ export function FadingApp({
             </nav>
           </>
         )}
-        <div className={s.appBody}>
+        <div
+          className={`${s.appBody} ${s.scrollBody}`}
+          ref={appBody}
+          tabIndex={0}
+          role="region"
+          aria-label="오늘의 기억 학습 내용"
+          data-fading-scroll-body="true"
+        >
           {failure && (
             <div className={s.shell} style={{ paddingBottom: 0 }}>
               <div className={s.alert} role="alert">
@@ -388,6 +397,7 @@ export function FadingApp({
             </main>
           )}
         </div>
+        <FadingScrollFade scrollRef={appBody} />
       </div>
     </div>
   );
