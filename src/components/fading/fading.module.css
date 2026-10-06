@@ -2868,3 +2868,36 @@
     position: static;
   }
 }
+
+/* Keep mobile scrolling inside this app; teacher/workspace scrollbars are untouched. */
+.scrollBody:focus-visible {
+  outline: 3px solid #3159df;
+  outline-offset: -3px;
+}
+@container fading-app (max-width: 767px) {
+  .scrollRoot:not([data-preview="true"]) {
+    height: 100dvh;
+    min-height: 0;
+  }
+  .scrollRoot > nav[aria-label="오늘의 기억 메뉴"] {
+    position: static;
+  }
+  .scrollBody {
+    overflow: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    scroll-padding-block: 12px;
+  }
+  .scrollBody::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollRoot:not([data-preview="true"]) .scrollBody > main[class] {
+    padding-bottom: 24px;
+  }
+  .scrollRoot[data-session="true"] > [data-fading-scroll-fade] {
+    grid-row: 1 / -1;
+  }
+  .scrollRoot > [data-fading-scroll-fade][data-more-below="true"] {
+    display: block;
+  }
+}
