@@ -588,7 +588,7 @@
 .primary:hover {
   background: #1e2238;
 }
-@media (max-width: 359px) {
+@container fading-app (max-width: 359px) {
   .banner {
     flex-wrap: wrap;
   }
@@ -610,7 +610,7 @@
     gap: 2px;
   }
 }
-@media (min-width: 680px) {
+@container fading-app (min-width: 680px) {
   .screen {
     gap: 20px;
   }
@@ -632,7 +632,7 @@
     height: 230px;
   }
 }
-@media (min-width: 1024px) {
+@container fading-app (min-width: 1024px) {
   .screen {
     position: relative;
     gap: 24px;
