@@ -1,6 +1,7 @@
 import katex from "katex";
 import {
   type ConceptBlankBank,
+  blankKeywords,
   splitBlankSentence,
 } from "@/contracts/conceptBlank.contract";
 import {
@@ -80,9 +81,20 @@ export function notationFaults(
 /** 은행 한 묶음의 모든 글 칸을 잰다. */
 export function bankNotationFaults(bank: ConceptBlankBank): NotationFault[] {
   const out: NotationFault[] = [];
-  const scan = (id: string, field: string, raw: string, sentence = false) => {
-    for (const f of notationFaults(raw, sentence))
+  const scan = (
+    id: string,
+    field: string,
+    raw: string,
+    sentence = false,
+    inputAlias = false,
+  ) => {
+    for (const f of notationFaults(raw, sentence)) {
+      // Student input can name the same polygon with a numeral. Keep that reviewed
+      // alternative; the displayed canonical answer and all authored prose still
+      // use the standard name. This does not exempt math or KaTeX errors.
+      if (inputAlias && f.rule === "아라비아 도형 이름") continue;
       out.push({ id, field, ...f });
+    }
   };
   for (const c of bank.concepts) {
     scan(c.id, "term", c.term);
@@ -98,9 +110,16 @@ export function bankNotationFaults(bank: ConceptBlankBank): NotationFault[] {
     }
     if (c.clozeQuestion) {
       scan(c.id, "clozeQuestion.sentence", c.clozeQuestion.sentence, true);
+      const canonical = blankKeywords(c.clozeQuestion.sentence);
       c.clozeQuestion.acceptedAnswers.forEach((answers, i) =>
         answers.forEach((text, j) =>
-          scan(c.id, `clozeQuestion.acceptedAnswers.${i}.${j}`, text),
+          scan(
+            c.id,
+            `clozeQuestion.acceptedAnswers.${i}.${j}`,
+            text,
+            false,
+            text !== canonical[i],
+          ),
         ),
       );
     }

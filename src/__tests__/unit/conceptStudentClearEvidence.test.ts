@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { bankNotationFaults } from "@/lib/concept-blank/notation";
 import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
 import {
   normalizeProposal,
@@ -204,6 +205,77 @@ describe("student-clear content-bound evidence", () => {
         ledger,
       ),
     ).toContain("읽은 B 질문·답·기준과 실제 assembled 문항이 다름");
+  });
+
+  it("keeps reviewed numeric polygon input aliases while checking authored prose", () => {
+    const polygon = proposedEntry(
+      normalizeProposal(
+        {
+          ...draft,
+          cDecision: "rewrite",
+          cAfter: "변이 $12$개인 다각형을 {십이각형}이라 한다.",
+          cAcceptedAnswers: [["십이각형", "$12$각형"]],
+        },
+        original,
+      )!,
+    );
+    const bank = { concepts: [polygon], ox: [], apply: [], figures: [] };
+    expect(bankNotationFaults(bank)).toEqual([]);
+    expect(polygon.clozeQuestion?.acceptedAnswers).toEqual([
+      ["십이각형", "$12$각형"],
+    ]);
+    const prose = structuredClone(bank);
+    prose.concepts[0]!.bQuestion!.prompt = "$12$각형은 변이 몇 개인지 쓰세요.";
+    expect(bankNotationFaults(prose)).toContainEqual(
+      expect.objectContaining({
+        field: "bQuestion.prompt",
+        rule: "아라비아 도형 이름",
+      }),
+    );
+  });
+
+  it("continues checking canonical polygon names and math errors in input aliases", () => {
+    const polygon = proposedEntry(
+      normalizeProposal(
+        {
+          ...draft,
+          cDecision: "rewrite",
+          cAfter: "변이 $12$개인 다각형을 {십이각형}이라 한다.",
+          cAcceptedAnswers: [["십이각형", "$\\invalidPolygonCommand$"]],
+        },
+        original,
+      )!,
+    );
+    expect(
+      bankNotationFaults({
+        concepts: [polygon],
+        ox: [],
+        apply: [],
+        figures: [],
+      }),
+    ).toContainEqual(
+      expect.objectContaining({
+        field: "clozeQuestion.acceptedAnswers.0.1",
+        rule: "수식 오류",
+      }),
+    );
+    polygon.clozeQuestion = {
+      sentence: "변이 $12$개인 다각형을 {$12$각형}이라 한다.",
+      acceptedAnswers: [["$12$각형"]],
+    };
+    expect(
+      bankNotationFaults({
+        concepts: [polygon],
+        ox: [],
+        apply: [],
+        figures: [],
+      }),
+    ).toContainEqual(
+      expect.objectContaining({
+        field: "clozeQuestion.acceptedAnswers.0.0",
+        rule: "아라비아 도형 이름",
+      }),
+    );
   });
 
   it("requires the separate general-definition correction verdict", () => {
