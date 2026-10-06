@@ -17,6 +17,7 @@ import {
   type FadingTeacherStudent,
 } from "@/contracts/fadingTeacher.contract";
 import { FadingMath } from "../FadingMath";
+import { curriculumName } from "../labels";
 import type { FadingPreview as PreviewComponent } from "../FadingPreview";
 import { TeacherFadingSourceError, type TeacherFadingSource } from "./source";
 import type { TeacherHifiVariant } from "./hifiVariants";
@@ -305,7 +306,11 @@ function StudentDetailContent({
                   ))}
                 </strong>
                 <span className={s.muted} data-section-name>
-                  {concept.section.split("::").slice(1).join(" · ")}
+                  {concept.section
+                    .split("::")
+                    .slice(1)
+                    .map(curriculumName)
+                    .join(" · ")}
                 </span>
                 <span>
                   {concept.step}단계 ·{" "}

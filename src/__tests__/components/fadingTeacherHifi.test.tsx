@@ -129,6 +129,36 @@ describe("교사 Hi-fi B 구조", () => {
       expect(section.querySelector(".katex")).toBeNull();
   });
 
+  it("교사 상세에서도 단원 번호와 제목 속 수량을 구분한다", async () => {
+    const readers = source();
+    show({
+      getStudent: async (studentId: string, classId: string) => {
+        const { data } = await readers.getStudent(studentId, classId);
+        return {
+          data: {
+            ...data,
+            concepts: data.concepts.map((concept, index) =>
+              index === 0
+                ? {
+                    ...concept,
+                    section: "초3::1-5 길이와 시간::1-5-1 1cm보다 작은 단위",
+                  }
+                : concept,
+            ),
+          },
+        };
+      },
+    });
+    const detail = await screen.findByRole("complementary", {
+      name: "이도윤 학생 상세",
+    });
+    const name = await within(detail).findByText(
+      "1-5 · 길이와 시간 · 1-5-1 · 1cm보다 작은 단위",
+    );
+    expect(name).toHaveAttribute("data-section-name");
+    expect(name.querySelector(".katex")).toBeNull();
+  });
+
   it("기존 저장 없는 학생 미리 보기를 열고 현황으로 돌아온다", async () => {
     show();
     await screen.findByRole("heading", { name: "이도윤" });

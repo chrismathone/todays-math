@@ -8,6 +8,7 @@ import type { FadingStepResult } from "@/lib/fading/session";
 import type { FadingFigure } from "@/lib/fading/figures";
 import { FadingMath as ExplorerMath } from "./FadingMath";
 import { FadingFigureView } from "./FadingFigureView";
+import { curriculumName } from "./labels";
 import s from "./fading.module.css";
 
 export function FadingComparisonSheet({
@@ -63,7 +64,7 @@ export function FadingComparisonSheet({
             기준안 대조 · STEP {String(result.step).padStart(2, "0")}
           </p>
           <h2 id="fading-compare-title" className={s.subheading}>
-            {concept.section.split("::").at(-1)} · 기준안
+            {curriculumName(concept.section.split("::").at(-1))} · 기준안
           </h2>
         </div>
         <button

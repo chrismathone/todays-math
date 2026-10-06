@@ -25,7 +25,7 @@ import {
   type FadingConceptDetail,
   type FadingSource,
 } from "@/lib/fading/source";
-import { ratingNames, stepNames } from "./labels";
+import { curriculumName, ratingNames, stepNames } from "./labels";
 import { FadingIcon } from "./FadingIcon";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingComparisonSheet } from "./FadingComparisonSheet";
@@ -807,10 +807,10 @@ export function FadingSessionScreen({
         <>
           <header className={s.sessionHeading}>
             <p className={s.caps}>
-              {chapter[0]} · {chapter[1]} · {concept.level} · {concept.ordinal}/
-              {concept.siblings}
+              {chapter[0]} · {curriculumName(chapter[1])} · {concept.level} ·{" "}
+              {concept.ordinal}/{concept.siblings}
             </p>
-            <h1 className={s.heading}>{chapter.at(-1)}</h1>
+            <h1 className={s.heading}>{curriculumName(chapter.at(-1))}</h1>
             <p className={s.muted}>
               {local.step === 1
                 ? "문장을 읽고 핵심어의 뜻을 살펴보세요."

@@ -122,6 +122,32 @@ function dragChip(chip: HTMLElement, blank: HTMLElement, pointerType: string) {
 }
 afterEach(cleanup);
 describe("오늘의 기억 화면 — 로컬 규칙", () => {
+  it("풀이와 기준안에서 소단원 번호와 제목의 1cm를 구분하며 원본 이름은 보존한다", async () => {
+    const sample = {
+      ...concept,
+      section: "초3::1-5 길이와 시간::1-5-1 1cm보다 작은 단위",
+    };
+    const { source, state } = await startAt(3, sample);
+    await resume(source);
+    expect(
+      screen.getByRole("heading", {
+        name: "1-5-1 · 1cm보다 작은 단위",
+        level: 1,
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("초3 · 1-5 · 길이와 시간 · 하 · 1/1"),
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    fireEvent.click(await screen.findByRole("button", { name: "기준안 보기" }));
+    expect(
+      screen.getByRole("heading", {
+        name: "1-5-1 · 1cm보다 작은 단위 · 기준안",
+      }),
+    ).toBeInTheDocument();
+    expect(state.opened!.concept.section).toBe(sample.section);
+    expect((await source.state()).opened!.concept.section).toBe(sample.section);
+  });
   it("정독에는 빈칸 수와 안 비는 문장 딱지를 두지 않고 장식 체크를 둔다", async () => {
     const { source, state } = await startAt(1);
     const { container } = render(

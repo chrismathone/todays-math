@@ -3,7 +3,7 @@ import type { FadingCatalog } from "@/contracts/fadingApi.contract";
 import { FadingMath } from "./FadingMath";
 import { toPercent } from "@/lib/fading/numbers";
 import { FadingIcon } from "./FadingIcon";
-import { dueLabel, stepNames } from "./labels";
+import { curriculumName, dueLabel, stepNames } from "./labels";
 import s from "./FadingCatalogScreen.module.css";
 
 type CatalogSection = FadingCatalog["sections"][number];
@@ -92,9 +92,9 @@ export function FadingCatalogScreen({
           </div>
           <section className={s.unitHero}>
             <div className={s.kicker}>
-              {catalog.grade} · {selected.chapter}
+              {catalog.grade} · {curriculumName(selected.chapter)}
             </div>
-            <h1 className={s.unitTitle}>{selected.unit}</h1>
+            <h1 className={s.unitTitle}>{curriculumName(selected.unit)}</h1>
             <div className={s.tags}>
               <span>개념 {selected.concepts.length}개</span>
               <span>단계별로 확인</span>
@@ -323,10 +323,10 @@ export function FadingCatalogScreen({
                 <div className={s.featuredKickers}>
                   <span className={s.featuredTag}>단원</span>
                   <div className={s.small}>
-                    {catalog.grade} · {featured.chapter}
+                    {catalog.grade} · {curriculumName(featured.chapter)}
                   </div>
                 </div>
-                <h2>{featured.unit}</h2>
+                <h2>{curriculumName(featured.unit)}</h2>
                 <p className={s.small}>
                   개념 {featured.concepts.length}개 · 명제{" "}
                   {featuredCounts.propositions}개
@@ -355,7 +355,7 @@ export function FadingCatalogScreen({
               <button
                 className={s.primary}
                 disabled={busy}
-                aria-label={`${featured.unit} · 단원 보기`}
+                aria-label={`${curriculumName(featured.unit)} · 단원 보기`}
                 onClick={() => openUnit(featured.key)}
               >
                 단원 보기 <FadingIcon name="arrow" />
@@ -384,7 +384,7 @@ export function FadingCatalogScreen({
                     <div className={s.cardHeader}>
                       <div className={s.cardHeaderMain}>
                         <div className={s.small}>
-                          {catalog.grade} · {unit.chapter}
+                          {catalog.grade} · {curriculumName(unit.chapter)}
                         </div>
                         <span className={s.badge}>
                           {concept.status
@@ -401,8 +401,8 @@ export function FadingCatalogScreen({
                       ) : null}
                     </div>
                     <h3 className={s.conceptTitle}>
-                      {unit.unit} · {concept.level} · {concept.ordinal}/
-                      {concept.siblings}
+                      {curriculumName(unit.unit)} · {concept.level} ·{" "}
+                      {concept.ordinal}/{concept.siblings}
                     </h3>
                     <div className={s.termPreview}>
                       <span className={s.small}>개념 미리 보기</span>
@@ -443,7 +443,7 @@ export function FadingCatalogScreen({
                       <button
                         className={s.quiet}
                         disabled={busy}
-                        aria-label={`${unit.unit} · 단원 보기`}
+                        aria-label={`${curriculumName(unit.unit)} · 단원 보기`}
                         onClick={() => openUnit(unit.key)}
                       >
                         단원 보기
@@ -451,7 +451,7 @@ export function FadingCatalogScreen({
                       <button
                         className={s.readButton}
                         disabled={busy}
-                        aria-label={`${unit.unit} · ${concept.level} · ${concept.ordinal}/${concept.siblings} · 개념 읽기`}
+                        aria-label={`${curriculumName(unit.unit)} · ${concept.level} · ${concept.ordinal}/${concept.siblings} · 개념 읽기`}
                         onClick={() => onConcept(concept.id)}
                       >
                         개념 읽기 <FadingIcon name="arrow" />

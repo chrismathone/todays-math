@@ -7,7 +7,7 @@ import type { FadingSource } from "@/lib/fading/source";
 import type { FadingCatalog } from "@/contracts/fadingApi.contract";
 import { FadingIcon } from "./FadingIcon";
 import { FadingHomeHistory } from "./FadingHomeHistory";
-import { dueLabel, stepNames } from "./labels";
+import { curriculumName, dueLabel, stepNames } from "./labels";
 import { fadingRiskTone } from "./riskAppearance";
 import { FadingTerms } from "./FadingTerms";
 import s from "./fading.module.css";
@@ -314,10 +314,11 @@ export function FadingHome({
                   <article className={s.recommendCard} key={item.id}>
                     <span className={s.sectionTag}>
                       {recommendations.grade} ·{" "}
-                      {recommendations.sections[0]!.chapter}
+                      {curriculumName(recommendations.sections[0]!.chapter)}
                     </span>
                     <h3>
-                      {recommendations.sections[0]!.unit} · {item.level}
+                      {curriculumName(recommendations.sections[0]!.unit)} ·{" "}
+                      {item.level}
                     </h3>
                     <FadingTerms terms={item.terms} />
                     <div className={s.formulaPreview}>
@@ -390,7 +391,7 @@ export function FadingHome({
                         <span className={s.riskRail} />
                         <div className={s.queueMeta}>
                           <span className={s.sectionTag}>
-                            {section[0]} · {section[1]}
+                            {section[0]} · {curriculumName(section[1])}
                           </span>
                           <span className={s.code}>
                             {dueLabel(item.daysUntil)}
@@ -402,8 +403,8 @@ export function FadingHome({
                           )}
                         </div>
                         <h3>
-                          {section.at(-1)} · {item.level} · {item.ordinal}/
-                          {item.siblings}
+                          {curriculumName(section.at(-1))} · {item.level} ·{" "}
+                          {item.ordinal}/{item.siblings}
                         </h3>
                         <FadingTerms terms={item.terms} />
                         <div className={s.queueAction}>
