@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import type { FadingAction, FadingState } from "@/contracts/fadingApi.contract";
 import type { FadingPlacement } from "@/contracts/fading.contract";
@@ -29,6 +29,10 @@ import { curriculumName, ratingNames, stepNames } from "./labels";
 import { FadingIcon } from "./FadingIcon";
 import { FadingFigureView } from "./FadingFigureView";
 import { FadingComparisonSheet } from "./FadingComparisonSheet";
+import { FadingConceptLabel } from "./FadingConceptLabel";
+import { FadingSentenceCaption } from "./FadingSentenceCaption";
+import { FadingSentencePager } from "./FadingSentencePager";
+import { fadingSafeTopic } from "./sentenceTopic";
 import {
   FadingDraggedChip,
   useFadingChipDrag,
@@ -177,6 +181,13 @@ export function FadingSessionScreen({
       ? startFadingSession(concept, practice.status?.step ?? 1, 42)
       : resumed(state),
   );
+  const [card, setCard] = useState({
+    step: local.step,
+    index: 0,
+    pending: null as string | null,
+    active: null as string | null,
+  });
+  const [lastTarget, setLastTarget] = useState<string | null>(null);
   const [compare, setCompare] = useState<FadingStepResult | null>(null);
   const [canonical, setCanonical] = useState(false);
   const [comparisonPlacements, setComparisonPlacements] = useState<
@@ -188,6 +199,7 @@ export function FadingSessionScreen({
   const chipInput = useRef<HTMLInputElement>(null);
   const nativeTab = useRef(false);
   const restoreMissFocus = useRef(false);
+  const finishFromTyping = useRef(false);
   const [activeBlank, setActiveBlank] = useState<string | null>(null);
   const [feedback, setFeedback] = useState("");
   const [wrong, setWrong] = useState<{ targetId: string; text: string } | null>(
@@ -198,6 +210,15 @@ export function FadingSessionScreen({
   const [exit, setExit] = useState(false);
   const [done, setDone] = useState(false);
   const [stageReady, setStageReady] = useState<FadingSession | null>(null);
+  useLayoutEffect(() => {
+    if (!stageReady || !finishFromTyping.current) return;
+    finishFromTyping.current = false;
+    sessionRoot.current
+      ?.querySelector<HTMLButtonElement>(
+        '[data-fading-action="true"]:not(:disabled)',
+      )
+      ?.focus();
+  }, [stageReady]);
   const placements = useRef<FadingPlacement[]>([]);
   const pending = useRef<{
     action: FadingAction;
@@ -227,6 +248,59 @@ export function FadingSessionScreen({
     wrong?.targetId ??
     blanks.find((blank) => !local.filled[blank.id])?.id ??
     null;
+  // Paging only controls presentation. Targets, tray and placements remain step-wide.
+  const followingTarget = pendingBlank ?? lastTarget;
+  const followingIndex = concept.propositions.findIndex((proposition) =>
+    proposition.pieces.some(
+      (piece) => piece.kind === "target" && piece.target.id === followingTarget,
+    ),
+  );
+  const followsNewBlank =
+    card.step !== local.step ||
+    (local.phase === "filling" &&
+      (card.pending !== pendingBlank || card.active !== activeBlank));
+  const cardIndex = followsNewBlank ? Math.max(0, followingIndex) : card.index;
+  // Pin the displayed card when the pending blank changes. Otherwise the last
+  // answer can return to the initial card when pending becomes null again.
+  if (followsNewBlank) {
+    setCard({
+      step: local.step,
+      index: cardIndex,
+      pending: pendingBlank,
+      active: activeBlank,
+    });
+  }
+  const visiblePending = concept.propositions[cardIndex]!.pieces.some(
+    (piece) => piece.kind === "target" && piece.target.id === pendingBlank,
+  );
+  const offCardCue =
+    "이 문장에는 입력할 빈칸이 없어요. Tab으로 빈칸이 있는 문장으로 이동해 주세요.";
+  function showCard(index: number) {
+    const proposition = concept.propositions[index];
+    if (!proposition) return;
+    const target = proposition.pieces.find(
+      (piece) =>
+        piece.kind === "target" &&
+        erased.has(piece.target.id) &&
+        !local.filled[piece.target.id],
+    );
+    const nextActive =
+      local.phase === "filling" && target?.kind === "target"
+        ? target.target.id
+        : null;
+    const nextPending =
+      nextActive ??
+      wrong?.targetId ??
+      blanks.find((blank) => !local.filled[blank.id])?.id ??
+      null;
+    setCard({
+      step: local.step,
+      index,
+      pending: nextPending,
+      active: nextActive,
+    });
+    if (local.phase === "filling") setActiveBlank(nextActive);
+  }
   useFadingBlankSize({
     root: sessionRoot,
     targets: blanks,
@@ -328,8 +402,17 @@ export function FadingSessionScreen({
       !tray.some((chip) => chip.id === chipId)
     )
       return;
+    if (
+      !concept.propositions[cardIndex]!.pieces.some(
+        (piece) => piece.kind === "target" && piece.target.id === targetId,
+      )
+    ) {
+      setFeedback(offCardCue);
+      return;
+    }
     const result = placeChip(local, concept, targetId, chipId, content.traps);
     placements.current.push({ targetId, chipId });
+    setLastTarget(targetId);
     setSelected(null);
     setActiveBlank(null);
     if (!result.correct) {
@@ -347,6 +430,7 @@ export function FadingSessionScreen({
       }
     } else if (result.session.results.length > local.results.length) {
       setWrong(null);
+      finishFromTyping.current = restoreInputFocus;
       setStageReady(result.session);
       setLocal({ ...local, filled: { ...local.filled, [targetId]: chipId } });
       setFeedback("빈칸을 모두 채웠어요. 아래 단추를 눌러 단계를 마쳐 주세요.");
@@ -370,26 +454,25 @@ export function FadingSessionScreen({
     setWrong(null);
     setFeedback("");
   }
-  function cycleChip(event: KeyboardEvent<HTMLElement>, focusedChip?: string) {
+  function cycleBlank(event: KeyboardEvent<HTMLElement>) {
     if (
       event.key !== "Tab" ||
       event.ctrlKey ||
       event.altKey ||
       event.metaKey ||
       event.nativeEvent.isComposing ||
+      event.nativeEvent.keyCode === 229 ||
       nativeTab.current ||
       disabled ||
       stageReady ||
-      !pendingBlank
+      local.phase !== "filling"
     )
       return false;
-    const available = choices.filter((choice) => choice.chipId);
+    const available = blanks.filter((blank) => !local.filled[blank.id]);
     if (!available.length) return false;
     event.preventDefault();
     if (event.repeat) return true;
-    const current = available.findIndex(
-      (choice) => choice.chipId === (selected ?? focusedChip),
-    );
+    const current = available.findIndex((blank) => blank.id === pendingBlank);
     const direction = event.shiftKey ? -1 : 1;
     const index =
       current < 0
@@ -397,18 +480,25 @@ export function FadingSessionScreen({
           ? available.length - 1
           : 0
         : (current + direction + available.length) % available.length;
-    setSelected(available[index]!.chipId);
+    setActiveBlank(available[index]!.id);
+    setSelected(null);
+    setTyped("");
     setFeedback("");
+    chipInput.current?.focus();
     return true;
   }
   function cancelChipKeyboard() {
     clearSelection();
     chipInput.current?.focus();
-    // Escape restores normal Tab traversal so the chip selector cannot trap focus.
+    // Escape restores normal Tab traversal so blank navigation cannot trap focus.
     nativeTab.current = true;
   }
   function submitTypedChip() {
     if (disabled || stageReady || !pendingBlank) return;
+    if (!visiblePending) {
+      setFeedback(offCardCue);
+      return;
+    }
     const restoreInputFocus = document.activeElement === chipInput.current;
     if (selected && !used.has(selected)) {
       place(pendingBlank, selected, restoreInputFocus);
@@ -434,6 +524,17 @@ export function FadingSessionScreen({
   }
   const termTitle = concept.propositions.map((p) => p.term).join(" · ");
   const chapter = concept.section.split("::");
+  const identityTargets =
+    done || compare || local.phase === "rating" ? [] : blanks;
+  const safeChapter = chapter.filter(
+    (name) => fadingSafeTopic(name, identityTargets) !== undefined,
+  );
+  const safeLevel = fadingSafeTopic(concept.level, identityTargets);
+  const identityMeta = [
+    ...safeChapter.slice(0, -1).map(curriculumName),
+    ...(safeLevel !== undefined ? [safeLevel] : []),
+    `${concept.ordinal}/${concept.siblings}`,
+  ].join(" · ");
   const disabled = saving || !!failure;
   function chooseNumber(index: number) {
     if (disabled || compare || done) return;
@@ -546,6 +647,12 @@ export function FadingSessionScreen({
           </div>
         </div>
       </header>
+      <div className={s.singleCardIdentity}>
+        <p className={s.caps}>{identityMeta}</p>
+        <p className={s.small}>
+          {curriculumName(safeChapter.at(-1)) || "개념 문장"}
+        </p>
+      </div>
       {practice && <p className={s.notice}>연습 · 기록되지 않음</p>}
       {!done && !compare && local.phase !== "rating" && (
         <div className={s.pcStageStrip} aria-label="네 단계 흐름">
@@ -704,7 +811,7 @@ export function FadingSessionScreen({
               return (
                 <div className={s.listItem} key={p.id}>
                   <span className={s.listTitle}>
-                    명제 {i + 1} · <ExplorerMath text={p.term} />
+                    <FadingConceptLabel index={i} term={p.term} />
                   </span>
                   <span className={s.small}>
                     {targets.length}개 빈칸 · 틀림 {missed}개
@@ -806,11 +913,9 @@ export function FadingSessionScreen({
       ) : (
         <>
           <header className={s.sessionHeading}>
-            <p className={s.caps}>
-              {chapter[0]} · {curriculumName(chapter[1])} · {concept.level} ·{" "}
-              {concept.ordinal}/{concept.siblings}
-            </p>
-            <h1 className={s.heading}>{curriculumName(chapter.at(-1))}</h1>
+            <h1 className={s.heading}>
+              {curriculumName(safeChapter.at(-1)) || "개념 문장"}
+            </h1>
             <p className={s.muted}>
               {local.step === 1
                 ? "문장을 읽고 핵심어의 뜻을 살펴보세요."
@@ -840,42 +945,61 @@ export function FadingSessionScreen({
                   </span>
                 )}
               </div>
-              {concept.propositions.map((p, i) => (
-                <article
-                  className={s.proposition}
-                  key={p.id}
-                  data-missed={missedCounts[i]! > 0}
-                >
-                  <h2 className={s.propositionHeading}>
-                    <span className={s.propositionLabel}>
-                      명제 {String(i + 1).padStart(2, "0")}
-                      {local.phase === "reading" && (
-                        <>
-                          {" "}
-                          · <ExplorerMath text={p.term} />
-                        </>
-                      )}
-                    </span>
-                    {local.step === 1 ? (
-                      <svg
-                        className={s.readingCheck}
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path d="m5 12 4 4L19 6" />
-                      </svg>
-                    ) : (
-                      <span
-                        className={s.propositionState}
-                        data-state={
-                          p.pieces.some(
+              {(() => {
+                const i = cardIndex;
+                const p = concept.propositions[i]!;
+                return (
+                  <article
+                    className={`${s.proposition} ${s.singleCard}`}
+                    data-fading-sentence={p.id}
+                    key={p.id}
+                    data-missed={missedCounts[i]! > 0}
+                  >
+                    <h2 className={s.propositionHeading}>
+                      <span className={s.propositionLabel}>
+                        <FadingSentenceCaption
+                          proposition={p}
+                          index={i}
+                          section={concept.section}
+                          erased={blanks}
+                        />
+                      </span>
+                      {local.step === 1 ? (
+                        <svg
+                          className={s.readingCheck}
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.8"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <path d="m5 12 4 4L19 6" />
+                        </svg>
+                      ) : (
+                        <span
+                          className={s.propositionState}
+                          data-state={
+                            p.pieces.some(
+                              (piece) =>
+                                piece.kind === "target" &&
+                                erased.has(piece.target.id),
+                            )
+                              ? p.pieces.some(
+                                  (piece) =>
+                                    piece.kind === "target" &&
+                                    erased.has(piece.target.id) &&
+                                    !local.filled[piece.target.id],
+                                )
+                                ? "waiting"
+                                : "filled"
+                              : "reading"
+                          }
+                        >
+                          {p.pieces.some(
                             (piece) =>
                               piece.kind === "target" &&
                               erased.has(piece.target.id),
@@ -886,145 +1010,145 @@ export function FadingSessionScreen({
                                   erased.has(piece.target.id) &&
                                   !local.filled[piece.target.id],
                               )
-                              ? "waiting"
-                              : "filled"
-                            : "reading"
-                        }
-                      >
-                        {p.pieces.some(
-                          (piece) =>
-                            piece.kind === "target" &&
-                            erased.has(piece.target.id),
-                        )
-                          ? p.pieces.some(
-                              (piece) =>
-                                piece.kind === "target" &&
-                                erased.has(piece.target.id) &&
-                                !local.filled[piece.target.id],
-                            )
-                            ? "미입력"
-                            : "채워짐"
-                          : "이 단계에서는 안 비는 문장"}
-                      </span>
-                    )}
-                  </h2>
-                  <div className={s.sentence}>
-                    {p.pieces.map((piece, index) => {
-                      if (piece.kind === "text")
+                              ? "미입력"
+                              : "채워짐"
+                            : "이 단계에서는 안 비는 문장"}
+                        </span>
+                      )}
+                    </h2>
+                    <div className={s.sentence}>
+                      {p.pieces.map((piece, index) => {
+                        if (piece.kind === "text")
+                          return (
+                            <span key={index}>
+                              <ExplorerMath text={piece.text} />
+                            </span>
+                          );
+                        const target = piece.target;
+                        if (!erased.has(target.id))
+                          return (
+                            <span
+                              key={target.id}
+                              className={
+                                local.phase === "reading"
+                                  ? target.tier === "math"
+                                    ? s.readingMathTarget
+                                    : s.readingTextTarget
+                                  : undefined
+                              }
+                            >
+                              <ExplorerMath text={target.text} />
+                            </span>
+                          );
+                        const blankIndex =
+                          blanks.findIndex((t) => t.id === target.id) + 1;
+                        const filled = local.filled[target.id];
+                        const missed = local.missed.includes(target.id);
+                        if (filled)
+                          return (
+                            <span
+                              key={target.id}
+                              className={`${s.filled} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                              role={missed ? "group" : undefined}
+                              aria-label={
+                                missed
+                                  ? `빈칸 ${blankIndex} · 틀린 기록이 있는 빈칸`
+                                  : undefined
+                              }
+                              data-fading-slot={target.id}
+                            >
+                              <ExplorerMath
+                                text={tray.find((c) => c.id === filled)!.text}
+                              />
+                              {missed && (
+                                <span
+                                  className={s.missedMarker}
+                                  aria-hidden="true"
+                                />
+                              )}
+                            </span>
+                          );
                         return (
-                          <span key={index}>
-                            <ExplorerMath text={piece.text} />
-                          </span>
-                        );
-                      const target = piece.target;
-                      if (!erased.has(target.id))
-                        return (
-                          <span
+                          <button
                             key={target.id}
-                            className={
-                              local.phase === "reading"
-                                ? target.tier === "math"
-                                  ? s.readingMathTarget
-                                  : s.readingTextTarget
-                                : undefined
-                            }
-                          >
-                            <ExplorerMath text={target.text} />
-                          </span>
-                        );
-                      const blankIndex =
-                        blanks.findIndex((t) => t.id === target.id) + 1;
-                      const filled = local.filled[target.id];
-                      const missed = local.missed.includes(target.id);
-                      if (filled)
-                        return (
-                          <span
-                            key={target.id}
-                            className={`${s.filled} ${s.stableSlot} ${missed ? s.missed : ""}`}
-                            role={missed ? "group" : undefined}
-                            aria-label={
-                              missed
-                                ? `빈칸 ${blankIndex} · 틀린 기록이 있는 빈칸`
-                                : undefined
-                            }
+                            className={`${s.blank} ${s.stableSlot} ${missed ? s.missed : ""}`}
+                            aria-label={`빈칸 ${blankIndex}${missed ? " · 틀린 기록이 있는 빈칸" : ""}`}
+                            aria-pressed={pendingBlank === target.id}
+                            data-pending={pendingBlank === target.id}
                             data-fading-slot={target.id}
+                            data-fading-blank={target.id}
+                            data-drag-available={!!dragging.drag}
+                            data-drag-over={dragging.over === target.id}
+                            disabled={disabled}
+                            onClick={() => chooseBlank(target.id)}
                           >
-                            <ExplorerMath
-                              text={tray.find((c) => c.id === filled)!.text}
-                            />
+                            {wrong?.targetId === target.id ? (
+                              <span className={s.wrongPlaced}>
+                                <ExplorerMath text={wrong.text} />
+                              </span>
+                            ) : (
+                              <>
+                                <FadingIcon name="erase" />
+                                <span className={s.blankCaption}>
+                                  빈칸 터치
+                                </span>
+                              </>
+                            )}
                             {missed && (
                               <span
                                 className={s.missedMarker}
                                 aria-hidden="true"
                               />
                             )}
-                          </span>
+                          </button>
                         );
-                      return (
-                        <button
-                          key={target.id}
-                          className={`${s.blank} ${s.stableSlot} ${missed ? s.missed : ""}`}
-                          aria-label={`빈칸 ${blankIndex}${missed ? " · 틀린 기록이 있는 빈칸" : ""}`}
-                          aria-pressed={pendingBlank === target.id}
-                          data-pending={pendingBlank === target.id}
-                          data-fading-slot={target.id}
-                          data-fading-blank={target.id}
-                          data-drag-available={!!dragging.drag}
-                          data-drag-over={dragging.over === target.id}
-                          disabled={disabled}
-                          onClick={() => chooseBlank(target.id)}
-                        >
-                          {wrong?.targetId === target.id ? (
-                            <span className={s.wrongPlaced}>
-                              <ExplorerMath text={wrong.text} />
-                            </span>
-                          ) : (
-                            <>
-                              <FadingIcon name="erase" />
-                              <span className={s.blankCaption}>빈칸 터치</span>
-                            </>
-                          )}
-                          {missed && (
-                            <span
-                              className={s.missedMarker}
-                              aria-hidden="true"
-                            />
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {missedCounts[i]! > 0 && (
-                    <p className={s.missedNote} data-fading-missed-note>
-                      틀린 기록이 있는 빈칸 {missedCounts[i]}개 · 다시 채워도
-                      기록은 남습니다
-                    </p>
-                  )}
-                  {wrong &&
-                    p.pieces.some(
-                      (piece) =>
-                        piece.kind === "target" &&
-                        piece.target.id === wrong.targetId,
-                    ) && (
-                      <div className={s.wrongBanner}>
-                        <span className={s.wrongChip}>
-                          <ExplorerMath text={wrong.text} />
-                        </span>
-                        <strong>맞지 않는 칩</strong>
-                        <button
-                          disabled={disabled}
-                          onClick={() => {
-                            setWrong(null);
-                            setActiveBlank(wrong.targetId);
-                          }}
-                          className={s.danger}
-                        >
-                          다시 고르기
-                        </button>
-                      </div>
+                      })}
+                    </div>
+                    {missedCounts[i]! > 0 && (
+                      <p className={s.missedNote} data-fading-missed-note>
+                        틀린 기록이 있는 빈칸 {missedCounts[i]}개 · 다시 채워도
+                        기록은 남습니다
+                      </p>
                     )}
-                </article>
-              ))}
+                    {wrong &&
+                      p.pieces.some(
+                        (piece) =>
+                          piece.kind === "target" &&
+                          piece.target.id === wrong.targetId,
+                      ) && (
+                        <div className={s.wrongBanner}>
+                          <span className={s.wrongChip}>
+                            <ExplorerMath text={wrong.text} />
+                          </span>
+                          <strong>맞지 않는 칩</strong>
+                          <button
+                            disabled={disabled}
+                            onClick={() => {
+                              setWrong(null);
+                              setActiveBlank(wrong.targetId);
+                            }}
+                            className={s.danger}
+                          >
+                            다시 고르기
+                          </button>
+                        </div>
+                      )}
+                  </article>
+                );
+              })()}
+              <FadingSentencePager
+                index={cardIndex}
+                count={concept.propositions.length}
+                onChange={showCard}
+                disabled={disabled}
+                advanceAction={local.phase === "reading"}
+              />
+              {local.phase === "reading" && (
+                <p className={`${s.small} ${s.singleCardKeyboard}`}>
+                  Space·Enter 다음 문장 · 이전 문장으로 돌아가 다시 읽을 수
+                  있어요
+                </p>
+              )}
             </section>
             {local.phase === "filling" && (
               <aside className={`${s.card} ${s.tray}`} aria-label="칩 고르기">
@@ -1032,7 +1156,9 @@ export function FadingSessionScreen({
                   <h2 className={s.subheading}>문장을 채우는 칩</h2>
                   <span className={s.code}>
                     {pendingBlank
-                      ? `빈칸 [${blanks.findIndex((t) => t.id === pendingBlank) + 1}] 입력 대기 중`
+                      ? visiblePending
+                        ? `빈칸 [${blanks.findIndex((t) => t.id === pendingBlank) + 1}] 입력 대기 중`
+                        : "이 문장에는 입력할 빈칸이 없어요"
                       : "빈칸을 골라 주세요"}
                   </span>
                 </div>
@@ -1068,11 +1194,14 @@ export function FadingSessionScreen({
                         nativeTab.current = false;
                       }}
                       onKeyDown={(event) => {
-                        if (event.nativeEvent.isComposing) {
+                        if (
+                          event.nativeEvent.isComposing ||
+                          event.nativeEvent.keyCode === 229
+                        ) {
                           if (event.key === "Enter") event.preventDefault();
                           return;
                         }
-                        if (cycleChip(event)) return;
+                        if (cycleBlank(event)) return;
                         if (
                           event.key === "Escape" ||
                           (event.key === "Backspace" && !typed)
@@ -1088,7 +1217,10 @@ export function FadingSessionScreen({
                       type="submit"
                       className={s.secondary}
                       disabled={
-                        disabled || !!stageReady || (!typed.trim() && !selected)
+                        disabled ||
+                        !!stageReady ||
+                        !visiblePending ||
+                        (!typed.trim() && !selected)
                       }
                     >
                       넣기
@@ -1107,7 +1239,7 @@ export function FadingSessionScreen({
                         aria-pressed={selected === choice.chipId}
                         aria-label={`칩 ${choice.text}`}
                         onKeyDown={(event) => {
-                          if (cycleChip(event, choice.chipId!)) return;
+                          if (cycleBlank(event)) return;
                           if (event.key === "Escape") {
                             event.preventDefault();
                             cancelChipKeyboard();
@@ -1115,6 +1247,7 @@ export function FadingSessionScreen({
                           }
                           if (
                             event.nativeEvent.isComposing ||
+                            event.nativeEvent.keyCode === 229 ||
                             (event.key !== "Enter" && event.key !== " ") ||
                             !pendingBlank
                           )
@@ -1172,7 +1305,7 @@ export function FadingSessionScreen({
                   )}
                 </div>
                 <p className={`${s.small} ${s.keyboardHint}`}>
-                  Tab·Shift+Tab 칩 선택 이동 · Enter로 선택한 칩 넣기 · 칩에서
+                  Tab·Shift+Tab 빈칸 이동 · 글을 입력하고 Enter로 넣기 · 칩에서
                   Enter·Space로 넣기 · 입력란 밖 ← → 빈칸 이동 · 숫자키로 넣기
                   {choices.length > 9 && " · 0은 10번, Shift+숫자는 11번부터"}
                   {" · Backspace 선택 취소 · Esc 선택 취소 후 일반 Tab 이동"}
@@ -1183,7 +1316,7 @@ export function FadingSessionScreen({
                   className={s.feedback}
                   data-error={!!wrong || (!!feedback && !stageReady)}
                 >
-                  {feedback ||
+                  {(!visiblePending && pendingBlank ? offCardCue : feedback) ||
                     (saving ? (
                       "저장 중…"
                     ) : selected ? (
@@ -1201,19 +1334,23 @@ export function FadingSessionScreen({
           </div>
           <div className={s.actions}>
             {local.phase === "reading" ? (
-              <button
-                className={s.primary}
-                disabled={disabled}
-                data-fading-action="true"
-                onClick={() => {
-                  const next = finishReading(local);
-                  if (practice) setLocal(next);
-                  else
-                    void send({ action: "read", ...ref }, () => setLocal(next));
-                }}
-              >
-                읽었어요 · 다음 단계
-              </button>
+              cardIndex === concept.propositions.length - 1 ? (
+                <button
+                  className={s.primary}
+                  disabled={disabled}
+                  data-fading-action="true"
+                  onClick={() => {
+                    const next = finishReading(local);
+                    if (practice) setLocal(next);
+                    else
+                      void send({ action: "read", ...ref }, () =>
+                        setLocal(next),
+                      );
+                  }}
+                >
+                  읽었어요 · 다음 단계
+                </button>
+              ) : null
             ) : (
               <>
                 <button

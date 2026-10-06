@@ -1,3 +1,8 @@
+.viewport {
+  container: fading-app / inline-size;
+  width: 100%;
+  min-width: 0;
+}
 .root {
   position: relative;
   --f-bg: #f8f9ff;
@@ -18,6 +23,7 @@
   font-size: 16px;
   line-height: 1.6;
   width: 100%;
+  min-width: 0;
   overflow-wrap: anywhere;
   word-break: keep-all;
 }
@@ -143,7 +149,7 @@
   padding: 32px 24px 96px;
 }
 .heading {
-  font-size: clamp(25px, 3vw, 34px);
+  font-size: clamp(25px, 3cqw, 34px);
   line-height: 1.25;
   letter-spacing: -0.05em;
   font-weight: 700;
@@ -522,6 +528,7 @@
 }
 .propositionHeading {
   display: flex;
+  min-width: 0;
   align-items: baseline;
   justify-content: space-between;
   gap: 10px;
@@ -648,12 +655,7 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 12px;
 }
-@media (max-width: 767px) {
-  .compareResults {
-    grid-template-columns: 1fr;
-  }
-}
-@container (max-width:450px) {
+@container fading-app (max-width: 767px) {
   .compareResults {
     grid-template-columns: 1fr;
   }
@@ -825,6 +827,7 @@
   align-items: start;
   gap: 7px;
   flex: 1;
+  min-width: 0;
   font-size: 14px;
 }
 .roundNumber {
@@ -915,7 +918,7 @@
   border-radius: 99px;
   background: #006c4a;
 }
-@media (min-width: 1024px) {
+@container fading-app (min-width: 1024px) {
   .sessionGrid:has(.figureCard) {
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   }
@@ -935,16 +938,6 @@
     position: static;
   }
 }
-@container (max-width:450px) {
-  .sessionGrid:has(.figureCard) {
-    display: flex;
-    flex-direction: column;
-  }
-  .sessionGrid > .figureCard {
-    position: static;
-    width: 100%;
-  }
-}
 .session[data-step="3"] .chips {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -957,16 +950,6 @@
   opacity: 1;
   background: #1e2238;
   color: #aab0c5;
-}
-@media (min-width: 1280px) {
-  .tabs {
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 740px;
-    z-index: 10;
-  }
 }
 .sessionStatus {
   display: flex;
@@ -1050,6 +1033,9 @@
   font-size: 12px;
 }
 .propositionLabel {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
   background: #e5eeff;
   color: #1e2238;
   padding: 2px 6px;
@@ -1057,6 +1043,34 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1.5;
+}
+.propositionTitle {
+  display: inline-grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
+  column-gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+.propositionNumber {
+  white-space: nowrap;
+  font-size: inherit;
+  font-weight: inherit;
+}
+.propositionTerm {
+  min-width: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.propositionTerm :global(.prose) {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 .propositionState {
   color: #536176;
@@ -1112,7 +1126,7 @@
 .keyboardHint {
   display: none;
 }
-@media (min-width: 768px) {
+@container fading-app (min-width: 768px) {
   .chipNumber {
     display: inline-flex;
     align-items: center;
@@ -1248,7 +1262,7 @@
 .dialog .actions > .secondary {
   background: #eff4ff;
 }
-@media (min-width: 1024px) {
+@container fading-app (min-width: 1024px) {
   .session {
     padding: 0 32px 32px;
   }
@@ -1291,7 +1305,7 @@
     margin-left: 0;
   }
 }
-@media (max-width: 350px) {
+@container fading-app (max-width: 350px) {
   .sessionStatus > .code {
     margin-left: auto;
   }
@@ -1710,7 +1724,7 @@
   border: 0;
   box-shadow: 0 1px 3px #080c2110;
 }
-@media (min-width: 1024px) {
+@container fading-app (min-width: 1024px) {
   .top {
     padding-inline: 24px;
   }
@@ -1771,50 +1785,19 @@
     background: #eff4ff;
   }
 }
-@container (max-width:450px) {
-  .homeHero {
-    flex-direction: column;
-    min-height: 0;
-    padding: 24px;
-    gap: 20px;
-  }
-  .heroCopy h2 {
-    font-size: 22px;
-  }
-  .heroAction {
-    width: 100%;
-  }
-  .homeColumns {
-    display: flex;
-    flex-direction: column;
-  }
-  .metricTiles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .top {
-    padding-inline: 16px;
-  }
-  .stageTile {
-    padding: 10px 6px;
-    align-items: center;
-    text-align: center;
-  }
-  .stageTile strong {
-    font-size: 13px;
-  }
-}
 .dialog .actions {
   margin-bottom: 0;
 }
 .preview {
-  width: min(100%, 390px);
+  width: 100%;
+  max-width: 1280px;
+  height: max(360px, min(840px, 75dvh));
   margin: auto;
   border: 1px solid #dce4f2;
-  border-radius: 24px;
+  border-radius: 12px;
   overflow: clip;
-  container-type: inline-size;
 }
-@media (max-width: 1023px) {
+@container fading-app (max-width: 1023px) {
   .sessionGrid {
     grid-template-columns: 1fr;
   }
@@ -1825,7 +1808,7 @@
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (max-width: 767px) {
+@container fading-app (max-width: 767px) {
   .top {
     padding: 12px 16px;
     gap: 8px;
@@ -1917,51 +1900,6 @@
   }
   .day {
     border-radius: 6px;
-  }
-}
-@container (max-width:450px) {
-  .grid,
-  .sessionGrid {
-    grid-template-columns: 1fr;
-  }
-  .shell,
-  .session {
-    padding: 20px 16px;
-  }
-  .top {
-    padding: 12px 16px;
-  }
-  .tabs {
-    position: static;
-    padding: 8px;
-  }
-  .tab {
-    flex: 1;
-    padding: 8px 4px;
-    flex-direction: column;
-    font-size: 12px;
-  }
-  .desktopLabel {
-    display: none;
-  }
-  .phoneLabel {
-    display: inline;
-  }
-  .card,
-  .proposition {
-    padding: 16px;
-  }
-  .hero {
-    padding: 22px;
-  }
-  .ratingGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .sentence {
-    font-size: 16px;
-  }
-  .tray {
-    position: static;
   }
 }
 .proposition[data-missed="true"] {
@@ -2559,21 +2497,15 @@
   padding: 14px 16px;
   margin-bottom: 16px;
 }
-.readingTextTarget {
+.readingTextTarget,
+.readingMathTarget {
   background: #d3f8e4;
   color: #006c4a;
   font-weight: 600;
   border-radius: 4px;
   padding: 2px 6px;
 }
-.readingMathTarget {
-  background: #dce9ff;
-  color: #0b1c30;
-  font-weight: 600;
-  border-radius: 4px;
-  padding: 2px 6px;
-}
-@media (min-width: 1024px) {
+@container fading-app (min-width: 1024px) {
   .todayRingCard,
   .homeHistory {
     display: block;
@@ -2611,38 +2543,6 @@
   }
   .session > .actions > .secondary {
     min-width: 150px;
-  }
-}
-@container (max-width:450px) {
-  .todayRingCard,
-  .homeHistory {
-    display: none;
-  }
-  .eraseScreen .list {
-    display: flex;
-    flex-direction: column;
-  }
-  .session > .actions {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin-top: 20px;
-    border: 0;
-  }
-}
-@container (max-width:450px) {
-  .preview .tabs {
-    position: static;
-    top: auto;
-    left: auto;
-    transform: none;
-    width: auto;
-    padding: 6px 8px;
-    justify-content: space-around;
-  }
-  .preview .top {
-    height: 64px;
   }
 }
 .figureCanvas text {
@@ -2714,26 +2614,12 @@
   background: #e5eeff;
   color: #46464d;
 }
-@media (min-width: 1024px) {
+@container fading-app (min-width: 1024px) {
   .pcStageStrip {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 8px;
     margin: 0 0 8px;
-  }
-}
-@container (max-width:450px) {
-  .sessionHeader {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-  }
-  .sessionStatus {
-    max-width: none;
-    width: auto;
-    justify-self: stretch;
-  }
-  .pcStageStrip {
-    display: none;
   }
 }
 .queueDescription {
@@ -2837,5 +2723,284 @@
   .blank[data-pending="true"] {
     animation: none;
     box-shadow: 0 0 0 2px #006c4a;
+  }
+}
+
+/* Layout follows this app's width, including a phone inside the teacher workspace. */
+.root {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+}
+.top {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  background: #fff;
+}
+.tabs {
+  grid-column: 1;
+  grid-row: 2;
+  position: static;
+  width: 100%;
+  justify-content: center;
+}
+.root > .notice {
+  grid-column: 1;
+  grid-row: 3;
+  border-radius: 0;
+}
+.appBody {
+  grid-column: 1;
+  grid-row: 4;
+  min-width: 0;
+  min-height: 0;
+}
+.root[data-session="true"] > .appBody {
+  grid-row: 1 / -1;
+}
+.previewPanel {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  color: #0b1c30;
+  font-family: var(--font-pretendard), "Malgun Gothic", sans-serif;
+}
+.previewControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.previewControls p {
+  margin: 0;
+  color: #536176;
+  font-size: 12px;
+  word-break: keep-all;
+}
+.previewDevices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.previewDevices button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #dce4f2;
+  border-radius: 8px;
+  background: #fff;
+  color: #0b1c30;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.previewDevices button:hover {
+  background: #eff4ff;
+}
+.previewDevices button[aria-pressed="true"] {
+  border-color: #1e2238;
+  background: #1e2238;
+  color: #fff;
+}
+.previewDevices button:focus-visible {
+  outline: 3px solid #3159df;
+  outline-offset: 3px;
+}
+.preview[data-preview-device="mobile"] {
+  max-width: 390px;
+  border-radius: 24px;
+}
+.preview > .viewport {
+  height: 100%;
+}
+.root[data-preview="true"] {
+  height: 100%;
+  min-height: 0;
+}
+.root[data-preview="true"] > .appBody {
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.root[data-preview="true"] .session > .actions {
+  position: sticky;
+  inset-inline: auto;
+  bottom: 0;
+  margin-bottom: 0;
+}
+.root[data-preview="true"] .dialog {
+  width: min(420px, calc(100cqw - 32px));
+}
+.root[data-preview="true"] .exitSheet {
+  width: min(600px, calc(100cqw - 32px));
+}
+.root[data-preview="true"] .compareSheet {
+  width: min(760px, calc(100cqw - 16px));
+}
+@container fading-app (min-width: 1024px) {
+  .tabs {
+    grid-row: 1;
+    width: fit-content;
+    justify-self: center;
+    align-self: center;
+    margin: 0;
+    z-index: 1;
+  }
+  .homeColumns:not(:has(.homeMain)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .homeColumns:not(:has(.homeMain)) .transfers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .completedHome,
+  .returnHome,
+  .firstGuide,
+  .recommendCard {
+    padding: 32px;
+  }
+  .returnHome {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.65fr);
+    column-gap: 32px;
+  }
+  .returnCounts {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+  }
+  .guideSteps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container fading-app (max-width: 767px) {
+  .tabs {
+    grid-row: 5;
+    position: fixed;
+    max-width: none;
+    bottom: 0;
+    inset-inline: 0;
+  }
+  .root[data-preview="true"] .tabs {
+    position: static;
+  }
+  .root[data-preview="true"] .shell {
+    padding-bottom: 24px;
+  }
+  .root[data-preview="true"] .session > .actions {
+    position: static;
+  }
+}
+.singleCardReader {
+  max-width: 760px;
+  margin-inline: auto;
+  gap: 16px;
+}
+.singleCardIdentity {
+  min-width: 0;
+  margin-block: 12px;
+  display: grid;
+  gap: 6px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.singleCardReadingIntro {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+}
+.singleCard {
+  min-width: 0;
+  padding: 20px;
+}
+.singleCardHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.singleCardCaption {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: #e5eeff;
+  color: #1e2238;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.singleCardUnit {
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.singleCardKind {
+  font-size: 12px;
+  font-weight: 500;
+}
+.singleCardPager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  padding-block: 8px;
+}
+.singleCardPager > button {
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: 10px;
+  white-space: normal;
+}
+.singleCardCount {
+  font-size: 12px;
+  white-space: nowrap;
+  color: var(--muted, #536176);
+  font-variant-numeric: tabular-nums;
+}
+.singleCardKeyboard {
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+/* Keep mobile scrolling inside this app; teacher/workspace scrollbars are untouched. */
+.scrollBody:focus-visible {
+  outline: 3px solid #3159df;
+  outline-offset: -3px;
+}
+@container fading-app (max-width: 767px) {
+  .scrollRoot:not([data-preview="true"]) {
+    height: 100dvh;
+    min-height: 0;
+  }
+  .scrollRoot > nav[aria-label="오늘의 기억 메뉴"] {
+    position: static;
+  }
+  .scrollBody {
+    overflow: auto;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    scroll-padding-block: 12px;
+  }
+  .scrollBody::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollRoot:not([data-preview="true"]) .scrollBody > main[class] {
+    padding-bottom: 24px;
+  }
+  .scrollRoot[data-session="true"] > [data-fading-scroll-fade] {
+    grid-row: 1 / -1;
+  }
+  .scrollRoot > [data-fading-scroll-fade][data-more-below="true"] {
+    display: block;
   }
 }

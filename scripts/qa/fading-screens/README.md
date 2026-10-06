@@ -14,3 +14,12 @@ node scripts/qa/fading-screens/measure.mjs
 수치·캡처·표본은 추적하지 않는 `.qa-artifacts/fading-screens/`에 남는다. 중단하면 `interrupted.json/png`에 마지막 주소와 화면 오류를 기록한다. 저장·평가 실패는 dev 메모리 소스에서만 재현하며 실제 학생 API/DB는 호출하지 않는다.
 
 대조 그림 전체는 `node scripts/qa/fading-screens/compare.mjs`로 받는다. 특정 그림만 갱신할 때는 이름을 넘긴다: `node scripts/qa/fading-screens/compare.mjs first done`. 나머지 그림과 목록은 보존한다.
+
+PC·모바일 미리보기의 추가 회귀는 실행 중인 로컬 서버 주소를 지정해 확인한다.
+
+```powershell
+$env:FADING_QA_URL='http://127.0.0.1:4310'
+node scripts/qa/fading-screens/responsive-preview.mjs
+```
+
+학생 목록의 1·2·3열 전환, 넓은 브라우저 안의 모바일 미리보기, 기기 전환 시 단원·풀이 유지, 교사용 H2 화면의 여섯 상태와 실제 미리보기를 확인한다. 학생 API 쓰기 요청도 감시한다. 결과와 캡처는 `.qa-artifacts/fading-responsive-preview/`에 남는다.

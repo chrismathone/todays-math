@@ -1,0 +1,15 @@
+.fade {
+  display: none;
+  position: absolute;
+  grid-column: 1;
+  grid-row: 4 / 5;
+  inset-inline: 0;
+  bottom: 0;
+  height: 36px;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--f-bg, #f8f9ff));
+}
+
+/* No animation: reaching the end removes the hint immediately, including with
+   prefers-reduced-motion. */

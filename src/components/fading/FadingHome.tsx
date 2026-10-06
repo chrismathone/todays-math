@@ -326,7 +326,7 @@ export function FadingHome({
                       <ExplorerMath text={item.terms[0]!} />
                     </div>
                     <div className={s.queueAction}>
-                      <span>명제 {item.propositions}개</span>
+                      <span>개념 문장 {item.propositions}개</span>
                       <button className={s.primary} onClick={onCatalog}>
                         개념 보기
                         <FadingIcon name="arrow" />

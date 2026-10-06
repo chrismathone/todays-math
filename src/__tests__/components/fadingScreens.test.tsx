@@ -82,13 +82,28 @@ async function resume(source: ReturnType<typeof local>) {
   );
   await screen.findByRole("button", { name: "아직 모르겠어요" });
 }
+function showSlot(targetIndex: number) {
+  const name = new RegExp(`^빈칸 ${targetIndex}(?:$| ·)`);
+  const current = () =>
+    screen.queryByRole("button", { name }) ??
+    screen.queryByRole("group", { name });
+  if (current()) return current()!;
+  const previous = screen.getByRole("button", { name: "이전 문장" });
+  while (!previous.hasAttribute("disabled")) fireEvent.click(previous);
+  const next = screen.getByRole("button", { name: "다음 문장" });
+  while (!current() && !next.hasAttribute("disabled")) fireEvent.click(next);
+  const slot = current();
+  if (!slot)
+    throw new Error(`빈칸 ${targetIndex}를 포함한 카드를 찾지 못했습니다.`);
+  return slot;
+}
 function place(targetIndex: number, text: string) {
+  const blank = showSlot(targetIndex);
   fireEvent.click(screen.getByRole("button", { name: `칩 ${text}` }));
-  fireEvent.click(
-    screen.getByRole("button", {
-      name: new RegExp(`^빈칸 ${targetIndex}(?:$| ·)`),
-    }),
-  );
+  // A manually chosen card activates its first blank; otherwise chip selection
+  // waits for a destination. Do not click a blank that was filled by the chip.
+  if (blank.isConnected && !blank.hasAttribute("disabled"))
+    fireEvent.click(blank);
 }
 function blurDisabledControl() {
   // jsdom keeps disabled controls focused; removing a focused temporary control models Chrome's body focus.
@@ -154,7 +169,9 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       <FadingApp source={source} initialState={state} />,
     );
     fireEvent.click(screen.getByRole("button", { name: "풀이 이어 하기" }));
-    await screen.findByRole("button", { name: "읽었어요 · 다음 단계" });
+    const nextSentence = await screen.findByRole("button", {
+      name: "다음 문장",
+    });
     expect(screen.queryByText("0 / 0 완료")).not.toBeInTheDocument();
     expect(screen.queryByText("빈칸 0개 남음")).not.toBeInTheDocument();
     expect(
@@ -162,8 +179,16 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     ).not.toBeInTheDocument();
     expect(
       container.querySelectorAll('h2 > svg[aria-hidden="true"]'),
-    ).toHaveLength(3);
+    ).toHaveLength(1);
     expect(screen.getByText(/STEP 01 · 정독/)).toBeInTheDocument();
+    for (let index = 0; index < concept.propositions.length - 1; index++) {
+      expect(nextSentence).toBeEnabled();
+      fireEvent.keyDown(window, { key: "Enter" });
+    }
+    expect(nextSentence).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "읽었어요 · 다음 단계" }),
+    ).toBeEnabled();
     fireEvent.keyDown(window, { key: "Enter", code: "NumpadEnter" });
     await screen.findByRole("button", { name: "아직 모르겠어요" });
     expect(screen.getByText(/STEP 02 · 핵심어 소거/)).toBeInTheDocument();
@@ -173,9 +198,19 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     async (step) => {
       const { source } = await startAt(step);
       await resume(source);
-      expect(screen.getAllByText("이 단계에서는 안 비는 문장")).toHaveLength(
-        3 - erasedTargets(concept, step).length,
-      );
+      const previous = screen.getByRole("button", { name: "이전 문장" });
+      while (!previous.hasAttribute("disabled")) fireEvent.click(previous);
+      let unblanked = 0;
+      const next = screen.getByRole("button", { name: "다음 문장" });
+      do {
+        expect(
+          document.querySelectorAll("[data-fading-sentence]"),
+        ).toHaveLength(1);
+        if (screen.queryByText("이 단계에서는 안 비는 문장")) unblanked++;
+        if (next.hasAttribute("disabled")) break;
+        fireEvent.click(next);
+      } while (true);
+      expect(unblanked).toBe(3 - erasedTargets(concept, step).length);
       expect(
         screen.getByText(`빈칸 ${erasedTargets(concept, step).length}개 남음`),
       ).toBeInTheDocument();
@@ -211,7 +246,8 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     );
     fireEvent.keyDown(window, { key: "Enter" });
     await screen.findByText(/STEP 03 · 수식·조건 소거/);
-    expect(screen.getAllByRole("button", { name: /^빈칸 / })).toHaveLength(2);
+    expect(screen.getAllByRole("button", { name: /^빈칸 / })).toHaveLength(1);
+    expect(screen.getByText("빈칸 2개 남음")).toBeInTheDocument();
   });
   it("입력에 초점이 있거나 조합키·한글 입력 중이면 숫자 단축키를 가로채지 않는다", async () => {
     const { source } = await startAt(2);
@@ -221,6 +257,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       { altKey: true },
       { metaKey: true },
       { isComposing: true },
+      { keyCode: 229 },
       { repeat: true },
     ]) {
       fireEvent.keyDown(window, { key: "1", ...modifier });
@@ -272,11 +309,11 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       expect(chip).toHaveAttribute("aria-pressed", "true");
       expect(fireEvent.keyDown(window, { key })).toBe(false);
       expect(chip).toHaveAttribute("aria-pressed", "false");
-      fireEvent.click(screen.getByRole("button", { name: "빈칸 2" }));
+      fireEvent.click(showSlot(2));
       fireEvent.keyDown(window, { key });
-      expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
-        "aria-pressed",
-        "false",
+      expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(
+        "data-pending",
+        "true",
       );
       expect(act).not.toHaveBeenCalled();
       place(1, "외심");
@@ -306,6 +343,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       expect(act).toHaveBeenCalledTimes(writes);
       place(1, "수직이등분선");
       fireEvent.keyDown(window, { key });
+      showSlot(1);
       expect(
         screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
       ).toHaveTextContent("수직이등분선");
@@ -377,7 +415,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
         erasedTargets(many, 4).findIndex(
           (target) => target.text === tray[index]!.text,
         ) + 1;
-      fireEvent.click(screen.getByRole("button", { name: `빈칸 ${blank}` }));
+      showSlot(blank);
       fireEvent.keyDown(window, { key, code, shiftKey });
       expect(
         screen.queryByRole("button", { name: `빈칸 ${blank}` }),
@@ -506,6 +544,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       screen.getByRole("button", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
     ).not.toHaveTextContent("외심");
     type(" 수직이등분선 ");
+    showSlot(1);
     expect(
       screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
     ).toHaveTextContent("수직이등분선");
@@ -586,12 +625,12 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
   it("풀이 전에 답 속성·기준안을 싣지 않고 완료 뒤에만 대조한다", async () => {
     const { source } = await startAt(4);
     await resume(source);
-    const blanks = screen.getAllByRole("button", { name: /^빈칸 / });
-    expect(blanks).toHaveLength(3);
     expect(
       screen.queryByRole("button", { name: "기준안 보기" }),
     ).not.toBeInTheDocument();
-    for (const blank of blanks) {
+    for (let index = 1; index <= erasedTargets(concept, 4).length; index++) {
+      const blank = showSlot(index);
+      expect(screen.getAllByRole("button", { name: /^빈칸 / })).toHaveLength(1);
       expect(blank.outerHTML).not.toMatch(
         /수직이등분선|외심|반지름|data-answer|data-tier/,
       );
@@ -629,6 +668,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       ).toBeEnabled(),
     );
     place(1, "수직이등분선");
+    showSlot(1);
     const filled = screen.getByRole("group", {
       name: "빈칸 1 · 틀린 기록이 있는 빈칸",
     });
@@ -696,6 +736,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       expect(screen.getByRole("button", { name: "칩 중점" })).toBeEnabled(),
     );
     place(2, "중점");
+    showSlot(1);
     const note = screen.getByText(
       "틀린 기록이 있는 빈칸 2개 · 다시 채워도 기록은 남습니다",
     );
@@ -906,30 +947,27 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       screen.queryByRole("button", { name: "기준안 보기" }),
     ).not.toBeInTheDocument();
   });
-  it("입력란의 초점을 고정한 채 Tab으로 칩 선택을 순환하고 Enter로 선택한 칩을 넣는다", async () => {
+  it("입력란의 초점을 고정한 채 Tab으로 빈칸을 순환하고 타이핑과 Enter로 채운다", async () => {
     const user = userEvent.setup();
     const { source } = await startAt(4);
     await resume(source);
     const input = screen.getByRole("textbox", { name: "칩 글 입력" });
-    const chips = screen.getAllByRole("button", { name: /^칩 / });
     const act = vi.spyOn(source, "act");
     input.focus();
     await user.tab();
     expect(input).toHaveFocus();
-    expect(chips[0]).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
     await user.tab({ shift: true });
     expect(input).toHaveFocus();
-    expect(chips.at(-1)).toHaveAttribute("aria-pressed", "true");
-    const index = chips.findIndex(
-      (chip) => chip.getAttribute("aria-label") === "칩 수직이등분선",
+    expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(
+      "data-pending",
+      "true",
     );
-    for (let i = 0; i <= index; i++) await user.tab();
-    expect(input).toHaveFocus();
-    expect(chips[index]).toHaveAttribute("aria-pressed", "true");
-    expect(
-      chips.filter((chip) => chip.getAttribute("aria-pressed") === "true"),
-    ).toHaveLength(1);
     expect(act).not.toHaveBeenCalled();
+    await user.type(input, "수직이등분선");
     await user.keyboard("{Enter}");
     expect(
       screen.queryByRole("button", { name: "빈칸 1" }),
@@ -939,19 +977,28 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       "data-pending",
       "true",
     );
-    screen.getByRole("button", { name: "칩 외심" }).focus();
-    await user.keyboard(" ");
+    await user.tab();
+    expect(screen.getByRole("button", { name: "빈칸 3" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
+    await user.type(input, "반지름");
+    await user.keyboard("{Enter}");
     expect(
-      screen.queryByRole("button", { name: "빈칸 2" }),
+      screen.queryByRole("button", { name: "빈칸 3" }),
     ).not.toBeInTheDocument();
-    screen.getByRole("button", { name: "칩 반지름" }).focus();
+    expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
+    await user.type(input, "외심");
     await user.keyboard("{Enter}");
     const finish = screen.getByRole("button", { name: /단계 마치기/ });
     await waitFor(() => expect(finish).toHaveFocus());
     await user.keyboard("{Enter}");
     await screen.findByRole("heading", { name: "4단계를 마쳤어요" });
   });
-  it("칩에 초점이 있어도 Tab은 선택을 옮기고 Esc 뒤에는 일반 Tab으로 나올 수 있다", async () => {
+  it("칩에 초점이 있어도 Tab은 빈칸을 옮기고 Esc 뒤에는 일반 Tab으로 나올 수 있다", async () => {
     const user = userEvent.setup();
     const { source } = await startAt(4);
     await resume(source);
@@ -959,22 +1006,31 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     const chips = screen.getAllByRole("button", { name: /^칩 / });
     chips[0]!.focus();
     await user.tab();
-    expect(chips[0]).toHaveFocus();
-    expect(chips[1]).toHaveAttribute("aria-pressed", "true");
+    expect(input).toHaveFocus();
+    expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
     await user.tab({ shift: true });
-    expect(chips[0]).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
     await user.keyboard("{Escape}");
     expect(input).toHaveFocus();
     expect(
       chips.every((chip) => chip.getAttribute("aria-pressed") === "false"),
     ).toBe(true);
     await user.tab({ shift: true });
-    expect(screen.getByRole("button", { name: "빈칸 3" })).toHaveFocus();
+    expect(screen.getByRole("button", { name: "다음 문장" })).toHaveFocus();
     await user.tab();
     expect(input).toHaveFocus();
     await user.tab();
     expect(input).toHaveFocus();
-    expect(chips[0]).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
+      "data-pending",
+      "true",
+    );
     await user.type(input, "외심");
     expect(
       chips.every((chip) => chip.getAttribute("aria-pressed") === "false"),
@@ -1007,7 +1063,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       }),
     ).toHaveTextContent("외심");
   });
-  it.each(["글 입력 Enter", "Tab 선택 Enter", "칩 Enter", "칩 Space"])(
+  it.each(["글 입력 Enter", "Tab 이동 후 입력 Enter", "칩 Enter", "칩 Space"])(
     "4단계의 %s 오답 저장 뒤 초점을 복구해 바로 Tab·Enter로 다시 채운다",
     async (method) => {
       const user = userEvent.setup();
@@ -1028,12 +1084,11 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       if (method === "글 입력 Enter") {
         await user.type(input, "외심");
         await user.keyboard("{Enter}");
-      } else if (method === "Tab 선택 Enter") {
+      } else if (method === "Tab 이동 후 입력 Enter") {
         input.focus();
-        const index = screen
-          .getAllByRole("button", { name: /^칩 / })
-          .findIndex((chip) => chip.getAttribute("aria-label") === "칩 외심");
-        for (let i = 0; i <= index; i++) await user.tab();
+        await user.tab();
+        await user.tab({ shift: true });
+        await user.type(input, "외심");
         await user.keyboard("{Enter}");
       } else {
         screen.getByRole("button", { name: "칩 외심" }).focus();
@@ -1051,17 +1106,10 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       await act(async () => release());
       await waitFor(() => expect(input).toHaveFocus());
       expect(input).toBeEnabled();
-      const index = screen
-        .getAllByRole("button", { name: /^칩 / })
-        .findIndex(
-          (chip) => chip.getAttribute("aria-label") === "칩 수직이등분선",
-        );
-      for (let i = 0; i <= index; i++) await user.tab();
+      await user.type(input, "수직이등분선");
       expect(input).toHaveFocus();
-      expect(
-        screen.getByRole("button", { name: "칩 수직이등분선" }),
-      ).toHaveAttribute("aria-pressed", "true");
       await user.keyboard("{Enter}");
+      showSlot(1);
       expect(
         screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
       ).toHaveTextContent("수직이등분선");

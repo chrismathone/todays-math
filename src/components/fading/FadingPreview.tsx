@@ -7,7 +7,7 @@ import { createLocalFadingSource } from "@/lib/fading/local";
 import { FadingApp } from "./FadingApp";
 import s from "./fading.module.css";
 
-/** 작업실에 꽂을 알맹이. 부모가 서버에서 개념을 내려주며, 교사 메뉴에는 아직 배선하지 않는다. */
+/** 기기 전환은 같은 앱의 폭만 바꾼다. 학생 기록은 로컬 소스의 메모리에만 남는다. */
 export function FadingPreview({
   concepts,
   today,
@@ -22,9 +22,35 @@ export function FadingPreview({
   const [source] = useState(() =>
     createLocalFadingSource({ concepts, today, traps, figures }),
   );
+  const [device, setDevice] = useState<"desktop" | "mobile">("desktop");
   return (
-    <div className={s.preview}>
-      <FadingApp source={source} preview />
-    </div>
+    <section className={s.previewPanel} aria-label="미리 보기 화면 크기">
+      <div className={s.previewControls}>
+        <div
+          role="group"
+          aria-label="미리 보기 기기"
+          className={s.previewDevices}
+        >
+          <button
+            type="button"
+            aria-pressed={device === "desktop"}
+            onClick={() => setDevice("desktop")}
+          >
+            PC 미리 보기
+          </button>
+          <button
+            type="button"
+            aria-pressed={device === "mobile"}
+            onClick={() => setDevice("mobile")}
+          >
+            모바일 미리 보기
+          </button>
+        </div>
+        <p>저장되지 않음 · 화면을 바꿔도 풀이가 이어집니다</p>
+      </div>
+      <div className={s.preview} data-preview-device={device}>
+        <FadingApp source={source} preview />
+      </div>
+    </section>
   );
 }

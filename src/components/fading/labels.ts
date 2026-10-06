@@ -1,5 +1,9 @@
 import type { FadingStep } from "@/lib/fading/erasure";
 import type { FsrsRating } from "@/lib/fading/fsrs";
+/** 화면의 문장 번호다. 계약과 교과 내용의 명제 이름은 바꾸지 않는다. */
+export function conceptSentenceLabel(index: number) {
+  return `개념 ${index + 1}`;
+}
 /** 단원 번호와 제목 속 수량을 표시에서만 구분한다. 원본 이름·키는 보존한다. */
 export function curriculumName(name = "") {
   return name.replace(/^(\d+(?:-\d+)+)\s+(?=\S)/, "$1 · ");
