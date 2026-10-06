@@ -47,7 +47,7 @@ export const FADING_MARKS_MAX = 12;
  * 카드(명제)마다 한 글자씩 적은 진단 — 문장 차례대로. `0` 은 묻지 않았거나 답하지 않은 것, `1` ~ `3` 은 고른 값이다.
  * 🔴 진단일 뿐이다 — 일정 · 서 있는 단계 · 고를 수 있는 평가를 바꾸지 않는다(카드 · A′ 합의 2026-10-07).
  */
-const marksTextSchema = z
+export const fadingMarksTextSchema = z
   .string()
   .regex(new RegExp(`^[0-3]{1,${FADING_MARKS_MAX}}$`));
 
@@ -68,8 +68,8 @@ const uniqueIds = (ids: readonly string[]) => new Set(ids).size === ids.length;
 export const storedFadingMarksSchema = z
   .strictObject({
     digest: z.string().regex(/^[0-9a-f]{8}$/),
-    seen: marksTextSchema.optional(),
-    sure: marksTextSchema.optional(),
+    seen: fadingMarksTextSchema.optional(),
+    sure: fadingMarksTextSchema.optional(),
     missed: z.array(targetIdSchema).max(FADING_TARGETS_MAX).optional(),
   })
   .refine(
@@ -157,9 +157,9 @@ export const storedFadingSessionSchema = z
     /** 열 때의 내용 지문 — 그 뒤에 내용이 바뀌면 넣은 것을 다시 돌리지 않고 거절한다(칩 · 표적의 번호가 다른 답을 가리킨다). */
     digest: sessionDigestSchema.optional(),
     /** 1단계 카드의 «사전 확인» — 진단. */
-    seen: marksTextSchema.optional(),
+    seen: fadingMarksTextSchema.optional(),
     /** 4단계 카드의 확신(복습으로 연 풀이만) — 진단. */
-    sure: marksTextSchema.optional(),
+    sure: fadingMarksTextSchema.optional(),
     /** 4단계에서 쓴 글 가운데 어느 답의 글도 아닌 것 — 학생이 기준안과 대조해 «같은 뜻 / 다름»을 고를 때까지 남는다. */
     unjudged: z
       .array(storedFadingUnjudgedSchema)
@@ -256,11 +256,31 @@ export const storedFadingSchema = z
   });
 export type StoredFading = z.infer<typeof storedFadingSchema>;
 
-/** 빈칸에 칩을 넣은 것 하나 — 화면이 단계를 마칠 때 **넣은 차례대로 전부**(틀린 것도) 보내고, 서버가 같은 규칙으로 다시 돌려 확인한다. */
-export const fadingPlacementSchema = z.strictObject({
-  targetId: targetIdSchema,
-  chipId: z.string().regex(/^c\d{1,3}$/),
-});
+/**
+ * 빈칸에 넣은 것 하나 — **칩을 골랐거나**(지금의 꼴 그대로) **답을 썼다**(카드 풀이의 4단계).
+ * 화면이 단계를 마칠 때 넣은 차례대로 전부(틀린 것도 · 대조를 기다리는 글도) 보내고, 서버가 같은 규칙(`session.ts` 의 `placeAnswer`)으로 다시 돌려 확인한다.
+ * 쓴 글 가운데 대조를 기다리는 것만 저장 칸에 남는다(`unjudged`) — 맞은 글 · 틀린 글은 남기지 않는다.
+ */
+export const fadingPlacementSchema = z.union([
+  z.strictObject({
+    targetId: targetIdSchema,
+    chipId: z.string().regex(/^c\d{1,3}$/),
+  }),
+  z.strictObject({
+    targetId: targetIdSchema,
+    text: z.string().min(1).max(FADING_TYPED_MAX),
+    // 글 넣기에는 칩이 없다 — 늘 비어 있는 칸으로 둬서 `placement.chipId` 를 읽는 지금의 화면 코드가 그대로 컴파일된다(값이 오면 거절).
+    chipId: z.never().optional(),
+  }),
+]);
 export type FadingPlacement = z.infer<typeof fadingPlacementSchema>;
 /** 한 단계에 보낼 수 있는 «넣기»의 상한 — 표적은 많아야 스물이고, 틀리게 넣은 것까지 넉넉히. */
 export const FADING_PLACEMENTS_MAX = 400;
+
+/** 대조에서 학생이 고른 것 — 빈칸 → «같은 뜻»(`same`) · «다름»(`different`). «다름»은 틀림이다. */
+export const fadingJudgedSchema = z
+  .record(targetIdSchema, z.enum(["same", "different"]))
+  .refine(
+    (judged) => Object.keys(judged).length <= FADING_TARGETS_MAX,
+    "대조한 빈칸이 너무 많습니다.",
+  );

@@ -71,6 +71,8 @@ export function createLocalFadingSource(input: {
   figures?: Readonly<Record<string, FadingFigure>>;
   /** 풀이를 열 때의 번호와 칩 차례의 씨앗 — 시험이 고정값을 넣는다. */
   fresh?: () => { sessionId: string; seed: number };
+  /** 새로 여는 풀이를 카드 풀이로(1단계 카드 · 4단계 자판) — 서버의 하위 문 `MATH_FADING_CARDS` 와 같은 자리다. 안 주면 칩 풀이. */
+  cards?: boolean;
 }): LocalFadingSource {
   const byId = new Map(input.concepts.map((c) => [c.id, c]));
   const fresh =
@@ -97,6 +99,7 @@ export function createLocalFadingSource(input: {
         requestId,
         trapsOf,
         figureOf,
+        cards: input.cards,
       }),
     );
 
@@ -129,6 +132,7 @@ export function createLocalFadingSource(input: {
           today,
           fresh(),
           concept ? trapsOf(concept) : [],
+          { cards: input.cards },
         );
       } catch (error) {
         if (error instanceof FadingConflict)
@@ -182,6 +186,7 @@ export function createLocalFadingSource(input: {
             figure: figureOf(concept),
           },
           status: stored ? fadingConceptStatus(concept, stored, today) : null,
+          ...(input.cards ? { mode: "cards" as const } : {}),
         },
       }).data;
     },

@@ -9,8 +9,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/session.ts",
     note: "4단계에서 틀려도 네 평가를 다 연다",
-    from: 'return last?.missed.length ? ["again"] : [...FSRS_RATINGS];',
-    to: "return [...FSRS_RATINGS];",
+    from: '  if (outcome.missedAtFour.length) return ["again"];\n',
+    to: "",
   },
   {
     file: "fading/session.ts",
@@ -27,8 +27,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/session.ts",
     note: "틀림을 적지 않는다",
-    from: ": { ...session, missed: [...session.missed, targetId] },",
-    to: ": session,",
+    from: ": { ...session, missed: [...session.missed, targetId] };",
+    to: ": session;",
   },
   {
     file: "fading/session.ts",
@@ -99,8 +99,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/session.ts",
     note: "하나 덜 채우고 단계를 넘긴다",
-    from: "Object.keys(filled).length < erased.length",
-    to: "Object.keys(filled).length < erased.length - 1",
+    from: "return done < erased ? session",
+    to: "return done < erased - 1 ? session",
   },
   {
     file: "fading/session.ts",
@@ -123,7 +123,7 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/session.ts",
     note: "고를 수 없는 평가를 받는다",
-    from: "if (!allowedRatings(session).includes(rating))",
+    from: "if (!allowedRatings(session, judged).includes(rating))",
     to: "if (false)",
   },
   {
@@ -471,8 +471,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "같은 개념을 다시 열면 풀이를 새로 연다",
-    from: "  if (state.session?.conceptId === concept.id) return state;\n",
-    to: "",
+    from: "if (current?.conceptId === concept.id) {",
+    to: "if (false) {",
   },
   {
     file: "fading/state.ts",
@@ -507,43 +507,43 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "정독이 지난 단계를 2단계로 돌린다",
-    from: "  return stored.step > 1\n    ? state\n    : withConcept(state, conceptId, { ...stored, step: 2 });",
-    to: "  return withConcept(state, conceptId, { ...stored, step: 2 });",
+    from: "  if (stored.step > 1) return state;\n",
+    to: "",
   },
   {
     file: "fading/state.ts",
     note: "4단계가 아닌 때의 틀림을 적는다",
-    from: 'if (stored.step !== 4 || session.phase !== "steps")',
-    to: 'if (session.phase !== "steps")',
+    from: 'if (stored.step !== 4 || open.phase !== "steps")',
+    to: 'if (open.phase !== "steps")',
   },
   {
     file: "fading/state.ts",
     note: "평가만 남은 풀이에 틀림을 더 적는다",
-    from: 'if (stored.step !== 4 || session.phase !== "steps")',
+    from: 'if (stored.step !== 4 || open.phase !== "steps")',
     to: "if (stored.step !== 4)",
   },
   {
     file: "fading/state.ts",
     note: "맞게 넣은 것을 틀림으로 적는다",
-    from: '  if (chipFits(concept, placement.targetId, chip))\n    throw conflict("맞게 넣은 칩입니다.");\n',
+    from: '    if (chipFits(concept, placement.targetId, chip))\n      throw conflict("맞게 넣은 칩입니다.");\n',
     to: "",
   },
   {
     file: "fading/state.ts",
     note: "같은 틀림을 두 번 적는다",
-    from: "  return session.missedAtFour.includes(placement.targetId)\n    ? state",
-    to: "  return false\n    ? state",
+    from: "  if (session.missedAtFour.includes(placement.targetId))\n",
+    to: "  if (false)\n",
   },
   {
     file: "fading/state.ts",
     note: "지난 단계의 요청을 다시 적용한다",
-    from: 'if (step < stored.step || session.phase === "rating") return state;',
-    to: 'if (session.phase === "rating") return state;',
+    from: 'if (step < stored.step || open.phase === "rating") return state;',
+    to: 'if (open.phase === "rating") return state;',
   },
   {
     file: "fading/state.ts",
     note: "마친 4단계를 다시 받는다",
-    from: 'if (step < stored.step || session.phase === "rating") return state;',
+    from: 'if (step < stored.step || open.phase === "rating") return state;',
     to: "if (step < stored.step) return state;",
   },
   {
@@ -603,14 +603,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "틀린 풀이에 네 평가를 다 연다",
-    from: "session.missedAtFour.length || session.unjudged?.length\n",
-    to: "session.unjudged?.length\n",
-  },
-  {
-    file: "fading/state.ts",
-    note: "대조를 기다리는 글이 남은 풀이에 네 평가를 다 연다(읽기 판)",
-    from: "session.missedAtFour.length || session.unjudged?.length\n",
-    to: "session.missedAtFour.length\n",
+    from: "{ missedAtFour: session.missedAtFour, unjudged: waiting },",
+    to: "{ missedAtFour: [], unjudged: waiting },",
   },
   {
     file: "fading/state.ts",
@@ -621,7 +615,7 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "고를 수 없는 평가를 저장한다",
-    from: "if (!fadingRatingsFor(session).includes(rating))",
+    from: "if (!fadingRatingsFor(session, judged).includes(rating))",
     to: "if (false)",
   },
   {
@@ -651,8 +645,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "내용의 지문을 안 적는다",
-    from: "digest: fadingConceptDigest(concept),",
-    to: 'digest: "00000000",',
+    from: "        digest,\n        reviews: next.reviews,",
+    to: '        digest: "00000000",\n        reviews: next.reviews,',
   },
   {
     file: "fading/state.ts",
@@ -898,8 +892,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/view.ts",
     note: "열린 풀이에 함정을 안 싣는다",
-    from: "traps: (input.trapsOf?.(opened!) ?? []).map((trap) => ({",
-    to: "traps: ([] as FadingTrap[]).map((trap) => ({",
+    from: "traps: traps.map((trap) => ({ text: trap.text })),",
+    to: "traps: ([] as FadingTrap[]).map((trap) => ({ text: trap.text })),",
   },
   {
     file: "fading/view.ts",
@@ -1036,14 +1030,14 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/actions.ts",
     note: "단계 확인에 함정을 안 넘긴다",
-    from: "{ gaveUp: action.gaveUp, traps },",
-    to: "{ gaveUp: action.gaveUp },",
+    from: "{ ...pin, gaveUp: action.gaveUp, sure: action.sure },",
+    to: "{ cards: pin.cards, gaveUp: action.gaveUp, sure: action.sure },",
   },
   {
     file: "fading/actions.ts",
     note: "4단계 틀림 확인에 함정을 안 넘긴다",
-    from: "        action.placement,\n        traps,\n      );",
-    to: "        action.placement,\n      );",
+    from: "        action.placement,\n        traps,\n        { cards: pin.cards },\n      );",
+    to: "        action.placement,\n        undefined,\n        { cards: pin.cards },\n      );",
   },
   {
     file: "fading/view.ts",
@@ -1162,8 +1156,8 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/actions.ts",
     note: "«아직 모르겠어요»를 안 넘긴다",
-    from: "{ gaveUp: action.gaveUp, traps },",
-    to: "{ gaveUp: false, traps },",
+    from: "gaveUp: action.gaveUp,",
+    to: "gaveUp: false,",
   },
   {
     file: "fading/actions.ts",
@@ -1174,7 +1168,7 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/actions.ts",
     note: "4단계의 틀림을 안 적는다",
-    from: "      return reportFadingMiss(\n        fading,\n        concept!,\n        action.sessionId,\n        action.placement,\n        traps,\n      );",
+    from: "      return reportFadingMiss(\n        fading,\n        concept!,\n        action.sessionId,\n        action.placement,\n        traps,\n        { cards: pin.cards },\n      );",
     to: "      return fading;",
   },
   {
@@ -1741,5 +1735,234 @@ export const MUTANTS: Mutant[] = [
     note: "새 칸 초기화가 아무것도 안 지운다",
     from: "      return { ...state, fading: undefined };",
     to: "      return state;",
+  },
+  // ───── 카드 풀이(1단계 카드 · 4단계 자판 A′ — 합의 2026-10-07) ─────
+  {
+    file: "fading/typed.ts",
+    note: "다른 답의 글도 모름으로 읽는다",
+    from: 'return others.some((other) => typedKey(other) === key) ? "wrong" : "unknown";',
+    to: 'return "unknown";',
+  },
+  {
+    file: "fading/typed.ts",
+    note: "글자가 있으면 다 맞음으로 읽는다",
+    from: 'if (key === typedKey(target.text)) return "correct";',
+    to: 'if (key) return "correct";',
+  },
+  {
+    file: "fading/typed.ts",
+    note: "함정의 글을 틀림으로 보지 않는다",
+    from: "    ...traps.map((trap) => trap.text),\n",
+    to: "",
+  },
+  {
+    file: "fading/typed.ts",
+    note: "견줄 글자가 없는 글을 받는다",
+    from: 'if (!key) throw new Error("견줄 글자가 없는 답입니다.");',
+    to: "",
+  },
+  {
+    file: "fading/typed.ts",
+    note: "퍼센트 명령을 풀지 않는다",
+    from: '.replace(/\\\\%/g, "%")',
+    to: "",
+  },
+  {
+    file: "fading/typed.ts",
+    note: "한컴 낱말을 읽지 않는다",
+    from: ".replace(HWP_WORD, (word) => HWP_OF.get(word.toLowerCase())!)",
+    to: "",
+  },
+  {
+    file: "fading/session.ts",
+    note: "자판 단계에 칩을 받는다",
+    from: '    throw new Error("이 단계는 칩 없이 답을 씁니다.");',
+    to: "    void 0;",
+  },
+  {
+    file: "fading/session.ts",
+    note: "칩 단계에 글을 받는다",
+    from: '    throw new Error("이 단계는 칩으로 채웁니다.");',
+    to: "    void 0;",
+  },
+  {
+    file: "fading/session.ts",
+    note: "모르는 글도 틀림으로 적는다",
+    from: 'if (outcome === "wrong")',
+    to: 'if (outcome !== "correct")',
+  },
+  {
+    file: "fading/session.ts",
+    note: "틀린 빈칸도 대조에 넣는다",
+    from: ".filter((id) => pending.has(id) && !missed.includes(id))",
+    to: ".filter((id) => pending.has(id))",
+  },
+  {
+    file: "fading/session.ts",
+    note: "카드 하나를 넘기면 다른 카드의 빈칸도 넘어간다",
+    from: "    .filter((t) => mine.has(t.id))\n",
+    to: "",
+  },
+  {
+    file: "fading/session.ts",
+    note: "넘긴 카드의 빈칸을 틀림으로 적지 않는다",
+    from: "        ...open.filter((id) => !session.missed.includes(id)),\n",
+    to: "",
+  },
+  {
+    file: "fading/session.ts",
+    note: "대조의 «다름»을 보지 않는다",
+    from: '(u) => judged[u.targetId] === "different",',
+    to: "() => false,",
+  },
+  {
+    file: "fading/session.ts",
+    note: "대조를 다 고르지 않아도 닫힌다(화면)",
+    from: "!fadingJudgingComplete(waiting, judged)",
+    to: "false",
+  },
+  {
+    file: "fading/session.ts",
+    note: "배우는 풀이에서도 확신을 묻는다",
+    from: 'fadingModeOf(session) === "cards" && session.startStep === 4;',
+    to: 'fadingModeOf(session) === "cards";',
+  },
+  {
+    file: "fading/session.ts",
+    note: "카드 풀이의 4단계를 칩으로 돌린다",
+    from: 'fadingModeOf(session) === "cards" && session.step === 4',
+    to: "false",
+  },
+  {
+    file: "fading/state.ts",
+    note: "풀이를 연 뒤에 내용이 바뀌어도 넣은 것을 다시 돌린다",
+    from: "  if (fadingSessionStale(session, concept, pin.traps)) throw stale();",
+    to: "",
+  },
+  {
+    file: "fading/state.ts",
+    note: "문이 꺼져도 옛 풀이에 지문을 박는다",
+    from: "    return pin.cards",
+    to: "    return true",
+  },
+  {
+    file: "fading/state.ts",
+    note: "문이 꺼져도 새 풀이를 카드 풀이로 연다",
+    from: "      ...(pin.cards",
+    to: "      ...(true",
+  },
+  {
+    file: "fading/state.ts",
+    note: "내용이 바뀐 풀이를 다시 열 때 적어 둔 틀림을 버린다",
+    from: "missedAtFour: current.missedAtFour.filter((id) => ids.has(id)),",
+    to: "missedAtFour: [],",
+  },
+  {
+    file: "fading/state.ts",
+    note: "내용이 바뀐 풀이의 대조를 평가에 받는다",
+    from: "    if (fadingSessionStale(session, concept, options.traps)) throw stale();",
+    to: "",
+  },
+  {
+    file: "fading/state.ts",
+    note: "대조를 다 고르지 않아도 평가한다(서버)",
+    from: "!session.missedAtFour.length && !fadingJudgingComplete(waiting, judged)",
+    to: "false",
+  },
+  {
+    file: "fading/state.ts",
+    note: "대조를 기다리지 않는 빈칸의 판정을 받는다",
+    from: "if (Object.keys(judged).some((id) => !waiting.some((u) => u.targetId === id)))",
+    to: "if (false)",
+  },
+  {
+    file: "fading/state.ts",
+    note: "모르는 글을 4단계 틀림으로 적는다",
+    from: '    if (outcome === "unknown")',
+    to: "    if (false)",
+  },
+  {
+    file: "fading/state.ts",
+    note: "카드 풀이의 4단계에 칩의 틀림을 받는다",
+    from: '    if (typed) throw conflict("이 풀이의 4단계는 칩 없이 답을 씁니다.");',
+    to: "",
+  },
+  {
+    file: "fading/state.ts",
+    note: "확신을 아무 풀이에나 적는다",
+    from: "    fadingAsksSure(session) &&",
+    to: "    true &&",
+  },
+  {
+    file: "fading/state.ts",
+    note: "사전 확인을 칩 풀이에도 적는다",
+    from: '    fadingModeOf(next) === "cards" &&',
+    to: "    true &&",
+  },
+  {
+    file: "fading/state.ts",
+    note: "대조를 기다리는 글을 남기지 않는다",
+    from: "      ...(unjudged.length ? { unjudged } : {}),",
+    to: "",
+  },
+  {
+    file: "fading/state.ts",
+    note: "카드 풀이가 아닌 풀이의 대조 글을 판정 없이 받는다",
+    from: '  if (waiting.length && fadingModeOf(session) !== "cards") return ["again"];',
+    to: "",
+  },
+  {
+    file: "fading/state.ts",
+    note: "평가한 개념에 학생이 본 지문 대신 지금 지문을 적는다",
+    from: "session.digest?.slice(0, 8) ?? fadingConceptDigest(concept)",
+    to: "fadingConceptDigest(concept)",
+  },
+  {
+    file: "fading/state.ts",
+    note: "진단에 «다름»을 남기지 않는다",
+    from: "const missed = [...session.missedAtFour, ...different];",
+    to: "const missed = [...session.missedAtFour];",
+  },
+  {
+    file: "fading/cards.ts",
+    note: "늘 보이는 이름의 낱말 겹침을 보지 않는다",
+    from: "pairs(word).some((pair) => mine.has(pair)),",
+    to: "false,",
+  },
+  {
+    file: "fading/view.ts",
+    note: "내용이 바뀐 풀이를 알리지 않는다",
+    from: "...(stale ? { stale: true as const } : {}),",
+    to: "",
+  },
+  {
+    file: "fading/view.ts",
+    note: "새 풀이의 방식을 싣지 않는다",
+    from: '...(input.cards ? { mode: "cards" as const } : {}),',
+    to: "",
+  },
+  {
+    file: "fading/enabled.ts",
+    note: "카드 문의 기본이 켜짐이다",
+    from: 'process.env.MATH_FADING_CARDS === "on"',
+    to: 'process.env.MATH_FADING_CARDS !== "off"',
+  },
+  {
+    file: "fading/enabled.ts",
+    note: "카드 문이 학생 문을 보지 않는다",
+    from: 'return fadingEnabled() && process.env.MATH_FADING_CARDS === "on";',
+    to: 'return process.env.MATH_FADING_CARDS === "on";',
+  },
+  {
+    file: "fading/actions.ts",
+    note: "카드 문을 풀이에 넘기지 않는다",
+    from: "const pin = { traps, cards: options.cards === true };",
+    to: "const pin = { traps, cards: false };",
+  },
+  {
+    file: "fading/actions.ts",
+    note: "정독의 사전 확인을 넘기지 않는다",
+    from: "        seen: action.seen,\n",
+    to: "",
   },
 ];

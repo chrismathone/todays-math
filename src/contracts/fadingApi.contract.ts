@@ -6,6 +6,8 @@ import {
 import {
   FADING_PLACEMENTS_MAX,
   fadingConceptIdSchema,
+  fadingJudgedSchema,
+  fadingMarksTextSchema,
   fadingPlacementSchema,
   fadingRatingSchema,
   storedFadingDaySchema,
@@ -249,28 +251,41 @@ export const fadingActionSchema = z.discriminatedUnion("action", [
     action: z.literal("open"),
     conceptId: fadingConceptIdSchema,
   }),
-  /** 1단계 정독을 마쳤다. */
-  z.strictObject({ action: z.literal("read"), ...sessionRef }),
-  /** 4단계에서 틀리게 넣은 것 하나 — 틀린 그 자리에서 보낸다. */
+  /** 1단계 정독을 마쳤다. `seen` 은 카드 풀이의 «사전 확인»(명제 차례로 한 글자 · `encodeFadingMarks`) — 진단이다. */
+  z.strictObject({
+    action: z.literal("read"),
+    ...sessionRef,
+    seen: fadingMarksTextSchema.optional(),
+  }),
+  /** 4단계에서 틀리게 넣은 것 하나 — 틀린 그 자리에서 보낸다(칩 풀이는 칩, 카드 풀이는 쓴 글). */
   z.strictObject({
     action: z.literal("miss"),
     ...sessionRef,
     placement: fadingPlacementSchema,
   }),
-  /** 단계 하나를 마쳤다 — 넣은 차례 전부(틀린 것도). `gaveUp` 은 «아직 모르겠어요». */
+  /**
+   * 단계 하나를 마쳤다 — 넣은 차례 전부(틀린 것도). `gaveUp` 은 «아직 모르겠어요» — 넣은 것을 다 돌린 뒤에 남은 빈칸이 틀림이 된다.
+   * 카드 풀이의 4단계는 빈칸마다 채웠거나(맞음 · 대조를 기다림) 그 카드를 넘긴 뒤에만 보낸다 — 그때 `gaveUp` 은 넘긴 카드의 빈칸만 가리킨다.
+   * `sure` 는 복습으로 연 카드 풀이의 4단계 확신(명제 차례로 한 글자) — 진단이다. 🔴 대조 화면을 열기 **전에** 보낸다.
+   */
   z.strictObject({
     action: z.literal("step"),
     ...sessionRef,
     step: z.union([z.literal(2), z.literal(3), z.literal(4)]),
     placements: z.array(fadingPlacementSchema).max(FADING_PLACEMENTS_MAX),
     gaveUp: z.boolean().optional(),
+    sure: fadingMarksTextSchema.optional(),
   }),
-  /** 평가로 닫는다 — 요청 번호는 화면이 짓는다(같은 번호로 다시 보내면 한 번만 적용된다). */
+  /**
+   * 평가로 닫는다 — 요청 번호는 화면이 짓는다(같은 번호로 다시 보내면 한 번만 적용된다).
+   * `judged` 는 대조를 기다리던 글마다 학생이 고른 것 — 틀림이 없으면 전부 골라야 닫힌다. «다름»이 있으면 «다시»뿐이다.
+   */
   z.strictObject({
     action: z.literal("rate"),
     ...sessionRef,
     rating: fadingRatingSchema,
     requestId: z.uuid(),
+    judged: fadingJudgedSchema.optional(),
   }),
   /** «오늘 전부» 켜고 끄기. */
   z.strictObject({ action: z.literal("all-today"), on: z.boolean() }),

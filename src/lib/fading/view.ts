@@ -17,6 +17,7 @@ import {
   fadingContentChanged,
   fadingProgressOf,
   fadingRatingsFor,
+  fadingSessionStale,
   fadingSummary,
 } from "./state";
 
@@ -99,6 +100,8 @@ export function fadingStateView(input: {
   trapsOf?: (concept: FadingConcept) => readonly FadingTrap[];
   /** 열린 풀이의 개념의 그림 — 안 주거나 없으면 `null` 로 내려간다. */
   figureOf?: (concept: FadingConcept) => FadingFigure | null;
+  /** 새로 여는 풀이가 카드 풀이인가(서버의 하위 문) — 켜져 있을 때만 `mode` 가 실린다. */
+  cards?: boolean;
 }): FadingState {
   const { fading, today, concepts } = input;
   const cap = input.cap ?? FADING_DAILY_CAP;
@@ -137,6 +140,8 @@ export function fadingStateView(input: {
   const intervals = session
     ? previewFadingIntervals(fadingProgressOf(stored!), fadingDayOfDate(today))
     : null;
+  const traps = session ? (input.trapsOf?.(opened!) ?? []) : [];
+  const stale = session ? fadingSessionStale(session, opened!, traps) : false;
   return {
     today,
     revision: input.revision,
@@ -161,20 +166,25 @@ export function fadingStateView(input: {
             rating,
             intervalDays: intervals![rating],
           })),
+          // 카드 풀이의 칸 — 값이 없으면 키도 싣지 않는다(지금 화면이 받는 꼴 그대로).
+          ...(session.mode === "cards" ? { mode: "cards" as const } : {}),
+          ...(session.unjudged?.length
+            ? { unjudged: session.unjudged.map((u) => ({ ...u })) }
+            : {}),
+          ...(stale ? { stale: true as const } : {}),
         }
       : null,
     opened: session
       ? {
           concept: opened!,
-          traps: (input.trapsOf?.(opened!) ?? []).map((trap) => ({
-            text: trap.text,
-          })),
+          traps: traps.map((trap) => ({ text: trap.text })),
           figure: input.figureOf?.(opened!) ?? null,
         }
       : null,
     days: fading.days.slice(-FADING_VIEW_DAYS),
     receipt:
       fading.receipts.find((r) => r.requestId === input.requestId) ?? null,
+    ...(input.cards ? { mode: "cards" as const } : {}),
   };
 }
 
