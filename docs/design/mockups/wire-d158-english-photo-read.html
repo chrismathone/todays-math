@@ -1,0 +1,453 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>영어 사진 읽기 와이어</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;800&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* 와이어 — 흑백 · 상자 · 실제 글자 크기만. 색 · 장식은 Hi-fi 단계(05 §0-3). 한 가지 밝은 판으로만 그린다(종이 위의 그림).
+   틀 치수는 제품 CSS 에서 읽었다(2026-10-06 · main 5f6b60e79):
+   · 시험 자료 카드 — EnglishStudio.module.css `.grid` 0.92fr : 1.28fr · gap 16 → 1000px 본문에서 왼쪽 411px, `.card` padding 18/20 → 안쪽 371px
+   · 자료 줄 — `.row` gap 12 · `.fileIcon` 36×40 · `.rowDelete` 44px · 제목 14px 600 · 메타 12px
+   · 대화상자 — Workroom.module.css `.dialog` 570px · padding 30 → 안쪽 510px · 단추 높이 44px
+   · 넓은 창의 선례 — concept-blank/preview.module.css `.dialog` min(1080px, 100vw − 32px) × min(1100px, 100dvh − 32px) · unit-picker.module.css 880px
+   · 문제 만들기 패널 — EnglishMaker.module.css `.panel` 상한 880px
+   점선 상자 = 이번에 더하는 자리. 2차(혼합안)는 원장님 2026-10-06 «A는 사진이 거대할때 사진이 가려지지 않을까 · A-B 적절하게 믹스». */
+:root {
+  color-scheme: light;
+  --paper: #fafaf8; --sheet: #ffffff; --ink: #161616; --ink-2: #61615e; --rule: #b9b9b6; --soft: #e7e7e4; --pick: #2064b3; --stop: #8a2b12;
+  --sans: "Pretendard Variable", Pretendard, "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+  --serif: "Nanum Myeongjo", "Noto Serif KR", Batang, serif;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 14px; line-height: 1.55; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 3px solid #82a1ff; outline-offset: 2px; }
+.tab { cursor: pointer; }
+
+.board { max-width: 1240px; margin: 0 auto; padding-inline: 24px; padding-block: 28px 72px; }
+@media (max-width: 600px) { .board { padding-inline: 16px; } }
+.head { display: grid; gap: 10px; padding-bottom: 18px; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .06em; color: var(--ink-2); }
+h1 { margin: 0; font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: 1.25; letter-spacing: -.02em; text-wrap: balance; }
+.lede { margin: 0; max-width: 74ch; color: var(--ink-2); font-size: 15px; }
+.lede b { color: var(--ink); }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 4px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--ink-2); }
+.facts b { color: var(--ink); font-weight: 600; }
+.ask { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 18px 20px; display: grid; gap: 10px; margin-bottom: 22px; }
+.ask h2 { margin: 0; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+.ask ol { margin: 0; padding-left: 20px; display: grid; gap: 9px; color: var(--ink-2); }
+.ask li b { color: var(--ink); }
+.note { margin: 0; max-width: 78ch; font-size: 13px; color: var(--ink-2); }
+.note b { color: var(--ink); }
+h2.sec { margin: 38px 0 8px; font-family: var(--serif); font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.tablewrap { overflow-x: auto; margin-top: 10px; }
+table.t { border-collapse: collapse; font-size: 12.5px; background: var(--sheet); min-width: 860px; }
+table.t th, table.t td { border: 1px solid #d6d6d3; padding: 6px 9px; text-align: left; vertical-align: top; }
+table.t th { font-weight: 700; background: #f3f3f1; }
+table.t th[scope="row"] { white-space: nowrap; }
+
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding-block: 10px; border-block: 1px solid var(--rule); margin-top: 18px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px; }
+.tab { display: flex; gap: 8px; align-items: baseline; padding: 7px 12px; border: 1px solid transparent; border-radius: 6px; background: none; color: var(--ink-2); }
+.tab .k { font-weight: 700; color: var(--ink); }
+.tab:hover { background: var(--sheet); }
+.tab[aria-selected="true"] { background: var(--sheet); border-color: var(--rule); color: var(--ink); box-shadow: inset 0 -2px 0 var(--pick); }
+.thesis { padding-top: 16px; }
+.thesis h3 { margin: 0 0 4px; font-family: var(--serif); font-size: 19px; font-weight: 800; }
+.thesis p { margin: 0 0 12px; max-width: 78ch; color: var(--ink-2); }
+
+/* 제품 폭 그대로 그리고, 화면이 좁으면 통째로 줄인다 */
+.fit { border: 1px solid var(--rule); border-radius: 8px; background: #efefec; overflow: hidden; }
+.fit > .stage { transform-origin: 0 0; padding: 20px; display: flex; gap: 24px; align-items: flex-start; }
+.cap { font-size: 11px; color: var(--ink-2); margin: 0 0 6px; letter-spacing: .02em; }
+
+/* ── 제품 화면의 부품(상자로만) ─────────────── */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 16px; border: 1px solid var(--ink-2); border-radius: 8px; background: var(--sheet); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.btn.pri { background: var(--ink); color: var(--sheet); border-color: var(--ink); }
+.btn.quiet { border-color: transparent; color: var(--ink-2); padding: 0 10px; }
+.btn.sm { min-height: 44px; padding: 0 12px; font-size: 13px; }
+.new { outline: 2px dashed var(--pick); outline-offset: 3px; }
+.newtag { font-size: 10px; font-weight: 700; color: var(--pick); border: 1px dashed var(--pick); border-radius: 3px; padding: 0 4px; margin-left: 6px; vertical-align: 1px; white-space: nowrap; }
+
+.card { width: 411px; flex: none; background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; }
+.card .sh { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.card h4 { margin: 0; font-size: 17px; font-weight: 700; display: flex; gap: 8px; align-items: center; }
+.num { font-size: 12px; border: 1px solid var(--rule); border-radius: 999px; padding: 1px 7px; font-weight: 600; }
+.desc { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); }
+.rows { list-style: none; margin: 4px 0 0; padding: 0; }
+.rows > li { border-bottom: 1px solid var(--soft); }
+.rows > li:last-child { border-bottom: 0; }
+.row { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.ico { flex: none; width: 36px; height: 40px; border: 1px solid var(--rule); border-radius: 8px; display: grid; place-items: center; font-size: 10px; color: var(--ink-2); }
+.rb { flex: 1; min-width: 0; }
+.rt { display: block; font-size: 14px; font-weight: 600; overflow-wrap: anywhere; text-decoration: underline; text-underline-offset: 3px; }
+.rt.plain { text-decoration: none; }
+.rm { display: block; margin-top: 2px; font-size: 12px; color: var(--ink-2); }
+.x { flex: none; width: 44px; height: 44px; display: grid; place-items: center; color: var(--ink-2); font-size: 15px; }
+.open { padding: 4px 0 14px; display: grid; gap: 10px; }
+
+.dlg { width: 570px; flex: none; background: var(--sheet); border: 1px solid var(--rule); border-radius: 18px; padding: 30px; box-shadow: 0 10px 0 -6px var(--soft); }
+.dlg.w1080 { width: 1080px; }
+.dlg.w880 { width: 880px; }
+.dlg.phone { width: 358px; padding: 18px; border-radius: 14px; }
+.dlg .dh { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 22px; }
+.dlg .dh small { display: block; font-size: 12px; font-weight: 600; color: var(--ink-2); }
+.dlg .dh b { font-size: 20px; }
+.dlg.phone .dh { margin-bottom: 14px; }
+.dlg.phone .dh b { font-size: 17px; }
+.pager { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.pager .rm { margin: 0; }
+.dtabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule); margin-bottom: 18px; }
+.dtab { padding: 0 14px; min-height: 44px; display: inline-flex; align-items: center; font-size: 14px; color: var(--ink-2); border-bottom: 2px solid transparent; }
+.dtab.on { color: var(--ink); font-weight: 700; border-bottom-color: var(--ink); }
+.field { display: block; margin-bottom: 16px; font-size: 14px; font-weight: 650; }
+.field small { float: right; font-size: 12px; font-weight: 400; color: var(--ink-2); }
+.inp { display: flex; align-items: center; margin-top: 8px; min-height: 44px; padding: 0 13px; border: 1px solid var(--rule); border-radius: 8px; font-weight: 400; background: var(--sheet); }
+.ta { margin-top: 8px; border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 10px 13px; font-size: 14px; line-height: 1.6; font-weight: 400; color: var(--ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.photo { display: grid; place-items: center; height: 132px; border: 1px solid var(--rule); border-radius: 8px; margin-bottom: 14px; color: var(--ink-2); font-size: 12px; text-align: center;
+  background: repeating-linear-gradient(135deg, #f4f4f2 0 10px, #ecece9 10px 20px); }
+.fn { margin: 0 0 14px; font-size: 12px; line-height: 1.6; color: var(--ink-2); }
+.acts { display: flex; justify-content: flex-end; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.status { border: 1px solid var(--rule); border-radius: 8px; background: var(--sheet); padding: 8px 12px; font-size: 13px; margin-bottom: 14px; }
+.alert { border: 1.5px solid var(--stop); border-radius: 8px; background: var(--sheet); padding: 9px 12px; font-size: 12px; line-height: 1.6; color: var(--stop); }
+
+/* 2차 — 읽기 창의 사진 칸 */
+.two { display: flex; gap: 20px; align-items: stretch; }
+.pp { flex: none; display: flex; flex-direction: column; gap: 8px; }
+.tp { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.tp .field.grow { flex: 1; display: flex; flex-direction: column; }
+.tp .field.grow .ta { flex: 1; }
+.ptools { display: flex; align-items: center; gap: 6px; }
+.seg { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border: 1px solid var(--rule); border-radius: 8px; font-size: 13px; background: var(--sheet); }
+.seg.on { border-color: var(--ink); font-weight: 700; box-shadow: inset 0 -2px 0 var(--ink); }
+.pview { position: relative; border: 1px solid var(--ink-2); border-radius: 8px; overflow: hidden; background: #dcdcd8; }
+.pview .pg { position: absolute; left: 0; top: 0; background: var(--sheet); border: 1px solid var(--rule);
+  background-image: repeating-linear-gradient(#fff 0 13px, #e4e4e0 13px 14px); }
+.pview .pg i { position: absolute; left: 6%; right: 6%; border: 1px solid var(--ink-2); background: rgba(255,255,255,.86); font-style: normal; font-size: 11px; color: var(--ink-2); display: grid; place-items: center; text-align: center; }
+.sbar { position: absolute; background: var(--ink-2); border-radius: 3px; opacity: .55; }
+.sbar.v { right: 3px; top: 6px; width: 5px; }
+.sbar.h { bottom: 3px; left: 6px; height: 5px; }
+.dim { position: absolute; left: 8px; bottom: 8px; background: var(--ink); color: var(--sheet); font-size: 11px; padding: 2px 7px; border-radius: 4px; }
+.flow { align-self: center; flex: none; font-size: 13px; color: var(--pick); font-weight: 700; text-align: center; width: 90px; }
+
+.panel { width: 880px; flex: none; background: var(--sheet); border: 1px solid var(--rule); border-radius: 12px; padding: 22px 24px; }
+.fh { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-weight: 650; }
+.sel { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 13px; border: 1px solid var(--rule); border-radius: 8px; font-size: 14px; font-weight: 400; background: var(--sheet); }
+.menu { width: 330px; margin-left: auto; border: 1px solid var(--ink-2); border-radius: 8px; background: var(--sheet); font-size: 14px; }
+.menu div { padding: 9px 13px; border-bottom: 1px solid var(--soft); }
+.menu div:last-child { border-bottom: 0; }
+.mini { width: 330px; border: 1px solid var(--rule); border-radius: 12px; background: var(--sheet); padding: 16px; flex: none; }
+.mini h5 { margin: 0 0 8px; font-size: 12px; color: var(--ink-2); font-weight: 600; letter-spacing: .02em; }
+details.old { margin-top: 44px; border-top: 1px solid var(--rule); padding-top: 14px; }
+details.old > summary { cursor: pointer; font-family: var(--serif); font-size: 20px; font-weight: 800; }
+</style>
+
+<div class="board">
+  <header class="head">
+    <p class="eyebrow">오늘의 영어 · D-158 후속 · Wire 2차(2026-10-06)</p>
+    <h1>사진에서 지문 읽기 — A와 B를 섞은 안</h1>
+    <p class="lede">1차에서 주신 말씀: <b>«A는 사진이 거대할 때 사진이 가려지지 않을까 · A-B 적절하게 믹스»</b>. 맞습니다 — A의 창(570px)은 사진을 132px 띠로만 보여 줘서, 시험지 한 쪽을 찍은 사진(1920×2560)은 글과 견줄 수 없습니다. 그래서 <b>들어가는 길은 A · B 둘 다</b> 두고, <b>읽는 자리는 사진을 통째로 볼 수 있는 넓은 창 하나</b>로 모았습니다.</p>
+    <ul class="facts">
+      <li><b>넓은 창</b> 1080px × (화면 높이 − 32px) — 개념 백지 미리보기 창과 같은 틀</li>
+      <li><b>사진 칸</b> 500px · <b>글 칸</b> 500px</li>
+      <li><b>자료 카드</b> 411px · <b>지금 창</b> 570px</li>
+      <li>점선 = 새로 더하는 자리</li>
+    </ul>
+  </header>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <h2 id="ask-h">골라 주실 것</h2>
+    <ol>
+      <li><b>읽기 창의 꼴 — 가 나란히 · 나 위아래.</b> 제 추천은 <b>가</b>입니다. 사진과 글을 같은 높이에서 견주고, 사진은 칸 안에서만 굴러 창 밖으로 나가지 않습니다. 나는 사진 글자가 더 크게 보이지만 위아래를 오가야 합니다.</li>
+      <li><b>사진이 여러 장일 때 — «저장하고 다음 사진» · 한 장씩.</b> 이번처럼 11장이면 창을 닫지 않고 넘기는 쪽이 빠릅니다. 창 머리의 «이전 · 다음»과 아래의 «저장하고 다음 사진»을 그렸습니다.</li>
+      <li><b>안내 문구 — 가 · 나</b>(1차에서 남은 것). 가: 사진이 AI 서버로 간다는 사실만. 나: 학생 이름이 보이면 가리고 올리라고 덧붙임.</li>
+      <li><b>한 장에 글이 여럿일 때 — 통째로 · 골라서</b>(1차에서 남은 것). 와이어는 «통째로 읽고 선생님이 지운다»로 그렸습니다.</li>
+    </ol>
+    <p class="note">제가 정해 둔 것(다르게 원하시면 말씀해 주세요): 사진의 처음 크기는 <b>폭 맞춤</b>이고 «크게»를 누르면 2배가 됩니다 · «자료 추가»에서 읽은 사진은 <b>늘 자료로 보관</b>합니다(그래야 줄에서 다시 읽을 수 있습니다) · 읽은 글은 <b>글 자료 한 줄</b>로 저장됩니다.</p>
+  </section>
+
+  <h2 class="sec">① 들어가는 길 — 둘 다 같은 창으로</h2>
+  <p class="note">이미 올린 사진은 <b>자료 줄의 «글 읽기»</b>(A에서)로, 새 사진은 <b>«자료 추가»의 셋째 탭</b>(B에서)으로 들어갑니다. B의 «창이 아래로 길어지는» 문제는 없앴습니다 — 사진을 올리면 그 창은 닫히고 읽기 창이 열립니다.</p>
+  <div class="fit" data-w="1190" style="margin-top:10px"><div class="stage">
+    <div>
+      <p class="cap">길 1 — 시험 자료 카드의 줄(이미 올린 사진)</p>
+      <div class="card">
+        <div class="sh"><h4>시험 자료 <span class="num">3</span></h4><span class="btn quiet">＋ 자료 추가</span></div>
+        <p class="desc">기출, 시험 범위, 수업 지문을 모아 둡니다.</p>
+        <ul class="rows">
+          <li><div class="row"><span class="ico">글</span><span class="rb"><span class="rt plain">Lesson 2 본문</span><span class="rm">612자 · 10월 6일</span></span><span class="x">✕</span></div></li>
+          <li><div class="row"><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 1쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn sm new">글 읽기</span><span class="x">✕</span></div></li>
+          <li><div class="row"><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 2쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn sm new">글 읽기</span><span class="x">✕</span></div></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flow">둘 다<br>읽기 창으로<br>↓ ②</div>
+    <div>
+      <p class="cap">길 2 — «자료 추가» 창의 셋째 탭(새 사진)</p>
+      <div class="dlg">
+        <div class="dh"><div><small>○○고 · 고1 2학기 총괄 평가</small><b>자료 추가</b></div><span class="x">✕</span></div>
+        <div class="dtabs"><span class="dtab">파일 업로드</span><span class="dtab">지문 직접 입력</span><span class="dtab on new">사진에서 읽기</span></div>
+        <label class="field">사진 <small>4MB 이하 · png jpg</small><div class="inp">총괄평가 3쪽.jpg</div></label>
+        <p class="fn">사진은 자료로 보관되고, 글을 읽을 때 AI 서버로 보냅니다. 손글씨는 읽지 않습니다.</p>
+        <div class="acts"><span class="btn">취소</span><span class="btn pri">올리고 읽기</span></div>
+      </div>
+    </div>
+  </div></div>
+
+  <h2 class="sec">② 읽기 창 — 사진을 통째로 본다</h2>
+  <div class="toolbar">
+    <div class="tabs" role="tablist" aria-label="읽기 창의 꼴">
+      <button class="tab" role="tab" id="m-a" aria-controls="mp-a" aria-selected="true"><span class="k">가</span> 나란히 · 1080px</button>
+      <button class="tab" role="tab" id="m-b" aria-controls="mp-b" aria-selected="false" tabindex="-1"><span class="k">나</span> 위아래 · 880px</button>
+      <button class="tab" role="tab" id="m-c" aria-controls="mp-c" aria-selected="false" tabindex="-1"><span class="k">가</span>의 좁은 화면</button>
+    </div>
+  </div>
+
+  <section class="thesis" role="tabpanel" id="mp-a" aria-labelledby="m-a">
+    <h3>가. 왼쪽 사진 · 오른쪽 글</h3>
+    <p>사진 칸은 폭 500px 에 맞춰 사진 전체 폭을 보여 주고, 사진이 길면 <b>칸 안에서 세로로 굴립니다</b>(1920×2560 사진은 500×667 — 한 화면에 3분의 2쯤 보입니다). «크게»를 누르면 2배가 되어 글자가 읽히고, 칸 안에서 가로세로로 굴립니다. 글 칸은 사진 칸과 높이가 같습니다.</p>
+    <div class="fit" data-w="1120"><div class="stage">
+      <div class="dlg w1080 new">
+        <div class="dh">
+          <div><small>○○고 · 고1 2학기 총괄 평가</small><b>사진에서 글 읽기</b></div>
+          <div class="pager"><span class="rm">총괄평가 1쪽.jpg · 1 / 3</span><span class="btn sm">이전</span><span class="btn sm">다음</span><span class="x">✕</span></div>
+        </div>
+        <div class="two">
+          <div class="pp" style="width:500px">
+            <div class="ptools"><span class="seg on">폭 맞춤</span><span class="seg">크게</span><span class="rm" style="margin:0 0 0 auto">1920 × 2560</span></div>
+            <div class="pview" style="height:440px">
+              <div class="pg" style="width:498px;height:664px">
+                <i style="top:5%;height:6%">시험지 머리</i>
+                <i style="top:14%;height:26%">지문 상자</i>
+                <i style="top:43%;height:9%">문항 1 · 보기</i>
+                <i style="top:55%;height:20%">지문 상자</i>
+              </div>
+              <span class="sbar v" style="height:286px"></span>
+              <span class="dim">폭 맞춤 500 × 667 — 아래 227px 은 굴려서 본다</span>
+            </div>
+          </div>
+          <div class="tp">
+            <p class="fn">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+            <label class="field grow">읽은 글 <small>지문만 남기고 지워 주세요</small>
+              <div class="ta">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. At home, people can make use of old items in many creative ways. Companies also use waste materials to create new products. For example, Samsung encourages people to make pet houses and shelves from cardboard boxes. Upcycling helps us reduce waste and protect the environment by giving old things a new purpose.
+
+① 업사이클링의 의미  ② 개인의 실천 사례 …</div>
+            </label>
+            <label class="field">자료 이름<div class="inp">총괄평가 1쪽 — Upcycling</div></label>
+            <div class="acts"><span class="btn">닫기</span><span class="btn">지문 자료로 저장</span><span class="btn pri">저장하고 다음 사진</span></div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="thesis" role="tabpanel" id="mp-b" aria-labelledby="m-b" hidden>
+    <h3>나. 위에 사진 · 아래 글</h3>
+    <p>사진 칸이 창 폭(820px)을 다 써서 같은 «폭 맞춤»에서도 글자가 1.6배 크게 보입니다. 대신 사진은 한 번에 260px 높이만 보이고(전체 1,093px 의 4분의 1), 사진과 글을 견주려면 위아래를 오갑니다.</p>
+    <div class="fit" data-w="920"><div class="stage">
+      <div class="dlg w880 new">
+        <div class="dh">
+          <div><small>○○고 · 고1 2학기 총괄 평가</small><b>사진에서 글 읽기</b></div>
+          <div class="pager"><span class="rm">총괄평가 1쪽.jpg · 1 / 3</span><span class="btn sm">이전</span><span class="btn sm">다음</span><span class="x">✕</span></div>
+        </div>
+        <div class="pp">
+          <div class="ptools"><span class="seg on">폭 맞춤</span><span class="seg">크게</span><span class="rm" style="margin:0 0 0 auto">1920 × 2560</span></div>
+          <div class="pview" style="height:260px">
+            <div class="pg" style="width:818px;height:1091px">
+              <i style="top:5%;height:6%">시험지 머리</i>
+              <i style="top:14%;height:26%">지문 상자</i>
+            </div>
+            <span class="sbar v" style="height:60px"></span>
+            <span class="dim">폭 맞춤 820 × 1,093 — 아래 833px 은 굴려서 본다</span>
+          </div>
+        </div>
+        <p class="fn" style="margin-top:14px">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+        <label class="field">읽은 글 <small>지문만 남기고 지워 주세요</small>
+          <div class="ta">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. At home, people can make use of old items in many creative ways. Companies also use waste materials to create new products. …</div>
+        </label>
+        <label class="field">자료 이름<div class="inp">총괄평가 1쪽 — Upcycling</div></label>
+        <div class="acts"><span class="btn">닫기</span><span class="btn">지문 자료로 저장</span><span class="btn pri">저장하고 다음 사진</span></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="thesis" role="tabpanel" id="mp-c" aria-labelledby="m-c" hidden>
+    <h3>가의 좁은 화면(휴대폰 390px)</h3>
+    <p>나란히 둘 폭이 없으면 위아래로 쌓입니다. 사진 칸은 화면 높이의 3분의 1(240px)로 두고 그 안에서 굴립니다.</p>
+    <div class="fit" data-w="430"><div class="stage">
+      <div class="dlg phone new">
+        <div class="dh"><div><small>○○고 · 고1 2학기 총괄 평가</small><b>사진에서 글 읽기</b></div><span class="x">✕</span></div>
+        <div class="pager" style="justify-content:flex-start;margin-bottom:10px"><span class="rm">총괄평가 1쪽.jpg · 1 / 3</span><span class="btn sm">이전</span><span class="btn sm">다음</span></div>
+        <div class="pp">
+          <div class="ptools"><span class="seg on">폭 맞춤</span><span class="seg">크게</span></div>
+          <div class="pview" style="height:240px">
+            <div class="pg" style="width:320px;height:427px"><i style="top:5%;height:6%">시험지 머리</i><i style="top:14%;height:26%">지문 상자</i><i style="top:43%;height:9%">문항 1 · 보기</i></div>
+            <span class="sbar v" style="height:130px"></span>
+          </div>
+        </div>
+        <p class="fn" style="margin-top:12px">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요.</p>
+        <label class="field">읽은 글<div class="ta">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. …</div></label>
+        <label class="field">자료 이름<div class="inp">총괄평가 1쪽 — Upcycling</div></label>
+        <div class="acts"><span class="btn">닫기</span><span class="btn pri">저장하고 다음 사진</span></div>
+      </div>
+    </div></div>
+  </section>
+
+  <h2 class="sec">③ 사진이 클 때 — 칸은 그대로, 사진이 그 안에서 움직인다</h2>
+  <div class="fit" data-w="1085"><div class="stage" style="flex-wrap:wrap">
+    <div class="mini" style="width:340px"><h5>폭 맞춤(처음) — 전체 폭이 보인다</h5>
+      <div class="pview" style="height:200px"><div class="pg" style="width:306px;height:408px"><i style="top:5%;height:6%">머리</i><i style="top:14%;height:26%">지문 상자</i></div><span class="sbar v" style="height:96px"></span></div>
+      <p class="fn" style="margin:8px 0 0">세로로만 굴린다. 어디가 지문인지 한눈에 본다.</p></div>
+    <div class="mini" style="width:340px"><h5>크게 — 2배, 글자가 읽힌다</h5>
+      <div class="pview" style="height:200px"><div class="pg" style="width:612px;height:816px;left:-70px;top:-100px"><i style="top:14%;height:26%">지문 상자 — Upcycling is a fun way to reuse …</i></div><span class="sbar v" style="height:50px;top:30px"></span><span class="sbar h" style="width:150px;left:40px"></span></div>
+      <p class="fn" style="margin:8px 0 0">가로세로로 굴린다(끌어서 옮기기). 창 크기는 변하지 않는다.</p></div>
+    <div class="mini" style="width:340px"><h5>읽는 중 · 읽지 못했을 때</h5>
+      <div class="status">글을 읽는 중입니다… <span style="color:var(--ink-2)">10~20초</span></div>
+      <div class="alert">글을 읽지 못했습니다. 사진이 흐리거나 글자가 작을 수 있습니다. 다시 찍어 올리거나 지문을 직접 입력해 주세요.</div>
+      <p class="fn" style="margin:8px 0 0">읽는 동안에도 사진 칸은 보인다 — 글 칸 자리에 이 줄이 선다.</p></div>
+    <div class="mini" style="width:340px"><h5>안내 문구 — 가</h5><p class="fn" style="margin:0">사진은 글을 읽을 때 AI 서버로 보냅니다. 손글씨는 읽지 않습니다.</p></div>
+    <div class="mini" style="width:340px"><h5>안내 문구 — 나</h5><p class="fn" style="margin:0">사진은 글을 읽을 때 AI 서버로 보냅니다. 학생 이름이 보이면 가리고 올려 주세요. 손글씨는 읽지 않습니다.</p></div>
+    <div class="mini" style="width:340px"><h5>«자료 추가» 창의 지금 문구</h5><p class="fn" style="margin:0">지금: «PDF·이미지는 보관용입니다. 문제 제작에는 지문 텍스트를 입력해 주세요.»<br>바꿈: «사진은 «사진에서 읽기»로 지문을 만들 수 있습니다. PDF 는 보관용입니다.»</p></div>
+  </div></div>
+
+  <h2 class="sec">가 · 나 견주기</h2>
+  <div class="tablewrap">
+    <table class="t">
+      <thead><tr><th scope="col"></th><th scope="col">가 나란히(1080px)</th><th scope="col">나 위아래(880px)</th><th scope="col">1차의 A(570px)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">사진이 보이는 크기</th><td>500 × 440 — 세로의 3분의 2</td><td>820 × 260 — 세로의 4분의 1, 글자는 1.6배</td><td>510 × 132 띠 — 눌러서 따로 봐야 한다</td></tr>
+        <tr><th scope="row">사진과 글 견주기</th><td>같은 높이에서 좌우로</td><td>위아래를 오간다</td><td>사진을 열면 글이 가려진다</td></tr>
+        <tr><th scope="row">글을 고치는 칸</th><td>500px · 사진 칸과 같은 높이</td><td>820px · 창 아래쪽</td><td>510px</td></tr>
+        <tr><th scope="row">좁은 화면</th><td>위아래로 쌓인다(사진 240px)</td><td>그대로</td><td>그대로</td></tr>
+        <tr><th scope="row">새로 생기는 것</th><td>넓은 창 하나 · 줄의 단추 · 탭 하나</td><td>넓은 창 하나 · 줄의 단추 · 탭 하나</td><td>창 하나 · 줄의 단추</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <details class="old">
+    <summary>1차 네 안(참고) — A 자료 줄 → 창 · B 자료 추가 셋째 탭 · C 줄 아래 펼침 · D 만들기에서 바로</summary>
+    <div class="toolbar">
+      <div class="tabs" role="tablist" aria-label="1차 안 고르기">
+        <button class="tab" role="tab" id="t-a" aria-controls="p-a" aria-selected="true"><span class="k">A</span> 자료 줄 → 창</button>
+        <button class="tab" role="tab" id="t-b" aria-controls="p-b" aria-selected="false" tabindex="-1"><span class="k">B</span> «자료 추가» 셋째 탭</button>
+        <button class="tab" role="tab" id="t-c" aria-controls="p-c" aria-selected="false" tabindex="-1"><span class="k">C</span> 줄 아래로 펼침</button>
+        <button class="tab" role="tab" id="t-d" aria-controls="p-d" aria-selected="false" tabindex="-1"><span class="k">D</span> 문제 만들기에서 바로</button>
+      </div>
+    </div>
+
+    <section class="thesis" role="tabpanel" id="p-a" aria-labelledby="t-a">
+      <h3>A. 자료 줄의 «글 읽기» → 창에서 고쳐 저장</h3>
+      <p>사진 자료 줄에 단추가 하나 생깁니다. 누르면 창이 열리고, 읽은 글을 고친 뒤 «지문 자료로 저장»하면 글 자료가 한 줄 더 생깁니다. 🔸 사진이 132px 띠로만 보인다는 지적을 받아 2차에서 넓은 창으로 바꿨습니다.</p>
+      <div class="fit" data-w="640"><div class="stage">
+        <div class="dlg">
+          <div class="dh"><div><small>○○고 · 고1 2학기 총괄 평가</small><b>사진에서 글 읽기</b></div><span class="x">✕</span></div>
+          <div class="photo">총괄평가 1쪽.jpg<br>사진 미리보기 — 누르면 크게</div>
+          <p class="fn">읽은 글은 틀릴 수 있습니다. 사진과 견주어 고친 뒤 저장해 주세요. 손글씨는 읽지 않습니다.</p>
+          <label class="field">읽은 글 <small>지문만 남기고 지워 주세요</small>
+            <div class="ta">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. …</div>
+          </label>
+          <label class="field">자료 이름<div class="inp">총괄평가 1쪽 — Upcycling</div></label>
+          <div class="acts"><span class="btn">취소</span><span class="btn pri">지문 자료로 저장</span></div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="thesis" role="tabpanel" id="p-b" aria-labelledby="t-b" hidden>
+      <h3>B. «자료 추가» 창의 셋째 탭 «사진에서 읽기»</h3>
+      <p>사진을 고르고 «읽기»를 누르면 같은 창 아래에 글 칸이 열립니다. 🔸 읽은 뒤 창이 길어지는 문제가 있어, 2차에서는 사진을 올리면 읽기 창으로 넘어가게 했습니다.</p>
+      <div class="fit" data-w="640"><div class="stage">
+        <div class="dlg">
+          <div class="dh"><div><small>○○고 · 고1 2학기 총괄 평가</small><b>자료 추가</b></div><span class="x">✕</span></div>
+          <div class="dtabs"><span class="dtab">파일 업로드</span><span class="dtab">지문 직접 입력</span><span class="dtab on">사진에서 읽기</span></div>
+          <label class="field">사진<div class="inp">총괄평가 1쪽.jpg</div></label>
+          <label class="field">읽은 글 <small>지문만 남기고 지워 주세요</small>
+            <div class="ta">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. …</div>
+          </label>
+          <label class="field">자료 이름<div class="inp">총괄평가 1쪽 — Upcycling</div></label>
+          <p class="fn">☐ 사진도 함께 보관</p>
+          <div class="acts"><span class="btn">취소</span><span class="btn">다시 읽기</span><span class="btn pri">추가</span></div>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="thesis" role="tabpanel" id="p-c" aria-labelledby="t-c" hidden>
+      <h3>C. 자료 줄 아래로 펼침 — 창 없음</h3>
+      <p>«글 읽기»를 누르면 그 줄 아래에 글 칸이 열립니다. 칸 폭이 371px 이라 긴 지문을 고치기에 좁고, 사진과 나란히 볼 자리가 없습니다.</p>
+      <div class="fit" data-w="455"><div class="stage">
+        <div class="card">
+          <div class="sh"><h4>시험 자료 <span class="num">3</span></h4><span class="btn quiet">＋ 자료 추가</span></div>
+          <ul class="rows">
+            <li>
+              <div class="row"><span class="ico">사진</span><span class="rb"><span class="rt">총괄평가 1쪽.jpg</span><span class="rm">1.1MB · 10월 6일</span></span><span class="btn sm">닫기</span><span class="x">✕</span></div>
+              <div class="open">
+                <div class="ta" style="margin-top:0">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. …</div>
+                <div class="inp" style="margin-top:0">총괄평가 1쪽 — Upcycling</div>
+                <div class="acts"><span class="btn pri">지문 자료로 저장</span></div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div></div>
+    </section>
+
+    <section class="thesis" role="tabpanel" id="p-d" aria-labelledby="t-d" hidden>
+      <h3>D. 문제 만들기의 «저장한 자료 불러오기»에서 바로</h3>
+      <p>문제 만들기에서 원문을 불러올 때 사진 자료도 목록에 뜨고, 고르면 읽어서 원문 칸에 채웁니다. 읽은 글이 자료로 남지 않아 다른 세트를 만들 때 또 읽습니다.</p>
+      <div class="fit" data-w="925"><div class="stage">
+        <div class="panel">
+          <div class="fh"><span>원문</span><span class="sel">저장한 자료 불러오기 ▾</span></div>
+          <div class="menu" style="margin-top:6px">
+            <div>Lesson 2 본문</div>
+            <div>총괄평가 1쪽.jpg — 사진 · 읽어서 채움</div>
+          </div>
+          <div class="status" style="margin-top:14px">총괄평가 1쪽.jpg 에서 읽은 글입니다. 사진과 견주어 고친 뒤 쓰세요.</div>
+          <div class="ta" style="margin-top:0">Upcycling is a fun way to reuse old or unwanted things. People make new and useful products from them. …</div>
+        </div>
+      </div></div>
+    </section>
+  </details>
+</div>
+
+<script>
+(function () {
+  function fitAll() {
+    document.querySelectorAll(".fit").forEach(function (box) {
+      var stage = box.firstElementChild;
+      var w = Number(box.getAttribute("data-w"));
+      stage.style.width = w + "px";
+      stage.style.transform = "none";
+      box.style.height = "";
+      if (!box.clientWidth) return;
+      var k = Math.min(1, box.clientWidth / w);
+      stage.style.transform = "scale(" + k + ")";
+      box.style.height = Math.ceil(stage.offsetHeight * k) + "px";
+    });
+  }
+  document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    function pick(tab) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      fitAll();
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { pick(t); });
+      t.addEventListener("keydown", function (e) {
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
+        next.focus(); pick(next);
+      });
+    });
+  });
+  var old = document.querySelector("details.old");
+  if (old) old.addEventListener("toggle", fitAll);
+  window.addEventListener("resize", fitAll);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+  fitAll();
+})();
+</script>

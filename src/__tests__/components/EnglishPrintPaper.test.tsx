@@ -548,3 +548,78 @@ describe("EnglishPaper — 묶음 · 어법의 밑줄 · 교사용 안내 (D-151
     expect(question.textContent).not.toContain("① ①");
   });
 });
+
+describe("EnglishPaper — 유형 확장 (D-158 · 25 §13)", () => {
+  const second = SAMPLE_SET.passage.split(". ")[0] + ".";
+  const expanded = {
+    ...SAMPLE_SET,
+    questions: [
+      {
+        type: "언급 없음" as const,
+        prompt: "윗글을 읽고 알 수 없는 것은?",
+        options: ["첫째 항목", "둘째 항목", "셋째 항목", "넷째 항목"],
+        answer: "4",
+        explanation: "넷째 항목은 글에 없습니다.",
+        evidence: second,
+      },
+      {
+        type: "해석" as const,
+        prompt: `다음 문장을 우리말로 해석하시오.\n${second}`,
+        options: [],
+        answer: "우리말 모범 해석",
+        explanation: "끊어 읽기",
+        evidence: second,
+      },
+      {
+        type: "공통 빈칸" as const,
+        prompt:
+          "빈칸에 공통으로 들어갈 말을 쓰시오.\n① I think ________ it is true.\n② The book ________ I read was long.",
+        options: [],
+        answer: "that",
+        explanation: "① 접속사 ② 관계대명사",
+        evidence: second,
+      },
+    ],
+  };
+  const sheet = (view: "student" | "teacher") =>
+    render(
+      <EnglishPaper
+        academyName="오늘의수학"
+        exam={EXAM}
+        set={expanded}
+        view={view}
+      />,
+    );
+
+  it("«언급 없음»의 보기 넷은 ①~④ 네 줄로 찍힌다 — 다섯째 줄이 생기지 않는다", () => {
+    sheet("student");
+    const choices = screen.getByRole("list", { name: "1번 보기" });
+    expect(
+      within(choices)
+        .getAllByRole("listitem")
+        .map((li) => li.textContent),
+    ).toEqual(["①첫째 항목", "②둘째 항목", "③셋째 항목", "④넷째 항목"]);
+  });
+
+  it("보기 없는 새 유형은 서술형과 같은 종이다 — 학생용 답란 · 교사용 정답 글", () => {
+    const student = sheet("student");
+    expect(
+      Array.from(
+        student.container.querySelectorAll("[data-english-answer-blank]"),
+        (b) => b.getAttribute("data-english-answer-blank"),
+      ),
+    ).toEqual(["2", "3"]);
+    student.unmount();
+    const teacher = sheet("teacher");
+    const boxes = teacher.container.querySelectorAll(
+      "[data-english-teacher-box]",
+    );
+    expect(within(boxes[0] as HTMLElement).getByText("④")).toBeInTheDocument();
+    expect(
+      within(boxes[1] as HTMLElement).getByText("우리말 모범 해석"),
+    ).toBeInTheDocument();
+    expect(
+      within(boxes[2] as HTMLElement).getByText("that"),
+    ).toBeInTheDocument();
+  });
+});

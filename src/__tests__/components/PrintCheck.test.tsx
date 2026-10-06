@@ -231,7 +231,8 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     //      english-listening-bank-original-crops · paper-readable-accent-20261005 ·
     //      textbook-v15-recovery-20261005 · textbook-draft-copy-structure-refs ·
     //      textbook-structure-edit-intro · textbook-structure-edit-writing-board.
-    expect(ITEMS.length).toBe(108);
+    // 110: english-four-choice-unmentioned · english-open-types-d158 둘을 더했다(D-158 — 오늘의 영어 유형 확장).
+    expect(ITEMS.length).toBe(110);
   });
 
   /**

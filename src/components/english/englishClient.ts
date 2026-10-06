@@ -174,3 +174,11 @@ export const MATERIAL_FILE_PATTERN = /\.(pdf|docx|txt|png|jpe?g)$/i;
 export const MATERIAL_TOO_LARGE = `${ENGLISH_MATERIAL_MAX_LABEL} 이하의 파일만 올릴 수 있습니다.`;
 export const MATERIAL_BAD_TYPE =
   "pdf · docx · txt · png · jpg 파일만 올릴 수 있습니다.";
+/** 글을 읽을 수 있는 자료 — 사진뿐이다(D-158 · 서버 `ENGLISH_READABLE_MIME` 와 같은 범위) */
+export const PHOTO_ACCEPT = ".png,.jpg,.jpeg";
+export const PHOTO_FILE_PATTERN = /\.(png|jpe?g)$/i;
+export const PHOTO_BAD_TYPE = "png · jpg 사진만 읽을 수 있습니다.";
+export const isEnglishPhoto = (material: {
+  mimeType: string;
+  hasFile: boolean;
+}) => material.hasFile && /^image\/(png|jpeg)$/.test(material.mimeType);

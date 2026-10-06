@@ -114,6 +114,8 @@ const routes: [string, string, WorkspaceMenu[]][] = [
     ["english-school", "english-maker"],
   ],
   ["DELETE", "/api/english/materials/material", ["english-school"]],
+  // 사진 자료에서 글 읽기(D-158) — 사진이 외부 모델로 나간다. 자료를 다루는 메뉴만
+  ["POST", "/api/english/materials/material/read", ["english-school"]],
   ["GET", "/api/english/exams/exam/sets", englishMenus],
   ["POST", "/api/english/exams/exam/sets", ["english-maker"]],
   ["POST", "/api/english/generate", ["english-maker"]],

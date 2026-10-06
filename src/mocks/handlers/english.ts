@@ -25,6 +25,7 @@ import {
   englishExamResponseSchema,
   englishExamUpdateSchema,
   englishMaterialListResponseSchema,
+  englishMaterialReadResponseSchema,
   englishMaterialResponseSchema,
   englishMaterialTextCreateSchema,
   englishSetCreateSchema,
@@ -367,6 +368,23 @@ export const englishHandlers: HttpHandler[] = [
         "Content-Disposition": `attachment; filename="${encodeURIComponent(material.name)}"`,
         "X-Content-Type-Options": "nosniff",
       },
+    });
+  }),
+
+  // POST /api/english/materials/{id}/read — 사진 자료에서 읽은 글(저장하지 않는다 · D-158). 대역의 자료에는 사진이 없다 —
+  // 사진이 아닌 자료는 400, 대역에 없는 id(방금 올린 사진)는 표본 글을 돌려준다
+  http.post("/api/english/materials/:id/read", ({ params }) => {
+    const material = ENGLISH_MOCK_MATERIALS.find(
+      (item) => item.id === String(params.id),
+    );
+    if (material && !/^image\/(png|jpeg)$/.test(material.mimeType))
+      return jsonError(
+        "VALIDATION_ERROR",
+        "사진 자료만 글을 읽을 수 있습니다.",
+        400,
+      );
+    return jsonOk(englishMaterialReadResponseSchema, {
+      data: { text: ENGLISH_MOCK_PASSAGE },
     });
   }),
 

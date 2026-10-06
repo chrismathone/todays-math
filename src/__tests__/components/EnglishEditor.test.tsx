@@ -277,6 +277,135 @@ describe("[EnglishEditor] 검토·편집", () => {
     server.events.removeListener("request:start", listener);
   });
 
+  it("«언급 없음»은 다섯째 칸을 비우면 보기 넷으로 저장한다 — 4지선다 (D-158)", async () => {
+    const base = ENGLISH_MOCK_SETS[0];
+    const fourChoice = {
+      ...base,
+      questions: [
+        { ...base.questions[0]!, type: "언급 없음" as const },
+        ...base.questions.slice(1),
+      ],
+    };
+    const sent: { options: string[]; type: string }[][] = [];
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(englishSetResponseSchema.parse({ data: fourChoice })),
+      ),
+      http.put(
+        `/api/english/sets/${ENGLISH_SET_DRAFT_ID}`,
+        async ({ request }) => {
+          const body = (await request.json()) as {
+            revision: number;
+            questions: { options: string[]; type: string }[];
+          };
+          sent.push(body.questions);
+          return HttpResponse.json(
+            englishSetResponseSchema.parse({
+              data: {
+                ...fourChoice,
+                questions: body.questions,
+                revision: body.revision + 1,
+              },
+            }),
+          );
+        },
+      ),
+    );
+    await openDraft();
+    expect(screen.getByText("1번 · 언급 없음")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "1번 문제 5번 선택지" }),
+      { target: { value: "" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    await waitFor(() => expect(sent).toHaveLength(1));
+    expect(sent[0]![0]).toMatchObject({ type: "언급 없음" });
+    expect(sent[0]![0]!.options).toHaveLength(4);
+    // 정답 번호가 보기 수를 넘으면 같은 관문이 막는다
+    fireEvent.change(
+      screen.getByRole("combobox", { name: "1번 문제 정답 번호" }),
+      { target: { value: "5" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "1번 문항: 정답은 보기 번호 1~4 여야 합니다.",
+    );
+    expect(sent).toHaveLength(1);
+  });
+
+  it("«언급 없음»의 가운데 칸을 비우면 보내지 않는다 — 걷으면 정답이 다른 보기를 가리킨다 (D-158 검토 #1)", async () => {
+    const base = ENGLISH_MOCK_SETS[0];
+    let puts = 0;
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(
+          englishSetResponseSchema.parse({
+            data: {
+              ...base,
+              questions: [
+                { ...base.questions[0]!, type: "언급 없음" as const },
+                ...base.questions.slice(1),
+              ],
+            },
+          }),
+        ),
+      ),
+      http.put(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () => {
+        puts += 1;
+        return HttpResponse.json({}, { status: 500 });
+      }),
+    );
+    await openDraft();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
+    // 정답은 ②다. ①을 비우고 걷으면 ②가 ①이 돼 정답 번호가 옛 ③을 가리킨다
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "1번 문제 1번 선택지" }),
+      { target: { value: "" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "1번 문항: 보기 칸 사이가 비어 있습니다. 빈 칸은 맨 끝에만 둘 수 있습니다.",
+    );
+    expect(puts).toBe(0);
+  });
+
+  it("보기 넷인 문항을 고친 뒤에도 읽기 모양에 글 없는 다섯째 줄이 없다 (D-158 검토 #8)", async () => {
+    const base = ENGLISH_MOCK_SETS[0];
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(
+          englishSetResponseSchema.parse({
+            data: {
+              ...base,
+              questions: [
+                {
+                  ...base.questions[0]!,
+                  type: "언급 없음" as const,
+                  options: base.questions[0]!.options.slice(0, 4),
+                },
+                ...base.questions.slice(1),
+              ],
+            },
+          }),
+        ),
+      ),
+    );
+    await openDraft();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "1번 문제 1번 선택지" }),
+      { target: { value: "고친 첫째 보기" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정 끝" }));
+    const first = screen.getByRole("region", { name: "1번 문항" });
+    expect(
+      within(first)
+        .getAllByRole("listitem")
+        .map((li) => li.textContent?.slice(0, 1)),
+    ).toEqual(["①", "②", "③", "④"]);
+  });
+
   it("세트를 못 읽으면 문구와 «목록»만 남긴다", async () => {
     server.use(
       http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>

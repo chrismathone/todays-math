@@ -3149,6 +3149,57 @@ export const ITEMS: PrintCheckItem[] = [
     status: "대기",
     changedOn: "2026-10-01",
   },
+  {
+    id: "english-four-choice-unmentioned",
+    title: "오늘의 영어 — «언급 없음»의 보기 넷",
+    changed:
+      "객관식은 보기 다섯 고정이었다. 학교 시험의 «윗글을 읽고 알 수 없는 것은?»이 4지선다라, 새 유형 «언급 없음»만 보기 넷도 받는다" +
+      "(D-158 · 25 §13 — 원장님 2026-10-06 «부딪히는 거 다 해결하는 방향으로»). 다른 객관식은 그대로 다섯이다. " +
+      "보기 줄은 지금 규칙 그대로 세로 한 줄씩이라 ①~④ 네 줄이 찍힌다 — 새 배치는 없다(학교 시험지의 2×2 배치는 따르지 않았다).",
+    look:
+      "(제안) ① 보기가 네 줄이고 다섯째 빈 줄이나 번호가 없는가. ② 한국어 명사구 보기의 번호 간격 · 글줄이 다섯 보기 문항과 같은가. " +
+      "③ 교사용 정답 상자의 번호가 ①~④ 안인가. ④ 다섯 보기 문항과 한 장에 섞였을 때 문항 사이 간격이 고른가.",
+    lookFromSource: false,
+    evidence: [
+      "src/contracts/english.contract.ts (ENGLISH_FOUR_CHOICE_TYPES)",
+      "src/lib/english/validate.ts (보기 수 · 정답 번호 범위)",
+      "src/components/english/print/EnglishPaper.tsx (QuestionBlock)",
+      "src/__tests__/unit/englishTypeExpansion.test.ts",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+      "인쇄 경로 /english/sets/{세트id}/print?view=student · ?view=teacher",
+    ],
+    scale: "«언급 없음» 문항과 다섯 보기 문항이 같이 든 세트",
+    status: "대기",
+    changedOn: "2026-10-06",
+  },
+  {
+    id: "english-open-types-d158",
+    title:
+      "오늘의 영어 — 보기 없는 새 유형(해석 · 영영풀이 · 공통 빈칸 · 문장 전환 · 단어 배열)",
+    changed:
+      "보기 없는 유형 다섯을 더했다(D-158 · 25 §13). 종이는 서술형과 같다 — 발문 아래 50px 밑줄 답란 한 줄, 교사용은 정답 · 해설 · 근거 상자" +
+      "(새 시안 없음 — 어휘를 어법과 같은 종이로 들인 것과 같은 처리). 공통 빈칸 · 단어 배열은 문장을 원 지문에서 가져오면 원 지문 상자가 답을 보여 주므로 " +
+      "변형 묶음(원 지문 상자 없는 앞 묶음)으로 찍히고, 해석 · 영영풀이 · 문장 전환은 원 지문과 함께 독해 묶음에 남는다. " +
+      "원문의 최소 길이도 20자로 낮췄다 — 안내문 · 라벨 같은 짧은 실용문이 지문 상자에 줄바꿈 그대로 들어간다.",
+    look:
+      "(제안) ① 해석 · 문장 전환 · 단어 배열의 답(문장 하나)을 한 줄 답란에 쓸 수 있는가 — 모자라면 유형별 줄 수를 정해야 한다(원장님 결정). " +
+      "② 공통 빈칸의 ① ② ③ 문장이 줄마다 갈려 찍히고 빈칸 밑줄이 눈에 띄는가. ③ 단어 배열의 «( 말 / 말 / 말 )» 줄이 줄 끝에서 괄호만 넘어가지 않는가. " +
+      "④ 공통 빈칸 · 단어 배열이 원 지문 상자와 다른 묶음으로 나오는가(같은 장에 원 지문이 없는가). " +
+      "⑤ 여러 줄 안내문을 원문으로 넣었을 때 지문 상자에서 줄바꿈이 유지되는가.",
+    lookFromSource: false,
+    evidence: [
+      "src/contracts/english.contract.ts (ENGLISH_OPEN_TYPES · ENGLISH_SOURCE_PASSAGE_MIN)",
+      "src/lib/english/leak.ts (VARIANT_TYPES · 단어 배열의 답 자리)",
+      "src/lib/english/bundle.ts (planEnglishBundles)",
+      "src/components/english/print/EnglishPaper.tsx (answerBlank)",
+      "src/__tests__/unit/englishTypeExpansion.test.ts",
+      "src/__tests__/components/EnglishPrintPaper.test.tsx",
+      "인쇄 경로 /english/sets/{세트id}/print?view=student · ?view=teacher",
+    ],
+    scale: "새 유형 다섯이 고루 든 세트 + 여러 줄 안내문을 원문으로 쓴 세트",
+    status: "대기",
+    changedOn: "2026-10-06",
+  },
 ];
 
 /** 한 번에 다 보려면 어떤 시험지를 뽑아야 하나. */

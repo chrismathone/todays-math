@@ -15,6 +15,7 @@ import Icon from "@/components/unified/WorkspaceIcon";
 import WorkProgress from "@/components/unified/WorkProgress";
 import w from "@/components/unified/Workroom.module.css";
 import {
+  ENGLISH_FOUR_CHOICE_TYPES,
   ENGLISH_OPEN_TYPES,
   ENGLISH_PASSAGE_MAX,
   ENGLISH_SET_STATUSES,
@@ -30,7 +31,11 @@ import {
   type EnglishNotePlace,
   type EnglishQualityNote,
 } from "@/lib/english/notes";
-import { ENGLISH_CHOICE_MARKS } from "@/lib/english/options";
+import {
+  ENGLISH_CHOICE_MARKS,
+  englishOptionGap,
+  trimTrailingBlankOptions,
+} from "@/lib/english/options";
 import {
   ENGLISH_CHOICE_COUNT,
   validateEnglishDraft,
@@ -54,6 +59,8 @@ import s from "./EnglishStudio.module.css";
 const CHOICES = Array.from({ length: ENGLISH_CHOICE_COUNT }, (_, i) =>
   String(i + 1),
 );
+const OPTION_GAP_MESSAGE =
+  "보기 칸 사이가 비어 있습니다. 빈 칸은 맨 끝에만 둘 수 있습니다.";
 /** 계약이 내보내지 않는 상한 — `english.contract.ts` 의 `setTitleSchema.max(160)` · 보기 원소 `max(1_500)` 과 같은 값 */
 const SET_TITLE_MAX = 160;
 const OPTION_MAX = 1_500;
@@ -255,6 +262,19 @@ export default function EnglishEditor({
 
   const save = async () => {
     if (!draft || saving) return;
+    // 채운 보기 사이의 빈 칸 — 걷으면 뒤 보기의 번호가 당겨진다. 보기 넷을 받는 유형에서는 그 채로 검증을 지나
+    // 정답이 다른 보기를 가리키게 된다(D-158 검토 #1). 다른 유형은 아래 보기 수 규칙이 사유를 낸다.
+    const gaps = draft.questions.flatMap((question, index) =>
+      ENGLISH_FOUR_CHOICE_TYPES.includes(question.type) &&
+      englishOptionGap(question.options)
+        ? [{ question: index, message: OPTION_GAP_MESSAGE }]
+        : [],
+    );
+    if (gaps.length) {
+      setError(formatIssues(gaps));
+      openIssues(gaps);
+      return;
+    }
     // 빈 보기 칸은 «없는 보기»다 — 다섯 칸을 늘 그리므로 비운 칸을 걷어낸 뒤 공용 검증기를 지난다(보기 수 규칙이 사유를 낸다)
     const questions = draft.questions.map((question) => ({
       ...question,
@@ -560,8 +580,11 @@ export default function EnglishEditor({
                             maxLength={OPTION_MAX}
                             onChange={(event) =>
                               editQuestion(index, {
-                                options: options.map((item, j) =>
-                                  j === i ? event.target.value : item,
+                                // 끝의 빈 칸은 싣지 않는다 — 읽기 모양에 글 없는 번호 줄이 생기지 않게
+                                options: trimTrailingBlankOptions(
+                                  options.map((item, j) =>
+                                    j === i ? event.target.value : item,
+                                  ),
                                 ),
                               })
                             }

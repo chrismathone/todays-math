@@ -852,6 +852,99 @@ describe("문항 수", () => {
   });
 });
 
+describe("유형 확장 (D-158)", () => {
+  it("새 유형 여섯의 체크박스가 있고, 고르면 문항 수가 따라 오른다", () => {
+    setup();
+    for (const type of [
+      "언급 없음",
+      "해석",
+      "영영풀이",
+      "공통 빈칸",
+      "문장 전환",
+      "단어 배열",
+    ])
+      expect(screen.getByLabelText(type)).not.toBeChecked();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    for (const type of ["언급 없음", "해석", "단어 배열"])
+      fireEvent.click(screen.getByLabelText(type));
+    for (const type of ["언급 없음", "해석", "단어 배열"])
+      expect(screen.getByLabelText(type)).toBeChecked();
+    // 처음 고른 유형(주제 · 어법 둘)에 셋을 더해 다섯 — 다섯을 담는 가장 작은 선택은 5문항
+    expect(screen.getByLabelText("문항 수")).toHaveValue("5");
+  });
+
+  it("유형은 여덟까지만 고른다 — 아홉째는 받지 않고 알린다 (검토 #4)", () => {
+    setup();
+    // 처음에 둘(주제 · 어법)이 골라져 있다. 여섯을 더해 여덟
+    for (const type of [
+      "내용 일치",
+      "빈칸 추론",
+      "문장 삽입",
+      "서술형",
+      "언급 없음",
+      "해석",
+    ])
+      fireEvent.click(screen.getByLabelText(type));
+    expect(screen.getByLabelText("문항 수")).toHaveValue("8");
+    expect(onNotice).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByLabelText("공통 빈칸"));
+    expect(screen.getByLabelText("공통 빈칸")).not.toBeChecked();
+    expect(onNotice).toHaveBeenCalledWith(
+      "유형은 한 세트에 8개까지 고를 수 있습니다",
+      "alert",
+    );
+    // 하나를 빼면 다시 고를 수 있다
+    fireEvent.click(screen.getByLabelText("해석"));
+    fireEvent.click(screen.getByLabelText("공통 빈칸"));
+    expect(screen.getByLabelText("공통 빈칸")).toBeChecked();
+  });
+
+  it("출제 설정의 유형이 아홉이면 앞의 여덟만 고른 채로 연다 (검토 #4)", () => {
+    const nine = [
+      "주제",
+      "내용 일치",
+      "빈칸 추론",
+      "문장 삽입",
+      "서술형",
+      "언급 없음",
+      "해석",
+      "영영풀이",
+      "공통 빈칸",
+    ] as const;
+    setup({ ...exam, types: [...nine] });
+    for (const type of nine.slice(0, 8))
+      expect(screen.getByLabelText(type)).toBeChecked();
+    expect(screen.getByLabelText("공통 빈칸")).not.toBeChecked();
+    expect(screen.getByLabelText("문항 수")).toHaveValue("8");
+    fireEvent.click(screen.getByLabelText("주제"));
+    fireEvent.click(button("이 시험의 출제 설정 불러오기"));
+    expect(screen.getByLabelText("주제")).toBeChecked();
+    expect(screen.getByLabelText("공통 빈칸")).not.toBeChecked();
+    expect(onNotice).toHaveBeenCalledWith(
+      "유형은 한 세트에 8개까지 고를 수 있습니다",
+      "alert",
+    );
+  });
+
+  it("원문 칸의 안내는 지금 하한(20자)을 말한다", () => {
+    setup();
+    fireEvent.click(screen.getByLabelText("원문 유지"));
+    expect(
+      screen.getByPlaceholderText("영어 원문을 붙여 넣으세요 (20자 이상)."),
+    ).toBeInTheDocument();
+  });
+
+  it("짧은 실용문을 위한 지문 길이 40 · 60 · 80 단어가 있다", () => {
+    setup();
+    for (const words of [40, 60, 80])
+      expect(
+        screen.getByRole("option", { name: `약 ${words}단어` }),
+      ).toBeInTheDocument();
+  });
+});
+
 describe("어법과 어휘", () => {
   it("어법이 선택된 채 어휘를 누르면 선택을 받지 않고 알린다", () => {
     setup();
