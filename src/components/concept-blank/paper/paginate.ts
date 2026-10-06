@@ -145,7 +145,13 @@ export type StudentPage =
   | { form: "recall"; zones: { n: number; zone: RecallZone }[] }
   | { form: "term"; blocks: TermBlock[] }
   | { form: "cloze"; blocks: ClozeBlock[] }
-  | { form: "map"; n: number; map: MapPlan }
+  | {
+      form: "map";
+      n: number;
+      map: MapPlan;
+      questionMode?: true;
+      nodeStart?: number;
+    }
   | { form: "figure"; cards: { n: number; figure: FigureItem }[] };
 
 /* ───────── 채점표 한 줄 ───────── */
@@ -612,6 +618,11 @@ export function keyNotes(sheet: ConceptBlankSheet): string[] {
     }
     case "map": {
       const nodes = sheet.maps.reduce((s, m) => s + m.nodes.length, 0);
+      if (sheet.questionMode)
+        return [
+          `가지의 물음 하나가 한 개 — 모두 ${nodes}개. 확인할 내용을 모두 답했으면 ○.`,
+          "참고 답과 말 · 식의 꼴이 달라도 뜻이 같으면 ○. 물음에서 요구하지 않은 예는 채점하지 않는다.",
+        ];
       return [
         `가지마다 «뜻» 한 칸 + «예» 한 칸 — 모두 ${nodes * 2}칸.`,
         `«뜻»은 ${MEANING_RULE}`,
@@ -714,7 +725,13 @@ function keyRows(sheet: ConceptBlankSheet, student: StudentPage[]): KeyRow[] {
           n: String(++n),
           entry,
           place: map.hub,
-          example: entry.example ? "answer" : "free",
+          ...(sheet.questionMode
+            ? { questionForm: "term" as const }
+            : {
+                example: entry.example
+                  ? ("answer" as const)
+                  : ("free" as const),
+              }),
         })),
       );
     }
@@ -839,7 +856,19 @@ function studentPages(sheet: ConceptBlankSheet): StudentPage[] {
       return packCloze(blocks).map((b) => ({ form: "cloze", blocks: b }));
     }
     case "map":
-      return sheet.maps.map((map, i) => ({ form: "map", n: i + 1, map }));
+      return sheet.maps.map((map, i) => ({
+        form: "map",
+        n: i + 1,
+        map,
+        ...(sheet.questionMode
+          ? {
+              questionMode: true as const,
+              nodeStart: sheet.maps
+                .slice(0, i)
+                .reduce((sum, m) => sum + m.nodes.length, 1),
+            }
+          : {}),
+      }));
     case "figure":
       return byCount(
         sheet.figures.map((figure, i) => ({ n: i + 1, figure })),
@@ -865,7 +894,7 @@ function tallyOf(sheet: ConceptBlankSheet): string {
       return parts.join(" · ");
     }
     case "map":
-      return `채운 칸 ____ / ${sheet.maps.reduce((s, m) => s + m.nodes.length * 2, 0)}`;
+      return `${sheet.questionMode ? "맞은 개수" : "채운 칸"} ____ / ${sheet.maps.reduce((s, m) => s + m.nodes.length * (sheet.questionMode ? 1 : 2), 0)}`;
     case "figure":
       return `맞은 칸 ____ / ${sheet.figures.reduce((s, f) => s + f.tags.length + f.lines.length, 0)}`;
   }

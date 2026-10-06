@@ -8,7 +8,12 @@ import {
   type SheetHeader,
 } from "@/contracts/conceptBlank.contract";
 import { getBlankSection, sectionTitleTex } from "./sections";
-import { conceptSupportsForm } from "./questions";
+import {
+  conceptSupportsForm,
+  mapQuestionMode,
+  MAP_NODES_PER_PAGE,
+  QUESTION_MAP_NODES_PER_PAGE,
+} from "./questions";
 
 export const EXACT_COMPOSITION_VERSION = "injaewon.concept-blank.exact.v1";
 export const EXACT_PARSER_VERSION = "injaewon.concept-blank.entries.v1";
@@ -80,7 +85,7 @@ export function composeExactSheets(
       );
     if (
       pick.entryKind === "concept" &&
-      (pick.form === "term" || pick.form === "cloze") &&
+      (pick.form === "term" || pick.form === "cloze" || pick.form === "map") &&
       !conceptSupportsForm(concepts.get(pick.entryId)!, pick.form)
     )
       throw new RangeError(
@@ -156,9 +161,18 @@ export function composeExactSheets(
         };
       case "map": {
         const maps = [];
-        for (let i = 0; i < chosen.length; i += 6)
-          maps.push({ hub: section.title, nodes: chosen.slice(i, i + 6) });
-        return { form, header, maps };
+        const questionMode = mapQuestionMode(chosen);
+        const limit = questionMode
+          ? QUESTION_MAP_NODES_PER_PAGE
+          : MAP_NODES_PER_PAGE;
+        for (let i = 0; i < chosen.length; i += limit)
+          maps.push({ hub: section.title, nodes: chosen.slice(i, i + limit) });
+        return {
+          form,
+          header,
+          maps,
+          ...(questionMode ? { questionMode: true as const } : {}),
+        };
       }
       case "figure":
         return {

@@ -31,7 +31,7 @@ import { LONGEST_CODE_SYMBOLS, syntheticCode } from "./code";
 import { fuzzSheets } from "./fuzz";
 import { photoCode, photoSheets } from "./photo";
 import { claritySheets } from "./clarity";
-import { studentClearFixtureSheets } from "./student-clear";
+import { studentClearFixtureSheets, studentClearMapSheets } from "./student-clear";
 import {
   countSheets,
   figureSheets,
@@ -127,6 +127,7 @@ const MATH_SHEETS: ConceptBlankSheet[] = [
 
 function sheetsFor(set: string | null): ConceptBlankSheet[] {
   if (set === "student-clear-fixtures") return studentClearFixtureSheets();
+  if (set === "student-clear-map") return studentClearMapSheets();
   if (set?.startsWith("clarity-"))
     return claritySheets(set.slice(8) as RealGrade);
   if (set === "photo-cloze") return photoSheets();

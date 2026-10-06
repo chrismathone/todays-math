@@ -59,7 +59,7 @@ const bank = (entries: ConceptEntry[]): ConceptBlankBank => ({
   apply: [],
   figures: [],
 });
-const selection = (form: "term" | "cloze"): ConceptBlankSelection => ({
+const selection = (form: "term" | "cloze" | "map"): ConceptBlankSelection => ({
   sections: [section],
   forms: [
     { form, counts: { 하: 0, 중: 3, 상: 0 }, extras: { 하: 0, 중: 0, 상: 0 } },
@@ -67,6 +67,62 @@ const selection = (form: "term" | "cloze"): ConceptBlankSelection => ({
 });
 
 describe("student questions and their answer keys", () => {
+  it("uses the reviewed question in new map branches, matches the answer key and keeps only two writable branches per page", () => {
+    const entries = [
+      entry,
+      { ...entry, id: "clear-map-second" },
+      { ...entry, id: "clear-map-third" },
+    ];
+    const sheet = composeSheets(selection("map"), bank(entries))[0];
+    expect(sheet.form === "map" && sheet.questionMode).toBe(true);
+    expect(
+      sheet.form === "map" && sheet.maps.map((map) => map.nodes.length),
+    ).toEqual([2, 1]);
+    const { container } = render(
+      <ConceptBlankPaper sheets={[sheet]} view="both" />,
+    );
+    const student = container.querySelectorAll('[data-cb-part="student"]');
+    expect(student).toHaveLength(2);
+    expect(student[0].textContent).toContain(entry.bQuestion!.prompt);
+    expect(student[0].textContent).not.toContain(entry.bQuestion!.answer);
+    expect(student[0].textContent).not.toContain("뜻");
+    expect(student[1].textContent).toContain("문 3");
+    expect(
+      container.querySelector('[data-cb-part="key"]')!.textContent,
+    ).toContain(entry.bQuestion!.answer);
+    expect(planSheet(sheet).tally).toBe("맞은 개수 ____ / 3");
+  });
+
+  it("keeps legacy maps and their two-cell grading, and refuses a mixed old/new map mode", () => {
+    const old = composeSheets(selection("map"), bank([legacy]))[0];
+    expect(old.form === "map" && old.questionMode).toBeUndefined();
+    expect(planSheet(old).tally).toBe("채운 칸 ____ / 2");
+    expect(() =>
+      composeSheets(
+        selection("map"),
+        bank([legacy, { ...entry, id: "clear-new-map" }]),
+      ),
+    ).toThrow("섞을 수 없습니다");
+    const excluded = {
+      ...entry,
+      id: "clear-map-excluded",
+      bQuestion: null,
+      questionExclusions: { term: "그림 없이 답할 수 없는 항목이다." },
+    };
+    expect(stockCounts(section, bank([entry, excluded])).map.중).toBe(1);
+    const exact = selectionFromPicks([
+      {
+        blankSectionKey: section,
+        entryKind: "concept",
+        entryId: excluded.id,
+        form: "map",
+        level: "중",
+      },
+    ]);
+    expect(() => composeExactSheets(exact, bank([excluded]))).toThrow(
+      "사용할 수 없는 개념",
+    );
+  });
   it("prints an explicit B question with its own answer and semantic criteria, without the vague title or C answer on the student sheet", () => {
     const sheets = composeSheets(selection("term"), bank([entry]));
     const { container } = render(

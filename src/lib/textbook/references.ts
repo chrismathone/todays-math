@@ -6,6 +6,7 @@ import type { TextbookIssue } from "@/contracts/textbookPrimitives.contract";
 import { composeFrozenTextbookBlank } from "@/lib/concept-blank/textbookPrint";
 import { checkChoiceFigureIndex } from "@/lib/problem/choiceFigureIndex";
 import { semanticFragmentAssetIds } from "./semanticAssets";
+import { canonicalJson } from "./canonical";
 
 export interface ReferenceOptions {
   mode?: "draft" | "archive" | "publish";
@@ -148,8 +149,39 @@ export function validateTextbookReferences(
               (c.sectionKey !== null && c.sectionKey !== s.sectionKey))
           )
             add("CONCEPT_SECTION", "개념과 블록의 단원·구획이 다릅니다.", p);
+          if (b.semantic?.node?.kind === "conceptQuestions")
+            for (const row of b.semantic.node.questions) {
+              const frozen = c?.frozen?.entries.find(
+                (entry) =>
+                  entry.entryKind === "concept" &&
+                  entry.payload.id === row.entryId,
+              );
+              const question =
+                frozen?.entryKind === "concept"
+                  ? frozen.payload.bQuestion
+                  : undefined;
+              if (
+                !question ||
+                canonicalJson(row.question) !==
+                  canonicalJson({
+                    prompt: question.prompt,
+                    answer: question.answer,
+                    requiredIdeas: question.requiredIdeas,
+                  }) ||
+                !c?.frozen?.selection.some(
+                  (pick) =>
+                    pick.entryId === row.entryId && pick.form === "term",
+                )
+              )
+                add(
+                  "QUESTION_FROZEN",
+                  "질문과 참고 답이 고정한 개념 문항과 일치하지 않습니다.",
+                  p,
+                );
+            }
         }
-        for (const assetId of semanticFragmentAssetIds(b.semantic)) image(assetId, [...p, "semantic", "node"]);
+        for (const assetId of semanticFragmentAssetIds(b.semantic))
+          image(assetId, [...p, "semantic", "node"]);
       });
       if (publish && !s.blocks.length)
         add("EMPTY_SECTION", "발행할 구획에 원고를 입력하세요.", location);

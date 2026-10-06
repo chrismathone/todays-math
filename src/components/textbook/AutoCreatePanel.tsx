@@ -52,7 +52,11 @@ const COMPONENTS: {
     hint: "선생님과 학생이 질문하며 배우기",
   },
   { key: "concepts", label: "개념 정리", hint: "정의·성질·예제 정리" },
-  { key: "termRecall", label: "용어 암기", hint: "용어를 보고 뜻 쓰기" },
+  {
+    key: "termRecall",
+    label: "개념 질문",
+    hint: "물음을 읽고 개념과 이유 쓰기",
+  },
   {
     key: "clozeRecall",
     label: "빈칸 개념 암기",
@@ -60,8 +64,8 @@ const COMPONENTS: {
   },
   {
     key: "sentenceRecall",
-    label: "통문장 개념 암기",
-    hint: "개념을 문장으로 설명하기",
+    label: "책 없이 답 쓰기",
+    hint: "같은 물음을 책 없이 다시 확인하기",
   },
   {
     key: "workedExamples",
@@ -108,7 +112,11 @@ const COMPONENTS: {
     label: "설명 활동",
     hint: "개념을 말하고 이유를 쓰기",
   },
-  { key: "conceptMap", label: "개념 지도", hint: "선택한 개념을 연결해 정리" },
+  {
+    key: "conceptMap",
+    label: "단원 개념 확인 모음",
+    hint: "같은 단원의 질문을 묶어서 확인",
+  },
   { key: "reasoning", label: "추론 활동", hint: "근거와 판단 과정을 설명" },
   {
     key: "conceptIndex",

@@ -4,6 +4,48 @@ import { expect, test } from "@playwright/test";
 import fixtures from "./student-clear-fixtures.json";
 import { measurePages, openSet } from "./measure";
 
+test("new question maps fit two branches at contract limits and keep numbering and writing space", async ({
+  page,
+}) => {
+  await openSet(page, "student-clear-map");
+  await expect(page.locator('[data-cb-part="student"]')).toHaveCount(2);
+  await expect(page.locator("[data-cb-node]")).toHaveCount(3);
+  await expect(page.locator('[data-cb-key-row="concept"]')).toHaveCount(3);
+  const students = page.locator('[data-cb-part="student"]');
+  await expect(students.nth(0)).toContainText("문 1");
+  await expect(students.nth(0)).toContainText("문 2");
+  await expect(students.nth(1)).toContainText("문 3");
+  const reports = await measurePages(page);
+  for (const report of reports) {
+    expect(
+      report.overflowPx,
+      `${report.part} ${report.page}`,
+    ).toBeLessThanOrEqual(0.5);
+    expect(report.mathErrors).toBe(0);
+    expect(report.leaks).toEqual([]);
+  }
+  const directory = path.join(
+    process.cwd(),
+    "test-results/concept-blank-paper/student-clear-map",
+  );
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(
+    path.join(directory, "report.json"),
+    JSON.stringify(
+      { purpose: "지도 계약 상한 배치 검사; 학습 문항 아님", reports },
+      null,
+      2,
+    ),
+  );
+  await students
+    .nth(0)
+    .screenshot({ path: path.join(directory, "student.png") });
+  await page
+    .locator('[data-cb-part="key"]')
+    .first()
+    .screenshot({ path: path.join(directory, "key.png") });
+});
+
 test("seven-grade B/C structure prints explicit questions, adequate writing lines and matched keys", async ({
   page,
 }) => {
@@ -63,12 +105,10 @@ test("seven-grade B/C structure prints explicit questions, adequate writing line
   }
   const pages = page.locator("[data-print-page]");
   for (let index = 0; index < reports.length; index++)
-    await pages
-      .nth(index)
-      .screenshot({
-        path: path.join(
-          directory,
-          `page-${String(index + 1).padStart(2, "0")}.png`,
-        ),
-      });
+    await pages.nth(index).screenshot({
+      path: path.join(
+        directory,
+        `page-${String(index + 1).padStart(2, "0")}.png`,
+      ),
+    });
 });

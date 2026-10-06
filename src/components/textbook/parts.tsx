@@ -747,6 +747,7 @@ export function SectionEditor({
                   <span>회상 단계</span>
                   <select
                     value={block.phase}
+                    disabled={block.semantic?.node?.kind === "conceptQuestions"}
                     onChange={(event) => {
                       const phase =
                         event.target.value === "keywords" ||
@@ -772,11 +773,18 @@ export function SectionEditor({
                   <span>회상 본문</span>
                   <textarea
                     value={block.text}
+                    readOnly={block.semantic?.node?.kind === "conceptQuestions"}
                     onChange={(event) =>
                       replace({ ...block, text: event.target.value })
                     }
                   />
                 </label>
+                {block.semantic?.node?.kind === "conceptQuestions" ? (
+                  <p>
+                    검토된 질문과 참고 답을 함께 사용합니다. 이 질문의 본문은
+                    직접 편집할 수 없습니다.
+                  </p>
+                ) : null}
                 <div className={styles.row}>
                   <button
                     type="button"

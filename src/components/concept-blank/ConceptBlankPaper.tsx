@@ -139,7 +139,9 @@ function studentPages(
                 : sheet.form === "cloze" &&
                     sheet.sentences.some((entry) => entry.clozeQuestion)
                   ? "주어진 상황을 생각하며 빈칸에 알맞은 말이나 수를 쓰세요."
-                  : undefined
+                  : sheet.form === "map" && sheet.questionMode
+                    ? "같은 단원의 물음들을 묶었습니다. 가지마다 답을 쓰세요."
+                    : undefined
             }
           />
         ) : (

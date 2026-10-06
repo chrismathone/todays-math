@@ -3,6 +3,31 @@ import type {
   ConceptEntry,
 } from "@/contracts/conceptBlank.contract";
 
+export const QUESTION_REVISION = "student-clear-20261006-v1";
+
+/** New authoring accepts a reviewed bank revision; frozen older books bypass this loader. */
+export function reviewedQuestionMode(
+  entries: readonly ConceptEntry[],
+): boolean {
+  const revised = entries.some(
+    (entry) =>
+      entry.questionRevision !== undefined ||
+      entry.bQuestion !== undefined ||
+      entry.clozeQuestion !== undefined,
+  );
+  if (!revised) return false;
+  for (const entry of entries)
+    if (
+      entry.questionRevision !== QUESTION_REVISION ||
+      entry.bQuestion === undefined ||
+      entry.clozeQuestion === undefined
+    )
+      throw new RangeError(
+        `질문 판 또는 형식 결정이 일치하지 않습니다: ${entry.id}`,
+      );
+  return true;
+}
+
 /** 옛 동결 payload는 보충하지 않는다. undefined인 옛 필드와 검토 후 제외한 null을 구별한다. */
 export function conceptSupportsForm(
   entry: ConceptEntry,
@@ -10,6 +35,7 @@ export function conceptSupportsForm(
 ): boolean {
   if (form === "term") return entry.bQuestion !== null;
   if (form === "cloze") return entry.clozeQuestion !== null;
+  if (form === "map") return entry.bQuestion !== null;
   if (form === "recall") return !entry.givenCase;
   return form !== "figure";
 }
@@ -45,4 +71,17 @@ export function clozeAlternatives(entry: ConceptEntry): string[] {
       answers.length > 1 ? [`빈칸 ${index + 1}: ${answers.join(" / ")}`] : [],
     ) ?? []
   );
+}
+
+export const MAP_NODES_PER_PAGE = 6;
+export const QUESTION_MAP_NODES_PER_PAGE = 2;
+export function mapQuestionMode(entries: readonly ConceptEntry[]): boolean {
+  if (entries.some((entry) => entry.bQuestion === null))
+    throw new RangeError("개념 지도에서 제외한 항목이 포함돼 있습니다.");
+  const questions = entries.filter((entry) => entry.bQuestion).length;
+  if (questions > 0 && questions !== entries.length)
+    throw new RangeError(
+      "새 질문 지도와 옛 뜻·예 지도를 한 묶음으로 섞을 수 없습니다.",
+    );
+  return questions > 0;
 }

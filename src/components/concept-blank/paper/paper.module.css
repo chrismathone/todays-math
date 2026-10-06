@@ -771,6 +771,20 @@
   min-width: 0;
 }
 
+.nodeNumber {
+  flex: none;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+
+.nodeQuestion {
+  flex: none;
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
 .done {
   flex: none;
   width: 15px;

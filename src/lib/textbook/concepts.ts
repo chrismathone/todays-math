@@ -258,7 +258,9 @@ export function resolveReviewedConcept(
 
 function supports(entry: TextbookFrozenEntry, form: ConceptBlankForm): boolean {
   return entry.entryKind === "concept"
-    ? form !== "figure"
+    ? form === "term" || form === "cloze" || form === "map"
+      ? conceptSupportsForm(entry.payload, form)
+      : form !== "figure"
     : entry.entryKind === "ox"
       ? form === "term"
       : entry.entryKind === "apply"
@@ -315,14 +317,6 @@ export function freezeTextbookConcept(
     let lastSection: string | null = null;
     for (const entry of entries) {
       if (!supports(entry, form)) continue;
-      if (
-        entry.entryKind === "concept" &&
-        (form === "term" || form === "cloze") &&
-        !conceptSupportsForm(entry.payload, form)
-      )
-        throw new Error(
-          `이 개념은 선택한 백지 형식에서 제외되었습니다: ${entry.payload.id}. 해당 형식을 해제하거나 다른 항목을 선택하세요.`,
-        );
       const section = entry.payload.section;
       if (section !== lastSection) {
         if (completedSections.has(section))

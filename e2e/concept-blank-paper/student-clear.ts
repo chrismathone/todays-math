@@ -25,3 +25,38 @@ export function studentClearFixtureSheets(): ConceptBlankSheet[] {
     ),
   );
 }
+
+/** 지도 배치만 검증하는 계약 상한 표본. 새 학습 문항으로 쓰지 않는다. */
+export function studentClearMapSheets(): ConceptBlankSheet[] {
+  const base = conceptEntrySchema.parse(fixtures.entries[3]);
+  const prompt =
+    "주어진 상황에서 계산할 식을 쓰고 그 식으로 확인할 수 있는 까닭을 설명하세요. "
+      .repeat(8)
+      .slice(0, 240);
+  const answer =
+    "계산한 결과와 처음 주어진 양이 같으므로 두 계산은 서로 맞는지 확인할 수 있다. "
+      .repeat(8)
+      .slice(0, 240);
+  const entries = [
+    base,
+    {
+      ...base,
+      id: base.id + "-layout-stress",
+      bQuestion: { ...base.bQuestion!, prompt, answer },
+    },
+    { ...base, id: base.id + "-second-map" },
+  ];
+  return composeSheets(
+    {
+      sections: [base.section],
+      forms: [
+        {
+          form: "map",
+          counts: { 하: 40, 중: 40, 상: 40 },
+          extras: { 하: 0, 중: 0, 상: 0 },
+        },
+      ],
+    },
+    { concepts: entries, ox: [], apply: [], figures: [] },
+  );
+}

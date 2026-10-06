@@ -537,6 +537,8 @@ export type ConceptBlankSheet =
       form: "map";
       header: SheetHeader;
       maps: { hub: string; nodes: ConceptEntry[] }[];
+      /** 질문 판의 지도. 없는 옛 동결 자료는 뜻·예 형식으로 읽는다. */
+      questionMode?: true;
     }
   | { form: "figure"; header: SheetHeader; figures: FigureItem[] };
 

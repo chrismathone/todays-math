@@ -4,7 +4,8 @@ import {
   type ConceptEntry,
 } from "@/contracts/conceptBlank.contract";
 
-export const QUESTION_REVISION = "student-clear-20261006-v1";
+import { QUESTION_REVISION } from "../questions";
+export { QUESTION_REVISION };
 export type ConceptAssessment = Pick<
   ConceptEntry,
   "bQuestion" | "clozeQuestion" | "questionExclusions"

@@ -52,19 +52,43 @@ function semanticProjection(
   const source = section.blocks.filter(
     (block) => block.sourceBlockId !== "section-heading",
   );
+  const questionCopy = new Map(
+    source.flatMap((block) =>
+      block.kind === "recall" &&
+      (block.questionRows ||
+        (block.semantic?.node?.kind === "rows" &&
+          block.semantic.node.groupKey?.includes(".question-cloze.v1."))) &&
+      block.semantic
+        ? [
+            [
+              block.semantic.activity,
+              {
+                title: block.semantic.title ?? "개념 질문",
+                subtitle: block.semantic.subtitle ?? section.title,
+              },
+            ] as const,
+          ]
+        : [],
+    ),
+  );
   const steps = [
     ...new Set(
       source.flatMap((block) =>
         block.semantic ? [block.semantic.activity] : [],
       ),
     ),
-  ].map((activity) => ({ activity, label: ACTIVITY_LABELS[activity] }));
+  ].map((activity) => ({
+    activity,
+    label: questionCopy.get(activity)?.title ?? ACTIVITY_LABELS[activity],
+  }));
   const enabled = enabledActivities ?? steps.map((step) => step.activity);
   const phases = enabled
     .filter((activity) => Object.hasOwn(MEMORY_COPY, activity))
     .map((activity) => ({
       activity,
-      label: MEMORY_COPY[activity as keyof typeof MEMORY_COPY][0],
+      label:
+        questionCopy.get(activity)?.title ??
+        MEMORY_COPY[activity as keyof typeof MEMORY_COPY][0],
     }));
   const majorSteps = (
     [
@@ -124,17 +148,23 @@ function semanticProjection(
           title:
             activity === "dialogue"
               ? "단원을 여는 수업"
-              : (memory?.[0] ??
-                (section.templateKey.startsWith("reference-")
-                  ? section.title
-                  : ACTIVITY_LABELS[activity])),
+              : questionCopy.has(activity)
+                ? questionCopy.get(activity)!.title
+                : (memory?.[0] ??
+                  (section.templateKey.startsWith("reference-")
+                    ? section.title
+                    : ACTIVITY_LABELS[activity])),
           subtitle:
             activity === "dialogue" && block.kind === "dialogue"
               ? semantic?.source
                 ? (semantic.title ?? section.title)
                 : (block.presentation?.lessonTitle ?? section.title)
-              : (memory?.[1] ??
-                (semantic?.source ? (semantic.subtitle ?? "") : section.title)),
+              : questionCopy.has(activity)
+                ? questionCopy.get(activity)!.subtitle
+                : (memory?.[1] ??
+                  (semantic?.source
+                    ? (semantic.subtitle ?? "")
+                    : section.title)),
           stageNumber: String(
             semantic?.source?.scriptIndex ??
               (memory
