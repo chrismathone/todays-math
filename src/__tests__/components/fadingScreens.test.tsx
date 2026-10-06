@@ -15,7 +15,10 @@ import { erasedTargets } from "@/lib/fading/erasure";
 import type { FadingConcept } from "@/lib/fading/concepts";
 import { FadingFigureView } from "@/components/fading/FadingFigureView";
 import { FadingSourceError } from "@/lib/fading/source";
-import { fadingBlankSize } from "@/components/fading/FadingChipInput";
+import {
+  FADING_BLANK_WIDTH_MODE,
+  fadingBlankSize,
+} from "@/components/fading/FadingChipInput";
 
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
@@ -306,20 +309,23 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       const filled = document.querySelector<HTMLElement>("[data-fading-slot]")!;
       expect(filled.style.getPropertyValue("--slot-width")).toBe(width);
       expect(filled.style.getPropertyValue("--slot-height")).toBe(height);
+      // 원장님 결정(2026-10-06) — 빈칸은 전부 같은 크기다: 그 단계 칩 판에서 가장 넓고 가장 높은 칩의 크기.
+      // 답의 폭으로 두면 폭이 같은 칩을 눈으로 짝지을 수 있다(답의 길이가 샌다).
+      expect(FADING_BLANK_WIDTH_MODE).toBe("uniform");
+      const sizes = [
+        { width: 100, height: 44 },
+        { width: 60, height: 58 },
+      ];
       expect(
-        fadingBlankSize(
-          { width: 44, height: 44 },
-          [{ width: 100, height: 44 }],
-          "answer",
-        ).width,
-      ).toBe(44);
+        fadingBlankSize({ width: 44, height: 44 }, sizes, "answer"),
+      ).toEqual({ width: 44, height: 44 });
       expect(
-        fadingBlankSize(
-          { width: 44, height: 44 },
-          [{ width: 100, height: 44 }],
-          "uniform",
-        ).width,
-      ).toBe(100);
+        fadingBlankSize({ width: 44, height: 44 }, sizes, "uniform"),
+      ).toEqual({ width: 100, height: 58 });
+      expect(fadingBlankSize({ width: 44, height: 44 }, sizes)).toEqual({
+        width: 100,
+        height: 58,
+      });
     } finally {
       measured.mockRestore();
     }

@@ -1,0 +1,558 @@
+.root {
+  container-type: inline-size;
+  color: var(--learn-ink);
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-track);
+  border-radius: var(--learn-radius);
+  font-family: var(--font-pretendard), "Malgun Gothic", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.root [hidden] {
+  display: none;
+}
+.root :is(button, input, select) {
+  font: inherit;
+  min-height: 44px;
+}
+.root :is(button, select) {
+  cursor: pointer;
+}
+.root :is(button, input, select):focus-visible {
+  outline: 3px solid var(--learn-focus);
+  outline-offset: 3px;
+}
+.root :is(h2, h3, h4, strong) {
+  font-weight: 600;
+}
+.root h2 {
+  font-size: 24px;
+  margin: 2px 0 0;
+}
+.root h3 {
+  font-size: 20px;
+  margin: 0;
+}
+.root h4 {
+  font-size: 14px;
+  margin: 0;
+}
+.productHeader {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.eyebrow,
+.note {
+  font-size: 12px;
+  color: var(--learn-muted);
+  margin: 0;
+}
+.previewSlot {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.previewSlot > span {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.button,
+.viewButton,
+.moreButton {
+  color: var(--learn-accent);
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  padding: 8px 12px;
+  min-width: 44px;
+  min-height: 44px;
+}
+.button:not(:disabled):hover,
+.viewButton:hover,
+.moreButton:hover {
+  background: var(--learn-soft-hover);
+}
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  padding: 0 24px 16px;
+}
+.toolbar label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.toolbar :is(input, select) {
+  width: 168px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--learn-ink);
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-control);
+  border-radius: var(--control-radius);
+  padding: 8px 10px;
+  font-size: 14px;
+}
+.scope {
+  margin: 0 0 2px auto;
+  font-variant-numeric: tabular-nums;
+}
+.scope small {
+  display: block;
+  font-size: 12px;
+  color: var(--learn-muted);
+  margin-top: 3px;
+}
+.registrationNote {
+  font-size: 12px;
+  color: var(--learn-muted);
+  margin: 0;
+  padding: 0 24px 18px;
+}
+.body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(310px, 1fr);
+  border-top: 1px solid var(--learn-track);
+  align-items: start;
+}
+.rosterPanel {
+  min-width: 0;
+  padding: 20px 16px;
+}
+.attention,
+.allRoster {
+  min-width: 0;
+}
+.allRoster {
+  margin-top: 28px;
+}
+.sectionHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.sectionHeading > span {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.roster {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.roster :is(th, td) {
+  padding: 12px 5px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--learn-track);
+  text-align: left;
+}
+.roster th {
+  font-weight: 600;
+}
+.roster thead th {
+  background: var(--learn-bg);
+  color: var(--learn-muted);
+  font-weight: 400;
+}
+.roster th:first-child {
+  width: 26%;
+}
+.roster th:nth-child(2),
+.roster th:nth-child(3) {
+  width: 13%;
+}
+.roster th:nth-child(4) {
+  width: 32%;
+}
+.roster th:last-child {
+  width: 16%;
+}
+.roster tbody th > span {
+  display: block;
+  font-size: 14px;
+}
+.roster small {
+  display: block;
+  margin-top: 4px;
+  color: var(--learn-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.roster tr[data-selected="true"] {
+  background: var(--learn-soft);
+}
+.roster td:nth-child(2),
+.roster td:nth-child(3) {
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+}
+.unit {
+  font-size: 12px;
+  margin-left: 2px;
+}
+.viewButton {
+  padding-inline: 8px;
+  font-size: 12px;
+}
+.viewButton[aria-pressed="true"] {
+  border-color: var(--learn-accent);
+}
+.moreButton {
+  display: block;
+  margin: 12px 0 0;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.flags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.flag {
+  padding: 3px 7px;
+  border-radius: 999px;
+  border: 1px solid var(--learn-track);
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.muted {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.detail {
+  min-width: 0;
+  padding: 20px;
+  background: var(--learn-bg);
+  border-left: 1px solid var(--learn-track);
+}
+.detailHeader {
+  margin-bottom: 12px;
+}
+.detailHeader h3 {
+  margin: 3px 0 6px;
+}
+.detailHeader > p:not(:first-child) {
+  margin: 0;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.detailHeader small {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.primaryMetrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 20px 0 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--learn-track);
+  gap: 12px;
+}
+.primaryMetrics dt {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.primaryMetrics dd {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 2px 0 0;
+  font-variant-numeric: tabular-nums;
+}
+.primaryMetrics dd > span {
+  font-size: 12px;
+  margin-left: 4px;
+  font-weight: 400;
+}
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 16px 0 12px;
+  gap: 14px 12px;
+}
+.metrics dt {
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.metrics dd {
+  margin: 3px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 1px solid var(--learn-track);
+  gap: 8px;
+  padding: 14px 0;
+  margin: 20px 0 24px;
+  font-size: 12px;
+}
+.steps dt {
+  color: var(--learn-muted);
+}
+.steps dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+.detailSection + .detailSection {
+  margin-top: 24px;
+}
+.detailSection h4 {
+  margin-bottom: 10px;
+}
+.concepts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.concepts li {
+  display: grid;
+  gap: 5px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--learn-track);
+  font-size: 12px;
+}
+.concepts strong {
+  font-size: 14px;
+}
+.days {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.days :is(th, td) {
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--learn-track);
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+.days th {
+  font-weight: 400;
+  color: var(--learn-muted);
+}
+.days th:first-child {
+  width: 31%;
+}
+.empty {
+  margin: 0;
+  padding: 20px 0;
+  color: var(--learn-muted);
+  font-size: 14px;
+}
+.message {
+  padding: 40px 24px;
+  min-height: 180px;
+  color: var(--learn-muted);
+}
+.message h3 {
+  color: var(--learn-ink);
+  font-size: 18px;
+}
+.message p {
+  margin: 10px 0 16px;
+}
+.detail .message {
+  padding: 20px 0;
+}
+.footer {
+  border-top: 1px solid var(--learn-track);
+  padding: 14px 24px;
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.preview {
+  min-width: 0;
+}
+.previewHeader {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.previewHeader h2 {
+  font-size: 18px;
+}
+.previewHeader p {
+  font-size: 12px;
+  color: var(--learn-muted);
+  margin: 4px 0 0;
+}
+
+/* H2 recommended: attention has its own header; the selected student's counts have a quiet cobalt surface. */
+.root[data-hifi="H2"] .attention .sectionHeading {
+  background: var(--learn-warning-bg);
+  border-radius: var(--control-radius);
+  padding: 12px;
+  color: var(--learn-warning);
+}
+.root[data-hifi="H2"] .attention .sectionHeading > span {
+  color: var(--learn-warning);
+  margin-left: auto;
+}
+.root[data-hifi="H2"] .flag {
+  border-color: transparent;
+  background: var(--learn-warning-bg);
+  color: var(--learn-warning);
+}
+.root[data-hifi="H2"] .detail {
+  background: var(--learn-surface);
+}
+.root[data-hifi="H2"] .primaryMetrics {
+  background: var(--learn-soft);
+  padding: 16px;
+  border: 0;
+  border-radius: var(--learn-radius-sm);
+}
+.root[data-hifi="H2"] .primaryMetrics dd {
+  color: var(--learn-accent);
+}
+.root[data-hifi="H2"] .detailHeader {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--learn-track);
+}
+
+/* H3: ruled ledger, tighter rows, aligned labels and numbers. */
+.root[data-hifi="H3"] {
+  border-radius: var(--control-radius);
+}
+.root[data-hifi="H3"] .sectionHeading {
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--learn-ink);
+}
+.root[data-hifi="H3"] .roster :is(th, td) {
+  padding-block: 8px;
+}
+.root[data-hifi="H3"] .roster td:nth-child(2),
+.root[data-hifi="H3"] .roster td:nth-child(3) {
+  text-align: right;
+  padding-right: 12px;
+}
+.root[data-hifi="H3"] .flag {
+  background: var(--learn-neutral);
+  border-color: transparent;
+}
+.root[data-hifi="H3"] .metrics {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+}
+.root[data-hifi="H3"] .metrics > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--learn-track);
+}
+.root[data-hifi="H3"] .metrics dd {
+  text-align: right;
+}
+.root[data-hifi="H3"] .primaryMetrics dd {
+  font-size: 24px;
+}
+
+/* H4: spacious rows and quiet reasons; all controls retain the same affordance. */
+.root[data-hifi="H4"] .productHeader {
+  padding-block: 32px;
+}
+.root[data-hifi="H4"] .sectionHeading {
+  margin-bottom: 18px;
+}
+.root[data-hifi="H4"] .roster :is(th, td) {
+  padding-block: 18px;
+}
+.root[data-hifi="H4"] .roster tbody th > span {
+  font-size: 16px;
+}
+.root[data-hifi="H4"] .flag {
+  border: 0;
+  padding-inline: 0;
+}
+.root[data-hifi="H4"] .flags {
+  column-gap: 8px;
+}
+.root[data-hifi="H4"] .detail {
+  background: var(--learn-surface);
+  padding-block: 28px;
+}
+.root[data-hifi="H4"] .metrics {
+  row-gap: 20px;
+}
+.root[data-hifi="H4"] .concepts li {
+  padding-block: 20px;
+}
+
+@container (max-width: 820px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail {
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+  }
+}
+@container (max-width: 560px) {
+  .productHeader {
+    padding: 20px 16px;
+  }
+  .toolbar {
+    padding-inline: 16px;
+  }
+  .scope {
+    width: 100%;
+    margin-left: 0;
+  }
+  .registrationNote {
+    padding-inline: 16px;
+  }
+  .rosterPanel {
+    padding: 16px 10px;
+  }
+  .roster :is(th, td) {
+    padding-inline: 4px;
+  }
+  .detail {
+    padding-inline: 16px;
+  }
+}
+@container (max-width: 400px) {
+  .toolbar label {
+    flex: 1;
+    min-width: 120px;
+  }
+  .toolbar :is(input, select) {
+    width: 100%;
+  }
+  .roster :is(th, td) {
+    padding-inline: 2px;
+  }
+  .roster th:first-child {
+    width: 25%;
+  }
+  .roster th:nth-child(4) {
+    width: 29%;
+  }
+  .roster th:last-child {
+    width: 20%;
+  }
+}

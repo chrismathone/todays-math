@@ -73,19 +73,23 @@ export function useFadingKeyboard({
   }, []);
 }
 
-export const FADING_BLANK_WIDTH_MODE: "answer" | "uniform" = "answer";
+/**
+ * 빈칸의 크기를 정하는 방식 — 원장님 결정(2026-10-06): **전부 같게**(`uniform`).
+ * 그 단계의 칩 판에서 가장 넓고 가장 높은 칩의 크기를 모든 빈칸이 쓴다. 채운 뒤에도 그 크기 그대로라 줄바꿈이 바뀌지 않는다.
+ * `answer`(그 빈칸의 답 크기)로 두면 문장은 더 자연스럽지만, 크기가 같은 칩을 눈으로 짝지을 수 있다 — 답의 길이가 샌다.
+ */
+export const FADING_BLANK_WIDTH_MODE: "answer" | "uniform" = "uniform";
 type SlotSize = { width: number; height: number };
 export function fadingBlankSize(
   answer: SlotSize,
   sizes: Iterable<SlotSize>,
   mode: "answer" | "uniform" = FADING_BLANK_WIDTH_MODE,
 ): SlotSize {
+  if (mode === "answer") return { width: answer.width, height: answer.height };
+  const all = [answer, ...sizes];
   return {
-    width:
-      mode === "answer"
-        ? answer.width
-        : Math.max(answer.width, ...Array.from(sizes, (size) => size.width)),
-    height: answer.height,
+    width: Math.max(...all.map((size) => size.width)),
+    height: Math.max(...all.map((size) => size.height)),
   };
 }
 

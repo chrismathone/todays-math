@@ -3,6 +3,7 @@ import type { BankData } from "./types";
 import type { SessionUser } from "@/lib/session";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
 import { getAccountAccess } from "@/lib/accountAccess";
+import { fadingGate } from "@/lib/fading/enabled";
 
 /** Shared authenticated entry for the main page and existing /studio links. */
 export default async function WorkspacePage({ user }: { user: SessionUser }) {
@@ -36,6 +37,7 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
       key={user.id}
       initialData={initialData}
       storageScope={user.id}
+      fadingGate={fadingGate()}
       currentUser={{
         ...user,
         branchId: account?.branchId ?? null,
