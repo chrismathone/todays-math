@@ -35,8 +35,8 @@ const document = englishListeningFixture();
 document.groups = [document.groups[0]];
 document.level = "중1";
 document.source = {
-  kind: "national_listening",
-  provider: "공식 평가",
+  kind: "other",
+  provider: "직접 제작",
   year: 2024,
   round: 1,
   month: null,
@@ -314,7 +314,7 @@ describe("private current whole-source transcript reads", () => {
     expect(
       (await searchListeningBank(tx, access(), { q: "Continue listening" }))
         .data,
-    ).toHaveLength(1);
+    ).toHaveLength(0);
     expect(
       (
         await memory.query(
@@ -345,7 +345,7 @@ describe("private current whole-source transcript reads", () => {
     });
     expect(
       (await searchListeningBank(tx, access(), { q: "Hidden-only" })).data,
-    ).toHaveLength(1);
+    ).toHaveLength(0);
   });
   it("rejects a student actor and a missing approved teacher account", async () => {
     await expect(
@@ -476,7 +476,7 @@ describe("private current whole-source transcript reads", () => {
 });
 
 describe("transcript search with the existing bank filters", () => {
-  it("finds private text through EXISTS without duplicate rows or transcript payloads", async () => {
+  it("keeps internal ASR text out of normal bank search", async () => {
     await insertTranscript({ profile: "bilingual" });
     await insertTranscript({ generated_at: new Date("2026-10-05T15:00:00Z") });
     const result = await searchListeningBank(tx, access(), {
@@ -485,7 +485,7 @@ describe("transcript search with the existing bank filters", () => {
       year: 2024,
       round: 1,
     });
-    expect(result.data.map((row) => row.id)).toEqual([setId]);
+    expect(result.data).toEqual([]);
     expect(JSON.stringify(result)).not.toMatch(
       /Original speech|Hidden-only|segments|words/,
     );
@@ -526,7 +526,7 @@ describe("transcript search with the existing bank filters", () => {
     ).toEqual([]);
     expect(
       (await searchListeningBank(tx, access(), { q: "50%_off" })).data,
-    ).toHaveLength(1);
+    ).toHaveLength(0);
     expect(
       (await searchListeningBank(tx, access(), { q: "50%Xoff" })).data,
     ).toEqual([]);
@@ -550,7 +550,7 @@ describe("estimated paragraphs and private migration", () => {
     ]);
     expect(rawWords).toEqual(before);
   });
-  it("preserves a zero-duration short word in reading, search and paragraph text with a timing notice", async () => {
+  it("preserves a zero-duration short word internally with a timing notice", async () => {
     const rawWords = [
       ...words.slice(0, 1),
       { text: "a", start: 2450, end: 2450, confidence: 0.9 },
@@ -582,7 +582,7 @@ describe("estimated paragraphs and private migration", () => {
     expect(
       (await searchListeningBank(tx, access(), { q: "Original a speech" }))
         .data,
-    ).toHaveLength(1);
+    ).toHaveLength(0);
     expect(
       (
         await memory.query<{ words: unknown }>(

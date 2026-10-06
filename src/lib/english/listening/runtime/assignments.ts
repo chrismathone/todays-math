@@ -29,6 +29,7 @@ import {
   transitionListeningAttempt,
 } from "../attempt";
 import { validateListeningPublication } from "../publication";
+import { isKnownExternalListeningDocument } from "../externalSourcePolicy";
 import {
   audit,
   denied,
@@ -110,7 +111,12 @@ export async function publicationRow(tx: ListeningTx, id: string) {
     tx,
     Prisma.sql`SELECT * FROM english_listening_publication WHERE id=${id}::uuid`,
   );
-  if (!row || row.withdrawn_at) throw denied();
+  if (
+    !row ||
+    row.withdrawn_at ||
+    isKnownExternalListeningDocument(row.snapshot.document)
+  )
+    throw denied();
   validateListeningPublication(row.snapshot);
   return row;
 }
