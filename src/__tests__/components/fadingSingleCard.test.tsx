@@ -169,7 +169,7 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
     render(<FadingApp source={source} initialState={state} initialSession />);
     const input = screen.getByRole("textbox", { name: "칩 글 입력" });
     input.focus();
-    fireEvent.keyDown(window, { key: "ArrowRight" });
+    fireEvent.keyDown(input, { key: "Tab" });
     expect(visibleSentence()).toHaveAttribute(
       "data-fading-sentence",
       "sentence-1",
@@ -297,6 +297,119 @@ describe("오늘의 기억 — 문장 한 장씩", () => {
     expect(screen.queryByText("성질")).not.toBeInTheDocument();
     expect(screen.queryByText("삼각형")).not.toBeInTheDocument();
     expect(screen.queryByText("중2")).not.toBeInTheDocument();
+  });
+
+  it("완료한 문장을 보면서는 숨은 빈칸에 넣지 않고 Tab으로 입력할 문장에 돌아간다", async () => {
+    const { source, state } = await startAt(4);
+    const act = vi.spyOn(source, "act");
+    render(<FadingApp source={source} initialState={state} initialSession />);
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    fireEvent.change(input, { target: { value: "수직이등분선" } });
+    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    expect(visibleSentence()).toHaveAttribute(
+      "data-fading-sentence",
+      "sentence-1",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "이전 문장" }));
+    expect(visibleSentence()).toHaveAttribute(
+      "data-fading-sentence",
+      "sentence-0",
+    );
+    expect(input).toBeEnabled();
+    fireEvent.change(input, { target: { value: "외심" } });
+    expect(screen.getByRole("button", { name: "넣기" })).toBeDisabled();
+    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    fireEvent.keyDown(window, { key: "1", code: "Digit1" });
+    expect(input).toHaveValue("외심");
+    expect(act).not.toHaveBeenCalled();
+    expect(
+      screen.getByText(/Tab으로 빈칸이 있는 문장으로/),
+    ).toBeInTheDocument();
+    fireEvent.keyDown(input, { key: "Tab" });
+    expect(visibleSentence()).toHaveAttribute(
+      "data-fading-sentence",
+      "sentence-2",
+    );
+    expect(input).toHaveFocus();
+    fireEvent.keyDown(input, { key: "Tab", shiftKey: true });
+    expect(visibleSentence()).toHaveAttribute(
+      "data-fading-sentence",
+      "sentence-1",
+    );
+    fireEvent.change(input, { target: { value: "외심" } });
+    fireEvent.submit(screen.getByRole("form", { name: "칩 글로 입력" }));
+    expect(visibleSentence()).toHaveAttribute(
+      "data-fading-sentence",
+      "sentence-2",
+    );
+    expect(screen.getByText("2 / 3 완료")).toBeInTheDocument();
+  });
+
+  it("현재 단계에 빈칸이 하나뿐이어도 안 비는 문장에서 Tab으로 그 빈칸을 보여 준다", async () => {
+    const { source, state } = await startAt(2);
+    render(<FadingApp source={source} initialState={state} initialSession />);
+    const target = erasedTargets(concept, 2)[0]!;
+    const targetIndex = concept.propositions.findIndex((proposition) =>
+      proposition.pieces.some(
+        (piece) => piece.kind === "target" && piece.target.id === target.id,
+      ),
+    );
+    const pager = screen.getByRole("navigation", { name: "개념 문장 이동" });
+    fireEvent.click(
+      within(pager).getByRole("button", {
+        name: targetIndex > 0 ? "이전 문장" : "다음 문장",
+      }),
+    );
+    expect(visibleSentence()).not.toHaveAttribute(
+      "data-fading-sentence",
+      target.id.split("#")[0],
+    );
+    const input = screen.getByRole("textbox", { name: "칩 글 입력" });
+    expect(input).toBeEnabled();
+    fireEvent.keyDown(input, { key: "Tab" });
+    expect(visibleSentence()).toHaveAttribute(
+      "data-fading-sentence",
+      target.id.split("#")[0],
+    );
+    expect(input).toHaveFocus();
+  });
+
+  it("마친 단계의 기준안도 한 문장씩 대조하고 전체 단계의 기록과 선택적 종료를 유지한다", async () => {
+    const { source, state } = await startAt(4);
+    const act = vi.spyOn(source, "act");
+    render(<FadingApp source={source} initialState={state} initialSession />);
+    fireEvent.click(screen.getByRole("button", { name: "아직 모르겠어요" }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "자가 평가하기" }),
+      ).toBeEnabled(),
+    );
+    act.mockClear();
+    fireEvent.click(screen.getByRole("button", { name: "기준안 보기" }));
+    const dialog = screen.getByRole("dialog", { name: "삼각형 · 기준안" });
+    expect(
+      dialog.querySelectorAll("[data-fading-comparison-sentence]"),
+    ).toHaveLength(1);
+    expect(
+      dialog.querySelector("[data-fading-comparison-sentence]"),
+    ).toHaveAttribute("data-fading-comparison-sentence", "sentence-0");
+    expect(within(dialog).getByText("0 / 3")).toBeInTheDocument();
+    fireEvent.keyDown(dialog, { key: " ", code: "Space" });
+    expect(
+      dialog.querySelector("[data-fading-comparison-sentence]"),
+    ).toHaveAttribute("data-fading-comparison-sentence", "sentence-1");
+    fireEvent.keyDown(dialog, { key: "Enter" });
+    expect(
+      dialog.querySelector("[data-fading-comparison-sentence]"),
+    ).toHaveAttribute("data-fading-comparison-sentence", "sentence-2");
+    fireEvent.click(within(dialog).getByRole("button", { name: "이전 문장" }));
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "대조 마치기 · 계속" }),
+    );
+    expect(
+      await screen.findByRole("heading", { name: "어느 정도 떠올랐나요" }),
+    ).toBeInTheDocument();
+    expect(act).not.toHaveBeenCalled();
   });
 
   it("정규화는 공백·구두점·유니코드·수식 표기와 부분 겹침을 보수적으로 비교한다", () => {

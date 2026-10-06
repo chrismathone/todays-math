@@ -185,6 +185,7 @@ export function FadingSessionScreen({
     step: local.step,
     index: 0,
     pending: null as string | null,
+    active: null as string | null,
   });
   const [lastTarget, setLastTarget] = useState<string | null>(null);
   const [compare, setCompare] = useState<FadingStepResult | null>(null);
@@ -256,9 +257,15 @@ export function FadingSessionScreen({
   );
   const cardIndex =
     card.step !== local.step ||
-    (local.phase === "filling" && card.pending !== pendingBlank)
+    (local.phase === "filling" &&
+      (card.pending !== pendingBlank || card.active !== activeBlank))
       ? Math.max(0, followingIndex)
       : card.index;
+  const visiblePending = concept.propositions[cardIndex]!.pieces.some(
+    (piece) => piece.kind === "target" && piece.target.id === pendingBlank,
+  );
+  const offCardCue =
+    "이 문장에는 입력할 빈칸이 없어요. Tab으로 빈칸이 있는 문장으로 이동해 주세요.";
   function showCard(index: number) {
     const proposition = concept.propositions[index];
     if (!proposition) return;
@@ -268,12 +275,22 @@ export function FadingSessionScreen({
         erased.has(piece.target.id) &&
         !local.filled[piece.target.id],
     );
-    const nextPending =
+    const nextActive =
       local.phase === "filling" && target?.kind === "target"
         ? target.target.id
-        : pendingBlank;
-    setCard({ step: local.step, index, pending: nextPending });
-    if (local.phase === "filling" && nextPending) setActiveBlank(nextPending);
+        : null;
+    const nextPending =
+      nextActive ??
+      wrong?.targetId ??
+      blanks.find((blank) => !local.filled[blank.id])?.id ??
+      null;
+    setCard({
+      step: local.step,
+      index,
+      pending: nextPending,
+      active: nextActive,
+    });
+    if (local.phase === "filling") setActiveBlank(nextActive);
   }
   useFadingBlankSize({
     root: sessionRoot,
@@ -376,6 +393,14 @@ export function FadingSessionScreen({
       !tray.some((chip) => chip.id === chipId)
     )
       return;
+    if (
+      !concept.propositions[cardIndex]!.pieces.some(
+        (piece) => piece.kind === "target" && piece.target.id === targetId,
+      )
+    ) {
+      setFeedback(offCardCue);
+      return;
+    }
     const result = placeChip(local, concept, targetId, chipId, content.traps);
     placements.current.push({ targetId, chipId });
     setLastTarget(targetId);
@@ -460,6 +485,10 @@ export function FadingSessionScreen({
   }
   function submitTypedChip() {
     if (disabled || stageReady || !pendingBlank) return;
+    if (!visiblePending) {
+      setFeedback(offCardCue);
+      return;
+    }
     const restoreInputFocus = document.activeElement === chipInput.current;
     if (selected && !used.has(selected)) {
       place(pendingBlank, selected, restoreInputFocus);
@@ -1117,7 +1146,9 @@ export function FadingSessionScreen({
                   <h2 className={s.subheading}>문장을 채우는 칩</h2>
                   <span className={s.code}>
                     {pendingBlank
-                      ? `빈칸 [${blanks.findIndex((t) => t.id === pendingBlank) + 1}] 입력 대기 중`
+                      ? visiblePending
+                        ? `빈칸 [${blanks.findIndex((t) => t.id === pendingBlank) + 1}] 입력 대기 중`
+                        : "이 문장에는 입력할 빈칸이 없어요"
                       : "빈칸을 골라 주세요"}
                   </span>
                 </div>
@@ -1173,7 +1204,10 @@ export function FadingSessionScreen({
                       type="submit"
                       className={s.secondary}
                       disabled={
-                        disabled || !!stageReady || (!typed.trim() && !selected)
+                        disabled ||
+                        !!stageReady ||
+                        !visiblePending ||
+                        (!typed.trim() && !selected)
                       }
                     >
                       넣기
@@ -1268,7 +1302,7 @@ export function FadingSessionScreen({
                   className={s.feedback}
                   data-error={!!wrong || (!!feedback && !stageReady)}
                 >
-                  {feedback ||
+                  {(!visiblePending && pendingBlank ? offCardCue : feedback) ||
                     (saving ? (
                       "저장 중…"
                     ) : selected ? (
