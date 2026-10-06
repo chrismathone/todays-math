@@ -255,6 +255,44 @@ try {
     );
     await capture(`${width}-cold-math-input`);
   }
+  // The real workspace preview factory must use cards too, independently of
+  // student authentication and the server rollout flag.
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto(`${base}/dev/fading-teacher-hifi?product=on`, {
+    waitUntil: "domcontentloaded",
+  });
+  await page.getByRole("button", { name: "미리 보기", exact: true }).click();
+  await page.getByRole("button", { name: "개념 목록", exact: true }).click();
+  await page
+    .getByRole("button", { name: /단원 보기/ })
+    .first()
+    .click();
+  await page
+    .getByRole("button", { name: /개념 읽기$/ })
+    .first()
+    .click();
+  await page
+    .getByRole("button", { name: "복습에 추가하고 시작", exact: true })
+    .click();
+  await page.locator('[data-card-side="front"]').waitFor();
+  await capture("teacher-preview-desktop-anki");
+  await page.getByRole("button", { name: "문장 보기", exact: true }).click();
+  const teacherCard = await page
+    .locator("[data-fading-sentence]")
+    .getAttribute("data-fading-sentence");
+  await page
+    .getByRole("button", { name: "모바일 미리 보기", exact: true })
+    .click();
+  await capture("teacher-preview-mobile-back");
+  await page.getByRole("button", { name: "PC 미리 보기", exact: true }).click();
+  check(
+    (await page
+      .locator("[data-fading-sentence]")
+      .getAttribute("data-fading-sentence")) === teacherCard &&
+      (await page.locator('[data-card-side="back"]').count()) === 1,
+    "Teacher preview device switch lost the card or reveal state",
+  );
+  await capture("teacher-preview-desktop-preserved");
   check(errors.length === 0, `Browser errors: ${errors.join("; ")}`);
   check(writes.length === 0, "Dev card verification wrote through an API");
   check(external.length === 0, `External requests: ${external.join("; ")}`);
