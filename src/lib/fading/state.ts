@@ -1,5 +1,6 @@
 import {
   FADING_RECEIPTS_MAX,
+  FADING_TARGETS_MAX,
   type FadingPlacement,
   type StoredFading,
   type StoredFadingConcept,
@@ -223,7 +224,9 @@ export function reportFadingMiss(
   if (!chip) throw conflict("이 단계에 없는 칩입니다.");
   if (chipFits(concept, placement.targetId, chip))
     throw conflict("맞게 넣은 칩입니다.");
-  return session.missedAtFour.includes(placement.targetId)
+  // 이미 적혔거나, 옛 틀림으로 칸이 다 찼으면 그대로다(틀림이 하나라도 있으니 평가는 어차피 «다시»뿐이다).
+  return session.missedAtFour.includes(placement.targetId) ||
+    session.missedAtFour.length >= FADING_TARGETS_MAX
     ? state
     : {
         ...state,
@@ -288,15 +291,19 @@ export function completeFadingStep(
       ...stored,
       step: (step + 1) as FadingStep,
     });
+  const order = fadingTargets(concept).map((t) => t.id);
   const missed = new Set([...session.missedAtFour, ...result.missed]);
   return {
     ...state,
     session: {
       ...session,
       phase: "rating",
-      missedAtFour: fadingTargets(concept)
-        .map((t) => t.id)
-        .filter((id) => missed.has(id)),
+      // 지금 표적은 표적 차례로. 지금 표적에 없는 옛 id(은행의 문장이 고쳐지기 전에 적힌 틀림)도 버리지 않는다 —
+      // 버리면 고친 문장에서 다 맞히는 순간 «4단계에서 틀리면 다시뿐»이 풀린다.
+      missedAtFour: [
+        ...order.filter((id) => missed.has(id)),
+        ...session.missedAtFour.filter((id) => !order.includes(id)),
+      ].slice(0, FADING_TARGETS_MAX),
     },
   };
 }
@@ -362,7 +369,9 @@ export function rateFadingSession(
         difficulty: next.memory!.difficulty,
         reviewedOn: today,
         dueOn,
-        digest: fadingConceptDigest(concept),
+        // 4단계를 푼 내용의 지문 — 그 뒤에 문장이 고쳐졌으면 고친 문장의 평가로 적지 않는다(«바뀜»이 선다).
+        // 지문이 없는 풀이(이 칸 이전에 평가 차례가 된 것)는 지금 지문이다.
+        digest: session.digest ?? fadingConceptDigest(concept),
         reviews: next.reviews,
         lapses: next.lapses,
         addedOn: stored.addedOn,

@@ -95,11 +95,24 @@ export const storedFadingSessionSchema = z
     phase: z.enum(["steps", "rating"]),
     /** 4단계에서 틀리게 넣은 빈칸 — **틀린 그때 적는다**(새로고침으로 지워지지 않게). 하나라도 있으면 평가는 «다시»뿐이다. */
     missedAtFour: z.array(targetIdSchema).max(FADING_TARGETS_MAX),
+    /**
+     * 4단계를 푼 내용의 개념 지문 — 평가 차례로 넘어갈 때 적고, 평가는 이 지문으로 기록한다(그사이 은행의 문장이 고쳐져도
+     * «고친 문장의 평가»로 적지 않는다). 선택 칸이다 — 이 칸이 없던 때의 풀이는 지문 없이 그대로 읽는다.
+     * 🔴 이 칸을 **읽는** 배포판이 쓰는 배포판보다 먼저 나간다(파일 머리의 규칙).
+     */
+    digest: z
+      .string()
+      .regex(/^[0-9a-f]{8}$/)
+      .optional(),
   })
   .refine(
     (session) =>
       new Set(session.missedAtFour).size === session.missedAtFour.length,
     "틀린 빈칸이 겹쳐 적혔습니다.",
+  )
+  .refine(
+    (session) => session.digest === undefined || session.phase === "rating",
+    "4단계를 푼 내용의 지문은 평가 차례에서만 적힙니다.",
   );
 export type StoredFadingSession = z.infer<typeof storedFadingSessionSchema>;
 

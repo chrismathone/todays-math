@@ -10,6 +10,7 @@ import {
 } from "@/contracts/fadingApi.contract";
 import type { FadingTrap } from "./chips";
 import { fadingTargets, type FadingConcept } from "./concepts";
+import { fadingContentKey, fadingSessionToken } from "./contentKey";
 import type { FadingFigure } from "./figures";
 import { FADING_DAILY_CAP, daysUntilReview, forgettingRisk } from "./numbers";
 import { fadingDayOfDate, previewFadingIntervals } from "./schedule";
@@ -137,6 +138,7 @@ export function fadingStateView(input: {
   const intervals = session
     ? previewFadingIntervals(fadingProgressOf(stored!), fadingDayOfDate(today))
     : null;
+  const traps = session ? (input.trapsOf?.(opened!) ?? []) : [];
   return {
     today,
     revision: input.revision,
@@ -150,7 +152,8 @@ export function fadingStateView(input: {
     ),
     session: session
       ? {
-          id: session.id,
+          // 저장 번호가 아니라 «저장 번호 + 지금 내용»의 토큰 — 내용이 바뀐 뒤의 옛 화면 요청을 알아본다(`contentKey.ts`).
+          id: fadingSessionToken(session.id, fadingContentKey(opened!, traps)),
           conceptId: session.conceptId,
           startStep: session.startStep,
           step: stored!.step,
@@ -166,9 +169,7 @@ export function fadingStateView(input: {
     opened: session
       ? {
           concept: opened!,
-          traps: (input.trapsOf?.(opened!) ?? []).map((trap) => ({
-            text: trap.text,
-          })),
+          traps: traps.map((trap) => ({ text: trap.text })),
           figure: input.figureOf?.(opened!) ?? null,
         }
       : null,
