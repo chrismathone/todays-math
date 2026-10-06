@@ -65,7 +65,7 @@ export const listeningFeedbackReportSchema = z.strictObject({
   setId: z.uuid(), questionId: z.uuid(), groupId: z.uuid(),
   questionNumber: z.number().int().positive().nullable(), setTitle: z.string(),
   rating: voteFields.rating, reasons: voteFields.reasons, comment: voteFields.comment,
-  playbackMs: position, suggestedStartMs: position, originalStartMs: z.number().int().nonnegative(),
+  playbackMs: position, suggestedStartMs: position, originalStartMs: position,
   audioAssetId: z.uuid(), durationMs: z.number().int().positive(),
   reporterKind: z.enum(["teacher", "student"]), createdAt: z.iso.datetime(),
 });
