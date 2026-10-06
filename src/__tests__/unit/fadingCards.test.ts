@@ -197,20 +197,40 @@ afterEach(() => {
 });
 
 describe("카드 풀이의 문 — `MATH_FADING_CARDS`", () => {
-  it("값이 없으면 꺼짐 · `on` 일 때만 켜짐 · 학생 라우트가 닫혀 있으면 꺼짐", () => {
+  it("값이 없거나 빈 값 · `on` 이면 켜짐 — 명시적 `off` 와 모르는 값은 꺼짐(칩 풀이)", () => {
     vi.stubEnv("MATH_FADING", "on");
-    vi.stubEnv("MATH_FADING_CARDS", "");
-    expect(fadingCardsEnabled()).toBe(false);
-    for (const value of ["off", "ON", "1", "true", "read"]) {
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
+    expect(process.env.MATH_FADING_CARDS).toBeUndefined();
+    expect(fadingCardsEnabled()).toBe(true);
+    for (const value of ["", "on"]) {
+      vi.stubEnv("MATH_FADING_CARDS", value);
+      expect(fadingCardsEnabled(), value).toBe(true);
+    }
+    for (const value of [
+      "off",
+      "OFF",
+      "ON",
+      "0",
+      "1",
+      "true",
+      "false",
+      "read",
+    ]) {
       vi.stubEnv("MATH_FADING_CARDS", value);
       expect(fadingCardsEnabled(), value).toBe(false);
     }
-    vi.stubEnv("MATH_FADING_CARDS", "on");
+  });
+
+  it("학생 라우트의 문(`MATH_FADING`)이 `on` 이 아니면 카드 문은 값과 상관없이 꺼짐이다", () => {
+    for (const parent of ["off", "read", "nope"])
+      for (const value of [undefined, "", "on"]) {
+        vi.stubEnv("MATH_FADING", parent);
+        vi.stubEnv("MATH_FADING_CARDS", value);
+        expect(fadingCardsEnabled(), `${parent}/${value}`).toBe(false);
+      }
+    vi.stubEnv("MATH_FADING", undefined);
+    vi.stubEnv("MATH_FADING_CARDS", undefined);
     expect(fadingCardsEnabled()).toBe(true);
-    vi.stubEnv("MATH_FADING", "off");
-    expect(fadingCardsEnabled()).toBe(false);
-    vi.stubEnv("MATH_FADING", "read");
-    expect(fadingCardsEnabled()).toBe(false);
   });
 });
 
