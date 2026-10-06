@@ -13,6 +13,7 @@ import { createLocalFadingSource } from "@/lib/fading/local";
 import { fadingTargets, type FadingConcept } from "@/lib/fading/concepts";
 import type { FadingState } from "@/contracts/fadingApi.contract";
 import { erasedTargets } from "@/lib/fading/erasure";
+import { fadingCardBlanks } from "@/lib/fading/cards";
 
 vi.mock("@/components/math-explorers/ExplorerMath", () => ({
   ExplorerMath: ({ text }: { text: string }) => <>{text}</>,
@@ -143,6 +144,122 @@ function finishComparison() {
 }
 
 describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
+  it("수식만 있는 개념도 source의 2단계 빈칸을 채우고 실패 없이 3단계로 이어진다", async () => {
+    let number = 0;
+    const math: FadingConcept = {
+      ...concept,
+      id: "card-all-math",
+      propositions: concept.propositions.map((row) => ({
+        ...row,
+        pieces: row.pieces.map((piece) =>
+          piece.kind === "target"
+            ? {
+                ...piece,
+                target: {
+                  ...piece.target,
+                  tier: "math",
+                  text: `$${++number}$`,
+                },
+              }
+            : piece,
+        ),
+      })),
+    };
+    const local = createLocalFadingSource({
+      concepts: [math],
+      today: "2026-10-07",
+      cards: true,
+    });
+    await local.act({ action: "pick", conceptId: math.id });
+    const opened = await local.act({ action: "open", conceptId: math.id });
+    const state = await local.act({
+      action: "read",
+      conceptId: math.id,
+      sessionId: opened.session!.id,
+      seen: "111",
+    });
+    app(local, state);
+    expect(erasedTargets(math, 2).length).toBeGreaterThan(0);
+    const input = screen.getByRole("textbox", { name: /칩 글 입력/ });
+    input.focus();
+    fireEvent.keyDown(input, { key: "Tab" });
+    for (const target of erasedTargets(math, 2)) {
+      fireEvent.change(input, { target: { value: target.text } });
+      fireEvent.submit(input.closest("form")!);
+    }
+    expect(screen.getByRole("button", { name: "단계 마치기" })).toHaveFocus();
+    await userEvent.setup().keyboard("{Enter}");
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "다음 단계" }),
+      ).toBeInTheDocument(),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "다음 단계" }));
+    expect(
+      document.querySelector('[data-fading-mode="cards"]'),
+    ).toHaveAttribute("data-step", "3");
+    expect(local.snapshot().concepts[math.id]!.reviews).toBe(0);
+    expect(local.snapshot().concepts[math.id]!.lapses).toBe(0);
+  });
+
+  it("저장한 미판정 답의 기준안이 바뀌면 새 답으로 자기 채점하지 않고 서버의 다시로 닫는다", async () => {
+    const { local, ref } = await atFour();
+    await local.act({
+      action: "step",
+      ...ref,
+      step: 4,
+      placements: fadingTargets(concept).map((target, index) => ({
+        targetId: target.id,
+        text: index === 0 ? "옛 표현" : target.text,
+      })),
+    });
+    const changed: FadingConcept = {
+      ...concept,
+      propositions: concept.propositions.map((row, index) =>
+        index
+          ? row
+          : {
+              ...row,
+              pieces: row.pieces.map((piece) =>
+                piece.kind === "target"
+                  ? { ...piece, target: { ...piece.target, text: "바뀐 기준" } }
+                  : piece,
+              ),
+            },
+      ),
+    };
+    const refreshed = createLocalFadingSource({
+      concepts: [changed],
+      today: "2026-10-07",
+      cards: true,
+      fading: local.snapshot(),
+    });
+    const state = await refreshed.state();
+    expect(state.session?.stale).toBe(true);
+    const send = vi.spyOn(refreshed, "act");
+    app(refreshed, state);
+    expect(
+      screen.queryByRole("button", { name: "같은 뜻" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "다름" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByText("옛 표현")).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /알맞음/ }),
+    ).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /다시/ }));
+    await waitFor(() =>
+      expect(
+        screen.getByRole("heading", { name: "풀이를 마쳤어요" }),
+      ).toBeInTheDocument(),
+    );
+    expect(send).toHaveBeenCalledWith(
+      expect.objectContaining({ action: "rate", rating: "again" }),
+    );
+    expect(send.mock.calls[0]![0]).not.toHaveProperty("judged");
+  });
+
   it("빈칸 없는 카드에서도 입력 초점의 Tab이 다른 카드의 남은 빈칸으로 돌아온다", async () => {
     const { local, state: opened } = await learning();
     const state = await local.act({
@@ -152,7 +269,11 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
       seen: "123",
     });
     app(local, state);
-    fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
+    const emptyCard = concept.propositions.findIndex(
+      (row) => !fadingCardBlanks(concept, 2, row.id).length,
+    );
+    for (let index = 0; index < emptyCard; index += 1)
+      fireEvent.click(screen.getByRole("button", { name: "다음 문장" }));
     const input = screen.getByRole("textbox", { name: /칩 글 입력/ });
     expect(input).toBeEnabled();
     input.focus();
@@ -160,9 +281,15 @@ describe("새 카드 풀이 — 직접 쓰기와 묶음 대조", () => {
     fireEvent.submit(input.closest("form")!);
     expect(local.snapshot().concepts[concept.id]!.step).toBe(2);
     fireEvent.keyDown(input, { key: "Tab" });
+    const target = erasedTargets(concept, 2)[0]!;
+    const destination = concept.propositions.find((row) =>
+      row.pieces.some(
+        (piece) => piece.kind === "target" && piece.target.id === target.id,
+      ),
+    )!;
     expect(document.querySelector("[data-fading-sentence]")).toHaveAttribute(
       "data-fading-sentence",
-      "p0",
+      destination.id,
     );
     expect(input).toHaveFocus();
     expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(

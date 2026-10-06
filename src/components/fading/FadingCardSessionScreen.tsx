@@ -49,7 +49,7 @@ import { FadingFigureView } from "./FadingFigureView";
 import { FadingSentencePager } from "./FadingSentencePager";
 import { FadingIcon } from "./FadingIcon";
 import { FadingMath } from "./FadingMath";
-import { curriculumName, ratingNames } from "./labels";
+import { conceptSentenceLabel, curriculumName, ratingNames } from "./labels";
 import {
   FadingDraggedChip,
   fadingChipChoices,
@@ -118,7 +118,9 @@ export function FadingCardSessionScreen({
   const [canonical, setCanonical] = useState(false);
   const [judged, setJudged] = useState<FadingJudged>({});
   const [comparisonIndex, setComparisonIndex] = useState(0);
-  const [comparisonFinished, setComparisonFinished] = useState(false);
+  const [comparisonFinished, setComparisonFinished] = useState(
+    () => !!state.session?.stale && !practice,
+  );
   const [exit, setExit] = useState(false);
   const [done, setDone] = useState(false);
   const attempts = useRef<FadingAnswer[]>([]);
@@ -130,7 +132,7 @@ export function FadingCardSessionScreen({
   const inputId = useId();
   const actions = useFadingSessionActions({ source, onState, onReconcile });
   const stale = !!state.session?.stale && !practice;
-  const disabled = actions.busy || !!actions.failure || !!stageReady || stale;
+  const disabled = actions.busy || !!actions.failure || !!stageReady;
   const visibleStep = compare?.step ?? local.step;
   const inputKind = fadingStepInput(local);
   const blanks = erasedTargets(concept, local.step);
@@ -148,16 +150,22 @@ export function FadingCardSessionScreen({
   const cardBlanks = fadingCardBlanks(concept, local.step, proposition.id);
   const identityTargets = compare || done ? [] : blanks;
   const sectionParts = concept.section.split("::");
-  const safeSections = sectionParts.filter((label) =>
-    fadingSafeLabel(label, identityTargets),
-  );
+  const safeSections = sectionParts.flatMap((label) => {
+    const numbered = label.match(/^(\d+(?:-\d+)+)\s+(.+)$/);
+    // Unit numbers are identifiers; only the source decides whether the title is safe.
+    return fadingSafeLabel(numbered?.[2] ?? label, identityTargets)
+      ? [label]
+      : numbered
+        ? [numbered[1]!]
+        : [];
+  });
   const identity = [
     ...safeSections.map(curriculumName),
     ...(fadingSafeLabel(concept.level, identityTargets) ? [concept.level] : []),
     `개념 ${concept.ordinal}/${concept.siblings}`,
   ].join(" · ");
   const caption = [
-    `문장 ${cardIndex + 1}/${concept.propositions.length}`,
+    conceptSentenceLabel(cardIndex),
     ...(fadingSafeLabel(proposition.kind, identityTargets)
       ? [proposition.kind]
       : []),
@@ -484,7 +492,8 @@ export function FadingCardSessionScreen({
 
   const permitted = allowedRatings(local, judged);
   const result = compare ?? local.results.at(-1);
-  const unjudged = result?.unjudged ?? [];
+  // The source marks changed, pending solutions stale and excludes self-judgment.
+  const unjudged = stale ? [] : (result?.unjudged ?? []);
   const judgingDone = fadingJudgingComplete(unjudged, judged);
   const comparisonCard = concept.propositions[comparisonIndex]!;
   const currentUnjudged = unjudged.filter((answer) =>
@@ -550,7 +559,7 @@ export function FadingCardSessionScreen({
     )
       return;
     const after = () => {
-      setLocal(closeWithRating(local, rating, judged));
+      if (!stale) setLocal(closeWithRating(local, rating, judged));
       setDone(true);
       setCompare(null);
     };
@@ -569,7 +578,7 @@ export function FadingCardSessionScreen({
   }
 
   useFadingKeyboard({
-    disabled: actions.busy || !!actions.failure || exit || stale,
+    disabled: actions.busy || !!actions.failure || exit,
     onChoose: (index) => {
       if (index < 0) return;
       if (local.phase === "reading" && revealed && index < 3)
@@ -668,26 +677,6 @@ export function FadingCardSessionScreen({
         </p>
       </div>
       {practice && <p className={s.notice}>연습 · 기록되지 않음</p>}
-      {stale && (
-        <div className={s.alert} role="alert">
-          <span>개념의 내용이 바뀌었어요. 현재 단계부터 다시 열어 주세요.</span>
-          <button
-            type="button"
-            className={s.secondary}
-            disabled={actions.busy}
-            onClick={() =>
-              actions.send({ action: "open", conceptId: concept.id }, (next) =>
-                onReconcile(
-                  next,
-                  "내용이 바뀌어 현재 단계부터 다시 시작합니다.",
-                ),
-              )
-            }
-          >
-            바뀐 내용으로 다시 열기
-          </button>
-        </div>
-      )}
       {actions.failure && (
         <div role="alert" className={s.alert}>
           <span>{actions.failure}</span>
@@ -728,21 +717,38 @@ export function FadingCardSessionScreen({
               <p className={s.muted}>
                 내 답과 기준안의 핵심 뜻을 비교해 주세요.
               </p>
-              <FadingFigureView figure={content.figure} answers />
-              <FadingTypedComparison
-                concept={concept}
-                answers={comparisonAnswers}
-                unjudged={unjudged}
-                judgments={judged}
-                disabled={disabled}
-                index={comparisonIndex}
-                onPage={moveComparison}
-                forwardDisabled={!currentJudgingDone}
-                keyboardTarget={judgmentTarget}
-                onJudge={(targetId, judgment) =>
-                  setJudged((current) => ({ ...current, [targetId]: judgment }))
-                }
-              />
+              {!stale && <FadingFigureView figure={content.figure} answers />}
+              {stale ? (
+                <div className={s.stack}>
+                  <p className={s.notice}>
+                    풀이 뒤에 기준안이 바뀌어 이전 답을 대조할 수 없어요.
+                    이번에는 «다시»로 이어 갑니다.
+                  </p>
+                  {state.session?.unjudged?.map((answer) => (
+                    <p key={answer.targetId} className={s.typedWritten}>
+                      {answer.text}
+                    </p>
+                  ))}
+                </div>
+              ) : (
+                <FadingTypedComparison
+                  concept={concept}
+                  answers={comparisonAnswers}
+                  unjudged={unjudged}
+                  judgments={judged}
+                  disabled={disabled}
+                  index={comparisonIndex}
+                  onPage={moveComparison}
+                  forwardDisabled={!currentJudgingDone}
+                  keyboardTarget={judgmentTarget}
+                  onJudge={(targetId, judgment) =>
+                    setJudged((current) => ({
+                      ...current,
+                      [targetId]: judgment,
+                    }))
+                  }
+                />
+              )}
               {!comparisonFinished && (
                 <button
                   type="button"
