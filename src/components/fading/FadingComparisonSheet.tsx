@@ -60,6 +60,7 @@ export function FadingComparisonSheet({
           event.defaultPrevented ||
           event.repeat ||
           event.nativeEvent.isComposing ||
+          event.nativeEvent.keyCode === 229 ||
           event.ctrlKey ||
           event.altKey ||
           event.metaKey ||
@@ -75,6 +76,13 @@ export function FadingComparisonSheet({
           event.key === "ArrowRight"
         ) {
           event.preventDefault();
+          if (
+            index === concept.propositions.length - 1 &&
+            event.key !== "ArrowRight"
+          ) {
+            onNext();
+            return;
+          }
           setIndex((current) =>
             Math.min(current + 1, concept.propositions.length - 1),
           );
@@ -186,7 +194,7 @@ export function FadingComparisonSheet({
           onChange={setIndex}
         />
         <p className={`${s.small} ${s.singleCardKeyboard}`}>
-          Space·Enter 다음 문장 · ← → 문장 이동
+          Space·Enter 다음 문장 · 마지막 문장에서 대조 마치기 · ← → 문장 이동
         </p>
       </section>
       <button

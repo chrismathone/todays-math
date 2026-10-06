@@ -13,9 +13,6 @@ const page = await browser.newPage({
   viewport: { width: 390, height: 844 },
   deviceScaleFactor: 1,
 });
-// Fresh navigation loads every case; live hot reload is unnecessary here.
-// Avoid opening hundreds of dev HMR sockets during a Windows measurement run.
-await page.routeWebSocket(/\/_next\/hmr(?:\?|$)/, () => {});
 const errors = [];
 const external = new Set();
 page.on("pageerror", (error) => errors.push(error.message));
@@ -294,6 +291,16 @@ try {
     resolve(output, "samples.json"),
     JSON.stringify(samples, null, 2),
   );
+  await page.goto(`${base}/dev/fading?scene=step1&concept=${samples[0].id}`, {
+    waitUntil: "networkidle",
+  });
+  await ready();
+  while (!(await page.locator(".katex").count())) {
+    const next = page.getByRole("button", { name: "다음 문장", exact: true });
+    if (!(await next.isEnabled()))
+      throw new Error("은행 표본에 KaTeX 양성 대조가 없습니다.");
+    await next.click();
+  }
   // 判정자 양성 표본: 실제 KaTeX를 좁은 자 안에 일부러 가둬 잉크를 놓치지 않는지 본다.
   await page.evaluate(() => {
     const math = document.querySelector(".katex");
@@ -333,7 +340,25 @@ try {
           throw new Error(
             `은행 표본이 측정 중 바뀌었습니다: ${sample.id} → ${actual}`,
           );
-        await measure(`step${step}-${sample.id}`, sample === samples[0]);
+        const previous = page.getByRole("button", {
+          name: "이전 문장",
+          exact: true,
+        });
+        while (await previous.isEnabled()) await previous.click();
+        let sentence = 1;
+        const next = page.getByRole("button", {
+          name: "다음 문장",
+          exact: true,
+        });
+        do {
+          await measure(
+            `step${step}-${sample.id}-sentence${sentence}`,
+            sample === samples[0],
+          );
+          if (!(await next.isEnabled())) break;
+          await next.click();
+          sentence++;
+        } while (true);
       }
     for (const scene of [
       "first",

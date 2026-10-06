@@ -103,6 +103,18 @@ describe("학생 앱 기기 미리 보기", () => {
     fireEvent.click(
       await screen.findByRole("button", { name: "복습에 추가하고 시작" }),
     );
+    await waitFor(() =>
+      expect(
+        container.querySelector(
+          '[data-step="1"] button[data-fading-action="true"]',
+        ),
+      ).toBeEnabled(),
+    );
+    const nextSentence = await screen.findByRole("button", {
+      name: "다음 문장",
+    });
+    while (!nextSentence.hasAttribute("disabled"))
+      fireEvent.click(nextSentence);
     fireEvent.click(
       await screen.findByRole("button", { name: "읽었어요 · 다음 단계" }),
     );

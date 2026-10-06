@@ -255,12 +255,21 @@ export function FadingSessionScreen({
       (piece) => piece.kind === "target" && piece.target.id === followingTarget,
     ),
   );
-  const cardIndex =
+  const followsNewBlank =
     card.step !== local.step ||
     (local.phase === "filling" &&
-      (card.pending !== pendingBlank || card.active !== activeBlank))
-      ? Math.max(0, followingIndex)
-      : card.index;
+      (card.pending !== pendingBlank || card.active !== activeBlank));
+  const cardIndex = followsNewBlank ? Math.max(0, followingIndex) : card.index;
+  // Pin the displayed card when the pending blank changes. Otherwise the last
+  // answer can return to the initial card when pending becomes null again.
+  if (followsNewBlank) {
+    setCard({
+      step: local.step,
+      index: cardIndex,
+      pending: pendingBlank,
+      active: activeBlank,
+    });
+  }
   const visiblePending = concept.propositions[cardIndex]!.pieces.some(
     (piece) => piece.kind === "target" && piece.target.id === pendingBlank,
   );
@@ -452,6 +461,7 @@ export function FadingSessionScreen({
       event.altKey ||
       event.metaKey ||
       event.nativeEvent.isComposing ||
+      event.nativeEvent.keyCode === 229 ||
       nativeTab.current ||
       disabled ||
       stageReady ||
@@ -1184,7 +1194,10 @@ export function FadingSessionScreen({
                         nativeTab.current = false;
                       }}
                       onKeyDown={(event) => {
-                        if (event.nativeEvent.isComposing) {
+                        if (
+                          event.nativeEvent.isComposing ||
+                          event.nativeEvent.keyCode === 229
+                        ) {
                           if (event.key === "Enter") event.preventDefault();
                           return;
                         }
@@ -1234,6 +1247,7 @@ export function FadingSessionScreen({
                           }
                           if (
                             event.nativeEvent.isComposing ||
+                            event.nativeEvent.keyCode === 229 ||
                             (event.key !== "Enter" && event.key !== " ") ||
                             !pendingBlank
                           )

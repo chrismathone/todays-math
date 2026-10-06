@@ -34,6 +34,7 @@ export function useFadingKeyboard({
       event.altKey ||
       event.metaKey ||
       event.isComposing ||
+      event.keyCode === 229 ||
       document.querySelector('dialog[open], [role="dialog"]')
     )
       return;
