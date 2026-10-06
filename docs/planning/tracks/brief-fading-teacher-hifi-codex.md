@@ -47,3 +47,30 @@ Wire 보고서(`docs/planning/tracks/reports/fading-teacher-wire.md`)의 «원�
 - 보고서 `docs/planning/tracks/reports/fading-teacher-hifi.md` — 네 안의 차이 · 추천과 까닭 · 제품 부품이 받는 것 · 꽂을 때 리드가 알아야 할 것(작업실의 어느 메뉴 · 어떤 틀 안에 놓일 것을 가정했는지).
 
 막히거나 정할 것이 생기면 지어내지 말고 리드에게 묻는다.
+
+## 덧붙임 — 제품에 꽂는다 (2026-10-06 · 리드가 H2 를 검수한 뒤)
+
+리드가 `wire-B-vs-H2-1280.png` · `four-variants.png` 를 봤다. 연결할 수 있는 수준이다 — 원장님 «연결 가능한 hifi 수준되면 연결»에 따라 **H2 를 작업실에 꽂는다.**
+리드가 이 워크트리를 커밋했고(커밋 셋) origin/main 을 합쳤다. 너의 Hi-fi 파일은 아직 커밋하지 않았다(그대로 있다).
+
+### 꽂는 자리와 규칙
+
+| 무엇                    | 어떻게                                                                                                                                                                                                                                                       |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 서버 문을 화면에 알리기 | `src/components/unified/WorkspacePage.tsx`(서버 부품)가 `fadingGate()`(`@/lib/fading/enabled` — `"off" \| "read" \| "on"`)를 읽어 `UnifiedWorkspace` 에 새 선택 prop `fadingGate` 로 넘긴다(생략하면 `"off"`). 화면에서 환경값을 읽거나 404 로 떠보지 않는다 |
+| 작업실의 SRS 메뉴       | `UnifiedWorkspace` 의 `can("srs")` 자리에서 지금은 `<CourseDashboard textbookEnabled … />` 를 그린다. 이것을 새 부품 `src/components/fading/teacher/SrsWorkspaceView.tsx` 로 감싼다                                                                          |
+| `"off"`                 | **지금과 글자 그대로 같다** — `CourseDashboard` 만 그린다. 탭도 새 요청도 없다(운영은 문이 꺼져 있다 — 보이는 변화가 0 이어야 한다)                                                                                                                          |
+| `"read"`                | 위에 두 탭 — «기존 SRS 현황»(기본) · «오늘의 기억». 학생 쪽 길이 아직 닫혀 있어 새 현황은 전원 «시작 전»이므로 기존 것이 기본이다                                                                                                                            |
+| `"on"`                  | 같은 두 탭 — «오늘의 기억»이 기본                                                                                                                                                                                                                            |
+| «오늘의 기억» 탭        | `TeacherFadingStatus`(H2) + `createTeacherFadingApiSource({ branchId })` — 지점은 작업실이 이미 쥔 값(`currentUser.branchId` · 기존 SRS 화면이 지점을 다루는 방식과 같게). 탭을 처음 열 때 싣는다(그 전에는 요청 0)                                          |
+| «미리 보기»의 자료      | 개념 은행 · 함정 · 그림은 크다 — **«미리 보기»를 누를 때 `import()` 로 싣는다**(작업실의 첫 묶음에 넣지 않는다). `TeacherFadingStatus` 의 `preview` 가 값만 받게 돼 있으면 «값 또는 값을 주는 함수»를 받게 넓혀라                                            |
+| 탭의 생김새             | 작업실에 이미 있는 탭 · 구간 단추의 결을 그대로(새로 짓지 않는다). `role="tablist"` · 방향키 · 44px                                                                                                                                                          |
+
+접근 규칙 · 메뉴 관문(`can("srs")`) · 교사 API · `CourseDashboard` 의 안은 건드리지 않는다. `src/lib/fading` · 계약도 그대로다(리드가 `enabled.ts` 에 `fadingGate` · `fadingReadable` 를 더해 두었다 — 읽기만 하라).
+
+### 다 됐다는 기준
+
+- 시험 — `"off"` 면 `CourseDashboard` 만 그려지고 교사 현황 요청이 0 이다 · `"read"` 는 기존이 기본 · `"on"` 은 «오늘의 기억»이 기본 · 탭을 열 때 처음 싣는다 · «미리 보기»를 누르기 전에는 은행을 싣지 않는다.
+- `UnifiedWorkspace` 를 그리는 기존 시험과 전수 가드가 그대로 초록이다 — `npx vitest run src/__tests__/components src/__tests__/unit/englishFence.test.ts src/__tests__/unit/errorLogRouteCoverage.test.ts`(없는 파일은 빼고) 를 돌려 본다. 자기 파일의 ESLint 0 · 어포던스 0 · `tsc` 자기 파일 0.
+- 개발 화면 하나 — `/dev/fading-teacher-hifi?product=read`(또는 비슷한 주소)에서 `SrsWorkspaceView` 를 표본 자료로 띄워 1280 · 768 을 잰다(실제 API 는 부르지 않는다). 리드가 그 뒤에 개발 서버를 `MATH_FADING=read` 로 다시 띄워 실제 명단으로 본다.
+- 🔴 커밋 · 푸시 · 서버 문 · DB 는 건드리지 않는다. 끝나면 바꾼 파일 목록과 결과를 `worker_done` 으로.
