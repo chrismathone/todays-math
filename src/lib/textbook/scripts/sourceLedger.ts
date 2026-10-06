@@ -445,7 +445,7 @@ export function buildSourceLedger(
     });
   return {
     generatedBy: "src/lib/textbook/scripts/sourceLedger.ts",
-    reviewedOn: "2026-10-05",
+    reviewedOn: STATIC_CORRECTIONS_REVIEW.reviewedOn,
     reviewers: {
       calculation:
         "코드(mathCheck.ts · authoredExampleReview.ts · 이 파일의 일치 계산)",

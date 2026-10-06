@@ -153,7 +153,7 @@ function ClozeBody({
       {sentences.length ? (
         <>
           <div className={styles.part}>
-            <span>가</span>빈칸에 알맞은 말을 쓰시오.
+            <span>가</span>빈칸에 알맞은 말이나 수를 쓰시오.
           </div>
           {/* 적용이 없는 장은 문장 칸이 늘어나 장을 채운다 — 적용이 있으면 적용 칸이 채운다 */}
           <ol

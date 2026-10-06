@@ -71,6 +71,8 @@ const coverage = conceptScriptCoverage(); // coveragePercent: 100
 
 ## 검사와 원장
 
+2026-10-06에는 개념백지 실물에서 지적된 초6 「2-1 분수의 나눗셈」을 Codex·Claude가 교차 검토했다. 기본 은행 정의의 교정에 맞춰 설명·확인 답 19대사를 동기화했다(`bank-definition`, SC-046~064). 대사 수·출처·개념 ID·수업 표지와 최초 원고의 기준 해시는 유지한다. 이 유형은 새 은행 정의와 정확히 일치하는지 검사하고, 기존 45개 문장 교정에는 기존 수식 토큰 보존 규칙을 계속 적용한다. 이미 발행된 교재를 덮어쓰는 작업은 아니다. 상세 범위와 검토 한계는 `docs/planning/tracks/reports/concept-cloze-clarity-20261006.md`에 기록했다.
+
 ```text
 node node_modules/vitest/vitest.mjs run --config scripts/qa/textbook/vitest.config.mts src/__tests__/unit/textbookConceptScripts.test.ts src/__tests__/unit/textbookSourceLedger.test.ts src/__tests__/unit/textbookRestStories.test.ts
 ```

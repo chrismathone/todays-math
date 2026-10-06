@@ -1,10 +1,10 @@
 {
   "generatedBy": "src/lib/textbook/scripts/sourceLedger.ts",
-  "reviewedOn": "2026-10-05",
+  "reviewedOn": "2026-10-06",
   "reviewers": {
     "calculation": "코드(mathCheck.ts · authoredExampleReview.ts · 이 파일의 일치 계산)",
     "reading": "AI 정독 — Claude Opus 5.5. 사람이 읽은 검수가 아니다.",
-    "corrections": "AI 편집 검수 — Claude Opus 5.5가 읽고 고쳤다. 사람이 읽은 검수가 아니다.",
+    "corrections": "AI 편집 검수 — 기존 SC-001~045의 Claude 검수에 이어, SC-046 이후 초6 분수 나눗셈은 Codex·Claude가 교차 검토했다. 사람이 읽은 검수가 아니다.",
     "editor": "없음 — 사람이 읽은 기록이 없다"
   },
   "totals": {
@@ -171,14 +171,15 @@
       "lessonsRepeatingTheirOpeningQuestion": 360
     },
     "corrections": {
-      "total": 45,
+      "total": 64,
       "byKind": {
         "sentence-answer-copula": 32,
         "missing-condition": 8,
         "particle": 1,
-        "ambiguous-wording": 4
+        "ambiguous-wording": 4,
+        "bank-definition": 19
       },
-      "sections": 32
+      "sections": 37
     },
     "aiReadings": {
       "examples": 46,
@@ -8855,7 +8856,7 @@
       "title": "2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "a5c101901a84e019"
+        "dialogueSha256": "7486ea0fb301d86b"
       },
       "concepts": 3,
       "lessons": 5,
@@ -8887,7 +8888,12 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-046",
+        "SC-047",
+        "SC-048",
+        "SC-049"
+      ]
     },
     {
       "id": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
@@ -8897,7 +8903,7 @@
       "title": "2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "8983a33802ccbd87"
+        "dialogueSha256": "d0bd67158b611d8a"
       },
       "concepts": 3,
       "lessons": 5,
@@ -8934,7 +8940,12 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-050",
+        "SC-051",
+        "SC-052",
+        "SC-053"
+      ]
     },
     {
       "id": "초6::2-1 분수의 나눗셈::2-1-3 (자연수)÷(분수) 알아보기",
@@ -8944,7 +8955,7 @@
       "title": "2-1-3 (자연수)÷(분수) 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "11d90ca2fb15c61a"
+        "dialogueSha256": "3e1ab6f708501768"
       },
       "concepts": 3,
       "lessons": 5,
@@ -8976,7 +8987,12 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-054",
+        "SC-055",
+        "SC-056",
+        "SC-057"
+      ]
     },
     {
       "id": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
@@ -8986,7 +9002,7 @@
       "title": "2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "6f8065f9afe4df53"
+        "dialogueSha256": "818f4a0108788974"
       },
       "concepts": 3,
       "lessons": 5,
@@ -9023,7 +9039,12 @@
           "turns": 1
         }
       ],
-      "corrections": []
+      "corrections": [
+        "SC-058",
+        "SC-059",
+        "SC-060",
+        "SC-061"
+      ]
     },
     {
       "id": "초6::2-1 분수의 나눗셈::2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
@@ -9033,7 +9054,7 @@
       "title": "2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
       "evidence": {
         "file": "src/lib/textbook/scripts/e6.json",
-        "dialogueSha256": "b2d760b98d2f3e8a"
+        "dialogueSha256": "e4a6844ecf28571f"
       },
       "concepts": 3,
       "lessons": 5,
@@ -9065,7 +9086,11 @@
         "printedPage": "미검수"
       },
       "findings": [],
-      "corrections": []
+      "corrections": [
+        "SC-062",
+        "SC-063",
+        "SC-064"
+      ]
     },
     {
       "id": "초6::2-2 소수의 나눗셈::2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기",
