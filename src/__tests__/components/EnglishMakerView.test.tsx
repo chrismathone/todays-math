@@ -852,6 +852,38 @@ describe("문항 수", () => {
   });
 });
 
+describe("유형 확장 (D-158)", () => {
+  it("새 유형 여섯의 체크박스가 있고, 고르면 문항 수가 따라 오른다", () => {
+    setup();
+    for (const type of [
+      "언급 없음",
+      "해석",
+      "영영풀이",
+      "공통 빈칸",
+      "문장 전환",
+      "단어 배열",
+    ])
+      expect(screen.getByLabelText(type)).not.toBeChecked();
+    fireEvent.change(screen.getByLabelText("문항 수"), {
+      target: { value: "3" },
+    });
+    for (const type of ["언급 없음", "해석", "단어 배열"])
+      fireEvent.click(screen.getByLabelText(type));
+    for (const type of ["언급 없음", "해석", "단어 배열"])
+      expect(screen.getByLabelText(type)).toBeChecked();
+    // 처음 고른 유형(하나)에 셋을 더해 넷 — 넷을 담는 가장 작은 선택은 5문항
+    expect(screen.getByLabelText("문항 수")).toHaveValue("5");
+  });
+
+  it("짧은 실용문을 위한 지문 길이 40 · 60 · 80 단어가 있다", () => {
+    setup();
+    for (const words of [40, 60, 80])
+      expect(
+        screen.getByRole("option", { name: `약 ${words}단어` }),
+      ).toBeInTheDocument();
+  });
+});
+
 describe("어법과 어휘", () => {
   it("어법이 선택된 채 어휘를 누르면 선택을 받지 않고 알린다", () => {
     setup();

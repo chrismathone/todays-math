@@ -235,7 +235,7 @@ describe("POST /api/english/generate — AI 결과와 오류 순서", () => {
     // 부른 모델 · 프롬프트 판 — 세트의 «만든 조건»에 실린다(키가 없는 시험 환경이라 DeepSeek)
     expect(parsed.model).toEqual({
       name: "deepseek-v4-pro",
-      promptVersion: "v6",
+      promptVersion: "v7",
     });
     expect(parsed.data.questions).toHaveLength(1);
     expect(mockRequireOwned).toHaveBeenCalledWith(

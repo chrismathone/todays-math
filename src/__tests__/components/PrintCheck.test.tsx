@@ -226,7 +226,9 @@ describe("실물 출력 검수 목록 — 데이터", () => {
     // 100: textbook-studio 출력 검수 추가 — 디지털 QR 판독과 실물 스캔을 구별해 대기로 남긴다.
     // 101: bank-choice-figures 추가 — 그림 보기를 번호와 함께 고정 2열에 배치(같은 날 교재 트랙의 100 과
     //      따로 갈라져 병합에서 겹쳤다 — 리드가 맞춤).
-    expect(ITEMS.length).toBe(101);
+    // 110: 2026-10-04 ~ 06 에 일곱이 늘었는데 이 수를 안 올려 main 이 101 ≠ 108 로 빨갰다(같은 날 다른 세션이 108 로 맞추는 중).
+    //      여기에 english-four-choice-unmentioned · english-open-types-d158 둘을 더했다(D-158 — 오늘의 영어 유형 확장).
+    expect(ITEMS.length).toBe(110);
   });
 
   /**

@@ -23,6 +23,7 @@ import {
   ENGLISH_DIFFICULTIES,
   ENGLISH_GENERATE_MODES,
   ENGLISH_GENERATED_TYPES,
+  ENGLISH_SOURCE_PASSAGE_MIN,
   ENGLISH_PASSAGE_MAX,
   englishDraftSchema,
   englishGenerateRequestSchema,
@@ -152,7 +153,8 @@ function metaWithoutKey(
   delete rest.clientKey;
   return rest;
 }
-const WORD_OPTIONS = [100, 150, 200, 250, 300, 400] as const;
+// 40 · 60 · 80 은 표지판 · 안내문 · 라벨 같은 짧은 실용문을 변형할 때(D-158 · 계약 하한 `ENGLISH_WORDS_MIN`)
+const WORD_OPTIONS = [40, 60, 80, 100, 150, 200, 250, 300, 400] as const;
 const JSON_HEADERS = { "content-type": "application/json" } as const;
 
 /** 실패한 요청 — 서버 문구를 그대로 들고, 검증기 사유(`details.issues`)가 있으면 같이. */
@@ -1019,7 +1021,7 @@ export default function EnglishMakerView({
             disabled={busy !== null}
             rows={8}
             value={conditions.passage}
-            placeholder="영어 원문을 붙여 넣으세요 (80자 이상)."
+            placeholder={`영어 원문을 붙여 넣으세요 (${ENGLISH_SOURCE_PASSAGE_MIN}자 이상).`}
             onChange={(event) => update({ passage: event.target.value })}
           />
         </div>

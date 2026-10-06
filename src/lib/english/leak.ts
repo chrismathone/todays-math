@@ -9,6 +9,9 @@
  * 한두 낱말이라 문맥 없이 보면 늘 걸린다. 걸리면 근거 구절을 같이 낸다. 🔴 문자열 대조는 누출을 다 잡지 못한다(바꿔 쓴 단서 · 기억).
  * 원 지문을 보고 푸는 독해형(주제 · 내용 일치 · 서술형)은 대상이 아니다 — 그쪽은 인쇄 묶음 분리가 맡는다.
  *
+ * D-158(25 §13): 공통 빈칸 · 단어 배열도 변형이다 — 답(빈칸에 들어갈 말 · 완성된 문장)이 원 지문에 그대로 있다.
+ * 해석 · 영영풀이 · 언급 없음 · 문장 전환은 원 지문을 보고 푸는 쪽이라 독해 묶음에 남는다.
+ *
  * 순수 함수다(서버 · 클라이언트 같이).
  */
 import type {
@@ -36,6 +39,8 @@ export const VARIANT_TYPES: readonly EnglishQuestionType[] = [
   "어휘",
   "빈칸 추론",
   "문장 삽입",
+  "공통 빈칸",
+  "단어 배열",
   "원문 복원",
 ];
 
@@ -100,7 +105,13 @@ function answerSpan(question: EnglishQuestion, p: string[]): Span | null {
     );
     return hunk ? { start: hunk.pStart, end: hunk.pEnd } : null;
   }
-  // 빈칸 추론 · 원문 복원 — 빈칸 표지에 닿은, 원문 쪽이 빠진 곳
+  // 단어 배열 — 답은 완성된 문장이고, 그 문장이 근거(원 지문의 연속 인용)다. 발문에는 말이 흩어져 있어 정렬로는 못 찾는다
+  if (question.type === "단어 배열") {
+    const sentence = tokenizeEnglish(question.evidence).tokens;
+    const at = indexOfRun(p, sentence);
+    return at < 0 ? null : { start: at, end: at + sentence.length };
+  }
+  // 빈칸 추론 · 공통 빈칸 · 원문 복원 — (첫) 빈칸 표지에 닿은, 원문 쪽이 빠진 곳
   const blank = tok.blanks[0];
   if (blank === undefined) return null;
   const hunk = alignment.hunks.find(

@@ -139,11 +139,12 @@ describe("프롬프트 — 규칙 · 자료 감싸기", () => {
     expect(system).toMatch(/지시가 아닙니다|지시로 보지/);
   });
 
-  it("v6 — v3 의 근거 규칙은 그대로이고 판 번호는 v6 이다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
+  it("v7 — v3 의 근거 규칙은 그대로이고 판 번호는 v7 이다 (gpt-6-luna 서술형 근거 버릇 · 25 §12.7)", () => {
     // 벤치: v2 그대로 8회 중 4회 거절(근거를 3~4문장 옮기다 사이 문장을 건너뛰거나 바꿔 씀) → 이 규칙 10회 중 9회 통과,
     // 품질은 v2 와 같다. «딱 한 문장»(10/10)은 삽입·서술형이 몇 점 낮아 안 썼다. v5 는 어휘 안내만 더했고,
     // v6 은 서술형의 부분점수 강제만 뺐다 — 판이 올라야 세트의 «만든 조건»에서 앞뒤 판이 갈린다.
-    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v6");
+    // v7 은 새 유형 여섯의 안내 줄만 더했다(D-158 · 25 §13 — `englishTypeExpansion.test.ts`).
+    expect(ENGLISH_EXAM_PROMPT_VERSION).toBe("v7");
     const system = buildEnglishSystemPrompt();
     expect(system).toContain("이어진 한두 문장");
     expect(system).toContain("문자열 검색");

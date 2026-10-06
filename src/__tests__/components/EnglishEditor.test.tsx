@@ -277,6 +277,63 @@ describe("[EnglishEditor] 검토·편집", () => {
     server.events.removeListener("request:start", listener);
   });
 
+  it("«언급 없음»은 다섯째 칸을 비우면 보기 넷으로 저장한다 — 4지선다 (D-158)", async () => {
+    const base = ENGLISH_MOCK_SETS[0];
+    const fourChoice = {
+      ...base,
+      questions: [
+        { ...base.questions[0]!, type: "언급 없음" as const },
+        ...base.questions.slice(1),
+      ],
+    };
+    const sent: { options: string[]; type: string }[][] = [];
+    server.use(
+      http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>
+        HttpResponse.json(englishSetResponseSchema.parse({ data: fourChoice })),
+      ),
+      http.put(
+        `/api/english/sets/${ENGLISH_SET_DRAFT_ID}`,
+        async ({ request }) => {
+          const body = (await request.json()) as {
+            revision: number;
+            questions: { options: string[]; type: string }[];
+          };
+          sent.push(body.questions);
+          return HttpResponse.json(
+            englishSetResponseSchema.parse({
+              data: {
+                ...fourChoice,
+                questions: body.questions,
+                revision: body.revision + 1,
+              },
+            }),
+          );
+        },
+      ),
+    );
+    await openDraft();
+    expect(screen.getByText("1번 · 언급 없음")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 수정" }));
+    fireEvent.change(
+      screen.getByRole("textbox", { name: "1번 문제 5번 선택지" }),
+      { target: { value: "" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    await waitFor(() => expect(sent).toHaveLength(1));
+    expect(sent[0]![0]).toMatchObject({ type: "언급 없음" });
+    expect(sent[0]![0]!.options).toHaveLength(4);
+    // 정답 번호가 보기 수를 넘으면 같은 관문이 막는다
+    fireEvent.change(
+      screen.getByRole("combobox", { name: "1번 문제 정답 번호" }),
+      { target: { value: "5" } },
+    );
+    fireEvent.click(screen.getByRole("button", { name: "저장" }));
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "1번 문항: 정답은 보기 번호 1~4 여야 합니다.",
+    );
+    expect(sent).toHaveLength(1);
+  });
+
   it("세트를 못 읽으면 문구와 «목록»만 남긴다", async () => {
     server.use(
       http.get(`/api/english/sets/${ENGLISH_SET_DRAFT_ID}`, () =>

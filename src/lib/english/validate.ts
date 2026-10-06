@@ -2,10 +2,13 @@
  * 오늘의 영어 — 초안 검증기 (D-148 · 25 §4.4). 만들기 세 길(ChatGPT 붙여넣기 · 원문 복원 · DeepSeek)과
  * 세트 저장 라우트가 **같은 규칙**을 지난다. 계약(`english.contract.ts`)은 모양만 잠그고, 여기서는 지문과
  * 문항을 같이 보는 뜻을 본다 — 보기 다섯 · 정답 번호 범위 · 근거가 지문 안 · 유형별 보기 유무 · 요청과의 일치.
+ * D-158(25 §13): «언급 없음»만 보기 넷도 받고, 정답 번호는 그 문항의 보기 수 안이어야 한다. 공통 빈칸 · 단어 배열은
+ * 문제용 표지(빈칸 둘 이상 · « / » 로 나눈 말)가 발문에 있어야 한다 — 빈칸 추론의 빈칸 규칙과 같은 결이다.
  *
  * 순수 함수다(서버·클라이언트 같이). 통과 ≠ 검토 완료 — 저장은 늘 «초안».
  */
 import {
+  ENGLISH_FOUR_CHOICE_TYPES,
   ENGLISH_OPEN_TYPES,
   englishDraftSchema,
   type EnglishDraft,
@@ -58,20 +61,26 @@ function questionIssues(
         message: `${question.type} 문항에는 보기가 없어야 합니다.`,
       });
   } else {
-    if (question.options.length !== ENGLISH_CHOICE_COUNT)
+    const count = question.options.length;
+    const four = ENGLISH_FOUR_CHOICE_TYPES.includes(question.type);
+    const countOk =
+      count === ENGLISH_CHOICE_COUNT ||
+      (four && count === ENGLISH_CHOICE_COUNT - 1);
+    if (!countOk)
       issues.push({
         question: index,
-        message: `보기는 ${ENGLISH_CHOICE_COUNT}개여야 합니다 (지금 ${question.options.length}개).`,
+        message: four
+          ? `보기는 ${ENGLISH_CHOICE_COUNT - 1}개 또는 ${ENGLISH_CHOICE_COUNT}개여야 합니다 (지금 ${count}개).`
+          : `보기는 ${ENGLISH_CHOICE_COUNT}개여야 합니다 (지금 ${count}개).`,
       });
-    else if (
-      new Set(question.options.map(normalizeEnglishText)).size !==
-      ENGLISH_CHOICE_COUNT
-    )
+    else if (new Set(question.options.map(normalizeEnglishText)).size !== count)
       issues.push({ question: index, message: "같은 보기가 두 번 있습니다." });
-    if (!/^[1-5]$/.test(question.answer))
+    // 정답 번호는 그 문항의 보기 수 안 — 보기 수가 어긋났으면 다섯을 기준으로 본다(사유가 겹치지 않게)
+    const top = countOk ? count : ENGLISH_CHOICE_COUNT;
+    if (!new RegExp(`^[1-${top}]$`).test(question.answer))
       issues.push({
         question: index,
-        message: "정답은 보기 번호 1~5 여야 합니다.",
+        message: `정답은 보기 번호 1~${top} 여야 합니다.`,
       });
   }
   // passage 는 원 지문이다. 빈칸은 학생에게 보이는 이 문항의 문제용 지문(prompt)에 있어야 한다.
@@ -80,6 +89,23 @@ function questionIssues(
     issues.push({
       question: index,
       message: "빈칸 추론 문항의 문제용 지문에 실제 빈칸(____)을 넣어 주세요.",
+    });
+  if (
+    question.type === "공통 빈칸" &&
+    (question.prompt.match(/_{4,}/g) ?? []).length < 2
+  )
+    issues.push({
+      question: index,
+      message: "공통 빈칸 문항에는 빈칸(____)이 든 문장을 둘 이상 넣어 주세요.",
+    });
+  if (
+    question.type === "단어 배열" &&
+    (question.prompt.match(/\//g) ?? []).length < 2
+  )
+    issues.push({
+      question: index,
+      message:
+        "단어 배열 문항에는 배열할 말을 « / »로 나눠 셋 이상 넣어 주세요.",
     });
   const evidence = normalizeEnglishText(question.evidence);
   if (!evidence)

@@ -48,6 +48,9 @@ export type EnglishGrade = z.infer<typeof englishGradeSchema>;
 /**
  * 문항 유형 — 어휘를 포함한 앞의 유형은 AI·ChatGPT 가 만든다.
  * «원문 복원»은 규칙 기반(25 §4.2)이라 생성 요청에는 들어가지 않는다.
+ *
+ * 「언급 없음」부터 「단어 배열」까지 여섯은 D-158(2026-10-06 · 25 §13) — 학교 «총괄 평가» 시험지에서 못 만들던 꼴이다.
+ * 🔴 앞선 일곱의 차례는 바꾸지 않는다(저장된 출제 설정 · 체크박스 순서). 새 유형은 «원문 복원» 앞에 더한다.
  */
 export const ENGLISH_QUESTION_TYPES = [
   "주제",
@@ -57,6 +60,12 @@ export const ENGLISH_QUESTION_TYPES = [
   "문장 삽입",
   "서술형",
   "어휘",
+  "언급 없음",
+  "해석",
+  "영영풀이",
+  "공통 빈칸",
+  "문장 전환",
+  "단어 배열",
   "원문 복원",
 ] as const;
 export const englishQuestionTypeSchema = z.enum(ENGLISH_QUESTION_TYPES);
@@ -76,7 +85,20 @@ export const englishGeneratedTypeSchema = z.enum(
 /** 보기 없는 유형 — 정답이 번호가 아니라 글이다 */
 export const ENGLISH_OPEN_TYPES: readonly EnglishQuestionType[] = [
   "서술형",
+  "해석",
+  "영영풀이",
+  "공통 빈칸",
+  "문장 전환",
+  "단어 배열",
   "원문 복원",
+];
+
+/**
+ * 보기를 넷 **또는** 다섯 받는 객관식 (D-158). 학교 시험의 «윗글을 읽고 알 수 없는 것은?»이 4지선다다.
+ * 다른 객관식은 여전히 정확히 다섯이다 — 검증기 `src/lib/english/validate.ts` 가 이 목록으로 가른다.
+ */
+export const ENGLISH_FOUR_CHOICE_TYPES: readonly EnglishQuestionType[] = [
+  "언급 없음",
 ];
 
 /** 검토 상태 — DB `english_question_set.status` CHECK 와 같은 글자 */
@@ -102,6 +124,12 @@ export const ENGLISH_MATERIAL_MAX_BYTES = 4 * 1024 * 1024;
 export const ENGLISH_MATERIAL_MAX_LABEL = "4MB";
 export const ENGLISH_MATERIAL_CONTENT_MAX = 30_000;
 export const ENGLISH_PASSAGE_MAX = 24_000;
+/**
+ * 원문(원문 유지 · 원문 변형)의 최소 글자 수와 지문 길이(단어 수)의 하한 — D-158.
+ * 표지판 · 안내문 · 라벨 같은 짧은 실용문도 원문이 된다(전에는 80자 · 80단어라 한 줄짜리 안내문이 들어가지 않았다).
+ */
+export const ENGLISH_SOURCE_PASSAGE_MIN = 20;
+export const ENGLISH_WORDS_MIN = 30;
 
 /** Exact immutable bank revision; source text lives in the server-side usage snapshot. */
 export const englishPassageRefSchema = z.strictObject({
@@ -241,7 +269,7 @@ export const englishSetMetaSchema = z.strictObject({
   difficulty: englishDifficultySchema.optional(),
   /** 문항 수 — 원문 복원은 «최대 문항 수» */
   count: z.number().int().min(1).max(30).optional(),
-  words: z.number().int().min(80).max(400).optional(),
+  words: z.number().int().min(ENGLISH_WORDS_MIN).max(400).optional(),
   types: z
     .array(englishGeneratedTypeSchema)
     .max(ENGLISH_GENERATED_TYPES.length)
@@ -325,18 +353,21 @@ export const englishGenerateRequestSchema = z
     difficulty: englishDifficultySchema,
     count: z.number().int().min(1).max(8),
     /** 지문 길이(단어 수, 약) — original 에서는 무시 */
-    words: z.number().int().min(80).max(400),
+    words: z.number().int().min(ENGLISH_WORDS_MIN).max(400),
     types: z
       .array(englishGeneratedTypeSchema)
       .min(1)
       .max(ENGLISH_GENERATED_TYPES.length),
   })
   .superRefine((input, ctx) => {
-    if (input.mode !== "new" && input.passage.length < 80)
+    if (
+      input.mode !== "new" &&
+      input.passage.length < ENGLISH_SOURCE_PASSAGE_MIN
+    )
       ctx.addIssue({
         code: "custom",
         path: ["passage"],
-        message: "원문을 80자 이상 입력해 주세요.",
+        message: `원문을 ${ENGLISH_SOURCE_PASSAGE_MIN}자 이상 입력해 주세요.`,
       });
     if (input.mode === "new" && !input.topic)
       ctx.addIssue({
