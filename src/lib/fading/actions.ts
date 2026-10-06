@@ -64,6 +64,8 @@ function storedSessionId(
  * `fresh` 는 풀이를 새로 열 때 쓰는 번호와 칩 차례의 씨앗 — 부르는 쪽이 한 번만 짓는다(저장이 다시 시도돼도 같은 값).
  * `traps` 는 그 개념의 함정 칩이다 — 🔴 화면에 내려보낸 것과 **같은 것**을 넘긴다. 칩의 번호는 묶음 안의 자리라, 함정이 하나 들고 나면
  * 화면이 보낸 번호가 다른 칩을 가리킨다. 그래서 풀이 번호는 그 내용의 토큰이다(`storedSessionId`).
+ * `options.cards` 는 서버의 하위 문(`MATH_FADING_CARDS`)이다 — 켜져 있으면 **새로 여는** 풀이가 카드 풀이다(열린 풀이는 연 때의 방식 그대로).
+ * 꺼져 있으면 카드 풀이의 칸을 쓰지 않는다(이미 카드 풀이로 열린 풀이를 이어 갈 때만 쓴다).
  */
 export function applyFadingAction(
   fading: StoredFading,
@@ -72,7 +74,9 @@ export function applyFadingAction(
   today: string,
   fresh: { sessionId: string; seed: number },
   traps: readonly FadingTrap[] = [],
+  options: { cards?: boolean } = {},
 ): StoredFading {
+  const cards = options.cards === true;
   const stored = (ref: { conceptId: string; sessionId: string }) =>
     storedSessionId(fading, ref.conceptId, ref.sessionId, concept, traps);
   switch (action.action) {
@@ -81,9 +85,12 @@ export function applyFadingAction(
     case "drop":
       return dropFadingConcept(fading, action.conceptId);
     case "open":
-      return openFadingSession(fading, concept!, today, fresh);
+      return openFadingSession(fading, concept!, today, fresh, { cards });
     case "read":
-      return completeFadingReading(fading, action.conceptId, stored(action));
+      return completeFadingReading(fading, action.conceptId, stored(action), {
+        concept,
+        seen: action.seen,
+      });
     case "miss":
       return reportFadingMiss(
         fading,
@@ -99,7 +106,7 @@ export function applyFadingAction(
         stored(action),
         action.step,
         action.placements,
-        { gaveUp: action.gaveUp, traps },
+        { traps, gaveUp: action.gaveUp, sure: action.sure },
       );
     case "rate":
       // 이미 적용한 평가의 되풀이는 토큰보다 먼저 본다 — 풀이가 닫힌 뒤에 와도 영수증으로 답한다.
@@ -112,6 +119,7 @@ export function applyFadingAction(
         action.rating,
         today,
         action.requestId,
+        { judged: action.judged },
       );
     case "all-today":
       return setFadingAllToday(fading, today, action.on);

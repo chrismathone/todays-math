@@ -29,7 +29,7 @@ import {
   fadingActionNeedsConcept,
 } from "./actions";
 import { fadingCatalog, fadingConceptMap, fadingFigureOf } from "./catalog";
-import { fadingEnabled } from "./enabled";
+import { fadingCardsEnabled, fadingEnabled } from "./enabled";
 import { FadingConflict, emptyFading } from "./state";
 import { fadingTrapsFor } from "./traps";
 import {
@@ -78,6 +78,7 @@ export async function handleFadingRequest(
   const { student, today } = gate;
   try {
     const concepts = fadingConceptMap();
+    const cards = fadingCardsEnabled();
     let saved: Awaited<ReturnType<typeof readSrsState>>;
     let requestId: string | undefined;
     if (operation === "read") saved = await readSrsState(student.id);
@@ -103,6 +104,7 @@ export async function handleFadingRequest(
           today,
           fresh,
           concept ? fadingTrapsFor(concept) : [],
+          { cards },
         ),
       );
     }
@@ -116,6 +118,7 @@ export async function handleFadingRequest(
           requestId,
           trapsOf: fadingTrapsFor,
           figureOf: fadingFigureOf,
+          cards,
         }),
       }),
     );
@@ -192,6 +195,7 @@ export async function handleFadingConceptRequest(
             figure: fadingFigureOf(concept),
           },
           status: stored ? fadingConceptStatus(concept, stored, today) : null,
+          ...(fadingCardsEnabled() ? { mode: "cards" as const } : {}),
         },
       }),
     );

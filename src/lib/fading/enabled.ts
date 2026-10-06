@@ -31,3 +31,13 @@ export function fadingEnabled(): boolean {
 export function fadingReadable(): boolean {
   return fadingGate() !== "off";
 }
+
+/**
+ * 카드 풀이(1단계 카드 · 4단계 자판 A′ — 합의 2026-10-07)의 하위 문 — 환경값 `MATH_FADING_CARDS`.
+ * `on` 일 때만 켜진다(값이 없으면 **꺼짐**). 학생 라우트가 열려 있을 때(`fadingEnabled`)만 뜻이 있다.
+ * 켜져 있으면 **새로 여는 풀이**가 카드 풀이다 — 이미 열린 풀이는 연 때의 방식 그대로 끝난다(`session.mode`).
+ * 🔴 켜는 차례: 선택 칸을 읽고 보존하는 배포판이 운영에 자리 잡은 뒤 → 이 판과 화면 → 문. 꺼져 있으면 새 칸을 하나도 쓰지 않는다.
+ */
+export function fadingCardsEnabled(): boolean {
+  return fadingEnabled() && process.env.MATH_FADING_CARDS === "on";
+}
