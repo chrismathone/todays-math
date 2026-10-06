@@ -117,6 +117,42 @@ describe("source model API routing and compatibility", () => {
       data: "YWJj",
     });
   });
+  it("sends the caller's effort to Claude as output_config and keeps the defaults without it", async () => {
+    const fetcher = vi.fn().mockImplementation(async () =>
+      Response.json({
+        stop_reason: "end_turn",
+        content: [{ type: "text", text: "read" }],
+      }),
+    );
+    vi.stubGlobal("fetch", fetcher);
+    const bodyOf = async (model: string, effort?: "low") => {
+      fetcher.mockClear();
+      await runModelApi({
+        vendor: "anthropic",
+        model,
+        prompt: "read",
+        imageDataUrl,
+        signal: signal(),
+        ...(effort ? { effort } : {}),
+      });
+      return JSON.parse(fetcher.mock.calls[0][1].body);
+    };
+    // 오늘의 영어의 사진 읽기(D-158) — Opus 5.5 는 생각이 늘 켜져 있어 강도로 조절한다. temperature 를 같이 보내지 않는다
+    const read = await bodyOf("claude-opus-5-5", "low");
+    expect(read.output_config).toEqual({ effort: "low" });
+    expect(read).not.toHaveProperty("temperature");
+    expect(read.messages[0].content[0]).toMatchObject({
+      type: "image",
+      source: { media_type: "image/png", data: "YWJj" },
+    });
+    // 강도를 안 주면 지금 그대로 — 작업실의 호출은 바뀌지 않는다
+    const opus = await bodyOf("claude-opus-5");
+    expect(opus.output_config).toEqual({ effort: "medium" });
+    expect(opus).not.toHaveProperty("temperature");
+    const sonnet = await bodyOf("claude-sonnet-4-6");
+    expect(sonnet.temperature).toBe(0);
+    expect(sonnet).not.toHaveProperty("output_config");
+  });
   it.each(["gpt-5.5", "gpt-5-mini", "o3", "o4-mini"])(
     "uses completion token guard for %s",
     async (model) => {

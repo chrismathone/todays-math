@@ -99,9 +99,16 @@ export default function EnglishPrepView({
   const [materialDialog, setMaterialDialog] = useState(false);
   const [settingsDialog, setSettingsDialog] = useState(false);
   const [deleting, setDeleting] = useState<EnglishMaterial | null>(null);
-  /** «사진에서 글 읽기» 창이 처음 열 사진(자료 id) — 닫혀 있으면 null (D-158) */
-  const [reading, setReading] = useState<string | null>(null);
+  /**
+   * «사진에서 글 읽기» 창이 처음 열 사진 — 닫혀 있으면 null (D-158). `only` 는 «올리고 읽기»로 연 창이다:
+   * 방금 올린 그 사진 한 장만 본다(«저장하고 다음 사진»이 예전 사진을 읽으러 가지 않게 — 읽기는 값이 든다).
+   */
+  const [reading, setReading] = useState<{ id: string; only: boolean } | null>(
+    null,
+  );
   const readRef = useRef<HTMLElement | null>(null);
+  /** 읽어 둔 글(자료 id → 글) — 창을 닫았다 열어도 같은 사진을 다시 읽지 않는다 */
+  const [readCache] = useState(() => new Map<string, string>());
   const [examDeleting, setExamDeleting] = useState(false);
   const [busy, setBusy] = useState(false);
   const [dialogError, setDialogError] = useState<string | null>(null);
@@ -279,7 +286,7 @@ export default function EnglishPrepView({
                         aria-label={`${material.name} 글 읽기`}
                         onClick={(event) => {
                           readRef.current = event.currentTarget;
-                          setReading(material.id);
+                          setReading({ id: material.id, only: false });
                         }}
                       >
                         글 읽기
@@ -444,7 +451,7 @@ export default function EnglishPrepView({
             // «사진에서 읽기» 탭 — 올린 사진을 바로 읽기 창으로(창이 아래로 길어지지 않게 · Wire 2차)
             if (read) {
               readRef.current = addRef.current;
-              setReading(material.id);
+              setReading({ id: material.id, only: true });
             }
           }}
         />
@@ -452,8 +459,12 @@ export default function EnglishPrepView({
       {reading && materialList && (
         <EnglishPhotoReadDialog
           exam={exam}
-          photos={materialList.filter(isEnglishPhoto)}
-          startId={reading}
+          photos={materialList.filter(
+            (item) =>
+              isEnglishPhoto(item) && (!reading.only || item.id === reading.id),
+          )}
+          startId={reading.id}
+          cache={readCache}
           returnFocus={readRef}
           onClose={() => setReading(null)}
           onSaved={onMaterialAdded}
@@ -593,6 +604,8 @@ function MaterialDialog({
               : event.key === "End"
                 ? "photo"
                 : MATERIAL_TABS[(at + step) % MATERIAL_TABS.length]!;
+          // 같은 탭이면 그대로 둔다 — 고른 파일을 지우지 않는다
+          if (next === tab) return;
           setTab(next);
           setFile(null);
           setError(null);
@@ -612,6 +625,8 @@ function MaterialDialog({
             aria-controls="english-material-panel"
             className={s.tab}
             onClick={() => {
+              // 같은 탭을 다시 누르면 그대로 둔다 — 칸에는 파일이 보이는데 «파일을 골라 주세요»가 뜨지 않게
+              if (id === tab) return;
               setTab(id);
               // 파일 칸은 탭마다 받는 종류가 다르다 — 고른 파일을 들고 넘어가지 않는다
               setFile(null);

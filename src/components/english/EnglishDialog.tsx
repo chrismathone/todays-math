@@ -17,6 +17,10 @@ import w from "@/components/unified/Workroom.module.css";
  * 오늘의 영어의 작은 창(새 시험 등록 · 자료 추가 · 출제 설정 · 인쇄) — 작업실 창(`.dialog`)의 틀·제목·닫기 단추를
  * 그대로 쓴다(D-07 새 모양 없음). `ConfirmDialog` 와 같은 결: 열려 있는 동안만 그리고 `showModal()`,
  * Esc·«창 닫기»·배경 누르기로 닫고, 닫히면 초점을 `returnFocus` 로 돌린다. 창은 작업실 뿌리로 옮겨 그린다.
+ *
+ * 브라우저가 스스로 닫는 때가 있다 — Esc 를 거듭 누르면 둘째 `cancel` 은 막을 수 없다(닫기 감시자). 그때 바쁘거나
+ * (`busy`) 부모가 닫기를 받아들이지 않으면(저장하지 않은 글을 묻는 중) **다시 연다** — 닫힌 창이 상태만 남아
+ * 화면이 죽지 않게(검토 2026-10-06 «사진에서 글 읽기»).
  */
 export default function EnglishDialog({
   title,
@@ -67,7 +71,13 @@ export default function EnglishDialog({
         if (!busy) onClose();
       }}
       onClose={(event) => {
-        if (!event.currentTarget.open) onClose();
+        const dialog = event.currentTarget;
+        if (dialog.open) return;
+        if (!busy) onClose();
+        // 부모가 닫았으면 창은 이미 문서에 없다. 남아 있으면 닫을 수 없는 때다 — 다시 연다
+        window.setTimeout(() => {
+          if (dialog.isConnected && !dialog.open) dialog.showModal();
+        }, 0);
       }}
       onPointerDown={(event) => {
         pressedOutside.current =

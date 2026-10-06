@@ -27,6 +27,11 @@ type InferenceInput = {
   signal: AbortSignal;
   action?: DevAiAction;
   maxOutputTokens?: number;
+  /**
+   * Claude 의 생각 강도(`output_config.effort`) — 부르는 쪽이 정할 때만. 없으면 지금 그대로다(Opus 5 는 medium ·
+   * 그 밖은 temperature 0). 오늘의 영어의 사진 읽기가 Opus 5.5 를 low 로 부른다(D-158 · 25 §13.9).
+   */
+  effort?: "low" | "medium" | "high";
 };
 function nonempty(text: string | null | undefined) {
   if (!text?.trim()) throw new StudioApiError("AI가 빈 응답을 반환했습니다.");
@@ -182,9 +187,11 @@ async function runModelApiOnce(input: InferenceInput): Promise<string> {
         {
           model: input.model,
           max_tokens: maxTokens,
-          ...(input.model === "claude-opus-5"
-            ? { output_config: { effort: "medium" } }
-            : { temperature: 0 }),
+          ...(input.effort
+            ? { output_config: { effort: input.effort } }
+            : input.model === "claude-opus-5"
+              ? { output_config: { effort: "medium" } }
+              : { temperature: 0 }),
           messages: [
             {
               role: "user",
