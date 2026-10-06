@@ -1,0 +1,10 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "./*.ts",
+    "../../../../src/lib/english/listening/creation/assessmentPatterns.ts",
+    "../../../../src/__tests__/unit/englishListeningAssessmentPatterns.test.ts"
+  ],
+  "exclude": ["../../../../node_modules"]
+}
