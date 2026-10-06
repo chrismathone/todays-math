@@ -815,8 +815,42 @@ describe("English resource bank", () => {
     expect(lastUrl.searchParams.has("cursor")).toBe(false);
   });
 
-  // EBS 공식 참조 화면은 듣기 폐기(2026-10-06 `faabacb1f`)로 없어졌다 — 참조 선택지 · 링크 · 요청이 없다는 것까지 여기서 본다.
-  it("opens own listening via callback and filters own material by grade, year and round without reference requests", async () => {
+  // External (EBS) references left the listening bank on 2026-10-06 (cef148360). The ten cases that
+  // checked which official page addresses may be linked went with the feature; what remains to
+  // guard here is that this screen neither offers nor requests them. The own-material screen
+  // itself is pinned by englishListeningBankOwnUi.test.tsx and
+  // englishListeningExternalSourcePolicy.test.ts.
+  it("offers no external listening source and never requests references", async () => {
+    const fetcher = installFetch((url) => {
+      if (url.pathname.endsWith("/listening/bank")) return paged([]);
+    });
+    render(<EnglishResourceBank {...props()} />);
+    fireEvent.click(screen.getByRole("tab", { name: "듣기은행" }));
+    const source = screen.getByLabelText("듣기 출처", {
+      exact: true,
+    }) as HTMLSelectElement;
+    expect(Array.from(source.options).map((option) => option.value)).toEqual([
+      "own",
+      "authored",
+      "reconstructed",
+    ]);
+    await waitFor(() =>
+      expect(
+        fetcher.mock.calls.some(([url]) =>
+          String(url).includes("/listening/bank"),
+        ),
+      ).toBe(true),
+    );
+    expect(
+      fetcher.mock.calls.some(([url]) =>
+        String(url).includes("/listening/references"),
+      ),
+    ).toBe(false);
+    expect(screen.queryByRole("link", { name: /EBS/ })).not.toBeInTheDocument();
+    expect(document.querySelector("audio,iframe")).toBeNull();
+  });
+
+  it("opens own listening via callback and filters own material by grade, year and round", async () => {
     const own = {
       id: secondId,
       revision: 1,
@@ -868,26 +902,25 @@ describe("English resource bank", () => {
     change("연도", "2026");
     change("회차", "2");
     fireEvent.click(screen.getByRole("button", { name: "검색" }));
+    // The filters go to the own-material bank — the only listening source there is now.
     await waitFor(() => {
       const url = new URL(
         String(fetcher.mock.calls.at(-1)?.[0]),
         "http://localhost",
       );
-      expect(url.pathname).toBe("/api/english/listening/bank");
+      expect(url.pathname.endsWith("/listening/bank")).toBe(true);
       expect(Object.fromEntries(url.searchParams)).toMatchObject({
         level: "중2",
         year: "2026",
         round: "2",
       });
     });
-    expect(screen.queryByRole("option", { name: /EBS|공식/ })).toBeNull();
-    expect(screen.queryByRole("link", { name: /EBS/ })).toBeNull();
-    expect(document.querySelector("audio,iframe")).toBeNull();
     expect(
       fetcher.mock.calls.some(([url]) =>
         String(url).includes("/listening/references"),
       ),
     ).toBe(false);
+    expect(document.querySelector("audio,iframe")).toBeNull();
     fetcher.mockClear();
     view.rerender(
       <EnglishResourceBank {...initialProps} allowedMenus={["english-bank"]} />,

@@ -3,11 +3,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
-import { SolutionText } from "@/components/math/MathText";
 import {
   textbookStudentQrSchema,
   type TextbookStudentQr,
 } from "@/contracts/textbookStudent.contract";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import {
   studentTextbookRequest,
   studentTextbookError,
@@ -107,7 +107,11 @@ export function TextbookQrScreen({
         <details className={s.block}>
           <summary>정답과 풀이 확인</summary>
           <MarkdownRenderer content={data.answer ?? ""} />
-          {data.solution !== null && <SolutionText text={data.solution} />}
+          {data.solution !== null && (
+            <MarkdownRenderer
+              content={solutionForDisplay(data.solution) ?? ""}
+            />
+          )}
         </details>
       )}
       {data.concepts.length > 0 && (

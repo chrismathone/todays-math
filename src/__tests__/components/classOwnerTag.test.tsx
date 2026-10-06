@@ -411,15 +411,17 @@ describe.each([
 
       const select = screen.getByLabelText("반") as HTMLSelectElement;
       await waitFor(() => expect(select).toHaveValue(CLASS_A_ID));
-      // 첫 줄은 고를 수 없는 안내 «반을 선택해 주세요»(4d95f078f) — 장바구니 시험과 같이 떼고 센다.
-      expect(select.options[0]).toBeDisabled();
-      expect(select.options[0]).toHaveValue("");
-      const classOptions = Array.from(select.options).slice(1);
+      // 맨 위의 고를 수 없는 안내 항목(«반을 선택해 주세요» — 2026-10-04)은 반이 아니다. 반 항목만 본다.
+      const [placeholder, ...classOptions] = Array.from(select.options);
+      expect(placeholder).toHaveValue("");
+      expect(placeholder).toBeDisabled();
       const texts = classOptions.map((o) => o.text);
       if (!admin) {
         expect(texts).toEqual([MOCK_CLASS_A.name, MOCK_CLASS_B.name]);
         expect(select).not.toHaveAttribute("title");
-        expect(classOptions.every((o) => !o.hasAttribute("title"))).toBe(true);
+        expect(
+          Array.from(select.options).every((o) => !o.hasAttribute("title")),
+        ).toBe(true);
         return;
       }
       expect(texts).toEqual([

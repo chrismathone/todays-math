@@ -133,20 +133,18 @@ describe("direct English service menu guards", () => {
 });
 
 describe("listening teacher live branch policy", () => {
-  // 세트(자료) 작업은 «영어듣기» 또는 «자료은행»으로 열린다(2026-10-04 `2de110c7e`) — 둘 다 꺼야 막힌다.
   it.each([false, true])(
     "denies direct runtime reads for a capped owner/superadmin=%s",
     async (isSuperAdmin) => {
+      const runtime = createListeningRuntime(database);
       userLookup.mockResolvedValue({
         ...account,
         isSuperAdmin,
-        branch: {
-          disabledMenus: ["english-listening", "english-bank"],
-          menuRevision: 2,
-        },
+        branch: { disabledMenus: ["english-listening"], menuRevision: 2 },
       });
+      // Assignments belong to the listening menu: a capped branch is refused before any query.
       await expect(
-        createListeningRuntime(database).teacherList(actor, "sets"),
+        runtime.teacherList(actor, "assignments"),
       ).rejects.toMatchObject({ status: 404 });
       expect(query).not.toHaveBeenCalled();
       expect(userLookup).toHaveBeenCalledWith({
@@ -155,45 +153,39 @@ describe("listening teacher live branch policy", () => {
           branch: { select: { disabledMenus: true, menuRevision: true } },
         },
       });
-    },
-  );
-  // 듣기만 끈 지점 — 학생에게 가는 길(배정 · 반)은 막히고, 세트 자료는 자료은행 권한으로 남는다. DB 없이도 이 정책을 지킨다.
-  it.each([false, true])(
-    "a listening-only cap still denies assignments and classes, and leaves set material to the bank grant/superadmin=%s",
-    async (isSuperAdmin) => {
+      // Sets are material work since 2026-10-04 (2de110c7e): the bank menu alone still opens them …
+      await expect(runtime.teacherList(actor, "sets")).resolves.toEqual([]);
+      // … and a branch that caps both menus closes them, again before any query.
+      query.mockClear();
       userLookup.mockResolvedValue({
         ...account,
         isSuperAdmin,
-        branch: { disabledMenus: ["english-listening"], menuRevision: 2 },
+        branch: {
+          disabledMenus: ["english-listening", "english-bank"],
+          menuRevision: 3,
+        },
       });
-      const runtime = createListeningRuntime(database);
-      for (const resource of ["assignments", "classes"] as const)
-        await expect(
-          runtime.teacherList(actor, resource),
-        ).rejects.toMatchObject({ status: 404 });
-      await expect(runtime.createAssignment(actor, {})).rejects.toMatchObject({
+      await expect(runtime.teacherList(actor, "sets")).rejects.toMatchObject({
         status: 404,
       });
       expect(query).not.toHaveBeenCalled();
-      await expect(runtime.teacherList(actor, "sets")).resolves.toEqual([]);
     },
   );
   it("rechecks branch changes between calls and preserves personal denials", async () => {
+    // Set lists open through either menu (see above), so «capped» here means both are off.
+    const both = ["english-listening", "english-bank"];
     const runtime = createListeningRuntime(database);
     await expect(runtime.teacherList(actor, "sets")).resolves.toEqual([]);
     userLookup.mockResolvedValue({
       ...account,
-      branch: {
-        disabledMenus: ["english-listening", "english-bank"],
-        menuRevision: 2,
-      },
+      branch: { disabledMenus: both, menuRevision: 2 },
     });
     await expect(runtime.teacherList(actor, "sets")).rejects.toMatchObject({
       status: 404,
     });
     userLookup.mockResolvedValue({
       ...account,
-      disabledMenus: ["english-listening", "english-bank"],
+      disabledMenus: both,
       branch: { disabledMenus: [], menuRevision: 3 },
     });
     await expect(runtime.teacherList(actor, "sets")).rejects.toMatchObject({

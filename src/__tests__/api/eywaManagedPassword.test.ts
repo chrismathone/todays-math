@@ -60,6 +60,7 @@ describe("managed account recovery boundaries", () => {
       id,
       isSuperAdmin: false,
       authSource: "eywa",
+      // The route compares these before deciding; a row without them is not what it selects.
       branchId: null,
       updatedAt: new Date(updatedAt),
     });

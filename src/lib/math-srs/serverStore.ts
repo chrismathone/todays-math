@@ -39,6 +39,13 @@ export interface SrsStateTable {
 }
 export const srsStateTable = () =>
   (db as unknown as { studentSrsState: SrsStateTable }).studentSrsState;
+/**
+ * The same table inside a caller's transaction — for teacher routes that re-check
+ * authorization in that transaction before writing. Naming the table stays in this
+ * module (`mathSrsRecordIsolation.test.ts` pins that).
+ */
+export const srsStateTableIn = (tx: { studentSrsState: unknown }) =>
+  tx.studentSrsState as SrsStateTable;
 
 /**
  * 쓰기 직전에 **같은 트랜잭션 안에서** 확인(`guard`)을 돌리는 표 — 교사가 학생의 기록을 고칠 때
@@ -48,19 +55,17 @@ export const srsStateTable = () =>
 export function guardedSrsStateTable(
   guard: (tx: Prisma.TransactionClient) => Promise<void>,
 ): SrsStateTable {
-  const within = (tx: Prisma.TransactionClient) =>
-    (tx as unknown as { studentSrsState: SrsStateTable }).studentSrsState;
   return {
     ...srsStateTable(),
     create: (args) =>
       db.$transaction(async (tx) => {
         await guard(tx);
-        return within(tx).create(args);
+        return srsStateTableIn(tx).create(args);
       }),
     updateMany: (args) =>
       db.$transaction(async (tx) => {
         await guard(tx);
-        return within(tx).updateMany(args);
+        return srsStateTableIn(tx).updateMany(args);
       }),
   };
 }

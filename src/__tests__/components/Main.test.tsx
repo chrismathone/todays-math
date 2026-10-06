@@ -75,36 +75,40 @@ describe("[T4.3 S-03] 메인 — MSW 기본 데이터 (스택)", () => {
       ),
     );
 
+    render(<MainPage />);
+
+    // 2026-10-04(4d95f078f)부터 진도 조회 실패는 **반마다 따로** 선다 — 반 목록은 그대로 그린다.
+    // 지키는 것은 같다: 실패한 반을 «진도를 안 넣은 반»처럼 그리지 않는다.
+    const card = await screen.findByRole("article", { name: "중2 심화반" });
+    expect(await within(card).findByText("진도 조회 실패")).toBeInTheDocument();
+    expect(
+      within(card).getByRole("button", { name: "진도 다시 조회" }),
+    ).toBeInTheDocument();
+    expect(
+      within(card).queryByRole("button", { name: /진도 입력/ }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText("목록을 불러오지 못했습니다")).toBeNull();
+  });
+
+  it("진도 조회 실패 뒤 그 반에서 다시 조회하면 복구한다", async () => {
+    server.use(
+      http.get(
+        "/api/progress",
+        () => new HttpResponse("broken", { status: 500 }),
+      ),
+    );
     const user = userEvent.setup();
     render(<MainPage />);
 
-    // 4d95f078f — 진도 읽기는 반마다 따로다. 한 반의 장애가 목록을 지우지 않고, 그 반 줄이 «조회 실패»를 말한다.
     const card = await screen.findByRole("article", { name: "중2 심화반" });
-    expect(await within(card).findByText("진도 조회 실패")).toBeInTheDocument();
-    expect(within(card).getByText("조회 필요")).toBeInTheDocument();
-    expect(
-      within(card).queryByText("어제 진도가 비어 있습니다"),
-    ).not.toBeInTheDocument();
-    expect(
-      within(card).queryByRole("button", { name: "진도 입력" }),
-    ).not.toBeInTheDocument();
-    expect(
-      screen.queryByText("목록을 불러오지 못했습니다"),
-    ).not.toBeInTheDocument();
-    // 진도를 모르는 채로 기록하게 두지 않는다
-    expect(
-      screen.getByRole("button", { name: "이 차시로 진도 기록" }),
-    ).toBeDisabled();
-
-    // 그 반만 다시 읽는다
+    await within(card).findByText("진도 조회 실패");
     server.resetHandlers();
     await user.click(
       within(card).getByRole("button", { name: "진도 다시 조회" }),
     );
+
     await waitFor(() =>
-      expect(
-        within(card).queryByText("진도 조회 실패"),
-      ).not.toBeInTheDocument(),
+      expect(within(card).queryByText("진도 조회 실패")).toBeNull(),
     );
     expect(
       within(card).queryByRole("button", { name: "진도 다시 조회" }),
@@ -112,9 +116,12 @@ describe("[T4.3 S-03] 메인 — MSW 기본 데이터 (스택)", () => {
   });
 
   it("목록 로딩 실패 후 재시도하면 대시보드로 복구한다", async () => {
-    // 화면 전체가 실패로 가는 것은 반 목록 · 단원 목록(첫 읽기)뿐이다.
+    // 화면 전체가 오류로 서는 것은 반 목록을 못 읽었을 때다(진도 실패는 위 두 시험처럼 반마다).
     server.use(
-      http.get("/api/units", () => new HttpResponse("broken", { status: 500 })),
+      http.get(
+        "/api/classes",
+        () => new HttpResponse("broken", { status: 500 }),
+      ),
     );
     const user = userEvent.setup();
     render(<MainPage />);

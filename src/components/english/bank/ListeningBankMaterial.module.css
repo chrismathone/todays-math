@@ -127,6 +127,20 @@ label.questionLabel {
   min-width: 0;
   white-space: pre-wrap;
 }
+button.transcriptSeek {
+  flex: 0 0 auto;
+  padding: 8px;
+  border: 1px solid var(--e-line-soft);
+  border-radius: 6px;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+button.transcriptSeek:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
 @media (max-width: 680px) {
   .transcriptParagraph {
     flex-direction: column;

@@ -12,11 +12,11 @@ import { readFrozenConcept, readQrSnapshot } from "@/lib/textbook/studentRead";
 import type { StudentQrTarget } from "@/lib/textbook/studentAccess";
 import { TextbookError } from "@/lib/textbook/server/errors";
 import { snapshotToPrintable } from "@/lib/textbook/snapshotToPrintable";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import { TextbookQrScreen } from "@/components/learn/textbook/TextbookQrScreen";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
-import { SolutionText } from "@/components/math/MathText";
 import learn from "@/components/learn/learn.module.css";
 import styles from "@/components/learn/textbook/textbookLearn.module.css";
 
@@ -114,7 +114,9 @@ export default async function TextbookQrPage({
           <h2>정답과 풀이</h2>
           <MarkdownRenderer content={printable.answer} />
           {printable.solution !== null && (
-            <SolutionText text={printable.solution} />
+            <MarkdownRenderer
+              content={solutionForDisplay(printable.solution) ?? ""}
+            />
           )}
         </section>
         <Link href={editor}>교재 제작에서 열기</Link>

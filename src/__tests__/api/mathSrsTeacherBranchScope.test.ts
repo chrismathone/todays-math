@@ -68,30 +68,23 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllEnvs());
 
 describe("반 복습 현황 — GET /api/classes/{id}/math-srs", () => {
-  // 원장님 2026-10-06: «최고관리자는 무조건 열려야 하고, 지점장은 (메뉴가) 열려 있어야 열린다.»
-  // 10월 3일에는 최고관리자도 메뉴 상한에 막히게 적혀 있었고, 10월 5일(`8feb51179`)에 코드가 먼저 바뀌었다.
-  it("메뉴가 꺼진 지점장은 반 · 학생 · 명단 끝점이 전부 막힌다 — 켜면 열린다", async () => {
-    world.session = sameBranchAdmin({ menus: [] });
-    expect((await readClass()).status).toBe(403);
-    expect((await readDetail()).status).toBe(403);
-    expect((await writePlan()).status).toBe(403);
-    expect((await readRoster()).status).toBe(403);
-    expect(world.writes).toBe(0);
-    expect(world.rows.size).toBe(0);
-    world.session = sameBranchAdmin({ menus: ["srs"] });
-    expect((await readDetail()).status).toBe(200);
-    expect((await readRoster()).status).toBe(200);
-  });
-
-  it("최고관리자는 메뉴가 꺼져 있어도 SRS 관리 끝점이 열린다 — 읽기도 설정 저장도", async () => {
-    world.session = sameBranchAdmin({ isSuperAdmin: true, menus: [] });
-    expect((await readDetail()).status).toBe(200);
-    expect((await readRoster()).status).toBe(200);
-    expect((await writePlan()).status).toBe(200);
-    expect(world.writes).toBe(1);
-    // 반 관리의 반 복습 현황은 SRS 관리 끝점이 아니다 — «수업» 메뉴를 따른다(지점 관리 계획: 최고관리자도 업무 메뉴는 설정을 따른다).
-    expect((await readClass()).status).toBe(403);
-  });
+  it.each([false, true])(
+    "applies the effective menu cap to direct class/course endpoints — only the superadmin keeps SRS management, superadmin=%s",
+    async (isSuperAdmin) => {
+      world.session = sameBranchAdmin({ isSuperAdmin, menus: [] });
+      // The class dashboard opens with the «수업 · 학생 관리» menu — the cap holds for everyone.
+      expect((await readClass()).status).toBe(403);
+      // The three SRS management endpoints stay open to the superadmin with menus disabled
+      // (2026-10-05 · `srsTeacherManagementRoute`; accountRouteAccess.test.ts states the same rule).
+      // A branch admin without the menu is still denied.
+      const expected = isSuperAdmin ? 200 : 403;
+      expect((await readDetail()).status).toBe(expected);
+      expect((await writePlan()).status).toBe(expected);
+      expect((await readRoster()).status).toBe(expected);
+      expect(world.writes).toBe(isSuperAdmin ? 1 : 0);
+      if (!isSuperAdmin) expect(world.rows.size).toBe(0);
+    },
+  );
   it("다른 지점 관리자는 403 · 같은 지점 관리자는 200", async () => {
     world.session = otherBranchAdmin();
     expect((await readClass()).status).toBe(403);

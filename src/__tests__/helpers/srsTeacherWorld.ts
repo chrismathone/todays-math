@@ -8,10 +8,10 @@
  *   vi.mock("@/lib/auth", async () => (await import("../helpers/srsTeacherWorld")).authModule);
  *   vi.mock("@/lib/db", async () => (await import("../helpers/srsTeacherWorld")).dbModule);
  */
-// 지점 id 는 운영처럼 UUID 다 — 응답 계약(`management.branchId`)이 UUID 를 요구한다.
-// «branch-1» 같은 글이던 때는 명단 응답이 계약에서 걸려 200 을 낼 수 없었다(2026-10-06).
-export const BRANCH_1 = "b1a00000-0000-4000-8000-000000000001";
-export const BRANCH_2 = "b2a00000-0000-4000-8000-000000000002";
+// Real ids: the roster response now reports the viewer's branch (`management.branchId`),
+// and the contract accepts only a UUID there.
+export const BRANCH_1 = "b1000000-0000-4000-8000-000000000001";
+export const BRANCH_2 = "b2000000-0000-4000-8000-000000000002";
 
 export const ids = {
   owner: "d56e582b-a5af-4763-8b0a-801ecff4b5a5",

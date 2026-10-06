@@ -23,8 +23,11 @@ import { DELETE as deleteClass } from "@/app/api/classes/[id]/route";
 const id = "30000000-0000-4000-8000-000000000001";
 beforeEach(() => {
   vi.resetAllMocks();
-  // 삭제 길은 소유 확인이 돌려준 줄의 `eywaBindingId` 를 본다(에이와 연동 명단은 여기서 못 지운다 · `7221da677`) — 대역도 줄을 돌려줘야 한다.
-  mocks.owned.mockResolvedValue({ ok: true, data: { eywaBindingId: null } });
+  // The real helpers return the owned row; both routes read its eywa binding before deleting.
+  mocks.owned.mockResolvedValue({
+    ok: true,
+    data: { id, eywaBindingId: null },
+  });
 });
 for (const [name, handler] of [
   ["students", deleteStudent],
@@ -42,10 +45,10 @@ for (const [name, handler] of [
     expect((await response.json()).error.code).toBe("RECORDS_RETAINED");
     expect(mocks.remove).toHaveBeenCalledExactlyOnceWith({ where: { id } });
   });
-  it(`${name}: eywa-managed rosters answer 409 and are never deleted here`, async () => {
+  it(`${name}: an eywa-managed row returns 409 and is never deleted here`, async () => {
     mocks.owned.mockResolvedValue({
       ok: true,
-      data: { eywaBindingId: "binding" },
+      data: { id, eywaBindingId: "40000000-0000-4000-8000-000000000001" },
     });
     const response = await handler(
       new NextRequest(`http://localhost/api/${name}/${id}`, {

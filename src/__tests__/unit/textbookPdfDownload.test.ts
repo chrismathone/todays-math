@@ -31,7 +31,11 @@ describe("complete PDF attachment downloads", () => {
     expect(response.headers.get("content-disposition")).toBe(
       'attachment; filename="student-pdf.pdf"',
     );
-    expect(new Uint8Array(await response.arrayBuffer())).toEqual(bytes);
+    // Byte-for-byte, but not with toEqual: its element-wise walk over 4 MB takes longer than
+    // the test timeout on a loaded machine (2026-10-06 — 23 s alone, limit 20 s).
+    const received = Buffer.from(await response.arrayBuffer());
+    expect(received.length).toBe(bytes.length);
+    expect(received.equals(Buffer.from(bytes))).toBe(true);
     expect(
       vi.mocked(readBlobRange).mock.calls.map((call) => call.slice(2)),
     ).toEqual([
