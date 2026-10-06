@@ -7,12 +7,14 @@
  * 사진이 길면 **칸 안에서** 굴린다 — 창 크기는 변하지 않는다(원장님 «사진이 거대할 때 가려지지 않을까»).
  *
  * 읽기는 사진마다 `POST /api/english/materials/{id}/read` 한 번 — **AI 호출이라 값이 든다.** 그래서
- *   - 한 번 읽은 사진은 다시 읽지 않는다. 읽은 글은 부모가 준 `cache` 에 남아 창을 닫았다 열어도 그대로다.
- *   - 같은 사진의 요청을 두 번 띄우지 않는다(`started`).
- *   - 넘기거나 닫으면 **읽던 요청을 끊는다** — 한 창이 띄우는 읽기는 한 번에 하나다(검토 2026-10-06 · «다음»을
- *     거듭 누르면 요청이 겹쳐 나갔다). 끊긴 사진은 돌아오면 다시 읽는다.
+ *   - 한 번 읽은 사진은 다시 읽지 않는다. 읽은 글 · 읽는 중인 요청은 부모가 준 `cache` 에 있어 창을 닫았다 열어도 그대로다
+ *     (저장한 글 · 저장했다는 표시도 거기 남는다 — 다시 열어 그대로 저장해도 같은 자료가 두 줄 되지 않는다).
+ *   - 같은 사진의 요청을 두 번 띄우지 않는다 — 읽는 중이면 그 요청에 붙는다.
+ *   - **읽던 요청은 끊지 않고 받아 둔다.** 넘기거나 닫아도 끝까지 받아 `cache` 에 넣는다 — 운영(Vercel)은 화면이 끊어도
+ *     서버가 모른다(검토 2026-10-06: 끊으면 모델 호출은 그대로 돌고, 버린 글을 돌아와서 또 읽어 값이 되레 늘었다).
+ *   - 한 번에 띄우는 읽기는 **둘까지**다(서버의 «한 사람 둘»과 같다). 셋째 사진은 자리가 날 때까지 «읽는 중»으로 기다린다.
  * 읽은 글은 저장 전이다 — 선생님이 고친 뒤 «지문 자료로 저장»(자료 POST · JSON)해야 글 자료 한 줄이 된다.
- * 고친 글 · 이름을 두고 넘기거나 닫으려 하면 먼저 묻는다. 저장한 그대로면 다시 저장하지 않는다(같은 자료가 두 줄 되지 않게).
+ * 고친 글 · 이름을 두고 넘기거나 닫으려 하면 먼저 묻는다. 저장한 그대로면 다시 저장하지 않는다.
  *
  * 지금 보는 사진은 **자료 id** 로 기억한다 — 목록이 다시 와 차례가 바뀌어도 다른 사진으로 건너뛰지 않는다.
  *
@@ -37,8 +39,8 @@ import s from "./EnglishStudio.module.css";
 /** 계약이 내보내지 않는 상한 — `englishMaterialTextCreateSchema.name.max(255)` 와 같은 값 */
 const MATERIAL_NAME_MAX = 255;
 
+/** 읽은 글도 실패도 없는 사진은 «읽는 중»이다(읽고 있거나 자리를 기다린다) — 따로 적어 두지 않는다 */
 type Read =
-  | { status: "reading" }
   /** `text` · `name` 은 견줄 기준 — 읽은 글, 저장한 뒤로는 저장한 글. `saved` 면 그대로는 다시 저장하지 않는다 */
   | { status: "ready"; text: string; name: string; saved: boolean }
   | { status: "error"; message: string };
@@ -48,19 +50,37 @@ type Leave = { to: string } | { close: true };
 
 const baseName = (name: string) => name.replace(/\.(png|jpe?g)$/i, "");
 
+/**
+ * 읽어 둔 글과 읽는 중인 요청(자료 id 로) — 자료 화면이 들고 있다. 창이 닫혀도 남는다.
+ * `done` 의 글은 읽은 글이고, 저장한 뒤로는 저장한 글 · 이름이다(`saved`).
+ */
+export type EnglishReadCache = {
+  done: Map<string, { text: string; name?: string; saved: boolean }>;
+  pending: Map<string, Promise<string>>;
+};
+export const createEnglishReadCache = (): EnglishReadCache => ({
+  done: new Map(),
+  pending: new Map(),
+});
+
+/** 한 번에 띄우는 읽기 — 서버의 «한 사람 둘»(`READS_PER_USER`)과 같다 */
+const MAX_PENDING = 2;
+
 /** 이미 읽어 둔 사진 — 창을 다시 열면 읽지 않고 그 글로 시작한다 */
-function fromCache(
-  photos: EnglishMaterial[],
-  cache: Map<string, string> | undefined,
-) {
+function fromCache(photos: EnglishMaterial[], cache: EnglishReadCache) {
   const reads: Record<string, Read> = {};
   const drafts: Record<string, Draft> = {};
   for (const item of photos) {
-    const text = cache?.get(item.id);
-    if (text === undefined) continue;
-    const name = baseName(item.name);
-    reads[item.id] = { status: "ready", text, name, saved: false };
-    drafts[item.id] = { text, name };
+    const entry = cache.done.get(item.id);
+    if (!entry) continue;
+    const name = entry.name ?? baseName(item.name);
+    reads[item.id] = {
+      status: "ready",
+      text: entry.text,
+      name,
+      saved: entry.saved,
+    };
+    drafts[item.id] = { text: entry.text, name };
   }
   return { reads, drafts };
 }
@@ -79,46 +99,38 @@ export default function EnglishPhotoReadDialog({
   photos: EnglishMaterial[];
   /** 처음 열 사진 */
   startId: string;
-  /** 읽은 글(자료 id → 글) — 부모가 들고 있으면 창을 닫았다 열어도 다시 읽지 않는다 */
-  cache?: Map<string, string>;
+  /** 읽어 둔 글 · 읽는 중인 요청 — 부모가 들고 있으면 창을 닫았다 열어도 다시 읽지 않는다 */
+  cache?: EnglishReadCache;
   returnFocus?: RefObject<HTMLElement | null>;
   onClose: () => void;
   /** 글 자료가 한 줄 생겼다 — 자료 목록에 더한다 */
   onSaved: (material: EnglishMaterial) => void;
 }) {
+  const [own] = useState(createEnglishReadCache);
+  const store = cache ?? own;
   const [currentId, setCurrentId] = useState(startId);
-  const [reads, setReads] = useState(() => fromCache(photos, cache).reads);
-  const [drafts, setDrafts] = useState(() => fromCache(photos, cache).drafts);
+  const [reads, setReads] = useState(() => fromCache(photos, store).reads);
+  const [drafts, setDrafts] = useState(() => fromCache(photos, store).drafts);
   const [zoom, setZoom] = useState<"fit" | "large">("fit");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [leave, setLeave] = useState<Leave | null>(null);
   /** «다시 읽기»를 누른 횟수 — 같은 사진을 다시 읽게 읽기 효과를 깨운다 */
   const [attempt, setAttempt] = useState(0);
-  /** 읽기를 띄운 사진 — 같은 사진을 두 번 부르지 않는다(값이 드는 호출). 처음 값은 이미 읽어 둔 사진 */
-  const [started] = useState(
+  /** 이 창이 글을 받았거나 받기로 한 사진 — 같은 사진에 두 번 붙지 않는다. 처음 값은 이미 읽어 둔 사진 */
+  const [attached] = useState(
     () =>
       new Set(
-        photos.filter((item) => cache?.has(item.id)).map((item) => item.id),
+        photos.filter((item) => store.done.has(item.id)).map((item) => item.id),
       ),
   );
-  /** 읽는 중인 요청 — 넘기거나 닫으면 끊는다 */
-  const inFlight = useRef(new Map<string, AbortController>());
+  /** 자리를 기다리던 사진의 읽기를 깨운다 — 읽던 것 하나가 끝나면 올린다 */
+  const [turn, setTurn] = useState(0);
   const alive = useRef(true);
-  const unmounting = useRef<ReturnType<typeof setTimeout> | undefined>(
-    undefined,
-  );
   useEffect(() => {
     alive.current = true;
-    clearTimeout(unmounting.current);
-    const flights = inFlight.current;
     return () => {
       alive.current = false;
-      // 창이 사라지면 읽던 요청을 끊는다. 한 박자 미룬다 — 개발 모드의 «효과 두 번»이 막 띄운 요청을 끊지 않게
-      unmounting.current = setTimeout(() => {
-        for (const controller of flights.values()) controller.abort();
-        flights.clear();
-      }, 0);
     };
   }, []);
 
@@ -160,67 +172,67 @@ export default function EnglishPhotoReadDialog({
   const photoName = photo?.name;
   useEffect(() => {
     if (photoId === undefined || photoName === undefined) return;
-    // 다른 사진을 읽던 요청은 끊는다 — 끊긴 사진은 돌아오면 다시 읽는다
-    for (const [other, controller] of inFlight.current) {
-      if (other === photoId) continue;
-      controller.abort();
-      inFlight.current.delete(other);
-      started.delete(other);
-      setReads((current) => {
-        if (current[other]?.status !== "reading") return current;
-        const next = { ...current };
-        delete next[other];
-        return next;
-      });
-    }
-    if (started.has(photoId)) return;
-    started.add(photoId);
-    const controller = new AbortController();
-    inFlight.current.set(photoId, controller);
-    setReads((current) => ({ ...current, [photoId]: { status: "reading" } }));
-    void (async () => {
-      try {
+    if (attached.has(photoId)) return;
+    let pending = store.pending.get(photoId);
+    if (!pending) {
+      if (store.pending.size >= MAX_PENDING) {
+        // 자리가 날 때까지 기다린다 — 읽던 것 가운데 하나가 끝나면 다시 온다(다른 창이 띄워 둔 읽기여도).
+        // 그동안 글 칸은 «읽는 중»이다(읽은 글도 실패도 없는 사진은 그렇게 그린다)
+        void Promise.race(
+          [...store.pending.values()].map((item) =>
+            item.then(
+              () => undefined,
+              () => undefined,
+            ),
+          ),
+        ).then(() => {
+          if (alive.current) setTurn((count) => count + 1);
+        });
+        return;
+      }
+      const started = (async () => {
         const body = englishMaterialReadResponseSchema.parse(
           await requestEnglish(`/api/english/materials/${photoId}/read`, {
             method: "POST",
-            signal: controller.signal,
           }),
         );
-        if (controller.signal.aborted) return;
-        cache?.set(photoId, body.data.text);
+        // 창이 닫힌 뒤에 와도 받아 둔다 — 다시 열면 읽지 않는다
+        store.done.set(photoId, { text: body.data.text, saved: false });
+        return body.data.text;
+      })();
+      const clear = () => {
+        if (store.pending.get(photoId) === started)
+          store.pending.delete(photoId);
+      };
+      started.then(clear, clear);
+      store.pending.set(photoId, started);
+      pending = started;
+    }
+    attached.add(photoId);
+    const name = baseName(photoName);
+    pending.then(
+      (text) => {
         if (!alive.current) return;
-        const name = baseName(photoName);
         setReads((current) => ({
           ...current,
-          [photoId]: {
-            status: "ready",
-            text: body.data.text,
-            name,
-            saved: false,
-          },
+          [photoId]: { status: "ready", text, name, saved: false },
         }));
-        setDrafts((current) => ({
-          ...current,
-          [photoId]: { text: body.data.text, name },
-        }));
-      } catch (caught) {
-        // 우리가 끊은 요청 — 알릴 것이 없다
-        if (controller.signal.aborted || !alive.current) return;
+        setDrafts((current) => ({ ...current, [photoId]: { text, name } }));
+      },
+      (caught: unknown) => {
+        if (!alive.current) return;
         setReads((current) => ({
           ...current,
           [photoId]: { status: "error", message: messageOf(caught) },
         }));
-      } finally {
-        if (inFlight.current.get(photoId) === controller)
-          inFlight.current.delete(photoId);
-      }
-    })();
-  }, [photoId, photoName, attempt, cache, started]);
+      },
+    );
+  }, [photoId, photoName, attempt, turn, store, attached]);
 
   if (!photo) return null;
 
   const retry = () => {
-    started.delete(photo.id);
+    attached.delete(photo.id);
     setReads((current) => {
       const next = { ...current };
       delete next[photo.id];
@@ -293,6 +305,12 @@ export default function EnglishPhotoReadDialog({
         ),
       );
       onSaved(body.data);
+      // 저장한 글 · 이름을 부모 쪽에도 남긴다 — 창을 닫았다 열어도 그 글로 시작하고, 그대로면 다시 저장하지 않는다
+      store.done.set(photo.id, {
+        text: draft.text,
+        name: draft.name,
+        saved: true,
+      });
       if (!alive.current) return;
       // 저장한 글이 곧 기준이다 — 다시 돌아와도 «고친 글»로 세지 않는다
       setReads((current) => ({

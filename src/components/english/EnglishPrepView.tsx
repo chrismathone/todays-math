@@ -30,7 +30,9 @@ import {
 import AutoGrowTextarea from "./AutoGrowTextarea";
 import EnglishDialog from "./EnglishDialog";
 import EnglishExamPicker from "./EnglishExamPicker";
-import EnglishPhotoReadDialog from "./EnglishPhotoReadDialog";
+import EnglishPhotoReadDialog, {
+  createEnglishReadCache,
+} from "./EnglishPhotoReadDialog";
 import {
   MATERIAL_ACCEPT,
   MATERIAL_BAD_TYPE,
@@ -107,8 +109,8 @@ export default function EnglishPrepView({
     null,
   );
   const readRef = useRef<HTMLElement | null>(null);
-  /** 읽어 둔 글(자료 id → 글) — 창을 닫았다 열어도 같은 사진을 다시 읽지 않는다 */
-  const [readCache] = useState(() => new Map<string, string>());
+  /** 읽어 둔 글 · 읽는 중인 요청(자료 id 로) — 창을 닫았다 열어도 같은 사진을 다시 읽지 않는다 */
+  const [readCache] = useState(createEnglishReadCache);
   const [examDeleting, setExamDeleting] = useState(false);
   const [busy, setBusy] = useState(false);
   const [dialogError, setDialogError] = useState<string | null>(null);

@@ -62,8 +62,10 @@ const TEACHER: Viewer = {
 const JPEG = new Uint8Array([0xff, 0xd8, 0xff, 0xe0, 1, 2, 3]);
 const PNG = new Uint8Array([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 9]);
 const PDF = new Uint8Array([37, 80, 68, 70]);
-const READ_FAILED =
+const READ_EMPTY =
   "글을 읽지 못했습니다. 사진이 흐리거나 글자가 작을 수 있습니다. 다시 찍어 올리거나 지문을 직접 입력해 주세요.";
+const READ_FAILED =
+  "글을 읽지 못했습니다. 다시 시도하거나 지문을 직접 입력해 주세요.";
 
 const withId = (id: string) => ({ params: Promise.resolve({ id }) });
 const request = (
@@ -101,8 +103,9 @@ beforeEach(() => {
   ])
     vi.stubEnv(key, "");
   vi.stubEnv("GEMINI_API_KEY", "test-key");
-  // 한 번만 읽는다 — 대조(둘째 호출)는 아래에서 따로 켜고 본다(뒷단의 갈래는 englishReadPhoto.test.ts)
+  // 한 번만 읽는다 — 대조 · 따로 읽기는 아래에서 따로 켜고 본다(뒷단의 갈래는 englishReadPhoto.test.ts)
   vi.stubEnv("ENGLISH_READ_VERIFY", "off");
+  vi.stubEnv("ENGLISH_READ_TWICE", "off");
   model.run.mockReset();
   model.run.mockResolvedValue("Upcycling is a fun way to reuse old things.");
   vi.mocked(noteErrorLog).mockClear();
@@ -246,22 +249,36 @@ describe("POST /api/english/materials/[id]/read — 읽기", () => {
     expect(res.headers.get("Cache-Control")).toBe("private, no-store");
   });
 
-  it("200 — 기본 설정이면 읽은 글을 사진과 한 번 더 대조하고, 고친 글을 돌려준다", async () => {
+  it("200 — 기본 설정(Gemini)이면 읽기 둘 · 대조 하나를 부르고, 빈칸을 맞추고 다듬은 글을 돌려준다", async () => {
     vi.stubEnv("ENGLISH_READ_VERIFY", "");
+    vi.stubEnv("ENGLISH_READ_TWICE", "");
+    const first =
+      "1학년 1반 15번 이름:\nThe Earth gets hot________. When the ________ goes up.";
+    const other =
+      "1학년 반 번 이름:\nThe Earth gets h________. When the t________ goes up.";
+    let reads = 0;
     model.run
       .mockReset()
-      .mockResolvedValueOnce("Upcycling is a fan way to reuse old things.")
-      .mockResolvedValueOnce("Upcycling is a fun way to reuse old things.");
+      .mockImplementation(async (input: { prompt: string }) => {
+        // 대조는 받은 글을 그대로 돌려준다 · 읽기는 차례로 두 글
+        if (input.prompt.includes("[옮긴 글]"))
+          return input.prompt.split("[옮긴 글]\n")[1]!;
+        return reads++ === 0 ? first : other;
+      });
     const res = await readMaterial(request(photoId), withId(photoId));
     expect(res.status).toBe(200);
     const body = englishMaterialReadResponseSchema.parse(await res.json());
-    expect(body.data.text).toBe("Upcycling is a fun way to reuse old things.");
-    expect(model.run).toHaveBeenCalledTimes(2);
-    // 대조가 실패해도 읽기는 성공이다 — 처음 읽은 글
-    model.run
-      .mockReset()
-      .mockResolvedValueOnce("First read of the page.")
-      .mockRejectedValueOnce(new StudioApiError("모델 실패", 503, true));
+    // 빈칸 앞 글자는 따로 읽은 글로 맞추고(hot → h · 빠진 t), 이름 줄의 손으로 쓴 숫자는 걷는다
+    expect(body.data.text).toBe(
+      "1학년 반 번 이름:\nThe Earth gets h________. When the t________ goes up.",
+    );
+    expect(model.run).toHaveBeenCalledTimes(3);
+    // 덧붙인 호출이 실패해도 읽기는 성공이다 — 처음 읽은 글
+    reads = 0;
+    model.run.mockReset().mockImplementation(async () => {
+      if (reads++ === 0) return "First read of the page.";
+      throw new StudioApiError("모델 실패", 503, true);
+    });
     const kept = await readMaterial(request(photoId), withId(photoId));
     expect(kept.status).toBe(200);
     expect(
@@ -404,7 +421,7 @@ describe("POST /api/english/materials/[id]/read — 읽기", () => {
     ).rejects.toThrow("boom");
   });
 
-  it("502 — 모델이 실패했거나 글이 비어 있으면 «읽지 못했습니다»", async () => {
+  it("502 — 모델이 거절했거나 끝까지 쓰지 않았으면 «읽지 못했습니다»(사진 탓이라 하지 않는다) · 글이 비었으면 사진을 다시 찍어 보라고 한다", async () => {
     const failed = READ_FAILED;
     // Gemini 가 끝까지 쓰지 않았다(finishReason ≠ STOP) — 배관의 기본 상태 502. 상류가 사진을 거절한 400 도 같다
     for (const error of [
@@ -430,6 +447,6 @@ describe("POST /api/english/materials/[id]/read — 읽기", () => {
     model.run.mockResolvedValue("   \n  ");
     const empty = await readMaterial(request(photoId), withId(photoId));
     expect(empty.status).toBe(502);
-    expect(await messageOf(empty)).toBe(failed);
+    expect(await messageOf(empty)).toBe(READ_EMPTY);
   });
 });

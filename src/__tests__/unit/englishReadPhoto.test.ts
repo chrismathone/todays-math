@@ -23,6 +23,7 @@ import {
   isReadablePhoto,
   readEnglishPhoto,
   resolveEnglishReadModel,
+  resolveEnglishReadTwice,
   resolveEnglishReadVerify,
   type ReadEnglishPhotoOptions,
 } from "@/lib/english/readPhoto";
@@ -98,6 +99,21 @@ describe("받은 글 다듬기", () => {
     );
     // 백틱 넷으로 감싼 글 · 닫는 펜스 뒤의 빈칸
     expect(cleanEnglishReadText("````text\nBody.\n````  ")).toBe("Body.");
+    // 첫 줄이 낱말 하나여도 글이다 — 언어 이름으로 알고 버리지 않는다(아는 이름만 걷는다)
+    expect(cleanEnglishReadText("```Vocabulary\napple 사과")).toBe(
+      "Vocabulary\napple 사과",
+    );
+    expect(cleanEnglishReadText("```Hello\n```")).toBe("Hello");
+  });
+
+  it("닫는 펜스 뒤에 붙은 설명은 버린다", () => {
+    expect(
+      cleanEnglishReadText(
+        "```\nBody line.\n```\n위 글은 사진의 인쇄된 글자를 옮긴 것입니다.",
+      ),
+    ).toBe("Body line.");
+    // 여는 펜스 없이 끝에만 남은 펜스
+    expect(cleanEnglishReadText("Body line.\n```")).toBe("Body line.");
   });
 
   it("자료 지문 상한(30,000자)에서 자른다", () => {
@@ -201,10 +217,43 @@ describe("읽는 모델 고르기", () => {
     for (const env of [
       { GEMINI_API_KEY: "g", ENGLISH_READ_MODEL: "gemini-9" },
       { GEMINI_API_KEY: "g", ENGLISH_READ_MODEL: "claude-sonnet-5-5" },
+      {
+        GEMINI_API_KEY: "g",
+        ANTHROPIC_API_KEY: "a",
+        ENGLISH_READ_VENDOR: "gemini",
+        ENGLISH_READ_MODEL: "claude-opus-5-5",
+      },
     ])
       expect(() => resolveEnglishReadModel(env)).toThrow(
         EnglishReadConfigError,
       );
+  });
+
+  it("모델만 적으면 그 모델의 제공자로 간다 — 제공자 변수를 따로 안 넣어도 된다", () => {
+    expect(
+      resolveEnglishReadModel({
+        GEMINI_API_KEY: "g",
+        ANTHROPIC_API_KEY: "a",
+        ENGLISH_READ_MODEL: "claude-sonnet-5-5",
+      }),
+    ).toEqual({ vendor: "anthropic", model: "claude-sonnet-5-5" });
+  });
+
+  it("Claude 는 읽기를 재서 쓸 만했던 것만 고를 수 있다 — Haiku 4.5 는 열한 장을 다 틀렸다", () => {
+    for (const model of ["claude-haiku-4-5", "claude-opus-4-7"])
+      expect(() =>
+        resolveEnglishReadModel({
+          ANTHROPIC_API_KEY: "a",
+          ENGLISH_READ_MODEL: model,
+        }),
+      ).toThrow(EnglishReadConfigError);
+    for (const model of ["claude-opus-5", "claude-sonnet-4-6"])
+      expect(
+        resolveEnglishReadModel({
+          ANTHROPIC_API_KEY: "a",
+          ENGLISH_READ_MODEL: model,
+        }).model,
+      ).toBe(model);
   });
 });
 
@@ -230,8 +279,12 @@ describe("사진인가 — 바이트의 머리로 본다", () => {
 describe("readEnglishPhoto", () => {
   const photo = { mimeType: "image/jpeg", bytes: JPEG };
   const signal = new AbortController().signal;
-  /** 한 번만 읽는 설정 — 대조는 아래 «한 번 더 대조»에서 따로 본다 */
-  const ONCE = { GEMINI_API_KEY: "g", ENGLISH_READ_VERIFY: "off" };
+  /** 한 번만 읽는 설정 — 대조 · 두 번 읽기는 아래에서 따로 본다 */
+  const ONCE = {
+    GEMINI_API_KEY: "g",
+    ENGLISH_READ_VERIFY: "off",
+    ENGLISH_READ_TWICE: "off",
+  };
 
   it("사진을 data URL 로 실어 한 번 부르고, 다듬은 글을 돌려준다", async () => {
     const run = vi.fn<Run>(async () => "```\nUpcycling is fun.\n```");
@@ -273,7 +326,7 @@ describe("readEnglishPhoto", () => {
   it("글이 비어 있으면 «읽지 못함»이다 — 빈 지문을 만들지 않는다", async () => {
     await expect(
       readEnglishPhoto(photo, {
-        env: { GEMINI_API_KEY: "g" },
+        env: ONCE,
         run: async () => "```\n\n```",
         signal,
       }),
@@ -287,18 +340,31 @@ describe("readEnglishPhoto", () => {
     ).rejects.toBeInstanceOf(EnglishReadConfigError);
     expect(run).not.toHaveBeenCalled();
   });
+
+  it("읽은 글에는 늘 추측 보정이 걸린다 — 이름 줄의 손으로 쓴 숫자", async () => {
+    const run = vi.fn<Run>(
+      async () => "1학년 1반 15번 이름:\n\nUpcycling is fun.",
+    );
+    expect(await readEnglishPhoto(photo, { env: ONCE, run, signal })).toBe(
+      "1학년 반 번 이름:\n\nUpcycling is fun.",
+    );
+  });
 });
+
+/** 지시문으로 호출을 가른다 — 읽기(둘이 나란히 나간다)와 대조 */
+const isVerify = (prompt: string) => prompt.includes("[옮긴 글]");
 
 describe("한 번 더 대조", () => {
   const photo = { mimeType: "image/jpeg", bytes: JPEG };
   const signal = new AbortController().signal;
-  const env = { GEMINI_API_KEY: "g" };
+  /** 대조만 본다 — 두 번 읽기는 끈다 */
+  const env = { GEMINI_API_KEY: "g", ENGLISH_READ_TWICE: "off" };
   const FIRST =
     "Droughts are caused by hot weather. Trees add water to the air.";
   const FIXED =
     "Droughts are caused by h________ weather. Trees add w________ to the air.";
 
-  it("기본은 잰 대로다 — Gemini 는 켬(흠이 절반으로 줄었다), 다른 제공자는 끔. ENGLISH_READ_VERIFY 가 있으면 그것을 따른다", () => {
+  it("기본은 잰 대로다 — Gemini 는 켬, 다른 제공자는 끔. ENGLISH_READ_VERIFY 가 있으면 그것을 따른다", () => {
     expect(resolveEnglishReadVerify({}, "gemini")).toBe(true);
     expect(resolveEnglishReadVerify({}, "anthropic")).toBe(false);
     expect(resolveEnglishReadVerify({}, "openai")).toBe(false);
@@ -313,23 +379,6 @@ describe("한 번 더 대조", () => {
       expect(
         resolveEnglishReadVerify({ ENGLISH_READ_VERIFY: value }, "anthropic"),
       ).toBe(true);
-  });
-
-  it("Claude 로 읽으면 한 번만 부른다 — 켜면 두 번", async () => {
-    const once = vi.fn<Run>(async () => FIRST);
-    await readEnglishPhoto(photo, {
-      env: { ANTHROPIC_API_KEY: "a" },
-      run: once,
-      signal,
-    });
-    expect(once).toHaveBeenCalledTimes(1);
-    const twice = vi.fn<Run>(async () => FIRST);
-    await readEnglishPhoto(photo, {
-      env: { ANTHROPIC_API_KEY: "a", ENGLISH_READ_VERIFY: "on" },
-      run: twice,
-      signal,
-    });
-    expect(twice).toHaveBeenCalledTimes(2);
   });
 
   it("대조 지시문은 읽기 지시문과 읽은 글을 같이 싣는다", () => {
@@ -356,10 +405,27 @@ describe("한 번 더 대조", () => {
     expect(second.model).toBe(run.mock.calls[0]![0].model);
   });
 
+  it("Claude 로 읽으면 한 번만 부른다 — 켜면 두 번", async () => {
+    const once = vi.fn<Run>(async () => FIRST);
+    await readEnglishPhoto(photo, {
+      env: { ANTHROPIC_API_KEY: "a" },
+      run: once,
+      signal,
+    });
+    expect(once).toHaveBeenCalledTimes(1);
+    const twice = vi.fn<Run>(async () => FIRST);
+    await readEnglishPhoto(photo, {
+      env: { ANTHROPIC_API_KEY: "a", ENGLISH_READ_VERIFY: "on" },
+      run: twice,
+      signal,
+    });
+    expect(twice).toHaveBeenCalledTimes(2);
+  });
+
   it("Claude 5.5 는 생각 강도를 낮춰 부른다 — 잰 설정 그대로. Gemini · 다른 Claude 에는 강도를 싣지 않는다", async () => {
-    const effortOf = async (env: Record<string, string>) => {
+    const effortOf = async (vars: Record<string, string>) => {
       const run = vi.fn<Run>(async () => FIRST);
-      await readEnglishPhoto(photo, { env, run, signal });
+      await readEnglishPhoto(photo, { env: vars, run, signal });
       return run.mock.calls[0]![0].effort;
     };
     expect(await effortOf({ ANTHROPIC_API_KEY: "a" })).toBe("low");
@@ -377,7 +443,11 @@ describe("한 번 더 대조", () => {
       }),
     ).toBeUndefined();
     expect(
-      await effortOf({ GEMINI_API_KEY: "g", ENGLISH_READ_VERIFY: "off" }),
+      await effortOf({
+        GEMINI_API_KEY: "g",
+        ENGLISH_READ_VERIFY: "off",
+        ENGLISH_READ_TWICE: "off",
+      }),
     ).toBeUndefined();
   });
 
@@ -392,14 +462,50 @@ describe("한 번 더 대조", () => {
     expect(run).toHaveBeenCalledTimes(1);
   });
 
-  it("대조한 글이 비었거나 터무니없이 짧으면 처음 읽은 글을 쓴다", async () => {
-    for (const second of ["", "고칠 곳이 없습니다.", "Droughts are"]) {
+  it("대조한 글이 같은 사진의 글로 보이지 않으면 처음 읽은 글을 쓴다", async () => {
+    const reject = async (first: string, second: string) => {
       const run = vi
         .fn<Run>()
-        .mockResolvedValueOnce(FIRST)
+        .mockResolvedValueOnce(first)
         .mockResolvedValueOnce(second);
-      expect(await readEnglishPhoto(photo, { env, run, signal })).toBe(FIRST);
-    }
+      return readEnglishPhoto(photo, { env, run, signal });
+    };
+    // 비었거나 터무니없이 짧다 · «고칠 곳이 없습니다» 같은 말이다
+    for (const second of ["", "고칠 곳이 없습니다.", "Droughts are"])
+      expect(await reject(FIRST, second)).toBe(FIRST);
+    // 처음 글이 짧아도 딴말은 받지 않는다(길이만 보면 받게 된다)
+    expect(await reject("Wet floor", "고칠 곳이 없습니다.")).toBe("Wet floor");
+    // 지시문을 되뱉었다
+    expect(await reject(FIRST, buildEnglishReadVerifyPrompt(FIRST))).toBe(
+      FIRST,
+    );
+    // 표지만 되뱉었다 — 길이도 낱말도 비슷해서, 표지를 보지 않으면 그 줄이 지문에 섞인다
+    expect(await reject(FIRST, `[옮긴 글]\n${FIXED}`)).toBe(FIRST);
+    // 전혀 다른 글 · 터무니없이 긴 글
+    expect(
+      await reject(
+        FIRST,
+        "Earth Day is a special day to emphasize the importance of nature.",
+      ),
+    ).toBe(FIRST);
+    expect(await reject(FIRST, `${FIRST} ${"extra words ".repeat(60)}`)).toBe(
+      FIRST,
+    );
+  });
+
+  it("빠뜨린 줄을 채워 길어진 글 · 손글씨를 걷어 짧아진 글은 받는다", async () => {
+    const accept = async (first: string, second: string) => {
+      const run = vi
+        .fn<Run>()
+        .mockResolvedValueOnce(first)
+        .mockResolvedValueOnce(second);
+      return readEnglishPhoto(photo, { env, run, signal });
+    };
+    const table = "period\ncover\nreason\nflood";
+    const filled = "period 수업 시간\ncover 다루다\nreason 이유\nflood 홍수";
+    expect(await accept(table, filled)).toBe(filled);
+    const leaked = `${FIRST} 가뭄은 더운 날씨 때문이다 나무는 물을 더한다`;
+    expect(await accept(leaked, FIRST)).toBe(FIRST);
   });
 
   it("대조가 실패해도 읽기는 성공이다 — 처음 읽은 글을 돌려준다", async () => {
@@ -415,15 +521,28 @@ describe("한 번 더 대조", () => {
     }
   });
 
-  it("화면이 요청을 끊었으면 처음 읽은 글을 돌려주지 않고 그대로 던진다", async () => {
-    const controller = new AbortController();
+  it("대조에서 난 우리 쪽 결함(모르는 예외)은 덮지 않는다", async () => {
     const run = vi
       .fn<Run>()
       .mockResolvedValueOnce(FIRST)
-      .mockImplementationOnce(async () => {
-        controller.abort();
-        throw controller.signal.reason;
+      .mockRejectedValueOnce(new TypeError("boom"));
+    await expect(readEnglishPhoto(photo, { env, run, signal })).rejects.toThrow(
+      "boom",
+    );
+  });
+
+  it("화면이 요청을 끊으면 대조 호출도 끊기고, 처음 읽은 글을 돌려주지 않는다", async () => {
+    const controller = new AbortController();
+    const run = vi.fn<Run>(async (input) => {
+      if (!isVerify(input.prompt)) return FIRST;
+      // 배관처럼 신호가 끊길 때까지 기다린다 — 대조의 신호가 화면의 신호에 이어져 있어야 끝난다
+      queueMicrotask(() => controller.abort());
+      return new Promise<string>((_, reject) => {
+        input.signal.addEventListener("abort", () =>
+          reject(input.signal.reason),
+        );
       });
+    });
     await expect(
       readEnglishPhoto(photo, { env, run, signal: controller.signal }),
     ).rejects.toMatchObject({ name: "AbortError" });
@@ -437,11 +556,142 @@ describe("한 번 더 대조", () => {
     expect(run).toHaveBeenCalledTimes(1);
   });
 
-  it("대조 호출에는 제 시간 한도가 있다 — 처음 읽기가 길었어도 요청 전체가 끝없이 늘지 않는다", async () => {
-    const run = vi.fn<Run>(async () => FIRST);
-    await readEnglishPhoto(photo, { env, run, signal });
-    const second = run.mock.calls[1]![0].signal;
-    expect(second).not.toBe(signal);
-    expect(second.aborted).toBe(false);
+  it("대조 호출에는 제 시간 한도가 있다 — 넘기면 끊기고 처음 읽은 글을 쓴다", async () => {
+    let verifySignal: AbortSignal | undefined;
+    const run = vi.fn<Run>(async (input) => {
+      if (!isVerify(input.prompt)) return FIRST;
+      verifySignal = input.signal;
+      return new Promise<string>((_, reject) => {
+        input.signal.addEventListener("abort", () =>
+          reject(input.signal.reason),
+        );
+      });
+    });
+    const text = await readEnglishPhoto(photo, {
+      env,
+      run,
+      signal,
+      verifyBudgetMs: 20,
+    });
+    expect(text).toBe(FIRST);
+    expect(verifySignal?.aborted).toBe(true);
+    expect(signal.aborted).toBe(false);
+  });
+});
+
+describe("두 번 읽어 빈칸 맞추기", () => {
+  const photo = { mimeType: "image/jpeg", bytes: JPEG };
+  const signal = new AbortController().signal;
+  const env = { GEMINI_API_KEY: "g" };
+  const A = "The Earth gets hot________. When the ________ goes up.";
+  const B = "The Earth gets h________. When the t________ goes up.";
+  const FIXED = "The Earth gets h________. When the t________ goes up.";
+
+  /** 읽기 호출은 차례로 A · B 를, 대조는 받은 글을 그대로 돌려준다 */
+  const reader = (reads: (string | Error)[]) => {
+    let at = 0;
+    return vi.fn<Run>(async (input) => {
+      if (isVerify(input.prompt)) return input.prompt.split("[옮긴 글]\n")[1]!;
+      const next = reads[at++]!;
+      if (next instanceof Error) throw next;
+      return next;
+    });
+  };
+
+  it("기본은 잰 대로다 — Gemini 는 켬, 다른 제공자는 끔. ENGLISH_READ_TWICE 로 켜고 끈다", () => {
+    expect(resolveEnglishReadTwice({}, "gemini")).toBe(true);
+    expect(resolveEnglishReadTwice({}, "anthropic")).toBe(false);
+    expect(
+      resolveEnglishReadTwice({ ENGLISH_READ_TWICE: "off" }, "gemini"),
+    ).toBe(false);
+    expect(
+      resolveEnglishReadTwice({ ENGLISH_READ_TWICE: "on" }, "anthropic"),
+    ).toBe(true);
+  });
+
+  it("Gemini 는 같은 사진을 따로 한 번 더 읽어, 빈칸 자리를 맞춘다 — 호출 셋(읽기 둘 + 대조)", async () => {
+    const run = reader([A, B]);
+    expect(await readEnglishPhoto(photo, { env, run, signal })).toBe(FIXED);
+    expect(run).toHaveBeenCalledTimes(3);
+    const prompts = run.mock.calls.map(([input]) => input.prompt);
+    expect(prompts.filter((prompt) => !isVerify(prompt))).toEqual([
+      buildEnglishReadPrompt(),
+      buildEnglishReadPrompt(),
+    ]);
+    // 대조는 처음 읽은 글로 한다(따로 읽은 글은 맞출 때만 쓴다)
+    expect(prompts.find(isVerify)).toBe(buildEnglishReadVerifyPrompt(A));
+  });
+
+  it("두 읽기는 나란히 나간다 — 처음 읽기를 기다렸다 띄우지 않는다", async () => {
+    let release: (text: string) => void = () => undefined;
+    let reads = 0;
+    const run = vi.fn<Run>(async (input) => {
+      if (isVerify(input.prompt)) return input.prompt.split("[옮긴 글]\n")[1]!;
+      reads++;
+      if (reads === 1)
+        return new Promise<string>((resolve) => {
+          release = resolve;
+        });
+      return B;
+    });
+    const pending = readEnglishPhoto(photo, { env, run, signal });
+    await vi.waitFor(() => expect(reads).toBe(2));
+    release(A);
+    expect(await pending).toBe(FIXED);
+  });
+
+  it("따로 읽기가 실패해도 읽기는 성공이다 — 맞추지 않을 뿐이다", async () => {
+    for (const error of [
+      new StudioApiError("모델 API 요청에 실패했습니다.", 503, true),
+      new DOMException("The operation timed out.", "TimeoutError"),
+    ]) {
+      const run = reader([A, error]);
+      expect(await readEnglishPhoto(photo, { env, run, signal })).toBe(A);
+    }
+    // 따로 읽은 글이 비어도 같다
+    expect(
+      await readEnglishPhoto(photo, { env, run: reader([A, "  "]), signal }),
+    ).toBe(A);
+  });
+
+  it("따로 읽기에서 난 우리 쪽 결함은 덮지 않는다", async () => {
+    await expect(
+      readEnglishPhoto(photo, {
+        env,
+        run: reader([A, new TypeError("boom")]),
+        signal,
+      }),
+    ).rejects.toThrow("boom");
+  });
+
+  it("처음 읽기가 실패하면 따로 읽기도 끊는다 — 받을 쪽이 없는 호출을 남기지 않는다", async () => {
+    let companion: AbortSignal | undefined;
+    let reads = 0;
+    const run = vi.fn<Run>(async (input) => {
+      reads++;
+      if (reads === 1) throw new StudioApiError("모델 실패", 500, true);
+      companion = input.signal;
+      return new Promise<string>((_, reject) => {
+        input.signal.addEventListener("abort", () =>
+          reject(input.signal.reason),
+        );
+      });
+    });
+    await expect(
+      readEnglishPhoto(photo, { env, run, signal }),
+    ).rejects.toBeInstanceOf(StudioApiError);
+    expect(companion?.aborted).toBe(true);
+  });
+
+  it("끄면 따로 읽지 않는다", async () => {
+    const run = reader([A, B]);
+    expect(
+      await readEnglishPhoto(photo, {
+        env: { ...env, ENGLISH_READ_TWICE: "off" },
+        run,
+        signal,
+      }),
+    ).toBe(A);
+    expect(run).toHaveBeenCalledTimes(2);
   });
 });

@@ -20,7 +20,8 @@ import w from "@/components/unified/Workroom.module.css";
  *
  * 브라우저가 스스로 닫는 때가 있다 — Esc 를 거듭 누르면 둘째 `cancel` 은 막을 수 없다(닫기 감시자). 그때 바쁘거나
  * (`busy`) 부모가 닫기를 받아들이지 않으면(저장하지 않은 글을 묻는 중) **다시 연다** — 닫힌 창이 상태만 남아
- * 화면이 죽지 않게(검토 2026-10-06 «사진에서 글 읽기»).
+ * 화면이 죽지 않게(검토 2026-10-06 «사진에서 글 읽기»). 다시 열면 브라우저가 초점을 첫 단추로 옮기므로,
+ * 마지막으로 있던 자리(글 칸의 커서)로 되돌린다.
  */
 export default function EnglishDialog({
   title,
@@ -43,6 +44,8 @@ export default function EnglishDialog({
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const pressedOutside = useRef(false);
+  /** 창 안에서 마지막으로 초점이 있던 자리 — 스스로 닫힌 창을 다시 열 때 그리로 돌아간다 */
+  const lastFocus = useRef<HTMLElement | null>(null);
   const titleId = useId();
   const [host] = useState(workspaceHost);
 
@@ -76,8 +79,20 @@ export default function EnglishDialog({
         if (!busy) onClose();
         // 부모가 닫았으면 창은 이미 문서에 없다. 남아 있으면 닫을 수 없는 때다 — 다시 연다
         window.setTimeout(() => {
-          if (dialog.isConnected && !dialog.open) dialog.showModal();
+          if (!dialog.isConnected || dialog.open) return;
+          // 여는 순간 브라우저가 초점을 옮긴다(그 초점도 «마지막 자리»로 적힌다) — 그 전에 집어 둔다
+          const last = lastFocus.current;
+          dialog.showModal();
+          if (last?.isConnected && dialog.contains(last))
+            last.focus({ preventScroll: true });
         }, 0);
+      }}
+      onFocus={(event) => {
+        if (
+          event.target instanceof HTMLElement &&
+          event.target !== event.currentTarget
+        )
+          lastFocus.current = event.target;
       }}
       onPointerDown={(event) => {
         pressedOutside.current =

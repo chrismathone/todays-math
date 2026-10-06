@@ -9,8 +9,9 @@
  * 3. 고친 글이 있으면 넘기기 · 닫기 전에 묻는다. 이미 읽은 사진으로 돌아가면 **다시 읽지 않는다**(읽을 때마다 AI 호출).
  * 4. 읽지 못하면 서버 문구와 «다시 읽기».
  * 5. 자료 줄의 «글 읽기»는 사진 자료에만 있다. «자료 추가»의 셋째 탭은 올린 뒤 읽기 창을 연다.
- * 6. 값이 드는 호출을 겹치거나 되풀이하지 않는다(검토 2026-10-06) — 넘기면 읽던 요청을 끊고, 창을 닫았다 열어도
- *    읽어 둔 글을 쓰고, 저장한 그대로면 다시 저장하지 않는다. «올리고 읽기»로 연 창은 그 사진 한 장만 본다.
+ * 6. 값이 드는 호출을 겹치거나 되풀이하지 않는다(검토 2026-10-06) — 읽던 요청은 끊지 않고 받아 두고(운영은 화면이 끊어도
+ *    서버가 모른다), 한 번에 둘까지만 띄우고, 창을 닫았다 열어도 읽어 둔 글 · 저장한 글을 쓰고, 저장한 그대로면 다시 저장하지
+ *    않는다. «올리고 읽기»로 연 창은 그 사진 한 장만 본다.
  * 7. 브라우저가 창을 스스로 닫아도(Esc 를 거듭) 고친 글을 묻는 창은 죽지 않는다 — 다시 열린다.
  */
 import { http, HttpResponse } from "msw";
@@ -22,9 +23,13 @@ import {
   waitFor,
   within,
 } from "@testing-library/react";
+import { useState } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import EnglishPhotoReadDialog from "@/components/english/EnglishPhotoReadDialog";
+import EnglishPhotoReadDialog, {
+  createEnglishReadCache,
+  type EnglishReadCache,
+} from "@/components/english/EnglishPhotoReadDialog";
 import type {
   EnglishExam,
   EnglishMaterial,
@@ -130,7 +135,7 @@ afterEach(() => vi.restoreAllMocks());
 function open(
   startId = photos[0]!.id,
   list = photos,
-  cache?: Map<string, string>,
+  cache?: EnglishReadCache,
 ) {
   const onClose = vi.fn();
   const onSaved = vi.fn();
@@ -351,41 +356,44 @@ describe("[사진에서 글 읽기] 읽기 창", () => {
 });
 
 describe("[사진에서 글 읽기] 값이 드는 호출을 겹치거나 되풀이하지 않는다", () => {
-  it("넘기면 읽던 요청을 끊는다 — «다음»을 거듭 눌러도 읽기는 한 번에 하나다", async () => {
-    const signals: { url: string; signal: AbortSignal }[] = [];
+  it("넘겨도 읽던 요청을 끊지 않고 받아 둔다 — 돌아오면 다시 읽지 않는다 · 한 번에 둘까지만 띄운다", async () => {
+    const signals: (AbortSignal | undefined)[] = [];
     const realFetch = globalThis.fetch;
     vi.spyOn(globalThis, "fetch").mockImplementation((input, init) => {
       const url = typeof input === "string" ? input : (input as Request).url;
-      if (/\/read$/.test(url) && init?.signal)
-        signals.push({ url, signal: init.signal });
+      if (/\/read$/.test(url)) signals.push(init?.signal ?? undefined);
       return realFetch(input, init);
     });
     holdReads();
     open();
-    await waitFor(() => expect(signals).toHaveLength(1));
+    await waitFor(() => expect(reads).toHaveLength(1));
     fireEvent.click(button("다음"));
-    await waitFor(() => expect(signals).toHaveLength(2));
+    await waitFor(() => expect(reads).toHaveLength(2));
+    // 셋째 사진 — 읽기 둘이 도는 동안은 띄우지 않고 기다린다(서버의 «한 사람 둘»에 걸리지 않게)
     fireEvent.click(button("다음"));
-    await waitFor(() => expect(signals).toHaveLength(3));
-    expect(signals.map((item) => item.signal.aborted)).toEqual([
-      true,
-      true,
-      false,
-    ]);
-    release();
     expect(await screen.findByText("3 / 3")).toBeVisible();
-    expect(await textBox()).toHaveValue("Passage of page 3.");
-    // 끊긴 사진으로 돌아가면 다시 읽는다(끊긴 요청의 글은 쓰지 않는다)
+    expect(screen.getByText(/글을 읽는 중입니다/)).toBeVisible();
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    expect(reads).toEqual([photos[0]!.id, photos[1]!.id]);
+    // 끊은 요청은 없다
+    expect(signals.every((signal) => !signal?.aborted)).toBe(true);
+    release();
     hold = null;
+    // 자리가 나면 셋째를 읽는다
+    expect(await textBox()).toHaveValue("Passage of page 3.");
+    expect(reads).toEqual([photos[0]!.id, photos[1]!.id, photos[2]!.id]);
+    // 넘기고 떠난 사진의 글은 받아 두었다 — 돌아가도 다시 읽지 않는다
     fireEvent.click(button("이전"));
-    await waitFor(async () =>
-      expect(await textBox()).toHaveValue("Passage of page 2."),
-    );
-    expect(signals).toHaveLength(4);
+    expect(await screen.findByText("2 / 3")).toBeVisible();
+    expect(await textBox()).toHaveValue("Passage of page 2.");
+    fireEvent.click(button("이전"));
+    expect(await screen.findByText("1 / 3")).toBeVisible();
+    expect(await textBox()).toHaveValue("Passage of page 1.");
+    expect(reads).toHaveLength(3);
   });
 
   it("창을 닫았다 다시 열어도 읽어 둔 사진은 다시 읽지 않는다", async () => {
-    const cache = new Map<string, string>();
+    const cache = createEnglishReadCache();
     const first = open(photos[0]!.id, photos, cache);
     expect(await textBox()).toHaveValue("Passage of page 1.");
     first.unmount();
@@ -396,25 +404,78 @@ describe("[사진에서 글 읽기] 값이 드는 호출을 겹치거나 되풀�
     expect(reads).toEqual([photos[0]!.id]);
   });
 
-  it("읽는 중에 닫으면 요청을 끊고, 다시 열면 한 번만 다시 읽는다", async () => {
-    const signals: AbortSignal[] = [];
-    const realFetch = globalThis.fetch;
-    vi.spyOn(globalThis, "fetch").mockImplementation((input, init) => {
-      const url = typeof input === "string" ? input : (input as Request).url;
-      if (/\/read$/.test(url) && init?.signal) signals.push(init.signal);
-      return realFetch(input, init);
-    });
-    const cache = new Map<string, string>();
+  it("읽는 중에 닫아도 읽던 글은 받아 둔다 — 다시 열면 그 요청에 붙고, 다시 부르지 않는다", async () => {
+    const cache = createEnglishReadCache();
     holdReads();
     const first = open(photos[0]!.id, photos, cache);
-    await waitFor(() => expect(signals).toHaveLength(1));
+    await waitFor(() => expect(reads).toHaveLength(1));
     first.unmount();
-    await waitFor(() => expect(signals[0]!.aborted).toBe(true));
+    // 읽는 중에 다시 연다 — 같은 사진을 한 번 더 부르지 않는다
+    open(photos[0]!.id, photos, cache);
+    expect(screen.getByText(/글을 읽는 중입니다/)).toBeVisible();
     release();
     hold = null;
+    expect(await textBox()).toHaveValue("Passage of page 1.");
+    expect(reads).toEqual([photos[0]!.id]);
+  });
+
+  it("닫은 창이 띄워 둔 읽기 둘이 도는 중에 다른 사진으로 열면, 자리가 날 때 읽는다", async () => {
+    const cache = createEnglishReadCache();
+    holdReads();
+    const first = open(photos[0]!.id, photos, cache);
+    await waitFor(() => expect(reads).toHaveLength(1));
+    fireEvent.click(button("다음"));
+    await waitFor(() => expect(reads).toHaveLength(2));
+    first.unmount();
+    // 새 창은 앞의 두 읽기에 붙어 있지 않다 — 그래도 그 둘이 끝나야 셋째를 띄운다
+    open(photos[2]!.id, photos, cache);
+    expect(screen.getByText(/글을 읽는 중입니다/)).toBeVisible();
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    expect(reads).toHaveLength(2);
+    release();
+    hold = null;
+    expect(await textBox()).toHaveValue("Passage of page 3.");
+    expect(reads).toEqual([photos[0]!.id, photos[1]!.id, photos[2]!.id]);
+  });
+
+  it("닫힌 뒤에 온 글도 받아 둔다 — 다시 열면 읽지 않는다", async () => {
+    const cache = createEnglishReadCache();
+    holdReads();
+    const first = open(photos[0]!.id, photos, cache);
+    await waitFor(() => expect(reads).toHaveLength(1));
+    first.unmount();
+    release();
+    hold = null;
+    await waitFor(() => expect(cache.done.has(photos[0]!.id)).toBe(true));
+    expect(cache.pending.size).toBe(0);
     open(photos[0]!.id, photos, cache);
     expect(await textBox()).toHaveValue("Passage of page 1.");
-    expect(signals).toHaveLength(2);
+    expect(reads).toEqual([photos[0]!.id]);
+  });
+
+  it("저장한 글은 창을 닫았다 열어도 남는다 — 그대로 다시 저장해도 자료가 둘째 줄로 생기지 않는다", async () => {
+    const cache = createEnglishReadCache();
+    const first = open(photos[2]!.id, photos, cache);
+    fireEvent.change(await textBox(), {
+      target: { value: "고쳐서 저장한 글" },
+    });
+    fireEvent.change(screen.getByRole("textbox", { name: "자료 이름" }), {
+      target: { value: "Lesson 2 본문" },
+    });
+    fireEvent.click(button("지문 자료로 저장"));
+    await waitFor(() => expect(first.onClose).toHaveBeenCalledTimes(1));
+    expect(saved).toHaveLength(1);
+    first.unmount();
+    const second = open(photos[2]!.id, photos, cache);
+    // 처음 읽은 글이 아니라 저장한 글 · 이름으로 시작한다
+    expect(await textBox()).toHaveValue("고쳐서 저장한 글");
+    expect(screen.getByRole("textbox", { name: "자료 이름" })).toHaveValue(
+      "Lesson 2 본문",
+    );
+    fireEvent.click(button("지문 자료로 저장"));
+    await waitFor(() => expect(second.onClose).toHaveBeenCalledTimes(1));
+    expect(saved).toHaveLength(1);
+    expect(reads).toEqual([photos[2]!.id]);
   });
 
   it("저장한 그대로면 다시 저장하지 않는다 — 같은 글 자료가 두 줄 되지 않는다", async () => {
@@ -464,11 +525,51 @@ describe("[사진에서 글 읽기] 창이 죽지 않는다", () => {
     expect(await textBox()).toHaveValue("고친 글");
   });
 
-  it("고친 글이 없으면 스스로 닫힌 창은 그대로 닫힌다", async () => {
-    const { onClose } = open();
+  it("고친 글이 없으면 스스로 닫힌 창은 그대로 닫힌다 — 다시 열리지 않는다", async () => {
+    // 부모가 닫기를 받아들여 창을 걷는다(자료 화면과 같은 결)
+    function Host() {
+      const [shown, setShown] = useState(true);
+      return shown ? (
+        <EnglishPhotoReadDialog
+          exam={exam}
+          photos={photos}
+          startId={photos[0]!.id}
+          onClose={() => setShown(false)}
+          onSaved={() => undefined}
+        />
+      ) : (
+        <p>닫힘</p>
+      );
+    }
+    render(<Host />);
     await textBox();
-    act(() => dialogElement().close());
-    expect(onClose).toHaveBeenCalledTimes(1);
+    const dialog = dialogElement();
+    const showModal = vi.spyOn(dialog, "showModal");
+    act(() => dialog.close());
+    expect(await screen.findByText("닫힘")).toBeVisible();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(showModal).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("dialog", { name: "사진에서 글 읽기" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("다시 열린 창은 초점을 있던 자리(글 칸)로 되돌린다", async () => {
+    open();
+    const area = await textBox();
+    fireEvent.change(area, { target: { value: "고친 글" } });
+    area.focus();
+    const dialog = dialogElement();
+    // 브라우저는 다시 열 때 초점을 첫 단추로 옮긴다 — 그 일을 흉내 낸다
+    vi.spyOn(dialog, "showModal").mockImplementation(function (
+      this: HTMLDialogElement,
+    ) {
+      this.setAttribute("open", "");
+      button("닫기").focus();
+    });
+    act(() => dialog.close());
+    await waitFor(() => expect(dialog).toHaveAttribute("open"));
+    expect(await textBox()).toHaveFocus();
   });
 
   it("저장하는 동안에는 스스로 닫혀도 닫지 않는다 — 다시 열린다", async () => {
