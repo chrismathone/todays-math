@@ -232,6 +232,32 @@ const ACTIVE_RULES: readonly Rule[] = [
     path: "/api/learn/math-srs/hint",
     why: "현재 문제 힌트 확인",
   },
+  // «오늘의 기억» 새 앱(2026-10-06) — 서버 문(`MATH_FADING`)이 꺼져 있으면 화면도 라우트도 404 로 답한다.
+  {
+    methods: PAGE,
+    path: "/learn/fading",
+    why: "오늘의 기억 — 새 앱의 첫 화면",
+  },
+  {
+    methods: PAGE,
+    path: "/learn/fading/**",
+    why: "오늘의 기억 — 새 앱의 화면(풀이 · 목록 · 통계 …)",
+  },
+  {
+    methods: ["GET", "POST"],
+    path: "/api/learn/fading",
+    why: "오늘의 기억 — 본인의 복습 상태 조회 · 풀이와 평가 저장",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/learn/fading/catalog",
+    why: "오늘의 기억 — 개념 목록",
+  },
+  {
+    methods: ["GET"],
+    path: "/api/learn/fading/concepts/{id}",
+    why: "오늘의 기억 — 개념 하나의 내용",
+  },
   { methods: ["GET"], path: "/api/learn/lectures", why: "강의 목록" },
   { methods: ["GET"], path: "/api/learn/lectures/{id}", why: "강의 하나" },
   { methods: ["POST"], path: "/api/learn/watch", why: "시청 기록" },

@@ -14,7 +14,17 @@ export function srsTeacherManagementRoute(method: string, path: string) {
     (["GET", "POST"].includes(method) &&
       /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path)) ||
     (method === "GET" &&
-      /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path))
+      /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path)) ||
+    // «오늘의 기억» 새 앱의 교사 현황(2026-10-06) — 읽기 둘뿐이다.
+    (method === "GET" && srsFadingTeacherPath(path))
+  );
+}
+
+/** «오늘의 기억» 새 앱의 교사 현황 끝점 — 반 현황과 학생 하나. */
+function srsFadingTeacherPath(path: string) {
+  return (
+    path === "/api/math-srs/fading" ||
+    /^\/api\/students\/[^/]+\/math-srs\/fading$/.test(path)
   );
 }
 
@@ -167,7 +177,8 @@ export function accountRouteAllowed(
   if (
     path === "/api/math-srs/course" ||
     /^\/api\/students\/[^/]+\/math-srs\/course$/.test(path) ||
-    /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path)
+    /^\/api\/students\/[^/]+\/math-srs\/explorers$/.test(path) ||
+    srsFadingTeacherPath(path)
   )
     return (
       srsTeacherManagementRoute(method, path) &&

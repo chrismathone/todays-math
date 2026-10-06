@@ -13,6 +13,7 @@ import {
 } from "@/lib/math-srs/testConsoleActions";
 import { createExplorerState } from "@/lib/math-explorers/engine";
 import { emptyCourseState } from "@/lib/math-srs/courseAutomation";
+import { emptyFading, pickFadingConcept } from "@/lib/fading/state";
 import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
 
 const studentId = "017c1a9b-b28a-4a5b-80b6-f1a21ccfeee2";
@@ -85,6 +86,20 @@ describe("부분 초기화", () => {
     expect(next.explorers).toBeUndefined();
     expect(next.course).toBe(state.course);
     expect(next.memories).toBe(state.memories);
+  });
+
+  it("오늘의 기억(새 앱)의 칸만 지우면 그 칸만 없어지고 나머지는 그대로다", () => {
+    const state = {
+      ...filled(),
+      fading: pickFadingConcept(emptyFading(), "m2-01-01-c1", "2026-10-06"),
+    };
+    const next = resetSrsPart(state, "fading");
+    expect(next.fading).toBeUndefined();
+    expect(next.explorers).toBe(state.explorers);
+    expect(next.course).toBe(state.course);
+    expect(parseSrsState(next).fading).toBeUndefined();
+    // 다른 칸을 지워도 새 칸은 남는다.
+    expect(resetSrsPart(state, "explorers").fading).toBe(state.fading);
   });
 
   it("코스·하루 여정·원정도 각자 제 칸만", () => {

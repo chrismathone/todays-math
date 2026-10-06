@@ -171,9 +171,12 @@ export function courseDetailDto(
   };
 }
 
-export async function loadCourseDashboard(
+/**
+ * 교사가 볼 수 있는 반과 학생, 그 학생들의 저장 줄 — «SRS 현황»과 «오늘의 기억» 새 앱의 교사 현황이 **같은 명단 · 같은 범위**를 쓴다.
+ * 주소의 지점(`branchId`)은 볼 수 있는 명단을 좁힐 뿐, 다른 지점을 열어 주지 않는다.
+ */
+export async function loadSrsRoster(
   viewer: ScopeViewer & { menus?: readonly string[]; role?: string },
-  now: Date,
   branchId?: string,
 ) {
   const accessible = await accessibleClassesWhere(viewer);
@@ -212,19 +215,34 @@ export async function loadCourseDashboard(
         branchRole: viewer.branchRole ?? null,
       },
       classes,
-      students: students.map((s) =>
-        courseRosterDto(
-          s,
-          states.get(s.id) ?? { revision: 0, state: emptySrsState() },
-          now,
-        ),
-      ),
+      students: students.map((student) => ({
+        student,
+        saved: states.get(student.id) ?? {
+          revision: 0,
+          state: emptySrsState(),
+        },
+      })),
     };
   } catch (error) {
     if (isMissingSrsStorage(error))
       throw new SrsUnavailable("학생 학습 기록 저장소를 준비 중입니다.");
     throw error;
   }
+}
+
+export async function loadCourseDashboard(
+  viewer: ScopeViewer & { menus?: readonly string[]; role?: string },
+  now: Date,
+  branchId?: string,
+) {
+  const roster = await loadSrsRoster(viewer, branchId);
+  return {
+    management: roster.management,
+    classes: roster.classes,
+    students: roster.students.map(({ student, saved }) =>
+      courseRosterDto(student, saved, now),
+    ),
+  };
 }
 
 export async function loadCourseStudentDetail(student: StudentRow, now: Date) {

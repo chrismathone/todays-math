@@ -19,6 +19,8 @@ import { bank as m3plus } from "./m3-plus";
  * 개념 백지 고정 문항 은행(D-150). 학년 파일 일곱을 트랙이 따로 채운다(겹치지 않게 파일을 나눴다).
  * 순서는 파일 안 순서 그대로 — 같은 고르기면 같은 지면(고정).
  * `*plus` 는 은행 3차 «난이도별 10문항» 보강(`plus.ts`) — 원래 파일 **뒤**에 이어 소단원 안에서 원래 문항이 앞에 온다.
+ * 🔴 뜻 문장(`concepts`)을 **더하거나 빼거나 소단원 · 난이도를 옮기면** «오늘의 기억»의 묶음 표(`src/lib/fading/groups/`)도 맞춘다 —
+ * `npx tsx scripts/qa/fading-grouping/sync.ts --write`. 안 맞추면 `fadingGroups.test.ts` 가 운다(문장의 글만 고친 것은 안 걸린다).
  */
 export const BANK_PARTS: Readonly<Record<string, ConceptBlankBank>> = {
   e3,

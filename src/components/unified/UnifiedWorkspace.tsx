@@ -47,6 +47,8 @@ import { DevAiProvider } from "./useDevAi";
 import DevAiStatusPanel from "./DevAiStatusPanel";
 import s from "./Workroom.module.css";
 import WorkspaceAccount, { type WorkspaceIdentity } from "./WorkspaceAccount";
+import type { FadingGate } from "@/lib/fading/enabled";
+import { SrsWorkspaceView } from "@/components/fading/teacher/SrsWorkspaceView";
 const BankView = dynamic(() => import("./BankView"), {
   loading: () => (
     <WorkProgress
@@ -237,11 +239,13 @@ export default function UnifiedWorkspace({
   storageScope,
   currentUser,
   allowedMenus,
+  fadingGate = "off",
 }: {
   initialData: BankData;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus?: WorkspaceMenu[];
+  fadingGate?: FadingGate;
 }) {
   const access = useWorkspaceAccess(currentUser, allowedMenus, storageScope);
   return (
@@ -252,6 +256,7 @@ export default function UnifiedWorkspace({
         storageScope={storageScope}
         currentUser={access.currentUser}
         allowedMenus={access.allowedMenus}
+        fadingGate={fadingGate}
       />
     </DevAiProvider>
   );
@@ -261,11 +266,13 @@ function UnifiedWorkspaceContent({
   storageScope,
   currentUser,
   allowedMenus,
+  fadingGate,
 }: {
   initialData: BankData;
   storageScope?: string;
   currentUser?: WorkspaceIdentity;
   allowedMenus: WorkspaceMenu[];
+  fadingGate: FadingGate;
 }) {
   const menuKey = allowedMenus.join(",");
   const branchId = currentUser?.branchId;
@@ -1486,7 +1493,11 @@ function UnifiedWorkspaceContent({
             )}
           {can("srs") && (opened.has("srs") || view === "srs") && (
             <main hidden={view !== "srs"} className={s.viewContent}>
-              <CourseDashboard textbookEnabled={can("textbook")} />
+              <SrsWorkspaceView
+                fadingGate={fadingGate}
+                branchId={branchId}
+                legacy={<CourseDashboard textbookEnabled={can("textbook")} />}
+              />
             </main>
           )}
           {can("textbook") &&

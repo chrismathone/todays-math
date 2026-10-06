@@ -1,5 +1,8 @@
 import "server-only";
+import type { Prisma } from "@prisma/client";
+import type { StoredFading } from "@/contracts/fading.contract";
 import { db } from "@/lib/db";
+import { emptyFading } from "@/lib/fading/state";
 import { updateDailyJourney } from "./dailyJourney";
 import {
   updateExpedition,
@@ -43,6 +46,29 @@ export const srsStateTable = () =>
  */
 export const srsStateTableIn = (tx: { studentSrsState: unknown }) =>
   tx.studentSrsState as SrsStateTable;
+
+/**
+ * 쓰기 직전에 **같은 트랜잭션 안에서** 확인(`guard`)을 돌리는 표 — 교사가 학생의 기록을 고칠 때
+ * «지금도 그 반을 고칠 수 있는가»를 쓰기와 한 묶음으로 본다. 읽기는 바깥 표 그대로다.
+ * 이 표를 직접 만지는 자리를 이 모듈 하나로 두려고 여기 있다(`mathSrsRecordIsolation.test.ts`).
+ */
+export function guardedSrsStateTable(
+  guard: (tx: Prisma.TransactionClient) => Promise<void>,
+): SrsStateTable {
+  return {
+    ...srsStateTable(),
+    create: (args) =>
+      db.$transaction(async (tx) => {
+        await guard(tx);
+        return srsStateTableIn(tx).create(args);
+      }),
+    updateMany: (args) =>
+      db.$transaction(async (tx) => {
+        await guard(tx);
+        return srsStateTableIn(tx).updateMany(args);
+      }),
+  };
+}
 
 function errorCode(error: unknown) {
   return error && typeof error === "object" && "code" in error
@@ -116,6 +142,46 @@ export async function changeSrsState(
       if (isMissingSrsStorage(error)) throw unavailable();
       if (errorCode(error) !== "P2002") throw error;
       // Another request created this student's row. Re-read and apply/idempotently return.
+    }
+  }
+  throw new SrsConflict(
+    "다른 창에서 학습 기록을 저장했습니다. 다시 불러와 주세요.",
+    "REVISION_MISMATCH",
+  );
+}
+
+/**
+ * «오늘의 기억» 새 앱의 칸(`fading`)만 바꾼다 (`docs/planning/srs-overhaul-20261006.md` §14).
+ * 🔴 `changeSrsState` 와 달리 **하루 여정 · 통합 탐험의 갱신을 지나지 않는다** — 새 기억의 저장에 옛 탐험의 장부 · 별이 따라 움직이면 안 된다.
+ * 다른 칸은 읽은 그대로 되쓴다. revision 을 견주어 쓰고, 그사이 다른 쓰기가 끼면 새 기록을 다시 읽어 그 위에 다시 적용한다.
+ * 바뀐 것이 없으면(받은 칸을 그대로 돌려주면) 쓰지 않는다 — 같은 요청의 되풀이가 그래서 안전하다.
+ */
+export async function changeFadingState(
+  studentId: string,
+  change: (fading: StoredFading) => StoredFading,
+  table = srsStateTable(),
+): Promise<{ revision: number; state: StoredSrsState }> {
+  for (let retry = 0; retry < 5; retry++) {
+    const previous = await readSrsState(studentId, table);
+    const fading = previous.state.fading ?? emptyFading();
+    const next = change(fading);
+    if (next === fading) return previous;
+    const payload = parseSrsState({ ...previous.state, fading: next });
+    try {
+      if (previous.revision === 0) {
+        await table.create({ data: { studentId, revision: 1, payload } });
+        return { revision: 1, state: payload };
+      }
+      const saved = await table.updateMany({
+        where: { studentId, revision: previous.revision },
+        data: { payload, revision: { increment: 1 } },
+      });
+      if (saved.count === 1)
+        return { revision: previous.revision + 1, state: payload };
+    } catch (error) {
+      if (isMissingSrsStorage(error)) throw unavailable();
+      if (errorCode(error) !== "P2002") throw error;
+      // 다른 요청이 이 학생의 줄을 먼저 만들었다 — 다시 읽어 그 위에 적용한다.
     }
   }
   throw new SrsConflict(

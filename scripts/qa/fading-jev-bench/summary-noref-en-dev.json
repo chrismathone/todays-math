@@ -1,0 +1,173 @@
+{
+  "recordedAt": "2026-10-05T17:42:29.507Z",
+  "variant": "noref-en",
+  "split": "dev",
+  "model": "jev-1.13.0",
+  "responseModels": [
+    "jev-1.13.0"
+  ],
+  "rules": {
+    "confidentLow": 0.1,
+    "confidentHigh": 0.9,
+    "r1MinAccuracy": 0.97,
+    "r1MinCoverage": 0.6,
+    "r2MaxTrueJudgedFalse": 0.01
+  },
+  "sections": 34,
+  "sectionsAnswered": 34,
+  "items": 665,
+  "unmeasured": 0,
+  "overall": {
+    "n": 665,
+    "accuracyAtHalf": 0.9398,
+    "confidentCoverage": 0.6271,
+    "confidentAccuracy": 0.9952,
+    "trueItems": 321,
+    "trueJudgedFalseConfidently": 0,
+    "falseItems": 344,
+    "falseJudgedTrueConfidently": 0.0058
+  },
+  "r1": true,
+  "r2": true,
+  "byGrade": {
+    "중1": {
+      "n": 83,
+      "accuracyAtHalf": 0.9759,
+      "confidentCoverage": 0.6506,
+      "confidentAccuracy": 1,
+      "trueItems": 39,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 44,
+      "falseJudgedTrueConfidently": 0
+    },
+    "중2": {
+      "n": 202,
+      "accuracyAtHalf": 0.9604,
+      "confidentCoverage": 0.6832,
+      "confidentAccuracy": 0.9928,
+      "trueItems": 99,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 103,
+      "falseJudgedTrueConfidently": 0.0097
+    },
+    "중3": {
+      "n": 28,
+      "accuracyAtHalf": 1,
+      "confidentCoverage": 0.7857,
+      "confidentAccuracy": 1,
+      "trueItems": 12,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 16,
+      "falseJudgedTrueConfidently": 0
+    },
+    "초3": {
+      "n": 73,
+      "accuracyAtHalf": 0.9863,
+      "confidentCoverage": 0.7123,
+      "confidentAccuracy": 1,
+      "trueItems": 37,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 36,
+      "falseJudgedTrueConfidently": 0
+    },
+    "초4": {
+      "n": 134,
+      "accuracyAtHalf": 0.9179,
+      "confidentCoverage": 0.5299,
+      "confidentAccuracy": 1,
+      "trueItems": 65,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 69,
+      "falseJudgedTrueConfidently": 0
+    },
+    "초5": {
+      "n": 124,
+      "accuracyAtHalf": 0.8871,
+      "confidentCoverage": 0.5726,
+      "confidentAccuracy": 1,
+      "trueItems": 60,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 64,
+      "falseJudgedTrueConfidently": 0
+    },
+    "초6": {
+      "n": 21,
+      "accuracyAtHalf": 0.8095,
+      "confidentCoverage": 0.4286,
+      "confidentAccuracy": 0.8889,
+      "trueItems": 9,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 12,
+      "falseJudgedTrueConfidently": 0.0833
+    }
+  },
+  "byLevel": {
+    "상": {
+      "n": 219,
+      "accuracyAtHalf": 0.9087,
+      "confidentCoverage": 0.5068,
+      "confidentAccuracy": 0.991,
+      "trueItems": 106,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 113,
+      "falseJudgedTrueConfidently": 0.0088
+    },
+    "중": {
+      "n": 212,
+      "accuracyAtHalf": 0.9717,
+      "confidentCoverage": 0.6368,
+      "confidentAccuracy": 0.9926,
+      "trueItems": 105,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 107,
+      "falseJudgedTrueConfidently": 0.0093
+    },
+    "하": {
+      "n": 234,
+      "accuracyAtHalf": 0.9402,
+      "confidentCoverage": 0.7308,
+      "confidentAccuracy": 1,
+      "trueItems": 110,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 124,
+      "falseJudgedTrueConfidently": 0
+    }
+  },
+  "byMath": {
+    "글만": {
+      "n": 367,
+      "accuracyAtHalf": 0.9646,
+      "confidentCoverage": 0.6294,
+      "confidentAccuracy": 1,
+      "trueItems": 174,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 193,
+      "falseJudgedTrueConfidently": 0
+    },
+    "수식 있음": {
+      "n": 298,
+      "accuracyAtHalf": 0.9094,
+      "confidentCoverage": 0.6242,
+      "confidentAccuracy": 0.9892,
+      "trueItems": 147,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 151,
+      "falseJudgedTrueConfidently": 0.0132
+    }
+  },
+  "medianMs": 201,
+  "inputTokens": 86034,
+  "estimatedUsd": 0.0036,
+  "confidentErrors": [
+    {
+      "id": "m2-01-01-xo17",
+      "bank": false,
+      "noul": 0.9
+    },
+    {
+      "id": "e6-1-3-4-xo29",
+      "bank": false,
+      "noul": 0.96
+    }
+  ]
+}

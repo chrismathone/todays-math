@@ -563,10 +563,10 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
     expect(authoring).toMatch(/!dialogueKept && !replaceDialogue/);
   });
 
-  it("differs from the first manuscripts by exactly the 45 approved corrections", () => {
+  it("differs from the first manuscripts by exactly the 147 recorded corrections", () => {
     expect(STATIC_CORRECTIONS.map((correction) => correction.id)).toEqual(
       Array.from(
-        { length: 45 },
+        { length: 147 },
         (_, index) => `SC-${String(index + 1).padStart(3, "0")}`,
       ),
     );
@@ -585,7 +585,35 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
       expect(turn.source, correction.id).toEqual(correction.source);
       expect(correction.old).not.toBe(correction.new);
       expect(correction.reason.length).toBeGreaterThan(10);
-      // No number or formula was touched: every earlier math token is still there, in order.
+      if (correction.kind === "bank-definition") {
+        // A reviewed bank revision may restate its conditions. Its dialogue must match
+        // that exact source, while the unchanged baseline hashes still protect every old turn.
+        expect(correction.source.kind).toBe("bank-concept");
+        if (correction.source.kind !== "bank-concept")
+          throw new Error(correction.id);
+        const concept = conceptById.get(correction.source.entryId)!;
+        expect(concept.section).toBe(correction.sectionKey);
+        if (turn.purpose === "check-answer") {
+          expect(correction.new).toBe(plain(concept.definition));
+        } else if (turn.purpose === "example") {
+          expect(turn.role).toBe("student1");
+          expect(turn.expression).toBe("thinking");
+          expect(correction.new).toBe(
+            `먼저 배운 기준을 적용해 볼게요. ${plain(concept.definition)}`,
+          );
+        } else {
+          expect(turn.purpose).toBe("explanation");
+          expect(turn.role).toBe("teacher");
+          const explained = splitBlankSentence(concept.definition)
+            .map((piece) =>
+              piece.kind === "key" ? `**${piece.text}**` : piece.text,
+            )
+            .join("");
+          expect(correction.new).toBe(`**${concept.term}**\n\n${explained}`);
+        }
+        continue;
+      }
+      // The earlier wording-only corrections preserve all their number/formula tokens.
       expect(
         keepsMathTokens(correction.old, correction.new),
         correction.id,
@@ -618,6 +646,7 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
       particle: 1,
       "missing-condition": 8,
       "ambiguous-wording": 4,
+      "bank-definition": 102,
     });
     // Every bank answer that ends as a sentence is among them, and none keeps "입니다".
     const sentenceAnswers = concepts.filter(

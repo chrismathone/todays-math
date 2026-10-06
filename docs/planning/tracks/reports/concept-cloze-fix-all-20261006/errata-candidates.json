@@ -1,0 +1,15 @@
+{
+  "scope": "A confirmed source sentence error. Published-snapshot usage has not been checked; this is a candidate for an erratum, not a claim that any particular published book contains it. No published files or records were overwritten.",
+  "candidates": [
+    {
+      "id": "e4-2-6-1-xc23",
+      "grade": "e4",
+      "section": "초4::2-6 다각형::2-6-1 다각형",
+      "before": "모서리를 잘라 생긴 삼각형 조각의 이름과 남은 도형의 이름은 {각각의 둘레}를 보고 정한다.",
+      "after": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 {변}의 개수를 세어 정한다.",
+      "reason": "다각형의 이름은 둘레가 아니라 변의 개수로 정한다. 초3~4 교차 검토에서 확인한 원문 오류다.",
+      "publishedUsageVerified": false,
+      "evidence": "e3e4/report.md"
+    }
+  ]
+}

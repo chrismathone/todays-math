@@ -22,10 +22,8 @@ import { recordAudit } from "@/lib/audit";
 import { srsFailureResponse } from "@/lib/math-srs/serverRoutes";
 import {
   changeSrsState,
+  guardedSrsStateTable,
   readSrsState,
-  srsStateTable,
-  srsStateTableIn,
-  type SrsStateTable,
 } from "@/lib/math-srs/serverStore";
 import {
   assertTeacherBranch,
@@ -77,51 +75,21 @@ export async function handleExplorerTeacherSettings(
         await request.json().catch(() => undefined),
       );
       if (!input.success) return noStore(validationError(input.error));
-      const guardedTable: SrsStateTable = {
-        ...srsStateTable(),
-        create: (args) =>
-          db.$transaction(async (tx) => {
-            await assertClassWrite(
-              tx,
-              access.account,
-              owned.data.classId,
-              "progress:write",
-            );
-            await assertStudentEnrollment(
-              tx,
-              parsed.data.id,
-              owned.data.classId,
-            );
-            await assertTeacherBranch(
-              tx,
-              owned.data.classId,
-              scope.data.branchId,
-              parsed.data.id,
-            );
-            return srsStateTableIn(tx).create(args);
-          }),
-        updateMany: (args) =>
-          db.$transaction(async (tx) => {
-            await assertClassWrite(
-              tx,
-              access.account,
-              owned.data.classId,
-              "progress:write",
-            );
-            await assertStudentEnrollment(
-              tx,
-              parsed.data.id,
-              owned.data.classId,
-            );
-            await assertTeacherBranch(
-              tx,
-              owned.data.classId,
-              scope.data.branchId,
-              parsed.data.id,
-            );
-            return srsStateTableIn(tx).updateMany(args);
-          }),
-      };
+      const guardedTable = guardedSrsStateTable(async (tx) => {
+        await assertClassWrite(
+          tx,
+          access.account,
+          owned.data.classId,
+          "progress:write",
+        );
+        await assertStudentEnrollment(tx, parsed.data.id, owned.data.classId);
+        await assertTeacherBranch(
+          tx,
+          owned.data.classId,
+          scope.data.branchId,
+          parsed.data.id,
+        );
+      });
       const requestIds: [string, string] = [randomUUID(), randomUUID()];
       let changed = false;
       saved = await changeSrsState(

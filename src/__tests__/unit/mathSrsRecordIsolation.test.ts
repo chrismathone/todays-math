@@ -73,12 +73,15 @@ const ALLOWED = [
   "src/lib/math-explorers/",
   "src/components/math-srs/",
   "src/components/math-explorers/",
+  "src/lib/fading/", // «오늘의 기억» 새 앱의 학생 라우트(2026-10-06) — 본인의 기록에 새 칸만 읽고 쓴다
   "src/app/api/learn/",
   "src/app/api/classes/[id]/math-srs/",
   "src/app/api/math-srs/",
   "src/app/api/students/[id]/math-srs/",
   "scripts/qa/mobile-explorers-qa.mjs",
   "scripts/qa/star-economy/", // 원장님 2026-09-28 허용 · DB 없는 별 경제 시뮬레이터(D-144)
+  // «오늘의 기억» 변이 실험기(2026-10-06) — 기록을 읽지 않는다. 변이를 걸 파일의 이름으로 저장 모듈의 길을 글로 적을 뿐이다.
+  "scripts/qa/fading-mutants/",
 ];
 // 2026-10-03 교재와 기존 학습 통합 승인: 현재 학생의 읽기·복습 시작·인증 경로만.
 // 교재 원고/문제은행/내보내기에는 학습 미션을 싣지 않는다. textbook/ 전체를 허용하지 않는다.

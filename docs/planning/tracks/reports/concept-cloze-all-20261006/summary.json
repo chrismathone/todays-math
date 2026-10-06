@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "20e8305e4c2362bac02e3cc6fb2a551e1367d086",
+  "contentHash": "ee810ba04d1a9d4e1c9b384fad99741214d0fe74a3b81d0de304f9d1de82503b",
+  "reviewed": 9119,
+  "blanks": 12468,
+  "primaryFindingCount": 393,
+  "claudeReviewed": 429,
+  "claudePrimaryFindingsReviewed": 393,
+  "controlSamples": 36,
+  "newFindings": [
+    "e6-2-2-3-xc25"
+  ],
+  "final": {
+    "confirmed": 143,
+    "needsReview": 173,
+    "cleared": 78
+  },
+  "grades": [
+    {
+      "grade": "e3",
+      "reviewed": 1178,
+      "blanks": 1237,
+      "confirmed": 24,
+      "needsReview": 19,
+      "cleared": 19
+    },
+    {
+      "grade": "e4",
+      "reviewed": 1601,
+      "blanks": 1723,
+      "confirmed": 25,
+      "needsReview": 45,
+      "cleared": 14
+    },
+    {
+      "grade": "e5",
+      "reviewed": 1430,
+      "blanks": 1470,
+      "confirmed": 29,
+      "needsReview": 31,
+      "cleared": 16
+    },
+    {
+      "grade": "e6",
+      "reviewed": 1191,
+      "blanks": 1329,
+      "confirmed": 30,
+      "needsReview": 16,
+      "cleared": 7
+    },
+    {
+      "grade": "m1",
+      "reviewed": 1558,
+      "blanks": 2787,
+      "confirmed": 12,
+      "needsReview": 29,
+      "cleared": 5
+    },
+    {
+      "grade": "m2",
+      "reviewed": 1534,
+      "blanks": 2677,
+      "confirmed": 12,
+      "needsReview": 18,
+      "cleared": 3
+    },
+    {
+      "grade": "m3",
+      "reviewed": 627,
+      "blanks": 1245,
+      "confirmed": 11,
+      "needsReview": 15,
+      "cleared": 14
+    }
+  ],
+  "categories": [
+    {
+      "category": "missing-referent",
+      "confirmed": 33,
+      "needsReview": 46
+    },
+    {
+      "category": "hidden-condition",
+      "confirmed": 20,
+      "needsReview": 20
+    },
+    {
+      "category": "open-answer",
+      "confirmed": 79,
+      "needsReview": 49
+    },
+    {
+      "category": "math-error",
+      "confirmed": 0,
+      "needsReview": 9
+    },
+    {
+      "category": "answer-leak",
+      "confirmed": 0,
+      "needsReview": 32
+    },
+    {
+      "category": "grammar-blank",
+      "confirmed": 8,
+      "needsReview": 14
+    },
+    {
+      "category": "long-phrase",
+      "confirmed": 3,
+      "needsReview": 3
+    }
+  ],
+  "scope": "초3~중3 기본·보강 C형 개념 문장. 모든 문항의 두 모델 전수 검토, 성취기준 전수 대조, 다른 문제 형식의 검토를 뜻하지 않는다.",
+  "productContentChanged": false,
+  "studentRecordsChanged": false
+}

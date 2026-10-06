@@ -32,6 +32,8 @@ vi.mock("@/lib/math-srs/courseServer", () => ({
 }));
 vi.mock("@/lib/math-srs/serverStore", () => ({
   srsStateTable: () => ({}),
+  // 교사가 쓰는 길의 «거래 안에서 다시 확인하는 표» — 라우트가 이 함수로 짓는다(2026-10-06). 이 시험은 쓰기까지 가지 않는다.
+  guardedSrsStateTable: () => ({}),
   changeSrsState: mocks.change,
 }));
 vi.mock("@/lib/audit", () => ({ recordAudit: vi.fn() }));

@@ -84,6 +84,10 @@ const LEARN_PAGES = [
   "/learn/math-srs",
   "/learn/math-srs/algebra",
   "/learn/math-explorers",
+  // «오늘의 기억» 새 앱 — 첫 화면과 그 아래 화면(주소는 화면 쪽이 정한다)
+  "/learn/fading",
+  "/learn/fading/session",
+  `/learn/fading/concepts/${UUID}`,
 ];
 const LEARN_APIS = [
   "/api/english/learn/listening",
@@ -290,6 +294,9 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
           "/learn/math-srs",
           "/learn/math-srs/algebra",
           "/learn/math-explorers",
+          "/learn/fading",
+          "/learn/fading/session",
+          `/learn/fading/concepts/${UUID}`,
         ].flatMap((p) => [`GET ${p}`, `HEAD ${p}`]),
         `GET /api/learn/textbook/q/${UUID}`,
         `GET /api/learn/textbook/q/${UUID}/assets/${UUID}`,
@@ -324,6 +331,11 @@ describe("🔴 첫 비밀번호를 바꾼 학생 — 지나가는 것의 집합�
         "POST /api/learn/math-srs/replay",
         "GET /api/learn/math-explorers",
         "POST /api/learn/math-explorers",
+        // «오늘의 기억» 새 앱(2026-10-06) — 관문은 열고, 서버 문이 꺼져 있으면 라우트가 404 로 답한다.
+        "GET /api/learn/fading",
+        "POST /api/learn/fading",
+        "GET /api/learn/fading/catalog",
+        `GET /api/learn/fading/concepts/${UUID}`,
         // Existing test-console policy permits both; its handler restricts test accounts.
         "GET /api/learn/test-console",
         "POST /api/learn/test-console",

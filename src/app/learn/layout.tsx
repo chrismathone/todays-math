@@ -4,6 +4,7 @@ import { Suspense, type ReactNode } from "react";
 import s from "@/components/learn/learn.module.css";
 import { StudentMobileNav } from "@/components/learn/StudentMobileNav";
 import { TestConsole } from "@/components/learn/TestConsole";
+import { fadingEnabled } from "@/lib/fading/enabled";
 import { getStudentSession } from "@/lib/learn/studentRequest";
 import { testConsoleLoginId } from "@/lib/learn/testConsoleServer";
 
@@ -37,7 +38,7 @@ export default async function LearnLayout({
     <div className={s.page}>
       {children}
       <Suspense fallback={null}>
-        <StudentMobileNav />
+        <StudentMobileNav fading={fadingEnabled()} />
       </Suspense>
       {testConsole && <TestConsole />}
     </div>

@@ -322,6 +322,8 @@ const learnerDatabase = (abs: string) => {
 // unfiltered English/teacher-contract graph above is still checked for every edge.
 const EXISTING_STUDENT_SERVER_EDGES = new Set([
   "src/app/learn/english-listening/layout.tsx → src/lib/learn/studentRequest.ts",
+  // «오늘의 기억»의 학생 페이지(2026-10-06) — 다른 학생 서버 페이지와 같은 세션 읽기 하나다(문이 꺼져 있으면 그 전에 404).
+  "src/app/learn/fading/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts",
   "src/app/learn/lectures/page.tsx → src/lib/learn/studentRequest.ts",

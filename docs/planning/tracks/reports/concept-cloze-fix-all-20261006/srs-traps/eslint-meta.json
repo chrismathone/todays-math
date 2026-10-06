@@ -1,0 +1,14 @@
+{
+  "command": [
+    "node",
+    "node_modules/eslint/bin/eslint.js",
+    "src/lib/fading/trapTable.ts",
+    "scripts/qa/fading-traps/authored.ts",
+    "scripts/qa/fading-traps/lib.ts"
+  ],
+  "started": "2026-10-06T10:27:05.354Z",
+  "finished": "2026-10-06T10:27:20.530Z",
+  "exitCode": 0,
+  "signal": null,
+  "error": null
+}

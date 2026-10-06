@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "4a6aae41f975d93295cec5834927ab467c05be09",
+  "supplemental": true,
+  "grades": [
+    "e4",
+    "e6"
+  ],
+  "scope": "Two additional source condition omissions discovered during the independent SRS context review. Earlier draft responses are preserved; final e6 shape-name rewrite and e4 unit wording passed independent blind and completed-definition reviews.",
+  "changes": [
+    {
+      "id": "e6-1-2-4-c1",
+      "before": "다각형의 각 변과 그 면 밖의 한 점을 {삼각형 면}으로 이어 둘러싼 입체가 각뿔이다.",
+      "after": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 {각뿔}이라 한다.",
+      "reason": "면 밖의 점은 같은 평면의 다각형 밖 점으로도 읽힌다. 초6이 쓰는 밑면·옆면·꼭짓점으로 정의를 설명하고, 모양과 역할·선분이 경쟁하던 빈칸 대신 조건으로 정해지는 입체도형 이름을 묻는다."
+    },
+    {
+      "id": "e4-2-3-1-xc19",
+      "before": "몇 $\\mathrm{m}$ 몇 $\\mathrm{cm}$를 소수로 나타낼 때 $\\mathrm{cm}$가 한 자리 수이면 소수 첫째 자리에 {$0$을 쓴다}.",
+      "after": "몇 $\\mathrm{m}$ 몇 $\\mathrm{cm}$를 $\\mathrm{m}$ 단위의 소수로 나타낼 때 $\\mathrm{cm}$가 한 자리 수이면 소수 첫째 자리에 {$0$을 쓴다}.",
+      "reason": "몇 m 몇 cm를 소수로 나타내는 기준 단위 m를 명시한다. cm 단위나 다른 단위로 나타내는 대안을 배제하며 기존 0을 쓰는 의미와 빈칸은 보존한다."
+    }
+  ],
+  "resolutions": [
+    {
+      "id": "e6-1-2-4-c1",
+      "disposition": "rewritten",
+      "reason": "면 밖의 점은 같은 평면의 다각형 밖 점으로도 읽힌다. 초6이 쓰는 밑면·옆면·꼭짓점으로 정의를 설명하고, 모양과 역할·선분이 경쟁하던 빈칸 대신 조건으로 정해지는 입체도형 이름을 묻는다."
+    },
+    {
+      "id": "e4-2-3-1-xc19",
+      "disposition": "rewritten",
+      "reason": "몇 m 몇 cm를 소수로 나타내는 기준 단위 m를 명시한다. cm 단위나 다른 단위로 나타내는 대안을 배제하며 기존 0을 쓰는 의미와 빈칸은 보존한다."
+    }
+  ],
+  "reviews": [
+    {
+      "id": "e6-1-2-4-c1",
+      "blind": "root-side-name-blind-raw.md",
+      "completed": "root-side-name-definition-raw.md",
+      "verdict": "pass"
+    },
+    {
+      "id": "e4-2-3-1-xc19",
+      "blind": "root-side-blind-raw.md",
+      "completed": "root-side-definition-raw.md",
+      "verdict": "pass"
+    }
+  ]
+}

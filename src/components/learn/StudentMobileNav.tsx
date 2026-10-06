@@ -11,6 +11,12 @@ const tabs = [
   { href: "/learn/lectures", label: "강의", icon: "play" },
   { href: "/learn/english-listening", label: "영어듣기", icon: "headphones" },
 ] as const;
+/** 서버 문이 켜져 있을 때 — «탐험 · 도감» 자리에 «오늘의 기억» 하나가 선다(그 앱 안에서는 이 메뉴를 그리지 않는다). */
+const fadingTabs = [
+  { href: "/learn/fading", label: "오늘의 기억", icon: "compass" },
+  tabs[2],
+  tabs[3],
+] as const;
 
 function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
   if (name === "headphones")
@@ -50,7 +56,14 @@ function TabIcon({ name }: { name: (typeof tabs)[number]["icon"] }) {
   );
 }
 
-export function StudentMobileNav({ previewPath }: { previewPath?: string }) {
+export function StudentMobileNav({
+  previewPath,
+  fading = false,
+}: {
+  previewPath?: string;
+  /** 서버 문이 켜져 있다(`fadingEnabled()` — 서버에서 읽어 내려 준다). */
+  fading?: boolean;
+}) {
   const actualPathname = usePathname();
   const searchParams = useSearchParams();
   const pathname = previewPath ?? actualPathname;
@@ -60,12 +73,17 @@ export function StudentMobileNav({ previewPath }: { previewPath?: string }) {
   const listening =
     pathname === "/learn/english-listening" ||
     pathname.startsWith("/learn/english-listening/");
-  if (pathname === "/learn/login" || pathname === "/learn/password")
+  if (
+    pathname === "/learn/login" ||
+    pathname === "/learn/password" ||
+    pathname === "/learn/fading" ||
+    pathname.startsWith("/learn/fading/")
+  )
     return null;
 
   return (
     <nav className={s.nav} aria-label="학생 학습 메뉴">
-      {tabs.map((tab) => {
+      {(fading ? fadingTabs : tabs).map((tab) => {
         const current =
           tab.icon === "headphones"
             ? listening
@@ -73,7 +91,8 @@ export function StudentMobileNav({ previewPath }: { previewPath?: string }) {
               ? lectures
               : tab.icon === "book"
                 ? collection && !listening
-                : !lectures && !collection && !listening;
+                : // «오늘의 기억» 탭은 그 앱 밖에서만 보이므로 지금 쪽이 될 일이 없다.
+                  !fading && !lectures && !collection && !listening;
         return (
           <Link
             key={tab.href}

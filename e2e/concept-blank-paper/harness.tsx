@@ -29,6 +29,8 @@ import { encodeSheetCode } from "../../src/lib/concept-blank/sheetCode";
 import { CAL_MATH, calSheets } from "./calibrate";
 import { LONGEST_CODE_SYMBOLS, syntheticCode } from "./code";
 import { fuzzSheets } from "./fuzz";
+import { photoCode, photoSheets } from "./photo";
+import { claritySheets } from "./clarity";
 import {
   countSheets,
   figureSheets,
@@ -123,6 +125,9 @@ const MATH_SHEETS: ConceptBlankSheet[] = [
 ];
 
 function sheetsFor(set: string | null): ConceptBlankSheet[] {
+  if (set?.startsWith("clarity-"))
+    return claritySheets(set.slice(8) as RealGrade);
+  if (set === "photo-cloze") return photoSheets();
   if (set === "stress") return STRESS_SHEETS;
   if (set === "math") return MATH_SHEETS;
   if (set === "fuzz") return fuzzSheets(Number(params.get("seed") ?? 1));
@@ -151,6 +156,7 @@ function codeFor(set: string | null): string | undefined {
   const asked = params.get("code");
   if (asked === "none") return undefined;
   if (asked) return /^\d+$/.test(asked) ? syntheticCode(Number(asked)) : asked;
+  if (set === "photo-cloze") return photoCode();
   if (!set || set === "fixture")
     return encodeSheetCode(fixtureSelection, FIXTURE_BANK);
   return syntheticCode(LONGEST_CODE_SYMBOLS);

@@ -133,7 +133,9 @@ describe("concept blank bank", () => {
             const n = stock[kind].filter((x) => x.level === level).length;
             const gone = retired.get(retiredKey(s.key, kind, level)) ?? 0;
             return n + gone < PER_LEVEL || n < MIN_PER_LEVEL
-              ? [`${s.key} ${kind} ${level} ${n}${gone ? ` (뺀 것 ${gone})` : ""}`]
+              ? [
+                  `${s.key} ${kind} ${level} ${n}${gone ? ` (뺀 것 ${gone})` : ""}`,
+                ]
               : [];
           }),
         );
@@ -260,11 +262,37 @@ describe("concept blank bank", () => {
   });
 
   // 문장 빈칸(C)은 뜻 문장만 찍는다 — 빈칸을 비운 글이 같고 답이 다르면 학생지에서 가를 수 없다(인쇄 검토 2026-10-02).
-  it("no section prints the same blanked sentence with different answers", () => {
+  it("no chapter prints the same blanked sentence with different answers", () => {
     const clashes = blankClashes(CONCEPT_BLANK_BANK).map((g) =>
       g.map((c) => c.id).join(" = "),
     );
     expect(clashes.slice(0, 20), `겹침 ${clashes.length}묶음`).toEqual([]);
+  });
+
+  it("checks different subunits of one chapter because C students cannot see their titles", () => {
+    const entry = (id: string, section: string, answer: string) => ({
+      id,
+      section,
+      term: id,
+      kind: "방법" as const,
+      level: "하" as const,
+      definition: `분모를 통일한 다음 분자는 {${answer}}, 공통분모는 {그대로} 적는다.`,
+    });
+    const concepts = [
+      entry("add", "초5::1-5 분수의 덧셈과 뺄셈::진분수의 덧셈", "더하고"),
+      entry("subtract", "초5::1-5 분수의 덧셈과 뺄셈::진분수의 뺄셈", "빼고"),
+      entry(
+        "other-grade",
+        "초4::1-5 분수의 덧셈과 뺄셈::진분수의 뺄셈",
+        "빼고",
+      ),
+      entry("other-chapter", "초5::2-2 분수의 곱셈::진분수의 곱셈", "곱하고"),
+    ];
+    expect(
+      blankClashes({ concepts, ox: [], apply: [], figures: [] }).map((group) =>
+        group.map((item) => item.id),
+      ),
+    ).toEqual([["add", "subtract"]]);
   });
 
   // 개념 지도(D)는 용어와 예 물음만 찍는다 — 예 물음이 뜻 문장을 가리키면(«이때 …») 풀 수 없다.
