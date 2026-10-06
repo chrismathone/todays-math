@@ -24,6 +24,72 @@ Claude and Grok collaboration on 2026-10-05 after Claude's limit reset.
 Keep the existing Codex work intact and use independently scoped Claude/Grok
 sessions where they help finish this task.
 
+# Student SRS redesign ("오늘의 기억") — who owns what
+
+On 2026-10-06 the user split this work: **Codex owns the design** (screens,
+components, CSS in the user's "v2" Stitch look) and **Claude owns the internals**
+(concept data contract, schedule, session rules, numbers, storage, tests).
+Read `docs/planning/srs-overhaul-20261006.md` before touching it. Screens read
+`src/lib/fading/` and its contract; do not re-derive rules or numbers in a
+component. The Stitch mockups are outside the repo and are look-and-flow
+references only: never port their sentences, metrics, brand ("MathSRS") or
+the items that document lists as not shipped. Wording follows its §2.
+Its §12 lists the functions a screen may call (concepts, erased blanks, chip
+tray, session moves, ratings, retention, queue); chips carry no "which blank"
+or "trap" marker by design, and percentages are rounded only by `toPercent`.
+Its §13 records the eight decisions Codex and Claude agreed on 2026-10-06 at
+the user's request (answers in `docs/planning/tracks/reports/consult-srs-overhaul/`).
+The ones that shape screens: the bottom bar keeps the mockup's four tabs
+(phone labels 복습 · 소거 · 목록 · 통계; lectures and English listening move to
+always-visible home cards plus a top switcher; navigation folds away during a
+session); no star/board/base economy and no single "retention" score — the
+home figure is today's reviews (done / planned) and the day streak; the
+model answer opens only after a step is finished, and a stuck student uses
+"아직 모르겠어요" (`giveUpStep`); do not word step 4 or success states as
+mastery (chips are recognition, not free recall). The workspace menu
+"오늘의 기억 · SRS" opens a teacher status view first (workspace design per
+`05`), with a v2 preview of the student app that saves nothing.
+Its §10 lists what is carried over and what is dropped; deleting the
+explorers/bank-day screens is the last step, after the new app runs.
+
+The student API exists (its §14; shapes in `src/contracts/fadingApi.contract.ts`):
+`GET /api/learn/fading` (state), `POST /api/learn/fading` (one action:
+`pick` · `drop` · `open` · `read` · `step` · `miss` · `rate` · `all-today`),
+`GET /api/learn/fading/catalog?grade=`, `GET /api/learn/fading/concepts/{id}`.
+A screen calls `open`, receives the session id, seed and the concept content,
+runs `src/lib/fading/session.ts` locally with `chipTray(concept, step, { seed, traps })`,
+then posts `read` / `step` (every placement in order, wrong ones included) /
+`miss` (at step 4, the moment a wrong chip is placed) / `rate` (with a
+request id the screen generates). Practising a concept that is not due uses
+the concept endpoint and sends nothing. The routes answer 404 unless the
+server flag `MATH_FADING=on` is set; it must stay off in production until the
+deployment that can read the new record section has settled. Do not turn it on
+against the shared database to develop: a student record that gains the new
+section cannot be read by the deployment that is live today. `MATH_FADING=read`
+is the read-only state (`src/lib/fading/enabled.ts`): it opens the two teacher
+status reads and nothing that writes the new section, so it is safe against
+the shared database and is what ships first. Screens talk to a
+`FadingSource` (`src/lib/fading/source.ts`); `createLocalFadingSource`
+(`src/lib/fading/local.ts`) runs the same rules and returns the same shapes in
+memory, with no server — develop and measure screens on that, and use it for
+the workspace preview. The student pages live under `/learn/fading/**`
+(already in `src/lib/studentRouteAccess.ts`); a page outside it must be added
+there and to the two tests that lock that list. The current work order for
+the screens is `docs/planning/tracks/brief-fading-screens-codex.md` plus its
+three addenda (`…-addendum-1.md` to `-3.md`). The addenda win where they
+differ: the owner's mockups are built as drawn, component by component — only
+what the addenda's tables list is changed or left out.
+
+The teacher status reads exist too (its §15; shapes in
+`src/contracts/fadingTeacher.contract.ts`): `GET /api/math-srs/fading`
+(roster: counts and "look at this student" flags per student) and
+`GET /api/students/{id}/math-srs/fading` (one student: the same counts plus
+the names and states of the concepts they picked — no sentences, no answers).
+They use the existing "SRS 현황" gate, roster and branch scope. That screen is
+workspace design (`05`), not v2, and goes through the Wire → Hi-fi steps; do
+not show a blended score, and do not label `passed` as an accuracy rate.
+The test console's partial reset has a new part, "오늘의 기억(새)".
+
 # Check the remote before every push
 
 Immediately before every push, fetch the target remote branch and compare it

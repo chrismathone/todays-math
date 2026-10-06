@@ -121,6 +121,9 @@ todays-math/
 | AI 변형본 | `source=transformed` **+ `originProblemId` 있음** | 변형 | 「RPM」 |
 | 지점 (D-136) | `tenant` · `tenantId` | **미정** — 원장님 확정 전(24 §9-④). 문서에서는 «지점» | 코드에 `academy`·`branch`·`org` 를 섞지 말 것 |
 
+학생 기억 학습(SRS) 개편의 낱말(개념 · 명제 · 빈칸 · 칩 · 함정 칩 · 기준안 · 네 단계 · 자가 평가)은 `srs-overhaul-20261006.md` §2 에 있다(2026-10-06).
+코드 식별자가 정해지면 이 표로 옮긴다 — 🔴 `review` 는 위에서 이미 «확인테스트»다.
+
 ---
 
 ## 3. 아키텍처 원칙
