@@ -54,11 +54,16 @@ const answerKey = (definition: string) =>
     .map((p) => p.text.replace(/\s+/g, ""))
     .join("|");
 
-/** 같은 소단원에서 빈칸을 비운 글이 같은데 답이 다른 뜻 문장 묶음(인쇄 검토 2026-10-02 — «가장 높은 점» / «가장 낮은 점»). */
+/**
+ * 같은 대단원에서 학생 문장은 같은데 답이 다른 묶음. C형은 소단원·개념명을
+ * 인쇄하지 않으므로 서로 다른 소단원도 함께 견준다. 문구 차이는 검토 후보이며
+ * 동의 표현인지 여부는 원고 검토에서 판단한다.
+ */
 export function blankClashes(bank: ConceptBlankBank): ConceptEntry[][] {
   const groups = new Map<string, ConceptEntry[]>();
   for (const c of bank.concepts) {
-    const key = `${c.section}|${blankedSentence(c.definition)}`;
+    const chapter = c.section.split("::").slice(0, 2).join("::");
+    const key = `${chapter}|${blankedSentence(c.definition)}`;
     groups.set(key, [...(groups.get(key) ?? []), c]);
   }
   return [...groups.values()].filter(

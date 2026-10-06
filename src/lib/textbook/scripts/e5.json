@@ -1928,7 +1928,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**약수 목록으로 최대공약수 구하기**\n\n두 약수 목록에서 겹치는 수를 찾고 그중 **맨 큰 수**를 고른다.",
+        "markdown": "**약수 목록으로 최대공약수 구하기**\n\n두 자연수의 최대공약수를 구하려면 두 수의 약수 목록에서 겹치는 수를 찾고 그중 **가장 큰 수**를 고른다.",
         "conceptIds": [
           "e5-1-2-4-c1"
         ],
@@ -2116,7 +2116,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "두 약수 목록에서 겹치는 수를 찾고 그중 맨 큰 수를 고른다.",
+        "markdown": "두 자연수의 최대공약수를 구하려면 두 수의 약수 목록에서 겹치는 수를 찾고 그중 가장 큰 수를 고른다.",
         "conceptIds": [
           "e5-1-2-4-c1"
         ],
@@ -2544,7 +2544,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**배수 목록으로 최소공배수 구하기**\n\n두 수의 배수를 작은 것부터 적어 **처음으로 겹치는 수**를 찾는다.",
+        "markdown": "**배수 목록으로 최소공배수 구하기**\n\n두 자연수의 최소공배수를 구하려면 두 수의 배수를 작은 것부터 적어, 처음으로 **겹치는 수**를 찾는다.",
         "conceptIds": [
           "e5-1-2-6-c1"
         ],
@@ -2732,7 +2732,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "두 수의 배수를 작은 것부터 적어 처음으로 겹치는 수를 찾는다.",
+        "markdown": "두 자연수의 최소공배수를 구하려면 두 수의 배수를 작은 것부터 적어, 처음으로 겹치는 수를 찾는다.",
         "conceptIds": [
           "e5-1-2-6-c1"
         ],
@@ -5212,7 +5212,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**받아올림이 없는 진분수의 덧셈**\n\n분모를 통일한 다음 분자는 **더하고**, 공통분모는 **그대로** 적는다.",
+        "markdown": "**받아올림이 없는 진분수의 덧셈**\n\n분모가 다른 분수를 더할 때는 분모를 통일한 다음 분자는 **더하고**, 공통분모는 **그대로** 적는다.",
         "conceptIds": [
           "e5-1-5-1-c1"
         ],
@@ -5398,7 +5398,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "분모를 통일한 다음 분자는 더하고, 공통분모는 그대로 적는다.",
+        "markdown": "분모가 다른 분수를 더할 때는 분모를 통일한 다음 분자는 더하고, 공통분모는 그대로 적는다.",
         "conceptIds": [
           "e5-1-5-1-c1"
         ],
@@ -5742,7 +5742,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**받아내림이 없는 진분수의 뺄셈**\n\n분모를 통일한 다음 분자는 **빼고**, 공통분모는 **그대로** 적는다.",
+        "markdown": "**받아내림이 없는 진분수의 뺄셈**\n\n분모가 다른 분수를 뺄 때는 분모를 통일한 다음 분자는 **빼고**, 공통분모는 **그대로** 적는다.",
         "conceptIds": [
           "e5-1-5-3-c1"
         ],
@@ -5928,7 +5928,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "분모를 통일한 다음 분자는 빼고, 공통분모는 그대로 적는다.",
+        "markdown": "분모가 다른 분수를 뺄 때는 분모를 통일한 다음 분자는 빼고, 공통분모는 그대로 적는다.",
         "conceptIds": [
           "e5-1-5-3-c1"
         ],
@@ -6460,7 +6460,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**둘레와 넓이 구별**\n\n**둘레가 같더라도** 도형 안쪽을 채우는 넓이는 서로 다를 수 있다.",
+        "markdown": "**둘레와 넓이 구별**\n\n두 도형의 둘레가 같아도 넓이가 항상 같은 것은 **아니다**. 가로와 세로가 $2$와 $4$인 직사각형과 $1$과 $5$인 직사각형은 둘레는 같지만 넓이는 다르다.",
         "conceptIds": [
           "e5-1-6-1-c6"
         ],
@@ -8514,7 +8514,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**이상**\n\n기준 수부터 큰 쪽으로 이어지는 범위가 이상이며, **기준 수도 들어간다**.",
+        "markdown": "**이상**\n\n기준 수 이상의 수의 범위는 기준 수를 **포함**하고 그보다 큰 수들도 들어가는 범위이다.",
         "conceptIds": [
           "e5-2-1-1-c1"
         ],
@@ -8550,7 +8550,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**이하**\n\n기준 수부터 작은 쪽으로 이어지는 범위가 이하이며, **기준 수도 들어간다**.",
+        "markdown": "**이하**\n\n기준 수 이하의 수의 범위는 기준 수를 **포함**하고 그보다 작은 수들도 들어가는 범위이다.",
         "conceptIds": [
           "e5-2-1-1-c2"
         ],
@@ -8702,7 +8702,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "기준 수부터 큰 쪽으로 이어지는 범위가 이상이며, 기준 수도 들어간다.",
+        "markdown": "기준 수 이상의 수의 범위는 기준 수를 포함하고 그보다 큰 수들도 들어가는 범위이다.",
         "conceptIds": [
           "e5-2-1-1-c1"
         ],
@@ -9418,7 +9418,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**올림**\n\n정한 자리 아래에 남은 양이 있으면 그 자리에 **$1$을 보태고** 아래 자리를 $0$으로 처리한다.",
+        "markdown": "**올림**\n\n올림할 때는 정한 자리 아래에 $0$이 아닌 숫자가 있으면 정한 자리의 수에 **$1$**을 보태고 아래 자리를 $0$으로 처리한다.",
         "conceptIds": [
           "e5-2-1-4-c1"
         ],
@@ -9646,7 +9646,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "정한 자리 아래에 남은 양이 있으면 그 자리에 $1$을 보태고 아래 자리를 $0$으로 처리한다.",
+        "markdown": "올림할 때는 정한 자리 아래에 $0$이 아닌 숫자가 있으면 정한 자리의 수에 $1$을 보태고 아래 자리를 $0$으로 처리한다.",
         "conceptIds": [
           "e5-2-1-4-c1"
         ],
@@ -10034,7 +10034,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**반올림**\n\n남길 자리 바로 아래 숫자가 **$5$ 이상이면 올림**, **$5$ 미만이면 버림**으로 어림한다.",
+        "markdown": "**반올림**\n\n반올림할 때 남길 자리 바로 아래 숫자가 $5$ 이상이면 **올림**, $5$ 미만이면 **버림**으로 어림한다.",
         "conceptIds": [
           "e5-2-1-6-c1"
         ],
@@ -10222,7 +10222,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "남길 자리 바로 아래 숫자가 $5$ 이상이면 올림, $5$ 미만이면 버림으로 어림한다.",
+        "markdown": "반올림할 때 남길 자리 바로 아래 숫자가 $5$ 이상이면 올림, $5$ 미만이면 버림으로 어림한다.",
         "conceptIds": [
           "e5-2-1-6-c1"
         ],
@@ -12806,7 +12806,7 @@
         "role": "teacher",
         "expression": "neutral",
         "purpose": "explanation",
-        "markdown": "**점대칭도형**\n\n한 점 둘레로 **반 바퀴** 돌렸을 때 처음 놓인 자리를 빈틈없이 채우는 도형이다.",
+        "markdown": "**점대칭도형**\n\n점대칭도형은 한 점을 중심으로 반 바퀴 돌렸을 때 처음 도형과 완전히 **겹치는** 도형이다.",
         "conceptIds": [
           "e5-2-3-4-c1"
         ],
@@ -13202,7 +13202,7 @@
         "role": "student2",
         "expression": "aha",
         "purpose": "check-answer",
-        "markdown": "한 점 둘레로 반 바퀴 돌렸을 때 처음 놓인 자리를 빈틈없이 채우는 도형이다.",
+        "markdown": "점대칭도형은 한 점을 중심으로 반 바퀴 돌렸을 때 처음 도형과 완전히 겹치는 도형이다.",
         "conceptIds": [
           "e5-2-3-4-c1"
         ],

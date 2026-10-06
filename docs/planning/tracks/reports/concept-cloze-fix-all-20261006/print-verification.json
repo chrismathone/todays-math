@@ -1,0 +1,91 @@
+{
+  "browser": "Microsoft Edge (Playwright)",
+  "media": "print",
+  "coverage": "Every corrected definition; all student and key pages measured. Seven student/key first-page images visually read by Codex lead. m3 rerun after final root revision.",
+  "items": 393,
+  "pages": 432,
+  "grades": [
+    {
+      "grade": "e3",
+      "items": 61,
+      "blanks": 70,
+      "pages": 60,
+      "studentPages": 30,
+      "keyPages": 30,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    },
+    {
+      "grade": "e4",
+      "items": 86,
+      "blanks": 95,
+      "pages": 90,
+      "studentPages": 45,
+      "keyPages": 45,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    },
+    {
+      "grade": "e5",
+      "items": 76,
+      "blanks": 80,
+      "pages": 88,
+      "studentPages": 44,
+      "keyPages": 44,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    },
+    {
+      "grade": "e6",
+      "items": 51,
+      "blanks": 60,
+      "pages": 64,
+      "studentPages": 32,
+      "keyPages": 32,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    },
+    {
+      "grade": "m1",
+      "items": 46,
+      "blanks": 61,
+      "pages": 56,
+      "studentPages": 28,
+      "keyPages": 28,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    },
+    {
+      "grade": "m2",
+      "items": 34,
+      "blanks": 41,
+      "pages": 40,
+      "studentPages": 20,
+      "keyPages": 20,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    },
+    {
+      "grade": "m3",
+      "items": 39,
+      "blanks": 50,
+      "pages": 34,
+      "studentPages": 17,
+      "keyPages": 17,
+      "maxOverflowPx": 0,
+      "mathErrors": 0,
+      "leaks": 0
+    }
+  ],
+  "photoRegression": {
+    "tests": 1,
+    "pages": 3,
+    "result": "passed"
+  }
+}
