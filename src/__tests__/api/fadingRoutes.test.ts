@@ -100,6 +100,7 @@ import {
 } from "@/lib/fading/enabled";
 import { erasedTargets, type FadingStep } from "@/lib/fading/erasure";
 import { fadingFigureMap } from "@/lib/fading/figures";
+import { FADING_CONTENT_CHANGED } from "@/lib/fading/actions";
 import { createLocalFadingSource } from "@/lib/fading/local";
 import { FADING_TRAPS } from "@/lib/fading/trapTable";
 import { fadingTrapMap } from "@/lib/fading/traps";
@@ -712,6 +713,9 @@ describe("개념 목록 · 개념 하나", () => {
 
 describe("서버 없이 도는 길(`createLocalFadingSource`)은 학생 API 와 같은 답을 낸다", () => {
   /** 서버가 풀이를 열 때 지은 번호와 씨앗을 로컬에 그대로 넣는다 — 그래야 두 답을 글자 그대로 견준다. */
+  /** DB 에 저장된 열린 풀이(저장 번호 그대로). */
+  const storedSession = () =>
+    parseSrsState(f.rows.get(f.studentId)!.payload).fading!.session;
   const world = () => {
     const fresh = { sessionId: uuid(0), seed: 0 };
     const local = createLocalFadingSource({
@@ -722,12 +726,15 @@ describe("서버 없이 도는 길(`createLocalFadingSource`)은 학생 API 와 
       figures: fadingFigureMap(fadingCatalog(), CONCEPT_BLANK_BANK.figures),
       fresh: () => fresh,
     });
-    /** 같은 행동을 양쪽에 — 서버가 먼저다(`open` 이면 번호와 씨앗을 받아 로컬에 넣는다). */
+    /**
+     * 같은 행동을 양쪽에 — 서버가 먼저다(`open` 이면 번호와 씨앗을 받아 로컬에 넣는다).
+     * 응답의 번호는 토큰이라(`contentKey.ts`) 저장된 번호는 DB 의 줄에서 읽는다.
+     */
     const both = async (action: FadingAction) => {
       const server = await act(action);
       if (action.action === "open" && server.session)
         Object.assign(fresh, {
-          sessionId: server.session.id,
+          sessionId: storedSession()!.id,
           seed: server.session.seed,
         });
       expect(await local.act(action)).toStrictEqual(server);
@@ -908,6 +915,38 @@ describe("서버 없이 도는 길(`createLocalFadingSource`)은 학생 API 와 
     expect(await local.state()).toStrictEqual(await state(await read()));
   });
 
+  it("토큰 이전의 화면이 보내는 저장 번호 — 양쪽 다 409(같은 문구) · 쓰지 않는다 · 다시 읽은 토큰으로 이어 간다", async () => {
+    const { local, both, refused } = world();
+    const [first] = await someConcepts();
+    await both({ action: "pick", conceptId: first! });
+    const view = await both({ action: "open", conceptId: first! });
+    const raw = storedSession()!.id;
+    expect(view.session!.id).not.toBe(raw);
+    const writes = f.writes;
+    const before = local.snapshot();
+    await refused(
+      { action: "read", conceptId: first!, sessionId: raw },
+      409,
+      "CONFLICT",
+    );
+    const body = await (
+      await postRaw({ action: "read", conceptId: first!, sessionId: raw })
+    ).json();
+    expect(body.error.message).toBe(FADING_CONTENT_CHANGED);
+    expect(f.writes).toBe(writes);
+    expect(local.snapshot()).toStrictEqual(before);
+    // 화면은 409 를 받고 상태를 다시 읽는다 — 같은 풀이 · 같은 씨앗 · 새 토큰.
+    const reread = await state(await read());
+    expect(reread.session).toStrictEqual(view.session);
+    const next = await both({
+      action: "read",
+      conceptId: first!,
+      sessionId: reread.session!.id,
+    });
+    expect(next.session!.step).toBe(2);
+    expect(storedSession()!.id).toBe(raw);
+  });
+
   it("함정이 있는 개념 — 내용에 함정이 내려가고, 함정을 넣은 «넣기»를 양쪽이 같은 칩으로 읽는다", async () => {
     const { local, both } = world();
     const conceptId = Object.keys(FADING_TRAPS)[0]!;
@@ -1014,8 +1053,17 @@ describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
         "step",
       ].sort(),
     );
+    // 4단계를 마친 풀이의 «푼 내용의 지문»은 카드 풀이 이전부터 쓰던 칸이다(D1).
     expect(Object.keys(storedSession()!).sort()).toEqual(
-      ["conceptId", "id", "missedAtFour", "phase", "seed", "startStep"].sort(),
+      [
+        "conceptId",
+        "digest",
+        "id",
+        "missedAtFour",
+        "phase",
+        "seed",
+        "startStep",
+      ].sort(),
     );
     const detail = fadingConceptResponseSchema.parse(
       await (await concept(first!)).json(),
@@ -1050,7 +1098,7 @@ describe("카드 풀이의 하위 문(`MATH_FADING_CARDS`)", () => {
       const server = await act(action);
       if (action.action === "open" && server.session)
         Object.assign(fresh, {
-          sessionId: server.session.id,
+          sessionId: storedSession()!.id,
           seed: server.session.seed,
         });
       expect(await local.act(action)).toStrictEqual(server);

@@ -159,7 +159,10 @@ const sessionViewSchema = z.strictObject({
   mode: z.literal("cards").optional(),
   /** 평가 차례에서 학생의 대조를 기다리는 글(빈칸 차례). 새로고침해도 같은 대조가 다시 선다. */
   unjudged: z.array(storedFadingUnjudgedSchema).optional(),
-  /** 풀이를 연 뒤에 개념의 내용이 바뀌었다 — `read` · `step` · `miss` 는 409 다. `open` 으로 다시 연다. */
+  /**
+   * 카드 풀이에서 4단계를 푼 뒤에 개념의 문장이 고쳐졌다 — 대조를 기다리는 글은 판정하지 않고 평가는 «다시»뿐이다(`ratings`).
+   * 평가는 푼 내용의 지문으로 적힌다. 풀이 중의 옛 화면 요청은 이 칸이 아니라 풀이 토큰의 409 가 막는다(`contentKey.ts`).
+   */
   stale: z.literal(true).optional(),
 });
 

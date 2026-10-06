@@ -42,11 +42,11 @@ import {
 } from "@/lib/fading/session";
 import {
   FadingConflict,
-  FadingStale,
   emptyFading,
   fadingProgressOf,
-  fadingSessionDigest,
 } from "@/lib/fading/state";
+import { FADING_CONTENT_CHANGED } from "@/lib/fading/actions";
+import { fadingContentKey, fadingSessionToken } from "@/lib/fading/contentKey";
 import { fadingStateView } from "@/lib/fading/view";
 
 /**
@@ -144,9 +144,17 @@ function act(
     ),
   );
 }
-const ref = (state: StoredFading) => ({
+/** 화면이 받은 풀이 번호 — 저장 번호가 아니라 «저장 번호 + 그 내용»의 토큰이다(`contentKey.ts`). */
+const ref = (
+  state: StoredFading,
+  concept: FadingConcept = A,
+  traps: FadingTrap[] = [],
+) => ({
   conceptId: A.id,
-  sessionId: state.session!.id,
+  sessionId: fadingSessionToken(
+    state.session!.id,
+    fadingContentKey(concept, traps),
+  ),
 });
 
 /** 새 개념을 카드 풀이로 열어 4단계 앞까지(정독 · 칩 두 단계). */
@@ -525,17 +533,14 @@ describe("카드 풀이에서 화면이 쓰는 값", () => {
 });
 
 describe("저장 칸 — 새 개념을 카드 풀이로", () => {
-  it("열면 방식과 지문이 박히고, 정독은 사전 확인을 같이 적는다 — 명제 수와 다르면 적지 않고 넘어간다", () => {
+  it("열면 방식이 박히고(지문은 4단계를 마칠 때), 정독은 사전 확인을 같이 적는다 — 명제 수와 다르면 적지 않고 넘어간다", () => {
     const opened = act(
       emptyFading(),
       { action: "open", conceptId: A.id },
       { cards: true },
     );
-    expect(opened.session).toMatchObject({
-      mode: "cards",
-      digest: fadingSessionDigest(A),
-    });
-    expect(opened.session!.digest!.slice(0, 8)).toBe(fadingConceptDigest(A));
+    expect(opened.session).toMatchObject({ mode: "cards" });
+    expect(opened.session).not.toHaveProperty("digest");
     const read = act(
       opened,
       { action: "read", ...ref(opened), seen: "321" },
@@ -915,7 +920,7 @@ describe("저장 칸 — 열린 옛 풀이와 옛 화면", () => {
     });
   }
 
-  it("문이 켜져도 열린 옛 풀이는 칩으로 끝나고 적어 둔 틀림이 남는다 — 지문만 박힌다", () => {
+  it("문이 켜져도 열린 옛 풀이는 칩으로 끝나고 적어 둔 틀림이 남는다 — 다시 열어도 그대로다", () => {
     const old = oldAtFour();
     expect(old.session).not.toHaveProperty("mode");
     const reopened = act(
@@ -923,11 +928,7 @@ describe("저장 칸 — 열린 옛 풀이와 옛 화면", () => {
       { action: "open", conceptId: A.id },
       { cards: true },
     );
-    expect(reopened.session).toMatchObject({
-      id: old.session!.id,
-      missedAtFour: [T.hyp],
-      digest: fadingSessionDigest(A),
-    });
+    expect(reopened).toStrictEqual(old);
     expect(reopened.session).not.toHaveProperty("mode");
     expect(() =>
       act(
@@ -1014,7 +1015,7 @@ describe("저장 칸 — 열린 옛 풀이와 옛 화면", () => {
     ).toBe("rating");
   });
 
-  it("문이 꺼져 있으면 새 칸을 하나도 쓰지 않는다 — 처음부터 평가까지 옛 꼴 그대로", () => {
+  it("문이 꺼져 있으면 카드 풀이의 칸을 하나도 쓰지 않는다 — 처음부터 평가까지 옛 꼴(과 D1 의 «푼 내용의 지문») 그대로", () => {
     const legacySession = [
       "id",
       "conceptId",
@@ -1059,8 +1060,14 @@ describe("저장 칸 — 열린 옛 풀이와 옛 화면", () => {
     for (const each of seen) {
       for (const stored of Object.values(each.concepts))
         expect(Object.keys(stored).sort()).toEqual(legacyConcept);
+      // 4단계를 마친 풀이의 «푼 내용의 지문»은 카드 풀이 이전부터 쓰던 칸이다(D1 — main `e355f7864`).
       if (each.session)
-        expect(Object.keys(each.session).sort()).toEqual(legacySession);
+        expect(Object.keys(each.session).sort()).toEqual(
+          [
+            ...legacySession,
+            ...(each.session.phase === "rating" ? ["digest"] : []),
+          ].sort(),
+        );
     }
     const view = fadingStateView({
       fading: seen[2]!,
@@ -1141,66 +1148,8 @@ describe("저장 칸 — 열린 옛 풀이와 옛 화면", () => {
   });
 });
 
-describe("저장 칸 — 풀이를 연 뒤에 내용이 바뀌면", () => {
-  it("정독 · 단계 · 틀림은 아무것도 적지 않고 409(바뀐 내용)다 — 화면에는 «바뀜»이 보인다", () => {
-    const opened = act(
-      emptyFading(),
-      { action: "open", conceptId: A.id },
-      { cards: true },
-    );
-    expect(() =>
-      act(
-        opened,
-        { action: "read", ...ref(opened) },
-        { cards: true, concept: A_EDITED },
-      ),
-    ).toThrow(FadingStale);
-    const four = toFour();
-    expect(() =>
-      act(
-        four,
-        { action: "step", ...ref(four), step: 4, placements: typed() },
-        { cards: true, concept: A_EDITED },
-      ),
-    ).toThrow(FadingStale);
-    expect(() =>
-      act(
-        four,
-        {
-          action: "miss",
-          ...ref(four),
-          placement: { targetId: T.hyp, text: "가운데 점" },
-        },
-        { cards: true, concept: A_EDITED },
-      ),
-    ).toThrow(FadingStale);
-    // 함정이 들고 나도 칩 번호가 다른 칩을 가리킨다 — 같이 막는다.
-    expect(() =>
-      act(
-        opened,
-        { action: "read", ...ref(opened) },
-        { cards: true, traps: [{ text: "내심" }] },
-      ),
-    ).toThrow(FadingStale);
-    const view = fadingStateView({
-      fading: four,
-      revision: 1,
-      today: DAY1,
-      concepts: new Map([[A.id, A_EDITED]]),
-      cards: true,
-    });
-    expect(view.session!.stale).toBe(true);
-    expect(
-      fadingStateView({
-        fading: four,
-        revision: 1,
-        today: DAY1,
-        concepts: new Map([[A.id, A]]),
-      }).session,
-    ).not.toHaveProperty("stale");
-  });
-
-  it("다시 열면 새 번호 · 씨앗 · 지문으로 같은 단계에서 이어 간다 — 방식 · 시작한 단계 · 적어 둔 틀림은 그대로, 일정은 안 바뀐다", () => {
+describe("저장 칸 — 풀이 중에 은행의 문장이 고쳐지면(풀이 토큰 · 푼 내용의 지문)", () => {
+  it("옛 화면의 요청(옛 토큰)은 409 이고 아무것도 쓰지 않는다 — 다시 읽은 화면은 같은 풀이 · 씨앗 · 방식으로 이어 가고 적어 둔 틀림은 남는다", () => {
     let four = toFour();
     four = act(
       four,
@@ -1211,58 +1160,47 @@ describe("저장 칸 — 풀이를 연 뒤에 내용이 바뀌면", () => {
       },
       { cards: true },
     );
-    const resealed = act(
-      four,
-      { action: "open", conceptId: A.id },
-      { cards: true, concept: A_EDITED, fresh: 300 },
-    );
-    expect(resealed.session).toEqual({
-      id: uuid(300),
-      conceptId: A.id,
-      startStep: 1,
-      seed: SEED,
-      phase: "steps",
-      missedAtFour: [T.hyp],
-      mode: "cards",
-      digest: fadingSessionDigest(A_EDITED),
-    });
-    expect(resealed.concepts).toEqual(four.concepts);
+    for (const action of [
+      { action: "step", ...ref(four), step: 4, placements: typed() },
+      {
+        action: "miss",
+        ...ref(four),
+        placement: { targetId: T.r, text: "중점" },
+      },
+    ] as const)
+      expect(() =>
+        act(four, action, { cards: true, concept: A_EDITED }),
+      ).toThrow(FADING_CONTENT_CHANGED);
+    // 함정 표만 바뀌어도 칩 번호가 바뀐다 — 같이 막는다.
+    expect(() =>
+      act(
+        four,
+        { action: "step", ...ref(four), step: 4, placements: typed() },
+        { cards: true, traps: [{ text: "내심" }] },
+      ),
+    ).toThrow(FADING_CONTENT_CHANGED);
     const done = act(
-      resealed,
+      four,
       {
         action: "step",
-        ...ref(resealed),
+        ...ref(four, A_EDITED),
         step: 4,
         placements: typed({ [T.mid]: "가운데 점" }),
       },
       { cards: true, concept: A_EDITED },
     );
-    expect(done.session!.missedAtFour).toEqual([T.hyp]);
+    expect(done.session).toMatchObject({
+      id: four.session!.id,
+      seed: SEED,
+      mode: "cards",
+      phase: "rating",
+      missedAtFour: [T.hyp],
+      digest: fadingConceptDigest(A_EDITED),
+    });
+    expect(done.concepts).toEqual(four.concepts);
   });
 
-  it("평가만 남은 풀이는 대조할 것이 없으면 그대로 평가받고 «학생이 본» 지문이 남는다 — 대조할 것이 있으면 409 · 다시 열면 4단계부터", () => {
-    let plain = toFour();
-    plain = act(
-      plain,
-      { action: "step", ...ref(plain), step: 4, placements: typed() },
-      { cards: true },
-    );
-    expect(
-      act(
-        plain,
-        { action: "open", conceptId: A.id },
-        { cards: true, concept: A_EDITED },
-      ),
-    ).toEqual(plain);
-    const rated = act(
-      plain,
-      { action: "rate", ...ref(plain), rating: "good", requestId: uuid(10) },
-      { cards: true, concept: A_EDITED },
-    );
-    expect(rated.concepts[A.id]!.digest).toBe(fadingConceptDigest(A));
-    expect(rated.concepts[A.id]!.digest).not.toBe(
-      fadingConceptDigest(A_EDITED),
-    );
+  it("평가만 남은 풀이 — 푼 뒤에 문장이 고쳐졌으면 대조를 받지 않고 «다시»뿐이다(고르지 않아도 닫힌다) · 학생이 푼 내용의 지문이 남는다", () => {
     let waiting = toFour();
     waiting = act(
       waiting,
@@ -1274,42 +1212,91 @@ describe("저장 칸 — 풀이를 연 뒤에 내용이 바뀌면", () => {
       },
       { cards: true },
     );
+    expect(waiting.session).toMatchObject({
+      digest: fadingConceptDigest(A),
+      unjudged: [{ targetId: T.perp, text: "수직인 선" }],
+    });
+    const edited = { cards: true, concept: A_EDITED };
+    const view = fadingStateView({
+      fading: waiting,
+      revision: 1,
+      today: DAY1,
+      concepts: new Map([[A.id, A_EDITED]]),
+      cards: true,
+    });
+    expect(view.session).toMatchObject({
+      stale: true,
+      id: ref(waiting, A_EDITED).sessionId,
+    });
+    expect(view.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
     expect(() =>
       act(
         waiting,
         {
           action: "rate",
-          ...ref(waiting),
+          ...ref(waiting, A_EDITED),
           rating: "good",
           requestId: uuid(11),
           judged: { [T.perp]: "same" },
         },
-        { cards: true, concept: A_EDITED },
+        edited,
       ),
-    ).toThrow(FadingStale);
-    const reopened = act(
+    ).toThrow(FadingConflict);
+    const closed = act(
       waiting,
-      { action: "open", conceptId: A.id },
-      { cards: true, concept: A_EDITED, fresh: 301 },
+      {
+        action: "rate",
+        ...ref(waiting, A_EDITED),
+        rating: "again",
+        requestId: uuid(11),
+      },
+      edited,
     );
-    expect(reopened.session).toMatchObject({
-      id: uuid(301),
-      phase: "steps",
-      missedAtFour: [],
+    expect(closed.concepts[A.id]).toMatchObject({
+      step: 2,
+      digest: fadingConceptDigest(A),
     });
-    expect(reopened.session).not.toHaveProperty("unjudged");
-    expect(reopened.concepts[A.id]!.step).toBe(4);
+    // 대조할 것이 없으면 그대로 평가받고, «바뀜»이 선다.
+    let plain = toFour();
+    plain = act(
+      plain,
+      { action: "step", ...ref(plain), step: 4, placements: typed() },
+      { cards: true },
+    );
+    const rated = act(
+      plain,
+      {
+        action: "rate",
+        ...ref(plain, A_EDITED),
+        rating: "good",
+        requestId: uuid(12),
+      },
+      edited,
+    );
+    expect(rated.concepts[A.id]!.digest).toBe(fadingConceptDigest(A));
+    expect(rated.concepts[A.id]!.digest).not.toBe(
+      fadingConceptDigest(A_EDITED),
+    );
   });
 
-  it("지문이 없는 옛 풀이는 견주지 않는다 — 문이 꺼져 있으면 지문도 박지 않는다", () => {
-    const old = act(emptyFading(), { action: "open", conceptId: A.id });
-    const read = act(
-      old,
-      { action: "read", ...ref(old) },
-      { concept: A_EDITED },
-    );
-    expect(read.concepts[A.id]!.step).toBe(2);
-    expect(read.session).not.toHaveProperty("digest");
+  it("칩 풀이의 응답에는 «바뀜» 칸이 실리지 않는다 — 문이 꺼진 동안 응답이 지금 꼴 그대로", () => {
+    let old = act(emptyFading(), { action: "open", conceptId: A.id });
+    old = act(old, { action: "read", ...ref(old) });
+    for (const step of [2, 3, 4] as const)
+      old = act(old, {
+        action: "step",
+        ...ref(old),
+        step,
+        placements: chips(A, step, SEED),
+      });
+    const view = fadingStateView({
+      fading: old,
+      revision: 1,
+      today: DAY1,
+      concepts: new Map([[A.id, A_EDITED]]),
+    });
+    expect(view.session).not.toHaveProperty("stale");
+    expect(view.session!.ratings).toHaveLength(4);
   });
 });
 
@@ -1323,7 +1310,10 @@ describe("서버 없이 도는 미리 보기 — 같은 방식", () => {
     });
     expect((await source.state()).mode).toBe("cards");
     const opened = await source.act({ action: "open", conceptId: A.id });
-    expect(opened.session).toMatchObject({ mode: "cards", id: uuid(400) });
+    expect(opened.session).toMatchObject({
+      mode: "cards",
+      id: fadingSessionToken(uuid(400), fadingContentKey(A)),
+    });
     expect((await source.concept(A.id)).mode).toBe("cards");
     const plain = createLocalFadingSource({ concepts: [A], today: DAY1 });
     expect(await plain.state()).not.toHaveProperty("mode");

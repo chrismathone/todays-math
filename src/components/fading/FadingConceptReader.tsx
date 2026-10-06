@@ -37,6 +37,7 @@ export function FadingConceptReader({
       event.defaultPrevented ||
       event.repeat ||
       event.isComposing ||
+      event.keyCode === 229 ||
       event.ctrlKey ||
       event.altKey ||
       event.metaKey ||
@@ -53,6 +54,14 @@ export function FadingConceptReader({
       event.key === "ArrowRight"
     ) {
       event.preventDefault();
+      if (
+        index === concept.propositions.length - 1 &&
+        event.key !== "ArrowRight"
+      ) {
+        if (beforeDue) onPractice();
+        else onStart();
+        return;
+      }
       setIndex((current) =>
         Math.min(current + 1, concept.propositions.length - 1),
       );
@@ -129,7 +138,7 @@ export function FadingConceptReader({
         disabled={busy}
       />
       <p className={`${s.small} ${s.singleCardKeyboard}`}>
-        Space·Enter 다음 문장 · ← → 문장 이동
+        Space·Enter 다음 문장 · 마지막 문장에서 풀이 시작 · ← → 문장 이동
       </p>
       {beforeDue && (
         <p className={s.muted}>

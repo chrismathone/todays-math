@@ -82,13 +82,28 @@ async function resume(source: ReturnType<typeof local>) {
   );
   await screen.findByRole("button", { name: "아직 모르겠어요" });
 }
+function showSlot(targetIndex: number) {
+  const name = new RegExp(`^빈칸 ${targetIndex}(?:$| ·)`);
+  const current = () =>
+    screen.queryByRole("button", { name }) ??
+    screen.queryByRole("group", { name });
+  if (current()) return current()!;
+  const previous = screen.getByRole("button", { name: "이전 문장" });
+  while (!previous.hasAttribute("disabled")) fireEvent.click(previous);
+  const next = screen.getByRole("button", { name: "다음 문장" });
+  while (!current() && !next.hasAttribute("disabled")) fireEvent.click(next);
+  const slot = current();
+  if (!slot)
+    throw new Error(`빈칸 ${targetIndex}를 포함한 카드를 찾지 못했습니다.`);
+  return slot;
+}
 function place(targetIndex: number, text: string) {
+  const blank = showSlot(targetIndex);
   fireEvent.click(screen.getByRole("button", { name: `칩 ${text}` }));
-  fireEvent.click(
-    screen.getByRole("button", {
-      name: new RegExp(`^빈칸 ${targetIndex}(?:$| ·)`),
-    }),
-  );
+  // A manually chosen card activates its first blank; otherwise chip selection
+  // waits for a destination. Do not click a blank that was filled by the chip.
+  if (blank.isConnected && !blank.hasAttribute("disabled"))
+    fireEvent.click(blank);
 }
 function blurDisabledControl() {
   // jsdom keeps disabled controls focused; removing a focused temporary control models Chrome's body focus.
@@ -154,7 +169,9 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       <FadingApp source={source} initialState={state} />,
     );
     fireEvent.click(screen.getByRole("button", { name: "풀이 이어 하기" }));
-    await screen.findByRole("button", { name: "읽었어요 · 다음 단계" });
+    const nextSentence = await screen.findByRole("button", {
+      name: "다음 문장",
+    });
     expect(screen.queryByText("0 / 0 완료")).not.toBeInTheDocument();
     expect(screen.queryByText("빈칸 0개 남음")).not.toBeInTheDocument();
     expect(
@@ -162,8 +179,16 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     ).not.toBeInTheDocument();
     expect(
       container.querySelectorAll('h2 > svg[aria-hidden="true"]'),
-    ).toHaveLength(3);
+    ).toHaveLength(1);
     expect(screen.getByText(/STEP 01 · 정독/)).toBeInTheDocument();
+    for (let index = 0; index < concept.propositions.length - 1; index++) {
+      expect(nextSentence).toBeEnabled();
+      fireEvent.keyDown(window, { key: "Enter" });
+    }
+    expect(nextSentence).toBeDisabled();
+    expect(
+      screen.getByRole("button", { name: "읽었어요 · 다음 단계" }),
+    ).toBeEnabled();
     fireEvent.keyDown(window, { key: "Enter", code: "NumpadEnter" });
     await screen.findByRole("button", { name: "아직 모르겠어요" });
     expect(screen.getByText(/STEP 02 · 핵심어 소거/)).toBeInTheDocument();
@@ -173,9 +198,19 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     async (step) => {
       const { source } = await startAt(step);
       await resume(source);
-      expect(screen.getAllByText("이 단계에서는 안 비는 문장")).toHaveLength(
-        3 - erasedTargets(concept, step).length,
-      );
+      const previous = screen.getByRole("button", { name: "이전 문장" });
+      while (!previous.hasAttribute("disabled")) fireEvent.click(previous);
+      let unblanked = 0;
+      const next = screen.getByRole("button", { name: "다음 문장" });
+      do {
+        expect(
+          document.querySelectorAll("[data-fading-sentence]"),
+        ).toHaveLength(1);
+        if (screen.queryByText("이 단계에서는 안 비는 문장")) unblanked++;
+        if (next.hasAttribute("disabled")) break;
+        fireEvent.click(next);
+      } while (true);
+      expect(unblanked).toBe(3 - erasedTargets(concept, step).length);
       expect(
         screen.getByText(`빈칸 ${erasedTargets(concept, step).length}개 남음`),
       ).toBeInTheDocument();
@@ -211,7 +246,8 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
     );
     fireEvent.keyDown(window, { key: "Enter" });
     await screen.findByText(/STEP 03 · 수식·조건 소거/);
-    expect(screen.getAllByRole("button", { name: /^빈칸 / })).toHaveLength(2);
+    expect(screen.getAllByRole("button", { name: /^빈칸 / })).toHaveLength(1);
+    expect(screen.getByText("빈칸 2개 남음")).toBeInTheDocument();
   });
   it("입력에 초점이 있거나 조합키·한글 입력 중이면 숫자 단축키를 가로채지 않는다", async () => {
     const { source } = await startAt(2);
@@ -221,6 +257,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       { altKey: true },
       { metaKey: true },
       { isComposing: true },
+      { keyCode: 229 },
       { repeat: true },
     ]) {
       fireEvent.keyDown(window, { key: "1", ...modifier });
@@ -272,11 +309,11 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       expect(chip).toHaveAttribute("aria-pressed", "true");
       expect(fireEvent.keyDown(window, { key })).toBe(false);
       expect(chip).toHaveAttribute("aria-pressed", "false");
-      fireEvent.click(screen.getByRole("button", { name: "빈칸 2" }));
+      fireEvent.click(showSlot(2));
       fireEvent.keyDown(window, { key });
-      expect(screen.getByRole("button", { name: "빈칸 2" })).toHaveAttribute(
-        "aria-pressed",
-        "false",
+      expect(screen.getByRole("button", { name: "빈칸 1" })).toHaveAttribute(
+        "data-pending",
+        "true",
       );
       expect(act).not.toHaveBeenCalled();
       place(1, "외심");
@@ -306,6 +343,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       expect(act).toHaveBeenCalledTimes(writes);
       place(1, "수직이등분선");
       fireEvent.keyDown(window, { key });
+      showSlot(1);
       expect(
         screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
       ).toHaveTextContent("수직이등분선");
@@ -377,7 +415,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
         erasedTargets(many, 4).findIndex(
           (target) => target.text === tray[index]!.text,
         ) + 1;
-      fireEvent.click(screen.getByRole("button", { name: `빈칸 ${blank}` }));
+      showSlot(blank);
       fireEvent.keyDown(window, { key, code, shiftKey });
       expect(
         screen.queryByRole("button", { name: `빈칸 ${blank}` }),
@@ -506,6 +544,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       screen.getByRole("button", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
     ).not.toHaveTextContent("외심");
     type(" 수직이등분선 ");
+    showSlot(1);
     expect(
       screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
     ).toHaveTextContent("수직이등분선");
@@ -586,12 +625,12 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
   it("풀이 전에 답 속성·기준안을 싣지 않고 완료 뒤에만 대조한다", async () => {
     const { source } = await startAt(4);
     await resume(source);
-    const blanks = screen.getAllByRole("button", { name: /^빈칸 / });
-    expect(blanks).toHaveLength(3);
     expect(
       screen.queryByRole("button", { name: "기준안 보기" }),
     ).not.toBeInTheDocument();
-    for (const blank of blanks) {
+    for (let index = 1; index <= erasedTargets(concept, 4).length; index++) {
+      const blank = showSlot(index);
+      expect(screen.getAllByRole("button", { name: /^빈칸 / })).toHaveLength(1);
       expect(blank.outerHTML).not.toMatch(
         /수직이등분선|외심|반지름|data-answer|data-tier/,
       );
@@ -629,6 +668,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       ).toBeEnabled(),
     );
     place(1, "수직이등분선");
+    showSlot(1);
     const filled = screen.getByRole("group", {
       name: "빈칸 1 · 틀린 기록이 있는 빈칸",
     });
@@ -696,6 +736,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       expect(screen.getByRole("button", { name: "칩 중점" })).toBeEnabled(),
     );
     place(2, "중점");
+    showSlot(1);
     const note = screen.getByText(
       "틀린 기록이 있는 빈칸 2개 · 다시 채워도 기록은 남습니다",
     );
@@ -981,7 +1022,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       chips.every((chip) => chip.getAttribute("aria-pressed") === "false"),
     ).toBe(true);
     await user.tab({ shift: true });
-    expect(screen.getByRole("button", { name: "빈칸 3" })).toHaveFocus();
+    expect(screen.getByRole("button", { name: "다음 문장" })).toHaveFocus();
     await user.tab();
     expect(input).toHaveFocus();
     await user.tab();
@@ -1068,6 +1109,7 @@ describe("오늘의 기억 화면 — 로컬 규칙", () => {
       await user.type(input, "수직이등분선");
       expect(input).toHaveFocus();
       await user.keyboard("{Enter}");
+      showSlot(1);
       expect(
         screen.getByRole("group", { name: "빈칸 1 · 틀린 기록이 있는 빈칸" }),
       ).toHaveTextContent("수직이등분선");

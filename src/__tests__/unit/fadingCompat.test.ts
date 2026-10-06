@@ -11,6 +11,7 @@ import {
 import { chipFits, chipTray } from "@/lib/fading/chips";
 import {
   buildFadingConcepts,
+  fadingConceptDigest,
   fadingTargets,
   proposeFadingGroups,
   type FadingConcept,
@@ -23,7 +24,6 @@ import {
   dropFadingConcept,
   emptyFading,
   fadingRatingsFor,
-  fadingSessionDigest,
   openFadingSession,
   rateFadingSession,
   reportFadingMiss,
@@ -111,8 +111,8 @@ const LEGACY: StoredFading = {
   ],
 };
 
-/** 열 때의 지문 — 쓰는 판은 이 값으로 열린 풀이의 내용을 견준다(함정 없음). */
-const PIN = fadingSessionDigest(A);
+/** 4단계를 푼 내용의 지문 — 지금 은행의 A 그대로(풀고 나서 문장이 고쳐지지 않은 풀이). */
+const SOLVED = fadingConceptDigest(A);
 
 /** 쓰는 판이 남길 수 있는 선택 칸을 전부 채운 기록 — 4단계를 마치고 대조를 기다리는 풀이 · 진단이 붙은 개념. */
 const ARRIVING = {
@@ -133,10 +133,10 @@ const ARRIVING = {
     ...LEGACY.session!,
     phase: "rating",
     mode: "cards",
-    digest: PIN,
     seen: "123",
     sure: "300",
     unjudged: [{ targetId: `${A.id}#3`, text: "가장 긴 변" }],
+    digest: SOLVED,
   },
 } as const;
 
@@ -172,7 +172,10 @@ function expectLegacyShape(state: StoredFading) {
     expect(Object.keys(stored).sort()).toEqual([...LEGACY_KEYS.concept].sort());
   if (state.session)
     expect(Object.keys(state.session).sort()).toEqual(
-      [...LEGACY_KEYS.session].sort(),
+      [
+        ...LEGACY_KEYS.session,
+        ...(state.session.digest ? ["digest"] : []),
+      ].sort(),
     );
 }
 
@@ -201,7 +204,7 @@ describe("읽기 호환 — 옛 기록은 글자 하나 다르지 않게", () =>
     expect(json(row.fading)).toBe(json(LEGACY));
   });
 
-  it("옛 풀이 전부(열기 · 정독 · 단계 · 4단계 틀림 · 평가 · 빼기)를 지나도 새 칸은 하나도 생기지 않는다", () => {
+  it("옛 풀이 전부를 지나도 새 카드 칸은 생기지 않는다 — 기존 D1의 완료 지문은 보존한다", () => {
     const B = concept("b");
     let state = openFadingSession(emptyFading(), A, DAY1, {
       sessionId: uuid(11),
@@ -270,10 +273,10 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
       missedAtFour: [],
     };
     delete open.unjudged;
+    delete open.digest;
     delete open.mode;
     const steps = storedFadingSchema.parse({ ...ARRIVING, session: open });
     const extras = {
-      digest: PIN,
       seen: "123",
       sure: "300",
     };
@@ -304,6 +307,7 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     expect(storedFadingSchema.parse(done).session).toStrictEqual({
       ...missed.session,
       phase: "rating",
+      digest: fadingConceptDigest(A),
     });
     // 평가 전 개념의 정독은 그 개념의 풀이에서만 — 풀이의 칸은 건드리지 않는다.
     const learning = storedFadingSchema.parse({
@@ -349,7 +353,7 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     expect(lapsed.session).toBeNull();
     expect(lapsed.concepts[A.id]!.step).toBe(3);
     expect(lapsed.concepts[A.id]!.marks).toEqual({
-      digest: PIN.slice(0, 8),
+      digest: SOLVED,
       seen: "123",
       sure: "300",
       missed: [target],
@@ -357,7 +361,7 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     const passed = storedFadingSchema.parse(rate("good", { [target]: "same" }));
     expect(passed.concepts[A.id]!.step).toBe(4);
     expect(passed.concepts[A.id]!.marks).toEqual({
-      digest: PIN.slice(0, 8),
+      digest: SOLVED,
       seen: "123",
       sure: "300",
     });
@@ -378,6 +382,31 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
     ]);
     expect(view.session!.mode).toBe("cards");
     expect(view.session).not.toHaveProperty("stale");
+    // 4단계를 푼 뒤에 문장이 고쳐졌으면 대조를 받지 않는다 — «같은 뜻»을 골라도 «다시»뿐이고, 고르지 않아도 닫힌다.
+    const edited = storedFadingSchema.parse({
+      ...waiting,
+      session: { ...waiting.session!, digest: "0a1b2c3d" },
+    });
+    expect(fadingRatingsFor(edited.session!, { [target]: "same" }, A)).toEqual([
+      "again",
+    ]);
+    expect(() =>
+      rateFadingSession(edited, A, id, "good", "2026-10-09", uuid(31), {
+        judged: { [target]: "same" },
+      }),
+    ).toThrow(FadingConflict);
+    const closed = storedFadingSchema.parse(
+      rateFadingSession(edited, A, id, "again", "2026-10-09", uuid(31)),
+    );
+    expect(closed.concepts[A.id]!.digest).toBe("0a1b2c3d");
+    const editedView = fadingStateView({
+      fading: edited,
+      revision: 3,
+      today: "2026-10-09",
+      concepts: new Map([[A.id, A]]),
+    });
+    expect(editedView.session!.stale).toBe(true);
+    expect(editedView.session!.ratings.map((r) => r.rating)).toEqual(["again"]);
   });
 
   it("선택 칸의 꼴이 어긋나면 거절한다 — 상한 · 글자 · 겹침 · 평가 전 진단 · 4단계 밖의 대조 · 모르는 키", () => {

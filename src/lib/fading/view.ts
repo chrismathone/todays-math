@@ -10,6 +10,7 @@ import {
 } from "@/contracts/fadingApi.contract";
 import type { FadingTrap } from "./chips";
 import { fadingTargets, type FadingConcept } from "./concepts";
+import { fadingContentKey, fadingSessionToken } from "./contentKey";
 import type { FadingFigure } from "./figures";
 import { FADING_DAILY_CAP, daysUntilReview, forgettingRisk } from "./numbers";
 import { fadingDayOfDate, previewFadingIntervals } from "./schedule";
@@ -17,7 +18,7 @@ import {
   fadingContentChanged,
   fadingProgressOf,
   fadingRatingsFor,
-  fadingSessionStale,
+  fadingSolvedContentChanged,
   fadingSummary,
 } from "./state";
 
@@ -141,7 +142,10 @@ export function fadingStateView(input: {
     ? previewFadingIntervals(fadingProgressOf(stored!), fadingDayOfDate(today))
     : null;
   const traps = session ? (input.trapsOf?.(opened!) ?? []) : [];
-  const stale = session ? fadingSessionStale(session, opened!, traps) : false;
+  // 카드 풀이에서 4단계를 푼 뒤에 문장이 고쳐졌다 — 대조를 기다리는 글은 판정하지 않고(«다시»뿐) 평가는 푼 내용의 지문으로 적힌다.
+  // 칩 풀이에는 싣지 않는다(문이 꺼진 동안 응답이 지금 꼴 그대로이게).
+  const stale =
+    session?.mode === "cards" && fadingSolvedContentChanged(session, opened!);
   return {
     today,
     revision: input.revision,
@@ -155,17 +159,20 @@ export function fadingStateView(input: {
     ),
     session: session
       ? {
-          id: session.id,
+          // 저장 번호가 아니라 «저장 번호 + 지금 내용»의 토큰 — 내용이 바뀐 뒤의 옛 화면 요청을 알아본다(`contentKey.ts`).
+          id: fadingSessionToken(session.id, fadingContentKey(opened!, traps)),
           conceptId: session.conceptId,
           startStep: session.startStep,
           step: stored!.step,
           seed: session.seed,
           phase: session.phase,
           missedAtFour: session.missedAtFour,
-          ratings: fadingRatingsFor(session).map((rating) => ({
-            rating,
-            intervalDays: intervals![rating],
-          })),
+          ratings: fadingRatingsFor(session, undefined, opened!).map(
+            (rating) => ({
+              rating,
+              intervalDays: intervals![rating],
+            }),
+          ),
           // 카드 풀이의 칸 — 값이 없으면 키도 싣지 않는다(지금 화면이 받는 꼴 그대로).
           ...(session.mode === "cards" ? { mode: "cards" as const } : {}),
           ...(session.unjudged?.length

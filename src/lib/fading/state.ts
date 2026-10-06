@@ -1,5 +1,6 @@
 import {
   FADING_RECEIPTS_MAX,
+  FADING_TARGETS_MAX,
   type FadingPlacement,
   type StoredFading,
   type StoredFadingConcept,
@@ -36,7 +37,6 @@ import {
   fadingDayOfDate,
   type FadingProgress,
 } from "./schedule";
-import { fnv1a } from "./random";
 import {
   fadingAsksSure,
   fadingJudgingComplete,
@@ -60,63 +60,20 @@ import { fadingTypedOutcome } from "./typed";
  */
 export class FadingConflict extends Error {}
 
-/**
- * 열린 풀이를 연 뒤에 개념의 내용(이나 칩 차례의 재료)이 바뀌었다 — 넣은 것을 다시 돌리지 않는다(칩 · 표적의 번호가 다른 답을 가리킬 수 있다).
- * 아무것도 적지 않고 409 로 답한다. 화면은 상태를 다시 읽고(`session.stale`) 풀이를 다시 연다(`open` — 번호 · 씨앗 · 지문을 새로 박는다).
- */
-export class FadingStale extends FadingConflict {}
-
 const conflict = (message: string) => new FadingConflict(message);
-const stale = () =>
-  new FadingStale(
-    "개념의 내용이 바뀌었습니다 — 아무것도 적지 않았습니다. 풀이를 다시 열어 주세요.",
-  );
 
 /**
- * 풀이의 지문 — 개념 내용의 지문(`fadingConceptDigest` · 여덟 자) 뒤에 칩 차례에 닿는 재료(함정 칩)의 지문을 점으로 붙인다.
- * 🔴 지우는 차례의 덧씌움 판이 생기면 그 판도 뒤쪽 재료에 넣는다 — 그래야 판이 바뀐 날 열려 있던 풀이가 옛 빈칸을 새 번호로 읽지 않는다.
- * 개념 칸의 지문 함수는 바꾸지 않는다(바꾸면 평가한 개념이 전부 «바뀜»으로 뜬다).
+ * 4단계를 푼 뒤에 은행의 문장이 고쳐졌는가 — 평가 차례의 풀이에 적힌 «푼 내용의 지문»(`digest`)과 지금 내용을 견준다.
+ * 지문이 없는 풀이(이 칸 이전)는 견주지 않는다. 대조를 기다리는 글은 그 푼 내용의 답과 견줄 것이라, 바뀌었으면 «같은 뜻»으로 받지 않는다.
  */
-export function fadingSessionDigest(
-  concept: FadingConcept,
-  traps: readonly FadingTrap[] = [],
-): string {
-  const material = traps.map((trap) => trap.text.trim().replace(/\s+/g, " "));
-  return `${fadingConceptDigest(concept)}.${fnv1a(JSON.stringify(material))
-    .toString(16)
-    .padStart(8, "0")}`;
-}
-
-/** 풀이의 지문이 지금의 내용과 다른가 — 지문이 없는 옛 풀이는 견주지 않는다. */
-export function fadingSessionStale(
+export function fadingSolvedContentChanged(
   session: Pick<StoredFadingSession, "digest">,
   concept: FadingConcept,
-  traps?: readonly FadingTrap[],
 ): boolean {
   return (
     session.digest !== undefined &&
-    session.digest !== fadingSessionDigest(concept, traps)
+    session.digest !== fadingConceptDigest(concept)
   );
-}
-
-/** 풀이의 재료 — 함정 칩과, 새로 여는 풀이를 카드 풀이로 열지(서버의 하위 문 `MATH_FADING_CARDS`). */
-export type FadingPin = { traps?: readonly FadingTrap[]; cards?: boolean };
-
-/**
- * 넣은 것을 다시 돌리기 전에 지문을 본다 — 다르면 거절한다. 지문이 없는 옛 풀이는 견주지 않고,
- * 카드 문이 켜져 있으면 지금의 지문을 박는다(그 뒤에 내용이 바뀌면 잡힌다). 문이 꺼져 있으면 새 칸을 쓰지 않는다.
- */
-function pinned(
-  session: StoredFadingSession,
-  concept: FadingConcept,
-  pin: FadingPin,
-): StoredFadingSession {
-  if (session.digest === undefined)
-    return pin.cards
-      ? { ...session, digest: fadingSessionDigest(concept, pin.traps) }
-      : session;
-  if (fadingSessionStale(session, concept, pin.traps)) throw stale();
-  return session;
 }
 
 export function emptyFading(): StoredFading {
@@ -221,18 +178,9 @@ export function openFadingSession(
   concept: FadingConcept,
   today: string,
   fresh: { sessionId: string; seed: number },
-  pin: FadingPin = {},
+  options: { cards?: boolean } = {},
 ): StoredFading {
-  const current = state.session;
-  if (current?.conceptId === concept.id) {
-    if (!fadingSessionStale(current, concept, pin.traps)) {
-      const sealed = pinned(current, concept, pin);
-      return sealed === current ? state : { ...state, session: sealed };
-    }
-    // 평가만 남았고 대조할 것이 없으면 그대로 평가받는다 — 다시 돌릴 넣기가 없다.
-    if (current.phase === "rating" && !current.unjudged?.length) return state;
-    return { ...state, session: resealed(current, concept, fresh, pin) };
-  }
+  if (state.session?.conceptId === concept.id) return state;
   const picked = pickFadingConcept(state, concept.id, today);
   const stored = picked.concepts[concept.id]!;
   if (stored.dueOn !== null && stored.dueOn > today)
@@ -248,37 +196,8 @@ export function openFadingSession(
       seed: fresh.seed,
       phase: "steps",
       missedAtFour: [],
-      ...(pin.cards
-        ? {
-            mode: "cards" as const,
-            digest: fadingSessionDigest(concept, pin.traps),
-          }
-        : {}),
+      ...(options.cards ? { mode: "cards" as const } : {}),
     },
-  };
-}
-
-/**
- * 내용이 바뀐 풀이를 다시 연다 — 새 번호 · 씨앗 · 지문으로, 같은 서 있는 단계에서. 방식과 시작한 단계는 그대로다(풀이마다 고정).
- * 4단계에서 적어 둔 틀림은 지금 내용에 그 빈칸이 있으면 남긴다(«다시»를 피하는 길이 되지 않게). 진단 · 대조를 기다리던 글은 걷는다 —
- * 옛 내용의 카드 · 빈칸을 가리킨다. 평가 · 일정 · 서 있는 단계는 건드리지 않는다.
- */
-function resealed(
-  current: StoredFadingSession,
-  concept: FadingConcept,
-  fresh: { sessionId: string; seed: number },
-  pin: FadingPin,
-): StoredFadingSession {
-  const ids = new Set(fadingTargets(concept).map((t) => t.id));
-  return {
-    id: fresh.sessionId,
-    conceptId: current.conceptId,
-    startStep: current.startStep,
-    seed: fresh.seed,
-    phase: "steps",
-    missedAtFour: current.missedAtFour.filter((id) => ids.has(id)),
-    ...(current.mode ? { mode: current.mode } : {}),
-    digest: fadingSessionDigest(concept, pin.traps),
   };
 }
 
@@ -302,28 +221,23 @@ function openSession(
 /**
  * 1단계 정독을 마친다 — 2단계에 선다. 이미 지났으면 그대로다.
  * 카드 풀이면 카드마다의 «사전 확인»(`seen` — 명제 차례로 한 글자씩)을 같이 적는다. 진단일 뿐이다 — 글자 수가 명제 수와 다르거나
- * 카드 풀이가 아니면 적지 않고 넘어간다(정독은 그대로 마친다). `concept` 를 주면 열 때의 지문도 본다.
+ * 카드 풀이가 아니면 적지 않고 넘어간다(정독은 그대로 마친다).
  */
 export function completeFadingReading(
   state: StoredFading,
   conceptId: string,
   sessionId: string,
-  options: FadingPin & { concept?: FadingConcept; seen?: string } = {},
+  options: { concept?: FadingConcept; seen?: string } = {},
 ): StoredFading {
   const { session, stored } = openSession(state, conceptId, sessionId);
   if (stored.step > 1) return state;
-  let next = options.concept
-    ? pinned(session, options.concept, options)
-    : session;
-  if (
-    options.seen !== undefined &&
-    fadingModeOf(next) === "cards" &&
+  const read = withConcept(state, conceptId, { ...stored, step: 2 });
+  return options.seen !== undefined &&
+    fadingModeOf(session) === "cards" &&
     options.concept &&
     options.seen.length === options.concept.propositions.length
-  )
-    next = { ...next, seen: options.seen };
-  const read = withConcept(state, conceptId, { ...stored, step: 2 });
-  return next === session ? read : { ...read, session: next };
+    ? { ...read, session: { ...session, seen: options.seen } }
+    : read;
 }
 
 /**
@@ -336,12 +250,10 @@ export function reportFadingMiss(
   sessionId: string,
   placement: FadingPlacement,
   traps?: readonly FadingTrap[],
-  options: { cards?: boolean } = {},
 ): StoredFading {
-  const { session: open, stored } = openSession(state, concept.id, sessionId);
-  if (stored.step !== 4 || open.phase !== "steps")
+  const { session, stored } = openSession(state, concept.id, sessionId);
+  if (stored.step !== 4 || session.phase !== "steps")
     throw conflict("4단계를 푸는 중이 아닙니다.");
-  const session = pinned(open, concept, { traps, cards: options.cards });
   if (!fadingTargets(concept).some((t) => t.id === placement.targetId))
     throw conflict("이 개념에 없는 빈칸입니다.");
   const typed = fadingModeOf(session) === "cards";
@@ -372,15 +284,17 @@ export function reportFadingMiss(
     if (chipFits(concept, placement.targetId, chip))
       throw conflict("맞게 넣은 칩입니다.");
   }
-  if (session.missedAtFour.includes(placement.targetId))
-    return session === open ? state : { ...state, session };
-  return {
-    ...state,
-    session: {
-      ...session,
-      missedAtFour: [...session.missedAtFour, placement.targetId],
-    },
-  };
+  // 이미 적혔거나, 옛 틀림으로 칸이 다 찼으면 그대로다(틀림이 하나라도 있으니 평가는 어차피 «다시»뿐이다).
+  return session.missedAtFour.includes(placement.targetId) ||
+    session.missedAtFour.length >= FADING_TARGETS_MAX
+    ? state
+    : {
+        ...state,
+        session: {
+          ...session,
+          missedAtFour: [...session.missedAtFour, placement.targetId],
+        },
+      };
 }
 
 /**
@@ -395,13 +309,16 @@ export function completeFadingStep(
   sessionId: string,
   step: FadingStep,
   placements: readonly FadingPlacement[],
-  options: FadingPin & { gaveUp?: boolean; sure?: string } = {},
+  options: {
+    gaveUp?: boolean;
+    sure?: string;
+    traps?: readonly FadingTrap[];
+  } = {},
 ): StoredFading {
-  const { session: open, stored } = openSession(state, concept.id, sessionId);
+  const { session, stored } = openSession(state, concept.id, sessionId);
   // 이미 지난 단계(와 이미 마친 4단계)의 요청은 그대로 둔다 — 응답을 못 받은 화면이 다시 보낸 것이다.
-  if (step < stored.step || open.phase === "rating") return state;
+  if (step < stored.step || session.phase === "rating") return state;
   if (step > stored.step) throw conflict("앞 단계를 먼저 마쳐 주세요.");
-  const session = pinned(open, concept, options);
 
   let replay: FadingSession = {
     ...startFadingSession(concept, step, session.seed, fadingModeOf(session)),
@@ -420,13 +337,12 @@ export function completeFadingStep(
   }
   const result = replay.results[0];
   if (!result) throw conflict("빈칸을 다 채우지 않았습니다.");
-  if (step < 4) {
-    const moved = withConcept(state, concept.id, {
+  if (step < 4)
+    return withConcept(state, concept.id, {
       ...stored,
       step: (step + 1) as FadingStep,
     });
-    return session === open ? moved : { ...moved, session };
-  }
+  const order = fadingTargets(concept).map((t) => t.id);
   const missed = new Set([...session.missedAtFour, ...result.missed]);
   // 대조를 기다리는 글 — 적어 둔 틀림의 빈칸은 뺀다(평가는 어차피 «다시»다). 새로고침해도 같은 대조가 다시 선다.
   const unjudged = (result.unjudged ?? []).filter(
@@ -446,14 +362,19 @@ export function completeFadingStep(
       startStep: session.startStep,
       seed: session.seed,
       phase: "rating",
-      missedAtFour: fadingTargets(concept)
-        .map((t) => t.id)
-        .filter((id) => missed.has(id)),
+      // 지금 표적은 표적 차례로. 지금 표적에 없는 옛 id(은행의 문장이 고쳐지기 전에 적힌 틀림)도 버리지 않는다 —
+      // 버리면 고친 문장에서 다 맞히는 순간 «4단계에서 틀리면 다시뿐»이 풀린다.
+      // 묶음 구성이 그대로면 합친 수는 상한에 닿지 않는다(다섯 문장 × 핵심어 넷 — 시험이 잠근다). 자르는 것은 구성이 바뀐 예외뿐이다.
+      missedAtFour: [
+        ...order.filter((id) => missed.has(id)),
+        ...session.missedAtFour.filter((id) => !order.includes(id)),
+      ].slice(0, FADING_TARGETS_MAX),
       ...(session.mode ? { mode: session.mode } : {}),
-      ...(session.digest ? { digest: session.digest } : {}),
       ...(session.seen ? { seen: session.seen } : {}),
       ...(sure ? { sure } : {}),
       ...(unjudged.length ? { unjudged } : {}),
+      // 이 4단계를 푼 내용 — 평가는 이 지문으로 적는다(그사이 문장이 고쳐져도 «고친 문장의 평가»로 적지 않는다).
+      digest: fadingConceptDigest(concept),
     },
   };
 }
@@ -474,15 +395,23 @@ const toStreak = (streak: StoredFading["streak"]): FadingStreak => ({
  * 지금 고를 수 있는 평가 — 평가 차례가 아니면 없고, 4단계에서 틀렸으면 «다시»뿐이다.
  * 대조를 기다리는 글(`unjudged`)이 있으면 학생이 고른 것(`judged`)으로 정한다 — «다름»이 하나라도 있으면 «다시»뿐이다.
  * 아직 고르지 않았으면 고를 수 있는 가장 넓은 것을 낸다(평가를 받을 때 «다 골랐는가»를 따로 본다).
- * 카드 풀이가 아닌데 대조를 기다리는 글이 있으면(쓰는 길이 없는 꼴) «다시»뿐이다 — 판정 없이 «같은 뜻»으로 읽지 않는다.
+ * 대조를 기다리는 글이 있는데 판정할 수 없으면 «다시»뿐이다 — 판정 없이 «같은 뜻»으로 읽지 않는다:
+ * 카드 풀이가 아닌 풀이(쓰는 길이 없는 꼴)이거나, `current`(지금 내용)를 주었는데 4단계를 푼 뒤에 문장이 고쳐졌을 때
+ * (그 글은 옛 답과 견줄 것이다 — 고친 답과 견주면 다른 답에 이름을 붙이게 된다).
  */
 export function fadingRatingsFor(
   session: StoredFadingSession,
   judged?: FadingJudged,
+  current?: FadingConcept,
 ): FsrsRating[] {
   if (session.phase !== "rating") return [];
   const waiting = session.unjudged ?? [];
-  if (waiting.length && fadingModeOf(session) !== "cards") return ["again"];
+  if (
+    waiting.length &&
+    (fadingModeOf(session) !== "cards" ||
+      (current !== undefined && fadingSolvedContentChanged(session, current)))
+  )
+    return ["again"];
   return fadingRatingsAfterJudging(
     { missedAtFour: session.missedAtFour, unjudged: waiting },
     judged,
@@ -500,7 +429,7 @@ export function rateFadingSession(
   rating: FsrsRating,
   today: string,
   requestId: string,
-  options: { judged?: FadingJudged; traps?: readonly FadingTrap[] } = {},
+  options: { judged?: FadingJudged } = {},
 ): StoredFading {
   if (state.receipts.some((r) => r.requestId === requestId)) return state;
   const { session, stored } = openSession(state, concept.id, sessionId);
@@ -508,13 +437,16 @@ export function rateFadingSession(
   const judged = options.judged ?? {};
   if (Object.keys(judged).some((id) => !waiting.some((u) => u.targetId === id)))
     throw conflict("대조를 기다리는 빈칸이 아닙니다.");
-  if (session.phase === "rating" && waiting.length) {
-    // 대조는 그 글을 쓴 내용에 대한 것이다 — 내용이 바뀌었으면 받지 않는다(다른 답과 견주게 된다).
-    if (fadingSessionStale(session, concept, options.traps)) throw stale();
-    if (!session.missedAtFour.length && !fadingJudgingComplete(waiting, judged))
-      throw conflict("기준안과 대조할 답을 다 골라 주세요.");
-  }
-  if (!fadingRatingsFor(session, judged).includes(rating))
+  // 대조를 다 골라야 닫힌다 — 고른 것이 평가를 정할 때만(틀림이 있거나, 푼 뒤에 문장이 고쳐져 «다시»뿐이면 고르지 않아도 된다).
+  if (
+    session.phase === "rating" &&
+    waiting.length &&
+    !session.missedAtFour.length &&
+    !fadingSolvedContentChanged(session, concept) &&
+    !fadingJudgingComplete(waiting, judged)
+  )
+    throw conflict("기준안과 대조할 답을 다 골라 주세요.");
+  if (!fadingRatingsFor(session, judged, concept).includes(rating))
     throw conflict(
       session.phase === "rating"
         ? "4단계에서 틀린 풀이는 «다시»로만 닫을 수 있습니다."
@@ -533,8 +465,9 @@ export function rateFadingSession(
     fresh: stored.reviews === 0,
   });
   const streak = advanceFadingStreak(toStreak(state.streak), day);
-  // 학생이 본 내용의 지문 — 풀이를 연 뒤에 바뀌었으면 다음에 «바뀜»으로 뜬다. 지문 없는 옛 풀이는 지금 내용의 지문이다.
-  const digest = session.digest?.slice(0, 8) ?? fadingConceptDigest(concept);
+  // 4단계를 푼 내용의 지문 — 그 뒤에 문장이 고쳐졌으면 고친 문장의 평가로 적지 않는다(«바뀜»이 선다).
+  // 지문이 없는 풀이(이 칸 이전에 평가 차례가 된 것)는 지금 지문이다.
+  const digest = session.digest ?? fadingConceptDigest(concept);
   const marks = fadingMarksOf(session, judged, digest);
   return {
     ...state,
@@ -580,7 +513,10 @@ function fadingMarksOf(
     .map((u) => u.targetId)
     .filter((id) => judged[id] === "different")
     .filter((id) => !session.missedAtFour.includes(id));
-  const missed = [...session.missedAtFour, ...different];
+  const missed = [...session.missedAtFour, ...different].slice(
+    0,
+    FADING_TARGETS_MAX,
+  );
   if (!session.seen && !session.sure && !missed.length) return undefined;
   return {
     digest,

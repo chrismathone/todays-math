@@ -69,7 +69,14 @@ the new app, and the workspace SRS menu opens on the new status tab.
 `MATH_FADING=read` opens only the two teacher status reads and writes nothing.
 A student record that has gained the new section cannot be read by code older
 than main `c77df4669` — merge main before running an older branch against the
-shared database. Screens talk to a
+shared database. The `session.id` a screen receives is not the stored session
+number but a token built from the stored number and the content fingerprint
+(concept + traps, `src/lib/fading/contentKey.ts`): when a bank sentence or the
+trap table changes, a request from a screen holding the old content gets 409
+and the screen re-reads the state (srs-overhaul §17.16). Never use the
+response `session.id` as the stored number in tests or tools. An open session
+may carry an optional `digest` (the content its step 4 was solved on); code
+older than main `13ebe609b` (2026-10-07) cannot read such a record. Screens talk to a
 `FadingSource` (`src/lib/fading/source.ts`); `createLocalFadingSource`
 (`src/lib/fading/local.ts`) runs the same rules and returns the same shapes in
 memory, with no server — develop and measure screens on that, and use it for
