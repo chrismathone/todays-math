@@ -474,16 +474,25 @@ describe("읽기 호환 — 새 칸이 든 기록", () => {
         },
       }).success,
     ).toBe(false);
-    expect(
+    // 대조를 기다리는 글 하나만 다르게 — 다른 규칙(평가 차례에서만 적는 지문 · 시작 단계)이 먼저 거절하지 않게 맞춘다.
+    const waitingSteps: Record<string, unknown> = {
+      ...ARRIVING.session,
+      phase: "steps",
+      missedAtFour: [],
+      startStep: 3,
+    };
+    delete waitingSteps.digest;
+    const standingAt = (step: number) =>
       storedFadingSchema.safeParse({
         ...ARRIVING,
-        session: { ...ARRIVING.session, phase: "steps", missedAtFour: [] },
+        session: waitingSteps,
         concepts: {
           ...ARRIVING.concepts,
-          [A.id]: { ...ARRIVING.concepts[A.id], step: 3 },
+          [A.id]: { ...ARRIVING.concepts[A.id], step },
         },
-      }).success,
-    ).toBe(false);
+      }).success;
+    expect(standingAt(4)).toBe(true);
+    expect(standingAt(3)).toBe(false);
   });
 });
 
