@@ -2972,6 +2972,145 @@
   margin-bottom: 8px;
 }
 
+.ankiCard {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  min-height: 300px;
+  align-content: center;
+}
+.ankiTerm {
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.6;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.cardCheck {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+.cardCheck > button {
+  min-height: 48px;
+  min-width: 0;
+  white-space: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 12px 8px;
+}
+.cardCheck > button[aria-pressed="true"],
+.selfJudge button[aria-pressed="true"] {
+  background: #d3f8e4;
+  color: #006c4a;
+  outline: 2px solid #008761;
+  outline-offset: -2px;
+}
+.typedWritten {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+  color: #174b91;
+  padding: 2px 4px;
+  background: #e5eeff;
+  border-radius: 4px;
+}
+.typedSlot {
+  width: min(100%, 180px);
+  min-height: 48px;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.typedComparison {
+  display: grid;
+  gap: 18px;
+}
+.typedComparison .comparisonRow {
+  padding: 18px;
+}
+.selfJudge {
+  border: 0;
+  padding: 16px 0 0;
+  min-width: 0;
+}
+.selfJudge legend {
+  padding-top: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.selfJudge .actions {
+  margin-top: 4px;
+  padding: 4px 0;
+}
+.typedInput {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+.typedInput label {
+  font-size: 14px;
+  font-weight: 600;
+}
+.typedInput > div {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.typedInput input {
+  flex: 1;
+  width: 100%;
+  min-width: min(100%, 160px);
+  min-height: 48px;
+  padding: 12px;
+  font-size: 16px;
+}
+.typedInput button {
+  min-height: 48px;
+}
+.cardFlow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-block: 16px;
+}
+.cardFlow > span {
+  padding: 10px 8px;
+  font-size: 12px;
+  line-height: 1.6;
+  background: #e5eeff;
+  border-radius: 8px;
+  text-align: center;
+}
+.cardFlow > span[data-current="true"] {
+  background: #1e2238;
+  color: white;
+}
+@container fading-app (max-width: 767px) {
+  .ankiCard {
+    min-height: 280px;
+  }
+  .cardCheck {
+    gap: 6px;
+  }
+  .cardCheck > button {
+    flex-direction: column;
+    font-size: 12px;
+  }
+  .typedComparison .comparisonColumns {
+    grid-template-columns: 1fr;
+  }
+  .typedInput button {
+    width: 100%;
+  }
+}
+
 /* Keep mobile scrolling inside this app; teacher/workspace scrollbars are untouched. */
 .scrollBody:focus-visible {
   outline: 3px solid #3159df;
