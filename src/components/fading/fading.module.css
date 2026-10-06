@@ -2497,16 +2497,10 @@
   padding: 14px 16px;
   margin-bottom: 16px;
 }
-.readingTextTarget {
+.readingTextTarget,
+.readingMathTarget {
   background: #d3f8e4;
   color: #006c4a;
-  font-weight: 600;
-  border-radius: 4px;
-  padding: 2px 6px;
-}
-.readingMathTarget {
-  background: #dce9ff;
-  color: #0b1c30;
   font-weight: 600;
   border-radius: 4px;
   padding: 2px 6px;

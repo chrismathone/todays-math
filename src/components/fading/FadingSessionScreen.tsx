@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import type { FadingAction, FadingState } from "@/contracts/fadingApi.contract";
 import type { FadingPlacement } from "@/contracts/fading.contract";
@@ -189,6 +189,7 @@ export function FadingSessionScreen({
   const chipInput = useRef<HTMLInputElement>(null);
   const nativeTab = useRef(false);
   const restoreMissFocus = useRef(false);
+  const finishFromTyping = useRef(false);
   const [activeBlank, setActiveBlank] = useState<string | null>(null);
   const [feedback, setFeedback] = useState("");
   const [wrong, setWrong] = useState<{ targetId: string; text: string } | null>(
@@ -199,6 +200,15 @@ export function FadingSessionScreen({
   const [exit, setExit] = useState(false);
   const [done, setDone] = useState(false);
   const [stageReady, setStageReady] = useState<FadingSession | null>(null);
+  useLayoutEffect(() => {
+    if (!stageReady || !finishFromTyping.current) return;
+    finishFromTyping.current = false;
+    sessionRoot.current
+      ?.querySelector<HTMLButtonElement>(
+        '[data-fading-action="true"]:not(:disabled)',
+      )
+      ?.focus();
+  }, [stageReady]);
   const placements = useRef<FadingPlacement[]>([]);
   const pending = useRef<{
     action: FadingAction;
@@ -348,6 +358,7 @@ export function FadingSessionScreen({
       }
     } else if (result.session.results.length > local.results.length) {
       setWrong(null);
+      finishFromTyping.current = restoreInputFocus;
       setStageReady(result.session);
       setLocal({ ...local, filled: { ...local.filled, [targetId]: chipId } });
       setFeedback("빈칸을 모두 채웠어요. 아래 단추를 눌러 단계를 마쳐 주세요.");
@@ -371,7 +382,7 @@ export function FadingSessionScreen({
     setWrong(null);
     setFeedback("");
   }
-  function cycleChip(event: KeyboardEvent<HTMLElement>, focusedChip?: string) {
+  function cycleBlank(event: KeyboardEvent<HTMLElement>) {
     if (
       event.key !== "Tab" ||
       event.ctrlKey ||
@@ -381,16 +392,14 @@ export function FadingSessionScreen({
       nativeTab.current ||
       disabled ||
       stageReady ||
-      !pendingBlank
+      local.phase !== "filling"
     )
       return false;
-    const available = choices.filter((choice) => choice.chipId);
+    const available = blanks.filter((blank) => !local.filled[blank.id]);
     if (!available.length) return false;
     event.preventDefault();
     if (event.repeat) return true;
-    const current = available.findIndex(
-      (choice) => choice.chipId === (selected ?? focusedChip),
-    );
+    const current = available.findIndex((blank) => blank.id === pendingBlank);
     const direction = event.shiftKey ? -1 : 1;
     const index =
       current < 0
@@ -398,14 +407,17 @@ export function FadingSessionScreen({
           ? available.length - 1
           : 0
         : (current + direction + available.length) % available.length;
-    setSelected(available[index]!.chipId);
+    setActiveBlank(available[index]!.id);
+    setSelected(null);
+    setTyped("");
     setFeedback("");
+    chipInput.current?.focus();
     return true;
   }
   function cancelChipKeyboard() {
     clearSelection();
     chipInput.current?.focus();
-    // Escape restores normal Tab traversal so the chip selector cannot trap focus.
+    // Escape restores normal Tab traversal so blank navigation cannot trap focus.
     nativeTab.current = true;
   }
   function submitTypedChip() {
@@ -1070,7 +1082,7 @@ export function FadingSessionScreen({
                           if (event.key === "Enter") event.preventDefault();
                           return;
                         }
-                        if (cycleChip(event)) return;
+                        if (cycleBlank(event)) return;
                         if (
                           event.key === "Escape" ||
                           (event.key === "Backspace" && !typed)
@@ -1105,7 +1117,7 @@ export function FadingSessionScreen({
                         aria-pressed={selected === choice.chipId}
                         aria-label={`칩 ${choice.text}`}
                         onKeyDown={(event) => {
-                          if (cycleChip(event, choice.chipId!)) return;
+                          if (cycleBlank(event)) return;
                           if (event.key === "Escape") {
                             event.preventDefault();
                             cancelChipKeyboard();
@@ -1170,7 +1182,7 @@ export function FadingSessionScreen({
                   )}
                 </div>
                 <p className={`${s.small} ${s.keyboardHint}`}>
-                  Tab·Shift+Tab 칩 선택 이동 · Enter로 선택한 칩 넣기 · 칩에서
+                  Tab·Shift+Tab 빈칸 이동 · 글을 입력하고 Enter로 넣기 · 칩에서
                   Enter·Space로 넣기 · 입력란 밖 ← → 빈칸 이동 · 숫자키로 넣기
                   {choices.length > 9 && " · 0은 10번, Shift+숫자는 11번부터"}
                   {" · Backspace 선택 취소 · Esc 선택 취소 후 일반 Tab 이동"}
