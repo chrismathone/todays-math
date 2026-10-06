@@ -1,0 +1,273 @@
+{
+  "recordedAt": "2026-10-05T17:43:06.979Z",
+  "variant": "ref-en",
+  "split": "test",
+  "model": "jev-1.13.0",
+  "responseModels": [
+    "jev-1.13.0"
+  ],
+  "rules": {
+    "confidentLow": 0.1,
+    "confidentHigh": 0.9,
+    "r1MinAccuracy": 0.97,
+    "r1MinCoverage": 0.6,
+    "r2MaxTrueJudgedFalse": 0.01
+  },
+  "sections": 326,
+  "sectionsAnswered": 326,
+  "items": 6282,
+  "unmeasured": 0,
+  "overall": {
+    "n": 6282,
+    "accuracyAtHalf": 0.9747,
+    "confidentCoverage": 0.8188,
+    "confidentAccuracy": 0.9957,
+    "trueItems": 3023,
+    "trueJudgedFalseConfidently": 0.0036,
+    "falseItems": 3259,
+    "falseJudgedTrueConfidently": 0.0034
+  },
+  "r1": true,
+  "r2": true,
+  "byGrade": {
+    "중1": {
+      "n": 1408,
+      "accuracyAtHalf": 0.978,
+      "confidentCoverage": 0.831,
+      "confidentAccuracy": 0.9966,
+      "trueItems": 680,
+      "trueJudgedFalseConfidently": 0.0029,
+      "falseItems": 728,
+      "falseJudgedTrueConfidently": 0.0027
+    },
+    "중2": {
+      "n": 846,
+      "accuracyAtHalf": 0.9764,
+      "confidentCoverage": 0.8215,
+      "confidentAccuracy": 0.9957,
+      "trueItems": 402,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 444,
+      "falseJudgedTrueConfidently": 0.0068
+    },
+    "중3": {
+      "n": 392,
+      "accuracyAtHalf": 0.9668,
+      "confidentCoverage": 0.7679,
+      "confidentAccuracy": 0.9967,
+      "trueItems": 175,
+      "trueJudgedFalseConfidently": 0.0057,
+      "falseItems": 217,
+      "falseJudgedTrueConfidently": 0
+    },
+    "초3": {
+      "n": 894,
+      "accuracyAtHalf": 0.9732,
+      "confidentCoverage": 0.7953,
+      "confidentAccuracy": 0.9958,
+      "trueItems": 424,
+      "trueJudgedFalseConfidently": 0.0071,
+      "falseItems": 470,
+      "falseJudgedTrueConfidently": 0
+    },
+    "초4": {
+      "n": 1133,
+      "accuracyAtHalf": 0.9718,
+      "confidentCoverage": 0.8155,
+      "confidentAccuracy": 0.9968,
+      "trueItems": 576,
+      "trueJudgedFalseConfidently": 0,
+      "falseItems": 557,
+      "falseJudgedTrueConfidently": 0.0054
+    },
+    "초5": {
+      "n": 752,
+      "accuracyAtHalf": 0.9787,
+      "confidentCoverage": 0.871,
+      "confidentAccuracy": 0.9939,
+      "trueItems": 361,
+      "trueJudgedFalseConfidently": 0.0055,
+      "falseItems": 391,
+      "falseJudgedTrueConfidently": 0.0051
+    },
+    "초6": {
+      "n": 857,
+      "accuracyAtHalf": 0.9732,
+      "confidentCoverage": 0.8028,
+      "confidentAccuracy": 0.9942,
+      "trueItems": 405,
+      "trueJudgedFalseConfidently": 0.0074,
+      "falseItems": 452,
+      "falseJudgedTrueConfidently": 0.0022
+    }
+  },
+  "byLevel": {
+    "상": {
+      "n": 1985,
+      "accuracyAtHalf": 0.9617,
+      "confidentCoverage": 0.7537,
+      "confidentAccuracy": 0.9926,
+      "trueItems": 961,
+      "trueJudgedFalseConfidently": 0.0062,
+      "falseItems": 1024,
+      "falseJudgedTrueConfidently": 0.0049
+    },
+    "중": {
+      "n": 2083,
+      "accuracyAtHalf": 0.975,
+      "confidentCoverage": 0.8305,
+      "confidentAccuracy": 0.996,
+      "trueItems": 981,
+      "trueJudgedFalseConfidently": 0.0041,
+      "falseItems": 1102,
+      "falseJudgedTrueConfidently": 0.0027
+    },
+    "하": {
+      "n": 2214,
+      "accuracyAtHalf": 0.986,
+      "confidentCoverage": 0.8663,
+      "confidentAccuracy": 0.9979,
+      "trueItems": 1081,
+      "trueJudgedFalseConfidently": 0.0009,
+      "falseItems": 1133,
+      "falseJudgedTrueConfidently": 0.0026
+    }
+  },
+  "byMath": {
+    "글만": {
+      "n": 3465,
+      "accuracyAtHalf": 0.9833,
+      "confidentCoverage": 0.8407,
+      "confidentAccuracy": 0.9979,
+      "trueItems": 1676,
+      "trueJudgedFalseConfidently": 0.0024,
+      "falseItems": 1789,
+      "falseJudgedTrueConfidently": 0.0011
+    },
+    "수식 있음": {
+      "n": 2817,
+      "accuracyAtHalf": 0.9641,
+      "confidentCoverage": 0.792,
+      "confidentAccuracy": 0.9928,
+      "trueItems": 1347,
+      "trueJudgedFalseConfidently": 0.0052,
+      "falseItems": 1470,
+      "falseJudgedTrueConfidently": 0.0061
+    }
+  },
+  "medianMs": 211,
+  "inputTokens": 1235612,
+  "estimatedUsd": 0.0519,
+  "confidentErrors": [
+    {
+      "id": "m1-01-04-xo5",
+      "bank": false,
+      "noul": 0.91
+    },
+    {
+      "id": "m1-01-05-xo13",
+      "bank": false,
+      "noul": 0.91
+    },
+    {
+      "id": "m1-07-01-xo15",
+      "bank": true,
+      "noul": 0.05
+    },
+    {
+      "id": "m1-07-05-xo16",
+      "bank": true,
+      "noul": 0.09
+    },
+    {
+      "id": "m2-02-03-xo18",
+      "bank": false,
+      "noul": 0.95
+    },
+    {
+      "id": "m2-03-06-xo22",
+      "bank": false,
+      "noul": 0.91
+    },
+    {
+      "id": "m2-07-06-xo25",
+      "bank": false,
+      "noul": 0.93
+    },
+    {
+      "id": "m3-05-01-xo14",
+      "bank": true,
+      "noul": 0.1
+    },
+    {
+      "id": "e3-1-6-7-xo20",
+      "bank": true,
+      "noul": 0.08
+    },
+    {
+      "id": "e3-2-5-2-xo24",
+      "bank": true,
+      "noul": 0.04
+    },
+    {
+      "id": "e3-2-5-5-xo28",
+      "bank": true,
+      "noul": 0.07
+    },
+    {
+      "id": "e4-1-1-3-xo5",
+      "bank": false,
+      "noul": 0.9
+    },
+    {
+      "id": "e4-1-1-5-xo24",
+      "bank": false,
+      "noul": 0.93
+    },
+    {
+      "id": "e4-1-1-7-xo18",
+      "bank": false,
+      "noul": 0.97
+    },
+    {
+      "id": "e5-1-1-2-xo10",
+      "bank": true,
+      "noul": 0.09
+    },
+    {
+      "id": "e5-1-2-3-xo21",
+      "bank": true,
+      "noul": 0.05
+    },
+    {
+      "id": "e5-1-4-1-xo7",
+      "bank": false,
+      "noul": 0.92
+    },
+    {
+      "id": "e5-1-4-4-xo23",
+      "bank": false,
+      "noul": 0.93
+    },
+    {
+      "id": "e6-1-1-2-xo27",
+      "bank": true,
+      "noul": 0.06
+    },
+    {
+      "id": "e6-1-2-5-xo29",
+      "bank": false,
+      "noul": 0.98
+    },
+    {
+      "id": "e6-1-4-2-xo14",
+      "bank": true,
+      "noul": 0.06
+    },
+    {
+      "id": "e6-1-4-2-xo22",
+      "bank": true,
+      "noul": 0.05
+    }
+  ]
+}

@@ -108,6 +108,12 @@ const FORBIDDEN_ROOTS = [
   "scripts/",
   ".claude/",
 ];
+/**
+ * `scripts/` 아래지만 문제은행 도구가 아닌 것 — 학생 기억 학습의 서버 상태(`serverState.ts`)를 메모리 DB mock 으로 돌리는
+ * 브라우저 QA 서버다(`__tests__` 의 시험과 같은 자리 · `mathSrsRecordIsolation.test.ts` 의 `TEST_FIXTURES` 와 같은 파일).
+ * 학생 기억 학습은 한 걸음 문항의 제자리라 거기에 닿는 것이 맞다. 금지 뿌리는 넓히지도 좁히지도 않는다 — 이 파일 하나만 뺀다.
+ */
+const TEST_FIXTURES = new Set(["scripts/qa/math-prerequisite/server.test.ts"]);
 
 /**
  * 🔴 원장님 연구실(`/lab/math-srs/algebra`, 브라우저 기록 · 글자 입력칸뿐)은 숫자형 그대로다(2026-09-27).
@@ -331,6 +337,7 @@ describe("한 걸음 문항 격리 울타리", () => {
     const leaks: string[] = [];
     for (const file of SCAN.graph.keys()) {
       const r = rel(file);
+      if (TEST_FIXTURES.has(r)) continue;
       if (!FORBIDDEN_ROOTS.some((root) => r === root || r.startsWith(root)))
         continue;
       const chain = pathToQuick(file);

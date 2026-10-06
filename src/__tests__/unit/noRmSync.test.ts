@@ -74,5 +74,6 @@ describe("`rmSync` 금지 — 한글 경로에서 노드가 죽는다", () => {
       offenders,
       `${offenders.join("\n")}\n\n→ \`unlinkSync\` 또는 \`fs/promises\` 의 \`rm\` 을 써라.`,
     ).toEqual([]);
-  });
+    // 저장소 전체를 읽는다 — 기계가 바쁘면 20초를 넘긴다(22 ~ 50초를 쟀다 · 2026-10-06).
+  }, 120_000);
 });

@@ -119,6 +119,8 @@ const TABLE_ALLOWED = [
   "prisma/migrations/20261003120000_english_listening/",
   // Private listening Storage chunk metadata migration, part of the English product.
   "prisma/migrations/20261004071000_listening_storage_chunks/",
+  // 듣기 원본의 받아쓰기 칸(2026-10-05 `c2db65d0f`) — 영어 듣기 표의 마이그레이션이다. 허용 목록에 안 적혀 빨갰다(2026-10-06).
+  "prisma/migrations/20261005142000_listening_source_transcripts/",
   "prisma/migrations/20261003160000_english_passage_bank/",
   // The managed identity migration adds branch ownership to English exams;
   // its isolated SQL probe verifies that backfill. Neither imports math logic.
@@ -319,6 +321,8 @@ const learnerDatabase = (abs: string) => {
 // unfiltered English/teacher-contract graph above is still checked for every edge.
 const EXISTING_STUDENT_SERVER_EDGES = new Set([
   "src/app/learn/english-listening/layout.tsx → src/lib/learn/studentRequest.ts",
+  // «오늘의 기억»의 학생 페이지(2026-10-06) — 다른 학생 서버 페이지와 같은 세션 읽기 하나다(문이 꺼져 있으면 그 전에 404).
+  "src/app/learn/fading/page.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/studentRequest.ts",
   "src/app/learn/layout.tsx → src/lib/learn/testConsoleServer.ts",
   "src/app/learn/lectures/page.tsx → src/lib/learn/studentRequest.ts",

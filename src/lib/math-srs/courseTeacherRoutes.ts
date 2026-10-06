@@ -43,11 +43,7 @@ import {
   requireTeacherBranch,
   assertTeacherBranch,
 } from "./teacherScope";
-import {
-  changeSrsState,
-  srsStateTable,
-  type SrsStateTable,
-} from "./serverStore";
+import { changeSrsState, guardedSrsStateTable } from "./serverStore";
 
 /** «오늘의 기억» 교사 끝점의 문지기 — 탐험 교사 보기(`math-explorers/teacherRoutes.ts`)도 이것을 지난다. */
 export async function teacherGate(request: Request) {
@@ -148,45 +144,21 @@ export async function handleCourseTeacherStudent(
     );
     if (!input.success) return noStore(validationError(input.error));
     let changes: Record<string, string | number | boolean | null> = {};
-    const guardedTable: SrsStateTable = {
-      ...srsStateTable(),
-      create: (args) =>
-        db.$transaction(async (tx) => {
-          await assertClassWrite(
-            tx,
-            access.account,
-            student.classId,
-            "progress:write",
-          );
-          await assertStudentEnrollment(tx, student.id, student.classId);
-          await assertTeacherBranch(
-            tx,
-            student.classId,
-            scope.data.branchId,
-            student.id,
-          );
-          return (tx.studentSrsState as unknown as SrsStateTable).create(args);
-        }),
-      updateMany: (args) =>
-        db.$transaction(async (tx) => {
-          await assertClassWrite(
-            tx,
-            access.account,
-            student.classId,
-            "progress:write",
-          );
-          await assertStudentEnrollment(tx, student.id, student.classId);
-          await assertTeacherBranch(
-            tx,
-            student.classId,
-            scope.data.branchId,
-            student.id,
-          );
-          return (tx.studentSrsState as unknown as SrsStateTable).updateMany(
-            args,
-          );
-        }),
-    };
+    const guardedTable = guardedSrsStateTable(async (tx) => {
+      await assertClassWrite(
+        tx,
+        access.account,
+        student.classId,
+        "progress:write",
+      );
+      await assertStudentEnrollment(tx, student.id, student.classId);
+      await assertTeacherBranch(
+        tx,
+        student.classId,
+        scope.data.branchId,
+        student.id,
+      );
+    });
     const saved = await changeSrsState(
       student.id,
       (state) => {

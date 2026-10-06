@@ -81,6 +81,7 @@ import { testConsoleResponseSchema } from "@/contracts/testConsole.contract";
 import { TEST_CLOCK_COOKIE } from "@/lib/learn/testConsole";
 import { learnNow } from "@/lib/learn/testConsoleServer";
 import { createExplorerState } from "@/lib/math-explorers/engine";
+import { emptyFading, pickFadingConcept } from "@/lib/fading/state";
 import { emptySrsState, parseSrsState } from "@/lib/math-srs/serverState";
 
 const base = "http://localhost:3000";
@@ -194,6 +195,19 @@ describe("바꾸기", () => {
     await post({ type: "explorer", stars: 3 });
     await view(await post({ type: "reset", part: "explorers" }));
     expect(stored().explorers).toBeUndefined();
+  });
+
+  it("부분 초기화 — 오늘의 기억(새 앱)의 칸만 지운다", async () => {
+    await post({ type: "explorer", stars: 3 });
+    const row = f.rows.get(f.studentId)!;
+    row.payload = {
+      ...(row.payload as object),
+      fading: pickFadingConcept(emptyFading(), "m2-01-01-c1", "2026-10-06"),
+    };
+    expect(stored().fading).toBeDefined();
+    await view(await post({ type: "reset", part: "fading" }));
+    expect(stored().fading).toBeUndefined();
+    expect(stored().explorers).toBeDefined();
   });
 
   it("스냅샷 되돌리기 — 계약에 맞는 원본만 받는다", async () => {

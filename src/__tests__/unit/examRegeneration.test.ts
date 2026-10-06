@@ -1,12 +1,7 @@
 // @vitest-environment node
 import { afterEach, describe, expect, it } from "vitest";
-import {
-  mkdtempSync,
-  mkdirSync,
-  readFileSync,
-  rmSync,
-  writeFileSync,
-} from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 
@@ -19,9 +14,9 @@ import {
 } from "../../../scripts/import/exam-paper/regenerateExam";
 
 const temporary: string[] = [];
-afterEach(() => {
+afterEach(async () => {
   for (const dir of temporary.splice(0))
-    rmSync(dir, { recursive: true, force: true });
+    await rm(dir, { recursive: true, force: true });
 });
 
 function fixture(grade = "중3") {
