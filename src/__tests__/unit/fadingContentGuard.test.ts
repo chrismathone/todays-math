@@ -595,6 +595,31 @@ describe("가드 — 화면이 보낸 풀이 번호", () => {
 describe("평가의 지문 — 4단계를 푼 내용으로 적는다", () => {
   const SEED = 5;
 
+  it("4단계를 마쳐 평가 차례가 되면 그 4단계를 푼 내용의 지문을 풀이에 적는다(쓰는 판)", () => {
+    const at4 = solvedThrough(OLD, 3, SEED);
+    expect(at4.session!.digest).toBeUndefined();
+    const rating = completeFadingStep(at4, OLD, S1, 4, solve(OLD, 4, SEED), {});
+    expect(valid(rating).session).toMatchObject({
+      phase: "rating",
+      digest: fadingConceptDigest(OLD),
+    });
+    // 배포 뒤 고친 문장으로 평가해도 옛 문장의 지문이 적힌다 — «바뀜»이 선다.
+    const rated = act(
+      rating,
+      {
+        action: "rate",
+        conceptId: OLD.id,
+        sessionId: tokenOf(NEW_PROSE),
+        rating: "easy",
+        requestId: REQ,
+      },
+      NEW_PROSE,
+    );
+    expect(rated.concepts[OLD.id]!.digest).toBe(fadingConceptDigest(OLD));
+    expect(fadingContentChanged(rated.concepts[OLD.id]!, NEW_PROSE)).toBe(true);
+    expect(fadingContentChanged(rated.concepts[OLD.id]!, OLD)).toBe(false);
+  });
+
   it("풀이에 적힌 지문이 있으면 그 지문으로 적는다 — 고친 문장의 평가로 적지 않는다", () => {
     const rating = solvedThrough(OLD, 4, SEED);
     const solvedOnOld = valid({

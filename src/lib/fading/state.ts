@@ -304,6 +304,8 @@ export function completeFadingStep(
         ...order.filter((id) => missed.has(id)),
         ...session.missedAtFour.filter((id) => !order.includes(id)),
       ].slice(0, FADING_TARGETS_MAX),
+      // 이 4단계를 푼 내용 — 평가는 이 지문으로 적는다(그사이 문장이 고쳐져도 «고친 문장의 평가»로 적지 않는다).
+      digest: fadingConceptDigest(concept),
     },
   };
 }
