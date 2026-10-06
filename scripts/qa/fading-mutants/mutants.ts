@@ -603,8 +603,14 @@ export const MUTANTS: Mutant[] = [
   {
     file: "fading/state.ts",
     note: "틀린 풀이에 네 평가를 다 연다",
-    from: 'return session.missedAtFour.length ? ["again"] : [...FSRS_RATINGS];',
-    to: "return [...FSRS_RATINGS];",
+    from: "session.missedAtFour.length || session.unjudged?.length\n",
+    to: "session.unjudged?.length\n",
+  },
+  {
+    file: "fading/state.ts",
+    note: "대조를 기다리는 글이 남은 풀이에 네 평가를 다 연다(읽기 판)",
+    from: "session.missedAtFour.length || session.unjudged?.length\n",
+    to: "session.missedAtFour.length\n",
   },
   {
     file: "fading/state.ts",
@@ -753,14 +759,32 @@ export const MUTANTS: Mutant[] = [
   {
     file: "../contracts/fading.contract.ts",
     note: "4단계에 닿은 풀이의 개념이 3단계여도 받는다",
-    from: '(session.phase === "rating" || session.missedAtFour.length > 0) &&',
-    to: "false &&",
+    from: '(session.phase === "rating" ||\n        session.missedAtFour.length > 0 ||',
+    to: "(false ||\n        false ||",
   },
   {
     file: "../contracts/fading.contract.ts",
     note: "겹친 틀림을 받는다",
-    from: "new Set(session.missedAtFour).size === session.missedAtFour.length,",
-    to: "true,",
+    from: "(session) => uniqueIds(session.missedAtFour),",
+    to: "() => true,",
+  },
+  {
+    file: "../contracts/fading.contract.ts",
+    note: "대조를 기다리는 글이 남은 풀이의 개념이 3단계여도 받는다",
+    from: "(session.unjudged?.length ?? 0) > 0) &&",
+    to: "false) &&",
+  },
+  {
+    file: "../contracts/fading.contract.ts",
+    note: "겹친 대조 칸을 받는다",
+    from: "(session) => uniqueIds((session.unjudged ?? []).map((u) => u.targetId)),",
+    to: "() => true,",
+  },
+  {
+    file: "../contracts/fading.contract.ts",
+    note: "평가 전 개념의 진단을 받는다",
+    from: "if (concept.marks && !rated)",
+    to: "if (false)",
   },
   {
     file: "../contracts/fading.contract.ts",

@@ -313,10 +313,16 @@ const toStreak = (streak: StoredFading["streak"]): FadingStreak => ({
   lastDay: streak.lastOn ? fadingDayOfDate(streak.lastOn) : null,
 });
 
-/** 지금 고를 수 있는 평가 — 평가 차례가 아니면 없고, 4단계에서 틀렸으면 «다시»뿐이다. */
+/**
+ * 지금 고를 수 있는 평가 — 평가 차례가 아니면 없고, 4단계에서 틀렸으면 «다시»뿐이다.
+ * 대조를 기다리는 글(`unjudged`)이 남아 있어도 «다시»뿐이다 — 이 판은 그 대조를 받지 못하므로, 판정 없이 «같은 뜻»으로 읽지 않는다
+ * (그 칸을 쓰는 판에서 되돌렸을 때의 안전한 쪽).
+ */
 export function fadingRatingsFor(session: StoredFadingSession): FsrsRating[] {
   if (session.phase !== "rating") return [];
-  return session.missedAtFour.length ? ["again"] : [...FSRS_RATINGS];
+  return session.missedAtFour.length || session.unjudged?.length
+    ? ["again"]
+    : [...FSRS_RATINGS];
 }
 
 /**

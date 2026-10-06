@@ -35,6 +35,48 @@ export const FADING_STORED_DAYS_MAX = 400;
 export const FADING_RECEIPTS_MAX = 32;
 /** 한 개념의 표적 수의 상한(명제 다섯 × 핵심어 넷). */
 export const FADING_TARGETS_MAX = 20;
+/** 자판으로 쓴 답 하나의 길이 상한 — 은행의 답은 수식 표시까지 넣어도 이 안에 든다(`fadingTyped.test.ts` 가 잠근다). */
+export const FADING_TYPED_MAX = 80;
+/**
+ * 카드마다의 진단 글(`seen` · `sure`)의 길이 상한 — 지금 개념은 많아야 명제 다섯이다. 읽는 쪽이 쓰는 쪽보다 좁으면
+ * 그 학생의 기록 전체가 안 읽히므로 넉넉히 둔다.
+ */
+export const FADING_MARKS_MAX = 12;
+
+/**
+ * 카드(명제)마다 한 글자씩 적은 진단 — 문장 차례대로. `0` 은 묻지 않았거나 답하지 않은 것, `1` ~ `3` 은 고른 값이다.
+ * 🔴 진단일 뿐이다 — 일정 · 서 있는 단계 · 고를 수 있는 평가를 바꾸지 않는다(카드 · A′ 합의 2026-10-07).
+ */
+const marksTextSchema = z
+  .string()
+  .regex(new RegExp(`^[0-3]{1,${FADING_MARKS_MAX}}$`));
+
+/**
+ * 풀이가 열릴 때의 내용 지문 — 개념 내용의 지문(`fadingConceptDigest` 의 여덟 자) 뒤에, 칩 차례에 닿는 다른 재료
+ * (함정 칩 · 덧씌움 판)의 지문을 점으로 붙인다. 앞 여덟 자가 곧 개념 칸의 `digest` 와 같은 꼴이다.
+ */
+const sessionDigestSchema = z
+  .string()
+  .regex(/^[0-9a-f]{8}(?:\.[0-9a-z]{1,16})?$/);
+
+const uniqueIds = (ids: readonly string[]) => new Set(ids).size === ids.length;
+
+/**
+ * 마지막 평가 때의 진단 한 벌 — 누적 · 평균은 없다. `digest` 가 지금 내용의 지문과 다르면 읽는 쪽이 무시한다
+ * (표적의 번호가 다른 답을 가리킬 수 있다). `missed` 는 4단계에서 «다시»를 건 빈칸(틀림 · 넘김 · «다름»)이다.
+ */
+export const storedFadingMarksSchema = z
+  .strictObject({
+    digest: z.string().regex(/^[0-9a-f]{8}$/),
+    seen: marksTextSchema.optional(),
+    sure: marksTextSchema.optional(),
+    missed: z.array(targetIdSchema).max(FADING_TARGETS_MAX).optional(),
+  })
+  .refine(
+    (marks) => uniqueIds(marks.missed ?? []),
+    "진단의 빈칸이 겹쳐 적혔습니다.",
+  );
+export type StoredFadingMarks = z.infer<typeof storedFadingMarksSchema>;
 
 export const storedFadingConceptSchema = z
   .strictObject({
@@ -54,6 +96,8 @@ export const storedFadingConceptSchema = z
     lapses: z.number().int().min(0),
     /** 개념 목록에서 고른 날. */
     addedOn: dateSchema,
+    /** 마지막 평가 때의 진단(선택 칸) — 평가한 개념에만 있다. 없어도 된다(옛 기록 · 진단 없이 닫은 풀이). */
+    marks: storedFadingMarksSchema.optional(),
   })
   .superRefine((concept, ctx) => {
     const invalid = (message: string) =>
@@ -78,7 +122,16 @@ export const storedFadingConceptSchema = z
       invalid("다음 복습일이 마지막 복습일보다 뒤여야 합니다.");
     if (rated && concept.reviewedOn! < concept.addedOn)
       invalid("복습일이 고른 날보다 앞섭니다.");
+    if (concept.marks && !rated)
+      invalid("평가하지 않은 개념에는 진단이 없습니다.");
   });
+
+/** 4단계에서 쓴 글 가운데 어느 답의 글도 아니어서 학생의 대조를 기다리는 것 하나. */
+export const storedFadingUnjudgedSchema = z.strictObject({
+  targetId: targetIdSchema,
+  text: z.string().min(1).max(FADING_TYPED_MAX),
+});
+export type StoredFadingUnjudged = z.infer<typeof storedFadingUnjudgedSchema>;
 export type StoredFadingConcept = z.infer<typeof storedFadingConceptSchema>;
 
 /** 열린 풀이 — 학생마다 하나. 마친 단계는 개념의 «서 있는 단계»에 이미 반영돼 있다. */
@@ -95,11 +148,31 @@ export const storedFadingSessionSchema = z
     phase: z.enum(["steps", "rating"]),
     /** 4단계에서 틀리게 넣은 빈칸 — **틀린 그때 적는다**(새로고침으로 지워지지 않게). 하나라도 있으면 평가는 «다시»뿐이다. */
     missedAtFour: z.array(targetIdSchema).max(FADING_TARGETS_MAX),
+    /*
+     * 아래는 전부 **선택 칸**이다(카드 · A′ 합의 2026-10-07). 없으면 옛 풀이 — 칩으로 푸는 지금의 규칙이다.
+     * 🔴 이 칸들을 읽고 보존하는 배포판이 쓰는 배포판보다 먼저 나간다. 꼴을 바꿀 때도 같다.
+     */
+    /** 풀이의 방식 — 열 때 정해 풀이 끝까지 그대로다. `cards` 는 1단계 카드 · 4단계 자판 입력(A′)이다. 없으면 칩. */
+    mode: z.enum(["chips", "cards"]).optional(),
+    /** 열 때의 내용 지문 — 그 뒤에 내용이 바뀌면 넣은 것을 다시 돌리지 않고 거절한다(칩 · 표적의 번호가 다른 답을 가리킨다). */
+    digest: sessionDigestSchema.optional(),
+    /** 1단계 카드의 «사전 확인» — 진단. */
+    seen: marksTextSchema.optional(),
+    /** 4단계 카드의 확신(복습으로 연 풀이만) — 진단. */
+    sure: marksTextSchema.optional(),
+    /** 4단계에서 쓴 글 가운데 어느 답의 글도 아닌 것 — 학생이 기준안과 대조해 «같은 뜻 / 다름»을 고를 때까지 남는다. */
+    unjudged: z
+      .array(storedFadingUnjudgedSchema)
+      .max(FADING_TARGETS_MAX)
+      .optional(),
   })
   .refine(
-    (session) =>
-      new Set(session.missedAtFour).size === session.missedAtFour.length,
+    (session) => uniqueIds(session.missedAtFour),
     "틀린 빈칸이 겹쳐 적혔습니다.",
+  )
+  .refine(
+    (session) => uniqueIds((session.unjudged ?? []).map((u) => u.targetId)),
+    "대조를 기다리는 빈칸이 겹쳐 적혔습니다.",
   );
 export type StoredFadingSession = z.infer<typeof storedFadingSessionSchema>;
 
@@ -174,7 +247,9 @@ export const storedFadingSchema = z
     if (session.startStep > concept.step)
       invalid("풀이를 시작한 단계가 서 있는 단계보다 뒤입니다.");
     if (
-      (session.phase === "rating" || session.missedAtFour.length > 0) &&
+      (session.phase === "rating" ||
+        session.missedAtFour.length > 0 ||
+        (session.unjudged?.length ?? 0) > 0) &&
       concept.step !== 4
     )
       invalid("4단계에 닿은 풀이의 개념은 4단계에 서 있어야 합니다.");

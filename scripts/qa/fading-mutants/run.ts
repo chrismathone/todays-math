@@ -42,6 +42,7 @@ const TESTS = [
   "Source",
   "Traps",
   "Figures",
+  "Compat",
 ]
   .map(TEST)
   .concat(ROUTES, TEACHER_ROUTES, CONSOLE);
