@@ -16,6 +16,7 @@ import { LearnTopBar } from "@/components/learn/LearnTopBar";
 import { TextbookQrScreen } from "@/components/learn/textbook/TextbookQrScreen";
 import { PaperProblemView } from "@/components/print/PaperProblemView";
 import { MarkdownRenderer } from "@/components/math/MarkdownRenderer";
+import { SolutionText } from "@/components/math/MathText";
 import learn from "@/components/learn/learn.module.css";
 import styles from "@/components/learn/textbook/textbookLearn.module.css";
 
@@ -113,7 +114,7 @@ export default async function TextbookQrPage({
           <h2>정답과 풀이</h2>
           <MarkdownRenderer content={printable.answer} />
           {printable.solution !== null && (
-            <MarkdownRenderer content={printable.solution} />
+            <SolutionText text={printable.solution} />
           )}
         </section>
         <Link href={editor}>교재 제작에서 열기</Link>
