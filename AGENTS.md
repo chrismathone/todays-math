@@ -46,3 +46,15 @@ for TypeSafe/Jev work and relevant AI judgment design in this project, including
 grading, verification, and routing. Read the skill and the relevant live TypeSafe
 documentation before designing or changing an integration. Preserve the project's
 chosen stack and keep deterministic rules and calculations in code.
+
+# Original listening production references
+
+Before building original listening materials, read
+[the production guide](docs/listening-production/PATTERN-GUIDE.md). The retained
+[aggregate patterns](src/lib/english/listening/creation/assessment-patterns.json)
+cover 193 sources and 3,699 questions; use
+[`buildCreationBlueprint`](src/lib/english/listening/creation/assessmentPatterns.ts)
+for grade-specific question allocations and generation constraints. Keep observed,
+inferred and unknown evidence distinct, and exclude reconstructed questions from
+official style quotas. Use these patterns to author new scripts, questions and
+audio; retired originals and transcripts are not generation inputs.
