@@ -92,7 +92,42 @@ function EditorHarness() {
 }
 
 describe("branch-capped personal account menus", () => {
-  it("unassigned nonpilot accounts keep the listening selection without enabling or mutating it", async () => {
+  it("an administrator turns listening on for an account like any other menu", async () => {
+    const account: ManagedAccount = {
+      ...pendingAccount,
+      configuredMenus: ["home", "english-school"],
+      branchMenus: null,
+      unavailableMenus: [],
+      menus: ["home", "english-school"],
+    };
+    fetchMock.mockImplementation(async (_url, init) =>
+      init?.method === "PATCH"
+        ? json({
+            data: {
+              ...account,
+              configuredMenus: [...account.menus, "english-listening"],
+              menus: [...account.menus, "english-listening"],
+            },
+          })
+        : json(branchList()),
+    );
+    render(<ReviewHarness initial={account} />);
+    fireEvent.click(screen.getByRole("tab", { name: "오늘의 영어" }));
+    const listening = screen.getByRole("checkbox", { name: "영어듣기" });
+    expect(listening).toBeEnabled();
+    expect(listening).not.toBeChecked();
+    fireEvent.click(listening);
+    expect(listening).toBeChecked();
+    fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
+    await screen.findByText("계정 변경을 저장했습니다.");
+    expect(payload().menus).toEqual([
+      "home",
+      "english-school",
+      "english-listening",
+    ]);
+    expect(screen.getByRole("checkbox", { name: "영어듣기" })).toBeChecked();
+  });
+  it("the service switch keeps the listening selection without enabling or mutating it", async () => {
     const account: ManagedAccount = {
       ...pendingAccount,
       configuredMenus: ["home", "english-school", "english-listening"],
@@ -111,7 +146,7 @@ describe("branch-capped personal account menus", () => {
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
     expect(listening.closest("label")).toHaveTextContent(
-      "시범 이용 대상이 아님 · 개인 선택 보존",
+      "서비스에서 사용 중지됨 · 개인 선택 보존",
     );
     fireEvent.click(listening);
     expect(screen.getByRole("button", { name: "변경 저장" })).toBeDisabled();
@@ -122,7 +157,7 @@ describe("branch-capped personal account menus", () => {
     await screen.findByText("계정 변경을 저장했습니다.");
     expect(payload()).not.toHaveProperty("menus");
   });
-  it("a destination with listening enabled still follows independent pilot restrictions", async () => {
+  it("a destination with listening enabled still follows the service switch", async () => {
     const account: ManagedAccount = {
       ...owner,
       configuredMenus: ["home", "bank", "english-school", "english-listening"],
@@ -154,7 +189,7 @@ describe("branch-capped personal account menus", () => {
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
     expect(listening.closest("label")).toHaveTextContent(
-      "시범 이용 대상이 아님 · 개인 선택 보존",
+      "서비스에서 사용 중지됨 · 개인 선택 보존",
     );
     fireEvent.click(screen.getByRole("button", { name: "변경 저장" }));
     await screen.findByText("계정 변경을 저장했습니다.");
@@ -164,7 +199,7 @@ describe("branch-capped personal account menus", () => {
     });
     expect(payload()).not.toHaveProperty("menus");
   });
-  it("missing rollout metadata conservatively disables unknown listening access", () => {
+  it("missing availability metadata conservatively disables unknown listening access", () => {
     render(
       <ReviewHarness
         initial={{
@@ -180,7 +215,7 @@ describe("branch-capped personal account menus", () => {
     expect(listening).not.toBeChecked();
     expect(listening).toBeDisabled();
     expect(listening.closest("label")).toHaveTextContent(
-      "시범 이용 대상 확인 필요 · 개인 선택 보존",
+      "사용 가능 여부 확인 필요 · 개인 선택 보존",
     );
   });
   it("owners follow the branch checklist, retain blocked personal choices, and can edit allowed items", () => {

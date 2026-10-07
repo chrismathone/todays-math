@@ -105,22 +105,29 @@ describe("관리자 계정 응답", () => {
     ).toBe(false);
   });
   it.each([null, row.branchId])(
-    "serializes rollout restrictions independently of branch caps for branch %s",
+    "serializes the service switch independently of branch caps for branch %s",
     (branchId) => {
-      vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "");
-      vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
-      const account = managedAccount({
+      const input = {
         ...row,
         isSuperAdmin: false,
         branchId,
         branch: branchId
           ? { ...row.branch, disabledMenus: ["english-listening"] }
           : null,
-      });
-      expect(account.unavailableMenus).toEqual(["english-listening"]);
-      expect(account.configuredMenus).toContain("english-listening");
-      expect(account.menus).not.toContain("english-listening");
-      expect(account.branchMenus).toEqual(
+      };
+      // No enrolment list: an ordinary account is limited by its stored menus only.
+      vi.stubEnv("ENGLISH_LISTENING_TEACHER_IDS", "");
+      vi.stubEnv("ENGLISH_LISTENING_ENABLED", "true");
+      const open = managedAccount(input);
+      expect(open.unavailableMenus).toEqual([]);
+      expect(open.configuredMenus).toContain("english-listening");
+      expect(open.menus.includes("english-listening")).toBe(branchId === null);
+      vi.stubEnv("ENGLISH_LISTENING_ENABLED", "false");
+      const off = managedAccount(input);
+      expect(off.unavailableMenus).toEqual(["english-listening"]);
+      expect(off.configuredMenus).toContain("english-listening");
+      expect(off.menus).not.toContain("english-listening");
+      expect(off.branchMenus).toEqual(
         branchId
           ? ALL_WORKSPACE_MENUS.filter((menu) => menu !== "english-listening")
           : null,
