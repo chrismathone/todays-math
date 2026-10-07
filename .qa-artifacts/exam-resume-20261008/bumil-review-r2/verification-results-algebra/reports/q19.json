@@ -1,0 +1,548 @@
+{
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "evidence": {
+    "questionNumber": 19,
+    "mathReview": "독립 답과 저자 답은 60 m로 같다. 내각 합에서 C=60°, B에서 AC로 내린 높이 BH=20√6·sin60°=30√2, AB=BH/sin45°=60이다. 모든 길이와 세 각은 양수이고 두 끝각 A·C가 예각이므로 수선의 발이 AC 안에 있다. 각과 한 변이 정해져 요구 길이는 유일하다.",
+    "solutionReview": "저자 해설은 내각 합과 보조 수선으로 45°·60°의 직각삼각형을 만든다. 75°를 삼각비에 직접 넣거나 덧셈정리·사인법칙을 쓰지 않는다. 학생에게 정당한 중학교 풀이가 완성되어 있다.",
+    "transformationReview": "캠핑장의 AB 거리에서 시설까지 BC를 구하는 원문을 공원 표지·관개 제어함의 측량 기록으로 바꾸고, BC를 주어 AB를 복원한다. 대상·행동·자료표·미지 선분이 실제로 전환된다. 필요한 나머지 각·수선·특수각 비의 절차는 동일하다.",
+    "wordingReview": "두 표지와 제어함의 역할이 관계도 A·B·C와 일치하며 '거리만 빠져 있다'라는 기록 복원 목적이 자연스럽다. 길이·각의 표가 필요한 조건을 모두 제공한다.",
+    "difficultyScoreReview": {
+      "status": "passed-comparative-review",
+      "sourceScore": 7,
+      "candidateScore": 7,
+      "proposal": "응용",
+      "reason": "원문과 새 문항은 같은 45°·75°·60° 삼각형에서 높이를 보조선으로 만들어 두 특수각 비를 적용한다. 미지 변을 뒤집어도 새로운 방법이나 고차 방정식을 요구하지 않는다. 나머지 각·보조선·두 비·근호 계산을 서술하는 7점 부담이 유지된다."
+    },
+    "surfaceEvidence": {
+      "stem": "일반 삼각형의 길이를 중3 삼각비의 활용으로 복구하며 75°는 주어진 내각일 뿐 삼각비 계산 각이 아니다.",
+      "choices": "서술형으로 보기 없음. 정확한 길이와 풀이를 요구하며 숨은 선택지 조건은 없다.",
+      "figuresAndTables": "좌측 래스터의 공원 장면은 수치 입력이 아니다. 우측 엔진 삼각형에서 45°·75°·양수 변과 BC/AB의 비가 본문 및 해설과 일치한다. 표의 20√6 m가 계산 입력이다.",
+      "notation": "도 단위 각, 선분 길이, 제곱근과 m만 사용한다.",
+      "answer": "정확한 양수 길이 60 m로 중학교 계산 형식이다.",
+      "studentSolution": "내각 합, 수선의 발, 직각삼각형의 sin60°·sin45°, 근호 사칙계산을 직접 적용한다.",
+      "prerequisites": "중학교 내각 합·수선·예각·특수각 삼각비·근호 계산이다. 일반각 삼각함수나 사인/코사인 법칙이 필요 없다."
+    },
+    "holds": [
+      {
+        "dimension": "unitFamilyFit",
+        "reason": "Unit/삼각비의 활용은 맞지만 현재 family05의 m3Trig.ts config는 양 끝각을 30°·45°·60° 조합으로 주고 높이 분할 합으로 계산한다. 새 후보의 알려진 BC 쪽 끝각 B=75°와 원문 반대 변 역산은 그 실제 생성 규칙에 들어 있지 않다. 코드 주석이나 원문 제안을 동일 family의 승인으로 바꾸지 않는다.",
+        "requiredEvidence": "75°를 사용하지 않는 새 수선 방향·역산 절차를 family05에 수용하는 명시적 의미 대응 또는 적절한 live family 판정",
+        "forceLabel": false
+      }
+    ],
+    "bindingAudit": {
+      "verificationInputsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "candidateFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q19/candidate.json",
+      "candidateFileSha256": "353c60637295defe9e841a4baa401ecdac232a808f272da598976012d416b5e5",
+      "allFourDigestsRecomputed": true,
+      "digestImplementation": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs",
+      "digestImplementationSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59",
+      "solveFile": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/solve/q19.json",
+      "solveFileSha256": "b975f206732a08c19d467e1b0b73272e88abfb4efb791d0a77f140d204601134",
+      "parentSolveCanonicalDigestMatchesFrozen": true,
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "authorDiffersFromVerifier": true,
+      "authorAnswerComparedOnlyAfterBlindFreeze": "0e2ee38d597e2e7a8782a673a0a0235c4910630f"
+    },
+    "independentEvidence": {
+      "answer": "$60\\,\\mathrm{m}$",
+      "solution": "삼각형 $\\mathrm{ABC}$의 세 내각의 크기의 합에서 $\\angle ACB=180^{\\circ}-45^{\\circ}-75^{\\circ}=60^{\\circ}$이다.\n점 $\\mathrm{B}$에서 선분 $\\mathrm{AC}$에 수선을 내리고 그 발을 $\\mathrm{H}$라 하자. $\\angle BAC$와 $\\angle ACB$가 모두 예각이므로 $\\mathrm{H}$는 선분 $\\mathrm{AC}$의 내부에 있다.\n직각삼각형 $\\mathrm{BCH}$에서 $\\overline{BH}=\\overline{BC}\\sin60^{\\circ}=20\\sqrt{6}\\times\\frac{\\sqrt{3}}{2}=30\\sqrt{2}\\,\\mathrm{m}$이다.\n직각삼각형 $\\mathrm{ABH}$에서 $\\sin45^{\\circ}=\\frac{\\overline{BH}}{\\overline{AB}}=\\frac{\\sqrt{2}}{2}$이므로 $\\overline{AB}=30\\sqrt{2}\\div\\frac{\\sqrt{2}}{2}=60\\,\\mathrm{m}$이다.\n따라서 빠진 표지 사이의 거리는 $60\\,\\mathrm{m}$이다.",
+      "conditions": {
+        "anglesDegrees": {
+          "A": 45,
+          "B": 75,
+          "C": 60
+        },
+        "allGivenAndDerivedAnglesAcute": true,
+        "unit": "m",
+        "BHM": "30sqrt(2)",
+        "CHM": "10sqrt(6)",
+        "AHM": "30sqrt(2)",
+        "ABM": 60,
+        "HInsideAC": true,
+        "allRequiredLengthsPositive": true,
+        "triangleInequalitiesSatisfied": true
+      },
+      "choiceReview": []
+    },
+    "sourceQuestionOnly": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "jsonPointer": "/18",
+      "contentSha256": "1ca06e12a9b63387b3a827941c62d93ebb4b2eaf02f6e6db743f71608a6afb96",
+      "originalAnswersRead": false,
+      "sourceScore": 7,
+      "candidateScore": 7,
+      "scorePreserved": true,
+      "sourceFigureReferences": [
+        "figures/q19.png"
+      ]
+    },
+    "curriculumGrounding": {
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardCodes": [
+        "9수04-18",
+        "9수04-17",
+        "9수04-05",
+        "9수04-10",
+        "9수01-10"
+      ],
+      "supplementaryReviewerCodes": [],
+      "standards": [
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-05",
+          "verified_text": "다각형의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4272,
+            "record_offset_in_uncompressed_stream": 216602,
+            "extracted_paragraph_1based": 874
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-10",
+          "verified_text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-18",
+          "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "gradeBandCodeAloneUsedAsApproval": false,
+      "exactGradeAnchors": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "targetYearApplication": {
+        "nominalSourceYear": 2025,
+        "middle3In2025And2026": "2015",
+        "middle3In2027": "2022 requires separate retarget review",
+        "evidence": {
+          "2015": {
+            "source_id": "moe-60747",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2017-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2018-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2019-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2020-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "2022": {
+            "source_id": "moe-93458",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2024-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2025-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2026-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2027-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "pilot_reference_2025_middle3": "2015_revision",
+          "middle3_2026": "2015_revision",
+          "middle3_2027": "2022_revision_requires_separate_mapping",
+          "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+        }
+      },
+      "restrictionCompliance": {
+        "trigAnglesInStudentCalculation": [
+          60,
+          45
+        ],
+        "trigRatioIdentitiesUsed": false,
+        "circlePowerOrProportionalityUsed": false,
+        "vietaDiscriminantDerivativesVectorsInStudentMethod": false
+      },
+      "materialAmendmentReview": {
+        "status": "pending-final-publication-attestation-on-selected-provisions",
+        "scope": "Only listed standard texts and relevant trig/circle restrictions for middle3/2015; no unrelated whole-policy audit requested.",
+        "providedEditionChecks": "2015 PDF and 2020 HWP selected clauses match after whitespace normalization",
+        "materialConflictEvidenced": false,
+        "completePost2020AmendmentChainClaimed": false,
+        "owner": "parent",
+        "blocksAutomaticRelease": true
+      }
+    },
+    "taxonomyGrounding": {
+      "registryPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotCapturedAt": "2026-10-07T16:08:32.171Z",
+      "assignment": {
+        "status": "proposed",
+        "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "familyKey": "mid:3-2|삼각비의 활용|05",
+        "currentUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비의 활용|05",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "05",
+          "rpmTitle": "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "한 변 AB와 그 양 끝 A,B의 각이 주어져 다른 변 BC를 구하는 일반 삼각형 유형05와 일치한다. 풍경 그림은 문제의 주 절차를 바꾸지 않는다.",
+        "candidates": []
+      },
+      "registryMatch": {
+        "key": "3-2|삼각비의 활용|05",
+        "grade": "중3",
+        "unitSection": "삼각비의 활용",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비의 활용",
+        "rpmType": "05",
+        "rpmTitle": "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우"
+      },
+      "verifierAssignedSemanticType": null,
+      "unknownTypeNullIsNotValidationFailure": false,
+      "forcedUnitOrFamily": false,
+      "currentRule": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "line": 2090,
+        "reviewScope": "semantic scope and parameter coverage; no engine mutation"
+      }
+    },
+    "assetReview": [
+      {
+        "role": "stem",
+        "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q19\\figure-1.spec.json",
+        "specSha256": "4e5c34910ecca21fcf2f160a30568a60630eafc3f4ef41e5c8f80e3760f8eeab",
+        "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q19\\figure-1.svg",
+        "svgSha256": "2d03d431374553629a8764af00b4ff50e5e90e9438ef97678ed3ccc771b7f1f2",
+        "intendedWidthMm": 95,
+        "actualStudentSvgByteHashMatches": true,
+        "visualInspectionCompleted": true,
+        "mathNeverMeasuredFromRaster": true,
+        "printMetrics": {
+          "minimumLabelEmMm": 3.19327731092437,
+          "minimumLabelEmPt": 9.051809700258056,
+          "labelCount": 5,
+          "screenWidthAt96Dpi": 359,
+          "screenSizeProofInspected": true,
+          "screenAssessment": "labels/angles identifiable without overlaps",
+          "physicalPaperProofInspected": false,
+          "dimensionsOwner": "parent"
+        },
+        "geometryCalculationScope": "coordinates are used only to validate authored vector geometry, not as the student solution method",
+        "mathBinding": {
+          "curriculum": {
+            "grade": "중3",
+            "edition": "2015",
+            "status": "pending"
+          },
+          "calculationAuthority": "explicit-math-facts-not-image-pixels",
+          "pointRoles": {
+            "A": "첫 번째 측량 표지",
+            "B": "두 번째 측량 표지",
+            "C": "관개 제어함"
+          },
+          "facts": {
+            "givenBC": "20*sqrt(6)",
+            "angleA": 45,
+            "angleB": 75,
+            "angleC": 60,
+            "targetAB": 60
+          },
+          "factRelations": [
+            "drop perpendicular BH to AC",
+            "BH=BC*sin60=30sqrt2",
+            "AB=BH/sin45=60"
+          ],
+          "constraints": [
+            "45+75+60=180",
+            "positive lengths",
+            "H lies inside AC",
+            "unique triangle up to reflection/congruence; unique AB",
+            "no trig laws or addition relations in student solution"
+          ],
+          "rasterRole": "park setting only; named point roles and all conditions are in the separate diagram/record"
+        },
+        "mathBindingFactsMatchCandidate": true,
+        "resourceBindings": [
+          {
+            "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q19\\figure-1-raster-1.png",
+            "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q19\\figure-1-generation-1.json",
+            "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+            "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+            "widthPx": 1536,
+            "heightPx": 1024,
+            "prompt": "Use case: scientific-educational. Asset type: a new grayscale textbook illustration accompanying a Korean middle-school geometry problem. Draw a sparse overhead park survey scene with exactly two small distinct ground survey markers and one small garden irrigation control box, arranged at three separated positions with broad empty space between them. Include only a few restrained trees to suggest a park. The markers are simple survey stakes on the ground, not tents. Use crisp economical black/gray linework and white background, low-detail shading, clear at about 70 mm print width. No connecting lines, triangle, angles, distance marks, letters, numbers, text, school signs, logos or watermarks. The triangle and labels will be provided in a separate mathematically exact diagram connected to these three object roles. Do not reproduce a campground or source illustration. This is a completely new asset.",
+            "tool": "built-in image_gen.imagegen",
+            "paidApiCliFallback": false,
+            "promptHashMatchesSpec": true,
+            "immutableRasterPixelsEmbedded": true,
+            "rasterContainsMathLabels": false,
+            "role": "scene-only; exact separate engine panel owns point roles and conditions",
+            "nativeGenerationSourceProvenance": "pending-parent-owned",
+            "rightsStatus": "pending-parent-owned"
+          }
+        ],
+        "engineNativeReference": {
+          "declaredSha256": "65b10917fa11a186ac8b1e64b5ce2f2eacd693dcc024f9902eded31b4c962090",
+          "standaloneSourceIncludedInPackage": false,
+          "originalStandaloneHashReconstructionClaimed": false,
+          "status": "pending-native-provenance-owned-by-parent",
+          "reviewedMathAuthority": "displayed vector bytes bound in authored SVG and numerically checked"
+        },
+        "geometryChecks": {
+          "Adegrees": 45.00000000000002,
+          "Bdegrees": 75.00022716432257,
+          "Cdegrees": 59.99977283567743,
+          "BCoverAB": 0.8164984499467419
+        }
+      }
+    ],
+    "syntaxCheck": {
+      "engine": "KaTeX strict",
+      "studentMathSpans": 21,
+      "passed": true,
+      "surfaceKeywordViolations": []
+    },
+    "judgmentDesign": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "liveDocs": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "apiCalls": 0,
+      "jevResponses": null,
+      "probabilities": null,
+      "mode": "manual scoped judgments with named evidence; exact math and binding in code",
+      "aggregation": "Out-of-grade required methods reject; insufficient evidence holds its own dimension; no probability or hash grants release.",
+      "apiCallsScope": "TypeSafe/Jev/OpenAI inference endpoints; only public documentation was fetched"
+    },
+    "releaseBoundary": {
+      "automaticReleaseAllowed": false,
+      "dbOrApplyWrites": 0,
+      "sourceIdentity": "pending-parent-attestation",
+      "rights": "pending-parent-review",
+      "nativeProvenance": "pending-parent-review",
+      "materialAmendmentFinalAttestation": "pending-parent-on-selected-provisions",
+      "statusMeaning": "verified is only this scoped independent review; it is not publishing or rights permission"
+    },
+    "readOnlyGateAudit": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  },
+  "studentDigest": "74893ff23a48dfaa5b298a8febb65c1849ec4f1b35d9b95294ea3b6e1947da81",
+  "candidateDigest": "192c7a8cd224e83cd323c1580622f333fb1443387fdd9529ce5a17d27b373004",
+  "assetDigest": "0cee6f64ba29ce274afa548e9e3565e1979c56512e12e5c2676a32e08c1873eb",
+  "solveDigest": "3545f07bf4d59df4dddaa12c6110f8d3ce324d78ce072eec606baeb2c879ec25"
+}

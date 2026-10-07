@@ -1,0 +1,547 @@
+{
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": null
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "evidence": {
+    "questionNumber": 17,
+    "mathReview": "독립 풀이와 저자 답은 모두 ③, 27/2 cm²이다. 반지름 3, AE=BG=AF=6, BM=x이면 MF=MG=6−x, AM=12−x이다. (12−x)²=36+x²에서 x²가 소거되어 x=4.5 하나가 나오며 0<x<6, AF=6, MF=1.5, AM=7.5로 내부점과 양수 조건을 모두 만족한다. 다섯 넓이 보기 중 ③만 맞는다.",
+    "solutionReview": "같은 외부점에서 그은 접선 길이의 같음과 피타고라스, 일차방정식 및 삼각형 넓이를 쓴다. 접선-할선의 거듭제곱 정리나 원과 비례의 곱 정리가 아니며 학생용 접점 좌표 계산도 없다.",
+    "transformationReview": "순수 도형의 삼각형 넓이 질문을 창틀·원형 장식·지지대 설치로 전환한다. 실제 설치 대상과 두께 무시, 왼쪽 영역이라는 역할을 부여하고 M·F의 내부 위치를 명시한다. 학교명 치환이 아닌 소재·행동 전환이며 접선 길이와 피타고라스의 핵심은 같다.",
+    "wordingReview": "네 꼭짓점의 방향, 세 변의 접점, 지지대의 접점과 두 내부점 조건이 일관된다. 지지대의 두께 무시는 넓이 모델의 의미를 명확히 한다.",
+    "familyReview": {
+      "status": "passed-semantic-fit",
+      "family": "mid:3-2|원과 직선|16",
+      "reason": "현재 m3Tangent.ts의 16 mode 1/2/4는 직사각형 세 변과 사선 접선, 두 길이 합·차, 제곱항이 소거되는 피타고라스식을 함께 사용한다. 새 후보는 이를 반사·재명명한 같은 구조에서 마지막에 밑변×높이÷2를 계산한다. 중3/원의 접선 Unit과 live 등록의 의미에 맞는다."
+    },
+    "difficultyScoreReview": {
+      "status": "pending-calibration",
+      "sourceScore": 5,
+      "candidateScore": 5,
+      "proposal": "응용",
+      "liveGeneratorBucket": "심화하",
+      "reason": "5점은 원문과 같고 접선 두 쌍·선분 순서·피타고라스·일차식·넓이의 객관적 부담도 비슷하다. 다만 현재 family16은 심화하로 표시되고 후보/v2는 응용이므로 동일 척도에서의 최종 난이도·5점 근거를 확정할 수 없다. 후보의 수학이나 학년 범위가 틀렸다는 판정은 아니다."
+    },
+    "surfaceEvidence": {
+      "stem": "직사각형과 원의 접선은 중3 원의 성질 영역이며 물리 모델은 두께를 무시하도록 닫혀 있다.",
+      "choices": "양수 넓이 다섯 개와 cm²만 사용한다. 18 cm²에 해당하는 x=6은 내부점 조건을 위반하여 오답이다.",
+      "figuresAndTables": "사양의 축척 18에서 9×6 직사각형·반지름 3·BM=4.5가 맞고 OF=3, OF⊥AM이 실제 좌표에서 성립한다. E·H·G와 F가 표시한 접점이고 색칠 영역은 ABM이다.",
+      "notation": "선분 길이·각·중심·분수 넓이·cm²를 쓰며 벡터나 원의 방정식 표기는 없다.",
+      "answer": "정확한 분수 넓이 27/2 cm²의 ③이다.",
+      "studentSolution": "접선 길이 같음, 직사각형, 피타고라스와 제곱항 소거 후 일차방정식으로 처리한다. 9수04-19·04-12·04-16·02-05와 연결된다.",
+      "prerequisites": "원의 접선과 반지름, 직사각형, 피타고라스, 다항식 전개·일차방정식·삼각형 넓이이며 중학교 범위다."
+    },
+    "holds": [
+      {
+        "dimension": "scoreAppropriate",
+        "reason": "v2/후보의 응용과 현재 family16의 심화하 등급 사이에 난이도 척도 연결이 없다.",
+        "requiredEvidence": "접선·길이 순서·피타고라스·일차식·넓이의 부담에 대한 동일 척도의 난이도/5점 판정",
+        "requiresNewStudentExperiment": false
+      }
+    ],
+    "bindingAudit": {
+      "verificationInputsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "candidateFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q17/candidate.json",
+      "candidateFileSha256": "edbb44f08eaca5ab18d958e35c42be92cfc4c72c3813108fa8ae83d62a9faefe",
+      "allFourDigestsRecomputed": true,
+      "digestImplementation": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs",
+      "digestImplementationSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59",
+      "solveFile": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/solve/q17.json",
+      "solveFileSha256": "e0b481d20e4c6860ee0593d056d8af94401b0bcd499b4dd405d2b3f169c59624",
+      "parentSolveCanonicalDigestMatchesFrozen": true,
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "authorDiffersFromVerifier": true,
+      "authorAnswerComparedOnlyAfterBlindFreeze": "0e2ee38d597e2e7a8782a673a0a0235c4910630f"
+    },
+    "independentEvidence": {
+      "answer": "③",
+      "solution": "원이 윗변과 아랫변에 접하므로 지름은 직사각형의 세로인 $6\\,\\mathrm{cm}$이고 반지름은 $3\\,\\mathrm{cm}$이다. 원이 오른쪽 변에도 접하므로 $\\overline{ED}=\\overline{CG}=3\\,\\mathrm{cm}$이다. 따라서 $\\overline{AE}=\\overline{BG}=9-3=6\\,\\mathrm{cm}$이다.\n한 점에서 원에 그은 두 접선의 길이는 같으므로 $\\overline{AF}=\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{MF}=\\overline{MG}$이다.\n$\\overline{BM}=x\\,\\mathrm{cm}$라 하면 $\\mathrm{M}$은 $\\overline{BG}$의 내부에 있으므로 $0<x<6$이고, $\\overline{MF}=\\overline{MG}=6-x\\,\\mathrm{cm}$이다. $\\mathrm{F}$가 $\\overline{AM}$의 내부에 있으므로 $\\overline{AM}=\\overline{AF}+\\overline{FM}=12-x\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{ABM}$에 피타고라스 정리를 적용하면 $(12-x)^{2}=6^{2}+x^{2}$이다. 이를 정리하면 $144-24x=36$이므로 $x=\\frac{108}{24}=\\frac{9}{2}$이다.\n이 값은 $0<x<6$을 만족하며, 삼각형 $\\mathrm{ABM}$의 넓이는 $\\frac{1}{2}\\times6\\times\\frac{9}{2}=\\frac{27}{2}\\,\\mathrm{cm}^{2}$이다. 정답은 ③이다.",
+      "conditions": {
+        "radiusCm": 3,
+        "AECm": 6,
+        "BGCm": 6,
+        "BMCm": 4.5,
+        "AFCm": 6,
+        "MFCm": 1.5,
+        "AMCm": 7.5,
+        "MInsideBG": true,
+        "FInsideAM": true,
+        "allRequiredLengthsPositive": true,
+        "rightTriangleCheck": "7.5^2=6^2+4.5^2",
+        "uniqueLinearEquation": "24x=108 after cancellation of x^2"
+      },
+      "choiceReview": [
+        {
+          "choiceNumber": 1,
+          "correct": false,
+          "reason": "9 cm²에 대응하는 BM=3 cm는 접선과 피타고라스 조건에서 얻은 24x=108을 만족하지 않는다."
+        },
+        {
+          "choiceNumber": 2,
+          "correct": false,
+          "reason": "12 cm²에 대응하는 BM=4 cm는 24x=108을 만족하지 않는다."
+        },
+        {
+          "choiceNumber": 3,
+          "correct": true,
+          "reason": "27/2 cm²에 대응하는 BM=9/2 cm는 모든 길이와 내부점 조건을 만족한다."
+        },
+        {
+          "choiceNumber": 4,
+          "correct": false,
+          "reason": "15 cm²에 대응하는 BM=5 cm는 24x=108을 만족하지 않는다."
+        },
+        {
+          "choiceNumber": 5,
+          "correct": false,
+          "reason": "18 cm²에 대응하는 BM=6 cm는 내부점 조건 0<x<6에도 어긋난다."
+        }
+      ]
+    },
+    "sourceQuestionOnly": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "jsonPointer": "/16",
+      "contentSha256": "2b007899a695221616d16af68f17a9987f1a9d6b6f61646713e51db1c1d6aa90",
+      "originalAnswersRead": false,
+      "sourceScore": 5,
+      "candidateScore": 5,
+      "scorePreserved": true,
+      "sourceFigureReferences": [
+        "figures/q17.png"
+      ]
+    },
+    "curriculumGrounding": {
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardCodes": [
+        "9수04-19",
+        "9수04-12",
+        "9수04-16",
+        "9수02-05",
+        "6수03-06",
+        "9수02-12"
+      ],
+      "supplementaryReviewerCodes": [
+        "9수02-12"
+      ],
+      "standards": [
+        {
+          "code": "6수03-06",
+          "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "elementary_grade_band"
+        },
+        {
+          "code": "9수02-05",
+          "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3916,
+            "record_offset_in_uncompressed_stream": 199888,
+            "extracted_paragraph_1based": 797
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수02-12",
+          "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-12",
+          "verified_text": "사각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4308,
+            "record_offset_in_uncompressed_stream": 217962,
+            "extracted_paragraph_1based": 883
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-16",
+          "verified_text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-19",
+          "verified_text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4353,
+            "record_offset_in_uncompressed_stream": 219558,
+            "extracted_paragraph_1based": 894
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "gradeBandCodeAloneUsedAsApproval": false,
+      "exactGradeAnchors": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "targetYearApplication": {
+        "nominalSourceYear": 2025,
+        "middle3In2025And2026": "2015",
+        "middle3In2027": "2022 requires separate retarget review",
+        "evidence": {
+          "2015": {
+            "source_id": "moe-60747",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2017-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2018-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2019-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2020-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "2022": {
+            "source_id": "moe-93458",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2024-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2025-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2026-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2027-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "pilot_reference_2025_middle3": "2015_revision",
+          "middle3_2026": "2015_revision",
+          "middle3_2027": "2022_revision_requires_separate_mapping",
+          "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+        }
+      },
+      "restrictionCompliance": {
+        "trigAnglesInStudentCalculation": [],
+        "trigRatioIdentitiesUsed": false,
+        "circlePowerOrProportionalityUsed": false,
+        "vietaDiscriminantDerivativesVectorsInStudentMethod": false
+      },
+      "materialAmendmentReview": {
+        "status": "pending-final-publication-attestation-on-selected-provisions",
+        "scope": "Only listed standard texts and relevant trig/circle restrictions for middle3/2015; no unrelated whole-policy audit requested.",
+        "providedEditionChecks": "2015 PDF and 2020 HWP selected clauses match after whitespace normalization",
+        "materialConflictEvidenced": false,
+        "completePost2020AmendmentChainClaimed": false,
+        "owner": "parent",
+        "blocksAutomaticRelease": true
+      }
+    },
+    "taxonomyGrounding": {
+      "registryPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotCapturedAt": "2026-10-07T16:08:32.171Z",
+      "assignment": {
+        "status": "proposed",
+        "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "familyKey": "mid:3-2|원과 직선|16",
+        "currentUnit": {
+          "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원의 접선",
+          "semester": 2,
+          "orderIndex": 485,
+          "problemCodePrefix": "J30602"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|원과 직선|16",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "16",
+          "rpmTitle": "원에 외접하는 사각형의 응용"
+        },
+        "liveCount": 42,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "직사각형의 세 변과 한 꼭짓점에서 그은 사선 접선의 구조가 기존16과 같다. 접선 길이 관계와 직각삼각형 길이를 결합한 뒤 넓이를 구한다.",
+        "candidates": []
+      },
+      "registryMatch": {
+        "key": "3-2|원과 직선|16",
+        "grade": "중3",
+        "unitSection": "원의 접선",
+        "rpmBook": "3-2",
+        "rpmMinor": "원과 직선",
+        "rpmType": "16",
+        "rpmTitle": "원에 외접하는 사각형의 응용"
+      },
+      "verifierAssignedSemanticType": null,
+      "unknownTypeNullIsNotValidationFailure": false,
+      "forcedUnitOrFamily": false,
+      "currentRule": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "line": 1433,
+        "reviewScope": "semantic scope and parameter coverage; no engine mutation"
+      }
+    },
+    "assetReview": [
+      {
+        "role": "stem",
+        "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q17\\figure-1.spec.json",
+        "specSha256": "c6e566a91289a9a7ac8f3cd6996ab3c95d83c2a7fa008e721961cb961591f42c",
+        "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q17\\figure-1.svg",
+        "svgSha256": "283cc73162fca4b99d19610b3405ff5a9f96511868909a2c36326475982a753f",
+        "intendedWidthMm": 64,
+        "actualStudentSvgByteHashMatches": true,
+        "visualInspectionCompleted": true,
+        "mathNeverMeasuredFromRaster": true,
+        "printMetrics": {
+          "minimumLabelEmMm": 4.891430443149405,
+          "minimumLabelEmPt": 13.865472122313275,
+          "labelCount": 10,
+          "screenWidthAt96Dpi": 242,
+          "screenSizeProofInspected": false,
+          "screenAssessment": "labels/angles identifiable without overlaps",
+          "physicalPaperProofInspected": false,
+          "dimensionsOwner": "parent"
+        },
+        "geometryCalculationScope": "coordinates are used only to validate authored vector geometry, not as the student solution method",
+        "geometryChecks": {
+          "scalePxPerCm": 18,
+          "widthCm": 9,
+          "heightCm": 6,
+          "radiusCm": 3,
+          "BMCm": 4.5,
+          "AFCm": 6,
+          "MFCm": 1.4999999999999998,
+          "OFCm": 3,
+          "OFAdegrees": 90
+        }
+      }
+    ],
+    "syntaxCheck": {
+      "engine": "KaTeX strict",
+      "studentMathSpans": 47,
+      "passed": true,
+      "surfaceKeywordViolations": []
+    },
+    "judgmentDesign": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "liveDocs": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "apiCalls": 0,
+      "jevResponses": null,
+      "probabilities": null,
+      "mode": "manual scoped judgments with named evidence; exact math and binding in code",
+      "aggregation": "Out-of-grade required methods reject; insufficient evidence holds its own dimension; no probability or hash grants release.",
+      "apiCallsScope": "TypeSafe/Jev/OpenAI inference endpoints; only public documentation was fetched"
+    },
+    "releaseBoundary": {
+      "automaticReleaseAllowed": false,
+      "dbOrApplyWrites": 0,
+      "sourceIdentity": "pending-parent-attestation",
+      "rights": "pending-parent-review",
+      "nativeProvenance": "pending-parent-review",
+      "materialAmendmentFinalAttestation": "pending-parent-on-selected-provisions",
+      "statusMeaning": "verified is only this scoped independent review; it is not publishing or rights permission"
+    },
+    "readOnlyGateAudit": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-scoreAppropriate-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  },
+  "studentDigest": "0c25f73a7384f79f9e43e21d6aab87b38e0678dcc569534b36f9fe1880c4a1ad",
+  "candidateDigest": "fde456694057f3794674322cf12b9fe47635349290e4c9f6d57319a6247beff8",
+  "assetDigest": "ec8864f488728687631d38c5fa6a88f3df3337f13ee0a0a906263dda22c5e203",
+  "solveDigest": "cbf14f777fab064045fa1238e7372a419720d3b75b72aeeafed4eca2dc695c8f"
+}
