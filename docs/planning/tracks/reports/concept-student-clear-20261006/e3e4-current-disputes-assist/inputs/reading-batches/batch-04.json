@@ -1,0 +1,4650 @@
+[
+  {
+    "raw": {
+      "sourceIndex": 2484,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "2660294d94fa1f60d416414babd153096564aa66d663ef610ab37c8fbb381545",
+      "proposalFingerprint": "1c6a76b7d6d236f43e0b70b1b3562d47ecb5811eb0f218715c1d10bafca3a258",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+      "bAnswer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직선 가 위의 두 점에서 수선을 긋고 같은 쪽으로 각각 $2\\,\\mathrm{cm}$ 떨어진 두 점을 찍어 잇는다",
+            "직선 가에 수선을 긋고 가에서 $2\\,\\mathrm{cm}$ 떨어진 점을 찍은 뒤 그 점을 지나는 가의 평행선을 긋는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "거리를 정해 평행선 긋기",
+      "bReason": "작도 순서를 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+      "cReason": "빈칸 위치를 분명히 해 답 범위를 좁힘",
+      "cSlotEquivalents": [
+        [
+          "한"
+        ]
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "거리를 정해 평행선 긋기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+      "cStudentSentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 □ 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "같은",
+          "equivalents": [
+            "한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+        "answer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직선 가 위의 두 점에서 수선을 긋고 같은 쪽으로 각각 $2\\,\\mathrm{cm}$ 떨어진 두 점을 찍어 잇는다",
+              "직선 가에 수선을 긋고 가에서 $2\\,\\mathrm{cm}$ 떨어진 점을 찍은 뒤 그 점을 지나는 가의 평행선을 긋는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc13",
+        "sourceIndex": 2484,
+        "proposalFingerprint": "1c6a76b7d6d236f43e0b70b1b3562d47ecb5811eb0f218715c1d10bafca3a258",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "두 수선의 점을 잇는 방법 외에 한 수선에서 거리를 표시한 뒤 평행선을 긋는 방법도 받는다.",
+        "cReason": "같은 쪽에 같은 거리로 찍은 두 점이라는 작도 조건을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-3-xc13",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "term": "거리를 정해 평행선 긋기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 {같은 쪽으로} $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc13",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc13",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리를 정해 평행선 긋기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 {같은 쪽으로} $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다."
+      },
+      "B": {
+        "prompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+        "answer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직선 가 위의 두 점에서 수선을 긋고 같은 쪽으로 각각 $2\\,\\mathrm{cm}$ 떨어진 두 점을 찍어 잇는다",
+              "직선 가에 수선을 긋고 가에서 $2\\,\\mathrm{cm}$ 떨어진 점을 찍은 뒤 그 점을 지나는 가의 평행선을 긋는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "한"
+          ]
+        ]
+      },
+      "goal": "거리를 정해 평행선 긋기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "49e4e46deb2f35e894d456751d8fbaf0929153941f8a649739ab53ea6a9412fd"
+    },
+    "ledger": {
+      "id": "e4-2-4-3-xc13",
+      "sourceIndex": 2484,
+      "proposalFingerprint": "1c6a76b7d6d236f43e0b70b1b3562d47ecb5811eb0f218715c1d10bafca3a258",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "두 수선의 점을 잇는 방법 외에 한 수선에서 거리를 표시한 뒤 평행선을 긋는 방법도 받는다.",
+      "cReason": "같은 쪽에 같은 거리로 찍은 두 점이라는 작도 조건을 유지한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "1c6a76b7d6d236f43e0b70b1b3562d47ecb5811eb0f218715c1d10bafca3a258",
+    "normalizedHash": "49e4e46deb2f35e894d456751d8fbaf0929153941f8a649739ab53ea6a9412fd",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-3-xc13",
+        "grade": "초4",
+        "reviewedHash": "49e4e46deb2f35e894d456751d8fbaf0929153941f8a649739ab53ea6a9412fd",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "evidence": "cohort-2026-10-07T09-13-59-191Z-0",
+        "blind": [
+          [
+            "e4-2-4-3-xc13",
+            "C",
+            "같은(한)",
+            "revise",
+            "'어느 쪽'을 가리키는 빈칸이라 위쪽, 아래쪽, 한쪽 어느 말을 넣어도 참이다. 수학적 요구가 정해지지 않는다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-3-xc13",
+            "pass",
+            "revise",
+            "none",
+            "C: '직선 가에서 {같은} 쪽으로 2cm씩'에서 '위', '아래', '한' 등 어느 쪽을 넣어도 참이라 수학적 요구가 정해지지 않는다. 같은 쪽에서 재야 한다는 조건을 판단하게 하는 문장이 아니다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-3-xc13",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-3-xc13",
+            "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+            "term": "거리를 정해 평행선 긋기",
+            "kind": "방법",
+            "level": "중",
+            "definition": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 {같은 쪽으로} $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다."
+          },
+          "B": {
+            "prompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+            "answer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "직선 가 위의 두 점에서 수선을 긋고 같은 쪽으로 각각 $2\\,\\mathrm{cm}$ 떨어진 두 점을 찍어 잇는다",
+                  "직선 가에 수선을 긋고 가에서 $2\\,\\mathrm{cm}$ 떨어진 점을 찍은 뒤 그 점을 지나는 가의 평행선을 긋는다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+            "acceptedAnswers": [
+              [
+                "같은",
+                "한"
+              ]
+            ]
+          },
+          "goal": "거리를 정해 평행선 긋기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "49e4e46deb2f35e894d456751d8fbaf0929153941f8a649739ab53ea6a9412fd"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-3-xc13",
+        "contentHash": "49e4e46deb2f35e894d456751d8fbaf0929153941f8a649739ab53ea6a9412fd",
+        "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '어느 쪽'을 가리키는 빈칸이라 위쪽, 아래쪽, 한쪽 어느 말을 넣어도 참이다. 수학적 요구가 정해지지 않는다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '직선 가에서 {같은} 쪽으로 2cm씩'에서 '위', '아래', '한' 등 어느 쪽을 넣어도 참이라 수학적 요구가 정해지지 않는다. 같은 쪽에서 재야 한다는 조건을 판단하게 하는 문장이 아니다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2490,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "90aa79c4b4ed96b41304cc476b7f349092694fb61c53b334746760bbd25ad6cc",
+      "proposalFingerprint": "c2b08124cd5525af176d3908bbb4270751ef84afd5b69bd9c3b8b532e4b18f84",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+      "bAnswer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개",
+            "두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "직선의 양쪽에 하나씩"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "같은 거리 평행선의 개수",
+      "bReason": "개수와 위치를 함께 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 {$2$}개이다.",
+      "cReason": "직선의 방향을 가정한 위아래를 양쪽으로 바꾸고 하나씩이라는 답 힌트를 제거한다.",
+      "cSlotEquivalents": [
+        [
+          "두"
+        ]
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "거리가 같은 평행선의 개수",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 {$2$}개이다.",
+      "cStudentSentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+        "answer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선의 양쪽에 하나씩"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 {$2$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc19",
+        "sourceIndex": 2490,
+        "proposalFingerprint": "c2b08124cd5525af176d3908bbb4270751ef84afd5b69bd9c3b8b532e4b18f84",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "직선 양쪽에 하나씩 그리는 위치와 두 개라는 답을 확인한다.",
+        "cReason": "방향을 위아래로 가정하지 않고 양쪽이라 했고 하나씩이라는 직접 힌트를 뺐다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-3-xc19",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "term": "거리가 같은 평행선의 개수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 양쪽에 하나씩 {두 개} 그을 수 있다."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc19",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc19",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리가 같은 평행선의 개수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 양쪽에 하나씩 {두 개} 그을 수 있다."
+      },
+      "B": {
+        "prompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+        "answer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선의 양쪽에 하나씩"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 {$2$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ]
+        ]
+      },
+      "goal": "같은 거리 평행선의 개수",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "6b71b97ce450873ce603a40bc3fdee611167eca7bc801482f3ba4ad1d278f19d"
+    },
+    "ledger": {
+      "id": "e4-2-4-3-xc19",
+      "sourceIndex": 2490,
+      "proposalFingerprint": "c2b08124cd5525af176d3908bbb4270751ef84afd5b69bd9c3b8b532e4b18f84",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "직선 양쪽에 하나씩 그리는 위치와 두 개라는 답을 확인한다.",
+      "cReason": "방향을 위아래로 가정하지 않고 양쪽이라 했고 하나씩이라는 직접 힌트를 뺐다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "c2b08124cd5525af176d3908bbb4270751ef84afd5b69bd9c3b8b532e4b18f84",
+    "normalizedHash": "6b71b97ce450873ce603a40bc3fdee611167eca7bc801482f3ba4ad1d278f19d",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-3-xc19",
+        "grade": "초4",
+        "reviewedHash": "6b71b97ce450873ce603a40bc3fdee611167eca7bc801482f3ba4ad1d278f19d",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "evidence": "cohort-2026-10-07T09-13-59-191Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-3-xc19",
+            "pass",
+            "revise",
+            "none",
+            "C: 문장에 '그 직선의 양쪽에 그릴 수 있다'가 있어 '양쪽'에서 2가 바로 나온다. 양쪽에 하나씩이라는 핵심을 판단하게 하지 않고 답을 노출한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-3-xc19",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-3-xc19",
+            "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+            "term": "거리가 같은 평행선의 개수",
+            "kind": "성질",
+            "level": "상",
+            "definition": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 양쪽에 하나씩 {두 개} 그을 수 있다."
+          },
+          "B": {
+            "prompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+            "answer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$2$개",
+                  "두 개"
+                ]
+              },
+              {
+                "anyOf": [
+                  "직선의 양쪽에 하나씩"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 {$2$}개이다.",
+            "acceptedAnswers": [
+              [
+                "$2$",
+                "두"
+              ]
+            ]
+          },
+          "goal": "같은 거리 평행선의 개수",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "6b71b97ce450873ce603a40bc3fdee611167eca7bc801482f3ba4ad1d278f19d"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-3-xc19",
+        "contentHash": "6b71b97ce450873ce603a40bc3fdee611167eca7bc801482f3ba4ad1d278f19d",
+        "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: 문장에 '그 직선의 양쪽에 그릴 수 있다'가 있어 '양쪽'에서 2가 바로 나온다. 양쪽에 하나씩이라는 핵심을 판단하게 하지 않고 답을 노출한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2493,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "fe963751f39946cca3ba6c079bf59ceb4c3706911d4283115078a56ec98c96fc",
+      "proposalFingerprint": "f5e75c6545c0be037a7de855677188a658267f88494ef2ab176d62489e5d2bd1",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+      "bAnswer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행하지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행선은 거리가 어디서나 같다",
+            "수선의 길이가 같아야 한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "수선 길이로 평행 판단",
+      "bReason": "평행선 거리가 일정함으로 판단하게 한다",
+      "cDecision": "keep",
+      "cReason": "않다 빈칸이 짧아 유지",
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "수선의 길이로 평행 판단하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+      "cStudentSentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 □.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "않다",
+          "equivalents": []
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 □.",
+        "answers": [
+          "않다"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+        "answer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 거리가 어디서나 같다",
+              "수선의 길이가 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+        "acceptedAnswers": [
+          [
+            "않다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc24",
+        "sourceIndex": 2493,
+        "proposalFingerprint": "f5e75c6545c0be037a7de855677188a658267f88494ef2ab176d62489e5d2bd1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "수선길이서로다름은평행거리일정과모순이라는한방향판정이다.",
+        "cReason": "다른길이이면평행아님만말하며같을때의부당한역을추가하지않는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-3-xc24",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "term": "수선의 길이로 평행 판단하기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc24",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc24",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "수선의 길이로 평행 판단하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}."
+      },
+      "B": {
+        "prompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+        "answer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 거리가 어디서나 같다",
+              "수선의 길이가 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+        "acceptedAnswers": [
+          [
+            "않다"
+          ]
+        ]
+      },
+      "goal": "수선 길이로 평행 판단",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "e8234ed5a84d2ee786003924c5643bfad52d1fc2b88100b6f4ca7808e6064b0b"
+    },
+    "ledger": {
+      "id": "e4-2-4-3-xc24",
+      "sourceIndex": 2493,
+      "proposalFingerprint": "f5e75c6545c0be037a7de855677188a658267f88494ef2ab176d62489e5d2bd1",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "수선길이서로다름은평행거리일정과모순이라는한방향판정이다.",
+      "cReason": "다른길이이면평행아님만말하며같을때의부당한역을추가하지않는다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f5e75c6545c0be037a7de855677188a658267f88494ef2ab176d62489e5d2bd1",
+    "normalizedHash": "e8234ed5a84d2ee786003924c5643bfad52d1fc2b88100b6f4ca7808e6064b0b",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-3-xc24",
+        "grade": "초4",
+        "reviewedHash": "e8234ed5a84d2ee786003924c5643bfad52d1fc2b88100b6f4ca7808e6064b0b",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "evidence": "cohort-2026-10-07T09-13-59-191Z-0",
+        "blind": [
+          [
+            "e4-2-4-3-xc24",
+            "C",
+            "않다",
+            "revise",
+            "'평행하지' 뒤 빈칸은 문법상 '않다'만 가능해 개념을 판단하지 않아도 답이 정해진다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-3-xc24",
+            "pass",
+            "revise",
+            "none",
+            "C: '평행하지 {않다}'는 문법상 '않다'만 들어가 개념을 판단하지 않아도 답이 정해진다. 수선 길이가 다르면 평행하지 않다는 판단을 요구하지 못한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-3-xc24",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-3-xc24",
+            "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+            "term": "수선의 길이로 평행 판단하기",
+            "kind": "방법",
+            "level": "상",
+            "definition": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}."
+          },
+          "B": {
+            "prompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+            "answer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "평행하지 않다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "평행선은 거리가 어디서나 같다",
+                  "수선의 길이가 같아야 한다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}.",
+            "acceptedAnswers": [
+              [
+                "않다"
+              ]
+            ]
+          },
+          "goal": "수선 길이로 평행 판단",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "e8234ed5a84d2ee786003924c5643bfad52d1fc2b88100b6f4ca7808e6064b0b"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-3-xc24",
+        "contentHash": "e8234ed5a84d2ee786003924c5643bfad52d1fc2b88100b6f4ca7808e6064b0b",
+        "packet": "cohort-2026-10-07T09-13-59-191Z-0",
+        "inputHash": "54cfa839323addd3af2cc439973ce7c2d4df6a05b2960b6773cadcbd4c23a91a",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '평행하지' 뒤 빈칸은 문법상 '않다'만 가능해 개념을 판단하지 않아도 답이 정해진다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '평행하지 {않다}'는 문법상 '않다'만 들어가 개념을 판단하지 않아도 답이 정해진다. 수선 길이가 다르면 평행하지 않다는 판단을 요구하지 못한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2506,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+      "sourceFingerprint": "e141d3df49a7f23d6db754d0bff38b5506c11ce5d057a33a177808e70271bde1",
+      "proposalFingerprint": "383447340023d481be90f3d95895a6b1eece8fb0fbbc096adf854077071587dd",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-4-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "평행한 변이 한 쌍뿐인 사다리꼴에서 평행하지 않은 두 변을 끝없이 길게 늘이면 어떻게 되는지 쓰시오.",
+      "bAnswer": "서로 만난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 만난다",
+            "만나게 된다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "평행하지 않은 변의 성질 말하기",
+      "bReason": "평행하지 않은 두 변의 늘임 결과를 확인함",
+      "cDecision": "keep",
+      "cReason": "만난다/만나지 않는다 중 고르는 짧은 빈칸",
+      "cSlotEquivalents": [
+        [
+          "서로 만난다",
+          "만나게 된다"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행하지 않은 두 변",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+      "cStudentSentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 □.",
+      "cSlotAnswers": [
+        {
+          "expected": "만난다",
+          "equivalents": [
+            "서로 만난다",
+            "만나게 된다"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 □.",
+        "answers": [
+          "만난다"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "평행한 변이 한 쌍뿐인 사다리꼴에서 평행하지 않은 두 변을 끝없이 길게 늘이면 어떻게 되는지 쓰시오.",
+        "answer": "서로 만난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 만난다",
+              "만나게 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+        "acceptedAnswers": [
+          [
+            "만난다",
+            "서로 만난다",
+            "만나게 된다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-4-xc12",
+        "sourceIndex": 2506,
+        "proposalFingerprint": "383447340023d481be90f3d95895a6b1eece8fb0fbbc096adf854077071587dd",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "평행변한쌍뿐이라는조건으로나머지두변의만남을묻는다.",
+        "cReason": "한쌍뿐조건을명시하여직사각형을잘못포함하지않는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-4-xc12",
+      "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+      "term": "평행하지 않은 두 변",
+      "kind": "성질",
+      "level": "중",
+      "definition": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}."
+    },
+    "normalized": {
+      "id": "e4-2-4-4-xc12",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-4-xc12",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "평행하지 않은 두 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}."
+      },
+      "B": {
+        "prompt": "평행한 변이 한 쌍뿐인 사다리꼴에서 평행하지 않은 두 변을 끝없이 길게 늘이면 어떻게 되는지 쓰시오.",
+        "answer": "서로 만난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 만난다",
+              "만나게 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+        "acceptedAnswers": [
+          [
+            "만난다",
+            "서로 만난다",
+            "만나게 된다"
+          ]
+        ]
+      },
+      "goal": "평행하지 않은 변의 성질 말하기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "350ed326e5d74a7f93288b3c43c9071c1a9fd6bc6df835976eb0ce1d9c3cefe7"
+    },
+    "ledger": {
+      "id": "e4-2-4-4-xc12",
+      "sourceIndex": 2506,
+      "proposalFingerprint": "383447340023d481be90f3d95895a6b1eece8fb0fbbc096adf854077071587dd",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "평행변한쌍뿐이라는조건으로나머지두변의만남을묻는다.",
+      "cReason": "한쌍뿐조건을명시하여직사각형을잘못포함하지않는다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "383447340023d481be90f3d95895a6b1eece8fb0fbbc096adf854077071587dd",
+    "normalizedHash": "350ed326e5d74a7f93288b3c43c9071c1a9fd6bc6df835976eb0ce1d9c3cefe7",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-4-xc12",
+        "grade": "초4",
+        "reviewedHash": "350ed326e5d74a7f93288b3c43c9071c1a9fd6bc6df835976eb0ce1d9c3cefe7",
+        "inputHash": "1a8b597c6a0f74068b685eb5ff276827cf199dbee55fbb15e3413fe2cf1cce28",
+        "evidence": "cohort-2026-10-07T09-13-59-211Z-1",
+        "blind": [
+          [
+            "e4-2-4-4-xc12",
+            "C",
+            "만난다",
+            "revise",
+            "'늘이면 □.'는 '길어진다'처럼 늘이는 행동에서 나온 참인 말도 들어간다. '두 직선은 서로 □'처럼 직선의 관계를 묻도록 고친다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-4-xc12",
+            "pass",
+            "revise",
+            "none",
+            "C: '나머지 두 변을 늘이면 □'에 '길어진다', '직선이 된다' 같은 참인 말도 들어가 '만난다'만 정답이 되지 않는다. '늘인 두 직선은 서로 □'처럼 두 직선의 관계를 묻도록 고쳐야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-4-xc12",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-4-xc12",
+            "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+            "term": "평행하지 않은 두 변",
+            "kind": "성질",
+            "level": "중",
+            "definition": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}."
+          },
+          "B": {
+            "prompt": "평행한 변이 한 쌍뿐인 사다리꼴에서 평행하지 않은 두 변을 끝없이 길게 늘이면 어떻게 되는지 쓰시오.",
+            "answer": "서로 만난다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "서로 만난다",
+                  "만나게 된다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "평행한 변이 한 쌍뿐인 사다리꼴에서 나머지 두 변을 늘이면 {만난다}.",
+            "acceptedAnswers": [
+              [
+                "만난다",
+                "서로 만난다",
+                "만나게 된다"
+              ]
+            ]
+          },
+          "goal": "평행하지 않은 변의 성질 말하기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "350ed326e5d74a7f93288b3c43c9071c1a9fd6bc6df835976eb0ce1d9c3cefe7"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-4-xc12",
+        "contentHash": "350ed326e5d74a7f93288b3c43c9071c1a9fd6bc6df835976eb0ce1d9c3cefe7",
+        "packet": "cohort-2026-10-07T09-13-59-211Z-1",
+        "inputHash": "1a8b597c6a0f74068b685eb5ff276827cf199dbee55fbb15e3413fe2cf1cce28",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '늘이면 □.'는 '길어진다'처럼 늘이는 행동에서 나온 참인 말도 들어간다. '두 직선은 서로 □'처럼 직선의 관계를 묻도록 고친다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '나머지 두 변을 늘이면 □'에 '길어진다', '직선이 된다' 같은 참인 말도 들어가 '만난다'만 정답이 되지 않는다. '늘인 두 직선은 서로 □'처럼 두 직선의 관계를 묻도록 고쳐야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2514,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+      "sourceFingerprint": "5e49bc4cdc58583b6964d0358a610f3687132b807c0080b3d391c4bfd02d48bd",
+      "proposalFingerprint": "c823ecebed37267f93d47a79d1dcfce032ea08f032ec0ff5024ab0abfa648193",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-4-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+      "bAnswer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가운데 정삼각형의 왼쪽과 오른쪽 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+            "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "정삼각형으로 사다리꼴 만들기",
+      "bReason": "붙이는 방법을 직접 쓰게 함",
+      "cDecision": "rewrite",
+      "cAfter": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+      "cReason": "긴 방법 구절 대신 익숙한 도형 이름 빈칸으로",
+      "exampleNeeded": "위 아래 위 방향의 같은 정삼각형 세 개가 변 전체로 맞닿아 평행한 변이 한 쌍뿐인 사다리꼴을 만드는 그림을 함께 제시하면 좋다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "정삼각형 세 개로 사다리꼴",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+      "cStudentSentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 □이 된다.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "사다리꼴",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "answer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 정삼각형의 왼쪽과 오른쪽 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+              "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+        "acceptedAnswers": [
+          [
+            "사다리꼴"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-4-xc23",
+        "sourceIndex": 2514,
+        "proposalFingerprint": "c823ecebed37267f93d47a79d1dcfce032ea08f032ec0ff5024ab0abfa648193",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "세 조각이 전체 변을 맞대는 실제 배치를 답안에 밝히고 반대 방향 배치도 허용했다.",
+        "cReason": "가운데 아래 꼭짓점의 두 비스듬한 변에 붙이는 배치를 명시하고 도움이 될 그림도 기록했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-4-xc23",
+      "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+      "term": "정삼각형 세 개로 사다리꼴",
+      "kind": "방법",
+      "level": "상",
+      "definition": "모양과 크기가 같은 정삼각형 세 개를 {한 변씩 맞대어 한 줄로} 이어 붙이면 사다리꼴이 된다."
+    },
+    "normalized": {
+      "id": "e4-2-4-4-xc23",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-4-xc23",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "term": "정삼각형 세 개로 사다리꼴",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모양과 크기가 같은 정삼각형 세 개를 {한 변씩 맞대어 한 줄로} 이어 붙이면 사다리꼴이 된다."
+      },
+      "B": {
+        "prompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "answer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 정삼각형의 왼쪽과 오른쪽 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+              "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+        "acceptedAnswers": [
+          [
+            "사다리꼴"
+          ]
+        ]
+      },
+      "goal": "정삼각형으로 사다리꼴 만들기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "1a214dda9e1bde016f01a3ddb018113765ab00846d4ef7403c2e254f4b6bed18"
+    },
+    "ledger": {
+      "id": "e4-2-4-4-xc23",
+      "sourceIndex": 2514,
+      "proposalFingerprint": "c823ecebed37267f93d47a79d1dcfce032ea08f032ec0ff5024ab0abfa648193",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "세 조각이 전체 변을 맞대는 실제 배치를 답안에 밝히고 반대 방향 배치도 허용했다.",
+      "cReason": "가운데 아래 꼭짓점의 두 비스듬한 변에 붙이는 배치를 명시하고 도움이 될 그림도 기록했다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "c823ecebed37267f93d47a79d1dcfce032ea08f032ec0ff5024ab0abfa648193",
+    "normalizedHash": "1a214dda9e1bde016f01a3ddb018113765ab00846d4ef7403c2e254f4b6bed18",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-4-xc23",
+        "grade": "초4",
+        "reviewedHash": "1a214dda9e1bde016f01a3ddb018113765ab00846d4ef7403c2e254f4b6bed18",
+        "inputHash": "1a8b597c6a0f74068b685eb5ff276827cf199dbee55fbb15e3413fe2cf1cce28",
+        "evidence": "cohort-2026-10-07T09-13-59-211Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-4-xc23",
+            "pass",
+            "revise",
+            "none",
+            "C: 구성 방법을 모두 설명한 뒤 '붙이면 □이 된다'로 묻는데, '사각형'도 참이고 '평행한 변이 한 쌍 있다' 같은 단서도 없어 '사다리꼴'만 정답이 되지 않는다. 인정 답이 '사다리꼴' 하나뿐이다. '평행한 변이 한 쌍 있는 사각형의 이름은?'처럼 이름을 한정해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-4-xc23",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-4-xc23",
+            "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+            "term": "정삼각형 세 개로 사다리꼴",
+            "kind": "방법",
+            "level": "상",
+            "definition": "모양과 크기가 같은 정삼각형 세 개를 {한 변씩 맞대어 한 줄로} 이어 붙이면 사다리꼴이 된다."
+          },
+          "B": {
+            "prompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+            "answer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "가운데 정삼각형의 왼쪽과 오른쪽 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+                  "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+            "acceptedAnswers": [
+              [
+                "사다리꼴"
+              ]
+            ]
+          },
+          "goal": "정삼각형으로 사다리꼴 만들기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "1a214dda9e1bde016f01a3ddb018113765ab00846d4ef7403c2e254f4b6bed18"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-4-xc23",
+        "contentHash": "1a214dda9e1bde016f01a3ddb018113765ab00846d4ef7403c2e254f4b6bed18",
+        "packet": "cohort-2026-10-07T09-13-59-211Z-1",
+        "inputHash": "1a8b597c6a0f74068b685eb5ff276827cf199dbee55fbb15e3413fe2cf1cce28",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: 구성 방법을 모두 설명한 뒤 '붙이면 □이 된다'로 묻는데, '사각형'도 참이고 '평행한 변이 한 쌍 있다' 같은 단서도 없어 '사다리꼴'만 정답이 되지 않는다. 인정 답이 '사다리꼴' 하나뿐이다. '평행한 변이 한 쌍 있는 사각형의 이름은?'처럼 이름을 한정해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2575,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+      "sourceFingerprint": "00c6c96865e0ceae2b97c9046861b01fd7a350ab0bf4ad927d6cbb26a9166056",
+      "proposalFingerprint": "a6f3d9fca0f61b63bfdf6c5b56e5bd3e519323227e3d9b4ba8825402c4dffccb",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-7-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "직각이 없는 마름모를 직사각형이라고 부를 수 없는 까닭을 쓰시오.",
+      "bAnswer": "직사각형은 네 각이 모두 직각이어야 하는데 직각이 없기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형은 네 각이 모두 직각이어야 한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "마름모가 직사각형 아닌 까닭",
+      "bReason": "직사각형 조건으로 이름 붙이기를 점검함",
+      "cDecision": "keep",
+      "cReason": "익숙한 낱말 '직각' 빈칸이라 유지",
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "직각 없는 마름모의 분류",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+      "cStudentSentence": "직각이 없는 마름모는 네 각이 모두 □이어야 하는 직사각형으로 부를 수 없다.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "직각",
+          "equivalents": []
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "직각이 없는 마름모는 네 각이 모두 □이어야 하는 직사각형으로 부를 수 없다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "직각이 없는 마름모를 직사각형이라고 부를 수 없는 까닭을 쓰시오.",
+        "answer": "직사각형은 네 각이 모두 직각이어야 하는데 직각이 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형은 네 각이 모두 직각이어야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+        "acceptedAnswers": [
+          [
+            "직각"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-7-xc14",
+        "sourceIndex": 2575,
+        "proposalFingerprint": "a6f3d9fca0f61b63bfdf6c5b56e5bd3e519323227e3d9b4ba8825402c4dffccb",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "직사각형의네직각필수조건을마름모의직각없음과대비한다.",
+        "cReason": "직사각형에필요한직각조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-7-xc14",
+      "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+      "term": "직각 없는 마름모의 분류",
+      "kind": "성질",
+      "level": "중",
+      "definition": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다."
+    },
+    "normalized": {
+      "id": "e4-2-4-7-xc14",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-7-xc14",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "직각 없는 마름모의 분류",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다."
+      },
+      "B": {
+        "prompt": "직각이 없는 마름모를 직사각형이라고 부를 수 없는 까닭을 쓰시오.",
+        "answer": "직사각형은 네 각이 모두 직각이어야 하는데 직각이 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형은 네 각이 모두 직각이어야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+        "acceptedAnswers": [
+          [
+            "직각"
+          ]
+        ]
+      },
+      "goal": "마름모가 직사각형 아닌 까닭",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "cc35147bb64b70dfcea626936ad9124b2beb67b6c270d63c6ef4c5617acd0c8f"
+    },
+    "ledger": {
+      "id": "e4-2-4-7-xc14",
+      "sourceIndex": 2575,
+      "proposalFingerprint": "a6f3d9fca0f61b63bfdf6c5b56e5bd3e519323227e3d9b4ba8825402c4dffccb",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "직사각형의네직각필수조건을마름모의직각없음과대비한다.",
+      "cReason": "직사각형에필요한직각조건이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "a6f3d9fca0f61b63bfdf6c5b56e5bd3e519323227e3d9b4ba8825402c4dffccb",
+    "normalizedHash": "cc35147bb64b70dfcea626936ad9124b2beb67b6c270d63c6ef4c5617acd0c8f",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-7-xc14",
+        "grade": "초4",
+        "reviewedHash": "cc35147bb64b70dfcea626936ad9124b2beb67b6c270d63c6ef4c5617acd0c8f",
+        "inputHash": "642797b69e211004943ee6d34e1094ca3c364310c9288886d219859fd7cd33e0",
+        "evidence": "cohort-2026-10-07T09-30-07-932Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-7-xc14",
+            "pass",
+            "revise",
+            "none",
+            "C의 정답 '직각'이 같은 문장 앞부분 '직각이 없는 마름모'에 이미 있어 낱말 복사만으로 채워진다. 직사각형의 정의를 알 필요가 없다. '직각이 없는 마름모를 직사각형이라 부를 수 없는 까닭은 직사각형이 네 각이 모두 □이어야 하기 때문' 식으로 앞부분의 '직각'을 가리거나, 직사각형이 되기 위한 각의 조건을 묻는 문장으로 바꿀 것."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-7-xc14",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-7-xc14",
+            "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+            "term": "직각 없는 마름모의 분류",
+            "kind": "성질",
+            "level": "중",
+            "definition": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다."
+          },
+          "B": {
+            "prompt": "직각이 없는 마름모를 직사각형이라고 부를 수 없는 까닭을 쓰시오.",
+            "answer": "직사각형은 네 각이 모두 직각이어야 하는데 직각이 없기 때문이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "직사각형은 네 각이 모두 직각이어야 한다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "직각이 없는 마름모는 네 각이 모두 {직각}이어야 하는 직사각형으로 부를 수 없다.",
+            "acceptedAnswers": [
+              [
+                "직각"
+              ]
+            ]
+          },
+          "goal": "마름모가 직사각형 아닌 까닭",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "cc35147bb64b70dfcea626936ad9124b2beb67b6c270d63c6ef4c5617acd0c8f"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-7-xc14",
+        "contentHash": "cc35147bb64b70dfcea626936ad9124b2beb67b6c270d63c6ef4c5617acd0c8f",
+        "packet": "cohort-2026-10-07T09-30-07-932Z-0",
+        "inputHash": "642797b69e211004943ee6d34e1094ca3c364310c9288886d219859fd7cd33e0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 정답 '직각'이 같은 문장 앞부분 '직각이 없는 마름모'에 이미 있어 낱말 복사만으로 채워진다. 직사각형의 정의를 알 필요가 없다. '직각이 없는 마름모를 직사각형이라 부를 수 없는 까닭은 직사각형이 네 각이 모두 □이어야 하기 때문' 식으로 앞부분의 '직각'을 가리거나, 직사각형이 되기 위한 각의 조건을 묻는 문장으로 바꿀 것."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2584,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+      "sourceFingerprint": "ac1e8ed418405a527282c50f1da3c121c530ffd2790e20ad3ab0a34b96fba64c",
+      "proposalFingerprint": "f6d73bd263b48ed51eb9521bf43e5a940c7fc926ed3ddd8d33d5c3db1385b3c4",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-7-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+      "bAnswer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "틀리다",
+            "맞지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이웃한 변의 길이가 다른 직사각형이 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "반례로 판단하기",
+      "bReason": "반례 하나로 틀림을 설명하게 함",
+      "cDecision": "rewrite",
+      "cAfter": "직사각형 하나에서 이웃한 변의 길이가 다르면 모든 직사각형이 마름모라는 말은 맞지 {않다}.",
+      "cReason": "4학년에게 낯선 '거짓'을 쉬운 말로 바꿈",
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "모든 직사각형이 마름모인지 확인하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직사각형 하나에서 이웃한 변의 길이가 다르면 모든 직사각형이 마름모라는 말은 맞지 {않다}.",
+      "cStudentSentence": "직사각형 하나에서 이웃한 변의 길이가 다르면 모든 직사각형이 마름모라는 말은 맞지 □.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "않다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+        "answer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "틀리다",
+              "맞지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 변의 길이가 다른 직사각형이 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형 하나에서 이웃한 변의 길이가 다르면 모든 직사각형이 마름모라는 말은 맞지 {않다}.",
+        "acceptedAnswers": [
+          [
+            "않다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-7-xc23",
+        "sourceIndex": 2584,
+        "proposalFingerprint": "f6d73bd263b48ed51eb9521bf43e5a940c7fc926ed3ddd8d33d5c3db1385b3c4",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "이웃길이다른직사각형반례로모든직사각형마름모말이틀림을설명한다.",
+        "cReason": "한반례가모든이라는일반화를반박하는조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-7-xc23",
+      "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+      "term": "모든 직사각형이 마름모인지 확인하기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "직사각형 하나에서 이웃한 변 길이가 다르면 모든 직사각형이 마름모라는 말은 {거짓}이다."
+    },
+    "normalized": {
+      "id": "e4-2-4-7-xc23",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-7-xc23",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "모든 직사각형이 마름모인지 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형 하나에서 이웃한 변 길이가 다르면 모든 직사각형이 마름모라는 말은 {거짓}이다."
+      },
+      "B": {
+        "prompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+        "answer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "틀리다",
+              "맞지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 변의 길이가 다른 직사각형이 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직사각형 하나에서 이웃한 변의 길이가 다르면 모든 직사각형이 마름모라는 말은 맞지 {않다}.",
+        "acceptedAnswers": [
+          [
+            "않다"
+          ]
+        ]
+      },
+      "goal": "반례로 판단하기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "060f4d4a8f57051eb78a21ff0433b8068f4d6f22f297de57db52f2c536a82887"
+    },
+    "ledger": {
+      "id": "e4-2-4-7-xc23",
+      "sourceIndex": 2584,
+      "proposalFingerprint": "f6d73bd263b48ed51eb9521bf43e5a940c7fc926ed3ddd8d33d5c3db1385b3c4",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "이웃길이다른직사각형반례로모든직사각형마름모말이틀림을설명한다.",
+      "cReason": "한반례가모든이라는일반화를반박하는조건이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f6d73bd263b48ed51eb9521bf43e5a940c7fc926ed3ddd8d33d5c3db1385b3c4",
+    "normalizedHash": "060f4d4a8f57051eb78a21ff0433b8068f4d6f22f297de57db52f2c536a82887",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-7-xc23",
+        "grade": "초4",
+        "reviewedHash": "060f4d4a8f57051eb78a21ff0433b8068f4d6f22f297de57db52f2c536a82887",
+        "inputHash": "642797b69e211004943ee6d34e1094ca3c364310c9288886d219859fd7cd33e0",
+        "evidence": "cohort-2026-10-07T09-30-07-932Z-0",
+        "blind": [
+          [
+            "e4-2-4-7-xc23",
+            "C",
+            "않다",
+            "revise",
+            "'맞지 □'가 문법상 '않다'만 복원하는 문항이라 개념 판단이 드러나지 않는다. 앞부분의 결론을 가리고 '모든 직사각형이 마름모라는 말은 □'처럼 맞음/틀림과 근거를 직접 쓰게 바꿀 것."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-7-xc23",
+            "pass",
+            "revise",
+            "none",
+            "C의 빈칸은 '맞지 □'의 '않다'뿐이라 문법만 복원하면 되고 개념 판단이 드러나지 않는다. 앞부분의 결론을 가리고 '모든 직사각형이 마름모라는 말은 □' 식으로 맞음/틀림과 근거(이웃한 변이 다른 직사각형)를 직접 쓰게 바꿀 것."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-7-xc23",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-7-xc23",
+            "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+            "term": "모든 직사각형이 마름모인지 확인하기",
+            "kind": "방법",
+            "level": "상",
+            "definition": "직사각형 하나에서 이웃한 변 길이가 다르면 모든 직사각형이 마름모라는 말은 {거짓}이다."
+          },
+          "B": {
+            "prompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+            "answer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "틀리다",
+                  "맞지 않다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "이웃한 변의 길이가 다른 직사각형이 있다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "직사각형 하나에서 이웃한 변의 길이가 다르면 모든 직사각형이 마름모라는 말은 맞지 {않다}.",
+            "acceptedAnswers": [
+              [
+                "않다"
+              ]
+            ]
+          },
+          "goal": "반례로 판단하기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "060f4d4a8f57051eb78a21ff0433b8068f4d6f22f297de57db52f2c536a82887"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-7-xc23",
+        "contentHash": "060f4d4a8f57051eb78a21ff0433b8068f4d6f22f297de57db52f2c536a82887",
+        "packet": "cohort-2026-10-07T09-30-07-932Z-0",
+        "inputHash": "642797b69e211004943ee6d34e1094ca3c364310c9288886d219859fd7cd33e0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '맞지 □'가 문법상 '않다'만 복원하는 문항이라 개념 판단이 드러나지 않는다. 앞부분의 결론을 가리고 '모든 직사각형이 마름모라는 말은 □'처럼 맞음/틀림과 근거를 직접 쓰게 바꿀 것.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 빈칸은 '맞지 □'의 '않다'뿐이라 문법만 복원하면 되고 개념 판단이 드러나지 않는다. 앞부분의 결론을 가리고 '모든 직사각형이 마름모라는 말은 □' 식으로 맞음/틀림과 근거(이웃한 변이 다른 직사각형)를 직접 쓰게 바꿀 것."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2595,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+      "sourceFingerprint": "947ef496b5d953e6334166e1efb86bbe5c65018d7edd507262b9ecc63edb9dea",
+      "proposalFingerprint": "1bc4461da98a12304a21be8eaf5a4369a452d51f47b6d6f37990f527d424d541",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-1-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "왼쪽부터 점 읽기",
+      "bReason": "단순 읽는 순서",
+      "exclusionReason": "가로축에 시간이 차례로 놓인다는 xc3과 같은 목표이고 방향만 묻는 단순 사실",
+      "cDecision": "keep",
+      "cReason": "짧은 낱말 빈칸이라 유지",
+      "cSlotEquivalents": [
+        [
+          "왼쪽에서부터"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "점들을 읽는 차례",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다.",
+      "cStudentSentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 □ 점을 읽는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "왼쪽부터",
+          "equivalents": [
+            "왼쪽에서부터"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 □ 점을 읽는다.",
+        "answers": [
+          "왼쪽부터"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽부터",
+            "왼쪽에서부터"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순 읽는 순서"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-1-xc8",
+        "sourceIndex": 2595,
+        "proposalFingerprint": "1bc4461da98a12304a21be8eaf5a4369a452d51f47b6d6f37990f527d424d541",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "가로축시간순의방향B는중복이다.",
+        "cReason": "시간오른쪽진행을명시한왼쪽부터읽는방법이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-1-xc8",
+      "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+      "term": "점들을 읽는 차례",
+      "kind": "방법",
+      "level": "하",
+      "definition": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다."
+    },
+    "normalized": {
+      "id": "e4-2-5-1-xc8",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-1-xc8",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "term": "점들을 읽는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다."
+      },
+      "B": {
+        "excluded": "단순 읽는 순서"
+      },
+      "C": {
+        "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽부터",
+            "왼쪽에서부터"
+          ]
+        ]
+      },
+      "goal": "왼쪽부터 점 읽기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "750c3d52fea58b9c7724689f27e8f5db7285cc3df03d193791bb3228f3ce3733"
+    },
+    "ledger": {
+      "id": "e4-2-5-1-xc8",
+      "sourceIndex": 2595,
+      "proposalFingerprint": "1bc4461da98a12304a21be8eaf5a4369a452d51f47b6d6f37990f527d424d541",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "가로축시간순의방향B는중복이다.",
+      "cReason": "시간오른쪽진행을명시한왼쪽부터읽는방법이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "1bc4461da98a12304a21be8eaf5a4369a452d51f47b6d6f37990f527d424d541",
+    "normalizedHash": "750c3d52fea58b9c7724689f27e8f5db7285cc3df03d193791bb3228f3ce3733",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-1-xc8",
+        "grade": "초4",
+        "reviewedHash": "750c3d52fea58b9c7724689f27e8f5db7285cc3df03d193791bb3228f3ce3733",
+        "inputHash": "642797b69e211004943ee6d34e1094ca3c364310c9288886d219859fd7cd33e0",
+        "evidence": "cohort-2026-10-07T09-30-07-932Z-0",
+        "blind": [
+          [
+            "e4-2-5-1-xc8",
+            "C",
+            "왼쪽에서 오른쪽으로(차례로)",
+            "revise",
+            "'□ 점을 읽는다'에 들어갈 말이 방향, 이웃한 정도, 세로축 등 여러 가지로 해석되어 답 범위가 정해지지 않는다. '왼쪽에서 오른쪽으로 읽으면 때가 어떻게 되는가'처럼 읽는 방향을 구체적으로 묻도록 바꿀 것."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-5-1-xc8",
+            "excluded",
+            "revise",
+            "none",
+            "C '□ 점을 읽는다'는 '왼쪽부터' 외에 '시간 순서대로', '차례로', '처음 점부터' 등도 자연스러워 답 범위가 정해지지 않는다. 인정 답은 '왼쪽부터', '왼쪽에서부터'뿐이다. '왼쪽에서 오른쪽으로 읽으면 때가 어떻게 되는가'처럼 읽는 방향과 시간 순서의 관계를 구체적으로 묻도록 바꿀 것."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-1-xc8",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-1-xc8",
+            "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+            "term": "점들을 읽는 차례",
+            "kind": "방법",
+            "level": "하",
+            "definition": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다."
+          },
+          "B": {
+            "excluded": "단순 읽는 순서"
+          },
+          "C": {
+            "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다.",
+            "acceptedAnswers": [
+              [
+                "왼쪽부터",
+                "왼쪽에서부터"
+              ]
+            ]
+          },
+          "goal": "왼쪽부터 점 읽기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "750c3d52fea58b9c7724689f27e8f5db7285cc3df03d193791bb3228f3ce3733"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-1-xc8",
+        "contentHash": "750c3d52fea58b9c7724689f27e8f5db7285cc3df03d193791bb3228f3ce3733",
+        "packet": "cohort-2026-10-07T09-30-07-932Z-0",
+        "inputHash": "642797b69e211004943ee6d34e1094ca3c364310c9288886d219859fd7cd33e0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '□ 점을 읽는다'에 들어갈 말이 방향, 이웃한 정도, 세로축 등 여러 가지로 해석되어 답 범위가 정해지지 않는다. '왼쪽에서 오른쪽으로 읽으면 때가 어떻게 되는가'처럼 읽는 방향을 구체적으로 묻도록 바꿀 것.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C '□ 점을 읽는다'는 '왼쪽부터' 외에 '시간 순서대로', '차례로', '처음 점부터' 등도 자연스러워 답 범위가 정해지지 않는다. 인정 답은 '왼쪽부터', '왼쪽에서부터'뿐이다. '왼쪽에서 오른쪽으로 읽으면 때가 어떻게 되는가'처럼 읽는 방향과 시간 순서의 관계를 구체적으로 묻도록 바꿀 것."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2614,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+      "sourceFingerprint": "3f82c4b0c906de638aec60be84a377ef21e006d3f7794df9ee0734773d3cd917",
+      "proposalFingerprint": "966c13f9b813690e9d032cb82c6f52e999718beb464c0d23a97e03ac86c472f7",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-1-xc27",
+      "bDecision": "rewrite",
+      "bPrompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+      "bAnswer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 선이 어떤 자료인지",
+            "색과 선 모양의 설명",
+            "선이 나타내는 자료"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "두 자료 그래프의 선 구별",
+      "bReason": "선마다 자료가 다름을 먼저 확인하게 함",
+      "cDecision": "rewrite",
+      "cAfter": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양이 각각 어느 {자료}를 나타내는지부터 확인한다.",
+      "cReason": "'설명'이 가려진 대상이라 무엇을 확인할지 드러냄",
+      "cSlotEquivalents": [
+        [
+          "것",
+          "대상",
+          "내용"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "선이 서로 다른 두 자료",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양이 각각 어느 {자료}를 나타내는지부터 확인한다.",
+      "cStudentSentence": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양이 각각 어느 □를 나타내는지부터 확인한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "자료",
+          "equivalents": [
+            "것",
+            "대상",
+            "내용"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+        "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 선이 어떤 자료인지",
+              "색과 선 모양의 설명",
+              "선이 나타내는 자료"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양이 각각 어느 {자료}를 나타내는지부터 확인한다.",
+        "acceptedAnswers": [
+          [
+            "자료",
+            "것",
+            "대상",
+            "내용"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-1-xc27",
+        "sourceIndex": 2614,
+        "proposalFingerprint": "966c13f9b813690e9d032cb82c6f52e999718beb464c0d23a97e03ac86c472f7",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한그래프두선의색·모양이무엇을나타내는지먼저확인한다.",
+        "cReason": "각선이나타내는조사자료대상을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-1-xc27",
+      "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+      "term": "선이 서로 다른 두 자료",
+      "kind": "방법",
+      "level": "상",
+      "definition": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양의 {설명}부터 확인한다."
+    },
+    "normalized": {
+      "id": "e4-2-5-1-xc27",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-1-xc27",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "term": "선이 서로 다른 두 자료",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양의 {설명}부터 확인한다."
+      },
+      "B": {
+        "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+        "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 선이 어떤 자료인지",
+              "색과 선 모양의 설명",
+              "선이 나타내는 자료"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양이 각각 어느 {자료}를 나타내는지부터 확인한다.",
+        "acceptedAnswers": [
+          [
+            "자료",
+            "것",
+            "대상",
+            "내용"
+          ]
+        ]
+      },
+      "goal": "두 자료 그래프의 선 구별",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "6d68b01dff41d083bba9d0f1f4c57b079506a24697dfbe4f41b4d7c6a6b0bba0"
+    },
+    "ledger": {
+      "id": "e4-2-5-1-xc27",
+      "sourceIndex": 2614,
+      "proposalFingerprint": "966c13f9b813690e9d032cb82c6f52e999718beb464c0d23a97e03ac86c472f7",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "한그래프두선의색·모양이무엇을나타내는지먼저확인한다.",
+      "cReason": "각선이나타내는조사자료대상을확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "966c13f9b813690e9d032cb82c6f52e999718beb464c0d23a97e03ac86c472f7",
+    "normalizedHash": "6d68b01dff41d083bba9d0f1f4c57b079506a24697dfbe4f41b4d7c6a6b0bba0",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-1-xc27",
+        "grade": "초4",
+        "reviewedHash": "6d68b01dff41d083bba9d0f1f4c57b079506a24697dfbe4f41b4d7c6a6b0bba0",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "evidence": "cohort-2026-10-07T09-30-07-949Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-5-1-xc27",
+            "pass",
+            "revise",
+            "none",
+            "C 빈칸 '자료'는 바로 앞 '두 자료의 꺾은선'에서 되풀이되는 일반 명사다. 인정 답에 '것'까지 들어 있어 수학 개념 확인 없이 문법으로 채워진다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-1-xc27",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-1-xc27",
+            "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+            "term": "선이 서로 다른 두 자료",
+            "kind": "방법",
+            "level": "상",
+            "definition": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양의 {설명}부터 확인한다."
+          },
+          "B": {
+            "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+            "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "각 선이 어떤 자료인지",
+                  "색과 선 모양의 설명",
+                  "선이 나타내는 자료"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양이 각각 어느 {자료}를 나타내는지부터 확인한다.",
+            "acceptedAnswers": [
+              [
+                "자료",
+                "것",
+                "대상",
+                "내용"
+              ]
+            ]
+          },
+          "goal": "두 자료 그래프의 선 구별",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "6d68b01dff41d083bba9d0f1f4c57b079506a24697dfbe4f41b4d7c6a6b0bba0"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-1-xc27",
+        "contentHash": "6d68b01dff41d083bba9d0f1f4c57b079506a24697dfbe4f41b4d7c6a6b0bba0",
+        "packet": "cohort-2026-10-07T09-30-07-949Z-1",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C 빈칸 '자료'는 바로 앞 '두 자료의 꺾은선'에서 되풀이되는 일반 명사다. 인정 답에 '것'까지 들어 있어 수학 개념 확인 없이 문법으로 채워진다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2641,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+      "sourceFingerprint": "b43c9b010f1a709301305eff2132421c820ee26e041f3b84b85a7b52b9a21de8",
+      "proposalFingerprint": "f6a8e974294d095b08d9492f8ddfe0024b6aef672f413f9e205a995c1cac73c1",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-2-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+      "bAnswer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "확신할 수 없다",
+            "할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "재지 않은 때에 더 높았을 수 있다",
+            "조사하지 않은 때의 값을 모른다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "조사한 점만으로 판단하는 한계",
+      "bReason": "관측하지 않은 때의 값을 단정 못 함",
+      "cDecision": "rewrite",
+      "cAfter": "표시된 점에서 최고값을 찾아도 조사하지 않은 때에는 더 높은 값이 {있었을} 수 있다.",
+      "cReason": "'단정할 수 없다' 구절 빈칸을 낱말로 바꿈",
+      "cSlotEquivalents": [
+        [
+          "있을",
+          "나왔을",
+          "생겼을"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "관측한 때만 판단하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "표시된 점에서 최고값을 찾아도 조사하지 않은 때에는 더 높은 값이 {있었을} 수 있다.",
+      "cStudentSentence": "표시된 점에서 최고값을 찾아도 조사하지 않은 때에는 더 높은 값이 □ 수 있다.",
+      "cSlotAnswers": [
+        {
+          "expected": "있었을",
+          "equivalents": [
+            "있을",
+            "나왔을",
+            "생겼을"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+        "answer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "확신할 수 없다",
+              "할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "재지 않은 때에 더 높았을 수 있다",
+              "조사하지 않은 때의 값을 모른다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "표시된 점에서 최고값을 찾아도 조사하지 않은 때에는 더 높은 값이 {있었을} 수 있다.",
+        "acceptedAnswers": [
+          [
+            "있었을",
+            "있을",
+            "나왔을",
+            "생겼을"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-2-xc26",
+        "sourceIndex": 2641,
+        "proposalFingerprint": "f6a8e974294d095b08d9492f8ddfe0024b6aef672f413f9e205a995c1cac73c1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "측정하지않은때더높았을가능성때문에관측최대가하루최대를보장하지않음을설명한다.",
+        "cReason": "비관측시간의더큰값가능이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-2-xc26",
+      "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+      "term": "관측한 때만 판단하기",
+      "kind": "성질",
+      "level": "상",
+      "definition": "표시된 점에서 최고값을 찾아도 관측하지 않은 때의 값까지 최고라고 {단정할 수 없다}."
+    },
+    "normalized": {
+      "id": "e4-2-5-2-xc26",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-2-xc26",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "term": "관측한 때만 판단하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "표시된 점에서 최고값을 찾아도 관측하지 않은 때의 값까지 최고라고 {단정할 수 없다}."
+      },
+      "B": {
+        "prompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+        "answer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "확신할 수 없다",
+              "할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "재지 않은 때에 더 높았을 수 있다",
+              "조사하지 않은 때의 값을 모른다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "표시된 점에서 최고값을 찾아도 조사하지 않은 때에는 더 높은 값이 {있었을} 수 있다.",
+        "acceptedAnswers": [
+          [
+            "있었을",
+            "있을",
+            "나왔을",
+            "생겼을"
+          ]
+        ]
+      },
+      "goal": "조사한 점만으로 판단하는 한계",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "af15d974515f2ba548aab5494dae51c30f9ed79e8ba3c1ee622af950969da8a8"
+    },
+    "ledger": {
+      "id": "e4-2-5-2-xc26",
+      "sourceIndex": 2641,
+      "proposalFingerprint": "f6a8e974294d095b08d9492f8ddfe0024b6aef672f413f9e205a995c1cac73c1",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "측정하지않은때더높았을가능성때문에관측최대가하루최대를보장하지않음을설명한다.",
+      "cReason": "비관측시간의더큰값가능이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f6a8e974294d095b08d9492f8ddfe0024b6aef672f413f9e205a995c1cac73c1",
+    "normalizedHash": "af15d974515f2ba548aab5494dae51c30f9ed79e8ba3c1ee622af950969da8a8",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-2-xc26",
+        "grade": "초4",
+        "reviewedHash": "af15d974515f2ba548aab5494dae51c30f9ed79e8ba3c1ee622af950969da8a8",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "evidence": "cohort-2026-10-07T09-30-07-949Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-5-2-xc26",
+            "pass",
+            "revise",
+            "none",
+            "C 빈칸 '있었을'은 '더 높은 값이 ○○ 수 있다'의 활용형만 복원하면 되는 자리다. 개념(조사하지 않은 때의 값은 모른다)은 문장에 이미 서술돼 있다. 인정 답이 '있을/나왔을/생겼을'로 모두 문법적 대체다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-2-xc26",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-2-xc26",
+            "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+            "term": "관측한 때만 판단하기",
+            "kind": "성질",
+            "level": "상",
+            "definition": "표시된 점에서 최고값을 찾아도 관측하지 않은 때의 값까지 최고라고 {단정할 수 없다}."
+          },
+          "B": {
+            "prompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+            "answer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "확신할 수 없다",
+                  "할 수 없다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "재지 않은 때에 더 높았을 수 있다",
+                  "조사하지 않은 때의 값을 모른다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "표시된 점에서 최고값을 찾아도 조사하지 않은 때에는 더 높은 값이 {있었을} 수 있다.",
+            "acceptedAnswers": [
+              [
+                "있었을",
+                "있을",
+                "나왔을",
+                "생겼을"
+              ]
+            ]
+          },
+          "goal": "조사한 점만으로 판단하는 한계",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "af15d974515f2ba548aab5494dae51c30f9ed79e8ba3c1ee622af950969da8a8"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-2-xc26",
+        "contentHash": "af15d974515f2ba548aab5494dae51c30f9ed79e8ba3c1ee622af950969da8a8",
+        "packet": "cohort-2026-10-07T09-30-07-949Z-1",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C 빈칸 '있었을'은 '더 높은 값이 ○○ 수 있다'의 활용형만 복원하면 되는 자리다. 개념(조사하지 않은 때의 값은 모른다)은 문장에 이미 서술돼 있다. 인정 답이 '있을/나왔을/생겼을'로 모두 문법적 대체다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2644,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "2359ed4581129252f15262d689de6ddaaad630fd8fff7da9f7adc2fb4758b3dc",
+      "proposalFingerprint": "f3525cf3df2a32aef4953b37cd4b9c77af1ee0d9adc59d3b24b2b62e93bdac87",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면 어떤 점이 좋은지 쓰시오.",
+      "bAnswer": "빠뜨린 자료가 없는지 확인하기 쉽다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빠뜨린 자료를 확인하기 쉽다",
+            "빠진 자료가 없는지 알 수 있다",
+            "한눈에 보기 쉽다",
+            "그래프로 옮기기 쉽다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "표로 정리하는 좋은 점",
+      "bReason": "그리기 전 자료 정리의 쓸모를 말하게 함",
+      "cDecision": "keep",
+      "cReason": "익숙한 낱말 빈칸이며 답이 표로 분명함",
+      "cSlotEquivalents": [
+        [
+          "표로"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "그래프를 그리기 전 자료 정리",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+      "cStudentSentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+      "cSlotAnswers": [
+        {
+          "expected": "표",
+          "equivalents": [
+            "표로"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "answers": [
+          "표"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면 어떤 점이 좋은지 쓰시오.",
+        "answer": "빠뜨린 자료가 없는지 확인하기 쉽다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빠뜨린 자료를 확인하기 쉽다",
+              "빠진 자료가 없는지 알 수 있다",
+              "한눈에 보기 쉽다",
+              "그래프로 옮기기 쉽다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "표",
+            "표로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc1",
+        "sourceIndex": 2644,
+        "proposalFingerprint": "f3525cf3df2a32aef4953b37cd4b9c77af1ee0d9adc59d3b24b2b62e93bdac87",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "표정리의누락확인·읽기·옮기기의타당한편익을다양하게받는다.",
+        "cReason": "조사때와값을정리하는표라는확립된자료형태이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-3-xc1",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "term": "그래프를 그리기 전 자료 정리",
+      "kind": "방법",
+      "level": "하",
+      "definition": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다."
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc1",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc1",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "그래프를 그리기 전 자료 정리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다."
+      },
+      "B": {
+        "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면 어떤 점이 좋은지 쓰시오.",
+        "answer": "빠뜨린 자료가 없는지 확인하기 쉽다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빠뜨린 자료를 확인하기 쉽다",
+              "빠진 자료가 없는지 알 수 있다",
+              "한눈에 보기 쉽다",
+              "그래프로 옮기기 쉽다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "표",
+            "표로"
+          ]
+        ]
+      },
+      "goal": "표로 정리하는 좋은 점",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "02ef9617912b50ec86caa4e9ea8bbe6a8f4317e9b7e01bcd6f16df557537eccd"
+    },
+    "ledger": {
+      "id": "e4-2-5-3-xc1",
+      "sourceIndex": 2644,
+      "proposalFingerprint": "f3525cf3df2a32aef4953b37cd4b9c77af1ee0d9adc59d3b24b2b62e93bdac87",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "표정리의누락확인·읽기·옮기기의타당한편익을다양하게받는다.",
+      "cReason": "조사때와값을정리하는표라는확립된자료형태이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f3525cf3df2a32aef4953b37cd4b9c77af1ee0d9adc59d3b24b2b62e93bdac87",
+    "normalizedHash": "02ef9617912b50ec86caa4e9ea8bbe6a8f4317e9b7e01bcd6f16df557537eccd",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-3-xc1",
+        "grade": "초4",
+        "reviewedHash": "02ef9617912b50ec86caa4e9ea8bbe6a8f4317e9b7e01bcd6f16df557537eccd",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "evidence": "cohort-2026-10-07T09-30-07-949Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-5-3-xc1",
+            "revise",
+            "pass",
+            "none",
+            "B 질문 '어떤 점이 좋은지'가 열려 있다. requiredIdeas의 anyOf에 '빠뜨린 자료 확인', '한눈에 보기 쉽다', '그래프로 옮기기 쉽다'라는 서로 다른 개념이 섞여 있어 '같은 내용의 대안' 규칙에 어긋난다. 요구 개념(누락 확인)을 질문에서 좁혀야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-3-xc1",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-3-xc1",
+            "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+            "term": "그래프를 그리기 전 자료 정리",
+            "kind": "방법",
+            "level": "하",
+            "definition": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다."
+          },
+          "B": {
+            "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면 어떤 점이 좋은지 쓰시오.",
+            "answer": "빠뜨린 자료가 없는지 확인하기 쉽다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "빠뜨린 자료를 확인하기 쉽다",
+                  "빠진 자료가 없는지 알 수 있다",
+                  "한눈에 보기 쉽다",
+                  "그래프로 옮기기 쉽다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+            "acceptedAnswers": [
+              [
+                "표",
+                "표로"
+              ]
+            ]
+          },
+          "goal": "표로 정리하는 좋은 점",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "02ef9617912b50ec86caa4e9ea8bbe6a8f4317e9b7e01bcd6f16df557537eccd"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-3-xc1",
+        "contentHash": "02ef9617912b50ec86caa4e9ea8bbe6a8f4317e9b7e01bcd6f16df557537eccd",
+        "packet": "cohort-2026-10-07T09-30-07-949Z-1",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 질문 '어떤 점이 좋은지'가 열려 있다. requiredIdeas의 anyOf에 '빠뜨린 자료 확인', '한눈에 보기 쉽다', '그래프로 옮기기 쉽다'라는 서로 다른 개념이 섞여 있어 '같은 내용의 대안' 규칙에 어긋난다. 요구 개념(누락 확인)을 질문에서 좁혀야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2655,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "bbc5d1567c57f5d2f230c18ef1aa51e52e74459cb6cebacc27bbba3c6f06e146",
+      "proposalFingerprint": "16c507a3e6476eb37b8c2bc20e20a9448b66f27f86db8d913c587724b8e8ff74",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "물결선으로 아래쪽 눈금을 생략하는 세로축에서도 반드시 나타내야 하는 것은 무엇인지 쓰시오.",
+      "bAnswer": "가장 작은 값부터 가장 큰 값까지 모든 자료를 나타내야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 작은 값부터 가장 큰 값까지",
+            "모든 자료가 들어가야 한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "생략해도 모든 자료 표시",
+      "bReason": "눈금을 줄여도 자료가 빠지면 안 됨",
+      "cDecision": "keep",
+      "cReason": "모든 자료 빈칸이 앞 범위와 잘 연결됨",
+      "cSlotEquivalents": [
+        [
+          "모든 값",
+          "모든 점",
+          "자료 모두",
+          "자료 전부"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "세로축 범위 정하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+      "cStudentSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "모든 자료",
+          "equivalents": [
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+        "answers": [
+          "모든 자료"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "물결선으로 아래쪽 눈금을 생략하는 세로축에서도 반드시 나타내야 하는 것은 무엇인지 쓰시오.",
+        "answer": "가장 작은 값부터 가장 큰 값까지 모든 자료를 나타내야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 값부터 가장 큰 값까지",
+              "모든 자료가 들어가야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "acceptedAnswers": [
+          [
+            "모든 자료",
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc12",
+        "sourceIndex": 2655,
+        "proposalFingerprint": "16c507a3e6476eb37b8c2bc20e20a9448b66f27f86db8d913c587724b8e8ff74",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "물결선생략후에도최소부터최대까지모든자료표시조건이다.",
+        "cReason": "눈금생략이자료누락을뜻하지않음을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-3-xc12",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "term": "세로축 범위 정하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다."
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc12",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc12",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "세로축 범위 정하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다."
+      },
+      "B": {
+        "prompt": "물결선으로 아래쪽 눈금을 생략하는 세로축에서도 반드시 나타내야 하는 것은 무엇인지 쓰시오.",
+        "answer": "가장 작은 값부터 가장 큰 값까지 모든 자료를 나타내야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 값부터 가장 큰 값까지",
+              "모든 자료가 들어가야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "acceptedAnswers": [
+          [
+            "모든 자료",
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        ]
+      },
+      "goal": "생략해도 모든 자료 표시",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "044db30ff88cb27c681f38075bda87fc39a07fb3646fe6294c06bc0e20fa2bc3"
+    },
+    "ledger": {
+      "id": "e4-2-5-3-xc12",
+      "sourceIndex": 2655,
+      "proposalFingerprint": "16c507a3e6476eb37b8c2bc20e20a9448b66f27f86db8d913c587724b8e8ff74",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "물결선생략후에도최소부터최대까지모든자료표시조건이다.",
+      "cReason": "눈금생략이자료누락을뜻하지않음을확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "16c507a3e6476eb37b8c2bc20e20a9448b66f27f86db8d913c587724b8e8ff74",
+    "normalizedHash": "044db30ff88cb27c681f38075bda87fc39a07fb3646fe6294c06bc0e20fa2bc3",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-3-xc12",
+        "grade": "초4",
+        "reviewedHash": "044db30ff88cb27c681f38075bda87fc39a07fb3646fe6294c06bc0e20fa2bc3",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "evidence": "cohort-2026-10-07T09-30-07-949Z-1",
+        "blind": [
+          [
+            "e4-2-5-3-xc12",
+            "B",
+            "자료의 가장 작은 값부터 가장 큰 값까지의 눈금",
+            "revise",
+            "'반드시 나타내야 하는 것'이 값의 범위인지, 물결선 표시인지, 눈금 단위인지 정해지지 않아 여러 답이 가능하다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-5-3-xc12",
+            "revise",
+            "pass",
+            "none",
+            "B '반드시 나타내야 하는 것'이 값의 범위인지, 물결선 표시인지, 눈금 단위인지 정해지지 않아 여러 답이 가능하다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-3-xc12",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-3-xc12",
+            "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+            "term": "세로축 범위 정하기",
+            "kind": "방법",
+            "level": "중",
+            "definition": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다."
+          },
+          "B": {
+            "prompt": "물결선으로 아래쪽 눈금을 생략하는 세로축에서도 반드시 나타내야 하는 것은 무엇인지 쓰시오.",
+            "answer": "가장 작은 값부터 가장 큰 값까지 모든 자료를 나타내야 한다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "가장 작은 값부터 가장 큰 값까지",
+                  "모든 자료가 들어가야 한다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+            "acceptedAnswers": [
+              [
+                "모든 자료",
+                "모든 값",
+                "모든 점",
+                "자료 모두",
+                "자료 전부"
+              ]
+            ]
+          },
+          "goal": "생략해도 모든 자료 표시",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "044db30ff88cb27c681f38075bda87fc39a07fb3646fe6294c06bc0e20fa2bc3"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-3-xc12",
+        "contentHash": "044db30ff88cb27c681f38075bda87fc39a07fb3646fe6294c06bc0e20fa2bc3",
+        "packet": "cohort-2026-10-07T09-30-07-949Z-1",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-B: '반드시 나타내야 하는 것'이 값의 범위인지, 물결선 표시인지, 눈금 단위인지 정해지지 않아 여러 답이 가능하다.",
+          "B의 실제 결정과 2차 판정이 다름",
+          "B '반드시 나타내야 하는 것'이 값의 범위인지, 물결선 표시인지, 눈금 단위인지 정해지지 않아 여러 답이 가능하다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2663,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+      "proposalFingerprint": "293aebe104e28c786e5c901e379a150f2dc655e92f3c78673feb11151a9c5229",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+      "bAnswer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "예상한 값임을 구별해 표시한다",
+            "조사한 값과 다르게 표시한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "예상값과 관측값 구별",
+      "bReason": "예상과 실제 조사를 섞지 않게 함",
+      "cDecision": "keep",
+      "cReason": "예상한 값 빈칸이 앞 조건과 잘 맞음",
+      "cSlotEquivalents": [
+        [
+          "예상값",
+          "짐작한 값",
+          "예측한 값"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "예상값과 관측값 구별",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+      "cStudentSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "예상한 값",
+          "equivalents": [
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+        "answers": [
+          "예상한 값"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 값임을 구별해 표시한다",
+              "조사한 값과 다르게 표시한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "acceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc20",
+        "sourceIndex": 2663,
+        "proposalFingerprint": "293aebe104e28c786e5c901e379a150f2dc655e92f3c78673feb11151a9c5229",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "예상값을직접조사한값과구별해표시하는방법이다.",
+        "cReason": "미조사다음값의예상한값상태를확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-3-xc20",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "term": "예상값과 관측값 구별",
+      "kind": "방법",
+      "level": "상",
+      "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc20",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc20",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "예상값과 관측값 구별",
+        "kind": "방법",
+        "level": "상",
+        "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+      },
+      "B": {
+        "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 값임을 구별해 표시한다",
+              "조사한 값과 다르게 표시한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "acceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "goal": "예상값과 관측값 구별",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "0dea044038d4580019c108e317f99761ba382b47d5f5f31c24863c9b3396470a"
+    },
+    "ledger": {
+      "id": "e4-2-5-3-xc20",
+      "sourceIndex": 2663,
+      "proposalFingerprint": "293aebe104e28c786e5c901e379a150f2dc655e92f3c78673feb11151a9c5229",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "예상값을직접조사한값과구별해표시하는방법이다.",
+      "cReason": "미조사다음값의예상한값상태를확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "293aebe104e28c786e5c901e379a150f2dc655e92f3c78673feb11151a9c5229",
+    "normalizedHash": "0dea044038d4580019c108e317f99761ba382b47d5f5f31c24863c9b3396470a",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-3-xc20",
+        "grade": "초4",
+        "reviewedHash": "0dea044038d4580019c108e317f99761ba382b47d5f5f31c24863c9b3396470a",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "evidence": "cohort-2026-10-07T09-30-07-949Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-5-3-xc20",
+            "revise",
+            "pass",
+            "none",
+            "B 물음 '조사한 값과 어떻게 다르게 해야 하는지'가 답('구별해 표시')을 그대로 내포한다. requiredIdeas의 '조사한 값과 다르게 표시한다'는 물음 문구 복사만으로 만족된다. 구별 방식(점선, 다른 색 등)이나 '예상값임을 알 수 있게'라는 내용을 요구하도록 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-3-xc20",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-3-xc20",
+            "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+            "term": "예상값과 관측값 구별",
+            "kind": "방법",
+            "level": "상",
+            "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+          },
+          "B": {
+            "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+            "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "예상한 값임을 구별해 표시한다",
+                  "조사한 값과 다르게 표시한다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+            "acceptedAnswers": [
+              [
+                "예상한 값",
+                "예상값",
+                "짐작한 값",
+                "예측한 값"
+              ]
+            ]
+          },
+          "goal": "예상값과 관측값 구별",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "0dea044038d4580019c108e317f99761ba382b47d5f5f31c24863c9b3396470a"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-3-xc20",
+        "contentHash": "0dea044038d4580019c108e317f99761ba382b47d5f5f31c24863c9b3396470a",
+        "packet": "cohort-2026-10-07T09-30-07-949Z-1",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 물음 '조사한 값과 어떻게 다르게 해야 하는지'가 답('구별해 표시')을 그대로 내포한다. requiredIdeas의 '조사한 값과 다르게 표시한다'는 물음 문구 복사만으로 만족된다. 구별 방식(점선, 다른 색 등)이나 '예상값임을 알 수 있게'라는 내용을 요구하도록 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2671,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+      "proposalFingerprint": "eb7f2ea138546c495cdb2fa0e79139e9e60c079dc17eaac559d00f8660aa2628",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc28",
+      "bDecision": "rewrite",
+      "bPrompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+      "bAnswer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 자료가 들어간다",
+            "모든 자료가 들어간다"
+          ]
+        },
+        {
+          "anyOf": [
+            "값의 차를 읽기 쉽다",
+            "변화를 알아보기 쉽다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "적당한 눈금의 기준",
+      "bReason": "자료 포함과 읽기 쉬움 두 기준을 확인",
+      "cDecision": "exclude",
+      "cReason": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다.",
+      "exclusionReason": "C: 수학적 판단 없이 권고 표현을 복원하는 빈칸이므로 제외한다. B와 일반 설명은 유지한다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "적당한 눈금인지 설명하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "bQuestion": {
+        "prompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+        "answer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc28",
+        "sourceIndex": 2671,
+        "proposalFingerprint": "eb7f2ea138546c495cdb2fa0e79139e9e60c079dc17eaac559d00f8660aa2628",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "모든 자료 포함과 읽기 쉬운 변화라는 두 기준을 설명하는 목표는 유용하다.",
+        "cReason": "쉽게라는 권고만 채우는 C는 제외하고 B와 일반 설명을 보존한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-5-3-xc28",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "term": "적당한 눈금인지 설명하기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다."
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc28",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc28",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "적당한 눈금인지 설명하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다."
+      },
+      "B": {
+        "prompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+        "answer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+      },
+      "goal": "적당한 눈금의 기준",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "e2cfa1475fc58cbc694f786eb7b89e6487406c0cfce6e94ddfae79e570d3dc4a"
+    },
+    "ledger": {
+      "id": "e4-2-5-3-xc28",
+      "sourceIndex": 2671,
+      "proposalFingerprint": "eb7f2ea138546c495cdb2fa0e79139e9e60c079dc17eaac559d00f8660aa2628",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "exclude",
+      "verdict": "retain-planning-proposal",
+      "bReason": "모든 자료 포함과 읽기 쉬운 변화라는 두 기준을 설명하는 목표는 유용하다.",
+      "cReason": "쉽게라는 권고만 채우는 C는 제외하고 B와 일반 설명을 보존한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "eb7f2ea138546c495cdb2fa0e79139e9e60c079dc17eaac559d00f8660aa2628",
+    "normalizedHash": "e2cfa1475fc58cbc694f786eb7b89e6487406c0cfce6e94ddfae79e570d3dc4a",
+    "currentNegatives": [
+      {
+        "id": "e4-2-5-3-xc28",
+        "grade": "초4",
+        "reviewedHash": "e2cfa1475fc58cbc694f786eb7b89e6487406c0cfce6e94ddfae79e570d3dc4a",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "evidence": "cohort-2026-10-07T09-30-07-949Z-1",
+        "blind": [
+          [
+            "e4-2-5-3-xc28",
+            "B",
+            "눈금 간격을 같게 한다. 가장 큰 값과 가장 작은 값을 나타낸다.",
+            "revise",
+            "'지켜야 할 기준 두 가지'가 정해져 있지 않다. 눈금 간격, 최대·최소 포함, 변화가 잘 보이는 정도, 단위 표시 등 가능한 쌍이 너무 많다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-5-3-xc28",
+            "revise",
+            "excluded",
+            "none",
+            "B '지켜야 할 기준 두 가지'가 정해져 있지 않다. 전체 자료 포함, 눈금 간격 일정, 단위 표시, 변화가 잘 보이는 정도 등 가능한 쌍이 너무 많아 모범답과 다른 정답이 생긴다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-5-3-xc28",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-5-3-xc28",
+            "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+            "term": "적당한 눈금인지 설명하기",
+            "kind": "방법",
+            "level": "상",
+            "definition": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다."
+          },
+          "B": {
+            "prompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+            "answer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "전체 자료가 들어간다",
+                  "모든 자료가 들어간다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "값의 차를 읽기 쉽다",
+                  "변화를 알아보기 쉽다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "excluded": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+          },
+          "goal": "적당한 눈금의 기준",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "e2cfa1475fc58cbc694f786eb7b89e6487406c0cfce6e94ddfae79e570d3dc4a"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-5-3-xc28",
+        "contentHash": "e2cfa1475fc58cbc694f786eb7b89e6487406c0cfce6e94ddfae79e570d3dc4a",
+        "packet": "cohort-2026-10-07T09-30-07-949Z-1",
+        "inputHash": "1af3db36e6226f8758e101ea5bdedff94c27bc1961ee277a44204ec53de1087f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-B: '지켜야 할 기준 두 가지'가 정해져 있지 않다. 눈금 간격, 최대·최소 포함, 변화가 잘 보이는 정도, 단위 표시 등 가능한 쌍이 너무 많다.",
+          "B의 실제 결정과 2차 판정이 다름",
+          "B '지켜야 할 기준 두 가지'가 정해져 있지 않다. 전체 자료 포함, 눈금 간격 일정, 단위 표시, 변화가 잘 보이는 정도 등 가능한 쌍이 너무 많아 모범답과 다른 정답이 생긴다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2684,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-1 다각형",
+      "sourceFingerprint": "fc327743761878b43b5d190f20225fd75e9530eb1b001b9d132e5d13f8e32540",
+      "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-1-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+      "bAnswer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "포함되지 않는다",
+            "바깥 테두리의 변만 센다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "안쪽 선과 테두리 구별",
+      "bReason": "바깥 테두리 변으로 이름을 정함",
+      "exampleNeeded": "사각형 안에 선분 하나를 그은 그림",
+      "cDecision": "rewrite",
+      "cAfter": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+      "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+      "cSlotEquivalents": [
+        [
+          "겉",
+          "바깥쪽"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "안쪽 선과 테두리 구별",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+      "cStudentSentence": "다각형 안에 선을 더 그어도 이름은 □ 테두리를 이루는 변의 개수로 정한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "바깥",
+          "equivalents": [
+            "겉",
+            "바깥쪽"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+        "answer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "포함되지 않는다",
+              "바깥 테두리의 변만 센다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+        "acceptedAnswers": [
+          [
+            "바깥",
+            "겉",
+            "바깥쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-1-xc13",
+        "sourceIndex": 2684,
+        "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "안쪽대각선을그어도바깥사각형변수에포함하지않음을묻는다.",
+        "cReason": "바깥테두리변만명명기준으로세는조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-6-1-xc13",
+      "section": "초4::2-6 다각형::2-6-1 다각형",
+      "term": "안쪽 선과 테두리 구별",
+      "kind": "방법",
+      "level": "중",
+      "definition": "다각형 안에 선을 더 그어도 이름은 {바깥 테두리를 이루는 변}으로 정한다."
+    },
+    "normalized": {
+      "id": "e4-2-6-1-xc13",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-1-xc13",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "안쪽 선과 테두리 구별",
+        "kind": "방법",
+        "level": "중",
+        "definition": "다각형 안에 선을 더 그어도 이름은 {바깥 테두리를 이루는 변}으로 정한다."
+      },
+      "B": {
+        "prompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+        "answer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "포함되지 않는다",
+              "바깥 테두리의 변만 센다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+        "acceptedAnswers": [
+          [
+            "바깥",
+            "겉",
+            "바깥쪽"
+          ]
+        ]
+      },
+      "goal": "안쪽 선과 테두리 구별",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "01244d522c4d9f1bdd85de373dea9b0207fae3e8a63cab4ddfe3d2dc68a4556b"
+    },
+    "ledger": {
+      "id": "e4-2-6-1-xc13",
+      "sourceIndex": 2684,
+      "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "안쪽대각선을그어도바깥사각형변수에포함하지않음을묻는다.",
+      "cReason": "바깥테두리변만명명기준으로세는조건이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+    "normalizedHash": "01244d522c4d9f1bdd85de373dea9b0207fae3e8a63cab4ddfe3d2dc68a4556b",
+    "currentNegatives": [
+      {
+        "id": "e4-2-6-1-xc13",
+        "grade": "초4",
+        "reviewedHash": "01244d522c4d9f1bdd85de373dea9b0207fae3e8a63cab4ddfe3d2dc68a4556b",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "evidence": "cohort-2026-10-07T09-36-41-619Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-6-1-xc13",
+            "revise",
+            "pass",
+            "none",
+            "B 물음에 '사각형의 마주 보는 꼭짓점을…'이 이미 나와 있어 필수 기준 '사각형'이 문구 복사만으로 충족된다(답 노출). 두 삼각형 조각만 보여 주고 바깥 모양을 묻는 식으로 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-6-1-xc13",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-6-1-xc13",
+            "section": "초4::2-6 다각형::2-6-1 다각형",
+            "term": "안쪽 선과 테두리 구별",
+            "kind": "방법",
+            "level": "중",
+            "definition": "다각형 안에 선을 더 그어도 이름은 {바깥 테두리를 이루는 변}으로 정한다."
+          },
+          "B": {
+            "prompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+            "answer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "사각형"
+                ]
+              },
+              {
+                "anyOf": [
+                  "포함되지 않는다",
+                  "바깥 테두리의 변만 센다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+            "acceptedAnswers": [
+              [
+                "바깥",
+                "겉",
+                "바깥쪽"
+              ]
+            ]
+          },
+          "goal": "안쪽 선과 테두리 구별",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "01244d522c4d9f1bdd85de373dea9b0207fae3e8a63cab4ddfe3d2dc68a4556b"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-6-1-xc13",
+        "contentHash": "01244d522c4d9f1bdd85de373dea9b0207fae3e8a63cab4ddfe3d2dc68a4556b",
+        "packet": "cohort-2026-10-07T09-36-41-619Z-0",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 물음에 '사각형의 마주 보는 꼭짓점을…'이 이미 나와 있어 필수 기준 '사각형'이 문구 복사만으로 충족된다(답 노출). 두 삼각형 조각만 보여 주고 바깥 모양을 묻는 식으로 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2687,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-1 다각형",
+      "sourceFingerprint": "3fa43ae9185800e9109e0bc7e040d0f989a6bdf20c2174f4b521abb9ba32b55e",
+      "proposalFingerprint": "f283c311876008c0ec1df4e3a17d364b68a6026454ee26afc74bf4cdaa565141",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-1-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "두 모서리를 잘라 낸 변의 수",
+      "bReason": "xc15 모서리 자르기와 중복",
+      "exclusionReason": "모서리를 자르면 새 변이 생기는 xc15와 같은 목표",
+      "cDecision": "keep",
+      "cReason": "여섯 개 빈칸이 짧고 선명하며 사실이 맞음",
+      "cSlotEquivalents": [
+        [
+          "$6$개",
+          "여섯",
+          "$6$"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "직사각형의 두 모서리 자르기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+      "cStudentSentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "expected": "여섯 개",
+          "equivalents": [
+            "$6$개",
+            "여섯",
+            "$6$"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 □가 된다.",
+        "answers": [
+          "여섯 개"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+        "acceptedAnswers": [
+          [
+            "여섯 개",
+            "$6$개",
+            "여섯",
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc15 모서리 자르기와 중복"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-1-xc16",
+        "sourceIndex": 2687,
+        "proposalFingerprint": "f283c311876008c0ec1df4e3a17d364b68a6026454ee26afc74bf4cdaa565141",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "절단후새변설명B는중복이다.",
+        "cReason": "짧게두맞은편꼭짓점쪽을자른육각형의여섯변이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-6-1-xc16",
+      "section": "초4::2-6 다각형::2-6-1 다각형",
+      "term": "직사각형의 두 모서리 자르기",
+      "kind": "성질",
+      "level": "상",
+      "definition": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다."
+    },
+    "normalized": {
+      "id": "e4-2-6-1-xc16",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-1-xc16",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "직사각형의 두 모서리 자르기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다."
+      },
+      "B": {
+        "excluded": "xc15 모서리 자르기와 중복"
+      },
+      "C": {
+        "sentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+        "acceptedAnswers": [
+          [
+            "여섯 개",
+            "$6$개",
+            "여섯",
+            "$6$"
+          ]
+        ]
+      },
+      "goal": "두 모서리를 잘라 낸 변의 수",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "f759f55c22e5c6397d36ba21dec640e7dd97b32a18185742a63fff76fdd9ba74"
+    },
+    "ledger": {
+      "id": "e4-2-6-1-xc16",
+      "sourceIndex": 2687,
+      "proposalFingerprint": "f283c311876008c0ec1df4e3a17d364b68a6026454ee26afc74bf4cdaa565141",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "절단후새변설명B는중복이다.",
+      "cReason": "짧게두맞은편꼭짓점쪽을자른육각형의여섯변이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f283c311876008c0ec1df4e3a17d364b68a6026454ee26afc74bf4cdaa565141",
+    "normalizedHash": "f759f55c22e5c6397d36ba21dec640e7dd97b32a18185742a63fff76fdd9ba74",
+    "currentNegatives": [
+      {
+        "id": "e4-2-6-1-xc16",
+        "grade": "초4",
+        "reviewedHash": "f759f55c22e5c6397d36ba21dec640e7dd97b32a18185742a63fff76fdd9ba74",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "evidence": "cohort-2026-10-07T09-36-41-619Z-0",
+        "blind": [
+          [
+            "e4-2-6-1-xc16",
+            "C",
+            "6개",
+            "revise",
+            "자르는 모양이 정해지지 않았다. 이웃한 두 변 위의 점을 잇는 삼각형 자르기면 6개, 직사각형 모양으로 파내면 8개라서 답이 갈린다. 자르는 방법을 구체적으로 써야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-6-1-xc16",
+            "excluded",
+            "revise",
+            "none",
+            "C 자르는 모양이 정해져 있지 않다. xc15처럼 '이웃한 두 변 위의 점을 곧게 이어 삼각형 모양으로'를 명시하지 않으면 직사각형 모양으로 파내는 경우 등 변의 수가 달라진다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-6-1-xc16",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-6-1-xc16",
+            "section": "초4::2-6 다각형::2-6-1 다각형",
+            "term": "직사각형의 두 모서리 자르기",
+            "kind": "성질",
+            "level": "상",
+            "definition": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다."
+          },
+          "B": {
+            "excluded": "xc15 모서리 자르기와 중복"
+          },
+          "C": {
+            "sentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+            "acceptedAnswers": [
+              [
+                "여섯 개",
+                "$6$개",
+                "여섯",
+                "$6$"
+              ]
+            ]
+          },
+          "goal": "두 모서리를 잘라 낸 변의 수",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "f759f55c22e5c6397d36ba21dec640e7dd97b32a18185742a63fff76fdd9ba74"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-6-1-xc16",
+        "contentHash": "f759f55c22e5c6397d36ba21dec640e7dd97b32a18185742a63fff76fdd9ba74",
+        "packet": "cohort-2026-10-07T09-36-41-619Z-0",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: 자르는 모양이 정해지지 않았다. 이웃한 두 변 위의 점을 잇는 삼각형 자르기면 6개, 직사각형 모양으로 파내면 8개라서 답이 갈린다. 자르는 방법을 구체적으로 써야 한다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C 자르는 모양이 정해져 있지 않다. xc15처럼 '이웃한 두 변 위의 점을 곧게 이어 삼각형 모양으로'를 명시하지 않으면 직사각형 모양으로 파내는 경우 등 변의 수가 달라진다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2726,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-3 대각선",
+      "sourceFingerprint": "77b52b3a192bcf6008ae002fdde8a91185906585d289f6ef110c0ae98f7a51e3",
+      "proposalFingerprint": "60f85ab9a0d583cff6547ab1b53319bf48c1fbada1de0c5e10f42786ca6dc151",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-3-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "사각형 대각선 긋기",
+      "bReason": "사각형 대각선 개수 항목과 같은 목표",
+      "cDecision": "keep",
+      "cReason": "마주 보는 꼭짓점을 잇는 짧은 방법 빈칸",
+      "exclusionReason": "사각형에서 마주 보는 꼭짓점을 잇는다는 내용은 사각형 대각선 개수 항목 B에서 함께 묻는다.",
+      "cSlotEquivalents": [
+        [
+          "맞은편 꼭짓점",
+          "반대쪽 꼭짓점",
+          "이웃하지 않은 꼭짓점"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "사각형에서 대각선 찾기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+      "cStudentSentence": "사각형에서는 한 꼭짓점에서 □으로 대각선을 긋는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "마주 보는 꼭짓점",
+          "equivalents": [
+            "맞은편 꼭짓점",
+            "반대쪽 꼭짓점",
+            "이웃하지 않은 꼭짓점"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "사각형에서는 한 꼭짓점에서 □으로 대각선을 긋는다.",
+        "answers": [
+          "마주 보는 꼭짓점"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는 꼭짓점",
+            "맞은편 꼭짓점",
+            "반대쪽 꼭짓점",
+            "이웃하지 않은 꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "사각형 대각선 개수 항목과 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-3-xc3",
+        "sourceIndex": 2726,
+        "proposalFingerprint": "60f85ab9a0d583cff6547ab1b53319bf48c1fbada1de0c5e10f42786ca6dc151",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "사각형대각선의꼭짓점연결B는개수문항과중복이다.",
+        "cReason": "한꼭짓점의이웃아닌맞은편꼭짓점연결이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-6-3-xc3",
+      "section": "초4::2-6 다각형::2-6-3 대각선",
+      "term": "사각형에서 대각선 찾기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다."
+    },
+    "normalized": {
+      "id": "e4-2-6-3-xc3",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-3-xc3",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "사각형에서 대각선 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다."
+      },
+      "B": {
+        "excluded": "사각형 대각선 개수 항목과 같은 목표"
+      },
+      "C": {
+        "sentence": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는 꼭짓점",
+            "맞은편 꼭짓점",
+            "반대쪽 꼭짓점",
+            "이웃하지 않은 꼭짓점"
+          ]
+        ]
+      },
+      "goal": "사각형 대각선 긋기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "95126edb63baab1269be4a78127ce20029c7845d9e67b7722113e5131ff5ee56"
+    },
+    "ledger": {
+      "id": "e4-2-6-3-xc3",
+      "sourceIndex": 2726,
+      "proposalFingerprint": "60f85ab9a0d583cff6547ab1b53319bf48c1fbada1de0c5e10f42786ca6dc151",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "사각형대각선의꼭짓점연결B는개수문항과중복이다.",
+      "cReason": "한꼭짓점의이웃아닌맞은편꼭짓점연결이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "60f85ab9a0d583cff6547ab1b53319bf48c1fbada1de0c5e10f42786ca6dc151",
+    "normalizedHash": "95126edb63baab1269be4a78127ce20029c7845d9e67b7722113e5131ff5ee56",
+    "currentNegatives": [
+      {
+        "id": "e4-2-6-3-xc3",
+        "grade": "초4",
+        "reviewedHash": "95126edb63baab1269be4a78127ce20029c7845d9e67b7722113e5131ff5ee56",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "evidence": "cohort-2026-10-07T09-36-41-619Z-0",
+        "blind": [
+          [
+            "e4-2-6-3-xc3",
+            "C",
+            "마주 보는 꼭짓점으로",
+            "revise",
+            "빈칸에 들어갈 말이 정해지지 않았다(마주 보는 꼭짓점으로, 이웃하지 않은 꼭짓점으로, 자를 대고 등). 개수 또는 이어지는 꼭짓점 중 무엇을 묻는지 구체화해야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-6-3-xc3",
+            "excluded",
+            "pass",
+            "none",
+            ""
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-6-3-xc3",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-6-3-xc3",
+            "section": "초4::2-6 다각형::2-6-3 대각선",
+            "term": "사각형에서 대각선 찾기",
+            "kind": "방법",
+            "level": "하",
+            "definition": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다."
+          },
+          "B": {
+            "excluded": "사각형 대각선 개수 항목과 같은 목표"
+          },
+          "C": {
+            "sentence": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+            "acceptedAnswers": [
+              [
+                "마주 보는 꼭짓점",
+                "맞은편 꼭짓점",
+                "반대쪽 꼭짓점",
+                "이웃하지 않은 꼭짓점"
+              ]
+            ]
+          },
+          "goal": "사각형 대각선 긋기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "95126edb63baab1269be4a78127ce20029c7845d9e67b7722113e5131ff5ee56"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-6-3-xc3",
+        "contentHash": "95126edb63baab1269be4a78127ce20029c7845d9e67b7722113e5131ff5ee56",
+        "packet": "cohort-2026-10-07T09-36-41-619Z-0",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: 빈칸에 들어갈 말이 정해지지 않았다(마주 보는 꼭짓점으로, 이웃하지 않은 꼭짓점으로, 자를 대고 등). 개수 또는 이어지는 꼭짓점 중 무엇을 묻는지 구체화해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2769,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "sourceFingerprint": "277df7edc8df1974b1ea1419fbc416758e2029f5d3f4a31a6cf11feeeb90795c",
+      "proposalFingerprint": "f986b478ad404642951ea1401a44efeeb0ed6a55ff5a87ff03d90c4095207bb9",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-4-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "삼각형 조각 $2$개, 사각형 조각 $1$개, 삼각형 조각 $2$개, 사각형 조각 $1$개 …가 계속 되풀이되는 무늬가 있다. 이 무늬를 이어 놓으려면 어떤 부분을 찾아 어떻게 하면 되는지 쓰시오.",
+      "bAnswer": "되풀이되는 '삼각형 $2$개와 사각형 $1$개' 한 묶음을 찾아 계속 이어 놓는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형 $2$개와 사각형 $1$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 묶음을 반복해서 이어 놓는다",
+            "되풀이해 이어 놓는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "반복 묶음 찾아 이어 놓기",
+      "bReason": "반복되는 한 묶음을 찾는 방법을 예로 확인",
+      "cDecision": "rewrite",
+      "cAfter": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+      "cReason": "'반복하는 □' 대상이 모호해 무늬 단서를 보탬",
+      "cSlotEquivalents": [
+        [
+          "한 덩어리",
+          "한 부분",
+          "한 세트"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "무늬의 반복 묶음",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+      "cStudentSentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 □을 찾아 이어 놓는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "한 묶음",
+          "equivalents": [
+            "한 덩어리",
+            "한 부분",
+            "한 세트"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형 조각 $2$개, 사각형 조각 $1$개, 삼각형 조각 $2$개, 사각형 조각 $1$개 …가 계속 되풀이되는 무늬가 있다. 이 무늬를 이어 놓으려면 어떤 부분을 찾아 어떻게 하면 되는지 쓰시오.",
+        "answer": "되풀이되는 '삼각형 $2$개와 사각형 $1$개' 한 묶음을 찾아 계속 이어 놓는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 $2$개와 사각형 $1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음을 반복해서 이어 놓는다",
+              "되풀이해 이어 놓는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+        "acceptedAnswers": [
+          [
+            "한 묶음",
+            "한 덩어리",
+            "한 부분",
+            "한 세트"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-4-xc19",
+        "sourceIndex": 2769,
+        "proposalFingerprint": "f986b478ad404642951ea1401a44efeeb0ed6a55ff5a87ff03d90c4095207bb9",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "삼각형둘과사각형하나의되풀이묶음을찾아반복하는방법이다.",
+        "cReason": "무늬의반복단위묶음을찾는방법이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-6-4-xc19",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "term": "무늬의 반복 묶음",
+      "kind": "방법",
+      "level": "중",
+      "definition": "되풀이되는 모양을 채울 때 반복하는 {한 묶음}을 찾아 이어 놓을 수 있다."
+    },
+    "normalized": {
+      "id": "e4-2-6-4-xc19",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-4-xc19",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "무늬의 반복 묶음",
+        "kind": "방법",
+        "level": "중",
+        "definition": "되풀이되는 모양을 채울 때 반복하는 {한 묶음}을 찾아 이어 놓을 수 있다."
+      },
+      "B": {
+        "prompt": "삼각형 조각 $2$개, 사각형 조각 $1$개, 삼각형 조각 $2$개, 사각형 조각 $1$개 …가 계속 되풀이되는 무늬가 있다. 이 무늬를 이어 놓으려면 어떤 부분을 찾아 어떻게 하면 되는지 쓰시오.",
+        "answer": "되풀이되는 '삼각형 $2$개와 사각형 $1$개' 한 묶음을 찾아 계속 이어 놓는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 $2$개와 사각형 $1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음을 반복해서 이어 놓는다",
+              "되풀이해 이어 놓는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+        "acceptedAnswers": [
+          [
+            "한 묶음",
+            "한 덩어리",
+            "한 부분",
+            "한 세트"
+          ]
+        ]
+      },
+      "goal": "반복 묶음 찾아 이어 놓기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "8c900cc3e96050299f71e33dfe2ff0c630882e0bee98a8d51508c166ac4a6002"
+    },
+    "ledger": {
+      "id": "e4-2-6-4-xc19",
+      "sourceIndex": 2769,
+      "proposalFingerprint": "f986b478ad404642951ea1401a44efeeb0ed6a55ff5a87ff03d90c4095207bb9",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "삼각형둘과사각형하나의되풀이묶음을찾아반복하는방법이다.",
+      "cReason": "무늬의반복단위묶음을찾는방법이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "f986b478ad404642951ea1401a44efeeb0ed6a55ff5a87ff03d90c4095207bb9",
+    "normalizedHash": "8c900cc3e96050299f71e33dfe2ff0c630882e0bee98a8d51508c166ac4a6002",
+    "currentNegatives": [
+      {
+        "id": "e4-2-6-4-xc19",
+        "grade": "초4",
+        "reviewedHash": "8c900cc3e96050299f71e33dfe2ff0c630882e0bee98a8d51508c166ac4a6002",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "evidence": "cohort-2026-10-07T09-36-41-619Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-6-4-xc19",
+            "revise",
+            "pass",
+            "none",
+            "B 물음에 이미 '되풀이되는 무늬'와 '삼각형 2개, 사각형 1개' 배열이 나와 있다. 필수 기준 두 개('삼각형 2개와 사각형 1개', '되풀이해 이어 놓는다')가 모두 물음 문구를 옮겨 쓰기만 해도 충족된다. 배열만 제시하고 반복 단위를 학생이 찾게 해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-6-4-xc19",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-6-4-xc19",
+            "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+            "term": "무늬의 반복 묶음",
+            "kind": "방법",
+            "level": "중",
+            "definition": "되풀이되는 모양을 채울 때 반복하는 {한 묶음}을 찾아 이어 놓을 수 있다."
+          },
+          "B": {
+            "prompt": "삼각형 조각 $2$개, 사각형 조각 $1$개, 삼각형 조각 $2$개, 사각형 조각 $1$개 …가 계속 되풀이되는 무늬가 있다. 이 무늬를 이어 놓으려면 어떤 부분을 찾아 어떻게 하면 되는지 쓰시오.",
+            "answer": "되풀이되는 '삼각형 $2$개와 사각형 $1$개' 한 묶음을 찾아 계속 이어 놓는다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "삼각형 $2$개와 사각형 $1$개"
+                ]
+              },
+              {
+                "anyOf": [
+                  "한 묶음을 반복해서 이어 놓는다",
+                  "되풀이해 이어 놓는다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+            "acceptedAnswers": [
+              [
+                "한 묶음",
+                "한 덩어리",
+                "한 부분",
+                "한 세트"
+              ]
+            ]
+          },
+          "goal": "반복 묶음 찾아 이어 놓기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "8c900cc3e96050299f71e33dfe2ff0c630882e0bee98a8d51508c166ac4a6002"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-6-4-xc19",
+        "contentHash": "8c900cc3e96050299f71e33dfe2ff0c630882e0bee98a8d51508c166ac4a6002",
+        "packet": "cohort-2026-10-07T09-36-41-619Z-0",
+        "inputHash": "ab1296f94d083aae5fee659a1a48d84a68079c8b3257551e608b4fbcdb503463",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 물음에 이미 '되풀이되는 무늬'와 '삼각형 2개, 사각형 1개' 배열이 나와 있다. 필수 기준 두 개('삼각형 2개와 사각형 1개', '되풀이해 이어 놓는다')가 모두 물음 문구를 옮겨 쓰기만 해도 충족된다. 배열만 제시하고 반복 단위를 학생이 찾게 해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2776,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "sourceFingerprint": "eb4c46305b22529bae565faa35abaa1ed5b6b16780ccc53746a064b6dcfae6cd",
+      "proposalFingerprint": "51deeac4d4913d30f69dd8d674d7a5f5cbc804154c197b2b3614a420b9170905",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-4-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "한 점 둘레에 각이 빈틈없이 맞게 모였다고 해서 바닥 전체를 채울 수 있다고 말해도 되는지 쓰고, 어떻게 확인하는지 쓰시오.",
+      "bAnswer": "바로 말할 수 없다. 주변에도 계속 이어 놓아 보며 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바로 말할 수 없다",
+            "충분하지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "주변에도 이어 놓아 본다",
+            "계속 이어 붙여 본다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "한 점에서 전체로 확인",
+      "bReason": "한 점 확인과 바닥 전체 확인을 구분",
+      "cDecision": "exclude",
+      "cReason": "이어 놓아 보아야라는 확인 권고를 복원할 뿐 도형의 성질을 판단하지 않는다. 한 점의 각 합과 전체 채우기의 차이를 설명하는 B에 남긴다.",
+      "exclusionReason": "C: 행동 권고 표현만 묻는 빈칸은 제외한다. 한 점만 맞아서는 전체 채우기를 보장하지 못한다는 B와 일반 설명은 유지한다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "한 점 채우기와 전체 채우기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "bQuestion": {
+        "prompt": "한 점 둘레에 각이 빈틈없이 맞게 모였다고 해서 바닥 전체를 채울 수 있다고 말해도 되는지 쓰고, 어떻게 확인하는지 쓰시오.",
+        "answer": "바로 말할 수 없다. 주변에도 계속 이어 놓아 보며 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바로 말할 수 없다",
+              "충분하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주변에도 이어 놓아 본다",
+              "계속 이어 붙여 본다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "이어 놓아 보아야라는 확인 권고를 복원할 뿐 도형의 성질을 판단하지 않는다. 한 점의 각 합과 전체 채우기의 차이를 설명하는 B에 남긴다."
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-4-xc26",
+        "sourceIndex": 2776,
+        "proposalFingerprint": "51deeac4d4913d30f69dd8d674d7a5f5cbc804154c197b2b3614a420b9170905",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한 점이 맞아도 바닥 전체를 채울지는 주변에 계속 놓아 확인해야 함을 설명한다.",
+        "cReason": "행동 권고만 복원하는 C는 제외하고 B 및 일반 설명을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-6-4-xc26",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "term": "한 점 채우기와 전체 채우기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "한 점 둘레의 각이 맞아도 바닥 전체를 채울 수 있는지는 {주변에도 이어 놓아} 확인한다."
+    },
+    "normalized": {
+      "id": "e4-2-6-4-xc26",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-4-xc26",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "한 점 채우기와 전체 채우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 점 둘레의 각이 맞아도 바닥 전체를 채울 수 있는지는 {주변에도 이어 놓아} 확인한다."
+      },
+      "B": {
+        "prompt": "한 점 둘레에 각이 빈틈없이 맞게 모였다고 해서 바닥 전체를 채울 수 있다고 말해도 되는지 쓰고, 어떻게 확인하는지 쓰시오.",
+        "answer": "바로 말할 수 없다. 주변에도 계속 이어 놓아 보며 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바로 말할 수 없다",
+              "충분하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주변에도 이어 놓아 본다",
+              "계속 이어 붙여 본다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "이어 놓아 보아야라는 확인 권고를 복원할 뿐 도형의 성질을 판단하지 않는다. 한 점의 각 합과 전체 채우기의 차이를 설명하는 B에 남긴다."
+      },
+      "goal": "한 점에서 전체로 확인",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "0a0ac23897074dd893a6009e02702c568cb899a084142e09b804368170ed5165"
+    },
+    "ledger": {
+      "id": "e4-2-6-4-xc26",
+      "sourceIndex": 2776,
+      "proposalFingerprint": "51deeac4d4913d30f69dd8d674d7a5f5cbc804154c197b2b3614a420b9170905",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "exclude",
+      "verdict": "retain-planning-proposal",
+      "bReason": "한 점이 맞아도 바닥 전체를 채울지는 주변에 계속 놓아 확인해야 함을 설명한다.",
+      "cReason": "행동 권고만 복원하는 C는 제외하고 B 및 일반 설명을 유지한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "51deeac4d4913d30f69dd8d674d7a5f5cbc804154c197b2b3614a420b9170905",
+    "normalizedHash": "0a0ac23897074dd893a6009e02702c568cb899a084142e09b804368170ed5165",
+    "currentNegatives": [
+      {
+        "id": "e4-2-6-4-xc26",
+        "grade": "초4",
+        "reviewedHash": "0a0ac23897074dd893a6009e02702c568cb899a084142e09b804368170ed5165",
+        "inputHash": "cc43c7bda908fa3d0eb5d610331544de7e979c3a351798758c289ac6457e1653",
+        "evidence": "cohort-2026-10-07T09-36-41-638Z-1",
+        "blind": [
+          [
+            "e4-2-6-4-xc26",
+            "B",
+            "안 된다. 한 점 둘레만 맞는 것으로는 부족하고, 조각을 계속 이어 붙여 다른 꼭짓점에서도 빈틈과 겹침 없이 이어지는지 확인해야 한다.",
+            "revise",
+            "도형이 주어지지 않았고 '한 점 둘레에 각이 맞게 모였다'가 낯선 표현이다. '어떻게 확인하는지'의 답 범위가 열려 있다(각의 합 확인, 직접 이어 붙이기, 모든 꼭짓점 확인 등). 4학년이 판단할 기준이 불분명하다. 도형(예: 한 가지 조각)과 확인할 대상을 구체화해야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-6-4-xc26",
+            "revise",
+            "excluded",
+            "none",
+            "B: 도형이나 조각이 주어지지 않았고 '한 점 둘레에 각이 빈틈없이 맞게 모였다'는 4학년에게 낯선 추상 표현이다. '어떻게 확인하는지'의 답 범위가 열려 있어서, 각의 합 확인, 직접 이어 붙이기, 다른 꼭짓점 확인 등 서로 다른 개념의 답이 나올 수 있다. 참고답과 requiredIdeas의 '주변에도 이어 놓아 본다'는 source.definition 문구를 그대로 복원하는 수준이라 학생이 판단할 기준이 없다. 구체적인 조각 하나(예: 정삼각형 6개가 한 점에 모임)와 확인할 대상을 제시하고, 답이 무엇이어야 하는지 좁혀야 한다. C의 제외 사유는 대체로 타당하다. 빈칸이 행동 서술('이어 놓아')이라 문법 복원에 그치기 때문이다. 다만 사유에 'B가 한 점의 각 합과 전체 채우기의 차이를 설명한다'고 적혀 있는데 현재 B는 그것을 묻지 않으므로, B를 고칠 때 사유와 맞춰야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-6-4-xc26",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-6-4-xc26",
+            "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+            "term": "한 점 채우기와 전체 채우기",
+            "kind": "방법",
+            "level": "상",
+            "definition": "한 점 둘레의 각이 맞아도 바닥 전체를 채울 수 있는지는 {주변에도 이어 놓아} 확인한다."
+          },
+          "B": {
+            "prompt": "한 점 둘레에 각이 빈틈없이 맞게 모였다고 해서 바닥 전체를 채울 수 있다고 말해도 되는지 쓰고, 어떻게 확인하는지 쓰시오.",
+            "answer": "바로 말할 수 없다. 주변에도 계속 이어 놓아 보며 확인한다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "바로 말할 수 없다",
+                  "충분하지 않다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "주변에도 이어 놓아 본다",
+                  "계속 이어 붙여 본다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "excluded": "이어 놓아 보아야라는 확인 권고를 복원할 뿐 도형의 성질을 판단하지 않는다. 한 점의 각 합과 전체 채우기의 차이를 설명하는 B에 남긴다."
+          },
+          "goal": "한 점에서 전체로 확인",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "0a0ac23897074dd893a6009e02702c568cb899a084142e09b804368170ed5165"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-6-4-xc26",
+        "contentHash": "0a0ac23897074dd893a6009e02702c568cb899a084142e09b804368170ed5165",
+        "packet": "cohort-2026-10-07T09-36-41-638Z-1",
+        "inputHash": "cc43c7bda908fa3d0eb5d610331544de7e979c3a351798758c289ac6457e1653",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-B: 도형이 주어지지 않았고 '한 점 둘레에 각이 맞게 모였다'가 낯선 표현이다. '어떻게 확인하는지'의 답 범위가 열려 있다(각의 합 확인, 직접 이어 붙이기, 모든 꼭짓점 확인 등). 4학년이 판단할 기준이 불분명하다. 도형(예: 한 가지 조각)과 확인할 대상을 구체화해야 한다.",
+          "B의 실제 결정과 2차 판정이 다름",
+          "B: 도형이나 조각이 주어지지 않았고 '한 점 둘레에 각이 빈틈없이 맞게 모였다'는 4학년에게 낯선 추상 표현이다. '어떻게 확인하는지'의 답 범위가 열려 있어서, 각의 합 확인, 직접 이어 붙이기, 다른 꼭짓점 확인 등 서로 다른 개념의 답이 나올 수 있다. 참고답과 requiredIdeas의 '주변에도 이어 놓아 본다'는 source.definition 문구를 그대로 복원하는 수준이라 학생이 판단할 기준이 없다. 구체적인 조각 하나(예: 정삼각형 6개가 한 점에 모임)와 확인할 대상을 제시하고, 답이 무엇이어야 하는지 좁혀야 한다. C의 제외 사유는 대체로 타당하다. 빈칸이 행동 서술('이어 놓아')이라 문법 복원에 그치기 때문이다. 다만 사유에 'B가 한 점의 각 합과 전체 채우기의 차이를 설명한다'고 적혀 있는데 현재 B는 그것을 묻지 않으므로, B를 고칠 때 사유와 맞춰야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2778,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "sourceFingerprint": "f39d76330ff2246037c2106baa201a7ef297e31fc1c8dc31ca46032611d3b5e3",
+      "proposalFingerprint": "7822442ea9c450171a8c2f05e95605e782d43101c36ecb348067f2a9eba063fc",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-4-xc28",
+      "bDecision": "rewrite",
+      "bPrompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 새 모양이 덮는 전체 크기는 처음과 같을까 다를까? 까닭을 쓰시오.",
+      "bAnswer": "같다. 조각을 버리거나 겹치지 않고 모두 다시 놓았으므로 전체 크기는 그대로이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다",
+            "그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "버리거나 겹치지 않았다",
+            "같은 조각을 모두 다시 썼다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "잘라 다시 놓아도 전체 크기 유지",
+      "bReason": "버리거나 겹치지 않을 때 크기가 보존됨을 설명",
+      "cDecision": "rewrite",
+      "cAfter": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+      "cReason": "'덮는 □' 가려진 대상을 문장으로 풀어 고침",
+      "cSlotEquivalents": [
+        [
+          "넓이"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "잘라도 보존되는 조각의 전체",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+      "cStudentSentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 □는 그대로이다.",
+      "cSlotAnswers": [
+        {
+          "expected": "크기",
+          "equivalents": [
+            "넓이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 새 모양이 덮는 전체 크기는 처음과 같을까 다를까? 까닭을 쓰시오.",
+        "answer": "같다. 조각을 버리거나 겹치지 않고 모두 다시 놓았으므로 전체 크기는 그대로이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "버리거나 겹치지 않았다",
+              "같은 조각을 모두 다시 썼다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "크기",
+            "넓이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-4-xc28",
+        "sourceIndex": 2778,
+        "proposalFingerprint": "7822442ea9c450171a8c2f05e95605e782d43101c36ecb348067f2a9eba063fc",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "조각을하나도버리거나겹치지않아전체덮는크기가보존됨을설명한다.",
+        "cReason": "전체크기를넓이와같은뜻으로표현할수있다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-6-4-xc28",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "term": "잘라도 보존되는 조각의 전체",
+      "kind": "성질",
+      "level": "상",
+      "definition": "한 도형을 잘라 조각을 버리거나 겹치지 않고 다시 놓으면 덮는 {전체 크기}는 보존된다."
+    },
+    "normalized": {
+      "id": "e4-2-6-4-xc28",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-4-xc28",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "잘라도 보존되는 조각의 전체",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 도형을 잘라 조각을 버리거나 겹치지 않고 다시 놓으면 덮는 {전체 크기}는 보존된다."
+      },
+      "B": {
+        "prompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 새 모양이 덮는 전체 크기는 처음과 같을까 다를까? 까닭을 쓰시오.",
+        "answer": "같다. 조각을 버리거나 겹치지 않고 모두 다시 놓았으므로 전체 크기는 그대로이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "버리거나 겹치지 않았다",
+              "같은 조각을 모두 다시 썼다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "크기",
+            "넓이"
+          ]
+        ]
+      },
+      "goal": "잘라 다시 놓아도 전체 크기 유지",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "1ee7709b750f83ef0661ef78206fa2715c473d673828351cf710fee350d3d5ff"
+    },
+    "ledger": {
+      "id": "e4-2-6-4-xc28",
+      "sourceIndex": 2778,
+      "proposalFingerprint": "7822442ea9c450171a8c2f05e95605e782d43101c36ecb348067f2a9eba063fc",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "조각을하나도버리거나겹치지않아전체덮는크기가보존됨을설명한다.",
+      "cReason": "전체크기를넓이와같은뜻으로표현할수있다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "7822442ea9c450171a8c2f05e95605e782d43101c36ecb348067f2a9eba063fc",
+    "normalizedHash": "1ee7709b750f83ef0661ef78206fa2715c473d673828351cf710fee350d3d5ff",
+    "currentNegatives": [
+      {
+        "id": "e4-2-6-4-xc28",
+        "grade": "초4",
+        "reviewedHash": "1ee7709b750f83ef0661ef78206fa2715c473d673828351cf710fee350d3d5ff",
+        "inputHash": "cc43c7bda908fa3d0eb5d610331544de7e979c3a351798758c289ac6457e1653",
+        "evidence": "cohort-2026-10-07T09-36-41-638Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-6-4-xc28",
+            "revise",
+            "pass",
+            "none",
+            "B: 까닭의 필수 기준 '버리거나 겹치지 않았다'가 물음에 이미 적힌 조건('하나도 버리거나 겹치지 않고')이다. 물음의 문구를 복사하기만 해도 충족되어 개념 이해를 가리지 못한다. 또 '같을까 다를까'는 이지선다라 추측으로도 맞힐 수 있다. 수치가 있는 상황(예: 한 변 4 cm인 정사각형을 둘로 잘라 이어 붙인 모양의 넓이를 구하게 함)이나, 조각 하나하나의 크기가 변하지 않으므로 그 합이 같다는 점을 요구하도록 바꿔야 한다. 또 '덮는 전체 크기'가 넓이인지 분명하지 않아 4학년에게 모호하다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-6-4-xc28",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-6-4-xc28",
+            "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+            "term": "잘라도 보존되는 조각의 전체",
+            "kind": "성질",
+            "level": "상",
+            "definition": "한 도형을 잘라 조각을 버리거나 겹치지 않고 다시 놓으면 덮는 {전체 크기}는 보존된다."
+          },
+          "B": {
+            "prompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 새 모양이 덮는 전체 크기는 처음과 같을까 다를까? 까닭을 쓰시오.",
+            "answer": "같다. 조각을 버리거나 겹치지 않고 모두 다시 놓았으므로 전체 크기는 그대로이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "같다",
+                  "그대로이다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "버리거나 겹치지 않았다",
+                  "같은 조각을 모두 다시 썼다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+            "acceptedAnswers": [
+              [
+                "크기",
+                "넓이"
+              ]
+            ]
+          },
+          "goal": "잘라 다시 놓아도 전체 크기 유지",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "1ee7709b750f83ef0661ef78206fa2715c473d673828351cf710fee350d3d5ff"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-6-4-xc28",
+        "contentHash": "1ee7709b750f83ef0661ef78206fa2715c473d673828351cf710fee350d3d5ff",
+        "packet": "cohort-2026-10-07T09-36-41-638Z-1",
+        "inputHash": "cc43c7bda908fa3d0eb5d610331544de7e979c3a351798758c289ac6457e1653",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B: 까닭의 필수 기준 '버리거나 겹치지 않았다'가 물음에 이미 적힌 조건('하나도 버리거나 겹치지 않고')이다. 물음의 문구를 복사하기만 해도 충족되어 개념 이해를 가리지 못한다. 또 '같을까 다를까'는 이지선다라 추측으로도 맞힐 수 있다. 수치가 있는 상황(예: 한 변 4 cm인 정사각형을 둘로 잘라 이어 붙인 모양의 넓이를 구하게 함)이나, 조각 하나하나의 크기가 변하지 않으므로 그 합이 같다는 점을 요구하도록 바꿔야 한다. 또 '덮는 전체 크기'가 넓이인지 분명하지 않아 4학년에게 모호하다."
+        ]
+      }
+    ]
+  }
+]

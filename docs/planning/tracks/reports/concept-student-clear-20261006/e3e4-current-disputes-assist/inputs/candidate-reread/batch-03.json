@@ -1,0 +1,531 @@
+[
+  {
+    "id": "e4-2-5-3-xc20",
+    "sourceIndex": 2663,
+    "proposedRawRow": {
+      "sourceIndex": 2663,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+      "proposalFingerprint": "2cb03ca0686b6e2a07e3c315049d39a2bd15bb356346f35850568e186b8ce167",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+      "bAnswer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "예상한 값임을 알 수 있게 조사한 값과 구별해 표시한다",
+            "예상값이라고 설명하고 조사한 값과 다른 선이나 색으로 표시한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "예상값과 관측값 구별",
+      "bReason": "현재조사한값과다르게표시한다는대안은예상값이라는의미를생략한다. 예상한값임을알수있게표시한다는내용을모든대안에포함시켜까닭없는차별표시만으로통과하지않게한다.",
+      "cDecision": "keep",
+      "cReason": "예상한 값 빈칸이 앞 조건과 잘 맞음",
+      "cSlotEquivalents": [
+        [
+          "예상값",
+          "짐작한 값",
+          "예측한 값"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "예상값과 관측값 구별",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+      "cStudentSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "예상한 값",
+          "equivalents": [
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+        "answers": [
+          "예상한 값"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 값임을 알 수 있게 조사한 값과 구별해 표시한다",
+              "예상값이라고 설명하고 조사한 값과 다른 선이나 색으로 표시한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "acceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc20",
+        "sourceIndex": 2663,
+        "proposalFingerprint": "293aebe104e28c786e5c901e379a150f2dc655e92f3c78673feb11151a9c5229",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "예상값을직접조사한값과구별해표시하는방법이다.",
+        "cReason": "미조사다음값의예상한값상태를확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc20",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc20",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "예상값과 관측값 구별",
+        "kind": "방법",
+        "level": "상",
+        "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+      },
+      "B": {
+        "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 값임을 알 수 있게 조사한 값과 구별해 표시한다",
+              "예상값이라고 설명하고 조사한 값과 다른 선이나 색으로 표시한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "acceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "goal": "예상값과 관측값 구별",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "394ee1e00eadcdcae2d981db28a58367e2f55b94518a4c7ce7f7625a4e9ab8e9"
+    },
+    "candidateNormalizedHash": "394ee1e00eadcdcae2d981db28a58367e2f55b94518a4c7ce7f7625a4e9ab8e9",
+    "currentCandidateFingerprint": "2cb03ca0686b6e2a07e3c315049d39a2bd15bb356346f35850568e186b8ce167",
+    "bReason": "현재조사한값과다르게표시한다는대안은예상값이라는의미를생략한다. 예상한값임을알수있게표시한다는내용을모든대안에포함시켜까닭없는차별표시만으로통과하지않게한다.",
+    "cReason": "아직조사하지않은값의성격을예상한값으로명명하는타당한개념확인이다.",
+    "coreReason": "예상과관측구별의일반원문유지."
+  },
+  {
+    "id": "e4-2-5-3-xc28",
+    "sourceIndex": 2671,
+    "proposedRawRow": {
+      "sourceIndex": 2671,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+      "proposalFingerprint": "1aeb8dc4f991ded4bf74183fa34b4d040aa1905c2031d84026f4cc33b4396edc",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc28",
+      "bDecision": "rewrite",
+      "bPrompt": "꺾은선그래프의 세로 눈금을 정할 때, 자료가 들어가는 범위와 값의 변화를 읽기 좋은 정도라는 두 관점에서 지켜야 할 기준을 하나씩 쓰시오.",
+      "bAnswer": "모든 자료가 들어가는 범위로 정하고, 값의 차이와 변화를 읽기 쉽게 정합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 자료가 들어간다",
+            "모든 자료가 들어간다"
+          ]
+        },
+        {
+          "anyOf": [
+            "값의 차를 읽기 쉽다",
+            "변화를 알아보기 쉽다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "적당한 눈금의 기준",
+      "bReason": "기준두가지만은단위·간격·전체범위등여러정답쌍이가능하다. 후보는자료가들어가는범위와값변화의읽기편의라는두관점을지정해현재필수의미와요구를일치시킨다.",
+      "cDecision": "exclude",
+      "cReason": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다.",
+      "exclusionReason": "C: 수학적 판단 없이 권고 표현을 복원하는 빈칸이므로 제외한다. B와 일반 설명은 유지한다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "적당한 눈금인지 설명하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "bQuestion": {
+        "prompt": "꺾은선그래프의 세로 눈금을 정할 때, 자료가 들어가는 범위와 값의 변화를 읽기 좋은 정도라는 두 관점에서 지켜야 할 기준을 하나씩 쓰시오.",
+        "answer": "모든 자료가 들어가는 범위로 정하고, 값의 차이와 변화를 읽기 쉽게 정합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc28",
+        "sourceIndex": 2671,
+        "proposalFingerprint": "eb7f2ea138546c495cdb2fa0e79139e9e60c079dc17eaac559d00f8660aa2628",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "모든 자료 포함과 읽기 쉬운 변화라는 두 기준을 설명하는 목표는 유용하다.",
+        "cReason": "쉽게라는 권고만 채우는 C는 제외하고 B와 일반 설명을 보존한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc28",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc28",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "적당한 눈금인지 설명하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다."
+      },
+      "B": {
+        "prompt": "꺾은선그래프의 세로 눈금을 정할 때, 자료가 들어가는 범위와 값의 변화를 읽기 좋은 정도라는 두 관점에서 지켜야 할 기준을 하나씩 쓰시오.",
+        "answer": "모든 자료가 들어가는 범위로 정하고, 값의 차이와 변화를 읽기 쉽게 정합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+      },
+      "goal": "적당한 눈금의 기준",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "9453c8c333424df5fa148f1465ae8e60f010b376c48fb40a75f745e999bf157f"
+    },
+    "candidateNormalizedHash": "9453c8c333424df5fa148f1465ae8e60f010b376c48fb40a75f745e999bf157f",
+    "currentCandidateFingerprint": "1aeb8dc4f991ded4bf74183fa34b4d040aa1905c2031d84026f4cc33b4396edc",
+    "bReason": "기준두가지만은단위·간격·전체범위등여러정답쌍이가능하다. 후보는자료가들어가는범위와값변화의읽기편의라는두관점을지정해현재필수의미와요구를일치시킨다.",
+    "cReason": "쉽게만채우는C제외는현재이유와B의두관점에대응하여그대로유지한다.",
+    "coreReason": "눈금범위와읽기편의의일반설명보존."
+  },
+  {
+    "id": "e4-2-6-4-xc26",
+    "sourceIndex": 2776,
+    "proposedRawRow": {
+      "sourceIndex": 2776,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "sourceFingerprint": "eb4c46305b22529bae565faa35abaa1ed5b6b16780ccc53746a064b6dcfae6cd",
+      "proposalFingerprint": "02a8537146f28f9eb81feec26edff45d6027bc69e198f7e98b385787f3756e42",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-4-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 모양의 도형 조각들을 한 점 둘레에 빈틈과 겹침 없이 놓았다. 이 한 곳만 보고 바닥 전체를 채울 수 있다고 확신해도 되는지 쓰고, 조각을 더 놓아 무엇을 확인해야 하는지 쓰세요.",
+      "bAnswer": "확신할 수 없습니다. 주변에도 조각을 계속 이어 붙여 다른 점 둘레에서도 빈틈과 겹침 없이 놓이는지 확인해야 합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 곳만 보고 확신할 수 없다",
+            "한 점 둘레를 채운 것만으로 충분하지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "주변에도 조각을 계속 이어 놓아 다른 곳에서도 빈틈과 겹침이 없는지 확인한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "한 점에서 전체로 확인",
+      "bReason": "특정도형그림없이도한곳확인과전체확인의차이를묻는일반절차는가능하다. 다만현재기준은이어놓아본다는행동만있어빈틈과겹침검사가빠져있다. 후보는같은조각의한곳배치라는상황과다른곳에서확인할대상을명시한다.",
+      "cDecision": "exclude",
+      "cReason": "이어 놓아라는 행동만 복원하는 빈칸 대신 B에서 한 점의 배치와 주변 전체의 빈틈·겹침 확인을 구분한다.",
+      "exclusionReason": "C: 행동 권고 표현만 묻는 빈칸은 제외한다. 한 점만 맞아서는 전체 채우기를 보장하지 못한다는 B와 일반 설명은 유지한다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "한 점 채우기와 전체 채우기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "bQuestion": {
+        "prompt": "같은 모양의 도형 조각들을 한 점 둘레에 빈틈과 겹침 없이 놓았다. 이 한 곳만 보고 바닥 전체를 채울 수 있다고 확신해도 되는지 쓰고, 조각을 더 놓아 무엇을 확인해야 하는지 쓰세요.",
+        "answer": "확신할 수 없습니다. 주변에도 조각을 계속 이어 붙여 다른 점 둘레에서도 빈틈과 겹침 없이 놓이는지 확인해야 합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 곳만 보고 확신할 수 없다",
+              "한 점 둘레를 채운 것만으로 충분하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주변에도 조각을 계속 이어 놓아 다른 곳에서도 빈틈과 겹침이 없는지 확인한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "이어 놓아라는 행동만 복원하는 빈칸 대신 B에서 한 점의 배치와 주변 전체의 빈틈·겹침 확인을 구분한다."
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-4-xc26",
+        "sourceIndex": 2776,
+        "proposalFingerprint": "51deeac4d4913d30f69dd8d674d7a5f5cbc804154c197b2b3614a420b9170905",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한 점이 맞아도 바닥 전체를 채울지는 주변에 계속 놓아 확인해야 함을 설명한다.",
+        "cReason": "행동 권고만 복원하는 C는 제외하고 B 및 일반 설명을 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-6-4-xc26",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-4-xc26",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "한 점 채우기와 전체 채우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 점 둘레의 각이 맞아도 바닥 전체를 채울 수 있는지는 {주변에도 이어 놓아} 확인한다."
+      },
+      "B": {
+        "prompt": "같은 모양의 도형 조각들을 한 점 둘레에 빈틈과 겹침 없이 놓았다. 이 한 곳만 보고 바닥 전체를 채울 수 있다고 확신해도 되는지 쓰고, 조각을 더 놓아 무엇을 확인해야 하는지 쓰세요.",
+        "answer": "확신할 수 없습니다. 주변에도 조각을 계속 이어 붙여 다른 점 둘레에서도 빈틈과 겹침 없이 놓이는지 확인해야 합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 곳만 보고 확신할 수 없다",
+              "한 점 둘레를 채운 것만으로 충분하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주변에도 조각을 계속 이어 놓아 다른 곳에서도 빈틈과 겹침이 없는지 확인한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "이어 놓아라는 행동만 복원하는 빈칸 대신 B에서 한 점의 배치와 주변 전체의 빈틈·겹침 확인을 구분한다."
+      },
+      "goal": "한 점에서 전체로 확인",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "6906edd92df0ebc732f44c15eaa96de69b4135e565f3719b557d988cac83d262"
+    },
+    "candidateNormalizedHash": "6906edd92df0ebc732f44c15eaa96de69b4135e565f3719b557d988cac83d262",
+    "currentCandidateFingerprint": "02a8537146f28f9eb81feec26edff45d6027bc69e198f7e98b385787f3756e42",
+    "bReason": "특정도형그림없이도한곳확인과전체확인의차이를묻는일반절차는가능하다. 다만현재기준은이어놓아본다는행동만있어빈틈과겹침검사가빠져있다. 후보는같은조각의한곳배치라는상황과다른곳에서확인할대상을명시한다.",
+    "cReason": "현재C제외를유지하되개선한B가한점확인과주변의빈틈·겹침확인을구분한다고사유를맞춘다.",
+    "coreReason": "주변으로이어놓아전체가능성을확인하는일반원문유지."
+  },
+  {
+    "id": "e4-2-6-4-xc28",
+    "sourceIndex": 2778,
+    "proposedRawRow": {
+      "sourceIndex": 2778,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+      "sourceFingerprint": "f39d76330ff2246037c2106baa201a7ef297e31fc1c8dc31ca46032611d3b5e3",
+      "proposalFingerprint": "e1e2b3ff88532b306b382b38dd7cb90b189940a602ff2671a92ee1c698793202",
+      "reviewStatus": "draft",
+      "id": "e4-2-6-4-xc28",
+      "bDecision": "rewrite",
+      "bPrompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 바닥을 덮는 전체 크기는 처음과 같을까 다를까? 조각 하나하나가 덮는 크기와 연결하여 까닭을 쓰시오.",
+      "bAnswer": "같습니다. 조각 하나하나가 덮는 크기는 변하지 않고, 같은 조각을 모두 겹치지 않게 다시 놓았으므로 그 크기의 합도 같습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다",
+            "그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각 각각이 덮는 크기가 변하지 않고 같은 조각을 모두 사용하므로 전체 크기의 합이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "잘라 다시 놓아도 전체 크기 유지",
+      "bReason": "같다/다르다라는선택자체는유효하지만까닭기준이주어진조건반복에머문다. 후보는조각하나하나의덮는크기가변하지않아합이보존됨을필수로하며바닥을덮는크기라는대상을명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+      "cReason": "'덮는 □' 가려진 대상을 문장으로 풀어 고침",
+      "cSlotEquivalents": [
+        [
+          "넓이"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "잘라도 보존되는 조각의 전체",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+      "cStudentSentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 □는 그대로이다.",
+      "cSlotAnswers": [
+        {
+          "expected": "크기",
+          "equivalents": [
+            "넓이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 바닥을 덮는 전체 크기는 처음과 같을까 다를까? 조각 하나하나가 덮는 크기와 연결하여 까닭을 쓰시오.",
+        "answer": "같습니다. 조각 하나하나가 덮는 크기는 변하지 않고, 같은 조각을 모두 겹치지 않게 다시 놓았으므로 그 크기의 합도 같습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각 각각이 덮는 크기가 변하지 않고 같은 조각을 모두 사용하므로 전체 크기의 합이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "크기",
+            "넓이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-6-4-xc28",
+        "sourceIndex": 2778,
+        "proposalFingerprint": "7822442ea9c450171a8c2f05e95605e782d43101c36ecb348067f2a9eba063fc",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "조각을하나도버리거나겹치지않아전체덮는크기가보존됨을설명한다.",
+        "cReason": "전체크기를넓이와같은뜻으로표현할수있다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-6-4-xc28",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-6-4-xc28",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "잘라도 보존되는 조각의 전체",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 도형을 잘라 조각을 버리거나 겹치지 않고 다시 놓으면 덮는 {전체 크기}는 보존된다."
+      },
+      "B": {
+        "prompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 바닥을 덮는 전체 크기는 처음과 같을까 다를까? 조각 하나하나가 덮는 크기와 연결하여 까닭을 쓰시오.",
+        "answer": "같습니다. 조각 하나하나가 덮는 크기는 변하지 않고, 같은 조각을 모두 겹치지 않게 다시 놓았으므로 그 크기의 합도 같습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각 각각이 덮는 크기가 변하지 않고 같은 조각을 모두 사용하므로 전체 크기의 합이 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "크기",
+            "넓이"
+          ]
+        ]
+      },
+      "goal": "잘라 다시 놓아도 전체 크기 유지",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "2c971a86516272ee1c81671743b6786bb64d7e0b083a65afc801b13d04721b82"
+    },
+    "candidateNormalizedHash": "2c971a86516272ee1c81671743b6786bb64d7e0b083a65afc801b13d04721b82",
+    "currentCandidateFingerprint": "e1e2b3ff88532b306b382b38dd7cb90b189940a602ff2671a92ee1c698793202",
+    "bReason": "같다/다르다라는선택자체는유효하지만까닭기준이주어진조건반복에머문다. 후보는조각하나하나의덮는크기가변하지않아합이보존됨을필수로하며바닥을덮는크기라는대상을명시한다.",
+    "cReason": "잘라재배열하여보존되는양이전체크기/넓이라는명확한수학적대상으로현재유지한다.",
+    "coreReason": "넓이보존의일반원문은변경하지않는다."
+  }
+]
