@@ -21,7 +21,11 @@ import * as apiSource from "@/components/fading/apiSource";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 
 const today = "2026-10-07";
 const concept: FadingConcept = {
