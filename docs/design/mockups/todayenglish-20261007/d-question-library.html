@@ -3271,6 +3271,461 @@
         color: #68758a;
         margin: 0 0 8px;
       }
+
+      /* D: the maker shares the workspace shell and uses normal page scrolling. */
+      .maker-view {
+        padding-bottom: 40px;
+      }
+      .maker-heading {
+        padding: 18px 0 22px;
+      }
+      .maker-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0;
+        margin-bottom: 12px;
+      }
+      .maker-heading h1 {
+        font-size: 26px;
+        letter-spacing: -0.8px;
+      }
+      .maker-heading p {
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .maker-retained {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .maker-steps {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+        padding: 0 0 18px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .maker-steps li {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+      }
+      .maker-steps li > span {
+        display: grid;
+        place-items: center;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #e7ebf2;
+        font-size: 12px;
+      }
+      .maker-steps [aria-current="step"] {
+        color: var(--violet);
+        font-weight: 700;
+      }
+      .maker-steps [aria-current="step"] > span {
+        color: #fff;
+        background: var(--violet);
+      }
+      .maker-workspace {
+        display: grid;
+        grid-template-columns: minmax(330px, 370px) minmax(0, 1fr);
+        align-items: start;
+        gap: 22px;
+      }
+      .maker-settings,
+      .maker-results {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+      .maker-settings {
+        padding: 22px;
+      }
+      .maker-section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 22px;
+      }
+      .maker-section-heading h2 {
+        font-size: 16px;
+      }
+      .maker-section-heading > span {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .maker-settings .mode-switch {
+        margin-bottom: 23px;
+      }
+      .maker-settings .type-picker {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .maker-settings .type-option {
+        font-size: 12px;
+      }
+      .maker-settings .field {
+        width: 100%;
+      }
+      .maker-settings .count-field .field {
+        width: 105px;
+      }
+      .maker-settings textarea {
+        resize: vertical;
+        min-height: 92px;
+      }
+      .maker-settings .two-fields {
+        gap: 10px;
+      }
+      .maker-settings .notice {
+        margin-top: 22px;
+      }
+      .maker-build {
+        width: 100%;
+        margin-top: 8px;
+      }
+      .maker-local-note {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 12px;
+        text-align: center;
+      }
+      .maker-empty,
+      #aiDrafts {
+        padding: 28px 32px;
+      }
+      .maker-empty {
+        min-height: 740px;
+      }
+      .maker-empty > h3 {
+        font-size: 30px;
+        line-height: 1.45;
+        letter-spacing: -1px;
+        font-weight: 650;
+        margin: 36px 0 18px;
+      }
+      .maker-intro {
+        max-width: 54ch;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+      .maker-brief {
+        margin: 28px 0;
+        border-top: 2px solid #b7afd9;
+        border-bottom: 1px solid var(--line);
+      }
+      .maker-brief > div {
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr);
+        gap: 16px;
+        padding: 13px 0;
+        border-bottom: 1px solid #edf0f5;
+      }
+      .maker-brief > div:last-child {
+        border-bottom: 0;
+      }
+      .maker-brief dt {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .maker-brief dd {
+        margin: 0;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+      }
+      .maker-next-reading > h3 {
+        font-size: 15px;
+      }
+      .maker-next-reading ol {
+        padding-left: 20px;
+        margin: 18px 0;
+      }
+      .maker-next-reading li {
+        padding: 0 0 17px 8px;
+      }
+      .maker-next-reading li::marker {
+        color: var(--violet);
+      }
+      .maker-next-reading strong {
+        font-size: 13px;
+      }
+      .maker-next-reading p {
+        font-size: 12px;
+        line-height: 1.8;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .maker-example-note {
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.9;
+      }
+      .maker-results .draft-summary {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        padding: 0 0 22px;
+        border-radius: 0;
+      }
+      .maker-results .draft-summary h3 {
+        font-size: 23px;
+      }
+      .maker-results .review-tabs {
+        margin-top: 24px;
+        gap: 10px;
+      }
+      .maker-results .review-tabs button {
+        font-size: 13px;
+        min-height: 42px;
+      }
+      .maker-results .draft-card {
+        border: 0;
+        border-bottom: 1px solid var(--line);
+        border-radius: 0;
+        margin-bottom: 26px;
+      }
+      .maker-results .draft-card-header {
+        background: #f5f7fb;
+        padding: 14px 16px;
+      }
+      .maker-results .draft-card-body {
+        padding: 18px 0;
+      }
+      .maker-results .question-prompt {
+        font-size: 15px;
+      }
+      .maker-question-copy,
+      .maker-review-copy {
+        min-width: 0;
+      }
+      .maker-review-copy {
+        margin-top: 20px;
+      }
+      .maker-results .passage,
+      .maker-results .source-copy {
+        font-size: 17px;
+        line-height: 1.95;
+        width: 100%;
+        max-width: 78ch;
+      }
+      .maker-results .passage {
+        padding: 20px 24px;
+        margin: 16px 0;
+      }
+      .maker-results .choices,
+      .maker-results .answer-block,
+      .maker-results .review-callout {
+        max-width: 78ch;
+      }
+      .maker-results .choices li,
+      .maker-results .answer-content {
+        font-size: 14px;
+      }
+      .maker-results .review-callout {
+        font-size: 13px;
+      }
+      .maker-save {
+        border-top: 1px solid var(--line);
+        padding: 22px 32px;
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+        align-items: center;
+        background: #fafbfe;
+        border-radius: 0 0 8px 8px;
+      }
+      .maker-save p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 5px 0 12px;
+      }
+      .maker-save .btn {
+        flex-shrink: 0;
+      }
+      .maker-results .empty {
+        padding: 32px 0;
+        text-align: left;
+      }
+      .maker-results .empty .btn {
+        margin-top: 12px;
+      }
+      .maker-results .review-note {
+        max-width: 78ch;
+      }
+      .maker-view [tabindex="-1"] {
+        scroll-margin-top: 24px;
+      }
+      @media (min-width: 1800px) {
+        .maker-workspace {
+          grid-template-columns: 420px minmax(0, 1fr);
+          gap: 30px;
+        }
+        .maker-settings {
+          padding: 28px;
+        }
+        .maker-empty,
+        #aiDrafts {
+          padding: 36px 48px;
+        }
+        .maker-empty {
+          min-height: 800px;
+        }
+        .maker-results .draft-card-body {
+          display: grid;
+          grid-template-columns: minmax(0, 1.55fr) minmax(290px, 1fr);
+          gap: 32px;
+          align-items: start;
+        }
+        .maker-review-copy {
+          border-left: 1px solid var(--line);
+          padding-left: 28px;
+          margin: 0;
+        }
+        .maker-review-copy .answer-block {
+          margin-top: 0;
+        }
+        .maker-brief,
+        .maker-next-reading,
+        .maker-example-note {
+          max-width: 780px;
+        }
+      }
+      @media (min-width: 761px) and (max-width: 1190px) {
+        .maker-workspace {
+          grid-template-columns: minmax(280px, 330px) minmax(0, 1fr);
+          gap: 14px;
+        }
+        .maker-settings,
+        .maker-empty,
+        #aiDrafts {
+          padding: 20px;
+        }
+        .maker-retained {
+          display: none;
+        }
+        .maker-save {
+          flex-direction: column;
+          align-items: stretch;
+          padding: 20px;
+        }
+      }
+      @media (max-width: 1000px) {
+        .maker-workspace {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .maker-empty {
+          min-height: 0;
+        }
+      }
+      @media (max-width: 760px) {
+        .maker-view {
+          padding-bottom: 110px;
+        }
+        .maker-heading {
+          padding: 18px 0;
+        }
+        .maker-heading h1 {
+          font-size: 24px;
+        }
+        .maker-heading .between {
+          display: block;
+        }
+        .maker-heading p {
+          font-size: 12px;
+          line-height: 1.8;
+        }
+        .maker-retained {
+          display: block;
+          margin-top: 10px;
+          font-size: 11px;
+        }
+        .maker-steps {
+          gap: 14px;
+          justify-content: space-between;
+          font-size: 11px;
+        }
+        .maker-steps li {
+          gap: 5px;
+        }
+        .maker-steps li > span {
+          width: 20px;
+          height: 20px;
+          font-size: 10px;
+          flex-shrink: 0;
+        }
+        .maker-workspace {
+          gap: 20px;
+        }
+        .maker-settings,
+        .maker-empty,
+        #aiDrafts {
+          padding: 20px 18px;
+        }
+        .maker-section-heading {
+          margin-bottom: 18px;
+        }
+        .maker-settings .type-picker {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .maker-settings .type-option {
+          min-height: 44px;
+        }
+        .maker-settings .field {
+          font-size: 16px;
+        }
+        .maker-settings .two-fields .field {
+          font-size: 14px;
+        }
+        .maker-empty > h3 {
+          font-size: 26px;
+          margin-top: 24px;
+        }
+        .maker-brief > div {
+          grid-template-columns: 65px minmax(0, 1fr);
+          gap: 12px;
+        }
+        .maker-results .review-tabs {
+          gap: 2px;
+        }
+        .maker-results .review-tabs button {
+          font-size: 12px;
+          padding: 8px;
+        }
+        .maker-results .draft-summary h3 {
+          font-size: 20px;
+        }
+        .maker-results .passage,
+        .maker-results .source-copy {
+          font-size: 16px;
+        }
+        .maker-results .passage {
+          padding: 16px;
+        }
+        .maker-results .draft-card-header {
+          padding: 12px;
+        }
+        .maker-results .draft-card-header .small {
+          display: block;
+          margin: 4px 0 0;
+        }
+        .maker-save {
+          padding: 20px 18px;
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .maker-save .btn,
+        .maker-build {
+          min-height: 46px;
+        }
+        .maker-view [tabindex="-1"] {
+          scroll-margin-top: 16px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -3609,6 +4064,196 @@
           </div>
         </div>
       </section>
+      <section id="aiView" class="maker-view" aria-labelledby="aiTitle" hidden>
+        <div class="maker-heading">
+          <button
+            class="text-btn maker-back"
+            id="aiReturn"
+            data-action="ai-return"
+          >
+            <svg><use href="#i-left" /></svg><span>문제은행으로</span>
+          </button>
+          <div class="between">
+            <div>
+              <h1 id="aiTitle" tabindex="-1">AI 문제 제작</h1>
+              <p>원문을 준비하고, 문항을 검토한 뒤 문제은행에 저장하세요.</p>
+            </div>
+            <span class="maker-retained"
+              >작성 중인 조건은 화면을 옮겨도 유지됩니다.</span
+            >
+          </div>
+        </div>
+        <ol class="maker-steps" aria-label="AI 문제 제작 순서">
+          <li id="makerStep1" aria-current="step">
+            <span>1</span>원문·문항 제작
+          </li>
+          <li id="makerStep2"><span>2</span>확인할 항목</li>
+          <li id="makerStep3"><span>3</span>은행 저장</li>
+        </ol>
+        <div class="maker-workspace">
+          <section
+            class="maker-settings"
+            id="aiSettings"
+            aria-labelledby="aiSettingsTitle"
+          >
+            <div class="maker-section-heading">
+              <h2 id="aiSettingsTitle" tabindex="-1">제작 조건</h2>
+              <span>원문 1개 기준</span>
+            </div>
+            <div class="mode-switch" aria-label="제작 시작점">
+              <button data-mode="original" aria-pressed="false">
+                기존 원문으로</button
+              ><button class="active" data-mode="new" aria-pressed="true">
+                AI로 원문부터
+              </button>
+            </div>
+            <div id="existingSourceFields" hidden>
+              <label class="field-label" for="aiSource">원문 자료</label
+              ><select id="aiSource" class="field"></select>
+              <div id="aiSourceSummary" class="source-mini"></div>
+            </div>
+            <div id="newSourceFields">
+              <div class="between">
+                <h3>어떤 자료가 필요한가요?</h3>
+                <button class="text-btn" data-action="sample-request">
+                  예시 조건 채우기
+                </button>
+              </div>
+              <label class="field-label" for="aiPurpose">수업 목적</label
+              ><select id="aiPurpose" class="field">
+                <option>내신 대비</option>
+                <option>수업 활동</option>
+                <option>읽기 연습</option></select
+              ><label class="field-label" for="aiTopic"
+                >원문의 주제와 요청</label
+              ><textarea id="aiTopic" class="field" rows="3">
+학교에서 함께 물건을 고치는 수리 모임</textarea>
+              <div class="two-fields">
+                <div>
+                  <label class="field-label" for="aiLevel">대상 수준</label
+                  ><select id="aiLevel" class="field">
+                    <option>고1 · 보통</option>
+                    <option>중3 · 쉬움</option>
+                    <option>고2 · 심화</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="field-label" for="aiLength">원문 분량</label
+                  ><select id="aiLength" class="field">
+                    <option>120–160단어</option>
+                    <option>80–120단어</option>
+                    <option>180–220단어</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="between count-field">
+              <label class="field-label" for="aiCount">문항 수</label
+              ><select id="aiCount" class="field" aria-describedby="aiError">
+                <option value="3">3문항</option>
+                <option value="4" selected>4문항</option>
+                <option value="5">5문항</option>
+                <option value="6">6문항</option>
+                <option value="7">7문항</option>
+                <option value="8">8문항</option>
+              </select>
+            </div>
+            <div class="between">
+              <span class="field-label">우선 포함할 유형</span
+              ><span class="small muted" id="typeHint">4개 선택</span>
+            </div>
+            <div class="type-picker" id="aiTypes"></div>
+            <p class="field-help">
+              나머지는 원문에 맞는 유형으로 채우는 흐름입니다.
+            </p>
+            <div class="notice">
+              시안 체험: 새 원문은 ‘함께 고치는 토요일’의 준비된 예시입니다.
+              임의 요청으로 실제 생성하지 않습니다. 기존 원문 모드는 선택한
+              원문에 연결된 예시를 사용합니다.
+            </div>
+            <div
+              class="unsupported-request"
+              id="unsupportedRequest"
+              hidden
+              role="status"
+            >
+              <strong>이 요청의 생성 결과는 제공되지 않습니다.</strong>
+              <p id="unsupportedText"></p>
+              <p>
+                입력한 조건을 반영한 결과처럼 보여 주지 않습니다. 준비된
+                조건으로 바꾸어 체험할 수 있습니다.
+              </p>
+              <button class="btn" data-action="sample-request">
+                수리 모임 예시 조건으로 바꾸기
+              </button>
+            </div>
+            <p class="drawer-error" id="aiError" role="status"></p>
+
+            <button class="btn primary maker-build" id="aiNext">
+              <svg><use href="#i-spark" /></svg>원문·문항 제작 예시 보기
+            </button>
+            <p class="maker-local-note">
+              이 시안은 새로고침하면 작성 내용이 초기화됩니다.
+            </p>
+          </section>
+          <section class="maker-results" aria-label="원문·문항 제작 결과">
+            <div id="aiEmpty" class="maker-empty">
+              <div class="maker-section-heading">
+                <h2>제작할 자료</h2>
+                <span>아직 제작 전</span>
+              </div>
+              <h3>한 편의 원문에서,<br />수업에 쓸 문항까지.</h3>
+              <p class="maker-intro">
+                조건을 정하면 이곳에서 원문과 문항, 정답·해설을 함께 확인합니다.
+                확인이 필요한 항목을 살핀 뒤 은행에 초안으로 저장하세요.
+              </p>
+              <dl class="maker-brief" id="aiBrief"></dl>
+              <div class="maker-next-reading">
+                <h3>결과를 확인하는 순서</h3>
+                <ol>
+                  <li>
+                    <strong>원문과 문항을 함께 읽기</strong>
+                    <p>선택한 유형과 정답의 근거가 원문에 맞는지 확인합니다.</p>
+                  </li>
+                  <li>
+                    <strong>확인할 항목 검토하기</strong>
+                    <p>
+                      서술형의 인정 답안처럼 교사의 판단이 필요한 부분을 먼저
+                      살핍니다.
+                    </p>
+                  </li>
+                  <li>
+                    <strong>원문과 연결해 은행에 저장하기</strong>
+                    <p>
+                      원문 버전을 유지한 초안으로 저장하고, 필요하면 현재
+                      시험지에 이어 담습니다.
+                    </p>
+                  </li>
+                </ol>
+              </div>
+              <p class="maker-example-note">
+                사전에 준비된 예시로 체험하는 화면입니다. 새 원문은 ‘함께 고치는
+                토요일’, 기존 원문은 선택한 자료에 연결된 문항 예시를
+                사용합니다.
+              </p>
+            </div>
+            <div id="aiDrafts" hidden></div>
+            <div class="maker-save" id="aiSaveBar" hidden>
+              <div>
+                <strong>은행에 초안으로 저장</strong>
+                <p id="aiSaveNote"></p>
+                <label class="draft-save-option"
+                  ><input type="checkbox" id="saveAndAdd" checked />저장 후 담은
+                  문제에도 추가</label
+                >
+              </div>
+              <button class="btn primary" id="aiSave">
+                <svg><use href="#i-plus" /></svg>은행에 초안 저장
+              </button>
+            </div>
+          </section>
+        </div>
+      </section>
     </main>
     <button
       class="btn primary mobile-tray"
@@ -3620,123 +4265,6 @@
         <span class="count-pill" id="mobileTrayCount">3</span></span
       ><span>열기 <span aria-hidden="true">↗</span></span>
     </button>
-    <dialog class="dialog drawer" id="aiDialog" aria-labelledby="aiTitle">
-      <div class="dialog-header">
-        <div>
-          <h2 id="aiTitle">AI 문제 제작</h2>
-          <p>원문부터 문항·점검·태그까지 함께 준비합니다.</p>
-        </div>
-        <button
-          class="icon-btn"
-          data-close="aiDialog"
-          aria-label="AI 제작 닫기"
-        >
-          <svg><use href="#i-x" /></svg>
-        </button>
-      </div>
-      <div class="dialog-body" id="aiSettings">
-        <div class="mode-switch" aria-label="제작 시작점">
-          <button data-mode="original" aria-pressed="false">
-            기존 원문으로</button
-          ><button class="active" data-mode="new" aria-pressed="true">
-            AI로 원문부터
-          </button>
-        </div>
-        <div id="existingSourceFields" hidden>
-          <label class="field-label" for="aiSource">원문 자료</label
-          ><select id="aiSource" class="field"></select>
-          <div id="aiSourceSummary" class="source-mini"></div>
-        </div>
-        <div id="newSourceFields">
-          <div class="between">
-            <h3>어떤 자료가 필요한가요?</h3>
-            <button class="text-btn" data-action="sample-request">
-              예시 조건 채우기
-            </button>
-          </div>
-          <label class="field-label" for="aiPurpose">수업 목적</label
-          ><select id="aiPurpose" class="field">
-            <option>내신 대비</option>
-            <option>수업 활동</option>
-            <option>읽기 연습</option></select
-          ><label class="field-label" for="aiTopic">원문의 주제와 요청</label
-          ><textarea id="aiTopic" class="field" rows="3">
-학교에서 함께 물건을 고치는 수리 모임</textarea>
-          <div class="two-fields">
-            <div>
-              <label class="field-label" for="aiLevel">대상 수준</label
-              ><select id="aiLevel" class="field">
-                <option>고1 · 보통</option>
-                <option>중3 · 쉬움</option>
-                <option>고2 · 심화</option>
-              </select>
-            </div>
-            <div>
-              <label class="field-label" for="aiLength">원문 분량</label
-              ><select id="aiLength" class="field">
-                <option>120–160단어</option>
-                <option>80–120단어</option>
-                <option>180–220단어</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div class="between count-field">
-          <label class="field-label" for="aiCount">문항 수</label
-          ><select id="aiCount" class="field">
-            <option value="3">3문항</option>
-            <option value="4" selected>4문항</option>
-            <option value="5">5문항</option>
-            <option value="6">6문항</option>
-            <option value="7">7문항</option>
-            <option value="8">8문항</option>
-          </select>
-        </div>
-        <div class="between">
-          <span class="field-label">우선 포함할 유형</span
-          ><span class="small muted" id="typeHint">4개 선택</span>
-        </div>
-        <div class="type-picker" id="aiTypes"></div>
-        <p class="field-help">
-          나머지는 원문에 맞는 유형으로 채우는 흐름입니다.
-        </p>
-        <div class="ai-scope">
-          <strong>AI가 함께 준비할 내용</strong>
-          <p>원문 → 문항·보기 → 정답·해설 → 자체 점검·태그 → 은행 초안</p>
-          <span>교사는 확인이 필요한 항목을 먼저 보고 최종 확정합니다.</span>
-        </div>
-        <div class="notice">
-          시안 체험: 새 원문은 ‘함께 고치는 토요일’의 준비된 예시입니다. 임의
-          요청으로 실제 생성하지 않습니다. 기존 원문 모드는 선택한 원문에 연결된
-          예시를 사용합니다.
-        </div>
-        <div
-          class="unsupported-request"
-          id="unsupportedRequest"
-          hidden
-          role="status"
-        >
-          <strong>이 요청의 생성 결과는 제공되지 않습니다.</strong>
-          <p id="unsupportedText"></p>
-          <p>
-            입력한 조건을 반영한 결과처럼 보여 주지 않습니다. 준비된 조건으로
-            바꾸어 체험할 수 있습니다.
-          </p>
-          <button class="btn" data-action="sample-request">
-            수리 모임 예시 조건으로 바꾸기
-          </button>
-        </div>
-        <p class="drawer-error" id="aiError" role="status"></p>
-      </div>
-      <div class="dialog-body" id="aiDrafts" hidden></div>
-      <div class="dialog-bottom">
-        <span class="small muted" id="aiBottomNote"
-          >실제 생성 없이 준비된 예시로 체험합니다.</span
-        ><button class="btn primary" id="aiNext">
-          <svg><use href="#i-spark" /></svg>제작 결과 예시 보기
-        </button>
-      </div>
-    </dialog>
     <dialog
       class="dialog preview-dialog"
       id="previewDialog"
@@ -4306,6 +4834,9 @@
         preview: "student",
         aiMode: "new",
         aiStep: "settings",
+        aiReturn: "library",
+        aiRequest: null,
+        aiSaved: false,
         drafts: [],
         draftTab: "focus",
         draftSource: null,
@@ -4523,8 +5054,12 @@
           `<div class="secondary-heading"><div><h1>자료은행</h1><p>원문과 연결 문항을 함께 관리하세요.</p></div><button class="btn primary" data-action="new-ai">${icon("spark")}AI로 원문부터</button></div><div class="resource-layout"><aside class="resource-list"><div class="between"><strong>원문 자료</strong><span class="muted small">${sources.length}개</span></div>${sources.map((src) => `<button class="resource-card" data-resource="${src.id}" aria-current="${selected.id === src.id}"><span class="tag">${src.id} · v${src.version}</span><strong>${esc(src.title)}</strong><p>${esc(src.english)}</p><div class="between"><span class="small muted">${esc(src.origin)}</span><span class="small">${questions.filter((q) => q.sourceId === src.id).length}문항</span></div>${badge(src.status)}</button>`).join("")}<div class="notice">원문을 선택하면 연결된 문항을 확인하고 같은 원문으로 더 만들 수 있습니다.</div></aside><article class="resource-document"><div class="between"><span class="tag">${selected.id} · 원문 v${selected.version}</span><span class="muted small">${esc(selected.origin)}</span></div><h2 class="source-heading" style="font-size:30px;margin-top:24px" tabindex="-1" id="resourceTitle">${esc(selected.english)}</h2><p class="muted" style="margin-bottom:25px">${esc(selected.title)}</p><div class="source-copy" lang="en">${selected.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="source-links">${selected.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div><div class="resource-actions"><button class="btn primary" data-ai-source="${selected.id}">${icon("spark")}이 원문으로 제작</button><button class="btn" data-source-questions="${selected.id}">연결 문항 ${questions.filter((q) => q.sourceId === selected.id).length}개 보기</button></div><p class="small muted" style="margin-top:20px">원문은 문항과 별도로 보관되며, 문항마다 연결 원문과 버전이 유지됩니다.</p></article></div>`;
       }
       function showView(view) {
+        // A full view never inherits an open modal or the mobile detail focus trap.
+        $$("dialog[open]").forEach((dialog) => dialog.close());
+        if ($("#splitWork").classList.contains("show-detail"))
+          mobileDetail(false);
         state.view = view;
-        ["library", "resources", "listening"].forEach(
+        ["library", "resources", "listening", "ai"].forEach(
           (name) => ($(`#${name}View`).hidden = name !== view),
         );
         $$(".nav-item").forEach((b) => {
@@ -4535,14 +5070,22 @@
           library: "문제은행",
           resources: "자료은행",
           listening: "영어듣기",
+          ai: "AI 문제 제작",
         }[view];
+        document.title = `${$("#viewCrumb").textContent} · 오늘의 영어 — D안`;
         $("#mobileTrayButton").hidden = view !== "library";
         if (view === "resources") renderResources();
+        const heading = $(`#${view}View h1`);
+        heading?.setAttribute("tabindex", "-1");
+        heading?.focus({ preventScroll: true });
         window.scrollTo({ top: 0, behavior: "instant" });
       }
       function openDialog(id) {
         lastDialogTrigger = document.activeElement;
         const dialog = $("#" + id);
+        $$("dialog[open]").forEach((open) => {
+          if (open !== dialog) open.close();
+        });
         if (!dialog.open) dialog.showModal();
       }
       function closeDialog(id) {
@@ -4559,31 +5102,106 @@
         $("#newSourceFields").hidden = mode !== "new";
         $("#unsupportedRequest").hidden = true;
         $("#aiError").textContent = "";
+        updateAIWorkspace();
       }
       function updateAISourceSummary() {
         const src = getSource($("#aiSource").value) || source;
         $("#aiSourceSummary").innerHTML =
           `<strong>${esc(src.english)}</strong><p>${esc(src.paragraphs[0].split(". ")[0])}.</p><span class="small muted">${src.id} · v${src.version} · ${esc(src.origin)}</span>`;
+        updateAIWorkspace();
       }
       function openAI(mode = state.aiMode, sourceId) {
-        if ($("#trayDialog").open) $("#trayDialog").close();
-        if ($("#splitWork").classList.contains("show-detail"))
-          mobileDetail(false);
-        state.aiStep = "settings";
-        $("#aiSettings").hidden = false;
-        $("#aiDrafts").hidden = true;
-        $("#aiNext").innerHTML = icon("spark") + "제작 결과 예시 보기";
-        $("#aiBottomNote").innerHTML =
-          "실제 생성 없이 준비된 예시로 체험합니다.";
+        if (state.view !== "ai") state.aiReturn = state.view;
+        const selectedSource =
+          sourceId || $("#aiSource").value || state.sourceFilter || source.id;
         $("#aiSource").innerHTML = sources
           .map(
             (src) =>
-              `<option value="${src.id}" ${src.id === (sourceId || state.sourceFilter || source.id) ? "selected" : ""}>${esc(src.title)}</option>`,
+              `<option value="${src.id}" ${src.id === selectedSource ? "selected" : ""}>${esc(src.title)}</option>`,
           )
           .join("");
         setAIMode(mode);
         updateAISourceSummary();
-        openDialog("aiDialog");
+        $("#aiReturn span").textContent = {
+          library: "문제은행으로",
+          resources: "자료은행으로",
+          listening: "영어듣기로",
+        }[state.aiReturn];
+        showView("ai");
+      }
+      function aiRequestKey() {
+        return JSON.stringify([
+          state.aiMode,
+          ...(state.aiMode === "new"
+            ? [
+                $("#aiPurpose").value,
+                $("#aiTopic").value.trim(),
+                $("#aiLevel").value,
+                $("#aiLength").value,
+              ]
+            : [$("#aiSource").value]),
+          $("#aiCount").value,
+          $$("#aiTypes input:checked").map((input) => input.value),
+        ]);
+      }
+      function updateAIWorkspace() {
+        const src = getSource($("#aiSource").value) || source;
+        const chosen = $$("#aiTypes input:checked").map((input) => input.value);
+        const ready =
+          state.drafts.length > 0 && state.aiRequest === aiRequestKey();
+        const pending = state.drafts.filter(
+          (q) => q.reviewIssue && !q.reviewResolved,
+        ).length;
+        state.aiStep = ready ? "drafts" : "settings";
+        $("#aiEmpty").hidden = ready;
+        $("#aiDrafts").hidden = !ready;
+        $("#aiSaveBar").hidden = !ready;
+        const rows =
+          state.aiMode === "new"
+            ? [
+                ["시작점", "새 원문부터 제작"],
+                ["수업", `${$("#aiPurpose").value} · ${$("#aiLevel").value}`],
+                [
+                  "원문",
+                  $("#aiTopic").value.trim() || "주제와 요청을 입력하세요",
+                ],
+                ["분량", $("#aiLength").value],
+              ]
+            : [
+                ["시작점", "기존 원문으로 제작"],
+                ["원문", src.title],
+                ["연결", `${src.id} · 원문 v${src.version} · ${src.grade}`],
+              ];
+        rows.push([
+          "문항",
+          `${$("#aiCount").value}문항 · ${chosen.length ? chosen.join(", ") : "원문에 맞는 유형"}`,
+        ]);
+        $("#aiBrief").innerHTML = rows
+          .map(
+            ([label, value]) =>
+              `<div><dt>${label}</dt><dd>${esc(value)}</dd></div>`,
+          )
+          .join("");
+        [1, 2, 3].forEach((step) => {
+          const current = !ready ? 1 : pending ? 2 : 3;
+          $(`#makerStep${step}`).toggleAttribute(
+            "aria-current",
+            step === current,
+          );
+          if (step === current)
+            $(`#makerStep${step}`).setAttribute("aria-current", "step");
+        });
+        $("#aiNext").innerHTML =
+          icon("spark") +
+          (ready ? "제작 결과 예시로 이동" : "원문·문항 제작 예시 보기");
+        $("#aiSave").disabled = state.aiSaved;
+        $("#aiSave").innerHTML =
+          icon(state.aiSaved ? "check" : "plus") +
+          (state.aiSaved ? "은행 저장 완료" : "은행에 초안 저장");
+        $("#saveAndAdd").disabled = state.aiSaved;
+        $("#aiSaveNote").textContent = state.aiSaved
+          ? "원문과 연결된 초안을 저장했습니다. 문제은행에서 이어서 확인하세요."
+          : `${pending ? `확인할 항목 ${pending}개가 남아 있습니다. ` : ""}교사 최종 확정 전의 초안으로 저장됩니다.`;
       }
       function renderAITypes() {
         $("#aiTypes").innerHTML = types
@@ -4600,15 +5218,21 @@
         $("#aiLength").value = "120–160단어";
         $("#unsupportedRequest").hidden = true;
         $("#aiError").textContent = "";
+        updateAIWorkspace();
         $("#aiTopic").focus();
       }
       function buildDrafts() {
+        if (state.drafts.length && state.aiRequest === aiRequestKey()) {
+          focusMaker("aiResultTitle");
+          return;
+        }
         const chosen = $$("#aiTypes input:checked").map((e) => e.value),
           count = Number($("#aiCount").value);
         $("#aiError").textContent = "";
         if (chosen.length > count) {
           $("#aiError").textContent =
             "우선 포함할 유형이 문항 수보다 많습니다. 유형을 줄이거나 문항 수를 늘리세요.";
+          $("#aiCount").focus();
           return;
         }
         if (state.aiMode === "new") {
@@ -4623,6 +5247,7 @@
             $("#unsupportedText").textContent =
               `입력한 요청: ${$("#aiPurpose").value} / ${$("#aiTopic").value.trim() || "주제 미입력"} / ${$("#aiLevel").value} / ${$("#aiLength").value}`;
             $("#unsupportedRequest").scrollIntoView({ block: "nearest" });
+            $("#unsupportedRequest button").focus({ preventScroll: true });
             return;
           }
         }
@@ -4666,13 +5291,16 @@
         state.draftTab = state.drafts.some((q) => q.reviewIssue)
           ? "focus"
           : "all";
-        $("#aiSettings").hidden = true;
-        $("#aiDrafts").hidden = false;
+        state.aiRequest = aiRequestKey();
+        state.aiSaved = false;
         renderDrafts();
-        $("#aiNext").innerHTML = icon("plus") + "은행에 초안 저장";
-        $("#aiBottomNote").innerHTML =
-          `<label class="draft-save-option"><input type="checkbox" id="saveAndAdd" ${state.saveAndAdd ? "checked" : ""}>저장 후 담은 문제에도 추가</label>`;
-        $("#aiDrafts").scrollTop = 0;
+        updateAIWorkspace();
+        focusMaker("aiResultTitle");
+      }
+      function focusMaker(id) {
+        const heading = $("#" + id);
+        heading.focus({ preventScroll: true });
+        heading.scrollIntoView({ block: "start", behavior: "instant" });
       }
       function renderDrafts() {
         const src = state.draftSource,
@@ -4684,12 +5312,18 @@
             state.draftTab === "focus"
               ? state.drafts
                   .map((q, i) => ({ q, i }))
-                  .filter(({ q }) => q.reviewIssue)
+                  .filter(({ q }) => q.reviewIssue && !q.reviewResolved)
               : state.drafts.map((q, i) => ({ q, i }));
         $("#aiDrafts").innerHTML =
-          `<div class="between"><strong>제작 결과 예시</strong><button class="text-btn" data-action="ai-back">요청 수정</button></div><p class="review-note">준비된 원문·문항과 점검 결과입니다. 실제 AI를 호출하거나 자동 판정하지 않았습니다.</p><div class="draft-workflow"><span>원문 1개</span>›<span>문항 ${state.drafts.length}개</span>›<span>정답·해설</span>›<span>점검·태그</span>›<span>은행 초안</span></div><div class="draft-summary"><div class="between"><h3>${esc(src.title)}</h3>${badge("초안")}</div><p>${esc(src.english)} · ${src.grade} · ${words}단어</p><div class="tags">${src.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div><div class="check-row"><strong>AI 자체 점검 · 예시</strong><span>${pending ? `${pending}문항 확인 필요` : "추가 확인 항목 없음"}</span></div><div class="check-row"><strong>교사 최종 확정</strong><span>아직 확정하지 않음</span></div><div class="review-tabs" aria-label="제작 결과 보기"><button class="${state.draftTab === "focus" ? "active" : ""}" data-draft-tab="focus" aria-pressed="${state.draftTab === "focus"}">집중 검토 ${pending}</button><button class="${state.draftTab === "all" ? "active" : ""}" data-draft-tab="all" aria-pressed="${state.draftTab === "all"}">전체 문항 ${state.drafts.length}</button><button class="${state.draftTab === "source" ? "active" : ""}" data-draft-tab="source" aria-pressed="${state.draftTab === "source"}">원문·점검</button></div>${state.draftTab === "source" ? `<div class="source-copy" lang="en">${src.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="notice">${src.id} · v${src.version} · ${esc(src.origin)}<br>원문과 문항이 같은 연결 정보로 은행에 저장됩니다.</div><div class="check-row"><strong>형식 점검 예시</strong><span>문항·보기·정답 필수값 확인</span></div><div class="check-row"><strong>근거 점검 예시</strong><span>문항별 정답·해설과 원문 비교</span></div><p class="review-note">자체 점검 결과는 교사의 확정 기록을 대신하지 않습니다.</p>` : show.length ? show.map(({ q, i }) => `<article class="draft-card"><div class="draft-card-header"><strong>${i + 1}. ${q.type}<span class="small muted">교사 확정 전</span></strong>${badge("초안")}</div><div class="draft-card-body">${issueHTML(q, i)}${questionHTML(q)}<details class="answer-block" ${state.draftTab === "focus" ? "open" : ""}><summary>정답·근거 보기 ${icon("down")}</summary>${answerHTML(q)}</details><p class="review-note">자체 점검 예시: ${q.reviewIssue && !q.reviewResolved ? "채점 기준 확인 필요" : "추가 확인 항목 없음"}</p></div></article>`).join("") : '<div class="empty"><strong>집중 검토 항목이 없습니다</strong><p>전체 문항과 원문은 언제든 확인할 수 있습니다.</p><button class="btn" data-draft-tab="all">전체 문항 보기</button></div>'}`;
+          `<div class="maker-section-heading"><h2 id="aiResultTitle" tabindex="-1">원문·문항 제작 결과</h2><button class="text-btn" data-action="ai-back">조건 수정</button></div><p class="review-note">사전에 준비된 원문·문항과 점검 예시입니다. 입력한 요청으로 실제 생성하거나 자동 판정한 결과가 아닙니다.</p><div class="draft-summary"><div class="between"><h3>${esc(src.title)}</h3>${badge("초안")}</div><p>${esc(src.english)} · ${src.grade} · ${words}단어</p><p>${src.id} · 원문 v${src.version} · 문항 ${state.drafts.length}개 연결</p><div class="tags">${src.tags.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div><div class="check-row"><strong>AI 자체 점검 · 예시</strong><span>${pending ? `${pending}문항 확인 필요` : "추가 확인 항목 없음"}</span></div><div class="check-row"><strong>교사 최종 확정</strong><span>아직 확정하지 않음</span></div><div class="review-tabs" aria-label="제작 결과 보기"><button class="${state.draftTab === "focus" ? "active" : ""}" data-draft-tab="focus" aria-pressed="${state.draftTab === "focus"}">확인할 항목 ${pending}</button><button class="${state.draftTab === "all" ? "active" : ""}" data-draft-tab="all" aria-pressed="${state.draftTab === "all"}">전체 문항 ${state.drafts.length}</button><button class="${state.draftTab === "source" ? "active" : ""}" data-draft-tab="source" aria-pressed="${state.draftTab === "source"}">원문·점검</button></div>${state.draftTab === "source" ? `<div class="source-copy" lang="en">${src.paragraphs.map((p) => `<p>${esc(p)}</p>`).join("")}</div><div class="notice">${src.id} · v${src.version} · ${esc(src.origin)}<br>원문과 문항이 같은 연결 정보로 은행에 저장됩니다.</div><div class="check-row"><strong>형식 점검 예시</strong><span>문항·보기·정답 필수값 확인</span></div><div class="check-row"><strong>근거 점검 예시</strong><span>문항별 정답·해설과 원문 비교</span></div><p class="review-note">자체 점검 결과는 교사의 확정 기록을 대신하지 않습니다.</p>` : show.length ? show.map(({ q, i }) => `<article class="draft-card"><div class="draft-card-header"><strong>${i + 1}. ${q.type}<span class="small muted">교사 확정 전</span></strong>${badge("초안")}</div><div class="draft-card-body"><div class="maker-question-copy">${questionHTML(q)}</div><aside class="maker-review-copy" aria-label="문항 검토">${issueHTML(q, i)}<details class="answer-block" ${state.draftTab === "focus" ? "open" : ""}><summary>정답·근거 보기 ${icon("down")}</summary>${answerHTML(q)}</details><p class="review-note">자체 점검 예시: ${q.reviewIssue && !q.reviewResolved ? "채점 기준 확인 필요" : "추가 확인 항목 없음"}</p></aside></div></article>`).join("") : '<div class="empty"><strong>확인할 항목이 없습니다</strong><p>전체 문항과 원문은 언제든 확인할 수 있습니다.</p><button class="btn" data-draft-tab="all">전체 문항 보기</button></div>'}`;
       }
       function saveDrafts() {
+        if (
+          state.aiSaved ||
+          !state.drafts.length ||
+          state.aiRequest !== aiRequestKey()
+        )
+          return;
         const src = state.draftSource;
         if (!sources.some((s) => s.id === src.id))
           sources.push({
@@ -4718,7 +5352,8 @@
         renderList();
         renderDetail();
         renderTray();
-        closeDialog("aiDialog");
+        state.aiSaved = true;
+        updateAIWorkspace();
         showView("library");
         notify(
           `원문에 연결한 ${ids.length}문항을 초안으로 저장${state.saveAndAdd ? "하고 담았습니다." : "했습니다."}`,
@@ -4924,6 +5559,8 @@
           const top = $("#aiDrafts").scrollTop;
           renderDrafts();
           $("#aiDrafts").scrollTop = top;
+          updateAIWorkspace();
+          $('[data-draft-tab="focus"]').focus();
           return;
         }
         if (d.resolveBank) {
@@ -4958,12 +5595,10 @@
             fillSampleRequest();
             break;
           case "ai-back":
-            state.aiStep = "settings";
-            $("#aiSettings").hidden = false;
-            $("#aiDrafts").hidden = true;
-            $("#aiNext").innerHTML = icon("spark") + "제작 결과 예시 보기";
-            $("#aiBottomNote").textContent =
-              "실제 생성 없이 준비된 예시로 체험합니다.";
+            focusMaker("aiSettingsTitle");
+            break;
+          case "ai-return":
+            showView(state.aiReturn);
             break;
           case "reset-filters":
             resetFilters();
@@ -5049,7 +5684,9 @@
           $("#aiError").textContent = "";
         }
         if (input.id === "saveAndAdd") state.saveAndAdd = input.checked;
+        if (input.closest("#aiSettings")) updateAIWorkspace();
       });
+      $("#aiSettings").addEventListener("input", updateAIWorkspace);
       $("#searchInput").addEventListener("input", (event) => {
         state.query = event.target.value;
         refreshSearch();
@@ -5081,9 +5718,8 @@
         );
         renderList();
       });
-      $("#aiNext").addEventListener("click", () =>
-        state.aiStep === "settings" ? buildDrafts() : saveDrafts(),
-      );
+      $("#aiNext").addEventListener("click", buildDrafts);
+      $("#aiSave").addEventListener("click", saveDrafts);
       $("#filterDialog").addEventListener("close", () =>
         $("#filtersHost").append($("#filters")),
       );
