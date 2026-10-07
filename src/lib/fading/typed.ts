@@ -11,7 +11,7 @@ import { fadingTargets, type FadingConcept } from "./concepts";
  * 작업실의 한컴 낱말(`root2` · `a over b` · `30deg` · `neq` · `bot` … — `hwpMathShortcuts.ts` 의 사전)도 같은 기호로 읽는다.
  * 🔴 뜻이 같은 다른 말 · 오타 · 조사만 다른 글은 알아보지 못한다. 그래서 못 알아본 글은 «틀림»이 아니다 — `unknown` 으로
  * 받아 두고, 학생이 단계를 다 마친 뒤 기준안과 대조해 «같은 뜻 / 다름»을 고른다(`fadingTypedOutcome`).
- * 🔴 규칙을 더할 때는 은행 전체 시험이 지킨다 — 한 개념 안에서 서로 다른 두 답(함정 포함)이 같은 열쇠가 되면 `fadingTyped.test.ts` 가 운다.
+ * 🔴 규칙을 더할 때는 은행 전체 시험이 지킨다 — 한 개념 안에서 검토하지 않은 두 답(함정 포함)이 같은 열쇠가 되면 `fadingTyped.test.ts` 가 운다.
  * 런타임 AI 는 없다 — 같은 글은 언제나 같은 열쇠다.
  */
 
@@ -36,7 +36,7 @@ function braced(
 const grouped = (text: string) =>
   /^[\p{L}\p{N}.]*$/u.test(text) ? text : `(${text})`;
 
-/** 묶음을 받는 명령 — 분수 · 제곱근 · 선분 · 직선 · 반직선 · 곧은 글씨. 안쪽부터 푼다. */
+/** 인수를 받는 명령 — 분수 · 제곱근 · 선분 · 직선 · 반직선 · 곧은 글씨. 안쪽부터 푼다. */
 const WRAPPERS: Record<string, (args: string[], before: string) => string> = {
   frac: ([top, bottom], before) =>
     // 대분수 — 앞이 숫자면 «과»로 잇는다(`1\frac{1}{2}` 이 `11/2` 로 읽히지 않게).
@@ -52,32 +52,61 @@ const WRAPPERS: Record<string, (args: string[], before: string) => string> = {
 };
 const ARITY: Record<string, number> = { frac: 2, dfrac: 2, tfrac: 2 };
 
+type Unwrapped = { inner: string; end: number };
+
+/** TeX 인수 하나 — 중괄호 묶음 또는 한 글자/명령. 숫자·낱말을 통째로 삼키지 않는다. */
+function argument(text: string, at: number): Unwrapped | null {
+  while (/\s/.test(text[at] ?? "")) at++;
+  const group = braced(text, at);
+  if (group) return { inner: unwrap(group.inner), end: group.end };
+  if (text[at] === "\\") {
+    const command = unwrappedCommand(text, at, "");
+    return command?.inner ? command : null;
+  }
+  const point = text.codePointAt(at);
+  const token = point === undefined ? undefined : String.fromCodePoint(point);
+  // 첨자·묶음 경계·근호의 선택 인수 등은 이 작은 파서가 해석하지 않는다.
+  if (!token || !/^[\p{L}\p{N}.()+\-*/=<>%!?;:~|]$/u.test(token)) return null;
+  return { inner: token, end: at + token.length };
+}
+
+function unwrappedCommand(
+  text: string,
+  at: number,
+  before: string,
+): Unwrapped | null {
+  const command = /^[a-zA-Z]+/.exec(text.slice(at + 1))?.[0];
+  if (!command) return null;
+  let end = at + 1 + command.length;
+  const wrapper = Object.hasOwn(WRAPPERS, command)
+    ? WRAPPERS[command]
+    : undefined;
+  if (!wrapper) {
+    const symbol = SYMBOL_OF.get(command);
+    // 이름 전체를 읽는다. 표시만 바꾸는 빈 명령은 인수가 될 수 없다.
+    return symbol === undefined ? null : { inner: symbol, end };
+  }
+  const args: string[] = [];
+  for (let n = ARITY[command] ?? 1; n > 0; n--) {
+    const arg = argument(text, end);
+    if (!arg) return null;
+    args.push(arg.inner);
+    end = arg.end;
+  }
+  return { inner: wrapper(args, before), end };
+}
+
 function unwrap(text: string): string {
   let out = "";
   for (let i = 0; i < text.length;) {
-    const command =
-      text[i] === "\\" ? /^[a-zA-Z]+/.exec(text.slice(i + 1)) : null;
-    const wrapper = command && WRAPPERS[command[0]];
-    if (!command || !wrapper) {
+    const command = text[i] === "\\" ? unwrappedCommand(text, i, out) : null;
+    if (!command) {
+      // 모르는 명령·불완전한 인수는 남긴다 — 학생의 대조로 간다.
       out += text[i++];
       continue;
     }
-    let at = i + 1 + command[0].length;
-    const args: string[] = [];
-    for (let n = ARITY[command[0]] ?? 1; n > 0; n--) {
-      while (text[at] === " ") at++;
-      const group = braced(text, at);
-      if (!group) break;
-      args.push(unwrap(group.inner));
-      at = group.end;
-    }
-    if (args.length !== (ARITY[command[0]] ?? 1)) {
-      // 꼴이 다른 명령(묶음이 없다)은 그대로 둔다 — 그 답은 써서 맞힐 수 없고, 학생의 대조로 간다.
-      out += text[i++];
-      continue;
-    }
-    out += wrapper(args, out);
-    i = at;
+    out += command.inner;
+    i = command.end;
   }
   return out;
 }
@@ -218,13 +247,10 @@ export function typedKey(text: string): string {
       .replace(/\$/g, "")
       // 한컴 낱말은 띄어쓰기를 지우기 전에 읽는다(`a over b` · `root 2`).
       .replace(HWP_WORD, (word) => HWP_OF.get(word.toLowerCase())!)
-      // 수식 안의 띄움(`\,` `\;` `\ `) · 퍼센트(`\%`)와 이름 있는 기호 — 묶음을 풀기 **전에** 읽는다.
-      // 풀고 나서 읽으면 `\times\frac{c}{d}` 가 `\timesc/d` 로 붙어 명령의 이름을 잃는다.
+      // 수식 안의 띄움(`\,` `\;` `\ `) · 퍼센트(`\%`).
+      // 이름 있는 기호는 unwrap이 명령 단위로 읽는다 — 인수의 명령도 한 토큰이다.
       .replace(/\\[,;:! ]/g, "")
-      .replace(/\\%/g, "%")
-      .replace(/\\([a-zA-Z]+)/g, (whole, name: string) =>
-        SYMBOL_OF.has(name) ? SYMBOL_OF.get(name)! : whole,
-      ),
+      .replace(/\\%/g, "%"),
   );
   // 명령을 다 읽은 뒤에 띄어쓰기를 지운다(`\pi r` 의 띄어쓰기는 명령의 끝이다).
   key = key.toLowerCase().replace(/\s+/g, "");
