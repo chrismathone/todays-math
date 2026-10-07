@@ -41,17 +41,17 @@ try {
   }
   await page.setViewportSize({ width: 390, height: 1000 });
   await page.goto(`${base}/dev/learn-hifi?screen=issue&state=issued`, { waitUntil: "domcontentloaded" });
-  await page.getByRole("button", { name: /김도윤.*학생 계정/ }).click();
+  await page.getByRole("button", { name: "김도윤", exact: true }).click();
   const panel = page.getByRole("form", { name: "학생 학습 메뉴 설정" });
   await panel.waitFor();
   assert(await panel.getByRole("checkbox", { checked: false }).count() === 2, "new student default");
   await panel.getByRole("checkbox", { name: "강의", exact: true }).check();
   await panel.getByRole("button", { name: "학습 메뉴 저장", exact: true }).click();
   await panel.getByText("저장했습니다.", { exact: true }).waitFor();
-  await page.getByRole("button", { name: /이서연.*학생 계정/ }).click();
+  await page.getByRole("button", { name: "이서연", exact: true }).click();
   await panel.waitFor();
   assert(await panel.getByRole("checkbox", { checked: false }).count() === 2, "other student isolation");
-  await page.getByRole("button", { name: /김도윤.*학생 계정/ }).click();
+  await page.getByRole("button", { name: "김도윤", exact: true }).click();
   await panel.waitFor();
   assert(await panel.getByRole("checkbox", { name: "강의", exact: true }).isChecked(), "first student persisted grant");
   await panel.getByRole("checkbox", { name: "강의", exact: true }).uncheck();
