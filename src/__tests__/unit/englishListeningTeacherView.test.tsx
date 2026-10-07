@@ -58,6 +58,10 @@ describe("ListeningTeacherWorkspace", () => {
       new Error("blocked"),
     );
     const { container } = setup();
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(
+      container.querySelector("[data-workspace-page-header]"),
+    ).toHaveTextContent("영어듣기");
     expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
     expect(container.querySelector("audio")).toHaveAttribute(
       "src",

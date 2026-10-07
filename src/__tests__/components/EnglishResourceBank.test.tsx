@@ -219,7 +219,9 @@ describe("English resource bank", () => {
       ).toBe(true);
     });
     render(<EnglishResourceBank {...props({ onUsePassage })} />);
-    await screen.findByText(/조건에 맞는 지문이 없습니다/);
+    await screen.findByText(/보관 중인 지문이 없습니다/);
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole("status")).toHaveTextContent("이 페이지 0개");
     expect(
       fetcher.mock.calls.some(([url]) => String(url).includes("/exams")),
     ).toBe(false);
@@ -275,7 +277,7 @@ describe("English resource bank", () => {
     const view = render(
       <EnglishResourceBank {...props({ allowedMenus: ["english-bank"] })} />,
     );
-    await screen.findByText(/조건에 맞는 지문이 없습니다/);
+    await screen.findByText(/보관 중인 지문이 없습니다/);
     expect(
       screen.queryByRole("tab", { name: "듣기은행" }),
     ).not.toBeInTheDocument();
@@ -884,7 +886,7 @@ describe("English resource bank", () => {
     const onOpenListening = vi.fn();
     const initialProps = props({ onOpenListening });
     const view = render(<EnglishResourceBank {...initialProps} />);
-    await screen.findByText(/조건에 맞는 지문이 없습니다/);
+    await screen.findByText(/보관 중인 지문이 없습니다/);
     expect(
       fetcher.mock.calls.some(([url]) => String(url).includes("/listening")),
     ).toBe(false);
@@ -925,7 +927,7 @@ describe("English resource bank", () => {
     view.rerender(
       <EnglishResourceBank {...initialProps} allowedMenus={["english-bank"]} />,
     );
-    await screen.findByText(/조건에 맞는 지문이 없습니다/);
+    await screen.findByText(/보관 중인 지문이 없습니다/);
     expect(
       fetcher.mock.calls.some(([path]) => String(path).includes("/listening")),
     ).toBe(false);
