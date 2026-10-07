@@ -24,7 +24,7 @@ type MeasureState =
       resources: PreviewResources;
     };
 
-function messageOf(reason: unknown): string {
+export function messageOf(reason: unknown): string {
   if (reason instanceof TextbookLayoutError) {
     const text = reason.issues.map((issue) => issue.message).join(" ");
     return text || reason.message;
@@ -175,7 +175,13 @@ export function SectionMeasure({
       cancel = true;
       controller.abort();
     };
-  }, [model, onPages, resources, recallMeasurementModel, dialogueMeasurementModel]);
+  }, [
+    model,
+    onPages,
+    resources,
+    recallMeasurementModel,
+    dialogueMeasurementModel,
+  ]);
 
   if (state.status === "pending") return <p>지면을 측정하는 중입니다.</p>;
   if (state.status === "empty") return <p>측정된 쪽이 없습니다.</p>;

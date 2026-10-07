@@ -1,0 +1,62 @@
+/* 고르기 창의 틀 — 색은 작업실의 --learn-* 를 쓰고, 없는 자리에서는 같은 값으로 선다. */
+.dialog {
+  box-sizing: border-box;
+  width: min(880px, calc(100vw - 32px));
+  height: min(850px, calc(100dvh - 48px));
+  max-width: none;
+  max-height: none;
+  padding: 0;
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid var(--learn-track, #dde3ec);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--learn-ink, #172b4d);
+}
+.dialog[open] {
+  display: flex;
+  flex-direction: column;
+}
+.dialog::backdrop {
+  background: #10213fb3;
+}
+.dialog > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--learn-track, #dde3ec);
+}
+.dialog h2 {
+  margin: 0;
+  font-size: 17px;
+}
+.dialog header button {
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--learn-accent, #3159df);
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+.body {
+  /* 창의 남은 높이를 다 쓴다 — 짧은 목록도 단의 줄이 창 끝까지 간다. */
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+.body > section {
+  border: 0;
+  border-radius: 0;
+}
+@media (max-width: 520px) {
+  .dialog {
+    width: calc(100vw - 12px);
+    height: calc(100dvh - 12px);
+  }
+}

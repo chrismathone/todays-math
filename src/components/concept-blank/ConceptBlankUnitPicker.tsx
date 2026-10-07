@@ -1,13 +1,7 @@
 "use client";
 
-import {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type ReactNode,
-  type RefObject,
-} from "react";
+import { useRef, useState, type ReactNode } from "react";
+import { PickerDialog } from "@/components/picker-dialog/PickerDialog";
 import { PaperText } from "./paper/PaperParts";
 import s from "./unit-picker.module.css";
 
@@ -53,57 +47,15 @@ export default function ConceptBlankUnitPicker({
         </span>
       </button>
       {open && (
-        <UnitDialog onClose={() => setOpen(false)} returnFocus={opener}>
+        <PickerDialog
+          title="단원 선택"
+          doneLabel="선택 완료"
+          onClose={() => setOpen(false)}
+          returnFocus={opener}
+        >
           {children}
-        </UnitDialog>
+        </PickerDialog>
       )}
     </>
-  );
-}
-
-function UnitDialog({
-  children,
-  onClose,
-  returnFocus,
-}: {
-  children: ReactNode;
-  onClose: () => void;
-  returnFocus: RefObject<HTMLButtonElement | null>;
-}) {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const doneRef = useRef<HTMLButtonElement>(null);
-  const titleId = useId();
-  useEffect(() => {
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    dialog.showModal();
-    doneRef.current?.focus();
-    const opener = returnFocus.current;
-    const overflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = overflow;
-      dialog.close();
-      if (opener?.isConnected) opener.focus({ preventScroll: true });
-    };
-  }, [returnFocus]);
-  return (
-    <dialog
-      ref={dialogRef}
-      className={s.dialog}
-      aria-labelledby={titleId}
-      onCancel={(event) => {
-        event.preventDefault();
-        onClose();
-      }}
-    >
-      <header>
-        <h2 id={titleId}>단원 선택</h2>
-        <button ref={doneRef} type="button" onClick={onClose}>
-          선택 완료
-        </button>
-      </header>
-      <div className={s.body}>{children}</div>
-    </dialog>
   );
 }
