@@ -382,11 +382,12 @@ describe("싸개 — 화면이 따로 챙기지 않아도 증거가 대기열에
     expect(record).toHaveBeenCalledTimes(1);
   });
 
-  it("원천의 다른 길(선택 길 포함)은 그대로 둔다", async () => {
+  it("원천의 다른 길(그 원천에만 있는 길 포함)은 그대로 둔다", async () => {
     const { main, relearn } = world();
-    const extended = { ...main, dailyPlan: async () => "plan" as const };
+    // `FadingSource` 의 꼴에 없는 이름을 쓴다 — 선택 길(`dailyPlan` …)의 꼴이 바뀌어도 이 시험이 그 꼴과 부딪히지 않게.
+    const extended = { ...main, onlyHere: async () => "kept" as const };
     const source = withFadingRelearn(extended, relearn);
-    expect(await source.dailyPlan()).toBe("plan");
+    expect(await source.onlyHere()).toBe("kept");
     expect(source.today()).toBe(DAY1);
     expect((await source.catalog()).grade).toBe("중2");
     expect((await source.state()).session).toBeNull();

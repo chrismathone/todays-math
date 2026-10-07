@@ -17,8 +17,35 @@ const f = vi.hoisted(() => ({
   disabled: false,
   /** 다음 쓰기 직전에 한 번 — 다른 창이 먼저 저장한 것처럼 revision 을 올린다. */
   raceOnce: false,
+  /** 옛 탐험 · 하루 여정의 갱신을 부른 수. */
+  expedition: 0,
+  journey: 0,
 }));
 vi.mock("server-only", () => ({}));
+// 옛 탐험 · 하루 여정의 갱신 — 대기열의 저장이 이 둘을 지나면 안 된다. 부른 수만 세고 원래 함수를 그대로 돌린다.
+vi.mock("@/lib/math-explorers/expedition", async (original) => {
+  const real =
+    await original<typeof import("@/lib/math-explorers/expedition")>();
+  return {
+    ...real,
+    updateExpedition: (...args: Parameters<typeof real.updateExpedition>) => {
+      f.expedition++;
+      return real.updateExpedition(...args);
+    },
+  };
+});
+vi.mock("@/lib/math-srs/dailyJourney", async (original) => {
+  const real = await original<typeof import("@/lib/math-srs/dailyJourney")>();
+  return {
+    ...real,
+    updateDailyJourney: (
+      ...args: Parameters<typeof real.updateDailyJourney>
+    ) => {
+      f.journey++;
+      return real.updateDailyJourney(...args);
+    },
+  };
+});
 vi.mock("@/lib/auth", () => ({ auth: async () => f.session }));
 vi.mock("@/lib/errorLog/withErrorLog", () => ({
   withErrorLog: (_: string, fn: unknown) => fn,
@@ -111,6 +138,8 @@ import { createLocalFadingRelearnSource } from "@/lib/fading/relearnLocal";
 import { withFadingRelearn } from "@/lib/fading/relearnSource";
 import { fadingTrapMap } from "@/lib/fading/traps";
 import { fadingTypedOutcome } from "@/lib/fading/typed";
+import { updateDailyJourney } from "@/lib/math-srs/dailyJourney";
+import { emptySrsState } from "@/lib/math-srs/serverState";
 import { STUDENT_CHANGED_MESSAGE } from "@/lib/studentRouteAccess";
 
 const base = "http://localhost:3000";
@@ -270,6 +299,8 @@ beforeEach(() => {
   f.reads = 0;
   f.disabled = false;
   f.raceOnce = false;
+  f.expedition = 0;
+  f.journey = 0;
   f.session = {
     student: { studentId: f.studentId, mustChangePassword: false },
   };
@@ -617,6 +648,10 @@ describe("대기열 한 벌 — 증거 → 1분 → 5분 → 나감", () => {
     });
     // 장기 일정 · 풀이 · 집계 · 영수증 · 다른 칸(기억 · 미션)은 대기열을 다 돈 뒤에도 글자 그대로다.
     expect(restOfRecord()).toBe(longTerm);
+    // 옛 탐험의 원정 · 하루 여정의 갱신을 한 번도 지나지 않았다 — 같은 날 다시 맞힌 것이 옛 탐험의 칸을 채우지 않는다.
+    expect([f.expedition, f.journey]).toEqual([0, 0]);
+    updateDailyJourney(emptySrsState(), emptySrsState());
+    expect(f.journey).toBe(1);
     const stored = (
       row().payload as { fading: { concepts: Record<string, unknown> } }
     ).fading.concepts[c.id];
