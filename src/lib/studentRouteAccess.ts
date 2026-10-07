@@ -258,6 +258,11 @@ const ACTIVE_RULES: readonly Rule[] = [
     path: "/api/learn/fading/concepts/{id}",
     why: "오늘의 기억 — 개념 하나의 내용",
   },
+  {
+    methods: ["GET"],
+    path: "/api/learn/fading/daily",
+    why: "오늘의 기억 — 본인의 오늘 할 일 조회(읽기뿐)",
+  },
   { methods: ["GET"], path: "/api/learn/lectures", why: "강의 목록" },
   { methods: ["GET"], path: "/api/learn/lectures/{id}", why: "강의 하나" },
   { methods: ["POST"], path: "/api/learn/watch", why: "시청 기록" },

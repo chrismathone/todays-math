@@ -55,6 +55,7 @@ describe("🔴 학생이 할 수 있는 것 전부 — 늘거나 넓어지면 �
       "GET|POST /api/learn/fading",
       "GET /api/learn/fading/catalog",
       "GET /api/learn/fading/concepts/{id}",
+      "GET /api/learn/fading/daily",
       "GET /api/learn/lectures",
       "GET /api/learn/lectures/{id}",
       "POST /api/learn/watch",
