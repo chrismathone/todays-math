@@ -258,9 +258,11 @@ describe("StudentMathExplorers", () => {
       fireEvent.click(screen.getByRole("button", { name: "은행 완료" }));
       await screen.findByText("오늘의 한 칸 완료");
       if (mode === "confirmed")
-        expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
-          "complete",
-          `complete:${student.id}:${mission().id}`,
+        await waitFor(() =>
+          expect(sounds.play).toHaveBeenCalledExactlyOnceWith(
+            "complete",
+            `complete:${student.id}:${mission().id}`,
+          ),
         );
       else expect(sounds.play).not.toHaveBeenCalled();
       expect(sounds.resetStudent).toHaveBeenCalledTimes(2);
@@ -649,9 +651,7 @@ describe("StudentMathExplorers", () => {
         expect(screen.queryByText("오늘의 한 칸 완료")).not.toBeInTheDocument();
         expect(await screen.findByText("오늘의 한 칸 완료")).toBeVisible();
       } else {
-        fireEvent.click(
-          screen.getByRole("button", { name: "진도판" }),
-        );
+        fireEvent.click(screen.getByRole("button", { name: "진도판" }));
         expect(
           await screen.findByRole("button", { name: /이어서 탐험하기/ }),
         ).toBeVisible();

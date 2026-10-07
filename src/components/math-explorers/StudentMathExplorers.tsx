@@ -11,6 +11,7 @@ import {
   type ReactNode,
 } from "react";
 import type { FadingSource } from "@/lib/fading/source";
+import type { ExplorerMemoryHomeOptions } from "./ExplorerConceptMemory";
 import type {
   ExplorerAction,
   ExplorerFeedback,
@@ -415,7 +416,7 @@ function ExplorerGame({
     setError(null);
     const input = sameRequest ?? {
       requestId: crypto.randomUUID(),
-      expectedRevision: state.revision,
+      expectedRevision: latest.current?.revision ?? state.revision,
       studentId: state.student.id,
       action,
     };
@@ -901,7 +902,10 @@ function ExplorerGame({
     void send({ type: "supplement-start", cardId });
   }
 
-  function renderHome(conceptMemory?: ReactNode) {
+  function renderHome(
+    conceptMemory?: ReactNode,
+    options?: ExplorerMemoryHomeOptions,
+  ) {
     if (!state) return null;
     return (
       <ExplorerHome
@@ -909,6 +913,8 @@ function ExplorerGame({
         journeyTheme={journeyTheme}
         conceptMemory={conceptMemory}
         readOnly={preview}
+        dailyStartAllowed={options?.dailyExplorerAllowed}
+        dailyStartNote={options?.dailyExplorerNote}
         busy={busy || !!error || preview}
         claims={claims}
         chestNotices={chestNotices}
@@ -921,9 +927,13 @@ function ExplorerGame({
             ? claimChest(action.chestId)
             : void send(action)
         }
-        onResume={resume}
-        onStart={() => void send({ type: "expedition-start" })}
-        onRetry={() => void send({ type: "retry-unresolved" })}
+        onResume={() => void startExplorerAfterMemory()}
+        onStart={() =>
+          void startExplorerAfterMemory({ type: "expedition-start" })
+        }
+        onRetry={() =>
+          void startExplorerAfterMemory({ type: "retry-unresolved" })
+        }
         onInspect={inspect}
         onReviewDay={reviewDay}
         initialView={supReturn ? "collection" : initialView}
@@ -950,17 +960,20 @@ function ExplorerGame({
   }
 
   async function reconcileExplorerAfterMemory() {
-    if (preview) return;
+    if (preview) return false;
     const studentId = latest.current?.student.id;
     const next = await readLatest();
-    if (!alive.current) return;
+    if (!alive.current) return false;
     if (
       next &&
       next.student.id === studentId &&
       latest.current?.student.id === studentId
     ) {
-      latest.current = next;
-      setState(next);
+      if (next.revision >= (latest.current?.revision ?? 0)) {
+        latest.current = next;
+        setState(next);
+      }
+      return true;
     } else {
       setError({
         status: next ? 409 : 0,
@@ -968,7 +981,15 @@ function ExplorerGame({
           ? STUDENT_CHANGED_MESSAGE
           : "탐험 기록을 확인하지 못했어요. 최신 기록을 불러와 주세요.",
       });
+      return false;
     }
+  }
+
+  async function startExplorerAfterMemory(action?: ExplorerAction) {
+    if (preview || busy || pending.current) return;
+    if (conceptMemoryEnabled && !(await reconcileExplorerAfterMemory())) return;
+    if (action) await send(action);
+    else resume();
   }
 
   if (bankKind)
@@ -1102,13 +1123,34 @@ function ExplorerGame({
           <ExplorerConceptMemory
             key={state.student.id}
             source={fadingSource}
+            studentId={state.student.id}
             preview={preview}
             busy={busy || saving || !!error}
             onSessionChange={setInConceptMemory}
             onExit={() => void reconcileExplorerAfterMemory()}
+            onExplorerActivity={async (activity) => {
+              if (!(await reconcileExplorerAfterMemory())) return;
+              if (
+                activity.start === "continue" &&
+                activity.source.route === "memory"
+              )
+                resume();
+              else
+                await send({
+                  type:
+                    activity.source.route === "repair"
+                      ? "retry-unresolved"
+                      : "expedition-start",
+                });
+            }}
             onAccessFailure={(failure) => {
               if (failure.code === "UNAUTHORIZED")
                 router.replace("/learn/login");
+              else if (
+                failure.code === "CONFLICT" &&
+                failure.message === STUDENT_CHANGED_MESSAGE
+              )
+                refresh();
               else if (
                 failure.code === "FORBIDDEN" &&
                 failure.message === STUDENT_MUST_CHANGE_MESSAGE
