@@ -2,9 +2,11 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 import { MathText } from "@/components/math/MathText";
 import { db } from "@/lib/db";
+import { devPageVisible } from "@/lib/devPageAccess";
 
 import { NoteForm } from "./NoteForm";
 
@@ -17,7 +19,8 @@ import { NoteForm } from "./NoteForm";
  * 되돌리기 원장: scripts/qa/reports/content-damaged-lock.json,
  * 스크립트: scripts/qa/apply-content-damaged-lock.ts.
  * 메모는 기존 검수 API(`POST /api/problems/{id}/review`, verdict=unsure)에 남긴다 —
- * 로그인 세션이 있어야 저장된다. 조회 자체는 로그인 없이도 된다(다른 /dev 페이지와 동일).
+ * 로그인 세션이 있어야 저장된다. 조회도 production 에서는 로그인한 원장만 한다
+ * (`devPageVisible` — 2026-10-07 검수에서 로그인 없이 문항이 내려가는 것이 확인됐다).
  *
  * 학년 필터·페이지네이션은 URL 쿼리(`?grade=…&page=…`)로 — 서버 컴포넌트를
  * 유지해 클라이언트 상태 없이 링크만으로 동작한다.
@@ -89,6 +92,10 @@ export default async function ContentDamagedPage({
 }: {
   searchParams: Promise<{ grade?: string; page?: string }>;
 }) {
+  // 프록시가 `/dev/` 를 공개로 둔다 — production 에서는 **로그인한 원장에게만** 연다
+  // (`src/lib/devPageAccess.ts`). 로그인 없는 요청은 DB 를 읽기 전에 여기서 끝난다.
+  if (!(await devPageVisible({ directorOnly: true }))) notFound();
+
   const { grade: gradeParam, page: pageParam } = await searchParams;
 
   const reasons = await loadDamagedReasons();
