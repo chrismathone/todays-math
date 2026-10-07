@@ -44,7 +44,11 @@ vi.mock("@/components/math-srs/LearningSounds", async (importOriginal) => ({
 }));
 
 const router = vi.hoisted(() => ({ replace: vi.fn(), refresh: vi.fn() }));
-vi.mock("next/navigation", () => ({ useRouter: () => router }));
+vi.mock("next/navigation", () => ({
+  useRouter: () => router,
+  usePathname: () => "/learn",
+  useSearchParams: () => new URLSearchParams(),
+}));
 vi.mock("@/components/math-srs/courseApi", () => ({
   getCourseState: vi.fn(),
   saveOwnCoursePlan: vi.fn(),
@@ -731,10 +735,9 @@ describe("student course home", () => {
       screen.getByRole("progressbar", { name: "오늘 목표 진행" }),
     ).toHaveAttribute("max", "10");
     expect(screen.getByText("2개")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "강의" })).toHaveAttribute(
-      "href",
-      "/learn/lectures",
-    );
+    expect(
+      screen.queryByRole("link", { name: "강의" }),
+    ).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "도감" })).toHaveAttribute(
       "href",
       "/learn?view=collection",

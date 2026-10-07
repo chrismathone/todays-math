@@ -45,7 +45,8 @@ export async function requireStudent(opts: {
         enabled: [],
       }),
     );
-    if (!menus.enabled.includes(opts.menu))
+    const enabled: readonly StudentOptionalMenu[] = menus.enabled;
+    if (!enabled.includes(opts.menu))
       return {
         student: null,
         response: jsonError(
