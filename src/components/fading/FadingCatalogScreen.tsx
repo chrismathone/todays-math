@@ -213,7 +213,7 @@ export function FadingCatalogScreen({
                     <span className={s.badge}>
                       {concept.status
                         ? `${concept.status.step}단계`
-                        : "고르기 전"}
+                        : "시작 전"}
                     </span>
                   </span>
                   <span className={s.conceptRowMeta}>
@@ -392,7 +392,7 @@ export function FadingCatalogScreen({
                           <span className={s.badge}>
                             {concept.status
                               ? `${concept.status.step}단계 · ${stepNames[concept.status.step]}`
-                              : "고르기 전"}
+                              : "시작 전"}
                           </span>
                         </div>
                         {concept.status?.risk !== null &&
@@ -433,7 +433,7 @@ export function FadingCatalogScreen({
                         aria-label={
                           concept.status
                             ? `다음 풀이 ${concept.status.step}단계`
-                            : "고르기 전"
+                            : "시작 전"
                         }
                       >
                         {steps.map((step) => (
