@@ -24,6 +24,7 @@ export const SOURCE_LABEL: Record<ProblemSource, string> = {
   past_exam: "기출",
   transformed: "변형",
   ai_generated: "AI 생성",
+  school_textbook: "교과서",
 };
 
 /** 필터 드롭다운이 그리는 순서 — 많은 것부터. */
@@ -31,6 +32,7 @@ export const SOURCE_OPTIONS = [
   "past_exam",
   "transformed",
   "manual",
+  "school_textbook",
   "ai_generated",
 ] as const satisfies readonly ProblemSource[];
 

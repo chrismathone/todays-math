@@ -54,7 +54,7 @@ export const difficultySchema = z.enum(DIFFICULTY_LADDER_VALUES, {
 });
 
 export const problemSourceSchema = z.enum(
-  ["manual", "past_exam", "transformed", "ai_generated"],
+  ["manual", "past_exam", "transformed", "ai_generated", "school_textbook"],
   { error: "문제 출처 값이 올바르지 않습니다." },
 );
 export type ProblemSource = z.infer<typeof problemSourceSchema>;

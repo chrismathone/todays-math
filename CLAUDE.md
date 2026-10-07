@@ -45,6 +45,8 @@
 
 관리 콘솔·지점 관리는 [지점 관리 고도화 계획](docs/planning/admin-branch-upgrade-20261003.md)과 [Codex·Claude·Grok 합의](docs/planning/tracks/reports/admin-branch-consensus-20261003.md)를 따른다. 계정 관리는 지점 내부로 이동하며, 원장도 지점 사용 메뉴를 따른다. 지점 제한과 개인 설정을 구분해 보존한다. Wire A·H1은 사용자의 3자 합의 후 실행 위임에 따라 선택했다. 지점 메뉴 상한 변경과 관리 콘솔은 최고관리자 전용이고, 기존 `/branch`·소유권·학생 정책은 보존한다. DB 먼저·코드 나중 순서를 지킨다.
 
+교과서(출판사 평가 자료) 문항 이관은 [교과서 문항 이관](docs/planning/schoolbook-import-20261007.md)과 07 **D-161** 을 따른다(2026-10-07). 출처 값 `school_textbook`(이름이 `textbook` 이 아니다 — 그 낱말은 «교재»다) · `source_book` → `source_material` → `problem.source_material_id` · 학기는 차시의 것(`unit.semester`) — **공유 DB 에 적용됨**. 🔴 교과서 문항은 이 값을 아는 코드가 배포된 **뒤에** 넣는다 — 최신 main 을 안 합친 가지 · 작업본은 `school_textbook` 행을 읽다 죽는다. 🔴 첫 추출의 «답 붙음 9,785»에는 본문이 다른 문항의 것인 짝이 섞여 있었다(답만 맞춰 본 표본으로는 안 보였다) — 그래서 싣기 전에 검토자가 **정답 없이 풀어** 출판사 정답과 대조한다(`scripts/import/textbook/review/`). 한글 수식의 첨자는 띄어쓰기까지다(`x^m+n` = x^{m+n}) — 변환 정본은 첫 토큰만 올린다. 변환본 · 추출 결과는 저장소 밖(`E:\todays-math-textbook-import\`)에 있다. 교과서 · 문제집 문항이나 출처 메타데이터를 만지기 **전에 필독**.
+
 > ⚠️ **새 기획 문서 번호를 붙이기 전에 반드시 `ls docs/planning/` 로 확인하고,
 > 원장님께 번호를 먼저 알린다.** 오르카 다중 세션이 동시에 문서를 만들면 번호가 겹친다
 > (2026-08-16 실제 발생: 11번이 둘). 겹치면 **참조가 적은 쪽**을 옮기고,

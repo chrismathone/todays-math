@@ -30,6 +30,11 @@ enum ProblemSource {
   past_exam // 기출
   transformed // 변형
   ai_generated // AI 생성
+  /// 교과서 — 출판사가 교과서에 딸려 낸 평가 · 수업 자료에서 옮긴 것 (D-161, 2026-10-07).
+  /// 이름이 `textbook` 이 아닌 까닭: 이 저장소에서 그 낱말은 이미 «교재»(자체 교재 제작 `Textbook*` ·
+  /// RPM 문제집 스크립트)를 가리킨다. 책 · 자료는 `SourceMaterial` 이 말한다.
+  /// 🔴 enum 값은 한번 넣으면 못 뺀다 — 그리고 이 값을 모르는 옛 Prisma 클라이언트는 이 행을 읽다 죽는다.
+  school_textbook // 교과서
 
   @@map("problem_source")
 }
@@ -482,6 +487,10 @@ model Unit {
   /// ⚠️ 이 값이 바뀌어도 **이미 부여된 문항 코드는 안 바뀐다**(스냅샷). 새로 들어오는
   ///    문항만 새 앞부분을 받는다.
   problemCodePrefix String @unique @map("problem_code_prefix") @db.VarChar(8)
+  /// 이 차시를 배우는 학기 — 1 | 2 (D-161). 고등 선택 과목처럼 학교마다 다른 것은 NULL.
+  /// 문항의 «학기»는 따로 적지 않는다 — 문항의 차시가 말한다(기출 · 엔진 · 교과서가 같은 값을 본다).
+  /// 원천은 `prisma/seed-data/units.ts` 의 `semesterOfUnit` 한 곳이다.
+  semester          Int?   @db.SmallInt
 
   progresses     Progress[]
   problems       Problem[]
@@ -876,6 +885,9 @@ model Problem {
   /// 부여: `problem_code_assign` BEFORE INSERT 트리거. 앱·스크립트·psql 어느 경로든
   /// 자동으로 받는다(마이그레이션 `20260818210000_problem_code` 참조).
   problemCode      String       @unique @default(dbgenerated()) @map("problem_code") @db.VarChar(16)
+  /// 이 문항이 실려 있던 **출처 자료** — 교과서 · 문제집의 자료 한 편 (D-161). 기출 · 엔진 · 자작은 NULL.
+  /// 출판사 · 저자 · 자료 종류 · 교과서 단원 표기는 전부 이 줄을 타고 간다(문항에 글자로 베껴 두지 않는다).
+  sourceMaterialId String?      @map("source_material_id") @db.Uuid
   createdAt        DateTime     @default(now()) @map("created_at")
   updatedAt        DateTime     @updatedAt @map("updated_at")
 
@@ -884,6 +896,8 @@ model Problem {
   unit                Unit               @relation(fields: [unitId], references: [id], onDelete: Restrict)
   originProblem       Problem?           @relation("ProblemOrigin", fields: [originProblemId], references: [id], onDelete: SetNull)
   transformedProblems Problem[]          @relation("ProblemOrigin")
+  /// ⚠️ Restrict — 자료를 지우려면 그 자료의 문항부터 정리한다(출처를 모르는 문항이 조용히 생기지 않게).
+  sourceMaterial      SourceMaterial?    @relation(fields: [sourceMaterialId], references: [id], onDelete: Restrict)
   testProblems        TestProblem[]
   problemAnswers      ProblemAnswer[]
   /// 해설 출처. AI 가 만든 해설은 사람이 「이 해설 쓴다」를 누르기 전까지
@@ -912,7 +926,100 @@ model Problem {
   @@index([reviewStatus, createdAt(sort: Desc)])
   // 「이 문항과 같은 류가 몇 개인가」 — 아류 묶어 보기(D-105).
   @@index([unitId, familyKey])
+  // 「이 자료의 문항」 — 출판사 · 자료 종류로 거르는 조회가 자료 → 문항으로 내려온다(D-161).
+  @@index([sourceMaterialId])
   @@map("problem")
+}
+
+// ─────────────────────────────────────────────
+// 출처 책 · 출처 자료 — 교과서 · 문제집에서 옮긴 문항의 메타데이터 (D-161, 2026-10-07)
+//
+// 원장님 2026-10-07: 「출판사 학년 학기 단원 유형 등 모든 곳에 메타데이터가 있어야 문제은행을 이용하기 용이함」
+// · 「근본 해결로 진행할것. 간단한 해결말고 미래를 본 해결 방법」.
+//
+//   SourceBook      책 한 권 — 「천재교육 · 중학 수학1 · 김동재 · 2022 개정」
+//     └ SourceMaterial  그 책에 딸린 자료 한 편(파일 하나) — 「형성평가 1-1-1 1회」
+//         └ Problem.sourceMaterialId  그 자료에 실려 있던 문항
+//
+// ⚠️ 기출의 `Exam`(시험지 1편)과 같은 자리다 — 그쪽은 예측기가 쓰는 통계 원본이고 이쪽은 **문제은행을
+//    거르고 되짚는** 데 쓴다. 문항에 출판사 이름을 글자로 베껴 두지 않는 까닭: 책 54권 · 자료 수천 편이
+//    문항 만 줄에 되풀이되면, 출판사 표기 하나를 고칠 때 만 줄을 고쳐야 한다.
+// ⚠️ 자체 교재 제작의 `Textbook*` 표들과 **다른 것**이다 — 그쪽은 우리가 만드는 교재, 이쪽은 남이 낸 책.
+// 계약 SSOT: src/contracts/sourceMaterial.contract.ts
+// ─────────────────────────────────────────────
+
+model SourceBook {
+  id String @id @default(uuid()) @db.Uuid
+
+  /// 다시 적재해도 같은 줄이 되게 하는 열쇠 — `2022/천재교육/중1/김동재`.
+  externalKey String @unique @map("external_key") @db.VarChar(120)
+  /// `school_textbook`(교과서) | `workbook`(문제집). DB CHECK 가 지킨다.
+  kind        String @db.VarChar(20)
+  /// 출판사 — 「천재교육」. 폴더 이름의 오타(「YMB」)는 적재기가 정본 표기로 고친다.
+  publisher   String @db.VarChar(30)
+  /// 대표 저자 — 「김동재」. 한 출판사가 같은 과목을 두 권 낸다(천재교육 중1 김동재 · 김화경).
+  author      String? @db.VarChar(30)
+  /// 책 제목 — 「중학 수학1」 · 「공통수학1」
+  title       String @db.VarChar(80)
+  /// 우리 교육과정 트리의 학년 키 — `Unit.grade` 와 같은 값(「중1」 · 「공통수학1」)
+  grade       String @db.VarChar(10)
+  /// 교육과정 — `2022`(22개정) | `2015`
+  curriculum  String @db.VarChar(8)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  materials SourceMaterial[]
+
+  @@index([kind, grade, publisher])
+  @@map("source_book")
+}
+
+model SourceMaterial {
+  id String @id @default(uuid()) @db.Uuid
+
+  /// 다시 적재해도 같은 줄이 되게 하는 열쇠 — 원본 파일 경로의 sha1 앞 16자(`tb-…`).
+  /// 변환본 파일 이름 · 그림 폴더 이름과 같은 값이다.
+  externalKey String @unique @map("external_key") @db.VarChar(120)
+  bookId      String @map("book_id") @db.Uuid
+
+  /// 자료 종류 — 우리가 맞춘 이름(「소단원 평가」 · 「형성평가」 · 「시험 대비」 …).
+  /// 값의 목록은 계약에 있다(`SOURCE_MATERIAL_KINDS`) — DB 에는 CHECK 를 두지 않는다(새 종류가 생긴다).
+  kind     String @db.VarChar(20)
+  /// 출판사가 부른 이름 그대로 — 「기초력 UP 문제」. 우리 이름으로 맞춰도 이 값은 **보존한다**.
+  kindRaw  String @map("kind_raw") @db.VarChar(60)
+  /// 자료 제목 — 파일 이름(확장자 없이)
+  title    String @db.VarChar(200)
+
+  /// 교과서의 단원 번호 — 대 · 중 · 소. 파일 이름에 없으면 NULL.
+  /// ⚠️ **교과서의** 번호다 — 우리 차시 번호와 다르다(책마다 단원을 나누는 자리가 다르다).
+  chapterNo Int? @map("chapter_no") @db.SmallInt
+  middleNo  Int? @map("middle_no") @db.SmallInt
+  sectionNo Int? @map("section_no") @db.SmallInt
+  /// 교과서의 단원 이름 원문 — 「다항식의 덧셈과 뺄셈」. 우리 차시로 붙여도 보존한다.
+  unitRaw   String? @map("unit_raw") @db.VarChar(120)
+
+  /// 학기 — 「1학기 중간대비」처럼 자료가 스스로 말할 때만. 문항의 학기는 차시가 말한다.
+  semester Int?    @db.SmallInt
+  /// 「중간」 | 「기말」 — 시험 대비 자료만
+  round    String? @db.VarChar(4)
+  /// 출판사가 적은 수준 — 「기본」 · 「발전」 · 「상」
+  levelRaw String? @map("level_raw") @db.VarChar(20)
+  /// 회차 — 「2회」의 2
+  sequence Int?    @db.SmallInt
+
+  /// 원본 파일 경로(G드라이브 기준)
+  sourceFile String? @map("source_file") @db.VarChar(500)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  /// ⚠️ Restrict — 책을 지우려면 자료부터.
+  book     SourceBook @relation(fields: [bookId], references: [id], onDelete: Restrict)
+  problems Problem[]
+
+  @@index([bookId, kind])
+  @@map("source_material")
 }
 
 // ─────────────────────────────────────────────

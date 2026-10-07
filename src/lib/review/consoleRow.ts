@@ -86,6 +86,7 @@ export const SOURCE_LABELS: Record<string, string> = {
   past_exam: "기출",
   transformed: "교재(RPM)",
   ai_generated: "AI 생성",
+  school_textbook: "교과서",
 };
 
 export const SOLUTION_SOURCE_LABELS: Record<string, string> = {

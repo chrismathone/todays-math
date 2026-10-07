@@ -8,7 +8,7 @@ export interface ContentBlock {
 
 export interface ImportDraft {
   externalId: string;
-  source: "past_exam" | "manual" | "transformed";
+  source: "past_exam" | "manual" | "transformed" | "school_textbook";
   directUseAllowed: boolean;
   difficulty: Difficulty;
   problemType: ProblemType;
